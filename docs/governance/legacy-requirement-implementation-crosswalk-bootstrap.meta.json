@@ -1,0 +1,1779 @@
+{
+  "schema_revision": 1,
+  "crosswalk_id": "IR-IMPLEMENTATION-CROSSWALK-BOOTSTRAP-2026-09-21",
+  "status": "candidate_incomplete",
+  "authority_effect": "none",
+  "source_revision": "legacy-generation-2026-09-14",
+  "method": "docs/governance/audits/source-rebaseline/legacy-requirement-implementation-crosswalk-method-2026-09-21.md",
+  "record_count": 218,
+  "product_scope_counts": {
+    "HELIX-HARNESS": 85,
+    "HELIX-HARNESS+HELIX-OS": 1,
+    "HELIX-OS": 132
+  },
+  "direct_phase_state_counts": {
+    "with_candidate": 188,
+    "unresolved": 30
+  },
+  "direct_phase_unresolved_product_scope_counts": {
+    "HELIX-HARNESS": 6,
+    "HELIX-OS": 24
+  },
+  "unit_phase_link_count": 321,
+  "current_phase_status_link_counts": {
+    "approved_current": 1,
+    "approved_requirement_not_applied": 5,
+    "candidate": 57,
+    "candidate_only": 109,
+    "candidate_with_partial_current_registry": 3,
+    "draft": 11,
+    "draft_containers": 24,
+    "draft_requirement": 22,
+    "draft_requirement_and_bootstrap_decision": 43,
+    "operating_contract_only": 7,
+    "requirement_candidate": 20,
+    "scaffold_operating": 19
+  },
+  "legacy_phase_capability_status_link_counts": {
+    "documented_and_governed": 1,
+    "documented_candidate": 15,
+    "documented_with_implementation_assets": 41,
+    "documented_with_runtime_support": 24,
+    "documented_with_test_design": 68,
+    "documented_with_test_design_partial": 11,
+    "equivalent_capabilities_found_no_explicit_wbs_asset": 5,
+    "implemented_partial": 17,
+    "implemented_partial_with_test_design": 6,
+    "implemented_partial_with_tests": 1,
+    "implemented_with_acceptance_design_assets": 10,
+    "implemented_with_draft_system_test_design": 7,
+    "implemented_with_tests": 90,
+    "implemented_with_workflow_and_test_design": 25
+  },
+  "transition_assessment_link_counts": {
+    "degraded_to_candidate": 103,
+    "degraded_to_candidate_and_static_registry": 3,
+    "degraded_to_draft": 32,
+    "degraded_to_draft_and_crosswalk": 1,
+    "degraded_to_manual_operating_contract": 7,
+    "degraded_to_operating_contract_and_gui_scaffold": 19,
+    "degraded_to_rederived_candidate": 15,
+    "degraded_to_requirement_and_limited_bootstrap": 43,
+    "degraded_to_unapproved_routing_containers": 24,
+    "not_reimplemented_formally": 68,
+    "rederived_current": 1,
+    "semantic_equivalence_unresolved": 5
+  },
+  "unit_transition_assessment_presence_counts": {
+    "degraded_to_candidate": 84,
+    "degraded_to_candidate_and_static_registry": 3,
+    "degraded_to_draft": 31,
+    "degraded_to_draft_and_crosswalk": 1,
+    "degraded_to_manual_operating_contract": 7,
+    "degraded_to_operating_contract_and_gui_scaffold": 19,
+    "degraded_to_rederived_candidate": 15,
+    "degraded_to_requirement_and_limited_bootstrap": 43,
+    "degraded_to_unapproved_routing_containers": 24,
+    "not_reimplemented_formally": 68,
+    "rederived_current": 1,
+    "semantic_equivalence_unresolved": 5
+  },
+  "phase_evidence_trace_counts": {
+    "exact_source_quote_traced": 138,
+    "unresolved_no_exact_source_span": 183
+  },
+  "units_with_untraced_phase_candidate_count": 117,
+  "direct_phase_unresolved_review_queue": [
+    {
+      "unit_candidate_id": "IRUNIT-HIL-BR-14-HELIX-OS",
+      "source_requirement_id": "HIL-BR-14",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "file集合やaggregate親の列挙、source宣言、読了だけを採用済みとみなさない",
+        "ref件数、unique tree entry分母、全ref-entry edge分母はauthority receiptから導出し",
+        "観測時の件数を要件へ固定しない"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-BR-24-HELIX-OS",
+      "source_requirement_id": "HIL-BR-24",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "要件定義そのものを設計対象として台帳化し",
+        "revisionを一つの履歴へ結ぶ"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-17-HELIX-OS",
+      "source_requirement_id": "HIL-FR-17",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "画面なしskipには理由、判定者、入力digest、再entry triggerを要求する",
+        "`prototype_required` taskまたは`not_applicable` receipt"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-18-HELIX-OS",
+      "source_requirement_id": "HIL-FR-18",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "artifact manifest、digest、起動手順、screen/interaction/state trace"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-19-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-19",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "source_text_spans": [
+        "画面対象のWalkthrough Loopはprototype版、ユーザー観測、発見要求deltaまたは`no_delta`、L1反映先、再作成判断を記録し",
+        "walkthrough receipt、requirements delta"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-20-HELIX-OS",
+      "source_requirement_id": "HIL-FR-20",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "いずれも無い場合はL1 freezeとL3開始をfail-closeする",
+        "不足code"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-21-HELIX-OS",
+      "source_requirement_id": "HIL-FR-21",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "Source Snapshot ManifestはZIP entry、前身repository exact 2件のidentity、namespace policy、advertisement A/B digest、全ref→peeled object→commit/tree→entry edge、sealed mirror receipt、現行HELIX symbol/doc/testを固定し、観測時刻、source/tree digest、取得器・抽出器versionを記録する。ref/content/edge分母はreceiptから導出し、remote identity・advertisement・namespace・source集合が変われば既存snapshot、atomization、coverage receiptをstale化する。 | immutable manifest、Git authority receipt set、source digest、stale判定"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-23-HELIX-OS",
+      "source_requirement_id": "HIL-FR-23",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "Product Data Connector Registryはsource種別、connector/schema version、credential reference、classification、read/write方針、sync方式、owner、enabled stateを保持する。credential値は保存しない。 | connector contract、digest、enable/disable receipt"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-24-HELIX-OS",
+      "source_requirement_id": "HIL-FR-24",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "Product Data Ingestionはfull/incremental snapshotを冪等取得し、source record→canonical entity→requirement/design/Issue mapping、provenance、freshness、tombstone、schema driftをread projectionへ投影する。 | snapshot、watermark、mapping edge、stale/drift finding"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-31-HELIX-OS",
+      "source_requirement_id": "HIL-FR-31",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "再承認前の実装claimとForward合流を拒否する",
+        "re-freeze receipt"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-33-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-33",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "source_text_spans": [
+        "Bun Dependency Coverage Gateはactive source/import/command/script/test/package/lockfile/CI/hook/template/setup/distributionからBun依存を抽出する",
+        "historical/archiveだけを理由付きallowlist可能とする",
+        "classified dependency ledger"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-33-HELIX-OS",
+      "source_requirement_id": "HIL-FR-33",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "active Bun count"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-46-HELIX-OS",
+      "source_requirement_id": "HIL-FR-46",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "各layer ledgerのrowはstable subject ID、revision、source span、semantic digest、status、owner、downstream/upstream edgeを持つ",
+        "layer snapshot、coverage receipt"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-52-HELIX-OS",
+      "source_requirement_id": "HIL-FR-52",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "Atomic Canonicalization TransactionはMarkdown、asset revision、event ledger、trace、impact、stale propagation、harness.db projection、receiptを単一operationで原子的に更新する。部分成功をCanonicalとして扱わず、command idempotencyとbase revision CASを強制する。 | canonicalization receipt、before/after revision、write count、rollback/conflict receipt"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-53-HELIX-OS",
+      "source_requirement_id": "HIL-FR-53",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "Semantic Revision and Asset Identityはpath・名称から独立したimmutable asset IDを保持し、意味変更を新revisionとして保存する。rename、move、split、merge、supersedeは履歴、authority、oracle、typed edgeを失わず処理する。 | asset revision、identity/location history、split/merge disposition、semantic diff"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-02-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-02",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "source_text_spans": [
+        "worker≠verifier≠knowledge promoterを維持し"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-03-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-03",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "source_text_spans": [
+        "全IssueのReverse処理量を省略しない",
+        "`none/not-required/exempt`とphase skipを禁止し",
+        "budget到達は未完obligationを免除せず"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-05-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-05",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "Issue/PR/comment/ZIP/外部データはuntrusted inputとして扱い、実行命令、metadata、evidenceを分離する。"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-06-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-06",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "action-binding approvalを必要とする"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-07",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "complexity、public surface、運用負債を測り",
+        "拡張を拒否する"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-11",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "画面非対象ではLLMの自由文判断だけをskip evidenceにしない"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-12-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-12",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "各判断はsource path/entry、digest、抽出時点へ再現可能に結ぶ"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-23-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-23",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "cycleを拒否する"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-30-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-30",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "機械検証からCanonical化まで自動完走できる",
+        "確認待ちを安全策として乱発せず"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-31-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-31",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "Authoring正本、ledger、trace、projection、receiptはall-or-nothingで更新し、fault injection後にも部分current状態を0件とする。"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-32-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-32",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "impact",
+        "rollback、downstream stale propagationが揃わない限り",
+        "Canonical化しない"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-04-HELIX-HARNESS",
+      "source_requirement_id": "HIL-TR-04",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "source_text_spans": [
+        "OS優先順位はLinuxをprimary、macOSをfirst-class portable、Windowsをcompatibility profileとする",
+        "WSL/Git Bash/PowerShellをcore前提にしない"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-04-HELIX-OS",
+      "source_requirement_id": "HIL-TR-04",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "OS優先順位はLinuxをprimary、macOSをfirst-class portable、Windowsをcompatibility profileとする",
+        "WSL/Git Bash/PowerShellをcore前提にしない"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-07-HELIX-OS",
+      "source_requirement_id": "HIL-TR-07",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "source_text_spans": [
+        "SQLite/harness.dbはcontrol planeのevent/projection backboneを維持し、Python分析用read modelとNode write authorityを分離する。write authority変更はL4で決定する。"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-HARNESS",
+      "source_requirement_id": "HIL-TR-08",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "source_text_spans": [
+        "Node↔Pythonの初期正規IPCはchild process＋versioned JSON Lines over stdioとし",
+        "envelopeはschema/run/request/type/sequence/deadline/payload digestを持つ"
+      ]
+    }
+  ],
+  "phase_evidence_trace_review_queue": [
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-19-HELIX-OS",
+      "source_requirement_id": "HIL-FR-19",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-19"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-20-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-20",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-05",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-22-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-22",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-22-HELIX-OS",
+      "source_requirement_id": "HIL-FR-22",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-25-HELIX-OS",
+      "source_requirement_id": "HIL-FR-25",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-26-HELIX-OS",
+      "source_requirement_id": "HIL-FR-26",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-27-HELIX-OS",
+      "source_requirement_id": "HIL-FR-27",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-28-HELIX-OS",
+      "source_requirement_id": "HIL-FR-28",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-29-HELIX-OS",
+      "source_requirement_id": "HIL-FR-29",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-30-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-30",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-12"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-30-HELIX-OS",
+      "source_requirement_id": "HIL-FR-30",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-09",
+        "PHCAP-20"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-31-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-31",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-04",
+        "PHCAP-05",
+        "PHCAP-06",
+        "PHCAP-07",
+        "PHCAP-18"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-32-HELIX-OS",
+      "source_requirement_id": "HIL-FR-32",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-34-HELIX-OS",
+      "source_requirement_id": "HIL-FR-34",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-35-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-35",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-35-HELIX-OS",
+      "source_requirement_id": "HIL-FR-35",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-36-HELIX-OS",
+      "source_requirement_id": "HIL-FR-36",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-02",
+        "PHCAP-04",
+        "PHCAP-12"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-37-HELIX-OS",
+      "source_requirement_id": "HIL-FR-37",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-03"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-38-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-38",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-04"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-38-HELIX-OS",
+      "source_requirement_id": "HIL-FR-38",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-04"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-39-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-39",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-18"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-39-HELIX-OS",
+      "source_requirement_id": "HIL-FR-39",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-18"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-40-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-40",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-41-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-41",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-42-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-42",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-42-HELIX-OS",
+      "source_requirement_id": "HIL-FR-42",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-43-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-43",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-03"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-44-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-44",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-44-HELIX-OS",
+      "source_requirement_id": "HIL-FR-44",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-12",
+        "PHCAP-19"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-45-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-45",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-03",
+        "PHCAP-05"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-45-HELIX-OS",
+      "source_requirement_id": "HIL-FR-45",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-04"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-46-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-46",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-47-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-47",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-48-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-48",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-48-HELIX-OS",
+      "source_requirement_id": "HIL-FR-48",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-49-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-49",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-05",
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-49-HELIX-OS",
+      "source_requirement_id": "HIL-FR-49",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-50-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-50",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-18"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-50-HELIX-OS",
+      "source_requirement_id": "HIL-FR-50",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-18"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-51-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-51",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-04",
+        "PHCAP-06"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-51-HELIX-OS",
+      "source_requirement_id": "HIL-FR-51",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-04"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-54-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-54",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-55-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-55",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-56-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-56",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-07",
+        "PHCAP-08"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-57-HELIX-HARNESS",
+      "source_requirement_id": "HIL-FR-57",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-58-HELIX-OS",
+      "source_requirement_id": "HIL-FR-58",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-12",
+        "PHCAP-19"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-59-HELIX-OS",
+      "source_requirement_id": "HIL-FR-59",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-60-HELIX-OS",
+      "source_requirement_id": "HIL-FR-60",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-61-HELIX-OS",
+      "source_requirement_id": "HIL-FR-61",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-62-HELIX-OS",
+      "source_requirement_id": "HIL-FR-62",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-63-HELIX-OS",
+      "source_requirement_id": "HIL-FR-63",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-64-HELIX-OS",
+      "source_requirement_id": "HIL-FR-64",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-65-HELIX-OS",
+      "source_requirement_id": "HIL-FR-65",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-66-HELIX-OS",
+      "source_requirement_id": "HIL-FR-66",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-67-HELIX-OS",
+      "source_requirement_id": "HIL-FR-67",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-68-HELIX-OS",
+      "source_requirement_id": "HIL-FR-68",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-FR-69-HELIX-OS",
+      "source_requirement_id": "HIL-FR-69",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10",
+        "PHCAP-12"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-01-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-01",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-09",
+        "PHCAP-20"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-02-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-02",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-19"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-03-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-03",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-20"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-04-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-04",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-09",
+        "PHCAP-10",
+        "PHCAP-20"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-06-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-06",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-04"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-07",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-04"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-08",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-08",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-09",
+        "PHCAP-12",
+        "PHCAP-20"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-09",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-09",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-10",
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-10-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-10",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-11",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-03",
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-13-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-13",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-14-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-14",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-15-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-15",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-15-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-15",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-16-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-16",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-17-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-17",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-16",
+        "PHCAP-20"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-18-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-18",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10",
+        "PHCAP-20"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-19-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-19",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-19-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-19",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-20-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-20",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-20-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-20",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-21-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-21",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-12"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-22-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-22",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-03"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-22-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-22",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-23-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-23",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-04"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-24-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-24",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-18"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-24-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-24",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-18"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-25-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-25",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-26-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-26",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-26-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-26",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-27-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-27",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-03",
+        "PHCAP-06"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-27-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-27",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-19"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-28-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-28",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-03",
+        "PHCAP-04",
+        "PHCAP-05",
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-28-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-28",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-29-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-29",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-29-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-29",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-30-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-30",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-04"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-32-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-32",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-04",
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-33-HELIX-HARNESS",
+      "source_requirement_id": "HIL-NFR-33",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-06",
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-34-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-34",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-35-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-35",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-36-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-36",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-37-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-37",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-38-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-38",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-39-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-39",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-40-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-40",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-01-HELIX-OS",
+      "source_requirement_id": "HIL-TR-01",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-11",
+        "PHCAP-14"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-02-HELIX-OS",
+      "source_requirement_id": "HIL-TR-02",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-03-HELIX-OS",
+      "source_requirement_id": "HIL-TR-03",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-05-HELIX-HARNESS",
+      "source_requirement_id": "HIL-TR-05",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-05-HELIX-OS",
+      "source_requirement_id": "HIL-TR-05",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-07",
+        "PHCAP-10",
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-06-HELIX-HARNESS",
+      "source_requirement_id": "HIL-TR-06",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-06-HELIX-OS",
+      "source_requirement_id": "HIL-TR-06",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-11"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-OS",
+      "source_requirement_id": "HIL-TR-08",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-09-HELIX-OS",
+      "source_requirement_id": "HIL-TR-09",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-10-HELIX-OS",
+      "source_requirement_id": "HIL-TR-10",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-10"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-11-HELIX-HARNESS",
+      "source_requirement_id": "HIL-TR-11",
+      "product_scope": [
+        "HELIX-HARNESS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-11",
+        "PHCAP-14"
+      ]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-11-HELIX-OS",
+      "source_requirement_id": "HIL-TR-11",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "untraced_phase_ids": [
+        "PHCAP-11"
+      ]
+    }
+  ],
+  "unique_representative_legacy_asset_count": 78,
+  "all_phase_representative_legacy_asset_count": 84,
+  "unreferenced_phase_representative_assets": [
+    {
+      "asset_id": "LEGACY-ASSET-1251704E0BE627232E00",
+      "source_path": "docs/design/harness/L13-post-deploy/post-deploy-evidence-boundary.md",
+      "source_sha256": "d2f87c2a0cdeef4ef1902737af53638c8125c3e7679c6804207de02d6f6e99ba",
+      "archive_manifest_digest_match": true,
+      "artifact_evidence_kind": "design",
+      "implementation_evidence_state": "document_present",
+      "legacy_implementation_status": "unknown",
+      "consumer_refs_observed": [],
+      "consumer_closure_status": "pending",
+      "phase_ids": [
+        "PHCAP-15"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-189702B332643A3BFDAF",
+      "source_path": "docs/plans/PLAN-L13-00-post-deploy-verification-master.md",
+      "source_sha256": "968a2da7ed628f2c69ab4e696327b4dd9e88a61aee99453c210c858a4eaf914a",
+      "archive_manifest_digest_match": true,
+      "artifact_evidence_kind": "plan",
+      "implementation_evidence_state": "document_present",
+      "legacy_implementation_status": "unknown",
+      "consumer_refs_observed": [],
+      "consumer_closure_status": "pending",
+      "phase_ids": [
+        "PHCAP-15"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4618C7243C283228809A",
+      "source_path": "docs/skills/incident-runbook.md",
+      "source_sha256": "f5ba60755a67d7aff8a38eb2fd4212a17fa3c9186a63ce4763843f25a458e402",
+      "archive_manifest_digest_match": true,
+      "artifact_evidence_kind": "operation_document",
+      "implementation_evidence_state": "document_present",
+      "legacy_implementation_status": "unknown",
+      "consumer_refs_observed": [],
+      "consumer_closure_status": "pending",
+      "phase_ids": [
+        "PHCAP-17"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-54330A68064B58B22259",
+      "source_path": "docs/design/helix/L13-post-deploy/post-deploy-evidence-boundary.md",
+      "source_sha256": "14ec3141c84e122085843b2b5a2ae0a0c83fe257694a76dcc0eb6ab9f5b365d8",
+      "archive_manifest_digest_match": true,
+      "artifact_evidence_kind": "design",
+      "implementation_evidence_state": "document_present",
+      "legacy_implementation_status": "unknown",
+      "consumer_refs_observed": [],
+      "consumer_closure_status": "pending",
+      "phase_ids": [
+        "PHCAP-15"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6582F09E55B33723B679",
+      "source_path": "docs/plans/PLAN-L7-129-incident-route-token-coverage.md",
+      "source_sha256": "d557803078abd240241793e76afc398e28c660999b69809d78bed3a87ab04306",
+      "archive_manifest_digest_match": true,
+      "artifact_evidence_kind": "plan",
+      "implementation_evidence_state": "document_present",
+      "legacy_implementation_status": "unknown",
+      "consumer_refs_observed": [],
+      "consumer_closure_status": "pending",
+      "phase_ids": [
+        "PHCAP-17"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+      "source_path": "docs/process/modes/incident.md",
+      "source_sha256": "bad6448a63dbc6b7867b9845ca8caf96ee144802961504f3793667f49fc28f7c",
+      "archive_manifest_digest_match": true,
+      "artifact_evidence_kind": "operation_document",
+      "implementation_evidence_state": "document_present",
+      "legacy_implementation_status": "unknown",
+      "consumer_refs_observed": [],
+      "consumer_closure_status": "pending",
+      "phase_ids": [
+        "PHCAP-17"
+      ]
+    }
+  ],
+  "candidate_asset_membership_counts": {
+    "unit_phase": 87731,
+    "unit_phase_and_product": 56453
+  },
+  "unique_candidate_asset_counts": {
+    "phase": 2608,
+    "phase_and_product": 1832
+  },
+  "unique_phase_and_product_candidate_assets_by_product_scope": {
+    "HELIX-HARNESS": 841,
+    "HELIX-HARNESS+HELIX-OS": 439,
+    "HELIX-OS": 1666
+  },
+  "direct_legacy_asset_link_count": 0,
+  "legacy_requirement_implementation_status_counts": {
+    "unknown_pending_direct_asset_semantic_review": 218
+  },
+  "current_requirement_implementation_status_counts": {
+    "not_established": 218
+  },
+  "consumer_closure_counts": {
+    "pending": 218
+  },
+  "source_inputs": [
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "sha256:9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+    }
+  ],
+  "known_open_conditions": [
+    "all_direct_requirement_asset_semantic_links_pending",
+    "all_requirement_implementation_statuses_unknown",
+    "all_consumer_closures_pending",
+    "direct_phase_unresolved_units_remain",
+    "human_product_authority_decisions_pending",
+    "successor_assignments_unassigned"
+  ],
+  "output_sha256": "sha256:c04553681db71fdeaee59e0b388eeea7877295bd671240322ce1871320a24129"
+}
