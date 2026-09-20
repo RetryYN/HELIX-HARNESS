@@ -17,6 +17,7 @@ HM="$(stat -c %a "$EXEC_HOME")"
 case "$HM" in *[2367]) echo "拒否: home $EXEC_HOME が他のuserから書けます（$HM）" >&2; exit 2;; esac
 case "$HM" in *[2367]?) echo "拒否: home $EXEC_HOME が同じgroupのuserから書けます（$HM）" >&2; exit 2;; esac
 # 直下に、別のuserの持ち物やsymlinkが先に置かれていないこと（状態領域・App設定の置き場所の乗っ取りを防ぐ）
+[ -r "$EXEC_HOME" ] && [ -x "$EXEC_HOME" ] || { echo "拒否: $EXEC_HOME の中身を確かめられません" >&2; exit 2; }
 for e in "$EXEC_HOME"/* "$EXEC_HOME"/.*; do
   case "${e##*/}" in "*" | ".*" | "." | "..") continue;; esac
   [ ! -L "$e" ] || { echo "拒否: $e はsymlinkです" >&2; exit 2; }

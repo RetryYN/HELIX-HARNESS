@@ -1153,8 +1153,14 @@ def run_boundary_tests():
         # 条件を満たすhomeでは止めないことも測る（常に拒否へ壊れたら気づく）。
         # rootを使わずに作れないため、root所有で他から書けない既存のdirectoryを借りる。
         # 借り先ごとに直下の中身が違うため、候補のどれか1つでも通ればよい（1つも通らなければ落とす）。
+        def readable(d):
+            try:
+                return os.path.isdir(d) and bool(os.listdir(d))   # 直下の検査が空振りしない借り先だけ
+            except OSError:
+                return False
+
         accepted = [d for d in ("/usr", "/root", "/etc", "/usr/share", "/var/lib")
-                    if os.path.isdir(d) and sh_run(["sh", ck, "root", d, ""])[0] == 0]
+                    if readable(d) and sh_run(["sh", ck, "root", d, ""])[0] == 0]
         ok_home = bool(accepted)
         if not ok_home:
             print("NG BT-install-args-home（合格の場合を測れるdirectoryが無い）")
