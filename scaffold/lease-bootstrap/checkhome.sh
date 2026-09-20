@@ -21,6 +21,8 @@ for e in "$EXEC_HOME"/* "$EXEC_HOME"/.*; do
   case "${e##*/}" in "*" | ".*" | "." | "..") continue;; esac
   [ ! -L "$e" ] || { echo "拒否: $e はsymlinkです" >&2; exit 2; }
   [ "$(stat -c %U "$e")" = "$EXEC_USER" ] || { echo "拒否: $e が $EXEC_USER の所有ではありません" >&2; exit 2; }
+  EM="$(stat -c %a "$e")"
+  case "$EM" in *[2367] | *[2367]?) echo "拒否: $e が他のuserから書けます（$EM）" >&2; exit 2;; esac
 done
 [ -z "$AI_HOME" ] || [ "$REAL" != "$(readlink -f "$AI_HOME")" ] || { echo "拒否: AI側userとhomeが同じです" >&2; exit 2; }
 # 祖先はすべてroot所有で、他のuserから書けないこと（置き場所ごと差し替えられないため）

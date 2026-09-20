@@ -907,16 +907,22 @@ def run_boundary_tests():
                                          "--counts", "0/0/0", "--authority-basis-sufficient", "yes",
                                          "--new-authority-created", "no", "--text-file", "f"])])
     # 上の呼出しで測れないparser（selftest等）も含め、全parserが省略形を受け付けない定義であること
-    mk = ("argparse." + "ArgumentParser(", "." + "add_parser(")   # この検査行自身に一致しないよう組み立てる
+    # 定義の書き方に依らず拾う（helper経由でも落ちない）。検査行自身は印で除く
+    mk = ("ArgumentParser(", "add_parser(")   # parser-scan
     src_files = sorted(glob.glob(os.path.join(HERE, "*.py")) +
                        glob.glob(os.path.join(os.path.dirname(HERE), "lease-bootstrap", "*.py")))
     def def_lines(f):
-        return [ln for ln in open(f, encoding="utf-8").read().splitlines() if any(t in ln for t in mk)]
+        return [ln for ln in open(f, encoding="utf-8").read().splitlines()
+                if any(t in ln for t in mk) and "parser-scan" not in ln]
 
     # argparseを使うfileは、書き方に依らず必ず定義行として拾えること（拾えなければ素通りを疑う）
     argp = [f for f in src_files if "argparse" in open(f, encoding="utf-8").read()]
     defs = [ln for f in argp for ln in def_lines(f)]
-    abbrev_src = (len(argp) >= 6 and len(defs) >= len(argp) and all(def_lines(f) for f in argp)
+    # subcommandを持つfileは、その数だけ定義行があること（helper経由などで拾えない行を見逃さない）
+    subs = sum(len([ln for ln in open(f, encoding="utf-8").read().splitlines()
+                    if "add_subparsers(" in ln and "parser-scan" not in ln]) for f in argp)   # parser-scan
+    abbrev_src = (len(argp) >= 6 and all(def_lines(f) for f in argp)
+                  and subs >= 3 and len(defs) >= len(argp) + subs
                   and all("allow_abbrev=False" in ln for ln in defs))
     rows.append({"id": "BT-no-duplicate-options", "ok": all(dup_rcs) and abbr and abbrev_src
                  and G.duplicate_options(["--a", "1", "--b", "--a=2"]) == ["--a"]
@@ -944,7 +950,11 @@ def run_boundary_tests():
             G.STATE_OVERRIDE = os.path.join(real, "state.json")
             G.write_state({"suspended": None, "observed_review_ids": {}})
             wrote = G.read_state().get("observed_review_ids") == {}
-            mode_ok = (os.stat(real).st_mode & 0o077) == 0
+            made = os.path.join(sp_dir, "made")          # 無い置き場所は本人だけの権限で作る
+            G.STATE_OVERRIDE = os.path.join(made, "state.json")
+            G.write_state({"suspended": None})
+            mode_ok = (os.stat(made).st_mode & 0o077) == 0
+            G.STATE_OVERRIDE = os.path.join(real, "state.json")
             os.rename(os.path.join(real, "state.json"), os.path.join(sp_dir, "moved"))
             os.symlink(os.path.join(sp_dir, "moved"), os.path.join(real, "state.json"))
             refused_file = False
@@ -958,6 +968,18 @@ def run_boundary_tests():
                 G.write_state({"suspended": None})
             except RuntimeError as e:
                 refused_loose = "他のuserから読めます" in str(e)
+            # 読む側も、symlinkと他から読める置き場所を拒否する
+            read_refused = []
+            G.STATE_OVERRIDE = os.path.join(loose, "state.json")
+            try:
+                G.read_state()
+            except RuntimeError as e:
+                read_refused.append("他のuserから読めます" in str(e))
+            G.STATE_OVERRIDE = os.path.join(real, "state.json")   # ここは既にsymlinkに差し替えてある
+            try:
+                G.read_state()
+            except RuntimeError as e:
+                read_refused.append("symlink" in str(e))
         finally:
             G.STATE_OVERRIDE = keep
         # App設定の置き場所とfileも同じ扱い（symlinkは使わない）
@@ -983,6 +1005,7 @@ def run_boundary_tests():
         os.unlink(os.path.join(d, "app.json"))
         rows.append({"id": "BT-state-no-symlink",
                      "ok": refused_link and refused_file and refused_loose and wrote and mode_ok
+                     and read_refused == [True, True]
                      and app_refused == [True, True] and (os.stat(d).st_mode & 0o077) == 0})
         os.rmdir(d); os.rmdir(os.path.join(ah, ".helix-lease")); os.rmdir(ah)
     finally:
@@ -1018,6 +1041,11 @@ def run_boundary_tests():
                                   "--sha", "a" * 40, "--sha=" + "b" * 40, "--repo", "x/y", "--pr", "1"])
         rc_adup, out_adup = sh_run([sys.executable, "-I", "-B", os.path.join(boot_dir, "appsetup.py"),
                                     "token", "--repo", "a", "--repo=b"])
+        ok_home = True
+        if os.path.isdir("/root") and pwd.getpwuid(os.stat("/root").st_uid).pw_name == "root" \
+                and not os.path.islink("/root") and (os.stat("/root").st_mode & 0o022) == 0:
+            rc_ok, _ = sh_run(["sh", ck, "root", "/root", ""])   # 条件を満たすhomeでは止めない
+            ok_home = rc_ok == 0
         rows.append({"id": "BT-install-args-home",
                      "ok": (rc_anc, rc_link, rc_same, rc_ailink, rc_other,
                             rc_mode, rc_ent, rc_dup, rc_adup) == (2,) * 9
@@ -1030,9 +1058,10 @@ def run_boundary_tests():
                      and "同じoptionが2回以上ある" in out_adup
                      # install.shは、この検査をwrapperを置く前に通す
                      and 'sh "$DEST.new/scaffold/lease-bootstrap/checkhome.sh" "$EXEC_USER" "$EXEC_HOME"' in sh
-                     and sh.index("checkhome.sh") < sh.index("cat > /usr/local/sbin/helix-lease-run")})
+                     and sh.index("checkhome.sh") < sh.index("cat > /usr/local/sbin/helix-lease-run")
+                     and ok_home})
     finally:
-        os.unlink(link); os.rmdir(home); os.rmdir(wide); os.rmdir(hp)
+        shutil.rmtree(hp, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
     # GraphQL側に無いreview（lastEditedAtを確かめられない）は未編集として扱わず、取得失敗にする
     import subprocess as sp3
 

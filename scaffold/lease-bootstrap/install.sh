@@ -81,7 +81,7 @@ EXEC_HOME="$(getent passwd "$EXEC_USER" | cut -d: -f6)"
 [ -n "$EXEC_HOME" ] || { echo "executor userのhomeが登録されていません" >&2; exit 2; }
 # homeにはAppの秘密鍵と状態領域を置くため、AI側から差し替えられる構成を選べないようにする
 sh "$DEST.new/scaffold/lease-bootstrap/checkhome.sh" "$EXEC_USER" "$EXEC_HOME" "$(getent passwd "$AI_USER" | cut -d: -f6)"
-chmod 0750 "$EXEC_HOME"   # 他のuserからは読めず書けない
+chmod 0700 "$EXEC_HOME"   # 本人以外からは読めず書けない
 if [ -e "$DEST" ]; then rm -rf "$DEST.old"; mv "$DEST" "$DEST.old"; fi
 mv "$DEST.new" "$DEST"
 chown -R root:root "$DEST"

@@ -285,6 +285,9 @@ def read_state():
     try:
         if os.path.islink(state_path()):
             raise RuntimeError("状態領域のfileがsymlinkです: %s" % state_path())
+        d = os.path.dirname(state_path())
+        if os.path.isdir(d) and (os.path.islink(d) or os.stat(d).st_mode & 0o077):
+            raise RuntimeError("状態領域の置き場所が他のuserから読めます: %s" % d)
         with open(state_path(), encoding="utf-8") as f:
             return json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
