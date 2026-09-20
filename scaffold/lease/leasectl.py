@@ -993,6 +993,15 @@ def run_boundary_tests():
                     read_refused.append(False)
                 except RuntimeError as e:
                     read_refused.append("置き場所がsymlink" in str(e))
+            # 読めない状態領域（fileの代わりにdirectoryがある等）も、停止が無いものとして扱わない
+            notafile = os.path.join(sp_dir, "notafile"); os.mkdir(notafile, 0o700)
+            os.mkdir(os.path.join(notafile, "state.json"))
+            G.STATE_OVERRIDE = os.path.join(notafile, "state.json")
+            try:
+                G.read_state()
+                read_refused.append(False)
+            except RuntimeError as e:
+                read_refused.append("読めません" in str(e))
             # 壊れた状態fileは、停止が無いものとして扱わない
             broken = os.path.join(sp_dir, "broken"); os.mkdir(broken, 0o700)
             with open(os.path.join(broken, "state.json"), "w") as f:
@@ -1055,7 +1064,7 @@ def run_boundary_tests():
 
         rows.append({"id": "BT-state-no-symlink",
                      "ok": refused_link and refused_file and refused_loose and wrote and mode_ok
-                     and read_refused == [True] * 5
+                     and read_refused == [True] * 6
                      and app_refused == [True] * 11
                      # 実測側も、lease記録のslugをそのままpathにしない（呼出しの有無を構文で見る）
                      and uses_key_file() and (os.stat(d).st_mode & 0o077) == 0})
