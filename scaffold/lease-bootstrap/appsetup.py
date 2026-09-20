@@ -68,11 +68,19 @@ def app_jwt(app_id, key_path, now=None):
     return "%s.%s.%s" % (head, body, b64url(sig))
 
 
-def load_app():
+def app_file():
+    """App設定のfile。symlinkなら（AI側から差し替えられる）使わない。"""
     p = os.path.join(app_dir(), "app.json")
+    if os.path.islink(p):
+        raise RuntimeError("App設定のfileがsymlinkです（差し替えを受け付けない）: %s" % p)
+    return p
+
+
+def load_app():
+    p = app_file()
     if not os.path.exists(p):
         raise RuntimeError("GitHub Appがまだ作られていない（appsetup.py create を先に実行する）")
-    with open(p, encoding="utf-8") as f:
+    with open(os.open(p, os.O_RDONLY | os.O_NOFOLLOW), encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -147,7 +155,8 @@ def cmd_create(a):
     fd = os.open(key, os.O_WRONLY | os.O_CREAT | os.O_EXCL, stat.S_IRUSR | stat.S_IWUSR)   # 0600以外で存在する瞬間を作らない
     with os.fdopen(fd, "w", encoding="utf-8") as f:
         f.write(conv["pem"])
-    with open(os.path.join(app_dir(), "app.json"), "w", encoding="utf-8") as f:
+    with open(os.open(app_file(), os.O_WRONLY | os.O_CREAT | os.O_TRUNC | os.O_NOFOLLOW, 0o600), "w",
+              encoding="utf-8") as f:
         json.dump({"slug": slug, "id": app_id, "repo": a.repo, "html_url": conv.get("html_url")}, f, ensure_ascii=False)
     print(json.dumps({"slug": slug, "app_id": app_id, "key": key,
                       "install_url": "https://github.com/apps/%s/installations/new" % slug}, ensure_ascii=False))

@@ -960,7 +960,31 @@ def run_boundary_tests():
                 refused_loose = "他のuserから読めます" in str(e)
         finally:
             G.STATE_OVERRIDE = keep
-        rows.append({"id": "BT-state-no-symlink", "ok": refused_link and refused_file and refused_loose and wrote and mode_ok})
+        # App設定の置き場所とfileも同じ扱い（symlinkは使わない）
+        import importlib.util as iu
+        spec = iu.spec_from_file_location("appsetup_t", os.path.join(os.path.dirname(HERE),
+                                                                    "lease-bootstrap", "appsetup.py"))
+        AS = iu.module_from_spec(spec); spec.loader.exec_module(AS)
+        ah = tempfile.mkdtemp(prefix="lease-app-")
+        AS.home = lambda: ah
+        app_refused = []
+        os.symlink(sp_dir, os.path.join(ah, ".helix-lease"))
+        try:
+            AS.app_dir()
+        except RuntimeError as e:
+            app_refused.append("symlink" in str(e))
+        os.unlink(os.path.join(ah, ".helix-lease"))
+        d = AS.app_dir()                      # 無ければ本人だけのdirectoryで作る
+        os.symlink("/tmp/nowhere", os.path.join(d, "app.json"))
+        try:
+            AS.app_file()
+        except RuntimeError as e:
+            app_refused.append("symlink" in str(e))
+        os.unlink(os.path.join(d, "app.json"))
+        rows.append({"id": "BT-state-no-symlink",
+                     "ok": refused_link and refused_file and refused_loose and wrote and mode_ok
+                     and app_refused == [True, True] and (os.stat(d).st_mode & 0o077) == 0})
+        os.rmdir(d); os.rmdir(os.path.join(ah, ".helix-lease")); os.rmdir(ah)
     finally:
         shutil.rmtree(sp_dir, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
     # install.sh・checkhome.sh・appsetupの拒否を、rootを使わずに実挙動で測る
