@@ -3,6 +3,8 @@
 status: initial_inventory
 authority_effect: inventory_and_work_projection_only
 inventory: `docs/governance/phase-capability-inventory.json`
+github_projection: [親#1888と20件のphase task](https://github.com/RetryYN/HELIX-HARNESS/issues/1888)
+projection_receipt: `docs/governance/audits/source-rebaseline/github-phase-capability-inventory-projection-2026-09-20.md`
 
 ## 目的
 
