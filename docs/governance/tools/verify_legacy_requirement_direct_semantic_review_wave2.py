@@ -7,35 +7,36 @@ ROOT=Path(__file__).resolve().parents[3]; GOV=ROOT/'docs/governance'
 LEDGER=GOV/'legacy-requirement-direct-semantic-review-wave2.jsonl'; META=GOV/'legacy-requirement-direct-semantic-review-wave2.meta.json'
 PRIOR_LEDGER=GOV/'legacy-requirement-direct-semantic-review-wave1.jsonl'; PRIOR_META=GOV/'legacy-requirement-direct-semantic-review-wave1.meta.json'
 STATUS=GOV/'audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave2-status-2026-09-21.md'
-CROSSWALK=GOV/'legacy-requirement-implementation-crosswalk-bootstrap.jsonl'; CATALOG=GOV/'legacy-asset-phase-product-classification-bootstrap.jsonl'; MANIFEST=ROOT/'archive/legacy-generation-2026-09-14/MANIFEST.sha256'
+CROSSWALK=GOV/'legacy-requirement-implementation-crosswalk-bootstrap.jsonl'; CATALOG=GOV/'legacy-asset-phase-product-classification-bootstrap.jsonl'; DECOMP=GOV/'legacy-ir-product-unit-decomposition-bootstrap.jsonl'; MANIFEST=ROOT/'archive/legacy-generation-2026-09-14/MANIFEST.sha256'
 ARCHIVE_PREFIX='archive/legacy-generation-2026-09-14/root/'
 EXPECTED_ATOMS={
  'IRUNIT-HIL-FR-06-HELIX-HARNESS':[
-  {'atom_id':'FR06-HARNESS-A01','kind':'scope_authority','text':'Scope Gateの変更許可・non-goal・PO-bound capability budget','source_fragments':['Scope Gateはallowed changes、non-goals、PO-bound capability budget']},
-  {'atom_id':'FR06-HARNESS-A02','kind':'diff_trace','text':'requirement→symbol→test traceを実diffと照合する','source_fragments':['requirement→symbol→test traceを実diffと照合する']},
-  {'atom_id':'FR06-HARNESS-A03','kind':'derivation_guard','text':'derived HIL IDに親oracleへのderivationとminimum-necessary proofを要求する','source_fragments':['derived HIL IDは自己正当化に使えず、chat/L0/PO-approved parent oracleへのderivationとminimum-necessary proofを要求する']},
-  {'atom_id':'FR06-HARNESS-A04','kind':'inherited_scope_authority','text':'子Issueが同じscope authorityを継承する','source_fragments':['子Issueも同じscope authorityを継承する']},
-  {'atom_id':'FR06-HARNESS-A05','kind':'violation_output','text':'scope violationとunjustified capability一覧を出力する','source_fragments':['scope violation、unjustified capability一覧']}],
+  {'atom_id':'FR06-HARNESS-A01','kind':'scope_gate_input','text':'Scope Gateの照合入力としてallowed changes、non-goals、PO-bound capability budgetを持つ','source_fragments':['Scope Gateはallowed changes、non-goals、PO-bound capability budget'],'shared_with_units':['IRUNIT-HIL-FR-06-HELIX-OS'],'boundary_review_state':'product_boundary_pending_human_decision'},
+  {'atom_id':'FR06-HARNESS-A02','kind':'diff_trace','text':'requirement→symbol→test traceを実diffと照合する','source_fragments':['requirement→symbol→test traceを実diffと照合する'],'shared_with_units':['IRUNIT-HIL-FR-06-HELIX-OS'],'boundary_review_state':'product_boundary_pending_human_decision'},
+  {'atom_id':'FR06-HARNESS-A03','kind':'derivation_guard','text':'derived HIL IDに親oracleへのderivationとminimum-necessary proofを要求する','source_fragments':['derived HIL IDは自己正当化に使えず、chat/L0/PO-approved parent oracleへのderivationとminimum-necessary proofを要求する'],'shared_with_units':[],'boundary_review_state':'product_boundary_pending_human_decision'},
+  {'atom_id':'FR06-HARNESS-A04','kind':'inherited_scope_authority','text':'子Issueが同じscope authorityを継承する','source_fragments':['子Issueも同じscope authorityを継承する'],'shared_with_units':['IRUNIT-HIL-FR-06-HELIX-OS'],'boundary_review_state':'product_boundary_pending_human_decision'},
+  {'atom_id':'FR06-HARNESS-A05','kind':'violation_output','text':'scope violationとunjustified capability一覧を出力する','source_fragments':['scope violation、unjustified capability一覧'],'shared_with_units':[],'boundary_review_state':'product_boundary_pending_human_decision'}],
  'IRUNIT-HIL-FR-06-HELIX-OS':[
-  {'atom_id':'FR06-OS-A01','kind':'scope_authority','text':'Scope Gateの変更許可・non-goal・PO-bound capability budget','source_fragments':['Scope Gateはallowed changes、non-goals、PO-bound capability budget']},
-  {'atom_id':'FR06-OS-A02','kind':'diff_trace','text':'requirement→symbol→test traceを実diffと照合する','source_fragments':['requirement→symbol→test traceを実diffと照合する']},
-  {'atom_id':'FR06-OS-A03','kind':'inherited_scope_authority','text':'子Issueが同じscope authorityを継承する','source_fragments':['子Issueも同じscope authorityを継承する']}],
+  {'atom_id':'FR06-OS-A01','kind':'scope_gate_input','text':'Scope Gateの照合入力としてallowed changes、non-goals、PO-bound capability budgetを持つ','source_fragments':['Scope Gateはallowed changes、non-goals、PO-bound capability budget'],'shared_with_units':['IRUNIT-HIL-FR-06-HELIX-HARNESS'],'boundary_review_state':'product_boundary_pending_human_decision'},
+  {'atom_id':'FR06-OS-A02','kind':'diff_trace','text':'requirement→symbol→test traceを実diffと照合する','source_fragments':['requirement→symbol→test traceを実diffと照合する'],'shared_with_units':['IRUNIT-HIL-FR-06-HELIX-HARNESS'],'boundary_review_state':'product_boundary_pending_human_decision'},
+  {'atom_id':'FR06-OS-A03','kind':'inherited_scope_authority','text':'子Issueが同じscope authorityを継承する','source_fragments':['子Issueも同じscope authorityを継承する'],'shared_with_units':['IRUNIT-HIL-FR-06-HELIX-HARNESS'],'boundary_review_state':'product_boundary_pending_human_decision'}],
  'IRUNIT-HIL-BR-12-HELIX-OS':[
-  {'atom_id':'BR12-OS-A01','kind':'intake_source','text':'GitHub Issueを入力に含める','source_fragments':['GitHub由来のIssue']},
-  {'atom_id':'BR12-OS-A02','kind':'intake_source','text':'GitHub PRを入力に含める','source_fragments':['/PR']},
-  {'atom_id':'BR12-OS-A03','kind':'intake_source','text':'GitHub CI eventを入力に含める','source_fragments':['/CI event']},
-  {'atom_id':'BR12-OS-A04','kind':'intake_source','text':'ユーザー差し込みIssueを入力に含める','source_fragments':['とユーザー差し込みIssue']},
-  {'atom_id':'BR12-OS-A05','kind':'intake_source','text':'ユーザー差し込みPLANを入力に含める','source_fragments':['/PLAN']},
-  {'atom_id':'BR12-OS-A06','kind':'normalization','text':'全入力を同じintake契約へ正規化する','source_fragments':['を同じintake契約へ正規化し']}]
+  {'atom_id':'BR12-OS-A01','kind':'intake_source','text':'GitHub Issueを入力に含める','source_fragments':['GitHub由来のIssue'],'shared_with_units':[],'boundary_review_state':'product_boundary_pending_human_decision'},
+  {'atom_id':'BR12-OS-A02','kind':'intake_source','text':'GitHub PRを入力に含める','source_fragments':['PR'],'shared_with_units':[],'boundary_review_state':'product_boundary_pending_human_decision'},
+  {'atom_id':'BR12-OS-A03','kind':'intake_source','text':'GitHub CI eventを入力に含める','source_fragments':['CI event'],'shared_with_units':[],'boundary_review_state':'product_boundary_pending_human_decision'},
+  {'atom_id':'BR12-OS-A04','kind':'intake_source','text':'ユーザー差し込みIssueを入力に含める','source_fragments':['ユーザー差し込みIssue'],'shared_with_units':[],'boundary_review_state':'product_boundary_pending_human_decision'},
+  {'atom_id':'BR12-OS-A05','kind':'intake_source','text':'ユーザー差し込みPLANを入力に含める','source_fragments':['PLAN'],'shared_with_units':[],'boundary_review_state':'product_boundary_pending_human_decision'},
+  {'atom_id':'BR12-OS-A06','kind':'normalization','text':'全入力を同じintake契約へ正規化する','source_fragments':['同じintake契約へ正規化し'],'shared_with_units':['IRUNIT-HIL-BR-12-HELIX-HARNESS'],'boundary_review_state':'product_boundary_pending_human_decision'}]
 }
+CONNECTIVES={'IRUNIT-HIL-FR-06-HELIX-HARNESS':[],'IRUNIT-HIL-FR-06-HELIX-OS':[],'IRUNIT-HIL-BR-12-HELIX-OS':['/','と','を']}
 IGNORABLE_COVERAGE_CHARS=set(" \t\r\n、。，．・；;:：|（）()「」『』［］[]【】<>＜＞`'\"")
 EXPECTED_DECISIONS={
  ('IRUNIT-HIL-FR-06-HELIX-HARNESS','LEGACY-ASSET-719D5EC9C06FC4AAD0FF'):('confirmed','same_requirement_id_exact_source_contract_not_implementation',('FR06-HARNESS-A01','FR06-HARNESS-A02','FR06-HARNESS-A03','FR06-HARNESS-A04','FR06-HARNESS-A05')),
  ('IRUNIT-HIL-FR-06-HELIX-HARNESS','LEGACY-ASSET-D6339A02201B20481C3F'):('rejected','canonical_shadow_promotion_not_fr06_scope_gate',()),
- ('IRUNIT-HIL-FR-06-HELIX-HARNESS','LEGACY-ASSET-F17ABDB90E1340D09746'):('unresolved','human_agreement_l3_gate_partial_scope_authority_only',('FR06-HARNESS-A01',)),
+ ('IRUNIT-HIL-FR-06-HELIX-HARNESS','LEGACY-ASSET-F17ABDB90E1340D09746'):('unresolved','adjacent_human_agreement_l3_gate_without_fr06_atom_match',()),
  ('IRUNIT-HIL-FR-06-HELIX-OS','LEGACY-ASSET-719D5EC9C06FC4AAD0FF'):('confirmed','same_requirement_id_exact_source_contract_not_implementation',('FR06-OS-A01','FR06-OS-A02','FR06-OS-A03')),
  ('IRUNIT-HIL-FR-06-HELIX-OS','LEGACY-ASSET-D6339A02201B20481C3F'):('rejected','canonical_shadow_promotion_not_fr06_scope_gate',()),
- ('IRUNIT-HIL-FR-06-HELIX-OS','LEGACY-ASSET-F17ABDB90E1340D09746'):('unresolved','human_agreement_l3_gate_partial_scope_authority_only',('FR06-OS-A01',)),
+ ('IRUNIT-HIL-FR-06-HELIX-OS','LEGACY-ASSET-F17ABDB90E1340D09746'):('unresolved','adjacent_human_agreement_l3_gate_without_fr06_atom_match',()),
  ('IRUNIT-HIL-BR-12-HELIX-OS','LEGACY-ASSET-9229DCA8DB22144E2B96'):('unresolved','github_issue_pr_to_common_contract_partial_missing_ci_and_user_issue_plan',('BR12-OS-A01','BR12-OS-A02','BR12-OS-A06')),
  ('IRUNIT-HIL-BR-12-HELIX-OS','LEGACY-ASSET-B461238F0E82243729AD'):('rejected','post_intake_discovery_event_schema_not_ingress_normalization',()),
  ('IRUNIT-HIL-BR-12-HELIX-OS','LEGACY-ASSET-2F4C154611460DD55358'):('rejected','screen_registry_adapter_lifecycle_not_ingress_normalization',())}
@@ -69,15 +70,17 @@ def coverage_receipt(uid,records):
  contract=sorted({a for r in rows if r['semantic_link_status']=='confirmed' and r['artifact_evidence_kind']=='requirement' and all(e['source_requirement_relation']=='same_requirement_id_exact_restatement' for e in r['evidence_refs']) for a in r['covered_requirement_atom_ids']})
  impl_confirmed=sorted({a for r in rows if r['semantic_link_status']=='confirmed' and r['artifact_evidence_kind']=='implementation_source' and all(e['source_requirement_relation']=='implementation_behavior_evidence' for e in r['evidence_refs']) for a in r['covered_requirement_atom_ids']})
  impl_unresolved=sorted({a for r in rows if r['semantic_link_status']=='unresolved' and r['artifact_evidence_kind']=='implementation_source' for a in r['covered_requirement_atom_ids']}-set(impl_confirmed))
+ design=sorted({a for r in rows if r['semantic_link_status']=='unresolved' and r['artifact_evidence_kind']=='design' and all(e['source_requirement_relation']=='design_contract_evidence' for e in r['evidence_refs']) for a in r['covered_requirement_atom_ids']})
  impl_uncovered=sorted(set(ids)-set(impl_confirmed)-set(impl_unresolved))
- return {'atom_inventory':inventory,'atom_inventory_sha256':canon_digest(inventory),'contract_confirmed_atom_ids':contract,'contract_confirmed_atom_ids_sha256':canon_digest(contract),'implementation_confirmed_atom_ids':impl_confirmed,'implementation_confirmed_atom_ids_sha256':canon_digest(impl_confirmed),'implementation_unresolved_atom_ids':impl_unresolved,'implementation_unresolved_atom_ids_sha256':canon_digest(impl_unresolved),'implementation_uncovered_atom_ids':impl_uncovered,'implementation_uncovered_atom_ids_sha256':canon_digest(impl_uncovered),'contract_semantic_edge_coverage_complete':set(contract)==set(ids),'semantic_edge_coverage_complete':not impl_unresolved and not impl_uncovered}
+ no_evidence=sorted(set(ids)-set(contract)-set(impl_confirmed)-set(impl_unresolved)-set(design)); shared=sorted(a['atom_id'] for a in inventory if a['shared_with_units']); exclusive=sorted(set(ids)-set(shared))
+ return {'atom_inventory':inventory,'atom_inventory_sha256':canon_digest(inventory),'connective_fragments':CONNECTIVES[uid],'connective_fragments_sha256':canon_digest(CONNECTIVES[uid]),'contract_confirmed_atom_ids':contract,'contract_confirmed_atom_ids_sha256':canon_digest(contract),'design_partial_atom_ids':design,'design_partial_atom_ids_sha256':canon_digest(design),'implementation_confirmed_atom_ids':impl_confirmed,'implementation_confirmed_atom_ids_sha256':canon_digest(impl_confirmed),'implementation_unresolved_atom_ids':impl_unresolved,'implementation_unresolved_atom_ids_sha256':canon_digest(impl_unresolved),'implementation_uncovered_atom_ids':impl_uncovered,'implementation_uncovered_atom_ids_sha256':canon_digest(impl_uncovered),'no_evidence_atom_ids':no_evidence,'no_evidence_atom_ids_sha256':canon_digest(no_evidence),'shared_atom_ids':shared,'shared_atom_ids_sha256':canon_digest(shared),'product_exclusive_atom_ids':exclusive,'product_exclusive_atom_ids_sha256':canon_digest(exclusive),'product_exclusive_contract_coverage_complete':bool(exclusive) and set(exclusive)<=set(contract),'product_boundary_resolution_complete':not shared,'contract_semantic_edge_coverage_complete':set(contract)==set(ids),'semantic_edge_coverage_complete':not impl_unresolved and not impl_uncovered}
 def main():
- records=load_jsonl(LEDGER); meta=json.loads(META.read_text()); cross={x['unit_candidate_id']:x for x in load_jsonl(CROSSWALK)}; catalog={x['asset_id']:x for x in load_jsonl(CATALOG)}; manifest=manifest_entries()
+ records=load_jsonl(LEDGER); meta=json.loads(META.read_text()); cross={x['unit_candidate_id']:x for x in load_jsonl(CROSSWALK)}; catalog={x['asset_id']:x for x in load_jsonl(CATALOG)}; decomp={u['unit_candidate_id']:u for d in load_jsonl(DECOMP) for u in d['candidate_units']}; manifest=manifest_entries()
  require(meta['schema_revision']==4 and meta['status']=='research_premise_candidate','metadata schema/status不一致')
  require(meta['authority_effect']=='none' and not meta['legacy_execution_performed'] and not meta['new_build_allowed'],'authorityまたは実行を生成')
  require(meta['consumer_closure_status']=='pending','consumer closure過大主張')
  require(len(records)==meta['record_count']==9,'record数不一致'); require(digest_file(LEDGER)==meta['output_sha256'],'ledger digest不一致')
- inputs={str(p.relative_to(ROOT)):digest_file(p) for p in (MANIFEST,CATALOG,CROSSWALK,PRIOR_LEDGER,PRIOR_META)}
+ inputs={str(p.relative_to(ROOT)):digest_file(p) for p in (MANIFEST,CATALOG,CROSSWALK,DECOMP,PRIOR_LEDGER,PRIOR_META)}
  require(meta['inputs']==inputs,'入力digest不一致')
  for path,digest in inputs.items(): require(digest_bytes(git_blob(meta['parent_revision'],path))==digest,f'親revision入力不一致: {path}')
  edges={(r['unit_candidate_id'],r['asset_id']) for r in records}; require(edges==EXPECTED_EDGES and len(edges)==len(records),'edge exact set不一致')
@@ -119,7 +122,10 @@ def main():
    terms=binding['required_terms']; require(terms and all(term in joined for term in terms),f'引用本文にrequired termなし: {rid}/{aid}')
    require(binding['match_mode'] in {'literal_source_fragment','controlled_term_set','controlled_term_set_partial'},f'match mode不正: {rid}')
    if r['semantic_link_status']=='confirmed': require(binding['match_mode'] in {'literal_source_fragment','controlled_term_set'},f'confirmedにpartial match: {rid}/{aid}')
-   if r['semantic_link_status']=='unresolved': require(binding['match_mode']=='controlled_term_set_partial',f'unresolvedに確定match: {rid}/{aid}')
+   if r['semantic_link_status']=='unresolved':
+    require(binding['match_mode']=='controlled_term_set_partial',f'unresolvedに確定match: {rid}/{aid}')
+    anchors=binding.get('source_fragment_anchors',[]); fragments=''.join(atom_maps[uid][aid]['source_fragments'])
+    require(anchors and all(anchor in fragments and any(anchor in term for term in terms) for anchor in anchors),f'unresolved atomとrequired termのanchor不一致: {rid}/{aid}')
    if binding['match_mode']=='literal_source_fragment': require(all(f in joined for f in atom_maps[uid][aid]['source_fragments']),f'literal atom不一致: {rid}/{aid}')
    bound.append(aid)
   require(sorted(bound)==sorted(atom_ids),f'covered atomとbinding不一致: {rid}')
@@ -129,9 +135,17 @@ def main():
   if r['legacy_requirement_implementation_contribution']=='partial_static_implementation_evidence_unexecuted': require(r['artifact_evidence_kind']=='implementation_source' and r['semantic_link_status']=='confirmed',f'実装証拠過大主張: {rid}')
   require('implemented' not in r['current_requirement_implementation_status'],'current implemented claim')
  for uid,inventory in EXPECTED_ATOMS.items():
-  fragments=[f for atom in inventory for f in atom['source_fragments']]
+  fragments=[f for atom in inventory for f in atom['source_fragments']]+CONNECTIVES[uid]
   statement=' '.join(cross[uid]['source_text_spans'])
   require(not uncovered_meaningful_runs(statement,fragments),f'atom inventory無損失被覆不一致: {uid}: {uncovered_meaningful_runs(statement,fragments)}')
+  overlap={x['source_text']:x for x in decomp[uid].get('shared_source_overlaps',[])}
+  for atom in inventory:
+   if atom['shared_with_units']:
+    require(len(atom['source_fragments'])==1 and atom['source_fragments'][0] in overlap,f'shared atomがdecompositionに無い: {uid}/{atom["atom_id"]}')
+    require(overlap[atom['source_fragments'][0]]['review_state']==atom['boundary_review_state']=='product_boundary_pending_human_decision',f'shared atom state不一致: {uid}/{atom["atom_id"]}')
+    peers={u for u,d in decomp.items() if u!=uid and any(x['source_text']==atom['source_fragments'][0] for x in d.get('shared_source_overlaps',[]))}
+    require(set(atom['shared_with_units'])==peers,f'shared unit集合不一致: {uid}/{atom["atom_id"]}')
+   else: require(atom['boundary_review_state']=='product_boundary_pending_human_decision',f'exclusive atom state不一致: {uid}/{atom["atom_id"]}')
  counts={s:sum(r['semantic_link_status']==s for r in records) for s in ('confirmed','rejected','unresolved')}; require(meta['semantic_link_counts']==counts=={'confirmed':2,'rejected':4,'unresolved':3},'status集計不一致')
  aggregates={x['unit_candidate_id']:x for x in meta['unit_aggregates']}; require(set(aggregates)==set(EXPECTED_ATOMS),'aggregate unit不一致')
  for uid,a in aggregates.items():
@@ -157,16 +171,20 @@ def main():
   result_rows=[cells for cells in status_rows if len(cells)==6 and cells[1]==uid]
   require(len(result_rows)==1,f'status doc結果行不一致: {uid}')
   require(result_rows[0][3]==a['legacy_requirement_implementation_status'] and result_rows[0][4]==a['current_requirement_implementation_status'],f'status doc実装状態不一致: {uid}')
-  coverage_rows=[cells for cells in status_rows if len(cells)==6 and cells[0]==uid]
+  coverage_rows=[cells for cells in status_rows if len(cells)==8 and cells[0]==uid]
   require(len(coverage_rows)==1,f'status doc atom行不一致: {uid}')
-  receipt=a['atom_coverage_receipt']; expected_counts=[len(receipt['atom_inventory']),len(receipt['contract_confirmed_atom_ids']),len(receipt['implementation_confirmed_atom_ids']),len(receipt['implementation_unresolved_atom_ids']),len(receipt['implementation_uncovered_atom_ids'])]
+  receipt=a['atom_coverage_receipt']; expected_counts=[len(receipt['atom_inventory']),len(receipt['contract_confirmed_atom_ids']),len(receipt['design_partial_atom_ids']),len(receipt['implementation_confirmed_atom_ids']),len(receipt['implementation_unresolved_atom_ids']),len(receipt['implementation_uncovered_atom_ids']),len(receipt['no_evidence_atom_ids'])]
   try: observed_counts=[int(value) for value in coverage_rows[0][1:]]
   except ValueError: raise ValueError(f'status doc atom件数が整数でない: {uid}')
   require(observed_counts==expected_counts,f'status doc atom件数不一致: {uid}')
  expected_phase_rows={(uid,x['phase_id'],x['current_status'],x['legacy_capability_status'],x['transition_assessment']) for uid,a in aggregates.items() for x in a['phase_capability_assessments']}
  observed_phase_rows={tuple(cells) for cells in status_rows if len(cells)==5 and cells[0] in aggregates and cells[1].startswith('PHCAP-')}
  require(observed_phase_rows==expected_phase_rows,'status doc phase状態不一致')
- require('wave 1と合わせて5 unit、15 edge' in status_text and '残る213 unitは未着手' in status_text,'status doc累積件数不一致')
+ batch=re.search(r'218要求unitのうち新たに(\d+) unit、候補edge (\d+)件',status_text)
+ cumulative=re.search(r'wave 1と合わせて(\d+) unit、(\d+) edge',status_text); remaining_match=re.search(r'残る(\d+) unitは未着手',status_text)
+ require(batch and [int(x) for x in batch.groups()]==[len(EXPECTED_ATOMS),len(records)],'status doc今回件数不一致')
+ require(cumulative and [int(x) for x in cumulative.groups()]==[meta['cumulative_reviewed_unit_count'],meta['cumulative_reviewed_edge_count']],'status doc累積件数不一致')
+ require(remaining_match and int(remaining_match.group(1))==len(cross)-meta['cumulative_reviewed_unit_count'],'status doc未着手unit数不一致')
  code_tokens=re.findall(r'`([^`\n]+)`',status_text)
  forbidden_states={'implemented','tested','operational'}
  require(not (forbidden_states & set(code_tokens)),f'status docに過大な実装状態語: {sorted(set(code_tokens)&forbidden_states)}')

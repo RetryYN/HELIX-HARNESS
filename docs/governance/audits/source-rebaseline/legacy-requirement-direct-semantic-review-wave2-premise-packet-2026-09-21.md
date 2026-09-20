@@ -17,7 +17,7 @@ pr_class: research_premise
 | 状態 | 内容 | 扱い |
 |---|---|---|
 | known | `HIL-FR-06`の同一ID sourceはHARNESS 5 atom、OS 3 atomを逐語保持する | 契約被覆に限定し、実装被覆に算入しない |
-| known | `requirement-discovery.ts`はhuman actor／agreement後のL3 compileを強制する | scope authorityの一部としてunresolvedに置き、Scope Gate全体やconsumer成立を主張しない |
+| known | `requirement-discovery.ts`はhuman actor／agreement後のL3 compileを強制する | FR-06のScope Gate atomへの直接対応は0だが隣接実装であるため、covered atomなしの`unresolved`とする |
 | known | PHCAP-02は旧能力を`implemented_with_tests`と分類する | phase能力の状態として保持し、`HIL-BR-12`個別unitへ転記しない |
 | known | `requirement-intake-lifecycle.ts`はscreen台帳adapterのpermanent／replaceable／retireを検査する | GitHub／user ingress正規化とは別機能としてrejectする |
 | assumption | phase候補poolは次に読むassetを絞る検索入口になる | membership自体をsemantic edgeへ昇格させない |
@@ -29,7 +29,7 @@ pr_class: research_premise
 
 ## 結論と限界
 
-直接confirmedできたのは`HIL-FR-06`の製品別契約edge 2件である。静的実装confirmedは0件で、3 unitとも旧要求実装状態は`unknown_pending_direct_implementation_and_consumer_review`、現行は`not_established`、consumer closureは`pending`とする。
+直接confirmedできたのは`HIL-FR-06`の製品別契約edge 2件である。3共有spanは製品境界の人間decision待ちで、契約被覆は製品owner確定を意味しない。静的実装confirmedは0件で、3 unitとも旧要求実装状態は`unknown_pending_direct_implementation_and_consumer_review`、現行は`not_established`、consumer closureは`pending`とする。
 
 このpacketは9 edgeの直接semantic reviewと後続探索順にだけ適用する。phase能力、設計文書、test sourceの存在から個別要求の実装、動作、受入、再利用可否を生成しない。
 
