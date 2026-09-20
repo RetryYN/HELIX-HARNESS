@@ -44,6 +44,15 @@ def load(p): return [json.loads(x) for x in p.read_text().splitlines() if x.stri
 def digest(b): return 'sha256:'+hashlib.sha256(b).hexdigest()
 def canon(v): return digest(json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode())
 def git_blob(rev,path): return subprocess.run(['git','show',f'{rev}:{path}'],cwd=ROOT,check=True,capture_output=True).stdout
+def anchor_is_exact_token(anchor,text):
+ if re.fullmatch(r'[A-Za-z0-9_/-]+',anchor):
+  if len(anchor)<3: return False
+  for m in re.finditer(re.escape(anchor),text):
+   left=m.start()==0 or re.fullmatch(r'[A-Za-z0-9]',text[m.start()-1]) is None or text[m.start()-1] in '_/-' or (text[m.start()-1].islower() and anchor[0].isupper())
+   right=m.end()==len(text) or re.fullmatch(r'[A-Za-z0-9]',text[m.end()]) is None or text[m.end()] in '_/-' or (anchor[-1].islower() and text[m.end()].isupper())
+   if left and right: return True
+  return False
+ return len(anchor)>=2 and anchor in text
 def meaningful_uncovered(text,fragments):
  hit=[False]*len(text)
  for fragment in fragments:
@@ -130,7 +139,7 @@ def main():
    require(b['match_mode'] in {'literal_source_fragment','controlled_term_set_partial'},f'match mode不一致: {rid}')
    if b['match_mode']=='literal_source_fragment': require(all(f in joined for f in amap[uid][b['atom_id']]['source_fragments']),f'literal atom欠落: {rid}')
    else:
-    anchors=b.get('source_fragment_anchors',[]); fragments=''.join(amap[uid][b['atom_id']]['source_fragments']); require(anchors and all(x in fragments and any(x in t for t in b['required_terms']) for x in anchors),f'partial anchor不一致: {rid}')
+    anchors=b.get('source_fragment_anchors',[]); fragments=''.join(amap[uid][b['atom_id']]['source_fragments']); require(anchors and all(anchor_is_exact_token(x,fragments) and any(anchor_is_exact_token(x,t) for t in b['required_terms']) for x in anchors),f'partial anchor不一致: {rid}')
    bound.append(b['atom_id'])
   require(sorted(bound)==sorted(ids),f'covered atom/binding不一致: {rid}')
  for uid,atoms in ATOMS.items():
