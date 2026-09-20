@@ -3,7 +3,7 @@
 書込みは`Writes`の許可リストを通したものだけが実行される。許可リストはcommandごとに固定し
 （packet 規則の意味6、二重境界）、リストに無い書込みは例外で止める。dry-runでは許可リストが空である。
 """
-import atexit, base64, ssl, urllib.request, datetime, errno, hashlib, json, os, pwd, re, shlex, shutil, subprocess, sys, tempfile, time, urllib.parse
+import atexit, base64, ssl, urllib.request, datetime, errno, hashlib, json, os, stat, pwd, re, shlex, shutil, subprocess, sys, tempfile, time, urllib.parse
 
 import leasecore as C
 
@@ -637,12 +637,22 @@ def set_non_dumpable():
 
 def caller_file(path):
     """呼出し元（AI側context）が渡したfileを開く。実行user自身の持ちもの（Appの秘密鍵、状態領域、root所有のcopy等）は開かない
-    （wrapperでexecutor userとして動くcommandに、実行user側のfileを読ませて外へ出させない）。"""
-    rp = os.path.realpath(path)
-    st = os.stat(rp)
-    if st.st_uid in (0, os.getuid()) or rp.startswith(home_dir().rstrip("/") + "/") or rp.startswith(ROOT + "/"):
-        raise RuntimeError("呼出し元のfileでない（実行userまたはrootの持ちもの）: %s" % rp)
-    return open(rp, encoding="utf-8")
+    （wrapperでexecutor userとして動くcommandに、実行user側のfileを読ませて外へ出させない）。
+    判定は開いたfd自身に対して行う。判定してから開くと、その間にpathを差し替えられる。"""
+    fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW)
+    try:
+        st = os.fstat(fd)
+        rp = os.readlink("/proc/self/fd/%d" % fd)   # 実際に開いたfileのpath
+        bad = (not stat.S_ISREG(st.st_mode) or st.st_uid in (0, os.getuid())
+               or rp.startswith(home_dir().rstrip("/") + "/") or rp.startswith(ROOT + "/")
+               or not rp.startswith("/") or rp.endswith(" (deleted)"))
+        if bad:
+            raise RuntimeError("呼出し元のfileでない（実行userまたはrootの持ちもの）: %s" % rp)
+        f = os.fdopen(fd, encoding="utf-8")
+    except BaseException:
+        os.close(fd)
+        raise
+    return f
 
 
 TARGET_PR_FILE = "/etc/helix-lease/target-pr"   # 実行環境が固定する対象PR（root所有。AI側からは書けない）

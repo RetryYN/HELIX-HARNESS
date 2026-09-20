@@ -149,7 +149,8 @@ POが行うのは、人間にしか越えられない境界だけである。設
 - wrapper（`helix-lease-run`）から起動できるのは5つのlease commandだけ（sudoersが許すのは既定で4つ）で、`appsetup`（installation tokenの発行、秘密鍵の作成）は
   AI側contextから起動できない。tokenはwrapperの中だけで発行され、標準出力へ出ない。
 - wrapperでexecutor userとして動くcommandは、呼出し元が渡したfileのうち、実行user自身・rootの持ちもの（Appの秘密鍵、状態領域、
-  `/opt/helix-lease`のcopy）を開かない（投稿commandに読ませて外へ出させない）。
+  `/opt/helix-lease`のcopy）を開かない（投稿commandに読ませて外へ出させない）。判定は開いたfd自身に対して行い、symlinkを追わない
+  （判定してから開くと、その間にpathを差し替えられる）。投稿commandは、投稿しない場合も同じ起動条件の内側で動く。
 - 置くcodeは本PRの内容そのものであり、POが操作4で承認するのはそのbytesである。有効化前にcodeを直した場合は、起動条件のbytes照合で
   全commandが止まるため、POは`install.sh`を新しいheadで実行し直す（fail-closed）。
 - lease mergeで`scaffold/lease/`が変わった後も同じで、POが`install.sh`を新しいSHAで実行し直すまで、executorは止まる（安全側）。

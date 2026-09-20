@@ -777,7 +777,23 @@ def run_boundary_tests():
                 blocked.append(False)
             except RuntimeError:
                 blocked.append(True)
-        rows.append({"id": "BT-caller-file", "ok": blocked == [True, True, True]})
+        # 判定と読取りの間にpathを差し替えられないこと（判定は開いたfd自身に対して行う）
+        link = os.path.join(cf, "link")
+        os.symlink("/etc/hostname", link)
+        for p2 in (link, cf, "/proc/self/environ"):
+            try:
+                G.caller_file(p2).close()
+                blocked.append(False)
+            except (RuntimeError, OSError):
+                blocked.append(True)
+        cfsrc = ast_.parse(open(os.path.join(HERE, "leasegh.py"), encoding="utf-8").read())
+        fn = next(n for n in ast_.walk(cfsrc)
+                  if isinstance(n, ast_.FunctionDef) and n.name == "caller_file")
+        used = {getattr(c.func, "attr", None) for c in ast_.walk(fn) if isinstance(c, ast_.Call)}
+        rows.append({"id": "BT-caller-file",
+                     "ok": blocked == [True] * 6
+                     # 開く前にpathで判定していない（stat・realpathを使わず、fstatで見る）
+                     and "fstat" in used and "stat" not in used and "realpath" not in used})
     finally:
         shutil.rmtree(cf, ignore_errors=True)   # 自分がmkdtempで作った使い捨てdirectoryだけを消す
     # 実行環境を組むscriptとwrapperの形: AI側へinstallation tokenと秘密鍵の操作を出さない
@@ -861,6 +877,26 @@ def run_boundary_tests():
         return (len(calls) == 3
                 and all(any("degraded" in u for u in v) for v in calls.values()))
 
+    def suspend_body():
+        """停止のcommentに、渡したnote（劣化の理由）がそのまま入ること"""
+        posted = []
+
+        class GhStub:
+            def __init__(self):
+                self.w = None
+
+            def comment(self, issue, body):
+                posted.append(body)
+
+        keep_r, keep_w = G.read_state, G.write_state
+        try:
+            G.read_state, G.write_state = (lambda: {}), (lambda _st: None)
+            suspend(GhStub(), {"lease": {"activated_at": "2026-01-01T00:00:00Z", "status_issue": 9}},
+                    [C.R("post_merge_mismatch", "x")], "劣化: %s。read-after: []" % deg)
+        finally:
+            G.read_state, G.write_state = keep_r, keep_w
+        return "\n".join(posted)
+
     def waits(degraded):
         """read_afterが、反映を待つためにsleepした回数"""
         class Stub:
@@ -900,7 +936,7 @@ def run_boundary_tests():
                  "ok": deg in body_d and '"degraded"' in body_d and "degraded" not in body_n
                  and deg in C.receipt_message(snap, {"reasons": []}, None, "x", recovery=True, degraded=deg)
                  # 非常経路が、劣化の理由をread-after・merge_result・停止のnoteへ実際に渡している
-                 and wired(rm_src)
+                 and wired(rm_src) and deg in suspend_body()
                  # 劣化のときは、現れ得ない反映を待たない（待つ回数で測る）
                  and waits(True) == 0 and waits(False) > 0
                  # merge後のread-afterは、劣化のときactivityの照合に代えない
@@ -920,6 +956,13 @@ def run_boundary_tests():
     lp_src = ast_.parse(open(os.path.join(HERE, "leasepost.py"), encoding="utf-8").read())
     lp_writes = [n for n in ast_.walk(lp_src) if isinstance(n, ast_.Call)
                  and getattr(n.func, "attr", None) == "Writes"]
+    lp_gate = [n for n in ast_.walk(lp_src) if isinstance(n, ast_.Call)
+               and getattr(n.func, "attr", None) == "self_integrity"]
+    lp_apply_guard = [n for n in ast_.walk(lp_src) if isinstance(n, ast_.If)
+                      and "a.apply" == ast_.unparse(n.test)
+                      and any(isinstance(c, ast_.Call) and getattr(c.func, "attr", None) == "self_integrity"
+                              for c in ast_.walk(n))]
+    rows.append({"id": "BT-leasepost-gate", "ok": len(lp_gate) == 1 and not lp_apply_guard})
     rows.append({"id": "BT-leasepost-target",
                  "ok": len(lp_writes) == 1
                  and ast_.unparse(lp_writes[0]) == "G.Writes({('comment', a.pr)} if a.apply else ())"})

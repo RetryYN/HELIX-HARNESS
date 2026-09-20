@@ -135,11 +135,12 @@ def main(argv=None):
         return 2
     a = ap.parse_args(argv)
     gh = G.GH(writes=G.Writes({("comment", a.pr)} if a.apply else ()))
-    if a.apply:   # 投稿commandも、executorと同じ起動条件（-I・rootが所有する置き場所・origin/mainとのbytes照合）で動く
-        bad = G.self_integrity(gh)
-        if bad:
-            print("拒否: 投稿commandの起動条件を満たさない: %s" % "、".join(bad), file=sys.stderr)
-            return 2
+    # 投稿commandは、投稿しない場合も、executorと同じ起動条件（-I・rootが所有する置き場所・origin/mainとのbytes照合）で動く
+    # （呼出し元が渡したfileを読む経路を、投稿の有無に関わらず同じ条件の内側に置く）
+    bad = G.self_integrity(gh)
+    if bad:
+        print("拒否: 投稿commandの起動条件を満たさない: %s" % "、".join(bad), file=sys.stderr)
+        return 2
     try:
         return {"request": cmd_request, "response": cmd_response}[a.cmd](a, gh)
     except G.WriteRefused as e:
