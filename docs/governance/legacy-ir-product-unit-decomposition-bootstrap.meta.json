@@ -1,0 +1,120 @@
+{
+  "schema_revision": 1,
+  "decomposition_id": "IR-PRODUCT-UNIT-BOOTSTRAP-2026-09-20",
+  "status": "candidate_incomplete",
+  "authority_effect": "none",
+  "source_revision": "legacy-generation-2026-09-14",
+  "method": "docs/governance/audits/source-rebaseline/legacy-ir-product-unit-decomposition-method-2026-09-20.md",
+  "record_count": 153,
+  "unit_count": 218,
+  "routing_counts": {
+    "cross_product_connection": 1,
+    "single_product": 87,
+    "split_required": 65
+  },
+  "unit_kind_counts": {
+    "cross_product_connection": 1,
+    "product_unit": 217
+  },
+  "product_unit_counts": {
+    "HELIX-HARNESS": 85,
+    "HELIX-OS": 132,
+    "cross_product_connection": 1
+  },
+  "phase_classification_counts": {
+    "candidate_pending_exact_head_independent_review": 188,
+    "unresolved": 30
+  },
+  "routing_correction_pending_requirement_ids": [
+    "HIL-FR-01",
+    "HIL-FR-11",
+    "HIL-FR-15",
+    "HIL-FR-16",
+    "HIL-TR-04"
+  ],
+  "source_inputs": [
+    {
+      "path": "docs/governance/legacy-ir-product-routing-bootstrap.jsonl",
+      "sha256": "sha256:c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    }
+  ],
+  "working_batch_scopes": [
+    "source_order_001_051",
+    "source_order_052_102",
+    "source_order_103_153"
+  ],
+  "working_batch_artifacts_retained": false,
+  "cross_batch_review": {
+    "initial_findings": {
+      "major": 152,
+      "minor": 15,
+      "blocker": 0
+    },
+    "first_reaudit_new_findings": {
+      "source_order_001_051": {
+        "major": 10,
+        "minor": 0,
+        "blocker": 0
+      },
+      "source_order_052_102": {
+        "major": 6,
+        "minor": 0,
+        "blocker": 0
+      },
+      "source_order_103_153": {
+        "major": 17,
+        "minor": 4,
+        "blocker": 0
+      }
+    },
+    "later_reaudit_new_findings": {
+      "source_order_103_153": {
+        "major": 1,
+        "minor": 1,
+        "blocker": 0
+      }
+    },
+    "final_batch_reaudit": {
+      "blocker": 0,
+      "major": 0,
+      "minor": 0
+    },
+    "correction_status": "batch_reaudits_clear_pending_exact_head_independent_review",
+    "exact_head_review_round_1": {
+      "content_sha": "6c2b30634204c7ebcc23f4cc571572c3ec7a0a6b",
+      "findings": {
+        "blocker": 0,
+        "major": 1,
+        "minor": 3,
+        "info": 1
+      },
+      "status": "addressed_pending_round_2"
+    },
+    "exact_head_review_round_2": {
+      "content_sha": "f391da6b677c65fcd999fd627e28d8c5176aa3d3",
+      "findings": {
+        "blocker": 0,
+        "major": 0,
+        "minor": 1,
+        "info": 1
+      },
+      "status": "addressed_pending_round_3"
+    }
+  },
+  "output_sha256": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+  "known_open_conditions": [
+    "exact_head_independent_review_pending",
+    "successor_assignment_unassigned",
+    "human_product_authority_decision_pending",
+    "direct_phase_review_pending",
+    "routing_correction_pending"
+  ]
+}
