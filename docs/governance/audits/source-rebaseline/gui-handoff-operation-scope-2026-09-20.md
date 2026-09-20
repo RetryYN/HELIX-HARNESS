@@ -160,3 +160,11 @@ PR #1885は2026-09-20T11:48:39Zにmerge commit `3a00732031d78f2e19b98b6da39ca317
 当初は実行側の限定として2026-09-21 23:59 JSTと現在bootを上限に置いた。その報告に対し、利用者は「Scaffold って仕組みがあるだろ？これにつなげよ。」、続いて「期限とかだるいことやる意味がない。」と指示した。この後続指示を優先し、固定日時・boot guard・PR mergeを撤去契機にする案を取り下げ、既存のSCF-B-0003と#1866の置換・撤去lifecycleへ一本化する。
 
 message TTLとsession leaseは古い依頼・sessionへの誤配送防止であり、接続全体の期限ではないため維持する。consumer接続が継続しても正式Featureの採否、要求承認、実装許可、受入、運用成立は生成しない。撤去時はaudit→remove→audit=0を行い、正式置換時は#1866で`check-replacement`→`retire`を経る。
+
+## PR #1887 round 1 reviewの処分
+
+- Major 1: 採用。hookの入口でSCF-B-0003を読み、identity不一致、`active`以外、欠落、JSON破損ではfail closedで配送しない。Binding lifecycleを文書上の契機だけにせず、実行時停止条件へ接続する。
+- Minor 1: PR titleから「期限付き」を除く。GitHub metadata変更でありcontent HEADは変えない。
+- Minor 2: READMEの「レーン・通知は期限付き」を、message TTLと同一登録sessionのsliding leaseに分けて記述する。
+- Info 1: 期限関連2 testの削除、lease更新1 testの追加後は25件。Binding停止の否定例を追加して26件とする。
+- Info 2: acked／expired message GCと設定file mode保存・復元を正式化の移管課題としてREADME、#1884、#1859、#1860へ残す。今回の再接続PRで正式実装済みとは扱わない。

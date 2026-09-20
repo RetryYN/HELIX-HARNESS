@@ -265,6 +265,25 @@ class GuiChecks(unittest.TestCase):
         self.assertNotIn("date +%s",command)
         self.assertIn("gui_mailbox.py hook --runtime claude",command)
 
+    def test_binding_lifecycle_stops_hook_fail_closed(self):
+        active=dict(id="SCF-B-0003",state="active")
+        with tempfile.TemporaryDirectory(dir=g.HERE/"local") as directory:
+            path=Path(directory)/"binding.json"
+            path.write_text(json.dumps(active))
+            self.assertTrue(g.binding_active(path))
+            for value in (dict(active,state="replacing"),dict(active,state="retired"),dict(id="other",state="active")):
+                path.write_text(json.dumps(value))
+                self.assertFalse(g.binding_active(path))
+            path.write_text("{")
+            self.assertFalse(g.binding_active(path))
+            path.unlink()
+            self.assertFalse(g.binding_active(path))
+
+        stdout=io.StringIO()
+        with patch.object(g,"binding_active",return_value=False),patch.object(sys,"stdin",io.StringIO("invalid input")),patch.object(sys,"stdout",stdout),patch.object(g,"state",side_effect=AssertionError("inactive binding accessed state")):
+            g.hook("claude",3600)
+        self.assertEqual(stdout.getvalue().strip(),"{}")
+
     def test_recovery_rejects_wrong_path_runtime_repository(self):
         good=dict(session_id="claude-gui",hook_event_name="ConfigChange",source="user_settings",file_path=str(Path.home()/".claude/settings.json"),cwd=str(p.ROOT))
         for runtime,change in (("claude",dict(file_path="/wrong")),("codex",{})):

@@ -15,7 +15,17 @@ import packet as p
 
 HERE = Path(__file__).resolve().parent
 STORE = HERE / "local" / "gui"
+BINDING = HERE.parent / "bindings" / "SCF-B-0003.json"
 RUNTIMES = ("claude", "codex")
+
+
+def binding_active(path=BINDING):
+    """Bindingを実行時停止条件にする。欠落・破損・identity不一致はfail closed。"""
+    try:
+        binding = json.loads(Path(path).read_text())
+    except (OSError, ValueError, TypeError):
+        return False
+    return binding.get("id") == "SCF-B-0003" and binding.get("state") == "active"
 
 
 def process_identity(pid):
@@ -225,6 +235,9 @@ def apply_enrollment(data, runtime, session, now, chain):
 
 
 def hook(runtime, wait):
+    if not binding_active():
+        print("{}")
+        return
     entry = json.load(sys.stdin)
     session = identity(entry.get("session_id"))
     event = entry.get("hook_event_name")
