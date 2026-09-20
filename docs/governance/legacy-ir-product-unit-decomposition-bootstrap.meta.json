@@ -87,9 +87,19 @@
       "major": 0,
       "minor": 0
     },
-    "correction_status": "batch_reaudits_clear_pending_exact_head_independent_review"
+    "correction_status": "batch_reaudits_clear_pending_exact_head_independent_review",
+    "exact_head_review_round_1": {
+      "content_sha": "6c2b30634204c7ebcc23f4cc571572c3ec7a0a6b",
+      "findings": {
+        "blocker": 0,
+        "major": 1,
+        "minor": 3,
+        "info": 1
+      },
+      "status": "addressed_pending_round_2"
+    }
   },
-  "output_sha256": "sha256:1e360a56d46e15a772ce55f22035d41d8efa3bbf53f0b20c914ad20be0af9c7f",
+  "output_sha256": "sha256:4e3bbac33240cc8a3fde2816276119c2e66b0b5b690809838510bfab625ad31b",
   "known_open_conditions": [
     "exact_head_independent_review_pending",
     "successor_assignment_unassigned",

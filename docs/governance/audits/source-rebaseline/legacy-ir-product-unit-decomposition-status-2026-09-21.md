@@ -34,13 +34,18 @@ HELIX-Web／HELIX-Web-OS unitは0件である。旧IR 153件から直接owner候
 
 全153件でsource requirement ID、原文、semantic digest、routing registration、routing候補、製品候補集合を
 既存台帳と一致させた。`single_product`は原文全体を一unitへ保持する。`split_required`は原文から採った逐語spanを
-各unitへ置き、句点・セミコロン・証拠区切り`|`で分けたclauseの未被覆がないことを静的検査する。
+各unitへ置き、全spanの文字位置unionについて空白・句読点・括弧・区切り以外の未被覆runがないことを静的検査する。
 
 初回の分割監査ではBlocker 0、Major 152、Minor 15を検出した。否定、例外、停止、failure、証拠suffixの欠落、
 原文にない実装責務のsummary追加、PHCAP-02／07／10等への過剰分類を修正した。修正後も正本候補のexact HEADに
 対する独立reviewが終わるまでは、全recordを`candidate_decomposition_pending_exact_head_independent_review`とする。
 三batchの再監査では追加のMajor 33、Minor 4、後続再監査でMajor 1、Minor 1を検出して修正した。各batchの
 最終再監査はBlocker 0、Major 0、Minor 0である。
+
+最初の正本候補HEAD `6c2b30634204c7ebcc23f4cc571572c3ec7a0a6b`に対するGUI独立reviewはMajor 1、
+Minor 3、Info 1だった。split要求3件の否定・例外、10件のactor・条件・数量、共有span理由、verifierの
+clause被覆判定を修正した。全65 split要求は全spanの文字位置unionでmeaningful文字の未被覆run 0となった。
+修正後HEADの再reviewが終わるまではexact-head review pendingを維持する。
 
 ## 未解決のrouting
 
@@ -72,7 +77,7 @@ Phase Capability Inventoryは20フェーズの現行状態、旧到達層、縮�
 ## 検証と停止条件
 
 [静的検査script](../../tools/verify_legacy_ir_product_unit_decomposition.py)は、153件のexact set／順序、原文／digest、
-routing、unit cardinality、製品語彙、phase語彙、source span、split clause coverage、状態境界、authority、successor、
+routing、unit cardinality、製品語彙、phase語彙、source span、split文字union coverage、状態境界、authority、successor、
 metadata集計とoutput digestを確認する。この合格は意味review、人間判断、実装成立を代替しない。
 
 次が残るため、製品単位への要求分離は完了扱いにしない。

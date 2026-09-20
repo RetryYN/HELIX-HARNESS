@@ -15,6 +15,7 @@ OUTPUT = ROOT / "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.
 META = ROOT / "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.meta.json"
 PRODUCTS = {"HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"}
 PHASES = {f"PHCAP-{number:02d}" for number in range(1, 21)}
+IGNORABLE_COVERAGE_CHARS = set(" \t\r\n、。，．・；;:：|（）()「」『』［］[]【】<>＜＞`'\"")
 
 
 def sha(path):
@@ -28,6 +29,25 @@ def jsonl(path):
 def require(condition, message):
     if not condition:
         raise ValueError(message)
+
+
+def uncovered_meaningful_runs(statement, spans):
+    """Return source runs not covered by the union of exact spans."""
+    covered = [False] * len(statement)
+    for span in spans:
+        start = 0
+        while True:
+            index = statement.find(span, start)
+            if index < 0:
+                break
+            for position in range(index, index + len(span)):
+                covered[position] = True
+            start = index + 1
+    uncovered = "".join(
+        " " if covered[index] or character in IGNORABLE_COVERAGE_CHARS else character
+        for index, character in enumerate(statement)
+    )
+    return re.findall(r"\S+", uncovered)
 
 
 def main():
@@ -73,8 +93,12 @@ def main():
             require(sorted(unit["product_target"] for unit in units) == sorted(row["candidate_product_targets"]), "split product coverage mismatch")
             require("product_unit_boundary_human_decision_pending" in row["unresolved_reasons"], "split decision flag missing")
             spans = [span for unit in units for span in unit["source_text_spans"]]
-            clauses = [part.strip(" 、。；;|") for part in re.split(r"[。；;|]", row["statement_text"]) if part.strip(" 、。；;|")]
-            require(all(any(clause in span or span in clause for span in spans) for clause in clauses), "split source clause coverage mismatch")
+            uncovered = uncovered_meaningful_runs(row["statement_text"], spans)
+            require(not uncovered, f"split source union coverage mismatch: {requirement_id}: {uncovered}")
+            shared_spans = set.intersection(*(set(unit["source_text_spans"]) for unit in units))
+            if shared_spans:
+                require(all("共有span" in unit["semantic_coverage_note"] for unit in units), f"shared span reason missing: {requirement_id}")
+            require(all(not span.endswith(tuple("、。，．；;")) for span in spans), f"split span has trailing punctuation: {requirement_id}")
         else:
             require(row["routing_candidate"] == "cross_product_connection", "unknown routing candidate")
             require(len(units) == 1 and units[0]["unit_kind"] == "cross_product_connection", "connection unit mismatch")
@@ -88,7 +112,10 @@ def main():
             require(unit["semantic_coverage_status"] == "pending_exact_head_independent_review", "semantic coverage overclaim")
             require(unit["responsibility_summary"].strip() and unit["semantic_coverage_note"].strip(), "empty unit meaning")
             require(unit["source_text_spans"] and all(span and span in row["statement_text"] for span in unit["source_text_spans"]), "source span mismatch")
+            require(len(unit["source_text_spans"]) == len(set(unit["source_text_spans"])), "duplicate source span")
+            require(not any(left != right and left in right for left in unit["source_text_spans"] for right in unit["source_text_spans"]), "nested source span")
             require(set(unit["direct_phase_candidates"]) <= PHASES, "unknown phase")
+            require(all(phase in unit["phase_rationale"] for phase in unit["direct_phase_candidates"]), "phase rationale missing phase id")
             expected_phase_state = "candidate_pending_exact_head_independent_review" if unit["direct_phase_candidates"] else "unresolved"
             require(unit["phase_classification_status"] == expected_phase_state, "phase state mismatch")
             if unit["unit_kind"] == "product_unit":

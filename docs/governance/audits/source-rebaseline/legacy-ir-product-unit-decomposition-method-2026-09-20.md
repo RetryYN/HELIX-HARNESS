@@ -28,7 +28,10 @@ product_routing_revision: c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7
 4. 同じ原文spanを複数unitが共有する場合は、共有条件である理由を`semantic_coverage_note`へ記録する。どちらの製品に置くか決められないatomは一方へ丸めず`unresolved_reasons`へ残す。
 5. `source_text_spans`は原文に実在する連続文字列に限る。`responsibility_summary`は正規化候補であり原文を置換しない。
 6. `candidate_product_targets`は既存routingのexact setを維持する。この作業でHELIX-Web／HELIX-Web-OSを追加・除外確定しない。
-7. `split_required`では、原文を句点・セミコロン・証拠区切り`|`で分けた各clauseを、少なくとも一つのunitの逐語spanへ残す。複数unitに共通する判断規則や証拠条件は重複参照できる。
+7. `split_required`では、全unitの逐語spanが覆う原文上の文字位置をunionし、空白と句読点・括弧・区切り記号を
+   除くmeaningful文字の未被覆runを0にする。短いspanがclause内に一つあるだけでは被覆済みにしない。
+   複数unitに共通するactor、判断規則、適用条件、数量、証拠条件は重複参照できるが、各unitの
+   `semantic_coverage_note`へ共有理由を具体的に記録する。
 8. 既存routingと製品境界の不一致を見つけても、この候補台帳から既存routingを上書きしない。`routing_correction_pending_notes`と未解決理由を残し、対象revision付きの人間判断へ送る。直接phase候補だけの論点は`direct_phase_review_pending_notes`へ分離する。
 
 ## phase候補
@@ -57,13 +60,21 @@ span欠落、原文にない実装責務のsummary追加、artifact語からのp
 各batchの最終再監査はBlocker 0、Major 0、Minor 0である。正本化するexact HEAD自体への独立reviewが
 終わるまでは、候補状態から昇格しない。
 
+最初の正本候補HEAD `6c2b30634204c7ebcc23f4cc571572c3ec7a0a6b`へのGUI独立reviewは、Major 1、
+Minor 3、Info 1を検出した。短いspanを含むだけでclause全体を被覆済みとした旧検査を廃止し、全spanの
+文字位置unionへ変更した。三batchの全split行でmeaningful文字の未被覆runを0にし、actor、適用条件、数量、
+否定義務をsummaryへ戻した。共有spanには各unitのnoteで共有理由を記録し、`HIL-BR-06`の分割不能性と
+phase集合差も保留理由として明示した。修正後HEADは新しいreview requestとして再確認する。
+
 ## 静的検証
 
 - source requirement ID 153件のexact set、順序、statement digest、statement textが原IRと一致する。
 - routing candidateとproduct target集合が既存routingと一致する。
 - `single_product`はproduct unit 1件、`split_required`は各targetにproduct unit 1件、connectionはconnection 1件である。
 - 全spanが原文のsubstringで、空span、空要約、未知product、未知phase、重複unit IDがない。
-- `split_required`では、句点・セミコロン・`|`で分けた原文clauseの未被覆がない。
+- `split_required`では、全spanの文字位置unionに、空白・句読点・括弧・区切り以外の未被覆runがない。
+- 共有spanがあれば両unitのnoteに共有理由があり、split spanに末尾句読点、重複、入れ子がない。
+- 各直接phase候補のIDが`phase_rationale`に現れ、根拠を追跡できる。
 - routing訂正保留、直接phase review保留と、それぞれのnote・未解決flagが一致する。
 - authority、meaning change、successorを生成していない。
 
