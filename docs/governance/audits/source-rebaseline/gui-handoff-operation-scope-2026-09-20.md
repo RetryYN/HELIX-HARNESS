@@ -153,8 +153,10 @@ PR #1885は2026-09-20T11:48:39Zにmerge commit `3a00732031d78f2e19b98b6da39ca317
 
 - 対象: 同じVS Codeの既存Claude Code／Codex GUIと、`~/.claude/settings.json`／`~/.codex/hooks.json`内の所有5 command。
 - 作用: 最新mainから作った専用worktreeのSCF-B-0003をconsumerへ再接続し、#1884／#1866のmerge後状態訂正と、#1859／#1860へ接続する正式化候補のreview依頼・指摘返却に使用する。
-- 保持上限: 再接続した現在のOS boot、2026-09-21 23:59 JST、再接続revisionのPR merge/close、利用者の停止指示、正式経路への置換のうち最早時点。
+- lifecycle: SCF-B-0003のactive期間は接続を維持し、利用者の停止指示、正式経路への置換、Bindingのreplacing／retired遷移、安全な通知維持ができない不具合で撤去する。
 - 境界: 新規provider sessionを起動せず、旧hook・旧runtime・旧CIを実行しない。要求採否、正式実装許可、review完了、merge許可を通知から生成しない。
 - 撤去: 上限到達時に実行レーンがaudit→remove→audit=0を確認してから専用worktreeと通知stateを片付ける。
 
-期限を2026-09-21 23:59 JSTとしたのは、今回のreview往復に必要な最小の翌日末までとする実行側の限定である。より長い保持、reboot後の再接続、正式運用への昇格には別のPO判断とrevisionを要する。
+当初は実行側の限定として2026-09-21 23:59 JSTと現在bootを上限に置いた。その報告に対し、利用者は「Scaffold って仕組みがあるだろ？これにつなげよ。」、続いて「期限とかだるいことやる意味がない。」と指示した。この後続指示を優先し、固定日時・boot guard・PR mergeを撤去契機にする案を取り下げ、既存のSCF-B-0003と#1866の置換・撤去lifecycleへ一本化する。
+
+message TTLとsession leaseは古い依頼・sessionへの誤配送防止であり、接続全体の期限ではないため維持する。consumer接続が継続しても正式Featureの採否、要求承認、実装許可、受入、運用成立は生成しない。撤去時はaudit→remove→audit=0を行い、正式置換時は#1866で`check-replacement`→`retire`を経る。

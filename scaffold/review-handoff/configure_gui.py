@@ -2,26 +2,14 @@
 """新設のGUI通知hookだけを利用者設定へ接続／撤去する。trustは変更しない。"""
 import argparse
 import copy
-from datetime import datetime
 import json
 import os
 from pathlib import Path
 import shlex
 import tempfile
 import uuid
-import time
 
 HERE = Path(__file__).resolve().parent
-EXPIRES_AT = int(datetime.fromisoformat("2026-09-21T23:59:00+09:00").timestamp())
-
-
-def lifetime_guard(boot_id=None, expires_at=None):
-    if boot_id is None:
-        boot_id = Path("/proc/sys/kernel/random/boot_id").read_text().strip()
-    if expires_at is None:
-        expires_at = EXPIRES_AT
-    return ('[ "$(cat /proc/sys/kernel/random/boot_id 2>/dev/null)" = ' + shlex.quote(boot_id)
-            + ' ] || exit 0; [ "$(date +%s)" -lt ' + str(expires_at) + ' ] || exit 0; ')
 
 
 
@@ -29,7 +17,7 @@ def entries(runtime):
     def command(wait):
         call = shlex.join(["python3", "-B", str(HERE / "gui_mailbox.py"), "hook", "--runtime", runtime, "--wait", str(wait)])
         # 通知専用42だけをClaudeの2に変換。不在・argparse・例外の2/1は常に0。
-        return lifetime_guard() + call + '; helix_hook_rc=$?; if [ "$helix_hook_rc" -eq 42 ]; then exit 2; fi; exit 0'
+        return call + '; helix_hook_rc=$?; if [ "$helix_hook_rc" -eq 42 ]; then exit 2; fi; exit 0'
     stop = dict(type="command", command=command(3600 if runtime == "claude" else 5), timeout=3660 if runtime == "claude" else 10)
     if runtime == "claude": stop["asyncRewake"] = True
     result = {
@@ -112,8 +100,6 @@ def main():
     args = parser.parse_args()
     if args.rearm and (args.remove or args.audit):
         parser.error("rearmとremove/auditは同時指定不可")
-    if args.apply and not args.remove and time.time() >= EXPIRES_AT:
-        parser.error("接続期限切れ。追加・rearmせず撤去する")
     residual_count = 0
     paths = {"claude": Path.home() / ".claude/settings.json", "codex": Path.home() / ".codex/hooks.json"}
     for runtime, path in paths.items():

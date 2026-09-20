@@ -12,7 +12,6 @@ import tempfile
 import time
 import uuid
 import packet as p
-from configure_gui import EXPIRES_AT
 
 HERE = Path(__file__).resolve().parent
 STORE = HERE / "local" / "gui"
@@ -226,10 +225,6 @@ def apply_enrollment(data, runtime, session, now, chain):
 
 
 def hook(runtime, wait):
-    if time.time() >= EXPIRES_AT:
-        print("{}")
-        return
-    wait = min(wait, max(0, EXPIRES_AT - time.time()))
     entry = json.load(sys.stdin)
     session = identity(entry.get("session_id"))
     event = entry.get("hook_event_name")

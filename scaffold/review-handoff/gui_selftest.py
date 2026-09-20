@@ -31,11 +31,6 @@ class GuiChecks(unittest.TestCase):
 
     def setUp(self):
         self.now = time.time()
-        # 本番接続の固定期限に依存せず、通常経路のoracleを後日も再現する。
-        for module in (g, config):
-            timer = patch.object(module, "EXPIRES_AT", int(self.now) + 3600)
-            timer.start()
-            self.addCleanup(timer.stop)
         self.data = dict(version=1, lanes={}, observed={}, messages={})
         g.bind(self.data, "codex", "codex-gui", "execution", 60, self.now)
         g.bind(self.data, "claude", "claude-gui", "review_merge", 60, self.now)
@@ -252,22 +247,6 @@ class GuiChecks(unittest.TestCase):
             with self.assertRaises(ValueError):g.hook("claude",0)
 
 
-    def test_expired_hook_does_not_read_input_or_state(self):
-        stdout=io.StringIO()
-        with patch.object(g,"EXPIRES_AT",self.now-1),patch.object(sys,"stdin",io.StringIO("invalid input")),patch.object(sys,"stdout",stdout),patch.object(g,"state",side_effect=AssertionError("expired hook accessed state")):
-            g.hook("claude",3600)
-        self.assertEqual(stdout.getvalue().strip(),"{}")
-
-    def test_hook_wait_is_capped_at_deadline(self):
-        from contextlib import contextmanager
-        @contextmanager
-        def fake_state():yield self.data
-        entry=dict(session_id="claude-gui",cwd=str(p.ROOT),hook_event_name="Stop")
-        with patch.object(g,"EXPIRES_AT",self.now+2),patch.object(g.time,"time",return_value=self.now),patch.object(g,"state",fake_state),patch.object(sys,"stdin",io.StringIO(json.dumps(entry))),patch.object(sys,"stdout",io.StringIO()),patch.object(g,"receive",return_value=None) as receiver:
-            g.hook("claude",3600)
-        self.assertEqual(receiver.call_args.args[2],2)
-
-
     def test_rearm_never_installs_or_migrates(self):
         with self.assertRaises(ValueError):config.update({},"claude",rearm_token="new")
         value=config.update({},"claude")
@@ -280,11 +259,11 @@ class GuiChecks(unittest.TestCase):
         updated["hooks"]["ConfigChange"][0]["hooks"][0].pop("statusMessage")
         self.assertEqual(original,updated)
 
-    def test_lifetime_guard_stops_on_reboot_or_deadline(self):
-        for guard in (config.lifetime_guard(boot_id="other-boot"),config.lifetime_guard(expires_at=0)):
-            r=subprocess.run(guard+"printf SHOULD_NOT_RUN; exit 42",shell=True,capture_output=True,text=True)
-            self.assertEqual(r.returncode,0)
-            self.assertNotIn("SHOULD_NOT_RUN",r.stdout)
+    def test_hook_command_has_no_global_time_or_boot_guard(self):
+        command=config.entries("claude")["Stop"][0]["hooks"][0]["command"]
+        self.assertNotIn("boot_id",command)
+        self.assertNotIn("date +%s",command)
+        self.assertIn("gui_mailbox.py hook --runtime claude",command)
 
     def test_recovery_rejects_wrong_path_runtime_repository(self):
         good=dict(session_id="claude-gui",hook_event_name="ConfigChange",source="user_settings",file_path=str(Path.home()/".claude/settings.json"),cwd=str(p.ROOT))

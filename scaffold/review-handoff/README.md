@@ -125,15 +125,13 @@ rearmは所有ConfigChange hookのstatusMessageだけを新しいtokenへ変更�
 Claudeの設定変更hookは実機で発火を観測済み。Codexのnative Stop自動受信は引き続き未確認。公開URIによるGUI開き直し、送信欄操作、別providerセッション、非公開IPCは回復経路にしない。
 [Claude hooksの公開仕様](https://code.claude.com/docs/en/hooks)を参照する。
 
-## 接続の保持上限
+## 接続のlifecycle
 
 PR #1885のmerge完了応答後、初回接続は契約どおり撤去され、所有hook 0件と一時worktree削除を確認した。
-2026-09-20のPO指示「それで進めて」により、正式化作業のreview往復に限って別revisionで再接続する。保持は再接続した現在のOS boot内、かつ2026-09-21 23:59 JSTまで。再接続revisionのPR merge/close、利用者の停止指示、正式経路への置換が先ならそこで撤去する。永続pathへの移動はreboot後の稼働許可を意味しない。
-commandのboot ID／期限guardは再起動・期限後の本体実行を止め、待受も期限で終わる。設定参照そのものは実行側がremove→auditで撤去する。止まっただけで残留0とは扱わない。
+2026-09-20のPO指示「それで進めて」により正式化作業用に再接続し、続く「期限とかだるいことやる意味がない」により固定日時とOS bootによる接続期限を廃止した。SCF-B-0003がactiveである間は接続を維持し、利用者の停止指示、正式経路への置換、Bindingのreplacing／retired遷移、安全な通知維持ができない不具合のいずれかで撤去する。
+hook commandは固定日時やboot IDを条件にせず、provider再起動後も同じconsumer参照を使う。通知messageのTTLとsession leaseは、古い依頼・古いsessionへの誤配送を防ぐため維持する。
 rearmは同じcheckout・現行commandのClaude hookが3件揃っている場合だけ許す。撤去済み接続の復活や別checkoutへの付替えは拒否し、既存ConfigChangeのstatusMessage以外を変えない。
 ConfigChange+asyncRewakeの発火と配送確認、provider内部の設定変更block判断、Codex Stop自動受信は別々に扱う。内部の設定適用結果が未観測なら未検証のまま残す。
 
-期限後・再起動後には、実行側がまず `configure_gui.py --audit` を行い、所有参照があれば `--remove --apply` → `--audit` で0件を確認する。
-active bindingの `scfctl residuals=0` は、boot不一致・期限切れの不活性な参照が撤去されたことを意味しない。guardの失効判定はresidualsの対象外で、撤去確認にはauditが必須である。
-期限切れだけでは正式側への移管が成立しないためBindingを自動retireしない。consumer接続を停止・撤去した状態でreviewを続ける。期限後のmergeでも、接続は撤去済みとして扱い、再起動しない。
-延長や再接続が必要な場合はPOの新たなscope・期限の判断を記録して別revisionへ束縛する。今回の再接続scopeは、#1884／#1866のmerge後状態訂正と、#1859／#1860へ接続する正式化候補のreview往復までに限定する。再現試験のために実接続期限を延長しない。自己検査は時刻を注入し、通常経路と期限切れ経路を独立に検査する。
+撤去時は実行側が `configure_gui.py --audit` を行い、所有参照があれば `--remove --apply` → `--audit` で0件を確認する。`scfctl residuals=0`だけを利用者設定からの撤去完了とは扱わない。
+接続の継続から正式側への移管成立を生成しない。正式側へ役割・義務・consumer・oracleを移し、`scfctl check-replacement`→`retire`を通してからSCF-B-0003を撤去する。
