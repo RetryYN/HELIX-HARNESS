@@ -23,7 +23,7 @@
     "same_blob_count": 9,
     "changed_blob_count": 10,
     "live_holding_count": 13,
-    "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "management_register_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
     "management_register_sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
     "base_change_condition": "main/baseが親d272以後へ進んでもhistorical 13 holding relationは固定SHAで保持する。現行mainへ移す場合はread-afterと再baselineを先に行い、静かに追随しない。",
     "read_only": true
