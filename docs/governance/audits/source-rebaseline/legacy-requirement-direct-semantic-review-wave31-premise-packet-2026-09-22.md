@@ -5,16 +5,16 @@
 - batch: `LEGACY-SEMANTIC-WAVE31-2026-09-22`
 - worktree: `/home/tenni/.helix-worktrees/legacy-semantic-review-wave31`
 - branch: `docs/legacy-semantic-review-wave31`
-- Wave30 exact parent/current tree: `71e42d1da744462bb870686e266a29d986256ce6`
-- main base: `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`
-- observed origin/main: `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`（再baseline済み）
+- Wave30 exact parent/current tree: `d243362013dc55dd01f9843c0ee6d81c6fc2befd`
+- main base: `fbeee47920ed8b2992ae123b00c224ff88987c50`
+- observed origin/main: `fbeee47920ed8b2992ae123b00c224ff88987c50`（再baseline済み）
 - scope: 4 units / 12 asset edges / 4 confirmed requirement edges / 8 unresolved candidate edges
 - cumulative: 103 units / 306 asset edges / 残り115 units（全218 units）
 - authority effect: `none`; consumer closure: `pending`; legacy execution: `not_run`; new build: `false`
 
 mainまたはWave30 exact parentが変わった場合は入力digestと親系譜を更新してrebaselineします。候補値はauthority、採用、現行実装の証拠ではありません。
 
-最新mainと修正後のWave30を親系譜として、Wave29・30のledger／meta digestを再照合しました。候補のarchive manifest、requirements IR、FR24〜FR27 source、catalog、decomposition、crosswalk、phase inventoryに変更はありません。
+最新mainと修正後のWave30を親系譜として、Wave29・30のledger／meta digestを再照合しました。旧mainからの差分は対象外のPHCAP04–05 scaffold 5 pathだけで、候補のarchive manifest、requirements IR、FR24〜FR27 source、catalog、decomposition、crosswalk、phase inventoryに変更はありません。
 
 ## 要求source
 
