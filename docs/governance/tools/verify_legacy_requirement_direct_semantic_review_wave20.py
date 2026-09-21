@@ -244,6 +244,23 @@ def verify_row_fields(row: dict) -> None:
     require(set(row) == ROW_FIELDS, f"row fields {row['review_id']}")
 
 
+def verify_missing_receipts(missing: list[dict], by_unit: dict, decomposition: dict, crosswalk: dict, searches: dict) -> None:
+    expected = {
+        (unit, role)
+        for unit, rows in by_unit.items()
+        for role in ("design", "implementation_source")
+        if not any(row["role_kind"] == role for row in rows)
+    }
+    require(isinstance(missing, list) and all(isinstance(item, dict) for item in missing), "missing receipts shape")
+    actual = [(item.get("unit_candidate_id"), item.get("role_kind")) for item in missing]
+    require(len(actual) == len(set(actual)) and set(actual) == expected, "missing receipts role closure")
+    for receipt in missing:
+        unit = receipt["unit_candidate_id"]
+        require(unit in by_unit, "missing receipt unknown unit")
+        _parent, candidate = decomposition[unit]
+        verify_missing_receipt(receipt, searches[unit], candidate, crosswalk[unit])
+
+
 def prior_assets_and_edges() -> tuple[set[tuple[str, str]], set[str], set[str]]:
     edges: set[tuple[str, str]] = set()
     assets: set[str] = set()
@@ -325,6 +342,7 @@ def verify() -> None:
     require(meta["wave18_candidate_input_digests"]["docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl"] == file_digest(ROOT / "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl"), "wave18 ledger pin")
 
     by_unit = {unit: [row for row in rows if row["unit_candidate_id"] == unit] for unit in UNITS}
+    verify_missing_receipts(meta["missing_evidence_receipts"], by_unit, decomposition, crosswalk, meta["bounded_search_receipts"])
     for unit, unit_rows in by_unit.items():
         require(unit_rows, f"unit rows {unit}")
         parent, candidate = decomposition[unit]
@@ -418,6 +436,46 @@ def verify() -> None:
         unit = aggregate["unit_candidate_id"]
         require(unit in UNITS and aggregate["consumer_closure_status"] == "pending" and aggregate["current_requirement_implementation_status"] == "not_established" and aggregate["new_build_allowed"] is False, f"aggregate boundary {unit}")
         require(aggregate["direct_confirmed_implementation_asset_ids"] == [] and aggregate["phase_authority_status"] == "candidate_unchanged", f"aggregate implementation {unit}")
+
+    # Keep the inherited fail-close gates live as each wave's verifier evolves.
+    def rejected(label: str, operation) -> None:
+        try:
+            operation()
+        except AssertionError:
+            return
+        fail(f"negative case accepted: {label}")
+
+    controlled = next(row for row in rows if row["role_kind"] == "design" and row["evidence_atom_bindings"])
+    binding = controlled["evidence_atom_bindings"][0]
+    bad = deepcopy(binding)
+    bad["source_fragment_anchors"] = ["stale-anchor"]
+    rejected("stale anchor", lambda: verify_binding(controlled, bad, selected_excerpt(controlled, binding)))
+    bad = deepcopy(binding)
+    bad["anchor_evidence_terms"] = {}
+    rejected("missing anchor mapping", lambda: verify_binding(controlled, bad, selected_excerpt(controlled, binding)))
+    rejected("unselected excerpt", lambda: verify_binding(controlled, binding, "unrelated excerpt"))
+
+    injected_row = deepcopy(controlled)
+    injected_row["merge_admission"] = "granted"
+    rejected("row admission claim", lambda: verify_row_fields(injected_row))
+
+    requirement_row = next(row for row in rows if row["role_kind"] == "requirement")
+    requirement_excerpt = selected_excerpt(requirement_row, {"evidence_ref_indexes": list(range(len(requirement_row["evidence_refs"])))})
+    tampered_requirement = deepcopy(requirement_row)
+    tampered_requirement["source_statement_text"] = ""
+    rejected("requirement atom grounding", lambda: verify_atom_provenance(tampered_requirement, tampered_requirement, requirement_excerpt))
+
+    tampered_candidate = deepcopy(controlled)
+    tampered_candidate["covered_requirement_atoms"][0]["text"] = "candidate-only atom text"
+    source_requirement = by_unit[controlled["unit_candidate_id"]][0]
+    rejected("candidate atom provenance", lambda: verify_atom_provenance(tampered_candidate, source_requirement, ""))
+
+    forged_missing = [{
+        "unit_candidate_id": UNITS[0], "role_kind": "implementation_source",
+        "reason": "archive全体に存在しない", "searched_terms": ["ZZZ"],
+        "searched_root": "archive/legacy-generation-2026-09-14/root",
+    }]
+    rejected("forged missing receipt", lambda: verify_missing_receipts(forged_missing, by_unit, decomposition, crosswalk, meta["bounded_search_receipts"]))
 
     print("Wave20 static schema10 verification: PASS")
 
