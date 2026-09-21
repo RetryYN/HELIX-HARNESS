@@ -1,0 +1,3855 @@
+{
+  "schema": "helix-scaffold-delegated-doc-ref-atom-candidate.v1",
+  "candidate_id": "RDP-001-DELEGATED-DOC-003-028-REF-0303-0759-0760",
+  "status": "candidate_pending_atomization_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "comparison": {
+    "source_commit": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+    "method": "read-only Git archive blob bytes; exact line spans and UTF-8 SHA-256",
+    "source_documents": [
+      "DELEGATED-DOC-003",
+      "DELEGATED-DOC-028"
+    ],
+    "reference_edges": [
+      "DELEGATED-REF-0303",
+      "DELEGATED-REF-0759",
+      "DELEGATED-REF-0760"
+    ]
+  },
+  "ledger_provenance": {
+    "source_holding_path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+    "source_holding_sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+    "reference_holding_path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+    "reference_holding_sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+    "source_registration": "MPR-SH-DELEGATED-DOC-003",
+    "reference_registration": "MPR-SH-DELEGATED-REF-001",
+    "source_record_count": 114,
+    "reference_record_count": 788,
+    "asset_ledger_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "phase_ledger_sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+  },
+  "candidate_resolution": {
+    "requested_document_ids": [
+      "DELEGATED-DOC-003",
+      "DELEGATED-DOC-028"
+    ],
+    "requested_reference_ids": [
+      "DELEGATED-REF-0303",
+      "DELEGATED-REF-0759",
+      "DELEGATED-REF-0760"
+    ],
+    "all_requested_ids_exist": true,
+    "replacement_reason": null
+  },
+  "product_boundary": {
+    "product_owner_candidates": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "boundary_status": "candidate_only",
+    "sources": [
+      {
+        "path": "docs/concept/product-boundary.md",
+        "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+      },
+      {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+      },
+      {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+      }
+    ]
+  },
+  "source_documents": [
+    {
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "sha256": "b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
+      "source_blob_oid": "fd7d7297566364c082b0e42889b1d2b461ca848c",
+      "source_blob_sha256": "sha256:b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
+      "source_declared_status": "confirmed",
+      "source_relation": "requirements_v1.3_reference_line_516",
+      "holding_granularity": "file_blob",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_refs": [],
+      "human_decision_ref": null,
+      "line_count": 196
+    },
+    {
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "sha256": "192c4839f128d955346b420d494ed1b2ba98627976dc6e0314623e790a7ab0f0",
+      "source_blob_oid": "62fd06dd2d16a044b9fa4b4f382091d2bf48b882",
+      "source_blob_sha256": "sha256:192c4839f128d955346b420d494ed1b2ba98627976dc6e0314623e790a7ab0f0",
+      "source_declared_status": "proposed",
+      "source_relation": "delegated_doc_003_pair_artifact",
+      "holding_granularity": "file_blob",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_refs": [],
+      "human_decision_ref": null,
+      "line_count": 48
+    }
+  ],
+  "reference_edges": [
+    {
+      "reference_id": "DELEGATED-REF-0303",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_file_sha256": "b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "pair_artifact",
+      "source_line": 9,
+      "target_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "target_sha256": "192c4839f128d955346b420d494ed1b2ba98627976dc6e0314623e790a7ab0f0",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    },
+    {
+      "reference_id": "DELEGATED-REF-0759",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_file_sha256": "192c4839f128d955346b420d494ed1b2ba98627976dc6e0314623e790a7ab0f0",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "pair_artifact",
+      "source_line": 12,
+      "target_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "target_sha256": "b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    },
+    {
+      "reference_id": "DELEGATED-REF-0760",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_file_sha256": "192c4839f128d955346b420d494ed1b2ba98627976dc6e0314623e790a7ab0f0",
+      "reference_origin": "body_reference",
+      "relation_key": null,
+      "source_line": 17,
+      "target_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "target_sha256": "b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    }
+  ],
+  "legacy_asset_status": [
+    {
+      "source_document_id": "DELEGATED-DOC-003",
+      "asset_id": "LEGACY-ASSET-CF1129DCA8779904F6B3",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "asset_ledger": {
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "pair_ids": [],
+        "reuse_exclusion_class": null,
+        "revision": 1
+      },
+      "phase_product_bootstrap": {
+        "classification_id": "LASPH-0449",
+        "artifact_evidence_kind": "requirement",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "direct_phase_candidates": null,
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_document_id": "DELEGATED-DOC-028",
+      "asset_id": "LEGACY-ASSET-1265575C20AAA37CAE9A",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "asset_ledger": {
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "pair_ids": [],
+        "reuse_exclusion_class": "legacy_test_design_or_oracle",
+        "revision": 1
+      },
+      "phase_product_bootstrap": {
+        "classification_id": "LASPH-2814",
+        "artifact_evidence_kind": "test_design",
+        "phase_classification_status": "unresolved_with_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-16"
+        ],
+        "direct_phase_candidates": null,
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    }
+  ],
+  "atoms": [
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-001",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-001",
+      "source_span": {
+        "start_line": 39,
+        "end_line": 47,
+        "sha256": "sha256:6c16dc7f373d726af13a6902c8c7f15f8854dde6bc2b0e493ff25f922e67cd15",
+        "exact_source_text": "### GH-FR-001 Issue受付ゲート\n\nIssue は `origin_plan`、`origin_revision`、`observed_head`、`observed_state`、`evidence_path_or_digest`、\n`reason_code`、requirements registryへ束縛した`workflow_identity`、`execution_mode`、\n`specialist_drives`、`reentry_target`、`requirement_ids`、`acceptance_ids`を型付きで保持する。\n`workflow_identity`は`registry_version`、`registry_source_digest`、`target_axis`、`target_id`のexact tupleとし、\n部分tuple、未知axis／ID、stale version／digest、複数候補を自動走行へadmissionしない。legacy `mode`／`model`／\n`drive_model`／旧route IDはinput-only adapterの変換元receiptにだけ保持し、current Issue／PLAN／PR／DBへ\n再出力しない。ユーザー差し込みIssueも同じschemaへ正規化し、正本を直接更新せずcommand candidateとして扱う。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "Issue受付に必要な観測・証拠・typed workflow identityをexact tupleで束縛する",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0303"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-002",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-002",
+      "source_span": {
+        "start_line": 49,
+        "end_line": 58,
+        "sha256": "sha256:10b11badeba1ff5e093f0b6ac5b10d7f8d65920f5fb1e9451219aaee30d9fd9b",
+        "exact_source_text": "### GH-FR-002 Issue分類体系\n\n分類はrequirements-owned workflow classification registryのaxisごとに行う。development style、\n案件別model（case-driven model）、workflow model、subroute、state machine、decision、gate、subtype、trigger、\nspecialist drive、execution mode、specialist workflow、specialist capabilityを同一enumまたは同一fieldへ\n畳み込まない。signal／work itemは`target_axis + target_id`へexact解決し、unknown、複数候補、decision待ちは\n別dispositionでfail-closeする。分類不能や衝突を`FULL_L1_L12_V`、Forward、Scrum等へ推測して丸めない。\n明示policyが本格システム・高risk・複数境界をdevelopment style `FULL_L1_L12_V`へ決定することと、\n分類失敗時のfallbackは別契約である。current出力はregistry version／digestとtyped identityを返し、\nlegacy identityを再出力しない。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "workflow classificationのaxisを混同せず、unknown・衝突・decision待ちをfail-closeする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-003",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-003",
+      "source_span": {
+        "start_line": 60,
+        "end_line": 62,
+        "sha256": "sha256:10038b85b380bca1f9c04a22a62e807918a5bbec4e060d52c46b11789e6350e7",
+        "exact_source_text": "### GH-FR-003 無駄な機能拡張の遮断\n\nIssue/PR の changed scope は requirement ID と AC ID の閉包内でなければならない。要求に無い新機能、便乗 refactor、名称変更、依存更新を検出した場合は別 Issue へ分離し、元 PR を block する。ただし correctness/security の即時修正は根拠と再合流先を記録した Recovery として扱う。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "PR scopeをrequirement／AC閉包へ制限し、範囲外変更を分離する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-004",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-004",
+      "source_span": {
+        "start_line": 64,
+        "end_line": 77,
+        "sha256": "sha256:a5df4fa9969f87a594f6a9c083810d63b38a82f9c317bc6c13e222740164ac58",
+        "exact_source_text": "### GH-FR-004 経路選択\n\n入口で次の route を機械決定し、途中で暗黙変更しない。\n\n| 条件 | development style |\n|---|---|\n| 本格システム、高リスク、複数境界、未知/衝突 | `FULL_L1_L12_V` |\n| 段階リリース、小規模かつ既知境界 | `PRODUCTION_SCRUM`（旧`PRODUCTION_SCRUM_REDUCED_V`は入力互換のみ） |\n| L1〜L5のsystem設計を先に凍結し、L6以降をslice実装 | `V_DESIGN_SCRUM_IMPLEMENTATION` |\n\n`DISCOVERY_POC`はdevelopment styleではなく、非本番の仮説・実現性検証でcase-by-caseに発動する\ncase-driven model identityである。Discovery／PoCをProduction Scrumのphase、variant、内包要素にしない。\nPoCはS0–S4の決定後にのみ選択済みstyleのForward/Reverseへ昇格する。Production Scrumは品質工程の\n省略ではなく、機能slice単位でL1〜L12縮約Vを反復し、release合流時に全right-arm evidenceを満たす。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "development styleとPoCを区別し、入口でrouteを固定する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-005",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-005",
+      "source_span": {
+        "start_line": 79,
+        "end_line": 81,
+        "sha256": "sha256:7edfbdbb995627f4bc0baaca2e188af7f92b2124293c70f8b2b6d3991ace5fc2",
+        "exact_source_text": "### GH-FR-005 branchライフサイクル\n\nbranch は最新 main の確認済み SHA から作り、`feat/`、`fix/`、`refactor/`、`docs/`、`test/`、`chore/`、`reverse/`、`redesign/`、`recovery/`、`incident/` の型付き prefix と PLAN/Issue ID を持つ。1 branch = 1目的を原則とし、並行 runtime は他者 branch を書き換えない。merge 後は自動削除し、長期化 branch は stale finding を発生させる。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "branchを確認済みmain SHA、型付きprefix、PLAN／Issue、1目的へ束縛する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-006",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-006",
+      "source_span": {
+        "start_line": 83,
+        "end_line": 85,
+        "sha256": "sha256:e4006d1386432d5dafdb6a364a4ead1d14dd73c0bdf832a74300a83b32fcbb6c",
+        "exact_source_text": "### GH-FR-006 commit完全性\n\ncommit は Conventional Commits、明示 path staging、secret/PII/license scan、生成物 provenance を必須とする。`git add .` / `git add -A`、force push、履歴破壊、理由のない generated file 混載を禁止する。secret scan は現在 tree だけでなく push 対象 commit の履歴 blob も検査する。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "commitのstaging、provenance、secret／PII／license scanと履歴保全を要求する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-007",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-007",
+      "source_span": {
+        "start_line": 87,
+        "end_line": 89,
+        "sha256": "sha256:e3e3e8690e57cc3e22c2481fbe6c85537bcd86bf90408d42c34d7230287dc773",
+        "exact_source_text": "### GH-FR-007 PR追跡契約\n\nPR は概要、PLAN/Issue、route、layer、Forward/Reverse pair、requirement/AC、変更 scope、非対象、test/evidence、risk、rollback、generated artifacts、AI runtime/role、review receipt を機械可読 block で持つ。block は CLI 生成し、validator が source ledger と照合する。通常 Forward は無理に Issue を要求しないが、Issue 起点 episode は `Closes #N` を必須とする。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "PR trace blockを機械可読にし、source ledgerと照合する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-008",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-008",
+      "source_span": {
+        "start_line": 91,
+        "end_line": 93,
+        "sha256": "sha256:b2e476cc7de165ed31e6f2bae6f8f8dffe9725d512127c4f89a0e8d709c437cd",
+        "exact_source_text": "### GH-FR-008 runtime間レビュー\n\n作成 runtime と判断 runtime を分離する。Claude Code は依存・接続・外部/詳細設計・改善候補を監査し、Codex は凍結設計に基づく実行を担う。単一 runtime 時は独立 subagent receipt を代替証跡として残す。レビュー所見は severity、requirement/AC、evidence、disposition を持たなければ merge blocker にできない。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "作成runtimeと判断runtimeを分離し、review所見を証拠とdispositionへ束縛する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-009",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-009",
+      "source_span": {
+        "start_line": 95,
+        "end_line": 97,
+        "sha256": "sha256:e5eb824d57d6537888a79b785bce241d4b4b8fd9df8cf13ad3e83032d65bf573",
+        "exact_source_text": "### GH-FR-009 CI集約ゲート\n\nmain の required check は安定名 `harness-check` の集約 gate とする。Linux canonical full verification と Windows compatibility smoke を最低限含み、対象 OS 方針に応じ macOS smoke を追加する。集約 job は `always()` で全 required leg の結論を評価し、cancelled/skipped/failure を成功扱いしない。PR は全 base branch で起動し、stacked PR を取りこぼさない。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "required CI legを集約し、failure・cancel・skipを成功扱いしない",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-010",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-010",
+      "source_span": {
+        "start_line": 99,
+        "end_line": 101,
+        "sha256": "sha256:9103fb4e127e4a6e423cfc5c41991e03f9eb3a4f3a2edb803db033bd93f3537f",
+        "exact_source_text": "### GH-FR-010 repository ruleset要件\n\nmain は PR-only、required `harness-check`、strict up-to-date、non-fast-forward 禁止、branch deletion 禁止、force push 禁止、bypass actor なしを要求する。人間 approval は solo 自己ブロックを避けるため必須にせず、代わりに cross-runtime review receipt を機械必須とする。authoring policy と GitHub 現物を read-only diff し、drift 時は fail-close する。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GitHub rulesetとauthoring policyをread-only diffし、PR-only境界とdrift fail-closeを守る",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-011",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-011",
+      "source_span": {
+        "start_line": 103,
+        "end_line": 105,
+        "sha256": "sha256:f54e2149bf68c06036b2a409ca9c7ca7c9e9805c4ee340b7534b263d2976c630",
+        "exact_source_text": "### GH-FR-011 CI自己修復\n\nAI が作成した PR の CI が失敗した場合、同じ episode 内で failure log を取得し、原因分類、Issue/PLANへの記録、修正、局所検証、再 push を行う。無根拠 rerun、テスト削除、閾値緩和、required leg の除外で緑化してはならない。反復上限到達時は Recovery/Incident へ遷移する。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "CI failureの原因・修正・再pushをepisodeへ束縛し、無根拠緑化を拒否する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-012",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-012",
+      "source_span": {
+        "start_line": 107,
+        "end_line": 115,
+        "sha256": "sha256:6523acfe8679aaa4e1be0c0b774950d3b90af1d5808877eaa5f5a437fa2b3c2d",
+        "exact_source_text": "### GH-FR-012 merge・release境界\n\n全 gate、current HEADに束縛された独立review receipt、trace closure、DB追従が揃った後、監査AIが証拠と\ncurrent HEADを再照合して明示mergeする。GitHub native auto-mergeは禁止し、CI greenだけを契機にした\n無文脈mergeを許可しない。main merge 後にDB投影と記憶圧縮を行い、stale continuationを残さない。\nlayer checkpoint tag はannotated `helix/L<n>/<plan>/<snapshot>`とし、commit/tree/ledger digest、gate receipt、\nDB revisionを持たせる。移動・削除せず、訂正時は新tagでsupersedeする。checkpoint tagは進捗証拠であって\nreleaseではない。release tagはSemVerとし、全layer closure、requirements digest、CI run、DB revision、\naction-binding approval receiptを要求する。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "review receipt、trace、DB、merge、checkpoint／release tagの境界を接続する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-013",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-013",
+      "source_span": {
+        "start_line": 117,
+        "end_line": 119,
+        "sha256": "sha256:5f47abbcaaddc713479ac2a17bdd45e055b6504d8db47dc5523f0dd8ec8a758d",
+        "exact_source_text": "### GH-FR-013 Issueからmemoryへの学習\n\nIssue、レビュー、CI失敗、再発、設計判断、chatで追加された要求を append-only event として記録し、`harness.db` へ冪等投影する。再発閾値を超えた知見は detector/gate、skill、template、設計正本の候補へ昇格し、採否と反証を残す。Issue 件数の蓄積自体を学習と見なさない。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "Issue・review・failure・設計判断をappend-only eventへ投影し改善候補を管理する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-014",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-014",
+      "source_span": {
+        "start_line": 121,
+        "end_line": 123,
+        "sha256": "sha256:7869cd60eb12035e74136f2401482e14f2136131bb7cb69cc63bdd95a6fbe543",
+        "exact_source_text": "### GH-FR-014 template自己改善\n\n要求翻訳時に既存 template で表現できない必須項目を検出した場合、成果物へ自由記述で逃がさず `template_gap` Issue を作る。template/schema/test fixtureを先に Red→Green し、その後に対象要件を再生成する。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "template gapを自由記述で逃がさず、schema／fixtureの先行修正へ送る",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-015",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-015",
+      "source_span": {
+        "start_line": 125,
+        "end_line": 127,
+        "sha256": "sha256:7c936f6b9e94b8f025e993892a88b35460c21b8d2a7594b67d0d8371a81e36eb",
+        "exact_source_text": "### GH-FR-015 画面適用性\n\nL2 画面/プロト工程は毎回判定し、HARNESSのような非UI対象では `not_applicable`、理由、判定者、証拠、下流影響を台帳化する。暗黙スキップは禁止する。ビジュアル Design HARNESS は UI/UX のデザイン生成・検証責務であり、L8–L10 の一般検証基盤と混同しない。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "非UI対象のnot_applicableと理由・証拠・下流影響を明示する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-016",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-016",
+      "source_span": {
+        "start_line": 129,
+        "end_line": 131,
+        "sha256": "sha256:b9fae1abebecd833e58bc4cda536db03ae8b381e8a6197b97a2df93975484011",
+        "exact_source_text": "### GH-FR-016 完了率の分母\n\n要件完了率は、総 requirement、AC、必須 trace edge、pair、gate evidence、未解決 finding の分母を固定して算出する。分母不明、orphan、重複ID、件数報告不一致、`proposed` decision 残存があれば100%表示を禁止する。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "requirement／AC／trace／pair／evidence／findingの完了分母を固定する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-FR-017",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-017",
+      "source_span": {
+        "start_line": 133,
+        "end_line": 148,
+        "sha256": "sha256:16f86c654f90696cda86e03bb37be4aaa2bb8b966e9e6f9bd3774c6d7cc17ead",
+        "exact_source_text": "### GH-FR-017 Issue closure契約\n\nIssueは終端PRのmergeによってのみ通常closeする。Issue起点PRは`Closes #N`に加え、`Outcome`、current HEADへ\n束縛した`Closure receipt`、全子Issueの`Child Issues` dispositionを持つ。`Outcome`は\n`resolved / rejected / quarantined / superseded / cancelled`のexactly oneとする。\n\n- `resolved`: acceptance oracle、review、CI、Forward/fullback、DB/memory収束を満たす。\n- `rejected / quarantined`: Discovery S4、admission、または同等の終端decision receiptを成果物としてmergeする。\n  実装採用されなかったことを未完了と同一視せず、証拠付き不採用を正当な終端とする。\n- `superseded / cancelled`: AI単独判断を禁止し、snapshot-bound PO decision evidenceを必須とする。\n\nPR作成、設計完了、CI green、proseの完了宣言だけではcloseしない。子Issueは`resolved / deferred / split /\nsuperseded / cancelled`のいずれかへ明示し、単なるopen findingの退避で親を閉じない。closure receiptが欠落または\nHEAD driftしたcloseはreopenまたはRecovery対象とする。Issue起点でない通常Forward PRには無理に`Closes`を要求しない。\n`Closure receipt`はPLAN ID、current HEAD SHA、test/CI evidence、review evidenceを最低限含み、テンプレートplaceholderを\n実証として受理しない。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "Issue closure outcome、closure receipt、child disposition、PO decisionを束縛する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-NFR-001",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-001",
+      "source_span": {
+        "start_line": 152,
+        "end_line": 153,
+        "sha256": "sha256:097077ee3f6f6c3cf66dc47c398b762db77b1e6f8470551ea116378ee718bf57",
+        "exact_source_text": "- GH-NFR-001 Fail-close: schema／authority／typed identity／traceが不明、unknown、ambiguous、decision待ちなら\n  推測せず不成立理由を返して停止する。分類失敗を最も強いV routeやForwardへ自動変換しない。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "不明・unknown・ambiguous・decision待ちを推測せずfail-closeする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-NFR-002",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-002",
+      "source_span": {
+        "start_line": 154,
+        "end_line": 154,
+        "sha256": "sha256:67eff7b80764f6146208887172a2bfac73056367008f3b7c3e668bc101d58685",
+        "exact_source_text": "- GH-NFR-002 Idempotency: hook、projection、reconcile、PR event再送は二重 Issue/commit/mergeを作らない。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "再送・reconcileでIssue／commit／mergeを二重生成しない",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-NFR-003",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-003",
+      "source_span": {
+        "start_line": 155,
+        "end_line": 155,
+        "sha256": "sha256:930f2ec322347f5180c6e78c755d2e00494425dd8e6eca511600b230eb64447f",
+        "exact_source_text": "- GH-NFR-003 Evidence durability: evidence は HEAD SHA、digest、timestamp、producer、schema versionを持つ。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "evidenceをHEAD、digest、時刻、producer、schemaへ束縛する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-NFR-004",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-004",
+      "source_span": {
+        "start_line": 156,
+        "end_line": 156,
+        "sha256": "sha256:e44de3085088fb15b45e3d9f830cc4d480722c5271c730bcad76fa9ae9363367",
+        "exact_source_text": "- GH-NFR-004 Least privilege: workflow permissions は原則 `contents: read`。write権限は限定job/commandのみ。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "workflow permissionをleast privilegeへ制限する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-NFR-005",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-005",
+      "source_span": {
+        "start_line": 157,
+        "end_line": 157,
+        "sha256": "sha256:b64717f5214420e3c0a3ec088e194c2ce46408b7afd0be7e70f591c71caf7f90",
+        "exact_source_text": "- GH-NFR-005 Concurrency: non-main の旧runは取消可能、mainの証跡runは取消で消失させない。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "non-main cancelとmain evidence保持を区別する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-NFR-006",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-006",
+      "source_span": {
+        "start_line": 158,
+        "end_line": 158,
+        "sha256": "sha256:38c7a6a423f979936d483f43a9147ff8f52e641437d0da2875832a27db8cb87f",
+        "exact_source_text": "- GH-NFR-006 Portability: Linuxをcanonical、Windows/macOSを互換面として同一Node artifactで検証する。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "Linux canonicalとWindows／macOS互換検証の責務を保持する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-NFR-007",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-007",
+      "source_span": {
+        "start_line": 159,
+        "end_line": 159,
+        "sha256": "sha256:3d96b157c4555eb9e0df71a830c52ee281e0d48b69e3b60c226d8c04f0a3bc86",
+        "exact_source_text": "- GH-NFR-007 Auditability: GitHub API観測とauthoring policyの差分を保存し、UI設定だけを正本にしない。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GitHub観測とauthoring policy差分を保存しUI設定を正本にしない",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-NFR-008",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-008",
+      "source_span": {
+        "start_line": 160,
+        "end_line": 160,
+        "sha256": "sha256:1be91c8a19cf55c01bd66a8a5058fbc2807683c00cb8fba805a6ed5e61efd57a",
+        "exact_source_text": "- GH-NFR-008 Context economy: PR/Issueにはdigestとpointerを置き、全文memoryをpromptへ注入しない。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "PR／Issueはdigestとpointerを使い全文memory注入を避ける",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-001",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-001",
+      "source_span": {
+        "start_line": 166,
+        "end_line": 166,
+        "sha256": "sha256:a8364249dcb2ddb7e6ba76c55a57c0a041818098cf88f91c0879c170d2a029d9",
+        "exact_source_text": "| GH-AC-001 | 各Issue Formの必須項目欠落、workflow identity部分tuple、未知axis／ID、stale registry、legacy current出力、複数候補fixtureがreason code付きでadmission失敗し、current exact tupleだけPLAN候補になる |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "Issue Form・workflow identity・registryの検査器が、必須欠落・部分tuple・未知axis／ID・stale registry・legacy current・複数候補をreason code付きでadmission拒否し、current exact tupleだけをPLAN候補にする。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-002",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-002",
+      "source_span": {
+        "start_line": 167,
+        "end_line": 167,
+        "sha256": "sha256:b0305ba58903b759979f2f3b564411621eb935017bbf735be09a1145221433fc",
+        "exact_source_text": "| GH-AC-002 | scope外ファイル/依存/機能を含むPR fixtureが`scope_expansion`でblockされる |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "PR scope検査器が、requirement closure外のファイル・依存・機能を含むfixtureをscope_expansionとしてblockする。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-003",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-003",
+      "source_span": {
+        "start_line": 168,
+        "end_line": 168,
+        "sha256": "sha256:44ba23bf21115c493e656edec36584a73279b49ccf45ab6d962fdb334a06147d",
+        "exact_source_text": "| GH-AC-003 | branch名、base SHA、寿命、ownership違反を機械検出できる |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "branch guardがbranch名・base SHA・寿命・ownershipの各違反を機械検出し、違反の判定結果を返す。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-004",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-004",
+      "source_span": {
+        "start_line": 169,
+        "end_line": 169,
+        "sha256": "sha256:75cee2c4f738d3d86e3ac9e78fb6edb8aa0d2a13faf8d9610029c673a8ece99e",
+        "exact_source_text": "| GH-AC-004 | PR trace blockをledgerから生成し、改竄・orphan ID・欠落pairを拒否する |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "PR trace生成器がledgerからtrace blockを作成し、検証器が改竄・orphan ID・欠落pairを拒否する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-005",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-005",
+      "source_span": {
+        "start_line": 170,
+        "end_line": 170,
+        "sha256": "sha256:94242f3e8816e6a9fc3e1add6200acdd604fdeba1c0ca5cc77fa096c6f610ed1",
+        "exact_source_text": "| GH-AC-005 | Linux/Windows required legのfailure/cancel/skip全fixtureでaggregateが失敗する |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "CI aggregateがLinux／Windows required legのfailure・cancel・skipを受けたfixtureを全て失敗と判定する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-006",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-006",
+      "source_span": {
+        "start_line": 171,
+        "end_line": 171,
+        "sha256": "sha256:ea564f96867b470c1bb718b28c79581709c01d8f3c3265e21f0cfc3cbb095b3d",
+        "exact_source_text": "| GH-AC-006 | authoring policyとGitHub Rulesetのrequired check/strict/force/deletion/bypass差分を検出する |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "policy drift検出器がauthoring policyとGitHub Rulesetを比較し、required check・strict・force・deletion・bypassの各差分を検出する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-007",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-007",
+      "source_span": {
+        "start_line": 172,
+        "end_line": 172,
+        "sha256": "sha256:167486db30584375f06c2b3984e1515ed03a75dad2bfe592b9a8d810aee63eec",
+        "exact_source_text": "| GH-AC-007 | CI失敗から同一episodeの修正再push、またはRecovery遷移までをevent列で再生できる |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "CI failureからのevent列再生器が、同一episodeの修正再pushまたはRecovery遷移までを再現する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-008",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-008",
+      "source_span": {
+        "start_line": 173,
+        "end_line": 173,
+        "sha256": "sha256:9c2dd4a733090d678162ced3b04759cb58a3dccd7f29d1b49e84a4a41c443cac",
+        "exact_source_text": "| GH-AC-008 | merge後、Issue close、PLAN/AC closure、DB revision、memory eventが同一HEADへ収束する |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "merge後のprojectionがIssue close・PLAN／AC closure・DB revision・memory eventを同一HEADへ収束させる。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-009",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-009",
+      "source_span": {
+        "start_line": 174,
+        "end_line": 174,
+        "sha256": "sha256:ffe072af5de7b66b4dbae5c481c54e1ee2fdfc89a345fab0c5176f352fe9e863",
+        "exact_source_text": "| GH-AC-009 | tag receiptからlayer、version、HEAD、requirements digest、CI run、DB revisionを逆引きできる |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "tag receipt逆引き器がlayer・version・HEAD・requirements digest・CI run・DB revisionを辿れるようにする。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-010",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-010",
+      "source_span": {
+        "start_line": 175,
+        "end_line": 175,
+        "sha256": "sha256:3abc5310289199ca701a8162e247495a4b327ffae26125bd83e6e55dba57059d",
+        "exact_source_text": "| GH-AC-010 | chat追加要求がledgerへ入り、対応 requirement/AC または明示reject decisionへ到達する |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "chat追加要求の取り込み器がledgerへ記録し、対応requirement／ACまたは明示reject decisionへ到達させる。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-011",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-011",
+      "source_span": {
+        "start_line": 176,
+        "end_line": 176,
+        "sha256": "sha256:e8fe31c288cc20cf2d121df68a23b338e35e7c21c93e6a597c7b2b140ab29300",
+        "exact_source_text": "| GH-AC-011 | UIなし案件のL2が証拠付き`not_applicable`となり、工程欠落扱いにならない |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "UIなし案件のL2判定が証拠付きnot_applicableを生成し、工程欠落として扱わない。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-012",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-012",
+      "source_span": {
+        "start_line": 177,
+        "end_line": 177,
+        "sha256": "sha256:fbdaa15e52e36ffcf412b1bb60f1604bb50852ae69eff83f2fb6c314d139cee5",
+        "exact_source_text": "| GH-AC-012 | requirement/AC/edge/pair/finding全分母が一致し、orphan 0かつ未解決 blocker 0でのみ100%になる |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "closure評価器がrequirement・AC・edge・pair・findingの全分母一致を確認し、orphan 0かつ未解決blocker 0の場合だけ100%と判定する（製品ownerは未解決）。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-AC-013",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-013",
+      "source_span": {
+        "start_line": 178,
+        "end_line": 178,
+        "sha256": "sha256:8c3734bbb2f670c323479be148715f03a9b63fe801fc4ce15ba9347b906f23a0",
+        "exact_source_text": "| GH-AC-013 | `Closes #N`を持つPRはOutcome/closure receipt/子Issue dispositionの欠落でblockされ、rejected/quarantinedは終端decision receiptでcloseでき、superseded/cancelledはPO decision欠落でblockされる |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "Closes #N付きPRのclosure gateがOutcome・closure receipt・子Issue disposition欠落をblockし、rejected／quarantinedは終端decision receiptでcloseを許可し、superseded／cancelledはPO decision欠落時にblockする。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-001",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-001",
+      "source_span": {
+        "start_line": 25,
+        "end_line": 25,
+        "sha256": "sha256:991a3c174e06604211353f0fb1126d5b6b7432e442e79573bfcc115ebc7b9cc6",
+        "exact_source_text": "| GH-T-001 | GH-AC-001 | current workflow identity exact tuple、必須欠落、部分tuple、未知axis／ID、stale registry、legacy current出力、複数候補fixture | exact tupleだけadmitし、その他はreason code付きfail-close。分類失敗をFull V／Forward／Scrumへ丸めない |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-001 fixtureでexact tuple・必須欠落・部分tuple・未知axis／ID・stale registry・legacy current・複数候補を投入し、exact tupleだけadmit、他はreason code付きfail-close、分類失敗のFull V／Forward／Scrum丸めを拒否する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-002",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-002",
+      "source_span": {
+        "start_line": 26,
+        "end_line": 26,
+        "sha256": "sha256:64f0cd0176190170b26f6f8242b80c5bcdd717367ec0e5ee91850fce5236346a",
+        "exact_source_text": "| GH-T-002 | GH-AC-002 | requirement closure外の変更を含むPR diff | merge不可、分離Issue候補生成 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-002 fixtureでrequirement closure外のPR diffを投入し、mergeを拒否して分離Issue候補を生成する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-003",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-003",
+      "source_span": {
+        "start_line": 27,
+        "end_line": 27,
+        "sha256": "sha256:124f1614343887d50ce34d7de342fd9e631f0d5508b81a73ec42b1478a5f61bc",
+        "exact_source_text": "| GH-T-003 | GH-AC-003 | 不正prefix、stale base、foreign ownership branch | branch guardが全件検出 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-003 fixtureで不正prefix・stale base・foreign ownership branchを投入し、branch guardが全件検出する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-004",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-004",
+      "source_span": {
+        "start_line": 28,
+        "end_line": 28,
+        "sha256": "sha256:bf7c6c11c8137fef8417c47f1df73dc5f1d7fd7ed77f567a9e645f6d0e3d7909",
+        "exact_source_text": "| GH-T-004 | GH-AC-004 | 正常/改竄/orphan/片肺PR trace block | 正常のみvalidate |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-004 fixtureで正常・改竄・orphan・片肺PR trace blockを投入し、正常fixtureだけvalidateする。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-005",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-005",
+      "source_span": {
+        "start_line": 29,
+        "end_line": 29,
+        "sha256": "sha256:f58c8b9b14b50641d41b39c70325418da1c1154d88c8a99b17c4df19ddb15171",
+        "exact_source_text": "| GH-T-005 | GH-AC-005 | required legのsuccess/failure/cancel/skip直積 | 全success以外aggregate fail |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-005 fixtureでrequired legのsuccess／failure／cancel／skip直積を投入し、全leg success以外をaggregate failにする。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-006",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-006",
+      "source_span": {
+        "start_line": 30,
+        "end_line": 30,
+        "sha256": "sha256:2ed650aa8de5bb45c689071fb46e316e8fe35771dcc91a5fb21c4837c0c1aaa5",
+        "exact_source_text": "| GH-T-006 | GH-AC-006 | Ruleset drift fixture | check/strict/force/deletion/bypass各差分を個別finding化 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-006 fixtureでRuleset driftを投入し、check・strict・force・deletion・bypass各差分を個別finding化する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-007",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-007",
+      "source_span": {
+        "start_line": 31,
+        "end_line": 31,
+        "sha256": "sha256:0552b4de51f11c84704583d73270f81dc0d9f14141070109e249b18f48171e70",
+        "exact_source_text": "| GH-T-007 | GH-AC-007 | CI failure webhookの重複配送を含むevent列 | self-heal 1 episode、上限時Recovery 1件 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-007 fixtureでCI failure webhook重複配送を含むevent列を投入し、self-healを1 episodeに統合し、上限到達時はRecoveryを1件記録する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-008",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-008",
+      "source_span": {
+        "start_line": 32,
+        "end_line": 32,
+        "sha256": "sha256:7108d47d1369ca894f27ce03d3dbd366e41dc1ffff800c67838f01d03538172b",
+        "exact_source_text": "| GH-T-008 | GH-AC-008 | merge webhook再送 | projection冪等、全recordが同一HEADへ収束 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-008 fixtureでmerge webhookを再送し、projectionを冪等処理し、全recordを同一HEADへ収束する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-009",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-009",
+      "source_span": {
+        "start_line": 33,
+        "end_line": 33,
+        "sha256": "sha256:6197e5683c06a5120318db0950b3721b0f9c57c2b218392d1cc851a0f0a44386",
+        "exact_source_text": "| GH-T-009 | GH-AC-009 | layer/release tag fixture | receipt完全時のみtag候補、欠落時reject |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-009 fixtureでlayer／release tag receiptを投入し、receipt完全時だけtag候補にし、欠落時はrejectする。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-010",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-010",
+      "source_span": {
+        "start_line": 34,
+        "end_line": 34,
+        "sha256": "sha256:8a093dcc443d0d62940bae4822bff563ab12191711c37342c526bcc297f1bc38",
+        "exact_source_text": "| GH-T-010 | GH-AC-010 | chatで追加された要求 | provenance付きledger rowとdispositionを生成 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-010 fixtureでchat追加要求を投入し、provenance付きledger rowとdispositionを生成する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-011",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-011",
+      "source_span": {
+        "start_line": 35,
+        "end_line": 35,
+        "sha256": "sha256:6671be70c01ae7650f3ec3192f287927aed353841cf77c114f19bfa7d852c401",
+        "exact_source_text": "| GH-T-011 | GH-AC-011 | CLI-only HARNESS案件 | L2を暗黙欠落にせずN/A evidenceを生成 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-011 fixtureでCLI-only HARNESS案件を投入し、L2を暗黙欠落とせずN/A evidenceを生成する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-012",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-012",
+      "source_span": {
+        "start_line": 36,
+        "end_line": 36,
+        "sha256": "sha256:9dba29bc185a22bf948f3e32179b372ac5b27c0da37a5ccacc0398b5bf5caccc",
+        "exact_source_text": "| GH-T-012 | GH-AC-012 | count mismatch/orphan/重複/unresolved blocker fixture | 完了率100%を拒否 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-012 fixtureでcount mismatch・orphan・重複・unresolved blockerを投入し、完了率100%を拒否する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-013",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-013",
+      "source_span": {
+        "start_line": 37,
+        "end_line": 37,
+        "sha256": "sha256:053656b2519b42c422866b20068e25f1c15f1f28869baf4353673c2606a69a98",
+        "exact_source_text": "| GH-T-013 | GH-AC-013 | `Closes #N`付きPRからOutcome、closure receipt、子Issue disposition、PO decisionを一つずつ欠落させ、rejected/quarantined/superseded/cancelledを投入する | resolved系の欠落closeをblockし、不採用系は正規decision receiptだけを受理し、superseded/cancelledはPO decision欠落時に拒否する |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-013 fixtureでCloses #N付きPRのOutcome・closure receipt・子Issue disposition・PO decisionを各一つ欠落させ、rejected／quarantined／superseded／cancelledを投入し、resolved系欠落はblock、不採用系はdecision receiptのみ受理、superseded／cancelledはPO decision欠落で拒否する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-014",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-014",
+      "source_span": {
+        "start_line": 38,
+        "end_line": 38,
+        "sha256": "sha256:e87b0402c7b50e35e977236896df1926051eac3abad77b1ee97ab3e42c46f39c",
+        "exact_source_text": "| GH-T-014 | GH-AC-016 | CI greenだがAI-B receiptなし、AI-Bが編集したHEAD、review後drift、全receipt同一HEADの4 fixture | 最初の3件を拒否し、read-only AI-B reviewと全receiptが同一HEADのfixtureだけ明示merge可能 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-016 fixtureでCI green・AI-B receiptなし、AI-BがHEAD編集、review後drift、全receipt同一HEADを投入し、前3つを拒否し、read-only AI-B reviewかつ全receipt同一HEADだけ明示merge可能とする。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-015",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-015",
+      "source_span": {
+        "start_line": 39,
+        "end_line": 39,
+        "sha256": "sha256:d494797c76e61d7436ff6b0ae1b2f74a55401f8781cb3c2c8cfb178f09abb7a3",
+        "exact_source_text": "| GH-T-015 | GH-AC-017 | current contract内の局所correctness/security、独立lifecycle、性能改善、命名提案のfinding fixture | 局所correctness/securityはcurrent PR修正、独立lifecycle/性能/命名は後続Issueとなりcurrent PRへ再流入しない |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-017 fixtureでcurrent contract内局所correctness／security、独立lifecycle、性能改善、命名提案のfindingを投入し、前者はcurrent PR修正、後3者は後続Issueへ分離してcurrent PRへ再流入させない。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "単一test rowにcurrent PR修正、独立lifecycle、性能、命名の異なる責務が含まれる",
+        "HARNESS／OSの後続owner配置は未決"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-GH-T-016",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-016",
+      "source_span": {
+        "start_line": 40,
+        "end_line": 40,
+        "sha256": "sha256:b7e5272032c6bf4b5b44a45422061e94d3b09f0346b8f6436cff803a99fa285c",
+        "exact_source_text": "| GH-T-016 | GH-AC-034 | required CI greenでnative auto-merge設定済みのPRと、AI-Bがcurrent HEADを再照合するPR | native auto-mergeを拒否し、後者だけ明示merge可能 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-OS",
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GH-AC-034 fixtureでrequired CI greenかつnative auto-merge設定済みPRと、AI-Bがcurrent HEADを再照合するPRを投入し、native auto-mergeを拒否し後者だけ明示mergeを許可する。",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-DOC-003-METADATA",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "DOC-003-METADATA",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 18,
+        "sha256": "sha256:6a11b50a23fa5d579c3147f2030a9a722f1d942040b692cd6aea0eee1bd55b62",
+        "exact_source_text": "---\ntitle: \"GitHub 自律運用 要件定義\"\nlayer: L3\nkind: add-design\nstatus: confirmed\ncreated: 2026-07-18\nupdated: 2026-08-16\nowner: PO / TL\npair_artifact: docs/test-design/helix/github-autonomous-operations-acceptance.md\n---\n\n# GitHub 自律運用 要件定義\n\n- 文書層: L3 要件定義\n- status: confirmed（PO指示「要件をすべて見直して修正完遂する」2026-07-18）\n- 対応上位: `helix-charter_v0.1.md` P0/P1/P3/P4/P6/P7/P9\n- 参考資産: `unison-ai-product/UT-TDD_AGENT-HARNESS`（2026-07-18 全 refs・PR・Issue・Ruleset 観測）\n- 適用原則: UT は詳細チーム版の参考実装であり、HELIX の権威ではない。採用時は個人開発の無人自走境界へ合わせて強化する。\n"
+      },
+      "candidate_kind": "metadata",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "composite",
+      "normalized_statement": "source metadata, status, parent and pair provenanceを保持する",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0303",
+        "DELEGATED-REF-0759",
+        "DELEGATED-REF-0760"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-DOC-003-OBJECTS",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "DOC-003-OBJECTS",
+      "source_span": {
+        "start_line": 19,
+        "end_line": 35,
+        "sha256": "sha256:8951c60ee328f74d32ee6477ecf7cbde1e8cbf5a46aa2fe6f4ad36ef2b714628",
+        "exact_source_text": "\n## 1. 完了状態\n\nHELIX は、L3 承認後の作業を Issue / PLAN / branch / commit / PR / CI / merge / tag / memory の連鎖として機械管理し、各成果を `harness.db` と GitHub の双方から逆引きできなければならない。GitHub 上の緑表示だけ、ローカルの成功だけ、AI の完了宣言だけでは完了にしない。\n\n## 2. 運用オブジェクト\n\n| オブジェクト | 正本責務 | 禁止 |\n|---|---|---|\n| Requirement / AC | 何を満たすか、どう判定するか | Issue 本文だけを要件正本にする |\n| PLAN | route、layer、pair、生成物、検証責務 | PLAN のない実装着手 |\n| Issue | 観測事実、外部差し込み、逸脱 episode | Issue から直接コードへ飛ぶ |\n| Branch | 1 episode の隔離された変更線 | main 直 push、複数目的の混載 |\n| PR | trace と evidence の審査・合流単位 | 必須 trace block の手書き偽装 |\n| CI | 再現可能な機械検証 | AI judgement の代替、失敗の無視 |\n| Tag | 承認済み layer/release checkpoint | CI 未完了 HEAD へのタグ |\n| Memory / DB | 判断、失敗、改善、継続点の永続化 | chat/prose handover のみで引継ぐ |\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "composite",
+      "normalized_statement": "Requirement／PLAN／Issue／PR／CI／DBの責務境界と禁止を保持する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-DOC-003-UT-FREEZE",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "DOC-003-UT-FREEZE",
+      "source_span": {
+        "start_line": 179,
+        "end_line": 196,
+        "sha256": "sha256:8a083ae3c54ce35585a34f015db7bef60f41b2d176a16e552ba9dec7b284a24a",
+        "exact_source_text": "\n## 6. UT資産の取捨選択\n\n| UT資産 | 判定 | HELIXでの扱い |\n|---|---|---|\n| Reverse/Redesign/Recovery/Incident/NFR Issue Forms | 採用・拡張 | requirement/AC、revision、security等を追加 |\n| machine-readable PR trace | 採用 | Bun commandをNode CLIへ置換し、HELIX route/pairを追加 |\n| Linux+Windows aggregate CI | 採用・強化 | strict、skip/cancel fail、macOS方針を追加 |\n| repository policy authoring source + drift | 採用 | bypassなし、strict必須へ強化 |\n| explicit staging / Conventional Commits / history secret scan | 採用 | 現行HELIX規則へ統合 |\n| direct main push許容 | 不採用 | HELIXは常にPR-only |\n| admin bypass | 不採用 | 自動走行の強制力を損なう |\n| GitHub approval必須 | 不採用 | solo自己ブロック。review receiptで代替 |\n| Bun前提command | 不採用 | target runtime authorityに従う |\n\n## 7. 承認時の凍結条件\n\n本書の確認は要件凍結であり、実装指示ではない。L4以降の設計・実装は別PLANでForward降下する。runtime境界はADR-009/010の同一authority epochに従い、Python semantic coreとNode transactional boundaryを混在させない。REBASELINE v0.5.0の未解決所見はv0.5.1是正要件の完了式で個別に閉じ、未解決source findingだけを理由にADR-010準拠のruntime設計全体を停止しない。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "composite",
+      "normalized_statement": "UT資産の取捨選択と承認時freeze boundaryは候補履歴として保持する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-003",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-DOC-028-METADATA",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "DOC-028-METADATA",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 19,
+        "sha256": "sha256:87dad497117e3f34a1eff736c26f61d22d97296ce1292a99b3ca3b2c796030a6",
+        "exact_source_text": "---\ntitle: \"GitHub 自律運用 受入テスト設計\"\nlayer: L3\nexecuted_at_layer: L10\nlegacy_executed_at_layer: L12\ncanonical_layer_scheme: L1-L12\nartifact_type: test_design\nstatus: proposed\ncreated: 2026-07-18\nupdated: 2026-08-16\nowner: QA\npair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md\n---\n\n# GitHub 自律運用 受入テスト設計\n\n- pair: `docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md`\n- status: proposed\n- 実行層: L10（canonical pair `L3↔L10`。旧L12表記はcompatibility metadataに限定）\n"
+      },
+      "candidate_kind": "metadata",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "composite",
+      "normalized_statement": "L3／L10 pair、status proposed、旧L12 compatibility metadataを保持する",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0303",
+        "DELEGATED-REF-0759",
+        "DELEGATED-REF-0760"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "DD328-SEM-DOC-028-EVIDENCE",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "DOC-028-EVIDENCE",
+      "source_span": {
+        "start_line": 41,
+        "end_line": 48,
+        "sha256": "sha256:04e193365dfcaa49f9492cfe3cbfe67117efe51ee8a70ab29e1664439c5db689",
+        "exact_source_text": "\n## 実環境照合\n\nfixtureだけで合格にしない。GitHub read-only APIでdefault branch、active Ruleset、required checks、open PR、open Issue、workflow runを観測し、authoring policyとの差分を検証する。書込み適用、release、tag、cutoverは別のaction-binding approvalを要求する。\n\n## 証跡要件\n\n各実行は command、exit code、output digest、HEAD、GitHub observation timestampを保存する。再実行不能な画面キャプチャだけを合格根拠にしない。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "composite",
+      "normalized_statement": "read-only環境観測とdurable evidenceを要求しwrite／cutoverを生成しない",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-028",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+      ],
+      "questions": [
+        "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    }
+  ],
+  "coverage": {
+    "source_line_coverage": {
+      "DELEGATED-DOC-003": [
+        {
+          "start_line": 1,
+          "end_line": 196,
+          "covered_by_atom_ids": [
+            "DD328-ATOM-001",
+            "DD328-ATOM-002",
+            "DD328-ATOM-003",
+            "DD328-ATOM-004",
+            "DD328-ATOM-005",
+            "DD328-ATOM-006",
+            "DD328-ATOM-007",
+            "DD328-ATOM-008",
+            "DD328-ATOM-009",
+            "DD328-ATOM-010"
+          ]
+        }
+      ],
+      "DELEGATED-DOC-028": [
+        {
+          "start_line": 1,
+          "end_line": 48,
+          "covered_by_atom_ids": [
+            "DD328-ATOM-011",
+            "DD328-ATOM-012",
+            "DD328-ATOM-013",
+            "DD328-ATOM-014"
+          ]
+        }
+      ]
+    },
+    "coverage_status": "candidate_file_spans_cover_each_source_blob_once_without adoption claim"
+  },
+  "negative_conditions": [
+    {
+      "negative_id": "DD328-NEG-001",
+      "condition": "source status confirmed/proposed、pair relation、metadataからcurrent authority、approval、adoptionを生成しない",
+      "source_atom_ids": [
+        "DD328-SEM-DOC-003-METADATA",
+        "DD328-SEM-DOC-028-METADATA",
+        "DD328-SEM-GH-FR-001",
+        "DD328-SEM-GH-AC-013"
+      ]
+    },
+    {
+      "negative_id": "DD328-NEG-002",
+      "condition": "Issue、PR、CI green、local success、AI completion prose、reference countから要求meaningまたはclosureを生成しない",
+      "source_atom_ids": [
+        "DD328-SEM-DOC-003-OBJECTS",
+        "DD328-SEM-GH-FR-017",
+        "DD328-SEM-DOC-028-EVIDENCE"
+      ]
+    },
+    {
+      "negative_id": "DD328-NEG-003",
+      "condition": "unknown、stale、ambiguous、partial、conflicting identityをstrongest routeへ丸めずfail-closeする",
+      "source_atom_ids": [
+        "DD328-SEM-GH-FR-001",
+        "DD328-SEM-GH-FR-002",
+        "DD328-SEM-GH-NFR-001",
+        "DD328-SEM-GH-T-001"
+      ]
+    },
+    {
+      "negative_id": "DD328-NEG-004",
+      "condition": "旧runtime、旧test design、旧CI、Bun command、old implementationを実行またはcurrent oracle／fallbackにしない",
+      "source_atom_ids": [
+        "DD328-SEM-GH-FR-006",
+        "DD328-SEM-GH-FR-009",
+        "DD328-SEM-GH-FR-011",
+        "DD328-SEM-GH-NFR-004",
+        "DD328-SEM-DOC-028-EVIDENCE"
+      ]
+    },
+    {
+      "negative_id": "DD328-NEG-005",
+      "condition": "pair_artifactとbody referenceはrelation provenanceを保持するがsemantic parityまたはacceptance completionを証明しない",
+      "source_atom_ids": [
+        "DD328-SEM-DOC-003-METADATA",
+        "DD328-SEM-DOC-028-METADATA"
+      ]
+    },
+    {
+      "negative_id": "DD328-NEG-006",
+      "condition": "product owner、successor、implementation、consumer closure、L2/L3/L10 adoptionを人間reviewなしで確定しない",
+      "source_atom_ids": [
+        "DD328-SEM-GH-FR-008",
+        "DD328-SEM-GH-FR-012",
+        "DD328-SEM-GH-FR-017",
+        "DD328-SEM-DOC-003-UT-FREEZE",
+        "DD328-SEM-DOC-028-EVIDENCE"
+      ]
+    },
+    {
+      "negative_id": "DD328-NEG-007",
+      "condition": "native auto-merge、direct main push、admin bypass、write/cutover actionをcandidateから生成しない",
+      "source_atom_ids": [
+        "DD328-SEM-GH-FR-010",
+        "DD328-SEM-GH-FR-012",
+        "DD328-SEM-GH-T-016",
+        "DD328-SEM-DOC-028-EVIDENCE"
+      ]
+    }
+  ],
+  "unresolved_decisions": [
+    "unit/connection/composite split and exact atom count",
+    "normative HARNESS meaning versus HELIX-OS execution/projection consumer ownership",
+    "old phase labels PHCAP-16/17/18/20 and PHCAP-16 are candidate historical classifications only",
+    "legacy implementation and consumer closure remain unknown/pending despite document/test-design presence",
+    "source status confirmed/proposed is preserved metadata, not current authority or approval",
+    "acceptance table and pair relation do not establish current L10 execution or parity",
+    "successor IDs, human decision, adoption, L2/L3/L10 freeze, implementation, and release remain absent"
+  ],
+  "review_boundary": "static scaffold candidate only; coverage spans and original-id semantic atoms are separate; no source mutation, no archive runtime/test/CI execution, no adoption or closure claim",
+  "reference_edge_linkage": {
+    "DELEGATED-REF-0303": [
+      "DD328-SEM-DOC-003-METADATA",
+      "DD328-SEM-GH-FR-001",
+      "DD328-SEM-DOC-028-METADATA"
+    ],
+    "DELEGATED-REF-0759": [
+      "DD328-SEM-DOC-028-METADATA",
+      "DD328-SEM-DOC-003-METADATA"
+    ],
+    "DELEGATED-REF-0760": [
+      "DD328-SEM-DOC-028-METADATA",
+      "DD328-SEM-DOC-003-METADATA"
+    ]
+  },
+  "coverage_spans": [
+    {
+      "coverage_span_id": "DD328-COV-01",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 18,
+        "sha256": "sha256:6a11b50a23fa5d579c3147f2030a9a722f1d942040b692cd6aea0eee1bd55b62",
+        "exact_source_text": "---\ntitle: \"GitHub 自律運用 要件定義\"\nlayer: L3\nkind: add-design\nstatus: confirmed\ncreated: 2026-07-18\nupdated: 2026-08-16\nowner: PO / TL\npair_artifact: docs/test-design/helix/github-autonomous-operations-acceptance.md\n---\n\n# GitHub 自律運用 要件定義\n\n- 文書層: L3 要件定義\n- status: confirmed（PO指示「要件をすべて見直して修正完遂する」2026-07-18）\n- 対応上位: `helix-charter_v0.1.md` P0/P1/P3/P4/P6/P7/P9\n- 参考資産: `unison-ai-product/UT-TDD_AGENT-HARNESS`（2026-07-18 全 refs・PR・Issue・Ruleset 観測）\n- 適用原則: UT は詳細チーム版の参考実装であり、HELIX の権威ではない。採用時は個人開発の無人自走境界へ合わせて強化する。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-02",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_span": {
+        "start_line": 19,
+        "end_line": 35,
+        "sha256": "sha256:8951c60ee328f74d32ee6477ecf7cbde1e8cbf5a46aa2fe6f4ad36ef2b714628",
+        "exact_source_text": "\n## 1. 完了状態\n\nHELIX は、L3 承認後の作業を Issue / PLAN / branch / commit / PR / CI / merge / tag / memory の連鎖として機械管理し、各成果を `harness.db` と GitHub の双方から逆引きできなければならない。GitHub 上の緑表示だけ、ローカルの成功だけ、AI の完了宣言だけでは完了にしない。\n\n## 2. 運用オブジェクト\n\n| オブジェクト | 正本責務 | 禁止 |\n|---|---|---|\n| Requirement / AC | 何を満たすか、どう判定するか | Issue 本文だけを要件正本にする |\n| PLAN | route、layer、pair、生成物、検証責務 | PLAN のない実装着手 |\n| Issue | 観測事実、外部差し込み、逸脱 episode | Issue から直接コードへ飛ぶ |\n| Branch | 1 episode の隔離された変更線 | main 直 push、複数目的の混載 |\n| PR | trace と evidence の審査・合流単位 | 必須 trace block の手書き偽装 |\n| CI | 再現可能な機械検証 | AI judgement の代替、失敗の無視 |\n| Tag | 承認済み layer/release checkpoint | CI 未完了 HEAD へのタグ |\n| Memory / DB | 判断、失敗、改善、継続点の永続化 | chat/prose handover のみで引継ぐ |\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-03",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_span": {
+        "start_line": 36,
+        "end_line": 58,
+        "sha256": "sha256:c25bfa0dc2f1b22a3dceed7d60b0700d6d6fa52b9c703d5c065ac6789c80bae2",
+        "exact_source_text": "\n## 3. 機能要件\n\n### GH-FR-001 Issue受付ゲート\n\nIssue は `origin_plan`、`origin_revision`、`observed_head`、`observed_state`、`evidence_path_or_digest`、\n`reason_code`、requirements registryへ束縛した`workflow_identity`、`execution_mode`、\n`specialist_drives`、`reentry_target`、`requirement_ids`、`acceptance_ids`を型付きで保持する。\n`workflow_identity`は`registry_version`、`registry_source_digest`、`target_axis`、`target_id`のexact tupleとし、\n部分tuple、未知axis／ID、stale version／digest、複数候補を自動走行へadmissionしない。legacy `mode`／`model`／\n`drive_model`／旧route IDはinput-only adapterの変換元receiptにだけ保持し、current Issue／PLAN／PR／DBへ\n再出力しない。ユーザー差し込みIssueも同じschemaへ正規化し、正本を直接更新せずcommand candidateとして扱う。\n\n### GH-FR-002 Issue分類体系\n\n分類はrequirements-owned workflow classification registryのaxisごとに行う。development style、\n案件別model（case-driven model）、workflow model、subroute、state machine、decision、gate、subtype、trigger、\nspecialist drive、execution mode、specialist workflow、specialist capabilityを同一enumまたは同一fieldへ\n畳み込まない。signal／work itemは`target_axis + target_id`へexact解決し、unknown、複数候補、decision待ちは\n別dispositionでfail-closeする。分類不能や衝突を`FULL_L1_L12_V`、Forward、Scrum等へ推測して丸めない。\n明示policyが本格システム・高risk・複数境界をdevelopment style `FULL_L1_L12_V`へ決定することと、\n分類失敗時のfallbackは別契約である。current出力はregistry version／digestとtyped identityを返し、\nlegacy identityを再出力しない。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-04",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_span": {
+        "start_line": 59,
+        "end_line": 77,
+        "sha256": "sha256:20960747070683cbda2777249718d3c6c7f62c9e421f9a98e3ee4b4a23259577",
+        "exact_source_text": "\n### GH-FR-003 無駄な機能拡張の遮断\n\nIssue/PR の changed scope は requirement ID と AC ID の閉包内でなければならない。要求に無い新機能、便乗 refactor、名称変更、依存更新を検出した場合は別 Issue へ分離し、元 PR を block する。ただし correctness/security の即時修正は根拠と再合流先を記録した Recovery として扱う。\n\n### GH-FR-004 経路選択\n\n入口で次の route を機械決定し、途中で暗黙変更しない。\n\n| 条件 | development style |\n|---|---|\n| 本格システム、高リスク、複数境界、未知/衝突 | `FULL_L1_L12_V` |\n| 段階リリース、小規模かつ既知境界 | `PRODUCTION_SCRUM`（旧`PRODUCTION_SCRUM_REDUCED_V`は入力互換のみ） |\n| L1〜L5のsystem設計を先に凍結し、L6以降をslice実装 | `V_DESIGN_SCRUM_IMPLEMENTATION` |\n\n`DISCOVERY_POC`はdevelopment styleではなく、非本番の仮説・実現性検証でcase-by-caseに発動する\ncase-driven model identityである。Discovery／PoCをProduction Scrumのphase、variant、内包要素にしない。\nPoCはS0–S4の決定後にのみ選択済みstyleのForward/Reverseへ昇格する。Production Scrumは品質工程の\n省略ではなく、機能slice単位でL1〜L12縮約Vを反復し、release合流時に全right-arm evidenceを満たす。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-05",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_span": {
+        "start_line": 78,
+        "end_line": 89,
+        "sha256": "sha256:5c7abc341e464c1a1a1fa2a117d4fdd6bdfcc5be21b9ecb52de2cfd8a53a1dab",
+        "exact_source_text": "\n### GH-FR-005 branchライフサイクル\n\nbranch は最新 main の確認済み SHA から作り、`feat/`、`fix/`、`refactor/`、`docs/`、`test/`、`chore/`、`reverse/`、`redesign/`、`recovery/`、`incident/` の型付き prefix と PLAN/Issue ID を持つ。1 branch = 1目的を原則とし、並行 runtime は他者 branch を書き換えない。merge 後は自動削除し、長期化 branch は stale finding を発生させる。\n\n### GH-FR-006 commit完全性\n\ncommit は Conventional Commits、明示 path staging、secret/PII/license scan、生成物 provenance を必須とする。`git add .` / `git add -A`、force push、履歴破壊、理由のない generated file 混載を禁止する。secret scan は現在 tree だけでなく push 対象 commit の履歴 blob も検査する。\n\n### GH-FR-007 PR追跡契約\n\nPR は概要、PLAN/Issue、route、layer、Forward/Reverse pair、requirement/AC、変更 scope、非対象、test/evidence、risk、rollback、generated artifacts、AI runtime/role、review receipt を機械可読 block で持つ。block は CLI 生成し、validator が source ledger と照合する。通常 Forward は無理に Issue を要求しないが、Issue 起点 episode は `Closes #N` を必須とする。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-06",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_span": {
+        "start_line": 90,
+        "end_line": 115,
+        "sha256": "sha256:dd2b10c6aeab6430d676c89aa0751d04e27048af7239aa4a2fa08392ce6cbaae",
+        "exact_source_text": "\n### GH-FR-008 runtime間レビュー\n\n作成 runtime と判断 runtime を分離する。Claude Code は依存・接続・外部/詳細設計・改善候補を監査し、Codex は凍結設計に基づく実行を担う。単一 runtime 時は独立 subagent receipt を代替証跡として残す。レビュー所見は severity、requirement/AC、evidence、disposition を持たなければ merge blocker にできない。\n\n### GH-FR-009 CI集約ゲート\n\nmain の required check は安定名 `harness-check` の集約 gate とする。Linux canonical full verification と Windows compatibility smoke を最低限含み、対象 OS 方針に応じ macOS smoke を追加する。集約 job は `always()` で全 required leg の結論を評価し、cancelled/skipped/failure を成功扱いしない。PR は全 base branch で起動し、stacked PR を取りこぼさない。\n\n### GH-FR-010 repository ruleset要件\n\nmain は PR-only、required `harness-check`、strict up-to-date、non-fast-forward 禁止、branch deletion 禁止、force push 禁止、bypass actor なしを要求する。人間 approval は solo 自己ブロックを避けるため必須にせず、代わりに cross-runtime review receipt を機械必須とする。authoring policy と GitHub 現物を read-only diff し、drift 時は fail-close する。\n\n### GH-FR-011 CI自己修復\n\nAI が作成した PR の CI が失敗した場合、同じ episode 内で failure log を取得し、原因分類、Issue/PLANへの記録、修正、局所検証、再 push を行う。無根拠 rerun、テスト削除、閾値緩和、required leg の除外で緑化してはならない。反復上限到達時は Recovery/Incident へ遷移する。\n\n### GH-FR-012 merge・release境界\n\n全 gate、current HEADに束縛された独立review receipt、trace closure、DB追従が揃った後、監査AIが証拠と\ncurrent HEADを再照合して明示mergeする。GitHub native auto-mergeは禁止し、CI greenだけを契機にした\n無文脈mergeを許可しない。main merge 後にDB投影と記憶圧縮を行い、stale continuationを残さない。\nlayer checkpoint tag はannotated `helix/L<n>/<plan>/<snapshot>`とし、commit/tree/ledger digest、gate receipt、\nDB revisionを持たせる。移動・削除せず、訂正時は新tagでsupersedeする。checkpoint tagは進捗証拠であって\nreleaseではない。release tagはSemVerとし、全layer closure、requirements digest、CI run、DB revision、\naction-binding approval receiptを要求する。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-07",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_span": {
+        "start_line": 116,
+        "end_line": 148,
+        "sha256": "sha256:5f8a8175dbea77517b4fcb3bb1a7a27a3ffe4118f37a757b45f3ceab6ac13641",
+        "exact_source_text": "\n### GH-FR-013 Issueからmemoryへの学習\n\nIssue、レビュー、CI失敗、再発、設計判断、chatで追加された要求を append-only event として記録し、`harness.db` へ冪等投影する。再発閾値を超えた知見は detector/gate、skill、template、設計正本の候補へ昇格し、採否と反証を残す。Issue 件数の蓄積自体を学習と見なさない。\n\n### GH-FR-014 template自己改善\n\n要求翻訳時に既存 template で表現できない必須項目を検出した場合、成果物へ自由記述で逃がさず `template_gap` Issue を作る。template/schema/test fixtureを先に Red→Green し、その後に対象要件を再生成する。\n\n### GH-FR-015 画面適用性\n\nL2 画面/プロト工程は毎回判定し、HARNESSのような非UI対象では `not_applicable`、理由、判定者、証拠、下流影響を台帳化する。暗黙スキップは禁止する。ビジュアル Design HARNESS は UI/UX のデザイン生成・検証責務であり、L8–L10 の一般検証基盤と混同しない。\n\n### GH-FR-016 完了率の分母\n\n要件完了率は、総 requirement、AC、必須 trace edge、pair、gate evidence、未解決 finding の分母を固定して算出する。分母不明、orphan、重複ID、件数報告不一致、`proposed` decision 残存があれば100%表示を禁止する。\n\n### GH-FR-017 Issue closure契約\n\nIssueは終端PRのmergeによってのみ通常closeする。Issue起点PRは`Closes #N`に加え、`Outcome`、current HEADへ\n束縛した`Closure receipt`、全子Issueの`Child Issues` dispositionを持つ。`Outcome`は\n`resolved / rejected / quarantined / superseded / cancelled`のexactly oneとする。\n\n- `resolved`: acceptance oracle、review、CI、Forward/fullback、DB/memory収束を満たす。\n- `rejected / quarantined`: Discovery S4、admission、または同等の終端decision receiptを成果物としてmergeする。\n  実装採用されなかったことを未完了と同一視せず、証拠付き不採用を正当な終端とする。\n- `superseded / cancelled`: AI単独判断を禁止し、snapshot-bound PO decision evidenceを必須とする。\n\nPR作成、設計完了、CI green、proseの完了宣言だけではcloseしない。子Issueは`resolved / deferred / split /\nsuperseded / cancelled`のいずれかへ明示し、単なるopen findingの退避で親を閉じない。closure receiptが欠落または\nHEAD driftしたcloseはreopenまたはRecovery対象とする。Issue起点でない通常Forward PRには無理に`Closes`を要求しない。\n`Closure receipt`はPLAN ID、current HEAD SHA、test/CI evidence、review evidenceを最低限含み、テンプレートplaceholderを\n実証として受理しない。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-08",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_span": {
+        "start_line": 149,
+        "end_line": 160,
+        "sha256": "sha256:333d64fca5f2d71e3d23c56334f1bdb5c213ebafbaa5a3189c6c6609e2930e39",
+        "exact_source_text": "\n## 4. 非機能要件\n\n- GH-NFR-001 Fail-close: schema／authority／typed identity／traceが不明、unknown、ambiguous、decision待ちなら\n  推測せず不成立理由を返して停止する。分類失敗を最も強いV routeやForwardへ自動変換しない。\n- GH-NFR-002 Idempotency: hook、projection、reconcile、PR event再送は二重 Issue/commit/mergeを作らない。\n- GH-NFR-003 Evidence durability: evidence は HEAD SHA、digest、timestamp、producer、schema versionを持つ。\n- GH-NFR-004 Least privilege: workflow permissions は原則 `contents: read`。write権限は限定job/commandのみ。\n- GH-NFR-005 Concurrency: non-main の旧runは取消可能、mainの証跡runは取消で消失させない。\n- GH-NFR-006 Portability: Linuxをcanonical、Windows/macOSを互換面として同一Node artifactで検証する。\n- GH-NFR-007 Auditability: GitHub API観測とauthoring policyの差分を保存し、UI設定だけを正本にしない。\n- GH-NFR-008 Context economy: PR/Issueにはdigestとpointerを置き、全文memoryをpromptへ注入しない。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-09",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_span": {
+        "start_line": 161,
+        "end_line": 178,
+        "sha256": "sha256:b08602c6ddfb04817c04fc6d25956d991e23f21a8671902f7f33b99677852ef5",
+        "exact_source_text": "\n## 5. 受入基準\n\n| AC | 合格条件 |\n|---|---|\n| GH-AC-001 | 各Issue Formの必須項目欠落、workflow identity部分tuple、未知axis／ID、stale registry、legacy current出力、複数候補fixtureがreason code付きでadmission失敗し、current exact tupleだけPLAN候補になる |\n| GH-AC-002 | scope外ファイル/依存/機能を含むPR fixtureが`scope_expansion`でblockされる |\n| GH-AC-003 | branch名、base SHA、寿命、ownership違反を機械検出できる |\n| GH-AC-004 | PR trace blockをledgerから生成し、改竄・orphan ID・欠落pairを拒否する |\n| GH-AC-005 | Linux/Windows required legのfailure/cancel/skip全fixtureでaggregateが失敗する |\n| GH-AC-006 | authoring policyとGitHub Rulesetのrequired check/strict/force/deletion/bypass差分を検出する |\n| GH-AC-007 | CI失敗から同一episodeの修正再push、またはRecovery遷移までをevent列で再生できる |\n| GH-AC-008 | merge後、Issue close、PLAN/AC closure、DB revision、memory eventが同一HEADへ収束する |\n| GH-AC-009 | tag receiptからlayer、version、HEAD、requirements digest、CI run、DB revisionを逆引きできる |\n| GH-AC-010 | chat追加要求がledgerへ入り、対応 requirement/AC または明示reject decisionへ到達する |\n| GH-AC-011 | UIなし案件のL2が証拠付き`not_applicable`となり、工程欠落扱いにならない |\n| GH-AC-012 | requirement/AC/edge/pair/finding全分母が一致し、orphan 0かつ未解決 blocker 0でのみ100%になる |\n| GH-AC-013 | `Closes #N`を持つPRはOutcome/closure receipt/子Issue dispositionの欠落でblockされ、rejected/quarantinedは終端decision receiptでcloseでき、superseded/cancelledはPO decision欠落でblockされる |\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-10",
+      "source_document_id": "DELEGATED-DOC-003",
+      "source_path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "source_span": {
+        "start_line": 179,
+        "end_line": 196,
+        "sha256": "sha256:8a083ae3c54ce35585a34f015db7bef60f41b2d176a16e552ba9dec7b284a24a",
+        "exact_source_text": "\n## 6. UT資産の取捨選択\n\n| UT資産 | 判定 | HELIXでの扱い |\n|---|---|---|\n| Reverse/Redesign/Recovery/Incident/NFR Issue Forms | 採用・拡張 | requirement/AC、revision、security等を追加 |\n| machine-readable PR trace | 採用 | Bun commandをNode CLIへ置換し、HELIX route/pairを追加 |\n| Linux+Windows aggregate CI | 採用・強化 | strict、skip/cancel fail、macOS方針を追加 |\n| repository policy authoring source + drift | 採用 | bypassなし、strict必須へ強化 |\n| explicit staging / Conventional Commits / history secret scan | 採用 | 現行HELIX規則へ統合 |\n| direct main push許容 | 不採用 | HELIXは常にPR-only |\n| admin bypass | 不採用 | 自動走行の強制力を損なう |\n| GitHub approval必須 | 不採用 | solo自己ブロック。review receiptで代替 |\n| Bun前提command | 不採用 | target runtime authorityに従う |\n\n## 7. 承認時の凍結条件\n\n本書の確認は要件凍結であり、実装指示ではない。L4以降の設計・実装は別PLANでForward降下する。runtime境界はADR-009/010の同一authority epochに従い、Python semantic coreとNode transactional boundaryを混在させない。REBASELINE v0.5.0の未解決所見はv0.5.1是正要件の完了式で個別に閉じ、未解決source findingだけを理由にADR-010準拠のruntime設計全体を停止しない。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-11",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 19,
+        "sha256": "sha256:87dad497117e3f34a1eff736c26f61d22d97296ce1292a99b3ca3b2c796030a6",
+        "exact_source_text": "---\ntitle: \"GitHub 自律運用 受入テスト設計\"\nlayer: L3\nexecuted_at_layer: L10\nlegacy_executed_at_layer: L12\ncanonical_layer_scheme: L1-L12\nartifact_type: test_design\nstatus: proposed\ncreated: 2026-07-18\nupdated: 2026-08-16\nowner: QA\npair_artifact: docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md\n---\n\n# GitHub 自律運用 受入テスト設計\n\n- pair: `docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md`\n- status: proposed\n- 実行層: L10（canonical pair `L3↔L10`。旧L12表記はcompatibility metadataに限定）\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-12",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_span": {
+        "start_line": 20,
+        "end_line": 32,
+        "sha256": "sha256:05992718a26c4a4d1278185b35864327bfac0f5a4719842f52220e05a8ca1f87",
+        "exact_source_text": "\n## テスト束\n\n| Test ID | 対応AC | 入力 | 期待結果 |\n|---|---|---|---|\n| GH-T-001 | GH-AC-001 | current workflow identity exact tuple、必須欠落、部分tuple、未知axis／ID、stale registry、legacy current出力、複数候補fixture | exact tupleだけadmitし、その他はreason code付きfail-close。分類失敗をFull V／Forward／Scrumへ丸めない |\n| GH-T-002 | GH-AC-002 | requirement closure外の変更を含むPR diff | merge不可、分離Issue候補生成 |\n| GH-T-003 | GH-AC-003 | 不正prefix、stale base、foreign ownership branch | branch guardが全件検出 |\n| GH-T-004 | GH-AC-004 | 正常/改竄/orphan/片肺PR trace block | 正常のみvalidate |\n| GH-T-005 | GH-AC-005 | required legのsuccess/failure/cancel/skip直積 | 全success以外aggregate fail |\n| GH-T-006 | GH-AC-006 | Ruleset drift fixture | check/strict/force/deletion/bypass各差分を個別finding化 |\n| GH-T-007 | GH-AC-007 | CI failure webhookの重複配送を含むevent列 | self-heal 1 episode、上限時Recovery 1件 |\n| GH-T-008 | GH-AC-008 | merge webhook再送 | projection冪等、全recordが同一HEADへ収束 |\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-13",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_span": {
+        "start_line": 33,
+        "end_line": 40,
+        "sha256": "sha256:5c43fb15eacccb7d34d85848c6f103b368e87dbc86349446248b503c33228acf",
+        "exact_source_text": "| GH-T-009 | GH-AC-009 | layer/release tag fixture | receipt完全時のみtag候補、欠落時reject |\n| GH-T-010 | GH-AC-010 | chatで追加された要求 | provenance付きledger rowとdispositionを生成 |\n| GH-T-011 | GH-AC-011 | CLI-only HARNESS案件 | L2を暗黙欠落にせずN/A evidenceを生成 |\n| GH-T-012 | GH-AC-012 | count mismatch/orphan/重複/unresolved blocker fixture | 完了率100%を拒否 |\n| GH-T-013 | GH-AC-013 | `Closes #N`付きPRからOutcome、closure receipt、子Issue disposition、PO decisionを一つずつ欠落させ、rejected/quarantined/superseded/cancelledを投入する | resolved系の欠落closeをblockし、不採用系は正規decision receiptだけを受理し、superseded/cancelledはPO decision欠落時に拒否する |\n| GH-T-014 | GH-AC-016 | CI greenだがAI-B receiptなし、AI-Bが編集したHEAD、review後drift、全receipt同一HEADの4 fixture | 最初の3件を拒否し、read-only AI-B reviewと全receiptが同一HEADのfixtureだけ明示merge可能 |\n| GH-T-015 | GH-AC-017 | current contract内の局所correctness/security、独立lifecycle、性能改善、命名提案のfinding fixture | 局所correctness/securityはcurrent PR修正、独立lifecycle/性能/命名は後続Issueとなりcurrent PRへ再流入しない |\n| GH-T-016 | GH-AC-034 | required CI greenでnative auto-merge設定済みのPRと、AI-Bがcurrent HEADを再照合するPR | native auto-mergeを拒否し、後者だけ明示merge可能 |\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD328-COV-14",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_path": "docs/test-design/helix/github-autonomous-operations-acceptance.md",
+      "source_span": {
+        "start_line": 41,
+        "end_line": 48,
+        "sha256": "sha256:04e193365dfcaa49f9492cfe3cbfe67117efe51ee8a70ab29e1664439c5db689",
+        "exact_source_text": "\n## 実環境照合\n\nfixtureだけで合格にしない。GitHub read-only APIでdefault branch、active Ruleset、required checks、open PR、open Issue、workflow runを観測し、authoring policyとの差分を検証する。書込み適用、release、tag、cutoverは別のaction-binding approvalを要求する。\n\n## 証跡要件\n\n各実行は command、exit code、output digest、HEAD、GitHub observation timestampを保存する。再実行不能な画面キャプチャだけを合格根拠にしない。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    }
+  ],
+  "semantic_atomization": {
+    "original_id_sets": {
+      "GH-FR": 17,
+      "GH-NFR": 8,
+      "GH-AC": 13,
+      "GH-T": 16
+    },
+    "metadata_or_boundary_atoms": 5,
+    "semantic_atom_count": 59,
+    "coverage_span_count": 14,
+    "source_lines_total": 244,
+    "coverage_and_semantics_are_separate": true,
+    "mixed_owner_ids": [
+      "GH-AC-012",
+      "GH-FR-008",
+      "GH-FR-012",
+      "GH-FR-014",
+      "GH-FR-016",
+      "GH-NFR-001",
+      "GH-NFR-003",
+      "GH-NFR-006",
+      "GH-NFR-008",
+      "GH-T-013",
+      "GH-T-014",
+      "GH-T-015",
+      "GH-T-016"
+    ],
+    "fixed_candidate_target_by_original_id": {
+      "GH-FR-001": "HELIX-HARNESS",
+      "GH-FR-002": "HELIX-HARNESS",
+      "GH-FR-003": "HELIX-HARNESS",
+      "GH-FR-004": "HELIX-HARNESS",
+      "GH-FR-005": "HELIX-HARNESS",
+      "GH-FR-006": "HELIX-HARNESS",
+      "GH-FR-007": "HELIX-HARNESS",
+      "GH-FR-008": "unresolved",
+      "GH-FR-009": "HELIX-OS",
+      "GH-FR-010": "HELIX-OS",
+      "GH-FR-011": "HELIX-OS",
+      "GH-FR-012": "unresolved",
+      "GH-FR-013": "HELIX-OS",
+      "GH-FR-014": "unresolved",
+      "GH-FR-015": "HELIX-HARNESS",
+      "GH-FR-016": "unresolved",
+      "GH-FR-017": "HELIX-OS",
+      "GH-NFR-001": "unresolved",
+      "GH-NFR-002": "HELIX-OS",
+      "GH-NFR-003": "unresolved",
+      "GH-NFR-004": "HELIX-OS",
+      "GH-NFR-005": "HELIX-OS",
+      "GH-NFR-006": "unresolved",
+      "GH-NFR-007": "HELIX-OS",
+      "GH-NFR-008": "unresolved",
+      "GH-AC-001": "HELIX-HARNESS",
+      "GH-AC-002": "HELIX-HARNESS",
+      "GH-AC-003": "HELIX-HARNESS",
+      "GH-AC-004": "HELIX-HARNESS",
+      "GH-AC-005": "HELIX-OS",
+      "GH-AC-006": "HELIX-OS",
+      "GH-AC-007": "HELIX-OS",
+      "GH-AC-008": "HELIX-OS",
+      "GH-AC-009": "HELIX-OS",
+      "GH-AC-010": "HELIX-OS",
+      "GH-AC-011": "HELIX-HARNESS",
+      "GH-AC-012": "unresolved",
+      "GH-AC-013": "HELIX-OS",
+      "GH-T-001": "HELIX-HARNESS",
+      "GH-T-002": "HELIX-HARNESS",
+      "GH-T-003": "HELIX-HARNESS",
+      "GH-T-004": "HELIX-HARNESS",
+      "GH-T-005": "HELIX-OS",
+      "GH-T-006": "HELIX-OS",
+      "GH-T-007": "HELIX-OS",
+      "GH-T-008": "HELIX-OS",
+      "GH-T-009": "HELIX-OS",
+      "GH-T-010": "HELIX-OS",
+      "GH-T-011": "HELIX-HARNESS",
+      "GH-T-012": "HELIX-HARNESS",
+      "GH-T-013": "unresolved",
+      "GH-T-014": "unresolved",
+      "GH-T-015": "unresolved",
+      "GH-T-016": "unresolved",
+      "DOC-003-METADATA": "unresolved",
+      "DOC-003-OBJECTS": "unresolved",
+      "DOC-003-UT-FREEZE": "unresolved",
+      "DOC-028-METADATA": "unresolved",
+      "DOC-028-EVIDENCE": "unresolved"
+    },
+    "normalized_statement_review": "meaning of normalized_statement is review-only; validator checks presence and source grounding, not semantic correctness"
+  }
+}

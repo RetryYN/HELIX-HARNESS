@@ -1,0 +1,163 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0005",
+  "kind": "scaffold",
+  "title": "DELEGATED-DOC-003/028 と参照edgeのatom候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS／HELIX-OS責務境界の上流atom review",
+  "state": "active",
+  "reason": "旧委任文書のfile-blob holdingと参照edge holdingを、要求採用・意味同値・責務配置へ昇格させず、14 coverage spanと59 semantic atom、旧asset状態をレビュー可能な仮束へ固定する。normative V-model／要求・検証contractはHARNESS候補、GitHub／CI／state／closure運転はOS候補として分離し、最終ownerを未決のまま保持する。",
+  "upstream": [
+    {
+      "path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+      "note": "DELEGATED-DOC-003/028を含む114 file-blob source holding"
+    },
+    {
+      "path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+      "sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+      "note": "DELEGATED-REF-0303/0759/0760を含むreference edge holding"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "対応旧資産のHistorical／unresolved、implementation、consumer欄"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "旧phase／product候補、実行未実施、consumer closure状態"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+      "note": "source line保全、candidate kind、owner、禁止遷移、coverage契約"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "旧資産をreferenceのみとし、実行・無判断copy・oracle化を禁止する統制"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "HARNESS／HELIX-OSの責務境界候補"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "HARNESS V-model、要求・設計・検証契約のL1候補"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "HELIX-OS authority、Worker、CI、state、継続改善のL1候補"
+    },
+    {
+      "path": "scaffold/delegated-doc-003-028/README.md",
+      "sha256": "7ef5e68538fedd75bfe72d178ee2ce3d140869c90abece5450370f9edb0ac7e9",
+      "note": "候補scope、原ID分割、停止条件"
+    },
+    {
+      "path": "scaffold/delegated-doc-003-028/inventory.json",
+      "sha256": "fab970e91446d7a33f372757bed610fe3e9b6e1de8f32d850ae0eafcae1003a7",
+      "note": "14 coverage span、59 semantic atom、legacy status、reference linkage"
+    },
+    {
+      "path": "scaffold/delegated-doc-003-028/validate.py",
+      "sha256": "c7e39f8b7122d8f6cfed6dd8e97e7af87cc16b4315a691fa83206b07a4cf2e5f",
+      "note": "台帳／Git blob／原ID／atom／owner／legacy status静的検証"
+    },
+    {
+      "path": "scaffold/delegated-doc-003-028/selfcheck.py",
+      "sha256": "dbe2cbaf6d6fdcff49b85d3d6dfd14ad245d0c502f90d8fac5c57ec9c41ebe06",
+      "note": "digest、edge、coverage、原ID欠落の否定例"
+    }
+  ],
+  "role": "DELEGATED-DOC-003/028のsource blobを14 coverage spanと59 semantic atomへ分け、REF-0303/0759/0760のpair／body edge、旧phase・implementation・consumer状態、否定条件を同じreview単位で保持する",
+  "obligations": [
+    "DELEGATED-DOC-003/028のsource path、archive path、source SHA-256、blob OID、status、holding状態を台帳と一致させる",
+    "DELEGATED-REF-0303/0759/0760のsource／target path、source line、origin、relation key、双方digestを台帳と一致させる",
+    "2文書244行を14 coverage spanで重複・欠落なく覆い、59 semantic atomのexact source text、line digest、candidate kind、owner候補、未解決質問を保持する",
+    "旧assetのHistorical／unresolved、implementation unknown、consumer closure pending、legacy execution falseを維持する",
+    "HARNESSのnormative meaningとHELIX-OSのexecution／projection consumerを候補として分け、ownerを確定しない",
+    "authority_effect=none、meaning_change_applied=false、successor空、human decision nullを維持する",
+    "要求採用、意味同値、L2／L3／L10 freeze、実装、consumer closure、acceptance、releaseを生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 delegated source atom review担当",
+      "HELIX-HARNESS要求・検証contract整理担当",
+      "HELIX-OS GitHub／CI／state／closure責務整理担当",
+      "Scaffold Bindingのstale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "既知commit／pathに限定したread-only Git object database",
+      "旧要求atomization review contract",
+      "旧asset disposition／phase classification ledger",
+      "HARNESS／HELIX-OS product boundary候補"
+    ],
+    "boundary": "inventory、validator、selfcheckはscaffold/配下。validatorは正本台帳、製品境界source、固定Git blobを読み取り専用で確認し、旧runtime・test・CI・GitHub・DBを実行・更新しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/delegated-doc-003-028/validate.py",
+      "python3 scaffold/delegated-doc-003-028/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|list|stale|residuals"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime・test・CI・hookの読込・実行",
+      "旧sourceを現行runtime・test・CIのoracle、fallback、実装として使うこと",
+      "scaffold/外への書き込み",
+      "要求採否・人間承認・successor・L2／L3／L10 freeze・実装・consumer closure・acceptance・releaseの生成",
+      "GitHub、Issue、PR、CI、DB、deploymentへの外部作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/delegated-doc-003-028/README.md",
+    "scaffold/delegated-doc-003-028/inventory.json",
+    "scaffold/delegated-doc-003-028/validate.py",
+    "scaffold/delegated-doc-003-028/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "scaffold/delegated-doc-003-028/validate.py（正本台帳、source／reference edge、Git blob、atom span、line coverage、product boundary）",
+      "scaffold/delegated-doc-003-028/selfcheck.py（source digest、reference edge、atom span欠落の否定例）",
+      "scaffold/tools/scfctl.py stale（上流ledger／contract／product boundary revision変化の検出）",
+      "git diff --check（候補文書の静的整形）"
+    ],
+    "negative_cases": [
+      "DELEGATED-DOC-003または028のsource digest、path、archive path、statusを変更する",
+      "DELEGATED-REF-0303/0759/0760のtarget digest、origin、line、relationを変更する",
+      "59 semantic atomのexact text／line span／SHA-256を変更する",
+      "source line coverageから一部を欠落・重複させる",
+      "unknown／stale／ambiguous identityをrouteへ丸める",
+      "pair edgeを意味同値またはacceptance完了へ昇格する",
+      "old phase candidateを実装済みまたはconsumer closedへ昇格する",
+      "HARNESS／HELIX-OS ownerを人間decisionなしで確定する",
+      "old runtime／test／CIを実行またはoracle／fallbackにする",
+      "authority、successor、採用、freeze、実装、closure、releaseを生成する"
+    ]
+  },
+  "replacement": {
+    "role_target": "正式な旧要求atomization／product crosswalk review contract（対象別L2／L11とL3／L10から導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}
