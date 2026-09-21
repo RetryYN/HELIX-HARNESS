@@ -85,7 +85,12 @@ def main():
     for b in r['evidence_atom_bindings']:
      need(b['atom_id'] in ids and b['evidence_ref_indexes'] and all(0<=i<len(texts) for i in b['evidence_ref_indexes']),'binding refs');joined='\n'.join(texts[i] for i in b['evidence_ref_indexes']);need(all(q in joined for q in b['required_terms']),'binding terms')
      if b['match_mode']=='literal_source_fragment':need(all(f in joined for f in amap[b['atom_id']]['source_fragments']),'literal binding')
-     else:need(b['match_mode']=='controlled_term_set_partial' and b['source_fragment_anchors'] and all(q in amap[b['atom_id']]['text'] and q in ''.join(amap[b['atom_id']]['source_fragments']) for q in b['source_fragment_anchors']),'controlled binding')
+     else:
+      anchors=b['source_fragment_anchors'];mapped=b.get('anchor_evidence_terms',{})
+      need(b['match_mode']=='controlled_term_set_partial' and anchors and set(mapped)<=set(anchors) and all(
+       q in amap[b['atom_id']]['text'] and q in ''.join(amap[b['atom_id']]['source_fragments']) and
+       (q in joined or bool(mapped.get(q)) and all(t in b['required_terms'] and t in joined for t in mapped[q]))
+       for q in anchors),'controlled binding evidence-grounded anchors')
    if r['review_id']=='LSRW16-EDGE-001':need(any('shared peer' in q for q in r['counterevidence']),'EDGE-001 shared counterevidence')
    if r['review_id']=='LSRW16-EDGE-002':need(any('BR12-HARNESS-A02' in q and 'development style' in q for q in r['counterevidence']),'BR12 design uncovered counterevidence')
    if r['review_id']=='LSRW16-EDGE-003':need(any('BR12-HARNESS-A01' in q and 'intake' in q for q in r['counterevidence']),'BR12 implementation uncovered counterevidence')

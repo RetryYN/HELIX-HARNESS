@@ -39,4 +39,4 @@ BR12-A01はshared peerとして `同じintake契約へ正規化し` を共有し
 
 ## parent decomposition unresolved
 
-BR12のshared overlapは `product_boundary_pending_human_decision`、`source_atomization_review_pending`、`unit_split_requires_independent_review` を保持する。BR14-Hは同じsource atomization／unit split／product boundary pendingを保持し、BR14-OSは `one_or_more_unit_phase_unresolved` とphase 0を保持する。これらはauthority判断へ昇格させない。
+BR12のshared overlapは `product_boundary_pending_human_decision`、`source_atomization_review_pending`、`unit_split_requires_independent_review` を保持する。BR14-HとBR14-OSのparentはいずれも `one_or_more_unit_phase_unresolved` を保持する。BR14-Hはsource atomization／unit split／product boundary pendingも保持し、BR14-OSの製品unitはphase 0である。これらはauthority判断へ昇格させない。
