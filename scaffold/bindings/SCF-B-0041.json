@@ -105,27 +105,27 @@
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/generate.py",
-      "sha256": "16ae38fd0eec4f923daa43ea67e870d67d740d38668e88b9b0965892b9554b43",
+      "sha256": "100150fec22171813491c037566dfd33b83c3cf80112cd6b1e462c1fdfaf9b89",
       "note": "PHCAP-08/09 static upstream revision"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/README.md",
-      "sha256": "1bef99076fc52858f76dfb209cb99062f96fc9567920b6a0d570de58a584448d",
+      "sha256": "8f9649fb6a2a96292a61689ae128b83cf015d1645816ff65e8c4cf9c8c9341f6",
       "note": "PHCAP-08/09 static upstream revision"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/inventory.json",
-      "sha256": "648f94023d76ba0eec70f1d7056d528f0d148e33c124db4185b533d9c2ebc71f",
+      "sha256": "8cb288e167e248f17a811b760b03f02277531d46d6676487b2a7102fb63127fc",
       "note": "PHCAP-08/09 static upstream revision"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/validate.py",
-      "sha256": "b51f967d48f5550d8b0746f0aeff33e83c71914d166208b32cb3a038273d41c6",
+      "sha256": "988ed810c348ca5447f5df24c26f762c33622b98ecde5eb7f6aa40e2532041e5",
       "note": "PHCAP-08/09 static upstream revision"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/selfcheck.py",
-      "sha256": "47b8de44adf8e87bd169e0034b9d68f11b457fe215b67bc55b96e38326a09b72",
+      "sha256": "cdb09c1313463245374fe70781f7c4540375242bc174bb930af414c7e55d3b32",
       "note": "PHCAP-08/09 static upstream revision"
     }
   ],
@@ -192,8 +192,9 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "validate.py（source／phase／decision digest、7 asset span、archive 4,020件／dot-component 248件、WBS 0／45、ticket 9、interpretation exact／digest、四製品unknown）",
-      "selfcheck.py（authority／WBS identity／ticket catalog／実装／consumer／execution／interpretation error code 40陰性例）",
+      "validate.py（source／phase／decision digest、7 asset span、archive 4,020件／dot-component 248件、WBS 0／45、ticket 9、12 interpretation本文／digest、四製品unknown、旧基準からの38 changed paths／current_refs 9 unique pathとの交差0／archive変更0）",
+      "generate.pyを再実行したinventory.jsonのbyte一致確認",
+      "selfcheck.py（authority／WBS identity／ticket catalog／実装／consumer／execution／phase 2・decision 7・failure 1・WBS／ticket 2のinterpretationを含む62 expected-error陰性例）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],

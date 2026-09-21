@@ -17,7 +17,7 @@
   },
   "base": {
     "repository": "HELIX-HARNESS",
-    "commit": "b27e61f079edf64eeddc43eb8095159b19730b94",
+    "commit": "1d7f9a18dd89745b0ed0b9d6d3ed0f9437e47dff",
     "branch": "audit/phcap08-09-wbs-ticket-static",
     "origin": "origin/main",
     "worktree": "/home/tenni/.helix-worktrees/phcap08-09-wbs-ticket-static",
@@ -321,7 +321,8 @@
         "LEGACY-ASSET-DE68E15724FB6EC258AB",
         "LEGACY-ASSET-B1B5271C3933B1F0F345"
       ],
-      "interpretation": "WBS candidate joins remain semantic candidates; B1 is textual near-equivalent and is not a same-name WBS asset"
+      "interpretation": "WBS candidate joins remain semantic candidates; B1 is textual near-equivalent and is not a same-name WBS asset",
+      "interpretation_sha256": "5ed7f4e496717498b54ca4552f33c0bbd5bc0de3416d0475c7f31c4150114d9c"
     },
     {
       "phase_id": "PHCAP-09",
@@ -341,7 +342,8 @@
         "LEGACY-ASSET-9D7EB95274484717CC7B",
         "LEGACY-ASSET-06C7FAF2A0981A4778AC"
       ],
-      "interpretation": "all nine ticket-path assets are candidate joins; only three are expanded with source spans in this bounded candidate"
+      "interpretation": "all nine ticket-path assets are candidate joins; only three are expanded with source spans in this bounded candidate",
+      "interpretation_sha256": "56aeda69c8cbea54b2a0e8eb1d857f3e8f957dd94be16f91b245fe6482761731"
     }
   ],
   "wbs_name_audit": {
@@ -1454,7 +1456,8 @@
         "matching_decision_record_count": 0,
         "matching_decision_records": [],
         "status": "no_matching_append_only_decision_record",
-        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated",
+        "interpretation_sha256": "9c29d05e9d958dff37e3814600ba6b54ac6fa03d68867ddc20bc065caf9dba88"
       },
       "failure_evidence": [
         {
@@ -1662,7 +1665,8 @@
         "matching_decision_record_count": 0,
         "matching_decision_records": [],
         "status": "no_matching_append_only_decision_record",
-        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated",
+        "interpretation_sha256": "9c29d05e9d958dff37e3814600ba6b54ac6fa03d68867ddc20bc065caf9dba88"
       },
       "failure_evidence": [
         {
@@ -1864,7 +1868,8 @@
         "matching_decision_record_count": 0,
         "matching_decision_records": [],
         "status": "no_matching_append_only_decision_record",
-        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated",
+        "interpretation_sha256": "9c29d05e9d958dff37e3814600ba6b54ac6fa03d68867ddc20bc065caf9dba88"
       },
       "failure_evidence": [
         {
@@ -1990,7 +1995,8 @@
         "matching_decision_record_count": 0,
         "matching_decision_records": [],
         "status": "no_matching_append_only_decision_record",
-        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated",
+        "interpretation_sha256": "9c29d05e9d958dff37e3814600ba6b54ac6fa03d68867ddc20bc065caf9dba88"
       },
       "failure_evidence": [
         {
@@ -2210,7 +2216,8 @@
         "matching_decision_record_count": 0,
         "matching_decision_records": [],
         "status": "no_matching_append_only_decision_record",
-        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated",
+        "interpretation_sha256": "9c29d05e9d958dff37e3814600ba6b54ac6fa03d68867ddc20bc065caf9dba88"
       },
       "failure_evidence": [
         {
@@ -2379,7 +2386,8 @@
         "matching_decision_record_count": 0,
         "matching_decision_records": [],
         "status": "no_matching_append_only_decision_record",
-        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated",
+        "interpretation_sha256": "9c29d05e9d958dff37e3814600ba6b54ac6fa03d68867ddc20bc065caf9dba88"
       },
       "failure_evidence": [
         {
@@ -2518,7 +2526,8 @@
         "matching_decision_record_count": 0,
         "matching_decision_records": [],
         "status": "no_matching_append_only_decision_record",
-        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated",
+        "interpretation_sha256": "9c29d05e9d958dff37e3814600ba6b54ac6fa03d68867ddc20bc065caf9dba88"
       },
       "failure_evidence": [
         {
@@ -2703,7 +2712,8 @@
     "consumer_closure_observed": 0,
     "legacy_execution_flags_all_false": true,
     "current_l2_l11_execution": "all referenced L2/L11 docs remain draft/freeze_blocking and acceptance text says unexecuted",
-    "interpretation": "failure/consumer text is historical candidate evidence only; no current failure receipt, consumer closure, implementation, acceptance or pass is generated"
+    "interpretation": "failure/consumer text is historical candidate evidence only; no current failure receipt, consumer closure, implementation, acceptance or pass is generated",
+    "interpretation_sha256": "b0647f4dd200f52a46b0c593a28a2892d4d2413b50f950dea4f3debb3dca2da2"
   },
   "unresolved": [
     "WBS語彙と旧PLAN/current-location/roadmap/stateのsemantic equivalence",

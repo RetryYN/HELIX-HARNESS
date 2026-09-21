@@ -5,6 +5,7 @@ import hashlib
 from functools import lru_cache
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -20,11 +21,23 @@ BINDING = ROOT / "scaffold/bindings/SCF-B-0041.json"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 WBS_RE = re.compile(r"(?i)\bWBS\b|work[- ]breakdown")
 
-EXPECTED_BASE = "b27e61f079edf64eeddc43eb8095159b19730b94"
+EXPECTED_OLD_BASE = "b27e61f079edf64eeddc43eb8095159b19730b94"
+EXPECTED_BASE = "1d7f9a18dd89745b0ed0b9d6d3ed0f9437e47dff"
+EXPECTED_REBASELINE_DIFF_PATH_COUNT = 38
+EXPECTED_CURRENT_REF_UNIQUE_PATH_COUNT = 9
+EXPECTED_ARCHIVE_DIFF_PATH_COUNT = 0
 EXPECTED_WBS_INTERPRETATION = "同名WBS assetは0。archive本文45ファイルの語彙ヒットと等価能力候補は、WBS identity・実装・authority・semantic equivalenceを証明しない。"
 EXPECTED_WBS_INTERPRETATION_DIGEST = "9f92e27c2c6e6f2b16c2feea54b92198603e31bb2621994bd3541470104619b7"
 EXPECTED_TICKET_INTERPRETATION = "ticket path 9件はcandidate source catalog。代表3件だけ本文exact spanを展開し、残り6件はsource path/hashとphase/ledger stateの範囲に留める。"
 EXPECTED_TICKET_INTERPRETATION_DIGEST = "345e32b2408dcf5323dc2a388d80583b2a000e2a30dcc6df76f200b68593e05c"
+EXPECTED_PHASE_JOIN_INTERPRETATIONS = {
+    "PHCAP-08": ("WBS candidate joins remain semantic candidates; B1 is textual near-equivalent and is not a same-name WBS asset", "5ed7f4e496717498b54ca4552f33c0bbd5bc0de3416d0475c7f31c4150114d9c"),
+    "PHCAP-09": ("all nine ticket-path assets are candidate joins; only three are expanded with source spans in this bounded candidate", "56aeda69c8cbea54b2a0e8eb1d857f3e8f957dd94be16f91b245fe6482761731"),
+}
+EXPECTED_DECISION_HISTORY_INTERPRETATION = "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+EXPECTED_DECISION_HISTORY_INTERPRETATION_DIGEST = "9c29d05e9d958dff37e3814600ba6b54ac6fa03d68867ddc20bc065caf9dba88"
+EXPECTED_FAILURE_CONSUMER_INTERPRETATION = "failure/consumer text is historical candidate evidence only; no current failure receipt, consumer closure, implementation, acceptance or pass is generated"
+EXPECTED_FAILURE_CONSUMER_INTERPRETATION_DIGEST = "b0647f4dd200f52a46b0c593a28a2892d4d2413b50f950dea4f3debb3dca2da2"
 EXPECTED_PRODUCTS = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
 EXPECTED_TICKET_PATHS = {
     "docs/governance/candidates/execution-ticket-acceptance.md",
@@ -63,7 +76,7 @@ INVENTORY_KEYSETS = {
     'scope': frozenset(['bounded_source_asset_count', 'closure_rule', 'product_units', 'selected_legacy_asset_ids', 'source_span_count', 'ticket_path_asset_ids']),
     'product_units[]': frozenset(['acceptance_status', 'authority_status', 'current_refs', 'implementation_status', 'legacy_asset_ids', 'phase_evidence', 'product', 'status', 'unit_boundary']),
     'candidate_connections[]': frozenset(['connection_id', 'from', 'kind', 'meaning', 'status', 'to']),
-    'candidate_phase_joins[]': frozenset(['catalog_asset_ids', 'interpretation', 'phase_id', 'selected_asset_ids']),
+    'candidate_phase_joins[]': frozenset(['catalog_asset_ids', 'interpretation', 'interpretation_sha256', 'phase_id', 'selected_asset_ids']),
     'wbs_name_audit': frozenset(['archive_content_term_match_count', 'archive_content_term_match_paths', 'archive_file_count', 'archive_hidden_component_file_count', 'archive_filename_match_count', 'exact_basename_matches', 'interpretation', 'interpretation_sha256', 'legacy_disposition_source_path_wbs_matches', 'legacy_disposition_source_path_work_breakdown_matches', 'near_equivalent_candidates', 'representative_near_capability_candidates', 'same_name_asset_count', 'same_name_asset_ids', 'search_regex']),
     'wbs_name_audit.near_equivalent_candidates[]': frozenset(['asset_id', 'reason', 'same_name_identity', 'semantic_equivalence', 'source_path', 'source_span_ids']),
     'wbs_name_audit.representative_near_capability_candidates[]': frozenset(['asset_id', 'capability', 'same_name_identity']),
@@ -79,11 +92,11 @@ INVENTORY_KEYSETS = {
     'legacy_assets[].phase_classification_record': frozenset(['archive_manifest_digest_match', 'artifact_evidence_kind', 'asset_id', 'authority_effect', 'candidate_phase_targets', 'candidate_product_targets', 'classification_id', 'consumer_closure_status', 'consumer_refs', 'implementation_evidence_state', 'legacy_execution_performed', 'legacy_implementation_status', 'phase_assessments', 'phase_classification_status', 'product_assessments', 'product_classification_status', 'source_path', 'source_revision', 'source_sha256', 'unresolved']),
     'legacy_assets[].phase_classification_record.phase_assessments[]': frozenset(['confidence', 'evidence', 'phase', 'source_batches']),
     'legacy_assets[].phase_classification_record.product_assessments[]': frozenset(['confidence', 'evidence_status', 'product', 'rationale', 'source_batches']),
-    'legacy_assets[].decision_history': frozenset(['interpretation', 'matching_decision_record_count', 'matching_decision_records', 'status']),
+    'legacy_assets[].decision_history': frozenset(['interpretation', 'interpretation_sha256', 'matching_decision_record_count', 'matching_decision_records', 'status']),
     'legacy_assets[].failure_evidence[]': frozenset(['execution_status', 'finding', 'kind', 'span_id']),
     'legacy_assets[].consumer_evidence[]': frozenset(['closure_status', 'finding', 'kind', 'span_id']),
     'current_refs[]': frozenset(['classification', 'end_line', 'exact_text', 'execution_status', 'implementation_status', 'layer', 'line_sha256', 'path', 'product', 'ref_id', 'role', 'sha256', 'start_line']),
-    'failure_consumer_boundary': frozenset(['consumer_closure_observed', 'current_l2_l11_execution', 'failure_receipts_observed', 'interpretation', 'legacy_execution_flags_all_false', 'selected_asset_ledger_consumer_refs_observed', 'selected_asset_phase_consumer_refs_observed']),
+    'failure_consumer_boundary': frozenset(['consumer_closure_observed', 'current_l2_l11_execution', 'failure_receipts_observed', 'interpretation', 'interpretation_sha256', 'legacy_execution_flags_all_false', 'selected_asset_ledger_consumer_refs_observed', 'selected_asset_phase_consumer_refs_observed']),
     'counts': frozenset(['candidate_connections', 'candidate_phase_joins', 'current_refs', 'decision_records_found', 'failure_receipts_observed', 'legacy_consumer_refs_observed', 'product_units', 'selected_legacy_assets', 'semantic_atoms', 'source_spans', 'ticket_path_assets', 'wbs_archive_content_term_matches', 'wbs_archive_filename_matches', 'wbs_same_name_assets']),
 }
 BINDING_KEYSETS = {
@@ -332,6 +345,17 @@ def archive_wbs_audit():
     return list(filename_matches), list(exact_basename), content_matches, len(archive), hidden_component_count
 
 
+def rebaseline_diff_paths():
+    result = subprocess.run(
+        ["git", "diff", "--name-only", EXPECTED_OLD_BASE + ".." + EXPECTED_BASE],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    return [line for line in result.stdout.splitlines() if line]
+
+
 def validate_binding(binding):
     errors = validate_keysets(binding, BINDING_KEYSETS)
     fail(errors, binding.get("id") == "SCF-B-0041", "E_BINDING_ID")
@@ -441,6 +465,11 @@ def validate(inv, check_binding=True):
         fail(errors, item.get("decision_history", {}).get("matching_decision_record_count") == 0, "E_DECISION_HISTORY_COUNT:" + str(aid))
         fail(errors, item.get("decision_history", {}).get("matching_decision_records") == [], "E_DECISION_HISTORY_ROWS:" + str(aid))
         fail(errors, item.get("decision_history", {}).get("status") == "no_matching_append_only_decision_record", "E_DECISION_HISTORY_STATUS:" + str(aid))
+        decision_interpretation = item.get("decision_history", {}).get("interpretation")
+        decision_interpretation_digest = item.get("decision_history", {}).get("interpretation_sha256")
+        fail(errors, decision_interpretation == EXPECTED_DECISION_HISTORY_INTERPRETATION, "E_DECISION_HISTORY_INTERPRETATION:" + str(aid))
+        fail(errors, decision_interpretation_digest == EXPECTED_DECISION_HISTORY_INTERPRETATION_DIGEST, "E_DECISION_HISTORY_INTERPRETATION_DIGEST:" + str(aid))
+        fail(errors, digest(str(decision_interpretation).encode("utf-8")) == decision_interpretation_digest, "E_DECISION_HISTORY_INTERPRETATION_DIGEST_MATCH:" + str(aid))
         fail(errors, not [row for row in decision_rows if aid in json.dumps(row, ensure_ascii=False)], "E_DECISION_MATCH:" + str(aid))
 
         archive_path = item.get("archive_path", "")
@@ -572,6 +601,10 @@ def validate(inv, check_binding=True):
         if phase_id == "PHCAP-09":
             expected_catalog = sorted(row.get("asset_id") for row in catalog if phase_id in row.get("phase_classification_record", {}).get("candidate_phase_targets", []))
         fail(errors, sorted(join.get("catalog_asset_ids", [])) == expected_catalog, "E_PHASE_JOIN_CATALOG:" + str(phase_id))
+        expected_interpretation, expected_digest = EXPECTED_PHASE_JOIN_INTERPRETATIONS.get(phase_id, (None, None))
+        fail(errors, join.get("interpretation") == expected_interpretation, "E_PHASE_JOIN_INTERPRETATION:" + str(phase_id))
+        fail(errors, join.get("interpretation_sha256") == expected_digest, "E_PHASE_JOIN_INTERPRETATION_DIGEST:" + str(phase_id))
+        fail(errors, digest(str(join.get("interpretation", "")).encode("utf-8")) == join.get("interpretation_sha256"), "E_PHASE_JOIN_INTERPRETATION_DIGEST_MATCH:" + str(phase_id))
 
     refs = inv.get("current_refs", [])
     fail(errors, len(refs) == counts.get("current_refs") == 10, "E_CURRENT_REF_COUNT")
@@ -601,11 +634,24 @@ def validate(inv, check_binding=True):
     fail(errors, direct == 4, "E_CURRENT_DIRECT_COUNT")
     fail(errors, adjacent == 4, "E_CURRENT_ADJACENT_COUNT")
     fail(errors, boundary == 2, "E_CURRENT_BOUNDARY_COUNT")
+    try:
+        rebaseline_paths = set(rebaseline_diff_paths())
+        current_ref_paths = {ref.get("path") for ref in refs}
+        archive_paths = {path for path in rebaseline_paths if path.startswith("archive/legacy-generation-2026-09-14/")}
+        fail(errors, len(rebaseline_paths) == EXPECTED_REBASELINE_DIFF_PATH_COUNT, "E_REBASELINE_DIFF_PATH_COUNT")
+        fail(errors, len(current_ref_paths) == EXPECTED_CURRENT_REF_UNIQUE_PATH_COUNT, "E_CURRENT_REF_UNIQUE_PATH_COUNT")
+        fail(errors, not (rebaseline_paths & current_ref_paths), "E_REBASELINE_CURRENT_REF_INTERSECTION")
+        fail(errors, len(archive_paths) == EXPECTED_ARCHIVE_DIFF_PATH_COUNT, "E_REBASELINE_ARCHIVE_DIFF")
+    except (OSError, subprocess.SubprocessError) as exc:
+        errors.append("E_REBASELINE_GIT:" + str(exc))
 
     boundary_state = inv.get("failure_consumer_boundary", {})
     for key in ("selected_asset_ledger_consumer_refs_observed", "selected_asset_phase_consumer_refs_observed", "failure_receipts_observed", "consumer_closure_observed"):
         fail(errors, boundary_state.get(key) == 0, "E_BOUNDARY_COUNT:" + key)
     fail(errors, boundary_state.get("legacy_execution_flags_all_false") is True, "E_BOUNDARY_EXECUTION")
+    fail(errors, boundary_state.get("interpretation") == EXPECTED_FAILURE_CONSUMER_INTERPRETATION, "E_FAILURE_CONSUMER_INTERPRETATION")
+    fail(errors, boundary_state.get("interpretation_sha256") == EXPECTED_FAILURE_CONSUMER_INTERPRETATION_DIGEST, "E_FAILURE_CONSUMER_INTERPRETATION_DIGEST")
+    fail(errors, digest(str(boundary_state.get("interpretation", "")).encode("utf-8")) == boundary_state.get("interpretation_sha256"), "E_FAILURE_CONSUMER_INTERPRETATION_DIGEST_MATCH")
     fail(errors, inv.get("unresolved") == EXPECTED_UNRESOLVED, "E_UNRESOLVED_FINAL")
     fail(errors, counts.get("product_units") == 4 and counts.get("candidate_connections") == 4, "E_COUNT_PRODUCTS_CONNECTIONS")
     return errors

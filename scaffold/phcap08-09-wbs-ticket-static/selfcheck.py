@@ -53,6 +53,39 @@ must_fail("ticket path omission", lambda x: x["ticket_path_audit"].update(path_m
 must_fail("ticket catalog omission", lambda x: x["ticket_path_audit"]["asset_catalog"].pop())
 must_fail("ticket interpretation rewrite [E_TICKET_INTERPRETATION]", lambda x: x["ticket_path_audit"].update(interpretation="ticket path 9件は正式issuer。"), "E_TICKET_INTERPRETATION")
 must_fail("ticket interpretation digest tamper [E_TICKET_INTERPRETATION_DIGEST]", lambda x: x["ticket_path_audit"].update(interpretation_sha256="0" * 64), "E_TICKET_INTERPRETATION_DIGEST")
+for join_index, phase_id in enumerate(("PHCAP-08", "PHCAP-09")):
+    must_fail(
+        f"{phase_id} interpretation rewrite",
+        lambda x, i=join_index: x["candidate_phase_joins"][i].update(interpretation="candidate interpretation tampered"),
+        "E_PHASE_JOIN_INTERPRETATION:" + phase_id,
+    )
+    must_fail(
+        f"{phase_id} interpretation digest tamper",
+        lambda x, i=join_index: x["candidate_phase_joins"][i].update(interpretation_sha256="0" * 64),
+        "E_PHASE_JOIN_INTERPRETATION_DIGEST:" + phase_id,
+    )
+for asset_index, asset in enumerate(base["legacy_assets"]):
+    asset_id = asset["asset_id"]
+    must_fail(
+        f"{asset_id} decision interpretation rewrite",
+        lambda x, i=asset_index: x["legacy_assets"][i]["decision_history"].update(interpretation="decision interpretation tampered"),
+        "E_DECISION_HISTORY_INTERPRETATION:" + asset_id,
+    )
+    must_fail(
+        f"{asset_id} decision interpretation digest tamper",
+        lambda x, i=asset_index: x["legacy_assets"][i]["decision_history"].update(interpretation_sha256="0" * 64),
+        "E_DECISION_HISTORY_INTERPRETATION_DIGEST:" + asset_id,
+    )
+must_fail(
+    "failure/consumer interpretation rewrite",
+    lambda x: x["failure_consumer_boundary"].update(interpretation="failure interpretation tampered"),
+    "E_FAILURE_CONSUMER_INTERPRETATION",
+)
+must_fail(
+    "failure/consumer interpretation digest tamper",
+    lambda x: x["failure_consumer_boundary"].update(interpretation_sha256="0" * 64),
+    "E_FAILURE_CONSUMER_INTERPRETATION_DIGEST",
+)
 must_fail("source bytes tamper", lambda x: x["legacy_assets"][0].update(source_sha256="0" * 64))
 must_fail("source span tamper", lambda x: x["legacy_assets"][0]["source_spans"][0].update(exact_text="tampered\n"))
 must_fail("source span meaning tamper", lambda x: x["legacy_assets"][0]["source_spans"][0].update(role="meaning changed"))
@@ -74,4 +107,4 @@ must_fail_binding("binding unknown key", lambda x: x.update(unexpected_key=True)
 must_fail_binding("negative case deletion", lambda x: x["verification"]["negative_cases"].pop())
 must_fail_binding("negative case expansion", lambda x: x["verification"]["negative_cases"].append("extra"))
 must_fail_binding("negative case rewrite", lambda x: x["verification"]["negative_cases"].__setitem__(0, "changed"))
-print("PASS PHCAP-08/09 selfcheck: 40 negative cases")
+print("PASS PHCAP-08/09 selfcheck: 62 negative cases")

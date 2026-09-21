@@ -1,6 +1,6 @@
 # PHCAP-08／09 WBS・Ticket生成 調査 Scaffold
 
-このディレクトリは、PHCAP-08（WBS）とPHCAP-09（Ticket生成）の旧資産を静的に照合する `research_premise_candidate` である。基準は `origin/main` の `b27e61f079edf64eeddc43eb8095159b19730b94`、取得日は2026-09-22、authority effectは `none` である。要求採否、successor、正式owner、実装、L2／L11受入、Issue／GitHub authorityは生成しない。
+このディレクトリは、PHCAP-08（WBS）とPHCAP-09（Ticket生成）の旧資産を静的に照合する `research_premise_candidate` である。基準は `origin/main` の `1d7f9a18dd89745b0ed0b9d6d3ed0f9437e47dff`（旧基準 `b27e61f079edf64eeddc43eb8095159b19730b94` から38 pathを再確認）、取得日は2026-09-22、authority effectは `none` である。現行参照は10 ref／9 unique pathで、基準間の変更pathとの交差は0、旧archive固定入力の変更も0 pathだった。要求採否、successor、正式owner、実装、L2／L11受入、Issue／GitHub authorityは生成しない。
 
 ## 調査結果
 
@@ -23,9 +23,9 @@ HARNESS→OSのWBS normative shape→management ledger、HARNESS→OSのticket c
 ## 構成と検証
 
 - `inventory.json`: 7代表asset、23 exact span、ticket path 9件、四製品unit・connection、archive全4,020件／本文WBS語彙45件のWBS名監査、phase join、failure／consumer unknownを保持する。
-- `generate.py`: archiveを実行せず、固定source／台帳のbytesとspanからinventoryを再生成する。
-- `validate.py`: source／phase／decision ledger digest、archive bytes／span、全4,020 archive file（dot-component 248件）、WBS同名0／本文45、ticket path 9、四製品境界、unknown状態をfail-closeで検査する。二つの監査interpretationはexact文字列とSHA-256を検査し、inventory全階層のkeyset、unresolved本文、source spanのmeaning、Bindingのnegative case本文も独立pinで固定する。
-- `selfcheck.py`: authority／equivalence／WBS identity／ticket catalog／実装／consumer／current execution、未知key、unresolved本文、二つのinterpretation（error code付き）、span meaning、Binding negative caseの改竄を拒否する40陰性例を検査する。
+- `generate.py`: archiveを実行せず、固定source／台帳のbytesとspanからinventoryを再生成する。candidate phase join 2件、legacy decision history 7件、failure/consumer boundary 1件、WBS／ticket監査2件の計12 interpretation本文とSHA-256を再現する。
+- `validate.py`: source／phase／decision ledger digest、archive bytes／span、全4,020 archive file（dot-component 248件）、WBS同名0／本文45、ticket path 9、四製品境界、unknown状態をfail-closeで検査する。全interpretationの本文とSHA-256を独立pinし、inventory全階層のkeyset、unresolved本文、source spanのmeaning、Bindingのnegative case本文も固定する。さらに旧基準からの38 changed paths、現行9 unique ref pathsとの交差0、archive変更0を検査する。
+- `selfcheck.py`: authority／equivalence／WBS identity／ticket catalog／実装／consumer／current execution、未知key、unresolved本文、全interpretation（phase 2、decision 7、failure 1、WBS／ticket 2）の本文／digest、span meaning、Binding negative caseの改竄を拒否する62陰性例を期待error code付きで検査する。
 - `scaffold/bindings/SCF-B-0041.json`: この候補の仮設束縛。正式artifactが成立した場合の差し替え先は未確定である。
 
 検証は次で行う。

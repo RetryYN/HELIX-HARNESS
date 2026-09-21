@@ -20,6 +20,12 @@ def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+DECISION_HISTORY_INTERPRETATION = "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+PHCAP_08_INTERPRETATION = "WBS candidate joins remain semantic candidates; B1 is textual near-equivalent and is not a same-name WBS asset"
+PHCAP_09_INTERPRETATION = "all nine ticket-path assets are candidate joins; only three are expanded with source spans in this bounded candidate"
+FAILURE_CONSUMER_INTERPRETATION = "failure/consumer text is historical candidate evidence only; no current failure receipt, consumer closure, implementation, acceptance or pass is generated"
+
+
 def read_jsonl(path: Path):
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
@@ -84,7 +90,8 @@ def source_spec(asset_id: str, source_path: str, spans: list[tuple[int, int, str
             "matching_decision_record_count": 0,
             "matching_decision_records": [],
             "status": "no_matching_append_only_decision_record",
-            "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated",
+            "interpretation": DECISION_HISTORY_INTERPRETATION,
+            "interpretation_sha256": sha(DECISION_HISTORY_INTERPRETATION.encode("utf-8")),
         },
         "failure_evidence": [
             {
@@ -290,13 +297,15 @@ phase_joins = [
         "phase_id": "PHCAP-08",
         "selected_asset_ids": [aid for aid in selected_assets if "PHCAP-08" in phase_by_id[aid].get("candidate_phase_targets", [])],
         "catalog_asset_ids": [aid for aid in selected_assets if "PHCAP-08" in phase_by_id[aid].get("candidate_phase_targets", [])],
-        "interpretation": "WBS candidate joins remain semantic candidates; B1 is textual near-equivalent and is not a same-name WBS asset",
+        "interpretation": PHCAP_08_INTERPRETATION,
+        "interpretation_sha256": sha(PHCAP_08_INTERPRETATION.encode("utf-8")),
     },
     {
         "phase_id": "PHCAP-09",
         "selected_asset_ids": [aid for aid in selected_assets if "PHCAP-09" in phase_by_id[aid].get("candidate_phase_targets", [])],
         "catalog_asset_ids": [aid for aid in all_ticket_ids if "PHCAP-09" in phase_by_id[aid].get("candidate_phase_targets", [])],
-        "interpretation": "all nine ticket-path assets are candidate joins; only three are expanded with source spans in this bounded candidate",
+        "interpretation": PHCAP_09_INTERPRETATION,
+        "interpretation_sha256": sha(PHCAP_09_INTERPRETATION.encode("utf-8")),
     },
 ]
 
@@ -319,7 +328,7 @@ inventory = {
     },
     "base": {
         "repository": "HELIX-HARNESS",
-        "commit": "b27e61f079edf64eeddc43eb8095159b19730b94",
+        "commit": "1d7f9a18dd89745b0ed0b9d6d3ed0f9437e47dff",
         "branch": "audit/phcap08-09-wbs-ticket-static",
         "origin": "origin/main",
         "worktree": "/home/tenni/.helix-worktrees/phcap08-09-wbs-ticket-static",
@@ -455,7 +464,8 @@ inventory = {
         "consumer_closure_observed": 0,
         "legacy_execution_flags_all_false": True,
         "current_l2_l11_execution": "all referenced L2/L11 docs remain draft/freeze_blocking and acceptance text says unexecuted",
-        "interpretation": "failure/consumer text is historical candidate evidence only; no current failure receipt, consumer closure, implementation, acceptance or pass is generated",
+        "interpretation": FAILURE_CONSUMER_INTERPRETATION,
+        "interpretation_sha256": sha(FAILURE_CONSUMER_INTERPRETATION.encode("utf-8")),
     },
     "unresolved": [
         "WBS語彙と旧PLAN/current-location/roadmap/stateのsemantic equivalence",
