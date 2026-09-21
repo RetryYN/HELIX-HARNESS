@@ -1,0 +1,2997 @@
+{
+  "schema": "helix-scaffold-preisolation-research-semantic-diff.v1",
+  "candidate_id": "RDP-001-PREISO-RESEARCH-20PATH-SEMANTIC-DIFF",
+  "candidate_kind": "research_premise",
+  "status": "candidate_pending_semantic_equivalence_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "comparison": {
+    "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "method": "read-only Git object bytes; exact changed hunk spans and UTF-8 SHA-256",
+    "old_runtime_test_ci_execution": false,
+    "full_diff_file_count": 400,
+    "full_diff_hunk_count": 492,
+    "prior_reviewed_scope_file_count": 24,
+    "prior_reviewed_scope_hunk_count": 91,
+    "residual_before_current_selection_file_count": 376,
+    "residual_before_current_selection_hunk_count": 401,
+    "current_selected_file_count": 20,
+    "current_selected_hunk_count": 21,
+    "combined_selected_file_count": 44,
+    "combined_selected_hunk_count": 112,
+    "remaining_after_current_selection_file_count": 356,
+    "remaining_after_current_selection_hunk_count": 380,
+    "prior_reviewed_scope": {
+      "request_ids": [
+        "GUI-1934-REVIEW-02",
+        "SCF-B-0007",
+        "SCF-B-0009"
+      ],
+      "integration_ref": "PR-1943",
+      "source_revision_item_ids": [
+        "PREISO-REV-000001",
+        "PREISO-REV-000002",
+        "PREISO-REV-000015",
+        "PREISO-REV-000016",
+        "PREISO-REV-000026",
+        "PREISO-REV-000060",
+        "PREISO-REV-000003",
+        "PREISO-REV-000004",
+        "PREISO-REV-000005",
+        "PREISO-REV-000006",
+        "PREISO-REV-000007",
+        "PREISO-REV-000008",
+        "PREISO-REV-000009",
+        "PREISO-REV-000010",
+        "PREISO-REV-000011",
+        "PREISO-REV-000012",
+        "PREISO-REV-000013",
+        "PREISO-REV-000014",
+        "PREISO-REV-000017",
+        "PREISO-REV-000018",
+        "PREISO-REV-000019",
+        "PREISO-REV-000020",
+        "PREISO-REV-000021",
+        "PREISO-REV-000022"
+      ],
+      "file_count": 24,
+      "hunk_count": 91
+    }
+  },
+  "diff_scope": {
+    "diff_scope": "selected_source_items_only",
+    "scope_note": "PR #1943で統合された先行review済み24 path／91 hunkと重複しない今回20 path／21 hunkをresearch-premise selected candidateとして保持する。",
+    "selected_source_revision_item_ids": [
+      "PREISO-REV-000023",
+      "PREISO-REV-000024",
+      "PREISO-REV-000025",
+      "PREISO-REV-000027",
+      "PREISO-REV-000028",
+      "PREISO-REV-000029",
+      "PREISO-REV-000030",
+      "PREISO-REV-000031",
+      "PREISO-REV-000032",
+      "PREISO-REV-000033",
+      "PREISO-REV-000034",
+      "PREISO-REV-000035",
+      "PREISO-REV-000036",
+      "PREISO-REV-000037",
+      "PREISO-REV-000038",
+      "PREISO-REV-000039",
+      "PREISO-REV-000040",
+      "PREISO-REV-000041",
+      "PREISO-REV-000042",
+      "PREISO-REV-000043"
+    ],
+    "prior_reviewed_source_revision_item_ids": [
+      "PREISO-REV-000001",
+      "PREISO-REV-000002",
+      "PREISO-REV-000015",
+      "PREISO-REV-000016",
+      "PREISO-REV-000026",
+      "PREISO-REV-000060",
+      "PREISO-REV-000003",
+      "PREISO-REV-000004",
+      "PREISO-REV-000005",
+      "PREISO-REV-000006",
+      "PREISO-REV-000007",
+      "PREISO-REV-000008",
+      "PREISO-REV-000009",
+      "PREISO-REV-000010",
+      "PREISO-REV-000011",
+      "PREISO-REV-000012",
+      "PREISO-REV-000013",
+      "PREISO-REV-000014",
+      "PREISO-REV-000017",
+      "PREISO-REV-000018",
+      "PREISO-REV-000019",
+      "PREISO-REV-000020",
+      "PREISO-REV-000021",
+      "PREISO-REV-000022"
+    ],
+    "candidate_kind": "research_premise"
+  },
+  "classification_counts": {
+    "research_premise": 21,
+    "unresolved": 0
+  },
+  "source_items": [
+    {
+      "source_revision_item_id": "PREISO-REV-000023",
+      "source_path": "docs/governance/candidates/helix-concept-v4-requirements.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "ea763e016421e6f100878fbc2137dc6c106fd2ca",
+      "baseline_file_sha256": "5ef79685facb3c0641ddd5b9ff716ba5e1043ba931217f9ce73904ecd948136e",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "205100b4c137c3bd9d852d4c8f15eb633590409b",
+      "pre_isolation_file_sha256": "1e94e78d52fc6f226ac98c501da176b0fa33b57c298fb28ce561178de66a4c76",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requirements.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "candidate_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-001"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-6F9EA1BA29C41A6DD329",
+        "source_sha256": "1e94e78d52fc6f226ac98c501da176b0fa33b57c298fb28ce561178de66a4c76",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0830",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-01",
+          "PHCAP-17",
+          "PHCAP-19"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000024",
+      "source_path": "docs/governance/candidates/helix-concept-v4.0.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "81bdde75c82b81252a4da2a2e86f1199621282b7",
+      "baseline_file_sha256": "37e76f1a62a9a5bf8883505fb4487dbb443ce489d9b3bd08b8e6b71d8ef38f8a",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "2957736c46b925cd1249b0c2040c0ab256864af6",
+      "pre_isolation_file_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "candidate_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-002"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-653A097F9C9EE51F6FDD",
+        "source_sha256": "8c492aae7a3c2f2c27dd24794d2ba4c7a9fc025737fa7ea61215b3b6658a5e59",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0831",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-01",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000025",
+      "source_path": "docs/governance/helix-harness-concept_v3.1.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "fcf3ee7b42dc250e3953c69c4251c7cbf137b009",
+      "baseline_file_sha256": "c1af2263304804a330f475a6f0ee91599f925d96e41cfb3d1a36855f7bc3f872",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "c0df8c89a8aa3bc5f159ad6c561437ac769a29f7",
+      "pre_isolation_file_sha256": "b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "core_upstream_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-003",
+        "RDP001-RESEARCH-DIFF-004"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+        "source_sha256": "b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0953",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-01",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000027",
+      "source_path": "docs/plans/PLAN-L3-1358-three-lane-capacity-profile-v05.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "2769f4ea8e94f4044eb585f4c398d22b9b2cf48d",
+      "baseline_file_sha256": "0aa06c4bdabeeebba33f41e26f3642001ad1ee3fe7b15082ff39cfc85a3ea462",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "1f377bc137674a25210c4c263e00ee007cd85fb0",
+      "pre_isolation_file_sha256": "8627e11ccf74c7714c890938aa0607a350aa5c738c156f2910792e041c46c3bd",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-1358-three-lane-capacity-profile-v05.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-005"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-04E997DE6B259E260488",
+        "source_sha256": "8627e11ccf74c7714c890938aa0607a350aa5c738c156f2910792e041c46c3bd",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1081",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000028",
+      "source_path": "docs/plans/PLAN-L3-1500-concept-vision-intake.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "85ad831e1962233e11e1eb31af81827e98f58acb",
+      "baseline_file_sha256": "b17bebbaf330009532687d0f8e7945f33a4d8afbe30e07a7cb689c0f3784d276",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "a0fc9a520a9875170a0c91bd65dd6306c8852b85",
+      "pre_isolation_file_sha256": "6d4a4ba67d3a0ebe31e78914fefef908b0ec3b481b10d0ba823daa132ae88917",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-1500-concept-vision-intake.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-006"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-6FB22EE201304559F0E1",
+        "source_sha256": "6d4a4ba67d3a0ebe31e78914fefef908b0ec3b481b10d0ba823daa132ae88917",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1084",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-01",
+          "PHCAP-02",
+          "PHCAP-14"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000029",
+      "source_path": "docs/plans/PLAN-L3-1594-skill-mechanism-migration.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "bd996242c0688e61b4fbab923c0df9ad32c4beb3",
+      "baseline_file_sha256": "29d6c06f5d7c706be8bc1609f6c6dac6b9a6e179ccc1e42adf53e2dbd48f2776",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "97b475927bfda0acb7b1cbdba8068d44307f21e7",
+      "pre_isolation_file_sha256": "9182653a58fac446239b41fb7e3c173304ab52ab32b2a9c6ffd1550d1a2b201b",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-1594-skill-mechanism-migration.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-007"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-4D464AB09D5EC0D1A071",
+        "source_sha256": "9182653a58fac446239b41fb7e3c173304ab52ab32b2a9c6ffd1550d1a2b201b",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1085",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000030",
+      "source_path": "docs/plans/PLAN-L3-1595-rule-derivation.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "7679c22356ae252b9ff8e352f44172f3391a57c9",
+      "baseline_file_sha256": "7d13b00f26a2c516ae27aad51537cfc08639d5c73529a74195cc9084be014246",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "8b101797a1de02a62d9111870c6fab2c93605246",
+      "pre_isolation_file_sha256": "dcf2fd4820a129eb3a3c4327ee670e440246d4a8d2bceca44d846e0e0780dc26",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-1595-rule-derivation.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-008"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-9B7121D8FDACACC51F86",
+        "source_sha256": "dcf2fd4820a129eb3a3c4327ee670e440246d4a8d2bceca44d846e0e0780dc26",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1086",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000031",
+      "source_path": "docs/plans/PLAN-L3-1608-instruction-path-change-resilience.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "35077972f5941d41a4ccb27f3b324992eddb4f66",
+      "baseline_file_sha256": "f46894a9e2e76313d7cf03b2373383feb4c930be2f54945897624aa616a79246",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "f1b1ce0bb494c20bf0f609c2683c780ec8fedb4f",
+      "pre_isolation_file_sha256": "10f2a06c29e1b9ef6e0dcb68b7edef31d203b0fab4eed7b65dfe4f2d01b81675",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-1608-instruction-path-change-resilience.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-009"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-C8B8B8B87AD738DFE106",
+        "source_sha256": "10f2a06c29e1b9ef6e0dcb68b7edef31d203b0fab4eed7b65dfe4f2d01b81675",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1088",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000032",
+      "source_path": "docs/plans/PLAN-L3-1610-conversation-lifetime-reconstruction.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "15f9efb27a957e61d5e9031ccee36ee43e3f3dd2",
+      "baseline_file_sha256": "9a0822ec1fc9c3fbfd46fbe98ae8ba0b4e466ba0eb194fff79f6378e7f2e4563",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "07cf186fe249611f7a71fd9fe25f5e5579d7b72c",
+      "pre_isolation_file_sha256": "3d6632ba1f4d0310bd26c8ac0c4e0f8eff4f70901287d0abb78497d0544e4c6f",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-1610-conversation-lifetime-reconstruction.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-010"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-FE666FA160A042C8E291",
+        "source_sha256": "3d6632ba1f4d0310bd26c8ac0c4e0f8eff4f70901287d0abb78497d0544e4c6f",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1089",
+        "phase_classification_status": "unresolved_with_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000033",
+      "source_path": "docs/plans/PLAN-L3-1622-producer-provenance-separation.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "2ef88b193007d53bdbee23d673c7c9d045fddbf7",
+      "baseline_file_sha256": "30673cc68487703307de9e57aaada71c6c0d438750983d78e2ca502bb9da8608",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "eb2db229fc99c9c79f8fad84db049ff6eeba4946",
+      "pre_isolation_file_sha256": "daea021e9f9aafe25837934bde4d10065676b76502fcd8e0523646ebaef95526",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-1622-producer-provenance-separation.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-011"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-D4CB3FE6A76F3A54FED1",
+        "source_sha256": "daea021e9f9aafe25837934bde4d10065676b76502fcd8e0523646ebaef95526",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1090",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000034",
+      "source_path": "docs/plans/PLAN-L3-1639-bugbot-generation.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "1a86b5c0be15b2c2031a9839516dec491338bb12",
+      "baseline_file_sha256": "a5cfb869aba3c0e2c3eaa5e0c07f7aa564b50bd1c2d188e3beb5ffbe168086cd",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "ebe783aea6cbfb159da608e4e6e4b4c7818a065c",
+      "pre_isolation_file_sha256": "a779b2784ef428770019bced341f828b6063955e7a7731344bfa2ce0b34db430",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-1639-bugbot-generation.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-012"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-3E2982D2FB2F28CE1CE7",
+        "source_sha256": "a779b2784ef428770019bced341f828b6063955e7a7731344bfa2ce0b34db430",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1091",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000035",
+      "source_path": "docs/plans/PLAN-L3-1642-bugbot-bounded-repair.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "063c74bc1d9006c85f1681cb1d3ca935d0994c3f",
+      "baseline_file_sha256": "0c7d02129fbed2a61b6652cb8a83fea548975469303eec77703570b2478c66cc",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "a4dbdbedfad78a8b753d17923e24d07ae417a43d",
+      "pre_isolation_file_sha256": "b0991311682f25d96ea00ab4f116a300ac666fda7430abf683a8c841d577f885",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-1642-bugbot-bounded-repair.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-013"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-0718F12FEDD9DA6EE4C3",
+        "source_sha256": "b0991311682f25d96ea00ab4f116a300ac666fda7430abf683a8c841d577f885",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1092",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000036",
+      "source_path": "docs/plans/PLAN-L3-54-distribution-package-release.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "59bda6bb4460d9bf5df6baa53129959bae2b8494",
+      "baseline_file_sha256": "38de0636c7c6d414325036cf4e82d81f2b7f63560bea693a301975ec5901e81f",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "5e13f34df55d55fa7f5980d35a8d99ccb4200831",
+      "pre_isolation_file_sha256": "303ac17fed3a517f9b6c335e9d3b27d443134035ed6b638eb68265328c5b786a",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-54-distribution-package-release.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-014"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-6889BC7AD6834CB45263",
+        "source_sha256": "303ac17fed3a517f9b6c335e9d3b27d443134035ed6b638eb68265328c5b786a",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1128",
+        "phase_classification_status": "classified_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-14"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000037",
+      "source_path": "docs/plans/PLAN-L3-60-workflow-catalog-projection-authority.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "89035346be393ae4a137a9ba4c7261ab67f80ad3",
+      "baseline_file_sha256": "ce6fba23463096da36fc031e49ff7fc99750d1a7a517dadae8417983b004f60b",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "e878406d43511afbb64ec0a54fdccf257df1aa7c",
+      "pre_isolation_file_sha256": "95e29b0fa6bdd0dc8f71c258ee68e18adadca2a1846bb00e441dfa5f3724b223",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-60-workflow-catalog-projection-authority.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-015"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-680E0DD1CDA4159E9344",
+        "source_sha256": "95e29b0fa6bdd0dc8f71c258ee68e18adadca2a1846bb00e441dfa5f3724b223",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1134",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-03",
+          "PHCAP-04",
+          "PHCAP-06"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000038",
+      "source_path": "docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "ec3a069edda5587ed25c0dbd01ef3015b96b13cc",
+      "baseline_file_sha256": "b58be77377eadaa38998bad4c2e7ec9a430ded74a9064c41a22a86a0380a1c83",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "ea51bc54d27efd8693e8c4cf09cac96b1b1fb83a",
+      "pre_isolation_file_sha256": "767ac28f97a075f0dc57bea186e2fac01af514bd1db6fdd0f745042bc990a95a",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-016"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-302EFAACBD5E9A90E653",
+        "source_sha256": "767ac28f97a075f0dc57bea186e2fac01af514bd1db6fdd0f745042bc990a95a",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1135",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-04",
+          "PHCAP-06",
+          "PHCAP-16"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000039",
+      "source_path": "docs/plans/PLAN-L3-62-security-capability-broker-authority.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "5e46d489b8077ae866191e3a0668e22133027517",
+      "baseline_file_sha256": "ad7a0c67401dfc17d78581a8eb417981c9e394d6a05f925142de4dd1f376e414",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "14dd54cd76e67eff54f7f0c14ba6ba2ad5f61649",
+      "pre_isolation_file_sha256": "ab38056d506369c383dab4ade8ad8de0719c273216cecdbf002ee5756196d3af",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-62-security-capability-broker-authority.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-017"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-AE2D8BC488A4A87E9728",
+        "source_sha256": "ab38056d506369c383dab4ade8ad8de0719c273216cecdbf002ee5756196d3af",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1136",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-04",
+          "PHCAP-06"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000040",
+      "source_path": "docs/plans/PLAN-L3-63-codex-native-worker-routing.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "e1e91c7838474646ada101c92e29a3966b88c764",
+      "baseline_file_sha256": "49dc1c051727ce66f4b382c6a2c9f6d16ddec3aa653112abd5299c12a08b0a77",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "f9394d95e14951b7101846ab48cb265257f62ba7",
+      "pre_isolation_file_sha256": "e750619f9564a7502a9e6f3c9394ae38b7cfdbda32d068edc855354ed4a73dbd",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-63-codex-native-worker-routing.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-018"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-C80617FDF6B486254F3A",
+        "source_sha256": "e750619f9564a7502a9e6f3c9394ae38b7cfdbda32d068edc855354ed4a73dbd",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1137",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-03",
+          "PHCAP-10"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000041",
+      "source_path": "docs/plans/PLAN-L3-64-codex-native-worker-project-hook-authority.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "2b7722330d60d65733961f39b7adccb970af4644",
+      "baseline_file_sha256": "15f8c420dcb8953eba3fcb4e75ce6c8097f421228b218d05c845c69f4250f41b",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "876cbae91e49a9f549795bf5e25340a30b6fe515",
+      "pre_isolation_file_sha256": "c36bc37c5b4450a4964d9f2a12e3b11f7b37312ded8b1dec9c4a2807fcb07679",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-64-codex-native-worker-project-hook-authority.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-019"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-8A8E08A3280751FB3FA4",
+        "source_sha256": "c36bc37c5b4450a4964d9f2a12e3b11f7b37312ded8b1dec9c4a2807fcb07679",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1138",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-03",
+          "PHCAP-10"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000042",
+      "source_path": "docs/plans/PLAN-L3-65-distribution-repository-devos-authority.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "ef80e201bcbc68cc21cf84b97704d12fd03e4379",
+      "baseline_file_sha256": "72caf5b004c6498e268dc09db8db08afb6b187f4b93c81dbbda7d040c2f2fcd7",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "7f4ce8ca3bc7a1cbe2f822b38af9b087c9f68e4a",
+      "pre_isolation_file_sha256": "524b7b239b1013ec95ed0bf0af503542b3aa250fade346faa57765ee81a15c87",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-65-distribution-repository-devos-authority.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-020"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-B370E84871344184AA60",
+        "source_sha256": "524b7b239b1013ec95ed0bf0af503542b3aa250fade346faa57765ee81a15c87",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1139",
+        "phase_classification_status": "classified_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-14"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000043",
+      "source_path": "docs/plans/PLAN-L3-659-commercial-license-policy.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "663c10af0f09bd7332b35c0a0b55561a1b166037",
+      "baseline_file_sha256": "a8e2dbfb98b234824a91777ce1d6d1ecb558cf99f411f730ac5e76064ef71675",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "954e40a6a23fbd8b794bedfb60858fa9ac16c2f3",
+      "pre_isolation_file_sha256": "b44b9c9876449d4bbca0ed0665e297b03b31e7c5441e3f75b2d34a3221166de1",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-659-commercial-license-policy.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "legacy_plan_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-RESEARCH-DIFF-021"
+      ],
+      "candidate_kind": "research_premise",
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-A47AA983F4D8997A3BE5",
+        "source_sha256": "b44b9c9876449d4bbca0ed0665e297b03b31e7c5441e3f75b2d34a3221166de1",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-1140",
+        "phase_classification_status": "unresolved_with_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-14"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    }
+  ],
+  "fragments": [
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-001",
+      "source_revision_item_id": "PREISO-REV-000023",
+      "source_path": "docs/governance/candidates/helix-concept-v4-requirements.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/governance/candidates/helix-concept-v4-requirements.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 0,
+        "end_line": -1,
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "exact_text": ""
+      },
+      "pre_isolation": {
+        "start_line": 1,
+        "end_line": 12,
+        "sha256": "sha256:a13d8ea457cda037f26cc65c6b0e11f84f2959354420ace7c22768089634dfb0",
+        "exact_text": "---\nstatus: draft_candidate\nauthority_status: approved_pending_canonical_promotion\ncanonical_vmodel: L1-L12\ncanonical_layer: L3\ncanonical_pair: L10\napproval_record_id: L3-PO-1496-001\napproval_scope: candidate_exact_set_only\napproval_plan: docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md\napproved_body_sha256: 5ef79685facb3c0641ddd5b9ff716ba5e1043ba931217f9ce73904ecd948136e\nauthority_note: \"本文は候補承認対象の18要件を保持する。未承認表記は承認前の記録であり、現在は候補承認済み・canonical昇格待ち。L2合意・IR admission・runtime適用済みとは扱わない。\"\n---\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-001",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-002",
+      "source_revision_item_id": "PREISO-REV-000024",
+      "source_path": "docs/governance/candidates/helix-concept-v4.0.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/governance/candidates/helix-concept-v4.0.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 4,
+        "end_line": 3,
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "exact_text": ""
+      },
+      "pre_isolation": {
+        "start_line": 5,
+        "end_line": 10,
+        "sha256": "sha256:0a3811c38c77fa4aec5615a68e49b9e7b2529f32c6ddeef0bdf299e45ad24125",
+        "exact_text": "authority_status: approved_pending_canonical_promotion\napproval_record_id: L3-PO-1496-001\napproval_scope: candidate_exact_set_only\napproval_plan: docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md\napproved_body_sha256: 9b6ee7a9f9ed16ecc82e1dd4a5d06601cc0cb313fa03daa5887cfe8772a2e8ea\nauthority_note: \"本文の未承認・v3.1 current表記は承認前原稿の履歴。PLAN-L3-84の候補承認と2026-09-13 startup是正に従い、v4を新要求の必読入力とする。canonical promotion・IR admission・runtime適用は未完了であり、このmetadataで完了を主張しない。\"\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-RESEARCH-DIFF-002-SU-01",
+          "source_fragment_id": "RDP001-RESEARCH-DIFF-002",
+          "source_revision_item_id": "PREISO-REV-000024",
+          "source_path": "docs/governance/candidates/helix-concept-v4.0.md",
+          "semantic_status": "review_only_candidate",
+          "candidate_kind": "unresolved",
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "meaning_candidate": "原文spanに接地したresearch-premise review-only分解候補であり、独立した意味atom、要求採否、research採択を表さない。",
+          "retained_conditions": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "retained_negative_ids": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "questions": [
+            "このspanがresearch premiseとして独立するか、既存要求・計画・責務へ戻すべきかを上流reviewで確認する。"
+          ],
+          "source_span": {
+            "start_line": 5,
+            "end_line": 10,
+            "sha256": "sha256:0a3811c38c77fa4aec5615a68e49b9e7b2529f32c6ddeef0bdf299e45ad24125",
+            "exact_text": "authority_status: approved_pending_canonical_promotion\napproval_record_id: L3-PO-1496-001\napproval_scope: candidate_exact_set_only\napproval_plan: docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md\napproved_body_sha256: 9b6ee7a9f9ed16ecc82e1dd4a5d06601cc0cb313fa03daa5887cfe8772a2e8ea\nauthority_note: \"本文の未承認・v3.1 current表記は承認前原稿の履歴。PLAN-L3-84の候補承認と2026-09-13 startup是正に従い、v4を新要求の必読入力とする。canonical promotion・IR admission・runtime適用は未完了であり、このmetadataで完了を主張しない。\"\n",
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a"
+          }
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-002",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-003",
+      "source_revision_item_id": "PREISO-REV-000025",
+      "source_path": "docs/governance/helix-harness-concept_v3.1.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/governance/helix-harness-concept_v3.1.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 114,
+        "end_line": 114,
+        "sha256": "sha256:4a113dc7e1eb28319449c3e9b73df704e69b5975d8880798eecbe959fffbfa0f",
+        "exact_text": "> - 「チーム共有 audit」は単一開発者の **GitHub 正本 + harness.db** 共有（[[helix-orchestration-memory]] P7 2 層メモリ）として読む。\n"
+      },
+      "pre_isolation": {
+        "start_line": 114,
+        "end_line": 114,
+        "sha256": "sha256:68fb189d6554c25926ccc2936b6c40c11e1a1720b5ec997a0c5cfbb57c21e9e3",
+        "exact_text": "> - 「チーム共有 audit」は単一開発者が **GitHub上のCI・PR証拠 + harness.dbの状態projection** を共有するものとして読む。要求の意味正本は対象別のローカル要求文書・指定JSONとする。\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-RESEARCH-DIFF-003-SU-01",
+          "source_fragment_id": "RDP001-RESEARCH-DIFF-003",
+          "source_revision_item_id": "PREISO-REV-000025",
+          "source_path": "docs/governance/helix-harness-concept_v3.1.md",
+          "semantic_status": "review_only_candidate",
+          "candidate_kind": "unresolved",
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "meaning_candidate": "原文spanに接地したresearch-premise review-only分解候補であり、独立した意味atom、要求採否、research採択を表さない。",
+          "retained_conditions": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "retained_negative_ids": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "questions": [
+            "このspanがresearch premiseとして独立するか、既存要求・計画・責務へ戻すべきかを上流reviewで確認する。"
+          ],
+          "source_span": {
+            "start_line": 114,
+            "end_line": 114,
+            "sha256": "sha256:68fb189d6554c25926ccc2936b6c40c11e1a1720b5ec997a0c5cfbb57c21e9e3",
+            "exact_text": "> - 「チーム共有 audit」は単一開発者が **GitHub上のCI・PR証拠 + harness.dbの状態projection** を共有するものとして読む。要求の意味正本は対象別のローカル要求文書・指定JSONとする。\n",
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a"
+          }
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-003",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-004",
+      "source_revision_item_id": "PREISO-REV-000025",
+      "source_path": "docs/governance/helix-harness-concept_v3.1.md",
+      "hunk_ordinal_for_source": 2,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/governance/helix-harness-concept_v3.1.md のGit hunk 2 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 144,
+        "end_line": 144,
+        "sha256": "sha256:ffe0ad1642d057c90da47010a729c2213e9dfb5c7117b62508dfeb0fd6044b91",
+        "exact_text": "チーム共有の失敗 corpus はローカル作業ログではなく、GitHub を正本にする。PR / GitHub Actions / Checks / job summary / artifact / label / review comment から失敗 event を pull し、同種失敗の反復、失敗種別、再発防止の有無を集計する。ローカル `failure_log.jsonl` は個人 advisory に留め、組織としての学習・escalation・regression 化は GitHub 上の証跡から行う。\n"
+      },
+      "pre_isolation": {
+        "start_line": 144,
+        "end_line": 144,
+        "sha256": "sha256:946f1bb673bb2f8dec999014d716726cd084b77965f6abc78071957e20552fa3",
+        "exact_text": "共有する失敗証拠はPR / GitHub Actions / Checks / job summary / artifact / label / review commentから取得し、対象HEAD・実行世代と結びつける。同種失敗の反復、失敗種別、再発防止の有無は、出典を保持して集計する。ローカル `failure_log.jsonl` は個人advisoryに留める。GitHub上の証拠から要求の意味・採否・完了を生成せず、改善候補を対象別のローカル要求正本へ戻して採否する。\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-004",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-005",
+      "source_revision_item_id": "PREISO-REV-000027",
+      "source_path": "docs/plans/PLAN-L3-1358-three-lane-capacity-profile-v05.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-1358-three-lane-capacity-profile-v05.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-RESEARCH-DIFF-005-SU-01",
+          "source_fragment_id": "RDP001-RESEARCH-DIFF-005",
+          "source_revision_item_id": "PREISO-REV-000027",
+          "source_path": "docs/plans/PLAN-L3-1358-three-lane-capacity-profile-v05.md",
+          "semantic_status": "review_only_candidate",
+          "candidate_kind": "unresolved",
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "meaning_candidate": "原文spanに接地したresearch-premise review-only分解候補であり、独立した意味atom、要求採否、research採択を表さない。",
+          "retained_conditions": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "retained_negative_ids": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "questions": [
+            "このspanがresearch premiseとして独立するか、既存要求・計画・責務へ戻すべきかを上流reviewで確認する。"
+          ],
+          "source_span": {
+            "start_line": 22,
+            "end_line": 22,
+            "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+            "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a"
+          }
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-005",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-006",
+      "source_revision_item_id": "PREISO-REV-000028",
+      "source_path": "docs/plans/PLAN-L3-1500-concept-vision-intake.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-1500-concept-vision-intake.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-006",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-007",
+      "source_revision_item_id": "PREISO-REV-000029",
+      "source_path": "docs/plans/PLAN-L3-1594-skill-mechanism-migration.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-1594-skill-mechanism-migration.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-RESEARCH-DIFF-007-SU-01",
+          "source_fragment_id": "RDP001-RESEARCH-DIFF-007",
+          "source_revision_item_id": "PREISO-REV-000029",
+          "source_path": "docs/plans/PLAN-L3-1594-skill-mechanism-migration.md",
+          "semantic_status": "review_only_candidate",
+          "candidate_kind": "unresolved",
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "meaning_candidate": "原文spanに接地したresearch-premise review-only分解候補であり、独立した意味atom、要求採否、research採択を表さない。",
+          "retained_conditions": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "retained_negative_ids": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "questions": [
+            "このspanがresearch premiseとして独立するか、既存要求・計画・責務へ戻すべきかを上流reviewで確認する。"
+          ],
+          "source_span": {
+            "start_line": 22,
+            "end_line": 22,
+            "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+            "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a"
+          }
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-007",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-008",
+      "source_revision_item_id": "PREISO-REV-000030",
+      "source_path": "docs/plans/PLAN-L3-1595-rule-derivation.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-1595-rule-derivation.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-008",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-009",
+      "source_revision_item_id": "PREISO-REV-000031",
+      "source_path": "docs/plans/PLAN-L3-1608-instruction-path-change-resilience.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-1608-instruction-path-change-resilience.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-RESEARCH-DIFF-009-SU-01",
+          "source_fragment_id": "RDP001-RESEARCH-DIFF-009",
+          "source_revision_item_id": "PREISO-REV-000031",
+          "source_path": "docs/plans/PLAN-L3-1608-instruction-path-change-resilience.md",
+          "semantic_status": "review_only_candidate",
+          "candidate_kind": "unresolved",
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "meaning_candidate": "原文spanに接地したresearch-premise review-only分解候補であり、独立した意味atom、要求採否、research採択を表さない。",
+          "retained_conditions": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "retained_negative_ids": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "questions": [
+            "このspanがresearch premiseとして独立するか、既存要求・計画・責務へ戻すべきかを上流reviewで確認する。"
+          ],
+          "source_span": {
+            "start_line": 12,
+            "end_line": 12,
+            "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+            "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a"
+          }
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-009",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-010",
+      "source_revision_item_id": "PREISO-REV-000032",
+      "source_path": "docs/plans/PLAN-L3-1610-conversation-lifetime-reconstruction.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-1610-conversation-lifetime-reconstruction.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-010",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-011",
+      "source_revision_item_id": "PREISO-REV-000033",
+      "source_path": "docs/plans/PLAN-L3-1622-producer-provenance-separation.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-1622-producer-provenance-separation.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-RESEARCH-DIFF-011-SU-01",
+          "source_fragment_id": "RDP001-RESEARCH-DIFF-011",
+          "source_revision_item_id": "PREISO-REV-000033",
+          "source_path": "docs/plans/PLAN-L3-1622-producer-provenance-separation.md",
+          "semantic_status": "review_only_candidate",
+          "candidate_kind": "unresolved",
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "meaning_candidate": "原文spanに接地したresearch-premise review-only分解候補であり、独立した意味atom、要求採否、research採択を表さない。",
+          "retained_conditions": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "retained_negative_ids": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "questions": [
+            "このspanがresearch premiseとして独立するか、既存要求・計画・責務へ戻すべきかを上流reviewで確認する。"
+          ],
+          "source_span": {
+            "start_line": 12,
+            "end_line": 12,
+            "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+            "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a"
+          }
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-011",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-012",
+      "source_revision_item_id": "PREISO-REV-000034",
+      "source_path": "docs/plans/PLAN-L3-1639-bugbot-generation.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-1639-bugbot-generation.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 25,
+        "end_line": 25,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 25,
+        "end_line": 25,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-012",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-013",
+      "source_revision_item_id": "PREISO-REV-000035",
+      "source_path": "docs/plans/PLAN-L3-1642-bugbot-bounded-repair.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-1642-bugbot-bounded-repair.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-RESEARCH-DIFF-013-SU-01",
+          "source_fragment_id": "RDP001-RESEARCH-DIFF-013",
+          "source_revision_item_id": "PREISO-REV-000035",
+          "source_path": "docs/plans/PLAN-L3-1642-bugbot-bounded-repair.md",
+          "semantic_status": "review_only_candidate",
+          "candidate_kind": "unresolved",
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "meaning_candidate": "原文spanに接地したresearch-premise review-only分解候補であり、独立した意味atom、要求採否、research採択を表さない。",
+          "retained_conditions": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "retained_negative_ids": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "questions": [
+            "このspanがresearch premiseとして独立するか、既存要求・計画・責務へ戻すべきかを上流reviewで確認する。"
+          ],
+          "source_span": {
+            "start_line": 22,
+            "end_line": 22,
+            "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+            "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a"
+          }
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-013",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-014",
+      "source_revision_item_id": "PREISO-REV-000036",
+      "source_path": "docs/plans/PLAN-L3-54-distribution-package-release.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-54-distribution-package-release.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-014",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-015",
+      "source_revision_item_id": "PREISO-REV-000037",
+      "source_path": "docs/plans/PLAN-L3-60-workflow-catalog-projection-authority.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-60-workflow-catalog-projection-authority.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:d908a60e37ae4ce2bf241f7e2f45f30626f1603601e6eb6f1552226605314fc9",
+        "exact_text": "  registry_source_digest: \"sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\"\n"
+      },
+      "pre_isolation": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:e5f502c7d6dab8d36f9a9b5dd49a5ead4eb7666e7906eac99b0c8991f8d96c5c",
+        "exact_text": "  registry_source_digest: \"sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\"\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-RESEARCH-DIFF-015-SU-01",
+          "source_fragment_id": "RDP001-RESEARCH-DIFF-015",
+          "source_revision_item_id": "PREISO-REV-000037",
+          "source_path": "docs/plans/PLAN-L3-60-workflow-catalog-projection-authority.md",
+          "semantic_status": "review_only_candidate",
+          "candidate_kind": "unresolved",
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "meaning_candidate": "原文spanに接地したresearch-premise review-only分解候補であり、独立した意味atom、要求採否、research採択を表さない。",
+          "retained_conditions": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "retained_negative_ids": [
+            "RP-NEG-DIGEST",
+            "RP-NEG-HUNK-COVERAGE",
+            "RP-NEG-LEGACY-EXECUTION",
+            "RP-NEG-PHASE-CLOSURE"
+          ],
+          "questions": [
+            "このspanがresearch premiseとして独立するか、既存要求・計画・責務へ戻すべきかを上流reviewで確認する。"
+          ],
+          "source_span": {
+            "start_line": 12,
+            "end_line": 12,
+            "sha256": "sha256:e5f502c7d6dab8d36f9a9b5dd49a5ead4eb7666e7906eac99b0c8991f8d96c5c",
+            "exact_text": "  registry_source_digest: \"sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\"\n",
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a"
+          }
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-015",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-016",
+      "source_revision_item_id": "PREISO-REV-000038",
+      "source_path": "docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-61-github-workflow-guidance-authority.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-016",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-017",
+      "source_revision_item_id": "PREISO-REV-000039",
+      "source_path": "docs/plans/PLAN-L3-62-security-capability-broker-authority.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-62-security-capability-broker-authority.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-017",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-018",
+      "source_revision_item_id": "PREISO-REV-000040",
+      "source_path": "docs/plans/PLAN-L3-63-codex-native-worker-routing.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-63-codex-native-worker-routing.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-018",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-019",
+      "source_revision_item_id": "PREISO-REV-000041",
+      "source_path": "docs/plans/PLAN-L3-64-codex-native-worker-project-hook-authority.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-64-codex-native-worker-project-hook-authority.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-019",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-020",
+      "source_revision_item_id": "PREISO-REV-000042",
+      "source_path": "docs/plans/PLAN-L3-65-distribution-repository-devos-authority.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-65-distribution-repository-devos-authority.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 12,
+        "end_line": 12,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-020",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-RESEARCH-DIFF-021",
+      "source_revision_item_id": "PREISO-REV-000043",
+      "source_path": "docs/plans/PLAN-L3-659-commercial-license-policy.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "research-premise候補: docs/plans/PLAN-L3-659-commercial-license-policy.md のGit hunk 1 はbaselineとpre-isolationのsource bytes／配置を変更している。researchとしての意味、適用条件、consumer、採否は未確認で、既存要求へ自動昇格しない。",
+      "baseline": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": [
+        "RP-NEG-DIGEST",
+        "RP-NEG-HUNK-COVERAGE",
+        "RP-NEG-LEGACY-EXECUTION",
+        "RP-NEG-PHASE-CLOSURE",
+        "RP-NEG-OWNER-UNRESOLVED",
+        "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+        "RP-NEG-ATOM-HOLD",
+        "RP-NEG-COUNTEREVIDENCE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値か、research premiseとして独立するかは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "candidate source／legacy plan／core upstreamの境界と現行Concept・製品責務の関係は未確定",
+        "research premise候補を要求・設計・実装へ直結させるとauthority境界に反する"
+      ],
+      "counterevidence": [
+        "asset／phase台帳のimplementation statusはunknownまたはnon_executable_read_only_source",
+        "consumer closureはpendingであり、legacy executionはfalseのまま",
+        "source authority／target authorityは未確定またはcandidate状態"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-RESEARCH-HOLD-RDP001-RESEARCH-DIFF-021",
+        "status": "held_as_compound_hunk",
+        "reason": "research-premise hunk classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    }
+  ],
+  "retained_negatives": [
+    {
+      "negative_id": "RP-NEG-DIGEST",
+      "meaning": "baseline／pre-isolation commit、blob OID、file digest、変更spanのいずれかを別値にするとfail-closeする。",
+      "applies_to": "all selected hunk fragments"
+    },
+    {
+      "negative_id": "RP-NEG-HUNK-COVERAGE",
+      "meaning": "選定20 pathのdiff hunkを欠落・重複・別path追加しても候補を通さない。",
+      "applies_to": "all selected hunk fragments"
+    },
+    {
+      "negative_id": "RP-NEG-LEGACY-EXECUTION",
+      "meaning": "旧runtime／test／CI／hookを実行済み、oracle、fallback、実装へ昇格させない。",
+      "applies_to": "all selected hunk fragments"
+    },
+    {
+      "negative_id": "RP-NEG-PHASE-CLOSURE",
+      "meaning": "phase候補、consumer closure、implementation statusを確定・完了へ縮退させない。",
+      "applies_to": "all selected hunk fragments"
+    },
+    {
+      "negative_id": "RP-NEG-OWNER-UNRESOLVED",
+      "meaning": "research premiseのproduct ownerを単一製品へ自動固定しない。",
+      "applies_to": "all selected hunk fragments"
+    },
+    {
+      "negative_id": "RP-NEG-AUTHORITY-NO-SUCCESSOR",
+      "meaning": "authority昇格、successor、human decision、equivalence claimを候補から生成しない。",
+      "applies_to": "all selected hunk fragments"
+    },
+    {
+      "negative_id": "RP-NEG-ATOM-HOLD",
+      "meaning": "hunk分類をsemantic atom数として扱わず、compound holdとatom count 0を維持する。",
+      "applies_to": "all selected hunk fragments"
+    },
+    {
+      "negative_id": "RP-NEG-COUNTEREVIDENCE",
+      "meaning": "Historical／unresolved asset、unknown implementation、未完了consumerを反証可能なcounterevidenceとして保持し、欠落を成功へ変換しない。",
+      "applies_to": "all selected hunk fragments"
+    }
+  ],
+  "classification_unit": "hunk_fragment",
+  "classification_counts_are_not_semantic_atom_counts": true,
+  "semantic_atomization": {
+    "status": "not_started",
+    "hunk_level_classification_only": true,
+    "semantic_atomization_complete": false,
+    "semantic_atom_count": 0,
+    "hunk_fragment_count": 21,
+    "compound_hunk_hold_count": 21,
+    "semantic_subunit_reviewed_fragment_ids": [
+      "RDP001-RESEARCH-DIFF-002",
+      "RDP001-RESEARCH-DIFF-003",
+      "RDP001-RESEARCH-DIFF-005",
+      "RDP001-RESEARCH-DIFF-007",
+      "RDP001-RESEARCH-DIFF-009",
+      "RDP001-RESEARCH-DIFF-011",
+      "RDP001-RESEARCH-DIFF-013",
+      "RDP001-RESEARCH-DIFF-015"
+    ],
+    "semantic_subunit_reviewed_fragment_count": 8,
+    "semantic_subunit_count": 8,
+    "fully_unsubdivided_fragment_count": 13,
+    "remaining_semantic_denominator": "21 research-premise hunk fragments remain non-atomic; 8 subunits are review-only decomposition candidates and do not establish semantic atom coverage",
+    "review_note": "8 source spanへ接地したreview-only候補を保持するが、semantic atom数は0であり、21 hunkをcompound holdしたままresearch premiseの意味review待ちとする。"
+  }
+}
