@@ -90,6 +90,14 @@ def source_original_ids(document_id: str, text: str) -> set[str]:
     return set()
 
 
+def span_original_ids(text: str) -> set[str]:
+    """Return every original ID expressed by one exact atom source span."""
+    return expand_compact_ids(text, "LSAC") | set(re.findall(
+        r"\b(?:LSS-FR-\d{2}|LSAT-\d{2}|HR-FR-HIL-\d{2}|HAT-HIL-\d{2}|HAC-HIL-\d{2}[a-c])\b",
+        text,
+    ))
+
+
 def fixed_blob_acceptance_sets(pair: dict[str, Any], docs: dict[str, dict[str, Any]], root: str) -> tuple[set[str], set[str], dict[str, list[str]]]:
     l3 = docs[pair["l3_document_id"]]
     l10 = docs[pair["l10_document_id"]]
@@ -271,6 +279,7 @@ def validate_inventory(inv: dict[str, Any], root: str = ROOT) -> list[str]:
                 exact = "\n".join(lines[start - 1:end]) + "\n"
                 req(span.get("exact_source_text") == exact, f"E_ATOM_EXACT_TEXT:{aid}")
                 req(atom.get("original_id") in exact, f"E_ATOM_ORIGINAL_ID:{aid}")
+                req(sorted(atom.get("original_ids", [])) == sorted(span_original_ids(exact)), f"E_ATOM_ORIGINAL_IDS_GROUNDED:{aid}")
                 req(span.get("sha256") == "sha256:" + sha_text(exact), f"E_ATOM_EXACT_SHA:{aid}")
                 req(atom.get("normalized_statement") == exact.rstrip("\n"), f"E_ATOM_NORMALIZED_TEXT:{aid}")
 

@@ -55,7 +55,7 @@
     },
     {
       "path": "scaffold/delegated-doc-007-016-030-034/README.md",
-      "sha256": "a11630b552377134eb26a7da2b4172cf448da408d1ae47c1ed2ecd904933b7ba",
+      "sha256": "a22a27f454aea314d945d4d96cfe6a8d41eb09f13907c570ad78bcf2f74b4121",
       "note": "RDP-001 candidate explanation and denominator"
     },
     {
@@ -65,13 +65,13 @@
     },
     {
       "path": "scaffold/delegated-doc-007-016-030-034/validate.py",
-      "sha256": "9488dd688e79251a1db0f950bbf3cf7588c95b3b11bad2ea5a35815193697c5e",
+      "sha256": "f663c539a863481f9d233bd87e5f66fc82f091cc835283025d42d83671041cc3",
       "note": "fail-closed static validator"
     },
     {
       "path": "scaffold/delegated-doc-007-016-030-034/selfcheck.py",
-      "sha256": "14e07a83b20d199e5eb3767fcd765fdf3b2527f7807846fe8ebbeec74d690a0f",
-      "note": "29 meaningful negative selfchecks"
+      "sha256": "53c22b46a202cad52c57ed4bde6339f3814931e2934b114a597970beecba150e",
+      "note": "32 meaningful negative selfchecks"
     }
   ],
   "role": "DELEGATED-DOC-007/016とDOC-030/034の固定source blobをlossless full coverage、原ID／atomized／unatomized partition、actor／authority／negative atom候補へ記録し、両L3/L10 parityと未解決参照、HARNESS／OS owner・consumer候補、phase／implementation unknown境界を保持する",
@@ -135,7 +135,7 @@
     ],
     "oracles": [
       "scaffold/delegated-doc-007-016-030-034/validate.py（holding、固定blob、full coverage、原ID partition、atom exact text、AC/T parity、owner／consumer／phase／implementation boundary）",
-      "scaffold/delegated-doc-007-016-030-034/selfcheck.py（closure全field、top-level整合、AC削除、原ID／coverage／edge／昇格の29負例）",
+      "scaffold/delegated-doc-007-016-030-034/selfcheck.py（closure全field、top-level整合、AC削除、原ID／coverage／edge／昇格の32負例）",
       "scaffold/tools/scfctl.py stale（上流ledger／contract／product boundary／artifact revision変化の検出）",
       "git diff --check（候補文書の静的整形）"
     ],

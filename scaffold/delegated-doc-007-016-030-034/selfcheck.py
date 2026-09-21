@@ -45,6 +45,7 @@ CASES = [
     ("source full coverage span", lambda d: d["source_documents"][0]["coverage_spans"][0].__setitem__("end_line", 190)),
     ("atom uncovered line list", lambda d: d["source_documents"][0]["atom_coverage"]["uncovered_lines"].pop()),
     ("atom exact text", lambda d: atom("DELEGATED-DOC-007", "LSS-FR-01", d)["source_span"].__setitem__("exact_source_text", "tampered\n")),
+    ("atom cross-line original ID", lambda d: atom("DELEGATED-DOC-007", "LSS-FR-01", d)["original_ids"].append("LSS-FR-02")),
     ("atom original ID partition", lambda d: d["source_documents"][0]["original_id_inventory"]["unatomized_original_ids"].append("LSAC-999a")),
     ("atomized original ID", lambda d: next(row for row in d["source_documents"] if row["source_document_id"] == "DELEGATED-DOC-030")["original_id_inventory"]["atomized_original_ids"].remove("HAC-HIL-01a")),
     ("edge source line", lambda d: next(r for r in d["reference_edges"] if r["reference_id"] == "DELEGATED-REF-0320").__setitem__("source_line", 20)),

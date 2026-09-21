@@ -29,6 +29,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-`validate.py` はarchive内のruntime・test・CI・hookを実行せず、holding／ledger／固定blobを読み取り専用で照合します。`selfcheck.py` はclosure全field、top-level同値、固定blob digest、coverage gap／uncovered list、原ID partition、AC削除、edge drift、owner／consumer／phase／implementationの昇格、残分母変更など31負例を検査します。
+`validate.py` はarchive内のruntime・test・CI・hookを実行せず、holding／ledger／固定blobを読み取り専用で照合します。atomごとの原ID集合もexact source spanから再計算します。`selfcheck.py` はclosure全field、top-level同値、固定blob digest、coverage gap／uncovered list、原ID partition、別行IDの混入、AC削除、edge drift、owner／consumer／phase／implementationの昇格、残分母変更など32負例を検査します。
 
 holding分母は114文書／788 edge、既候補14文書／26 edgeを除いた本batch前は100文書／762 edge、今回4文書／4 edgeを除いた残りは96文書／758 edgeです。holdingのclosure、adoption、正式要求化は実施していません。変更は `scaffold/` 名前空間の候補artifactに限り、commit、push、PR、merge、Issue、外部作用は行いません。
