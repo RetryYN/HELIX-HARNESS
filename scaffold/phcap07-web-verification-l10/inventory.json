@@ -1,0 +1,1436 @@
+{
+  "schema": "phcap07-web-verification-l10/v1",
+  "status": "research_premise_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "base": {
+    "repository": "HELIX-HARNESS",
+    "origin_main_commit": "569d7373c32287bbafadeec6043472563937c5c7",
+    "branch": "research/phcap07-web-verification-l10",
+    "worktree": "/home/tenni/.helix-worktrees/phcap07-web-verification-l10",
+    "captured_at": "2026-09-22",
+    "candidate_parent_status": "origin/main snapshot; existing PHCAP16 and Wave23/Wave24 candidates are unmerged and are not authority"
+  },
+  "rebaseline": {
+    "stop_condition": "If origin/main changes from origin_main_commit, stop and rebaseline before treating this candidate as current. Do not rebase automatically.",
+    "origin_main_at_start": "569d7373c32287bbafadeec6043472563937c5c7",
+    "origin_main_at_final": "569d7373c32287bbafadeec6043472563937c5c7",
+    "changed": false
+  },
+  "task": {
+    "task_id": "PHCAP-07",
+    "phase": "verification_l10",
+    "title": "Verification／L10",
+    "inventory_path": "docs/governance/phase-capability-inventory.json",
+    "inventory_sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+    "phase_record_snapshot": {
+      "task_id": "PHCAP-07",
+      "phase": "verification_l10",
+      "title": "Verification／L10",
+      "product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "current": {
+        "status": "candidate_only",
+        "evidence_products": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "refs": [
+          "docs/governance/candidates/next-generation-ci-requirements.md",
+          "docs/helix-harness/L11-acceptance/product-acceptance.md"
+        ]
+      },
+      "scaffold": [],
+      "legacy": {
+        "exists": true,
+        "layers_evidenced": [
+          "L8",
+          "L9",
+          "L10 contract",
+          "L11",
+          "L12"
+        ],
+        "maximum_layer_evidenced": "L12",
+        "capability_status": "documented_with_test_design",
+        "representative_assets": [
+          {
+            "asset_id": "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+            "source_path": "docs/design/helix/L8-integration/integration-evidence-index.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-174B63F415197A4B09C5",
+            "source_path": "docs/design/helix/L9-system/system-evidence-index.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+            "source_path": "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
+            "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-535EBA960C372C61F999",
+            "source_path": "docs/design/helix/L10-ux/ux-evidence-boundary.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-B3866EECAF22235E9EB5",
+            "source_path": "docs/design/helix/L11-uat/uat-evidence-boundary.md",
+            "implementation_status": "unknown"
+          },
+          {
+            "asset_id": "LEGACY-ASSET-FC23AB4BB99DA8F4076A",
+            "source_path": "docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md",
+            "implementation_status": "unknown"
+          }
+        ],
+        "assessment": "旧世代は右腕L8〜L12の契約と多数のtest design／testを持った。"
+      },
+      "transition_assessment": "not_reimplemented_formally",
+      "gaps": "現行証拠はHARNESS／OS候補に限定。Web／Web-OSのL10、oracle registry、新世代CIが未構築",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    }
+  },
+  "scope": {
+    "product_targets": [
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "phase_candidate_product_targets": [
+      "HELIX-HARNESS",
+      "HELIX-OS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "phase_current_evidence_products": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "legacy_asset_ids": [
+      "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+      "LEGACY-ASSET-174B63F415197A4B09C5",
+      "LEGACY-ASSET-4674004EAE02B2811AE0",
+      "LEGACY-ASSET-0CC674CB78470B86E7A8",
+      "LEGACY-ASSET-535EBA960C372C61F999",
+      "LEGACY-ASSET-B3866EECAF22235E9EB5",
+      "LEGACY-ASSET-FC23AB4BB99DA8F4076A"
+    ],
+    "legacy_layer_reach": [
+      "L8",
+      "L9",
+      "L10 contract",
+      "L11",
+      "L12"
+    ],
+    "closure_rule": "seven PHCAP-07 representative assets and two Web product units only; all other verification/L10 assets, consumers, and CI relations remain residual",
+    "candidate_units": [
+      {
+        "unit_id": "PHCAP07-UNIT-WEB-VERIFICATION",
+        "product": "HELIX-Web",
+        "role": "Web user-facing connector/dashboard/service verification and acceptance evidence",
+        "status": "research_premise_candidate",
+        "authority_status": "candidate_unresolved",
+        "phase_direct_current_ref_ids": [],
+        "product_adjacent_ref_ids": [
+          "CUR-WEB-L2",
+          "CUR-WEB-L2-ROWS",
+          "CUR-WEB-L11"
+        ],
+        "current_implementation_status": "unknown",
+        "current_l10_status": "unknown",
+        "current_l11_status": "draft_unexecuted",
+        "oracle_status": "unknown_no_formal_product_oracle_registry",
+        "old_asset_ids": [
+          "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+          "LEGACY-ASSET-174B63F415197A4B09C5",
+          "LEGACY-ASSET-4674004EAE02B2811AE0",
+          "LEGACY-ASSET-0CC674CB78470B86E7A8",
+          "LEGACY-ASSET-535EBA960C372C61F999",
+          "LEGACY-ASSET-B3866EECAF22235E9EB5",
+          "LEGACY-ASSET-FC23AB4BB99DA8F4076A"
+        ],
+        "unresolved": [
+          "PHCAP-07 current.evidence_products excludes HELIX-Web",
+          "no accepted L10 contract/oracle registry or CI profile relation",
+          "Web L2/L11 docs are draft and all L11 scenarios unexecuted",
+          "no product consumer read-after or external verification receipt"
+        ]
+      },
+      {
+        "unit_id": "PHCAP07-UNIT-WEBOS-VERIFICATION",
+        "product": "HELIX-Web-OS",
+        "role": "Web-OS service runtime verification for tenant/Connector/job/state/deployment/monitoring/recovery and bounded export",
+        "status": "research_premise_candidate",
+        "authority_status": "candidate_unresolved",
+        "phase_direct_current_ref_ids": [],
+        "product_adjacent_ref_ids": [
+          "CUR-WEBOS-L2",
+          "CUR-WEBOS-L11"
+        ],
+        "current_implementation_status": "unknown",
+        "current_l10_status": "unknown",
+        "current_l11_status": "draft_unexecuted",
+        "oracle_status": "unknown_no_formal_product_oracle_registry",
+        "old_asset_ids": [
+          "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+          "LEGACY-ASSET-174B63F415197A4B09C5",
+          "LEGACY-ASSET-4674004EAE02B2811AE0",
+          "LEGACY-ASSET-0CC674CB78470B86E7A8",
+          "LEGACY-ASSET-535EBA960C372C61F999",
+          "LEGACY-ASSET-B3866EECAF22235E9EB5",
+          "LEGACY-ASSET-FC23AB4BB99DA8F4076A"
+        ],
+        "unresolved": [
+          "PHCAP-07 current.evidence_products excludes HELIX-Web-OS",
+          "no accepted L10 contract/oracle registry or CI profile relation",
+          "Web-OS L2/L11 docs are draft and all acceptance scenarios unexecuted",
+          "no service runtime failure receipt, consumer read-after or export receipt"
+        ]
+      }
+    ],
+    "candidate_edges": [
+      {
+        "edge_id": "PHCAP07-EDGE-001",
+        "from_asset_id": "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+        "to_unit_id": "PHCAP07-UNIT-WEB-VERIFICATION",
+        "product": "HELIX-Web",
+        "relation": "legacy_verification_asset_to_product_unit_candidate",
+        "status": "unresolved_candidate",
+        "evidence": "static_source_catalog_only",
+        "implementation_status": "unknown",
+        "oracle_status": "historical_candidate_unexecuted",
+        "consumer_status": "pending",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-002",
+        "from_asset_id": "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+        "to_unit_id": "PHCAP07-UNIT-WEBOS-VERIFICATION",
+        "product": "HELIX-Web-OS",
+        "relation": "legacy_verification_asset_to_product_unit_candidate",
+        "status": "unresolved_candidate",
+        "evidence": "static_source_catalog_only",
+        "implementation_status": "unknown",
+        "oracle_status": "historical_candidate_unexecuted",
+        "consumer_status": "pending",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-003",
+        "from_asset_id": "LEGACY-ASSET-174B63F415197A4B09C5",
+        "to_unit_id": "PHCAP07-UNIT-WEB-VERIFICATION",
+        "product": "HELIX-Web",
+        "relation": "legacy_verification_asset_to_product_unit_candidate",
+        "status": "unresolved_candidate",
+        "evidence": "static_source_catalog_only",
+        "implementation_status": "unknown",
+        "oracle_status": "historical_candidate_unexecuted",
+        "consumer_status": "pending",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-004",
+        "from_asset_id": "LEGACY-ASSET-174B63F415197A4B09C5",
+        "to_unit_id": "PHCAP07-UNIT-WEBOS-VERIFICATION",
+        "product": "HELIX-Web-OS",
+        "relation": "legacy_verification_asset_to_product_unit_candidate",
+        "status": "unresolved_candidate",
+        "evidence": "static_source_catalog_only",
+        "implementation_status": "unknown",
+        "oracle_status": "historical_candidate_unexecuted",
+        "consumer_status": "pending",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-005",
+        "from_asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+        "to_unit_id": "PHCAP07-UNIT-WEB-VERIFICATION",
+        "product": "HELIX-Web",
+        "relation": "legacy_verification_asset_to_product_unit_candidate",
+        "status": "unresolved_candidate",
+        "evidence": "static_source_catalog_only",
+        "implementation_status": "unknown",
+        "oracle_status": "historical_candidate_unexecuted",
+        "consumer_status": "pending",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-006",
+        "from_asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+        "to_unit_id": "PHCAP07-UNIT-WEBOS-VERIFICATION",
+        "product": "HELIX-Web-OS",
+        "relation": "legacy_verification_asset_to_product_unit_candidate",
+        "status": "unresolved_candidate",
+        "evidence": "static_source_catalog_only",
+        "implementation_status": "unknown",
+        "oracle_status": "historical_candidate_unexecuted",
+        "consumer_status": "pending",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-007",
+        "from_asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
+        "to_unit_id": "PHCAP07-UNIT-WEB-VERIFICATION",
+        "product": "HELIX-Web",
+        "relation": "legacy_verification_asset_to_product_unit_candidate",
+        "status": "unresolved_candidate",
+        "evidence": "static_source_catalog_only",
+        "implementation_status": "unknown",
+        "oracle_status": "historical_candidate_unexecuted",
+        "consumer_status": "pending",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-008",
+        "from_asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
+        "to_unit_id": "PHCAP07-UNIT-WEBOS-VERIFICATION",
+        "product": "HELIX-Web-OS",
+        "relation": "legacy_verification_asset_to_product_unit_candidate",
+        "status": "unresolved_candidate",
+        "evidence": "static_source_catalog_only",
+        "implementation_status": "unknown",
+        "oracle_status": "historical_candidate_unexecuted",
+        "consumer_status": "pending",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-009",
+        "from_asset_id": "LEGACY-ASSET-B3866EECAF22235E9EB5",
+        "to_unit_id": "PHCAP07-UNIT-WEB-VERIFICATION",
+        "product": "HELIX-Web",
+        "relation": "legacy_verification_asset_to_product_unit_candidate",
+        "status": "unresolved_candidate",
+        "evidence": "static_source_catalog_only",
+        "implementation_status": "unknown",
+        "oracle_status": "historical_candidate_unexecuted",
+        "consumer_status": "pending",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-010",
+        "from_asset_id": "LEGACY-ASSET-B3866EECAF22235E9EB5",
+        "to_unit_id": "PHCAP07-UNIT-WEBOS-VERIFICATION",
+        "product": "HELIX-Web-OS",
+        "relation": "legacy_verification_asset_to_product_unit_candidate",
+        "status": "unresolved_candidate",
+        "evidence": "static_source_catalog_only",
+        "implementation_status": "unknown",
+        "oracle_status": "historical_candidate_unexecuted",
+        "consumer_status": "pending",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-011",
+        "from_asset_id": "LEGACY-ASSET-FC23AB4BB99DA8F4076A",
+        "to_unit_id": "PHCAP07-UNIT-WEBOS-VERIFICATION",
+        "product": "HELIX-Web-OS",
+        "relation": "legacy_verification_asset_to_product_unit_candidate",
+        "status": "unresolved_candidate",
+        "evidence": "static_source_catalog_only",
+        "implementation_status": "unknown",
+        "oracle_status": "historical_candidate_unexecuted",
+        "consumer_status": "pending",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-012",
+        "from_ref_id": "CUR-WEB-L2",
+        "to_unit_id": "PHCAP07-UNIT-WEB-VERIFICATION",
+        "product": "HELIX-Web",
+        "relation": "product_document_to_verification_unit_candidate",
+        "status": "draft_unexecuted_adjacent",
+        "evidence": "current_document_only",
+        "implementation_status": "unknown",
+        "oracle_status": "unknown",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-013",
+        "from_ref_id": "CUR-WEB-L11",
+        "to_unit_id": "PHCAP07-UNIT-WEB-VERIFICATION",
+        "product": "HELIX-Web",
+        "relation": "product_document_to_verification_unit_candidate",
+        "status": "draft_unexecuted_adjacent",
+        "evidence": "current_document_only",
+        "implementation_status": "unknown",
+        "oracle_status": "unknown",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-014",
+        "from_ref_id": "CUR-WEBOS-L2",
+        "to_unit_id": "PHCAP07-UNIT-WEBOS-VERIFICATION",
+        "product": "HELIX-Web-OS",
+        "relation": "product_document_to_verification_unit_candidate",
+        "status": "draft_unexecuted_adjacent",
+        "evidence": "current_document_only",
+        "implementation_status": "unknown",
+        "oracle_status": "unknown",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-015",
+        "from_ref_id": "CUR-WEBOS-L11",
+        "to_unit_id": "PHCAP07-UNIT-WEBOS-VERIFICATION",
+        "product": "HELIX-Web-OS",
+        "relation": "product_document_to_verification_unit_candidate",
+        "status": "draft_unexecuted_adjacent",
+        "evidence": "current_document_only",
+        "implementation_status": "unknown",
+        "oracle_status": "unknown",
+        "authority_effect": "none"
+      },
+      {
+        "edge_id": "PHCAP07-EDGE-016",
+        "from_unit_id": "PHCAP07-UNIT-WEB-VERIFICATION",
+        "to_unit_id": "PHCAP07-UNIT-WEBOS-VERIFICATION",
+        "product": "HELIX-Web/HELIX-Web-OS",
+        "relation": "user_service_to_service_runtime_verification_connection",
+        "status": "connection_candidate_unresolved",
+        "evidence": "boundary_and_draft_L2_L11_only",
+        "implementation_status": "unknown",
+        "oracle_status": "unknown",
+        "authority_effect": "none",
+        "boundary": "Web user-facing evidence and Web-OS runtime evidence remain separate; permitted versioned contract/artifact/receipt/export only, no shared authority or state"
+      }
+    ],
+    "non_target_selected_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-535EBA960C372C61F999",
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "meaning": "L10 UX evidence candidate is cataloged for HELIX-HARNESS only; no Web/Web-OS product edge is inferred."
+      }
+    ]
+  },
+  "current_evidence": {
+    "phase_record_status": "candidate_only",
+    "phase_direct_evidence_products": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "product_direct_evidence_products": [],
+    "product_adjacent_document_products": [
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "implementation_status": "unknown",
+    "l10_status": "unknown",
+    "l11_status": "draft_unexecuted",
+    "oracle_registry_status": "unknown",
+    "formal_ci_relation_status": "unknown",
+    "refs": [
+      {
+        "anchor_id": "CUR-PHASE-CI",
+        "line_start": 19,
+        "line_end": 32,
+        "exact_text": "## 目的\n\nいまからを新世代とし、既存CIを現行要求の実行基盤・比較基準・移行判定として使用せず、承認された上流要求から\n検証責務と実行責務を再導出する。\n本候補は要求整理だけを行う。workflow、action、script、runtime、gate、test、設定、GitHub保護規則は変更しない。\n\n## 責務境界\n\n| 対象 | 所有する責務 | 所有しない責務 |\n|---|---|---|\n| HELIX-HARNESS | 各layer・V-pair・artifact class・変更種別が要求するoracle、証拠、失敗、再検証、完了条件 | runner、job構成、GitHub Actions、queue、cache、retry、秘密情報、実行資源の運転 |\n| HELIX-OS | 承認済みHARNESS検証契約と対象プロダクト要求からCI profileを組み立て、実行・隔離・監視・回収・再開する | 要求意味、Concept承認、L2合意、L3承認、利用者受入の代行 |\n| 対象プロダクト | 自身の要求、環境、risk、外部境界、受入条件 | HARNESS共通契約やOS実行統制の別正本 |\n| GitHub等のprovider | OSが選択する実行adapterと証拠surface | CI意味、要求採否、工程完了のauthority |",
+        "sha256": "33eab001efda3f03512e99209bf9ea95bd56a385ecd266d3307861a2d2890a24",
+        "meaning": "new CI candidate scope and no product-specific Web/Web-OS ownership",
+        "ref_id": "CUR-PHASE-CI",
+        "path": "docs/governance/candidates/next-generation-ci-requirements.md",
+        "file_sha256": "5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba",
+        "product": "HELIX-HARNESS/HELIX-OS",
+        "classification": "phase_direct_current_ref"
+      },
+      {
+        "anchor_id": "CUR-PHASE-CI-L10",
+        "line_start": 66,
+        "line_end": 95,
+        "exact_text": "## 再構築順序\n\n1. ConceptでHARNESSとHELIX-OSのCI責務を確定する。\n2. 対象別L1で利用価値、利用者、範囲、成功条件を確定する。\n3. L2で上記要求を合意し、L11の利用者確認を対にする。\n4. L3／L10でprofile compiler、pipeline class、evidence、failure、provider境界を仕様化する。\n5. L4–L9とL6↔L7で設計・実装・testを新規導出する。\n6. 新世代CIだけを隔離環境でshadow実行し、承認要求から導出したoracleと照合する。旧CIは実行・比較しない。\n7. 新世代の要求trace、negative oracle、rollback、consumer read-afterを確認後、旧CIを非実行archiveへ移す。\n\n## 現在の停止条件\n\n- 本候補の記載でHARNESS／HELIX-OSのL2合意やConcept承認を成立させない。\n- 既存`.github/workflows/`を新要求へ合わせて修正しない。\n- 既存CIを起動せず、新世代CIのbaseline、oracle、parity、合格条件として固定しない。\n- 新世代CIのworkflow名、job数、provider、時間、費用、並列度をL2で捏造しない。\n- U1–U4の上流確定前にCI実装PLAN、Issue、PRを起動しない。\n\n## L11受入候補\n\n全件未実行である。\n\n- Concept候補だけを変更し、remote syncしても旧CI／merge pipelineが起動しない。\n- 承認済み実装要求を変更すると、対象pair・riskに必要なprofileが生成され、無関係な検査を必須化しない。\n- required oracleを一件削除したprofile、unknownをN/Aにしたprofile、別HEADのreceiptを拒否する。\n- providerを交換してもrequirement、pair、oracle、evidence identityが維持される。\n- 旧CI green、新世代CI not-runを与え、新世代の結果をgreenやverifiedにしない。\n- 旧CIを呼び出すprofile、旧workflowとのdual-green、旧job件数との一致を移行条件として要求しない。\n- pipeline failureから正しい上流または下流の差戻し先を識別し、Concept変更を実装修正へ誤配送しない。\n- 旧workflowを削除してもrequired context、schedule、template、admission consumer、復元経路のいずれかが残れば、旧CI退役を成立させない。",
+        "sha256": "7e4ca8eaef025c37c07d57f71271670ba98152e5774ef9fa049f9fc132d9e135",
+        "meaning": "L3/L10 derivation order and unexecuted L11 candidate conditions",
+        "ref_id": "CUR-PHASE-CI-L10",
+        "path": "docs/governance/candidates/next-generation-ci-requirements.md",
+        "file_sha256": "5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba",
+        "product": "HELIX-HARNESS/HELIX-OS",
+        "classification": "phase_direct_current_ref"
+      },
+      {
+        "anchor_id": "CUR-HARNESS-L11",
+        "line_start": 15,
+        "line_end": 27,
+        "exact_text": "全件未実行。合意した要求revision・対象artifact・操作・実結果を記録して判定する。\n旧要求の整理では、原要求ID・原文digest・successor・未被覆atomを照合し、37件のrouting containerへの関連付けだけで\n移管完了にしない。人間decisionのない削除・縮退・candidate降格を一件でも検出した場合は不合格とする。\n\n| 親要求 | 利用者が確認する結果と反例 |\n|---|---|\n| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる |\n| HARNESS-L2-002 | 異なる開発styleの工程を確認し、Discovery／PoCをScrumへ混入させない |\n| HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない |\n| HARNESS-L2-004 | 要求変更から影響設計・テストへ辿り、変更した条件の検証漏れを識別できる |\n| HARNESS-L2-005 | 異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |\n| HARNESS-L2-006 | 提供版・機能・依存・導入条件を確認し、HELIX内部の運用状態を持たない利用環境で対象機能を利用できる |\n| HARNESS-L2-007 | 検証対象として選定した複数プロダクトとHELIX自身のプロジェクトについて、要求revision、適用構成、成果、L11受入、L12運用評価へ辿る。単一demo、HARNESS単体test、文書整合だけならVersion 1未完成とし、HELIX-Webの完成有無を判定へ混入させない |",
+        "sha256": "3137fdf2e0eb4aa17b32a551a68215d1ce3f90efaac33bdb2cd9ffa5c3bc2cdb",
+        "meaning": "HARNESS L11 draft acceptance and product verification boundary",
+        "ref_id": "CUR-HARNESS-L11",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "file_sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b",
+        "product": "HELIX-HARNESS",
+        "classification": "phase_direct_current_ref"
+      },
+      {
+        "anchor_id": "CUR-WEB-L2",
+        "line_start": 16,
+        "line_end": 23,
+        "exact_text": "HELIX-WebはHELIX-OSが開発・改善projectとして管理し、HELIX-Web-OSが展開後のservice runtimeを担う個別プロダクトである。本書は保存された\n[Vision原文](../../../archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の§6／7／10／11／13／14から、\nWebの利用者に対する要求を具体化した案である。最新PO指示の管理関係と原文の将来構想を区別する。\n以下の9件の個別採択・L2合意・L3凍結・IR admission・提供時期は未確定。HELIX-Web自体はHARNESS Version 1の\n完成条件へ追加しない。一方、HELIX-Webの展開はHARNESS製品群Version 1の完成を必須前提とする。\n\n親は[HELIX-Web L1企画候補](../L1-planning/product-intent.md)である。現在は親ConceptとL1が未承認のため、\n以下のrelationは接続案であり、承認済み導出ではない。",
+        "sha256": "24da765395a37c8bbcfe57ee2224f3737e3bb9570d9b7ef30bdf20b55a28d856",
+        "meaning": "Web L2 draft status and non-adopted relation",
+        "ref_id": "CUR-WEB-L2",
+        "path": "docs/helix-web/L2-requirements/product-requirements.md",
+        "file_sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+        "product": "HELIX-Web",
+        "classification": "product_document_adjacent"
+      },
+      {
+        "anchor_id": "CUR-WEB-L2-ROWS",
+        "line_start": 34,
+        "line_end": 44,
+        "exact_text": "| ID | 構想段階 | 出典 | Webに対する利用要求 |\n|---|---|---|---|\n| HELIXWEB-L2-001 | 初期Connector構想 | §6.1、U08／09 | 利用者がWebから自分の許可された開発環境を選び、対象プロジェクトの操作と進行をダッシュボードで確認できる。全コード・計算資源をSaaSへ移すことを必須にしない |\n| HELIXWEB-L2-002 | 初期Connector構想 | §3.2、§6.1、§10 | 必要な開発能力の提供版を選び、Connectorへの導入・互換性・更新・撤去と結果を確認できる。Connectorに開発engineを重複実装しない |\n| HELIXWEB-L2-003 | 初期Connector構想 | §6.2、§10、§13 | 長時間jobの実行・切断・取消・再開・終端と証拠を確認できる。結果不明の副作用を無条件に再実行しない |\n| HELIXWEB-L2-004 | 接続前に方式確定 | §6.2、O03／04 | 対応するprovider経路と利用条件、利用者環境から返送する情報の範囲を確認できる。未確認のログイン再利用や経路を対応済みと表示しない |\n| HELIXWEB-L2-005 | 操作別に段階採択 | §7、U17、O05 | 何を変更し、何を許可し、何を受け入れるかを自分で判断し、検収済み範囲の保守・改修を行える。残る専門判断を確認できる |\n| HELIXWEB-L2-006 | Web3の将来構想 | §6.3、U14、O08 | 適用範囲・版・評価証拠を確認したHDAを開発補助に利用できる。学習と分散推論の提供責務を分け、応答を独立検収済みとみなさない |\n| HELIXWEB-L2-007 | 能力接続時に採択 | §10、§11 | Webが採用する開発能力・Connector・モデル・接続契約の構成版を確認できる。Webの変更で無関係なHARNESSやモデルを一斉更新しない |\n| HELIXWEB-L2-008 | 改善還流時に採択 | §10、§11 学習とデータ利用 | Web-OSのservice log・telemetry・利用結果をどの目的・範囲でHELIX-OSの改善へ渡すかを確認できる。サービス利用をログexportや横断学習への包括同意とみなさない |\n| HELIXWEB-L2-009 | 展開前に必須 | §3、§13、2026-09-14 PO指示 | 複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成証拠を確認した後にHELIX-Webを展開できる。Webの完成をVersion 1へ算入せず、HARNESS未完成のまま展開しない |",
+        "sha256": "6d0b61d7adeabd1513f9f00d9533835019e9e9a515c550eb83332cd094b45598",
+        "meaning": "Web nine L2 candidate requirements",
+        "ref_id": "CUR-WEB-L2-ROWS",
+        "path": "docs/helix-web/L2-requirements/product-requirements.md",
+        "file_sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+        "product": "HELIX-Web",
+        "classification": "product_document_adjacent"
+      },
+      {
+        "anchor_id": "CUR-WEB-L11",
+        "line_start": 15,
+        "line_end": 31,
+        "exact_text": "全件未実行。対象要求の採用revision、プロト合意、対象構成、操作、期待結果・実結果と証拠を揃えて評価する。\n将来構想は段階別に採択し、初期サービスの受入へ一律追加しない。\n\n| 親要求 | 利用者による確認と反例 |\n|---|---|\n| HELIXWEB-L2-001 | 選択した環境と別環境を区別し、対象不明・未接続を操作成功と表示しない。対象projectの進行・状態・成果をダッシュボードで辿れる |\n| HELIXWEB-L2-002 | 選択構成・依存・版と導入結果を照合し、未適格な構成や更新失敗を利用可能と表示しない |\n| HELIXWEB-L2-003 | 切断中・取消待ち・結果不明を成功と区別し、復帰後に同じjobと結果へ辿る。二重実行を拒否する |\n| HELIXWEB-L2-004 | 未対応経路・返送対象外の情報を与え、対応済み表示や無断転送が起きない。実方式の採用前に根拠と適用範囲を確認する |\n| HELIXWEB-L2-005 | 診断・更新・復旧と案内付き改修を操作別に評価し、要求差分・影響・プレビュー・回復結果へ辿る。一操作の成功を全改修対応と表示しない |\n| HELIXWEB-L2-006 | モデル版・適用範囲・根拠・不確実性を確認し、不適格モデルや未検証応答を検収済み成果として採用しない |\n| HELIXWEB-L2-007 | Web版と構成版が異なるケースで実構成へ辿り、同一版番号だけを互換性・接続成功の証拠にしない |\n| HELIXWEB-L2-008 | project内利用、Web-OSからHELIX-OSへの運用log export、事業改善、横断知識化、モデル学習を区別し、範囲外の共有を拒否する。改善候補の採否をWeb固有の要求変更と混同しない |\n| HELIXWEB-L2-009 | 複数プロダクトの開発検証またはHELIX自身への適用証拠を欠くHARNESS Version 1ではWeb展開を拒否する。全証拠が揃えば展開可能と判定し、それをWeb完成・公開済みと読み替えない |\n\nHARNESSの単体テスト成功、OSのCI運転成功、Web画面の存在だけでは本受入を満たさない。\n認証・データ返送・学習利用の試験は、採用した方式と許可範囲を確定した検証環境で行う。現時点で外部サービスを操作しない。",
+        "sha256": "492f38bc8aef01642f70861a8629f633735a7bfc9f934c6116518a55d3d54a2e",
+        "meaning": "Web L11 draft, all unexecuted and CI/UI non-substitution",
+        "ref_id": "CUR-WEB-L11",
+        "path": "docs/helix-web/L11-acceptance/product-acceptance.md",
+        "file_sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec",
+        "product": "HELIX-Web",
+        "classification": "product_document_adjacent"
+      },
+      {
+        "anchor_id": "CUR-WEBOS-L2",
+        "line_start": 15,
+        "line_end": 38,
+        "exact_text": "本書はHELIX-Web展開時にHELIX-OSの外へ構成するサービス運転基盤の要求案である。HARNESS Version 1完成前の\n展開、外部接続、実装起動を許可しない。\n\n| L2要求 | 親L1候補 |\n|---|---|\n| HELIXWEBOS-L2-001 | HELIXWEBOS-L1-001 |\n| HELIXWEBOS-L2-002／003 | HELIXWEBOS-L1-002 |\n| HELIXWEBOS-L2-004 | HELIXWEBOS-L1-003 |\n| HELIXWEBOS-L2-005 | HELIXWEBOS-L1-004 |\n| HELIXWEBOS-L2-006 | HELIXWEBOS-L1-005 |\n\n| ID | HELIX-Web-OSに対する要求 | 確認する結果 |\n|---|---|---|\n| HELIXWEBOS-L2-001 | tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる | 一利用者の資格・job・data・結果が別scopeへ流れず、HELIX-OS内部stateをservice authorityとして共有しない |\n| HELIXWEBOS-L2-002 | 適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる | Connectorに開発engineを重複実装せず、不適格版や更新失敗を利用可能と表示しない |\n| HELIXWEBOS-L2-003 | 長時間jobの受付、配信、進行、切断、取消、再開、終端、結果不明を同じjob identityで管理できる | 再送・障害・再接続で副作用を二重実行せず、期限・予算・許可・未完義務を失わない |\n| HELIXWEBOS-L2-004 | 認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる | 未確認経路、期限切れ権限、秘密送信、範囲外data返送を拒否し、サービス利用を横断学習同意へ変換しない |\n| HELIXWEBOS-L2-005 | jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる | projection欠落・遅延・stale・conflict・結果不明を成功表示せず、画面表示を実行事実や受入の正本にしない |\n| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-Web-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWeb-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、\nartifact、receipt、telemetry export、改善proposalとして行う。",
+        "sha256": "f00f8327c6dd688c2cf45dd9149b4e108537f89384b25a54e27db7cb720456d2",
+        "meaning": "Web-OS L2 draft service boundary and export contract",
+        "ref_id": "CUR-WEBOS-L2",
+        "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+        "file_sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+        "product": "HELIX-Web-OS",
+        "classification": "product_document_adjacent"
+      },
+      {
+        "anchor_id": "CUR-WEBOS-L11",
+        "line_start": 13,
+        "line_end": 24,
+        "exact_text": "全件未実行。HARNESS Version 1完成とHELIX-Web／Web-OS要求の合意後に、採択した展開環境で評価する。\n\n| 親要求 | 利用者・運用者が確認する結果と反例 |\n|---|---|\n| HELIXWEBOS-L2-001 | 異なるtenant・利用者・projectへ同じ識別子やdataを与え、scope越境とHELIX-OS内部stateのservice利用を拒否する |\n| HELIXWEBOS-L2-002 | Web・Connector・HARNESS能力の版を不一致にし、不適格構成の起動、暗黙更新、engine重複を拒否する |\n| HELIXWEBOS-L2-003 | 切断、再送、取消競合、timeout、結果不明、再起動を与え、二重副作用なしで同じjobと未完義務へ戻る |\n| HELIXWEBOS-L2-004 | wrong target、期限切れ、revoke、範囲外network／data、secret混入を与え、接続・返送・学習利用を拒否する |\n| HELIXWEBOS-L2-005 | event欠落、projection遅延、stale revision、conflictを与え、ダッシュボードが成功・受入済みへ補完しない |\n| HELIXWEBOS-L2-006 | deployment、monitoring、rollback、restore、恒久修復、利用者受入を個別に失敗させ、一つの成功で残りを完了にしない。許可logだけがscope・目的・同意・revision付きでHELIX-OSへ届き、credential、tenant原data、同意範囲外logを拒否する。改善proposalが各対象要求を直接変更しない |\n\nHELIX-OS側のproject管理成功、HARNESS単体成功、Web画面の存在は本受入を代替しない。",
+        "sha256": "b9245a8a9fe556c0c6ef67669fbd311ff78551972b1a7b9b3b7efbae2d4e3b97",
+        "meaning": "Web-OS L11 draft, all unexecuted and no substitution",
+        "ref_id": "CUR-WEBOS-L11",
+        "path": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+        "file_sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e",
+        "product": "HELIX-Web-OS",
+        "classification": "product_document_adjacent"
+      },
+      {
+        "anchor_id": "CUR-GAP-AUDIT",
+        "line_start": 11,
+        "line_end": 46,
+        "exact_text": "20件のPHCAP recordについて、`product_targets`（調査候補scope）と\n`current.evidence_products`（現行refが直接裏付ける製品）を製品別に比較した。\n候補scopeから要求採用、現行実装、旧実装の適合、製品ownerを推定しない。\n旧assetは静的referenceに限り、旧runtime・test・CIは実行していない。\n\n`product_targets`に含まれる製品・フェーズの組合せは54件で、このうち12件には\n同一製品の直接current refがない。これは「未実装12件」の計数ではない。\n残り42件もrefの存在を示すだけで、製品別の要求・設計・実装・受入の成立を示さない。\n\n| PHCAP / 対応Issue | 現行refが直接裏付けない調査対象製品 | 保持する未決 |\n|---|---|---|\n| `PHCAP-06` / `#1894` Design／L3 | HELIX-Web、HELIX-Web-OS | 両製品の正式L3導出と旧template再利用評価 |\n| `PHCAP-07` / `#1895` Verification／L10 | HELIX-Web、HELIX-Web-OS | 両製品のL10、oracle、正式CIとの関係 |\n| `PHCAP-14` / `#1902` Release | HELIX-Web、HELIX-Web-OS | 製品別artifact、promotion、rollback |\n| `PHCAP-17` / `#1905` Incident | HELIX-HARNESS | HARNESS固有のincident要求と直接ref |\n| `PHCAP-18` / `#1906` Refactor | HELIX-Web、HELIX-Web-OS | 対象製品ごとの変更routeとbackflow |\n| `PHCAP-19` / `#1907` Learning／改善 | HELIX-HARNESS、HELIX-Web、HELIX-Web-OS | OS draftから各製品へのbackflowとmemory境界 |\n\n製品別ではHELIX-HARNESSが2件、HELIX-Webが5件、HELIX-Web-OSが5件、\nHELIX-OSが0件である。HELIX-OSの0件も実装完了を意味しない。\n\n## 旧能力と現行能力の境界\n\nPHCAPの`legacy.capability_status`はフェーズ全体の代表assetの種別と存在を示す。\nその値を四製品ごとの旧実装状態へ複製しない。`current.status`と\n`transition_assessment`もフェーズ単位であり、製品別の未実装・縮退の確定値ではない。\n製品別に結論を出すときは、対応する旧asset ID、source・判断史・failure・consumer、\n原要求atom、製品unit／connection、現行ref、旧到達層、実装・test・運用証拠を\n同じrevisionで照合し、欠落は`unknown`として残す。\n\n## 次の処理\n\n上表の対応PHCAP Issueで、まず現行refの有無と製品unit／connection境界を確認し、\nその後に旧assetとconsumerの閉包、旧実装状態、縮退・未実装の差分を記録する。\n個別要求の採否とsuccessorはRDP-001へ返す。Issue本文やこの監査から\nL2／L11適用、L3／L10、実装、新世代CIを開始しない。",
+        "sha256": "e2a553e9788ce86069678fefc570412f1ddb3006924500c39d6e0c5f5fdaf61c",
+        "meaning": "PHCAP-07 direct-ref gap and required product/asset/source evidence correlation",
+        "ref_id": "CUR-GAP-AUDIT",
+        "path": "docs/governance/audits/source-rebaseline/phase-product-evidence-gap-audit-2026-09-21.md",
+        "file_sha256": "b76d10e9ac3e36e267edc6eadc4ab3afb1f7eafabcebff50a0851fd3c63d97dc",
+        "product": "HELIX-Web/HELIX-Web-OS",
+        "classification": "boundary_adjacent_ref"
+      },
+      {
+        "anchor_id": "CUR-BOUNDARY",
+        "line_start": 63,
+        "line_end": 70,
+        "exact_text": "HELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWeb-OSの\n要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、Web-OSは展開後の利用者向けserviceを\n独立したauthority、state、credential、writerで運転する。\n\n両OSは改善loopで接続する。HELIX-Web-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで\nHELIX-OSへexportし、HELIX-OSがHARNESS自身の実践を含む他projectの証拠と突合して改善候補を重複排除・評価する。\n採択された候補だけをHARNESS、Web、Web-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、\n同意範囲外logの吸収や、logからの直接変更は行わない。",
+        "sha256": "8d659a5272e761a4a24e863e7586926bd32f4d3d28766a2931cd2dcf499c018e",
+        "meaning": "independent Web-OS authority and permitted evidence connection",
+        "ref_id": "CUR-BOUNDARY",
+        "path": "docs/concept/product-boundary.md",
+        "file_sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+        "product": "HELIX-Web/HELIX-Web-OS",
+        "classification": "boundary_adjacent_ref"
+      }
+    ],
+    "interpretation": "PHCAP-07 current refs directly cover HARNESS/OS candidate CI and HARNESS L11 only. Web/Web-OS L2/L11 documents are adjacent product drafts with unexecuted acceptance scenarios; they do not establish formal L10, oracle registry, CI relation, implementation, pass, owner or adoption."
+  },
+  "legacy_phase_assessment": {
+    "exists": true,
+    "layers_evidenced": [
+      "L8",
+      "L9",
+      "L10 contract",
+      "L11",
+      "L12"
+    ],
+    "maximum_layer_evidenced": "L12",
+    "phase_capability_status": "documented_with_test_design",
+    "phase_assessment": "Phase inventory documents old right-arm L8-L12 contracts/test design, while every selected asset disposition/classification remains implementation unknown and execution false. Preserve this phase-level claim separately from product-level Web/Web-OS evidence; no current or historical pass is inferred.",
+    "assets": [
+      {
+        "asset_id": "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+        "kind": "design",
+        "legacy_layer": "L8",
+        "source_path": "docs/design/helix/L8-integration/integration-evidence-index.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L8-integration/integration-evidence-index.md",
+        "source_sha256": "98b2936b0e10524baab67e503d270e2e2d07be2ce60db4613a865686cb8ed288",
+        "source_line_count": 36,
+        "implementation_evidence": "document_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "classification_id": "LASPH-0777",
+        "candidate_phase_targets": [
+          "PHCAP-07"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ],
+        "source_anchors": [
+          {
+            "anchor_id": "L8-A01",
+            "line_start": 14,
+            "line_end": 32,
+            "exact_text": "本書は L5 integration contract と L8 実行証跡の対応を示す。現時点で close しているのは selected G8 profile であり、全 delivery ではない。\n\n## 証跡\n\n| 項目 | 証跡 |\n|---|---|\n| test-design | `docs/test-design/helix/L5-pillar-integration-test-design.md` |\n| harness integration design | `docs/test-design/harness/L8-integration-test-design.md` |\n| 実行テスト | `tests/g8-integration-workflow.test.ts` |\n| evidence | `.helix/evidence/g8-integration/` |\n| doctor gate | `g8-integration-workflow - OK` |\n\n## 証跡対応\n\n| L8 観点 | source / surface | test / oracle | 境界 |\n|---|---|---|---|\n| selected G8 workflow | `src/lint/g8-integration-workflow.ts` | `tests/g8-integration-workflow.test.ts` | selected / mandatory IT case と evidence manifest を検査する。全 delivery complete ではない。 |\n| L5 contract trace | `docs/test-design/helix/L5-pillar-integration-test-design.md` | `tests/vmodel-pair.test.ts` の L5/L8 pair assertion | L5 contract が L8 integration test design に接続されることを見る。実 external integration pass の代替にはしない。 |\n| evidence manifest | `.helix/evidence/g8-integration/` | `tests/g8-integration-workflow.test.ts` の manifest assertion | 証跡 path と mandatory case を固定する。未選択 frontier は L14 completion へ混ぜない。 |",
+            "sha256": "a6aeefd971895d16e56a55ee4af04f6480a274d2a0328e6e78fc809813906b8c",
+            "meaning": "selected integration evidence, test/oracle and incomplete delivery boundary"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_or_test_design_only_unexecuted",
+          "anchor_ids": [
+            "L8-A01"
+          ],
+          "execution_receipts": 0,
+          "finding": "Failure/oracle conditions are preserved as historical source semantics; no archive test/runtime/CI execution or current failure receipt exists."
+        },
+        "consumer_evidence": {
+          "status": "source_candidate_only_closure_pending",
+          "anchor_ids": [
+            "L8-A01"
+          ],
+          "consumer_refs": [],
+          "finding": "L8 selected integration evidence is an old reference index; its test/oracle and evidence manifest are not a current Web/Web-OS receipt."
+        },
+        "semantic_role": "L8 selected integration evidence is an old reference index; its test/oracle and evidence manifest are not a current Web/Web-OS receipt."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-174B63F415197A4B09C5",
+        "kind": "design",
+        "legacy_layer": "L9",
+        "source_path": "docs/design/helix/L9-system/system-evidence-index.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L9-system/system-evidence-index.md",
+        "source_sha256": "d71782ae07db0868c596b158f9ba630ed05ff80c1e66f3dae89b19a3f94cbf5d",
+        "source_line_count": 34,
+        "implementation_evidence": "document_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "classification_id": "LASPH-0778",
+        "candidate_phase_targets": [
+          "PHCAP-07"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ],
+        "source_anchors": [
+          {
+            "anchor_id": "L9-A01",
+            "line_start": 14,
+            "line_end": 30,
+            "exact_text": "L9 は L4 basic design の system test pair である。現状は selected system behavior の証跡があり、実 remote / production 相当の全 system delivery ではない。\n\n## 証跡\n\n| 項目 | 証跡 |\n|---|---|\n| L4 design | `docs/design/helix/L4-basic-design/pillar-basic-design.md` |\n| L9 test-design | `docs/test-design/helix/L4-pillar-system-test-design.md` |\n| doctor evidence | `semantic-frontier-consistency`, `right-arm-verification-strategy`, `completion-decision-packet` |\n\n## 証跡対応\n\n| L9 観点 | source / surface | test / oracle | 境界 |\n|---|---|---|---|\n| selected G9 workflow | `src/lint/g9-system-workflow.ts` | `tests/g9-system-workflow.test.ts` | selected / mandatory ST case を検査する。remote / production 相当の全 system delivery は claim しない。 |\n| L4→L9 pair | `docs/test-design/helix/L4-pillar-system-test-design.md` | `tests/vmodel-pair.test.ts` の L4/L9 pair assertion | L4 basic design と system test design の双方向接続を見る。実運用 signoff ではない。 |\n| semantic/system boundary | `src/lint/semantic-frontier-consistency.ts` / `src/lint/right-arm-verification-strategy.ts` | `tests/semantic-frontier-consistency.test.ts` / `tests/doctor.test.ts` | visualization、serverless sharing、identifier rename cutover を frontier として残し、system green へ混入しない。 |",
+            "sha256": "e5cfaa31b49a0e454fd77a56a6c35961cd3a1fcbac033bcdc8ed7a1729fa0b45",
+            "meaning": "selected system evidence, oracle boundary and non-production claim"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_or_test_design_only_unexecuted",
+          "anchor_ids": [
+            "L9-A01"
+          ],
+          "execution_receipts": 0,
+          "finding": "Failure/oracle conditions are preserved as historical source semantics; no archive test/runtime/CI execution or current failure receipt exists."
+        },
+        "consumer_evidence": {
+          "status": "source_candidate_only_closure_pending",
+          "anchor_ids": [
+            "L9-A01"
+          ],
+          "consumer_refs": [],
+          "finding": "L9 selected system evidence is an old reference index; remote/production delivery and signoff remain explicitly outside it."
+        },
+        "semantic_role": "L9 selected system evidence is an old reference index; remote/production delivery and signoff remain explicitly outside it."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+        "kind": "design",
+        "legacy_layer": "L12",
+        "source_path": "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+        "source_sha256": "19c7198b87364d19283876f8f16b26d6789b57221369cfeab8eb62521fbeb7d1",
+        "source_line_count": 173,
+        "implementation_evidence": "document_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "classification_id": "LASPH-0434",
+        "candidate_phase_targets": [
+          "PHCAP-07"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ],
+        "source_anchors": [
+          {
+            "anchor_id": "L12-A01",
+            "line_start": 139,
+            "line_end": 156,
+            "exact_text": "| HVC-L3-REQUIREMENTS-FREEZE | L3 要件 | FR/NFR/ACとtest oracleの凍結 | 要件 |\n| HVC-L4-BASIC-DESIGN | L4 基本設計 | DB projection、Project view、drive model の方式境界 | 基本設計 |\n| HVC-L5-DETAIL-TEST-CONTRACT | L5 詳細設計 | 内部設計、typed contract、edge case、先行test design | 詳細設計 |\n| HVC-L6-IMPLEMENTATION-BINDING | L6 実装 | typed declarationとproduct codeのbinding | 実装 |\n| HVC-L7-TDD-CLOSURE | L7 TDD closure | Red→Green→Refactorと実装/test双方向trace | テスト実装 |\n| HVC-L8-UNIT-TEST-DESIGN | L8 単体テスト | parser、coverage gate、drive selector の unit oracle | 単体テスト設計 |\n| HVC-L9-INTEGRATION-TEST-DESIGN | L9 結合テスト | design declarations から harness.db、read-model、Project view までの integration oracle | 結合テスト設計 |\n| HVC-L10-SYSTEM-TEST-DESIGN | L10 総合テスト | L3 FR/NFR/ACをsystem全体で検証 | 総合テスト設計 |\n| HVC-L11-ACCEPTANCE | L11 受入テスト | L2要求・prototypeを実利用/実データで検証 | 受入テスト |\n| HVC-L12-OPERATION | L12 運用テスト | L1価値、運用時間軸、改善還流を検証 | 運用テスト |\n\n## §2 不変条件\n\n1. L1 は HELIX 固有のメタ層として残さず、V 字成立のための企画層として扱う。\n2. L2 は要求と画面を分離せず、要求を引き出す画面/flow/mock を同じ typed coverage に含める。\n3. L4 は実装詳細ではなく、DB/read-model/view/drive model の方式境界を宣言する。\n4. L6 はコード完了ではなく、どの実装 surface がどの typed declaration と DB table に binding されるかを宣言する。\n5. L8/L9/L10 はテスト実行結果ではなく、ZIP の右腕に対応する test design oracle を宣言する。",
+            "sha256": "24d366d6d24867bdb4cdf089570a150628d1788c835e1cfd9809c9d6c324b7ef",
+            "meaning": "canonical V-model layer and test-design coverage contract"
+          },
+          {
+            "anchor_id": "L12-A02",
+            "line_start": 168,
+            "line_end": 173,
+            "exact_text": "| HVC-L2-REQUIREMENTS-SCREEN | `acceptance_traceability` | 要求、画面、flow、受入基準の trace が切れる |\n| HVC-L4-BASIC-DESIGN | `roadmap_current` / `drive_model` | 工程表、現在地、駆動モデルの接続が contradiction のまま隠れる |\n| HVC-L6-IMPLEMENTATION-BINDING | `function_design_absorption` / `design_integrity` | 独立機能設計が復活する、または typed declaration と実装 binding が drift する |\n| HVC-L8-UNIT-TEST-DESIGN | `regression_guards.design-coverage` | coverage parser / gate / drive selector の unit oracle が不足する |\n| HVC-L9-INTEGRATION-TEST-DESIGN | `zip_source_bindings` / `current_location` | design declaration から harness.db/read-model/Project view への投影が切れる |\n| HVC-L10-SYSTEM-TEST-DESIGN | `recovery_runway` / `approval_review` / `attention_boundary` | L14 claim、open L7、工程表、operation scope の system oracle が人間承認境界を示せない |",
+            "sha256": "cae71ae9188b51cbeb5d53d5bf30bd636e519c483d1c7784d1f1bff6f40a09b8",
+            "meaning": "L10 oracle gap and no execution-result claim"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_or_test_design_only_unexecuted",
+          "anchor_ids": [
+            "L12-A02"
+          ],
+          "execution_receipts": 0,
+          "finding": "Failure/oracle conditions are preserved as historical source semantics; no archive test/runtime/CI execution or current failure receipt exists."
+        },
+        "consumer_evidence": {
+          "status": "source_candidate_only_closure_pending",
+          "anchor_ids": [
+            "L12-A01",
+            "L12-A02"
+          ],
+          "consumer_refs": [],
+          "finding": "L12 records design oracle coverage and explicit gap conditions, not test execution or product acceptance."
+        },
+        "semantic_role": "L12 records design oracle coverage and explicit gap conditions, not test execution or product acceptance."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
+        "kind": "test_design",
+        "legacy_layer": "L10",
+        "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-merge-admission-system-test-design.md",
+        "source_sha256": "301149dc90ce99901d6405282874bbeacc86355acc8f8099e885bb134631fcb1",
+        "source_line_count": 36,
+        "implementation_evidence": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "reuse_exclusion_class": "legacy_test_design_or_oracle",
+        "product_target": "unresolved",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "classification_id": "LASPH-2817",
+        "candidate_phase_targets": [
+          "PHCAP-07",
+          "PHCAP-13",
+          "PHCAP-16"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ],
+        "source_anchors": [
+          {
+            "anchor_id": "GH-L10-A01",
+            "line_start": 12,
+            "line_end": 33,
+            "exact_text": "# GitHub merge admission システムテスト設計\n\n- pair: `docs/design/helix/L3-requirements/github-merge-admission-requirements.md`\n- status: draft\n- 実行層: L10\n\n## テスト束\n\n| Test ID | 対応AC | 入力 | 期待結果 |\n|---|---|---|---|\n| GH-T-014 | GH-AC-014 | CI greenの同一diffへ、文脈入力欠落、AI-Aと同一identity/session、別HEADのreview receiptを個別投入する | 必須文脈を全て読んだAI-Bのcurrent HEAD receipt以外はmerge不可 |\n| GH-T-015 | GH-AC-015 | current HEADから隔離DBを再構築し、event片肺、projection drift、checkpoint stale、schema不一致、orphan、旧receiptを個別投入する | source HEAD・event・projection・checkpoint・schemaが一致しstale/orphan 0の場合だけ受理する |\n| GH-T-016 | GH-AC-016 | PR前内部CI、修正後クロスレビュー、内部CI、GitHub Actions、DB追従を一つずつ欠落または別HEAD化する | 全receiptが同じ修正HEADへ収束するまでmerge不可 |\n| GH-T-017 | GH-AC-017 | current contract内の局所blockerと、独立責務／別設計／lifecycle／性能改善findingを混在させる | 局所blockerだけをcurrent PRへ戻し、後続findingは別Issueへexactly onceで分離する |\n| GH-T-018 | GH-AC-018 | Issue／PR／PLAN／registry tupleの一致ケースと、marker欠落／重複、複数typed PLAN、legacy field、authority drift、identity不一致を個別投入する | exact一致する単一typed PLANだけを受理し、各反例を専用reasonで拒否する |\n| GH-T-019 | GH-AC-019 | 同じresourceを二つのactive episodeへ束縛し、別episode／旧HEAD／旧owner evidence、legacy `mode`補完、未分類／複数候補を個別投入する | workflow identityとepisode identityを別fieldで返し、exact ownershipを満たさない入力をfail-closeする |\n| GH-T-020 | GH-AC-020 | 各transitionをduplicate／out-of-order／crash後retryし、merge後outbox未送達、terminal episode再利用、closure receipt／main read-after欠落を個別投入する | append-only replayが一意stateへ収束し、transitionはexactly once、terminal後signalは新episodeとしてadmissionされる |\n\n## 証跡要件\n\n文脈レビューは入力path/digest集合とreviewer identity/runtime/model/provider/sessionを保存する。DB追従検証はsource HEAD、\nevent head、projection/checkpoint digest、schema revision、stale/orphan件数、隔離rebuild結果を保存する。各実行はcommand、",
+            "sha256": "a9b48f125b9c5e5de0ee80a035eea62749014910b91412f8b0505782210b00c8",
+            "meaning": "L10 merge admission negative scenarios, receipts and exact-head evidence"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_or_test_design_only_unexecuted",
+          "anchor_ids": [
+            "GH-L10-A01"
+          ],
+          "execution_receipts": 0,
+          "finding": "Failure/oracle conditions are preserved as historical source semantics; no archive test/runtime/CI execution or current failure receipt exists."
+        },
+        "consumer_evidence": {
+          "status": "source_candidate_only_closure_pending",
+          "anchor_ids": [
+            "GH-L10-A01"
+          ],
+          "consumer_refs": [],
+          "finding": "Old L10 test design names stale/orphan/receipt failure cases but is a historical oracle candidate and was not run."
+        },
+        "semantic_role": "Old L10 test design names stale/orphan/receipt failure cases but is a historical oracle candidate and was not run."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-535EBA960C372C61F999",
+        "kind": "design",
+        "legacy_layer": "L10 legacy/L11 canonical",
+        "source_path": "docs/design/helix/L10-ux/ux-evidence-boundary.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L10-ux/ux-evidence-boundary.md",
+        "source_sha256": "92caa47dcd181fc790dec462820b063a1c8a6ed9c0b86410306ead9cb13e3f71",
+        "source_line_count": 44,
+        "implementation_evidence": "document_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "classification_id": "LASPH-0429",
+        "candidate_phase_targets": [
+          "PHCAP-04",
+          "PHCAP-05",
+          "PHCAP-07"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ],
+        "source_anchors": [
+          {
+            "anchor_id": "UX-A01",
+            "line_start": 17,
+            "line_end": 44,
+            "exact_text": "# HELIX L11 UX 受入検証境界\n\nL11はL2要求を実データ・実操作・accessibilityで受入検証する層である。L3要件を検証するL10総合テストとは責務が異なる。\n本revisionは現行層への整備案であり、旧confirmedは引き継がない。物理pathと`layer: L10`は旧projectionとして保持する。\n以下は参照先の一覧であり、現在の実行結果や受入済みを示す証拠ではない。\n\n## 検証対象と証跡の参照先\n\n| 項目 | 証跡 |\n|---|---|\n| component-derived slice | `src/web/**`, `tests/web.test.ts`, `docs/plans/PLAN-L7-141-web-dashboard-component-derived.md` |\n| L2 boundary | `docs/design/helix/L2-screen/screen-mock-boundary.md` |\n| test-design | `docs/test-design/helix/L2-screen-ux-test-design.md` |\n| 旧doctor出力の扱い | 旧`next_pair_freeze=L10`や単独のOK表示を、現行L11受入の証拠にしない |\n\n## 証跡対応\n\n| L11への証跡の適用範囲 | source / surface | test / oracle | 境界 |\n|---|---|---|---|\n| selected G10 workflow | `src/lint/g10-ux-workflow.ts` | `tests/g10-ux-workflow.test.ts` | selected / mandatory UXV case を検査する。手動 accessibility review や S4 後 visualization route の代替にはしない。 |\n| L2 mock boundary | `docs/design/helix/L2-screen/screen-mock-boundary.md` / `docs/test-design/helix/L2-screen-ux-test-design.md` | `tests/vmodel-pair.test.ts` | 文書間のpairの存在を検査する。L2要求の合意やL11実操作受入を証明するテストではない。 |\n| component-derived UI slice | `src/web/**` / `PLAN-L7-141-web-dashboard-component-derived` | `tests/web.test.ts` / `frontend-design-coverage` doctor gate | component-derived slice の deterministic behavior を見る。whole UI delivery や UAT pass は claim しない。 |\n\n## 完了条件\n\nL11受入には、実データでの主要操作確認、WCAG 観点、未収束 blocker の表示、action surface の approval-bound 化、S4 confirmed 後の visualization route が必要である。\n\n各結果をL2要求ID・要求revision・合意済みプロトrevisionへ結び付ける。GitHub IssueやPRの状態で合意・受入を代用しない。対テスト設計のcanonical再利用禁止は、個別delta・oracle・独立review evidence・digest更新まで維持する。",
+            "sha256": "c36f357587cd7e731505e02662245657abc8cf7729d30499b9739f286cd68e78",
+            "meaning": "old L10 physical path versus L11 acceptance boundary and missing evidence"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_or_test_design_only_unexecuted",
+          "anchor_ids": [
+            "UX-A01"
+          ],
+          "execution_receipts": 0,
+          "finding": "Failure/oracle conditions are preserved as historical source semantics; no archive test/runtime/CI execution or current failure receipt exists."
+        },
+        "consumer_evidence": {
+          "status": "source_candidate_only_closure_pending",
+          "anchor_ids": [
+            "UX-A01"
+          ],
+          "consumer_refs": [],
+          "finding": "UX source distinguishes old physical L10 from canonical L11 and requires real-data/accessibility evidence; no product receipt exists."
+        },
+        "semantic_role": "UX source distinguishes old physical L10 from canonical L11 and requires real-data/accessibility evidence; no product receipt exists."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B3866EECAF22235E9EB5",
+        "kind": "design",
+        "legacy_layer": "L11",
+        "source_path": "docs/design/helix/L11-uat/uat-evidence-boundary.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L11-uat/uat-evidence-boundary.md",
+        "source_sha256": "6e92ffa1941cf58dd44577dbbc32e9d67e3d61003230d200c4966589b0137934",
+        "source_line_count": 42,
+        "implementation_evidence": "document_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "classification_id": "LASPH-0430",
+        "candidate_phase_targets": [
+          "PHCAP-05",
+          "PHCAP-07",
+          "PHCAP-16"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ],
+        "source_anchors": [
+          {
+            "anchor_id": "UAT-A01",
+            "line_start": 14,
+            "line_end": 42,
+            "exact_text": "# HELIX L11 総合レビュー・UAT 境界\n\nL11 は、要件・実装・テスト・運用判断をまとめて確認する層である。現在は review evidence と completion packet の仕組みはあるが、open decisions が残るため全体 UAT close ではない。\n\n## pair 境界\n\nL11 は L3/L4/L5/L6 のような単一の test-design と直接 pair-freeze する設計層ではなく、L8-L10 の検証証跡、L12 acceptance、L14 completion packet を横断して UAT 可否を確認する evidence boundary である。したがって `pair_artifact` を持たないことを UAT 完了や pair 欠落の証跡に読み替えない。\n\n## 現在の証跡\n\n| 項目 | 証跡 |\n|---|---|\n| review 証跡 | `review-evidence` doctor gate |\n| completion packet | `bun run src/cli.ts completion decision-packet --json` |\n| semantic frontier | `src/lint/semantic-frontier-consistency.ts` |\n| 未解決 feedback / continuation | harness.db feedback lifecycle / continuation read model / completion packet |\n\n## 証跡対応\n\n| L11 観点 | source / surface | test / oracle | 境界 |\n|---|---|---|---|\n| cross-agent review evidence | `review-evidence` / `guardrail-invariants` doctor gate | `tests/doctor.test.ts` と review evidence lint 系 test | worker と reviewer が分離され、定量テスト後に定性レビューが記録されることを見る。review green だけでは UAT close にしない。 |\n| completion decision packet | `src/lint/completion-decision-packet.ts` / `bun run src/cli.ts completion decision-packet --json` | `tests/completion-decision-packet.test.ts` / `tests/cli-surface.test.ts` | `completionClaimAllowed=false` の間は L11 承認を出さず、S4 / version-up / cutover packet を人間レビューへ残す。 |\n| semantic frontier consistency | `src/lint/semantic-frontier-consistency.ts` | `tests/semantic-frontier-consistency.test.ts` / `tests/vmodel-pair.test.ts` | prose-only feature list では UAT 証跡にしない。confirmed meaning record と L12 acceptance row の双方向接続を見る。 |\n| 未解決 feedback / continuation | `src/feedback/` / `src/runtime/continuation.ts` / harness.db | `tests/feedback-lifecycle*.test.ts` / `tests/continuation-event-first.test.ts` | open feedback、未投影event、DB/memory矛盾を完了claimに混ぜない。DB projectionを正とし、provider delegation evidenceは監査専用の別型としてjoinしない。 |\n\n## 未完了境界\n\nS4 decision、version-up activation、action-binding approval、cutover decision が残る状態では、L11 は全体承認を出さない。",
+            "sha256": "30ce45d62d05e797a1d1137a520acccc188b69778f2f5ca23dc43d70c6cbe5e0",
+            "meaning": "L11 cross-layer UAT evidence, review boundary and open decisions"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_or_test_design_only_unexecuted",
+          "anchor_ids": [
+            "UAT-A01"
+          ],
+          "execution_receipts": 0,
+          "finding": "Failure/oracle conditions are preserved as historical source semantics; no archive test/runtime/CI execution or current failure receipt exists."
+        },
+        "consumer_evidence": {
+          "status": "source_candidate_only_closure_pending",
+          "anchor_ids": [
+            "UAT-A01"
+          ],
+          "consumer_refs": [],
+          "finding": "Old UAT source says review evidence and completion packet exist as mechanisms but open decisions prevent close; no current Web/Web-OS closure follows."
+        },
+        "semantic_role": "Old UAT source says review evidence and completion packet exist as mechanisms but open decisions prevent close; no current Web/Web-OS closure follows."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-FC23AB4BB99DA8F4076A",
+        "kind": "test_design",
+        "legacy_layer": "L10",
+        "source_path": "docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md",
+        "source_sha256": "b74c34732e161a7a2712360221c43f7865882029fd7bfa8dff74f1bf01ff1ea7",
+        "source_line_count": 56,
+        "implementation_evidence": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "reuse_exclusion_class": "legacy_test_design_or_oracle",
+        "product_target": "unresolved",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "classification_id": "LASPH-2532",
+        "candidate_phase_targets": [
+          "PHCAP-07",
+          "PHCAP-16",
+          "PHCAP-17"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ],
+        "source_anchors": [
+          {
+            "anchor_id": "SCRUM-L10-A01",
+            "line_start": 13,
+            "line_end": 23,
+            "exact_text": "spec:\n  defines:\n    - { id: SCRUM-OPS-A-01, kind: acceptance criteria, title: story mapping typed projection, layer: L10, owner: QA, status: draft }\n    - { id: SCRUM-OPS-A-02, kind: acceptance criteria, title: estimation velocity typed projection, layer: L10, owner: QA, status: draft }\n    - { id: SCRUM-OPS-A-03, kind: acceptance criteria, title: DoR DoD typed projection, layer: L10, owner: QA, status: draft }\n    - { id: SCRUM-OPS-A-04, kind: acceptance criteria, title: daily record typed projection, layer: L10, owner: QA, status: draft }\n    - { id: SCRUM-OPS-A-05, kind: acceptance criteria, title: sprint review typed projection, layer: L10, owner: QA, status: draft }\n    - { id: SCRUM-OPS-A-06, kind: acceptance criteria, title: retrospective reverse projection, layer: L10, owner: QA, status: draft }\n    - { id: SCRUM-OPS-A-07, kind: acceptance criteria, title: burndown velocity metric projection, layer: L10, owner: QA, status: draft }\n    - { id: U-SCRUMOPS-001, kind: unit test, title: 7 operationとpair metadataの完全性, layer: L7, owner: QA, status: draft }\n    - { id: U-SCRUMOPS-002, kind: unit test, title: 旧ZIP宣言による相殺拒否, layer: L7, owner: QA, status: draft }",
+            "sha256": "e268eb0b6abbe9b353b70241bc0020e13047d42bf5b3ad3401ecb1d939771724",
+            "meaning": "old L10 acceptance and draft unit test identities"
+          },
+          {
+            "anchor_id": "SCRUM-L10-A02",
+            "line_start": 34,
+            "line_end": 56,
+            "exact_text": "# Scrum運営層typed projection受入設計\n\n7 operationを正規L3 declarationと一対一で検証する。ID、layer、owner、source pathの欠落・重複・\n誤配線をfail-closeし、旧ZIP provenanceや語句heuristicによる相殺を許さない。\n\n| 受入ID | 検証対象 | 合格条件 |\n|---|---|---|\n| `SCRUM-OPS-A-01` | story mapping | `SCRUM-OPS-R-01`が正規sourceから投影される |\n| `SCRUM-OPS-A-02` | estimation／velocity | `SCRUM-OPS-R-02`の見積りと実測が分離される |\n| `SCRUM-OPS-A-03` | DoR／DoD | `SCRUM-OPS-R-03`の着手・完成gateがtypedである |\n| `SCRUM-OPS-A-04` | daily record | `SCRUM-OPS-R-04`のevent／receiptが観測できる |\n| `SCRUM-OPS-A-05` | sprint review | `SCRUM-OPS-R-05`の受入照合とfeedbackを追跡できる |\n| `SCRUM-OPS-A-06` | retrospective | `SCRUM-OPS-R-06`がRecovery／Reverseへ接続する |\n| `SCRUM-OPS-A-07` | burndown／velocity metrics | `SCRUM-OPS-R-07`を意味正本と分離して観測できる |\n\n`U-SCRUMOPS-002`は正規宣言のlayer mutationと同カテゴリの旧ZIP宣言、および正規宣言0件と\n旧ZIP宣言一式を投入し、それでも`scrum_operation_gap`が残ることを検証する。DB rebuild 2回でmissing 0、ceremony／metric非ゼロ、\ncurrent-location／roadmap／vmodel fitの同一根拠を確認する。\n\n| U-ID | 対象 | 反例と期待結果 | test citation |\n|---|---|---|---|\n| U-SCRUMOPS-001 | 7 operationとL3/L10 pair metadata | 集合またはpair metadata欠落で失敗する | `tests/current-location.test.ts` |\n| U-SCRUMOPS-002 | 正規宣言の完全一致 | 誤layerまたは正規宣言全欠落を旧ZIP同カテゴリで相殺せずmissingを維持する | `tests/current-location.test.ts` |",
+            "sha256": "85d498e5e920a192a2f6825a12cef6ef38e77a92ba9e6c992502684eeaf277a7",
+            "meaning": "typed projection acceptance and negative test conditions"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_or_test_design_only_unexecuted",
+          "anchor_ids": [
+            "SCRUM-L10-A02"
+          ],
+          "execution_receipts": 0,
+          "finding": "Failure/oracle conditions are preserved as historical source semantics; no archive test/runtime/CI execution or current failure receipt exists."
+        },
+        "consumer_evidence": {
+          "status": "source_candidate_only_closure_pending",
+          "anchor_ids": [
+            "SCRUM-L10-A01",
+            "SCRUM-L10-A02"
+          ],
+          "consumer_refs": [],
+          "finding": "Old Scrum L10 test design has draft criteria and test citations; it is not a Web/Web-OS oracle registry or result."
+        },
+        "semantic_role": "Old Scrum L10 test design has draft criteria and test citations; it is not a Web/Web-OS oracle registry or result."
+      }
+    ],
+    "ledger_snapshots": [
+      {
+        "asset_id": "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+        "disposition": {
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/helix/L8-integration/integration-evidence-index.md",
+          "source_sha256": "98b2936b0e10524baab67e503d270e2e2d07be2ce60db4613a865686cb8ed288",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "decision_record_ref": null,
+          "consumer_refs": []
+        },
+        "classification": {
+          "classification_id": "LASPH-0777",
+          "candidate_phase_targets": [
+            "PHCAP-07"
+          ],
+          "candidate_product_targets": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "phase_classification_status": "classified_candidate",
+          "product_classification_status": "candidate_needs_semantic_review",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "legacy_implementation_status": "unknown",
+          "legacy_execution_performed": false,
+          "unresolved": [
+            "product_candidate_requires_semantic_review",
+            "requires_unit_connection_composite_split",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-174B63F415197A4B09C5",
+        "disposition": {
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/helix/L9-system/system-evidence-index.md",
+          "source_sha256": "d71782ae07db0868c596b158f9ba630ed05ff80c1e66f3dae89b19a3f94cbf5d",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "decision_record_ref": null,
+          "consumer_refs": []
+        },
+        "classification": {
+          "classification_id": "LASPH-0778",
+          "candidate_phase_targets": [
+            "PHCAP-07"
+          ],
+          "candidate_product_targets": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "phase_classification_status": "classified_candidate",
+          "product_classification_status": "candidate_needs_semantic_review",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "legacy_implementation_status": "unknown",
+          "legacy_execution_performed": false,
+          "unresolved": [
+            "product_candidate_requires_semantic_review",
+            "requires_unit_connection_composite_split",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+        "disposition": {
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+          "source_sha256": "19c7198b87364d19283876f8f16b26d6789b57221369cfeab8eb62521fbeb7d1",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "decision_record_ref": null,
+          "consumer_refs": []
+        },
+        "classification": {
+          "classification_id": "LASPH-0434",
+          "candidate_phase_targets": [
+            "PHCAP-07"
+          ],
+          "candidate_product_targets": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "phase_classification_status": "classified_candidate",
+          "product_classification_status": "candidate_needs_semantic_review",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "legacy_implementation_status": "unknown",
+          "legacy_execution_performed": false,
+          "unresolved": [
+            "product_candidate_requires_semantic_review",
+            "requires_unit_connection_composite_split",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
+        "disposition": {
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
+          "source_sha256": "301149dc90ce99901d6405282874bbeacc86355acc8f8099e885bb134631fcb1",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": "legacy_test_design_or_oracle",
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "decision_record_ref": null,
+          "consumer_refs": []
+        },
+        "classification": {
+          "classification_id": "LASPH-2817",
+          "candidate_phase_targets": [
+            "PHCAP-07",
+            "PHCAP-13",
+            "PHCAP-16"
+          ],
+          "candidate_product_targets": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "phase_classification_status": "multi_phase_candidate",
+          "product_classification_status": "candidate_needs_semantic_review",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "legacy_implementation_status": "unknown",
+          "legacy_execution_performed": false,
+          "unresolved": [
+            "requires_semantic_split",
+            "product_candidate_requires_semantic_review",
+            "requires_unit_connection_composite_split",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-535EBA960C372C61F999",
+        "disposition": {
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/helix/L10-ux/ux-evidence-boundary.md",
+          "source_sha256": "92caa47dcd181fc790dec462820b063a1c8a6ed9c0b86410306ead9cb13e3f71",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "decision_record_ref": null,
+          "consumer_refs": []
+        },
+        "classification": {
+          "classification_id": "LASPH-0429",
+          "candidate_phase_targets": [
+            "PHCAP-04",
+            "PHCAP-05",
+            "PHCAP-07"
+          ],
+          "candidate_product_targets": [
+            "HELIX-HARNESS"
+          ],
+          "phase_classification_status": "multi_phase_candidate",
+          "product_classification_status": "candidate_needs_semantic_review",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "legacy_implementation_status": "unknown",
+          "legacy_execution_performed": false,
+          "unresolved": [
+            "requires_semantic_split",
+            "product_candidate_requires_semantic_review",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B3866EECAF22235E9EB5",
+        "disposition": {
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/helix/L11-uat/uat-evidence-boundary.md",
+          "source_sha256": "6e92ffa1941cf58dd44577dbbc32e9d67e3d61003230d200c4966589b0137934",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "decision_record_ref": null,
+          "consumer_refs": []
+        },
+        "classification": {
+          "classification_id": "LASPH-0430",
+          "candidate_phase_targets": [
+            "PHCAP-05",
+            "PHCAP-07",
+            "PHCAP-16"
+          ],
+          "candidate_product_targets": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "phase_classification_status": "multi_phase_candidate",
+          "product_classification_status": "candidate_needs_semantic_review",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "legacy_implementation_status": "unknown",
+          "legacy_execution_performed": false,
+          "unresolved": [
+            "requires_semantic_split",
+            "product_candidate_requires_semantic_review",
+            "requires_unit_connection_composite_split",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-FC23AB4BB99DA8F4076A",
+        "disposition": {
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/test-design/helix/L10-scrum-operation-typed-projection-acceptance.md",
+          "source_sha256": "b74c34732e161a7a2712360221c43f7865882029fd7bfa8dff74f1bf01ff1ea7",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": "legacy_test_design_or_oracle",
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "decision_record_ref": null,
+          "consumer_refs": []
+        },
+        "classification": {
+          "classification_id": "LASPH-2532",
+          "candidate_phase_targets": [
+            "PHCAP-07",
+            "PHCAP-16",
+            "PHCAP-17"
+          ],
+          "candidate_product_targets": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web-OS"
+          ],
+          "phase_classification_status": "multi_phase_candidate",
+          "product_classification_status": "candidate_needs_semantic_review",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "legacy_implementation_status": "unknown",
+          "legacy_execution_performed": false,
+          "unresolved": [
+            "requires_semantic_split",
+            "product_candidate_requires_semantic_review",
+            "requires_unit_connection_composite_split",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        }
+      }
+    ]
+  },
+  "decisions": {
+    "selected_asset_ids": [
+      "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+      "LEGACY-ASSET-174B63F415197A4B09C5",
+      "LEGACY-ASSET-4674004EAE02B2811AE0",
+      "LEGACY-ASSET-0CC674CB78470B86E7A8",
+      "LEGACY-ASSET-535EBA960C372C61F999",
+      "LEGACY-ASSET-B3866EECAF22235E9EB5",
+      "LEGACY-ASSET-FC23AB4BB99DA8F4076A"
+    ],
+    "matching_append_only_decision_record_count": 0,
+    "per_asset": {
+      "LEGACY-ASSET-614BF1FA7A7310E3BB4A": 0,
+      "LEGACY-ASSET-174B63F415197A4B09C5": 0,
+      "LEGACY-ASSET-4674004EAE02B2811AE0": 0,
+      "LEGACY-ASSET-0CC674CB78470B86E7A8": 0,
+      "LEGACY-ASSET-535EBA960C372C61F999": 0,
+      "LEGACY-ASSET-B3866EECAF22235E9EB5": 0,
+      "LEGACY-ASSET-FC23AB4BB99DA8F4076A": 0
+    },
+    "interpretation": "No matching decision records. Absence remains unknown and does not create adoption, rejection, owner, successor, formal L10 or closure."
+  },
+  "failure_residual": {
+    "selected_asset_failure_records": 0,
+    "source_failure_oracle_candidate_findings": 7,
+    "current_product_failure_receipts": 0,
+    "current_l10_execution_receipts": 0,
+    "current_operational_failure_evidence": "unknown",
+    "interpretation": "Old source/test design failure and negative cases are static candidates only. Web/Web-OS L11 negative scenarios are draft text; no formal L10 execution, CI receipt, runtime failure receipt or acceptance result exists."
+  },
+  "consumer_residual": {
+    "selected_asset_ledger_consumer_refs": [],
+    "source_consumer_candidate_findings": 9,
+    "current_consumer_read_after_receipts": 0,
+    "consumer_closure_status": "pending",
+    "interpretation": "Source-level test/oracle/evidence consumers and current product pair references remain candidate relationships. No Web/Web-OS consumer read-after, export receipt or downstream closure was found."
+  },
+  "gaps": [
+    "PHCAP-07 phase direct current evidence is limited to HELIX-HARNESS and HELIX-OS; HELIX-Web and HELIX-Web-OS have no phase direct ref.",
+    "Web and Web-OS L2/L11 files provide adjacent draft product intent/acceptance text, but no accepted L10 contract, oracle registry, formal CI profile or executed receipt.",
+    "Legacy L8/L9/L10/L11/L12 assets contain evidence/test-design semantics but all selected disposition implementation statuses are unknown and old execution is false.",
+    "Web user-facing verification and Web-OS service-runtime verification need separate units and a versioned connection; shared state, writer, credential or authority cannot be inferred.",
+    "Consumer closure, failure execution, formal decision, product owner, successor and requirement atom bindings remain unknown/pending."
+  ],
+  "prohibited_inference": [
+    "phase capability_status or maximum layer is not product implementation/pass evidence",
+    "Web/Web-OS L2/L11 document presence is not formal L10, oracle, CI, implementation, acceptance or release evidence",
+    "old test design/source and named test commands are not test execution",
+    "decision/consumer/failure absence remains unknown",
+    "scaffold validation is not formal authority, adoption, equivalence or acceptance evidence"
+  ],
+  "verification_contract": {
+    "validator": "scaffold/phcap07-web-verification-l10/validate.py",
+    "selfcheck": "scaffold/phcap07-web-verification-l10/selfcheck.py",
+    "static_only": true,
+    "allowed_checks": [
+      "source hashes and exact line anchors",
+      "phase/catalog/disposition/decision snapshots",
+      "product unit/connection candidate edges",
+      "direct/adjacent/unknown evidence statuses",
+      "stale capture and forbidden execution boundary"
+    ],
+    "forbidden": [
+      "archive runtime/test/CI/hook execution",
+      "formal L10/new CI execution",
+      "Issue/GitHub/PR/DB/deployment effects",
+      "formal adoption/authority/current implementation/pass claim"
+    ]
+  },
+  "counts": {
+    "product_units": 2,
+    "candidate_edges": 16,
+    "legacy_assets": 7,
+    "source_anchors": 9,
+    "current_refs": 10,
+    "decision_matches": 0,
+    "phase_direct_web_products": 0,
+    "product_adjacent_refs": 5,
+    "current_failure_receipts": 0,
+    "consumer_closed_assets": 0
+  }
+}
