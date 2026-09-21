@@ -4,7 +4,7 @@
 
 | unit | phase candidates | atom数 | 判定概要 |
 |---|---|---:|---|
-| IRUNIT-HIL-BR-01-HELIX-OS | PHCAP-10／12／13 | 5 | requirement confirmed、design unresolved（2/5）、implementation rejected |
+| IRUNIT-HIL-BR-01-HELIX-OS | PHCAP-10／12／13 | 4 | requirement confirmed、design unresolved（2/4）、implementation rejected |
 | IRUNIT-HIL-BR-02-HELIX-OS | PHCAP-10／12 | 4 | requirement confirmed、plan unresolved（2/4）、implementation unresolved（2/4、product conflict） |
 | IRUNIT-HIL-BR-03-HELIX-OS | PHCAP-19／20 | 7 | requirement confirmed、design unresolved（3/7）、implementation unresolved（1/7） |
 

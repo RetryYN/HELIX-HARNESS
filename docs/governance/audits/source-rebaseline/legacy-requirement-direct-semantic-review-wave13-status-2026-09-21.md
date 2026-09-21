@@ -19,8 +19,8 @@
 
 | unit | atoms | contract | design confirmed | design unresolved | design rejected assets | design pending-kind atoms | implementation confirmed | implementation unresolved | implementation rejected assets | implementation uncovered | no evidence |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| IRUNIT-HIL-BR-01-HELIX-OS | 5 | 5 | 0 | 2 | 0 | 0 | 0 | 0 | 1 | 5 | 3 |
+| IRUNIT-HIL-BR-01-HELIX-OS | 4 | 4 | 0 | 2 | 0 | 0 | 0 | 0 | 1 | 4 | 2 |
 | IRUNIT-HIL-BR-02-HELIX-OS | 4 | 4 | 0 | 2 | 0 | 0 | 0 | 2 | 0 | 2 | 2 |
 | IRUNIT-HIL-BR-03-HELIX-OS | 7 | 7 | 0 | 3 | 0 | 0 | 0 | 1 | 0 | 6 | 4 |
 
-詳細なbounded search receiptはmetaに固定した。candidate membershipはsemantic evidenceではない。対象はHELIX-OSだけで、BR01の共有source spanは2件（product boundary pendingとして保持）、製品境界decisionはpendingである。currentはnot_established、legacyはunknown_pending_direct_asset_semantic_review、consumer closureはpending。実装完了を主張しない。
+詳細なbounded search receiptはmetaに固定した。candidate membershipはsemantic evidenceではない。対象はHELIX-OSだけで、BR01の共有source spanは2件（A03/A05、product boundary pendingとして保持）、exclusive atomはA01/A02である。製品境界decisionはpendingである。currentはnot_established、legacyはunknown_pending_direct_asset_semantic_review、consumer closureはpending。実装完了を主張しない。

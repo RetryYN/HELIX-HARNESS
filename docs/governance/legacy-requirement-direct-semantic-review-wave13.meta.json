@@ -102,7 +102,7 @@
   },
   "legacy_execution_performed": false,
   "new_build_allowed": false,
-  "output_sha256": "sha256:ec59feeb6b520c283d3a37c4dd17165ed39ff4a1a2337227a9e1913b164ef377",
+  "output_sha256": "sha256:f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f",
   "parent_revision": "9061b51a1e0b4a898dcfd568891335cbb33bc135",
   "prior_review_batches": [
     {
@@ -261,18 +261,6 @@
             "text": "人のL3承認後"
           },
           {
-            "atom_id": "BR01-OS-A04",
-            "boundary_review_state": "product_boundary_pending_human_decision",
-            "kind": "os_unattended_run",
-            "responsibility_role": "OS unattended execution outside irreversible boundary",
-            "shared_with_units": [],
-            "source_fragments": [
-              "は不可逆境界以外を無人完走"
-            ],
-            "subject": "HELIX-OS自動走行",
-            "text": "不可逆境界以外を無人完走"
-          },
-          {
             "atom_id": "BR01-OS-A05",
             "boundary_review_state": "product_boundary_pending_human_decision",
             "kind": "shared_completion_boundary",
@@ -281,6 +269,7 @@
               "IRUNIT-HIL-BR-01-HELIX-HARNESS"
             ],
             "source_fragments": [
+              "は不可逆境界以外を無人完走",
               "不可逆境界以外を無人完走する"
             ],
             "subject": "不可逆境界",
@@ -292,7 +281,6 @@
           "BR01-OS-A01",
           "BR01-OS-A02",
           "BR01-OS-A03",
-          "BR01-OS-A04",
           "BR01-OS-A05"
         ],
         "design_confirmed_atom_ids": [],
@@ -312,12 +300,10 @@
           "BR01-OS-A01",
           "BR01-OS-A02",
           "BR01-OS-A03",
-          "BR01-OS-A04",
           "BR01-OS-A05"
         ],
         "no_evidence_atom_ids": [
           "BR01-OS-A03",
-          "BR01-OS-A04",
           "BR01-OS-A05"
         ],
         "shared_atom_ids": [
@@ -326,12 +312,11 @@
         ],
         "product_exclusive_atom_ids": [
           "BR01-OS-A01",
-          "BR01-OS-A02",
-          "BR01-OS-A04"
+          "BR01-OS-A02"
         ],
-        "atom_inventory_sha256": "sha256:ffd17efe2da04ac37aec83d61bba971388d73c2a075cfa768731ed8083cb3702",
+        "atom_inventory_sha256": "sha256:62b2f1ca2d7ee80a9814971a4d83419e7de0d0219baea34b9790a4094f4475df",
         "connective_fragments_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "contract_confirmed_atom_ids_sha256": "sha256:681d4b78bd1b037234059cd65ec02daaf6644cc4031ae28ca3410f19cf83efcf",
+        "contract_confirmed_atom_ids_sha256": "sha256:52c1f1e9d35f4ae7ee1c685c7c45da4f205776d194fa9deeb6397e652967c586",
         "design_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "design_unresolved_atom_ids_sha256": "sha256:aeb3f3b620fca081b7ac22fb198651aa99c554062e9c19ee13d4bd93041a6559",
         "design_rejected_asset_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -340,10 +325,10 @@
         "implementation_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "implementation_rejected_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "implementation_rejected_asset_ids_sha256": "sha256:a46f033cdb128fa3e91a86e5443dd7d8db92d73605584d8916fd876928b451da",
-        "implementation_uncovered_atom_ids_sha256": "sha256:681d4b78bd1b037234059cd65ec02daaf6644cc4031ae28ca3410f19cf83efcf",
-        "no_evidence_atom_ids_sha256": "sha256:9c87bedfc490e618dcb2244e9f6f32524f5779d1130b5c7ae10fb24a77bd4d5f",
+        "implementation_uncovered_atom_ids_sha256": "sha256:52c1f1e9d35f4ae7ee1c685c7c45da4f205776d194fa9deeb6397e652967c586",
+        "no_evidence_atom_ids_sha256": "sha256:fd7db0065708cb5e886f5af9205743683864f97c62604062b949ca5cb6cc51ec",
         "shared_atom_ids_sha256": "sha256:fd7db0065708cb5e886f5af9205743683864f97c62604062b949ca5cb6cc51ec",
-        "product_exclusive_atom_ids_sha256": "sha256:003a92fd004aa74e3c6f0e598ecb52f97b42276e14e5e1ad48690a9a608c0c2b",
+        "product_exclusive_atom_ids_sha256": "sha256:aeb3f3b620fca081b7ac22fb198651aa99c554062e9c19ee13d4bd93041a6559",
         "contract_semantic_edge_coverage_complete": true,
         "semantic_edge_coverage_complete": false,
         "no_shared_source_span": false,
