@@ -1,0 +1,114 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0016",
+  "kind": "scaffold",
+  "title": "PHCAP-19 Learning／改善 research premise candidate",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS上流管理（PHCAP-19の製品境界・改善loop研究。正式ownerは未解決）",
+  "state": "active",
+  "reason": "PHCAP-19はHELIX-OS、HELIX-HARNESS、HELIX-Web、HELIX-Web-OSを候補scopeに持つが、inventoryの直接current evidenceはHELIX-OSのL2／L11だけである。HARNESS／Web／Web-OSのref欠落を未実装と推定せず、旧learning／改善5 assetのsource、台帳状態、判断履歴、failure／consumer候補と現行L1・L2／L11・製品境界候補を同一revisionに束ねる。正式owner、要求採否、successor、現行authorityを生成しない。",
+  "upstream": [
+    {"path": "docs/governance/audits/source-rebaseline/phase-product-evidence-gap-audit-2026-09-21.md", "sha256": "b76d10e9ac3e36e267edc6eadc4ab3afb1f7eafabcebff50a0851fd3c63d97dc", "note": "PHCAP-19の製品別current evidence gap。欠落は未実装を意味しない"},
+    {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "note": "PHCAP-19 scope、OS direct evidence、代表旧asset"},
+    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "選択5 assetのsource／状態／consumer台帳"},
+    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "選択5 assetのphase／product候補と未解決状態"},
+    {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "note": "選択5 assetのappend-only判断履歴（該当0件）"},
+    {"path": "docs/governance/legacy-asset-reuse-control.md", "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582", "note": "旧assetをread-only referenceに限定"},
+    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "4製品の候補責務境界"},
+    {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "note": "HARNESS L1候補"},
+    {"path": "docs/helix-harness/L2-requirements/product-requirements.md", "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77", "note": "HARNESS L2候補とOS改善運転境界"},
+    {"path": "docs/helix-harness/L11-acceptance/product-acceptance.md", "sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b", "note": "HARNESS L11候補"},
+    {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "OS L1候補"},
+    {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be", "note": "OS L2改善candidate／backflow境界候補"},
+    {"path": "docs/helix-os/L11-acceptance/governance-acceptance.md", "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19", "note": "OS L11改善candidate受入境界候補"},
+    {"path": "docs/helix-web/L1-planning/product-intent.md", "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756", "note": "Web L1候補"},
+    {"path": "docs/helix-web/L2-requirements/product-requirements.md", "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0", "note": "Web L2学習・bounded evidence境界候補"},
+    {"path": "docs/helix-web/L11-acceptance/product-acceptance.md", "sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec", "note": "Web L11候補"},
+    {"path": "docs/helix-web-os/L1-planning/system-intent.md", "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c", "note": "Web-OS L1候補"},
+    {"path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248", "note": "Web-OS L2 bounded export境界候補"},
+    {"path": "docs/helix-web-os/L11-acceptance/service-acceptance.md", "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e", "note": "Web-OS L11候補"},
+    {"path": "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md", "sha256": "0a48e51ddb95212c4fcf45f218c25f110af7c2cdd30f75ec4c75ae90d47b39b6", "note": "旧意味の新世代責務境界crosswalk"},
+    {"path": "scaffold/phcap19-learning-research/inventory.json", "sha256": "3a1b5efca44939780aa81d90557d1f079a857a094b28dc726a025f96f06bddf4", "note": "5 asset、21 source span、13 atom、4製品候補、OS direct evidenceと3製品unknown"}
+  ],
+  "role": "PHCAP-19の旧learning／改善capabilityと現行HELIX-OS／HELIX-HARNESS／HELIX-Web／HELIX-Web-OS境界を、direct evidenceの有無・unknown・矛盾を保ったresearch premiseとして固定する",
+  "obligations": [
+    "PHCAP-19 inventory代表5 assetを重複なく保持し、未選択asset／consumer closureを閉じたと表示しない",
+    "各assetのsource path、bytes digest、exact source span、asset ledger状態、phase／product候補を照合する",
+    "append-only判断ログの該当0件を記録し、欠如を採用・棄却・owner確定・consumer closureへ変換しない",
+    "各atomにactor、旧authority／enforced-by、failure／unresolved、product unit／connection候補、consumer候補、証拠状態を保持する",
+    "inventoryが直接current evidenceとするHELIX-OS L2／L11を2件に固定し、HARNESS／Web／Web-OSの直接ref欠落とunknownを保持する",
+    "base SHAは取得時点metadataとして扱い、source／current refの固定digestをstale検査する。main SHAの最新性を意味authorityや恒久gateにしない",
+    "隣接するL1／L2／L11候補を製品境界・unit／connection候補として記録し、ref欠落から未実装・実装済み・運用成立を推定しない",
+    "OSの観測→candidate→decision→change→reverification→reobservation候補と、HARNESS工程、Web同意、Web-OS bounded export、memory境界を混同しない",
+    "要求採否、current authority、旧実装、実行・pass、consumer closure、L2／L11適用、L3／L10実装、受入、releaseを生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "PHCAP-19 research premise review担当",
+      "HELIX-OS／HARNESS／Web／Web-OSの製品境界・L1／L2／L11整理担当",
+      "旧learning／改善assetのfailure／consumer／判断史closure担当",
+      "Scaffold Bindingのstale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "旧asset／phase／decision ledgerのread-only照合",
+      "archived source bytesのread-only exact span照合",
+      "4製品のcurrent L1／L2／L11候補文書",
+      "scaffold/phcap19-learning-researchのvalidator／selfcheck"
+    ],
+    "boundary": "inventory、README、validator、selfcheck、Bindingはscaffold/配下だけ。旧sourceは静的referenceとして読むだけでruntime・test・hook・CIは実行しない。docs、設定、DB、Issue #1907、PR、GitHub、authority registerへ書き込まない。candidate product unit／connectionは正式ownerではない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/phcap19-learning-research/validate.py",
+      "python3 scaffold/phcap19-learning-research/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|list|stale|residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "historical generation tree配下のruntime／test／hook／CI実行",
+      "旧sourceを現行runtime／test／CIのoracle、fallback、実装として使うこと",
+      "scaffold/外への書き込み",
+      "direct ref欠落から未実装を生成すること",
+      "要求採否、owner確定、successor、current authority、L2／L11 freeze、L3／L10実装、consumer closure、acceptance、releaseの生成",
+      "Issue #1907への意味・要求・完了projection、GitHub、PR、DB、deploymentへの外部作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/phcap19-learning-research/README.md",
+    "scaffold/phcap19-learning-research/inventory.json",
+    "scaffold/phcap19-learning-research/validate.py",
+    "scaffold/phcap19-learning-research/selfcheck.py",
+    "scaffold/bindings/SCF-B-0016.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": [
+      "scaffold/phcap19-learning-research/validate.py（source exact span／asset／phase／decision／current boundary digest）",
+      "scaffold/phcap19-learning-research/selfcheck.py（authority、direct ref捏造、source改変、implementation／consumer closure、old execution、矛盾削除の陰性例）",
+      "scaffold/tools/scfctl.py stale（upstream revision変化検出）",
+      "git diff --check（候補artifactの静的整形）"
+    ],
+    "negative_cases": [
+      "HARNESS／Web／Web-OSのdirect current evidenceを隣接refから捏造する",
+      "source exact text／digestまたはasset ledger状態を改変する",
+      "判断ログ0件を採用・棄却・owner確定へ変換する",
+      "legacy implementation unknown、consumer pending、product unresolvedを昇格する",
+      "旧source内のreview／test／promotion記述をcurrent passまたはauthorityへ変換する",
+      "旧runtime／test／CIを実行しoracle、fallback、完了証拠にする"
+    ]
+  },
+  "replacement": {
+    "role_target": "PHCAP-19を対象とした正式な要求・製品unit／connection crosswalkとL2／L11／L3／L10導出契約（承認後に導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}
