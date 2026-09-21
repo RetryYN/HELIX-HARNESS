@@ -42,6 +42,20 @@ EXPECTED_CASES = {
     "HELIX-Web": ("OUTSIDE67-L1-WEB", "docs/design/helix-web/L1-planning/product-intent.md", "docs/helix-web/L1-planning/product-intent.md", "HDEC-HELIXWEB-L1-01", "exact_substantive_content"),
     "HELIX-Web-OS": ("OUTSIDE67-L1-WEB-OS", "docs/design/helix-web-os/L1-planning/system-intent.md", "docs/helix-web-os/L1-planning/system-intent.md", "HDEC-HELIXWEBOS-L1-01", "exact_substantive_content"),
 }
+EXPECTED_ANCHOR_KINDS = {
+    "HELIX-HARNESS": ["old_current_exact", "current_addition", "old_current_exact", "decision_approved_sha", "boundary_owner"],
+    "HELIX-OS": ["old_current_exact_except_one", "semantic_refinement", "semantic_refinement", "old_current_exact", "decision_approved_sha", "boundary_owner"],
+    "HELIX-Web": ["old_current_exact", "old_current_exact", "old_current_exact", "decision_approved_sha", "boundary_owner"],
+    "HELIX-Web-OS": ["old_current_exact", "old_current_exact", "old_current_exact", "decision_approved_sha", "boundary_owner"],
+}
+EXPECTED_GAP_SHA = {
+    "HELIX-HARNESS": "b76e154b4e29a8ca5c26174799c84544d687154625073a7340fcfd10df481d9f",
+    "HELIX-OS": "e323e797d25c9c2c67f5124769f67625e8df522c0fa9dbd6343ff52670892a24",
+    "HELIX-Web": "6c40d3111443a98b491063b8cf18c2cf15c21411d3c47f4e5a7783935b0a2c45",
+    "HELIX-Web-OS": "bda921b05068fe0c37e6994f953b70f98a1bc35d9434c232fb9b56b536b5dc57",
+}
+EXPECTED_FINDINGS_SHA = "dc0efbe6c698bdc6ebd138798722b82c291cdfc6e82f4d379d6dc153cc951328"
+EXPECTED_PROHIBITED_SHA = "def278fb081f492b066e6abc156a577656cbbc54e274b9384ea4a32958094559"
 
 
 if hashlib.sha256((HERE / "generate.py").read_bytes()).hexdigest() != EXPECTED_GENERATOR_SHA:
@@ -117,6 +131,8 @@ def independent_evidence_errors(inv: dict) -> list[str]:
     fail(errors, scope.get("decision_record_sha256") == digest(decision), "E_DECISION_DIGEST")
     fail(errors, scope.get("product_boundary_sha256") == digest(boundary), "E_BOUNDARY_DIGEST")
     cases = inv.get("cases", [])
+    fail(errors, digest(json.dumps(inv.get("findings"), ensure_ascii=False, sort_keys=True).encode()) == EXPECTED_FINDINGS_SHA, "E_FINDINGS_PIN")
+    fail(errors, digest(json.dumps(inv.get("prohibited_inference"), ensure_ascii=False, sort_keys=True).encode()) == EXPECTED_PROHIBITED_SHA, "E_PROHIBITED_PIN")
     fail(errors, {case.get("product") for case in cases} == set(EXPECTED_CASES), "E_CASE_PRODUCTS")
     for case in cases:
         product = case.get("product")
@@ -124,6 +140,8 @@ def independent_evidence_errors(inv: dict) -> list[str]:
             continue
         case_id, old_path, current_path, decision_id, label = EXPECTED_CASES[product]
         fail(errors, case.get("case_id") == case_id and case.get("semantic_relation_label") == label, f"E_CASE_ID_LABEL:{product}")
+        gap = case.get("semantic_gap")
+        fail(errors, isinstance(gap, str) and digest(gap.encode()) == EXPECTED_GAP_SHA[product], f"E_SEMANTIC_GAP:{product}")
         old = case.get("old_source", {})
         archive = case.get("archive_source", {})
         current = case.get("current_approved_l1", {})
@@ -153,6 +171,7 @@ def independent_evidence_errors(inv: dict) -> list[str]:
             fail(errors, recorded.get("relation") == ("no_exact_path_or_blob_or_sha_match" if counts_empty else "match_requires_review"), f"E_HOLDING_CLASS:{product}:{registration_id}")
         fail(errors, case.get("existing_holding_relation") == ("no_exact_path_or_blob_or_sha_match_in_13_live_holdings" if all_empty else "match_requires_review"), f"E_HOLDING_SUMMARY:{product}")
         source_bytes = {"old": old_bytes, "current": current_bytes, "decision": decision, "boundary": boundary}
+        fail(errors, [anchor.get("kind") for anchor in case.get("line_anchored_evidence", [])] == EXPECTED_ANCHOR_KINDS[product], f"E_ANCHOR_KINDS:{product}")
         for index, anchor in enumerate(case.get("line_anchored_evidence", [])):
             for kind, entry in anchor.items():
                 if kind not in source_bytes:
@@ -176,10 +195,12 @@ def independent_evidence_errors(inv: dict) -> list[str]:
             elif kind == "decision_approved_sha":
                 text = "\n".join(anchor.get("decision", {}).get("text", []))
                 fail(errors, decision_id in text and digest(current_bytes) in text, f"E_DECISION_ANCHOR:{product}:{index}")
+                fail(errors, current.get("decision_line") == anchor.get("decision", {}).get("line_start") == anchor.get("decision", {}).get("line_end"), f"E_DECISION_LINE:{product}:{index}")
             elif kind == "boundary_owner":
                 text = "\n".join(anchor.get("boundary", {}).get("text", []))
                 boundary_label = "HARNESS" if product == "HELIX-HARNESS" else product
                 fail(errors, f"| {boundary_label} |" in text, f"E_BOUNDARY_ANCHOR:{product}:{index}")
+                fail(errors, case.get("product_boundary", {}).get("line") == anchor.get("boundary", {}).get("line_start") == anchor.get("boundary", {}).get("line_end"), f"E_BOUNDARY_LINE:{product}:{index}")
         if product in ("HELIX-Web", "HELIX-Web-OS"):
             def body(data: bytes) -> bytes:
                 return data.split(b"---\n", 2)[-1]
