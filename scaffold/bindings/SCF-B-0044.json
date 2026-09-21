@@ -1,0 +1,104 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0044",
+  "kind": "scaffold",
+  "title": "outside67 global ordinal 49–67 四製品・phase・実装／劣化分類候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "RDP-001 outside67 source preservation／四製品・phase・実装 evidence review（正式owner未解決）",
+  "state": "registered",
+  "reason": "PR #1978 source setのoutside-67 reportからglobal ordinal 49–67の19 path_revision_pairを固定し、path由来の四製品／phase候補、pre-isolation／archive blob、歴史的13 live holdingのexact path／blob／SHA relationを保存する。実装、failure／degraded／unimplemented、semantic inclusion、authority、要求identity、successorはunknownまたは未開始に留める。",
+  "upstream": [
+    {"path": "scaffold/outside67-global-49-67/README.md", "sha256": "95cbf989d655ee0b3dfbeb31e2d26b4fe6dda585c7d43cdf5ba3e5d3f0bce549", "note": "対象範囲・unknown境界・static-only契約"},
+    {"path": "scaffold/outside67-global-49-67/generate.py", "sha256": "15dccf6fec265e91b7df34aa410964565069e24bf96863d4f69ce35237180440", "note": "fixed report／Git object／13 holdingからの再生成"},
+    {"path": "scaffold/outside67-global-49-67/validate.py", "sha256": "4d764e898ad4d60ae25334aede472a7ce70737e3c675d77d86970b0ed2a771de", "note": "generator非依存のexact relation、findings／prohibited text、recursive keyset validator"},
+    {"path": "scaffold/outside67-global-49-67/selfcheck.py", "sha256": "38620dc79afe26513c9f560c4e89b3dc9417051d7348c1e37f52a345b4b3c3fa", "note": "19否定自己検査（exact code／no-op guard含む）"},
+    {"path": "scaffold/outside67-global-49-67/inventory.json", "sha256": "b9d8e717763bb15d72f89f6e664f26e05aacc9168140349d9593091b222d53da", "note": "19件の分類集計・13 holding snapshot・unknown境界"},
+    {"path": "scaffold/outside67-global-49-67/source-items.jsonl", "sha256": "db916f5d64af2b8daf545f518da0d8c52e9dba579f15d91e13b47cc91a1f5c04", "note": "49–67各pathのblob／SHA／holding relation"},
+    {"path": "scaffold/pre-isolation-outside-holding-67/report.json", "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795", "note": "PR #1978 outside-67 67 path source set"},
+    {"path": "docs/governance/management-provisional-requirement-register.jsonl", "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b", "note": "supersedes終端の歴史的13 live holding算出元"},
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995", "note": "scaffold／authority／旧資産static-only境界"}
+  ],
+  "role": "outside67 global ordinal 49–67のpath-based product／phase候補とimplementation／degradation／semantic inclusion unknown、13 live holding exact relationを固定する研究用分類束",
+  "obligations": [
+    "PR #1978 source setのglobal ordinal 49–67を19 path_revision_pairとして順序固定し、要求atom数へ変換しない",
+    "四製品候補とphase候補をpath由来のcandidateとして保持し、product owner／phase authorityへ昇格しない",
+    "pre-isolation／archiveのGit blob OID、SHA-256、bytes、same／differentをread-only再照合する",
+    "historical captureのsupersedes終端13 live holdingについて、path／pre-isolation blob／pre-isolation SHAのexact relationを全件保持する",
+    "全19件のimplementation、failure／degraded／unimplemented、semantic inclusionをunknownとして保存する",
+    "source holding、requirement identity、successor、採否、承認、L3/L10/L11、releaseを生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 outside path source preservation／semantic review担当",
+      "四製品・phase authority review担当",
+      "legacy implementation／failure／degradation／consumer closure review担当",
+      "SCF-B-0044差し替え確認担当"
+    ],
+    "dependencies": [
+      "Python 3標準library",
+      "PR #1978 source setのoutside-67 report",
+      "固定Git object（pre-isolation／archive／historical capture）のread-only照合",
+      "management provisional registerと歴史的13 live holding"
+    ],
+    "boundary": "inventory、source-items、README、generator、独立validator、selfcheckはscaffold/内だけ。旧資産は静的referenceとして読む。正式register、要求採否、product owner、phase authority、implementation／degradation／consumer closure、CI、Issue、PR、DB、外部API、release、deploymentは確定・実行・更新しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/outside67-global-49-67/generate.py",
+      "python3 scaffold/outside67-global-49-67/validate.py",
+      "python3 scaffold/outside67-global-49-67/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git show／git rev-parse／git cat-fileによるread-only object照合",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、sourceの実行",
+      "旧source／blob同一性をcurrent oracle、fallback、implementation、passへ昇格すること",
+      "path candidateをrequirement atom、authority、採否、successor、implementation／degradationへ昇格すること",
+      "scaffold/外への候補書き込み",
+      "正式registerへのappend、Issue、PR、GitHub、DB、memory、外部API、deploymentへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/outside67-global-49-67/README.md",
+    "scaffold/outside67-global-49-67/generate.py",
+    "scaffold/outside67-global-49-67/validate.py",
+    "scaffold/outside67-global-49-67/selfcheck.py",
+    "scaffold/outside67-global-49-67/inventory.json",
+    "scaffold/outside67-global-49-67/source-items.jsonl",
+    "scaffold/bindings/SCF-B-0044.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": [
+      "validate.py（19 ordinal、Git blob OID／SHA／bytes、13 live holding exact relation、四製品／phase集計）",
+      "selfcheck.py（authority、product／phase、implementation／degradation／semantic inclusion、holding、blob、旧実行の15否定例）",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "path candidateをproduct／phase authorityへ昇格する",
+      "implementation unknownをimplementedへ、degradation unknownをdegraded／unimplementedへ昇格する",
+      "semantic inclusion unknownをincludedへ昇格する",
+      "blob OID／SHA／same-differentまたは13 holding relationを改変する",
+      "path_revision_pairをrequirement atom、source holding、successorへ変換する",
+      "旧runtime／test／CI実行、formal append、承認、releaseを記録・生成する"
+    ]
+  },
+  "replacement": {
+    "role_target": "承認済み上流source／対象別L2／L11から導出された四製品・phase・implementation／degradation／semantic inclusionの正式分類と下流pair",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "overlap_reason": "SCF-B-0038の全67 path source_holding保存候補と同じsource setを参照するが、本束はglobal ordinal 49–67のproduct／phase／implementation／degradation／semantic-inclusion分類researchに限定する。SCF-B-0038は全67 pathのsource_holding append前保存とhistorical 13-holding migration阻害を担う。",
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
