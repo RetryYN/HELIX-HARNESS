@@ -15,7 +15,7 @@
     },
     {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "dcfdfef38950f06e7f08c834bd4d59b415cf250ae1fb1f214ace1e6fd7d764a6",
+      "sha256": "d3d15f2dfaca68f933c328bbebe083566ef7fd74102ed19db675ff9565968f91",
       "note": "PHCAP-06 static upstream/source revision; read-only"
     },
     {

@@ -20,11 +20,15 @@ projection_receipt: `docs/governance/audits/source-rebaseline/github-phase-capab
 - `maximum_layer_evidenced`は代表証拠のartifact layerで確認した旧到達層であり、その層の全条件成立や品質を示さない。runbookの適用先のようなcross-layer applicabilityは到達層へ数えない。
 - `capability_status`は代表assetの種別と存在を示す。`test`／`acceptance`を含む語も旧testの実行、pass、confirmed status、現行oracle適合を示さない。
 - `transition_assessment`は旧能力と現行状態の差を示す。`degraded`は現行正式能力が旧実装より浅い状態で、旧実装を復活させる判断ではない。
-- `new_build_allowed`は全件`false`。これは調査、consumer closure、要求分類、要求判断準備、inventory更新を止めない。旧asset、current candidate、Scaffold、consumer、要求差分の調査が完了し、既存能力で満たせない差分が記録されるまで、新しいcapabilityの設計artifact・実装用Scaffold・実装を起こさない。source／evidence保持用Scaffoldは、下記の条件を満たす場合に限り調査・inventory更新の一部として扱う。
+- `new_build_allowed`は全件`false`。これは調査、consumer closure、要求分類、要求判断準備、inventory更新を止めない。旧asset、current candidate、Scaffold、consumer、要求差分の調査が完了し、既存能力で満たせない差分が記録されるまで、新しいphase capabilityの設計artifact・実装用Scaffold・実装を起こさない。既存のBinding登録済みoperating Scaffoldは個別Bindingのscope内で保持し、source／evidence保持用Scaffoldは下記の条件を満たす場合に限り調査・inventory更新の一部として扱う。
 
-### `new_scaffold`の射程
+### 新しいphase capability buildと既存Scaffoldの射程
 
-ここで停止する`new_scaffold`は、新しいcapabilityのcontract、runtime、adapter、CI、正式な設計・実装を持つScaffoldである。`scaffold/`名前空間に置き、Scaffold Bindingへ登録し、`authority_effect:none`と`new_build_allowed:false`を維持するsource／inventory／静的evidence／negative caseの保持束は、`inventory_research`または`inventory_update`の範囲で許可する。この保持束は再現可能な静的検査を行えても、capability contract、runtime、adapter、CI、正式な設計・実装・完了、要求採否、successor、ownerを生成しない。
+ここで停止する`new_scaffold`は、新しいphase capabilityのcontract、runtime、adapter、CI、正式な設計・実装を追加するScaffoldである。新しいoperating Scaffoldの登録・追加はこの例外から許可しない。
+
+すでにScaffold Bindingへ登録されたoperating Scaffoldは、個別Bindingのrole、obligations、connections、operationsの範囲で保持する。運用中であること、scriptやhandoffを持つこと、検査に合格することから、`new_build_allowed:true`、capability authority、要求採否、完了を生成しない。`SCF-B-0003`はこの既存Bindingのscopeに従う。
+
+source／inventory／静的evidence／negative caseを保持するBinding登録済みScaffoldは、`inventory_research`または`inventory_update`の範囲で許可する。この保持束は再現可能な静的検査を行えても、`authority_effect:none`、`new_build_allowed:false`を維持し、capability contract、runtime、adapter、CI、正式な設計・実装・完了、要求採否、successor、ownerを生成しない。
 
 ## 初期分類
 
@@ -60,14 +64,14 @@ projection_receipt: `docs/governance/audits/source-rebaseline/github-phase-capab
 3. 現行の正式・draft・candidate・Scaffold・missingを区別する。
 4. 四製品のうち該当productと、複数製品ならunit／connection／compositeの分割点を記録する。
 5. 未実装、縮退、重複、欠落、意味差分を記録し、旧assetの直接実行・copyを行わない。
-6. 既存能力で承認済み要求を満たせない差分が確定するまで`new_build_allowed: false`を維持する。調査・consumer closure・要求分類・要求判断準備・inventory更新は継続し、新しいcapabilityの設計artifact・実装用Scaffold・実装だけを停止する。source／evidence保持用Scaffoldは、`scaffold/`名前空間、Binding登録、`authority_effect:none`、`new_build_allowed:false`、capability contract／runtime／adapter／CIなしの条件を満たす場合に限り継続できる。
+6. 既存能力で承認済み要求を満たせない差分が確定するまで`new_build_allowed: false`を維持する。調査・consumer closure・要求分類・要求判断準備・inventory更新は継続し、新しいphase capabilityの設計artifact・実装用Scaffold・実装だけを停止する。既存Binding登録済みoperating Scaffoldは個別Bindingのscopeと`authority_effect:none`の範囲で保持し、新しいoperating Scaffoldの追加はこの規則から許可しない。source／evidence保持用Scaffoldは、`scaffold/`名前空間、Binding登録、`authority_effect:none`、`new_build_allowed:false`、capability contract／runtime／adapter／CIなしの条件を満たす場合に限り継続できる。
 
 ## 初期集計
 
 - フェーズ: 20
 - 現行で承認済みの対象別上流: Concept／四製品L1
 - 現行で正式L3／L10まで成立したフェーズ: 0
-- Binding登録済みScaffoldが運用中: Review convergenceの`SCF-B-0003`。これは仮の保持・手渡し用束であり、新しいcapability実装の許可や完了を示さない
+- Binding登録済みoperating Scaffoldが運用中: Review convergenceの`SCF-B-0003`。個別Bindingのscope内で保持され、運用・handoff・検査合格は新しいcapability実装の許可や完了を示さない
 - 旧実装・test sourceまで代表証拠を確認: 要求登録、Worker、Review、Refactor、Memoryほか。test designだけのphaseは実行済みと扱わない
 - 旧同名WBS asset: 0。等価候補のPLAN／roadmap／current-location／state DBを要意味比較
 

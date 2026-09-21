@@ -9,7 +9,7 @@
   "reason": "PHCAP-18の代表旧refactor asset、source／failure／consumer候補、asset／phase ledger状態、現行4製品境界候補を同一revisionに束ねる。直接current evidenceはHARNESS／OSに限定し、Web／Web-OSの直接ref欠落を未実装と推定しない。正式owner、要求採否、successor、current authority、実装、受入、releaseを生成しない。",
   "upstream": [
     {"path": "docs/governance/audits/source-rebaseline/phase-product-evidence-gap-audit-2026-09-21.md", "sha256": "b76d10e9ac3e36e267edc6eadc4ab3afb1f7eafabcebff50a0851fd3c63d97dc", "note": "PHCAP-18の製品別current evidence gap。欠落は未実装を意味しない"},
-    {"path": "docs/governance/phase-capability-inventory.json", "sha256": "dcfdfef38950f06e7f08c834bd4d59b415cf250ae1fb1f214ace1e6fd7d764a6", "note": "PHCAP-18 scope、代表5旧asset、製品境界候補"},
+    {"path": "docs/governance/phase-capability-inventory.json", "sha256": "d3d15f2dfaca68f933c328bbebe083566ef7fd74102ed19db675ff9565968f91", "note": "PHCAP-18 scope、代表5旧asset、製品境界候補"},
     {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "5 assetのsource／実装／decision／consumer状態"},
     {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "5 assetのphase／product候補と未解決状態"},
     {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "note": "PHCAP-18該当のappend-only判断履歴（0件）"},
