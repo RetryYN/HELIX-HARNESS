@@ -1,0 +1,1292 @@
+{
+  "schema": "rdp001-delegated-document-pair-scaffold/v1",
+  "candidate_id": "RDP-001-SCF-B-0008-DOC-006-015",
+  "status": "scaffold_candidate_pending_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "comparison": {
+    "selection_basis": "next independent document pair after DELEGATED-DOC-003/028 and DELEGATED-DOC-008/017; no selected source document or reference edge overlap",
+    "selected_document_ids": [
+      "DELEGATED-DOC-006",
+      "DELEGATED-DOC-015"
+    ],
+    "selected_reference_edge_ids": [
+      "DELEGATED-REF-0308",
+      "DELEGATED-REF-0424",
+      "DELEGATED-REF-0425",
+      "DELEGATED-REF-0765"
+    ],
+    "holding_denominator": {
+      "source_documents_total": 114,
+      "reference_edges_total": 788,
+      "prior_candidate_source_documents": [
+        "DELEGATED-DOC-003",
+        "DELEGATED-DOC-028",
+        "DELEGATED-DOC-008",
+        "DELEGATED-DOC-017"
+      ],
+      "prior_candidate_reference_edges": [
+        "DELEGATED-REF-0303",
+        "DELEGATED-REF-0759",
+        "DELEGATED-REF-0760",
+        "DELEGATED-REF-0341",
+        "DELEGATED-REF-0342",
+        "DELEGATED-REF-0414",
+        "DELEGATED-REF-0415",
+        "DELEGATED-REF-0772"
+      ],
+      "prior_candidate_source_document_count": 4,
+      "prior_candidate_reference_edge_count": 8,
+      "selected_source_document_count": 2,
+      "selected_reference_edge_count": 4,
+      "remaining_source_documents_after_prior_and_selected": 108,
+      "remaining_reference_edges_after_prior_and_selected": 776,
+      "prior_merged_bindings": [
+        "SCF-B-0005",
+        "SCF-B-0006"
+      ]
+    },
+    "id_overlap_check": {
+      "prior_candidate_original_id_overlap": [],
+      "selected_original_id_scope": [
+        "GH-FR-029",
+        "GH-NFR-019",
+        "GH-NFR-020",
+        "GH-NFR-021",
+        "GH-NFR-022",
+        "GH-AC-041",
+        "GH-T-041"
+      ],
+      "note": "selected requirement/test IDs are distinct from prior candidate DOC-003/028 and DOC-008/017 scope"
+    }
+  },
+  "ledger_provenance": {
+    "source_holding_path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+    "source_holding_sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+    "source_holding_total": 114,
+    "reference_holding_path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+    "reference_holding_sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+    "reference_holding_total": 788,
+    "asset_disposition_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "asset_disposition_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "phase_product_path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "phase_product_sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "fixed_source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+    "atomization_contract_path": "docs/governance/requirement-atomization-review-contract.md",
+    "atomization_contract_sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+    "reuse_control_path": "docs/governance/legacy-asset-reuse-control.md",
+    "reuse_control_sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+  },
+  "candidate_resolution": {
+    "state": "unresolved",
+    "source_scope": "file_blob",
+    "product_scope": "candidate_only",
+    "phase_scope": "candidate_or_unresolved",
+    "implementation_scope": "unknown",
+    "consumer_scope": "pending"
+  },
+  "product_boundary": {
+    "product_owner_candidates": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "consumer_candidates": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "boundary_status": "candidate_only",
+    "sources": [
+      {
+        "path": "docs/concept/product-boundary.md",
+        "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+      },
+      {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+      },
+      {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+      }
+    ],
+    "allocation_rule": "HARNESS候補はV-model／要求・設計・検証contract、OS候補はGitHub／CI／state／credential／artifact運転。混合atomはunresolvedを維持する."
+  },
+  "source_documents": [
+    {
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "sha256": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72",
+      "source_declared_status": "draft",
+      "source_relation": "requirements_v1.3_reference_line_543",
+      "holding_granularity": "file_blob",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_refs": [],
+      "human_decision_ref": null,
+      "fixed_source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "source_blob_oid": "9d6e576c5fdbedd1a82b72bc4085afef0f0f2c5b",
+      "source_blob_sha256": "sha256:0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72",
+      "line_count": 83
+    },
+    {
+      "source_document_id": "DELEGATED-DOC-015",
+      "source_path": "docs/test-design/helix/github-security-admission-system-test-design.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-security-admission-system-test-design.md",
+      "sha256": "6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b",
+      "source_declared_status": "draft",
+      "source_relation": "requirements_v1.3_reference_line_548",
+      "holding_granularity": "file_blob",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_refs": [],
+      "human_decision_ref": null,
+      "fixed_source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "source_blob_oid": "fa2081df536a7696df9e34142d5a12d323f7c4ef",
+      "source_blob_sha256": "sha256:6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b",
+      "line_count": 28
+    }
+  ],
+  "reference_edges": [
+    {
+      "reference_id": "DELEGATED-REF-0308",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_file_sha256": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "pair_artifact",
+      "source_line": 9,
+      "target_path": "docs/test-design/helix/github-security-admission-system-test-design.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-security-admission-system-test-design.md",
+      "target_sha256": "6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    },
+    {
+      "reference_id": "DELEGATED-REF-0424",
+      "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "reference_origin": "body_reference",
+      "relation_key": null,
+      "source_line": 543,
+      "target_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "target_sha256": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    },
+    {
+      "reference_id": "DELEGATED-REF-0425",
+      "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "reference_origin": "body_reference",
+      "relation_key": null,
+      "source_line": 548,
+      "target_path": "docs/test-design/helix/github-security-admission-system-test-design.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-security-admission-system-test-design.md",
+      "target_sha256": "6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    },
+    {
+      "reference_id": "DELEGATED-REF-0765",
+      "source_path": "docs/test-design/helix/github-security-admission-system-test-design.md",
+      "source_file_sha256": "6ee1f7d3292418f03c4affe16e7e5cf6725e009278abd2b1407f46ed457b089b",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "pair_artifact",
+      "source_line": 9,
+      "target_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "target_sha256": "0a25ec678f4f45b8741f9ad4c8c71d28f140160d575a1b39187faf9857d03a72",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    }
+  ],
+  "legacy_asset_status": [
+    {
+      "source_document_id": "DELEGATED-DOC-006",
+      "asset_id": "LEGACY-ASSET-ADE4AF41DD06DA4F100F",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "asset_ledger": {
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "pair_ids": [],
+        "reuse_exclusion_class": null,
+        "revision": 1
+      },
+      "phase_product_bootstrap": {
+        "classification_id": "LASPH-0455",
+        "artifact_evidence_kind": "requirement",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "direct_phase_candidates": [],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_document_id": "DELEGATED-DOC-015",
+      "asset_id": "LEGACY-ASSET-EB421907D74CD002EA40",
+      "source_path": "docs/test-design/helix/github-security-admission-system-test-design.md",
+      "asset_ledger": {
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "pair_ids": [],
+        "reuse_exclusion_class": "legacy_test_design_or_oracle",
+        "revision": 1
+      },
+      "phase_product_bootstrap": {
+        "classification_id": "LASPH-2820",
+        "artifact_evidence_kind": "test_design",
+        "phase_classification_status": "unresolved_with_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-07"
+        ],
+        "direct_phase_candidates": [
+          {
+            "confidence": "medium",
+            "evidence": [
+              "frontmatter:layer=L10",
+              "subject:verification/evidence/oracle"
+            ],
+            "phase": "PHCAP-07",
+            "source_batches": [
+              "PHCAP-01-07"
+            ]
+          }
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    }
+  ],
+  "atoms": [
+    {
+      "semantic_atom_id": "SCF006-SEM-DOC-006-METADATA",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "DOC-006-METADATA",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 25,
+        "sha256": "sha256:81adbd7b9c5f589330f6be714fc76a1b97ec05eb8cd33b31562bb93bd8069a73",
+        "exact_source_text": "---\ntitle: \"GitHub security evidence admission 要件定義\"\nlayer: L3\nkind: add-design\nstatus: draft\ncreated: 2026-07-30\nupdated: 2026-07-30\nowner: Security / TL\npair_artifact: docs/test-design/helix/github-security-admission-system-test-design.md\n---\n\n# GitHub security evidence admission 要件定義\n\n## 1. 目的と責務境界\n\n本書はCodex Security、GitHub CodeQL、secret scanning／push protection、Dependabot、dependency review等を\n個別の正本にせず、同一source HEAD／artifact digestへ束縛したsecurity evidenceから、開発slice、merge、\ndeploymentのadmissionをexactly onceで決定する。\n\nscannerの追加そのものではなく、coverage、severity、finding disposition、waiver期限、実行境界を統合する\n`GitHubSecurityAdmission`を単一responsibility ownerとする。各scannerの検出ロジック、脆弱性修正、\ndeployment実行、GitHub settings変更は本責務に含めない。\n\n## 2. 機能要件\n\n"
+      },
+      "candidate_kind": "metadata",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "DOC-006はGitHub security evidence admissionのL3 draft候補で、scanner・merge・deploymentの境界を記録するが採用authorityは生成しない.",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0308",
+        "DELEGATED-REF-0424",
+        "DELEGATED-REF-0765"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-006",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・例外・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning_change=false、successorなし",
+        "candidate ownerとconsumerは境界候補であり採用ownerではない"
+      ],
+      "actors": [
+        "PO / TL",
+        "Security / TL",
+        "GitHubSecurityAdmission"
+      ],
+      "authority_conditions": [
+        "source status=draft",
+        "pair_artifactと上位requirements参照は系譜でありauthorityではない"
+      ],
+      "negative_conditions": [],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "旧phase／implementation／consumerは未確認で、現行実装や受入へ昇格しない"
+      ],
+      "questions": [
+        "このatomのnormative contractと運転consumerをHARNESS／OSのどちらへ分離するか",
+        "人間decisionなしにsource status、phase、implementation、consumer closureを確定できない"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_authority_status": "unconfirmed",
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-SEM-GH-FR-029",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-FR-029",
+      "source_span": {
+        "start_line": 26,
+        "end_line": 59,
+        "sha256": "sha256:d2aec7c28c46d2353a7ca549fcf5cab44236f52f983cc43b9b1de6ec300fa222",
+        "exact_source_text": "### GH-FR-029 セキュリティ証拠受入\n\n`GitHubSecurityAdmission`は次の入力をversioned receiptとして受け取り、`pass`、`report_only`、\n`recovery_required`、`human_action_required`、`reject`のexactly oneを返す。\n\n- source/base/head SHA、merge base、対象path／artifact digest、scanner／schema／policy version\n- finding ID、CWE等の分類、severity、fingerprint、affected path、disposition、waiver owner／期限\n- coverage=`complete|partial|unknown`、延期対象、scan方式、終了code、run／artifact／SARIF digest\n- secret scanning、push protection、Dependabot、CodeQL、Codex Securityのavailable／configured／executed状態\n- GitHub Actions権限、credential露出時間、Action完全SHA固定、artifact保持期間\n\n開発sliceではimpact selectorがsecurity-sensitive path、権限、secret、dependency、workflow、schema、\nmigration、deployment変更をcriticalへ分類する。Codex Securityを利用可能な場合、PRのexact merge baseから\ncandidate HEADまでを`--diff ... --head ...`でscanし、結果directoryをworktree外へ置く。`partial`／`unknown`\ncoverage、input/runtime error、HEAD driftをfinding 0と同一視しない。Codex Securityがbeta access、\n費用上限、provider障害等で利用不能な場合、CodeQLや既存scannerの成功で「Codex Security実行済み」と偽装せず、\nversioned capability policyに従い`report_only`または`human_action_required`へfail-closeする。\n\ncandidate固定後はfull repository／critical pathのdeep scanをrisk policyに従って実行し、PR scanを\nrepository全体の完全性証拠にしない。deploy admissionはpromotion対象artifactとsource HEADを一致させ、\n未解決Critical／High、期限切れwaiver、coverage不完全、CodeQL/Codex Security/SARIF receipt drift、\nsecret／dependency alert未処理を拒否する。stagingで取得した同一artifact receiptだけをproductionへ再利用し、\nproduction credentialをscannerへ渡さない。\n\nCodex Securityは既定report-onlyで導入し、scan品質、coverage、runtime、費用baselineを確認後、\nversioned severity policyで段階的にenforceする。severity gateを有効化してもcoverage不完全のexit codeを\nfindingなしへ変換しない。複数scannerの同一findingはfingerprintで関連付けるが、一方のPASSで他方のfindingを\n相殺しない。\n\nGitHub repository設定の期待状態は、secret scanning、push protection、Dependabot alerts/security updates、\nCodeQLまたはadmitted code-scanning tool、code-scanning merge protection、default read permissions、\n必要jobだけの`security-events: write`／`id-token: write`、`persist-credentials: false`、third-party Actionの\nfull-length commit SHA pinとする。設定変更はread-only drift receipt、dry-run、対象／rollbackを束縛した\naction-binding human approvalなしにapplyしない。\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "GitHubSecurityAdmissionがsecurity receiptを受け、coverage・finding・waiver・credential・action pin・HEAD条件を評価してpass/report_only/recovery_required/human_action_required/rejectの一つへ分類する.",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0308"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-006",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・例外・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning_change=false、successorなし",
+        "candidate ownerとconsumerは境界候補であり採用ownerではない",
+        "scanner追加・脆弱性修正・deployment実行・GitHub settings変更は本責務に含めない"
+      ],
+      "actors": [
+        "GitHubSecurityAdmission",
+        "scanner",
+        "security policy owner",
+        "human action owner"
+      ],
+      "authority_conditions": [
+        "versioned receiptとsource/base/head SHA・artifact digest・policy versionをauthority入力とする"
+      ],
+      "negative_conditions": [
+        "partial／unknown coverageをfinding 0にしない",
+        "input/runtime errorとHEAD driftをfinding 0にしない",
+        "Codex Security実行済みと偽装しない",
+        "未解決Critical／Highを拒否する",
+        "production credentialをscannerへ渡さない"
+      ],
+      "possible_conflicts": [
+        "security contractとGitHub／CI運転、scanner availability、human approvalが混在する",
+        "Codex Security provider／費用／beta状態は将来再確認が必要"
+      ],
+      "questions": [
+        "required scanner未設定やcoverage不完全をどのproduct contractと運転policyで確定するか",
+        "report_onlyからenforceへの人間decisionとaction-binding approvalをどこへ記録するか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_authority_status": "unconfirmed",
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-SEM-GH-NFR-019",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-019",
+      "source_span": {
+        "start_line": 60,
+        "end_line": 63,
+        "sha256": "sha256:84081da56406c4d6b2c5b4e7858cf7ed33933a56cf8812a6f16bf3b36ada6e58",
+        "exact_source_text": "\n## 3. 非機能要件\n\n- `GH-NFR-019` Completeness: coverage不完全、scanner未設定、実行中、receipt staleをgreenにしない。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_candidates": [
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "security admissionはcoverage不完全・scanner未設定・実行中・receipt staleをgreen扱いしない.",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0308"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-006",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・例外・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning_change=false、successorなし",
+        "candidate ownerとconsumerは境界候補であり採用ownerではない"
+      ],
+      "actors": [
+        "GitHubSecurityAdmission",
+        "scanner",
+        "admission evaluator"
+      ],
+      "authority_conditions": [
+        "coverage状態とreceipt freshnessをversioned contractで判定する"
+      ],
+      "negative_conditions": [
+        "coverage不完全、scanner未設定、実行中、receipt staleをgreenにしない"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "旧phase／implementation／consumerは未確認で、現行実装や受入へ昇格しない"
+      ],
+      "questions": [
+        "このatomのnormative contractと運転consumerをHARNESS／OSのどちらへ分離するか",
+        "人間decisionなしにsource status、phase、implementation、consumer closureを確定できない"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_authority_status": "unconfirmed",
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-SEM-GH-NFR-020",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-020",
+      "source_span": {
+        "start_line": 64,
+        "end_line": 65,
+        "sha256": "sha256:b159d8664742fb79b6d19d995dc9c8610a0ea3c5f00eaf01575e146e850bc220",
+        "exact_source_text": "- `GH-NFR-020` Least privilege: scan credentialはscan stepだけへ注入し、checkout、repository executable、\n  artifact upload、deploymentへ伝播させない。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "scan credentialはscan stepだけへ注入し、checkout・repository executable・artifact upload・deploymentへ伝播させない.",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0308"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-006",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・例外・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning_change=false、successorなし",
+        "candidate ownerとconsumerは境界候補であり採用ownerではない"
+      ],
+      "actors": [
+        "scan runner",
+        "credential boundary owner",
+        "deployment operator"
+      ],
+      "authority_conditions": [
+        "credential scopeとstep boundaryをHELIX-OS運転証拠で確認する"
+      ],
+      "negative_conditions": [
+        "scan credentialはscan stepだけへ注入",
+        "artifact upload、deploymentへ伝播させない"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "旧phase／implementation／consumerは未確認で、現行実装や受入へ昇格しない"
+      ],
+      "questions": [
+        "このatomのnormative contractと運転consumerをHARNESS／OSのどちらへ分離するか",
+        "人間decisionなしにsource status、phase、implementation、consumer closureを確定できない"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_authority_status": "unconfirmed",
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-SEM-GH-NFR-021",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-021",
+      "source_span": {
+        "start_line": 66,
+        "end_line": 67,
+        "sha256": "sha256:9b4149716ce246e7759df64d5a4c5e6e4be9945a459a2d1d0eaee858f2ce9318",
+        "exact_source_text": "- `GH-NFR-021` Cost and latency: PRはdiff standard、candidate／scheduledはrisk-based deepとし、\n  `max-cost`、duration、coverageを別々に計測する。費用超過を検査削除で隠さない。\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_candidates": [
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "PRはdiff standard、candidate／scheduledはrisk-based deep scanとし、max-cost・duration・coverageを別計測して費用超過を隠さない.",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0308"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-006",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・例外・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning_change=false、successorなし",
+        "candidate ownerとconsumerは境界候補であり採用ownerではない"
+      ],
+      "actors": [
+        "scan planner",
+        "risk policy owner",
+        "admission evaluator"
+      ],
+      "authority_conditions": [
+        "scan profileとmax-cost・duration・coverageを別々に記録する"
+      ],
+      "negative_conditions": [
+        "費用超過を検査削除で隠さない",
+        "PRはdiff standard、candidate／scheduledはrisk-based deep"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "旧phase／implementation／consumerは未確認で、現行実装や受入へ昇格しない"
+      ],
+      "questions": [
+        "このatomのnormative contractと運転consumerをHARNESS／OSのどちらへ分離するか",
+        "人間decisionなしにsource status、phase、implementation、consumer closureを確定できない"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_authority_status": "unconfirmed",
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-SEM-GH-NFR-022",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-NFR-022",
+      "source_span": {
+        "start_line": 68,
+        "end_line": 70,
+        "sha256": "sha256:bf3746458e361d8f23469d5466c6fb579ce839740288c70b7b4edaf9964898f1",
+        "exact_source_text": "- `GH-NFR-022` Evidence privacy: scan artifactのsource snippet／remediation情報を機密として扱い、\n  private worktree外directory、最小閲覧権限、短期retention、redactionを適用する。\n\n"
+      },
+      "candidate_kind": "constraint",
+      "candidate_target": "HELIX-OS",
+      "owner_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "scan artifactのsource snippet／remediation情報を機密として扱い、private worktree外directory・最小閲覧権限・短期retention・redactionを適用する.",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0308"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-006",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・例外・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning_change=false、successorなし",
+        "candidate ownerとconsumerは境界候補であり採用ownerではない"
+      ],
+      "actors": [
+        "scan artifact owner",
+        "access policy owner",
+        "security reviewer"
+      ],
+      "authority_conditions": [
+        "artifact privacyと閲覧権限・retention・redactionを運転証拠で束縛する"
+      ],
+      "negative_conditions": [
+        "source snippet／remediation情報を機密として扱う",
+        "最小閲覧権限、短期retention、redactionを適用する"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "旧phase／implementation／consumerは未確認で、現行実装や受入へ昇格しない"
+      ],
+      "questions": [
+        "このatomのnormative contractと運転consumerをHARNESS／OSのどちらへ分離するか",
+        "人間decisionなしにsource status、phase、implementation、consumer closureを確定できない"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_authority_status": "unconfirmed",
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-SEM-GH-AC-041",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-AC-041",
+      "source_span": {
+        "start_line": 71,
+        "end_line": 76,
+        "sha256": "sha256:116d0e4430fc48e1c6fce0e3dcdb7302db2f12bc43e1ba779e5f1de2d297b697",
+        "exact_source_text": "## 4. 受入条件\n\n| AC | 合格条件 |\n|---|---|\n| `GH-AC-041` | exact HEADのPR diff、candidate deep、deployment artifactを別profileで判定し、coverage partial/unknown、required scanner未設定、Critical/High、期限切れwaiver、HEAD/artifact drift、credential過剰露出、未pin Actionを個別にfail-closeする。report-onlyからenforceへの遷移とGitHub settings applyはversioned policy／action-binding approvalなしに行われない |\n\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "PR diff・candidate deep・deployment artifactを別profileで判定し、coverage／scanner／severity／waiver／drift／credential／Action pinの違反を個別fail-closeする.",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0308"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-006",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・例外・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning_change=false、successorなし",
+        "candidate ownerとconsumerは境界候補であり採用ownerではない"
+      ],
+      "actors": [
+        "admission evaluator",
+        "scanner",
+        "human approval owner"
+      ],
+      "authority_conditions": [
+        "versioned policyとaction-binding approvalがenforce遷移・settings applyのauthority条件になる"
+      ],
+      "negative_conditions": [
+        "coverage partial/unknownをfail-closeする",
+        "required scanner未設定、Critical/High、期限切れwaiver、HEAD/artifact driftをfail-closeする",
+        "settings applyをapprovalなしに行わない"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "旧phase／implementation／consumerは未確認で、現行実装や受入へ昇格しない"
+      ],
+      "questions": [
+        "このatomのnormative contractと運転consumerをHARNESS／OSのどちらへ分離するか",
+        "人間decisionなしにsource status、phase、implementation、consumer closureを確定できない"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_authority_status": "unconfirmed",
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-SEM-DOC-006-EXTERNAL",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "DOC-006-EXTERNAL-SPECS",
+      "source_span": {
+        "start_line": 77,
+        "end_line": 83,
+        "sha256": "sha256:069513b30bbf1dda3647ef22773c43e07766fb959670b6a9c5bf920c60f0900e",
+        "exact_source_text": "## 5. 外部仕様確認\n\n- OpenAI Codex Manual「Run Codex Security in CI」「Codex Security CLI reference」（2026-07-30確認）\n- GitHub公式文書「Code scanning merge protection」「Managing security and analysis settings」\n- GitHub公式文書「Managing GitHub Actions settings」「Security hardening your deployments」\n\n外部仕様は実装時に再確認し、beta availabilityやGitHub plan差を固定前提にしない。\n"
+      },
+      "candidate_kind": "metadata",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "外部Codex Security／GitHub仕様の参照先と再確認条件を記録し、beta availabilityやGitHub plan差を固定前提にしない.",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0308"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-006",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・例外・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning_change=false、successorなし",
+        "candidate ownerとconsumerは境界候補であり採用ownerではない"
+      ],
+      "actors": [
+        "PO / TL",
+        "security reviewer",
+        "implementation researcher"
+      ],
+      "authority_conditions": [
+        "外部仕様は実装時に再確認するというsource caveatを保持する"
+      ],
+      "negative_conditions": [
+        "beta availabilityやGitHub plan差を固定前提にしない"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "旧phase／implementation／consumerは未確認で、現行実装や受入へ昇格しない"
+      ],
+      "questions": [
+        "このatomのnormative contractと運転consumerをHARNESS／OSのどちらへ分離するか",
+        "人間decisionなしにsource status、phase、implementation、consumer closureを確定できない"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_authority_status": "unconfirmed",
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-SEM-DOC-015-METADATA",
+      "source_document_id": "DELEGATED-DOC-015",
+      "source_path": "docs/test-design/helix/github-security-admission-system-test-design.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "DOC-015-METADATA",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 17,
+        "sha256": "sha256:4c949a28de70c3927bc3a4b06ad0a5ab811f5d9ffccd88c2914f1ad019815f63",
+        "exact_source_text": "---\ntitle: \"GitHub security evidence admission システムテスト設計\"\nlayer: L10\nartifact_type: test_design\nstatus: draft\ncreated: 2026-07-30\nupdated: 2026-07-30\nowner: QA / Security\npair_artifact: docs/design/helix/L3-requirements/github-security-admission-requirements.md\n---\n\n# GitHub security evidence admission システムテスト設計\n\n## テスト束\n\n| Test ID | 対応AC | 入力 | 期待結果 |\n|---|---|---|---|\n"
+      },
+      "candidate_kind": "metadata",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "DOC-015はDOC-006のL10 security admission test design候補で、pair・status・test束を保持するがテスト実行や合格を生成しない.",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0308",
+        "DELEGATED-REF-0425",
+        "DELEGATED-REF-0765"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-015",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・例外・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning_change=false、successorなし",
+        "candidate ownerとconsumerは境界候補であり採用ownerではない"
+      ],
+      "actors": [
+        "QA / Security",
+        "test designer"
+      ],
+      "authority_conditions": [
+        "L10 test designは受入候補の証拠契約であり実行済みauthorityではない"
+      ],
+      "negative_conditions": [],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "旧phase／implementation／consumerは未確認で、現行実装や受入へ昇格しない"
+      ],
+      "questions": [
+        "このatomのnormative contractと運転consumerをHARNESS／OSのどちらへ分離するか",
+        "人間decisionなしにsource status、phase、implementation、consumer closureを確定できない"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-07"
+        ],
+        "phase_authority_status": "unconfirmed",
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-SEM-GH-T-041",
+      "source_document_id": "DELEGATED-DOC-015",
+      "source_path": "docs/test-design/helix/github-security-admission-system-test-design.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "GH-T-041",
+      "source_span": {
+        "start_line": 18,
+        "end_line": 18,
+        "sha256": "sha256:c804039150626376031f5a738eb2ae6cca28e6899b635cd0466aa6728db373a9",
+        "exact_source_text": "| `GH-T-041` | `GH-AC-041` | PR diff standard、candidate deep、staging／production同一・別artifact、coverage complete／partial／unknown、scanner未設定／実行中、severity各値、waiver有効／期限切れ、HEAD drift、credentialをcheckout前後・scan step外へ露出、tag／full SHA Action、report-only／enforce、approval有無を直積する | exact HEAD／artifact、complete coverage、policy内finding、最小permission、full SHA、current waiver／approvalを持つprofileだけadmitし、他は`report_only`、`recovery_required`、`human_action_required`、`reject`へ理由付きでexactly once分類する |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "PR diff・candidate deep・同一／別artifact・coverage・scanner・severity・waiver・drift・credential・Action pin・approvalの直積を投入し、profile条件だけを理由付きexactly onceで分類する.",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0765"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-015",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・例外・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning_change=false、successorなし",
+        "candidate ownerとconsumerは境界候補であり採用ownerではない"
+      ],
+      "actors": [
+        "test designer",
+        "admission evaluator",
+        "scanner",
+        "human approval owner"
+      ],
+      "authority_conditions": [
+        "source/base/head・artifact・policy・permission・approvalのreceiptを判定入力へ束縛する"
+      ],
+      "negative_conditions": [
+        "finding件数0だけを十分条件にしない",
+        "SARIF upload成功を十分条件にしない",
+        "CodeQL単独green、Codex Security単独greenを相殺根拠にしない",
+        "別scannerのPASSで相殺されない"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "旧phase／implementation／consumerは未確認で、現行実装や受入へ昇格しない"
+      ],
+      "questions": [
+        "このatomのnormative contractと運転consumerをHARNESS／OSのどちらへ分離するか",
+        "人間decisionなしにsource status、phase、implementation、consumer closureを確定できない"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-07"
+        ],
+        "phase_authority_status": "unconfirmed",
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-SEM-DOC-015-EVIDENCE",
+      "source_document_id": "DELEGATED-DOC-015",
+      "source_path": "docs/test-design/helix/github-security-admission-system-test-design.md",
+      "source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
+      "original_id": "DOC-015-EVIDENCE",
+      "source_span": {
+        "start_line": 19,
+        "end_line": 28,
+        "sha256": "sha256:b571ec9b6bd9ffa89824b35311f2ad8893a781d6a717f03e9b2754e4643ccbb7",
+        "exact_source_text": "\n## 証跡要件\n\nreceiptはsource/base/head SHA、merge base、artifact digest、scanner/schema/policy version、scan mode、\ncoverage、exit code、finding fingerprint／severity／disposition、waiver期限、SARIF digest、Actions permission、\ncredential exposure、action ref、run ID、duration、costを保持する。\n\nfinding件数0、SARIF upload成功、CodeQL単独green、Codex Security単独green、GitHub UIのenabled表示だけを\nsecurity admissionの十分条件にしない。negative fixtureは各failureを一件ずつ反転し、別scannerのPASSで\n相殺されないことを検証する。\n"
+      },
+      "candidate_kind": "metadata",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "security receiptへsource/base/head・artifact・scanner/policy・coverage・finding・waiver・SARIF・permission・credential exposure・run・duration・costを保持し、UI表示や単一scanner greenを十分条件にしない.",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0765"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-015",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原文の否定・例外・停止・証拠・actor・authority条件を保持する",
+        "authority_effect=none、meaning_change=false、successorなし",
+        "candidate ownerとconsumerは境界候補であり採用ownerではない"
+      ],
+      "actors": [
+        "test designer",
+        "evidence recorder",
+        "security reviewer"
+      ],
+      "authority_conditions": [
+        "receipt fieldsをcurrent source/headと証拠digestへ束縛する"
+      ],
+      "negative_conditions": [
+        "finding件数0、SARIF upload成功、GitHub UIのenabled表示だけを十分条件にしない"
+      ],
+      "possible_conflicts": [
+        "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
+        "旧phase／implementation／consumerは未確認で、現行実装や受入へ昇格しない"
+      ],
+      "questions": [
+        "このatomのnormative contractと運転consumerをHARNESS／OSのどちらへ分離するか",
+        "人間decisionなしにsource status、phase、implementation、consumer closureを確定できない"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-07"
+        ],
+        "phase_authority_status": "unconfirmed",
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    }
+  ],
+  "coverage": {
+    "source_documents": [
+      "DELEGATED-DOC-006",
+      "DELEGATED-DOC-015"
+    ],
+    "source_lines_total": 111,
+    "coverage_spans_total": 8,
+    "line_coverage_rule": "each selected source line is covered once by composite spans; semantic atoms are a separate review layer",
+    "coverage_complete": true
+  },
+  "negative_conditions": [
+    {
+      "negative_id": "SCF006-NEG-001",
+      "atom_id": "SCF006-SEM-GH-FR-029",
+      "source_fragment": "`partial`／`unknown`",
+      "meaning": "coverage不完全をfinding 0やgreenへ丸めない"
+    },
+    {
+      "negative_id": "SCF006-NEG-002",
+      "atom_id": "SCF006-SEM-GH-FR-029",
+      "source_fragment": "Codex Security実行済み",
+      "meaning": "利用不能時に別scanner成功で実行済みと偽装しない"
+    },
+    {
+      "negative_id": "SCF006-NEG-003",
+      "atom_id": "SCF006-SEM-GH-FR-029",
+      "source_fragment": "production credentialをscannerへ渡さない",
+      "meaning": "production credentialをscannerへ渡さない"
+    },
+    {
+      "negative_id": "SCF006-NEG-004",
+      "atom_id": "SCF006-SEM-GH-NFR-019",
+      "source_fragment": "receipt staleをgreenにしない",
+      "meaning": "stale receiptをgreenへ変換しない"
+    },
+    {
+      "negative_id": "SCF006-NEG-005",
+      "atom_id": "SCF006-SEM-GH-AC-041",
+      "source_fragment": "期限切れwaiver",
+      "meaning": "期限切れwaiverを受理条件にしない"
+    },
+    {
+      "negative_id": "SCF006-NEG-006",
+      "atom_id": "SCF006-SEM-DOC-015-EVIDENCE",
+      "source_fragment": "別scannerのPASSで",
+      "meaning": "別scannerのPASSでfindingを相殺しない"
+    },
+    {
+      "negative_id": "SCF006-NEG-007",
+      "atom_id": "SCF006-SEM-DOC-015-EVIDENCE",
+      "source_fragment": "GitHub UIのenabled表示だけを",
+      "meaning": "UI enabled表示だけを十分条件にしない"
+    }
+  ],
+  "unresolved_decisions": [],
+  "review_boundary": "static scaffold candidate only; source and reference line coverage, original-ID atom candidates, actor/authority/negative conditions, product candidates, phase and legacy implementation boundaries remain review inputs; no adoption, equivalence, authority, implementation, execution, acceptance, or closure claim",
+  "reference_edge_linkage": {
+    "DELEGATED-REF-0308": [
+      "SCF006-SEM-DOC-006-METADATA",
+      "SCF006-SEM-GH-FR-029",
+      "SCF006-SEM-DOC-015-METADATA"
+    ],
+    "DELEGATED-REF-0765": [
+      "SCF006-SEM-DOC-015-METADATA",
+      "SCF006-SEM-GH-T-041",
+      "SCF006-SEM-DOC-006-METADATA"
+    ],
+    "DELEGATED-REF-0424": [
+      "SCF006-SEM-DOC-006-METADATA"
+    ],
+    "DELEGATED-REF-0425": [
+      "SCF006-SEM-DOC-015-METADATA"
+    ]
+  },
+  "coverage_spans": [
+    {
+      "coverage_span_id": "DD006-COV-01",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 25,
+        "sha256": "sha256:81adbd7b9c5f589330f6be714fc76a1b97ec05eb8cd33b31562bb93bd8069a73",
+        "exact_source_text": "---\ntitle: \"GitHub security evidence admission 要件定義\"\nlayer: L3\nkind: add-design\nstatus: draft\ncreated: 2026-07-30\nupdated: 2026-07-30\nowner: Security / TL\npair_artifact: docs/test-design/helix/github-security-admission-system-test-design.md\n---\n\n# GitHub security evidence admission 要件定義\n\n## 1. 目的と責務境界\n\n本書はCodex Security、GitHub CodeQL、secret scanning／push protection、Dependabot、dependency review等を\n個別の正本にせず、同一source HEAD／artifact digestへ束縛したsecurity evidenceから、開発slice、merge、\ndeploymentのadmissionをexactly onceで決定する。\n\nscannerの追加そのものではなく、coverage、severity、finding disposition、waiver期限、実行境界を統合する\n`GitHubSecurityAdmission`を単一responsibility ownerとする。各scannerの検出ロジック、脆弱性修正、\ndeployment実行、GitHub settings変更は本責務に含めない。\n\n## 2. 機能要件\n\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD006-COV-02",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_span": {
+        "start_line": 26,
+        "end_line": 59,
+        "sha256": "sha256:d2aec7c28c46d2353a7ca549fcf5cab44236f52f983cc43b9b1de6ec300fa222",
+        "exact_source_text": "### GH-FR-029 セキュリティ証拠受入\n\n`GitHubSecurityAdmission`は次の入力をversioned receiptとして受け取り、`pass`、`report_only`、\n`recovery_required`、`human_action_required`、`reject`のexactly oneを返す。\n\n- source/base/head SHA、merge base、対象path／artifact digest、scanner／schema／policy version\n- finding ID、CWE等の分類、severity、fingerprint、affected path、disposition、waiver owner／期限\n- coverage=`complete|partial|unknown`、延期対象、scan方式、終了code、run／artifact／SARIF digest\n- secret scanning、push protection、Dependabot、CodeQL、Codex Securityのavailable／configured／executed状態\n- GitHub Actions権限、credential露出時間、Action完全SHA固定、artifact保持期間\n\n開発sliceではimpact selectorがsecurity-sensitive path、権限、secret、dependency、workflow、schema、\nmigration、deployment変更をcriticalへ分類する。Codex Securityを利用可能な場合、PRのexact merge baseから\ncandidate HEADまでを`--diff ... --head ...`でscanし、結果directoryをworktree外へ置く。`partial`／`unknown`\ncoverage、input/runtime error、HEAD driftをfinding 0と同一視しない。Codex Securityがbeta access、\n費用上限、provider障害等で利用不能な場合、CodeQLや既存scannerの成功で「Codex Security実行済み」と偽装せず、\nversioned capability policyに従い`report_only`または`human_action_required`へfail-closeする。\n\ncandidate固定後はfull repository／critical pathのdeep scanをrisk policyに従って実行し、PR scanを\nrepository全体の完全性証拠にしない。deploy admissionはpromotion対象artifactとsource HEADを一致させ、\n未解決Critical／High、期限切れwaiver、coverage不完全、CodeQL/Codex Security/SARIF receipt drift、\nsecret／dependency alert未処理を拒否する。stagingで取得した同一artifact receiptだけをproductionへ再利用し、\nproduction credentialをscannerへ渡さない。\n\nCodex Securityは既定report-onlyで導入し、scan品質、coverage、runtime、費用baselineを確認後、\nversioned severity policyで段階的にenforceする。severity gateを有効化してもcoverage不完全のexit codeを\nfindingなしへ変換しない。複数scannerの同一findingはfingerprintで関連付けるが、一方のPASSで他方のfindingを\n相殺しない。\n\nGitHub repository設定の期待状態は、secret scanning、push protection、Dependabot alerts/security updates、\nCodeQLまたはadmitted code-scanning tool、code-scanning merge protection、default read permissions、\n必要jobだけの`security-events: write`／`id-token: write`、`persist-credentials: false`、third-party Actionの\nfull-length commit SHA pinとする。設定変更はread-only drift receipt、dry-run、対象／rollbackを束縛した\naction-binding human approvalなしにapplyしない。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD006-COV-03",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_span": {
+        "start_line": 60,
+        "end_line": 70,
+        "sha256": "sha256:7eec3e00a9fb7bf479ef2d688c37fe6a8fbd6a965dc118ef21b9410669dfc167",
+        "exact_source_text": "\n## 3. 非機能要件\n\n- `GH-NFR-019` Completeness: coverage不完全、scanner未設定、実行中、receipt staleをgreenにしない。\n- `GH-NFR-020` Least privilege: scan credentialはscan stepだけへ注入し、checkout、repository executable、\n  artifact upload、deploymentへ伝播させない。\n- `GH-NFR-021` Cost and latency: PRはdiff standard、candidate／scheduledはrisk-based deepとし、\n  `max-cost`、duration、coverageを別々に計測する。費用超過を検査削除で隠さない。\n- `GH-NFR-022` Evidence privacy: scan artifactのsource snippet／remediation情報を機密として扱い、\n  private worktree外directory、最小閲覧権限、短期retention、redactionを適用する。\n\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD006-COV-04",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_span": {
+        "start_line": 71,
+        "end_line": 76,
+        "sha256": "sha256:116d0e4430fc48e1c6fce0e3dcdb7302db2f12bc43e1ba779e5f1de2d297b697",
+        "exact_source_text": "## 4. 受入条件\n\n| AC | 合格条件 |\n|---|---|\n| `GH-AC-041` | exact HEADのPR diff、candidate deep、deployment artifactを別profileで判定し、coverage partial/unknown、required scanner未設定、Critical/High、期限切れwaiver、HEAD/artifact drift、credential過剰露出、未pin Actionを個別にfail-closeする。report-onlyからenforceへの遷移とGitHub settings applyはversioned policy／action-binding approvalなしに行われない |\n\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD006-COV-05",
+      "source_document_id": "DELEGATED-DOC-006",
+      "source_path": "docs/design/helix/L3-requirements/github-security-admission-requirements.md",
+      "source_span": {
+        "start_line": 77,
+        "end_line": 83,
+        "sha256": "sha256:069513b30bbf1dda3647ef22773c43e07766fb959670b6a9c5bf920c60f0900e",
+        "exact_source_text": "## 5. 外部仕様確認\n\n- OpenAI Codex Manual「Run Codex Security in CI」「Codex Security CLI reference」（2026-07-30確認）\n- GitHub公式文書「Code scanning merge protection」「Managing security and analysis settings」\n- GitHub公式文書「Managing GitHub Actions settings」「Security hardening your deployments」\n\n外部仕様は実装時に再確認し、beta availabilityやGitHub plan差を固定前提にしない。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD015-COV-01",
+      "source_document_id": "DELEGATED-DOC-015",
+      "source_path": "docs/test-design/helix/github-security-admission-system-test-design.md",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 17,
+        "sha256": "sha256:4c949a28de70c3927bc3a4b06ad0a5ab811f5d9ffccd88c2914f1ad019815f63",
+        "exact_source_text": "---\ntitle: \"GitHub security evidence admission システムテスト設計\"\nlayer: L10\nartifact_type: test_design\nstatus: draft\ncreated: 2026-07-30\nupdated: 2026-07-30\nowner: QA / Security\npair_artifact: docs/design/helix/L3-requirements/github-security-admission-requirements.md\n---\n\n# GitHub security evidence admission システムテスト設計\n\n## テスト束\n\n| Test ID | 対応AC | 入力 | 期待結果 |\n|---|---|---|---|\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD015-COV-02",
+      "source_document_id": "DELEGATED-DOC-015",
+      "source_path": "docs/test-design/helix/github-security-admission-system-test-design.md",
+      "source_span": {
+        "start_line": 18,
+        "end_line": 18,
+        "sha256": "sha256:c804039150626376031f5a738eb2ae6cca28e6899b635cd0466aa6728db373a9",
+        "exact_source_text": "| `GH-T-041` | `GH-AC-041` | PR diff standard、candidate deep、staging／production同一・別artifact、coverage complete／partial／unknown、scanner未設定／実行中、severity各値、waiver有効／期限切れ、HEAD drift、credentialをcheckout前後・scan step外へ露出、tag／full SHA Action、report-only／enforce、approval有無を直積する | exact HEAD／artifact、complete coverage、policy内finding、最小permission、full SHA、current waiver／approvalを持つprofileだけadmitし、他は`report_only`、`recovery_required`、`human_action_required`、`reject`へ理由付きでexactly once分類する |\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "DD015-COV-03",
+      "source_document_id": "DELEGATED-DOC-015",
+      "source_path": "docs/test-design/helix/github-security-admission-system-test-design.md",
+      "source_span": {
+        "start_line": 19,
+        "end_line": 28,
+        "sha256": "sha256:b571ec9b6bd9ffa89824b35311f2ad8893a781d6a717f03e9b2754e4643ccbb7",
+        "exact_source_text": "\n## 証跡要件\n\nreceiptはsource/base/head SHA、merge base、artifact digest、scanner/schema/policy version、scan mode、\ncoverage、exit code、finding fingerprint／severity／disposition、waiver期限、SARIF digest、Actions permission、\ncredential exposure、action ref、run ID、duration、costを保持する。\n\nfinding件数0、SARIF upload成功、CodeQL単独green、Codex Security単独green、GitHub UIのenabled表示だけを\nsecurity admissionの十分条件にしない。negative fixtureは各failureを一件ずつ反転し、別scannerのPASSで\n相殺されないことを検証する。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    }
+  ],
+  "semantic_atomization": {
+    "status": "candidate",
+    "atom_count": 11,
+    "original_id_atom_count": 7,
+    "metadata_atom_count": 4,
+    "source_line_lossless_scope": "composite spans cover all 111 lines; atoms preserve exact source spans and do not claim semantic atomization complete",
+    "actor_authority_negative_fields": "required on every atom",
+    "product_owner_status": "candidate only"
+  },
+  "pair_acceptance_reference_audit": {
+    "method": "recompute exact GH-AC definitions from DOC-006 fixed archive blob and GH-T→GH-AC references from DOC-015 fixed archive blob",
+    "source_document_id": "DELEGATED-DOC-006",
+    "source_defined_acceptance_ids": [
+      "GH-AC-041"
+    ],
+    "reference_document_id": "DELEGATED-DOC-015",
+    "referenced_acceptance_ids": [
+      "GH-AC-041"
+    ],
+    "missing_from_pair": [],
+    "unresolved_decision_ids": [],
+    "admission": "fail-close if pair definitions/references drift or an undefined acceptance ID appears; no AC meaning, owner, authority, acceptance, or parity is inferred"
+  }
+}
