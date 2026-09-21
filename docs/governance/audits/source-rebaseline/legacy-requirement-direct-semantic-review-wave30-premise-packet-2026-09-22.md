@@ -19,9 +19,9 @@ Wave30はWave29をstacked parentとして固定した候補です。Wave29のuni
 
 | requirement | IR span | raw span | semantic digest | product units |
 |---|---:|---:|---|---|
-| HIL-FR-21 | `requirements.json:2286-2328` | `:111` | `sha256:a79bd082626d912c3b5409a05370d985f697d5a8541ffff232dd32cd43f33806` | FR21-OS |
-| HIL-FR-22 | `requirements.json:2329-2371` | `:112` | `sha256:05ec985410b6c7aaf1b3c49dc640401a94bf5c1a60e01459fad5d37dc89a64ce` | FR22-HARNESS / FR22-OS |
-| HIL-FR-23 | `requirements.json:2372-2414` | `:113` | `sha256:62ae71f77c2fb2ea851d2a907a551428d21666ed8ba106d45e8c0f25c4c741a6` | FR23-OS |
+| HIL-FR-21 | `requirements.json:2286-2328` | `:111` | `sha256:f25bd0492adc5256b7159de126ae2e70568b08d4bd420d640fa5bd804eddcb3c` | FR21-OS |
+| HIL-FR-22 | `requirements.json:2329-2371` | `:112` | `sha256:9d401a7bd016ded7263eeb3c0546e1bcd15a7fb8acca13fd78bfabd2a80021ac` | FR22-HARNESS / FR22-OS |
+| HIL-FR-23 | `requirements.json:2372-2414` | `:113` | `sha256:641f78a72962e9343b37991cb298f1e64e0630659c312dc62c5515db81f5f5eb` | FR23-OS |
 
 | unit | product scope候補 | direct phase候補 | atom IDs | bounded / phase-product pool |
 |---|---|---|---|---:|
