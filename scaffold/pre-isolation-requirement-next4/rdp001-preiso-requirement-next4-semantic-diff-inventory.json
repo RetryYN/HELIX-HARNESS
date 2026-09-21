@@ -74,6 +74,7 @@
     {"negative_id":"REQNEXT4-NEG-BASELINE-PROVENANCE","rejects":"baseline／pre-isolation／archive commit・blob・digestの変更または混同"},
     {"negative_id":"REQNEXT4-NEG-HUNK-COVERAGE","rejects":"selected hunkの欠落、重複、line span・SHA-256不一致"},
     {"negative_id":"REQNEXT4-NEG-PRIOR-OVERLAP","rejects":"ID 000001–000144との選定重複"},
+    {"negative_id":"REQNEXT4-NEG-PRIOR-LINEAGE","rejects":"先行PR #1951の選定時・再baseline時の統合履歴、merge commit、統合HEADの不一致"},
     {"negative_id":"REQNEXT4-NEG-METADATA-ONLY-EXCLUSION","rejects":"145–329のregistry_source_digest-only pathを要件候補へ偽昇格"},
     {"negative_id":"REQNEXT4-NEG-ATOM-CLAIM","rejects":"hunk countをsemantic atom countへ変換、またはsemantic_atomization_complete=true化"},
     {"negative_id":"REQNEXT4-NEG-ARCHIVE-EXECUTION","rejects":"archive内runtime・test・CI・hookの実行またはoracle化"},

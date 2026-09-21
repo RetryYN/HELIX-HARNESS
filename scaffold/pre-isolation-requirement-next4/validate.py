@@ -39,7 +39,7 @@ INPUT_DIGESTS = {
     "docs/governance/requirement-atomization-review-contract.md": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
 }
 NEGATIVE_IDS = {
-    "REQNEXT4-NEG-BASELINE-PROVENANCE", "REQNEXT4-NEG-HUNK-COVERAGE", "REQNEXT4-NEG-PRIOR-OVERLAP",
+    "REQNEXT4-NEG-BASELINE-PROVENANCE", "REQNEXT4-NEG-HUNK-COVERAGE", "REQNEXT4-NEG-PRIOR-OVERLAP", "REQNEXT4-NEG-PRIOR-LINEAGE",
     "REQNEXT4-NEG-METADATA-ONLY-EXCLUSION", "REQNEXT4-NEG-ATOM-CLAIM", "REQNEXT4-NEG-ARCHIVE-EXECUTION",
     "REQNEXT4-NEG-CLOSURE-CLAIM",
 }
@@ -301,8 +301,11 @@ def validate(manifest: dict, inventory: dict) -> list[str]:
         metadata_hunks += sum(line.startswith("@@ ") for line in diff.splitlines())
     if metadata_hunks != 185:
         errors.append(f"metadata-only hunk count不一致: {metadata_hunks}")
-    negatives = {n.get("negative_id") for n in inventory.get("retained_negatives", [])}
-    if negatives != NEGATIVE_IDS:
+    negatives = inventory.get("retained_negatives", [])
+    negative_ids = [n.get("negative_id") for n in negatives]
+    if (len(negatives) != len(NEGATIVE_IDS) or set(negative_ids) != NEGATIVE_IDS
+            or manifest.get("negative_case_ids") != negative_ids
+            or any(not n.get("rejects") for n in negatives)):
         errors.append("negative case集合不一致")
     return errors
 
