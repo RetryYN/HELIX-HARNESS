@@ -1,0 +1,178 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0014",
+  "kind": "scaffold",
+  "title": "PHCAP-17 incident research premise candidate",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS上流管理（PHCAP-17の製品境界・現行証拠研究。正式ownerは未解決）",
+  "state": "active",
+  "reason": "PHCAP-17は候補scopeにHELIX-HARNESSを含むが、監査で直接current evidenceが示されるのはHELIX-OSとHELIX-Web-OSである。HARNESSの現行ref欠落を未実装と推定せず、旧incident capabilityの原文・asset ledger・判断ログ・failure・consumer候補と、HARNESS／OS／Web-OSのL1・L2／L11境界を同じrevisionへ束ねるbounded research premiseが必要である。",
+  "upstream": [
+    {
+      "path": "docs/governance/audits/source-rebaseline/phase-product-evidence-gap-audit-2026-09-21.md",
+      "sha256": "b76d10e9ac3e36e267edc6eadc4ab3afb1f7eafabcebff50a0851fd3c63d97dc",
+      "note": "PHCAP-17のHARNESS直接current evidence gap。欠落は未実装を意味しない"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "note": "PHCAP-17候補scope、current evidence products、代表legacy asset"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "選択4 assetのsource／状態／consumer台帳"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "選択4 assetのphase／product候補と未解決状態"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "選択4 assetのappend-only判断履歴（該当0件を確認）"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "旧assetをread-only referenceに限定"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "HARNESS／OS／Web-OSの製品境界候補"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "HARNESS L1候補"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77",
+      "note": "HARNESS L2候補とOS incident execution境界"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b",
+      "note": "HARNESS L11候補"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "OS L1候補"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "note": "OS L2 incident／recovery運用境界候補"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19",
+      "note": "OS L11 incident／改善候補受入境界"
+    },
+    {
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "note": "Web-OS service incident／recovery候補"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md",
+      "sha256": "0a48e51ddb95212c4fcf45f218c25f110af7c2cdd30f75ec4c75ae90d47b39b6",
+      "note": "旧運用品質意味の新世代責務境界crosswalk"
+    },
+    {
+      "path": "scaffold/phcap17-incident-research/inventory.json",
+      "sha256": "c4924a294e8e34f592249ca5415b1f8d4a9a0457fc2e13f7a441dea559382bc6",
+      "note": "4 asset、14 source span、11 atom、current ref、unknown／矛盾保持"
+    }
+  ],
+  "role": "PHCAP-17の旧incident capabilityと現行HARNESS／HELIX-OS／HELIX-Web-OS境界を、直接current evidenceの有無・unknown・矛盾を保ったresearch premiseとして固定する",
+  "obligations": [
+    "PHCAP-17代表3 assetと明示的reverse-plan依存の計4 assetを重複なく保持し、残余asset／consumerを閉じたと表示しない",
+    "各assetのsource path、archive bytes digest、exact archived source lines、asset ledger状態、phase/product候補を照合する",
+    "append-only判断ログの該当0件を記録し、欠如を採用・棄却・owner確定・consumer closureへ変換しない",
+    "各atomにkind、actor、legacy authority/enforced-by、failure／unresolved、product unit／connection候補、consumer候補、証拠状態を保持する",
+    "HARNESS direct current evidenceを0件、HARNESS statusをunknownとして固定し、隣接refを直接証拠へ昇格させない",
+    "HARNESS／OS／Web-OSのL1・L2／L11候補と製品境界をunit／connection候補として記録し、formal owner・要求採否・successorを生成しない",
+    "embedded historical review/test claimsとledger unresolved/unknownの矛盾、旧sourceとcurrent boundaryの差を解消せず保持する",
+    "要求採否、current authority、旧実装、実行・pass、consumer closure、L2／L11適用、L3／L10実装、受入、releaseを生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "PHCAP-17 research premise review担当",
+      "HARNESS／HELIX-OS／HELIX-Web-OSの製品境界・L1／L2／L11整理担当",
+      "旧asset consumer／failure／判断史のclosure担当",
+      "Scaffold Bindingのstale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "旧asset／phase／decision ledgerのread-only照合",
+      "archive source bytesのread-only exact span照合",
+      "HARNESS／HELIX-OS／HELIX-Web-OS current candidate文書",
+      "scaffold/phcap17-incident-research/validator／selfcheck"
+    ],
+    "boundary": "inventory、README、validator、selfcheckはscaffold/配下だけ。archiveはsource referenceとして静的に読むだけで旧runtime・test・CI・hookは実行しない。docs、設定、DB、Issue #1905、PR、GitHub、authority registerへ書き込まない。candidate product unit／connectionはowner確定ではない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/phcap17-incident-research/validate.py",
+      "python3 scaffold/phcap17-incident-research/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|list|stale|residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime／test／hook／CI実行",
+      "旧sourceを現行runtime／test／CIのoracle、fallback、実装として使うこと",
+      "scaffold/外への書き込み",
+      "HARNESS current-ref欠落から未実装を生成すること",
+      "要求採否、owner確定、successor、current authority、L2／L11 freeze、L3／L10実装、consumer closure、acceptance、releaseの生成",
+      "Issue #1905への意味・要求・完了projection、GitHub、PR、DB、deploymentへの外部作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/phcap17-incident-research/README.md",
+    "scaffold/phcap17-incident-research/inventory.json",
+    "scaffold/phcap17-incident-research/validate.py",
+    "scaffold/phcap17-incident-research/selfcheck.py",
+    "scaffold/bindings/SCF-B-0014.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "scaffold/phcap17-incident-research/validate.py（archive exact span／asset／phase／decision／current boundary digest）",
+      "scaffold/phcap17-incident-research/selfcheck.py（authority、HARNESS direct ref捏造、source改変、implementation／consumer closure、old executionの陰性例）",
+      "scaffold/tools/scfctl.py stale（upstream revision変化検出）",
+      "git diff --check（候補文書の静的整形）"
+    ],
+    "negative_cases": [
+      "HARNESS direct current evidenceを隣接L1／L2／L11 refから捏造する",
+      "source exact text／digestまたはasset ledger状態を改変する",
+      "判断ログ0件を採用・棄却・owner確定へ変換する",
+      "legacy implementation unknown、consumer pending、product unresolvedを昇格する",
+      "embedded old review/test claimをcurrent passまたはauthorityへ変換する",
+      "旧runtime／test／CIを実行しoracle、fallback、完了証拠にする"
+    ]
+  },
+  "replacement": {
+    "role_target": "PHCAP-17を対象とした正式な要求・製品unit／connection crosswalkとL2／L11／L3／L10導出契約（承認後に導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}
