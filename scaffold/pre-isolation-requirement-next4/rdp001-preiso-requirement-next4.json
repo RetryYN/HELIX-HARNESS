@@ -1,0 +1,83 @@
+{
+  "schema": "helix-scaffold-preisolation-requirement-next4-manifest.v1",
+  "candidate_id": "RDP-001-PREISO-REQUIREMENT-NEXT4",
+  "candidate_kind": "requirement_bearing_verification",
+  "status": "candidate_pending_semantic_equivalence_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "provenance": {
+    "candidate_worktree_base": "c354b7d9177ad3ea92dec30c66c36e6ce2d66ae3",
+    "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "method": "read-only Git object bytes; exact changed hunk spans and UTF-8 SHA-256",
+    "old_runtime_test_ci_execution": false
+  },
+  "denominators": {
+    "source_holding_record_count": 333,
+    "full_diff_file_count": 400,
+    "full_diff_hunk_count": 492,
+    "prior_selected_file_count": 144,
+    "prior_selected_hunk_count": 212,
+    "current_selected_file_count": 4,
+    "current_selected_hunk_count": 28,
+    "combined_selected_file_count": 148,
+    "combined_selected_hunk_count": 240,
+    "remaining_full_diff_file_count": 252,
+    "remaining_full_diff_hunk_count": 252,
+    "remaining_source_holding_record_count": 185,
+    "remaining_source_holding_id_range": [145, 329],
+    "holding_external_new_path_file_count": 67,
+    "holding_external_new_path_hunk_count": 67
+  },
+  "prior_scopes": [
+    {"request_ref": "PR-1943", "status": "integrated", "source_revision_item_id_range": [[1, 22], [26, 26], [60, 60]], "file_count": 24, "hunk_count": 91},
+    {"request_ref": "PR-1946", "status": "integrated", "source_revision_item_id_range": [[23, 25], [27, 43]], "file_count": 20, "hunk_count": 21},
+    {"request_ref": "PR-1949", "status": "integrated", "source_revision_item_id_range": [[44, 59], [61, 84]], "file_count": 40, "hunk_count": 40},
+    {"request_ref": "PR-1951", "status": "selected_candidate_unmerged", "source_revision_item_id_range": [[85, 144]], "file_count": 60, "hunk_count": 60}
+  ],
+  "selection_basis": {
+    "selected_source_revision_item_ids": ["PREISO-REV-000330", "PREISO-REV-000331", "PREISO-REV-000332", "PREISO-REV-000333"],
+    "selected_paths": [
+      "docs/test-design/helix/L1-pillar-operational-test-design.md",
+      "docs/test-design/helix/L2-screen-ux-test-design.md",
+      "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "tests/vmodel-pair.test.ts"
+    ],
+    "requirement_or_verification_hunk_count": 22,
+    "authority_or_status_boundary_hunk_count": 6,
+    "metadata_only_excluded_source_revision_item_id_range": [145, 329],
+    "metadata_only_excluded_path_count": 185,
+    "metadata_only_excluded_hunk_count": 185,
+    "metadata_only_excluded_change": "registry_source_digest-only",
+    "selection_reason": "受入設計・trace・freeze・実行境界を含む差分を優先し、workflow identity registry_source_digestのみの差分を候補へ入れない"
+  },
+  "input_digests": {
+    "docs/governance/pre-isolation-revision-delta-source-holding.jsonl": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+    "docs/governance/legacy-asset-disposition.jsonl": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "docs/governance/requirement-atomization-review-contract.md": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba"
+  },
+  "source_items": [
+    {"source_revision_item_id": "PREISO-REV-000330", "source_path": "docs/test-design/helix/L1-pillar-operational-test-design.md", "source_category": "verification_source", "asset_id": "LEGACY-ASSET-A177ACE0F87CF894BA23", "candidate_product_targets": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web-OS"], "candidate_phase_targets": ["PHCAP-05", "PHCAP-16", "PHCAP-20"]},
+    {"source_revision_item_id": "PREISO-REV-000331", "source_path": "docs/test-design/helix/L2-screen-ux-test-design.md", "source_category": "verification_source", "asset_id": "LEGACY-ASSET-73C1830CFD650CEFDCF3", "candidate_product_targets": ["HELIX-HARNESS"], "candidate_phase_targets": ["PHCAP-04", "PHCAP-07"]},
+    {"source_revision_item_id": "PREISO-REV-000332", "source_path": "docs/test-design/helix/L3-pillar-acceptance-test-design.md", "source_category": "verification_source", "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51", "candidate_product_targets": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "candidate_phase_targets": ["PHCAP-07", "PHCAP-16", "PHCAP-17", "PHCAP-19", "PHCAP-20"]},
+    {"source_revision_item_id": "PREISO-REV-000333", "source_path": "tests/vmodel-pair.test.ts", "source_category": "other_legacy_asset", "asset_id": "LEGACY-ASSET-330DCC777CF2F7C5331E", "candidate_product_targets": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "candidate_phase_targets": ["PHCAP-16", "PHCAP-17", "PHCAP-18", "PHCAP-19", "PHCAP-20"]}
+  ],
+  "semantic_atomization": {
+    "status": "not_started",
+    "hunk_level_classification_only": true,
+    "semantic_atomization_complete": false,
+    "semantic_atom_count": 0,
+    "hunk_fragment_count": 28,
+    "compound_hunk_hold_count": 28,
+    "requirement_or_verification_hunk_count": 22,
+    "authority_or_status_boundary_hunk_count": 6,
+    "uncovered_semantic_hunk_count": 28,
+    "remaining_semantic_denominator": "28 changed hunk fragments remain non-atomic; no requirement atom coverage is claimed"
+  },
+  "negative_case_ids": ["REQNEXT4-NEG-BASELINE-PROVENANCE", "REQNEXT4-NEG-HUNK-COVERAGE", "REQNEXT4-NEG-PRIOR-OVERLAP", "REQNEXT4-NEG-METADATA-ONLY-EXCLUSION", "REQNEXT4-NEG-ATOM-CLAIM", "REQNEXT4-NEG-ARCHIVE-EXECUTION", "REQNEXT4-NEG-CLOSURE-CLAIM"]
+}
