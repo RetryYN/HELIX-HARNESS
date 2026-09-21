@@ -10,6 +10,23 @@ ASSET_LEDGER = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 PHASE_LEDGER = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DECISION_LOG = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
+EXPECTED_CONTRADICTIONS = {
+    "CONTR-01": {
+        "left": "legacy incident.md header says current authority/identity and old flow",
+        "right": "legacy ledger marks asset historical, unresolved, implementation unknown; current docs prohibit old engine reuse",
+        "resolution": "preserved as contradiction; no current authority generated",
+    },
+    "CONTR-02": {
+        "left": "PLAN-L7 and PLAN-REVERSE embedded metadata says confirmed/review approved/tests green",
+        "right": "asset ledger has no decision_record_ref, disposition unresolved, implementation unknown, consumer_refs empty",
+        "resolution": "preserved as historical embedded claim; old runtime/test/CI not executed and no current implementation claim",
+    },
+    "CONTR-03": {
+        "left": "PHCAP-17 product_targets includes HARNESS",
+        "right": "gap audit current.evidence_products excludes HARNESS",
+        "resolution": "HARNESS remains unknown; candidate boundary refs do not close direct evidence gap",
+    },
+}
 
 def digest(data): return hashlib.sha256(data).hexdigest()
 def load_jsonl(path):
@@ -96,8 +113,28 @@ def validate(inv):
             if text is not None: fail(errors, digest(text.encode())==ref.get("line_sha256"), "E_CURRENT_LINE_SHA:"+str(ref.get("ref_id")))
         fail(errors, ref.get("classification") in {"direct_current_ref","direct_boundary_current_ref","adjacent_current_ref","boundary_candidate"}, "E_CURRENT_CLASS:"+str(ref.get("ref_id")))
     fail(errors, inv.get("counts",{}).get("harness_direct_current_refs")==0, "E_HARNESS_DIRECT_COUNT")
-    fail(errors, len(inv.get("contradictions_preserved",[]))>=3, "E_CONTRADICTIONS")
-    fail(errors, len(inv.get("unresolved",[]))>=7, "E_UNRESOLVED")
+    contradictions = inv.get("contradictions_preserved")
+    fail(errors, isinstance(contradictions, list) and len(contradictions) == len(EXPECTED_CONTRADICTIONS), "E_CONTRADICTIONS")
+    if isinstance(contradictions, list):
+        seen = set()
+        for item in contradictions:
+            if not isinstance(item, dict):
+                fail(errors, False, "E_CONTRADICTION_SHAPE")
+                continue
+            cid = item.get("id")
+            fail(errors, isinstance(cid, str) and cid not in seen and cid in EXPECTED_CONTRADICTIONS, "E_CONTRADICTION_ID")
+            if isinstance(cid, str): seen.add(cid)
+            fail(errors, set(item) == {"id", "status", "left", "right", "resolution"}, "E_CONTRADICTION_FIELDS:" + str(cid))
+            fail(errors, item.get("status") == "unresolved_preserved", "E_CONTRADICTION_STATUS:" + str(cid))
+            expected_item = EXPECTED_CONTRADICTIONS.get(cid, {}) if isinstance(cid, str) else {}
+            for key, expected_text in expected_item.items():
+                fail(errors, item.get(key) == expected_text, "E_CONTRADICTION_TEXT:%s:%s" % (cid, key))
+        fail(errors, seen == set(EXPECTED_CONTRADICTIONS), "E_CONTRADICTION_SET")
+    unresolved = inv.get("unresolved")
+    fail(errors, isinstance(unresolved, list) and len(unresolved) >= 7, "E_UNRESOLVED")
+    if isinstance(unresolved, list):
+        for index, item in enumerate(unresolved):
+            fail(errors, isinstance(item, str) and bool(item.strip()), "E_UNRESOLVED_TEXT:%d" % index)
     return errors
 
 if __name__ == "__main__":
