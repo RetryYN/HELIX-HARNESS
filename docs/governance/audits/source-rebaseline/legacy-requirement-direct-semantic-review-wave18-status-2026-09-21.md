@@ -1,8 +1,9 @@
 # Wave18 status（2026-09-21）
 
-- base: `6dad906ed9a52c9e49611931645db2f298c6bf6a`
-- Wave16 stacked prior: `74bfd04f7aa2384e1e30856ec6c29282b764e8c5`
-- Wave17 stacked HEAD: `cd88a4e24bc95613548edc17076b9a1d3dceb538`
+- original source base: `6dad906ed9a52c9e49611931645db2f298c6bf6a`
+- Wave17統合時点のmain: `47886cb41beed8cbbc2667358c9f96a001d73df8`。PRの最新baseはmerge admission時に再取得する
+- Wave16 prior content HEAD: `74bfd04f7aa2384e1e30856ec6c29282b764e8c5`（mainへ統合済み）
+- Wave17 prior content HEAD: `cd88a4e24bc95613548edc17076b9a1d3dceb538`（mainへ統合済み）
 - Wave16/17 prior ledger・meta: current-tree fixed SHA map
 - scope: 4 units / 9 atoms / 12 asset edges
 - cumulative: **54 / 218 reviewed units**, **161 asset edges**, 164 units remaining

@@ -4,9 +4,10 @@
 
 - batch: `LEGACY-SEMANTIC-WAVE18-2026-09-21`
 - 独立worktree: `/home/tenni/.helix-worktrees/legacy-semantic-review-wave18`
-- base revision: `6dad906ed9a52c9e49611931645db2f298c6bf6a`
-- Wave16 stacked prior: `74bfd04f7aa2384e1e30856ec6c29282b764e8c5`（current tree ledger/metaを固定SHAで照合）
-- Wave17 stacked HEAD: `cd88a4e24bc95613548edc17076b9a1d3dceb538`（PR #1931、Wave16 `74bfd04f7...`上）。Wave18のprior meta／verifierは現行treeのledger/metaを固定SHA mapで参照し、git object単独には依存しない。
+- original source base revision: `6dad906ed9a52c9e49611931645db2f298c6bf6a`
+- Wave16/17統合時点のmain: `47886cb41beed8cbbc2667358c9f96a001d73df8`。その後のPR baseはGitHubの最新revisionをmerge admissionで照合する
+- Wave16 prior content HEAD: `74bfd04f7aa2384e1e30856ec6c29282b764e8c5`（merge commit `3c6896d1af8901da445b563718f27c20800ba547`）
+- Wave17 prior content HEAD: `cd88a4e24bc95613548edc17076b9a1d3dceb538`（merge commit `47886cb41beed8cbbc2667358c9f96a001d73df8`）。Wave18のprior meta／verifierは現行treeのledger/metaを固定SHA mapで参照し、git object単独には依存しない。
 - scope: 4 product units / 9 atom inventory / 12 asset evidence edges; cumulative 54/218 units and 161 asset edges; 164 units remaining
 - authority effect: `none`
 - consumer closure: `pending`

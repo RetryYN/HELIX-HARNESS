@@ -2,7 +2,7 @@
 
 ## 範囲
 
-Wave18はbase `6dad906ed9a52c9e49611931645db2f298c6bf6a` 上で、Wave1〜15の既済edge、未マージWave16 `74bfd04f7aa2384e1e30856ec6c29282b764e8c5`と、Wave16上にstackされたWave17 HEAD `cd88a4e24bc95613548edc17076b9a1d3dceb538`のcurrent-tree ledger/metaを固定SHA mapでpriorとして静的に照合した。対象は次の4 product unitで、9 atom、12 asset edgeである。
+Wave18は当初のsource base `6dad906ed9a52c9e49611931645db2f298c6bf6a` 上で、Wave1〜15の既済edge、Wave16 `74bfd04f7aa2384e1e30856ec6c29282b764e8c5`と、その上にstackされたWave17 HEAD `cd88a4e24bc95613548edc17076b9a1d3dceb538`のcurrent-tree ledger/metaを固定SHA mapでpriorとして静的に照合した。その後Wave16はmain `3c6896d1af8901da445b563718f27c20800ba547`、Wave17はmain `47886cb41beed8cbbc2667358c9f96a001d73df8`へ統合された。#1932の最新PR baseと差分はmerge admission時にGitHubから再取得する。対象は次の4 product unitで、9 atom、12 asset edgeである。
 
 - `IRUNIT-HIL-BR-17-HELIX-OS`
 - `IRUNIT-HIL-BR-18-HELIX-OS`
@@ -32,3 +32,5 @@ BR18-OSは旧HARNESS owner表現のOS routing候補を記録するが、`legacy_
 非要求edgeのatom objectは同unitの要求edgeと完全一致させ、要求atomのsource fragmentを原文とarchive excerptへ接地する。意味を逆転したatomの負例を拒否し、meta field集合、Wave17重複receipt、実装asset欠落receiptの整合も検査する。
 
 各bindingのrequired termとanchor対応は、そのbindingが指定した`evidence_ref_indexes`のexcerptだけで照合する。参照外excerptへ依存する負例を拒否する。consumer closure evidenceは空、phase authorityは候補、旧実装状態は未確認のままかをrowと集計で検査する。
+
+ledger rowのfield集合も閉じ、BR17-OSだけのsource scope hold fieldを条件付き必須とする。未検査のmerge admission fieldを注入する負例は拒否する。

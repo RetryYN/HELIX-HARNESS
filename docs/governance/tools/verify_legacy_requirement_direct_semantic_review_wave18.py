@@ -61,6 +61,24 @@ ASSETS = {
         "LEGACY-ASSET-4AB89A46AE3C74CD5584",
     },
 }
+ROW_FIELDS = {
+    "artifact_evidence_kind", "asset_id", "authority_effect", "batch_id",
+    "bounded_search_query", "candidate_membership_semantics", "candidate_phase_targets",
+    "candidate_product_targets", "catalog_legacy_implementation_status", "classification_id",
+    "connection_records", "consumer_closure_evidence", "consumer_closure_status",
+    "counterevidence", "coverage", "covered_requirement_atom_ids",
+    "covered_requirement_atoms", "current_requirement_implementation_status",
+    "evidence_atom_bindings", "evidence_refs", "legacy_asset_evidence_state",
+    "legacy_execution_status", "legacy_requirement_implementation_contribution",
+    "new_build_allowed", "observed_consumer_refs", "phase_authority_status",
+    "phase_candidates", "product_alignment_status", "product_scope",
+    "reuse_exclusion_class", "review_id", "review_scope", "role_kind",
+    "routing_candidate", "routing_state", "schema_revision", "selection_route",
+    "semantic_link_status", "semantic_relation", "source_connective_fragments",
+    "source_path", "source_requirement_id", "source_requirement_legacy_markdown_span",
+    "source_requirement_pointer", "source_sha256", "source_statement_semantic_digest",
+    "source_statement_text", "source_text_spans", "unit_candidate_id", "unresolved",
+}
 REQ_DIGESTS = {
     "HIL-BR-17": "sha256:e55bdf0ac2daabc541038f11887fd2099993870993dc131097955ca9f817c1a1",
     "HIL-BR-18": "sha256:e13f07c964cce52474bd87f8b2dc688e0c80e5c142260b32e2086886be523db8",
@@ -147,6 +165,11 @@ def verify_atom_provenance(row: dict, requirement: dict, requirement_excerpt: st
             ), f"requirement atom source grounding {row['review_id']}:{atom['atom_id']}")
 
 
+def verify_row_fields(row: dict) -> None:
+    extras = {"atomization_hold", "source_scope_fragments"} if row["unit_candidate_id"] == "IRUNIT-HIL-BR-17-HELIX-OS" else set()
+    require(set(row) == ROW_FIELDS | extras, f"row fields {row['review_id']}")
+
+
 def selected_binding_excerpt(row: dict, binding: dict) -> str:
     indexes = binding["evidence_ref_indexes"]
     require(isinstance(indexes, list) and indexes and all(type(index) is int for index in indexes)
@@ -230,6 +253,8 @@ def verify() -> None:
     require(meta["source_revision"] == "legacy-generation-2026-09-14" and meta["current_tree_revision"] == W17, "source/tree revision")
     require(meta["reviewed_unit_ids"] == UNITS, "unit order")
     require([row["review_id"] for row in rows] == [f"LSRW18-EDGE-{i:03d}" for i in range(1, 13)], "review order")
+    for row in rows:
+        verify_row_fields(row)
     require(all(row["schema_revision"] == 10 and row["batch_id"] == BATCH for row in rows), "row identity")
     require(meta["output_sha256"] == sha_file(LEDGER), "ledger digest")
     require(meta["cumulative_reviewed_unit_count"] == 54 and meta["cumulative_reviewed_edge_count"] == 161 and meta["remaining_unit_count"] == 164, "cumulative counts")
@@ -376,14 +401,7 @@ def verify() -> None:
     controlled_binding = next(
         binding for binding in controlled_row["evidence_atom_bindings"] if binding["atom_id"] == "BR17-OS-A01"
     )
-    controlled_joined = "\n".join(
-        excerpt(
-            ROOT / ref["archive_path"],
-            ref["line_start"],
-            ref["line_end"],
-        )
-        for ref in controlled_row["evidence_refs"]
-    )
+    controlled_joined = selected_binding_excerpt(controlled_row, controlled_binding)
     stale_anchor = dict(controlled_binding)
     stale_anchor["source_fragment_anchors"] = ["stale-anchor"]
     expect_binding_failure(controlled_row, stale_anchor, controlled_joined, "stale anchor")
@@ -394,12 +412,21 @@ def verify() -> None:
     limited_binding["evidence_ref_indexes"] = [0]
     limited_row = next(row for row in rows if row["review_id"] == "LSRW18-EDGE-005")
     expect_binding_failure(limited_row, limited_binding, selected_binding_excerpt(limited_row, limited_binding), "excluded evidence reference")
+    injected_row = dict(next(row for row in rows if row["review_id"] == "LSRW18-EDGE-006"))
+    injected_row["merge_admission"] = "granted"
+    try:
+        verify_row_fields(injected_row)
+    except AssertionError:
+        pass
+    else:
+        fail("negative row admission claim accepted")
     tampered_row = deepcopy(next(row for row in rows if row["review_id"] == "LSRW18-EDGE-011"))
     tampered_atom = next(atom for atom in tampered_row["covered_requirement_atoms"] if atom["atom_id"] == "BR19-OS-A01")
     tampered_atom["text"] = "Bun撤去はNode優先で段階的に進めてよい"
     tampered_atom["source_fragments"] = [tampered_atom["text"]]
     try:
-        verify_atom_provenance(tampered_row, by_unit["IRUNIT-HIL-BR-19-HELIX-OS"][0], "")
+        requirement_row = next(row for row in by_unit["IRUNIT-HIL-BR-19-HELIX-OS"] if row["role_kind"] == "requirement")
+        verify_atom_provenance(tampered_row, requirement_row, "")
     except AssertionError:
         pass
     else:

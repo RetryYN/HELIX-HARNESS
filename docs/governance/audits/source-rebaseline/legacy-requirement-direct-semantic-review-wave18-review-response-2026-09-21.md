@@ -1,6 +1,6 @@
 # Wave18 review response（2026-09-21）
 
-Wave18は旧HELIXを再発明する実装作業ではなく、Wave17までのsemantic reviewをstacked current-treeの固定digestで引き継ぐresearch-premise候補である。base、prior、要求source、asset catalog、phase/crosswalkを固定し、4 unitを12 edgeとして整理した。
+Wave18は旧HELIXを再発明する実装作業ではなく、Wave17までのsemantic reviewをcurrent-treeの固定digestで引き継ぐresearch-premise候補である。初稿はWave17上にstackし、Wave16/17はmainへ統合済み。元のsource base、prior、要求source、asset catalog、phase/crosswalkを固定し、4 unitを12 edgeとして整理した。PRの最新baseはmerge admission時に照合する。
 
 ## 結果
 
@@ -18,6 +18,8 @@ BR17-OSの接続語欠落は記録上のholdであり、上流bootstrap修正が
 BR17-OSの原文主語にある「Claude監査」もupstream decompositionから欠けるため、別のsource scope holdとして保存した。全findingへ対象を広げる意味変更は行わない。非要求edgeのatomは要求edgeの同一atom objectへ束縛し、捏造atom、欠落anchor、meta未検査項目を検証器で拒否する。
 
 bindingが指定する証拠参照だけをterm照合の入力に使い、参照外excerptへの依存を負例で拒否する。consumer closure、phase authority、旧実装の集計状態も未成立の値へ固定する。
+
+ledger rowのfield集合を固定し、BR17-OSのscope hold field以外の追加宣言を拒否する。`merge_admission`の注入を負例で確認した。
 
 ## admission boundary
 
