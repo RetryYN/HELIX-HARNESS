@@ -1,0 +1,1705 @@
+{
+  "schema": "rdp001-preisolation-outside-l1-semantic/v1",
+  "candidate_id": "RDP-001-PREISO-OUTSIDE-L1-SEMANTIC-0036",
+  "status": "findings_only",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "formal_source_holding_created": false,
+  "old_runtime_test_ci_execution": false,
+  "scope": {
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "current_head": "3df81ad27157c471e004083783f37a5860eaa2ee",
+    "selected_old_path_count": 4,
+    "approved_products": [
+      "HELIX-HARNESS",
+      "HELIX-OS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "selection_rule": "outside-67 first15 inventory rows with phase_scope=L1-planning, one path per approved product",
+    "first15_inventory_path": "scaffold/pre-isolation-outside-holding-first15/inventory.json",
+    "first15_inventory_sha256": "010f159e0bc56f4ee4d3db11cb8b5e1f8d77af704abd66437cbaddfa4b437257",
+    "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "management_register_sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+    "decision_record_path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+    "decision_record_sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
+    "product_boundary_path": "docs/concept/product-boundary.md",
+    "product_boundary_sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+    "work_entry_path": "docs/governance/new-generation-start-here.md",
+    "work_entry_sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+    "pre_isolation_holding_path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+    "pre_isolation_holding_sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+    "disposition_program_path": "docs/governance/requirement-disposition-review-program.md",
+    "disposition_program_sha256": "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308",
+    "live_holding_count": 13,
+    "read_only": true
+  },
+  "live_holdings": [
+    {
+      "registration_id": "MPR-SH-HEADING-002",
+      "source_atom_set_ref": "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl",
+      "source_atom_set_sha256": "ddb90daece98a4cef6033b5de7e27947bf2e23991358a8d9d1764cbe3bd2b786",
+      "source_atom_set_record_count": 317,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 14
+    },
+    {
+      "registration_id": "MPR-SH-IR-003",
+      "source_atom_set_ref": "docs/governance/legacy-requirement-carry-forward.jsonl",
+      "source_atom_set_sha256": "51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0",
+      "source_atom_set_record_count": 153,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 15
+    },
+    {
+      "registration_id": "MPR-SH-CONFIRMED-003",
+      "source_atom_set_ref": "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+      "source_atom_set_sha256": "eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed",
+      "source_atom_set_record_count": 175,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 16
+    },
+    {
+      "registration_id": "MPR-SH-SEMANTIC-LINE-003",
+      "source_atom_set_ref": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+      "source_atom_set_sha256": "a81d6b1f5acb116c76b0b87b41aa0d2c3b9bfa2ba4ac0be86dd2db052fdc1692",
+      "source_atom_set_record_count": 2386,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 17
+    },
+    {
+      "registration_id": "MPR-SH-SUPPLEMENTARY-003",
+      "source_atom_set_ref": "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl",
+      "source_atom_set_sha256": "1a0591e1da6f9579d970aedfccff90ac6a8e1aefbbe0f4047e3aeb950a8449bb",
+      "source_atom_set_record_count": 655,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 18
+    },
+    {
+      "registration_id": "MPR-SH-CANDIDATE-003",
+      "source_atom_set_ref": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl",
+      "source_atom_set_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "source_atom_set_record_count": 4755,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 19
+    },
+    {
+      "registration_id": "MPR-SH-WORKFLOW-003",
+      "source_atom_set_ref": "docs/governance/harness-workflow-source-clause-carry-forward.jsonl",
+      "source_atom_set_sha256": "64597ef4fa018e214ac8e233eafedbeae7bd2adf09bcfd30ce1a043067960643",
+      "source_atom_set_record_count": 108,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 20
+    },
+    {
+      "registration_id": "MPR-SH-SCRUM-REVERSE-001",
+      "source_atom_set_ref": "docs/governance/scrum-reverse-source-line-carry-forward.jsonl",
+      "source_atom_set_sha256": "72428f6becffa5d931d2ea26f96408dec7e6e04a8b47869220a8c2f66070f1e9",
+      "source_atom_set_record_count": 300,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 21
+    },
+    {
+      "registration_id": "MPR-SH-PREISOLATION-002",
+      "source_atom_set_ref": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "source_atom_set_sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "source_atom_set_record_count": 333,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 25
+    },
+    {
+      "registration_id": "MPR-SH-DELEGATED-DOC-003",
+      "source_atom_set_ref": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "source_atom_set_sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+      "source_atom_set_record_count": 114,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 26
+    },
+    {
+      "registration_id": "MPR-SH-DELEGATED-REF-001",
+      "source_atom_set_ref": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+      "source_atom_set_sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+      "source_atom_set_record_count": 788,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 27
+    },
+    {
+      "registration_id": "MPR-SH-PO-GOALS-PRINCIPLES-001",
+      "source_atom_set_ref": "docs/governance/l1-goals-principles-source-atoms.jsonl",
+      "source_atom_set_sha256": "ca260101a7a82cd8710e60c96d68181a2b1bd0f55d6a00b88f5c6450cdbd494d",
+      "source_atom_set_record_count": 12,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 28
+    },
+    {
+      "registration_id": "MPR-SH-LEGACY-RULE-004",
+      "source_atom_set_ref": "docs/governance/legacy-rule-atom-inventory.jsonl",
+      "source_atom_set_sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784",
+      "source_atom_set_record_count": 7622,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "register_line": 32
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "OUTSIDE67-L1-HARNESS",
+      "product": "HELIX-HARNESS",
+      "old_source": {
+        "path": "docs/design/harness/L1-planning/product-intent.md",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "a9526c5d4f3cddf67ccd2b79a996cf6bdeac8354",
+        "sha256": "1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9",
+        "bytes": 3700,
+        "reported_blob_oid": "a9526c5d4f3cddf67ccd2b79a996cf6bdeac8354",
+        "reported_blob_oid_matches_git": true
+      },
+      "archive_source": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "a9526c5d4f3cddf67ccd2b79a996cf6bdeac8354",
+        "sha256": "1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9",
+        "bytes": 3700,
+        "relation_to_pre_isolation": "same"
+      },
+      "current_approved_l1": {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
+        "blob_oid": "d45a13e9b4aa376177a3e144d58d908d1ddda178",
+        "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+        "bytes": 4096,
+        "decision_id": "HDEC-HARNESS-L1-01",
+        "decision_line": 26
+      },
+      "product_boundary": {
+        "path": "docs/concept/product-boundary.md",
+        "line": 36
+      },
+      "semantic_relation": "partial",
+      "semantic_relation_label": "partial_substantive_subset",
+      "semantic_gap": "旧sourceは7要求、現行承認L1は9要求。旧7要求の保持は確認できるが、追加2要求と旧source blobの保存関係は別途記録が必要。",
+      "line_anchored_evidence": [
+        {
+          "kind": "old_current_exact",
+          "claim": "HARNESS-L1-001..007の7要求行は現行L1へ保持されている",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/harness/L1-planning/product-intent.md",
+            "line_start": 28,
+            "line_end": 34,
+            "text": [
+              "| HARNESS-L1-001 | 利用者は、L1–L12と正規V-pairで上流の意図から運用評価までを構成できる | HARNESS-L2-001 |",
+              "| HARNESS-L1-002 | 利用者は、対象と変更に適した開発styleを選び、品質条件を落とさず進行できる | HARNESS-L2-002／003 |",
+              "| HARNESS-L1-003 | 利用者は、要求変更の影響を設計・実装・検証へ伝え、未接続とstaleを確認できる | HARNESS-L2-003／004 |",
+              "| HARNESS-L1-004 | 利用者は、対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる | HARNESS-L2-004／005 |",
+              "| HARNESS-L1-005 | 外部利用者は、HELIX内部の管理機構を暗黙の依存にせず、明示された版・構成・条件でHARNESSを利用できる | HARNESS-L2-006 |",
+              "| HARNESS-L1-006 | 利用者は、要求形成、prototype／非UI適用性、合意、freeze、差戻し、再開、完了を別条件として確認できる | HARNESS-L2-003／004 |",
+              "| HARNESS-L1-007 | 依存製品の展開判断者は、複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成範囲と成立証拠を確認できる | HARNESS-L2-007 |"
+            ],
+            "sha256": "002deeeed069f0bdbaf5bdefeb54933345745c0da7ed08c799b19bd30f336929"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-harness/L1-planning/product-intent.md",
+            "line_start": 28,
+            "line_end": 34,
+            "text": [
+              "| HARNESS-L1-001 | 利用者は、L1–L12と正規V-pairで上流の意図から運用評価までを構成できる | HARNESS-L2-001 |",
+              "| HARNESS-L1-002 | 利用者は、対象と変更に適した開発styleを選び、品質条件を落とさず進行できる | HARNESS-L2-002／003 |",
+              "| HARNESS-L1-003 | 利用者は、要求変更の影響を設計・実装・検証へ伝え、未接続とstaleを確認できる | HARNESS-L2-003／004 |",
+              "| HARNESS-L1-004 | 利用者は、対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる | HARNESS-L2-004／005 |",
+              "| HARNESS-L1-005 | 外部利用者は、HELIX内部の管理機構を暗黙の依存にせず、明示された版・構成・条件でHARNESSを利用できる | HARNESS-L2-006 |",
+              "| HARNESS-L1-006 | 利用者は、要求形成、prototype／非UI適用性、合意、freeze、差戻し、再開、完了を別条件として確認できる | HARNESS-L2-003／004 |",
+              "| HARNESS-L1-007 | 依存製品の展開判断者は、複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成範囲と成立証拠を確認できる | HARNESS-L2-007 |"
+            ],
+            "sha256": "002deeeed069f0bdbaf5bdefeb54933345745c0da7ed08c799b19bd30f336929"
+          }
+        },
+        {
+          "kind": "current_addition",
+          "claim": "現行L1はHARNESS-L1-008..009を追加して9要求へ拡張している",
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-harness/L1-planning/product-intent.md",
+            "line_start": 35,
+            "line_end": 36,
+            "text": [
+              "| HARNESS-L1-008 | 利用者は、指示と根拠から要求候補を形成し、欠落・矛盾・過剰解釈・変更影響を確認して、合意した要求へ収束できる | HARNESS-L2-008 |",
+              "| HARNESS-L1-009 | 利用者は、要求の種類と構成に合う設計templateを参照して必要な設計義務を導き、設計に必要な要求入力の不足を上流へ戻せる | HARNESS-L2-009 |"
+            ],
+            "sha256": "932964c983e33e11ef6d436939f80585ca1fb6c6c7911b29920c359ac59b9e48"
+          }
+        },
+        {
+          "kind": "old_current_exact",
+          "claim": "Worker・CI・state等をOSへ置く対象外境界は保持されている",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/harness/L1-planning/product-intent.md",
+            "line_start": 54,
+            "line_end": 56,
+            "text": [
+              "Worker割当、CI運転、ログ・state保存、学習、プロジェクト群の統制、artifact配布運転はHELIX-OSが所有する。",
+              "HELIX-Web等の個別製品の利用者体験もHARNESS要求へ含めない。HARNESSは必要な工程・検証契約を定め、",
+              "OSや個別製品が参照する版を持つ。"
+            ],
+            "sha256": "0ca8f03a3028a5f08b20b50c5077d4f902da4ab216637445861596ccddba6ba8"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-harness/L1-planning/product-intent.md",
+            "line_start": 56,
+            "line_end": 58,
+            "text": [
+              "Worker割当、CI運転、ログ・state保存、学習、プロジェクト群の統制、artifact配布運転はHELIX-OSが所有する。",
+              "HELIX-Web等の個別製品の利用者体験もHARNESS要求へ含めない。HARNESSは必要な工程・検証契約を定め、",
+              "OSや個別製品が参照する版を持つ。"
+            ],
+            "sha256": "0ca8f03a3028a5f08b20b50c5077d4f902da4ab216637445861596ccddba6ba8"
+          }
+        },
+        {
+          "kind": "decision_approved_sha",
+          "claim": "現行L1の承認対象SHAはdecision recordへ記録されている",
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-harness/L1-planning/product-intent.md",
+            "line_start": 1,
+            "line_end": 64,
+            "text": [
+              "---",
+              "title: \"HARNESS L1企画候補\"",
+              "canonical_vmodel: L1-L12",
+              "canonical_layer: L1",
+              "canonical_pair: L12",
+              "layer: L1",
+              "kind: planning",
+              "status: draft",
+              "authority_status: awaiting_parent_approval",
+              "parent_candidate: docs/concept/helix-concept-v4.1.md",
+              "created: 2026-09-14",
+              "updated: 2026-09-15",
+              "---",
+              "",
+              "# HARNESS L1企画候補",
+              "",
+              "本書はConcept v4.1候補と2026-09-14の製品責務決定から導いたHARNESSの対象別L1候補である。",
+              "親Conceptが未承認のため、現行L1、L2合意、L3凍結、実装指示として使わない。",
+              "",
+              "## 提供価値",
+              "",
+              "HARNESSは、外部利用者が企画・要求・要件・設計・実装・検証・運用評価を一貫したV-model契約として",
+              "扱える開発基盤を提供する。変更の種類や実装技術が違っても、何を満たせば次へ進めるか、何を検証し、",
+              "どの結果を利用者が受け入れるかを追跡できるようにする。",
+              "",
+              "| ID | L1企画要求 | L2接続予定 |",
+              "|---|---|---|",
+              "| HARNESS-L1-001 | 利用者は、L1–L12と正規V-pairで上流の意図から運用評価までを構成できる | HARNESS-L2-001 |",
+              "| HARNESS-L1-002 | 利用者は、対象と変更に適した開発styleを選び、品質条件を落とさず進行できる | HARNESS-L2-002／003 |",
+              "| HARNESS-L1-003 | 利用者は、要求変更の影響を設計・実装・検証へ伝え、未接続とstaleを確認できる | HARNESS-L2-003／004 |",
+              "| HARNESS-L1-004 | 利用者は、対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる | HARNESS-L2-004／005 |",
+              "| HARNESS-L1-005 | 外部利用者は、HELIX内部の管理機構を暗黙の依存にせず、明示された版・構成・条件でHARNESSを利用できる | HARNESS-L2-006 |",
+              "| HARNESS-L1-006 | 利用者は、要求形成、prototype／非UI適用性、合意、freeze、差戻し、再開、完了を別条件として確認できる | HARNESS-L2-003／004 |",
+              "| HARNESS-L1-007 | 依存製品の展開判断者は、複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成範囲と成立証拠を確認できる | HARNESS-L2-007 |",
+              "| HARNESS-L1-008 | 利用者は、指示と根拠から要求候補を形成し、欠落・矛盾・過剰解釈・変更影響を確認して、合意した要求へ収束できる | HARNESS-L2-008 |",
+              "| HARNESS-L1-009 | 利用者は、要求の種類と構成に合う設計templateを参照して必要な設計義務を導き、設計に必要な要求入力の不足を上流へ戻せる | HARNESS-L2-009 |",
+              "",
+              "上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。",
+              "",
+              "## L0 charterからの投影",
+              "",
+              "| L0柱 | 本L1での帰属 |",
+              "|---|---|",
+              "| P0／P1 | HARNESS-L1-002／006の工程選択・進行条件 |",
+              "| P2 | HARNESS-L1-004の役割分離・検証条件。Worker運転はOS |",
+              "| P3 | HARNESS-L1-001／003／004のV-pair・trace・verification |",
+              "| P4 | HARNESS-L1-003の要求への差戻し。学習運転はOS |",
+              "| P5 | 独立柱が存在しないため推測で追加しない |",
+              "| P6 | HARNESS-L1-005の外部提供条件。配布運転はOS |",
+              "| P7 | HARNESS-L1-003／004の参照・証拠条件。memory運転はOS |",
+              "| P8 | HARNESS-L1-004の根拠・安全検証。外部tool実行はOS |",
+              "| P9 | HARNESS-L1-001／003のtrace・変更影響 |",
+              "",
+              "## 対象外",
+              "",
+              "Worker割当、CI運転、ログ・state保存、学習、プロジェクト群の統制、artifact配布運転はHELIX-OSが所有する。",
+              "HELIX-Web等の個別製品の利用者体験もHARNESS要求へ含めない。HARNESSは必要な工程・検証契約を定め、",
+              "OSや個別製品が参照する版を持つ。",
+              "",
+              "## 採択条件",
+              "",
+              "Concept v4.1のexact revisionが人間承認され、本書の9要求がそのrevisionから導出されることを確認する。",
+              "旧L0-L14、旧9-mode、既存CI、旧DB／CLI／hook、旧HARNESS要求の実装済み宣言を承認根拠にしない。",
+              "採択後にL2要求、L11受入、非UI適用性またはprototype、L12運用評価を同じrevisionへ接続する。"
+            ],
+            "sha256": "c1e7900d74a6bebd9b80112afa4c351ffe191f61ef9c2dcbae51506f07f06236"
+          },
+          "decision": {
+            "ref": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+            "line_start": 26,
+            "line_end": 26,
+            "text": [
+              "| `HDEC-HARNESS-L1-01` | `docs/helix-harness/L1-planning/product-intent.md` | `a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04` | approve |"
+            ],
+            "sha256": "1278923ff961462927bdb71ff3f1393fb08e2bec0626e5321016ddb7e2c65a83"
+          }
+        },
+        {
+          "kind": "boundary_owner",
+          "claim": "HARNESSの所有責務はVモデル・工程・要求・設計・検証対応として記録されている",
+          "boundary": {
+            "ref": "docs/concept/product-boundary.md",
+            "line_start": 36,
+            "line_end": 36,
+            "text": [
+              "| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |"
+            ],
+            "sha256": "0e1a4b4dcdf514fe2128560dc24513ff6ae9f9b5cb920de47f7f6522ba0483c8"
+          }
+        }
+      ],
+      "existing_holding_relation": "no_exact_path_or_blob_or_sha_match_in_13_live_holdings",
+      "live_holding_relations": [
+        {
+          "registration_id": "MPR-SH-HEADING-002",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-IR-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-CONFIRMED-003",
+          "source_atom_set_ref": "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SEMANTIC-LINE-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-CANDIDATE-003",
+          "source_atom_set_ref": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-WORKFLOW-003",
+          "source_atom_set_ref": "docs/governance/harness-workflow-source-clause-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SCRUM-REVERSE-001",
+          "source_atom_set_ref": "docs/governance/scrum-reverse-source-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-PREISOLATION-002",
+          "source_atom_set_ref": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-DELEGATED-DOC-003",
+          "source_atom_set_ref": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-DELEGATED-REF-001",
+          "source_atom_set_ref": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-PO-GOALS-PRINCIPLES-001",
+          "source_atom_set_ref": "docs/governance/l1-goals-principles-source-atoms.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-LEGACY-RULE-004",
+          "source_atom_set_ref": "docs/governance/legacy-rule-atom-inventory.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        }
+      ],
+      "preservation_disposition": "source_holding_required_before_semantic_disposition",
+      "semantic_evidence_role": "evidence_only_not_source_holding",
+      "source_holding_precondition": "required_before_semantic_disposition",
+      "formal_source_holding_created": false,
+      "authority_effect": "none",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "old_runtime_test_ci_execution": false
+    },
+    {
+      "case_id": "OUTSIDE67-L1-OS",
+      "product": "HELIX-OS",
+      "old_source": {
+        "path": "docs/design/helix-os/L1-planning/system-intent.md",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "1f47bc0113f33745a8830766573b9ee9e3d4cc56",
+        "sha256": "80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492",
+        "bytes": 4839,
+        "reported_blob_oid": "1f47bc0113f33745a8830766573b9ee9e3d4cc56",
+        "reported_blob_oid_matches_git": true
+      },
+      "archive_source": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "1f47bc0113f33745a8830766573b9ee9e3d4cc56",
+        "sha256": "80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492",
+        "bytes": 4839,
+        "relation_to_pre_isolation": "same"
+      },
+      "current_approved_l1": {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
+        "blob_oid": "7566e26f3ee5fda862b788c7e5e07ba89955dc5d",
+        "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+        "bytes": 4938,
+        "decision_id": "HDEC-HELIXOS-L1-01",
+        "decision_line": 27
+      },
+      "product_boundary": {
+        "path": "docs/concept/product-boundary.md",
+        "line": 37
+      },
+      "semantic_relation": "partial",
+      "semantic_relation_label": "partial_refined_boundary",
+      "semantic_gap": "旧L1-007/P6のdeployment運転を現行L1はruntime deployment authorityから分離している。旧文言の意味同値は成立せず、差分の保持・採否関係を別途判断する必要がある。",
+      "line_anchored_evidence": [
+        {
+          "kind": "old_current_exact_except_one",
+          "claim": "HELIXOS-L1-001..006の6要求行は同一内容で保持されている",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/helix-os/L1-planning/system-intent.md",
+            "line_start": 29,
+            "line_end": 34,
+            "text": [
+              "| HELIXOS-L1-001 | 人間は、対象ごとのConcept・要求・採否・合意revisionと判断の出所を管理できる | HELIXOS-L2-001／003 |",
+              "| HELIXOS-L1-002 | 人間は、複数プロジェクトの要求から作業・検証・提供・運用までの欠落、競合、staleを把握できる | HELIXOS-L2-002／007 |",
+              "| HELIXOS-L1-003 | 人間は、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開できる | HELIXOS-L2-004／009 |",
+              "| HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |",
+              "| HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |",
+              "| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗・学習を評価し、HELIX-OSに採択済み改善の実行・再検証・効果確認を継続させられる | HELIXOS-L2-005 |"
+            ],
+            "sha256": "b84a878470317f15841602014a278f5a5d5666adc7a2818b5808bd8af0af21ab"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-os/L1-planning/system-intent.md",
+            "line_start": 29,
+            "line_end": 34,
+            "text": [
+              "| HELIXOS-L1-001 | 人間は、対象ごとのConcept・要求・採否・合意revisionと判断の出所を管理できる | HELIXOS-L2-001／003 |",
+              "| HELIXOS-L1-002 | 人間は、複数プロジェクトの要求から作業・検証・提供・運用までの欠落、競合、staleを把握できる | HELIXOS-L2-002／007 |",
+              "| HELIXOS-L1-003 | 人間は、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開できる | HELIXOS-L2-004／009 |",
+              "| HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |",
+              "| HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |",
+              "| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗・学習を評価し、HELIX-OSに採択済み改善の実行・再検証・効果確認を継続させられる | HELIXOS-L2-005 |"
+            ],
+            "sha256": "b84a878470317f15841602014a278f5a5d5666adc7a2818b5808bd8af0af21ab"
+          }
+        },
+        {
+          "kind": "semantic_refinement",
+          "claim": "HELIXOS-L1-007は旧来のdeployment統制からpackage運転・release準備・artifact受渡しとruntime deployment authority分離へ精緻化されている",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/helix-os/L1-planning/system-intent.md",
+            "line_start": 35,
+            "line_end": 35,
+            "text": [
+              "| HELIXOS-L1-007 | 人間は、HARNESSと個別製品のrelease、deployment、observationを対象revisionと許可へ束縛して統制できる | HELIXOS-L2-002／006／007 |"
+            ],
+            "sha256": "0a469086182a36a29dac907bd1ac1baee570a0947bdf37ca1279c239e48900fb"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-os/L1-planning/system-intent.md",
+            "line_start": 35,
+            "line_end": 35,
+            "text": [
+              "| HELIXOS-L1-007 | 人間は、HARNESS package運転と個別製品のrelease準備・artifact受渡し・observationを対象revisionと許可へ束縛して統制し、展開先runtimeのdeployment authorityを分離できる | HELIXOS-L2-002／006／007 |"
+            ],
+            "sha256": "f3f04b13d8fb8bb0a81f261a595acda56f1252d003d36a4e11cb9d648af6871b"
+          }
+        },
+        {
+          "kind": "semantic_refinement",
+          "claim": "P6投影もdeployment運転を含む表現からHARNESS配布・release準備・artifact受渡しへ変更されている",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/helix-os/L1-planning/system-intent.md",
+            "line_start": 54,
+            "line_end": 54,
+            "text": [
+              "| P6 | HELIXOS-L1-005／007の配布・release・deployment運転 |"
+            ],
+            "sha256": "5326520b1cd83c091143199013273d7986ae413ae4f669bf9b5238d60866789d"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-os/L1-planning/system-intent.md",
+            "line_start": 54,
+            "line_end": 54,
+            "text": [
+              "| P6 | HELIXOS-L1-005／007のHARNESS配布運転と個別製品release準備・artifact受渡し |"
+            ],
+            "sha256": "2675e851da2ed0c0807f9d0fd6e83deacc401519b8a32faf50676ec32368f489"
+          }
+        },
+        {
+          "kind": "old_current_exact",
+          "claim": "OSは各対象を管理するがWeb-OS runtimeを内包しない境界は保持されている",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/helix-os/L1-planning/system-intent.md",
+            "line_start": 61,
+            "line_end": 63,
+            "text": [
+              "管理対象にはHARNESS、HELIX-Web、HELIX-Web-OS、将来追加する個別製品・運転基盤を含む。OSは各対象の要求意味やHARNESSの工程規則を",
+              "別本文として所有せず、承認revisionを参照して開発・改善を実行・記録・制御する。HELIX-Web-OSの展開後service runtimeはOS外に置く。外部へ提供する製品はHARNESSであり、",
+              "本企画はHELIX-OSの外販を目的にしない。"
+            ],
+            "sha256": "55d0af71f6fde030844f1f6796d30c1b395a903339b4ad5571b8bcb825239ec8"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-os/L1-planning/system-intent.md",
+            "line_start": 61,
+            "line_end": 63,
+            "text": [
+              "管理対象にはHARNESS、HELIX-Web、HELIX-Web-OS、将来追加する個別製品・運転基盤を含む。OSは各対象の要求意味やHARNESSの工程規則を",
+              "別本文として所有せず、承認revisionを参照して開発・改善を実行・記録・制御する。HELIX-Web-OSの展開後service runtimeはOS外に置く。外部へ提供する製品はHARNESSであり、",
+              "本企画はHELIX-OSの外販を目的にしない。"
+            ],
+            "sha256": "55d0af71f6fde030844f1f6796d30c1b395a903339b4ad5571b8bcb825239ec8"
+          }
+        },
+        {
+          "kind": "decision_approved_sha",
+          "claim": "現行L1の精緻化後SHAはdecision recordへ記録されている",
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-os/L1-planning/system-intent.md",
+            "line_start": 1,
+            "line_end": 69,
+            "text": [
+              "---",
+              "title: \"HELIX-OS L1企画候補\"",
+              "canonical_vmodel: L1-L12",
+              "canonical_layer: L1",
+              "canonical_pair: L12",
+              "layer: L1",
+              "kind: planning",
+              "status: draft",
+              "authority_status: awaiting_parent_approval",
+              "parent_candidate: docs/concept/helix-concept-v4.1.md",
+              "created: 2026-09-14",
+              "updated: 2026-09-14",
+              "---",
+              "",
+              "# HELIX-OS L1企画候補",
+              "",
+              "本書はConcept v4.1候補と2026-09-14の製品責務決定から導いたHELIX-OSの対象別L1候補である。",
+              "親Conceptが未承認のため、現行L1、L2合意、L3凍結、実行権限として使わない。",
+              "",
+              "## 提供価値",
+              "",
+              "HELIX-OSは、HARNESSを含むHELIXプロジェクト群のauthority、変更、Worker、状態、証拠、CI、配布運転を",
+              "管理・統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWeb-OSから得た運用結果を",
+              "HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変わっても、承認済みの意味、未完義務、",
+              "許可範囲、停止・復旧条件を失わず、対象ごとの開発を継続できるようにする。",
+              "",
+              "| ID | L1企画要求 | L2接続予定 |",
+              "|---|---|---|",
+              "| HELIXOS-L1-001 | 人間は、対象ごとのConcept・要求・採否・合意revisionと判断の出所を管理できる | HELIXOS-L2-001／003 |",
+              "| HELIXOS-L1-002 | 人間は、複数プロジェクトの要求から作業・検証・提供・運用までの欠落、競合、staleを把握できる | HELIXOS-L2-002／007 |",
+              "| HELIXOS-L1-003 | 人間は、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開できる | HELIXOS-L2-004／009 |",
+              "| HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |",
+              "| HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |",
+              "| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗・学習を評価し、HELIX-OSに採択済み改善の実行・再検証・効果確認を継続させられる | HELIXOS-L2-005 |",
+              "| HELIXOS-L1-007 | 人間は、HARNESS package運転と個別製品のrelease準備・artifact受渡し・observationを対象revisionと許可へ束縛して統制し、展開先runtimeのdeployment authorityを分離できる | HELIXOS-L2-002／006／007 |",
+              "| HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |",
+              "| HELIXOS-L1-009 | 人間は、管理・推進・検収の責務を分け、許可範囲内の直接調整を保ったまま仕事を統制できる | HELIXOS-L2-010 |",
+              "| HELIXOS-L1-010 | 人間は、変更と依存に合う統合順序・統合単位・検証集合を確認し、結果に応じて収束計画を更新できる | HELIXOS-L2-011 |",
+              "| HELIXOS-L1-011 | 人間は、内部状態と外部技術情報を出典・revision・適用条件付きで調査し、安全に採否できる | HELIXOS-L2-012 |",
+              "| HELIXOS-L1-012 | 人間は、一つの仕事を要求から運用まで診断し、管理機構自身を含む是正と効果確認へ閉じられる | HELIXOS-L2-013 |",
+              "",
+              "上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。",
+              "",
+              "## L0 charterからの投影",
+              "",
+              "| L0柱 | 本L1での帰属 |",
+              "|---|---|",
+              "| P0 | HELIXOS-L1-002／003のroute・停止・復旧統制 |",
+              "| P1 | HELIXOS-L1-003のqueue・budget・継続 |",
+              "| P2 | HELIXOS-L1-003のWorker・capability・実行境界 |",
+              "| P3 | HELIXOS-L1-002／004の検証実行・証拠回収 |",
+              "| P4 | HELIXOS-L1-006の観測・改善還流 |",
+              "| P5 | 独立柱が存在しないため推測で追加しない |",
+              "| P6 | HELIXOS-L1-005／007のHARNESS配布運転と個別製品release準備・artifact受渡し |",
+              "| P7 | HELIXOS-L1-002／008のstate・log・projection・再構築 |",
+              "| P8 | HELIXOS-L1-003の外部実行・安全統制 |",
+              "| P9 | HELIXOS-L1-001／002／008のauthority・trace・整合管理 |",
+              "",
+              "## 管理対象と対象外",
+              "",
+              "管理対象にはHARNESS、HELIX-Web、HELIX-Web-OS、将来追加する個別製品・運転基盤を含む。OSは各対象の要求意味やHARNESSの工程規則を",
+              "別本文として所有せず、承認revisionを参照して開発・改善を実行・記録・制御する。HELIX-Web-OSの展開後service runtimeはOS外に置く。外部へ提供する製品はHARNESSであり、",
+              "本企画はHELIX-OSの外販を目的にしない。",
+              "",
+              "## 採択条件",
+              "",
+              "Concept v4.1のexact revisionが人間承認され、本書の12要求がそのrevisionから導出されることを確認する。",
+              "Issue、PR、Projects、DB、memory、既存CIの状態から要求・承認・完了を生成しない。",
+              "採択後にL2要求、L11受入、L12運用評価を同じrevisionへ接続し、操作authorityや実装方式はL3以降で導出する。"
+            ],
+            "sha256": "d716b5498279fddc941dd59fd2db168524506c371cd2be548b574e2f82590abb"
+          },
+          "decision": {
+            "ref": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+            "line_start": 27,
+            "line_end": 27,
+            "text": [
+              "| `HDEC-HELIXOS-L1-01` | `docs/helix-os/L1-planning/system-intent.md` | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | approve |"
+            ],
+            "sha256": "a8c06b9b9e6626380f161dfe1c51a7236061b8676142fe47977eb4c92be33273"
+          }
+        },
+        {
+          "kind": "boundary_owner",
+          "claim": "OSの所有責務はproject群の管理・統制・Worker・CI・継続改善として記録されている",
+          "boundary": {
+            "ref": "docs/concept/product-boundary.md",
+            "line_start": 37,
+            "line_end": 37,
+            "text": [
+              "| HELIX-OS | プロジェクト群の管理・統制、Worker、CI、ログ、学習、継続・復旧、HELIXの改善循環 | [HELIX-OS](../helix-os/README.md) |"
+            ],
+            "sha256": "a9cf85378e64d610801fac7540bc3e7fac5e4c584b764d72257381456e024ab1"
+          }
+        }
+      ],
+      "existing_holding_relation": "no_exact_path_or_blob_or_sha_match_in_13_live_holdings",
+      "live_holding_relations": [
+        {
+          "registration_id": "MPR-SH-HEADING-002",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-IR-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-CONFIRMED-003",
+          "source_atom_set_ref": "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SEMANTIC-LINE-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-CANDIDATE-003",
+          "source_atom_set_ref": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-WORKFLOW-003",
+          "source_atom_set_ref": "docs/governance/harness-workflow-source-clause-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SCRUM-REVERSE-001",
+          "source_atom_set_ref": "docs/governance/scrum-reverse-source-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-PREISOLATION-002",
+          "source_atom_set_ref": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-DELEGATED-DOC-003",
+          "source_atom_set_ref": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-DELEGATED-REF-001",
+          "source_atom_set_ref": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-PO-GOALS-PRINCIPLES-001",
+          "source_atom_set_ref": "docs/governance/l1-goals-principles-source-atoms.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-LEGACY-RULE-004",
+          "source_atom_set_ref": "docs/governance/legacy-rule-atom-inventory.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        }
+      ],
+      "preservation_disposition": "source_holding_required_before_semantic_disposition",
+      "semantic_evidence_role": "evidence_only_not_source_holding",
+      "source_holding_precondition": "required_before_semantic_disposition",
+      "formal_source_holding_created": false,
+      "authority_effect": "none",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "old_runtime_test_ci_execution": false
+    },
+    {
+      "case_id": "OUTSIDE67-L1-WEB",
+      "product": "HELIX-Web",
+      "old_source": {
+        "path": "docs/design/helix-web/L1-planning/product-intent.md",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "8266c20ee4eaac9e66762ec550076214e4f35f02",
+        "sha256": "5bbf0bbd1919a0668030d29662f45a510d8129e80cbdcc014511826b1ffd004e",
+        "bytes": 3531,
+        "reported_blob_oid": "8266c20ee4eaac9e66762ec550076214e4f35f02",
+        "reported_blob_oid_matches_git": true
+      },
+      "archive_source": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "8266c20ee4eaac9e66762ec550076214e4f35f02",
+        "sha256": "5bbf0bbd1919a0668030d29662f45a510d8129e80cbdcc014511826b1ffd004e",
+        "bytes": 3531,
+        "relation_to_pre_isolation": "same"
+      },
+      "current_approved_l1": {
+        "path": "docs/helix-web/L1-planning/product-intent.md",
+        "commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
+        "blob_oid": "1799da6ab34c9d3f41316ac650becb146d5c625f",
+        "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+        "bytes": 3559,
+        "decision_id": "HDEC-HELIXWEB-L1-01",
+        "decision_line": 28
+      },
+      "product_boundary": {
+        "path": "docs/concept/product-boundary.md",
+        "line": 38
+      },
+      "semantic_relation": "exact",
+      "semantic_relation_label": "exact_substantive_content",
+      "semantic_gap": "実質本文は同一。front matterのparent_candidateとsource_vision pathだけが現行構成へ更新されており、旧blob保存と現行承認L1のrelationを別記録する必要がある。",
+      "line_anchored_evidence": [
+        {
+          "kind": "old_current_exact",
+          "claim": "WebのConnector型AI開発SaaS価値と重複実装禁止境界は同一",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/helix-web/L1-planning/product-intent.md",
+            "line_start": 24,
+            "line_end": 26,
+            "text": [
+              "HELIX-Webは、利用者が許可した開発環境と能力へConnectorで接続し、長時間の開発作業、進行、成果、停止・再開を",
+              "ダッシュボードから確認・操作できるAI開発SaaSを目指す。利用者環境の資産と統制を尊重し、HELIX-OSの内部管理画面、",
+              "HELIX-Web-OSの運転機構、HARNESSの工程定義をWeb固有の価値として重複実装しない。"
+            ],
+            "sha256": "8784e58d9c42583623050a6c32f4cd44e3216c33589b56b0e9d37cd302a1b460"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-web/L1-planning/product-intent.md",
+            "line_start": 24,
+            "line_end": 26,
+            "text": [
+              "HELIX-Webは、利用者が許可した開発環境と能力へConnectorで接続し、長時間の開発作業、進行、成果、停止・再開を",
+              "ダッシュボードから確認・操作できるAI開発SaaSを目指す。利用者環境の資産と統制を尊重し、HELIX-OSの内部管理画面、",
+              "HELIX-Web-OSの運転機構、HARNESSの工程定義をWeb固有の価値として重複実装しない。"
+            ],
+            "sha256": "8784e58d9c42583623050a6c32f4cd44e3216c33589b56b0e9d37cd302a1b460"
+          }
+        },
+        {
+          "kind": "old_current_exact",
+          "claim": "HELIXWEB-L1-001..006の6要求行は同一",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/helix-web/L1-planning/product-intent.md",
+            "line_start": 30,
+            "line_end": 35,
+            "text": [
+              "| HELIXWEB-L1-001 | 利用者は、許可した環境・project・能力へ接続し、対象と作用範囲を確認できる | HELIXWEB-L2-001／002／004 |",
+              "| HELIXWEB-L1-002 | 利用者は、ダッシュボードで長時間作業の進行、結果、切断、取消、再開、結果不明を区別できる | HELIXWEB-L2-003 |",
+              "| HELIXWEB-L1-003 | 利用者は、自分が許可する変更と受け入れる成果を判断し、残る専門判断を確認できる | HELIXWEB-L2-005 |",
+              "| HELIXWEB-L1-004 | 利用者は、採用するHARNESS・Connector・model等の構成版と依存を確認できる | HELIXWEB-L2-006／007 |",
+              "| HELIXWEB-L1-005 | 利用者は、利用結果をHELIX改善へ渡す目的・範囲・同意を管理できる | HELIXWEB-L2-008 |",
+              "| HELIXWEB-L1-006 | 展開判断者は、HELIX-HARNESS製品群Version 1の完成を確認してからHELIX-Webを展開できる | HELIXWEB-L2-009 |"
+            ],
+            "sha256": "0c38b68b3aaf0c8bec93627417695b6342b3b015c6d95b84e6065e620e8124fc"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-web/L1-planning/product-intent.md",
+            "line_start": 30,
+            "line_end": 35,
+            "text": [
+              "| HELIXWEB-L1-001 | 利用者は、許可した環境・project・能力へ接続し、対象と作用範囲を確認できる | HELIXWEB-L2-001／002／004 |",
+              "| HELIXWEB-L1-002 | 利用者は、ダッシュボードで長時間作業の進行、結果、切断、取消、再開、結果不明を区別できる | HELIXWEB-L2-003 |",
+              "| HELIXWEB-L1-003 | 利用者は、自分が許可する変更と受け入れる成果を判断し、残る専門判断を確認できる | HELIXWEB-L2-005 |",
+              "| HELIXWEB-L1-004 | 利用者は、採用するHARNESS・Connector・model等の構成版と依存を確認できる | HELIXWEB-L2-006／007 |",
+              "| HELIXWEB-L1-005 | 利用者は、利用結果をHELIX改善へ渡す目的・範囲・同意を管理できる | HELIXWEB-L2-008 |",
+              "| HELIXWEB-L1-006 | 展開判断者は、HELIX-HARNESS製品群Version 1の完成を確認してからHELIX-Webを展開できる | HELIXWEB-L2-009 |"
+            ],
+            "sha256": "0c38b68b3aaf0c8bec93627417695b6342b3b015c6d95b84e6065e620e8124fc"
+          }
+        },
+        {
+          "kind": "old_current_exact",
+          "claim": "HARNESS・OS・Web-OSへの責務分離境界は同一",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/helix-web/L1-planning/product-intent.md",
+            "line_start": 47,
+            "line_end": 49,
+            "text": [
+              "V-modelと検証契約はHARNESS、開発projectの要求・Worker・CI・ログ・改善還流の管理統制はHELIX-OS、",
+              "展開後のtenant・Connector job・service state・配備・監視・復旧はHELIX-Web-OSが所有する。",
+              "全コードや計算資源をSaaSへ移すこと、未採択の分散推論、横断学習への包括同意を前提にしない。"
+            ],
+            "sha256": "9949034b93fce8f05438208f054a8c7e13b3a4f194a85d8fe4db65862b3dbc61"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-web/L1-planning/product-intent.md",
+            "line_start": 47,
+            "line_end": 49,
+            "text": [
+              "V-modelと検証契約はHARNESS、開発projectの要求・Worker・CI・ログ・改善還流の管理統制はHELIX-OS、",
+              "展開後のtenant・Connector job・service state・配備・監視・復旧はHELIX-Web-OSが所有する。",
+              "全コードや計算資源をSaaSへ移すこと、未採択の分散推論、横断学習への包括同意を前提にしない。"
+            ],
+            "sha256": "9949034b93fce8f05438208f054a8c7e13b3a4f194a85d8fe4db65862b3dbc61"
+          }
+        },
+        {
+          "kind": "decision_approved_sha",
+          "claim": "現行L1の承認対象SHAはdecision recordへ記録されている",
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-web/L1-planning/product-intent.md",
+            "line_start": 1,
+            "line_end": 56,
+            "text": [
+              "---",
+              "title: \"HELIX-Web L1企画候補\"",
+              "canonical_vmodel: L1-L12",
+              "canonical_layer: L1",
+              "canonical_pair: L12",
+              "layer: L1",
+              "kind: planning",
+              "status: draft",
+              "authority_status: awaiting_parent_approval",
+              "parent_candidate: docs/concept/helix-concept-v4.1.md",
+              "source_vision: archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md",
+              "source_vision_sha256: 1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74",
+              "created: 2026-09-14",
+              "updated: 2026-09-14",
+              "---",
+              "",
+              "# HELIX-Web L1企画候補",
+              "",
+              "本書はConcept v4.1候補、製品責務決定、保存されたVision原文から導いたHELIX-Webの対象別L1候補である。",
+              "親ConceptとWeb固有価値が未承認のため、現行L1、提供計画、実装指示として使わない。",
+              "",
+              "## 提供価値",
+              "",
+              "HELIX-Webは、利用者が許可した開発環境と能力へConnectorで接続し、長時間の開発作業、進行、成果、停止・再開を",
+              "ダッシュボードから確認・操作できるAI開発SaaSを目指す。利用者環境の資産と統制を尊重し、HELIX-OSの内部管理画面、",
+              "HELIX-Web-OSの運転機構、HARNESSの工程定義をWeb固有の価値として重複実装しない。",
+              "",
+              "| ID | L1企画要求 | L2接続予定 |",
+              "|---|---|---|",
+              "| HELIXWEB-L1-001 | 利用者は、許可した環境・project・能力へ接続し、対象と作用範囲を確認できる | HELIXWEB-L2-001／002／004 |",
+              "| HELIXWEB-L1-002 | 利用者は、ダッシュボードで長時間作業の進行、結果、切断、取消、再開、結果不明を区別できる | HELIXWEB-L2-003 |",
+              "| HELIXWEB-L1-003 | 利用者は、自分が許可する変更と受け入れる成果を判断し、残る専門判断を確認できる | HELIXWEB-L2-005 |",
+              "| HELIXWEB-L1-004 | 利用者は、採用するHARNESS・Connector・model等の構成版と依存を確認できる | HELIXWEB-L2-006／007 |",
+              "| HELIXWEB-L1-005 | 利用者は、利用結果をHELIX改善へ渡す目的・範囲・同意を管理できる | HELIXWEB-L2-008 |",
+              "| HELIXWEB-L1-006 | 展開判断者は、HELIX-HARNESS製品群Version 1の完成を確認してからHELIX-Webを展開できる | HELIXWEB-L2-009 |",
+              "",
+              "上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。",
+              "",
+              "## L0 charterからの投影",
+              "",
+              "HELIX-Webは旧L0 charter P0–P9の直接ownerではない。P0–P4／P7–P9の工程・Worker・証拠・改善条件は、",
+              "採用するHARNESS版とHELIX-OS統制を参照する。P5は独立柱が存在せず、P6の外部提供条件だけを",
+              "HELIXWEB-L1-001..006のWeb固有価値へ具体化する。旧柱の実装をWeb機能へ転用しない。",
+              "",
+              "## 対象外",
+              "",
+              "V-modelと検証契約はHARNESS、開発projectの要求・Worker・CI・ログ・改善還流の管理統制はHELIX-OS、",
+              "展開後のtenant・Connector job・service state・配備・監視・復旧はHELIX-Web-OSが所有する。",
+              "全コードや計算資源をSaaSへ移すこと、未採択の分散推論、横断学習への包括同意を前提にしない。",
+              "",
+              "## 採択条件",
+              "",
+              "Concept v4.1とWeb固有価値のexact revisionを人間が採否し、利用者、利用場面、data・操作範囲、非対象を",
+              "確認する。採択後にL2要求、prototype、L11受入、L12運用評価を同じrevisionへ接続する。Visionの将来構想や既存実装を",
+              "現在の提供scopeへ自動昇格させない。",
+              "GitHub、旧CI、旧runtime、既存実装を要求意味・採否・合意のauthorityや新世代baselineにしない。"
+            ],
+            "sha256": "104096470cc4645894807c810380fe28eec7d1eba3c62b7ddf89d5e8618b1998"
+          },
+          "decision": {
+            "ref": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+            "line_start": 28,
+            "line_end": 28,
+            "text": [
+              "| `HDEC-HELIXWEB-L1-01` | `docs/helix-web/L1-planning/product-intent.md` | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | approve |"
+            ],
+            "sha256": "0f1346ec47ee862126bdee38cdae075015e7b644612059e32e6806cadc4bef6e"
+          }
+        },
+        {
+          "kind": "boundary_owner",
+          "claim": "Webの所有責務はConnector型AI開発SaaSのdashboard・service・操作体験として記録されている",
+          "boundary": {
+            "ref": "docs/concept/product-boundary.md",
+            "line_start": 38,
+            "line_end": 38,
+            "text": [
+              "| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../helix-web/README.md) |"
+            ],
+            "sha256": "f3ff67c99fcdac2106c74654a23f1fa7ceb5e921d8420f2e6d0bbfce05e18afb"
+          }
+        }
+      ],
+      "existing_holding_relation": "no_exact_path_or_blob_or_sha_match_in_13_live_holdings",
+      "live_holding_relations": [
+        {
+          "registration_id": "MPR-SH-HEADING-002",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-IR-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-CONFIRMED-003",
+          "source_atom_set_ref": "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SEMANTIC-LINE-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-CANDIDATE-003",
+          "source_atom_set_ref": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-WORKFLOW-003",
+          "source_atom_set_ref": "docs/governance/harness-workflow-source-clause-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SCRUM-REVERSE-001",
+          "source_atom_set_ref": "docs/governance/scrum-reverse-source-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-PREISOLATION-002",
+          "source_atom_set_ref": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-DELEGATED-DOC-003",
+          "source_atom_set_ref": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-DELEGATED-REF-001",
+          "source_atom_set_ref": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-PO-GOALS-PRINCIPLES-001",
+          "source_atom_set_ref": "docs/governance/l1-goals-principles-source-atoms.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-LEGACY-RULE-004",
+          "source_atom_set_ref": "docs/governance/legacy-rule-atom-inventory.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        }
+      ],
+      "preservation_disposition": "source_holding_required_before_semantic_disposition",
+      "semantic_evidence_role": "evidence_only_not_source_holding",
+      "source_holding_precondition": "required_before_semantic_disposition",
+      "formal_source_holding_created": false,
+      "authority_effect": "none",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "old_runtime_test_ci_execution": false
+    },
+    {
+      "case_id": "OUTSIDE67-L1-WEB-OS",
+      "product": "HELIX-Web-OS",
+      "old_source": {
+        "path": "docs/design/helix-web-os/L1-planning/system-intent.md",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "9b261bb1adbdd655c4149e80c9c420def6fc3f40",
+        "sha256": "9f19c758791a2b8298c5fc848ffdbf434069f3501e0382b5c2677e8843e8643f",
+        "bytes": 3032,
+        "reported_blob_oid": "9b261bb1adbdd655c4149e80c9c420def6fc3f40",
+        "reported_blob_oid_matches_git": true
+      },
+      "archive_source": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "9b261bb1adbdd655c4149e80c9c420def6fc3f40",
+        "sha256": "9f19c758791a2b8298c5fc848ffdbf434069f3501e0382b5c2677e8843e8643f",
+        "bytes": 3032,
+        "relation_to_pre_isolation": "same"
+      },
+      "current_approved_l1": {
+        "path": "docs/helix-web-os/L1-planning/system-intent.md",
+        "commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
+        "blob_oid": "40268a3ed70d64d710d7ed86f52257c653a20c5b",
+        "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+        "bytes": 3018,
+        "decision_id": "HDEC-HELIXWEBOS-L1-01",
+        "decision_line": 29
+      },
+      "product_boundary": {
+        "path": "docs/concept/product-boundary.md",
+        "line": 39
+      },
+      "semantic_relation": "exact",
+      "semantic_relation_label": "exact_substantive_content",
+      "semantic_gap": "実質本文は同一。front matterのparent_candidate pathだけが現行構成へ更新されており、旧blob保存と現行承認L1のrelationを別記録する必要がある。",
+      "line_anchored_evidence": [
+        {
+          "kind": "old_current_exact",
+          "claim": "Web-OSの独立service runtimeとOS state分離の価値は同一",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/helix-web-os/L1-planning/system-intent.md",
+            "line_start": 14,
+            "line_end": 15,
+            "text": [
+              "HELIX-Web-OSは、HELIX-Webの展開時にHELIX-OSの外へ構成し、利用者向けWebサービスを安全かつ継続的に",
+              "運転する基盤である。HELIX-OSの内部統制stateとWebサービスのtenant／job／接続stateを分離する。"
+            ],
+            "sha256": "74e6b27bc37c77b67fd50ef7bc3ab810800a7324d8c0766386a4913d2e37730d"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-web-os/L1-planning/system-intent.md",
+            "line_start": 14,
+            "line_end": 15,
+            "text": [
+              "HELIX-Web-OSは、HELIX-Webの展開時にHELIX-OSの外へ構成し、利用者向けWebサービスを安全かつ継続的に",
+              "運転する基盤である。HELIX-OSの内部統制stateとWebサービスのtenant／job／接続stateを分離する。"
+            ],
+            "sha256": "74e6b27bc37c77b67fd50ef7bc3ab810800a7324d8c0766386a4913d2e37730d"
+          }
+        },
+        {
+          "kind": "old_current_exact",
+          "claim": "HELIXWEBOS-L1-001..005の5要求行は同一",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/helix-web-os/L1-planning/system-intent.md",
+            "line_start": 19,
+            "line_end": 23,
+            "text": [
+              "| HELIXWEBOS-L1-001 | サービス運用者は、tenant・利用者・projectごとのauthorityと隔離を保ってHELIX-Webを提供できる | HELIXWEBOS-L2-001 |",
+              "| HELIXWEBOS-L1-002 | サービス運用者は、Connectorと長時間jobを安全に配信・追跡・停止・再開・回復できる | HELIXWEBOS-L2-002／003 |",
+              "| HELIXWEBOS-L1-003 | 利用者は、認証・provider接続・data返送の対象と許可範囲を管理できる | HELIXWEBOS-L2-004 |",
+              "| HELIXWEBOS-L1-004 | HELIX-Webは、利用者へ進行・状態・成果・証拠を正しいrevisionで表示できる | HELIXWEBOS-L2-005 |",
+              "| HELIXWEBOS-L1-005 | サービス運用者は、Webサービスを配備・監視・更新・復旧し、許可された運用ログをHELIX-OSの改善候補へ接続できる | HELIXWEBOS-L2-006 |"
+            ],
+            "sha256": "c0ad1273dfa745d2c92905be21d75a56c99f775d4f9e13bf273b60705ae08bfd"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-web-os/L1-planning/system-intent.md",
+            "line_start": 19,
+            "line_end": 23,
+            "text": [
+              "| HELIXWEBOS-L1-001 | サービス運用者は、tenant・利用者・projectごとのauthorityと隔離を保ってHELIX-Webを提供できる | HELIXWEBOS-L2-001 |",
+              "| HELIXWEBOS-L1-002 | サービス運用者は、Connectorと長時間jobを安全に配信・追跡・停止・再開・回復できる | HELIXWEBOS-L2-002／003 |",
+              "| HELIXWEBOS-L1-003 | 利用者は、認証・provider接続・data返送の対象と許可範囲を管理できる | HELIXWEBOS-L2-004 |",
+              "| HELIXWEBOS-L1-004 | HELIX-Webは、利用者へ進行・状態・成果・証拠を正しいrevisionで表示できる | HELIXWEBOS-L2-005 |",
+              "| HELIXWEBOS-L1-005 | サービス運用者は、Webサービスを配備・監視・更新・復旧し、許可された運用ログをHELIX-OSの改善候補へ接続できる | HELIXWEBOS-L2-006 |"
+            ],
+            "sha256": "c0ad1273dfa745d2c92905be21d75a56c99f775d4f9e13bf273b60705ae08bfd"
+          }
+        },
+        {
+          "kind": "old_current_exact",
+          "claim": "独立運転・service log連携・credential/data分離境界は同一",
+          "old": {
+            "ref": "2d4991042be55268bac30a8bbcdac45b3865030a:docs/design/helix-web-os/L1-planning/system-intent.md",
+            "line_start": 39,
+            "line_end": 44,
+            "text": [
+              "HELIX-Web-OSはHELIX-OSのsubsystemではなく、Web展開先の独立運転境界である。HARNESSの開発engineや工程規則、",
+              "HELIX-OSの全project管理、Webの利用者要求を別正本として複製しない。具体cloud、provider、認証方式、料金、",
+              "SLOはL2以降の採択前に確定済みと扱わない。",
+              "",
+              "独立運転は非接続を意味しない。Web-OSのservice log・telemetry・incident・利用結果は、許可された範囲を",
+              "HELIX-OSへ渡し、改善proposalと採択後の対象別変更を受け取る。service credentialやtenant原dataは暗黙共有しない。"
+            ],
+            "sha256": "385df56f121ff87c06f2333381b812d9cbc45cf379d3f1f16a4569ce9d86a55f"
+          },
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-web-os/L1-planning/system-intent.md",
+            "line_start": 39,
+            "line_end": 44,
+            "text": [
+              "HELIX-Web-OSはHELIX-OSのsubsystemではなく、Web展開先の独立運転境界である。HARNESSの開発engineや工程規則、",
+              "HELIX-OSの全project管理、Webの利用者要求を別正本として複製しない。具体cloud、provider、認証方式、料金、",
+              "SLOはL2以降の採択前に確定済みと扱わない。",
+              "",
+              "独立運転は非接続を意味しない。Web-OSのservice log・telemetry・incident・利用結果は、許可された範囲を",
+              "HELIX-OSへ渡し、改善proposalと採択後の対象別変更を受け取る。service credentialやtenant原dataは暗黙共有しない。"
+            ],
+            "sha256": "385df56f121ff87c06f2333381b812d9cbc45cf379d3f1f16a4569ce9d86a55f"
+          }
+        },
+        {
+          "kind": "decision_approved_sha",
+          "claim": "現行L1の承認対象SHAはdecision recordへ記録されている",
+          "current": {
+            "ref": "3df81ad27157c471e004083783f37a5860eaa2ee:docs/helix-web-os/L1-planning/system-intent.md",
+            "line_start": 1,
+            "line_end": 50,
+            "text": [
+              "---",
+              "title: \"HELIX-Web-OS L1企画候補\"",
+              "canonical_vmodel: L1-L12",
+              "canonical_layer: L1",
+              "canonical_pair: L12",
+              "status: draft",
+              "authority_status: awaiting_parent_approval",
+              "parent_candidate: docs/concept/helix-concept-v4.1.md",
+              "created: 2026-09-14",
+              "---",
+              "",
+              "# HELIX-Web-OS L1企画候補",
+              "",
+              "HELIX-Web-OSは、HELIX-Webの展開時にHELIX-OSの外へ構成し、利用者向けWebサービスを安全かつ継続的に",
+              "運転する基盤である。HELIX-OSの内部統制stateとWebサービスのtenant／job／接続stateを分離する。",
+              "",
+              "| ID | L1企画要求 | L2接続予定 |",
+              "|---|---|---|",
+              "| HELIXWEBOS-L1-001 | サービス運用者は、tenant・利用者・projectごとのauthorityと隔離を保ってHELIX-Webを提供できる | HELIXWEBOS-L2-001 |",
+              "| HELIXWEBOS-L1-002 | サービス運用者は、Connectorと長時間jobを安全に配信・追跡・停止・再開・回復できる | HELIXWEBOS-L2-002／003 |",
+              "| HELIXWEBOS-L1-003 | 利用者は、認証・provider接続・data返送の対象と許可範囲を管理できる | HELIXWEBOS-L2-004 |",
+              "| HELIXWEBOS-L1-004 | HELIX-Webは、利用者へ進行・状態・成果・証拠を正しいrevisionで表示できる | HELIXWEBOS-L2-005 |",
+              "| HELIXWEBOS-L1-005 | サービス運用者は、Webサービスを配備・監視・更新・復旧し、許可された運用ログをHELIX-OSの改善候補へ接続できる | HELIXWEBOS-L2-006 |",
+              "",
+              "## L0 charterからの投影",
+              "",
+              "| L0柱 | 本L1での帰属 |",
+              "|---|---|",
+              "| P0／P1／P2／P3 | 工程・Worker・検証条件の直接ownerではない。採用HARNESS版とHELIX-OSの開発統制を参照 |",
+              "| P4 | HELIXWEBOS-L1-005のservice観測と改善proposal。採否は対象上流へ返す |",
+              "| P5 | 独立柱が存在しないため推測で追加しない |",
+              "| P6 | HELIXWEBOS-L1-001／002／005のWebサービス提供・運転 |",
+              "| P7 | HELIXWEBOS-L1-002／004／005のjob・state・evidence・復旧 |",
+              "| P8 | HELIXWEBOS-L1-001／003のauthority・接続・data境界 |",
+              "| P9 | HELIXWEBOS-L1-004／005のrevision・証拠・改善trace |",
+              "",
+              "## 境界",
+              "",
+              "HELIX-Web-OSはHELIX-OSのsubsystemではなく、Web展開先の独立運転境界である。HARNESSの開発engineや工程規則、",
+              "HELIX-OSの全project管理、Webの利用者要求を別正本として複製しない。具体cloud、provider、認証方式、料金、",
+              "SLOはL2以降の採択前に確定済みと扱わない。",
+              "",
+              "独立運転は非接続を意味しない。Web-OSのservice log・telemetry・incident・利用結果は、許可された範囲を",
+              "HELIX-OSへ渡し、改善proposalと採択後の対象別変更を受け取る。service credentialやtenant原dataは暗黙共有しない。",
+              "",
+              "## 採択条件",
+              "",
+              "Concept v4.1のexact revisionが人間承認され、本書の5要求がそのrevisionから導出されることを確認する。",
+              "採択後にL2／L11、L3／L10、L12運用評価を同じrevision系列へ接続する。HELIX-OSの既存runtimeや",
+              "HELIX-Web画面の存在を本systemの承認・実装・受入証拠にしない。"
+            ],
+            "sha256": "7aa5e552ef5054135055ec5d2c1a666db472743b2a94349328e199ebddc84d80"
+          },
+          "decision": {
+            "ref": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+            "line_start": 29,
+            "line_end": 29,
+            "text": [
+              "| `HDEC-HELIXWEBOS-L1-01` | `docs/helix-web-os/L1-planning/system-intent.md` | `600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c` | approve |"
+            ],
+            "sha256": "1a61a964a4c5761e2a95b908e9a990481bfe5f0b14d85e8bf6d415ce0eef85a5"
+          }
+        },
+        {
+          "kind": "boundary_owner",
+          "claim": "Web-OSの所有責務はtenant・Connector・job・service state・配備・監視・復旧として記録されている",
+          "boundary": {
+            "ref": "docs/concept/product-boundary.md",
+            "line_start": 39,
+            "line_end": 39,
+            "text": [
+              "| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |"
+            ],
+            "sha256": "0854b1ecad21bbb637bb0cea90c1d19ff8641bd6f4402dd40695dc2e99a6351e"
+          }
+        }
+      ],
+      "existing_holding_relation": "no_exact_path_or_blob_or_sha_match_in_13_live_holdings",
+      "live_holding_relations": [
+        {
+          "registration_id": "MPR-SH-HEADING-002",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-IR-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-CONFIRMED-003",
+          "source_atom_set_ref": "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SEMANTIC-LINE-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_atom_set_ref": "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-CANDIDATE-003",
+          "source_atom_set_ref": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-WORKFLOW-003",
+          "source_atom_set_ref": "docs/governance/harness-workflow-source-clause-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-SCRUM-REVERSE-001",
+          "source_atom_set_ref": "docs/governance/scrum-reverse-source-line-carry-forward.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-PREISOLATION-002",
+          "source_atom_set_ref": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-DELEGATED-DOC-003",
+          "source_atom_set_ref": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-DELEGATED-REF-001",
+          "source_atom_set_ref": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-PO-GOALS-PRINCIPLES-001",
+          "source_atom_set_ref": "docs/governance/l1-goals-principles-source-atoms.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        },
+        {
+          "registration_id": "MPR-SH-LEGACY-RULE-004",
+          "source_atom_set_ref": "docs/governance/legacy-rule-atom-inventory.jsonl",
+          "path_match_count": 0,
+          "pre_isolation_blob_match_count": 0,
+          "pre_isolation_sha256_match_count": 0,
+          "path_match_evidence": [],
+          "blob_match_evidence": [],
+          "sha256_match_evidence": [],
+          "relation": "no_exact_path_or_blob_or_sha_match"
+        }
+      ],
+      "preservation_disposition": "source_holding_required_before_semantic_disposition",
+      "semantic_evidence_role": "evidence_only_not_source_holding",
+      "source_holding_precondition": "required_before_semantic_disposition",
+      "formal_source_holding_created": false,
+      "authority_effect": "none",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "old_runtime_test_ci_execution": false
+    }
+  ],
+  "aggregate": {
+    "semantic_relation_counts": {
+      "exact": 2,
+      "partial": 2,
+      "unresolved": 0
+    },
+    "holding_exact_match_count": 0,
+    "preservation_unresolved_count": 4
+  },
+  "findings": [
+    "旧pre-isolation blobとarchive blobは4件すべて同一で、Git objectとoutside-67 first15 inventoryをread-only照合した。",
+    "HARNESSは旧7要求行を現行9要求L1へ保持しつつ2要求を追加したpartial relationである。",
+    "HELIX-OSはL1-007/P6のdeployment責務をruntime authorityから分離する精緻化を行ったpartial relationである。",
+    "HELIX-WebとHELIX-Web-OSはfront matterの参照path以外の本文要求・境界が同一のexact substantive relationである。",
+    "4件とも13 live source holdingにexact path、pre-isolation blob OID、SHAの一致はなく、意味relationとsource保存残差を分離して保持した。",
+    "要求disposition contractに従い、4件すべてsource_holding登録をsemantic dispositionの前提とする。現行承認L1とdecision recordはsemantic relationの証拠にすぎず、source_holdingを代替しない。"
+  ],
+  "prohibited_inference": [
+    "semantic relationから旧blobの自動採用、successor、requirement identityを生成しない",
+    "current approved L1の存在から旧pathのsource_holding保存完了を推定しない",
+    "partial relationをmeaning equivalence、retire、縮退の判断へ昇格しない",
+    "13 live holdingへの不一致を要求意味の不在、不採用、廃止へ解釈しない",
+    "old archive/runtime/test/CI/hookを実行せず、oracle、fallback、implementationへ使わない",
+    "このcandidateから正式source_holding、requirement_candidate、authority、consumer closureを生成しない"
+  ],
+  "verification_scope": {
+    "evidence_kind": "scaffold",
+    "static_only": true,
+    "checks": [
+      "old blob identity",
+      "line anchors",
+      "approved L1 SHA",
+      "decision/boundary references",
+      "13 live holding exact scan",
+      "authority boundary"
+    ]
+  },
+  "source_holding_rule": "new_source_requires_source_holding_before_semantic_disposition"
+}
