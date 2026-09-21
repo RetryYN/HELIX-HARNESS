@@ -5,14 +5,14 @@
 - batch: `LEGACY-SEMANTIC-WAVE29-2026-09-22`
 - worktree: `/home/tenni/.helix-worktrees/legacy-semantic-review-wave29`
 - branch: `docs/legacy-semantic-review-wave29`
-- parent／current tree／main base: `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`（Wave28統合済み）
-- main merge parents: `4919cfd245ee128fee71c713c8d2d0a8cd5fcd11`、`d272a97b3e55401fa75ad41670fbeefd18f8a4cf`
+- parent／current tree／main base: `fbeee47920ed8b2992ae123b00c224ff88987c50`（Wave28統合後の最新main）
+- main merge parents: `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`、`81144b44b16064bc864b01bd83830455bb7bada3`
 - rebaseline stop: mainまたは共有入力が変わったら停止し、入力digest／parent lineageを更新
 - scope: 6 units / 18 asset edges / 6 confirmed requirement edges / 12 unresolved candidate edges
 - cumulative: 95 units / 282 asset edges / 残り123 units（全218 units）
 - authority effect: `none`; consumer closure: `pending`; legacy execution: `not_run`; new build: `false`
 
-Wave29はWave28統合後のmainを親とする候補です。Wave28のunit／assetを再選択せず、次の未レビュー要求source atom境界FR18〜20だけを対象にしました。候補値をmain確定値として扱わず、parentが変わった場合は検証を停止します。作成側はmergeとIssue closeを行いません。
+Wave29はWave28統合後の最新mainを親とする候補です。旧mainから最新mainへの差分を確認し、Wave29が宣言する共有入力は不変で、追加されたPHCAP04–05 scaffoldは対象外でした。Wave28のunit／assetを再選択せず、次の未レビュー要求source atom境界FR18〜20だけを対象にしました。候補値をmain確定値として扱わず、parentが変わった場合は検証を停止します。作成側はmergeとIssue closeを行いません。
 
 ## 要求source
 

@@ -1,6 +1,6 @@
 # Wave29 旧要求 semantic review status（2026-09-22）
 
-Wave28統合後のmain `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`を親として、専用worktree `/home/tenni/.helix-worktrees/legacy-semantic-review-wave29` のWave29候補をrebaselineしました。branchは `docs/legacy-semantic-review-wave29` です。旧Wave28 HEADと最新mainの共有入力差分は0件です。mainまたは共有入力が変化した場合は停止して再確認します。
+旧main `f122d65e1435b4709fbb7b07fbb8e42b70f0b110` から最新main `fbeee47920ed8b2992ae123b00c224ff88987c50` へ進んだため、専用worktree `/home/tenni/.helix-worktrees/legacy-semantic-review-wave29` のWave29候補をrebaselineしました。branchは `docs/legacy-semantic-review-wave29` です。Wave29が宣言する共有入力の差分は0件で、差分に含まれるPHCAP04–05 scaffoldは対象外です。mainまたは共有入力が変化した場合は停止して再確認します。
 
 FR18-HARNESS／OS、FR19-HARNESS／OS、FR20-HARNESS／OSの6 product unit、18 edgeを保存しました。要求edge 6件はconfirmed、design 6件とimplementation_source 6件はunresolved、rejected 0件です。FR18〜20のsource spanとproduct splitは連続しており、shared atomは記録していません。Wave1–28の既レビューunit／edgeと旧実装assetは重複していません。
 

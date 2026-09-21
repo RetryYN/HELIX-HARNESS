@@ -176,7 +176,7 @@
   "consumer_closure_status": "pending",
   "cumulative_reviewed_edge_count": 282,
   "cumulative_reviewed_unit_count": 95,
-  "current_tree_revision": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+  "current_tree_revision": "fbeee47920ed8b2992ae123b00c224ff88987c50",
   "inputs": {
     "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
     "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
@@ -242,14 +242,14 @@
   },
   "legacy_execution_performed": false,
   "main_merge_parents": [
-    "4919cfd245ee128fee71c713c8d2d0a8cd5fcd11",
-    "d272a97b3e55401fa75ad41670fbeefd18f8a4cf"
+    "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+    "81144b44b16064bc864b01bd83830455bb7bada3"
   ],
-  "main_merge_revision": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+  "main_merge_revision": "fbeee47920ed8b2992ae123b00c224ff88987c50",
   "missing_evidence_receipts": [],
   "new_build_allowed": false,
   "output_sha256": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29",
-  "parent_revision": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+  "parent_revision": "fbeee47920ed8b2992ae123b00c224ff88987c50",
   "phase_rows": {
     "IRUNIT-HIL-FR-18-HELIX-HARNESS": [
       {
@@ -589,11 +589,11 @@
       "unit_candidate_id": "IRUNIT-HIL-FR-20-HELIX-OS"
     }
   ],
-  "source_main_base_revision": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+  "source_main_base_revision": "fbeee47920ed8b2992ae123b00c224ff88987c50",
   "source_requirement_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
   "source_requirement_ir_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
-  "source_revision": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
-  "stacked_pr_parent_revision": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+  "source_revision": "fbeee47920ed8b2992ae123b00c224ff88987c50",
+  "stacked_pr_parent_revision": "fbeee47920ed8b2992ae123b00c224ff88987c50",
   "status": "candidate_only",
   "unit_aggregates": [
     {
