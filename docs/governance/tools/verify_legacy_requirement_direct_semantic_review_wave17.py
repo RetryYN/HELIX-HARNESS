@@ -387,7 +387,7 @@ def verify() -> None:
         "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave17-status-2026-09-21.md",
         "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave17-review-response-2026-09-21.md",
     ])
-    for marker in [REV, WAVE16_REF, "stacked PR parent", "Wave16 ledger/meta are available in the current tree", "direct_phase_review_pending", "routing_correction_pending_direct_phase_review", "product_unit_boundary_human_decision_pending", "runtime、test、hook、CI、adapterは実行していない", "候補membershipはsemantic evidenceではない"]:
+    for marker in [REV, WAVE16_REF, "stacked PR parent", "Wave16のledger／metaは現在のtreeに存在", "direct_phase_review_pending", "routing_correction_pending_direct_phase_review", "product_unit_boundary_human_decision_pending", "runtime、test、hook、CI、adapterは実行していない", "候補membershipはsemantic evidenceではない"]:
         require(marker in docs, f"document marker {marker}")
     print("legacy requirement direct semantic review wave17: schema10 / 8 edges / 7 atoms / confirmed3 rejected0 unresolved5 / cumulative50 units149 edges / 168 units remaining / static verification passed")
 

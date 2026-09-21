@@ -4,7 +4,7 @@
 
 - base: `origin/main` `6dad906ed9a52c9e49611931645db2f298c6bf6a`
 - stacked PR parent / Wave16 candidate（明示的にprior計算へ含める）: `74bfd04f7aa2384e1e30856ec6c29282b764e8c5`（merge base `6dad906ed9a52c9e49611931645db2f298c6bf6a`）
-- Wave16 ledger/meta are available in the current tree。`wave16_candidate_input_digests` にcanonical digestを固定し、shallow cloneではcurrent treeから検証する。full cloneでは可能な場合だけgit objectを追加照合する。
+- Wave16のledger／metaは現在のtreeに存在する。`wave16_candidate_input_digests` にcanonical digestを固定し、shallow cloneではcurrent treeから検証する。full cloneでは可能な場合だけgit objectを追加照合する。
 - batch: `LEGACY-SEMANTIC-WAVE17-2026-09-21`
 - selected order: BR15-OS → BR16-HARNESS → BR16-OS
 - result: 3 units / 7 atoms / 8 evidence edges / confirmed 3 / unresolved 5 / rejected 0
