@@ -1,0 +1,3210 @@
+{
+  "schema": "helix-scaffold-delegated-doc-semantic-atom-candidate.v1",
+  "candidate_id": "RDP-001-DELEGATED-DOC-009-ATOM-0033",
+  "status": "candidate_pending_independent_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "comparison": {
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "candidate_base_commit": "2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c",
+    "method": "read-only Git archive blob; contiguous exact line spans and UTF-8 SHA-256",
+    "source_document_id": "DELEGATED-DOC-009",
+    "input_report": {
+      "path": "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
+      "commit": "fa8f5426882ee56a56e28975746e2db590cd515f",
+      "sha256": "870f88c0cd5e427ef4032d8921699f78ea1da2906747cc7852a00bf5c3e8b39f",
+      "selection": "PR #1964 corrected report; DOC-009 source lines=87"
+    }
+  },
+  "source_document": {
+    "source_document_id": "DELEGATED-DOC-009",
+    "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+    "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+    "source_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+    "archive_blob_oid": "bd7d8209586ab5b7e4f49b35b08192c681da60c2",
+    "bytes": 7967,
+    "physical_line_count": 87,
+    "logical_line_count": 87,
+    "source_declared_status": "confirmed",
+    "source_relation": "requirements_v1.3_reference_line_255",
+    "holding_granularity": "file_blob",
+    "carry_status": "preserved_pending_atomization",
+    "meaning_change_applied": false,
+    "successor_refs": [],
+    "human_decision_ref": null
+  },
+  "ledger_provenance": {
+    "source_holding_path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+    "source_holding_sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+    "reference_holding_path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+    "reference_holding_sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+    "asset_ledger_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "phase_ledger_sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "asset_decisions_path": "docs/governance/legacy-asset-decisions.jsonl",
+    "asset_decisions_sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+    "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+    "phase_classification_id": "LASPH-0491",
+    "decision_record_count": 0
+  },
+  "product_phase_classification": {
+    "approved_products": [
+      "HELIX-HARNESS",
+      "HELIX-OS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "source_bootstrap_candidate_products": [
+      "HELIX-HARNESS"
+    ],
+    "candidate_products": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "candidate_product_status": "candidate_needs_semantic_review",
+    "candidate_product_rationale": "HARNESS owns workflow/V-model meaning and contract candidates; OS is a possible execution/projection/commit authority connection. Web and Web-OS have no direct target evidence in this source; absence is retained as unresolved rather than exclusion decision.",
+    "source_declared_layer": "L3",
+    "candidate_layer_phase": "L3",
+    "capability_phase_candidates": [],
+    "phase_status": "unresolved",
+    "phase_rationale": "旧phase bootstrapはcandidate_phase_targets=[]／capability_phase_evidence_insufficient。bodyのL1-L12行はdownstream layer signalsでありPHCAP authorityではない。"
+  },
+  "legacy_status": {
+    "asset_class": "Historical",
+    "authority_status": "historical",
+    "disposition": "unresolved",
+    "implementation_status": "unknown",
+    "implementation_evidence_state": "document_present",
+    "legacy_execution_performed": false,
+    "degraded_status": "unknown",
+    "degraded_evidence": [
+      {
+        "line": 57,
+        "text_role": "required allocation field degradation",
+        "observed_status": "unknown"
+      },
+      {
+        "line": 77,
+        "text_role": "L10 degradation verification condition",
+        "observed_status": "unknown"
+      }
+    ],
+    "failure_status": "unknown",
+    "failure_evidence": [
+      {
+        "line": 50,
+        "text_role": "terminal failed condition",
+        "observed_status": "unknown"
+      },
+      {
+        "line": 58,
+        "text_role": "failure metric",
+        "observed_status": "unknown"
+      }
+    ],
+    "consumer_closure_status": "pending",
+    "consumer_refs": [],
+    "decision_record_ref": null,
+    "decision_status": "missing",
+    "decision_evidence": [
+      {
+        "lines": [
+          2,
+          13,
+          25,
+          27,
+          29,
+          35,
+          47,
+          53,
+          54,
+          55,
+          58,
+          66,
+          70,
+          72,
+          74,
+          79,
+          85
+        ],
+        "text_role": "source requirement/provenance decision vocabulary only",
+        "observed_record": "none"
+      }
+    ],
+    "unresolved": [
+      "capability_phase_evidence_insufficient",
+      "product_candidate_requires_semantic_review",
+      "consumer_closure_pending",
+      "legacy_implementation_status_unknown",
+      "degraded_runtime_status_unknown",
+      "failure_observation_unknown",
+      "decision_record_missing"
+    ],
+    "lexical_signal_counts": {
+      "failure": 2,
+      "degraded": 2,
+      "implementation": 3,
+      "consumer": 1,
+      "decision": 19
+    }
+  },
+  "references": [
+    {
+      "reference_id": "DELEGATED-REF-0352",
+      "source_line": 9,
+      "relation": "authority",
+      "target_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "status": "unresolved_semantic_relation"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0353",
+      "source_line": 10,
+      "relation": "pair_artifact",
+      "target_path": "docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md",
+      "target_document_id": "DELEGATED-DOC-024",
+      "status": "pair_not_atomized_in_this_scope"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0354",
+      "source_line": 18,
+      "relation": "migration_provenance_reference",
+      "target_path": "docs/migration/source-manifests/universal-workflow-requirements-skill.v1.1.0.json",
+      "status": "provenance_not_current_authority"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0408",
+      "source_line": 255,
+      "relation": "semantic_relation_closure",
+      "target_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "status": "upstream_reference_unresolved"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0778",
+      "source_line": 10,
+      "relation": "pair_artifact",
+      "target_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "status": "reverse_pair_reference_unresolved"
+    }
+  ],
+  "source_line_coverage": {
+    "physical_lines_consumed_once": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87
+    ],
+    "unresolved_lines": [],
+    "coverage_rule": "all 87 physical source lines are consumed exactly once; no synthetic terminal line is added"
+  },
+  "source_spans": [
+    {
+      "span_id": "DOC009-SPAN-001",
+      "start_line": 1,
+      "end_line": 11,
+      "sha256": "sha256:f4751bd864a5e1c0313b6798c0b192a62a71448d7b1f971e22fd771a7ba65fb6",
+      "exact_source_text": "---\ntitle: \"Universal Workflow AI判断エンジン要件\"\nlayer: L3\nkind: add-design\nstatus: confirmed\ncreated: 2026-07-19\nupdated: 2026-07-19\nowner: PO / TL\nauthority: docs/governance/helix-harness-requirements_v1.3.md\npair_artifact: docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md\n---\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-002",
+      "start_line": 12,
+      "end_line": 15,
+      "sha256": "sha256:5ada058f519e1b5ca29157d24b2ef68529c7243d7b0a68bf55a793fcae01aa57",
+      "exact_source_text": "\n# Universal Workflow AI判断エンジン要件\n\n## 1. 入力正本の結合と採否\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-003",
+      "start_line": 16,
+      "end_line": 25,
+      "sha256": "sha256:30b32f3ec4d8c9b8dd8645a816110b3387b247a6d190d8a21be43dfdec0946ca",
+      "exact_source_text": "\n- source family: `universal-workflow-requirements-skill.v1.1.0`\n- source manifest: `docs/migration/source-manifests/universal-workflow-requirements-skill.v1.1.0.json`\n- SHA-256: `b6fd08f5054930dde8379969bf9a84cb21270d1b7bac8e87be3bc243ad425d26`\n- inventory: 14ファイル（README、SKILL、カタログ3、契約4、schema 2、prompt 1、example 2）\n- authority: source packageは意味source。HELIX要件、versioned schema、gate、Node transaction境界が実行authorityである。\n\nExact inventoryは次の14 pathとする。\n\n`README.md`、`SKILL.md`、`catalogs/base-question-catalog.md`、`catalogs/conditional-question-catalog.yaml`、`catalogs/runtime-orchestration-question-catalog.md`、`contracts/derived-mapping.md`、`contracts/requirement-contract.schema.json`、`contracts/runtime-orchestration-contract.md`、`contracts/workflow-to-requirement-contract.md`、`examples/approval-workflow.example.json`、`examples/runtime-orchestration.example.json`、`prompts/workflow-extraction-prompt.md`、`schemas/derived-requirements.schema.json`、`schemas/workflow-model.schema.json`。\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-004",
+      "start_line": 26,
+      "end_line": 28,
+      "sha256": "sha256:175869f95726461cabb0019006281e429e3ef1a258fd537ceedb6c2187cb4fdb",
+      "exact_source_text": "\n| source atom | disposition | HELIX判断 |\n|---|---|---|\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-005",
+      "start_line": 29,
+      "end_line": 29,
+      "sha256": "sha256:93cc43e635d3952bd2dabbbb063a4af65ff493378d8630faa8489df83552a9bd",
+      "exact_source_text": "| `current_state × trigger × condition → action → next_state` | adopt | workflow判断の意味コア |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-006",
+      "start_line": 30,
+      "end_line": 30,
+      "sha256": "sha256:b395edb5d97b0e78bf0200d2fa1952869914579158f2698b2b533d3b4494ef48",
+      "exact_source_text": "| target/actor/state/loop/terminal/exception/permission/timeout/notification/audit/data | adopt | atomic workflow obligationへ分解 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-007",
+      "start_line": 31,
+      "end_line": 31,
+      "sha256": "sha256:57b90fe3561aad887ed13ae1a3714f2bac5849ce79763385e93c22ff08ff6126",
+      "exact_source_text": "| Phase A core interview / Phase B conditional drill-down | adopt-with-hardening | question provenance、回答authority、unresolvedを必須化 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-008",
+      "start_line": 32,
+      "end_line": 32,
+      "sha256": "sha256:3b4c21eecec262eba0ce7ed3a6b58950a3fc329ca01c85f1039a027ddd83800f",
+      "exact_source_text": "| workflow→FR/AC/test conversion | adopt-with-hardening | stable source transition IDとL1〜L12 edgeを追加 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-009",
+      "start_line": 33,
+      "end_line": 33,
+      "sha256": "sha256:7bf65f8ae35899eed095e0641dfd28cec4b1c3ba706dd51e9001590b91456900",
+      "exact_source_text": "| screen/API/data/permission/notification/audit/test派生 | adopt-with-hardening | 派生候補に限定し、各layer gateで確定 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-010",
+      "start_line": 34,
+      "end_line": 34,
+      "sha256": "sha256:1d2853f0f1a74147740de1a23239ff0cbeb50e176da9169a24ad3bfa63170755",
+      "exact_source_text": "| switching/routing/resource allocation/reallocation | adopt-with-hardening | AI proposalとcommit authorityを分離しmeasurement contractを追加 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-011",
+      "start_line": 35,
+      "end_line": 35,
+      "sha256": "sha256:27cff1347852ff58436c43767b8f6cd9367d5ec0b43d57da340fb4f4174ad750",
+      "exact_source_text": "| `workflow-model.schema.json` | redesign | HELIX envelope、authority、decision、evidence、versionを追加 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-012",
+      "start_line": 36,
+      "end_line": 36,
+      "sha256": "sha256:a10dd176e610fa6a81a320f6e0185327e7127ef2dc8c4ad41d9a8f9925ffc112",
+      "exact_source_text": "| `derived-requirements.schema.json` | redesign | source edge、layer、status、oracle、N/A receiptを追加 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-013",
+      "start_line": 37,
+      "end_line": 37,
+      "sha256": "sha256:c6436783908cfd35fd4b95d34014592a2eabdaa769d43032cc8e58d1659850c9",
+      "exact_source_text": "| `requirement-contract.schema.json` | redesign | BR/FR/NFR、modality、priority、risk、revision、pairを追加 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-014",
+      "start_line": 38,
+      "end_line": 38,
+      "sha256": "sha256:d78401e7d79734bc11da63531f3ce9aa1ee6ca5331e7d2823e212bfe89edeeed",
+      "exact_source_text": "| runtime orchestration Markdown contract | redesign | 専用JSON SchemaがないためL5で型を新設 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-015",
+      "start_line": 39,
+      "end_line": 39,
+      "sha256": "sha256:5c52656fab3fe3691c549dc58379d3219e7f400464c89bf03a14424127381d15",
+      "exact_source_text": "| examples | reference-only | runtime exampleのworkflow schema不適合を正例にしない |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-016",
+      "start_line": 40,
+      "end_line": 44,
+      "sha256": "sha256:cb2a16529a3c788920f028f4bf350c19fb0b500e1afa8c825091088fcf27833b",
+      "exact_source_text": "\n## 2. 機能要件\n\n| ID | 要件 | 受入ID |\n|---|---|---|\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-017",
+      "start_line": 45,
+      "end_line": 45,
+      "sha256": "sha256:d6a36eb30d9acd607d168c0c0b3e58f24193d693af71ff9e3338c554f0337fcc",
+      "exact_source_text": "| UWJ-FR-001 | source packageのfilename、version、SHA-256、14-file inventory、atom dispositionをimmutable intake receiptへbindする | UWJ-AC-001 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-018",
+      "start_line": 46,
+      "end_line": 46,
+      "sha256": "sha256:81c292cbdeb63362d7062c57c33804f302ab89edbb0c53f47c202fd8992cc745",
+      "exact_source_text": "| UWJ-FR-002 | 自然言語入力をtarget、actor、state、trigger、condition、action、transition、loop、terminal、exception、permission、timeout、notification、audit、dataへ原子的に正規化する | UWJ-AC-002 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-019",
+      "start_line": 47,
+      "end_line": 47,
+      "sha256": "sha256:60e34ac46382df14f2a10d11f6a5f821ff62344e16141f509b2ce6d6ae7556e4",
+      "exact_source_text": "| UWJ-FR-003 | interview engineはcore questionを常時、approval/金額/期限/外部連携/PII/添付/通知/自動実行/AI判断/複数担当/差戻し/再実行/削除/公開/課金の質問をsignal時だけ発火する | UWJ-AC-003 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-020",
+      "start_line": 48,
+      "end_line": 48,
+      "sha256": "sha256:0afcbc990841c6e15613d086b0a7bf91195dfc161cfb928f76c18ff4250b1263",
+      "exact_source_text": "| UWJ-FR-004 | 不明、矛盾、回答authority不足、分岐欠落を推測確定せず、source spanと質問履歴付き`unresolved_items`へ保存する | UWJ-AC-004 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-021",
+      "start_line": 49,
+      "end_line": 49,
+      "sha256": "sha256:befd4ba28b9de70edefcf8b0a50455d452b0f8a5300c1b1774943bdf7d2944d1",
+      "exact_source_text": "| UWJ-FR-005 | 各transitionから最低1件のFR、AC、test scenarioを生成し、stable `source_transition_id`で双方向traceする | UWJ-AC-005 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-022",
+      "start_line": 50,
+      "end_line": 50,
+      "sha256": "sha256:9a90b00908df1d4ba84ad2719cf354575dd6797b34b4d03ed03956edbefb046c",
+      "exact_source_text": "| UWJ-FR-006 | loopはreturn、continue、stop、上限、上限到達時、terminalは正常/取消/失敗/期限切れ、終了後更新、通知、audit、再開可否を契約化する | UWJ-AC-006 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-023",
+      "start_line": 51,
+      "end_line": 51,
+      "sha256": "sha256:52e0398709eea7df5479b945d01afc9a1e2c1648e243e97e69fca30422779d74",
+      "exact_source_text": "| UWJ-FR-007 | conditionで使うdataはtype、required、validation、nullable、SSoT、mutable、sensitive、retentionを持つ | UWJ-AC-007 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-024",
+      "start_line": 52,
+      "end_line": 52,
+      "sha256": "sha256:942dd2d53b9e711376b825544b48bdb7cb1ffd4c6daa4fa19a72dd4486f7d52d",
+      "exact_source_text": "| UWJ-FR-008 | workflowからbusiness flow、screen flow、API、data、permission、notification、audit、test scenarioを派生候補として生成し、個別先行設計を禁止する | UWJ-AC-008 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-025",
+      "start_line": 53,
+      "end_line": 53,
+      "sha256": "sha256:27a971c98b640115e6f5dacfaaa6dd847899a5c4a6c16b4ecb265c22733f93bf",
+      "exact_source_text": "| UWJ-FR-009 | AI判断を`facts → candidates → policy constraints → scored proposal → confidence → counterevidence → unresolved → proposed next state`として記録する | UWJ-AC-009 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-026",
+      "start_line": 54,
+      "end_line": 54,
+      "sha256": "sha256:3ac230f21fcc4f2a8f0054d773be6a0a41e7371c6cfff559a11d67b135b10598",
+      "exact_source_text": "| UWJ-FR-010 | AIはproposal-onlyとし、要求freeze、permission、high-impact action、gate pass、DB/Git/GitHub commitを自己承認しない | UWJ-AC-010 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-027",
+      "start_line": 55,
+      "end_line": 55,
+      "sha256": "sha256:8bf9e0fd0089fc5a0d1910ca0268c020d5891def61828f7f2af8bc7f3a9acfd1",
+      "exact_source_text": "| UWJ-FR-011 | switchingはdecision point、candidate set、enable/disable、selection rule、fallback、reassessment triggerを必須にする | UWJ-AC-011 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-028",
+      "start_line": 56,
+      "end_line": 56,
+      "sha256": "sha256:0b11d2db80e9e39636f8c986ded5ff81e04845f16ac6aaa996d3dd8f97fadc8a",
+      "exact_source_text": "| UWJ-FR-012 | routingはsource、destinations、capability/capacity constraint、rule、fallback、dead-letterを必須にする | UWJ-AC-012 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-029",
+      "start_line": 57,
+      "end_line": 57,
+      "sha256": "sha256:2b48044509f33c81859e4f63bf3e8404a149b4fb434c7cd267b607f16f06b673",
+      "exact_source_text": "| UWJ-FR-013 | allocationはpriority、deadline、capability、capacity、concurrency、cost/budget、objective、fairness/preemption、reallocation、degradation、fallbackを必須にする | UWJ-AC-013 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-030",
+      "start_line": 58,
+      "end_line": 58,
+      "sha256": "sha256:c7419ef116408551c21c82d05e3a844deb6c4bfbf43b87265d795e284b3ed000",
+      "exact_source_text": "| UWJ-FR-014 | 判断・配分はverification/measurement contractへbindし、quality、latency、cost、queue、failure、fallback率、誤判断率、human override、driftをL10〜L12で評価する | UWJ-AC-014 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-031",
+      "start_line": 59,
+      "end_line": 59,
+      "sha256": "sha256:0e8a41b505c6ee6e49340d9eb767e1e733a4dacdf2dbf0e2b1fd6966473f0178",
+      "exact_source_text": "| UWJ-FR-015 | Full Vはsystem workflow全体をL1〜L5でfreezeし、Production Scrumはslice deltaを許す代わりにreview/release前のSR0〜SR4でsystem workflowへbackfillする | UWJ-AC-015 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-032",
+      "start_line": 60,
+      "end_line": 60,
+      "sha256": "sha256:cd5d811e24339b9ac153f97d4ca88bfcf7aebc0ef50604157a61147e4cd7bddb",
+      "exact_source_text": "| UWJ-FR-016 | workflow obligationをL1〜L12へ配置し、正規6 V-pair、同一revision/snapshot/oracleを保持する | UWJ-AC-016 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-033",
+      "start_line": 61,
+      "end_line": 61,
+      "sha256": "sha256:b946374ca7fe9792ace0badafc4833dfc8f55a912a48abacd418e9a498ecf354",
+      "exact_source_text": "| UWJ-FR-017 | HELIX envelope schemaはworkflow model、unresolved items、derived requirements、coverage report、contract candidatesをversioned fieldとして一つに束ねる | UWJ-AC-017 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-034",
+      "start_line": 62,
+      "end_line": 62,
+      "sha256": "sha256:800776f65f1b03aa857aa5bd491144a0a65617cc69d0457236247610e59ae76d",
+      "exact_source_text": "| UWJ-FR-018 | runtime orchestration専用schemaをworkflow schemaから分離または明示compositionし、ZIP runtime exampleの現行不適合を解消するまでactivationを拒否する | UWJ-AC-018 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-035",
+      "start_line": 63,
+      "end_line": 67,
+      "sha256": "sha256:23eecb1fafc23d8b71db23c073ea0c92b0eeea3c22adb5dc78bb3a6dbbc39ca9",
+      "exact_source_text": "\n## 3. L1〜L12配置\n\n| 層 | 判断エンジン義務 | 対となる証拠 |\n|---|---|---|\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-036",
+      "start_line": 68,
+      "end_line": 68,
+      "sha256": "sha256:d7385a2be17248aa34f2b1568c14c47af4b3b42b5ce4fa46b82ad569cddef933",
+      "exact_source_text": "| L1 | target、actor、価値、scope/non-goal、terminal、route | L12価値/SLO/改善 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-037",
+      "start_line": 69,
+      "end_line": 69,
+      "sha256": "sha256:5e623a4f4994b7a09bc755f94947bd88d36cb4d4bc35176941a7b432fc39f358",
+      "exact_source_text": "| L2 | 業務要求、workflow、操作可能prototypeまたはN/A | L11利用者workflow受入 |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-038",
+      "start_line": 70,
+      "end_line": 70,
+      "sha256": "sha256:2a50c05702aacc8bf2850fb509eaae9c21dba3737a272224c886dc27f9cfa182",
+      "exact_source_text": "| L3 | FR/NFR/AC、unresolved disposition、decision policy | L10全transition/system oracle |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-039",
+      "start_line": 71,
+      "end_line": 71,
+      "sha256": "sha256:e4b4a705729067e5fc75259f006448c18b6f86c323e0d24b8dfe7121d23315a8",
+      "exact_source_text": "| L4 | screen/API/data/permission/notification/audit、外部境界 | L9接続/権限/transaction |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-040",
+      "start_line": 72,
+      "end_line": 72,
+      "sha256": "sha256:a0ec130b5c930026b5be0ac0efda1b72045411efa97a3623ff10ea2f34747dc1",
+      "exact_source_text": "| L5 | state/loop/exception schema、switch/route/allocation、fallback/dead-letter、test/measurement設計 | L8の局所判断・unit oracle |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-041",
+      "start_line": 73,
+      "end_line": 73,
+      "sha256": "sha256:bb7a13751c3c3b497429fc9afa4e5bb502d09e7728096b3085042f32ceb9cc5c",
+      "exact_source_text": "| L6 | engine、adapter、probe実装 | L7 TDD closure |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-042",
+      "start_line": 74,
+      "end_line": 74,
+      "sha256": "sha256:5a7621ca187897390d95b664faef59597c713aa470638f6cfe06cee5e156838e",
+      "exact_source_text": "| L7 | schema/decision/policy/probe test実装 | L6 implementation trace |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-043",
+      "start_line": 75,
+      "end_line": 75,
+      "sha256": "sha256:de735055d65ef662377c215e13f73d362060ceaa4306df7039fa9100351ee9cf",
+      "exact_source_text": "| L8 | normalization、scoring、loop、fallbackの局所検証 | L5 detail contract |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-044",
+      "start_line": 76,
+      "end_line": 76,
+      "sha256": "sha256:297f320fc952433cf166942318bf4a2982d4d9d795fbdbd33f36f935d8fcb698",
+      "exact_source_text": "| L9 | API/DB/queue/resource/authority境界の結合検証 | L4 basic design |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-045",
+      "start_line": 77,
+      "end_line": 77,
+      "sha256": "sha256:301bce5b653bc3c276a99ad24c20fe1f9d058c1c6920c70a5b980a52a02b91c3",
+      "exact_source_text": "| L10 | end-to-end workflow、FR/NFR、misroute、degradation検証 | L3 requirements |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-046",
+      "start_line": 78,
+      "end_line": 78,
+      "sha256": "sha256:e5d82e35e923872169882e2d4d74a1c7d58e24451aa9e54feb1235d15c3a671a",
+      "exact_source_text": "| L11 | actor権限、操作、説明可能性、human override受入 | L2 requirements/prototype |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-047",
+      "start_line": 79,
+      "end_line": 79,
+      "sha256": "sha256:3aca5712e6fadfd1aad6d85781b623224e8f198b96b86bf32c7a340853da1925",
+      "exact_source_text": "| L12 | 時間軸SLO、cost、queue、drift、誤判断、改善効果 | L1 value |\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-048",
+      "start_line": 80,
+      "end_line": 81,
+      "sha256": "sha256:45f0668afb405f7f243391cfeba1837654262f6a1b2280ade3f1770718fd5afd",
+      "exact_source_text": "\n## 4. 完了式\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-049",
+      "start_line": 82,
+      "end_line": 83,
+      "sha256": "sha256:d4f310ada157e31bb982c1653f362e286eaa4e55d91466335605e516beb00777",
+      "exact_source_text": "\n`workflow_freeze = all_transitions_complete ∧ unresolved_blocking=0 ∧ derived_edges_closed ∧ schema_composition_valid ∧ V_pairs_current`\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-050",
+      "start_line": 84,
+      "end_line": 85,
+      "sha256": "sha256:1e7cd1f18cd2258d31f9014915a933838705e8d5b5154b7626234acd2b68e400",
+      "exact_source_text": "\n`ai_decision_executable = proposal_valid ∧ authority_separated ∧ policy_pass ∧ fallback_present ∧ measurement_contract_current ∧ commit_verifier_pass`\n"
+    },
+    {
+      "span_id": "DOC009-SPAN-051",
+      "start_line": 86,
+      "end_line": 87,
+      "sha256": "sha256:ff5fcedce19ddd8d763db43058a07d5ec3b7fb57abe2b74e49d644b178b17367",
+      "exact_source_text": "\n`scrum_slice_ready = slice_workflow_current ∧ SR0..SR4_current ∧ system_workflow_backfill_closed ∧ L1..L12_pairs_current`\n"
+    }
+  ],
+  "atoms": [
+    {
+      "semantic_atom_id": "UWJ-SEM-001",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-001",
+      "candidate_kind": "metadata",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "composite",
+      "normalized_statement": "DOC-009のL3・confirmed・PO/TL・source authority・pair参照メタデータを保持する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3"
+      ],
+      "retained_meaning": [
+        "source status=confirmedを旧sourceの宣言として保持する",
+        "pair_artifact参照を未解決edgeとして保持する"
+      ],
+      "questions": [
+        "source statusを現行authorityへ移す人間decisionは未登録",
+        "pair acceptanceのconsumer closureは未確認"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-002",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-002",
+      "candidate_kind": "navigation",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "composite",
+      "normalized_statement": "文書構造・見出し・表境界を保持する",
+      "original_ids": [],
+      "downstream_layers": [],
+      "retained_meaning": [
+        "表・節境界と原文順序を保持する",
+        "採否・authorityを生成しない"
+      ],
+      "questions": [
+        "この構造行をどの対象別要求identityへ接続するか",
+        "表の境界をどの受入pairへ固定するか"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-003",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-003",
+      "candidate_kind": "premise",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "versioned source packageの14ファイル、digest、authority、schema、gate、Node transaction境界を入力正本候補として束ねる",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L5",
+        "L9"
+      ],
+      "retained_meaning": [
+        "source family・manifest・SHA-256・14 file inventoryを保持する",
+        "意味sourceと実行authorityの記述を分離せず保持する",
+        "Node transaction boundaryを保持する"
+      ],
+      "questions": [
+        "14 source pathの現行successorとconsumerは未確定",
+        "source packageを現行authorityへ昇格してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-004",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-004",
+      "candidate_kind": "metadata",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "composite",
+      "normalized_statement": "文書構造・見出し・表境界を保持する",
+      "original_ids": [],
+      "downstream_layers": [],
+      "retained_meaning": [
+        "表・節境界と原文順序を保持する",
+        "採否・authorityを生成しない"
+      ],
+      "questions": [
+        "この構造行をどの対象別要求identityへ接続するか",
+        "表の境界をどの受入pairへ固定するか"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-005",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-005",
+      "candidate_kind": "premise",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "workflowのstate×trigger×condition→action→next_stateを意味コア候補として採用する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "disposition語（adopt／adopt-with-hardening／redesign／reference-only）を保持する",
+        "未確定の採否・実装・consumerを生成しない"
+      ],
+      "questions": [
+        "各source atomの現行owner・consumer・failure oracleは未確定",
+        "hardening差分を人間decisionなしに現行要求へ移してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-006",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-006",
+      "candidate_kind": "premise",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "target/actor/state/loop/terminal/exception/permission/timeout/notification/audit/dataをatomic workflow obligation候補へ分解する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "retained_meaning": [
+        "disposition語（adopt／adopt-with-hardening／redesign／reference-only）を保持する",
+        "未確定の採否・実装・consumerを生成しない"
+      ],
+      "questions": [
+        "各source atomの現行owner・consumer・failure oracleは未確定",
+        "hardening差分を人間decisionなしに現行要求へ移してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-007",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-007",
+      "candidate_kind": "premise",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "Phase A core interviewとPhase B conditional drill-downへquestion provenance・回答authority・unresolvedを追加する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "disposition語（adopt／adopt-with-hardening／redesign／reference-only）を保持する",
+        "未確定の採否・実装・consumerを生成しない"
+      ],
+      "questions": [
+        "各source atomの現行owner・consumer・failure oracleは未確定",
+        "hardening差分を人間decisionなしに現行要求へ移してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-008",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-008",
+      "candidate_kind": "premise",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "workflowからFR/AC/testへ変換しstable source transition IDとL1-L12 edgeを追加する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L10"
+      ],
+      "retained_meaning": [
+        "disposition語（adopt／adopt-with-hardening／redesign／reference-only）を保持する",
+        "未確定の採否・実装・consumerを生成しない"
+      ],
+      "questions": [
+        "各source atomの現行owner・consumer・failure oracleは未確定",
+        "hardening差分を人間decisionなしに現行要求へ移してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-009",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-009",
+      "candidate_kind": "premise",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "screen/API/data/permission/notification/audit/testは派生候補に限定しlayer gateで確定する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L4",
+        "L9",
+        "L10"
+      ],
+      "retained_meaning": [
+        "disposition語（adopt／adopt-with-hardening／redesign／reference-only）を保持する",
+        "未確定の採否・実装・consumerを生成しない"
+      ],
+      "questions": [
+        "各source atomの現行owner・consumer・failure oracleは未確定",
+        "hardening差分を人間decisionなしに現行要求へ移してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-010",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-010",
+      "candidate_kind": "premise",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "switching/routing/resource allocation/reallocationでAI proposalとcommit authorityを分離しmeasurement contractを加える",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L5",
+        "L10",
+        "L12"
+      ],
+      "retained_meaning": [
+        "disposition語（adopt／adopt-with-hardening／redesign／reference-only）を保持する",
+        "未確定の採否・実装・consumerを生成しない"
+      ],
+      "questions": [
+        "各source atomの現行owner・consumer・failure oracleは未確定",
+        "hardening差分を人間decisionなしに現行要求へ移してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-011",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-011",
+      "candidate_kind": "premise",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "workflow-model schemaへHELIX envelope、authority、decision、evidence、versionを追加する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "disposition語（adopt／adopt-with-hardening／redesign／reference-only）を保持する",
+        "未確定の採否・実装・consumerを生成しない"
+      ],
+      "questions": [
+        "各source atomの現行owner・consumer・failure oracleは未確定",
+        "hardening差分を人間decisionなしに現行要求へ移してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-012",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-012",
+      "candidate_kind": "premise",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "derived-requirements schemaへsource edge、layer、status、oracle、N/A receiptを追加する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L10"
+      ],
+      "retained_meaning": [
+        "disposition語（adopt／adopt-with-hardening／redesign／reference-only）を保持する",
+        "未確定の採否・実装・consumerを生成しない"
+      ],
+      "questions": [
+        "各source atomの現行owner・consumer・failure oracleは未確定",
+        "hardening差分を人間decisionなしに現行要求へ移してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-013",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-013",
+      "candidate_kind": "premise",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "requirement-contract schemaへBR/FR/NFR、modality、priority、risk、revision、pairを追加する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3"
+      ],
+      "retained_meaning": [
+        "disposition語（adopt／adopt-with-hardening／redesign／reference-only）を保持する",
+        "未確定の採否・実装・consumerを生成しない"
+      ],
+      "questions": [
+        "各source atomの現行owner・consumer・failure oracleは未確定",
+        "hardening差分を人間decisionなしに現行要求へ移してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-014",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-014",
+      "candidate_kind": "premise",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "runtime orchestration Markdown contractへL5専用JSON Schema型を新設する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L5"
+      ],
+      "retained_meaning": [
+        "disposition語（adopt／adopt-with-hardening／redesign／reference-only）を保持する",
+        "未確定の採否・実装・consumerを生成しない"
+      ],
+      "questions": [
+        "各source atomの現行owner・consumer・failure oracleは未確定",
+        "hardening差分を人間decisionなしに現行要求へ移してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-015",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-015",
+      "candidate_kind": "example",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "examplesはreference-onlyとしworkflow schema不適合を正例にしない",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "disposition語（adopt／adopt-with-hardening／redesign／reference-only）を保持する",
+        "未確定の採否・実装・consumerを生成しない"
+      ],
+      "questions": [
+        "各source atomの現行owner・consumer・failure oracleは未確定",
+        "hardening差分を人間decisionなしに現行要求へ移してよいか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-016",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-016",
+      "candidate_kind": "navigation",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "composite",
+      "normalized_statement": "文書構造・見出し・表境界を保持する",
+      "original_ids": [],
+      "downstream_layers": [],
+      "retained_meaning": [
+        "表・節境界と原文順序を保持する",
+        "採否・authorityを生成しない"
+      ],
+      "questions": [
+        "この構造行をどの対象別要求identityへ接続するか",
+        "表の境界をどの受入pairへ固定するか"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-017",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-017",
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "UWJ-FR-001: source packageのfilename/version/SHA-256/14-file inventory/atom dispositionをimmutable intake receiptへbindする",
+      "original_ids": [
+        "UWJ-FR-001",
+        "UWJ-AC-001"
+      ],
+      "downstream_layers": [
+        "L3"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "current ownerの人間decisionは未登録",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-018",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-018",
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "UWJ-FR-002: 自然言語入力をworkflow要素へ原子的に正規化する",
+      "original_ids": [
+        "UWJ-FR-002",
+        "UWJ-AC-002"
+      ],
+      "downstream_layers": [
+        "L3"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "current ownerの人間decisionは未登録",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-019",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-019",
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "UWJ-FR-003: core questionを常時、15種のconditional questionをsignal時だけ発火する",
+      "original_ids": [
+        "UWJ-FR-003",
+        "UWJ-AC-003"
+      ],
+      "downstream_layers": [
+        "L3"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "current ownerの人間decisionは未登録",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-020",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-020",
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "UWJ-FR-004: 不明・矛盾・回答authority不足・分岐欠落を推測確定せずunresolved_itemsへ保存する",
+      "original_ids": [
+        "UWJ-FR-004",
+        "UWJ-AC-004"
+      ],
+      "downstream_layers": [
+        "L3"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "current ownerの人間decisionは未登録",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-021",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-021",
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "UWJ-FR-005: 各transitionからFR/AC/test scenarioを最低1件生成しstable source_transition_idで双方向traceする",
+      "original_ids": [
+        "UWJ-FR-005",
+        "UWJ-AC-005"
+      ],
+      "downstream_layers": [
+        "L10",
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "current ownerの人間decisionは未登録",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-022",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-022",
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "UWJ-FR-006: loop/terminalの終了、失敗、期限、更新、通知、audit、再開を契約化する",
+      "original_ids": [
+        "UWJ-FR-006",
+        "UWJ-AC-006"
+      ],
+      "downstream_layers": [
+        "L3"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "current ownerの人間decisionは未登録",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [
+          "source line 50 uses failure/失敗 as a terminal or measurement condition; observed failure status is unknown"
+        ],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-023",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-023",
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "UWJ-FR-007: condition dataへtype/required/validation/nullable/SSoT/mutable/sensitive/retentionを付ける",
+      "original_ids": [
+        "UWJ-FR-007",
+        "UWJ-AC-007"
+      ],
+      "downstream_layers": [
+        "L3"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "current ownerの人間decisionは未登録",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-024",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-024",
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "UWJ-FR-008: workflowから8系統の派生候補を生成し個別先行設計を禁止する",
+      "original_ids": [
+        "UWJ-FR-008",
+        "UWJ-AC-008"
+      ],
+      "downstream_layers": [
+        "L10",
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "current ownerの人間decisionは未登録",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-025",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-025",
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "UWJ-FR-009: AI判断をfactsからproposed next stateまでの証拠列として記録する",
+      "original_ids": [
+        "UWJ-FR-009",
+        "UWJ-AC-009"
+      ],
+      "downstream_layers": [
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "candidate targetがHARNESS contract、OS execution/projection、connectionのどれかは未決",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-026",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-026",
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "UWJ-FR-010: AIをproposal-onlyとしfreeze/permission/high-impact/gate/DB/Git/GitHub commitを自己承認させない",
+      "original_ids": [
+        "UWJ-FR-010",
+        "UWJ-AC-010"
+      ],
+      "downstream_layers": [
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "candidate targetがHARNESS contract、OS execution/projection、connectionのどれかは未決",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-027",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-027",
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "UWJ-FR-011: switchingへdecision point/candidate/enable-disable/rule/fallback/reassessmentを必須化する",
+      "original_ids": [
+        "UWJ-FR-011",
+        "UWJ-AC-011"
+      ],
+      "downstream_layers": [
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "candidate targetがHARNESS contract、OS execution/projection、connectionのどれかは未決",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-028",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-028",
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "UWJ-FR-012: routingへsource/destinations/capability-capacity/rule/fallback/dead-letterを必須化する",
+      "original_ids": [
+        "UWJ-FR-012",
+        "UWJ-AC-012"
+      ],
+      "downstream_layers": [
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "candidate targetがHARNESS contract、OS execution/projection、connectionのどれかは未決",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-029",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-029",
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "UWJ-FR-013: allocationへpriority/deadline/capability/capacity/concurrency/cost/objective/fairness/preemption/reallocation/degradation/fallbackを必須化する",
+      "original_ids": [
+        "UWJ-FR-013",
+        "UWJ-AC-013"
+      ],
+      "downstream_layers": [
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "candidate targetがHARNESS contract、OS execution/projection、connectionのどれかは未決",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [
+          "source line 57 uses degradation as a required field/verification condition; observed degraded runtime status is unknown"
+        ],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-030",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-030",
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "UWJ-FR-014: 判断・配分をmeasurement contractへbindしquality/latency/cost/queue/failure/fallback率/誤判断/override/driftをL10-L12で評価する",
+      "original_ids": [
+        "UWJ-FR-014",
+        "UWJ-AC-014"
+      ],
+      "downstream_layers": [
+        "L10",
+        "L11",
+        "L12",
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "candidate targetがHARNESS contract、OS execution/projection、connectionのどれかは未決",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [
+          "source line 58 uses failure/失敗 as a terminal or measurement condition; observed failure status is unknown"
+        ],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-031",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-031",
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "UWJ-FR-015: Full Vのsystem workflowをfreezeしProduction Scrumのslice deltaをSR0-SR4でbackfillする",
+      "original_ids": [
+        "UWJ-FR-015",
+        "UWJ-AC-015"
+      ],
+      "downstream_layers": [
+        "L10",
+        "L11",
+        "L12",
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "candidate targetがHARNESS contract、OS execution/projection、connectionのどれかは未決",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-032",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-032",
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "UWJ-FR-016: workflow obligationをL1-L12へ配置し正規6 V-pairと同一revision/snapshot/oracleを保持する",
+      "original_ids": [
+        "UWJ-FR-016",
+        "UWJ-AC-016"
+      ],
+      "downstream_layers": [
+        "L10",
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "current ownerの人間decisionは未登録",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-033",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-033",
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "UWJ-FR-017: HELIX envelopeへworkflow model/unresolved/derived requirements/coverage/contract candidatesをversioned fieldで束ねる",
+      "original_ids": [
+        "UWJ-FR-017",
+        "UWJ-AC-017"
+      ],
+      "downstream_layers": [
+        "L10",
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "candidate targetがHARNESS contract、OS execution/projection、connectionのどれかは未決",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-034",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-034",
+      "candidate_kind": "requirement",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "UWJ-FR-018: runtime orchestration schemaを分離またはcompositionしZIP runtime example不適合解消までactivationを拒否する",
+      "original_ids": [
+        "UWJ-FR-018",
+        "UWJ-AC-018"
+      ],
+      "downstream_layers": [
+        "L10",
+        "L11",
+        "L12",
+        "L3",
+        "L5"
+      ],
+      "retained_meaning": [
+        "受入IDを原文どおり保持する",
+        "数量・列挙・禁止・停止・fallback・authority条件を省略しない",
+        "要求採用・実装・受入完了を生成しない"
+      ],
+      "questions": [
+        "candidate targetがHARNESS contract、OS execution/projection、connectionのどれかは未決",
+        "対応するconsumer／failure oracle／decision recordは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-035",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-035",
+      "candidate_kind": "navigation",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "composite",
+      "normalized_statement": "文書構造・見出し・表境界を保持する",
+      "original_ids": [],
+      "downstream_layers": [],
+      "retained_meaning": [
+        "表・節境界と原文順序を保持する",
+        "採否・authorityを生成しない"
+      ],
+      "questions": [
+        "この構造行をどの対象別要求identityへ接続するか",
+        "表の境界をどの受入pairへ固定するか"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-036",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-036",
+      "candidate_kind": "connection",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "L1のtarget/actor/value/scope/non-goal/terminal/routeを定義しL12価値/SLO/改善へ接続する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L1",
+        "L12"
+      ],
+      "retained_meaning": [
+        "L1 obligationとL12 evidenceの組を保持する"
+      ],
+      "questions": [
+        "L1/L12 pairの現行authorityとconsumerは未確定"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-037",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-037",
+      "candidate_kind": "connection",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "L2業務要求/workflow/prototypeまたはN/AをL11利用者workflow受入へ接続する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L2",
+        "L3"
+      ],
+      "retained_meaning": [
+        "判断エンジン義務と対となる証拠層の対応を保持する",
+        "implementation/test語は旧source記述であり現行実装証拠ではない"
+      ],
+      "questions": [
+        "各L層の対象別ownerと正規pairは未確定",
+        "OS運転境界とのconnectionをどこで採択するか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-038",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-038",
+      "candidate_kind": "connection",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "L3 FR/NFR/AC/unresolved disposition/decision policyをL10 transition/system oracleへ接続する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L4"
+      ],
+      "retained_meaning": [
+        "判断エンジン義務と対となる証拠層の対応を保持する",
+        "implementation/test語は旧source記述であり現行実装証拠ではない"
+      ],
+      "questions": [
+        "各L層の対象別ownerと正規pairは未確定",
+        "OS運転境界とのconnectionをどこで採択するか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-039",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-039",
+      "candidate_kind": "connection",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "L4 screen/API/data/permission/notification/audit/外部境界をL9接続/権限/transactionへ接続する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L4",
+        "L5"
+      ],
+      "retained_meaning": [
+        "判断エンジン義務と対となる証拠層の対応を保持する",
+        "implementation/test語は旧source記述であり現行実装証拠ではない"
+      ],
+      "questions": [
+        "各L層の対象別ownerと正規pairは未確定",
+        "OS運転境界とのconnectionをどこで採択するか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-040",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-040",
+      "candidate_kind": "connection",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "L5 state/loop/exception/switch/route/allocation/fallback/dead-letter/test/measurementをL8 oracleへ接続する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L5",
+        "L6"
+      ],
+      "retained_meaning": [
+        "判断エンジン義務と対となる証拠層の対応を保持する",
+        "implementation/test語は旧source記述であり現行実装証拠ではない"
+      ],
+      "questions": [
+        "各L層の対象別ownerと正規pairは未確定",
+        "OS運転境界とのconnectionをどこで採択するか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-041",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-041",
+      "candidate_kind": "connection",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "L6 engine/adapter/probe実装をL7 TDD closureへ接続する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L6",
+        "L7"
+      ],
+      "retained_meaning": [
+        "判断エンジン義務と対となる証拠層の対応を保持する",
+        "implementation/test語は旧source記述であり現行実装証拠ではない"
+      ],
+      "questions": [
+        "各L層の対象別ownerと正規pairは未確定",
+        "OS運転境界とのconnectionをどこで採択するか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "source line uses 実装／implementation as a design/test obligation; current implementation status remains unknown",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-042",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-042",
+      "candidate_kind": "connection",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "L7 schema/decision/policy/probe test実装をL6 implementation traceへ接続する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L7",
+        "L8"
+      ],
+      "retained_meaning": [
+        "判断エンジン義務と対となる証拠層の対応を保持する",
+        "implementation/test語は旧source記述であり現行実装証拠ではない"
+      ],
+      "questions": [
+        "各L層の対象別ownerと正規pairは未確定",
+        "OS運転境界とのconnectionをどこで採択するか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "source line uses 実装／implementation as a design/test obligation; current implementation status remains unknown",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-043",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-043",
+      "candidate_kind": "connection",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "L8 normalization/scoring/loop/fallbackをL5 detail contractへ局所検証する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L8",
+        "L9"
+      ],
+      "retained_meaning": [
+        "判断エンジン義務と対となる証拠層の対応を保持する",
+        "implementation/test語は旧source記述であり現行実装証拠ではない"
+      ],
+      "questions": [
+        "各L層の対象別ownerと正規pairは未確定",
+        "OS運転境界とのconnectionをどこで採択するか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-044",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-044",
+      "candidate_kind": "connection",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "L9 API/DB/queue/resource/authority境界をL4 basic designへ結合検証する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L9",
+        "L10"
+      ],
+      "retained_meaning": [
+        "判断エンジン義務と対となる証拠層の対応を保持する",
+        "implementation/test語は旧source記述であり現行実装証拠ではない"
+      ],
+      "questions": [
+        "各L層の対象別ownerと正規pairは未確定",
+        "OS運転境界とのconnectionをどこで採択するか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-045",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-045",
+      "candidate_kind": "connection",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "L10 end-to-end workflow/FR/NFR/misroute/degradationをL3 requirementsで検証する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L10",
+        "L11"
+      ],
+      "retained_meaning": [
+        "判断エンジン義務と対となる証拠層の対応を保持する",
+        "implementation/test語は旧source記述であり現行実装証拠ではない"
+      ],
+      "questions": [
+        "各L層の対象別ownerと正規pairは未確定",
+        "OS運転境界とのconnectionをどこで採択するか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [
+          "source line 77 uses degradation as a required field/verification condition; observed degraded runtime status is unknown"
+        ],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-046",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-046",
+      "candidate_kind": "connection",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "candidate_granularity": "unit",
+      "normalized_statement": "L11 actor権限/操作/説明可能性/human overrideをL2 requirements/prototypeで受け入れる",
+      "original_ids": [],
+      "downstream_layers": [
+        "L11",
+        "L12"
+      ],
+      "retained_meaning": [
+        "判断エンジン義務と対となる証拠層の対応を保持する",
+        "implementation/test語は旧source記述であり現行実装証拠ではない"
+      ],
+      "questions": [
+        "各L層の対象別ownerと正規pairは未確定",
+        "OS運転境界とのconnectionをどこで採択するか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-047",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-047",
+      "candidate_kind": "connection",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "L12 時間軸SLO/cost/queue/drift/誤判断/改善効果をL1 valueで評価する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L12",
+        "L1"
+      ],
+      "retained_meaning": [
+        "判断エンジン義務と対となる証拠層の対応を保持する",
+        "implementation/test語は旧source記述であり現行実装証拠ではない"
+      ],
+      "questions": [
+        "各L層の対象別ownerと正規pairは未確定",
+        "OS運転境界とのconnectionをどこで採択するか未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-048",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-048",
+      "candidate_kind": "navigation",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "composite",
+      "normalized_statement": "文書構造・見出し・表境界を保持する",
+      "original_ids": [],
+      "downstream_layers": [],
+      "retained_meaning": [
+        "表・節境界と原文順序を保持する",
+        "採否・authorityを生成しない"
+      ],
+      "questions": [
+        "この構造行をどの対象別要求identityへ接続するか",
+        "表の境界をどの受入pairへ固定するか"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-049",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-049",
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "workflow freezeを全transition完了・blocking unresolvedゼロ・derived edge閉鎖・schema composition valid・V-pair currentで定義する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L10",
+        "L11",
+        "L12"
+      ],
+      "retained_meaning": [
+        "論理積の全条件を保持する",
+        "完了式を現行completionへ昇格しない"
+      ],
+      "questions": [
+        "各predicateのevidence owner、consumer、failure dispositionは未解決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-050",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-050",
+      "candidate_kind": "acceptance",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "AI decision executableをproposal valid・authority separated・policy pass・fallback・current measurement contract・commit verifier passの論理積で定義する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L3",
+        "L5",
+        "L9",
+        "L10",
+        "L12"
+      ],
+      "retained_meaning": [
+        "authority separationとcommit verifierを含む全predicateを保持する",
+        "AI自己承認禁止と矛盾させない",
+        "現行実行可能性を宣言しない"
+      ],
+      "questions": [
+        "HARNESS semantic contractとOS commit/verification ownerの境界は未決",
+        "各predicateの観測・failure・consumerは未確定"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "UWJ-SEM-051",
+      "source_document_id": "DELEGATED-DOC-009",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_revision": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_span_ref": "DOC009-SPAN-051",
+      "candidate_kind": "acceptance",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_granularity": "connection",
+      "normalized_statement": "Scrum slice readyをslice workflow・SR0-SR4・system workflow backfill・L1-L12 pairsのcurrentで定義する",
+      "original_ids": [],
+      "downstream_layers": [
+        "L1",
+        "L3",
+        "L10",
+        "L11",
+        "L12"
+      ],
+      "retained_meaning": [
+        "SR0..SR4とsystem backfillの全条件を保持する",
+        "release readinessを現行受入済みと扱わない"
+      ],
+      "questions": [
+        "SR0-SR4のconsumer／evidence／decision recordは未解決",
+        "Scrum運転のHARNESS/OS境界は未決"
+      ],
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+        "phase_status": "unresolved",
+        "phase_candidates": [],
+        "implementation_status": "unknown",
+        "implementation_evidence": "document_present_only; no current implementation evidence",
+        "degraded_status": "unknown",
+        "degraded_evidence": [],
+        "failure_status": "unknown",
+        "failure_evidence": [],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "decision_status": "missing",
+        "decision_record_ref": null,
+        "legacy_execution_performed": false,
+        "unconfirmed": true
+      }
+    }
+  ],
+  "unresolved_consumer_failure_decision": [
+    "consumer_refs are empty in the asset ledger; pair artifact DOC-024 and L1-L12 evidence edges remain pending closure",
+    "failure/degradation terms are source conditions and metrics, not observed failure or degraded implementation evidence",
+    "implementation terms in L6/L7 lines are design obligations; legacy implementation_status remains unknown",
+    "no matching append-only legacy decision record exists; decision status remains missing"
+  ],
+  "limits": [
+    "candidate targets and layer signals are semantic placement candidates only; they do not establish current owner, authority, acceptance, implementation, or successor",
+    "HELIX-Web／HELIX-Web-OS are retained in approved product denominator with no direct source target evidence; no exclusion decision is generated",
+    "source spans preserve exact bytes from archive commit; archive runtime/test/CI/hook/adapter was not executed",
+    "scaffold validation is not L3/L10/L11/L12 completion evidence"
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0033",
+  "kind": "scaffold",
+  "title": "RDP-001 DELEGATED-DOC-009 semantic atom候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS（workflow／V-model意味契約）とHELIX-OS（execution／projection connection）の共同候補。正式ownerは未解決",
+  "state": "registered",
+  "reason": "旧Universal Workflow AI判断エンジンsource blobはL3 requirementとして保持されているが、source file単位のholdingから要求atom、4製品境界、phase、legacy implementation／degraded／consumer／decision状態を独立reviewできる正式artifactは未成立である。候補spanとunknown境界をscaffoldへ固定する。",
+  "upstream": [
+    {"path": "docs/governance/delegated-requirement-document-source-holding.jsonl", "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd", "note": "DOC-009 source holding／carry status／source digest"},
+    {"path": "docs/governance/delegated-requirement-document-reference-holding.jsonl", "sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7", "note": "DOC-009 authority／pair／manifest／upstream reference edges"},
+    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "LEGACY-ASSET-5EE032D657C221184B00 disposition／implementation unknown／consumer refs"},
+    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "LASPH-0491 phase empty／HARNESS candidate／unknown boundary"},
+    {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "note": "matching DOC-009 asset decision record is absent"},
+    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "4 approved product responsibility boundary"},
+    {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "note": "HARNESS V-model／workflow contract candidate boundary"},
+    {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "OS authority／execution／projection candidate boundary"},
+    {"path": "docs/helix-web/L1-planning/product-intent.md", "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756", "note": "Web direct target absence／non-duplication boundary"},
+    {"path": "docs/helix-web-os/L1-planning/system-intent.md", "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c", "note": "Web-OS service runtime direct target absence boundary"},
+    {"path": "scaffold/rdp001-delegated-doc009-atom/inventory.json", "sha256": "68de304dffc45729c919a98911ff2171ba668ce36ed47d8a9fb9395d1655f550", "note": "DOC-009 87-line exact span／atom candidate rebaselined to 2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c"}
+  ],
+  "role": "DELEGATED-DOC-009の旧L3 Universal Workflow AI判断エンジンsourceを全87行・51 exact span・51 semantic atom候補へ分解し、HARNESS／OS connection候補、4製品分母、L3とdownstream layer signal、legacy implementation／degraded／failure／consumer／decision unknownを同一scaffoldへ保持する",
+  "obligations": [
+    "旧archive commitの7,967 bytes／87行をsource digest、blob OID、連続exact span、全line coverageで保持する",
+    "UWJ-FR-001..018、source disposition、L1〜L12配置、workflow_freeze／ai_decision_executable／scrum_slice_readyを原文条件ごとに候補化する",
+    "HARNESSの意味・V-model契約とHELIX-OSのexecution／projection connectionを混合ownerへ丸めず候補境界として保持する",
+    "HELIX-Web／HELIX-Web-OSをapproved product denominatorへ残し、直接target evidenceなしを除外決定へ変換しない",
+    "legacy assetのHistorical／unresolved、implementation unknown、failure／degraded condition-only、consumer pending、decision missingを保持する",
+    "source status、採否、authority、owner、successor、implementation、consumer closure、acceptance、L3/L10/L11/L12完了を生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "DOC-009 semantic atom independent reviewer",
+      "HARNESS workflow／V-model requirement rehome reviewer",
+      "HELIX-OS execution／projection boundary reviewer",
+      "DOC-024 universal workflow acceptance pair reviewer",
+      "legacy failure／degraded／consumer／decision closure reviewer"
+    ],
+    "dependencies": [
+      "PR #1964 corrected report commit fa8f54268（external provenance only）",
+      "fixed archive Git object 064280b5c1c5c98f949e6e3be5ef87cbe4a4b658（read-only）",
+      "Python standard library",
+      "source／asset／phase ledgers and approved product boundary candidates"
+    ],
+    "boundary": "inventory、generator、validator、selfcheckはscaffold/配下だけ。archive blobは静的read-only referenceとして読む。旧runtime／test／hook／adapter／CI、GitHub、DB、Issue、PR、外部APIは実行・更新しない。正式L3/L10/L11/L12、現行owner、consumer closure、実装、releaseを生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/rdp001-delegated-doc009-atom/generate.py",
+      "python3 scaffold/rdp001-delegated-doc009-atom/validate.py",
+      "python3 scaffold/rdp001-delegated-doc009-atom/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|stale|residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime／test／hook／adapter／workflow／CI実行",
+      "旧source／test design／Issue／PRからcurrent authority、採否、実装、pass、consumer closureを生成すること",
+      "scaffold/外への書き込み",
+      "HELIX-Web／HELIX-Web-OSへ直接targetを発明すること",
+      "L3以降の正式設計・実装、L10/L11/L12受入、release、deployment、external effect",
+      "Scaffold scriptからのcommit、push、PR作成、merge、Issue更新"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-delegated-doc009-atom/README.md",
+    "scaffold/rdp001-delegated-doc009-atom/inventory.json",
+    "scaffold/rdp001-delegated-doc009-atom/generate.py",
+    "scaffold/rdp001-delegated-doc009-atom/validate.py",
+    "scaffold/rdp001-delegated-doc009-atom/selfcheck.py",
+    "scaffold/bindings/SCF-B-0033.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": [
+      "validate.py（archive bytes／SHA／OID、holding／asset／phase ledger、87 line coverage、51 exact span／atom、4 product denominator、lexical evidence）",
+      "selfcheck.py（authority disguise、line loss、implementation promotion、Web／Web-OS target invention、unknown closure guards）",
+      "scfctl stale（upstream revision change detection）",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "UWJ source／acceptance pair statusを現行authorityへ昇格する",
+      "failure／degradation requirement conditionをobserved failure／degraded implementationへ変換する",
+      "L6/L7 実装語をcurrent implementationへ昇格する",
+      "empty consumer refs／decision recordsをclosure／approvalへ変換する",
+      "HELIX-Web／HELIX-Web-OSを根拠なく直接targetへ追加する",
+      "source span、FR列挙、layer evidence、完了式predicateを欠落させる"
+    ]
+  },
+  "replacement": {
+    "role_target": "承認済み対象別L2／L11から導出されたUniversal Workflow意味契約、OS execution／projection connection、正規L3/L10 pair、consumer／oracle／failure closure",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
