@@ -285,6 +285,19 @@ def main() -> int:
     atomization = candidate.get("semantic_atomization", {})
     if atomization.get("original_id_sets") != {"RDJ-FR": 12, "RDJ-AC": 12} or atomization.get("metadata_or_boundary_atoms") != 7 or atomization.get("semantic_atom_count") != 31 or atomization.get("coverage_span_count") != 9 or atomization.get("source_lines_total") != 126 or atomization.get("coverage_and_semantics_are_separate") is not True: errors.append("semantic_atomization count/scope不一致")
     if set(atomization.get("consumer_boundary_ids", [])) != CONSUMER_IDS: errors.append("consumer boundary ID集合不一致")
+    actual_consumer_ids = {
+        atom.get("original_id") for atom in atoms if isinstance(atom, dict)
+        and atom.get("original_id") in FR_IDS | AC_IDS
+        and "HELIX-OS" in (atom.get("consumer_product_candidates") or [])
+    }
+    if set(atomization.get("consumer_boundary_ids", [])) != actual_consumer_ids: errors.append("consumer boundary IDとatom実体が不一致")
+    mixed_definition = "owner_candidatesが複数製品にまたがるatom。candidate_target=unresolvedでも計上する"
+    if atomization.get("mixed_owner_definition") != mixed_definition: errors.append("mixed owner定義不一致")
+    actual_mixed_ids = {
+        atom.get("original_id") for atom in atoms if isinstance(atom, dict)
+        and len(set(atom.get("owner_candidates") or [])) > 1
+    }
+    if set(atomization.get("mixed_owner_ids", [])) != actual_mixed_ids or actual_mixed_ids != {"RDJ-META-008", "RDJ-META-017"}: errors.append("mixed owner IDとatom実体が不一致")
 
     linkage = candidate.get("reference_edge_linkage")
     if not isinstance(linkage, dict) or set(linkage) != REF_IDS: errors.append("reference_edge_linkageのedge集合不一致")

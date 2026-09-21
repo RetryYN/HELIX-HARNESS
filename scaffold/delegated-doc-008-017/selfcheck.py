@@ -46,6 +46,9 @@ def main() -> int:
     run_case("product boundary source omission", lambda d: d["product_boundary"]["sources"].pop(), "product boundary source集合が期待3件と不一致")
     run_case("reference linkage reverse mismatch", lambda d: d["reference_edge_linkage"]["DELEGATED-REF-0342"].pop(), "reference_edge_linkageの双方向対応が不一致")
     run_case("negative ID relabel", lambda d: d["negative_conditions"][0].update({"negative_id": "SCF006-NEG-999"}), "negative ID集合不一致")
+    run_case("declared consumer removed from atom", lambda d: atom(d, "RDJ-FR-002").update({"consumer_product_candidates": []}), "consumer boundary IDとatom実体が不一致")
+    run_case("undeclared consumer added to atom", lambda d: atom(d, "RDJ-FR-001").update({"consumer_product_candidates": ["HELIX-OS"]}), "consumer boundary IDとatom実体が不一致")
+    run_case("mixed owner omitted", lambda d: d["semantic_atomization"].update({"mixed_owner_ids": []}), "mixed owner IDとatom実体が不一致")
     return 0
 
 

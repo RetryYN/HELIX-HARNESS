@@ -55,22 +55,22 @@
     },
     {
       "path": "scaffold/delegated-doc-008-017/README.md",
-      "sha256": "e23cf393f697743f05ee3f7b93dd42139fbf31cfa6d479eca88c5afd726d0133",
+      "sha256": "213b943e450be1bf8213544ef0aff0cba9cf78dc7d49a8124ca1e9fb2ef1c91a",
       "note": "候補scope、原ID分割、停止条件"
     },
     {
       "path": "scaffold/delegated-doc-008-017/inventory.json",
-      "sha256": "db90741927327f7c27d482ef6a0090cd197649ff74a5ddc6ef62dd121a33b595",
+      "sha256": "448e059c1e483ddda70246f6f5e322b94793e7bb5a0662c8a1892f0f8ba1cc46",
       "note": "9 coverage span、31 atom、5 edge、phase/product境界、7 boundary atomの個別意味"
     },
     {
       "path": "scaffold/delegated-doc-008-017/validate.py",
-      "sha256": "7a83fa2c2da8767a664e9a934f807d7afbe8efcb221cb760e689320cbe326657",
+      "sha256": "57d98510220f07ef1d3759d54a9f82991c1fdfc84140c7eec51ee5d30216f36c",
       "note": "台帳／Git blob／原ID／境界固有要約／条件／consumer／legacy status静的検証"
     },
     {
       "path": "scaffold/delegated-doc-008-017/selfcheck.py",
-      "sha256": "a89ea35ac68f625bd41d9e4fcf5d7ebfc928fc866798e9351be3334a1aac0a25",
+      "sha256": "513fa4ddd84a3ad08f66100ae54bd40558b8ccac51b45af992208c5770aaf51a",
       "note": "digest、edge、coverage、ID重複、product source、linkage、negative、generic placeholderの否定例"
     }
   ],

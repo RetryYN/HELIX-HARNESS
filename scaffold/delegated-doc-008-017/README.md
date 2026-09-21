@@ -18,6 +18,8 @@
 
 phase/product台帳の現状態は仮候補に留める。DOC-008は`PHCAP-06`候補、DOC-017はphase未確定。両方とも製品候補は`HELIX-HARNESS`のみだが、直接境界根拠は未完であり、owner確定ではない。event／projection／DB／downstreamを含む8つのFR/AC atomは、`consumer_product_candidates: ["HELIX-OS"]`を別欄へ保持する。OSをHARNESSのowner欄へ混入させない。
 
+`consumer_boundary_ids`はFR/AC atomのうちOS consumer候補を持つ8 IDを実データから再計算した集合である。`mixed_owner_ids`はowner候補が複数製品にまたがるatomを意味し、`candidate_target=unresolved`でも数える。この定義ではmetadataの`RDJ-META-008/017`が該当する。いずれも最終ownerやconsumerの承認ではない。
+
 旧assetは両方とも`Historical`／`unresolved`、旧実装`unknown`、旧実行`false`、consumer refs空、consumer closure `pending`で固定する。受入設計は未実行であり、PR-1 contract-only・PR-2以降`design-defined / not-implemented`の原文境界を保持する。
 
 holding全体はsource 114件、reference 788件。既存のDOC-003/028と対応3 edgeを除外した残りはsource 112件、reference 785件として記録し、既review単位を増やさない。

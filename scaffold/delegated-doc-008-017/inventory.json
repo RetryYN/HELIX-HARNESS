@@ -2581,7 +2581,10 @@
     "coverage_span_count": 9,
     "source_lines_total": 126,
     "coverage_and_semantics_are_separate": true,
-    "mixed_owner_ids": [],
+    "mixed_owner_ids": [
+      "RDJ-META-008",
+      "RDJ-META-017"
+    ],
     "consumer_boundary_ids": [
       "RDJ-AC-002",
       "RDJ-AC-008",
@@ -2592,7 +2595,8 @@
       "RDJ-FR-010",
       "RDJ-FR-011"
     ],
-    "id_span_policy": "each RDJ-FR/RDJ-AC has an exact single-line span; non-ID source text remains in boundary atoms"
+    "id_span_policy": "each RDJ-FR/RDJ-AC has an exact single-line span; non-ID source text remains in boundary atoms",
+    "mixed_owner_definition": "owner_candidatesが複数製品にまたがるatom。candidate_target=unresolvedでも計上する"
   },
   "reference_edge_linkage": {
     "DELEGATED-REF-0341": [
