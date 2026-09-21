@@ -20,13 +20,12 @@ HELIX-DBの要否は本programで扱う技術制約の一論点である。専�
 
 [管理層の要求仮登録契約](management-provisional-requirement-registration.md)に従い、
 `management-provisional-requirement-register.jsonl`で生存中の全`registered_source_holding`を入力入口にする。
-現在の十四のholdingは、IR 153要求、confirmed identity 175件、semantic line 2,386行、補助source 655件、
+現在の十三のholdingは、IR 153要求、confirmed identity 175件、semantic line 2,386行、補助source 655件、
 旧candidate 4,755行、workflow索引108件、構造見出し317件、Scrum Reverse 300行、archive隔離前に変更された
 基準source revision 333 pathに加え、旧v1.3の直接委任22文書から意味frontmatter relation 265 edgeを再帰的に辿った
 closure 117文書を、114 file blobとScrum Reverse行台帳3文書へ保持する。さらに同じ117文書から抽出したfrontmatter・
 本文参照788 edgeを、参照元行とtarget blob digest付きの分類待ちholdingへ保持する。さらに旧HELIXのAI向け指示・運用文書・機械強制codeから抽出した規則atom 7,622件（対象file 632件、二巡目531件。発見済みであり全規則ではない）を保持する。さらにPOが提示した5大目標5件と
-七大原則7件のexact原文を、企画価値sourceと行動規律sourceの12 atomとして保持する。これらに加え、outside-67の67 path revision pairを
-`MPR-SH-OUTSIDE67-001`へsource_holdingとして保持する。path単位のholdingは要求atomの分母ではなく、別途atom化する保存入口である。
+七大原則7件のexact原文を、企画価値sourceと行動規律sourceの12 atomとして保持する。
 
 これらの件数は重複・包含・派生関係を含むため単純合算しない。一つのholdingや索引に無いことを非要求・不要の
 根拠にせず、新しいsourceを発見した場合は先に`source_holding`へ追加する。file blob／path単位のholdingは発見・保存の
@@ -96,7 +95,7 @@ Concept v4.1と4対象L1は2026-09-17のdecision recordで承認済みである�
 完了証拠と次の入口は[製品責務分類第1層の完了とL2採否入口](audits/source-rebaseline/product-routing-completion-and-l2-entry-2026-09-17.md)に固定した。
 `L2D-S1-01 authority-vocabulary`は[人間判断packet v2](audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)に、
 判断対象revision、親L1、L2／L11接続、旧L1 6 atom、旧L3 20 atom、旧L10 20 oracle、旧ルール群holdingからの計上、
-変更する旧拘束、未解決事項を集めた。ただしpre-append 13 source holdingのうち11件が未評価であり、さらに追加された67 path holdingは未atom化である。本programが求める
+変更する旧拘束、未解決事項を集めた。ただし生存中13 source holdingのうち11件が未評価であり、本programが求める
 「生存中の全source holdingについて無損失なatom集合へ展開する」条件を満たしていない。したがって
 **現在は人間判断へ送れる状態ではない**。v1（`MPR-SH-LEGACY-RULE-004`未計上）は`superseded_by_v2`であり、承認に使わない。
 2026-09-19にPOは`L2D-S1-01`を`defer`とした（[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)、

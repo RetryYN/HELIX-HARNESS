@@ -4,7 +4,7 @@
 
 ## 13 live holdingsとの関係
 
-management provisional register 32行からsupersedes終端を再計算し、live source holding 13件を固定しました。対象15件は13 holdingすべてについて、source path、pre-isolation blob OID、pre-isolation SHA-256の完全一致が0件です。従って各pathの状態は `not_in_any_of_13_live_holdings`、`unresolved_new_holding_needed` としています。これは保存先検討の残差であり、source_holdingやrequirement_candidateを自動登録しません。
+management provisional registerの3df81ad pre-append snapshot 32行からsupersedes終端を再計算し、historical live source holding 13件を固定しました。対象15件は13 holdingすべてについて、source path、pre-isolation blob OID、pre-isolation SHA-256の完全一致が0件です。append後のcurrent registerは14件ですが、この候補は旧13件の観測を14件へ置換せず、snapshotを読みます。従って各pathの状態は `not_in_any_of_13_live_holdings`、`unresolved_new_holding_needed` としています。これは保存先検討の残差であり、source_holdingやrequirement_candidateを自動登録しません。
 
 各pathについて、pre-isolation commit、archive commitのblob OID／SHA／bytes、同一／相違、archive rootの有無、最新HEADのpath状態を保持しました。15件すべて最新HEADには存在せず、旧asset catalogとの一致もoutside-67 report上で0件です。
 

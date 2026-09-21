@@ -1,0 +1,95 @@
+{
+  "schema": "rdp001-preisolation-outside-holding-67-migration/v1",
+  "candidate_id": "RDP-001-PREISO-OUTSIDE-HOLDING-67-MIGRATION-0040",
+  "status": "migration_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "semantic_disposition": "not_started",
+  "formal_register_append": true,
+  "old_runtime_test_ci_execution": false,
+  "base": {
+    "latest_main_commit": "1c6912ad34b9a7950206188ad364e3a712dc9e6b",
+    "historical_capture_commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
+    "historical_capture_is_ancestor_of_latest_main": true,
+    "rebaseline_required_before_admission": true
+  },
+  "historical_capture": {
+    "register_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+    "register_sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+    "register_record_count": 32,
+    "live_holding_count": 13,
+    "source_revision": "3df81ad27157c471e004083783f37a5860eaa2ee",
+    "preserved_without_rewrite": true
+  },
+  "formal_append": {
+    "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "register_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+    "register_record_count": 33,
+    "live_holding_count": 14,
+    "appended_registration_id": "MPR-SH-OUTSIDE67-001",
+    "source_set_path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "source_set_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+    "source_item_count": 67,
+    "append_only_prefix_preserved": true
+  },
+  "read_after": {
+    "path": "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.json",
+    "sha256": "fa07fe624ab5f4fd263ed3fdd46b1e3cd56fa549609a65287f72b25cf61ee568",
+    "register_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+    "live_holding_count": 14,
+    "historical_13_preserved": true,
+    "added_registration_ids": [
+      "MPR-SH-OUTSIDE67-001"
+    ]
+  },
+  "unmerged_dependencies": [
+    {
+      "reference": "PR #1975",
+      "local_ref": "remotes/pr/1975",
+      "head": "2c0f287dda2cd9252cd64255cfa4cdf695653754",
+      "status": "unmerged",
+      "required_migration": "SCF-B-0036 validator/generator/inventoryを3df historical register／disposition snapshotへ束縛し、14-holding current read-afterを別artifactにする。merge後にBinding upstreamをrebaselineする"
+    },
+    {
+      "reference": "PR #1978",
+      "local_ref": "remotes/pr/1978",
+      "head": "d272a97b3e55401fa75ad41670fbeefd18f8a4cf",
+      "status": "stacked_on_exact_head_unmerged",
+      "required_migration": "exact HEADを確認後、register参照をhistorical snapshotへ切り替え、current 14-holding read-afterとBinding digestを更新する"
+    }
+  ],
+  "affected_historical_captures": [
+    "scaffold/pre-isolation-outside-holding-first15/inventory.json",
+    "scaffold/phcap02-03-registration-classification-audit/inventory.json",
+    "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
+    "scaffold/rdp001-unassessed-atom-audit/report.json",
+    "scaffold/pre-isolation-outside-l1-semantic/inventory.json (PR #1975未merge)",
+    "docs/governance/phase-capability-inventory.json (kept at main capture digest; separate migration record required)",
+    "scaffold/bindings/SCF-B-0027.json",
+    "scaffold/bindings/SCF-B-0029.json",
+    "scaffold/bindings/SCF-B-0034.json",
+    "scaffold/bindings/SCF-B-0035.json",
+    "scaffold/bindings/SCF-B-0036.json (PR #1975未merge)"
+  ],
+  "issue_projection": {
+    "issue": 1813,
+    "status": "separate_update_required",
+    "reason": "RDP-001 projectionは13 holding時点のsource program digestと分母を投影しており、外部Issueはこの候補から変更しない"
+  },
+  "source_set": {
+    "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+    "count": 67,
+    "unit": "path_revision_pair",
+    "requirement_atoms": false,
+    "authority_effect": "none",
+    "semantic_disposition": "not_started"
+  },
+  "prohibited_inference": [
+    "historical 13-holding captureを14 holdingとして再生成・上書きしない",
+    "path_revision_pairをrequirement atom、requirement identity、successorへ変換しない",
+    "source_holding登録をsemantic adoption、product owner、phase authority、implementationへ昇格しない",
+    "append成功を人間承認、要求採用、実装完了、Issue closeへ解釈しない",
+    "旧archive runtime、test、CI、hook、adapterを実行しない"
+  ]
+}

@@ -13,7 +13,7 @@
     {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "legacy catalog lookup source"},
     {"path": "docs/governance/new-generation-start-here.md", "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995", "note": "new-generation authority and operation boundary"},
     {"path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md", "sha256": "99d1e78e7722d5569d5615b8c2700452bedf7e76448e68f11b06acbde30efec7", "note": "pre-isolation delta audit contract"},
-    {"path": "docs/governance/management-provisional-requirement-registration.md", "sha256": "86e0eae4c447a4d7113b84b72d6b3a8cb89188189090584fbcc76fbbbe810176", "note": "provisional registration boundary"}
+    {"path": "docs/governance/management-provisional-requirement-registration.md", "sha256": "4641b2fa1edd4d22748b85598e7bde1561aa8225305a6e54d90595b9b4c28ab8", "note": "provisional registration boundary"}
   ],
   "role": "RDP-001 holding外新規67 pathの保存先・authority gapをread-onlyで監査し、後続semantic reviewへ引き渡す",
   "obligations": [

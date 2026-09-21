@@ -12,7 +12,7 @@
     {"path": "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-rule-atom-accounting.jsonl", "sha256": "ea5979396cfd0fa81678f9938a72edc84aa8320d467fe2ef252d016794bd05e7", "note": "S1-01 accounting。RUL-OSP-04 screened 10/25、secondary link count 5"},
     {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "対応する旧資産 26 source file の Historical／unresolved 状態"},
     {"path": "docs/governance/candidates/legacy-rule-derived-requirements.md", "sha256": "386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa", "note": "RUL-OSP-04 要求候補本文と25／22表示"},
-    {"path": "docs/governance/requirement-disposition-review-program.md", "sha256": "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308", "note": "RDP-001 の atom／candidate／authority停止条件"},
+    {"path": "docs/governance/requirement-disposition-review-program.md", "sha256": "9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59", "note": "RDP-001 の atom／candidate／authority停止条件"},
     {"path": "docs/governance/requirement-atomization-review-contract.md", "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba", "note": "原文・line span・digest・未解決を保持する atom review contract"},
     {"path": "docs/governance/legacy-asset-reuse-control.md", "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582", "note": "旧資産は reference only、実行・無判断 copy・oracle 化を禁止"},
     {"path": "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md", "sha256": "f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46", "note": "S1-01 の10/25、screen 限界、per-atom unassessed 境界"}

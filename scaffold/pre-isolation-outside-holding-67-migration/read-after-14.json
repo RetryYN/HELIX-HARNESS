@@ -1,0 +1,177 @@
+{
+  "schema": "rdp001-source-holding-register-read-after/v1",
+  "read_after_id": "RDP-001-SH-OUTSIDE67-READ-AFTER-14-001",
+  "capture_commit": "1c6912ad34b9a7950206188ad364e3a712dc9e6b",
+  "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+  "register_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+  "register_record_count": 33,
+  "historical_snapshot_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+  "historical_snapshot_sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+  "historical_snapshot_register_record_count": 32,
+  "historical_13_registration_ids": [
+    "MPR-SH-HEADING-002",
+    "MPR-SH-IR-003",
+    "MPR-SH-CONFIRMED-003",
+    "MPR-SH-SEMANTIC-LINE-003",
+    "MPR-SH-SUPPLEMENTARY-003",
+    "MPR-SH-CANDIDATE-003",
+    "MPR-SH-WORKFLOW-003",
+    "MPR-SH-SCRUM-REVERSE-001",
+    "MPR-SH-PREISOLATION-002",
+    "MPR-SH-DELEGATED-DOC-003",
+    "MPR-SH-DELEGATED-REF-001",
+    "MPR-SH-PO-GOALS-PRINCIPLES-001",
+    "MPR-SH-LEGACY-RULE-004"
+  ],
+  "added_registration_ids": [
+    "MPR-SH-OUTSIDE67-001"
+  ],
+  "live_holding_count": 14,
+  "live_holdings": [
+    {
+      "registration_id": "MPR-SH-HEADING-002",
+      "source_atom_set_ref": "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl",
+      "source_atom_set_sha256": "ddb90daece98a4cef6033b5de7e27947bf2e23991358a8d9d1764cbe3bd2b786",
+      "source_atom_set_record_count": 317,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-IR-003",
+      "source_atom_set_ref": "docs/governance/legacy-requirement-carry-forward.jsonl",
+      "source_atom_set_sha256": "51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0",
+      "source_atom_set_record_count": 153,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-CONFIRMED-003",
+      "source_atom_set_ref": "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+      "source_atom_set_sha256": "eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed",
+      "source_atom_set_record_count": 175,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-SEMANTIC-LINE-003",
+      "source_atom_set_ref": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+      "source_atom_set_sha256": "a81d6b1f5acb116c76b0b87b41aa0d2c3b9bfa2ba4ac0be86dd2db052fdc1692",
+      "source_atom_set_record_count": 2386,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-SUPPLEMENTARY-003",
+      "source_atom_set_ref": "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl",
+      "source_atom_set_sha256": "1a0591e1da6f9579d970aedfccff90ac6a8e1aefbbe0f4047e3aeb950a8449bb",
+      "source_atom_set_record_count": 655,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-CANDIDATE-003",
+      "source_atom_set_ref": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl",
+      "source_atom_set_sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "source_atom_set_record_count": 4755,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-WORKFLOW-003",
+      "source_atom_set_ref": "docs/governance/harness-workflow-source-clause-carry-forward.jsonl",
+      "source_atom_set_sha256": "64597ef4fa018e214ac8e233eafedbeae7bd2adf09bcfd30ce1a043067960643",
+      "source_atom_set_record_count": 108,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-SCRUM-REVERSE-001",
+      "source_atom_set_ref": "docs/governance/scrum-reverse-source-line-carry-forward.jsonl",
+      "source_atom_set_sha256": "72428f6becffa5d931d2ea26f96408dec7e6e04a8b47869220a8c2f66070f1e9",
+      "source_atom_set_record_count": 300,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-PREISOLATION-002",
+      "source_atom_set_ref": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "source_atom_set_sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "source_atom_set_record_count": 333,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-DELEGATED-DOC-003",
+      "source_atom_set_ref": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "source_atom_set_sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+      "source_atom_set_record_count": 114,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-DELEGATED-REF-001",
+      "source_atom_set_ref": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+      "source_atom_set_sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+      "source_atom_set_record_count": 788,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-PO-GOALS-PRINCIPLES-001",
+      "source_atom_set_ref": "docs/governance/l1-goals-principles-source-atoms.jsonl",
+      "source_atom_set_sha256": "ca260101a7a82cd8710e60c96d68181a2b1bd0f55d6a00b88f5c6450cdbd494d",
+      "source_atom_set_record_count": 12,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-LEGACY-RULE-004",
+      "source_atom_set_ref": "docs/governance/legacy-rule-atom-inventory.jsonl",
+      "source_atom_set_sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784",
+      "source_atom_set_record_count": 7622,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-OUTSIDE67-001",
+      "source_atom_set_ref": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "source_atom_set_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "source_atom_set_record_count": 67,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    }
+  ],
+  "new_holding_scope": "67 path_revision_pair source items; requirement_atoms=false; semantic disposition not started",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "old_runtime_test_ci_execution": false,
+  "historical_capture_preserved": true
+}

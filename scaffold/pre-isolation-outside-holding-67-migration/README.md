@@ -1,0 +1,24 @@
+# outside-67 historical capture migration candidate
+
+この候補は、3df81ad時点の13 live source holdingを固定したsnapshotと、outside-67の67 `path_revision_pair`をappend-only registerへ追加した後の14 holding read-afterを分離する移行案です。source setは要求atomではなく、各pathのpre-isolation／archive blob OID、SHA-256、bytesを保持します。`MPR-SH-OUTSIDE67-001`の`authority_effect`は`none`で、semantic disposition、product、phase、implementationは開始していません。
+
+`docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl`は3df81adのregister bytesをそのまま固定した13-holding historical snapshotです。current registerはその32行をprefixとして33行目だけをappendし、14 live holdingsになっています。`read-after-14.json`はcurrent registerを再読し、旧13 IDを保持したまま追加IDを分離しています。旧13 inventoryを14件として再生成する処理はありません。
+
+既存のfirst15、PHCAP-02/03、delegated-doc003、unassessed-atomとSCF-B-0027/0029/0034/0035は、historical register参照をsnapshotへ切り替えました。`phase-capability-inventory.json`はWave verifierの固定入力digestを壊さないためmain capture bytesのまま保持し、同JSONのregister参照更新は別migration recordへ分離します。正式append行はsource set `docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl` と永続coverage receipt `docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md` を参照し、Scaffold撤去時の参照切れを防ぎます。要件整理契約と登録契約の「現在13」は現在14へ更新し、13時点の記述はsnapshotとして分離しました。
+
+PR #1975は未mergeで、レビューで報告されたexact HEAD `2c0f287dda2cd9252cd64255cfa4cdf695653754`を依存値として記録しています。SCF-B-0036とoutside-L1 validatorはこの候補で書き換えず、3df時点のregister／disposition snapshotまたは現行14文書への明示的read-afterを選んでBinding upstreamを更新する未解決依存として記録しています。PR #1978のexact HEAD `d272a97b3e55401fa75ad41670fbeefd18f8a4cf`をstacked親として固定します。#1978のレビューでHEADが変わった場合はrebaselineを停止し、proposal成果をmain直下候補へ二重計上しません。Issue #1813 projectionは外部操作を行わず、別更新対象として残しています。
+
+候補BindingはSCF-B-0040です（SCF-B-0039は別PRで使用済み）。
+
+append recordの`registered_at`は候補worktreeで観測した`2026-09-22T03:44:30+09:00`を記録し、`registered_by`は`Codex migration candidate (authority_effect:none)`、`management_state`は`registered_source_holding`です。これはsource bytesを登録候補へ固定した記録であり、人間承認、要求採用、製品・phase・実装の確定を表しません。
+
+## 検証
+
+```text
+python3 scaffold/pre-isolation-outside-holding-67-migration/read-after-14.py
+python3 scaffold/pre-isolation-outside-holding-67-migration/generate.py
+python3 scaffold/pre-isolation-outside-holding-67-migration/validate.py
+python3 scaffold/pre-isolation-outside-holding-67-migration/selfcheck.py
+```
+
+旧archiveのruntime、test、CI、hook、adapterは実行していません。commit、push、PR、merge、Issue更新はこの候補では行いません。

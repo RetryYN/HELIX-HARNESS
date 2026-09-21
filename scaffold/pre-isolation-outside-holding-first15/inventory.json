@@ -21,7 +21,7 @@
       "HELIX-Web",
       "HELIX-Web-OS"
     ],
-    "holding_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "holding_register_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
     "holding_register_sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
     "live_holding_count": 13,
     "outside_report_path": "scaffold/pre-isolation-outside-holding-67/report.json",
