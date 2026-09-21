@@ -1,0 +1,79 @@
+{
+  "schema_revision": 1,
+  "generated_at": "2026-09-22",
+  "authority_effect": "none",
+  "proposal_status": "needs_independent_review",
+  "source_commit": "2654cf936719dee21dfbf1ceb8140163400f081a",
+  "inputs": {
+    "queue_path": "docs/governance/legacy-requirement-atomization-review-queue.jsonl",
+    "queue_sha256": "5e85e9ca4eb8b08dd7908bf63ff994d2b6cd88e430fd3c7e0a15160d17a12a07",
+    "semantic_line_ledger_path": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+    "semantic_line_ledger_sha256": "a81d6b1f5acb116c76b0b87b41aa0d2c3b9bfa2ba4ac0be86dd2db052fdc1692",
+    "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+    "source_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+    "archive_source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+    "archive_source_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+    "legacy_asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+    "legacy_asset_revision": 3,
+    "legacy_asset_disposition": "source_snapshot_preservation",
+    "legacy_asset_implementation_status": "non_executable_read_only_source",
+    "legacy_asset_product_target": "unresolved",
+    "legacy_asset_decision_status": "pending_human_confirmation",
+    "legacy_asset_decision_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-9F48ADEEB477DCA54039",
+    "legacy_asset_correction_decision": "REQ-SNAPSHOT-CORRECTION-9F48ADEEB477DCA54039",
+    "legacy_asset_correction_supersedes": "REQ-SNAPSHOT-9F48ADEEB477DCA54039",
+    "legacy_asset_read_after_id": "READ-REQ-SNAPSHOT-9F48ADEEB477DCA54039",
+    "legacy_asset_read_after_result": "pass",
+    "legacy_asset_read_after_digest_match": true,
+    "legacy_asset_read_after_consumer_match": true,
+    "legacy_asset_read_after_failure": null,
+    "legacy_asset_consumer_refs": [
+      "requirement-carry-forward-ledgers",
+      "requirement-atomization-review"
+    ],
+    "legacy_asset_read_after_consumer_refs": [
+      "requirement-carry-forward-ledgers",
+      "requirement-atomization-review"
+    ]
+  },
+  "review_unit_ids": [
+    "REQATOM-QUEUE-0006",
+    "REQATOM-QUEUE-0007",
+    "REQATOM-QUEUE-0008",
+    "REQATOM-QUEUE-0009",
+    "REQATOM-QUEUE-0010"
+  ],
+  "review_unit_count": 5,
+  "input_line_count": 7,
+  "candidate_atom_count": 10,
+  "four_product_denominator": {
+    "HELIX-HARNESS": {
+      "candidate_atom_count": 5,
+      "status": "candidate_only"
+    },
+    "HELIX-OS": {
+      "candidate_atom_count": 3,
+      "status": "candidate_only"
+    },
+    "HELIX-Web": {
+      "candidate_atom_count": 0,
+      "status": "no_direct_source_evidence"
+    },
+    "HELIX-Web-OS": {
+      "candidate_atom_count": 0,
+      "status": "no_direct_source_evidence"
+    }
+  },
+  "unresolved_target_candidate_atom_count": 2,
+  "status_preservation": {
+    "source_authority": "confirmed (legacy queue declaration)",
+    "target_authority": "none",
+    "carry_forward": "preserved_pending_atomization",
+    "implementation_status": "unknown",
+    "degradation_status": "unknown",
+    "phase_status": "legacy physical L1 / canonical declaration retained; current phase placement unresolved",
+    "successor_requirement_ids": [],
+    "decision_record": null
+  },
+  "proposal_sha256": "7a325dfb636d5716a3708285783156d7db21a5a350d225694cb1db449a56d672"
+}

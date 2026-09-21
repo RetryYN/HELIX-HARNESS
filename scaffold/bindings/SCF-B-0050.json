@@ -1,0 +1,202 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0050",
+  "kind": "scaffold",
+  "title": "RDP-001 REQATOM A1 0006--0010 のsource-linked atomization review候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "RDP-001 A1 source atomization／four-product routing review（正式owner未解決）",
+  "state": "registered",
+  "reason": "旧要求atom化review queueのREQATOM-QUEUE-0006〜0010を、semantic line台帳・旧business source snapshot・旧asset catalog／append-only decision／failure／consumer記録へリンクし、7 input lineと10 candidate atomをread-onlyで保持する。現行target authority、successor、実装、degradation、phase、採否、受入は未解決のまま残す。",
+  "upstream": [
+    {
+      "path": "docs/governance/legacy-requirement-atomization-review-queue.jsonl",
+      "sha256": "5e85e9ca4eb8b08dd7908bf63ff994d2b6cd88e430fd3c7e0a15160d17a12a07",
+      "note": "REQATOM-QUEUE-0006..0010 exact queue rows"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+      "sha256": "a81d6b1f5acb116c76b0b87b41aa0d2c3b9bfa2ba4ac0be86dd2db052fdc1692",
+      "note": "REQSRC-LINE-00008/00009/00019/00020/00024..00026 exact line text and digest"
+    },
+    {
+      "path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+      "sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "note": "read-only source snapshot"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "upstream boundary and scaffold authority"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+      "note": "line coverage, candidate fields, forbidden transitions"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "four-product responsibility candidate boundary"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "HARNESS L1 responsibility comparison"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "HELIX-OS L1 responsibility comparison"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "HELIX-Web L1 comparison; no direct evidence in this slice"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "HELIX-Web-OS L1 comparison; no direct evidence in this slice"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "business source asset catalog revision 3 and unknown implementation/product"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "append-only initial decision and revision 3 correction"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "historical read-after digest／consumer observation"
+    },
+    {
+      "path": "scaffold/rdp001-reqatom-next5/README.md",
+      "sha256": "5ac6292d2c0e89f6c77046cfb91f6e79d8b73dbb677642ce35f7005e77f537b3",
+      "note": "scope, product denominator, unknowns, verification contract"
+    },
+    {
+      "path": "scaffold/rdp001-reqatom-next5/generate.py",
+      "sha256": "edc15f6af436c64b2b4083fa0afd2e7607d53739792ece583ea030224d84ec2b",
+      "note": "deterministic source-linked proposal generator"
+    },
+    {
+      "path": "scaffold/rdp001-reqatom-next5/proposals.jsonl",
+      "sha256": "7a325dfb636d5716a3708285783156d7db21a5a350d225694cb1db449a56d672",
+      "note": "five review unit proposals"
+    },
+    {
+      "path": "scaffold/rdp001-reqatom-next5/inventory.json",
+      "sha256": "e0904da125049a2f011f8df6ffc37d40f498312350a2be815f49876becf743f0",
+      "note": "input and four-product denominator manifest"
+    },
+    {
+      "path": "scaffold/rdp001-reqatom-next5/validate.py",
+      "sha256": "319cdae0f97d3469e07b3f5881ab8fb5974e4cd043ad94a56fb0c36cf578a0f7",
+      "note": "independent static validator"
+    },
+    {
+      "path": "scaffold/rdp001-reqatom-next5/selfcheck.py",
+      "sha256": "636b0796b306dbc0b206c46cb1440ad8732505339133e4b345327c869a2bb23a",
+      "note": "twelve meaningful negative self-checks"
+    }
+  ],
+  "role": "REQATOM A1 0006--0010のqueue／semantic line／exact source closure、四製品candidate routing、旧actor／authority／failure／consumer意味、implementation／degradation／phase unknownを独立review用に保持する",
+  "overlap_reason": "SCF-B-0049はREQATOM-QUEUE-0001〜0005の別sliceを束縛する。本bindingは0006〜0010の5 unitと10 candidate atomだけに限定し、後続A1/A2 unitのatomizationや正式要求identityを置換しない。open PR #1993のSCF-B-0048、#1994のSCF-B-0049、main既存bindingともIDが重複しない。",
+  "obligations": [
+    "queueの5 unitとsemantic line 7件をsource順に固定し、各input lineをconsumed_onceまたはunresolvedへ一回だけ置く",
+    "同一source lineを複数atomへ参照できるが、line coverageの分母を重複計上しない",
+    "exact source text、line digest、source file digest、archive同一性、legacy asset revision／decision／consumer refsを保持する",
+    "見出し・表ヘッダをnavigation／metadataとして保持し、BR／UXの現行分母やschemaへ昇格しない",
+    "PO、AI agent roster、worker≠verifier、L0-L3 human approval、HELIX operatorのactor／authority／failure／否定条件を保持する",
+    "HARNESSのcontract候補とHELIX-OS接続候補を分け、OS側の現行routing推論はcandidate_inferenceへ隔離し、旧sourceのretained_meaningへ混入させない",
+    "implementation／degradation／phase／successor／decisionをunknown／unassigned／nullのまま保持する",
+    "旧archiveは静的な行／digest照合だけに限定し、旧runtime／test／CI／hook／adapter／sourceを実行しない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 A1 independent semantic atomization reviewer",
+      "four-product responsibility boundary reviewer",
+      "legacy asset decision／failure／consumer closure reviewer",
+      "subsequent requirement PR human decision reviewer",
+      "Scaffold Binding replacement reviewer"
+    ],
+    "dependencies": [
+      "Python 3 standard library",
+      "REQATOM queue and semantic line ledger",
+      "read-only source snapshot and legacy asset logs",
+      "Concept／four-product boundary／four L1 comparison documents"
+    ],
+    "boundary": "候補JSONL、inventory、generator、validator、negative self-check、README、Bindingはscaffold/内に置く。source authorityの採否、target authority、successor、意味変更、retire、L2/L11合意、実装、CI、Issue／PR projection、consumer closure、release、deployment、外部作用は生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/rdp001-reqatom-next5/generate.py",
+      "python3 scaffold/rdp001-reqatom-next5/validate.py",
+      "python3 scaffold/rdp001-reqatom-next5/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git show／git rev-parse／git cat-fileによるread-only照合",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source、設定の実行",
+      "旧CI／旧runtimeをoracle、実装、受入、完了証拠として使うこと",
+      "旧actor／roster／package展開の記述を現行permission、merge、release、deploymentへ昇格すること",
+      "要求採否、successor、意味変更、retire、L2/L11合意、implementation、degradation、phase closureを自動生成すること",
+      "scaffold外への候補書き込み、GitHub、Issue、PR、CI、DB、memory、外部API、deploymentへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-reqatom-next5/README.md",
+    "scaffold/rdp001-reqatom-next5/generate.py",
+    "scaffold/rdp001-reqatom-next5/proposals.jsonl",
+    "scaffold/rdp001-reqatom-next5/inventory.json",
+    "scaffold/rdp001-reqatom-next5/validate.py",
+    "scaffold/rdp001-reqatom-next5/selfcheck.py",
+    "scaffold/bindings/SCF-B-0050.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "validate.pyのqueue／semantic line／source／archive digestと7 line coverage",
+      "validate.pyの10 atom、四製品分母、asset revision／decision／consumer、OS推論分離、status unknown、authority／successor／decision禁止",
+      "selfcheck.pyの14 negative cases（line loss／duplication、本文／digest改変、authority／successor／implementation／degradation／phase昇格、denominator改変、actor conflict削除、OS意味混入、推論分離解除、Web根拠捏造）",
+      "generate.py再実行のdeterministic JSONL digest",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "REQATOM unitのinput line欠落または重複",
+      "exact source text／line digest／source file digestの改変",
+      "BR／UX見出し・表ヘッダから現行分母、Web owner、schemaを生成すること",
+      "PO／AI roster／worker≠verifierをcurrent permission、review、merge、deploymentへ昇格すること",
+      "OS側の現行管理・CI・permission・導入・更新・復旧・結果追跡を旧sourceのretained_meaningへ混入すること",
+      "HARNESS／OS候補をsuccessorへ昇格し、Web／Web-OS直接根拠なしを不要化すること",
+      "implementation／degradation／phase／decision statusのunknown／pendingを解消したと表示すること"
+    ]
+  },
+  "replacement": {
+    "role_target": "REQATOM review contractに基づく正式な要求identity／対象別L2配置／L11被覆判断（人間decision後）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
