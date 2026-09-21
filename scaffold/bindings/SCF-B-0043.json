@@ -15,7 +15,7 @@
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-31-48/README.md",
-      "sha256": "2a795877c4b14c74bbe98c99a8db30ded459b3f92875358734a7471f2bc685c8",
+      "sha256": "407443520f73514512b10fb9378571ac07a69e145db3b56a571b417af16975dd",
       "note": "selection、physical findings、implementation/degradation/semantic-inclusion unknown境界"
     },
     {
@@ -25,13 +25,13 @@
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-31-48/validate.py",
-      "sha256": "539c78637de7597754836f07b224b205521fe43cd74079fae2bd46ac60fcb075",
-      "note": "generator非依存のselection、Git object、digest、13 holding exact relation validator"
+      "sha256": "e9fb564a9603d1608299a505492bd8d99ba5541026a7c5eb98fefe6c580e5e33",
+      "note": "generator非依存のselection、Git object、digest、recursive keyset、13 holding exact relation validator"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-31-48/selfcheck.py",
-      "sha256": "11d5c1e2351c67ba79ffd5d6ab6b0ec28ccaf8ecd1de499448ea9c16860d1dc1",
-      "note": "authority／adoption／physical relation／unknown境界のnegative cases"
+      "sha256": "789b438d9666f466a3ebdfa43e68bf9f9df7bea2f7ed7ba210ef84c4710fa7d0",
+      "note": "authority／adoption／physical relation／unknown境界／exact text／recursive keysetの23 negative cases"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67/report.json",

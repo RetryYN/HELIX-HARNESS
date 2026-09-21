@@ -32,3 +32,5 @@ python3 scaffold/tools/scfctl.py stale
 python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
+
+`validate.py`はfindings／prohibited_inferenceのexact textとinventory、row、13 holding relationのrecursive keysetを固定する。`selfcheck.py`はbaseline greenを確認し、23件のnegative caseで期待error codeを照合する。no-op mutationは受け入れない。
