@@ -43,6 +43,12 @@ NEGATIVE_IDS = {
     "REQNEXT4-NEG-METADATA-ONLY-EXCLUSION", "REQNEXT4-NEG-ATOM-CLAIM", "REQNEXT4-NEG-ARCHIVE-EXECUTION",
     "REQNEXT4-NEG-CLOSURE-CLAIM",
 }
+PRIOR_SCOPES = [
+    {"request_ref": "PR-1943", "status": "integrated", "source_revision_item_id_range": [[1, 22], [26, 26], [60, 60]], "file_count": 24, "hunk_count": 91},
+    {"request_ref": "PR-1946", "status": "integrated", "source_revision_item_id_range": [[23, 25], [27, 43]], "file_count": 20, "hunk_count": 21},
+    {"request_ref": "PR-1949", "status": "integrated", "source_revision_item_id_range": [[44, 59], [61, 84]], "file_count": 40, "hunk_count": 40},
+    {"request_ref": "PR-1951", "status": "integrated", "candidate_ref": "e99781d1a6135195bbe5d20a63c80d0fc70af46e", "candidate_ref_role": "historical_round1_candidate_ref", "status_at_selection": "unmerged_candidate", "status_at_rebaseline": "integrated_in_latest_main", "integration_commit": "4007b22dbcad45640ba0ee87393f6d2e290640ad", "integration_head": "a14310ad225d02727f046da03963ae94ead0718a", "source_revision_item_id_range": [[85, 144]], "file_count": 60, "hunk_count": 60},
+]
 HUNK_RE = re.compile(r"^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @")
 
 
@@ -172,6 +178,8 @@ def validate(manifest: dict, inventory: dict) -> list[str]:
             errors.append(f"provenance {key}不一致")
     if provenance.get("old_runtime_test_ci_execution") is not False:
         errors.append("旧runtime／test／CI実行はfalseに固定する")
+    if manifest.get("prior_scopes") != PRIOR_SCOPES:
+        errors.append("prior scope lineage不一致")
 
     scope = manifest.get("selection_basis", {})
     if scope.get("selected_source_revision_item_ids") != SELECTED_IDS:

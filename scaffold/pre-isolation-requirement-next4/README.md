@@ -10,6 +10,9 @@ diff_scope: `selected_source_items_only`
 `PREISO-REV-000330..000333`を対象にする。330–332はL11／L10受入設計の層境界、停止条件、
 acceptance、trace条件を含み、333はそのpair trace検査の変更を含む。いずれも
 `registry_source_digest`だけを更新する145–329とは差分の性質が異なる。
+PR #1951は選定時点では未mergeだったが、再baseline時点でmerge済みである。
+`prior_scopes`にはこの両時点とmerge commit／HEADを分けて記録する。
+`candidate_worktree_base`は選定時点の来歴であり、現在のmainを示す値ではない。
 
 選定範囲は次のとおりである。
 

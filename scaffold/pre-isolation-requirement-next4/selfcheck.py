@@ -36,6 +36,9 @@ def main() -> int:
     m = copy.deepcopy(base_manifest); m["selection_basis"]["selected_source_revision_item_ids"].append("PREISO-REV-000001")
     mutations.append(("REQNEXT4-NEG-PRIOR-OVERLAP", m, copy.deepcopy(base_inventory)))
 
+    m = copy.deepcopy(base_manifest); m["prior_scopes"][3]["status_at_rebaseline"] = "unmerged_candidate"
+    mutations.append(("REQNEXT4-NEG-PRIOR-LINEAGE", m, copy.deepcopy(base_inventory)))
+
     m = copy.deepcopy(base_manifest); m["selection_basis"]["metadata_only_excluded_change"] = "requirement_candidate"
     mutations.append(("REQNEXT4-NEG-METADATA-ONLY-EXCLUSION", m, copy.deepcopy(base_inventory)))
 
@@ -53,7 +56,7 @@ def main() -> int:
     if failures:
         print("FAIL: base validation failed for negative cases: " + ", ".join(failures))
         return 1
-    print("PASS: RDP-001 requirement-bearing next4 selfcheck (7 meaningful negative mutations rejected)")
+    print("PASS: RDP-001 requirement-bearing next4 selfcheck (8 meaningful negative mutations rejected)")
     return 0
 
 
