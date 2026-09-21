@@ -28,6 +28,8 @@
     "decision_record_sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
     "product_boundary_path": "docs/concept/product-boundary.md",
     "product_boundary_sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+    "work_entry_path": "docs/governance/new-generation-start-here.md",
+    "work_entry_sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
     "pre_isolation_holding_path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
     "pre_isolation_holding_sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
     "disposition_program_path": "docs/governance/requirement-disposition-review-program.md",

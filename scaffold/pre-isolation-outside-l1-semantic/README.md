@@ -15,6 +15,8 @@ outside-67 first15 inventoryから、旧pre-isolation pathのうち四製品のL
 
 candidateは `findings_only`、`authority_effect: none` で、正式source_holding、requirement identity、successor、採否、consumer closureを生成しません。旧archiveはGit objectを静的に読み、旧runtime・test・CI・hookは実行していません。
 
+`validate.py`は生成器とinventoryの一致に加え、固定した生成器・inventory digest、Git blob、承認行、製品境界、13 holdingのatom setを生成器から独立して照合します。`selfcheck.py`はinventory改変11件と生成器改変14件がfail-closeすることを確認します。digestはこのcaptureの固定点であり、後続のholding登録時は履歴を事後改変せず別revisionとして再baselineします。
+
 ## 検証
 
 ```text

@@ -31,8 +31,21 @@ EXPECTED_CURRENT_SHA = {
 EXPECTED_DECISION_SHA = "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
 EXPECTED_BOUNDARY_SHA = "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
 EXPECTED_DISPOSITION_PROGRAM_SHA = "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308"
+EXPECTED_WORK_ENTRY_SHA = "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
+EXPECTED_PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
+EXPECTED_ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
+EXPECTED_INVENTORY_SHA = "4813191726f5ba2246daa85bc71928a6fab8db2f9bff954935c08d1b32bac81c"
+EXPECTED_GENERATOR_SHA = "e5bd4dbb4e6455cf90d7e0b7117b4482ebd497776976b5b16682cb0462ea0a91"
+EXPECTED_CASES = {
+    "HELIX-HARNESS": ("OUTSIDE67-L1-HARNESS", "docs/design/harness/L1-planning/product-intent.md", "docs/helix-harness/L1-planning/product-intent.md", "HDEC-HARNESS-L1-01", "partial_substantive_subset"),
+    "HELIX-OS": ("OUTSIDE67-L1-OS", "docs/design/helix-os/L1-planning/system-intent.md", "docs/helix-os/L1-planning/system-intent.md", "HDEC-HELIXOS-L1-01", "partial_refined_boundary"),
+    "HELIX-Web": ("OUTSIDE67-L1-WEB", "docs/design/helix-web/L1-planning/product-intent.md", "docs/helix-web/L1-planning/product-intent.md", "HDEC-HELIXWEB-L1-01", "exact_substantive_content"),
+    "HELIX-Web-OS": ("OUTSIDE67-L1-WEB-OS", "docs/design/helix-web-os/L1-planning/system-intent.md", "docs/helix-web-os/L1-planning/system-intent.md", "HDEC-HELIXWEBOS-L1-01", "exact_substantive_content"),
+}
 
 
+if hashlib.sha256((HERE / "generate.py").read_bytes()).hexdigest() != EXPECTED_GENERATOR_SHA:
+    raise SystemExit("E_GENERATOR_PIN")
 spec = importlib.util.spec_from_file_location("l1_generator", HERE / "generate.py")
 generator = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
@@ -45,9 +58,140 @@ def fail(errors: list[str], condition: bool, message: str) -> None:
         errors.append(message)
 
 
+def digest(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def git_bytes(commit: str, path: str) -> bytes:
+    return subprocess.run(["git", "show", f"{commit}:{path}"], cwd=ROOT, check=True, stdout=subprocess.PIPE).stdout
+
+
+def git_oid(commit: str, path: str) -> str:
+    return subprocess.run(["git", "rev-parse", f"{commit}:{path}"], cwd=ROOT, check=True, text=True, stdout=subprocess.PIPE).stdout.strip()
+
+
+def exact_locations(value: object, target: str, prefix: str = "") -> list[str]:
+    found = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            location = f"{prefix}.{key}" if prefix else key
+            if child == target:
+                found.append(location)
+            found += exact_locations(child, target, location)
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            found += exact_locations(child, target, f"{prefix}[{index}]")
+    return found
+
+
+def independent_evidence_errors(inv: dict) -> list[str]:
+    """Check source facts without using generate.py or its case specifications."""
+    errors: list[str] = []
+    scope = inv.get("scope", {})
+    fail(errors, scope.get("pre_isolation_commit") == EXPECTED_PRE_ISOLATION, "E_PRE_COMMIT_PIN")
+    fail(errors, scope.get("archive_commit") == EXPECTED_ARCHIVE, "E_ARCHIVE_COMMIT_PIN")
+    fail(errors, scope.get("work_entry_path") == "docs/governance/new-generation-start-here.md", "E_WORK_ENTRY_PATH")
+    fail(errors, scope.get("work_entry_sha256") == EXPECTED_WORK_ENTRY_SHA == digest((ROOT / "docs/governance/new-generation-start-here.md").read_bytes()), "E_WORK_ENTRY_DIGEST")
+    register_path = ROOT / "docs/governance/management-provisional-requirement-register.jsonl"
+    register_bytes = register_path.read_bytes()
+    fail(errors, scope.get("management_register_sha256") == digest(register_bytes), "E_REGISTER_DIGEST")
+    register = [json.loads(line) for line in register_bytes.splitlines() if line.strip()]
+    superseded = {row["supersedes_registration_id"] for row in register if row.get("supersedes_registration_id")}
+    live = [row for row in register if row["registration_id"] not in superseded]
+    fail(errors, len(live) == 13, "E_REGISTER_LIVE_COUNT")
+    actual_holdings = {row["registration_id"]: row for row in live}
+    recorded_holdings = {row.get("registration_id"): row for row in inv.get("live_holdings", [])}
+    fail(errors, set(actual_holdings) == set(recorded_holdings), "E_HOLDING_SET")
+    atom_sets: dict[str, list[dict]] = {}
+    for row in live:
+        ref = row["source_atom_set_ref"]
+        raw = (ROOT / ref).read_bytes()
+        atom_sets[row["registration_id"]] = [json.loads(line) for line in raw.splitlines() if line.strip()]
+        recorded = recorded_holdings.get(row["registration_id"], {})
+        fail(errors, recorded.get("source_atom_set_ref") == ref and recorded.get("source_atom_set_sha256") == digest(raw) and recorded.get("source_atom_set_record_count") == len(atom_sets[row["registration_id"]]), f"E_HOLDING_SOURCE:{row['registration_id']}")
+    first15 = json.loads((ROOT / "scaffold/pre-isolation-outside-holding-first15/inventory.json").read_text(encoding="utf-8"))
+    first15_rows = {row["path"]: row for row in first15["paths"]}
+    decision = (ROOT / "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md").read_bytes()
+    boundary = (ROOT / "docs/concept/product-boundary.md").read_bytes()
+    fail(errors, scope.get("first15_inventory_sha256") == digest((ROOT / "scaffold/pre-isolation-outside-holding-first15/inventory.json").read_bytes()), "E_FIRST15_DIGEST")
+    fail(errors, scope.get("decision_record_sha256") == digest(decision), "E_DECISION_DIGEST")
+    fail(errors, scope.get("product_boundary_sha256") == digest(boundary), "E_BOUNDARY_DIGEST")
+    cases = inv.get("cases", [])
+    fail(errors, {case.get("product") for case in cases} == set(EXPECTED_CASES), "E_CASE_PRODUCTS")
+    for case in cases:
+        product = case.get("product")
+        if product not in EXPECTED_CASES:
+            continue
+        case_id, old_path, current_path, decision_id, label = EXPECTED_CASES[product]
+        fail(errors, case.get("case_id") == case_id and case.get("semantic_relation_label") == label, f"E_CASE_ID_LABEL:{product}")
+        old = case.get("old_source", {})
+        archive = case.get("archive_source", {})
+        current = case.get("current_approved_l1", {})
+        fail(errors, old.get("path") == old_path and current.get("path") == current_path, f"E_CASE_PATH:{product}")
+        fail(errors, old.get("commit") == EXPECTED_PRE_ISOLATION and archive.get("commit") == EXPECTED_ARCHIVE and current.get("commit") == EXPECTED_BASE, f"E_CASE_COMMIT:{product}")
+        fail(errors, current.get("decision_id") == decision_id, f"E_DECISION_ID:{product}")
+        old_bytes = git_bytes(EXPECTED_PRE_ISOLATION, old_path)
+        archive_bytes = git_bytes(EXPECTED_ARCHIVE, old_path)
+        current_bytes = git_bytes(EXPECTED_BASE, current_path)
+        old_oid = git_oid(EXPECTED_PRE_ISOLATION, old_path)
+        first15_row = first15_rows.get(old_path, {})
+        fail(errors, first15_row.get("pre_isolation", {}).get("blob_oid") == old_oid, f"E_FIRST15_BLOB:{product}")
+        fail(errors, old.get("blob_oid") == old_oid and old.get("sha256") == digest(old_bytes) and old.get("bytes") == len(old_bytes), f"E_OLD_GIT:{product}")
+        fail(errors, old.get("reported_blob_oid") == old_oid and old.get("reported_blob_oid_matches_git") is (first15_row.get("pre_isolation", {}).get("blob_oid") == old_oid), f"E_OLD_REPORTED:{product}")
+        fail(errors, archive.get("blob_oid") == git_oid(EXPECTED_ARCHIVE, old_path) and archive.get("sha256") == digest(archive_bytes) and archive.get("bytes") == len(archive_bytes) and archive.get("relation_to_pre_isolation") == ("same" if archive_bytes == old_bytes else "different"), f"E_ARCHIVE_GIT:{product}")
+        fail(errors, current.get("blob_oid") == git_oid(EXPECTED_BASE, current_path) and current.get("sha256") == digest(current_bytes) and current.get("bytes") == len(current_bytes), f"E_CURRENT_GIT:{product}")
+        by_id = {row.get("registration_id"): row for row in case.get("live_holding_relations", [])}
+        fail(errors, set(by_id) == set(actual_holdings), f"E_CASE_HOLDING_SET:{product}")
+        all_empty = True
+        for registration_id, source_rows in atom_sets.items():
+            recorded = by_id.get(registration_id, {})
+            for target, count_key, evidence_key in ((old_path, "path_match_count", "path_match_evidence"), (old_oid, "pre_isolation_blob_match_count", "blob_match_evidence"), (digest(old_bytes), "pre_isolation_sha256_match_count", "sha256_match_evidence")):
+                hits = [f"{index}:{location}" for index, item in enumerate(source_rows, 1) for location in exact_locations(item, target)]
+                fail(errors, recorded.get(count_key) == len(hits) and recorded.get(evidence_key) == hits, f"E_HOLDING_SCAN:{product}:{registration_id}:{count_key}")
+                all_empty = all_empty and not hits
+            counts_empty = all(recorded.get(key) == 0 for key in ("path_match_count", "pre_isolation_blob_match_count", "pre_isolation_sha256_match_count"))
+            fail(errors, recorded.get("relation") == ("no_exact_path_or_blob_or_sha_match" if counts_empty else "match_requires_review"), f"E_HOLDING_CLASS:{product}:{registration_id}")
+        fail(errors, case.get("existing_holding_relation") == ("no_exact_path_or_blob_or_sha_match_in_13_live_holdings" if all_empty else "match_requires_review"), f"E_HOLDING_SUMMARY:{product}")
+        source_bytes = {"old": old_bytes, "current": current_bytes, "decision": decision, "boundary": boundary}
+        for index, anchor in enumerate(case.get("line_anchored_evidence", [])):
+            for kind, entry in anchor.items():
+                if kind not in source_bytes:
+                    continue
+                lines = source_bytes[kind].decode("utf-8").splitlines()
+                start, end = entry.get("line_start"), entry.get("line_end")
+                if not isinstance(start, int) or not isinstance(end, int) or start < 1 or end < start or end > len(lines):
+                    errors.append(f"E_ANCHOR_RANGE:{product}:{index}:{kind}")
+                    continue
+                selected = lines[start - 1:end]
+                expected_ref = {"old": f"{EXPECTED_PRE_ISOLATION}:{old_path}", "current": f"{EXPECTED_BASE}:{current_path}", "decision": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md", "boundary": "docs/concept/product-boundary.md"}[kind]
+                fail(errors, entry.get("ref") == expected_ref and entry.get("text") == selected and entry.get("sha256") == digest("\n".join(selected).encode("utf-8")), f"E_ANCHOR_SOURCE:{product}:{index}:{kind}")
+            kind = anchor.get("kind")
+            if kind in ("old_current_exact", "old_current_exact_except_one"):
+                old_lines = anchor.get("old", {}).get("text", [])
+                current_lines = anchor.get("current", {}).get("text", [])
+                mismatches = sum(a != b for a, b in zip(old_lines, current_lines)) + abs(len(old_lines) - len(current_lines))
+                fail(errors, mismatches == 0 if kind == "old_current_exact" else mismatches <= 1, f"E_ANCHOR_EQUALITY:{product}:{index}")
+            elif kind == "semantic_refinement":
+                fail(errors, anchor.get("old", {}).get("text") != anchor.get("current", {}).get("text"), f"E_REFINEMENT:{product}:{index}")
+            elif kind == "decision_approved_sha":
+                text = "\n".join(anchor.get("decision", {}).get("text", []))
+                fail(errors, decision_id in text and digest(current_bytes) in text, f"E_DECISION_ANCHOR:{product}:{index}")
+            elif kind == "boundary_owner":
+                text = "\n".join(anchor.get("boundary", {}).get("text", []))
+                boundary_label = "HARNESS" if product == "HELIX-HARNESS" else product
+                fail(errors, f"| {boundary_label} |" in text, f"E_BOUNDARY_ANCHOR:{product}:{index}")
+        if product in ("HELIX-Web", "HELIX-Web-OS"):
+            def body(data: bytes) -> bytes:
+                return data.split(b"---\n", 2)[-1]
+            fail(errors, body(old_bytes) == body(current_bytes), f"E_EXACT_BODY:{product}")
+    return errors
+
+
 def validate(inv: dict) -> list[str]:
     errors: list[str] = []
     fail(errors, inv == EXPECTED, "E_INVENTORY_NOT_REGENERATED")
+    fail(errors, digest((HERE / "generate.py").read_bytes()) == EXPECTED_GENERATOR_SHA, "E_GENERATOR_PIN")
+    fail(errors, digest((json.dumps(inv, ensure_ascii=False, indent=2) + "\n").encode("utf-8")) == EXPECTED_INVENTORY_SHA, "E_INVENTORY_PIN")
     fail(errors, inv.get("schema") == "rdp001-preisolation-outside-l1-semantic/v1", "E_SCHEMA")
     fail(errors, inv.get("status") == "findings_only", "E_STATUS")
     fail(errors, inv.get("authority_effect") == "none", "E_AUTHORITY")
@@ -63,6 +207,7 @@ def validate(inv: dict) -> list[str]:
     fail(errors, scope.get("decision_record_sha256") == EXPECTED_DECISION_SHA, "E_DECISION_SHA")
     fail(errors, scope.get("product_boundary_sha256") == EXPECTED_BOUNDARY_SHA, "E_BOUNDARY_SHA")
     fail(errors, scope.get("disposition_program_sha256") == EXPECTED_DISPOSITION_PROGRAM_SHA, "E_DISPOSITION_PROGRAM_SHA")
+    fail(errors, scope.get("work_entry_sha256") == EXPECTED_WORK_ENTRY_SHA, "E_WORK_ENTRY_SHA")
     try:
         fail(errors, subprocess.run(["git", "merge-base", "--is-ancestor", EXPECTED_BASE, "HEAD"], cwd=ROOT).returncode == 0, "E_BASE_NOT_ANCESTOR")
     except OSError as exc:
@@ -104,6 +249,7 @@ def validate(inv: dict) -> list[str]:
     fail(errors, aggregate.get("preservation_unresolved_count") == 4, "E_PRESERVATION_AGGREGATE")
     fail(errors, inv.get("source_holding_rule") == "new_source_requires_source_holding_before_semantic_disposition", "E_SOURCE_HOLDING_RULE")
     fail(errors, len(inv.get("prohibited_inference", [])) == 6, "E_PROHIBITED_BOUNDARY")
+    errors.extend(independent_evidence_errors(inv))
     return errors
 
 

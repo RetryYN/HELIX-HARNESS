@@ -260,6 +260,7 @@ def build() -> dict:
     register_bytes = (ROOT / REGISTER_PATH).read_bytes()
     decision_bytes = (ROOT / DECISION_PATH).read_bytes()
     boundary_bytes = (ROOT / BOUNDARY_PATH).read_bytes()
+    start_here_bytes = (ROOT / START_HERE_PATH).read_bytes()
     disposition_program_bytes = (ROOT / DISPOSITION_PROGRAM_PATH).read_bytes()
     register = load_jsonl(ROOT / REGISTER_PATH)
     holdings = live_holdings(register)
@@ -290,6 +291,8 @@ def build() -> dict:
             "decision_record_sha256": sha(decision_bytes),
             "product_boundary_path": BOUNDARY_PATH,
             "product_boundary_sha256": sha(boundary_bytes),
+            "work_entry_path": START_HERE_PATH,
+            "work_entry_sha256": sha(start_here_bytes),
             "pre_isolation_holding_path": HOLDING_PATH,
             "pre_isolation_holding_sha256": sha((ROOT / HOLDING_PATH).read_bytes()),
             "disposition_program_path": DISPOSITION_PROGRAM_PATH,
