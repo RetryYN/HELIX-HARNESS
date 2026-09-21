@@ -30,11 +30,11 @@
     },
     {
       "path": "docs/governance/audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md",
-      "sha256": "5555d16d6a82df53c7ba9678556b69fb17fcbb0b169cee8d7f68eecf965ace0b"
+      "sha256": "f2ddd5edc3af285208018b48e17bd42eec04462558723e7520793fffa5a27ee3"
     },
     {
       "path": "scaffold/external-references/SCF-B-0003.json",
-      "sha256": "87b5cee8e695f79d13eae8a153dd0973001feab5d38d05f1b34a4d7109f87714",
+      "sha256": "b51259a1cde05fa30132b554b2855a29c9c39c542f96934fc1f83bd63e412888",
       "note": "外部consumer参照の保持・撤去契約。退役後も保持する"
     }
   ],
@@ -47,7 +47,7 @@
     "未ACK時の明示retry、watcher世代、応答の逆方向配送を扱う",
     "通知から要求採否・承認・review完了・merge許可を生成しない",
     "設定撤去と両GUIのlive ACK未確認を追跡する",
-    "Claude review／merge責務のHELIX管理blockをconsumer所有本文と分離して同期・撤去する"
+    "ClaudeのHELIX参照先・操作通路照合手順の管理blockをconsumer所有本文と分離して同期・撤去する。個別許可は同期しない"
   ],
   "connections": {
     "consumers": [

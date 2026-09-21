@@ -9,6 +9,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import stat
 import unittest
 from unittest.mock import patch
 import gui_mailbox as g
@@ -163,6 +164,24 @@ class GuiChecks(unittest.TestCase):
                 config.update_policy(existing, source=source)
         with self.assertRaises(ValueError):
             config.update_policy("", source="missing markers")
+        for claim in config.FORBIDDEN_POLICY_TEXT:
+            with self.assertRaises(ValueError):
+                config.update_policy("", source=source.replace("managed", claim))
+
+    def test_consumer_file_mode_preserved(self):
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            path=Path(directory) / "consumer"
+            path.write_bytes(b"before")
+            path.chmod(0o644)
+            config.atomic_write(path,b"before",b"after")
+            self.assertEqual(path.read_bytes(),b"after")
+            self.assertEqual(stat.S_IMODE(path.stat().st_mode),0o644)
+
+    def test_audit_apply_rejected_before_write(self):
+        result=subprocess.run([sys.executable,"-B",str(g.HERE / "configure_gui.py"),"--audit","--apply"],
+                              capture_output=True,text=True)
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn("auditとapplyは同時指定不可",result.stderr)
 
     def test_consumer_updates_rollback_as_one_set(self):
         with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:

@@ -176,10 +176,18 @@ message TTLとsession leaseは古い依頼・sessionへの誤配送防止であ�
 ## Claude instructionをHELIX sourceへ接続する追加scope（2026-09-21）
 
 利用者は「Claudeのコンフィグ設定をHELIXから引っ張ってこれない？じゃないとClaudeがいつまでもマージしないでうざい状態になる。」と指示した。
-端末の`~/.claude/CLAUDE.md`だけにIssue #1888の継続review／merge責務を置くと、再設定時に失われてreview応答後の追加確認待ちが再発する。このためSCF-B-0003のconsumer接続へClaude instructionのmanaged block同期を追加する。
+端末の`~/.claude/CLAUDE.md`だけに現行HELIXの参照先とreview／merge時の照合手順を置くと、再設定時に失われる。このためSCF-B-0003のconsumer接続へClaude instructionのmanaged block同期を追加する。個別PRの操作許可は同期対象に含めない。
 
-旧資産明細台帳から、旧adapterのmanaged block `LEGACY-ASSET-E71F42F5DE9DA9821B4F` と設定template `LEGACY-ASSET-06496313FD2B704A2C41`、旧利用者設定 `LEGACY-ASSET-317AE893EF4ADD3AF492`／`LEGACY-ASSET-F27AC6F39D89FE021C56` を特定して静的に読んだ。保持する契約は「HELIX所有blockだけを同期しconsumer所有本文を保持する」ことである。旧prompt、hook、command、runtime本文は現行へcopyせず、現行repository authorityと利用者が許可したIssue #1888の作用だけを`scaffold/review-handoff/claude-current-loader.md`へ再導出する。
+旧資産明細台帳から、旧adapterのmanaged block `LEGACY-ASSET-E71F42F5DE9DA9821B4F` と設定template `LEGACY-ASSET-06496313FD2B704A2C41`、旧利用者設定 `LEGACY-ASSET-317AE893EF4ADD3AF492`／`LEGACY-ASSET-F27AC6F39D89FE021C56` を特定して静的に読んだ。保持する契約は「HELIX所有blockだけを同期しconsumer所有本文を保持する」ことである。旧prompt、hook、command、runtime本文は現行へcopyせず、現行repository参照と通路照合の手順だけを`scaffold/review-handoff/claude-current-loader.md`へ再導出する。
 
 `configure_gui.py --apply`は既存5 hookと同時に、そのsourceを`~/.claude/CLAUDE.md`の固定marker区間へ同期する。marker外本文をbyte単位で保持し、不整合・重複markerでは書き換えず停止する。3つのconsumer fileは全変更を事前計算し、途中失敗時は変更済みfileを元bytesへrollbackする。rollback前に別更新を検出した場合は上書きしない。`--remove --apply`は所有hookとmarker区間だけを撤去する。外部参照台帳と`scfctl residuals`は、active時のblock重複・source driftと、retired時の残留を検査する。
 
-これはreview依頼からmerge許可を生成する変更ではない。対象PR、exact HEAD、作用、GitHub通路の許可とmerge admissionは、各requestと現行project rulesで引き続き照合する。今回の変更は既に与えられた責務を既存Claude GUIが再読できるHELIX管理sourceへ移すだけである。
+これはreview依頼からmerge許可を生成する変更ではない。対象PR、exact HEAD、作用、GitHub通路の許可とmerge admissionは、人間の原指示と現行project rulesで引き続き照合する。requestは配送対象の情報であり、許可の原eventではない。
+
+### PR #1929 round 1 指摘と実機consumerの訂正
+
+Claude reviewは、初版のmanaged blockが「Issue #1888のmerge許可は成立済み」と宣言し、未mergeのrepository差分から利用者level instructionへ投影できる点をBlockerとした。これは採用する。現行sourceから個別許可の宣言を除去し、`configure_gui.py`と`scfctl residuals`にその混入を拒否する検査とsource revision digest固定を追加した。元の利用者発話「Claudeのコンフィグ設定をHELIXから引っ張ってこれない？じゃないとClaudeがいつまでもマージしないでうざい状態になる。」は本変更の作業指示であり、特定PRのmerge許可原eventではない。受領時点と原event digestの確定記録がないため、GitHub上流運用モデルのbootstrap登録済み原eventとは扱わない。
+
+初版sourceを`~/.claude/CLAUDE.md`のmanaged blockへ反映した主体はCodex実行レーンで、旧fileのmtimeは2026-09-21T04:15:25Z、旧file digestは`sha256:71e872ae1c217984e8e8ff7fbff6053d7726f2cc4ee6562f14b65e42cf5451f8`だった。review時に初版の権限宣言が外部consumerへ既に反映されていると判明したため、作成側が安全なsourceへ同blockだけを訂正した。訂正後digestは`sha256:2f204daff61603867577329a3ee475e15a99f91d2258c8339f74b94f953c2ab4`、modeは`0644`で保持した。これは本PRのmerge・承認や利用者level許可の成立を示さない。
+
+Minor指摘は、atomic replaceで既存file modeを保持するようにし、`--audit --apply`を引数段階で拒否して処分する。通常の`--audit`はread-onlyの残留確認を続ける。

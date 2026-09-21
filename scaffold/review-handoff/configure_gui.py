@@ -2,10 +2,12 @@
 """GUI通知hookとHELIX所有Claude instructionをconsumerへ接続／撤去する。"""
 import argparse
 import copy
+import hashlib
 import json
 import os
 from pathlib import Path
 import shlex
+import stat
 import tempfile
 import uuid
 
@@ -13,6 +15,8 @@ HERE = Path(__file__).resolve().parent
 POLICY_SOURCE = HERE / "claude-current-loader.md"
 POLICY_START = "<!-- HELIX:current-loader:start -->"
 POLICY_END = "<!-- HELIX:current-loader:end -->"
+POLICY_SHA256 = "cf2c9b0d0806684bb760d25ddb611ffe814845849f64ab93b53b8154306e9d49"
+FORBIDDEN_POLICY_TEXT = ("許可している", "承認済み", "権限を与える", "authorized", "#1888")
 
 
 
@@ -55,9 +59,14 @@ def count_owned(existing):
 
 def update_policy(existing, remove=False, source=None):
     """HELIX所有blockだけを同期し、利用者所有の前後本文を保持する。"""
+    supplied = source is not None
     source = (POLICY_SOURCE.read_text() if source is None else source).strip()
+    if not supplied and hashlib.sha256(POLICY_SOURCE.read_bytes()).hexdigest() != POLICY_SHA256:
+        raise ValueError("HELIX policy source revision未固定")
     if source.count(POLICY_START) != 1 or source.count(POLICY_END) != 1:
         raise ValueError("HELIX policy sourceのmarkerが不正")
+    if any(term in source for term in FORBIDDEN_POLICY_TEXT):
+        raise ValueError("HELIX policy sourceに操作許可の成立宣言を含めない")
     starts, ends = existing.count(POLICY_START), existing.count(POLICY_END)
     if starts != ends or starts > 1:
         raise ValueError("Claude instructionのHELIX markerが不正")
@@ -90,6 +99,8 @@ def atomic_write(path, before, after):
     try:
         with os.fdopen(fd, "wb") as stream:
             stream.write(after)
+        if before is not None:
+            os.chmod(temp, stat.S_IMODE(path.stat().st_mode))
         os.replace(temp, path)
     finally:
         if os.path.exists(temp): os.unlink(temp)
@@ -172,6 +183,8 @@ def main():
     args = parser.parse_args()
     if args.rearm and (args.remove or args.audit):
         parser.error("rearmとremove/auditは同時指定不可")
+    if args.audit and args.apply:
+        parser.error("auditとapplyは同時指定不可")
     residual_count = 0
     policy_path = Path.home() / ".claude/CLAUDE.md"
     policy_before = policy_path.read_bytes() if policy_path.exists() else None

@@ -304,9 +304,13 @@ def external_hook_residuals(binding, home=None, manifest_path=None):
                 raise ValueError("参照台帳instruction source対象外")
             with open(os.path.join(ROOT, source_path), encoding="utf-8") as stream:
                 source = stream.read().strip()
+            if sha256_file(source_path) != spec["instruction_source_sha256"]:
+                errors.append("外部instruction source revision不一致")
             start, end = spec["instruction_start"], spec["instruction_end"]
             if source.count(start) != 1 or source.count(end) != 1:
                 raise ValueError("instruction source marker不正")
+            if any(term in source for term in ("許可している", "承認済み", "権限を与える", "authorized", "#1888")):
+                errors.append("外部instruction sourceに操作許可の成立宣言が含まれる")
             for relative in spec.get("instruction_paths", []):
                 if relative != "~/.claude/CLAUDE.md":
                     raise ValueError("参照台帳instruction対象外")

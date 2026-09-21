@@ -29,7 +29,8 @@ python3 -B scaffold/review-handoff/configure_gui.py --apply
 previewは追加するhookとClaude instruction同期対象を表示する。applyは利用者の`.claude/settings.json`と`.codex/hooks.json`へ本仮設のSessionStart／Stopと、Claude側のConfigChange回復hookを追加する。計5 command。
 同時に[HELIX管理Claudeローダ](claude-current-loader.md)を`~/.claude/CLAUDE.md`のmarker区間へ同期する。marker外の利用者本文と、無関係な設定を保持し、書込後に再読する。**hook trust、権限、model、provider、marker外のinstructionは変更しない。**
 3つのconsumer fileは書込前に全内容を検証し、途中失敗時は変更済みfileを元bytesへ戻す。rollback中に別更新を検出した場合は上書きせずエラーにする。
-これによりreview／merge責務を端末側だけの手修正にせず、SCF-B-0003と同じHELIX sourceから再現できる。sourceは旧設定のcopyではなく、現行のauthority境界とIssue #1888の利用者許可を記述した仮設projectionである。
+これによりHELIXの参照先とreview／merge時の照合手順を同じsourceから再現できる。sourceは旧設定のcopyではなく、現行のauthority境界を記述した仮設projectionである。個別PRやIssueの操作許可は同期せず、人間の原指示から別途確認する。
+sourceはrevision digestで固定し、個別許可の成立宣言を含む変更を同期前と`residuals`で拒否する。source改訂時はコードと外部参照台帳のdigestも同じreview対象にする。
 Codex拡張のHooks画面で新hookを信頼し、必要なら同じsessionを再開する。Claude側もhookを読み込む。
 SessionStart／Stopで観測したsessionは`status`に現れるが、自動で作業レーンにはしない。
 
