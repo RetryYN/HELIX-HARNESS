@@ -1,0 +1,982 @@
+{
+  "schema": "helix-scaffold-preisolation-batch-manifest.v1",
+  "candidate_id": "RDP-001-PREISO-BATCH-12PATH",
+  "status": "candidate_pending_semantic_equivalence_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "comparison": {
+    "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "method": "read-only Git object bytes; exact changed hunk spans and UTF-8 SHA-256",
+    "old_runtime_test_ci_execution": false,
+    "full_diff_file_count": 400,
+    "full_diff_hunk_count": 492,
+    "selected_file_count": 12,
+    "selected_hunk_count": 58,
+    "unprocessed_selected_scope_file_count": 388,
+    "unprocessed_selected_scope_hunk_count": 434,
+    "prior_reviewed_scope_file_count": 12,
+    "prior_reviewed_scope_hunk_count": 33,
+    "combined_selected_file_count": 24,
+    "combined_selected_hunk_count": 91,
+    "combined_remaining_file_count": 376,
+    "combined_remaining_hunk_count": 401,
+    "prior_reviewed_scope": {
+      "request_ids": [
+        "GUI-1934-REVIEW-02",
+        "SCF-B-0007"
+      ],
+      "source_revision_item_ids": [
+        "PREISO-REV-000001",
+        "PREISO-REV-000002",
+        "PREISO-REV-000015",
+        "PREISO-REV-000016",
+        "PREISO-REV-000026",
+        "PREISO-REV-000060",
+        "PREISO-REV-000003",
+        "PREISO-REV-000004",
+        "PREISO-REV-000005",
+        "PREISO-REV-000006",
+        "PREISO-REV-000007",
+        "PREISO-REV-000008"
+      ],
+      "file_count": 12,
+      "hunk_count": 33
+    }
+  },
+  "scope": {
+    "diff_scope": "selected_source_items_only",
+    "scope_note": "全体400 files／492 hunksのうち、先行review済み12 path／33 hunkと重複しない今回12 path／58 hunkだけをselected candidateとして保持する。",
+    "selected_source_revision_item_ids": [
+      "PREISO-REV-000009",
+      "PREISO-REV-000010",
+      "PREISO-REV-000011",
+      "PREISO-REV-000012",
+      "PREISO-REV-000013",
+      "PREISO-REV-000014",
+      "PREISO-REV-000017",
+      "PREISO-REV-000018",
+      "PREISO-REV-000019",
+      "PREISO-REV-000020",
+      "PREISO-REV-000021",
+      "PREISO-REV-000022"
+    ],
+    "prior_reviewed_source_revision_item_ids": [
+      "PREISO-REV-000001",
+      "PREISO-REV-000002",
+      "PREISO-REV-000015",
+      "PREISO-REV-000016",
+      "PREISO-REV-000026",
+      "PREISO-REV-000060",
+      "PREISO-REV-000003",
+      "PREISO-REV-000004",
+      "PREISO-REV-000005",
+      "PREISO-REV-000006",
+      "PREISO-REV-000007",
+      "PREISO-REV-000008"
+    ]
+  },
+  "holding_provenance": {
+    "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+    "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+    "record_count": 333,
+    "selected_record_count": 12
+  },
+  "asset_provenance": {
+    "path": "docs/governance/legacy-asset-disposition.jsonl",
+    "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+  },
+  "phase_provenance": {
+    "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+  },
+  "product_boundary": {
+    "status": "candidate_reference_only",
+    "sources": [
+      {
+        "path": "docs/concept/product-boundary.md",
+        "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+      },
+      {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+      },
+      {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+      }
+    ]
+  },
+  "paths": [
+    {
+      "source_revision_item_id": "PREISO-REV-000009",
+      "source_path": "docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "d9fa9e988ba4660e2c836c47fb1da6c1d207123b",
+      "baseline_file_sha256": "3d528ae9c2a19189e19f7502e4188a72a338db8c5275b97907eda5a0290b24d9",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "5e48c4f29eb73d37a1f0c0e9bfcb4d2e5a99bd1f",
+      "pre_isolation_file_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-001",
+        "RDP001-BATCH-DIFF-002",
+        "RDP001-BATCH-DIFF-003"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-2B0DE689AA572DE66181",
+        "source_sha256": "0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "confirmed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0426",
+        "phase_classification_status": "classified_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-10"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000010",
+      "source_path": "docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "97bf7e83326a8c65f48758658787ef227ad4264f",
+      "baseline_file_sha256": "b1a953b68d3cd93f78dd0a4695309a779e2ca0a62e88bfff8e93862c7b598c29",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "b39c6e4f371001d07dca59f1c7592d196a507f00",
+      "pre_isolation_file_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-004"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-A6926200F28B26300432",
+        "source_sha256": "e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "confirmed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0428",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000011",
+      "source_path": "docs/design/helix/L10-ux/ux-evidence-boundary.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "421a4b5a5f7aca2dc4149b08a5c217c8d825ffb2",
+      "baseline_file_sha256": "b374516f1e5f45022c866680e169509ae8087570631053e19d0053f53a1efe0e",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "8144834214cfd1b93ebc4d9c0ae891b937429ece",
+      "pre_isolation_file_sha256": "92caa47dcd181fc790dec462820b063a1c8a6ed9c0b86410306ead9cb13e3f71",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L10-ux/ux-evidence-boundary.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "verification_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-005",
+        "RDP001-BATCH-DIFF-006",
+        "RDP001-BATCH-DIFF-007",
+        "RDP001-BATCH-DIFF-008",
+        "RDP001-BATCH-DIFF-009",
+        "RDP001-BATCH-DIFF-010",
+        "RDP001-BATCH-DIFF-011",
+        "RDP001-BATCH-DIFF-012",
+        "RDP001-BATCH-DIFF-013",
+        "RDP001-BATCH-DIFF-014",
+        "RDP001-BATCH-DIFF-015"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-535EBA960C372C61F999",
+        "source_sha256": "92caa47dcd181fc790dec462820b063a1c8a6ed9c0b86410306ead9cb13e3f71",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0429",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-04",
+          "PHCAP-05",
+          "PHCAP-07"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000012",
+      "source_path": "docs/design/helix/L2-screen/screen-mock-boundary.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "1b840f0ab797cf36dda8ba30d02c56550b121c6a",
+      "baseline_file_sha256": "e094bc7eae5ad08f19060ec3a7523d69678aff94a8990d3cbb72eca517ff582c",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "895e594c6a921f442501be5c187cd9079571108b",
+      "pre_isolation_file_sha256": "1cccd0fe7ec19a1a70cec89737ea5932ed365604db7eb6e10865ea71e5d90e83",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L2-screen/screen-mock-boundary.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-016",
+        "RDP001-BATCH-DIFF-017",
+        "RDP001-BATCH-DIFF-018",
+        "RDP001-BATCH-DIFF-019",
+        "RDP001-BATCH-DIFF-020",
+        "RDP001-BATCH-DIFF-021",
+        "RDP001-BATCH-DIFF-022",
+        "RDP001-BATCH-DIFF-023",
+        "RDP001-BATCH-DIFF-024",
+        "RDP001-BATCH-DIFF-025"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-610692051521F759890A",
+        "source_sha256": "1cccd0fe7ec19a1a70cec89737ea5932ed365604db7eb6e10865ea71e5d90e83",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "draft",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0438",
+        "phase_classification_status": "classified_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-04"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000013",
+      "source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "fd4d4614179930b2ff8c9619260b08f5ab695c35",
+      "baseline_file_sha256": "665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "2a525e2dfc548753c1edeb9aae71329c71b8a8e5",
+      "pre_isolation_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-026",
+        "RDP001-BATCH-DIFF-027",
+        "RDP001-BATCH-DIFF-028",
+        "RDP001-BATCH-DIFF-029",
+        "RDP001-BATCH-DIFF-030",
+        "RDP001-BATCH-DIFF-031",
+        "RDP001-BATCH-DIFF-032",
+        "RDP001-BATCH-DIFF-033",
+        "RDP001-BATCH-DIFF-034",
+        "RDP001-BATCH-DIFF-035",
+        "RDP001-BATCH-DIFF-036",
+        "RDP001-BATCH-DIFF-037",
+        "RDP001-BATCH-DIFF-038",
+        "RDP001-BATCH-DIFF-039",
+        "RDP001-BATCH-DIFF-040",
+        "RDP001-BATCH-DIFF-041",
+        "RDP001-BATCH-DIFF-042",
+        "RDP001-BATCH-DIFF-043",
+        "RDP001-BATCH-DIFF-044",
+        "RDP001-BATCH-DIFF-045",
+        "RDP001-BATCH-DIFF-046"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+        "source_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0472",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-06",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000014",
+      "source_path": "docs/design/helix/L3-requirements/skill-applicability-registry.v1.json",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "b2cb2b0b2454997982389da954e242d4300f0e72",
+      "baseline_file_sha256": "4e544a6352b639e7f999e11b76b109d78bf5e2aed823a5727711192e35519494",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "22840c703ba6fbbdca97692f9f904d13b43e7e9a",
+      "pre_isolation_file_sha256": "94f3c96c255f8a26b6c9806bcf894701c88ac02305eeb14e33d85b29498fd380",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/skill-applicability-registry.v1.json",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-047"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-ABFB9E11830D370D3141",
+        "source_sha256": "94f3c96c255f8a26b6c9806bcf894701c88ac02305eeb14e33d85b29498fd380",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0484",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-17",
+          "PHCAP-18"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000017",
+      "source_path": "docs/governance/README.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "3bbd5fa42c1b4855a703fa3d4f734746d6a6293f",
+      "baseline_file_sha256": "96b21ddf530a32f222a83805ba38b5be0381aced7e140ade1cbe75cc4559e912",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "db56c1eac0095afb792d10c85e385ccc37eaaa48",
+      "pre_isolation_file_sha256": "6659fd69543bab9438786dcc82714e3a969829237ea3c8c5e1770be7ecf82c0a",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/README.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "other_legacy_asset",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-048",
+        "RDP001-BATCH-DIFF-049"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-F29753586C28F9EC6756",
+        "source_sha256": "6659fd69543bab9438786dcc82714e3a969829237ea3c8c5e1770be7ecf82c0a",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0781",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "product_classification_status": "unresolved",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_not_established",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000018",
+      "source_path": "docs/governance/candidates/README.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "123b6569c11b1a2d02e07a2c86a636ffe842d71b",
+      "baseline_file_sha256": "10a71977afb251f8a2c49abaafd028dcbdac69ba1c3db0adbd0b055aa9803ae8",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "a8589c30df73df8d62e2b5e3406f01c55239ca0d",
+      "pre_isolation_file_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/README.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "candidate_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-050",
+        "RDP001-BATCH-DIFF-051"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-A9F7F40B7F61D64C4F8F",
+        "source_sha256": "6ad0e2fbee65ee8ca556c8afbd3bfc7f55a4b710961343905ced07eb378ec49e",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0786",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "product_classification_status": "unresolved",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_not_established",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000019",
+      "source_path": "docs/governance/candidates/concept-vision-package-intake.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "5d306e0bd87c2d2f89b9b131df08948c28ec98e3",
+      "baseline_file_sha256": "86d59e8b5e7f34e657d84f5a59df25eb2d43052e43c16e4231b3b5792d795562",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "5cbe7ef02e8d0a283b44b7544a70375a5fc6135c",
+      "pre_isolation_file_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-package-intake.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "candidate_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-052"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-169C2F95E42B9DA554E6",
+        "source_sha256": "3cfb2ed85b17a914f566c172e1a8043bf594cf9270c0adde929106c8c48c642e",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0800",
+        "phase_classification_status": "unresolved_with_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-01"
+        ],
+        "candidate_product_targets": [],
+        "product_classification_status": "unresolved",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000020",
+      "source_path": "docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "138832697cfd163771fac33c71447c4fcd9e6f83",
+      "baseline_file_sha256": "3567a0589e130c4661b8eb2ce29c05f5e027a1efafdb904f12c7b18883614e05",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "77c7b5f973fc9e7d3a011b213b24979593833f2d",
+      "pre_isolation_file_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "candidate_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-053",
+        "RDP001-BATCH-DIFF-054",
+        "RDP001-BATCH-DIFF-055"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+        "source_sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0801",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-01",
+          "PHCAP-14",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000021",
+      "source_path": "docs/governance/candidates/execution-ticket-validation.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "7834610c647ce7f3d990aa4246ed09e913a68de4",
+      "baseline_file_sha256": "cd85120dddfd7b8aeafd31a2a7267bf3ea06d0679d9b7a97a20cfb43ad343487",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "01241e99516c11ecad625fb6e5d994d462f9bc81",
+      "pre_isolation_file_sha256": "fea63c221b36d5e81a58fa206ff6ed8969227aa9a720af622463f369850a9fa1",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-validation.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "candidate_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-056",
+        "RDP001-BATCH-DIFF-057"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-0AA076D5CAF7C591F23D",
+        "source_sha256": "fea63c221b36d5e81a58fa206ff6ed8969227aa9a720af622463f369850a9fa1",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0816",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-05",
+          "PHCAP-09"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000022",
+      "source_path": "docs/governance/candidates/helix-concept-v4-requests.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "54ee8c9a8b35d9f1598fc72a75fe1ea9f0e00131",
+      "baseline_file_sha256": "73e110258b8051906e1ac529d7c1ca857fc78a4c87b42291645348fa6f4f776a",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "f6aa6d1f1a87eabba48f0029ac8fe982fa491e3a",
+      "pre_isolation_file_sha256": "36b153222a39a31f2f52829fc82301bb72f03bcfc3160dd45ed5798c7aace63a",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requests.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "candidate_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-BATCH-DIFF-058"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-425B20B6CF26326D0461",
+        "source_sha256": "36b153222a39a31f2f52829fc82301bb72f03bcfc3160dd45ed5798c7aace63a",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0829",
+        "phase_classification_status": "unresolved_with_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-01"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    }
+  ],
+  "classification_counts": {
+    "requirement": 25,
+    "constraint": 21,
+    "provenance": 11,
+    "generated_metadata": 1,
+    "unresolved": 0
+  },
+  "negative_conditions": [
+    {
+      "negative_id": "BATCH-NEG-BASELINE-PREISO-DIGEST",
+      "meaning": "baseline／pre-isolation commit・blob OID・file digest・変更spanのいずれかを別値にするとfail-closeする。",
+      "applies_to": "all selected paths"
+    },
+    {
+      "negative_id": "BATCH-NEG-DIFF-HUNK-COVERAGE",
+      "meaning": "選定12 pathのdiff hunkを欠落・重複・別path追加しても候補を通さない。",
+      "applies_to": "all selected paths"
+    },
+    {
+      "negative_id": "BATCH-NEG-HOLDING-PATH-CATEGORY",
+      "meaning": "holding台帳のpath、category、archive path、revision state、authority fieldを別値にしない。",
+      "applies_to": "all selected paths"
+    },
+    {
+      "negative_id": "BATCH-NEG-LEGACY-EXECUTION",
+      "meaning": "旧runtime／test／CI／hookを実行済み、oracle、fallback、実装へ昇格させない。",
+      "applies_to": "all selected paths"
+    },
+    {
+      "negative_id": "BATCH-NEG-PHASE-IMPLEMENTATION",
+      "meaning": "phase候補、implementation、consumer closureを確定・完了・実装済みへ縮退させない。",
+      "applies_to": "all selected paths"
+    },
+    {
+      "negative_id": "BATCH-NEG-OWNER-COLLAPSE",
+      "meaning": "複合責務sourceの候補ownerを単一製品へ自動固定しない。",
+      "applies_to": "all selected paths"
+    },
+    {
+      "negative_id": "BATCH-NEG-CLASSIFICATION-LOSS",
+      "meaning": "requirement／constraint／provenance／generated metadataのhunk分類とsource groundingを勝手に変更しない。",
+      "applies_to": "all selected paths"
+    },
+    {
+      "negative_id": "BATCH-NEG-AUTHORITY-SUCCESSOR",
+      "meaning": "authority昇格、meaning change、successor、human decision、equivalence claimを候補検証から生成しない。",
+      "applies_to": "all selected paths"
+    }
+  ],
+  "notes": [
+    "selected sourceの旧asset／phase／consumerは台帳snapshotとして保持し、implementationとclosureを確定しない。",
+    "candidate ownerはproduct boundaryとsource roleからのreview候補でありformal ownerではない。",
+    "旧archive runtime／test／CI／hookは実行していない。"
+  ]
+}
