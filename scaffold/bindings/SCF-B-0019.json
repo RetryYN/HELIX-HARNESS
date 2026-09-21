@@ -1,0 +1,163 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0019",
+  "kind": "scaffold",
+  "title": "RDP-001 PREISOLATION-002 8 review-only subunit semantic atomization candidate",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "RDP-001 semantic atomization review（正式owner・製品責務は未解決）",
+  "state": "active",
+  "reason": "#1951 next60 candidateのreview-only subunit 8件を、固定Git objectのexact spanと旧asset／phase／decision／failure／consumer referenceで照合する。digest metadata行だけからsemantic atomを推定せず、8 hunk hold、semantic atom 0、未解決8を保持する。parent candidate、product／phase、legacy implementation、consumer closure、authority、要求採否、意味同値は未確定である。",
+  "upstream": [
+    {
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "note": "RDP-001 source holding; 333 record denominator"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "8 selected legacy asset disposition snapshots"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "8 selected phase/product candidate snapshots"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "8 selected asset IDs have zero matching decision records"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "legacy reference-only boundary"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+      "note": "semantic atomization review boundary"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "new generation authority and stop boundary"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "candidate product boundary context"
+    },
+    {
+      "path": "scaffold/pre-isolation-002-atomization/README.md",
+      "sha256": "314c93f4c555c7b455563fe512e4c978de01047433661c1e39b76cfc4ac59dc8",
+      "note": "candidate scope and unresolved boundary"
+    },
+    {
+      "path": "scaffold/pre-isolation-002-atomization/rdp001-preiso002-atomization.json",
+      "sha256": "450c4340edc0e0863941fc08bef5a77ec332061094fccd647b352161e45e8c99",
+      "note": "selected subunits and denominator manifest"
+    },
+    {
+      "path": "scaffold/pre-isolation-002-atomization/rdp001-preiso002-semantic-atom-inventory.json",
+      "sha256": "c0bfb56e94e0d75722fa3fd9aa0f30a6fe80d45fa9a58f37b1c0fef067aad9ae",
+      "note": "8 atom decisions, all unresolved"
+    },
+    {
+      "path": "scaffold/pre-isolation-002-atomization/validate.py",
+      "sha256": "9d6aaf7db55efa96770faa724da4f937fae8bbf40d6598c49f8c48bed6cf6fac",
+      "note": "read-only static validator"
+    },
+    {
+      "path": "scaffold/pre-isolation-002-atomization/selfcheck.py",
+      "sha256": "d56814f76917008e36fbe0c4c2946b3c623392791791a4f8648d338d36abce5a",
+      "note": "12 meaningful negative selfchecks"
+    }
+  ],
+  "role": "RDP-001 PREISOLATION-002の8 review-only subunitについて、hunk classificationとsemantic atomizationを分離したcandidate-only provenanceを保持する",
+  "obligations": [
+    "PREISO-REV-000089／000096／000103／000110／000117／000124／000131／000138の8 path／hunkをsource holdingへ一致させる",
+    "baseline／pre-isolation／archive Git object、exact line span、UTF-8 SHA-256をread-only照合する",
+    "8件のdigest metadata変更を独立semantic predicateへ昇格させず、semantic atom count=0、compound hunk hold=8、unresolved atomization=8を固定する",
+    "asset disposition、phase/product ledger、decision log該当0件、旧sourceのfailure／consumer候補を候補情報として保持する",
+    "legacy implementation unknown、consumer closure pending、candidate phase/product、owner／authority未確定を維持する",
+    "parent #1951 candidate refとselected 60／60、combined 144／212、remaining 256／280のdenominatorを別境界で保持する",
+    "old archiveはGit objectの静的source referenceだけとし、runtime／test／CI／hookを実行しない",
+    "validator／selfcheck／scfctlの合格をsemantic equivalence、要求採否、implementation、authority、closureの証拠にしない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 semantic atomization review担当",
+      "HELIX-HARNESS／HELIX-OS product boundary review担当",
+      "Scaffold Binding stale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "固定Git objectのread-only取得",
+      "RDP-001 source holding",
+      "legacy asset／phase／decision ledger",
+      "requirement atomization review contract"
+    ],
+    "boundary": "成果物はscaffold/配下。8 review-only subunitのcandidate provenanceだけを保持し、formal requirement、owner、authority、implementation、consumer closure、acceptance、releaseは生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/pre-isolation-002-atomization/validate.py",
+      "python3 scaffold/pre-isolation-002-atomization/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|list|stale|residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime・test・CI・hookの実行",
+      "旧sourceを現行runtime・test・CIのoracle・fallback・実装にすること",
+      "scaffold/外への書き込み",
+      "semantic atom、要求採否、owner確定、current authority、implementation、consumer closure、acceptance、releaseの生成",
+      "GitHub、Issue、PR、CI、DB、deploymentへの外部作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/pre-isolation-002-atomization/README.md",
+    "scaffold/pre-isolation-002-atomization/rdp001-preiso002-atomization.json",
+    "scaffold/pre-isolation-002-atomization/rdp001-preiso002-semantic-atom-inventory.json",
+    "scaffold/pre-isolation-002-atomization/validate.py",
+    "scaffold/pre-isolation-002-atomization/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "scaffold/pre-isolation-002-atomization/validate.py（8 exact span、ledger、parent Git object、denominator、atom 0）",
+      "scaffold/pre-isolation-002-atomization/selfcheck.py（12 negative cases）",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "exact span／digest改変",
+      "semantic atom promotion",
+      "phase／product／implementation／consumer closure promotion",
+      "decision absenceを採用・棄却へ変換",
+      "8 subunit／8 hunk hold欠落",
+      "parent scope drift",
+      "old execution flag promotion",
+      "base freshnessをauthorityへ変換"
+    ]
+  },
+  "replacement": {
+    "role_target": "正式なRDP-001 semantic atomization／source-to-requirement crosswalk（承認後に導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}
