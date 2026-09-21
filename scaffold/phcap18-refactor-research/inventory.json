@@ -1,0 +1,1033 @@
+{
+  "schema": "phcap18-refactor-research/v1",
+  "status": "research_premise_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "candidate_transition": {
+    "from": "legacy_reference_only",
+    "to": "research_premise_candidate",
+    "degradation": "degraded_to_candidate",
+    "authority_effect": "none",
+    "meaning": "旧assetのsource／failure／consumer候補をread-only referenceとして保持し、実装・判断・consumer closure・現行oracleをunknown／pendingの候補へ落とす",
+    "current_gap_status": "unknown"
+  },
+  "legacy_summary": {
+    "layers_evidenced": ["candidate requirements", "L5", "L6", "L7 implementation/test"],
+    "maximum_layer_evidenced": "L7",
+    "capability_status": "implemented_with_tests",
+    "capability_status_scope": "phase-level historical inventory summary; not per-asset current implementation evidence",
+    "asset_record_status": "all five selected ledger rows remain unresolved; implementation_status unknown; consumer_refs empty",
+    "transition_assessment": "degraded_to_candidate",
+    "gaps": "現行証拠はHARNESS／OS候補に限定。Design／Performance／Redesign／RetrofitのrouteとWeb／Web-OSを含む対象製品backflowを正式化する必要あり",
+    "new_build_allowed": false,
+    "authority_effect": "inventory_and_work_projection_only"
+  },
+  "base": {
+    "repository": "HELIX-HARNESS",
+    "commit": "c354b7d9177ad3ea92dec30c66c36e6ce2d66ae3",
+    "branch": "origin/main",
+    "captured_at": "2026-09-21"
+  },
+  "task": {
+    "phase_id": "PHCAP-18",
+    "phase": "refactor",
+    "gap_audit_path": "docs/governance/audits/source-rebaseline/phase-product-evidence-gap-audit-2026-09-21.md",
+    "gap_audit_sha256": "b76d10e9ac3e36e267edc6eadc4ab3afb1f7eafabcebff50a0851fd3c63d97dc",
+    "issue_projection": {
+      "issue": 1906,
+      "used_as_semantic_authority": false
+    }
+  },
+  "scope": {
+    "bounded_asset_ids": [
+      "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "LEGACY-ASSET-3B8F5F0230F7469B5D11",
+      "LEGACY-ASSET-7EBF2130DE1840722A6B",
+      "LEGACY-ASSET-E56701056732E5CF9A1C"
+    ],
+    "source_asset_count": 5,
+    "source_span_count": 22,
+    "closure_rule": "inventory representative PHCAP-18 assets only; all other refactor, redesign, retrofit, performance and feedback assets plus consumer closure remain residual"
+  },
+  "gap_interpretation": {
+    "inventory_product_targets": [
+      "HELIX-HARNESS",
+      "HELIX-OS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "inventory_current_evidence_products": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "direct_current_evidence_products": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "direct_current_evidence_refs": [
+      "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+      "docs/helix-harness/L2-requirements/product-requirements.md"
+    ],
+    "missing_direct_current_products": [
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "missing_status": "unknown",
+    "prohibited_inference": "HELIX-Web/Web-OS direct-ref absence is not an implementation absence claim"
+  },
+  "product_boundary_candidates": [
+    {
+      "product": "HELIX-HARNESS",
+      "status": "direct_current_candidate",
+      "basis": [
+        "structure-change meaning, trace, V-pair, verification and backflow candidate refs"
+      ],
+      "boundary": "工程規則、意味保存判定、変更分類、影響・pair・再検証条件の候補。旧9-mode実行器を持ち込まない。"
+    },
+    {
+      "product": "HELIX-OS",
+      "status": "direct_current_candidate",
+      "basis": [
+        "observation, finding, adoption, assignment, effect and expiry candidate refs"
+      ],
+      "boundary": "観測・候補・採否・結果・効果・失効の管理候補。要求やauthorityを自己承認しない。"
+    },
+    {
+      "product": "HELIX-Web",
+      "status": "unknown_due_to_missing_direct_ref",
+      "basis": [
+        "adjacent product L2 boundary only"
+      ],
+      "boundary": "利用者向けproduct experience候補。PHCAP-18 direct evidence、owner、backflowは未確定。"
+    },
+    {
+      "product": "HELIX-Web-OS",
+      "status": "unknown_due_to_missing_direct_ref",
+      "basis": [
+        "adjacent service L2 boundary only"
+      ],
+      "boundary": "service runtime／bounded export候補。PHCAP-18 direct evidence、owner、backflowは未確定。"
+    }
+  ],
+  "legacy_assets": [
+    {
+      "asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "source_path": "docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+      "source_sha256": "4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754",
+      "source_line_count": 81,
+      "evidence_kind": "requirement",
+      "implementation_evidence_state": "document_present",
+      "source_spans": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+          "start_line": 1,
+          "end_line": 24,
+          "sha256": "9373a3b7d45ba99d96de18e58e6163a1d89346aac2dcce9a8fa1e0aac4224e5e",
+          "exact_text": "---\ncanonical_vmodel: L1-L12\ncandidate_layer: L3\ncanonical_pair: L10\ntitle: \"REFACTORING Trigger Policy／RF0 Admission要件\"\nlayer: L3\nkind: add-design\nstatus: draft_candidate\ncreated: 2026-09-02\nupdated: 2026-09-05\nowner: PO / TL\nplan: PLAN-L3-77-refactoring-trigger-authority\nparent_design: docs/design/helix/L3-requirements/system-synthesis-requirements.md\npair_artifact: docs/governance/candidates/refactoring-trigger-admission-acceptance.md\nnext_pair_freeze: L10_during_canonical_promotion\nrefines:\n  - SYN-R-03\n  - SYN-R-04\n  - SYN-R-06\nextends:\n  - UIL-R-03\n  - UIL-R-04\n  - UIL-R-07\n---\n",
+          "span_id": "SRC-ED0-01",
+          "role": "identity and candidate-only authority boundary"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+          "start_line": 32,
+          "end_line": 42,
+          "sha256": "8e38195dd81f9a23d86ea3986ebae941adcc1796e60490101f7c1dbc31da62da",
+          "exact_text": "## 0. authority境界\n\n本capabilityは「何をrefactorするか」ではなく、観測からいつ、どの根拠でRF0 inventoryへ上げるかを閉じる。\nUILはsource、normalization、finding、candidateを、System SynthesisはscopeとRF0〜RF6を所有し、最終routeは\nUniversal Workflow authorityを通す。新route、DB authority、event bus、queueを作らない。\n\n### RTG-R-01 versioned trigger policyの版管理\n\nUILで正規化されたeventとfindingからRF0候補を導出する規則を、version、authority digest、source／detector identity、\nbaseline revision、比較演算、threshold source、観測window、minimum sample、hysteresis、cooldown、expiry、severity、\ncounterevidence、unknown dispositionへ束縛する。source registryの定義を複製せず、policy値をruntimeへ重複hardcodeしない。\n",
+          "span_id": "SRC-ED0-02",
+          "role": "authority boundary and versioned trigger policy"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+          "start_line": 44,
+          "end_line": 56,
+          "sha256": "70f48bd1d544a16f573edb72a0b4e331123f0d4e92af3895d9bca9ba7e415614",
+          "exact_text": "### RTG-R-02 trigger分類と測定境界\n\ninvariant違反、再発、metric budget超過、悪化傾向、structural drift、release boundary、provider change、\nscheduled safety-netを別trigger identityとして扱う。LOC、file size、Issue数、AI評価、単一瞬間値だけでは候補をadmitしない。\n蓄積評価はversioned windowとminimum sampleを満たし、lifecycle boundaryは評価契機であって悪化証拠なしにrefactorを強制しない。\nscheduled safety-net単独ではsubstantive findingを作らず、評価実施receiptだけを残す。\n\n### RTG-R-03 RF0のadmission境界\n\nUIL candidateからRF0へ渡すadmissionはcandidate／finding／trigger evidenceのexact identityとdigest、source registry、\ntrigger policy、baseline、primary scopeはexactly one、related scope、semantic parity、route candidate、suppression、\nrequired verification、expiryを保持する。意味変更はREFACTORINGへadmitせずREDESIGN／Requirement Re-entryへ、\n実装故障はRECOVERYへ、外部技術driftはTechnology Environment Reconciliationへ送る。unknownを推測配車しない。\n",
+          "span_id": "SRC-ED0-03",
+          "role": "trigger classification and RF0 admission route"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+          "start_line": 58,
+          "end_line": 81,
+          "sha256": "93aeb5e04459c4526fe1baec7da2b5bc59e1bf4bd159944472854c9e059244fa",
+          "exact_text": "### RTG-R-04 scope mappingとauthority pending\n\n現行9 scopeをexact setとし、primary scopeはexactly one、関連影響はrelated scopesへ分離する。複数ownerを一原子変更で\n閉じられない候補は分割するかSystem Synthesisへ昇格する。`requirement`／`definition` scopeはIssue #1170のL3/L10が\nmainで再freezeされるまで`authority_pending`とし、現行exact setへ暗黙追加しない。\n\n### RTG-R-05 anti-starvationの被覆\n\ncurrent scopeごとにlast evaluated revision、source exact set、policy digest、finding countを持つcoverage receiptを生成する。\n期限超過、source欠落、partial scan、stale policyを全scope評価済みとして扱わない。異常なしはterminal `no_action`と混同せず、\n「評価済み・substantive findingなし」として候補未生成の事実を保持する。\n\n### RTG-R-06 shadow導入と効果測定\n\nUIL-04〜06がcurrent mainへ到達するまではtrigger evidence、finding、shadow admission projectionに限定し、RF0自動実行、\nIssue自動起票、PLAN生成、authority writeを行わない。導入前後でmissed-trigger proxy、false-positive、duplicate candidate、\ncoverage、finding→RF0 lead time、rework／rollback、CI costを測定し、悪化時はadoptionを確定しない。\n\n## 1. 非対象\n\n- 新しい`REFACTOR_TRIGGER` route、cron自動コード変更、Issue無制限起票、PLAN自動confirm、merge／publish。\n- #1037 whole-system plannerのparking解除。\n- required verification削除、timeout緩和、threshold操作による見かけ上の改善。\n- current9 scopeと#1170提案scopeの無承認統合。\n",
+          "span_id": "SRC-ED0-04",
+          "role": "scope authority, coverage, shadow and non-goals"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-0850",
+        "candidate_phase_targets": [
+          "PHCAP-18"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-ED0-02",
+          "finding": "unknown trigger evidence, route, authority or scope must not be inferred into admission"
+        },
+        {
+          "span_id": "SRC-ED0-04",
+          "finding": "shadow-only boundary forbids automatic execution, issue/plan generation and authority write"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-ED0-03",
+          "finding": "candidate flows to HARNESS/OS route and human decision boundaries"
+        },
+        {
+          "span_id": "SRC-ED0-04",
+          "finding": "coverage receipt and shadow projection are downstream consumers"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "source_path": "docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "source_sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+      "source_line_count": 153,
+      "evidence_kind": "design",
+      "implementation_evidence_state": "document_present",
+      "source_spans": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+          "start_line": 34,
+          "end_line": 43,
+          "sha256": "5605265927538b56c36238f6cc286af08a0dfb96032f37858c3dca6bdf43d6bc",
+          "exact_text": "## §0 境界とinventory-first\n\nHC-CHAT-034/035/036を要求正本として、`externalize/commonize/objectize/semantic_rename`を一step一変換で扱う。\nrenameは文字列類似で決めず、I/O、副作用、failure、state transition、call graph、consumer contract、oracleのsemantic signatureを比較する。\nobservable behavior/public contract/要求変更はRedesign、persisted state/schema変更はRetrofitへ送る。behavior/oracle入力は\nsource provenance、graph revision、実行receipt、trusted clockに対するfreshnessを持つcurrent evidenceだけを採用し、署名だけ合うforged/stale oracleをrejectする。\n\nHZ-CAP-007のdocument catalog、HZ-CAP-008のtyped schema、HZ-CAP-009のBDD/spec traceはcandidate evidenceとしてhardenするが、\nZIP template名や既存class名をdomain truthへ昇格しない。要求、service、domain object、template obligation、UT oracle、implementation symbolを\n別identityのtyped edgeで結び、testをprivate symbolへ直接固定しない。\n",
+          "span_id": "SRC-4AC-01",
+          "role": "inventory-first semantic boundary"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+          "start_line": 45,
+          "end_line": 57,
+          "sha256": "111d93d4fb6f6adb7ab4f2caee7b3d877fb60a755ec4d51906fc74d0b62cb6b1",
+          "exact_text": "## §1 componentとsemantic判定\n\n| component | 責務 | authority | fail-close |\n|---|---|---|---|\n| `DesignGraphSnapshotter` | requirement/service/object/template/oracle/symbol graphをimmutable化 | snapshot event | consumer/span/version欠落 |\n| `SemanticSignatureBuilder` | I/O、副作用、failure、state、call graph、consumer/oracleをcanonical化 | signature proposal | lexical-only、unknown boundary |\n| `DesignRefactorClassifier` | 4 transformまたはRedesign/Retrofit/rejectへ分類 | route proposal | future-use、万能base、複合step |\n| `BehaviorPreservationGate` | before/after oracleと全consumer compatibilityを比較 | receipt event | consumer漏れ、behavior差、rollback欠落 |\n| `DomainModelCatalog` | 13 role、canonical term、invariant、authority、lifecycleをversion管理 | Node catalog event | role invariant違反、曖昧名 |\n| `DomainEdgeRegistry` | requirement/service/template/oracle/symbol/repository edgeを型付け | relation event | private-symbol-only oracle、依存逆転 |\n| `RenameRouter` | internal/public/persistedをRefactor/Redesign/Retrofitへ分岐 | route receipt | public/DB renameの直接適用 |\n\nsemantic同等で名称が分裂する場合は統一候補、名称が同一/近似でsemanticが異なる場合は責務名へ分離する。\n",
+          "span_id": "SRC-4AC-02",
+          "role": "components and fail-close responsibilities"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+          "start_line": 59,
+          "end_line": 77,
+          "sha256": "aaace9c1cfefb0c6d98f183f399016180e3177def80f307b7010f4849c1a030a",
+          "exact_text": "## §2 DB schema、key、relationの定義\n\n| table | PK | unique／FK | 必須field | state |\n|---|---|---|---|---|\n| `design_graph_snapshots` | `design_graph_snapshot_id` | `scope_id,semantic_revision,graph_digest` unique | requirement/service/template/oracle/symbol set digest、producer、created_at | 状態 `current,stale,superseded` |\n| `design_refactor_candidates` | `design_refactor_candidate_id` | snapshot FK、`subject,evidence_digest` unique | transform、spans、semantic/duplication/coupling/change-impact evidence、detector version | 状態 `observed,triage_pending,accepted,rejected,superseded` |\n| `design_refactor_plans` | `design_refactor_plan_id` | candidate/Issue/Reverse/ScopeAuthority FK、operation unique | baseline graph、observable boundary、oracle/consumer set、budget、rollback | 状態 `draft,fenced,transforming,verification_pending,verified,rerouted,failed` |\n| `design_refactor_steps` | `design_refactor_step_id` | plan FK、`plan,ordinal` unique | one transform、input/output node、expected delta、pair、step digest | 状態 `planned,applied,verified,rolled_back,failed` |\n| `design_refactor_consumer_checks` | `consumer_check_id` | step/consumer/oracle FK、triple unique | before/after contract、graph revision、source provenance、execution receipt、freshness deadline、fixture/evidence、verdict | 状態 `pending,passed,failed,stale` |\n| `design_refactor_receipts` | `design_refactor_receipt_id` | plan unique FK | before/after graph/behavior、coverage、pair、rollback、route、verdict | 状態 `passed,failed,rerouted,stale` |\n| `domain_object_versions` | `domain_object_version_id` | stable object FK、`object_id,revision` unique | context、role、term、responsibility、authority、identity/equality、mutability、lifecycle、aggregate/root、invariant、I/O、side-effect、failure、state、visibility/persistence、digest | 状態 `staged,current,rejected,stale,superseded` |\n| `domain_object_relations` | `domain_relation_id` | from/to object FK、`from,to,kind,revision` unique | kind、port、invariant、evidence digest | 状態 `active,rejected,stale` |\n| `domain_trace_edges` | `domain_trace_edge_id` | object/version FK、target registry FK、`object,operation,target_kind,target_id` unique | target kind、direction、semantic revision、evidence digest | 状態 `active,rejected,stale` |\n| `naming_decisions` | `naming_decision_id` | object/version FK、`context,canonical_term,revision` unique | candidate/canonical、signature、consumer、rationale、exception owner/expiry | 状態 `pending,current,rejected,stale` |\n| `rename_receipts` | `rename_receipt_id` | naming decision/plan FK unique | internal/public/persisted class、before/after graph、consumer/oracle、route、rollback | 状態 `passed,rerouted,failed,stale` |\n| `design_domain_events` | `design_domain_event_id` | subject FK、`subject,event_sequence`とoperation unique | from/to、previous/event digest、actor、failure/route、occurred_at | append-only |\n\n`domain_trace_edges.target_kind`は`requirement | service | domain_object | template_obligation | unit_oracle | integration_oracle | implementation_symbol`のenumとする。\nOracle edgeとsymbol edgeは別row、RepositoryはAggregateへ、domainはPortへ、AdapterはPort実装へ向ける。FKは`ON DELETE RESTRICT`。\n",
+          "span_id": "SRC-4AC-03",
+          "role": "schema, consumer/oracle relations"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+          "start_line": 86,
+          "end_line": 102,
+          "sha256": "d542c3334372600932bf77bf3ad1cd32ddfea3c4152d3121d580e1411fcaefa8",
+          "exact_text": "## §4 state、event、transactionの規則\n\nRefactorは`observed -> triage_pending -> accepted -> draft -> fenced -> transforming -> verification_pending -> verified`。\nbehavior/public差は`rerouted:Redesign`、DB state差は`rerouted:Retrofit`、根拠不足は`rejected`へ進む。\nDomain objectは`staged -> current`または`rejected`、semantic revision変更で旧edge/decision/receiptをstale化する。\n\nplan fenceはsnapshot、candidate、consumer/oracle set、Scope Authority、rollbackを一transactionでcommitする。transform verifyはstep、全consumer check、\npair update、receipt、eventをCASする。catalog commitはobject version、relation、typed trace、naming decision、eventをall-or-nothingとし、partial currentを0件にする。\n同operation同digestは増分0、異digestはconflict、current revisionはobject/contextごと最大1件とする。\n\ncatalog bundleは`operation_id/digest`、graph/catalogのexpected revision、固定append order、exact write set、object/relation/trace/name payloadを持つ。\nappendは`object_versions -> relations -> trace_edges -> naming_decisions -> design_domain_event -> projection -> commit_receipt`の順に限る。\n各step直後fault、CAS不一致、write-set差、同operation異digestは全rollbackする。成功receiptはbefore/after revision、event sequence、write-set digest、\ntable別insert/update countを返し、同operation同digest再送は元receiptと全count 0を返す。\n\nbehavior preservation入力のprovenance digest、graph revision、execution receipt digest、executed_at/fresh_untilはsnapshot/current graphとexact一致させる。\nreceipt署名が正しくてもproducer allowlist外、graph revision違い、receipt未登録、期限切れならbehavior/consumer/oracle passを0件にする。\n",
+          "span_id": "SRC-4AC-04",
+          "role": "state machine, transaction and stale oracle failure"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+          "start_line": 143,
+          "end_line": 149,
+          "sha256": "5a322dfcc8facf76dbcb5ff461d956c7e181779ffe5e02108893799815f08fc0",
+          "exact_text": "## §6 freeze条件\n\nL5/L8 pairはIT 12/12、canonical 34/34、consumer/oracle全量、forged/stale oracle反証、4 transform、3 route、13 role、typed edge、transaction fault、\nwrite-count、ZIP capability disposition、別runtime reviewが揃うまでdraftとする。\n\ncommit receiptはtrusted oracleごとのoracle ID、result digest、observable digest、execution receipt digestをexact setで保持し、\ntrace/behavior evidenceから再導出したbinding digest不一致ではcurrent化しない。\n",
+          "span_id": "SRC-4AC-05",
+          "role": "draft freeze and trusted binding boundary"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-0548",
+        "candidate_phase_targets": [
+          "PHCAP-06",
+          "PHCAP-16",
+          "PHCAP-18"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-4AC-02",
+          "finding": "lexical-only, unknown boundary, missing consumer/span/version and public/persisted changes fail-close or reroute"
+        },
+        {
+          "span_id": "SRC-4AC-04",
+          "finding": "stale or untrusted receipt and partial transaction state cannot become current"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-4AC-02",
+          "finding": "graph, candidate, plan, consumer/oracle, domain catalog and trace registries consume the model"
+        },
+        {
+          "span_id": "SRC-4AC-04",
+          "finding": "transaction port, receipt and projection consume exact write set and revisions"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3B8F5F0230F7469B5D11",
+      "source_path": "docs/design/helix/L6-function-design/design-refactoring-domain-model.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-refactoring-domain-model.md",
+      "source_sha256": "626e177f61cbb8170b0d557241f75fcf2958a5f64d41fc1078f4ef5607c3086e",
+      "source_line_count": 225,
+      "evidence_kind": "design",
+      "implementation_evidence_state": "document_present",
+      "source_spans": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-refactoring-domain-model.md",
+          "start_line": 20,
+          "end_line": 42,
+          "sha256": "431d1326d6e63ace11a2ce1c8f89227b8faa945a15bbdf1a8f836eb3a657abc7",
+          "exact_text": "# HELIX L6 機能設計 — design refactoring domain model\n\n## §0 typed contractの型定義\n\n```ts\ntype DesignTransformV1 = \"externalize\" | \"commonize\" | \"objectize\" | \"semantic_rename\";\ntype DomainRoleV1 = \"Entity\" | \"ValueObject\" | \"Aggregate\" | \"DomainService\" | \"Policy\" | \"Specification\" | \"Command\" | \"Query\" | \"DomainEvent\" | \"Receipt\" | \"Port\" | \"Adapter\" | \"Repository\";\ntype TraceTargetKindV1 = \"requirement\" | \"service\" | \"domain_object\" | \"template_obligation\" | \"unit_oracle\" | \"integration_oracle\" | \"implementation_symbol\";\ntype DesignDomainFailureCodeV1 =\n  | \"HIL_DESIGN_REFACTOR_BEHAVIOR_CHANGED\" | \"HIL_DESIGN_REFACTOR_RETROFIT_REQUIRED\" | \"HIL_DESIGN_REFACTOR_NAME_ONLY\"\n  | \"HIL_DESIGN_REFACTOR_CONSUMER_MISSING\" | \"HIL_DESIGN_REFACTOR_ROLLBACK_MISSING\" | \"HIL_DESIGN_REFACTOR_UNJUSTIFIED\"\n  | \"HIL_DESIGN_REFACTOR_ROUTE_INVALID\" | \"HIL_DESIGN_REFACTOR_INVARIANT_BROKEN\" | \"HIL_DOMAIN_ENTITY_IDENTITY_MISSING\"\n  | \"HIL_DOMAIN_VALUE_OBJECT_MUTABLE\" | \"HIL_DOMAIN_AGGREGATE_ROOT_MISSING\" | \"HIL_DOMAIN_SERVICE_RESPONSIBILITY_MISSING\"\n  | \"HIL_DOMAIN_POLICY_AUTHORITY_MISSING\" | \"HIL_DOMAIN_SPECIFICATION_SIDE_EFFECT\" | \"HIL_DOMAIN_COMMAND_INTENT_MISSING\"\n  | \"HIL_DOMAIN_QUERY_SIDE_EFFECT\" | \"HIL_DOMAIN_EVENT_NOT_COMPLETED_FACT\" | \"HIL_DOMAIN_RECEIPT_PROVENANCE_MISSING\"\n  | \"HIL_DOMAIN_PORT_DEPENDENCY_INVERTED\" | \"HIL_DOMAIN_ADAPTER_PORT_MISSING\" | \"HIL_DOMAIN_REPOSITORY_AGGREGATE_MISSING\"\n  | \"HIL_DOMAIN_NAME_AMBIGUOUS\" | \"HIL_DOMAIN_PUBLIC_RENAME_REDESIGN\" | \"HIL_DOMAIN_PERSISTED_RENAME_RETROFIT\"\n  | \"HIL_DOMAIN_ORACLE_PRIVATE_SYMBOL_BOUND\" | \"HIL_DOMAIN_CANONICAL_TERM_CONFLICT\" | \"HIL_DOMAIN_MODEL_CONTRACT_INVALID\"\n  | \"HIL_DESIGN_DOMAIN_INTERNAL_ERROR\";\ninterface DesignDomainFailureV1 { code: DesignDomainFailureCodeV1; subject_id: string; evidence_digest: string; route?: \"Refactor\" | \"Redesign\" | \"Retrofit\" }\ntype DesignDomainResultV1<T> =\n  | { ok: true; value: T }\n  | { ok: false; failures: readonly DesignDomainFailureV1[] };\n",
+          "span_id": "SRC-5D1-01",
+          "role": "typed contract and failure identity"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-refactoring-domain-model.md",
+          "start_line": 85,
+          "end_line": 107,
+          "sha256": "d7d99cbf982cb17dc9cd2e2ef9d3cdf38eefda67e39412ab3eb0881da0f4ab3f",
+          "exact_text": "## §1 public API／DbCの契約\n\n| API | 完全signature | DbC | 主U |\n|---|---|---|---|\n| `buildDesignSemanticSignature` | `(subject: DesignSubjectV1, graph: DesignGraphV1) => DesignDomainResultV1<SemanticSignatureV1>` | I/O、副作用、failure、state、call graph、consumer/oracleをcanonical化 | `U-DRDM-001` |\n| `classifyDesignRefactorCandidate` | `(candidate: CandidateV1, signature: SemanticSignatureV1, authority: ScopeAuthorityV1) => DesignDomainResultV1<RefactorClassificationV1>` | lexical/future-useをrejectしone transformへ分類 | `U-DRDM-002` |\n| `planExternalize` | `(candidate: AcceptedCandidateV1, consumers: ConsumerContractV1[]) => DesignDomainResultV1<RefactorStepV1>` | policy owner/validation boundaryを維持 | `U-DRDM-003` |\n| `planCommonize` | `(candidate: AcceptedCandidateV1, equivalence: SemanticEquivalenceV1) => DesignDomainResultV1<RefactorStepV1>` | 全consumer semantic同等と差分吸収規則 | `U-DRDM-004` |\n| `planObjectize` | `(candidate: AcceptedCandidateV1, ownership: ResponsibilityBoundaryV1) => DesignDomainResultV1<RefactorStepV1>` | responsibility/state/invariant/authority/lifecycleを一ownerへ | `U-DRDM-005` |\n| `planSemanticRename` | `(candidate: AcceptedCandidateV1, naming: NamingCatalogV1) => DesignDomainResultV1<RefactorStepV1>` | lexical distance単独禁止、stable oracle/object ID | `U-DRDM-006` |\n| `validateBehaviorPreservation` | `(before: ObservableSnapshotV1, after: ObservableSnapshotV1, oracles: OracleResultV1[], trust: OracleTrustContextV1) => DesignDomainResultV1<BehaviorReceiptV1>` | observable digest、provenance、current graph revision、登録execution receipt、freshnessと全oracle一致 | `U-DRDM-007` |\n| `validateConsumerCompatibility` | `(step: RefactorStepV1, expected: ConsumerContractV1[], actual: ConsumerResultV1[]) => DesignDomainResultV1<CoverageReceiptV1>` | expected=actualの完全集合、100% passを検査 | `U-DRDM-008` |\n| `routeDesignDelta` | `(delta: DesignDeltaV1) => DesignDomainResultV1<\"Refactor\" | \"Redesign\" | \"Retrofit\">` | behavior/public/requirementはRedesign、persistedはRetrofit | `U-DRDM-009` |\n| `validateRefactorFence` | `(plan: RefactorPlanV1, pairs: PairReceiptV1[], rollback: RollbackTargetV1) => DesignDomainResultV1<FencedPlanV1>` | consumer/pair/oracle/authority/rollback必須 | `U-DRDM-010` |\n| `parseDomainObjectVersion` | `(raw: unknown, catalog: DomainSchemaV1) => DesignDomainResultV1<DomainObjectVersionV1>` | 13 role、unknown field拒否、stable object/revision | `U-DRDM-011` |\n| `validateDomainRoleInvariant` | `(object: DomainObjectVersionV1) => DesignDomainResultV1<RoleInvariantReceiptV1>` | role固有identity/mutability/root/authority/side-effect等を検査 | `U-DRDM-012` |\n| `validateDomainDependencyDirection` | `(objects: DomainObjectVersionV1[], relations: DomainRelationV1[]) => DesignDomainResultV1<DependencyReceiptV1>` | domain→Port、Adapter→Port、Repository→Aggregateの方向を検査 | `U-DRDM-013` |\n| `decideCanonicalDomainName` | `(object: DomainObjectVersionV1, signature: SemanticSignatureV1, terms: TermCatalogV1) => DesignDomainResultV1<NamingDecisionV1>` | ambiguous/conflictをreject、同義統一/異義分離 | `U-DRDM-014` |\n| `bindDomainSymbolAndOracle` | `(object: DomainObjectVersionV1, symbol: SymbolEdgeV1, oracle: OracleEdgeV1) => DesignDomainResultV1<TraceBindingV1>` | edge分離、private symbolだけへのoracle bind禁止 | `U-DRDM-015` |\n| `commitDesignDomainBundle` | `(bundle: DesignDomainBundleV1, port: DesignDomainTransactionPortV1) => Promise<DesignDomainResultV1<CommitReceiptV1>>` | version/relation/trace/name/eventをall-or-nothing CAS | `U-DRDM-016` |\n| `validateOracleTrustBinding` | `(oracles: OracleResultV1[], trust: OracleTrustContextV1) => DesignDomainResultV1<TrustedOracleSetV1>` | producer/provenance/graph revision/registered receipt/freshnessをexact照合 | `U-DRDM-017` |\n| `commitRefactorPlanFence` | `(bundle: RefactorPlanFenceBundleV1, port: RefactorPlanFenceTransactionPortV1, graphStore: DesignGraphSnapshotStoreV1, oracleStore: TrustedOracleAuthorityStoreV1, scopeStore: ScopeAuthorityStoreV1, trustedNow: string) => Promise<DesignDomainResultV1<RefactorPlanFenceReceiptV1>>` | 3 authority storeのcurrent head/canonical bytesとcaller snapshot/oracle/Scope Authorityをexact照合後、plan substanceを同一CASでfence | `U-DRDM-018` |\n| `commitRefactorTransformVerification` | `(bundle: RefactorTransformVerificationBundleV1, port: RefactorTransformVerificationTransactionPortV1, fenceStore: RefactorFenceReceiptStoreV1) => Promise<DesignDomainResultV1<RefactorTransformVerificationReceiptV1>>` | current fence receiptとcandidate/plan/stepを再照合しconsumer/pair/behavior/rollback/refactor/eventを同一CASでverified化 | `U-DRDM-019` |\n",
+          "span_id": "SRC-5D1-02",
+          "role": "API DbC and reroute contract"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-refactoring-domain-model.md",
+          "start_line": 109,
+          "end_line": 127,
+          "sha256": "2654fcaf90caa78e9ff813f1cd25e2df992f4cce5198178edd57351345886924",
+          "exact_text": "## §2 bundle／transaction port契約\n\n```ts\ntype DesignDomainAppendStepV1 = \"object_versions\" | \"relations\" | \"trace_edges\" | \"naming_decisions\" | \"design_domain_event\" | \"projection\" | \"commit_receipt\";\ninterface DesignDomainBundleV1 {\n  operation_id: string; operation_digest: string; graph_id: string; expected_graph_revision: number;\n  catalog_id: string; expected_catalog_revision: number; append_order: DesignDomainAppendStepV1[];\n  write_set: { table: string; key: string; action: \"insert\" | \"update\" }[]; write_set_digest: string;\n  object_versions: DomainObjectVersionV1[]; relations: DomainRelationV1[]; trace_edges: TraceBindingV1[];\n  naming_decisions: NamingDecisionV1[]; event: DesignDomainEventV1; projection: DesignDomainProjectionV1;\n}\ninterface CommitReceiptV1 {\n  operation_id: string; operation_digest: string; before_graph_revision: number; after_graph_revision: number;\n  before_catalog_revision: number; after_catalog_revision: number; event_sequence: number; write_set_digest: string;\n  oracle_bindings: { oracle_id: string; result_digest: string; observable_digest: string; execution_receipt_digest: string }[];\n  oracle_binding_digest: string;\n  counts: Record<DesignDomainAppendStepV1, { inserted: number; updated: number }>;\n}\ninterface DesignDomainTransactionPortV1 { commit(bundle: DesignDomainBundleV1): Promise<DesignDomainResultV1<CommitReceiptV1>> }\n",
+          "span_id": "SRC-5D1-03",
+          "role": "bundle and transaction port contract"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-refactoring-domain-model.md",
+          "start_line": 161,
+          "end_line": 171,
+          "sha256": "4c81aeece5375d9769acd7af7dba3fd681b2613e7b9636d266ddde0da08c2745",
+          "exact_text": "portは`object_versions,relations,trace_edges,naming_decisions,design_domain_event,projection,commit_receipt`のexact順を検査し、\ngraph/catalog両revisionを一度にCASする。各append直後faultは全rollback、同operation同digestは元receiptと全count 0、\n同operation異digest・CAS不一致・write set/order差はreceiptを作らず全count 0とする。\ncommit receiptは全trusted oracleの`oracle_id/result_digest/observable_digest/execution_receipt_digest` exact setを保持し、\nbundleのtrace edgeとbehavior receiptから再導出したbinding digestが一致しなければcurrent化しない。\nplan fenceはgraph/oracle/scopeの3 authority storeからcurrent canonical bytes/headを再読し、callerのsnapshot実体/digest、trusted oracle\nexact set、Scope Authority receiptとexact一致した場合だけcandidate、plan、全step、全consumer、pair、rollbackを一transactionへ固定する。\ntransform verificationはfence storeからcurrentな`RefactorPlanFenceReceiptV1`を再読し、receiptのcandidate ID、plan ID、step set digest、\ncurrent fence headをbundleとexact照合してからconsumer check、pair、behavior、rollback、refactor receipt、DesignDomainEventを結ぶ。\ncaller payloadだけをcurrent証拠にしない。いずれもpayload欠落・入替、CAS、\nappend faultで全増分0とし、fenceだけ／behaviorだけをverifiedへ読み替えない。\n",
+          "span_id": "SRC-5D1-04",
+          "role": "atomic commit, CAS and no partial verification"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-refactoring-domain-model.md",
+          "start_line": 173,
+          "end_line": 188,
+          "sha256": "c0849bdb0c4f167c04a88dce958d6a2858749adfa95f3ae3e55b37a60386d9a3",
+          "exact_text": "## §3 canonical assertion primary表\n\n| HST正本 | 主U | 主API | supporting主IT | pre_state | expected_state | failure正本 |\n|---|---|---|---|---|---|---|\n| `HST-CASE-025-01` | `U-DRDM-003` | `planExternalize` | `IT-DRDM-001` | `transforming` | `verified` | `なし（正常系）` |\n| `HST-CASE-025-02` | `U-DRDM-004` | `planCommonize` | `IT-DRDM-001` | `transforming` | `verified` | `なし（正常系）` |\n| `HST-CASE-025-03` | `U-DRDM-005` | `planObjectize` | `IT-DRDM-001` | `transforming` | `verified` | `なし（正常系）` |\n| `HST-CASE-025-04` | `U-DRDM-006` | `planSemanticRename` | `IT-DRDM-001` | `transforming` | `verified` | `なし（正常系）` |\n| `HST-CASE-025-05` | `U-DRDM-009` | `routeDesignDelta` | `IT-DRDM-002` | `transforming` | `rerouted` | `HIL_DESIGN_REFACTOR_BEHAVIOR_CHANGED` |\n| `HST-CASE-025-06` | `U-DRDM-009` | `routeDesignDelta` | `IT-DRDM-003` | `transforming` | `rerouted` | `HIL_DESIGN_REFACTOR_RETROFIT_REQUIRED` |\n| `HST-CASE-025-07` | `U-DRDM-002` | `classifyDesignRefactorCandidate` | `IT-DRDM-004` | `triage_pending` | `rejected` | `HIL_DESIGN_REFACTOR_NAME_ONLY` |\n| `HST-CASE-025-08` | `U-DRDM-008` | `validateConsumerCompatibility` | `IT-DRDM-005` | `draft` | `draft` | `HIL_DESIGN_REFACTOR_CONSUMER_MISSING` |\n| `HST-CASE-025-09` | `U-DRDM-010` | `validateRefactorFence` | `IT-DRDM-005` | `draft` | `draft` | `HIL_DESIGN_REFACTOR_ROLLBACK_MISSING` |\n| `HST-CASE-025-10` | `U-DRDM-002` | `classifyDesignRefactorCandidate` | `IT-DRDM-004` | `triage_pending` | `rejected` | `HIL_DESIGN_REFACTOR_UNJUSTIFIED` |\n| `HST-CASE-025-11` | `U-DRDM-002` | `classifyDesignRefactorCandidate` | `IT-DRDM-001` | `assertion_input_ready` | `assertion_pass` | `HIL_DESIGN_REFACTOR_ROUTE_INVALID` |\n| `HST-CASE-025-12` | `U-DRDM-001` | `buildDesignSemanticSignature` | `IT-DRDM-001` | `assertion_input_ready` | `assertion_pass` | `HIL_DESIGN_REFACTOR_INVARIANT_BROKEN` |\n",
+          "span_id": "SRC-5D1-05",
+          "role": "assertion table and negative route cases"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-0639",
+        "candidate_phase_targets": [
+          "PHCAP-06",
+          "PHCAP-18"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-5D1-01",
+          "finding": "typed failure codes include behavior, retrofit, consumer, rollback, route and invariant failures"
+        },
+        {
+          "span_id": "SRC-5D1-04",
+          "finding": "append fault, CAS mismatch and payload swap require zero increment and no verified partial"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-5D1-02",
+          "finding": "typed APIs consume candidate, authority, consumer, oracle and route inputs"
+        },
+        {
+          "span_id": "SRC-5D1-03",
+          "finding": "transaction port and authority stores consume bundle, graph, oracle and scope heads"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7EBF2130DE1840722A6B",
+      "source_path": "src/state-db/refactor-candidates.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/src/state-db/refactor-candidates.ts",
+      "source_sha256": "1f878c2ae0e96e7a44346579baf7bcb7dede758414a7e947a2dcd4805a9633f3",
+      "source_line_count": 400,
+      "evidence_kind": "implementation_source",
+      "implementation_evidence_state": "implementation_source_present_unexecuted",
+      "source_spans": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/src/state-db/refactor-candidates.ts",
+          "start_line": 11,
+          "end_line": 31,
+          "sha256": "fbe6e59298974e9c3533a6c7002691f09e61496b607741e073cfe7b8d73ccf36",
+          "exact_text": "export type RefactorCandidateKind =\n  | \"split-module\"\n  | \"extract-helper\"\n  | \"deduplicate-function\"\n  | \"externalize-literal\"\n  | \"externalize-policy\";\n\nexport interface RefactorCandidate {\n  kind: RefactorCandidateKind;\n  path: string;\n  subject: string;\n  score: number;\n  threshold: number;\n  confidence: \"high\" | \"medium\";\n  reason: string;\n}\n\nexport const REFACTOR_FEEDBACK_LIMIT = 20;\n\nfunction stableHash(value: string): string {\n  return `sha256:${createHash(\"sha256\").update(value).digest(\"hex\")}`;\n",
+          "span_id": "SRC-2A6-01",
+          "role": "candidate kinds and result shape"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/src/state-db/refactor-candidates.ts",
+          "start_line": 277,
+          "end_line": 315,
+          "sha256": "c7311a2182496e26cb87706b6721c0ca11a628db68c4884f21ac0aae96c22be0",
+          "exact_text": "export function analyzeRefactorCandidates(\n  files: Array<{ path: string; content: string }>,\n  policy: RefactorCandidatePolicy = DEFAULT_REFACTOR_CANDIDATE_POLICY,\n): RefactorCandidate[] {\n  const candidates: RefactorCandidate[] = [];\n  const bodyIndex = new Map<string, Array<{ path: string; name: string; lines: number }>>();\n  const allPaths = new Set(files.map((file) => file.path));\n\n  for (const file of files) {\n    const lines = file.content.split(/\\r?\\n/);\n    const nonBlankLineCount = lines.filter((line) => line.trim()).length;\n    const stripped = stripTsComments(file.content);\n    const exportCount = (stripped.match(/\\bexport\\s+/g) ?? []).length;\n    const functions = collectFunctionBodies(file.content);\n    const declarativeCatalog = isDeclarativeCatalogModule(file, functions.length);\n    if (\n      nonBlankLineCount >= policy.thresholds.splitModuleLines ||\n      (exportCount >= policy.thresholds.splitModuleExports && !isExportCatalogExempt(file))\n    ) {\n      const isLineTriggered = nonBlankLineCount >= policy.thresholds.splitModuleLines;\n      const score = isLineTriggered ? nonBlankLineCount : exportCount;\n      const threshold = isLineTriggered\n        ? policy.thresholds.splitModuleLines\n        : policy.thresholds.splitModuleExports;\n      candidates.push({\n        kind: \"split-module\",\n        path: file.path,\n        subject: file.path,\n        score,\n        threshold,\n        confidence: splitModuleConfidence({\n          score,\n          threshold,\n          functions,\n          declarativeCatalog,\n          policy,\n        }),\n        reason: `module has ${nonBlankLineCount} nonblank line(s) and ${exportCount} export(s)`,\n      });\n",
+          "span_id": "SRC-2A6-02",
+          "role": "source scan and split-module candidate emission"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/src/state-db/refactor-candidates.ts",
+          "start_line": 318,
+          "end_line": 371,
+          "sha256": "6029a531086c425b091cb359a89cbcfe00c1a379aca5b4872beb5aa7db266019",
+          "exact_text": "    for (const fn of functions) {\n      if (fn.lines >= policy.thresholds.extractHelperLines) {\n        candidates.push({\n          kind: \"extract-helper\",\n          path: file.path,\n          subject: `${file.path}#${fn.name}`,\n          score: fn.lines,\n          threshold: policy.thresholds.extractHelperLines,\n          confidence: candidateConfidence({\n            kind: \"extract-helper\",\n            score: fn.lines,\n            threshold: policy.thresholds.extractHelperLines,\n            policy,\n          }),\n          reason: `function ${fn.name} has ${fn.lines} nonblank line(s)`,\n        });\n      }\n      if (fn.lines >= policy.thresholds.dedupeFunctionMinLines) {\n        const key = normalizedBody(fn.body);\n        if (key.length > 0) {\n          const bucket = bodyIndex.get(key) ?? [];\n          bucket.push({ path: file.path, name: fn.name, lines: fn.lines });\n          bodyIndex.set(key, bucket);\n        }\n      }\n    }\n\n    const literalCounts = new Map<string, number>();\n    for (const literal of collectStringLiterals(\n      file.content,\n      policy.thresholds.externalizeLiteralMinLength,\n    )) {\n      literalCounts.set(literal, (literalCounts.get(literal) ?? 0) + 1);\n    }\n    for (const [literal, count] of literalCounts) {\n      if (count >= policy.thresholds.externalizeLiteralMinRepeats) {\n        candidates.push({\n          kind: \"externalize-literal\",\n          path: file.path,\n          subject: `${file.path}#literal:${stableHash(literal).slice(0, 19)}`,\n          score: count,\n          threshold: policy.thresholds.externalizeLiteralMinRepeats,\n          confidence: candidateConfidence({\n            kind: \"externalize-literal\",\n            score: count,\n            threshold: policy.thresholds.externalizeLiteralMinRepeats,\n            policy,\n          }),\n          reason: `literal appears ${count} time(s); consider a named constant or config boundary`,\n        });\n      }\n    }\n\n    candidates.push(...collectExternalizedPolicyCandidates({ ...file, allPaths, policy }));\n",
+          "span_id": "SRC-2A6-03",
+          "role": "function, literal and policy candidate emission"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/src/state-db/refactor-candidates.ts",
+          "start_line": 374,
+          "end_line": 400,
+          "sha256": "b235b439d37fa7e2abb7dbea9d6a9c461e567809cd3c3ba81e71eee661b60aaf",
+          "exact_text": "  for (const matches of bodyIndex.values()) {\n    const paths = new Set(matches.map((m) => `${m.path}#${m.name}`));\n    if (paths.size < 2) continue;\n    const sorted = [...matches].sort((a, b) =>\n      `${a.path}#${a.name}`.localeCompare(`${b.path}#${b.name}`),\n    );\n    const subject = sorted.map((m) => `${m.path}#${m.name}`).join(\",\");\n    candidates.push({\n      kind: \"deduplicate-function\",\n      path: sorted[0]?.path ?? \"\",\n      subject,\n      score: sorted.length,\n      threshold: 2,\n      confidence: candidateConfidence({\n        kind: \"deduplicate-function\",\n        score: sorted.length,\n        threshold: 2,\n        policy,\n      }),\n      reason: `duplicate function body appears in ${sorted.length} function(s): ${subject}`,\n    });\n  }\n\n  return candidates.sort(\n    (a, b) => a.kind.localeCompare(b.kind) || a.subject.localeCompare(b.subject),\n  );\n}\n",
+          "span_id": "SRC-2A6-04",
+          "role": "duplicate candidate grouping and deterministic ordering"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-3360",
+        "candidate_phase_targets": [
+          "PHCAP-18"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-2A6-02",
+          "finding": "candidate generation is threshold/policy based and does not itself establish semantic equivalence or authority"
+        },
+        {
+          "span_id": "SRC-2A6-04",
+          "finding": "duplicate grouping and ordering are historical implementation behavior, not a current oracle"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-2A6-02",
+          "finding": "legacy scanner consumes repository source roots and emits candidate records"
+        },
+        {
+          "span_id": "SRC-2A6-04",
+          "finding": "candidate consumers are downstream ranking and disposition logic"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E56701056732E5CF9A1C",
+      "source_path": "tests/feedback-refactor-disposition.test.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/tests/feedback-refactor-disposition.test.ts",
+      "source_sha256": "002c7aaf6c9f572809c61805847d6c2fc2fe3db7e5ba11eb4f5a62e790e96bfc",
+      "source_line_count": 95,
+      "evidence_kind": "test_source",
+      "implementation_evidence_state": "test_source_present_unexecuted",
+      "source_spans": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/tests/feedback-refactor-disposition.test.ts",
+          "start_line": 1,
+          "end_line": 19,
+          "sha256": "42148efba214ea7d6e6487a378c2f053a6f1ee3099f04fb5441c0005bfc4d78d",
+          "exact_text": "// @helix-repo-wide-guard\nimport { createHash } from \"node:crypto\";\nimport { readFileSync } from \"node:fs\";\nimport { describe, expect, it } from \"vitest\";\n\ntype Family = {\n  family: string;\n  predecessor_plan_id: string;\n  required_successor: string;\n  expected_count: number;\n};\n\ntype Binding = {\n  signal_type: string;\n  source_id: string;\n  source_path: string;\n  source_file_sha256: string;\n  family: string;\n};\n",
+          "span_id": "SRC-9A1-01",
+          "role": "historical test identity and fixture schema"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/tests/feedback-refactor-disposition.test.ts",
+          "start_line": 21,
+          "end_line": 53,
+          "sha256": "ecd81272dbcd824866b95f73e087c2c763c2a0600a75cde5d73793d35099b947",
+          "exact_text": "const manifest = JSON.parse(\n  readFileSync(\"docs/governance/feedback-refactor-disposition.json\", \"utf8\"),\n) as {\n  schema_version: string;\n  issue_id: number;\n  disposition_plan_id: string;\n  activation_phase: string;\n  families: Family[];\n  bindings: Binding[];\n};\n\nfunction digest(text: string): string {\n  return createHash(\"sha256\").update(text).digest(\"hex\");\n}\n\ndescribe(\"PLAN-L3-32 refactor warning disposition\", () => {\n  it(\"pins twenty unique signals across the 9/6/5 successor partition\", () => {\n    expect(manifest.schema_version).toBe(\"feedback-refactor-disposition.v1\");\n    expect(manifest.issue_id).toBe(74);\n    expect(manifest.bindings).toHaveLength(20);\n    expect(new Set(manifest.bindings.map((row) => row.source_id)).size).toBe(20);\n\n    const expectedCounts = new Map(\n      manifest.families.map((row) => [row.family, row.expected_count]),\n    );\n    expect([...expectedCounts.values()].reduce((sum, count) => sum + count, 0)).toBe(20);\n    for (const [family, expected] of expectedCounts) {\n      expect(\n        manifest.bindings.filter((row) => row.family === family),\n        family,\n      ).toHaveLength(expected);\n    }\n  });\n",
+          "span_id": "SRC-9A1-02",
+          "role": "historical manifest partition and count assertions"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/tests/feedback-refactor-disposition.test.ts",
+          "start_line": 55,
+          "end_line": 80,
+          "sha256": "160a7b196e7da2bf63c8a23a4b140ef7764fe2477e9c314f5136bc1f9ed916b4",
+          "exact_text": "  it(\"matches every current source digest\", () => {\n    for (const row of manifest.bindings) {\n      expect(digest(readFileSync(row.source_path, \"utf8\")), row.source_path).toBe(\n        row.source_file_sha256,\n      );\n      expect(row.source_id.startsWith(`refactor-candidate:${row.signal_type.split(\":\")[1]}:`)).toBe(\n        true,\n      );\n    }\n  });\n\n  it(\"requires additive successors instead of claiming predecessor completion\", () => {\n    expect(manifest.activation_phase).toBe(\"post_g3_refactor_queue\");\n    expect(manifest.families).toHaveLength(3);\n    expect(manifest.families.every((row) => row.required_successor.includes(\"new additive\"))).toBe(\n      true,\n    );\n    expect(new Set(manifest.families.map((row) => row.predecessor_plan_id)).size).toBe(3);\n    expect(new Set(manifest.families.map((row) => row.required_successor)).size).toBe(3);\n    for (const family of manifest.families) {\n      expect(\n        readFileSync(`docs/plans/${family.predecessor_plan_id}.md`, \"utf8\"),\n        family.predecessor_plan_id,\n      ).toContain(\"status: confirmed\");\n    }\n  });\n",
+          "span_id": "SRC-9A1-03",
+          "role": "historical source digest and additive successor assertions"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/tests/feedback-refactor-disposition.test.ts",
+          "start_line": 82,
+          "end_line": 93,
+          "sha256": "08fb25d41c916acfa57562314c4d55be061cc224deca81b965e288ee6732dddf",
+          "exact_text": "  it(\"keeps L3 disposition closure separate from downstream implementation and freeze\", () => {\n    const plan = readFileSync(\"docs/plans/PLAN-L3-32-feedback-refactor-disposition.md\", \"utf8\");\n    expect(plan).toContain(\"status: confirmed\");\n    expect(plan).toContain(\"de7d019c7e1d954e4613e203ec89de569a7075f0\");\n    expect(plan).toContain(\"pull/105#issuecomment-5056917506\");\n    expect(plan).toContain(\"rows=48359\");\n    expect(plan).toContain(\"L7 refactor PLAN起票\");\n    expect(plan).toContain(\"behavior fence\");\n    expect(plan).toContain(\"G1/G3 freeze済みを意味しない\");\n    expect(plan).toContain(\"refactor実施完了を主張しない\");\n    expect(plan).toContain(\"requirements G1/G3 freeze\");\n  });\n",
+          "span_id": "SRC-9A1-04",
+          "role": "historical closure separation claims"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_test_fixture_or_oracle",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-3596",
+        "candidate_phase_targets": [
+          "PHCAP-18",
+          "PHCAP-19"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-9A1-02",
+          "finding": "historical test assertions depend on a legacy manifest and partition"
+        },
+        {
+          "span_id": "SRC-9A1-04",
+          "finding": "embedded closure assertions do not establish current completion or execution"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-9A1-02",
+          "finding": "legacy feedback disposition manifest is the test consumer"
+        },
+        {
+          "span_id": "SRC-9A1-03",
+          "finding": "predecessor plans and additive successors are historical consumers"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "ATOM-18-01",
+      "source_asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "source_span_id": "SRC-ED0-02",
+      "meaning_candidate": "trigger policy version, evidence, baseline and unknown disposition are candidate contract atoms",
+      "actor_candidate": "UIL/System Synthesis candidate authority",
+      "product_unit_candidate": "HARNESS unit ↔ OS connection candidate",
+      "consumer_candidate": "HARNESS/OS route consumers; current authority unknown",
+      "failure_or_unresolved": "observed_legacy_text; no adoption",
+      "legacy_authority_or_enforced_by": "UIL/System Synthesis candidate authority",
+      "evidence_status": "observed_legacy_text; no adoption"
+    },
+    {
+      "atom_id": "ATOM-18-02",
+      "source_asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "source_span_id": "SRC-ED0-03",
+      "meaning_candidate": "RF0 admission separates meaning change, implementation failure and external drift",
+      "actor_candidate": "candidate admission owner; human gate candidate",
+      "product_unit_candidate": "HARNESS unit ↔ OS route candidate",
+      "consumer_candidate": "route classifier, human decision, upstream requirement candidate",
+      "failure_or_unresolved": "unresolved; route semantics need re-derivation",
+      "legacy_authority_or_enforced_by": "candidate admission owner; human gate candidate",
+      "evidence_status": "unresolved; route semantics need re-derivation"
+    },
+    {
+      "atom_id": "ATOM-18-03",
+      "source_asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "source_span_id": "SRC-ED0-04",
+      "meaning_candidate": "coverage receipt separates unassessed, no finding and shadow projection",
+      "actor_candidate": "candidate evaluator",
+      "product_unit_candidate": "OS unit; HARNESS verification connection candidate",
+      "consumer_candidate": "coverage and measurement consumer candidate",
+      "failure_or_unresolved": "unknown; legacy execution not performed",
+      "legacy_authority_or_enforced_by": "candidate evaluator",
+      "evidence_status": "unknown; legacy execution not performed"
+    },
+    {
+      "atom_id": "ATOM-18-04",
+      "source_asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "source_span_id": "SRC-4AC-01",
+      "meaning_candidate": "semantic signature compares I/O, side effects, failure, state, graph and consumer/oracle",
+      "actor_candidate": "DesignRefactorClassifier candidate",
+      "product_unit_candidate": "HARNESS design/refactor unit candidate",
+      "consumer_candidate": "design graph and semantic classifier candidate",
+      "failure_or_unresolved": "observed_legacy_text; current product mapping unresolved",
+      "legacy_authority_or_enforced_by": "DesignRefactorClassifier candidate",
+      "evidence_status": "observed_legacy_text; current product mapping unresolved"
+    },
+    {
+      "atom_id": "ATOM-18-05",
+      "source_asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "source_span_id": "SRC-4AC-02",
+      "meaning_candidate": "components fail-close on missing consumer/span/version, lexical-only and unknown boundaries",
+      "actor_candidate": "snapshot/signature/gate candidate",
+      "product_unit_candidate": "HARNESS unit; OS connection candidate",
+      "consumer_candidate": "consumer compatibility and route proposal candidate",
+      "failure_or_unresolved": "unresolved; no current oracle",
+      "legacy_authority_or_enforced_by": "snapshot/signature/gate candidate",
+      "evidence_status": "unresolved; no current oracle"
+    },
+    {
+      "atom_id": "ATOM-18-06",
+      "source_asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "source_span_id": "SRC-4AC-03",
+      "meaning_candidate": "typed edges keep requirement, service, oracle and implementation symbol identities separate",
+      "actor_candidate": "DomainEdgeRegistry candidate",
+      "product_unit_candidate": "HARNESS design trace unit candidate",
+      "consumer_candidate": "trace registry and oracle consumer candidate",
+      "failure_or_unresolved": "unknown; product owner unresolved",
+      "legacy_authority_or_enforced_by": "DomainEdgeRegistry candidate",
+      "evidence_status": "unknown; product owner unresolved"
+    },
+    {
+      "atom_id": "ATOM-18-07",
+      "source_asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "source_span_id": "SRC-4AC-04",
+      "meaning_candidate": "state machine and transaction semantics reject stale/partial current state",
+      "actor_candidate": "transaction authority candidate",
+      "product_unit_candidate": "HARNESS change verification connection candidate",
+      "consumer_candidate": "plan, step, receipt and projection consumers",
+      "failure_or_unresolved": "unresolved; implementation status unknown",
+      "legacy_authority_or_enforced_by": "transaction authority candidate",
+      "evidence_status": "unresolved; implementation status unknown"
+    },
+    {
+      "atom_id": "ATOM-18-08",
+      "source_asset_id": "LEGACY-ASSET-3B8F5F0230F7469B5D11",
+      "source_span_id": "SRC-5D1-01",
+      "meaning_candidate": "failure codes preserve behavior/public/persisted distinctions and route outcomes",
+      "actor_candidate": "L6 function design candidate authority",
+      "product_unit_candidate": "HARNESS unit ↔ OS route candidate",
+      "consumer_candidate": "failure receipt, reroute and verification candidates",
+      "failure_or_unresolved": "observed_legacy_text; not current failure oracle",
+      "legacy_authority_or_enforced_by": "L6 function design candidate authority",
+      "evidence_status": "observed_legacy_text; not current failure oracle"
+    },
+    {
+      "atom_id": "ATOM-18-09",
+      "source_asset_id": "LEGACY-ASSET-3B8F5F0230F7469B5D11",
+      "source_span_id": "SRC-5D1-02",
+      "meaning_candidate": "API contracts require semantic classification, behavior preservation, consumer compatibility and fence",
+      "actor_candidate": "L6 API candidate",
+      "product_unit_candidate": "HARNESS design verification unit candidate",
+      "consumer_candidate": "consumer/oracle/pair/rollback candidate",
+      "failure_or_unresolved": "unknown; no execution",
+      "legacy_authority_or_enforced_by": "L6 API candidate",
+      "evidence_status": "unknown; no execution"
+    },
+    {
+      "atom_id": "ATOM-18-10",
+      "source_asset_id": "LEGACY-ASSET-3B8F5F0230F7469B5D11",
+      "source_span_id": "SRC-5D1-03",
+      "meaning_candidate": "transaction ports require exact append order, CAS and all-or-nothing bundle",
+      "actor_candidate": "legacy transaction candidate",
+      "product_unit_candidate": "HARNESS unit; OS projection connection candidate",
+      "consumer_candidate": "graph/catalog/receipt projection candidate",
+      "failure_or_unresolved": "unresolved; old runtime not executed",
+      "legacy_authority_or_enforced_by": "legacy transaction candidate",
+      "evidence_status": "unresolved; old runtime not executed"
+    },
+    {
+      "atom_id": "ATOM-18-11",
+      "source_asset_id": "LEGACY-ASSET-3B8F5F0230F7469B5D11",
+      "source_span_id": "SRC-5D1-04",
+      "meaning_candidate": "assertions include negative outcomes for behavior change, retrofit, missing consumer and rollback",
+      "actor_candidate": "historical test/design authority claim",
+      "product_unit_candidate": "HARNESS L11 candidate ↔ OS L10 candidate",
+      "consumer_candidate": "pair oracle and reroute consumer candidate",
+      "failure_or_unresolved": "contradiction_preserved; current acceptance unknown",
+      "legacy_authority_or_enforced_by": "historical test/design authority claim",
+      "evidence_status": "contradiction_preserved; current acceptance unknown"
+    },
+    {
+      "atom_id": "ATOM-18-12",
+      "source_asset_id": "LEGACY-ASSET-7EBF2130DE1840722A6B",
+      "source_span_id": "SRC-2A6-01",
+      "meaning_candidate": "legacy scanner defines candidate kinds and score/threshold/confidence fields",
+      "actor_candidate": "legacy scanner candidate",
+      "product_unit_candidate": "HARNESS candidate detection ↔ OS observation connection",
+      "consumer_candidate": "candidate ranking/disposition consumer candidate",
+      "failure_or_unresolved": "implementation_source_present_unexecuted; status unknown",
+      "legacy_authority_or_enforced_by": "legacy scanner candidate",
+      "evidence_status": "implementation_source_present_unexecuted; status unknown"
+    },
+    {
+      "atom_id": "ATOM-18-13",
+      "source_asset_id": "LEGACY-ASSET-7EBF2130DE1840722A6B",
+      "source_span_id": "SRC-2A6-02",
+      "meaning_candidate": "source scan emits split-module candidates from line/export thresholds",
+      "actor_candidate": "legacy implementation candidate",
+      "product_unit_candidate": "HARNESS source analysis unit candidate",
+      "consumer_candidate": "candidate registry consumer candidate",
+      "failure_or_unresolved": "unknown; old source not executed",
+      "legacy_authority_or_enforced_by": "legacy implementation candidate",
+      "evidence_status": "unknown; old source not executed"
+    },
+    {
+      "atom_id": "ATOM-18-14",
+      "source_asset_id": "LEGACY-ASSET-7EBF2130DE1840722A6B",
+      "source_span_id": "SRC-2A6-03",
+      "meaning_candidate": "function/literal/policy candidates are emitted from heuristic thresholds",
+      "actor_candidate": "legacy implementation candidate",
+      "product_unit_candidate": "HARNESS candidate analysis ↔ OS observation candidate",
+      "consumer_candidate": "ranking and disposition consumer candidate",
+      "failure_or_unresolved": "unknown; heuristic meaning not accepted",
+      "legacy_authority_or_enforced_by": "legacy implementation candidate",
+      "evidence_status": "unknown; heuristic meaning not accepted"
+    },
+    {
+      "atom_id": "ATOM-18-15",
+      "source_asset_id": "LEGACY-ASSET-E56701056732E5CF9A1C",
+      "source_span_id": "SRC-9A1-02",
+      "meaning_candidate": "legacy test partitions feedback signals and checks counts and uniqueness",
+      "actor_candidate": "historical test fixture consumer",
+      "product_unit_candidate": "HARNESS verification candidate ↔ OS disposition candidate",
+      "consumer_candidate": "legacy manifest and feedback disposition candidate",
+      "failure_or_unresolved": "test_source_present_unexecuted; no pass claim",
+      "legacy_authority_or_enforced_by": "historical test fixture consumer",
+      "evidence_status": "test_source_present_unexecuted; no pass claim"
+    },
+    {
+      "atom_id": "ATOM-18-16",
+      "source_asset_id": "LEGACY-ASSET-E56701056732E5CF9A1C",
+      "source_span_id": "SRC-9A1-03",
+      "meaning_candidate": "legacy test checks source digest, additive successors and activation phase",
+      "actor_candidate": "historical test oracle claim",
+      "product_unit_candidate": "HARNESS pair/verification candidate",
+      "consumer_candidate": "plan/source digest consumer candidate",
+      "failure_or_unresolved": "contradiction_preserved; current oracle unknown",
+      "legacy_authority_or_enforced_by": "historical test oracle claim",
+      "evidence_status": "contradiction_preserved; current oracle unknown"
+    },
+    {
+      "atom_id": "ATOM-18-17",
+      "source_asset_id": "LEGACY-ASSET-E56701056732E5CF9A1C",
+      "source_span_id": "SRC-9A1-04",
+      "meaning_candidate": "legacy closure text separates disposition from implementation and freeze",
+      "actor_candidate": "historical boundary claim",
+      "product_unit_candidate": "HARNESS change admission candidate",
+      "consumer_candidate": "downstream implementation/freeze consumer candidate",
+      "failure_or_unresolved": "observed_legacy_text; no authority",
+      "legacy_authority_or_enforced_by": "historical boundary claim",
+      "evidence_status": "observed_legacy_text; no authority"
+    }
+  ],
+  "current_refs": [
+    {
+      "ref_id": "CUR-XW-18",
+      "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+      "sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+      "start_line": 1,
+      "end_line": 12,
+      "line_sha256": "8ab42b6ffd18ccd731c452ead315ff29e383e42775ac5c633c5a4fd78b3a9523",
+      "exact_text": "# 新世代の構造改善判断と旧Refactoring Trigger候補の対応\n\n確認日: 2026-09-14\n\n## 目的\n\n`refactoring-trigger-admission-{requirements,acceptance}.md`の旧要件6件、旧受入12件を、HARNESSの変更・検証条件と\nHELIX-OSの観測・候補・採否統制へ再分類する。旧候補はUIL、System Synthesis、Universal Workflow、RF0..RF6、\ncurrent 9 scope、既存CIを前提に承認されたcandidateであり、新世代へ承認状態や実装方式を継承しない。\n\n旧候補には独立したL1利用要求がない。新世代では利用者価値と対象をL1／L2で確定してからL3 trigger契約を導出する。\n本表は要求源の照合であり、候補生成、admission、Issue／PLAN生成、runtime write、CIを実行しない。\n",
+      "product": "HELIX-HARNESS",
+      "layer": "L2/L11",
+      "classification": "direct_current_ref",
+      "relation": "current source crosswalk directly separates HARNESS change/verification and OS observation/adoption; old implementation is not inherited"
+    },
+    {
+      "ref_id": "CUR-XW-18-BOUNDARY",
+      "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
+      "sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+      "start_line": 36,
+      "end_line": 48,
+      "line_sha256": "5b85eb32c77072ccb61efb5aead359151a250d45dfc4441bcbd9f051e33d3ee4",
+      "exact_text": "## 新世代の構造改善境界\n\n1. HARNESSは、意味保存の判定、変更分類、影響する上流・設計・V-pair、必要検証、差戻し条件を定める。\n2. HELIX-OSは、観測、finding、改善候補、scope、重複、採否、割当、結果、効果、失効を管理する。\n3. 構造改善候補は要求や設計の意味変更を実行しない。意味変更は対象製品の最上流へ別の変更候補として戻す。\n4. metric、AI評価、file size、Issue数、定期scan、旧CI結果の一つだけで改善を採択・実行しない。\n5. 旧実装とpolicyはarchive sourceとして意味と反例を保全し、新世代runtimeへ再接続しない。\n\n## 次工程\n\nConcept v4.1と対象別L1で構造改善の利用者価値を定め、HARNESS／HELIX-OS L2／L11へ個別採否する。\n新しいscope、trigger、状態、効果指標はその後にL3／L10／L12へ降ろす。要求整理が閉じるまで旧UIL、RF0、\n既存scanner、Issue／PLAN自動生成、既存CIを実行しない。\n",
+      "product": "HELIX-OS",
+      "layer": "L2/L11",
+      "classification": "direct_boundary_current_ref",
+      "relation": "current structure-improvement ownership and downstream L2/L11/L3/L10 path; no runtime is executed"
+    },
+    {
+      "ref_id": "CUR-HARNESS-L2-REF",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77",
+      "start_line": 212,
+      "end_line": 218,
+      "line_sha256": "1f339cb88517614978916d510fa878ce5310319055edeec28b714b8b84f3d88a",
+      "exact_text": "## 構造改善に適用する変更条件\n\n[旧Refactoring Trigger候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md)は、\n[新世代対応表](../../governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md)で再採否する。\nHARNESS-L2-004／005では、構造改善が要求・public contractの意味を保存するか、影響する上流・設計・V-pair、\n必要な再検証、差戻し先を確認する。意味変更、実装故障、外部環境変化を一つのrefactoring routeへ丸めない。\n旧候補にはL1利用要求がないため、新世代の利用者価値が確定するまでL3 triggerを採用しない。\n",
+      "product": "HELIX-HARNESS",
+      "layer": "L2",
+      "classification": "direct_current_ref",
+      "relation": "HARNESS candidate governs structure-change meaning, trace, V-pair and verification boundary; direct PHCAP-18 evidence remains candidate"
+    },
+    {
+      "ref_id": "CUR-OS-L2-REF",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "start_line": 159,
+      "end_line": 166,
+      "line_sha256": "efa5c7fd33704965b837a4965be264c5fd7c7117a2d5c5da4ee2184e20429338",
+      "exact_text": "## 構造改善候補の統制条件\n\n[旧Refactoring Trigger候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md)は、\n[新世代対応表](../../governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md)に従って再採否する。\nHELIXOS-L2-001／002／003／005／007では、観測、finding、改善候補、scope、根拠、意味保存、必要検証、採否、\n割当、結果、効果、失効を区別する。未評価、unknown、stale、partial、findingなし、no actionを別状態として保持し、\n単一metric、AI評価、file size、Issue数、定期scan、旧CI結果から候補の採択・実行を生成しない。\n旧UIL、System Synthesis、RF0..RF6、current 9 scope、既存scanner／CIを新世代へ継承しない。\n",
+      "product": "HELIX-OS",
+      "layer": "L2",
+      "classification": "adjacent_current_ref",
+      "relation": "OS candidate distinguishes observation, finding, adoption, effect and expiry; adjacent boundary reference"
+    },
+    {
+      "ref_id": "CUR-WEB-L2-BOUNDARY",
+      "path": "docs/helix-web/L2-requirements/product-requirements.md",
+      "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+      "start_line": 46,
+      "end_line": 50,
+      "line_sha256": "0631562e61aa463ae59b3758222027a00749574024615d4ab4f2e7cbb494bd79",
+      "exact_text": "## 要求対象と未決定の境界\n\nHARNESSは利用する開発能力・工程条件を提供する。HELIX-OSはWebプロジェクトの要求・進行・Worker・CI・学習・ログを管理し、\nHELIX-Web-OSは展開後のtenant・Connector job・service state・配備・監視・復旧を担う。\n本書はWebの利用者向け操作・表示・サービス体験を所有し、OS内部管理UIの要求をWebの製品要求として一括転用しない。\n",
+      "product": "HELIX-Web",
+      "layer": "L2",
+      "classification": "adjacent_current_ref",
+      "relation": "Web boundary owns user-facing product experience; no PHCAP-18 direct evidence is listed"
+    },
+    {
+      "ref_id": "CUR-WEBOS-L2-BOUNDARY",
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "start_line": 33,
+      "end_line": 38,
+      "line_sha256": "346254b4c8a2314ae4466d19f6af558588f2a9948d6fa7ed274e5df4633ce83d",
+      "exact_text": "| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-Web-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWeb-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、\nartifact、receipt、telemetry export、改善proposalとして行う。\n",
+      "product": "HELIX-Web-OS",
+      "layer": "L2",
+      "classification": "adjacent_current_ref",
+      "relation": "Web-OS owns service runtime and bounded export; no PHCAP-18 direct evidence is listed"
+    }
+  ],
+  "counts": {
+    "legacy_assets": 5,
+    "source_spans": 22,
+    "semantic_atoms": 17,
+    "current_refs_recorded": 6,
+    "direct_current_refs": 2,
+    "harness_direct_current_refs": 2,
+    "legacy_consumer_refs_observed": 0,
+    "decision_records_found": 0
+  },
+  "contradictions_preserved": [
+    {
+      "id": "CONTR-01",
+      "status": "unresolved_preserved",
+      "left": "legacy candidate metadata describes an approved candidate but stops canonical promotion and current authority",
+      "right": "asset ledger is historical, unresolved, implementation unknown, with no decision record",
+      "resolution": "preserved candidate/history versus ledger state; no current authority, adoption or completion is generated"
+    },
+    {
+      "id": "CONTR-02",
+      "status": "unresolved_preserved",
+      "left": "legacy L5/L6 design, implementation source and test source describe refactor contracts and checks",
+      "right": "ledger implementation status remains unknown and old runtime/test/CI execution is prohibited",
+      "resolution": "preserved source presence versus unknown execution/implementation; no current oracle or pass is generated"
+    },
+    {
+      "id": "CONTR-03",
+      "status": "unresolved_preserved",
+      "left": "PHCAP-18 product_targets contains four products",
+      "right": "direct current evidence contains only HARNESS and OS; Web/Web-OS refs are adjacent candidates",
+      "resolution": "Web/Web-OS remain unknown; candidate boundary refs do not close direct evidence gap"
+    },
+    {
+      "id": "CONTR-04",
+      "status": "unresolved_preserved",
+      "left": "legacy test source asserts digest, successor and closure conditions",
+      "right": "historical test source is a legacy oracle candidate and was not executed",
+      "resolution": "preserved historical test claim; no current acceptance, implementation or freeze is generated"
+    }
+  ],
+  "unresolved": [
+    "all five ledger dispositions remain unresolved and all implementation statuses remain unknown",
+    "append-only decision log has no matching records; adoption, rejection, owner, successor and consumer closure remain undecided",
+    "legacy consumer closure is pending for every selected asset; representative sources do not close all refactor consumers",
+    "L5/L6 assets have multi-phase or PHCAP-19 overlap candidates requiring semantic split",
+    "product unit, connection and composite split across HARNESS/OS/Web/Web-OS requires human semantic review",
+    "Web and Web-OS have no direct PHCAP-18 current refs; this remains unknown rather than unimplemented",
+    "current L2/L11 candidate text does not establish approved requirement, L3/L10 implementation, acceptance or operation",
+    "old trigger IDs, RF0/RF6, heuristic thresholds, state tables and test oracle are not reusable current authority",
+    "meaning equivalence and replacement/retirement decisions are absent",
+    "all unselected refactor, redesign, retrofit, performance and feedback assets remain residual",
+    "old runtime, test, CI, hook and adapter were not executed and cannot serve as oracle or fallback"
+  ]
+}
