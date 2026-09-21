@@ -8,10 +8,10 @@
   "state": "registered",
   "reason": "PHCAP-04は四製品のL2要求採否・IR admissionがdraft_containers、PHCAP-05は四製品のL11受入がdraftで全件未実行である。代表8旧assetのsource／decision／failure／consumer状態、保存source snapshotと旧design／code／test-designのimplementation差分、現行4製品のL2↔L11境界、candidate phase joinをdigest／exact spanで静的に保持する。source preservation decisionはtarget product採用を示さず、旧codeやtest-designは現行実装・受入を示さない。authority、owner、successor、採否、実装、acceptance、release、外部作用は生成しない。",
   "upstream": [
-    {"path": "scaffold/phcap04-05-requirement-acceptance-research/README.md", "sha256": "4d0c2e4f6493c130b021a90e4a794aedd2f000175687ce2621fd1033d365bf96", "note": "PHCAP-04/05 status、旧asset、四製品境界、unknown boundary"},
+    {"path": "scaffold/phcap04-05-requirement-acceptance-research/README.md", "sha256": "51a5b2c8d244c16c32d300ac3300e155e1a5436926775a0d391532f4185d76a1", "note": "PHCAP-04/05 status、旧asset、四製品境界、unknown boundary"},
     {"path": "scaffold/phcap04-05-requirement-acceptance-research/inventory.json", "sha256": "2f9f832eca55b5a8f640f9df535087e9826cbaa744fb65e47b2ecde4b26d77fe", "note": "task、ledger snapshot、source span、decision、failure、consumer、phase join inventory"},
-    {"path": "scaffold/phcap04-05-requirement-acceptance-research/validate.py", "sha256": "5749e3c0afd33b661e6f1471dd7ceccdc5d5b989a0fd746f7a94728d295f7a31", "note": "four-product L2/L11、ledger、archive span、decision、unknown validator"},
-    {"path": "scaffold/phcap04-05-requirement-acceptance-research/selfcheck.py", "sha256": "40214f3bd934843b73e23fbe8d2db527f995ab5d6dd1b9712caf2a86316d0fe0", "note": "36 authority／adoption／implementation／acceptance／failure／consumer negative cases"},
+    {"path": "scaffold/phcap04-05-requirement-acceptance-research/validate.py", "sha256": "eb2b3ef9b785adeeb77a3b9188e851891529ffbb1d098f6fecf0af9668191f98", "note": "four-product L2/L11、ledger consumer再導出、archive span、decision、unknown validator"},
+    {"path": "scaffold/phcap04-05-requirement-acceptance-research/selfcheck.py", "sha256": "f79ba9ba94fc037603d647a51c1ae4dd47d27eeb2c1f8007963404ff3d9039d0", "note": "48 authority／adoption／implementation／acceptance／failure／consumer negative cases"},
     {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "note": "PHCAP-04/05 current／legacy phase status and build boundary"},
     {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "8 selected asset disposition／implementation／consumer state"},
     {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "8 selected phase／product candidate classifications"},
@@ -81,7 +81,7 @@
     "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
     "oracles": [
       "PHCAP-04/05 validate.py（phase／asset ledger、source span、decision、failure、consumer、四製品L2/L11 static checks）",
-      "selfcheck.py（authority、adoption、phase join、implementation、acceptance、failure、consumerの36 negative cases）",
+      "selfcheck.py（authority、adoption、phase join、implementation、acceptance、failure、consumer、keyset、anchor、negative本文の48 negative cases）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],

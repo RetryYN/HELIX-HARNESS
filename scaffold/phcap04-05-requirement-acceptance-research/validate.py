@@ -73,6 +73,120 @@ EXPECTED_PROHIBITED = [
     "four-product coverage does not assign owner or authority",
     "Scaffold validator pass does not authorize build, deployment, CI, release or external effect",
 ]
+EXPECTED_UNIT_ASSETS = {
+    "PHCAP0405-UNIT-HARNESS": [
+        "LEGACY-ASSET-9F48ADEEB477DCA54039", "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+        "LEGACY-ASSET-02319C2481B9E01698D5", "LEGACY-ASSET-B3866EECAF22235E9EB5",
+        "LEGACY-ASSET-EA8C51BDF69B34E896AA", "LEGACY-ASSET-2CA9EFB00A24A7346674",
+    ],
+    "PHCAP0405-UNIT-OS": [
+        "LEGACY-ASSET-9F48ADEEB477DCA54039", "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+        "LEGACY-ASSET-02319C2481B9E01698D5", "LEGACY-ASSET-F17ABDB90E1340D09746",
+        "LEGACY-ASSET-B3866EECAF22235E9EB5", "LEGACY-ASSET-EA8C51BDF69B34E896AA",
+        "LEGACY-ASSET-2CA9EFB00A24A7346674",
+    ],
+    "PHCAP0405-UNIT-Web": [
+        "LEGACY-ASSET-9F48ADEEB477DCA54039", "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+        "LEGACY-ASSET-02319C2481B9E01698D5", "LEGACY-ASSET-B3866EECAF22235E9EB5",
+        "LEGACY-ASSET-EA8C51BDF69B34E896AA", "LEGACY-ASSET-2CA9EFB00A24A7346674",
+    ],
+    "PHCAP0405-UNIT-WebOS": [
+        "LEGACY-ASSET-9F48ADEEB477DCA54039", "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+        "LEGACY-ASSET-02319C2481B9E01698D5", "LEGACY-ASSET-F17ABDB90E1340D09746",
+        "LEGACY-ASSET-B3866EECAF22235E9EB5", "LEGACY-ASSET-EA8C51BDF69B34E896AA",
+        "LEGACY-ASSET-2CA9EFB00A24A7346674",
+    ],
+}
+EXPECTED_FAILURE_UNRESOLVED = [
+    "historical command/runtime execution outcome unknown",
+    "failure/incident/rollback receipts absent from selected ledgers",
+    "current implementation and acceptance behavior unknown",
+]
+EXPECTED_CONSUMER_UNRESOLVED = [
+    "preservation ledger consumers are not current runtime consumers",
+    "consumer identity/read-after and acceptance closure unknown",
+    "downstream product owner and phase closure unknown",
+]
+EXPECTED_FAILURE_OBSERVED = [
+    "source contains requirement/design/code/test-design assertions or boundary conditions",
+    "selected ledgers mark legacy_execution_performed false",
+]
+EXPECTED_FAILURE_UNKNOWN = [
+    "whether any historical command or runtime path actually ran",
+    "current implementation applicability",
+    "failure/incident/rollback outcome",
+]
+EXPECTED_CONSUMER_OBSERVED = [
+    "ledger consumer refs are preservation/review surfaces when present; source names acceptance or requirement consumers as candidate surfaces",
+]
+EXPECTED_CONSUMER_UNKNOWN = [
+    "current consumer identity and read-after",
+    "runtime adoption and acceptance closure",
+    "current downstream owner",
+]
+EXPECTED_NEGATIVE_CASES = [
+    "authority/meaning/successor/human decision/equivalence promotion",
+    "task phase record/digest drift",
+    "ledger snapshot/source digest/span tamper",
+    "legacy implementation/execution promotion",
+    "decision adoption invention",
+    "failure receipt invention",
+    "consumer runtime closure invention",
+    "current L2/L11 implementation/acceptance promotion",
+    "product owner/edge authority promotion",
+    "phase join admission promotion",
+]
+EXPECTED_ANCHOR_MEANINGS = {
+    "LEGACY-ASSET-9F48ADEEB477DCA54039-A01": "legacy L1/L2 metadata, confirmed source status and pair contract",
+    "LEGACY-ASSET-9F48ADEEB477DCA54039-A02": "business purpose and runtime/support claim",
+    "LEGACY-ASSET-9F48ADEEB477DCA54039-A03": "business requirements, UX requirements and human/agent boundary",
+    "LEGACY-ASSET-B5B5E71B2AF1459D59A1-A01": "legacy L3 metadata, count and requirement/acceptance scope",
+    "LEGACY-ASSET-B5B5E71B2AF1459D59A1-A02": "functional requirements, AC coverage and human decision points",
+    "LEGACY-ASSET-B5B5E71B2AF1459D59A1-A03": "FR-01 functional behavior and runtime command surface",
+    "LEGACY-ASSET-02319C2481B9E01698D5-A01": "v1.3 revision status, inherited source and non-completion boundary",
+    "LEGACY-ASSET-02319C2481B9E01698D5-A02": "current layer meaning, L2/L3/L11 distinction and authority source rules",
+    "LEGACY-ASSET-02319C2481B9E01698D5-A03": "V-model layer/pair table",
+    "LEGACY-ASSET-D6339A02201B20481C3F-A01": "canonical requirement IR shape and canonical authority field",
+    "LEGACY-ASSET-D6339A02201B20481C3F-A02": "baseline root digest construction",
+    "LEGACY-ASSET-D6339A02201B20481C3F-A03": "human-reviewed shadow promotion guard",
+    "LEGACY-ASSET-D6339A02201B20481C3F-A04": "canonical baseline/root construction",
+    "LEGACY-ASSET-F17ABDB90E1340D09746-A01": "discovery event vocabulary and candidate states",
+    "LEGACY-ASSET-F17ABDB90E1340D09746-A02": "event digest, human decision requirement and state transition guard",
+    "LEGACY-ASSET-F17ABDB90E1340D09746-A03": "projection rebuild chain and digest checks",
+    "LEGACY-ASSET-F17ABDB90E1340D09746-A04": "candidate acceptance, compile gate and projection output",
+    "LEGACY-ASSET-B3866EECAF22235E9EB5-A01": "L11/UAT evidence boundary, open decisions and non-close conditions",
+    "LEGACY-ASSET-EA8C51BDF69B34E896AA-A01": "L12 acceptance evidence index and frontier boundary",
+    "LEGACY-ASSET-2CA9EFB00A24A7346674-A01": "L12 test design metadata, HAT/HAC declarations",
+    "LEGACY-ASSET-2CA9EFB00A24A7346674-A02": "acceptance observation design and explicit non-implementation claim",
+    "LEGACY-ASSET-2CA9EFB00A24A7346674-A03": "acceptance conditions and runtime evidence gap semantics",
+    "LEGACY-ASSET-2CA9EFB00A24A7346674-A04": "L3-to-L12 trace map",
+}
+
+KEYSETS = {
+    "root": {"schema", "status", "authority_effect", "meaning_change_applied", "successor_requirement_ids", "human_decision_ref", "equivalence_claim", "old_runtime_test_ci_execution", "base", "rebaseline", "task_ids", "tasks", "ledger_provenance", "scope", "product_boundary_candidates", "current_evidence", "legacy_assessment", "decisions", "failure_residual", "consumer_residual", "gaps", "prohibited_inference", "verification_contract", "counts"},
+    "base": {"origin_main_commit", "branch", "worktree", "captured_at", "source_revision"},
+    "rebaseline": {"origin_main_at_start", "origin_main_at_final", "changed", "stop_condition"},
+    "ledger_provenance": {"phase_inventory_path", "phase_inventory_sha256", "asset_ledger_path", "asset_ledger_sha256", "asset_ledger_record_count", "phase_ledger_path", "phase_ledger_sha256", "phase_ledger_record_count", "decision_ledger_path", "decision_ledger_sha256", "decision_ledger_record_count"},
+    "task": {"task_id", "phase", "title", "inventory_path", "inventory_sha256", "phase_record_snapshot", "current_status", "legacy_capability_status", "transition_assessment", "new_build_allowed", "authority_effect"},
+    "scope": {"product_targets", "phase_ids", "legacy_asset_ids", "legacy_layers", "candidate_units", "candidate_edges", "candidate_phase_joins"},
+    "unit": {"unit_id", "product", "status", "authority_status", "l2_status", "l11_status", "implementation_status", "acceptance_status", "operation_status", "evidence_ref_ids", "legacy_asset_ids", "unresolved"},
+    "edge": {"edge_id", "from_unit", "to_unit", "relation", "status", "authority_effect", "evidence_ref_ids", "unresolved"},
+    "join": {"asset_id", "phase", "status", "basis", "classification_id"},
+    "boundary": {"defined_product_set", "products", "current_implementation_claim", "current_acceptance_claim", "authority_effect"},
+    "boundary_product": {"product", "l2_ref_ids", "l11_ref_ids", "l2_status", "l11_status", "implementation_status", "acceptance_status", "authority_status", "current_evidence_status", "unresolved"},
+    "current": {"l2_status", "l11_status", "implementation_status", "acceptance_status", "authority_status", "refs"},
+    "current_ref": {"ref_id", "product", "classification", "path", "start_line", "end_line", "sha256", "line_sha256", "exact_text", "meaning", "status", "authority_effect"},
+    "legacy": {"asset_id", "source_path", "archive_path", "source_revision", "source_sha256", "source_line_count", "asset_class", "authority_status", "disposition", "implementation_status", "legacy_execution_performed", "consumer_refs", "decision_record_ref", "external_effect_status", "reuse_exclusion_class", "ledger_snapshot", "phase_classification_snapshot", "source_meaning", "source_anchors", "decision_evidence", "failure_evidence", "consumer_evidence", "unresolved"},
+    "anchor": {"anchor_id", "line_start", "line_end", "sha256", "exact_text", "meaning"},
+    "decision_evidence": {"matching_records", "matching_record_count", "effective_status"},
+    "failure": {"status", "execution_receipts", "anchor_ids", "observed", "unknown"},
+    "consumer": {"status", "ledger_consumer_refs", "runtime_consumer_refs", "closure_status", "anchor_ids", "observed", "unknown"},
+    "decisions": {"selected_asset_ids", "matching_append_only_decision_record_count", "matching_asset_ids", "decision_effect", "per_asset", "status"},
+    "failure_residual": {"status", "execution_receipts", "selected_asset_legacy_execution_flags", "current_failure_status", "current_implementation_status", "unresolved"},
+    "consumer_residual": {"status", "ledger_consumer_refs_by_asset", "runtime_consumer_refs_by_asset", "consumer_closed_assets", "consumer_records_observed", "unresolved"},
+    "verification": {"archive_read_only", "old_runtime_test_ci_execution", "requires_exact_source_spans", "requires_ledger_state_reconciliation", "unknowns_must_remain_explicit", "negative_cases"},
+    "counts": {"tasks", "defined_products", "product_units", "candidate_edges", "candidate_phase_joins", "legacy_assets", "source_anchors", "current_refs", "decision_matches", "failure_execution_receipts", "consumer_closed_assets"},
+}
 
 
 def sha(data: bytes) -> str:
@@ -104,6 +218,46 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     def req(condition: bool, code: str) -> None:
         if not condition:
             errors.append(code)
+
+    def keys_exact(value, name: str, code: str) -> None:
+        expected = KEYSETS[name]
+        req(isinstance(value, dict) and set(value) == expected, code)
+
+    keys_exact(data, "root", "E_KEYS_ROOT")
+    keys_exact(data.get("base"), "base", "E_KEYS_BASE")
+    keys_exact(data.get("rebaseline"), "rebaseline", "E_KEYS_REBASELINE")
+    keys_exact(data.get("scope"), "scope", "E_KEYS_SCOPE")
+    keys_exact(data.get("product_boundary_candidates"), "boundary", "E_KEYS_BOUNDARY")
+    keys_exact(data.get("current_evidence"), "current", "E_KEYS_CURRENT")
+    keys_exact(data.get("decisions"), "decisions", "E_KEYS_DECISIONS")
+    keys_exact(data.get("failure_residual"), "failure_residual", "E_KEYS_FAILURE_RESIDUAL")
+    keys_exact(data.get("consumer_residual"), "consumer_residual", "E_KEYS_CONSUMER_RESIDUAL")
+    keys_exact(data.get("verification_contract"), "verification", "E_KEYS_VERIFICATION")
+    keys_exact(data.get("counts"), "counts", "E_KEYS_COUNTS")
+    keys_exact(data.get("ledger_provenance"), "ledger_provenance", "E_KEYS_LEDGER_PROVENANCE")
+    legacy_assessment = data.get("legacy_assessment")
+    req(isinstance(legacy_assessment, dict) and set(legacy_assessment) == {"PHCAP-04", "PHCAP-05", "assets"}, "E_KEYS_LEGACY_ASSESSMENT")
+    for task in data.get("tasks", []):
+        keys_exact(task, "task", "E_KEYS_TASK")
+    for unit in data.get("scope", {}).get("candidate_units", []):
+        keys_exact(unit, "unit", "E_KEYS_UNIT")
+    for edge in data.get("scope", {}).get("candidate_edges", []):
+        keys_exact(edge, "edge", "E_KEYS_EDGE")
+    for join in data.get("scope", {}).get("candidate_phase_joins", []):
+        keys_exact(join, "join", "E_KEYS_JOIN")
+    for product in data.get("product_boundary_candidates", {}).get("products", []):
+        keys_exact(product, "boundary_product", "E_KEYS_BOUNDARY_PRODUCT")
+    for ref in data.get("current_evidence", {}).get("refs", []):
+        keys_exact(ref, "current_ref", "E_KEYS_CURRENT_REF")
+    for asset in data.get("legacy_assessment", {}).get("assets", []):
+        keys_exact(asset, "legacy", "E_KEYS_LEGACY")
+        for anchor in asset.get("source_anchors", []):
+            keys_exact(anchor, "anchor", "E_KEYS_ANCHOR")
+        keys_exact(asset.get("decision_evidence"), "decision_evidence", "E_KEYS_DECISION_EVIDENCE")
+        keys_exact(asset.get("failure_evidence"), "failure", "E_KEYS_FAILURE")
+        keys_exact(asset.get("consumer_evidence"), "consumer", "E_KEYS_CONSUMER")
+    # The provenance object is deliberately fixed separately because it is a
+    # source-of-truth pointer set, not an open-ended metadata bag.
 
     req(data.get("schema") == "phcap04-05-requirement-acceptance-research/v1", "E_SCHEMA")
     req(data.get("status") == "research_premise_candidate", "E_STATUS")
@@ -192,7 +346,8 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
         req(unit.get("acceptance_status") == "unknown", "E_UNIT_ACCEPTANCE:" + uid)
         req(unit.get("operation_status") == "unknown", "E_UNIT_OPERATION:" + uid)
         req(set(unit.get("evidence_ref_ids", [])) <= all_ref_ids and unit.get("evidence_ref_ids"), "E_UNIT_REFS:" + uid)
-        req(set(unit.get("legacy_asset_ids", [])) <= set(ASSET_IDS) and unit.get("legacy_asset_ids"), "E_UNIT_ASSETS:" + uid)
+        req(unit.get("legacy_asset_ids") == EXPECTED_UNIT_ASSETS.get(uid), "E_UNIT_ASSETS_EXACT:" + uid)
+        req(set(unit.get("legacy_asset_ids", [])) <= set(scope.get("legacy_asset_ids", [])), "E_UNIT_ASSETS_SCOPE:" + uid)
         req(isinstance(unit.get("unresolved"), list) and unit["unresolved"], "E_UNIT_UNRESOLVED:" + uid)
 
     edges = scope.get("candidate_edges", [])
@@ -295,7 +450,7 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
             anchor_id = anchor.get("anchor_id")
             req(nonempty(anchor_id) and anchor_id not in all_anchor_ids, "E_ANCHOR_DUP:" + str(anchor_id))
             local_ids.add(anchor_id); all_anchor_ids.add(anchor_id)
-            req(nonempty(anchor.get("meaning")), "E_ANCHOR_MEANING:" + str(anchor_id))
+            req(anchor.get("meaning") == EXPECTED_ANCHOR_MEANINGS.get(anchor_id), "E_ANCHOR_MEANING:" + str(anchor_id))
             if archive.is_file() and check_files:
                 actual = span_text(archive, anchor.get("line_start", 0), anchor.get("line_end", 0))
                 req(actual == anchor.get("exact_text"), "E_ANCHOR_TEXT:" + str(anchor_id))
@@ -311,6 +466,10 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
         req(consumer.get("runtime_consumer_refs") == [], "E_CONSUMER_RUNTIME_REFS:" + str(aid))
         req(consumer.get("closure_status") == "pending", "E_CONSUMER_CLOSURE:" + str(aid))
         req(set(consumer.get("anchor_ids", [])) == local_ids, "E_CONSUMER_ANCHORS:" + str(aid))
+        req(consumer.get("observed") == EXPECTED_CONSUMER_OBSERVED, "E_CONSUMER_OBSERVED:" + str(aid))
+        req(consumer.get("unknown") == EXPECTED_CONSUMER_UNKNOWN, "E_CONSUMER_UNKNOWN:" + str(aid))
+        req(failure.get("observed") == EXPECTED_FAILURE_OBSERVED, "E_FAILURE_OBSERVED:" + str(aid))
+        req(failure.get("unknown") == EXPECTED_FAILURE_UNKNOWN, "E_FAILURE_UNKNOWN:" + str(aid))
         matching = [r for r in decision_rows if r.get("asset_id") == aid]
         req(asset.get("decision_evidence", {}).get("matching_records") == matching, "E_DECISION_RECORDS:" + str(aid))
         req(asset.get("decision_evidence", {}).get("matching_record_count") == len(matching), "E_DECISION_RECORD_COUNT:" + str(aid))
@@ -327,11 +486,15 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     req(failure.get("selected_asset_legacy_execution_flags") == {a["asset_id"]: False for a in assets}, "E_FAILURE_FLAGS")
     req(failure.get("current_failure_status") == "unknown", "E_FAILURE_CURRENT")
     req(failure.get("current_implementation_status") == "unknown", "E_FAILURE_IMPL")
+    req(failure.get("unresolved") == EXPECTED_FAILURE_UNRESOLVED, "E_FAILURE_UNRESOLVED")
     consumer = data.get("consumer_residual", {})
     req(consumer.get("status") == "candidate_only_closure_pending", "E_CONSUMER_TOTAL_STATUS")
     req(consumer.get("runtime_consumer_refs_by_asset") == {a["asset_id"]: [] for a in assets}, "E_CONSUMER_TOTAL_RUNTIME")
     req(consumer.get("consumer_closed_assets") == 0, "E_CONSUMER_TOTAL_CLOSED")
     req(consumer.get("consumer_records_observed") == 0, "E_CONSUMER_TOTAL_RECORDS")
+    expected_ledger_consumers = {a["asset_id"]: asset_catalog.get(a["asset_id"], {}).get("consumer_refs", []) for a in assets}
+    req(consumer.get("ledger_consumer_refs_by_asset") == expected_ledger_consumers, "E_CONSUMER_LEDGER_REDERIVED")
+    req(consumer.get("unresolved") == EXPECTED_CONSUMER_UNRESOLVED, "E_CONSUMER_UNRESOLVED")
     req(data.get("gaps") == EXPECTED_GAPS, "E_GAPS_CONTENT")
     req(data.get("prohibited_inference") == EXPECTED_PROHIBITED, "E_PROHIBITED_CONTENT")
     verification = data.get("verification_contract", {})
@@ -340,7 +503,7 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     req(verification.get("requires_exact_source_spans") is True, "E_VERIFY_SPANS")
     req(verification.get("requires_ledger_state_reconciliation") is True, "E_VERIFY_LEDGER")
     req(verification.get("unknowns_must_remain_explicit") is True, "E_VERIFY_UNKNOWNS")
-    req(isinstance(verification.get("negative_cases"), list) and len(verification["negative_cases"]) >= 8, "E_VERIFY_NEGATIVE_CASES")
+    req(verification.get("negative_cases") == EXPECTED_NEGATIVE_CASES, "E_VERIFY_NEGATIVE_CASES")
     counts = data.get("counts", {})
     req(counts.get("tasks") == len(tasks), "E_COUNT_TASKS")
     req(counts.get("defined_products") == len(PRODUCTS), "E_COUNT_PRODUCTS")

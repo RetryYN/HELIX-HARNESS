@@ -36,7 +36,7 @@ PHCAP-04（要求採否／L2）とPHCAP-05（L11受入）について、旧asset
 
 `inventory.json`は、旧phaseの`documented_with_runtime_support`／`documented_with_test_design_partial`、`degraded_to_unapproved_routing_containers`／`degraded_to_draft`、保存sourceの`non_executable_read_only_source`、旧code／design／test-designの`implementation unknown`を別々に保持する。現行L2はdraft、現行L11はdraft、現行implementationとacceptanceは4製品すべてunknownである。旧文書の存在、旧codeの存在、test-designの定義、source preservation decisionから、実装済み・未実装・受入済みを推定しない。
 
-`inventory.json`には8 assetのledger／phase snapshot、23 exact source anchor、8 current L2/L11 ref、8 candidate phase join、decision 4件、failure receipt 0、runtime consumer refs空／closure pendingを収録する。`validate.py`は各snapshot、archive span、current ref、decision、4製品境界、phase join、unknownを再照合し、`selfcheck.py`は34種以上の昇格・改変を拒否する。
+`inventory.json`には8 assetのledger／phase snapshot、23 exact source anchor、8 current L2/L11 ref、8 candidate phase join、decision 4件、failure receipt 0、runtime consumer refs空／closure pendingを収録する。`validate.py`は各snapshot、archive span、current ref、decision、4製品境界、phase join、unknownを再照合し、asset ledgerからledger consumer refsを再導出する。`selfcheck.py`は48種の昇格・改変を拒否する。
 
 ```text
 python3 -B scaffold/phcap04-05-requirement-acceptance-research/validate.py
