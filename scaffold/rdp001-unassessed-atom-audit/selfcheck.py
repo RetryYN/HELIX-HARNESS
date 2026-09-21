@@ -30,6 +30,7 @@ def main() -> int:
         cases.append((name, bool(errors), errors[:1]))
 
     case("holding denominator -1", lambda x: x["denominators"].__setitem__("holding_records", 332))
+    case("capture head mutation", lambda x: x["audit_revisions"].__setitem__("capture_head", "0" * 40))
     case("archive oid mutation", lambda x: x["samples"][0].__setitem__("pre_isolation_blob_oid", "0" * 40))
     case("archive sha mutation", lambda x: x["samples"][0].__setitem__("pre_isolation_file_sha256", "0" * 64))
     case("product target claim", lambda x: x["source_register"].__setitem__("product_target", "HELIX-HARNESS"))

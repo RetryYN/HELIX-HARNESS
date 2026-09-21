@@ -16,7 +16,7 @@
 
 read-onlyで確認したPR状態は、#1951がmerge commit `4007b22dbcad45640ba0ee87393f6d2e290640ad`、#1955がmerge commit `569d7373c32287bbafadeec6043472563937c5c7`、#1957がOPEN（未merge）である。これは候補の境界確認であり、PR状態から要求authorityや完了を生成しない。
 
-`failure`、`degraded`、`consumer` は旧原文に対する語彙検索の集計であり、意味上のfailure・consumer確定数ではない。structured failure/degraded fieldは0件である。path由来のproduct/phaseは候補であり、要求採否、owner、successor、実装状態を確定しない。current HEADでsource pathが333件とも不在なのはarchive隔離・移設と整合するが、未実装の証明には使わない。
+`failure`、`degraded`、`consumer` は旧原文に対する語彙検索の集計であり、意味上のfailure・consumer確定数ではない。structured failure/degraded fieldは0件である。path由来のproduct/phaseは候補であり、要求採否、owner、successor、実装状態を確定しない。capture HEADでsource pathが333件とも不在なのはarchive隔離・移設と整合するが、未実装の証明には使わない。
 
 検証は候補reportの再計算validatorと否定例selfcheckに限定する。
 
@@ -29,4 +29,4 @@ python3 -B scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-`SCF-B-0027` に登録済みだが、authority effectは `none`、stateは `registered` のままである。origin/mainのtracked最大は`SCF-B-0020`で、旧候補worktreeに残る未コミット`SCF-B-0026`との衝突を避けるため、新候補は`SCF-B-0027`へ分離した。基準の `origin/main` HEAD は `569d7373c32287bbafadeec6043472563937c5c7` である。PRはread-only検証結果と上流digestをreview対象として扱い、mergeとpost-merge read-afterは許可されたレビュー対応側に委ねる。旧archive内の実行は行わない。正式なatom化・意味等価review・product routing・human decision・下流実装が成立した場合だけ、別の明示された移管手順を検討する。
+`SCF-B-0027` に登録済みだが、authority effectは `none`、stateは `registered` のままである。origin/mainのtracked最大は`SCF-B-0020`で、旧候補worktreeに残る未コミット`SCF-B-0026`との衝突を避けるため、新候補は`SCF-B-0027`へ分離した。調査時点の `origin/main` capture HEAD は `569d7373c32287bbafadeec6043472563937c5c7` であり、検証器はPRのHEADがその子孫であることを確認する。PRはread-only検証結果と上流digestをreview対象として扱い、mergeとpost-merge read-afterは許可されたレビュー対応側に委ねる。旧archive内の実行は行わない。正式なatom化・意味等価review・product routing・human decision・下流実装が成立した場合だけ、別の明示された移管手順を検討する。

@@ -86,8 +86,8 @@
     "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
     "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
     "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
-    "current_head": "569d7373c32287bbafadeec6043472563937c5c7",
-    "current_ref": "origin/main",
+    "capture_head": "569d7373c32287bbafadeec6043472563937c5c7",
+    "capture_ref": "origin/main",
     "checked_at": "2026-09-22"
   },
   "denominators": {

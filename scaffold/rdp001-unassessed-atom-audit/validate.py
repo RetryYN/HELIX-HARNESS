@@ -129,15 +129,15 @@ def validate(report: dict | None = None) -> list[str]:
     expect(errors, collision.get("allocated_id") == "SCF-B-0027", "report allocated binding id不一致")
     expect(errors, collision.get("previous_uncommitted_candidate_id") == "SCF-B-0026", "report previous binding id不一致")
     expect(errors, collision.get("collision") is False, "report binding collisionがfalseではない")
-    expect(errors, report.get("audit_revisions", {}).get("current_head") == EXPECTED_HEAD, "report current_head不一致")
-    expect(errors, report.get("audit_revisions", {}).get("current_ref") == "origin/main", "report current_ref不一致")
+    expect(errors, report.get("audit_revisions", {}).get("capture_head") == EXPECTED_HEAD, "report capture_head不一致")
+    expect(errors, report.get("audit_revisions", {}).get("capture_ref") == "origin/main", "report capture_ref不一致")
     expect(errors, report.get("existing_pr_boundary", {}).get("merge_status_read_only", {}).get("1951", {}).get("state") == "MERGED", "PR #1951 status不一致")
     expect(errors, report.get("existing_pr_boundary", {}).get("merge_status_read_only", {}).get("1955", {}).get("state") == "MERGED", "PR #1955 status不一致")
     expect(errors, report.get("existing_pr_boundary", {}).get("merge_status_read_only", {}).get("1957", {}).get("state") == "OPEN", "PR #1957 status不一致")
     expect(errors, len(holding) == 333, f"holding件数不一致: {len(holding)}")
     expect(errors, len({x.get("source_path") for x in holding}) == 333, "holding source_pathが重複")
     expect(errors, digest(HOLDING_PATH) == SOURCE_DIGEST, "holding digest不一致")
-    expect(errors, subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True, stdout=subprocess.PIPE, check=True).stdout.strip() == EXPECTED_HEAD, "current HEAD不一致")
+    expect(errors, subprocess.run(["git", "merge-base", "--is-ancestor", EXPECTED_HEAD, "HEAD"], cwd=ROOT, check=False).returncode == 0, "worktreeがcapture HEADの子孫でない")
 
     # report自身の主要分母と3 sampleは、Git全件走査の前にfail-closeする。
     expect(errors, report.get("source_register", {}).get("product_target") == "unassigned_cross_product", "report product targetが未確定値ではない")
