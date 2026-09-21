@@ -10,7 +10,7 @@
   "upstream": [
     {"path": "scaffold/phcap02-03-registration-classification-audit/inventory.json", "sha256": "dae50a18b9c3f4866552d24c5820f4609763554873d2af04dce5d8f44cef3c77", "note": "PHCAP-02/03 phase／product／legacy evidence gap inventory"},
     {"path": "scaffold/phcap02-03-registration-classification-audit/README.md", "sha256": "156cea8e56d6543847b498eb29c238c243cac77a1624d994c454a9c9fe593dbe", "note": "scope、67 path overlap、静的境界"},
-    {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "note": "PHCAP-02/03 current／legacy phase snapshot"},
+    {"path": "docs/governance/phase-capability-inventory.json", "sha256": "d3d15f2dfaca68f933c328bbebe083566ef7fd74102ed19db675ff9565968f91", "note": "PHCAP-02/03 current／legacy phase snapshot"},
     {"path": "docs/governance/legacy-ir-product-routing-bootstrap.jsonl", "sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1", "note": "153 source requirementの四製品 routing候補"},
     {"path": "docs/governance/management-provisional-requirement-register.jsonl", "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b", "note": "32 source_holding／requirement_candidate不在"},
     {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "selected旧asset disposition／implementation／consumer"},
