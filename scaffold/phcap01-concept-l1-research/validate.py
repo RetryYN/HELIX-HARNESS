@@ -81,6 +81,69 @@ EXPECTED_ASSET = {
     "LEGACY-ASSET-2E08F9429CA4C061B9AB": ("LASPH-0301", "unknown", 2215, "Historical", "unresolved", "unknown"),
 }
 
+EXPECTED_PROHIBITED_INFERENCE = [
+    "phase/product candidateを正式なphase admissionまたはproduct ownerへ変換しない",
+    "旧source、old code、test-design、historical decisionを現行implementation、oracle、fallback、acceptanceへ変換しない",
+    "18Fのsource_snapshot_preservationをtarget product adoptionやsuccessor assignmentと解釈しない",
+    "approved exact revisionをL2/L11合意、L3/L10、runtime、CI、release、deploymentの完了と解釈しない",
+    "実装証拠の欠如をunimplemented、degraded、failureの事実と断定しない",
+    "archive内のworkflow/runtime/test/CI/hook/adapter/sourceを実行しない",
+]
+
+EXPECTED_NESTED_KEYS = {
+    "root.base": "origin_main_commit branch worktree captured_at source_revision",
+    "root.phase_record": "task_id phase title product_targets current_status evidence_products current_refs scaffold legacy_exists legacy_layers_evidenced legacy_maximum_layer_evidenced legacy_capability_status representative_asset_ids assessment transition_assessment gaps new_build_allowed authority_effect",
+    "root.ledger_provenance": "phase_inventory asset_disposition phase_product_classification decisions",
+    "root.ledger_provenance.phase_inventory": "path sha256 records",
+    "root.ledger_provenance.asset_disposition": "path sha256 records",
+    "root.ledger_provenance.phase_product_classification": "path sha256 records",
+    "root.ledger_provenance.decisions": "path sha256 records",
+    "root.current_evidence": "approval_record approval_record_sha256 approval_status l1_frontmatter_status l2_l11_applied implementation_status degradation_status acceptance_status operation_status refs",
+    "root.current_evidence.refs[]": "ref_id product classification path sha256 line_count line_start line_end span_sha256 meaning status authority_effect",
+    "root.products[]": "unit_id product candidate_status authority_status current_implementation_status degradation_status operation_status l1_ref responsibility unresolved",
+    "root.connections[]": "connection_id from to relation status authority_effect meaning unresolved",
+    "root.legacy_assets[]": "asset_id source_path archive_path source_revision source_sha256 source_line_count artifact_kind classification_id candidate_phases candidate_products phase_status product_status ledger_asset_class ledger_disposition implementation_status implementation_evidence_state legacy_execution_performed consumer_refs consumer_closure_status decision_ids source_anchors unresolved",
+    "root.legacy_assets[].source_anchors[]": "id start end sha256 meaning",
+    "root.aggregates": "phase_candidate_count phase_status_counts artifact_kind_counts legacy_implementation_counts implementation_evidence_counts product_status_counts candidate_product_target_sets product_occurrences asset_disposition_counts consumer_closure_counts decision_match_count decision_match_asset_ids selected_asset_count",
+    "root.aggregates.phase_status_counts": "multi_phase_candidate unresolved_with_candidate",
+    "root.aggregates.artifact_kind_counts": "plan operation_document unknown requirement design test_design test_source",
+    "root.aggregates.legacy_implementation_counts": "unknown non_executable_read_only_source",
+    "root.aggregates.implementation_evidence_counts": "document_present test_design_present_unexecuted non_executable_source_snapshot test_source_present_unexecuted",
+    "root.aggregates.product_status_counts": "candidate_needs_semantic_review unresolved",
+    "root.aggregates.candidate_product_target_sets": "empty all_four harness_only os_only harness_os_webos",
+    "root.aggregates.product_occurrences": "HELIX-HARNESS HELIX-OS HELIX-Web HELIX-Web-OS",
+    "root.aggregates.asset_disposition_counts": "Historical/unresolved RequirementSourceSnapshot/source_snapshot_preservation",
+    "root.aggregates.consumer_closure_counts": "pending",
+    "root.failure_residual": "status selected_asset_execution_receipts selected_asset_legacy_execution_all_false current_failure_status current_implementation_status degradation_status observed unknown",
+    "root.consumer_residual": "status ledger_consumer_refs runtime_consumer_refs consumer_closed_assets observed unknown",
+    "root.consumer_residual.ledger_consumer_refs": "LEGACY-ASSET-18F7940E7994634D39A1",
+    "root.consumer_residual.runtime_consumer_refs": "",
+    "root.decisions": "selected_asset_ids matching_append_only_records effect adoption owner_assigned successor_assigned human_rehome_pending",
+    "root.verification_contract": "archive_read_only old_runtime_test_ci_execution current_source_sha_and_line_span_required legacy_source_sha_line_count_and_anchor_required ledger_state_reconciliation_required unknowns_explicit negative_cases",
+}
+
+
+def validate_nested_keys(data: dict) -> list[str]:
+    errors: list[str] = []
+
+    def walk(value: object, path: str) -> None:
+        expected = EXPECTED_NESTED_KEYS.get(path)
+        if path == "root.legacy_assets[]" and isinstance(value, dict) and value.get("asset_id") == "LEGACY-ASSET-18F7940E7994634D39A1":
+            expected += " source_authority_state target_authority_state"
+        if expected is not None:
+            if not isinstance(value, dict) or set(value) != set(expected.split()):
+                errors.append("E_NESTED_KEYS:" + path)
+        if isinstance(value, dict):
+            for key, child in value.items():
+                walk(child, path + "." + str(key))
+        elif isinstance(value, list):
+            for child in value:
+                if isinstance(child, (dict, list)):
+                    walk(child, path + "[]")
+
+    walk(data, "root")
+    return errors
+
 
 def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
@@ -105,7 +168,7 @@ def fail(errors: list[str], condition: bool, code: str) -> None:
 
 
 def validate(data: dict, check_files: bool = True) -> list[str]:
-    errors: list[str] = []
+    errors: list[str] = validate_nested_keys(data)
     expected_root = {"schema", "status", "authority_effect", "meaning_change_applied", "successor_requirement_ids", "human_decision_ref", "equivalence_claim", "old_runtime_test_ci_execution", "new_build_allowed", "base", "phase_record", "ledger_provenance", "current_evidence", "products", "connections", "legacy_assets", "aggregates", "failure_residual", "consumer_residual", "decisions", "unknowns", "prohibited_inference", "verification_contract"}
     fail(errors, set(data) == expected_root, "E_ROOT_KEYS")
     fail(errors, data.get("schema") == "SCF-PHCAP-01-STATIC-RESEARCH-v1", "E_SCHEMA")
@@ -268,6 +331,7 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     fail(errors, data.get("failure_residual", {}).get("selected_asset_execution_receipts") == 0 and data.get("failure_residual", {}).get("selected_asset_legacy_execution_all_false") is True, "E_FAILURE_BOUNDARY")
     fail(errors, data.get("consumer_residual", {}).get("consumer_closed_assets") == 0 and data.get("consumer_residual", {}).get("runtime_consumer_refs") == {}, "E_CONSUMER_BOUNDARY")
     fail(errors, isinstance(data.get("unknowns"), list) and len(data["unknowns"]) == 6, "E_UNKNOWNS")
+    fail(errors, data.get("prohibited_inference") == EXPECTED_PROHIBITED_INFERENCE, "E_PROHIBITED_INFERENCE")
     dec = data.get("decisions", {})
     fail(errors, dec.get("effect") == "source_snapshot_history_only" and dec.get("adoption") is False and dec.get("owner_assigned") is False and dec.get("successor_assigned") is False, "E_DECISION_BOUNDARY")
     contract = data.get("verification_contract", {})

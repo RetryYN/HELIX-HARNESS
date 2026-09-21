@@ -8,10 +8,10 @@
   "state": "registered",
   "reason": "PHCAP-01の現行Concept v4.1と4対象L1は承認recordのexact SHAで参照できるが、L2／L11採否、L3／L10、実装、受入、release、deploymentは成立していない。旧asset 45件のphase／product候補を再集計し、代表8件のarchive source／ledger／decision／failure／consumer状態と、四製品unit／connection候補を静的に束ねる。旧source preservation decisionはsource保持履歴でありtarget product adoptionではない。authority、owner、successor、縮退／未実装、runtime、外部作用は生成しない。",
   "upstream": [
-    {"path": "scaffold/phcap01-concept-l1-research/README.md", "sha256": "c406d40b54edda9b14414bf7a7936356cc7a1d8808962f200d0fb44f6c8bf5bc", "note": "PHCAP-01 static research scope and L2/L11 boundary"},
+    {"path": "scaffold/phcap01-concept-l1-research/README.md", "sha256": "c7ebf1c79e9c7148197191c0bc60385f4ef5f586f4fbd1fddfba526249431f56", "note": "PHCAP-01 static research scope and L2/L11 boundary"},
     {"path": "scaffold/phcap01-concept-l1-research/inventory.json", "sha256": "fe2bb891ed79359f729b4dd4caf50bda6a2fb484817adfe8019108d7b76786ca", "note": "phase／四製品unit・connection／8 legacy asset／failure／consumer inventory"},
-    {"path": "scaffold/phcap01-concept-l1-research/validate.py", "sha256": "339a635f41ff9a26be4f5ab3701c0b2292919bcf4c6a316557ee36aeafee2731", "note": "current／archive／ledger／decision static validator"},
-    {"path": "scaffold/phcap01-concept-l1-research/selfcheck.py", "sha256": "992d1cab48574fcff4a636f937e55159d54582198bac06b9fe51ac99199048d4", "note": "baseline/no-op plus 39 expected-error negative cases"},
+    {"path": "scaffold/phcap01-concept-l1-research/validate.py", "sha256": "01ed82706038891ac2eed638ff554aad4c36e93953e16f496ee599c273511a35", "note": "current／archive／ledger／decision static validator"},
+    {"path": "scaffold/phcap01-concept-l1-research/selfcheck.py", "sha256": "7f96fd8da290e154135251f01e62aae6f972372c28247b775d1d8245aa90f8bd", "note": "baseline/no-op plus 43 expected-error negative cases"},
     {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "note": "PHCAP-01 phase record and current evidence snapshot"},
     {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "selected asset disposition／implementation／consumer state"},
     {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "45 PHCAP-01 phase／product candidate rows"},
@@ -79,7 +79,7 @@
     "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
     "oracles": [
       "PHCAP-01 validate.py（current SHA／line span、archive source、phase／product／asset ledger、decision、failure、consumer static checks）",
-      "selfcheck.py（baseline/no-op、authority、unit／connection、L2／L11、implementation、archive、decision、failure、consumer、aggregateの39 expected-error negative cases）",
+      "selfcheck.py（baseline/no-op、authority、unit／connection、L2／L11、implementation、archive、decision、failure、consumer、aggregateの43 expected-error negative cases）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],

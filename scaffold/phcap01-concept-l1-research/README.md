@@ -19,6 +19,6 @@ python3 -B scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorはphase／asset ledger、現行文書SHA、archive source SHA・行数・anchor digest、decision履歴、候補unit／connection、unknown境界を静的に再照合する。selfcheckはbaseline greenとno-opを先に確認し、authority昇格、旧実装・実行・failure・consumer closureの捏造、現行実装／L2／L11の昇格、archive digest改変、四製品責務・接続意味の反転など39件の期待error code付き負例を検査する。
+validatorはphase／asset ledger、現行文書SHA、archive source SHA・行数・anchor digest、decision履歴、候補unit／connection、unknown境界に加え、禁止推論の本文・順序と入れ子の項目構造を静的に再照合する。selfcheckはbaseline greenとno-opを先に確認し、authority昇格、旧実装・実行・failure・consumer closureの捏造、現行実装／L2／L11の昇格、archive digest改変、四製品責務・接続意味の反転、禁止推論と入れ子項目の改変など43件の期待error code付き負例を検査する。
 
 この成果物は`SCF-B-0047`に束縛されたcandidateである。formal runtimeへのreplacementは人間判断後のL2／L11以降の別作業として保留する。

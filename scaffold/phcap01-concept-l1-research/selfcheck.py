@@ -79,6 +79,10 @@ expect_failure("decision record deletion", lambda x: x["decisions"].update(match
 expect_failure("phase aggregate tamper", lambda x: x["aggregates"].update(phase_candidate_count=44), "E_AGG_PHASE_CANDIDATE_COUNT")
 expect_failure("product aggregate tamper", lambda x: x["aggregates"]["product_status_counts"].update(unresolved=18), "E_AGG_PRODUCT_STATUS_COUNTS")
 expect_failure("unknown gap deletion", lambda x: x["unknowns"].pop(), "E_UNKNOWNS")
+expect_failure("prohibited inference inversion", lambda x: x["prohibited_inference"].__setitem__(0, "phase candidateは正式admission"), "E_PROHIBITED_INFERENCE")
+expect_failure("nested legacy asset key injection", lambda x: x["legacy_assets"][0].update(approved=True), "E_NESTED_KEYS:root.legacy_assets[]")
+expect_failure("nested product key injection", lambda x: x["products"][0].update(implementation="complete"), "E_NESTED_KEYS:root.products[]")
+expect_failure("nested current ref key injection", lambda x: x["current_evidence"]["refs"][0].update(approved=True), "E_NESTED_KEYS:root.current_evidence.refs[]")
 expect_failure("verification boundary tamper", lambda x: x["verification_contract"].update(archive_read_only=False), "E_VERIFICATION_BOUNDARY")
 
-print("PASS PHCAP-01 selfcheck: 39 negative cases plus baseline/no-op")
+print("PASS PHCAP-01 selfcheck: 43 negative cases plus baseline/no-op")
