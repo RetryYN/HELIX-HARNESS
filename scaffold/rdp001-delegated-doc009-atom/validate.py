@@ -18,6 +18,7 @@ SOURCE_LEDGER = ROOT / "docs/governance/delegated-requirement-document-source-ho
 ASSET_LEDGER = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 PHASE_LEDGER = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DECISIONS_LEDGER = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
+REFERENCE_LEDGER = ROOT / "docs/governance/delegated-requirement-document-reference-holding.jsonl"
 ARCHIVE_COMMIT = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 REPORT_COMMIT = "fa8f5426882ee56a56e28975746e2db590cd515f"
 LATEST_MAIN = "2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c"
@@ -96,6 +97,20 @@ def validate(inventory_override: dict | None = None) -> list[str]:
     for field in ("source_path", "archive_path", "source_declared_status", "source_relation", "holding_granularity", "carry_status", "meaning_change_applied", "successor_refs", "human_decision_ref"):
         expect(errors, source.get(field) == holding.get(field), f"holding {field}不一致")
     expect(errors, source.get("source_sha256") == holding.get("sha256"), "holding sha256不一致")
+    provenance = inventory.get("ledger_provenance", {})
+    for path_field, digest_field, path in (
+        ("source_holding_path", "source_holding_sha256", SOURCE_LEDGER),
+        ("reference_holding_path", "reference_holding_sha256", REFERENCE_LEDGER),
+        (None, "asset_ledger_sha256", ASSET_LEDGER),
+        (None, "phase_ledger_sha256", PHASE_LEDGER),
+        ("asset_decisions_path", "asset_decisions_sha256", DECISIONS_LEDGER),
+    ):
+        if path_field:
+            expect(errors, provenance.get(path_field) == str(path.relative_to(ROOT)), f"{path_field}不一致")
+        try:
+            expect(errors, provenance.get(digest_field) == hashlib.sha256(path.read_bytes()).hexdigest(), f"{digest_field}不一致")
+        except OSError as exc:
+            errors.append(f"{digest_field}対象ledger読込失敗: {exc}")
     expect(errors, asset.get("source_path") == SOURCE_PATH, "asset source path不一致")
     expect(errors, asset.get("implementation_status") == "unknown", "asset implementation status不一致")
     expect(errors, asset.get("disposition") == "unresolved", "asset disposition不一致")
@@ -106,7 +121,6 @@ def validate(inventory_override: dict | None = None) -> list[str]:
     expect(errors, phase.get("consumer_closure_status") == "pending", "phase consumer closure不一致")
     expect(errors, phase.get("product_classification_status") == "candidate_needs_semantic_review", "phase product status不一致")
     expect(errors, decisions == [], "matching legacy asset decision record exists")
-    expect(errors, inventory.get("ledger_provenance", {}).get("asset_decisions_sha256") == hashlib.sha256(DECISIONS_LEDGER.read_bytes()).hexdigest(), "asset decisions digest不一致")
 
     comparison = inventory.get("comparison", {})
     expect(errors, comparison.get("archive_commit") == ARCHIVE_COMMIT, "archive commit不一致")
@@ -152,8 +166,9 @@ def validate(inventory_override: dict | None = None) -> list[str]:
         expect(errors, atom.get("source_span_ref") == expected_ref, f"atom span ref不一致 {index}")
         atom_refs.append(atom.get("source_span_ref"))
         expect(errors, atom.get("candidate_kind") in {"metadata", "navigation", "premise", "example", "requirement", "connection", "acceptance"}, f"atom kind不正 {index}")
-        expect(errors, atom.get("candidate_target") in APPROVED_PRODUCTS | {"unresolved"}, f"atom product target不正 {index}")
-        expect(errors, set(atom.get("owner_candidates", [])) <= APPROVED_PRODUCTS, f"atom owner candidate不正 {index}")
+        expect(errors, atom.get("candidate_target") in {"HELIX-HARNESS", "unresolved"}, f"atom product target不正 {index}")
+        owners = atom.get("owner_candidates")
+        expect(errors, isinstance(owners, list) and bool(owners) and set(owners) <= {"HELIX-HARNESS", "HELIX-OS"}, f"atom owner candidate不正 {index}")
         expect(errors, atom.get("normalized_statement"), f"atom normalized statement欠落 {index}")
         legacy = atom.get("legacy_state", {})
         expect(errors, legacy.get("implementation_status") == "unknown", f"atom implementation status不一致 {index}")
@@ -171,7 +186,7 @@ def validate(inventory_override: dict | None = None) -> list[str]:
     for name, pattern in LEXICAL.items():
         expect(errors, inventory.get("legacy_status", {}).get("lexical_signal_counts", {}).get(name) == len(pattern.findall(text)), f"lexical signal count不一致 {name}")
     legacy_status = inventory.get("legacy_status", {})
-    for field, value in (("asset_class", "Historical"), ("authority_status", "historical"), ("disposition", "unresolved"), ("implementation_status", "unknown"), ("degraded_status", "unknown"), ("failure_status", "unknown"), ("consumer_closure_status", "pending"), ("consumer_refs", []), ("decision_record_ref", None), ("decision_status", "missing")):
+    for field, value in (("asset_class", "Historical"), ("authority_status", "historical"), ("disposition", "unresolved"), ("implementation_status", "unknown"), ("legacy_execution_performed", False), ("degraded_status", "unknown"), ("failure_status", "unknown"), ("consumer_closure_status", "pending"), ("consumer_refs", []), ("decision_record_ref", None), ("decision_status", "missing")):
         expect(errors, legacy_status.get(field) == value, f"top legacy {field}不一致")
     expect(errors, legacy_status.get("decision_evidence"), "decision evidenceが欠落")
     products = inventory.get("product_phase_classification", {})

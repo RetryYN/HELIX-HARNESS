@@ -63,6 +63,14 @@ def main() -> int:
         ("consumer closure", lambda x: x["atoms"][0]["legacy_state"].__setitem__("consumer_status", "closed")),
         ("decision promotion", lambda x: x["legacy_status"].__setitem__("decision_status", "approved")),
         ("successor invention", lambda x: x.__setitem__("successor_requirement_ids", ["invented"])),
+        ("source holding digest", lambda x: x["ledger_provenance"].__setitem__("source_holding_sha256", "0" * 64)),
+        ("reference holding digest", lambda x: x["ledger_provenance"].__setitem__("reference_holding_sha256", "0" * 64)),
+        ("asset ledger digest", lambda x: x["ledger_provenance"].__setitem__("asset_ledger_sha256", "0" * 64)),
+        ("phase ledger digest", lambda x: x["ledger_provenance"].__setitem__("phase_ledger_sha256", "0" * 64)),
+        ("Web owner invention", lambda x: x["atoms"][0]["owner_candidates"].append("HELIX-Web")),
+        ("Web-OS owner invention", lambda x: x["atoms"][0]["owner_candidates"].append("HELIX-Web-OS")),
+        ("Web direct target invention", lambda x: x["atoms"][0].__setitem__("candidate_target", "HELIX-Web")),
+        ("legacy execution promotion", lambda x: x["legacy_status"].__setitem__("legacy_execution_performed", True)),
     ):
         probe = copy.deepcopy(data)
         mutation(probe)
@@ -74,7 +82,7 @@ def main() -> int:
         for failure in failures:
             print("  - " + failure)
         return 1
-    print("PASS selfcheck rdp001-delegated-doc009-atom: baseline and 10 mutation probes")
+    print("PASS selfcheck rdp001-delegated-doc009-atom: baseline and 18 mutation probes")
     return 0
 
 
