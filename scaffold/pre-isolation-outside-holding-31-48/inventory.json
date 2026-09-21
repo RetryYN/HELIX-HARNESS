@@ -23,7 +23,7 @@
     "source_unit": "path_revision_pair",
     "requirement_atoms": false,
     "live_holding_count": 13,
-    "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "management_register_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
     "management_register_sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
     "pre_isolation_holding_path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
     "pre_isolation_holding_sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",

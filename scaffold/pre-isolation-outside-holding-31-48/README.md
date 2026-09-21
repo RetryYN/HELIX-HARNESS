@@ -17,7 +17,7 @@ PR #1978 の outside-67 source set（親コミット `d272a97b3e55401fa75ad41670
 | 既存13 holding | path／blob／SHAの完全一致は全件0 |
 | 新holding要否 | 未解決候補。意味的非包含は未証明 |
 
-13 live holdingは、親コミット時点のmanagement registerで`supersedes`終端を再計算した歴史的スナップショットです。後続mainや別PRのholding追加・更新を取り込まず、比較分母を変えません。`inventory.json`にはsource set、register、既存333 path holdingのdigestと、各行のGit object／SHA／bytesを保持しています。
+13 live holdingは、親コミット時点のmanagement registerを保全した`management-provisional-requirement-register-pre-append-3df81ad.jsonl`で`supersedes`終端を再計算した歴史的スナップショットです。後続mainや別PRのholding追加・更新を取り込まず、比較分母を変えません。`inventory.json`にはsource set、register、既存333 path holdingのdigestと、各行のGit object／SHA／bytesを保持しています。
 
 候補は`SCF-B-0043`に束縛した`scaffold/`内のresearch evidenceです。正式なsource holding、requirement identity、四製品owner、phase authority、implementation、degradation、semantic disposition、successor、consumer closure、acceptance、releaseは生成しません。旧archiveはGit objectの静的読取だけに使い、旧runtime／test／CI／hook／adapter／sourceを実行しません。
 

@@ -66,14 +66,16 @@
     "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
     "scaffold/rdp001-unassessed-atom-audit/report.json",
     "scaffold/pre-isolation-outside-l1-semantic/inventory.json",
+    "scaffold/pre-isolation-outside-holding-31-48/inventory.json",
     "docs/governance/phase-capability-inventory.json",
     "scaffold/bindings/SCF-B-0027.json",
     "scaffold/bindings/SCF-B-0029.json",
     "scaffold/bindings/SCF-B-0034.json",
     "scaffold/bindings/SCF-B-0035.json",
-    "scaffold/bindings/SCF-B-0036.json"
+    "scaffold/bindings/SCF-B-0036.json",
+    "scaffold/bindings/SCF-B-0043.json"
   ],
-  "affected_historical_capture_count": 11,
+  "affected_historical_capture_count": 13,
   "repointed_sources": [
     {
       "path": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py",
@@ -122,6 +124,16 @@
     },
     {
       "path": "scaffold/pre-isolation-outside-l1-semantic/validate.py",
+      "role": "validator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-31-48/generate.py",
+      "role": "generator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-31-48/validate.py",
       "role": "validator",
       "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
     }

@@ -10,22 +10,22 @@
   "upstream": [
     {
       "path": "scaffold/pre-isolation-outside-holding-31-48/inventory.json",
-      "sha256": "51da9399d26660b20b3fa71ccca5f8574599abdb8f5b4c756601e7bdad4d39ab",
+      "sha256": "a2f481b540097116ca2e0366f7c216517d09064c79e8e321c6d6f4f166a002d9",
       "note": "rows 31–48の18 path、親d272固定、13 live holding exact relation、unknown境界"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-31-48/README.md",
-      "sha256": "407443520f73514512b10fb9378571ac07a69e145db3b56a571b417af16975dd",
+      "sha256": "d09250b78d0d91566ac982e442e410a1b3abb37dc08700c76c716d509bddd925",
       "note": "selection、physical findings、implementation/degradation/semantic-inclusion unknown境界"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-31-48/generate.py",
-      "sha256": "a98f441738a0f34dc037d0082548703b77de81f45c8a47537123a2214e79a761",
+      "sha256": "4f11e10f2882dc9348235fc70901546da95da87421e2a302d4c3fea58bf3f972",
       "note": "Git object／source set／13 holdingからのdeterministic evidence生成"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-31-48/validate.py",
-      "sha256": "e9fb564a9603d1608299a505492bd8d99ba5541026a7c5eb98fefe6c580e5e33",
+      "sha256": "a0bf212587c98c1495b25b2a290bdb8423df3ad1990a8978030561a3bab26ee4",
       "note": "generator非依存のselection、Git object、digest、recursive keyset、13 holding exact relation validator"
     },
     {
@@ -44,9 +44,9 @@
       "note": "PR #1978 formal 67 path_revision_pair source set"
     },
     {
-      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
       "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
-      "note": "親d272時点のsupersedes終端13 live holding再計算入力"
+      "note": "親d272時点の13 live holdingを固定したhistorical register snapshot"
     },
     {
       "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",

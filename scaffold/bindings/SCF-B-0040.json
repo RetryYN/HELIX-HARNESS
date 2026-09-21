@@ -10,22 +10,22 @@
   "upstream": [
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
-      "sha256": "f5096a724b66af06de968cceb5b2bda3f82527597b08a8dda275483a8a398a2c",
+      "sha256": "e37e610aff67c0bef8256be8477e10b58fbb680dd09d57a7cf155da3af985ce3",
       "note": "13 snapshot／14 append read-after migration inventory"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/README.md",
-      "sha256": "abf4b51b9afdea55f8da27fa67464dbfe6f26cd7cda4e06a2382786481c553b2",
+      "sha256": "7c86b9fef322478b9596e8e779bcb3377124f3852fadcb4bf6c6929f77e6df95",
       "note": "migration boundary, timestamp/state semantics, dependency and issue projection record"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/generate.py",
-      "sha256": "75bad78b3883cdd04c0c676059a9195575ec2f607c94b40ef909348a8c6c1050",
+      "sha256": "a3fc02fbc2a0f8182028403397f52bef62b226b6b8cd6dbd2e7b622eed8797bd",
       "note": "migration generator with fixed-capture comparison"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
-      "sha256": "5ffc69a836e741cff0b83c56e75b93232640896892c5322d174763f63865e9cf",
+      "sha256": "4f41222a6beb6a9f14fd70982f89f55eee4d42196461aa57a556c2b081379568",
       "note": "independent migration validator"
     },
     {

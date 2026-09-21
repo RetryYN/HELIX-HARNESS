@@ -55,12 +55,14 @@ def build() -> dict:
         "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
         "scaffold/rdp001-unassessed-atom-audit/report.json",
         "scaffold/pre-isolation-outside-l1-semantic/inventory.json",
+        "scaffold/pre-isolation-outside-holding-31-48/inventory.json",
         "docs/governance/phase-capability-inventory.json",
         "scaffold/bindings/SCF-B-0027.json",
         "scaffold/bindings/SCF-B-0029.json",
         "scaffold/bindings/SCF-B-0034.json",
         "scaffold/bindings/SCF-B-0035.json",
         "scaffold/bindings/SCF-B-0036.json",
+        "scaffold/bindings/SCF-B-0043.json",
     ]
     repointed_sources = [
         {"path": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
@@ -73,6 +75,8 @@ def build() -> dict:
         {"path": "scaffold/rdp001-unassessed-atom-audit/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
         {"path": "scaffold/pre-isolation-outside-l1-semantic/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
         {"path": "scaffold/pre-isolation-outside-l1-semantic/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {"path": "scaffold/pre-isolation-outside-holding-31-48/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {"path": "scaffold/pre-isolation-outside-holding-31-48/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
     ]
     return {
         "schema": "rdp001-preisolation-outside-holding-67-migration/v1",
