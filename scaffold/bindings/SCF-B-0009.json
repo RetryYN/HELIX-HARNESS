@@ -60,12 +60,12 @@
     },
     {
       "path": "scaffold/pre-isolation-batch/validate.py",
-      "sha256": "6577df45c09f41e03e64f74e7e21af78b1096a00e4e29bf211c794b9ec483451",
+      "sha256": "2adb8d3d76564fae9768039e4c870153cc9b3fdefeabb662b302b60cef4d01e4",
       "note": "12 path候補と検証契約の入力"
     },
     {
       "path": "scaffold/pre-isolation-batch/selfcheck.py",
-      "sha256": "ba8dfdddc15375dd4d46f82a0c77fff726d20268db1714ffdd72680f0eab355d",
+      "sha256": "9182d1f1efb22197defb04595e937da4a4284983b34284231c459b4ca8a883fa",
       "note": "12 path候補と検証契約の入力"
     }
   ],

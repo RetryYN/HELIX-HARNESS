@@ -169,6 +169,19 @@ def main() -> int:
     if len({p for p, *_ in full_hunks}) != 400 or len(full_hunks) != 492: fail(errors, f"全体diff分母不一致: files={len({p for p, *_ in full_hunks})} hunks={len(full_hunks)}")
     if len({p for p, *_ in selected_hunks}) != 12 or len(selected_hunks) != 58: fail(errors, f"selected diff scope不一致: files={len({p for p, *_ in selected_hunks})} hunks={len(selected_hunks)}")
     if inventory.get("schema") != "helix-scaffold-preisolation-batch-semantic-diff.v1": fail(errors, "inventory schema不正")
+    candidate_boundary = {
+        "status": "candidate_pending_semantic_equivalence_review",
+        "authority_effect": "none",
+        "meaning_change_applied": False,
+        "successor_requirement_ids": [],
+        "human_decision_ref": None,
+        "equivalence_claim": None,
+    }
+    for field, value in candidate_boundary.items():
+        if field not in inventory or inventory[field] != value:
+            fail(errors, f"inventory {field}が固定候補境界と不一致")
+        if inventory.get(field) != manifest.get(field):
+            fail(errors, f"manifest／inventory {field}不一致")
     if inventory.get("comparison") != comparison or inventory.get("diff_scope") != scope: fail(errors, "inventory comparison／scope不一致")
     if inventory.get("classification_unit") != "hunk_fragment" or inventory.get("classification_counts_are_not_semantic_atom_counts") is not True: fail(errors, "hunk分類とatom境界の固定値不一致")
     atom = inventory.get("semantic_atomization", {})
@@ -217,7 +230,7 @@ def main() -> int:
     print("combined selected with #1934 and SCF-B-0007=24 files / 91 hunks; combined remainder=376 files / 401 hunks")
     print("hunk_classification_counts=requirement:25; constraint:21; provenance:11; generated_metadata:1; unresolved:0")
     print("semantic_atomization=not_started; semantic_atoms=0; compound_hunk_holds=58; review_only_subunits=8")
-    print("authority_effect=none; semantic_equivalence=unresolved; legacy runtime/test/CI execution=forbidden")
+    print(f"authority_effect={inventory['authority_effect']}; semantic_equivalence={'unresolved' if inventory['equivalence_claim'] is None else inventory['equivalence_claim']}; legacy runtime/test/CI execution={comparison['old_runtime_test_ci_execution']}")
     return 0
 
 if __name__ == "__main__": raise SystemExit(main())
