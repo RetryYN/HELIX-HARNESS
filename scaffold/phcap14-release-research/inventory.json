@@ -1,0 +1,1074 @@
+{
+  "schema": "phcap14-release-research/v1",
+  "status": "research_premise_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "candidate_transition": {
+    "from": "legacy_reference_only",
+    "to": "research_premise_candidate",
+    "degradation": "degraded_to_candidate",
+    "authority_effect": "none",
+    "meaning": "旧PHCAP-14 assetのsource／decision／failure／consumer候補をread-only referenceとして保持し、製品別artifact・promotion・rollbackの正式契約／実装／受入をunknownまたはpendingとして残す",
+    "current_gap_status": "unknown"
+  },
+  "legacy_summary": {
+    "layers_evidenced": [
+      "L3",
+      "L7 implementation",
+      "L10 system test design"
+    ],
+    "maximum_layer_evidenced": "L10",
+    "capability_status": "implemented_partial_with_test_design",
+    "capability_status_scope": "phase-level historical inventory summary; not per-asset current implementation evidence",
+    "asset_record_status": "all four selected ledger rows remain unresolved; implementation_status unknown; consumer_refs empty",
+    "transition_assessment": "degraded_to_candidate",
+    "gaps": "製品別release責務、artifact、promotion、rollbackの正式契約はWeb／Web-OSで直接evidence未成立。HARNESS／OS候補も要求候補・境界候補の範囲に留まる",
+    "new_build_allowed": false,
+    "authority_effect": "inventory_and_work_projection_only"
+  },
+  "base": {
+    "repository": "HELIX-HARNESS",
+    "commit": "569d7373c32287bbafadeec6043472563937c5c7",
+    "branch": "origin/main",
+    "captured_at": "2026-09-22"
+  },
+  "task": {
+    "phase_id": "PHCAP-14",
+    "phase": "release",
+    "gap_audit_path": "docs/governance/audits/source-rebaseline/phase-product-evidence-gap-audit-2026-09-21.md",
+    "gap_audit_sha256": "b76d10e9ac3e36e267edc6eadc4ab3afb1f7eafabcebff50a0851fd3c63d97dc",
+    "gap_audit_span": {
+      "start_line": 20,
+      "end_line": 27,
+      "sha256": "46cb6426862c0863f5511c14b32fa925a7f71309b1390ffcfd363a70888c530c",
+      "exact_text": "| PHCAP / 対応Issue | 現行refが直接裏付けない調査対象製品 | 保持する未決 |\n|---|---|---|\n| `PHCAP-06` / `#1894` Design／L3 | HELIX-Web、HELIX-Web-OS | 両製品の正式L3導出と旧template再利用評価 |\n| `PHCAP-07` / `#1895` Verification／L10 | HELIX-Web、HELIX-Web-OS | 両製品のL10、oracle、正式CIとの関係 |\n| `PHCAP-14` / `#1902` Release | HELIX-Web、HELIX-Web-OS | 製品別artifact、promotion、rollback |\n| `PHCAP-17` / `#1905` Incident | HELIX-HARNESS | HARNESS固有のincident要求と直接ref |\n| `PHCAP-18` / `#1906` Refactor | HELIX-Web、HELIX-Web-OS | 対象製品ごとの変更routeとbackflow |\n| `PHCAP-19` / `#1907` Learning／改善 | HELIX-HARNESS、HELIX-Web、HELIX-Web-OS | OS draftから各製品へのbackflowとmemory境界 |\n"
+    },
+    "inventory_path": "docs/governance/phase-capability-inventory.json",
+    "inventory_sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+    "issue_projection": {
+      "issue": 1902,
+      "used_as_semantic_authority": false
+    }
+  },
+  "scope": {
+    "bounded_asset_ids": [
+      "LEGACY-ASSET-9B7682EBDEA171005D45",
+      "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+      "LEGACY-ASSET-6C9D2BE4E3C77D78F8EB",
+      "LEGACY-ASSET-4C97F9E72F120F6B664E"
+    ],
+    "source_asset_count": 4,
+    "source_span_count": 15,
+    "closure_rule": "inventory representative PHCAP-14 assets only; related decision/failure/consumer assets are read-only references and all other package/distribution/release assets plus consumer closure remain residual"
+  },
+  "gap_interpretation": {
+    "inventory_product_targets": [
+      "HELIX-HARNESS",
+      "HELIX-OS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "inventory_current_evidence_products": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "direct_current_evidence_products": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "direct_current_evidence_refs": [
+      "docs/governance/audits/source-rebaseline/new-generation-release-composition-source-crosswalk.md",
+      "docs/helix-os/L2-requirements/governance-requirements.md"
+    ],
+    "missing_direct_current_products": [
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "missing_status": "unknown",
+    "prohibited_inference": "HELIX-Web/Web-OS direct PHCAP-14 ref absence is not an implementation absence claim"
+  },
+  "product_boundary_candidates": [
+    {
+      "product": "HELIX-HARNESS",
+      "status": "direct_current_candidate",
+      "basis": [
+        "current release composition crosswalk and HARNESS artifact contract candidate"
+      ],
+      "boundary": "提供機能の構成、依存、artifact identity、検証義務、組合せ受入の候補。正式release publishやartifact implementationは未成立。"
+    },
+    {
+      "product": "HELIX-OS",
+      "status": "direct_current_candidate",
+      "basis": [
+        "OS L2 candidate for delivery version installation update recovery and evidence"
+      ],
+      "boundary": "承認済みHARNESS契約から配布・導入・更新・復旧の証拠を投影する候補。展開先runtimeのauthorityを吸収しない。"
+    },
+    {
+      "product": "HELIX-Web",
+      "status": "unknown_due_to_missing_direct_ref",
+      "basis": [
+        "adjacent Web L1/L2/L11 boundary only"
+      ],
+      "boundary": "利用者向け構成版・依存・成果表示の候補。PHCAP-14 artifact/promotion/rollback direct evidence、owner、release authorityは未確定。"
+    },
+    {
+      "product": "HELIX-Web-OS",
+      "status": "unknown_due_to_missing_direct_ref",
+      "basis": [
+        "adjacent Web-OS L1/L2/L11 boundary only"
+      ],
+      "boundary": "service release/deployment/monitoring/recovery候補。L2記載はdraftであり、PHCAP-14 current implementation、promotion evidence、rollback passは未確定。"
+    }
+  ],
+  "legacy_assets": [
+    {
+      "asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+      "source_path": "docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+      "source_sha256": "c854d77696bba4904bc91c1d32b8f1bd714408480f16538b7eb7e77291104f1c",
+      "source_line_count": 116,
+      "evidence_kind": "requirement",
+      "implementation_evidence_state": "document_present",
+      "source_spans": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+          "start_line": 22,
+          "end_line": 29,
+          "sha256": "7759483e1f21d46eb978c3937f1405cb2dc216c5bddea792df0635e63687af60",
+          "exact_text": "## 2. system境界\n\n- 入力: development source HEAD、requirements digest、package version、versioned capability allowlist、consumer profile。\n- 出力: immutable artifact、manifest、consumer smoke evidence、promotion／rollback plan、approval-bound remote action。\n- authority: development repository。distribution repositoryやgenerated artifactを逆向き正本にしない。\n- consumer: clean／既存／monorepo project。HELIX-HARNESS自身のdogfood stateをconsumerへ持ち込まない。\n- transaction: local plan／build／dry-runは可逆。safe release standing authorizationへ完全一致する既定配布先の\n  canary／preview／stableは自走可能。policy外target、repository切替、identifier／state cutoverはaction-binding approval対象。\n",
+          "span_id": "SRC-14-REQ-01",
+          "role": "system boundary: inputs, immutable artifact, consumer, approval-bound remote action"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+          "start_line": 31,
+          "end_line": 39,
+          "sha256": "f1c582ae01487a3080a02e480c73193cb23a04a021e7343196e3831fe832a1dc",
+          "exact_text": "### 2.1 初期consumer profile\n\n- display name: `HELIX-HARNESS-LITE`\n- profile ID: `consumer_core_v1`\n- source authority: development repository `HELIX-HARNESS`のみ\n- distribution repository: `RetryYN/HELIX-HARNESS-DevOS`\n- generation: typed capability allowlistからのdeterministic projection\n- promotion: Full HELIXでconsumer-safe終端済みcapabilityだけをversioned receiptで昇格\n- prohibition: Lite fork、独自仕様、手編集allowlist、development state混入、除外capabilityの到達可能surface\n",
+          "span_id": "SRC-14-REQ-02",
+          "role": "consumer profile, deterministic projection and promotion boundary"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+          "start_line": 55,
+          "end_line": 64,
+          "sha256": "cd274daeafa89962310435dd922c8986bce7497f0d6b76d86b64b11b77d54b69",
+          "exact_text": "Full HELIXでconsumer-safe acceptanceが終端したcapabilityだけをversioned promotion receiptによりprofile manifestへ\n昇格できる。Lite独自仕様、Lite側からFullへの逆流、手編集によるallowlist追加、除外capabilityの推測fallbackを禁止する。\n\n### 2.2 安全な段階releaseのstanding authorization\n\n`RetryYN/HELIX-HARNESS-DevOS`だけをtargetとするcanary／preview／stableは、source HEAD、requirements refinement／\nprofile／artifact digest、exact-HEAD review、Linux／Windows smoke、credential target authority、rollback rehearsalの\nmonitoring window、expiryを束縛したstanding authorization receiptが一致する場合に限り追加承認なしで自走できる。\ntarget／params／artifact drift、stage skip、credential authority不一致、policy期限切れはfail-closeする。repository切替、\nidentifier／state cutover、policy外target、consumer data破壊を伴う操作はaction-binding approval境界へ残す。\n",
+          "span_id": "SRC-14-REQ-03",
+          "role": "promotion receipt, standing authorization and fail-close boundaries"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+          "start_line": 81,
+          "end_line": 97,
+          "sha256": "8096d1d248be71f67d0b1494997efb6d8bb73c85aec67e5807d2090ceebbe9a0",
+          "exact_text": "#### DIST-LITE-R-03 artifact identityとpromotion\n\n同一source HEAD、requirements refinement digest、profile version／digest、package versionのbuildは同一artifact\ndigestを返す。canary、preview、stableは同じartifactを一方向promotionし、rebuild差替え、stage skip、手編集manifestを\n拒否する。\n\n#### DIST-LITE-R-04 consumer verificationとrollback\n\nclean Linux fresh processでinstall、build、setup、status、consumer doctor、minimal workflow、CI、completion evidenceを\n再現し、Windowsは同一Node artifactを検証する。upgrade、rollback、uninstallはconsumer所有bytesとconsumer evidenceを\n保全する。\n\n#### DIST-LITE-R-05 境界付きrelease authorization\n\n既定配布先、HEAD、profile、artifact、review、Linux／Windows smoke、credential target、rollback、monitoring、expiryが\nstanding authorization receiptへ完全一致するsafe staged releaseだけを追加承認なしで実行する。policy外target、\nrepository切替、identifier／state cutover、consumer data破壊はaction-binding approvalへ停止する。\n",
+          "span_id": "SRC-14-REQ-04",
+          "role": "artifact identity, one-way promotion, consumer rollback and authorization"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/distribution-package-release-requirements.md",
+          "start_line": 101,
+          "end_line": 115,
+          "sha256": "0db55e9cce68c41650d04a64194731d5751a6f21c076c4bfd5a8a5b6b572beb1",
+          "exact_text": "| 要件 | system責務 | L10 oracle |\n|---|---|---|\n| `HR-AC-HYB-008-01` | profile／manifest exact setとsource／requirements／profile／artifact／version binding | `ST-DIST-001` |\n| `HR-AC-HYB-008-02` | dogfood／state／secret／PII／absolute path除外 | `ST-DIST-002` |\n| `HR-AC-HYB-008-03` | clean／既存／monorepoへの非破壊idempotent setup | `ST-DIST-003` |\n| `HR-AC-HYB-008-04` | README／LICENSE／attribution／provenance／免責 | `ST-DIST-004` |\n| `HR-AC-HYB-008-05` | `consumer_core_v1` clean Linux consumerでのfull smoke | `ST-DIST-005` |\n| `HR-AC-HYB-008-06` | 同一Node artifactのWindows compatibility smoke | `ST-DIST-006` |\n| `HR-AC-HYB-008-07` | canary→preview→stable同一artifact promotion | `ST-DIST-007` |\n| `HR-AC-HYB-008-08` | consumer成果を保全するengine pin rollback | `ST-DIST-008` |\n| `HR-AC-HYB-008-09` | safe release standing authorizationとpolicy外action-binding approval | `ST-DIST-009` |\n\n## 4. 非目標\n\n本L3 sliceではartifact builder、setup implementation、remote sync、tag、release、promotion、cutoverを実行しない。\n",
+          "span_id": "SRC-14-REQ-05",
+          "role": "requirement-to-oracle trace and execution non-goal"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-0444",
+        "candidate_phase_targets": [
+          "PHCAP-14"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-14-REQ-01",
+          "finding": "historical failure/negative boundary candidate; no current oracle or pass is generated"
+        },
+        {
+          "span_id": "SRC-14-REQ-03",
+          "finding": "historical failure/negative boundary candidate; no current oracle or pass is generated"
+        },
+        {
+          "span_id": "SRC-14-REQ-05",
+          "finding": "historical failure/negative boundary candidate; no current oracle or pass is generated"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-14-REQ-02",
+          "finding": "historical release artifact/promotion/consumer relation candidate; consumer closure remains pending"
+        },
+        {
+          "span_id": "SRC-14-REQ-04",
+          "finding": "historical release artifact/promotion/consumer relation candidate; consumer closure remains pending"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+      "source_path": "docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+      "source_sha256": "336d361ec89c36ca377113aca2f08b6b510cd0127ddbba191d311cec4990c89c",
+      "source_line_count": 145,
+      "evidence_kind": "requirement",
+      "implementation_evidence_state": "document_present",
+      "source_spans": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+          "start_line": 23,
+          "end_line": 34,
+          "sha256": "49cb4eef448130638b36095b2a92a7d71c3d3585abdb208fe1bf4b76128811b0",
+          "exact_text": "## §0 authorityと非混同境界\n\nHELIX-HARNESSをRequirement、Design、Workflow、Verification、runtime、release sourceの唯一の意味authorityとする。\nRelease Moduleは同一repository内の責務・version・artifact ownership単位、BundleはModuleの利用目的別compositionである。\ncapability family、workflow identity、route、drive、execution mode、repository boundaryと同一enumへ畳み込まない。\n\n`RetryYN/HELIX-HARNESS-DevOS`はimmutable artifact、release index、compatibility、install／upgrade／rollback、\nchecksum／provenance／SBOM、acceptance receipt、release noteのrelease composition authorityに限定する。DevOSで意味契約を\n手編集せず、DevOS artifactからHELIX-HARNESSへreverse importしない。repository分割は実測根拠を持つ将来判断へ分離する。\n\n既存`consumer_core_v1`、distribution capability／profile catalog、deterministic builder、Lite canary、Windows smoke、\nsetup／status／doctor／DB、Requirement IR、Design／Workflow registry、Impact CI、exact-HEAD review、feedback／Reverseを再利用する。\n",
+          "span_id": "SRC-14-RLS-01",
+          "role": "authority, artifact composition and historical consumer surfaces"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+          "start_line": 38,
+          "end_line": 42,
+          "sha256": "509e7caadd978e80ecdb76b414a28ce350eac7c0208de7ee828a447c5d64ee5e",
+          "exact_text": "### RLS-R-01 Module schemaとlifecycle\n\nModuleはstable ID、独立SemVer、source full SHA、tree／authority／semantic digest、責務／除外、public／internal surface、\nartifact完全集合、required／optional／conflict依存、互換性、受入／security profile、移行／rollback、\nreplacementを保持する。lifecycleは`shadow → preview → rc → stable → deprecated → retired`の一方向を正本とする。\n",
+          "span_id": "SRC-14-RLS-02",
+          "role": "module identity, lifecycle and rollback field"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+          "start_line": 54,
+          "end_line": 58,
+          "sha256": "a760a8df149df6688794adbbea9cc2eacc8e993e6fc638c3bf831e05502066ec",
+          "exact_text": "### RLS-R-03 path所有権\n\n全release pathはexactly-one `primary_module_id`を持ち、secondary consumer、artifact role、authority roleを記録する。\norphan、primary重複、scope外混入、required artifact欠落、shared semantic copy、generated view正本化をfail-closeする。\n`src/cli.ts`はcommand registration／argument parsing／adapter呼出しだけのcomposition surfaceとし、domain ownerにしない。\n",
+          "span_id": "SRC-14-RLS-03",
+          "role": "release path ownership and fail-close artifact boundaries"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+          "start_line": 67,
+          "end_line": 72,
+          "sha256": "6906b501e17aaa23a1b96c79a302c9ee0234eeaa537d8271ef348b972e1724d3",
+          "exact_text": "### RLS-R-05 Bundle schemaとinitial exact set\n\nBundleは独立SemVer、source lock、module ID／version／digest exact set、excluded capability、intended use、install／acceptance／\ncompatibility／rollback profile、bundle digestを持つ。初期候補は`helix-requirements`、`helix-design`、`helix-dynamic-ci`、\n`helix-quality`、`helix-refactoring`、`helix-autonomous-dev`、`helix-lite`、`helix-full`の8件とする。\nBundle固有責務はcomposition、installer、default configuration、acceptance profileに限定し、module sourceの意味を変更しない。\n",
+          "span_id": "SRC-14-RLS-04",
+          "role": "bundle exact set, compatibility and rollback profile"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+          "start_line": 80,
+          "end_line": 100,
+          "sha256": "46bb74063fa0fa9b7ac9bea76da6fcca63e0b78c7824ae6e45054ec4b5f3d0bb",
+          "exact_text": "## RLS-FR-003 Build、検証、昇格\n\n### RLS-R-07 deterministic buildとrelease packet\n\n既存builderを拡張し、同一source／registry／profile入力から同一Module／Bundle artifactを生成する。release packetはsource full SHA、\ntree／module／bundle registry digest、artifact digest、checksums、SBOM、互換性、受入、独立review、rollback、\nrelease noteを束縛する。Module別・Lite専用の重複builderを作らない。\n\n### RLS-R-08 信頼実行前のstatic検証\n\n未信頼artifactはcode実行前にmanifest exact set、hash、schema、source lock、secret、unexpected executable、permission、Action SHA、\npath traversal、symlink／junction、duplicate／case collision、archive bombを検査する。static failureをtrusted executionのgreenで\n相殺しない。clean consumerはLinuxと同一artifactのWindowsでinstall、setup、status、DB rebuild、doctor、module／bundle\nacceptance、upgrade、uninstall／rollbackを行い、consumer所有bytesを保全する。\n\n### RLS-R-09 DevOS promotionとactor separation\n\npromotionは`R0 inventory → R1 ownership compile → R2 shadow package → R3 bundle composition → R4 packet seal →\nR5 DevOS候補PR → R6 static検証 → R7 trusted consumer検証 → R8 独立検証 → R9 RC →\nR10 canary → R11 stable／rollback`とする。producer、reviewer、verifier、final acceptance authorityを分離し、candidate HEADと\nartifact digestへ束縛する。DevOS candidate PRはgenerated exact setだけを変更する。\n",
+          "span_id": "SRC-14-RLS-05",
+          "role": "deterministic packet, static failure and promotion actor separation"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md",
+          "start_line": 110,
+          "end_line": 131,
+          "sha256": "c90dda873681e53f51a86700a687fd4b7dbdca50707fe322cbc04902c103a755",
+          "exact_text": "### RLS-R-11 Module Registry駆動CI\n\n`changed paths → affected modules → affected bundles → required verification capabilities → CI Plan`を決定的に生成する。\nmodule-static／unit／integration、bundle composition、consumer install、cross-platform、security、release-fullを選択し、shared coreは\ndependent closureを展開する。unknown／ambiguousはfullへfallbackし、main／nightly／releaseはfullを維持する。selection mutation、\ninventory union、LinuxからWindowsへのexact artifact handoffを必須にし、無関係fullの直列増殖を禁止する。\n\n### RLS-R-12 フィードバック、置換、終端収束\n\nrelease finding、rollback、compatibility、false positive／negative、consumer evidenceをSystem Synthesis observationとReverse／Recoveryへ\n戻す。module／bundle registry、release index、Git、GitHub、`harness.db`を再構築可能なprojectionとして収束し、mainとDevOSの\nread-after、supersede／retire evidenceまで閉じる。\n\n### RLS-R-13 Release後ライフサイクル責務\n\n`product-lifecycle-operations-requirements.md`を意味authorityとして、`helix-deployment`、`helix-operations`、\n`helix-maintenance`、`helix-diagnosis`の4 Module候補と`helix-lifecycle-ops` Bundle候補を登録する。Release artifact確定と\nenvironment Deploymentを別stateとし、provider adapter、change class、workflow routeをModule identityへ畳み込まない。\n\n4 Moduleは#1161〜#1166のschema／runtime／security境界と#1167 E2Eがgreenになるまでshadowに固定する。既存11 Moduleの\nstable判定やLite parityへ暗黙包含せず、Wave 7でHELIX dogfood、health observation、incident diagnosis、rollback／redeployment、\nmain／DevOS read-afterを閉じてからpreviewへ昇格する。\n",
+          "span_id": "SRC-14-RLS-06",
+          "role": "verification selection, feedback, rollback and release/deploy separation"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-0475",
+        "candidate_phase_targets": [
+          "PHCAP-14",
+          "PHCAP-15",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-14-RLS-03",
+          "finding": "historical failure/negative boundary candidate; no current oracle or pass is generated"
+        },
+        {
+          "span_id": "SRC-14-RLS-05",
+          "finding": "historical failure/negative boundary candidate; no current oracle or pass is generated"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-14-RLS-01",
+          "finding": "historical release artifact/promotion/consumer relation candidate; consumer closure remains pending"
+        },
+        {
+          "span_id": "SRC-14-RLS-02",
+          "finding": "historical release artifact/promotion/consumer relation candidate; consumer closure remains pending"
+        },
+        {
+          "span_id": "SRC-14-RLS-04",
+          "finding": "historical release artifact/promotion/consumer relation candidate; consumer closure remains pending"
+        },
+        {
+          "span_id": "SRC-14-RLS-06",
+          "finding": "historical release artifact/promotion/consumer relation candidate; consumer closure remains pending"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6C9D2BE4E3C77D78F8EB",
+      "source_path": "docs/test-design/helix/distribution-package-release-system-test-design.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md",
+      "source_sha256": "3b3e8b72c51ac418ed58c9278cb07f683c37eaf723d6710d12c1ddfb34a811fc",
+      "source_line_count": 58,
+      "evidence_kind": "test_design",
+      "implementation_evidence_state": "test_design_present_unexecuted",
+      "source_spans": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md",
+          "start_line": 15,
+          "end_line": 32,
+          "sha256": "d97ca348d293d87887cd82973b46f842be3bac2e0de601e981fe6b9c8e0ce157",
+          "exact_text": "## 1. 対象と境界\n\nrequirements §4.6.1の`HR-FR-HYB-008`をsystem境界で検証する。local package plan／dry-run／consumer\nfixtureを対象とし、remote sync apply、tag、release publish、channel promotion、PLAN-M-02 cutoverは実行しない。\n\n## 2. oracle完全集合\n\n| oracle | 対応AC | system入力 | pass条件 | negative oracle |\n|---|---|---|---|---|\n| `ST-DIST-001` | `HR-AC-HYB-008-01` | source HEAD、`consumer_core_v1`、candidate manifest | profile／include／exclude exact set、source／requirements／profile／artifact digest、version一致 | unknown profile、manifest外file、duplicate、手編集allowlist、digest driftを拒否 |\n| `ST-DIST-002` | `HR-AC-HYB-008-02` | dogfood混入mutation群 | project PLAN／design／DB／state／memory／credential／PII／absolute pathが0 | 各mutationを独立kill |\n| `ST-DIST-003` | `HR-AC-HYB-008-03` | clean／既存／monorepo consumerへsetupを2回 | 2回目no-op、managed marker外とconsumer bytes不変 | overwrite、delete、marker外変更を拒否 |\n| `ST-DIST-004` | `HR-AC-HYB-008-04` | package contents | README／LICENSE／attribution／provenance／免責がexact存在 | 1件ずつ欠落させて拒否 |\n| `ST-DIST-005` | `HR-AC-HYB-008-05` | `consumer_core_v1` clean Linux fresh process | install→build→setup→status→consumer doctor→minimal workflow→CI→completion evidence green | bare CLI／package script／Node不足／除外capability到達をtyped red |\n| `ST-DIST-006` | `HR-AC-HYB-008-06` | Windows fresh process | Linuxと同一artifact digest、PowerShell entrypoint smoke green |別artifact、Bun依存、POSIX専用pathを拒否 |\n| `ST-DIST-007` | `HR-AC-HYB-008-07` | canary／preview／stable receipt列 | 同一artifact digest、一方向、entry／window／stop条件充足 | stage skip、rebuild差替え、stale receiptを拒否 |\n| `ST-DIST-008` | `HR-AC-HYB-008-08` | failed canaryとrollback rehearsal | engine pinだけ直前tagへ戻りconsumer所有bytes不変 | consumer repository rollback／state wipeを拒否 |\n| `ST-DIST-009` | `HR-AC-HYB-008-09` | safe release policyとremote action plan | 既定配布先、HEAD／profile／artifact、review、smoke、rollback、monitoring、expiryがstanding authorizationと一致するcanary／preview／stableだけ自走 | target／params／digest drift、stage skip、期限切れ、policy外cutoverのaction-binding approval欠落を拒否 |\n",
+          "span_id": "SRC-14-TST-01",
+          "role": "L10 scope, oracle set and negative release/promotion/rollback conditions"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/distribution-package-release-system-test-design.md",
+          "start_line": 48,
+          "end_line": 58,
+          "sha256": "45b7123c040fe4b6c6a86ed2e534dd788ab9f57802d78abcf049cee6c298e427",
+          "exact_text": "## 3. evidence schema定義\n\n各oracleはsource HEAD、requirements digest、package version、artifact digest、OS／Node version、command、\nexit code、output digest、consumer before／after digest、started／completed時刻を持つ。profileはID／version／digest／\ncapability exact setを持つ。promotion／rollbackはchannel、\nprevious／candidate tag、観測window、stop reason、approval snapshotを追加する。path、credential、PIIを記録しない。\n\n## 4. release判定\n\n`ST-DIST-001..009`の設計・実装・current evidenceを別stateで扱う。本書のconfirmやlocal smoke greenを\nstable publish済みと読み替えず、remote actionはaction-binding approvalへ停止する。\n",
+          "span_id": "SRC-14-TST-02",
+          "role": "evidence schema and separation of design, implementation and current release state"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_test_design_or_oracle",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-2806",
+        "candidate_phase_targets": [
+          "PHCAP-07",
+          "PHCAP-14"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-14-TST-01",
+          "finding": "historical failure/negative boundary candidate; no current oracle or pass is generated"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-14-TST-02",
+          "finding": "historical release artifact/promotion/consumer relation candidate; consumer closure remains pending"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4C97F9E72F120F6B664E",
+      "source_path": "src/audit/release-automation-decision.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/src/audit/release-automation-decision.ts",
+      "source_sha256": "1b7e674f84ae2e6483ec2b5d0b7d8b1c5833349fdde853776fe6e50dabd2cef4",
+      "source_line_count": 128,
+      "evidence_kind": "implementation_source",
+      "implementation_evidence_state": "implementation_source_present_unexecuted",
+      "source_spans": [
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/src/audit/release-automation-decision.ts",
+          "start_line": 22,
+          "end_line": 47,
+          "sha256": "fd30f7f610b07fc76d12c82d8c0b58ba160efbc781a1df8a1d4d21436f0d601e",
+          "exact_text": "export interface ReleaseAutomationDecisionFinding {\n  code:\n    | \"release_adr_not_accepted\"\n    | \"conventional_commits_required\"\n    | \"release_pr_gate_required\"\n    | \"dry_run_required\";\n  severity: \"error\";\n  message: string;\n}\n\nexport interface ReleaseAutomationDecisionResult {\n  schemaVersion: \"helix-release-automation-decision.v1\";\n  ok: boolean;\n  dryRun: true;\n  applyAuthorized: false;\n  selectedTool: ReleaseAutomationTool;\n  decision: \"adopt_release_please_plan_only\" | \"blocked\";\n  candidates: ReleaseAutomationCandidate[];\n  mergeQueueEnabled: boolean;\n  requiredApprovals: string[];\n  commands: {\n    dryRun: string;\n    releasePr: string;\n    publish: string;\n  };\n  findings: ReleaseAutomationDecisionFinding[];\n",
+          "span_id": "SRC-14-DEC-01",
+          "role": "decision result schema, dry-run and no-apply boundary"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/src/audit/release-automation-decision.ts",
+          "start_line": 71,
+          "end_line": 127,
+          "sha256": "8e1d9c45b705f8667506c9eaaf0b352fb809e1af9f1fe835e7ef7f6bd81ac93b",
+          "exact_text": "export function planReleaseAutomationDecision(\n  input: ReleaseAutomationDecisionInput,\n): ReleaseAutomationDecisionResult {\n  const selectedTool = input.selectedTool ?? \"release-please\";\n  const findings: ReleaseAutomationDecisionFinding[] = [];\n\n  if (input.adrStatus !== \"accepted\") {\n    findings.push({\n      code: \"release_adr_not_accepted\",\n      severity: \"error\",\n      message: \"ADR-008 must be accepted before release automation is treated as selected\",\n    });\n  }\n  if (!input.conventionalCommits) {\n    findings.push({\n      code: \"conventional_commits_required\",\n      severity: \"error\",\n      message: \"release automation requires Conventional Commits\",\n    });\n  }\n  if (input.requiresPrReviewGate && selectedTool !== \"release-please\") {\n    findings.push({\n      code: \"release_pr_gate_required\",\n      severity: \"error\",\n      message: \"release automation must preserve a PR review gate before version publication\",\n    });\n  }\n  if (!input.requiresDryRun) {\n    findings.push({\n      code: \"dry_run_required\",\n      severity: \"error\",\n      message: \"release automation decision must remain dry-run/plan-only before approval\",\n    });\n  }\n\n  const ok = findings.length === 0;\n  return {\n    schemaVersion: \"helix-release-automation-decision.v1\",\n    ok,\n    dryRun: true,\n    applyAuthorized: false,\n    selectedTool,\n    decision: ok ? \"adopt_release_please_plan_only\" : \"blocked\",\n    candidates: RELEASE_AUTOMATION_CANDIDATES,\n    mergeQueueEnabled: input.mergeQueueEnabled,\n    requiredApprovals: [\n      \"action_binding_approval_record\",\n      \"release_dry_run_green_command\",\n      \"cross_review_evidence\",\n    ],\n    commands: {\n      dryRun: \"release-please release-pr --dry-run\",\n      releasePr: \"release-please release-pr\",\n      publish: \"release-please github-release --dry-run\",\n    },\n    findings,\n  };\n",
+          "span_id": "SRC-14-DEC-02",
+          "role": "decision findings, approval requirements and plan-only commands"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-2888",
+        "candidate_phase_targets": [
+          "PHCAP-14"
+        ],
+        "candidate_product_targets": [
+          "HELIX-OS"
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner, successor or consumer closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-14-DEC-01",
+          "finding": "historical decision gate candidate; implementation and apply authorization remain unknown"
+        },
+        {
+          "span_id": "SRC-14-DEC-02",
+          "finding": "historical decision gate candidate; implementation and apply authorization remain unknown"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-14-DEC-01",
+          "finding": "historical decision output/approval consumer candidate; no current writer is established"
+        },
+        {
+          "span_id": "SRC-14-DEC-02",
+          "finding": "historical decision output/approval consumer candidate; no current writer is established"
+        }
+      ]
+    }
+  ],
+  "related_reference_assets": [
+    {
+      "asset_id": "LEGACY-ASSET-FF94651B242236F07668",
+      "source_path": "docs/adr/ADR-008-release-automation-selection.md",
+      "role": "decision",
+      "note": "ADR-008 historical accepted decision; plan-only result and apply boundary were read, not adopted",
+      "ledger_state": {
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "product_target": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-8195605FB59B8B837EFF",
+      "source_path": "docs/adr/ADR-005-distribution-model-and-central-ui.md",
+      "role": "decision/consumer",
+      "note": "historical GitHub-pull and central UI distribution decision; conflicts with current four-product boundary and remains unresolved",
+      "ledger_state": {
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "product_target": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-20466A68C0622610B827",
+      "source_path": "docs/governance/release-module-bundle-rollout-roadmap.md",
+      "role": "decision/consumer",
+      "note": "historical rollout order and release/deploy separation; roadmap projection, not current authority",
+      "ledger_state": {
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "product_target": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-116ACCD66B0D4F20958E",
+      "source_path": "config/distribution-capability-artifact-catalog.json",
+      "role": "artifact",
+      "note": "historical capability-to-artifact catalog; configuration excluded from reuse and status unknown",
+      "ledger_state": {
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "product_target": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-1A1FB58114053DA3EDCB",
+      "source_path": "config/distribution-profile-catalog.json",
+      "role": "artifact/promotion",
+      "note": "historical profile catalog; product mapping and consumer closure pending",
+      "ledger_state": {
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "product_target": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3170E0F058355984D281",
+      "source_path": "docs/plans/PLAN-L7-290-setup-project-rollback-command.md",
+      "role": "rollback",
+      "note": "historical rollback command plan; implementation and consumer closure unknown",
+      "ledger_state": {
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "product_target": "unresolved",
+        "authority_status": "historical"
+      }
+    },
+    {
+      "asset_id": "LEGACY-ASSET-101F827B84A7084D2D25",
+      "source_path": "tests/distribution-acceptance.test.ts",
+      "role": "failure/consumer",
+      "note": "historical test source only; phase classification spans PHCAP-14/17 and was not executed",
+      "ledger_state": {
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "product_target": "unresolved",
+        "authority_status": "historical"
+      }
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "ATOM-14-01",
+      "source_asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+      "source_span_id": "SRC-14-REQ-01",
+      "meaning_candidate": "release inputs produce an immutable artifact and bounded remote action",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-02",
+      "source_asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+      "source_span_id": "SRC-14-REQ-02",
+      "meaning_candidate": "consumer profile is projected from typed allowlist and only safe capability may promote",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-03",
+      "source_asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+      "source_span_id": "SRC-14-REQ-03",
+      "meaning_candidate": "promotion requires receipt agreement and rejects drift, skip and policy mismatch",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-04",
+      "source_asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+      "source_span_id": "SRC-14-REQ-04",
+      "meaning_candidate": "artifact digest is stable across stages and rollback preserves consumer bytes",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-05",
+      "source_asset_id": "LEGACY-ASSET-9B7682EBDEA171005D45",
+      "source_span_id": "SRC-14-REQ-05",
+      "meaning_candidate": "release requirements map to historical oracles while execution remains out of scope",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-06",
+      "source_asset_id": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+      "source_span_id": "SRC-14-RLS-01",
+      "meaning_candidate": "HARNESS source authority and DevOS composition surface are historically separated",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-07",
+      "source_asset_id": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+      "source_span_id": "SRC-14-RLS-02",
+      "meaning_candidate": "module identity carries lifecycle, compatibility and rollback information",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-08",
+      "source_asset_id": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+      "source_span_id": "SRC-14-RLS-03",
+      "meaning_candidate": "each release path has one owner and missing/duplicate artifact paths fail close",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-09",
+      "source_asset_id": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+      "source_span_id": "SRC-14-RLS-04",
+      "meaning_candidate": "bundle exact set and rollback profile are historical composition concepts",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-10",
+      "source_asset_id": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+      "source_span_id": "SRC-14-RLS-05",
+      "meaning_candidate": "release packet binds digests and promotion separates actors after static checks",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-11",
+      "source_asset_id": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+      "source_span_id": "SRC-14-RLS-06",
+      "meaning_candidate": "verification, feedback, rollback and deployment are distinct historical states",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-12",
+      "source_asset_id": "LEGACY-ASSET-6C9D2BE4E3C77D78F8EB",
+      "source_span_id": "SRC-14-TST-01",
+      "meaning_candidate": "test design enumerates release evidence and meaningful negative cases",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-13",
+      "source_asset_id": "LEGACY-ASSET-6C9D2BE4E3C77D78F8EB",
+      "source_span_id": "SRC-14-TST-02",
+      "meaning_candidate": "evidence records digest, channel and approval snapshots without proving current release",
+      "actor_candidate": "legacy release authority candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-14",
+      "source_asset_id": "LEGACY-ASSET-4C97F9E72F120F6B664E",
+      "source_span_id": "SRC-14-DEC-01",
+      "meaning_candidate": "automation decision result is plan-only and not apply-authorized",
+      "actor_candidate": "legacy automation decision candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    },
+    {
+      "atom_id": "ATOM-14-15",
+      "source_asset_id": "LEGACY-ASSET-4C97F9E72F120F6B664E",
+      "source_span_id": "SRC-14-DEC-02",
+      "meaning_candidate": "automation findings block selection until approvals and dry-run evidence exist",
+      "actor_candidate": "legacy automation decision candidate",
+      "product_unit_candidate": "HELIX-HARNESS release contract candidate ↔ HELIX-OS distribution control candidate",
+      "consumer_candidate": "artifact/promotion/rollback/consumer evidence candidate",
+      "failure_or_unresolved": "historical source only; implementation status unknown; old runtime/test/CI not executed",
+      "legacy_authority_or_enforced_by": "historical PHCAP-14 source/design/test/decision claim",
+      "evidence_status": "observed_legacy_text; implementation unknown; current authority unresolved; no current pass"
+    }
+  ],
+  "current_refs": [
+    {
+      "ref_id": "CUR-XW-14",
+      "path": "docs/governance/audits/source-rebaseline/new-generation-release-composition-source-crosswalk.md",
+      "sha256": "27adb4a61269159e30837376e29b20873d2e43fc20dd2692862002888d4a62d2",
+      "start_line": 1,
+      "end_line": 13,
+      "line_sha256": "52d6ea6b23a015d19f36ca1e1aad92b5aebd9487e3cb02542749c58eedd74515",
+      "exact_text": "# 新世代の提供構成と旧Functional Release Slice候補の対応\n\n確認日: 2026-09-14\n\n## 目的\n\n`functional-release-slice-{requests,requirements,acceptance}.md`を、新世代のHARNESS提供契約と\nHELIX-OS運用統制へ再分類する。旧候補はBR 9件、feature contract 6件、要件24件、受入26件である。\n旧RLS、既存CI、DevOS、Cursor、GitHub／DB read-afterを前提に含むv0.2への過去承認は、現在の製品境界と\n「要求整理完了前に既存CIを使わない」という方針を満たさないため継承しない。\n\n本表はlegacy sourceから意味atomを採取するための照合である。旧IDを新世代の正規IDへ昇格せず、\nL2合意、L3凍結、L10／L11受入、Requirement IR更新、CI・Worker・配布の実行を行わない。\n",
+      "product": "HELIX-HARNESS",
+      "layer": "L2/L11",
+      "classification": "direct_current_ref",
+      "relation": "current crosswalk directly separates release composition from old implementation and keeps the candidate non-authoritative"
+    },
+    {
+      "ref_id": "CUR-XW-14-BOUNDARY",
+      "path": "docs/governance/audits/source-rebaseline/new-generation-release-composition-source-crosswalk.md",
+      "sha256": "27adb4a61269159e30837376e29b20873d2e43fc20dd2692862002888d4a62d2",
+      "start_line": 43,
+      "end_line": 49,
+      "line_sha256": "399a9059c4801687d66d409aca4f17e41548b2ce8fdbbe953dde7b2a60e01f48",
+      "exact_text": "## 新世代で固定する責務境界\n\n1. HARNESSは、提供機能の構成、明示依存、適格性、変更影響、検証義務、組合せ受入の契約を所有する。\n2. HELIX-OSは、承認済み契約から構成情報を投影し、対象プロジェクトへの導入・更新・復旧・配布操作と証拠を管理する。\n3. HELIX-OSのCI／WorkerはHARNESS契約を実行するが、要求整理中には設計・実装・起動しない。\n4. 個別製品と外部consumerは、選択した提供構成で目的を満たす利用者受入を所有する。\n5. 旧Slice／Module／Bundleは概念候補の呼称に留める。対象別L1／L2で必要な役割が承認されるまで、新世代schemaやruntime identityにしない。\n",
+      "product": "HELIX-OS",
+      "layer": "L2/L11",
+      "classification": "direct_boundary_current_ref",
+      "relation": "current crosswalk assigns distribution, update and recovery evidence to OS while preserving HARNESS contract ownership"
+    },
+    {
+      "ref_id": "CUR-XW-14-NEXT",
+      "path": "docs/governance/audits/source-rebaseline/new-generation-release-composition-source-crosswalk.md",
+      "sha256": "27adb4a61269159e30837376e29b20873d2e43fc20dd2692862002888d4a62d2",
+      "start_line": 51,
+      "end_line": 55,
+      "line_sha256": "a0da476c231f87fe62a3b58fecd9fa9d241a3efef8f20c69231f03bb63dca104",
+      "exact_text": "## 次工程\n\nConcept v4.1と対象別L1の承認後、本表の`semantic_atom_candidate`と`split_reapproval_required`を\nHARNESS／HELIX-OSの新しいL2 IDへ個別採否する。`rejected_for_new_generation`は採用対象から除外し、\nWorkerへ移した条件は提供構成と別の要求系列で再承認する。要求整理が閉じるまで既存CI、旧RLS、旧配布経路を実行しない。\n",
+      "product": "HELIX-HARNESS",
+      "layer": "L2/L11",
+      "classification": "direct_boundary_current_ref",
+      "relation": "current crosswalk requires later individual adoption and forbids release execution during upstream整理"
+    },
+    {
+      "ref_id": "CUR-OS-L2-14",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "start_line": 57,
+      "end_line": 64,
+      "line_sha256": "003f2a7e5e97c34289bf58ded563235423408a3469bf5c5c34ce2b927a077bbe",
+      "exact_text": "| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ |\n| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して対象要求へ還流し、採択後の変更・再検証・効果確認まで継続できる | HBR-P4／P7／P8、HCV4-L2-006 | HARNESS自身と各productの改善を同じ機構で追跡し、経験を正本へ勝手に昇格させず、訂正・棄却・保留・失効と影響範囲を確認できる |\n| HELIXOS-L2-006 | HARNESSの提供版を新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |\n| HELIXOS-L2-008 | 承認済み上流revisionとHARNESSの検証契約から責務に合うCI profileを組み立て、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |\n| HELIXOS-L2-009 | 中断・担当交代・障害後に、許可範囲内で継続・復旧できる | HBR-P1／P2、HNFR-P5／P8 | 累積予算・期限・未完義務を保持し、二重実行や範囲外操作を防ぐ |\n| HELIXOS-L2-010 | 管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる | HELIX-OS編成案 §1／2／6、2026-09-15 PO指示 | 管理は目的・要求・制約・優先度・依存・資源・停止を推進へ渡す。推進はHARNESSのnormative工程語彙・順序を参照し、operational tag、mapping、composition、workflow instance生成規則を所有してticketと成果を生成する。管理は登録・統制し、検収はHARNESS contractへの収束を判断する。許可内の直接通信を保ち、固定モデル数や全通信の中央中継を要求しない |\n| HELIXOS-L2-011 | ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる | HELIX-OS編成案 §1／4 | HARNESSの検証義務を追加・削除せず、実際の統合候補で具体化する。必要CI欠落、影響不明、契約解釈不明、stale結果を拒否し、review、内容検証、merge admission、release、運用評価を分けて収束させる |\n",
+      "product": "HELIX-OS",
+      "layer": "L2",
+      "classification": "direct_current_ref",
+      "relation": "OS candidate names HARNESS delivery version installation update recovery and evidence trace"
+    },
+    {
+      "ref_id": "CUR-OS-RELEASE-14",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "start_line": 274,
+      "end_line": 282,
+      "line_sha256": "cf0d89c80ee21ec88237a60a89e8888a261eeaaa6abc10f86dddf27138d9d2d5",
+      "exact_text": "HELIXOS-L2-002／005／007では、管理対象の要求revisionからrelease準備・artifact受渡しと、展開先runtimeが所有する\n配備・設定・計測・log・通知・incident・backup・restore・rollback・maintenance・decommission・費用の適用状態と証拠へ\n辿り、欠測・stale・collector停止をhealthyへ変換しない。OSは証拠と進行を統制するが、展開先runtimeの実行authorityを\n吸収しない。\n運用観測からの差分は改善候補として出典とscopeを保持し、人間の採否や対象製品の要求を直接書き換えない。\n\nHELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作・中断・再開を追跡し、対象、actor、権限、予算、\n影響範囲、復旧先、独立検証が成立する範囲だけを実行対象にする。NIO候補は操作認可や自動修復権限を付与しない。\n具体SLO、RTO／RPO、保持期間、対象環境は個別製品・releaseの承認済み要求を参照する。本節では旧機構、CI、\n",
+      "product": "HELIX-OS",
+      "layer": "L2",
+      "classification": "direct_current_ref",
+      "relation": "OS candidate separates release preparation/artifact handoff from runtime deployment, rollback and evidence"
+    },
+    {
+      "ref_id": "CUR-WEB-L1-14",
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "start_line": 22,
+      "end_line": 36,
+      "line_sha256": "e3bbda06bfe44b168c68e5855177519a47fd8488932dd073f6d66f76edf21590",
+      "exact_text": "## 提供価値\n\nHELIX-Webは、利用者が許可した開発環境と能力へConnectorで接続し、長時間の開発作業、進行、成果、停止・再開を\nダッシュボードから確認・操作できるAI開発SaaSを目指す。利用者環境の資産と統制を尊重し、HELIX-OSの内部管理画面、\nHELIX-Web-OSの運転機構、HARNESSの工程定義をWeb固有の価値として重複実装しない。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HELIXWEB-L1-001 | 利用者は、許可した環境・project・能力へ接続し、対象と作用範囲を確認できる | HELIXWEB-L2-001／002／004 |\n| HELIXWEB-L1-002 | 利用者は、ダッシュボードで長時間作業の進行、結果、切断、取消、再開、結果不明を区別できる | HELIXWEB-L2-003 |\n| HELIXWEB-L1-003 | 利用者は、自分が許可する変更と受け入れる成果を判断し、残る専門判断を確認できる | HELIXWEB-L2-005 |\n| HELIXWEB-L1-004 | 利用者は、採用するHARNESS・Connector・model等の構成版と依存を確認できる | HELIXWEB-L2-006／007 |\n| HELIXWEB-L1-005 | 利用者は、利用結果をHELIX改善へ渡す目的・範囲・同意を管理できる | HELIXWEB-L2-008 |\n| HELIXWEB-L1-006 | 展開判断者は、HELIX-HARNESS製品群Version 1の完成を確認してからHELIX-Webを展開できる | HELIXWEB-L2-009 |\n\n",
+      "product": "HELIX-Web",
+      "layer": "L1",
+      "classification": "adjacent_current_ref",
+      "relation": "Web candidate owns user-facing configuration/version visibility and waits for HARNESS Version 1"
+    },
+    {
+      "ref_id": "CUR-WEB-L1-BOUNDARY-14",
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "start_line": 45,
+      "end_line": 49,
+      "line_sha256": "29cead62154a7b8fe3e288c3593586622109c5139704709853ed534b292df33f",
+      "exact_text": "## 対象外\n\nV-modelと検証契約はHARNESS、開発projectの要求・Worker・CI・ログ・改善還流の管理統制はHELIX-OS、\n展開後のtenant・Connector job・service state・配備・監視・復旧はHELIX-Web-OSが所有する。\n全コードや計算資源をSaaSへ移すこと、未採択の分散推論、横断学習への包括同意を前提にしない。\n",
+      "product": "HELIX-Web",
+      "layer": "L1",
+      "classification": "adjacent_boundary_current_ref",
+      "relation": "Web candidate leaves V-model, OS control and Web-OS deployment/recovery to other products"
+    },
+    {
+      "ref_id": "CUR-WEB-L2-14",
+      "path": "docs/helix-web/L2-requirements/product-requirements.md",
+      "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+      "start_line": 46,
+      "end_line": 50,
+      "line_sha256": "0631562e61aa463ae59b3758222027a00749574024615d4ab4f2e7cbb494bd79",
+      "exact_text": "## 要求対象と未決定の境界\n\nHARNESSは利用する開発能力・工程条件を提供する。HELIX-OSはWebプロジェクトの要求・進行・Worker・CI・学習・ログを管理し、\nHELIX-Web-OSは展開後のtenant・Connector job・service state・配備・監視・復旧を担う。\n本書はWebの利用者向け操作・表示・サービス体験を所有し、OS内部管理UIの要求をWebの製品要求として一括転用しない。\n",
+      "product": "HELIX-Web",
+      "layer": "L2",
+      "classification": "adjacent_current_ref",
+      "relation": "Web candidate boundary describes user-facing product experience and defers service deployment to Web-OS"
+    },
+    {
+      "ref_id": "CUR-WEB-L11-14",
+      "path": "docs/helix-web/L11-acceptance/product-acceptance.md",
+      "sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec",
+      "start_line": 13,
+      "end_line": 31,
+      "line_sha256": "82f43676b05385afced18039e369d1f54d310bdb6ac194567b84d9b37c844303",
+      "exact_text": "# HELIX-Web利用要求の受入案\n\n全件未実行。対象要求の採用revision、プロト合意、対象構成、操作、期待結果・実結果と証拠を揃えて評価する。\n将来構想は段階別に採択し、初期サービスの受入へ一律追加しない。\n\n| 親要求 | 利用者による確認と反例 |\n|---|---|\n| HELIXWEB-L2-001 | 選択した環境と別環境を区別し、対象不明・未接続を操作成功と表示しない。対象projectの進行・状態・成果をダッシュボードで辿れる |\n| HELIXWEB-L2-002 | 選択構成・依存・版と導入結果を照合し、未適格な構成や更新失敗を利用可能と表示しない |\n| HELIXWEB-L2-003 | 切断中・取消待ち・結果不明を成功と区別し、復帰後に同じjobと結果へ辿る。二重実行を拒否する |\n| HELIXWEB-L2-004 | 未対応経路・返送対象外の情報を与え、対応済み表示や無断転送が起きない。実方式の採用前に根拠と適用範囲を確認する |\n| HELIXWEB-L2-005 | 診断・更新・復旧と案内付き改修を操作別に評価し、要求差分・影響・プレビュー・回復結果へ辿る。一操作の成功を全改修対応と表示しない |\n| HELIXWEB-L2-006 | モデル版・適用範囲・根拠・不確実性を確認し、不適格モデルや未検証応答を検収済み成果として採用しない |\n| HELIXWEB-L2-007 | Web版と構成版が異なるケースで実構成へ辿り、同一版番号だけを互換性・接続成功の証拠にしない |\n| HELIXWEB-L2-008 | project内利用、Web-OSからHELIX-OSへの運用log export、事業改善、横断知識化、モデル学習を区別し、範囲外の共有を拒否する。改善候補の採否をWeb固有の要求変更と混同しない |\n| HELIXWEB-L2-009 | 複数プロダクトの開発検証またはHELIX自身への適用証拠を欠くHARNESS Version 1ではWeb展開を拒否する。全証拠が揃えば展開可能と判定し、それをWeb完成・公開済みと読み替えない |\n\nHARNESSの単体テスト成功、OSのCI運転成功、Web画面の存在だけでは本受入を満たさない。\n認証・データ返送・学習利用の試験は、採用した方式と許可範囲を確定した検証環境で行う。現時点で外部サービスを操作しない。\n",
+      "product": "HELIX-Web",
+      "layer": "L11",
+      "classification": "adjacent_current_ref",
+      "relation": "Web acceptance is unexecuted and checks selected configuration/version and deployment prerequisite, not PHCAP-14 current release evidence"
+    },
+    {
+      "ref_id": "CUR-WEBOS-L1-14",
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "start_line": 12,
+      "end_line": 24,
+      "line_sha256": "f2c9b0354857cee2866d53f227b4fcc90f099803a1ddadd30588811da2392550",
+      "exact_text": "# HELIX-Web-OS L1企画候補\n\nHELIX-Web-OSは、HELIX-Webの展開時にHELIX-OSの外へ構成し、利用者向けWebサービスを安全かつ継続的に\n運転する基盤である。HELIX-OSの内部統制stateとWebサービスのtenant／job／接続stateを分離する。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HELIXWEBOS-L1-001 | サービス運用者は、tenant・利用者・projectごとのauthorityと隔離を保ってHELIX-Webを提供できる | HELIXWEBOS-L2-001 |\n| HELIXWEBOS-L1-002 | サービス運用者は、Connectorと長時間jobを安全に配信・追跡・停止・再開・回復できる | HELIXWEBOS-L2-002／003 |\n| HELIXWEBOS-L1-003 | 利用者は、認証・provider接続・data返送の対象と許可範囲を管理できる | HELIXWEBOS-L2-004 |\n| HELIXWEBOS-L1-004 | HELIX-Webは、利用者へ進行・状態・成果・証拠を正しいrevisionで表示できる | HELIXWEBOS-L2-005 |\n| HELIXWEBOS-L1-005 | サービス運用者は、Webサービスを配備・監視・更新・復旧し、許可された運用ログをHELIX-OSの改善候補へ接続できる | HELIXWEBOS-L2-006 |\n\n",
+      "product": "HELIX-Web-OS",
+      "layer": "L1",
+      "classification": "adjacent_current_ref",
+      "relation": "Web-OS candidate owns service delivery, update and recovery boundary"
+    },
+    {
+      "ref_id": "CUR-WEBOS-L2-14",
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "start_line": 26,
+      "end_line": 38,
+      "line_sha256": "52c7198ff971b2d242c30841719e303052dc46cc7f7343a34aa1fe027992160b",
+      "exact_text": "| ID | HELIX-Web-OSに対する要求 | 確認する結果 |\n|---|---|---|\n| HELIXWEBOS-L2-001 | tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる | 一利用者の資格・job・data・結果が別scopeへ流れず、HELIX-OS内部stateをservice authorityとして共有しない |\n| HELIXWEBOS-L2-002 | 適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる | Connectorに開発engineを重複実装せず、不適格版や更新失敗を利用可能と表示しない |\n| HELIXWEBOS-L2-003 | 長時間jobの受付、配信、進行、切断、取消、再開、終端、結果不明を同じjob identityで管理できる | 再送・障害・再接続で副作用を二重実行せず、期限・予算・許可・未完義務を失わない |\n| HELIXWEBOS-L2-004 | 認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる | 未確認経路、期限切れ権限、秘密送信、範囲外data返送を拒否し、サービス利用を横断学習同意へ変換しない |\n| HELIXWEBOS-L2-005 | jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる | projection欠落・遅延・stale・conflict・結果不明を成功表示せず、画面表示を実行事実や受入の正本にしない |\n| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-Web-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWeb-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、\nartifact、receipt、telemetry export、改善proposalとして行う。\n",
+      "product": "HELIX-Web-OS",
+      "layer": "L2",
+      "classification": "adjacent_current_ref",
+      "relation": "Web-OS draft names service release/deployment/rollback and artifact/receipt export but remains unexecuted adjacent evidence"
+    },
+    {
+      "ref_id": "CUR-WEBOS-L11-14",
+      "path": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+      "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e",
+      "start_line": 11,
+      "end_line": 24,
+      "line_sha256": "b968bbc6980fcceef6d4a2524a0692d232dc425609511677c3e31a7655b0c749",
+      "exact_text": "# HELIX-Web-OSサービス運転受入案\n\n全件未実行。HARNESS Version 1完成とHELIX-Web／Web-OS要求の合意後に、採択した展開環境で評価する。\n\n| 親要求 | 利用者・運用者が確認する結果と反例 |\n|---|---|\n| HELIXWEBOS-L2-001 | 異なるtenant・利用者・projectへ同じ識別子やdataを与え、scope越境とHELIX-OS内部stateのservice利用を拒否する |\n| HELIXWEBOS-L2-002 | Web・Connector・HARNESS能力の版を不一致にし、不適格構成の起動、暗黙更新、engine重複を拒否する |\n| HELIXWEBOS-L2-003 | 切断、再送、取消競合、timeout、結果不明、再起動を与え、二重副作用なしで同じjobと未完義務へ戻る |\n| HELIXWEBOS-L2-004 | wrong target、期限切れ、revoke、範囲外network／data、secret混入を与え、接続・返送・学習利用を拒否する |\n| HELIXWEBOS-L2-005 | event欠落、projection遅延、stale revision、conflictを与え、ダッシュボードが成功・受入済みへ補完しない |\n| HELIXWEBOS-L2-006 | deployment、monitoring、rollback、restore、恒久修復、利用者受入を個別に失敗させ、一つの成功で残りを完了にしない。許可logだけがscope・目的・同意・revision付きでHELIX-OSへ届き、credential、tenant原data、同意範囲外logを拒否する。改善proposalが各対象要求を直接変更しない |\n\nHELIX-OS側のproject管理成功、HARNESS単体成功、Web画面の存在は本受入を代替しない。\n",
+      "product": "HELIX-Web-OS",
+      "layer": "L11",
+      "classification": "adjacent_current_ref",
+      "relation": "Web-OS acceptance is unexecuted and keeps deployment, rollback, restore and user acceptance separate"
+    }
+  ],
+  "contradictions_preserved": [
+    {
+      "id": "CONTR-01",
+      "status": "unresolved_preserved",
+      "left": "legacy source metadata and ADR/roadmap text describe confirmed or accepted release decisions and paths",
+      "right": "selected asset ledgers remain historical, unresolved, implementation unknown, with no append-only decision closure",
+      "resolution": "preserved historical decision claims versus ledger state; no current authority, adoption or completion is generated"
+    },
+    {
+      "id": "CONTR-02",
+      "status": "unresolved_preserved",
+      "left": "legacy L10/test and implementation source describe release, promotion and rollback checks",
+      "right": "legacy test/runtime/CI execution is prohibited and implementation status remains unknown",
+      "resolution": "preserved source/test presence versus unknown execution/implementation; no current oracle or pass is generated"
+    },
+    {
+      "id": "CONTR-03",
+      "status": "unresolved_preserved",
+      "left": "PHCAP-14 product_targets contains Web and Web-OS",
+      "right": "inventory current.evidence_products contains only HARNESS and OS; Web/Web-OS refs are adjacent candidates",
+      "resolution": "Web/Web-OS remain unknown; adjacent boundary text does not close direct PHCAP-14 evidence"
+    },
+    {
+      "id": "CONTR-04",
+      "status": "unresolved_preserved",
+      "left": "Web-OS L2 names service release, artifact, deployment and rollback",
+      "right": "Web-OS L2/L11 are draft/unexecuted and phase inventory does not list Web-OS as PHCAP-14 direct evidence",
+      "resolution": "preserved as adjacent candidate responsibility; no current release implementation, promotion or rollback pass is generated"
+    }
+  ],
+  "unresolved": [
+    "all four selected ledger dispositions remain unresolved; all implementation statuses remain unknown and consumer_refs are empty",
+    "append-only decision log has no matching records for the four selected assets; adoption, rejection, owner, successor and consumer closure remain undecided",
+    "phase-level implemented_partial_with_test_design and L10 maximum do not establish per-asset implementation or current pass",
+    "related ADR, roadmap, catalog, rollback plan and test assets are historical references with unresolved disposition or pending consumer closure",
+    "product unit, connection and composite split across HARNESS/OS/Web/Web-OS requires semantic review; product targets are candidate scope only",
+    "Web has no direct PHCAP-14 current ref for artifact identity, promotion chain or rollback authority; this remains unknown rather than unimplemented",
+    "Web-OS has adjacent draft release/deployment/rollback text but no direct PHCAP-14 current evidence or execution/acceptance proof",
+    "current HARNESS and OS refs are candidate/crosswalk evidence; L2/L11 approval, L3/L10 implementation, current release and production applicability remain unconfirmed",
+    "old source claims about builder, catalog, automation and rollback cannot be reused; meaning equivalence, replacement and retirement decisions are absent",
+    "promotion actor separation, artifact digest continuity, consumer byte preservation and rollback evidence are historical candidate obligations only",
+    "all other PHCAP-14 package/distribution/release assets remain residual outside the four representative assets and seven related references",
+    "old runtime, old test, old CI, hook and adapter were not executed and cannot serve as oracle, fallback or completion evidence"
+  ],
+  "counts": {
+    "legacy_assets": 4,
+    "source_spans": 15,
+    "semantic_atoms": 15,
+    "current_refs_recorded": 12,
+    "direct_current_refs": 5,
+    "harness_direct_current_refs": 2,
+    "os_direct_current_refs": 3,
+    "adjacent_current_refs": 7,
+    "legacy_consumer_refs_observed": 0,
+    "decision_records_found": 0,
+    "related_reference_assets": 7,
+    "phase_candidate_asset_count": 123,
+    "phase_and_product_candidate_asset_count": 31
+  },
+  "validator_contract": {
+    "static_only": true,
+    "must_reject": [
+      "authority promotion",
+      "Web/Web-OS direct evidence invention",
+      "source/ledger digest tamper",
+      "legacy implementation/consumer closure promotion",
+      "decision history invention",
+      "old execution/pass claims",
+      "contradiction removal",
+      "unresolved deletion"
+    ],
+    "negative_cases": 18
+  }
+}

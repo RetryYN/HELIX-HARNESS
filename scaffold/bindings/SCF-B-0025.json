@@ -1,0 +1,205 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0025",
+  "kind": "scaffold",
+  "title": "PHCAP-14 Release product evidence research premise candidate",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS／HELIX-OS上流管理（PHCAP-14製品境界・release証拠研究。正式ownerは未解決）",
+  "state": "active",
+  "reason": "PHCAP-14 Releaseの代表4 historical assetとsource／判断史／failure／consumer候補を照合し、HARNESS／OSのdirect current candidateとWeb／Web-OSのadjacent boundaryを分離する。製品別artifact、promotion、rollbackの正式契約・実装・受入は未成立であり、implementation／consumer closure／authorityをunknownまたはpendingのまま固定する。",
+  "upstream": [
+    {
+      "path": "docs/governance/audits/source-rebaseline/phase-product-evidence-gap-audit-2026-09-21.md",
+      "sha256": "b76d10e9ac3e36e267edc6eadc4ab3afb1f7eafabcebff50a0851fd3c63d97dc",
+      "note": "PHCAP-14 product evidence gap; direct Web/Web-OS evidence remains missing"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "note": "PHCAP-14 phase/legacy/current evidence inventory"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "selected and related historical asset disposition/implementation/consumer states"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "selected asset phase/product candidate classification and unresolved states"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "append-only decision history; selected assets have no matching closure record"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "read-only legacy reference boundary"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "current product boundary context"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-release-composition-source-crosswalk.md",
+      "sha256": "27adb4a61269159e30837376e29b20873d2e43fc20dd2692862002888d4a62d2",
+      "note": "current release composition crosswalk candidate"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77",
+      "note": "HARNESS artifact/release responsibility candidate"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b",
+      "note": "HARNESS acceptance boundary candidate"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "note": "OS delivery/install/update/recovery candidate"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "Web adjacent product boundary candidate"
+    },
+    {
+      "path": "docs/helix-web/L2-requirements/product-requirements.md",
+      "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+      "note": "Web adjacent requirement candidate"
+    },
+    {
+      "path": "docs/helix-web/L11-acceptance/product-acceptance.md",
+      "sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec",
+      "note": "Web adjacent acceptance candidate"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "Web-OS adjacent system boundary candidate"
+    },
+    {
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "note": "Web-OS draft service release/deployment/rollback boundary candidate"
+    },
+    {
+      "path": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+      "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e",
+      "note": "Web-OS adjacent acceptance candidate, unexecuted"
+    },
+    {
+      "path": "scaffold/phcap14-release-research/README.md",
+      "sha256": "2e2e3492133f83314151830f9a004083b810bd3a36c8c199302a459950d34b9e",
+      "note": "PHCAP-14 bounded candidate summary and denominator"
+    },
+    {
+      "path": "scaffold/phcap14-release-research/inventory.json",
+      "sha256": "ae4ac9c9a498eef3e3db68d6b7744290cfb79ea29c8762bc72552cc18c1d19ec",
+      "note": "PHCAP-14 exact spans, atom candidates, product boundary and unknown state inventory"
+    },
+    {
+      "path": "scaffold/phcap14-release-research/validate.py",
+      "sha256": "21651049a0c2505219a9433fb517ea7bc3818f5e1fab7e5da2fc40cf3b57a786",
+      "note": "fail-closed static candidate validator"
+    },
+    {
+      "path": "scaffold/phcap14-release-research/selfcheck.py",
+      "sha256": "c31839697ed38a20e7e4aae5bcbbe3653ccd48b6314609087273cc7010715178",
+      "note": "meaningful negative selfchecks"
+    }
+  ],
+  "role": "PHCAP-14のphase到達、旧L3／L7／L10相当のrelease asset、製品別artifact／promotion／rollback境界、legacy implementation／degradation／current gapをresearch premiseとして束ねる。",
+  "obligations": [
+    "代表4 assetのledger状態（unresolved／implementation unknown／consumer empty）とphase/product candidate classificationをsource span 15件へ一致させる",
+    "旧sourceのexact bytes・line span・digest、failure／consumer evidence候補、判断ログ該当0件を保持し、採用・棄却・owner・successor・consumer closureを生成しない",
+    "phase-level historical capability_status=implemented_partial_with_test_design／maximum L10をper-product implementationやcurrent passへ複製しない",
+    "HARNESS／OSの5 direct current candidate refsとWeb／Web-OSの7 adjacent refsを分類し、direct evidence欠落を未実装と解釈しない",
+    "Web／Web-OSのartifact、promotion、rollback、authority、implementation、acceptanceをunknown／pendingとして保持し、隣接draftをdirect proofへ昇格しない",
+    "矛盾4件、未解決12件、phase candidate 123、phase×product denominator 31、related historical reference 7件を保持する",
+    "old runtime／test／CI／hook／adapterを実行せず、旧sourceをcurrent oracle、fallback、実装、release evidenceにしない",
+    "formal requirement、L2／L3／L10／L11 freeze、current owner、release、promotion、rollback、deployment、外部作用を候補検証から生成しない。PR共有はauthorityの成立を意味しない"
+  ],
+  "connections": {
+    "consumers": [
+      "PHCAP-14 product evidence research premise review担当",
+      "HARNESS／OS／Web／Web-OS product boundary review担当",
+      "legacy source／判断史／failure／consumer closure担当",
+      "Scaffold Binding stale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "phase capability inventoryとproduct evidence gap audit",
+      "legacy asset disposition／phase-product／decision ledger",
+      "current product L1／L2／L11 candidate documents",
+      "scaffold/phcap14-release-research validator／selfcheck"
+    ],
+    "boundary": "README、inventory、validator、selfcheckはscaffold/配下だけ。旧世代assetはsource referenceとして静的に読むだけで旧runtime・test・CI・hook・adapterは実行しない。candidate product unit／connection、phase、owner、implementation、consumer、authority、adoption、acceptanceは未確定のまま保持する。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/phcap14-release-research/validate.py",
+      "python3 scaffold/phcap14-release-research/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|list|stale|residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime・test・CI・hook・adapter実行",
+      "旧sourceを現行runtime・test・CIのoracle、fallback、実装、release evidenceにすること",
+      "scaffold/外への書き込み",
+      "要求採否・人間承認・successor・owner確定・phase authority・L2／L3／L10／L11 freeze・実装・consumer closure・acceptance・release・promotion・rollbackの生成",
+      "候補validator／selfcheckからのGitHub、Issue、CI、DB、deployment、外部APIへの外部作用",
+      "PR作成・修正側によるmerge、post-merge read-after、Issue close"
+    ]
+  },
+  "artifacts": [
+    "scaffold/phcap14-release-research/README.md",
+    "scaffold/phcap14-release-research/inventory.json",
+    "scaffold/phcap14-release-research/validate.py",
+    "scaffold/phcap14-release-research/selfcheck.py",
+    "scaffold/bindings/SCF-B-0025.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "scaffold/phcap14-release-research/validate.py（archive exact span、ledger／phase／decision、product classification、unknown／pending、digest）",
+      "scaffold/phcap14-release-research/selfcheck.py（authority、Web／Web-OS direct evidence捏造、source／digest、implementation／consumer closure、decision、old execution、contradiction、unresolvedの18負例）",
+      "scaffold/tools/scfctl.py validate／stale／residuals（Binding schema、upstream digest、残留確認）",
+      "git diff --check（候補文書の静的整形）"
+    ],
+    "negative_cases": [
+      "WebまたはWeb-OSのadjacent L1／L2／L11 refをPHCAP-14 direct current evidenceへ昇格する",
+      "旧sourceのexact span／digest、asset ledger、phase classification、decision 0件を改変する",
+      "phase-level implemented_partial_with_test_designまたはL10存在をper-product implementation／current passへ昇格する",
+      "legacy implementation unknown、consumer empty／pending、product unresolvedをclosureへ昇格する",
+      "historical failure／consumer textをcurrent oracle、promotion receipt、rollback passへ変換する",
+      "矛盾または未解決分母を削除・解決済みにする",
+      "旧runtime・test・CI・hook・adapterを実行またはoracle／fallbackにする",
+      "要求採否、owner、authority、successor、release、promotion、rollback、deployment、外部作用を生成する"
+    ]
+  },
+  "replacement": {
+    "role_target": "PHCAP-14を対象とする正式なproduct unit／connection crosswalkとL2／L3／L10／L11導出契約（承認後に導出）",
+    "formal_artifacts": [],
+    "issue": 1902,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
