@@ -68,7 +68,9 @@ def expect_independent_failure(label, mutate, code):
 
 # These checks must fail if the independent_evidence_errors call is removed.
 expect_independent_failure("anchor equality", lambda x: x["cases"][2]["line_anchored_evidence"][0]["current"]["text"].__setitem__(0, "tampered"), "E_ANCHOR_EQUALITY")
-expect_independent_failure("holding scan", lambda x: x["cases"][0]["live_holding_relations"][0].update(path_match_count=1), "E_HOLDING_SCAN")
+# Keep the declared count and evidence internally consistent. Only a scan of
+# the actual holding can refute this invented match.
+expect_independent_failure("holding scan", lambda x: x["cases"][0]["live_holding_relations"][0].update(path_match_count=1, path_match_evidence=["1:synthetic"]), "E_HOLDING_SCAN")
 expect_independent_failure("anchor presence", lambda x: x["cases"][0]["line_anchored_evidence"].pop(), "E_ANCHOR_KINDS")
 
 # A changed generator is accepted temporarily by the two digest pins so each

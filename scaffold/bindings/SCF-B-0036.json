@@ -12,7 +12,7 @@
     {"path": "scaffold/pre-isolation-outside-l1-semantic/README.md", "sha256": "ddd5a066f0d8fe049a0ff1b6b7d7ea0f32bf8bbc25a0405f19bc75f582376093", "note": "HARNESS／OS partial、Web／Web-OS exact、source_holding先行境界"},
     {"path": "scaffold/pre-isolation-outside-l1-semantic/generate.py", "sha256": "e5bd4dbb4e6455cf90d7e0b7117b4482ebd497776976b5b16682cb0462ea0a91", "note": "Git objectと現行sourceのread-only evidence生成"},
     {"path": "scaffold/pre-isolation-outside-l1-semantic/validate.py", "sha256": "0f5432e1dee78b91ea4bcfb526df6038633b5010be8e77ba90964c43d6566102", "note": "approved SHA、line anchor、13 holding atom setの独立検査と固定digest"},
-    {"path": "scaffold/pre-isolation-outside-l1-semantic/selfcheck.py", "sha256": "28be45cc3034531e4fc2e3d9c5d6f55970ad2c37900bbdfd04e214fd7eb31b62", "note": "inventory改変11件、digest pin更新後の生成器改変14件、独立oracle削除のfail-close検査"},
+    {"path": "scaffold/pre-isolation-outside-l1-semantic/selfcheck.py", "sha256": "8a87e6c12437c21eacfc120ef97ea2a723ff844f721d861dab7bb0c6599a22fb", "note": "inventory改変11件、digest pin更新後の生成器改変14件、独立oracle削除のfail-close検査"},
     {"path": "scaffold/pre-isolation-outside-holding-first15/inventory.json", "sha256": "010f159e0bc56f4ee4d3db11cb8b5e1f8d77af704abd66437cbaddfa4b437257", "note": "outside-67 first15の旧L1 pathとpre-isolation blob台帳"},
     {"path": "docs/governance/management-provisional-requirement-register.jsonl", "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b", "note": "supersedes終端13 live source holdingの導出元"},
     {"path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md", "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2", "note": "4対象L1のapproved SHAと意味境界"},
