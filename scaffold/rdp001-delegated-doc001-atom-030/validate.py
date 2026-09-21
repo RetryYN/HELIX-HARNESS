@@ -17,8 +17,10 @@ SOURCE_REL = "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.
 SOURCE_COMMIT = "569d7373c32287bbafadeec6043472563937c5c7"
 CURRENT_HEAD = "2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c"
 CURRENT_REF = "origin/main"
+SCF_BINDING = ROOT / "scaffold/bindings/SCF-B-0032.json"
 EXPECTED_IDS = {f"DD001-SEM-VDH-FR-{i:03d}" for i in range(1, 20)}
 EXPECTED_PRODUCT_SET = {"HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"}
+EXPECTED_ATOM_TARGETS = {"HELIX-HARNESS", "unresolved"}
 EXPECTED_PHASE_SET = {"PHCAP-01", "PHCAP-06", "PHCAP-16", "PHCAP-18", "PHCAP-19"}
 EXPECTED_KIND_COUNTS = {
     "requirement": 19,
@@ -39,13 +41,40 @@ def load_jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
-def check(candidate: dict | None = None) -> list[str]:
+def check(candidate: dict | None = None, binding: dict | None = None) -> list[str]:
     errors: list[str] = []
     if candidate is None:
         try:
             candidate = json.loads(CANDIDATE.read_text(encoding="utf-8"))
         except Exception as exc:
             return [f"候補JSONを読めない: {exc}"]
+    if binding is None:
+        try:
+            binding = json.loads(SCF_BINDING.read_text(encoding="utf-8"))
+        except Exception as exc:
+            return [f"Scaffold Bindingを読めない: {exc}"]
+    if binding.get("kind") != "scaffold" or binding.get("state") != "registered":
+        errors.append("Scaffold Bindingがregistered scaffoldではない")
+    if binding.get("authority_effect", "none") != "none":
+        errors.append("Scaffold Bindingのauthority effectがnoneではない")
+    formal_artifacts = binding.get("replacement", {}).get("formal_artifacts")
+    if formal_artifacts != []:
+        errors.append("正式artifactがScaffold Bindingへ登録されている")
+    for artifact in binding.get("artifacts", []):
+        if not isinstance(artifact, str) or not artifact.startswith("scaffold/"):
+            errors.append("archiveまたはcurrent正式artifactがScaffold Bindingへ登録されている")
+
+    for key, expected in {
+        "authority_effect": "none",
+        "meaning_change_applied": False,
+        "successor_requirement_ids": [],
+        "human_decision_ref": None,
+        "equivalence_claim": None,
+        "old_runtime_test_ci_execution": False,
+    }.items():
+        if candidate.get(key) != expected:
+            errors.append(f"候補top-level {key}が境界に反する")
+
     archive = ROOT / ARCHIVE_REL
     if not archive.is_file():
         return [f"archive source不存在: {ARCHIVE_REL}"]
@@ -97,7 +126,33 @@ def check(candidate: dict | None = None) -> list[str]:
         if observed.get("disposition") != expected_disposition:
             errors.append("#1964 reportのline denominator修正注記が不一致")
 
-    holding = next((r for r in load_jsonl(ROOT / "docs/governance/delegated-requirement-document-source-holding.jsonl") if r.get("source_document_id") == "DELEGATED-DOC-001"), None)
+    source_holding_path = ROOT / "docs/governance/delegated-requirement-document-source-holding.jsonl"
+    asset_ledger_path = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
+    phase_ledger_path = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+    report_path = ROOT / "scaffold/rdp001-delegated-doc003-unprocessed8/report.json"
+    provenance = candidate.get("ledger_provenance", {})
+    ledger_paths = {
+        "source_holding_path": source_holding_path,
+        "asset_ledger_sha256": asset_ledger_path,
+        "phase_ledger_sha256": phase_ledger_path,
+        "selected_report_sha256": report_path,
+    }
+    if provenance.get("source_holding_path") != str(source_holding_path.relative_to(ROOT)):
+        errors.append("source holding ledger path不一致")
+    if provenance.get("selected_report_path") != str(report_path.relative_to(ROOT)):
+        errors.append("selected report path不一致")
+    for field, path in ledger_paths.items():
+        if not path.is_file():
+            errors.append(f"provenance対象ledger不存在: {path.relative_to(ROOT)}")
+            continue
+        digest_field = "source_holding_sha256" if field == "source_holding_path" else field
+        if provenance.get(digest_field) != digest(path.read_bytes()):
+            errors.append(f"{digest_field}が実ledger digestと不一致")
+    source_records = load_jsonl(source_holding_path)
+    if provenance.get("source_record_count") != len(source_records) or len(source_records) != 114:
+        errors.append(f"source record count不一致: {provenance.get('source_record_count')} / {len(source_records)}")
+
+    holding = next((r for r in source_records if r.get("source_document_id") == "DELEGATED-DOC-001"), None)
     if holding is None:
         errors.append("DELEGATED-DOC-001 holding rowがない")
     else:
@@ -108,10 +163,17 @@ def check(candidate: dict | None = None) -> list[str]:
             "source_declared_status": "confirmed",
             "holding_granularity": "file_blob",
             "carry_status": "preserved_pending_atomization",
+            "meaning_change_applied": False,
+            "successor_refs": [],
+            "human_decision_ref": None,
         }.items():
             if holding.get(key) != expected:
                 errors.append(f"holding {key}不一致: {holding.get(key)!r} != {expected!r}")
-    asset = next((r for r in load_jsonl(ROOT / "docs/governance/legacy-asset-disposition.jsonl") if r.get("source_path") == SOURCE_REL), None)
+        if "sha256" in candidate.get("source_holding", {}) and candidate["source_holding"].get("sha256") != holding.get("sha256"):
+            errors.append("candidate source_holding sha256がledgerと不一致")
+    asset_records = load_jsonl(asset_ledger_path)
+    phase_records = load_jsonl(phase_ledger_path)
+    asset = next((r for r in asset_records if r.get("source_path") == SOURCE_REL), None)
     if asset is None:
         errors.append("legacy asset rowがない")
     else:
@@ -121,7 +183,7 @@ def check(candidate: dict | None = None) -> list[str]:
                 errors.append(f"legacy asset {key}不一致")
         if legacy.get("consumer_refs") != asset.get("consumer_refs"):
             errors.append("legacy asset consumer_refs不一致")
-    phase = next((r for r in load_jsonl(ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl") if r.get("source_path") == SOURCE_REL), None)
+    phase = next((r for r in phase_records if r.get("source_path") == SOURCE_REL), None)
     phase_summary = candidate.get("phase_product_classification", {})
     if phase is None:
         errors.append("phase/product rowがない")
@@ -137,6 +199,23 @@ def check(candidate: dict | None = None) -> list[str]:
             errors.append("product classificationをreview前に確定している")
         if phase_summary.get("legacy_implementation_status") != "unknown" or phase_summary.get("implementation_evidence_state") != "document_present":
             errors.append("phase/product implementation evidence境界が不正")
+        if phase_summary.get("degraded_status") != "unknown_not_structured_in_ledger":
+            errors.append("phase/product degraded statusを確定している")
+        if phase_summary.get("consumer_closure_status") != "pending":
+            errors.append("phase/product consumer closureを確定している")
+
+    boundary = candidate.get("degraded_and_implementation_boundary", {})
+    for key, expected in {
+        "structured_implementation_status": "unknown",
+        "structured_degraded_status": "unknown_not_recorded",
+        "structured_failure_status": "unknown_not_recorded",
+        "structured_consumer_status": "pending_no_refs",
+    }.items():
+        if boundary.get(key) != expected:
+            errors.append(f"implementation boundary {key}を確定している")
+    lexical = boundary.get("document_lexical_counts_from_pr1964_report", {})
+    if lexical.get("consumer_refs") != [] or lexical.get("decision_record_ref") is not None:
+        errors.append("lexical reportからconsumer／decisionを確定している")
 
     atoms = candidate.get("atoms", [])
     if len(atoms) != candidate.get("atomization", {}).get("atom_count") or len(atoms) != 76:
@@ -169,10 +248,16 @@ def check(candidate: dict | None = None) -> list[str]:
             errors.append(f"{atom_id}: span SHA-256不一致")
         if atom.get("source_document_id") != "DELEGATED-DOC-001" or atom.get("source_path") != SOURCE_REL:
             errors.append(f"{atom_id}: source identity不一致")
-        if atom.get("candidate_target") not in EXPECTED_PRODUCT_SET | {"unresolved"}:
+        if atom.get("archive_path") != ARCHIVE_REL or atom.get("source_revision") != SOURCE_COMMIT:
+            errors.append(f"{atom_id}: archive_path/source_revision不一致")
+        if atom.get("candidate_target") not in EXPECTED_ATOM_TARGETS:
             errors.append(f"{atom_id}: candidate targetが語彙外")
-        if not set(atom.get("owner_candidates", [])) <= EXPECTED_PRODUCT_SET:
-            errors.append(f"{atom_id}: owner候補が語彙外")
+        expected_owners = ["HELIX-HARNESS"] if atom.get("candidate_target") == "HELIX-HARNESS" else ["HELIX-HARNESS", "HELIX-OS"]
+        if atom.get("owner_candidates") != expected_owners:
+            errors.append(f"{atom_id}: owner候補がtargetの根拠境界と不一致")
+        expected_consumers = [] if atom.get("candidate_target") == "unresolved" and atom.get("candidate_kind") in {"metadata", "premise"} else ["HELIX-OS"]
+        if atom.get("consumer_product_candidates") != expected_consumers:
+            errors.append(f"{atom_id}: consumer候補が根拠境界と不一致")
         state = atom.get("legacy_state", {})
         if state.get("phase_candidates") != sorted(EXPECTED_PHASE_SET):
             errors.append(f"{atom_id}: phase候補の保持境界が不一致")
