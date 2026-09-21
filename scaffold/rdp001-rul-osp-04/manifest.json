@@ -1,0 +1,49 @@
+{
+  "schema_revision": 1,
+  "candidate_id": "RDP001-RUL-OSP-04-ATOM-001",
+  "status": "research_premise_candidate",
+  "authority_effect": "none",
+  "binding": "SCF-B-0011",
+  "rule_requirement_id": "RUL-OSP-04",
+  "primary_atom_count": 25,
+  "secondary_relation_atom_count": 22,
+  "union_atom_count": 47,
+  "source_file_count": 26,
+  "s1_accounting_snapshot": {
+    "accounting_id": "S101-ACC-RUL-OSP-04",
+    "screened_atoms": 10,
+    "requirement_total_atoms": 25,
+    "secondary_links_from_other_primary": 5,
+    "screened_atom_refs": ["RB0-132", "RB05-246", "RB06-054", "RB06-094", "RC00-199", "RD05-041", "RE01-115", "RE01-196", "RG40-012", "RG40-013"],
+    "disposition": "in_scope",
+    "per_atom_assessment_status": "unassessed",
+    "authority_effect": "none"
+  },
+  "old_current_contradiction": {
+    "status": "unresolved_preserved",
+    "old_source_evidence": "旧 source の prose／config／hook／gate に記録された自律・拒否・escalation の意味を exact span として保持する",
+    "current_state_evidence": "L2D-S1-01 は defer、per-atom assessment は unassessed、authority_effect は none",
+    "resolution": "意味同値・現行 authority・採否をこの候補から生成しない"
+  },
+  "denominator_contract": {
+    "inventory_primary": "requirement_primary == RUL-OSP-04",
+    "inventory_secondary_relation": "RUL-OSP-04 in requirement_secondary and requirement_primary != RUL-OSP-04",
+    "s1_screened_atoms": "accounting screened_atoms; screen subset of primary requirement atoms",
+    "s1_secondary_link_count": "accounting secondary_links_from_other_primary; link count, not atom-set cardinality",
+    "do_not_merge": true
+  },
+  "secondary_relation_boundary": {
+    "required_field": "legacy_requirement_primary",
+    "meaning": "旧 inventory の requirement_primary を完全一致で保持する",
+    "product_unit_candidate": "HELIX-OS は RUL-OSP-04 への関係先候補のみ",
+    "legacy_primary_product_owner": "unresolved; secondary relation から旧 primary の製品 owner を確定しない"
+  },
+  "unresolved": [
+    "人間の要求採否・successor・product unit decision",
+    "現行 authority vocabulary への per-atom mapping",
+    "現行 consumer／failure contract と legacy enforcement の同値性",
+    "旧規則 atom 台帳 7,622 件の全件性と atom 所属対応づけの妥当性",
+    "AVS 46 atom との被覆関係",
+    "RUL-OSM-01 が所有する介入点の具体的列挙"
+  ]
+}
