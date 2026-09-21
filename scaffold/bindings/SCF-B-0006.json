@@ -1,0 +1,168 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0006",
+  "kind": "scaffold",
+  "title": "DELEGATED-DOC-008/017 L3-L10 requirement discovery JSON authority atom candidate",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS（HELIX-OS consumer境界は未確定）",
+  "state": "active",
+  "reason": "DOC-008/017のfile-blob holdingと5 reference edgeを、要求採否・意味同値・L3/L10 freeze・実装へ昇格させず、9 coverage spanとRDJ-FR/RDJ-ACの31候補atom、OS consumer候補、旧asset未確認状態をレビュー可能な仮束へ固定する。",
+  "upstream": [
+    {
+      "path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+      "note": "DOC-008/017を含む114 source holding"
+    },
+    {
+      "path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+      "sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+      "note": "選定5 edgeを含む788 reference holding"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "対応旧assetのHistorical／unresolved、implementation、consumer欄"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "旧phase／product候補、実行未実施、consumer closure状態"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+      "note": "source line保全、ID、negative、owner境界、coverage契約"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "旧資産をreferenceのみとし、実行・無判断copy・oracle化を禁止する統制"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "HARNESS／HELIX-OS責務境界候補"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "HARNESS V-model、要求・設計・検証contract候補"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "HELIX-OS authority、state、consumer候補"
+    },
+    {
+      "path": "scaffold/delegated-doc-008-017/README.md",
+      "sha256": "e23cf393f697743f05ee3f7b93dd42139fbf31cfa6d479eca88c5afd726d0133",
+      "note": "候補scope、原ID分割、停止条件"
+    },
+    {
+      "path": "scaffold/delegated-doc-008-017/inventory.json",
+      "sha256": "db90741927327f7c27d482ef6a0090cd197649ff74a5ddc6ef62dd121a33b595",
+      "note": "9 coverage span、31 atom、5 edge、phase/product境界、7 boundary atomの個別意味"
+    },
+    {
+      "path": "scaffold/delegated-doc-008-017/validate.py",
+      "sha256": "7a83fa2c2da8767a664e9a934f807d7afbe8efcb221cb760e689320cbe326657",
+      "note": "台帳／Git blob／原ID／境界固有要約／条件／consumer／legacy status静的検証"
+    },
+    {
+      "path": "scaffold/delegated-doc-008-017/selfcheck.py",
+      "sha256": "a89ea35ac68f625bd41d9e4fcf5d7ebfc928fc866798e9351be3334a1aac0a25",
+      "note": "digest、edge、coverage、ID重複、product source、linkage、negative、generic placeholderの否定例"
+    }
+  ],
+  "role": "DELEGATED-DOC-008/017のsource blobをlossless coverageとRDJ-FR/RDJ-AC意味候補へ分け、pair／parent／authority edge、HARNESS候補とOS consumer候補、phase／implementation／consumer未確認境界を同じreview単位で保持する",
+  "obligations": [
+    "DOC-008/017のsource path、archive path、digest、blob OID、draft status、holding状態を台帳と固定Git blobへ一致させる",
+    "REF-0341/0342/0414/0415/0772のsource／target path、line、origin、relation、digestを台帳と一致させる",
+    "DOC-008 90行とDOC-017 36行を9 coverage spanで重複・欠落なく覆う",
+    "RDJ-FR-001..012とRDJ-AC-001..012を各IDのexact source line、具体的意味、negative、actor、authority条件へ分離する",
+    "DOC-008/017のmetadata・authority・lifecycle・template・partition境界をID atomと混同せず保持する",
+    "HARNESS product候補をowner確定にせず、OS consumer候補を別欄へ保持する",
+    "Historical／unresolved、implementation unknown、legacy execution false、consumer refs空、consumer closure pendingを維持する",
+    "REF-0341 parent_designを選択batch外の未解決依存として保持する",
+    "authority_effect=none、meaning_change_applied=false、successor空、human decision nullを維持する",
+    "要求採用、意味同値、L3/L10 freeze、実装、consumer closure、acceptance、CI、releaseを生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 delegated source atom review担当",
+      "HELIX-HARNESS要求・検証contract整理担当",
+      "HELIX-OS event／projection／DB／downstream consumer境界整理担当",
+      "Scaffold Bindingのstale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "固定main Git object databaseのread-only blob取得",
+      "delegated source/reference holding",
+      "legacy asset disposition／phase classification ledger",
+      "HARNESS／HELIX-OS product boundary候補",
+      "requirement atomization review contract"
+    ],
+    "boundary": "inventory、validator、selfcheckはscaffold/配下。validatorは正本台帳、固定Git blob、product boundary sourceだけを読み取り、旧runtime・test・CI・hook、GitHub、Issue、DBを実行・更新しない。DOC-008/017のphase、実装、consumer、ownerは未確認のまま保持する。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/delegated-doc-008-017/validate.py",
+      "python3 scaffold/delegated-doc-008-017/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|list|stale|residuals"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime・test・CI・hookの読込・実行",
+      "旧sourceを現行runtime・test・CIのoracle、fallback、実装として使うこと",
+      "scaffold/外への書き込み",
+      "要求採否・人間承認・successor・L3/L10 freeze・実装・consumer closure・acceptance・releaseの生成",
+      "GitHub、Issue、PR、CI、DB、deploymentへの外部作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/delegated-doc-008-017/README.md",
+    "scaffold/delegated-doc-008-017/inventory.json",
+    "scaffold/delegated-doc-008-017/validate.py",
+    "scaffold/delegated-doc-008-017/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "scaffold/delegated-doc-008-017/validate.py（正本台帳、固定Git blob、9 coverage、31 atom、5 edge、product／consumer境界）",
+      "scaffold/delegated-doc-008-017/selfcheck.py（source／edge／coverage／ID／owner／phase／negativeの否定例）",
+      "scaffold/tools/scfctl.py stale（upstream ledger／contract／product boundary revision変化の検出）",
+      "git diff --check（候補文書の静的整形）"
+    ],
+    "negative_cases": [
+      "DOC-008/017のdigest、path、draft statusを変更する",
+      "5 edgeのsource／target／line／origin／relationを変更する",
+      "9 coverage spanのexact text、line、digestを欠落・重複させる",
+      "RDJ-FR/RDJ-ACの一つを削除するかplaceholderへ丸める",
+      "FR/ACのnegative、actor、authority欄を削除する",
+      "OS consumerをHARNESS owner欄へ昇格する",
+      "phase candidateをauthoritativeへ、旧実装unknownをimplementedへ変更する",
+      "consumer pendingをclosedへ変更する",
+      "parent edgeをclosedまたはadoptionへ昇格する",
+      "旧runtime／test／CIを実行またはoracle／fallbackにする",
+      "authority、successor、採用、freeze、実装、closure、releaseを生成する"
+    ]
+  },
+  "replacement": {
+    "role_target": "正式な旧要求atomization／product crosswalk review contract（対象別L2／L11とL3／L10から導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}

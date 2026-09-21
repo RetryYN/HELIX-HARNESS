@@ -1,0 +1,2756 @@
+{
+  "schema": "helix-scaffold-delegated-doc-ref-atom-candidate.v1",
+  "candidate_id": "RDP-001-DELEGATED-DOC-008-017-REF-0341-0342-0414-0415-0772",
+  "status": "candidate_pending_atomization_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "comparison": {
+    "source_commit": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+    "method": "read-only Git archive blob bytes; exact line spans and UTF-8 SHA-256",
+    "source_documents": [
+      "DELEGATED-DOC-008",
+      "DELEGATED-DOC-017"
+    ],
+    "reference_edges": [
+      "DELEGATED-REF-0341",
+      "DELEGATED-REF-0342",
+      "DELEGATED-REF-0414",
+      "DELEGATED-REF-0415",
+      "DELEGATED-REF-0772"
+    ]
+  },
+  "ledger_provenance": {
+    "source_holding_path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+    "source_holding_sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+    "reference_holding_path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+    "reference_holding_sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+    "source_registration": "MPR-SH-DELEGATED-DOC-008-017",
+    "reference_registration": "MPR-SH-DELEGATED-REF-0341-0342-0414-0415-0772",
+    "source_record_count": 114,
+    "reference_record_count": 788,
+    "asset_ledger_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "phase_ledger_sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+  },
+  "holding_scope": {
+    "source_record_count": 114,
+    "reference_record_count": 788,
+    "excluded_source_document_ids": [
+      "DELEGATED-DOC-003",
+      "DELEGATED-DOC-028"
+    ],
+    "excluded_reference_ids": [
+      "DELEGATED-REF-0303",
+      "DELEGATED-REF-0759",
+      "DELEGATED-REF-0760"
+    ],
+    "remaining_source_record_count": 112,
+    "remaining_reference_record_count": 785,
+    "selected_edge_scope": "all ledger edges touching the two selected documents: pair, parent dependency, and inbound authority references"
+  },
+  "candidate_resolution": {
+    "requested_document_ids": [
+      "DELEGATED-DOC-008",
+      "DELEGATED-DOC-017"
+    ],
+    "requested_reference_ids": [
+      "DELEGATED-REF-0341",
+      "DELEGATED-REF-0342",
+      "DELEGATED-REF-0414",
+      "DELEGATED-REF-0415",
+      "DELEGATED-REF-0772"
+    ],
+    "all_requested_ids_exist": true,
+    "replacement_reason": null
+  },
+  "product_boundary": {
+    "product_owner_candidates": [
+      "HELIX-HARNESS"
+    ],
+    "consumer_product_candidates": [
+      "HELIX-OS"
+    ],
+    "boundary_status": "candidate_only",
+    "consumer_boundary_status": "candidate_only",
+    "sources": [
+      {
+        "path": "docs/concept/product-boundary.md",
+        "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+      },
+      {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+      },
+      {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+      }
+    ]
+  },
+  "source_documents": [
+    {
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "source_declared_status": "draft",
+      "source_relation": "requirements_v1.3_reference_line_419",
+      "holding_granularity": "file_blob",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_refs": [],
+      "human_decision_ref": null,
+      "source_blob_oid": "fcb7bdddba78f37b7c0f5454b43d41848134062f",
+      "source_blob_sha256": "sha256:361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "line_count": 90
+    },
+    {
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "sha256": "3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+      "source_declared_status": "draft",
+      "source_relation": "requirements_v1.3_reference_line_420",
+      "holding_granularity": "file_blob",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "successor_refs": [],
+      "human_decision_ref": null,
+      "source_blob_oid": "b7da647077c208a8e9791e4f87f9f0086a9d98ed",
+      "source_blob_sha256": "sha256:3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+      "line_count": 36
+    }
+  ],
+  "reference_edges": [
+    {
+      "reference_id": "DELEGATED-REF-0341",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_file_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "parent_design",
+      "source_line": 14,
+      "target_path": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "target_sha256": "8a46a6a75f1c6159b45b09bd975298347f70997b7969231a0514c09db210dab6",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    },
+    {
+      "reference_id": "DELEGATED-REF-0342",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_file_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "pair_artifact",
+      "source_line": 15,
+      "target_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "target_sha256": "3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    },
+    {
+      "reference_id": "DELEGATED-REF-0414",
+      "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "reference_origin": "body_reference",
+      "relation_key": null,
+      "source_line": 419,
+      "target_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "target_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    },
+    {
+      "reference_id": "DELEGATED-REF-0415",
+      "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "reference_origin": "body_reference",
+      "relation_key": null,
+      "source_line": 420,
+      "target_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "target_sha256": "3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    },
+    {
+      "reference_id": "DELEGATED-REF-0772",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_file_sha256": "3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "pair_artifact",
+      "source_line": 13,
+      "target_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "target_sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null
+    }
+  ],
+  "legacy_asset_status": [
+    {
+      "source_document_id": "DELEGATED-DOC-008",
+      "asset_id": "LEGACY-ASSET-E78B8D68CC327AA00991",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "asset_ledger": {
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "pair_ids": [],
+        "reuse_exclusion_class": null,
+        "revision": 1
+      },
+      "phase_product_bootstrap": {
+        "classification_id": "LASPH-0476",
+        "artifact_evidence_kind": "requirement",
+        "phase_classification_status": "unresolved_with_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-06"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_document_id": "DELEGATED-DOC-017",
+      "asset_id": "LEGACY-ASSET-AD746F4F3487103519F9",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "asset_ledger": {
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "pair_ids": [],
+        "reuse_exclusion_class": "legacy_test_design_or_oracle",
+        "revision": 1
+      },
+      "phase_product_bootstrap": {
+        "classification_id": "LASPH-2837",
+        "artifact_evidence_kind": "test_design",
+        "phase_classification_status": "unresolved",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [
+          "HELIX-HARNESS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    }
+  ],
+  "coverage_spans": [
+    {
+      "coverage_span_id": "SCF006-COV-008-01",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 22,
+        "sha256": "sha256:f81b1902784b171f99f76ccb03392dc41efd9384cfb9f4a472f967383e9aea66",
+        "exact_source_text": "---\ncanonical_vmodel: L1-L12\ncanonical_layer: L3\ncanonical_pair: L10\ntitle: \"Requirement Discovery Loop・L3 JSON authority要件\"\nlayer: L3\nkind: add-design\nstatus: draft\nfreeze_blocking: true\ncreated: 2026-07-30\nupdated: 2026-07-30\nowner: PO / TL\nplan: PLAN-L3-53-requirement-discovery-json-authority\nparent_design: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md\npair_artifact: docs/test-design/helix/requirement-discovery-json-authority-acceptance.md\nnext_pair_freeze: L10\nrefines:\n  - HR-FR-HIL-15\n  - HR-FR-HIL-17\n  - HR-FR-HIL-19\n  - HR-FR-HIL-20\n---\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "SCF006-COV-008-02",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_span": {
+        "start_line": 23,
+        "end_line": 41,
+        "sha256": "sha256:d9cc40eb6fa3733a8196a5d0a80ab791fe2d03b744aee02e18f76ed3644d81a2",
+        "exact_source_text": "\n# Requirement Discovery Loop・L3 JSON authority要件\n\n## §0 authority境界\n\n本契約は既存Requirement Engineを置換せず、次のrefinementとして追加する。\n\n| 既存owner | 再利用する責務 |\n|---|---|\n| `HR-FR-HIL-15` | surface適用判定、prototype、walkthrough、人間agreement |\n| `HR-FR-HIL-17` | 要求翻訳、原子化、異議、設計義務、定義revision |\n| `HR-FR-HIL-19` | Proposal → Candidate → Canonical、意味差分、原子的admission、rollback |\n| `HR-FR-HIL-20` | 必要十分なdesign portfolio、選択済みstyleへのbinding、発見deltaのback-propagation |\n| AI Vision Design HARNESS | Experience／UI／Frontend契約、prototype、反応、UX証拠 |\n\nL1は人間向けMarkdownを正本とする。L2はappend-only discovery eventとcandidate projectionを持つが\ncanonical requirementではない。L3で初めてstrict JSON IRを機械正本とし、G1/G3人間承認後だけfreezeする。\n別Requirement Engine、別台帳、別layer、別authoring DBを追加しない。\n\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "SCF006-COV-008-03",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_span": {
+        "start_line": 42,
+        "end_line": 57,
+        "sha256": "sha256:465490a8a7c0f2d105242e4c28587d684c03457bfab6ccff7e992c2452ec7f85",
+        "exact_source_text": "## §1 refinement要件\n\n| ID | refinement要件 | 既存owner | AC |\n|---|---|---|---|\n| `RDJ-FR-001` | L1 initiative intakeは目的、価値、actor、context、scope/non-goal、制約、仮説、3軸候補を保持し、未確定値をAIが補完せずL2質問へ送る | `HR-FR-HIL-17` | `RDJ-AC-001` |\n| `RDJ-FR-002` | L2は質問、回答、prototype、reaction、candidate split/merge/reject/accept、contradiction、defer、agreement、compile/backflowをappend-only eventとして保持し、current candidateを決定論再構築する | `HR-FR-HIL-17` | `RDJ-AC-002` |\n| `RDJ-FR-003` | 次質問は影響度×不確実性×下流変更cost×人間専決度で選び、重複質問と理由なしの回答矛盾を拒否する | `HR-FR-HIL-17` | `RDJ-AC-003` |\n| `RDJ-FR-004` | `screen/cli/api/event/batch/notification/external_service/none`を共通surfaceとし、requirement→action→state transition→success/cancel/failure/timeout/recovery→AC→oracleを結ぶ。`none`は理由と再評価条件を要求する | `HR-FR-HIL-15` | `RDJ-AC-004` |\n| `RDJ-FR-005` | prototype reactionは自由文と構造化decisionを分離し、表示要求をunderlying need、actor/task/constraint、state/failure/recovery、candidate、AC、prototype revisionへ還元する | `HR-FR-HIL-15` | `RDJ-AC-005` |\n| `RDJ-FR-006` | 暗黙要件matrixはsecurity/privacy/permission/課金/法務を含む不足をderived candidateへ戻し、AIによる無断canonical化を拒否する。高影響判断は人間へ送る | `HR-FR-HIL-17` | `RDJ-AC-006` |\n| `RDJ-FR-007` | L2収束はactor/task、正常/取消/failure/timeout、P0/P1 surface、矛盾/defer、owner/re-entry、暗黙matrix、直近2 iteration、human prototype agreementの全条件で判定し、score単独判定を拒否する | `HR-FR-HIL-15` | `RDJ-AC-007` |\n| `RDJ-FR-008` | L3 CompilerはL1/L2全evidenceからrequirements、24 system contract、surface、action、state、AC/HAT、measurement、trace、downstream、freeze portfolioをstrict JSONへcompileし、`design_template_ids`、`design_obligation_ids`、`required_design_artifact_kinds`を将来のDesign Template JSON接続口として出力し、`compile_ready/backflow_required/human_decision_required/rejected`をexactly one返す | `HR-FR-HIL-17` | `RDJ-AC-008` |\n| `RDJ-FR-009` | JSON IRはstable ID単位に分割し、revision、semantic digest、owner、statusを必須化し、unknown enum、extra property、range-only identityを拒否する | `HR-FR-HIL-19` | `RDJ-AC-009` |\n| `RDJ-FR-010` | Markdown・matrix・HTML等はJSONからのgenerated viewとし、直接編集をproposal eventへ戻す。cutoverはJSON canonical、generated view、DB projection、全consumerを一つのtransactionで切り替えdual authorityを作らない | `HR-FR-HIL-19` | `RDJ-AC-010` |\n| `RDJ-FR-011` | 現行153/24/72/24をshadow移行しsemantic parityを検査する。既知12要求は`HR-FR-HIL-23`／`HR-FR-HIL-24`へexact配線し、GitHub 5責務へ配線しない | `HR-FR-HIL-17` | `RDJ-AC-011` |\n| `RDJ-FR-012` | 3 production styleはL1〜L3 discovery/compile/freezeを共通必須とし、Discovery／PoCはS4前canonical化しないcase軸、Design HARNESSはprototypeを支援するspecialist軸として維持する | `HR-FR-HIL-20` | `RDJ-AC-012` |\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "SCF006-COV-008-04",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_span": {
+        "start_line": 58,
+        "end_line": 66,
+        "sha256": "sha256:f45d5d3462137353f1272365609cd6f0348f32c95373341925ad545a3a656d3f",
+        "exact_source_text": "\n## §2 lifecycleと承認\n\nL2 candidate lifecycleは\n`hypothesis → elicited → prototyped → observed → accepted → specified → frozen`とし、\n`rejected/deferred/challenged/superseded/stale`をside/terminal状態とする。`accepted`は要求意図の人間受入、\n`specified`はL3 compile完了、`frozen`はG1/G3人間承認後だけ許可する。AIの沈黙承認は禁止する。\n\nPR-1は契約だけを定義し、schema/runtime/migration/cutoverを実装済みと主張しない。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "SCF006-COV-008-05",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_span": {
+        "start_line": 67,
+        "end_line": 77,
+        "sha256": "sha256:25aa6d844d0e99aa5d4063d66fdfbbe6b77109031b8b2170829749115ad9b500",
+        "exact_source_text": "\n## §2.1 Design Template JSON successor境界\n\nRequirement JSONは`design_template_ids`、`design_obligation_ids`、\n`required_design_artifact_kinds`を型付き出力として持つ。未解決templateは\n`pending_template_resolution`として残し、存在しないtemplate IDをAIが捏造しない。\n\n設計templateの構造、適用条件、必須section／field、V-pair、negative oracle、measurement、\ncompletion conditionをJSON正本へ移す作業は#290の独立episodeとする。設計意図、代替案、\ntrade-off、背景はJSON IDへ束縛したMarkdownに残し、Markdown／HTML／Mermaid／画像を\ntemplateやdesign instanceの正本にしない。#290はPR-6／#288のG1/G3再束縛後だけactivationする。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "SCF006-COV-008-06",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_span": {
+        "start_line": 78,
+        "end_line": 90,
+        "sha256": "sha256:0c7a7f2622f26bbedbe5076f149aacea8c2934edbe3d7e937c5b3d403618b824",
+        "exact_source_text": "\n## §3 PR-1..6完了責務の分割\n\n| slice | 完了責務 |\n|---|---|\n| PR-1 / #283 | 本L3/L10契約、既存owner mapping、G1/G3 hold |\n| PR-2 / #284 | event schema、candidate lifecycle、質問、反応、agreement、projection、L2収束 |\n| PR-3 / #285 | 153/24/72/24 shadow JSON、12要求owner/downstream修正、typed downstream status |\n| PR-4 / #286 | 生成view、round-trip意味一致、DB shadow再構築2回 |\n| PR-5 / #287 | JSON正本cutover、consumer移行、直接編集拒否 |\n| PR-6 / #288 | JSON snapshot freeze packet、full CI、DB、AI-B、merge tree、PO承認候補 |\n\n指示書の完了項目はこのpartitionへexactly oneで属し、PR-6が集合差分0を検査する。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "SCF006-COV-017-01",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 19,
+        "sha256": "sha256:03c3a5768c5cb4a3cc8ad26acecda32096d82b3dcba7ab59f275392e7e6357d3",
+        "exact_source_text": "---\ncanonical_vmodel: L1-L12\ncanonical_layer: L10\ncanonical_pair: L3\ntitle: \"Requirement Discovery Loop・L3 JSON authority受入テスト設計\"\nlayer: L10\nartifact_type: test_design\nstatus: draft\ncreated: 2026-07-30\nupdated: 2026-07-30\nowner: QA / TL\nplan: PLAN-L3-53-requirement-discovery-json-authority\npair_artifact: docs/design/helix/L3-requirements/requirement-discovery-json-authority.md\n---\n\n# Requirement Discovery Loop・L3 JSON authority受入テスト設計\n\n| AC | 正常系oracle | 拒否するmutation |\n|---|---|---|\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "SCF006-COV-017-02",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_span": {
+        "start_line": 20,
+        "end_line": 31,
+        "sha256": "sha256:5f423dfcb5c2c782957e4da2f6d5ffc7ac8309b919940dcc3c52375e2849a393",
+        "exact_source_text": "| `RDJ-AC-001` | initiativeの確定値と未確定質問候補を分離する | AIがactor/value/constraintを補完 |\n| `RDJ-AC-002` | event replayから同じcandidate projectionを再構築する | event上書き、訂正履歴消失、未知event受理 |\n| `RDJ-AC-003` | impact式と過去回答から次質問を一意選択する | 重複質問、矛盾理由なし、回答捏造 |\n| `RDJ-AC-004` | 8 surface kindと全flow／AC／oracle edgeが閉じる | surface未割当、`none`理由なし、正常系だけ |\n| `RDJ-AC-005` | reactionからunderlying needとcandidate deltaを導出する | UI表現をそのままcanonical requirement化、古いrevision reaction再利用 |\n| `RDJ-AC-006` | 暗黙matrix findingをderived candidateとhuman decisionへ送る | security/privacy/課金/法務/権限をAIが自動accept |\n| `RDJ-AC-007` | 全収束条件とhuman agreementがcurrent revisionで成立する | score単独、P0/P1新規発生、stale agreement |\n| `RDJ-AC-008` | compiler resultがexactly oneで全IR family、trace、`design_template_ids`、`design_obligation_ids`、`required_design_artifact_kinds`を持つ | actor/state/failure/NFR measurement/AC欠落の自動補完、存在しないtemplate IDの捏造、未解決templateの隠蔽 |\n| `RDJ-AC-009` | stable-ID JSONがstrict schemaとsemantic digestを満たす | extra property、unknown enum、空owner/status、range-only ID |\n| `RDJ-AC-010` | JSON→Markdown→parser→normalized JSONのdigestが一致しcutoverがatomic | generated Markdown直接編集、JSON-only semantic drift、dual authority |\n| `RDJ-AC-011` | 153/24/72/24 parity、12要求owner exact set、downstream status全件を確認する | 1件削除、owner欠落/重複、GitHub 5責務への再配線 |\n| `RDJ-AC-012` | 3 styleへ共通適用しcase/specialistを別fieldで維持する | `PRODUCTION_SCRUM_REDUCED_V`出力、PoCのScrum内包、Design HARNESSのstyle化 |\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    },
+    {
+      "coverage_span_id": "SCF006-COV-017-03",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_span": {
+        "start_line": 32,
+        "end_line": 36,
+        "sha256": "sha256:849c2c8b4827994deb2b836a70e74f3dc38d37c8af14d7e4fd6255e208b1b438",
+        "exact_source_text": "\n## PR-1受入境界\n\nPR-1では文書契約、existing owner mapping、Issue #30 hold、completion partitionだけを検証する。\nPR-2以降のruntime oracleは`design-defined / not-implemented`であり、実行済みと表示しない。\n"
+      },
+      "coverage_role": "composite_line_coverage_only",
+      "semantic_atomization_status": "separate_original_id_atoms_below"
+    }
+  ],
+  "atoms": [
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-META-008",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-META-008",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 22,
+        "sha256": "sha256:f81b1902784b171f99f76ccb03392dc41efd9384cfb9f4a472f967383e9aea66",
+        "exact_source_text": "---\ncanonical_vmodel: L1-L12\ncanonical_layer: L3\ncanonical_pair: L10\ntitle: \"Requirement Discovery Loop・L3 JSON authority要件\"\nlayer: L3\nkind: add-design\nstatus: draft\nfreeze_blocking: true\ncreated: 2026-07-30\nupdated: 2026-07-30\nowner: PO / TL\nplan: PLAN-L3-53-requirement-discovery-json-authority\nparent_design: docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md\npair_artifact: docs/test-design/helix/requirement-discovery-json-authority-acceptance.md\nnext_pair_freeze: L10\nrefines:\n  - HR-FR-HIL-15\n  - HR-FR-HIL-17\n  - HR-FR-HIL-19\n  - HR-FR-HIL-20\n---\n"
+      },
+      "candidate_kind": "metadata",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_product_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_boundary_status": "candidate_only",
+      "candidate_granularity": "boundary",
+      "normalized_statement": "DOC-008はL3要件draftとしてL10 pair、parent_design、既存HR-FR refinement、freeze_blockingを宣言する候補metadataである",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0341",
+        "DELEGATED-REF-0342",
+        "DELEGATED-REF-0414",
+        "DELEGATED-REF-0772"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "canonical_vmodel=L1-L12、canonical_layer=L3、canonical_pair=L10をmetadataとして保持する",
+        "status=draft、freeze_blocking=true、owner=PO/TL、plan、parent_design、pair_artifact、next_pair_freezeを保持する",
+        "HR-FR-HIL-15/17/19/20へのrefines関係を既存owner再利用候補として保持する"
+      ],
+      "possible_conflicts": [
+        "freeze_blocking=trueを人間承認済みまたはfrozenと誤認しない",
+        "refinesをsuccessor requirementや採用済み意味へ変換しない",
+        "parent_design／pair_artifact edgeを閉じた依存として扱わない"
+      ],
+      "actor_conditions": [
+        "PO/TLがdraft metadataを保持する",
+        "L3/L10 pair reviewerがpair_artifactを確認する",
+        "parent requirement ownerは選択batch外の依存として扱う"
+      ],
+      "authority_conditions": [
+        "status=draftは未採否を示す",
+        "canonical layer/pairは文書宣言でありapprovalではない",
+        "freeze_blockingは停止条件でありfreeze成立ではない"
+      ],
+      "failure_negative_conditions": [
+        "draft metadataをapproved／frozenとして表示する",
+        "parent_designまたはpair_artifact edgeを欠落させる",
+        "refines関係からsuccessorや人間承認を生成する"
+      ],
+      "questions": [
+        "freeze_blockingを承認状態へ昇格させず、どの人間decisionを待つか",
+        "4つのrefines IDは既存owner再利用、接続、または別判断のどれか",
+        "parent_designとpair_artifactの未解決closureをどの上流で確認するか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AUTHORITY-008",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AUTHORITY-008",
+      "source_span": {
+        "start_line": 23,
+        "end_line": 41,
+        "sha256": "sha256:d9cc40eb6fa3733a8196a5d0a80ab791fe2d03b744aee02e18f76ed3644d81a2",
+        "exact_source_text": "\n# Requirement Discovery Loop・L3 JSON authority要件\n\n## §0 authority境界\n\n本契約は既存Requirement Engineを置換せず、次のrefinementとして追加する。\n\n| 既存owner | 再利用する責務 |\n|---|---|\n| `HR-FR-HIL-15` | surface適用判定、prototype、walkthrough、人間agreement |\n| `HR-FR-HIL-17` | 要求翻訳、原子化、異議、設計義務、定義revision |\n| `HR-FR-HIL-19` | Proposal → Candidate → Canonical、意味差分、原子的admission、rollback |\n| `HR-FR-HIL-20` | 必要十分なdesign portfolio、選択済みstyleへのbinding、発見deltaのback-propagation |\n| AI Vision Design HARNESS | Experience／UI／Frontend契約、prototype、反応、UX証拠 |\n\nL1は人間向けMarkdownを正本とする。L2はappend-only discovery eventとcandidate projectionを持つが\ncanonical requirementではない。L3で初めてstrict JSON IRを機械正本とし、G1/G3人間承認後だけfreezeする。\n別Requirement Engine、別台帳、別layer、別authoring DBを追加しない。\n\n"
+      },
+      "candidate_kind": "boundary",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_boundary_status": "candidate_only",
+      "candidate_granularity": "boundary",
+      "normalized_statement": "既存Requirement Engineの4 owner責務とAI Vision Design HARNESSを再利用し、L1 Markdown→L2 append-only event/candidate projection→L3 strict JSON IRのauthority順序とG1/G3 human freeze gateを固定する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "HR-FR-HIL-15はsurface適用判定、prototype、walkthrough、人間agreementを再利用する",
+        "HR-FR-HIL-17は要求翻訳、原子化、異議、設計義務、定義revisionを再利用する",
+        "HR-FR-HIL-19はProposal→Candidate→Canonical、意味差分、原子的admission、rollbackを再利用する",
+        "HR-FR-HIL-20はdesign portfolio、style binding、発見deltaのback-propagationを再利用する",
+        "AI Vision Design HARNESSはExperience／UI／Frontend契約、prototype、反応、UX証拠の候補ownerである",
+        "L1 Markdownが人間向け正本、L2 event/projectionはcanonicalでなく、L3 strict JSON IRが機械正本でG1/G3承認後のみfreezeする",
+        "別Requirement Engine、別台帳、別layer、別authoring DBを追加しない"
+      ],
+      "possible_conflicts": [
+        "既存owner mappingを新しいRequirement Engineへ置換する",
+        "L2 candidate projectionをcanonical requirementと扱う",
+        "G1/G3前にL3 JSONをfreezeする",
+        "別台帳または別authoring DBを追加してdual authorityを作る"
+      ],
+      "actor_conditions": [
+        "HR-FR-HIL-15/17/19/20の既存owner",
+        "AI Vision Design HARNESSのExperience／UI／Frontend責務",
+        "L1 human author、L2 discovery event owner、L3 compiler",
+        "G1/G3 human approver"
+      ],
+      "authority_conditions": [
+        "L1 Markdownは人間向けsource",
+        "L2 append-only eventとcandidate projectionはcanonical requirementではない",
+        "L3 strict JSON IRのみ機械正本",
+        "G1/G3人間承認後だけfreeze"
+      ],
+      "failure_negative_conditions": [
+        "既存Requirement Engineを別engineへ置換する",
+        "L2 projectionをcanonicalとして下流へ流す",
+        "G1/G3承認なしにfreezeする",
+        "別台帳／別layer／別authoring DBを追加する"
+      ],
+      "questions": [
+        "既存4 ownerの各責務とAI Vision Design HARNESSの境界をHARNESS内でどう束ねるか",
+        "L2 projectionをcanonicalにしないconsumer／projection境界はどこか",
+        "G1/G3承認を検証する人間decision recordは何か"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-LIFECYCLE-008",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-LIFECYCLE-008",
+      "source_span": {
+        "start_line": 58,
+        "end_line": 66,
+        "sha256": "sha256:f45d5d3462137353f1272365609cd6f0348f32c95373341925ad545a3a656d3f",
+        "exact_source_text": "\n## §2 lifecycleと承認\n\nL2 candidate lifecycleは\n`hypothesis → elicited → prototyped → observed → accepted → specified → frozen`とし、\n`rejected/deferred/challenged/superseded/stale`をside/terminal状態とする。`accepted`は要求意図の人間受入、\n`specified`はL3 compile完了、`frozen`はG1/G3人間承認後だけ許可する。AIの沈黙承認は禁止する。\n\nPR-1は契約だけを定義し、schema/runtime/migration/cutoverを実装済みと主張しない。\n"
+      },
+      "candidate_kind": "boundary",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "boundary",
+      "normalized_statement": "L2 candidateをhypothesisからfrozenまで段階管理し、rejected等のside/terminal状態を保持し、accepted/specified/frozenの人間・compile・G1/G3条件とPR-1 contract-only境界を適用する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "hypothesis→elicited→prototyped→observed→accepted→specified→frozenの順序を保持する",
+        "rejected/deferred/challenged/superseded/staleをside/terminal状態として保持する",
+        "acceptedは要求意図のhuman acceptance、specifiedはL3 compile完了、frozenはG1/G3承認後だけ許可する",
+        "AIの沈黙承認を禁止し、PR-1はcontractのみでschema/runtime/migration/cutover実装済みと主張しない"
+      ],
+      "possible_conflicts": [
+        "acceptedをcompile完了またはfrozenと同一視する",
+        "specifiedを人間受入なしで生成する",
+        "AI silenceをapprovalへ変換する",
+        "PR-1の文書契約をruntime／migration実装済みと表示する"
+      ],
+      "actor_conditions": [
+        "L2 candidate ownerが状態遷移を記録する",
+        "human reviewerがacceptedを受け入れる",
+        "L3 compilerがspecifiedを生成する",
+        "G1/G3 human approverがfrozenを許可する"
+      ],
+      "authority_conditions": [
+        "状態遷移は順序とside/terminalを区別する",
+        "accepted／specified／frozenは異なる完了条件を持つ",
+        "frozenのauthorityはG1/G3 human approvalに限定する",
+        "PR-1の実装claimは禁止する"
+      ],
+      "failure_negative_conditions": [
+        "acceptedをfrozenとして扱う",
+        "specifiedをL3 compileなしで作る",
+        "AIの無応答をhuman approvalとみなす",
+        "PR-1からruntime/migration/cutover実装を主張する"
+      ],
+      "questions": [
+        "各lifecycle状態を誰が記録し、side/terminalからの再入場をどう判断するか",
+        "G1/G3 approvalなしのfrozen候補をどのholdへ置くか",
+        "PR-1 contractとPR-2以降実装の境界をどの証拠で維持するか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-TEMPLATE-008",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-TEMPLATE-008",
+      "source_span": {
+        "start_line": 67,
+        "end_line": 77,
+        "sha256": "sha256:25aa6d844d0e99aa5d4063d66fdfbbe6b77109031b8b2170829749115ad9b500",
+        "exact_source_text": "\n## §2.1 Design Template JSON successor境界\n\nRequirement JSONは`design_template_ids`、`design_obligation_ids`、\n`required_design_artifact_kinds`を型付き出力として持つ。未解決templateは\n`pending_template_resolution`として残し、存在しないtemplate IDをAIが捏造しない。\n\n設計templateの構造、適用条件、必須section／field、V-pair、negative oracle、measurement、\ncompletion conditionをJSON正本へ移す作業は#290の独立episodeとする。設計意図、代替案、\ntrade-off、背景はJSON IDへ束縛したMarkdownに残し、Markdown／HTML／Mermaid／画像を\ntemplateやdesign instanceの正本にしない。#290はPR-6／#288のG1/G3再束縛後だけactivationする。\n"
+      },
+      "candidate_kind": "boundary",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "boundary",
+      "normalized_statement": "Requirement JSONからtemplate IDs・obligation IDs・artifact kindsを型付き出力し、未解決templateをpendingに留め、#290のtemplate移送とJSON ID束縛をPR-6/#288後まで保留する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "Requirement JSONがdesign_template_ids、design_obligation_ids、required_design_artifact_kindsを型付き出力する",
+        "未解決templateはpending_template_resolutionとして保持し、AIは存在しないtemplate IDを捏造しない",
+        "templateの構造、適用条件、section/field、V-pair、negative oracle、measurement、completion conditionの移送は#290独立episodeである",
+        "設計意図等はJSON IDへ束縛したMarkdownに残すが、Markdown/HTML/Mermaid/画像をtemplate/design instanceの正本にしない",
+        "#290はPR-6/#288のG1/G3再束縛後だけactivationする"
+      ],
+      "possible_conflicts": [
+        "未解決templateをAIが既存IDとして補完する",
+        "template definitionとdesign instanceを同じ正本へ混ぜる",
+        "#290をPR-6/#288前にactivationする"
+      ],
+      "actor_conditions": [
+        "JSON compilerがtyped fieldsを出力する",
+        "#290 episode ownerがtemplate構造を移送する",
+        "G1/G3 reviewerが再束縛を確認する"
+      ],
+      "authority_conditions": [
+        "pending_template_resolutionは未解決のまま保持する",
+        "template authorityはJSON ID束縛でありMarkdown等の表示物ではない",
+        "activationはPR-6/#288後のG1/G3再束縛に依存する"
+      ],
+      "failure_negative_conditions": [
+        "存在しないtemplate IDを生成する",
+        "Markdown/HTML/Mermaid/画像をtemplate正本とする",
+        "#290を早期activationする"
+      ],
+      "questions": [
+        "templateとdesign instanceのID・構造をどの正式episodeで確定するか",
+        "pending templateをどのconsumerが未解決として扱うか",
+        "PR-6/#288のG1/G3再束縛を確認する証拠は何か"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-PARTITION-008",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-PARTITION-008",
+      "source_span": {
+        "start_line": 78,
+        "end_line": 90,
+        "sha256": "sha256:0c7a7f2622f26bbedbe5076f149aacea8c2934edbe3d7e937c5b3d403618b824",
+        "exact_source_text": "\n## §3 PR-1..6完了責務の分割\n\n| slice | 完了責務 |\n|---|---|\n| PR-1 / #283 | 本L3/L10契約、既存owner mapping、G1/G3 hold |\n| PR-2 / #284 | event schema、candidate lifecycle、質問、反応、agreement、projection、L2収束 |\n| PR-3 / #285 | 153/24/72/24 shadow JSON、12要求owner/downstream修正、typed downstream status |\n| PR-4 / #286 | 生成view、round-trip意味一致、DB shadow再構築2回 |\n| PR-5 / #287 | JSON正本cutover、consumer移行、直接編集拒否 |\n| PR-6 / #288 | JSON snapshot freeze packet、full CI、DB、AI-B、merge tree、PO承認候補 |\n\n指示書の完了項目はこのpartitionへexactly oneで属し、PR-6が集合差分0を検査する。\n"
+      },
+      "candidate_kind": "boundary",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_boundary_status": "candidate_only",
+      "candidate_granularity": "boundary",
+      "normalized_statement": "PR-1からPR-6へ契約、event/lifecycle、shadow JSON、generated view、JSON cutover、freeze packetを重複なく割り当て、PR-6で集合差分0を検査する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "PR-1/#283はL3/L10 contract、既存owner mapping、G1/G3 holdを担う",
+        "PR-2/#284はevent schema、candidate lifecycle、質問、反応、agreement、projection、L2収束を担う",
+        "PR-3/#285は153/24/72/24 shadow JSON、12要求owner/downstream修正、typed downstream statusを担う",
+        "PR-4/#286はgenerated view、round-trip意味一致、DB shadow再構築2回を担う",
+        "PR-5/#287はJSON canonical cutover、consumer移行、直接編集拒否を担う",
+        "PR-6/#288はsnapshot freeze packet、full CI、DB、AI-B、merge tree、PO承認候補を担い、全完了項目の集合差分0を検査する"
+      ],
+      "possible_conflicts": [
+        "一つの完了項目を複数PRへ二重計上する",
+        "PR-1 contract-onlyからPR-2以降の実装完了を推測する",
+        "PR-6の承認候補をPO承認済みと扱う"
+      ],
+      "actor_conditions": [
+        "PR-1..PR-6各slice owner",
+        "PR-6集合差分検査担当",
+        "PO承認候補を判断する人間"
+      ],
+      "authority_conditions": [
+        "slice partitionはexactly one所属",
+        "PR-6が集合差分0を検査するまで完了closureを作らない",
+        "full CI／DB／AI-B／merge treeは候補責務として保持する"
+      ],
+      "failure_negative_conditions": [
+        "完了項目を複数sliceへ割り当てる",
+        "scaffoldの検証結果をPR完了へ置換する",
+        "PR-6承認候補を人間承認と表示する"
+      ],
+      "questions": [
+        "12要求owner/downstream修正のexact setはどの正式台帳で照合するか",
+        "PR-1からPR-6の責務重複をどの集合差分で検査するか",
+        "OS consumer移行をPR-5へ割り当てる際のauthority境界はどこか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-META-017",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-META-017",
+      "source_span": {
+        "start_line": 1,
+        "end_line": 19,
+        "sha256": "sha256:03c3a5768c5cb4a3cc8ad26acecda32096d82b3dcba7ab59f275392e7e6357d3",
+        "exact_source_text": "---\ncanonical_vmodel: L1-L12\ncanonical_layer: L10\ncanonical_pair: L3\ntitle: \"Requirement Discovery Loop・L3 JSON authority受入テスト設計\"\nlayer: L10\nartifact_type: test_design\nstatus: draft\ncreated: 2026-07-30\nupdated: 2026-07-30\nowner: QA / TL\nplan: PLAN-L3-53-requirement-discovery-json-authority\npair_artifact: docs/design/helix/L3-requirements/requirement-discovery-json-authority.md\n---\n\n# Requirement Discovery Loop・L3 JSON authority受入テスト設計\n\n| AC | 正常系oracle | 拒否するmutation |\n|---|---|---|\n"
+      },
+      "candidate_kind": "metadata",
+      "candidate_target": "unresolved",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "boundary",
+      "normalized_statement": "DOC-017はQA/TL所有のL10受入設計draftで、DOC-008とのL3/L10 pairとRDJ-AC表を候補oracleとして保持するが、受入実行結果は持たない",
+      "reference_edge_ids": [
+        "DELEGATED-REF-0342",
+        "DELEGATED-REF-0415",
+        "DELEGATED-REF-0772"
+      ],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "canonical_vmodel=L1-L12、canonical_layer=L10、canonical_pair=L3、layer=L10を保持する",
+        "artifact_type=test_design、status=draft、owner=QA/TL、plan、pair_artifactをmetadataとして保持する",
+        "12 ACの正常系oracleと拒否mutationは後続の静的レビュー候補であり、実行済み証拠ではない"
+      ],
+      "possible_conflicts": [
+        "draft test designをexecuted／verifiedへ昇格する",
+        "pair_artifactをL3/L10 freezeまたはacceptance完了と解釈する",
+        "AC表を原文要求の代替正本へする"
+      ],
+      "actor_conditions": [
+        "QA/TLが受入設計draftを保持する",
+        "L3/L10 pair reviewerがDOC-008への逆参照を確認する"
+      ],
+      "authority_conditions": [
+        "受入設計status=draftは未実行を示す",
+        "pair relationは候補edgeでありacceptanceではない",
+        "QA/TL ownerは人間承認者を意味しない"
+      ],
+      "failure_negative_conditions": [
+        "test designを実行済み結果として表示する",
+        "pair edgeからfreeze／acceptanceを生成する",
+        "AC表を要求正本へ置き換える"
+      ],
+      "questions": [
+        "RDJ-AC各mutationを正式なL10 oracleへ昇格するhuman decisionはどこか",
+        "受入設計の実行状態をどの新世代証拠で確認するか",
+        "DOC-008のL3 contractとの逆traceをどのedgeで閉じるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-BOUNDARY-017",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-BOUNDARY-017",
+      "source_span": {
+        "start_line": 32,
+        "end_line": 36,
+        "sha256": "sha256:849c2c8b4827994deb2b836a70e74f3dc38d37c8af14d7e4fd6255e208b1b438",
+        "exact_source_text": "\n## PR-1受入境界\n\nPR-1では文書契約、existing owner mapping、Issue #30 hold、completion partitionだけを検証する。\nPR-2以降のruntime oracleは`design-defined / not-implemented`であり、実行済みと表示しない。\n"
+      },
+      "candidate_kind": "boundary",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "boundary",
+      "normalized_statement": "DOC-017のPR-1受入範囲を文書契約・既存owner mapping・Issue #30 hold・completion partitionへ限定し、PR-2以降runtime oracleは未実装として表示する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "PR-1で検証するのは文書契約、existing owner mapping、Issue #30 hold、completion partitionだけである",
+        "PR-2以降のruntime oracleはdesign-defined / not-implementedとして保持する",
+        "runtime oracleを実行済みと表示しないという停止条件を保持する"
+      ],
+      "possible_conflicts": [
+        "PR-1の文書確認をruntime/test実行と混同する",
+        "Issue #30 holdを解消済みと表示する",
+        "PR-2以降runtime oracleを実装済み／executedへ昇格する"
+      ],
+      "actor_conditions": [
+        "PR-1 reviewerが文書契約境界を確認する",
+        "runtime oracle ownerが未実装状態を維持する",
+        "Issue #30 holdの人間decision owner"
+      ],
+      "authority_conditions": [
+        "PR-1の検証対象は4項目に限定される",
+        "PR-2以降runtime oracleのstatusはdesign-defined/not-implemented",
+        "実行済み表示は許可されない"
+      ],
+      "failure_negative_conditions": [
+        "PR-1からruntime/test/CI結果を生成する",
+        "Issue #30 holdを自動解除する",
+        "未実装oracleをexecutedまたはverifiedと表示する"
+      ],
+      "questions": [
+        "Issue #30 holdを解除するauthorityとdecision recordは何か",
+        "PR-2以降のruntime oracleを正式実装へ昇格するentry条件は何か",
+        "PR-1の4項目以外を検証対象へ拡張しない監査方法は何か"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-001",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-001",
+      "source_span": {
+        "start_line": 46,
+        "end_line": 46,
+        "sha256": "sha256:263197f94e0a217ec4b32a98dd2dd5fd20cbb09630e92c5f441fc48ef013e03b",
+        "exact_source_text": "| `RDJ-FR-001` | L1 initiative intakeは目的、価値、actor、context、scope/non-goal、制約、仮説、3軸候補を保持し、未確定値をAIが補完せずL2質問へ送る | `HR-FR-HIL-17` | `RDJ-AC-001` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "L1 intakeの確定値と未確定値を分け、未確定をL2質問へ送る",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "initiative author",
+        "human participant",
+        "AI interviewer"
+      ],
+      "authority_conditions": [
+        "L1 human source remains authoritative",
+        "AI cannot complete unknown values"
+      ],
+      "failure_negative_conditions": [
+        "AI fills actor/value/constraint",
+        "uncertain value bypasses L2 questions"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-002",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-002",
+      "source_span": {
+        "start_line": 47,
+        "end_line": 47,
+        "sha256": "sha256:747474ce31c611693ac137ae00e0901316db6ee26b593c486ddd4707252fecc6",
+        "exact_source_text": "| `RDJ-FR-002` | L2は質問、回答、prototype、reaction、candidate split/merge/reject/accept、contradiction、defer、agreement、compile/backflowをappend-only eventとして保持し、current candidateを決定論再構築する | `HR-FR-HIL-17` | `RDJ-AC-002` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_boundary_status": "candidate_only",
+      "candidate_granularity": "unit",
+      "normalized_statement": "L2 discovery eventをappend-onlyで保持しcandidateを決定論再構築する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "participant",
+        "append-only event recorder",
+        "candidate projection consumer"
+      ],
+      "authority_conditions": [
+        "event history is append-only",
+        "candidate is deterministically reconstructed"
+      ],
+      "failure_negative_conditions": [
+        "event overwrite",
+        "unknown event accepted",
+        "replay is nondeterministic"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-003",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-003",
+      "source_span": {
+        "start_line": 48,
+        "end_line": 48,
+        "sha256": "sha256:1ce3dae8056a97ff09bd954f0d3afaa20b679c3c682ed67372e5663eed9516a8",
+        "exact_source_text": "| `RDJ-FR-003` | 次質問は影響度×不確実性×下流変更cost×人間専決度で選び、重複質問と理由なしの回答矛盾を拒否する | `HR-FR-HIL-17` | `RDJ-AC-003` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "影響度・不確実性・下流cost・人間専決度で次質問を選ぶ",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "question selector",
+        "human decision maker"
+      ],
+      "authority_conditions": [
+        "selection uses impact, uncertainty, downstream cost, human-only degree"
+      ],
+      "failure_negative_conditions": [
+        "duplicate question",
+        "reasonless contradiction",
+        "fabricated answer"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-004",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-004",
+      "source_span": {
+        "start_line": 49,
+        "end_line": 49,
+        "sha256": "sha256:e53a3084512ff39445c93057e71ab425df70ace444c0e5db8dba7265db1b6a0b",
+        "exact_source_text": "| `RDJ-FR-004` | `screen/cli/api/event/batch/notification/external_service/none`を共通surfaceとし、requirement→action→state transition→success/cancel/failure/timeout/recovery→AC→oracleを結ぶ。`none`は理由と再評価条件を要求する | `HR-FR-HIL-15` | `RDJ-AC-004` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "共通surfaceからtransition、AC、oracleまでを閉じる",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "workflow compiler",
+        "surface actor",
+        "oracle owner"
+      ],
+      "authority_conditions": [
+        "all surface kinds and terminal paths are traced",
+        "none requires reason and re-evaluation"
+      ],
+      "failure_negative_conditions": [
+        "unassigned surface",
+        "normal path only",
+        "none without reason"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-005",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-005",
+      "source_span": {
+        "start_line": 50,
+        "end_line": 50,
+        "sha256": "sha256:3c1509ace9bbe8f2dc60584f95a1446fc69417a9a043bc75a16f6fe7e612cf33",
+        "exact_source_text": "| `RDJ-FR-005` | prototype reactionは自由文と構造化decisionを分離し、表示要求をunderlying need、actor/task/constraint、state/failure/recovery、candidate、AC、prototype revisionへ還元する | `HR-FR-HIL-15` | `RDJ-AC-005` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "prototype reactionをunderlying needとstructured decisionへ分離する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "prototype participant",
+        "HARNESS prototype owner"
+      ],
+      "authority_conditions": [
+        "free text and structured decision stay separate",
+        "reaction needs human agreement"
+      ],
+      "failure_negative_conditions": [
+        "UI phrase becomes canonical requirement",
+        "stale reaction is reused"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-006",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-006",
+      "source_span": {
+        "start_line": 51,
+        "end_line": 51,
+        "sha256": "sha256:eedea26204a3c0e4fb7f89dfc8f5c4ff1235beb0653643b492b742902049681f",
+        "exact_source_text": "| `RDJ-FR-006` | 暗黙要件matrixはsecurity/privacy/permission/課金/法務を含む不足をderived candidateへ戻し、AIによる無断canonical化を拒否する。高影響判断は人間へ送る | `HR-FR-HIL-17` | `RDJ-AC-006` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "暗黙要件不足をderived candidateとhuman decisionへ戻す",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "AI discovery",
+        "human high-impact reviewer"
+      ],
+      "authority_conditions": [
+        "security/privacy/permission/billing/legal gaps go to candidate and human decision",
+        "AI cannot canonicalize"
+      ],
+      "failure_negative_conditions": [
+        "AI auto-accepts high-impact finding",
+        "implicit matrix is dropped"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-007",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-007",
+      "source_span": {
+        "start_line": 52,
+        "end_line": 52,
+        "sha256": "sha256:6ff1103782a2edde657b085c3130d78188f916fb86001e1dc29e822b2d967a85",
+        "exact_source_text": "| `RDJ-FR-007` | L2収束はactor/task、正常/取消/failure/timeout、P0/P1 surface、矛盾/defer、owner/re-entry、暗黙matrix、直近2 iteration、human prototype agreementの全条件で判定し、score単独判定を拒否する | `HR-FR-HIL-15` | `RDJ-AC-007` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "全収束条件とhuman agreementでL2収束を判定する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "L2 convergence evaluator",
+        "human agreement owner"
+      ],
+      "authority_conditions": [
+        "all convergence conditions are required",
+        "score alone cannot freeze"
+      ],
+      "failure_negative_conditions": [
+        "score-only convergence",
+        "stale agreement",
+        "new P0/P1 is hidden"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-008",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-008",
+      "source_span": {
+        "start_line": 53,
+        "end_line": 53,
+        "sha256": "sha256:6f7e5103d96f3bbcaf4c93049313c7c20a99701e9c68425404f27f59a39bf52f",
+        "exact_source_text": "| `RDJ-FR-008` | L3 CompilerはL1/L2全evidenceからrequirements、24 system contract、surface、action、state、AC/HAT、measurement、trace、downstream、freeze portfolioをstrict JSONへcompileし、`design_template_ids`、`design_obligation_ids`、`required_design_artifact_kinds`を将来のDesign Template JSON接続口として出力し、`compile_ready/backflow_required/human_decision_required/rejected`をexactly one返す | `HR-FR-HIL-17` | `RDJ-AC-008` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_boundary_status": "candidate_only",
+      "candidate_granularity": "unit",
+      "normalized_statement": "L1/L2 evidenceをstrict JSONへcompileしstatusを一つ返す",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "L3 compiler",
+        "G1/G3 human approver",
+        "downstream consumer"
+      ],
+      "authority_conditions": [
+        "compiler returns exactly one status",
+        "unresolved template stays unresolved"
+      ],
+      "failure_negative_conditions": [
+        "IR family/trace/measurement missing",
+        "template ID fabricated",
+        "multiple statuses returned"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-009",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-009",
+      "source_span": {
+        "start_line": 54,
+        "end_line": 54,
+        "sha256": "sha256:52c02821d8649c0edbe33daedb9fdfc1bd8feeca81a997e2b3c4ec464e3427d9",
+        "exact_source_text": "| `RDJ-FR-009` | JSON IRはstable ID単位に分割し、revision、semantic digest、owner、statusを必須化し、unknown enum、extra property、range-only identityを拒否する | `HR-FR-HIL-19` | `RDJ-AC-009` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "JSON IRをstable ID、revision、digest、owner、statusで検証する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "JSON schema validator",
+        "canonical author"
+      ],
+      "authority_conditions": [
+        "stable ID, revision, digest, owner, status are required",
+        "unknown enum is rejected"
+      ],
+      "failure_negative_conditions": [
+        "extra property",
+        "unknown enum",
+        "empty owner/status",
+        "range-only identity"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-010",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-010",
+      "source_span": {
+        "start_line": 55,
+        "end_line": 55,
+        "sha256": "sha256:311d3775a9ed87e6677ebe471d7080e623c5fed71069d1ac379ab0f087922325",
+        "exact_source_text": "| `RDJ-FR-010` | Markdown・matrix・HTML等はJSONからのgenerated viewとし、直接編集をproposal eventへ戻す。cutoverはJSON canonical、generated view、DB projection、全consumerを一つのtransactionで切り替えdual authorityを作らない | `HR-FR-HIL-19` | `RDJ-AC-010` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_boundary_status": "candidate_only",
+      "candidate_granularity": "unit",
+      "normalized_statement": "JSON canonicalとgenerated view、DB projectionをatomicにcutoverする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "JSON canonical writer",
+        "generated-view parser",
+        "DB projection consumer"
+      ],
+      "authority_conditions": [
+        "JSON is canonical",
+        "cutover is one transaction without dual authority"
+      ],
+      "failure_negative_conditions": [
+        "direct Markdown edit",
+        "JSON/view digest drift",
+        "partial cutover"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-011",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-011",
+      "source_span": {
+        "start_line": 56,
+        "end_line": 56,
+        "sha256": "sha256:6427c0d8e344c83c5faf02d048e966f8a91b4d8e9ce4b0bf70cc93305126cefc",
+        "exact_source_text": "| `RDJ-FR-011` | 現行153/24/72/24をshadow移行しsemantic parityを検査する。既知12要求は`HR-FR-HIL-23`／`HR-FR-HIL-24`へexact配線し、GitHub 5責務へ配線しない | `HR-FR-HIL-17` | `RDJ-AC-011` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_boundary_status": "candidate_only",
+      "candidate_granularity": "unit",
+      "normalized_statement": "shadow移行のsemantic parityと12要求のexact downstream配線を検査する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "shadow migration evaluator",
+        "owner/downstream mapper"
+      ],
+      "authority_conditions": [
+        "semantic parity and exact owner/downstream wiring are checked",
+        "GitHub five responsibilities are excluded"
+      ],
+      "failure_negative_conditions": [
+        "record deletion",
+        "owner missing/duplicated",
+        "GitHub misrouting"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-FR-012",
+      "source_document_id": "DELEGATED-DOC-008",
+      "source_path": "docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-FR-012",
+      "source_span": {
+        "start_line": 57,
+        "end_line": 57,
+        "sha256": "sha256:710bdfee162f1b41b647fcd62ccb814213c0fdd9adf20cdd32c13de730737c0b",
+        "exact_source_text": "| `RDJ-FR-012` | 3 production styleはL1〜L3 discovery/compile/freezeを共通必須とし、Discovery／PoCはS4前canonical化しないcase軸、Design HARNESSはprototypeを支援するspecialist軸として維持する | `HR-FR-HIL-20` | `RDJ-AC-012` |\n"
+      },
+      "candidate_kind": "requirement",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "3 styleでdiscovery/compile/freezeを共通化しcase/specialistを分離する",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-008",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "Discovery/PoC/Design HARNESS style owners",
+        "L3 freeze reviewer"
+      ],
+      "authority_conditions": [
+        "common discovery/compile/freeze is required",
+        "case and specialist axes remain separate"
+      ],
+      "failure_negative_conditions": [
+        "reduced Scrum style is emitted",
+        "PoC is folded into Scrum",
+        "Design HARNESS is treated as a style"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [
+          "PHCAP-06"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-001",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-001",
+      "source_span": {
+        "start_line": 20,
+        "end_line": 20,
+        "sha256": "sha256:2ac36043f7a93c21de899f3579cfaf00f52b5a3e945294027dc5e04c1268a132",
+        "exact_source_text": "| `RDJ-AC-001` | initiativeの確定値と未確定質問候補を分離する | AIがactor/value/constraintを補完 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "確定値と未確定質問候補を分離できることを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "initiative reviewer",
+        "AI interviewer"
+      ],
+      "authority_conditions": [
+        "confirmed and unresolved values stay separate",
+        "human source controls certainty"
+      ],
+      "failure_negative_conditions": [
+        "AI supplements actor/value/constraint"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-002",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-002",
+      "source_span": {
+        "start_line": 21,
+        "end_line": 21,
+        "sha256": "sha256:e46e764b73231254fe06ebc2f6611af97cbf7e163f4ddb385a3eea7808d0f867",
+        "exact_source_text": "| `RDJ-AC-002` | event replayから同じcandidate projectionを再構築する | event上書き、訂正履歴消失、未知event受理 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_boundary_status": "candidate_only",
+      "candidate_granularity": "unit",
+      "normalized_statement": "event replayが同じcandidate projectionを再構築することを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "event replay engine",
+        "candidate projection consumer"
+      ],
+      "authority_conditions": [
+        "replay produces the same projection",
+        "correction history is retained"
+      ],
+      "failure_negative_conditions": [
+        "event overwrite",
+        "correction history loss",
+        "unknown event accepted"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-003",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-003",
+      "source_span": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:25e60c56118dfbb4bcc47acd42a0cb3355ad8be5138f22b6ff063c87a7abbe59",
+        "exact_source_text": "| `RDJ-AC-003` | impact式と過去回答から次質問を一意選択する | 重複質問、矛盾理由なし、回答捏造 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "impact式と過去回答から次質問を一意選択することを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "question selector",
+        "human answer owner"
+      ],
+      "authority_conditions": [
+        "impact expression and prior answers select one next question"
+      ],
+      "failure_negative_conditions": [
+        "duplicate question",
+        "reasonless contradiction",
+        "answer fabrication"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-004",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-004",
+      "source_span": {
+        "start_line": 23,
+        "end_line": 23,
+        "sha256": "sha256:5290232a5fcd5101926b108295a17984d31ca413de2378c7d4b0bcdc52736081",
+        "exact_source_text": "| `RDJ-AC-004` | 8 surface kindと全flow／AC／oracle edgeが閉じる | surface未割当、`none`理由なし、正常系だけ |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "8 surface kindとflow/AC/oracle edgeが閉じることを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "flow compiler",
+        "surface/oracle owner"
+      ],
+      "authority_conditions": [
+        "all eight surface kinds and flow/AC/oracle edges close"
+      ],
+      "failure_negative_conditions": [
+        "surface unassigned",
+        "none has no reason",
+        "normal-only flow"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-005",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-005",
+      "source_span": {
+        "start_line": 24,
+        "end_line": 24,
+        "sha256": "sha256:d170ffa9ae7e9ff1e9b8e690f4fe1b63db95a3a1a4141861913d2272e3487471",
+        "exact_source_text": "| `RDJ-AC-005` | reactionからunderlying needとcandidate deltaを導出する | UI表現をそのままcanonical requirement化、古いrevision reaction再利用 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "reactionからunderlying needとcandidate deltaを導出することを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "prototype reviewer",
+        "reaction parser"
+      ],
+      "authority_conditions": [
+        "reaction yields underlying need and candidate delta"
+      ],
+      "failure_negative_conditions": [
+        "UI expression directly canonicalized",
+        "old revision reaction reused"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-006",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-006",
+      "source_span": {
+        "start_line": 25,
+        "end_line": 25,
+        "sha256": "sha256:b0d8db1a026fc8bb8f0b09aa876eaabfb22708c9dac0425bb8bcb1661485c4d6",
+        "exact_source_text": "| `RDJ-AC-006` | 暗黙matrix findingをderived candidateとhuman decisionへ送る | security/privacy/課金/法務/権限をAIが自動accept |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "implicit matrixのfindingをcandidateとhuman decisionへ送ることを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "implicit-matrix reviewer",
+        "human decision maker"
+      ],
+      "authority_conditions": [
+        "finding goes to candidate and human decision"
+      ],
+      "failure_negative_conditions": [
+        "security/privacy/billing/legal/permission auto-accepted"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-007",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-007",
+      "source_span": {
+        "start_line": 26,
+        "end_line": 26,
+        "sha256": "sha256:8699b50c5d42401d7f601b0443af4668eeb4722db255443728f3e5da58fbf9fd",
+        "exact_source_text": "| `RDJ-AC-007` | 全収束条件とhuman agreementがcurrent revisionで成立する | score単独、P0/P1新規発生、stale agreement |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "全収束条件とcurrent human agreementを検査することを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "convergence evaluator",
+        "human agreement owner"
+      ],
+      "authority_conditions": [
+        "all convergence conditions and current agreement hold"
+      ],
+      "failure_negative_conditions": [
+        "score-only decision",
+        "new P0/P1 omitted",
+        "stale agreement"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-008",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-008",
+      "source_span": {
+        "start_line": 27,
+        "end_line": 27,
+        "sha256": "sha256:b824a2158a4ccecc6204731f478e246e2cac5febdf0e572c90f4399bd9aed2cd",
+        "exact_source_text": "| `RDJ-AC-008` | compiler resultがexactly oneで全IR family、trace、`design_template_ids`、`design_obligation_ids`、`required_design_artifact_kinds`を持つ | actor/state/failure/NFR measurement/AC欠落の自動補完、存在しないtemplate IDの捏造、未解決templateの隠蔽 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_boundary_status": "candidate_only",
+      "candidate_granularity": "unit",
+      "normalized_statement": "compiler resultがexactly oneで全IR familyとtraceを持つことを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "L3 compiler",
+        "schema reviewer"
+      ],
+      "authority_conditions": [
+        "exactly-one compiler result contains all IR families, trace, template fields"
+      ],
+      "failure_negative_conditions": [
+        "actor/state/failure/NFR/AC is auto-filled",
+        "fake template ID",
+        "unresolved template hidden"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-009",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-009",
+      "source_span": {
+        "start_line": 28,
+        "end_line": 28,
+        "sha256": "sha256:4508d2cdcad5f66600aef40b7da57d0633b85989aaf0add43f8fb1556c3bc744",
+        "exact_source_text": "| `RDJ-AC-009` | stable-ID JSONがstrict schemaとsemantic digestを満たす | extra property、unknown enum、空owner/status、range-only ID |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "stable-ID JSONがstrict schemaとsemantic digestを満たすことを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "strict JSON validator",
+        "canonical author"
+      ],
+      "authority_conditions": [
+        "stable ID schema and semantic digest pass"
+      ],
+      "failure_negative_conditions": [
+        "extra property",
+        "unknown enum",
+        "empty owner/status",
+        "range-only ID"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-010",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-010",
+      "source_span": {
+        "start_line": 29,
+        "end_line": 29,
+        "sha256": "sha256:c3b20f71e6aa87fc2b73c9115e89c5e312007ed28e8dacbfc66de53a43ddbfb5",
+        "exact_source_text": "| `RDJ-AC-010` | JSON→Markdown→parser→normalized JSONのdigestが一致しcutoverがatomic | generated Markdown直接編集、JSON-only semantic drift、dual authority |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_boundary_status": "candidate_only",
+      "candidate_granularity": "unit",
+      "normalized_statement": "JSON→view→parserのdigest一致とatomic cutoverを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "JSON canonical writer",
+        "generated-view parser",
+        "DB projection consumer"
+      ],
+      "authority_conditions": [
+        "round-trip digest matches and cutover is atomic"
+      ],
+      "failure_negative_conditions": [
+        "generated Markdown direct edit",
+        "JSON-only drift",
+        "dual authority"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-011",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-011",
+      "source_span": {
+        "start_line": 30,
+        "end_line": 30,
+        "sha256": "sha256:8a1546ae706485b389899bcc67c24e549321481da8750453e26954a51f287760",
+        "exact_source_text": "| `RDJ-AC-011` | 153/24/72/24 parity、12要求owner exact set、downstream status全件を確認する | 1件削除、owner欠落/重複、GitHub 5責務への再配線 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [
+        "HELIX-OS"
+      ],
+      "consumer_boundary_status": "candidate_only",
+      "candidate_granularity": "unit",
+      "normalized_statement": "153/24/72/24 parityとowner/downstream exact setを検査することを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "parity evaluator",
+        "downstream owner mapper"
+      ],
+      "authority_conditions": [
+        "153/24/72/24 parity and exact owner/downstream set are complete"
+      ],
+      "failure_negative_conditions": [
+        "record deletion",
+        "owner missing/duplicate",
+        "GitHub five rewire"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    },
+    {
+      "semantic_atom_id": "SCF006-ATOM-RDJ-AC-012",
+      "source_document_id": "DELEGATED-DOC-017",
+      "source_path": "docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "source_revision": "9573119070cdf8f1f70e368bc310f575e8a3538c",
+      "original_id": "RDJ-AC-012",
+      "source_span": {
+        "start_line": 31,
+        "end_line": 31,
+        "sha256": "sha256:063cfa43016197def1591caa7dd673161f3cac1ce231098ad87ef6a1242417dc",
+        "exact_source_text": "| `RDJ-AC-012` | 3 styleへ共通適用しcase/specialistを別fieldで維持する | `PRODUCTION_SCRUM_REDUCED_V`出力、PoCのScrum内包、Design HARNESSのstyle化 |\n"
+      },
+      "candidate_kind": "acceptance",
+      "candidate_target": "HELIX-HARNESS",
+      "owner_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "consumer_product_candidates": [],
+      "consumer_boundary_status": "none_identified",
+      "candidate_granularity": "unit",
+      "normalized_statement": "3 styleに共通適用しcase/specialistを別fieldで保つことを受入条件とする",
+      "reference_edge_ids": [],
+      "legacy_status_ref": "DELEGATED-DOC-017",
+      "legacy_status_unconfirmed": true,
+      "existing_identity_relations": [
+        "source_holding:file_blob",
+        "preserved_pending_atomization"
+      ],
+      "retained_meaning": [
+        "原IDまたは境界spanのexact source textを保持する",
+        "negative/failure、authority、actor条件を別欄で保持する",
+        "authority_effect=none、meaning_change=false、successorなし"
+      ],
+      "possible_conflicts": [
+        "candidate atomは採否・実装・最終unit確定ではない",
+        "product候補とconsumer候補をowner確定へ昇格しない",
+        "旧phase／implementation／consumerは未確認のまま保持する"
+      ],
+      "actor_conditions": [
+        "style boundary reviewer",
+        "L3 freeze reviewer"
+      ],
+      "authority_conditions": [
+        "three styles share discovery/compile/freeze while case and specialist remain distinct"
+      ],
+      "failure_negative_conditions": [
+        "reduced Scrum output",
+        "PoC inside Scrum",
+        "Design HARNESS style conflation"
+      ],
+      "questions": [
+        "このatomのHARNESS責務とOS consumer境界を人間判断で確定できるか",
+        "sourceのfailure／authority／actor条件を下流設計へ移す許可はあるか",
+        "旧phase／implementation／consumer statusを未確認のまま維持できるか"
+      ],
+      "legacy_state": {
+        "phase_candidates": [],
+        "phase_status": "unresolved",
+        "implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_implementation_status": "unknown",
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unconfirmed": true
+      }
+    }
+  ],
+  "semantic_atomization": {
+    "original_id_sets": {
+      "RDJ-FR": 12,
+      "RDJ-AC": 12
+    },
+    "metadata_or_boundary_atoms": 7,
+    "semantic_atom_count": 31,
+    "coverage_span_count": 9,
+    "source_lines_total": 126,
+    "coverage_and_semantics_are_separate": true,
+    "mixed_owner_ids": [],
+    "consumer_boundary_ids": [
+      "RDJ-AC-002",
+      "RDJ-AC-008",
+      "RDJ-AC-010",
+      "RDJ-AC-011",
+      "RDJ-FR-002",
+      "RDJ-FR-008",
+      "RDJ-FR-010",
+      "RDJ-FR-011"
+    ],
+    "id_span_policy": "each RDJ-FR/RDJ-AC has an exact single-line span; non-ID source text remains in boundary atoms"
+  },
+  "reference_edge_linkage": {
+    "DELEGATED-REF-0341": [
+      "SCF006-ATOM-RDJ-META-008"
+    ],
+    "DELEGATED-REF-0342": [
+      "SCF006-ATOM-RDJ-META-008",
+      "SCF006-ATOM-RDJ-META-017"
+    ],
+    "DELEGATED-REF-0414": [
+      "SCF006-ATOM-RDJ-META-008"
+    ],
+    "DELEGATED-REF-0415": [
+      "SCF006-ATOM-RDJ-META-017"
+    ],
+    "DELEGATED-REF-0772": [
+      "SCF006-ATOM-RDJ-META-017",
+      "SCF006-ATOM-RDJ-META-008"
+    ]
+  },
+  "negative_conditions": [
+    {
+      "negative_id": "SCF006-NEG-001",
+      "condition": "draft／pair／authority edgeからapproval、adoption、freezeを生成しない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-META-008",
+        "SCF006-ATOM-RDJ-META-017"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-002",
+      "condition": "FR/ACのunknown、unresolved、human decisionをAI補完してcanonical化しない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-FR-001",
+        "SCF006-ATOM-RDJ-AC-001",
+        "SCF006-ATOM-RDJ-FR-006"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-003",
+      "condition": "append-only eventのoverwrite、未知event受理、replay差分を許可しない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-FR-002",
+        "SCF006-ATOM-RDJ-AC-002"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-004",
+      "condition": "surface、transition、AC、oracleの欠落やnone理由欠落を正常扱いしない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-FR-004",
+        "SCF006-ATOM-RDJ-AC-004"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-005",
+      "condition": "prototype reactionや古いrevisionを直接canonical requirementへ昇格しない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-FR-005",
+        "SCF006-ATOM-RDJ-AC-005"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-006",
+      "condition": "security/privacy/permission/課金/法務のfindingをAIが自動acceptしない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-FR-006",
+        "SCF006-ATOM-RDJ-AC-006"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-007",
+      "condition": "score-only、P0/P1欠落、stale human agreementで収束としない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-FR-007",
+        "SCF006-ATOM-RDJ-AC-007"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-008",
+      "condition": "IR family、trace、measurement、template field欠落やtemplate ID捏造を許可しない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-FR-008",
+        "SCF006-ATOM-RDJ-AC-008"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-009",
+      "condition": "unknown enum、extra property、空owner/status、range-only identityを受理しない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-FR-009",
+        "SCF006-ATOM-RDJ-AC-009"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-010",
+      "condition": "generated view直接編集、JSON/view digest drift、dual authority、partial cutoverを許可しない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-FR-010",
+        "SCF006-ATOM-RDJ-AC-010"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-011",
+      "condition": "153/24/72/24 parity欠落、owner/downstream欠落・重複、GitHub 5責務への再配線を許可しない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-FR-011",
+        "SCF006-ATOM-RDJ-AC-011"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-012",
+      "condition": "styleを混同しreduced Scrum、PoC内包、Design HARNESS style化を許可しない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-FR-012",
+        "SCF006-ATOM-RDJ-AC-012"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-013",
+      "condition": "PR-1 contract-onlyをruntime/schema/migration/cutover実装済みと表示しない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-LIFECYCLE-008",
+        "SCF006-ATOM-RDJ-BOUNDARY-017"
+      ]
+    },
+    {
+      "negative_id": "SCF006-NEG-014",
+      "condition": "HARNESS候補とOS consumer候補をowner確定またはconsumer closedへ昇格しない",
+      "source_atom_ids": [
+        "SCF006-ATOM-RDJ-AUTHORITY-008",
+        "SCF006-ATOM-RDJ-PARTITION-008"
+      ]
+    }
+  ],
+  "boundary_edges": {
+    "DELEGATED-REF-0341": {
+      "status": "outside_selected_batch",
+      "relation": "parent_design",
+      "target": "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+      "hold": "retain as unresolved parent dependency; do not infer parent adoption"
+    }
+  },
+  "review_boundaries": {
+    "phase": {
+      "DELEGATED-DOC-008": "candidate PHCAP-06 only; not authoritative",
+      "DELEGATED-DOC-017": "unresolved; no phase candidate"
+    },
+    "legacy_implementation": {
+      "DELEGATED-DOC-008": "unknown; document present only",
+      "DELEGATED-DOC-017": "unknown; test design present but unexecuted"
+    },
+    "consumer": {
+      "DELEGATED-DOC-008": "pending; no consumer refs",
+      "DELEGATED-DOC-017": "pending; no consumer refs"
+    },
+    "product": "HELIX-HARNESS is ledger candidate only; HELIX-OS is consumer candidate only; owner is not decided"
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}
