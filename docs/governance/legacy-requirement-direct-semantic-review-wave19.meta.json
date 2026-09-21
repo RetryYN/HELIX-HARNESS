@@ -145,17 +145,17 @@
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE16-2026-09-21",
       "ledger_sha256": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
-      "meta_sha256": "sha256:31392b688592d2087cfe3bd7309ebbb7fcf86baa3a5135441f0c61f56cd3fad3"
+      "meta_sha256": "sha256:31392b688592d2087cfe3bd7309ebbb7fcf86baa3a5135441f0c61f56cd3fad3",
+      "candidate_ref": "74bfd04f7aa2384e1e30856ec6c29282b764e8c5",
+      "merge_base": "6dad906ed9a52c9e49611931645db2f298c6bf6a"
     },
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE17-2026-09-21",
       "ledger_sha256": "sha256:85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac",
-      "meta_sha256": "sha256:aa0ed16c81f52526c60d7d3013ed93a18e644335cda154a31215cd98ff4a11e3"
-    },
-    {
-      "batch_id": "LEGACY-SEMANTIC-WAVE18-2026-09-21",
-      "ledger_sha256": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15",
-      "meta_sha256": "sha256:85c2642a217d1f57f09f4b296da6f9e45cf66afd530b84caea37cfb751b96869"
+      "meta_sha256": "sha256:aa0ed16c81f52526c60d7d3013ed93a18e644335cda154a31215cd98ff4a11e3",
+      "commit_ref": "cd88a4e24bc95613548edc17076b9a1d3dceb538",
+      "parent_revision": "74bfd04f7aa2384e1e30856ec6c29282b764e8c5",
+      "source_main_base_revision": "6dad906ed9a52c9e49611931645db2f298c6bf6a"
     },
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE18-2026-09-21",
@@ -965,7 +965,7 @@
     {
       "unit_candidate_id": "IRUNIT-HIL-BR-24-HELIX-OS",
       "role_kind": "design",
-      "reason": "direct phase candidates are empty and crosswalk phase/product candidate pool is 0; no design asset edge selected",
+      "reason": "direct phase candidates=[] and crosswalk candidate_asset_pool.phase_and_product_candidate_asset_count=0; bounded anchor search yielded 2650 catalog candidates and 2649 remain unreviewed; no design asset edge is selected",
       "searched_terms": [
         "HIL-BR-24",
         "要件定義",
@@ -975,13 +975,24 @@
         "authority",
         "projection"
       ],
-      "searched_root": "archive/legacy-generation-2026-09-14/root",
-      "phase_pool_asset_count": 0
+      "searched_root": "asset_catalog_source_paths_under:archive/legacy-generation-2026-09-14/root (bounded anchor search; not archive-wide absence claim)",
+      "phase_pool_asset_count": 0,
+      "search_mode": "bounded_catalog_anchor_candidate_search_not_archive_absence",
+      "candidate_asset_count": 2650,
+      "candidate_asset_ids_sha256": "sha256:96726d961d9019762cbc7b0927c292752e0cb0d8aba998b641a01e53e7aa9e24",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "unreviewed_asset_count": 2649,
+      "unreviewed_asset_ids_sha256": "sha256:d58bc68de3bf3b0d7631bfda9ade93d6dd4aea989a040b7e4c644f9e6061d0d9",
+      "direct_phase_candidates": [],
+      "phase_pool_asset_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selection_basis": "direct_phase_candidates_empty_and_crosswalk_phase_product_candidate_pool_empty"
     },
     {
       "unit_candidate_id": "IRUNIT-HIL-BR-24-HELIX-OS",
       "role_kind": "implementation_source",
-      "reason": "direct phase candidates are empty and crosswalk phase/product candidate pool is 0; no implementation asset edge selected",
+      "reason": "direct phase candidates=[] and crosswalk candidate_asset_pool.phase_and_product_candidate_asset_count=0; bounded anchor search yielded 2650 catalog candidates and 2649 remain unreviewed; no implementation_source asset edge is selected",
       "searched_terms": [
         "HIL-BR-24",
         "要件定義",
@@ -991,8 +1002,19 @@
         "authority",
         "projection"
       ],
-      "searched_root": "archive/legacy-generation-2026-09-14/root",
-      "phase_pool_asset_count": 0
+      "searched_root": "asset_catalog_source_paths_under:archive/legacy-generation-2026-09-14/root (bounded anchor search; not archive-wide absence claim)",
+      "phase_pool_asset_count": 0,
+      "search_mode": "bounded_catalog_anchor_candidate_search_not_archive_absence",
+      "candidate_asset_count": 2650,
+      "candidate_asset_ids_sha256": "sha256:96726d961d9019762cbc7b0927c292752e0cb0d8aba998b641a01e53e7aa9e24",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "unreviewed_asset_count": 2649,
+      "unreviewed_asset_ids_sha256": "sha256:d58bc68de3bf3b0d7631bfda9ade93d6dd4aea989a040b7e4c644f9e6061d0d9",
+      "direct_phase_candidates": [],
+      "phase_pool_asset_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "selection_basis": "direct_phase_candidates_empty_and_crosswalk_phase_product_candidate_pool_empty"
     }
   ],
   "wave16_candidate_ref": "74bfd04f7aa2384e1e30856ec6c29282b764e8c5",
@@ -1007,14 +1029,16 @@
       "status": "product_boundary_shared_atom_hold",
       "shared_atom_ids": [
         "BR23-HARNESS-A04"
-      ]
+      ],
+      "row_atomization_hold": "source_atomization_review_pending;product_boundary_pending_human_decision"
     },
     {
       "unit_candidate_id": "IRUNIT-HIL-BR-23-HELIX-OS",
       "status": "product_boundary_shared_atom_hold",
       "shared_atom_ids": [
         "BR23-OS-A01"
-      ]
+      ],
+      "row_atomization_hold": "source_atomization_review_pending;product_boundary_pending_human_decision"
     },
     {
       "unit_candidate_id": "IRUNIT-HIL-BR-24-HELIX-HARNESS",
@@ -1022,7 +1046,8 @@
       "shared_atom_ids": [
         "BR24-HARNESS-A01",
         "BR24-HARNESS-A03"
-      ]
+      ],
+      "row_atomization_hold": "source_atomization_review_pending;product_boundary_pending_human_decision"
     },
     {
       "unit_candidate_id": "IRUNIT-HIL-BR-24-HELIX-OS",
@@ -1030,12 +1055,14 @@
       "shared_atom_ids": [
         "BR24-OS-A01",
         "BR24-OS-A02"
-      ]
+      ],
+      "row_atomization_hold": "source_atomization_review_pending;direct_phase_unresolved;no_direct_phase_candidate_pool"
     },
     {
       "unit_candidate_id": "IRUNIT-HIL-BR-24-HELIX-OS",
       "status": "direct_phase_and_candidate_pool_unresolved",
-      "scope_broadened_claimed": false
+      "scope_broadened_claimed": false,
+      "row_atomization_hold": "source_atomization_review_pending;direct_phase_unresolved;no_direct_phase_candidate_pool"
     }
   ],
   "source_main_base_revision": "6dad906ed9a52c9e49611931645db2f298c6bf6a",

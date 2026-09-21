@@ -19,7 +19,7 @@ Wave19 は、main merge HEAD `17ce6830d2d4c684c96d55705cdc65790a4fdaa4` に積�
 
 BR23-HARNESS と BR23-OS は `Template Gap Issueとして改善loopへ戻す` を共有atomとして保持し、Requirement Translator、template gap検出、OS側改善loopの責務を候補境界として分けます。BR24-HARNESS と BR24-OS は要件定義を設計対象とするatomと revision履歴の共有を保持します。product境界は人間判断pendingのままです。
 
-BR24-OS は decomposition の直接phase候補が空で、crosswalk の phase/product candidate pool も0です。このため要求source edgeだけを置き、design／implementation edgeは作らず、missing evidence receiptへ記録します。空のpoolからphase、asset、実装を推測しません。
+BR24-OS は decomposition の直接phase候補が空で、crosswalk の phase/product candidate pool も0です。同じ7 anchorの bounded catalog searchは2,650候補を返し、共通requirement 1件を選択、2,649件を未reviewとして保持します。このため要求source edgeだけを置き、design／implementation edgeは作らず、missing evidence receiptには direct phase=[]／pool=0による未選定を記録します。空のpoolからphase、asset、実装を推測しません。
 
 旧archiveは静的read-onlyだけに使いました。旧runtime、test、hook、CI、adapterは実行していません。phase capability と旧assetの存在は、現行実装、oracle、consumer closure、release、完了へ昇格させません。
 
@@ -27,6 +27,6 @@ row field 集合は schema10 の固定集合として閉じ、要求atomは選�
 
 ## 検証
 
-`verify_legacy_requirement_direct_semantic_review_wave19.py` は、schema10 row/meta、再baseline parent、prior edge／asset重複、Requirement IR/raw anchor、catalog digest、decomposition/crosswalk/phase join、atom provenance、controlled anchor mapping、bounded search receipt、BR24-OSの空phase／空pool、missing evidence receiptを静的に検査します。stale anchorとmapping欠落はfail-closeの陰性ケースで拒否します。
+`verify_legacy_requirement_direct_semantic_review_wave19.py` は、schema10 row/meta field閉包、再baseline parent、Wave1–18 prior digest、meta.inputs path閉包、prior edge／asset重複、Requirement IR/raw anchor、catalog digest、decomposition/crosswalk/phase join、atom provenance、row atomization hold接続、controlled anchor mapping、bounded search receipt、BR24-OSの候補2,650件／未review 2,649件と空phase／空pool、missing evidence receiptを静的に検査します。stale anchor、mapping欠落、receipt改竄はfail-closeの陰性ケースで拒否します。
 
 phase／implementation は候補から再導出される値として扱い、行と集計を `authority_effect=none`、`consumer_closure_status=pending`、`legacy_execution_status=not_run`、`current_requirement_implementation_status=not_established`、`new_build_allowed=false` に固定します。

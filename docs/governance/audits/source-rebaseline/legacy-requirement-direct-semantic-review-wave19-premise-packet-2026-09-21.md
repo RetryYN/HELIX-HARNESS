@@ -48,7 +48,7 @@ BR23の共有atomは原文の `Template Gap Issueとして改善loopへ戻す` �
 | BR24-HARNESS / design | `LEGACY-ASSET-CBF2D0F8889BC4C80AF4` | `docs/design/harness/L3-functional/roadmap.md` | requirement／trace／ledger／authority の設計候補 |
 | BR24-HARNESS / implementation_source | `LEGACY-ASSET-11379713A3797CAC3141` | `src/requirements/requirement-ir-shadow.ts` | requirement／revision／ledger／authority の未実行source候補 |
 
-BR24-OS は catalog の直接phase候補と phase/product candidate pool がともに0のため、非要求assetを選びません。候補roleの空集合自体を unresolved evidence として `missing_evidence_receipts` に記録します。
+BR24-OS は decomposition の direct phase candidates=[]、crosswalk の phase/product candidate pool=0です。同じ7 anchorによる bounded catalog search は2,650候補を返し、共通requirement asset 1件を選択、残る2,649件は未reviewとして保持します。missing evidence receipt は archive全体の不在を示さず、この候補集合を direct phase=[]／pool=0を理由に design／implementation edgeへ未選定とした事実を記録します。
 
 ## phase／implementation degradation
 

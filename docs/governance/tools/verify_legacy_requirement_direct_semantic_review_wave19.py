@@ -24,6 +24,8 @@ BATCH = "LEGACY-SEMANTIC-WAVE19-2026-09-21"
 PARENT = "17ce6830d2d4c684c96d55705cdc65790a4fdaa4"
 MAIN_MERGE_PARENTS = ["4bff98789877b5b9b3b65c181a63ea1c1d826ee3", "e40f7f778117864dc2271af323977ca6e4fd1e4c"]
 WAVE18_EXACT = "e40f7f778117864dc2271af323977ca6e4fd1e4c"
+WAVE16_EXACT = "74bfd04f7aa2384e1e30856ec6c29282b764e8c5"
+WAVE17_EXACT = "cd88a4e24bc95613548edc17076b9a1d3dceb538"
 SOURCE_BASE = "6dad906ed9a52c9e49611931645db2f298c6bf6a"
 REQ_SHA = "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
 UNITS = [
@@ -69,6 +71,39 @@ ROW_FIELDS = {
     "source_requirement_id", "source_requirement_legacy_markdown_span", "source_requirement_pointer",
     "source_scope_fragments", "source_sha256", "source_statement_semantic_digest", "source_statement_text",
     "source_text_spans", "unit_candidate_id", "unresolved",
+}
+META_FIELDS = {
+    "authority_effect", "batch_id", "bounded_search_receipts", "consumer_closure_status",
+    "cumulative_reviewed_edge_count", "cumulative_reviewed_unit_count", "current_tree_revision",
+    "inputs", "legacy_execution_performed", "main_merge_parents", "main_merge_revision",
+    "missing_evidence_receipts", "new_build_allowed", "output_sha256", "parent_revision",
+    "phase_rows", "prior_fixed_input_digests", "prior_review_batches", "record_count",
+    "remaining_unit_count", "reviewed_edges", "reviewed_unit_ids", "schema_revision",
+    "semantic_link_counts", "source_atomization_holds", "source_main_base_revision",
+    "source_requirement_asset_id", "source_requirement_ir_sha256", "source_revision",
+    "stacked_pr_parent_revision", "status", "unit_aggregates", "wave16_candidate_input_digests",
+    "wave16_candidate_merge_base", "wave16_candidate_ref", "wave16_candidate_root",
+    "wave17_candidate_input_digests", "wave17_candidate_parent", "wave17_candidate_ref",
+    "wave17_candidate_root", "wave17_commit_parent", "wave17_commit_ref", "wave17_commit_root",
+    "wave18_candidate_input_digests", "wave18_candidate_parent", "wave18_candidate_ref",
+    "wave18_candidate_root", "wave18_exact_head",
+}
+MISSING_RECEIPT_FIELDS = {
+    "candidate_asset_count", "candidate_asset_ids_sha256", "direct_phase_candidates",
+    "phase_pool_asset_count", "phase_pool_asset_ids_sha256", "reason", "search_mode",
+    "searched_root", "searched_terms", "selected_asset_ids", "selection_basis",
+    "unit_candidate_id", "role_kind", "unreviewed_asset_count", "unreviewed_asset_ids_sha256",
+}
+EXPECTED_INPUT_PATHS = {
+    "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "docs/governance/phase-capability-inventory.json",
+} | {
+    f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.{suffix}"
+    for wave in range(1, 19)
+    for suffix in ("jsonl", "meta.json")
 }
 
 
@@ -127,6 +162,52 @@ def verify_binding(row: dict, binding: dict, joined: str) -> None:
             terms = mapping.get(anchor, [])
             require(terms and all(term in binding["required_terms"] and term in joined for term in terms), f"excerpt anchor {row['review_id']}")
     require(all(term in joined for term in binding["required_terms"]), f"binding term {row['review_id']}")
+
+
+def verify_missing_receipt(receipt: dict, search: dict, candidate: dict, crosswalk: dict) -> None:
+    require(set(receipt) == MISSING_RECEIPT_FIELDS, f"missing receipt fields {receipt.get('role_kind')}")
+    pool = crosswalk["candidate_asset_pool"]
+    pool_ids = sorted(pool["phase_and_product_candidate_asset_ids"])
+    require(receipt["unit_candidate_id"] == candidate["unit_candidate_id"], "missing receipt unit")
+    require(receipt["searched_terms"] == search["query"]["anchors"], "missing receipt terms")
+    require(receipt["search_mode"] == "bounded_catalog_anchor_candidate_search_not_archive_absence", "missing receipt search mode")
+    require(receipt["searched_root"] == (
+        "asset_catalog_source_paths_under:archive/legacy-generation-2026-09-14/root "
+        "(bounded anchor search; not archive-wide absence claim)"
+    ), "missing receipt search root")
+    require(receipt["candidate_asset_count"] == search["candidate_asset_count"], "missing receipt candidate count")
+    require(receipt["candidate_asset_ids_sha256"] == search["candidate_asset_ids_sha256"], "missing receipt candidate digest")
+    require(receipt["selected_asset_ids"] == search["selected_asset_ids"], "missing receipt selected ids")
+    require(receipt["unreviewed_asset_count"] == search["unreviewed_asset_count"] == 2649, "missing receipt unreviewed count")
+    require(receipt["unreviewed_asset_ids_sha256"] == search["unreviewed_asset_ids_sha256"], "missing receipt unreviewed digest")
+    require(receipt["direct_phase_candidates"] == candidate["direct_phase_candidates"] == [], "missing receipt direct phase")
+    require(receipt["phase_pool_asset_count"] == pool["phase_and_product_candidate_asset_count"] == 0, "missing receipt phase pool")
+    require(receipt["phase_pool_asset_ids_sha256"] == canonical(pool_ids), "missing receipt phase pool digest")
+    require(receipt["selection_basis"] == "direct_phase_candidates_empty_and_crosswalk_phase_product_candidate_pool_empty", "missing receipt selection basis")
+    require(str(search["candidate_asset_count"]) in receipt["reason"] and str(search["unreviewed_asset_count"]) in receipt["reason"], "missing receipt reason counts")
+    require("direct phase candidates=[]" in receipt["reason"] and "phase_and_product_candidate_asset_count=0" in receipt["reason"], "missing receipt reason basis")
+
+
+def expected_prior_review_batches() -> list[dict]:
+    expected = []
+    for wave in range(1, 16):
+        ledger = ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.jsonl"
+        meta = ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.meta.json"
+        prior_meta = json.loads(meta.read_text())
+        expected.append({"batch_id": prior_meta["batch_id"], "ledger_sha256": file_digest(ledger), "meta_sha256": file_digest(meta)})
+    for wave, ref, _parent, extra in (
+        (16, WAVE16_EXACT, SOURCE_BASE, {"candidate_ref": WAVE16_EXACT, "merge_base": SOURCE_BASE}),
+        (17, WAVE17_EXACT, WAVE16_EXACT, {"commit_ref": WAVE17_EXACT, "parent_revision": WAVE16_EXACT, "source_main_base_revision": SOURCE_BASE}),
+        (18, WAVE18_EXACT, WAVE17_EXACT, {"commit_ref": WAVE18_EXACT, "parent_revision": WAVE17_EXACT, "source_main_base_revision": SOURCE_BASE}),
+    ):
+        ledger = ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.jsonl"
+        meta = ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.meta.json"
+        prior_meta = json.loads(meta.read_text())
+        require(prior_meta["output_sha256"] == file_digest(ledger), f"prior {wave} ledger receipt")
+        item = {"batch_id": prior_meta["batch_id"], "ledger_sha256": file_digest(ledger), "meta_sha256": file_digest(meta)}
+        item.update(extra)
+        expected.append(item)
+    return expected
 
 
 def verify_atom_provenance(row: dict, requirement: dict, requirement_excerpt: str) -> None:
@@ -193,6 +274,7 @@ def verify() -> None:
         for candidate in parent.get("candidate_units", []):
             decomposition[candidate["unit_candidate_id"]] = (parent, candidate)
 
+    require(set(meta) == META_FIELDS, "meta fields")
     require(len(rows) == 10 and meta["record_count"] == 10, "record count")
     require(meta["schema_revision"] == 10 and meta["batch_id"] == BATCH, "schema/batch")
     require(meta["parent_revision"] == PARENT and meta["stacked_pr_parent_revision"] == PARENT, "stacked parent")
@@ -209,6 +291,12 @@ def verify() -> None:
     for row in rows:
         verify_row_fields(row)
 
+    require(meta["prior_review_batches"] == expected_prior_review_batches(), "prior review batches exact")
+    require(set(meta["inputs"]) == EXPECTED_INPUT_PATHS, "input path set")
+    for name, value in meta["inputs"].items():
+        path = ROOT / name
+        require(path.is_file() and file_digest(path) == value, f"input digest {name}")
+
     current_edges = {(row["unit_candidate_id"], row["asset_id"]) for row in rows}
     expected_edges = {(unit, aid) for unit, aids in SELECTED.items() for aid in aids}
     require(current_edges == expected_edges, "selected edges")
@@ -219,9 +307,6 @@ def verify() -> None:
     require(len(prior_edges | current_edges) == 171, "edge cumulative count")
     require(meta["cumulative_reviewed_unit_count"] == 58 and meta["cumulative_reviewed_edge_count"] == 171 and meta["remaining_unit_count"] == 160, "cumulative receipt")
 
-    for name, value in meta["inputs"].items():
-        path = ROOT / name
-        require(path.is_file() and file_digest(path) == value, f"input digest {name}")
     require(meta["wave18_candidate_input_digests"]["docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl"] == file_digest(ROOT / "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl"), "wave18 ledger pin")
 
     by_unit = {unit: [row for row in rows if row["unit_candidate_id"] == unit] for unit in UNITS}
@@ -233,8 +318,22 @@ def verify() -> None:
         require(requirement["role_kind"] == "requirement" and requirement["source_requirement_id"] == req, f"requirement row {unit}")
         require(candidate["unit_kind"] == "product_unit" and candidate["product_target"] == requirement["product_scope"][0], f"unit product {unit}")
         require(requirement["phase_candidates"] == candidate["direct_phase_candidates"] and requirement["source_text_spans"] == candidate["source_text_spans"], f"decomposition join {unit}")
+        require(crosswalk[unit]["direct_phase_candidates"] == requirement["phase_candidates"], f"crosswalk direct phase join {unit}")
         require(requirement["source_statement_semantic_digest"] == REQ_DIGESTS[req], f"source semantic digest {unit}")
         require(meta["phase_rows"][unit] == phase_projection(crosswalk[unit]), f"phase rows {unit}")
+        pool = crosswalk[unit]["candidate_asset_pool"]
+        pool_ids = sorted(pool["phase_and_product_candidate_asset_ids"])
+        require(meta["bounded_search_receipts"][unit]["phase_pool_asset_count"] == pool["phase_and_product_candidate_asset_count"], f"crosswalk phase pool count {unit}")
+        require(meta["bounded_search_receipts"][unit]["phase_pool_asset_ids_sha256"] == canonical(pool_ids), f"crosswalk phase pool digest {unit}")
+        product_hold = next((hold for hold in meta["source_atomization_holds"] if hold.get("unit_candidate_id") == unit and hold.get("status") == "product_boundary_shared_atom_hold"), None)
+        require(product_hold is not None and product_hold["row_atomization_hold"] == requirement["atomization_hold"], f"row atomization hold link {unit}")
+        requirement_atom_ids = {atom["atom_id"] for atom in requirement["covered_requirement_atoms"]}
+        require(set(product_hold["shared_atom_ids"]) <= requirement_atom_ids, f"shared atom hold provenance {unit}")
+        require(all(row["atomization_hold"] == requirement["atomization_hold"] for row in unit_rows), f"unit row atomization hold {unit}")
+        if unit == "IRUNIT-HIL-BR-24-HELIX-OS":
+            require(candidate["direct_phase_candidates"] == [] and crosswalk[unit]["phase_capability_evidence"] == [], "BR24-OS direct phase recompute")
+            direct_hold = next((hold for hold in meta["source_atomization_holds"] if hold.get("unit_candidate_id") == unit and hold.get("status") == "direct_phase_and_candidate_pool_unresolved"), None)
+            require(direct_hold is not None and direct_hold["row_atomization_hold"] == requirement["atomization_hold"] and direct_hold.get("scope_broadened_claimed") is False, "BR24-OS atomization hold link")
         for row in unit_rows:
             require(row["batch_id"] == BATCH and row["schema_revision"] == 10, f"row identity {row['review_id']}")
             require(row["product_scope"] == requirement["product_scope"] and row["phase_candidates"] == requirement["phase_candidates"], f"row scope {row['review_id']}")
@@ -282,6 +381,10 @@ def verify() -> None:
     require(meta["phase_rows"]["IRUNIT-HIL-BR-24-HELIX-OS"] == [] and meta["bounded_search_receipts"]["IRUNIT-HIL-BR-24-HELIX-OS"]["phase_pool_asset_count"] == 0, "BR24-OS empty phase/pool")
     missing = meta["missing_evidence_receipts"]
     require({(x["role_kind"], x["unit_candidate_id"]) for x in missing} == {("design", "IRUNIT-HIL-BR-24-HELIX-OS"), ("implementation_source", "IRUNIT-HIL-BR-24-HELIX-OS")}, "BR24-OS missing receipts")
+    _os24_parent, os24_candidate = decomposition["IRUNIT-HIL-BR-24-HELIX-OS"]
+    os24_search = meta["bounded_search_receipts"]["IRUNIT-HIL-BR-24-HELIX-OS"]
+    for receipt in missing:
+        verify_missing_receipt(receipt, os24_search, os24_candidate, crosswalk["IRUNIT-HIL-BR-24-HELIX-OS"])
 
     # Stale anchors and missing mappings fail closed.
     controlled = next(row for row in rows if row["role_kind"] == "design")
@@ -334,8 +437,18 @@ def verify() -> None:
     else:
         fail("negative candidate atom equality accepted")
 
+    tampered_missing = deepcopy(missing[0])
+    tampered_missing["unreviewed_asset_count"] = 0
+    try:
+        verify_missing_receipt(tampered_missing, os24_search, os24_candidate, crosswalk["IRUNIT-HIL-BR-24-HELIX-OS"])
+    except AssertionError:
+        pass
+    else:
+        fail("negative missing receipt candidate retention accepted")
+
     for unit, receipt in meta["bounded_search_receipts"].items():
         require(receipt["catalog_record_count"] == len(catalog), f"catalog count {unit}")
+        require(receipt["query"] == by_unit[unit][0]["bounded_search_query"], f"receipt query {unit}")
         ids = []
         for aid, asset in catalog.items():
             try:
