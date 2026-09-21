@@ -1073,25 +1073,29 @@
       "id": "CONTR-01",
       "left": "legacy representative files carry confirmed/draft/implementation source/test-design artifacts and detailed promotion contracts",
       "right": "asset ledger marks all five historical/unresolved with implementation_status unknown, consumer_refs empty and no decision record",
-      "resolution": "preserved as historical evidence vs ledger state; no execution/pass/current implementation claim"
+      "resolution": "preserved as historical evidence vs ledger state; no execution/pass/current implementation claim",
+      "status": "unresolved_preserved"
     },
     {
       "id": "CONTR-02",
       "left": "legacy product classifications list all four products as candidate targets",
       "right": "PHCAP-19 inventory directly evidences HELIX-OS only",
-      "resolution": "HARNESS/Web/Web-OS remain unknown; candidate boundary refs do not close direct evidence gap"
+      "resolution": "HARNESS/Web/Web-OS remain unknown; candidate boundary refs do not close direct evidence gap",
+      "status": "unresolved_preserved"
     },
     {
       "id": "CONTR-03",
       "left": "legacy L5 overlaps memory compaction/continuation and promotion",
       "right": "PHCAP-19 gap explicitly requires learning/memory meaning atom and consumer split",
-      "resolution": "overlap remains unresolved; no PHCAP-20 ownership or merge generated"
+      "resolution": "overlap remains unresolved; no PHCAP-20 ownership or merge generated",
+      "status": "unresolved_preserved"
     },
     {
       "id": "CONTR-04",
       "left": "current OS docs describe improvement candidate and bounded export",
       "right": "current L1/L2/L11 documents are draft/candidate and acceptance says unexecuted",
-      "resolution": "current semantic ref is evidence of candidate wording, not implementation or operation completion"
+      "resolution": "current semantic ref is evidence of candidate wording, not implementation or operation completion",
+      "status": "unresolved_preserved"
     }
   ],
   "unresolved": [

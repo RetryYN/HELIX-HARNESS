@@ -26,6 +26,7 @@ PHCAP-19の候補scopeはHELIX-OS、HELIX-HARNESS、HELIX-Web、HELIX-Web-OSの4
 5. `LEGACY-ASSET-0B5B38F146D9538C9A36`: L10 acceptance test design
 
 5件すべてで台帳は`disposition: unresolved`、`implementation_status: unknown`、`consumer_refs: []`。append-only判断ログの該当行は0件である。source本文の`confirmed`、旧実装source、test design、promotion contractは歴史的記述として保持し、実行・pass・現行適合へ昇格しない。source spans、failure evidence、consumer候補、phase／product分類は`inventory.json`でassetへ紐づけた。
+contradictions_preservedは各々にid、left、right、resolutionを持ち、`status: unresolved_preserved`を固定する。unresolvedは空項目を許さず、authority付与へ意味を反転させない。
 
 source spanはbounded sliceであり、各ファイルの未選択行、関連する全asset、全consumer closureは残差である。PHCAP-20 memory／継続との意味atom分割も未解決である。
 

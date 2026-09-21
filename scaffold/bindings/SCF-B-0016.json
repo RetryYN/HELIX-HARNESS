@@ -28,7 +28,7 @@
     {"path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248", "note": "Web-OS L2 bounded export境界候補"},
     {"path": "docs/helix-web-os/L11-acceptance/service-acceptance.md", "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e", "note": "Web-OS L11候補"},
     {"path": "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md", "sha256": "0a48e51ddb95212c4fcf45f218c25f110af7c2cdd30f75ec4c75ae90d47b39b6", "note": "旧意味の新世代責務境界crosswalk"},
-    {"path": "scaffold/phcap19-learning-research/inventory.json", "sha256": "661beeb600fad45e38a6be63f3fac4506deb99bee83857825e1c8a705c148145", "note": "5 asset、21 source span、13 atom、4製品候補、OS direct evidenceと3製品unknown"}
+    {"path": "scaffold/phcap19-learning-research/inventory.json", "sha256": "3a1b5efca44939780aa81d90557d1f079a857a094b28dc726a025f96f06bddf4", "note": "5 asset、21 source span、13 atom、4製品候補、OS direct evidenceと3製品unknown"}
   ],
   "role": "PHCAP-19の旧learning／改善capabilityと現行HELIX-OS／HELIX-HARNESS／HELIX-Web／HELIX-Web-OS境界を、direct evidenceの有無・unknown・矛盾を保ったresearch premiseとして固定する",
   "obligations": [

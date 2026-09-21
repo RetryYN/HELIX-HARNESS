@@ -5,6 +5,12 @@ from pathlib import Path
 HERE=Path(__file__).resolve().parent; ROOT=HERE.parents[1]; INV=HERE/'inventory.json'
 ASSET=ROOT/'docs/governance/legacy-asset-disposition.jsonl'; PHASE=ROOT/'docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'; DEC=ROOT/'docs/governance/legacy-asset-decisions.jsonl'
 PREFIX='archive/legacy-generation-2026-09-14/root/'
+EXPECTED_CONTRADICTION_RESOLUTIONS={
+ 'CONTR-01':'preserved as historical evidence vs ledger state; no execution/pass/current implementation claim',
+ 'CONTR-02':'HARNESS/Web/Web-OS remain unknown; candidate boundary refs do not close direct evidence gap',
+ 'CONTR-03':'overlap remains unresolved; no PHCAP-20 ownership or merge generated',
+ 'CONTR-04':'current semantic ref is evidence of candidate wording, not implementation or operation completion',
+}
 def dig(b): return hashlib.sha256(b).hexdigest()
 def jsonl(p): return [json.loads(x) for x in p.read_text(encoding='utf-8').splitlines() if x.strip()]
 def req(e,c,m):
@@ -49,7 +55,23 @@ def validate(d):
    if t is not None:req(e,dig(t.encode())==r.get('line_sha256'),'E_CURRENT_LINE_SHA:'+str(r.get('ref_id')))
   req(e,r.get('classification') in {'direct_current_ref','adjacent_current_ref','boundary_candidate','direct_boundary_current_ref'},'E_CURRENT_CLASS:'+str(r.get('ref_id')))
   if r.get('classification')=='direct_current_ref': direct.append(r)
- req(e,len(direct)==2 and {r.get('ref_id') for r in direct}=={'CUR-OS-L2','CUR-OS-L11'} and {r.get('product') for r in direct}=={'HELIX-OS'},'E_DIRECT_REFS'); req(e,len(d.get('contradictions_preserved',[]))>=4,'E_CONTRADICTIONS'); req(e,len(d.get('unresolved',[]))>=7,'E_UNRESOLVED')
+ req(e,len(direct)==2 and {r.get('ref_id') for r in direct}=={'CUR-OS-L2','CUR-OS-L11'} and {r.get('product') for r in direct}=={'HELIX-OS'},'E_DIRECT_REFS'); contradictions=d.get('contradictions_preserved'); req(e,isinstance(contradictions,list) and len(contradictions)==4,'E_CONTRADICTIONS_COUNT')
+ if isinstance(contradictions,list):
+  ids=set()
+  for contradiction in contradictions:
+   if not isinstance(contradiction,dict): req(e,False,'E_CONTRADICTION_SHAPE'); continue
+   cid=contradiction.get('id')
+   req(e,isinstance(cid,str) and cid not in ids and cid in EXPECTED_CONTRADICTION_RESOLUTIONS,'E_CONTRADICTION_ID')
+   if isinstance(cid,str): ids.add(cid)
+   req(e,set(contradiction)=={'id','left','right','resolution','status'},'E_CONTRADICTION_FIELDS:'+str(cid))
+   for key in ('left','right'):
+    req(e,isinstance(contradiction.get(key),str) and bool(contradiction.get(key).strip()),'E_CONTRADICTION_FIELD:%s:%s'%(cid,key))
+   req(e,contradiction.get('status')=='unresolved_preserved','E_CONTRADICTION_STATUS:'+str(cid))
+   req(e,isinstance(cid,str) and contradiction.get('resolution')==EXPECTED_CONTRADICTION_RESOLUTIONS.get(cid),'E_CONTRADICTION_RESOLUTION:'+str(cid))
+  req(e,ids==set(EXPECTED_CONTRADICTION_RESOLUTIONS),'E_CONTRADICTION_SET')
+ unresolved=d.get('unresolved',[]); req(e,len(unresolved)>=7,'E_UNRESOLVED_COUNT')
+ for index,item in enumerate(unresolved):
+  req(e,isinstance(item,str) and bool(item.strip()),'E_UNRESOLVED_ITEM:%s'%index)
  return e
 if __name__=='__main__':
  e=validate(json.loads(INV.read_text(encoding='utf-8')))
