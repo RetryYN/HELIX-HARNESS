@@ -172,3 +172,14 @@ message TTLとsession leaseは古い依頼・sessionへの誤配送防止であ�
 ## PR #1887 round 2 reviewの処分
 
 - Major 1: 採用。`gui_selftest.py`の`setUp`でgitignore対象の`scaffold/review-handoff/local/`を作り、各testが先行testの副作用へ依存しないようにする。fresh worktreeの初回実行で26件合格することを再確認し、証拠のsource commitをこの修正へ更新する。
+
+## Claude instructionをHELIX sourceへ接続する追加scope（2026-09-21）
+
+利用者は「Claudeのコンフィグ設定をHELIXから引っ張ってこれない？じゃないとClaudeがいつまでもマージしないでうざい状態になる。」と指示した。
+端末の`~/.claude/CLAUDE.md`だけにIssue #1888の継続review／merge責務を置くと、再設定時に失われてreview応答後の追加確認待ちが再発する。このためSCF-B-0003のconsumer接続へClaude instructionのmanaged block同期を追加する。
+
+旧資産明細台帳から、旧adapterのmanaged block `LEGACY-ASSET-E71F42F5DE9DA9821B4F` と設定template `LEGACY-ASSET-06496313FD2B704A2C41`、旧利用者設定 `LEGACY-ASSET-317AE893EF4ADD3AF492`／`LEGACY-ASSET-F27AC6F39D89FE021C56` を特定して静的に読んだ。保持する契約は「HELIX所有blockだけを同期しconsumer所有本文を保持する」ことである。旧prompt、hook、command、runtime本文は現行へcopyせず、現行repository authorityと利用者が許可したIssue #1888の作用だけを`scaffold/review-handoff/claude-current-loader.md`へ再導出する。
+
+`configure_gui.py --apply`は既存5 hookと同時に、そのsourceを`~/.claude/CLAUDE.md`の固定marker区間へ同期する。marker外本文をbyte単位で保持し、不整合・重複markerでは書き換えず停止する。3つのconsumer fileは全変更を事前計算し、途中失敗時は変更済みfileを元bytesへrollbackする。rollback前に別更新を検出した場合は上書きしない。`--remove --apply`は所有hookとmarker区間だけを撤去する。外部参照台帳と`scfctl residuals`は、active時のblock重複・source driftと、retired時の残留を検査する。
+
+これはreview依頼からmerge許可を生成する変更ではない。対象PR、exact HEAD、作用、GitHub通路の許可とmerge admissionは、各requestと現行project rulesで引き続き照合する。今回の変更は既に与えられた責務を既存Claude GUIが再読できるHELIX管理sourceへ移すだけである。

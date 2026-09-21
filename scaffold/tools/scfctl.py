@@ -298,6 +298,32 @@ def external_hook_residuals(binding, home=None, manifest_path=None):
             limit = spec["retired_expected_count"] if binding["state"] == "retired" else spec["maximum_per_settings_file"]
             if count > limit:
                 errors.append("外部hook残留・重複: %s count=%d" % (relative, count))
+        source_path = spec.get("instruction_source")
+        if source_path:
+            if source_path != "scaffold/review-handoff/claude-current-loader.md":
+                raise ValueError("参照台帳instruction source対象外")
+            with open(os.path.join(ROOT, source_path), encoding="utf-8") as stream:
+                source = stream.read().strip()
+            start, end = spec["instruction_start"], spec["instruction_end"]
+            if source.count(start) != 1 or source.count(end) != 1:
+                raise ValueError("instruction source marker不正")
+            for relative in spec.get("instruction_paths", []):
+                if relative != "~/.claude/CLAUDE.md":
+                    raise ValueError("参照台帳instruction対象外")
+                path = os.path.join(home or os.path.expanduser("~"), relative[2:])
+                if not os.path.exists(path):
+                    continue
+                with open(path, encoding="utf-8") as stream:
+                    value = stream.read()
+                count = value.count(start)
+                expected = 0 if binding["state"] == "retired" else spec["maximum_managed_blocks"]
+                if count > expected or count != value.count(end):
+                    errors.append("外部instruction残留・重複: %s count=%d" % (relative, count))
+                elif count == 1:
+                    begin = value.index(start)
+                    finish = value.index(end, begin) + len(end)
+                    if value[begin:finish] != source:
+                        errors.append("外部instructionがHELIX sourceと不一致: " + relative)
     except (OSError, ValueError, KeyError, TypeError):
         errors.append("外部hook参照台帳・設定を検証できない")
     return errors

@@ -135,6 +135,55 @@ class GuiChecks(unittest.TestCase):
         self.assertTrue(config.entries("claude")["Stop"][0]["hooks"][0]["asyncRewake"])
         self.assertNotIn("async",config.entries("codex")["Stop"][0]["hooks"][0])
 
+    def test_claude_policy_sync_preserves_unrelated_and_removes_owned_block(self):
+        source = config.POLICY_START + "\nmanaged\n" + config.POLICY_END
+        original = "# Personal\n\nkeep before\n"
+        synced = config.update_policy(original, source=source)
+        self.assertEqual(config.update_policy(synced, source=source), synced)
+        self.assertIn("# Personal", synced)
+        self.assertIn("managed", synced)
+        changed = config.update_policy(synced, source=source.replace("managed", "updated"))
+        self.assertIn("updated", changed)
+        self.assertNotIn("managed\n", changed)
+        self.assertEqual(config.update_policy(changed, remove=True, source=source), original)
+        suffix = "after  \n\n"
+        wrapped = config.update_policy(original + suffix, source=source)
+        self.assertEqual(config.update_policy(wrapped, remove=True, source=source), original + suffix)
+        crlf = "# Personal\r\nkeep\r\n"
+        wrapped = config.update_policy(crlf, source=source)
+        self.assertEqual(config.update_policy(wrapped, remove=True, source=source), crlf)
+        self.assertEqual(config.update_policy("", remove=True, source=source), "")
+        with self.assertRaises(ValueError):
+            config.update_policy("no final newline", source=source)
+
+    def test_claude_policy_sync_rejects_ambiguous_markers(self):
+        source = config.POLICY_START + "\nmanaged\n" + config.POLICY_END
+        for existing in (config.POLICY_START, source + "\n" + source):
+            with self.assertRaises(ValueError):
+                config.update_policy(existing, source=source)
+        with self.assertRaises(ValueError):
+            config.update_policy("", source="missing markers")
+
+    def test_consumer_updates_rollback_as_one_set(self):
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            root=Path(directory)
+            first, second, policy = root / "first", root / "second", root / "policy"
+            first.write_bytes(b"before-first")
+            second.write_bytes(b"before-second")
+            real=config.atomic_write
+            def fail_policy(path,before,after):
+                if path == policy:
+                    raise OSError("injected failure")
+                return real(path,before,after)
+            with patch.object(config,"atomic_write",side_effect=fail_policy):
+                with self.assertRaises(OSError):
+                    config.atomic_write_all([(first,b"before-first",b"after-first"),
+                                             (second,b"before-second",b"after-second"),
+                                             (policy,None,b"managed-policy")])
+            self.assertEqual(first.read_bytes(),b"before-first")
+            self.assertEqual(second.read_bytes(),b"before-second")
+            self.assertFalse(policy.exists())
+
     def test_timeout_and_old_watcher(self):
         local = g.HERE / "local"
         local.mkdir(exist_ok=True)
@@ -338,8 +387,13 @@ class GuiChecks(unittest.TestCase):
         with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
             home=Path(directory); (home / ".claude").mkdir()
             settings=home / ".claude/settings.json"
+            instruction=home / ".claude/CLAUDE.md"
             settings.write_text(json.dumps(config.update({},"claude")))
+            instruction.write_text(config.update_policy("# Personal\n"))
             self.assertEqual(scf.external_hook_residuals(binding,str(home)),[])
+            instruction.write_text(config.update_policy("# Personal\n").replace("現行 HELIX ローダ","drift"))
+            self.assertTrue(scf.external_hook_residuals(binding,str(home)))
+            instruction.write_text(config.update_policy("# Personal\n"))
             duplicate=config.update({},"claude")
             duplicate["hooks"]["Stop"] *= 3
             settings.write_text(json.dumps(duplicate))
