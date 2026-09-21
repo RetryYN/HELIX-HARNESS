@@ -1,0 +1,154 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0007",
+  "kind": "scaffold",
+  "title": "RDP-001 PREISOLATION 次候補 6 path / 24 hunk revision coherence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS／HELIX-OS上流revision provenance整理（混合source ownerは未解決）",
+  "state": "active",
+  "reason": "#1934でreview済みのPREISOLATION 6 path／9 hunkと重複しない6 source pathについて、baseline／pre-isolation／archive bytes、asset／phase状態、全400 files／492 hunksの未処理分母、要求・制約・provenance・generated metadata候補を同じscaffoldへ保持する。意味同値、採否、authority、実装、consumer closure、受入は未決のまま扱う。",
+  "upstream": [
+    {
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "note": "PREISO-REV-000003..000008を含む333 source revision holding、全体400 files／492 hunksの基礎"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "6 selected source pathの旧asset、implementation、consumer、authority状態"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "6 selected source pathのphase／product候補、consumer pending、legacy execution false"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "HARNESS／HELIX-OSの責務境界候補"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "HARNESSのV-model、要求・設計・検証contract候補"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "HELIX-OSのCI、GitHub、state、証跡、管理・統制候補"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+      "note": "source span、候補分類、owner、未決、禁止遷移のreview契約"
+    },
+    {
+      "path": "scaffold/pre-isolation-next/README.md",
+      "sha256": "75420a00b1b05a902f76efdfb078e1e87e6f04489a20007264076d541a658466",
+      "note": "selected scope、全体分母、hunk分類とsemantic atom未完境界、旧asset／phase未確認、停止条件"
+    },
+    {
+      "path": "scaffold/pre-isolation-next/rdp001-preiso-next-6path.json",
+      "sha256": "bd41dc0f88eef13f3c61735c89c9c97482b5913f3c639911581be76966d54399",
+      "note": "6 selected pathのholding／asset／phase／revision候補manifest"
+    },
+    {
+      "path": "scaffold/pre-isolation-next/rdp001-preiso-next-semantic-diff-inventory.json",
+      "sha256": "aec34d9f26b74f8ddac72318efe793afd079a102fcbe0929f8c9872e293e67e7",
+      "note": "24 hunk-level fragmentのexact span、分類、owner候補、15 review-only subunit、compound hold、未解決意味、negative"
+    },
+    {
+      "path": "scaffold/pre-isolation-next/validate.py",
+      "sha256": "bc6b6808a84d3740ba0f14a45a089620f38e793ff2aa9070e5226bbdcae207bf",
+      "note": "read-only Git object、台帳、diff denominator／hunk、hunk分類とsemantic atom境界、phase、negative validator"
+    },
+    {
+      "path": "scaffold/pre-isolation-next/selfcheck.py",
+      "sha256": "c68020aaebd5b289710d74868caa28991884efd597b67068a8c4740c98e5bd25",
+      "note": "digest、phase、owner、authority、旧実行、hunk、分類、semantic atom境界・subunit grounding改変の否定例"
+    }
+  ],
+  "role": "PREISO-REV-000003..000008のbaseline／pre-isolation／archive provenance、24 diff hunk、要求・制約・provenance・metadata候補、旧asset／phase状態、未処理分母をreview可能なscaffoldへ固定する",
+  "obligations": [
+    "selected 6 source ID／path／categoryと#1934 prior 6 source IDの非重複を固定する",
+    "各selected pathのbaseline／pre-isolation commit、blob OID、file SHA-256、archive bytesをholdingとGit objectへ照合する",
+    "asset／phase台帳のimplementation、consumer closure、candidate phase、product review、legacy execution falseをスナップショットとして保持する",
+    "全体400 files／492 hunks、今回6 files／24 hunks、#1934とのcombined 12 files／33 hunks、残388 files／459 hunksを固定する",
+    "24 changed fragmentのrequirement 7、constraint 8、provenance 7、generated metadata 2をexact span／digestとともに保持する",
+    "24 hunk-level classification only、semantic atomization未完、semantic atom count 0、24 compound hold、15 review-only subunit、19未分解fragmentを固定する",
+    "HARNESS／HELIX-OS owner候補を境界sourceへ束縛し、hybrid／pillarの混合責務をunresolvedへ保持する",
+    "authority_effect=none、meaning_change_applied=false、successor空、human decision null、semantic equivalence unresolvedを維持する",
+    "要求採否、意味同値、L2／L3／L10 freeze、実装、consumer closure、受入、release、旧runtime／test／CI実行を生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 source revision delta review担当",
+      "HARNESS要求・検証contract整理担当",
+      "HELIX-OS GitHub／CI／state／証跡consumer整理担当",
+      "Scaffold Binding stale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "既知commit／pathに限定したread-only Git object database",
+      "source／asset／phase台帳",
+      "HARNESS／HELIX-OS product boundary候補",
+      "旧要求atomization review contract"
+    ],
+    "boundary": "manifest、inventory、validator、selfcheckはscaffold/配下。validatorは台帳、product boundary source、固定Git object、archive snapshot bytesだけをread-onlyで確認し、archive runtime・test・CI・hook、GitHub、Issue、PR、DBへ作用しない"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/pre-isolation-next/validate.py",
+      "python3 scaffold/pre-isolation-next/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|list|stale|residuals"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime・test・CI・hookの読込・実行",
+      "旧sourceを現行runtime・test・CIのoracle、fallback、実装として使うこと",
+      "scaffold/外への書き込み",
+      "要求採否・意味同値・人間承認・successor・authority昇格・L2／L3／L10 freeze・実装・closure・受入・releaseの生成",
+      "GitHub、Issue、PR、CI、DB、deploymentへの外部作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/pre-isolation-next/README.md",
+    "scaffold/pre-isolation-next/rdp001-preiso-next-6path.json",
+    "scaffold/pre-isolation-next/rdp001-preiso-next-semantic-diff-inventory.json",
+    "scaffold/pre-isolation-next/validate.py",
+    "scaffold/pre-isolation-next/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": [
+      "scaffold/pre-isolation-next/validate.py（holding／asset／phase、Git object、archive bytes、全体分母、24 hunk、分類、owner、negative）",
+      "scaffold/pre-isolation-next/selfcheck.py（digest、phase implementation、owner collapse、authority、旧実行、hunk、分類の否定例）",
+      "scaffold/tools/scfctl.py stale（上流ledger／product boundary／contract revision変化の検出）",
+      "git diff --check（候補文書の静的整形）"
+    ],
+    "negative_cases": [
+      "baseline／pre-isolation file SHA、blob OID、archive bytesの改変",
+      "selected hunkの欠落・重複・span改変・別path混入",
+      "holding path／category／revision／authority fieldの改変",
+      "asset implementationをimplemented、phaseを確定、consumerをclosedへ昇格する改変",
+      "hybrid／pillarのunresolved ownerを単一製品へ固定する改変",
+      "requirement／constraint／provenance／metadata分類とnegative IDの改変",
+      "hunk-level classificationをsemantic atom化完了または要求件数へ読み替える改変、compound hold・subunit source grounding・owner未決の改変",
+      "authority、meaning change、successor、human decision、equivalence claimの生成",
+      "old runtime／test／CI executionをtrueまたはoracleへする改変"
+    ]
+  },
+  "replacement": {
+    "role_target": "対象revision付きsource coherenceと要求再配置を扱う正式な上流管理契約（対象別L2／L3／L10から導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}
