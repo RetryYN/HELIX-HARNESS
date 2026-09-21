@@ -164,11 +164,34 @@ def validate_inventory(inv: dict[str, Any], root: str = ROOT) -> list[str]:
         req(denominator.get("remaining_after_subset_combined") == total_edges - prior_integrated - draft_edges - selected_edges, "E_COMBINED_RESIDUAL_AFTER_SUBSET")
     edge_denominator = inv.get("reference_edge_denominator", {})
     req(edge_denominator == {
+        "snapshot_role": "capture_time_c354b7d9",
         "holding_total": 788, "prior_integrated": 26, "unmerged_draft": 4,
         "remaining_before_main_confirmed": 762, "remaining_before_combined": 758, "selected": 24,
         "remaining_after_main_confirmed": 738, "remaining_after_combined": 734,
         "selected_source_line_refs": 24, "selected_target_blob_refs": 24, "unique_source_line_spans": 24,
     }, "E_EDGE_DENOM_EXACT")
+    rebaseline = inv.get("comparison", {}).get("rebaseline", {})
+    req(rebaseline == {
+        "base_commit": "569d7373c32287bbafadeec6043472563937c5c7",
+        "prior_candidate_ref": "PR #1953",
+        "status_at_selection": "unmerged_candidate",
+        "status_at_rebaseline": "integrated_in_latest_main",
+        "integration_commit": "1f39f0b6fc026cf150b80ced317b2d8182db3898",
+        "integration_head": "2b18f7d4ef4d73622351d6393d9ef4350c389e65",
+        "main_integrated_reference_edges": 30,
+        "unmerged_draft_reference_edges": 0,
+        "remaining_before_subset_main_confirmed": 758,
+        "selected_reference_edges": 24,
+        "remaining_after_subset_main_confirmed": 734,
+    }, "E_REBASELINE_LINEAGE")
+    req(inv.get("reference_edge_denominator_at_rebaseline") == {
+        "base_commit": "569d7373c32287bbafadeec6043472563937c5c7",
+        "holding_total": 788, "prior_integrated": 30, "unmerged_draft": 0,
+        "remaining_before_main_confirmed": 758, "selected": 24,
+        "remaining_after_main_confirmed": 734,
+    }, "E_REBASELINE_DENOM_EXACT")
+    req(rebaseline.get("main_integrated_reference_edges") == len(INTEGRATED_EDGES | DRAFT_EDGES), "E_REBASELINE_INTEGRATED_COUNT")
+    req(rebaseline.get("remaining_after_subset_main_confirmed") == len(ref_rows) - len(INTEGRATED_EDGES | DRAFT_EDGES) - len(EXPECTED_EDGES), "E_REBASELINE_RESIDUAL_COUNT")
     basis = inv.get("comparison", {}).get("selection_basis", {})
     req(set(basis.get("integrated_prior_reference_ids", [])) == INTEGRATED_EDGES, "E_INTEGRATED_EDGE_LINEAGE")
     req(set(basis.get("unmerged_draft_reference_ids", [])) == DRAFT_EDGES, "E_DRAFT_EDGE_LINEAGE")
@@ -288,5 +311,7 @@ if __name__ == "__main__":
         for failure in failures:
             print(failure, file=sys.stderr)
         raise SystemExit(1)
-    d = load_inventory()["reference_edge_denominator"]
-    print(f"PASS RDP-001 reference subset: edges={d['selected']} source_lines={d['selected_source_line_refs']} target_blobs={d['selected_target_blob_refs']} combined_residual={d['remaining_after_combined']} main_residual={d['remaining_after_main_confirmed']} docs_atomized=0")
+    inventory = load_inventory()
+    d = inventory["reference_edge_denominator"]
+    current = inventory["reference_edge_denominator_at_rebaseline"]
+    print(f"PASS RDP-001 reference subset: edges={d['selected']} source_lines={d['selected_source_line_refs']} target_blobs={d['selected_target_blob_refs']} capture_main_residual={d['remaining_after_main_confirmed']} rebaseline_main_residual={current['remaining_after_main_confirmed']} docs_atomized=0")

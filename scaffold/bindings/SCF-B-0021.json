@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS／HELIX-OSのreference edge classification review（正式owner未解決）",
   "state": "active",
-  "reason": "RDP-001 reference holding 788 edgeから既isolated 30 edge（main統合済み26 edge＋PR #1953未merge draft 4 edge）と既存pair文書pathを除外し、l3_progression_authority 8、related_l3 5、authority 2、related_l12 6、related_l1 3の24 edgeをsource line／target blob／asset／phase／decision／failure／consumerの候補分類として固定する。main残分母738とcombined候補残分母734を区別し、734はcombined候補だけの残分母として扱う。edge coverageとdocument atomizationを分離し、採用・authority・closureへ昇格させない。",
+  "reason": "RDP-001 reference holding 788 edgeから既isolated 30 edgeを除き、構造上の責務・authority・L1/L3/L12接続を優先した24 edgeをsource line／target blob／asset／phase／decision／failure／consumerの候補として分類する。capture時点はmain統合済み26 edge＋PR #1953未merge 4 edgeでmain残分母738、PR #1953 merge後の再baselineでは30 edgeがmain統合済みでmain残分母734と分けて記録する。edge coverageとdocument atomizationを分離し、採用・authority・closureへ昇格させない。",
   "upstream": [
     {
       "path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
@@ -70,28 +70,28 @@
     },
     {
       "path": "scaffold/rdp001-ref-subset-0021/README.md",
-      "sha256": "405f581cd8c7a9a0aa0825f5fd646b343bf299c98d22345e82cf231c20430fc0",
+      "sha256": "f3a365142219bbf184d79ff5fca428b941791b17e286af101a95b7b8352ee10a",
       "note": "candidate scope, edge IDs, denominator and boundary"
     },
     {
       "path": "scaffold/rdp001-ref-subset-0021/inventory.json",
-      "sha256": "bba38f44ce3d5e2f2bc6bfc79a4e3a59a8590c6d97db87602c1e76986cec52cd",
+      "sha256": "d2e509065db45e3ed126b4fc8166c536cd6c50a8a6959732330ab68e3eaf1497",
       "note": "24 exact edge identities and read-only joins"
     },
     {
       "path": "scaffold/rdp001-ref-subset-0021/validate.py",
-      "sha256": "a4ad8e62dd48ef2fe662f7d91d5c7437af9b00d8c396efe1849e31499239ea31",
+      "sha256": "058a9ed11199d72ef2cdaad56970a083238b0ae9f67efebbe2745a1a9c682f4c",
       "note": "fail-closed static validator"
     },
     {
       "path": "scaffold/rdp001-ref-subset-0021/selfcheck.py",
-      "sha256": "3aade082f5db46d3b7bbb513d284a118dd82d4441942bfbd7bcec358f5652efc",
-      "note": "47 meaningful negative selfchecks"
+      "sha256": "286ab911b679bae6f6a8538d51dbcd8568ce27cbdedec130adcba0d66af5ac07",
+      "note": "49 meaningful negative selfchecks"
     }
   ],
   "role": "selected RDP-001 reference edgeをsource lineとtarget blobへ無損失で結び、relation、target class、actor／authority／negative、owner product／phase候補、failure／consumer unknownを保持するedge classification scaffold",
   "obligations": [
-    "holding 788 edgeから選択24 edgeを完全一致で保持し、prior isolated 30 edge（main統合済み26 edge＋PR #1953未merge draft 4 edge）、既isolated document path、main残分母738／combined候補残分母734との重複・差分をfail-closeで検査する。734はcombined候補だけの残分母であり、main統合済み残分母ではない",
+    "holding 788 edgeから選択24 edgeを完全一致で保持し、prior isolated 30 edge、既isolated document pathとの重複をfail-closeで検査する。capture時点の26統合＋4未merge／main残分母738と、PR #1953統合後の30統合／main残分母734を別時点の事実として固定する",
     "各edgeのsource path／SHA／line／exact source text／line digestとtarget path／archive blob／SHA／line countを固定する",
     "edge relation key、origin、target class、target holding、carry status、meaning_change=false、human decision=nullをholdingへ一致させる",
     "各source／target pathをasset disposition、phase/product classification、decision log、failure/rule inventory、consumer refsへ読み取り専用joinし、unresolvedを解消しない",
@@ -116,7 +116,7 @@
       "atomization review contract",
       "HARNESS／OS product boundary candidate"
     ],
-    "boundary": "inventory、README、validator、selfcheckはscaffold/配下。固定source／target blob、asset／phase／decision／failure／consumer ledgerを読み取り専用で照合し、旧runtime・test・CI・hook、GitHub、Issue、PR、DB、外部APIを実行・更新しない。edge presenceからdocument atomization、owner、authority、adoption、closureを推論しない。"
+    "boundary": "inventory、README、validator、selfcheckはscaffold/配下。固定source／target blob、asset／phase／decision／failure／consumer ledgerを読み取り専用で照合し、旧runtime・test・CI・hook、未許可のGitHub・Issue・PR操作およびDB・外部API更新をしない。edge presenceからdocument atomization、owner、authority、adoption、closureを推論しない。"
   },
   "operations": {
     "allowed": [
@@ -130,7 +130,7 @@
       "旧sourceを現行runtime・test・CIのoracle、fallback、実装として使うこと",
       "scaffold/外への書き込み",
       "要求採否・人間承認・successor・owner確定・product/phase authority・document atomization・consumer closure・acceptance・releaseの生成",
-      "GitHub、Issue、PR、CI、DB、deploymentへの外部作用"
+      "未許可のGitHub・Issue・PR操作、およびCI・DB・deploymentへの外部作用"
     ]
   },
   "artifacts": [
@@ -150,7 +150,7 @@
     ],
     "oracles": [
       "scaffold/rdp001-ref-subset-0021/validate.py（holding edge scope、固定line／blob、asset／phase／decision／failure／consumer join、atomization separation）",
-      "scaffold/rdp001-ref-subset-0021/selfcheck.py（edge identity、digest、classification昇格、closure、denominatorの47負例）",
+      "scaffold/rdp001-ref-subset-0021/selfcheck.py（edge identity、digest、classification昇格、closure、denominatorの49負例）",
       "scaffold/tools/scfctl.py stale（ledger／contract／boundary／artifact revision変化）",
       "git diff --check（候補文書の静的整形）"
     ],

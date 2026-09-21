@@ -1,6 +1,6 @@
 # RDP-001 delegated reference-edge subset（SCF-B-0021）
 
-この候補は、RDP-001 reference holding 788 edgeから、既にisolatedされた30 edge（main統合済み26 edgeと、PR #1953に残る未merge draft 4 edge）および既存pairの文書pathを除き、構造上の責務・authority・L1/L3/L12接続を優先した24 edgeを分類するbounded scaffoldです。候補IDは `RDP-001-SCF-B-0021-REF-CLASSIFICATION-024`、capture revisionは `c354b7d9177ad3ea92dec30c66c36e6ce2d66ae3` です。capture revisionは固定入力の来歴であり、常に最新mainと一致させるgateではありません。
+この候補は、RDP-001 reference holding 788 edgeから、既にisolatedされた30 edge（capture時点ではmain統合済み26 edgeとPR #1953の未merge draft 4 edge、再baseline時点では30 edgeすべてmain統合済み）および既存pairの文書pathを除き、構造上の責務・authority・L1/L3/L12接続を優先した24 edgeを分類するbounded scaffoldです。候補IDは `RDP-001-SCF-B-0021-REF-CLASSIFICATION-024`、capture revisionは `c354b7d9177ad3ea92dec30c66c36e6ce2d66ae3` です。capture revisionは固定入力の来歴であり、常に最新mainと一致させるgateではありません。
 
 選択した関係keyは `l3_progression_authority` 8件、`related_l3` 5件、`authority` 2件、`related_l12` 6件、`related_l1` 3件です。全edgeの固定source lineとtarget blob digestを記録しました。
 
@@ -17,7 +17,7 @@ DELEGATED-REF-0361  DELEGATED-REF-0369  DELEGATED-REF-0382
 DELEGATED-REF-0384  DELEGATED-REF-0385  DELEGATED-REF-0747
 ```
 
-source lineは `0001/0016/0027/0041/0054/0273/0335/0369=7`、`0285=11`、`0295=12`、`0296=13`、`0298=9`、`0310=11`、`0328=11`、`0329=12`、`0338=18`、`0352=9`、`0356=12`、`0357=13`、`0361=12`、`0382=12`、`0384=12`、`0385=13`、`0747=26`です。24 edgeのsource line spanはすべて一意で、24件のtarget blob参照もedgeごとに固定しています。target blobは共有されるため、ユニークな固定blobは7個です。main統合済みだけを先に除いた残りは `788 - 26 - 24 = 738 edge`、未merge draft 4 edgeも合わせたcombined候補の残分母だけが `788 - (26 + 4) - 24 = 734 edge` です。734をmain統合済みの残分母として扱いません。
+source lineは `0001/0016/0027/0041/0054/0273/0335/0369=7`、`0285=11`、`0295=12`、`0296=13`、`0298=9`、`0310=11`、`0328=11`、`0329=12`、`0338=18`、`0352=9`、`0356=12`、`0357=13`、`0361=12`、`0382=12`、`0384=12`、`0385=13`、`0747=26`です。24 edgeのsource line spanはすべて一意で、24件のtarget blob参照もedgeごとに固定しています。target blobは共有されるため、ユニークな固定blobは7個です。capture時点ではmain統合済み26 edgeを除いた残りが `788 - 26 - 24 = 738 edge`、未merge draft 4 edgeも合わせたcombined候補の残分母が `788 - (26 + 4) - 24 = 734 edge` でした。PR #1953がmergeされた再baseline時点では30 edgeがmain統合済みであり、main統合済みの残分母は `788 - 30 - 24 = 734 edge` です。PR #1953のmerge commitは `1f39f0b6fc026cf150b80ced317b2d8182db3898`、統合HEADは `2b18f7d4ef4d73622351d6393d9ef4350c389e65` です。
 
 各edgeはholdingのID、source/target path、source line、source line exact text、source/target SHA、origin、relation key、target class、carry statusを保持します。さらに、candidate role、owner product候補、phase候補、actor、authority条件、negative条件、consumer refs、failure候補、未解決質問をedge単位で記録しています。ownerは候補のまま、phase authorityはunconfirmed、legacy implementationはunknownまたはnon-executable source only、consumerはpendingです。
 
@@ -40,6 +40,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-`validate.py` はholdingの全788行、選択edgeの完全集合、既存30 edge（main統合済み26＋PR #1953未merge 4）との非重複、固定archive source line／target blob digest、asset／phase／decision／failure／consumer join、文書atomization未実施をfail-closeで検査します。main残分母738とcombined候補残分母734を別々に検査し、734をmain統合済みの残分母へ読み替えません。`selfcheck.py` はedge identity、source/target digest、line、relation/class、owner／phase／implementation／consumer昇格、asset／decision／failure観測、文書atomization、残分母、closure guard全fieldの47負例を検査します。旧archiveのruntime・test・CI・hookは実行していません。
+`validate.py` はholdingの全788行、選択edgeの完全集合、既存30 edgeとの非重複、固定archive source line／target blob digest、asset／phase／decision／failure／consumer join、文書atomization未実施をfail-closeで検査します。capture時点のmain残分母738と再baseline時点のmain残分母734を別々に検査します。`selfcheck.py` はedge identity、source/target digest、line、relation/class、owner／phase／implementation／consumer昇格、asset／decision／failure観測、文書atomization、履歴と残分母、closure guard全fieldの49負例を検査します。旧archiveのruntime・test・CI・hookは実行していません。
 
-変更は `scaffold/` 配下の候補artifactとBindingに限り、commit、push、PR、merge、Issue、外部作用は行いません。
+変更は `scaffold/` 配下の候補artifactとBindingに限ります。merge、Issue close、runtime／CI、deploymentは行いません。

@@ -27,6 +27,19 @@
       "remaining_after_subset_main_confirmed": 738,
       "remaining_after_subset_combined": 734
     },
+    "rebaseline": {
+      "base_commit": "569d7373c32287bbafadeec6043472563937c5c7",
+      "prior_candidate_ref": "PR #1953",
+      "status_at_selection": "unmerged_candidate",
+      "status_at_rebaseline": "integrated_in_latest_main",
+      "integration_commit": "1f39f0b6fc026cf150b80ced317b2d8182db3898",
+      "integration_head": "2b18f7d4ef4d73622351d6393d9ef4350c389e65",
+      "main_integrated_reference_edges": 30,
+      "unmerged_draft_reference_edges": 0,
+      "remaining_before_subset_main_confirmed": 758,
+      "selected_reference_edges": 24,
+      "remaining_after_subset_main_confirmed": 734
+    },
     "selection_basis": {
       "relation_keys": {
         "authority": 2,
@@ -4271,6 +4284,7 @@
     ]
   },
   "reference_edge_denominator": {
+    "snapshot_role": "capture_time_c354b7d9",
     "holding_total": 788,
     "prior_integrated": 26,
     "unmerged_draft": 4,
@@ -4282,6 +4296,15 @@
     "selected_source_line_refs": 24,
     "selected_target_blob_refs": 24,
     "unique_source_line_spans": 24
+  },
+  "reference_edge_denominator_at_rebaseline": {
+    "base_commit": "569d7373c32287bbafadeec6043472563937c5c7",
+    "holding_total": 788,
+    "prior_integrated": 30,
+    "unmerged_draft": 0,
+    "remaining_before_main_confirmed": 758,
+    "selected": 24,
+    "remaining_after_main_confirmed": 734
   },
   "closure_guard": {
     "authority_effect": "none",

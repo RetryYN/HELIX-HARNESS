@@ -64,6 +64,8 @@ CASES = [
     ("combined residual denominator", lambda d: d["reference_edge_denominator"].__setitem__("remaining_after_combined", 735)),
     ("draft status at capture", lambda d: d["comparison"]["holding_denominator"].__setitem__("unmerged_draft_status_at_capture", "integrated")),
     ("draft PR lineage", lambda d: d["comparison"]["selection_basis"]["status_at_capture"].__setitem__("draft_lineage", "PR #9999")),
+    ("rebaseline merge lineage", lambda d: d["comparison"]["rebaseline"].__setitem__("integration_commit", "0" * 40)),
+    ("rebaseline main residual", lambda d: d["reference_edge_denominator_at_rebaseline"].__setitem__("remaining_after_main_confirmed", 738)),
     ("closure authority", lambda d: d["closure_guard"].__setitem__("authority_effect", "adopted")),
     ("closure meaning", lambda d: d["closure_guard"].__setitem__("meaning_change_applied", True)),
     ("closure successor", lambda d: d["closure_guard"]["successor_requirement_ids"].append("REQ-1")),
