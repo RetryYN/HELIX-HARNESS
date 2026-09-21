@@ -1,0 +1,645 @@
+{
+  "authority_effect": "none",
+  "batch_id": "LEGACY-SEMANTIC-WAVE11-2026-09-21",
+  "bounded_search_receipts": {
+    "IRUNIT-HIL-NFR-04-HELIX-OS": {
+      "query": {
+        "match_mode": "archive_file_contains_any_utf8_anchor",
+        "anchors": [
+          "HIL-NFR-04",
+          "InfinityCoordinator",
+          "maxIterations"
+        ]
+      },
+      "catalog_record_count": 4020,
+      "candidate_asset_count": 28,
+      "candidate_asset_ids_sha256": "sha256:c8689f4a6604218c72552f4c118204d24d0e0ed6bbae5b72f2fbc26a48725766",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-BD56A16CC9A15AC558D3",
+        "LEGACY-ASSET-C35E93F2D36777CD7462"
+      ],
+      "unreviewed_asset_count": 25,
+      "unreviewed_asset_ids_sha256": "sha256:4413e3d1e9deaaa2a18dca151ea2862ddc0f9d116f598da01de0cc92b231481f"
+    },
+    "IRUNIT-HIL-NFR-17-HELIX-OS": {
+      "query": {
+        "match_mode": "archive_file_contains_any_utf8_anchor",
+        "anchors": [
+          "HIL-NFR-17",
+          "evaluateProductDataRedaction",
+          "freshness_sla_ms",
+          "privacy data classification"
+        ]
+      },
+      "catalog_record_count": 4020,
+      "candidate_asset_count": 15,
+      "candidate_asset_ids_sha256": "sha256:e8fd50ad30ef2a4be505452b039c357c701251070f4d43f3b05d26764da2e26b",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-BFCA76AA319FBC61AF05",
+        "LEGACY-ASSET-DD66C1B6B7BE234B37E6"
+      ],
+      "unreviewed_asset_count": 12,
+      "unreviewed_asset_ids_sha256": "sha256:335d3cb197b6020d2631c2dbf33e89487eb40300df7cc1952ff2a50578e8fb21"
+    },
+    "IRUNIT-HIL-NFR-18-HELIX-OS": {
+      "query": {
+        "match_mode": "archive_file_contains_any_utf8_anchor",
+        "anchors": [
+          "HIL-NFR-18",
+          "WorkerLifecycleReceipt",
+          "previous_event_digest",
+          "AgentLockRecord",
+          "worker lifecycle receipt"
+        ]
+      },
+      "catalog_record_count": 4020,
+      "candidate_asset_count": 48,
+      "candidate_asset_ids_sha256": "sha256:997b3968a6f2e6492247b15a290402c2d32817511daa5c3909c346e82a84dbab",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-B9158B0AD8DBBE96E40C",
+        "LEGACY-ASSET-F4556BDEAA5BAA3C0622"
+      ],
+      "unreviewed_asset_count": 45,
+      "unreviewed_asset_ids_sha256": "sha256:9e36b407aab94fecea8bee76e094df6f5223ef62cc586a80149c5f2559b102d8"
+    }
+  },
+  "consumer_closure_status": "pending",
+  "cumulative_reviewed_edge_count": 96,
+  "cumulative_reviewed_unit_count": 32,
+  "inputs": {
+    "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "sha256:8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+    "docs/governance/phase-capability-inventory.json": "sha256:9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave1.meta.json": "sha256:43db97a01faeee37608f9aa1a49ae6f0b6982dc75faa25b7adba2d4a456a38d5",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave2.meta.json": "sha256:711f3c4b24e0becc0568072393b42d1b9a3e1046b5b408b8a7b7c6c2d6146b79",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave3.meta.json": "sha256:3d40977879de7be93eaa6b35b651c6af9a7fb6132a74621300f2429eba931a14",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave4.meta.json": "sha256:d59c92a3f0e770fa24d8ef2c781798dab58a3e9bb3085640305aefa000da5c23",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave5.meta.json": "sha256:604c1e3ddd1826ea3264e77e7f1c40118a5836ccf9164df4811d8c8884674fee",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl": "sha256:eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave6.meta.json": "sha256:397ad44cece596a8247b61e2679ac91010928f05cc3be2c8266ee843db11b45b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl": "sha256:610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave7.meta.json": "sha256:bb91b054dc5b86d777332e8b0d44995b8792273124f1478e8119b4a16a50195c",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl": "sha256:82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave8.meta.json": "sha256:09705497381dbb8a9ae35290b222ef818aee9698fdcd3ecbda19da8ed056aeff",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave9.meta.json": "sha256:a1791b6b5198d62d793d0a14b216141e57c49da643f6cbebc14a1397b7bdf504",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl": "sha256:f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave10.meta.json": "sha256:ee88ea1098a38943ae8751f6624fe645c6968411c13149b70e29baf05738f414"
+  },
+  "legacy_execution_performed": false,
+  "new_build_allowed": false,
+  "output_sha256": "sha256:66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0",
+  "parent_revision": "4ece4c6b5bf3b2a0767eea65c376f46a1ce46f60",
+  "prior_review_batches": [
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE1-2026-09-21",
+      "ledger_sha256": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
+      "meta_sha256": "sha256:43db97a01faeee37608f9aa1a49ae6f0b6982dc75faa25b7adba2d4a456a38d5"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE2-2026-09-21",
+      "ledger_sha256": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce",
+      "meta_sha256": "sha256:711f3c4b24e0becc0568072393b42d1b9a3e1046b5b408b8a7b7c6c2d6146b79"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE3-2026-09-21",
+      "ledger_sha256": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
+      "meta_sha256": "sha256:3d40977879de7be93eaa6b35b651c6af9a7fb6132a74621300f2429eba931a14"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE4-2026-09-21",
+      "ledger_sha256": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
+      "meta_sha256": "sha256:d59c92a3f0e770fa24d8ef2c781798dab58a3e9bb3085640305aefa000da5c23"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE5-2026-09-21",
+      "ledger_sha256": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
+      "meta_sha256": "sha256:604c1e3ddd1826ea3264e77e7f1c40118a5836ccf9164df4811d8c8884674fee"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE6-2026-09-21",
+      "ledger_sha256": "sha256:eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4",
+      "meta_sha256": "sha256:397ad44cece596a8247b61e2679ac91010928f05cc3be2c8266ee843db11b45b"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE7-2026-09-21",
+      "ledger_sha256": "sha256:610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f",
+      "meta_sha256": "sha256:bb91b054dc5b86d777332e8b0d44995b8792273124f1478e8119b4a16a50195c"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE8-2026-09-21",
+      "ledger_sha256": "sha256:82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0",
+      "meta_sha256": "sha256:09705497381dbb8a9ae35290b222ef818aee9698fdcd3ecbda19da8ed056aeff"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE9-2026-09-21",
+      "ledger_sha256": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e",
+      "meta_sha256": "sha256:a1791b6b5198d62d793d0a14b216141e57c49da643f6cbebc14a1397b7bdf504"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE10-2026-09-21",
+      "ledger_sha256": "sha256:f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef",
+      "meta_sha256": "sha256:ee88ea1098a38943ae8751f6624fe645c6968411c13149b70e29baf05738f414"
+    }
+  ],
+  "record_count": 9,
+  "reviewed_edges": [
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-04-HELIX-OS",
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-04-HELIX-OS",
+      "asset_id": "LEGACY-ASSET-C35E93F2D36777CD7462"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-04-HELIX-OS",
+      "asset_id": "LEGACY-ASSET-BD56A16CC9A15AC558D3"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-17-HELIX-OS",
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-17-HELIX-OS",
+      "asset_id": "LEGACY-ASSET-DD66C1B6B7BE234B37E6"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-17-HELIX-OS",
+      "asset_id": "LEGACY-ASSET-BFCA76AA319FBC61AF05"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-18-HELIX-OS",
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-18-HELIX-OS",
+      "asset_id": "LEGACY-ASSET-F4556BDEAA5BAA3C0622"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-18-HELIX-OS",
+      "asset_id": "LEGACY-ASSET-B9158B0AD8DBBE96E40C"
+    }
+  ],
+  "reviewed_unit_ids": [
+    "IRUNIT-HIL-NFR-04-HELIX-OS",
+    "IRUNIT-HIL-NFR-17-HELIX-OS",
+    "IRUNIT-HIL-NFR-18-HELIX-OS"
+  ],
+  "schema_revision": 10,
+  "semantic_link_counts": {
+    "confirmed": 3,
+    "rejected": 3,
+    "unresolved": 3
+  },
+  "source_revision": "legacy-generation-2026-09-14",
+  "status": "research_premise_candidate",
+  "unit_aggregates": [
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-04-HELIX-OS",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "reviewed_edge_count": 3,
+      "semantic_link_counts": {
+        "confirmed": 1,
+        "rejected": 0,
+        "unresolved": 2
+      },
+      "atom_coverage_receipt": {
+        "atom_inventory": [
+          {
+            "atom_id": "NFR04-OS-A01",
+            "kind": "loop_effort_bounds",
+            "text": "各loopはiteration/time/token/cost上限",
+            "source_fragments": [
+              "各loopはiteration/time/token/cost上限"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
+            "atom_id": "NFR04-OS-A02",
+            "kind": "stop_reason",
+            "text": "停止理由",
+            "source_fragments": [
+              "停止理由"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
+            "atom_id": "NFR04-OS-A03",
+            "kind": "resume_checkpoint",
+            "text": "再開checkpoint",
+            "source_fragments": [
+              "再開checkpoint"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
+            "atom_id": "NFR04-OS-A04",
+            "kind": "no_infinite_reissue",
+            "text": "無限再Issue化を防ぐ",
+            "source_fragments": [
+              "無限再Issue化を防ぐ"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          }
+        ],
+        "connective_fragments": [
+          "を持ち"
+        ],
+        "contract_confirmed_atom_ids": [
+          "NFR04-OS-A01",
+          "NFR04-OS-A02",
+          "NFR04-OS-A03",
+          "NFR04-OS-A04"
+        ],
+        "design_partial_atom_ids": [
+          "NFR04-OS-A03"
+        ],
+        "design_partial_pending_kind_atom_ids": [],
+        "implementation_confirmed_atom_ids": [],
+        "implementation_unresolved_atom_ids": [
+          "NFR04-OS-A01",
+          "NFR04-OS-A02"
+        ],
+        "implementation_rejected_atom_ids": [],
+        "implementation_uncovered_atom_ids": [
+          "NFR04-OS-A03",
+          "NFR04-OS-A04"
+        ],
+        "no_evidence_atom_ids": [
+          "NFR04-OS-A04"
+        ],
+        "shared_atom_ids": [],
+        "product_exclusive_atom_ids": [
+          "NFR04-OS-A01",
+          "NFR04-OS-A02",
+          "NFR04-OS-A03",
+          "NFR04-OS-A04"
+        ],
+        "atom_inventory_sha256": "sha256:b42c2619cf1b8b855d5dfebf35e19f96edcbf1376cfadc9d0ec0b234a9c8e429",
+        "connective_fragments_sha256": "sha256:d5086cf6587695df40d888ccd687641b72d5b6aef4eed25af8f1fea3f2ee3f22",
+        "contract_confirmed_atom_ids_sha256": "sha256:6ba0994d44bb8a2e5a9487f33e1f760e45cbfd87b01f3d054b75c9fd75b1f7a4",
+        "design_partial_atom_ids_sha256": "sha256:809a0fb7b66101334e1f25d3f3e738956ff5af561272f26e34ade20fa3b71901",
+        "design_partial_pending_kind_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_unresolved_atom_ids_sha256": "sha256:2c49470aa98cc0f250fd55117ef047b65bbe623f1360a88289b281e13460eeb9",
+        "implementation_rejected_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_uncovered_atom_ids_sha256": "sha256:d91ac4bc652b77fb044eaa5ed2cd8b756548723bdf1cbf570bdab60ac042af0e",
+        "no_evidence_atom_ids_sha256": "sha256:642e8a138e00676a863e2dbaf49e738f43ff0507ee1c4735b20cc20e464e3115",
+        "shared_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "product_exclusive_atom_ids_sha256": "sha256:6ba0994d44bb8a2e5a9487f33e1f760e45cbfd87b01f3d054b75c9fd75b1f7a4",
+        "contract_semantic_edge_coverage_complete": true,
+        "semantic_edge_coverage_complete": false,
+        "no_shared_source_span": true,
+        "product_boundary_decision_complete": false,
+        "product_exclusive_contract_coverage_complete": true,
+        "design_rejected_asset_ids": [],
+        "design_rejected_asset_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_rejected_asset_ids": [],
+        "implementation_rejected_asset_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "phase_authority_status": "candidate_unchanged",
+      "phase_capability_assessments": [
+        {
+          "phase_id": "PHCAP-09",
+          "current_status": "candidate",
+          "legacy_capability_status": "documented_candidate",
+          "transition_assessment": "degraded_to_rederived_candidate"
+        },
+        {
+          "phase_id": "PHCAP-10",
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "legacy_capability_status": "implemented_with_tests",
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        },
+        {
+          "phase_id": "PHCAP-20",
+          "current_status": "draft_requirement",
+          "legacy_capability_status": "implemented_with_tests",
+          "transition_assessment": "degraded_to_draft"
+        }
+      ],
+      "current_requirement_implementation_status": "not_established",
+      "legacy_requirement_implementation_status": "unknown_pending_direct_asset_semantic_review",
+      "degradation_assessment": "degraded_partial_or_rejected_candidate",
+      "direct_confirmed_implementation_asset_ids": [],
+      "consumer_closure_status": "pending",
+      "new_build_allowed": false
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-17-HELIX-OS",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "reviewed_edge_count": 3,
+      "semantic_link_counts": {
+        "confirmed": 1,
+        "rejected": 1,
+        "unresolved": 1
+      },
+      "atom_coverage_receipt": {
+        "atom_inventory": [
+          {
+            "atom_id": "NFR17-OS-A00",
+            "kind": "subject_scope",
+            "text": "product data",
+            "source_fragments": [
+              "product dataは"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
+            "atom_id": "NFR17-OS-A01",
+            "kind": "classification",
+            "text": "classification",
+            "source_fragments": [
+              "classification"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
+            "atom_id": "NFR17-OS-A02",
+            "kind": "minimum_retrieval",
+            "text": "最小取得",
+            "source_fragments": [
+              "最小取得"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
+            "atom_id": "NFR17-OS-A03",
+            "kind": "redaction",
+            "text": "redaction",
+            "source_fragments": [
+              "redaction"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
+            "atom_id": "NFR17-OS-A04",
+            "kind": "retention",
+            "text": "retention",
+            "source_fragments": [
+              "retention"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
+            "atom_id": "NFR17-OS-A05",
+            "kind": "freshness_sla",
+            "text": "freshness SLA",
+            "source_fragments": [
+              "freshness SLA"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
+            "atom_id": "NFR17-OS-A06",
+            "kind": "payload_minimization",
+            "text": "PII/secret/raw payloadを通常projectionやagent contextへ複製しない",
+            "source_fragments": [
+              "PII/secret/raw payloadを通常projectionやagent contextへ複製しない"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          }
+        ],
+        "connective_fragments": [
+          "を持ち"
+        ],
+        "contract_confirmed_atom_ids": [
+          "NFR17-OS-A00",
+          "NFR17-OS-A01",
+          "NFR17-OS-A02",
+          "NFR17-OS-A03",
+          "NFR17-OS-A04",
+          "NFR17-OS-A05",
+          "NFR17-OS-A06"
+        ],
+        "design_partial_atom_ids": [
+          "NFR17-OS-A01",
+          "NFR17-OS-A03",
+          "NFR17-OS-A04",
+          "NFR17-OS-A05"
+        ],
+        "design_partial_pending_kind_atom_ids": [],
+        "design_rejected_asset_ids": [],
+        "implementation_confirmed_atom_ids": [],
+        "implementation_unresolved_atom_ids": [],
+        "implementation_rejected_atom_ids": [],
+        "implementation_rejected_asset_ids": [
+          "LEGACY-ASSET-BFCA76AA319FBC61AF05"
+        ],
+        "implementation_uncovered_atom_ids": [
+          "NFR17-OS-A00",
+          "NFR17-OS-A01",
+          "NFR17-OS-A02",
+          "NFR17-OS-A03",
+          "NFR17-OS-A04",
+          "NFR17-OS-A05",
+          "NFR17-OS-A06"
+        ],
+        "no_evidence_atom_ids": [
+          "NFR17-OS-A00",
+          "NFR17-OS-A02",
+          "NFR17-OS-A06"
+        ],
+        "shared_atom_ids": [],
+        "product_exclusive_atom_ids": [
+          "NFR17-OS-A00",
+          "NFR17-OS-A01",
+          "NFR17-OS-A02",
+          "NFR17-OS-A03",
+          "NFR17-OS-A04",
+          "NFR17-OS-A05",
+          "NFR17-OS-A06"
+        ],
+        "atom_inventory_sha256": "sha256:2c4f1867fa18a233ecc0cadd3040e70de2a1d986133aeeedbd586e4a1d41189a",
+        "connective_fragments_sha256": "sha256:d5086cf6587695df40d888ccd687641b72d5b6aef4eed25af8f1fea3f2ee3f22",
+        "contract_confirmed_atom_ids_sha256": "sha256:400d0c66f6885e73b7a7fa5454222855f628d4f163e862618366ccdad298e077",
+        "design_partial_atom_ids_sha256": "sha256:89eb8e1499374076b7ea1dca754f36137731573fc5f3eafb33dcc4fbb6aa52ec",
+        "design_partial_pending_kind_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "design_rejected_asset_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_rejected_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_rejected_asset_ids_sha256": "sha256:4f0ef319448fdae258aec1846773f7e405fb95d12810046ec78de60ded93e969",
+        "implementation_uncovered_atom_ids_sha256": "sha256:400d0c66f6885e73b7a7fa5454222855f628d4f163e862618366ccdad298e077",
+        "no_evidence_atom_ids_sha256": "sha256:cd222bbeb37908b41d84174bbdaded50acc041c903eb3058b23b31e92a008ed9",
+        "shared_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "product_exclusive_atom_ids_sha256": "sha256:400d0c66f6885e73b7a7fa5454222855f628d4f163e862618366ccdad298e077",
+        "contract_semantic_edge_coverage_complete": true,
+        "semantic_edge_coverage_complete": false,
+        "no_shared_source_span": true,
+        "product_boundary_decision_complete": false,
+        "product_exclusive_contract_coverage_complete": true
+      },
+      "phase_authority_status": "candidate_unchanged",
+      "phase_capability_assessments": [
+        {
+          "phase_id": "PHCAP-16",
+          "current_status": "draft_requirement",
+          "legacy_capability_status": "implemented_partial_with_tests",
+          "transition_assessment": "degraded_to_draft_and_crosswalk"
+        },
+        {
+          "phase_id": "PHCAP-20",
+          "current_status": "draft_requirement",
+          "legacy_capability_status": "implemented_with_tests",
+          "transition_assessment": "degraded_to_draft"
+        }
+      ],
+      "current_requirement_implementation_status": "not_established",
+      "legacy_requirement_implementation_status": "unknown_pending_direct_asset_semantic_review",
+      "degradation_assessment": "degraded_partial_or_rejected_candidate",
+      "direct_confirmed_implementation_asset_ids": [],
+      "consumer_closure_status": "pending",
+      "new_build_allowed": false
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-18-HELIX-OS",
+      "product_scope": [
+        "HELIX-OS"
+      ],
+      "reviewed_edge_count": 3,
+      "semantic_link_counts": {
+        "confirmed": 1,
+        "rejected": 2,
+        "unresolved": 0
+      },
+      "atom_coverage_receipt": {
+        "atom_inventory": [
+          {
+            "atom_id": "NFR18-OS-A01",
+            "kind": "lease_expiry",
+            "text": "agent lease失効後",
+            "source_fragments": [
+              "agent lease失効後"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
+            "atom_id": "NFR18-OS-A02",
+            "kind": "fencing_rejection",
+            "text": "tool call/artifact/completionはfencing token不一致で拒否",
+            "source_fragments": [
+              "tool call/artifact/completionはfencing token不一致で拒否"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
+            "atom_id": "NFR18-OS-A03",
+            "kind": "durable_checkpoint_restart",
+            "text": "crash後は最後のdurable checkpointからだけ再開",
+            "source_fragments": [
+              "crash後は最後のdurable checkpointからだけ再開"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          }
+        ],
+        "connective_fragments": [
+          "の",
+          "し",
+          "する"
+        ],
+        "contract_confirmed_atom_ids": [
+          "NFR18-OS-A01",
+          "NFR18-OS-A02",
+          "NFR18-OS-A03"
+        ],
+        "design_partial_atom_ids": [],
+        "design_partial_pending_kind_atom_ids": [],
+        "implementation_confirmed_atom_ids": [],
+        "implementation_unresolved_atom_ids": [],
+        "implementation_rejected_atom_ids": [],
+        "implementation_uncovered_atom_ids": [
+          "NFR18-OS-A01",
+          "NFR18-OS-A02",
+          "NFR18-OS-A03"
+        ],
+        "no_evidence_atom_ids": [
+          "NFR18-OS-A01",
+          "NFR18-OS-A02",
+          "NFR18-OS-A03"
+        ],
+        "shared_atom_ids": [],
+        "product_exclusive_atom_ids": [
+          "NFR18-OS-A01",
+          "NFR18-OS-A02",
+          "NFR18-OS-A03"
+        ],
+        "atom_inventory_sha256": "sha256:7d4fecad001a1e542a84883ffcaecbe5a189477556bdaf581a6629df39a5a336",
+        "connective_fragments_sha256": "sha256:1a423bba53dc6acf20341f3d8436f98653f1bbd100844a9cfe6387436d0f0da2",
+        "contract_confirmed_atom_ids_sha256": "sha256:d65fa1134a4e01e63dd910211c263c0dd8ad4bf83fb70952b0253d2589eb53c2",
+        "design_partial_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "design_partial_pending_kind_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_rejected_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "implementation_uncovered_atom_ids_sha256": "sha256:d65fa1134a4e01e63dd910211c263c0dd8ad4bf83fb70952b0253d2589eb53c2",
+        "no_evidence_atom_ids_sha256": "sha256:d65fa1134a4e01e63dd910211c263c0dd8ad4bf83fb70952b0253d2589eb53c2",
+        "shared_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "product_exclusive_atom_ids_sha256": "sha256:d65fa1134a4e01e63dd910211c263c0dd8ad4bf83fb70952b0253d2589eb53c2",
+        "contract_semantic_edge_coverage_complete": true,
+        "semantic_edge_coverage_complete": false,
+        "no_shared_source_span": true,
+        "product_boundary_decision_complete": false,
+        "product_exclusive_contract_coverage_complete": true,
+        "design_rejected_asset_ids": [
+          "LEGACY-ASSET-F4556BDEAA5BAA3C0622"
+        ],
+        "design_rejected_asset_ids_sha256": "sha256:f7c30aec71791864c296ba53c616823d2bcc7f1d06b1475f63947b8d35f76a1a",
+        "implementation_rejected_asset_ids": [
+          "LEGACY-ASSET-B9158B0AD8DBBE96E40C"
+        ],
+        "implementation_rejected_asset_ids_sha256": "sha256:73085bd966e2f29ae800281fa27e97bcb0185b5470a1c3887b73d207e918ba2e"
+      },
+      "phase_authority_status": "candidate_unchanged",
+      "phase_capability_assessments": [
+        {
+          "phase_id": "PHCAP-10",
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "legacy_capability_status": "implemented_with_tests",
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        },
+        {
+          "phase_id": "PHCAP-20",
+          "current_status": "draft_requirement",
+          "legacy_capability_status": "implemented_with_tests",
+          "transition_assessment": "degraded_to_draft"
+        }
+      ],
+      "current_requirement_implementation_status": "not_established",
+      "legacy_requirement_implementation_status": "unknown_pending_direct_asset_semantic_review",
+      "degradation_assessment": "degraded_partial_or_rejected_candidate",
+      "direct_confirmed_implementation_asset_ids": [],
+      "consumer_closure_status": "pending",
+      "new_build_allowed": false
+    }
+  ]
+}
