@@ -1,0 +1,178 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0021",
+  "kind": "scaffold",
+  "title": "RDP-001 delegated reference-edge subset 24件の分類候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS／HELIX-OSのreference edge classification review（正式owner未解決）",
+  "state": "active",
+  "reason": "RDP-001 reference holding 788 edgeから既isolated 30 edgeを除き、構造上の責務・authority・L1/L3/L12接続を優先した24 edgeをsource line／target blob／asset／phase／decision／failure／consumerの候補として分類する。capture時点はmain統合済み26 edge＋PR #1953未merge 4 edgeでmain残分母738、PR #1953 merge後の再baselineでは30 edgeがmain統合済みでmain残分母734と分けて記録する。edge coverageとdocument atomizationを分離し、採用・authority・closureへ昇格させない。",
+  "upstream": [
+    {
+      "path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+      "sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+      "note": "selected reference holding and 788-edge denominator"
+    },
+    {
+      "path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+      "note": "source path and fixed source blob ledger"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "asset disposition, implementation and consumer candidates"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "phase/product candidates and consumer pending"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "append-only decision evidence"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decision-log.md",
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "note": "decision log contract"
+    },
+    {
+      "path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+      "sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784",
+      "note": "read-only failure/rule evidence join"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+      "note": "document atomization boundary; separate from edge coverage"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "old asset read-only reuse boundary"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "product owner candidates"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "HARNESS candidate boundary"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "OS candidate boundary"
+    },
+    {
+      "path": "scaffold/rdp001-ref-subset-0021/README.md",
+      "sha256": "f3a365142219bbf184d79ff5fca428b941791b17e286af101a95b7b8352ee10a",
+      "note": "candidate scope, edge IDs, denominator and boundary"
+    },
+    {
+      "path": "scaffold/rdp001-ref-subset-0021/inventory.json",
+      "sha256": "d2e509065db45e3ed126b4fc8166c536cd6c50a8a6959732330ab68e3eaf1497",
+      "note": "24 exact edge identities and read-only joins"
+    },
+    {
+      "path": "scaffold/rdp001-ref-subset-0021/validate.py",
+      "sha256": "058a9ed11199d72ef2cdaad56970a083238b0ae9f67efebbe2745a1a9c682f4c",
+      "note": "fail-closed static validator"
+    },
+    {
+      "path": "scaffold/rdp001-ref-subset-0021/selfcheck.py",
+      "sha256": "286ab911b679bae6f6a8538d51dbcd8568ce27cbdedec130adcba0d66af5ac07",
+      "note": "49 meaningful negative selfchecks"
+    }
+  ],
+  "role": "selected RDP-001 reference edgeをsource lineとtarget blobへ無損失で結び、relation、target class、actor／authority／negative、owner product／phase候補、failure／consumer unknownを保持するedge classification scaffold",
+  "obligations": [
+    "holding 788 edgeから選択24 edgeを完全一致で保持し、prior isolated 30 edge、既isolated document pathとの重複をfail-closeで検査する。capture時点の26統合＋4未merge／main残分母738と、PR #1953統合後の30統合／main残分母734を別時点の事実として固定する",
+    "各edgeのsource path／SHA／line／exact source text／line digestとtarget path／archive blob／SHA／line countを固定する",
+    "edge relation key、origin、target class、target holding、carry status、meaning_change=false、human decision=nullをholdingへ一致させる",
+    "各source／target pathをasset disposition、phase/product classification、decision log、failure/rule inventory、consumer refsへ読み取り専用joinし、unresolvedを解消しない",
+    "candidate role、owner product候補、phase候補、actor、authority条件、negative条件、candidate target unresolvedを記録する",
+    "legacy implementation unknownまたはnon-executable source only、legacy execution false、consumer pending、phase authority unconfirmedを維持する",
+    "edge coverageをdocument full-line coverage、semantic atom、original ID partition、L3/L10 closureから分離し、document atomization countを0で固定する",
+    "closure guard全field、top-level authority／meaning／successor／decision、equivalence nullを完全一致で検査する",
+    "owner adoption、product/phase authority、requirement acceptance、consumer closure、runtime、CI、release、holding closureを生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 reference edge review担当",
+      "HARNESS／OS product boundary review担当",
+      "asset／phase／decision／failure／consumer crosswalk担当",
+      "Scaffold Binding stale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "delegated source/reference holding",
+      "legacy asset disposition／phase／decision ledger",
+      "legacy rule failure inventory",
+      "atomization review contract",
+      "HARNESS／OS product boundary candidate"
+    ],
+    "boundary": "inventory、README、validator、selfcheckはscaffold/配下。固定source／target blob、asset／phase／decision／failure／consumer ledgerを読み取り専用で照合し、旧runtime・test・CI・hook、未許可のGitHub・Issue・PR操作およびDB・外部API更新をしない。edge presenceからdocument atomization、owner、authority、adoption、closureを推論しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/rdp001-ref-subset-0021/validate.py",
+      "python3 scaffold/rdp001-ref-subset-0021/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|stale|residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime・test・CI・hookの実行",
+      "旧sourceを現行runtime・test・CIのoracle、fallback、実装として使うこと",
+      "scaffold/外への書き込み",
+      "要求採否・人間承認・successor・owner確定・product/phase authority・document atomization・consumer closure・acceptance・releaseの生成",
+      "未許可のGitHub・Issue・PR操作、およびCI・DB・deploymentへの外部作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-ref-subset-0021/README.md",
+    "scaffold/rdp001-ref-subset-0021/inventory.json",
+    "scaffold/rdp001-ref-subset-0021/validate.py",
+    "scaffold/rdp001-ref-subset-0021/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "scaffold/rdp001-ref-subset-0021/validate.py（holding edge scope、固定line／blob、asset／phase／decision／failure／consumer join、atomization separation）",
+      "scaffold/rdp001-ref-subset-0021/selfcheck.py（edge identity、digest、classification昇格、closure、denominatorの49負例）",
+      "scaffold/tools/scfctl.py stale（ledger／contract／boundary／artifact revision変化）",
+      "git diff --check（候補文書の静的整形）"
+    ],
+    "negative_cases": [
+      "selected edge、source line、source／target digest、target class、relation keyを改変する",
+      "asset disposition、phase candidate、decision、failure、consumer観測を改変する",
+      "owner／product／phase／implementation／consumerを確定状態へ昇格する",
+      "document atomizationを完了扱いにし、edge coverageを文書coverageへ読み替える",
+      "closure guard、top-level authority、equivalence claim、残分母を改変する",
+      "旧runtime・test・CIを実行またはoracle／fallbackにする"
+    ]
+  },
+  "replacement": {
+    "role_target": "対象revision付きreference edge／product boundary crosswalkを扱う正式なHELIX上流管理契約（承認後に導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}

@@ -1,0 +1,4330 @@
+{
+  "schema": "rdp001-reference-edge-subset-scaffold/v1",
+  "candidate_id": "RDP-001-SCF-B-0021-REF-CLASSIFICATION-024",
+  "status": "scaffold_candidate_pending_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "comparison": {
+    "capture_revision": "c354b7d9177ad3ea92dec30c66c36e6ce2d66ae3",
+    "fixed_source_revision": "c354b7d9177ad3ea92dec30c66c36e6ce2d66ae3",
+    "method": "read-only reference holding rows, fixed archive source line and target blob bytes, asset/phase/decision/failure/consumer join; integrated and unmerged-draft edge status are separate; edge coverage is not document atomization",
+    "holding_denominator": {
+      "reference_edges_total": 788,
+      "prior_integrated_reference_edges": 26,
+      "prior_integrated_source_documents": 14,
+      "unmerged_draft_reference_edges": 4,
+      "unmerged_draft_candidate_id": "RDP-001-SCF-B-0017-DOC-007-016-030-034",
+      "unmerged_draft_binding": "SCF-B-0017",
+      "unmerged_draft_lineage": "PR #1953 (draft; not integrated into origin/main at capture)",
+      "unmerged_draft_status_at_capture": "draft_not_main_integrated",
+      "remaining_before_subset_main_confirmed": 762,
+      "remaining_before_subset_combined": 758,
+      "selected_reference_edges": 24,
+      "remaining_after_subset_main_confirmed": 738,
+      "remaining_after_subset_combined": 734
+    },
+    "rebaseline": {
+      "base_commit": "569d7373c32287bbafadeec6043472563937c5c7",
+      "prior_candidate_ref": "PR #1953",
+      "status_at_selection": "unmerged_candidate",
+      "status_at_rebaseline": "integrated_in_latest_main",
+      "integration_commit": "1f39f0b6fc026cf150b80ced317b2d8182db3898",
+      "integration_head": "2b18f7d4ef4d73622351d6393d9ef4350c389e65",
+      "main_integrated_reference_edges": 30,
+      "unmerged_draft_reference_edges": 0,
+      "remaining_before_subset_main_confirmed": 758,
+      "selected_reference_edges": 24,
+      "remaining_after_subset_main_confirmed": 734
+    },
+    "selection_basis": {
+      "relation_keys": {
+        "authority": 2,
+        "l3_progression_authority": 8,
+        "related_l1": 3,
+        "related_l12": 6,
+        "related_l3": 5
+      },
+      "blocked_document_paths": [
+        "docs/design/helix/L3-requirements/infinity-loop-functional-requirements.md",
+        "docs/design/helix/L3-requirements/lifecycle-state-separation.md",
+        "docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+        "docs/test-design/helix/L3-infinity-loop-acceptance-test-design.md",
+        "docs/test-design/helix/lifecycle-state-separation-acceptance.md"
+      ],
+      "selected_reference_ids": [
+        "DELEGATED-REF-0001",
+        "DELEGATED-REF-0016",
+        "DELEGATED-REF-0027",
+        "DELEGATED-REF-0041",
+        "DELEGATED-REF-0054",
+        "DELEGATED-REF-0273",
+        "DELEGATED-REF-0285",
+        "DELEGATED-REF-0295",
+        "DELEGATED-REF-0296",
+        "DELEGATED-REF-0298",
+        "DELEGATED-REF-0310",
+        "DELEGATED-REF-0328",
+        "DELEGATED-REF-0329",
+        "DELEGATED-REF-0335",
+        "DELEGATED-REF-0338",
+        "DELEGATED-REF-0352",
+        "DELEGATED-REF-0356",
+        "DELEGATED-REF-0357",
+        "DELEGATED-REF-0361",
+        "DELEGATED-REF-0369",
+        "DELEGATED-REF-0382",
+        "DELEGATED-REF-0384",
+        "DELEGATED-REF-0385",
+        "DELEGATED-REF-0747"
+      ],
+      "status_at_capture": {
+        "main_integrated_reference_edges": 26,
+        "unmerged_draft_reference_edges": 4,
+        "draft_candidate_id": "RDP-001-SCF-B-0017-DOC-007-016-030-034",
+        "draft_binding": "SCF-B-0017",
+        "draft_lineage": "PR #1953",
+        "draft_status": "draft_not_main_integrated"
+      },
+      "integrated_prior_reference_ids": [
+        "DELEGATED-REF-0303",
+        "DELEGATED-REF-0759",
+        "DELEGATED-REF-0760",
+        "DELEGATED-REF-0341",
+        "DELEGATED-REF-0342",
+        "DELEGATED-REF-0414",
+        "DELEGATED-REF-0415",
+        "DELEGATED-REF-0772",
+        "DELEGATED-REF-0308",
+        "DELEGATED-REF-0424",
+        "DELEGATED-REF-0425",
+        "DELEGATED-REF-0765",
+        "DELEGATED-REF-0301",
+        "DELEGATED-REF-0302",
+        "DELEGATED-REF-0422",
+        "DELEGATED-REF-0423",
+        "DELEGATED-REF-0757",
+        "DELEGATED-REF-0758",
+        "DELEGATED-REF-0304",
+        "DELEGATED-REF-0419",
+        "DELEGATED-REF-0761",
+        "DELEGATED-REF-0762",
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763",
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "unmerged_draft_reference_ids": [
+        "DELEGATED-REF-0320",
+        "DELEGATED-REF-0766",
+        "DELEGATED-REF-0316",
+        "DELEGATED-REF-0739"
+      ]
+    },
+    "source_blob_count": 22,
+    "selected_source_paths": [
+      "docs/design/harness/L1-requirements/business-requirements.md",
+      "docs/design/harness/L1-requirements/functional-requirements.md",
+      "docs/design/harness/L1-requirements/nfr.md",
+      "docs/design/harness/L1-requirements/screen-requirements.md",
+      "docs/design/harness/L1-requirements/technical-requirements.md",
+      "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "docs/design/helix/L3-requirements/glossary-ssot.md",
+      "docs/design/helix/L3-requirements/nfr-grade.md",
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "docs/design/helix/L3-requirements/visualization-requirements.md",
+      "docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",
+      "docs/design/helix/L3-requirements/worker-common-contract.md",
+      "docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "docs/design/helix/L5-detail/operation-scope.md",
+      "docs/test-design/helix/L3-pillar-acceptance-test-design.md"
+    ],
+    "selected_target_paths": [
+      "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "docs/governance/helix-harness-requirements_v1.3.md",
+      "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md"
+    ]
+  },
+  "ledger_provenance": {
+    "source_holding": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+    "reference_holding": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+    "asset_disposition": "docs/governance/legacy-asset-disposition.jsonl",
+    "phase_product": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "decision_log": "docs/governance/legacy-asset-decisions.jsonl",
+    "decision_contract": "docs/governance/legacy-asset-decision-log.md",
+    "failure_rule_inventory": "docs/governance/legacy-rule-atom-inventory.jsonl",
+    "atomization_contract": "docs/governance/requirement-atomization-review-contract.md"
+  },
+  "selected_reference_edges": [
+    {
+      "reference_id": "DELEGATED-REF-0001",
+      "source_path": "docs/design/harness/L1-requirements/business-requirements.md",
+      "source_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "l3_progression_authority",
+      "source_line": 7,
+      "target_path": "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "source_blob_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "source_line_text": "l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "source_line_sha256": "sha256:059eff9df530dafbab0e1d322cf5167fa1c9f4a77e03477c1b9d4b87bfc0ea9b",
+      "target_blob_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_line_count": 98,
+      "source_asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+      "target_asset_id": "LEGACY-ASSET-75E1420CE980CB881C48",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 progression-authority relation candidate; historical source-to-governance edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0016",
+      "source_path": "docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_file_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "l3_progression_authority",
+      "source_line": 7,
+      "target_path": "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "source_blob_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "source_line_text": "l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "source_line_sha256": "sha256:059eff9df530dafbab0e1d322cf5167fa1c9f4a77e03477c1b9d4b87bfc0ea9b",
+      "target_blob_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_line_count": 98,
+      "source_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "target_asset_id": "LEGACY-ASSET-75E1420CE980CB881C48",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 progression-authority relation candidate; historical source-to-governance edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0027",
+      "source_path": "docs/design/harness/L1-requirements/nfr.md",
+      "source_file_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "l3_progression_authority",
+      "source_line": 7,
+      "target_path": "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+      "source_blob_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+      "source_line_text": "l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "source_line_sha256": "sha256:059eff9df530dafbab0e1d322cf5167fa1c9f4a77e03477c1b9d4b87bfc0ea9b",
+      "target_blob_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_line_count": 98,
+      "source_asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A",
+      "target_asset_id": "LEGACY-ASSET-75E1420CE980CB881C48",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 progression-authority relation candidate; historical source-to-governance edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0041",
+      "source_path": "docs/design/harness/L1-requirements/screen-requirements.md",
+      "source_file_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "l3_progression_authority",
+      "source_line": 7,
+      "target_path": "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "source_blob_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "source_line_text": "l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "source_line_sha256": "sha256:059eff9df530dafbab0e1d322cf5167fa1c9f4a77e03477c1b9d4b87bfc0ea9b",
+      "target_blob_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_line_count": 98,
+      "source_asset_id": "LEGACY-ASSET-3B905BB196962E2BE624",
+      "target_asset_id": "LEGACY-ASSET-75E1420CE980CB881C48",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 progression-authority relation candidate; historical source-to-governance edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0054",
+      "source_path": "docs/design/harness/L1-requirements/technical-requirements.md",
+      "source_file_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "l3_progression_authority",
+      "source_line": 7,
+      "target_path": "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "source_blob_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "source_line_text": "l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "source_line_sha256": "sha256:059eff9df530dafbab0e1d322cf5167fa1c9f4a77e03477c1b9d4b87bfc0ea9b",
+      "target_blob_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_line_count": 98,
+      "source_asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+      "target_asset_id": "LEGACY-ASSET-75E1420CE980CB881C48",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 progression-authority relation candidate; historical source-to-governance edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0273",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "l3_progression_authority",
+      "source_line": 7,
+      "target_path": "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_blob_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "source_line_text": "l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "source_line_sha256": "sha256:059eff9df530dafbab0e1d322cf5167fa1c9f4a77e03477c1b9d4b87bfc0ea9b",
+      "target_blob_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_line_count": 98,
+      "source_asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "target_asset_id": "LEGACY-ASSET-75E1420CE980CB881C48",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 progression-authority relation candidate; historical source-to-governance edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-01",
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0285",
+      "source_path": "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "source_file_sha256": "6cb8fb254a82918ac472fb381268340a6d3c8f5c252f52ef8a58447ddac661f5",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l12",
+      "source_line": 11,
+      "target_path": "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "target_sha256": "19c7198b87364d19283876f8f16b26d6789b57221369cfeab8eb62521fbeb7d1",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "source_blob_sha256": "6cb8fb254a82918ac472fb381268340a6d3c8f5c252f52ef8a58447ddac661f5",
+      "source_line_text": "related_l12: docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "source_line_sha256": "sha256:cde450c6530431cf078c37231641ab01f2885898b0a856bc08bf246fe1c73b23",
+      "target_blob_sha256": "19c7198b87364d19283876f8f16b26d6789b57221369cfeab8eb62521fbeb7d1",
+      "target_line_count": 173,
+      "source_asset_id": "LEGACY-ASSET-24A3D981F1ED04404AA5",
+      "target_asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L12 V-model relation candidate; historical cross-layer edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-05",
+        "PHCAP-07",
+        "PHCAP-16",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0295",
+      "source_path": "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "source_file_sha256": "68ed26b00839f35857db3a93288d7e4fcd12cfa3abd53e127a437f41299f2490",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l12",
+      "source_line": 12,
+      "target_path": "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "target_sha256": "19c7198b87364d19283876f8f16b26d6789b57221369cfeab8eb62521fbeb7d1",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "source_blob_sha256": "68ed26b00839f35857db3a93288d7e4fcd12cfa3abd53e127a437f41299f2490",
+      "source_line_text": "  - docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "source_line_sha256": "sha256:cd558b7cebf6910d89f2dc5788a190d56a04916d175a74e013e81efbf6ee21c6",
+      "target_blob_sha256": "19c7198b87364d19283876f8f16b26d6789b57221369cfeab8eb62521fbeb7d1",
+      "target_line_count": 173,
+      "source_asset_id": "LEGACY-ASSET-664EDC7E6280C3DD1691",
+      "target_asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L12 V-model relation candidate; historical cross-layer edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-05",
+        "PHCAP-07",
+        "PHCAP-16"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0296",
+      "source_path": "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "source_file_sha256": "68ed26b00839f35857db3a93288d7e4fcd12cfa3abd53e127a437f41299f2490",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l12",
+      "source_line": 13,
+      "target_path": "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "target_sha256": "6cb8fb254a82918ac472fb381268340a6d3c8f5c252f52ef8a58447ddac661f5",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "source_blob_sha256": "68ed26b00839f35857db3a93288d7e4fcd12cfa3abd53e127a437f41299f2490",
+      "source_line_text": "  - docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "source_line_sha256": "sha256:2501dd3591b15c45832f70c26ef28193f52440ae5d5227cb243761b57db4a290",
+      "target_blob_sha256": "6cb8fb254a82918ac472fb381268340a6d3c8f5c252f52ef8a58447ddac661f5",
+      "target_line_count": 283,
+      "source_asset_id": "LEGACY-ASSET-664EDC7E6280C3DD1691",
+      "target_asset_id": "LEGACY-ASSET-24A3D981F1ED04404AA5",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L12 V-model relation candidate; historical cross-layer edge",
+      "owner_product_candidates": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-05",
+        "PHCAP-07",
+        "PHCAP-16",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0298",
+      "source_path": "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "source_file_sha256": "7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "authority",
+      "source_line": 9,
+      "target_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "target_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "source_blob_sha256": "7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
+      "source_line_text": "authority: docs/governance/helix-harness-requirements_v1.3.md",
+      "source_line_sha256": "sha256:fc7562503624b78cd85abb014fe39813f3f28521d1d371526422f3058477772e",
+      "target_blob_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "target_line_count": 664,
+      "source_asset_id": "LEGACY-ASSET-335176749F6322C3CD8D",
+      "target_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "authority reference candidate; current authority remains unresolved",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-01",
+        "PHCAP-04",
+        "PHCAP-06",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0310",
+      "source_path": "docs/design/helix/L3-requirements/glossary-ssot.md",
+      "source_file_sha256": "610c5dc6513c25c17d8a813e4685b46e4fda3d2a19c9472e62af70f08038abf5",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l3",
+      "source_line": 11,
+      "target_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "target_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/glossary-ssot.md",
+      "source_blob_sha256": "610c5dc6513c25c17d8a813e4685b46e4fda3d2a19c9472e62af70f08038abf5",
+      "source_line_text": "related_l3: docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_line_sha256": "sha256:6bd8cd7eb8418ec419464c1a6c684c0b4a4e2940e1a0109f5ef5609c39c08d26",
+      "target_blob_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "target_line_count": 354,
+      "source_asset_id": "LEGACY-ASSET-BE8CCE567342EAB19B1C",
+      "target_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 requirement relation candidate; historical cross-document edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-06",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0328",
+      "source_path": "docs/design/helix/L3-requirements/nfr-grade.md",
+      "source_file_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l1",
+      "source_line": 11,
+      "target_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "target_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+      "source_blob_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+      "source_line_text": "related_l1: docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line_sha256": "sha256:376447bb8a6a852d4209ce7b0a525890acdfd916f4f7d25b28049ab25963571c",
+      "target_blob_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "target_line_count": 143,
+      "source_asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA",
+      "target_asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L1/L3 relation candidate; historical product-layer edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-01",
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0329",
+      "source_path": "docs/design/helix/L3-requirements/nfr-grade.md",
+      "source_file_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l3",
+      "source_line": 12,
+      "target_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "target_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+      "source_blob_sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+      "source_line_text": "related_l3: docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_line_sha256": "sha256:6bd8cd7eb8418ec419464c1a6c684c0b4a4e2940e1a0109f5ef5609c39c08d26",
+      "target_blob_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "target_line_count": 354,
+      "source_asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA",
+      "target_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 requirement relation candidate; historical cross-document edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-06",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0335",
+      "source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "l3_progression_authority",
+      "source_line": 7,
+      "target_path": "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_blob_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "source_line_text": "l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "source_line_sha256": "sha256:059eff9df530dafbab0e1d322cf5167fa1c9f4a77e03477c1b9d4b87bfc0ea9b",
+      "target_blob_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_line_count": 98,
+      "source_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "target_asset_id": "LEGACY-ASSET-75E1420CE980CB881C48",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 progression-authority relation candidate; historical source-to-governance edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-06",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0338",
+      "source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_file_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l1",
+      "source_line": 18,
+      "target_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "target_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_blob_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "source_line_text": "related_l1: docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line_sha256": "sha256:376447bb8a6a852d4209ce7b0a525890acdfd916f4f7d25b28049ab25963571c",
+      "target_blob_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "target_line_count": 143,
+      "source_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "target_asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L1/L3 relation candidate; historical product-layer edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-01",
+        "PHCAP-04",
+        "PHCAP-06",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0352",
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_file_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "authority",
+      "source_line": 9,
+      "target_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "target_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "source_blob_sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "source_line_text": "authority: docs/governance/helix-harness-requirements_v1.3.md",
+      "source_line_sha256": "sha256:fc7562503624b78cd85abb014fe39813f3f28521d1d371526422f3058477772e",
+      "target_blob_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "target_line_count": 664,
+      "source_asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "target_asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "authority reference candidate; current authority remains unresolved",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0356",
+      "source_path": "docs/design/helix/L3-requirements/visualization-requirements.md",
+      "source_file_sha256": "a4830dfcd93b1fd1a805c4cf74bfb2923305fb5da5ab663fb5a5005c0ed404f6",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l1",
+      "source_line": 12,
+      "target_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "target_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/visualization-requirements.md",
+      "source_blob_sha256": "a4830dfcd93b1fd1a805c4cf74bfb2923305fb5da5ab663fb5a5005c0ed404f6",
+      "source_line_text": "related_l1: docs/design/helix/L1-requirements/pillar-requirements.md",
+      "source_line_sha256": "sha256:376447bb8a6a852d4209ce7b0a525890acdfd916f4f7d25b28049ab25963571c",
+      "target_blob_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "target_line_count": 143,
+      "source_asset_id": "LEGACY-ASSET-26D0C5DFCE0190206B4A",
+      "target_asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L1/L3 relation candidate; historical product-layer edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-01",
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0357",
+      "source_path": "docs/design/helix/L3-requirements/visualization-requirements.md",
+      "source_file_sha256": "a4830dfcd93b1fd1a805c4cf74bfb2923305fb5da5ab663fb5a5005c0ed404f6",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l3",
+      "source_line": 13,
+      "target_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "target_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/visualization-requirements.md",
+      "source_blob_sha256": "a4830dfcd93b1fd1a805c4cf74bfb2923305fb5da5ab663fb5a5005c0ed404f6",
+      "source_line_text": "related_l3: docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_line_sha256": "sha256:6bd8cd7eb8418ec419464c1a6c684c0b4a4e2940e1a0109f5ef5609c39c08d26",
+      "target_blob_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "target_line_count": 354,
+      "source_asset_id": "LEGACY-ASSET-26D0C5DFCE0190206B4A",
+      "target_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 requirement relation candidate; historical cross-document edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-06",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0361",
+      "source_path": "docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",
+      "source_file_sha256": "efc06fe53652b8a7635f8f025b64d922d1612def338dab749b9c26c1a3676951",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l12",
+      "source_line": 12,
+      "target_path": "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "target_sha256": "6cb8fb254a82918ac472fb381268340a6d3c8f5c252f52ef8a58447ddac661f5",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",
+      "source_blob_sha256": "efc06fe53652b8a7635f8f025b64d922d1612def338dab749b9c26c1a3676951",
+      "source_line_text": "related_l12: docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "source_line_sha256": "sha256:2c16d9e7dad58fc36e49316666d28602d58b838608a148dc26c301beb4c9d954",
+      "target_blob_sha256": "6cb8fb254a82918ac472fb381268340a6d3c8f5c252f52ef8a58447ddac661f5",
+      "target_line_count": 283,
+      "source_asset_id": "LEGACY-ASSET-B93A97F117E51F48894D",
+      "target_asset_id": "LEGACY-ASSET-24A3D981F1ED04404AA5",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L12 V-model relation candidate; historical cross-layer edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-05",
+        "PHCAP-07",
+        "PHCAP-16",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0369",
+      "source_path": "docs/design/helix/L3-requirements/worker-common-contract.md",
+      "source_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "l3_progression_authority",
+      "source_line": 7,
+      "target_path": "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "target_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "source_blob_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "source_line_text": "l3_progression_authority: docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "source_line_sha256": "sha256:059eff9df530dafbab0e1d322cf5167fa1c9f4a77e03477c1b9d4b87bfc0ea9b",
+      "target_blob_sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "target_line_count": 98,
+      "source_asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+      "target_asset_id": "LEGACY-ASSET-75E1420CE980CB881C48",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 progression-authority relation candidate; historical source-to-governance edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-10",
+        "PHCAP-17",
+        "PHCAP-19"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0382",
+      "source_path": "docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "source_file_sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l3",
+      "source_line": 12,
+      "target_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "target_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "source_blob_sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56",
+      "source_line_text": "related_l3: docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_line_sha256": "sha256:6bd8cd7eb8418ec419464c1a6c684c0b4a4e2940e1a0109f5ef5609c39c08d26",
+      "target_blob_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "target_line_count": 354,
+      "source_asset_id": "LEGACY-ASSET-B8BBC1D5A8C91E746405",
+      "target_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 requirement relation candidate; historical cross-document edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-06",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0384",
+      "source_path": "docs/design/helix/L5-detail/operation-scope.md",
+      "source_file_sha256": "1b80af2feb61c16afd6a4a08e72b1f8d09e573b735c6aeec1bed1671b77f657f",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l12",
+      "source_line": 12,
+      "target_path": "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "target_sha256": "6cb8fb254a82918ac472fb381268340a6d3c8f5c252f52ef8a58447ddac661f5",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/operation-scope.md",
+      "source_blob_sha256": "1b80af2feb61c16afd6a4a08e72b1f8d09e573b735c6aeec1bed1671b77f657f",
+      "source_line_text": "  - docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "source_line_sha256": "sha256:2501dd3591b15c45832f70c26ef28193f52440ae5d5227cb243761b57db4a290",
+      "target_blob_sha256": "6cb8fb254a82918ac472fb381268340a6d3c8f5c252f52ef8a58447ddac661f5",
+      "target_line_count": 283,
+      "source_asset_id": "LEGACY-ASSET-73206F3456368C1D7F22",
+      "target_asset_id": "LEGACY-ASSET-24A3D981F1ED04404AA5",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L12 V-model relation candidate; historical cross-layer edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-05",
+        "PHCAP-07",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0385",
+      "source_path": "docs/design/helix/L5-detail/operation-scope.md",
+      "source_file_sha256": "1b80af2feb61c16afd6a4a08e72b1f8d09e573b735c6aeec1bed1671b77f657f",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l12",
+      "source_line": 13,
+      "target_path": "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "target_sha256": "68ed26b00839f35857db3a93288d7e4fcd12cfa3abd53e127a437f41299f2490",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/operation-scope.md",
+      "source_blob_sha256": "1b80af2feb61c16afd6a4a08e72b1f8d09e573b735c6aeec1bed1671b77f657f",
+      "source_line_text": "  - docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "source_line_sha256": "sha256:594d1d4ca7d491ea6d5d48cd33546dedb760f6a02c23e731c5e077087d534904",
+      "target_blob_sha256": "68ed26b00839f35857db3a93288d7e4fcd12cfa3abd53e127a437f41299f2490",
+      "target_line_count": 137,
+      "source_asset_id": "LEGACY-ASSET-73206F3456368C1D7F22",
+      "target_asset_id": "LEGACY-ASSET-664EDC7E6280C3DD1691",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L12 V-model relation candidate; historical cross-layer edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-05",
+        "PHCAP-07",
+        "PHCAP-16",
+        "PHCAP-17"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0747",
+      "source_path": "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "source_file_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "related_l3",
+      "source_line": 26,
+      "target_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "target_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "source_blob_sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "source_line_text": "    - docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "source_line_sha256": "sha256:576b06edf4480ca1b2b3102c530600512d5e5e35150bbe9b592b525a242bca98",
+      "target_blob_sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "target_line_count": 354,
+      "source_asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "target_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "reference_coverage_kind": "edge_exact_source_line_plus_target_blob; document atomization is separate and not performed",
+      "candidate_role": "L3 requirement relation candidate; historical cross-document edge",
+      "owner_product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "owner_status": "candidate_only_unresolved",
+      "phase_candidates": [
+        "PHCAP-06",
+        "PHCAP-07",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_authority_status": "unconfirmed",
+      "legacy_implementation_status": "unknown_or_non_executable_source_only",
+      "legacy_execution_performed": false,
+      "consumer_status": "pending",
+      "consumer_refs": [],
+      "actor_candidates": [
+        "legacy document author or maintainer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical holding edge only",
+        "no current authority is created by this classification"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, product, phase authority, implementation, consumer closure, requirement acceptance, L3/L10 freeze, runtime, CI, or release readiness"
+      ],
+      "candidate_target": "unresolved",
+      "unresolved_questions": [
+        "which current product/layer contract, if any, owns this edge?",
+        "is the target relation still semantically intended after source atomization?",
+        "which consumer and failure contract, if any, is approved?"
+      ],
+      "document_atomization_status": "not_performed"
+    }
+  ],
+  "asset_observations": [
+    {
+      "source_path": "docs/design/harness/L1-requirements/business-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "line_count": 394,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+      "asset_disposition": "source_snapshot_preservation",
+      "asset_implementation_status": "non_executable_read_only_source",
+      "asset_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "decision_status": "pending_human_confirmation",
+      "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-9F48ADEEB477DCA54039",
+      "decision_records": [
+        {
+          "decision_id": "REQ-SNAPSHOT-9F48ADEEB477DCA54039",
+          "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+          "asset_revision_before": 1,
+          "asset_revision_after": 2,
+          "decision_revision": "PO-directive-requirements-preservation-2026-09-15",
+          "asset_class_before": "Historical",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "HELIX-governance",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+          "target_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": "PO directive",
+          "decided_at": "2026-09-15",
+          "rationale": "旧要求はそのまま保持し、削減せず上流から整理する指示に基づくsource snapshot保全",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
+          ],
+          "supersedes_decision_id": null
+        },
+        {
+          "decision_id": "REQ-SNAPSHOT-CORRECTION-9F48ADEEB477DCA54039",
+          "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+          "asset_revision_before": 2,
+          "asset_revision_after": 3,
+          "decision_revision": null,
+          "asset_class_before": "RequirementSourceSnapshot",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "unresolved",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+          "target_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": null,
+          "decided_at": null,
+          "rationale": "revision 2でPO判断済みと誤記した行を取り消すappend-only訂正。同一byte copy/read-afterは過去事実として保持し、対象productへの配置判断はpending_human_confirmationへ戻す",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ],
+          "supersedes_decision_id": "REQ-SNAPSHOT-9F48ADEEB477DCA54039",
+          "decision_status": "pending_human_confirmation",
+          "proposal_basis_refs": [
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ]
+        }
+      ],
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "unresolved": [
+        "consumer_closure_pending",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/harness/L1-requirements/functional-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/functional-requirements.md",
+      "sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+      "line_count": 319,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+      "asset_disposition": "source_snapshot_preservation",
+      "asset_implementation_status": "non_executable_read_only_source",
+      "asset_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "decision_status": "pending_human_confirmation",
+      "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-6B6C5CB0E481BE01088B",
+      "decision_records": [
+        {
+          "decision_id": "REQ-SNAPSHOT-6B6C5CB0E481BE01088B",
+          "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+          "asset_revision_before": 1,
+          "asset_revision_after": 2,
+          "decision_revision": "PO-directive-requirements-preservation-2026-09-15",
+          "asset_class_before": "Historical",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "HELIX-governance",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "target_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": "PO directive",
+          "decided_at": "2026-09-15",
+          "rationale": "旧要求はそのまま保持し、削減せず上流から整理する指示に基づくsource snapshot保全",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
+          ],
+          "supersedes_decision_id": null
+        },
+        {
+          "decision_id": "REQ-SNAPSHOT-CORRECTION-6B6C5CB0E481BE01088B",
+          "asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+          "asset_revision_before": 2,
+          "asset_revision_after": 3,
+          "decision_revision": null,
+          "asset_class_before": "RequirementSourceSnapshot",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "unresolved",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "target_sha256": "a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": null,
+          "decided_at": null,
+          "rationale": "revision 2でPO判断済みと誤記した行を取り消すappend-only訂正。同一byte copy/read-afterは過去事実として保持し、対象productへの配置判断はpending_human_confirmationへ戻す",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ],
+          "supersedes_decision_id": "REQ-SNAPSHOT-6B6C5CB0E481BE01088B",
+          "decision_status": "pending_human_confirmation",
+          "proposal_basis_refs": [
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ]
+        }
+      ],
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "unresolved": [
+        "consumer_closure_pending",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/harness/L1-requirements/nfr.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+      "sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+      "line_count": 139,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A",
+      "asset_disposition": "source_snapshot_preservation",
+      "asset_implementation_status": "non_executable_read_only_source",
+      "asset_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "decision_status": "pending_human_confirmation",
+      "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-5429AA05B022E9F49B0A",
+      "decision_records": [
+        {
+          "decision_id": "REQ-SNAPSHOT-5429AA05B022E9F49B0A",
+          "asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A",
+          "asset_revision_before": 1,
+          "asset_revision_after": 2,
+          "decision_revision": "PO-directive-requirements-preservation-2026-09-15",
+          "asset_class_before": "Historical",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "HELIX-governance",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/nfr.md",
+          "target_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": "PO directive",
+          "decided_at": "2026-09-15",
+          "rationale": "旧要求はそのまま保持し、削減せず上流から整理する指示に基づくsource snapshot保全",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/nfr.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
+          ],
+          "supersedes_decision_id": null
+        },
+        {
+          "decision_id": "REQ-SNAPSHOT-CORRECTION-5429AA05B022E9F49B0A",
+          "asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A",
+          "asset_revision_before": 2,
+          "asset_revision_after": 3,
+          "decision_revision": null,
+          "asset_class_before": "RequirementSourceSnapshot",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "unresolved",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/nfr.md",
+          "target_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": null,
+          "decided_at": null,
+          "rationale": "revision 2でPO判断済みと誤記した行を取り消すappend-only訂正。同一byte copy/read-afterは過去事実として保持し、対象productへの配置判断はpending_human_confirmationへ戻す",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/nfr.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ],
+          "supersedes_decision_id": "REQ-SNAPSHOT-5429AA05B022E9F49B0A",
+          "decision_status": "pending_human_confirmation",
+          "proposal_basis_refs": [
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ]
+        }
+      ],
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "unresolved": [
+        "consumer_closure_pending",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/harness/L1-requirements/screen-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/screen-requirements.md",
+      "sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+      "line_count": 580,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-3B905BB196962E2BE624",
+      "asset_disposition": "source_snapshot_preservation",
+      "asset_implementation_status": "non_executable_read_only_source",
+      "asset_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "decision_status": "pending_human_confirmation",
+      "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-3B905BB196962E2BE624",
+      "decision_records": [
+        {
+          "decision_id": "REQ-SNAPSHOT-3B905BB196962E2BE624",
+          "asset_id": "LEGACY-ASSET-3B905BB196962E2BE624",
+          "asset_revision_before": 1,
+          "asset_revision_after": 2,
+          "decision_revision": "PO-directive-requirements-preservation-2026-09-15",
+          "asset_class_before": "Historical",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "HELIX-governance",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/screen-requirements.md",
+          "target_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": "PO directive",
+          "decided_at": "2026-09-15",
+          "rationale": "旧要求はそのまま保持し、削減せず上流から整理する指示に基づくsource snapshot保全",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/screen-requirements.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
+          ],
+          "supersedes_decision_id": null
+        },
+        {
+          "decision_id": "REQ-SNAPSHOT-CORRECTION-3B905BB196962E2BE624",
+          "asset_id": "LEGACY-ASSET-3B905BB196962E2BE624",
+          "asset_revision_before": 2,
+          "asset_revision_after": 3,
+          "decision_revision": null,
+          "asset_class_before": "RequirementSourceSnapshot",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "unresolved",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/screen-requirements.md",
+          "target_sha256": "e5b6964567242a2440ded28ed99c1783f37a9326624c02283c7a975c3020063b",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": null,
+          "decided_at": null,
+          "rationale": "revision 2でPO判断済みと誤記した行を取り消すappend-only訂正。同一byte copy/read-afterは過去事実として保持し、対象productへの配置判断はpending_human_confirmationへ戻す",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/screen-requirements.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ],
+          "supersedes_decision_id": "REQ-SNAPSHOT-3B905BB196962E2BE624",
+          "decision_status": "pending_human_confirmation",
+          "proposal_basis_refs": [
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ]
+        }
+      ],
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "unresolved": [
+        "consumer_closure_pending",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/harness/L1-requirements/technical-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "line_count": 192,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+      "asset_disposition": "source_snapshot_preservation",
+      "asset_implementation_status": "non_executable_read_only_source",
+      "asset_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "decision_status": "pending_human_confirmation",
+      "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-96CCD05C4CCA06F50D3D",
+      "decision_records": [
+        {
+          "decision_id": "REQ-SNAPSHOT-96CCD05C4CCA06F50D3D",
+          "asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+          "asset_revision_before": 1,
+          "asset_revision_after": 2,
+          "decision_revision": "PO-directive-requirements-preservation-2026-09-15",
+          "asset_class_before": "Historical",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "HELIX-governance",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md",
+          "target_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": "PO directive",
+          "decided_at": "2026-09-15",
+          "rationale": "旧要求はそのまま保持し、削減せず上流から整理する指示に基づくsource snapshot保全",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
+          ],
+          "supersedes_decision_id": null
+        },
+        {
+          "decision_id": "REQ-SNAPSHOT-CORRECTION-96CCD05C4CCA06F50D3D",
+          "asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+          "asset_revision_before": 2,
+          "asset_revision_after": 3,
+          "decision_revision": null,
+          "asset_class_before": "RequirementSourceSnapshot",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "unresolved",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md",
+          "target_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": null,
+          "decided_at": null,
+          "rationale": "revision 2でPO判断済みと誤記した行を取り消すappend-only訂正。同一byte copy/read-afterは過去事実として保持し、対象productへの配置判断はpending_human_confirmationへ戻す",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ],
+          "supersedes_decision_id": "REQ-SNAPSHOT-96CCD05C4CCA06F50D3D",
+          "decision_status": "pending_human_confirmation",
+          "proposal_basis_refs": [
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ]
+        }
+      ],
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "unresolved": [
+        "consumer_closure_pending",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "line_count": 143,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "asset_disposition": "source_snapshot_preservation",
+      "asset_implementation_status": "non_executable_read_only_source",
+      "asset_authority_state": "confirmed",
+      "carry_forward_state": "preserved_pending_rehome",
+      "decision_status": "pending_human_confirmation",
+      "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-18F7940E7994634D39A1",
+      "decision_records": [
+        {
+          "decision_id": "REQ-SNAPSHOT-18F7940E7994634D39A1",
+          "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+          "asset_revision_before": 1,
+          "asset_revision_after": 2,
+          "decision_revision": "PO-directive-requirements-preservation-2026-09-15",
+          "asset_class_before": "Historical",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "HELIX-governance",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/pillar-requirements.md",
+          "target_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": "PO directive",
+          "decided_at": "2026-09-15",
+          "rationale": "旧要求はそのまま保持し、削減せず上流から整理する指示に基づくsource snapshot保全",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/pillar-requirements.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
+          ],
+          "supersedes_decision_id": null
+        },
+        {
+          "decision_id": "REQ-SNAPSHOT-CORRECTION-18F7940E7994634D39A1",
+          "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+          "asset_revision_before": 2,
+          "asset_revision_after": 3,
+          "decision_revision": null,
+          "asset_class_before": "RequirementSourceSnapshot",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "unresolved",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/pillar-requirements.md",
+          "target_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": null,
+          "decided_at": null,
+          "rationale": "revision 2でPO判断済みと誤記した行を取り消すappend-only訂正。同一byte copy/read-afterは過去事実として保持し、対象productへの配置判断はpending_human_confirmationへ戻す",
+          "evidence_refs": [
+            "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/pillar-requirements.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ],
+          "supersedes_decision_id": "REQ-SNAPSHOT-18F7940E7994634D39A1",
+          "decision_status": "pending_human_confirmation",
+          "proposal_basis_refs": [
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ]
+        }
+      ],
+      "phase_candidates": [
+        "PHCAP-01",
+        "PHCAP-04",
+        "PHCAP-16",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "unresolved": [
+        "consumer_closure_pending",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "sha256": "6cb8fb254a82918ac472fb381268340a6d3c8f5c252f52ef8a58447ddac661f5",
+      "line_count": 283,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-24A3D981F1ED04404AA5",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-05",
+        "PHCAP-07",
+        "PHCAP-16",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "sha256": "19c7198b87364d19283876f8f16b26d6789b57221369cfeab8eb62521fbeb7d1",
+      "line_count": 173,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-07"
+      ],
+      "phase_classification_status": "classified_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "sha256": "68ed26b00839f35857db3a93288d7e4fcd12cfa3abd53e127a437f41299f2490",
+      "line_count": 137,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-664EDC7E6280C3DD1691",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-05",
+        "PHCAP-07",
+        "PHCAP-16"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "sha256": "7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
+      "line_count": 126,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-335176749F6322C3CD8D",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-01",
+        "PHCAP-06",
+        "PHCAP-16",
+        "PHCAP-18",
+        "PHCAP-19"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L3-requirements/glossary-ssot.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/glossary-ssot.md",
+      "sha256": "610c5dc6513c25c17d8a813e4685b46e4fda3d2a19c9472e62af70f08038abf5",
+      "line_count": 109,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-BE8CCE567342EAB19B1C",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "unresolved_with_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "phase_candidate_requires_semantic_review",
+        "product_candidate_requires_semantic_review",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L3-requirements/nfr-grade.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/nfr-grade.md",
+      "sha256": "ba57990cf5343e9d4ad42ca8c2340d76c80e6e1c23085ba5e496d8014acf3fc3",
+      "line_count": 73,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-8CC5ABFC98C0D00183CA",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "unresolved_with_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "phase_candidate_requires_semantic_review",
+        "product_candidate_requires_semantic_review",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "line_count": 354,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-06",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "line_count": 87,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [],
+      "phase_classification_status": "unresolved",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "capability_phase_evidence_insufficient",
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L3-requirements/visualization-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/visualization-requirements.md",
+      "sha256": "a4830dfcd93b1fd1a805c4cf74bfb2923305fb5da5ab663fb5a5005c0ed404f6",
+      "line_count": 146,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-26D0C5DFCE0190206B4A",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "unresolved_with_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "phase_candidate_requires_semantic_review",
+        "product_candidate_requires_semantic_review",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",
+      "sha256": "efc06fe53652b8a7635f8f025b64d922d1612def338dab749b9c26c1a3676951",
+      "line_count": 85,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-B93A97F117E51F48894D",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [],
+      "phase_classification_status": "unresolved",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "capability_phase_evidence_insufficient",
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L3-requirements/worker-common-contract.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "line_count": 146,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-10",
+        "PHCAP-17",
+        "PHCAP-19"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56",
+      "line_count": 163,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-B8BBC1D5A8C91E746405",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-06",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/design/helix/L5-detail/operation-scope.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/operation-scope.md",
+      "sha256": "1b80af2feb61c16afd6a4a08e72b1f8d09e573b735c6aeec1bed1671b77f657f",
+      "line_count": 134,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-73206F3456368C1D7F22",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-16",
+        "PHCAP-17"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "line_count": 664,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "asset_disposition": "source_snapshot_preservation",
+      "asset_implementation_status": "non_executable_read_only_source",
+      "asset_authority_state": "source_status_not_declared",
+      "carry_forward_state": "preserved_pending_rehome",
+      "decision_status": "pending_human_confirmation",
+      "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-02319C2481B9E01698D5",
+      "decision_records": [
+        {
+          "decision_id": "REQ-SNAPSHOT-02319C2481B9E01698D5",
+          "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+          "asset_revision_before": 1,
+          "asset_revision_after": 2,
+          "decision_revision": "PO-directive-requirements-preservation-2026-09-15",
+          "asset_class_before": "Historical",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "HELIX-governance",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "target_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": "PO directive",
+          "decided_at": "2026-09-15",
+          "rationale": "旧要求はそのまま保持し、削減せず上流から整理する指示に基づくsource snapshot保全",
+          "evidence_refs": [
+            "docs/governance/requirements-source/helix-requirements_v1.3.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
+          ],
+          "supersedes_decision_id": null
+        },
+        {
+          "decision_id": "REQ-SNAPSHOT-CORRECTION-02319C2481B9E01698D5",
+          "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+          "asset_revision_before": 2,
+          "asset_revision_after": 3,
+          "decision_revision": null,
+          "asset_class_before": "RequirementSourceSnapshot",
+          "asset_class_after": "RequirementSourceSnapshot",
+          "reuse_exclusion_class_before": null,
+          "reuse_exclusion_class_after": null,
+          "disposition": "source_snapshot_preservation",
+          "product_target": "unresolved",
+          "upstream_ids": [
+            "legacy-requirement-carry-forward-policy"
+          ],
+          "pair_ids": [],
+          "consumer_refs": [
+            "requirement-carry-forward-ledgers",
+            "requirement-atomization-review"
+          ],
+          "rights_status": "repository_owned_source_preserved",
+          "executability_status": "non_executable_or_data_only_not_invoked",
+          "secret_status": "no_secret_added_by_copy",
+          "external_effect_status": "read_only_no_external_effect",
+          "target_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "target_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+          "meaning_interface_invariance_reason": "要求を削減せず後続atom化するためのread-only同一byte source snapshot。新世代authority・実装・oracleへ自動昇格しない",
+          "decided_by": null,
+          "decided_at": null,
+          "rationale": "revision 2でPO判断済みと誤記した行を取り消すappend-only訂正。同一byte copy/read-afterは過去事実として保持し、対象productへの配置判断はpending_human_confirmationへ戻す",
+          "evidence_refs": [
+            "docs/governance/requirements-source/helix-requirements_v1.3.md",
+            "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ],
+          "supersedes_decision_id": "REQ-SNAPSHOT-02319C2481B9E01698D5",
+          "decision_status": "pending_human_confirmation",
+          "proposal_basis_refs": [
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/concept/product-boundary.md:30",
+            "0c45ea33720085aa7f96a1e6352cd12b467e841a:docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md:32"
+          ]
+        }
+      ],
+      "phase_candidates": [
+        "PHCAP-04",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "unresolved": [
+        "consumer_closure_pending",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [
+          {
+            "rule_id": "RE01-162",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-163",
+            "kind": "evidence_claim",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-164",
+            "kind": "process_gate",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-165",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-166",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-167",
+            "kind": "behavior_discipline",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-168",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-169",
+            "kind": "escalation_authority",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-170",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-171",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-172",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-173",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-174",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-175",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-176",
+            "kind": "behavior_discipline",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-177",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-178",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-179",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-180",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-181",
+            "kind": "behavior_discipline",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-182",
+            "kind": "process_gate",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-183",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-184",
+            "kind": "tooling_runtime",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-185",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-186",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-187",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-188",
+            "kind": "tooling_runtime",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-189",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-190",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-191",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-192",
+            "kind": "tooling_runtime",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-193",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-194",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-195",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-196",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-197",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-198",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-199",
+            "kind": "process_gate",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-200",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-201",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-202",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-203",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-204",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-205",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-206",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-207",
+            "kind": "memory_context",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-208",
+            "kind": "memory_context",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-209",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-210",
+            "kind": "memory_context",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-211",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-212",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-213",
+            "kind": "tooling_runtime",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-214",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-215",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-216",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-217",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-218",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-219",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-220",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-221",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-222",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-223",
+            "kind": "tooling_runtime",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-224",
+            "kind": "memory_context",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-225",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-226",
+            "kind": "memory_context",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-227",
+            "kind": "process_gate",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-228",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-229",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-230",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-231",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-232",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-233",
+            "kind": "memory_context",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-234",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-235",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-236",
+            "kind": "tooling_runtime",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-237",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-238",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-239",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-240",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-241",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-242",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-243",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-244",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-245",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-246",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-247",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-248",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-249",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-250",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-251",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-252",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-253",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-254",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-255",
+            "kind": "review_merge",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-256",
+            "kind": "review_merge",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-257",
+            "kind": "review_merge",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-258",
+            "kind": "review_merge",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-259",
+            "kind": "review_merge",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-260",
+            "kind": "review_merge",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-261",
+            "kind": "review_merge",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-262",
+            "kind": "review_merge",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-263",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-264",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-265",
+            "kind": "memory_context",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-266",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-267",
+            "kind": "behavior_discipline",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-268",
+            "kind": "lane_delegation",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-269",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-270",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-271",
+            "kind": "behavior_discipline",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-272",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-273",
+            "kind": "behavior_discipline",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-274",
+            "kind": "behavior_discipline",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-275",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-276",
+            "kind": "tooling_runtime",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-277",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-278",
+            "kind": "safety_security",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-279",
+            "kind": "tooling_runtime",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-280",
+            "kind": "tooling_runtime",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-281",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-282",
+            "kind": "evidence_claim",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-283",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RE01-284",
+            "kind": "escalation_authority",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          }
+        ],
+        "status": "matched_rule_records_retained"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "sha256": "f7e425c53a42b7a04d02b277d869b9e1dee9ed48b2126505add49569546cfd8d",
+      "line_count": 98,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-75E1420CE980CB881C48",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [],
+      "phase_classification_status": "unresolved",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "capability_phase_evidence_insufficient",
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [
+          {
+            "rule_id": "RB08-213",
+            "kind": "process_gate",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RB08-214",
+            "kind": "evidence_claim",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RB08-215",
+            "kind": "tooling_runtime",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RB08-216",
+            "kind": "safety_security",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RB08-217",
+            "kind": "process_gate",
+            "fail_mode": "n/a",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RB08-218",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          },
+          {
+            "rule_id": "RB08-219",
+            "kind": "process_gate",
+            "fail_mode": "fail_close",
+            "authority_effect": "none"
+          }
+        ],
+        "status": "matched_rule_records_retained"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    },
+    {
+      "source_path": "docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "line_count": 216,
+      "source_revision": "legacy-generation-2026-09-14",
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "asset_disposition": "unresolved",
+      "asset_implementation_status": "unknown",
+      "asset_authority_state": "unknown",
+      "carry_forward_state": "unknown",
+      "decision_status": "unknown",
+      "decision_record_ref": null,
+      "decision_records": [],
+      "phase_candidates": [
+        "PHCAP-07",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_authority_status": "unconfirmed",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "consumer_phase_refs": [],
+      "unresolved": [
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "product_candidate_requires_semantic_review",
+        "requires_semantic_split",
+        "requires_unit_connection_composite_split"
+      ],
+      "failure_evidence": {
+        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "join_key": "sources[].path",
+        "matched_records": [],
+        "status": "no_source_path_match_unresolved"
+      },
+      "read_scope": [
+        "fixed archive bytes",
+        "asset disposition",
+        "phase/product bootstrap",
+        "decision log",
+        "consumer refs",
+        "failure/rule inventory"
+      ]
+    }
+  ],
+  "document_atomization": {
+    "status": "not_performed",
+    "coverage_applies_to_edges_only": true,
+    "source_document_count": 0,
+    "semantic_atom_count": 0,
+    "full_document_line_coverage": false,
+    "atomized_original_id_count": 0,
+    "unatomized_original_id_count": 0,
+    "reason": "This bounded subset classifies reference edges. It records exact source reference lines and target blob identity without claiming document line or semantic-atom coverage.",
+    "touched_document_paths": [
+      "docs/design/harness/L1-requirements/business-requirements.md",
+      "docs/design/harness/L1-requirements/functional-requirements.md",
+      "docs/design/harness/L1-requirements/nfr.md",
+      "docs/design/harness/L1-requirements/screen-requirements.md",
+      "docs/design/harness/L1-requirements/technical-requirements.md",
+      "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "docs/design/helix/L12-vmodel/vmodel-docgen-adoption-matrix.md",
+      "docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "docs/design/helix/L12-vmodel/vmodel-solo-tailoring-profile.md",
+      "docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "docs/design/helix/L3-requirements/glossary-ssot.md",
+      "docs/design/helix/L3-requirements/nfr-grade.md",
+      "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "docs/design/helix/L3-requirements/visualization-requirements.md",
+      "docs/design/helix/L3-requirements/vmodel-canonical-authority-cutover.md",
+      "docs/design/helix/L3-requirements/worker-common-contract.md",
+      "docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "docs/design/helix/L5-detail/operation-scope.md",
+      "docs/governance/helix-harness-requirements_v1.3.md",
+      "docs/governance/l3-progression-authority-rebaseline-2026-07-19.md",
+      "docs/test-design/helix/L3-pillar-acceptance-test-design.md"
+    ],
+    "unknowns": [
+      "document ownership and atom boundaries require a separate document-pair or semantic-line review",
+      "edge presence does not prove document adoption, requirement acceptance, or target closure"
+    ]
+  },
+  "reference_edge_denominator": {
+    "snapshot_role": "capture_time_c354b7d9",
+    "holding_total": 788,
+    "prior_integrated": 26,
+    "unmerged_draft": 4,
+    "remaining_before_main_confirmed": 762,
+    "remaining_before_combined": 758,
+    "selected": 24,
+    "remaining_after_main_confirmed": 738,
+    "remaining_after_combined": 734,
+    "selected_source_line_refs": 24,
+    "selected_target_blob_refs": 24,
+    "unique_source_line_spans": 24
+  },
+  "reference_edge_denominator_at_rebaseline": {
+    "base_commit": "569d7373c32287bbafadeec6043472563937c5c7",
+    "holding_total": 788,
+    "prior_integrated": 30,
+    "unmerged_draft": 0,
+    "remaining_before_main_confirmed": 758,
+    "selected": 24,
+    "remaining_after_main_confirmed": 734
+  },
+  "closure_guard": {
+    "authority_effect": "none",
+    "meaning_change_applied": false,
+    "successor_requirement_ids": [],
+    "human_decision_ref": null,
+    "source_carry_status": "preserved_pending_classification",
+    "reference_carry_status": "preserved_pending_classification",
+    "adoption_state": "none",
+    "holding_closure": "not_performed",
+    "prohibited_inference": [
+      "owner adoption",
+      "product authority",
+      "phase authority",
+      "legacy implementation",
+      "consumer closure",
+      "requirement acceptance",
+      "document atomization completion",
+      "L3/L10 freeze",
+      "runtime or CI readiness"
+    ]
+  }
+}
