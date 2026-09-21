@@ -2,7 +2,7 @@
  "authority_effect": "none",
  "cases": 38,
  "cases_sha256": "9f1daef1da85872fafca5ac0cff3c36484b0e292655642745cececfb8ed8ebb6",
- "checked_at": "2026-09-20",
+ "checked_at": "2026-09-21",
  "evidence_kind": "scaffold",
  "fail": 0,
  "note": "仮の検証の記録。正式なCI／検証／受入の成立を意味しない",
@@ -503,5 +503,5 @@
    ]
   }
  ],
- "tool_sha256": "0a55d4af333bed1d4805aede9512eb120f7b508b4ee235ceb22d38e78f5564a6"
+ "tool_sha256": "2632ce13c7ad0148b4ff516161ed12a8ded500ef9b7f2e53e4fc836c6168916f"
 }

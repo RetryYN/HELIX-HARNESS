@@ -3,6 +3,12 @@
   "evidence_kind": "scaffold",
   "authority_effect": "none",
   "settings_paths": ["~/.claude/settings.json", "~/.codex/hooks.json"],
+  "instruction_paths": ["~/.claude/CLAUDE.md"],
+  "instruction_source": "scaffold/review-handoff/claude-current-loader.md",
+  "instruction_source_sha256": "cf2c9b0d0806684bb760d25ddb611ffe814845849f64ab93b53b8154306e9d49",
+  "instruction_start": "<!-- HELIX:current-loader:start -->",
+  "instruction_end": "<!-- HELIX:current-loader:end -->",
+  "maximum_managed_blocks": 1,
   "script_suffix": "/scaffold/review-handoff/gui_mailbox.py",
   "maximum_per_settings_file": 3,
   "retired_expected_count": 0

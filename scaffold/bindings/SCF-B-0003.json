@@ -30,11 +30,11 @@
     },
     {
       "path": "docs/governance/audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md",
-      "sha256": "41f1e461e64d0c32354463db6e820ce7c9e204e071f008fcaa9a5dd5923f5b51"
+      "sha256": "f2ddd5edc3af285208018b48e17bd42eec04462558723e7520793fffa5a27ee3"
     },
     {
       "path": "scaffold/external-references/SCF-B-0003.json",
-      "sha256": "5331fd7b07205fbcd74a147d3692c521c6760c9464c9a81a0ca37c78cfac64fd",
+      "sha256": "b51259a1cde05fa30132b554b2855a29c9c39c542f96934fc1f83bd63e412888",
       "note": "外部consumer参照の保持・撤去契約。退役後も保持する"
     }
   ],
@@ -46,7 +46,8 @@
     "queued／claimed／ackedを分離し、重複・別session・期限切れを拒否する",
     "未ACK時の明示retry、watcher世代、応答の逆方向配送を扱う",
     "通知から要求採否・承認・review完了・merge許可を生成しない",
-    "設定撤去と両GUIのlive ACK未確認を追跡する"
+    "設定撤去と両GUIのlive ACK未確認を追跡する",
+    "ClaudeのHELIX参照先・操作通路照合手順の管理blockをconsumer所有本文と分離して同期・撤去する。個別許可は同期しない"
   ],
   "connections": {
     "consumers": [
@@ -61,7 +62,7 @@
       "同じVS CodeのClaude Code／Codex拡張のnative hook",
       "Linux file lockと共有のscaffold通知箱"
     ],
-    "boundary": "scriptと通知stateはscaffold内。configure_guiだけが利用者のClaude settingsとCodex hooksへ本仮設参照を追加・撤去する。trustと権限を変更しない"
+    "boundary": "script・instruction source・通知stateはscaffold内。configure_guiだけが利用者のClaude settings、Codex hooks、Claude instructionの固定marker区間へ本仮設参照を追加・同期・撤去する。trust、権限、marker外本文を変更しない"
   },
   "operations": {
     "allowed": [
@@ -72,12 +73,13 @@
       "configure_gui.py preview／apply／remove（利用者hook設定への最小参照）",
       "python3 -B scaffold/review-handoff/gui_selftest.py",
       "configure_gui.py --audit（外部所有hookの残留検査）",
-      "configure_gui.py --rearm --apply（Claude所有ConfigChange metadataによる既存GUI待受回復）"
+      "configure_gui.py --rearm --apply（Claude所有ConfigChange metadataによる既存GUI待受回復）",
+      "configure_gui.py --apply／--remove --apply（Claude instructionのHELIX marker区間の同期／撤去）"
     ],
     "forbidden": [
       "archive/legacy-generation-*の読込・実行",
       "新しいprovider CLI／API／Workerの起動、非公開GUI IPC、GitHub review起動、merge、Issue close",
-      "AGENTS／CLAUDE本文・承認文書・DB・hook trust・権限の書換",
+      "AGENTS本文・Claude instructionのmarker外本文・承認文書・DB・hook trust・権限の書換",
       "要求採否・承認・工程完了の生成"
     ]
   },
@@ -100,7 +102,8 @@
       "packet.pyの外部作用・書込なしの静的確認",
       "scaffold/review-handoff/gui_selftest.py",
       "両既存GUIの受信ACK（未確認なら完了にしない）",
-      "scfctl residualsのexternal-hooks参照台帳検査"
+      "scfctl residualsのexternal-hooks参照台帳検査",
+      "HELIX管理Claude instructionの同期・drift・重複marker・撤去試験"
     ],
     "negative_cases": [
       "payload改変",
@@ -124,7 +127,10 @@
       "回復hookの別runtime・設定source・path",
       "別checkoutからのhook撤去",
       "退役後の外部参照台帳欠落",
-      "期限切れ重複sendのqueued誤表示"
+      "期限切れ重複sendのqueued誤表示",
+      "Claude instructionの不整合／重複marker",
+      "HELIX instruction sourceとconsumer managed blockのdrift",
+      "marker外の利用者instruction上書き"
     ]
   },
   "replacement": {
@@ -138,5 +144,5 @@
     "confirmation_digest": null
   },
   "created": "2026-09-20",
-  "updated": "2026-09-20"
+  "updated": "2026-09-21"
 }

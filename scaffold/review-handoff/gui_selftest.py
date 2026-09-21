@@ -9,6 +9,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import stat
 import unittest
 from unittest.mock import patch
 import gui_mailbox as g
@@ -134,6 +135,73 @@ class GuiChecks(unittest.TestCase):
             self.assertEqual(old,config.update(updated,runtime,True))
         self.assertTrue(config.entries("claude")["Stop"][0]["hooks"][0]["asyncRewake"])
         self.assertNotIn("async",config.entries("codex")["Stop"][0]["hooks"][0])
+
+    def test_claude_policy_sync_preserves_unrelated_and_removes_owned_block(self):
+        source = config.POLICY_START + "\nmanaged\n" + config.POLICY_END
+        original = "# Personal\n\nkeep before\n"
+        synced = config.update_policy(original, source=source)
+        self.assertEqual(config.update_policy(synced, source=source), synced)
+        self.assertIn("# Personal", synced)
+        self.assertIn("managed", synced)
+        changed = config.update_policy(synced, source=source.replace("managed", "updated"))
+        self.assertIn("updated", changed)
+        self.assertNotIn("managed\n", changed)
+        self.assertEqual(config.update_policy(changed, remove=True, source=source), original)
+        suffix = "after  \n\n"
+        wrapped = config.update_policy(original + suffix, source=source)
+        self.assertEqual(config.update_policy(wrapped, remove=True, source=source), original + suffix)
+        crlf = "# Personal\r\nkeep\r\n"
+        wrapped = config.update_policy(crlf, source=source)
+        self.assertEqual(config.update_policy(wrapped, remove=True, source=source), crlf)
+        self.assertEqual(config.update_policy("", remove=True, source=source), "")
+        with self.assertRaises(ValueError):
+            config.update_policy("no final newline", source=source)
+
+    def test_claude_policy_sync_rejects_ambiguous_markers(self):
+        source = config.POLICY_START + "\nmanaged\n" + config.POLICY_END
+        for existing in (config.POLICY_START, source + "\n" + source):
+            with self.assertRaises(ValueError):
+                config.update_policy(existing, source=source)
+        with self.assertRaises(ValueError):
+            config.update_policy("", source="missing markers")
+        for claim in config.FORBIDDEN_POLICY_TEXT:
+            with self.assertRaises(ValueError):
+                config.update_policy("", source=source.replace("managed", claim))
+
+    def test_consumer_file_mode_preserved(self):
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            path=Path(directory) / "consumer"
+            path.write_bytes(b"before")
+            path.chmod(0o644)
+            config.atomic_write(path,b"before",b"after")
+            self.assertEqual(path.read_bytes(),b"after")
+            self.assertEqual(stat.S_IMODE(path.stat().st_mode),0o644)
+
+    def test_audit_apply_rejected_before_write(self):
+        result=subprocess.run([sys.executable,"-B",str(g.HERE / "configure_gui.py"),"--audit","--apply"],
+                              capture_output=True,text=True)
+        self.assertNotEqual(result.returncode,0)
+        self.assertIn("auditとapplyは同時指定不可",result.stderr)
+
+    def test_consumer_updates_rollback_as_one_set(self):
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            root=Path(directory)
+            first, second, policy = root / "first", root / "second", root / "policy"
+            first.write_bytes(b"before-first")
+            second.write_bytes(b"before-second")
+            real=config.atomic_write
+            def fail_policy(path,before,after):
+                if path == policy:
+                    raise OSError("injected failure")
+                return real(path,before,after)
+            with patch.object(config,"atomic_write",side_effect=fail_policy):
+                with self.assertRaises(OSError):
+                    config.atomic_write_all([(first,b"before-first",b"after-first"),
+                                             (second,b"before-second",b"after-second"),
+                                             (policy,None,b"managed-policy")])
+            self.assertEqual(first.read_bytes(),b"before-first")
+            self.assertEqual(second.read_bytes(),b"before-second")
+            self.assertFalse(policy.exists())
 
     def test_timeout_and_old_watcher(self):
         local = g.HERE / "local"
@@ -325,6 +393,12 @@ class GuiChecks(unittest.TestCase):
         self.assertIsNone(g.claim(self.data,"claude","claude-gui",self.now))
 
 
+    def test_policy_claim_guard_sets_match(self):
+        import importlib.util
+        spec=importlib.util.spec_from_file_location("scfctl",g.HERE.parent / "tools/scfctl.py")
+        scf=importlib.util.module_from_spec(spec); spec.loader.exec_module(scf)
+        self.assertEqual(set(config.FORBIDDEN_POLICY_TEXT), set(scf.INSTRUCTION_FORBIDDEN_TEXT))
+
     def test_external_hook_residuals(self):
         import importlib.util
         spec=importlib.util.spec_from_file_location("scfctl",g.HERE.parent / "tools/scfctl.py")
@@ -338,8 +412,13 @@ class GuiChecks(unittest.TestCase):
         with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
             home=Path(directory); (home / ".claude").mkdir()
             settings=home / ".claude/settings.json"
+            instruction=home / ".claude/CLAUDE.md"
             settings.write_text(json.dumps(config.update({},"claude")))
+            instruction.write_text(config.update_policy("# Personal\n"))
             self.assertEqual(scf.external_hook_residuals(binding,str(home)),[])
+            instruction.write_text(config.update_policy("# Personal\n").replace("現行 HELIX ローダ","drift"))
+            self.assertTrue(scf.external_hook_residuals(binding,str(home)))
+            instruction.write_text(config.update_policy("# Personal\n"))
             duplicate=config.update({},"claude")
             duplicate["hooks"]["Stop"] *= 3
             settings.write_text(json.dumps(duplicate))
