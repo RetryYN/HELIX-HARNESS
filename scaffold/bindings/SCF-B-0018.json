@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "RDP-001 source revision research-premise review（HELIX-HARNESS／HELIX-OS境界は未確定）",
   "state": "active",
-  "reason": "PR #1943統合済み24 path／91 hunk、PR #1946選定済み20 path／21 hunk、候補base時点で未統合だったPR #1949候補40 path／40 hunkを既選定範囲として除外し、残余316 files／340 hunksから重複しない60 path／60 hunkをresearch-premise scaffold候補として保持する。候補completion baseは59d344ea0cd8c26aed55bad0c674119e9be821aeで固定し、mainの最新性をfreshness gateへしない。source input digest、candidate product／phase、legacy implementation、owner／consumer、意味同値、採否、authority、実装、closureは未確定のまま保持する。",
+  "reason": "PR #1943統合済み24 path／91 hunk、PR #1946選定済み20 path／21 hunk、候補base時点で未統合だったPR #1949候補40 path／40 hunkを既選定範囲として除外し、残余316 files／340 hunksから重複しない60 path／60 hunkをresearch-premise scaffold候補として保持する。PR #1949 lineageは選定時unmerged_candidate、rebaseline時integrated_in_latest_mainであり、historical round1 ref 9d12b137、integration commit e21962d、merged HEAD 747071fを固定する。候補completion baseは59d344ea0cd8c26aed55bad0c674119e9be821aeで固定し、mainの最新性をfreshness gateへしない。source input digest、candidate product／phase、legacy implementation、owner／consumer、意味同値、採否、authority、実装、closureは未確定のまま保持する。",
   "upstream": [
     {
       "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
@@ -50,34 +50,34 @@
     },
     {
       "path": "scaffold/pre-isolation-research-next60/README.md",
-      "sha256": "f821aaca400f4cbd2d6b8ed1a51233d171af0a5d478c628c695e915c4f521bb5",
+      "sha256": "1d464f848c6911026ece467e3d785de85d32183d97e912047cd8e2be526bd696",
       "note": "RDP-001 research-premise next60 candidate artifact"
     },
     {
       "path": "scaffold/pre-isolation-research-next60/rdp001-preiso-research-next60.json",
-      "sha256": "d1a5c8e3e2d490b3301704d5f0d1459216f6118519d4ae2a37a8aa662251c219",
+      "sha256": "171875c21d9b2843e89c0caf105a5b2c21b0dbbe53c59a13b2cb037ef8eec1e0",
       "note": "RDP-001 research-premise next60 candidate artifact"
     },
     {
       "path": "scaffold/pre-isolation-research-next60/rdp001-preiso-research-next60-semantic-diff-inventory.json",
-      "sha256": "f12379b41b64daa01be5422f9b0f911747ec63b0cfd36fb0789880d30990863d",
+      "sha256": "1e70a0b0a2af47c79b49ba315f0a8fd5ada18f3eb85ef392a5f7f1bebbffe114",
       "note": "RDP-001 research-premise next60 candidate artifact"
     },
     {
       "path": "scaffold/pre-isolation-research-next60/validate.py",
-      "sha256": "4fbd2fc3f9de4d8177d29160581923ea4befc4026aff06a7be95c42860aa3aa1",
+      "sha256": "922e03d652cdb52e1d99ec0cb5bf08afb5ddd620482a7db34e765e0451829743",
       "note": "RDP-001 research-premise next60 candidate artifact"
     },
     {
       "path": "scaffold/pre-isolation-research-next60/selfcheck.py",
-      "sha256": "751d2533f1d7524cb210ff08567084c80326b5e7bcdbbd66460e8468bc675880",
+      "sha256": "61f74413548c47f02411adffea76177996a6a147977f73ba25bfadaf2aa8c42e",
       "note": "RDP-001 research-premise next60 candidate artifact"
     }
   ],
   "role": "RDP-001 pre-isolation source revisionのexact Git-object provenanceとhunk-level research-premise候補を保持し、PR #1949候補との非重複、candidate product／phase／legacy status、compound hold、review-only subunit、未完了denominator、counterevidenceを後続の意味reviewへ引き渡す。",
   "obligations": [
     "PREISO-REV-000085..000144の60 selected source revision item ID／pathをholdingへ一致させ、PR-1943の24 ID、PR-1946の20 ID、PR-1949候補の40 IDと重複させない",
-    "PR-1949の候補base時点未統合scope、source holding ID／path、candidate ref、candidate completion baseを別状態として保持し、current selectionとのID／path重複を検査する",
+    "PR-1949の候補base時点未統合scope、historical round1 candidate ref、status_at_selection／status_at_rebaseline、integration commit e21962d、merged HEAD 747071f、source holding ID／path、candidate completion baseを別状態として保持し、current selectionとのID／path重複を検査する",
     "baseline 6fabd12512a3659fff4a956692cdd61faeeb16ce、pre-isolation 2d4991042be55268bac30a8bbcdac45b3865030a、archive 064280b5c1c5c98f949e6e3be5ef87cbe4a4b658のblob／file SHA-256、object bytes、exact changed hunk spansを固定する",
     "candidate worktree base 59d344ea0cd8c26aed55bad0c674119e9be821aeを記録し、base_freshness_gate=false、base_update_rebase_performed=false、後続base更新はreview-side test merge扱いとする",
     "source holding 333 recordsとGit差分400 filesを分離し、全体400 path／492 hunk、current前84／152、residual-before 316／340、current 60／60、combined 144／212、remaining 256／280のdenominatorを維持する",
@@ -138,7 +138,7 @@
     ],
     "oracles": [
       "scaffold/pre-isolation-research-next60/validate.py（holding、PR #1943／#1946／#1949 scope、candidate base、source input digest、asset／phase、Git object、全体／selected hunk、exact span／digest、negative／counterevidence）",
-      "scaffold/pre-isolation-research-next60/selfcheck.py（digest、phase、owner、candidate kind、execution、input digest、freshness gate、PR1949 overlap、coverage、hunk／atom境界の否定例）",
+      "scaffold/pre-isolation-research-next60/selfcheck.py（digest、phase、owner、candidate kind、execution、input digest、freshness gate、PR1949 overlap／status／merged HEAD lineage、coverage、hunk／atom境界の否定例）",
       "scaffold/tools/scfctl.py validate／stale／residuals（Binding schema・digest・残余確認）",
       "git diff --check（候補文書の静的整形）"
     ],

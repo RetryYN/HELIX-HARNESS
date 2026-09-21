@@ -75,12 +75,17 @@ def main() -> int:
     run_case(
         "PR1949 overlap scope drift",
         mutate_manifest=lambda m: m["scope"].update(pr1949_unmerged_candidate_source_revision_item_ids=["PREISO-REV-000085"]),
-        expected="manifest scope不一致",
+        expected="manifest scope／PR1949 lineage不一致",
     )
     run_case(
         "PR1949 provenance drift",
         mutate_manifest=lambda m: m["comparison"]["pr1949_unmerged_candidate_scope"].update(status="integrated_in_latest_main"),
         expected="prior selected scope不一致",
+    )
+    run_case(
+        "PR1949 merged HEAD lineage drift",
+        mutate_manifest=lambda m: m["scope"]["pr1949_scope_lineage"].update(integration_head="9d12b1371282fe66237aa855fab5acf1576d6391"),
+        expected="manifest scope／PR1949 lineage不一致",
     )
     run_case(
         "hunk coverage deletion",
@@ -112,7 +117,7 @@ def main() -> int:
         mutate_inventory=lambda i: i["fragments"][0].update(counterevidence=[]),
         expected="RDP001-RESEARCH60-DIFF-001 review boundary／counterevidence欠落",
     )
-    print("PASS RDP-001 research-premise next60 selfcheck: 15 negative cases")
+    print("PASS RDP-001 research-premise next60 selfcheck: 16 negative cases")
     return 0
 
 

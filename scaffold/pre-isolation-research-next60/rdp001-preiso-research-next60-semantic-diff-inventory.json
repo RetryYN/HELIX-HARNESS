@@ -138,7 +138,7 @@
       ],
       "integration_ref": "PR-1949",
       "candidate_ref": "9d12b1371282fe66237aa855fab5acf1576d6391",
-      "status": "unmerged_candidate_selected_scope",
+      "status": "selected_candidate_originated_unmerged",
       "source_revision_item_ids": [
         "PREISO-REV-000044",
         "PREISO-REV-000045",
@@ -224,7 +224,12 @@
         "docs/plans/PLAN-L7-1612-merge-admission-terminal-diagnosis.md"
       ],
       "file_count": 40,
-      "hunk_count": 40
+      "hunk_count": 40,
+      "candidate_ref_role": "historical_round1_candidate_ref",
+      "status_at_selection": "unmerged_candidate",
+      "status_at_rebaseline": "integrated_in_latest_main",
+      "integration_commit": "e21962d3aad689b260f6396ec2dc862df6f1fce3",
+      "integration_head": "747071f56f1f952fff7491daf1e185956bf1964d"
     },
     "candidate_worktree_base_commit": "59d344ea0cd8c26aed55bad0c674119e9be821ae",
     "base_freshness_gate": false,
@@ -472,7 +477,15 @@
       "PREISO-REV-000083",
       "PREISO-REV-000084"
     ],
-    "overlap_check": "current selected IDs and paths are disjoint from PR-1943, PR-1946, and PR-1949 selected scopes"
+    "overlap_check": "current selected IDs and paths are disjoint from PR-1943, PR-1946, and PR-1949 selected scopes",
+    "pr1949_scope_lineage": {
+      "candidate_ref": "9d12b1371282fe66237aa855fab5acf1576d6391",
+      "candidate_ref_role": "historical_round1_candidate_ref",
+      "status_at_selection": "unmerged_candidate",
+      "status_at_rebaseline": "integrated_in_latest_main",
+      "integration_commit": "e21962d3aad689b260f6396ec2dc862df6f1fce3",
+      "integration_head": "747071f56f1f952fff7491daf1e185956bf1964d"
+    }
   },
   "source_items": [
     {

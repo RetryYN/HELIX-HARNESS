@@ -5,7 +5,7 @@ candidate_kind: `research_premise`
 authority_effect: `none`
 diff_scope: `selected_source_items_only`
 
-PR #1943で統合された24 path／91 hunk、PR #1946の20 path／21 hunk、候補選定時点では未統合だったPR #1949の40 path／40 hunkを既選定範囲として固定する。PR #1949はその後mainへ統合済みである。その合計84 path／152 hunkを除いた残余316 files／340 hunksから、source holdingの`PREISO-REV-000085..000144`の60 path／60 hunkを選定した。PR #1949候補のID／pathとはvalidatorで重複を検査する。
+PR #1943で統合された24 path／91 hunk、PR #1946の20 path／21 hunk、候補選定時点では未統合だったPR #1949の40 path／40 hunkを既選定範囲として固定する。PR #1949はその後mainへ統合済みである。選定時は`unmerged_candidate`、rebaseline時は`integrated_in_latest_main`として、historical round1 ref `9d12b137...`、integration commit `e21962d...`、merged HEAD `747071f...`をlineageへ固定する。その合計84 path／152 hunkを除いた残余316 files／340 hunksから、source holdingの`PREISO-REV-000085..000144`の60 path／60 hunkを選定した。PR #1949候補のID／pathとはvalidatorで重複を検査する。
 
 全体のGit差分分母は400 files／492 hunks。今回の選定後はcombined selected 144 files／212 hunks、残り256 files／280 hunksとなる。source holding自体は333 recordsであり、Git差分の400 filesとは別のdenominatorとして保持する。
 
