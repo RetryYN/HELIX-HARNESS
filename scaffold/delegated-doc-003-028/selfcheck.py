@@ -90,6 +90,26 @@ def main() -> int:
         lambda document: document["atoms"][next(index for index, atom in enumerate(document["atoms"]) if atom["original_id"] == "GH-AC-001")].update({"normalized_statement": "acceptance condition GH-AC-001"}),
         "normalized_statementがplaceholder",
     )
+    run_case(
+        "missing unresolved pair acceptance decision",
+        lambda document: document["unresolved_decisions"].pop(),
+        "unresolved_decisionsのmissing AC ID集合",
+    )
+    run_case(
+        "pair acceptance audit mutation",
+        lambda document: document["pair_acceptance_reference_audit"].update({"missing_from_pair": ["GH-AC-016"]}),
+        "pair_acceptance_reference_auditが固定blob再計算結果と不一致",
+    )
+    run_case(
+        "test atom unresolved linkage deletion",
+        lambda document: next(atom for atom in document["atoms"] if atom["original_id"] == "GH-T-014").update({"unresolved_decision_ids": []}),
+        "DD328-SEM-GH-T-014 unresolved_decision_idsが未定義または不一致",
+    )
+    run_case(
+        "extra unresolved pair acceptance decision",
+        lambda document: document["unresolved_decisions"].append({"decision_id": "RDP-UNRESOLVED-GH-AC-999"}),
+        "unresolved_decisionsのmissing AC ID集合",
+    )
     return 0
 
 

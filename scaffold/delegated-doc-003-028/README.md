@@ -17,6 +17,8 @@ candidate kind・target・owner候補・未確認のphase／implementation／con
 consumer refs空、consumer closure pending。003のphase候補はPHCAP-16/17/18/20、028はPHCAP-16であり、
 いずれも候補分類に留まる。
 
+DOC-028の`GH-T-014/015/016`が参照する`GH-AC-016/017/034`は、pairのDOC-003には定義がない。原文の参照を保持したうえで3件を未解決として記録し、対応先・意味・owner・受入authorityを推定しない。
+
 ```text
 python3 scaffold/delegated-doc-003-028/validate.py
 python3 scaffold/delegated-doc-003-028/selfcheck.py

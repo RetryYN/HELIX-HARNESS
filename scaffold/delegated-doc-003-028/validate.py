@@ -126,6 +126,11 @@ EXPECTED_SUMMARY_SOURCE_ANCHORS = {
     "GH-T-015": ("current contract内の局所correctness/security", "後続Issue"),
     "GH-T-016": ("native auto-merge設定済み", "current HEADを再照合"),
 }
+EXPECTED_UNRESOLVED_ATOM_LINKS = {
+    "GH-T-014": "RDP-UNRESOLVED-GH-AC-016",
+    "GH-T-015": "RDP-UNRESOLVED-GH-AC-017",
+    "GH-T-016": "RDP-UNRESOLVED-GH-AC-034",
+}
 EXPECTED_ORIGINAL_IDS = {
     *(f"GH-FR-{index:03d}" for index in range(1, 18)),
     *(f"GH-NFR-{index:03d}" for index in range(1, 9)),
@@ -212,6 +217,26 @@ def check_span(errors: list[str], label: str, blob: bytes, declaration: dict) ->
     actual_sha = "sha256:" + hashlib.sha256(actual).hexdigest()
     if declaration.get("sha256") != actual_sha:
         fail(errors, f"{label} span SHA-256不一致: {actual_sha}")
+
+
+def fixed_acceptance_ids(blob: bytes) -> list[str]:
+    """DOC-003固定blobのAC定義行だけを抽出する。DOC-028参照行とは分離する。"""
+    ids = set()
+    for line in blob.decode("utf-8").splitlines():
+        match = re.match(r"^\|\s*(GH-AC-\d{3})\s*\|", line)
+        if match:
+            ids.add(match.group(1))
+    return sorted(ids)
+
+
+def fixed_acceptance_references(blob: bytes) -> dict[str, tuple[str, int]]:
+    """DOC-028固定blobのTest ID→AC IDとsource lineを抽出する。"""
+    refs: dict[str, tuple[str, int]] = {}
+    for line_no, line in enumerate(blob.decode("utf-8").splitlines(), 1):
+        match = re.match(r"^\|\s*(GH-T-\d{3})\s*\|\s*(GH-AC-\d{3})\s*\|", line)
+        if match:
+            refs[match.group(2)] = (match.group(1), line_no)
+    return refs
 
 
 def main() -> int:
@@ -306,6 +331,55 @@ def main() -> int:
             fail(errors, f"{source_id} line_count不一致")
         if source.get("source_declared_status") not in {"confirmed", "proposed"}:
             fail(errors, f"{source_id} source status候補が不正")
+
+    # Pair closure must not invent AC definitions. Recompute both sets from the
+    # fixed archive blobs and require an explicit unresolved record per missing ID.
+    pair_audit = candidate.get("pair_acceptance_reference_audit")
+    doc3_blob = source_blobs.get("DELEGATED-DOC-003")
+    doc28_blob = source_blobs.get("DELEGATED-DOC-028")
+    defined_ac_ids = fixed_acceptance_ids(doc3_blob) if doc3_blob is not None else []
+    referenced_ac_rows = fixed_acceptance_references(doc28_blob) if doc28_blob is not None else {}
+    missing_ac_ids = sorted(set(referenced_ac_rows) - set(defined_ac_ids))
+    expected_unresolved_ids = [f"RDP-UNRESOLVED-{ac_id}" for ac_id in missing_ac_ids]
+    expected_pair_audit = {
+        "method": "recompute exact GH-AC definitions from DOC-003 fixed archive blob and GH-T→GH-AC references from DOC-028 fixed archive blob",
+        "source_document_id": "DELEGATED-DOC-003",
+        "source_defined_acceptance_ids": defined_ac_ids,
+        "reference_document_id": "DELEGATED-DOC-028",
+        "referenced_acceptance_ids": sorted(referenced_ac_rows),
+        "missing_from_pair": missing_ac_ids,
+        "unresolved_decision_ids": expected_unresolved_ids,
+        "admission": "fail-close; no AC meaning, owner, authority, acceptance, or parity is inferred for missing IDs",
+    }
+    if pair_audit != expected_pair_audit:
+        fail(errors, f"pair_acceptance_reference_auditが固定blob再計算結果と不一致: expected={expected_pair_audit} actual={pair_audit}")
+    unresolved_records = candidate.get("unresolved_decisions")
+    if not isinstance(unresolved_records, list):
+        fail(errors, "unresolved_decisionsはlistでなければならない")
+        unresolved_records = []
+    unresolved_objects = [
+        record for record in unresolved_records
+        if isinstance(record, dict) and str(record.get("decision_id", "")).startswith("RDP-UNRESOLVED-GH-AC-")
+    ]
+    if len(unresolved_objects) != len(expected_unresolved_ids) or {record.get("decision_id") for record in unresolved_objects} != set(expected_unresolved_ids):
+        fail(errors, f"unresolved_decisionsのmissing AC ID集合が不一致: expected={expected_unresolved_ids}")
+    for ac_id in missing_ac_ids:
+        test_id, source_line = referenced_ac_rows[ac_id]
+        expected_record = {
+            "decision_id": f"RDP-UNRESOLVED-{ac_id}",
+            "acceptance_id": ac_id,
+            "test_id": test_id,
+            "status": "unresolved",
+            "source_document_id": "DELEGATED-DOC-028",
+            "source_line": source_line,
+            "pair_document_id": "DELEGATED-DOC-003",
+            "defined_acceptance_ids_in_pair": defined_ac_ids,
+            "reason": f"{ac_id} is referenced by {test_id} in DELEGATED-DOC-028 but no matching {ac_id} definition exists in DELEGATED-DOC-003 fixed archive blob",
+            "required_resolution": "human decision or a lossless pair-source definition is required before acceptance closure; do not infer meaning from the test row",
+        }
+        actual_record = next((record for record in unresolved_objects if record.get("decision_id") == expected_record["decision_id"]), None)
+        if actual_record != expected_record:
+            fail(errors, f"{expected_record['decision_id']} unresolved recordが固定blob差分と不一致")
 
     legacy_status = candidate.get("legacy_asset_status")
     if not isinstance(legacy_status, list) or {x.get("source_document_id") for x in legacy_status if isinstance(x, dict)} != EXPECTED_SOURCE_IDS:
@@ -460,6 +534,14 @@ def main() -> int:
             for anchor in EXPECTED_SUMMARY_SOURCE_ANCHORS[original_id]:
                 if anchor not in source_text:
                     fail(errors, f"{atom_id} normalized_statementのsource grounding不足: {anchor}")
+        if original_id in EXPECTED_UNRESOLVED_ATOM_LINKS:
+            unresolved_id = EXPECTED_UNRESOLVED_ATOM_LINKS[original_id]
+            if atom.get("unresolved_decision_ids") != [unresolved_id]:
+                fail(errors, f"{atom_id} unresolved_decision_idsが未定義または不一致")
+            if not any(unresolved_id in str(value) for value in atom.get("possible_conflicts", [])):
+                fail(errors, f"{atom_id} possible_conflictsが{unresolved_id}へ紐付いていない")
+            if not any(unresolved_id in str(value) for value in atom.get("questions", [])):
+                fail(errors, f"{atom_id} questionsが{unresolved_id}へ紐付いていない")
         if atom.get("legacy_status_ref") not in EXPECTED_SOURCE_IDS or atom.get("legacy_status_unconfirmed") is not True:
             fail(errors, f"{atom_id} legacy status未確認境界がない")
         legacy_snapshot = atom.get("legacy_state", {})

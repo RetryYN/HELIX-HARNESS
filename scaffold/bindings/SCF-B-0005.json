@@ -55,22 +55,22 @@
     },
     {
       "path": "scaffold/delegated-doc-003-028/README.md",
-      "sha256": "7ef5e68538fedd75bfe72d178ee2ce3d140869c90abece5450370f9edb0ac7e9",
+      "sha256": "66127329ce112004bc07b6e9de4af9a573fd25d0500e96e8acd7328a115dd6c3",
       "note": "候補scope、原ID分割、停止条件"
     },
     {
       "path": "scaffold/delegated-doc-003-028/inventory.json",
-      "sha256": "fab970e91446d7a33f372757bed610fe3e9b6e1de8f32d850ae0eafcae1003a7",
+      "sha256": "7d7be8f5c82337c856844acb74a42f484fee2f74c1e249cce2ba2bf5c8f05974",
       "note": "14 coverage span、59 semantic atom、legacy status、reference linkage"
     },
     {
       "path": "scaffold/delegated-doc-003-028/validate.py",
-      "sha256": "c7e39f8b7122d8f6cfed6dd8e97e7af87cc16b4315a691fa83206b07a4cf2e5f",
+      "sha256": "ded92867acb56c3645a0849fdf63fe5b674723e40da2edb0fd2221faa5952b97",
       "note": "台帳／Git blob／原ID／atom／owner／legacy status静的検証"
     },
     {
       "path": "scaffold/delegated-doc-003-028/selfcheck.py",
-      "sha256": "dbe2cbaf6d6fdcff49b85d3d6dfd14ad245d0c502f90d8fac5c57ec9c41ebe06",
+      "sha256": "6fcbe1583609dd591565213b142b66bd7f2b4773e2169718bdf9fd3d0129054f",
       "note": "digest、edge、coverage、原ID欠落の否定例"
     }
   ],

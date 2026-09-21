@@ -3046,11 +3046,13 @@
       ],
       "possible_conflicts": [
         "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
-        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+        "owner候補はproduct boundaryからの候補で、採用ownerではない",
+        "対応するGH-AC-016がDOC-003固定archive blobに未定義で、pairからAC meaning／authority／ownerを生成できない。（RDP-UNRESOLVED-GH-AC-016）"
       ],
       "questions": [
         "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
-        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか",
+        "GH-AC-016の定義または人間decisionをどのsourceで確定するか（RDP-UNRESOLVED-GH-AC-016）"
       ],
       "legacy_state": {
         "phase_candidates": [
@@ -3063,7 +3065,10 @@
         "consumer_status": "pending",
         "consumer_refs": [],
         "unconfirmed": true
-      }
+      },
+      "unresolved_decision_ids": [
+        "RDP-UNRESOLVED-GH-AC-016"
+      ]
     },
     {
       "semantic_atom_id": "DD328-SEM-GH-T-015",
@@ -3098,11 +3103,13 @@
       ],
       "possible_conflicts": [
         "単一test rowにcurrent PR修正、独立lifecycle、性能、命名の異なる責務が含まれる",
-        "HARNESS／OSの後続owner配置は未決"
+        "HARNESS／OSの後続owner配置は未決",
+        "対応するGH-AC-017がDOC-003固定archive blobに未定義で、current PR修正と後続Issue分離のAC authorityをpairから確定できない。（RDP-UNRESOLVED-GH-AC-017）"
       ],
       "questions": [
         "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
-        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか",
+        "GH-AC-017の定義または人間decisionをどのsourceで確定するか（RDP-UNRESOLVED-GH-AC-017）"
       ],
       "legacy_state": {
         "phase_candidates": [
@@ -3115,7 +3122,10 @@
         "consumer_status": "pending",
         "consumer_refs": [],
         "unconfirmed": true
-      }
+      },
+      "unresolved_decision_ids": [
+        "RDP-UNRESOLVED-GH-AC-017"
+      ]
     },
     {
       "semantic_atom_id": "DD328-SEM-GH-T-016",
@@ -3150,11 +3160,13 @@
       ],
       "possible_conflicts": [
         "原ID単位は候補境界であり、unit／connection／compositeの最終分割ではない",
-        "owner候補はproduct boundaryからの候補で、採用ownerではない"
+        "owner候補はproduct boundaryからの候補で、採用ownerではない",
+        "対応するGH-AC-034がDOC-003固定archive blobに未定義で、native auto-merge拒否と明示merge条件のAC authorityをpairから確定できない。（RDP-UNRESOLVED-GH-AC-034）"
       ],
       "questions": [
         "この原IDはHARNESS normative contract、OS execution/projection、または接続atomのどれか",
-        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか"
+        "旧phase／implementation／consumer状態をこのatomへ直接移管できるか",
+        "GH-AC-034の定義または人間decisionをどのsourceで確定するか（RDP-UNRESOLVED-GH-AC-034）"
       ],
       "legacy_state": {
         "phase_candidates": [
@@ -3167,7 +3179,10 @@
         "consumer_status": "pending",
         "consumer_refs": [],
         "unconfirmed": true
-      }
+      },
+      "unresolved_decision_ids": [
+        "RDP-UNRESOLVED-GH-AC-034"
+      ]
     },
     {
       "semantic_atom_id": "DD328-SEM-DOC-003-METADATA",
@@ -3560,7 +3575,85 @@
     "legacy implementation and consumer closure remain unknown/pending despite document/test-design presence",
     "source status confirmed/proposed is preserved metadata, not current authority or approval",
     "acceptance table and pair relation do not establish current L10 execution or parity",
-    "successor IDs, human decision, adoption, L2/L3/L10 freeze, implementation, and release remain absent"
+    "successor IDs, human decision, adoption, L2/L3/L10 freeze, implementation, and release remain absent",
+    {
+      "decision_id": "RDP-UNRESOLVED-GH-AC-016",
+      "acceptance_id": "GH-AC-016",
+      "test_id": "GH-T-014",
+      "status": "unresolved",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_line": 38,
+      "pair_document_id": "DELEGATED-DOC-003",
+      "defined_acceptance_ids_in_pair": [
+        "GH-AC-001",
+        "GH-AC-002",
+        "GH-AC-003",
+        "GH-AC-004",
+        "GH-AC-005",
+        "GH-AC-006",
+        "GH-AC-007",
+        "GH-AC-008",
+        "GH-AC-009",
+        "GH-AC-010",
+        "GH-AC-011",
+        "GH-AC-012",
+        "GH-AC-013"
+      ],
+      "reason": "GH-AC-016 is referenced by GH-T-014 in DELEGATED-DOC-028 but no matching GH-AC-016 definition exists in DELEGATED-DOC-003 fixed archive blob",
+      "required_resolution": "human decision or a lossless pair-source definition is required before acceptance closure; do not infer meaning from the test row"
+    },
+    {
+      "decision_id": "RDP-UNRESOLVED-GH-AC-017",
+      "acceptance_id": "GH-AC-017",
+      "test_id": "GH-T-015",
+      "status": "unresolved",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_line": 39,
+      "pair_document_id": "DELEGATED-DOC-003",
+      "defined_acceptance_ids_in_pair": [
+        "GH-AC-001",
+        "GH-AC-002",
+        "GH-AC-003",
+        "GH-AC-004",
+        "GH-AC-005",
+        "GH-AC-006",
+        "GH-AC-007",
+        "GH-AC-008",
+        "GH-AC-009",
+        "GH-AC-010",
+        "GH-AC-011",
+        "GH-AC-012",
+        "GH-AC-013"
+      ],
+      "reason": "GH-AC-017 is referenced by GH-T-015 in DELEGATED-DOC-028 but no matching GH-AC-017 definition exists in DELEGATED-DOC-003 fixed archive blob",
+      "required_resolution": "human decision or a lossless pair-source definition is required before acceptance closure; do not infer meaning from the test row"
+    },
+    {
+      "decision_id": "RDP-UNRESOLVED-GH-AC-034",
+      "acceptance_id": "GH-AC-034",
+      "test_id": "GH-T-016",
+      "status": "unresolved",
+      "source_document_id": "DELEGATED-DOC-028",
+      "source_line": 40,
+      "pair_document_id": "DELEGATED-DOC-003",
+      "defined_acceptance_ids_in_pair": [
+        "GH-AC-001",
+        "GH-AC-002",
+        "GH-AC-003",
+        "GH-AC-004",
+        "GH-AC-005",
+        "GH-AC-006",
+        "GH-AC-007",
+        "GH-AC-008",
+        "GH-AC-009",
+        "GH-AC-010",
+        "GH-AC-011",
+        "GH-AC-012",
+        "GH-AC-013"
+      ],
+      "reason": "GH-AC-034 is referenced by GH-T-016 in DELEGATED-DOC-028 but no matching GH-AC-034 definition exists in DELEGATED-DOC-003 fixed archive blob",
+      "required_resolution": "human decision or a lossless pair-source definition is required before acceptance closure; do not infer meaning from the test row"
+    }
   ],
   "review_boundary": "static scaffold candidate only; coverage spans and original-id semantic atoms are separate; no source mutation, no archive runtime/test/CI execution, no adoption or closure claim",
   "reference_edge_linkage": {
@@ -3851,5 +3944,54 @@
       "DOC-028-EVIDENCE": "unresolved"
     },
     "normalized_statement_review": "meaning of normalized_statement is review-only; validator checks presence and source grounding, not semantic correctness"
+  },
+  "pair_acceptance_reference_audit": {
+    "method": "recompute exact GH-AC definitions from DOC-003 fixed archive blob and GH-T→GH-AC references from DOC-028 fixed archive blob",
+    "source_document_id": "DELEGATED-DOC-003",
+    "source_defined_acceptance_ids": [
+      "GH-AC-001",
+      "GH-AC-002",
+      "GH-AC-003",
+      "GH-AC-004",
+      "GH-AC-005",
+      "GH-AC-006",
+      "GH-AC-007",
+      "GH-AC-008",
+      "GH-AC-009",
+      "GH-AC-010",
+      "GH-AC-011",
+      "GH-AC-012",
+      "GH-AC-013"
+    ],
+    "reference_document_id": "DELEGATED-DOC-028",
+    "referenced_acceptance_ids": [
+      "GH-AC-001",
+      "GH-AC-002",
+      "GH-AC-003",
+      "GH-AC-004",
+      "GH-AC-005",
+      "GH-AC-006",
+      "GH-AC-007",
+      "GH-AC-008",
+      "GH-AC-009",
+      "GH-AC-010",
+      "GH-AC-011",
+      "GH-AC-012",
+      "GH-AC-013",
+      "GH-AC-016",
+      "GH-AC-017",
+      "GH-AC-034"
+    ],
+    "missing_from_pair": [
+      "GH-AC-016",
+      "GH-AC-017",
+      "GH-AC-034"
+    ],
+    "unresolved_decision_ids": [
+      "RDP-UNRESOLVED-GH-AC-016",
+      "RDP-UNRESOLVED-GH-AC-017",
+      "RDP-UNRESOLVED-GH-AC-034"
+    ],
+    "admission": "fail-close; no AC meaning, owner, authority, acceptance, or parity is inferred for missing IDs"
   }
 }
