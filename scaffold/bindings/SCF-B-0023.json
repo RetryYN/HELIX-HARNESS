@@ -1,0 +1,98 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0023",
+  "kind": "scaffold",
+  "title": "RDP-001 holding外67 path保存先・authority gap監査",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "RDP-001 source preservation／authority review（cross-product upstream、authority未確定）",
+  "state": "registered",
+  "reason": "baseline→pre-isolationのGit diff 400 pathのうち、既存pathの333-record holding外にあるstatus Aの67 pathについて、archive/root、旧asset catalog、現行mainの保存状態を静的に記録する。正式保存先、authority、意味atom、製品責務、実装、完了は未確定のため、未使用registeredで保持する。",
+  "upstream": [
+    {"path": "scaffold/pre-isolation-outside-holding-67/report.json", "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795", "note": "67 path audit report"},
+    {"path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl", "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180", "note": "333-record existing-path holding contract"},
+    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "legacy catalog lookup source"},
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995", "note": "new-generation authority and operation boundary"},
+    {"path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md", "sha256": "99d1e78e7722d5569d5615b8c2700452bedf7e76448e68f11b06acbde30efec7", "note": "pre-isolation delta audit contract"},
+    {"path": "docs/governance/management-provisional-requirement-registration.md", "sha256": "86e0eae4c447a4d7113b84b72d6b3a8cb89188189090584fbcc76fbbbe810176", "note": "provisional registration boundary"}
+  ],
+  "role": "RDP-001 holding外新規67 pathの保存先・authority gapをread-onlyで監査し、後続semantic reviewへ引き渡す",
+  "obligations": [
+    "baseline 6fabd12512a3659fff4a956692cdd61faeeb16ce→pre-isolation 2d4991042be55268bac30a8bbcdac45b3865030aの全400 path／492 hunkと333-record holdingを固定し、外部集合をstatus Aの67 pathとして再計算する",
+    "67 pathごとのpre-isolation／archive commit Git blob OIDと同一・相違を保持し、archive/rootへの保存を0件として確認する",
+    "旧asset catalogのpath一致0件、現行mainの同一2・変更6・不在59を保持し、保存先gapをauthority確定へ昇格させない",
+    "path prefix由来のproduct／phase分類とimplementation evidence noneを記録し、意味atomや正式product責務へ昇格させない",
+    "findings_only、authority_effect none、binding registered、human authority未確定を維持する",
+    "旧archiveはGit object read-only参照だけに限定し、旧runtime／test／CI／hookを実行せずoracle・fallback・実装にしない",
+    "validatorとselfcheckの合格から保存先確定、意味同値、要求採否、実装、consumer closure、受入、releaseを生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 source preservation／semantic review担当",
+      "cross-product upstream authority review担当",
+      "Scaffold Binding stale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "固定Git objectのread-only取得",
+      "pre-isolation source holding",
+      "legacy asset catalog",
+      "new-generation authority boundary"
+    ],
+    "boundary": "候補README、report、validator、selfcheck、Bindingだけをscaffold/に置く。正式保存先、authority、意味atom、product owner、phase authority、実装、consumer closure、受入、releaseは確定しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/pre-isolation-outside-holding-67/validate.py",
+      "python3 scaffold/pre-isolation-outside-holding-67/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime・test・CI・hookの実行",
+      "旧sourceを現行runtime・test・CIのoracle・fallback・実装にすること",
+      "scaffold/外への書き込み",
+      "保存先・authority・要求採否・意味atom・実装・consumer closure・受入・releaseの確定",
+      "GitHub、Issue、PR、CI、DB、deploymentへの外部作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/pre-isolation-outside-holding-67/README.md",
+    "scaffold/pre-isolation-outside-holding-67/report.json",
+    "scaffold/pre-isolation-outside-holding-67/validate.py",
+    "scaffold/pre-isolation-outside-holding-67/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": [
+      "scaffold/pre-isolation-outside-holding-67/validate.py（67 status A、Git blob OID、archive/root・catalog、main状態、product／phase数）",
+      "scaffold/pre-isolation-outside-holding-67/selfcheck.py（分母、Git blob、archive/root、main不在、分類、Binding state、authorityの7否定変異）",
+      "scaffold/tools/scfctl.py validate／stale／residuals（Binding schema・digest・残余確認）",
+      "git diff --check（候補文書の静的整形）"
+    ],
+    "negative_cases": [
+      "67 path分母を66へ変更する",
+      "pre-isolation Git blob OIDを変更する",
+      "archive/root保存件数を0から変更する",
+      "現行main不在59件を変更する",
+      "product分類数を変更する",
+      "SCF-B-0023をregisteredからactiveへ変更する",
+      "authority_effect noneを変更する",
+      "旧archive runtime／test／CI／hookを実行またはoracle／fallbackにする"
+    ]
+  },
+  "replacement": {
+    "role_target": "RDP-001 holding外新規pathの保存先・authority・semantic reviewを扱う正式な上流管理契約",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}
