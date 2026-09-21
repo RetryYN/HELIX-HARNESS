@@ -1,0 +1,164 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0028",
+  "kind": "scaffold",
+  "title": "PHCAP-16 Operations／Monitoring research premise candidate",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS運用・監視上流整理（HELIX-Web-OS接続を含む。正式ownerは未解決）",
+  "state": "active",
+  "reason": "PHCAP-16はHELIX-OSとHELIX-Web-OSをproduct targetとするが、現行はdraft requirementとcrosswalkであり、L3/L10/L11/L12、運用・受入・consumer closureが未成立である。旧L3/L6/L7 implementation/test/L10 test-designの代表5 assetをsource hash/exact anchor、disposition、phase/product候補、failure/consumer候補、判断0件とともにstatic candidateへ固定する。旧source/test/runtimeをcurrent implementation、oracle、authorityへ昇格させず、OS project controlとWeb-OS service runtimeを分離したまま接続候補を保持する。",
+  "upstream": [
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "note": "PHCAP-16 phase record and its draft/partial status"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "five selected Historical/unresolved/unknown disposition records"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "five selected phase/product candidate and execution-false records"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "selected asset decision matches are zero"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "authority, layer and archive read-only boundary"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "HELIX-OS and HELIX-Web-OS responsibility boundary"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "note": "OS operations governance and Web-OS evidence boundary"
+    },
+    {
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "note": "Web-OS service operations and bounded export"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md",
+      "sha256": "0a48e51ddb95212c4fcf45f218c25f110af7c2cdd30f75ec4c75ae90d47b39b6",
+      "note": "NIO semantic reapproval and product-specific operational quality split"
+    },
+    {
+      "path": "scaffold/phcap16-operations-monitoring/README.md",
+      "sha256": "24847c9c6a2588a80fda32dac1a7b8bb1b03db6162d8b56b52a02cfa2404b354",
+      "note": "candidate scope and unknown/residual boundary"
+    },
+    {
+      "path": "scaffold/phcap16-operations-monitoring/inventory.json",
+      "sha256": "7f511a1ebcd673badf0d3461bfc57a9e7c6d5aa40f431157415a75e3031f4c09",
+      "note": "five assets, exact anchors, two units, fifteen candidate edges"
+    },
+    {
+      "path": "scaffold/phcap16-operations-monitoring/validate.py",
+      "sha256": "842e1d83f204fe22a206b8f1ce611c800346fc09421bca0b31aae2aca5e465cf",
+      "note": "static ledger/source/product-unit validator"
+    },
+    {
+      "path": "scaffold/phcap16-operations-monitoring/selfcheck.py",
+      "sha256": "91aadc1feb6ab5a3455f44e4d136872c788c64627bc3fddc5ab423544a92fe9b",
+      "note": "negative-case guard against promotion and drift"
+    }
+  ],
+  "role": "PHCAP-16 operations/monitoringの旧asset到達層、product unit split、current direct ref、failure/consumer/decision residualを、実装・authority・採否へ昇格させないresearch premise candidateとして保持する",
+  "obligations": [
+    "PHCAP-16のselected legacy asset 5件をsource path/hash、exact line anchor、L3/L6/L7/L10 reach、asset-level implementation unknown、execution falseで保持する",
+    "phase inventoryのimplemented_partial_with_testsとselected assetのunknown/unexecutedを別事実として保持し、current implementation/passを推定しない",
+    "HELIX-OS project operations/control unitとHELIX-Web-OS service runtime unitを分離し、permitted evidence exportだけをconnection candidateとして記録する",
+    "current L2/crosswalk refsをdocument evidence onlyとして保持し、L3/L10/L11/L12、SLO/RTO/RPO/retention、operator、acceptance、releaseを生成しない",
+    "selected assetのdecision match 0、consumer closure pending、failure execution receipt 0、reuse exclusionを保持する",
+    "old archiveはread-only referenceに限り、old runtime/test/CI/hook、新世代CI、Issue/GitHub/PR/DB/deploymentは実行・変更しない",
+    "origin/mainがcapture commitから変化したらstop/rebaselineし、candidateをcurrent baselineへ扱わない"
+  ],
+  "connections": {
+    "consumers": [
+      "PHCAP-16 operations/monitoring semantic review担当",
+      "HELIX-OS operations governance review担当",
+      "HELIX-Web-OS service runtime boundary review担当",
+      "old operations asset failure/consumer/decision closure担当",
+      "Scaffold Binding stale/replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "phase/product/disposition/decision ledger read-only照合",
+      "old source exact span read-only照合",
+      "HELIX-OS L2、HELIX-Web-OS L2、product boundary、operational crosswalk",
+      "scaffold candidate validator/selfcheck"
+    ],
+    "boundary": "成果物はscaffold/配下。archive sourceは静的referenceのみで、旧runtime/test/CI/hookは実行しない。current implementation、authority、要求採否、owner、successor、acceptance、release、consumer closureは生成しない。HELIX-OSとHELIX-Web-OSのevent store、credential、tenant state、writer、release authorityを共有しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/phcap16-operations-monitoring/validate.py",
+      "python3 scaffold/phcap16-operations-monitoring/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|stale|residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime・test・CI・hook実行",
+      "旧sourceを現行runtime・test・CIのoracle・fallback・実装へ昇格",
+      "scaffold/外への書き込み",
+      "phase capability_status、current L2、old source/test sourceからimplementation・operation・pass・authorityを生成",
+      "OSとWeb-OSのshared state/writer/credential/release authorityを導出",
+      "候補validator／selfcheckからのIssue、GitHub、CI、DB、deploymentへの外部作用",
+      "PR作成・修正側によるmerge、post-merge read-after、Issue close"
+    ]
+  },
+  "artifacts": [
+    "scaffold/phcap16-operations-monitoring/README.md",
+    "scaffold/phcap16-operations-monitoring/inventory.json",
+    "scaffold/phcap16-operations-monitoring/validate.py",
+    "scaffold/phcap16-operations-monitoring/selfcheck.py",
+    "scaffold/bindings/SCF-B-0028.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "scaffold/phcap16-operations-monitoring/validate.py（5 asset exact source/hash/span、ledger、2 product unit、15 edge、unknown、decision/failure/consumer残差）",
+      "scaffold/phcap16-operations-monitoring/selfcheck.py（15 negative cases）",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "authority/adoption/current implementation/operation/passを推定する",
+      "HELIX-OS／HELIX-Web-OSの責務をshared writer/stateへ統合する",
+      "old source/test/design presenceをexecution/pass/oracleへ昇格する",
+      "decision absence、consumer pending、failure receipt 0をclosureへ変換する",
+      "phase inventoryのpartial statusをcurrent implementationへ変換する",
+      "origin/main変更後にrebaselineなしで候補をcurrent扱いする"
+    ]
+  },
+  "replacement": {
+    "role_target": "正式なPHCAP-16 product-specific operations/monitoring L2／L3／L10／L11／L12 crosswalk、運用evidence、consumer closure、OS↔Web-OS接続契約（承認後に導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
