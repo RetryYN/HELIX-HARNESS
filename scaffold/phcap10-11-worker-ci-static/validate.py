@@ -41,6 +41,63 @@ EXPECTED_EXCLUSIONS = {
 }
 PRODUCTS = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
 
+EXPECTED_ANCHOR_COUNTS = {
+    ASSET_IDS[0]: 2,
+    ASSET_IDS[1]: 2,
+    ASSET_IDS[2]: 1,
+    ASSET_IDS[3]: 2,
+    ASSET_IDS[4]: 2,
+    ASSET_IDS[5]: 4,
+    ASSET_IDS[6]: 3,
+    ASSET_IDS[7]: 1,
+    ASSET_IDS[8]: 2,
+    ASSET_IDS[9]: 2,
+    ASSET_IDS[10]: 1,
+}
+EXPECTED_ANCHOR_MEANING = "static source span; no execution, pass or authority claim"
+EXPECTED_PROHIBITED_INFERENCE = [
+    "旧sourceの存在からimplemented/tested/verified/operationalを生成しない",
+    "旧CI green、旧test design、旧runtime sourceを新世代CIのoracle・baseline・fallbackにしない",
+    "product_targetsやpathからproduct owner、要求採否、successorを確定しない",
+    "Web／Web-OS direct ref欠落から未実装と推定しない",
+    "Scaffold validator/selfcheckの合格からL2/L11承認、L3/L10、CI green、完了、外部作用を生成しない",
+    "bootstrap approvalからlease、executor、SCF-B-0004、operation_changeの成立を推定しない",
+]
+
+EXPECTED_KEYSETS = {
+    "root": frozenset({"authority_effect", "base", "consumer_residual", "counts", "current_evidence", "decisions", "equivalence_claim", "failure_residual", "gaps", "human_decision_ref", "legacy_phase_assessment", "meaning_change_applied", "old_runtime_test_ci_execution", "prohibited_inference", "rebaseline", "schema", "scope", "status", "successor_requirement_ids", "task"}),
+    "root.base": frozenset({"branch", "candidate_parent_status", "captured_at", "origin_main_commit", "repository", "worktree"}),
+    "root.rebaseline": frozenset({"changed", "origin_main_at_final", "origin_main_at_start", "stop_condition"}),
+    "root.task": frozenset({"inventory_path", "inventory_sha256", "phase_record_snapshots", "phases", "task_ids", "title"}),
+    "root.task.phase_record_snapshots[]": frozenset({"authority_effect", "current", "gaps", "legacy", "new_build_allowed", "phase", "product_targets", "scaffold", "task_id", "title", "transition_assessment"}),
+    "root.task.phase_record_snapshots[].current": frozenset({"evidence_products", "refs", "status"}),
+    "root.task.phase_record_snapshots[].legacy": frozenset({"assessment", "capability_status", "exists", "layers_evidenced", "maximum_layer_evidenced", "representative_assets"}),
+    "root.task.phase_record_snapshots[].legacy.representative_assets[]": frozenset({"asset_id", "implementation_status", "source_path"}),
+    "root.scope": frozenset({"candidate_edges", "candidate_units", "closure_rule", "legacy_asset_ids", "legacy_layer_reach", "phase_current_evidence_products", "product_targets"}),
+    "root.scope.phase_current_evidence_products": frozenset({"PHCAP-10", "PHCAP-11"}),
+    "root.scope.legacy_layer_reach": frozenset({"PHCAP-10", "PHCAP-11"}),
+    "root.scope.candidate_units[]": frozenset({"adjacent_ref_ids", "authority_status", "current_ci_status", "current_implementation_status", "current_worker_status", "direct_current_ref_ids", "old_asset_ids", "phase_status", "product", "status", "unit_id", "unresolved"}),
+    "root.scope.candidate_units[].phase_status": frozenset({"PHCAP-10", "PHCAP-11"}),
+    "root.scope.candidate_edges[]": frozenset({"asset_id", "authority_effect", "consumer_status", "edge_id", "implementation_status", "product", "relation", "status", "unit_id"}),
+    "root.current_evidence": frozenset({"acceptance_status", "ci_status", "formal_ci_profile_status", "formal_oracle_registry_status", "implementation_status", "phase_direct_products", "refs", "worker_status"}),
+    "root.current_evidence.phase_direct_products": frozenset({"PHCAP-10", "PHCAP-11"}),
+    "root.current_evidence.refs[]": frozenset({"classification", "exact_text", "line_end", "line_sha256", "line_start", "meaning", "path", "ref_id", "sha256"}),
+    "root.legacy_phase_assessment": frozenset({"asset_level_implementation_claim", "assets", "decision_matches", "legacy_execution_performed", "phase_records"}),
+    "root.legacy_phase_assessment.phase_records[]": frozenset({"authority_effect", "current", "gaps", "legacy", "new_build_allowed", "phase", "product_targets", "scaffold", "task_id", "title", "transition_assessment"}),
+    "root.legacy_phase_assessment.phase_records[].current": frozenset({"evidence_products", "refs", "status"}),
+    "root.legacy_phase_assessment.phase_records[].legacy": frozenset({"assessment", "capability_status", "exists", "layers_evidenced", "maximum_layer_evidenced", "representative_assets"}),
+    "root.legacy_phase_assessment.phase_records[].legacy.representative_assets[]": frozenset({"asset_id", "implementation_status", "source_path"}),
+    "root.legacy_phase_assessment.assets[]": frozenset({"archive_path", "artifact_evidence_kind", "asset_class", "asset_id", "authority_status", "candidate_phase_targets", "candidate_product_targets", "classification_id", "consumer_closure_status", "consumer_evidence", "consumer_refs", "decision_record_ref", "disposition", "failure_evidence", "implementation_evidence_state", "layers_evidenced", "legacy_execution_performed", "legacy_implementation_status", "phase_classification_status", "phase_role", "product_classification_status", "reuse_exclusion_class", "source_anchors", "source_line_count", "source_path", "source_sha256", "unresolved"}),
+    "root.legacy_phase_assessment.assets[].source_anchors[]": frozenset({"anchor_id", "exact_text", "line_end", "line_start", "meaning", "sha256"}),
+    "root.legacy_phase_assessment.assets[].failure_evidence": frozenset({"anchor_ids", "execution_receipts", "status"}),
+    "root.legacy_phase_assessment.assets[].consumer_evidence": frozenset({"anchor_ids", "consumer_refs", "status"}),
+    "root.failure_residual": frozenset({"execution_receipts", "failure_consumer_closure", "status"}),
+    "root.consumer_residual": frozenset({"closure_scope", "consumer_closure_status", "selected_asset_consumer_refs"}),
+    "root.decisions": frozenset({"matching_append_only_decision_record_count", "per_asset", "selected_asset_ids"}),
+    "root.decisions.per_asset": frozenset(ASSET_IDS),
+    "root.counts": frozenset({"candidate_edges", "consumer_closed_assets", "current_refs", "decision_matches", "failure_execution_receipts", "legacy_assets", "missing_direct_product_pairs", "phase_direct_product_pairs", "product_units", "source_anchors"}),
+}
+
 
 def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
@@ -65,6 +122,28 @@ def nonempty(value) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
+def validate_keysets(data: object) -> list[str]:
+    errors: list[str] = []
+
+    def walk(value: object, path: str) -> None:
+        expected = EXPECTED_KEYSETS.get(path)
+        if expected is not None:
+            if not isinstance(value, dict):
+                errors.append("E_KEYSET_TYPE:" + path)
+            elif set(value) != expected:
+                errors.append("E_KEYSET:" + path)
+        if isinstance(value, dict):
+            for key, child in value.items():
+                walk(child, path + "." + str(key))
+        elif isinstance(value, list):
+            for child in value:
+                if isinstance(child, (dict, list)):
+                    walk(child, path + "[]")
+
+    walk(data, "root")
+    return errors
+
+
 def run_git(*args: str) -> str:
     return subprocess.run(
         ["git", *args],
@@ -85,7 +164,7 @@ def is_ancestor(ancestor: str, descendant: str) -> bool:
 
 
 def validate(data: dict, check_files: bool = True) -> list[str]:
-    errors: list[str] = []
+    errors: list[str] = validate_keysets(data)
 
     def req(condition: bool, code: str) -> None:
         if not condition:
@@ -170,7 +249,11 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
 
     disposition = {x.get("asset_id"): x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-disposition.jsonl")}
     catalog = {x.get("asset_id"): x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")}
-    decisions = {x.get("asset_id") for x in read_jsonl(ROOT / "docs/governance/legacy-asset-decisions.jsonl")}
+    decision_rows = read_jsonl(ROOT / "docs/governance/legacy-asset-decisions.jsonl")
+    decision_counts = {
+        aid: sum(1 for row in decision_rows if row.get("asset_id") == aid)
+        for aid in ASSET_IDS
+    }
     assets = data.get("legacy_phase_assessment", {}).get("assets", [])
     req([a.get("asset_id") for a in assets] == ASSET_IDS, "E_ASSET_ORDER")
     seen_anchors: set[str] = set()
@@ -179,7 +262,7 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
         old = disposition.get(aid, {})
         cls = catalog.get(aid, {})
         req(aid in ASSET_IDS, "E_ASSET_ID:" + str(aid))
-        req(not aid in decisions, "E_ASSET_DECISION_LEDGER:" + str(aid))
+        req(decision_counts.get(aid) == 0, "E_ASSET_DECISION_LEDGER:" + str(aid))
         req(asset.get("asset_class") == "Historical", "E_ASSET_CLASS:" + str(aid))
         req(asset.get("authority_status") == "historical", "E_ASSET_AUTHORITY:" + str(aid))
         req(asset.get("disposition") == "unresolved", "E_ASSET_DISPOSITION:" + str(aid))
@@ -201,6 +284,9 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
         if archive.is_file() and check_files:
             req(file_sha(archive) == asset.get("source_sha256"), "E_SOURCE_SHA:" + str(aid))
             req(len(archive.read_text(encoding="utf-8").splitlines()) == asset.get("source_line_count"), "E_SOURCE_LINES:" + str(aid))
+        expected_anchor_ids = [f"{aid}-A{index:02d}" for index in range(1, EXPECTED_ANCHOR_COUNTS.get(aid, 0) + 1)]
+        actual_anchor_ids = [anchor.get("anchor_id") for anchor in asset.get("source_anchors", [])]
+        req(actual_anchor_ids == expected_anchor_ids, "E_ANCHOR_ORDER:" + str(aid))
         for anchor in asset.get("source_anchors", []):
             sid = anchor.get("anchor_id")
             req(nonempty(sid) and sid not in seen_anchors, "E_ANCHOR_DUP:" + str(sid))
@@ -210,10 +296,11 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
                 req(actual == anchor.get("exact_text"), "E_ANCHOR_TEXT:" + str(sid))
                 if actual is not None:
                     req(sha(actual.encode("utf-8")) == anchor.get("sha256"), "E_ANCHOR_SHA:" + str(sid))
-            req(nonempty(anchor.get("meaning")), "E_ANCHOR_MEANING:" + str(sid))
+            req(anchor.get("meaning") == EXPECTED_ANCHOR_MEANING, "E_ANCHOR_MEANING:" + str(sid))
         req(asset.get("failure_evidence", {}).get("execution_receipts") == 0, "E_FAILURE_RECEIPT:" + str(aid))
         req(asset.get("consumer_evidence", {}).get("consumer_refs") == [], "E_CONSUMER_REFS:" + str(aid))
-    req(data.get("legacy_phase_assessment", {}).get("decision_matches") == 0, "E_DECISIONS_TOTAL")
+    decision_total = sum(decision_counts.values())
+    req(data.get("legacy_phase_assessment", {}).get("decision_matches") == decision_total, "E_DECISIONS_TOTAL")
     req(data.get("legacy_phase_assessment", {}).get("asset_level_implementation_claim") is False, "E_IMPL_CLAIM")
 
     current = data.get("current_evidence", {})
@@ -246,13 +333,17 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     req(data.get("failure_residual", {}).get("execution_receipts") == 0, "E_FAILURE_TOTAL")
     req(data.get("consumer_residual", {}).get("selected_asset_consumer_refs") == [], "E_CONSUMER_TOTAL")
     req(data.get("consumer_residual", {}).get("consumer_closure_status") == "pending", "E_CONSUMER_CLOSURE")
+    decisions = data.get("decisions", {})
+    req(decisions.get("selected_asset_ids") == ASSET_IDS, "E_DECISION_ASSETS")
+    req(decisions.get("matching_append_only_decision_record_count") == decision_total, "E_DECISION_COUNT")
+    req(decisions.get("per_asset") == decision_counts, "E_DECISION_PER_ASSET")
     counts = data.get("counts", {})
     req(counts.get("product_units") == len(units), "E_COUNT_UNITS")
     req(counts.get("candidate_edges") == len(edges), "E_COUNT_EDGES")
     req(counts.get("legacy_assets") == len(assets), "E_COUNT_ASSETS")
     req(counts.get("source_anchors") == len(seen_anchors), "E_COUNT_ANCHORS")
     req(counts.get("current_refs") == len(refs), "E_COUNT_REFS")
-    req(counts.get("decision_matches") == 0, "E_COUNT_DECISIONS")
+    req(counts.get("decision_matches") == decision_total, "E_COUNT_DECISIONS")
     req(counts.get("failure_execution_receipts") == 0, "E_COUNT_FAILURE")
     req(counts.get("consumer_closed_assets") == 0, "E_COUNT_CONSUMERS")
     req(counts.get("phase_direct_product_pairs") == 3, "E_COUNT_DIRECT_PAIRS")
@@ -260,6 +351,7 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     for field in ("gaps", "prohibited_inference"):
         req(isinstance(data.get(field), list) and len(data[field]) >= 5, "E_LIST:" + field)
         req(all(nonempty(x) for x in data.get(field, [])), "E_LIST_ITEM:" + field)
+    req(data.get("prohibited_inference") == EXPECTED_PROHIBITED_INFERENCE, "E_PROHIBITED_CONTENT")
     return errors
 
 

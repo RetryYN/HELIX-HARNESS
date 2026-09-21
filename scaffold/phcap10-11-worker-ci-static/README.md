@@ -9,6 +9,7 @@
 - PHCAP-11はphase record上のproduct targetがHELIX-HARNESS／HELIX-OS、current statusが`candidate`、旧到達層がL10、phase-level historical summaryが`implemented_with_workflow_and_test_design`である。
 - 旧代表assetはPHCAP-10が5件、PHCAP-11が6件。全11件をlegacy dispositionとphase/product bootstrapへ照合し、`Historical`、`disposition: unresolved`、`implementation_status: unknown`、`consumer_refs: []`、個別decisionなしを固定した。
 - 旧sourceのexact spanは22件。archive本文は静的に読み、旧runtime、旧test、旧workflow、旧CI、hook、adapterは実行していない。
+- `decisions`の`selected_asset_ids`、ledger静的走査で得た`matching_append_only_decision_record_count`、asset別`per_asset`をgenerator／validatorで再導出し、source anchorの意味・順序と`prohibited_inference`の本文・順序を独立pinした。inventory全階層のrecursive keysetも固定している。
 
 ## 四製品の分類
 
@@ -33,7 +34,7 @@ python3 -B scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorはcapture commitが候補`HEAD`の祖先であることを含め、phase record、旧asset disposition／phase-product分類、archive bytes／line span、現行ref digest／span、4製品unit、22 edge、decision・failure・consumer残差を検査する。selfcheckはbaseline greenを先に確認し、authority・実装・oracle・direct ref・旧実行・consumer closure・decision・digest・unit統合の各陰性例で期待error codeを照合する。no-op mutationは陰性例として受け入れない。
+validatorはcapture commitが候補`HEAD`の祖先であることを含め、phase record、旧asset disposition／phase-product分類、archive bytes／line span、現行ref digest／span、4製品unit、22 edge、decision・failure・consumer残差を検査する。source anchor 22件のmeaning／順序、`prohibited_inference` 6件の本文／順序、inventory全階層のrecursive keyset、decision ledgerのselected/per-asset/countをfail-closeで固定する。selfcheckはbaseline greenを先に確認し、authority・実装・oracle・direct ref・旧実行・consumer closure・decision scan・digest・anchor meaning/order・prohibited inference・recursive keyset・unit統合の各陰性例で期待error codeを照合する24負例を持つ。no-op mutationは陰性例として受け入れない。
 
 ## Binding
 

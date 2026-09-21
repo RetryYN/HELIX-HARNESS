@@ -248,7 +248,13 @@ def make_ref(ref_id: str, path: str, start: int, end: int, classification: str, 
 def main() -> None:
     disposition_rows = {x["asset_id"]: x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-disposition.jsonl")}
     catalog_rows = {x["asset_id"]: x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")}
+    decision_rows = read_jsonl(ROOT / "docs/governance/legacy-asset-decisions.jsonl")
     assets = [build_asset(item, disposition_rows[item["asset_id"]], catalog_rows[item["asset_id"]]) for item in ASSETS]
+    decision_counts = {
+        asset["asset_id"]: sum(1 for row in decision_rows if row.get("asset_id") == asset["asset_id"])
+        for asset in assets
+    }
+    decision_total = sum(decision_counts.values())
     refs = [make_ref(*item) for item in REFS]
     phases = [phase_record("PHCAP-10"), phase_record("PHCAP-11")]
     units = [
@@ -280,13 +286,13 @@ def main() -> None:
         "task": {"task_ids": ["PHCAP-10", "PHCAP-11"], "phases": ["worker_execution", "ci_test"], "title": "Worker execution and CI/Test", "inventory_path": "docs/governance/phase-capability-inventory.json", "inventory_sha256": sha((ROOT / "docs/governance/phase-capability-inventory.json").read_bytes()), "phase_record_snapshots": phases},
         "scope": {"product_targets": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "phase_current_evidence_products": current_products, "legacy_asset_ids": [a["asset_id"] for a in assets], "legacy_layer_reach": {"PHCAP-10": ["L4", "L5", "L6", "L7 implementation/test"], "PHCAP-11": ["L3", "L4", "L6", "L7 implementation/workflow", "L10 test design"]}, "closure_rule": "11 representative assets only; all other phase assets, full consumer closure, product unit split and successor review remain residual", "candidate_units": units, "candidate_edges": edges},
         "current_evidence": {"phase_direct_products": current_products, "implementation_status": "unknown", "acceptance_status": "unknown", "worker_status": "draft_requirement_and_bootstrap_decision", "ci_status": "candidate_unexecuted", "refs": refs, "formal_ci_profile_status": "unknown_not_constructed", "formal_oracle_registry_status": "unknown_not_constructed"},
-        "legacy_phase_assessment": {"phase_records": phases, "assets": assets, "decision_matches": 0, "asset_level_implementation_claim": False, "legacy_execution_performed": False},
+        "legacy_phase_assessment": {"phase_records": phases, "assets": assets, "decision_matches": decision_total, "asset_level_implementation_claim": False, "legacy_execution_performed": False},
         "failure_residual": {"execution_receipts": 0, "status": "historical_source_only_unexecuted", "failure_consumer_closure": "pending"},
         "consumer_residual": {"selected_asset_consumer_refs": [], "consumer_closure_status": "pending", "closure_scope": "selected assets only; no full graph claim"},
-        "decisions": {"selected_asset_ids": [a["asset_id"] for a in assets], "matching_append_only_decision_record_count": 0, "per_asset": {a["asset_id"]: 0 for a in assets}},
+        "decisions": {"selected_asset_ids": [a["asset_id"] for a in assets], "matching_append_only_decision_record_count": decision_total, "per_asset": decision_counts},
         "gaps": ["正式L2/L11、L3/L10、Worker runtime、CI profile、oracle registry、consumer read-afterは未成立", "PHCAP-10のcurrent direct evidenceはHELIX-OSだけであり、bootstrap decisionはexecutor実装やlease存在を成立させない", "PHCAP-11のcurrent direct evidenceはHARNESS／OS候補だけで、新世代CIは未構築・未実行", "HELIX-Web／HELIX-Web-OSにPHCAP-10/11 direct current refがなく、missingはunknownとして保持する", "旧phase-level capability_statusは代表assetの歴史的要約であり、selected assetの実装・pass・operationalを示さない", "複数phase／複数製品候補のunit・connection・composite分割とformal ownerは未解決"],
         "prohibited_inference": ["旧sourceの存在からimplemented/tested/verified/operationalを生成しない", "旧CI green、旧test design、旧runtime sourceを新世代CIのoracle・baseline・fallbackにしない", "product_targetsやpathからproduct owner、要求採否、successorを確定しない", "Web／Web-OS direct ref欠落から未実装と推定しない", "Scaffold validator/selfcheckの合格からL2/L11承認、L3/L10、CI green、完了、外部作用を生成しない", "bootstrap approvalからlease、executor、SCF-B-0004、operation_changeの成立を推定しない"],
-        "counts": {"product_units": len(units), "candidate_edges": len(edges), "legacy_assets": len(assets), "source_anchors": sum(len(a["source_anchors"]) for a in assets), "current_refs": len(refs), "decision_matches": 0, "failure_execution_receipts": 0, "consumer_closed_assets": 0, "phase_direct_product_pairs": sum(len(v) for v in current_products.values()), "missing_direct_product_pairs": 4},
+        "counts": {"product_units": len(units), "candidate_edges": len(edges), "legacy_assets": len(assets), "source_anchors": sum(len(a["source_anchors"]) for a in assets), "current_refs": len(refs), "decision_matches": decision_total, "failure_execution_receipts": 0, "consumer_closed_assets": 0, "phase_direct_product_pairs": sum(len(v) for v in current_products.values()), "missing_direct_product_pairs": 4},
     }
     (HERE / "inventory.json").write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"wrote {HERE / 'inventory.json'}: assets={len(assets)} anchors={data['counts']['source_anchors']} edges={len(edges)} refs={len(refs)}")

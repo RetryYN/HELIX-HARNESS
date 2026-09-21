@@ -10,12 +10,12 @@
   "upstream": [
     {
       "path": "scaffold/phcap10-11-worker-ci-static/README.md",
-      "sha256": "ce39cf31e9be1d05ff98ed8ac751d7850ac44b9ee198fcfbb6ec537d3115d31f",
+      "sha256": "85eac3e2b6368bd6f81e0c16112a0f8ffb5be907121ff15ee98eefd64b8f0049",
       "note": "bounded scope、四製品分類、unknown boundary、static checks"
     },
     {
       "path": "scaffold/phcap10-11-worker-ci-static/generate.py",
-      "sha256": "daed4227c784d39adbfdd723546281f207563675033a13dba95f2f9c3b78ec5f",
+      "sha256": "bb032b88ed329475e11c48cfd4e1e8501c40689c6610d8614f6db3e0c53a28a2",
       "note": "ledger/source/current ref read-only inventory generator"
     },
     {
@@ -25,12 +25,12 @@
     },
     {
       "path": "scaffold/phcap10-11-worker-ci-static/validate.py",
-      "sha256": "24c20160758a31d18f630e3230813ad9b9e140b6f9aeb5ba38c5d30d57f78d1a",
+      "sha256": "bc48e1c974c3c4b8c3acef625965f5143ca24c9a800393dbd1b5ea79dc8831f8",
       "note": "静的phase／product／ledger／source／unknown validator"
     },
     {
       "path": "scaffold/phcap10-11-worker-ci-static/selfcheck.py",
-      "sha256": "d302e00cda4fe150f5732f0dbc74aaece024f4d6de0d8d8cb5b4ffb9aebaeece",
+      "sha256": "366f3dc0fe8e058ffe1f02f5f63b6901344f13106e60da238dca4748f4427fd0",
       "note": "16 negative promotion and drift cases"
     },
     {
@@ -155,8 +155,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "validate.py（phase snapshot、11 asset ledger、22 exact span、9 current ref、4 product unit、22 edge、unknown残差）",
-      "selfcheck.py（16 authority／実装／oracle／direct ref／旧実行／consumer／digest／unit昇格の陰性例）",
+      "validate.py（phase snapshot、11 asset ledger、22 exact span、9 current ref、4 product unit、22 edge、decision ledger scan、anchor meaning/order、prohibited_inference、recursive keyset、unknown残差）",
+      "selfcheck.py（baseline green／no-op guard、authority／実装／oracle／direct ref／旧実行／consumer／decision scan／digest／anchor meaning/order／prohibited inference／recursive keyset／unit昇格の24陰性例）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],
@@ -164,6 +164,8 @@
       "authority、current implementation、formal CI profile、oracle registryのpromotion",
       "Web／Web-OSへのPHCAP direct evidence invention",
       "旧execution、旧implementation、consumer closure、decisionのpromotion",
+      "decision ledgerのselected_asset_ids／per_asset／countの手動改変",
+      "source anchor meaning／順序、prohibited_inference本文／順序、recursive keysetの改変",
       "source span／current ref digestの改変",
       "product unit merge、edge欠落、phase statusのpromotion"
     ]
