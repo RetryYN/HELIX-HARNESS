@@ -1,0 +1,851 @@
+{
+  "schema": "phcap17-incident-research/v1",
+  "status": "research_premise_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "base": {
+    "repository": "HELIX-HARNESS",
+    "commit": "bcd54942763835492478d998ced6c3b56566b89b",
+    "branch": "origin/main",
+    "captured_at": "2026-09-21"
+  },
+  "task": {
+    "phase_id": "PHCAP-17",
+    "phase": "incident/recovery/postmortem",
+    "gap_audit_path": "docs/governance/audits/source-rebaseline/phase-product-evidence-gap-audit-2026-09-21.md",
+    "gap_audit_sha256": "b76d10e9ac3e36e267edc6eadc4ab3afb1f7eafabcebff50a0851fd3c63d97dc",
+    "issue_projection": {
+      "issue": 1905,
+      "used_as_semantic_authority": false
+    }
+  },
+  "scope": {
+    "bounded_asset_ids": [
+      "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+      "LEGACY-ASSET-6582F09E55B33723B679",
+      "LEGACY-ASSET-4618C7243C283228809A",
+      "LEGACY-ASSET-7C427330F5410C57A37B"
+    ],
+    "source_asset_count": 4,
+    "source_span_count": 14,
+    "closure_rule": "representative PHCAP-17 assets plus explicit reverse-plan dependency; all other incident/recovery/hotfix/postmortem assets remain residual"
+  },
+  "gap_interpretation": {
+    "inventory_product_targets": [
+      "HELIX-HARNESS",
+      "HELIX-OS",
+      "HELIX-Web-OS"
+    ],
+    "inventory_current_evidence_products": [
+      "HELIX-OS",
+      "HELIX-Web-OS"
+    ],
+    "harness_direct_current_evidence": [],
+    "harness_status": "unknown",
+    "prohibited_inference": "HARNESS current-ref absence is not an implementation absence claim",
+    "current_refs_from_inventory": [
+      "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md",
+      "docs/helix-web-os/L2-requirements/service-governance-requirements.md"
+    ]
+  },
+  "legacy_assets": [
+    {
+      "asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+      "source_path": "docs/process/modes/incident.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+      "source_sha256": "bad6448a63dbc6b7867b9845ca8caf96ee144802961504f3793667f49fc28f7c",
+      "source_line_count": 100,
+      "source_spans": [
+        {
+          "span_id": "SRC-INC-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+          "start_line": 11,
+          "end_line": 27,
+          "sha256": "fea42a43326d5415e4c39ad117887dfaa08fa22da6efa5de62e6fe702bd7668b",
+          "exact_text": "## 1. 概要\n\nIncident は **本番稼働中の障害・SLO 重大逸脱・セキュリティインシデント**に緊急即応する workflow model。hotfix で暫定収束させ、収束後に恒久対策を V-model 体系 (Forward L1-L12) へ昇華する。開発中の AI 逸脱は Recoveryとして扱う。\n\n**分類注記 (重要)**: HELIXのcurrent identityは`workflow_model:INCIDENT`である。`troubleshoot`と`recovery`はPLAN kind／実行記録の責務として別に保持し、workflow modelと同一enumへ畳み込まない。\n\n### workflow identity 早見表\n\n| 項目 | 値 |\n|------|----|\n| kind | `troubleshoot` + `recovery` (内包) |\n| drive | 専門職継承 (be/fe/fullstack/db/agent、§1.6 V7。障害対象 work の専門職) |\n| layer | troubleshoot 部分=`L7` / recovery 部分=`cross` (内包 kind ごとに正規 layer。`L7 (+cross)` のような複合値は schema 無効) |\n| workflow_phase | **禁止** |\n| owner | オンコール + tl + pm |\n| 承認者 | **オンコール + tl + pm の三者確認** — 人間サインオフ必須 (§2.6.3) |\n| Forward 合流点 | 収束後 → L12運用検証 / 恒久対策 → L1-L6 / postmortem → L12 |\n",
+          "role": "incident identity, owner, authority and forward destinations"
+        },
+        {
+          "span_id": "SRC-INC-02",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+          "start_line": 33,
+          "end_line": 46,
+          "sha256": "5dedfa0880ceccca1476b9712e5e392d666354fde9da9b0eefac52139cc94f9d",
+          "exact_text": "## 2. フロー構成 (phase なし)\n\n```\n検出 → トリアージ → 緊急修正 (hotfix) → 即リリース → 収束確認 → 事後昇華\n```\n\n1. **検出**: 監視アラート / Discovery の post-deploy trigger から接続。signal: `production_incident` / `hotfix_required` / `regression_prod` (env=prod)\n2. **トリアージ**: 影響・緊急度判定。セキュリティインシデントは封じ込めを優先\n3. **緊急修正 (hotfix)**: `kind=troubleshoot` PLAN 起票。原因究明 + 暫定対処\n4. **即リリース**: hotfix を本番適用\n5. **収束確認**: SLO/KPI 正常化確認。`kind=recovery` PLAN で復旧手順・ロールバック記録\n6. **事後昇華**: Reverse fullback を活用し恒久対策を V-model へ統合。postmortem を L12 へ\n\n> **起票導線 (2 PLAN 分割)**: Incident は独立 kind を持たないため、**hotfix=`kind=troubleshoot` (token=L7) PLAN** と **復旧記録=`kind=recovery` (token=RECOVERY) PLAN** の 2 件に分けて起票する。recovery PLAN の `dependencies.requires` (or `references`) に troubleshoot PLAN を宣言し連鎖を明示する。恒久対策の昇華は別途 `kind=reverse` (fullback) PLAN。1 incident = troubleshoot + recovery (+ 必要なら reverse) の PLAN 群。\n",
+          "role": "incident flow and two-plan relation"
+        },
+        {
+          "span_id": "SRC-INC-03",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+          "start_line": 50,
+          "end_line": 68,
+          "sha256": "0dd17bbca7c4440fab3b55ef73d65e37b700e22365639c7cb89fee7aa3e4a1cd",
+          "exact_text": "## 3. exit 条件\n\n- hotfix 暫定収束 (SLO/KPI 正常化)\n- **オンコール + tl + pm の三者確認** (人間サインオフ必須、§2.6.3)\n- 恒久対策の Forward 昇華 PLAN 起票済\n- postmortem → L12 フィードバック記録済\n\n---\n\n## 4. Forward 合流点\n\n| 事後に起こす内容 | 昇華先 |\n|-----------------|--------|\n| 暫定 hotfix 収束の記録 | L12 (運用受入・改善) |\n| 恒久対策 (要件・設計) | L1 要求定義 / L3 要件定義 / L4-L6 設計 |\n| 再発防止テスト | L8 結合テスト / L9 総合テスト |\n| postmortem・運用学習 | L12 運用検証 |\n\nhotfix を打ちっぱなしにせず、Reverse fullback (R0-R4、`confirmed_reverse_type=fullback`) を経由して V-model のドキュメント体系・トレーサビリティへ収束させる。\n",
+          "role": "exit conditions, postmortem and backfill destinations"
+        },
+        {
+          "span_id": "SRC-INC-04",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/incident.md",
+          "start_line": 74,
+          "end_line": 96,
+          "sha256": "5be891a9bcf790a3be729252ada602154196e7680537060126319d87b7e70928",
+          "exact_text": "## 5. 必須 role / 承認者\n\n| role | 根拠 | 担当 |\n|------|------|------|\n| `aim` | requirements §1.8 kind=troubleshoot/recovery 必須 | 原因究明・収束手順主担 |\n| オンコール | §2.6.3 承認者 | 本番対応の主担・三者確認の一角 |\n| `tl` | §2.6.3 承認者 | 技術的な恒久対策判断・三者確認の一角 |\n| `pm` | §2.6.3 承認者 | スコープ・影響範囲承認・三者確認の一角 |\n\n---\n\n## 6. 他 workflow model との連鎖 / 注意\n\n| 接続 / 比較 | 説明 |\n|------------|------|\n| Recovery | 別モード。Recovery = AI 逸脱・開発中 (`regression_dev`)。Incident = 本番障害 (`regression_prod`, env=prod) で分岐 (§2.6.5) |\n| interrupt (IIP/CC) | 別対応。interrupt = 開発中 sprint 内の設計ギャップ・要件変更割込み |\n| 計画的な運用改善 | Incidentとは別のL12運用改善。Incidentは緊急即応 |\n| Discovery (前段) | 要件が未確定の場合、Incident 着手前に Discovery を前段起動する (concept / requirements の typed workflow routing と discovery.md §6 の reciprocal)。下の「Discovery post-deploy trigger」行とは方向が逆 (前段起動 vs 後段の検出止まり) |\n| Discovery post-deploy trigger | 本番後の問題を「検証候補化」するのみ (検出止まり)。緊急対応が要る場合は Incident へ |\n| Reverse fullback | 事後昇華の手段。hotfix の恒久対策を V-model 体系へ統合するために使用 |\n\n分類注記: `incident`のworkflow identityはregistry v1.1.6の`workflow_model:INCIDENT`であり、`troubleshoot`／`recovery` PLANの組合せをcurrent identityへ再出力しない。\n",
+          "role": "roles, approval and workflow distinctions"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-2300",
+        "candidate_phase_targets": [
+          "PHCAP-15",
+          "PHCAP-17"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "no adoption, owner, successor or closure decision is generated from absence"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-INC-03",
+          "finding": "exit requires normalization, three-party signoff, forward plan and postmortem feedback; absence leaves closure unresolved"
+        },
+        {
+          "span_id": "SRC-INC-04",
+          "finding": "legacy distinguishes production incident from development Recovery and planned improvement"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-INC-02",
+          "finding": "troubleshoot and recovery PLANs are linked; optional reverse PLAN is downstream"
+        },
+        {
+          "span_id": "SRC-INC-03",
+          "finding": "forward destinations are L12, L1-L6, L8-L9 and V-model traceability"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6582F09E55B33723B679",
+      "source_path": "docs/plans/PLAN-L7-129-incident-route-token-coverage.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-129-incident-route-token-coverage.md",
+      "source_sha256": "d557803078abd240241793e76afc398e28c660999b69809d78bed3a87ab04306",
+      "source_line_count": 93,
+      "source_spans": [
+        {
+          "span_id": "SRC-TOKEN-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-129-incident-route-token-coverage.md",
+          "start_line": 1,
+          "end_line": 32,
+          "sha256": "fcdc90614e168d169d85015afa0f8b5ad9ab4e2ba6028c7c85ee5b7b8ca987a2",
+          "exact_text": "---\nplan_id: PLAN-L7-129-incident-route-token-coverage\ntitle: \"PLAN-L7-129: route token coverage\"\nkind: add-impl\nlayer: L7\ndrive: agent\nstatus: confirmed\ncreated: 2026-06-23\nupdated: 2026-06-23\nowner: Codex\nparent_design: docs/governance/helix-harness-requirements_v1.2.md\nagent_slots:\n  - role: tl\n    slot_label: \"TL - route token coverage\"\ngenerates:\n  - artifact_path: docs/plans/PLAN-L7-129-incident-route-token-coverage.md\n    artifact_type: markdown_doc\n  - artifact_path: docs/plans/PLAN-REVERSE-129-incident-route-token-coverage.md\n    artifact_type: markdown_doc\n  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md\n    artifact_type: markdown_doc\n  - artifact_path: docs/design/harness/L4-basic-design/function.md\n    artifact_type: design_doc\n  - artifact_path: src/workflow/contracts.ts\n    artifact_type: source_module\n  - artifact_path: tests/workflow-contracts.test.ts\n    artifact_type: test_code\ndependencies:\n  parent: docs/plans/PLAN-L7-123-route-eval-recommended-command.md\n  requires:\n    - docs/plans/PLAN-L7-123-route-eval-recommended-command.md\n    - docs/plans/PLAN-REVERSE-129-incident-route-token-coverage.md\n",
+          "role": "plan identity, generated artifacts and dependencies"
+        },
+        {
+          "span_id": "SRC-TOKEN-02",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-129-incident-route-token-coverage.md",
+          "start_line": 69,
+          "end_line": 84,
+          "sha256": "a11f476e8e8063d6842607c70f69b77e9b59fb80169b42cf14524aef327c9449",
+          "exact_text": "# PLAN-L7-129: route token coverage の補完\n\n## 目的\n\n実装済み route map が requirements 7.8.1 で宣言された未対応の signal token を扱えるようにし、\nhelper routing も同じ rule path に揃える。\n\n## スコープ\n\n- `production_incident`、`hotfix_required`、`regression_prod` を incident route token set に追加する。\n- `drift` を reverse route token set に追加する。\n- 軽量 interrupt token の `new_requirement` と `po_change` を add-feature へ route する。\n- `routeSignalToMode` を `evaluateRouteCommand` と同じ route map および longest-token priority から導出する。\n- incident route は既存の approval resolver を通じて human approval gate を維持する。\n- 宣言済み token が期待される mode に解決されるよう regression coverage を追加する。\n- requirements acceptance evidence と L4 function design を back-fill する。\n",
+          "role": "route token scope and approval gate"
+        },
+        {
+          "span_id": "SRC-TOKEN-03",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-129-incident-route-token-coverage.md",
+          "start_line": 86,
+          "end_line": 93,
+          "sha256": "b1ba3a08145987b5faefb5d3ee2ed1891270ef1492504321c704e475ac3b2f48",
+          "exact_text": "## 受入条件\n\n- `production_incident`、`hotfix_required`、`regression_prod` は `incident` へ route される。\n- `drift` は `reverse` へ route される。\n- `new_requirement` は `add-feature` へ route される。\n- `routeSignalToMode` と `evaluateRouteCommand` は covered token について一致する。\n- incident route は `requires_human_approval=true` を返す。\n- approval policy がない incident route は exit 1 になる。\n",
+          "role": "route acceptance and failure condition"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_plan_or_work_contract",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-1388",
+        "candidate_phase_targets": [
+          "PHCAP-17"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "no adoption, owner, successor or closure decision is generated from absence"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-TOKEN-03",
+          "finding": "missing approval policy causes old route to exit 1; old acceptance is not current execution evidence"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-TOKEN-01",
+          "finding": "source declares generated requirement/design/source/test artifact paths and dependencies"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4618C7243C283228809A",
+      "source_path": "docs/skills/incident-runbook.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/skills/incident-runbook.md",
+      "source_sha256": "f5ba60755a67d7aff8a38eb2fd4212a17fa3c9186a63ce4763843f25a458e402",
+      "source_line_count": 78,
+      "source_spans": [
+        {
+          "span_id": "SRC-RUNBOOK-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/skills/incident-runbook.md",
+          "start_line": 18,
+          "end_line": 28,
+          "sha256": "cce8f0c877595a0e9b4b74e2d99eb8e5a4b46a55c1c87eae99f87df057c1bedf",
+          "exact_text": "# incident-runbook（インシデント runbook）\n\nrunbook はインシデント発生中ではなく事前に書く。これにより、対応者は単一の正本を参照できる。\nこの skill は、(A) L11 ops-readiness の義務としてのリリース前 runbook 作成と、\n(B) live production incident に対する HELIX Incident drive 手順（FR-L1-16）を扱う。\n\n## この skill を load するタイミング\n\n- PLAN が L11 gate（system test / ops readiness）に近づいており、対象 service の runbook がまだ存在しない。\n- production signal から Incident drive の PLAN が開かれた。\n- `helix doctor` が production-incident / regression / hotfix signal を示した。\n",
+          "role": "runbook purpose and load conditions"
+        },
+        {
+          "span_id": "SRC-RUNBOOK-02",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/skills/incident-runbook.md",
+          "start_line": 30,
+          "end_line": 49,
+          "sha256": "a7b95f6e084a058275a722d39d30dc97bf0b33a5c2be140c1d884f2bb550bafe",
+          "exact_text": "## Part A: リリース前 runbook（Forward / Add-feature）\n\nrunbook は `docs/ops/<service-slug>-runbook.md` に保存する。必須 section は次の3つ\n（3つすべてが無い場合、L11 gate は fail する）。\n\n1. **Alert response**: 名前付き alert を3件以上記載し、それぞれに trigger threshold、scope、\n   immediate mitigation、recovery-confirmation check、follow-up を含める。\n2. **Rollback**: trigger conditions、step-by-step rollback、data-integrity check を含める。\n   recovery-confirmation metric を含める。\n3. **Escalation chain**: 個人名ではなく role（on-call → TL → PM/PO）で記載し、\n   各 role へ escalation する条件を明示する。\n\nThreshold は observability design doc（single source of truth）を参照元にする。threshold value を重複記載しない。\nrunbook は PLAN の `generates` list に記録する。\n\n## Part B の Incident drive（live production）\n\nIncident-drive PLAN の entry conditions は、signal が production incident / regression / hotfix であること、\ntarget が production であること、かつ production change の前に human approval\n（on-call + TL + PM）が記録されていることである。\n",
+          "role": "pre-release obligations and incident entry authority"
+        },
+        {
+          "span_id": "SRC-RUNBOOK-03",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/skills/incident-runbook.md",
+          "start_line": 55,
+          "end_line": 69,
+          "sha256": "8b15e5828b8d9d70c307988c5d614afc0b1ca28df81be342e5c49b5c42e26fc4",
+          "exact_text": "First response（最初の約15分）では、symptom と scope を確認し、severity を分類する\n（Sev1 primary-path-down または data-loss-risk、Sev2 major degradation、Sev3 minor）。\nrunbook を開き、該当する alert procedure に従う。安全であれば runbook の immediate mitigation を適用する。\nすべての action を timestamp 付きで `.helix/audit/<plan-id>-incident-timeline.md` に記録する。\n\nsymptom を cover する runbook procedure が無い場合、production で即興対応しない。\nTL へ escalate し、新しい procedure を post-incident action として runbook に追加する。\n\n## Post-incident（事後対応）\n\n1. 実際に使った procedure を runbook に反映する。\n2. root cause に code/design fix が必要な場合は Recovery PLAN（branch `hotfix/*`）を開く。\n   design-level は `add-design`、implementation-only は L7 の `add-impl` として分類し、\n   その問題を検出できたはずの regression test を追加する。\n3. resolution を監査証跡へ記録し、session boundary で `helix status` の continuation projection を確認する。\n",
+          "role": "severity, timeline, escalation and post-incident consumer"
+        },
+        {
+          "span_id": "SRC-RUNBOOK-04",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/skills/incident-runbook.md",
+          "start_line": 71,
+          "end_line": 78,
+          "sha256": "884d5f1cad5519c1aab63cdecea6f2fbaa81f5b746151f3ace26ae561f8727b9",
+          "exact_text": "## 完了 checklist\n\n- [ ] `docs/ops/<service-slug>-runbook.md` に runbook があり、3件以上の alert procedure、\n      rollback procedure、role-based escalation chain を含む。\n- [ ] Threshold は observability design doc を参照している（SSoT を重複させない）。\n- [ ] Incident timeline が `.helix/audit/` に記録されている。\n- [ ] production change の前に three-party approval が記録されている。\n- [ ] root cause に対して Recovery / add-design PLAN が開かれ、continuation projection に next action が反映されている。\n",
+          "role": "runbook completion checklist"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-2427",
+        "candidate_phase_targets": [
+          "PHCAP-16",
+          "PHCAP-17"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "no adoption, owner, successor or closure decision is generated from absence"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-RUNBOOK-02",
+          "finding": "missing required runbook sections fails the old L11 gate; production change requires recorded human approval"
+        },
+        {
+          "span_id": "SRC-RUNBOOK-03",
+          "finding": "missing procedure forbids improvisation and requires TL escalation"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-RUNBOOK-02",
+          "finding": "runbook path and PLAN generates relation are named"
+        },
+        {
+          "span_id": "SRC-RUNBOOK-03",
+          "finding": "incident timeline, Recovery/add-design PLAN and continuation projection are named"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7C427330F5410C57A37B",
+      "source_path": "docs/plans/PLAN-REVERSE-129-incident-route-token-coverage.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-REVERSE-129-incident-route-token-coverage.md",
+      "source_sha256": "ac8e6741280c0627ba4301a1c095cc1a5d2b62863b0e38ea368872817d3ac6f4",
+      "source_line_count": 86,
+      "source_spans": [
+        {
+          "span_id": "SRC-REVERSE-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-REVERSE-129-incident-route-token-coverage.md",
+          "start_line": 1,
+          "end_line": 40,
+          "sha256": "00232ca34a04a6958f0d30316c49cde037d12ccc0198c0be3ec09d60222aa2e2",
+          "exact_text": "---\nplan_id: PLAN-REVERSE-129-incident-route-token-coverage\ntitle: \"PLAN-REVERSE-129: route token coverage の fullback\"\nkind: reverse\nlayer: cross\nworkflow_phase: R4\nconfirmed_reverse_type: fullback\ndrive: agent\nstatus: confirmed\ncreated: 2026-06-23\nupdated: 2026-06-23\nowner: Codex\nforward_routing: L4\npromotion_strategy: reuse-with-hardening\nbackprop_scope:\n  - layer: requirements\n    decision: updated\n    evidence_path: docs/governance/helix-harness-requirements_v1.2.md\n    reason: \"route eval acceptance list に不足していた route token coverage を記録した。\"\n  - layer: L4-basic-design\n    decision: updated\n    evidence_path: docs/design/harness/L4-basic-design/function.md\n    reason: \"Basic design に declared route tokens と longest-token priority を明記した。\"\n  - layer: L5-detailed-design\n    decision: not_impacted\n    reason: \"この変更は既存の route evaluation contract の範囲内に留まる。\"\nagent_slots:\n  - role: tl\n    slot_label: \"TL - route token fullback\"\ngenerates:\n  - artifact_path: docs/plans/PLAN-REVERSE-129-incident-route-token-coverage.md\n    artifact_type: markdown_doc\n  - artifact_path: docs/governance/helix-harness-requirements_v1.2.md\n    artifact_type: markdown_doc\n  - artifact_path: docs/design/harness/L4-basic-design/function.md\n    artifact_type: design_doc\ndependencies:\n  parent: docs/plans/PLAN-L7-129-incident-route-token-coverage.md\n  requires:\n    - docs/plans/PLAN-L7-129-incident-route-token-coverage.md\n",
+          "role": "reverse identity, backprop scope and dependency"
+        },
+        {
+          "span_id": "SRC-REVERSE-02",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-REVERSE-129-incident-route-token-coverage.md",
+          "start_line": 41,
+          "end_line": 66,
+          "sha256": "40f49fa8d742e3bfb10320b47b211d7416a2f28086039023960398cee825f645",
+          "exact_text": "review_evidence:\n  - reviewer: codex-intra-runtime\n    review_kind: intra_runtime_subagent\n    reviewed_at: \"2026-06-23T15:45:00+09:00\"\n    tests_green_at: \"2026-06-23T15:45:00+09:00\"\n    verdict: approve\n    scope: \"route token coverage から requirements と L4 design への R4 fullback。\"\n    worker_model: codex\n    reviewer_model: codex-intra-runtime\n    green_commands:\n      - kind: unit_test\n        command: \"bun run vitest run tests\\\\workflow-contracts.test.ts\"\n        runner: bun\n        scope: targeted\n        exit_code: 0\n        completed_at: \"2026-06-23T15:45:00+09:00\"\n        evidence_path: tests/workflow-contracts.test.ts\n        output_digest: \"sha256:3a7fba46f9ca618b4f1a6de1d58aad471aabdc0a9f254464bbeeae993bd6f5b2\"\n      - kind: doctor\n        command: \"bun run src\\\\cli.ts doctor\"\n        runner: bun\n        scope: full\n        exit_code: 0\n        completed_at: \"2026-06-23T15:45:00+09:00\"\n        evidence_path: src/workflow/contracts.ts\n        output_digest: \"sha256:fff49252866a549ac96498c868bc193410867829a119f1a93d9d52e36551e791\"\n",
+          "role": "embedded historical review claim"
+        },
+        {
+          "span_id": "SRC-REVERSE-03",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-REVERSE-129-incident-route-token-coverage.md",
+          "start_line": 69,
+          "end_line": 86,
+          "sha256": "fa1a4078cb0792846b8ebbd046098f93dd803f6816477f54014e5859d8f7a47d",
+          "exact_text": "# PLAN-REVERSE-129: route token coverage の fullback\n\n## 目的\n\n実装済みの route token coverage を requirements と L4 function design へ\nback-fill する。\n\n## スコープ\n\n- Requirements 7.8.1 / 7.8.6 に route token coverage と longest-token\n  priority を記録する。\n- L4 function design に incident token coverage、drift routing、additive\n  interrupt routing、fail-close approval behavior を明記する。\n\n## 受入条件\n\n- Requirements と L4 design の両方が route token coverage に言及している。\n- Reverse record は実装を route evaluation contract の内側に保持している。\n",
+          "role": "reverse fullback scope and acceptance"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_plan_or_work_contract",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-2171",
+        "candidate_phase_targets": [
+          "PHCAP-17"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "unresolved_with_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "no adoption, owner, successor or closure decision is generated from absence"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-REVERSE-01",
+          "finding": "embedded confirmed/status claims conflict with ledger unresolved and implementation unknown"
+        },
+        {
+          "span_id": "SRC-REVERSE-03",
+          "finding": "old acceptance only checks requirement/design backfill mention, not current authority or implementation"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-REVERSE-01",
+          "finding": "backprop targets requirements and L4 design and depends on the L7 token plan"
+        },
+        {
+          "span_id": "SRC-REVERSE-03",
+          "finding": "reverse record claims implementation remains inside route evaluation contract"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "PHCAP17-A001",
+      "source_asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+      "source_span_id": "SRC-INC-01",
+      "kind": "incident_identity",
+      "legacy_text_summary": "legacy text defines production incident, SLO deviation and security incident; identity claim is historical and conflicts with current candidate boundary",
+      "actor_candidate": "on-call/tl/pm",
+      "legacy_authority_or_enforced_by": "old incident workflow model plus three-person human signoff",
+      "failure_or_unresolved": "missing authority/owner/approval receipt; exact current authority unknown",
+      "product_unit_candidate": "HARNESS process-contract candidate; OS operational-control candidate; Web-OS service-runtime connection candidate",
+      "consumer_candidate": "OS operational evidence, product-specific runtime evidence, HARNESS V-model backflow",
+      "evidence_status": "observed_legacy_text; owner/product unresolved"
+    },
+    {
+      "atom_id": "PHCAP17-A002",
+      "source_asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+      "source_span_id": "SRC-INC-02",
+      "kind": "trigger_and_route",
+      "legacy_text_summary": "legacy text routes production_incident/hotfix_required/regression_prod through detect→triage→hotfix→release→recovery→postmortem",
+      "actor_candidate": "monitoring/discovery and incident roles",
+      "legacy_authority_or_enforced_by": "old signal binding and two PLAN chain",
+      "failure_or_unresolved": "no current trigger contract or route authority proven for HARNESS",
+      "product_unit_candidate": "OS monitoring/incident connection; Web-OS service signal connection; HARNESS process route candidate",
+      "consumer_candidate": "route token and service telemetry consumers are unresolved",
+      "evidence_status": "observed_legacy_text; current adoption unknown"
+    },
+    {
+      "atom_id": "PHCAP17-A003",
+      "source_asset_id": "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+      "source_span_id": "SRC-INC-03",
+      "kind": "closure_and_backfill",
+      "legacy_text_summary": "legacy exit requires SLO/KPI normalization, signoff, forward plan and postmortem feedback; maps to L12/L1-L6/L8-L9",
+      "actor_candidate": "on-call/tl/pm and V-model maintainers",
+      "legacy_authority_or_enforced_by": "old exit criteria and reverse fullback",
+      "failure_or_unresolved": "missing receipt or unverified postmortem/backfill leaves closure unresolved",
+      "product_unit_candidate": "HARNESS L1-L12/backflow candidate; OS evidence/improvement candidate",
+      "consumer_candidate": "HARNESS acceptance and OS improvement consumers unresolved",
+      "evidence_status": "observed_legacy_text; no current completion claim"
+    },
+    {
+      "atom_id": "PHCAP17-A004",
+      "source_asset_id": "LEGACY-ASSET-6582F09E55B33723B679",
+      "source_span_id": "SRC-TOKEN-01",
+      "kind": "route_plan_identity",
+      "legacy_text_summary": "legacy plan declares generated requirements/design/source/test artifacts and parent/dependency paths",
+      "actor_candidate": "Codex/agent plan owner in old metadata",
+      "legacy_authority_or_enforced_by": "old plan generation and review route",
+      "failure_or_unresolved": "ledger says implementation unknown despite embedded generated artifact/review claims",
+      "product_unit_candidate": "HARNESS route-contract candidate; OS execution candidate",
+      "consumer_candidate": "old source/design/test consumers are historical references only",
+      "evidence_status": "embedded historical claim vs ledger contradiction"
+    },
+    {
+      "atom_id": "PHCAP17-A005",
+      "source_asset_id": "LEGACY-ASSET-6582F09E55B33723B679",
+      "source_span_id": "SRC-TOKEN-02",
+      "kind": "route_token_set",
+      "legacy_text_summary": "legacy plan adds production_incident/hotfix_required/regression_prod tokens and retains human approval gate",
+      "actor_candidate": "route evaluator and approval resolver",
+      "legacy_authority_or_enforced_by": "old token map and approval resolver",
+      "failure_or_unresolved": "approval policy absent is an explicit failure; current route map not evidenced",
+      "product_unit_candidate": "HARNESS vocabulary candidate; OS enforcement connection candidate",
+      "consumer_candidate": "route evaluator, approval resolver, requirements acceptance candidate",
+      "evidence_status": "observed_legacy_text; no current implementation inference"
+    },
+    {
+      "atom_id": "PHCAP17-A006",
+      "source_asset_id": "LEGACY-ASSET-6582F09E55B33723B679",
+      "source_span_id": "SRC-TOKEN-03",
+      "kind": "route_acceptance",
+      "legacy_text_summary": "legacy acceptance expects token→incident mapping, helper parity and exit 1 without approval policy",
+      "actor_candidate": "route evaluator/test reviewer",
+      "legacy_authority_or_enforced_by": "old acceptance criteria",
+      "failure_or_unresolved": "missing approval policy fails old route; old test execution is prohibited and unverified",
+      "product_unit_candidate": "HARNESS verification-contract candidate; OS execution/test consumer candidate",
+      "consumer_candidate": "old tests and source modules are not current consumers",
+      "evidence_status": "failure text observed; execution unknown"
+    },
+    {
+      "atom_id": "PHCAP17-A007",
+      "source_asset_id": "LEGACY-ASSET-4618C7243C283228809A",
+      "source_span_id": "SRC-RUNBOOK-01",
+      "kind": "runbook_precondition",
+      "legacy_text_summary": "legacy runbook is pre-written and loaded for L11 readiness or live incident signals",
+      "actor_candidate": "release/readiness operator and incident responder",
+      "legacy_authority_or_enforced_by": "old skill/runbook process",
+      "failure_or_unresolved": "runbook absence is an entry/readiness condition; current runbook authority unknown",
+      "product_unit_candidate": "HARNESS readiness-contract candidate; OS operational procedure candidate; Web-OS service candidate",
+      "consumer_candidate": "service runbook, audit timeline and recovery plan consumers unresolved",
+      "evidence_status": "observed_legacy_text; consumer ledger empty"
+    },
+    {
+      "atom_id": "PHCAP17-A008",
+      "source_asset_id": "LEGACY-ASSET-4618C7243C283228809A",
+      "source_span_id": "SRC-RUNBOOK-02",
+      "kind": "runbook_authority",
+      "legacy_text_summary": "legacy Part A requires alert/rollback/escalation sections; Part B requires production target and three-party approval before change",
+      "actor_candidate": "on-call/TL/PM",
+      "legacy_authority_or_enforced_by": "human approval before production change",
+      "failure_or_unresolved": "missing section fails L11 gate; missing approval blocks production change in old text",
+      "product_unit_candidate": "HARNESS acceptance candidate; OS operational-control candidate; Web-OS runtime connection candidate",
+      "consumer_candidate": "L11 gate, production change and service runtime consumers unresolved",
+      "evidence_status": "observed_legacy_text; no adoption"
+    },
+    {
+      "atom_id": "PHCAP17-A009",
+      "source_asset_id": "LEGACY-ASSET-4618C7243C283228809A",
+      "source_span_id": "SRC-RUNBOOK-03",
+      "kind": "severity_timeline_postincident",
+      "legacy_text_summary": "legacy process classifies Sev1/2/3, records timestamped timeline, escalates missing procedure and opens Recovery/add-design plan",
+      "actor_candidate": "incident responder/TL",
+      "legacy_authority_or_enforced_by": "old runbook and audit timeline",
+      "failure_or_unresolved": "missing procedure forbids improvisation and requires escalation; current failure handling unknown",
+      "product_unit_candidate": "OS incident/evidence candidate; Web-OS service candidate; HARNESS backflow candidate",
+      "consumer_candidate": "audit timeline, recovery plan, regression test and continuation projection unresolved",
+      "evidence_status": "observed_legacy_text; no consumer closure"
+    },
+    {
+      "atom_id": "PHCAP17-A010",
+      "source_asset_id": "LEGACY-ASSET-7C427330F5410C57A37B",
+      "source_span_id": "SRC-REVERSE-01",
+      "kind": "reverse_fullback_identity",
+      "legacy_text_summary": "legacy reverse plan claims confirmed fullback, backprop to requirements/L4 and dependency on token plan",
+      "actor_candidate": "Codex/agent reverse owner in old metadata",
+      "legacy_authority_or_enforced_by": "old reverse promotion strategy",
+      "failure_or_unresolved": "ledger unresolved conflicts with embedded confirmed/status claims",
+      "product_unit_candidate": "HARNESS change/backflow candidate; OS evidence/coordination candidate",
+      "consumer_candidate": "requirements, L4 design and route plan references unresolved",
+      "evidence_status": "embedded historical claim vs ledger contradiction"
+    },
+    {
+      "atom_id": "PHCAP17-A011",
+      "source_asset_id": "LEGACY-ASSET-7C427330F5410C57A37B",
+      "source_span_id": "SRC-REVERSE-03",
+      "kind": "reverse_acceptance",
+      "legacy_text_summary": "legacy reverse acceptance requires requirements and L4 design to mention token coverage and keeps implementation inside route contract",
+      "actor_candidate": "reverse reviewer",
+      "legacy_authority_or_enforced_by": "old fullback acceptance",
+      "failure_or_unresolved": "old acceptance does not prove current authority or implementation",
+      "product_unit_candidate": "HARNESS trace/backflow candidate",
+      "consumer_candidate": "requirements/design source consumers unresolved",
+      "evidence_status": "observed_legacy_text; current adoption unknown"
+    }
+  ],
+  "current_refs": [
+    {
+      "ref_id": "CUR-XW-01",
+      "path": "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md",
+      "sha256": "0a48e51ddb95212c4fcf45f218c25f110af7c2cdd30f75ec4c75ae90d47b39b6",
+      "start_line": 28,
+      "end_line": 33,
+      "line_sha256": "7ae86520ef4623bdd0bc77992a4741cf02d73786e44f47f56089a584f50ccde9",
+      "exact_text": "| NIO-L3-01／02 | 対象・環境・workload・failure・data・復旧・運用の適用性を漏れなく要求化する | HARNESS-L2-003／004／005、各製品L2 | `Design Obligation Graph`、固定項目enum、旧生成機構を新世代componentとして継承しない | contract_rederivation_required |\n| NIO-L3-03／04 | 計測とlogの意味、出典、freshness、欠測、機密保護を明示する | 各製品L2／L3、HELIXOS-L2-007 | collector、schema、保持期間、severity、具体SLOは対象製品が承認する | product_specific_reapproval |\n| NIO-L3-05 | finding、通知、incident、ack、expiryを追跡する | HELIXOS-L2-004／007／009 | 旧alert router、Issue owner、providerを固定しない | operational_rederivation_required |\n| NIO-L3-06 | backup／restore／rollback等を文書の存在でなく実結果で判定する | HARNESS-L2-005、HELIXOS-L2-006／007、各製品L2 | 具体procedure、RTO／RPO、対象環境は製品・release別に承認する | split_reapproval_required |\n| NIO-L3-07 | 運用証拠を要求へ戻し、変更候補と採否を追跡する | HARNESS-L2-004、HELIXOS-L2-002／005／007 | 旧re-entry engineから要求を直接変更しない | semantic_atom_candidate |\n| NIO-L3-08 | 自動修復を対象・権限・予算・影響・復旧・独立検証で制限する | HELIXOS-L2-004／007／009、bugbot要求源 | この候補を自動修復権限として使わず、旧tool・actor・admissionを継承しない | moved_to_bounded_repair_reapproval |\n",
+      "product": "HELIX-OS",
+      "layer": "L2/L3/L10 candidate crosswalk",
+      "classification": "direct_current_ref",
+      "relation": "incident/recovery semantics are crosswalked to OS and product-specific reapproval; legacy incident engine reuse is rejected"
+    },
+    {
+      "ref_id": "CUR-XW-02",
+      "path": "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md",
+      "sha256": "0a48e51ddb95212c4fcf45f218c25f110af7c2cdd30f75ec4c75ae90d47b39b6",
+      "start_line": 40,
+      "end_line": 45,
+      "line_sha256": "874f259dd9501e8203d84b71a28eef5172d946050c670b74307d46ef965c2eae",
+      "exact_text": "| NIO-L10-01 | 根拠のない品質値を生成しない | 各製品L11／L10、HARNESS-L2-003の工程反例 | unknownの存在だけを合格にせず、決定owner・期限・差戻し先を要求する | oracle_rewrite_required |\n| NIO-L10-02／03 | 欠測・stale・別環境の成功を運用成立へ読み替えない | 各製品L11／L10、HELIXOS L11 | 旧collector、production環境、canary方式を固定しない | oracle_atom_candidate |\n| NIO-L10-04／05 | restore、rollback、恒久修復、再発防止を別結果として確認する | HARNESS L11、HELIXOS L11、各製品L11／L10 | 旧backup・incident機構の実行を合格条件にしない | split_oracle_reapproval |\n| NIO-L10-06 | secret／PIIを人間向け成果や証拠へ露出しない | 各製品L11／L10、HELIXOS L11 | 具体redaction／scan方式は設計層で再導出する | oracle_atom_candidate |\n| NIO-L10-07 | scope外の修復・公開・課金・production writeを拒否する | HELIXOS L11 | この候補を操作認可にせず、操作別authorityを別に要求する | authority_oracle_rewrite |\n| NIO-L10-08 | 要求から運用・再要求化までの必須trace欠落を検出する | HARNESS L11、HELIXOS L11 | 旧graph edgeや既存CIをoracleにしない | split_oracle_reapproval |\n",
+      "product": "HELIX-OS",
+      "layer": "L11/L10 candidate crosswalk",
+      "classification": "direct_current_ref",
+      "relation": "restore, rollback, permanent repair and prevention are separate results; old incident mechanism is not an acceptance oracle"
+    },
+    {
+      "ref_id": "CUR-WEBOS-01",
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "start_line": 33,
+      "end_line": 38,
+      "line_sha256": "346254b4c8a2314ae4466d19f6af558588f2a9948d6fa7ed274e5df4633ce83d",
+      "exact_text": "| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-Web-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWeb-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、\nartifact、receipt、telemetry export、改善proposalとして行う。\n",
+      "product": "HELIX-Web-OS",
+      "layer": "L2",
+      "classification": "direct_current_ref",
+      "relation": "service incident/recovery evidence is bounded to service version and exported to OS; runtime authority remains Web-OS"
+    },
+    {
+      "ref_id": "CUR-HARNESS-L1-01",
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "start_line": 17,
+      "end_line": 38,
+      "line_sha256": "30aedab8d22b29e5f4f880553ba9e3b854712973c215056845dae6c64a5e70a2",
+      "exact_text": "本書はConcept v4.1候補と2026-09-14の製品責務決定から導いたHARNESSの対象別L1候補である。\n親Conceptが未承認のため、現行L1、L2合意、L3凍結、実装指示として使わない。\n\n## 提供価値\n\nHARNESSは、外部利用者が企画・要求・要件・設計・実装・検証・運用評価を一貫したV-model契約として\n扱える開発基盤を提供する。変更の種類や実装技術が違っても、何を満たせば次へ進めるか、何を検証し、\nどの結果を利用者が受け入れるかを追跡できるようにする。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HARNESS-L1-001 | 利用者は、L1–L12と正規V-pairで上流の意図から運用評価までを構成できる | HARNESS-L2-001 |\n| HARNESS-L1-002 | 利用者は、対象と変更に適した開発styleを選び、品質条件を落とさず進行できる | HARNESS-L2-002／003 |\n| HARNESS-L1-003 | 利用者は、要求変更の影響を設計・実装・検証へ伝え、未接続とstaleを確認できる | HARNESS-L2-003／004 |\n| HARNESS-L1-004 | 利用者は、対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる | HARNESS-L2-004／005 |\n| HARNESS-L1-005 | 外部利用者は、HELIX内部の管理機構を暗黙の依存にせず、明示された版・構成・条件でHARNESSを利用できる | HARNESS-L2-006 |\n| HARNESS-L1-006 | 利用者は、要求形成、prototype／非UI適用性、合意、freeze、差戻し、再開、完了を別条件として確認できる | HARNESS-L2-003／004 |\n| HARNESS-L1-007 | 依存製品の展開判断者は、複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成範囲と成立証拠を確認できる | HARNESS-L2-007 |\n| HARNESS-L1-008 | 利用者は、指示と根拠から要求候補を形成し、欠落・矛盾・過剰解釈・変更影響を確認して、合意した要求へ収束できる | HARNESS-L2-008 |\n| HARNESS-L1-009 | 利用者は、要求の種類と構成に合う設計templateを参照して必要な設計義務を導き、設計に必要な要求入力の不足を上流へ戻せる | HARNESS-L2-009 |\n\n上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。\n",
+      "product": "HELIX-HARNESS",
+      "layer": "L1",
+      "classification": "boundary_candidate",
+      "relation": "HARNESS L1 is a draft V-model/process contract and does not name PHCAP-17 incident capability"
+    },
+    {
+      "ref_id": "CUR-HARNESS-L2-01",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77",
+      "start_line": 142,
+      "end_line": 153,
+      "line_sha256": "79c8888c5d54588dbd8c8696aee9cda8f55969d3bf3b7e7bcbd8c2ad6e8df2f0",
+      "exact_text": "[旧NIO候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md)は、\n[新世代対応表](../../governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md)で\nHARNESS、HELIX-OS、個別製品へ再分類した。旧Issue owner、既存計測・logging・incident engineの再利用は継承しない。\n\nHARNESS-L2-003／004／005では、対象製品の可用性、信頼性、性能、容量、費用、security、privacy、運用、保守、\n回復、observabilityについて、適用・非適用・unknown・決定ownerをL2で確認し、設計・検証・L12観測・再要求化へ\n同じ要求revisionで接続する。designed、implemented、verified、observed、operatedを別状態とし、文書・実装・CIの\n存在だけで後続状態を成立させない。\n\nHARNESSは品質値、対象環境、RTO／RPO、保持期間、予算、blast radiusを全製品へ固定しない。それらは各製品の\n要求とrelease条件で承認する。HELIX-OSによる監視・incident・復旧の実行成功も、製品利用者の受入や運用成立を代替しない。\n本節は工程条件の要求案であり、計測、故障注入、CI、復旧、自動修復を実行しない。\n",
+      "product": "HELIX-HARNESS",
+      "layer": "L2",
+      "classification": "adjacent_current_ref",
+      "relation": "HARNESS requires reclassification and distinguishes process conditions from OS incident/recovery execution; it is not a PHCAP-17 direct ref"
+    },
+    {
+      "ref_id": "CUR-HARNESS-L11-01",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b",
+      "start_line": 33,
+      "end_line": 45,
+      "line_sha256": "96859e683d9d0a52a19eb3ca124bc9286b4778eb0e099a170ab27db6adcafc31",
+      "exact_text": "- HARNESS-L2-001：旧L0–L14 pathを持つ成果でも現行6 pairを確認でき、L2の対をL10とする入力を拒否する。\n- HARNESS-L2-002：3 styleそれぞれでL1–L3の共通条件とslice開始位置を確認する。Discovery／PoCのS4未判断をproductionへ持ち込まない。\n- HARNESS-L2-002：style未選択、複数選択、適用条件不成立をfail-closeし、Discovery trigger不成立ではS0–S4を無条件起動しない。\n- HARNESS-L2-002／003：Discovery trigger成立時はS0–S4とS4人間判断を要求し、S4未判断のままL3へ合流しない。Research trigger成立時はresearch memoとADRをL4参照点へ合流し、L3要求合意の前段へ固定しない。成立性実験が必要ならDiscovery／PoCへ切り替える。\n- HARNESS-L2-002／003：Production ScrumまたはV設計＋Scrum実装Hybridのcheckpoint trigger成立時にSR0–SR4を要求し、SR4 receipt欠落をrelease-readyにしない。findingの修正routeが0件または複数なら拒否する。\n- HARNESS-L2-002／003：v1.3 L104-106に従い、`ProvisionalVProjection`をcanonical traceの根拠へ使う入力、SR4 receiptなしの`CanonicalVPublication`、4 entityを単一進捗値へ縮退する入力を拒否する。Design Refactorでobservable behavior／public surface／DB semantics／要求を変える入力はRedesign／Retrofitへrerouteし、送り先が0件なら拒否する。Performance Refactorはbaseline／budget／workload／profile／統計条件／回帰oracleを先に固定し、測定不能な高速化を拒否する。\n- HARNESS-L2-003：プロト合意欠落と非UI記録欠落を別々に投入し、L2要求を飛ばしてL3凍結可能にならないことを確認する。\n- HARNESS-L2-003：実装済み・総合検証済み・利用者受入済み・運用評価済みを区別し、一つの状態から残りを推定しない。\n- HARNESS-L2-004：要求変更に対して影響する設計・V-pairが示され、無関係な要求を再承認対象へ巻き込まず、必要な検証を落とさない。\n- HARNESS-L2-004：入力source atom集合の各atomが、当該要求への保持、別の生存中仮登録への保持、対象revision付き人間decisionのいずれか一つへ割り当てられる。未計上、根拠のない重複、digest違い、仮登録先の失効があれば`no_loss`を発行しない。\n- HARNESS-L2-005：別revisionの証拠やCI成功のみを提示しても利用者受入成立と判定しない。実行基盤を変えても必要な証拠条件を維持する。\n- HARNESS-L2-005：required oracleを欠くprofile、unknownをN/Aへ変えたprofile、expected failureと差戻し先を持たないprofileを不成立とする。providerを交換してもrequirement・pair・oracle・evidence identityが維持されることを確認する。\n\n",
+      "product": "HELIX-HARNESS",
+      "layer": "L11",
+      "classification": "boundary_candidate",
+      "relation": "HARNESS acceptance candidate covers process gates and unknown handling; no incident identity or direct PHCAP-17 ref"
+    },
+    {
+      "ref_id": "CUR-OS-L1-01",
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "start_line": 22,
+      "end_line": 40,
+      "line_sha256": "b1c128dbf54144105b9d47700ef811e1d7bc74cc475c287b2d27fb30574d3377",
+      "exact_text": "HELIX-OSは、HARNESSを含むHELIXプロジェクト群のauthority、変更、Worker、状態、証拠、CI、配布運転を\n管理・統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWeb-OSから得た運用結果を\nHARNESS自身および各対象の改善候補へ戻す。担当やsessionが変わっても、承認済みの意味、未完義務、\n許可範囲、停止・復旧条件を失わず、対象ごとの開発を継続できるようにする。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HELIXOS-L1-001 | 人間は、対象ごとのConcept・要求・採否・合意revisionと判断の出所を管理できる | HELIXOS-L2-001／003 |\n| HELIXOS-L1-002 | 人間は、複数プロジェクトの要求から作業・検証・提供・運用までの欠落、競合、staleを把握できる | HELIXOS-L2-002／007 |\n| HELIXOS-L1-003 | 人間は、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開できる | HELIXOS-L2-004／009 |\n| HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |\n| HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |\n| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗・学習を評価し、HELIX-OSに採択済み改善の実行・再検証・効果確認を継続させられる | HELIXOS-L2-005 |\n| HELIXOS-L1-007 | 人間は、HARNESS package運転と個別製品のrelease準備・artifact受渡し・observationを対象revisionと許可へ束縛して統制し、展開先runtimeのdeployment authorityを分離できる | HELIXOS-L2-002／006／007 |\n| HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |\n| HELIXOS-L1-009 | 人間は、管理・推進・検収の責務を分け、許可範囲内の直接調整を保ったまま仕事を統制できる | HELIXOS-L2-010 |\n| HELIXOS-L1-010 | 人間は、変更と依存に合う統合順序・統合単位・検証集合を確認し、結果に応じて収束計画を更新できる | HELIXOS-L2-011 |\n| HELIXOS-L1-011 | 人間は、内部状態と外部技術情報を出典・revision・適用条件付きで調査し、安全に採否できる | HELIXOS-L2-012 |\n| HELIXOS-L1-012 | 人間は、一つの仕事を要求から運用まで診断し、管理機構自身を含む是正と効果確認へ閉じられる | HELIXOS-L2-013 |\n",
+      "product": "HELIX-OS",
+      "layer": "L1",
+      "classification": "boundary_candidate",
+      "relation": "OS L1 candidate owns management, evidence, recovery and improvement loop"
+    },
+    {
+      "ref_id": "CUR-OS-L2-01",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "start_line": 269,
+      "end_line": 283,
+      "line_sha256": "e76eb258e1ae144e60fd946d66788c94525882818d3d29b86afe2fdc4be7c9bb",
+      "exact_text": "[旧NIO候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md)は、\n[新世代対応表](../../governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md)に従って\n再採否する。旧Issue番号をownerにせず、既存measurement、event、logging、alert、incident、lifecycle、Requirement Re-entry\nengineの再利用を新世代要件にしない。\n\nHELIXOS-L2-002／005／007では、管理対象の要求revisionからrelease準備・artifact受渡しと、展開先runtimeが所有する\n配備・設定・計測・log・通知・incident・backup・restore・rollback・maintenance・decommission・費用の適用状態と証拠へ\n辿り、欠測・stale・collector停止をhealthyへ変換しない。OSは証拠と進行を統制するが、展開先runtimeの実行authorityを\n吸収しない。\n運用観測からの差分は改善候補として出典とscopeを保持し、人間の採否や対象製品の要求を直接書き換えない。\n\nHELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作・中断・再開を追跡し、対象、actor、権限、予算、\n影響範囲、復旧先、独立検証が成立する範囲だけを実行対象にする。NIO候補は操作認可や自動修復権限を付与しない。\n具体SLO、RTO／RPO、保持期間、対象環境は個別製品・releaseの承認済み要求を参照する。本節では旧機構、CI、\n故障注入、production操作、自動修復を実行しない。\n",
+      "product": "HELIX-OS",
+      "layer": "L2",
+      "classification": "direct_boundary_current_ref",
+      "relation": "OS candidate traces incident/recovery operation evidence and refuses old engine reuse and production execution in this candidate"
+    },
+    {
+      "ref_id": "CUR-OS-L11-01",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19",
+      "start_line": 140,
+      "end_line": 145,
+      "line_sha256": "89b5c64b7d148514d36f21b0dd47bd277126a3bdbb31cf724231d004a89fd341",
+      "exact_text": "- HELIXOS-L2-002／007：要求revisionから運用対象・計測・log・incident・復旧・保守・観測証拠へ辿り、欠測、stale、collector停止、別環境の成功をhealthyや運用成立へ変換しない。\n- HELIXOS-L2-005／007：incidentや観測差分を改善候補として保持し、Issue close、rollback成功、文書存在から要求変更・恒久修復・再発防止完了を生成しない。\n- HELIXOS-L2-004／006／009：scope外の自動修復、公開、課金、production writeを拒否し、対象・actor・権限・予算・影響・復旧・独立検証の欠落を実行可能と表示しない。\n- HELIXOS-L2-007：secret／PIIをlog・example・evidenceへ平文出力せず、具体方式の採用前には未検証として扱う。\n\n旧NIO候補、旧Issue owner、旧engine、既存CIは受入入力や操作認可にしない。製品固有SLOの達成は対象製品のL11／L10／L12で確認する。\n",
+      "product": "HELIX-OS",
+      "layer": "L11",
+      "classification": "direct_boundary_current_ref",
+      "relation": "OS acceptance candidate keeps incident observations as improvement candidates and rejects completion inference"
+    },
+    {
+      "ref_id": "CUR-BOUNDARY-01",
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "start_line": 34,
+      "end_line": 39,
+      "line_sha256": "56e41802491cf94f4d2de1948d8e9ee37da354544c8c2904aa417658a5143989",
+      "exact_text": "| 対象 | 所有する要求 | ローカル入口 |\n|---|---|---|\n| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |\n| HELIX-OS | プロジェクト群の管理・統制、Worker、CI、ログ、学習、継続・復旧、HELIXの改善循環 | [HELIX-OS](../helix-os/README.md) |\n| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../helix-web/README.md) |\n| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |\n",
+      "product": "HELIX-HARNESS/HELIX-OS/HELIX-Web-OS",
+      "layer": "Concept boundary",
+      "classification": "direct_boundary_current_ref",
+      "relation": "product ownership table separates HARNESS process, OS management/recovery and Web-OS service runtime"
+    },
+    {
+      "ref_id": "CUR-BOUNDARY-02",
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "start_line": 54,
+      "end_line": 70,
+      "line_sha256": "5f7f04fd2dedf154f6eccb290b884f2513b6e3d87fd9e4f13ad19fbe6eee4428",
+      "exact_text": "| HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |\n| HELIX-OS | HELIXプロジェクト群の内部管理・統制機構 | authority管理、Worker、実行制御、CI、ログ、状態、学習、改善、配布運転 |\n| HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとしてWeb利用者へダッシュボード、操作、進行表示、サービス体験を提供する |\n| HELIX-Web-OS | HELIX-OS外のWebサービス運転基盤 | tenant、Connector、job、service state、evidence projection、配備・監視・復旧 |\n\nHARNESSをHELIX-OSの内部Kernelだけに縮退させない。HELIX-OSはHARNESSを利用・管理するが、\nHARNESSの工程意味を所有する別正本を作らない。HARNESSのartifact内容とconsumer利用条件はHARNESS、\nartifactの生成、配布、promotion、rollback、監視の実行統制はHELIX-OSが担う。\n\nHELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWeb-OSの\n要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、Web-OSは展開後の利用者向けserviceを\n独立したauthority、state、credential、writerで運転する。\n\n両OSは改善loopで接続する。HELIX-Web-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで\nHELIX-OSへexportし、HELIX-OSがHARNESS自身の実践を含む他projectの証拠と突合して改善候補を重複排除・評価する。\n採択された候補だけをHARNESS、Web、Web-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、\n同意範囲外logの吸収や、logからの直接変更は行わない。\n",
+      "product": "HELIX-HARNESS/HELIX-OS/HELIX-Web-OS",
+      "layer": "Concept boundary",
+      "classification": "direct_boundary_current_ref",
+      "relation": "HARNESS owns artifact/process meaning, OS owns execution control and Web-OS owns service runtime; export is bounded"
+    }
+  ],
+  "product_boundary_candidates": [
+    {
+      "product": "HELIX-HARNESS",
+      "unit_candidate": "V-model incident requirement, acceptance, trace/backflow contract",
+      "connection_candidate": "incident evidence ↔ L1-L12 / L11 acceptance / OS execution evidence",
+      "status": "candidate_unresolved",
+      "evidence_ref_ids": [
+        "CUR-HARNESS-L1-01",
+        "CUR-HARNESS-L2-01",
+        "CUR-HARNESS-L11-01",
+        "CUR-BOUNDARY-01",
+        "CUR-BOUNDARY-02"
+      ]
+    },
+    {
+      "product": "HELIX-OS",
+      "unit_candidate": "management, evidence, incident/recovery/improvement operation control",
+      "connection_candidate": "HARNESS contract ↔ Worker/CI/log/state/evidence and bounded Web-OS export",
+      "status": "candidate_unresolved",
+      "evidence_ref_ids": [
+        "CUR-OS-L1-01",
+        "CUR-OS-L2-01",
+        "CUR-OS-L11-01",
+        "CUR-XW-01",
+        "CUR-XW-02",
+        "CUR-BOUNDARY-01",
+        "CUR-BOUNDARY-02"
+      ]
+    },
+    {
+      "product": "HELIX-Web-OS",
+      "unit_candidate": "service runtime incident/recovery/monitoring and service evidence export",
+      "connection_candidate": "service log/telemetry/incident ↔ bounded OS improvement input",
+      "status": "candidate_unresolved",
+      "evidence_ref_ids": [
+        "CUR-WEBOS-01",
+        "CUR-BOUNDARY-01",
+        "CUR-BOUNDARY-02"
+      ]
+    }
+  ],
+  "contradictions_preserved": [
+    {
+      "id": "CONTR-01",
+      "left": "legacy incident.md header says current authority/identity and old flow",
+      "right": "legacy ledger marks asset historical, unresolved, implementation unknown; current docs prohibit old engine reuse",
+      "resolution": "preserved as contradiction; no current authority generated"
+    },
+    {
+      "id": "CONTR-02",
+      "left": "PLAN-L7 and PLAN-REVERSE embedded metadata says confirmed/review approved/tests green",
+      "right": "asset ledger has no decision_record_ref, disposition unresolved, implementation unknown, consumer_refs empty",
+      "resolution": "preserved as historical embedded claim; old runtime/test/CI not executed and no current implementation claim"
+    },
+    {
+      "id": "CONTR-03",
+      "left": "PHCAP-17 product_targets includes HARNESS",
+      "right": "gap audit current.evidence_products excludes HARNESS",
+      "resolution": "HARNESS remains unknown; candidate boundary refs do not close direct evidence gap"
+    }
+  ],
+  "unresolved": [
+    "all non-selected incident/recovery/hotfix/postmortem assets and consumers",
+    "four selected assets have no append-only decision record; this is unknown, not adoption or rejection",
+    "legacy consumer closure is pending: all selected ledger consumer_refs are empty",
+    "legacy product owner, unit/connection/composite split and successor IDs",
+    "current HARNESS PHCAP-17 direct requirement/ref, incident identity, authority, severity, recovery, postmortem and acceptance contract",
+    "current implementation, execution, test/pass, operational state and production applicability",
+    "whether old embedded review/test claims can be semantically rederived; no reuse or copy decision made"
+  ],
+  "counts": {
+    "legacy_assets_examined": 4,
+    "legacy_source_files": 4,
+    "legacy_source_spans": 14,
+    "semantic_atoms": 11,
+    "decision_records_found": 0,
+    "legacy_consumer_refs_observed": 0,
+    "current_refs_recorded": 11,
+    "harness_direct_current_refs": 0,
+    "current_products_directly_evidenced_by_inventory": 2
+  },
+  "validator_contract": {
+    "must_preserve": [
+      "asset_id/source_path/source_sha256",
+      "exact archived source lines and line digest",
+      "ledger disposition/implementation/consumer state",
+      "empty decision history as unknown",
+      "current product/layer classification",
+      "contradictions and unresolved"
+    ],
+    "must_reject": [
+      "authority/adoption/owner/implementation/consumer closure promotion",
+      "HARNESS direct evidence synthesized from adjacent refs",
+      "old runtime/test/CI execution or oracle use",
+      "Issue #1905 as semantic authority"
+    ]
+  }
+}
