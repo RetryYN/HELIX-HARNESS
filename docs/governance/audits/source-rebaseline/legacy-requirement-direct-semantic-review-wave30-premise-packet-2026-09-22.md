@@ -5,9 +5,9 @@
 - batch: `LEGACY-SEMANTIC-WAVE30-2026-09-22`
 - worktree: `/home/tenni/.helix-worktrees/legacy-semantic-review-wave30`
 - branch: `docs/legacy-semantic-review-wave30`
-- Wave29 Draft PR #1983 rebaseline後 exact parent／current tree／stacked input: `bc42927178980f1bb210e33177cf5feee8442b5b`
-- main base／source main base: `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`
-- main merge parents: `4919cfd245ee128fee71c713c8d2d0a8cd5fcd11`、`d272a97b3e55401fa75ad41670fbeefd18f8a4cf`
+- Wave29 Draft PR #1983最新main rebaseline後 exact parent／current tree／stacked input: `e3f1201c2be6cbdac3d0a5a9a1345fd84f64003b`
+- main base／source main base: `fbeee47920ed8b2992ae123b00c224ff88987c50`
+- main merge parents: `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`、`81144b44b16064bc864b01bd83830455bb7bada3`
 - rebaseline stop: mainまたはWave29 exact HEADが変わったら停止し、入力digest／parent lineageを更新
 - scope: 4 units / 12 asset edges / 4 confirmed requirement edges / 8 unresolved candidate edges
 - cumulative: 99 units / 294 asset edges / 残り119 units（全218 units）
@@ -34,10 +34,10 @@ FR21、FR22、FR23のsource span overlapはありません。FR22 HARNESS／OS�
 
 ## asset roleとunknown境界
 
-各unitの3 edgeは同一要求asset、productに近接するdesign asset、implementation source候補assetです。FR21は `48A992...`／`41C752...`、FR22 HARNESS／OSは `467400...`／`B5C4...`、FR23は `310E...`／`44C4...` を参照します。選択assetはWave1–29の旧implementation／design assetと重複しません。
+各unitの3 edgeは同一要求asset、productに近接するdesign asset、implementation sourceまたはtest design候補assetです。FR21は `48A992...`／`41C752...`、FR22 HARNESS／OSは `467400...`／`B5C4...`、FR23は design `310E...`／test design `087481...` を参照します。選択assetはWave1–29の旧implementation／design assetと重複しません。
 
-要求edgeだけを同一要求IDのexact static contractとしてconfirmedにし、design／implementationの8 edgeは `unresolved` としました。implementationは `unknown`、縮退・failure・consumer closureは未確定、legacy runtime/test/CIは `not_run` です。FR23のdesign候補は物理schema／projectionに関する近接証拠であり、product connector registryの直接実装・意味一致を示しません。bounded search membershipは意味一致、採用、現行実装の証拠ではありません。
+要求edgeだけを同一要求IDのexact static contractとしてconfirmedにし、design 4、implementation_source 3、test_design 1の8 edgeは `unresolved` としました。implementationは `unknown`、縮退・failure・consumer closureは未確定、legacy runtime/test/CIは `not_run` です。FR23のdesign候補は物理schema／projectionに関する近接証拠であり、test design候補も未実行の契約設計です。いずれもproduct connector registryの直接実装・意味一致を示しません。bounded search membershipは意味一致、採用、現行実装の証拠ではありません。
 
 旧archiveはsource、判断史、failure、consumerを調査するためだけに静的参照しました。旧workflow、CLI、hook、adapter、runtime、test、CIを実行せず、候補から下流pairや新規buildを生成していません。
 
-選択assetのdispositionはcatalog／disposition台帳で `Historical`、`historical` authority、`unresolved`、`unknown` implementation、空のconsumer refsを確認しました。implementation source候補のreuse exclusionと未充足migration preconditions（atom inventory、product owner、parent binding、consumer、rights、executability、secret、external effect）を保持し、failure／consumer closureを未確定のまま残しています。
+選択assetのdispositionはcatalog／disposition台帳で `Historical`、`historical` authority、`unresolved`、`unknown` implementation、空のconsumer refsを確認しました。implementation source候補とtest design候補のreuse exclusion、未充足migration preconditions（atom inventory、product owner、parent binding、consumer、rights、executability、secret、external effect）を保持し、failure／consumer closureを未確定のまま残しています。

@@ -111,18 +111,18 @@
         "match_mode": "archive_file_contains_any_utf8_anchor"
       },
       "selected_asset_ids": [
+        "LEGACY-ASSET-087481E8D6706D4C5E29",
         "LEGACY-ASSET-310E87378AFE8095809C",
-        "LEGACY-ASSET-44C4FC0A3896A110ACE9",
         "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
       ],
-      "unreviewed_asset_count": 3534,
-      "unreviewed_asset_ids_sha256": "sha256:a6894de8fac3d2e6f9cc1af331a8d2e975ad8639dc2cf367710fb53354c4acca"
+      "unreviewed_asset_count": 3533,
+      "unreviewed_asset_ids_sha256": "sha256:8f1c9a1d156987c7910baba435da1b5dda5b4c84ff762b095c97643711329d65"
     }
   },
   "consumer_closure_status": "pending",
   "cumulative_reviewed_edge_count": 294,
   "cumulative_reviewed_unit_count": 99,
-  "current_tree_revision": "bc42927178980f1bb210e33177cf5feee8442b5b",
+  "current_tree_revision": "e3f1201c2be6cbdac3d0a5a9a1345fd84f64003b",
   "inputs": {
     "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
     "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
@@ -170,7 +170,7 @@
     "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl": "sha256:1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40",
     "docs/governance/legacy-requirement-direct-semantic-review-wave28.meta.json": "sha256:6425831671ea71fba6e7e5aa3fad509854cbd64a2e783d88a84094c33b8a2534",
     "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29",
-    "docs/governance/legacy-requirement-direct-semantic-review-wave29.meta.json": "sha256:b5e00037db31243508be512cb448e149a5a19c19edccb25fe60307424d03f682",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave29.meta.json": "sha256:a3443a93710741e8c05c329e640e2c6cb780c81a8ab1a9a11c5c0a0ff4dbd76a",
     "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
     "docs/governance/legacy-requirement-direct-semantic-review-wave3.meta.json": "sha256:3d40977879de7be93eaa6b35b651c6af9a7fb6132a74621300f2429eba931a14",
     "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
@@ -190,14 +190,14 @@
   },
   "legacy_execution_performed": false,
   "main_merge_parents": [
-    "4919cfd245ee128fee71c713c8d2d0a8cd5fcd11",
-    "d272a97b3e55401fa75ad41670fbeefd18f8a4cf"
+    "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+    "81144b44b16064bc864b01bd83830455bb7bada3"
   ],
-  "main_merge_revision": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+  "main_merge_revision": "fbeee47920ed8b2992ae123b00c224ff88987c50",
   "missing_evidence_receipts": [],
   "new_build_allowed": false,
-  "output_sha256": "sha256:eeb0be0ed4f280c799bfe3a17176d440a941d34d3a227e588f5732480788c8d0",
-  "parent_revision": "bc42927178980f1bb210e33177cf5feee8442b5b",
+  "output_sha256": "sha256:a7e3e9d86d91fbd783cc5581611dc7e7f9a7f199a03e9d312f01f24fd8c4613f",
+  "parent_revision": "e3f1201c2be6cbdac3d0a5a9a1345fd84f64003b",
   "phase_rows": {
     "IRUNIT-HIL-FR-21-HELIX-OS": [],
     "IRUNIT-HIL-FR-22-HELIX-HARNESS": [
@@ -390,7 +390,7 @@
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE29-2026-09-22",
       "ledger_sha256": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29",
-      "meta_sha256": "sha256:b5e00037db31243508be512cb448e149a5a19c19edccb25fe60307424d03f682"
+      "meta_sha256": "sha256:a3443a93710741e8c05c329e640e2c6cb780c81a8ab1a9a11c5c0a0ff4dbd76a"
     }
   ],
   "record_count": 12,
@@ -441,7 +441,7 @@
       "unit_candidate_id": "IRUNIT-HIL-FR-23-HELIX-OS"
     },
     {
-      "asset_id": "LEGACY-ASSET-44C4FC0A3896A110ACE9",
+      "asset_id": "LEGACY-ASSET-087481E8D6706D4C5E29",
       "unit_candidate_id": "IRUNIT-HIL-FR-23-HELIX-OS"
     }
   ],
@@ -483,11 +483,11 @@
       "unit_candidate_id": "IRUNIT-HIL-FR-23-HELIX-OS"
     }
   ],
-  "source_main_base_revision": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+  "source_main_base_revision": "fbeee47920ed8b2992ae123b00c224ff88987c50",
   "source_requirement_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
   "source_requirement_ir_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
-  "source_revision": "bc42927178980f1bb210e33177cf5feee8442b5b",
-  "stacked_pr_parent_revision": "bc42927178980f1bb210e33177cf5feee8442b5b",
+  "source_revision": "e3f1201c2be6cbdac3d0a5a9a1345fd84f64003b",
+  "stacked_pr_parent_revision": "e3f1201c2be6cbdac3d0a5a9a1345fd84f64003b",
   "status": "candidate_only",
   "unit_aggregates": [
     {

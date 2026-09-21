@@ -2,9 +2,9 @@
 
 Wave30は、旧archiveの要求、asset catalog、design、implementation sourceをstatic read-onlyで照合するresearch-premise candidateです。対象worktreeは `/home/tenni/.helix-worktrees/legacy-semantic-review-wave30`、branchは `docs/legacy-semantic-review-wave30` です。旧runtime、旧test、旧CIは実行していません。
 
-Wave29 Draft PR #1983の再ベース後 exact HEADを `bc42927178980f1bb210e33177cf5feee8442b5b` に固定し、`origin/main` の `f122d65e1435b4709fbb7b07fbb8e42b70f0b110` をmain baseとするstacked候補にしました。`current_tree_revision`、`parent_revision`、`stacked_pr_parent_revision`、`source_revision` はWave29 exact HEAD、`source_main_base_revision` と `main_merge_revision` は現行mainです。mainのmerge parentsは `4919cfd245ee128fee71c713c8d2d0a8cd5fcd11`、`d272a97b3e55401fa75ad41670fbeefd18f8a4cf` です。mainまたはWave29 exact HEADが変わった場合は停止し、入力digestと親系譜を再baselineします。作成側はmergeを行いません。
+Wave29 Draft PR #1983を最新mainへrebaselineしたexact HEAD `e3f1201c2be6cbdac3d0a5a9a1345fd84f64003b` に固定し、最新main `fbeee47920ed8b2992ae123b00c224ff88987c50` をmain baseとするstacked候補にしました。`current_tree_revision`、`parent_revision`、`stacked_pr_parent_revision`、`source_revision` はWave29 exact HEAD、`source_main_base_revision` と `main_merge_revision` は現行mainです。mainのmerge parentsは `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`、`81144b44b16064bc864b01bd83830455bb7bada3` です。mainまたはWave29 exact HEADが変わった場合は停止し、入力digestと親系譜を再baselineします。作成側はmergeを行いません。
 
-Wave29後の次の未レビュー要求atom境界から、FR21 OS、FR22 HARNESS／OS、FR23 OSの4 product unit、12 edge（requirement 4、design 4、implementation_source 4）を選択しました。FR21 OSは1 atom、FR22 HARNESS／OSは各2 atom、FR23 OSは1 atomです。source spanの共有は確認されず、全atomのproduct boundaryは `product_boundary_pending_human_decision` です。
+Wave29後の次の未レビュー要求atom境界から、FR21 OS、FR22 HARNESS／OS、FR23 OSの4 product unit、12 edge（requirement 4、design 4、implementation_source 3、test_design 1）を選択しました。FR21 OSは1 atom、FR22 HARNESS／OSは各2 atom、FR23 OSは1 atomです。source spanの共有は確認されず、全atomのproduct boundaryは `product_boundary_pending_human_decision` です。
 
 累積receiptは99 unit／294 asset edges、残り119 unitです。全218 unitの4-product candidate denominator（`HELIX-HARNESS`、`HELIX-OS`、`HELIX-Web`、`HELIX-Web-OS`）は維持しています。semantic countsはconfirmed 4、unresolved 8、rejected 0です。product、phase authority、旧実装、縮退、failure、consumer、successorは確定していません。authority effectは `none`、consumer closureは `pending`、legacy executionは `not_run`、new buildは `false` です。
 
@@ -17,7 +17,7 @@ Wave29後の次の未レビュー要求atom境界から、FR21 OS、FR22 HARNESS
 | `IRUNIT-HIL-FR-22-HELIX-OS` | HELIX-OS | PHCAP-07 | 2 | 3054 / 142 |
 | `IRUNIT-HIL-FR-23-HELIX-OS` | HELIX-OS | なし（unknown） | 1 | 3536 / 0 |
 
-phase候補がある行もcatalog上の候補であり、authorityや採用ではありません。FR22のcrosswalkは `current_status=candidate_only`、`legacy_capability_status=documented_with_test_design`、`transition_assessment=not_reimplemented_formally` です。phase poolが0のproduct splitと全implementation edgeは、旧実装成立・現行実装・縮退完了を示さずunknown／unresolvedに保ちました。
+phase候補がある行もcatalog上の候補であり、authorityや採用ではありません。FR22のcrosswalkは `current_status=candidate_only`、`legacy_capability_status=documented_with_test_design`、`transition_assessment=not_reimplemented_formally` です。phase poolが0のproduct splitとimplementation／test-design edgeは、旧実装成立・現行実装・縮退完了を示さずunknown／unresolvedに保ちました。
 
 ## source atomの意味境界
 
@@ -43,12 +43,12 @@ phase候補がある行もcatalog上の候補であり、authorityや採用で�
 | FR22 OS / implementation_source | `B5C4F0A803AA80593EB0`（LASPH-2964） | `design-coverage.ts:6-14,206-260` |
 | FR23 OS / requirement | `A60CF91DD2AF6693E6F9`（LASPH-2866） | `requirements.json:2372-2414`、raw `infinity-loop-platform-requirements.md:113` |
 | FR23 OS / design | `310E87378AFE8095809C`（LASPH-0363） | `physical-data.md:126-140,247-253` |
-| FR23 OS / implementation_source | `44C4FC0A3896A110ACE9`（LASPH-2958） | `db-projection-ingestion.ts:1-14,138-166` |
+| FR23 OS / test_design | `087481E8D6706D4C5E29`（LASPH-2559） | `L5-product-data-connector-integration-test-design.md:1-24` |
 
-design／implementationは候補近接の静的source evidenceです。design edgeとimplementation_source edgeは `semantic_link_status=unresolved`、`catalog_legacy_implementation_status=unknown`、`legacy_execution_status=not_run` とし、旧実装、採用、現行完了を主張していません。FR23 designはproduct connector専用設計ではなく、freshな物理schema／projection候補であり、connector要件との直接意味一致は未確定です。旧archiveのsource、判断史、failure、consumerは参照した範囲だけを保持し、新世代のbaseline、oracle、fallbackにはしません。
+design／implementation／test-designは候補近接の静的source evidenceです。design edge、implementation_source edge、test_design edgeは `semantic_link_status=unresolved`、`catalog_legacy_implementation_status=unknown`、`legacy_execution_status=not_run` とし、旧実装、採用、現行完了を主張していません。FR23 designはproduct connector専用設計ではなく、freshな物理schema／projection候補であり、connector要件との直接意味一致は未確定です。FR23 test designも実行されておらず、実装成立や受入を示しません。旧archiveのsource、判断史、failure、consumerは参照した範囲だけを保持し、新世代のbaseline、oracle、fallbackにはしません。
 
-選択したassetはWave1–29の旧implementation／design assetと重複しないことを確認しました。catalog／dispositionでは `asset_class=Historical`、`authority_status=historical`、`disposition=unresolved`、`implementation_status=unknown`、`consumer_refs=[]` を保持しています。`src/`のimplementation候補は `reuse_exclusion_class=legacy_runtime_cli_or_adapter` を保持し、migration preconditions（semantic atom inventory、product owner decision、parent requirement binding、consumer／rights／executability／secret／external effect check）は未充足です。これは静的分類であり、旧資産の実行や再利用許可ではありません。
+選択したassetはWave1–29の旧implementation／design assetと重複しないことを確認しました。catalog／dispositionでは `asset_class=Historical`、`authority_status=historical`、`disposition=unresolved`、`implementation_status=unknown`、`consumer_refs=[]` を保持しています。`src/`のimplementation候補は `reuse_exclusion_class=legacy_runtime_cli_or_adapter`、test design候補は `reuse_exclusion_class=legacy_test_design_or_oracle` を保持し、migration preconditions（semantic atom inventory、product owner decision、parent requirement binding、consumer／rights／executability／secret／external effect check）は未充足です。これは静的分類であり、旧資産の実行や再利用許可ではありません。
 
 ## 検証境界
 
-Wave30 schema10 verifierはrow/meta schema、main／stacked parent lineage、source SHA、exact excerpt、atom provenance、bounded search ID/count/digest、phase pool、Wave1–29 prior lineage、edge／asset重複、shared atom hold、stale-anchor negative caseを静的に確認します。authority、product boundary、phase採否、failure／consumer closure、acceptance receipt、旧asset実行はこの候補から生成しません。
+Wave30 schema10 verifierはrow/meta schema、main／stacked parent lineage、source SHA、exact excerpt、atom provenance、bounded search candidate ID/count/digest、selected subset／件数会計、meta `reviewed_edges` とledgerの完全一致、phase pool、Wave1–29 prior lineage、edge／asset重複、stale-anchor／candidate外選定のnegative caseを静的に確認します。authority、product boundary、phase採否、failure／consumer closure、acceptance receipt、旧asset実行はこの候補から生成しません。

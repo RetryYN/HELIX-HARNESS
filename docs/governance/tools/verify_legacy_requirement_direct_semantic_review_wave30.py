@@ -20,9 +20,9 @@ CROSSWALK = ROOT / "docs/governance/legacy-requirement-implementation-crosswalk-
 DECOMPOSITION = ROOT / "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
 REQ_IR = ARCHIVE / "requirements-ir/requirements.json"
 BATCH = "LEGACY-SEMANTIC-WAVE30-2026-09-22"
-PARENT = "bc42927178980f1bb210e33177cf5feee8442b5b"
-MAIN_MERGE_REVISION = "f122d65e1435b4709fbb7b07fbb8e42b70f0b110"
-MAIN_MERGE_PARENTS = ['4919cfd245ee128fee71c713c8d2d0a8cd5fcd11', 'd272a97b3e55401fa75ad41670fbeefd18f8a4cf']
+PARENT = "e3f1201c2be6cbdac3d0a5a9a1345fd84f64003b"
+MAIN_MERGE_REVISION = "fbeee47920ed8b2992ae123b00c224ff88987c50"
+MAIN_MERGE_PARENTS = ['f122d65e1435b4709fbb7b07fbb8e42b70f0b110', '81144b44b16064bc864b01bd83830455bb7bada3']
 REQ_SHA = "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
 UNITS = ["IRUNIT-HIL-FR-21-HELIX-OS", "IRUNIT-HIL-FR-22-HELIX-HARNESS", "IRUNIT-HIL-FR-22-HELIX-OS", "IRUNIT-HIL-FR-23-HELIX-OS"]
 
@@ -30,7 +30,7 @@ SELECTED = {
     UNITS[0]: set(["LEGACY-ASSET-41C752D10BF2ECC0B092", "LEGACY-ASSET-48A992A1B3B2B0F8B458", "LEGACY-ASSET-A60CF91DD2AF6693E6F9"]),
     UNITS[1]: set(["LEGACY-ASSET-4674004EAE02B2811AE0", "LEGACY-ASSET-B5C4F0A803AA80593EB0", "LEGACY-ASSET-A60CF91DD2AF6693E6F9"]),
     UNITS[2]: set(["LEGACY-ASSET-4674004EAE02B2811AE0", "LEGACY-ASSET-B5C4F0A803AA80593EB0", "LEGACY-ASSET-A60CF91DD2AF6693E6F9" ]),
-    UNITS[3]: set(["LEGACY-ASSET-310E87378AFE8095809C", "LEGACY-ASSET-44C4FC0A3896A110ACE9", "LEGACY-ASSET-A60CF91DD2AF6693E6F9"]),
+    UNITS[3]: set(["LEGACY-ASSET-087481E8D6706D4C5E29", "LEGACY-ASSET-310E87378AFE8095809C", "LEGACY-ASSET-A60CF91DD2AF6693E6F9"]),
 }
 
 REQ_STATEMENT_DIGESTS = {
@@ -102,6 +102,11 @@ def file_digest(path: Path) -> str:
 
 def canonical(value: object) -> str:
     return digest(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode())
+
+
+def verify_selected_subset(selected: list[str], candidates: list[str], unit: str) -> None:
+    require(selected == sorted(set(selected)), f"selected duplicate or order {unit}")
+    require(set(selected) <= set(candidates), f"selected outside candidate set {unit}")
 
 
 def read_jsonl(path: Path) -> list[dict]:
@@ -246,6 +251,11 @@ def verify() -> None:
     current_edges = {(r["unit_candidate_id"], r["asset_id"]) for r in rows}
     expected_edges = {(unit, asset) for unit, assets in SELECTED.items() for asset in assets}
     require(current_edges == expected_edges, "selected edges")
+    expected_reviewed_edges = [
+        {"asset_id": row["asset_id"], "unit_candidate_id": row["unit_candidate_id"]}
+        for row in rows
+    ]
+    require(meta["reviewed_edges"] == expected_reviewed_edges, "reviewed edges exact ledger")
     prior_edges, prior_assets, prior_units = prior_edges_and_assets()
     require(not current_edges & prior_edges, "prior edge overlap")
     require(not ({r["asset_id"] for r in rows if r["role_kind"] != "requirement"} & prior_assets), "prior implementation asset overlap")
@@ -311,6 +321,7 @@ def verify() -> None:
                     verify_binding(row, binding, selected_excerpt(row, binding["evidence_ref_indexes"]))
 
     # Bounded search receipts are recomputed from catalog source paths and exact anchors.
+    recomputed_candidates = {}
     for unit, receipt in meta["bounded_search_receipts"].items():
         require(unit in UNITS and receipt["catalog_record_count"] == len(catalog), f"search receipt shape {unit}")
         require(receipt["query"] == by_unit[unit][0]["bounded_search_query"], f"search query {unit}")
@@ -323,10 +334,13 @@ def verify() -> None:
             if any(anchor in body for anchor in receipt["query"]["anchors"]):
                 ids.append(aid)
         ids.sort()
+        recomputed_candidates[unit] = ids
         require(receipt["candidate_asset_count"] == len(ids) and receipt["candidate_asset_ids_sha256"] == canonical(ids), f"candidate receipt {unit}")
         expected = sorted(SELECTED[unit])
+        verify_selected_subset(expected, ids, unit)
         require(receipt["selected_asset_ids"] == expected, f"selected receipt {unit}")
         remaining = sorted(set(ids) - set(expected))
+        require(len(expected) + len(remaining) == len(ids), f"selected count accounting {unit}")
         require(receipt["unreviewed_asset_count"] == len(remaining) and receipt["unreviewed_asset_ids_sha256"] == canonical(remaining), f"remaining receipt {unit}")
         pool = crosswalk[unit]["candidate_asset_pool"]
         pool_ids = sorted(pool["phase_and_product_candidate_asset_ids"])
@@ -348,6 +362,14 @@ def verify() -> None:
         pass
     else:
         raise AssertionError("negative stale-anchor case accepted")
+    negative_unit = UNITS[3]
+    outside = next(aid for aid in catalog if aid not in recomputed_candidates[negative_unit])
+    try:
+        verify_selected_subset(sorted(set(SELECTED[negative_unit]) | {outside}), recomputed_candidates[negative_unit], negative_unit)
+    except AssertionError:
+        pass
+    else:
+        raise AssertionError("negative outside-candidate selection accepted")
     injected = deepcopy(controlled)
     injected["merge_admission"] = "granted"
     require(set(injected) != ROW_FIELDS, "extra authority field accepted")
