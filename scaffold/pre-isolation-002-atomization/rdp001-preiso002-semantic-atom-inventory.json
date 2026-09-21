@@ -1,0 +1,1566 @@
+{
+  "schema": "helix-scaffold-preisolation-002-atomization-inventory.v1",
+  "candidate_id": "RDP-001-PREISOLATION-002",
+  "candidate_kind": "research_premise",
+  "status": "candidate_pending_semantic_equivalence_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "classification_unit": "hunk_fragment",
+  "classification_counts_are_not_semantic_atom_counts": true,
+  "comparison": {
+    "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "method": "read-only Git object bytes; exact changed hunk spans and UTF-8 SHA-256",
+    "old_runtime_test_ci_execution": false,
+    "source_holding_record_count": 333,
+    "full_diff_file_count": 400,
+    "full_diff_hunk_count": 492,
+    "parent_candidate_file_count": 60,
+    "parent_candidate_hunk_count": 60,
+    "parent_candidate_review_only_subunit_count": 8,
+    "parent_candidate_semantic_atom_count": 0,
+    "combined_selected_before_parent_file_count": 84,
+    "combined_selected_before_parent_hunk_count": 152,
+    "residual_before_parent_file_count": 316,
+    "residual_before_parent_hunk_count": 340,
+    "combined_selected_through_parent_file_count": 144,
+    "combined_selected_through_parent_hunk_count": 212,
+    "remaining_after_parent_file_count": 256,
+    "remaining_after_parent_hunk_count": 280,
+    "source_holding_selected_before_parent_count": 84,
+    "source_holding_parent_count": 60,
+    "source_holding_remaining_record_count": 189,
+    "current_atomization_subunit_count": 8,
+    "current_atomization_candidate_count": 8,
+    "current_atomization_accepted_atom_count": 0,
+    "current_atomization_unresolved_count": 8,
+    "current_compound_hunk_hold_count": 8,
+    "candidate_worktree_base_commit": "c354b7d9177ad3ea92dec30c66c36e6ce2d66ae3",
+    "base_freshness_gate": false,
+    "base_update_rebase_performed": false,
+    "base_update_policy": "source input digest is fixed; later base update is review-side test-merge handling, not candidate freshness validation"
+  },
+  "scope": {
+    "diff_scope": "selected_review_only_subunits",
+    "candidate_kind": "research_premise",
+    "selected_source_revision_item_ids": [
+      "PREISO-REV-000089",
+      "PREISO-REV-000096",
+      "PREISO-REV-000103",
+      "PREISO-REV-000110",
+      "PREISO-REV-000117",
+      "PREISO-REV-000124",
+      "PREISO-REV-000131",
+      "PREISO-REV-000138"
+    ],
+    "selected_source_paths": [
+      "docs/plans/PLAN-L7-570-design-elicitation-typed-classification.md",
+      "docs/plans/PLAN-L7-577-github-execution-episode-location-projection.md",
+      "docs/plans/PLAN-L7-584-current-location-workflow-identity.md",
+      "docs/plans/PLAN-L7-639-luna-worker-model-registry.md",
+      "docs/plans/PLAN-L7-647-typed-backfill-pending-routing.md",
+      "docs/plans/PLAN-L7-654-distribution-devos-instruction-authority.md",
+      "docs/plans/PLAN-L7-661-lite-requirements-manifest-oracle.md",
+      "docs/plans/PLAN-L7-668-project-hook-authority-surface-projector.md"
+    ],
+    "parent_candidate_ref": "a14310ad225d02727f046da03963ae94ead0718a",
+    "parent_candidate_status_at_selection": "unmerged_candidate",
+    "parent_candidate_status_at_atomization": "unmerged_candidate",
+    "nonoverlap_check": "8 review-only subunits are a strict subset of parent PREISO-REV-000085..000144; no new hunk/path scope is selected."
+  },
+  "semantic_atomization": {
+    "status": "bounded_review_complete_unresolved",
+    "hunk_level_classification_only": true,
+    "semantic_atomization_complete": false,
+    "semantic_atom_count": 0,
+    "accepted_atom_count": 0,
+    "hunk_fragment_count": 8,
+    "compound_hunk_hold_count": 8,
+    "semantic_subunit_count": 8,
+    "unresolved_atomization_count": 8,
+    "review_note": "8 review-only subunits were checked against exact old Git source context. Each remains unresolved because the changed line is provenance metadata only; no atom is asserted."
+  },
+  "atoms": [
+    {
+      "atomization_id": "RDP001-PREISO002-ATOM-001",
+      "source_revision_item_id": "PREISO-REV-000089",
+      "source_path": "docs/plans/PLAN-L7-570-design-elicitation-typed-classification.md",
+      "source_fragment_id": "RDP001-RESEARCH60-DIFF-005",
+      "semantic_subunit_id": "RDP001-RESEARCH60-DIFF-005-SU-01",
+      "asset_id": "LEGACY-ASSET-F9C06CC5334C0E983CD7",
+      "phase_classification_id": "LASPH-1828",
+      "baseline": {
+        "revision": "baseline",
+        "commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "start_line": 12,
+        "end_line": 12,
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n",
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e"
+      },
+      "pre_isolation": {
+        "revision": "pre_isolation",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "start_line": 12,
+        "end_line": 12,
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580"
+      },
+      "candidate_product_targets": [],
+      "candidate_phase_targets": [
+        "PHCAP-03"
+      ],
+      "phase_classification_status": "classified_candidate",
+      "product_classification_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "consumer_closure_status": "pending",
+      "ledger_consumer_refs": [],
+      "legacy_execution_performed": false,
+      "semantic_atom": null,
+      "atom_status": "unresolved_not_atomized",
+      "unresolved_reason": "変更はregistry_source_digestの単一メタデータ行だけであり、actor・authority・enforced-by・failure・consumerを備えた独立要件predicateを旧sourceのexact spanから確定できない。周辺plan proseの合成分割もこのhunkだけでは根拠不足。",
+      "counterevidence": [
+        "hunkはsource provenance digestの変更であり、意味同値・採用・実装・consumer closureを示さない。",
+        "asset ledgerはhistorical／unresolved、legacy implementation unknown、consumer closure pendingを保持する。",
+        "matching decision recordは0件で、candidate phase/productは候補に留まる。"
+      ],
+      "legacy_asset_snapshot": {
+        "asset_id": "LEGACY-ASSET-F9C06CC5334C0E983CD7",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/plans/PLAN-L7-570-design-elicitation-typed-classification.md",
+        "source_sha256": "90801750432e17bb2c9fd6821d26b68ebe4e5b929c1b7bb4a5521acd21014ca4",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_plan_or_work_contract",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "phase_classification_snapshot": {
+        "archive_manifest_digest_match": true,
+        "artifact_evidence_kind": "plan",
+        "asset_id": "LEGACY-ASSET-F9C06CC5334C0E983CD7",
+        "authority_effect": "none",
+        "candidate_phase_targets": [
+          "PHCAP-03"
+        ],
+        "candidate_product_targets": [],
+        "classification_id": "LASPH-1828",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "phase_assessments": [
+          {
+            "confidence": "high",
+            "evidence": [
+              "frontmatter:pair_artifact/parent_design=>classification/refinement",
+              "subject:classification/refinement/translation/IR"
+            ],
+            "phase": "PHCAP-03",
+            "source_batches": [
+              "PHCAP-01-07"
+            ]
+          }
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_assessments": [],
+        "product_classification_status": "unresolved",
+        "source_path": "docs/plans/PLAN-L7-570-design-elicitation-typed-classification.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "90801750432e17bb2c9fd6821d26b68ebe4e5b929c1b7bb4a5521acd21014ca4",
+        "unresolved": [
+          "product_candidate_not_established",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "record_count": 0,
+        "matching_asset_decision_records": [],
+        "interpretation": "該当するappend-only判断記録がない。欠如を採用・棄却・owner確定・authority・consumer closureへ変換しない。"
+      },
+      "legacy_source_evidence": {
+        "title": "\"PLAN-L7-570 (impl): design elicitationをtyped workflow分類へ移行する\"",
+        "behavior_contract": "DESIGN-ELICITATION-TYPED-CLASSIFICATION-001",
+        "responsibility": "design-elicitation",
+        "failure_or_unresolved": [
+          "design_uncertain not uniquely DISCOVERY_POC => fail-close"
+        ],
+        "legacy_declared_consumer_candidates": [
+          "design-elicitation consumer migration"
+        ],
+        "removal_trigger": "design elicitation consumerがversioned successorへ置換される場合に本adapter-free compositionを更新する",
+        "evidence_scope": "旧planの静的reference。旧review/test/CI記述はcurrent pass・authority・implementationの証拠にしない。"
+      },
+      "source_holding_snapshot": {
+        "source_revision_item_id": "PREISO-REV-000089",
+        "source_path": "docs/plans/PLAN-L7-570-design-elicitation-typed-classification.md",
+        "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "baseline_blob_oid": "b2d4b36c3a0a4ad6bcbc853b11451ca8b75d4c85",
+        "baseline_file_sha256": "850558d78ddf4d103b48221871f10ffe88fea89de6bd2f565f8cbc4d96854645",
+        "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "pre_isolation_blob_oid": "8721767a252c4f788147f2a2a1ade56c6ec80bbc",
+        "pre_isolation_file_sha256": "90801750432e17bb2c9fd6821d26b68ebe4e5b929c1b7bb4a5521acd21014ca4",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-570-design-elicitation-typed-classification.md",
+        "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "source_category": "legacy_plan_source",
+        "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+        "baseline_revision_state": "preserved_git_revision_pending_review",
+        "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "human_decision_ref": null,
+        "authority_effect": "none"
+      },
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-PREISO002-HOLD-RDP001-RESEARCH60-DIFF-005",
+        "status": "held_as_compound_hunk",
+        "semantic_atom_count": 0,
+        "reason": "hunk classification is not semantic atomization"
+      }
+    },
+    {
+      "atomization_id": "RDP001-PREISO002-ATOM-002",
+      "source_revision_item_id": "PREISO-REV-000096",
+      "source_path": "docs/plans/PLAN-L7-577-github-execution-episode-location-projection.md",
+      "source_fragment_id": "RDP001-RESEARCH60-DIFF-012",
+      "semantic_subunit_id": "RDP001-RESEARCH60-DIFF-012-SU-01",
+      "asset_id": "LEGACY-ASSET-0DF64CE8903B7AD9EF10",
+      "phase_classification_id": "LASPH-1835",
+      "baseline": {
+        "revision": "baseline",
+        "commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "start_line": 13,
+        "end_line": 13,
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n",
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e"
+      },
+      "pre_isolation": {
+        "revision": "pre_isolation",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "start_line": 13,
+        "end_line": 13,
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580"
+      },
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-18"
+      ],
+      "phase_classification_status": "unresolved_with_candidate",
+      "product_classification_status": "candidate_needs_semantic_review",
+      "legacy_implementation_status": "unknown",
+      "consumer_closure_status": "pending",
+      "ledger_consumer_refs": [],
+      "legacy_execution_performed": false,
+      "semantic_atom": null,
+      "atom_status": "unresolved_not_atomized",
+      "unresolved_reason": "変更はregistry_source_digestの単一メタデータ行だけであり、actor・authority・enforced-by・failure・consumerを備えた独立要件predicateを旧sourceのexact spanから確定できない。周辺plan proseの合成分割もこのhunkだけでは根拠不足。",
+      "counterevidence": [
+        "hunkはsource provenance digestの変更であり、意味同値・採用・実装・consumer closureを示さない。",
+        "asset ledgerはhistorical／unresolved、legacy implementation unknown、consumer closure pendingを保持する。",
+        "matching decision recordは0件で、candidate phase/productは候補に留まる。"
+      ],
+      "legacy_asset_snapshot": {
+        "asset_id": "LEGACY-ASSET-0DF64CE8903B7AD9EF10",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/plans/PLAN-L7-577-github-execution-episode-location-projection.md",
+        "source_sha256": "164c266c1afbcba7ede80cb29ad28452ec5b86dac2e1a1259b19128889854503",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_plan_or_work_contract",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "phase_classification_snapshot": {
+        "archive_manifest_digest_match": true,
+        "artifact_evidence_kind": "plan",
+        "asset_id": "LEGACY-ASSET-0DF64CE8903B7AD9EF10",
+        "authority_effect": "none",
+        "candidate_phase_targets": [
+          "PHCAP-18"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "classification_id": "LASPH-1835",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "phase_assessments": [
+          {
+            "confidence": "medium",
+            "evidence": [
+              "body:refactor",
+              "body:retrofit"
+            ],
+            "phase": "PHCAP-18",
+            "source_batches": [
+              "PHCAP-15-20"
+            ]
+          }
+        ],
+        "phase_classification_status": "unresolved_with_candidate",
+        "product_assessments": [
+          {
+            "confidence": "low",
+            "evidence_status": "direct_product_boundary_evidence_pending",
+            "product": "HELIX-HARNESS",
+            "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+            "source_batches": [
+              "PHCAP-15-20"
+            ]
+          },
+          {
+            "confidence": "low",
+            "evidence_status": "direct_product_boundary_evidence_pending",
+            "product": "HELIX-OS",
+            "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+            "source_batches": [
+              "PHCAP-08-14",
+              "PHCAP-15-20"
+            ]
+          },
+          {
+            "confidence": "low",
+            "evidence_status": "direct_product_boundary_evidence_pending",
+            "product": "HELIX-Web",
+            "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+            "source_batches": [
+              "PHCAP-15-20"
+            ]
+          },
+          {
+            "confidence": "low",
+            "evidence_status": "direct_product_boundary_evidence_pending",
+            "product": "HELIX-Web-OS",
+            "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+            "source_batches": [
+              "PHCAP-15-20"
+            ]
+          }
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "source_path": "docs/plans/PLAN-L7-577-github-execution-episode-location-projection.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "164c266c1afbcba7ede80cb29ad28452ec5b86dac2e1a1259b19128889854503",
+        "unresolved": [
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "record_count": 0,
+        "matching_asset_decision_records": [],
+        "interpretation": "該当するappend-only判断記録がない。欠如を採用・棄却・owner確定・authority・consumer closureへ変換しない。"
+      },
+      "legacy_source_evidence": {
+        "title": "\"PLAN-L7-577 (impl): execution episodeをcurrent-locationへ多重度保持で投影する\"",
+        "behavior_contract": "GITHUB-EXECUTION-EPISODE-LOCATION-001",
+        "responsibility": "execution episode projection",
+        "failure_or_unresolved": [
+          "partial write",
+          "projection drift",
+          "old HEAD/owner",
+          "event digest mismatch",
+          "legacy columns",
+          "collapsing multiple episodes"
+        ],
+        "legacy_declared_consumer_candidates": [
+          "aggregate consumer migration"
+        ],
+        "removal_trigger": "execution episode schema major version更新時にversioned successorへ移管する",
+        "evidence_scope": "旧planの静的reference。旧review/test/CI記述はcurrent pass・authority・implementationの証拠にしない。"
+      },
+      "source_holding_snapshot": {
+        "source_revision_item_id": "PREISO-REV-000096",
+        "source_path": "docs/plans/PLAN-L7-577-github-execution-episode-location-projection.md",
+        "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "baseline_blob_oid": "683d045164b649d6a4c0ad60830d98b7e54fcbc8",
+        "baseline_file_sha256": "cb055e4ebb5b0b9098a6e71eae4241c1f93438ecc5ce9d247020db29afa819c3",
+        "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "pre_isolation_blob_oid": "f09d5b4cea93373bce0f436b6e12c12cefb5e40d",
+        "pre_isolation_file_sha256": "164c266c1afbcba7ede80cb29ad28452ec5b86dac2e1a1259b19128889854503",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-577-github-execution-episode-location-projection.md",
+        "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "source_category": "legacy_plan_source",
+        "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+        "baseline_revision_state": "preserved_git_revision_pending_review",
+        "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "human_decision_ref": null,
+        "authority_effect": "none"
+      },
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-PREISO002-HOLD-RDP001-RESEARCH60-DIFF-012",
+        "status": "held_as_compound_hunk",
+        "semantic_atom_count": 0,
+        "reason": "hunk classification is not semantic atomization"
+      }
+    },
+    {
+      "atomization_id": "RDP001-PREISO002-ATOM-003",
+      "source_revision_item_id": "PREISO-REV-000103",
+      "source_path": "docs/plans/PLAN-L7-584-current-location-workflow-identity.md",
+      "source_fragment_id": "RDP001-RESEARCH60-DIFF-019",
+      "semantic_subunit_id": "RDP001-RESEARCH60-DIFF-019-SU-01",
+      "asset_id": "LEGACY-ASSET-66C49E5E5284B50E88A8",
+      "phase_classification_id": "LASPH-1843",
+      "baseline": {
+        "revision": "baseline",
+        "commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "start_line": 12,
+        "end_line": 12,
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n",
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e"
+      },
+      "pre_isolation": {
+        "revision": "pre_isolation",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "start_line": 12,
+        "end_line": 12,
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580"
+      },
+      "candidate_product_targets": [],
+      "candidate_phase_targets": [],
+      "phase_classification_status": "unresolved",
+      "product_classification_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "consumer_closure_status": "pending",
+      "ledger_consumer_refs": [],
+      "legacy_execution_performed": false,
+      "semantic_atom": null,
+      "atom_status": "unresolved_not_atomized",
+      "unresolved_reason": "変更はregistry_source_digestの単一メタデータ行だけであり、actor・authority・enforced-by・failure・consumerを備えた独立要件predicateを旧sourceのexact spanから確定できない。周辺plan proseの合成分割もこのhunkだけでは根拠不足。",
+      "counterevidence": [
+        "hunkはsource provenance digestの変更であり、意味同値・採用・実装・consumer closureを示さない。",
+        "asset ledgerはhistorical／unresolved、legacy implementation unknown、consumer closure pendingを保持する。",
+        "matching decision recordは0件で、candidate phase/productは候補に留まる。"
+      ],
+      "legacy_asset_snapshot": {
+        "asset_id": "LEGACY-ASSET-66C49E5E5284B50E88A8",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/plans/PLAN-L7-584-current-location-workflow-identity.md",
+        "source_sha256": "32a6ab45b4ed312177d97f48c23731630f612f673ee57b811c28c76858b82f8e",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_plan_or_work_contract",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "phase_classification_snapshot": {
+        "archive_manifest_digest_match": true,
+        "artifact_evidence_kind": "plan",
+        "asset_id": "LEGACY-ASSET-66C49E5E5284B50E88A8",
+        "authority_effect": "none",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "classification_id": "LASPH-1843",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "phase_assessments": [],
+        "phase_classification_status": "unresolved",
+        "product_assessments": [],
+        "product_classification_status": "unresolved",
+        "source_path": "docs/plans/PLAN-L7-584-current-location-workflow-identity.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "32a6ab45b4ed312177d97f48c23731630f612f673ee57b811c28c76858b82f8e",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_not_established",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "record_count": 0,
+        "matching_asset_decision_records": [],
+        "interpretation": "該当するappend-only判断記録がない。欠如を採用・棄却・owner確定・authority・consumer closureへ変換しない。"
+      },
+      "legacy_source_evidence": {
+        "title": "\"PLAN-L7-584 (impl): current-locationへtyped workflow identity境界を追加する\"",
+        "behavior_contract": "CURRENT-LOCATION-WORKFLOW-IDENTITY-001",
+        "responsibility": "current-location workflow identity",
+        "failure_or_unresolved": [
+          "stale/unknown/unsupported/ambiguous => exit-1"
+        ],
+        "legacy_declared_consumer_candidates": [
+          "typed identity consumer migration"
+        ],
+        "removal_trigger": "current-locationの全consumerがtyped identityへ移行し、legacy input adapter retention期限が満了した時点",
+        "evidence_scope": "旧planの静的reference。旧review/test/CI記述はcurrent pass・authority・implementationの証拠にしない。"
+      },
+      "source_holding_snapshot": {
+        "source_revision_item_id": "PREISO-REV-000103",
+        "source_path": "docs/plans/PLAN-L7-584-current-location-workflow-identity.md",
+        "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "baseline_blob_oid": "7cb83e02c6b0d86c93527a65a213b83e44cda25e",
+        "baseline_file_sha256": "9948a1745755e5b8da746d5c789847e542c02cb46a4925c8fae742720f7eeaf7",
+        "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "pre_isolation_blob_oid": "6375bb4b5479d3eb4d218a0837af097b678a9a11",
+        "pre_isolation_file_sha256": "32a6ab45b4ed312177d97f48c23731630f612f673ee57b811c28c76858b82f8e",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-584-current-location-workflow-identity.md",
+        "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "source_category": "legacy_plan_source",
+        "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+        "baseline_revision_state": "preserved_git_revision_pending_review",
+        "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "human_decision_ref": null,
+        "authority_effect": "none"
+      },
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-PREISO002-HOLD-RDP001-RESEARCH60-DIFF-019",
+        "status": "held_as_compound_hunk",
+        "semantic_atom_count": 0,
+        "reason": "hunk classification is not semantic atomization"
+      }
+    },
+    {
+      "atomization_id": "RDP001-PREISO002-ATOM-004",
+      "source_revision_item_id": "PREISO-REV-000110",
+      "source_path": "docs/plans/PLAN-L7-639-luna-worker-model-registry.md",
+      "source_fragment_id": "RDP001-RESEARCH60-DIFF-026",
+      "semantic_subunit_id": "RDP001-RESEARCH60-DIFF-026-SU-01",
+      "asset_id": "LEGACY-ASSET-B4DCA8CAC9F95A0723FA",
+      "phase_classification_id": "LASPH-1855",
+      "baseline": {
+        "revision": "baseline",
+        "commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "start_line": 63,
+        "end_line": 63,
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n",
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e"
+      },
+      "pre_isolation": {
+        "revision": "pre_isolation",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "start_line": 63,
+        "end_line": 63,
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580"
+      },
+      "candidate_product_targets": [
+        "HELIX-OS"
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "classified_candidate",
+      "product_classification_status": "candidate_needs_semantic_review",
+      "legacy_implementation_status": "unknown",
+      "consumer_closure_status": "pending",
+      "ledger_consumer_refs": [],
+      "legacy_execution_performed": false,
+      "semantic_atom": null,
+      "atom_status": "unresolved_not_atomized",
+      "unresolved_reason": "変更はregistry_source_digestの単一メタデータ行だけであり、actor・authority・enforced-by・failure・consumerを備えた独立要件predicateを旧sourceのexact spanから確定できない。周辺plan proseの合成分割もこのhunkだけでは根拠不足。",
+      "counterevidence": [
+        "hunkはsource provenance digestの変更であり、意味同値・採用・実装・consumer closureを示さない。",
+        "asset ledgerはhistorical／unresolved、legacy implementation unknown、consumer closure pendingを保持する。",
+        "matching decision recordは0件で、candidate phase/productは候補に留まる。"
+      ],
+      "legacy_asset_snapshot": {
+        "asset_id": "LEGACY-ASSET-B4DCA8CAC9F95A0723FA",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/plans/PLAN-L7-639-luna-worker-model-registry.md",
+        "source_sha256": "1347adf9d5aae372a164c258a51ed03208a630a58c479c706741ed2a895f5cee",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_plan_or_work_contract",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "phase_classification_snapshot": {
+        "archive_manifest_digest_match": true,
+        "artifact_evidence_kind": "plan",
+        "asset_id": "LEGACY-ASSET-B4DCA8CAC9F95A0723FA",
+        "authority_effect": "none",
+        "candidate_phase_targets": [
+          "PHCAP-10"
+        ],
+        "candidate_product_targets": [
+          "HELIX-OS"
+        ],
+        "classification_id": "LASPH-1855",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "phase_assessments": [
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:PLAN-L7-639-luna-worker-model-registry.md"
+            ],
+            "phase": "PHCAP-10",
+            "source_batches": [
+              "PHCAP-08-14"
+            ]
+          }
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_assessments": [
+          {
+            "confidence": "low",
+            "evidence_status": "direct_product_boundary_evidence_pending",
+            "product": "HELIX-OS",
+            "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+            "source_batches": [
+              "PHCAP-08-14"
+            ]
+          }
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "source_path": "docs/plans/PLAN-L7-639-luna-worker-model-registry.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "1347adf9d5aae372a164c258a51ed03208a630a58c479c706741ed2a895f5cee",
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "record_count": 0,
+        "matching_asset_decision_records": [],
+        "interpretation": "該当するappend-only判断記録がない。欠如を採用・棄却・owner確定・authority・consumer closureへ変換しない。"
+      },
+      "legacy_source_evidence": {
+        "title": "\"PLAN-L7-639 (impl): Codex current workerをLuna xhighへversion-upする\"",
+        "behavior_contract": "CODEX-NATIVE-WORKER-MODEL-001",
+        "responsibility": "model registry",
+        "failure_or_unresolved": [
+          "Terra fallback",
+          "Sol workerization",
+          "Luna price/effort drift",
+          "historical price deletion fail-close"
+        ],
+        "legacy_declared_consumer_candidates": [
+          "T1 router/proposal team"
+        ],
+        "removal_trigger": "model registryがversioned generated authorityへ移行し本projectionが吸収された時",
+        "evidence_scope": "旧planの静的reference。旧review/test/CI記述はcurrent pass・authority・implementationの証拠にしない。"
+      },
+      "source_holding_snapshot": {
+        "source_revision_item_id": "PREISO-REV-000110",
+        "source_path": "docs/plans/PLAN-L7-639-luna-worker-model-registry.md",
+        "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "baseline_blob_oid": "eed7b3e9546893ed22c0a07bc463f7b4b5d2fd96",
+        "baseline_file_sha256": "78973ac4081e7af334630981108053098412b484a3099c2dfc03c9db877cebd0",
+        "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "pre_isolation_blob_oid": "47da57d7c9c7476a4c2c7f01b1a621284f899b47",
+        "pre_isolation_file_sha256": "1347adf9d5aae372a164c258a51ed03208a630a58c479c706741ed2a895f5cee",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-639-luna-worker-model-registry.md",
+        "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "source_category": "legacy_plan_source",
+        "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+        "baseline_revision_state": "preserved_git_revision_pending_review",
+        "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "human_decision_ref": null,
+        "authority_effect": "none"
+      },
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-PREISO002-HOLD-RDP001-RESEARCH60-DIFF-026",
+        "status": "held_as_compound_hunk",
+        "semantic_atom_count": 0,
+        "reason": "hunk classification is not semantic atomization"
+      }
+    },
+    {
+      "atomization_id": "RDP001-PREISO002-ATOM-005",
+      "source_revision_item_id": "PREISO-REV-000117",
+      "source_path": "docs/plans/PLAN-L7-647-typed-backfill-pending-routing.md",
+      "source_fragment_id": "RDP001-RESEARCH60-DIFF-033",
+      "semantic_subunit_id": "RDP001-RESEARCH60-DIFF-033-SU-01",
+      "asset_id": "LEGACY-ASSET-1290BEEC216B6D679EEE",
+      "phase_classification_id": "LASPH-1863",
+      "baseline": {
+        "revision": "baseline",
+        "commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "start_line": 35,
+        "end_line": 35,
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n",
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e"
+      },
+      "pre_isolation": {
+        "revision": "pre_isolation",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "start_line": 35,
+        "end_line": 35,
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580"
+      },
+      "candidate_product_targets": [],
+      "candidate_phase_targets": [],
+      "phase_classification_status": "unresolved",
+      "product_classification_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "consumer_closure_status": "pending",
+      "ledger_consumer_refs": [],
+      "legacy_execution_performed": false,
+      "semantic_atom": null,
+      "atom_status": "unresolved_not_atomized",
+      "unresolved_reason": "変更はregistry_source_digestの単一メタデータ行だけであり、actor・authority・enforced-by・failure・consumerを備えた独立要件predicateを旧sourceのexact spanから確定できない。周辺plan proseの合成分割もこのhunkだけでは根拠不足。",
+      "counterevidence": [
+        "hunkはsource provenance digestの変更であり、意味同値・採用・実装・consumer closureを示さない。",
+        "asset ledgerはhistorical／unresolved、legacy implementation unknown、consumer closure pendingを保持する。",
+        "matching decision recordは0件で、candidate phase/productは候補に留まる。"
+      ],
+      "legacy_asset_snapshot": {
+        "asset_id": "LEGACY-ASSET-1290BEEC216B6D679EEE",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/plans/PLAN-L7-647-typed-backfill-pending-routing.md",
+        "source_sha256": "3a24c609c2c2082e1afc60c428644422c18952d4fc62438e3e9a682916f150d1",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_plan_or_work_contract",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "phase_classification_snapshot": {
+        "archive_manifest_digest_match": true,
+        "artifact_evidence_kind": "plan",
+        "asset_id": "LEGACY-ASSET-1290BEEC216B6D679EEE",
+        "authority_effect": "none",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "classification_id": "LASPH-1863",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "phase_assessments": [],
+        "phase_classification_status": "unresolved",
+        "product_assessments": [],
+        "product_classification_status": "unresolved",
+        "source_path": "docs/plans/PLAN-L7-647-typed-backfill-pending-routing.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "3a24c609c2c2082e1afc60c428644422c18952d4fc62438e3e9a682916f150d1",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_not_established",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "record_count": 0,
+        "matching_asset_decision_records": [],
+        "interpretation": "該当するappend-only判断記録がない。欠如を採用・棄却・owner確定・authority・consumer closureへ変換しない。"
+      },
+      "legacy_source_evidence": {
+        "title": "\"PLAN-L7-647 (impl): pending Reverse判定をtyped workflow identityへ移行する\"",
+        "behavior_contract": "TYPED-BACKFILL-PENDING-ROUTING-001",
+        "responsibility": "backfill-pairing",
+        "failure_or_unresolved": [
+          "mutation of target axis/ID/digest/backfill state"
+        ],
+        "legacy_declared_consumer_candidates": [
+          "legacy route_mode consumer migration"
+        ],
+        "removal_trigger": "legacy route_mode inventoryの全consumerが0になった時点でcompatibility分岐を削除する",
+        "evidence_scope": "旧planの静的reference。旧review/test/CI記述はcurrent pass・authority・implementationの証拠にしない。"
+      },
+      "source_holding_snapshot": {
+        "source_revision_item_id": "PREISO-REV-000117",
+        "source_path": "docs/plans/PLAN-L7-647-typed-backfill-pending-routing.md",
+        "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "baseline_blob_oid": "5e097927406b00f5217e6fb40d69717181a7e434",
+        "baseline_file_sha256": "ba1b4cfd544ac5a8a1d974412738c4f07eb3d74da0026dbdb19c0a28ec4f4fd3",
+        "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "pre_isolation_blob_oid": "3b86f91cca81f1a6aa290ac99b3a01cdad18b947",
+        "pre_isolation_file_sha256": "3a24c609c2c2082e1afc60c428644422c18952d4fc62438e3e9a682916f150d1",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-647-typed-backfill-pending-routing.md",
+        "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "source_category": "legacy_plan_source",
+        "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+        "baseline_revision_state": "preserved_git_revision_pending_review",
+        "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "human_decision_ref": null,
+        "authority_effect": "none"
+      },
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-PREISO002-HOLD-RDP001-RESEARCH60-DIFF-033",
+        "status": "held_as_compound_hunk",
+        "semantic_atom_count": 0,
+        "reason": "hunk classification is not semantic atomization"
+      }
+    },
+    {
+      "atomization_id": "RDP001-PREISO002-ATOM-006",
+      "source_revision_item_id": "PREISO-REV-000124",
+      "source_path": "docs/plans/PLAN-L7-654-distribution-devos-instruction-authority.md",
+      "source_fragment_id": "RDP001-RESEARCH60-DIFF-040",
+      "semantic_subunit_id": "RDP001-RESEARCH60-DIFF-040-SU-01",
+      "asset_id": "LEGACY-ASSET-0D6D6D2C1BE1F97091A2",
+      "phase_classification_id": "LASPH-1871",
+      "baseline": {
+        "revision": "baseline",
+        "commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "start_line": 12,
+        "end_line": 12,
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n",
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e"
+      },
+      "pre_isolation": {
+        "revision": "pre_isolation",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "start_line": 12,
+        "end_line": 12,
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580"
+      },
+      "candidate_product_targets": [],
+      "candidate_phase_targets": [
+        "PHCAP-14"
+      ],
+      "phase_classification_status": "classified_candidate",
+      "product_classification_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "consumer_closure_status": "pending",
+      "ledger_consumer_refs": [],
+      "legacy_execution_performed": false,
+      "semantic_atom": null,
+      "atom_status": "unresolved_not_atomized",
+      "unresolved_reason": "変更はregistry_source_digestの単一メタデータ行だけであり、actor・authority・enforced-by・failure・consumerを備えた独立要件predicateを旧sourceのexact spanから確定できない。周辺plan proseの合成分割もこのhunkだけでは根拠不足。",
+      "counterevidence": [
+        "hunkはsource provenance digestの変更であり、意味同値・採用・実装・consumer closureを示さない。",
+        "asset ledgerはhistorical／unresolved、legacy implementation unknown、consumer closure pendingを保持する。",
+        "matching decision recordは0件で、candidate phase/productは候補に留まる。"
+      ],
+      "legacy_asset_snapshot": {
+        "asset_id": "LEGACY-ASSET-0D6D6D2C1BE1F97091A2",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/plans/PLAN-L7-654-distribution-devos-instruction-authority.md",
+        "source_sha256": "8818976c25c718963ef1aa0b02eca9aff6aa0d609285e8b63e3770c7eaac95d9",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_plan_or_work_contract",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "phase_classification_snapshot": {
+        "archive_manifest_digest_match": true,
+        "artifact_evidence_kind": "plan",
+        "asset_id": "LEGACY-ASSET-0D6D6D2C1BE1F97091A2",
+        "authority_effect": "none",
+        "candidate_phase_targets": [
+          "PHCAP-14"
+        ],
+        "candidate_product_targets": [],
+        "classification_id": "LASPH-1871",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "phase_assessments": [
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:PLAN-L7-654-distribution-devos-instruction-authority.md"
+            ],
+            "phase": "PHCAP-14",
+            "source_batches": [
+              "PHCAP-08-14"
+            ]
+          }
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_assessments": [],
+        "product_classification_status": "unresolved",
+        "source_path": "docs/plans/PLAN-L7-654-distribution-devos-instruction-authority.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "8818976c25c718963ef1aa0b02eca9aff6aa0d609285e8b63e3770c7eaac95d9",
+        "unresolved": [
+          "product_candidate_not_established",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "record_count": 0,
+        "matching_asset_decision_records": [],
+        "interpretation": "該当するappend-only判断記録がない。欠如を採用・棄却・owner確定・authority・consumer closureへ変換しない。"
+      },
+      "legacy_source_evidence": {
+        "title": "\"PLAN-L7-654 (impl): DevOS distribution instruction authorityを収束する\"",
+        "behavior_contract": "DISTRIBUTION-DEVOS-INSTRUCTION-AUTHORITY-001",
+        "responsibility": "distribution-repository-authority",
+        "failure_or_unresolved": [
+          "missing one-side current identity/compatibility marker"
+        ],
+        "legacy_declared_consumer_candidates": [
+          "AGENTS/CLAUDE/rule-drift surfaces"
+        ],
+        "removal_trigger": "distribution identityがgenerated instruction blockへ統合され手書き複製が0になった時",
+        "evidence_scope": "旧planの静的reference。旧review/test/CI記述はcurrent pass・authority・implementationの証拠にしない。"
+      },
+      "source_holding_snapshot": {
+        "source_revision_item_id": "PREISO-REV-000124",
+        "source_path": "docs/plans/PLAN-L7-654-distribution-devos-instruction-authority.md",
+        "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "baseline_blob_oid": "78dfe4cdd925f822723687b7faf4dea1d430c5cb",
+        "baseline_file_sha256": "9bb86d69f12dfda701b95c037103b0328051f733b72744f746fb35d1f59f42cf",
+        "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "pre_isolation_blob_oid": "9bee0dab628ef5bbcf4eabb14a884d740dac058f",
+        "pre_isolation_file_sha256": "8818976c25c718963ef1aa0b02eca9aff6aa0d609285e8b63e3770c7eaac95d9",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-654-distribution-devos-instruction-authority.md",
+        "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "source_category": "legacy_plan_source",
+        "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+        "baseline_revision_state": "preserved_git_revision_pending_review",
+        "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "human_decision_ref": null,
+        "authority_effect": "none"
+      },
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-PREISO002-HOLD-RDP001-RESEARCH60-DIFF-040",
+        "status": "held_as_compound_hunk",
+        "semantic_atom_count": 0,
+        "reason": "hunk classification is not semantic atomization"
+      }
+    },
+    {
+      "atomization_id": "RDP001-PREISO002-ATOM-007",
+      "source_revision_item_id": "PREISO-REV-000131",
+      "source_path": "docs/plans/PLAN-L7-661-lite-requirements-manifest-oracle.md",
+      "source_fragment_id": "RDP001-RESEARCH60-DIFF-047",
+      "semantic_subunit_id": "RDP001-RESEARCH60-DIFF-047-SU-01",
+      "asset_id": "LEGACY-ASSET-39EB84BD4DAD11C97E6B",
+      "phase_classification_id": "LASPH-1879",
+      "baseline": {
+        "revision": "baseline",
+        "commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "start_line": 36,
+        "end_line": 36,
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n",
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e"
+      },
+      "pre_isolation": {
+        "revision": "pre_isolation",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "start_line": 36,
+        "end_line": 36,
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580"
+      },
+      "candidate_product_targets": [],
+      "candidate_phase_targets": [
+        "PHCAP-03",
+        "PHCAP-07",
+        "PHCAP-14"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "product_classification_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "consumer_closure_status": "pending",
+      "ledger_consumer_refs": [],
+      "legacy_execution_performed": false,
+      "semantic_atom": null,
+      "atom_status": "unresolved_not_atomized",
+      "unresolved_reason": "変更はregistry_source_digestの単一メタデータ行だけであり、actor・authority・enforced-by・failure・consumerを備えた独立要件predicateを旧sourceのexact spanから確定できない。周辺plan proseの合成分割もこのhunkだけでは根拠不足。",
+      "counterevidence": [
+        "hunkはsource provenance digestの変更であり、意味同値・採用・実装・consumer closureを示さない。",
+        "asset ledgerはhistorical／unresolved、legacy implementation unknown、consumer closure pendingを保持する。",
+        "matching decision recordは0件で、candidate phase/productは候補に留まる。"
+      ],
+      "legacy_asset_snapshot": {
+        "asset_id": "LEGACY-ASSET-39EB84BD4DAD11C97E6B",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/plans/PLAN-L7-661-lite-requirements-manifest-oracle.md",
+        "source_sha256": "d16dc558d35a5109db1d3bf91079a02c8b4dc374b5b5098d9404b07f890521e8",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_plan_or_work_contract",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "phase_classification_snapshot": {
+        "archive_manifest_digest_match": true,
+        "artifact_evidence_kind": "plan",
+        "asset_id": "LEGACY-ASSET-39EB84BD4DAD11C97E6B",
+        "authority_effect": "none",
+        "candidate_phase_targets": [
+          "PHCAP-03",
+          "PHCAP-07",
+          "PHCAP-14"
+        ],
+        "candidate_product_targets": [],
+        "classification_id": "LASPH-1879",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "phase_assessments": [
+          {
+            "confidence": "medium",
+            "evidence": [
+              "subject:classification/refinement/translation/IR"
+            ],
+            "phase": "PHCAP-03",
+            "source_batches": [
+              "PHCAP-01-07"
+            ]
+          },
+          {
+            "confidence": "medium",
+            "evidence": [
+              "subject:verification/evidence/oracle/test design"
+            ],
+            "phase": "PHCAP-07",
+            "source_batches": [
+              "PHCAP-01-07"
+            ]
+          },
+          {
+            "confidence": "medium",
+            "evidence": [
+              "frontmatter:pair_artifact:docs/test-design/helix/L8-distribution-lite-profile-bound-package-unit-test-design.md"
+            ],
+            "phase": "PHCAP-14",
+            "source_batches": [
+              "PHCAP-08-14"
+            ]
+          }
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_assessments": [],
+        "product_classification_status": "unresolved",
+        "source_path": "docs/plans/PLAN-L7-661-lite-requirements-manifest-oracle.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "d16dc558d35a5109db1d3bf91079a02c8b4dc374b5b5098d9404b07f890521e8",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_not_established",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "record_count": 0,
+        "matching_asset_decision_records": [],
+        "interpretation": "該当するappend-only判断記録がない。欠如を採用・棄却・owner確定・authority・consumer closureへ変換しない。"
+      },
+      "legacy_source_evidence": {
+        "title": "\"PLAN-L7-661 (impl): Lite Requirement IR manifest宣言値のmutation oracleを固定する\"",
+        "behavior_contract": "DISTRIBUTION-LITE-REQUIREMENTS-MANIFEST-ORACLE-001",
+        "responsibility": "no_code_decision/no_change",
+        "failure_or_unresolved": [
+          "removing per-shard count/digest validation"
+        ],
+        "legacy_declared_consumer_candidates": [
+          "manifest/shard validation consumer candidate"
+        ],
+        "removal_trigger": "Requirement IR manifest宣言値とshard実体が単一のunforgeable receiptへ統合され、個別照合が不要になった時",
+        "evidence_scope": "旧planの静的reference。旧review/test/CI記述はcurrent pass・authority・implementationの証拠にしない。"
+      },
+      "source_holding_snapshot": {
+        "source_revision_item_id": "PREISO-REV-000131",
+        "source_path": "docs/plans/PLAN-L7-661-lite-requirements-manifest-oracle.md",
+        "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "baseline_blob_oid": "8a7e482ba0a45f33cf811c4d6da6dbf0160d2e2e",
+        "baseline_file_sha256": "07e2ae7889552af7cf059877063bb3553e0ce365f2212212ef14a09fcae6856b",
+        "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "pre_isolation_blob_oid": "5c3f589cee3d8bf3bbcbf0ac5ca1334a92f9c3ff",
+        "pre_isolation_file_sha256": "d16dc558d35a5109db1d3bf91079a02c8b4dc374b5b5098d9404b07f890521e8",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-661-lite-requirements-manifest-oracle.md",
+        "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "source_category": "legacy_plan_source",
+        "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+        "baseline_revision_state": "preserved_git_revision_pending_review",
+        "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "human_decision_ref": null,
+        "authority_effect": "none"
+      },
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-PREISO002-HOLD-RDP001-RESEARCH60-DIFF-047",
+        "status": "held_as_compound_hunk",
+        "semantic_atom_count": 0,
+        "reason": "hunk classification is not semantic atomization"
+      }
+    },
+    {
+      "atomization_id": "RDP001-PREISO002-ATOM-008",
+      "source_revision_item_id": "PREISO-REV-000138",
+      "source_path": "docs/plans/PLAN-L7-668-project-hook-authority-surface-projector.md",
+      "source_fragment_id": "RDP001-RESEARCH60-DIFF-054",
+      "semantic_subunit_id": "RDP001-RESEARCH60-DIFF-054-SU-01",
+      "asset_id": "LEGACY-ASSET-12DE8856FB36418A38CD",
+      "phase_classification_id": "LASPH-1886",
+      "baseline": {
+        "revision": "baseline",
+        "commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "start_line": 13,
+        "end_line": 13,
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n",
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e"
+      },
+      "pre_isolation": {
+        "revision": "pre_isolation",
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "start_line": 13,
+        "end_line": 13,
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n",
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580"
+      },
+      "candidate_product_targets": [],
+      "candidate_phase_targets": [],
+      "phase_classification_status": "unresolved",
+      "product_classification_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "consumer_closure_status": "pending",
+      "ledger_consumer_refs": [],
+      "legacy_execution_performed": false,
+      "semantic_atom": null,
+      "atom_status": "unresolved_not_atomized",
+      "unresolved_reason": "変更はregistry_source_digestの単一メタデータ行だけであり、actor・authority・enforced-by・failure・consumerを備えた独立要件predicateを旧sourceのexact spanから確定できない。周辺plan proseの合成分割もこのhunkだけでは根拠不足。",
+      "counterevidence": [
+        "hunkはsource provenance digestの変更であり、意味同値・採用・実装・consumer closureを示さない。",
+        "asset ledgerはhistorical／unresolved、legacy implementation unknown、consumer closure pendingを保持する。",
+        "matching decision recordは0件で、candidate phase/productは候補に留まる。"
+      ],
+      "legacy_asset_snapshot": {
+        "asset_id": "LEGACY-ASSET-12DE8856FB36418A38CD",
+        "revision": 1,
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/plans/PLAN-L7-668-project-hook-authority-surface-projector.md",
+        "source_sha256": "c21ce60bd799e4f6c508ec375b1acdc1de42f7eb147e3259f63676d599cbe287",
+        "source_surface": "docs",
+        "source_provenance_ref": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_plan_or_work_contract",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "upstream_ids": [],
+        "pair_ids": [],
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "approval_revision": null,
+        "target_path": null,
+        "target_sha256": null,
+        "meaning_interface_invariance_reason": null,
+        "consumer_refs": [],
+        "rights_status": "unreviewed",
+        "executability_status": "unreviewed",
+        "secret_status": "unreviewed",
+        "external_effect_status": "unreviewed",
+        "decided_by": null,
+        "decided_at": null,
+        "copy_performed_by": null,
+        "copy_performed_at": null,
+        "read_after_record_ref": null,
+        "migration_preconditions": [
+          "semantic_atom_inventory",
+          "product_owner_decision",
+          "parent_requirement_binding",
+          "consumer_check",
+          "rights_check",
+          "executability_check",
+          "secret_check",
+          "external_effect_check"
+        ]
+      },
+      "phase_classification_snapshot": {
+        "archive_manifest_digest_match": true,
+        "artifact_evidence_kind": "plan",
+        "asset_id": "LEGACY-ASSET-12DE8856FB36418A38CD",
+        "authority_effect": "none",
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "classification_id": "LASPH-1886",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "phase_assessments": [],
+        "phase_classification_status": "unresolved",
+        "product_assessments": [],
+        "product_classification_status": "unresolved",
+        "source_path": "docs/plans/PLAN-L7-668-project-hook-authority-surface-projector.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "c21ce60bd799e4f6c508ec375b1acdc1de42f7eb147e3259f63676d599cbe287",
+        "unresolved": [
+          "capability_phase_evidence_insufficient",
+          "product_candidate_not_established",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "record_count": 0,
+        "matching_asset_decision_records": [],
+        "interpretation": "該当するappend-only判断記録がない。欠如を採用・棄却・owner確定・authority・consumer closureへ変換しない。"
+      },
+      "legacy_source_evidence": {
+        "title": "\"PLAN-L7-668 (add-impl): project hook authorityを4 surfaceへ同一bytes投影する\"",
+        "behavior_contract": "CNW-HOOK-AUTHORITY-PROJECTOR-001",
+        "responsibility": "project-hook-authority",
+        "failure_or_unresolved": [
+          "unequal success/failure bytes",
+          "surface omission",
+          "input mutation"
+        ],
+        "legacy_declared_consumer_candidates": [
+          "SessionStart/doctor/status/dispatch surfaces"
+        ],
+        "removal_trigger": "4 surfaceが同一typed envelopeをnative transportで共有しprojector consumerが0になった時",
+        "evidence_scope": "旧planの静的reference。旧review/test/CI記述はcurrent pass・authority・implementationの証拠にしない。"
+      },
+      "source_holding_snapshot": {
+        "source_revision_item_id": "PREISO-REV-000138",
+        "source_path": "docs/plans/PLAN-L7-668-project-hook-authority-surface-projector.md",
+        "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+        "baseline_blob_oid": "17e497e6df4a2e68d74d83e192c3b9771ee2459f",
+        "baseline_file_sha256": "1d5dbd6621b0097443e2e6d25971b646bbc69a9b53baae0b96364eaaf04ef1df",
+        "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "pre_isolation_blob_oid": "4809c5379bd2ff2b52a1d8de8421fecdccbefc2d",
+        "pre_isolation_file_sha256": "c21ce60bd799e4f6c508ec375b1acdc1de42f7eb147e3259f63676d599cbe287",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-668-project-hook-authority-surface-projector.md",
+        "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "source_category": "legacy_plan_source",
+        "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+        "baseline_revision_state": "preserved_git_revision_pending_review",
+        "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "human_decision_ref": null,
+        "authority_effect": "none"
+      },
+      "classification": "research_premise",
+      "candidate_kind": "research_premise",
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-PREISO002-HOLD-RDP001-RESEARCH60-DIFF-054",
+        "status": "held_as_compound_hunk",
+        "semantic_atom_count": 0,
+        "reason": "hunk classification is not semantic atomization"
+      }
+    }
+  ],
+  "retained_negatives": [
+    {
+      "negative_id": "RDP002-NEG-DIGEST",
+      "rule": "digest metadata is provenance only; never promote to atom"
+    },
+    {
+      "negative_id": "RDP002-NEG-ATOM-PROMOTION",
+      "rule": "semantic_atom must remain null when exact source span lacks a standalone predicate"
+    },
+    {
+      "negative_id": "RDP002-NEG-PRODUCT-PROMOTION",
+      "rule": "candidate product/phase and status remain ledger snapshots"
+    },
+    {
+      "negative_id": "RDP002-NEG-IMPLEMENTATION-CLOSURE",
+      "rule": "implementation unknown and consumer closure pending remain unresolved"
+    },
+    {
+      "negative_id": "RDP002-NEG-DECISION-ABSENCE",
+      "rule": "zero matching decision rows do not establish adoption or rejection"
+    },
+    {
+      "negative_id": "RDP002-NEG-ARCHIVE-EXECUTION",
+      "rule": "archive is read-only Git object reference; no runtime/test/CI execution"
+    },
+    {
+      "negative_id": "RDP002-NEG-HUNK-ATOM-CONFLATION",
+      "rule": "8 hunk holds remain separate from atomization count 0"
+    },
+    {
+      "negative_id": "RDP002-NEG-BASE-FRESHNESS",
+      "rule": "current main SHA is metadata, not semantic authority or freshness gate"
+    }
+  ],
+  "source_input_digests": {
+    "docs/governance/pre-isolation-revision-delta-source-holding.jsonl": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+    "docs/governance/legacy-asset-disposition.jsonl": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "docs/governance/legacy-asset-decisions.jsonl": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+    "docs/governance/legacy-asset-reuse-control.md": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+    "docs/governance/requirement-atomization-review-contract.md": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba"
+  }
+}
