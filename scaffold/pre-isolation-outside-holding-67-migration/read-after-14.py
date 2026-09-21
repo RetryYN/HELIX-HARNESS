@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 REGISTER = ROOT / "docs/governance/management-provisional-requirement-register.jsonl"
 SNAPSHOT = ROOT / "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
-CAPTURE = "1c6912ad34b9a7950206188ad364e3a712dc9e6b"
+CAPTURE = "f122d65e1435b4709fbb7b07fbb8e42b70f0b110"
 
 
 def sha(path: Path) -> str:

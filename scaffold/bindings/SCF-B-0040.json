@@ -6,41 +6,41 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "RDP-001 source preservation／historical capture migration review（正式owner未解決）",
   "state": "registered",
-  "reason": "3df81ad時点の13 live source holdingを固定snapshotとして保持し、outside-67の67 path_revision_pairをappend-only source_holdingへ記録した候補と、current 14 holding read-afterを分離する。authority_effectはnone、source setは要求atomではなく、semantic disposition、product、phase、implementation、successor、consumer closureは未開始である。#1975/#1978の未merge依存とIssue #1813の別更新対象を記録し、正式admission前のrebaselineを要求する。",
+  "reason": "3df81ad時点の13 live source holdingを固定snapshotとして保持し、outside-67の67 path_revision_pairをappend-only source_holdingへ記録した候補と、current 14 holding read-afterを分離する。authority_effectはnone、source setは要求atomではなく、semantic disposition、product、phase、implementation、successor、consumer closureは未開始である。#1975のmain merge済み反映と、main f122d65eへmerge済みの#1978（parent d272a97 exact）のrebaseline境界、Issue #1813の別更新対象を記録し、正式admission前のrebaselineを要求する。",
   "upstream": [
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
-      "sha256": "4be4b4d659bb77e73eff01c4e1ec1f8db58e290a9f8a813b97a67788c413d420",
+      "sha256": "f5096a724b66af06de968cceb5b2bda3f82527597b08a8dda275483a8a398a2c",
       "note": "13 snapshot／14 append read-after migration inventory"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/README.md",
-      "sha256": "827e2d2be9a1790164e93121e7aac233341a29becaa0d786520b9b30aa6e94b3",
+      "sha256": "98cab987055a3d3923524854257b28115c475d8ed5ec32f44915706e06b880b6",
       "note": "migration boundary, timestamp/state semantics, dependency and issue projection record"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/generate.py",
-      "sha256": "97649c77cd6e72fb48f14d1c90f312da00c8f26635e630d9d8e440a76d1dc6c0",
+      "sha256": "75bad78b3883cdd04c0c676059a9195575ec2f607c94b40ef909348a8c6c1050",
       "note": "migration generator with fixed-capture comparison"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
-      "sha256": "fe9565aceafa8152189a7954cd3fc5d039b2b9aced281efc2840412feaf92ad0",
+      "sha256": "abd35d5e4dd04086be97e49e4b444528237fbc9a90236430e962bc2e27633980",
       "note": "independent migration validator"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/selfcheck.py",
-      "sha256": "75e9cb277cb8286fabee254180632090a9f37ed48553b806ac006c37ec529899",
+      "sha256": "91bce11de66faa1b2cf8c117776573f3dc7403a6ee817b60210b09a136ab993a",
       "note": "migration negative cases and baseline assertion"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.py",
-      "sha256": "4d27ee5417b24e1d5d9a9106a0fe1c0583b2b690f19f43428d43d97eebeb9c5a",
+      "sha256": "e7710ff5bf68bd87c2dafcb6c06be20e29d4e12120ec47c19ac9c464a63f7e3b",
       "note": "current 14 holding read-after generator"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.json",
-      "sha256": "fa07fe624ab5f4fd263ed3fdd46b1e3cd56fa549609a65287f72b25cf61ee568",
+      "sha256": "05e0ccf553268696d58478920d1402b305a4d6042dc2f2f95687b847e7755df0",
       "note": "current register 14 holding read-after"
     },
     {
@@ -181,7 +181,7 @@
     "append recordのregistered_at、registered_by、management_stateを候補記録として明示し、authority_effect noneとsource_preserved_unassignedを維持する",
     "current registerの33 rows／14 live holdingsとread-afterを生成し、historical 32 rows／13 live holdingsのprefixとIDを独立に確認する",
     "PHCAP、first15、delegated-doc003、unassessed-atom、既存outside67監査のhistorical register参照をsnapshotへ束縛し、Binding digestを追随させる",
-    "#1975のSCF-B-0036と#1978の未取得exact HEADは未解決依存として停止し、Issue #1813 projectionは別更新対象のままにする",
+    "#1975のmerge commit 4919cfdと、#1978のmerge commit f122d65e（exact parent d272a97）を依存として固定し、Issue #1813 projectionは別更新対象のままにする",
     "旧archiveのruntime、test、CI、hook、adapter、source実行、GitHub／Issue／PR／外部作用を行わない"
   ],
   "connections": {
@@ -241,7 +241,7 @@
     ],
     "oracles": [
       "独立migration validate.pyのcapture blob、append prefix、13／14 count、67 path source set検証",
-      "migration selfcheck.pyのbaseline greenと14 negative cases",
+      "migration selfcheck.pyのbaseline greenと25 negative cases",
       "read-after-14.pyとgenerate.pyのdeterministic output",
       "影響validator群とscaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
@@ -251,7 +251,7 @@
       "append prefixを失う、14 holdingを13として記録する",
       "67 path_revision_pairをrequirement atomまたはsemantic dispositionへ昇格する",
       "registered_by／management_state／authority_effectの境界を変更する",
-      "未merge依存またはIssue #1813の別更新境界を削除する",
+      "未解決parent依存またはIssue #1813の別更新境界を削除する",
       "旧archive実行や外部作用を候補の完了証拠にする"
     ]
   },

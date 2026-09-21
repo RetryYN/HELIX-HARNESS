@@ -21,11 +21,76 @@ SOURCE = ROOT / "docs/governance/pre-isolation-outside-holding-67-source-holding
 COVERAGE = ROOT / "docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md"
 PHASE = ROOT / "docs/governance/phase-capability-inventory.json"
 CAPTURE = "3df81ad27157c471e004083783f37a5860eaa2ee"
-LATEST_MAIN = "1c6912ad34b9a7950206188ad364e3a712dc9e6b"
+LATEST_MAIN = "f122d65e1435b4709fbb7b07fbb8e42b70f0b110"
 OLD_REGISTER_SHA = "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b"
 PHASE_SHA = "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
 PR1975 = "2c0f287dda2cd9252cd64255cfa4cdf695653754"
 PR1978 = "d272a97b3e55401fa75ad41670fbeefd18f8a4cf"
+PR1975_MERGE = "4919cfd245ee128fee71c713c8d2d0a8cd5fcd11"
+HISTORICAL_REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+CURRENT_REGISTER_PATH = "docs/governance/management-provisional-requirement-register.jsonl"
+EXPECTED_AFFECTED_HISTORICAL_CAPTURES = [
+    "scaffold/pre-isolation-outside-holding-first15/inventory.json",
+    "scaffold/phcap02-03-registration-classification-audit/inventory.json",
+    "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
+    "scaffold/rdp001-unassessed-atom-audit/report.json",
+    "scaffold/pre-isolation-outside-l1-semantic/inventory.json",
+    "docs/governance/phase-capability-inventory.json",
+    "scaffold/bindings/SCF-B-0027.json",
+    "scaffold/bindings/SCF-B-0029.json",
+    "scaffold/bindings/SCF-B-0034.json",
+    "scaffold/bindings/SCF-B-0035.json",
+    "scaffold/bindings/SCF-B-0036.json",
+]
+EXPECTED_REPOINTED_SOURCES = [
+    {"path": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py", "role": "generator", "historical_register_ref": HISTORICAL_REGISTER_PATH},
+    {"path": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py", "role": "validator", "historical_register_ref": HISTORICAL_REGISTER_PATH},
+    {"path": "scaffold/pre-isolation-outside-holding-first15/generate.py", "role": "generator", "historical_register_ref": HISTORICAL_REGISTER_PATH},
+    {"path": "scaffold/pre-isolation-outside-holding-first15/validate.py", "role": "validator", "historical_register_ref": HISTORICAL_REGISTER_PATH},
+    {"path": "scaffold/phcap02-03-registration-classification-audit/generate.py", "role": "generator", "historical_register_ref": HISTORICAL_REGISTER_PATH},
+    {"path": "scaffold/phcap02-03-registration-classification-audit/validate.py", "role": "validator", "historical_register_ref": HISTORICAL_REGISTER_PATH},
+    {"path": "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py", "role": "validator", "historical_register_ref": HISTORICAL_REGISTER_PATH},
+    {"path": "scaffold/rdp001-unassessed-atom-audit/validate.py", "role": "validator", "historical_register_ref": HISTORICAL_REGISTER_PATH},
+    {"path": "scaffold/pre-isolation-outside-l1-semantic/generate.py", "role": "generator", "historical_register_ref": HISTORICAL_REGISTER_PATH},
+    {"path": "scaffold/pre-isolation-outside-l1-semantic/validate.py", "role": "validator", "historical_register_ref": HISTORICAL_REGISTER_PATH},
+]
+EXPECTED_PROHIBITED_INFERENCE = [
+    "historical 13-holding captureを14 holdingとして再生成・上書きしない",
+    "path_revision_pairをrequirement atom、requirement identity、successorへ変換しない",
+    "source_holding登録をsemantic adoption、product owner、phase authority、implementationへ昇格しない",
+    "append成功を人間承認、要求採用、実装完了、Issue closeへ解釈しない",
+    "旧archive runtime、test、CI、hook、adapterを実行しない",
+]
+
+
+def recursive_keysets(value: object, prefix: str = "") -> dict[str, set[frozenset[str]]]:
+    """Collect key sets from every nested object, including every array item."""
+    result: dict[str, set[frozenset[str]]] = {}
+
+    def walk(item: object, path: str) -> None:
+        if isinstance(item, dict):
+            result.setdefault(path, set()).add(frozenset(item))
+            for key, child in item.items():
+                walk(child, f"{path}.{key}" if path else key)
+        elif isinstance(item, list):
+            for child in item:
+                walk(child, f"{path}[]")
+
+    walk(value, prefix)
+    return result
+
+
+EXPECTED_KEYSETS = {
+    "": {"schema", "candidate_id", "status", "authority_effect", "meaning_change_applied", "semantic_disposition", "formal_register_append", "old_runtime_test_ci_execution", "base", "historical_capture", "formal_append", "read_after", "dependencies", "affected_historical_captures", "affected_historical_capture_count", "repointed_sources", "issue_projection", "source_set", "prohibited_inference"},
+    "base": {"latest_main_commit", "historical_capture_commit", "historical_capture_is_ancestor_of_latest_main", "rebaseline_required_before_admission"},
+    "historical_capture": {"register_path", "register_sha256", "register_record_count", "live_holding_count", "source_revision", "preserved_without_rewrite"},
+    "formal_append": {"register_path", "register_sha256", "register_record_count", "live_holding_count", "appended_registration_id", "source_set_path", "source_set_sha256", "source_item_count", "append_only_prefix_preserved"},
+    "read_after": {"path", "sha256", "register_sha256", "live_holding_count", "historical_13_preserved", "added_registration_ids"},
+    "dependencies[]": {"reference", "local_ref", "head", "merge_commit", "status", "required_migration"},
+    "repointed_sources[]": {"path", "role", "historical_register_ref"},
+    "issue_projection": {"issue", "status", "reason"},
+    "source_set": {"path", "sha256", "count", "unit", "requirement_atoms", "authority_effect", "semantic_disposition"},
+}
 
 
 def sha(data: bytes) -> str:
@@ -70,6 +135,10 @@ def expected_holding_rows(rows: list[dict]) -> list[dict]:
 
 def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
     errors: list[str] = []
+    keysets = recursive_keysets(inv)
+    fail(errors, set(keysets) == set(EXPECTED_KEYSETS) and all(
+        keysets.get(path) == {frozenset(expected)} for path, expected in EXPECTED_KEYSETS.items()
+    ), "E_RECURSIVE_KEYSETS")
     current_bytes = CURRENT.read_bytes()
     historical_bytes = HISTORICAL.read_bytes()
     current_rows = load(CURRENT)
@@ -85,7 +154,7 @@ def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
     fail(errors, inv.get("meaning_change_applied") is False and inv.get("semantic_disposition") == "not_started", "E_MEANING")
     fail(errors, inv.get("formal_register_append") is True, "E_APPEND_FLAG")
     fail(errors, inv.get("old_runtime_test_ci_execution") is False, "E_OLD_EXECUTION")
-    fail(errors, len(inv.get("prohibited_inference", [])) == 5, "E_PROHIBITED")
+    fail(errors, inv.get("prohibited_inference") == EXPECTED_PROHIBITED_INFERENCE, "E_PROHIBITED_LITERAL")
 
     base = inv.get("base", {})
     fail(errors, base.get("latest_main_commit") == LATEST_MAIN, "E_LATEST_MAIN")
@@ -163,6 +232,18 @@ def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
         fail(errors, now == row, f"E_HISTORICAL_ROW_CHANGED:{row['registration_id']}")
     fail(errors, old_ids == {row["registration_id"] for row in current_live[:-1]}, "E_OLD_HOLDINGS_PRESERVED")
 
+    fail(errors, inv.get("affected_historical_captures") == EXPECTED_AFFECTED_HISTORICAL_CAPTURES, "E_AFFECTED_CAPTURE_ARRAY")
+    fail(errors, inv.get("affected_historical_capture_count") == len(EXPECTED_AFFECTED_HISTORICAL_CAPTURES), "E_AFFECTED_CAPTURE_COUNT")
+    for relative in EXPECTED_AFFECTED_HISTORICAL_CAPTURES:
+        fail(errors, (ROOT / relative).is_file(), f"E_AFFECTED_CAPTURE_MISSING:{relative}")
+    fail(errors, inv.get("repointed_sources") == EXPECTED_REPOINTED_SOURCES, "E_REPOINTED_SOURCE_ARRAY")
+    for source in EXPECTED_REPOINTED_SOURCES:
+        path = ROOT / source["path"]
+        fail(errors, path.is_file(), f"E_REPOINTED_SOURCE_MISSING:{source['path']}")
+        if path.is_file():
+            text = path.read_text(encoding="utf-8")
+            fail(errors, source["historical_register_ref"] in text, f"E_REPOINTED_SOURCE_REF:{source['path']}")
+
     expected_snapshot_path = "management-provisional-requirement-register-pre-append-3df81ad.jsonl"
     affected_sources = [
         "scaffold/pre-isolation-outside-holding-67-proposal/generate.py",
@@ -187,11 +268,16 @@ def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
     contract = (ROOT / "docs/governance/management-provisional-requirement-registration.md").read_text(encoding="utf-8")
     fail(errors, "現在の十四のholding" in program and "MPR-SH-OUTSIDE67-001" in program, "E_PROGRAM_CURRENT_14")
     fail(errors, "33 revision" in contract and "14生存中holding" in contract and "management-provisional-requirement-register-pre-append-3df81ad.jsonl" in contract, "E_CONTRACT_CURRENT_14")
-    deps = inv.get("unmerged_dependencies", [])
+    deps = inv.get("dependencies", [])
     fail(errors, len(deps) == 2, "E_DEPENDENCY_COUNT")
     if len(deps) >= 2:
-        fail(errors, deps[0].get("head") == PR1975 and deps[0].get("status") == "unmerged" and "disposition snapshot" in deps[0].get("required_migration", ""), "E_PR1975_DEPENDENCY")
-        fail(errors, deps[1].get("reference") == "PR #1978" and deps[1].get("local_ref") == "remotes/pr/1978" and deps[1].get("head") == PR1978 and deps[1].get("status") == "stacked_on_exact_head_unmerged", "E_PR1978_DEPENDENCY")
+        fail(errors, deps[0].get("head") == PR1975 and deps[0].get("merge_commit") == PR1975_MERGE and deps[0].get("status") == "merged_on_main" and HISTORICAL_REGISTER_PATH in deps[0].get("required_migration", ""), "E_PR1975_DEPENDENCY")
+        fail(errors, deps[1].get("reference") == "PR #1978" and deps[1].get("local_ref") == "remotes/pr/1978" and deps[1].get("head") == PR1978 and deps[1].get("merge_commit") == LATEST_MAIN and deps[1].get("status") == "merged_on_main" and PR1978 in deps[1].get("required_migration", ""), "E_PR1978_DEPENDENCY")
+        try:
+            fail(errors, subprocess.run(["git", "rev-parse", "remotes/pr/1978"], cwd=ROOT, check=True, stdout=subprocess.PIPE, text=True).stdout.strip() == PR1978, "E_PR1978_HEAD_DRIFT")
+            fail(errors, subprocess.run(["git", "rev-parse", "origin/main"], cwd=ROOT, check=True, stdout=subprocess.PIPE, text=True).stdout.strip() == LATEST_MAIN, "E_MAIN_HEAD_DRIFT")
+        except (subprocess.CalledProcessError, OSError) as exc:
+            errors.append(f"E_DEPENDENCY_REF:{exc}")
     fail(errors, inv.get("issue_projection", {}).get("issue") == 1813 and inv.get("issue_projection", {}).get("status") == "separate_update_required", "E_ISSUE_PROJECTION")
     return errors
 

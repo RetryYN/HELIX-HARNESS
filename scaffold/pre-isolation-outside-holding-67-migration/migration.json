@@ -8,7 +8,7 @@
   "formal_register_append": true,
   "old_runtime_test_ci_execution": false,
   "base": {
-    "latest_main_commit": "1c6912ad34b9a7950206188ad364e3a712dc9e6b",
+    "latest_main_commit": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
     "historical_capture_commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
     "historical_capture_is_ancestor_of_latest_main": true,
     "rebaseline_required_before_admission": true
@@ -34,7 +34,7 @@
   },
   "read_after": {
     "path": "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.json",
-    "sha256": "fa07fe624ab5f4fd263ed3fdd46b1e3cd56fa549609a65287f72b25cf61ee568",
+    "sha256": "05e0ccf553268696d58478920d1402b305a4d6042dc2f2f95687b847e7755df0",
     "register_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
     "live_holding_count": 14,
     "historical_13_preserved": true,
@@ -42,20 +42,22 @@
       "MPR-SH-OUTSIDE67-001"
     ]
   },
-  "unmerged_dependencies": [
+  "dependencies": [
     {
       "reference": "PR #1975",
       "local_ref": "remotes/pr/1975",
       "head": "2c0f287dda2cd9252cd64255cfa4cdf695653754",
-      "status": "unmerged",
-      "required_migration": "SCF-B-0036 validator/generator/inventoryを3df historical register／disposition snapshotへ束縛し、14-holding current read-afterを別artifactにする。merge後にBinding upstreamをrebaselineする"
+      "merge_commit": "4919cfd245ee128fee71c713c8d2d0a8cd5fcd11",
+      "status": "merged_on_main",
+      "required_migration": "SCF-B-0036 validator/generator/inventoryをdocs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl historical register／disposition snapshotへ束縛し、14-holding current read-afterを別artifactにする。#1981ではこの移行候補を準備し、merge後にBinding upstreamをrebaselineする"
     },
     {
       "reference": "PR #1978",
       "local_ref": "remotes/pr/1978",
       "head": "d272a97b3e55401fa75ad41670fbeefd18f8a4cf",
-      "status": "stacked_on_exact_head_unmerged",
-      "required_migration": "exact HEADを確認後、register参照をhistorical snapshotへ切り替え、current 14-holding read-afterとBinding digestを更新する"
+      "merge_commit": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+      "status": "merged_on_main",
+      "required_migration": "merge parentのexact HEAD d272a97b3e55401fa75ad41670fbeefd18f8a4cfを保持したまま、#1981をf122d65e1435b4709fbb7b07fbb8e42b70f0b110へrebaselineし、register参照をhistorical snapshotへ切り替え、current 14-holding read-afterとBinding digestを更新する"
     }
   ],
   "affected_historical_captures": [
@@ -63,13 +65,66 @@
     "scaffold/phcap02-03-registration-classification-audit/inventory.json",
     "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
     "scaffold/rdp001-unassessed-atom-audit/report.json",
-    "scaffold/pre-isolation-outside-l1-semantic/inventory.json (PR #1975未merge)",
-    "docs/governance/phase-capability-inventory.json (kept at main capture digest; separate migration record required)",
+    "scaffold/pre-isolation-outside-l1-semantic/inventory.json",
+    "docs/governance/phase-capability-inventory.json",
     "scaffold/bindings/SCF-B-0027.json",
     "scaffold/bindings/SCF-B-0029.json",
     "scaffold/bindings/SCF-B-0034.json",
     "scaffold/bindings/SCF-B-0035.json",
-    "scaffold/bindings/SCF-B-0036.json (PR #1975未merge)"
+    "scaffold/bindings/SCF-B-0036.json"
+  ],
+  "affected_historical_capture_count": 11,
+  "repointed_sources": [
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py",
+      "role": "generator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py",
+      "role": "validator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-first15/generate.py",
+      "role": "generator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-first15/validate.py",
+      "role": "validator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    },
+    {
+      "path": "scaffold/phcap02-03-registration-classification-audit/generate.py",
+      "role": "generator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    },
+    {
+      "path": "scaffold/phcap02-03-registration-classification-audit/validate.py",
+      "role": "validator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    },
+    {
+      "path": "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py",
+      "role": "validator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    },
+    {
+      "path": "scaffold/rdp001-unassessed-atom-audit/validate.py",
+      "role": "validator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-l1-semantic/generate.py",
+      "role": "generator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-l1-semantic/validate.py",
+      "role": "validator",
+      "historical_register_ref": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+    }
   ],
   "issue_projection": {
     "issue": 1813,

@@ -15,7 +15,8 @@ PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 CURRENT_HEAD = "3df81ad27157c471e004083783f37a5860eaa2ee"
 FIRST15_PATH = "scaffold/pre-isolation-outside-holding-first15/inventory.json"
-REGISTER_PATH = "docs/governance/management-provisional-requirement-register.jsonl"
+REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+REGISTER_SHA = "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b"
 DECISION_PATH = "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md"
 BOUNDARY_PATH = "docs/concept/product-boundary.md"
 START_HERE_PATH = "docs/governance/new-generation-start-here.md"
@@ -287,6 +288,7 @@ def build() -> dict:
             "first15_inventory_sha256": sha((ROOT / FIRST15_PATH).read_bytes()),
             "management_register_path": REGISTER_PATH,
             "management_register_sha256": sha(register_bytes),
+            "management_register_capture_commit": CURRENT_HEAD,
             "decision_record_path": DECISION_PATH,
             "decision_record_sha256": sha(decision_bytes),
             "product_boundary_path": BOUNDARY_PATH,

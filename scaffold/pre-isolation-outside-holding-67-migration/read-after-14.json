@@ -1,7 +1,7 @@
 {
   "schema": "rdp001-source-holding-register-read-after/v1",
   "read_after_id": "RDP-001-SH-OUTSIDE67-READ-AFTER-14-001",
-  "capture_commit": "1c6912ad34b9a7950206188ad364e3a712dc9e6b",
+  "capture_commit": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
   "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
   "register_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
   "register_record_count": 33,

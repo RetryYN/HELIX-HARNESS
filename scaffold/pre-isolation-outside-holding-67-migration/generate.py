@@ -17,7 +17,7 @@ SOURCE_SET = ROOT / "docs/governance/pre-isolation-outside-holding-67-source-hol
 PROPOSAL = HERE / "proposed-register-record.json"
 READ_AFTER = HERE / "read-after-14.json"
 CAPTURE = "3df81ad27157c471e004083783f37a5860eaa2ee"
-LATEST_MAIN = "1c6912ad34b9a7950206188ad364e3a712dc9e6b"
+LATEST_MAIN = "f122d65e1435b4709fbb7b07fbb8e42b70f0b110"
 PR1975 = "2c0f287dda2cd9252cd64255cfa4cdf695653754"
 PR1978 = "d272a97b3e55401fa75ad41670fbeefd18f8a4cf"
 
@@ -49,6 +49,31 @@ def build() -> dict:
         check=True,
         stdout=subprocess.PIPE,
     ).stdout
+    affected_historical_captures = [
+        "scaffold/pre-isolation-outside-holding-first15/inventory.json",
+        "scaffold/phcap02-03-registration-classification-audit/inventory.json",
+        "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
+        "scaffold/rdp001-unassessed-atom-audit/report.json",
+        "scaffold/pre-isolation-outside-l1-semantic/inventory.json",
+        "docs/governance/phase-capability-inventory.json",
+        "scaffold/bindings/SCF-B-0027.json",
+        "scaffold/bindings/SCF-B-0029.json",
+        "scaffold/bindings/SCF-B-0034.json",
+        "scaffold/bindings/SCF-B-0035.json",
+        "scaffold/bindings/SCF-B-0036.json",
+    ]
+    repointed_sources = [
+        {"path": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {"path": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {"path": "scaffold/pre-isolation-outside-holding-first15/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {"path": "scaffold/pre-isolation-outside-holding-first15/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {"path": "scaffold/phcap02-03-registration-classification-audit/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {"path": "scaffold/phcap02-03-registration-classification-audit/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {"path": "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {"path": "scaffold/rdp001-unassessed-atom-audit/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {"path": "scaffold/pre-isolation-outside-l1-semantic/generate.py", "role": "generator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+        {"path": "scaffold/pre-isolation-outside-l1-semantic/validate.py", "role": "validator", "historical_register_ref": str(HISTORICAL_REGISTER.relative_to(ROOT))},
+    ]
     return {
         "schema": "rdp001-preisolation-outside-holding-67-migration/v1",
         "candidate_id": "RDP-001-PREISO-OUTSIDE-HOLDING-67-MIGRATION-0040",
@@ -91,35 +116,27 @@ def build() -> dict:
             "historical_13_preserved": read_after["historical_capture_preserved"],
             "added_registration_ids": read_after["added_registration_ids"],
         },
-        "unmerged_dependencies": [
+        "dependencies": [
             {
                 "reference": "PR #1975",
                 "local_ref": "remotes/pr/1975",
                 "head": PR1975,
-                "status": "unmerged",
-                "required_migration": "SCF-B-0036 validator/generator/inventoryを3df historical register／disposition snapshotへ束縛し、14-holding current read-afterを別artifactにする。merge後にBinding upstreamをrebaselineする",
+                "merge_commit": "4919cfd245ee128fee71c713c8d2d0a8cd5fcd11",
+                "status": "merged_on_main",
+                "required_migration": "SCF-B-0036 validator/generator/inventoryをdocs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl historical register／disposition snapshotへ束縛し、14-holding current read-afterを別artifactにする。#1981ではこの移行候補を準備し、merge後にBinding upstreamをrebaselineする",
             },
             {
                 "reference": "PR #1978",
                 "local_ref": "remotes/pr/1978",
                 "head": PR1978,
-                "status": "stacked_on_exact_head_unmerged",
-                "required_migration": "exact HEADを確認後、register参照をhistorical snapshotへ切り替え、current 14-holding read-afterとBinding digestを更新する",
+                "merge_commit": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+                "status": "merged_on_main",
+                "required_migration": "merge parentのexact HEAD d272a97b3e55401fa75ad41670fbeefd18f8a4cfを保持したまま、#1981をf122d65e1435b4709fbb7b07fbb8e42b70f0b110へrebaselineし、register参照をhistorical snapshotへ切り替え、current 14-holding read-afterとBinding digestを更新する",
             },
         ],
-        "affected_historical_captures": [
-            "scaffold/pre-isolation-outside-holding-first15/inventory.json",
-            "scaffold/phcap02-03-registration-classification-audit/inventory.json",
-            "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
-            "scaffold/rdp001-unassessed-atom-audit/report.json",
-            "scaffold/pre-isolation-outside-l1-semantic/inventory.json (PR #1975未merge)",
-            "docs/governance/phase-capability-inventory.json (kept at main capture digest; separate migration record required)",
-            "scaffold/bindings/SCF-B-0027.json",
-            "scaffold/bindings/SCF-B-0029.json",
-            "scaffold/bindings/SCF-B-0034.json",
-            "scaffold/bindings/SCF-B-0035.json",
-            "scaffold/bindings/SCF-B-0036.json (PR #1975未merge)",
-        ],
+        "affected_historical_captures": affected_historical_captures,
+        "affected_historical_capture_count": len(affected_historical_captures),
+        "repointed_sources": repointed_sources,
         "issue_projection": {
             "issue": 1813,
             "status": "separate_update_required",
