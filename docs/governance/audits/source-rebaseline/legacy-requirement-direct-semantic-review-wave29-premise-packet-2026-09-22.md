@@ -5,15 +5,14 @@
 - batch: `LEGACY-SEMANTIC-WAVE29-2026-09-22`
 - worktree: `/home/tenni/.helix-worktrees/legacy-semantic-review-wave29`
 - branch: `docs/legacy-semantic-review-wave29`
-- Wave28 exact parent／current tree／stacked input: `a05b9f5444ba11626823683cc486db95c9d1f3a3`（PR #1980未merge）
-- main base／source main base: `b27e61f079edf64eeddc43eb8095159b19730b94`
-- main merge parents: `3df81ad27157c471e004083783f37a5860eaa2ee`、`bd468075abd1c1a95c655acdc9cd00b8fe1d898a`
-- rebaseline stop: mainまたはWave28 exact HEADが変わったら停止し、入力digest／parent lineageを更新
+- parent／current tree／main base: `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`（Wave28統合済み）
+- main merge parents: `4919cfd245ee128fee71c713c8d2d0a8cd5fcd11`、`d272a97b3e55401fa75ad41670fbeefd18f8a4cf`
+- rebaseline stop: mainまたは共有入力が変わったら停止し、入力digest／parent lineageを更新
 - scope: 6 units / 18 asset edges / 6 confirmed requirement edges / 12 unresolved candidate edges
 - cumulative: 95 units / 282 asset edges / 残り123 units（全218 units）
 - authority effect: `none`; consumer closure: `pending`; legacy execution: `not_run`; new build: `false`
 
-Wave29はWave28をstacked parentとして固定した候補です。Wave28のunit／assetを再選択せず、次の未レビュー要求source atom境界FR18〜20だけを対象にしました。候補値をmain確定値として扱わず、parentが変わった場合は検証を停止します。commit、push、PR、merge、Issue操作は行いません。
+Wave29はWave28統合後のmainを親とする候補です。Wave28のunit／assetを再選択せず、次の未レビュー要求source atom境界FR18〜20だけを対象にしました。候補値をmain確定値として扱わず、parentが変わった場合は検証を停止します。作成側はmergeとIssue closeを行いません。
 
 ## 要求source
 
