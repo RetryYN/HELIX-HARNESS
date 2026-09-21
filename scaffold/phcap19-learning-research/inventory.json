@@ -1,0 +1,1135 @@
+{
+  "schema": "phcap19-learning-research/v1",
+  "status": "research_premise_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "base": {
+    "repository": "HELIX-HARNESS",
+    "commit": "e21962d3aad689b260f6396ec2dc862df6f1fce3",
+    "branch": "origin/main",
+    "captured_at": "2026-09-21"
+  },
+  "task": {
+    "phase_id": "PHCAP-19",
+    "phase": "learning_improvement",
+    "gap_audit_path": "docs/governance/audits/source-rebaseline/phase-product-evidence-gap-audit-2026-09-21.md",
+    "gap_audit_sha256": "b76d10e9ac3e36e267edc6eadc4ab3afb1f7eafabcebff50a0851fd3c63d97dc",
+    "issue_projection": {
+      "issue": 1907,
+      "used_as_semantic_authority": false
+    }
+  },
+  "scope": {
+    "bounded_asset_ids": [
+      "LEGACY-ASSET-02D897E62EF2FA267267",
+      "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "LEGACY-ASSET-C544D3D166699301485D",
+      "LEGACY-ASSET-57A29D57A3AD07CA4DFF",
+      "LEGACY-ASSET-0B5B38F146D9538C9A36"
+    ],
+    "source_asset_count": 5,
+    "source_span_count": 21,
+    "closure_rule": "inventory representative PHCAP-19 assets only; all other learning/improvement/memory/feedback assets and consumers remain residual"
+  },
+  "gap_interpretation": {
+    "inventory_product_targets": [
+      "HELIX-OS",
+      "HELIX-HARNESS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "inventory_current_evidence_products": [
+      "HELIX-OS"
+    ],
+    "direct_current_evidence_products": [
+      "HELIX-OS"
+    ],
+    "direct_current_evidence_refs": [
+      "docs/helix-os/L2-requirements/governance-requirements.md",
+      "docs/helix-os/L11-acceptance/governance-acceptance.md"
+    ],
+    "missing_direct_current_products": [
+      "HELIX-HARNESS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "missing_status": "unknown",
+    "prohibited_inference": "HARNESS/Web/Web-OS direct-ref absence is not an implementation absence claim"
+  },
+  "legacy_assets": [
+    {
+      "asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "source_path": "docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+      "source_sha256": "01de2c4ebed55686779fee30386f0056da1dd3c4642d0d20f3732becc67467d4",
+      "source_line_count": 243,
+      "source_spans": [
+        {
+          "span_id": "SRC-L3-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+          "start_line": 31,
+          "end_line": 39,
+          "sha256": "0c8c9552b063e4012ab1291004cd3688d672f7eed05e23dbfbde6618a2745589",
+          "exact_text": "## 0. 目的とauthority境界\n\nUniversal Improvement Loopは、HELIX自身のruntime、CI、DB、Requirement、Definition、Design、dependency、\noperation、provider environmentを決定的に観測し、baselineとの差分から改善候補を生成し、既存workflowへ戻して\n修正後の効果と再発まで測る横断capabilityである。\n\n本capabilityはAI間の作成・レビュー循環、resident lane、review orchestration、新しいworkflow route、\ndevelopment style、execution mode、DB authorityではない。AIは説明、仮説、候補を提案できるが、detector evidence、\n意味同一性、authority変更、merge、completionを確定しない。通知、生成文書、DB row、LLM出力を意味正本にしない。\n",
+          "role": "authority boundary and AI non-authority"
+        },
+        {
+          "span_id": "SRC-L3-02",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+          "start_line": 41,
+          "end_line": 74,
+          "sha256": "f50e2640301f98e982398531b6356731fca15adc52d3e98ff916ae1a65b47d64",
+          "exact_text": "## UIL-FR-001 観測sourceとbaseline比較\n\n### UIL-R-01 改善source registry\n\n観測sourceはstable ID、owner、schema version、detector version、input authority、revision、retention、redaction、\nfreshness、failure dispositionを持つversioned registryへ登録する。任意log文字列やAI感想をdetector evidenceとして\n扱わず、unknown source、欠落revision、stale evidenceをfail-closeする。\n\n初期sourceはCI wall-clock／queue／runner-minute／flake／retry、DB projection／replay／checkpoint、Requirement／\nDefinitionのduplicate／overlap／orphan／stale、dependency cycle／fan-out／change amplification、review／rework／\nrollback／incident、provider／toolchain drift、distribution consumer、resource／cost／security findingとする。\n\n### UIL-R-02 観測正規化とbaseline比較\n\nsource eventをstable event ID、baseline revision、observed revision、payload digest、correlation、causation、confidence、\ncounterevidenceへ正規化する。同一event集合とregistry versionから同一normalized exact setとdigestを生成し、\ncurrent baseline、観測値、欠測、予測を別fieldにする。\n\n### UIL-R-15 観測generationとhistorical baseline保全\n\nnormalized observationは`baseline`、`candidate`、`post_main`を別generationとして保持し、同じHEAD、event payload、\nsource IDでもgeneration identityを統合しない。各generationはrepository、source HEAD、base／candidate HEAD、source\nregistryのversion／digest、detectorのID／version／digest、environment／toolchain digest、物理bindingの適用可否、\n観測時刻、親generationへ束縛する。\n\nhistorical baselineは生成時のregistry、detector、environment identityでsealedし、candidate側変更で再解釈または\nin-place rewriteしない。detector semantics、source event class、evidence boundary、environment、physical bindingの\n比較条件が一致しない場合は、`comparison_compatible`、`reobservation_required`、`baseline_incomparable`、\n`detector_transition_required`のtyped dispositionへ送る。比較不能をno-change、改善、悪化なし、greenへ変換しない。\n\n正規lifecycleは`current baseline → candidate observation → comparison／migration decision → canonical merge →\npost-main observation → new baseline promotion`とする。post-main read-afterなしにcandidateを次baselineへ昇格せず、\ncandidate close／abandon時はhistorical baselineを変更しない。source admission failureはfirst cause、rejected source/event、\nnormalizer disposition、downstream skip/deferをlineageとして保持し、genericな`normalized event missing`だけへ崩さない。\n",
+          "role": "source registry, normalization and historical baseline"
+        },
+        {
+          "span_id": "SRC-L3-03",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+          "start_line": 76,
+          "end_line": 120,
+          "sha256": "dabbd8d9d2ee0c38e74d339d98bad41071ab8007822c768b7ebd898fcdae6dad",
+          "exact_text": "## UIL-FR-002 findingの適格化と改善候補\n\n### UIL-R-03 finding適格化、dedupe、expiry\n\ninvariant violation、同種finding再発、metric budget超過、悪化傾向、duplicate／orphan／cycle増加、release boundary、\nprovider changeを発火条件とする。scheduled実行は長期間eventがない場合のsafety-netに限定する。同一原因・scope・\nbaselineの候補を重複生成せず、expiry、supersession、counterevidenceを保持する。\n\n### UIL-R-04 UniversalImprovementCandidateV1\n\n候補は少なくともcandidate ID、source event IDs、evidence snapshot digest、baseline／observed revision、detector ID／\nversion、invariant IDs、finding class、confidence／counterevidence、影響するRequirement／Design／Contract／Module／\nV-pair、提案change set、期待効果、cost、risk、影響範囲、意味同一性、system change class、\ncapability expansion kind、workflow route、verification obligations、rollback、human decision、expiryを別fieldへ束縛する。\n\n```yaml\nrequired_fields:\n  - candidate_id\n  - source_event_ids\n  - evidence_snapshot_digest\n  - baseline_revision\n  - observed_revision\n  - detector_id\n  - detector_version\n  - invariant_ids\n  - finding_class\n  - candidate_scope_class\n  - confidence_and_counterevidence\n  - affected_requirements\n  - affected_designs\n  - affected_contracts\n  - affected_modules\n  - affected_v_pairs\n  - proposed_change_set\n  - expected_benefit\n  - expected_cost\n  - risk_and_blast_radius\n  - semantic_parity_status\n  - system_change_class\n  - capability_expansion_kind\n  - workflow_route\n  - verification_obligations\n  - rollback_contract\n  - human_decision_required\n  - expiry\n",
+          "role": "finding qualification candidate contract"
+        },
+        {
+          "span_id": "SRC-L3-04",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+          "start_line": 123,
+          "end_line": 160,
+          "sha256": "585943ac07ec25b82f2bedcb4575a7d4d7b13ea7ed976e2eef5894967d6e2e6b",
+          "exact_text": "## UIL-FR-003 semantic impactと全体最適評価\n\n### UIL-R-05 意味とsystem全体への影響\n\n価値、挙動、受入、責務、ownership、公開境界、trace、結合度、変更増幅、\nverification cost、defect escape、migration costへの影響をstable IDで算出する。意味変更を意味保存refactorとして\n扱わず、影響不明は推測せずhuman decisionまたはfail-closeへ送る。\n\n候補の作用域は`local_issue`、`system_synthesis`、`requirement_portfolio_resynthesis`へtyped分類する。\n一つの局所責務で閉じるものだけをIssue候補とし、複数Module／V-pairの境界再編はSystem Synthesis候補、\nRequirement／Definition集合のsplit、merge、supersede、ownership再編、Requirement Re-entryを伴うものは\nRequirement Portfolio Resynthesis候補へ昇格する。この分類は新しいworkflow routeではなく、既存routeへ配車する前の\n影響scopeである。Issue件数やfile overlapだけで上位候補を確定せず、stable IDの影響graphと反例を要求する。\n\n### UIL-R-06 反実仮想と全体最適評価\n\ncurrent baseline、提案後予測、反例、局所効果、他Module／V-pair／consumer／security／operationへの副作用、rollbackを\n比較する。LOC、Issue数、test時間、file数など単一metricだけで採用せず、局所改善と全体悪化が同時に起きる候補を\n`adopted`へ昇格しない。予測を実測完了証拠として扱わない。\n\n## UIL-FR-004 既存workflowへのbackflow\n\n### UIL-R-07 typed改善配車\n\n`system_change_class`、`capability_expansion_kind`、`workflow_route`を同一enumへ畳み込まない。意味保存整理は\nREFACTORING、要求・価値・挙動・AC変更はRequirement Re-entry／REDESIGN、実装・運用誤りはRECOVERY／REVERSE／\nRETROFIT／REFACTOR、性能・CI・resourceはPERFORMANCE_REFACTOR、新能力はADD_FEATURE、外部技術driftは\nTechnology Environment Reconciliationへ送る。曖昧な候補を推測配車しない。\n\n`candidate_scope_class`は`system_change_class`、`capability_expansion_kind`、`workflow_route`から独立させる。\nRequirement Portfolio Resynthesis候補はRequirement Discovery／Requirement Re-entryとSystem Synthesisの既存authorityを\n再利用し、要求集合の意味変更を自動承認しない。\n\n### UIL-R-08 authority書込guard\n\n発火と候補生成はauthority write、Requirement／Definition変更、実装、merge、publish、cutoverを直接実行しない。\nroute先のPLAN、V-pair、approval、review、CI、rollback契約を再利用し、#1037 whole-system plannerのcurrent write parkingを\n解除しない。\n",
+          "role": "impact classification and typed backflow"
+        },
+        {
+          "span_id": "SRC-L3-05",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+          "start_line": 162,
+          "end_line": 186,
+          "sha256": "648154dcd370f7a9b73a04483b23d33056729c5013d9a0f6dc10961334732ca4",
+          "exact_text": "## UIL-FR-005 変更検証と効果測定\n\n### UIL-R-09 change検証と効果測定\n\n候補に束縛したverification obligations、before／after、cost、side effect、rollback readiness、観測windowを同一scope、\nrevision、artifact digestで比較する。局所green、件数減少、agent自己評価だけで効果を確定しない。\n\n### UIL-R-10 terminal outcome管理\n\n`adopted`、`rejected`、`superseded`、`no_action`、`escalated`を別々のterminal outcomeとして理由、counterevidence、\nreceipt digest付きで保持する。candidate生成、route決定、change mergeをterminalへ丸めず、rejected／no_actionも同一候補を\n無限再生成しないためのdedupe evidenceにする。\n\n## UIL-FR-006 recipe昇格と再発監視\n\n### UIL-R-11 recipe昇格\n\n改善recipeは複数episode、異なるscope、counterexample、mutation、benchmark、version、applicability、expiry、rollbackが\n揃った場合だけcandidate化する。単一project成功やAI評価をgeneral ruleへ昇格しない。rule promotionは既存System\nSynthesisのhuman review境界に従う。\n\n### UIL-R-12 再発監視\n\nadopted後も同一invariant、finding class、scope、release／operation windowを監視し、再発、効果消失、副作用、environment\ndriftを新しいevidenceとして元episodeへ因果接続する。再発時は過去の成功receiptで相殺せず、新baselineから再評価する。\n",
+          "role": "verification, terminal outcome and recipe/recurrence"
+        },
+        {
+          "span_id": "SRC-L3-06",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+          "start_line": 188,
+          "end_line": 200,
+          "sha256": "7e019a7146698513261b940f136ccc680e0498e18e803e7843558b48da11ea0b",
+          "exact_text": "## UIL-FR-007 決定性、再構築、AI非依存\n\n### UIL-R-13 決定的projectionとreplay\n\n同一repo authority、source registry、event journal、baseline revisionからcandidate、route、verification obligation、terminal\nprojectionの同一exact set／digestを再構築する。DB削除、event順序変更、retry、at-least-once deliveryで意味が変わらず、\n欠落eventとdigest driftを拒否する。\n\n### UIL-R-14 AI非依存control境界\n\nAI proposalを除去してもobservation、qualification、candidate、route、verification、terminal stateが成立する。AI出力を\n採用する場合もsource、model、session、prompt／context digest、candidate HEAD、scope authorityをreceiptへ束縛し、\n決定的detector evidenceと区別する。\n",
+          "role": "deterministic projection and AI-independent control"
+        },
+        {
+          "span_id": "SRC-L3-07",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-improvement-loop-requirements.md",
+          "start_line": 202,
+          "end_line": 243,
+          "sha256": "823fa71b7875955e566904d5d3bbc9754656abea683517f8e538602fa1bb0986",
+          "exact_text": "## 1. 正規state machine\n\n```text\nOBSERVED\n→ NORMALIZED\n→ BASELINE_COMPARED\n→ FINDING_QUALIFIED\n→ ROOT_AND_IMPACT_CLASSIFIED\n→ IMPROVEMENT_CANDIDATE_PROPOSED\n→ COUNTERFACTUAL_EVALUATED\n→ ROUTED\n→ CHANGE_VERIFIED\n→ OUTCOME_MEASURED\n→ RECIPE_CANDIDATE\n→ RECURRENCE_MONITORED\n→ TERMINAL\n```\n\n順序飛越、別baseline／HEAD／scopeの証拠混載、予測から効果確定、terminal outcomeの上書きを拒否する。\n\n## 2. 責務分割\n\n| Slice | 責務 |\n|---|---|\n| UIL-01 | L3／L10 authorityとsource registry |\n| UIL-02 | 観測正規化／baseline比較 |\n| UIL-03 | finding適格化／dedupe／expiry |\n| UIL-04 | 意味影響／候補合成 |\n| UIL-05 | 反実仮想／全体最適evaluator |\n| UIL-06 | 既存routeへのbackflow接続 |\n| UIL-07 | before-after／recipe／再発projection |\n| UIL-08 | HELIX自身でのE2E dogfood |\n\n実装はUIL-01→02→03→04→05→06→07→08の依存順とし、各sliceを別PLAN／原子的PRへ分ける。\n\n## 3. 非対象\n\n- 新しいUniversal Improvement routeの追加。\n- AI間Infinity Loop、resident lane、review orchestrationの再実装。\n- AIによるRequirement、Design、merge、completionの自己承認。\n- #1037 whole-system plannerのcurrent write昇格。\n- production変更、publish、cutoverのapproval代替。\n",
+          "role": "state machine, slice responsibilities and non-goals"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-0490",
+        "candidate_phase_targets": [
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner or closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-L3-02",
+          "finding": "unknown source, stale evidence, incompatible historical baseline and missing first-cause lineage fail-close or require reobservation"
+        },
+        {
+          "span_id": "SRC-L3-04",
+          "finding": "ambiguous impact and requirement/ownership change require human decision or fail-close"
+        },
+        {
+          "span_id": "SRC-L3-05",
+          "finding": "single-project success, forecast, local green, or missing rollback cannot promote a recipe"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-L3-02",
+          "finding": "source registry, normalized observation and baseline consumer"
+        },
+        {
+          "span_id": "SRC-L3-04",
+          "finding": "existing workflow route, V-pair and requirement/design backflow consumer"
+        },
+        {
+          "span_id": "SRC-L3-05",
+          "finding": "verification, terminal outcome and recurrence-monitoring consumer"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "source_path": "docs/design/helix/L5-detail/memory-learning-promotion.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+      "source_sha256": "70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a",
+      "source_line_count": 272,
+      "source_spans": [
+        {
+          "span_id": "SRC-L5-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+          "start_line": 39,
+          "end_line": 48,
+          "sha256": "4288802d5336d9b26fd418ba53d337198fdc1c6a55afe32419d465feab0c672b",
+          "exact_text": "## §0 適用境界、現行資産、source provenance\n\n本sliceは、verified completionから永続知識だけを抽出するknowledge compactionと、反復findingを\n`pattern -> recipe -> shadow -> skill/detector -> gate`へ段階昇格するlearning promotionを扱う。\n物理JSONL整理である既存`compactMemory`、session終了時の書込み忘れを警告する既存`memoryPromotionNudge`、\n短期の進行状態を保持するcontinuationは再利用候補だが、本sliceのknowledge promoterやlearning ledgerの実装済み証拠ではない。\n\n現行memory v2は`.helix/memory/{harness,project,takeover}.jsonl`をdata SSoTとし、harness.dbの機械状態と矛盾した場合は\nDBを優先する。continuationはharness.dbのevent/projectionを正本とし、memoryへ進捗、next action、lease、current stateを\n複製しない。この既存境界を維持し、knowledge compactionの出力だけをshared memoryへappendする。\n",
+          "role": "memory/continuation boundary"
+        },
+        {
+          "span_id": "SRC-L5-02",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+          "start_line": 72,
+          "end_line": 89,
+          "sha256": "195f34d62780aab205fe914d709500611258459984c30df893229f3828f8f846",
+          "exact_text": "## §1 componentとauthority\n\n| component | 責務 | authority | 禁止 |\n|---|---|---|---|\n| `VerifiedCompletionReader` | completion、Issue、PR、CI、audit、oracleのdigestとverification receiptをread | completion observation | raw log本文、未verified completionの昇格 |\n| `CompletionKnowledgePartitioner` | durable knowledge、continuation、forbidden content、no-promotionを全件分類 | partition proposal | 進捗のknowledge化、不明分類の黙認 |\n| `KnowledgePromoter` | workerとは別role/providerでpromote/supersede/no-promotion proposalを作る | proposalだけ | 自成果の自己昇格、memoryへの直接write |\n| `MemoryPromotionGate` | verification、role分離、classification、provenance、supersessionをNodeで再検証 | promotion receipt | secret/PII/raw log、prose-only receipt |\n| `MemoryPromotionCommitter` | memory eventとpromotion ledgerを冪等commit | Node memory port＋`HarnessDbPort` | Claude/Codexからの直接DB write、片側commit |\n| `LearningPatternAggregator` | finding、repair、Issue、commit、oracleを同一causalityでpattern候補へ集約 | pattern event | raw implementation logの複製、support偽装 |\n| `LearningRecipeBuilder` | 再現手順、scope、期待oracle、fixture契約をrecipe化 | recipe event | fixtureなしshadow、自由文だけの手順 |\n| `ShadowEvaluationCoordinator` | active workflowを変更せずbefore/afterと退行を測定 | shadow receipt | blocking適用、評価fixture差替え |\n| `IndependentPromotionReviewer` | promoterと別role/providerで効果、false positive、coverage、rollbackを判定 | review receipt | self review、worker/promoter claimの追認だけ |\n| `LearningPromotionGate` | skill/detector/gateの段階、review、rollback targetを検査 | promotion decision | stage飛越、即時gate化、rollbackなしactive化 |\n| `LearningRollbackController` | regression時にactive revisionをrollback/retireし再昇格をfence | rollback/retire event | 証拠消去、同evidenceの無条件再利用 |\n\nworker、knowledge promoter、independent reviewer、final verifierはidentity、role、provider familyの全6組合せで分離する。Claude Codeがknowledge promoterとなる場合も、\nNodeがcontractを検証して正本commitする。skill/detector/gateのauthor自身は最終reviewとactive化を兼ねない。\n",
+          "role": "promotion components, authority and role separation"
+        },
+        {
+          "span_id": "SRC-L5-03",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+          "start_line": 91,
+          "end_line": 121,
+          "sha256": "d81e3859c643b03f594aec11c60363027f783d49a9bfe8b831c9db48bc2cd5dd",
+          "exact_text": "## §2 verified completionとknowledge compaction\n\ncompaction入力はraw transcriptではなく、既に正本化された参照とdigestだけを持つbounded packetとする。\n実装スキーマの唯一の定義元はL6\n`docs/design/helix/L6-function-design/memory-learning-promotion.md`の\n`BoundedFactAuthorityV1`、`BoundedFactRefV1`、`VerifiedCompletionPacketV1`であり、L5では同名のTypeScript宣言を再定義しない。\n\n| schema | L5で拘束するfield／値 |\n|---|---|\n| `BoundedFactAuthorityV1` | `completion_receipt`、`pull_request`、`ci_receipt`、`audit_finding`、`oracle_receipt`、`design_decision`、`raw_log_evidence`の7値だけ |\n| `BoundedFactRefV1` | `schema_version=helix-bounded-fact-ref.v1`、`authority`、`authority_id`、`immutable_revision`、`content_digest`、`media_kind=durable_fact\\|raw_log_reference`、`item_count`、`byte_count` |\n| `VerifiedCompletionPacketV1` | `schema_version=helix-verified-completion-packet.v1`、causality／issue、completion／worker／verification／PR／CI／audit finding／oracleのdigest、typed `candidate_fact_refs`、typed `continuation_ref`、`packet_digest` |\n\nrevision／digestの別名項目は設けず、参照の件数とbyte上限は`item_count`と`byte_count`だけで表す。\n\n`candidate_fact_refs`は最大64件、各参照のcanonical JSONは512 bytes以下、解決後は各16 KiB以下かつ合計256 KiB以下とする。\nauthorityは上記allowlistだけ、`immutable_revision`はauthority側のcurrent receipt/revisionと一致し、`content_digest`は解決結果と一致しなければならない。\nstale revision、dangling ID、allowlist外authority、digest mismatch、件数またはbyte上限超過は\n`HIL_MEMORY_COMPACTION_INVALID`でpacket全体を拒否する。参照は決定、制約、再利用可能なdiagnostic、安定した設計知識の正本だけを指す。raw command output、\nprovider transcript、diff全文、自由形式log、進捗率、現在作業、next action、secret、credential、token、PII本文をpacketへ入れない。\n入力境界でbodyとmetadataを同じscannerへ通し、secret/PIIは`HIL_MEMORY_SECRET_FORBIDDEN`、raw logは\n`HIL_MEMORY_RAW_LOG_FORBIDDEN`、進捗は`HIL_MEMORY_PROGRESS_FORBIDDEN`でmemory write 0とする。\n\n`raw_log_evidence`は`media_kind=raw_log_reference`のopaque provenance参照だけを許し、本文を解決してmemory candidateへ流さない。\nこの参照はpartitionの`no_value`へ分類し、それ自体はraw本文混入ではない。raw log本文をpacket/body/metadataへ\n埋め込む反例だけが`HIL_MEMORY_RAW_LOG_FORBIDDEN`となる。これにより`HST-CASE-015-06`のbounded参照partitionと\n`HST-CASE-015-02`の本文混入fail-closeを分離する。\n\n各candidateを`durable_knowledge | continuation | forbidden | duplicate | no_value`へ全件分類する。continuationは\nharness.dbの既存event/projectionへ残し、memory eventを生成しない。分類不能はdurableへ推測せず\n`HIL_MEMORY_COMPACTION_INVALID`でpacket全体を拒否する。\n",
+          "role": "verified completion and bounded knowledge packet"
+        },
+        {
+          "span_id": "SRC-L5-04",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+          "start_line": 123,
+          "end_line": 145,
+          "sha256": "fe677ac77a9a63b82b509c4fc8b4646daabacc4822f7c535d3c7312fc925b86e",
+          "exact_text": "promotion結果は次のどれか一つである。\n\n- `promote`: 新しいmemory key/revisionをappendする。\n- `supersede`: 生存entryを明示参照する新revisionをappendする。\n- `no_promotion`: 永続化価値なし、重複、continuation-onlyの理由とinput/output digestをreceiptに残す。\n\nverified completion一件につきterminal receiptはexactly-oneとする。4主体のidentity、role、provider familyが一組でも衝突するなら\n`HIL_MEMORY_PROMOTER_NOT_INDEPENDENT`、admission/completion event種別が混在する場合は`HIL_MEMORY_EVENT_MIXED`とする。\n既存の物理compactionは意味を要約せず、knowledge promotionの代用にしない。\n\n## §3 memoryとcontinuationの分離\n\n| 情報 | 正本 | memory昇格 |\n|---|---|---|\n| 現在state、進捗、next action、lease、checkpoint | harness.db continuation event/projection | 禁止 |\n| provider delegation transcript/handover | delegation evidence | 禁止 |\n| 検証済み決定、長期制約、再利用可能な設計知識 | harness/project memory event | 許可 |\n| 一時的なruntime takeover | takeover memory lifecycle | 長期knowledgeへ自動転記禁止 |\n| raw log、secret、PII、credential | 原evidenceの保護境界または即時拒否 | 禁止 |\n\nmemory receiptはcontinuation refを参照できるが、continuation本文や現在stateを複製しない。DB優先はcontinuationとprocess projectionの\nstateに限り、knowledge payload、key、revision、supersessionのdata authorityは常にmemory JSONLとする。DB projectionがJSONLと矛盾する場合は\nDB rowをstaleとして再投影し、JSONL entryをDB値で上書きしない。completion closureはmemoryまたはno-promotion receiptのdigestだけをjoinする。\n",
+          "role": "promotion outcomes and memory/continuation separation"
+        },
+        {
+          "span_id": "SRC-L5-05",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+          "start_line": 147,
+          "end_line": 189,
+          "sha256": "aa7602084a721af9bb91241bb057556afe731969d10058be4d627ccc66c08de3",
+          "exact_text": "## §4 learning ledgerと段階遷移\n\nfindingは本文を複製せず、finding/Issue/commit/oracle digestとcause IDを`raw_event_ref`として登録する。許可遷移は次とする。\n\n```text\nraw_event_ref -> pattern -> recipe -> shadow -> shadow_verified\nshadow_verified -> skill_candidate -> skill_active\nshadow_verified -> detector_candidate -> detector_active\nskill_active | detector_active -> gate_candidate -> gate_active\nshadow | shadow_verified | *_candidate | *_active -> rolled_back -> retired\n```\n\npatternはsupport countと独立causality数、recipeは再現fixture、expected oracle、scope、non-goal、ownerを必須とする。\nfixtureなしshadowは`HIL_PROMOTION_FIXTURE_MISSING`、recipeからgateへの直行は\n`HIL_PROMOTION_IMMEDIATE_GATE_FORBIDDEN`、その他のstage飛越は`HIL_PROMOTION_STAGE_BYPASS`で拒否する。\n\nskill/detectorはshadow verified後の別branchであり、片方を他方の証拠として偽装しない。blocking gateはactive skillまたはdetector、\n独立review、rollback target、限定scopeを要求する。反復logの多さだけでrecipe/gateへ昇格する場合は\n`HIL_LEARNING_PROMOTION_PREMATURE`とする。\n\n## §5 fixture、shadow、独立効果検証\n\nshadowはactive workflowのdecisionを変更せず、同じversioned fixture setをbaseline/candidateへ実行する。receiptは最低限、\nsource snapshot、recipe/candidate version、fixture set、oracle set、before/after result、sample/support count、成功率、\nfalse-positive/negative率、設計document coverage delta、runtime/cost delta、scope、reviewer identity、rollback targetのdigestを持つ。\n\nbefore metricまたは独立review receiptが無い場合は`HIL_PROMOTION_EFFECT_MISSING`とする。coverage deltaは\nrequirement/design/test/oracleの未接続数、説明なしobligation、false coveredを同じ分母でbefore/after比較する。\nblocking gate昇格にはcoverage改善が正、既存oracle退行0、false-positive policy内を要求する。skill/detectorは目的metricの改善を\n要求し、coverage非改善をgate昇格のshortcutに使わない。\n\n一fixtureでも既存workflow、acceptance、security、authority、portabilityを退行させた場合は\n`HIL_PROMOTION_SHADOW_REGRESSION`でactive化0、rollbackを実行する。promoterとreviewerが同一、またはworker claimだけのreviewは\n独立効果検証として受理しない。\n\n## §6 rollback、retire、再昇格fence\n\nactive化前に直前active revision、artifact/config digest、disable手順、影響scopeをrollback targetとしてsealする。\nrollback targetが無いdetector/skill/gate promotionは`HIL_PROMOTION_ROLLBACK_MISSING`で停止する。\n\nregression時はcandidateを`rolled_back`、生成artifactをinactive、関連gateをnon-blockingへ戻し、rollback receiptをappendする。\nrollback済みrevisionは再active化せず`retired`へ進める。同じfixture/evidence digestだけでの再昇格を拒否し、修正revision、\n新shadow receipt、別reviewer receiptを要求する。過去receiptやfindingは削除しない。\n",
+          "role": "learning stages, shadow, effect and rollback"
+        },
+        {
+          "span_id": "SRC-L5-06",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+          "start_line": 191,
+          "end_line": 223,
+          "sha256": "ab7f0cfdc0ec0e8ec958965c34611f50318693e5a9aade4a596c14b64a0f369e",
+          "exact_text": "## §7 harness.db projection候補\n\n| table | 主要key／field | 不変条件 |\n|---|---|---|\n| `memory_compaction_runs` | completion、worker/promoter/reviewer/final verifier、packet/input/output digest、decision、failure | completionごとterminal最大1、4主体全6 pairのidentity/role/provider分離 |\n| `memory_promotion_receipts` | run、layer/key/revision、promote/supersede/no-promotion、entry/event digest | continuation本文0、raw/sensitive本文0 |\n| `learning_patterns` | pattern、cause set、support count、source digest、state | source causality重複をsupportへ二重計上しない |\n| `learning_recipes` | pattern、version、fixture/oracle/scope/non-goal digest、owner、state | recipeごとactive version最大1 |\n| `learning_shadow_runs` | recipe/candidate、fixture、before/after、coverage、FP/FN、review、rollback digest | active workflow変更0、fixture同一 |\n| `learning_promotion_reviews` | worker/promoter/reviewer/final verifier、効果、退行、scope、decision digest | 4主体全6 pairのidentity/role/provider分離、自己review 0 |\n| `learning_promotion_events` | subject/version、from/to、operation、previous/event digest、failure | append-only、stage順序、operation一意 |\n| `learning_active_revisions` | kind、scope、artifact/config、active/rollback revision、receipt | kind/scopeごとactive最大1 |\n| `learning_rollback_receipts` | revision、cause、target、effect、disabled artifact、review digest | rollback後の同revision再active 0 |\n\nmemory JSONLはknowledge payload、key、revision、supersessionのdata SSoTを維持し、harness.dbはcompaction/promotionのprocess、role、stage、effect、rollbackを投影する。\nNodeはmemory appendとDB eventを一つの偽filesystem/SQLite transactionとは呼ばない。commit stateは\n`planned -> memory_appended -> projection_pending -> projected -> terminal`だけを許す。memory append receipt後にDB projectionが失敗した場合は\n`projection_pending`を返し、terminal/closureを公開しない。同じoperation ID、JSONL entry digest、expected DB headを使うreconcileだけが再開でき、\nJSONL再append 0、DB projection一件、terminal receipt exactly-oneで`terminal`へ進む。異digest retryは`HIL_MEMORY_COMPACTION_INVALID`で停止する。\n\n### §7.1 promotion active化／rollbackの不可分transaction\n\nskill、detector、blocking gateのactive化はplan生成で完了しない。Node `LearningPromotionStoreV1`は\n`(subject_kind, subject_id)`をauthority keyとし、そのsubject revision、active revision pointer、artifact/configまたはgate policy、\npromotion event/projection、activation receiptを\n`LearningActivationCommitBundleV1`として単一transactionでCAS commitする。bundleはoperation/payload digest、expected event/projection\nhead、shadow/effect/review/final verifier receipt、authority、freshness、rollback targetを必須とする。同じkindの別`subject_id`は\n別head/pointerを持ち、対象外subjectのrow/event/projection増分は常に0とする。\n\nrollbackもcurrent revisionのdisable、rollback targetのrestore/publish、active pointer、event/projection、rollback receiptを同じtransactionで\ncommitする。role/provider分離、shadow/review freshness、authority、CASのいずれかが不成立なら対象`(kind,id)`のwrite 0。各append faultで全writeをrollbackし、\n同operation・同digestは既存receipt一件、異digestはconflictとする。reconcileは同じauthority keyのimmutable event/artifact/review evidenceからのみ復元し、\n新activeや同kind別subjectを推測しない。\n",
+          "role": "harness.db projection and activation transaction"
+        },
+        {
+          "span_id": "SRC-L5-07",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+          "start_line": 225,
+          "end_line": 240,
+          "sha256": "da7fad9be45badbd390814338ad4ef2b966ef758f576c33b7917efa81f333236",
+          "exact_text": "## §8 failure契約\n\n| canonical failure | 条件 | 副作用 |\n|---|---|---|\n| `HIL_MEMORY_RAW_LOG_FORBIDDEN` | raw log/transcript/diff本文のmemory混入 | memory write 0 |\n| `HIL_MEMORY_PROGRESS_FORBIDDEN` | progress/current/next actionのmemory混入 | memory write 0 |\n| `HIL_MEMORY_SECRET_FORBIDDEN` | secret/credential/PIIのbodyまたはmetadata混入 | memory write 0 |\n| `HIL_MEMORY_PROMOTER_NOT_INDEPENDENT` | worker/promoter/reviewer/final verifierのidentity、role、provider familyが一組以上衝突 | receipt 0 |\n| `HIL_MEMORY_COMPACTION_INVALID` | verified/provenance/classification/partition不完全 | promotion 0 |\n| `HIL_MEMORY_EVENT_MIXED` | admission、completion、continuationのevent種別混在 | promotion 0 |\n| `HIL_PROMOTION_FIXTURE_MISSING` | 再現fixtureなしshadow | stage増分0 |\n| `HIL_PROMOTION_EFFECT_MISSING` | before/afterまたは独立review欠落 | active化0 |\n| `HIL_PROMOTION_SHADOW_REGRESSION` | shadowで一件以上退行 | rollback、active化0 |\n| `HIL_PROMOTION_IMMEDIATE_GATE_FORBIDDEN` | recipeからblocking gateへ直行 | gate増分0 |\n| `HIL_PROMOTION_ROLLBACK_MISSING` | rollback targetなし昇格 | active化0 |\n| `HIL_LEARNING_PROMOTION_PREMATURE` | support/fixture/shadow/review前の強制化 | active化0 |\n",
+          "role": "canonical failure contract"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-0568",
+        "candidate_phase_targets": [
+          "PHCAP-16",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner or closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-L5-03",
+          "finding": "raw log, progress, secret/PII, stale ref or ambiguous classification yields memory write 0"
+        },
+        {
+          "span_id": "SRC-L5-05",
+          "finding": "fixture/effect/review/rollback absence blocks promotion; regression rolls back"
+        },
+        {
+          "span_id": "SRC-L5-06",
+          "finding": "CAS, role separation or digest conflict yields zero write"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-L5-01",
+          "finding": "memory JSONL and harness.db continuation boundary"
+        },
+        {
+          "span_id": "SRC-L5-02",
+          "finding": "worker/promoter/reviewer/final verifier and promotion gate"
+        },
+        {
+          "span_id": "SRC-L5-05",
+          "finding": "pattern/recipe/shadow/skill/detector/gate and rollback consumers"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C544D3D166699301485D",
+      "source_path": "docs/design/helix/L6-function-design/universal-improvement-source-registry.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/universal-improvement-source-registry.md",
+      "source_sha256": "e83a626e133f5a5aa213ff2bd6ae0f1c819d0bb7a00679d8982884596b4ff645",
+      "source_line_count": 79,
+      "source_spans": [
+        {
+          "span_id": "SRC-L6-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/universal-improvement-source-registry.md",
+          "start_line": 1,
+          "end_line": 37,
+          "sha256": "e184ae51799fb222e16e578a728c532f264072538a056f0739d074f0064a0636",
+          "exact_text": "---\ntitle: \"Universal Improvement source registry機能設計\"\nlayer: L6\nartifact_type: design\nstatus: confirmed\ncreated: 2026-08-30\nupdated: 2026-08-30\nowner: Codex / TL\nplan: docs/plans/PLAN-L7-703-universal-improvement-source-registry.md\npair_artifact: docs/test-design/helix/L8-universal-improvement-source-registry-unit-test-design.md\ngithub_issue_id: 1231\nbehavior_contract_id: UNIVERSAL-IMPROVEMENT-SOURCE-REGISTRY-001\nresponsibility_owner: universal-improvement-source-registry\n---\n\n# Universal Improvement source registry機能設計\n\n## 責務とauthority\n\n本機能は、Universal Improvement Loopが既存の決定的detectorから観測を受け取る入口を提供する。\n意味authorityはL3のUniversal Improvement Loop要求とし、registryはそのrequirements-owned authorityから\nsource、detector、schema、freshness、evidence contractを投影する。registry、doctor、runtime admissionは\n同じanalyzerを再利用し、別の判定表やprovider固有の正本を作らない。\n\n観測sourceのadmissionはread-onlyであり、finding、改善candidate、Issue、PLAN、DB、Requirementを生成・更新しない。\nAIはproposal-onlyで、detector evidenceや意味authorityを代替しない。\n\n## 入力・出力契約\n\n| 境界 | 入力 | 出力 | 契約 |\n|---|---|---|---|\n| registry loader | repository内のversioned JSONとexact-bytes integrity record | parsed registryまたはtyped failure | JSON欠落・破損・schema違反・registry bytes driftをfail-closeする |\n| authority binding | registryのartifact path／digestとregistry bytes digest | source authority tuple | 共通physical filesystem identityでdevice/inode、mount、symlink、hardlink、TOCTOUと実体digestを検証する |\n| source inventory | 10種のsource kind | unique source／detector集合 | required kind欠落、duplicate source／detectorを拒否する |\n| observation admission | source／schema／detector／revision／evidence | admission result | unknown、wrong identity、必須field欠落、digest不正、staleを拒否する |\n| doctor adapter | repository root | LintResult | runtime loaderと同じ結果を返し、欠落やbytes driftをwarningへ丸めない |\n\n",
+          "role": "registry and observation admission"
+        },
+        {
+          "span_id": "SRC-L6-02",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/universal-improvement-source-registry.md",
+          "start_line": 42,
+          "end_line": 73,
+          "sha256": "dacad51a30711d6b5c4dc6e64cb5a379e400d98c470d42de02682ab001b71a9f",
+          "exact_text": "各項目として `source_id`、`source_kind`、`owner`、`authority`、`schema_version`、`revision`、`retention`、`redaction`、`failure_disposition`、\ndetector、evidence_contract、freshnessの各項目を持ち、environments、trigger_events、statusを含む。sourceごとに\n観測保持方針、redaction方針、失敗時のfail-close処理を宣言し、宣言されたevidence contractのidentity／digest／\nrequired fieldをadmissionで再検証する。\n\n初期source kindは ci、db、requirements、definition、dependency、review、operations、provider、\ndistribution、resource_security の10種とする。既存detectorの実体pathとdigestを参照し、\ndetector実装を本sliceで再実装しない。\n\n## 失敗境界\n\n- repository外、絶対path、空path、symlink経由のauthority／detectorを読む前に拒否する。\n- registryのrequired source kindはcanonical setと完全一致させる。\n- source／detector identityとsource revisionはregistry entryとobservationで完全一致させる。\n- 各source kindは一つのactive entryだけを持ち、重複source kindを拒否する。\n- observationのrequired／identity／digest fieldはregistry宣言の欠落を許容せず、source_revisionを必須化してentryの`revision`とexact照合する。\n- observationのtimestampがRFC3339形式・実在日付でない、未来、またはentryのfreshness windowを超える場合は拒否する。\n- observationへraw log、stdout／stderr、credential、secret、token、PII相当のfieldを混入させない。\n- digestは形式だけでなくregistryが指す実体bytesと比較する。\n- registry JSONのexact bytesは `config/universal-improvement-source-registry.v1.integrity.json` の\n  `registry_bytes_digest`へ束縛する。integrity recordが欠落・破損するか、registry bytesが記録値と異なる場合は、\n  registry versionを含む意味変更を再計算なしに受理しない。構造検査の結果は物理検証済みとは扱わず、admissionへ\n  渡すにはloaderの `physical_binding_verified` が必須である。\n- loader成功結果はdeep-freezeしたplain dataとmodule-private proofへ束縛し、構造検査結果のboolean偽装、getter／Proxy差替え、成功後のresult改竄をadmissionで拒否する。\n- registry／integrityの再読込と全targetのphysical identity再検証を行い、検査中のTOCTOU driftを成功へ縮退しない。\n- 全判定は候補生成前のread-only admissionで、authorityへの副作用を持たない。\n\n## 再構築と責務境界\n\n同じrepository authority、registry bytes、detector digestを与えた場合、loader／analyzerの結果は同じ\nfailure code集合になる。DBや通知本文を意味正本にせず、後続UIL-02の観測正規化へadmission済みtupleだけを渡す。\ncandidate合成、global counterfactual、route、terminal outcomeはUIL-04以降へ分離する。\n",
+          "role": "source identity, digest and failure boundary"
+        },
+        {
+          "span_id": "SRC-L6-03",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/universal-improvement-source-registry.md",
+          "start_line": 74,
+          "end_line": 79,
+          "sha256": "a96c3566e78c59ac22d33fe98f36404ed11ed3ca6d5205845d97c37caf8e6d59",
+          "exact_text": "## sensitive field token familyポリシー\n\n観測metadataのfield名はversion付きtoken familyへ正規化し、separator、camel boundary、結合key、\nnumeric suffixを同じ規則で検査する。raw field名や値をreceiptへ展開せず、検出結果だけを既存の\n`observation_sensitive_field_forbidden`へ畳み込む。token familyの追加・削除はpolicy version更新を\n要求し、`tokenizer`、`tokenization`、`secretary`等の明示benign keyを誤拒否しない。\n",
+          "role": "sensitive field policy"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": null,
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-0745",
+        "candidate_phase_targets": [
+          "PHCAP-16",
+          "PHCAP-19"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner or closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-L6-02",
+          "finding": "unknown identity, missing field, wrong revision, stale timestamp, raw field or digest mismatch is rejected"
+        },
+        {
+          "span_id": "SRC-L6-03",
+          "finding": "sensitive token family violation is rejected"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-L6-01",
+          "finding": "repository registry and observation admission"
+        },
+        {
+          "span_id": "SRC-L6-02",
+          "finding": "UIL-02 normalized observation tuple; candidate synthesis remains later slice"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-57A29D57A3AD07CA4DFF",
+      "source_path": "src/runtime/universal-improvement-finding-qualification.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/src/runtime/universal-improvement-finding-qualification.ts",
+      "source_sha256": "01c69f48f4786a8e502e210b501b813cd9fbc2f61623c7a1955a6cf29c4f1ae8",
+      "source_line_count": 569,
+      "source_spans": [
+        {
+          "span_id": "SRC-RUNTIME-01",
+          "path": "archive/legacy-generation-2026-09-14/root/src/runtime/universal-improvement-finding-qualification.ts",
+          "start_line": 1,
+          "end_line": 80,
+          "sha256": "d5128dd476f3fc2c13bd9fc4832eed7f0b55bbec9f5a41a613c834ef9ac0db89",
+          "exact_text": "import { canonicalJson, compareBytewise, type Sha256Digest, sha256Digest } from \"./digest\";\nimport {\n  UNIVERSAL_IMPROVEMENT_NORMALIZED_EVENT_SCHEMA_VERSION,\n  type UniversalImprovementNormalizationResult,\n  type UniversalImprovementNormalizedEventV1,\n} from \"./universal-improvement-observation-normalizer\";\n\nexport const UNIVERSAL_IMPROVEMENT_FINDING_SCHEMA_VERSION =\n  \"helix-universal-improvement-finding.v1\" as const;\n\nconst DIGEST_PATTERN = /^sha256:[0-9a-f]{64}$/u;\nconst IDENTIFIER_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:/-]{0,127}$/u;\nconst EVENT_ID_PATTERN = /^uil-event-[0-9a-f]{64}$/u;\nconst FINDING_ID_PATTERN = /^uil-finding-[0-9a-f]{64}$/u;\nconst TRIGGER_KINDS = [\n  \"invariant_violation\",\n  \"recurrence\",\n  \"metric_budget_exceeded\",\n  \"worsening_trend\",\n  \"structural_drift\",\n  \"release_boundary\",\n  \"provider_change\",\n  \"scheduled_safety_net\",\n] as const;\n\nexport type UniversalImprovementFindingTriggerKind = (typeof TRIGGER_KINDS)[number];\nexport type UniversalImprovementFindingDisposition =\n  | \"qualified\"\n  | \"rejected\"\n  | \"expired\"\n  | \"superseded\"\n  | \"counterevidence_required\";\n\nexport interface UniversalImprovementTriggerEvidenceV1 {\n  evidence_id: string;\n  detector_id: string;\n  detector_version: string;\n  trigger_kind: UniversalImprovementFindingTriggerKind;\n  invariant_id: string;\n  root_cause_id: string;\n  scope_authority: string;\n  baseline_revision: string;\n  event_ids: readonly string[];\n  event_digests: readonly Sha256Digest[];\n  trigger_verdict: \"triggered\" | \"not_triggered\";\n  observed_at: string;\n  expires_at: string;\n  counterevidence_digests: readonly Sha256Digest[];\n  superseded_by: string | null;\n  recurrence_lineage: readonly string[];\n}\n\nexport interface UniversalImprovementFindingV1 {\n  schema_version: typeof UNIVERSAL_IMPROVEMENT_FINDING_SCHEMA_VERSION;\n  finding_id: string;\n  trigger_kind: UniversalImprovementFindingTriggerKind;\n  invariant_id: string;\n  root_cause_id: string;\n  scope_authority: string;\n  baseline_revision: string;\n  detector_id: string;\n  detector_version: string;\n  event_ids: readonly string[];\n  event_digests: readonly Sha256Digest[];\n  source_evidence_ids: readonly string[];\n  counterevidence_digests: readonly Sha256Digest[];\n  disposition: UniversalImprovementFindingDisposition;\n  disposition_reason: string;\n  expires_at: string;\n  superseded_by: string | null;\n  recurrence_lineage: readonly string[];\n  finding_digest: Sha256Digest;\n}\n\nexport interface UniversalImprovementFindingQualificationResult {\n  ok: boolean;\n  findings: readonly UniversalImprovementFindingV1[];\n  exact_set_digest: Sha256Digest | null;\n  errors: readonly string[];\n}\n",
+          "role": "finding schema, trigger and evidence types"
+        },
+        {
+          "span_id": "SRC-RUNTIME-02",
+          "path": "archive/legacy-generation-2026-09-14/root/src/runtime/universal-improvement-finding-qualification.ts",
+          "start_line": 435,
+          "end_line": 495,
+          "sha256": "055b9d61cf79ca04e3e98138d3a98957968ad678413fcbb58161ebba21338944",
+          "exact_text": "export function qualifyUniversalImprovementFindings(\n  normalized: UniversalImprovementNormalizationResult,\n  rawEvidence: readonly unknown[],\n  now: Date = new Date(),\n): UniversalImprovementFindingQualificationResult {\n  const errors = validateNormalizedResult(normalized);\n  if (errors.length > 0)\n    return { ok: false, findings: [], exact_set_digest: null, errors: sortedUnique(errors) };\n  if (!Array.isArray(rawEvidence) || rawEvidence.length === 0) {\n    return {\n      ok: false,\n      findings: [],\n      exact_set_digest: null,\n      errors: [\"trigger_evidence_empty\"],\n    };\n  }\n  const eventById = new Map(normalized.events.map((event) => [event.event_id, event]));\n  const evidence: UniversalImprovementTriggerEvidenceV1[] = [];\n  const evidenceById = new Map<string, string>();\n  for (const [index, raw] of rawEvidence.entries()) {\n    const parsed = parseEvidence(raw, index);\n    errors.push(...parsed.errors);\n    if (!parsed.evidence) continue;\n    const item = parsed.evidence;\n    const serialized = canonicalJson(item);\n    const prior = evidenceById.get(item.evidence_id);\n    if (prior !== undefined && prior !== serialized)\n      errors.push(`evidence_id_conflict:${item.evidence_id}`);\n    evidenceById.set(item.evidence_id, serialized);\n    if (Date.parse(item.observed_at) > now.getTime())\n      errors.push(`observed_at_future:${item.evidence_id}`);\n    const referenced: UniversalImprovementNormalizedEventV1[] = [];\n    for (const eventId of sortedUnique(item.event_ids)) {\n      const event = eventById.get(eventId);\n      if (!event) errors.push(`event_unresolved:${eventId}`);\n      else referenced.push(event);\n    }\n    if (\n      !sameExactSet(\n        item.event_digests,\n        referenced.map((event) => event.event_digest),\n      )\n    ) {\n      errors.push(`event_digest_set_mismatch:${item.evidence_id}`);\n    }\n    for (const event of referenced) {\n      if (\n        event.detector_id !== item.detector_id ||\n        event.detector_version !== item.detector_version\n      ) {\n        errors.push(`detector_mismatch:${item.evidence_id}`);\n      }\n      if (\n        event.baseline.state !== \"current\" ||\n        event.baseline.revision !== item.baseline_revision\n      ) {\n        errors.push(`baseline_revision_mismatch:${item.evidence_id}`);\n      }\n    }\n    evidence.push(item);\n  }\n",
+          "role": "normalized result and evidence qualification"
+        },
+        {
+          "span_id": "SRC-RUNTIME-03",
+          "path": "archive/legacy-generation-2026-09-14/root/src/runtime/universal-improvement-finding-qualification.ts",
+          "start_line": 496,
+          "end_line": 569,
+          "sha256": "5be001470a3261019da0f29c9aa4ebc8215e1c55d1266074811889bff9fbae47",
+          "exact_text": "  const groups = new Map<string, UniversalImprovementTriggerEvidenceV1[]>();\n  for (const item of evidence) {\n    const id = groupingIdentity(item);\n    groups.set(id, [...(groups.get(id) ?? []), item]);\n  }\n  const findings: UniversalImprovementFindingV1[] = [];\n  for (const [groupKey, group] of groups) {\n    const first = group[0];\n    if (!first) continue;\n    const conflictFields = [\n      \"detector_id\",\n      \"detector_version\",\n      \"trigger_verdict\",\n      \"superseded_by\",\n      \"expires_at\",\n    ] as const;\n    for (const field of conflictFields) {\n      if (group.some((item) => item[field] !== first[field]))\n        errors.push(`finding_identity_conflict:${groupKey}:${field}`);\n    }\n    const eventIds = sortedUnique(group.flatMap((item) => item.event_ids));\n    const eventDigests = sortedUniqueDigests(group.flatMap((item) => item.event_digests));\n    const sourceEvidenceIds = sortedUnique(group.map((item) => item.evidence_id));\n    const counterevidence = sortedUniqueDigests(\n      group.flatMap((item) => [\n        ...item.counterevidence_digests,\n        ...item.event_ids.flatMap(\n          (eventId) => eventById.get(eventId)?.counterevidence_digests ?? [],\n        ),\n      ]),\n    );\n    const recurrenceLineage = sortedUnique(group.flatMap((item) => item.recurrence_lineage));\n    if (group.some((item) => !sameExactSet(item.recurrence_lineage, first.recurrence_lineage)))\n      errors.push(`finding_identity_conflict:${groupKey}:recurrence_lineage`);\n    const outcome = disposition({ ...first, counterevidence_digests: counterevidence }, now);\n    const findingId = findingIdentity({\n      evidence: first,\n      eventIds,\n      eventDigests,\n      sourceEvidenceIds,\n      recurrenceLineage,\n    });\n    const withoutDigest = {\n      schema_version: UNIVERSAL_IMPROVEMENT_FINDING_SCHEMA_VERSION,\n      finding_id: findingId,\n      trigger_kind: first.trigger_kind,\n      invariant_id: first.invariant_id,\n      root_cause_id: first.root_cause_id,\n      scope_authority: first.scope_authority,\n      baseline_revision: first.baseline_revision,\n      detector_id: first.detector_id,\n      detector_version: first.detector_version,\n      event_ids: eventIds,\n      event_digests: eventDigests,\n      source_evidence_ids: sourceEvidenceIds,\n      counterevidence_digests: counterevidence,\n      disposition: outcome.disposition,\n      disposition_reason: outcome.reason,\n      expires_at: first.expires_at,\n      superseded_by: first.superseded_by,\n      recurrence_lineage: recurrenceLineage,\n    };\n    findings.push({ ...withoutDigest, finding_digest: sha256Digest(canonicalJson(withoutDigest)) });\n  }\n  if (errors.length > 0)\n    return { ok: false, findings: [], exact_set_digest: null, errors: sortedUnique(errors) };\n  const exact = findings.sort((left, right) => compareBytewise(left.finding_id, right.finding_id));\n  return {\n    ok: true,\n    findings: exact,\n    exact_set_digest: sha256Digest(canonicalJson(exact)),\n    errors: [],\n  };\n}\n",
+          "role": "grouping, disposition, findings and exact projection"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-3237",
+        "candidate_phase_targets": [
+          "PHCAP-12",
+          "PHCAP-19"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner or closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-RUNTIME-02",
+          "finding": "empty evidence, invalid schema, future observation, unresolved event, digest mismatch or detector mismatch returns errors"
+        },
+        {
+          "span_id": "SRC-RUNTIME-03",
+          "finding": "identity conflicts and invalid finding groups stop exact projection"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-RUNTIME-01",
+          "finding": "normalized observation and finding schema"
+        },
+        {
+          "span_id": "SRC-RUNTIME-02",
+          "finding": "qualified finding input"
+        },
+        {
+          "span_id": "SRC-RUNTIME-03",
+          "finding": "candidate/route/terminal projection downstream consumer"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+      "source_path": "docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+      "source_sha256": "f370e2d36490a2b113110c0ecfbc82082f7619fd8d905fb0f5828f10db127943",
+      "source_line_count": 46,
+      "source_spans": [
+        {
+          "span_id": "SRC-L10-01",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-improvement-loop-acceptance.md",
+          "start_line": 16,
+          "end_line": 46,
+          "sha256": "3d0bce0f8d619ed17852453a13bbb7d54b7de6c0155cf1f9dbeb4e5e8b4e15a3",
+          "exact_text": "# Universal Improvement Loop受入テスト設計\n\n| AC ID | 対応 | 合格条件 | Negative Oracle |\n|---|---|---|---|\n| UIL-AC-001 | UIL-R-01 | source registryがID、owner、schema、detector、authority、freshnessを保持する | unknown source、任意log、AI感想を拒否 |\n| UIL-AC-002 | UIL-R-02 | 同一event集合とregistryから同一normalized exact set／digestを返す | event順序、retryで結果を変えない |\n| UIL-AC-003 | UIL-R-02 | baseline、observed、missing、forecastを別fieldにする | 予測値を観測値へ昇格しない |\n| UIL-AC-004 | UIL-R-03 | invariant／threshold／release boundary／safety-netを別triggerとして記録する | cronだけでauthority変更しない |\n| UIL-AC-005 | UIL-R-03 | 同一原因・scope・baselineの候補をdedupeしexpiryを持つ | rejected候補を無限再生成しない |\n| UIL-AC-006 | UIL-R-04 | candidate必須fieldのexact setを検証する | 必須field欠落、wrong revision、stale evidenceを個別拒否 |\n| UIL-AC-007 | UIL-R-05 | value、behavior、AC、responsibility、ownership、public boundary mutationを意味変更として検出する | 意味変更をREFACTORINGへ送らない |\n| UIL-AC-008 | UIL-R-05 | affected Requirement／Design／Contract／Module／V-pairをstable IDで算出し、`local_issue`／`system_synthesis`／`requirement_portfolio_resynthesis`を別scopeとして導出する | 名称一致、Issue件数、file overlap、単一logだけで上位scopeへ昇格しない |\n| UIL-AC-009 | UIL-R-06 | baseline、予測、反例、副作用、rollbackを比較する | 予測を実測完了証拠にしない |\n| UIL-AC-010 | UIL-R-06 | 局所metric改善と全体metric悪化を同時評価する | test時間短縮だけでadoptedにしない |\n| UIL-AC-011 | UIL-R-07 | change class、capability expansion、routeを別fieldにする | 同一enumへ畳み込まない |\n| UIL-AC-012 | UIL-R-07 | candidate scope、change class、capability expansionから既存routeとverification obligationを決定的に導出する | scope classを新routeにせず、ambiguous findingを推測配車しない |\n| UIL-AC-013 | UIL-R-08 | candidate生成だけではauthorityが変わらない | Requirement、merge、publishを直接実行しない |\n| UIL-AC-014 | UIL-R-08 | route先のPLAN、V-pair、approval、review、CIを再利用する | 独自completion gateを作らない |\n| UIL-AC-015 | UIL-R-09 | 同一scope／revision／artifactでbefore-afterとside effectを測る | 件数減少、局所green、自己評価で効果確定しない |\n| UIL-AC-016 | UIL-R-10 | 5 terminal outcomeを別々に保持する | mergedをadoptedへ丸めない |\n| UIL-AC-017 | UIL-R-11 | 複数episode、counterexample、mutation、version、expiry後だけrecipe候補になる | 単一project成功をgeneral ruleにしない |\n| UIL-AC-018 | UIL-R-12 | recurrence windowで再発と効果消失を因果接続する | 過去greenで再発を相殺しない |\n| UIL-AC-019 | UIL-R-13 | DB削除後もrepo authority＋event journalから同一projectionを再構築する | DB rowを意味正本にしない |\n| UIL-AC-020 | UIL-R-13 | state machine順序、HEAD、baseline、scopeをexact照合する | 段階飛越、別候補証拠混載を拒否 |\n| UIL-AC-021 | UIL-R-14 | AIなしのdetectorだけでcandidate→route→verificationを生成する | AI proposal除去でcontrol loopを壊さない |\n| UIL-AC-022 | UIL-R-14 | AI利用時にruntime／model／session／context／HEAD／scopeをreceiptへ束縛する | AI出力をdetector evidenceとして偽装しない |\n| UIL-AC-023 | UIL-R-15 | 同一payload／HEADでもbaseline、candidate、post-mainを別generation ID／digestへ投影し、各registry／detector／environment identityを保持する | generation kindをidentityから除去して同一eventへ畳み込まない |\n| UIL-AC-024 | UIL-R-15 | historical baselineを生成時identityで再構築し、compatible／reobservation required／incomparable／detector transitionを個別判定する | candidate registryで旧baselineを再解釈せず、比較不能をgreenへ変換しない |\n| UIL-AC-025 | UIL-R-15 | canonical merge後のpost-main read-afterだけがnew baseline promotionを許可し、source admissionのfirst causeからdownstream dispositionまでlineageを保持する | candidate close／abandonやgeneric missing errorからbaselineを更新しない |\n\n25件すべてを独立oracleとして保持し、単一happy-pathでfailure classを相殺しない。\n",
+          "role": "acceptance and negative oracle matrix"
+        }
+      ],
+      "ledger_record": {
+        "revision": 1,
+        "asset_class": "Historical",
+        "reuse_exclusion_class": "legacy_test_design_or_oracle",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-2851",
+        "candidate_phase_targets": [
+          "PHCAP-19"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "matching_decision_records": [],
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner or closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "SRC-L10-01",
+          "finding": "each acceptance case has a negative oracle; candidate generation, AI output, stale evidence, premature promotion and baseline ambiguity are rejected"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "SRC-L10-01",
+          "finding": "L3 requirement pair, L10 acceptance review, and later slice oracle consumers"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "PHCAP19-A001",
+      "source_asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "source_span_id": "SRC-L3-01",
+      "kind": "authority_boundary",
+      "legacy_text_summary": "OS learning loop observes and proposes; AI/output/DB does not become meaning authority",
+      "actor_candidate": "detector/OS Node; human decision",
+      "legacy_authority_or_enforced_by": "current requirement/design/contract authority plus human decision",
+      "failure_or_unresolved": "authority write, merge, completion or route cannot be generated at observation/candidate stage",
+      "product_unit_candidate": "HELIX-OS improvement-control unit",
+      "consumer_candidate": "HARNESS requirement/backflow and product-specific change connections",
+      "evidence_status": "observed legacy text; current adoption unknown"
+    },
+    {
+      "atom_id": "PHCAP19-A002",
+      "source_asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "source_span_id": "SRC-L3-02",
+      "kind": "source_registry_baseline",
+      "legacy_text_summary": "versioned source, detector, revision, freshness, baseline and historical generation are bound by digest",
+      "actor_candidate": "source registry/detector",
+      "legacy_authority_or_enforced_by": "source entry and baseline revision",
+      "failure_or_unresolved": "unknown/stale/incompatible source fails close or requires reobservation",
+      "product_unit_candidate": "HELIX-OS observation unit",
+      "consumer_candidate": "HARNESS/Web/Web-OS evidence connection",
+      "evidence_status": "legacy contract; no current implementation claim"
+    },
+    {
+      "atom_id": "PHCAP19-A003",
+      "source_asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "source_span_id": "SRC-L3-03",
+      "kind": "candidate_contract",
+      "legacy_text_summary": "candidate carries evidence, affected V-pair, change class, verification, rollback, human decision and expiry",
+      "actor_candidate": "detector plus proposal producer",
+      "legacy_authority_or_enforced_by": "candidate schema and existing route authority",
+      "failure_or_unresolved": "missing required field, ambiguous scope or predicted effect cannot promote",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "consumer_candidate": "HARNESS process/backflow and product consumer connection",
+      "evidence_status": "legacy candidate semantics; unresolved owner"
+    },
+    {
+      "atom_id": "PHCAP19-A004",
+      "source_asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "source_span_id": "SRC-L3-04",
+      "kind": "impact_backflow",
+      "legacy_text_summary": "local/system/portfolio impact is typed and requirement meaning changes return to existing authority",
+      "actor_candidate": "impact evaluator/human",
+      "legacy_authority_or_enforced_by": "existing route, V-pair and human approval",
+      "failure_or_unresolved": "ambiguous impact is fail-close; issue count/file overlap cannot choose scope",
+      "product_unit_candidate": "HELIX-HARNESS process unit + OS connection",
+      "consumer_candidate": "HARNESS L2/L11 and product L2/L11 consumers",
+      "evidence_status": "current boundary candidate; no adoption"
+    },
+    {
+      "atom_id": "PHCAP19-A005",
+      "source_asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "source_span_id": "SRC-L3-05",
+      "kind": "effect_recipe_recurrence",
+      "legacy_text_summary": "before/after, side effect, rollback, multiple episodes and recurrence are required before recipe promotion",
+      "actor_candidate": "evaluator/reviewer",
+      "legacy_authority_or_enforced_by": "verification receipt and human promotion boundary",
+      "failure_or_unresolved": "forecast/local green/single success cannot establish effect or general rule",
+      "product_unit_candidate": "HELIX-OS improvement unit",
+      "consumer_candidate": "all product evidence and re-observation connections",
+      "evidence_status": "legacy design/test semantics; execution unknown"
+    },
+    {
+      "atom_id": "PHCAP19-A006",
+      "source_asset_id": "LEGACY-ASSET-02D897E62EF2FA267267",
+      "source_span_id": "SRC-L3-06",
+      "kind": "deterministic_ai_independence",
+      "legacy_text_summary": "same authority/source/event set rebuilds exact projection and works without AI proposal",
+      "actor_candidate": "deterministic projector; human decision",
+      "legacy_authority_or_enforced_by": "repo authority/source registry/event journal",
+      "failure_or_unresolved": "digest drift, missing event, retry mutation or AI-only evidence blocks result",
+      "product_unit_candidate": "HELIX-OS control unit",
+      "consumer_candidate": "HARNESS/Web/Web-OS backflow consumers",
+      "evidence_status": "legacy contract; no current pass"
+    },
+    {
+      "atom_id": "PHCAP19-A007",
+      "source_asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "source_span_id": "SRC-L5-01",
+      "kind": "memory_continuation_boundary",
+      "legacy_text_summary": "durable knowledge may enter memory while progress/next action/lease/current state remains continuation",
+      "actor_candidate": "memory committer/OS DB",
+      "legacy_authority_or_enforced_by": "memory JSONL data SSoT and DB continuation projection",
+      "failure_or_unresolved": "progress/raw log/secret/PII in memory is forbidden",
+      "product_unit_candidate": "HELIX-OS memory/learning unit",
+      "consumer_candidate": "HARNESS and product evidence connection",
+      "evidence_status": "legacy design; PHCAP20 overlap unresolved"
+    },
+    {
+      "atom_id": "PHCAP19-A008",
+      "source_asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "source_span_id": "SRC-L5-02",
+      "kind": "promotion_roles",
+      "legacy_text_summary": "worker/promoter/reviewer/final verifier are independent and promoter cannot self-authorize",
+      "actor_candidate": "four separated roles/Node",
+      "legacy_authority_or_enforced_by": "promotion receipt and independent review",
+      "failure_or_unresolved": "role/provider collision or direct write blocks promotion",
+      "product_unit_candidate": "HELIX-OS promotion unit",
+      "consumer_candidate": "candidate skill/detector/gate consumer",
+      "evidence_status": "legacy design; implementation unknown"
+    },
+    {
+      "atom_id": "PHCAP19-A009",
+      "source_asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "source_span_id": "SRC-L5-05",
+      "kind": "learning_stage_shadow_rollback",
+      "legacy_text_summary": "pattern→recipe→shadow→skill/detector→gate stages require fixture/effect/review/rollback",
+      "actor_candidate": "aggregator/builder/reviewer/rollback controller",
+      "legacy_authority_or_enforced_by": "append-only learning ledger and activation receipt",
+      "failure_or_unresolved": "stage bypass, fixture/effect/review/rollback missing or regression blocks active",
+      "product_unit_candidate": "HELIX-OS learning unit",
+      "consumer_candidate": "future gate/detector/skill plus product verification",
+      "evidence_status": "legacy design; no active claim"
+    },
+    {
+      "atom_id": "PHCAP19-A010",
+      "source_asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "source_span_id": "SRC-L5-06",
+      "kind": "projection_transaction",
+      "legacy_text_summary": "memory event and DB projection have separate SSoT and idempotent CAS/reconcile state",
+      "actor_candidate": "Node memory port/HarnessDbPort",
+      "legacy_authority_or_enforced_by": "memory JSONL plus process projection",
+      "failure_or_unresolved": "CAS/digest/authority/freshness conflict yields zero write or projection_pending",
+      "product_unit_candidate": "HELIX-OS process unit",
+      "consumer_candidate": "memory/promotion receipt consumer",
+      "evidence_status": "legacy design; DB/runtime unknown"
+    },
+    {
+      "atom_id": "PHCAP19-A011",
+      "source_asset_id": "LEGACY-ASSET-C544D3D166699301485D",
+      "source_span_id": "SRC-L6-02",
+      "kind": "source_admission",
+      "legacy_text_summary": "source registry admission checks identity, revision, freshness, bytes and sensitive fields read-only",
+      "actor_candidate": "registry loader/doctor adapter",
+      "legacy_authority_or_enforced_by": "registry exact bytes and source/detector digest",
+      "failure_or_unresolved": "wrong/missing/stale/digest drift or sensitive field rejects observation",
+      "product_unit_candidate": "HELIX-OS source-admission unit",
+      "consumer_candidate": "UIL-02 normalized event consumer",
+      "evidence_status": "legacy design; no current execution claim"
+    },
+    {
+      "atom_id": "PHCAP19-A012",
+      "source_asset_id": "LEGACY-ASSET-57A29D57A3AD07CA4DFF",
+      "source_span_id": "SRC-RUNTIME-03",
+      "kind": "finding_qualification",
+      "legacy_text_summary": "qualified findings are grouped, deduped, dispositioned and projected with exact digest",
+      "actor_candidate": "qualification runtime/detector",
+      "legacy_authority_or_enforced_by": "normalized result and evidence identity",
+      "failure_or_unresolved": "event/detector/identity conflict prevents finding projection",
+      "product_unit_candidate": "HELIX-OS finding unit",
+      "consumer_candidate": "candidate/backflow/terminal consumer",
+      "evidence_status": "legacy source present unexecuted"
+    },
+    {
+      "atom_id": "PHCAP19-A013",
+      "source_asset_id": "LEGACY-ASSET-0B5B38F146D9538C9A36",
+      "source_span_id": "SRC-L10-01",
+      "kind": "acceptance_oracle",
+      "legacy_text_summary": "25 acceptance cases separate normal and negative behavior across registry, baseline, candidate, route, promotion and recurrence",
+      "actor_candidate": "QA/TL reviewer",
+      "legacy_authority_or_enforced_by": "L3 requirement/L10 acceptance pair",
+      "failure_or_unresolved": "negative oracle failure cannot be canceled by happy path; test design is not test pass",
+      "product_unit_candidate": "HELIX-OS improvement verification unit",
+      "consumer_candidate": "HARNESS/Web/Web-OS product acceptance connections",
+      "evidence_status": "test design present unexecuted"
+    }
+  ],
+  "current_refs": [
+    {
+      "ref_id": "CUR-OS-L1",
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "start_line": 22,
+      "end_line": 40,
+      "line_sha256": "b1c128dbf54144105b9d47700ef811e1d7bc74cc475c287b2d27fb30574d3377",
+      "exact_text": "HELIX-OSは、HARNESSを含むHELIXプロジェクト群のauthority、変更、Worker、状態、証拠、CI、配布運転を\n管理・統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWeb-OSから得た運用結果を\nHARNESS自身および各対象の改善候補へ戻す。担当やsessionが変わっても、承認済みの意味、未完義務、\n許可範囲、停止・復旧条件を失わず、対象ごとの開発を継続できるようにする。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HELIXOS-L1-001 | 人間は、対象ごとのConcept・要求・採否・合意revisionと判断の出所を管理できる | HELIXOS-L2-001／003 |\n| HELIXOS-L1-002 | 人間は、複数プロジェクトの要求から作業・検証・提供・運用までの欠落、競合、staleを把握できる | HELIXOS-L2-002／007 |\n| HELIXOS-L1-003 | 人間は、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開できる | HELIXOS-L2-004／009 |\n| HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |\n| HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |\n| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗・学習を評価し、HELIX-OSに採択済み改善の実行・再検証・効果確認を継続させられる | HELIXOS-L2-005 |\n| HELIXOS-L1-007 | 人間は、HARNESS package運転と個別製品のrelease準備・artifact受渡し・observationを対象revisionと許可へ束縛して統制し、展開先runtimeのdeployment authorityを分離できる | HELIXOS-L2-002／006／007 |\n| HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |\n| HELIXOS-L1-009 | 人間は、管理・推進・検収の責務を分け、許可範囲内の直接調整を保ったまま仕事を統制できる | HELIXOS-L2-010 |\n| HELIXOS-L1-010 | 人間は、変更と依存に合う統合順序・統合単位・検証集合を確認し、結果に応じて収束計画を更新できる | HELIXOS-L2-011 |\n| HELIXOS-L1-011 | 人間は、内部状態と外部技術情報を出典・revision・適用条件付きで調査し、安全に採否できる | HELIXOS-L2-012 |\n| HELIXOS-L1-012 | 人間は、一つの仕事を要求から運用まで診断し、管理機構自身を含む是正と効果確認へ閉じられる | HELIXOS-L2-013 |\n",
+      "product": "HELIX-OS",
+      "layer": "L1",
+      "classification": "boundary_candidate",
+      "relation": "OS candidate owns management, learning, improvement loop and routes evidence back to projects"
+    },
+    {
+      "ref_id": "CUR-OS-L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "start_line": 274,
+      "end_line": 283,
+      "line_sha256": "777c20a4f6fd2447397696229579f5f73910f8a74820511a14ecceef628750cf",
+      "exact_text": "HELIXOS-L2-002／005／007では、管理対象の要求revisionからrelease準備・artifact受渡しと、展開先runtimeが所有する\n配備・設定・計測・log・通知・incident・backup・restore・rollback・maintenance・decommission・費用の適用状態と証拠へ\n辿り、欠測・stale・collector停止をhealthyへ変換しない。OSは証拠と進行を統制するが、展開先runtimeの実行authorityを\n吸収しない。\n運用観測からの差分は改善候補として出典とscopeを保持し、人間の採否や対象製品の要求を直接書き換えない。\n\nHELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作・中断・再開を追跡し、対象、actor、権限、予算、\n影響範囲、復旧先、独立検証が成立する範囲だけを実行対象にする。NIO候補は操作認可や自動修復権限を付与しない。\n具体SLO、RTO／RPO、保持期間、対象環境は個別製品・releaseの承認済み要求を参照する。本節では旧機構、CI、\n故障注入、production操作、自動修復を実行しない。\n",
+      "product": "HELIX-OS",
+      "layer": "L2",
+      "classification": "direct_current_ref",
+      "relation": "OS candidate retains observation as improvement candidate, does not directly rewrite product requirements, and forbids old mechanism execution"
+    },
+    {
+      "ref_id": "CUR-OS-L2-WEB",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "start_line": 287,
+      "end_line": 297,
+      "line_sha256": "f2e4d8498c1e2ddfb58f64b21ff48f25a96674e908a3a7ed64da2f0c744faef7",
+      "exact_text": "2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」と「展開時はHELIX-OSの外にHELIX-Web-OSを作る」を、\nHELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-Web-OSは\nそれぞれ要求正本・合意revision・進行状態を持ち、OSが開発・改善projectとして横断管理する。\nWeb固有の利用者体験やサービス要求は[HELIX-Web側](../../helix-web/README.md)へ置く。\n展開後のtenant、Connector job、service state、credential、配備・監視・復旧は\n[HELIX-Web-OS側](../../helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。\nHELIX-Web-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・\n時点・欠測付きで受領する。HELIXOS-L2-005／007／013により他projectの証拠と突合し、改善候補、採否、対象別変更、\n再検証、再観測へ接続する。credential、tenant原data、範囲外logを吸収せず、受領logから要求を直接変更しない。\nWebで適用するHARNESS版と採用能力を追跡し、Webの変更だけを理由にHARNESSの共通規則や他プロダクトの要求を変更しない。\nWebでの実践証拠をHELIX改善へ戻す際は、出典・利用可能範囲・採否・変更対象・検証結果を保持する。\n",
+      "product": "HELIX-OS",
+      "layer": "L2",
+      "classification": "adjacent_current_ref",
+      "relation": "OS manages Web/Web-OS projects and receives bounded evidence for improvement/backflow"
+    },
+    {
+      "ref_id": "CUR-OS-L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19",
+      "start_line": 140,
+      "end_line": 149,
+      "line_sha256": "cb58b0bdc8a0c331c7fa2cd355a681405914258575bc8d7c0b1d004fb23afa8e",
+      "exact_text": "- HELIXOS-L2-002／007：要求revisionから運用対象・計測・log・incident・復旧・保守・観測証拠へ辿り、欠測、stale、collector停止、別環境の成功をhealthyや運用成立へ変換しない。\n- HELIXOS-L2-005／007：incidentや観測差分を改善候補として保持し、Issue close、rollback成功、文書存在から要求変更・恒久修復・再発防止完了を生成しない。\n- HELIXOS-L2-004／006／009：scope外の自動修復、公開、課金、production writeを拒否し、対象・actor・権限・予算・影響・復旧・独立検証の欠落を実行可能と表示しない。\n- HELIXOS-L2-007：secret／PIIをlog・example・evidenceへ平文出力せず、具体方式の採用前には未検証として扱う。\n\n旧NIO候補、旧Issue owner、旧engine、既存CIは受入入力や操作認可にしない。製品固有SLOの達成は対象製品のL11／L10／L12で確認する。\n\nHELIXOS-L2-005では、採用した改善を要求・設計・検証・再観測まで追跡し、改善なし・退行・判定不能も保持する。\n候補件数やログ件数の増加だけをHELIX改善の成功と表示しない。\nHARNESSの外部提供完了とHELIX-OSの内部改善状況を別に確認し、一方の成功で他方を完了扱いにしない。\n",
+      "product": "HELIX-OS",
+      "layer": "L11",
+      "classification": "direct_current_ref",
+      "relation": "OS acceptance keeps improvement, regression and indeterminate results distinct and separates HARNESS completion"
+    },
+    {
+      "ref_id": "CUR-HARNESS-L1",
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "start_line": 22,
+      "end_line": 58,
+      "line_sha256": "4920656e45d7df37d1234cadb3ed82962e6e45d5913e41018e6b789c589ea479",
+      "exact_text": "HARNESSは、外部利用者が企画・要求・要件・設計・実装・検証・運用評価を一貫したV-model契約として\n扱える開発基盤を提供する。変更の種類や実装技術が違っても、何を満たせば次へ進めるか、何を検証し、\nどの結果を利用者が受け入れるかを追跡できるようにする。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HARNESS-L1-001 | 利用者は、L1–L12と正規V-pairで上流の意図から運用評価までを構成できる | HARNESS-L2-001 |\n| HARNESS-L1-002 | 利用者は、対象と変更に適した開発styleを選び、品質条件を落とさず進行できる | HARNESS-L2-002／003 |\n| HARNESS-L1-003 | 利用者は、要求変更の影響を設計・実装・検証へ伝え、未接続とstaleを確認できる | HARNESS-L2-003／004 |\n| HARNESS-L1-004 | 利用者は、対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる | HARNESS-L2-004／005 |\n| HARNESS-L1-005 | 外部利用者は、HELIX内部の管理機構を暗黙の依存にせず、明示された版・構成・条件でHARNESSを利用できる | HARNESS-L2-006 |\n| HARNESS-L1-006 | 利用者は、要求形成、prototype／非UI適用性、合意、freeze、差戻し、再開、完了を別条件として確認できる | HARNESS-L2-003／004 |\n| HARNESS-L1-007 | 依存製品の展開判断者は、複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成範囲と成立証拠を確認できる | HARNESS-L2-007 |\n| HARNESS-L1-008 | 利用者は、指示と根拠から要求候補を形成し、欠落・矛盾・過剰解釈・変更影響を確認して、合意した要求へ収束できる | HARNESS-L2-008 |\n| HARNESS-L1-009 | 利用者は、要求の種類と構成に合う設計templateを参照して必要な設計義務を導き、設計に必要な要求入力の不足を上流へ戻せる | HARNESS-L2-009 |\n\n上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。\n\n## L0 charterからの投影\n\n| L0柱 | 本L1での帰属 |\n|---|---|\n| P0／P1 | HARNESS-L1-002／006の工程選択・進行条件 |\n| P2 | HARNESS-L1-004の役割分離・検証条件。Worker運転はOS |\n| P3 | HARNESS-L1-001／003／004のV-pair・trace・verification |\n| P4 | HARNESS-L1-003の要求への差戻し。学習運転はOS |\n| P5 | 独立柱が存在しないため推測で追加しない |\n| P6 | HARNESS-L1-005の外部提供条件。配布運転はOS |\n| P7 | HARNESS-L1-003／004の参照・証拠条件。memory運転はOS |\n| P8 | HARNESS-L1-004の根拠・安全検証。外部tool実行はOS |\n| P9 | HARNESS-L1-001／003のtrace・変更影響 |\n\n## 対象外\n\nWorker割当、CI運転、ログ・state保存、学習、プロジェクト群の統制、artifact配布運転はHELIX-OSが所有する。\nHELIX-Web等の個別製品の利用者体験もHARNESS要求へ含めない。HARNESSは必要な工程・検証契約を定め、\nOSや個別製品が参照する版を持つ。\n",
+      "product": "HELIX-HARNESS",
+      "layer": "L1",
+      "classification": "boundary_candidate",
+      "relation": "HARNESS owns V-model/process contract; learning operation is OS and product UX is out of HARNESS"
+    },
+    {
+      "ref_id": "CUR-HARNESS-L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77",
+      "start_line": 163,
+      "end_line": 171,
+      "line_sha256": "540bfd5cb24c8618819a643e81cde1fca17f52d5e658191c9008b1d4bd469f68",
+      "exact_text": "## 要求形成・合意・反復の工程条件\n\n[要求エンジンPythonコア要求候補](../../governance/candidates/requirement-engine-python-core-requirements.md)を\nHARNESS-L2-008の適用待ち具体化として保持する。要求意味の抽出、構造化、質問、semantic diff、trace、影響候補は\nHARNESSが所有する。HELIX-OSは入力・出力・訂正・採否・改善eventを登録、実行、監視するが、要求意味を複製しない。\nPython coreはDB、Git、GitHub、repository、credentialへ直接writeしない。HARNESSは外部consumerも使える出力schema、\n対象revision、stale、重複、prohibited payloadの再検証契約を提供し、OSはその契約に従うtransactional consumerとして登録する。\ntransactional boundaryとwire formatの実装技術はL3以降で選定する。\n指示と抽出結果の齟齬は強化材料として保持するが、生会話、Issue、logやエンジン出力を要求正本・承認・学習許可へ変換しない。\n",
+      "product": "HELIX-HARNESS",
+      "layer": "L2",
+      "classification": "adjacent_current_ref",
+      "relation": "HARNESS owns requirement meaning while OS registers/executes/monitors improvement events"
+    },
+    {
+      "ref_id": "CUR-HARNESS-L2-B",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77",
+      "start_line": 190,
+      "end_line": 202,
+      "line_sha256": "a9876a901b20f8d69bfd82a133a40bbbd62428686a30592bff4a91c8c84ad594",
+      "exact_text": "## 管理変更を製品Forwardへ戻す条件\n\n[旧Management Scrum policy](../../../archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md)は、\n[新世代対応表](../../governance/audits/source-rebaseline/new-generation-management-change-source-crosswalk.md)で再採否する。\nHARNESS-L2-003／004では、管理上の観測や改善判断から製品要求を直接変更せず、意味が変わる最上流の対象層へ\n変更候補を戻し、差戻し・再合意・pair再凍結・再検証の必要範囲を決める。\nHARNESS-L2-004の無損失変更contractは、入力source atom集合を当該要求へ保持する集合、別の生存中候補へ残す集合、対象revision付き人間decisionで変更・retireする集合へ完全分割し、未計上atomを0にする。HELIX-OS管理はこの被覆receiptと要求候補を仮登録するが、仮登録から要求採用・実装許可を生成しない。\n\n管理上の緊急性、Issue作成、Project状態、既存CI成功を、V-pair、上下trace、検証、利用者受入の省略理由にしない。\n旧Management Scrum policyにある管理作業の`S0..S4`、Scrum運用ceremony、旧adapterをHARNESSの固定workflowとして継承しない。これはrequirements v1.3 §4.1の製品開発用Scrum Reverse（SR0–SR4、release-ready条件、finding routing）を外す意味ではない。本節は工程条件の要求案であり、\n現行AGENTS／CLAUDE、hook、Issue template、workflow、CIを変更・実行しない。\n旧Scrum Operation候補のDoR／DoD、sprint review等も固定ceremonyやV-model layerとして採用しない。\n着手・完了・受入・改善還流に必要な意味だけをHARNESS-L2-003／005へ再採否し、管理状態の保存と表示はOSへ委ねる。\n",
+      "product": "HELIX-HARNESS",
+      "layer": "L2",
+      "classification": "adjacent_current_ref",
+      "relation": "management observations/improvement candidates return to the highest changed layer; adoption is not generated"
+    },
+    {
+      "ref_id": "CUR-HARNESS-L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b",
+      "start_line": 61,
+      "end_line": 70,
+      "line_sha256": "d3f2d3e1be151bda7849385deea46b736da14af01447849ad61705e3aa1a1e5c",
+      "exact_text": "| 旧受入ID | 本書の親要求 | 保持する利用結果 |\n|---|---|---|\n| HCV4-L11-001 | HARNESS-L2-003 | request、approval、decisionと対象revisionを区別し、相談や別revisionから合意を生成しない |\n| HCV4-L11-002 | HARNESS-L2-004 | 要求から設計・検証・提供・運用へのtrace欠落を確認できる |\n| HCV4-L11-003 | HARNESS-L2-003／HARNESS-L2-005 | 未実行oracle、不一致digest、別HEAD review、projectionだけの完了主張を拒否する |\n| HCV4-L11-004 | HARNESS-L2-003／HARNESS-L2-005 | runtime交代後も同じ工程・証拠条件を維持し、不足時は再開不可と説明できる |\n| HCV4-L11-005 | HARNESS-L2-006 | 提供範囲、artifact、release、deployment、rollbackの成立を別々に確認する |\n| HCV4-L11-006 | HARNESS-L2-003／HARNESS-L2-004 | 改善候補による要求変更を再合意・再検証へ戻す |\n\nこれは受入条件の移管案であり、対象別L2の合意、実操作、passを成立させない。\n",
+      "product": "HELIX-HARNESS",
+      "layer": "L11",
+      "classification": "boundary_candidate",
+      "relation": "HARNESS acceptance candidate sends improvement-driven changes to re-agreement/reverification; document is not pass"
+    },
+    {
+      "ref_id": "CUR-WEB-L1",
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "start_line": 24,
+      "end_line": 49,
+      "line_sha256": "5fbf51cd3f1047420b3142547b84b21e3a8655e471b7cd89883ea904b31c0011",
+      "exact_text": "HELIX-Webは、利用者が許可した開発環境と能力へConnectorで接続し、長時間の開発作業、進行、成果、停止・再開を\nダッシュボードから確認・操作できるAI開発SaaSを目指す。利用者環境の資産と統制を尊重し、HELIX-OSの内部管理画面、\nHELIX-Web-OSの運転機構、HARNESSの工程定義をWeb固有の価値として重複実装しない。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HELIXWEB-L1-001 | 利用者は、許可した環境・project・能力へ接続し、対象と作用範囲を確認できる | HELIXWEB-L2-001／002／004 |\n| HELIXWEB-L1-002 | 利用者は、ダッシュボードで長時間作業の進行、結果、切断、取消、再開、結果不明を区別できる | HELIXWEB-L2-003 |\n| HELIXWEB-L1-003 | 利用者は、自分が許可する変更と受け入れる成果を判断し、残る専門判断を確認できる | HELIXWEB-L2-005 |\n| HELIXWEB-L1-004 | 利用者は、採用するHARNESS・Connector・model等の構成版と依存を確認できる | HELIXWEB-L2-006／007 |\n| HELIXWEB-L1-005 | 利用者は、利用結果をHELIX改善へ渡す目的・範囲・同意を管理できる | HELIXWEB-L2-008 |\n| HELIXWEB-L1-006 | 展開判断者は、HELIX-HARNESS製品群Version 1の完成を確認してからHELIX-Webを展開できる | HELIXWEB-L2-009 |\n\n上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。\n\n## L0 charterからの投影\n\nHELIX-Webは旧L0 charter P0–P9の直接ownerではない。P0–P4／P7–P9の工程・Worker・証拠・改善条件は、\n採用するHARNESS版とHELIX-OS統制を参照する。P5は独立柱が存在せず、P6の外部提供条件だけを\nHELIXWEB-L1-001..006のWeb固有価値へ具体化する。旧柱の実装をWeb機能へ転用しない。\n\n## 対象外\n\nV-modelと検証契約はHARNESS、開発projectの要求・Worker・CI・ログ・改善還流の管理統制はHELIX-OS、\n展開後のtenant・Connector job・service state・配備・監視・復旧はHELIX-Web-OSが所有する。\n全コードや計算資源をSaaSへ移すこと、未採択の分散推論、横断学習への包括同意を前提にしない。\n",
+      "product": "HELIX-Web",
+      "layer": "L1",
+      "classification": "boundary_candidate",
+      "relation": "Web owns user-facing experience and consent/scope for sending results to HELIX improvement; OS/Web-OS/HARNESS duties remain separate"
+    },
+    {
+      "ref_id": "CUR-WEB-L2",
+      "path": "docs/helix-web/L2-requirements/product-requirements.md",
+      "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+      "start_line": 41,
+      "end_line": 50,
+      "line_sha256": "d77dc0a0eebfed816cb80a51d90d435715136d111e502961788dee3012e760c1",
+      "exact_text": "| HELIXWEB-L2-006 | Web3の将来構想 | §6.3、U14、O08 | 適用範囲・版・評価証拠を確認したHDAを開発補助に利用できる。学習と分散推論の提供責務を分け、応答を独立検収済みとみなさない |\n| HELIXWEB-L2-007 | 能力接続時に採択 | §10、§11 | Webが採用する開発能力・Connector・モデル・接続契約の構成版を確認できる。Webの変更で無関係なHARNESSやモデルを一斉更新しない |\n| HELIXWEB-L2-008 | 改善還流時に採択 | §10、§11 学習とデータ利用 | Web-OSのservice log・telemetry・利用結果をどの目的・範囲でHELIX-OSの改善へ渡すかを確認できる。サービス利用をログexportや横断学習への包括同意とみなさない |\n| HELIXWEB-L2-009 | 展開前に必須 | §3、§13、2026-09-14 PO指示 | 複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成証拠を確認した後にHELIX-Webを展開できる。Webの完成をVersion 1へ算入せず、HARNESS未完成のまま展開しない |\n\n## 要求対象と未決定の境界\n\nHARNESSは利用する開発能力・工程条件を提供する。HELIX-OSはWebプロジェクトの要求・進行・Worker・CI・学習・ログを管理し、\nHELIX-Web-OSは展開後のtenant・Connector job・service state・配備・監視・復旧を担う。\n本書はWebの利用者向け操作・表示・サービス体験を所有し、OS内部管理UIの要求をWebの製品要求として一括転用しない。\n",
+      "product": "HELIX-Web",
+      "layer": "L2",
+      "classification": "adjacent_current_ref",
+      "relation": "Web distinguishes learning/data use and sends bounded service evidence to OS"
+    },
+    {
+      "ref_id": "CUR-WEB-L11",
+      "path": "docs/helix-web/L11-acceptance/product-acceptance.md",
+      "sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec",
+      "start_line": 20,
+      "end_line": 31,
+      "line_sha256": "f38df5f9d1d0461856552bdd66d0ba81f536ee56b5cbfd39131f9a3907b3666f",
+      "exact_text": "| HELIXWEB-L2-001 | 選択した環境と別環境を区別し、対象不明・未接続を操作成功と表示しない。対象projectの進行・状態・成果をダッシュボードで辿れる |\n| HELIXWEB-L2-002 | 選択構成・依存・版と導入結果を照合し、未適格な構成や更新失敗を利用可能と表示しない |\n| HELIXWEB-L2-003 | 切断中・取消待ち・結果不明を成功と区別し、復帰後に同じjobと結果へ辿る。二重実行を拒否する |\n| HELIXWEB-L2-004 | 未対応経路・返送対象外の情報を与え、対応済み表示や無断転送が起きない。実方式の採用前に根拠と適用範囲を確認する |\n| HELIXWEB-L2-005 | 診断・更新・復旧と案内付き改修を操作別に評価し、要求差分・影響・プレビュー・回復結果へ辿る。一操作の成功を全改修対応と表示しない |\n| HELIXWEB-L2-006 | モデル版・適用範囲・根拠・不確実性を確認し、不適格モデルや未検証応答を検収済み成果として採用しない |\n| HELIXWEB-L2-007 | Web版と構成版が異なるケースで実構成へ辿り、同一版番号だけを互換性・接続成功の証拠にしない |\n| HELIXWEB-L2-008 | project内利用、Web-OSからHELIX-OSへの運用log export、事業改善、横断知識化、モデル学習を区別し、範囲外の共有を拒否する。改善候補の採否をWeb固有の要求変更と混同しない |\n| HELIXWEB-L2-009 | 複数プロダクトの開発検証またはHELIX自身への適用証拠を欠くHARNESS Version 1ではWeb展開を拒否する。全証拠が揃えば展開可能と判定し、それをWeb完成・公開済みと読み替えない |\n\nHARNESSの単体テスト成功、OSのCI運転成功、Web画面の存在だけでは本受入を満たさない。\n認証・データ返送・学習利用の試験は、採用した方式と許可範囲を確定した検証環境で行う。現時点で外部サービスを操作しない。\n",
+      "product": "HELIX-Web",
+      "layer": "L11",
+      "classification": "boundary_candidate",
+      "relation": "Web acceptance distinguishes improvement, cross-knowledge and model learning and rejects scope spillover"
+    },
+    {
+      "ref_id": "CUR-WEBOS-L1",
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "start_line": 19,
+      "end_line": 44,
+      "line_sha256": "faf3ff7ae6c51216bdf3348babb0efb8dc0625f132f41892b5bbb8bcce4d7eb5",
+      "exact_text": "| HELIXWEBOS-L1-001 | サービス運用者は、tenant・利用者・projectごとのauthorityと隔離を保ってHELIX-Webを提供できる | HELIXWEBOS-L2-001 |\n| HELIXWEBOS-L1-002 | サービス運用者は、Connectorと長時間jobを安全に配信・追跡・停止・再開・回復できる | HELIXWEBOS-L2-002／003 |\n| HELIXWEBOS-L1-003 | 利用者は、認証・provider接続・data返送の対象と許可範囲を管理できる | HELIXWEBOS-L2-004 |\n| HELIXWEBOS-L1-004 | HELIX-Webは、利用者へ進行・状態・成果・証拠を正しいrevisionで表示できる | HELIXWEBOS-L2-005 |\n| HELIXWEBOS-L1-005 | サービス運用者は、Webサービスを配備・監視・更新・復旧し、許可された運用ログをHELIX-OSの改善候補へ接続できる | HELIXWEBOS-L2-006 |\n\n## L0 charterからの投影\n\n| L0柱 | 本L1での帰属 |\n|---|---|\n| P0／P1／P2／P3 | 工程・Worker・検証条件の直接ownerではない。採用HARNESS版とHELIX-OSの開発統制を参照 |\n| P4 | HELIXWEBOS-L1-005のservice観測と改善proposal。採否は対象上流へ返す |\n| P5 | 独立柱が存在しないため推測で追加しない |\n| P6 | HELIXWEBOS-L1-001／002／005のWebサービス提供・運転 |\n| P7 | HELIXWEBOS-L1-002／004／005のjob・state・evidence・復旧 |\n| P8 | HELIXWEBOS-L1-001／003のauthority・接続・data境界 |\n| P9 | HELIXWEBOS-L1-004／005のrevision・証拠・改善trace |\n\n## 境界\n\nHELIX-Web-OSはHELIX-OSのsubsystemではなく、Web展開先の独立運転境界である。HARNESSの開発engineや工程規則、\nHELIX-OSの全project管理、Webの利用者要求を別正本として複製しない。具体cloud、provider、認証方式、料金、\nSLOはL2以降の採択前に確定済みと扱わない。\n\n独立運転は非接続を意味しない。Web-OSのservice log・telemetry・incident・利用結果は、許可された範囲を\nHELIX-OSへ渡し、改善proposalと採択後の対象別変更を受け取る。service credentialやtenant原dataは暗黙共有しない。\n",
+      "product": "HELIX-Web-OS",
+      "layer": "L1",
+      "classification": "boundary_candidate",
+      "relation": "Web-OS owns service operation and bounded improvement proposal connection to OS"
+    },
+    {
+      "ref_id": "CUR-WEBOS-L2",
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "start_line": 31,
+      "end_line": 38,
+      "line_sha256": "a4ff3415d9fc29f1e1f06f5898a70edcdaef5cfb049bf286824107fde8ffa867",
+      "exact_text": "| HELIXWEBOS-L2-004 | 認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる | 未確認経路、期限切れ権限、秘密送信、範囲外data返送を拒否し、サービス利用を横断学習同意へ変換しない |\n| HELIXWEBOS-L2-005 | jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる | projection欠落・遅延・stale・conflict・結果不明を成功表示せず、画面表示を実行事実や受入の正本にしない |\n| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-Web-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWeb-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、\nartifact、receipt、telemetry export、改善proposalとして行う。\n",
+      "product": "HELIX-Web-OS",
+      "layer": "L2",
+      "classification": "adjacent_current_ref",
+      "relation": "Web-OS constrains data return/learning consent and exports minimized service evidence to OS"
+    },
+    {
+      "ref_id": "CUR-WEBOS-L11",
+      "path": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+      "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e",
+      "start_line": 18,
+      "end_line": 24,
+      "line_sha256": "154468fe750c74f8d7a3cc31f355b45a1ade965b735a48efa6e034dff6d0c256",
+      "exact_text": "| HELIXWEBOS-L2-002 | Web・Connector・HARNESS能力の版を不一致にし、不適格構成の起動、暗黙更新、engine重複を拒否する |\n| HELIXWEBOS-L2-003 | 切断、再送、取消競合、timeout、結果不明、再起動を与え、二重副作用なしで同じjobと未完義務へ戻る |\n| HELIXWEBOS-L2-004 | wrong target、期限切れ、revoke、範囲外network／data、secret混入を与え、接続・返送・学習利用を拒否する |\n| HELIXWEBOS-L2-005 | event欠落、projection遅延、stale revision、conflictを与え、ダッシュボードが成功・受入済みへ補完しない |\n| HELIXWEBOS-L2-006 | deployment、monitoring、rollback、restore、恒久修復、利用者受入を個別に失敗させ、一つの成功で残りを完了にしない。許可logだけがscope・目的・同意・revision付きでHELIX-OSへ届き、credential、tenant原data、同意範囲外logを拒否する。改善proposalが各対象要求を直接変更しない |\n\nHELIX-OS側のproject管理成功、HARNESS単体成功、Web画面の存在は本受入を代替しない。\n",
+      "product": "HELIX-Web-OS",
+      "layer": "L11",
+      "classification": "boundary_candidate",
+      "relation": "Web-OS acceptance rejects unauthorized learning use and prevents improvement proposal from directly changing requirements"
+    },
+    {
+      "ref_id": "CUR-BOUNDARY",
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "start_line": 34,
+      "end_line": 70,
+      "line_sha256": "05b4aceeb18dad887b29356e46aa0a0c34366098568ee29dc527c5851e179c5e",
+      "exact_text": "| 対象 | 所有する要求 | ローカル入口 |\n|---|---|---|\n| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |\n| HELIX-OS | プロジェクト群の管理・統制、Worker、CI、ログ、学習、継続・復旧、HELIXの改善循環 | [HELIX-OS](../helix-os/README.md) |\n| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../helix-web/README.md) |\n| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |\n\n要求対象の一覧はこの四つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。\nHARNESS自身もOSが管理する開発対象である。HARNESSの工程規則をOSが適用し、OSの運用から得た改善を\nHARNESS自身の要求・設計・実装・検証へ戻す。HELIX-OSはこの自己適用・改善loopを継続運転し、HARNESSを\n改善し続ける責務を持つ。管理対象と規則の参照関係を、同一の要求所有へ潰さない。\n\n## 上位Conceptへの正規投影\n\n上位概念では、HELIXを一つの配布製品名として扱わず、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS等を含む\nプロジェクト群の総称として扱う。\n\n| 上位identity | 意味 | 所有するConcept |\n|---|---|---|\n| HELIX | プロジェクト群と、その改善を継続する全体構想 | 人間の意図から検証済み変更へ閉じ、運用結果を次の要求へ戻す |\n| HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |\n| HELIX-OS | HELIXプロジェクト群の内部管理・統制機構 | authority管理、Worker、実行制御、CI、ログ、状態、学習、改善、配布運転 |\n| HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとしてWeb利用者へダッシュボード、操作、進行表示、サービス体験を提供する |\n| HELIX-Web-OS | HELIX-OS外のWebサービス運転基盤 | tenant、Connector、job、service state、evidence projection、配備・監視・復旧 |\n\nHARNESSをHELIX-OSの内部Kernelだけに縮退させない。HELIX-OSはHARNESSを利用・管理するが、\nHARNESSの工程意味を所有する別正本を作らない。HARNESSのartifact内容とconsumer利用条件はHARNESS、\nartifactの生成、配布、promotion、rollback、監視の実行統制はHELIX-OSが担う。\n\nHELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWeb-OSの\n要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、Web-OSは展開後の利用者向けserviceを\n独立したauthority、state、credential、writerで運転する。\n\n両OSは改善loopで接続する。HELIX-Web-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで\nHELIX-OSへexportし、HELIX-OSがHARNESS自身の実践を含む他projectの証拠と突合して改善候補を重複排除・評価する。\n採択された候補だけをHARNESS、Web、Web-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、\n同意範囲外logの吸収や、logからの直接変更は行わない。\n",
+      "product": "HELIX-HARNESS/HELIX-OS/HELIX-Web/HELIX-Web-OS",
+      "layer": "Concept boundary",
+      "classification": "direct_boundary_current_ref",
+      "relation": "product ownership and OS improvement loop boundary"
+    },
+    {
+      "ref_id": "CUR-CROSSWALK",
+      "path": "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md",
+      "sha256": "0a48e51ddb95212c4fcf45f218c25f110af7c2cdd30f75ec4c75ae90d47b39b6",
+      "start_line": 18,
+      "end_line": 57,
+      "line_sha256": "9ac6b01c1f67476e524ce2dce4fcfcf0f1d4ed44df0c95a556f812be58f6fe61",
+      "exact_text": "| NIO-L1-01 | 要求形成時に品質領域の適用性とunknownを明示する | HARNESS-L2-003／004／005、各製品L2 | 一律の品質項目や数値をHARNESSが全製品へ固定しない | split_reapproval_required |\n| NIO-L1-02 | 同じ要求revisionから設計・検証・運用観測・再要求化へ辿る | HARNESS-L2-004、HELIXOS-L2-002／005／007 | 旧Requirement Re-entry engine、Issue、DBを意味authorityにしない | split_reapproval_required |\n| NIO-L1-03 | designed／implemented／verified／observed／operatedを別状態として扱う | HARNESS-L2-003／005、HELIXOS-L2-002／007 | 旧状態enumや既存projectionを固定しない | semantic_atom_candidate |\n| NIO-L1-04 | 第二正本・重複責務を作らない | HELIXOS-L2-002／003、新世代asset policy | 既存計測・event・logging・incident・lifecycle engineの再利用を要求しない。legacyは意味採取後にarchive化する | legacy_reuse_rejected |\n| NIO-L1-05 | 承認scope内の自律実行と、高影響操作の別authority | HELIXOS-L2-001／004／009 | 旧runtime admission、旧policy、旧ownerを許可根拠にしない | authority_rederivation_required |\n\n## 詳細要件の再分類\n\n| 旧ID | 保持候補の意味 | 新世代接続先 | 持ち込まない条件 | 状態 |\n|---|---|---|---|---|\n| NIO-L3-01／02 | 対象・環境・workload・failure・data・復旧・運用の適用性を漏れなく要求化する | HARNESS-L2-003／004／005、各製品L2 | `Design Obligation Graph`、固定項目enum、旧生成機構を新世代componentとして継承しない | contract_rederivation_required |\n| NIO-L3-03／04 | 計測とlogの意味、出典、freshness、欠測、機密保護を明示する | 各製品L2／L3、HELIXOS-L2-007 | collector、schema、保持期間、severity、具体SLOは対象製品が承認する | product_specific_reapproval |\n| NIO-L3-05 | finding、通知、incident、ack、expiryを追跡する | HELIXOS-L2-004／007／009 | 旧alert router、Issue owner、providerを固定しない | operational_rederivation_required |\n| NIO-L3-06 | backup／restore／rollback等を文書の存在でなく実結果で判定する | HARNESS-L2-005、HELIXOS-L2-006／007、各製品L2 | 具体procedure、RTO／RPO、対象環境は製品・release別に承認する | split_reapproval_required |\n| NIO-L3-07 | 運用証拠を要求へ戻し、変更候補と採否を追跡する | HARNESS-L2-004、HELIXOS-L2-002／005／007 | 旧re-entry engineから要求を直接変更しない | semantic_atom_candidate |\n| NIO-L3-08 | 自動修復を対象・権限・予算・影響・復旧・独立検証で制限する | HELIXOS-L2-004／007／009、bugbot要求源 | この候補を自動修復権限として使わず、旧tool・actor・admissionを継承しない | moved_to_bounded_repair_reapproval |\n| NIO-L3-09 | 状態遷移に証拠を要求し、欠測・staleをhealthyへ変換しない | HARNESS-L2-003／005、HELIXOS-L2-007 | 旧状態機械、collector、health判定を再利用しない | split_reapproval_required |\n\n## 受入候補の再分類\n\n| 旧ID | 保持候補の反例 | 新世代接続先 | 書換え条件 | 状態 |\n|---|---|---|---|---|\n| NIO-L10-01 | 根拠のない品質値を生成しない | 各製品L11／L10、HARNESS-L2-003の工程反例 | unknownの存在だけを合格にせず、決定owner・期限・差戻し先を要求する | oracle_rewrite_required |\n| NIO-L10-02／03 | 欠測・stale・別環境の成功を運用成立へ読み替えない | 各製品L11／L10、HELIXOS L11 | 旧collector、production環境、canary方式を固定しない | oracle_atom_candidate |\n| NIO-L10-04／05 | restore、rollback、恒久修復、再発防止を別結果として確認する | HARNESS L11、HELIXOS L11、各製品L11／L10 | 旧backup・incident機構の実行を合格条件にしない | split_oracle_reapproval |\n| NIO-L10-06 | secret／PIIを人間向け成果や証拠へ露出しない | 各製品L11／L10、HELIXOS L11 | 具体redaction／scan方式は設計層で再導出する | oracle_atom_candidate |\n| NIO-L10-07 | scope外の修復・公開・課金・production writeを拒否する | HELIXOS L11 | この候補を操作認可にせず、操作別authorityを別に要求する | authority_oracle_rewrite |\n| NIO-L10-08 | 要求から運用・再要求化までの必須trace欠落を検出する | HARNESS L11、HELIXOS L11 | 旧graph edgeや既存CIをoracleにしない | split_oracle_reapproval |\n| NIO-L10-09 | Issue closeや文書存在を統合能力の完成証拠にしない | 対象別L11 | GitHubは同期・作業projectionとしてだけ扱う | oracle_atom_candidate |\n\n旧文書はこれらをL10と呼ぶが、利用者が確認する結果とsystem verificationを分離できていない。対象別L2の\n利用者結果はL11へ、L3で決める機械契約と故障注入はL10へ、実運用効果はL12へそれぞれ降ろし直す。\n\n## 新世代で固定する責務境界\n\n1. HARNESSは、対象製品の運用品質をL2で検討し、設計・検証・運用観測・再要求化へ接続する工程条件を所有する。\n2. HELIX-OSは、管理対象の配備、監視、log・証拠保全、incident、復旧、保守、改善候補の運用を統制する。\n3. 個別製品は、適用環境、workload、可用性、性能、容量、費用、security、privacy、RTO／RPO、保持期間等の要求値を所有する。\n4. 具体値、環境、予算、blast radius、操作authorityは対象製品・release・操作ごとに承認する。\n5. 既存機構に同種能力があってもcurrent pathへ再接続せず、legacy sourceとして意味と判断史を保全して新世代を上流から再構築する。\n",
+      "product": "HELIX-HARNESS/HELIX-OS/HELIX-Web/HELIX-Web-OS",
+      "layer": "crosswalk",
+      "classification": "direct_boundary_current_ref",
+      "relation": "observation/improvement semantics are rederived; old engine, collector and owner are not reused"
+    }
+  ],
+  "product_boundary_candidates": [
+    {
+      "product": "HELIX-OS",
+      "unit_candidate": "improvement observation, finding qualification, learning promotion, memory/process projection, human decision evidence",
+      "connection_candidate": "HARNESS/Web/Web-OS bounded evidence → OS candidate/decision ledger → adopted change backflow and re-observation",
+      "status": "candidate_unresolved",
+      "evidence_ref_ids": [
+        "CUR-OS-L1",
+        "CUR-OS-L2",
+        "CUR-OS-L2-WEB",
+        "CUR-OS-L11",
+        "CUR-BOUNDARY"
+      ]
+    },
+    {
+      "product": "HELIX-HARNESS",
+      "unit_candidate": "V-model requirement/design/verification and improvement-driven backflow contract",
+      "connection_candidate": "OS improvement candidate → highest changed requirement/design/V-pair → re-agreement/reverification",
+      "status": "candidate_unresolved; direct PHCAP-19 current evidence absent",
+      "evidence_ref_ids": [
+        "CUR-HARNESS-L1",
+        "CUR-HARNESS-L2",
+        "CUR-HARNESS-L2-B",
+        "CUR-HARNESS-L11",
+        "CUR-BOUNDARY"
+      ]
+    },
+    {
+      "product": "HELIX-Web",
+      "unit_candidate": "user-facing operation/result, consent and product-specific improvement acceptance",
+      "connection_candidate": "Web-OS service evidence / user-approved scope → OS improvement candidate; product requirement changes return through Web authority",
+      "status": "candidate_unresolved; direct PHCAP-19 current evidence absent",
+      "evidence_ref_ids": [
+        "CUR-WEB-L1",
+        "CUR-WEB-L2",
+        "CUR-WEB-L11",
+        "CUR-BOUNDARY"
+      ]
+    },
+    {
+      "product": "HELIX-Web-OS",
+      "unit_candidate": "service runtime observation, telemetry, tenant/data scope and bounded export",
+      "connection_candidate": "service log/telemetry/result → minimized export to OS; no credential/tenant raw data or direct requirement write",
+      "status": "candidate_unresolved; direct PHCAP-19 current evidence absent",
+      "evidence_ref_ids": [
+        "CUR-WEBOS-L1",
+        "CUR-WEBOS-L2",
+        "CUR-WEBOS-L11",
+        "CUR-BOUNDARY"
+      ]
+    }
+  ],
+  "contradictions_preserved": [
+    {
+      "id": "CONTR-01",
+      "left": "legacy representative files carry confirmed/draft/implementation source/test-design artifacts and detailed promotion contracts",
+      "right": "asset ledger marks all five historical/unresolved with implementation_status unknown, consumer_refs empty and no decision record",
+      "resolution": "preserved as historical evidence vs ledger state; no execution/pass/current implementation claim"
+    },
+    {
+      "id": "CONTR-02",
+      "left": "legacy product classifications list all four products as candidate targets",
+      "right": "PHCAP-19 inventory directly evidences HELIX-OS only",
+      "resolution": "HARNESS/Web/Web-OS remain unknown; candidate boundary refs do not close direct evidence gap"
+    },
+    {
+      "id": "CONTR-03",
+      "left": "legacy L5 overlaps memory compaction/continuation and promotion",
+      "right": "PHCAP-19 gap explicitly requires learning/memory meaning atom and consumer split",
+      "resolution": "overlap remains unresolved; no PHCAP-20 ownership or merge generated"
+    },
+    {
+      "id": "CONTR-04",
+      "left": "current OS docs describe improvement candidate and bounded export",
+      "right": "current L1/L2/L11 documents are draft/candidate and acceptance says unexecuted",
+      "resolution": "current semantic ref is evidence of candidate wording, not implementation or operation completion"
+    }
+  ],
+  "unresolved": [
+    "all non-selected learning/improvement/feedback/memory assets and complete consumer closure",
+    "all five selected assets have no append-only decision record; absence remains unknown",
+    "all five selected ledger consumer_refs are empty; source-declared consumers are candidates only",
+    "legacy product owner and unit/connection/composite split across OS/HARNESS/Web/Web-OS",
+    "direct PHCAP-19 current evidence for HARNESS, Web and Web-OS",
+    "formal current contract for observation→candidate→decision→change→reverification→reobservation and memory boundary",
+    "execution, test/pass, active promotion, production operation, effect and rollback evidence"
+  ],
+  "counts": {
+    "legacy_assets_examined": 5,
+    "legacy_source_files": 5,
+    "legacy_source_spans": 21,
+    "semantic_atoms": 13,
+    "decision_records_found": 0,
+    "legacy_consumer_refs_observed": 0,
+    "current_refs_recorded": 16,
+    "inventory_direct_current_products": 1,
+    "missing_direct_current_products": 3,
+    "harness_web_webos_direct_current_refs": 0
+  },
+  "validator_contract": {
+    "must_preserve": [
+      "asset/source/digest and exact archived lines",
+      "ledger and phase state",
+      "decision-log absence",
+      "failure and consumer evidence",
+      "product/layer classification",
+      "OS improvement-loop boundary",
+      "unknown and contradictions"
+    ],
+    "must_reject": [
+      "direct evidence synthesized from adjacent refs",
+      "owner/implementation/consumer closure promotion",
+      "old runtime/test/CI execution or oracle use",
+      "Issue #1907 as semantic authority"
+    ]
+  }
+}
