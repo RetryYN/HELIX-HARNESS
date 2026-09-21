@@ -2,7 +2,7 @@
 
 Wave30は、旧archiveの要求、asset catalog、design、implementation sourceをstatic read-onlyで照合するresearch-premise candidateです。対象worktreeは `/home/tenni/.helix-worktrees/legacy-semantic-review-wave30`、branchは `docs/legacy-semantic-review-wave30` です。旧runtime、旧test、旧CIは実行していません。
 
-Wave29 Draft PR #1983の再ベース後 exact HEADを `a75a36b548af46d916234d8d894f07840f76cfd0` に固定し、`origin/main` の `1c6912ad34b9a7950206188ad364e3a712dc9e6b` をmain baseとするstacked候補にしました。`current_tree_revision`、`parent_revision`、`stacked_pr_parent_revision`、`source_revision` はWave29 exact HEAD、`source_main_base_revision` と `main_merge_revision` は現行mainです。mainのmerge parentsは `b27e61f079edf64eeddc43eb8095159b19730b94`、`a05b9f5444ba11626823683cc486db95c9d1f3a3` です。mainまたはWave29 exact HEADが変わった場合は停止し、入力digestと親系譜を再baselineします。push、PR、mergeは行いません。
+Wave29 Draft PR #1983の再ベース後 exact HEADを `bc42927178980f1bb210e33177cf5feee8442b5b` に固定し、`origin/main` の `f122d65e1435b4709fbb7b07fbb8e42b70f0b110` をmain baseとするstacked候補にしました。`current_tree_revision`、`parent_revision`、`stacked_pr_parent_revision`、`source_revision` はWave29 exact HEAD、`source_main_base_revision` と `main_merge_revision` は現行mainです。mainのmerge parentsは `4919cfd245ee128fee71c713c8d2d0a8cd5fcd11`、`d272a97b3e55401fa75ad41670fbeefd18f8a4cf` です。mainまたはWave29 exact HEADが変わった場合は停止し、入力digestと親系譜を再baselineします。作成側はmergeを行いません。
 
 Wave29後の次の未レビュー要求atom境界から、FR21 OS、FR22 HARNESS／OS、FR23 OSの4 product unit、12 edge（requirement 4、design 4、implementation_source 4）を選択しました。FR21 OSは1 atom、FR22 HARNESS／OSは各2 atom、FR23 OSは1 atomです。source spanの共有は確認されず、全atomのproduct boundaryは `product_boundary_pending_human_decision` です。
 

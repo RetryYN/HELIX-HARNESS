@@ -5,9 +5,9 @@
 - batch: `LEGACY-SEMANTIC-WAVE30-2026-09-22`
 - worktree: `/home/tenni/.helix-worktrees/legacy-semantic-review-wave30`
 - branch: `docs/legacy-semantic-review-wave30`
-- Wave29 Draft PR #1983 rebaseline後 exact parent／current tree／stacked input: `a75a36b548af46d916234d8d894f07840f76cfd0`
-- main base／source main base: `1c6912ad34b9a7950206188ad364e3a712dc9e6b`
-- main merge parents: `b27e61f079edf64eeddc43eb8095159b19730b94`、`a05b9f5444ba11626823683cc486db95c9d1f3a3`
+- Wave29 Draft PR #1983 rebaseline後 exact parent／current tree／stacked input: `bc42927178980f1bb210e33177cf5feee8442b5b`
+- main base／source main base: `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`
+- main merge parents: `4919cfd245ee128fee71c713c8d2d0a8cd5fcd11`、`d272a97b3e55401fa75ad41670fbeefd18f8a4cf`
 - rebaseline stop: mainまたはWave29 exact HEADが変わったら停止し、入力digest／parent lineageを更新
 - scope: 4 units / 12 asset edges / 4 confirmed requirement edges / 8 unresolved candidate edges
 - cumulative: 99 units / 294 asset edges / 残り119 units（全218 units）
