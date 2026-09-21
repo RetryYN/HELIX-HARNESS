@@ -393,6 +393,12 @@ class GuiChecks(unittest.TestCase):
         self.assertIsNone(g.claim(self.data,"claude","claude-gui",self.now))
 
 
+    def test_policy_claim_guard_sets_match(self):
+        import importlib.util
+        spec=importlib.util.spec_from_file_location("scfctl",g.HERE.parent / "tools/scfctl.py")
+        scf=importlib.util.module_from_spec(spec); spec.loader.exec_module(scf)
+        self.assertEqual(set(config.FORBIDDEN_POLICY_TEXT), set(scf.INSTRUCTION_FORBIDDEN_TEXT))
+
     def test_external_hook_residuals(self):
         import importlib.util
         spec=importlib.util.spec_from_file_location("scfctl",g.HERE.parent / "tools/scfctl.py")

@@ -23,6 +23,7 @@ SCOPES = ["schema_interface", "deterministic_behavior", "stub_adapter_connection
 LEGACY = re.compile(r"(^|[\s/\"'=:(])archive/legacy-generation-")
 SHA = re.compile(r"^[0-9a-f]{64}$")
 DATE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}$")
+INSTRUCTION_FORBIDDEN_TEXT = ("許可している", "承認済み", "権限を与える", "authorized", "#1888")
 
 
 # ---------- 基本 ----------
@@ -309,7 +310,7 @@ def external_hook_residuals(binding, home=None, manifest_path=None):
             start, end = spec["instruction_start"], spec["instruction_end"]
             if source.count(start) != 1 or source.count(end) != 1:
                 raise ValueError("instruction source marker不正")
-            if any(term in source for term in ("許可している", "承認済み", "権限を与える", "authorized", "#1888")):
+            if any(term in source for term in INSTRUCTION_FORBIDDEN_TEXT):
                 errors.append("外部instruction sourceに操作許可の成立宣言が含まれる")
             for relative in spec.get("instruction_paths", []):
                 if relative != "~/.claude/CLAUDE.md":
