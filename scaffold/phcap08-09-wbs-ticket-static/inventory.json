@@ -349,9 +349,12 @@
     "legacy_disposition_source_path_wbs_matches": [],
     "legacy_disposition_source_path_work_breakdown_matches": [],
     "exact_basename_matches": [],
+    "archive_file_count": 4020,
+    "archive_hidden_component_file_count": 248,
     "archive_filename_match_count": 0,
-    "archive_content_term_match_count": 44,
+    "archive_content_term_match_count": 45,
     "archive_content_term_match_paths": [
+      "archive/legacy-generation-2026-09-14/root/.helix/audit/A-133-upstream-vmodel-coverage-audit.md",
       "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-requirements_v1.1.md",
       "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/edge-case.md",
       "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md",
@@ -430,7 +433,8 @@
         "same_name_identity": false
       }
     ],
-    "interpretation": "同名WBS assetは0。archive本文44ファイルの語彙ヒットと等価能力候補は、WBS identity・実装・authority・semantic equivalenceを証明しない。"
+    "interpretation": "同名WBS assetは0。archive本文45ファイルの語彙ヒットと等価能力候補は、WBS identity・実装・authority・semantic equivalenceを証明しない。",
+    "interpretation_sha256": "9f92e27c2c6e6f2b16c2feea54b92198603e31bb2621994bd3541470104619b7"
   },
   "ticket_path_audit": {
     "match_rule": "legacy-asset-disposition.source_path contains 'ticket' case-insensitive",
@@ -1287,7 +1291,8 @@
         "source_expanded": true
       }
     ],
-    "interpretation": "ticket path 9件はcandidate source catalog。代表3件だけ本文exact spanを展開し、残り6件はsource path/hashとphase/ledger stateの範囲に留める。"
+    "interpretation": "ticket path 9件はcandidate source catalog。代表3件だけ本文exact spanを展開し、残り6件はsource path/hashとphase/ledger stateの範囲に留める。",
+    "interpretation_sha256": "345e32b2408dcf5323dc2a388d80583b2a000e2a30dcc6df76f200b68593e05c"
   },
   "legacy_assets": [
     {
@@ -2721,7 +2726,7 @@
     "candidate_phase_joins": 2,
     "wbs_same_name_assets": 0,
     "wbs_archive_filename_matches": 0,
-    "wbs_archive_content_term_matches": 44,
+    "wbs_archive_content_term_matches": 45,
     "decision_records_found": 0,
     "legacy_consumer_refs_observed": 0,
     "failure_receipts_observed": 0

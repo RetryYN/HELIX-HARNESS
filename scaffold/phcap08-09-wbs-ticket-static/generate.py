@@ -240,7 +240,7 @@ for path in ticket_source_paths:
 
 # WBS path/name/content audit is intentionally separate from textual near-equivalent candidates.
 wbs_term = re.compile(r"(?i)\bWBS\b|work[- ]breakdown")
-archive_files = sorted(p for p in ARCHIVE.rglob("*") if p.is_file() and not any(part.startswith(".") for part in p.relative_to(ARCHIVE).parts))
+archive_files = sorted(p for p in ARCHIVE.rglob("*") if p.is_file())
 archive_filename_matches = [
     str(p.relative_to(ROOT)) for p in archive_files
     if re.search(r"(?i)wbs|work[- ]breakdown", p.name)
@@ -264,6 +264,10 @@ legacy_work_breakdown_paths = sorted(
 exact_basename_matches = sorted(
     str(p.relative_to(ROOT)) for p in archive_files
     if p.name.lower() in {"wbs.md", "wbs.json", "wbs.yaml", "wbs.yml", "wbs.ts", "wbs.js"}
+)
+archive_hidden_component_file_count = sum(
+    any(part.startswith(".") for part in p.relative_to(ARCHIVE).parts)
+    for p in archive_files
 )
 
 current_refs = [
@@ -408,6 +412,8 @@ inventory = {
         "legacy_disposition_source_path_wbs_matches": legacy_wbs_paths,
         "legacy_disposition_source_path_work_breakdown_matches": legacy_work_breakdown_paths,
         "exact_basename_matches": exact_basename_matches,
+        "archive_file_count": len(archive_files),
+        "archive_hidden_component_file_count": archive_hidden_component_file_count,
         "archive_filename_match_count": len(archive_filename_matches),
         "archive_content_term_match_count": len(archive_content_matches),
         "archive_content_term_match_paths": archive_content_matches,
@@ -428,7 +434,8 @@ inventory = {
             {"asset_id": "LEGACY-ASSET-78D55762187C612C93C4", "capability": "current location/roadmap/state data model", "same_name_identity": False},
             {"asset_id": "LEGACY-ASSET-DE68E15724FB6EC258AB", "capability": "plan/roadmap baseline", "same_name_identity": False},
         ],
-        "interpretation": "同名WBS assetは0。archive本文44ファイルの語彙ヒットと等価能力候補は、WBS identity・実装・authority・semantic equivalenceを証明しない。",
+        "interpretation": "同名WBS assetは0。archive本文45ファイルの語彙ヒットと等価能力候補は、WBS identity・実装・authority・semantic equivalenceを証明しない。",
+        "interpretation_sha256": "9f92e27c2c6e6f2b16c2feea54b92198603e31bb2621994bd3541470104619b7",
     },
     "ticket_path_audit": {
         "match_rule": "legacy-asset-disposition.source_path contains 'ticket' case-insensitive",
@@ -437,6 +444,7 @@ inventory = {
         "selected_representative_asset_ids": ["LEGACY-ASSET-3A15E5645D2D2A59DFF5", "LEGACY-ASSET-BE8B151A0094B754FF20", "LEGACY-ASSET-06C7FAF2A0981A4778AC"],
         "asset_catalog": ticket_catalog,
         "interpretation": "ticket path 9件はcandidate source catalog。代表3件だけ本文exact spanを展開し、残り6件はsource path/hashとphase/ledger stateの範囲に留める。",
+        "interpretation_sha256": "345e32b2408dcf5323dc2a388d80583b2a000e2a30dcc6df76f200b68593e05c",
     },
     "legacy_assets": selected_specs,
     "current_refs": current_refs,

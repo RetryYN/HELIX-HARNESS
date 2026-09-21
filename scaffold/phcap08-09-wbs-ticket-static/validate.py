@@ -21,6 +21,10 @@ ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 WBS_RE = re.compile(r"(?i)\bWBS\b|work[- ]breakdown")
 
 EXPECTED_BASE = "b27e61f079edf64eeddc43eb8095159b19730b94"
+EXPECTED_WBS_INTERPRETATION = "同名WBS assetは0。archive本文45ファイルの語彙ヒットと等価能力候補は、WBS identity・実装・authority・semantic equivalenceを証明しない。"
+EXPECTED_WBS_INTERPRETATION_DIGEST = "9f92e27c2c6e6f2b16c2feea54b92198603e31bb2621994bd3541470104619b7"
+EXPECTED_TICKET_INTERPRETATION = "ticket path 9件はcandidate source catalog。代表3件だけ本文exact spanを展開し、残り6件はsource path/hashとphase/ledger stateの範囲に留める。"
+EXPECTED_TICKET_INTERPRETATION_DIGEST = "345e32b2408dcf5323dc2a388d80583b2a000e2a30dcc6df76f200b68593e05c"
 EXPECTED_PRODUCTS = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
 EXPECTED_TICKET_PATHS = {
     "docs/governance/candidates/execution-ticket-acceptance.md",
@@ -60,10 +64,10 @@ INVENTORY_KEYSETS = {
     'product_units[]': frozenset(['acceptance_status', 'authority_status', 'current_refs', 'implementation_status', 'legacy_asset_ids', 'phase_evidence', 'product', 'status', 'unit_boundary']),
     'candidate_connections[]': frozenset(['connection_id', 'from', 'kind', 'meaning', 'status', 'to']),
     'candidate_phase_joins[]': frozenset(['catalog_asset_ids', 'interpretation', 'phase_id', 'selected_asset_ids']),
-    'wbs_name_audit': frozenset(['archive_content_term_match_count', 'archive_content_term_match_paths', 'archive_filename_match_count', 'exact_basename_matches', 'interpretation', 'legacy_disposition_source_path_wbs_matches', 'legacy_disposition_source_path_work_breakdown_matches', 'near_equivalent_candidates', 'representative_near_capability_candidates', 'same_name_asset_count', 'same_name_asset_ids', 'search_regex']),
+    'wbs_name_audit': frozenset(['archive_content_term_match_count', 'archive_content_term_match_paths', 'archive_file_count', 'archive_hidden_component_file_count', 'archive_filename_match_count', 'exact_basename_matches', 'interpretation', 'interpretation_sha256', 'legacy_disposition_source_path_wbs_matches', 'legacy_disposition_source_path_work_breakdown_matches', 'near_equivalent_candidates', 'representative_near_capability_candidates', 'same_name_asset_count', 'same_name_asset_ids', 'search_regex']),
     'wbs_name_audit.near_equivalent_candidates[]': frozenset(['asset_id', 'reason', 'same_name_identity', 'semantic_equivalence', 'source_path', 'source_span_ids']),
     'wbs_name_audit.representative_near_capability_candidates[]': frozenset(['asset_id', 'capability', 'same_name_identity']),
-    'ticket_path_audit': frozenset(['asset_catalog', 'interpretation', 'match_rule', 'path_match_asset_ids', 'path_match_count', 'selected_representative_asset_ids']),
+    'ticket_path_audit': frozenset(['asset_catalog', 'interpretation', 'interpretation_sha256', 'match_rule', 'path_match_asset_ids', 'path_match_count', 'selected_representative_asset_ids']),
     'ticket_path_audit.asset_catalog[]': frozenset(['asset_id', 'ledger_state', 'phase_classification_record', 'source_expanded', 'source_line_count', 'source_path', 'source_sha256']),
     'ticket_path_audit.asset_catalog[].ledger_state': frozenset(['asset_class', 'authority_status', 'consumer_refs', 'decision_record_ref', 'disposition', 'executability_status', 'external_effect_status', 'implementation_status', 'product_target', 'reuse_exclusion_class', 'revision']),
     'ticket_path_audit.asset_catalog[].phase_classification_record': frozenset(['archive_manifest_digest_match', 'artifact_evidence_kind', 'asset_id', 'authority_effect', 'candidate_phase_targets', 'candidate_product_targets', 'classification_id', 'consumer_closure_status', 'consumer_refs', 'implementation_evidence_state', 'legacy_execution_performed', 'legacy_implementation_status', 'phase_assessments', 'phase_classification_status', 'product_assessments', 'product_classification_status', 'source_path', 'source_revision', 'source_sha256', 'unresolved']),
@@ -273,11 +277,8 @@ def phase_state(row):
 
 
 def archive_files():
-    # Match the bounded `rg` audit: hidden archive directories are outside this search surface.
-    return sorted(
-        p for p in ARCHIVE.rglob("*")
-        if p.is_file() and not any(part.startswith(".") for part in p.relative_to(ARCHIVE).parts)
-    )
+    # The WBS audit covers every archive file, including dot-component paths.
+    return sorted(p for p in ARCHIVE.rglob("*") if p.is_file())
 
 
 def validate_keysets(value, expected, root_name="root"):
@@ -324,7 +325,11 @@ def archive_wbs_audit():
             continue
         if WBS_RE.search(text):
             content_matches.append(str(path.relative_to(ROOT)))
-    return list(filename_matches), list(exact_basename), content_matches
+    hidden_component_count = sum(
+        any(part.startswith(".") for part in path.relative_to(ARCHIVE).parts)
+        for path in archive
+    )
+    return list(filename_matches), list(exact_basename), content_matches, len(archive), hidden_component_count
 
 
 def validate_binding(binding):
@@ -480,15 +485,20 @@ def validate(inv, check_binding=True):
     fail(errors, counts.get("failure_receipts_observed") == 0, "E_COUNT_FAILURES")
 
     wbs = inv.get("wbs_name_audit", {})
-    filename_matches, exact_basename, content_matches = archive_wbs_audit()
+    filename_matches, exact_basename, content_matches, archive_file_count, hidden_component_count = archive_wbs_audit()
     legacy_wbs = sorted(row.get("source_path") for row in disp_rows if "wbs" in row.get("source_path", "").lower())
     legacy_wb = sorted(row.get("source_path") for row in disp_rows if "work-breakdown" in row.get("source_path", "").lower())
     fail(errors, wbs.get("legacy_disposition_source_path_wbs_matches") == legacy_wbs == [], "E_WBS_LEDGER_PATH")
     fail(errors, wbs.get("legacy_disposition_source_path_work_breakdown_matches") == legacy_wb == [], "E_WBS_LEDGER_WORK_BREAKDOWN")
     fail(errors, wbs.get("exact_basename_matches") == exact_basename == [], "E_WBS_EXACT_BASENAME")
+    fail(errors, wbs.get("archive_file_count") == archive_file_count == 4020, "E_WBS_ARCHIVE_FILE_COUNT")
+    fail(errors, wbs.get("archive_hidden_component_file_count") == hidden_component_count == 248, "E_WBS_ARCHIVE_HIDDEN_COMPONENT_COUNT")
     fail(errors, wbs.get("archive_filename_match_count") == len(filename_matches) == 0, "E_WBS_FILENAME_COUNT")
-    fail(errors, wbs.get("archive_content_term_match_count") == len(content_matches) == 44, "E_WBS_CONTENT_COUNT")
+    fail(errors, wbs.get("archive_content_term_match_count") == len(content_matches) == 45, "E_WBS_CONTENT_COUNT")
     fail(errors, wbs.get("archive_content_term_match_paths") == content_matches, "E_WBS_CONTENT_PATHS")
+    fail(errors, wbs.get("interpretation") == EXPECTED_WBS_INTERPRETATION, "E_WBS_INTERPRETATION")
+    fail(errors, wbs.get("interpretation_sha256") == EXPECTED_WBS_INTERPRETATION_DIGEST, "E_WBS_INTERPRETATION_DIGEST")
+    fail(errors, digest(str(wbs.get("interpretation", "")).encode("utf-8")) == wbs.get("interpretation_sha256"), "E_WBS_INTERPRETATION_DIGEST_MATCH")
     fail(errors, wbs.get("same_name_asset_ids") == [] and wbs.get("same_name_asset_count") == 0, "E_WBS_SAME_NAME")
     near = wbs.get("near_equivalent_candidates", [])
     fail(errors, len(near) == 1 and near[0].get("asset_id") == "LEGACY-ASSET-B1B5271C3933B1F0F345", "E_WBS_NEAR_CANDIDATE")
@@ -497,7 +507,7 @@ def validate(inv, check_binding=True):
     fail(errors, len(wbs.get("representative_near_capability_candidates", [])) == 3, "E_WBS_REPRESENTATIVES")
     fail(errors, counts.get("wbs_same_name_assets") == 0, "E_WBS_COUNT_FIELD")
     fail(errors, counts.get("wbs_archive_filename_matches") == 0, "E_WBS_FILENAME_FIELD")
-    fail(errors, counts.get("wbs_archive_content_term_matches") == 44, "E_WBS_CONTENT_FIELD")
+    fail(errors, counts.get("wbs_archive_content_term_matches") == 45, "E_WBS_CONTENT_FIELD")
 
     ticket = inv.get("ticket_path_audit", {})
     matching_paths = sorted(row.get("source_path") for row in disp_rows if "ticket" in row.get("source_path", "").lower())
@@ -524,6 +534,9 @@ def validate(inv, check_binding=True):
     fail(errors, sorted(ticket.get("selected_representative_asset_ids", [])) == sorted([
         "LEGACY-ASSET-3A15E5645D2D2A59DFF5", "LEGACY-ASSET-BE8B151A0094B754FF20", "LEGACY-ASSET-06C7FAF2A0981A4778AC"
     ]), "E_TICKET_SELECTED_REPS")
+    fail(errors, ticket.get("interpretation") == EXPECTED_TICKET_INTERPRETATION, "E_TICKET_INTERPRETATION")
+    fail(errors, ticket.get("interpretation_sha256") == EXPECTED_TICKET_INTERPRETATION_DIGEST, "E_TICKET_INTERPRETATION_DIGEST")
+    fail(errors, digest(str(ticket.get("interpretation", "")).encode("utf-8")) == ticket.get("interpretation_sha256"), "E_TICKET_INTERPRETATION_DIGEST_MATCH")
 
     units = inv.get("product_units", [])
     fail(errors, len(units) == 4 and sorted(unit.get("product") for unit in units) == EXPECTED_PRODUCTS, "E_PRODUCT_UNITS")

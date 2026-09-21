@@ -14,10 +14,11 @@ base = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
 binding_base = json.loads((HERE.parents[0] / "bindings/SCF-B-0041.json").read_text(encoding="utf-8"))
 
 
-def must_fail(label, mutate):
+def must_fail(label, mutate, expected_code=None):
     candidate = copy.deepcopy(base)
     mutate(candidate)
-    if validator.validate(candidate, check_binding=False):
+    errors = validator.validate(candidate, check_binding=False)
+    if errors and (expected_code is None or expected_code in errors):
         print("PASS", label)
         return
     raise SystemExit("FAIL selfcheck: " + label)
@@ -46,8 +47,12 @@ must_fail("WBS same-name promotion", lambda x: x["wbs_name_audit"].update(same_n
 must_fail("WBS filename count tamper", lambda x: x["wbs_name_audit"].update(archive_filename_match_count=1))
 must_fail("WBS text count tamper", lambda x: x["wbs_name_audit"].update(archive_content_term_match_count=43))
 must_fail("WBS near-equivalent identity promotion", lambda x: x["wbs_name_audit"]["near_equivalent_candidates"][0].update(same_name_identity=True))
+must_fail("WBS interpretation rewrite [E_WBS_INTERPRETATION]", lambda x: x["wbs_name_audit"].update(interpretation="同名WBS assetは0。archive本文44ファイルの語彙ヒット。"), "E_WBS_INTERPRETATION")
+must_fail("WBS interpretation digest tamper [E_WBS_INTERPRETATION_DIGEST]", lambda x: x["wbs_name_audit"].update(interpretation_sha256="0" * 64), "E_WBS_INTERPRETATION_DIGEST")
 must_fail("ticket path omission", lambda x: x["ticket_path_audit"].update(path_match_count=8))
 must_fail("ticket catalog omission", lambda x: x["ticket_path_audit"]["asset_catalog"].pop())
+must_fail("ticket interpretation rewrite [E_TICKET_INTERPRETATION]", lambda x: x["ticket_path_audit"].update(interpretation="ticket path 9件は正式issuer。"), "E_TICKET_INTERPRETATION")
+must_fail("ticket interpretation digest tamper [E_TICKET_INTERPRETATION_DIGEST]", lambda x: x["ticket_path_audit"].update(interpretation_sha256="0" * 64), "E_TICKET_INTERPRETATION_DIGEST")
 must_fail("source bytes tamper", lambda x: x["legacy_assets"][0].update(source_sha256="0" * 64))
 must_fail("source span tamper", lambda x: x["legacy_assets"][0]["source_spans"][0].update(exact_text="tampered\n"))
 must_fail("source span meaning tamper", lambda x: x["legacy_assets"][0]["source_spans"][0].update(role="meaning changed"))
@@ -69,4 +74,4 @@ must_fail_binding("binding unknown key", lambda x: x.update(unexpected_key=True)
 must_fail_binding("negative case deletion", lambda x: x["verification"]["negative_cases"].pop())
 must_fail_binding("negative case expansion", lambda x: x["verification"]["negative_cases"].append("extra"))
 must_fail_binding("negative case rewrite", lambda x: x["verification"]["negative_cases"].__setitem__(0, "changed"))
-print("PASS PHCAP-08/09 selfcheck: 36 negative cases")
+print("PASS PHCAP-08/09 selfcheck: 40 negative cases")

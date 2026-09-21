@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "PHCAP-08/09 upstream semantic review（正式owner未解決）",
   "state": "registered",
-  "reason": "PHCAP-08 WBS同名asset 0／archive filename 0／本文語彙44を、旧PLAN・current-location・roadmap・stateの近似候補と分けて保持し、PHCAP-09 ticket path 9件と代表3件のexact source evidence、四製品unit／connection、旧実装・failure・consumer unknownを静的に束ねる。authority、意味等価、要求採否、L2/L11、実装、受入、Issue projection、consumer closureを生成しない。",
+  "reason": "PHCAP-08 WBS同名asset 0／archive filename 0／全archive 4,020件の本文語彙45を、旧PLAN・current-location・roadmap・stateの近似候補と分けて保持し、PHCAP-09 ticket path 9件と代表3件のexact source evidence、四製品unit／connection、旧実装・failure・consumer unknownを静的に束ねる。authority、意味等価、要求採否、L2/L11、実装、受入、Issue projection、consumer closureを生成しない。",
   "upstream": [
     {
       "path": "docs/governance/phase-capability-inventory.json",
@@ -105,33 +105,33 @@
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/generate.py",
-      "sha256": "6f0499ea9350d1a1e9c521e078ab0a644e2b54c77dd374c0c8f4df711b0646ce",
+      "sha256": "16ae38fd0eec4f923daa43ea67e870d67d740d38668e88b9b0965892b9554b43",
       "note": "PHCAP-08/09 static upstream revision"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/README.md",
-      "sha256": "4a7462d9564b6e479e79e36edbfe4d327f0d0429fd83062bab0855f26ded0f7a",
+      "sha256": "1bef99076fc52858f76dfb209cb99062f96fc9567920b6a0d570de58a584448d",
       "note": "PHCAP-08/09 static upstream revision"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/inventory.json",
-      "sha256": "0c7537e0f290c7b5a3fa055adcd0e404f336f7bdc7a8a76b237ff77c76b6b5b3",
+      "sha256": "648f94023d76ba0eec70f1d7056d528f0d148e33c124db4185b533d9c2ebc71f",
       "note": "PHCAP-08/09 static upstream revision"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/validate.py",
-      "sha256": "acba93e6dff8bff27f54a90bf5b626dfc8f0a575a016973f30ff2f739fc617a8",
+      "sha256": "b51f967d48f5550d8b0746f0aeff33e83c71914d166208b32cb3a038273d41c6",
       "note": "PHCAP-08/09 static upstream revision"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/selfcheck.py",
-      "sha256": "c0c2edb135def773b36adb1f9dc5d9dd818cb9484b4935497b1bd0c6a4ae2b1e",
+      "sha256": "47b8de44adf8e87bd169e0034b9d68f11b457fe215b67bc55b96e38326a09b72",
       "note": "PHCAP-08/09 static upstream revision"
     }
   ],
   "role": "PHCAP-08/09のWBS名監査、ticket path catalog、旧asset source/phase/product/failure/consumer候補、四製品境界をread-only research premiseとして保持する",
   "obligations": [
-    "PHCAP-08台帳source_path／archive filenameのWBS同名一致0と本文語彙44を同一視せず、近似候補をsemantic equivalence unresolvedで保持する",
+    "PHCAP-08台帳source_path／archive filenameのWBS同名一致0と全archive 4,020件の本文語彙45を同一視せず、近似候補をsemantic equivalence unresolvedで保持する",
     "PHCAP-09 ticket path 9件をsource hash／line count／ledger／phase stateで固定し、代表3件だけexact source spanを展開する",
     "旧代表7assetのdisposition unresolved、implementation unknown、consumer empty、decision match zero、execution falseを再計算する",
     "四製品のunitとHARNESS→OS、OS→Web、Web-OS→OSの候補接続を分離し、Web/Web-OSのdirect evidenceを捏造しない",
@@ -192,8 +192,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "validate.py（source／phase／decision digest、7 asset span、WBS 0／44、ticket 9、四製品unknown）",
-      "selfcheck.py（authority／WBS identity／ticket catalog／実装／consumer／execution 23陰性例）",
+      "validate.py（source／phase／decision digest、7 asset span、archive 4,020件／dot-component 248件、WBS 0／45、ticket 9、interpretation exact／digest、四製品unknown）",
+      "selfcheck.py（authority／WBS identity／ticket catalog／実装／consumer／execution／interpretation error code 40陰性例）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],

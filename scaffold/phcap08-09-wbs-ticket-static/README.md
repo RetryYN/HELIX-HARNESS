@@ -4,7 +4,7 @@
 
 ## 調査結果
 
-PHCAP-08 の既存phase inventoryは、旧世代に同名WBS artifactがなく、PLAN、current-location、roadmap、state DBに等価能力候補があると記録している。この候補で台帳 `source_path` の `wbs`／`work-breakdown` 一致は0件、archiveのファイル名一致は0件だった。archive本文で `(?i)\bWBS\b|work[- ]breakdown` に一致したファイルは、隠しdirectoryを除く固定検索範囲で44件だった。本文語彙の一致はWBS資産identityを証明しないため、同名WBS資産数は0のまま、`PLAN-L6-01-function-spec.md`を未解決の近似候補として別記録にした。
+PHCAP-08 の既存phase inventoryは、旧世代に同名WBS artifactがなく、PLAN、current-location、roadmap、state DBに等価能力候補があると記録している。この候補で台帳 `source_path` の `wbs`／`work-breakdown` 一致は0件、archiveのファイル名一致は0件だった。archive全4,020ファイル（dot-componentを含む）を `(?i)\bWBS\b|work[- ]breakdown` で検索した結果、本文一致は45件だった（隠し component は248件、`.helix/audit/A-133-upstream-vmodel-coverage-audit.md` を含む）。本文語彙の一致はWBS資産identityを証明しないため、同名WBS資産数は0のまま、`PLAN-L6-01-function-spec.md`を未解決の近似候補として別記録にした。
 phase inventoryの到達層はPHCAP-08が`L3`／`L7 implementation`（最大L7、explicit WBS assetなし）、PHCAP-09がcandidate requirements／acceptance／`L3 plan`（最大L3）である。このphase-level記述と旧sourceの存在は、現行implementation・縮退理由・実行済み受入を示さない。
 
 PHCAP-09 は、旧asset dispositionのsource pathに `ticket` を含む9件を機械的に確認した。`execution-ticket-requirements.md`、`execution-ticket-acceptance.md`、`PLAN-L3-88-execution-ticket-bench-authority.md`の3件は23個のexact source spanで本文を展開し、残る6件はsource hash、line count、ledger state、phase classificationだけをticket catalogへ保持した。全9件で台帳の `disposition: unresolved`、`implementation_status: unknown`、`consumer_refs: []`、phase側の `legacy_execution_performed: false` を再確認した。
@@ -22,10 +22,10 @@ HARNESS→OSのWBS normative shape→management ledger、HARNESS→OSのticket c
 
 ## 構成と検証
 
-- `inventory.json`: 7代表asset、23 exact span、ticket path 9件、四製品unit・connection、WBS名監査、phase join、failure／consumer unknownを保持する。
+- `inventory.json`: 7代表asset、23 exact span、ticket path 9件、四製品unit・connection、archive全4,020件／本文WBS語彙45件のWBS名監査、phase join、failure／consumer unknownを保持する。
 - `generate.py`: archiveを実行せず、固定source／台帳のbytesとspanからinventoryを再生成する。
-- `validate.py`: source／phase／decision ledger digest、archive bytes／span、WBS同名0／本文44、ticket path 9、四製品境界、unknown状態をfail-closeで検査する。inventory全階層のkeyset、unresolved本文、source spanのmeaning、Bindingのnegative case本文も独立pinで固定する。
-- `selfcheck.py`: authority／equivalence／WBS identity／ticket catalog／実装／consumer／current execution、未知key、unresolved本文、span meaning、Binding negative caseの改竄を拒否する36陰性例を検査する。
+- `validate.py`: source／phase／decision ledger digest、archive bytes／span、全4,020 archive file（dot-component 248件）、WBS同名0／本文45、ticket path 9、四製品境界、unknown状態をfail-closeで検査する。二つの監査interpretationはexact文字列とSHA-256を検査し、inventory全階層のkeyset、unresolved本文、source spanのmeaning、Bindingのnegative case本文も独立pinで固定する。
+- `selfcheck.py`: authority／equivalence／WBS identity／ticket catalog／実装／consumer／current execution、未知key、unresolved本文、二つのinterpretation（error code付き）、span meaning、Binding negative caseの改竄を拒否する40陰性例を検査する。
 - `scaffold/bindings/SCF-B-0041.json`: この候補の仮設束縛。正式artifactが成立した場合の差し替え先は未確定である。
 
 検証は次で行う。
