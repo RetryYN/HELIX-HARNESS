@@ -17,7 +17,7 @@ Wave11はHELIX-OSの未review unit 3件、9 edgeを静的照合した。要求as
 | unit | atoms | contract confirmed | design partial | design rejected | design pending kind | implementation confirmed | implementation unresolved | implementation rejected | implementation uncovered | no evidence |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | IRUNIT-HIL-NFR-04-HELIX-OS | 4 | 4 | 1 | 0 | 0 | 0 | 2 | 0 | 2 | 1 |
-| IRUNIT-HIL-NFR-17-HELIX-OS | 6 | 6 | 4 | 0 | 0 | 0 | 0 | 1 | 6 | 2 |
+| IRUNIT-HIL-NFR-17-HELIX-OS | 7 | 7 | 4 | 0 | 0 | 0 | 0 | 1 | 7 | 3 |
 | IRUNIT-HIL-NFR-18-HELIX-OS | 3 | 3 | 0 | 1 | 0 | 0 | 0 | 1 | 3 | 3 |
 
 

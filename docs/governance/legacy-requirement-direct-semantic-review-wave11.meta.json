@@ -98,7 +98,7 @@
   },
   "legacy_execution_performed": false,
   "new_build_allowed": false,
-  "output_sha256": "sha256:209657f9cac1db1f27598b75aaa0b6175d8708d8dbbb3f0d34bf0e2c95a3844b",
+  "output_sha256": "sha256:66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0",
   "parent_revision": "4ece4c6b5bf3b2a0767eea65c376f46a1ce46f60",
   "prior_review_batches": [
     {
@@ -356,6 +356,16 @@
       "atom_coverage_receipt": {
         "atom_inventory": [
           {
+            "atom_id": "NFR17-OS-A00",
+            "kind": "subject_scope",
+            "text": "product data",
+            "source_fragments": [
+              "product dataは"
+            ],
+            "shared_with_units": [],
+            "boundary_review_state": "product_boundary_pending_human_decision"
+          },
+          {
             "atom_id": "NFR17-OS-A01",
             "kind": "classification",
             "text": "classification",
@@ -417,10 +427,10 @@
           }
         ],
         "connective_fragments": [
-          "product dataは",
           "を持ち"
         ],
         "contract_confirmed_atom_ids": [
+          "NFR17-OS-A00",
           "NFR17-OS-A01",
           "NFR17-OS-A02",
           "NFR17-OS-A03",
@@ -435,10 +445,15 @@
           "NFR17-OS-A05"
         ],
         "design_partial_pending_kind_atom_ids": [],
+        "design_rejected_asset_ids": [],
         "implementation_confirmed_atom_ids": [],
         "implementation_unresolved_atom_ids": [],
         "implementation_rejected_atom_ids": [],
+        "implementation_rejected_asset_ids": [
+          "LEGACY-ASSET-BFCA76AA319FBC61AF05"
+        ],
         "implementation_uncovered_atom_ids": [
+          "NFR17-OS-A00",
           "NFR17-OS-A01",
           "NFR17-OS-A02",
           "NFR17-OS-A03",
@@ -447,11 +462,13 @@
           "NFR17-OS-A06"
         ],
         "no_evidence_atom_ids": [
+          "NFR17-OS-A00",
           "NFR17-OS-A02",
           "NFR17-OS-A06"
         ],
         "shared_atom_ids": [],
         "product_exclusive_atom_ids": [
+          "NFR17-OS-A00",
           "NFR17-OS-A01",
           "NFR17-OS-A02",
           "NFR17-OS-A03",
@@ -459,29 +476,25 @@
           "NFR17-OS-A05",
           "NFR17-OS-A06"
         ],
-        "atom_inventory_sha256": "sha256:62000505d41885a69030dcc993c236ec499044cc63de090151290e2e7f9e2d04",
-        "connective_fragments_sha256": "sha256:23e901f6ef565264b91bb4f3f6b425114e30d047050b641de70097689a7e6e25",
-        "contract_confirmed_atom_ids_sha256": "sha256:586ecce568b2d4bc2a2e561aa2ae3634d195be4fac7b2032d7b28a593911b1e2",
+        "atom_inventory_sha256": "sha256:2c4f1867fa18a233ecc0cadd3040e70de2a1d986133aeeedbd586e4a1d41189a",
+        "connective_fragments_sha256": "sha256:d5086cf6587695df40d888ccd687641b72d5b6aef4eed25af8f1fea3f2ee3f22",
+        "contract_confirmed_atom_ids_sha256": "sha256:400d0c66f6885e73b7a7fa5454222855f628d4f163e862618366ccdad298e077",
         "design_partial_atom_ids_sha256": "sha256:89eb8e1499374076b7ea1dca754f36137731573fc5f3eafb33dcc4fbb6aa52ec",
         "design_partial_pending_kind_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "design_rejected_asset_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "implementation_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "implementation_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "implementation_rejected_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "implementation_uncovered_atom_ids_sha256": "sha256:586ecce568b2d4bc2a2e561aa2ae3634d195be4fac7b2032d7b28a593911b1e2",
-        "no_evidence_atom_ids_sha256": "sha256:9ee88a59e7ab22efd89e7d0ed2f50bf2972f75b2ad1a03ce38fb3f0c95cb055d",
+        "implementation_rejected_asset_ids_sha256": "sha256:4f0ef319448fdae258aec1846773f7e405fb95d12810046ec78de60ded93e969",
+        "implementation_uncovered_atom_ids_sha256": "sha256:400d0c66f6885e73b7a7fa5454222855f628d4f163e862618366ccdad298e077",
+        "no_evidence_atom_ids_sha256": "sha256:cd222bbeb37908b41d84174bbdaded50acc041c903eb3058b23b31e92a008ed9",
         "shared_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "product_exclusive_atom_ids_sha256": "sha256:586ecce568b2d4bc2a2e561aa2ae3634d195be4fac7b2032d7b28a593911b1e2",
+        "product_exclusive_atom_ids_sha256": "sha256:400d0c66f6885e73b7a7fa5454222855f628d4f163e862618366ccdad298e077",
         "contract_semantic_edge_coverage_complete": true,
         "semantic_edge_coverage_complete": false,
         "no_shared_source_span": true,
         "product_boundary_decision_complete": false,
-        "product_exclusive_contract_coverage_complete": true,
-        "design_rejected_asset_ids": [],
-        "design_rejected_asset_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "implementation_rejected_asset_ids": [
-          "LEGACY-ASSET-BFCA76AA319FBC61AF05"
-        ],
-        "implementation_rejected_asset_ids_sha256": "sha256:4f0ef319448fdae258aec1846773f7e405fb95d12810046ec78de60ded93e969"
+        "product_exclusive_contract_coverage_complete": true
       },
       "phase_authority_status": "candidate_unchanged",
       "phase_capability_assessments": [
