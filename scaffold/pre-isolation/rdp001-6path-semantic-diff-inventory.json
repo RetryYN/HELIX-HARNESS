@@ -1,0 +1,390 @@
+{
+  "schema": "helix-scaffold-preisolation-semantic-diff.v1",
+  "candidate_id": "RDP-001-PREISO-6PATH-SEMANTIC-DIFF",
+  "status": "candidate_pending_semantic_equivalence_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "comparison": {
+    "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "method": "read-only Git blob bytes; exact changed line spans and UTF-8 SHA-256",
+    "old_runtime_test_ci_execution": false
+  },
+  "classification_counts": {
+    "requirement": 1,
+    "constraint": 2,
+    "provenance": 4,
+    "generated_metadata": 2,
+    "unresolved": 0
+  },
+  "source_items": [
+    {
+      "source_revision_item_id": "PREISO-REV-000001",
+      "source_path": "config/workflow-classification-catalog.v1.json",
+      "source_category": "other_legacy_asset",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "fragment_ids": ["RDP001-DIFF-001"]
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000002",
+      "source_path": "config/workflow-execution-policy.v1.json",
+      "source_category": "other_legacy_asset",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "fragment_ids": ["RDP001-DIFF-002"]
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000015",
+      "source_path": "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
+      "source_category": "requirement_or_prototype_source",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "fragment_ids": ["RDP001-DIFF-003"]
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000016",
+      "source_path": "docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json",
+      "source_category": "requirement_or_prototype_source",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "fragment_ids": ["RDP001-DIFF-004", "RDP001-DIFF-005"]
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000026",
+      "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "source_category": "core_upstream_source",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "fragment_ids": ["RDP001-DIFF-006", "RDP001-DIFF-007", "RDP001-DIFF-008"]
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000060",
+      "source_path": "docs/plans/PLAN-L3-82-authority-vocabulary-separation.md",
+      "source_category": "legacy_plan_source",
+      "product_owner_candidate": "unresolved",
+      "fragment_ids": ["RDP001-DIFF-009"]
+    }
+  ],
+  "fragments": [
+    {
+      "fragment_id": "RDP001-DIFF-001",
+      "source_revision_item_id": "PREISO-REV-000001",
+      "classification": "generated_metadata",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "summary": "generated classification catalogのrequirements／registry source digestをpre-isolation sourceへ更新",
+      "baseline": {
+        "start_line": 9,
+        "end_line": 10,
+        "sha256": "sha256:117daafed8df6ce85de5781f41a27ce76ed35331d845c1afb378d20c2db934b3",
+        "exact_text": "    \"requirements_source_digest\": \"sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1\",\n    \"registry_source_digest\": \"sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\"\n"
+      },
+      "pre_isolation": {
+        "start_line": 9,
+        "end_line": 10,
+        "sha256": "sha256:6d71f4666e8b8410d805579c38848832f5d401d52d3969d0a0c808bdb3c381ff",
+        "exact_text": "    \"requirements_source_digest\": \"sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406\",\n    \"registry_source_digest\": \"sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\"\n"
+      },
+      "retained_negative_ids": ["NEG-CLASS-CATALOG-FAIL-CLOSE"],
+      "unresolved_meaning": [
+        "digestの更新が意味同値の証明になるかは未判断",
+        "generated catalogのcurrent authority化・consumer適用はこのfragmentから生成しない"
+      ]
+    },
+    {
+      "fragment_id": "RDP001-DIFF-002",
+      "source_revision_item_id": "PREISO-REV-000002",
+      "classification": "generated_metadata",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "summary": "generated execution policy catalogのrequirements／classification／policy registry digestをpre-isolation sourceへ更新",
+      "baseline": {
+        "start_line": 9,
+        "end_line": 11,
+        "sha256": "sha256:165e8a95203211cb74876078a8956a01adb631c1f6b29087d2e2ee4e562073a6",
+        "exact_text": "    \"requirements_source_digest\": \"sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1\",\n    \"classification_registry_source_digest\": \"sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\",\n    \"policy_registry_source_digest\": \"sha256:eec92f923aed0a5c5b9a963929fd4109948b58108718552144ceb4632437e558\"\n"
+      },
+      "pre_isolation": {
+        "start_line": 9,
+        "end_line": 11,
+        "sha256": "sha256:23a72e7a45f0c6bf777d584e99396715719236b108114d82ba7f6c7e94295c63",
+        "exact_text": "    \"requirements_source_digest\": \"sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406\",\n    \"classification_registry_source_digest\": \"sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\",\n    \"policy_registry_source_digest\": \"sha256:eeb30c1bb51f74798563b31b0802b301fb687d2e750c517061588969a7ff344f\"\n"
+      },
+      "retained_negative_ids": ["NEG-EXEC-CATALOG-FAIL-CLOSE"],
+      "unresolved_meaning": [
+        "3つのdigestの更新がpolicy意味の同値を証明するかは未判断",
+        "execution consumerの実行許可・approval状態はこのfragmentから生成しない"
+      ]
+    },
+    {
+      "fragment_id": "RDP001-DIFF-003",
+      "source_revision_item_id": "PREISO-REV-000015",
+      "classification": "provenance",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "summary": "classification registryのrequirements authority digestをpre-isolation requirementsへ更新",
+      "baseline": {
+        "start_line": 8,
+        "end_line": 8,
+        "sha256": "sha256:1a87c4c114588579e2efad6cc06f02e1abe48c6c9acbd424962102b373ba5f2d",
+        "exact_text": "    \"source_digest\": \"sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1\",\n"
+      },
+      "pre_isolation": {
+        "start_line": 8,
+        "end_line": 8,
+        "sha256": "sha256:dca573395a5b9060d56aca9a8f10519f1d04451009df796ab86c71406de86798",
+        "exact_text": "    \"source_digest\": \"sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406\",\n"
+      },
+      "retained_negative_ids": ["NEG-CLASS-REGISTRY-FAIL-CLOSE"],
+      "unresolved_meaning": [
+        "authority.sourceのdigest差替えがrequirements意味の同値を証明するかは未判断",
+        "registryのauthority昇格やL3 freezeは生成しない"
+      ]
+    },
+    {
+      "fragment_id": "RDP001-DIFF-004",
+      "source_revision_item_id": "PREISO-REV-000016",
+      "classification": "provenance",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "summary": "execution policy registryのrequirements authority digestをpre-isolation requirementsへ更新",
+      "baseline": {
+        "start_line": 8,
+        "end_line": 8,
+        "sha256": "sha256:1a87c4c114588579e2efad6cc06f02e1abe48c6c9acbd424962102b373ba5f2d",
+        "exact_text": "    \"source_digest\": \"sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1\",\n"
+      },
+      "pre_isolation": {
+        "start_line": 8,
+        "end_line": 8,
+        "sha256": "sha256:dca573395a5b9060d56aca9a8f10519f1d04451009df796ab86c71406de86798",
+        "exact_text": "    \"source_digest\": \"sha256:788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406\",\n"
+      },
+      "retained_negative_ids": ["NEG-EXEC-REGISTRY-FAIL-CLOSE"],
+      "unresolved_meaning": [
+        "authority.sourceのdigest差替えがrequirements意味の同値を証明するかは未判断",
+        "execution policyのruntime適用・approval許可は生成しない"
+      ]
+    },
+    {
+      "fragment_id": "RDP001-DIFF-005",
+      "source_revision_item_id": "PREISO-REV-000016",
+      "classification": "provenance",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "summary": "execution policy registryのclassification registry source digestをpre-isolation registryへ更新",
+      "baseline": {
+        "start_line": 15,
+        "end_line": 15,
+        "sha256": "sha256:5eec130582192ac059da92a4e12e8169b0da00eb67dd1d07c755d3f57e8eeb14",
+        "exact_text": "    \"source_digest\": \"sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\"\n"
+      },
+      "pre_isolation": {
+        "start_line": 15,
+        "end_line": 15,
+        "sha256": "sha256:cf2cda54a4ea0a0b07eb1feb2adbc44b54d94a85b6a894a86e1f5c3094c5f539",
+        "exact_text": "    \"source_digest\": \"sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\"\n"
+      },
+      "retained_negative_ids": ["NEG-EXEC-REGISTRY-FAIL-CLOSE"],
+      "unresolved_meaning": [
+        "classification registry digest差替えがpolicy意味の同値を証明するかは未判断",
+        "classification registryからexecution policyへのcurrent bindingは生成しない"
+      ]
+    },
+    {
+      "fragment_id": "RDP001-DIFF-006",
+      "source_revision_item_id": "PREISO-REV-000026",
+      "classification": "constraint",
+      "candidate_kind": "constraint",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "summary": "requirements documentのrevision statusに、既存承認記録と非完了範囲を明記",
+      "baseline": {
+        "start_line": 9,
+        "end_line": 9,
+        "sha256": "sha256:c67a7b0819cfa18447efd0a557b3c72656c1e437a930578fd4c4669d547cb584",
+        "exact_text": "- **Status**: document revision confirmed（要件定義 lifecycle は153/153 frozen。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31。安全capability broker候補はPO確認 2026-08-19により本版へ昇格）\n"
+      },
+      "pre_isolation": {
+        "start_line": 9,
+        "end_line": 9,
+        "sha256": "sha256:44704c7fa669690e13cdb76651d34804ec1e14fb0eaaad25c730cffba1efbe4b",
+        "exact_text": "- **Status**: document revision confirmed（既存revisionの承認記録。Infinity Loop由来の要件定義 lifecycle は153/153 frozenであり、HELIX全要求の網羅・実装・受入完了を示さない。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31。安全capability broker候補はPO確認 2026-08-19により本版へ昇格）\n"
+      },
+      "retained_negative_ids": ["NEG-HREQ-STATUS-NOCOMPLETION"],
+      "unresolved_meaning": [
+        "追加された非完了記述がsource authorityの状態を変更するかは未判断",
+        "153件の基準集合とHELIX全要求の範囲関係は別atom reviewが必要"
+      ]
+    },
+    {
+      "fragment_id": "RDP001-DIFF-007",
+      "source_revision_item_id": "PREISO-REV-000026",
+      "classification": "constraint",
+      "candidate_kind": "constraint",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "summary": "要求参照範囲、候補／Issue／DBの非authority境界、L2からL3への参照条件を追加",
+      "baseline": {
+        "start_line": 28,
+        "end_line": 27,
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "exact_text": ""
+      },
+      "pre_isolation": {
+        "start_line": 29,
+        "end_line": 43,
+        "sha256": "sha256:a6c862b61325f32d4efcf2fd40c43371d1e22837f1fdf38751cac4ab278211c3",
+        "exact_text": "### 要求の参照範囲と最新化\n\n利用者要求はL2、FR／NFR／ACの定義・凍結はL3であり、利用者受入はL11である。\n物理pathに残る旧`L1-requirements`等の名称から現行層を判定しない。\n[L2要求の参照入口](../design/helix/L2-requirements/README.md)で、既存要求・追補・候補の出典と採用状態を確認する。\nConcept v4の承認対象は上位入力として参照するが、候補本文の承認と正本化・runtime適用を同一視しない。\n[Concept v4由来のL2整理案](../design/helix/L2-requirements/concept-v4-derived-requirements.md)はdraftであり、\nその追加条件に既存revisionの承認を転用しない。\n\nGitHub Issue／PRは作業・実行証跡への参照先であり、要求の意味・採否・合意revisionの正本ではない。\nIssueの有無やclose状態から要求を追加・削除せず、要求本文、出典、対象revisionの判断記録を確認する。\nDBのtrace／状態projectionも、repo-owned要求文書と指定JSONの意味を上書きしない。\n\n### 層と対\n\n"
+      },
+      "retained_negative_ids": ["NEG-HREQ-L2-NO-AUTHORITY"],
+      "unresolved_meaning": [
+        "追加15行が正式requirementかconstraintかの採否は未決",
+        "物理path、Issue、DBをauthorityにしない境界は保持候補であり、実装・consumer適用を生成しない"
+      ]
+    },
+    {
+      "fragment_id": "RDP001-DIFF-008",
+      "source_revision_item_id": "PREISO-REV-000026",
+      "classification": "requirement",
+      "candidate_kind": "requirement",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "summary": "requirements機械正本をJSON manifest／shardへ置き、旧Markdownをread-only view／compatibility inputへ分離する契約を追加",
+      "baseline": {
+        "start_line": 397,
+        "end_line": 399,
+        "sha256": "sha256:f84b6af8ed3d48eed71b4b9091afb349971717a62e966d8f67f0fe3a0d0243d6",
+        "exact_text": "現行153 requirement、24 system contract、72 HAC、24 HATはshadow JSON migrationとsemantic parityが完了するまで\nMarkdownをcurrent authorityとして維持する。cutoverはJSON canonical、generated Markdown、DB projection、\nlint／doctor／routing／progression readerを一つのtransactionで切り替え、dual authorityを作らない。\n"
+      },
+      "pre_isolation": {
+        "start_line": 412,
+        "end_line": 418,
+        "sha256": "sha256:c98c06883b84420419866f58006d9be85ba6d0fd5783b79ee6bc77755d71d7a1",
+        "exact_text": "現行の機械正本は`config/requirement-ir-authority.json`が指定する`requirements-ir/manifest.json`とそのshardである。\n同設定の`semantic_read: canonical_json_only`に従い、列挙された旧Markdownはmigration／compatibilityのread-only入力、\ngenerated Markdownはread-only viewとする。移行前の「Markdownをcurrent authorityとして維持する」という条件は\n現在の読み取り方針ではない。書込みはJSON transactionへ限定し、dual authorityを作らない。\n153 requirement、24 system contract、72 HAC、24 HATはInfinity Loop由来の基準集合であり、manifestはこれに\nrefinement契約を別shardとして加える。これらの件数だけで全HELIXのL2要求・追補・候補を網羅したと判定しない。\n後続の正本変更でもJSON、generated view、DB projection、consumerの整合を検証し、凍結状態と実装・受入状態を分離する。\n"
+      },
+      "retained_negative_ids": ["NEG-HREQ-JSON-NODUAL"],
+      "unresolved_meaning": [
+        "MarkdownからJSONへのauthority cutoverの意味差分と適用範囲は未review",
+        "JSON canonical sourceのconsumer、DB projection、implementation／acceptance状態はこのfragmentから確定しない"
+      ]
+    },
+    {
+      "fragment_id": "RDP001-DIFF-009",
+      "source_revision_item_id": "PREISO-REV-000060",
+      "classification": "provenance",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "unresolved",
+      "summary": "PLAN-L3-82 workflow identityのregistry source digestをpre-isolation classification registryへ更新",
+      "baseline": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:75a51ddef1e5636fc140f1906513563dc19e27956743ad59907d405e8347a24e",
+        "exact_text": "  registry_source_digest: sha256:5cc5ea83dbfa2c1f1e4d7559d4be839292e38be40222d2925f34ae45c0766a89\n"
+      },
+      "pre_isolation": {
+        "start_line": 22,
+        "end_line": 22,
+        "sha256": "sha256:faf7f2a92f563ca3e5b9b77df7d07242177ccf734c8b3e75c3fbf16db6842580",
+        "exact_text": "  registry_source_digest: sha256:1ce90d804f6dd44bcd13a72c1dff6bde6a4b6137bd46650ef2a70367bee8501c\n"
+      },
+      "retained_negative_ids": ["NEG-PLAN-NO-RUNTIME-AUTO"],
+      "unresolved_meaning": [
+        "PLANのauthority語彙責務をHARNESS／OSのどちらへowner化するかは未決",
+        "registry digestの更新だけからPLAN承認、canonical promotion、runtime適用を生成しない"
+      ]
+    }
+  ],
+  "retained_negatives": [
+    {
+      "negative_id": "NEG-CLASS-CATALOG-FAIL-CLOSE",
+      "source_revision_item_id": "PREISO-REV-000001",
+      "source_path": "config/workflow-classification-catalog.v1.json",
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "start_line": 14,
+      "end_line": 16,
+      "sha256": "sha256:caeeb0957a47f8a030f6103db3bedf6d5630b6143dd1bcba8c438702f9a16317",
+      "exact_text": "    \"common_route_identity\": false,\n    \"legacy_identity_emission\": false,\n    \"ambiguity_disposition\": \"fail_close\"\n",
+      "meaning": "common route identityへの縮退、legacy identity出力、曖昧入力の通過を保持しない"
+    },
+    {
+      "negative_id": "NEG-EXEC-CATALOG-FAIL-CLOSE",
+      "source_revision_item_id": "PREISO-REV-000002",
+      "source_path": "config/workflow-execution-policy.v1.json",
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "start_line": 16,
+      "end_line": 18,
+      "sha256": "sha256:07393c9a0c1059046ca7f37af88fc5ca95b6aa3d82e50d61f2e02c33079aaaa9",
+      "exact_text": "    \"raw_command_emission\": false,\n    \"legacy_identity_emission\": false,\n    \"unsupported_disposition\": \"fail_close\"\n",
+      "meaning": "raw command・legacy identityの出力とunsupportedの近似解決を保持しない"
+    },
+    {
+      "negative_id": "NEG-CLASS-REGISTRY-FAIL-CLOSE",
+      "source_revision_item_id": "PREISO-REV-000015",
+      "source_path": "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "start_line": 13,
+      "end_line": 15,
+      "sha256": "sha256:3e0a67e2798ea3dbfd20d8ce18afb05d1292495977c7872fb78c3c6b5328697d",
+      "exact_text": "    \"legacy_catalog_role\": \"compatibility_inventory\",\n    \"ambiguity_disposition\": \"fail_close\",\n    \"emit_legacy_identity\": false\n",
+      "meaning": "旧catalogをcurrent authorityへ昇格せず、曖昧入力とlegacy identityを拒否する"
+    },
+    {
+      "negative_id": "NEG-EXEC-REGISTRY-FAIL-CLOSE",
+      "source_revision_item_id": "PREISO-REV-000016",
+      "source_path": "docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json",
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "start_line": 18,
+      "end_line": 20,
+      "sha256": "sha256:2a740118225acf224027453eaf6d7f14f94c8cf6f3255fcbe13517e57d09193d",
+      "exact_text": "    \"state\": \"partial_fail_close\",\n    \"unsupported_identity_disposition\": \"fail_close\",\n    \"legacy_identity_emission\": false\n",
+      "meaning": "未対応identityを近似policyへ送らず、legacy identityを出力しない"
+    },
+    {
+      "negative_id": "NEG-HREQ-STATUS-NOCOMPLETION",
+      "source_revision_item_id": "PREISO-REV-000026",
+      "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "start_line": 9,
+      "end_line": 9,
+      "sha256": "sha256:44704c7fa669690e13cdb76651d34804ec1e14fb0eaaad25c730cffba1efbe4b",
+      "exact_text": "- **Status**: document revision confirmed（既存revisionの承認記録。Infinity Loop由来の要件定義 lifecycle は153/153 frozenであり、HELIX全要求の網羅・実装・受入完了を示さない。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31。安全capability broker候補はPO確認 2026-08-19により本版へ昇格）\n",
+      "meaning": "既存revisionの承認を全HELIX要求の網羅・実装・受入完了へ拡張しない"
+    },
+    {
+      "negative_id": "NEG-HREQ-L2-NO-AUTHORITY",
+      "source_revision_item_id": "PREISO-REV-000026",
+      "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "start_line": 34,
+      "end_line": 40,
+      "sha256": "sha256:9ccf71c34cb1782bcbd051904f45203d7eda00f0523370825e37678310b7dff3",
+      "exact_text": "Concept v4の承認対象は上位入力として参照するが、候補本文の承認と正本化・runtime適用を同一視しない。\n[Concept v4由来のL2整理案](../design/helix/L2-requirements/concept-v4-derived-requirements.md)はdraftであり、\nその追加条件に既存revisionの承認を転用しない。\n\nGitHub Issue／PRは作業・実行証跡への参照先であり、要求の意味・採否・合意revisionの正本ではない。\nIssueの有無やclose状態から要求を追加・削除せず、要求本文、出典、対象revisionの判断記録を確認する。\nDBのtrace／状態projectionも、repo-owned要求文書と指定JSONの意味を上書きしない。\n",
+      "meaning": "candidate、Issue、DB projectionから承認・要求意味・採否を生成しない"
+    },
+    {
+      "negative_id": "NEG-HREQ-JSON-NODUAL",
+      "source_revision_item_id": "PREISO-REV-000026",
+      "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "start_line": 412,
+      "end_line": 418,
+      "sha256": "sha256:c98c06883b84420419866f58006d9be85ba6d0fd5783b79ee6bc77755d71d7a1",
+      "exact_text": "現行の機械正本は`config/requirement-ir-authority.json`が指定する`requirements-ir/manifest.json`とそのshardである。\n同設定の`semantic_read: canonical_json_only`に従い、列挙された旧Markdownはmigration／compatibilityのread-only入力、\ngenerated Markdownはread-only viewとする。移行前の「Markdownをcurrent authorityとして維持する」という条件は\n現在の読み取り方針ではない。書込みはJSON transactionへ限定し、dual authorityを作らない。\n153 requirement、24 system contract、72 HAC、24 HATはInfinity Loop由来の基準集合であり、manifestはこれに\nrefinement契約を別shardとして加える。これらの件数だけで全HELIXのL2要求・追補・候補を網羅したと判定しない。\n後続の正本変更でもJSON、generated view、DB projection、consumerの整合を検証し、凍結状態と実装・受入状態を分離する。\n",
+      "meaning": "旧Markdownをcurrent authorityやwrite sourceへ戻さず、dual authorityと完了誤認を拒否する"
+    },
+    {
+      "negative_id": "NEG-PLAN-NO-RUNTIME-AUTO",
+      "source_revision_item_id": "PREISO-REV-000060",
+      "source_path": "docs/plans/PLAN-L3-82-authority-vocabulary-separation.md",
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "start_line": 45,
+      "end_line": 47,
+      "sha256": "sha256:7d7e278701f504c10ee0d9775eab81e8d5d90c2b9d4f2a8e262eae5e263283a2",
+      "exact_text": "contract_failures: \"相談・叱責・質問・directiveのauthority昇格、directiveをrationaleにした思考放棄、全件人間判断への丸投げ、generic decision再出力、superseded memory再浮上を拒否する\"\ntdd_red_required: false\ntdd_red_waiver_reason: \"本sliceは未承認requirements candidateのみを起草し、runtime／rule enforcementは承認後のL4以降へ分離する。\"\n",
+      "meaning": "PLAN候補からauthority昇格・runtime／rule enforcementを自動生成しない"
+    }
+  ]
+}

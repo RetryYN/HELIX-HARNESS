@@ -1,0 +1,161 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0004",
+  "kind": "scaffold",
+  "title": "RDP-001 PREISOLATION 6経路 revision coherence 候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS 上流整理（revision provenanceの保持と意味等価review準備）",
+  "state": "active",
+  "reason": "archive隔離前に変更された6 source pathについて、監査基準revisionと隔離直前revisionの両方を保持し、workflow分類／execution policyのregistryとgenerated catalogの参照digestを同じreview単位で確認する必要がある。sourceの意味同値、要求採否、current authority、実装、受入は未決であり、正式なL3実装を開始しないためscaffoldとして登録する。",
+  "upstream": [
+    {
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "note": "PREISO-REV-000001/000002/000015/000016/000026/000060の基準・隔離直前revision台帳"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "HARNESS／HELIX-OS等の責務境界候補"
+    },
+    {
+      "path": "docs/helix-harness/README.md",
+      "sha256": "e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117",
+      "note": "HARNESSの現行入口と状態"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "HARNESS L1候補の製品境界"
+    },
+    {
+      "path": "scaffold/pre-isolation/README.md",
+      "sha256": "6e8cb18b7a8a83708f2faba5114ad0d66c9438755f4e3b9598b5ad7258cc3e8c",
+      "note": "候補束のscopeと停止条件"
+    },
+    {
+      "path": "scaffold/pre-isolation/rdp001-revision-coherence-6path.json",
+      "sha256": "2923d4b7734b676419b8b1f710961055a7d2998a7493d6b2a556ea7ce5eba825",
+      "note": "6経路のrevision／provenance候補manifest"
+    },
+    {
+      "path": "scaffold/pre-isolation/validate.py",
+      "sha256": "d580a03e7254ae13c2ac2dcab03d6eaba64ff229e9e0e78901a733ce62822dcc",
+      "note": "read-only静的coherence確認"
+    },
+    {
+      "path": "scaffold/pre-isolation/selfcheck.py",
+      "sha256": "009c7c77e672191f27a670278eaff491bf72d64ae69bbb538c4f6daaa5df1f81",
+      "note": "provenance driftとsnapshot path driftの否定例"
+    },
+    {
+      "path": "scaffold/pre-isolation/rdp001-6path-semantic-diff-inventory.json",
+      "sha256": "dc2c5295afbe5ec4d203fa307304dcb5574b0dd9e848f76d51ed850d209f020b",
+      "note": "6 sourceの9 changed fragment分類、exact span、owner候補、8 retained negative"
+    },
+    {
+      "path": "scaffold/pre-isolation/validate-semantic-diff.py",
+      "sha256": "9bc3455010ba06cfb2c35426ff918ddcec9539e52b3dd781e015bbc49ada9ece",
+      "note": "semantic diffのGit blob span／SHA-256／分類数／negative静的確認"
+    },
+    {
+      "path": "scaffold/pre-isolation/selfcheck-semantic-diff.py",
+      "sha256": "554dafc8b3ebdd14d26ee736868bc1fd63197a2b1680bde7c9e34ad8c0afa657",
+      "note": "fragment digest、分類集計、retained negative spanの否定例"
+    }
+  ],
+  "role": "6 source pathのbaseline／pre-isolation provenance、registry／catalog参照関係、HARNESS製品境界をreview可能な仮束へ固定する",
+  "obligations": [
+    "6件の台帳IDとsource pathを重複なく保持する",
+    "各pathのbaseline／pre-isolation commit、blob OID、file SHA-256を台帳と一致させる",
+    "revision_relation、両revisionのpending state、meaning_change_applied=false、successor空、human decision nullを維持する",
+    "分類registry／execution policy registry／2つのcatalogのrequirements・registry digest provenanceを明示する",
+    "製品境界候補をHELIX-HARNESSへ固定し、authority_effect=noneを維持する",
+    "9 changed fragmentの候補分類、exact span／digest、未解決意味、owner候補、8 retained negativeを保持する",
+    "意味同値、要求採否、successor、current authority、L3 freeze、実装、受入を生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 source revision review担当",
+      "L2D-S1-01 authority vocabularyの未評価holding整理担当",
+      "Scaffold Bindingのstale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "既知commit／pathに限定したread-only Git object database",
+      "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "HARNESS製品境界の現行候補文書"
+    ],
+    "boundary": "manifest、validator、selfcheckはscaffold/配下。validatorはholding台帳、製品境界source、既知commitのblob bytesを読み取り専用で確認し、archive内runtime・test・CI・hookを実行しない。selfcheckは一時directoryだけへmanifest copyを書き、docs、設定、DB、Issue、PR、CI、authority registerへ書き込まない"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/pre-isolation/validate.py",
+      "python3 scaffold/pre-isolation/selfcheck.py",
+      "python3 scaffold/pre-isolation/validate-semantic-diff.py",
+      "python3 scaffold/pre-isolation/selfcheck-semantic-diff.py",
+      "python3 scaffold/tools/scfctl.py validate|list|stale|residuals"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime・test・CI・hookの実行",
+      "旧workflow／旧CLI／旧runtimeをoracleまたはfallbackにすること",
+      "scaffold/外への書き込み",
+      "要求採否・人間承認・successor・L3 freeze・実装・受入の生成",
+      "GitHub、Issue、PR、DB、CI、deploymentへの外部作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/pre-isolation/README.md",
+    "scaffold/pre-isolation/rdp001-revision-coherence-6path.json",
+    "scaffold/pre-isolation/validate.py",
+    "scaffold/pre-isolation/selfcheck.py",
+    "scaffold/pre-isolation/rdp001-6path-semantic-diff-inventory.json",
+    "scaffold/pre-isolation/validate-semantic-diff.py",
+    "scaffold/pre-isolation/selfcheck-semantic-diff.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "scaffold/pre-isolation/validate.py（holding field、既知Git blob bytes、revision、digest、consumer field、provenance、product boundary）",
+      "scaffold/pre-isolation/selfcheck.py（consumer digest declaration drift、archive snapshot path drift）",
+      "scaffold/pre-isolation/validate-semantic-diff.py（6 source、9 fragment、exact span／SHA-256、分類数、8 negative）",
+      "scaffold/pre-isolation/selfcheck-semantic-diff.py（fragment digest、分類集計、negative span drift）",
+      "scaffold/tools/scfctl.py stale（上流revision変化の検出）",
+      "git diff --check（候補文書の静的整形）"
+    ],
+    "negative_cases": [
+      "6経路のIDまたはpathを欠落・重複させる",
+      "baseline／pre-isolation blob OIDまたはSHA-256を変更する",
+      "revision_relationを意味同値済みへ変更する",
+      "authority_effectをnone以外へ変更する",
+      "successorまたはhuman decisionを候補から生成する",
+      "registry／catalogのprovenance edgeを欠落・追加する",
+      "consumer JSONの宣言path／digest fieldを欠落または別値へ変更する",
+      "baseline／pre-isolation／archiveの既知blob bytesまたはblob OIDを差し替える",
+      "semantic diffのexact span／text／SHA-256を変更する",
+      "semantic diffの分類数または9 fragment／8 negative集合を変更する",
+      "retained negativeのsource path／commit／span／digestを変更する",
+      "HELIX-HARNESS以外のproduct boundaryを設定する",
+      "archive runtime／test／CIを検証経路へ追加する"
+    ]
+  },
+  "replacement": {
+    "role_target": "対象revision付きsource coherenceと要求再配置を扱う正式なHELIX-OS上流管理契約（L2／L3／L10から導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}
