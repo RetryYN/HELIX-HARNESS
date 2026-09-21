@@ -109,7 +109,7 @@
   "consumer_closure_status": "pending",
   "cumulative_reviewed_edge_count": 306,
   "cumulative_reviewed_unit_count": 103,
-  "current_tree_revision": "f07aaa41ecc0c9098c6421049b0f4df5f0b8da6a",
+  "current_tree_revision": "71e42d1da744462bb870686e266a29d986256ce6",
   "inputs": {
     "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
     "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
@@ -156,12 +156,12 @@
     "docs/governance/legacy-requirement-direct-semantic-review-wave27.meta.json": "sha256:d799be28f38e247371291175d61ced53b0daac55a1937b110125f9fa911dc42a",
     "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl": "sha256:1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40",
     "docs/governance/legacy-requirement-direct-semantic-review-wave28.meta.json": "sha256:6425831671ea71fba6e7e5aa3fad509854cbd64a2e783d88a84094c33b8a2534",
-    "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl": "sha256:b027fe995a5c5e766b5ca4396ddd14e923ecc40f8eed6213d39b5fe0f251b51e",
-    "docs/governance/legacy-requirement-direct-semantic-review-wave29.meta.json": "sha256:d93cf58958126ea0dec7f807531ba192b967209dab0432f7d4705e0639ade333",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave29.meta.json": "sha256:b5e00037db31243508be512cb448e149a5a19c19edccb25fe60307424d03f682",
     "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
     "docs/governance/legacy-requirement-direct-semantic-review-wave3.meta.json": "sha256:3d40977879de7be93eaa6b35b651c6af9a7fb6132a74621300f2429eba931a14",
-    "docs/governance/legacy-requirement-direct-semantic-review-wave30.jsonl": "sha256:0b51374e944c672966dd8ca7da1c94a0edf02e4bf21a6befe81ec15520314bf8",
-    "docs/governance/legacy-requirement-direct-semantic-review-wave30.meta.json": "sha256:67af0b54d0e80f0638fa878dfa986a74231b94936c827132d5c3eae1c2d97009",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave30.jsonl": "sha256:eeb0be0ed4f280c799bfe3a17176d440a941d34d3a227e588f5732480788c8d0",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave30.meta.json": "sha256:cf521284cfdd755fe43035e85afed9e70d6ca35293515633aa07357f983bd9e5",
     "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
     "docs/governance/legacy-requirement-direct-semantic-review-wave4.meta.json": "sha256:d59c92a3f0e770fa24d8ef2c781798dab58a3e9bb3085640305aefa000da5c23",
     "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
@@ -179,14 +179,14 @@
   },
   "legacy_execution_performed": false,
   "main_merge_parents": [
-    "b27e61f079edf64eeddc43eb8095159b19730b94",
-    "a05b9f5444ba11626823683cc486db95c9d1f3a3"
+    "4919cfd245ee128fee71c713c8d2d0a8cd5fcd11",
+    "d272a97b3e55401fa75ad41670fbeefd18f8a4cf"
   ],
-  "main_merge_revision": "1c6912ad34b9a7950206188ad364e3a712dc9e6b",
+  "main_merge_revision": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
   "missing_evidence_receipts": [],
   "new_build_allowed": false,
   "output_sha256": "sha256:51d54950943f7bc251a1bc22a103a2d3b81dc9190cdd778cce0178d857039383",
-  "parent_revision": "f07aaa41ecc0c9098c6421049b0f4df5f0b8da6a",
+  "parent_revision": "71e42d1da744462bb870686e266a29d986256ce6",
   "phase_rows": {
     "IRUNIT-HIL-FR-24-HELIX-OS": [],
     "IRUNIT-HIL-FR-25-HELIX-OS": [
@@ -388,13 +388,13 @@
     },
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE29-2026-09-22",
-      "ledger_sha256": "sha256:b027fe995a5c5e766b5ca4396ddd14e923ecc40f8eed6213d39b5fe0f251b51e",
-      "meta_sha256": "sha256:d93cf58958126ea0dec7f807531ba192b967209dab0432f7d4705e0639ade333"
+      "ledger_sha256": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29",
+      "meta_sha256": "sha256:b5e00037db31243508be512cb448e149a5a19c19edccb25fe60307424d03f682"
     },
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE30-2026-09-22",
-      "ledger_sha256": "sha256:0b51374e944c672966dd8ca7da1c94a0edf02e4bf21a6befe81ec15520314bf8",
-      "meta_sha256": "sha256:67af0b54d0e80f0638fa878dfa986a74231b94936c827132d5c3eae1c2d97009"
+      "ledger_sha256": "sha256:eeb0be0ed4f280c799bfe3a17176d440a941d34d3a227e588f5732480788c8d0",
+      "meta_sha256": "sha256:cf521284cfdd755fe43035e85afed9e70d6ca35293515633aa07357f983bd9e5"
     }
   ],
   "record_count": 12,
@@ -434,11 +434,11 @@
       "unit_candidate_id": "IRUNIT-HIL-FR-27-HELIX-OS"
     }
   ],
-  "source_main_base_revision": "1c6912ad34b9a7950206188ad364e3a712dc9e6b",
+  "source_main_base_revision": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
   "source_requirement_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
   "source_requirement_ir_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
-  "source_revision": "a75a36b548af46d916234d8d894f07840f76cfd0",
-  "stacked_pr_parent_revision": "f07aaa41ecc0c9098c6421049b0f4df5f0b8da6a",
+  "source_revision": "71e42d1da744462bb870686e266a29d986256ce6",
+  "stacked_pr_parent_revision": "71e42d1da744462bb870686e266a29d986256ce6",
   "status": "candidate_only",
   "unit_aggregates": [
     {

@@ -5,16 +5,16 @@
 - batch: `LEGACY-SEMANTIC-WAVE31-2026-09-22`
 - worktree: `/home/tenni/.helix-worktrees/legacy-semantic-review-wave31`
 - branch: `docs/legacy-semantic-review-wave31`
-- Wave30 exact parent/current tree: `f07aaa41ecc0c9098c6421049b0f4df5f0b8da6a`
-- fixed main base: `1c6912ad34b9a7950206188ad364e3a712dc9e6b`
-- observed origin/main: `4919cfd245ee128fee71c713c8d2d0a8cd5fcd11`（固定baseとの差分あり、stale保留）
+- Wave30 exact parent/current tree: `71e42d1da744462bb870686e266a29d986256ce6`
+- main base: `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`
+- observed origin/main: `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`（再baseline済み）
 - scope: 4 units / 12 asset edges / 4 confirmed requirement edges / 8 unresolved candidate edges
 - cumulative: 103 units / 306 asset edges / 残り115 units（全218 units）
 - authority effect: `none`; consumer closure: `pending`; legacy execution: `not_run`; new build: `false`
 
 mainまたはWave30 exact parentが変わった場合は入力digestと親系譜を更新してrebaselineします。候補値はauthority、採用、現行実装の証拠ではありません。
 
-固定main `1c6912ad...` と観測main `4919cfd245ee128fee71c713c8d2d0a8cd5fcd11` の差分11 pathは `scaffold/` のみで、候補のarchive manifest、requirements IR、FR24〜FR27 source、catalog、decomposition、crosswalk、phase inventoryとの交差は0件です。このため候補は固定mainに対する静的検証を完了していますが、main変更を次stackの親として扱うことは保留します。
+最新mainと修正後のWave30を親系譜として、Wave29・30のledger／meta digestを再照合しました。候補のarchive manifest、requirements IR、FR24〜FR27 source、catalog、decomposition、crosswalk、phase inventoryに変更はありません。
 
 ## 要求source
 
