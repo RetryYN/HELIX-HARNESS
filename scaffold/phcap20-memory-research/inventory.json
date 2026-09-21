@@ -1,0 +1,1160 @@
+{
+  "schema": "phcap20-memory-research/v1",
+  "status": "research_premise_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "base": {
+    "repository": "HELIX-HARNESS",
+    "commit": "c354b7d9177ad3ea92dec30c66c36e6ce2d66ae3",
+    "branch": "origin/main",
+    "captured_at": "2026-09-21"
+  },
+  "task": {
+    "task_id": "PHCAP-20",
+    "phase": "memory",
+    "title": "Memory／継続再構成",
+    "inventory_path": "docs/governance/phase-capability-inventory.json",
+    "inventory_sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+    "issue_projection": {
+      "issue": null,
+      "used_as_semantic_authority": false,
+      "note": "No Issue projection; inventory and work projection only"
+    }
+  },
+  "scope": {
+    "product_targets": [
+      "HELIX-OS"
+    ],
+    "legacy_asset_ids": [
+      "LEGACY-ASSET-899A61905AFBC415F595",
+      "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "LEGACY-ASSET-E2208C8FDEDCABF63A79",
+      "LEGACY-ASSET-AB9A16E8A8DB2F094CC5",
+      "LEGACY-ASSET-C4A63C3FE02AA86E2391"
+    ],
+    "legacy_layer_reach": [
+      "L3",
+      "L5",
+      "L6",
+      "L7 implementation/test"
+    ],
+    "closure_rule": "five representative PHCAP-20 assets only; all other memory/continuation/learning assets and consumers remain residual",
+    "non_target_connection_products": [
+      "HELIX-HARNESS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ]
+  },
+  "gap_interpretation": {
+    "inventory_product_targets": [
+      "HELIX-OS"
+    ],
+    "inventory_current_evidence_products": [
+      "HELIX-OS"
+    ],
+    "direct_current_evidence_products": [
+      "HELIX-OS"
+    ],
+    "direct_current_evidence_refs": [
+      "docs/helix-os/L2-requirements/governance-requirements.md",
+      "docs/helix-os/L11-acceptance/governance-acceptance.md"
+    ],
+    "current_implementation_status": "unknown",
+    "current_operations_status": "unknown",
+    "missing_current_evidence": [
+      "direct current implementation/operation/pass evidence",
+      "formal adopted L3/L10 memory/continuation contract",
+      "consumer closure and retention/recovery/secret-boundary adoption"
+    ],
+    "missing_status": "unknown",
+    "non_target_connections": {
+      "HELIX-HARNESS": "process/requirements/evidence connection candidate only",
+      "HELIX-Web": "user consent/result connection candidate only",
+      "HELIX-Web-OS": "bounded service log/telemetry/result export connection candidate only"
+    },
+    "prohibited_inference": "legacy source presence, phase capability_status, test source presence, or current ref presence does not establish current implementation, operations, pass, or product ownership"
+  },
+  "legacy_assets": [
+    {
+      "asset_id": "LEGACY-ASSET-899A61905AFBC415F595",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/orchestration-memory.md",
+      "source_path": "docs/design/helix/L3-requirements/orchestration-memory.md",
+      "source_sha256": "9c88351f237d00c809f2cf7796fa30942f0ee2c3ad071842e719861551ccca5c",
+      "source_line_count": 59,
+      "asset_class": "Historical",
+      "authority_status": "historical",
+      "disposition": "unresolved",
+      "implementation_status": "unknown",
+      "product_target": "unresolved",
+      "consumer_refs": [],
+      "decision_record_ref": null,
+      "reuse_exclusion_class": null,
+      "legacy_layer": "L3",
+      "source_spans": [
+        {
+          "span_id": "PM-L3-01",
+          "start_line": 22,
+          "end_line": 42,
+          "exact_text": "## HR-BR-07 — loop-engineering 決定ロジック\n\nworker/verifier の反復 loop は、**機械判定可能な決定関数**で駆動されること。\n\n- **継続判定** `canResume`: `status===\"running\"` ∧ 時間窓内 ∧ `lastVerdict!==\"pass\"` ∧ `iteration<max`\n  の 4 述語 AND（旧 auto_run_engine 3 条件の TS 化）。数だけで自動継続しない。\n- **停止判定** `evaluateStop`: `verdict/count/file_exists/cost_budget/no_progress/custom` を first-satisfied で\n  評価。**未知 reason・必須フィールド欠落は escalate で fail-close**（throw せず安全側）。\n- **失敗分類** `classifyRecovery`: doctor 赤 / budget 両超過 → escalate、handover stale → retry、diff 規模超過\n  → abort、閾値内 → continue（旧 RecoveryEngine C1-C4）。\n- 受入 = U-ORCH-001 / U-ORCH-002 / U-ORCH-005（`tests/orchestration`）。\n\n## HR-BR-12 — 2 層共有メモリのセマンティクス\n\nメモリは **harness 層 / project 層**を持ち、エントリは履歴非破壊で更新されること。\n\n- `writeMemory`: 同 key 既存は新エントリの `supersedes` に旧 id を載せる（上書きせず履歴を残す）。\n- `listMemory`: superseded を除外し、指定層のみ `createdAt` 昇順。\n- `surfaceMemory`: **harness 層のみ** surface（project 層は出さない）。\n- 永続は **注入抽象 `MemoryDeps`** 経由（実 2 層投影 = harness.db + jsonl は follow-up で配線）。\n- 受入 = U-MEM-001 / U-MEM-002 / U-MEM-003（`tests/memory`）。\n",
+          "sha256": "2437ad016de95b2df91ee785a0ed8e43ff2e670ebf47c5cc508db3595043a642",
+          "meaning": "loop resume/stop/recovery and two-layer memory contract"
+        },
+        {
+          "span_id": "PM-L3-02",
+          "start_line": 44,
+          "end_line": 53,
+          "exact_text": "## HR-NFR-03 — hybrid 自己評価禁止（非機能・安全）\n\nhybrid では **検証者は worker と別 runtime**でなければならない（自己評価で pass を出さない）。\n\n- `selectVerifier`: hybrid → worker と異なる provider（`blockedReason=null`）。single-runtime → worker と\n  同 provider だが `blockedReason=\"intra_runtime_fallback\"` を必ず記録。**hybrid で worker と同 provider を\n  返さない**（旧 BLOCKED_SELF_DELEGATION の機械担保）。\n- secret 安全: `writeMemory` は secret 命中時に**書込拒否（reject、body を echo しない）**。漏洩境界を実装裁量に\n  残さない（CLAUDE.md 禁止事項の機械担保）。\n- 受入 = U-ORCH-003（self-eval 禁止）＋ U-MEM-001（secret reject）。\n",
+          "sha256": "5d74f69fefa9ec942f2cce9df81923cefcfa75b6e4ddccd18cdce538727434f1",
+          "meaning": "independent verifier and secret rejection boundary"
+        },
+        {
+          "span_id": "PM-L3-03",
+          "start_line": 55,
+          "end_line": 59,
+          "exact_text": "## carry（本 back-fill 範囲外）\n\n- DB 連動要件（loop_iterations[blocked_reason]/jobs/memory 2 表 projection の永続・doctor 検査）、\n  job-queue 競合排他（BEGIN IMMEDIATE）、tick の hybrid-unavailable escalate は **follow-up add-impl\n  （PLAN-L7-176 予定）** とその Reverse で back-fill する。\n",
+          "sha256": "a9aff3c06f9278d0d6d6e693abcf1540c0e5aec3ea3446cf0c19e6ca45e61a6d",
+          "meaning": "DB/job/tick follow-up residual"
+        }
+      ],
+      "ledger_record": {
+        "asset_id": "LEGACY-ASSET-899A61905AFBC415F595",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/design/helix/L3-requirements/orchestration-memory.md",
+        "source_sha256": "9c88351f237d00c809f2cf7796fa30942f0ee2c3ad071842e719861551ccca5c",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "consumer_refs": [],
+        "reuse_exclusion_class": null
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-0470",
+        "candidate_phase_targets": [
+          "PHCAP-10",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner or closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "PM-L3-02",
+          "finding": "secret-like memory input rejects; hybrid self-evaluation is fail-closed"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "PM-L3-01",
+          "finding": "worker/verifier loop and memory layer consumers"
+        },
+        {
+          "span_id": "PM-L3-03",
+          "finding": "DB projection, job queue, doctor and tick follow-up consumers"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/memory-learning-promotion.md",
+      "source_path": "docs/design/helix/L5-detail/memory-learning-promotion.md",
+      "source_sha256": "70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a",
+      "source_line_count": 272,
+      "asset_class": "Historical",
+      "authority_status": "historical",
+      "disposition": "unresolved",
+      "implementation_status": "unknown",
+      "product_target": "unresolved",
+      "consumer_refs": [],
+      "decision_record_ref": null,
+      "reuse_exclusion_class": null,
+      "legacy_layer": "L5",
+      "source_spans": [
+        {
+          "span_id": "PM-L5-01",
+          "start_line": 39,
+          "end_line": 48,
+          "exact_text": "## §0 適用境界、現行資産、source provenance\n\n本sliceは、verified completionから永続知識だけを抽出するknowledge compactionと、反復findingを\n`pattern -> recipe -> shadow -> skill/detector -> gate`へ段階昇格するlearning promotionを扱う。\n物理JSONL整理である既存`compactMemory`、session終了時の書込み忘れを警告する既存`memoryPromotionNudge`、\n短期の進行状態を保持するcontinuationは再利用候補だが、本sliceのknowledge promoterやlearning ledgerの実装済み証拠ではない。\n\n現行memory v2は`.helix/memory/{harness,project,takeover}.jsonl`をdata SSoTとし、harness.dbの機械状態と矛盾した場合は\nDBを優先する。continuationはharness.dbのevent/projectionを正本とし、memoryへ進捗、next action、lease、current stateを\n複製しない。この既存境界を維持し、knowledge compactionの出力だけをshared memoryへappendする。\n",
+          "sha256": "4288802d5336d9b26fd418ba53d337198fdc1c6a55afe32419d465feab0c672b",
+          "meaning": "knowledge compaction versus continuation and current data SSoT boundary"
+        },
+        {
+          "span_id": "PM-L5-02",
+          "start_line": 72,
+          "end_line": 89,
+          "exact_text": "## §1 componentとauthority\n\n| component | 責務 | authority | 禁止 |\n|---|---|---|---|\n| `VerifiedCompletionReader` | completion、Issue、PR、CI、audit、oracleのdigestとverification receiptをread | completion observation | raw log本文、未verified completionの昇格 |\n| `CompletionKnowledgePartitioner` | durable knowledge、continuation、forbidden content、no-promotionを全件分類 | partition proposal | 進捗のknowledge化、不明分類の黙認 |\n| `KnowledgePromoter` | workerとは別role/providerでpromote/supersede/no-promotion proposalを作る | proposalだけ | 自成果の自己昇格、memoryへの直接write |\n| `MemoryPromotionGate` | verification、role分離、classification、provenance、supersessionをNodeで再検証 | promotion receipt | secret/PII/raw log、prose-only receipt |\n| `MemoryPromotionCommitter` | memory eventとpromotion ledgerを冪等commit | Node memory port＋`HarnessDbPort` | Claude/Codexからの直接DB write、片側commit |\n| `LearningPatternAggregator` | finding、repair、Issue、commit、oracleを同一causalityでpattern候補へ集約 | pattern event | raw implementation logの複製、support偽装 |\n| `LearningRecipeBuilder` | 再現手順、scope、期待oracle、fixture契約をrecipe化 | recipe event | fixtureなしshadow、自由文だけの手順 |\n| `ShadowEvaluationCoordinator` | active workflowを変更せずbefore/afterと退行を測定 | shadow receipt | blocking適用、評価fixture差替え |\n| `IndependentPromotionReviewer` | promoterと別role/providerで効果、false positive、coverage、rollbackを判定 | review receipt | self review、worker/promoter claimの追認だけ |\n| `LearningPromotionGate` | skill/detector/gateの段階、review、rollback targetを検査 | promotion decision | stage飛越、即時gate化、rollbackなしactive化 |\n| `LearningRollbackController` | regression時にactive revisionをrollback/retireし再昇格をfence | rollback/retire event | 証拠消去、同evidenceの無条件再利用 |\n\nworker、knowledge promoter、independent reviewer、final verifierはidentity、role、provider familyの全6組合せで分離する。Claude Codeがknowledge promoterとなる場合も、\nNodeがcontractを検証して正本commitする。skill/detector/gateのauthor自身は最終reviewとactive化を兼ねない。\n",
+          "sha256": "195f34d62780aab205fe914d709500611258459984c30df893229f3828f8f846",
+          "meaning": "components, roles, promotion and rollback authority"
+        },
+        {
+          "span_id": "PM-L5-03",
+          "start_line": 119,
+          "end_line": 145,
+          "exact_text": "各candidateを`durable_knowledge | continuation | forbidden | duplicate | no_value`へ全件分類する。continuationは\nharness.dbの既存event/projectionへ残し、memory eventを生成しない。分類不能はdurableへ推測せず\n`HIL_MEMORY_COMPACTION_INVALID`でpacket全体を拒否する。\n\npromotion結果は次のどれか一つである。\n\n- `promote`: 新しいmemory key/revisionをappendする。\n- `supersede`: 生存entryを明示参照する新revisionをappendする。\n- `no_promotion`: 永続化価値なし、重複、continuation-onlyの理由とinput/output digestをreceiptに残す。\n\nverified completion一件につきterminal receiptはexactly-oneとする。4主体のidentity、role、provider familyが一組でも衝突するなら\n`HIL_MEMORY_PROMOTER_NOT_INDEPENDENT`、admission/completion event種別が混在する場合は`HIL_MEMORY_EVENT_MIXED`とする。\n既存の物理compactionは意味を要約せず、knowledge promotionの代用にしない。\n\n## §3 memoryとcontinuationの分離\n\n| 情報 | 正本 | memory昇格 |\n|---|---|---|\n| 現在state、進捗、next action、lease、checkpoint | harness.db continuation event/projection | 禁止 |\n| provider delegation transcript/handover | delegation evidence | 禁止 |\n| 検証済み決定、長期制約、再利用可能な設計知識 | harness/project memory event | 許可 |\n| 一時的なruntime takeover | takeover memory lifecycle | 長期knowledgeへ自動転記禁止 |\n| raw log、secret、PII、credential | 原evidenceの保護境界または即時拒否 | 禁止 |\n\nmemory receiptはcontinuation refを参照できるが、continuation本文や現在stateを複製しない。DB優先はcontinuationとprocess projectionの\nstateに限り、knowledge payload、key、revision、supersessionのdata authorityは常にmemory JSONLとする。DB projectionがJSONLと矛盾する場合は\nDB rowをstaleとして再投影し、JSONL entryをDB値で上書きしない。completion closureはmemoryまたはno-promotion receiptのdigestだけをjoinする。\n",
+          "sha256": "6c1cc38449b517549a1ee5471d753b5df95584d81999c5a65315a0f683f2d62a",
+          "meaning": "bounded packet classification and memory/continuation separation"
+        },
+        {
+          "span_id": "PM-L5-04",
+          "start_line": 147,
+          "end_line": 165,
+          "exact_text": "## §4 learning ledgerと段階遷移\n\nfindingは本文を複製せず、finding/Issue/commit/oracle digestとcause IDを`raw_event_ref`として登録する。許可遷移は次とする。\n\n```text\nraw_event_ref -> pattern -> recipe -> shadow -> shadow_verified\nshadow_verified -> skill_candidate -> skill_active\nshadow_verified -> detector_candidate -> detector_active\nskill_active | detector_active -> gate_candidate -> gate_active\nshadow | shadow_verified | *_candidate | *_active -> rolled_back -> retired\n```\n\npatternはsupport countと独立causality数、recipeは再現fixture、expected oracle、scope、non-goal、ownerを必須とする。\nfixtureなしshadowは`HIL_PROMOTION_FIXTURE_MISSING`、recipeからgateへの直行は\n`HIL_PROMOTION_IMMEDIATE_GATE_FORBIDDEN`、その他のstage飛越は`HIL_PROMOTION_STAGE_BYPASS`で拒否する。\n\nskill/detectorはshadow verified後の別branchであり、片方を他方の証拠として偽装しない。blocking gateはactive skillまたはdetector、\n独立review、rollback target、限定scopeを要求する。反復logの多さだけでrecipe/gateへ昇格する場合は\n`HIL_LEARNING_PROMOTION_PREMATURE`とする。\n",
+          "sha256": "0c91ded890479e4d4f86b8eb108483377e3ee5ac0d8b3524bf5baa50ed3fb7bc",
+          "meaning": "learning promotion graph and stage failures"
+        },
+        {
+          "span_id": "PM-L5-05",
+          "start_line": 167,
+          "end_line": 180,
+          "exact_text": "## §5 fixture、shadow、独立効果検証\n\nshadowはactive workflowのdecisionを変更せず、同じversioned fixture setをbaseline/candidateへ実行する。receiptは最低限、\nsource snapshot、recipe/candidate version、fixture set、oracle set、before/after result、sample/support count、成功率、\nfalse-positive/negative率、設計document coverage delta、runtime/cost delta、scope、reviewer identity、rollback targetのdigestを持つ。\n\nbefore metricまたは独立review receiptが無い場合は`HIL_PROMOTION_EFFECT_MISSING`とする。coverage deltaは\nrequirement/design/test/oracleの未接続数、説明なしobligation、false coveredを同じ分母でbefore/after比較する。\nblocking gate昇格にはcoverage改善が正、既存oracle退行0、false-positive policy内を要求する。skill/detectorは目的metricの改善を\n要求し、coverage非改善をgate昇格のshortcutに使わない。\n\n一fixtureでも既存workflow、acceptance、security、authority、portabilityを退行させた場合は\n`HIL_PROMOTION_SHADOW_REGRESSION`でactive化0、rollbackを実行する。promoterとreviewerが同一、またはworker claimだけのreviewは\n独立効果検証として受理しない。\n",
+          "sha256": "b73fb5152ec885a824d21dd5ac98e058fc78ad1347770ef9c304d3a23d830a89",
+          "meaning": "shadow effect and independent review conditions"
+        }
+      ],
+      "ledger_record": {
+        "asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/design/helix/L5-detail/memory-learning-promotion.md",
+        "source_sha256": "70ed887f35ca38a6e406d91b750848a9b89cde73825358c554ad009d473a115a",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "consumer_refs": [],
+        "reuse_exclusion_class": null
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-0568",
+        "candidate_phase_targets": [
+          "PHCAP-16",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner or closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "PM-L5-03",
+          "finding": "raw log, progress, secret, PII, continuation and unclassified packet content fail closed"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "PM-L5-01",
+          "finding": "memory JSONL, harness.db continuation and process projection consumers"
+        },
+        {
+          "span_id": "PM-L5-04",
+          "finding": "pattern, recipe, shadow, skill, detector and gate consumers"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E2208C8FDEDCABF63A79",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/orchestration-memory.md",
+      "source_path": "docs/design/helix/L6-function-design/orchestration-memory.md",
+      "source_sha256": "c8a2e92ce9e819a69bb2793fb3cd0e7e4cbe3441e59301174217d17feeb743b9",
+      "source_line_count": 231,
+      "asset_class": "Historical",
+      "authority_status": "historical",
+      "disposition": "unresolved",
+      "implementation_status": "unknown",
+      "product_target": "unresolved",
+      "consumer_refs": [],
+      "decision_record_ref": null,
+      "reuse_exclusion_class": null,
+      "legacy_layer": "L6",
+      "source_spans": [
+        {
+          "span_id": "PM-L6-01",
+          "start_line": 24,
+          "end_line": 46,
+          "exact_text": "HELIX を **Claude Code ↔ Codex 連携前提のマルチエージェント・オーケストレーション**へ寄せる\n機能追加。standalone 単体は縮退モード、**hybrid Claude+Codex を foundation** に据える。本書は\n2 つの Bounded Context を function 粒度で確定する:\n\n- **P2 orchestration** (`src/orchestration/`): worker/verifier の loop を回し、stop 条件で止め、\n  失敗を recovery へ送る coordinator。verifier は常に worker と別 runtime（自己評価禁止を machine-enforce）。\n- **P7 memory** (`src/memory/`): harness 層 / project 層の 2 層共有メモリ。Claude も Codex も同一\n  ソースを読み書きできる（per-agent silo を廃止）。\n\n## §2 機能設計 (L6 粒度)\n\n### §2.1 責務分離\n\n| 責務 | 関数 | machine enforcement |\n|------|------|---------------------|\n| loop 駆動 | `tick` / `canResume` (`loop-runner.ts`) | resume 3 条件 AND（数だけで自動継続しない） |\n| runtime bridge | `nodeTickDeps` (`loop-bridge.ts`) | `tick` の verifier 選定を再実装せず、worker/verifier を adapter 実行面へ接続 |\n| loop entrypoint | `helix loop run` (`src/cli.ts`) | `.helix/state/loop/<plan>.json` から state を読み、dry-run と dispatch を分離 |\n| 停止判定 | `evaluateStop` (`loop-stop-rules.ts`) | stop schema を zod で固定（未知 reason は fail-close） |\n| 検証者選定 | `selectVerifier` (`cross-verifier.ts`) | hybrid で verifier≠worker provider を **fail-close** |\n| 失敗回収 | `classifyRecovery` (`loop-recovery.ts`) | C1-C4 条件 → escalate/retry/abort、判断は純関数 |\n| job 排他 | `claimNextJob` (`job-queue.ts`) | `BEGIN IMMEDIATE` で多ランタイム競合 claim を直列化 |\n| memory 投影 | `writeMemory` / `listMemory` (`src/memory/index.ts`) | secret strip + 2 層投影（harness.db + jsonl） |\n",
+          "sha256": "c594053861db538177477b35ef81512f3dd6b49451affb25329eb0d39ae8050b",
+          "meaning": "P2 orchestration and P7 two-layer memory responsibility split"
+        },
+        {
+          "span_id": "PM-L6-02",
+          "start_line": 96,
+          "end_line": 105,
+          "exact_text": "// memory-types.ts\ntype MemoryLayer = \"harness\" | \"project\";\ninterface MemoryEntry {\n  id: string;             // stableId（内容ハッシュ由来、再投影で安定）\n  layer: MemoryLayer;\n  key: string;\n  body: string;\n  supersedes: string | null;  // 旧 entry id（履歴を壊さず上書き）\n  createdAt: string;\n}\n",
+          "sha256": "bdfa91a5c64682fbd4257a300b373bb31a8e3b20a56d10f9a1e54a275e9674a6",
+          "meaning": "memory layer/type and supersession schema"
+        },
+        {
+          "span_id": "PM-L6-03",
+          "start_line": 110,
+          "end_line": 122,
+          "exact_text": "| 関数 | signature | DbC |\n|------|-----------|-----|\n| `canResume` | `(s: LoopState, now: string) => boolean` | **純関数**。旧 auto_run_engine の **3 条件** `status===\"running\"` ∧ `within_time_window` ∧ `should_schedule` を TS 化。`within_time_window` = `now∈[windowOpensAt,windowClosesAt]`（両端含む ≤）、`should_schedule` = `lastVerdict!==\"pass\"` ∧ `iteration<maxIterations`（carry 述語）。展開すると **計 4 述語の AND**、1 つでも偽 → false |\n| `evaluateStop` | `(rules: StopRule[], s: LoopState, probe: StopProbe) => StopDecision` | **純関数**（I/O は probe 注入）。最初に成立した rule で stop。`verdict`→`lastVerdict===\"pass\"`、`count`→`iteration>=threshold`、`cost_budget`→`costUsd>=threshold`、`file_exists`→`probe.exists(path)`、`no_progress`→`probe.noProgress(threshold)`、`custom`→`probe.custom()`。**必須フィールド欠落の fail-close**: `count`/`cost_budget`/`no_progress` で `threshold==null`、`file_exists` で `path==null` の rule は評価不能 → `{stop:true,reason:null,onFailure:\"escalate\"}`。未知 reason も同様（throw せず escalate で安全側に倒す） |\n| `selectVerifier` | `(workerProvider: Provider, mode: ExecutionMode) => { provider: Provider; blockedReason: string \\| null }` | **純関数**（provider 選定のみ。可用性 I/O は持たない）。hybrid → worker と異なる provider を返す（`blockedReason=null`）。それ以外（single-runtime）→ worker と同 provider + `blockedReason=\"intra_runtime_fallback\"`。**hybrid で worker と同 provider を返すことは無い**（BLOCKED_SELF_DELEGATION の core） |\n| `tick` | `(s: LoopState, rules: StopRule[], deps: TickDeps) => Promise<LoopState>` | orchestration。`canResume` 偽 → state 不変で返す。真 → `evaluateStop`→stop なら `onFailure` 経路（escalate/retry/abort）→ worker dispatch → `selectVerifier` で verifier provider 決定 → verifier dispatch → `loop_iterations` 追記 → iteration++ で新 state。**hybrid 自己評価 fail-close**: hybrid で選定 verifier provider が dispatch 時に利用不能（`deps.providerAvailable(provider)===false`）なら **worker と同 runtime で代替検証せず escalate**（`status=\"stopped\"`, `blockedReason=\"cross_runtime_unavailable\"`）。worker 自身の runtime から `pass` を出さない。**副作用は deps 経由のみ**、token を state/log に書かない |\n| `nodeTickDeps` | `(input: NodeTickDepsInput) => TickDeps` | runtime bridge。`detectMode`/`adapterProviderAvailable`/`buildAdapterPlan`/`buildProviderInvocation` を使って `TickDeps` を構成し、`tick` 側の `selectVerifier` 結果を adapter 実行へ渡す。**provider 選定ロジックを再実装しない**。worker は `runWorker`、verifier は `runVerifier` として目的別に role/task を固定し、verifier 結果は JSON `{verdict}` または `VERDICT: pass\\|fail\\|error\\|pending` のみを machine-readable verdict として解釈する。adapter 起動失敗・非 0 status は error/escalate 側に倒し、token/secret を state に書かない |\n| `helix loop run` | `loop run --plan <id> [--once] [--dry-run]` | CLI entrypoint。`fileLoopStore` で `.helix/state/loop/<planId>.json` を読み、`workerProvider` を検証し、`selectVerifier` と `nodeTickDeps` を接続して `tick` を回す。`--dry-run` は mode/worker/verifier availability と `dispatch=false` だけを出し、adapter dispatch と state 書込をしない。`--once` は 1 tick で停止。通常実行は `canResume` が false になるまで tick し、各 tick 後に state と iteration jsonl を永続化する。state 不在・invalid provider・runtime bridge error は exitCode=1 で fail-close |\n| `classifyRecovery` | `(s: LoopState, signals: RecoverySignals) => RecoveryAction` | **純関数**。旧 RecoveryEngine C1-C4: diff 規模超過 / doctor 赤 / handover stale / budget 両超過 → `{kind:\"escalate\"\\|\"retry\"\\|\"abort\", reason}`。閾値内 → `{kind:\"continue\"}` |\n| `claimNextJob` | `(db: Database, provider: Provider) => Job \\| null` | `BEGIN IMMEDIATE` トランザクション内で `status=\"queued\"` の最優先 1 件を `status=\"claimed\", provider=:provider` に更新して返す。無ければ null。**並行 claim はトランザクション直列化で二重取得しない**（旧 job_queue 排他の TS 移植） |\n| `writeMemory` | `(input: WriteMemoryInput, deps: MemoryDeps) => MemoryEntry`（`WriteMemoryInput={layer,key,body}`。coding-rule max-source-params=3 のため input object 化、impl→design back-fill） | **secret 命中時は書込拒否（throw、reject）— strip して部分保存はしない**（部分保存は「保存された」誤解と漏洩境界の曖昧化を生む）。既存 `SECRET_PATTERN` で body を検査し、命中 0 のときのみ harness.db `upsertRow` + `.helix/memory/<layer>.jsonl` 追記の **2 層投影**。同 key 既存 → `supersedes` に旧 id を載せて新 entry（履歴非破壊） |\n| `listMemory` | `(layer: MemoryLayer, deps: MemoryDeps) => MemoryEntry[]` | 指定層の有効 entry（superseded 除く）を `createdAt` 昇順で返す。**純読取**、書込なし |\n| `surfaceMemory` | `(deps: MemoryDeps, budget?: SurfaceBudget) => string[]` | SessionStart 用。harness 層の有効 entry を人間可読行で返す（project 層は明示要求時のみ）。秘匿情報を surface しない。**context 圧迫対策**: 直近 `maxEntries`(既定 12) 件のみ・各 body は `maxBodyChars`(既定 240) で切り詰め、超過分は `(+N older — helix memory list harness)` フッタに集約（無制限注入を禁止） |\n",
+          "sha256": "07c292085993ee419d95481a999335bd2d591f3b9259c2a5726f12cd85a5d219",
+          "meaning": "memory write/list/surface contracts and secret/2-layer projection"
+        }
+      ],
+      "ledger_record": {
+        "asset_id": "LEGACY-ASSET-E2208C8FDEDCABF63A79",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "docs/design/helix/L6-function-design/orchestration-memory.md",
+        "source_sha256": "c8a2e92ce9e819a69bb2793fb3cd0e7e4cbe3441e59301174217d17feeb743b9",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "consumer_refs": [],
+        "reuse_exclusion_class": null
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-0693",
+        "candidate_phase_targets": [
+          "PHCAP-10",
+          "PHCAP-17",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "phase_classification_status": "multi_phase_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner or closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "PM-L6-03",
+          "finding": "secret rejection, projection failure, stale or self-evaluation boundary are contract failures"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "PM-L6-01",
+          "finding": "orchestration coordinator, verifier and memory projection consumers"
+        },
+        {
+          "span_id": "PM-L6-03",
+          "finding": "write/list/surface and session-start consumers"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-AB9A16E8A8DB2F094CC5",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/src/memory/memory-store.ts",
+      "source_path": "src/memory/memory-store.ts",
+      "source_sha256": "4edbf798e0ea788f8a7123fbabb0795df091bae2ee7b652c4fc373aa1bf5546d",
+      "source_line_count": 66,
+      "asset_class": "Historical",
+      "authority_status": "historical",
+      "disposition": "unresolved",
+      "implementation_status": "unknown",
+      "product_target": "unresolved",
+      "consumer_refs": [],
+      "decision_record_ref": null,
+      "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+      "legacy_layer": "L7 implementation",
+      "source_spans": [
+        {
+          "span_id": "PM-RUNTIME-01",
+          "start_line": 1,
+          "end_line": 42,
+          "exact_text": "import { appendFileSync, existsSync, mkdirSync, readFileSync } from \"node:fs\";\nimport { join } from \"node:path\";\nimport { isSecretLike } from \"../security/secret-policy\";\nimport type { MemoryDeps, MemoryEntry, MemoryLayer } from \"./memory-types\";\nimport { resolveMemoryView } from \"./memory-v2\";\n\ninterface FileMemoryDepsOptions {\n  root: string;\n  now?: () => string;\n}\n\nexport function fileMemoryDeps(opts: FileMemoryDepsOptions): MemoryDeps {\n  const memoryDir = join(opts.root, \".helix\", \"memory\");\n  const now = opts.now ?? (() => new Date().toISOString());\n  const pathFor = (layer: MemoryLayer) => join(memoryDir, `${layer}.jsonl`);\n\n  const readActive = (layer: MemoryLayer): MemoryEntry[] => {\n    const raw = readRawLayer(pathFor(layer));\n    return resolveMemoryView(raw, new Date().toISOString(), layer).activeEntries.map((entry) => ({\n      id: entry.id,\n      layer,\n      key: entry.key,\n      body: entry.body,\n      supersedes: entry.supersedes,\n      createdAt: entry.createdAt,\n    }));\n  };\n\n  return {\n    now,\n    stableId: (layer, key, createdAt) => `${layer}:${key}:${createdAt}`,\n    isSecret: isSecretLike,\n    readActive,\n    findByKey: (layer, key) =>\n      readActive(layer)\n        .filter((entry) => entry.key === key)\n        .at(-1) ?? null,\n    persist: (entry) => {\n      mkdirSync(memoryDir, { recursive: true });\n      appendFileSync(pathFor(entry.layer), `${JSON.stringify(entry)}\\n`, \"utf8\");\n    },\n  };\n",
+          "sha256": "a29d099ac9d9ad2c0ca003c20b6c0071b7544948cfdcb309f6bf1caf2b2ca30e",
+          "meaning": "file memory adapter, active view, supersession and JSONL persistence"
+        }
+      ],
+      "ledger_record": {
+        "asset_id": "LEGACY-ASSET-AB9A16E8A8DB2F094CC5",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "src/memory/memory-store.ts",
+        "source_sha256": "4edbf798e0ea788f8a7123fbabb0795df091bae2ee7b652c4fc373aa1bf5546d",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "consumer_refs": [],
+        "reuse_exclusion_class": "legacy_runtime_cli_or_adapter"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-3087",
+        "candidate_phase_targets": [
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-OS"
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner or closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "PM-RUNTIME-01",
+          "finding": "read/parse, secret boundary, persistence and active-view behavior are present as old implementation source; execution status remains unknown"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "PM-RUNTIME-01",
+          "finding": "MemoryDeps callers, list/surface/write and .helix memory layer consumers"
+        }
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C4A63C3FE02AA86E2391",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/tests/memory/memory-v2.test.ts",
+      "source_path": "tests/memory/memory-v2.test.ts",
+      "source_sha256": "3c274e06007e4b644858cb4f0a0348b30c179f31cd4c8d661b7dabd48c13e820",
+      "source_line_count": 1040,
+      "asset_class": "Historical",
+      "authority_status": "historical",
+      "disposition": "unresolved",
+      "implementation_status": "unknown",
+      "product_target": "unresolved",
+      "consumer_refs": [],
+      "decision_record_ref": null,
+      "reuse_exclusion_class": "legacy_test_fixture_or_oracle",
+      "legacy_layer": "L7 test",
+      "source_spans": [
+        {
+          "span_id": "PM-TEST-01",
+          "start_line": 45,
+          "end_line": 75,
+          "exact_text": "  it(\"U-MEMV2-001a: v1/v2 mixed normalization resolves cross-schema supersede and rejects bad explicit v2\", () => {\n    const legacy = legacyEntry(\"old\", null, \"2026-07-11T00:00:00.000Z\");\n    const next = entry({ id: \"new\", supersedes: \"old\", createdAt: \"2026-07-11T00:01:00.000Z\" });\n    const view = resolveMemoryView([legacy, next], \"2026-07-11T00:02:00.000Z\", \"harness\");\n    expect(view.activeEntries.map((item) => item.id)).toEqual([\"new\"]);\n    expect(normalizeMemoryEntry({ ...next, schemaVersion: 99 })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    // compacted predecessorへの参照は許可し、cycleだけをdamaged扱いにする。\n    expect(resolveMemoryView([{ ...next, supersedes: \"missing\" }], next.createdAt).damaged).toBe(0);\n    expect(\n      resolveMemoryView(\n        [entry({ id: \"a\", supersedes: \"b\" }), entry({ id: \"b\", supersedes: \"a\" })],\n        next.createdAt,\n      ).damaged,\n    ).toBe(2);\n  });\n\n  it(\"U-MEMV2-001b: legacy write/list/surface remains byte-for-byte compatible\", () => {\n    root = mkdtempSync(join(tmpdir(), \"helix-memv2-legacy-\"));\n    const times = [\"2026-07-11T00:00:00.000Z\", \"2026-07-11T00:01:00.000Z\"];\n    const deps = fileMemoryDeps({ root, now: () => times.shift() ?? \"unexpected\" });\n    writeMemory({ layer: \"harness\", key: \"a\", body: \"x\".repeat(300) }, deps);\n    writeMemory({ layer: \"harness\", key: \"b\", body: \"body\" }, deps);\n    expect(listMemory(\"harness\", deps).map((item) => item.key)).toEqual([\"a\", \"b\"]);\n    expect(surfaceMemory(deps, { maxEntries: 1, maxBodyChars: 10 })).toEqual([\n      \"- [b] body\",\n      \"- (+1 older — helix memory list harness)\",\n    ]);\n  });\n",
+          "sha256": "5ed15fd145aa6adfc9432c39daf733e07ce5397c26899b71212cb695d4af0120",
+          "meaning": "normalization, supersede, legacy compatibility and surface expectations"
+        },
+        {
+          "span_id": "PM-TEST-02",
+          "start_line": 77,
+          "end_line": 176,
+          "exact_text": "  it(\"U-MEMV2-002a: schema validator returns field-bound reasons for enum/lifecycle input\", () => {\n    const now = \"2026-07-11T00:00:00.000Z\";\n    expect(\n      validateMemoryEntry(\n        { operationId: \"invalid-type\", layer: \"takeover\", key: \"x\", body: \"x\", type: \"feedback\" },\n        now,\n        () => false,\n      ),\n    ).toMatchObject({ ok: false, reason: \"takeover_type_not_allowed\", field: \"type\" });\n    expect(\n      validateMemoryEntry(\n        { operationId: \"missing-expiry\", layer: \"takeover\", key: \"x\", body: \"x\", type: \"state\" },\n        now,\n        () => false,\n      ),\n    ).toMatchObject({ ok: false, reason: \"takeover_expiry_required\", field: \"expiresAt\" });\n  });\n\n  it(\"U-MEMV2-002b: body/metadata secrets and malformed/duplicate links fail closed\", () => {\n    const now = \"2026-07-11T00:00:00.000Z\";\n    const secret = (value: string) => value.includes(\"SECRET_MARKER\");\n    expect(\n      validateMemoryEntry(\n        { operationId: \"secret-body\", layer: \"harness\", key: \"x\", body: \"SECRET_MARKER\" },\n        now,\n        secret,\n      ),\n    ).toMatchObject({ ok: false, reason: \"secret_like\" });\n    expect(\n      validateMemoryEntry(\n        {\n          layer: \"harness\",\n          operationId: \"secret-meta\",\n          key: \"x\",\n          body: \"ok\",\n          provenance: { origin: \"SECRET_MARKER\" },\n        },\n        now,\n        secret,\n      ),\n    ).toMatchObject({ ok: false, reason: \"secret_like\" });\n    expect(\n      validateMemoryEntry(\n        {\n          operationId: \"links\",\n          layer: \"harness\",\n          key: \"x\",\n          body: \"ok\",\n          links: [\"harness:a\", \"harness:a\"],\n        },\n        now,\n        secret,\n      ),\n    ).toMatchObject({ ok: false, reason: \"duplicate_link\" });\n    expect(resolveMemoryView([entry({ links: [\"project:missing\"] })], now).unresolvedLinks).toEqual(\n      [{ entryId: \"e\", link: \"project:missing\" }],\n    );\n    expect(normalizeMemoryEntry({ ...entry(), links: [\"bad\"] })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    expect(normalizeMemoryEntry({ ...entry(), body: \"sk-1234567890abcdef\" })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    expect(\n      normalizeMemoryEntry({\n        ...entry({ layer: \"takeover\", type: \"state\" }),\n        lifecycle: {\n          state: \"active\",\n          expiresAt: \"not-a-date\",\n          consumedAt: null,\n          consumedBy: null,\n        },\n      }),\n    ).toEqual({ ok: false, reason: \"schema_invalid\" });\n    expect(normalizeMemoryEntry({ ...entry(), createdAt: \"not-a-date\" })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    expect(normalizeMemoryEntry({ ...entry(), createdAt: \"2026-07-11\" })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    expect(normalizeMemoryEntry({ ...entry(), createdAt: \"2026-02-30T00:00:00.000Z\" })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    expect(\n      normalizeMemoryEntry({\n        ...entry({ layer: \"takeover\", type: \"state\" }),\n        lifecycle: {\n          state: \"active\",\n          expiresAt: \"2026-07-19T00:00:00.000Z\",\n          consumedAt: null,\n          consumedBy: null,\n        },\n      }),\n    ).toEqual({ ok: false, reason: \"schema_invalid\" });\n  });\n",
+          "sha256": "191ecf16577c2d0ff670e87679fe84a38be933b083a503c6f37715d0be3b00c3",
+          "meaning": "schema, secret, malformed link and lifecycle failure expectations"
+        },
+        {
+          "span_id": "PM-TEST-03",
+          "start_line": 178,
+          "end_line": 237,
+          "exact_text": "  it(\"U-MEMV2-003: compactMemoryV2 preserves observations and serializes a concurrent writer\", async () => {\n    root = mkdtempSync(join(tmpdir(), \"helix-memv2-compact-\"));\n    const clock = { now: \"2026-07-11T00:00:00.000Z\" };\n    const deps = nodeMemoryV2Deps({ root, now: () => clock.now });\n    expect(\n      writeMemoryV2({ operationId: \"old\", layer: \"harness\", key: \"k\", body: \"old\" }, deps).ok,\n    ).toBe(true);\n    clock.now = \"2026-07-11T00:01:00.000Z\";\n    expect(\n      writeMemoryV2({ operationId: \"new\", layer: \"harness\", key: \"k\", body: \"new\" }, deps).ok,\n    ).toBe(true);\n    const before = surfaceMemoryV2({ layers: [\"harness\"], now: clock.now }, deps);\n    const result = compactMemoryV2(\"harness\", deps);\n    const after = surfaceMemoryV2({ layers: [\"harness\"], now: clock.now }, deps);\n    expect(result).toMatchObject({ applied: true, kept: 1, removed: 1 });\n    expect(after).toEqual(before);\n    appendFileSync(join(root, \".helix\", \"memory\", \"harness.jsonl\"), \"not-json\\n\", \"utf8\");\n    expect(compactMemoryV2(\"harness\", deps)).toMatchObject({ applied: true, damaged: 1 });\n\n    const writerScript = [\n      'import { writeFileSync } from \"node:fs\";',\n      'import { nodeMemoryV2Deps, writeMemoryV2 } from \"./src/memory/memory-v2.ts\";',\n      \"const root = process.env.MEMORY_V2_ROOT;\",\n      'if (!root) throw new Error(\"missing root\");',\n      'const deps = nodeMemoryV2Deps({ root, now: () => \"2026-07-11T00:02:00.000Z\" });',\n      'const result = writeMemoryV2({ operationId:\"concurrent\", layer:\"harness\", key:\"concurrent\", body:\"preserve\" }, deps);',\n      \"if (!result.ok) throw new Error(result.reason);\",\n      'writeFileSync(process.env.WRITER_DONE, \"done\");',\n    ].join(\"\");\n    const compactScript = [\n      'import { existsSync, writeFileSync } from \"node:fs\";',\n      'import { compactMemoryV2, nodeMemoryV2Deps } from \"./src/memory/memory-v2.ts\";',\n      \"const root = process.env.MEMORY_V2_ROOT;\",\n      'if (!root) throw new Error(\"missing root\");',\n      'const deps = nodeMemoryV2Deps({ root, now: () => \"2026-07-11T00:02:00.000Z\", onLockAcquired: () => { writeFileSync(process.env.HOLDER_READY, \"ready\"); while (!existsSync(process.env.HOLDER_RELEASE)) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 20); } });',\n      'compactMemoryV2(\"harness\", deps);',\n    ].join(\"\");\n    const holderReady = join(root, \"holder.ready\");\n    const holderRelease = join(root, \"holder.release\");\n    const writerDone = join(root, \"writer.done\");\n    const compactPromise = runNodeTsxChild(compactScript, root, \"unused\", {\n      HOLDER_READY: holderReady,\n      HOLDER_RELEASE: holderRelease,\n    });\n    await waitForFile(holderReady);\n    const writerPromise = runNodeTsxChild(writerScript, root, \"unused\", {\n      WRITER_DONE: writerDone,\n    });\n    await delay(100);\n    expect(existsSync(writerDone)).toBe(false);\n    writeFileSync(holderRelease, \"release\", \"utf8\");\n    await Promise.all([compactPromise, writerPromise]);\n    expect(\n      resolveMemoryView(\n        deps.readEvents(\"harness\"),\n        \"2026-07-11T00:03:00.000Z\",\n        \"harness\",\n      ).activeEntries.map((event) => event.key),\n    ).toContain(\"concurrent\");\n  });\n",
+          "sha256": "da8566a2cb6ee1840bf5abf6fac995137660b0647a40f68abb3f54e9a3992a43",
+          "meaning": "compaction, damaged input and concurrent writer expectations"
+        },
+        {
+          "span_id": "PM-TEST-04",
+          "start_line": 239,
+          "end_line": 309,
+          "exact_text": "  it(\"U-MEMV2-004a: takeover enforces seven-day expiry and materializes one stable expiry tombstone\", () => {\n    const mock = mockDeps(\"2026-07-11T00:00:00.000Z\");\n    const exact = \"2026-07-18T00:00:00.000Z\";\n    expect(\n      writeMemoryV2(\n        {\n          operationId: \"next\",\n          layer: \"takeover\",\n          key: \"next\",\n          body: \"continue\",\n          type: \"state\",\n          expiresAt: exact,\n        },\n        mock,\n      ).ok,\n    ).toBe(true);\n    mock.clock = exact;\n    expect(expireMemory(\"takeover\", exact, mock)).toEqual([\n      { id: \"takeover:next:op:next\", reason: \"expired\" },\n    ]);\n    expect(expireMemory(\"takeover\", exact, mock)).toEqual([]);\n    expect(\n      mock.events.takeover.filter((event) => event.lifecycle.state === \"expired\"),\n    ).toHaveLength(1);\n\n    const superseded = mockDeps(\"2026-07-11T00:00:00.000Z\");\n    const first = writeMemoryV2(\n      {\n        operationId: \"same-old\",\n        layer: \"takeover\",\n        key: \"same\",\n        body: \"old\",\n        type: \"state\",\n        expiresAt: exact,\n      },\n      superseded,\n    );\n    superseded.clock = \"2026-07-11T00:01:00.000Z\";\n    const second = writeMemoryV2(\n      {\n        operationId: \"same-new\",\n        layer: \"takeover\",\n        key: \"same\",\n        body: \"new\",\n        type: \"state\",\n        expiresAt: exact,\n      },\n      superseded,\n    );\n    if (!first.ok || !second.ok) throw new Error(\"takeover fixture write failed\");\n    superseded.clock = exact;\n    expect(expireMemory(\"takeover\", exact, superseded)).toEqual([\n      { id: second.entry.id, reason: \"expired\" },\n    ]);\n  });\n\n  it(\"U-MEMV2-004b: delivery consumes only after output and retries after persist failure\", () => {\n    const outputFailure = takeoverMock();\n    outputFailure.writeOutput = () => {\n      throw new Error(\"stdout closed\");\n    };\n    expect(deliverTakeover({ consumerId: \"c\" }, outputFailure).status).toBe(\"output_failed\");\n    expect(outputFailure.events.takeover).toHaveLength(1);\n\n    const persistFailure = takeoverMock();\n    persistFailure.failAppend = true;\n    expect(deliverTakeover({ consumerId: \"c\" }, persistFailure)).toMatchObject({\n      status: \"delivered_with_retry_required\",\n    });\n    persistFailure.failAppend = false;\n    expect(surfaceMemoryV2({ layers: [\"takeover\"] }, persistFailure).selectedIds).toHaveLength(1);\n",
+          "sha256": "05235337ae9b1ec20c33e49fe285717f8521baf64d6702abf4418180876452c6",
+          "meaning": "takeover expiry, idempotence and delivery persistence expectations"
+        }
+      ],
+      "ledger_record": {
+        "asset_id": "LEGACY-ASSET-C4A63C3FE02AA86E2391",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_path": "tests/memory/memory-v2.test.ts",
+        "source_sha256": "3c274e06007e4b644858cb4f0a0348b30c179f31cd4c8d661b7dabd48c13e820",
+        "asset_class": "Historical",
+        "product_target": "unresolved",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "decision_record_ref": null,
+        "consumer_refs": [],
+        "reuse_exclusion_class": "legacy_test_fixture_or_oracle"
+      },
+      "phase_classification_record": {
+        "classification_id": "LASPH-3726",
+        "candidate_phase_targets": [
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-OS"
+        ],
+        "phase_classification_status": "classified_candidate",
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "unresolved": [
+          "product_candidate_requires_semantic_review",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      },
+      "decision_history": {
+        "matching_decision_record_count": 0,
+        "status": "no_matching_append_only_decision_record",
+        "interpretation": "absence remains unknown; no adoption, rejection, owner or closure is generated"
+      },
+      "failure_evidence": [
+        {
+          "span_id": "PM-TEST-02",
+          "finding": "test design contains failure expectations but has not been executed and cannot establish current pass"
+        }
+      ],
+      "consumer_evidence": [
+        {
+          "span_id": "PM-TEST-01",
+          "finding": "memory API normalization/list/surface consumer"
+        },
+        {
+          "span_id": "PM-TEST-03",
+          "finding": "compaction and concurrent writer consumer"
+        },
+        {
+          "span_id": "PM-TEST-04",
+          "finding": "takeover delivery/expiry consumer"
+        }
+      ]
+    }
+  ],
+  "atoms": [
+    {
+      "atom_id": "PM20-A01",
+      "kind": "requirement",
+      "source_asset_id": "LEGACY-ASSET-899A61905AFBC415F595",
+      "source_span_id": "PM-L3-01",
+      "original_text": "## HR-BR-07 — loop-engineering 決定ロジック\n\nworker/verifier の反復 loop は、**機械判定可能な決定関数**で駆動されること。\n\n- **継続判定** `canResume`: `status===\"running\"` ∧ 時間窓内 ∧ `lastVerdict!==\"pass\"` ∧ `iteration<max`\n  の 4 述語 AND（旧 auto_run_engine 3 条件の TS 化）。数だけで自動継続しない。\n- **停止判定** `evaluateStop`: `verdict/count/file_exists/cost_budget/no_progress/custom` を first-satisfied で\n  評価。**未知 reason・必須フィールド欠落は escalate で fail-close**（throw せず安全側）。\n- **失敗分類** `classifyRecovery`: doctor 赤 / budget 両超過 → escalate、handover stale → retry、diff 規模超過\n  → abort、閾値内 → continue（旧 RecoveryEngine C1-C4）。\n- 受入 = U-ORCH-001 / U-ORCH-002 / U-ORCH-005（`tests/orchestration`）。\n\n## HR-BR-12 — 2 層共有メモリのセマンティクス\n\nメモリは **harness 層 / project 層**を持ち、エントリは履歴非破壊で更新されること。\n\n- `writeMemory`: 同 key 既存は新エントリの `supersedes` に旧 id を載せる（上書きせず履歴を残す）。\n- `listMemory`: superseded を除外し、指定層のみ `createdAt` 昇順。\n- `surfaceMemory`: **harness 層のみ** surface（project 層は出さない）。\n- 永続は **注入抽象 `MemoryDeps`** 経由（実 2 層投影 = harness.db + jsonl は follow-up で配線）。\n- 受入 = U-MEM-001 / U-MEM-002 / U-MEM-003（`tests/memory`）。\n",
+      "original_text_sha256": "2437ad016de95b2df91ee785a0ed8e43ff2e670ebf47c5cc508db3595043a642",
+      "subject": "resume/stop/recovery and two-layer memory",
+      "actor_candidate": "loop coordinator / verifier",
+      "legacy_authority_or_enforced_by": "legacy L3 contract and old loop predicates",
+      "failure_or_unresolved": "unknown reason, missing fields, stale handover or budget can fail-close/escalate",
+      "consumer_candidate": "orchestration loop, recovery, memory layer consumers",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS process execution connection candidate",
+      "evidence_status": "legacy text observed; current implementation/operation unknown"
+    },
+    {
+      "atom_id": "PM20-A02",
+      "kind": "safety_requirement",
+      "source_asset_id": "LEGACY-ASSET-899A61905AFBC415F595",
+      "source_span_id": "PM-L3-02",
+      "original_text": "## HR-NFR-03 — hybrid 自己評価禁止（非機能・安全）\n\nhybrid では **検証者は worker と別 runtime**でなければならない（自己評価で pass を出さない）。\n\n- `selectVerifier`: hybrid → worker と異なる provider（`blockedReason=null`）。single-runtime → worker と\n  同 provider だが `blockedReason=\"intra_runtime_fallback\"` を必ず記録。**hybrid で worker と同 provider を\n  返さない**（旧 BLOCKED_SELF_DELEGATION の機械担保）。\n- secret 安全: `writeMemory` は secret 命中時に**書込拒否（reject、body を echo しない）**。漏洩境界を実装裁量に\n  残さない（CLAUDE.md 禁止事項の機械担保）。\n- 受入 = U-ORCH-003（self-eval 禁止）＋ U-MEM-001（secret reject）。\n",
+      "original_text_sha256": "5d74f69fefa9ec942f2cce9df81923cefcfa75b6e4ddccd18cdce538727434f1",
+      "subject": "independent verifier and secret rejection",
+      "actor_candidate": "worker/verifier and memory writer",
+      "legacy_authority_or_enforced_by": "hybrid verifier separation and secret policy",
+      "failure_or_unresolved": "self-evaluation or secret payload must not produce accepted memory",
+      "consumer_candidate": "verification and security boundary consumer",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS evidence/process connection candidate",
+      "evidence_status": "legacy text observed; current authority unknown"
+    },
+    {
+      "atom_id": "PM20-A03",
+      "kind": "boundary",
+      "source_asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "source_span_id": "PM-L5-01",
+      "original_text": "## §0 適用境界、現行資産、source provenance\n\n本sliceは、verified completionから永続知識だけを抽出するknowledge compactionと、反復findingを\n`pattern -> recipe -> shadow -> skill/detector -> gate`へ段階昇格するlearning promotionを扱う。\n物理JSONL整理である既存`compactMemory`、session終了時の書込み忘れを警告する既存`memoryPromotionNudge`、\n短期の進行状態を保持するcontinuationは再利用候補だが、本sliceのknowledge promoterやlearning ledgerの実装済み証拠ではない。\n\n現行memory v2は`.helix/memory/{harness,project,takeover}.jsonl`をdata SSoTとし、harness.dbの機械状態と矛盾した場合は\nDBを優先する。continuationはharness.dbのevent/projectionを正本とし、memoryへ進捗、next action、lease、current stateを\n複製しない。この既存境界を維持し、knowledge compactionの出力だけをshared memoryへappendする。\n",
+      "original_text_sha256": "4288802d5336d9b26fd418ba53d337198fdc1c6a55afe32419d465feab0c672b",
+      "subject": "knowledge compaction versus continuation",
+      "actor_candidate": "completion reader / process state owner",
+      "legacy_authority_or_enforced_by": "memory JSONL knowledge and harness.db continuation split",
+      "failure_or_unresolved": "progress/current state/next action copied into knowledge or SSoT conflict",
+      "consumer_candidate": "memory compaction and continuation reconciliation consumer",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS workflow-state connection candidate",
+      "evidence_status": "legacy design observed; current contract/operation unknown"
+    },
+    {
+      "atom_id": "PM20-A04",
+      "kind": "authority",
+      "source_asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "source_span_id": "PM-L5-02",
+      "original_text": "## §1 componentとauthority\n\n| component | 責務 | authority | 禁止 |\n|---|---|---|---|\n| `VerifiedCompletionReader` | completion、Issue、PR、CI、audit、oracleのdigestとverification receiptをread | completion observation | raw log本文、未verified completionの昇格 |\n| `CompletionKnowledgePartitioner` | durable knowledge、continuation、forbidden content、no-promotionを全件分類 | partition proposal | 進捗のknowledge化、不明分類の黙認 |\n| `KnowledgePromoter` | workerとは別role/providerでpromote/supersede/no-promotion proposalを作る | proposalだけ | 自成果の自己昇格、memoryへの直接write |\n| `MemoryPromotionGate` | verification、role分離、classification、provenance、supersessionをNodeで再検証 | promotion receipt | secret/PII/raw log、prose-only receipt |\n| `MemoryPromotionCommitter` | memory eventとpromotion ledgerを冪等commit | Node memory port＋`HarnessDbPort` | Claude/Codexからの直接DB write、片側commit |\n| `LearningPatternAggregator` | finding、repair、Issue、commit、oracleを同一causalityでpattern候補へ集約 | pattern event | raw implementation logの複製、support偽装 |\n| `LearningRecipeBuilder` | 再現手順、scope、期待oracle、fixture契約をrecipe化 | recipe event | fixtureなしshadow、自由文だけの手順 |\n| `ShadowEvaluationCoordinator` | active workflowを変更せずbefore/afterと退行を測定 | shadow receipt | blocking適用、評価fixture差替え |\n| `IndependentPromotionReviewer` | promoterと別role/providerで効果、false positive、coverage、rollbackを判定 | review receipt | self review、worker/promoter claimの追認だけ |\n| `LearningPromotionGate` | skill/detector/gateの段階、review、rollback targetを検査 | promotion decision | stage飛越、即時gate化、rollbackなしactive化 |\n| `LearningRollbackController` | regression時にactive revisionをrollback/retireし再昇格をfence | rollback/retire event | 証拠消去、同evidenceの無条件再利用 |\n\nworker、knowledge promoter、independent reviewer、final verifierはidentity、role、provider familyの全6組合せで分離する。Claude Codeがknowledge promoterとなる場合も、\nNodeがcontractを検証して正本commitする。skill/detector/gateのauthor自身は最終reviewとactive化を兼ねない。\n",
+      "original_text_sha256": "195f34d62780aab205fe914d709500611258459984c30df893229f3828f8f846",
+      "subject": "promotion roles and rollback",
+      "actor_candidate": "promoter, gate, reviewer, committer",
+      "legacy_authority_or_enforced_by": "role/provider separation and promotion/rollback stages",
+      "failure_or_unresolved": "self-promotion, stage bypass, missing rollback or independent review blocks active state",
+      "consumer_candidate": "learning promotion and memory commit consumer",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "PHCAP-19 learning connection candidate",
+      "evidence_status": "legacy design observed; PHCAP-19 split unresolved"
+    },
+    {
+      "atom_id": "PM20-A05",
+      "kind": "schema",
+      "source_asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "source_span_id": "PM-L5-03",
+      "original_text": "各candidateを`durable_knowledge | continuation | forbidden | duplicate | no_value`へ全件分類する。continuationは\nharness.dbの既存event/projectionへ残し、memory eventを生成しない。分類不能はdurableへ推測せず\n`HIL_MEMORY_COMPACTION_INVALID`でpacket全体を拒否する。\n\npromotion結果は次のどれか一つである。\n\n- `promote`: 新しいmemory key/revisionをappendする。\n- `supersede`: 生存entryを明示参照する新revisionをappendする。\n- `no_promotion`: 永続化価値なし、重複、continuation-onlyの理由とinput/output digestをreceiptに残す。\n\nverified completion一件につきterminal receiptはexactly-oneとする。4主体のidentity、role、provider familyが一組でも衝突するなら\n`HIL_MEMORY_PROMOTER_NOT_INDEPENDENT`、admission/completion event種別が混在する場合は`HIL_MEMORY_EVENT_MIXED`とする。\n既存の物理compactionは意味を要約せず、knowledge promotionの代用にしない。\n\n## §3 memoryとcontinuationの分離\n\n| 情報 | 正本 | memory昇格 |\n|---|---|---|\n| 現在state、進捗、next action、lease、checkpoint | harness.db continuation event/projection | 禁止 |\n| provider delegation transcript/handover | delegation evidence | 禁止 |\n| 検証済み決定、長期制約、再利用可能な設計知識 | harness/project memory event | 許可 |\n| 一時的なruntime takeover | takeover memory lifecycle | 長期knowledgeへ自動転記禁止 |\n| raw log、secret、PII、credential | 原evidenceの保護境界または即時拒否 | 禁止 |\n\nmemory receiptはcontinuation refを参照できるが、continuation本文や現在stateを複製しない。DB優先はcontinuationとprocess projectionの\nstateに限り、knowledge payload、key、revision、supersessionのdata authorityは常にmemory JSONLとする。DB projectionがJSONLと矛盾する場合は\nDB rowをstaleとして再投影し、JSONL entryをDB値で上書きしない。completion closureはmemoryまたはno-promotion receiptのdigestだけをjoinする。\n",
+      "original_text_sha256": "6c1cc38449b517549a1ee5471d753b5df95584d81999c5a65315a0f683f2d62a",
+      "subject": "bounded packet classification",
+      "actor_candidate": "partitioner / memory gate",
+      "legacy_authority_or_enforced_by": "durable knowledge, continuation, forbidden, duplicate, no_value classification",
+      "failure_or_unresolved": "raw log, progress, secret/PII, mixed event or unknown classification rejects packet",
+      "consumer_candidate": "memory receipt and continuation authority consumer",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS completion evidence connection candidate",
+      "evidence_status": "legacy design observed; current implementation unknown"
+    },
+    {
+      "atom_id": "PM20-A06",
+      "kind": "lifecycle",
+      "source_asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "source_span_id": "PM-L5-04",
+      "original_text": "## §4 learning ledgerと段階遷移\n\nfindingは本文を複製せず、finding/Issue/commit/oracle digestとcause IDを`raw_event_ref`として登録する。許可遷移は次とする。\n\n```text\nraw_event_ref -> pattern -> recipe -> shadow -> shadow_verified\nshadow_verified -> skill_candidate -> skill_active\nshadow_verified -> detector_candidate -> detector_active\nskill_active | detector_active -> gate_candidate -> gate_active\nshadow | shadow_verified | *_candidate | *_active -> rolled_back -> retired\n```\n\npatternはsupport countと独立causality数、recipeは再現fixture、expected oracle、scope、non-goal、ownerを必須とする。\nfixtureなしshadowは`HIL_PROMOTION_FIXTURE_MISSING`、recipeからgateへの直行は\n`HIL_PROMOTION_IMMEDIATE_GATE_FORBIDDEN`、その他のstage飛越は`HIL_PROMOTION_STAGE_BYPASS`で拒否する。\n\nskill/detectorはshadow verified後の別branchであり、片方を他方の証拠として偽装しない。blocking gateはactive skillまたはdetector、\n独立review、rollback target、限定scopeを要求する。反復logの多さだけでrecipe/gateへ昇格する場合は\n`HIL_LEARNING_PROMOTION_PREMATURE`とする。\n",
+      "original_text_sha256": "0c91ded890479e4d4f86b8eb108483377e3ee5ac0d8b3524bf5baa50ed3fb7bc",
+      "subject": "learning promotion graph",
+      "actor_candidate": "pattern/recipe/shadow/promotion components",
+      "legacy_authority_or_enforced_by": "typed promotion stages with rollback/retire",
+      "failure_or_unresolved": "fixture/effect/review/rollback missing or stage bypass prevents activation",
+      "consumer_candidate": "learning ledger and PHCAP-19 consumer candidate",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS improvement backflow connection candidate",
+      "evidence_status": "legacy design observed; adoption unknown"
+    },
+    {
+      "atom_id": "PM20-A07",
+      "kind": "verification",
+      "source_asset_id": "LEGACY-ASSET-D65FB82C21C5EDBDFCE4",
+      "source_span_id": "PM-L5-05",
+      "original_text": "## §5 fixture、shadow、独立効果検証\n\nshadowはactive workflowのdecisionを変更せず、同じversioned fixture setをbaseline/candidateへ実行する。receiptは最低限、\nsource snapshot、recipe/candidate version、fixture set、oracle set、before/after result、sample/support count、成功率、\nfalse-positive/negative率、設計document coverage delta、runtime/cost delta、scope、reviewer identity、rollback targetのdigestを持つ。\n\nbefore metricまたは独立review receiptが無い場合は`HIL_PROMOTION_EFFECT_MISSING`とする。coverage deltaは\nrequirement/design/test/oracleの未接続数、説明なしobligation、false coveredを同じ分母でbefore/after比較する。\nblocking gate昇格にはcoverage改善が正、既存oracle退行0、false-positive policy内を要求する。skill/detectorは目的metricの改善を\n要求し、coverage非改善をgate昇格のshortcutに使わない。\n\n一fixtureでも既存workflow、acceptance、security、authority、portabilityを退行させた場合は\n`HIL_PROMOTION_SHADOW_REGRESSION`でactive化0、rollbackを実行する。promoterとreviewerが同一、またはworker claimだけのreviewは\n独立効果検証として受理しない。\n",
+      "original_text_sha256": "b73fb5152ec885a824d21dd5ac98e058fc78ad1347770ef9c304d3a23d830a89",
+      "subject": "shadow effect and independent review",
+      "actor_candidate": "shadow coordinator / independent reviewer",
+      "legacy_authority_or_enforced_by": "before/after fixture and coverage/effect receipts",
+      "failure_or_unresolved": "regression or missing effect/reviewer blocks active promotion",
+      "consumer_candidate": "L8/L10 oracle and learning promotion consumer",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS verification connection candidate",
+      "evidence_status": "legacy design observed; execution unknown"
+    },
+    {
+      "atom_id": "PM20-A08",
+      "kind": "architecture",
+      "source_asset_id": "LEGACY-ASSET-E2208C8FDEDCABF63A79",
+      "source_span_id": "PM-L6-01",
+      "original_text": "HELIX を **Claude Code ↔ Codex 連携前提のマルチエージェント・オーケストレーション**へ寄せる\n機能追加。standalone 単体は縮退モード、**hybrid Claude+Codex を foundation** に据える。本書は\n2 つの Bounded Context を function 粒度で確定する:\n\n- **P2 orchestration** (`src/orchestration/`): worker/verifier の loop を回し、stop 条件で止め、\n  失敗を recovery へ送る coordinator。verifier は常に worker と別 runtime（自己評価禁止を machine-enforce）。\n- **P7 memory** (`src/memory/`): harness 層 / project 層の 2 層共有メモリ。Claude も Codex も同一\n  ソースを読み書きできる（per-agent silo を廃止）。\n\n## §2 機能設計 (L6 粒度)\n\n### §2.1 責務分離\n\n| 責務 | 関数 | machine enforcement |\n|------|------|---------------------|\n| loop 駆動 | `tick` / `canResume` (`loop-runner.ts`) | resume 3 条件 AND（数だけで自動継続しない） |\n| runtime bridge | `nodeTickDeps` (`loop-bridge.ts`) | `tick` の verifier 選定を再実装せず、worker/verifier を adapter 実行面へ接続 |\n| loop entrypoint | `helix loop run` (`src/cli.ts`) | `.helix/state/loop/<plan>.json` から state を読み、dry-run と dispatch を分離 |\n| 停止判定 | `evaluateStop` (`loop-stop-rules.ts`) | stop schema を zod で固定（未知 reason は fail-close） |\n| 検証者選定 | `selectVerifier` (`cross-verifier.ts`) | hybrid で verifier≠worker provider を **fail-close** |\n| 失敗回収 | `classifyRecovery` (`loop-recovery.ts`) | C1-C4 条件 → escalate/retry/abort、判断は純関数 |\n| job 排他 | `claimNextJob` (`job-queue.ts`) | `BEGIN IMMEDIATE` で多ランタイム競合 claim を直列化 |\n| memory 投影 | `writeMemory` / `listMemory` (`src/memory/index.ts`) | secret strip + 2 層投影（harness.db + jsonl） |\n",
+      "original_text_sha256": "c594053861db538177477b35ef81512f3dd6b49451affb25329eb0d39ae8050b",
+      "subject": "P2/P7 bounded contexts",
+      "actor_candidate": "orchestration coordinator / memory module",
+      "legacy_authority_or_enforced_by": "harness/project memory layers and runtime separation",
+      "failure_or_unresolved": "memory responsibility absorbs orchestration or verifier independence is lost",
+      "consumer_candidate": "OS orchestration and memory consumers",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS engine/process connection candidate",
+      "evidence_status": "legacy design observed; no current implementation claim"
+    },
+    {
+      "atom_id": "PM20-A09",
+      "kind": "schema",
+      "source_asset_id": "LEGACY-ASSET-E2208C8FDEDCABF63A79",
+      "source_span_id": "PM-L6-02",
+      "original_text": "// memory-types.ts\ntype MemoryLayer = \"harness\" | \"project\";\ninterface MemoryEntry {\n  id: string;             // stableId（内容ハッシュ由来、再投影で安定）\n  layer: MemoryLayer;\n  key: string;\n  body: string;\n  supersedes: string | null;  // 旧 entry id（履歴を壊さず上書き）\n  createdAt: string;\n}\n",
+      "original_text_sha256": "bdfa91a5c64682fbd4257a300b373bb31a8e3b20a56d10f9a1e54a275e9674a6",
+      "subject": "memory entry and supersession",
+      "actor_candidate": "memory store",
+      "legacy_authority_or_enforced_by": "layer, stable id, key, body, supersedes, createdAt",
+      "failure_or_unresolved": "schema drift or broken supersession can lose history or active view",
+      "consumer_candidate": "memory JSONL data consumer",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS shared process-state connection candidate",
+      "evidence_status": "legacy design observed; current data SSoT unknown"
+    },
+    {
+      "atom_id": "PM20-A10",
+      "kind": "interface",
+      "source_asset_id": "LEGACY-ASSET-E2208C8FDEDCABF63A79",
+      "source_span_id": "PM-L6-03",
+      "original_text": "| 関数 | signature | DbC |\n|------|-----------|-----|\n| `canResume` | `(s: LoopState, now: string) => boolean` | **純関数**。旧 auto_run_engine の **3 条件** `status===\"running\"` ∧ `within_time_window` ∧ `should_schedule` を TS 化。`within_time_window` = `now∈[windowOpensAt,windowClosesAt]`（両端含む ≤）、`should_schedule` = `lastVerdict!==\"pass\"` ∧ `iteration<maxIterations`（carry 述語）。展開すると **計 4 述語の AND**、1 つでも偽 → false |\n| `evaluateStop` | `(rules: StopRule[], s: LoopState, probe: StopProbe) => StopDecision` | **純関数**（I/O は probe 注入）。最初に成立した rule で stop。`verdict`→`lastVerdict===\"pass\"`、`count`→`iteration>=threshold`、`cost_budget`→`costUsd>=threshold`、`file_exists`→`probe.exists(path)`、`no_progress`→`probe.noProgress(threshold)`、`custom`→`probe.custom()`。**必須フィールド欠落の fail-close**: `count`/`cost_budget`/`no_progress` で `threshold==null`、`file_exists` で `path==null` の rule は評価不能 → `{stop:true,reason:null,onFailure:\"escalate\"}`。未知 reason も同様（throw せず escalate で安全側に倒す） |\n| `selectVerifier` | `(workerProvider: Provider, mode: ExecutionMode) => { provider: Provider; blockedReason: string \\| null }` | **純関数**（provider 選定のみ。可用性 I/O は持たない）。hybrid → worker と異なる provider を返す（`blockedReason=null`）。それ以外（single-runtime）→ worker と同 provider + `blockedReason=\"intra_runtime_fallback\"`。**hybrid で worker と同 provider を返すことは無い**（BLOCKED_SELF_DELEGATION の core） |\n| `tick` | `(s: LoopState, rules: StopRule[], deps: TickDeps) => Promise<LoopState>` | orchestration。`canResume` 偽 → state 不変で返す。真 → `evaluateStop`→stop なら `onFailure` 経路（escalate/retry/abort）→ worker dispatch → `selectVerifier` で verifier provider 決定 → verifier dispatch → `loop_iterations` 追記 → iteration++ で新 state。**hybrid 自己評価 fail-close**: hybrid で選定 verifier provider が dispatch 時に利用不能（`deps.providerAvailable(provider)===false`）なら **worker と同 runtime で代替検証せず escalate**（`status=\"stopped\"`, `blockedReason=\"cross_runtime_unavailable\"`）。worker 自身の runtime から `pass` を出さない。**副作用は deps 経由のみ**、token を state/log に書かない |\n| `nodeTickDeps` | `(input: NodeTickDepsInput) => TickDeps` | runtime bridge。`detectMode`/`adapterProviderAvailable`/`buildAdapterPlan`/`buildProviderInvocation` を使って `TickDeps` を構成し、`tick` 側の `selectVerifier` 結果を adapter 実行へ渡す。**provider 選定ロジックを再実装しない**。worker は `runWorker`、verifier は `runVerifier` として目的別に role/task を固定し、verifier 結果は JSON `{verdict}` または `VERDICT: pass\\|fail\\|error\\|pending` のみを machine-readable verdict として解釈する。adapter 起動失敗・非 0 status は error/escalate 側に倒し、token/secret を state に書かない |\n| `helix loop run` | `loop run --plan <id> [--once] [--dry-run]` | CLI entrypoint。`fileLoopStore` で `.helix/state/loop/<planId>.json` を読み、`workerProvider` を検証し、`selectVerifier` と `nodeTickDeps` を接続して `tick` を回す。`--dry-run` は mode/worker/verifier availability と `dispatch=false` だけを出し、adapter dispatch と state 書込をしない。`--once` は 1 tick で停止。通常実行は `canResume` が false になるまで tick し、各 tick 後に state と iteration jsonl を永続化する。state 不在・invalid provider・runtime bridge error は exitCode=1 で fail-close |\n| `classifyRecovery` | `(s: LoopState, signals: RecoverySignals) => RecoveryAction` | **純関数**。旧 RecoveryEngine C1-C4: diff 規模超過 / doctor 赤 / handover stale / budget 両超過 → `{kind:\"escalate\"\\|\"retry\"\\|\"abort\", reason}`。閾値内 → `{kind:\"continue\"}` |\n| `claimNextJob` | `(db: Database, provider: Provider) => Job \\| null` | `BEGIN IMMEDIATE` トランザクション内で `status=\"queued\"` の最優先 1 件を `status=\"claimed\", provider=:provider` に更新して返す。無ければ null。**並行 claim はトランザクション直列化で二重取得しない**（旧 job_queue 排他の TS 移植） |\n| `writeMemory` | `(input: WriteMemoryInput, deps: MemoryDeps) => MemoryEntry`（`WriteMemoryInput={layer,key,body}`。coding-rule max-source-params=3 のため input object 化、impl→design back-fill） | **secret 命中時は書込拒否（throw、reject）— strip して部分保存はしない**（部分保存は「保存された」誤解と漏洩境界の曖昧化を生む）。既存 `SECRET_PATTERN` で body を検査し、命中 0 のときのみ harness.db `upsertRow` + `.helix/memory/<layer>.jsonl` 追記の **2 層投影**。同 key 既存 → `supersedes` に旧 id を載せて新 entry（履歴非破壊） |\n| `listMemory` | `(layer: MemoryLayer, deps: MemoryDeps) => MemoryEntry[]` | 指定層の有効 entry（superseded 除く）を `createdAt` 昇順で返す。**純読取**、書込なし |\n| `surfaceMemory` | `(deps: MemoryDeps, budget?: SurfaceBudget) => string[]` | SessionStart 用。harness 層の有効 entry を人間可読行で返す（project 層は明示要求時のみ）。秘匿情報を surface しない。**context 圧迫対策**: 直近 `maxEntries`(既定 12) 件のみ・各 body は `maxBodyChars`(既定 240) で切り詰め、超過分は `(+N older — helix memory list harness)` フッタに集約（無制限注入を禁止） |\n",
+      "original_text_sha256": "07c292085993ee419d95481a999335bd2d591f3b9259c2a5726f12cd85a5d219",
+      "subject": "write/list/surface projection",
+      "actor_candidate": "memory API / session surface",
+      "legacy_authority_or_enforced_by": "secret strip, two-layer projection, active list and bounded surface",
+      "failure_or_unresolved": "secret leak, DB/JSONL divergence or unbounded surface blocks safe use",
+      "consumer_candidate": "memory API and session-start consumer",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS session/process connection candidate",
+      "evidence_status": "legacy design observed; current operation unknown"
+    },
+    {
+      "atom_id": "PM20-A11",
+      "kind": "implementation",
+      "source_asset_id": "LEGACY-ASSET-AB9A16E8A8DB2F094CC5",
+      "source_span_id": "PM-RUNTIME-01",
+      "original_text": "import { appendFileSync, existsSync, mkdirSync, readFileSync } from \"node:fs\";\nimport { join } from \"node:path\";\nimport { isSecretLike } from \"../security/secret-policy\";\nimport type { MemoryDeps, MemoryEntry, MemoryLayer } from \"./memory-types\";\nimport { resolveMemoryView } from \"./memory-v2\";\n\ninterface FileMemoryDepsOptions {\n  root: string;\n  now?: () => string;\n}\n\nexport function fileMemoryDeps(opts: FileMemoryDepsOptions): MemoryDeps {\n  const memoryDir = join(opts.root, \".helix\", \"memory\");\n  const now = opts.now ?? (() => new Date().toISOString());\n  const pathFor = (layer: MemoryLayer) => join(memoryDir, `${layer}.jsonl`);\n\n  const readActive = (layer: MemoryLayer): MemoryEntry[] => {\n    const raw = readRawLayer(pathFor(layer));\n    return resolveMemoryView(raw, new Date().toISOString(), layer).activeEntries.map((entry) => ({\n      id: entry.id,\n      layer,\n      key: entry.key,\n      body: entry.body,\n      supersedes: entry.supersedes,\n      createdAt: entry.createdAt,\n    }));\n  };\n\n  return {\n    now,\n    stableId: (layer, key, createdAt) => `${layer}:${key}:${createdAt}`,\n    isSecret: isSecretLike,\n    readActive,\n    findByKey: (layer, key) =>\n      readActive(layer)\n        .filter((entry) => entry.key === key)\n        .at(-1) ?? null,\n    persist: (entry) => {\n      mkdirSync(memoryDir, { recursive: true });\n      appendFileSync(pathFor(entry.layer), `${JSON.stringify(entry)}\\n`, \"utf8\");\n    },\n  };\n",
+      "original_text_sha256": "a29d099ac9d9ad2c0ca003c20b6c0071b7544948cfdcb309f6bf1caf2b2ca30e",
+      "subject": "file memory adapter",
+      "actor_candidate": "fileMemoryDeps / MemoryDeps",
+      "legacy_authority_or_enforced_by": "JSONL persistence, active view, secret predicate, stable id",
+      "failure_or_unresolved": "read/parse/persist failure, malformed line handling or secret policy behavior unresolved",
+      "consumer_candidate": "current memory adapter comparison candidate",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS runtime connection candidate",
+      "evidence_status": "old implementation source present; execution/current reuse unknown"
+    },
+    {
+      "atom_id": "PM20-A12",
+      "kind": "test_contract",
+      "source_asset_id": "LEGACY-ASSET-C4A63C3FE02AA86E2391",
+      "source_span_id": "PM-TEST-01",
+      "original_text": "  it(\"U-MEMV2-001a: v1/v2 mixed normalization resolves cross-schema supersede and rejects bad explicit v2\", () => {\n    const legacy = legacyEntry(\"old\", null, \"2026-07-11T00:00:00.000Z\");\n    const next = entry({ id: \"new\", supersedes: \"old\", createdAt: \"2026-07-11T00:01:00.000Z\" });\n    const view = resolveMemoryView([legacy, next], \"2026-07-11T00:02:00.000Z\", \"harness\");\n    expect(view.activeEntries.map((item) => item.id)).toEqual([\"new\"]);\n    expect(normalizeMemoryEntry({ ...next, schemaVersion: 99 })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    // compacted predecessorへの参照は許可し、cycleだけをdamaged扱いにする。\n    expect(resolveMemoryView([{ ...next, supersedes: \"missing\" }], next.createdAt).damaged).toBe(0);\n    expect(\n      resolveMemoryView(\n        [entry({ id: \"a\", supersedes: \"b\" }), entry({ id: \"b\", supersedes: \"a\" })],\n        next.createdAt,\n      ).damaged,\n    ).toBe(2);\n  });\n\n  it(\"U-MEMV2-001b: legacy write/list/surface remains byte-for-byte compatible\", () => {\n    root = mkdtempSync(join(tmpdir(), \"helix-memv2-legacy-\"));\n    const times = [\"2026-07-11T00:00:00.000Z\", \"2026-07-11T00:01:00.000Z\"];\n    const deps = fileMemoryDeps({ root, now: () => times.shift() ?? \"unexpected\" });\n    writeMemory({ layer: \"harness\", key: \"a\", body: \"x\".repeat(300) }, deps);\n    writeMemory({ layer: \"harness\", key: \"b\", body: \"body\" }, deps);\n    expect(listMemory(\"harness\", deps).map((item) => item.key)).toEqual([\"a\", \"b\"]);\n    expect(surfaceMemory(deps, { maxEntries: 1, maxBodyChars: 10 })).toEqual([\n      \"- [b] body\",\n      \"- (+1 older — helix memory list harness)\",\n    ]);\n  });\n",
+      "original_text_sha256": "5ed15fd145aa6adfc9432c39daf733e07ce5397c26899b71212cb695d4af0120",
+      "subject": "normalization and surface tests",
+      "actor_candidate": "memory-v2 test harness",
+      "legacy_authority_or_enforced_by": "supersede, list/surface and legacy compatibility expected",
+      "failure_or_unresolved": "test source is not executed evidence; current pass unknown",
+      "consumer_candidate": "memory API and acceptance candidate",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS test/verification connection candidate",
+      "evidence_status": "test source present unexecuted"
+    },
+    {
+      "atom_id": "PM20-A13",
+      "kind": "test_contract",
+      "source_asset_id": "LEGACY-ASSET-C4A63C3FE02AA86E2391",
+      "source_span_id": "PM-TEST-02",
+      "original_text": "  it(\"U-MEMV2-002a: schema validator returns field-bound reasons for enum/lifecycle input\", () => {\n    const now = \"2026-07-11T00:00:00.000Z\";\n    expect(\n      validateMemoryEntry(\n        { operationId: \"invalid-type\", layer: \"takeover\", key: \"x\", body: \"x\", type: \"feedback\" },\n        now,\n        () => false,\n      ),\n    ).toMatchObject({ ok: false, reason: \"takeover_type_not_allowed\", field: \"type\" });\n    expect(\n      validateMemoryEntry(\n        { operationId: \"missing-expiry\", layer: \"takeover\", key: \"x\", body: \"x\", type: \"state\" },\n        now,\n        () => false,\n      ),\n    ).toMatchObject({ ok: false, reason: \"takeover_expiry_required\", field: \"expiresAt\" });\n  });\n\n  it(\"U-MEMV2-002b: body/metadata secrets and malformed/duplicate links fail closed\", () => {\n    const now = \"2026-07-11T00:00:00.000Z\";\n    const secret = (value: string) => value.includes(\"SECRET_MARKER\");\n    expect(\n      validateMemoryEntry(\n        { operationId: \"secret-body\", layer: \"harness\", key: \"x\", body: \"SECRET_MARKER\" },\n        now,\n        secret,\n      ),\n    ).toMatchObject({ ok: false, reason: \"secret_like\" });\n    expect(\n      validateMemoryEntry(\n        {\n          layer: \"harness\",\n          operationId: \"secret-meta\",\n          key: \"x\",\n          body: \"ok\",\n          provenance: { origin: \"SECRET_MARKER\" },\n        },\n        now,\n        secret,\n      ),\n    ).toMatchObject({ ok: false, reason: \"secret_like\" });\n    expect(\n      validateMemoryEntry(\n        {\n          operationId: \"links\",\n          layer: \"harness\",\n          key: \"x\",\n          body: \"ok\",\n          links: [\"harness:a\", \"harness:a\"],\n        },\n        now,\n        secret,\n      ),\n    ).toMatchObject({ ok: false, reason: \"duplicate_link\" });\n    expect(resolveMemoryView([entry({ links: [\"project:missing\"] })], now).unresolvedLinks).toEqual(\n      [{ entryId: \"e\", link: \"project:missing\" }],\n    );\n    expect(normalizeMemoryEntry({ ...entry(), links: [\"bad\"] })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    expect(normalizeMemoryEntry({ ...entry(), body: \"sk-1234567890abcdef\" })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    expect(\n      normalizeMemoryEntry({\n        ...entry({ layer: \"takeover\", type: \"state\" }),\n        lifecycle: {\n          state: \"active\",\n          expiresAt: \"not-a-date\",\n          consumedAt: null,\n          consumedBy: null,\n        },\n      }),\n    ).toEqual({ ok: false, reason: \"schema_invalid\" });\n    expect(normalizeMemoryEntry({ ...entry(), createdAt: \"not-a-date\" })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    expect(normalizeMemoryEntry({ ...entry(), createdAt: \"2026-07-11\" })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    expect(normalizeMemoryEntry({ ...entry(), createdAt: \"2026-02-30T00:00:00.000Z\" })).toEqual({\n      ok: false,\n      reason: \"schema_invalid\",\n    });\n    expect(\n      normalizeMemoryEntry({\n        ...entry({ layer: \"takeover\", type: \"state\" }),\n        lifecycle: {\n          state: \"active\",\n          expiresAt: \"2026-07-19T00:00:00.000Z\",\n          consumedAt: null,\n          consumedBy: null,\n        },\n      }),\n    ).toEqual({ ok: false, reason: \"schema_invalid\" });\n  });\n",
+      "original_text_sha256": "191ecf16577c2d0ff670e87679fe84a38be933b083a503c6f37715d0be3b00c3",
+      "subject": "schema/security failure tests",
+      "actor_candidate": "memory-v2 test harness",
+      "legacy_authority_or_enforced_by": "secret, malformed link and lifecycle fail-close expectations",
+      "failure_or_unresolved": "failure behavior remains unverified without execution and current mapping",
+      "consumer_candidate": "memory safety and L11/L10 oracle candidate",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS safety verification connection candidate",
+      "evidence_status": "test source present unexecuted"
+    },
+    {
+      "atom_id": "PM20-A14",
+      "kind": "test_contract",
+      "source_asset_id": "LEGACY-ASSET-C4A63C3FE02AA86E2391",
+      "source_span_id": "PM-TEST-03",
+      "original_text": "  it(\"U-MEMV2-003: compactMemoryV2 preserves observations and serializes a concurrent writer\", async () => {\n    root = mkdtempSync(join(tmpdir(), \"helix-memv2-compact-\"));\n    const clock = { now: \"2026-07-11T00:00:00.000Z\" };\n    const deps = nodeMemoryV2Deps({ root, now: () => clock.now });\n    expect(\n      writeMemoryV2({ operationId: \"old\", layer: \"harness\", key: \"k\", body: \"old\" }, deps).ok,\n    ).toBe(true);\n    clock.now = \"2026-07-11T00:01:00.000Z\";\n    expect(\n      writeMemoryV2({ operationId: \"new\", layer: \"harness\", key: \"k\", body: \"new\" }, deps).ok,\n    ).toBe(true);\n    const before = surfaceMemoryV2({ layers: [\"harness\"], now: clock.now }, deps);\n    const result = compactMemoryV2(\"harness\", deps);\n    const after = surfaceMemoryV2({ layers: [\"harness\"], now: clock.now }, deps);\n    expect(result).toMatchObject({ applied: true, kept: 1, removed: 1 });\n    expect(after).toEqual(before);\n    appendFileSync(join(root, \".helix\", \"memory\", \"harness.jsonl\"), \"not-json\\n\", \"utf8\");\n    expect(compactMemoryV2(\"harness\", deps)).toMatchObject({ applied: true, damaged: 1 });\n\n    const writerScript = [\n      'import { writeFileSync } from \"node:fs\";',\n      'import { nodeMemoryV2Deps, writeMemoryV2 } from \"./src/memory/memory-v2.ts\";',\n      \"const root = process.env.MEMORY_V2_ROOT;\",\n      'if (!root) throw new Error(\"missing root\");',\n      'const deps = nodeMemoryV2Deps({ root, now: () => \"2026-07-11T00:02:00.000Z\" });',\n      'const result = writeMemoryV2({ operationId:\"concurrent\", layer:\"harness\", key:\"concurrent\", body:\"preserve\" }, deps);',\n      \"if (!result.ok) throw new Error(result.reason);\",\n      'writeFileSync(process.env.WRITER_DONE, \"done\");',\n    ].join(\"\");\n    const compactScript = [\n      'import { existsSync, writeFileSync } from \"node:fs\";',\n      'import { compactMemoryV2, nodeMemoryV2Deps } from \"./src/memory/memory-v2.ts\";',\n      \"const root = process.env.MEMORY_V2_ROOT;\",\n      'if (!root) throw new Error(\"missing root\");',\n      'const deps = nodeMemoryV2Deps({ root, now: () => \"2026-07-11T00:02:00.000Z\", onLockAcquired: () => { writeFileSync(process.env.HOLDER_READY, \"ready\"); while (!existsSync(process.env.HOLDER_RELEASE)) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 20); } });',\n      'compactMemoryV2(\"harness\", deps);',\n    ].join(\"\");\n    const holderReady = join(root, \"holder.ready\");\n    const holderRelease = join(root, \"holder.release\");\n    const writerDone = join(root, \"writer.done\");\n    const compactPromise = runNodeTsxChild(compactScript, root, \"unused\", {\n      HOLDER_READY: holderReady,\n      HOLDER_RELEASE: holderRelease,\n    });\n    await waitForFile(holderReady);\n    const writerPromise = runNodeTsxChild(writerScript, root, \"unused\", {\n      WRITER_DONE: writerDone,\n    });\n    await delay(100);\n    expect(existsSync(writerDone)).toBe(false);\n    writeFileSync(holderRelease, \"release\", \"utf8\");\n    await Promise.all([compactPromise, writerPromise]);\n    expect(\n      resolveMemoryView(\n        deps.readEvents(\"harness\"),\n        \"2026-07-11T00:03:00.000Z\",\n        \"harness\",\n      ).activeEntries.map((event) => event.key),\n    ).toContain(\"concurrent\");\n  });\n",
+      "original_text_sha256": "da8566a2cb6ee1840bf5abf6fac995137660b0647a40f68abb3f54e9a3992a43",
+      "subject": "compaction and concurrent writer tests",
+      "actor_candidate": "memory-v2 test harness",
+      "legacy_authority_or_enforced_by": "preserve active view and serialize concurrent writer",
+      "failure_or_unresolved": "concurrency or damaged input behavior current status unknown",
+      "consumer_candidate": "memory compaction/process consumer candidate",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS runtime connection candidate",
+      "evidence_status": "test source present unexecuted"
+    },
+    {
+      "atom_id": "PM20-A15",
+      "kind": "test_contract",
+      "source_asset_id": "LEGACY-ASSET-C4A63C3FE02AA86E2391",
+      "source_span_id": "PM-TEST-04",
+      "original_text": "  it(\"U-MEMV2-004a: takeover enforces seven-day expiry and materializes one stable expiry tombstone\", () => {\n    const mock = mockDeps(\"2026-07-11T00:00:00.000Z\");\n    const exact = \"2026-07-18T00:00:00.000Z\";\n    expect(\n      writeMemoryV2(\n        {\n          operationId: \"next\",\n          layer: \"takeover\",\n          key: \"next\",\n          body: \"continue\",\n          type: \"state\",\n          expiresAt: exact,\n        },\n        mock,\n      ).ok,\n    ).toBe(true);\n    mock.clock = exact;\n    expect(expireMemory(\"takeover\", exact, mock)).toEqual([\n      { id: \"takeover:next:op:next\", reason: \"expired\" },\n    ]);\n    expect(expireMemory(\"takeover\", exact, mock)).toEqual([]);\n    expect(\n      mock.events.takeover.filter((event) => event.lifecycle.state === \"expired\"),\n    ).toHaveLength(1);\n\n    const superseded = mockDeps(\"2026-07-11T00:00:00.000Z\");\n    const first = writeMemoryV2(\n      {\n        operationId: \"same-old\",\n        layer: \"takeover\",\n        key: \"same\",\n        body: \"old\",\n        type: \"state\",\n        expiresAt: exact,\n      },\n      superseded,\n    );\n    superseded.clock = \"2026-07-11T00:01:00.000Z\";\n    const second = writeMemoryV2(\n      {\n        operationId: \"same-new\",\n        layer: \"takeover\",\n        key: \"same\",\n        body: \"new\",\n        type: \"state\",\n        expiresAt: exact,\n      },\n      superseded,\n    );\n    if (!first.ok || !second.ok) throw new Error(\"takeover fixture write failed\");\n    superseded.clock = exact;\n    expect(expireMemory(\"takeover\", exact, superseded)).toEqual([\n      { id: second.entry.id, reason: \"expired\" },\n    ]);\n  });\n\n  it(\"U-MEMV2-004b: delivery consumes only after output and retries after persist failure\", () => {\n    const outputFailure = takeoverMock();\n    outputFailure.writeOutput = () => {\n      throw new Error(\"stdout closed\");\n    };\n    expect(deliverTakeover({ consumerId: \"c\" }, outputFailure).status).toBe(\"output_failed\");\n    expect(outputFailure.events.takeover).toHaveLength(1);\n\n    const persistFailure = takeoverMock();\n    persistFailure.failAppend = true;\n    expect(deliverTakeover({ consumerId: \"c\" }, persistFailure)).toMatchObject({\n      status: \"delivered_with_retry_required\",\n    });\n    persistFailure.failAppend = false;\n    expect(surfaceMemoryV2({ layers: [\"takeover\"] }, persistFailure).selectedIds).toHaveLength(1);\n",
+      "original_text_sha256": "05235337ae9b1ec20c33e49fe285717f8521baf64d6702abf4418180876452c6",
+      "subject": "takeover lifecycle and delivery tests",
+      "actor_candidate": "memory-v2 test harness",
+      "legacy_authority_or_enforced_by": "expiry, consume idempotence and retry after persistence failure",
+      "failure_or_unresolved": "handover/takeover safety and current operation unknown",
+      "consumer_candidate": "continuation/takeover consumer candidate",
+      "product_unit_candidate": "HELIX-OS candidate unit",
+      "connection_candidate": "HARNESS/Web-OS handover connection candidate",
+      "evidence_status": "test source present unexecuted"
+    }
+  ],
+  "current_refs": [
+    {
+      "ref_id": "CUR-OS-L1",
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "start_line": 22,
+      "end_line": 40,
+      "exact_text": "HELIX-OSは、HARNESSを含むHELIXプロジェクト群のauthority、変更、Worker、状態、証拠、CI、配布運転を\n管理・統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWeb-OSから得た運用結果を\nHARNESS自身および各対象の改善候補へ戻す。担当やsessionが変わっても、承認済みの意味、未完義務、\n許可範囲、停止・復旧条件を失わず、対象ごとの開発を継続できるようにする。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HELIXOS-L1-001 | 人間は、対象ごとのConcept・要求・採否・合意revisionと判断の出所を管理できる | HELIXOS-L2-001／003 |\n| HELIXOS-L1-002 | 人間は、複数プロジェクトの要求から作業・検証・提供・運用までの欠落、競合、staleを把握できる | HELIXOS-L2-002／007 |\n| HELIXOS-L1-003 | 人間は、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開できる | HELIXOS-L2-004／009 |\n| HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |\n| HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |\n| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗・学習を評価し、HELIX-OSに採択済み改善の実行・再検証・効果確認を継続させられる | HELIXOS-L2-005 |\n| HELIXOS-L1-007 | 人間は、HARNESS package運転と個別製品のrelease準備・artifact受渡し・observationを対象revisionと許可へ束縛して統制し、展開先runtimeのdeployment authorityを分離できる | HELIXOS-L2-002／006／007 |\n| HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |\n| HELIXOS-L1-009 | 人間は、管理・推進・検収の責務を分け、許可範囲内の直接調整を保ったまま仕事を統制できる | HELIXOS-L2-010 |\n| HELIXOS-L1-010 | 人間は、変更と依存に合う統合順序・統合単位・検証集合を確認し、結果に応じて収束計画を更新できる | HELIXOS-L2-011 |\n| HELIXOS-L1-011 | 人間は、内部状態と外部技術情報を出典・revision・適用条件付きで調査し、安全に採否できる | HELIXOS-L2-012 |\n| HELIXOS-L1-012 | 人間は、一つの仕事を要求から運用まで診断し、管理機構自身を含む是正と効果確認へ閉じられる | HELIXOS-L2-013 |\n",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "line_sha256": "b1c128dbf54144105b9d47700ef811e1d7bc74cc475c287b2d27fb30574d3377",
+      "product": "HELIX-OS",
+      "classification": "boundary_candidate",
+      "meaning": "target OS L1 candidate; continuation and improvement context",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-OS-L2",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "start_line": 274,
+      "end_line": 283,
+      "exact_text": "HELIXOS-L2-002／005／007では、管理対象の要求revisionからrelease準備・artifact受渡しと、展開先runtimeが所有する\n配備・設定・計測・log・通知・incident・backup・restore・rollback・maintenance・decommission・費用の適用状態と証拠へ\n辿り、欠測・stale・collector停止をhealthyへ変換しない。OSは証拠と進行を統制するが、展開先runtimeの実行authorityを\n吸収しない。\n運用観測からの差分は改善候補として出典とscopeを保持し、人間の採否や対象製品の要求を直接書き換えない。\n\nHELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作・中断・再開を追跡し、対象、actor、権限、予算、\n影響範囲、復旧先、独立検証が成立する範囲だけを実行対象にする。NIO候補は操作認可や自動修復権限を付与しない。\n具体SLO、RTO／RPO、保持期間、対象環境は個別製品・releaseの承認済み要求を参照する。本節では旧機構、CI、\n故障注入、production操作、自動修復を実行しない。\n",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "line_sha256": "777c20a4f6fd2447397696229579f5f73910f8a74820511a14ecceef628750cf",
+      "product": "HELIX-OS",
+      "classification": "direct_current_ref",
+      "meaning": "inventory direct current ref; evidence candidate only",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-OS-L2-MEMORY",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "start_line": 300,
+      "end_line": 318,
+      "exact_text": "## 有期限通知とmemoryの責務\n\n最新の[HMC利用者要求候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/harness-memory-coordination-boundary-requests.md)は、\n有期限な連絡・受渡し・再開通知への限定を要求する。HELIX-OSの要求案として次の条件を保持する。\nHMC候補は人間承認記録済み・独立検収／正本化待ちと宣言されているが、本書でIRやruntimeへ昇格させない。\n\n| 出典 | 対応L2要求 | 利用者が確認できるべき具体条件 |\n|---|---|---|\n| HMC-BR-001 | HELIXOS-L2-004／009 | runtimeを跨いでassignment、review依頼、handover、heartbeat、確認待ちを有期限な通知として受け渡せる |\n| HMC-BR-002 | HELIXOS-L2-001／009 | 通知から各対象の正本を再取得でき、stale pointerやHEAD不一致を把握できる。要求の意味は要求文書・指定JSONへ、実行状態はその状態authorityへ戻る。Issue本文を要求正本として再取得しない |\n| HMC-BR-003 | HELIXOS-L2-001／005 | 要求・設計・受入・運用規則・ユーザー嗜好をmemoryの正本へ移さない。長期知識はLearning／Skill authorityへ接続し、参照先を確認できる |\n| HMC-BR-004 | HELIXOS-L2-001／007 | 通知中の相談・質問・仮説・叱責・AI解釈から承認・決定・完了を生成しない |\n| HMC-BR-005 | HELIXOS-L2-004／009 | 重複配送・再送・消費・期限切れ・訂正・crash後再開を追跡できる。無効記録は監査履歴として参照できてもcurrent guidanceへ再表示されない |\n| HMC-BR-006 | HELIXOS-L2-004／009 | provider native memory・session history・user設定が共有通知やauthorityへ暗黙混入しない |\n\nHBR-P7とHIL-BR-03等の旧memory中心要求は、この責務分離に従って要求本文・受入・consumerを同じrevisionへ\n移行する対象である。通知本文の削除やmemory件数減少を移行成功の証拠にしない。\n要求・知識・作業状態の移管先、原文provenance、再取得可用性、訂正履歴、未移管項目を確認してから置換する。\nretention／purge期間と既存記録の削除は本要求案で決定しない。\n",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "line_sha256": "81de8c1f31acf4517779512b7ffdc2974bbda9e3229b1d2c937fd0d7036e02a2",
+      "product": "HELIX-OS",
+      "classification": "adjacent_current_ref",
+      "meaning": "OS memory responsibility and learning boundary",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-OS-L2-CONTINUATION",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "start_line": 359,
+      "end_line": 375,
+      "exact_text": "## 会話継続と外部状態からの再構成\n\n[会話寿命管理の要求候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/conversation-lifetime-reconstruction-requests.md)の\nCLR-BR-001はHELIXOS-L2-009の追加検討入力であり、状態保存はHELIXOS-L2-007、割当継承はHELIXOS-L2-004へ接続する。詳細CLR-R01..08とL10 oracleは未承認候補であり、\nL2の合意・L11受入を代替しない。利用者向け条件を次のように保持する。\n\n| 出典 | 利用時に保持・確認する条件 |\n|---|---|\n| CLR-R01 | 目的・受入・未解決意図・棄却理由・失敗仮説の未保存や不明を識別でき、重要情報が欠ける場合は切替を保留する |\n| CLR-R02 | 要求・判断・成果・証拠は既存ownerへ保存し、checkpointから未commit差分・実行中処理・累積予算へ辿れる。未承認意図は承認済み要求にならない |\n| CLR-R03 | 保存・再取得・意味と版の対応を確認できた範囲だけを次回入力から外す。会話原本や監査証拠の削除と混同しない |\n| CLR-R04 | 継続・compact・新sessionの選択根拠と実provider能力を確認でき、非対応・観測不能を成功扱いしない |\n| CLR-R05 | 切替前後で未完義務・担当履歴・予算・期限・retryを引き継ぎ、二重writer・二重副作用を防ぐ。session交代だけで独立review成立としない |\n| CLR-R06 | 最小restart packetでも必要情報を黙って切らず、不足時は分割取得または保留する。取消権限や他案件の情報を混入させない |\n| CLR-R07 | 同一条件で3方式を比較し、意図保持・品質・見逃し・再試行・再取得・時間・総費用を確認できる。初期context減少だけを成功としない |\n| CLR-R08 | shadowから段階的に導入し、生成・保存・受信・利用・検証・運用有効化を別状態で確認する。既存continuation等を重複する第二正本を作らない |\n\n",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "line_sha256": "2b126c3ae47a9538cdbdb04a50ca349049324ea9da360678fa70d5b91fe9d0b3",
+      "product": "HELIX-OS",
+      "classification": "adjacent_current_ref",
+      "meaning": "OS continuation candidate; detailed CLR remains unapproved",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-OS-L11",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "start_line": 140,
+      "end_line": 149,
+      "exact_text": "- HELIXOS-L2-002／007：要求revisionから運用対象・計測・log・incident・復旧・保守・観測証拠へ辿り、欠測、stale、collector停止、別環境の成功をhealthyや運用成立へ変換しない。\n- HELIXOS-L2-005／007：incidentや観測差分を改善候補として保持し、Issue close、rollback成功、文書存在から要求変更・恒久修復・再発防止完了を生成しない。\n- HELIXOS-L2-004／006／009：scope外の自動修復、公開、課金、production writeを拒否し、対象・actor・権限・予算・影響・復旧・独立検証の欠落を実行可能と表示しない。\n- HELIXOS-L2-007：secret／PIIをlog・example・evidenceへ平文出力せず、具体方式の採用前には未検証として扱う。\n\n旧NIO候補、旧Issue owner、旧engine、既存CIは受入入力や操作認可にしない。製品固有SLOの達成は対象製品のL11／L10／L12で確認する。\n\nHELIXOS-L2-005では、採用した改善を要求・設計・検証・再観測まで追跡し、改善なし・退行・判定不能も保持する。\n候補件数やログ件数の増加だけをHELIX改善の成功と表示しない。\nHARNESSの外部提供完了とHELIX-OSの内部改善状況を別に確認し、一方の成功で他方を完了扱いにしない。\n",
+      "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19",
+      "line_sha256": "cb58b0bdc8a0c331c7fa2cd355a681405914258575bc8d7c0b1d004fb23afa8e",
+      "product": "HELIX-OS",
+      "classification": "direct_current_ref",
+      "meaning": "inventory direct current ref; acceptance draft/unexecuted",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-OS-L11-CONTINUATION",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "start_line": 195,
+      "end_line": 210,
+      "exact_text": "## 会話継続の受入条件\n\nHELIXOS-L2-009／007／004に接続するCLR候補の受入案。全件未実行であり、採用revisionを確定してから評価する。\n\n| 出典 | 利用者が確認する結果と反例 |\n|---|---|\n| CLR-R01 | 未保存の意図・棄却理由・失敗仮説を与え、文書やdigestが存在するだけでは切替可能と表示されない |\n| CLR-R02 | checkpointから未commit・未追跡差分、実行中処理、契約版、累積制約へ辿る。未承認意図を合意済みにしない |\n| CLR-R03 | 保存後の再取得で版・意味・未完義務を確認できた範囲だけが入力から外れ、会話原本や監査証拠が削除されない |\n| CLR-R04 | 継続・compact・新sessionの選択理由を確認し、provider非対応、hook未発火、観測不能を成功と誤表示しない |\n| CLR-R05 | 切替順序と旧writer停止を確認する。実行中処理を再起動して二重実行せず、予算・期限・retry・未完義務を初期化しない |\n| CLR-R06 | packet上限超過時に不足を表示して分割取得または保留する。取消権限・他案件情報・secret・結論誘導を混入させない |\n| CLR-R07 | 同一条件で3方式の品質・意図保持・見逃し・再取得・総費用を比較でき、初期context減少だけで採用にならない |\n| CLR-R08 | shadowから運用有効化までの段階と未完条件を確認し、SkillやRule導出の完了で会話継続も完了扱いにしない |\n\n保存失敗や版混在では切替成功・作業完了と表示しない。障害注入テストの成功を利用者合意の証拠へ転用しない。\n",
+      "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19",
+      "line_sha256": "0ee2f6d9e45bdc27c0ee0f762a1db5d3dccd28e91e0af487eb55533a0a5e8198",
+      "product": "HELIX-OS",
+      "classification": "adjacent_current_ref",
+      "meaning": "OS continuation acceptance candidate; unexecuted",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-BOUNDARY",
+      "path": "docs/concept/product-boundary.md",
+      "start_line": 34,
+      "end_line": 44,
+      "exact_text": "| 対象 | 所有する要求 | ローカル入口 |\n|---|---|---|\n| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |\n| HELIX-OS | プロジェクト群の管理・統制、Worker、CI、ログ、学習、継続・復旧、HELIXの改善循環 | [HELIX-OS](../helix-os/README.md) |\n| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../helix-web/README.md) |\n| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |\n\n要求対象の一覧はこの四つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。\nHARNESS自身もOSが管理する開発対象である。HARNESSの工程規則をOSが適用し、OSの運用から得た改善を\nHARNESS自身の要求・設計・実装・検証へ戻す。HELIX-OSはこの自己適用・改善loopを継続運転し、HARNESSを\n改善し続ける責務を持つ。管理対象と規則の参照関係を、同一の要求所有へ潰さない。\n",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "line_sha256": "fb3292c8c58a24a398434f9575b4cc2470837fad8cd0d0faed32a157f0811434",
+      "product": "HELIX-OS/HARNESS/Web/Web-OS",
+      "classification": "direct_boundary_current_ref",
+      "meaning": "product boundary and bounded improvement connection; not PHCAP-20 target expansion",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-HARNESS-L1",
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "start_line": 22,
+      "end_line": 58,
+      "exact_text": "HARNESSは、外部利用者が企画・要求・要件・設計・実装・検証・運用評価を一貫したV-model契約として\n扱える開発基盤を提供する。変更の種類や実装技術が違っても、何を満たせば次へ進めるか、何を検証し、\nどの結果を利用者が受け入れるかを追跡できるようにする。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HARNESS-L1-001 | 利用者は、L1–L12と正規V-pairで上流の意図から運用評価までを構成できる | HARNESS-L2-001 |\n| HARNESS-L1-002 | 利用者は、対象と変更に適した開発styleを選び、品質条件を落とさず進行できる | HARNESS-L2-002／003 |\n| HARNESS-L1-003 | 利用者は、要求変更の影響を設計・実装・検証へ伝え、未接続とstaleを確認できる | HARNESS-L2-003／004 |\n| HARNESS-L1-004 | 利用者は、対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる | HARNESS-L2-004／005 |\n| HARNESS-L1-005 | 外部利用者は、HELIX内部の管理機構を暗黙の依存にせず、明示された版・構成・条件でHARNESSを利用できる | HARNESS-L2-006 |\n| HARNESS-L1-006 | 利用者は、要求形成、prototype／非UI適用性、合意、freeze、差戻し、再開、完了を別条件として確認できる | HARNESS-L2-003／004 |\n| HARNESS-L1-007 | 依存製品の展開判断者は、複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成範囲と成立証拠を確認できる | HARNESS-L2-007 |\n| HARNESS-L1-008 | 利用者は、指示と根拠から要求候補を形成し、欠落・矛盾・過剰解釈・変更影響を確認して、合意した要求へ収束できる | HARNESS-L2-008 |\n| HARNESS-L1-009 | 利用者は、要求の種類と構成に合う設計templateを参照して必要な設計義務を導き、設計に必要な要求入力の不足を上流へ戻せる | HARNESS-L2-009 |\n\n上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。\n\n## L0 charterからの投影\n\n| L0柱 | 本L1での帰属 |\n|---|---|\n| P0／P1 | HARNESS-L1-002／006の工程選択・進行条件 |\n| P2 | HARNESS-L1-004の役割分離・検証条件。Worker運転はOS |\n| P3 | HARNESS-L1-001／003／004のV-pair・trace・verification |\n| P4 | HARNESS-L1-003の要求への差戻し。学習運転はOS |\n| P5 | 独立柱が存在しないため推測で追加しない |\n| P6 | HARNESS-L1-005の外部提供条件。配布運転はOS |\n| P7 | HARNESS-L1-003／004の参照・証拠条件。memory運転はOS |\n| P8 | HARNESS-L1-004の根拠・安全検証。外部tool実行はOS |\n| P9 | HARNESS-L1-001／003のtrace・変更影響 |\n\n## 対象外\n\nWorker割当、CI運転、ログ・state保存、学習、プロジェクト群の統制、artifact配布運転はHELIX-OSが所有する。\nHELIX-Web等の個別製品の利用者体験もHARNESS要求へ含めない。HARNESSは必要な工程・検証契約を定め、\nOSや個別製品が参照する版を持つ。\n",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "line_sha256": "4920656e45d7df37d1234cadb3ed82962e6e45d5913e41018e6b789c589ea479",
+      "product": "HELIX-HARNESS",
+      "classification": "non_target_boundary_ref",
+      "meaning": "HARNESS process/product boundary candidate; non-target connection",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-HARNESS-L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "start_line": 163,
+      "end_line": 171,
+      "exact_text": "## 要求形成・合意・反復の工程条件\n\n[要求エンジンPythonコア要求候補](../../governance/candidates/requirement-engine-python-core-requirements.md)を\nHARNESS-L2-008の適用待ち具体化として保持する。要求意味の抽出、構造化、質問、semantic diff、trace、影響候補は\nHARNESSが所有する。HELIX-OSは入力・出力・訂正・採否・改善eventを登録、実行、監視するが、要求意味を複製しない。\nPython coreはDB、Git、GitHub、repository、credentialへ直接writeしない。HARNESSは外部consumerも使える出力schema、\n対象revision、stale、重複、prohibited payloadの再検証契約を提供し、OSはその契約に従うtransactional consumerとして登録する。\ntransactional boundaryとwire formatの実装技術はL3以降で選定する。\n指示と抽出結果の齟齬は強化材料として保持するが、生会話、Issue、logやエンジン出力を要求正本・承認・学習許可へ変換しない。\n",
+      "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77",
+      "line_sha256": "540bfd5cb24c8618819a643e81cde1fca17f52d5e658191c9008b1d4bd469f68",
+      "product": "HELIX-HARNESS",
+      "classification": "non_target_boundary_ref",
+      "meaning": "HARNESS meaning and OS operation boundary; non-target connection",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-HARNESS-L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "start_line": 61,
+      "end_line": 70,
+      "exact_text": "| 旧受入ID | 本書の親要求 | 保持する利用結果 |\n|---|---|---|\n| HCV4-L11-001 | HARNESS-L2-003 | request、approval、decisionと対象revisionを区別し、相談や別revisionから合意を生成しない |\n| HCV4-L11-002 | HARNESS-L2-004 | 要求から設計・検証・提供・運用へのtrace欠落を確認できる |\n| HCV4-L11-003 | HARNESS-L2-003／HARNESS-L2-005 | 未実行oracle、不一致digest、別HEAD review、projectionだけの完了主張を拒否する |\n| HCV4-L11-004 | HARNESS-L2-003／HARNESS-L2-005 | runtime交代後も同じ工程・証拠条件を維持し、不足時は再開不可と説明できる |\n| HCV4-L11-005 | HARNESS-L2-006 | 提供範囲、artifact、release、deployment、rollbackの成立を別々に確認する |\n| HCV4-L11-006 | HARNESS-L2-003／HARNESS-L2-004 | 改善候補による要求変更を再合意・再検証へ戻す |\n\nこれは受入条件の移管案であり、対象別L2の合意、実操作、passを成立させない。\n",
+      "sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b",
+      "line_sha256": "d3f2d3e1be151bda7849385deea46b736da14af01447849ad61705e3aa1a1e5c",
+      "product": "HELIX-HARNESS",
+      "classification": "non_target_boundary_ref",
+      "meaning": "HARNESS acceptance boundary; non-target connection",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-WEB-L1",
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "start_line": 24,
+      "end_line": 49,
+      "exact_text": "HELIX-Webは、利用者が許可した開発環境と能力へConnectorで接続し、長時間の開発作業、進行、成果、停止・再開を\nダッシュボードから確認・操作できるAI開発SaaSを目指す。利用者環境の資産と統制を尊重し、HELIX-OSの内部管理画面、\nHELIX-Web-OSの運転機構、HARNESSの工程定義をWeb固有の価値として重複実装しない。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HELIXWEB-L1-001 | 利用者は、許可した環境・project・能力へ接続し、対象と作用範囲を確認できる | HELIXWEB-L2-001／002／004 |\n| HELIXWEB-L1-002 | 利用者は、ダッシュボードで長時間作業の進行、結果、切断、取消、再開、結果不明を区別できる | HELIXWEB-L2-003 |\n| HELIXWEB-L1-003 | 利用者は、自分が許可する変更と受け入れる成果を判断し、残る専門判断を確認できる | HELIXWEB-L2-005 |\n| HELIXWEB-L1-004 | 利用者は、採用するHARNESS・Connector・model等の構成版と依存を確認できる | HELIXWEB-L2-006／007 |\n| HELIXWEB-L1-005 | 利用者は、利用結果をHELIX改善へ渡す目的・範囲・同意を管理できる | HELIXWEB-L2-008 |\n| HELIXWEB-L1-006 | 展開判断者は、HELIX-HARNESS製品群Version 1の完成を確認してからHELIX-Webを展開できる | HELIXWEB-L2-009 |\n\n上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。\n\n## L0 charterからの投影\n\nHELIX-Webは旧L0 charter P0–P9の直接ownerではない。P0–P4／P7–P9の工程・Worker・証拠・改善条件は、\n採用するHARNESS版とHELIX-OS統制を参照する。P5は独立柱が存在せず、P6の外部提供条件だけを\nHELIXWEB-L1-001..006のWeb固有価値へ具体化する。旧柱の実装をWeb機能へ転用しない。\n\n## 対象外\n\nV-modelと検証契約はHARNESS、開発projectの要求・Worker・CI・ログ・改善還流の管理統制はHELIX-OS、\n展開後のtenant・Connector job・service state・配備・監視・復旧はHELIX-Web-OSが所有する。\n全コードや計算資源をSaaSへ移すこと、未採択の分散推論、横断学習への包括同意を前提にしない。\n",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "line_sha256": "5fbf51cd3f1047420b3142547b84b21e3a8655e471b7cd89883ea904b31c0011",
+      "product": "HELIX-Web",
+      "classification": "non_target_boundary_ref",
+      "meaning": "Web user consent/result boundary; non-target connection",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-WEB-L2",
+      "path": "docs/helix-web/L2-requirements/product-requirements.md",
+      "start_line": 41,
+      "end_line": 50,
+      "exact_text": "| HELIXWEB-L2-006 | Web3の将来構想 | §6.3、U14、O08 | 適用範囲・版・評価証拠を確認したHDAを開発補助に利用できる。学習と分散推論の提供責務を分け、応答を独立検収済みとみなさない |\n| HELIXWEB-L2-007 | 能力接続時に採択 | §10、§11 | Webが採用する開発能力・Connector・モデル・接続契約の構成版を確認できる。Webの変更で無関係なHARNESSやモデルを一斉更新しない |\n| HELIXWEB-L2-008 | 改善還流時に採択 | §10、§11 学習とデータ利用 | Web-OSのservice log・telemetry・利用結果をどの目的・範囲でHELIX-OSの改善へ渡すかを確認できる。サービス利用をログexportや横断学習への包括同意とみなさない |\n| HELIXWEB-L2-009 | 展開前に必須 | §3、§13、2026-09-14 PO指示 | 複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成証拠を確認した後にHELIX-Webを展開できる。Webの完成をVersion 1へ算入せず、HARNESS未完成のまま展開しない |\n\n## 要求対象と未決定の境界\n\nHARNESSは利用する開発能力・工程条件を提供する。HELIX-OSはWebプロジェクトの要求・進行・Worker・CI・学習・ログを管理し、\nHELIX-Web-OSは展開後のtenant・Connector job・service state・配備・監視・復旧を担う。\n本書はWebの利用者向け操作・表示・サービス体験を所有し、OS内部管理UIの要求をWebの製品要求として一括転用しない。\n",
+      "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+      "line_sha256": "d77dc0a0eebfed816cb80a51d90d435715136d111e502961788dee3012e760c1",
+      "product": "HELIX-Web",
+      "classification": "non_target_boundary_ref",
+      "meaning": "Web bounded learning/data use boundary; non-target connection",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-WEB-L11",
+      "path": "docs/helix-web/L11-acceptance/product-acceptance.md",
+      "start_line": 20,
+      "end_line": 31,
+      "exact_text": "| HELIXWEB-L2-001 | 選択した環境と別環境を区別し、対象不明・未接続を操作成功と表示しない。対象projectの進行・状態・成果をダッシュボードで辿れる |\n| HELIXWEB-L2-002 | 選択構成・依存・版と導入結果を照合し、未適格な構成や更新失敗を利用可能と表示しない |\n| HELIXWEB-L2-003 | 切断中・取消待ち・結果不明を成功と区別し、復帰後に同じjobと結果へ辿る。二重実行を拒否する |\n| HELIXWEB-L2-004 | 未対応経路・返送対象外の情報を与え、対応済み表示や無断転送が起きない。実方式の採用前に根拠と適用範囲を確認する |\n| HELIXWEB-L2-005 | 診断・更新・復旧と案内付き改修を操作別に評価し、要求差分・影響・プレビュー・回復結果へ辿る。一操作の成功を全改修対応と表示しない |\n| HELIXWEB-L2-006 | モデル版・適用範囲・根拠・不確実性を確認し、不適格モデルや未検証応答を検収済み成果として採用しない |\n| HELIXWEB-L2-007 | Web版と構成版が異なるケースで実構成へ辿り、同一版番号だけを互換性・接続成功の証拠にしない |\n| HELIXWEB-L2-008 | project内利用、Web-OSからHELIX-OSへの運用log export、事業改善、横断知識化、モデル学習を区別し、範囲外の共有を拒否する。改善候補の採否をWeb固有の要求変更と混同しない |\n| HELIXWEB-L2-009 | 複数プロダクトの開発検証またはHELIX自身への適用証拠を欠くHARNESS Version 1ではWeb展開を拒否する。全証拠が揃えば展開可能と判定し、それをWeb完成・公開済みと読み替えない |\n\nHARNESSの単体テスト成功、OSのCI運転成功、Web画面の存在だけでは本受入を満たさない。\n認証・データ返送・学習利用の試験は、採用した方式と許可範囲を確定した検証環境で行う。現時点で外部サービスを操作しない。\n",
+      "sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec",
+      "line_sha256": "f38df5f9d1d0461856552bdd66d0ba81f536ee56b5cbfd39131f9a3907b3666f",
+      "product": "HELIX-Web",
+      "classification": "non_target_boundary_ref",
+      "meaning": "Web acceptance/data sharing boundary; non-target connection",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-WEBOS-L1",
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "start_line": 19,
+      "end_line": 44,
+      "exact_text": "| HELIXWEBOS-L1-001 | サービス運用者は、tenant・利用者・projectごとのauthorityと隔離を保ってHELIX-Webを提供できる | HELIXWEBOS-L2-001 |\n| HELIXWEBOS-L1-002 | サービス運用者は、Connectorと長時間jobを安全に配信・追跡・停止・再開・回復できる | HELIXWEBOS-L2-002／003 |\n| HELIXWEBOS-L1-003 | 利用者は、認証・provider接続・data返送の対象と許可範囲を管理できる | HELIXWEBOS-L2-004 |\n| HELIXWEBOS-L1-004 | HELIX-Webは、利用者へ進行・状態・成果・証拠を正しいrevisionで表示できる | HELIXWEBOS-L2-005 |\n| HELIXWEBOS-L1-005 | サービス運用者は、Webサービスを配備・監視・更新・復旧し、許可された運用ログをHELIX-OSの改善候補へ接続できる | HELIXWEBOS-L2-006 |\n\n## L0 charterからの投影\n\n| L0柱 | 本L1での帰属 |\n|---|---|\n| P0／P1／P2／P3 | 工程・Worker・検証条件の直接ownerではない。採用HARNESS版とHELIX-OSの開発統制を参照 |\n| P4 | HELIXWEBOS-L1-005のservice観測と改善proposal。採否は対象上流へ返す |\n| P5 | 独立柱が存在しないため推測で追加しない |\n| P6 | HELIXWEBOS-L1-001／002／005のWebサービス提供・運転 |\n| P7 | HELIXWEBOS-L1-002／004／005のjob・state・evidence・復旧 |\n| P8 | HELIXWEBOS-L1-001／003のauthority・接続・data境界 |\n| P9 | HELIXWEBOS-L1-004／005のrevision・証拠・改善trace |\n\n## 境界\n\nHELIX-Web-OSはHELIX-OSのsubsystemではなく、Web展開先の独立運転境界である。HARNESSの開発engineや工程規則、\nHELIX-OSの全project管理、Webの利用者要求を別正本として複製しない。具体cloud、provider、認証方式、料金、\nSLOはL2以降の採択前に確定済みと扱わない。\n\n独立運転は非接続を意味しない。Web-OSのservice log・telemetry・incident・利用結果は、許可された範囲を\nHELIX-OSへ渡し、改善proposalと採択後の対象別変更を受け取る。service credentialやtenant原dataは暗黙共有しない。\n",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "line_sha256": "faf3ff7ae6c51216bdf3348babb0efb8dc0625f132f41892b5bbb8bcce4d7eb5",
+      "product": "HELIX-Web-OS",
+      "classification": "non_target_boundary_ref",
+      "meaning": "Web-OS service and bounded export boundary; non-target connection",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-WEBOS-L2",
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "start_line": 28,
+      "end_line": 38,
+      "exact_text": "| HELIXWEBOS-L2-001 | tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる | 一利用者の資格・job・data・結果が別scopeへ流れず、HELIX-OS内部stateをservice authorityとして共有しない |\n| HELIXWEBOS-L2-002 | 適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる | Connectorに開発engineを重複実装せず、不適格版や更新失敗を利用可能と表示しない |\n| HELIXWEBOS-L2-003 | 長時間jobの受付、配信、進行、切断、取消、再開、終端、結果不明を同じjob identityで管理できる | 再送・障害・再接続で副作用を二重実行せず、期限・予算・許可・未完義務を失わない |\n| HELIXWEBOS-L2-004 | 認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる | 未確認経路、期限切れ権限、秘密送信、範囲外data返送を拒否し、サービス利用を横断学習同意へ変換しない |\n| HELIXWEBOS-L2-005 | jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる | projection欠落・遅延・stale・conflict・結果不明を成功表示せず、画面表示を実行事実や受入の正本にしない |\n| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-Web-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWeb-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、\nartifact、receipt、telemetry export、改善proposalとして行う。\n",
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "line_sha256": "9341c9bad39b18e6b638a96bf5115574cac3013c9e91e08eaee24f578d6474a1",
+      "product": "HELIX-Web-OS",
+      "classification": "non_target_boundary_ref",
+      "meaning": "Web-OS tenant/service/export boundary; non-target connection",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    },
+    {
+      "ref_id": "CUR-WEBOS-L11",
+      "path": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+      "start_line": 17,
+      "end_line": 24,
+      "exact_text": "| HELIXWEBOS-L2-001 | 異なるtenant・利用者・projectへ同じ識別子やdataを与え、scope越境とHELIX-OS内部stateのservice利用を拒否する |\n| HELIXWEBOS-L2-002 | Web・Connector・HARNESS能力の版を不一致にし、不適格構成の起動、暗黙更新、engine重複を拒否する |\n| HELIXWEBOS-L2-003 | 切断、再送、取消競合、timeout、結果不明、再起動を与え、二重副作用なしで同じjobと未完義務へ戻る |\n| HELIXWEBOS-L2-004 | wrong target、期限切れ、revoke、範囲外network／data、secret混入を与え、接続・返送・学習利用を拒否する |\n| HELIXWEBOS-L2-005 | event欠落、projection遅延、stale revision、conflictを与え、ダッシュボードが成功・受入済みへ補完しない |\n| HELIXWEBOS-L2-006 | deployment、monitoring、rollback、restore、恒久修復、利用者受入を個別に失敗させ、一つの成功で残りを完了にしない。許可logだけがscope・目的・同意・revision付きでHELIX-OSへ届き、credential、tenant原data、同意範囲外logを拒否する。改善proposalが各対象要求を直接変更しない |\n\nHELIX-OS側のproject管理成功、HARNESS単体成功、Web画面の存在は本受入を代替しない。\n",
+      "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e",
+      "line_sha256": "ec02c0bfa2e75bef768577e41a73922b61f960b173e360cecc7879abaa27ddc6",
+      "product": "HELIX-Web-OS",
+      "classification": "non_target_boundary_ref",
+      "meaning": "Web-OS export and no direct requirement change boundary; non-target connection",
+      "evidence_status": "candidate wording/boundary only; no implementation or operation claim"
+    }
+  ],
+  "product_boundary_candidates": {
+    "target_unit": {
+      "product": "HELIX-OS",
+      "unit": "memory knowledge, continuation/process state, takeover lifecycle and improvement coordination candidate units",
+      "status": "candidate; formal owner and composite split unresolved"
+    },
+    "connections": [
+      {
+        "product": "HELIX-HARNESS",
+        "role": "non_target connection candidate",
+        "boundary": "HARNESS owns process/requirement meaning; OS may coordinate bounded evidence/state connection",
+        "status": "unresolved"
+      },
+      {
+        "product": "HELIX-Web",
+        "role": "non_target connection candidate",
+        "boundary": "Web owns user consent/result and data-use scope; no PHCAP-20 target expansion",
+        "status": "unresolved"
+      },
+      {
+        "product": "HELIX-Web-OS",
+        "role": "non_target connection candidate",
+        "boundary": "Web-OS owns service runtime and bounded export; no raw tenant/credential sharing",
+        "status": "unresolved"
+      }
+    ]
+  },
+  "contradictions_preserved": [
+    {
+      "id": "CONTR-01",
+      "left": "phase inventory labels PHCAP-20 legacy capability implemented_with_tests with L3/L5/L6/L7 implementation/test reach",
+      "right": "all five asset ledgers are historical/unresolved, implementation_status unknown, consumer_refs empty, and old execution false",
+      "resolution": "preserved as phase-level historical reach versus asset-level evidence state; no current implementation or pass claim",
+      "status": "unresolved_preserved"
+    },
+    {
+      "id": "CONTR-02",
+      "left": "old source contains confirmed/draft contracts, implementation source, and test expectations",
+      "right": "current OS refs are draft requirement/acceptance candidates and direct implementation/operations evidence is absent",
+      "resolution": "old source semantics are reference evidence only; current implementation and operations remain unknown",
+      "status": "unresolved_preserved"
+    },
+    {
+      "id": "CONTR-03",
+      "left": "legacy phase classification proposes HARNESS/Web/Web-OS candidates for shared memory/learning assets",
+      "right": "PHCAP-20 inventory product_targets and current evidence_products contain HELIX-OS only",
+      "resolution": "HARNESS/Web/Web-OS remain non-target connection or boundary candidates; no PHCAP-20 target ownership is generated",
+      "status": "unresolved_preserved"
+    },
+    {
+      "id": "CONTR-04",
+      "left": "legacy L5 treats knowledge promotion and continuation as adjacent memory concerns",
+      "right": "PHCAP-19 learning and PHCAP-20 memory require separate meaning atoms and consumer closure",
+      "resolution": "learning versus memory/continuation split remains unresolved; no cross-phase merge or successor is generated",
+      "status": "unresolved_preserved"
+    }
+  ],
+  "unresolved": [
+    "all non-selected memory, continuation, handover, compaction, learning and consumer assets remain residual",
+    "all five selected assets have no append-only decision record; absence remains unknown",
+    "all five selected ledger consumer_refs are empty; source-declared consumers are candidates only",
+    "current HELIX-OS memory/continuation implementation and operational evidence, including pass and production applicability",
+    "formal current L3/L10 contract, retention/purge, recovery and secret boundary adoption",
+    "memory knowledge versus continuation/process state versus takeover composite ownership and consumer closure",
+    "HARNESS/Web/Web-OS are non-target connection candidates whose product owner and data/export contract remain unresolved",
+    "learning promotion and memory promotion semantic atom split, effect/rollback evidence and reobservation"
+  ],
+  "counts": {
+    "legacy_assets_examined": 5,
+    "legacy_source_files": 5,
+    "legacy_source_spans": 16,
+    "semantic_atoms": 15,
+    "decision_records_found": 0,
+    "legacy_consumer_refs_observed": 0,
+    "current_refs_recorded": 16,
+    "direct_current_refs": 2,
+    "non_target_connection_products": 3,
+    "current_implementation_evidence": 0,
+    "current_operations_evidence": 0,
+    "contradictions_preserved": 4,
+    "unresolved_items": 8
+  },
+  "validator_contract": {
+    "required_direct_refs": [
+      "CUR-OS-L2",
+      "CUR-OS-L11"
+    ],
+    "required_unknowns": [
+      "current_implementation_status",
+      "current_operations_status"
+    ],
+    "required_non_target_products": [
+      "HELIX-HARNESS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "required_states": [
+      "research_premise_candidate",
+      "authority_effect:none",
+      "old_runtime_test_ci_execution:false"
+    ],
+    "forbidden_promotions": [
+      "current implementation",
+      "current operation",
+      "test pass",
+      "production applicability",
+      "formal owner",
+      "requirement adoption",
+      "successor",
+      "consumer closure",
+      "old execution"
+    ]
+  }
+}
