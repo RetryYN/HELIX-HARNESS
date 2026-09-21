@@ -19,9 +19,9 @@ Wave29はWave28をstacked parentとして固定した候補です。Wave28のuni
 
 | requirement | IR span | raw span | semantic digest | product units |
 |---|---:|---:|---|---|
-| HIL-FR-18 | `requirements.json:2157-2198` | `:108` | `sha256:4bde6624ded9421c9c4e97a6ca4a1178195731267aa4ab16b6639d7b46d0e913` | FR18-HARNESS / FR18-OS |
-| HIL-FR-19 | `requirements.json:2200-2241` | `:109` | `sha256:df78c7188f3a460486b34259b78e011b47518da134d4e7344b6614c514915e6b` | FR19-HARNESS / FR19-OS |
-| HIL-FR-20 | `requirements.json:2243-2284` | `:110` | `sha256:c15b515fa4611febe1e2eca21082a6f2ac9513f7858af231c3a8e658308c423a` | FR20-HARNESS / FR20-OS |
+| HIL-FR-18 | `requirements.json:2157-2198` | `:108` | `sha256:113f62503959378764966ff837c8d5f4beffde5932618b47aee921e507535ab3` | FR18-HARNESS / FR18-OS |
+| HIL-FR-19 | `requirements.json:2200-2241` | `:109` | `sha256:817dc126b7355e14109936f8f9c83edcd21fdc3d0afd9fad8a41508828306b35` | FR19-HARNESS / FR19-OS |
+| HIL-FR-20 | `requirements.json:2243-2284` | `:110` | `sha256:222133a9de644396f35972616f71b14d07b7f1c501c737366b9a56f8f5ff5643` | FR20-HARNESS / FR20-OS |
 
 | unit | product scope候補 | direct phase候補 | atom IDs | bounded / phase-product pool |
 |---|---|---|---|---:|

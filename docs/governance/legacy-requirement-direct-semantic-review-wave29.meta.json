@@ -248,7 +248,7 @@
   "main_merge_revision": "b27e61f079edf64eeddc43eb8095159b19730b94",
   "missing_evidence_receipts": [],
   "new_build_allowed": false,
-  "output_sha256": "sha256:b027fe995a5c5e766b5ca4396ddd14e923ecc40f8eed6213d39b5fe0f251b51e",
+  "output_sha256": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29",
   "parent_revision": "a05b9f5444ba11626823683cc486db95c9d1f3a3",
   "phase_rows": {
     "IRUNIT-HIL-FR-18-HELIX-HARNESS": [

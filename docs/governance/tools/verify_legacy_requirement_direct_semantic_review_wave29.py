@@ -35,10 +35,10 @@ SELECTED = {
     UNITS[5]: set(["LEGACY-ASSET-535EBA960C372C61F999", "LEGACY-ASSET-A85EC3703B6A61D3A7F1", "LEGACY-ASSET-A60CF91DD2AF6693E6F9"]),
 }
 
-REQ_DIGESTS = {
-    "HIL-FR-18": "sha256:4bde6624ded9421c9c4e97a6ca4a1178195731267aa4ab16b6639d7b46d0e913",
-    "HIL-FR-19": "sha256:df78c7188f3a460486b34259b78e011b47518da134d4e7344b6614c514915e6b",
-    "HIL-FR-20": "sha256:c15b515fa4611febe1e2eca21082a6f2ac9513f7858af231c3a8e658308c423a",
+REQ_STATEMENT_DIGESTS = {
+    "HIL-FR-18": "sha256:113f62503959378764966ff837c8d5f4beffde5932618b47aee921e507535ab3",
+    "HIL-FR-19": "sha256:817dc126b7355e14109936f8f9c83edcd21fdc3d0afd9fad8a41508828306b35",
+    "HIL-FR-20": "sha256:222133a9de644396f35972616f71b14d07b7f1c501c737366b9a56f8f5ff5643",
 }
 
 ROW_FIELDS = {
@@ -235,6 +235,7 @@ def verify() -> None:
     require(meta["authority_effect"] == "none" and meta["consumer_closure_status"] == "pending", "authority")
     require(meta["legacy_execution_performed"] is False and meta["new_build_allowed"] is False, "execution")
     require(file_digest(REQ_IR).removeprefix("sha256:") == REQ_SHA, "requirement IR digest")
+    requirement_ir = json.loads(REQ_IR.read_text())
     for row in rows:
         require(set(row) == ROW_FIELDS, f"row fields {row['review_id']}")
     verify_prior_lineage(meta)
@@ -267,7 +268,12 @@ def verify() -> None:
         require(requirement["phase_candidates"] == candidate["direct_phase_candidates"], f"decomposition phase join {unit}")
         require(requirement["source_text_spans"] == candidate["source_text_spans"], f"decomposition span join {unit}")
         require(crosswalk[unit]["direct_phase_candidates"] == requirement["phase_candidates"], f"crosswalk phase join {unit}")
-        require(requirement["source_statement_semantic_digest"] == REQ_DIGESTS[req_id], f"requirement semantic digest {unit}")
+        ir_record = requirement_ir[req_id]
+        ir_statement = ir_record["statement"]
+        require(ir_statement["semantic_digest"] == REQ_STATEMENT_DIGESTS[req_id], f"archive statement semantic digest {unit}")
+        require(digest(ir_statement["text"].encode()) == REQ_STATEMENT_DIGESTS[req_id], f"archive statement text digest {unit}")
+        require(requirement["source_statement_semantic_digest"] == ir_statement["semantic_digest"], f"requirement statement semantic digest {unit}")
+        require(requirement["source_statement_text"] == ir_statement["text"], f"requirement statement text {unit}")
         require(meta["phase_rows"][unit] == phase_projection(crosswalk[unit]), f"phase rows {unit}")
         hold = next((h for h in meta["source_atomization_holds"] if h.get("unit_candidate_id") == unit), None)
         expected_shared = {unit: [] for unit in UNITS}[unit]
