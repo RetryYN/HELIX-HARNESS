@@ -108,7 +108,7 @@
   },
   "legacy_execution_performed": false,
   "new_build_allowed": false,
-  "output_sha256": "sha256:798c976e05d33c38f734e97336d2c6599d0126815e3a4fac9afc7aad002334f4",
+  "output_sha256": "sha256:fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953",
   "parent_revision": "de98b6cfe0d700cdd5027f6f0b2a2695f5d1e070",
   "prior_review_batches": [
     {
@@ -255,6 +255,7 @@
       "degradation_assessment": "unresolved_legacy_implementation_unknown",
       "phase_capability_assessments": [],
       "atom_coverage_receipt": {
+        "unit_kind": "product_unit",
         "atom_inventory": [
           {
             "atom_id": "BR08-HARNESS-A01",
@@ -311,6 +312,8 @@
           "BR08-HARNESS-A01",
           "BR08-HARNESS-A02"
         ],
+        "cross_product_connection_atom_ids": [],
+        "unit_kind_sha256": "sha256:d60ea0c0d4bc46e4e3051cece86208617add15ae3fae6e54d1792d7468271820",
         "atom_inventory_sha256": "sha256:a206663b6c933ec5d96d2a6c04dea6a2a3078677a2c0033351bda2f3deb1647a",
         "connective_fragments_sha256": "sha256:7f7c64aeb6dfc61a77e500ee67c72f0ea1218b8c53f47f6a1787a864cd2690dd",
         "contract_confirmed_atom_ids_sha256": "sha256:3e1722a53827ca35df39426700e153c3cf6b513f67daf81a4ae550729b433316",
@@ -326,11 +329,13 @@
         "no_evidence_atom_ids_sha256": "sha256:af87c7a12332a0d943144866c8c7b7c4f7f2c8a93181619d18d7a83df3656f9f",
         "shared_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "product_exclusive_atom_ids_sha256": "sha256:3e1722a53827ca35df39426700e153c3cf6b513f67daf81a4ae550729b433316",
+        "cross_product_connection_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "contract_semantic_edge_coverage_complete": true,
         "semantic_edge_coverage_complete": false,
         "no_shared_source_span": true,
         "product_boundary_decision_complete": false,
-        "product_exclusive_contract_coverage_complete": true
+        "product_exclusive_contract_coverage_complete": true,
+        "connection_contract_human_decision_pending": false
       }
     },
     {
@@ -354,6 +359,7 @@
       "degradation_assessment": "unresolved_legacy_implementation_unknown",
       "phase_capability_assessments": [],
       "atom_coverage_receipt": {
+        "unit_kind": "cross_product_connection",
         "atom_inventory": [
           {
             "atom_id": "BR09-CONN-A01",
@@ -404,10 +410,12 @@
           "BR09-CONN-A01"
         ],
         "shared_atom_ids": [],
-        "product_exclusive_atom_ids": [
+        "product_exclusive_atom_ids": [],
+        "cross_product_connection_atom_ids": [
           "BR09-CONN-A01",
           "BR09-CONN-A02"
         ],
+        "unit_kind_sha256": "sha256:60d4dde02458a856ea1141a443465d8dac98030b5aac64c274f56cf5ac91b47b",
         "atom_inventory_sha256": "sha256:44c9d81ca2c8b2ec3613cc5e9c18946564eed0846bdff745bfa27196f492bc43",
         "connective_fragments_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "contract_confirmed_atom_ids_sha256": "sha256:0739a5048eea2b9f0c6530d3da17aac80a71d157f3ec8d796dca85c877af63bc",
@@ -422,12 +430,14 @@
         "implementation_uncovered_atom_ids_sha256": "sha256:fe89fe6a6b688b58c32b23636886b7812bce2a2d42adcc674765bfd4ab60816e",
         "no_evidence_atom_ids_sha256": "sha256:fe89fe6a6b688b58c32b23636886b7812bce2a2d42adcc674765bfd4ab60816e",
         "shared_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-        "product_exclusive_atom_ids_sha256": "sha256:0739a5048eea2b9f0c6530d3da17aac80a71d157f3ec8d796dca85c877af63bc",
+        "product_exclusive_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "cross_product_connection_atom_ids_sha256": "sha256:0739a5048eea2b9f0c6530d3da17aac80a71d157f3ec8d796dca85c877af63bc",
         "contract_semantic_edge_coverage_complete": true,
         "semantic_edge_coverage_complete": false,
         "no_shared_source_span": true,
         "product_boundary_decision_complete": false,
-        "product_exclusive_contract_coverage_complete": true
+        "product_exclusive_contract_coverage_complete": false,
+        "connection_contract_human_decision_pending": true
       }
     },
     {
@@ -450,6 +460,7 @@
       "degradation_assessment": "unresolved_legacy_implementation_unknown",
       "phase_capability_assessments": [],
       "atom_coverage_receipt": {
+        "unit_kind": "product_unit",
         "atom_inventory": [
           {
             "atom_id": "BR11-OS-A01",
@@ -523,6 +534,8 @@
           "BR11-OS-A02",
           "BR11-OS-A03"
         ],
+        "cross_product_connection_atom_ids": [],
+        "unit_kind_sha256": "sha256:d60ea0c0d4bc46e4e3051cece86208617add15ae3fae6e54d1792d7468271820",
         "atom_inventory_sha256": "sha256:5a772f575c4f578aa9b9882d5736496344ced7ff1ac2c962aba42d27ff1b495b",
         "connective_fragments_sha256": "sha256:d335bc6b3ddc3929e2c4621b361ad17ad8f0ce94dbe9d18c208c0fee197f2055",
         "contract_confirmed_atom_ids_sha256": "sha256:b2baeb1a3328a689fee16168405e01f8fac790202006b7b3d041f403188b62bd",
@@ -538,11 +551,13 @@
         "no_evidence_atom_ids_sha256": "sha256:60fe004a6234bee5eab72158600a8ec8a39b6628ae3707861afb8d6417af576e",
         "shared_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "product_exclusive_atom_ids_sha256": "sha256:b2baeb1a3328a689fee16168405e01f8fac790202006b7b3d041f403188b62bd",
+        "cross_product_connection_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "contract_semantic_edge_coverage_complete": true,
         "semantic_edge_coverage_complete": false,
         "no_shared_source_span": true,
         "product_boundary_decision_complete": false,
-        "product_exclusive_contract_coverage_complete": true
+        "product_exclusive_contract_coverage_complete": true,
+        "connection_contract_human_decision_pending": false
       }
     }
   ]

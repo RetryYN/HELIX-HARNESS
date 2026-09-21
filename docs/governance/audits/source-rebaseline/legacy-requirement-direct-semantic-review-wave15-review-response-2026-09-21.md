@@ -2,7 +2,7 @@
 
 ## 適用した指摘
 
-BR08、BR09、BR11の候補判定では、candidate membershipはsemantic evidenceではないことを明記し、catalog候補であることだけから意味リンクを生成しなかった。planもdesignと同じcounterevidence／gate対象にし、implementation confirmedを0に固定した。BR09 connectionは `product_scope` の2製品表現を保持し、単一product targetへ変換していない。
+BR08、BR09、BR11の候補判定では、candidate membershipはsemantic evidenceではないことを明記し、catalog候補であることだけから意味リンクを生成しなかった。planもdesignと同じcounterevidence／gate対象にし、implementation confirmedを0に固定した。BR09 connectionは `product_scope` の2製品表現を保持し、単一product targetやproduct-exclusive atomへ変換していない。接続契約の人間decisionとshared connection atomの独立reviewをunresolvedとして各edgeへ保持した。
 
 ## asset別対応
 

@@ -29,4 +29,6 @@
 | IRCONN-HIL-BR-09-HARNESS-OS | 2 | 2 | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 1 | 1 |
 | IRUNIT-HIL-BR-11-HELIX-OS | 3 | 3 | 0 | 2 | 0 | 0 | 0 | 1 | 0 | 2 | 1 |
 
+BR09の2 atomはcross-product connection専用区分であり、product-exclusiveではない。接続契約の人間decisionとshared connection atomの独立reviewはpendingである。
+
 候補assetの分類・phase候補・product候補はauthority判断へ昇格していない。candidate membershipはsemantic evidenceではない。runtime、test、hook、CI、adapterは実行していない。

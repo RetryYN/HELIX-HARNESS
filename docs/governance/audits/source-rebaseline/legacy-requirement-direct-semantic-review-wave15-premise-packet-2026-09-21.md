@@ -9,10 +9,10 @@ batch `LEGACY-SEMANTIC-WAVE15-2026-09-21` は親revision `de98b6cfe0d700cdd5027f
 | unit | product scope | phases | atoms | shared overlap |
 | --- | --- | --- | ---: | --- |
 | IRUNIT-HIL-BR-08-HELIX-HARNESS | HELIX-HARNESS | PHCAP-04 / PHCAP-05 / PHCAP-09 | 2 | 0 / all exclusive |
-| IRCONN-HIL-BR-09-HARNESS-OS | HELIX-HARNESS／HELIX-OS | PHCAP-08 / PHCAP-10 | 2 | 0 / all exclusive |
+| IRCONN-HIL-BR-09-HARNESS-OS | HELIX-HARNESS／HELIX-OS | PHCAP-08 / PHCAP-10 | 2 | 0 / cross-product connection decision pending |
 | IRUNIT-HIL-BR-11-HELIX-OS | HELIX-OS | PHCAP-07 / PHCAP-19 | 3 | 0 / all exclusive |
 
-BR08はScope Gate拒否と子Issue＋Reverse分離、BR09はWBS軸入力とHARNESS agent contractからのW-agent決定論的射影、BR11は履歴からのrecipe候補・再現性後の昇格・即時強制適用禁止をatom化した。
+BR08はScope Gate拒否と子Issue＋Reverse分離、BR09はWBS軸入力とHARNESS agent contractからのW-agent決定論的射影、BR11は履歴からのrecipe候補・再現性後の昇格・即時強制適用禁止をatom化した。BR09の2 atomはproduct-exclusiveへ分類せず、接続契約の人間decisionとshared connection atomの独立reviewをpendingとして保持する。
 
 ## selected asset
 

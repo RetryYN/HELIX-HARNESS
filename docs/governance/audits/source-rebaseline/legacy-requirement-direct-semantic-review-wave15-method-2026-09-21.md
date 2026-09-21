@@ -4,7 +4,7 @@
 
 Wave15は `de98b6cfe0d700cdd5027f6f0b2a2695f5d1e070` を親revisionとし、BR08 HELIX-HARNESS、BR09 HARNESS／OS connection、BR11 HELIX-OSの要求unitを静的に再照合する。対象は7 atom、9 edgeで、累計44 unit／132 edge、残り174 unitである。authority effectは `none`、要求・設計・計画・実装のいずれも実行完了や製品採否を確定しない。
 
-各atomは製品境界の人手判断待ちで、3 unitすべて product-exclusive、shared overlapは0件である。BR09は connection unit のため `product_scope` を `HELIX-HARNESS` と `HELIX-OS` の2製品として保持し、`product_target` はnullのまま扱った。候補assetのcatalog membershipはsemantic evidenceではない。candidate membershipはsemantic evidenceではない。
+各atomは製品境界の人手判断待ちである。BR08とBR11はproduct-exclusiveで、shared source overlapは0件である。BR09は未決定のcross-product connectionであり、atomをproduct-exclusiveへ分類しない。`product_scope`を`HELIX-HARNESS`と`HELIX-OS`の2製品として保持し、`product_target`はnullのまま、`connection_contract_human_decision_pending`と`shared_connection_atom_requires_independent_review`を引き継いだ。候補assetのcatalog membershipはsemantic evidenceではない。candidate membershipはsemantic evidenceではない。
 
 ## 静的判定手順
 
