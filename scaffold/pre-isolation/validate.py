@@ -88,6 +88,45 @@ BASELINE_COMMIT = "6fabd12512a3659fff4a956692cdd61faeeb16ce"
 PRE_ISOLATION_COMMIT = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCHIVE_COMMIT = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 REVISION_RELATION = "changed_before_archive_pending_semantic_equivalence_review"
+DIFF_SCOPE = "selected_source_items_only"
+DIFF_SCOPE_NOTE = "2 commit全体は400 files／492 hunksであり、この候補はそのうち6 path／9 hunkのみを対象とする。"
+EXPECTED_PRODUCT_BOUNDARY_SOURCES = [
+    {
+        "path": "docs/concept/product-boundary.md",
+        "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+    },
+    {
+        "path": "docs/helix-harness/README.md",
+        "sha256": "e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117",
+    },
+    {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+    },
+]
+EXPECTED_REVISION_CONTRACT = {
+    "preserve_baseline_and_pre_isolation": True,
+    "revision_relation": REVISION_RELATION,
+    "baseline_revision_state": "preserved_git_revision_pending_review",
+    "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+    "meaning_change_applied": False,
+    "successor_requirement_ids": [],
+    "human_decision_ref": None,
+    "semantic_equivalence": "unresolved",
+    "runtime_or_test_execution": "forbidden",
+}
+EXPECTED_REVIEW_BOUNDARY = {
+    "validation_scope": "holding-field-and-provenance-coherence-only",
+    "does_not_establish": [
+        "source semantic equivalence",
+        "requirement adoption or rejection",
+        "successor assignment",
+        "current authority promotion",
+        "L3 freeze",
+        "implementation or acceptance",
+        "runtime, test, CI, hook, or deployment permission",
+    ],
+}
 
 
 def digest(path: Path) -> str:
@@ -195,8 +234,20 @@ def main() -> int:
         fail(errors, "candidate authority_effectはnoneに固定する")
     if manifest.get("product_boundary", {}).get("product") != "HELIX-HARNESS":
         fail(errors, "product boundaryはHELIX-HARNESSに固定する")
+    if manifest.get("diff_scope") != DIFF_SCOPE:
+        fail(errors, "diff_scopeはselected_source_items_onlyに固定する")
+    if manifest.get("diff_scope_note") != DIFF_SCOPE_NOTE:
+        fail(errors, "diff_scope_noteが6 path／9 hunkの限定を明示していない")
+    if manifest.get("product_boundary", {}).get("sources") != EXPECTED_PRODUCT_BOUNDARY_SOURCES:
+        fail(errors, "product boundary sourceの固定集合またはdigestが不一致")
+    if manifest.get("revision_contract") != EXPECTED_REVISION_CONTRACT:
+        fail(errors, "revision_contractが候補境界の9項目と完全一致しない")
+    if manifest.get("review_boundary") != EXPECTED_REVIEW_BOUNDARY:
+        fail(errors, "review_boundaryが候補の非確定境界と完全一致しない")
 
     holding_meta = manifest.get("holding", {})
+    if holding_meta.get("path") != HOLDING_REL:
+        fail(errors, "holding.pathが固定台帳pathと一致しない")
     for key, expected in (
         ("baseline_commit", BASELINE_COMMIT),
         ("pre_isolation_commit", PRE_ISOLATION_COMMIT),
@@ -208,6 +259,7 @@ def main() -> int:
         fail(errors, "holding.required_record_countは6")
 
     paths = manifest.get("paths")
+    revision_contract = manifest.get("revision_contract", {})
     if not isinstance(paths, list) or len(paths) != len(EXPECTED):
         fail(errors, "manifest pathsは6件でなければならない")
         paths = paths if isinstance(paths, list) else []
@@ -240,6 +292,16 @@ def main() -> int:
             fail(errors, f"{item_id} successor_requirement_idsは空でなければならない")
         if entry.get("human_decision_ref") is not None:
             fail(errors, f"{item_id} human_decision_refはnullでなければならない")
+        for field in (
+            "revision_relation",
+            "baseline_revision_state",
+            "pre_isolation_revision_state",
+            "meaning_change_applied",
+            "successor_requirement_ids",
+            "human_decision_ref",
+        ):
+            if entry.get(field) != revision_contract.get(field):
+                fail(errors, f"{item_id} path fieldとrevision_contract.{field}が不一致")
         if item_id in EXPECTED_METADATA and entry.get("declared_metadata") != EXPECTED_METADATA[item_id]:
             fail(errors, f"{item_id} declared_metadata不一致")
         record = holding.get(item_id)
@@ -439,7 +501,12 @@ def main() -> int:
             print(f"- {error}")
         return 1
     print("PASS: RDP-001 PREISOLATION 6-path coherence (read-only static candidate check)")
-    print("authority_effect=none; semantic_equivalence=unresolved; runtime/test execution=forbidden")
+    print(
+        "diff_scope=selected_source_items_only; paths=6; hunks=9; "
+        f"authority_effect={manifest.get('authority_effect')}; "
+        f"semantic_equivalence={manifest.get('revision_contract', {}).get('semantic_equivalence')}; "
+        f"runtime/test execution={manifest.get('revision_contract', {}).get('runtime_or_test_execution')}"
+    )
     return 0
 
 

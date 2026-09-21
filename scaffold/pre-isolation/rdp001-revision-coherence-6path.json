@@ -4,6 +4,8 @@
   "kind": "scaffold",
   "status": "pending_semantic_equivalence_review",
   "authority_effect": "none",
+  "diff_scope": "selected_source_items_only",
+  "diff_scope_note": "2 commit全体は400 files／492 hunksであり、この候補はそのうち6 path／9 hunkのみを対象とする。",
   "product_boundary": {
     "product": "HELIX-HARNESS",
     "status": "candidate_reference_only",
@@ -48,6 +50,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-82-authority-vocabulary-separation.md",
       "source_category": "legacy_plan_source",
       "role": "authority語彙分離の旧PLAN source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
       "baseline": {
         "commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
         "blob_oid": "80fa7debc1e56238e3bf80913b608948c619a0d2",
@@ -69,6 +74,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
       "source_category": "core_upstream_source",
       "role": "旧HARNESS requirements source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
       "baseline": {
         "commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
         "blob_oid": "a20b4846e9ababf05930812a266677d2355edccf",
@@ -90,6 +98,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
       "source_category": "requirement_or_prototype_source",
       "role": "workflow分類registry",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
       "declared_metadata": {
         "schema_version": "helix-workflow-classification-registry.v1",
         "registry_version": "1.1.6",
@@ -116,6 +127,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/config/workflow-classification-catalog.v1.json",
       "source_category": "other_legacy_asset",
       "role": "分類registryからのgenerated catalog",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
       "declared_metadata": {
         "schema_version": "helix-workflow-classification-catalog.v1",
         "projection_role": "generated_projection",
@@ -143,6 +157,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json",
       "source_category": "requirement_or_prototype_source",
       "role": "execution policy registry",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
       "declared_metadata": {
         "schema_version": "helix-workflow-execution-policy-registry.v1",
         "registry_version": "1.2.3",
@@ -169,6 +186,9 @@
       "archive_path": "archive/legacy-generation-2026-09-14/root/config/workflow-execution-policy.v1.json",
       "source_category": "other_legacy_asset",
       "role": "execution policy registryからのgenerated catalog",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
       "declared_metadata": {
         "schema_version": "helix-workflow-execution-policy.v1",
         "projection_role": "generated_projection",

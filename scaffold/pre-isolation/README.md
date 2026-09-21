@@ -3,6 +3,11 @@
 status: scaffold_candidate_pending_semantic_equivalence_review
 authority_effect: none
 product_boundary: HELIX-HARNESS
+diff_scope: selected_source_items_only
+
+baseline `6fabd125` と pre-isolation `2d499104` の2 commit全体には400 files／492 hunksの差分がある。
+このRDP-001候補は、そのうち選定した6 path／9 hunkだけを対象にする。commit全体の差分被覆や、
+未選定pathの意味同値・採否は主張しない。
 
 このdirectoryは、archive隔離前に変更された6つのsource pathについて、監査基準
 （`baseline_commit`）と隔離直前（`pre_isolation_commit`）の両revisionを落とさず、
@@ -57,6 +62,11 @@ commitのGit blobから再抽出して照合する。空のbaseline spanも含�
 fragment集合、分類数、negative集合を確認する。
 さらに`git diff --unified=0`の9 hunk（6 path）を同じbaseline／pre-isolation span集合と完全照合し、
 変更hunkの抜け・過剰・誤pathを候補から通さない。
+
+各source item／fragmentのphaseは`phase_candidates: []`、
+`phase_authority_status: unresolved_no_direct_phase_candidate`、
+`legacy_implementation_status: unknown`として未確認に固定する。owner候補とnegative IDも固定集合へ
+照合し、revision contract、review boundary、製品境界source、holding pathの改変はfail-closeする。
 
 ```text
 python3 scaffold/pre-isolation/validate-semantic-diff.py

@@ -30,37 +30,37 @@
     },
     {
       "path": "scaffold/pre-isolation/README.md",
-      "sha256": "6e8cb18b7a8a83708f2faba5114ad0d66c9438755f4e3b9598b5ad7258cc3e8c",
+      "sha256": "2eb0edc559225248079d184a5e2790f032d682a0e775bd414500579d0f8951ee",
       "note": "候補束のscopeと停止条件"
     },
     {
       "path": "scaffold/pre-isolation/rdp001-revision-coherence-6path.json",
-      "sha256": "2923d4b7734b676419b8b1f710961055a7d2998a7493d6b2a556ea7ce5eba825",
+      "sha256": "949039379b6f75e56de63a23ed4e28dfe23bf7afcef3fdd01dd636aa3f4f492a",
       "note": "6経路のrevision／provenance候補manifest"
     },
     {
       "path": "scaffold/pre-isolation/validate.py",
-      "sha256": "d580a03e7254ae13c2ac2dcab03d6eaba64ff229e9e0e78901a733ce62822dcc",
+      "sha256": "6183b6836650097d523a5f38c222940aa75824ef81c11e58e42dc61dd65136dd",
       "note": "read-only静的coherence確認"
     },
     {
       "path": "scaffold/pre-isolation/selfcheck.py",
-      "sha256": "009c7c77e672191f27a670278eaff491bf72d64ae69bbb538c4f6daaa5df1f81",
+      "sha256": "e8c5d439957d4560128837405dbaee6dc96773f69f1a706831ddb27a4b11e614",
       "note": "provenance driftとsnapshot path driftの否定例"
     },
     {
       "path": "scaffold/pre-isolation/rdp001-6path-semantic-diff-inventory.json",
-      "sha256": "dc2c5295afbe5ec4d203fa307304dcb5574b0dd9e848f76d51ed850d209f020b",
+      "sha256": "5bfa1b061faa16343a9017e3ebabadec88c3dda4b1d09f49f795662aca50519c",
       "note": "6 sourceの9 changed fragment分類、exact span、owner候補、8 retained negative"
     },
     {
       "path": "scaffold/pre-isolation/validate-semantic-diff.py",
-      "sha256": "9bc3455010ba06cfb2c35426ff918ddcec9539e52b3dd781e015bbc49ada9ece",
+      "sha256": "f072659c97cd974910e82c9d68ae832e62065ae89ea60dbd8e3cb30b5c6e501a",
       "note": "semantic diffのGit blob span／SHA-256／分類数／negative静的確認"
     },
     {
       "path": "scaffold/pre-isolation/selfcheck-semantic-diff.py",
-      "sha256": "554dafc8b3ebdd14d26ee736868bc1fd63197a2b1680bde7c9e34ad8c0afa657",
+      "sha256": "e9dd3648b0dea129a5969713e4c8d2b6ace8bc6ee209a25115cdc54a815ce40c",
       "note": "fragment digest、分類集計、retained negative spanの否定例"
     }
   ],
@@ -72,6 +72,9 @@
     "分類registry／execution policy registry／2つのcatalogのrequirements・registry digest provenanceを明示する",
     "製品境界候補をHELIX-HARNESSへ固定し、authority_effect=noneを維持する",
     "9 changed fragmentの候補分類、exact span／digest、未解決意味、owner候補、8 retained negativeを保持する",
+    "diff_scope=selected_source_items_onlyを明示し、2 commit全体400 files／492 hunksのうち6 path／9 hunkだけを対象とする",
+    "source item／fragmentごとにphase_candidates空、phase_authority_status未確認、legacy_implementation_status=unknownを保持する",
+    "revision_contract、review_boundary、product boundary source、negative ID、owner対応のvalidator fail-closeを維持する",
     "意味同値、要求採否、successor、current authority、L3 freeze、実装、受入を生成しない"
   ],
   "connections": {
@@ -125,8 +128,8 @@
     "oracles": [
       "scaffold/pre-isolation/validate.py（holding field、既知Git blob bytes、revision、digest、consumer field、provenance、product boundary）",
       "scaffold/pre-isolation/selfcheck.py（consumer digest declaration drift、archive snapshot path drift）",
-      "scaffold/pre-isolation/validate-semantic-diff.py（6 source、9 fragment、exact span／SHA-256、分類数、8 negative）",
-      "scaffold/pre-isolation/selfcheck-semantic-diff.py（fragment digest、分類集計、negative span drift）",
+      "scaffold/pre-isolation/validate-semantic-diff.py（scope、6 source、9 fragment、exact span／SHA-256、分類数、negative ID／owner／phase）",
+      "scaffold/pre-isolation/selfcheck-semantic-diff.py（fragment digest、分類集計、scope／owner／phase／negative ID drift）",
       "scaffold/tools/scfctl.py stale（上流revision変化の検出）",
       "git diff --check（候補文書の静的整形）"
     ],
@@ -141,6 +144,8 @@
       "baseline／pre-isolation／archiveの既知blob bytesまたはblob OIDを差し替える",
       "semantic diffのexact span／text／SHA-256を変更する",
       "semantic diffの分類数または9 fragment／8 negative集合を変更する",
+      "revision_contractのmeaning_change／semantic_equivalence／runtime execution／human decision／successor／preservationを変更する",
+      "diff_scope、phase未確認欄、owner対応、negative ID固定集合を変更する",
       "retained negativeのsource path／commit／span／digestを変更する",
       "HELIX-HARNESS以外のproduct boundaryを設定する",
       "archive runtime／test／CIを検証経路へ追加する"

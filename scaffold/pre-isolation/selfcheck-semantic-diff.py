@@ -63,6 +63,26 @@ def main() -> int:
         lambda document: document["fragments"].pop(6),
         "Git diff hunkとinventory spanの集合不一致",
     )
+    run_case(
+        "diff scope drift",
+        lambda document: document.update({"diff_scope": "whole_commit"}),
+        "diff_scopeはselected_source_items_onlyに固定する",
+    )
+    run_case(
+        "owner candidate drift",
+        lambda document: document["fragments"][0].update({"product_owner_candidate": "HELIX-OS"}),
+        "RDP001-DIFF-001 product_owner_candidateが固定候補と不一致",
+    )
+    run_case(
+        "phase status drift",
+        lambda document: document["source_items"][0].update({"phase_authority_status": "candidate_unchanged"}),
+        "PREISO-REV-000001 phase_authority_statusが未確認状態と不一致",
+    )
+    run_case(
+        "negative ID drift",
+        lambda document: document["retained_negatives"][0].update({"negative_id": "NEG-FAKE"}),
+        "retained negative ID集合が固定8件と不一致",
+    )
     return 0
 
 

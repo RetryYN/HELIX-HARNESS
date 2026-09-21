@@ -34,6 +34,30 @@ EXPECTED_SOURCES = {
     "PREISO-REV-000026": ("docs/governance/helix-harness-requirements_v1.3.md", "core_upstream_source"),
     "PREISO-REV-000060": ("docs/plans/PLAN-L3-82-authority-vocabulary-separation.md", "legacy_plan_source"),
 }
+DIFF_SCOPE = "selected_source_items_only"
+DIFF_SCOPE_NOTE = "2 commit全体は400 files／492 hunksであり、この候補はそのうち6 path／9 hunkのみを対象とする。"
+EXPECTED_SOURCE_OWNERS = {
+    "PREISO-REV-000001": ("HELIX-HARNESS", None),
+    "PREISO-REV-000002": ("HELIX-HARNESS", "HELIX-OS"),
+    "PREISO-REV-000015": ("HELIX-HARNESS", None),
+    "PREISO-REV-000016": ("HELIX-HARNESS", "HELIX-OS"),
+    "PREISO-REV-000026": ("HELIX-HARNESS", None),
+    "PREISO-REV-000060": ("unresolved", None),
+}
+EXPECTED_FRAGMENT_OWNERS = {
+    "RDP001-DIFF-001": ("HELIX-HARNESS", None),
+    "RDP001-DIFF-002": ("HELIX-HARNESS", "HELIX-OS"),
+    "RDP001-DIFF-003": ("HELIX-HARNESS", None),
+    "RDP001-DIFF-004": ("HELIX-HARNESS", "HELIX-OS"),
+    "RDP001-DIFF-005": ("HELIX-HARNESS", "HELIX-OS"),
+    "RDP001-DIFF-006": ("HELIX-HARNESS", None),
+    "RDP001-DIFF-007": ("HELIX-HARNESS", None),
+    "RDP001-DIFF-008": ("HELIX-HARNESS", "HELIX-OS"),
+    "RDP001-DIFF-009": ("unresolved", None),
+}
+EXPECTED_PHASE_CANDIDATES: list[str] = []
+EXPECTED_PHASE_AUTHORITY_STATUS = "unresolved_no_direct_phase_candidate"
+EXPECTED_LEGACY_IMPLEMENTATION_STATUS = "unknown"
 EXPECTED_FRAGMENT_IDS = {
     "RDP001-DIFF-001",
     "RDP001-DIFF-002",
@@ -54,6 +78,16 @@ EXPECTED_COUNTS = {
     "provenance": 4,
     "generated_metadata": 2,
     "unresolved": 0,
+}
+EXPECTED_NEGATIVE_IDS = {
+    "NEG-CLASS-CATALOG-FAIL-CLOSE",
+    "NEG-EXEC-CATALOG-FAIL-CLOSE",
+    "NEG-CLASS-REGISTRY-FAIL-CLOSE",
+    "NEG-EXEC-REGISTRY-FAIL-CLOSE",
+    "NEG-HREQ-STATUS-NOCOMPLETION",
+    "NEG-HREQ-L2-NO-AUTHORITY",
+    "NEG-HREQ-JSON-NODUAL",
+    "NEG-PLAN-NO-RUNTIME-AUTO",
 }
 DIFF_HUNK = re.compile(r"^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@")
 
@@ -191,6 +225,10 @@ def main() -> int:
         fail(errors, "inventory statusはsemantic equivalence review pendingに固定する")
     if inventory.get("authority_effect") != "none":
         fail(errors, "inventory authority_effectはnoneに固定する")
+    if inventory.get("diff_scope") != DIFF_SCOPE:
+        fail(errors, "diff_scopeはselected_source_items_onlyに固定する")
+    if inventory.get("diff_scope_note") != DIFF_SCOPE_NOTE:
+        fail(errors, "diff_scope_noteが6 path／9 hunkの限定を明示していない")
     for field, expected in (("meaning_change_applied", False), ("successor_requirement_ids", []), ("human_decision_ref", None), ("equivalence_claim", None)):
         if inventory.get(field) != expected:
             fail(errors, f"inventory {field}が候補境界に反する")
@@ -227,11 +265,28 @@ def main() -> int:
             fail(errors, f"{item_id} source_path不一致")
         if source.get("source_category") != expected_category:
             fail(errors, f"{item_id} source_category不一致")
-        if source.get("product_owner_candidate") not in ALLOWED_OWNERS:
-            fail(errors, f"{item_id} product_owner_candidate不正")
-        secondary = source.get("secondary_consumer_candidate")
-        if secondary is not None and secondary not in ALLOWED_OWNERS:
-            fail(errors, f"{item_id} secondary_consumer_candidate不正")
+        expected_owner, expected_secondary = EXPECTED_SOURCE_OWNERS[item_id]
+        if source.get("product_owner_candidate") != expected_owner:
+            fail(errors, f"{item_id} product_owner_candidateが固定候補と不一致")
+        if source.get("secondary_consumer_candidate") != expected_secondary:
+            fail(errors, f"{item_id} secondary_consumer_candidateが固定候補と不一致")
+        if source.get("phase_candidates") != EXPECTED_PHASE_CANDIDATES:
+            fail(errors, f"{item_id} phase_candidatesは未確認の空集合に固定する")
+        if source.get("phase_authority_status") != EXPECTED_PHASE_AUTHORITY_STATUS:
+            fail(errors, f"{item_id} phase_authority_statusが未確認状態と不一致")
+        if source.get("legacy_implementation_status") != EXPECTED_LEGACY_IMPLEMENTATION_STATUS:
+            fail(errors, f"{item_id} legacy_implementation_statusがunknownでない")
+        # source itemのfragment_idsは下のfragment参照と同じ固定集合で照合する。
+        expected_fragment_ids_by_source = {
+            "PREISO-REV-000001": {"RDP001-DIFF-001"},
+            "PREISO-REV-000002": {"RDP001-DIFF-002"},
+            "PREISO-REV-000015": {"RDP001-DIFF-003"},
+            "PREISO-REV-000016": {"RDP001-DIFF-004", "RDP001-DIFF-005"},
+            "PREISO-REV-000026": {"RDP001-DIFF-006", "RDP001-DIFF-007", "RDP001-DIFF-008"},
+            "PREISO-REV-000060": {"RDP001-DIFF-009"},
+        }
+        if set(source.get("fragment_ids", [])) != expected_fragment_ids_by_source[item_id]:
+            fail(errors, f"{item_id} fragment_ids集合が固定対応と不一致")
     if set(source_by_id) != set(EXPECTED_SOURCES):
         fail(errors, "source revision item ID集合が6件の期待集合と不一致")
 
@@ -264,8 +319,17 @@ def main() -> int:
             observed_counts[classification] += 1
         if fragment.get("candidate_kind") not in ALLOWED_CANDIDATE_KINDS:
             fail(errors, f"{fragment_id} candidate_kind不正")
-        if fragment.get("product_owner_candidate") not in ALLOWED_OWNERS:
-            fail(errors, f"{fragment_id} product_owner_candidate不正")
+        expected_owner, expected_secondary = EXPECTED_FRAGMENT_OWNERS.get(fragment_id, (None, None))
+        if fragment.get("product_owner_candidate") != expected_owner:
+            fail(errors, f"{fragment_id} product_owner_candidateが固定候補と不一致")
+        if fragment.get("secondary_consumer_candidate") != expected_secondary:
+            fail(errors, f"{fragment_id} secondary_consumer_candidateが固定候補と不一致")
+        if fragment.get("phase_candidates") != EXPECTED_PHASE_CANDIDATES:
+            fail(errors, f"{fragment_id} phase_candidatesは未確認の空集合に固定する")
+        if fragment.get("phase_authority_status") != EXPECTED_PHASE_AUTHORITY_STATUS:
+            fail(errors, f"{fragment_id} phase_authority_statusが未確認状態と不一致")
+        if fragment.get("legacy_implementation_status") != EXPECTED_LEGACY_IMPLEMENTATION_STATUS:
+            fail(errors, f"{fragment_id} legacy_implementation_statusがunknownでない")
         if not isinstance(fragment.get("unresolved_meaning"), list) or not fragment.get("unresolved_meaning"):
             fail(errors, f"{fragment_id} unresolved_meaningを空にしない")
         source_path = EXPECTED_SOURCES.get(item_id, (None, None))[0]
@@ -339,6 +403,8 @@ def main() -> int:
             check_span(errors, negative_id, blob, negative)
         if not isinstance(negative.get("meaning"), str) or not negative.get("meaning"):
             fail(errors, f"{negative_id} meaningを空にしない")
+    if set(negative_by_id) != EXPECTED_NEGATIVE_IDS:
+        fail(errors, "retained negative ID集合が固定8件と不一致")
     referenced_negative_ids: set[str] = set()
     for fragment in fragments:
         if isinstance(fragment, dict):
@@ -352,8 +418,8 @@ def main() -> int:
             print(f"- {error}")
         return 1
     print("PASS: RDP-001 6-path semantic diff inventory (read-only static check)")
-    print("sources=6; fragments=9; diff_hunks=9; requirement=1; constraint=2; provenance=4; generated_metadata=2; unresolved=0")
-    print("retained_negatives=8; semantic_equivalence=unresolved; authority_effect=none; runtime/test execution=forbidden")
+    print("diff_scope=selected_source_items_only; sources=6; fragments=9; diff_hunks=9; requirement=1; constraint=2; provenance=4; generated_metadata=2; unresolved=0")
+    print(f"retained_negatives=8; equivalence_claim={inventory.get('equivalence_claim')}; authority_effect={inventory.get('authority_effect')}; runtime/test execution=forbidden")
     return 0
 
 

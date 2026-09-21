@@ -53,6 +53,36 @@ def main() -> int:
         ),
         "archive_pathがsource_pathのsnapshotではない",
     )
+    run_case(
+        "revision contract meaning change",
+        lambda document: document["revision_contract"].update({"meaning_change_applied": True}),
+        "revision_contractが候補境界の9項目と完全一致しない",
+    )
+    run_case(
+        "revision contract semantic equivalence claim",
+        lambda document: document["revision_contract"].update({"semantic_equivalence": "confirmed"}),
+        "revision_contractが候補境界の9項目と完全一致しない",
+    )
+    run_case(
+        "revision contract runtime execution drift",
+        lambda document: document["revision_contract"].update({"runtime_or_test_execution": "allowed"}),
+        "revision_contractが候補境界の9項目と完全一致しない",
+    )
+    run_case(
+        "revision contract human decision fabrication",
+        lambda document: document["revision_contract"].update({"human_decision_ref": "DECISION-FAKE"}),
+        "revision_contractが候補境界の9項目と完全一致しない",
+    )
+    run_case(
+        "revision contract successor fabrication",
+        lambda document: document["revision_contract"].update({"successor_requirement_ids": ["REQ-FAKE"]}),
+        "revision_contractが候補境界の9項目と完全一致しない",
+    )
+    run_case(
+        "revision contract preservation drift",
+        lambda document: document["revision_contract"].update({"preserve_baseline_and_pre_isolation": False}),
+        "revision_contractが候補境界の9項目と完全一致しない",
+    )
     return 0
 
 

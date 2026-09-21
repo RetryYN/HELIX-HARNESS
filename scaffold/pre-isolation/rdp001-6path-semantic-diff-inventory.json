@@ -7,6 +7,8 @@
   "successor_requirement_ids": [],
   "human_decision_ref": null,
   "equivalence_claim": null,
+  "diff_scope": "selected_source_items_only",
+  "diff_scope_note": "2 commit全体は400 files／492 hunksであり、この候補はそのうち6 path／9 hunkのみを対象とする。",
   "comparison": {
     "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
     "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
@@ -26,6 +28,9 @@
       "source_path": "config/workflow-classification-catalog.v1.json",
       "source_category": "other_legacy_asset",
       "product_owner_candidate": "HELIX-HARNESS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "fragment_ids": ["RDP001-DIFF-001"]
     },
     {
@@ -34,6 +39,9 @@
       "source_category": "other_legacy_asset",
       "product_owner_candidate": "HELIX-HARNESS",
       "secondary_consumer_candidate": "HELIX-OS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "fragment_ids": ["RDP001-DIFF-002"]
     },
     {
@@ -41,6 +49,9 @@
       "source_path": "docs/design/helix/L3-requirements/workflow-classification-registry.v1.json",
       "source_category": "requirement_or_prototype_source",
       "product_owner_candidate": "HELIX-HARNESS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "fragment_ids": ["RDP001-DIFF-003"]
     },
     {
@@ -49,6 +60,9 @@
       "source_category": "requirement_or_prototype_source",
       "product_owner_candidate": "HELIX-HARNESS",
       "secondary_consumer_candidate": "HELIX-OS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "fragment_ids": ["RDP001-DIFF-004", "RDP001-DIFF-005"]
     },
     {
@@ -56,6 +70,9 @@
       "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
       "source_category": "core_upstream_source",
       "product_owner_candidate": "HELIX-HARNESS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "fragment_ids": ["RDP001-DIFF-006", "RDP001-DIFF-007", "RDP001-DIFF-008"]
     },
     {
@@ -63,6 +80,9 @@
       "source_path": "docs/plans/PLAN-L3-82-authority-vocabulary-separation.md",
       "source_category": "legacy_plan_source",
       "product_owner_candidate": "unresolved",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "fragment_ids": ["RDP001-DIFF-009"]
     }
   ],
@@ -73,6 +93,9 @@
       "classification": "generated_metadata",
       "candidate_kind": "metadata",
       "product_owner_candidate": "HELIX-HARNESS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "summary": "generated classification catalogのrequirements／registry source digestをpre-isolation sourceへ更新",
       "baseline": {
         "start_line": 9,
@@ -99,6 +122,9 @@
       "candidate_kind": "metadata",
       "product_owner_candidate": "HELIX-HARNESS",
       "secondary_consumer_candidate": "HELIX-OS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "summary": "generated execution policy catalogのrequirements／classification／policy registry digestをpre-isolation sourceへ更新",
       "baseline": {
         "start_line": 9,
@@ -124,6 +150,9 @@
       "classification": "provenance",
       "candidate_kind": "metadata",
       "product_owner_candidate": "HELIX-HARNESS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "summary": "classification registryのrequirements authority digestをpre-isolation requirementsへ更新",
       "baseline": {
         "start_line": 8,
@@ -150,6 +179,9 @@
       "candidate_kind": "metadata",
       "product_owner_candidate": "HELIX-HARNESS",
       "secondary_consumer_candidate": "HELIX-OS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "summary": "execution policy registryのrequirements authority digestをpre-isolation requirementsへ更新",
       "baseline": {
         "start_line": 8,
@@ -176,6 +208,9 @@
       "candidate_kind": "metadata",
       "product_owner_candidate": "HELIX-HARNESS",
       "secondary_consumer_candidate": "HELIX-OS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "summary": "execution policy registryのclassification registry source digestをpre-isolation registryへ更新",
       "baseline": {
         "start_line": 15,
@@ -201,6 +236,9 @@
       "classification": "constraint",
       "candidate_kind": "constraint",
       "product_owner_candidate": "HELIX-HARNESS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "summary": "requirements documentのrevision statusに、既存承認記録と非完了範囲を明記",
       "baseline": {
         "start_line": 9,
@@ -226,6 +264,9 @@
       "classification": "constraint",
       "candidate_kind": "constraint",
       "product_owner_candidate": "HELIX-HARNESS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "summary": "要求参照範囲、候補／Issue／DBの非authority境界、L2からL3への参照条件を追加",
       "baseline": {
         "start_line": 28,
@@ -252,6 +293,9 @@
       "candidate_kind": "requirement",
       "product_owner_candidate": "HELIX-HARNESS",
       "secondary_consumer_candidate": "HELIX-OS",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "summary": "requirements機械正本をJSON manifest／shardへ置き、旧Markdownをread-only view／compatibility inputへ分離する契約を追加",
       "baseline": {
         "start_line": 397,
@@ -277,6 +321,9 @@
       "classification": "provenance",
       "candidate_kind": "metadata",
       "product_owner_candidate": "unresolved",
+      "phase_candidates": [],
+      "phase_authority_status": "unresolved_no_direct_phase_candidate",
+      "legacy_implementation_status": "unknown",
       "summary": "PLAN-L3-82 workflow identityのregistry source digestをpre-isolation classification registryへ更新",
       "baseline": {
         "start_line": 22,
