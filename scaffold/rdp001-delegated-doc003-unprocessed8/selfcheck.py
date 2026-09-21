@@ -31,6 +31,8 @@ def main() -> int:
 
     run("selected denominator", lambda x: x["scope"].__setitem__("selected_count", 7))
     run("archive bytes", lambda x: x["documents"][0].__setitem__("bytes", 1))
+    run("terminal newline line count", lambda x: x["documents"][0].__setitem__("lines", 127))
+    run("capture head", lambda x: x["revisions"].__setitem__("capture_head", "0" * 40))
     run("archive sha", lambda x: x["documents"][1].__setitem__("source_sha256", "0" * 64))
     run("file blob as atom", lambda x: x["scope"].__setitem__("file_blob_is_not_single_requirement_atom", False))
     run("current owner claim", lambda x: x["documents"][2].__setitem__("current_owner", "PO"))

@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
-      "sha256": "4300ca7fceb539b3bbaa7ed0005437c4b7cfc0090e5c35179210a7ed81576236",
+      "sha256": "870f88c0cd5e427ef4032d8921699f78ea1da2906747cc7852a00bf5c3e8b39f",
       "note": "未処理先頭8文書の分母、旧原文、候補意味、legacy状態"
     },
     {
@@ -113,7 +113,7 @@
       "file blobを単一要求atomとする境界改変",
       "current ownerまたはdecisionの根拠なし確定",
       "binding stateをactiveへ昇格",
-      "上流digestまたはcurrent HEADのstale"
+      "上流digest、capture revisionまたはその子孫関係の改変"
     ]
   },
   "replacement": {
