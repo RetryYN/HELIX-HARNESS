@@ -1,0 +1,146 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0041",
+  "kind": "scaffold",
+  "title": "RDP-001 outside-67 rows 16–30 と13 live holding関係監査候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "RDP-001 source preservation／four-product upstream review（正式owner未解決）",
+  "state": "registered",
+  "reason": "outside-67 reportのglobal rows 16–30をfirst15監査と区別し、governance/crosswalk pathのcandidate product／phaseラベル、pre-isolation／archive blob関係、13 live source holdingへのexact path／blob／SHA関係をread-onlyで固定する。15件すべて13 holdingへの完全一致がなく、implementation、degradation、semantic disposition、authority、要求採否、successorは未解決のまま保持する。",
+  "upstream": [
+    {
+      "path": "scaffold/pre-isolation-outside-holding-16-30/inventory.json",
+      "sha256": "614e7935e333d50927330c3301d02215fed6b0da4498783e75f8d79a174ee44a",
+      "note": "rows 16–30の15 path、13 live holding exact relation、candidate/unknown境界"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-16-30/README.md",
+      "sha256": "e231dec3c430641ba5678fd891c1d6c02a16258a816b563b69e7be34c803b764",
+      "note": "selection、physical findings、implementation/degradation境界、提案row schema"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67/report.json",
+      "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795",
+      "note": "outside-67 67 path分母と選定順序"
+    },
+    {
+      "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "formal 67 path_revision_pair source set"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+      "note": "supersedes終端13 live holdingの再計算入力"
+    },
+    {
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "note": "既存333 source holdingのexact path/blob/SHA照合入力"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-first15/inventory.json",
+      "sha256": "010f159e0bc56f4ee4d3db11cb8b5e1f8d77af704abd66437cbaddfa4b437257",
+      "note": "first15監査との選定境界"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-first15/README.md",
+      "sha256": "46357fbcbed54bdb0fd2c27690974054ec885b23cb0cd360a80e72545f11330c",
+      "note": "既存first15のunknown／non-inclusion契約"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "authority、旧資産静的参照、scaffold境界"
+    }
+  ],
+  "role": "outside-67 reportのrows 16–30について、13 live source holdingとのexact physical relationとpath-based candidate/unknown境界をread-onlyで固定する",
+  "overlap_reason": "SCF-B-0038はoutside-67全67 pathのsource_holding append前保存提案、SCF-B-0035はfirst15の選定監査を担う。本bindingはその中間15件（global rows 16–30）の独立した静的監査証拠に限定し、既存bindingのsource holding・semantic review責務を置換しない。",
+  "obligations": [
+    "outside-67 report orderのglobal rows 16–30を固定し、first15と重複させず、selectionを要求数と解釈しない",
+    "management registerのsupersedes終端13 live holdingsを再計算し、各source setのdigest／件数を保持する",
+    "各pathのpre-isolation／archive blob OID、SHA、bytes、same／different、archive root、capture HEAD状態を再計算する",
+    "13 holdingごとのexact path／blob／SHA match countを保持し、15件の不在をnew holding必要性未解決候補へ留める",
+    "pathベースcandidate product／phaseをunknown statusのまま保持し、implementation、degradation、authority、要求採否、successorへ昇格しない",
+    "旧archiveは静的Git object参照だけに限定し、旧runtime／test／CI／hookを実行しない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 source preservation／four-product semantic review担当",
+      "13 live management holdingの境界確認担当",
+      "outside-67 source_holding／requirement registration review担当",
+      "SCF-B-0035／SCF-B-0038差し替え確認担当"
+    ],
+    "dependencies": [
+      "Python 3標準library",
+      "outside-67 reportとformal source set",
+      "management provisional register",
+      "13 live source holdingのread-only scan",
+      "固定Git objectのread-only照合"
+    ],
+    "boundary": "candidate inventory、generator、README、validator、selfcheck、Bindingをscaffold/に置く。旧資産とholdingは静的に読む。正式holding、要求identity、product owner、phase authority、implementation、degradation、semantic disposition、consumer closure、acceptance、release、外部作用は確定しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/pre-isolation-outside-holding-16-30/generate.py",
+      "python3 scaffold/pre-isolation-outside-holding-16-30/validate.py",
+      "python3 scaffold/pre-isolation-outside-holding-16-30/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git show／git rev-parse／git cat-fileによるread-only object照合",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source、設定の実行",
+      "旧CI・旧runtimeをoracleまたは完了証拠として使うこと",
+      "management registerへの正式append、既存historical digestの改変、mass rewrite",
+      "path itemをrequirement atom、要求採否、product owner、phase authority、implementation、degradation、successorへ昇格すること",
+      "scaffold外への候補書き込み、GitHub、Issue、PR、CI、DB、memory、外部API、deploymentへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/pre-isolation-outside-holding-16-30/inventory.json",
+    "scaffold/pre-isolation-outside-holding-16-30/README.md",
+    "scaffold/pre-isolation-outside-holding-16-30/generate.py",
+    "scaffold/pre-isolation-outside-holding-16-30/validate.py",
+    "scaffold/pre-isolation-outside-holding-16-30/selfcheck.py",
+    "scaffold/bindings/SCF-B-0041.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "独立validate.pyのselection 16–30、13 live holding、exact path／blob／SHA、source OID、current state",
+      "selfcheck.pyのbaseline greenと16 negative cases",
+      "generate.pyの二回生成digest一致",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "authority、formal append、requirement atom、product／phase／implementation／degradation、semantic dispositionの昇格",
+      "pre-isolation／archive OID、same／different、holding relation、source set digestの改変",
+      "13 holdingへの不在をincludedまたはresolvedへ昇格すること",
+      "旧asset runtime／test／CI実行の記録化",
+      "first15とrows 16–30のselection重複または分母改変"
+    ]
+  },
+  "replacement": {
+    "role_target": "RDP-001 outside pathの正式source_holding／semantic review／requirement registration境界（承認後）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
