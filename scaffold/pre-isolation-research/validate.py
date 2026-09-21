@@ -220,7 +220,7 @@ def main() -> int:
     print("prior reviewed=24 files / 91 hunks; current selected=20 files / 21 hunks; combined selected=44 files / 112 hunks")
     print("remaining after current selection=356 files / 380 hunks")
     print("hunk_classification_counts=research_premise:21; unresolved:0; semantic_atoms=0; compound_hunk_holds=21; review_only_subunits=8")
-    print("authority_effect=none; semantic_equivalence=unresolved; legacy runtime/test/CI execution=forbidden")
+    print(f"authority_effect={inventory['authority_effect']}; semantic_equivalence={'unresolved' if inventory['equivalence_claim'] is None else inventory['equivalence_claim']}; legacy runtime/test/CI execution={comparison['old_runtime_test_ci_execution']}")
     return 0
 
 if __name__ == "__main__": raise SystemExit(main())

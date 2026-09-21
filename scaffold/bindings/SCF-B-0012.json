@@ -65,7 +65,7 @@
     },
     {
       "path": "scaffold/pre-isolation-research/validate.py",
-      "sha256": "65e246cca9e9905f636f2b77a65425c9b7a3b4bbd5e4cf04f5fdb9edfd54422b",
+      "sha256": "ac3513eebe2686e3b6332331ef4ec665ea84f67e5d18cfd47a09e8784020bcc9",
       "note": "RDP-001 research-premise candidate artifact"
     },
     {
