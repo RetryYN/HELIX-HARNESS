@@ -1,0 +1,96 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0011",
+  "kind": "scaffold",
+  "title": "RDP-001 RUL-OSP-04 47 atom research candidate",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS 上流要求整理（RUL-OSP-04 atom relation と authority 境界の候補保持）",
+  "state": "active",
+  "reason": "RUL-OSP-04 の primary 25 atom と secondary relation 22 atom は旧規則台帳に存在するが、S1-01 の screen／cross-link 集計、source exact span、legacy asset 状態、product／authority／consumer 候補が同一 review 単位に束ねられていない。要求採否・successor・現行 authority を生成せず、47 atom の source closure を scaffold に固定する。",
+  "upstream": [
+    {"path": "docs/governance/legacy-rule-atom-inventory.jsonl", "sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784", "note": "旧規則 atom 台帳。RUL-OSP-04 primary 25／secondary relation 22 の入力"},
+    {"path": "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-rule-atom-accounting.jsonl", "sha256": "ea5979396cfd0fa81678f9938a72edc84aa8320d467fe2ef252d016794bd05e7", "note": "S1-01 accounting。RUL-OSP-04 screened 10/25、secondary link count 5"},
+    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "対応する旧資産 26 source file の Historical／unresolved 状態"},
+    {"path": "docs/governance/candidates/legacy-rule-derived-requirements.md", "sha256": "386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa", "note": "RUL-OSP-04 要求候補本文と25／22表示"},
+    {"path": "docs/governance/requirement-disposition-review-program.md", "sha256": "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308", "note": "RDP-001 の atom／candidate／authority停止条件"},
+    {"path": "docs/governance/requirement-atomization-review-contract.md", "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba", "note": "原文・line span・digest・未解決を保持する atom review contract"},
+    {"path": "docs/governance/legacy-asset-reuse-control.md", "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582", "note": "旧資産は reference only、実行・無判断 copy・oracle 化を禁止"},
+    {"path": "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md", "sha256": "f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46", "note": "S1-01 の10/25、screen 限界、per-atom unassessed 境界"}
+  ],
+  "role": "RUL-OSP-04 の primary／secondary relation atom と旧 source exact span、legacy asset、product／authority／consumer候補を一つの scaffold research candidate として保持する",
+  "obligations": [
+    "台帳から primary 25 atom と secondary relation 22 atom を relation 別に一度ずつ保持し、union 47 と source file 26 を確認する",
+    "各 atom の rule_id、原文、原文 digest、kind、enforced_by、fail_mode、legacy binding、既存 secondary relation を保持する",
+    "各 source span の archive path、line span、逐語本文、span digest、source file digest と legacy asset ID／digest／状態を照合する",
+    "product unit、connection、actor、authority、failure、consumer を候補として記録し、現行 authority claim を false、per-atom assessment を unassessed に固定する",
+    "S1-01 の screened_atoms 10/25 と secondary_links_from_other_primary 5 を、台帳 secondary relation 22 と別 denominator のまま保持する",
+    "旧 source の自律・拒否・escalation evidence と、現行 S1-01 defer／authority_effect none／per-atom unassessed を unresolved_preserved の矛盾境界として併記し、同値化しない",
+    "要求採否、successor、現行 authority、L2／L11適用、L3／L10実装、consumer closure、受入、完了を生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 RUL-OSP-04 per-atom research review担当",
+      "L2D-S1-01 authority vocabulary の未評価 atom整理担当",
+      "Scaffold Binding の stale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "docs/governance/legacy-rule-atom-inventory.jsonl",
+      "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-rule-atom-accounting.jsonl",
+      "docs/governance/legacy-asset-disposition.jsonl",
+      "archive source の read-only exact span"
+    ],
+    "boundary": "manifest、atom-candidates、validator、selfcheck は scaffold/ 配下だけ。旧 archive は source reference として静的に読むだけで、runtime／test／hook／CI は実行しない。docs、設定、DB、Issue、PR、GitHub、現行 authority register へ書き込まない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/rdp001-rul-osp-04/validate.py",
+      "python3 scaffold/rdp001-rul-osp-04/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|list|stale|residuals"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-* 配下の runtime／test／hook／CI 実行",
+      "旧 source を現行 runtime／test／CI の oracle、fallback、実装として使うこと",
+      "scaffold/ 外への書き込み",
+      "要求採否、人間承認、successor、現行 authority、L2／L11 freeze、L3／L10実装、consumer closure、受入、release の生成",
+      "GitHub、Issue、PR、DB、CI、deployment への外部作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-rul-osp-04/README.md",
+    "scaffold/rdp001-rul-osp-04/manifest.json",
+    "scaffold/rdp001-rul-osp-04/atom-candidates.jsonl",
+    "scaffold/rdp001-rul-osp-04/validate.py",
+    "scaffold/rdp001-rul-osp-04/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": [
+      "scaffold/rdp001-rul-osp-04/validate.py（台帳／S1-01 accounting／legacy asset／archive source の件数・digest・relation closure）",
+      "scaffold/rdp001-rul-osp-04/selfcheck.py（relation swap、source span drift、asset digest drift、5/22 merge、authority claim、atom loss）",
+      "scaffold/tools/scfctl.py stale（上流台帳 revision の変化検出）",
+      "git diff --check（候補 artifact の静的整形）"
+    ],
+    "negative_cases": [
+      "primary 25 と secondary relation 22 の relation を入れ替える",
+      "atom、source span、source file、legacy asset digest を改変する",
+      "S1-01 secondary link count 5 を台帳 secondary atom 22 へ置き換える",
+      "current authority claim を true または per-atom assessment を確定済みにする",
+      "candidate atom を欠落・重複させる",
+      "archive runtime／test／CI を検証 oracle に追加する"
+    ]
+  },
+  "replacement": {
+    "role_target": "正式な RDP-001 atom review／authority relation／product unit crosswalk（L2／L11 と L3／L10 から導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}
