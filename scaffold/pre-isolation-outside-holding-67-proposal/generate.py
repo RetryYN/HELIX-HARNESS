@@ -23,6 +23,8 @@ DISPOSITION_PATH = "docs/governance/requirement-disposition-review-program.md"
 DISPOSITION_SHA = "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308"
 REGISTRATION_PATH = "docs/governance/management-provisional-requirement-registration.md"
 HOLDING_PATH = "docs/governance/pre-isolation-revision-delta-source-holding.jsonl"
+FORMAL_SOURCE_PATH = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+FORMAL_COVERAGE_PATH = "docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md"
 SCHEMA = "rdp001-preisolation-outside-holding-67-source-holding-proposal/v1"
 PROPOSAL_ID = "MPR-SH-OUTSIDE67-001"
 PRODUCTS = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
@@ -189,11 +191,11 @@ def proposed_record(source_digest: str, count: int) -> dict:
         "candidate_semantic_digest": None,
         "parent_concept_revision": None,
         "parent_planning_revision": None,
-        "source_atom_set_ref": "scaffold/pre-isolation-outside-holding-67-proposal/source-items.jsonl",
+        "source_atom_set_ref": FORMAL_SOURCE_PATH,
         "source_atom_set_digest": f"sha256:{source_digest}",
         "source_atom_count": count,
         "source_collection_scope": "outside-67 reportの67 path_revision_pair item。各itemはpre-isolation commitとarchive commitのpath blob OID／SHA／bytesを持つ。要求atom、semantic equivalence、product owner、phase authority、implementationを表さない。",
-        "coverage_receipt_ref": "scaffold/pre-isolation-outside-holding-67-proposal/inventory.json",
+        "coverage_receipt_ref": FORMAL_COVERAGE_PATH,
         "coverage_result": "source_preserved_unassigned",
         "carried_atom_refs": [],
         "preserved_pending_registration_refs": [],
@@ -205,6 +207,8 @@ def proposed_record(source_digest: str, count: int) -> dict:
         "registered_at": "pending_append",
         "evidence_refs": [
             "scaffold/pre-isolation-outside-holding-67/report.json",
+            FORMAL_SOURCE_PATH,
+            FORMAL_COVERAGE_PATH,
             "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md",
             "docs/governance/requirement-disposition-review-program.md#入力母集団",
             "docs/governance/management-provisional-requirement-registration.md#bootstrap-source-holding",
@@ -224,6 +228,13 @@ def build() -> dict:
         raise ValueError(f"expected 67 rows, found {len(items)}")
     source_digest = sha(source_lines(items))
     proposed = proposed_record(source_digest, len(items))
+    formal_source_path = ROOT / FORMAL_SOURCE_PATH
+    formal_coverage_path = ROOT / FORMAL_COVERAGE_PATH
+    source_bytes = source_lines(items)
+    if not formal_source_path.is_file() or formal_source_path.read_bytes() != source_bytes:
+        raise ValueError("formal source set must be byte-identical to generated source items")
+    if not formal_coverage_path.is_file():
+        raise ValueError("formal coverage receipt is missing")
     historical_sha_refs = git_references(REGISTER_SHA)
     return {
         "schema": SCHEMA,
@@ -256,6 +267,25 @@ def build() -> dict:
             "pre_isolation_holding_path": HOLDING_PATH,
             "pre_isolation_holding_sha256": sha((ROOT / HOLDING_PATH).read_bytes()),
             "read_only": True,
+        },
+        "formal_source_set": {
+            "path": FORMAL_SOURCE_PATH,
+            "mirror_path": "scaffold/pre-isolation-outside-holding-67-proposal/source-items.jsonl",
+            "sha256": sha(formal_source_path.read_bytes()),
+            "bytes": len(formal_source_path.read_bytes()),
+            "record_count": len(items),
+            "byte_identical_to_mirror": formal_source_path.read_bytes() == source_bytes,
+        },
+        "formal_coverage_receipt": {
+            "path": FORMAL_COVERAGE_PATH,
+            "sha256": sha(formal_coverage_path.read_bytes()),
+            "source_set_path": FORMAL_SOURCE_PATH,
+            "source_set_sha256": sha(formal_source_path.read_bytes()),
+            "source_item_count": len(items),
+            "same_blob_count": sum(item["archive"]["relation_to_pre_isolation"] == "same" for item in items),
+            "changed_blob_count": sum(item["archive"]["relation_to_pre_isolation"] == "different" for item in items),
+            "live_holding_count": len(holdings),
+            "authority_effect": "none",
         },
         "live_holdings": holdings,
         "source_items": items,
@@ -299,6 +329,7 @@ def build() -> dict:
             "product／phase／implementationはoutside reportのpath候補メタデータを引用するだけで、意味分類・authority・実装状態へ昇格していない。",
             "proposed register recordはappend-only schemaの候補形を保持するが、正式registerへのappendは行っていない。",
             "register appendは固定historical digestを持つ既存validator／Bindingと、live registerを再読するfirst15 captureに移行阻害がある。",
+            "正式source setとcoverage receiptをdocs/governanceへ固定し、scaffold mirrorとのbyte同一SHA、67件、39／28、13 holding、authority noneを再検証する条件を記録した。",
         ],
         "prohibited_inference": [
             "path itemをrequirement atom、requirement identity、successorへ変換しない",
@@ -311,7 +342,7 @@ def build() -> dict:
         "verification_scope": {
             "evidence_kind": "scaffold",
             "static_only": True,
-            "checks": ["67 path count", "pre-isolation/archive Git OID and SHA", "39/28 relation", "13 live holding exact scan", "append blocker assessment", "authority boundary"],
+            "checks": ["67 path count", "pre-isolation/archive Git OID and SHA", "39/28 relation", "13 live holding exact scan", "append blocker assessment", "authority boundary", "formal source-set and coverage-receipt paths", "formal/scaffold source-set byte-identical SHA"],
         },
     }
 

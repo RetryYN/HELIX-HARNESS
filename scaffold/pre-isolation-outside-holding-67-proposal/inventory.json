@@ -30,6 +30,25 @@
     "pre_isolation_holding_sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
     "read_only": true
   },
+  "formal_source_set": {
+    "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "mirror_path": "scaffold/pre-isolation-outside-holding-67-proposal/source-items.jsonl",
+    "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+    "bytes": 425087,
+    "record_count": 67,
+    "byte_identical_to_mirror": true
+  },
+  "formal_coverage_receipt": {
+    "path": "docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md",
+    "sha256": "941ba49fd874ae514d25e45d93f0921fa0d8bfc199c632a62ba475a53f923556",
+    "source_set_path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "source_set_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+    "source_item_count": 67,
+    "same_blob_count": 39,
+    "changed_blob_count": 28,
+    "live_holding_count": 13,
+    "authority_effect": "none"
+  },
   "live_holdings": [
     {
       "registration_id": "MPR-SH-HEADING-002",
@@ -13095,11 +13114,11 @@
     "candidate_semantic_digest": null,
     "parent_concept_revision": null,
     "parent_planning_revision": null,
-    "source_atom_set_ref": "scaffold/pre-isolation-outside-holding-67-proposal/source-items.jsonl",
+    "source_atom_set_ref": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
     "source_atom_set_digest": "sha256:d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
     "source_atom_count": 67,
     "source_collection_scope": "outside-67 reportの67 path_revision_pair item。各itemはpre-isolation commitとarchive commitのpath blob OID／SHA／bytesを持つ。要求atom、semantic equivalence、product owner、phase authority、implementationを表さない。",
-    "coverage_receipt_ref": "scaffold/pre-isolation-outside-holding-67-proposal/inventory.json",
+    "coverage_receipt_ref": "docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md",
     "coverage_result": "source_preserved_unassigned",
     "carried_atom_refs": [],
     "preserved_pending_registration_refs": [],
@@ -13111,6 +13130,8 @@
     "registered_at": "pending_append",
     "evidence_refs": [
       "scaffold/pre-isolation-outside-holding-67/report.json",
+      "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md",
       "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md",
       "docs/governance/requirement-disposition-review-program.md#入力母集団",
       "docs/governance/management-provisional-requirement-registration.md#bootstrap-source-holding"
@@ -13121,7 +13142,7 @@
     "status": "blocked_historical_capture_digest_invalidation",
     "current_register_sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
     "historical_expected_register_sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
-    "proposed_append_register_sha256": "e4808c94cfe1de26713a58804378d795fc47d4559f3f2102962456ba537ae6af",
+    "proposed_append_register_sha256": "62d8b232d00ff81cc0ac71145760fe86b2916897cc8f476ed5e8fe0e690bfe3a",
     "historical_register_sha_references_in_HEAD": [
       "docs/governance/phase-capability-inventory.json",
       "scaffold/bindings/SCF-B-0027.json",
@@ -13178,7 +13199,8 @@
     "67件すべて13 live holdingへのpre-isolation blob／SHA一致がなく、source_holding候補の保存対象とした。66件はpathも不一致で、1件はlegacy-rule holdingにpath文字列だけがあり、blob／SHA包含は未証明である。",
     "product／phase／implementationはoutside reportのpath候補メタデータを引用するだけで、意味分類・authority・実装状態へ昇格していない。",
     "proposed register recordはappend-only schemaの候補形を保持するが、正式registerへのappendは行っていない。",
-    "register appendは固定historical digestを持つ既存validator／Bindingと、live registerを再読するfirst15 captureに移行阻害がある。"
+    "register appendは固定historical digestを持つ既存validator／Bindingと、live registerを再読するfirst15 captureに移行阻害がある。",
+    "正式source setとcoverage receiptをdocs/governanceへ固定し、scaffold mirrorとのbyte同一SHA、67件、39／28、13 holding、authority noneを再検証する条件を記録した。"
   ],
   "prohibited_inference": [
     "path itemをrequirement atom、requirement identity、successorへ変換しない",
@@ -13197,7 +13219,9 @@
       "39/28 relation",
       "13 live holding exact scan",
       "append blocker assessment",
-      "authority boundary"
+      "authority boundary",
+      "formal source-set and coverage-receipt paths",
+      "formal/scaffold source-set byte-identical SHA"
     ]
   }
 }

@@ -9,11 +9,11 @@
   "candidate_semantic_digest": null,
   "parent_concept_revision": null,
   "parent_planning_revision": null,
-  "source_atom_set_ref": "scaffold/pre-isolation-outside-holding-67-proposal/source-items.jsonl",
+  "source_atom_set_ref": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
   "source_atom_set_digest": "sha256:d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
   "source_atom_count": 67,
   "source_collection_scope": "outside-67 reportの67 path_revision_pair item。各itemはpre-isolation commitとarchive commitのpath blob OID／SHA／bytesを持つ。要求atom、semantic equivalence、product owner、phase authority、implementationを表さない。",
-  "coverage_receipt_ref": "scaffold/pre-isolation-outside-holding-67-proposal/inventory.json",
+  "coverage_receipt_ref": "docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md",
   "coverage_result": "source_preserved_unassigned",
   "carried_atom_refs": [],
   "preserved_pending_registration_refs": [],
@@ -25,6 +25,8 @@
   "registered_at": "pending_append",
   "evidence_refs": [
     "scaffold/pre-isolation-outside-holding-67/report.json",
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md",
     "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md",
     "docs/governance/requirement-disposition-review-program.md#入力母集団",
     "docs/governance/management-provisional-requirement-registration.md#bootstrap-source-holding"

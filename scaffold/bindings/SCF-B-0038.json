@@ -8,20 +8,86 @@
   "state": "registered",
   "reason": "outside-67 reportの全67 pathを要求atomへ変換せず、pre-isolation／archiveのpath revision pairとして保存候補へ固定する。39 same／28 changed、13 live holdingとのblob／SHA exact match 0、path-only relation 1を保持し、product／phase／implementation、semantic disposition、authorityはunknown／未開始に留める。management registerへの正式appendは歴史的13-holding captureと固定digestの移行が未完了のため実行せず、#1975 SCF-B-0036の13-holding validatorを含む影響対象と停止条件を記録する。",
   "upstream": [
-    {"path": "scaffold/pre-isolation-outside-holding-67-proposal/inventory.json", "sha256": "46bafea857e9cb01829b8cdd5cee74f51eca84d01f5e113f5b6bbc091491703f", "note": "67 path pair、39／28、13 holding relation、append blockerの静的inventory"},
-    {"path": "scaffold/pre-isolation-outside-holding-67-proposal/source-items.jsonl", "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54", "note": "各pathのpre-isolation／archive blob OID・SHA・bytesとholding relation"},
-    {"path": "scaffold/pre-isolation-outside-holding-67-proposal/proposed-register-record.json", "sha256": "a8aae4f027d5853051ac80181ecabdc5dc940ef019add03fbc45f3b765bee6a6", "note": "append-only source_holding schema候補（未append、authority none）"},
-    {"path": "scaffold/pre-isolation-outside-holding-67-proposal/README.md", "sha256": "06f7cae0ed0b83d795a1519eb41b2f3cbbccd1a9db8e950ba531d4df95f1b4de", "note": "保存境界、path-only 1件、移行阻害、#1975影響、3df captureからb27 rebaseline条件"},
-    {"path": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py", "sha256": "a44a70967733cc173921a7335f9afec7ddc04c2e58625a83509f3d584f526b99", "note": "候補生成器（Git object／13 holding静的scan）"},
-    {"path": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py", "sha256": "56bc277e86a792466c57d1dc83331bc99343a0c9689a668fd9df3c3ef10f3e8e", "note": "generate.pyをimportしない独立validator"},
-    {"path": "scaffold/pre-isolation-outside-holding-67-proposal/selfcheck.py", "sha256": "32c29ef84a5d92e88b30781de187eb1f688c8d45b0167fbfcf6c1fb0d9d6d561", "note": "baseline greenと15 negative cases"},
-    {"path": "scaffold/pre-isolation-outside-holding-67/report.json", "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795", "note": "outside-67 reportの67 path分母"},
-    {"path": "docs/governance/management-provisional-requirement-register.jsonl", "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b", "note": "3df81ad時点の32 register／13 live holding"},
-    {"path": "docs/governance/requirement-disposition-review-program.md", "sha256": "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308", "note": "source発見時のsource_holding先行登録契約"},
-    {"path": "docs/governance/management-provisional-requirement-registration.md", "sha256": "86e0eae4c447a4d7113b84b72d6b3a8cb89188189090584fbcc76fbbbe810176", "note": "source_holdingとrequirement_candidateの管理schema"},
-    {"path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl", "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180", "note": "既存source holdingの静的照合対象"},
-    {"path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md", "sha256": "99d1e78e7722d5569d5615b8c2700452bedf7e76448e68f11b06acbde30efec7", "note": "pre-isolation revision deltaの監査契約"},
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995", "note": "scaffold、authority、旧資産static-only境界"}
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/inventory.json",
+      "sha256": "3dcfed7b2b37a24acef92823f54b822f84ce799d46b2adbbd9ea145a8d33e761",
+      "note": "67 path pair, independent roster/digest/keyset/formal-doc checks"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/source-items.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "scaffold mirror for formal source set byte comparison"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/proposed-register-record.json",
+      "sha256": "9fc02926f6b57f034af42b903342af3e0e439dd31c163341c4f1e58e1abc5252",
+      "note": "append-only record candidate with formal docs refs"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/README.md",
+      "sha256": "4771d9344756e2c2ec0d4bb335ed2214169d0a095d99a31d4d0d3eb655531d02",
+      "note": "formal docs source-set/coverage-receipt conditions"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py",
+      "sha256": "5e343ae3acab6c86f6151756866d15415fb6f28defb59eb3d59aaa4a444f36ff",
+      "note": "proposal generator and formal byte identity gate"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py",
+      "sha256": "8c4ea5146ba0f72d882a900f987d585eca5772c3be4e7102fb40c1a3a5bc1bcc",
+      "note": "independent roster, source digest, denominator, keyset validator"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/selfcheck.py",
+      "sha256": "a1432e8348cbf844eb44692d48530c73e4619f2e8eb56f4f12f473b5f8b45525",
+      "note": "23 negative cases including J01/M01 mutations"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67/report.json",
+      "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795",
+      "note": "outside-67 reportの67 path分母"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+      "note": "3df81ad時点の32 register／13 live holding"
+    },
+    {
+      "path": "docs/governance/requirement-disposition-review-program.md",
+      "sha256": "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308",
+      "note": "source発見時のsource_holding先行登録契約"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-registration.md",
+      "sha256": "86e0eae4c447a4d7113b84b72d6b3a8cb89188189090584fbcc76fbbbe810176",
+      "note": "source_holdingとrequirement_candidateの管理schema"
+    },
+    {
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "note": "既存source holdingの静的照合対象"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md",
+      "sha256": "99d1e78e7722d5569d5615b8c2700452bedf7e76448e68f11b06acbde30efec7",
+      "note": "pre-isolation revision deltaの監査契約"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "scaffold、authority、旧資産static-only境界"
+    },
+    {
+      "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "formal 67 path_revision_pair source set; byte-identical to scaffold mirror"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md",
+      "sha256": "941ba49fd874ae514d25e45d93f0921fa0d8bfc199c632a62ba475a53f923556",
+      "note": "formal coverage receipt with source digest, 67/39/28/13 and authority none"
+    }
   ],
   "role": "outside-67全67 path revision pairをsource_holding候補として保存し、正式appendの前提と歴史的capture移行阻害を固定する",
   "obligations": [
@@ -79,7 +145,13 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "独立validate.pyの67 path、Git object、39／28、13 holding relation、append blocker再計算",
       "selfcheck.pyのbaseline greenと15 negative cases",

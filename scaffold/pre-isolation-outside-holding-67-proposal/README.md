@@ -11,7 +11,7 @@ current captureは `3df81ad27157c471e004083783f37a5860eaa2ee` に固定してい
 - product／phase／implementationはoutside reportのpath候補メタデータを引用するだけでunknownを維持します。
 - semantic disposition、requirement identity、successor、authorityは開始していません。
 
-`proposed-register-record.json` はmanagement registerのappend-only record schemaに合わせた提案行です。source collection scopeは67件のpath revision pairであり、要求atomではありません。source setは `source-items.jsonl` にあり、register本体へのappendは実行していません。
+`proposed-register-record.json` はmanagement registerのappend-only record schemaに合わせた提案行です。source collection scopeは67件のpath revision pairであり、要求atomではありません。提案行の`source_atom_set_ref`は正式source set `docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl`、`coverage_receipt_ref`は正式receipt `docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md`を指します。正式source setは候補mirror `scaffold/pre-isolation-outside-holding-67-proposal/source-items.jsonl`とbyte列・SHA-256が一致し、receiptは67件、39 same／28 changed、13 live holding、archive root 0、authority noneを固定します。正式docsが存在し、mirrorとbyte同一digestを再検証できることがappend前提です。register本体へのappendは実行していません。
 
 appendを止めた理由は、現在のregister SHA `4e43fada...` を固定する既存成果物があるためです。appendするとregister digestが変わり、`phase-capability-inventory.json`、PHCAP-02/03、first15、delegated-doc003、unassessed-atomのhistorical capture/validatorとSCF-B-0027/0029/0034/0035のBindingがstaleまたは不一致になります。さらにfirst15 generatorはlive registerを再読し、13 holding captureを14 holdingとして再生成するため、過去の13 holding観測を上書きしてしまいます。#1975のSCF-B-0036 13-holding validatorも同じく、13 holdingのhistorical captureを先に固定する移行対象です。
 
