@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import copy
+from functools import lru_cache
+import hashlib
 import importlib.util
 import json
 import subprocess
@@ -20,14 +22,209 @@ assert spec.loader is not None
 spec.loader.exec_module(generator)
 EXPECTED = generator.build()
 
+# This is the reviewed PR tip.  The generator and inventory are anchored to
+# Git objects so a matching pair of edited working-tree files cannot redefine
+# the oracle used by this validator.
+ANCHOR_COMMIT = "480d1c2a027f065a4150853039f3141092a84b42"
+GENERATOR_PATH = "scaffold/pre-isolation-outside-holding-16-30/generate.py"
+INVENTORY_PATH = "scaffold/pre-isolation-outside-holding-16-30/inventory.json"
+EXPECTED_GENERATOR_BLOB_OID = "88916178e6b7dc6dd08df9904c8fe4b60e0525ab"
+EXPECTED_INVENTORY_BLOB_OID = "7f40386d59c42cc49fcac86b326c85a34bdd4fbe"
+EXPECTED_GENERATOR_SHA256 = "dbcb6ae174e0b948f10e36b62d506a6ca7ee20ced1b9d5edf57e82e3c8f8b7bd"
+EXPECTED_INVENTORY_SHA256 = "db86c9dd73ea081fcbb1e62645181f0d41449fe62cfdf1a7ad4a9551205d2fed"
+
+REPORT_PATH = "scaffold/pre-isolation-outside-holding-67/report.json"
+SOURCE_SET_PATH = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
+ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
+CURRENT_CAPTURE = "3df81ad27157c471e004083783f37a5860eaa2ee"
+REGISTER_PATH = "docs/governance/management-provisional-requirement-register.jsonl"
+LIVE_HOLDING_IDS = {
+    "MPR-SH-HEADING-002",
+    "MPR-SH-IR-003",
+    "MPR-SH-CONFIRMED-003",
+    "MPR-SH-SEMANTIC-LINE-003",
+    "MPR-SH-SUPPLEMENTARY-003",
+    "MPR-SH-CANDIDATE-003",
+    "MPR-SH-WORKFLOW-003",
+    "MPR-SH-SCRUM-REVERSE-001",
+    "MPR-SH-PREISOLATION-002",
+    "MPR-SH-DELEGATED-DOC-003",
+    "MPR-SH-DELEGATED-REF-001",
+    "MPR-SH-PO-GOALS-PRINCIPLES-001",
+    "MPR-SH-LEGACY-RULE-004",
+}
+
 
 def fail(errors: list[str], condition: bool, message: str) -> None:
     if not condition:
         errors.append(message)
 
 
+@lru_cache(maxsize=128)
+def git_blob_oid(commit: str, path: str) -> str | None:
+    result = subprocess.run(
+        ["git", "rev-parse", f"{commit}:{path}"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True,
+    )
+    return result.stdout.strip() if result.returncode == 0 else None
+
+
+@lru_cache(maxsize=128)
+def git_blob(commit: str, path: str) -> bytes:
+    return subprocess.run(
+        ["git", "show", f"{commit}:{path}"],
+        cwd=ROOT,
+        check=True,
+        stdout=subprocess.PIPE,
+    ).stdout
+
+
+def sha256(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def git_object_anchor_errors(
+    generator_bytes: bytes | None = None,
+    inventory_bytes: bytes | None = None,
+) -> list[str]:
+    """Reject a jointly edited generator/inventory pair before self-equality."""
+    errors: list[str] = []
+    try:
+        anchored = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", ANCHOR_COMMIT, "HEAD"],
+            cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+        ).returncode == 0
+        fail(errors, anchored, "E_GIT_ANCHOR_NOT_ANCESTOR")
+        fail(errors, git_blob_oid(ANCHOR_COMMIT, GENERATOR_PATH) == EXPECTED_GENERATOR_BLOB_OID, "E_GIT_ANCHOR_GENERATOR_OBJECT")
+        fail(errors, git_blob_oid(ANCHOR_COMMIT, INVENTORY_PATH) == EXPECTED_INVENTORY_BLOB_OID, "E_GIT_ANCHOR_INVENTORY_OBJECT")
+        generator_bytes = (ROOT / GENERATOR_PATH).read_bytes() if generator_bytes is None else generator_bytes
+        inventory_bytes = (ROOT / INVENTORY_PATH).read_bytes() if inventory_bytes is None else inventory_bytes
+        fail(errors, sha256(generator_bytes) == EXPECTED_GENERATOR_SHA256, "E_WORKTREE_GENERATOR_DIGEST")
+        fail(errors, sha256(inventory_bytes) == EXPECTED_INVENTORY_SHA256, "E_WORKTREE_INVENTORY_DIGEST")
+    except (OSError, subprocess.CalledProcessError) as exc:
+        errors.append(f"E_GIT_OBJECT:{exc}")
+    return errors
+
+
+def exact_hits(value: object, target: str, path: str = "") -> list[str]:
+    hits: list[str] = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            child_path = f"{path}.{key}" if path else key
+            if child == target:
+                hits.append(child_path)
+            hits.extend(exact_hits(child, target, child_path))
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            hits.extend(exact_hits(child, target, f"{path}[{index}]"))
+    return hits
+
+
+def load_jsonl(path: Path) -> list[dict]:
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+
+@lru_cache(maxsize=1)
+def independent_live_holdings() -> tuple[list[dict], dict[str, list[dict]]]:
+    register = load_jsonl(ROOT / REGISTER_PATH)
+    superseded = {row.get("supersedes_registration_id") for row in register if row.get("supersedes_registration_id")}
+    live_rows = [row for row in register if row.get("registration_id") not in superseded]
+    if {row.get("registration_id") for row in live_rows} != LIVE_HOLDING_IDS:
+        raise ValueError("unexpected live holding roster")
+    holdings: list[dict] = []
+    holding_rows: dict[str, list[dict]] = {}
+    for row in live_rows:
+        source_path = ROOT / row["source_atom_set_ref"]
+        records = load_jsonl(source_path)
+        holding = {
+            "registration_id": row["registration_id"],
+            "source_atom_set_ref": row["source_atom_set_ref"],
+            "source_atom_set_sha256": sha256(source_path.read_bytes()),
+            "source_atom_set_record_count": len(records),
+            "registration_kind": row["registration_kind"],
+            "product_target": row["product_target"],
+            "authority_effect": row["authority_effect"],
+        }
+        holdings.append(holding)
+        holding_rows[holding["registration_id"]] = records
+    return holdings, holding_rows
+
+
+def independent_relation(path: str, pre_oid: str, pre_sha: str, holding: dict, records: list[dict]) -> dict:
+    path_hits: list[str] = []
+    blob_hits: list[str] = []
+    sha_hits: list[str] = []
+    for index, source_row in enumerate(records, 1):
+        path_hits.extend(f"{index}:{hit}" for hit in exact_hits(source_row, path))
+        blob_hits.extend(f"{index}:{hit}" for hit in exact_hits(source_row, pre_oid))
+        sha_hits.extend(f"{index}:{hit}" for hit in exact_hits(source_row, pre_sha))
+    return {
+        "registration_id": holding["registration_id"],
+        "source_atom_set_ref": holding["source_atom_set_ref"],
+        "path_match_count": len(path_hits),
+        "pre_isolation_blob_match_count": len(blob_hits),
+        "pre_isolation_sha256_match_count": len(sha_hits),
+        "path_match_evidence": path_hits,
+        "blob_match_evidence": blob_hits,
+        "sha256_match_evidence": sha_hits,
+        "relation": "no_exact_path_or_blob_or_sha_match" if not (path_hits or blob_hits or sha_hits) else "match_requires_review",
+    }
+
+
+@lru_cache(maxsize=64)
+def independent_relations(path: str, pre_oid: str, pre_sha: str) -> tuple[dict, ...]:
+    holdings, holding_rows = independent_live_holdings()
+    return tuple(
+        independent_relation(path, pre_oid, pre_sha, holding, holding_rows[holding["registration_id"]])
+        for holding in holdings
+    )
+
+
+def independent_git_holding_scan(inv: dict) -> list[str]:
+    """Recompute rows 16–30 and all 13 holding relations without generator.build()."""
+    errors: list[str] = []
+    try:
+        report = json.loads((ROOT / REPORT_PATH).read_text(encoding="utf-8"))
+        source_rows = load_jsonl(ROOT / SOURCE_SET_PATH)
+        holdings, holding_rows = independent_live_holdings()
+        rows = inv.get("rows", [])
+        expected_report = report["rows"][15:30]
+        expected_source = source_rows[15:30]
+        fail(errors, len(expected_report) == len(rows) == 15 and len(expected_source) == 15, "E_INDEPENDENT_SELECTION")
+        fail(errors, inv.get("live_holdings") == holdings, "E_INDEPENDENT_HOLDINGS")
+        for index, row in enumerate(rows):
+            if index >= len(expected_report) or index >= len(expected_source):
+                continue
+            report_row = expected_report[index]
+            source_row = expected_source[index]
+            path = report_row["path"]
+            fail(errors, row.get("source_path") == path == source_row["source_path"], f"E_INDEPENDENT_PATH:{index}")
+            fail(errors, row.get("candidate_product") == report_row["product_scope"], f"E_INDEPENDENT_PRODUCT:{path}")
+            fail(errors, row.get("candidate_phase") == report_row["phase_scope"], f"E_INDEPENDENT_PHASE:{path}")
+            pre_blob = git_blob(PRE_ISOLATION, path)
+            archive_blob = git_blob(ARCHIVE, path)
+            pre_oid = git_blob_oid(PRE_ISOLATION, path)
+            archive_oid = git_blob_oid(ARCHIVE, path)
+            pre_sha = sha256(pre_blob)
+            fail(errors, row.get("pre_isolation", {}).get("blob_oid") == pre_oid, f"E_INDEPENDENT_PRE_OID:{path}")
+            fail(errors, row.get("pre_isolation", {}).get("sha256") == pre_sha and row.get("pre_isolation", {}).get("bytes") == len(pre_blob), f"E_INDEPENDENT_PRE_BYTES:{path}")
+            fail(errors, row.get("archive", {}).get("blob_oid") == archive_oid, f"E_INDEPENDENT_ARCHIVE_OID:{path}")
+            fail(errors, row.get("archive", {}).get("sha256") == sha256(archive_blob) and row.get("archive", {}).get("bytes") == len(archive_blob), f"E_INDEPENDENT_ARCHIVE_BYTES:{path}")
+            fail(errors, row.get("current_capture", {}).get("blob_oid") == git_blob_oid(CURRENT_CAPTURE, path), f"E_INDEPENDENT_CURRENT:{path}")
+            expected_relations = list(independent_relations(path, pre_oid, pre_sha))
+            fail(errors, row.get("live_holding_relations") == expected_relations, f"E_INDEPENDENT_HOLDING_SCAN:{path}")
+    except (OSError, KeyError, TypeError, ValueError, subprocess.CalledProcessError) as exc:
+        errors.append(f"E_INDEPENDENT_SCAN:{exc}")
+    return errors
+
+
 def validate(inv: dict) -> list[str]:
     errors: list[str] = []
+    errors.extend(git_object_anchor_errors())
     fail(errors, inv == EXPECTED, "E_INVENTORY_NOT_REGENERATED")
     fail(errors, inv.get("schema") == generator.SCHEMA, "E_SCHEMA")
     fail(errors, inv.get("candidate_id") == "RDP-001-PREISO-OUTSIDE-HOLDING-16-30-0045", "E_CANDIDATE_ID")
@@ -93,6 +290,7 @@ def validate(inv: dict) -> list[str]:
     fail(errors, aggregate.get("implementation_unknown_count") == 15 and aggregate.get("degradation_unknown_count") == 15 and aggregate.get("legacy_catalog_zero_count") == 15, "E_AGGREGATE_UNKNOWN")
     fail(errors, len(inv.get("prohibited_inference", [])) == 6, "E_PROHIBITED_INFERENCE")
     fail(errors, inv.get("verification_scope", {}).get("static_only") is True, "E_STATIC_ONLY")
+    errors.extend(independent_git_holding_scan(inv))
     return errors
 
 

@@ -14,8 +14,13 @@
       "note": "rows 16–30の15 path、13 live holding exact relation、candidate/unknown境界"
     },
     {
+      "path": "scaffold/pre-isolation-outside-holding-16-30/generate.py",
+      "sha256": "dbcb6ae174e0b948f10e36b62d506a6ca7ee20ced1b9d5edf57e82e3c8f8b7bd",
+      "note": "Git objectで固定したrows 16–30生成源"
+    },
+    {
       "path": "scaffold/pre-isolation-outside-holding-16-30/README.md",
-      "sha256": "d856b190bf3c06712ba17a981fae58032b92ba5581e7b38ff6a3ab779b957ba4",
+      "sha256": "4aa7df6496268409e629eb41ab0eae9560f4110dff11bf1ff7d20c3f3c7eed50",
       "note": "selection、physical findings、implementation/degradation境界、提案row schema"
     },
     {
@@ -47,6 +52,16 @@
       "path": "scaffold/pre-isolation-outside-holding-first15/README.md",
       "sha256": "46357fbcbed54bdb0fd2c27690974054ec885b23cb0cd360a80e72545f11330c",
       "note": "既存first15のunknown／non-inclusion契約"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-16-30/validate.py",
+      "sha256": "1608c0d58b1726ad6173feca73ef50335b7c9b6e36166060c70353cae6ce8ede",
+      "note": "独立Git object anchorと13 holding scanを含むvalidator"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-16-30/selfcheck.py",
+      "sha256": "e51c332ca061d477a58cf053d7450e162db1dd308885ab0bdeb1909e69b2fb99",
+      "note": "generator+inventory同時改竄negative selfcheck"
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
@@ -118,7 +133,9 @@
     ],
     "oracles": [
       "独立validate.pyのselection 16–30、13 live holding、exact path／blob／SHA、source OID、current state",
-      "selfcheck.pyのbaseline greenと16 negative cases",
+      "selfcheck.pyのbaseline greenと18 negative cases",
+      "validatorの固定Git blob OID／SHA anchorと13 holding独立scan",
+      "selfcheck.pyのgenerator+inventory同時改竄negative case",
       "generate.pyの二回生成digest一致",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
@@ -128,7 +145,8 @@
       "pre-isolation／archive OID、same／different、holding relation、source set digestの改変",
       "13 holdingへの不在をincludedまたはresolvedへ昇格すること",
       "旧asset runtime／test／CI実行の記録化",
-      "first15とrows 16–30のselection重複または分母改変"
+      "first15とrows 16–30のselection重複または分母改変",
+      "generatorとinventoryの同時改竄を自己一致だけで通すこと"
     ]
   },
   "replacement": {

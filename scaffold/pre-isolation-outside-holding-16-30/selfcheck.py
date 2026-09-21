@@ -54,4 +54,10 @@ cases = [
 for label, mutate in cases:
     expect_failure(label, mutate)
 
-print("PASS outside-67 rows 16-30 selfcheck: %d negative cases" % len(cases))
+generator_tamper = (HERE / "generate.py").read_bytes() + b"\n# simultaneous tamper\n"
+inventory_tamper = (HERE / "inventory.json").read_bytes().replace(b'"status": "findings_only"', b'"status": "tampered"', 1)
+if not validator.git_object_anchor_errors(generator_tamper, inventory_tamper):
+    raise SystemExit("FAIL selfcheck: generator+inventory simultaneous tamper")
+print("PASS", "generator+inventory simultaneous tamper")
+
+print("PASS outside-67 rows 16-30 selfcheck: %d negative cases" % (len(cases) + 1))

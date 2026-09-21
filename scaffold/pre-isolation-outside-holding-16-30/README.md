@@ -24,6 +24,8 @@ outside-67正式source set候補（PR #1978）と先頭15件の監査をread-onl
 
 ## 静的検証
 
+`validate.py`は`generator.build()`とinventoryの自己一致だけに依存しない。レビュー済みPR HEAD `480d1c2a027f065a4150853039f3141092a84b42` のgenerator／inventory Git blob OIDとSHA-256を固定し、作業treeの同時改竄をfail-closedする。さらにreport、source set、management registerから13 live holdingをvalidator自身で再計算し、各pathのGit objectと13 holdingのpath／blob／SHA関係を独立再計算する。
+
 ```text
 python3 scaffold/pre-isolation-outside-holding-16-30/generate.py
 python3 scaffold/pre-isolation-outside-holding-16-30/validate.py
@@ -33,5 +35,7 @@ python3 scaffold/tools/scfctl.py stale
 python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
+
+selfcheckにはgeneratorとinventoryを同時に改竄した入力をGit object anchorが拒否するnegative caseを含め、product／phaseは従来どおりunknown候補境界を保持する。
 
 旧archiveはGit objectの静的読取だけに使う。旧runtime、test、CI、hook、adapter、sourceを実行しない。本候補は`SCF-B-0045`へ束縛するresearch evidenceであり、正式設計・実装・CI・受入・source holding登録ではない。
