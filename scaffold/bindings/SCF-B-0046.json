@@ -26,11 +26,11 @@
     {"path": "docs/helix-web/L11-acceptance/product-acceptance.md", "sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec", "note": "Web L11 unexecuted boundary"},
     {"path": "docs/helix-web-os/L11-acceptance/service-acceptance.md", "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e", "note": "Web-OS L11 unexecuted boundary"},
     {"path": "scaffold/bindings/SCF-B-0003.json", "sha256": "9e70f950fe3323925b340cf13b9d125387df8e1b8367576b9a6f9eedc0ba8d6f", "note": "existing GUI notification scaffold context only"},
-    {"path": "scaffold/phcap12-13-review/README.md", "sha256": "bb6e691b1522bb9b5d16bdc6b27e7a93099cd1f69c8255d7c7c28df8ba9e4507", "note": "candidate scope／boundary／verification"},
+    {"path": "scaffold/phcap12-13-review/README.md", "sha256": "8a4b6acbbad88e9ff01ee0c6ea5c11e40bfb079b0278c1a5cf6a8667e14ee745", "note": "candidate scope／boundary／verification"},
     {"path": "scaffold/phcap12-13-review/generate.py", "sha256": "ce7beedd8a33a2ff7a0c3da8c39e11b7d50e051d71877e2438ef78a64cb92e1f", "note": "deterministic static inventory generator"},
     {"path": "scaffold/phcap12-13-review/inventory.json", "sha256": "9356f88c7359da38af30731740f728c338f5e414fa4d1550a48a076d4c0c0d05", "note": "phase／asset／product／consumer candidate inventory"},
     {"path": "scaffold/phcap12-13-review/validate.py", "sha256": "6d3cfeeecebce00087eb7555e2e191f02a65a2617837dd902b95047bc11eb903", "note": "static validator"},
-    {"path": "scaffold/phcap12-13-review/selfcheck.py", "sha256": "010d8d3108201a085cd13b953debe8df3b3c2d6a52834277bc9f0789c90b77ca", "note": "negative selfcheck"}
+    {"path": "scaffold/phcap12-13-review/selfcheck.py", "sha256": "eb8f4d2f77e0869c732ee0b9c2a593da4c09cbe8bf1dc3a675ab540277a0aacf", "note": "baseline/no-op plus 41 expected-error negative cases"}
   ],
   "role": "PHCAP-12/13の旧asset、四製品unit／connection、現行candidate ref、failure／consumer unknownをread-only research premiseとして保持する",
   "obligations": [
@@ -56,7 +56,7 @@
   "verification": {
     "evidence_kind": "scaffold",
     "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
-    "oracles": ["PHCAP-12/13 validate.py（phase／asset ledger、source digest／span、四製品unit／edge、candidate denominator、unknown）", "selfcheck.py（authority／implementation／semantic reversal／direct evidence／decision／failure／consumer／digest 41 negative cases）", "scaffold/tools/scfctl.py validate／stale／residuals／selftest", "git diff --check"],
+    "oracles": ["PHCAP-12/13 validate.py（phase／asset ledger、source digest／span、四製品unit／edge、candidate denominator、unknown）", "selfcheck.py（baseline/no-op、authority／implementation／semantic reversal／direct evidence／decision／failure／consumer／digest 41 expected-error negative cases）", "scaffold/tools/scfctl.py validate／stale／residuals／selftest", "git diff --check"],
     "negative_cases": ["authority／successor／human decision／equivalenceを候補から生成する", "current implementation／operation／acceptance／ownerをunknownから昇格する", "Web／Web-OS adjacent refをdirect evidenceへ昇格する", "old source／test／runtimeをexecution／oracle／passへ昇格する", "consumer candidate／pending／failure receipt 0をclosureへ変換する", "unit／connection候補をapproved authority／shared writer／shared stateへ変換する", "unit capability／transition、connection meaning、phase join interpretationを反転する", "phase candidate joinをadmissionへ変換する", "source／ledger／current ref digestまたはexact anchorを改変する", "origin/main変更後にrebaselineなしでcurrent扱いする"]
   },
   "replacement": {"role_target": "正式PHCAP-12/13 review convergence／merge admission contract、四製品routing、failure／consumer crosswalk（承認・freeze後）", "formal_artifacts": [], "issue": 1866, "status": "pending", "transfer": null, "target_revisions": {}, "confirmation_ref": null, "confirmation_digest": null},

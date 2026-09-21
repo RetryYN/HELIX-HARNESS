@@ -17,7 +17,7 @@
 
 HARNESS→OSのreview contract／progression、OS→HARNESSのreceipt feedback、OS→Webのscoped result、Web→Web-OSのbounded service request、Web-OS→OSのpermitted observation exportを candidate connection として分離した。全edgeは `authority_effect: none`、実装unknown、consumer pendingであり、単体・接続・構成体を相互に完了へ変換しない。
 
-`inventory.json` は phase record、9 assetのledger／phase snapshot、source／anchor digest、12 current ref、4 product unit、5 candidate edge、candidate asset分母、SCF-B-0003のscaffold-only context、failure／consumer残差を保持する。`validate.py` は台帳・bytes・exact span・current ref・四製品境界・unit capability／transition・edge meaning・phase join interpretation・分母・unknownを静的に検査し、`selfcheck.py` は authority、実装、意味反転、Web direct evidence、decision、failure、consumer、phase join、digest、未知keyの41件の陰性例を検査する。
+`inventory.json` は phase record、9 assetのledger／phase snapshot、source／anchor digest、12 current ref、4 product unit、5 candidate edge、candidate asset分母、SCF-B-0003のscaffold-only context、failure／consumer残差を保持する。`validate.py` は台帳・bytes・exact span・current ref・四製品境界・unit capability／transition・edge meaning・phase join interpretation・分母・unknownを静的に検査し、`selfcheck.py` はbaseline greenとno-opを先に確認したうえで、authority、実装、意味反転、Web direct evidence、decision、failure、consumer、phase join、digest、未知keyの41件を期待error code付きで検査する。
 
 ```text
 python3 -B scaffold/phcap12-13-review/generate.py
