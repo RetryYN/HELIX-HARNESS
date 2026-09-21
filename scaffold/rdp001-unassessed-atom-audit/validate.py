@@ -200,7 +200,6 @@ def validate(report: dict | None = None) -> list[str]:
         expect(errors, report["digests"].get(key) == digest(path), f"report digest不一致: {key}")
 
     base_count = pre_count = archive_count = different_count = old_count = current_count = 0
-    total_bytes = total_lines = None
     byte_sizes: list[int] = []
     line_sizes: list[int] = []
     categories: Counter[str] = Counter()
@@ -251,7 +250,7 @@ def validate(report: dict | None = None) -> list[str]:
         expect(errors, hashlib.sha256(old).hexdigest() == row.get("pre_isolation_file_sha256"), f"archive sha不一致: {path}")
 
         byte_sizes.append(len(old))
-        line_sizes.append(old.count(b"\n") + 1)
+        line_sizes.append(len(old.splitlines()))
         text = old.decode("utf-8", errors="replace")
         for name, pattern in lexical.items():
             found = pattern.findall(text)
@@ -288,7 +287,9 @@ def validate(report: dict | None = None) -> list[str]:
     expect(errors, old_count == 333, f"旧原文取得分母不一致: {old_count}")
     expect(errors, current_count == 0, f"current source path存在数不一致: {current_count}")
     expect(errors, len(byte_sizes) == 333 and sum(byte_sizes) == 3141428 and min(byte_sizes) == 1910 and max(byte_sizes) == 152529, "旧原文byte集計不一致")
-    expect(errors, len(line_sizes) == 333 and sum(line_sizes) == 45297, "旧原文line集計不一致")
+    expect(errors, len(line_sizes) == 333 and sum(line_sizes) == 44964, "旧原文line集計不一致")
+    expect(errors, report.get("original_text", {}).get("total_bytes") == sum(byte_sizes), "report旧原文byte集計不一致")
+    expect(errors, report.get("original_text", {}).get("total_lines") == sum(line_sizes), "report旧原文line集計不一致")
 
     aggregate = report["aggregate"]
     for key, actual in {

@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "scaffold/rdp001-unassessed-atom-audit/report.json",
-      "sha256": "ed73ae234a01bc3875606ceecd65aec0d5e8e0e7827634ff2038685631e81644",
+      "sha256": "a34a0e0bbd4e4c9b25de974f0c54205132d1f149c0ff6fed6e98de3770f597a6",
       "note": "監査候補の分母・digest・findings-only結果"
     },
     {
@@ -109,7 +109,7 @@
     ],
     "oracles": [
       "validate.pyの333件Git object／archive／source disposition再計算",
-      "selfcheck.pyのreport改変否定例9件",
+      "selfcheck.pyのreport改変否定例10件",
       "scaffold/tools/scfctl.py validate|stale|residuals"
     ],
     "negative_cases": [
@@ -120,7 +120,8 @@
       "binding stateをactiveへ変更",
       "authority effectをapprovedへ変更",
       "unaccounted atom refを挿入",
-      "上流digest、capture HEADまたはその子孫関係を改変する"
+      "上流digest、capture HEADまたはその子孫関係を改変する",
+      "旧原文行数へ終端改行を余分な1行として加算する"
     ]
   },
   "replacement": {

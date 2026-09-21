@@ -11,6 +11,7 @@
 選定理由は、RDP-001の333 pathについてbaseline、pre-isolation、archiveのGit objectを同一holdingで対応付けられ、packet v2が指す `docs/plans/PLAN-L3-82-authority-vocabulary-separation.md` を含むためである。旧原文はarchive commitからread-onlyで照合し、現行へコピーしていない。
 
 監査結果は [report.json](report.json) にある。333/333件でbaseline/pre-isolation blob、archive旧原文、asset disposition source pathを照合した。333/333件でbaseline/pre-isolationのbyte差分があり、旧原文の取得も333/333件で成功した。source register上のproduct targetは333/333件が `unassigned_cross_product`、authority effectは `none`。asset dispositionは324件が `historical / unresolved / unknown / unreviewed`、9件がsource snapshot correction由来のread-only分類である。
+旧原文は3,141,428 bytes／44,964行である。333件すべての終端改行を余分な行として数えないよう、行数は各Git blobの`splitlines()`で再計算した。
 
 既存PR #1951、#1955、#1957との境界は、reportの分母・旧原文・source register/screen/projection・asset dispositionの判断史を上位で照合することに限る。これらのPRの変更、実装、atom化、review結論、authority付与、完了、merge、Issue closeを再評価または生成しない。
 
