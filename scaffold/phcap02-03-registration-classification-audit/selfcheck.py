@@ -16,6 +16,18 @@ assert spec.loader is not None
 spec.loader.exec_module(validator)
 base = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
 
+baseline_errors = validator.validate(base)
+if baseline_errors:
+    raise SystemExit("FAIL selfcheck baseline: " + "; ".join(baseline_errors))
+
+try:
+    current_head = validator.run_git("rev-parse", "HEAD")
+except Exception as exc:
+    raise SystemExit("FAIL selfcheck checkout probe: " + str(exc))
+if not validator.is_ancestor(validator.ORIGIN, current_head):
+    raise SystemExit("FAIL selfcheck capture ancestor probe")
+print("PASS baseline and capture ancestor semantics")
+
 
 def expect_failure(label, mutate):
     candidate = copy.deepcopy(base)

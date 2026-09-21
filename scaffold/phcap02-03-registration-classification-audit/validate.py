@@ -73,6 +73,16 @@ def run_git(*args: str) -> str:
     return subprocess.run(["git", *args], cwd=ROOT, check=True, stdout=subprocess.PIPE, text=True).stdout.strip()
 
 
+def is_ancestor(ancestor: str, descendant: str) -> bool:
+    """Accept attached, detached, and post-merge checkouts from one capture."""
+    return subprocess.run(
+        ["git", "merge-base", "--is-ancestor", ancestor, descendant],
+        cwd=ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    ).returncode == 0
+
+
 def validate(inv: dict) -> list[str]:
     errors: list[str] = []
     fail(errors, inv.get("schema") == "phcap02-03-registration-classification-evidence-gap/v1", "E_SCHEMA")
@@ -87,8 +97,8 @@ def validate(inv: dict) -> list[str]:
     fail(errors, base.get("branch") == BRANCH, "E_BASE_BRANCH")
     fail(errors, base.get("rebaseline") == {"origin_main_at_start": ORIGIN, "origin_main_at_final": ORIGIN, "changed": False}, "E_REBASELINE")
     try:
-        fail(errors, run_git("rev-parse", "origin/main") == ORIGIN, "E_ORIGIN_STALE")
-        fail(errors, run_git("branch", "--show-current") == BRANCH, "E_BRANCH")
+        current_head = run_git("rev-parse", "HEAD")
+        fail(errors, is_ancestor(ORIGIN, current_head), "E_CAPTURE_NOT_ANCESTOR")
     except (subprocess.CalledProcessError, OSError) as exc:
         errors.append(f"E_GIT:{exc}")
 
