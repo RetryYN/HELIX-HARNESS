@@ -5,9 +5,11 @@
 共通requirement contractは `LEGACY-ASSET-A60CF91DD2AF6693E6F9` として、各unitのsource spanを固定した。
 
 - BR05: `LEGACY-ASSET-3486C63C2FA7F3131BC4` はRedesign routeとrefreeze再入場を含む設計候補、`LEGACY-ASSET-466077EC93AB78271860` はrefactor候補policyの設定exportで要求atomを直接実装しないためrejectedとした。A01/A02はHARNESS側BR05と共有する。
-- BR06: `LEGACY-ASSET-232CF371CADA30110ABB` はreverse feedback／closureの計画候補、`LEGACY-ASSET-F4A843BC7BDF768E9968` はreview evidenceからmerge readinessへの部分実装候補である。ただしcatalog product candidatesが空のためproduct conflictとしてunresolvedにした。A01/A02はOS側BR06と共有する。
+- BR06: `LEGACY-ASSET-232CF371CADA30110ABB` はreverse feedback／closureの計画候補だが、引用範囲60-78はgate chainのA01だけを部分的に支え、遷移禁止のA02を支えないためA01のみunresolved partial coverageとした。`LEGACY-ASSET-F4A843BC7BDF768E9968` はreview evidenceからmerge readinessへの部分実装候補で、catalog product candidatesが空のためproduct conflictとしてA01/A02をunresolvedにした。A01/A02はOS側BR06と共有する。
 - BR07: `LEGACY-ASSET-4D2499F624A84EEAF937` はevent admission／lifecycle transitionの設計候補、`LEGACY-ASSET-A813B096E3205791EC07` はmerge readiness／PR bodyのfail-close候補であるが、durable intake receiptとclosure receipt後のreopen全体は未確定である。
 
 PR／Issue／CI／DB／会話から要求採否、製品境界decision、実装成立、consumer closure、new build許可を生成しない。archive内runtime、test、hook、CI、adapterは実行していない。
 
 今回のWave14では、BR06 decompositionが持つcomposite shared overlap（2 source spansの順序連結1件）を上流変更なしでreceipt／verifierに明記し、2 shared atomへの過不足ない対応を固定した。BR05は2 exact overlaps、BR07は0 overlapとして検証する。
+
+PR #1927のClaude exact-head reviewで、BR06-A02のEDGE005/006に対するMajor（planの`transition` anchorがatom自作labelに依存）とMinor（EDGE005の引用範囲60-78が遷移禁止を支えない）を受領した。対応としてEDGE005のcovered atomをA01だけにし、EDGE006のA02 anchorをraw source fragment内の`merge`へ変更した。verifierにもraw source fragment anchorの包含検証を追加した。

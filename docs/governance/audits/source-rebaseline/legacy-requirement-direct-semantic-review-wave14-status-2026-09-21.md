@@ -19,7 +19,9 @@
 | unit | atoms | contract | design confirmed | design unresolved | design rejected assets | design pending-kind atoms | implementation confirmed | implementation unresolved | implementation rejected assets | implementation uncovered | no evidence |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | IRUNIT-HIL-BR-05-HELIX-OS | 2 | 2 | 0 | 2 | 0 | 0 | 0 | 0 | 1 | 2 | 0 |
-| IRUNIT-HIL-BR-06-HELIX-HARNESS | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 0 |
+| IRUNIT-HIL-BR-06-HELIX-HARNESS | 2 | 2 | 0 | 1 | 0 | 0 | 0 | 2 | 0 | 0 | 0 |
 | IRUNIT-HIL-BR-07-HELIX-OS | 2 | 2 | 0 | 2 | 0 | 0 | 0 | 1 | 0 | 1 | 0 |
 
 詳細なbounded search receiptはmetaに固定した。candidate membershipはsemantic evidenceではない。BR05はA01/A02をHARNESS共有、BR06はA01/A02をOS共有、BR07はshared source overlapなしでOS固有として扱った。BR06のdecompositionにあるcomposite overlapは、2 source spanを順序連結した1件としてreceipt／verifierでexact照合する。製品境界decision、実装成立、consumer closureはpendingであり、実装完了を主張しない。
+
+PR #1927のClaude review対応で、BR06 planはA01のみpartial coverage（design unresolved 1）へ補正した。BR06 implementationはA01/A02の2 atom unresolvedを維持し、no evidenceは0である。EDGE006のA02 anchorはraw source fragment内の`merge`で照合する。
