@@ -1,0 +1,2219 @@
+{
+  "schema": "helix-scaffold-preisolation-next-semantic-diff.v1",
+  "candidate_id": "RDP-001-PREISO-NEXT-6PATH-SEMANTIC-DIFF",
+  "status": "candidate_pending_semantic_equivalence_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "comparison": {
+    "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "method": "read-only Git object bytes; exact changed hunk spans and UTF-8 SHA-256",
+    "old_runtime_test_ci_execution": false,
+    "full_diff_file_count": 400,
+    "full_diff_hunk_count": 492,
+    "selected_file_count": 6,
+    "selected_hunk_count": 24,
+    "unprocessed_selected_scope_file_count": 394,
+    "unprocessed_selected_scope_hunk_count": 468,
+    "prior_reviewed_scope": {
+      "request_id": "GUI-1934-REVIEW-02",
+      "source_revision_item_ids": [
+        "PREISO-REV-000001",
+        "PREISO-REV-000002",
+        "PREISO-REV-000015",
+        "PREISO-REV-000016",
+        "PREISO-REV-000026",
+        "PREISO-REV-000060"
+      ],
+      "file_count": 6,
+      "hunk_count": 9
+    },
+    "combined_reviewed_scope": {
+      "file_count": 12,
+      "hunk_count": 33
+    },
+    "combined_unprocessed_scope": {
+      "file_count": 388,
+      "hunk_count": 459
+    }
+  },
+  "diff_scope": {
+    "diff_scope": "selected_source_items_only",
+    "scope_note": "全体400 files／492 hunksのうち、今回の6 path／24 hunkだけを候補化する。#1934 review済み6 path／9 hunkとはID重複しない。",
+    "selected_source_revision_item_ids": [
+      "PREISO-REV-000003",
+      "PREISO-REV-000004",
+      "PREISO-REV-000005",
+      "PREISO-REV-000006",
+      "PREISO-REV-000007",
+      "PREISO-REV-000008"
+    ],
+    "prior_reviewed_source_revision_item_ids": [
+      "PREISO-REV-000001",
+      "PREISO-REV-000002",
+      "PREISO-REV-000015",
+      "PREISO-REV-000016",
+      "PREISO-REV-000026",
+      "PREISO-REV-000060"
+    ]
+  },
+  "classification_counts": {
+    "requirement": 7,
+    "constraint": 8,
+    "provenance": 7,
+    "generated_metadata": 2,
+    "unresolved": 0
+  },
+  "source_items": [
+    {
+      "source_revision_item_id": "PREISO-REV-000003",
+      "source_path": "docs/design/harness/L1-requirements/business-requirements.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "6866ad41fd8255def6cb56679bbcbfd7e0eb0b34",
+      "baseline_file_sha256": "cb2c88386fdd7fab59e7e66a1ab57961d8960b1c7c4c66084978346ccd569d1d",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "d415430ecbf9d2ddb26d3511852d0e3c13eef510",
+      "pre_isolation_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-001",
+        "RDP001-NEXT-DIFF-002"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+        "source_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "confirmed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0330",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-04",
+          "PHCAP-15",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000004",
+      "source_path": "docs/design/harness/L1-requirements/nfr.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "d8f87bf4fec36376c6e7036f8ef2291ab6a0a662",
+      "baseline_file_sha256": "cc2969c8e7bd59ee21ac52cc6444c7a2f43adc9c658996442f3111a469ec172b",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "b638d29791160759a606ba0ae47747fc957d1e8d",
+      "pre_isolation_file_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-003",
+        "RDP001-NEXT-DIFF-004"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A",
+        "source_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "confirmed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0332",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-04",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000005",
+      "source_path": "docs/design/harness/L1-requirements/technical-requirements.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "c8c85d937bce0e72be542d226fc405ab79758cb1",
+      "baseline_file_sha256": "28a555a7d96812c4df9c109ecc933e6d9b8a59c70158d876023eb6cd122319a6",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "0d2d069ca84613bffb44d43c1c5522875b9229a7",
+      "pre_isolation_file_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-005"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+        "source_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "confirmed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0334",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-04",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000006",
+      "source_path": "docs/design/harness/L3-functional/nfr-grade.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "272cb4eb5cffdecb4ae8c1fc8698306a20409469",
+      "baseline_file_sha256": "f43d8e16aff6bcbf08bfad22e2b9844651ad71f2009a9971018eeca83ea80c8b",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "ad3253e1d5d0efa9f75b75846a452501b646d2e0",
+      "pre_isolation_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-006",
+        "RDP001-NEXT-DIFF-007",
+        "RDP001-NEXT-DIFF-008"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+        "source_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0350",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-06",
+          "PHCAP-16"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000007",
+      "source_path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "3723c12c6c3c0d95de78931ae4ca413b790c0553",
+      "baseline_file_sha256": "9b628e0a54b7052496cbb6e82e03adef01ffdb574d995baaa11cfcc61a968ac7",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "4f27e63251cc913d90781144ba7f0b8ca7d6abdb",
+      "pre_isolation_file_sha256": "8a90b06e41a2c317c6d4cecafca2648f267f033eb688e89336a0c12909c09769",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-009",
+        "RDP001-NEXT-DIFF-010",
+        "RDP001-NEXT-DIFF-011",
+        "RDP001-NEXT-DIFF-012"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-77EDDD8BBB1F3863D007",
+        "source_sha256": "8a90b06e41a2c317c6d4cecafca2648f267f033eb688e89336a0c12909c09769",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "proposed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0423",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-02",
+          "PHCAP-04",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "e6e3772eed61890ea979ab0e923e373e719d1684",
+      "baseline_file_sha256": "11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "7b2c6e0b06dc03a2cd589d23ee3938f0b51c0f8d",
+      "pre_isolation_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-013",
+        "RDP001-NEXT-DIFF-014",
+        "RDP001-NEXT-DIFF-015",
+        "RDP001-NEXT-DIFF-016",
+        "RDP001-NEXT-DIFF-017",
+        "RDP001-NEXT-DIFF-018",
+        "RDP001-NEXT-DIFF-019",
+        "RDP001-NEXT-DIFF-020",
+        "RDP001-NEXT-DIFF-021",
+        "RDP001-NEXT-DIFF-022",
+        "RDP001-NEXT-DIFF-023",
+        "RDP001-NEXT-DIFF-024"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+        "source_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "confirmed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0425",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-01",
+          "PHCAP-04",
+          "PHCAP-16",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending"
+        ]
+      }
+    }
+  ],
+  "fragments": [
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-001",
+      "source_revision_item_id": "PREISO-REV-000003",
+      "source_path": "docs/design/harness/L1-requirements/business-requirements.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "constraint",
+      "candidate_kind": "constraint",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "normalized_statement": "BR-02のGitHub権限根拠を「権限の正本」から「権限証跡」へ変更し、workerとverifierの責務境界を監査可能な証跡として扱う候補。",
+      "baseline": {
+        "start_line": 42,
+        "end_line": 42,
+        "sha256": "sha256:44d6d23fb5dd8bc20d7659763a945e28cbffa16becd38272eb3f7a28867cf976",
+        "exact_text": "| **BR-02** | **AI agent roster の責務境界**（人間 = PO 1 名 = L0/L1/L2-mock/L3 承認のみ、実装/レビュー/検証等 = 別ランタイム/別モデルの AI agent）が日常 PR で gate・レビュー・役割境界を無理なく回せる。creation と judgement を別系統に分離し（worker≠verifier）役割境界を機械強制する（NFR-05 の GitHub 権限正本 + P2 orchestration に連結） | concept P2（AI agent 責務境界）/ 成功② / charter §3 自律境界 |\n"
+      },
+      "pre_isolation": {
+        "start_line": 42,
+        "end_line": 42,
+        "sha256": "sha256:2df912db77d657c07e1c3ec02830bc91777355646e499530aee987a3a3de938d",
+        "exact_text": "| **BR-02** | **AI agent roster の責務境界**（人間 = PO 1 名 = L0/L1/L2-mock/L3 承認のみ、実装/レビュー/検証等 = 別ランタイム/別モデルの AI agent）が日常 PR で gate・レビュー・役割境界を無理なく回せる。creation と judgement を別系統に分離し（worker≠verifier）役割境界を機械強制する（NFR-05 の GitHub権限証跡 + P2 orchestration に連結） | concept P2（AI agent 責務境界）/ 成功② / charter §3 自律境界 |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-BASELINE-PREISO-DIGEST"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-001",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-002",
+      "source_revision_item_id": "PREISO-REV-000003",
+      "source_path": "docs/design/harness/L1-requirements/business-requirements.md",
+      "hunk_ordinal_for_source": 2,
+      "classification": "provenance",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "normalized_statement": "B1のagent roster provisioning方式の接続先をGitHub権限の正本から、GitHub上に残る権限証跡へ変更する候補。",
+      "baseline": {
+        "start_line": 248,
+        "end_line": 248,
+        "sha256": "sha256:b8eb2292ea78f261524e5a1ac78d08319d5dbbc49cbcc070aa7ffe9e4fec2aaa",
+        "exact_text": "| B1: solo PO + AI agent roster の具体 provisioning 方式 | L3 FR / L4 | NFR-05 / GitHub 権限正本連結、PLAN-L1-06 solo 改訂 |\n"
+      },
+      "pre_isolation": {
+        "start_line": 248,
+        "end_line": 248,
+        "sha256": "sha256:5b3c725a88bde8ebada9314fba375f162cf47418cbb50bfa595fc629fbd71f14",
+        "exact_text": "| B1: solo PO + AI agent roster の具体 provisioning 方式 | L3 FR / L4 | NFR-05 / GitHub上の権限証跡連結、PLAN-L1-06 solo 改訂 |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-DIFF-HUNK-COVERAGE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-002",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-003",
+      "source_revision_item_id": "PREISO-REV-000004",
+      "source_path": "docs/design/harness/L1-requirements/nfr.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "requirement",
+      "candidate_kind": "requirement",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "normalized_statement": "NFR-05を、GitHubを権限・証跡の正本とする記述から、CI実行・PR許可・権限証跡をGitHubへ保存し要求意味はローカル正本へ戻す要件候補へ変更する。",
+      "baseline": {
+        "start_line": 49,
+        "end_line": 49,
+        "sha256": "sha256:65e2dce7f4dd0ab5c9f9baa0833f8d9210ed51ff562c6fa989ff09d276d6a72c",
+        "exact_text": "| **NFR-05** | **GitHub を CI / 証跡 / 権限の正本**とする (具体実現手段は L3/L5 で確定) | GHA ワークフロー / branch protection / PR 許可を HELIX 証跡の正本とする。FR-L1-17 CI/PR 連携 |\n"
+      },
+      "pre_isolation": {
+        "start_line": 49,
+        "end_line": 49,
+        "sha256": "sha256:e163d1a3c30cba86a3c363d3ea7342f92ee4ab32b59d50a131b91c2b16b626ff",
+        "exact_text": "| **NFR-05** | **CI実行・PR許可・権限証跡をGitHubへ保存**する (具体実現手段は L3/L5 で確定) | GHA workflow、branch protection、PR許可を対象HEAD・実行世代へ結び、監査可能な証拠として保存する。要求の意味・採否・合意は対象別のローカル要求正本を参照する。FR-L1-17 CI/PR連携 |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-HOLDING-PATH-CATEGORY"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-003",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-004",
+      "source_revision_item_id": "PREISO-REV-000004",
+      "source_path": "docs/design/harness/L1-requirements/nfr.md",
+      "hunk_ordinal_for_source": 2,
+      "classification": "provenance",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "normalized_statement": "運用・保守性の分類表示を、GitHub正本からCI・PR・権限証跡の保存先へ更新する候補。",
+      "baseline": {
+        "start_line": 89,
+        "end_line": 89,
+        "sha256": "sha256:261c621be450d6949730ccd2352ffe631054e17c5daed6514b6e010209cc8d49",
+        "exact_text": "| **運用・保守性** | 更新性 / GitHub 正本 / 実装宣言真実性 / dev-local+CI 二重実行 / human-as-residue / 排泄系契約 | NFR-02 / NFR-05 / NFR-08 / NFR-13 / NFR-14 |\n"
+      },
+      "pre_isolation": {
+        "start_line": 89,
+        "end_line": 89,
+        "sha256": "sha256:afcba0374c7073f96e0b7c0c160722dcc9c75236dbf9e679f147476e20fca201",
+        "exact_text": "| **運用・保守性** | 更新性 / GitHub上のCI・PR・権限証跡 / 実装宣言真実性 / dev-local+CI 二重実行 / human-as-residue / 排泄系契約 | NFR-02 / NFR-05 / NFR-08 / NFR-13 / NFR-14 |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-LEGACY-EXECUTION"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-004",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-005",
+      "source_revision_item_id": "PREISO-REV-000005",
+      "source_path": "docs/design/harness/L1-requirements/technical-requirements.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "requirement",
+      "candidate_kind": "requirement",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "normalized_statement": "GitHub Actions連携でローカルgate・CI証跡・branch protectionを対象HEADと実行世代へ結び、要求の意味・採否・合意はローカル要求正本へ参照する要件候補。",
+      "baseline": {
+        "start_line": 43,
+        "end_line": 43,
+        "sha256": "sha256:a4e3f82c88c79ce37641449123f1a45353dc715b2004f9e8b201958cce8ab9c0",
+        "exact_text": "| **GitHub Actions** | ローカル gate 証跡 → CI 証跡検証 → branch protection PR 許可。GHA を CI / 証跡 / 権限の正本とする | NFR-05 / FR-L1-17 |\n"
+      },
+      "pre_isolation": {
+        "start_line": 43,
+        "end_line": 43,
+        "sha256": "sha256:d418420d63134291838d29ac33d52d42e8fd79d340faf450a6b0522f9158692a",
+        "exact_text": "| **GitHub Actions** | ローカルgate証跡 → CI証跡検証 → branch protection PR許可。CI実行・PR許可・権限証跡を対象HEADと実行世代に結び保存する。要求の意味・採否・合意はローカル要求正本を参照する | NFR-05 / FR-L1-17 |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-PHASE-IMPLEMENTATION"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-005",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-006",
+      "source_revision_item_id": "PREISO-REV-000006",
+      "source_path": "docs/design/harness/L3-functional/nfr-grade.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "provenance",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "normalized_statement": "NFR-01の受入閾値に連動させる対象を、GitHub全体の正本からGitHub CI証跡へ限定する候補。",
+      "baseline": {
+        "start_line": 170,
+        "end_line": 170,
+        "sha256": "sha256:aab91684ce4a06514060be3fe577df5e4b6cad5e5491d54e5e04194001b49be7",
+        "exact_text": "| **NFR-01** | cross-platform (§1 と兼用) | Lv2 (§1 可用性正本) | (§1 と同じ + GitHub 正本連動) | (§1 と同じ) | (§1 と同じ) |\n"
+      },
+      "pre_isolation": {
+        "start_line": 170,
+        "end_line": 170,
+        "sha256": "sha256:3c1659c9f0e3e41e5da53e2c36d085bac4e154276a275918afefe48c48e2131d",
+        "exact_text": "| **NFR-01** | cross-platform (§1 と兼用) | Lv2 (§1 可用性正本) | (§1 と同じ + GitHub CI証跡連動) | (§1 と同じ) | (§1 と同じ) |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-OWNER-COLLAPSE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-006",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-007",
+      "source_revision_item_id": "PREISO-REV-000006",
+      "source_path": "docs/design/harness/L3-functional/nfr-grade.md",
+      "hunk_ordinal_for_source": 2,
+      "classification": "requirement",
+      "candidate_kind": "requirement",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "normalized_statement": "NFR-05でgate証跡とauditを対象HEAD・実行世代へ結び、GitHub logとartifactへ保存し、要求意味の参照先をローカル正本にする要件候補。",
+      "baseline": {
+        "start_line": 172,
+        "end_line": 172,
+        "sha256": "sha256:faa83cd23e98a763e771e77b413c61ff2f5f5d121e9f1d813facaf0315dbcb20",
+        "exact_text": "| **NFR-05** | GitHub 正本 (CI / 証跡 / 権限) | Lv3 | gate 証跡 + audit 全件 GitHub 永続 | `.github/workflows/` artifact upload / GHA permissions | 全 gate run が GitHub Actions log で確認可能 |\n"
+      },
+      "pre_isolation": {
+        "start_line": 172,
+        "end_line": 172,
+        "sha256": "sha256:41881b3cdc22fe49e458b631a99978c2904ecda081b0267be5e0cdfad462019f",
+        "exact_text": "| **NFR-05** | GitHubへのCI・PR・権限証跡保存 | Lv3 | gate証跡とauditを対象HEAD・実行世代へ結びGitHubへ保存 | `.github/workflows/` artifact upload / GHA permissions | 全gate runがGitHub Actions logとartifactで確認でき、要求意味の参照先がローカル要求正本である |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-CLASSIFICATION-LOSS"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-007",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-008",
+      "source_revision_item_id": "PREISO-REV-000006",
+      "source_path": "docs/design/harness/L3-functional/nfr-grade.md",
+      "hunk_ordinal_for_source": 3,
+      "classification": "provenance",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "normalized_statement": "NFR gradeのLv3根拠をGitHub正本からCI・PR・権限証跡保存へ変更する候補。",
+      "baseline": {
+        "start_line": 184,
+        "end_line": 184,
+        "sha256": "sha256:10142c9ac002d1ebcde6668198359d397bbd8c0eb586fca6a2b82eb1b73b23e7",
+        "exact_text": "> **TL 採用根拠 (Lv3)**: Windows/macOS/Linux ネイティブ + 4 言語以上対応 + GitHub 正本で Lv3。Lv4-5 (任意 OS / オフライン完全動作) は scope 外。\n"
+      },
+      "pre_isolation": {
+        "start_line": 184,
+        "end_line": 184,
+        "sha256": "sha256:f537c98cd655aeb62dd8efb3a7a19b25054b1cb5681bd0e7c3ae12ebb559ff45",
+        "exact_text": "> **TL 採用根拠 (Lv3)**: Windows/macOS/Linuxネイティブ + 4言語以上対応 + GitHubへのCI・PR・権限証跡保存でLv3。Lv4-5 (任意OS / オフライン完全動作) はscope外。\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-AUTHORITY-SUCCESSOR"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-008",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-009",
+      "source_revision_item_id": "PREISO-REV-000007",
+      "source_path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "generated_metadata",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "hybrid remediation文書のfrontmatter titleをL1要件からL2要求へ変更するrevision metadata候補。",
+      "baseline": {
+        "start_line": 8,
+        "end_line": 8,
+        "sha256": "sha256:f39afbb860030a1bd7ec39d27fecd70d64681c84e4a3e0b2c8a4759778466476",
+        "exact_text": "title: \"HELIX L1要求 — REBASELINE v0.5.0要件是正デルタ\"\n"
+      },
+      "pre_isolation": {
+        "start_line": 8,
+        "end_line": 8,
+        "sha256": "sha256:5dd460930ca29a0130506887cecee3c5284b2abe3a2f2f68592e6b6000072ed6",
+        "exact_text": "title: \"HELIX L2要求 — REBASELINE v0.5.0要件是正デルタ\"\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-BASELINE-PREISO-DIGEST",
+        "NEXT-NEG-DIFF-HUNK-COVERAGE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-009",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-010",
+      "source_revision_item_id": "PREISO-REV-000007",
+      "source_path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+      "hunk_ordinal_for_source": 2,
+      "classification": "constraint",
+      "candidate_kind": "constraint",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "文書冒頭で現行分類L2・検証対L11、旧path維持、過去評価非採用、JSON authority参照、固定件数非正本を明示するconstraint候補。",
+      "baseline": {
+        "start_line": 24,
+        "end_line": 23,
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "exact_text": ""
+      },
+      "pre_isolation": {
+        "start_line": 25,
+        "end_line": 31,
+        "sha256": "sha256:4501d6f97c330ed6b33b19ef8376726cd542b9502362c6948c16d8296a0f2275",
+        "exact_text": "現行分類はL2要求、検証対はL11である。物理pathと`layer: L1`は旧projectionを保持する。\n本書の各「検証合格」「改訂済」は当時の是正案の評価記録であり、現行要求への採用、実ファイルへの適用、\nL2合意、L11受入、実装済みを証明しない。記載されたパッケージ内path・件数・コマンド例を、\n現行repositoryの実在path・現在値・実行可能コマンドと扱わない。\n要求の機械意味正本へ移管済みの範囲は`config/requirement-ir-authority.json`が指すJSONで確認する。\n本書の旧coverage ledgerと固定件数を現行要求集合の正本に戻さない。\n\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-DIFF-HUNK-COVERAGE",
+        "NEXT-NEG-HOLDING-PATH-CATEGORY"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-010-A",
+          "source_fragment_id": "RDP001-NEXT-DIFF-010",
+          "source_revision_item_id": "PREISO-REV-000007",
+          "source_path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "現行文書分類をL2要求、検証対をL11と記録する候補。",
+          "retained_conditions": [
+            "L2要求分類",
+            "L11検証対"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-CLASSIFICATION-LOSS",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 25,
+            "end_line": 25,
+            "sha256": "sha256:347af3ca12922486992daa4c2bb9e782a4ce8848d6d88fd1859a65422a5566eb",
+            "exact_text": "現行分類はL2要求、検証対はL11である。物理pathと`layer: L1`は旧projectionを保持する。\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        },
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-010-B",
+          "source_fragment_id": "RDP001-NEXT-DIFF-010",
+          "source_revision_item_id": "PREISO-REV-000007",
+          "source_path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "当時の検証評価・改訂記録を現行要求への採用、実ファイル適用、L2合意、L11受入、実装済みの証拠へ読み替えない候補。",
+          "retained_conditions": [
+            "評価記録の履歴保持",
+            "現行採用・実装・受入の自動昇格拒否"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-CLASSIFICATION-LOSS",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 26,
+            "end_line": 27,
+            "sha256": "sha256:1ec42f4df248bf969236330722993d94a193b3c9a18a3e25a60dcbcd3880730c",
+            "exact_text": "本書の各「検証合格」「改訂済」は当時の是正案の評価記録であり、現行要求への採用、実ファイルへの適用、\nL2合意、L11受入、実装済みを証明しない。記載されたパッケージ内path・件数・コマンド例を、\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        },
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-010-C",
+          "source_fragment_id": "RDP001-NEXT-DIFF-010",
+          "source_revision_item_id": "PREISO-REV-000007",
+          "source_path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "記載されたパッケージ内path・件数・コマンド例を現行repositoryの実在path・現在値・実行可能コマンドと扱わない候補。",
+          "retained_conditions": [
+            "旧path・件数・コマンドの現行証拠化拒否"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-HOLDING-PATH-CATEGORY",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 28,
+            "end_line": 28,
+            "sha256": "sha256:7d2c58c5038005090667b4f18345f1169e78f85180e33151cd1bf0538e5416d6",
+            "exact_text": "現行repositoryの実在path・現在値・実行可能コマンドと扱わない。\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        },
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-010-D",
+          "source_fragment_id": "RDP001-NEXT-DIFF-010",
+          "source_revision_item_id": "PREISO-REV-000007",
+          "source_path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "要求の機械意味正本へ移管済みの範囲を指定JSONで確認する候補。",
+          "retained_conditions": [
+            "JSON authority参照"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-HOLDING-PATH-CATEGORY",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 29,
+            "end_line": 29,
+            "sha256": "sha256:c1f1fd94c1e8d4018c1b4dd92c224d831f2bc77307ce1f841e32849467c1e341",
+            "exact_text": "要求の機械意味正本へ移管済みの範囲は`config/requirement-ir-authority.json`が指すJSONで確認する。\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        },
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-010-E",
+          "source_fragment_id": "RDP001-NEXT-DIFF-010",
+          "source_revision_item_id": "PREISO-REV-000007",
+          "source_path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "旧coverage ledgerと固定件数を現行要求集合の正本へ戻さない候補。",
+          "retained_conditions": [
+            "固定件数を要求正本化しない"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-AUTHORITY-SUCCESSOR",
+            "NEXT-NEG-CLASSIFICATION-LOSS"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 30,
+            "end_line": 30,
+            "sha256": "sha256:baf00ee90d859f2d54747956c517e290a45f2889c9f79ce04114e96872bb59c0",
+            "exact_text": "本書の旧coverage ledgerと固定件数を現行要求集合の正本に戻さない。\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-010",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-011",
+      "source_revision_item_id": "PREISO-REV-000007",
+      "source_path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+      "hunk_ordinal_for_source": 3,
+      "classification": "constraint",
+      "candidate_kind": "constraint",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "capsule templateの注意書きを日本語化し、TODO等のplaceholderを置換してから使用し、形式schema合格を実行admissionと混同しない制約候補。",
+      "baseline": {
+        "start_line": 227,
+        "end_line": 227,
+        "sha256": "sha256:d45d278cbab120d5ee39bf713160516d8f91ca036966283a521064adf51fcf83",
+        "exact_text": "templates/subagent-harness-capsule.template.yaml の task.objective を空文字列から未記入プレースホルダ文字列 \"TODO: fill objective before use\" へ変更し、schema の minLength:1 を満たすようにする。あわせてテンプレート先頭にコメント（# NOTE: This is a fill-in template. Replace all TODO/XXX/000... placeholder values before use; as-is it will fail schema validation intentionally on capsule_digest/commit/objective to prevent accidental direct use.）を追加し、テンプレートがそのまま使われることを防止する意図を明示する。\n"
+      },
+      "pre_isolation": {
+        "start_line": 234,
+        "end_line": 234,
+        "sha256": "sha256:f635540e1cadde56a63362a27e76d54bf3a786fa9de87fae0a2b71568f310ec1",
+        "exact_text": "templates/subagent-harness-capsule.template.yaml の task.objective を空文字列から未記入プレースホルダ文字列 \"TODO: fill objective before use\" へ変更し、schema の minLength:1 を満たすようにする。テンプレート先頭には「記入用template。TODO／XXX／ゼロ値を実際のobjective・commit・digestへ置換してから使用する。形式schemaへの適合は実行admissionを意味せず、未記入placeholderを実行前検査で拒否する」と日本語で注意書きを追加する。schemaの形式検査が通ることと、未記入templateを安全に実行できることを混同しない。\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-HOLDING-PATH-CATEGORY",
+        "NEXT-NEG-LEGACY-EXECUTION"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-011",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-012",
+      "source_revision_item_id": "PREISO-REV-000007",
+      "source_path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+      "hunk_ordinal_for_source": 4,
+      "classification": "constraint",
+      "candidate_kind": "constraint",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "errata是正をIC-02へ統一し、改名・適用・検証を一回へ束ねて同じ是正を二重計上しない制約候補。",
+      "baseline": {
+        "start_line": 587,
+        "end_line": 587,
+        "sha256": "sha256:8970a1913f03a46dc632e6bd014f6259449db34615f6bdef18bf5eb570577662",
+        "exact_text": "README.mdの『Start here』5番目の参照『19-v0.4.0-errata.md』を、実在するファイル名『19-v0.3.2-errata.md』に修正する。あわせて19-v0.3.2-errata.md冒頭の見出し『# v0.4.0 Errata — HELIX / UT / Core関係の訂正』はファイル名（v0.3.2）とタイトル（v0.4.0）が不一致であるため、v0.5.0では次のいずれかで統一する: (a) ファイルをリネームして`19-v0.4.0-errata.md`とし、README参照はそのまま維持する、または(b) 見出しを『# v0.3.2 Errata — HELIX / UT / Core関係の訂正』へ修正しファイル名と一致させる。パッケージ全体でversioned errataファイルの命名規則（ファイル名のバージョン番号＝見出しのバージョン番号）を統一し、他のerrataファイル（15/16/18番）についても同様の一致を確認する。\n"
+      },
+      "pre_isolation": {
+        "start_line": 594,
+        "end_line": 598,
+        "sha256": "sha256:46f7e7b551b4850089c87d01c57a6afad371589f03164601ac2a079b9db3acd8",
+        "exact_text": "この是正はIC-02と同じ対象であり、IC-02の最終案へ統一する。パッケージ内の\n`19-v0.3.2-errata.md`を`19-v0.4.0-errata.md`へ改名し、既存README参照とv0.4.0の本文・見出しは保持する。\nREADME参照を旧名へ戻す案と、本文をv0.3.2へ書き換える案は採用しない。\n適用と検証はIC-02の一回の変更・リンク存在・見出し一致検査へ束縛し、同じ是正を二重計上しない。\n他のerrataファイル（15/16/18番）の命名一致は個別に確認する。\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-LEGACY-EXECUTION",
+        "NEXT-NEG-PHASE-IMPLEMENTATION"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-012",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-013",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 1,
+      "classification": "generated_metadata",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "pillar requirements文書のfrontmatter titleをL1要件からL2要求へ変更するrevision metadata候補。",
+      "baseline": {
+        "start_line": 8,
+        "end_line": 8,
+        "sha256": "sha256:b2e1db1de7909cd9bedad9c3d423ae7d11ea3f9817d2c25651dddec61c443751",
+        "exact_text": "title: \"HELIX L1 要件 — charter P0–P9 → 業務要求 (HBR) / 非機能要求 (HNFR)\"\n"
+      },
+      "pre_isolation": {
+        "start_line": 8,
+        "end_line": 8,
+        "sha256": "sha256:a957b064ba9405251aa54f2e9543740ad45881b564fff1cbdcb96d9ef09f7674",
+        "exact_text": "title: \"HELIX L2 要求 — charter P0–P9 → 業務要求 (HBR) / 非機能要求 (HNFR)\"\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-PHASE-IMPLEMENTATION",
+        "NEXT-NEG-OWNER-COLLAPSE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-013",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-014",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 2,
+      "classification": "constraint",
+      "candidate_kind": "constraint",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "文書をL2要求とL11受入の候補へ分類し、旧path・旧承認名・過去実装状況を保持しつつ、旧承認を現行合意・受入済みへ読み替えない制約候補。",
+      "baseline": {
+        "start_line": 20,
+        "end_line": 20,
+        "sha256": "sha256:5405fc3e7c992df403e6a794e7b260a41be5599ab2ae673091fe84d865fe4704",
+        "exact_text": "# HELIX L1 要件 — charter P0–P9 → HBR / HNFR\n"
+      },
+      "pre_isolation": {
+        "start_line": 20,
+        "end_line": 27,
+        "sha256": "sha256:b1900bc687917f3577193d6bf15ff9647b5d05f06807aaa00420c7fe6ad9e77a",
+        "exact_text": "# HELIX L2 要求 — charter P0–P9 → HBR / HNFR\n\n本書の現行分類はL2要求、検証対はL11受入である。物理pathと`layer: L1`は旧体系の\ncompatibility projectionであり、L1企画の分類を意味しない。以下の旧承認名・PLAN ID・\n過去の実装状況は決定史として保持する。旧承認を現行L2のプロト合意やL11受入済みへ読み替えない。\n現行層定義は`docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md`に従う。\n対文書の現行判断への再利用は`docs/governance/downstream-canonical-reuse-authority-2026-07-19.md`\nにより制限されており、個別delta・oracle・独立review evidenceなしに受入済みとしない。\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-OWNER-COLLAPSE",
+        "NEXT-NEG-CLASSIFICATION-LOSS"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-014-A",
+          "source_fragment_id": "RDP001-NEXT-DIFF-014",
+          "source_revision_item_id": "PREISO-REV-000008",
+          "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "見出しをL2要求とHBR／HNFRへ変更する候補。",
+          "retained_conditions": [
+            "L2要求として表示"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-CLASSIFICATION-LOSS",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 20,
+            "end_line": 20,
+            "sha256": "sha256:63175a651e9146dbe9f69c1f23f27b85a50aaa8ef63970e88543bf8b51675a79",
+            "exact_text": "# HELIX L2 要求 — charter P0–P9 → HBR / HNFR\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        },
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-014-B",
+          "source_fragment_id": "RDP001-NEXT-DIFF-014",
+          "source_revision_item_id": "PREISO-REV-000008",
+          "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "現行分類をL2要求・L11受入とし、旧path・layer・旧承認・過去実装状況を決定史として保持する候補。",
+          "retained_conditions": [
+            "L2／L11分類",
+            "旧projection保持",
+            "旧承認を現行合意・受入へ読み替えない"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-CLASSIFICATION-LOSS",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 22,
+            "end_line": 24,
+            "sha256": "sha256:72b390971108063b58604d148e5f9b512cd93abe2e29090a90441905f67d4487",
+            "exact_text": "本書の現行分類はL2要求、検証対はL11受入である。物理pathと`layer: L1`は旧体系の\ncompatibility projectionであり、L1企画の分類を意味しない。以下の旧承認名・PLAN ID・\n過去の実装状況は決定史として保持する。旧承認を現行L2のプロト合意やL11受入済みへ読み替えない。\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        },
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-014-C",
+          "source_fragment_id": "RDP001-NEXT-DIFF-014",
+          "source_revision_item_id": "PREISO-REV-000008",
+          "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "現行層定義を指定directiveへ束縛する候補。",
+          "retained_conditions": [
+            "layer directive参照"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-HOLDING-PATH-CATEGORY",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 25,
+            "end_line": 25,
+            "sha256": "sha256:568532653875cc733f16270b179ddbf9bf2ba17ad9c03450eb87fe58bb766122",
+            "exact_text": "現行層定義は`docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md`に従う。\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        },
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-014-D",
+          "source_fragment_id": "RDP001-NEXT-DIFF-014",
+          "source_revision_item_id": "PREISO-REV-000008",
+          "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "対文書の再利用をdownstream authorityと個別delta・oracle・独立review evidenceの条件へ束縛する候補。",
+          "retained_conditions": [
+            "再利用制限",
+            "独立review evidence要求"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-OWNER-COLLAPSE",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 26,
+            "end_line": 27,
+            "sha256": "sha256:14e8c1bee665ba9951a448f133c9b17798957db91aa21ba0731e774cf200792d",
+            "exact_text": "対文書の現行判断への再利用は`docs/governance/downstream-canonical-reuse-authority-2026-07-19.md`\nにより制限されており、個別delta・oracle・独立review evidenceなしに受入済みとしない。\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-014",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-015",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 3,
+      "classification": "requirement",
+      "candidate_kind": "requirement",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "HBR-P0/P1で、合意済み開発styleへの収束、停止条件、L2合意・L3凍結後の継続を示し、style自動変更や要求意味・受入・releaseの自動承認を許さない要求候補。",
+      "baseline": {
+        "start_line": 43,
+        "end_line": 44,
+        "sha256": "sha256:a786a2b5767f24c25929d4ad672c64501746ab5861cf3cf11628d52dc3319755",
+        "exact_text": "| **HBR-P0** | **逸脱受け止めと Forward 収束** — 駆動 workflow で逸脱・障害・暴走を受け止め `forward_return` 規律で必ず Forward 正本へ収束。AI 暴走ガード（lock/budget time-cap/Recovery） | FR-L1-08/10/11/13/14/15/16/18/24/25/26/27/44（mode/recovery/routing/onboarding） | `forward_return` を **first-class の機械検証規律**として未定義（複数 FR に暗黙散在）。**runaway guard（budget time-cap）standalone FR 無し** |\n| **HBR-P1** | **要件承認後フル自動＋連続自律走行** — engine（resume 3 条件/job-queue/budget time-cap/fresh-session）で完走、Scrum 分割でスケール、version-up で今版外作業を保全 | FR-L1-13/23/29/30/31/42（Forward/Scrum fullback/screen/context continuation/provider delegation evidence） | **continuous-run engine 自体（heartbeat/job-queue/budget time-cap/無人再入）の FR 無し**。**version-up lifecycle（`version_target`/タグ）FR 無し** |\n"
+      },
+      "pre_isolation": {
+        "start_line": 50,
+        "end_line": 51,
+        "sha256": "sha256:50727c40f4c5872164e835b36276a5a76932d78d0281e81ca537db8a7edfa0bd",
+        "exact_text": "| **HBR-P0** | **逸脱受け止めと選択済み開発スタイルへの収束** — workflowで逸脱・障害・暴走を受け止め、L3凍結時に合意したFull V／Production Scrum／V設計＋Scrum実装Hybridへ戻す。Discovery／PoCは独立したcase-driven routeとしてS4判断後だけ接続する。signalから開発スタイルを自動変更せず、lock／budget time-cap／Recoveryで暴走を停止する | FR-L1-08/10/11/13/14/15/16/18/24/25/26/27/44は移管元。現行定義は要件v1.3 §4／§4.2 | 旧Forward一律収束を置換。HR-FR-P0-01／02と対応するが、各styleへの返却・未解決route拒否・停止の実行証跡は別途検証する |\n| **HBR-P1** | **合意した範囲での連続自律走行** — L2要求の合意とL3凍結後、選択済み開発スタイルに従って作業・検証・復旧を継続する。resume条件、job-queue、累積budget／time-capを維持し、今版外作業はversion-upへ保全する。要求の意味変更、L11利用者受入、release／cutover等の人間判断を自動承認しない | FR-L1-13/23/29/30/31/42（Forward/Scrum fullback/screen/context continuation/provider delegation evidence） | **continuous-run engine 自体（heartbeat/job-queue/budget time-cap/無人再入）の FR 無し**。**version-up lifecycle（`version_target`/タグ）FR 無し** |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-CLASSIFICATION-LOSS",
+        "NEXT-NEG-AUTHORITY-SUCCESSOR"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-015-P0",
+          "source_fragment_id": "RDP001-NEXT-DIFF-015",
+          "source_revision_item_id": "PREISO-REV-000008",
+          "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "HBR-P0の選択済み開発styleへの収束とDiscovery／PoC接続、signalによるstyle自動変更禁止、lock／budget／Recovery停止を保持する候補。",
+          "retained_conditions": [
+            "合意styleへの返却",
+            "S4後のDiscovery／PoC接続",
+            "自動style変更拒否",
+            "停止条件"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-OWNER-COLLAPSE",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 50,
+            "end_line": 50,
+            "sha256": "sha256:df492f0d09ad992b9a3c4beb0884e729159eacb84efefea05ca6c49cdb1b5390",
+            "exact_text": "| **HBR-P0** | **逸脱受け止めと選択済み開発スタイルへの収束** — workflowで逸脱・障害・暴走を受け止め、L3凍結時に合意したFull V／Production Scrum／V設計＋Scrum実装Hybridへ戻す。Discovery／PoCは独立したcase-driven routeとしてS4判断後だけ接続する。signalから開発スタイルを自動変更せず、lock／budget time-cap／Recoveryで暴走を停止する | FR-L1-08/10/11/13/14/15/16/18/24/25/26/27/44は移管元。現行定義は要件v1.3 §4／§4.2 | 旧Forward一律収束を置換。HR-FR-P0-01／02と対応するが、各styleへの返却・未解決route拒否・停止の実行証跡は別途検証する |\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        },
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-015-P1",
+          "source_fragment_id": "RDP001-NEXT-DIFF-015",
+          "source_revision_item_id": "PREISO-REV-000008",
+          "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "HBR-P1のL2合意・L3凍結後の継続、resume／queue／budget維持、version-up保全、人間判断の自動承認禁止を保持する候補。",
+          "retained_conditions": [
+            "合意・凍結後の継続",
+            "resume／queue／budget",
+            "version-up保全",
+            "意味変更・L11受入・release／cutoverの自動承認拒否"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-OWNER-COLLAPSE",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 51,
+            "end_line": 51,
+            "sha256": "sha256:6e3e026d3d01108f9806189361dfe0be08646dce3735700c0f51be9103f9c669",
+            "exact_text": "| **HBR-P1** | **合意した範囲での連続自律走行** — L2要求の合意とL3凍結後、選択済み開発スタイルに従って作業・検証・復旧を継続する。resume条件、job-queue、累積budget／time-capを維持し、今版外作業はversion-upへ保全する。要求の意味変更、L11利用者受入、release／cutover等の人間判断を自動承認しない | FR-L1-13/23/29/30/31/42（Forward/Scrum fullback/screen/context continuation/provider delegation evidence） | **continuous-run engine 自体（heartbeat/job-queue/budget time-cap/無人再入）の FR 無し**。**version-up lifecycle（`version_target`/タグ）FR 無し** |\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-015",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-016",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 4,
+      "classification": "requirement",
+      "candidate_kind": "requirement",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "HBR-P6/P7で、setup project導入・更新と、責務別memory・bounded recall・body-free receiptによる継続情報を扱う要求候補。",
+      "baseline": {
+        "start_line": 48,
+        "end_line": 49,
+        "sha256": "sha256:674c0ff9fcfb81de37a06d569279ec7571b3c6cc5b2bbac3c9df6bb18bdec57b",
+        "exact_text": "| **HBR-P6** | **GitHub 運用自動化 + 配布/フルセットアップ** — gated push（全 gate PASS で authorized、raw push fail-close deny）/ PR クロスレビュー自動 / CI 失敗時 auto-fix-repush / タグ版管理。加えて、配布 tag/release pin から **1 コマンドで repo-local hooks・Claude/Codex adapter・state/memory/evidence/feedback・GitHub rules/checks の baseline を bootstrap**できる | FR-L1-05/17（fail-close gate / CI-PR linkage）**のみ＝薄い**。配布/途中導入の接地は FR-L1-44 + technical L1 の GitHub-pull/tag-pin/setup 方針 | **gated-push 認可・PR 自動 cross-review・CI auto-fix-and-repush・tag/version lifecycle すべて FR 無し → 大きく net-new**。**final distribution + one-command full setup** は HELIX L1 で first-class 要求化し、L3/L7 で `helix setup`（PLAN-M-02 後は `helix setup`）へ展開 |\n| **HBR-P7** | **ハーネスネイティブ 2 層メモリ** — harness-memory（保守の根幹）と project-memory を分離、**全エージェント同一記憶共有（silo 禁止）**。Claude 内蔵メモリではなくCodexからも読める`.helix/memory`をbounded recallのSSoTにする。provider delegation evidenceは委譲packetの正本だがprogress/continuation SSoTではない | FR-L1-19/36/38/46/47（learning/skill・model 評価 projection/roster/skill — memory は impl detail 止まり） | 2 層 memory **architecture FR・cross-agent 共有 access・Glossary SSoT 無し** → architecture は **PLAN-L7-175/176 で充足済**、残=**Glossary SSoT 連結 / Codex SessionStart surface と Claude surface の同一 bounded recall 検証** |\n"
+      },
+      "pre_isolation": {
+        "start_line": 55,
+        "end_line": 56,
+        "sha256": "sha256:d6e64d001c21179302c4b4fbd185ee1d65b7078351af707a9fc3ee5b6227691e",
+        "exact_text": "| **HBR-P6** | **GitHub 運用自動化 + 配布/フルセットアップ** — gated push（全 gate PASS で authorized、raw push fail-close deny）/ PR クロスレビュー自動 / CI 失敗時 auto-fix-repush / タグ版管理。加えて、配布 tag/release pin から **1 コマンドで repo-local hooks・Claude/Codex adapter・state/memory/evidence/feedback・GitHub rules/checks の baseline を bootstrap**できる | FR-L1-05/17（fail-close gate / CI-PR linkage）**のみ＝薄い**。配布/途中導入の接地は FR-L1-44 + technical L1 の GitHub-pull/tag-pin/setup 方針 | 起草時の未定義評価は履歴であり、現在は要件v1.3 HR-FR-HYB-008／010と§4.6.1へ接続する。L2の利用要求として`helix setup project`による導入・更新を扱い、公開・tag・promotion・cutoverの承認を一般開発の自走へ転用しない |\n| **HBR-P7** | **責務別の記録と共有可能な継続情報** — harness/projectのscopeを分離し、Claude/Codexから同じ正本revisionへ戻れるbounded recallを提供する。要件v1.3 HR-FR-HYB-005に従い、active memoryの内容を責務正本へ反映してからbody-free receiptへretireし、期限切れ・消費済み指示を再提示しない。要求の意味は指定文書・JSON、継続状態はDB projectionで確認する。provider delegation evidenceは委譲証拠でありprogress/continuation正本ではない | FR-L1-19/36/38/46/47（learning/skill・model 評価 projection/roster/skill — memory は impl detail 止まり） | 2 層 memory **architecture FR・cross-agent 共有 access・Glossary SSoT 無し** → architecture は **PLAN-L7-175/176 で充足済**、残=**Glossary SSoT 連結 / Codex SessionStart surface と Claude surface の同一 bounded recall 検証** |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-AUTHORITY-SUCCESSOR",
+        "NEXT-NEG-BASELINE-PREISO-DIGEST"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-016-P6",
+          "source_fragment_id": "RDP001-NEXT-DIFF-016",
+          "source_revision_item_id": "PREISO-REV-000008",
+          "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "HBR-P6のGitHub運用・配布setup project導入更新と、公開・tag・promotion・cutover承認の自動転用禁止を保持する候補。",
+          "retained_conditions": [
+            "setup project導入・更新",
+            "承認境界"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-OWNER-COLLAPSE",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 55,
+            "end_line": 55,
+            "sha256": "sha256:3ed2b7ec828f17fa01801341f2834619b86ad53f632adcd3f6408fde91c0ef13",
+            "exact_text": "| **HBR-P6** | **GitHub 運用自動化 + 配布/フルセットアップ** — gated push（全 gate PASS で authorized、raw push fail-close deny）/ PR クロスレビュー自動 / CI 失敗時 auto-fix-repush / タグ版管理。加えて、配布 tag/release pin から **1 コマンドで repo-local hooks・Claude/Codex adapter・state/memory/evidence/feedback・GitHub rules/checks の baseline を bootstrap**できる | FR-L1-05/17（fail-close gate / CI-PR linkage）**のみ＝薄い**。配布/途中導入の接地は FR-L1-44 + technical L1 の GitHub-pull/tag-pin/setup 方針 | 起草時の未定義評価は履歴であり、現在は要件v1.3 HR-FR-HYB-008／010と§4.6.1へ接続する。L2の利用要求として`helix setup project`による導入・更新を扱い、公開・tag・promotion・cutoverの承認を一般開発の自走へ転用しない |\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        },
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-016-P7",
+          "source_fragment_id": "RDP001-NEXT-DIFF-016",
+          "source_revision_item_id": "PREISO-REV-000008",
+          "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "HBR-P7の責務別memory、bounded recall、active memoryの正本反映、receipt退役、期限切れ指示の再提示禁止を保持する候補。",
+          "retained_conditions": [
+            "scope分離",
+            "bounded recall",
+            "receipt退役",
+            "期限切れ指示拒否"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-OWNER-COLLAPSE",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 56,
+            "end_line": 56,
+            "sha256": "sha256:89f629581aff8b9188d1903ef1b8206a63e393918df194fe7a195d0ba53f7bb4",
+            "exact_text": "| **HBR-P7** | **責務別の記録と共有可能な継続情報** — harness/projectのscopeを分離し、Claude/Codexから同じ正本revisionへ戻れるbounded recallを提供する。要件v1.3 HR-FR-HYB-005に従い、active memoryの内容を責務正本へ反映してからbody-free receiptへretireし、期限切れ・消費済み指示を再提示しない。要求の意味は指定文書・JSON、継続状態はDB projectionで確認する。provider delegation evidenceは委譲証拠でありprogress/continuation正本ではない | FR-L1-19/36/38/46/47（learning/skill・model 評価 projection/roster/skill — memory は impl detail 止まり） | 2 層 memory **architecture FR・cross-agent 共有 access・Glossary SSoT 無し** → architecture は **PLAN-L7-175/176 で充足済**、残=**Glossary SSoT 連結 / Codex SessionStart surface と Claude surface の同一 bounded recall 検証** |\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ]
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-016",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-017",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 5,
+      "classification": "constraint",
+      "candidate_kind": "constraint",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "P2/P7/HNFR-ACの受入条件をL1閉鎖条件からL2要求の保持条件へ置き換える文書境界候補。",
+      "baseline": {
+        "start_line": 84,
+        "end_line": 84,
+        "sha256": "sha256:68a4025b7431b33d7e89afc72f31d8d67d1b2aeaa766a76cc38ccf436d2b685b",
+        "exact_text": "Claude 視点だけで L1 を閉じないため、P2/P7/HNFR-AC の acceptance overlay として以下を固定する。PLAN-L3-06 で `HR-FR-P2-03` / `HR-FR-P7-01` / `HR-NFR-AC-*` へ降下済み。\n"
+      },
+      "pre_isolation": {
+        "start_line": 91,
+        "end_line": 91,
+        "sha256": "sha256:2ce220f010ac2fcb0d4f4cddb3b9819264f1dc89acd7ae1cb13b84219b98df6a",
+        "exact_text": "Claude視点だけでL2要求を閉じないため、P2/P7/HNFR-ACの受入条件として以下を保持する。PLAN-L3-06 で `HR-FR-P2-03` / `HR-FR-P7-01` / `HR-NFR-AC-*` へ降下済み。\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-BASELINE-PREISO-DIGEST",
+        "NEXT-NEG-DIFF-HUNK-COVERAGE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-017",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-018",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 6,
+      "classification": "provenance",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "受入条件表の層表示をL1要求からL2要求へ更新するrevision provenance候補。",
+      "baseline": {
+        "start_line": 86,
+        "end_line": 86,
+        "sha256": "sha256:11078e5813cd50289dca20d3178a9d5990e41597afb7aead6263e07daca4a431",
+        "exact_text": "| 対象 | L1 要求 | L3/L7 での検証観点 |\n"
+      },
+      "pre_isolation": {
+        "start_line": 93,
+        "end_line": 93,
+        "sha256": "sha256:d10c7c8dc91009d6edba96e800ffbe0795cc3a2613f000dea0e7d3a4d88bdcc5",
+        "exact_text": "| 対象 | L2 要求 | L3と実行・検証側への条件 |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-DIFF-HUNK-COVERAGE",
+        "NEXT-NEG-HOLDING-PATH-CATEGORY"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-018",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-019",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 7,
+      "classification": "requirement",
+      "candidate_kind": "requirement",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "Python semantic coreの意味判断とTypeScript/Node transactional boundaryの再検証・commit・外部副作用を層別authorityとして扱う接続要求候補。",
+      "baseline": {
+        "start_line": 90,
+        "end_line": 90,
+        "sha256": "sha256:1fce1870554c457aa08e365a5b88a64658c84da31c2996565073a1c427e57c05",
+        "exact_text": "| HBR-P2 / HNFR-P8 | Python意味コアを含む外部実行面はauthorityを持たない外部workerとして隔離し、TypeScript/Node transactional boundaryだけが再検証とcommit authorityを持つ | workerへrepository／credential／DB／state authorityを渡さず、未登録runtime、secret task、直接write要求を起動前に拒否する |\n"
+      },
+      "pre_isolation": {
+        "start_line": 97,
+        "end_line": 97,
+        "sha256": "sha256:6a3d1a95e5c076a34d3c82e5f78cc1057518d1d9085fa2ce52fd7ed10548ab07",
+        "exact_text": "| HBR-P2 / HNFR-P8 | ADR-010に従い、Python semantic coreは意味判断・生成の正本、TypeScript/Node transactional boundaryは再検証・単一transaction commit・外部副作用の正本とする。両者は承認済み要求・判断記録・ADRの下で層別authorityを持つ | Pythonへrepository／credential／DB path／`.helix/`を渡さず、未登録runtime、secret task、直接write要求を起動前に拒否する。第三者workerの制限とPython semantic coreの意味判断authorityを混同しない |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-HOLDING-PATH-CATEGORY",
+        "NEXT-NEG-LEGACY-EXECUTION"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-019",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-020",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 8,
+      "classification": "constraint",
+      "candidate_kind": "constraint",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "配布・full setupの説明をL1能力境界からL2利用要求へ移す文書境界候補。",
+      "baseline": {
+        "start_line": 96,
+        "end_line": 96,
+        "sha256": "sha256:85428228ebf2416bc96907ae1567c63bc1dbc0b444c47f1e3dc38aaef4e659cb",
+        "exact_text": "最終的に「配布して、利用者がコマンドで簡単にフルセットアップできる」状態を L1 能力境界に含める。\n"
+      },
+      "pre_isolation": {
+        "start_line": 103,
+        "end_line": 103,
+        "sha256": "sha256:cf24131ce6480e0baf2076afb923c58cff9f627e6f3bceb4d1cf2673ad28fd56",
+        "exact_text": "最終的に「配布して、利用者がコマンドで簡単にフルセットアップできる」状態をL2利用要求に含める。\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-LEGACY-EXECUTION",
+        "NEXT-NEG-PHASE-IMPLEMENTATION"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-020",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-021",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 9,
+      "classification": "provenance",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "配布・setup条件表の層表示をL1要求からL2要求へ更新するrevision provenance候補。",
+      "baseline": {
+        "start_line": 100,
+        "end_line": 100,
+        "sha256": "sha256:11078e5813cd50289dca20d3178a9d5990e41597afb7aead6263e07daca4a431",
+        "exact_text": "| 対象 | L1 要求 | L3/L7 での検証観点 |\n"
+      },
+      "pre_isolation": {
+        "start_line": 107,
+        "end_line": 107,
+        "sha256": "sha256:d10c7c8dc91009d6edba96e800ffbe0795cc3a2613f000dea0e7d3a4d88bdcc5",
+        "exact_text": "| 対象 | L2 要求 | L3と実行・検証側への条件 |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-PHASE-IMPLEMENTATION",
+        "NEXT-NEG-OWNER-COLLAPSE"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-021",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-022",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 10,
+      "classification": "requirement",
+      "candidate_kind": "requirement",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "配布sourceのHEAD・requirements digest・artifact digestを結び、tagを取得参照として扱い、helix setup projectで導入・更新する要求候補。",
+      "baseline": {
+        "start_line": 102,
+        "end_line": 102,
+        "sha256": "sha256:9e376e8978e38871a358949d041ec1e35fee5ee1dd48077173cde8f5f6036af5",
+        "exact_text": "| HBR-P6 / HBR-P9 | 配布は GitHub tag/release pin を正本とし、現行機械識別子では `helix setup`、PLAN-M-02 の rename 後は `helix setup` 相当の 1 コマンドで full bootstrap できる。fresh repo だけでなく **既存プロジェクト途中導入**にも対応する | fresh repo と既存 repo の両方で repo-local hook、Claude/Codex adapter、`.helix`/`.helix` state、memory/evidence/feedback、GitHub rulesets/required checks plan、consumer doctor baseline が生成される。session handover path/commandは生成しない。導入先 consumer repo の初回 health check は dogfood full doctor ではなく `helix doctor --profile consumer` で、setup 投影済み adapter / VSCode task / `.helix` baseline を検査する。既存 docs/code/state は import report と skip_sub_doc/段階移行により取り込み、未整備 sub-doc を理由に即 block しない |\n"
+      },
+      "pre_isolation": {
+        "start_line": 109,
+        "end_line": 109,
+        "sha256": "sha256:32e5d13b6f691982c1eb3bc1744b14da76148fbbfe75d5f9d9b0afc0847e60ed",
+        "exact_text": "| HBR-P6 / HBR-P9 | 配布sourceはdevelopment repositoryとし、要件v1.3 §4.6.1に従ってsource HEAD・requirements digest・artifact digestを結ぶ。GitHub tag/release pinは取得対象を固定する参照であり、要求の意味・採否の正本ではない。`helix setup project`の1コマンドでfull bootstrapできる。fresh repo だけでなく **既存プロジェクト途中導入**にも対応する | fresh repo と既存 repo の両方で repo-local hook、Claude/Codex adapter、`.helix/` state、memory/evidence/feedback、GitHub rulesets/required checks plan、consumer doctor baseline が生成される。session handover path/commandは生成しない。導入先 consumer repo の初回 health check は dogfood full doctor ではなく `helix doctor --profile consumer` で、setup 投影済み adapter / VSCode task / `.helix` baseline を検査する。既存 docs/code/state は import report と skip_sub_doc/段階移行により取り込み、未整備 sub-doc を理由に即 block しない |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-OWNER-COLLAPSE",
+        "NEXT-NEG-CLASSIFICATION-LOSS"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-022-P6",
+          "source_fragment_id": "RDP001-NEXT-DIFF-022",
+          "source_revision_item_id": "PREISO-REV-000008",
+          "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "HBR-P6側の配布source、HEAD／requirements／artifact digest、tag参照、setup project導入更新条件を保持する候補。",
+          "retained_conditions": [
+            "sourceとdigestの結合",
+            "tagは取得参照",
+            "setup project",
+            "既存repo導入"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-OWNER-COLLAPSE",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 109,
+            "end_line": 109,
+            "sha256": "sha256:32e5d13b6f691982c1eb3bc1744b14da76148fbbfe75d5f9d9b0afc0847e60ed",
+            "exact_text": "| HBR-P6 / HBR-P9 | 配布sourceはdevelopment repositoryとし、要件v1.3 §4.6.1に従ってsource HEAD・requirements digest・artifact digestを結ぶ。GitHub tag/release pinは取得対象を固定する参照であり、要求の意味・採否の正本ではない。`helix setup project`の1コマンドでfull bootstrapできる。fresh repo だけでなく **既存プロジェクト途中導入**にも対応する | fresh repo と既存 repo の両方で repo-local hook、Claude/Codex adapter、`.helix/` state、memory/evidence/feedback、GitHub rulesets/required checks plan、consumer doctor baseline が生成される。session handover path/commandは生成しない。導入先 consumer repo の初回 health check は dogfood full doctor ではなく `helix doctor --profile consumer` で、setup 投影済み adapter / VSCode task / `.helix` baseline を検査する。既存 docs/code/state は import report と skip_sub_doc/段階移行により取り込み、未整備 sub-doc を理由に即 block しない |\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ],
+          "shared_source_span": true
+        },
+        {
+          "semantic_subunit_id": "RDP001-NEXT-SU-022-P9",
+          "source_fragment_id": "RDP001-NEXT-DIFF-022",
+          "source_revision_item_id": "PREISO-REV-000008",
+          "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+          "semantic_status": "candidate_pending_review",
+          "candidate_kind": "unresolved",
+          "meaning_candidate": "HBR-P9側のartifact受渡し・consumer baseline・既存state取込み条件を保持する候補。同一原文行を共有するためsemantic分割は未確定。",
+          "retained_conditions": [
+            "consumer doctor baseline",
+            "state／memory／evidence",
+            "import report",
+            "未整備sub-docで即blockしない"
+          ],
+          "retained_negative_ids": [
+            "NEXT-NEG-OWNER-COLLAPSE",
+            "NEXT-NEG-AUTHORITY-SUCCESSOR"
+          ],
+          "owner_candidate": "unresolved",
+          "owner_candidates": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "source_span": {
+            "revision": "pre_isolation",
+            "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+            "start_line": 109,
+            "end_line": 109,
+            "sha256": "sha256:32e5d13b6f691982c1eb3bc1744b14da76148fbbfe75d5f9d9b0afc0847e60ed",
+            "exact_text": "| HBR-P6 / HBR-P9 | 配布sourceはdevelopment repositoryとし、要件v1.3 §4.6.1に従ってsource HEAD・requirements digest・artifact digestを結ぶ。GitHub tag/release pinは取得対象を固定する参照であり、要求の意味・採否の正本ではない。`helix setup project`の1コマンドでfull bootstrapできる。fresh repo だけでなく **既存プロジェクト途中導入**にも対応する | fresh repo と既存 repo の両方で repo-local hook、Claude/Codex adapter、`.helix/` state、memory/evidence/feedback、GitHub rulesets/required checks plan、consumer doctor baseline が生成される。session handover path/commandは生成しない。導入先 consumer repo の初回 health check は dogfood full doctor ではなく `helix doctor --profile consumer` で、setup 投影済み adapter / VSCode task / `.helix` baseline を検査する。既存 docs/code/state は import report と skip_sub_doc/段階移行により取り込み、未整備 sub-doc を理由に即 block しない |\n"
+          },
+          "questions": [
+            "この候補が独立unitかconnectionかcompositeかは未決",
+            "owner、採否、意味同値、実装、consumer適用は未確認"
+          ],
+          "shared_source_span": true
+        }
+      ],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-022",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-023",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 11,
+      "classification": "constraint",
+      "candidate_kind": "constraint",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "資産可視化で要求意味・承認revisionを要求文書・正本JSONに置き、DB・Issue・画面表示を意味や承認の書換え元にしない制約候補。",
+      "baseline": {
+        "start_line": 110,
+        "end_line": 111,
+        "sha256": "sha256:e6f24a1d39267295d74a73b7fc3a0ac08fd56378094f5aaa5e5d67d2af2929f0",
+        "exact_text": "再生成可能な view として可視化する。VSCode Webview / VSCode View / 将来の web dashboard は UI surface であり、\n正本は docs と DB に置く。\n"
+      },
+      "pre_isolation": {
+        "start_line": 117,
+        "end_line": 120,
+        "sha256": "sha256:f7299631e4e561bec9e92eb04e178577526e68562ad3d9cb47cdad6133786655",
+        "exact_text": "再生成可能な view として可視化する。VSCode Webview / VSCode View / 将来の web dashboard は UI surface である。\n要求の意味と承認revisionは要求文書・指定された正本JSONに置き、DBはその投影と実行状態・証跡を担う。\nJSONへ移管済みの要求は`config/requirement-ir-authority.json`の読取り規則に従う。\nDB投影、GitHub Issue、画面表示から要求の意味・承認状態を書き換えない。\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-CLASSIFICATION-LOSS",
+        "NEXT-NEG-AUTHORITY-SUCCESSOR"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-023",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    },
+    {
+      "fragment_id": "RDP001-NEXT-DIFF-024",
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "hunk_ordinal_for_source": 12,
+      "classification": "provenance",
+      "candidate_kind": "metadata",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "normalized_statement": "資産可視化条件表の層表示をL1要求からL2要求へ更新するrevision provenance候補。",
+      "baseline": {
+        "start_line": 113,
+        "end_line": 113,
+        "sha256": "sha256:11078e5813cd50289dca20d3178a9d5990e41597afb7aead6263e07daca4a431",
+        "exact_text": "| 対象 | L1 要求 | L3/L7 での検証観点 |\n"
+      },
+      "pre_isolation": {
+        "start_line": 122,
+        "end_line": 122,
+        "sha256": "sha256:d10c7c8dc91009d6edba96e800ffbe0795cc3a2613f000dea0e7d3a4d88bdcc5",
+        "exact_text": "| 対象 | L2 要求 | L3と実行・検証側への条件 |\n"
+      },
+      "retained_negative_ids": [
+        "NEXT-NEG-AUTHORITY-SUCCESSOR",
+        "NEXT-NEG-BASELINE-PREISO-DIGEST"
+      ],
+      "unresolved_meaning": [
+        "revision差分が意味同値かは未確認",
+        "旧実装・consumer適用・phaseの確定はこのfragmentから生成しない"
+      ],
+      "possible_conflicts": [
+        "旧layer／authority語彙と現行Concept・製品境界の関係は未確定",
+        "要求・制約・provenanceの最終分類は独立review待ち"
+      ],
+      "classification_unit": "hunk_fragment",
+      "hunk_level_classification_only": true,
+      "semantic_atomization_status": "not_atomized",
+      "semantic_subunits": [],
+      "compound_hunk_hold": {
+        "hold_id": "RDP001-NEXT-HOLD-RDP001-NEXT-DIFF-024",
+        "status": "held_as_compound_hunk",
+        "reason": "hunk-level classification only; semantic atomization is incomplete and this fragment must not be counted as a semantic atom",
+        "semantic_atom_count": 0,
+        "remaining_semantic_unit_count": "unassessed"
+      }
+    }
+  ],
+  "retained_negatives": [
+    {
+      "negative_id": "NEXT-NEG-BASELINE-PREISO-DIGEST",
+      "meaning": "baseline／pre-isolation commit・blob OID・file digest・変更spanのいずれかを別値にするとfail-closeする。",
+      "applies_to": "all selected paths"
+    },
+    {
+      "negative_id": "NEXT-NEG-DIFF-HUNK-COVERAGE",
+      "meaning": "選定6 pathのdiff hunkを欠落・重複・別path追加しても候補を通さない。",
+      "applies_to": "selected diff scope"
+    },
+    {
+      "negative_id": "NEXT-NEG-HOLDING-PATH-CATEGORY",
+      "meaning": "holding台帳のpath、category、archive path、revision state、authority fieldを別値にしない。",
+      "applies_to": "source holding"
+    },
+    {
+      "negative_id": "NEXT-NEG-LEGACY-EXECUTION",
+      "meaning": "旧runtime／test／CI／hookを実行済み、oracle、fallback、実装へ昇格させない。",
+      "applies_to": "all selected paths"
+    },
+    {
+      "negative_id": "NEXT-NEG-PHASE-IMPLEMENTATION",
+      "meaning": "phase候補、implementation、consumer closureを確定・完了・実装済みへ縮退させない。",
+      "applies_to": "asset／phase snapshots"
+    },
+    {
+      "negative_id": "NEXT-NEG-OWNER-COLLAPSE",
+      "meaning": "混合責務のhybrid／pillar sourceを単一製品へ自動固定しない。",
+      "applies_to": "PREISO-REV-000007/000008"
+    },
+    {
+      "negative_id": "NEXT-NEG-CLASSIFICATION-LOSS",
+      "meaning": "requirement／constraint／provenance／generated metadataの分類、candidate kind、source groundingを勝手に変更しない。",
+      "applies_to": "all fragments"
+    },
+    {
+      "negative_id": "NEXT-NEG-AUTHORITY-SUCCESSOR",
+      "meaning": "authority昇格、meaning change、successor、human decision、equivalence claimを候補検証から生成しない。",
+      "applies_to": "manifest／inventory"
+    }
+  ],
+  "classification_unit": "hunk_fragment",
+  "classification_counts_are_not_semantic_atom_counts": true,
+  "semantic_atomization": {
+    "status": "not_started",
+    "hunk_level_classification_only": true,
+    "semantic_atomization_complete": false,
+    "semantic_atom_count": 0,
+    "hunk_fragment_count": 24,
+    "compound_hunk_hold_count": 24,
+    "semantic_subunit_reviewed_fragment_ids": [
+      "RDP001-NEXT-DIFF-010",
+      "RDP001-NEXT-DIFF-014",
+      "RDP001-NEXT-DIFF-015",
+      "RDP001-NEXT-DIFF-016",
+      "RDP001-NEXT-DIFF-022"
+    ],
+    "semantic_subunit_reviewed_fragment_count": 5,
+    "semantic_subunit_count": 15,
+    "fully_unsubdivided_fragment_count": 19,
+    "remaining_semantic_denominator": "24 hunk fragments remain non-atomic; 15 subunits are review-only decomposition candidates and do not establish semantic atom coverage",
+    "review_note": "classification_counts are hunk-level only. semantic_subunits retain source grounding and negative conditions for review; no semantic atomization, closure, equivalence, adoption, or owner decision is claimed."
+  }
+}

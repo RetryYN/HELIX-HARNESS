@@ -1,0 +1,612 @@
+{
+  "schema": "helix-scaffold-preisolation-next-manifest.v1",
+  "candidate_id": "RDP-001-PREISO-NEXT-6PATH",
+  "status": "candidate_pending_semantic_equivalence_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "comparison": {
+    "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "method": "read-only Git object bytes; exact changed hunk spans and UTF-8 SHA-256",
+    "old_runtime_test_ci_execution": false,
+    "full_diff_file_count": 400,
+    "full_diff_hunk_count": 492,
+    "selected_file_count": 6,
+    "selected_hunk_count": 24,
+    "unprocessed_selected_scope_file_count": 394,
+    "unprocessed_selected_scope_hunk_count": 468,
+    "prior_reviewed_scope": {
+      "request_id": "GUI-1934-REVIEW-02",
+      "source_revision_item_ids": [
+        "PREISO-REV-000001",
+        "PREISO-REV-000002",
+        "PREISO-REV-000015",
+        "PREISO-REV-000016",
+        "PREISO-REV-000026",
+        "PREISO-REV-000060"
+      ],
+      "file_count": 6,
+      "hunk_count": 9
+    },
+    "combined_reviewed_scope": {
+      "file_count": 12,
+      "hunk_count": 33
+    },
+    "combined_unprocessed_scope": {
+      "file_count": 388,
+      "hunk_count": 459
+    }
+  },
+  "scope": {
+    "diff_scope": "selected_source_items_only",
+    "scope_note": "全体400 files／492 hunksのうち、今回の6 path／24 hunkだけを候補化する。#1934 review済み6 path／9 hunkとはID重複しない。",
+    "selected_source_revision_item_ids": [
+      "PREISO-REV-000003",
+      "PREISO-REV-000004",
+      "PREISO-REV-000005",
+      "PREISO-REV-000006",
+      "PREISO-REV-000007",
+      "PREISO-REV-000008"
+    ],
+    "prior_reviewed_source_revision_item_ids": [
+      "PREISO-REV-000001",
+      "PREISO-REV-000002",
+      "PREISO-REV-000015",
+      "PREISO-REV-000016",
+      "PREISO-REV-000026",
+      "PREISO-REV-000060"
+    ]
+  },
+  "holding_provenance": {
+    "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+    "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+    "record_count": 333,
+    "selected_record_count": 6
+  },
+  "asset_provenance": {
+    "path": "docs/governance/legacy-asset-disposition.jsonl",
+    "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+  },
+  "phase_provenance": {
+    "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+  },
+  "product_boundary": {
+    "status": "candidate_reference_only",
+    "sources": [
+      {
+        "path": "docs/concept/product-boundary.md",
+        "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+      },
+      {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+      },
+      {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+      }
+    ]
+  },
+  "paths": [
+    {
+      "source_revision_item_id": "PREISO-REV-000003",
+      "source_path": "docs/design/harness/L1-requirements/business-requirements.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "6866ad41fd8255def6cb56679bbcbfd7e0eb0b34",
+      "baseline_file_sha256": "cb2c88386fdd7fab59e7e66a1ab57961d8960b1c7c4c66084978346ccd569d1d",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "d415430ecbf9d2ddb26d3511852d0e3c13eef510",
+      "pre_isolation_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-001",
+        "RDP001-NEXT-DIFF-002"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+        "source_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "confirmed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0330",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-04",
+          "PHCAP-15",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000004",
+      "source_path": "docs/design/harness/L1-requirements/nfr.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "d8f87bf4fec36376c6e7036f8ef2291ab6a0a662",
+      "baseline_file_sha256": "cc2969c8e7bd59ee21ac52cc6444c7a2f43adc9c658996442f3111a469ec172b",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "b638d29791160759a606ba0ae47747fc957d1e8d",
+      "pre_isolation_file_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-003",
+        "RDP001-NEXT-DIFF-004"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A",
+        "source_sha256": "4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "confirmed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0332",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-04",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000005",
+      "source_path": "docs/design/harness/L1-requirements/technical-requirements.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "c8c85d937bce0e72be542d226fc405ab79758cb1",
+      "baseline_file_sha256": "28a555a7d96812c4df9c109ecc933e6d9b8a59c70158d876023eb6cd122319a6",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "0d2d069ca84613bffb44d43c1c5522875b9229a7",
+      "pre_isolation_file_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/technical-requirements.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-005"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+        "source_sha256": "3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "confirmed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0334",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-04",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000006",
+      "source_path": "docs/design/harness/L3-functional/nfr-grade.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "272cb4eb5cffdecb4ae8c1fc8698306a20409469",
+      "baseline_file_sha256": "f43d8e16aff6bcbf08bfad22e2b9844651ad71f2009a9971018eeca83ea80c8b",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "ad3253e1d5d0efa9f75b75846a452501b646d2e0",
+      "pre_isolation_file_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/nfr-grade.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "HELIX-HARNESS",
+      "secondary_consumer_candidate": "HELIX-OS",
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-006",
+        "RDP001-NEXT-DIFF-007",
+        "RDP001-NEXT-DIFF-008"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-DB669724249A14A665F0",
+        "source_sha256": "2197b4d2f4118aae83202f9f886056fd9de360f21667e25fe9c9d906f76c832d",
+        "asset_class": "Historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "consumer_refs": [],
+        "product_target": "unresolved",
+        "source_authority_state": null,
+        "target_authority_state": null,
+        "carry_forward_state": null,
+        "decision_status": null,
+        "executability_status": "unreviewed",
+        "external_effect_status": "unreviewed"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0350",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-06",
+          "PHCAP-16"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [],
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "unknown",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000007",
+      "source_path": "docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "3723c12c6c3c0d95de78931ae4ca413b790c0553",
+      "baseline_file_sha256": "9b628e0a54b7052496cbb6e82e03adef01ffdb574d995baaa11cfcc61a968ac7",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "4f27e63251cc913d90781144ba7f0b8ca7d6abdb",
+      "pre_isolation_file_sha256": "8a90b06e41a2c317c6d4cecafca2648f267f033eb688e89336a0c12909c09769",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/hybrid-rebaseline-v0.5.0-remediation-delta.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-009",
+        "RDP001-NEXT-DIFF-010",
+        "RDP001-NEXT-DIFF-011",
+        "RDP001-NEXT-DIFF-012"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-77EDDD8BBB1F3863D007",
+        "source_sha256": "8a90b06e41a2c317c6d4cecafca2648f267f033eb688e89336a0c12909c09769",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "proposed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0423",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-02",
+          "PHCAP-04",
+          "PHCAP-16",
+          "PHCAP-17",
+          "PHCAP-18",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending"
+        ]
+      }
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000008",
+      "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md",
+      "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+      "baseline_blob_oid": "e6e3772eed61890ea979ab0e923e373e719d1684",
+      "baseline_file_sha256": "11c5052cf4b36cee91115349dd6a12687f11bdc0ac209e33b4af84713f449995",
+      "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "pre_isolation_blob_oid": "7b2c6e0b06dc03a2cd589d23ee3938f0b51c0f8d",
+      "pre_isolation_file_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "source_category": "requirement_or_prototype_source",
+      "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+      "baseline_revision_state": "preserved_git_revision_pending_review",
+      "pre_isolation_revision_state": "preserved_archive_revision_pending_review",
+      "meaning_change_applied": false,
+      "successor_requirement_ids": [],
+      "human_decision_ref": null,
+      "authority_effect": "none",
+      "product_owner_candidate": "unresolved",
+      "secondary_consumer_candidate": null,
+      "fragment_ids": [
+        "RDP001-NEXT-DIFF-013",
+        "RDP001-NEXT-DIFF-014",
+        "RDP001-NEXT-DIFF-015",
+        "RDP001-NEXT-DIFF-016",
+        "RDP001-NEXT-DIFF-017",
+        "RDP001-NEXT-DIFF-018",
+        "RDP001-NEXT-DIFF-019",
+        "RDP001-NEXT-DIFF-020",
+        "RDP001-NEXT-DIFF-021",
+        "RDP001-NEXT-DIFF-022",
+        "RDP001-NEXT-DIFF-023",
+        "RDP001-NEXT-DIFF-024"
+      ],
+      "legacy_asset": {
+        "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+        "source_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+        "asset_class": "RequirementSourceSnapshot",
+        "disposition": "source_snapshot_preservation",
+        "implementation_status": "non_executable_read_only_source",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "product_target": "unresolved",
+        "source_authority_state": "confirmed",
+        "target_authority_state": "draft_candidate",
+        "carry_forward_state": "preserved_pending_rehome",
+        "decision_status": "pending_human_confirmation",
+        "executability_status": "non_executable_or_data_only_not_invoked",
+        "external_effect_status": "read_only_no_external_effect"
+      },
+      "phase_classification": {
+        "classification_id": "LASPH-0425",
+        "phase_classification_status": "multi_phase_candidate",
+        "candidate_phase_targets": [
+          "PHCAP-01",
+          "PHCAP-04",
+          "PHCAP-16",
+          "PHCAP-19",
+          "PHCAP-20"
+        ],
+        "candidate_product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "product_classification_status": "candidate_needs_semantic_review",
+        "consumer_closure_status": "pending",
+        "consumer_refs": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "implementation_evidence_state": "non_executable_source_snapshot",
+        "legacy_execution_performed": false,
+        "legacy_implementation_status": "non_executable_read_only_source",
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending"
+        ]
+      }
+    }
+  ],
+  "classification_counts": {
+    "requirement": 7,
+    "constraint": 8,
+    "provenance": 7,
+    "generated_metadata": 2,
+    "unresolved": 0
+  },
+  "negative_conditions": [
+    {
+      "negative_id": "NEXT-NEG-BASELINE-PREISO-DIGEST",
+      "meaning": "baseline／pre-isolation commit・blob OID・file digest・変更spanのいずれかを別値にするとfail-closeする。",
+      "applies_to": "all selected paths"
+    },
+    {
+      "negative_id": "NEXT-NEG-DIFF-HUNK-COVERAGE",
+      "meaning": "選定6 pathのdiff hunkを欠落・重複・別path追加しても候補を通さない。",
+      "applies_to": "selected diff scope"
+    },
+    {
+      "negative_id": "NEXT-NEG-HOLDING-PATH-CATEGORY",
+      "meaning": "holding台帳のpath、category、archive path、revision state、authority fieldを別値にしない。",
+      "applies_to": "source holding"
+    },
+    {
+      "negative_id": "NEXT-NEG-LEGACY-EXECUTION",
+      "meaning": "旧runtime／test／CI／hookを実行済み、oracle、fallback、実装へ昇格させない。",
+      "applies_to": "all selected paths"
+    },
+    {
+      "negative_id": "NEXT-NEG-PHASE-IMPLEMENTATION",
+      "meaning": "phase候補、implementation、consumer closureを確定・完了・実装済みへ縮退させない。",
+      "applies_to": "asset／phase snapshots"
+    },
+    {
+      "negative_id": "NEXT-NEG-OWNER-COLLAPSE",
+      "meaning": "混合責務のhybrid／pillar sourceを単一製品へ自動固定しない。",
+      "applies_to": "PREISO-REV-000007/000008"
+    },
+    {
+      "negative_id": "NEXT-NEG-CLASSIFICATION-LOSS",
+      "meaning": "requirement／constraint／provenance／generated metadataの分類、candidate kind、source groundingを勝手に変更しない。",
+      "applies_to": "all fragments"
+    },
+    {
+      "negative_id": "NEXT-NEG-AUTHORITY-SUCCESSOR",
+      "meaning": "authority昇格、meaning change、successor、human decision、equivalence claimを候補検証から生成しない。",
+      "applies_to": "manifest／inventory"
+    }
+  ],
+  "notes": [
+    "選定sourceの旧assetはsource snapshot preservationまたはHistorical／unresolvedであり、phaseはmulti_phase_candidate、consumer closure pending、implementationはnon_executable_read_only_sourceまたはunknown。",
+    "候補ownerはproduct boundaryからのレビュー候補であり、formal ownerではない。混合sourceはunresolvedへ保持する。",
+    "旧archive runtime／test／CI／hookは実行していない。"
+  ]
+}
