@@ -15,7 +15,7 @@
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/README.md",
-      "sha256": "98cab987055a3d3923524854257b28115c475d8ed5ec32f44915706e06b880b6",
+      "sha256": "15902952bbf2f773d666e6fcbebcc961cc660fbfa4b56515f17bbcafed89ba89",
       "note": "migration boundary, timestamp/state semantics, dependency and issue projection record"
     },
     {
@@ -25,12 +25,12 @@
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
-      "sha256": "abd35d5e4dd04086be97e49e4b444528237fbc9a90236430e962bc2e27633980",
+      "sha256": "5ffc69a836e741cff0b83c56e75b93232640896892c5322d174763f63865e9cf",
       "note": "independent migration validator"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/selfcheck.py",
-      "sha256": "91bce11de66faa1b2cf8c117776573f3dc7403a6ee817b60210b09a136ab993a",
+      "sha256": "e95bf3d0c510a8b2e2aaf9407a747b69739d4a85251a9bc55cad7c9618d97307",
       "note": "migration negative cases and baseline assertion"
     },
     {

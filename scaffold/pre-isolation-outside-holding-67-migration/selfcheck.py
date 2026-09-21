@@ -85,12 +85,12 @@ for label, mutate in cases:
 
 expect_error_code(
     "captured main non-ancestor base",
-    lambda i, p, r: i["base"].update(latest_main_commit="41878fff1309ad35a76c8ad439dbc8238cbfd1ea"),
+    lambda i, p, r: i["base"].update(latest_main_commit="8e5183e454fd8c199be2e2d85614aae22f45f180"),
     "E_CAPTURED_MAIN_NOT_ANCESTOR",
 )
 expect_error_code(
     "recorded PR1978 merge non-ancestor",
-    lambda i, p, r: i["dependencies"][1].update(merge_commit="41878fff1309ad35a76c8ad439dbc8238cbfd1ea"),
+    lambda i, p, r: i["dependencies"][1].update(merge_commit="8e5183e454fd8c199be2e2d85614aae22f45f180"),
     "E_PR1978_MERGE_NOT_ANCESTOR",
 )
 

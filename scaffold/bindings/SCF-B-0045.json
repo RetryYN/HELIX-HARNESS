@@ -10,17 +10,17 @@
   "upstream": [
     {
       "path": "scaffold/pre-isolation-outside-holding-16-30/inventory.json",
-      "sha256": "db86c9dd73ea081fcbb1e62645181f0d41449fe62cfdf1a7ad4a9551205d2fed",
+      "sha256": "ab01a1e6d3bda955b40cf434d9c5d213c291b9800cb393c4e52fa6b25acb71f0",
       "note": "rows 16–30の15 path、13 live holding exact relation、candidate/unknown境界"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-16-30/generate.py",
-      "sha256": "dbcb6ae174e0b948f10e36b62d506a6ca7ee20ced1b9d5edf57e82e3c8f8b7bd",
+      "sha256": "e701be0fa9c9bdf378f6a0d7347f105ddb03c3e1b2e1cca8a9c90de53cb2f01a",
       "note": "Git objectで固定したrows 16–30生成源"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-16-30/README.md",
-      "sha256": "4aa7df6496268409e629eb41ab0eae9560f4110dff11bf1ff7d20c3f3c7eed50",
+      "sha256": "9d85a56eed92b4c3d1f78100c1073c7eac14089ae0d12deaa2762cc316e52e03",
       "note": "selection、physical findings、implementation/degradation境界、提案row schema"
     },
     {
@@ -34,9 +34,9 @@
       "note": "formal 67 path_revision_pair source set"
     },
     {
-      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
       "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
-      "note": "supersedes終端13 live holdingの再計算入力"
+      "note": "exact 3df historical 13 live holding snapshot used by rows 16-30"
     },
     {
       "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
@@ -45,17 +45,17 @@
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-first15/inventory.json",
-      "sha256": "010f159e0bc56f4ee4d3db11cb8b5e1f8d77af704abd66437cbaddfa4b437257",
+      "sha256": "8fdc22ce260ca23889f114ad85491d055cb656686fd52c829add05e84d9de12d",
       "note": "first15監査との選定境界"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-first15/README.md",
-      "sha256": "46357fbcbed54bdb0fd2c27690974054ec885b23cb0cd360a80e72545f11330c",
+      "sha256": "9fc83be825db547b30841eb232aec35dc51e48f48a77d8d642715bc8140f68aa",
       "note": "既存first15のunknown／non-inclusion契約"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-16-30/validate.py",
-      "sha256": "1608c0d58b1726ad6173feca73ef50335b7c9b6e36166060c70353cae6ce8ede",
+      "sha256": "0a923b53c632025681e8ee3f27ecaa5e4a00824ce373268c9b3699c07437c616",
       "note": "独立Git object anchorと13 holding scanを含むvalidator"
     },
     {
