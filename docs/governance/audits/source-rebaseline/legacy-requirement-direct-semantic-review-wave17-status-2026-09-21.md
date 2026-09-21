@@ -1,7 +1,8 @@
 # Wave17 status（2026-09-21）
 
 - base: `6dad906ed9a52c9e49611931645db2f298c6bf6a`
-- Wave16 candidate overlay: `74bfd04f7`（未マージ、merge base `6dad906ed9a52c9e49611931645db2f298c6bf6a`）
+- source main base: `6dad906ed9a52c9e49611931645db2f298c6bf6a`
+- stacked PR parent / Wave16 candidate: `74bfd04f7aa2384e1e30856ec6c29282b764e8c5`（merge base `6dad906ed9a52c9e49611931645db2f298c6bf6a`、ledger/metaはcurrent tree内）
 - scope: 3 units / 7 atoms / 8 evidence edges
 - cumulative: 50 reviewed units / 149 reviewed edges / 168 units remaining (crosswalk unit inventory)
 - semantic links: confirmed 3（要求契約3） / rejected 0 / unresolved 5
@@ -34,4 +35,4 @@ BR15は直接implementation assetなしのため、implementation edgeを作ら�
 
 ## static validation boundary
 
-archiveのruntime/test/hook/CI/adapterは実行していない。検証器は台帳、meta、静的source digest、line/span digest、prior candidate overlay、shared span、controlled anchorを読むだけである。
+archiveのruntime/test/hook/CI/adapterは実行していない。検証器は台帳、meta、静的source digest、line/span digest、stacked-tree上のWave16 ledger/meta、prior candidate overlay、shared span、controlled anchorを読むだけである。shallow cloneでは固定canonical digestを使い、full cloneのgit object照合は任意の追加検証とする。

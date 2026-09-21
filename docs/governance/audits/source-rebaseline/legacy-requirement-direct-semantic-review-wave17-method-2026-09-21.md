@@ -2,7 +2,7 @@
 
 ## 範囲
 
-Wave17は authoritative base `origin/main` の `6dad906ed9a52c9e49611931645db2f298c6bf6a` から、crosswalk順の未review 3 unitを静的に棚卸しした。対象は `IRUNIT-HIL-BR-15-HELIX-OS`、`IRUNIT-HIL-BR-16-HELIX-HARNESS`、`IRUNIT-HIL-BR-16-HELIX-OS`。Wave1〜15の141 edge・47 unitを除外し、Wave16は未マージ候補 `74bfd04f7` を先行候補として明示的に入力へ含めた。Wave17の実証拠edgeは8、atomは7、累積は50 unit・149 edgeで、crosswalk unit inventory上の残りは168 unitである。
+Wave17は authoritative base `origin/main` の `6dad906ed9a52c9e49611931645db2f298c6bf6a` から、crosswalk順の未review 3 unitを静的に棚卸しした。対象は `IRUNIT-HIL-BR-15-HELIX-OS`、`IRUNIT-HIL-BR-16-HELIX-HARNESS`、`IRUNIT-HIL-BR-16-HELIX-OS`。Wave1〜15の141 edge・47 unitを除外し、stacked PR parentとしてWave16 `74bfd04f7aa2384e1e30856ec6c29282b764e8c5` を先行候補として明示的に入力へ含めた。Wave16 ledger/meta are available in the current tree; shallow cloneでもgit objectに依存せず固定digestで検証する。Wave17の実証拠edgeは8、atomは7、累積は50 unit・149 edgeで、crosswalk unit inventory上の残りは168 unitである。
 
 要件edgeは `requirements-ir/requirements.json` の同一要求IDの静的source snapshot（A60）に限定する。候補L3/L5/L6文書の存在は要求IDの同一契約や実装完了を意味しない。BR15は直接のproduct-data実装assetを確認できなかったため、無関係な実装ソースを割り当てず、missing evidence receiptで記録した。
 
@@ -16,4 +16,4 @@ Wave17は authoritative base `origin/main` の `6dad906ed9a52c9e49611931645db2f2
 
 ## 検証
 
-`verify_legacy_requirement_direct_semantic_review_wave17.py` はJSONL/metaのschema、base revision、Wave16候補入力、prior unit/edgeとnonrequirement asset重複、archive SHA、excerpt SHA、atom loss、BR16 shared span、controlled anchor接地、未実装missing receiptを静的に確認する。
+`verify_legacy_requirement_direct_semantic_review_wave17.py` はJSONL/metaのschema、source main base、stacked PR parent、Wave16 ledger/metaの固定digest、prior unit/edgeとnonrequirement asset重複、archive SHA、excerpt SHA、atom loss、BR16 shared span、controlled anchor接地、未実装missing receiptを静的に確認する。full cloneでは利用可能な場合だけparent/blob/ancestorも追加確認する。

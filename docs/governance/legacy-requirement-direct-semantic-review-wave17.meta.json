@@ -199,7 +199,7 @@
       "batch_id": "LEGACY-SEMANTIC-WAVE16-2026-09-21",
       "ledger_sha256": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
       "meta_sha256": "sha256:31392b688592d2087cfe3bd7309ebbb7fcf86baa3a5135441f0c61f56cd3fad3",
-      "candidate_ref": "74bfd04f7",
+      "candidate_ref": "74bfd04f7aa2384e1e30856ec6c29282b764e8c5",
       "merge_base": "6dad906ed9a52c9e49611931645db2f298c6bf6a"
     }
   ],
@@ -648,9 +648,9 @@
       ]
     }
   ],
-  "wave16_candidate_ref": "74bfd04f7",
+  "wave16_candidate_ref": "74bfd04f7aa2384e1e30856ec6c29282b764e8c5",
   "wave16_candidate_merge_base": "6dad906ed9a52c9e49611931645db2f298c6bf6a",
-  "wave16_candidate_root": "git-object:74bfd04f7aa2384e1e30856ec6c29282b764e8c5",
+  "wave16_candidate_root": "stacked-tree:current-commit",
   "missing_evidence_receipts": [
     {
       "unit_candidate_id": "IRUNIT-HIL-BR-15-HELIX-OS",
@@ -662,7 +662,12 @@
         "HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN"
       ],
       "searched_root": "archive/legacy-generation-2026-09-14/root/src",
-      "archive_path_absent": "src/product-data/"
+      "archive_path_absent": "src/product-data/",
+      "catalog_implementation_source_match_counts": {
+        "ProductDataConnector": 0,
+        "ProductDataProjection": 0,
+        "HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN": 0
+      }
     }
   ],
   "phase_rows": {
@@ -727,5 +732,12 @@
       }
     ]
   },
-  "remaining_unit_count": 168
+  "remaining_unit_count": 168,
+  "source_main_base_revision": "6dad906ed9a52c9e49611931645db2f298c6bf6a",
+  "stacked_pr_parent_revision": "74bfd04f7aa2384e1e30856ec6c29282b764e8c5",
+  "wave16_candidate_head": "74bfd04f7aa2384e1e30856ec6c29282b764e8c5",
+  "wave16_candidate_input_digests": {
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.meta.json": "sha256:31392b688592d2087cfe3bd7309ebbb7fcf86baa3a5135441f0c61f56cd3fad3"
+  }
 }

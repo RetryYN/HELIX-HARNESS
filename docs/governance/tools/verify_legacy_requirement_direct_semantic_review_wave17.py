@@ -2,7 +2,7 @@
 """静的なWave17 ledger verifier。
 
 旧archiveのruntime/test/hook/CI/adapterは実行しない。Wave16の未マージ候補は
-74bfd04f7を明示的なprior overlayとして読み、後でmergeされた場合にもbaseを差し替えやすくする。
+stacked branchのcurrent treeから固定digestで読み、shallow cloneでも検証できる。
 Wave16再レビューで追加されたcontrolled anchor接地gateをdesign/implementationへ継承する。
 """
 from __future__ import annotations
@@ -21,8 +21,13 @@ CATALOG = ROOT / "docs/governance/legacy-asset-phase-product-classification-boot
 CROSSWALK = ROOT / "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 DECOMPOSITION = ROOT / "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
 REV = "6dad906ed9a52c9e49611931645db2f298c6bf6a"
-WAVE16_REF = "74bfd04f7"
 WAVE16_SHA = "74bfd04f7aa2384e1e30856ec6c29282b764e8c5"
+WAVE16_REF = WAVE16_SHA
+WAVE16_CANDIDATE_INPUT_DIGESTS = {
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.meta.json": "sha256:31392b688592d2087cfe3bd7309ebbb7fcf86baa3a5135441f0c61f56cd3fad3",
+}
+INPUTS_SHA256 = "sha256:a271f76f123f64b6443f50099d72c34e8c716cb41e7d6b823c8bfd71e8ca2180"
 BATCH = "LEGACY-SEMANTIC-WAVE17-2026-09-21"
 REQ_SHA = "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
 
@@ -86,6 +91,24 @@ def git_blob(revision: str, relative_path: str) -> bytes:
     return subprocess.check_output(["git", "show", f"{revision}:{relative_path}"], cwd=ROOT)
 
 
+def git_commit_exists(revision: str) -> bool:
+    return subprocess.run(["git", "cat-file", "-e", f"{revision}^{{commit}}"], cwd=ROOT, capture_output=True).returncode == 0
+
+
+def optional_git_blob(revision: str, relative_path: str) -> bytes | None:
+    result = subprocess.run(["git", "show", f"{revision}:{relative_path}"], cwd=ROOT, capture_output=True)
+    return result.stdout if result.returncode == 0 else None
+
+
+def wave16_tree_bytes(relative_path: str) -> bytes:
+    path = ROOT / relative_path
+    require(path.is_file(), f"stacked Wave16 input missing: {relative_path}")
+    data = path.read_bytes()
+    require(relative_path in WAVE16_CANDIDATE_INPUT_DIGESTS, f"unpin Wave16 input: {relative_path}")
+    require(sha_bytes(data) == WAVE16_CANDIDATE_INPUT_DIGESTS[relative_path], f"Wave16 input pin: {relative_path}")
+    return data
+
+
 def read_jsonl_bytes(data: bytes) -> list[dict]:
     return [json.loads(line) for line in data.decode().splitlines() if line.strip()]
 
@@ -113,7 +136,7 @@ def prior_sources() -> tuple[set[tuple[str, str]], set[tuple[str, str, str]], se
             if row["artifact_evidence_kind"] != "requirement":
                 assets.add((row["asset_id"], row["source_path"], row["source_sha256"]))
     candidate_ledger_rel = "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl"
-    for row in read_jsonl_bytes(git_blob(WAVE16_SHA, candidate_ledger_rel)):
+    for row in read_jsonl_bytes(wave16_tree_bytes(candidate_ledger_rel)):
         edges.add((row["unit_candidate_id"], row["asset_id"]))
         units.add(row["unit_candidate_id"])
         if row["artifact_evidence_kind"] != "requirement":
@@ -124,15 +147,20 @@ def prior_sources() -> tuple[set[tuple[str, str]], set[tuple[str, str, str]], se
 def verify() -> None:
     rows = read_jsonl(LEDGER)
     meta = json.loads(META.read_text())
-    require(set(meta) == {"authority_effect", "batch_id", "bounded_search_receipts", "consumer_closure_status", "cumulative_reviewed_edge_count", "cumulative_reviewed_unit_count", "inputs", "legacy_execution_performed", "new_build_allowed", "output_sha256", "parent_revision", "prior_review_batches", "record_count", "reviewed_edges", "reviewed_unit_ids", "schema_revision", "semantic_link_counts", "source_revision", "status", "unit_aggregates", "wave16_candidate_ref", "wave16_candidate_merge_base", "wave16_candidate_root", "missing_evidence_receipts", "phase_rows", "remaining_unit_count"}, "meta fields")
+    require(set(meta) == {"authority_effect", "batch_id", "bounded_search_receipts", "consumer_closure_status", "cumulative_reviewed_edge_count", "cumulative_reviewed_unit_count", "inputs", "legacy_execution_performed", "new_build_allowed", "output_sha256", "parent_revision", "prior_review_batches", "record_count", "reviewed_edges", "reviewed_unit_ids", "schema_revision", "semantic_link_counts", "source_revision", "status", "unit_aggregates", "wave16_candidate_ref", "wave16_candidate_merge_base", "wave16_candidate_root", "wave16_candidate_head", "wave16_candidate_input_digests", "stacked_pr_parent_revision", "source_main_base_revision", "missing_evidence_receipts", "phase_rows", "remaining_unit_count"}, "meta fields")
     catalog = {row["asset_id"]: row for row in read_jsonl(CATALOG)}
-    require(subprocess.run(["git", "cat-file", "-e", f"{WAVE16_SHA}^{{commit}}"], cwd=ROOT).returncode == 0, "wave16 commit object")
-    require(subprocess.run(["git", "merge-base", "--is-ancestor", REV, WAVE16_SHA], cwd=ROOT).returncode == 0, "wave16 merge base")
+    full_wave16_object = git_commit_exists(WAVE16_SHA)
+    full_base_object = git_commit_exists(REV)
+    if full_wave16_object and full_base_object:
+        require(subprocess.run(["git", "merge-base", "--is-ancestor", REV, WAVE16_SHA], cwd=ROOT, capture_output=True).returncode == 0, "wave16 merge base")
     require(len(catalog) == 4020, "catalog count")
     require(len(rows) == 8 and meta["record_count"] == 8, "record count")
     require(meta["schema_revision"] == 10 and meta["batch_id"] == BATCH, "schema/batch")
-    require(meta["parent_revision"] == REV and meta["wave16_candidate_ref"] == WAVE16_REF, "revision overlay")
+    require(meta["parent_revision"] == REV and meta["source_main_base_revision"] == REV, "source main base")
+    require(meta["stacked_pr_parent_revision"] == WAVE16_SHA and meta["wave16_candidate_ref"] == WAVE16_REF and meta["wave16_candidate_head"] == WAVE16_SHA, "stacked parent revision")
     require(meta["wave16_candidate_merge_base"] == REV, "wave16 merge base")
+    require(meta["wave16_candidate_input_digests"] == WAVE16_CANDIDATE_INPUT_DIGESTS, "Wave16 input digest pin")
+    require(meta["wave16_candidate_root"] == "stacked-tree:current-commit", "stacked tree root")
     require(meta["output_sha256"] == sha_file(LEDGER), "ledger digest")
     require(meta["semantic_link_counts"] == {"confirmed": 3, "rejected": 0, "unresolved": 5}, "status counts")
     require(meta["cumulative_reviewed_unit_count"] == 50 and meta["cumulative_reviewed_edge_count"] == 149 and meta["remaining_unit_count"] == 168, "cumulative counts")
@@ -270,11 +298,14 @@ def verify() -> None:
     missing = meta["missing_evidence_receipts"]
     require(len(missing) == 1 and missing[0]["unit_candidate_id"] == "IRUNIT-HIL-BR-15-HELIX-OS", "BR15 missing receipt")
     require("src/product-data/" in missing[0]["archive_path_absent"], "BR15 missing path")
-    require(not (ARCHIVE / "src/product-data").exists(), "BR15 direct implementation path absent")
     require(not (ARCHIVE / "src/product-data").exists(), "BR15 archive path unexpectedly present")
     for term in missing[0]["searched_terms"]:
         require(not any(term in path.read_text(errors="replace") for path in (ARCHIVE / "src").rglob("*") if path.is_file()), f"BR15 direct source search hit {term}")
     require(set(missing[0]["searched_terms"]) == {"ProductDataConnector", "ProductDataProjection", "HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN"}, "BR15 bounded search terms")
+    catalog_match_counts = {}
+    for term in missing[0]["searched_terms"]:
+        catalog_match_counts[term] = sum(1 for asset in catalog.values() if asset["artifact_evidence_kind"] == "implementation_source" and term in (ARCHIVE / asset["source_path"]).read_text(errors="replace"))
+    require(catalog_match_counts == missing[0]["catalog_implementation_source_match_counts"] == {term: 0 for term in missing[0]["searched_terms"]}, "BR15 catalog-wide implementation search counts")
 
     for unit, receipt in meta["bounded_search_receipts"].items():
         require(receipt["catalog_record_count"] == 4020, f"receipt catalog {unit}")
@@ -303,21 +334,32 @@ def verify() -> None:
     expected_inputs.update(f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.{suffix}" for wave in range(1, 16) for suffix in ("jsonl", "meta.json"))
     expected_inputs.update({"wave16_candidate/legacy-requirement-direct-semantic-review-wave16.jsonl", "wave16_candidate/legacy-requirement-direct-semantic-review-wave16.meta.json"})
     require(set(meta["inputs"]) == expected_inputs, "input path set")
+    require(canonical(meta["inputs"]) == INPUTS_SHA256, "input digest map pin")
     for name, digest in meta["inputs"].items():
         if name.startswith("wave16_candidate/"):
-            blob = git_blob(WAVE16_SHA, "docs/governance/" + name.removeprefix("wave16_candidate/"))
+            relative = "docs/governance/" + name.removeprefix("wave16_candidate/")
+            blob = wave16_tree_bytes(relative)
             require(sha_bytes(blob) == digest, f"input digest {name}")
+            if full_wave16_object:
+                object_blob = optional_git_blob(WAVE16_SHA, relative)
+                require(object_blob is not None and object_blob == blob, f"Wave16 object input {name}")
         else:
             path = ROOT / name
             require(path.is_file() and sha_file(path) == digest, f"input digest {name}")
-            require(sha_bytes(git_blob(REV, name)) == digest, f"parent revision input {name}")
-    w16ledger_blob = git_blob(WAVE16_SHA, "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl")
-    w16meta_blob = git_blob(WAVE16_SHA, "docs/governance/legacy-requirement-direct-semantic-review-wave16.meta.json")
+            if full_base_object:
+                object_blob = optional_git_blob(REV, name)
+                require(object_blob is not None and sha_bytes(object_blob) == digest, f"parent revision input {name}")
+    w16ledger_blob = wave16_tree_bytes("docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl")
+    w16meta_blob = wave16_tree_bytes("docs/governance/legacy-requirement-direct-semantic-review-wave16.meta.json")
     w16meta = json.loads(w16meta_blob)
     require(w16meta["batch_id"] == "LEGACY-SEMANTIC-WAVE16-2026-09-21", "wave16 candidate batch")
     require(w16meta["output_sha256"] == sha_bytes(w16ledger_blob), "wave16 candidate ledger digest")
     for input_name, input_digest in w16meta["inputs"].items():
-        require(sha_bytes(git_blob(WAVE16_SHA, input_name)) == input_digest, f"wave16 input digest {input_name}")
+        input_path = ROOT / input_name
+        require(input_path.is_file() and sha_file(input_path) == input_digest, f"wave16 input digest {input_name}")
+        if full_wave16_object:
+            object_blob = optional_git_blob(WAVE16_SHA, input_name)
+            require(object_blob is not None and sha_bytes(object_blob) == input_digest, f"wave16 input object {input_name}")
     expected_prior = []
     for wave in range(1, 16):
         stem = f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}"
@@ -325,7 +367,7 @@ def verify() -> None:
         expected_prior.append({"batch_id": prior_meta["batch_id"], "ledger_sha256": sha_file(ROOT / f"{stem}.jsonl"), "meta_sha256": sha_file(ROOT / f"{stem}.meta.json")})
     expected_prior.append({"batch_id": w16meta["batch_id"], "ledger_sha256": sha_bytes(w16ledger_blob), "meta_sha256": sha_bytes(w16meta_blob), "candidate_ref": WAVE16_REF, "merge_base": REV})
     require(meta["prior_review_batches"] == expected_prior, "prior review batches exact")
-    require(meta["wave16_candidate_root"] == "git-object:" + WAVE16_SHA, "portable wave16 root")
+    require(meta["wave16_candidate_root"] == "stacked-tree:current-commit", "stacked tree root")
 
     status_text = (ROOT / "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave17-status-2026-09-21.md").read_text()
     expected_phase_lines = ["| " + " | ".join((unit, UNITS[unit]["product"][0], phase["phase_id"], phase["current_status"], phase["legacy_capability_status"], phase["transition_assessment"], phase["gap"])) + " |" for unit in UNITS for phase in meta["phase_rows"][unit]]
@@ -345,7 +387,7 @@ def verify() -> None:
         "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave17-status-2026-09-21.md",
         "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave17-review-response-2026-09-21.md",
     ])
-    for marker in [REV, WAVE16_REF, "direct_phase_review_pending", "routing_correction_pending_direct_phase_review", "product_unit_boundary_human_decision_pending", "runtime、test、hook、CI、adapterは実行していない", "候補membershipはsemantic evidenceではない"]:
+    for marker in [REV, WAVE16_REF, "stacked PR parent", "Wave16 ledger/meta are available in the current tree", "direct_phase_review_pending", "routing_correction_pending_direct_phase_review", "product_unit_boundary_human_decision_pending", "runtime、test、hook、CI、adapterは実行していない", "候補membershipはsemantic evidenceではない"]:
         require(marker in docs, f"document marker {marker}")
     print("legacy requirement direct semantic review wave17: schema10 / 8 edges / 7 atoms / confirmed3 rejected0 unresolved5 / cumulative50 units149 edges / 168 units remaining / static verification passed")
 

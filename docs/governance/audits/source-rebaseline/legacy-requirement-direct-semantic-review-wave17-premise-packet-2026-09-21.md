@@ -3,7 +3,8 @@
 ## authoritative base / candidate overlay
 
 - base: `origin/main` `6dad906ed9a52c9e49611931645db2f298c6bf6a`
-- Wave16 candidate（未マージ、明示的にprior計算へ含める）: `74bfd04f7`（merge base `6dad906ed9a52c9e49611931645db2f298c6bf6a`）
+- stacked PR parent / Wave16 candidate（明示的にprior計算へ含める）: `74bfd04f7aa2384e1e30856ec6c29282b764e8c5`（merge base `6dad906ed9a52c9e49611931645db2f298c6bf6a`）
+- Wave16 ledger/meta are available in the current tree。`wave16_candidate_input_digests` にcanonical digestを固定し、shallow cloneではcurrent treeから検証する。full cloneでは可能な場合だけgit objectを追加照合する。
 - batch: `LEGACY-SEMANTIC-WAVE17-2026-09-21`
 - selected order: BR15-OS → BR16-HARNESS → BR16-OS
 - result: 3 units / 7 atoms / 8 evidence edges / confirmed 3 / unresolved 5 / rejected 0
@@ -48,7 +49,7 @@ connective fragmentsは `、` と `。`。C3DEのL5設計はA01/A02候補を部�
 | BR16-OS design | `LEGACY-ASSET-11770E4E81583B408E67` | `docs/design/helix/L6-function-design/ci-execution-telemetry.md` | `sha256:a5b74e97aaf8bd098eca6dcbd8565c10934ea4df04f281b0fb965592d54e7017` | source/candidate HEAD、DAG、telemetry。predecessor binding全体は未確認 |
 | BR16-OS implementation | `LEGACY-ASSET-F151382D9513557AF632` | `src/adapters/github-open-branch-plan-reservation-provider.ts` | `sha256:63623abeba8f1a72c8b059648412651fc629b12dbc62766442bb728572085004` | tree/head captureとread-after。CI stage/style bindingではない |
 
-BR15 implementationは直接資産なし。`ProductDataConnector`、`ProductDataProjection`、`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN` をarchive `root/src`で静的検索し、直接実装は確認できなかった。`root/src/product-data/`も存在しない。この結果は旧snapshotの調査結果であり、現行実装を確定する証拠ではない。
+BR15 implementationは直接資産なし。catalog-wide implementation_source match countは3検索語すべて0。`ProductDataConnector`、`ProductDataProjection`、`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN` をarchive `root/src`で静的検索し、直接実装は確認できなかった。`root/src/product-data/`も存在しない。この結果は旧snapshotの調査結果であり、現行実装を確定する証拠ではない。
 
 ## exact source and phase rows
 

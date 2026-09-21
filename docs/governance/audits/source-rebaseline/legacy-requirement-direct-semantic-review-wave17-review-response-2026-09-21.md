@@ -1,6 +1,6 @@
 # Wave17 review response（2026-09-21）
 
-Wave17は、旧HELIXの再発明ではなく、Wave16までの静的棚卸しを引き継いだ上流semantic premiseである。base `6dad906ed9a52c9e49611931645db2f298c6bf6a` と未マージWave16 `74bfd04f7` を分けて保持し、Wave16候補をprior計算へ明示的に含めた。
+Wave17は、旧HELIXの再発明ではなく、Wave16までの静的棚卸しを引き継いだ上流semantic premiseである。source main base `6dad906ed9a52c9e49611931645db2f298c6bf6a` とstacked PR parentのWave16 `74bfd04f7aa2384e1e30856ec6c29282b764e8c5` を分けて保持し、Wave16 ledger/metaはcurrent treeから固定digestでprior計算へ明示的に含めた。
 
 ## 結果
 
@@ -12,7 +12,7 @@ Wave17は、旧HELIXの再発明ではなく、Wave16までの静的棚卸しを
 
 要求edgeはA60のHIL-BR-15/16 exact source spanだけをconfirmedとし、候補文書のIDや存在から実装を生成していない。design/implementationはWave16 controlled-anchor gateを継承し、全てunresolved。BR16-HとBR16-OSのshared source spanは両unitに保存しつつ、shared semantic meaningを一度だけ扱う。
 
-BR15では `src/product-data/` が旧archive snapshotにもなく、`ProductDataConnector`、`ProductDataProjection`、`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN` の直接sourceも見つからない。これは旧snapshotの静的なmissing evidenceであり、現行実装の断定ではない。BR15のL6配置候補DD66は過去waveで使用済みのため、nonrequirement asset重複除外により再利用していない。
+BR15ではcatalog-wide implementation_source検索でも3語のmatch countが0で、`src/product-data/` が旧archive snapshotにもなく、`ProductDataConnector`、`ProductDataProjection`、`HIL_PRODUCT_DIRECT_WRITE_FORBIDDEN` の直接sourceも見つからない。これは旧snapshotの静的なmissing evidenceであり、現行実装の断定ではない。BR15のL6配置候補DD66は過去waveで使用済みのため、nonrequirement asset重複除外により再利用していない。
 
 ## admission boundary
 
