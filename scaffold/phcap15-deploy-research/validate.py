@@ -10,7 +10,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 INV_PATH = HERE / "inventory.json"
-ORIGIN = "3df81ad27157c471e004083783f37a5860eaa2ee"
+ORIGIN = "b27e61f079edf64eeddc43eb8095159b19730b94"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 PRODUCTS = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
 ASSET_IDS = [
@@ -84,6 +84,126 @@ EXPECTED_PROHIBITED_INFERENCE = [
 ]
 
 
+EXPECTED_KEYSETS = {
+    'root': frozenset(['authority_effect', 'base', 'consumer_residual', 'counts', 'current_evidence', 'decisions', 'equivalence_claim', 'failure_residual', 'gaps', 'human_decision_ref', 'ledger_provenance', 'legacy_phase_assessment', 'meaning_change_applied', 'old_runtime_test_ci_execution', 'product_boundary_candidates', 'prohibited_inference', 'rebaseline', 'schema', 'scope', 'status', 'successor_requirement_ids', 'task', 'verification_contract']),
+    'root.base': frozenset(['branch', 'captured_at', 'origin_main_commit', 'source_revision', 'worktree']),
+    'root.consumer_residual': frozenset(['consumer_closed_assets', 'consumer_records_observed', 'selected_asset_consumer_refs', 'status', 'unresolved']),
+    'root.counts': frozenset(['candidate_edges', 'candidate_phase_joins', 'consumer_closed_assets', 'current_refs', 'decision_matches', 'defined_products', 'failure_execution_receipts', 'legacy_assets', 'product_units', 'source_anchors']),
+    'root.current_evidence': frozenset(['acceptance_status', 'authority_status', 'implementation_status', 'operation_status', 'refs']),
+    'root.current_evidence.refs[]': frozenset(['authority_effect', 'classification', 'end_line', 'exact_text', 'line_sha256', 'meaning', 'path', 'product', 'ref_id', 'sha256', 'start_line', 'status']),
+    'root.decisions': frozenset(['matching_append_only_decision_record_count', 'per_asset', 'selected_asset_ids', 'status']),
+    'root.decisions.per_asset': frozenset(['LEGACY-ASSET-1251704E0BE627232E00', 'LEGACY-ASSET-189702B332643A3BFDAF', 'LEGACY-ASSET-54330A68064B58B22259']),
+    'root.failure_residual': frozenset(['current_failure_status', 'execution_receipts', 'historical_failure_or_rollback_obligations_preserved', 'status', 'unresolved']),
+    'root.ledger_provenance': frozenset(['asset_ledger_path', 'asset_ledger_record_count', 'asset_ledger_sha256', 'decision_ledger_path', 'decision_ledger_record_count', 'decision_ledger_sha256', 'phase_inventory_path', 'phase_inventory_sha256', 'phase_ledger_path', 'phase_ledger_record_count', 'phase_ledger_sha256']),
+    'root.legacy_phase_assessment': frozenset(['assets', 'candidate_phase_joins', 'legacy_execution_performed', 'legacy_implementation_status', 'maximum_layer_evidenced', 'phase_capability_status']),
+    'root.legacy_phase_assessment.assets[]': frozenset(['archive_path', 'asset_class', 'asset_id', 'authority_status', 'consumer_evidence', 'consumer_refs', 'decision_record_ref', 'disposition', 'external_effect_status', 'failure_evidence', 'implementation_status', 'ledger_snapshot', 'legacy_execution_performed', 'phase_classification_snapshot', 'reuse_exclusion_class', 'source_anchors', 'source_line_count', 'source_path', 'source_revision', 'source_sha256', 'unresolved']),
+    'root.legacy_phase_assessment.assets[].consumer_evidence': frozenset(['anchor_ids', 'consumer_refs', 'observed', 'status', 'unknown']),
+    'root.legacy_phase_assessment.assets[].failure_evidence': frozenset(['anchor_ids', 'execution_receipts', 'observed', 'status', 'unknown']),
+    'root.legacy_phase_assessment.assets[].ledger_snapshot': frozenset(['approval_revision', 'asset_class', 'asset_id', 'authority_status', 'consumer_refs', 'copy_performed_at', 'copy_performed_by', 'decided_at', 'decided_by', 'decision_record_ref', 'disposition', 'executability_status', 'external_effect_status', 'implementation_status', 'meaning_interface_invariance_reason', 'migration_preconditions', 'pair_ids', 'product_target', 'read_after_record_ref', 'reuse_exclusion_class', 'revision', 'rights_status', 'secret_status', 'source_path', 'source_provenance_ref', 'source_revision', 'source_sha256', 'source_surface', 'target_path', 'target_sha256', 'upstream_ids']),
+    'root.legacy_phase_assessment.assets[].phase_classification_snapshot': frozenset(['archive_manifest_digest_match', 'artifact_evidence_kind', 'asset_id', 'authority_effect', 'candidate_phase_targets', 'candidate_product_targets', 'classification_id', 'consumer_closure_status', 'consumer_refs', 'implementation_evidence_state', 'legacy_execution_performed', 'legacy_implementation_status', 'phase_assessments', 'phase_classification_status', 'product_assessments', 'product_classification_status', 'source_path', 'source_revision', 'source_sha256', 'unresolved']),
+    'root.legacy_phase_assessment.assets[].phase_classification_snapshot.phase_assessments[]': frozenset(['confidence', 'evidence', 'phase', 'source_batches']),
+    'root.legacy_phase_assessment.assets[].phase_classification_snapshot.product_assessments[]': frozenset(['confidence', 'evidence_status', 'product', 'rationale', 'source_batches']),
+    'root.legacy_phase_assessment.assets[].source_anchors[]': frozenset(['anchor_id', 'exact_text', 'line_end', 'line_start', 'meaning', 'sha256']),
+    'root.legacy_phase_assessment.candidate_phase_joins[]': frozenset(['asset_id', 'candidate_phase_targets', 'phase_classification_status']),
+    'root.product_boundary_candidates': frozenset(['all_products_status', 'authority_effect', 'boundary_only_products', 'current_implementation_claim', 'defined_product_set', 'direct_deployment_evidence_products', 'products']),
+    'root.product_boundary_candidates.products[]': frozenset(['acceptance_status', 'authority_status', 'current_evidence_status', 'direct_current_ref_ids', 'implementation_status', 'legacy_candidate_status', 'operation_status', 'product', 'status', 'unresolved']),
+    'root.rebaseline': frozenset(['changed', 'origin_main_at_final', 'origin_main_at_start', 'stop_condition']),
+    'root.scope': frozenset(['candidate_edges', 'candidate_phase_joins', 'candidate_units', 'legacy_asset_ids', 'legacy_layer_reach', 'phase_inventory_product_targets', 'product_targets']),
+    'root.scope.candidate_edges[]': frozenset(['authority_effect', 'edge_id', 'evidence_ref_ids', 'from_unit', 'relation', 'status', 'to_unit', 'unresolved']),
+    'root.scope.candidate_phase_joins[]': frozenset(['asset_id', 'basis', 'phase', 'status']),
+    'root.scope.candidate_units[]': frozenset(['authority_status', 'current_acceptance_status', 'current_implementation_status', 'current_operation_status', 'evidence_ref_ids', 'product', 'status', 'unit_id', 'unresolved']),
+    'root.task': frozenset(['inventory_path', 'inventory_sha256', 'phase', 'phase_record_snapshot', 'task_id', 'title']),
+    'root.task.phase_record_snapshot': frozenset(['authority_effect', 'current', 'gaps', 'legacy', 'new_build_allowed', 'phase', 'product_targets', 'scaffold', 'task_id', 'title', 'transition_assessment']),
+    'root.task.phase_record_snapshot.current': frozenset(['evidence_products', 'refs', 'status']),
+    'root.task.phase_record_snapshot.legacy': frozenset(['assessment', 'capability_status', 'exists', 'layers_evidenced', 'maximum_layer_evidenced', 'representative_assets']),
+    'root.task.phase_record_snapshot.legacy.representative_assets[]': frozenset(['asset_id', 'implementation_status', 'source_path']),
+    'root.verification_contract': frozenset(['archive_read_only', 'negative_cases', 'old_runtime_test_ci_execution', 'requires_exact_source_spans', 'requires_ledger_state_reconciliation', 'unknowns_must_remain_explicit']),
+}
+EXPECTED_FAILURE_UNRESOLVED = [
+    "historical command execution status unknown",
+    "failure/incident/rollback receipts absent from selected ledgers",
+    "current deployment failure behavior and owner unknown",
+]
+EXPECTED_CONSUMER_UNRESOLVED = [
+    "consumer identity and read-after unknown",
+    "runtime consumer relation unknown",
+    "permitted log/telemetry export closure unknown",
+]
+EXPECTED_ASSET_FAILURE_OBSERVED = [
+    "source describes smoke／rollback／approval or rollout boundary",
+    "no execution receipt is present in selected ledgers",
+]
+EXPECTED_ASSET_FAILURE_UNKNOWN = [
+    "whether any historical command actually ran",
+    "failure incident outcome and rollback evidence",
+    "current deployment applicability",
+]
+EXPECTED_ASSET_CONSUMER_OBSERVED = [
+    "source names consumer setup, consumer readiness or artifact users as candidate surfaces",
+]
+EXPECTED_ASSET_CONSUMER_UNKNOWN = [
+    "consumer identity and read-after",
+    "consumer adoption and closure",
+    "current runtime consumer relation",
+]
+EXPECTED_ASSET_UNRESOLVED = {
+    ASSET_IDS[0]: [
+        "product_candidate_requires_semantic_review",
+        "requires_unit_connection_composite_split",
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "failure_execution_receipt_unknown",
+        "consumer_identity_and_read_after_unknown",
+        "four_product_owner_split_pending",
+    ],
+    ASSET_IDS[1]: [
+        "product_candidate_requires_semantic_review",
+        "requires_unit_connection_composite_split",
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "failure_execution_receipt_unknown",
+        "consumer_identity_and_read_after_unknown",
+        "four_product_owner_split_pending",
+    ],
+    ASSET_IDS[2]: [
+        "requires_semantic_split",
+        "product_candidate_requires_semantic_review",
+        "requires_unit_connection_composite_split",
+        "consumer_closure_pending",
+        "legacy_implementation_status_unknown",
+        "failure_execution_receipt_unknown",
+        "consumer_identity_and_read_after_unknown",
+        "four_product_owner_split_pending",
+    ],
+}
+EXPECTED_ANCHOR_MEANINGS = {
+    'LEGACY-ASSET-54330A68064B58B22259-A01': 'design header and pair boundary',
+    'LEGACY-ASSET-54330A68064B58B22259-A02': 'current smoke and consumer setup evidence',
+    'LEGACY-ASSET-54330A68064B58B22259-A03': 'source/test/evidence boundary table',
+    'LEGACY-ASSET-54330A68064B58B22259-A04': 'unfinished deployment and approval boundary',
+    'LEGACY-ASSET-1251704E0BE627232E00-A01': 'local build and consumer smoke scope',
+    'LEGACY-ASSET-1251704E0BE627232E00-A02': 'smoke and rollback conditions',
+    'LEGACY-ASSET-1251704E0BE627232E00-A03': 'unfinished external rollout blocker',
+    'LEGACY-ASSET-189702B332643A3BFDAF-A01': 'plan review evidence and local smoke boundary',
+    'LEGACY-ASSET-189702B332643A3BFDAF-A02': 'plan purpose and scope',
+    'LEGACY-ASSET-189702B332643A3BFDAF-A03': 'plan DoD and non-rollout boundary',
+    'LEGACY-ASSET-189702B332643A3BFDAF-A04': 'plan completion evidence',
+    'LEGACY-ASSET-189702B332643A3BFDAF-A05': 'plan artifact and coverage record',
+}
+EXPECTED_NEGATIVE_CASES = [
+    "authority/meaning/successor/human decision/equivalence promotion",
+    "source and archive digest/span tamper",
+    "legacy implementation/execution promotion",
+    "decision history invention",
+    "failure receipt invention",
+    "consumer closure invention",
+    "Web direct evidence invention",
+    "phase join promotion",
+    "current implementation/acceptance promotion",
+    "product owner/edge authority promotion",
+]
+
+
 def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -107,8 +227,30 @@ def nonempty(value) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
-def validate(data: dict, check_files: bool = True) -> list[str]:
+def validate_keysets(data: object) -> list[str]:
     errors: list[str] = []
+
+    def walk(value: object, path: str) -> None:
+        expected = EXPECTED_KEYSETS.get(path)
+        if expected is not None:
+            if not isinstance(value, dict):
+                errors.append("E_KEYSET_TYPE:" + path)
+            elif set(value) != expected:
+                errors.append("E_KEYSET:" + path)
+        if isinstance(value, dict):
+            for key, child in value.items():
+                walk(child, path + "." + str(key))
+        elif isinstance(value, list):
+            for child in value:
+                if isinstance(child, (dict, list)):
+                    walk(child, path + "[]")
+
+    walk(data, "root")
+    return errors
+
+
+def validate(data: dict, check_files: bool = True) -> list[str]:
+    errors: list[str] = validate_keysets(data)
 
     def req(condition: bool, code: str) -> None:
         if not condition:
@@ -306,6 +448,7 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
             local_anchor_ids.add(anchor_id)
             all_anchor_ids.add(anchor_id)
             req(nonempty(anchor.get("meaning")), "E_ANCHOR_MEANING:" + str(anchor_id))
+            req(anchor.get("meaning") == EXPECTED_ANCHOR_MEANINGS.get(anchor_id), "E_ANCHOR_MEANING_BODY:" + str(anchor_id))
             if archive.is_file() and check_files:
                 actual = span_text(archive, anchor.get("line_start", 0), anchor.get("line_end", 0))
                 req(actual == anchor.get("exact_text"), "E_ANCHOR_TEXT:" + str(anchor_id))
@@ -314,11 +457,16 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
         failure = asset.get("failure_evidence", {})
         req(failure.get("status") == "source_contract_only_unexecuted", "E_FAILURE_STATUS:" + str(aid))
         req(failure.get("execution_receipts") == 0, "E_FAILURE_RECEIPTS:" + str(aid))
+        req(failure.get("observed") == EXPECTED_ASSET_FAILURE_OBSERVED, "E_FAILURE_OBSERVED_BODY:" + str(aid))
+        req(failure.get("unknown") == EXPECTED_ASSET_FAILURE_UNKNOWN, "E_FAILURE_UNKNOWN_BODY:" + str(aid))
         req(set(failure.get("anchor_ids", [])) <= local_anchor_ids, "E_FAILURE_ANCHORS:" + str(aid))
         consumer = asset.get("consumer_evidence", {})
         req(consumer.get("status") == "candidate_only_closure_pending", "E_CONSUMER_STATUS:" + str(aid))
         req(consumer.get("consumer_refs") == [], "E_CONSUMER_REFS:" + str(aid))
+        req(consumer.get("observed") == EXPECTED_ASSET_CONSUMER_OBSERVED, "E_CONSUMER_OBSERVED_BODY:" + str(aid))
+        req(consumer.get("unknown") == EXPECTED_ASSET_CONSUMER_UNKNOWN, "E_CONSUMER_UNKNOWN_BODY:" + str(aid))
         req(set(consumer.get("anchor_ids", [])) <= local_anchor_ids, "E_CONSUMER_ANCHORS:" + str(aid))
+        req(asset.get("unresolved") == EXPECTED_ASSET_UNRESOLVED.get(aid), "E_ASSET_UNRESOLVED_BODY:" + str(aid))
         req(selected_decisions.get(aid, []) == [], "E_ASSET_DECISION_ROWS:" + str(aid))
 
     req(data.get("legacy_phase_assessment", {}).get("candidate_phase_joins") == EXPECTED_PHASE_JOINS, "E_LEGACY_PHASE_JOINS")
@@ -333,11 +481,13 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     req(failure.get("execution_receipts") == 0, "E_FAILURE_TOTAL")
     req(failure.get("historical_failure_or_rollback_obligations_preserved") is True, "E_FAILURE_PRESERVED")
     req(failure.get("current_failure_status") == "unknown", "E_FAILURE_CURRENT")
+    req(failure.get("unresolved") == EXPECTED_FAILURE_UNRESOLVED, "E_FAILURE_UNRESOLVED_BODY")
     consumer = data.get("consumer_residual", {})
     req(consumer.get("status") == "candidate_only_closure_pending", "E_CONSUMER_TOTAL_STATUS")
     req(consumer.get("selected_asset_consumer_refs") == [], "E_CONSUMER_TOTAL_REFS")
     req(consumer.get("consumer_closed_assets") == 0, "E_CONSUMER_CLOSED")
     req(consumer.get("consumer_records_observed") == 0, "E_CONSUMER_RECORDS")
+    req(consumer.get("unresolved") == EXPECTED_CONSUMER_UNRESOLVED, "E_CONSUMER_UNRESOLVED_BODY")
 
     req(data.get("gaps") == EXPECTED_GAPS, "E_GAPS_CONTENT")
     req(data.get("prohibited_inference") == EXPECTED_PROHIBITED_INFERENCE, "E_PROHIBITED_CONTENT")
@@ -347,7 +497,8 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     req(verification.get("requires_exact_source_spans") is True, "E_VERIFY_SPANS")
     req(verification.get("requires_ledger_state_reconciliation") is True, "E_VERIFY_LEDGER")
     req(verification.get("unknowns_must_remain_explicit") is True, "E_VERIFY_UNKNOWNS")
-    req(isinstance(verification.get("negative_cases"), list) and len(verification["negative_cases"]) >= 8, "E_VERIFY_NEGATIVE_CASES")
+    req(verification.get("negative_cases") == EXPECTED_NEGATIVE_CASES, "E_VERIFY_NEGATIVE_CASES")
+    req(all_anchor_ids == set(EXPECTED_ANCHOR_MEANINGS), "E_ANCHOR_ID_SET")
 
     counts = data.get("counts", {})
     req(counts.get("defined_products") == len(PRODUCTS), "E_COUNT_PRODUCTS")

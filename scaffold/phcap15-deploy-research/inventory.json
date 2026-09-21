@@ -8,15 +8,15 @@
   "equivalence_claim": null,
   "old_runtime_test_ci_execution": false,
   "base": {
-    "origin_main_commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
+    "origin_main_commit": "b27e61f079edf64eeddc43eb8095159b19730b94",
     "branch": "audit/phcap15-deploy-static-evidence",
     "worktree": "/home/tenni/.helix-worktrees/phcap15-deploy-static-evidence",
     "captured_at": "2026-09-22",
     "source_revision": "legacy-generation-2026-09-14"
   },
   "rebaseline": {
-    "origin_main_at_start": "3df81ad27157c471e004083783f37a5860eaa2ee",
-    "origin_main_at_final": "3df81ad27157c471e004083783f37a5860eaa2ee",
+    "origin_main_at_start": "b27e61f079edf64eeddc43eb8095159b19730b94",
+    "origin_main_at_final": "b27e61f079edf64eeddc43eb8095159b19730b94",
     "changed": false,
     "stop_condition": "latest origin/mainが変わったらrebaselineしてから静的判定を再実行する"
   },

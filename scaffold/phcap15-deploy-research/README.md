@@ -2,7 +2,7 @@
 
 PHCAP-15（Deploy）の旧asset、現行4製品の責務境界、phase join、failure／consumer残差を静的に束ねるresearch premise候補である。`authority_effect: none`、`new_build_allowed: false`相当の境界を維持し、要求採否、product owner、successor、実装、受入、deployment実行、consumer closureを生成しない。
 
-基準は最新`origin/main` `3df81ad27157c471e004083783f37a5860eaa2ee`である。PHCAP-15のinventoryは`draft_requirement`、旧代表assetはL13 post-deploy／plan、`documented_partial`、`degraded_to_draft`、`deployment authority、tenant/runtime境界、実装・検証は未成立`と記録する。
+基準は最新`origin/main` `b27e61f079edf64eeddc43eb8095159b19730b94`である。PHCAP-15のinventoryは`draft_requirement`、旧代表assetはL13 post-deploy／plan、`documented_partial`、`degraded_to_draft`、`deployment authority、tenant/runtime境界、実装・検証は未成立`と記録する。
 
 ## 旧assetと判断境界
 
@@ -31,7 +31,7 @@ PHCAP-15（Deploy）の旧asset、現行4製品の責務境界、phase join、fa
 
 deployment authority、tenant／runtime境界の実装、release／配備／監視／復旧／rollbackの実行結果、failure／incident receipt、consumer closure、現行L13／L11成立、意味等価、successor、要求採否、人間decision、旧asset再利用は未確定である。`confirmed`、`accepted`、旧review green、sourceにあるcommand名、current L2／L11 draftの存在から、現行capabilityや完了を生成しない。
 
-`inventory.json`はphase record、3 assetのledger／phase snapshot、12 exact source anchor、4製品9 current ref、5 candidate edge、PHCAP-07を含むphase join、failure／consumer unknownを固定する。`validate.py`はこれらのdigest・span・状態・4製品境界・unknownをread-onlyで検査し、`selfcheck.py`はauthority、実装、decision、failure、consumer、product、phase joinの昇格を否定する。
+`inventory.json`はphase record、3 assetのledger／phase snapshot、12 exact source anchor、4製品9 current ref、5 candidate edge、PHCAP-07を含むphase join、failure／consumer unknownを固定する。validatorはrootから各配列要素までの期待key集合を固定し、failure／consumerのunresolved本文、各anchorのmeaning、verification negative_cases本文を改変不能な期待値として照合する。`validate.py`はこれらのdigest・span・状態・4製品境界・unknownをread-onlyで検査し、`selfcheck.py`はauthority、実装、decision、failure、consumer、product、phase join、inventory key、anchor meaningの昇格・改竄を41件のnegative caseで否定する。
 
 ```text
 python3 -B scaffold/phcap15-deploy-research/validate.py
