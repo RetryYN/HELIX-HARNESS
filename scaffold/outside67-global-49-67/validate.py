@@ -25,6 +25,43 @@ REGISTER_SHA = "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b
 EXPECTED_PRODUCTS = {"HELIX-HARNESS": 1, "HELIX-OS": 1, "HELIX-Web": 1, "HELIX-Web-OS": 1, "shared-cross-product": 15}
 EXPECTED_PHASES = {"L11-acceptance": 5, "upstream-governance-or-crosswalk": 14}
 
+EXPECTED_FINDINGS = [
+    "PR #1978 source setのoutside-67 reportからglobal ordinal 49–67の19 path_revision_pairを固定した。",
+    "四製品候補とphase候補はpath由来の候補に留め、product／phase authorityへ昇格していない。",
+    "全19件でimplementation、degradation、semantic inclusionをunknownとして保持した。",
+    "pre-isolation／archiveのblob OID、SHA-256、bytes、same／differentをGit objectから再照合した。",
+    "歴史的13 live holdingをsupersedes終端から再計算し、path／blob／SHAのexact relationを全件保持した。",
+    "ordinal 58はLEGACY-RULE holdingへのpath文字列参照のみで、blob／SHA包含ではない。",
+]
+EXPECTED_PROHIBITED_INFERENCE = [
+    "path_revision_pairをrequirement atom、requirement identity、successorへ変換しない",
+    "path由来product／phase候補をproduct owner／phase authorityへ昇格しない",
+    "unknown implementation／degradationをimplemented／degraded／unimplementedへ補完しない",
+    "path／blob／SHAの不一致を意味の不在、不採用、廃止へ解釈しない",
+    "旧archive runtime／test／CI／hook／adapterを実行せず、oracleやfallbackに使わない",
+    "正式registerへのappend、採否、承認、L3/L10/L11、releaseを生成しない",
+]
+
+KEYSETS = {
+    "root": {"schema", "candidate_id", "status", "authority_effect", "meaning_change_applied", "successor_requirement_ids", "human_decision_ref", "formal_register_append", "old_runtime_test_ci_execution", "scope", "classification_basis", "live_holdings", "source_items", "aggregate", "findings", "prohibited_inference", "verification_scope"},
+    "scope": {"pre_isolation_commit", "archive_commit", "historical_capture_commit", "source_report_path", "source_report_sha256", "management_register_path", "management_register_sha256", "selected_ordinal_start", "selected_ordinal_end", "selected_count", "source_unit", "requirement_atoms", "read_only", "same_blob_count", "changed_blob_count", "archive_root_present_count", "live_holding_count", "base_change_condition"},
+    "classification_basis": {"product", "phase", "implementation", "degradation", "semantic_inclusion"},
+    "live_holding": {"registration_id", "source_atom_set_ref", "source_atom_set_sha256", "source_atom_set_record_count", "registration_kind", "product_target", "authority_effect"},
+    "source_items": {"path", "record_count", "sha256"},
+    "item": {"source_item_id", "source_ordinal", "source_unit", "source_path", "artifact_kind", "diff_status", "product_scope", "phase_scope", "path_classification", "implementation_assessment", "degradation_assessment", "implementation_status", "degradation_status", "semantic_inclusion", "semantic_inclusion_status", "semantic_inclusion_reason", "pre_isolation", "archive", "archive_root_present", "current_capture", "live_holding_relations", "existing_holding_inclusion_relation", "new_holding_needed", "source_holding_status", "semantic_disposition", "authority_effect", "meaning_change_applied", "successor_requirement_ids", "human_decision_ref", "old_runtime_test_ci_execution", "legacy_catalog_record_count"},
+    "path_classification": {"product_candidate", "phase_candidate", "classification_state", "product_status", "phase_status"},
+    "implementation_assessment": {"status", "evidence", "reason"},
+    "degradation_assessment": {"status", "evidence", "reason"},
+    "pre_isolation": {"commit", "blob_oid", "sha256", "bytes", "reported_blob_oid", "reported_blob_oid_matches_git"},
+    "archive": {"commit", "blob_oid", "sha256", "bytes", "relation_to_pre_isolation", "reported_blob_oid", "reported_blob_oid_matches_git"},
+    "current_capture": {"commit", "state", "blob_oid"},
+    "relation": {"registration_id", "source_atom_set_ref", "path_match_count", "pre_isolation_blob_match_count", "pre_isolation_sha256_match_count", "path_match_evidence", "blob_match_evidence", "sha256_match_evidence", "relation"},
+    "aggregate": {"product_candidate_counts", "phase_candidate_counts", "same_blob_count", "changed_blob_count", "not_in_any_live_holding_count", "path_reference_only_match_count", "exact_blob_or_sha_match_count", "implementation_unknown_count", "degradation_unknown_count", "semantic_inclusion_unknown_count", "source_holding_unassigned_count"},
+    "aggregate.product_candidate_counts": {"HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS", "shared-cross-product"},
+    "aggregate.phase_candidate_counts": {"L11-acceptance", "upstream-governance-or-crosswalk"},
+    "verification_scope": {"static_only", "evidence_kind", "checks"},
+}
+
 
 def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
@@ -122,6 +159,10 @@ def fail(errors: list[str], condition: bool, message: str) -> None:
         errors.append(message)
 
 
+def check_keyset(errors: list[str], value: object, expected: set[str], code: str) -> None:
+    fail(errors, isinstance(value, dict) and set(value) == expected, code)
+
+
 def canonical_items(items: list[dict]) -> bytes:
     return "".join(json.dumps(item, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for item in items).encode("utf-8")
 
@@ -138,6 +179,7 @@ def validate(inventory: dict | None = None, items: list[dict] | None = None) -> 
     except Exception as exc:  # pragma: no cover - fail closed for malformed evidence
         return [f"E_INPUT:{type(exc).__name__}:{exc}"]
 
+    check_keyset(errors, inventory, KEYSETS["root"], "E_KEYSET:root")
     fail(errors, inventory.get("schema") == "rdp001-outside67-global-classification-49-67/v1", "E_SCHEMA")
     fail(errors, inventory.get("candidate_id") == "RDP-001-OUTSIDE67-GLOBAL-49-67-0044", "E_CANDIDATE")
     fail(errors, inventory.get("status") == "findings_only", "E_STATUS")
@@ -151,6 +193,18 @@ def validate(inventory: dict | None = None, items: list[dict] | None = None) -> 
     fail(errors, sha(REPORT.read_bytes()) == REPORT_SHA, "E_REPORT_DIGEST")
     fail(errors, sha(REGISTER.read_bytes()) == REGISTER_SHA, "E_REGISTER_DIGEST")
     scope = inventory.get("scope", {})
+    check_keyset(errors, scope, KEYSETS["scope"], "E_KEYSET:scope")
+    check_keyset(errors, inventory.get("classification_basis", {}), KEYSETS["classification_basis"], "E_KEYSET:classification_basis")
+    check_keyset(errors, inventory.get("source_items", {}), KEYSETS["source_items"], "E_KEYSET:source_items")
+    check_keyset(errors, inventory.get("aggregate", {}), KEYSETS["aggregate"], "E_KEYSET:aggregate")
+    aggregate = inventory.get("aggregate", {})
+    check_keyset(errors, aggregate.get("product_candidate_counts", {}), KEYSETS["aggregate.product_candidate_counts"], "E_KEYSET:aggregate.product_candidate_counts")
+    check_keyset(errors, aggregate.get("phase_candidate_counts", {}), KEYSETS["aggregate.phase_candidate_counts"], "E_KEYSET:aggregate.phase_candidate_counts")
+    check_keyset(errors, inventory.get("verification_scope", {}), KEYSETS["verification_scope"], "E_KEYSET:verification_scope")
+    fail(errors, inventory.get("findings") == EXPECTED_FINDINGS, "E_FINDINGS")
+    fail(errors, inventory.get("prohibited_inference") == EXPECTED_PROHIBITED_INFERENCE, "E_PROHIBITED_INFERENCE")
+    for holding in inventory.get("live_holdings", []):
+        check_keyset(errors, holding, KEYSETS["live_holding"], "E_KEYSET:live_holdings[]")
     fail(errors, scope.get("pre_isolation_commit") == PRE and scope.get("archive_commit") == ARCHIVE, "E_SOURCE_COMMITS")
     fail(errors, scope.get("historical_capture_commit") == CAPTURE, "E_HISTORICAL_CAPTURE")
     fail(errors, scope.get("selected_ordinal_start") == 49 and scope.get("selected_ordinal_end") == 67, "E_ORDINAL_RANGE")
@@ -169,6 +223,15 @@ def validate(inventory: dict | None = None, items: list[dict] | None = None) -> 
     same_count = different_count = path_only_count = exact_count = 0
     for offset, (item, row) in enumerate(zip(items, report_rows), 49):
         label = f"{offset}:{row.get('path')}"
+        check_keyset(errors, item, KEYSETS["item"], "E_KEYSET:item")
+        check_keyset(errors, item.get("path_classification", {}), KEYSETS["path_classification"], "E_KEYSET:item.path_classification")
+        check_keyset(errors, item.get("implementation_assessment", {}), KEYSETS["implementation_assessment"], "E_KEYSET:item.implementation_assessment")
+        check_keyset(errors, item.get("degradation_assessment", {}), KEYSETS["degradation_assessment"], "E_KEYSET:item.degradation_assessment")
+        check_keyset(errors, item.get("pre_isolation", {}), KEYSETS["pre_isolation"], "E_KEYSET:item.pre_isolation")
+        check_keyset(errors, item.get("archive", {}), KEYSETS["archive"], "E_KEYSET:item.archive")
+        check_keyset(errors, item.get("current_capture", {}), KEYSETS["current_capture"], "E_KEYSET:item.current_capture")
+        for relation_item in item.get("live_holding_relations", []):
+            check_keyset(errors, relation_item, KEYSETS["relation"], "E_KEYSET:item.live_holding_relations[]")
         fail(errors, item.get("source_item_id") == f"OUTSIDE67-GLOBAL-{offset:03d}", f"E_ITEM_ID:{label}")
         fail(errors, item.get("source_ordinal") == offset, f"E_ITEM_ORDINAL:{label}")
         fail(errors, item.get("source_unit") == "path_revision_pair", f"E_ITEM_UNIT:{label}")

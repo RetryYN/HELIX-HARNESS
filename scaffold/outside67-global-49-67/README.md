@@ -22,4 +22,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-`generate.py` は固定reportとGit objectから `inventory.json` と `source-items.jsonl` を再生成します。`validate.py` はgeneratorをimportせず、report、Git object、13 holding、digest、unknown境界を独立に再計算します。`selfcheck.py` はauthority昇格、product／phase／implementation／degradation／semantic inclusion昇格、blob／holding改変、旧実行記録の否定例を確認します。
+`generate.py` は固定reportとGit objectから `inventory.json` と `source-items.jsonl` を再生成します。`validate.py` はgeneratorをimportせず、findings／prohibited_inferenceのexact text、inventory／source-item／nested relationのrecursive keyset、report、Git object、13 holding、digest、unknown境界を独立に再計算します。`selfcheck.py` はbaseline greenを確認し、authority昇格、product／phase／implementation／degradation／semantic inclusion昇格、blob／holding改変、旧実行記録、findings／keyset改変の19 negative caseを期待error code付きで確認します。no-op mutationは受け入れません。

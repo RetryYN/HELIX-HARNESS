@@ -8,10 +8,10 @@
   "state": "registered",
   "reason": "PR #1978 source setのoutside-67 reportからglobal ordinal 49–67の19 path_revision_pairを固定し、path由来の四製品／phase候補、pre-isolation／archive blob、歴史的13 live holdingのexact path／blob／SHA relationを保存する。実装、failure／degraded／unimplemented、semantic inclusion、authority、要求identity、successorはunknownまたは未開始に留める。",
   "upstream": [
-    {"path": "scaffold/outside67-global-49-67/README.md", "sha256": "6ed4d13ebd8a6906fbc627ce402238b0f3028810f035b65c6cc2b2a5f60cb646", "note": "対象範囲・unknown境界・static-only契約"},
+    {"path": "scaffold/outside67-global-49-67/README.md", "sha256": "95cbf989d655ee0b3dfbeb31e2d26b4fe6dda585c7d43cdf5ba3e5d3f0bce549", "note": "対象範囲・unknown境界・static-only契約"},
     {"path": "scaffold/outside67-global-49-67/generate.py", "sha256": "15dccf6fec265e91b7df34aa410964565069e24bf96863d4f69ce35237180440", "note": "fixed report／Git object／13 holdingからの再生成"},
-    {"path": "scaffold/outside67-global-49-67/validate.py", "sha256": "b8738c33be09edde33c70926aa98906f176c7f0db452895a26e7eaab29022dd8", "note": "generator非依存のexact relation validator"},
-    {"path": "scaffold/outside67-global-49-67/selfcheck.py", "sha256": "81aa017780de1532b6bba7b00e5e17121a5582e201322087d9ba1f2d8ea64288", "note": "15否定自己検査"},
+    {"path": "scaffold/outside67-global-49-67/validate.py", "sha256": "4d764e898ad4d60ae25334aede472a7ce70737e3c675d77d86970b0ed2a771de", "note": "generator非依存のexact relation、findings／prohibited text、recursive keyset validator"},
+    {"path": "scaffold/outside67-global-49-67/selfcheck.py", "sha256": "38620dc79afe26513c9f560c4e89b3dc9417051d7348c1e37f52a345b4b3c3fa", "note": "19否定自己検査（exact code／no-op guard含む）"},
     {"path": "scaffold/outside67-global-49-67/inventory.json", "sha256": "b9d8e717763bb15d72f89f6e664f26e05aacc9168140349d9593091b222d53da", "note": "19件の分類集計・13 holding snapshot・unknown境界"},
     {"path": "scaffold/outside67-global-49-67/source-items.jsonl", "sha256": "db916f5d64af2b8daf545f518da0d8c52e9dba579f15d91e13b47cc91a1f5c04", "note": "49–67各pathのblob／SHA／holding relation"},
     {"path": "scaffold/pre-isolation-outside-holding-67/report.json", "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795", "note": "PR #1978 outside-67 67 path source set"},
