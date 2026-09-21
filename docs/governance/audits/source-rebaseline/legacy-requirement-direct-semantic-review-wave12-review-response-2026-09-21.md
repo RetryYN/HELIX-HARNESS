@@ -8,6 +8,8 @@
 
 選択assetは `LEGACY-ASSET-A60CF91DD2AF6693E6F9`, `LEGACY-ASSET-F99FFC68663F1106347E`, `LEGACY-ASSET-57A29D57A3AD07CA4DFF`, `LEGACY-ASSET-3B8F5F0230F7469B5D11`, `LEGACY-ASSET-4253C9EE9C0E93F5980A`, `LEGACY-ASSET-AE6C75BE20AE0DC9BD20`, `LEGACY-ASSET-E3E4D23A3AB9C149BE3D` のexact setである。既Waveとdesign／plan／implementation assetの重複は0件。`LEGACY-ASSET-33E80E6D11CC51ADA817` は既Wave重複のため除外した。
 
-candidate membershipはsemantic evidenceではない。archive内runtime、test、hook、CI、adapterは実行していない。独立review待ちであり、要求採否、製品境界decision、実装成立、consumer closure、new build許可を生成しない。
+candidate membershipはsemantic evidenceではない。archive内runtime、test、hook、CI、adapterは実行していない。要求採否、製品境界decision、実装成立、consumer closure、new build許可を生成しない。
 
 独立監査はBlocker 0／Major 0／Minor 1を報告した。MinorはE3E4のclassification conflictを宣言値だけでなくcatalogのphase／product集合から再計算すべきという指摘であり、phase非交差、HELIX-HARNESS候補不在、product候補空集合をverifierへ追加した。指摘対応後の未解消Blocker／Major／Minorは0件である。
+
+Claude GUI review round 1はMajor 1／Minor 1を報告した。Majorはconfirmed／unresolved recordの限定counterevidenceとdesign confirmed条件の検査欠落、Minorはdesign confirmed atomとdesign unresolved atomのreceipt上の未分離である。各recordに非実装・consumer closure境界を追加し、verifierにrole別counterevidenceとdesign confirmed条件を追加、receipt／statusをconfirmed／unresolvedに分離した。対応後の独立再監査はstatus表の全unit行とmeta aggregateのexact照合も確認し、未解消Blocker／Major／Minor 0件とした。Claude再review待ちである。

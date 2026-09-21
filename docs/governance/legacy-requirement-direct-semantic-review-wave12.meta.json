@@ -101,7 +101,7 @@
   },
   "legacy_execution_performed": false,
   "new_build_allowed": false,
-  "output_sha256": "sha256:40ed2f9d74624a16b1f578d19cb733f2efa8fa8499580d51b9ec46c5edfc7a17",
+  "output_sha256": "sha256:1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566",
   "parent_revision": "1c6062e4922b01bc0584aa76e902b737b65da25d",
   "prior_review_batches": [
     {
@@ -269,7 +269,6 @@
           "BR07-HARNESS-A02",
           "BR07-HARNESS-A03"
         ],
-        "design_partial_atom_ids": [],
         "design_rejected_asset_ids": [
           "LEGACY-ASSET-F99FFC68663F1106347E"
         ],
@@ -299,7 +298,6 @@
         "atom_inventory_sha256": "sha256:60e71270edfee593279b9d2dee6038f67ef3c6529b6b4f1cadf909f002dadf6f",
         "connective_fragments_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "contract_confirmed_atom_ids_sha256": "sha256:9a79eee6249807119e1a6ffa7d093a79345190d7d7faa9284b926d16b2837a3c",
-        "design_partial_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "design_rejected_asset_ids_sha256": "sha256:cad3c48e3e824976eff9a2019c54b5bfb525110d313e518aad4fa68baba05335",
         "design_partial_pending_kind_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "implementation_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -314,7 +312,11 @@
         "semantic_edge_coverage_complete": false,
         "no_shared_source_span": true,
         "product_boundary_decision_complete": false,
-        "product_exclusive_contract_coverage_complete": true
+        "product_exclusive_contract_coverage_complete": true,
+        "design_confirmed_atom_ids": [],
+        "design_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "design_unresolved_atom_ids": [],
+        "design_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
       },
       "phase_authority_status": "candidate_unchanged",
       "phase_capability_assessments": [
@@ -394,10 +396,6 @@
           "BR21-HARNESS-A02",
           "BR21-HARNESS-A03"
         ],
-        "design_partial_atom_ids": [
-          "BR21-HARNESS-A02",
-          "BR21-HARNESS-A03"
-        ],
         "design_rejected_asset_ids": [],
         "design_partial_pending_kind_atom_ids": [],
         "implementation_confirmed_atom_ids": [],
@@ -423,7 +421,6 @@
         "atom_inventory_sha256": "sha256:e82d1b2010252f5198fd841413f6da035b023fbf9e9090a148071ff0c0828084",
         "connective_fragments_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "contract_confirmed_atom_ids_sha256": "sha256:8ac5054ce5757963b16460b02a494ae847569aa80a06e9479018ed536252347f",
-        "design_partial_atom_ids_sha256": "sha256:032ad517b9416ebb2173182256d9087a3937d13649833d3465fb31fabf5a5e3c",
         "design_rejected_asset_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "design_partial_pending_kind_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "implementation_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -438,7 +435,14 @@
         "semantic_edge_coverage_complete": false,
         "no_shared_source_span": true,
         "product_boundary_decision_complete": false,
-        "product_exclusive_contract_coverage_complete": true
+        "product_exclusive_contract_coverage_complete": true,
+        "design_confirmed_atom_ids": [
+          "BR21-HARNESS-A02",
+          "BR21-HARNESS-A03"
+        ],
+        "design_confirmed_atom_ids_sha256": "sha256:032ad517b9416ebb2173182256d9087a3937d13649833d3465fb31fabf5a5e3c",
+        "design_unresolved_atom_ids": [],
+        "design_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
       },
       "phase_authority_status": "candidate_unchanged",
       "phase_capability_assessments": [
@@ -553,7 +557,6 @@
           "FR45-HARNESS-A05",
           "FR45-HARNESS-A06"
         ],
-        "design_partial_atom_ids": [],
         "design_rejected_asset_ids": [],
         "design_partial_pending_kind_atom_ids": [],
         "implementation_confirmed_atom_ids": [],
@@ -588,7 +591,6 @@
         "atom_inventory_sha256": "sha256:38734cd587da852e0fcaf4cd55804a0877226d121e20e2e7cb27ca641ee6126c",
         "connective_fragments_sha256": "sha256:b85b7370ebcd70cd8964104b09c2781ebcc35d3673f9fd39304c141678d44e93",
         "contract_confirmed_atom_ids_sha256": "sha256:ed906d3e6a1f21d57caccedb83627798a9b457bf2edafc797737009c787ebc1d",
-        "design_partial_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "design_rejected_asset_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "design_partial_pending_kind_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
         "implementation_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
@@ -603,7 +605,11 @@
         "semantic_edge_coverage_complete": false,
         "no_shared_source_span": true,
         "product_boundary_decision_complete": false,
-        "product_exclusive_contract_coverage_complete": true
+        "product_exclusive_contract_coverage_complete": true,
+        "design_confirmed_atom_ids": [],
+        "design_confirmed_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "design_unresolved_atom_ids": [],
+        "design_unresolved_atom_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
       },
       "phase_authority_status": "candidate_unchanged",
       "phase_capability_assessments": [
