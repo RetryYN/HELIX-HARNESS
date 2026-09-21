@@ -115,6 +115,19 @@ def fail(errors: list[str], condition: bool, message: str) -> None:
         errors.append(message)
 
 
+def is_ancestor(base: str, head: str = "HEAD") -> bool:
+    if not isinstance(base, str) or not base:
+        return False
+    result = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", base, head],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    return result.returncode == 0
+
+
 def expected_holding_rows(rows: list[dict]) -> list[dict]:
     result = []
     for row in rows:
@@ -161,8 +174,9 @@ def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
     fail(errors, base.get("historical_capture_commit") == CAPTURE, "E_CAPTURE")
     fail(errors, base.get("historical_capture_is_ancestor_of_latest_main") is True, "E_ANCESTOR_METADATA")
     fail(errors, base.get("rebaseline_required_before_admission") is True, "E_REBASELINE")
+    fail(errors, is_ancestor(base.get("latest_main_commit", "")), "E_CAPTURED_MAIN_NOT_ANCESTOR")
     try:
-        fail(errors, subprocess.run(["git", "merge-base", "--is-ancestor", CAPTURE, LATEST_MAIN], cwd=ROOT).returncode == 0, "E_CAPTURE_ANCESTOR")
+        fail(errors, is_ancestor(CAPTURE, LATEST_MAIN), "E_CAPTURE_ANCESTOR")
         fail(errors, historical_bytes == git_blob(CAPTURE, "docs/governance/management-provisional-requirement-register.jsonl"), "E_SNAPSHOT_NOT_CAPTURE")
     except (subprocess.CalledProcessError, OSError) as exc:
         errors.append(f"E_GIT:{exc}")
@@ -273,11 +287,7 @@ def validate(inv: dict, proposal: dict, read_after: dict) -> list[str]:
     if len(deps) >= 2:
         fail(errors, deps[0].get("head") == PR1975 and deps[0].get("merge_commit") == PR1975_MERGE and deps[0].get("status") == "merged_on_main" and HISTORICAL_REGISTER_PATH in deps[0].get("required_migration", ""), "E_PR1975_DEPENDENCY")
         fail(errors, deps[1].get("reference") == "PR #1978" and deps[1].get("local_ref") == "remotes/pr/1978" and deps[1].get("head") == PR1978 and deps[1].get("merge_commit") == LATEST_MAIN and deps[1].get("status") == "merged_on_main" and PR1978 in deps[1].get("required_migration", ""), "E_PR1978_DEPENDENCY")
-        try:
-            fail(errors, subprocess.run(["git", "rev-parse", "remotes/pr/1978"], cwd=ROOT, check=True, stdout=subprocess.PIPE, text=True).stdout.strip() == PR1978, "E_PR1978_HEAD_DRIFT")
-            fail(errors, subprocess.run(["git", "rev-parse", "origin/main"], cwd=ROOT, check=True, stdout=subprocess.PIPE, text=True).stdout.strip() == LATEST_MAIN, "E_MAIN_HEAD_DRIFT")
-        except (subprocess.CalledProcessError, OSError) as exc:
-            errors.append(f"E_DEPENDENCY_REF:{exc}")
+        fail(errors, is_ancestor(deps[1].get("merge_commit", "")), "E_PR1978_MERGE_NOT_ANCESTOR")
     fail(errors, inv.get("issue_projection", {}).get("issue") == 1813 and inv.get("issue_projection", {}).get("status") == "separate_update_required", "E_ISSUE_PROJECTION")
     return errors
 

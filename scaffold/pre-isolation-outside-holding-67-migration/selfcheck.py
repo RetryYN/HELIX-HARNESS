@@ -40,6 +40,18 @@ def expect_failure(label, mutate):
         raise SystemExit("FAIL migration selfcheck: " + label)
 
 
+def expect_error_code(label, mutate, expected_code):
+    inv = copy.deepcopy(base_inv)
+    proposal = copy.deepcopy(base_proposal)
+    read_after = copy.deepcopy(base_read_after)
+    mutate(inv, proposal, read_after)
+    errors = check(inv, proposal, read_after)
+    if any(error.startswith(expected_code) for error in errors):
+        print("PASS", label, expected_code)
+    else:
+        raise SystemExit("FAIL migration selfcheck: " + label + " expected " + expected_code + ": " + "; ".join(errors))
+
+
 cases = [
     ("append flag removal", lambda i, p, r: i.update(formal_register_append=False)),
     ("historical snapshot digest tamper", lambda i, p, r: i["historical_capture"].update(register_sha256="0" * 64)),
@@ -71,4 +83,15 @@ cases = [
 for label, mutate in cases:
     expect_failure(label, mutate)
 
-print("PASS outside-67 migration selfcheck: %d negative cases" % len(cases))
+expect_error_code(
+    "captured main non-ancestor base",
+    lambda i, p, r: i["base"].update(latest_main_commit="41878fff1309ad35a76c8ad439dbc8238cbfd1ea"),
+    "E_CAPTURED_MAIN_NOT_ANCESTOR",
+)
+expect_error_code(
+    "recorded PR1978 merge non-ancestor",
+    lambda i, p, r: i["dependencies"][1].update(merge_commit="41878fff1309ad35a76c8ad439dbc8238cbfd1ea"),
+    "E_PR1978_MERGE_NOT_ANCESTOR",
+)
+
+print("PASS outside-67 migration selfcheck: %d existing negative cases + 2 expected-code ancestry cases" % len(cases))

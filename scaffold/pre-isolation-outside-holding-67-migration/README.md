@@ -8,6 +8,8 @@
 
 PR #1975 は merge commit `4919cfd245ee128fee71c713c8d2d0a8cd5fcd11` でmainへ取り込まれ、head `2c0f287dda2cd9252cd64255cfa4cdf695653754`を依存値として記録しています。SCF-B-0036とoutside-L1 validatorはこの候補へ取り込み、3df時点のregister／disposition snapshotを読むように固定し、現行14 register read-afterとは分離しました。PR #1978 は merge commit `f122d65e1435b4709fbb7b07fbb8e42b70f0b110` でmainへ取り込まれ、exact parent `d272a97b3e55401fa75ad41670fbeefd18f8a4cf`を保持しています。#1981はmain `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`へrebaseline済みです。Issue #1813 projectionは外部操作を行わず、別更新対象として残しています。
 
+validatorのbase gateは、捕捉したmain merge `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`が候補worktreeのHEADの祖先であることを確認します。live `origin/main`とのSHA一致やlocal `remotes/pr/1978`の現在指示先は判定根拠にしません。現行mainは#1986 mergeの`1d7f9a18dd89745b0ed0b9d6d3ed0f9437e47dff`を経て#1983 mergeの`41878fff1309ad35a76c8ad439dbc8238cbfd1ea`へ進んでおり、候補HEADには未取り込みのためadmission前にrebaseが必要です。#1988（`8e5183e454fd8c199be2e2d85614aae22f45f180`）と#1989（`9a0ef8ef93890cdb3b98ca602ff7bc1c32554bcf`）はDraft／未mergeとして停止条件に保持し、依存・完了・承認を生成しません。
+
 候補BindingはSCF-B-0040です（SCF-B-0039は別PRで使用済み）。
 
 append recordの`registered_at`は候補worktreeで観測した`2026-09-22T03:44:30+09:00`を記録し、`registered_by`は`Codex migration candidate (authority_effect:none)`、`management_state`は`registered_source_holding`です。これはsource bytesを登録候補へ固定した記録であり、人間承認、要求採用、製品・phase・実装の確定を表しません。
