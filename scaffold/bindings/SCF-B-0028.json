@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "sha256": "dcfdfef38950f06e7f08c834bd4d59b415cf250ae1fb1f214ace1e6fd7d764a6",
       "note": "PHCAP-16 phase record and its draft/partial status"
     },
     {

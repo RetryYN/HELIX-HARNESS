@@ -1319,7 +1319,28 @@
       "new_scaffold",
       "new_implementation"
     ],
-    "meaning": "調査と要求判断準備を止めず、旧能力と承認済み要求の差分が確定する前の新規設計・Scaffold・実装を止める"
+    "scaffold_boundary": {
+      "blocked_new_scaffold": {
+        "definition": "新しいcapabilityのcontract、runtime、adapter、CI、正式な設計・実装を持つScaffold",
+        "new_build_allowed": false
+      },
+      "allowed_research_evidence_holding_scaffold": {
+        "scope": [
+          "inventory_research",
+          "inventory_update"
+        ],
+        "status_while_new_build_false": "allowed",
+        "definition": "source、inventory、静的evidence、negative caseを保持するBinding登録済みScaffold。証拠保持と再現可能な静的検査に限り、capability contract、runtime、adapter、CI、正式な設計・実装・完了を生成しない",
+        "required_boundaries": [
+          "scaffold_namespace",
+          "registered_scaffold_binding",
+          "authority_effect_none",
+          "new_build_allowed_false",
+          "no_capability_contract_runtime_adapter_ci"
+        ]
+      }
+    },
+    "meaning": "調査と要求判断準備を止めず、旧能力と承認済み要求の差分が確定する前の新しいcapabilityの設計・実装用Scaffoldと実装を止める。source／evidence保持用のBinding登録済みScaffoldはinventory_researchまたはinventory_updateとして条件付きで許可するが、authority_effect:noneとnew_build_allowed:falseを維持する"
   },
   "current_evidence_snapshot": {
     "revision": "e784fa68702af4b7c57911b866b48fe7df094f88",
