@@ -15,6 +15,10 @@ Wave18は旧HELIXを再発明する実装作業ではなく、Wave17までのsem
 
 BR17-OSの接続語欠落は記録上のholdであり、上流bootstrap修正が必要な別判断である。A02のtextは原文の `独立責務・別設計・lifecycle・性能改善だけを` を維持し、`successor_issue`を弱い言い換えへ置換していない。
 
+BR17-OSの原文主語にある「Claude監査」もupstream decompositionから欠けるため、別のsource scope holdとして保存した。全findingへ対象を広げる意味変更は行わない。非要求edgeのatomは要求edgeの同一atom objectへ束縛し、捏造atom、欠落anchor、meta未検査項目を検証器で拒否する。
+
+bindingが指定する証拠参照だけをterm照合の入力に使い、参照外excerptへの依存を負例で拒否する。consumer closure、phase authority、旧実装の集計状態も未成立の値へ固定する。
+
 ## admission boundary
 
 authority effectはnone、consumer closureはpending、legacy executionはnot_run、new buildはfalse。connector token、meaning change、IR-ROUTE-Q1、product boundary、successor、exact HEAD reviewが閉じるまで下流実装へ進めない。

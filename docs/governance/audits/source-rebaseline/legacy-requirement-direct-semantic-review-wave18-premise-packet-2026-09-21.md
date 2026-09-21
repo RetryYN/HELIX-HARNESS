@@ -44,6 +44,8 @@ JSONLのexcerpt digestは、対象ファイルの指定inclusive行を改行結�
 
 BR17-OSのatomは、mechanical disposition、successor scope、finding drop prohibition、successor reentry prohibition、Issue／Universal Reverse／memory要約／Codex ready queueへのcausality chainです。A02は原文どおり `独立責務・別設計・lifecycle・性能改善だけを` とし、`successor_issue`を「後続候補」へ弱めません。原文の接続語 `` `successor_issue`として `` はA02からA05へのconnection recordとして保持しますが、upstream decompositionのsource_text_spansにはないため、lossless atomizationとsuccessor identityは未確認のholdです。BR17-HARNESSはWave5で既レビューのため、Wave18ではOS側だけを対象にし、shared atomは二重計上しません。
 
+原文の「Claude監査」という対象限定もOS側のupstream decomposition spanとatomにはないため、source scope holdとして保持します。この欠落を全findingへ対象を広げる根拠にしません。
+
 BR18-OSは、生成、lease、実行、checkpoint、検証、解放、quarantine、retireまでのinstance lifecycleを一つのatomとして保持します。旧文書のHARNESS owner表現をOSへ再配置する候補ですが、意味変更は未承認です。
 
 BR19は、HARNESS側の全active surface完了条件、OS側の「Nodeでも一部動く状態ではない」条件と全active surface完了条件へ分けます。BR19は`legacy-ir-target-routing-queue.jsonl`で`unresolved_target`、`IR-ROUTE-Q1`、`runtime_or_technology_constraint_product_contract_vs_internal_implementation`が残っているため、HARNESS/OSの2 unitは候補境界として保持し、target確定とは扱いません。

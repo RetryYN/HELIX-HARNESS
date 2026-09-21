@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from copy import deepcopy
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -132,6 +133,34 @@ def verify_controlled_binding(row: dict, binding: dict, joined: str) -> None:
     require(all(term in joined for term in binding["required_terms"]), f"required terms {row['review_id']}")
 
 
+def verify_atom_provenance(row: dict, requirement: dict, requirement_excerpt: str) -> None:
+    """Bind evidence atoms to the exact requirement atoms and archived source."""
+    source_atoms = {atom["atom_id"]: atom for atom in requirement["covered_requirement_atoms"]}
+    for atom in row["covered_requirement_atoms"]:
+        require(atom["atom_id"] in source_atoms and atom == source_atoms[atom["atom_id"]],
+                f"evidence atom provenance {row['review_id']}:{atom['atom_id']}")
+    if row["role_kind"] == "requirement":
+        for atom in row["covered_requirement_atoms"]:
+            require(atom["source_fragments"] and all(
+                fragment in row["source_statement_text"] and fragment in requirement_excerpt
+                for fragment in atom["source_fragments"]
+            ), f"requirement atom source grounding {row['review_id']}:{atom['atom_id']}")
+
+
+def selected_binding_excerpt(row: dict, binding: dict) -> str:
+    indexes = binding["evidence_ref_indexes"]
+    require(isinstance(indexes, list) and indexes and all(type(index) is int for index in indexes)
+            and indexes == sorted(set(indexes))
+            and all(0 <= index < len(row["evidence_refs"]) for index in indexes),
+            f"binding reference indexes {row['review_id']}:{binding['atom_id']}")
+    return "\n".join(
+        excerpt(ROOT / row["evidence_refs"][index]["archive_path"],
+                row["evidence_refs"][index]["line_start"],
+                row["evidence_refs"][index]["line_end"])
+        for index in indexes
+    )
+
+
 def expect_binding_failure(row: dict, binding: dict, joined: str, label: str) -> None:
     try:
         verify_controlled_binding(row, binding, joined)
@@ -172,6 +201,21 @@ def phase_projection(crosswalk: dict) -> list[dict]:
 def verify() -> None:
     rows = read_jsonl(LEDGER)
     meta = json.loads(META.read_text())
+    require(set(meta) == {
+        "schema_revision", "batch_id", "source_revision", "parent_revision", "status",
+        "authority_effect", "consumer_closure_status", "legacy_execution_performed",
+        "new_build_allowed", "record_count", "output_sha256", "reviewed_unit_ids",
+        "reviewed_edges", "semantic_link_counts", "cumulative_reviewed_unit_count",
+        "cumulative_reviewed_edge_count", "remaining_unit_count", "prior_review_batches",
+        "inputs", "bounded_search_receipts", "unit_aggregates", "phase_rows",
+        "missing_evidence_receipts", "wave16_candidate_ref", "wave16_candidate_merge_base",
+        "wave16_candidate_root", "wave17_commit_ref", "wave17_commit_parent",
+        "wave17_commit_root", "source_atomization_holds", "source_main_base_revision",
+        "stacked_pr_parent_revision", "current_tree_revision", "prior_fixed_input_digests",
+        "wave16_candidate_input_digests", "wave17_candidate_ref",
+        "wave17_candidate_parent", "wave17_candidate_root",
+        "wave17_candidate_input_digests",
+    }, "meta fields")
     catalog_rows = read_jsonl(CATALOG)
     catalog = {row["asset_id"]: row for row in catalog_rows}
     crosswalk = {row["unit_candidate_id"]: row for row in read_jsonl(CROSSWALK)}
@@ -227,6 +271,9 @@ def verify() -> None:
     require(meta["wave16_candidate_root"] == "current-tree:stacked-wave17", "wave16 current-tree root")
     require(meta["wave17_candidate_ref"] == W17 and meta["wave17_candidate_parent"] == W16, "wave17 stacked receipt")
     require(meta["wave17_candidate_root"] == "current-tree:wave17", "wave17 current-tree root")
+    require((meta["wave17_commit_ref"], meta["wave17_commit_parent"], meta["wave17_commit_root"]) ==
+            (meta["wave17_candidate_ref"], meta["wave17_candidate_parent"], meta["wave17_candidate_root"]),
+            "wave17 commit receipt")
     for wave, expected in ((16, WAVE16_INPUT_DIGESTS), (17, WAVE17_INPUT_DIGESTS)):
         ledger_path = ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.jsonl"
         meta_path = ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.meta.json"
@@ -248,6 +295,10 @@ def verify() -> None:
 
     by_unit = {unit: [row for row in rows if row["unit_candidate_id"] == unit] for unit in UNITS}
     require(all(len(items) == 3 for items in by_unit.values()), "unit edge counts")
+    require(meta["missing_evidence_receipts"] == [] and all(
+        any(row["role_kind"] == "implementation_source" for row in items)
+        for items in by_unit.values()
+    ), "missing implementation asset receipts")
     for unit, unit_rows in by_unit.items():
         parent, candidate = decomposition[unit]
         requirement = next(row for row in unit_rows if row["role_kind"] == "requirement")
@@ -264,11 +315,12 @@ def verify() -> None:
 
         atom_ids = requirement["covered_requirement_atom_ids"]
         require(atom_ids == [atom["atom_id"] for atom in requirement["covered_requirement_atoms"]], f"atom order {unit}")
-        require(all(row["covered_requirement_atoms"] == requirement["covered_requirement_atoms"] or set(row["covered_requirement_atom_ids"]).issubset(set(atom_ids)) for row in unit_rows), f"atom inventory {unit}")
+        require(all(row["covered_requirement_atom_ids"] == [atom["atom_id"] for atom in row["covered_requirement_atoms"]] for row in unit_rows), f"atom ID inventory {unit}")
         for row in unit_rows:
             require(row["source_requirement_id"] == req and row["product_scope"] == requirement["product_scope"], f"unit identity {row['review_id']}")
             require(row["phase_candidates"] == candidate["direct_phase_candidates"], f"row phases {row['review_id']}")
-            require(row["authority_effect"] == "none" and row["consumer_closure_status"] == "pending", f"row authority {row['review_id']}")
+            require(row["authority_effect"] == "none" and row["consumer_closure_status"] == "pending"
+                    and row["consumer_closure_evidence"] == [] and row["phase_authority_status"] == "candidate_unchanged", f"row authority {row['review_id']}")
             require(row["legacy_execution_status"] == "not_run" and row["current_requirement_implementation_status"] == "not_established", f"row execution {row['review_id']}")
             require(row["new_build_allowed"] is False and row["candidate_membership_semantics"] == "bounded_global_search_candidate_only_not_semantic_evidence", f"row admission {row['review_id']}")
             asset = catalog[row["asset_id"]]
@@ -294,12 +346,14 @@ def verify() -> None:
                 require(all(span in joined for span in row["source_text_spans"]), f"requirement span {row['review_id']}")
                 require(row["source_statement_text"] in joined, f"full requirement statement {row['review_id']}")
                 require(row["semantic_link_status"] == "confirmed" and row["semantic_relation"] == "same_requirement_id_exact_source_contract_not_implementation", f"requirement contract {row['review_id']}")
+                verify_atom_provenance(row, requirement, joined)
             else:
+                verify_atom_provenance(row, requirement, "")
                 require(row["semantic_link_status"] == "unresolved" and row["counterevidence"], f"unresolved evidence {row['review_id']}")
                 require(any("実装" in item and "実行" in item for item in row["counterevidence"]), f"implementation limit {row['review_id']}")
                 require(all(binding["match_mode"] == "controlled_term_set_partial" for binding in row["evidence_atom_bindings"]), f"controlled anchor {row['review_id']}")
                 for binding in row["evidence_atom_bindings"]:
-                    verify_controlled_binding(row, binding, joined)
+                    verify_controlled_binding(row, binding, selected_binding_excerpt(row, binding))
 
     # BR17 exact identity: do not replace the source fragment with a loose paraphrase.
     br17_req = next(row for row in by_unit["IRUNIT-HIL-BR-17-HELIX-OS"] if row["role_kind"] == "requirement")
@@ -308,6 +362,8 @@ def verify() -> None:
     require(atoms["BR17-OS-A05"]["text"] == "Issue、Universal Reverse、memory要約、Codex ready queueへ同一causality chainで接続する", "BR17 A05 chain")
     require(br17_req["source_connective_fragments"] == ["`successor_issue`として"], "BR17 connector retained")
     require("`successor_issue`として" not in br17_req["source_text_spans"], "BR17 decomposition gap is explicit")
+    require("Claude監査" in br17_req["source_statement_text"] and "Claude監査" not in "".join(br17_req["source_text_spans"]), "BR17 audit scope gap")
+    require(all(row["source_scope_fragments"] == ["Claude監査"] and "claude_audit_scope_limit_not_atomized" in row["atomization_hold"] for row in by_unit["IRUNIT-HIL-BR-17-HELIX-OS"]), "BR17 audit scope hold")
     require(br17_req["connection_records"][0]["status"] == "upstream_decomposition_connector_gap_hold" and not br17_req["connection_records"][0]["successor_identity_claimed"], "BR17 connector hold")
     require("lossless_atomization_not_claimed" in br17_req["atomization_hold"], "BR17 lossless hold")
     wave5 = [row for row in read_jsonl(ROOT / "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl") if row.get("unit_candidate_id") == "IRUNIT-HIL-BR-17-HELIX-HARNESS" and row.get("artifact_evidence_kind") == "requirement"]
@@ -334,6 +390,20 @@ def verify() -> None:
     missing_mapping = dict(controlled_binding)
     missing_mapping["anchor_evidence_terms"] = {}
     expect_binding_failure(controlled_row, missing_mapping, controlled_joined, "missing anchor mapping")
+    limited_binding = dict(next(row for row in rows if row["review_id"] == "LSRW18-EDGE-005")["evidence_atom_bindings"][0])
+    limited_binding["evidence_ref_indexes"] = [0]
+    limited_row = next(row for row in rows if row["review_id"] == "LSRW18-EDGE-005")
+    expect_binding_failure(limited_row, limited_binding, selected_binding_excerpt(limited_row, limited_binding), "excluded evidence reference")
+    tampered_row = deepcopy(next(row for row in rows if row["review_id"] == "LSRW18-EDGE-011"))
+    tampered_atom = next(atom for atom in tampered_row["covered_requirement_atoms"] if atom["atom_id"] == "BR19-OS-A01")
+    tampered_atom["text"] = "Bun撤去はNode優先で段階的に進めてよい"
+    tampered_atom["source_fragments"] = [tampered_atom["text"]]
+    try:
+        verify_atom_provenance(tampered_row, by_unit["IRUNIT-HIL-BR-19-HELIX-OS"][0], "")
+    except AssertionError:
+        pass
+    else:
+        fail("negative evidence atom provenance accepted")
 
     # Bounded receipts are reproducible from static catalog/archive reads.
     for unit, receipt in meta["bounded_search_receipts"].items():
@@ -358,8 +428,12 @@ def verify() -> None:
     # Phase and aggregate receipts retain explicit implementation/degradation state.
     for aggregate in meta["unit_aggregates"]:
         require(aggregate["unit_candidate_id"] in UNITS and aggregate["new_build_allowed"] is False, "aggregate boundary")
-        require(aggregate["consumer_closure_status"] == "pending" and aggregate["current_requirement_implementation_status"] == "not_established", "aggregate state")
+        require(aggregate["consumer_closure_status"] == "pending" and aggregate["current_requirement_implementation_status"] == "not_established"
+                and aggregate["legacy_requirement_implementation_status"] == "unknown_pending_direct_asset_semantic_review"
+                and aggregate["direct_confirmed_implementation_asset_ids"] == []
+                and aggregate["phase_authority_status"] == "candidate_unchanged", "aggregate state")
     require(any("upstream_decomposition_connector_gap_hold" == item["status"] for item in meta["source_atomization_holds"]), "meta connector hold")
+    require(any(item.get("status") == "upstream_decomposition_scope_limit_gap_hold" and item.get("source_fragment") == "Claude監査" and item.get("scope_broadened_claimed") is False for item in meta["source_atomization_holds"]), "meta audit scope hold")
     print("Wave18 static schema10 verification: PASS")
 
 

@@ -9,7 +9,7 @@
   "legacy_execution_performed": false,
   "new_build_allowed": false,
   "record_count": 12,
-  "output_sha256": "sha256:dbfb63ac0e6d211d1934573227cdfd20368e37056f4c0ddf1c318cb90e38e15e",
+  "output_sha256": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15",
   "reviewed_unit_ids": [
     "IRUNIT-HIL-BR-17-HELIX-OS",
     "IRUNIT-HIL-BR-18-HELIX-OS",
@@ -970,6 +970,12 @@
       "connection_id": "BR17-CONN-A02-A05",
       "status": "upstream_decomposition_connector_gap_hold",
       "successor_identity_claimed": false
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-BR-17-HELIX-OS",
+      "source_fragment": "Claude監査",
+      "status": "upstream_decomposition_scope_limit_gap_hold",
+      "scope_broadened_claimed": false
     }
   ],
   "source_main_base_revision": "6dad906ed9a52c9e49611931645db2f298c6bf6a",

@@ -21,8 +21,14 @@ Wave18はbase `6dad906ed9a52c9e49611931645db2f298c6bf6a` 上で、Wave1〜15の�
 
 BR17-OSはWave5のBR17-HARNESS peerとA01〜A04を共有候補として保持し、A05をOS側downstream causality chain候補として記録する。原文の `` `successor_issue`として `` は `source_statement_text` と `connection_records` に保持したが、upstream decompositionの `source_text_spans` には含まれない。このconnector token欠落をholdとして明記し、Wave18はlossless atomizationもsuccessor identityも主張しない。bootstrap修正とsuccessor割当は別判断である。
 
+原文の対象限定「Claude監査」もBR17-OSのupstream decomposition spanとatomから欠けている。`source_scope_fragments`とsource atomization holdに原文断片を保持し、全findingへ義務を拡張したとは扱わない。限定をatomへ反映するかは上流bootstrapの別判断である。
+
 BR18-OSは旧HARNESS owner表現のOS routing候補を記録するが、`legacy_seed_meaning_change_review_pending`を維持する。BR19-HARNESS／OSはBun撤去とactive surface完了条件をproduct split候補として残し、`IR-ROUTE-Q1`、`unresolved_target`、technology constraintの意味変更を解消しない。
 
 ## 検証
 
 `verify_legacy_requirement_direct_semantic_review_wave18.py` は、schema10 row/meta、main source baseとstacked current-tree priorの固定digest、decomposition/crosswalk/phase exact join、Requirement IR/raw source anchor、catalog digestとarchive excerpt digest、prior unit/edge/nonrequirement asset重複、bounded search receipt、atom coverage、controlled bindingのatom/source fragment/excerpt接地、BR17 connector holdをstatic readだけで検査する。stale anchorとmissing `anchor_evidence_terms` mappingの陰性ケースもfail-closeで確認する。検証器は旧archiveのコードをimportまたは実行しない。
+
+非要求edgeのatom objectは同unitの要求edgeと完全一致させ、要求atomのsource fragmentを原文とarchive excerptへ接地する。意味を逆転したatomの負例を拒否し、meta field集合、Wave17重複receipt、実装asset欠落receiptの整合も検査する。
+
+各bindingのrequired termとanchor対応は、そのbindingが指定した`evidence_ref_indexes`のexcerptだけで照合する。参照外excerptへ依存する負例を拒否する。consumer closure evidenceは空、phase authorityは候補、旧実装状態は未確認のままかをrowと集計で検査する。

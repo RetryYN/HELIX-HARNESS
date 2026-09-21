@@ -22,7 +22,7 @@
 
 ## unresolved hold
 
-- BR17-OS: Wave5 HARNESS peerとの境界、`successor_issue` connector tokenのupstream decomposition欠落、downstream chain、direct phase、successor assignment、consumer closure。
+- BR17-OS: Wave5 HARNESS peerとの境界、`successor_issue` connector tokenと「Claude監査」対象限定のupstream decomposition欠落、downstream chain、direct phase、successor assignment、consumer closure。
 - BR18-OS: 旧HARNESS ownerからOSへのmeaning change、direct phase、successor assignment、consumer closure。
 - BR19-HARNESS／OS: product split、`IR-ROUTE-Q1`／`unresolved_target`、Bun全surfaceの完了receipt、consumer closure。
 - 全unit: exact HEAD independent review、authority、phase adoption、旧実行、正式L2/L11・下流pair。
