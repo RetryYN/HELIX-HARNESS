@@ -203,6 +203,10 @@ def check(candidate: dict | None = None, binding: dict | None = None) -> list[st
             errors.append("phase/product degraded statusを確定している")
         if phase_summary.get("consumer_closure_status") != "pending":
             errors.append("phase/product consumer closureを確定している")
+        if phase_summary.get("consumer_refs", []) != phase.get("consumer_refs", []):
+            errors.append("phase/product consumer_refsが台帳と不一致")
+        if phase_summary.get("consumer_refs", []) != []:
+            errors.append("phase/product consumer_refsを未確認のまま追加している")
 
     boundary = candidate.get("degraded_and_implementation_boundary", {})
     for key, expected in {

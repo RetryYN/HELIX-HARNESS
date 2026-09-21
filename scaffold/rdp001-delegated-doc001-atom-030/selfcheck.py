@@ -80,6 +80,7 @@ def main() -> int:
     run_negative("degraded status promotion", lambda d, b: d["phase_product_classification"].update({"degraded_status": "resolved"}), "phase/product degraded statusを確定している")
     run_negative("failure status promotion", lambda d, b: d["degraded_and_implementation_boundary"].update({"structured_failure_status": "resolved"}), "implementation boundary structured_failure_statusを確定している")
     run_negative("consumer closure promotion", lambda d, b: d["phase_product_classification"].update({"consumer_closure_status": "closed"}), "phase/product consumer closureを確定している")
+    run_negative("phase consumer reference injection", lambda d, b: d["phase_product_classification"].update({"consumer_refs": ["fake"]}), "phase/product consumer_refsが台帳と不一致")
     run_negative("phase candidate admission", lambda d, b: d["phase_product_classification"].update({"phase_classification_status": "approved_current"}), "phase/product phase_classification_status不一致")
     run_negative("top meaning change", lambda d, b: d.update({"meaning_change_applied": True}), "候補top-level meaning_change_appliedが境界に反する")
     run_negative("top equivalence claim", lambda d, b: d.update({"equivalence_claim": "equivalent"}), "候補top-level equivalence_claimが境界に反する")
