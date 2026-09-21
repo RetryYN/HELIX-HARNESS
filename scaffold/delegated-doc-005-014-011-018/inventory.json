@@ -1,0 +1,2664 @@
+{
+  "schema": "rdp001-delegated-document-pair-scaffold/v1",
+  "candidate_id": "RDP-001-SCF-B-0013-DOC-005-014-011-018",
+  "status": "scaffold_candidate_pending_review",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "comparison": {
+    "selection_basis": "latest origin/main RDP holding remainder after prior candidate 10 documents/22 edges; next nonoverlapping coherent L3/L10 pair artifacts",
+    "fixed_source_revision": "ec80948df480d144022ff5e510ff94f0839f8a7a",
+    "method": "read-only archive blob bytes; exact UTF-8 SHA-256, line spans, original IDs, and fixed-blob AC/T set comparison",
+    "selected_document_ids": [
+      "DELEGATED-DOC-005",
+      "DELEGATED-DOC-014",
+      "DELEGATED-DOC-011",
+      "DELEGATED-DOC-018"
+    ],
+    "selected_reference_edge_ids": [
+      "DELEGATED-REF-0305",
+      "DELEGATED-REF-0763",
+      "DELEGATED-REF-0373",
+      "DELEGATED-REF-0783"
+    ],
+    "pair_groups": [
+      {
+        "pair_id": "RDP-001-PAIR-DOC-005-014",
+        "l3_document_id": "DELEGATED-DOC-005",
+        "l10_document_id": "DELEGATED-DOC-014",
+        "source_line_denominator": {
+          "l3_lines": 188,
+          "l10_lines": 56
+        },
+        "semantic_atom_denominator": {
+          "l3_atoms": 2,
+          "l10_atoms": 11
+        },
+        "l3_original_ids": [
+          "GOP-AC-01",
+          "GOP-AC-02",
+          "GOP-AC-03",
+          "GOP-AC-04",
+          "GOP-AC-04a",
+          "GOP-AC-05",
+          "GOP-AC-06",
+          "GOP-AC-07",
+          "GOP-AC-08",
+          "GOP-AC-09",
+          "GOP-AC-10",
+          "GOP-AC-11",
+          "GOP-FR-01",
+          "GOP-FR-02",
+          "GOP-FR-03",
+          "GOP-FR-04",
+          "GOP-FR-05",
+          "GOP-FR-05a",
+          "GOP-FR-06",
+          "GOP-FR-07",
+          "GOP-FR-08",
+          "GOP-FR-09",
+          "GOP-FR-10",
+          "GOP-FR-11",
+          "GOP-FR-12",
+          "GOP-FR-13",
+          "GOP-FR-14"
+        ],
+        "l10_original_ids": [
+          "GOP-T-01",
+          "GOP-T-02",
+          "GOP-T-03",
+          "GOP-T-04",
+          "GOP-T-05",
+          "GOP-T-06",
+          "GOP-T-07",
+          "GOP-T-08",
+          "GOP-T-09",
+          "GOP-T-10",
+          "GOP-T-11"
+        ],
+        "l3_defined_acceptance_ids": [
+          "GOP-AC-01",
+          "GOP-AC-02",
+          "GOP-AC-03",
+          "GOP-AC-04",
+          "GOP-AC-04a",
+          "GOP-AC-05",
+          "GOP-AC-06",
+          "GOP-AC-07",
+          "GOP-AC-08",
+          "GOP-AC-09",
+          "GOP-AC-10",
+          "GOP-AC-11"
+        ],
+        "l10_test_acceptance_refs": [
+          "GOP-AC-01",
+          "GOP-AC-02",
+          "GOP-AC-03",
+          "GOP-AC-04",
+          "GOP-AC-05",
+          "GOP-AC-06",
+          "GOP-AC-07",
+          "GOP-AC-08",
+          "GOP-AC-09",
+          "GOP-AC-10",
+          "GOP-AC-11"
+        ],
+        "unresolved_acceptance_difference_ids": [
+          "GOP-AC-04a"
+        ],
+        "reference_edge_ids": [
+          "DELEGATED-REF-0305",
+          "DELEGATED-REF-0763"
+        ],
+        "unresolved_crossdoc_references": [
+          {
+            "path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+            "line": 17,
+            "reason": "GOP source cross-document cite; selected holding edges do not authorize semantic closure."
+          },
+          {
+            "original_id": "GOP-AC-04a",
+            "reason": "DELEGATED-DOC-005 defines GOP-AC-04a, but DELEGATED-DOC-014 has no L10 test row explicitly referencing it; acceptance/test closure is not inferred."
+          }
+        ],
+        "parity_rule": "Each fixed-blob L10 test row must explicitly name exactly one AC; absent or extra AC/T links remain unresolved and are never inferred."
+      },
+      {
+        "pair_id": "RDP-001-PAIR-DOC-011-018",
+        "l3_document_id": "DELEGATED-DOC-011",
+        "l10_document_id": "DELEGATED-DOC-018",
+        "source_line_denominator": {
+          "l3_lines": 146,
+          "l10_lines": 65
+        },
+        "semantic_atom_denominator": {
+          "l3_atoms": 2,
+          "l10_atoms": 9
+        },
+        "l3_original_ids": [
+          "WCC-AC-01",
+          "WCC-AC-02",
+          "WCC-AC-03",
+          "WCC-AC-04",
+          "WCC-AC-05",
+          "WCC-AC-06",
+          "WCC-AC-07",
+          "WCC-FR-01",
+          "WCC-FR-02",
+          "WCC-FR-03",
+          "WCC-FR-04",
+          "WCC-FR-05",
+          "WCC-FR-06",
+          "WCC-FR-07",
+          "WCC-FR-08",
+          "WCC-FR-09"
+        ],
+        "l10_original_ids": [
+          "HAT-WCC-01",
+          "HAT-WCC-02",
+          "HAT-WCC-03",
+          "HAT-WCC-04",
+          "HAT-WCC-05",
+          "HAT-WCC-06",
+          "HAT-WCC-07",
+          "HAT-WCC-08",
+          "HAT-WCC-09"
+        ],
+        "l3_defined_acceptance_ids": [
+          "WCC-AC-01",
+          "WCC-AC-02",
+          "WCC-AC-03",
+          "WCC-AC-04",
+          "WCC-AC-05",
+          "WCC-AC-06",
+          "WCC-AC-07"
+        ],
+        "l10_test_acceptance_refs": [
+          "WCC-AC-01",
+          "WCC-AC-02",
+          "WCC-AC-03",
+          "WCC-AC-04",
+          "WCC-AC-05",
+          "WCC-AC-06",
+          "WCC-AC-07"
+        ],
+        "unresolved_acceptance_difference_ids": [],
+        "reference_edge_ids": [
+          "DELEGATED-REF-0373",
+          "DELEGATED-REF-0783"
+        ],
+        "unresolved_crossdoc_references": [
+          {
+            "path": "docs/plans/PLAN-DISCOVERY-12-grok-build-worktree-precedent.md",
+            "line": 132,
+            "reason": "WCC discovery reference; phase/product/authority remain unresolved."
+          }
+        ],
+        "parity_rule": "Each fixed-blob L10 test row must explicitly name exactly one AC; absent or extra AC/T links remain unresolved and are never inferred."
+      }
+    ],
+    "holding_denominator": {
+      "source_documents_total": 114,
+      "reference_edges_total": 788,
+      "prior_candidate_source_documents": [
+        "DELEGATED-DOC-003",
+        "DELEGATED-DOC-028",
+        "DELEGATED-DOC-008",
+        "DELEGATED-DOC-017",
+        "DELEGATED-DOC-006",
+        "DELEGATED-DOC-015",
+        "DELEGATED-DOC-002",
+        "DELEGATED-DOC-013",
+        "DELEGATED-DOC-004",
+        "DELEGATED-DOC-029"
+      ],
+      "prior_candidate_reference_edges": [
+        "DELEGATED-REF-0303",
+        "DELEGATED-REF-0759",
+        "DELEGATED-REF-0760",
+        "DELEGATED-REF-0341",
+        "DELEGATED-REF-0342",
+        "DELEGATED-REF-0414",
+        "DELEGATED-REF-0415",
+        "DELEGATED-REF-0772",
+        "DELEGATED-REF-0308",
+        "DELEGATED-REF-0424",
+        "DELEGATED-REF-0425",
+        "DELEGATED-REF-0765",
+        "DELEGATED-REF-0301",
+        "DELEGATED-REF-0302",
+        "DELEGATED-REF-0422",
+        "DELEGATED-REF-0423",
+        "DELEGATED-REF-0757",
+        "DELEGATED-REF-0758",
+        "DELEGATED-REF-0304",
+        "DELEGATED-REF-0419",
+        "DELEGATED-REF-0761",
+        "DELEGATED-REF-0762"
+      ],
+      "prior_candidate_source_document_count": 10,
+      "prior_candidate_reference_edge_count": 22,
+      "remaining_before_this_batch_source_documents": 104,
+      "remaining_before_this_batch_reference_edges": 766,
+      "selected_source_document_count": 4,
+      "selected_reference_edge_count": 4,
+      "remaining_source_documents_after_prior_and_selected": 100,
+      "remaining_reference_edges_after_prior_and_selected": 762,
+      "prior_merged_bindings": [
+        "SCF-B-0005",
+        "SCF-B-0006",
+        "SCF-B-0008",
+        "SCF-B-0009",
+        "SCF-B-0010"
+      ]
+    },
+    "id_overlap_check": {
+      "prior_candidate_scope": "prior inventories/bindings cover 10 documents and 22 edge IDs; selected source_document_id and reference_id sets are disjoint",
+      "selected_original_id_scope": [
+        "GOP-AC-01",
+        "GOP-AC-02",
+        "GOP-AC-03",
+        "GOP-AC-04",
+        "GOP-AC-04a",
+        "GOP-AC-05",
+        "GOP-AC-06",
+        "GOP-AC-07",
+        "GOP-AC-08",
+        "GOP-AC-09",
+        "GOP-AC-10",
+        "GOP-AC-11",
+        "GOP-FR-01",
+        "GOP-FR-02",
+        "GOP-FR-03",
+        "GOP-FR-04",
+        "GOP-FR-05",
+        "GOP-FR-05a",
+        "GOP-FR-06",
+        "GOP-FR-07",
+        "GOP-FR-08",
+        "GOP-FR-09",
+        "GOP-FR-10",
+        "GOP-FR-11",
+        "GOP-FR-12",
+        "GOP-FR-13",
+        "GOP-FR-14",
+        "GOP-T-01",
+        "GOP-T-02",
+        "GOP-T-03",
+        "GOP-T-04",
+        "GOP-T-05",
+        "GOP-T-06",
+        "GOP-T-07",
+        "GOP-T-08",
+        "GOP-T-09",
+        "GOP-T-10",
+        "GOP-T-11",
+        "HAT-WCC-01",
+        "HAT-WCC-02",
+        "HAT-WCC-03",
+        "HAT-WCC-04",
+        "HAT-WCC-05",
+        "HAT-WCC-06",
+        "HAT-WCC-07",
+        "HAT-WCC-08",
+        "HAT-WCC-09",
+        "WCC-AC-01",
+        "WCC-AC-02",
+        "WCC-AC-03",
+        "WCC-AC-04",
+        "WCC-AC-05",
+        "WCC-AC-06",
+        "WCC-AC-07",
+        "WCC-FR-01",
+        "WCC-FR-02",
+        "WCC-FR-03",
+        "WCC-FR-04",
+        "WCC-FR-05",
+        "WCC-FR-06",
+        "WCC-FR-07",
+        "WCC-FR-08",
+        "WCC-FR-09"
+      ]
+    }
+  },
+  "ledger_provenance": {
+    "source_holding_path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+    "source_holding_sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+    "source_holding_total": 114,
+    "reference_holding_path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+    "reference_holding_sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+    "reference_holding_total": 788,
+    "asset_disposition_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "asset_disposition_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "phase_product_path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "phase_product_sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "atomization_contract_path": "docs/governance/requirement-atomization-review-contract.md",
+    "atomization_contract_sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+    "reuse_control_path": "docs/governance/legacy-asset-reuse-control.md",
+    "reuse_control_sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+  },
+  "candidate_resolution": {
+    "state": "unresolved",
+    "source_scope": "file_blob",
+    "product_scope": "candidate_only",
+    "phase_scope": "candidate_or_unresolved",
+    "implementation_scope": "unknown",
+    "consumer_scope": "pending"
+  },
+  "product_boundary": {
+    "product_owner_candidates": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "consumer_product_candidates": [
+      "HELIX-HARNESS",
+      "HELIX-OS"
+    ],
+    "boundary_status": "candidate_only",
+    "sources": [
+      {
+        "path": "docs/concept/product-boundary.md",
+        "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+      },
+      {
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+      },
+      {
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+      }
+    ],
+    "allocation_rule": "HARNESS候補はV-model／要求・worker contract・検証責務、OS候補はGitHub／CI／state／credential／artifact運転。混合atomはunresolvedを維持する"
+  },
+  "source_documents": [
+    {
+      "source_document_id": "DELEGATED-DOC-005",
+      "source_path": "docs/design/helix/L3-requirements/github-operations-projection.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-operations-projection.md",
+      "sha256": "2074866581b2979c999e5ad28d4e21770636a2c20e69dbe46bfb639af33a1d12",
+      "source_blob_oid": "38d57bc045805cc5b01452790dda2ecef176e65a",
+      "source_declared_status": "draft",
+      "source_relation": "requirements_v1.3_reference_line_525",
+      "holding_granularity": "file_blob",
+      "carry_status": "preserved_pending_atomization",
+      "line_count": 188,
+      "coverage_spans": [
+        {
+          "start_line": 1,
+          "end_line": 188,
+          "sha256": "sha256:2074866581b2979c999e5ad28d4e21770636a2c20e69dbe46bfb639af33a1d12",
+          "coverage_kind": "full_source_blob"
+        }
+      ],
+      "atom_coverage": {
+        "covered_line_count": 120,
+        "uncovered_line_count": 68,
+        "uncovered_lines": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          168,
+          169,
+          170,
+          171,
+          184,
+          185,
+          186,
+          187,
+          188
+        ],
+        "uncovered_line_sha256": "sha256:18d1fcad64b05fabb482bb73a96ad8bb172afa1ea1a056bf3fcf75a89ea8ddb2",
+        "source_grounding": "line numbers are recomputed from this fixed archive blob after unioning retained semantic atom spans; uncovered lines remain explicit source context and are not promoted.",
+        "fail_close_rule": "validator recomputes count, line list, digest, and source revision; any mismatch fails closed."
+      },
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-91B45CE18932FA425700",
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "phase_candidates": [
+          "PHCAP-16",
+          "PHCAP-17"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "phase_authority_status": "unconfirmed",
+        "product_candidates": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-operations-projection-acceptance.md",
+      "sha256": "7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600",
+      "source_blob_oid": "5825023237e517a6cc8f6f26aa7e37bfb49ba59a",
+      "source_declared_status": "proposed",
+      "source_relation": "requirements_v1.3_reference_line_532",
+      "holding_granularity": "file_blob",
+      "carry_status": "preserved_pending_atomization",
+      "line_count": 56,
+      "coverage_spans": [
+        {
+          "start_line": 1,
+          "end_line": 56,
+          "sha256": "sha256:7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600",
+          "coverage_kind": "full_source_blob"
+        }
+      ],
+      "atom_coverage": {
+        "covered_line_count": 11,
+        "uncovered_line_count": 45,
+        "uncovered_lines": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56
+        ],
+        "uncovered_line_sha256": "sha256:d3bf8579c4dfef5a79bf77b3f0642a36055ef003001cdffc1cdd24a4cf353eeb",
+        "source_grounding": "line numbers are recomputed from this fixed archive blob after unioning retained semantic atom spans; uncovered lines remain explicit source context and are not promoted.",
+        "fail_close_rule": "validator recomputes count, line list, digest, and source revision; any mismatch fails closed."
+      },
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-12EB1824FFE4C569E709",
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_execution_performed": false,
+        "phase_candidates": [
+          "PHCAP-16"
+        ],
+        "phase_status": "unresolved_with_candidate",
+        "phase_authority_status": "unconfirmed",
+        "product_candidates": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unresolved": [
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_document_id": "DELEGATED-DOC-011",
+      "source_path": "docs/design/helix/L3-requirements/worker-common-contract.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "source_blob_oid": "a514730ffd8594eeb9e28a47476ff331d67ba367",
+      "source_declared_status": "draft",
+      "source_relation": "requirements_v1.3_reference_line_440",
+      "holding_granularity": "file_blob",
+      "carry_status": "preserved_pending_atomization",
+      "line_count": 146,
+      "coverage_spans": [
+        {
+          "start_line": 1,
+          "end_line": 146,
+          "sha256": "sha256:773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+          "coverage_kind": "full_source_blob"
+        }
+      ],
+      "atom_coverage": {
+        "covered_line_count": 16,
+        "uncovered_line_count": 130,
+        "uncovered_lines": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146
+        ],
+        "uncovered_line_sha256": "sha256:f54f516466834668e76e0c16e4ebe382e7385d18d469688e0b22783980e2776a",
+        "source_grounding": "line numbers are recomputed from this fixed archive blob after unioning retained semantic atom spans; uncovered lines remain explicit source context and are not promoted.",
+        "fail_close_rule": "validator recomputes count, line list, digest, and source revision; any mismatch fails closed."
+      },
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "implementation_evidence_state": "document_present",
+        "legacy_execution_performed": false,
+        "phase_candidates": [
+          "PHCAP-10",
+          "PHCAP-17",
+          "PHCAP-19"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "phase_authority_status": "unconfirmed",
+        "product_candidates": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    },
+    {
+      "source_document_id": "DELEGATED-DOC-018",
+      "source_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "source_blob_oid": "2b49f7e422f917be520b77c4f6966b49fc24b190",
+      "source_declared_status": "draft",
+      "source_relation": "requirements_v1.3_reference_line_441",
+      "holding_granularity": "file_blob",
+      "carry_status": "preserved_pending_atomization",
+      "line_count": 65,
+      "coverage_spans": [
+        {
+          "start_line": 1,
+          "end_line": 65,
+          "sha256": "sha256:c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+          "coverage_kind": "full_source_blob"
+        }
+      ],
+      "atom_coverage": {
+        "covered_line_count": 9,
+        "uncovered_line_count": 56,
+        "uncovered_lines": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65
+        ],
+        "uncovered_line_sha256": "sha256:31ad77fcf38d42352271df7c43385e651516c9fe0cb247e276fd35def811e818",
+        "source_grounding": "line numbers are recomputed from this fixed archive blob after unioning retained semantic atom spans; uncovered lines remain explicit source context and are not promoted.",
+        "fail_close_rule": "validator recomputes count, line list, digest, and source revision; any mismatch fails closed."
+      },
+      "legacy_state": {
+        "asset_id": "LEGACY-ASSET-C6ADB99F1353965C5449",
+        "asset_class": "Historical",
+        "authority_status": "historical",
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_execution_performed": false,
+        "phase_candidates": [
+          "PHCAP-10",
+          "PHCAP-19"
+        ],
+        "phase_status": "multi_phase_candidate",
+        "phase_authority_status": "unconfirmed",
+        "product_candidates": [
+          "HELIX-HARNESS",
+          "HELIX-OS",
+          "HELIX-Web",
+          "HELIX-Web-OS"
+        ],
+        "consumer_status": "pending",
+        "consumer_refs": [],
+        "unresolved": [
+          "requires_semantic_split",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown"
+        ]
+      }
+    }
+  ],
+  "reference_edges": [
+    {
+      "reference_id": "DELEGATED-REF-0305",
+      "source_path": "docs/design/helix/L3-requirements/github-operations-projection.md",
+      "source_file_sha256": "2074866581b2979c999e5ad28d4e21770636a2c20e69dbe46bfb639af33a1d12",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "pair_artifact",
+      "source_line": 9,
+      "target_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-operations-projection-acceptance.md",
+      "target_sha256": "7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_document_id": "DELEGATED-DOC-005",
+      "target_document_id": "DELEGATED-DOC-014"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0763",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_file_sha256": "7638e322a28a3bb866704feb2fbf431c1d1afba8154883f6f679bb5e52bb9600",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "pair_artifact",
+      "source_line": 10,
+      "target_path": "docs/design/helix/L3-requirements/github-operations-projection.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-operations-projection.md",
+      "target_sha256": "2074866581b2979c999e5ad28d4e21770636a2c20e69dbe46bfb639af33a1d12",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_document_id": "DELEGATED-DOC-014",
+      "target_document_id": "DELEGATED-DOC-005"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0373",
+      "source_path": "docs/design/helix/L3-requirements/worker-common-contract.md",
+      "source_file_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "pair_artifact",
+      "source_line": 20,
+      "target_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/worker-common-contract-acceptance.md",
+      "target_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_document_id": "DELEGATED-DOC-011",
+      "target_document_id": "DELEGATED-DOC-018"
+    },
+    {
+      "reference_id": "DELEGATED-REF-0783",
+      "source_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "source_file_sha256": "c8dff734891a6a7350feb9b698c40e1616946cdd424433d662f1da49d8ac800d",
+      "reference_origin": "frontmatter_relation",
+      "relation_key": "pair_artifact",
+      "source_line": 12,
+      "target_path": "docs/design/helix/L3-requirements/worker-common-contract.md",
+      "target_archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "target_sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "target_class": "semantic_relation_closure",
+      "target_holding": "delegated_document_file_blob_holding",
+      "carry_status": "preserved_pending_atomization",
+      "meaning_change_applied": false,
+      "human_decision_ref": null,
+      "source_document_id": "DELEGATED-DOC-018",
+      "target_document_id": "DELEGATED-DOC-011"
+    }
+  ],
+  "atoms": [
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A001",
+      "source_document_id": "DELEGATED-DOC-005",
+      "source_path": "docs/design/helix/L3-requirements/github-operations-projection.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-FR-01",
+      "original_ids": [
+        "GOP-FR-01",
+        "GOP-FR-02",
+        "GOP-FR-03",
+        "GOP-FR-04",
+        "GOP-FR-05",
+        "GOP-FR-05a",
+        "GOP-FR-06",
+        "GOP-FR-07",
+        "GOP-FR-08",
+        "GOP-FR-09",
+        "GOP-FR-10",
+        "GOP-FR-11",
+        "GOP-FR-12",
+        "GOP-FR-13",
+        "GOP-FR-14"
+      ],
+      "source_span": {
+        "start_line": 60,
+        "end_line": 167,
+        "exact_source_text": "### GOP-FR-01 正本境界の明示\n\nGitHub Projects の item/field/view と sub-issue 階層は read 側 projection と定義し、`harness.db` /\nrepo-owned ledger を唯一の正本とする。projection 生成物のどのフィールドも書込み優先度で正本を上書きしない。\n\n### GOP-FR-02 GitHub 側編集の逆流禁止\n\nProjects board 上の status 変更や sub-issue の手動追加/削除など、GitHub UI/API から行われた変更を\nそのまま正本へ反映しない。反映したい変更は `github-autonomous-operations-requirements.md` GH-FR-001 の\nIssue 受付ゲートを通る command candidate として正規化されて初めて admission される。\n\n### GOP-FR-03 completion 根拠の分離\n\n`helix doctor` / `helix status` 等の completion 判定は GitHub 側の表示 (緑チェック、closed 状態、board\n列位置) を入力にしない。GitHub 表示はあくまで人間可観測性のための派生物であり、判定は `harness.db` の\nevent/projection を正本として行う。\n\n### GOP-FR-04 roadmap gate/span の Projects 投影\n\nroadmap の gate / span (`src/lint/roadmap-registry.ts` 系のロードマップ状態) を GitHub Projects の\nview / status field / iteration へ一方向で投影する。投影対象の状態遷移は roadmap 側の正本更新に追従し、\nProjects 側の手動移動では戻らない (次回同期で正本値へ再収束する)。\n\n### GOP-FR-05 PLAN 親子・駆動モデル別 Issue の階層写像\n\nPLAN の親子構造および駆動モデル (`forward` / `reverse` / `scrum_reverse` / `redesign` / `recovery` /\n`incident` 等、GH-FR-002 分類体系) ごとの Issue を、次の規則で parent / sub-issue へ写像する。\n\n- 層 PLAN (親 PLAN、または route 上位の PLAN) は parent issue。\n- step、派生 Issue、Reverse/Redesign/Recovery/Incident 等の下位 episode は sub-issue。\n- 1 親あたり sub-issue 100 件、階層深さ 8 を超える写像は行わず、超過が見込まれる場合は §2 の上限に従って\n  分割する。\n\n### GOP-FR-06 API 制約の設計反映\n\n§2 の API 制約 (item/field/option 上限、sub-issue 上限、workflow token の権限境界、option 定義の\n上書き semantics、rate limit) を設計に反映する。特に option 同期は更新前に既存定義を取得し、同一 option の\n`id` を入力へ引き継ぐ。名前照合だけで既存IDを捨てる更新や、stale ID の無検証再利用を禁止する。\n\n### GOP-FR-05a Issue依存とPLAN参照の機械監査\n\n依存を持つIssue本文は`helix-issue-dependency.v1` blockで`depends_on`、`blocks`、`plan_id`を\n機械可読化する。1つのatomic PLANを所有するIssueは従来どおりscalar `plan_id`を使い、親・capability\nIssueが複数のatomic PLANを所有する場合は`plan_id: null`と明示的な`plan_ids: [...]`集合を使う。\nscalarと集合の同時指定や、集合外のPLANをIssueへ暗黙帰属させる推測は拒否する。`depends_on`先がopenのまま\nIssueをcloseした状態、双方向関係の欠落、PLANの`github_issue_id`とIssueの`plan_id`／`plan_ids`の不一致を\ndoctor/CIでfail-visibleにする。既存proseの`Refs #N`を\n依存正本として推測せず、このblockを採用したIssueから段階的に強制する。PR admissionではclosure graphが\n参照するIssueとその依存componentだけを検査し、無関係なlive Issue driftで全open PRを停止しない。\nscheduled runと手動runでは採用Issue全件を検査し、candidate treeに存在しない`plan_id`／`plan_ids`もfail-closeする。\nmain pushはopen PRが持ち込み中のPLANをcandidate treeから観測できないため全件監査を実行せず、\n開発中PLANを恒常的なrequired-check failureへ誤変換しない。\n\n### GOP-FR-07 人間可観測性\n\n`helix status` が示す active frontier (workflow-next-action 相当) を、GitHub 側 (Projects board の\n現在列 + Issue 階層の open/closed 状態) から追加ツールなしで読める状態にする。Projects board と Issue\n階層だけを見れば、現在どの roadmap gate/span が進行中で、どの Issue が Forward 再合流待ちかが分かる。\n\n### GOP-FR-08 projection drift 検出\n\nprojection (Projects item/field 値、sub-issue 階層) と `harness.db` の正本値との不一致を `helix doctor`\ngate で検出し、stale / 不一致を fail-visible にする。drift 検出は silent に無視されず、doctor の\nnon-zero exit または明示 finding として報告される。\n\n### GOP-FR-09 read-back 検証\n\nProjects API への書込み (`addProjectV2ItemById` 等) の後、読み取り API で反映内容を検証する read-back\nステップを必須とする。書込み呼び出しが成功応答を返しただけでは projection 完了とみなさない。\n\n### GOP-FR-10 secret 境界\n\nProjects API は対象 endpoint に必要な最小権限を持つ GitHub App installation/user token または project scope の\ntoken を使う。repository scoped の既定 `GITHUB_TOKEN` に未検証の Projects 権限を仮定しない。追加 token が\n必要な場合は分離した secret として管理し、secret の実値・token 例をドキュメント内に書かず、参照先\n(secret store の name/key) のみを記述する。\n\n### GOP-FR-11 3 段 CI の重み配分 (HIL-BR-16 整合)\n\n`infinity-loop-requirement-definition-ledger.md` の HIL-BR-16 (prejoin → postjoin → 外部 CI/PR の順)\nを前提に、外部 (GitHub 上の) PR CI の重みを次のとおり要件化する。\n\n- 外部 PR CI = typecheck + 変更影響範囲の targeted test (dependent-regression mapping を流用した\n  差分ベース選択) + critical gate のみを実行する。\n- 全回帰 (full regression) と全 doctor gate は、merge 後の内部 CI と nightly 実行に置く。\n\n実測根拠 (PO 提供、2026-07 時点観測): 外部 CI `harness-check` の実測所要時間が約 1,300 秒のうち、\nVitest の全回帰実行が約 1,179 秒 (全体の約 91%) を占める。この配分により外部 PR CI の待ち時間を\n支配的に決めているのが full regression であることを実測根拠とし、外部レーンから重量回帰を切り出す。\n\n### GOP-FR-12 内部 CI での full 回帰保証\n\nmerge 後内部 CI と nightly は、外部 PR CI で省略した full regression と全 doctor gate を必ず実行する。\n外部レーンで targeted test に絞ったことによるカバレッジ欠落を内部レーンが相殺し、どの commit も\n最終的に full regression を通過した記録を持つ。\n\n### GOP-FR-13 無根拠な軽量化の禁止\n\ntest 削除、閾値緩和、required leg の除外による CI 軽量化を禁止する。GH-FR-012 (merge・release境界) の\n「無根拠 rerun、テスト削除、閾値緩和、required leg の除外で緑化してはならない」と整合し、軽量化は\n必ず「どのレーンがどの gate を代替実行するか」を明示した設計変更としてのみ行う。\n\n### GOP-FR-14 実測根拠の再測定義務\n\nCI 所要時間の実測根拠 (GOP-FR-11 の秒数) は静的な一回限りの記録にせず、CI 実行時間が有意に悪化した場合\n(例: targeted test 選択後も外部レーンが再度長時間化した場合) に再測定し、本書の数値を更新する。stale な\n実測根拠のまま重み配分の正当性を主張しない。\n\n",
+        "sha256": "sha256:066094248765b649e46f36868c5f5bfe0925ffca7a5d7f3b4c90c849d4cc8ba0"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "section_span",
+      "normalized_statement": "### GOP-FR-01 正本境界の明示\n\nGitHub Projects の item/field/view と sub-issue 階層は read 側 projection と定義し、`harness.db` /\nrepo-owned ledger を唯一の正本とする。projection 生成物のどのフィールドも書込み優先度で正本を上書きしない。\n\n### GOP-FR-02 GitHub 側編集の逆流禁止\n\nProjects board 上の status 変更や sub-issue の手動追加/削除など、GitHub UI/API から行われた変更を\nそのまま正本へ反映しない。反映したい変更は `github-autonomous-operations-requirements.md` GH-FR-001 の\nIssue 受付ゲートを通る command candidate として正規化されて初めて admission される。\n\n### GOP-FR-03 completion 根拠の分離\n\n`helix doctor` / `helix status` 等の completion 判定は GitHub 側の表示 (緑チェック、closed 状態、board\n列位置) を入力にしない。GitHub 表示はあくまで人間可観測性のための派生物であり、判定は `harness.db` の\nevent/projection を正本として行う。\n\n### GOP-FR-04 roadmap gate/span の Projects 投影\n\nroadmap の gate / span (`src/lint/roadmap-registry.ts` 系のロードマップ状態) を GitHub Projects の\nview / status field / iteration へ一方向で投影する。投影対象の状態遷移は roadmap 側の正本更新に追従し、\nProjects 側の手動移動では戻らない (次回同期で正本値へ再収束する)。\n\n### GOP-FR-05 PLAN 親子・駆動モデル別 Issue の階層写像\n\nPLAN の親子構造および駆動モデル (`forward` / `reverse` / `scrum_reverse` / `redesign` / `recovery` /\n`incident` 等、GH-FR-002 分類体系) ごとの Issue を、次の規則で parent / sub-issue へ写像する。\n\n- 層 PLAN (親 PLAN、または route 上位の PLAN) は parent issue。\n- step、派生 Issue、Reverse/Redesign/Recovery/Incident 等の下位 episode は sub-issue。\n- 1 親あたり sub-issue 100 件、階層深さ 8 を超える写像は行わず、超過が見込まれる場合は §2 の上限に従って\n  分割する。\n\n### GOP-FR-06 API 制約の設計反映\n\n§2 の API 制約 (item/field/option 上限、sub-issue 上限、workflow token の権限境界、option 定義の\n上書き semantics、rate limit) を設計に反映する。特に option 同期は更新前に既存定義を取得し、同一 option の\n`id` を入力へ引き継ぐ。名前照合だけで既存IDを捨てる更新や、stale ID の無検証再利用を禁止する。\n\n### GOP-FR-05a Issue依存とPLAN参照の機械監査\n\n依存を持つIssue本文は`helix-issue-dependency.v1` blockで`depends_on`、`blocks`、`plan_id`を\n機械可読化する。1つのatomic PLANを所有するIssueは従来どおりscalar `plan_id`を使い、親・capability\nIssueが複数のatomic PLANを所有する場合は`plan_id: null`と明示的な`plan_ids: [...]`集合を使う。\nscalarと集合の同時指定や、集合外のPLANをIssueへ暗黙帰属させる推測は拒否する。`depends_on`先がopenのまま\nIssueをcloseした状態、双方向関係の欠落、PLANの`github_issue_id`とIssueの`plan_id`／`plan_ids`の不一致を\ndoctor/CIでfail-visibleにする。既存proseの`Refs #N`を\n依存正本として推測せず、このblockを採用したIssueから段階的に強制する。PR admissionではclosure graphが\n参照するIssueとその依存componentだけを検査し、無関係なlive Issue driftで全open PRを停止しない。\nscheduled runと手動runでは採用Issue全件を検査し、candidate treeに存在しない`plan_id`／`plan_ids`もfail-closeする。\nmain pushはopen PRが持ち込み中のPLANをcandidate treeから観測できないため全件監査を実行せず、\n開発中PLANを恒常的なrequired-check failureへ誤変換しない。\n\n### GOP-FR-07 人間可観測性\n\n`helix status` が示す active frontier (workflow-next-action 相当) を、GitHub 側 (Projects board の\n現在列 + Issue 階層の open/closed 状態) から追加ツールなしで読める状態にする。Projects board と Issue\n階層だけを見れば、現在どの roadmap gate/span が進行中で、どの Issue が Forward 再合流待ちかが分かる。\n\n### GOP-FR-08 projection drift 検出\n\nprojection (Projects item/field 値、sub-issue 階層) と `harness.db` の正本値との不一致を `helix doctor`\ngate で検出し、stale / 不一致を fail-visible にする。drift 検出は silent に無視されず、doctor の\nnon-zero exit または明示 finding として報告される。\n\n### GOP-FR-09 read-back 検証\n\nProjects API への書込み (`addProjectV2ItemById` 等) の後、読み取り API で反映内容を検証する read-back\nステップを必須とする。書込み呼び出しが成功応答を返しただけでは projection 完了とみなさない。\n\n### GOP-FR-10 secret 境界\n\nProjects API は対象 endpoint に必要な最小権限を持つ GitHub App installation/user token または project scope の\ntoken を使う。repository scoped の既定 `GITHUB_TOKEN` に未検証の Projects 権限を仮定しない。追加 token が\n必要な場合は分離した secret として管理し、secret の実値・token 例をドキュメント内に書かず、参照先\n(secret store の name/key) のみを記述する。\n\n### GOP-FR-11 3 段 CI の重み配分 (HIL-BR-16 整合)\n\n`infinity-loop-requirement-definition-ledger.md` の HIL-BR-16 (prejoin → postjoin → 外部 CI/PR の順)\nを前提に、外部 (GitHub 上の) PR CI の重みを次のとおり要件化する。\n\n- 外部 PR CI = typecheck + 変更影響範囲の targeted test (dependent-regression mapping を流用した\n  差分ベース選択) + critical gate のみを実行する。\n- 全回帰 (full regression) と全 doctor gate は、merge 後の内部 CI と nightly 実行に置く。\n\n実測根拠 (PO 提供、2026-07 時点観測): 外部 CI `harness-check` の実測所要時間が約 1,300 秒のうち、\nVitest の全回帰実行が約 1,179 秒 (全体の約 91%) を占める。この配分により外部 PR CI の待ち時間を\n支配的に決めているのが full regression であることを実測根拠とし、外部レーンから重量回帰を切り出す。\n\n### GOP-FR-12 内部 CI での full 回帰保証\n\nmerge 後内部 CI と nightly は、外部 PR CI で省略した full regression と全 doctor gate を必ず実行する。\n外部レーンで targeted test に絞ったことによるカバレッジ欠落を内部レーンが相殺し、どの commit も\n最終的に full regression を通過した記録を持つ。\n\n### GOP-FR-13 無根拠な軽量化の禁止\n\ntest 削除、閾値緩和、required leg の除外による CI 軽量化を禁止する。GH-FR-012 (merge・release境界) の\n「無根拠 rerun、テスト削除、閾値緩和、required leg の除外で緑化してはならない」と整合し、軽量化は\n必ず「どのレーンがどの gate を代替実行するか」を明示した設計変更としてのみ行う。\n\n### GOP-FR-14 実測根拠の再測定義務\n\nCI 所要時間の実測根拠 (GOP-FR-11 の秒数) は静的な一回限りの記録にせず、CI 実行時間が有意に悪化した場合\n(例: targeted test 選択後も外部レーンが再度長時間化した場合) に再測定し、本書の数値を更新する。stale な\n実測根拠のまま重み配分の正当性を主張しない。",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-FR-02",
+        "GOP-FR-03",
+        "GOP-FR-04",
+        "GOP-FR-05",
+        "GOP-FR-05a",
+        "GOP-FR-06",
+        "GOP-FR-07",
+        "GOP-FR-08",
+        "GOP-FR-09",
+        "GOP-FR-10",
+        "GOP-FR-11",
+        "GOP-FR-12",
+        "GOP-FR-13",
+        "GOP-FR-14"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A002",
+      "source_document_id": "DELEGATED-DOC-005",
+      "source_path": "docs/design/helix/L3-requirements/github-operations-projection.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-AC-01",
+      "original_ids": [
+        "GOP-AC-01",
+        "GOP-AC-02",
+        "GOP-AC-03",
+        "GOP-AC-04",
+        "GOP-AC-04a",
+        "GOP-AC-05",
+        "GOP-AC-06",
+        "GOP-AC-07",
+        "GOP-AC-08",
+        "GOP-AC-09",
+        "GOP-AC-10",
+        "GOP-AC-11",
+        "GOP-FR-01",
+        "GOP-FR-02",
+        "GOP-FR-03",
+        "GOP-FR-04",
+        "GOP-FR-05",
+        "GOP-FR-05a",
+        "GOP-FR-06",
+        "GOP-FR-07",
+        "GOP-FR-08",
+        "GOP-FR-09",
+        "GOP-FR-10",
+        "GOP-FR-11",
+        "GOP-FR-12",
+        "GOP-FR-13",
+        "GOP-FR-14",
+        "GOP-T-01",
+        "GOP-T-02",
+        "GOP-T-03",
+        "GOP-T-04",
+        "GOP-T-05",
+        "GOP-T-06",
+        "GOP-T-07",
+        "GOP-T-08",
+        "GOP-T-09",
+        "GOP-T-10",
+        "GOP-T-11"
+      ],
+      "source_span": {
+        "start_line": 172,
+        "end_line": 183,
+        "exact_source_text": "| GOP-AC-01 | GOP-FR-01, GOP-FR-02 | GitHub 側 (Projects/sub-issue) からの直接編集 fixture が正本へ反映されず、Issue 受付ゲート経由の command candidate のみ admission される | GOP-T-01 |\n| GOP-AC-02 | GOP-FR-03 | completion 判定 fixture で GitHub 側緑表示のみを入力にした判定が拒否される | GOP-T-02 |\n| GOP-AC-03 | GOP-FR-04 | roadmap gate/span の状態遷移 fixture が Projects view/status field/iteration へ一方向投影され、Projects 側の手動変更が次回同期で正本値へ収束する | GOP-T-03 |\n| GOP-AC-04 | GOP-FR-05 | PLAN 親子・駆動モデル別 Issue fixture が parent/sub-issue へ規則どおり写像され、孤児 sub-issue が 0 件になる | GOP-T-04 |\n| GOP-AC-04a | GOP-FR-05a | open依存を残したclosed Issue、およびPLAN↔Issue参照不一致のfixtureがstable findingでfail-closeする。PR focus外のdriftは隔離し、scheduled/手動全件監査ではmissing PLANを拒否する。main pushでは未merge PLANとの重なりをrequired-check failureにしない | U-IHIER-002, U-IHIER-003, U-IHIER-005 |\n| GOP-AC-05 | GOP-FR-06 | item/field/option 上限超過 fixture が同期前に fail-close し、option 名ベース再解決が ID drift を吸収する | GOP-T-05 |\n| GOP-AC-06 | GOP-FR-07 | `helix status` の active frontier と Projects board + Issue 階層の表示が同一 fixture 上で一致する | GOP-T-06 |\n| GOP-AC-07 | GOP-FR-08 | projection と `harness.db` を意図的に不一致にした fixture で `helix doctor` が fail-visible になる | GOP-T-07 |\n| GOP-AC-08 | GOP-FR-09 | 書込み成功だが read-back が不一致になる fixture で silent success を返さない | GOP-T-08 |\n| GOP-AC-09 | GOP-FR-10 | secret 未設定/誤設定 fixture で Projects API 呼び出しが fail-close し、secret 実値がログ/doc へ出力されない | GOP-T-09 |\n| GOP-AC-10 | GOP-FR-11, GOP-FR-12, GOP-FR-13 | 外部 PR CI fixture が typecheck + targeted test + critical gate のみを実行し、full regression 省略分が内部 CI/nightly fixture で必ず実行される (カバレッジ相殺なし) | GOP-T-10 |\n| GOP-AC-11 | GOP-FR-14 | CI 所要時間の再測定イベントが記録され、stale な実測根拠のまま重み配分主張が継続しない | GOP-T-11 |\n",
+        "sha256": "sha256:0ff85097bc363e1ea4cdc637657875431c284d2eb0b7f2d2dd984fae960633af"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "section_span",
+      "normalized_statement": "| GOP-AC-01 | GOP-FR-01, GOP-FR-02 | GitHub 側 (Projects/sub-issue) からの直接編集 fixture が正本へ反映されず、Issue 受付ゲート経由の command candidate のみ admission される | GOP-T-01 |\n| GOP-AC-02 | GOP-FR-03 | completion 判定 fixture で GitHub 側緑表示のみを入力にした判定が拒否される | GOP-T-02 |\n| GOP-AC-03 | GOP-FR-04 | roadmap gate/span の状態遷移 fixture が Projects view/status field/iteration へ一方向投影され、Projects 側の手動変更が次回同期で正本値へ収束する | GOP-T-03 |\n| GOP-AC-04 | GOP-FR-05 | PLAN 親子・駆動モデル別 Issue fixture が parent/sub-issue へ規則どおり写像され、孤児 sub-issue が 0 件になる | GOP-T-04 |\n| GOP-AC-04a | GOP-FR-05a | open依存を残したclosed Issue、およびPLAN↔Issue参照不一致のfixtureがstable findingでfail-closeする。PR focus外のdriftは隔離し、scheduled/手動全件監査ではmissing PLANを拒否する。main pushでは未merge PLANとの重なりをrequired-check failureにしない | U-IHIER-002, U-IHIER-003, U-IHIER-005 |\n| GOP-AC-05 | GOP-FR-06 | item/field/option 上限超過 fixture が同期前に fail-close し、option 名ベース再解決が ID drift を吸収する | GOP-T-05 |\n| GOP-AC-06 | GOP-FR-07 | `helix status` の active frontier と Projects board + Issue 階層の表示が同一 fixture 上で一致する | GOP-T-06 |\n| GOP-AC-07 | GOP-FR-08 | projection と `harness.db` を意図的に不一致にした fixture で `helix doctor` が fail-visible になる | GOP-T-07 |\n| GOP-AC-08 | GOP-FR-09 | 書込み成功だが read-back が不一致になる fixture で silent success を返さない | GOP-T-08 |\n| GOP-AC-09 | GOP-FR-10 | secret 未設定/誤設定 fixture で Projects API 呼び出しが fail-close し、secret 実値がログ/doc へ出力されない | GOP-T-09 |\n| GOP-AC-10 | GOP-FR-11, GOP-FR-12, GOP-FR-13 | 外部 PR CI fixture が typecheck + targeted test + critical gate のみを実行し、full regression 省略分が内部 CI/nightly fixture で必ず実行される (カバレッジ相殺なし) | GOP-T-10 |\n| GOP-AC-11 | GOP-FR-14 | CI 所要時間の再測定イベントが記録され、stale な実測根拠のまま重み配分主張が継続しない | GOP-T-11 |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-AC-02",
+        "GOP-AC-03",
+        "GOP-AC-04",
+        "GOP-AC-04a",
+        "GOP-AC-05",
+        "GOP-AC-06",
+        "GOP-AC-07",
+        "GOP-AC-08",
+        "GOP-AC-09",
+        "GOP-AC-10",
+        "GOP-AC-11",
+        "GOP-FR-01",
+        "GOP-FR-02",
+        "GOP-FR-03",
+        "GOP-FR-04",
+        "GOP-FR-05",
+        "GOP-FR-05a",
+        "GOP-FR-06",
+        "GOP-FR-07",
+        "GOP-FR-08",
+        "GOP-FR-09",
+        "GOP-FR-10",
+        "GOP-FR-11",
+        "GOP-FR-12",
+        "GOP-FR-13",
+        "GOP-FR-14",
+        "GOP-T-01",
+        "GOP-T-02",
+        "GOP-T-03",
+        "GOP-T-04",
+        "GOP-T-05",
+        "GOP-T-06",
+        "GOP-T-07",
+        "GOP-T-08",
+        "GOP-T-09",
+        "GOP-T-10",
+        "GOP-T-11"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A003",
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-T-01",
+      "original_ids": [
+        "GOP-AC-01",
+        "GOP-T-01"
+      ],
+      "source_span": {
+        "start_line": 23,
+        "end_line": 23,
+        "exact_source_text": "| GOP-T-01 | GOP-AC-01 | Projects board / sub-issue への直接編集 fixture と、Issue 受付ゲート経由の command candidate fixture | 直接編集は正本へ反映されず、command candidate のみ admission される |\n",
+        "sha256": "sha256:91ca21f9d3b26b7cc396172fd956e3751e3827f58c04004eeb55bc0a020b01a2"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| GOP-T-01 | GOP-AC-01 | Projects board / sub-issue への直接編集 fixture と、Issue 受付ゲート経由の command candidate fixture | 直接編集は正本へ反映されず、command candidate のみ admission される |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-T-01"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A004",
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-T-02",
+      "original_ids": [
+        "GOP-AC-02",
+        "GOP-T-02"
+      ],
+      "source_span": {
+        "start_line": 24,
+        "end_line": 24,
+        "exact_source_text": "| GOP-T-02 | GOP-AC-02 | GitHub 側緑表示 (closed Issue、green check、board 列位置) のみを入力にした completion 判定 fixture | GitHub 表示単独の completion 判定が拒否され、`harness.db` 側 evidence 欠落時は不合格になる |\n",
+        "sha256": "sha256:bf5c603a0d2f416ab687a9fd6530ddf66344c504d19a6af893128c29b7309932"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| GOP-T-02 | GOP-AC-02 | GitHub 側緑表示 (closed Issue、green check、board 列位置) のみを入力にした completion 判定 fixture | GitHub 表示単独の completion 判定が拒否され、`harness.db` 側 evidence 欠落時は不合格になる |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-T-02"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A005",
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-T-03",
+      "original_ids": [
+        "GOP-AC-03",
+        "GOP-T-03"
+      ],
+      "source_span": {
+        "start_line": 25,
+        "end_line": 25,
+        "exact_source_text": "| GOP-T-03 | GOP-AC-03 | roadmap gate/span の正本状態遷移 fixture、および Projects 側の手動列移動を挟んだ再同期 fixture | 正本遷移が Projects view/status field/iteration へ投影され、手動移動は次回同期で正本値へ収束する |\n",
+        "sha256": "sha256:11e8d757830dfdcea92c4f68791383cfc23be1d0ccb709f82a8be642876d462c"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| GOP-T-03 | GOP-AC-03 | roadmap gate/span の正本状態遷移 fixture、および Projects 側の手動列移動を挟んだ再同期 fixture | 正本遷移が Projects view/status field/iteration へ投影され、手動移動は次回同期で正本値へ収束する |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-T-03"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A006",
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-T-04",
+      "original_ids": [
+        "GOP-AC-04",
+        "GOP-T-04"
+      ],
+      "source_span": {
+        "start_line": 26,
+        "end_line": 26,
+        "exact_source_text": "| GOP-T-04 | GOP-AC-04 | PLAN 親子 fixture (層 PLAN=parent、step/派生 Issue=sub-issue) を正常/孤児混入/上限超過で用意 | 正常のみ写像成功、孤児 sub-issue は 0 件で検出され、上限超過は分割/拒否される |\n",
+        "sha256": "sha256:ce721c500260a963c015f5781a3c5578721634c66a7b090890139fbc082644b7"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| GOP-T-04 | GOP-AC-04 | PLAN 親子 fixture (層 PLAN=parent、step/派生 Issue=sub-issue) を正常/孤児混入/上限超過で用意 | 正常のみ写像成功、孤児 sub-issue は 0 件で検出され、上限超過は分割/拒否される |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-T-04"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A007",
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-T-05",
+      "original_ids": [
+        "GOP-AC-05",
+        "GOP-T-05"
+      ],
+      "source_span": {
+        "start_line": 27,
+        "end_line": 27,
+        "exact_source_text": "| GOP-T-05 | GOP-AC-05 | item 50,000 件超過、field 50 個超過、option 50 個超過、option 名変更後の再同期 fixture | 上限超過は同期前に fail-close し、option 名ベース再解決で ID 再採番後も同期が破綻しない |\n",
+        "sha256": "sha256:5798cc0cdfd70b8c4708dbd68acbc0495fbb78351f1d8cb53aa696f2e8a0c6cf"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| GOP-T-05 | GOP-AC-05 | item 50,000 件超過、field 50 個超過、option 50 個超過、option 名変更後の再同期 fixture | 上限超過は同期前に fail-close し、option 名ベース再解決で ID 再採番後も同期が破綻しない |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-T-05"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A008",
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-T-06",
+      "original_ids": [
+        "GOP-AC-06",
+        "GOP-T-06"
+      ],
+      "source_span": {
+        "start_line": 28,
+        "end_line": 28,
+        "exact_source_text": "| GOP-T-06 | GOP-AC-06 | `helix status` の active frontier fixture と、対応する Projects board + Issue 階層 snapshot fixture | 両者が同一 roadmap gate/span・Issue 状態を指し、追加ツールなしで一致確認できる |\n",
+        "sha256": "sha256:53b5a44540c490b728c231925e7b9736b50186d198e1ef158d2a41fe2e8dae1e"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| GOP-T-06 | GOP-AC-06 | `helix status` の active frontier fixture と、対応する Projects board + Issue 階層 snapshot fixture | 両者が同一 roadmap gate/span・Issue 状態を指し、追加ツールなしで一致確認できる |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-T-06"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A009",
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-T-07",
+      "original_ids": [
+        "GOP-AC-07",
+        "GOP-T-07"
+      ],
+      "source_span": {
+        "start_line": 29,
+        "end_line": 29,
+        "exact_source_text": "| GOP-T-07 | GOP-AC-07 | projection 側値と `harness.db` 正本値を意図的に不一致にした drift fixture | `helix doctor` が該当 gate で fail-visible になり、stale/不一致を finding として報告する |\n",
+        "sha256": "sha256:06e726b6b60046fbb835f69a4defc62cea84aad111a856f55b5a45474ad126e8"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| GOP-T-07 | GOP-AC-07 | projection 側値と `harness.db` 正本値を意図的に不一致にした drift fixture | `helix doctor` が該当 gate で fail-visible になり、stale/不一致を finding として報告する |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-T-07"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A010",
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-T-08",
+      "original_ids": [
+        "GOP-AC-08",
+        "GOP-T-08"
+      ],
+      "source_span": {
+        "start_line": 30,
+        "end_line": 30,
+        "exact_source_text": "| GOP-T-08 | GOP-AC-08 | `addProjectV2ItemById` 等の書込み成功応答後、read-back API が反映前状態を返す fixture | 書込みステップが silent success を返さず、read-back 不一致を finding として報告する |\n",
+        "sha256": "sha256:533d7ccd7028f4970cedce1c94253f7801ddab3ea49bd89c101a0dc1c37ac7f5"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| GOP-T-08 | GOP-AC-08 | `addProjectV2ItemById` 等の書込み成功応答後、read-back API が反映前状態を返す fixture | 書込みステップが silent success を返さず、read-back 不一致を finding として報告する |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-T-08"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A011",
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-T-09",
+      "original_ids": [
+        "GOP-AC-09",
+        "GOP-T-09"
+      ],
+      "source_span": {
+        "start_line": 31,
+        "end_line": 31,
+        "exact_source_text": "| GOP-T-09 | GOP-AC-09 | secret 未設定、誤 scope の PAT、`GITHUB_TOKEN` のみでの Projects API 呼び出し fixture | 呼び出しが fail-close し、secret 実値・token 文字列がログ/出力に含まれない |\n",
+        "sha256": "sha256:85d6cf6a9e1fdeddf789d1424a0225b8e16339ac7a07e6831e994cf7b7246c87"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| GOP-T-09 | GOP-AC-09 | secret 未設定、誤 scope の PAT、`GITHUB_TOKEN` のみでの Projects API 呼び出し fixture | 呼び出しが fail-close し、secret 実値・token 文字列がログ/出力に含まれない |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-T-09"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A012",
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-T-10",
+      "original_ids": [
+        "GOP-AC-10",
+        "GOP-T-10"
+      ],
+      "source_span": {
+        "start_line": 32,
+        "end_line": 32,
+        "exact_source_text": "| GOP-T-10 | GOP-AC-10 | 外部 PR CI fixture (typecheck + targeted test + critical gate) と内部 CI/nightly fixture (full regression + 全 doctor gate) の実行記録 | 外部レーンは targeted 範囲のみ実行し、省略した full regression が内部レーン記録で必ず実行済みになる (coverage 相殺が起きない) |\n",
+        "sha256": "sha256:77c2923051f2d6c06653d5c6e2f2947c4ce0b99ef0dd5093fbabcad5589f66c0"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| GOP-T-10 | GOP-AC-10 | 外部 PR CI fixture (typecheck + targeted test + critical gate) と内部 CI/nightly fixture (full regression + 全 doctor gate) の実行記録 | 外部レーンは targeted 範囲のみ実行し、省略した full regression が内部レーン記録で必ず実行済みになる (coverage 相殺が起きない) |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-T-10"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A013",
+      "source_document_id": "DELEGATED-DOC-014",
+      "source_path": "docs/test-design/helix/github-operations-projection-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "GOP-T-11",
+      "original_ids": [
+        "GOP-AC-11",
+        "GOP-T-11"
+      ],
+      "source_span": {
+        "start_line": 33,
+        "end_line": 33,
+        "exact_source_text": "| GOP-T-11 | GOP-AC-11 | CI 実測所要時間の悪化を模した再測定トリガ fixture | 再測定イベントが記録され、stale な実測根拠を cite したままの主張が finding として検出される |\n",
+        "sha256": "sha256:a167892dd775cf998ccd902999f175ef9e05632fcb84ba6056e1c7d5df493d92"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| GOP-T-11 | GOP-AC-11 | CI 実測所要時間の悪化を模した再測定トリガ fixture | 再測定イベントが記録され、stale な実測根拠を cite したままの主張が finding として検出される |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0305",
+        "DELEGATED-REF-0763"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "GOP-T-11"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A014",
+      "source_document_id": "DELEGATED-DOC-011",
+      "source_path": "docs/design/helix/L3-requirements/worker-common-contract.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "WCC-FR-01",
+      "original_ids": [
+        "WCC-FR-01",
+        "WCC-FR-02",
+        "WCC-FR-03",
+        "WCC-FR-04",
+        "WCC-FR-05",
+        "WCC-FR-06",
+        "WCC-FR-07",
+        "WCC-FR-08",
+        "WCC-FR-09"
+      ],
+      "source_span": {
+        "start_line": 55,
+        "end_line": 63,
+        "exact_source_text": "| `WCC-FR-01` | 委譲面 | 全workerはversioned descriptor（`agent_id`/`contract_version`/`capability_class`）を持ち、providerごとに別形式のI/Oを許さない | `HR-FR-HIL-22`（比較対象の同一性前提）、`HR-FR-P2-06` | descriptor登録済み → 全provider呼び出しが同一typed event形へ収束 | provider固有I/Oの素通し、descriptor欠落 |\n| `WCC-FR-02` | 委譲面 | 全workerは同一CLI wrapper経路（`helix codex` / `helix claude` 相当のHARNESS所有entrypoint）からのみ起動し、raw provider CLIの直接呼び出しを比較対象にしない | `HR-FR-HIL-22`（bench対象の再現可能性） | wrapper経路のみ許可 → raw呼び出しはbench非対象として拒否 | raw CLI経由の結果をbenchmark scorecardへ混入 |\n| `WCC-FR-03` | sandbox | 全workerは隔離worktree内でのみ実行し、repository本体・harness DB・`.helix/`・credentialへ到達しない | `HR-FR-P2-05` | 隔離worktree払い出し済み → 実行cwdがscratch fixtureに限定 | 本体repository/DB/credentialへの到達 |\n| `WCC-FR-04` | sandbox | 全workerはnetwork default denyかつsecretを含むtaskをdenyされ、allowlist外egressとscope外diffはfail-close | `HR-FR-P2-05`、`HR-FR-HIL-23`（sandbox契約の既存正本） | sandbox policy適用済み → 許可path/host以外への到達0 | allowlist外egress、scope外diff、機密委譲 |\n| `WCC-FR-05` | receipt | worker出力はstrict schema／digest検証を既定とし、緩和には対象・理由・期限・再検証receiptを要求する | `HR-FR-P2-08` | schema/digest policyあり → 不合格出力はcommit対象外 | schema違反出力のNode write、期限なし緩和 |\n| `WCC-FR-06` | receipt | 全receiptは`worker_model`（提示provider/model family）と`reviewer_model`（独立検証者のprovider/model family）を記録し、両者は独立でなければならない | `HR-FR-HIL-22`（scorecard比較の前提）、`HR-FR-HIL-08`（`SeparationDecisionV1`） | worker/reviewer独立性ポリシーあり → receiptに双方のmodel familyを記録 | worker=reviewerの自己検証、model family欠落 |\n| `WCC-FR-07` | blind benchmark | 候補worker/model/effortは固定fixture・固定rubric・固定task・risk別のblind score（`BlindPacketV1`相当、author claim/private context 0）で比較する | `HR-FR-HIL-22`、`HAC-HIL-22a` | fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt | smoke-only採用、author claimの packet混入 |\n| `WCC-FR-08` | blind benchmark | 重大failure（scope逸脱、secret漏洩、schema違反）は平均点で相殺せず単独failureとして記録し、用途別（用途A可／用途B不可等）にadmit・retireを決定する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` | risk別scorecardあり → 重大failureが平均へ埋没しない | 重大failureの平均相殺、根拠なしeffort固定 |\n| `WCC-FR-09` | context | wrapperはworker起動前に`worker-context-packet.v1`を生成し、current HEAD、current authority/rule digest、goal、development style、case-driven model、specialist process、behavior contract、responsibility owner、allowed/forbidden path、severity policy、output schema、budget、role judgment、task lensをexact束縛する。実payload digestがpacket digestと一致しない場合、またはcompatibility文書・廃止済みlayer scheme・author claimをcurrent authorityとして含む場合は起動前に拒否する | `HR-FR-HIL-23`、`HAC-HIL-23a`、`HAC-HIL-23c` | current authorityとtask boundaryが解決済み → provider非依存context packet一件 | context欠落、旧authority注入、3軸混同、scope/owner/budget欠落、payload digest drift |\n",
+        "sha256": "sha256:a40dd6c604ba0389d5776ca925dd4296ec6d40e1ae016c3390e1e72eb8deae7f"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "section_span",
+      "normalized_statement": "| `WCC-FR-01` | 委譲面 | 全workerはversioned descriptor（`agent_id`/`contract_version`/`capability_class`）を持ち、providerごとに別形式のI/Oを許さない | `HR-FR-HIL-22`（比較対象の同一性前提）、`HR-FR-P2-06` | descriptor登録済み → 全provider呼び出しが同一typed event形へ収束 | provider固有I/Oの素通し、descriptor欠落 |\n| `WCC-FR-02` | 委譲面 | 全workerは同一CLI wrapper経路（`helix codex` / `helix claude` 相当のHARNESS所有entrypoint）からのみ起動し、raw provider CLIの直接呼び出しを比較対象にしない | `HR-FR-HIL-22`（bench対象の再現可能性） | wrapper経路のみ許可 → raw呼び出しはbench非対象として拒否 | raw CLI経由の結果をbenchmark scorecardへ混入 |\n| `WCC-FR-03` | sandbox | 全workerは隔離worktree内でのみ実行し、repository本体・harness DB・`.helix/`・credentialへ到達しない | `HR-FR-P2-05` | 隔離worktree払い出し済み → 実行cwdがscratch fixtureに限定 | 本体repository/DB/credentialへの到達 |\n| `WCC-FR-04` | sandbox | 全workerはnetwork default denyかつsecretを含むtaskをdenyされ、allowlist外egressとscope外diffはfail-close | `HR-FR-P2-05`、`HR-FR-HIL-23`（sandbox契約の既存正本） | sandbox policy適用済み → 許可path/host以外への到達0 | allowlist外egress、scope外diff、機密委譲 |\n| `WCC-FR-05` | receipt | worker出力はstrict schema／digest検証を既定とし、緩和には対象・理由・期限・再検証receiptを要求する | `HR-FR-P2-08` | schema/digest policyあり → 不合格出力はcommit対象外 | schema違反出力のNode write、期限なし緩和 |\n| `WCC-FR-06` | receipt | 全receiptは`worker_model`（提示provider/model family）と`reviewer_model`（独立検証者のprovider/model family）を記録し、両者は独立でなければならない | `HR-FR-HIL-22`（scorecard比較の前提）、`HR-FR-HIL-08`（`SeparationDecisionV1`） | worker/reviewer独立性ポリシーあり → receiptに双方のmodel familyを記録 | worker=reviewerの自己検証、model family欠落 |\n| `WCC-FR-07` | blind benchmark | 候補worker/model/effortは固定fixture・固定rubric・固定task・risk別のblind score（`BlindPacketV1`相当、author claim/private context 0）で比較する | `HR-FR-HIL-22`、`HAC-HIL-22a` | fixed fixture/rubric/task/riskあり → blind score、実効cost、選択receipt | smoke-only採用、author claimの packet混入 |\n| `WCC-FR-08` | blind benchmark | 重大failure（scope逸脱、secret漏洩、schema違反）は平均点で相殺せず単独failureとして記録し、用途別（用途A可／用途B不可等）にadmit・retireを決定する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` | risk別scorecardあり → 重大failureが平均へ埋没しない | 重大failureの平均相殺、根拠なしeffort固定 |\n| `WCC-FR-09` | context | wrapperはworker起動前に`worker-context-packet.v1`を生成し、current HEAD、current authority/rule digest、goal、development style、case-driven model、specialist process、behavior contract、responsibility owner、allowed/forbidden path、severity policy、output schema、budget、role judgment、task lensをexact束縛する。実payload digestがpacket digestと一致しない場合、またはcompatibility文書・廃止済みlayer scheme・author claimをcurrent authorityとして含む場合は起動前に拒否する | `HR-FR-HIL-23`、`HAC-HIL-23a`、`HAC-HIL-23c` | current authorityとtask boundaryが解決済み → provider非依存context packet一件 | context欠落、旧authority注入、3軸混同、scope/owner/budget欠落、payload digest drift |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "WCC-FR-02",
+        "WCC-FR-03",
+        "WCC-FR-04",
+        "WCC-FR-05",
+        "WCC-FR-06",
+        "WCC-FR-07",
+        "WCC-FR-08",
+        "WCC-FR-09"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A015",
+      "source_document_id": "DELEGATED-DOC-011",
+      "source_path": "docs/design/helix/L3-requirements/worker-common-contract.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "WCC-AC-01",
+      "original_ids": [
+        "WCC-AC-01",
+        "WCC-AC-02",
+        "WCC-AC-03",
+        "WCC-AC-04",
+        "WCC-AC-05",
+        "WCC-AC-06",
+        "WCC-AC-07",
+        "WCC-FR-01",
+        "WCC-FR-02",
+        "WCC-FR-03",
+        "WCC-FR-04",
+        "WCC-FR-05",
+        "WCC-FR-06",
+        "WCC-FR-07",
+        "WCC-FR-08",
+        "WCC-FR-09"
+      ],
+      "source_span": {
+        "start_line": 127,
+        "end_line": 133,
+        "exact_source_text": "| `WCC-AC-01` | `WCC-FR-01`, `WCC-FR-02` | 全provider呼び出しが同一versioned descriptor＋wrapper経路を経由する | raw CLI直接呼び出しの結果がbenchmark scorecardへ混入した場合は拒否する | `HR-FR-HIL-22`前提（比較対象の同一性） |\n| `WCC-AC-02` | `WCC-FR-03`, `WCC-FR-04` | worker実行が隔離worktree内に閉じ、network/secret denyが有効である | 本体repository到達、allowlist外egress、scope外diffを検出した場合はfail-closeする | `HR-FR-P2-05`、`HR-FR-HIL-23` |\n| `WCC-AC-03` | `WCC-FR-05`, `WCC-FR-06` | 全receiptがschema/digest検証を通過し、`worker_model`/`reviewer_model`が独立記録される | schema違反出力のcommit、worker=reviewerの自己検証を検出した場合は拒否する | `HR-FR-P2-08`、`HR-FR-HIL-08` |\n| `WCC-AC-04` | `WCC-FR-07` | blind benchmarkがfixed fixture/rubric/taskでauthor claim 0のblind scoreを生成する | smoke-onlyの結果をfull admission根拠にした場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22a` |\n| `WCC-AC-05` | `WCC-FR-08` | 重大failureが用途別admit/retire決定で単独failureとして扱われる | 重大failureを平均点で相殺した場合、または根拠なしにeffortを固定した場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` |\n| `WCC-AC-06` | —（FR無し・§2 provider対応表のガバナンスAC） | Kimi/GrokのDiscovery（S2）成果は「入力・仮説」として引用されるに留まる | Discovery成果をS4 decide前に正本claim（採用済み/admit済み）として扱った場合は拒否する | `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS4 routing境界 |\n| `WCC-AC-07` | `WCC-FR-09` | current HEADとcurrent L1〜L12 authority、3つの駆動軸、task boundary、role/task lens、有限budgetを持つpacketと実payloadのdigestが一致する | field欠落、compatibility/旧layer authority、3軸混同、scope外path、budget 0、payload digest driftを起動前に拒否する。packet／sandbox／payload receiptを再現できない適用前reviewはhistorical evidenceへ降格する | `HR-FR-HIL-23`、`HAC-HIL-23a`、`HAC-HIL-23c` |\n",
+        "sha256": "sha256:12810e7b5b906230e92efa46c44ac0464dc7e459b750874df4f6bb8b7806966e"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "section_span",
+      "normalized_statement": "| `WCC-AC-01` | `WCC-FR-01`, `WCC-FR-02` | 全provider呼び出しが同一versioned descriptor＋wrapper経路を経由する | raw CLI直接呼び出しの結果がbenchmark scorecardへ混入した場合は拒否する | `HR-FR-HIL-22`前提（比較対象の同一性） |\n| `WCC-AC-02` | `WCC-FR-03`, `WCC-FR-04` | worker実行が隔離worktree内に閉じ、network/secret denyが有効である | 本体repository到達、allowlist外egress、scope外diffを検出した場合はfail-closeする | `HR-FR-P2-05`、`HR-FR-HIL-23` |\n| `WCC-AC-03` | `WCC-FR-05`, `WCC-FR-06` | 全receiptがschema/digest検証を通過し、`worker_model`/`reviewer_model`が独立記録される | schema違反出力のcommit、worker=reviewerの自己検証を検出した場合は拒否する | `HR-FR-P2-08`、`HR-FR-HIL-08` |\n| `WCC-AC-04` | `WCC-FR-07` | blind benchmarkがfixed fixture/rubric/taskでauthor claim 0のblind scoreを生成する | smoke-onlyの結果をfull admission根拠にした場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22a` |\n| `WCC-AC-05` | `WCC-FR-08` | 重大failureが用途別admit/retire決定で単独failureとして扱われる | 重大failureを平均点で相殺した場合、または根拠なしにeffortを固定した場合は拒否する | `HR-FR-HIL-22`、`HAC-HIL-22b`、`HAC-HIL-22c` |\n| `WCC-AC-06` | —（FR無し・§2 provider対応表のガバナンスAC） | Kimi/GrokのDiscovery（S2）成果は「入力・仮説」として引用されるに留まる | Discovery成果をS4 decide前に正本claim（採用済み/admit済み）として扱った場合は拒否する | `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS4 routing境界 |\n| `WCC-AC-07` | `WCC-FR-09` | current HEADとcurrent L1〜L12 authority、3つの駆動軸、task boundary、role/task lens、有限budgetを持つpacketと実payloadのdigestが一致する | field欠落、compatibility/旧layer authority、3軸混同、scope外path、budget 0、payload digest driftを起動前に拒否する。packet／sandbox／payload receiptを再現できない適用前reviewはhistorical evidenceへ降格する | `HR-FR-HIL-23`、`HAC-HIL-23a`、`HAC-HIL-23c` |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "WCC-AC-02",
+        "WCC-AC-03",
+        "WCC-AC-04",
+        "WCC-AC-05",
+        "WCC-AC-06",
+        "WCC-AC-07",
+        "WCC-FR-01",
+        "WCC-FR-02",
+        "WCC-FR-03",
+        "WCC-FR-04",
+        "WCC-FR-05",
+        "WCC-FR-06",
+        "WCC-FR-07",
+        "WCC-FR-08",
+        "WCC-FR-09"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A016",
+      "source_document_id": "DELEGATED-DOC-018",
+      "source_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "HAT-WCC-01",
+      "original_ids": [
+        "HAT-WCC-01",
+        "WCC-AC-04",
+        "WCC-FR-07"
+      ],
+      "source_span": {
+        "start_line": 29,
+        "end_line": 29,
+        "exact_source_text": "| `HAT-WCC-01` | `WCC-FR-07`, `WCC-AC-04` | **smoke-only採用拒否**: 固定3件程度のsmoke fixture結果だけではfull admissionを許可しない。full admissionにはblind judge・実task scorecardの結果が必須である | smoke判定digest、full bench判定digest（存在しない場合はadmission decision自体を拒否） | smoke判定のみでadmission decisionを生成した場合はfailとする（`PLAN-DISCOVERY-13`のS2完了/S4未了状態をfull admissionの根拠に使わないことを含む） |\n",
+        "sha256": "sha256:c739fee6833a22a3e71cf391d8b168c166b4670f9d05e93a21167a04c1692988"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| `HAT-WCC-01` | `WCC-FR-07`, `WCC-AC-04` | **smoke-only採用拒否**: 固定3件程度のsmoke fixture結果だけではfull admissionを許可しない。full admissionにはblind judge・実task scorecardの結果が必須である | smoke判定digest、full bench判定digest（存在しない場合はadmission decision自体を拒否） | smoke判定のみでadmission decisionを生成した場合はfailとする（`PLAN-DISCOVERY-13`のS2完了/S4未了状態をfull admissionの根拠に使わないことを含む） |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "WCC-AC-04",
+        "WCC-FR-07"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A017",
+      "source_document_id": "DELEGATED-DOC-018",
+      "source_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "HAT-WCC-02",
+      "original_ids": [
+        "HAT-WCC-02",
+        "WCC-AC-04",
+        "WCC-FR-07"
+      ],
+      "source_span": {
+        "start_line": 30,
+        "end_line": 30,
+        "exact_source_text": "| `HAT-WCC-02` | `WCC-FR-07`, `WCC-AC-04` | **blind packetへのauthor claim混入0**: `BlindPacketV1`相当のpacketに`author_claim_count`超過、reasoning/chat contextが含まれないことを検証する | packet構造のfield一覧、`author_claim_count`/`private_context_count`の実測値 | 1件でもauthor claimまたはprivate contextが混入した場合はfailとする |\n",
+        "sha256": "sha256:624aa0c4608b8711dba53939c27da1a69aada75b006575a87215318120760bf1"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| `HAT-WCC-02` | `WCC-FR-07`, `WCC-AC-04` | **blind packetへのauthor claim混入0**: `BlindPacketV1`相当のpacketに`author_claim_count`超過、reasoning/chat contextが含まれないことを検証する | packet構造のfield一覧、`author_claim_count`/`private_context_count`の実測値 | 1件でもauthor claimまたはprivate contextが混入した場合はfailとする |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "WCC-AC-04",
+        "WCC-FR-07"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A018",
+      "source_document_id": "DELEGATED-DOC-018",
+      "source_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "HAT-WCC-03",
+      "original_ids": [
+        "HAT-WCC-03",
+        "WCC-AC-02",
+        "WCC-FR-04"
+      ],
+      "source_span": {
+        "start_line": 31,
+        "end_line": 31,
+        "exact_source_text": "| `HAT-WCC-03` | `WCC-FR-04`, `WCC-AC-02` | **provider縮退時のfail-close**: sandbox/network denyや期待providerが利用不可の場合、代替providerへ無許可でfallbackせず、fail-closeする。provider CLIにnative sandbox optionが無い場合もprompt禁止文やpermission modeで代替しない | 縮退イベントのdecision digest、fallback発生の有無ログ、process外sandbox適用receipt、`--yolo`／`--auto`拒否mutation | 無許可providerへの自動fallback、deny違反の継続、またはprocess外sandboxなしでの起動を一件でも許可した場合はfailとする |\n",
+        "sha256": "sha256:f021ff54e94fd64d53e5d80cd2769cc7458372789f83d4758b2a824ecea22669"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| `HAT-WCC-03` | `WCC-FR-04`, `WCC-AC-02` | **provider縮退時のfail-close**: sandbox/network denyや期待providerが利用不可の場合、代替providerへ無許可でfallbackせず、fail-closeする。provider CLIにnative sandbox optionが無い場合もprompt禁止文やpermission modeで代替しない | 縮退イベントのdecision digest、fallback発生の有無ログ、process外sandbox適用receipt、`--yolo`／`--auto`拒否mutation | 無許可providerへの自動fallback、deny違反の継続、またはprocess外sandboxなしでの起動を一件でも許可した場合はfailとする |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "WCC-AC-02",
+        "WCC-FR-04"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A019",
+      "source_document_id": "DELEGATED-DOC-018",
+      "source_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "HAT-WCC-04",
+      "original_ids": [
+        "HAT-WCC-04",
+        "WCC-AC-01",
+        "WCC-FR-01",
+        "WCC-FR-02"
+      ],
+      "source_span": {
+        "start_line": 32,
+        "end_line": 32,
+        "exact_source_text": "| `HAT-WCC-04` | `WCC-FR-01`, `WCC-FR-02`, `WCC-AC-01` | **非allowlist providerの起動拒否**: `worker-common-contract.md` §2 provider対応表に無いprovider、またはraw CLI直接呼び出し経路からの起動を拒否する | 起動要求のprovider識別子、拒否時のfailure code | allowlist外providerまたはraw CLI経路の呼び出しが成立した場合はfailとする |\n",
+        "sha256": "sha256:52d5fd8473fef8f15f453722194d8dd2b7f76e715a9066831a7dc4b7d9a58d7f"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| `HAT-WCC-04` | `WCC-FR-01`, `WCC-FR-02`, `WCC-AC-01` | **非allowlist providerの起動拒否**: `worker-common-contract.md` §2 provider対応表に無いprovider、またはraw CLI直接呼び出し経路からの起動を拒否する | 起動要求のprovider識別子、拒否時のfailure code | allowlist外providerまたはraw CLI経路の呼び出しが成立した場合はfailとする |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "WCC-AC-01",
+        "WCC-FR-01",
+        "WCC-FR-02"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A020",
+      "source_document_id": "DELEGATED-DOC-018",
+      "source_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "HAT-WCC-05",
+      "original_ids": [
+        "HAT-WCC-05",
+        "WCC-AC-06"
+      ],
+      "source_span": {
+        "start_line": 33,
+        "end_line": 33,
+        "exact_source_text": "| `HAT-WCC-05` | `WCC-AC-06` | **Discovery成果のS4前正本化拒否**: `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS0-S2成果を、S4 decide（admission decision receipt）を経ずに正本claim（「採用済み」「admit済み」等）として扱っていないかを検査する | 該当PLANの`status`/S4チェックリスト状態、参照箇所の文言 | S4未了のPLANを根拠に「採用済み」「動作保証済み」等の正本claimが生成された場合はfailとする |\n",
+        "sha256": "sha256:445b1f7d399814c893a55e8b6ea434c7f79393823812a1a205cf4bc0444473f1"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| `HAT-WCC-05` | `WCC-AC-06` | **Discovery成果のS4前正本化拒否**: `PLAN-DISCOVERY-12`/`PLAN-DISCOVERY-13`のS0-S2成果を、S4 decide（admission decision receipt）を経ずに正本claim（「採用済み」「admit済み」等）として扱っていないかを検査する | 該当PLANの`status`/S4チェックリスト状態、参照箇所の文言 | S4未了のPLANを根拠に「採用済み」「動作保証済み」等の正本claimが生成された場合はfailとする |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "WCC-AC-06"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A021",
+      "source_document_id": "DELEGATED-DOC-018",
+      "source_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "HAT-WCC-06",
+      "original_ids": [
+        "HAT-WCC-06",
+        "WCC-AC-02",
+        "WCC-FR-03"
+      ],
+      "source_span": {
+        "start_line": 34,
+        "end_line": 34,
+        "exact_source_text": "| `HAT-WCC-06` | `WCC-FR-03`, `WCC-AC-02` | **隔離worktree境界**: worker cwd、mount、環境変数、入力descriptorがscratch worktreeだけを指し、repository本体、`harness.db`、`.helix/`、credentialへ到達不能である | canonical worktree root、resolved cwd/mount、sanitized environment digest、deny event | 本体path、DB path、`.helix/`、credential locatorの露出またはsymlink/path traversal到達を一件でも許可した場合はfailとする |\n",
+        "sha256": "sha256:df6d497533c7c18f43a25e2bc3cbc7b252fdb2f920e22b29f6bd9098342b5de7"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| `HAT-WCC-06` | `WCC-FR-03`, `WCC-AC-02` | **隔離worktree境界**: worker cwd、mount、環境変数、入力descriptorがscratch worktreeだけを指し、repository本体、`harness.db`、`.helix/`、credentialへ到達不能である | canonical worktree root、resolved cwd/mount、sanitized environment digest、deny event | 本体path、DB path、`.helix/`、credential locatorの露出またはsymlink/path traversal到達を一件でも許可した場合はfailとする |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "WCC-AC-02",
+        "WCC-FR-03"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A022",
+      "source_document_id": "DELEGATED-DOC-018",
+      "source_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "HAT-WCC-07",
+      "original_ids": [
+        "HAT-WCC-07",
+        "WCC-AC-03",
+        "WCC-FR-05",
+        "WCC-FR-06"
+      ],
+      "source_span": {
+        "start_line": 35,
+        "end_line": 35,
+        "exact_source_text": "| `HAT-WCC-07` | `WCC-FR-05`, `WCC-FR-06`, `WCC-AC-03` | **receipt schema・独立検証**: strict schema/digestを通過し、`worker_model`と`reviewer_model`が別identity・別sessionとして記録されたreceiptだけをcommit候補にする | schema version、payload/output digest、worker/reviewer identity・session、Node再検証receipt | schema違反、digest drift、worker=reviewer、identity/session欠落、期限なし緩和のいずれかでcommit 0とする |\n",
+        "sha256": "sha256:38b24edb7edbd2aabef57f77902f2ff2b9d6f5cf3efa314628b8e9a958e4e933"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| `HAT-WCC-07` | `WCC-FR-05`, `WCC-FR-06`, `WCC-AC-03` | **receipt schema・独立検証**: strict schema/digestを通過し、`worker_model`と`reviewer_model`が別identity・別sessionとして記録されたreceiptだけをcommit候補にする | schema version、payload/output digest、worker/reviewer identity・session、Node再検証receipt | schema違反、digest drift、worker=reviewer、identity/session欠落、期限なし緩和のいずれかでcommit 0とする |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "WCC-AC-03",
+        "WCC-FR-05",
+        "WCC-FR-06"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A023",
+      "source_document_id": "DELEGATED-DOC-018",
+      "source_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "HAT-WCC-08",
+      "original_ids": [
+        "HAT-WCC-08",
+        "WCC-AC-05",
+        "WCC-FR-08"
+      ],
+      "source_span": {
+        "start_line": 36,
+        "end_line": 36,
+        "exact_source_text": "| `HAT-WCC-08` | `WCC-FR-08`, `WCC-AC-05` | **重大failure非相殺**: scope逸脱、secret漏洩、schema違反を単独failureとして用途別admit/retireへ反映する | risk別scorecard、重大finding、用途別decision、反証evidence | 高い平均scoreで重大failureを相殺する、または根拠なしに全用途admit/effort固定した場合はfailとする |\n",
+        "sha256": "sha256:ebaffafae4855bc71a65d7941dad84e6916206c935af48ff69e0040bafde10f3"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| `HAT-WCC-08` | `WCC-FR-08`, `WCC-AC-05` | **重大failure非相殺**: scope逸脱、secret漏洩、schema違反を単独failureとして用途別admit/retireへ反映する | risk別scorecard、重大finding、用途別decision、反証evidence | 高い平均scoreで重大failureを相殺する、または根拠なしに全用途admit/effort固定した場合はfailとする |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "WCC-AC-05",
+        "WCC-FR-08"
+      ]
+    },
+    {
+      "semantic_atom_id": "RDP-001-SCF-B-0013-A024",
+      "source_document_id": "DELEGATED-DOC-018",
+      "source_path": "docs/test-design/helix/worker-common-contract-acceptance.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "original_id": "HAT-WCC-09",
+      "original_ids": [
+        "HAT-WCC-09",
+        "WCC-AC-07",
+        "WCC-FR-09"
+      ],
+      "source_span": {
+        "start_line": 37,
+        "end_line": 37,
+        "exact_source_text": "| `HAT-WCC-09` | `WCC-FR-09`, `WCC-AC-07` | **context packet exact binding**: current HEAD、current authority/rule digest、style/case/specialist、contract/owner/scope、severity、schema、budget、role/task lensと実payload digestを照合する | packet canonical JSON digest、実payload digest、authority registry lookup、sandbox／egress／FS差分receipt、negative mutation結果 | field欠落、compatibility/旧layer authority、3軸混同、budget 0、scope外path、digest driftの各mutationを一件でも起動許可した場合はfailとする。適用前receiptがpacket／sandbox／payloadを再現できない場合はhistorical evidence以外への利用を拒否する |\n",
+        "sha256": "sha256:9e7665ae4a600b38eb7bd12330047815908a11a9516fce7f83e3b02653d8adeb"
+      },
+      "candidate_target": "unresolved",
+      "candidate_kind": "semantic_atom_candidate",
+      "granularity": "source_line",
+      "normalized_statement": "| `HAT-WCC-09` | `WCC-FR-09`, `WCC-AC-07` | **context packet exact binding**: current HEAD、current authority/rule digest、style/case/specialist、contract/owner/scope、severity、schema、budget、role/task lensと実payload digestを照合する | packet canonical JSON digest、実payload digest、authority registry lookup、sandbox／egress／FS差分receipt、negative mutation結果 | field欠落、compatibility/旧layer authority、3軸混同、budget 0、scope外path、digest driftの各mutationを一件でも起動許可した場合はfailとする。適用前receiptがpacket／sandbox／payloadを再現できない場合はhistorical evidence以外への利用を拒否する |",
+      "owner_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "actors": [
+        "legacy author or QA/test designer",
+        "human PO/TL decision authority remains required"
+      ],
+      "authority_conditions": [
+        "historical source blob only",
+        "no authority effect is created by this scaffold"
+      ],
+      "negative_conditions": [
+        "do not infer adoption, owner, phase authority, implementation, consumer closure, acceptance, runtime, CI, or release readiness"
+      ],
+      "reference_edge_ids": [
+        "DELEGATED-REF-0373",
+        "DELEGATED-REF-0783"
+      ],
+      "retained_meaning": "Exact source span is carried pending atomization; semantic meaning and responsibility remain unresolved.",
+      "possible_conflicts": [
+        "historical source contains cross-document cites and composite obligations"
+      ],
+      "questions": [
+        "which current product and layer contract, if any, is approved for this atom?"
+      ],
+      "legacy_state": {
+        "phase_authority_status": "unconfirmed",
+        "legacy_implementation_status": "unknown",
+        "legacy_execution_performed": false,
+        "consumer_status": "pending",
+        "consumer_refs": []
+      },
+      "related_original_ids": [
+        "WCC-AC-07",
+        "WCC-FR-09"
+      ]
+    }
+  ],
+  "unresolved_crossdoc_references": [
+    {
+      "path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "line": 17,
+      "reason": "GOP source cross-document cite; no selected edge or approved semantic closure in this scaffold."
+    },
+    {
+      "path": "docs/plans/PLAN-DISCOVERY-12-grok-build-worktree-precedent.md",
+      "line": 132,
+      "reason": "WCC discovery reference; phase/product/authority remain unresolved."
+    },
+    {
+      "path": "docs/skills/judgment-core.md",
+      "line": 42,
+      "reason": "WCC test-design cite; no current consumer or implementation closure is inferred."
+    }
+  ],
+  "closure_guard": {
+    "authority_effect": "none",
+    "meaning_change_applied": false,
+    "successor_requirement_ids": [],
+    "human_decision_ref": null,
+    "source_carry_status": "preserved_pending_atomization",
+    "reference_carry_status": "preserved_pending_atomization",
+    "adoption_state": "none",
+    "holding_closure": "not_performed",
+    "prohibited_inference": [
+      "owner adoption",
+      "phase authority",
+      "legacy implementation",
+      "consumer closure",
+      "acceptance completion",
+      "L3/L10 freeze",
+      "runtime or CI readiness"
+    ]
+  },
+  "atom_denominator": {
+    "source_documents": 4,
+    "source_lines": 455,
+    "full_blob_coverage_spans": 4,
+    "semantic_atoms": 24,
+    "original_ids_l3": 43,
+    "original_ids_l10": 20,
+    "atom_covered_lines": 156,
+    "atom_uncovered_lines": 299,
+    "reference_edges": 4,
+    "uncovered_line_policy": "Every source blob has a full 1..N coverage span. Atom union coverage is separately recomputed; uncovered line lists and digests are retained as explicit fail-close denominator and never treated as adopted meaning."
+  }
+}
