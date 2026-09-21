@@ -1,0 +1,239 @@
+{
+  "schema_revision": 1,
+  "audit_id": "RDP-001-UNASSESSED-ATOM-SOURCE-AUDIT",
+  "status": "findings_only",
+  "authority_effect": "none",
+  "binding_id": "SCF-B-0027",
+  "binding_state": "registered",
+  "created": "2026-09-22",
+  "scope": {
+    "program": "RDP-001",
+    "decision_unit": "L2D-S1-01",
+    "selected_holding": "MPR-SH-PREISOLATION-002",
+    "selection_reason": "333 pathの両revisionとarchive blobが同一holdingで追跡でき、L2D-S1-01 packet v2が参照するPLAN-L3-82を含む。旧原文、判断史、failure、consumer、実装状態の分母を一つの静的照合で固定できる。",
+    "atom_incomplete_sets": [
+      {
+        "holding_id": "MPR-SH-PREISOLATION-002",
+        "count": 333,
+        "state": "unassessed_pending_atomization",
+        "priority": "selected"
+      },
+      {
+        "holding_id": "MPR-SH-DELEGATED-DOC-003",
+        "count": 114,
+        "state": "preserved_pending_atomization",
+        "priority": "not_selected"
+      },
+      {
+        "holding_id": "MPR-SH-DELEGATED-REF-001",
+        "count": 614,
+        "classification_pending": 174,
+        "state": "atomization_and_classification_pending",
+        "priority": "not_selected"
+      }
+    ]
+  },
+  "source_register": {
+    "registration_id": "MPR-SH-PREISOLATION-002",
+    "source_atom_set_ref": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+    "source_atom_set_digest": "sha256:d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+    "source_atom_count": 333,
+    "product_target": "unassigned_cross_product",
+    "coverage_result": "source_preserved_unassigned",
+    "management_state": "registered_source_holding",
+    "authority_effect": "none",
+    "carried_atom_refs": 0,
+    "human_decision_disposition_refs": 0,
+    "unaccounted_atom_refs": 0
+  },
+  "holding_screen": {
+    "screen_id": "S101-HOLD-MPR-SH-PREISOLATION-002",
+    "source_atom_count": 333,
+    "screened_matches": 0,
+    "disposition": "unassessed_pending_atomization",
+    "revision_relation": "changed_before_archive_pending_semantic_equivalence_review",
+    "meaning_change_applied": false,
+    "successor_requirement_ids": 0,
+    "authority_effect": "none"
+  },
+  "issue_projection": {
+    "program": "RDP-001",
+    "issue_number": 1813,
+    "authority_effect": "projection_only",
+    "read_after": "OPEN/state:proposed-upstream-waiting",
+    "receipt_id": "RDPPROJ-1813-20260919-005",
+    "projection_sha256": "7081e6f43861fb385638e346f05685d554c406255d0cdd38e645a2e255215574"
+  },
+  "existing_pr_boundary": {
+    "references": [1951, 1955, 1957],
+    "merge_status_read_only": {
+      "1951": {"state": "MERGED", "merge_commit": "4007b22dbcad45640ba0ee87393f6d2e290640ad"},
+      "1955": {"state": "MERGED", "merge_commit": "569d7373c32287bbafadeec6043472563937c5c7"},
+      "1957": {"state": "OPEN", "merge_commit": null}
+    },
+    "this_candidate_role": "333件の分母、旧原文、source register/screen/projection、asset dispositionの判断史を上位で照合する静的監査",
+    "excluded": "既存PRの変更、実装、atom化、review結論、authority付与、完了、merge、Issue closeを再評価・生成しない"
+  },
+  "binding_collision_check": {
+    "origin_main_max_id": "SCF-B-0020",
+    "previous_uncommitted_candidate_id": "SCF-B-0026",
+    "previous_uncommitted_candidate_worktree": "/home/tenni/.helix-worktrees/rdp001-unassessed-atom-wave",
+    "allocated_id": "SCF-B-0027",
+    "collision": false,
+    "basis": "origin/mainのtracked bindingsと全worktreeの既存候補をread-onlyで確認し、旧候補0026を残したまま新候補を0027へ分離した"
+  },
+  "audit_revisions": {
+    "baseline_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "capture_head": "569d7373c32287bbafadeec6043472563937c5c7",
+    "capture_ref": "origin/main",
+    "checked_at": "2026-09-22"
+  },
+  "denominators": {
+    "holding_records": 333,
+    "baseline_blob_verified": 333,
+    "pre_isolation_blob_verified": 333,
+    "archive_blob_verified": 333,
+    "byte_different": 333,
+    "old_original_text_retrievable": 333,
+    "current_source_path_present": 0,
+    "current_source_path_absent": 333,
+    "asset_disposition_matches": 333,
+    "source_decision_refs": 9,
+    "consumer_paths": 9,
+    "consumer_refs": 18,
+    "structured_failure_fields": 0,
+    "structured_degraded_fields": 0
+  },
+  "original_text": {
+    "total_bytes": 3141428,
+    "total_lines": 44964,
+    "min_bytes": 1910,
+    "max_bytes": 152529,
+    "archive_sha256_matches_holding": 333,
+    "archive_path_matches_pre_isolation_blob": 333
+  },
+  "aggregate": {
+    "source_category_counts": {
+      "legacy_plan_source": 303,
+      "requirement_or_prototype_source": 13,
+      "candidate_source": 7,
+      "verification_source": 4,
+      "core_upstream_source": 2,
+      "other_legacy_asset": 4
+    },
+    "product_candidate_counts": {
+      "HELIX-HARNESS": 4,
+      "shared-cross-product": 329
+    },
+    "phase_candidate_counts": {
+      "plan-unknown": 131,
+      "L7-plan": 117,
+      "L3-plan": 45,
+      "governance": 10,
+      "L1": 7,
+      "L3": 5,
+      "L11-acceptance": 3,
+      "L5-plan": 4,
+      "L4-plan": 3,
+      "L6-plan": 3,
+      "L10": 1,
+      "L2": 1,
+      "non-docs": 3
+    },
+    "authority_status_counts": {
+      "historical": 324,
+      "missing": 9
+    },
+    "disposition_counts": {
+      "unresolved": 324,
+      "source_snapshot_preservation": 9
+    },
+    "implementation_status_counts": {
+      "unknown": 324,
+      "non_executable_read_only_source": 9
+    },
+    "executability_status_counts": {
+      "unreviewed": 324,
+      "non_executable_or_data_only_not_invoked": 9
+    },
+    "external_effect_status_counts": {
+      "unreviewed": 324,
+      "read_only_no_external_effect": 9
+    },
+    "decision_status_counts": {
+      "missing": 324,
+      "pending_human_confirmation": 9
+    },
+    "decision_ref_count": 9,
+    "decided_by_count": 0,
+    "approval_revision_count": 0,
+    "lexical_signals": {
+      "failure": {"paths": 324, "occurrences": 1707, "regex": "failure|fail|失敗|障害"},
+      "degraded": {"paths": 35, "occurrences": 61, "regex": "degrad|縮退"},
+      "recovery": {"paths": 188, "occurrences": 1242, "regex": "recovery|復旧|rollback"},
+      "implementation": {"paths": 248, "occurrences": 1165, "regex": "implement|実装|未実装"},
+      "consumer": {"paths": 198, "occurrences": 923, "regex": "consumer|downstream|利用先|利用者|消費"}
+    }
+  },
+  "samples": [
+    {
+      "source_revision_item_id": "PREISO-REV-000001",
+      "source_path": "config/workflow-classification-catalog.v1.json",
+      "source_category": "other_legacy_asset",
+      "baseline_blob_oid": "2c811ac6fba641c8230da3b3d79ad7edcae79f51",
+      "pre_isolation_blob_oid": "28518d1de31c218a2f3a7ef38dd355741e1bfc61",
+      "pre_isolation_file_sha256": "d1e771bd13f79c7b5e161e7da516c6366e580f8cc8bc71653dc452d44b952ce6",
+      "archive_original_retrievable": true,
+      "product_candidate": "shared-cross-product",
+      "phase_candidate": "non-docs"
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000003",
+      "source_path": "docs/design/harness/L1-requirements/business-requirements.md",
+      "source_category": "requirement_or_prototype_source",
+      "baseline_blob_oid": "6866ad41fd8255def6cb56679bbcbfd7e0eb0b34",
+      "pre_isolation_blob_oid": "d415430ecbf9d2ddb26d3511852d0e3c13eef510",
+      "pre_isolation_file_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",
+      "archive_original_retrievable": true,
+      "product_candidate": "HELIX-HARNESS",
+      "phase_candidate": "L1"
+    },
+    {
+      "source_revision_item_id": "PREISO-REV-000060",
+      "source_path": "docs/plans/PLAN-L3-82-authority-vocabulary-separation.md",
+      "source_category": "legacy_plan_source",
+      "baseline_blob_oid": "80fa7debc1e56238e3bf80913b608948c619a0d2",
+      "pre_isolation_blob_oid": "5a49b4ea9797c7ad30bc8be7a4389d4a26bab53e",
+      "pre_isolation_file_sha256": "508c37f1d3652c0280df0d6e4146835a78f97ce071c16bb15b5094101980b909",
+      "archive_original_retrievable": true,
+      "product_candidate": "shared-cross-product",
+      "phase_candidate": "L3-plan"
+    }
+  ],
+  "findings": [
+    "holdingの333件は全件がrevision_relation=changed_before_archive_pending_semantic_equivalence_reviewで、atom本文への展開は未了である。",
+    "baseline/pre-isolationのblobは333/333で相違し、archive commitの旧原文blobは333/333でpre-isolation blobと一致する。",
+    "現行source registerはproduct_target=unassigned_cross_product、authority_effect=none、unaccounted_atom_refs=0を示す。これは保存を示すが、要求採否・successor・実装完了を示さない。",
+    "asset dispositionでは324件がhistorical/unresolved/unknown/unreviewedで、9件だけがsnapshot correction由来のread-only分類を持つ。",
+    "failure/degraded/consumerは旧原文の語彙出現数であり、structured failure/degraded欄は0件なので、意味上のfailureまたはconsumer確定数ではない。",
+    "pathからのproduct/phaseは候補分類に留まり、authority・product owner・phase確定を生成しない。"
+  ],
+  "evidence_limits": [
+    "旧archiveはGit objectをread-onlyで照合した。archive内workflow、CLI、hook、adapter、test、CIは実行していない。",
+    "Issue #1813はprojection_onlyであり、要求の正本、承認、完了、実装証拠には使わない。",
+    "current source pathの不在はarchive隔離・移設と整合するが、未実装の否定・肯定を単独では証明しない。",
+    "この候補はatom化、意味等価review、product routing、human decision、L3/L10実装を完了させない。"
+  ],
+  "digests": {
+    "source_holding": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+    "asset_disposition": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "asset_decisions": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+    "mpr_register": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+    "holding_screen": "e54824545dc5aca9844ca86dcae30f396dba8b6f06504344a1ea13f385ad87fa",
+    "packet_v2": "f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46",
+    "pre_isolation_audit": "99d1e78e7722d5569d5615b8c2700452bedf7e76448e68f11b06acbde30efec7",
+    "issue_projection": "7081e6f43861fb385638e346f05685d554c406255d0cdd38e645a2e255215574"
+  }
+}
