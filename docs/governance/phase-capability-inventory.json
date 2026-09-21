@@ -1319,33 +1319,7 @@
       "new_scaffold",
       "new_implementation"
     ],
-    "scaffold_boundary": {
-      "blocked_new_scaffold": {
-        "definition": "新しいphase capabilityのcontract、runtime、adapter、CI、正式な設計・実装を追加するScaffold",
-        "new_build_allowed": false
-      },
-      "existing_registered_operating_scaffold": {
-        "status_while_new_build_false": "preserved_within_binding_scope",
-        "definition": "すでにScaffold Bindingへ登録されたoperating Scaffoldは、個別Bindingのrole、obligations、connections、operationsの範囲で保持する。authority_effect:noneを維持し、存在・運用・検査合格からnew_build_allowed:trueやcapability authorityを生成しない",
-        "new_operating_scaffold_authorized_by_this_scope": false
-      },
-      "allowed_research_evidence_holding_scaffold": {
-        "scope": [
-          "inventory_research",
-          "inventory_update"
-        ],
-        "status_while_new_build_false": "allowed",
-        "definition": "source、inventory、静的evidence、negative caseを保持するBinding登録済みScaffold。証拠保持と再現可能な静的検査に限り、capability contract、runtime、adapter、CI、正式な設計・実装・完了を生成しない",
-        "required_boundaries": [
-          "scaffold_namespace",
-          "registered_scaffold_binding",
-          "authority_effect_none",
-          "new_build_allowed_false",
-          "no_capability_contract_runtime_adapter_ci"
-        ]
-      }
-    },
-    "meaning": "調査と要求判断準備を止めず、旧能力と承認済み要求の差分が確定する前の新しいphase capabilityの設計・実装用Scaffoldと実装を止める。既存のBinding登録済みoperating Scaffoldは個別Bindingのscope内で保持し、source／evidence保持用Scaffoldはinventory_researchまたはinventory_updateとして条件付きで許可する。いずれもauthority_effect:noneとnew_build_allowed:falseを維持し、この例外は新しいoperating Scaffoldを許可しない"
+    "meaning": "調査と要求判断準備を止めず、旧能力と承認済み要求の差分が確定する前の新規設計・Scaffold・実装を止める"
   },
   "current_evidence_snapshot": {
     "revision": "e784fa68702af4b7c57911b866b48fe7df094f88",
