@@ -1,0 +1,164 @@
+{
+  "schema": "SCF-PHCAP-01-STATIC-RESEARCH-v1",
+  "status": "scaffold_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "new_build_allowed": false,
+  "base": {
+    "origin_main_commit": "fbeee47920ed8b2992ae123b00c224ff88987c50",
+    "branch": "detached-origin/main",
+    "worktree": "/home/tenni/.helix-worktrees/phcap01-concept-l1-research",
+    "captured_at": "2026-09-22",
+    "source_revision": "origin/main:fbeee47920ed8b2992ae123b00c224ff88987c50"
+  },
+  "phase_record": {
+    "task_id": "PHCAP-01",
+    "phase": "concept_l1",
+    "title": "Concept／L1企画",
+    "product_targets": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"],
+    "current_status": "approved_current",
+    "evidence_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"],
+    "current_refs": [
+      "docs/concept/helix-concept-v4.1.md",
+      "docs/concept/product-boundary.md",
+      "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "docs/helix-harness/L1-planning/product-intent.md",
+      "docs/helix-os/L1-planning/system-intent.md",
+      "docs/helix-web/L1-planning/product-intent.md",
+      "docs/helix-web-os/L1-planning/system-intent.md"
+    ],
+    "scaffold": [],
+    "legacy_exists": true,
+    "legacy_layers_evidenced": ["L0", "L1"],
+    "legacy_maximum_layer_evidenced": "L1",
+    "legacy_capability_status": "documented_and_governed",
+    "representative_asset_ids": [
+      "LEGACY-ASSET-3B16BCFFAF353ADA813A",
+      "LEGACY-ASSET-18F7940E7994634D39A1",
+      "LEGACY-ASSET-75776FE016E550F5355F"
+    ],
+    "assessment": "旧Concept、charter、L1要求が存在した。現行は四製品境界へ再編済み。",
+    "transition_assessment": "rederived_current",
+    "gaps": "旧L0/L1 atomと現行四製品L1の無損失対応が未完了",
+    "new_build_allowed": false,
+    "authority_effect": "inventory_and_work_projection_only"
+  },
+  "ledger_provenance": {
+    "phase_inventory": {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "records": 20},
+    "asset_disposition": {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "records": 4020},
+    "phase_product_classification": {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "records": 4020},
+    "decisions": {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "records": 58}
+  },
+  "current_evidence": {
+    "approval_record": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+    "approval_record_sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
+    "approval_status": "approved_exact_revision",
+    "l1_frontmatter_status": "draft_awaiting_parent_approval",
+    "l2_l11_applied": false,
+    "implementation_status": "unknown",
+    "degradation_status": "not_established",
+    "acceptance_status": "unknown",
+    "operation_status": "unknown",
+    "refs": [
+      {"ref_id": "CUR-CONCEPT", "product": "HELIX", "classification": "concept", "path": "docs/concept/helix-concept-v4.1.md", "sha256": "181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad", "line_count": 280, "line_start": 25, "line_end": 75, "span_sha256": "ee6d3d950d21ffac1f3bcdbfa6e6acb1d9191ea6a83cbe9b6659d89f424f0828", "meaning": "Concept identity、四製品、authority、下流境界", "status": "approved_exact_revision_with_draft_frontmatter", "authority_effect": "reference_only_for_this_scaffold"},
+      {"ref_id": "CUR-BOUNDARY", "product": "HELIX", "classification": "product_boundary", "path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "line_count": 106, "line_start": 32, "line_end": 70, "span_sha256": "78fa21cc8b020a268fa50f47657373b463f72a96aa60daaaf2d63aecd2980491", "meaning": "四製品unitと要求・改善loopの候補境界", "status": "candidate_boundary_under_approval_record", "authority_effect": "no_owner_or_runtime_admission"},
+      {"ref_id": "CUR-DECISION", "product": "HELIX", "classification": "human_decision_record", "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md", "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2", "line_count": 72, "line_start": 21, "line_end": 64, "span_sha256": "7bb0eb2c5a937e3c7d976da5daf98f89f73eb5f304bb39105db51eefbe271817", "meaning": "exact SHA承認とL2/L11・実装非成立の境界", "status": "approved_decision_record", "authority_effect": "approval_record_only"},
+      {"ref_id": "CUR-HARNESS-L1", "product": "HELIX-HARNESS", "classification": "L1_planning", "path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "line_count": 64, "line_start": 15, "line_end": 64, "span_sha256": "68c3f81325ecb673c63b1c4e8f2206d0f732b6d7ab15026b43ae2865ae3eea21", "meaning": "V-model、工程、要求・設計・検証契約のL1", "status": "draft_awaiting_parent_approval", "authority_effect": "no_L2_or_implementation_admission"},
+      {"ref_id": "CUR-OS-L1", "product": "HELIX-OS", "classification": "L1_planning", "path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "line_count": 69, "line_start": 15, "line_end": 69, "span_sha256": "20c1215c446516f826de8b77edf4461eef2710d9c2428c7fb28b3d904681c010", "meaning": "管理・統制、Worker、state、CI、学習のL1", "status": "draft_awaiting_parent_approval", "authority_effect": "no_L2_or_implementation_admission"},
+      {"ref_id": "CUR-WEB-L1", "product": "HELIX-Web", "classification": "L1_planning", "path": "docs/helix-web/L1-planning/product-intent.md", "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756", "line_count": 56, "line_start": 17, "line_end": 56, "span_sha256": "d04b03ff393a107a6e438aa18a5ee64f6b6136743ad9fc3b554ce5d80b89535a", "meaning": "Connector型AI開発SaaSの利用者向けL1", "status": "draft_awaiting_parent_approval", "authority_effect": "no_L2_or_implementation_admission"},
+      {"ref_id": "CUR-WEBOS-L1", "product": "HELIX-Web-OS", "classification": "L1_planning", "path": "docs/helix-web-os/L1-planning/system-intent.md", "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c", "line_count": 50, "line_start": 12, "line_end": 50, "span_sha256": "d57646a08f42cb3096bcf7456498796ecaddc362acfb792269f673928c8d831f", "meaning": "tenant、Connector、job、service state、配備・監視・復旧のL1", "status": "draft_awaiting_parent_approval", "authority_effect": "separate_runtime_authority_candidate"}
+    ]
+  },
+  "products": [
+    {"unit_id": "PHCAP01-UNIT-HARNESS", "product": "HELIX-HARNESS", "candidate_status": "boundary_defined_candidate", "authority_status": "none", "current_implementation_status": "unknown", "degradation_status": "not_established", "operation_status": "unknown", "l1_ref": "CUR-HARNESS-L1", "responsibility": "V-model、工程、要求形成、Design Template、検証・受入契約", "unresolved": ["L2/L11 adoption", "owner", "successor atom", "implementation", "acceptance"]},
+    {"unit_id": "PHCAP01-UNIT-OS", "product": "HELIX-OS", "candidate_status": "boundary_defined_candidate", "authority_status": "none", "current_implementation_status": "unknown", "degradation_status": "not_established", "operation_status": "unknown", "l1_ref": "CUR-OS-L1", "responsibility": "project群の管理・統制、Worker、state、log、CI、learning、distribution operation", "unresolved": ["L2/L11 adoption", "owner", "successor atom", "implementation", "acceptance"]},
+    {"unit_id": "PHCAP01-UNIT-WEB", "product": "HELIX-Web", "candidate_status": "boundary_defined_candidate", "authority_status": "none", "current_implementation_status": "unknown", "degradation_status": "not_established", "operation_status": "unknown", "l1_ref": "CUR-WEB-L1", "responsibility": "Connector型AI開発SaaSのdashboard、操作、進行表示、service体験", "unresolved": ["L2/L11 adoption", "owner", "successor atom", "implementation", "acceptance"]},
+    {"unit_id": "PHCAP01-UNIT-WEBOS", "product": "HELIX-Web-OS", "candidate_status": "boundary_defined_candidate", "authority_status": "none", "current_implementation_status": "unknown", "degradation_status": "not_established", "operation_status": "unknown", "l1_ref": "CUR-WEBOS-L1", "responsibility": "Web展開時のtenant、Connector、job、service state、配備、監視、復旧", "unresolved": ["L2/L11 adoption", "separate runtime authority", "owner", "successor atom", "implementation", "acceptance"]}
+  ],
+  "connections": [
+    {"connection_id": "PHCAP01-CONN-HARNESS-OS", "from": "HELIX-HARNESS", "to": "HELIX-OS", "relation": "requirements_engine_to_registration_management", "status": "candidate_unresolved", "authority_effect": "none", "meaning": "HARNESS要求engineの導出結果をOSが登録・管理する候補", "unresolved": ["interface contract", "writer", "L2/L11 admission", "runtime"]},
+    {"connection_id": "PHCAP01-CONN-OS-WEB", "from": "HELIX-OS", "to": "HELIX-Web", "relation": "development_and_improvement_management", "status": "candidate_unresolved", "authority_effect": "none", "meaning": "OSがWebの開発・改善projectを管理する候補", "unresolved": ["management contract", "owner", "runtime"]},
+    {"connection_id": "PHCAP01-CONN-WEBOS-OS", "from": "HELIX-Web-OS", "to": "HELIX-OS", "relation": "permitted_observation_to_improvement_loop", "status": "candidate_unresolved", "authority_effect": "none", "meaning": "Web-OSの許可されたlog／telemetry等をOSの改善候補へ返す候補", "unresolved": ["consent scope", "credential boundary", "writer", "runtime", "consumer closure"]}
+  ],
+  "legacy_assets": [
+    {"asset_id": "LEGACY-ASSET-3B16BCFFAF353ADA813A", "source_path": "docs/design/helix/L0-charter/helix-charter_v0.1.md", "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L0-charter/helix-charter_v0.1.md", "source_revision": "legacy-generation-2026-09-14", "source_sha256": "8eff96bf58e6bb2cca247acef18c4f6cf07e304f3f23fb4179ddd8e5b19b23d8", "source_line_count": 76, "artifact_kind": "design", "classification_id": "LASPH-0419", "candidate_phases": ["PHCAP-01", "PHCAP-17", "PHCAP-18", "PHCAP-20"], "candidate_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "phase_status": "multi_phase_candidate", "product_status": "candidate_needs_semantic_review", "ledger_asset_class": "Historical", "ledger_disposition": "unresolved", "implementation_status": "unknown", "implementation_evidence_state": "document_present", "legacy_execution_performed": false, "consumer_refs": [], "consumer_closure_status": "pending", "decision_ids": [], "source_anchors": [{"id": "3B-A01", "start": 4, "end": 20, "sha256": "eeb08aeade12f72f0c47e2c58b4a07b057484280aae98f40470e21af9a716a47", "meaning": "L0 charterの目的、旧harness位置づけ、自律境界"}, {"id": "3B-A02", "start": 22, "end": 48, "sha256": "dde3c55ec6a3655cbfc666e9406f8e978a10bd6a3526d61716d77fd5db8186c0", "meaning": "旧L0のP0-P9柱と自律・検証・運用構想"}, {"id": "3B-A03", "start": 56, "end": 76, "sha256": "d680d27af776863f0738bfea58acffe1082c57f09f043d1415b8cbd332e004cd", "meaning": "非目標、成功方向、L1接続、旧資産参照境界"}], "unresolved": ["semantic split", "product review", "unit/connection/composite split", "implementation", "consumer closure"]},
+    {"asset_id": "LEGACY-ASSET-18F7940E7994634D39A1", "source_path": "docs/design/helix/L1-requirements/pillar-requirements.md", "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md", "source_revision": "legacy-generation-2026-09-14", "source_sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc", "source_line_count": 143, "artifact_kind": "requirement", "classification_id": "LASPH-0425", "candidate_phases": ["PHCAP-01", "PHCAP-04", "PHCAP-16", "PHCAP-19", "PHCAP-20"], "candidate_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "phase_status": "multi_phase_candidate", "product_status": "candidate_needs_semantic_review", "ledger_asset_class": "RequirementSourceSnapshot", "ledger_disposition": "source_snapshot_preservation", "implementation_status": "non_executable_read_only_source", "implementation_evidence_state": "non_executable_source_snapshot", "legacy_execution_performed": false, "consumer_refs": ["requirement-carry-forward-ledgers", "requirement-atomization-review"], "consumer_closure_status": "pending", "decision_ids": ["REQ-SNAPSHOT-18F7940E7994634D39A1", "REQ-SNAPSHOT-CORRECTION-18F7940E7994634D39A1"], "source_authority_state": "confirmed", "target_authority_state": "draft_candidate", "source_anchors": [{"id": "18F-A01", "start": 1, "end": 17, "sha256": "081ca8cc76ac498a478dbbd995c9f021e0e2e6544d241d46aa1d206c10a12563", "meaning": "旧L1 physical pathとcanonical L2／L11 compatibility metadata"}, {"id": "18F-A02", "start": 20, "end": 44, "sha256": "8edb8f5a1d117d8de9463f390848058358b265403737be982053f3ccc48f8552", "meaning": "旧要求sourceの再利用制限、FR inventoryとGAP"}, {"id": "18F-A03", "start": 46, "end": 70, "sha256": "c9155f7aaec952a64a36e5e2107d359332a589adc069e897e96bb663c3ff055d", "meaning": "HBR柱要件と既存FR／net-new GAPの表"}], "unresolved": ["semantic split", "product review", "unit/connection/composite split", "target rehome human confirmation", "consumer closure"]},
+    {"asset_id": "LEGACY-ASSET-75776FE016E550F5355F", "source_path": "docs/governance/helix-harness-concept_v3.1.md", "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md", "source_revision": "legacy-generation-2026-09-14", "source_sha256": "b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c", "source_line_count": 1328, "artifact_kind": "operation_document", "classification_id": "LASPH-0953", "candidate_phases": ["PHCAP-01", "PHCAP-16", "PHCAP-17", "PHCAP-18", "PHCAP-19", "PHCAP-20"], "candidate_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "phase_status": "multi_phase_candidate", "product_status": "candidate_needs_semantic_review", "ledger_asset_class": "Historical", "ledger_disposition": "unresolved", "implementation_status": "unknown", "implementation_evidence_state": "document_present", "legacy_execution_performed": false, "consumer_refs": [], "consumer_closure_status": "pending", "decision_ids": [], "source_anchors": [{"id": "757-A01", "start": 1, "end": 35, "sha256": "12f9a7761e9e3590ca51ac80f2f05bf80579a54232ff632521e8f4c9b07c70fb", "meaning": "v3.1 metadataとlayer／runtime compatibility boundary"}, {"id": "757-A02", "start": 36, "end": 80, "sha256": "ffdf15b30fbbf9ca287f7356878dcb73b43c746b78c3aa805676772f59f7f855", "meaning": "旧v3.0分離判断と概念・実装責務の履歴"}], "unresolved": ["semantic split", "product review", "unit/connection/composite split", "implementation", "consumer closure"]},
+    {"asset_id": "LEGACY-ASSET-6F9EA1BA29C41A6DD329", "source_path": "docs/governance/candidates/helix-concept-v4-requirements.md", "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requirements.md", "source_revision": "legacy-generation-2026-09-14", "source_sha256": "1e94e78d52fc6f226ac98c501da176b0fa33b57c298fb28ce561178de66a4c76", "source_line_count": 44, "artifact_kind": "requirement", "classification_id": "LASPH-0830", "candidate_phases": ["PHCAP-01", "PHCAP-17", "PHCAP-19"], "candidate_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "phase_status": "multi_phase_candidate", "product_status": "candidate_needs_semantic_review", "ledger_asset_class": "Historical", "ledger_disposition": "unresolved", "implementation_status": "unknown", "implementation_evidence_state": "document_present", "legacy_execution_performed": false, "consumer_refs": [], "consumer_closure_status": "pending", "decision_ids": [], "source_anchors": [{"id": "6F-A01", "start": 1, "end": 35, "sha256": "b03f2c6835ac22f020966361f172dbc5121d5e5f52c80ad92dd5bf4107eeead3", "meaning": "v4 requirement candidate status、L3/L10 compatibility requirement、FR candidate"}, {"id": "6F-A02", "start": 36, "end": 44, "sha256": "6aaa8fb7f4c505eb65ad4ffa8b6ad6fe83e5bdf3348390aa8c6c61c4dd8c9c86", "meaning": "compatibilityとcurrent promotion条件"}], "unresolved": ["semantic split", "product review", "unit/connection/composite split", "implementation", "consumer closure"]},
+    {"asset_id": "LEGACY-ASSET-583C7CADF804E9E19ED1", "source_path": "docs/governance/candidates/helix-concept-v4-acceptance.md", "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-acceptance.md", "source_revision": "legacy-generation-2026-09-14", "source_sha256": "59acaf43daa674a16ae3f42941e1623c5910f9715f6986fbf55cb43e2c374e30", "source_line_count": 36, "artifact_kind": "test_design", "classification_id": "LASPH-0826", "candidate_phases": ["PHCAP-01", "PHCAP-19"], "candidate_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "phase_status": "multi_phase_candidate", "product_status": "candidate_needs_semantic_review", "ledger_asset_class": "Historical", "ledger_disposition": "unresolved", "implementation_status": "unknown", "implementation_evidence_state": "test_design_present_unexecuted", "legacy_execution_performed": false, "consumer_refs": [], "consumer_closure_status": "pending", "decision_ids": [], "source_anchors": [{"id": "583-A01", "start": 1, "end": 36, "sha256": "4af2b1155481550a5f589be01cd3cab8115eae9617ed715b40c5206cea73276c", "meaning": "未承認Concept v4候補のL10受入設計と非terminal完了条件"}], "unresolved": ["semantic split", "product review", "unit/connection/composite split", "execution receipt", "implementation", "consumer closure"]},
+    {"asset_id": "LEGACY-ASSET-49526DFD38C34D9F7236", "source_path": "docs/archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_INTAKE_v0.1.md", "archive_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/concept/HELIX_CONCEPT_INTAKE_v0.1.md", "source_revision": "legacy-generation-2026-09-14", "source_sha256": "df3e5b597f6bdaa7133c3520d6e26a89de66474a99511e091d0916ed55799d4b", "source_line_count": 31, "artifact_kind": "unknown", "classification_id": "LASPH-0308", "candidate_phases": ["PHCAP-01"], "candidate_products": [], "phase_status": "unresolved_with_candidate", "product_status": "unresolved", "ledger_asset_class": "Historical", "ledger_disposition": "unresolved", "implementation_status": "unknown", "implementation_evidence_state": "document_present", "legacy_execution_performed": false, "consumer_refs": [], "consumer_closure_status": "pending", "decision_ids": [], "source_anchors": [{"id": "495-A01", "start": 1, "end": 31, "sha256": "36dc1e0b9e8dadafa21f74a710b00a62e7ac1f9c9decff0ca9eff7297cb4eb28", "meaning": "思想文書の取り込み順、意味保持、future／非対象境界"}], "unresolved": ["phase semantic review", "product candidate not established", "artifact kind", "implementation", "consumer closure"]},
+    {"asset_id": "LEGACY-ASSET-DD53551C74BB4939A325", "source_path": "docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md", "archive_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md", "source_revision": "legacy-generation-2026-09-14", "source_sha256": "1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74", "source_line_count": 583, "artifact_kind": "unknown", "classification_id": "LASPH-0315", "candidate_phases": ["PHCAP-01"], "candidate_products": [], "phase_status": "unresolved_with_candidate", "product_status": "unresolved", "ledger_asset_class": "Historical", "ledger_disposition": "unresolved", "implementation_status": "unknown", "implementation_evidence_state": "document_present", "legacy_execution_performed": false, "consumer_refs": [], "consumer_closure_status": "pending", "decision_ids": [], "source_anchors": [{"id": "DD-A01", "start": 1, "end": 22, "sha256": "5b5333e9d6244187fb6b87659bb6d585601ae6f075ed221ee04ebe6e40c3479d", "meaning": "visionは方向性であり実装完了・正式承認・提供日を認定しない"}, {"id": "DD-A02", "start": 28, "end": 65, "sha256": "f9b260b070471a63aef624c810621f665831fd13891ec99b181c1ca951b0f7de", "meaning": "本体／FACTORY、開発・成長統制、Web関係の将来構想"}], "unresolved": ["phase semantic review", "product candidate not established", "artifact kind", "implementation", "consumer closure"]},
+    {"asset_id": "LEGACY-ASSET-2E08F9429CA4C061B9AB", "source_path": "docs/archive/helix-agent-harness-concept_v2.1.md", "archive_path": "archive/legacy-generation-2026-09-14/root/docs/archive/helix-agent-harness-concept_v2.1.md", "source_revision": "legacy-generation-2026-09-14", "source_sha256": "bc8966ed78913d62e351ff81ede81007d24b22010ab64e35319eb8e8b639d48f", "source_line_count": 2215, "artifact_kind": "unknown", "classification_id": "LASPH-0301", "candidate_phases": ["PHCAP-01", "PHCAP-10", "PHCAP-16", "PHCAP-17", "PHCAP-18", "PHCAP-19", "PHCAP-20"], "candidate_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "phase_status": "multi_phase_candidate", "product_status": "candidate_needs_semantic_review", "ledger_asset_class": "Historical", "ledger_disposition": "unresolved", "implementation_status": "unknown", "implementation_evidence_state": "document_present", "legacy_execution_performed": false, "consumer_refs": [], "consumer_closure_status": "pending", "decision_ids": [], "source_anchors": [{"id": "2E-A01", "start": 1, "end": 34, "sha256": "4f38ebf34ea8de33b8fe8a0eb61b910aa1d538b6761c8b476f57185e7e15753d", "meaning": "旧harness構想v2.1の環境、レビュー、設計判断"}, {"id": "2E-A02", "start": 38, "end": 68, "sha256": "625a9a3327b31fd0073b519b63dd183ea60f784bf23c03ef0ebb4ae8dd0dfc98", "meaning": "旧harnessの問題設定とUT/TDD/agent/harness責務"}], "unresolved": ["semantic split", "product review", "unit/connection/composite split", "artifact kind", "implementation", "consumer closure"]}
+  ],
+  "aggregates": {
+    "phase_candidate_count": 45,
+    "phase_status_counts": {"multi_phase_candidate": 29, "unresolved_with_candidate": 16},
+    "artifact_kind_counts": {"plan": 22, "operation_document": 9, "unknown": 6, "requirement": 3, "design": 2, "test_design": 2, "test_source": 1},
+    "legacy_implementation_counts": {"unknown": 44, "non_executable_read_only_source": 1},
+    "implementation_evidence_counts": {"document_present": 41, "test_design_present_unexecuted": 2, "non_executable_source_snapshot": 1, "test_source_present_unexecuted": 1},
+    "product_status_counts": {"candidate_needs_semantic_review": 26, "unresolved": 19},
+    "candidate_product_target_sets": {"empty": 19, "all_four": 14, "harness_only": 7, "os_only": 3, "harness_os_webos": 2},
+    "product_occurrences": {"HELIX-HARNESS": 23, "HELIX-OS": 19, "HELIX-Web": 14, "HELIX-Web-OS": 16},
+    "asset_disposition_counts": {"Historical/unresolved": 44, "RequirementSourceSnapshot/source_snapshot_preservation": 1},
+    "consumer_closure_counts": {"pending": 45},
+    "decision_match_count": 2,
+    "decision_match_asset_ids": ["LEGACY-ASSET-18F7940E7994634D39A1"],
+    "selected_asset_count": 8
+  },
+  "failure_residual": {
+    "status": "unknown_unresolved",
+    "selected_asset_execution_receipts": 0,
+    "selected_asset_legacy_execution_all_false": true,
+    "current_failure_status": "unknown",
+    "current_implementation_status": "unknown",
+    "degradation_status": "not_established",
+    "observed": ["ledger records document source/evidence states only", "no selected asset records a legacy execution"],
+    "unknown": ["whether any historical workflow/runtime/test/CI path ran", "whether old claims apply to current products", "current failure, degraded, or unimplemented behavior", "acceptance and operational outcome"]
+  },
+  "consumer_residual": {
+    "status": "pending",
+    "ledger_consumer_refs": {"LEGACY-ASSET-18F7940E7994634D39A1": ["requirement-carry-forward-ledgers", "requirement-atomization-review"]},
+    "runtime_consumer_refs": {},
+    "consumer_closed_assets": 0,
+    "observed": ["only preservation/review surfaces are recorded for 18F", "all PHCAP-01 candidate rows have consumer_closure_status=pending"],
+    "unknown": ["current runtime consumer identity", "read-after evidence", "product owner and successor binding", "L2/L11 closure"]
+  },
+  "decisions": {
+    "selected_asset_ids": ["LEGACY-ASSET-3B16BCFFAF353ADA813A", "LEGACY-ASSET-18F7940E7994634D39A1", "LEGACY-ASSET-75776FE016E550F5355F", "LEGACY-ASSET-6F9EA1BA29C41A6DD329", "LEGACY-ASSET-583C7CADF804E9E19ED1", "LEGACY-ASSET-49526DFD38C34D9F7236", "LEGACY-ASSET-DD53551C74BB4939A325", "LEGACY-ASSET-2E08F9429CA4C061B9AB"],
+    "matching_append_only_records": ["REQ-SNAPSHOT-18F7940E7994634D39A1", "REQ-SNAPSHOT-CORRECTION-18F7940E7994634D39A1"],
+    "effect": "source_snapshot_history_only",
+    "adoption": false,
+    "owner_assigned": false,
+    "successor_assigned": false,
+    "human_rehome_pending": true
+  },
+  "unknowns": [
+    "旧L0/L1 atomを現行四製品L1へ無損失に対応するsemantic split",
+    "四製品candidate productの意味比較、unit／connection／composite分割",
+    "現行Concept／L1からL2／L11へ適用する個別採否、successor、意味変更、縮退、retire",
+    "旧assetの実装・runtime・failure・degraded・unimplemented状態とcurrent applicability",
+    "consumer identity、read-after、owner、acceptance closure",
+    "Web-OSの別authority、credential／tenant／consent境界とOS改善loopの実行契約"
+  ],
+  "prohibited_inference": [
+    "phase/product candidateを正式なphase admissionまたはproduct ownerへ変換しない",
+    "旧source、old code、test-design、historical decisionを現行implementation、oracle、fallback、acceptanceへ変換しない",
+    "18Fのsource_snapshot_preservationをtarget product adoptionやsuccessor assignmentと解釈しない",
+    "approved exact revisionをL2/L11合意、L3/L10、runtime、CI、release、deploymentの完了と解釈しない",
+    "実装証拠の欠如をunimplemented、degraded、failureの事実と断定しない",
+    "archive内のworkflow/runtime/test/CI/hook/adapter/sourceを実行しない"
+  ],
+  "verification_contract": {
+    "archive_read_only": true,
+    "old_runtime_test_ci_execution": false,
+    "current_source_sha_and_line_span_required": true,
+    "legacy_source_sha_line_count_and_anchor_required": true,
+    "ledger_state_reconciliation_required": true,
+    "unknowns_explicit": true,
+    "negative_cases": ["authority/meaning/successor promotion", "L2/L11 or implementation promotion", "legacy source digest/span tamper", "legacy execution/failure receipt invention", "consumer runtime closure invention", "phase/product candidate admission", "decision adoption invention", "current reference drift"]
+  }
+}
