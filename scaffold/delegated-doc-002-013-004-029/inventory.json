@@ -10,7 +10,7 @@
   "old_runtime_test_ci_execution": false,
   "comparison": {
     "selection_basis": "latest-main source holding; next nonoverlapping exact L3/L10 pairs after merged DOC-003/028, DOC-008/017 and DOC-006/015",
-    "fixed_source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+    "fixed_source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
     "method": "read-only archive blob bytes; exact line spans and UTF-8 SHA-256",
     "selected_document_ids": [
       "DELEGATED-DOC-002",
@@ -71,6 +71,24 @@
           "GH-T-039",
           "GH-T-040"
         ],
+        "l3_defined_acceptance_ids": [
+          "GH-AC-035",
+          "GH-AC-036",
+          "GH-AC-037",
+          "GH-AC-038",
+          "GH-AC-039",
+          "GH-AC-040",
+          "GH-AC-043"
+        ],
+        "l10_test_acceptance_refs": [
+          "GH-AC-035",
+          "GH-AC-036",
+          "GH-AC-037",
+          "GH-AC-038",
+          "GH-AC-039",
+          "GH-AC-040"
+        ],
+        "unresolved_acceptance_difference_ids": ["GH-AC-043"],
         "reference_edge_ids": [
           "DELEGATED-REF-0301",
           "DELEGATED-REF-0302",
@@ -129,6 +147,26 @@
           "GH-T-019",
           "GH-T-020"
         ],
+        "l3_defined_acceptance_ids": [
+          "GH-AC-014",
+          "GH-AC-015",
+          "GH-AC-016",
+          "GH-AC-017",
+          "GH-AC-018",
+          "GH-AC-019",
+          "GH-AC-020",
+          "GH-AC-021"
+        ],
+        "l10_test_acceptance_refs": [
+          "GH-AC-014",
+          "GH-AC-015",
+          "GH-AC-016",
+          "GH-AC-017",
+          "GH-AC-018",
+          "GH-AC-019",
+          "GH-AC-020"
+        ],
+        "unresolved_acceptance_difference_ids": ["GH-AC-021"],
         "reference_edge_ids": [
           "DELEGATED-REF-0304",
           "DELEGATED-REF-0419",
@@ -140,6 +178,10 @@
             "path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
             "line": 16,
             "reason": "本文で旧DOC-003相当のpathを参照するがselected reference holdingにはedgeがない。依存・意味・ownerを推定しない"
+          },
+          {
+            "original_id": "GH-AC-021",
+            "reason": "DOC-004 defines GH-AC-021 but DOC-029 has no GH-T row referring to it; acceptance/test closure is not inferred"
           }
         ],
         "parity_rule": "L10 test rows explicitly name GH-AC counterparts; absent AC/T links remain unresolved and are never inferred"
@@ -301,6 +343,14 @@
           "coverage_kind": "full_source_blob"
         }
       ],
+      "atom_coverage": {
+        "covered_line_count": 119,
+        "uncovered_line_count": 14,
+        "uncovered_lines": [33, 51, 65, 73, 82, 103, 104, 105, 110, 111, 112, 113, 114, 122],
+        "uncovered_line_sha256": "sha256:1e366edcee56737d175a0355fff078a3ac32b6474f33296dfe1f3d242f001075",
+        "source_grounding": "line numbers are computed from this fixed archive blob after unioning every semantic atom span; uncovered lines remain metadata/section separators and are not promoted",
+        "fail_close_rule": "validator recomputes the list and digest; any count, line, digest, or source revision mismatch fails"
+      },
       "legacy_state": {
         "asset_id": "LEGACY-ASSET-58CBC57F44DFDD288961",
         "asset_class": "Historical",
@@ -351,6 +401,14 @@
           "coverage_kind": "full_source_blob"
         }
       ],
+      "atom_coverage": {
+        "covered_line_count": 31,
+        "uncovered_line_count": 4,
+        "uncovered_lines": [19, 20, 21, 28],
+        "uncovered_line_sha256": "sha256:205a3cc6954f3d0432f439ff9457cb673072385817285d92941b51c13ecff590",
+        "source_grounding": "line numbers are computed from this fixed archive blob after unioning every semantic atom span; uncovered lines remain metadata/section separators and are not promoted",
+        "fail_close_rule": "validator recomputes the list and digest; any count, line, digest, or source revision mismatch fails"
+      },
       "legacy_state": {
         "asset_id": "LEGACY-ASSET-3600B78BA273D21CB91D",
         "asset_class": "Historical",
@@ -399,6 +457,14 @@
           "coverage_kind": "full_source_blob"
         }
       ],
+      "atom_coverage": {
+        "covered_line_count": 128,
+        "uncovered_line_count": 12,
+        "uncovered_lines": [20, 34, 51, 77, 100, 113, 124, 125, 126, 127, 128, 137],
+        "uncovered_line_sha256": "sha256:1213e48ecc1594a28247e5a9d091fbf6bf82429e56400929121b145c63fd5e06",
+        "source_grounding": "line numbers are computed from this fixed archive blob after unioning every semantic atom span; uncovered lines remain metadata/section separators and are not promoted",
+        "fail_close_rule": "validator recomputes the list and digest; any count, line, digest, or source revision mismatch fails"
+      },
       "legacy_state": {
         "asset_id": "LEGACY-ASSET-8686BB8CF396BAF57F2E",
         "asset_class": "Historical",
@@ -448,6 +514,14 @@
           "coverage_kind": "full_source_blob"
         }
       ],
+      "atom_coverage": {
+        "covered_line_count": 32,
+        "uncovered_line_count": 4,
+        "uncovered_lines": [19, 20, 21, 29],
+        "uncovered_line_sha256": "sha256:205a3cc6954f3d0432f439ff9457cb673072385817285d92941b51c13ecff590",
+        "source_grounding": "line numbers are computed from this fixed archive blob after unioning every semantic atom span; uncovered lines remain metadata/section separators and are not promoted",
+        "fail_close_rule": "validator recomputes the list and digest; any count, line, digest, or source revision mismatch fails"
+      },
       "legacy_state": {
         "asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
         "asset_class": "Historical",
@@ -649,7 +723,7 @@
       "semantic_atom_id": "SCF0010-SEM-DOC-002-METADATA",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "DOC-002-METADATA",
       "source_span": {
         "start_line": 1,
@@ -738,7 +812,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-FR-024",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-FR-024",
       "source_span": {
         "start_line": 34,
@@ -828,7 +902,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-FR-025",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-FR-025",
       "source_span": {
         "start_line": 52,
@@ -918,7 +992,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-FR-026",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-FR-026",
       "source_span": {
         "start_line": 66,
@@ -1007,7 +1081,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-FR-027",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-FR-027",
       "source_span": {
         "start_line": 74,
@@ -1099,7 +1173,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-FR-028",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-FR-028",
       "source_span": {
         "start_line": 83,
@@ -1189,7 +1263,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-NFR-009",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-NFR-009",
       "source_span": {
         "start_line": 62,
@@ -1277,7 +1351,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-NFR-010",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-NFR-010",
       "source_span": {
         "start_line": 62,
@@ -1365,7 +1439,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-NFR-015",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-NFR-015",
       "source_span": {
         "start_line": 106,
@@ -1453,7 +1527,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-NFR-016",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-NFR-016",
       "source_span": {
         "start_line": 107,
@@ -1542,7 +1616,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-NFR-017",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-NFR-017",
       "source_span": {
         "start_line": 108,
@@ -1631,7 +1705,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-NFR-018",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-NFR-018",
       "source_span": {
         "start_line": 109,
@@ -1721,7 +1795,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-035",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-035",
       "source_span": {
         "start_line": 115,
@@ -1810,7 +1884,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-036",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-036",
       "source_span": {
         "start_line": 116,
@@ -1899,7 +1973,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-037",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-037",
       "source_span": {
         "start_line": 117,
@@ -1988,7 +2062,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-038",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-038",
       "source_span": {
         "start_line": 118,
@@ -2077,7 +2151,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-039",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-039",
       "source_span": {
         "start_line": 119,
@@ -2166,7 +2240,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-040",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-040",
       "source_span": {
         "start_line": 120,
@@ -2255,7 +2329,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-043",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-043",
       "source_span": {
         "start_line": 121,
@@ -2344,7 +2418,7 @@
       "semantic_atom_id": "SCF0010-SEM-DOC-002-FREEZE",
       "source_document_id": "DELEGATED-DOC-002",
       "source_path": "docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "DOC-002-FREEZE",
       "source_span": {
         "start_line": 123,
@@ -2433,7 +2507,7 @@
       "semantic_atom_id": "SCF0010-SEM-DOC-013-METADATA",
       "source_document_id": "DELEGATED-DOC-013",
       "source_path": "docs/test-design/helix/github-atomic-development-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "DOC-013-METADATA",
       "source_span": {
         "start_line": 1,
@@ -2519,7 +2593,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-035",
       "source_document_id": "DELEGATED-DOC-013",
       "source_path": "docs/test-design/helix/github-atomic-development-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-035",
       "source_span": {
         "start_line": 22,
@@ -2607,7 +2681,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-036",
       "source_document_id": "DELEGATED-DOC-013",
       "source_path": "docs/test-design/helix/github-atomic-development-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-036",
       "source_span": {
         "start_line": 23,
@@ -2695,7 +2769,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-037",
       "source_document_id": "DELEGATED-DOC-013",
       "source_path": "docs/test-design/helix/github-atomic-development-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-037",
       "source_span": {
         "start_line": 24,
@@ -2783,7 +2857,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-038",
       "source_document_id": "DELEGATED-DOC-013",
       "source_path": "docs/test-design/helix/github-atomic-development-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-038",
       "source_span": {
         "start_line": 25,
@@ -2871,7 +2945,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-039",
       "source_document_id": "DELEGATED-DOC-013",
       "source_path": "docs/test-design/helix/github-atomic-development-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-039",
       "source_span": {
         "start_line": 26,
@@ -2959,7 +3033,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-040",
       "source_document_id": "DELEGATED-DOC-013",
       "source_path": "docs/test-design/helix/github-atomic-development-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-040",
       "source_span": {
         "start_line": 27,
@@ -3047,7 +3121,7 @@
       "semantic_atom_id": "SCF0010-SEM-DOC-013-EVIDENCE",
       "source_document_id": "DELEGATED-DOC-013",
       "source_path": "docs/test-design/helix/github-atomic-development-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "DOC-013-EVIDENCE",
       "source_span": {
         "start_line": 29,
@@ -3133,7 +3207,7 @@
       "semantic_atom_id": "SCF0010-SEM-DOC-004-METADATA",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "DOC-004-METADATA",
       "source_span": {
         "start_line": 1,
@@ -3220,7 +3294,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-FR-018",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-FR-018",
       "source_span": {
         "start_line": 21,
@@ -3307,7 +3381,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-FR-019",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-FR-019",
       "source_span": {
         "start_line": 35,
@@ -3394,7 +3468,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-FR-020",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-FR-020",
       "source_span": {
         "start_line": 52,
@@ -3482,7 +3556,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-FR-021",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-FR-021",
       "source_span": {
         "start_line": 78,
@@ -3569,7 +3643,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-FR-022",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-FR-022",
       "source_span": {
         "start_line": 101,
@@ -3657,7 +3731,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-FR-023",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-FR-023",
       "source_span": {
         "start_line": 114,
@@ -3743,7 +3817,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-014",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-014",
       "source_span": {
         "start_line": 129,
@@ -3830,7 +3904,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-015",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-015",
       "source_span": {
         "start_line": 130,
@@ -3917,7 +3991,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-016",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-016",
       "source_span": {
         "start_line": 131,
@@ -4004,7 +4078,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-017",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-017",
       "source_span": {
         "start_line": 132,
@@ -4091,7 +4165,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-018",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-018",
       "source_span": {
         "start_line": 133,
@@ -4178,7 +4252,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-019",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-019",
       "source_span": {
         "start_line": 134,
@@ -4265,7 +4339,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-020",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-020",
       "source_span": {
         "start_line": 135,
@@ -4352,7 +4426,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-AC-021",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-AC-021",
       "source_span": {
         "start_line": 136,
@@ -4439,7 +4513,7 @@
       "semantic_atom_id": "SCF0010-SEM-DOC-004-FREEZE",
       "source_document_id": "DELEGATED-DOC-004",
       "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "DOC-004-FREEZE",
       "source_span": {
         "start_line": 138,
@@ -4526,7 +4600,7 @@
       "semantic_atom_id": "SCF0010-SEM-DOC-029-METADATA",
       "source_document_id": "DELEGATED-DOC-029",
       "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "DOC-029-METADATA",
       "source_span": {
         "start_line": 1,
@@ -4614,7 +4688,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-014",
       "source_document_id": "DELEGATED-DOC-029",
       "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-014",
       "source_span": {
         "start_line": 22,
@@ -4704,7 +4778,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-015",
       "source_document_id": "DELEGATED-DOC-029",
       "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-015",
       "source_span": {
         "start_line": 23,
@@ -4794,7 +4868,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-016",
       "source_document_id": "DELEGATED-DOC-029",
       "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-016",
       "source_span": {
         "start_line": 24,
@@ -4884,7 +4958,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-017",
       "source_document_id": "DELEGATED-DOC-029",
       "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-017",
       "source_span": {
         "start_line": 25,
@@ -4974,7 +5048,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-018",
       "source_document_id": "DELEGATED-DOC-029",
       "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-018",
       "source_span": {
         "start_line": 26,
@@ -5064,7 +5138,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-019",
       "source_document_id": "DELEGATED-DOC-029",
       "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-019",
       "source_span": {
         "start_line": 27,
@@ -5154,7 +5228,7 @@
       "semantic_atom_id": "SCF0010-SEM-GH-T-020",
       "source_document_id": "DELEGATED-DOC-029",
       "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "GH-T-020",
       "source_span": {
         "start_line": 28,
@@ -5244,7 +5318,7 @@
       "semantic_atom_id": "SCF0010-SEM-DOC-029-EVIDENCE",
       "source_document_id": "DELEGATED-DOC-029",
       "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
-      "source_revision": "9e1fed63bc9b889833ef3a6df2d17e6a8d0bd990",
+      "source_revision": "5fcdc80f23c0fb3e959293b9fbd751fa31eeb792",
       "original_id": "DOC-029-EVIDENCE",
       "source_span": {
         "start_line": 30,
@@ -5343,6 +5417,10 @@
       "path": "docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
       "line": 16,
       "reason": "本文で旧DOC-003相当のpathを参照するがselected reference holdingにはedgeがない。依存・意味・ownerを推定しない"
+    },
+    {
+      "original_id": "GH-AC-021",
+      "reason": "DOC-004 defines GH-AC-021 but DOC-029 has no GH-T row referring to it; acceptance/test closure is not inferred"
     }
   ],
   "closure_guard": {
@@ -5369,6 +5447,8 @@
     "source_lines": 344,
     "coverage_spans": 4,
     "semantic_atoms": 53,
+    "atom_covered_lines": 310,
+    "atom_uncovered_lines": 34,
     "original_ids": 45,
     "l3_original_ids": 32,
     "l10_original_ids": 13,

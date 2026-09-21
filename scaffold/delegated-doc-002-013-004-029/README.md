@@ -5,7 +5,7 @@
 - DOC-002/013: GitHub原子的開発・CI・リファクタリング（L3要件 ↔ L10システムテスト）
 - DOC-004/029: GitHub merge admission（L3要件 ↔ L10システムテスト）
 
-source denominatorは4文書／344行／4 coverage span、semantic atomは53件、原IDは45件（L3=32、L10=13）、reference edgeは10件である。各atomのexact source span、原ID、actor、authority条件、negative条件、HARNESS／HELIX-OSのowner候補、OS consumer候補、旧phase候補、legacy implementation unknown、consumer pendingは`inventory.json`に保持する。L10のT行が明示するAC対応だけを記録し、未対応ACや本文cross-document参照は未解決として残す。DOC-004本文の旧DOC-003相当path参照はholding edgeにないため、missing referenceとして明示する。
+source denominatorは4文書／344行／4 coverage span、semantic atomは53件、原IDは45件（L3=32、L10=13）、reference edgeは10件である。atom spanのunion外はDOC-002=14行、DOC-013=4行、DOC-004=12行、DOC-029=4行としてline listとdigestをsource blobごとに保持し、validatorが再計算してfail-closeする。各atomのexact source span、原ID、actor、authority条件、negative条件、HARNESS／HELIX-OSのowner候補、OS consumer候補、旧phase候補、legacy implementation unknown、consumer pendingは`inventory.json`に保持する。固定blobから再計算したAC定義とL10 T→AC参照の差分はDOC-002/013=GH-AC-043、DOC-004/029=GH-AC-021として未解決に残す。本文cross-document参照も意味・owner・authorityを推定しない。DOC-004本文の旧DOC-003相当path参照はholding edgeにないため、missing referenceとして明示する。
 
 `authority_effect: none`、`meaning_change_applied: false`、successor空、人間decision null、採用なし、holding closure未実施を固定する。validator／selfcheck／scfctlの合格はatom化完了、採用、L3/L10 freeze、実装、consumer closure、acceptance、CI、releaseを意味しない。旧runtime・test・CI・hook、GitHub、Issue、DBは実行・更新しない。
 

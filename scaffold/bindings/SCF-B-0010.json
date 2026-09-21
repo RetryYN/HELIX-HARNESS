@@ -55,22 +55,22 @@
     },
     {
       "path": "scaffold/delegated-doc-002-013-004-029/README.md",
-      "sha256": "78610d5716d0c9fd6dee58ee8144a5c1192f85253cc0a723749d09de464cff2f",
+      "sha256": "98b9437dd94f181ad04ad60c3b3b37682b0e6c8cf67003cc670d77c69581b97c",
       "note": "RDP-001 candidate artifact"
     },
     {
       "path": "scaffold/delegated-doc-002-013-004-029/inventory.json",
-      "sha256": "3f2b086108124fd78931a00f120b535c2bb07ad844ff0181acdf73492fdcb8c2",
+      "sha256": "ea335ccb0fe508139376682d8129adf1c633c27e81d95d5ee5ebb02dc192c36e",
       "note": "RDP-001 candidate artifact"
     },
     {
       "path": "scaffold/delegated-doc-002-013-004-029/validate.py",
-      "sha256": "73f7c94a96460bee08128080978bfa35bffded919930042afcf1bafd8b33fdc4",
+      "sha256": "1871e245581693bff387ba4c3140633112e8700abf95594e73a9d2d62c27a9fe",
       "note": "RDP-001 candidate artifact"
     },
     {
       "path": "scaffold/delegated-doc-002-013-004-029/selfcheck.py",
-      "sha256": "d18071b532847c5053d0c7ac3d7f3d92ade8e57ccafd76f3425f94bc1a01b804",
+      "sha256": "655834aa627559fbdcda1ec6edd2dbc21fc9617a5bd48be866c68a577e17c504",
       "note": "RDP-001 candidate artifact"
     }
   ],
@@ -80,6 +80,9 @@
     "DOC-002 133行、DOC-013 35行、DOC-004 140行、DOC-029 36行を全source spanで重複・欠落なく覆う",
     "原ID、exact source text／line digest、actor、authority条件、negative条件、owner候補、consumer候補を保持する",
     "L10のT行が明示するACだけをrelated_original_idsへ束縛し、未対応ACとDOC-004本文の旧DOC-003相当pathを未解決参照に残す",
+    "固定blobからL3 AC定義集合とL10 T→AC参照集合を両pairで再計算し、DOC-002/013のGH-AC-043とDOC-004/029のGH-AC-021だけをexact unresolved differenceとして保持する",
+    "full-blob coverageとatom span unionの差分をDOC-002=14、DOC-013=4、DOC-004=12、DOC-029=4行のsource list／digest／denominatorへ束縛する",
+    "closure_guardの9 fieldを完全一致で検査し、top-level authority／meaning／successor／decisionとequivalence_claim=nullの整合を維持する",
     "phase authorityをunconfirmed、legacy implementationをunknown、legacy executionをfalse、consumer closureをpendingとして維持する",
     "authority_effect=none、meaning_change=false、successor空、人間decision null、adoptionなし、holding closure未実施を維持する",
     "要求採否、owner確定、phase authority、L3/L10 freeze、実装、consumer closure、acceptance、CI、releaseを生成しない"
@@ -140,7 +143,9 @@
       "source／reference holdingの総数またはselected IDを変更する",
       "source blob digest、line span、atom exact text／digestを変更・欠落させる",
       "reference edgeのsource／target／line／digest／originを変更する",
-      "L10 TとACの明示parityを変更し、未対応ACまたはmissing crossdoc referenceを閉じる",
+      "L10 TとACの明示parityを変更し、GH-AC-021／GH-AC-043のunresolved recordを削除する",
+      "fixed-blob AC差分、atom-uncovered line list／digest／denominatorを変更・欠落させる",
+      "closure_guardのadoption／meaning／prohibited_inferenceを変更し、top-level fieldまたはequivalence claimを不整合にする",
       "candidate ownerを採用ownerへ、consumer pendingをclosedへ、phase unconfirmedをauthoritativeへ昇格する",
       "legacy implementation unknownまたはlegacy execution falseを変更する",
       "旧runtime・test・CIを実行またはoracle／fallbackにする",
