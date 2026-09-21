@@ -32,6 +32,43 @@ EXPECTED_ROOT_KEYS = {
     "candidate_phase_joins", "legacy_phase_assessment", "current_evidence", "failure_consumer_residual",
     "unresolved", "verification_contract", "counts",
 }
+EXPECTED_DECISION_MATCHING_ASSET_IDS = []
+EXPECTED_DECISION_MATCHING_ASSET_IDS_DIGEST = "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+EXPECTED_FAILURE_CONSUMER_INTERPRETATION = "historical source failure/consumer descriptions remain candidate evidence; current execution, read-after, and closure are unknown"
+EXPECTED_FAILURE_CONSUMER_INTERPRETATION_DIGEST = "d224531d8093b7fcfcd991a4bb29ac0163170f7e74ece6f0a380648000c1d1db"
+EXPECTED_KEYSETS = {
+    "root": frozenset(EXPECTED_ROOT_KEYS),
+    "root.base": frozenset({"branch", "captured_at", "commit", "origin", "rebaseline_rule", "repository", "worktree"}),
+    "root.ledger_provenance": frozenset({"asset_ledger_path", "asset_ledger_sha256", "asset_record_count", "decision_ledger_path", "decision_ledger_sha256", "decision_record_count", "matching_decision_record_count", "phase_classification_path", "phase_classification_sha256", "phase_inventory_path", "phase_inventory_sha256", "phase_record_count", "selected_asset_count"}),
+    "root.tasks[]": frozenset({"phase_record_snapshot", "task_id"}),
+    "root.tasks[].phase_record_snapshot": frozenset({"authority_effect", "current", "gaps", "legacy", "new_build_allowed", "phase", "product_targets", "scaffold", "task_id", "title", "transition_assessment"}),
+    "root.tasks[].phase_record_snapshot.current": frozenset({"evidence_products", "refs", "status"}),
+    "root.tasks[].phase_record_snapshot.legacy": frozenset({"assessment", "capability_status", "exists", "layers_evidenced", "maximum_layer_evidenced", "representative_assets"}),
+    "root.tasks[].phase_record_snapshot.legacy.representative_assets[]": frozenset({"asset_id", "implementation_status", "source_path"}),
+    "root.scope": frozenset({"candidate_asset_counts", "closure_rule", "legacy_asset_ids", "phase_ids", "product_targets", "selected_source_asset_count", "source_anchor_count"}),
+    "root.scope.candidate_asset_counts": frozenset({"PHCAP-12", "PHCAP-13", "both", "either"}),
+    "root.product_units[]": frozenset({"acceptance_status", "authority_status", "current_capability", "current_evidence_status", "current_implementation_status", "current_ref_ids", "legacy_asset_ids", "legacy_transition_status", "product", "status", "unit_id", "unresolved"}),
+    "root.candidate_connections[]": frozenset({"authority_effect", "edge_id", "from", "kind", "meaning", "status", "to"}),
+    "root.candidate_phase_joins[]": frozenset({"interpretation", "phase_id", "selected_asset_ids"}),
+    "root.legacy_phase_assessment": frozenset({"assets", "decision_matching_asset_ids", "phase_summary_is_historical_only"}),
+    "root.legacy_phase_assessment.assets[]": frozenset({"archive_path", "artifact_evidence_kind", "asset_id", "consumer_evidence", "decision_history", "failure_evidence", "implementation_evidence_state", "ledger_snapshot", "legacy_layers", "phase_classification_snapshot", "source_anchors", "source_line_count", "source_path", "source_revision", "source_sha256"}),
+    "root.legacy_phase_assessment.assets[].legacy_layers[]": frozenset({"confidence", "evidence", "phase", "source_batches"}),
+    "root.legacy_phase_assessment.assets[].ledger_snapshot": frozenset({"asset_class", "authority_status", "consumer_refs", "decision_record_ref", "disposition", "executability_status", "external_effect_status", "implementation_status", "product_target", "reuse_exclusion_class", "revision", "source_path", "source_revision", "source_sha256"}),
+    "root.legacy_phase_assessment.assets[].phase_classification_snapshot": frozenset({"archive_manifest_digest_match", "artifact_evidence_kind", "asset_id", "authority_effect", "candidate_phase_targets", "candidate_product_targets", "classification_id", "consumer_closure_status", "consumer_refs", "implementation_evidence_state", "legacy_execution_performed", "legacy_implementation_status", "phase_assessments", "phase_classification_status", "product_assessments", "product_classification_status", "source_path", "source_revision", "source_sha256", "unresolved"}),
+    "root.legacy_phase_assessment.assets[].phase_classification_snapshot.phase_assessments[]": frozenset({"confidence", "evidence", "phase", "source_batches"}),
+    "root.legacy_phase_assessment.assets[].phase_classification_snapshot.product_assessments[]": frozenset({"confidence", "evidence_status", "product", "rationale", "source_batches"}),
+    "root.legacy_phase_assessment.assets[].decision_history": frozenset({"matching_count", "matching_records", "status"}),
+    "root.legacy_phase_assessment.assets[].source_anchors[]": frozenset({"anchor_id", "exact_text", "line_end", "line_start", "meaning", "sha256"}),
+    "root.legacy_phase_assessment.assets[].failure_evidence": frozenset({"anchor_ids", "execution_receipts", "finding", "status"}),
+    "root.legacy_phase_assessment.assets[].consumer_evidence": frozenset({"anchor_ids", "candidates", "consumer_refs", "finding", "status"}),
+    "root.current_evidence": frozenset({"acceptance_status", "implementation_status", "operation_status", "refs", "scaffold_context"}),
+    "root.current_evidence.refs[]": frozenset({"classification", "end_line", "exact_text", "execution_status", "implementation_status", "layer", "line_sha256", "path", "product", "ref_id", "role", "sha256", "start_line"}),
+    "root.current_evidence.scaffold_context": frozenset({"acceptance_status", "authority_effect", "binding_id", "implementation_status", "meaning", "path", "sha256", "state"}),
+    "root.failure_consumer_residual": frozenset({"consumer_candidates", "consumer_closure_status", "failure_execution_receipts", "interpretation", "interpretation_sha256", "selected_asset_consumer_refs"}),
+    "root.failure_consumer_residual.consumer_candidates[]": frozenset({"authority_effect", "candidate_input", "closure_status", "consumer_id", "evidence_status", "observed", "product"}),
+    "root.verification_contract": frozenset({"evidence_kind", "negative_cases"}),
+    "root.counts": frozenset({"candidate_connections", "candidate_phase_joins", "consumer_candidates", "current_refs", "decision_records_found", "failure_execution_receipts", "legacy_consumer_refs_observed", "product_units", "selected_legacy_assets", "source_anchors"}),
+}
 EXPECTED_UNRESOLVED = [
     "PHCAP-12 review receipt schema、delivery、再開、provider boundaryの正式化",
     "PHCAP-13 canonical merge admission、current CI、DB convergence、main read-afterの再導出",
@@ -225,6 +262,28 @@ def fail(errors: list[str], condition: bool, code: str) -> None:
         errors.append(code)
 
 
+def validate_keysets(data: object) -> list[str]:
+    errors: list[str] = []
+
+    def walk(value: object, path: str) -> None:
+        expected = EXPECTED_KEYSETS.get(path)
+        if expected is not None:
+            if not isinstance(value, dict):
+                errors.append("E_KEYSET_TYPE:" + path)
+            elif set(value) != expected:
+                errors.append("E_KEYSET:" + path)
+        if isinstance(value, dict):
+            for key, child in value.items():
+                walk(child, path + "." + str(key))
+        elif isinstance(value, list):
+            for child in value:
+                if isinstance(child, (dict, list)):
+                    walk(child, path + "[]")
+
+    walk(data, "root")
+    return errors
+
+
 def validate_binding(binding: dict) -> list[str]:
     errors: list[str] = []
     fail(errors, binding.get("id") == "SCF-B-0046", "E_BINDING_ID")
@@ -243,7 +302,7 @@ def validate_binding(binding: dict) -> list[str]:
 
 
 def validate(data: dict, check_binding: bool = True) -> list[str]:
-    errors: list[str] = []
+    errors: list[str] = validate_keysets(data)
     fail(errors, set(data) == EXPECTED_ROOT_KEYS, "E_ROOT_KEYSET")
     fail(errors, data.get("schema") == "phcap12-13-review-research/v1", "E_SCHEMA")
     fail(errors, data.get("status") == "research_premise_candidate", "E_STATUS")
@@ -350,6 +409,10 @@ def validate(data: dict, check_binding: bool = True) -> list[str]:
         local_ids = {a.get("anchor_id") for a in anchors}
         fail(errors, set(failure.get("anchor_ids", [])) <= local_ids and set(consumer.get("anchor_ids", [])) <= local_ids, "E_EVIDENCE_ANCHORS:" + str(aid))
 
+    decision_matching_asset_ids = data.get("legacy_phase_assessment", {}).get("decision_matching_asset_ids")
+    fail(errors, decision_matching_asset_ids == EXPECTED_DECISION_MATCHING_ASSET_IDS, "E_DECISION_MATCHING_ASSET_IDS")
+    fail(errors, sha(json.dumps(decision_matching_asset_ids, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")) == EXPECTED_DECISION_MATCHING_ASSET_IDS_DIGEST, "E_DECISION_MATCHING_ASSET_IDS_DIGEST")
+
     refs = data.get("current_evidence", {}).get("refs", [])
     fail(errors, len(refs) == 12 and {ref.get("ref_id") for ref in refs} == EXPECTED_CURRENT_REF_IDS, "E_CURRENT_REF_SET")
     seen_refs = set()
@@ -415,6 +478,9 @@ def validate(data: dict, check_binding: bool = True) -> list[str]:
     residual = data.get("failure_consumer_residual", {})
     fail(errors, residual.get("failure_execution_receipts") == 0 and residual.get("selected_asset_consumer_refs") == [], "E_RESIDUAL_COUNTS")
     fail(errors, residual.get("consumer_closure_status") == "pending", "E_RESIDUAL_CLOSURE")
+    fail(errors, residual.get("interpretation") == EXPECTED_FAILURE_CONSUMER_INTERPRETATION, "E_RESIDUAL_INTERPRETATION")
+    fail(errors, residual.get("interpretation_sha256") == EXPECTED_FAILURE_CONSUMER_INTERPRETATION_DIGEST, "E_RESIDUAL_INTERPRETATION_DIGEST")
+    fail(errors, sha(str(residual.get("interpretation", "")).encode("utf-8")) == residual.get("interpretation_sha256"), "E_RESIDUAL_INTERPRETATION_DIGEST_MATCH")
     consumers = residual.get("consumer_candidates", [])
     fail(errors, len(consumers) == 4 and all(c.get("observed") is False and c.get("closure_status") == "pending" and c.get("authority_effect") == "none" for c in consumers), "E_CONSUMER_CANDIDATES")
 

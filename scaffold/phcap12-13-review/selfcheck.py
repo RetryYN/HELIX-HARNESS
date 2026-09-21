@@ -74,12 +74,17 @@ CASES = [
     ("anchor meaning tamper", lambda x: x["legacy_phase_assessment"]["assets"][0]["source_anchors"][0].update(meaning="invented"), "E_ANCHOR_MEANING:D107-01"),
     ("ledger implementation promotion", lambda x: x["legacy_phase_assessment"]["assets"][0]["ledger_snapshot"].update(implementation_status="implemented"), "E_ASSET_LEDGER_SNAPSHOT:LEGACY-ASSET-D107FD145A2588FAAD09"),
     ("decision history invention", lambda x: x["legacy_phase_assessment"]["assets"][0]["decision_history"].update(matching_count=1), "E_ASSET_DECISION_HISTORY:LEGACY-ASSET-D107FD145A2588FAAD09"),
+    ("decision matching asset fake", lambda x: x["legacy_phase_assessment"].update(decision_matching_asset_ids=["FAKE-ASSET"]), "E_DECISION_MATCHING_ASSET_IDS"),
     ("failure receipt invention", lambda x: x["failure_consumer_residual"].update(failure_execution_receipts=1), "E_RESIDUAL_COUNTS"),
     ("consumer closure promotion", lambda x: x["failure_consumer_residual"].update(consumer_closure_status="closed"), "E_RESIDUAL_CLOSURE"),
+    ("failure consumer interpretation inversion", lambda x: x["failure_consumer_residual"].update(interpretation="current closure is established"), "E_RESIDUAL_INTERPRETATION"),
+    ("failure consumer interpretation digest tamper", lambda x: x["failure_consumer_residual"].update(interpretation_sha256="0" * 64), "E_RESIDUAL_INTERPRETATION_DIGEST"),
     ("consumer reference injection", lambda x: x["legacy_phase_assessment"]["assets"][0]["consumer_evidence"].update(consumer_refs=["fake"]), "E_CONSUMER_BOUNDARY:LEGACY-ASSET-D107FD145A2588FAAD09"),
     ("unresolved deletion", lambda x: x["unresolved"].pop(), "E_UNRESOLVED"),
     ("negative case deletion", lambda x: x["verification_contract"]["negative_cases"].pop(), "E_NEGATIVE_CASES"),
     ("unknown nested key", lambda x: x["product_units"][0].update(unexpected_key=True), "E_UNIT_KEYSET:PHCAP12-13-UNIT-HARNESS"),
+    ("unknown asset nested key", lambda x: x["legacy_phase_assessment"]["assets"][0].update(unexpected_key=True), "E_KEYSET:root.legacy_phase_assessment.assets[]"),
+    ("unknown current ref nested key", lambda x: x["current_evidence"]["refs"][0].update(unexpected_key=True), "E_KEYSET:root.current_evidence.refs[]"),
 ]
 
 baseline_errors = validator.validate(copy.deepcopy(base), check_binding=False)

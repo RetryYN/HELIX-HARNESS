@@ -14,6 +14,7 @@ DISP = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 PHASE = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DECISIONS = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 INV = HERE / "inventory.json"
+FAILURE_CONSUMER_INTERPRETATION = "historical source failure/consumer descriptions remain candidate evidence; current execution, read-after, and closure are unknown"
 ORIGIN = "fbeee47920ed8b2992ae123b00c224ff88987c50"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 
@@ -127,6 +128,12 @@ phase_inventory = json.loads(PHASE_INV.read_text(encoding="utf-8"))
 phase_records = {row["task_id"]: row for row in phase_inventory["records"]}
 phase12_ids = {row["asset_id"] for row in phase_rows if "PHCAP-12" in row.get("candidate_phase_targets", [])}
 phase13_ids = {row["asset_id"] for row in phase_rows if "PHCAP-13" in row.get("candidate_phase_targets", [])}
+selected_decision_rows = [row for row in decision_rows if row.get("asset_id") in ASSET_ORDER]
+decision_matching_asset_ids = [
+    aid for aid in ASSET_ORDER
+    if any(row.get("asset_id") == aid for row in selected_decision_rows)
+]
+decision_match_count = len(selected_decision_rows)
 scf003_path = ROOT / "scaffold/bindings/SCF-B-0003.json"
 scf003 = json.loads(scf003_path.read_text(encoding="utf-8"))
 
@@ -288,7 +295,7 @@ inventory = {
         "phase_record_count": len(phase_rows),
         "decision_record_count": len(decision_rows),
         "selected_asset_count": len(ASSET_ORDER),
-        "matching_decision_record_count": 0,
+        "matching_decision_record_count": decision_match_count,
     },
     "tasks": [
         {"task_id": "PHCAP-12", "phase_record_snapshot": phase_records["PHCAP-12"]},
@@ -308,7 +315,7 @@ inventory = {
     "candidate_phase_joins": phase_joins,
     "legacy_phase_assessment": {
         "assets": assets,
-        "decision_matching_asset_ids": [],
+        "decision_matching_asset_ids": decision_matching_asset_ids,
         "phase_summary_is_historical_only": True,
     },
     "current_evidence": {
@@ -332,7 +339,8 @@ inventory = {
         "selected_asset_consumer_refs": [],
         "consumer_closure_status": "pending",
         "consumer_candidates": consumer_candidates,
-        "interpretation": "historical source failure/consumer descriptions remain candidate evidence; current execution, read-after, and closure are unknown",
+        "interpretation": FAILURE_CONSUMER_INTERPRETATION,
+        "interpretation_sha256": sha(FAILURE_CONSUMER_INTERPRETATION.encode("utf-8")),
     },
     "unresolved": [
         "PHCAP-12 review receipt schema、delivery、再開、provider boundaryの正式化",
@@ -367,7 +375,7 @@ inventory = {
         "candidate_connections": len(edges),
         "candidate_phase_joins": len(phase_joins),
         "consumer_candidates": len(consumer_candidates),
-        "decision_records_found": 0,
+        "decision_records_found": decision_match_count,
         "failure_execution_receipts": 0,
         "legacy_consumer_refs_observed": 0,
     },

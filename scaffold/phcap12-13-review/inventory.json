@@ -2112,7 +2112,8 @@
         "authority_effect": "none"
       }
     ],
-    "interpretation": "historical source failure/consumer descriptions remain candidate evidence; current execution, read-after, and closure are unknown"
+    "interpretation": "historical source failure/consumer descriptions remain candidate evidence; current execution, read-after, and closure are unknown",
+    "interpretation_sha256": "d224531d8093b7fcfcd991a4bb29ac0163170f7e74ece6f0a380648000c1d1db"
   },
   "unresolved": [
     "PHCAP-12 review receipt schema、delivery、再開、provider boundaryの正式化",
