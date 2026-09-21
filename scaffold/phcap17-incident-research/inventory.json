@@ -795,18 +795,21 @@
   "contradictions_preserved": [
     {
       "id": "CONTR-01",
+      "status": "unresolved_preserved",
       "left": "legacy incident.md header says current authority/identity and old flow",
       "right": "legacy ledger marks asset historical, unresolved, implementation unknown; current docs prohibit old engine reuse",
       "resolution": "preserved as contradiction; no current authority generated"
     },
     {
       "id": "CONTR-02",
+      "status": "unresolved_preserved",
       "left": "PLAN-L7 and PLAN-REVERSE embedded metadata says confirmed/review approved/tests green",
       "right": "asset ledger has no decision_record_ref, disposition unresolved, implementation unknown, consumer_refs empty",
       "resolution": "preserved as historical embedded claim; old runtime/test/CI not executed and no current implementation claim"
     },
     {
       "id": "CONTR-03",
+      "status": "unresolved_preserved",
       "left": "PHCAP-17 product_targets includes HARNESS",
       "right": "gap audit current.evidence_products excludes HARNESS",
       "resolution": "HARNESS remains unknown; candidate boundary refs do not close direct evidence gap"

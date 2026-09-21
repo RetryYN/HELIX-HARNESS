@@ -85,7 +85,7 @@
     },
     {
       "path": "scaffold/phcap17-incident-research/inventory.json",
-      "sha256": "c4924a294e8e34f592249ca5415b1f8d4a9a0457fc2e13f7a441dea559382bc6",
+      "sha256": "3e44585291fe8c1c1586bfe4874ed2309fa77ce0512687ae3a803ad3c8ba71e8",
       "note": "4 asset、14 source span、11 atom、current ref、unknown／矛盾保持"
     }
   ],
