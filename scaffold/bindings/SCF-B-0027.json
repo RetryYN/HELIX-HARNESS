@@ -1,0 +1,138 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0027",
+  "kind": "scaffold",
+  "title": "RDP-001 PREISOLATION未評価source holdingのatom化前静的監査候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "RDP-001 / L2D-S1-01 source holding review（authority未成立）",
+  "state": "registered",
+  "reason": "L2D-S1-01 packet v2で未評価・atom展開未了の333 source revision recordについて、Git object、旧原文、asset disposition、現行source path、語彙上のfailure・consumer信号をread-onlyで再計算する候補が必要である。atom化、意味等価review、product routing、要求採否、実装完了は未成立なのでscaffoldに束縛する。",
+  "upstream": [
+    {
+      "path": "scaffold/rdp001-unassessed-atom-audit/report.json",
+      "sha256": "f4ae3b59c69fce88f13860d2d3de07ea425985005d93158d354600ba06341e57",
+      "note": "監査候補の分母・digest・findings-only結果"
+    },
+    {
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "note": "MPR-SH-PREISOLATION-002、333件のsource holding"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "legacy asset dispositionと実装・consumer状態"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "snapshot correction decision参照"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+      "note": "現行source register"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/l2d-s1-01-input-holding-screen.jsonl",
+      "sha256": "e54824545dc5aca9844ca86dcae30f396dba8b6f06504344a1ea13f385ad87fa",
+      "note": "L2D-S1-01 holding screen"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md",
+      "sha256": "f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46",
+      "note": "L2D-S1-01 packet v2"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md",
+      "sha256": "99d1e78e7722d5569d5615b8c2700452bedf7e76448e68f11b06acbde30efec7",
+      "note": "333 pathのrevision差分監査"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/github-requirement-review-program-projection-2026-09-15.md",
+      "sha256": "7081e6f43861fb385638e346f05685d554c406255d0cdd38e645a2e255215574",
+      "note": "RDP-001 Issue projection（projection-only）"
+    }
+  ],
+  "role": "RDP-001 PREISOLATION未評価source holdingのatom化前静的監査",
+  "obligations": [
+    "holding 333件のID、source path、baseline/pre-isolation/archive Git object、byte差分、旧原文shaを再計算する",
+    "source register、holding screen、RDP-001 projectionをdigestとauthority境界付きで照合する",
+    "asset dispositionのproduct、authority、implementation、executability、external effect、decision、consumerの分母を集計する",
+    "path由来product/phaseと旧原文語彙信号を候補・lexical evidenceとして分離し、要求・承認・実装の意味を生成しない",
+    "未承認、unknown、missing、未atom化をscaffoldのfindings-only状態に留め、旧archiveを実行しない",
+    "正式なatom化・意味等価review・product routing・human decisionが成立した場合にのみ差し替え確認へ渡せる形でrevisionを固定する"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 / L2D-S1-01 atom化レビュー候補",
+      "source registerとholding screenの静的監査担当",
+      "差し替え台帳 Issue #1866（projection）"
+    ],
+    "dependencies": [
+      "Python 3標準library",
+      "読み取り専用Git object照合",
+      "scaffold/rdp001-unassessed-atom-audit/report.json"
+    ],
+    "boundary": "このbindingとreport・validator・selfcheckはscaffold内だけに置く。docs/governanceとGit objectはread-onlyで読む。候補validatorとselfcheckは旧archive内workflow、CLI、hook、adapter、test、CIを実行せず、GitHub、Issue、DB、memory、現行sourceへ書き込まない。候補のPR共有は別の明示された作成通路で扱う。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/rdp001-unassessed-atom-audit/validate.py",
+      "python3 -B scaffold/rdp001-unassessed-atom-audit/selfcheck.py",
+      "python3 -B scaffold/tools/scfctl.py validate|stale|residuals",
+      "git show／git rev-parse／git cat-fileによるread-only object照合"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、CLI、hook、adapter、source、test、設定の実行",
+      "旧CI・旧runtimeをoracleまたは完了証拠として使うこと",
+      "docs/governance、現行source、Issue、GitHub、DB、memoryへの書き込み",
+      "atom化、要求採否、authority付与、product owner決定、successor、L3/L10実装の生成",
+      "PR作成・修正側によるmerge、post-merge read-after、Issue close"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-unassessed-atom-audit/report.json",
+    "scaffold/rdp001-unassessed-atom-audit/README.md",
+    "scaffold/rdp001-unassessed-atom-audit/validate.py",
+    "scaffold/rdp001-unassessed-atom-audit/selfcheck.py",
+    "scaffold/bindings/SCF-B-0027.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "validate.pyの333件Git object／archive／source disposition再計算",
+      "selfcheck.pyのreport改変否定例8件",
+      "scaffold/tools/scfctl.py validate|stale|residuals"
+    ],
+    "negative_cases": [
+      "holding分母を332へ変更",
+      "sample blob OIDまたはsha256を改変",
+      "product targetをunassigned_cross_productから確定値へ変更",
+      "implementation unknown分母を改変",
+      "binding stateをactiveへ変更",
+      "authority effectをapprovedへ変更",
+      "unaccounted atom refを挿入",
+      "上流digestまたはcurrent HEADをstaleにする"
+    ]
+  },
+  "replacement": {
+    "role_target": "RDP-001 / L2D-S1-01の正式なatom化、意味等価review、product routing、human decision、下流要求接続を担うL2/L11以降の正式成果物",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
