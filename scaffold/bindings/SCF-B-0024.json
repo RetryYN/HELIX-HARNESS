@@ -1,0 +1,66 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0024",
+  "kind": "scaffold",
+  "title": "PHCAP-18 Refactor research premise candidate",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS／HELIX-OS上流管理（PHCAP-18の製品境界・構造改善研究。正式ownerは未解決）",
+  "state": "active",
+  "reason": "PHCAP-18の代表旧refactor asset、source／failure／consumer候補、asset／phase ledger状態、現行4製品境界候補を同一revisionに束ねる。直接current evidenceはHARNESS／OSに限定し、Web／Web-OSの直接ref欠落を未実装と推定しない。正式owner、要求採否、successor、current authority、実装、受入、releaseを生成しない。",
+  "upstream": [
+    {"path": "docs/governance/audits/source-rebaseline/phase-product-evidence-gap-audit-2026-09-21.md", "sha256": "b76d10e9ac3e36e267edc6eadc4ab3afb1f7eafabcebff50a0851fd3c63d97dc", "note": "PHCAP-18の製品別current evidence gap。欠落は未実装を意味しない"},
+    {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "note": "PHCAP-18 scope、代表5旧asset、製品境界候補"},
+    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "5 assetのsource／実装／decision／consumer状態"},
+    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "5 assetのphase／product候補と未解決状態"},
+    {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "note": "PHCAP-18該当のappend-only判断履歴（0件）"},
+    {"path": "docs/governance/legacy-asset-reuse-control.md", "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582", "note": "旧assetをread-only referenceに限定"},
+    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "4製品の候補責務境界"},
+    {"path": "docs/helix-harness/L2-requirements/product-requirements.md", "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77", "note": "HARNESS direct current candidate ref"},
+    {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be", "note": "OS adjacent current boundary candidate ref"},
+    {"path": "docs/helix-web/L2-requirements/product-requirements.md", "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0", "note": "Web adjacent boundary only; direct PHCAP-18 ref unknown"},
+    {"path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248", "note": "Web-OS adjacent boundary only; direct PHCAP-18 ref unknown"},
+    {"path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md", "sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783", "note": "旧refactor意味と現行責務境界のcrosswalk候補"},
+    {"path": "scaffold/phcap18-refactor-research/README.md", "sha256": "58c991c2691ef965a4bf74e148ef439e3f0466308fbdb1ac58f7731fd93c4704", "note": "候補範囲、旧phase summary、製品境界、unknown、検証境界"},
+    {"path": "scaffold/phcap18-refactor-research/inventory.json", "sha256": "0c62f2ab63aeae7549710ec0c5cb04d77d43b5471afc25490ef57e1306a6005c", "note": "代表5 asset、22 source span、17 atom、旧phase summary、degraded_to_candidate遷移、矛盾、negative boundary"},
+    {"path": "scaffold/phcap18-refactor-research/validate.py", "sha256": "bd8a222c3972f48d9899ad1af4d6ba7c6cbb792ace5ae3b4c2f88d37bd7e9c45", "note": "source／ledger／phase summary／current-boundary／degradationの静的validator"},
+    {"path": "scaffold/phcap18-refactor-research/selfcheck.py", "sha256": "446b952197c15f984437714446f10090780340a82dd0e83fcfc9c7f2a9535d1a", "note": "意味昇格、捏造、改変、phase capability／degradation昇格、旧実行を拒否する17陰性例"}
+  ],
+  "role": "PHCAP-18の旧refactor capabilityと現行HELIX-HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OS境界を、direct evidenceの有無・unknown・矛盾を保ったresearch premiseとして固定する",
+  "obligations": [
+    "代表5 assetのsource path、bytes digest、22 exact source span、asset ledger状態、phase／product候補を重複なく保持する",
+    "source本文のapproved／design contract／candidate state／test assertionは歴史的記述として保全し、現行authority・実装・passへ昇格しない",
+    "implementation_status unknown、consumer_refs空、decision history 0件、failure／consumer候補を採用・棄却・closureへ変換しない",
+    "HARNESS／OSのdirect current evidenceと、Web／Web-OSのdirect ref欠落unknownを固定する。隣接L2から実装成立を推定しない",
+    "4製品のproduct／phase／legacy implementation／degradation／current gapを候補記述に留め、正式owner、要求採否、successor、L2／L11 freeze、L3／L10実装を生成しない",
+    "旧runtime、旧test、旧CI、hook、adapterを実行せず、旧source／testを現行oracle、fallback、完了証拠として使わない",
+    "base SHAは取得時点metadataとして扱い、upstream固定digestとexact spanをvalidator／stale検査する"
+  ],
+  "connections": {
+    "consumers": ["PHCAP-18 research premise review担当", "4製品のproduct／phase／boundary整理担当", "旧refactor assetのfailure／consumer／判断史closure担当", "Scaffold Bindingのstale／replacement確認担当"],
+    "dependencies": ["phase capability inventory／asset disposition／phase classification／decision ledgerのread-only照合", "archive source bytesのread-only exact span照合", "current L2／crosswalk候補文書", "scaffold/phcap18-refactor-researchのvalidator／selfcheck"],
+    "boundary": "inventory、README、validator、selfcheck、Bindingはscaffold/配下だけ。旧sourceは静的referenceとして読むだけ。docs、設定、DB、Issue #1906、PR、GitHub、authority registerへ書き込まない。candidate boundaryは正式owner／unit／connectionではない。"
+  },
+  "operations": {
+    "allowed": ["python3 scaffold/phcap18-refactor-research/validate.py", "python3 scaffold/phcap18-refactor-research/selfcheck.py", "python3 scaffold/tools/scfctl.py validate", "python3 scaffold/tools/scfctl.py stale", "python3 scaffold/tools/scfctl.py residuals", "git diff --check"],
+    "forbidden": ["archive/legacy-generation-2026-09-14/配下のruntime／test／hook／CI実行", "旧sourceを現行runtime／test／CIのoracle、fallback、実装として使うこと", "scaffold/外への書き込み", "direct ref欠落から未実装を生成すること", "要求採否、owner確定、successor、current authority、consumer closure、acceptance、releaseの生成", "Issue #1906への意味・要求・完了projection、GitHub、PR、DB、deploymentへの外部作用"]
+  },
+  "artifacts": ["scaffold/phcap18-refactor-research/README.md", "scaffold/phcap18-refactor-research/inventory.json", "scaffold/phcap18-refactor-research/validate.py", "scaffold/phcap18-refactor-research/selfcheck.py", "scaffold/bindings/SCF-B-0024.json"],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": ["scaffold/phcap18-refactor-research/validate.py（archive bytes、exact span、asset／phase／decision、current boundary digest）", "scaffold/phcap18-refactor-research/selfcheck.py（authority、direct ref捏造、source改変、implementation／consumer closure、旧実行、矛盾削除）", "scaffold/tools/scfctl.py validate／stale／residuals", "git diff --check"],
+    "negative_cases": ["Web／Web-OSのdirect current evidenceを隣接refから捏造する", "source exact text／digestまたはasset ledger状態を改変する", "decision history 0件を採用・棄却・owner確定へ変換する", "legacy implementation unknown、consumer pending、product unresolvedを昇格する", "旧source内のreview／test／promotion記述をcurrent passまたはauthorityへ変換する", "旧runtime／test／CIを実行しoracle、fallback、完了証拠にする"]
+  },
+  "replacement": {
+    "role_target": "PHCAP-18を対象とした正式な要求・製品unit／connection crosswalkとL2／L11／L3／L10導出契約（承認後に導出）",
+    "formal_artifacts": [],
+    "issue": 1906,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}
