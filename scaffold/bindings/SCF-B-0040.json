@@ -15,7 +15,7 @@
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/README.md",
-      "sha256": "15902952bbf2f773d666e6fcbebcc961cc660fbfa4b56515f17bbcafed89ba89",
+      "sha256": "abf4b51b9afdea55f8da27fa67464dbfe6f26cd7cda4e06a2382786481c553b2",
       "note": "migration boundary, timestamp/state semantics, dependency and issue projection record"
     },
     {

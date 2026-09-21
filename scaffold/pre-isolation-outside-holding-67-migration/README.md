@@ -6,9 +6,9 @@
 
 既存のfirst15、PHCAP-02/03、delegated-doc003、unassessed-atom、merged #1975 の SCF-B-0036 と outside-L1 validator、SCF-B-0027/0029/0034/0035は、historical register参照を`docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl`へ切り替えました。`phase-capability-inventory.json`はWave verifierの固定入力digestを壊さないためmain capture bytesのまま保持し、同JSONのregister参照更新は別migration recordへ分離します。正式append行はsource set `docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl` と永続coverage receipt `docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md` を参照し、Scaffold撤去時の参照切れを防ぎます。要件整理契約と登録契約の「現在13」は現在14へ更新し、13時点の記述はsnapshotとして分離しました。
 
-PR #1975 は merge commit `4919cfd245ee128fee71c713c8d2d0a8cd5fcd11` でmainへ取り込まれ、head `2c0f287dda2cd9252cd64255cfa4cdf695653754`を依存値として記録しています。SCF-B-0036とoutside-L1 validatorはこの候補へ取り込み、3df時点のregister／disposition snapshotを読むように固定し、現行14 register read-afterとは分離しました。PR #1978 は merge commit `f122d65e1435b4709fbb7b07fbb8e42b70f0b110` でmainへ取り込まれ、exact parent `d272a97b3e55401fa75ad41670fbeefd18f8a4cf`を保持しています。#1981はmain `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`へrebaseline済みです。Issue #1813 projectionは外部操作を行わず、別更新対象として残しています。
+PR #1975 は merge commit `4919cfd245ee128fee71c713c8d2d0a8cd5fcd11` でmainへ取り込まれ、head `2c0f287dda2cd9252cd64255cfa4cdf695653754`を依存値として記録しています。SCF-B-0036とoutside-L1 validatorはこの候補へ取り込み、3df時点のregister／disposition snapshotを読むように固定し、現行14 register read-afterとは分離しました。PR #1978 は merge commit `f122d65e1435b4709fbb7b07fbb8e42b70f0b110` でmainへ取り込まれ、exact parent `d272a97b3e55401fa75ad41670fbeefd18f8a4cf`を保持しています。#1981はこの親を含む最新mainへ再照合する。Issue #1813 projectionは外部操作を行わず、別更新対象として残しています。
 
-validatorのbase gateは、捕捉したmain merge `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`が候補worktreeのHEADの祖先であることを確認します。live `origin/main`とのSHA一致やlocal `remotes/pr/1978`の現在指示先は判定根拠にしません。現行mainは#1986 mergeの`1d7f9a18dd89745b0ed0b9d6d3ed0f9437e47dff`を経て#1983 mergeの`41878fff1309ad35a76c8ad439dbc8238cbfd1ea`へ進んでおり、候補HEADには未取り込みのためadmission前にrebaseが必要です。#1988（`8e5183e454fd8c199be2e2d85614aae22f45f180`）と#1989（`9a0ef8ef93890cdb3b98ca602ff7bc1c32554bcf`）はDraft／未mergeとして停止条件に保持し、依存・完了・承認を生成しません。
+validatorのbase gateは、捕捉したmain merge `f122d65e1435b4709fbb7b07fbb8e42b70f0b110`が候補worktreeのHEADの祖先であることを確認します。live `origin/main`とのSHA一致やlocal `remotes/pr/1978`の現在指示先は判定根拠にしません。merge admission時には別途、その時点の最新mainとの差分とhistorical 13 holdingを参照する他候補の停止条件を再確認する。#1988／#1989は独立したDraft候補として扱い、依存・完了・承認を生成しません。
 
 候補BindingはSCF-B-0040です（SCF-B-0039は別PRで使用済み）。
 
@@ -23,4 +23,4 @@ python3 scaffold/pre-isolation-outside-holding-67-migration/validate.py
 python3 scaffold/pre-isolation-outside-holding-67-migration/selfcheck.py
 ```
 
-旧archiveのruntime、test、CI、hook、adapterは実行していません。commit、push、PR、merge、Issue更新はこの候補では行いません。
+旧archiveのruntime、test、CI、hook、adapterは実行していません。この候補のreview合格だけからmerge、Issue更新、要求採否を生成しません。
