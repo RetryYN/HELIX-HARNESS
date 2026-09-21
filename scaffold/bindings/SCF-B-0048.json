@@ -1,0 +1,209 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0048",
+  "kind": "scaffold",
+  "title": "RDP-001 DELEGATED-DOC-002 semantic atom candidate",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS／HELIX-OS／HELIX-Web／HELIX-Web-OSの四製品候補を保持するDOC-002 semantic atom review（正式owner未解決）",
+  "state": "registered",
+  "reason": "114件source holdingの未atom化DOC-002を単体の静的候補へ細粒度分解し、133 source lines、49 semantic atoms、21 residual lines、3 shared source relations、2 reference edges、asset／phase／product／implementation／degraded／failure／consumer／decisionのunknown境界を既存SCF-B-0010との補完relation付きで保持する。",
+  "upstream": [
+    {
+      "path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+      "sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "DOC-002 static research input"
+    },
+    {
+      "path": "scaffold/rdp001-delegated-doc002-semantic-atom-048/README.md",
+      "sha256": "bc3c3905c37c73fc059f6f9337c3ceb41faa28b561ba343e6c06973312d2c24d",
+      "note": "DOC-002 candidate artifact"
+    },
+    {
+      "path": "scaffold/rdp001-delegated-doc002-semantic-atom-048/inventory.json",
+      "sha256": "db8c7a6e0be32903b95e192b706681b2d66442b2710aa8185029bfb9abcc3159",
+      "note": "DOC-002 candidate artifact"
+    },
+    {
+      "path": "scaffold/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+      "sha256": "091c06ba7d18ea53940feb989f4e121c4570c94d070da52ce5f0aca9d2d76da9",
+      "note": "DOC-002 candidate artifact"
+    },
+    {
+      "path": "scaffold/rdp001-delegated-doc002-semantic-atom-048/selfcheck.py",
+      "sha256": "d02528270337e353a85615d9e6e13e4b94a9e511f60cdecb43de70e7c239406e",
+      "note": "DOC-002 candidate artifact"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0010.json",
+      "sha256": "1e84892de8b1c88891484e4a3974e92cb644742ffdc487d8ecf81fbe3c3f2335",
+      "note": "既存DOC-002/013/004/029 pair candidateとのconnection／重複範囲"
+    },
+    {
+      "path": "scaffold/delegated-doc-002-013-004-029/README.md",
+      "sha256": "98b9437dd94f181ad04ad60c3b3b37682b0e6c8cf67003cc670d77c69581b97c",
+      "note": "既存pair candidateのscope／unresolved relation"
+    },
+    {
+      "path": "scaffold/delegated-doc-002-013-004-029/inventory.json",
+      "sha256": "ea335ccb0fe508139376682d8129adf1c633c27e81d95d5ee5ebb02dc192c36e",
+      "note": "既存pair candidateのDOC-002 atom／edge scope"
+    }
+  ],
+  "role": "DELEGATED-DOC-002の旧GitHub原子的開発・CI・リファクタリングsourceを独立契約／拒否条件／受入単位へ分解し、shared source relation、四製品候補、PHCAP-11／18候補、legacy implementation／degraded／failure／consumer／decision unknown、B0010 pair候補との未解決connectionをauthority noneのscaffoldで検証する",
+  "obligations": [
+    "source holding 114件のDOC-002 row、固定archive blob 133行／SHA／blob OIDを照合する",
+    "metadata・目的・6整備基準、FR024〜028の独立契約／拒否条件、NFR、AC、freeze／PLANを49 semantic atomsへ分解する",
+    "49 atomと21 residual linesのunion＋partitionでsource全133行を無損失に説明し、未宣言atom間overlapをfail-closeする",
+    "意図的な共有source fragmentを3 shared relationへ束縛し、単純な行分割や重複採用と混同しない",
+    "DOC-002のDELEGATED-REF-0301／0302をsource line、target、digest、carry statusごとにexact保持する",
+    "HELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの四製品候補を分母に残し、owner／consumerを確定しない",
+    "PHCAP-11／PHCAP-18候補、legacy implementation／degraded／failure unknown、consumer pending、decision missingを維持する",
+    "SCF-B-0010との共有DOC-002 source／edge／原ID、B0010固有のDOC-013／004／029 scope、将来crosswalk未解決を記録し、二者択一・replacement・adoptionを生成しない",
+    "authority_effect=none、meaning_change=false、successor空、人間decision null、holding closure未実施をfail-closeで検査する",
+    "旧archive runtime／test／CI／hook／adapter、GitHub、Issue、PR、DBを実行・更新しない"
+  ],
+  "connections": {
+    "consumers": [
+      "DOC-002 semantic atom independent reviewer",
+      "HELIX-HARNESS V-model／要求・検証contract reviewer",
+      "HELIX-OS GitHub／CI／state／DB consumer boundary reviewer",
+      "HELIX-Web／HELIX-Web-OS candidate boundary reviewer",
+      "Scaffold Binding stale／replacement reviewer"
+    ],
+    "dependencies": [
+      "Python standard library",
+      "fixed archive blob read-only reference",
+      "delegated source/reference holding",
+      "legacy asset disposition／phase product classification ledger",
+      "legacy decision/copy-read-after ledgers",
+      "four-product boundary candidates",
+      "requirement atomization review contract"
+    ],
+    "boundary": "inventory、validator、selfcheck、READMEはscaffold/配下の候補。旧archiveは静的sourceとしてのみ読む。候補検証は採否、authority、owner、phase、実装、degraded、failure、consumer closure、acceptance、CI、releaseを生成しない。B0010は補完的なDOC-002/013/004/029 pair候補としてread-only connectionへ束縛し、二者択一やreplacementを生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+      "python3 scaffold/rdp001-delegated-doc002-semantic-atom-048/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime／test／CI／hook／adapter実行",
+      "旧source／旧test design／旧GitHub状態からcurrent authority・採否・実装・pass・consumer closureを生成すること",
+      "scaffold/外への書き込み",
+      "要求採否・successor・owner確定・phase authority・L3/L10/L11 freeze・正式設計・実装・acceptance・release・deployment",
+      "GitHub、Issue、PR、CI、DB、外部APIへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-delegated-doc002-semantic-atom-048/README.md",
+    "scaffold/rdp001-delegated-doc002-semantic-atom-048/inventory.json",
+    "scaffold/rdp001-delegated-doc002-semantic-atom-048/validate.py",
+    "scaffold/rdp001-delegated-doc002-semantic-atom-048/selfcheck.py",
+    "scaffold/bindings/SCF-B-0048.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "validate.py（固定blob、source／reference holding、asset／phase／decision／consumer evidence、full line partition、49 atom exact text、独立semantic ledger／normalized_statement digest、recursive keyset、shared relation／未宣言overlap、四製品／phase／unknown境界、product boundary／review／coverage／closure meaning pin、B0010 connection）",
+      "selfcheck.py（no-op baseline guard、期待error code付きauthority、digest、edge、atom／residual line、semantic field、normalized text+digest同時改変、recursive keyset、undeclared overlap、shared relation reason、product／phase／meaning pin、implementation、degraded、failure、consumer、decision、B0010 preemption、closureの43否定例）",
+      "scfctl validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "source／reference holdingの分母・ID・edgeを変える",
+      "source blob digest、atom span／text／line digest、residual lineを欠落・改変する",
+      "共有関係を消す、shared fragmentを改変する、未宣言atom間overlapを作る",
+      "四製品候補、phase候補、owner／consumer境界を狭める",
+      "legacy implementation／degraded／failure／consumer／decisionを確定済みに昇格する",
+      "B0010 connectionをreplacement／二者択一へ変更する、既存pair candidate digestを改変する",
+      "authority、successor、採用、freeze、正式設計、CI、acceptance、releaseを生成する",
+      "49 normalized_statement本文・semantic field・shared relation reasonを独立constant／digestから同時改変する",
+      "product_boundary.allocation_rule、review_limits、coverage_policy、closure_guard等の意味fieldを反転する",
+      "inventory全階層へauthority／accepted／merge_admission等の未知nested keyを追加する",
+      "no-op baselineを含む期待error code付きselfcheckを実行する"
+    ]
+  },
+  "replacement": {
+    "role_target": "対象revision付きsource atomizationとproduct／phase／consumer crosswalkを扱う正式なHELIX-OS上流管理契約（L2／L11から導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
