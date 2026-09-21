@@ -1,0 +1,164 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0012",
+  "kind": "scaffold",
+  "title": "RDP-001 PREISOLATION research-premise 次候補 20 path / 21 hunk",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "RDP-001 source revision research-premise review（HELIX-HARNESS／HELIX-OS境界は未確定）",
+  "state": "active",
+  "reason": "PR #1943統合済みの先行24 path／91 hunkを母数から除外し、残余376 path／401 hunkから重複しない20 path／21 hunkをresearch-premise scaffold候補として保持する。candidate product／phase、legacy implementation、owner／consumer、意味同値、採否、authority、実装、closureは未確定のまま、Git object／hunk／source digestとnegative／counterevidenceを固定する。",
+  "upstream": [
+    {
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "note": "RDP-001 source revision holding"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "legacy asset disposition ledger"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "legacy phase/product classification ledger"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+      "note": "atomization review boundary contract"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "legacy reuse control"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "product boundary candidate context"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "HELIX-HARNESS product context"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "HELIX-OS product context"
+    },
+    {
+      "path": "scaffold/pre-isolation-research/README.md",
+      "sha256": "526ee6c24aa63fea5fc25cb39850aee0be1a96e7ee1a9bd3151c7dbdd0b6310b",
+      "note": "RDP-001 research-premise candidate artifact"
+    },
+    {
+      "path": "scaffold/pre-isolation-research/rdp001-preiso-research-20path.json",
+      "sha256": "eba8366fb3ede22b01491353b3b57f423ab1e3d31939e01ab90cc813b94fde0b",
+      "note": "RDP-001 research-premise candidate artifact"
+    },
+    {
+      "path": "scaffold/pre-isolation-research/rdp001-preiso-research-semantic-diff-inventory.json",
+      "sha256": "6763b523a21fedb667ace38d75ee42dabf77a46dde3bf73a365c1755ce2aa2bb",
+      "note": "RDP-001 research-premise candidate artifact"
+    },
+    {
+      "path": "scaffold/pre-isolation-research/validate.py",
+      "sha256": "ac3513eebe2686e3b6332331ef4ec665ea84f67e5d18cfd47a09e8784020bcc9",
+      "note": "RDP-001 research-premise candidate artifact"
+    },
+    {
+      "path": "scaffold/pre-isolation-research/selfcheck.py",
+      "sha256": "0fa0e42e1ec961c3b9fadf6514abf7fa0513569d11c6dc4c513667ebda1e9916",
+      "note": "RDP-001 research-premise candidate artifact"
+    }
+  ],
+  "role": "RDP-001 pre-isolation source revisionのexact Git-object provenanceとhunk-level research-premise候補を保持し、candidate product／phase／legacy status、compound hold、review-only subunit、未完了denominator、counterevidenceを後続の意味reviewへ引き渡す。",
+  "obligations": [
+    "PREISO-REV-000023..000025と000027..000043の20 selected source revision item ID／pathをholdingへ一致させ、PR-1943のprior reviewed 24 path／91 hunkと重複させない",
+    "baseline 6fabd12512a3659fff4a956692cdd61faeeb16ce、pre-isolation 2d4991042be55268bac30a8bbcdac45b3865030a、archive 064280b5c1c5c98f949e6e3be5ef87cbe4a4b658のblob／file SHA-256、object bytes、exact changed hunk spansを固定する",
+    "全体400 path／492 hunk、prior 24／91、residual-before 376／401、current 20／21、combined 44／112、remaining 356／380のGit-object denominatorを維持する",
+    "asset disposition／phase-product ledgerからcandidate product／phase、legacy implementation、legacy execution、consumer closure、unresolvedをsnapshotし、formal owner／authority／implementationへ昇格させない",
+    "21 hunkをresearch_premise hunk fragmentとしてのみ分類し、semantic atom count=0、compound hold=21、review-only subunit=8、fully unsubdivided=13を保持する",
+    "各fragmentのexact baseline／pre-isolation span・UTF-8 digest・unresolved meaning・possible conflicts・counterevidence・negative refsを欠落させない",
+    "authority_effect=none、meaning_change_applied=false、successor空、human decision null、equivalence_claim=null、採用／closureなしを維持する",
+    "旧archiveはGit object read-only参照に限り、旧runtime／test／CI／hookを実行せずoracle・fallback・実装として扱わない",
+    "scaffold validator／selfcheck／scfctl静的確認を実施し、合格をsemantic equivalence、要求採否、authority、実装、consumer closure、acceptance、releaseの証拠と解釈しない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 source revision semantic review担当",
+      "HELIX-HARNESS／HELIX-OS product boundary review担当",
+      "Scaffold Binding stale／replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "固定Git objectのread-only取得",
+      "pre-isolation source holding",
+      "legacy asset disposition／phase-product ledger",
+      "product boundary／L1 intent context",
+      "requirement atomization review contract"
+    ],
+    "boundary": "README、manifest、semantic-diff inventory、validator、selfcheckはscaffold/配下。validatorはholding、asset／phase ledger、固定Git object、exact hunkをread-only照合する。candidate product／phase／owner／consumer、semantic atom、authority、adoption、implementation、closureは未確定のまま保持する。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/pre-isolation-research/validate.py",
+      "python3 scaffold/pre-isolation-research/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate|list|stale|residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime・test・CI・hookの実行",
+      "旧sourceを現行runtime・test・CIのoracle・fallback・実装にすること",
+      "scaffold/外への書き込み",
+      "要求採否・人間承認・successor・owner確定・phase authority・semantic atom・実装・consumer closure・acceptance・releaseの生成",
+      "GitHub、Issue、PR、CI、DB、deploymentへの外部作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/pre-isolation-research/README.md",
+    "scaffold/pre-isolation-research/rdp001-preiso-research-20path.json",
+    "scaffold/pre-isolation-research/rdp001-preiso-research-semantic-diff-inventory.json",
+    "scaffold/pre-isolation-research/validate.py",
+    "scaffold/pre-isolation-research/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "scaffold/pre-isolation-research/validate.py（holding、asset／phase、Git object、全体／selected hunk、exact span／digest、negative／counterevidence）",
+      "scaffold/pre-isolation-research/selfcheck.py（digest、phase、owner、candidate kind、execution、coverage、hunk／atom境界の否定例）",
+      "scaffold/tools/scfctl.py validate／stale／residuals（Binding schema・digest・残余確認）",
+      "git diff --check（候補文書の静的整形）"
+    ],
+    "negative_cases": [
+      "baseline／pre-isolation／archive commitまたはblob／file digestを変更する",
+      "selected path、exact hunk span、UTF-8 digest、fragment coverageを変更・欠落させる",
+      "hunk分類をsemantic atomへ昇格し、semantic_atomization_completeをtrueにする",
+      "compound hold、review-only subunit、13未分解denominator、counterevidenceを削除する",
+      "candidate product／phase／owner／consumer、legacy implementation／execution、authority、successor、adoption、equivalence、closureを確定する",
+      "旧runtime／test／CI／hookを実行またはoracle／fallbackにする",
+      "GitHub、Issue、PR、CI、DB、deploymentへ外部作用する"
+    ]
+  },
+  "replacement": {
+    "role_target": "対象revision付きsource research premiseと意味atomizationを扱う正式な上流管理契約（対象別L2／L3／L10から導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-21",
+  "updated": "2026-09-21"
+}
