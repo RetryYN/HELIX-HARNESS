@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "scaffold/phcap10-11-worker-ci-static/README.md",
-      "sha256": "0073365f6b2ca8d943ba6f93565347863a38d0f8352ba7aacbd6d31a9b32522a",
+      "sha256": "ce39cf31e9be1d05ff98ed8ac751d7850ac44b9ee198fcfbb6ec537d3115d31f",
       "note": "bounded scope、四製品分類、unknown boundary、static checks"
     },
     {
@@ -25,12 +25,12 @@
     },
     {
       "path": "scaffold/phcap10-11-worker-ci-static/validate.py",
-      "sha256": "85d3187bcff8845d519c898a884c84167feca43ff7d6bbc7fe057de4ab0e85f3",
+      "sha256": "24c20160758a31d18f630e3230813ad9b9e140b6f9aeb5ba38c5d30d57f78d1a",
       "note": "静的phase／product／ledger／source／unknown validator"
     },
     {
       "path": "scaffold/phcap10-11-worker-ci-static/selfcheck.py",
-      "sha256": "10da14c273304ebaf43115e794f843500125c23ba2428f86c87c46e765814e69",
+      "sha256": "d302e00cda4fe150f5732f0dbc74aaece024f4d6de0d8d8cb5b4ffb9aebaeece",
       "note": "16 negative promotion and drift cases"
     },
     {

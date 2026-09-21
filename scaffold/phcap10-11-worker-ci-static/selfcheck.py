@@ -15,29 +15,54 @@ spec.loader.exec_module(validator)
 base = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
 
 
-def expect_failure(label: str, mutate) -> None:
+baseline_errors = validator.validate(base)
+if baseline_errors:
+    raise SystemExit("FAIL selfcheck baseline: " + "; ".join(baseline_errors))
+
+try:
+    current_head = validator.run_git("rev-parse", "HEAD")
+except Exception as exc:
+    raise SystemExit("FAIL selfcheck checkout probe: " + str(exc))
+if not validator.is_ancestor(validator.ORIGIN, current_head):
+    raise SystemExit("FAIL selfcheck capture ancestor probe")
+print("PASS baseline and captured-source ancestry")
+
+
+def expect_failure(label: str, mutate, expected_code: str) -> None:
     candidate = copy.deepcopy(base)
     mutate(candidate)
-    if validator.validate(candidate):
-        print("PASS", label)
-    else:
-        raise SystemExit("FAIL selfcheck: " + label)
+    if candidate == base:
+        raise SystemExit("FAIL selfcheck: " + label + " is a no-op mutation")
+    errors = validator.validate(candidate)
+    if not errors:
+        raise SystemExit("FAIL selfcheck: " + label + " was accepted")
+    if expected_code not in errors:
+        raise SystemExit(
+            "FAIL selfcheck: " + label + " missing " + expected_code + " (got " + ", ".join(errors) + ")"
+        )
+    print("PASS", label, expected_code)
 
 
-expect_failure("authority promotion", lambda x: x.update(authority_effect="approved"))
-expect_failure("current implementation promotion", lambda x: x["current_evidence"].update(implementation_status="implemented"))
-expect_failure("formal CI profile invention", lambda x: x["current_evidence"].update(formal_ci_profile_status="constructed"))
-expect_failure("oracle registry invention", lambda x: x["current_evidence"].update(formal_oracle_registry_status="registered"))
-expect_failure("PHCAP-10 direct Web evidence invention", lambda x: x["current_evidence"]["phase_direct_products"].update({"PHCAP-10": ["HELIX-Web"]}))
-expect_failure("PHCAP-11 direct Web-OS evidence invention", lambda x: x["current_evidence"]["phase_direct_products"].update({"PHCAP-11": ["HELIX-Web-OS"]}))
-expect_failure("old execution promotion", lambda x: x["legacy_phase_assessment"]["assets"][0].update(legacy_execution_performed=True))
-expect_failure("legacy implementation promotion", lambda x: x["legacy_phase_assessment"]["assets"][3].update(legacy_implementation_status="implemented"))
-expect_failure("consumer closure promotion", lambda x: x["consumer_residual"].update(consumer_closure_status="closed"))
-expect_failure("decision invention", lambda x: x["legacy_phase_assessment"].update(decision_matches=1))
-expect_failure("old source exact text tamper", lambda x: x["legacy_phase_assessment"]["assets"][0]["source_anchors"][0].update(exact_text="tampered"))
-expect_failure("current source digest tamper", lambda x: x["current_evidence"]["refs"][0].update(sha256="0" * 64))
-expect_failure("product unit merge", lambda x: x["scope"]["candidate_units"].__setitem__(1, dict(x["scope"]["candidate_units"][0])))
-expect_failure("edge deletion", lambda x: x["scope"]["candidate_edges"].pop())
-expect_failure("phase status promotion", lambda x: x["task"]["phase_record_snapshots"][0]["current"].update(status="implemented"))
-expect_failure("failure receipt invention", lambda x: x["failure_residual"].update(execution_receipts=1))
-print("PASS PHCAP-10/11 selfcheck: 16 negative cases")
+CASES = [
+    ("authority promotion", lambda x: x.update(authority_effect="approved"), "E_AUTHORITY"),
+    ("current implementation promotion", lambda x: x["current_evidence"].update(implementation_status="implemented"), "E_CURRENT_IMPL"),
+    ("formal CI profile invention", lambda x: x["current_evidence"].update(formal_ci_profile_status="constructed"), "E_FORMAL_CI"),
+    ("oracle registry invention", lambda x: x["current_evidence"].update(formal_oracle_registry_status="registered"), "E_FORMAL_ORACLE"),
+    ("PHCAP-10 direct Web evidence invention", lambda x: x["current_evidence"]["phase_direct_products"].update({"PHCAP-10": ["HELIX-Web"]}), "E_CURRENT_DIRECT_PRODUCTS"),
+    ("PHCAP-11 direct Web-OS evidence invention", lambda x: x["current_evidence"]["phase_direct_products"].update({"PHCAP-11": ["HELIX-Web-OS"]}), "E_CURRENT_DIRECT_PRODUCTS"),
+    ("old execution promotion", lambda x: x["legacy_phase_assessment"]["assets"][0].update(legacy_execution_performed=True), "E_ASSET_EXECUTION:LEGACY-ASSET-F67008331E92FA0A5773"),
+    ("legacy implementation promotion", lambda x: x["legacy_phase_assessment"]["assets"][3].update(legacy_implementation_status="implemented"), "E_ASSET_IMPL:LEGACY-ASSET-44F2DE5EBB3DF3A4744A"),
+    ("consumer closure promotion", lambda x: x["consumer_residual"].update(consumer_closure_status="closed"), "E_CONSUMER_CLOSURE"),
+    ("decision invention", lambda x: x["legacy_phase_assessment"].update(decision_matches=1), "E_DECISIONS_TOTAL"),
+    ("old source exact text tamper", lambda x: x["legacy_phase_assessment"]["assets"][0]["source_anchors"][0].update(exact_text="tampered"), "E_ANCHOR_TEXT:LEGACY-ASSET-F67008331E92FA0A5773-A01"),
+    ("current source digest tamper", lambda x: x["current_evidence"]["refs"][0].update(sha256="0" * 64), "E_REF_SHA:CUR-BOUNDARY-FOUR"),
+    ("product unit merge", lambda x: x["scope"]["candidate_units"].__setitem__(1, dict(x["scope"]["candidate_units"][0])), "E_UNIT_PRODUCTS"),
+    ("edge deletion", lambda x: x["scope"]["candidate_edges"].pop(), "E_EDGE_COUNT"),
+    ("phase status promotion", lambda x: x["task"]["phase_record_snapshots"][0]["current"].update(status="implemented"), "E_PHASE_SNAPSHOTS"),
+    ("failure receipt invention", lambda x: x["failure_residual"].update(execution_receipts=1), "E_FAILURE_TOTAL"),
+]
+
+for label, mutate, expected_code in CASES:
+    expect_failure(label, mutate, expected_code)
+
+print("PASS PHCAP-10/11 selfcheck: %d negative cases" % len(CASES))

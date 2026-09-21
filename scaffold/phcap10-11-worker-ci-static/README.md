@@ -4,7 +4,7 @@
 
 ## 固定した範囲
 
-- rebaseline後の`origin/main`は`43bd941b5fea92e132566e0004e9b9a03f1f84f5`。このcandidateのbranch、Issue、review、CI状態をauthorityへ変換しない。
+- capture時点の`origin/main`は`43bd941b5fea92e132566e0004e9b9a03f1f84f5`。現在のauthor-side base `fbeee47920ed8b2992ae123b00c224ff88987c50`へのrebaseline検討で、この歴史的capture sourceやinventory値を書き換えない。validatorはcapture commitが候補`HEAD`の祖先であることを確認し、live `origin/main`との一致を要求しない。このcandidateのbranch、Issue、review、CI状態をauthorityへ変換しない。
 - PHCAP-10はphase record上のproduct targetがHELIX-OS、current statusが`draft_requirement_and_bootstrap_decision`、旧到達層がL7、phase-level historical summaryが`implemented_with_tests`である。
 - PHCAP-11はphase record上のproduct targetがHELIX-HARNESS／HELIX-OS、current statusが`candidate`、旧到達層がL10、phase-level historical summaryが`implemented_with_workflow_and_test_design`である。
 - 旧代表assetはPHCAP-10が5件、PHCAP-11が6件。全11件をlegacy dispositionとphase/product bootstrapへ照合し、`Historical`、`disposition: unresolved`、`implementation_status: unknown`、`consumer_refs: []`、個別decisionなしを固定した。
@@ -33,7 +33,7 @@ python3 -B scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorはphase record、旧asset disposition／phase-product分類、archive bytes／line span、現行ref digest／span、4製品unit、22 edge、decision・failure・consumer残差を検査する。selfcheckはauthority・実装・oracle・direct ref・旧実行・consumer closure・decision・digest・unit統合の昇格を陰性例として拒否する。
+validatorはcapture commitが候補`HEAD`の祖先であることを含め、phase record、旧asset disposition／phase-product分類、archive bytes／line span、現行ref digest／span、4製品unit、22 edge、decision・failure・consumer残差を検査する。selfcheckはbaseline greenを先に確認し、authority・実装・oracle・direct ref・旧実行・consumer closure・decision・digest・unit統合の各陰性例で期待error codeを照合する。no-op mutationは陰性例として受け入れない。
 
 ## Binding
 

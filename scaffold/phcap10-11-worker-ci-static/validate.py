@@ -65,6 +65,25 @@ def nonempty(value) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
+def run_git(*args: str) -> str:
+    return subprocess.run(
+        ["git", *args],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+
+
+def is_ancestor(ancestor: str, descendant: str) -> bool:
+    return subprocess.run(
+        ["git", "merge-base", "--is-ancestor", ancestor, descendant],
+        cwd=ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    ).returncode == 0
+
+
 def validate(data: dict, check_files: bool = True) -> list[str]:
     errors: list[str] = []
 
@@ -91,10 +110,10 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     req(rb.get("changed") is False, "E_REBASE_CHANGED")
     req("origin/main" in rb.get("stop_condition", "") and "rebaseline" in rb.get("stop_condition", ""), "E_REBASE_STOP")
     try:
-        actual_origin = subprocess.run(["git", "rev-parse", "origin/main"], cwd=ROOT, check=True, capture_output=True, text=True).stdout.strip()
-        req(actual_origin == ORIGIN, "E_ORIGIN_STALE")
+        current_head = run_git("rev-parse", "HEAD")
+        req(is_ancestor(ORIGIN, current_head), "E_CAPTURE_NOT_ANCESTOR")
     except (OSError, subprocess.CalledProcessError):
-        errors.append("E_ORIGIN_READ")
+        errors.append("E_CAPTURE_ANCESTOR_READ")
 
     phase_inventory = ROOT / "docs/governance/phase-capability-inventory.json"
     task = data.get("task", {})
