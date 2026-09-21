@@ -210,7 +210,7 @@ def build() -> dict:
     rows = [build_row(i + 16, row, holdings, holding_rows, selected_source[i]) for i, row in enumerate(selected)]
     return {
         "schema": SCHEMA,
-        "candidate_id": "RDP-001-PREISO-OUTSIDE-HOLDING-16-30-0041",
+        "candidate_id": "RDP-001-PREISO-OUTSIDE-HOLDING-16-30-0045",
         "status": "findings_only",
         "authority_effect": "none",
         "meaning_change_applied": False,

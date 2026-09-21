@@ -1,6 +1,6 @@
 {
   "schema_revision": 1,
-  "id": "SCF-B-0041",
+  "id": "SCF-B-0045",
   "kind": "scaffold",
   "title": "RDP-001 outside-67 rows 16–30 と13 live holding関係監査候補",
   "product": "HELIX-HARNESS",
@@ -10,12 +10,12 @@
   "upstream": [
     {
       "path": "scaffold/pre-isolation-outside-holding-16-30/inventory.json",
-      "sha256": "614e7935e333d50927330c3301d02215fed6b0da4498783e75f8d79a174ee44a",
+      "sha256": "db86c9dd73ea081fcbb1e62645181f0d41449fe62cfdf1a7ad4a9551205d2fed",
       "note": "rows 16–30の15 path、13 live holding exact relation、candidate/unknown境界"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-16-30/README.md",
-      "sha256": "e231dec3c430641ba5678fd891c1d6c02a16258a816b563b69e7be34c803b764",
+      "sha256": "d856b190bf3c06712ba17a981fae58032b92ba5581e7b38ff6a3ab779b957ba4",
       "note": "selection、physical findings、implementation/degradation境界、提案row schema"
     },
     {
@@ -105,7 +105,7 @@
     "scaffold/pre-isolation-outside-holding-16-30/generate.py",
     "scaffold/pre-isolation-outside-holding-16-30/validate.py",
     "scaffold/pre-isolation-outside-holding-16-30/selfcheck.py",
-    "scaffold/bindings/SCF-B-0041.json"
+    "scaffold/bindings/SCF-B-0045.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",

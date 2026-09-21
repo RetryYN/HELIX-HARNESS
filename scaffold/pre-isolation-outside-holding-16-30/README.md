@@ -34,4 +34,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-旧archiveはGit objectの静的読取だけに使う。旧runtime、test、CI、hook、adapter、sourceを実行しない。本候補は`SCF-B-0041`へ束縛するresearch evidenceであり、正式設計・実装・CI・受入・source holding登録ではない。
+旧archiveはGit objectの静的読取だけに使う。旧runtime、test、CI、hook、adapter、sourceを実行しない。本候補は`SCF-B-0045`へ束縛するresearch evidenceであり、正式設計・実装・CI・受入・source holding登録ではない。

@@ -30,6 +30,7 @@ def validate(inv: dict) -> list[str]:
     errors: list[str] = []
     fail(errors, inv == EXPECTED, "E_INVENTORY_NOT_REGENERATED")
     fail(errors, inv.get("schema") == generator.SCHEMA, "E_SCHEMA")
+    fail(errors, inv.get("candidate_id") == "RDP-001-PREISO-OUTSIDE-HOLDING-16-30-0045", "E_CANDIDATE_ID")
     fail(errors, inv.get("status") == "findings_only", "E_STATUS")
     fail(errors, inv.get("authority_effect") == "none", "E_AUTHORITY")
     fail(errors, inv.get("meaning_change_applied") is False, "E_MEANING")
