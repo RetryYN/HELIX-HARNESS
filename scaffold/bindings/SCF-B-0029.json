@@ -1,0 +1,131 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0029",
+  "kind": "scaffold",
+  "title": "RDP-001 DELEGATED-DOC-003 未処理先頭8文書のfile blob静的監査候補",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "RDP-001 / L2D-S1-01 delegated document atomization review（authority未成立）",
+  "state": "registered",
+  "reason": "MPR-SH-DELEGATED-DOC-003は114 file blobを保持するが、file blobを単一要求atomへ扱わずに要求意味・旧原文・legacy状態を文書単位で整理する必要がある。現行mainで既処理18文書を除いた残り96件の先頭8件を静的に照合し、scaffoldへ束縛する。",
+  "upstream": [
+    {
+      "path": "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
+      "sha256": "870f88c0cd5e427ef4032d8921699f78ea1da2906747cc7852a00bf5c3e8b39f",
+      "note": "未処理先頭8文書の分母、旧原文、候補意味、legacy状態"
+    },
+    {
+      "path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+      "note": "MPR-SH-DELEGATED-DOC-003、114 file blob"
+    },
+    {
+      "path": "docs/governance/delegated-requirement-document-source-inventory.md",
+      "sha256": "dd027aa5c1e4cf89ebc13e9dbfbe09b812452b223e62e3ca1df9a17058a85eb9",
+      "note": "意味relation closureのsource inventory"
+    },
+    {
+      "path": "docs/governance/delegated-requirement-document-reference-inventory.md",
+      "sha256": "3f134d2e58d592ff07977960c91b720b4904bbc5d5d033793d26e62d412c02f1",
+      "note": "旧sourceの参照・判断史inventory"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "implementation、failure境界、consumer、decision状態"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "decision log照合"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+      "note": "現行source register"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/l2d-s1-01-input-holding-screen.jsonl",
+      "sha256": "e54824545dc5aca9844ca86dcae30f396dba8b6f06504344a1ea13f385ad87fa",
+      "note": "L2D-S1-01 holding screen"
+    }
+  ],
+  "role": "RDP-001 DELEGATED-DOC-003 未処理先頭8文書のfile blob静的監査",
+  "obligations": [
+    "現行mainのdelegated-doc inventoryだけを根拠に既処理18文書を除外し、残り96件の先頭8件を数値suffix昇順で固定する",
+    "各文書のarchive exact blob、Git object、SHA-256、bytes、lines、current path不在を照合する",
+    "歴史的product/phase/owner/authority signalと要求意味candidateを、current authorityや要求採否へ昇格させず保持する",
+    "legacy implementation、failure、consumer、decisionをstructured dispositionとlexical signalに分離して記録する",
+    "file blobを単一要求atomと数えず、未atom化範囲を文書全体として明記する",
+    "current owner、authority、decision、consumer、successorがunknownまたはmissingの場合に下流実装へ進めない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 / L2D-S1-01 delegated document atomization review",
+      "source registerとholding screenの静的監査担当",
+      "差し替え台帳 Issue #1866（projection）"
+    ],
+    "dependencies": [
+      "Python 3標準library",
+      "読み取り専用Git object照合",
+      "scaffold/rdp001-delegated-doc003-unprocessed8/report.json"
+    ],
+    "boundary": "scaffold内だけにreport、validator、selfcheck、bindingを置く。source register・asset catalog・Git object・archiveはread-onlyで読む。旧archive内のworkflow、CLI、hook、adapter、source、test、CI、runtimeは実行しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/rdp001-delegated-doc003-unprocessed8/validate.py",
+      "python3 -B scaffold/rdp001-delegated-doc003-unprocessed8/selfcheck.py",
+      "python3 -B scaffold/tools/scfctl.py validate|stale|residuals",
+      "git show／git rev-parse／git cat-fileによるread-only object照合"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、CLI、hook、adapter、source、test、設定の実行",
+      "旧CI・旧runtimeをoracleまたは完了証拠として使うこと",
+      "候補validator／selfcheckからのdocs/governance、現行source、Issue、GitHub、DB、memoryへの書き込み",
+      "file blobを要求atom、要求採否、authority、successor、実装完了へ昇格すること",
+      "PR作成・修正側によるmerge、post-merge read-after、Issue close"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
+    "scaffold/rdp001-delegated-doc003-unprocessed8/README.md",
+    "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py",
+    "scaffold/rdp001-delegated-doc003-unprocessed8/selfcheck.py",
+    "scaffold/bindings/SCF-B-0029.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "validate.pyの114 holding、18 processed exclusion、8 archive object再計算",
+      "selfcheck.pyのfile blob atom化・digest・owner・decision改変否定例",
+      "scaffold/tools/scfctl.py validate|stale|residuals"
+    ],
+    "negative_cases": [
+      "selected countまたは先頭8順序の改変",
+      "旧原文bytes、lines、SHA、archive objectの改変",
+      "file blobを単一要求atomとする境界改変",
+      "current ownerまたはdecisionの根拠なし確定",
+      "binding stateをactiveへ昇格",
+      "上流digest、capture revisionまたはその子孫関係の改変"
+    ]
+  },
+  "replacement": {
+    "role_target": "RDP-001 / L2D-S1-01で正式にatom化、意味等価review、product routing、human decisionを行うL2/L11成果物",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
