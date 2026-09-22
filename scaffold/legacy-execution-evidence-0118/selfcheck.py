@@ -159,6 +159,8 @@ def observation_cases() -> None:
     expect_observation("O22 text bare FAIL marker", b"Tests 1 passed (1)\nFAIL src/x.test.ts\nvitest exit=0\n", None, "contradictory pass summary and failure marker prevent a pass verdict", "observed_asset_level")
     expect_observation("O23 text bare failed marker", b"failed\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
     expect_observation("O24 text segmentation fault marker", b"Segmentation fault\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
+    expect_observation("O25 text mixed FAIL and zero errors", b"FAIL src/x.test.ts 0 errors\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
+    expect_observation("O26 text npm ERR marker", b"npm ERR! code 1\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
 
 
 

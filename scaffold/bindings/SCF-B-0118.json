@@ -420,8 +420,8 @@
       "common.py and validator implement the same explicit source-observation specification; equality detects drift and does not claim semantic independence",
       "generated-output equality against validator expected records",
       "candidate pool versus direct crosswalk link separation",
-      "selfcheck case manifest: 24 observation cases O01–O24 and 32 negative cases N01–N32; labels and expected error codes are listed below",
-      "observation cases: O01 json success0 fail2; O02 json contradictory success/failure; O03 json missing test counts; O04 json missing suite counts; O05 json inconsistent suite counts; O06 json zero total; O07 json pending; O08 text zero passed failed2; O09 text contradictory pass/failure; O10 text pass exit2; O11 text normal pass; O12 text zero failed is not failure; O13 text pass missing exit; O14 text negative exit; O15 text hexadecimal exit is not parsed; O16 text Exit code zero; O17 text exited with code zero; O18 text zero errors; O19 text error word boundary; O20 text prose is not a summary; O21 identity only; O22 text bare FAIL marker; O23 text bare failed marker; O24 text segmentation fault marker",
+      "selfcheck case manifest: 26 observation cases O01–O26 and 32 negative cases N01–N32; labels and expected error codes are listed below",
+      "observation cases: O01 json success0 fail2; O02 json contradictory success/failure; O03 json missing test counts; O04 json missing suite counts; O05 json inconsistent suite counts; O06 json zero total; O07 json pending; O08 text zero passed failed2; O09 text contradictory pass/failure; O10 text pass exit2; O11 text normal pass; O12 text zero failed is not failure; O13 text pass missing exit; O14 text negative exit; O15 text hexadecimal exit is not parsed; O16 text Exit code zero; O17 text exited with code zero; O18 text zero errors; O19 text error word boundary; O20 text prose is not a summary; O21 identity only; O22 text bare FAIL marker; O23 text bare failed marker; O24 text segmentation fault marker; O25 text mixed FAIL and zero errors; O26 text npm ERR marker",
       "validator／selfcheck／scfctl／git diff --check"
     ],
     "negative_cases": [
