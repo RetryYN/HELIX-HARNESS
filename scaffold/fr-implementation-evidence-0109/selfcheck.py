@@ -66,6 +66,7 @@ def main() -> int:
         ("base-commit", "E_BASE_COMMIT", lambda inv, ev: inv["base"].__setitem__("commit", "0" * 40)),
         ("base-not-ancestor", "E_BASE_NOT_ANCESTOR", lambda inv, ev: inv["base"].__setitem__("required_ancestor", "not-a-commit")),
         ("authority-boundary", "E_AUTHORITY_BOUNDARY", lambda inv, ev: ev[0]["authority_boundary"].__setitem__("formal_phase_authority", True)),
+        ("current-context-boundary", "E_CURRENT_STATUS", lambda inv, ev: ev[0]["current_context"][0].__setitem__("implementation_claim", True)),
         ("current-status", "E_CURRENT_STATUS", lambda inv, ev: ev[0]["current_implementation_evidence"].__setitem__("status", "implemented")),
         ("unimplemented-claim", "E_UNIMPLEMENTED_CLAIM", lambda inv, ev: ev[0]["unimplemented_assessment"].__setitem__("explicit_non_implementation_claim", True)),
     ]

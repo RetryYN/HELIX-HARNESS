@@ -122,6 +122,8 @@ class Validator:
                 self.error("E_INPUT_DIGEST", f"BASE入力digest不一致: {path}")
 
     def check_inventory(self, actual: dict[str, Any], expected: dict[str, Any]) -> None:
+        if set(actual) != set(expected):
+            self.error("E_INVENTORY_DECLARATION", "inventoryトップレベルkey集合が再計算値と一致しない")
         for key in ("base", "scope", "counts", "unit_ids", "unit_declarations", "negative_case_codes"):
             if actual.get(key) != expected.get(key):
                 self.error("E_INVENTORY_DECLARATION", f"inventory.{key}が再計算値と一致しない")
@@ -132,6 +134,8 @@ class Validator:
 
     def check_unit(self, actual: dict[str, Any], expected: dict[str, Any]) -> None:
         unit = expected["unit_candidate_id"]
+        if set(actual) != set(expected):
+            self.error("E_INVENTORY_DECLARATION", f"{unit} evidenceトップレベルkey集合が再計算値と一致しない")
         if actual.get("schema") != expected.get("schema"):
             self.error("E_INVENTORY_DECLARATION", f"{unit} schema不一致")
         if actual.get("source_requirement") != expected.get("source_requirement"):
@@ -164,6 +168,8 @@ class Validator:
                 self.error("E_OLD_ASSET_HISTORY", f"{unit}/{actual_asset.get('asset_id')} asset record不一致")
         if actual.get("old_asset_evidence", {}).get("static_only") is not True or actual.get("old_asset_evidence", {}).get("not_implementation_proof") is not True:
             self.error("E_AUTHORITY_BOUNDARY", f"{unit} old asset boundaryが壊れている")
+        if actual.get("old_asset_evidence") != expected.get("old_asset_evidence"):
+            self.error("E_OLD_ASSET_HISTORY", f"{unit} old_asset_evidence全体が再計算値と一致しない")
 
         if actual.get("representative_assets") != expected.get("representative_assets"):
             self.error("E_REPRESENTATIVE_ASSET", f"{unit} representative asset record/subset不一致")
@@ -184,6 +190,8 @@ class Validator:
             self.error("E_UNIMPLEMENTED_CLAIM", f"{unit} 未実装断定が混入している")
         if actual.get("authority_boundary") != expected.get("authority_boundary"):
             self.error("E_AUTHORITY_BOUNDARY", f"{unit} formal authority boundaryが壊れている")
+        if actual.get("current_context") != expected.get("current_context"):
+            self.error("E_CURRENT_STATUS", f"{unit} current context/refのstatusまたはimplementation_claimが壊れている")
         if actual.get("unresolved") != expected.get("unresolved"):
             self.error("E_AUTHORITY_BOUNDARY", f"{unit} unresolved保留理由が一致しない")
 

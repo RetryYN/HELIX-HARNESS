@@ -17,7 +17,7 @@ crosswalkの`representative_legacy_assets`とcandidate poolは検索候補とし
 - `evidence.jsonl`: unitごとの原文anchor、decomposition、Wave edge、旧asset source/history/failure/consumer、代表asset、current context、未解決理由。
 - `build.py`: 固定BASEを`git show`で静的に読み、bundleを決定的に再生成する。
 - `validate.py`: unit集合、Wave edge集合、asset集合、入力digest、source anchor、旧asset blob/history、partition、authority境界、BASE祖先性をfail-closedに検証する。
-- `selfcheck.py`: 19個の負例で期待error codeを照合する。
+- `selfcheck.py`: 20個の負例で期待error codeを照合する。
 - `../bindings/SCF-B-0109.json`: 全成果物と入力責務をScaffold Bindingへ登録する。
 
 ## 検証
