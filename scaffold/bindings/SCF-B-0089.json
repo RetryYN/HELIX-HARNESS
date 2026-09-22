@@ -1,0 +1,58 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0089",
+  "kind": "scaffold",
+  "title": "Wave47 schema10 legacy requirement source chain research premise",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "Wave47のNFR-23／24／26 HARNESS・OS候補6 unitについて、source chain・四製品境界・phase・authority・implementation・degradation・consumerを未確定のまま静的照合する研究候補（正式owner未解決）",
+  "state": "registered",
+  "reason": "Wave46で199 unit／564 edgeまで確認された時点の残19 unitから、scope-cycle、refactor、obligation/oracleの境界を比較できる6 unitを選定した。13 role edge、19 semantic atom、6 composite unresolved、7 selected role asset、11 inspected asset、5 missing evidence receiptを固定し、candidate／consumed／examined_not_selected／unexaminedをrole別に保持する。NFR-23／24／26のHARNESS／OS候補だけを記録し、Web／Web-OS直接routing、formal owner、authority、phase admission、current implementation、degradation、consumer closure、acceptance、release、deploymentは生成しない。replacement.issue=0はDraft PR未割当を示すtracker sentinelである。",
+  "upstream": [
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995", "note": "current governance entry; static boundary only"},
+    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "four-product boundary candidate; no routing admission"},
+    {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "note": "HARNESS L1 boundary candidate"},
+    {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "OS L1 boundary candidate"},
+    {"path": "docs/helix-web/L1-planning/product-intent.md", "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756", "note": "Web boundary retained; direct scope not inferred"},
+    {"path": "docs/helix-web-os/L1-planning/system-intent.md", "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c", "note": "Web-OS boundary retained; direct scope not inferred"},
+    {"path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl", "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3", "note": "source unit spans and candidate products"},
+    {"path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl", "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65", "note": "phase/product candidate pools; not direct evidence"},
+    {"path": "scaffold/legacy-semantic-review-wave46/legacy-requirement-direct-semantic-review-wave46.meta.json", "sha256": "862fb2bf65032ab1fb073f560b107608b0d917ed9bb4889c624aa5e322b83077", "note": "prior Wave46 cumulative denominator"},
+    {"path": "scaffold/legacy-semantic-review-wave47/README.md", "sha256": "c476bc2ae0f26ca5009efe4c3cfd176ddc7e1ba4727914269694f1bc2a8751c3", "note": "Wave47 bounded scope and boundary"},
+    {"path": "scaffold/legacy-semantic-review-wave47/plan.json", "sha256": "298519d6e7eeac01161c35be8a0c748f5e727312250bdc330c5bff582523ca3d", "note": "Wave47 selection and count contract"},
+    {"path": "scaffold/legacy-semantic-review-wave47/inventory.json", "sha256": "cde084e04c1d6ba65cc1b2583257d0cfde564df55251480cad4e1e4094a63f37", "note": "Wave47 inspected asset inventory"},
+    {"path": "scaffold/legacy-semantic-review-wave47/generate.py", "sha256": "1302e2386043873051d19bb1f5c59f06504064378696597e4ed360c3b0bc7a65", "note": "deterministic static generator"},
+    {"path": "scaffold/legacy-semantic-review-wave47/validate.py", "sha256": "46d2b56ed897bd09f02df0f7a4e081be27dc58b52b04610e45514b2565c477c1", "note": "fail-closed validator"},
+    {"path": "scaffold/legacy-semantic-review-wave47/selfcheck.py", "sha256": "5e446a1d8773a3c09677a205b9cd7eb592b13e2ae6e0e2f19749971962409c28", "note": "validator negative mutation suite"},
+    {"path": "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl", "sha256": "853ec5f2b3784a5711d28c9a4246aff7f0b57bd438d5c84d02bb587d52554f2f", "note": "Wave47 exact source-role ledger"},
+    {"path": "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.meta.json", "sha256": "f1820ce62789cd82a79456adc9c0264314997f19344922d722037bf23233a9e2", "note": "Wave47 receipts and cumulative counts"}
+  ],
+  "role": "Wave47の旧要求source unitについて、exact anchor、role candidate pool、四製品候補境界、phase／implementation／degradation statusをresearch premiseとして保持する静的Scaffold",
+  "obligations": [
+    "Wave46後の残19 unitからNFR-23／24／26のHARNESS／OS 6 unitをsource chainと候補poolの境界で限定する",
+    "要求原文、decomposition span、source relation、catalog／crosswalk、decision／disposition、failure／consumerを静的状態として照合し、旧archiveを実行しない",
+    "13 role edge、19 semantic atom、6 composite unresolved、7 selected role asset、11 inspected asset、5 missing evidence receiptのdenominatorを固定する",
+    "Wave1–46のprior dynamic countとWave47後の205 unit／577 edge／残13 unitを再集計する",
+    "missing roleごとにcandidate／consumed／examined_not_selected／unexamined asset IDを分離し、unexaminedを直接証拠へ昇格しない",
+    "候補product、phase、legacy implementation status、現行authority、current implementation、degradation、consumer closureを混同しない",
+    "旧runtime／test／CI／workflow／hook／adapter／sourceを実行せず、scaffold検査だけを使う"
+  ],
+  "connections": {
+    "consumers": ["Wave47 semantic review担当", "四製品boundary／phase review担当", "旧asset failure／consumer／decision closure担当", "SCF-B-0089 replacement review担当"],
+    "dependencies": ["current four-product boundary and L1 docs", "legacy catalog/crosswalk/decomposition/source relation", "Wave1–46 prior semantic ledgers", "Wave46 cumulative denominator"],
+    "boundary": "成果物はscaffold/配下のbounded research candidateであり、正式要求、owner、authority、phase admission、current implementation、degradation、failure／consumer closureを生成しない。"
+  },
+  "operations": {
+    "allowed": ["python3 -B scaffold/legacy-semantic-review-wave47/generate.py", "python3 -B scaffold/legacy-semantic-review-wave47/validate.py", "python3 -B scaffold/legacy-semantic-review-wave47/selfcheck.py", "python3 scaffold/tools/scfctl.py validate", "python3 scaffold/tools/scfctl.py stale", "python3 scaffold/tools/scfctl.py residuals", "git diff --check"],
+    "forbidden": ["旧世代archive配下のworkflow、runtime、test、CI、hook、adapter、source実行", "candidateをformal requirement、owner、authority、phase、implementation、degradation、failure、consumer closureへ昇格すること", "scaffold/外への候補書き込み", "要求採否、successor、acceptance、release、deploymentの生成", "GitHub、Issue、PR、CI、DB、外部APIへの作用"]
+  },
+  "artifacts": ["scaffold/legacy-semantic-review-wave47/README.md", "scaffold/legacy-semantic-review-wave47/plan.json", "scaffold/legacy-semantic-review-wave47/inventory.json", "scaffold/legacy-semantic-review-wave47/generate.py", "scaffold/legacy-semantic-review-wave47/validate.py", "scaffold/legacy-semantic-review-wave47/selfcheck.py", "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl", "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.meta.json"],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": ["Wave47 generate.py→ledger/meta deterministic regeneration", "Wave47 validate.py source／asset／decision／failure／consumer receipts, independent pool, prior dynamic count, same-batch duplicate, missing evidence", "Wave47 selfcheck.py validator negative mutations", "scfctl validate／stale／residuals", "git diff --check"],
+    "negative_cases": ["source span／digest tamper", "cross-unit source span reuse", "atom identity injection", "unsupported product routing", "role semantic inversion", "current authority／phase／implementation／degradation promotion", "missing receipt", "candidate pool omission", "prior asset reuse", "same-batch asset reuse", "count drift"]
+  },
+  "replacement": {"role_target": "承認済み旧IR source unit、owner、authority、phase、implementation、degradation、failure／consumer contractへの個別移管（人間判断後）", "formal_artifacts": [], "issue": 0, "status": "pending", "transfer": null, "target_revisions": {}, "confirmation_ref": null, "confirmation_digest": null},
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
