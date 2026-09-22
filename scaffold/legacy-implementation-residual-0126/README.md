@@ -4,7 +4,7 @@
 
 未解決1,792件から、先行研究asset-ID集合205件とWave未解決64件（重複42件）を分離し、既存研究unionを227件として固定しました。残余分母は1,565件、そのうち未解決`implementation_source`の対象は120件です。prefixだけでは先行研究接続を証明できない53件は、固定ID/pathを`unresearched_prefix_asset_*`としてinventoryに列挙し、対象へinsufficient basisのまま含めています。これは既存研究として扱わず、追加の静的調査が必要な残余です。
 
-対象は120 asset / 120 recordで、candidate分類はdirect product basis 30、multi-product conflict 23、insufficient basis 67です。insufficientの67件には上記53件を含みます。候補は旧sourceの具体span、source blob/bytes/digest、承認済み四製品L1、product-boundary、旧disposition/history/failure/consumerを突合した結果であり、formal product authority・phase・実装成立を宣言しません。
+対象は120 asset / 120 recordで、candidate分類はdirect product basis 30、multi-product conflict 23、insufficient basis 67です。既存67件の領域内訳は`src/web/`7、`src/doctor/`5、`src/policy/`5、`src/vscode/`5、`src/audit/`4、`src/design/`4、`src/task/`4、`.claude/hooks/`3、`scripts/`3、`src/semantic/`3、`src/team/`3、`src/vmodel/`3、その他18件です。追加53件は`src/cli/`、`src/requirements/`、`src/schema/`、`src/setup/`、`src/shared/`、`src/workflow/`の明示残余として列挙しています。insufficientの67件には上記53件を含みます。候補は旧sourceの具体span、source blob/bytes/digest、承認済み四製品L1、product-boundary、旧disposition/history/failure/consumerを突合した結果であり、formal product authority・phase・実装成立を宣言しません。
 
 各recordには`anchor_line_coverage`（source line数、anchor line数、比率）を保持します。既存67件のanchor集計は1,023/10,997行=9.3%、最大18行で、未読領域を残します。追加53件は1行の不足証拠anchorであり、source pathだけをsemantic linkへ昇格していません。
 
