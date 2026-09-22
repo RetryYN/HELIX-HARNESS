@@ -140,6 +140,11 @@ def main() -> int:
         "minimum source span／verbatim anchor",
     )
     proposal_negative(
+        "unknown-atom-key",
+        lambda rows: rows[0]["candidate_atoms"][0].update(unreviewed_field="injected"),
+        "keyset/",
+    )
+    proposal_negative(
         "semantic-predicate-drift",
         lambda rows: rows[2]["candidate_atoms"][0].update(semantic_predicate="単なる切片"),
         "semantic_predicate",
@@ -160,6 +165,7 @@ def main() -> int:
         "composite_unresolved count",
     )
     inventory_negative("authority-effect", lambda data: data.update(authority_effect="generated"), "authority_effect")
+    inventory_negative("unknown-inventory-key", lambda data: data.update(unreviewed_field="injected"), "keyset/inventory")
     inventory_negative(
         "source-input-digest",
         lambda data: data["inputs"].update(queue_sha256="0" * 64),
@@ -187,7 +193,12 @@ def main() -> int:
         replace_target,
         "independent four-product target counts",
     )
-    print("PASS selfcheck: coverage/duplicate/authority/implementation/degradation/phase/source/predicate/typed-relation/product-boundary/composite/digest/generator-plan negative cases")
+    generator_negative(
+        "generator-unknown-plan-key",
+        lambda plan: plan["line_specs"]["REQSRC-LINE-00027"]["atomized"][0].update(unreviewed_field="injected"),
+        "keyset/plan.line_specs.REQSRC-LINE-00027.atomized[0]",
+    )
+    print("PASS selfcheck: coverage/duplicate/keyset/authority/implementation/degradation/phase/source/predicate/typed-relation/product-boundary/composite/digest/generator-plan negative cases")
     return 0
 
 

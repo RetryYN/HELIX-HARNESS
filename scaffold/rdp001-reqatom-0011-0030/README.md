@@ -73,8 +73,9 @@ product target と OS 接続の説明は `candidate_inference` に置き、旧ac
 - 四製品分母、未確定分母、candidate inferenceとretained source meaningの分離
 - authority、successor、implementation、degradation、phase、decisionが未解決のままであること
 - generated inventory／proposalから期待値を再計算せず、59 source line、210 atom、8 composite、HARNESS 149／OS 22／Web 0／Web-OS 0／unresolved 39、unit／atom／composite keysetをvalidator側の独立定数で固定すること
+- inventory、plan、proposal、atom、composite、typed relation、product boundary、status／failure／consumerのnested keysetをvalidator側で固定し、未知key・欠落keyを受け入れないこと
 
-`selfcheck.py` は baselineを保ったまま、同一行の義務欠落・重複、0020 mode rowの単語cell化、authority／implementation／degradation／phaseの昇格、source meaning／semantic predicate／typed relation／product boundary改変、composite欠落、inventory authority effect、queue digest改変を一時ファイルでvalidatorへ入力し、拒否を確認する。さらにgeneratorを一時planへ向け、未固定行atom削除、composite削除、product target差替えを生成後validatorが拒否することを確認する。
+`selfcheck.py` は baselineを保ったまま、同一行の義務欠落・重複、0020 mode rowの単語cell化、authority／implementation／degradation／phaseの昇格、source meaning／semantic predicate／typed relation／product boundary改変、composite欠落、未知key注入、inventory authority effect、queue digest改変を一時ファイルでvalidatorへ入力し、拒否を確認する。さらにgeneratorを一時planへ向け、未固定行atom削除、composite削除、product target差替え、plan未知key注入を生成後validatorが拒否することを確認する。
 
 ```sh
 python3 scaffold/rdp001-reqatom-0011-0030/generate.py

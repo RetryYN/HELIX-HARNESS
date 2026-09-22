@@ -224,6 +224,95 @@ EXPECTED_TARGET_COUNTS = {
 }
 EXPECTED_UNRESOLVED_TARGET_COUNT = 39
 
+# Candidate JSON keysets are validator-owned.  Counts and ID sets alone do
+# not prevent an atom/proposal from gaining an unreviewed field, so every
+# nested object shape used by the generator is pinned here independently of
+# inventory.json, proposals.jsonl, and atomization_plan.json.
+INVENTORY_KEYSET = frozenset({
+    "atomized_candidate_atom_count", "authority_effect", "candidate_atom_count", "composite_unresolved_count",
+    "four_product_denominator", "generated_at", "input_line_count", "inputs", "proposal_sha256",
+    "proposal_status", "review_unit_count", "review_unit_ids", "schema_revision", "source_commit",
+    "status_preservation", "unresolved_target_candidate_atom_count",
+})
+INVENTORY_INPUTS_KEYSET = frozenset({
+    "atomization_plan_path", "atomization_plan_sha256", "queue_path", "queue_sha256",
+    "semantic_line_ledger_path", "semantic_line_ledger_sha256", "source_groups",
+})
+SOURCE_GROUP_KEYSET = frozenset({
+    "archive_source_path", "archive_source_sha256", "legacy_asset_consumer_refs", "legacy_asset_correction_decision",
+    "legacy_asset_correction_supersedes", "legacy_asset_decision_ref", "legacy_asset_decision_status",
+    "legacy_asset_disposition", "legacy_asset_id", "legacy_asset_implementation_status", "legacy_asset_product_target",
+    "legacy_asset_read_after_consumer_match", "legacy_asset_read_after_consumer_refs", "legacy_asset_read_after_digest_match",
+    "legacy_asset_read_after_failure", "legacy_asset_read_after_id", "legacy_asset_read_after_result",
+    "legacy_asset_revision", "old_source_path", "source_path", "source_sha256", "unit_ids",
+})
+PRODUCT_DENOMINATOR_ITEM_KEYSET = frozenset({"candidate_atom_count", "status"})
+INVENTORY_STATUS_PRESERVATION_KEYSET = frozenset({
+    "carry_forward", "decision_record", "degradation_status", "implementation_status", "phase_status",
+    "source_authority", "successor_requirement_ids", "target_authority",
+})
+ATOM_STATUS_PRESERVATION_KEYSET = frozenset({
+    "carry_forward", "degradation_status", "implementation_status", "phase_status", "source_authority",
+    "successor_status", "target_authority",
+})
+PLAN_KEYSET = frozenset({"description", "line_specs", "schema_revision"})
+PLAN_LINE_KEYSET = frozenset({"atomized", "composite_unresolved"})
+PLAN_ATOM_KEYSET = frozenset({
+    "anchor", "candidate_granularity", "candidate_kind", "candidate_target", "historical_conflict",
+    "inherited_subject", "normalized_statement", "parent_context", "product_boundary", "semantic_action",
+    "semantic_condition", "semantic_predicate", "semantic_subject", "source_span_role", "typed_relation",
+    "unresolved_points",
+})
+PLAN_COMPOSITE_KEYSET = frozenset({
+    "anchor", "historical_conflict", "inherited_subject", "parent_context", "product_boundary", "reason",
+    "semantic_action", "semantic_condition", "semantic_predicate", "semantic_subject", "source_span_role",
+    "typed_relation", "unresolved_points",
+})
+TYPED_RELATION_KEYSETS = (
+    frozenset({"authority_effect", "context", "object", "polarity", "predicate", "relation_type", "subject"}),
+    frozenset({"authority_effect", "context", "group", "object", "polarity", "predicate", "relation_type", "subject"}),
+    frozenset({"authority_effect", "condition", "context", "group", "object", "polarity", "predicate", "relation_type", "subject"}),
+    frozenset({"authority_effect", "context", "group", "object", "polarity", "predicate", "prohibition", "relation_type", "subject"}),
+    frozenset({"authority_effect", "context", "group", "object", "polarity", "predicate", "relation_type", "replacement_type", "subject", "taxonomy"}),
+    frozenset({"authority_effect", "context", "group", "object", "polarity", "predicate", "relation_type", "subject", "taxonomy"}),
+    frozenset({"authority_effect", "context", "group", "object", "polarity", "predicate", "relation_type", "stage", "stage_order", "subject"}),
+    frozenset({"authority_effect", "context", "endpoint_count", "group", "object", "polarity", "predicate", "relation_type", "subject"}),
+    frozenset({"authority_effect", "context", "directionality", "edge_count", "group", "object", "pairing", "polarity", "predicate", "relation_type", "subject"}),
+    frozenset({"authority_effect", "context", "decision_ref", "decision_status", "group", "object", "polarity", "predicate", "priority_rank", "priority_total", "relation_type", "subject"}),
+    frozenset({"authority_effect", "context", "object", "polarity", "predecessor", "predicate", "relation_type", "sequence_group", "sequence_index", "sequence_length", "subject", "successor"}),
+)
+PRODUCT_BOUNDARY_KEYSET = frozenset({"authority_effect", "candidate_product", "candidate_products", "legacy_source_role", "routing_status"})
+PROPOSAL_KEYSET = frozenset({
+    "atomized_candidate_atom_count", "authority_claim", "candidate_atoms", "composite_unresolved",
+    "composite_unresolved_count", "decision_record", "four_product_denominator", "input_content_line_digests",
+    "input_content_line_ids", "input_heading_path", "input_source_line_range", "input_source_path",
+    "input_source_revision", "line_coverage", "meaning_change_applied", "proposal_status", "review_sequence",
+    "review_unit_id", "successor_requirement_ids",
+})
+LINE_COVERAGE_KEYSET = frozenset({
+    "atomized_obligation_anchors", "atomized_source_line_ids", "composite_unresolved_anchors",
+    "composite_unresolved_source_line_ids", "input_lines",
+})
+ATOM_KEYSET = frozenset({
+    "actor_candidate", "atomization_status", "authority_boundary", "candidate_atom_id", "candidate_granularity",
+    "candidate_inference", "candidate_kind", "candidate_target", "consumer_candidate", "evidence_or_acceptance_conditions",
+    "exact_source_text", "existing_identity_relations", "failure_or_stop_conditions", "historical_conflict",
+    "inherited_subject", "legacy_failure_candidate", "negative_or_exception_conditions", "normalized_statement",
+    "parent_context", "possible_conflicts", "product_boundary", "questions", "retained_meaning", "semantic_action",
+    "semantic_condition", "semantic_predicate", "semantic_subject", "source_line_ids", "source_line_text",
+    "source_span", "source_span_role", "status_preservation", "typed_relation", "unresolved_points", "verbatim_anchor",
+})
+COMPOSITE_KEYSET = frozenset({
+    "atomization_status", "candidate_target", "composite_unresolved_id", "exact_source_text", "historical_conflict",
+    "inherited_subject", "normalized_statement", "parent_context", "product_boundary", "questions", "semantic_action",
+    "semantic_condition", "semantic_predicate", "semantic_subject", "source_line_ids", "source_line_text", "source_span",
+    "source_span_role", "typed_relation", "unresolved_points", "verbatim_anchor",
+})
+SOURCE_SPAN_KEYSET = frozenset({"char_end", "char_start", "length"})
+IDENTITY_RELATION_KEYSET = frozenset({"identity", "relation"})
+LEGACY_FAILURE_KEYSET = frozenset({"conditions", "status"})
+CONSUMER_KEYSET = frozenset({"current_status", "legacy_refs"})
+
 
 
 def sha256(data: bytes) -> str:
@@ -262,6 +351,80 @@ def source_span(source_text: str, anchor: str) -> dict | None:
     return {"char_start": start, "char_end": start + len(anchor), "length": len(anchor)}
 
 
+def keyset(errors: list[str], value: object, expected: frozenset[str], label: str) -> None:
+    if not isinstance(value, dict):
+        errors.append(f"keyset/{label}: object expected")
+        return
+    actual = frozenset(value)
+    if actual != expected:
+        errors.append(f"keyset/{label}: expected={sorted(expected)!r} actual={sorted(actual)!r}")
+
+
+def keyset_one_of(errors: list[str], value: object, expected: tuple[frozenset[str], ...], label: str) -> None:
+    if not isinstance(value, dict):
+        errors.append(f"keyset/{label}: object expected")
+        return
+    actual = frozenset(value)
+    if actual not in expected:
+        allowed = [sorted(item) for item in expected]
+        errors.append(f"keyset/{label}: expected one of {allowed!r} actual={sorted(actual)!r}")
+
+
+def validate_keysets(errors: list[str], inventory: dict, plan: dict, proposals: list[dict]) -> None:
+    """Reject unknown/missing fields in every generated candidate object."""
+    keyset(errors, inventory, INVENTORY_KEYSET, "inventory")
+    inputs = inventory.get("inputs", {})
+    keyset(errors, inputs, INVENTORY_INPUTS_KEYSET, "inventory.inputs")
+    for index, group in enumerate(inputs.get("source_groups", [])):
+        keyset(errors, group, SOURCE_GROUP_KEYSET, f"inventory.inputs.source_groups[{index}]")
+    for product, row in inventory.get("four_product_denominator", {}).items():
+        keyset(errors, row, PRODUCT_DENOMINATOR_ITEM_KEYSET, f"inventory.four_product_denominator.{product}")
+    keyset(errors, inventory.get("status_preservation"), INVENTORY_STATUS_PRESERVATION_KEYSET, "inventory.status_preservation")
+
+    keyset(errors, plan, PLAN_KEYSET, "plan")
+    line_specs = plan.get("line_specs", {})
+    if not isinstance(line_specs, dict) or frozenset(line_specs) != EXPECTED_LINE_KEYSET:
+        errors.append("keyset/plan.line_specs: fixed line keyset mismatch")
+    for line_id, spec in line_specs.items() if isinstance(line_specs, dict) else []:
+        keyset(errors, spec, PLAN_LINE_KEYSET, f"plan.line_specs.{line_id}")
+        for index, atom_spec in enumerate(spec.get("atomized", [])):
+            keyset(errors, atom_spec, PLAN_ATOM_KEYSET, f"plan.line_specs.{line_id}.atomized[{index}]")
+            keyset_one_of(errors, atom_spec.get("typed_relation"), TYPED_RELATION_KEYSETS, f"plan.{line_id}.atomized[{index}].typed_relation")
+            keyset(errors, atom_spec.get("product_boundary"), PRODUCT_BOUNDARY_KEYSET, f"plan.{line_id}.atomized[{index}].product_boundary")
+        for index, composite_spec in enumerate(spec.get("composite_unresolved", [])):
+            keyset(errors, composite_spec, PLAN_COMPOSITE_KEYSET, f"plan.line_specs.{line_id}.composite_unresolved[{index}]")
+            keyset_one_of(errors, composite_spec.get("typed_relation"), TYPED_RELATION_KEYSETS, f"plan.{line_id}.composite[{index}].typed_relation")
+            keyset(errors, composite_spec.get("product_boundary"), PRODUCT_BOUNDARY_KEYSET, f"plan.{line_id}.composite[{index}].product_boundary")
+
+    for index, proposal in enumerate(proposals):
+        label = f"proposal[{index}]"
+        keyset(errors, proposal, PROPOSAL_KEYSET, label)
+        keyset(errors, proposal.get("line_coverage"), LINE_COVERAGE_KEYSET, f"{label}.line_coverage")
+        line_ids = proposal.get("input_content_line_ids", [])
+        digests = proposal.get("input_content_line_digests", {})
+        if isinstance(line_ids, list) and isinstance(digests, dict) and frozenset(digests) != frozenset(line_ids):
+            errors.append(f"keyset/{label}.input_content_line_digests: expected line IDs")
+        for product, row in proposal.get("four_product_denominator", {}).items():
+            keyset(errors, row, PRODUCT_DENOMINATOR_ITEM_KEYSET, f"{label}.four_product_denominator.{product}")
+        for atom_index, atom in enumerate(proposal.get("candidate_atoms", [])):
+            atom_label = f"{label}.candidate_atoms[{atom_index}]"
+            keyset(errors, atom, ATOM_KEYSET, atom_label)
+            keyset(errors, atom.get("source_span"), SOURCE_SPAN_KEYSET, f"{atom_label}.source_span")
+            keyset_one_of(errors, atom.get("typed_relation"), TYPED_RELATION_KEYSETS, f"{atom_label}.typed_relation")
+            keyset(errors, atom.get("product_boundary"), PRODUCT_BOUNDARY_KEYSET, f"{atom_label}.product_boundary")
+            keyset(errors, atom.get("legacy_failure_candidate"), LEGACY_FAILURE_KEYSET, f"{atom_label}.legacy_failure_candidate")
+            keyset(errors, atom.get("consumer_candidate"), CONSUMER_KEYSET, f"{atom_label}.consumer_candidate")
+            keyset(errors, atom.get("status_preservation"), ATOM_STATUS_PRESERVATION_KEYSET, f"{atom_label}.status_preservation")
+            for relation_index, relation in enumerate(atom.get("existing_identity_relations", [])):
+                keyset(errors, relation, IDENTITY_RELATION_KEYSET, f"{atom_label}.existing_identity_relations[{relation_index}]")
+        for composite_index, composite in enumerate(proposal.get("composite_unresolved", [])):
+            composite_label = f"{label}.composite_unresolved[{composite_index}]"
+            keyset(errors, composite, COMPOSITE_KEYSET, composite_label)
+            keyset(errors, composite.get("source_span"), SOURCE_SPAN_KEYSET, f"{composite_label}.source_span")
+            keyset_one_of(errors, composite.get("typed_relation"), TYPED_RELATION_KEYSETS, f"{composite_label}.typed_relation")
+            keyset(errors, composite.get("product_boundary"), PRODUCT_BOUNDARY_KEYSET, f"{composite_label}.product_boundary")
+
+
 def check() -> list[str]:
     errors: list[str] = []
     try:
@@ -276,6 +439,8 @@ def check() -> list[str]:
         plan_lines = plan.get("line_specs", {})
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         return [f"入力読み込み失敗: {exc}"]
+
+    validate_keysets(errors, inventory, plan, proposals)
 
     if inventory.get("schema_revision") != 1:
         errors.append("inventory schema_revision が1でない")
