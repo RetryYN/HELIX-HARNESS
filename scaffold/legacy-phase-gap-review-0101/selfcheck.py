@@ -60,6 +60,36 @@ def mutate_product_authority(bundle: Path) -> None:
     (bundle / "units.jsonl").write_text("\n".join(json.dumps(row, ensure_ascii=False, sort_keys=True) for row in rows) + "\n", encoding="utf-8")
 
 
+def mutate_asset_evidence(bundle: Path) -> None:
+    rows = [json.loads(line) for line in (bundle / "units.jsonl").read_text(encoding="utf-8").splitlines()]
+    rows[0]["legacy_assets"][0]["source"]["source_sha256"] = "sha256:" + "0" * 64
+    (bundle / "units.jsonl").write_text("\n".join(json.dumps(row, ensure_ascii=False, sort_keys=True) for row in rows) + "\n", encoding="utf-8")
+
+
+def mutate_authority_boundary(bundle: Path) -> None:
+    rows = [json.loads(line) for line in (bundle / "units.jsonl").read_text(encoding="utf-8").splitlines()]
+    rows[0]["closure"]["legacy_execution_performed"] = True
+    (bundle / "units.jsonl").write_text("\n".join(json.dumps(row, ensure_ascii=False, sort_keys=True) for row in rows) + "\n", encoding="utf-8")
+
+
+def mutate_base_commit(bundle: Path) -> None:
+    inventory = json.loads((bundle / "inventory.json").read_text(encoding="utf-8"))
+    inventory["base"]["commit"] = "0" * 40
+    (bundle / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def mutate_source_input_digest(bundle: Path) -> None:
+    inventory = json.loads((bundle / "inventory.json").read_text(encoding="utf-8"))
+    inventory["source_input_digests"][0]["sha256"] = "sha256:" + "0" * 64
+    (bundle / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def mutate_phcap20_definition_digest(bundle: Path) -> None:
+    inventory = json.loads((bundle / "inventory.json").read_text(encoding="utf-8"))
+    inventory["phcap20_definition"]["definition_refs"][0]["sha256"] = "sha256:" + "0" * 64
+    (bundle / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
 if __name__ == "__main__":
     run_case("source digest tamper", mutate_source_digest, "E_SOURCE_DIGEST")
     run_case("target set tamper", mutate_target_set, "E_TARGET_SET")
@@ -67,3 +97,8 @@ if __name__ == "__main__":
     run_case("wave edge omission", mutate_edge_coverage, "E_WAVE_EDGE_COVERAGE")
     run_case("phase authority promotion", mutate_phase_authority, "E_PHASE_AUTHORITY_SEPARATION")
     run_case("product authority promotion", mutate_product_authority, "E_PRODUCT_AUTHORITY_SEPARATION")
+    run_case("asset evidence tamper", mutate_asset_evidence, "E_ASSET_EVIDENCE")
+    run_case("authority boundary tamper", mutate_authority_boundary, "E_AUTHORITY_BOUNDARY")
+    run_case("base commit tamper", mutate_base_commit, "E_BASE_COMMIT")
+    run_case("source input digest tamper", mutate_source_input_digest, "E_SOURCE_INPUT_DIGEST")
+    run_case("PHCAP-20 definition digest tamper", mutate_phcap20_definition_digest, "E_PHCAP20_DEFINITION_DIGEST")

@@ -406,14 +406,17 @@
       "git diff --check"
     ],
     "negative_cases": [
-      "missing or duplicate target ID",
-      "source statement digest tamper",
-      "source span／JSON pointer／line anchor tamper",
-      "Wave edge omission／injection or status drift",
-      "asset source／history／failure／consumer evidence omission",
-      "asset candidate phase promoted to eligible phase",
-      "candidate product promoted to authority owner",
-      "old execution or successor/implementation claim injection"
+      "E_TARGET_SET: missing or duplicate target ID",
+      "E_SOURCE_DIGEST: source statement semantic digest tamper",
+      "E_SOURCE_ANCHOR: source span, JSON pointer, or line anchor tamper",
+      "E_WAVE_EDGE_COVERAGE: Wave edge omission, injection, or status drift",
+      "E_ASSET_EVIDENCE: asset source, history, failure, or consumer evidence omission",
+      "E_PHASE_AUTHORITY_SEPARATION: asset candidate phase promoted to eligible phase",
+      "E_PRODUCT_AUTHORITY_SEPARATION: candidate product promoted to authority owner",
+      "E_AUTHORITY_BOUNDARY: old execution or successor/implementation claim injection",
+      "E_BASE_COMMIT: fixed base commit or ancestor tamper",
+      "E_SOURCE_INPUT_DIGEST: crosswalk, old IR, decomposition, asset ledgers, or Wave input digest tamper",
+      "E_PHCAP20_DEFINITION_DIGEST: PHCAP-20 definition reference digest tamper"
     ]
   },
   "replacement": {

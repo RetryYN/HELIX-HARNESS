@@ -16,9 +16,10 @@ asset側の多phase候補を残すが、PHCAP-20を含む候補の存在、旧so
 memory／continuation／handover／retentionの直接責務だけを対象とし、genericなstate・ledger・event・process語は
 phase gapとして扱う。
 
-`units.jsonl`がunit別の判断、`edges.jsonl`がWave1–50の対象edge、`inventory.json`が分母と入力digestを保持する。
-`generate.py`はこれらを再導出し、`validate.py`は30 ID網羅、旧IR原文digest／anchor、edge coverage、候補とauthorityの分離、
-asset source/history/failure/consumerをfail-closedで検査する。`selfcheck.py`は各負例で期待error codeを照合する。
+`units.jsonl`がunit別の判断、`edges.jsonl`がWave1–50の対象edge、`inventory.json`が分母、固定base祖先、全source input digest、
+PHCAP-20 definition refs digestを保持する。`generate.py`はこれらを再導出し、`validate.py`は30 ID網羅、旧IR原文digest／anchor、
+edge coverage、候補とauthorityの分離、asset source/history/failure/consumer、Bindingの11負例コード同期をfail-closedで検査する。
+`selfcheck.py`は各負例で期待error codeを照合する。
 
 旧archive内のruntime、CI、test、workflow、hook、adapter、sourceは実行していない。正式crosswalk、phase inventory、
 製品L1、successor、要求採否、実装を変更しない。#1813は進捗参照だけであり、close／完了判断を生成しない。

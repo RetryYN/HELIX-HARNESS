@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -15,6 +16,20 @@ WAVE_REL = [
     *(f"scaffold/legacy-semantic-review-wave{i}/legacy-requirement-direct-semantic-review-wave{i}.jsonl" for i in range(37, 51)),
 ]
 EXPECTED_PRODUCTS = {"HELIX-OS": 24, "HELIX-HARNESS": 6}
+BASE_COMMIT = "36784d25aa4cc53d89c28c2ff81b4009db234605"
+NEGATIVE_CASE_CODES = [
+    "E_TARGET_SET",
+    "E_SOURCE_DIGEST",
+    "E_SOURCE_ANCHOR",
+    "E_WAVE_EDGE_COVERAGE",
+    "E_ASSET_EVIDENCE",
+    "E_PHASE_AUTHORITY_SEPARATION",
+    "E_PRODUCT_AUTHORITY_SEPARATION",
+    "E_AUTHORITY_BOUNDARY",
+    "E_BASE_COMMIT",
+    "E_SOURCE_INPUT_DIGEST",
+    "E_PHCAP20_DEFINITION_DIGEST",
+]
 
 
 def dig(value: bytes) -> str:
@@ -89,6 +104,35 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT) -> list[str]:
     if inventory.get("schema") != "legacy-phase-gap-review-0101/v1": error(errors, "E_SCHEMA")
     if inventory.get("binding_id") != "SCF-B-0101": error(errors, "E_BINDING_ID")
     if inventory.get("authority_effect") != "none": error(errors, "E_AUTHORITY")
+    base = inventory.get("base", {})
+    if (
+        base.get("repository") != "HELIX-HARNESS"
+        or base.get("commit") != BASE_COMMIT
+        or base.get("branch") != "main"
+        or base.get("ancestor_required") is not True
+    ):
+        error(errors, "E_BASE_COMMIT")
+    else:
+        ancestor = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", BASE_COMMIT, "HEAD"],
+            cwd=root,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        )
+        if ancestor.returncode != 0:
+            error(errors, "E_BASE_COMMIT")
+    declared_codes = inventory.get("negative_case_codes")
+    if declared_codes != NEGATIVE_CASE_CODES:
+        error(errors, "E_SCHEMA", "negative_case_codes")
+    binding_path = root / "scaffold/bindings/SCF-B-0101.json"
+    if binding_path.is_file():
+        binding = json.loads(binding_path.read_text(encoding="utf-8"))
+        binding_codes = [entry.split(":", 1)[0] for entry in binding.get("verification", {}).get("negative_cases", [])]
+        if binding_codes != NEGATIVE_CASE_CODES:
+            error(errors, "E_SCHEMA", "binding_negative_cases")
+    else:
+        error(errors, "E_SCHEMA", "binding_missing")
     boundary = inventory.get("authority_boundary", {})
     for key in ("formal_crosswalk_modified", "formal_phase_authority_modified", "formal_product_authority_modified",
                 "successor_assignment_generated", "implementation_claim_generated", "consumer_closure_generated", "old_archive_executed"):
@@ -118,6 +162,24 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT) -> list[str]:
     }
     disposition = {row["asset_id"]: row for row in jsonl(root / "docs/governance/legacy-asset-disposition.jsonl")}
     classification = {row["asset_id"]: row for row in jsonl(root / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")}
+
+    source_input_expected = {
+        "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "crosswalk",
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json": "legacy_ir_source",
+        "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "decomposition",
+        "docs/governance/legacy-asset-disposition.jsonl": "asset_disposition",
+        "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "phase_product_classification",
+        **{rel: "semantic_review_wave" for rel in WAVE_REL},
+    }
+    recorded_source_inputs = inventory.get("source_input_digests", [])
+    recorded_source_map = {item.get("path"): item for item in recorded_source_inputs}
+    if set(recorded_source_map) != set(source_input_expected) or len(recorded_source_inputs) != len(source_input_expected):
+        error(errors, "E_SOURCE_INPUT_DIGEST", "path_set")
+    for rel, kind in source_input_expected.items():
+        item = recorded_source_map.get(rel)
+        path = root / rel
+        if item is None or item.get("kind") != kind or not path.is_file() or dig(path.read_bytes()) != item.get("sha256"):
+            error(errors, "E_SOURCE_INPUT_DIGEST", rel)
 
     canonical_edges: list[dict] = []
     edges_by_unit: dict[str, list[dict]] = {unit_id: [] for unit_id in expected_ids}
@@ -211,6 +273,26 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT) -> list[str]:
         path = root / item.get("path", "")
         if not path.is_file() or dig(path.read_bytes()) != item.get("sha256"):
             error(errors, "E_CURRENT_CONTEXT_DIGEST", item.get("path", ""))
+    current_context_map = {item.get("path"): item for item in inventory.get("current_context_refs", [])}
+    definition_refs = inventory.get("phcap20_definition", {}).get("definition_refs", [])
+    expected_definition_paths = {
+        "docs/governance/phase-capability-inventory.json",
+        "scaffold/phcap20-memory-research/README.md",
+        "scaffold/phcap20-memory-research/inventory.json",
+    }
+    if {item.get("path") for item in definition_refs} != expected_definition_paths:
+        error(errors, "E_PHCAP20_DEFINITION_DIGEST", "path_set")
+    for item in definition_refs:
+        rel = item.get("path")
+        path = root / rel if isinstance(rel, str) else root / "__missing__"
+        context = current_context_map.get(rel)
+        if (
+            context is None
+            or item.get("sha256") != context.get("sha256")
+            or not path.is_file()
+            or dig(path.read_bytes()) != item.get("sha256")
+        ):
+            error(errors, "E_PHCAP20_DEFINITION_DIGEST", str(rel))
     scope = inventory.get("scope", {})
     if scope.get("direct_phase_candidate_count") != 0 or scope.get("unresolved_phase_gap_count") != 30:
         error(errors, "E_PHASE_AUTHORITY_SEPARATION")

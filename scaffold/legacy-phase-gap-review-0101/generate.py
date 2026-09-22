@@ -20,6 +20,7 @@ IR = ROOT / "archive/legacy-generation-2026-09-14/root/requirements-ir/requireme
 DISPOSITION = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 CLASSIFICATION = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 PHASE = ROOT / "docs/governance/phase-capability-inventory.json"
+BASE_COMMIT = "36784d25aa4cc53d89c28c2ff81b4009db234605"
 
 WAVE_PATHS = [
     ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{i}.jsonl"
@@ -41,6 +42,20 @@ CURRENT_REFS = [
     ("docs/governance/phase-capability-inventory.json", "PHCAP_inventory"),
     ("scaffold/phcap20-memory-research/README.md", "PHCAP-20_definition"),
     ("scaffold/phcap20-memory-research/inventory.json", "PHCAP-20_static_inventory"),
+]
+
+NEGATIVE_CASE_CODES = [
+    "E_TARGET_SET",
+    "E_SOURCE_DIGEST",
+    "E_SOURCE_ANCHOR",
+    "E_WAVE_EDGE_COVERAGE",
+    "E_ASSET_EVIDENCE",
+    "E_PHASE_AUTHORITY_SEPARATION",
+    "E_PRODUCT_AUTHORITY_SEPARATION",
+    "E_AUTHORITY_BOUNDARY",
+    "E_BASE_COMMIT",
+    "E_SOURCE_INPUT_DIGEST",
+    "E_PHCAP20_DEFINITION_DIGEST",
 ]
 
 
@@ -305,13 +320,29 @@ def make_bundle() -> None:
         path = ROOT / relative
         current_refs.append({"path": relative, "role": role, "sha256": digest_bytes(path.read_bytes())})
 
+    source_inputs = [
+        (CROSSWALK, "crosswalk"),
+        (IR, "legacy_ir_source"),
+        (DECOMP, "decomposition"),
+        (DISPOSITION, "asset_disposition"),
+        (CLASSIFICATION, "phase_product_classification"),
+    ] + [(path, "semantic_review_wave") for path in WAVE_PATHS]
+    source_input_digests = [
+        {
+            "path": str(path.relative_to(ROOT)),
+            "kind": kind,
+            "sha256": digest_bytes(path.read_bytes()),
+        }
+        for path, kind in source_inputs
+    ]
+
     phase_record = next(record for record in json.loads(PHASE.read_text(encoding="utf-8"))["records"] if record["task_id"] == "PHCAP-20")
     inventory = {
         "schema": "legacy-phase-gap-review-0101/v1",
         "binding_id": "SCF-B-0101",
         "status": "research_candidate",
         "authority_effect": "none",
-        "base": {"repository": "HELIX-HARNESS", "commit": "36784d25aa4cc53d89c28c2ff81b4009db234605", "branch": "main"},
+        "base": {"repository": "HELIX-HARNESS", "commit": BASE_COMMIT, "branch": "main", "ancestor_required": True},
         "scope": {
             "crosswalk_path": str(CROSSWALK.relative_to(ROOT)),
             "unresolved_unit_count": len(targets),
@@ -346,6 +377,7 @@ def make_bundle() -> None:
             "direct_phase_rule": "PHCAP-20 only when memory/continuation/handover/retention responsibility is directly evidenced; generic state, ledger, event, or process terms remain unresolved.",
         },
         "current_context_refs": current_refs,
+        "source_input_digests": source_input_digests,
         "authority_boundary": {
             "formal_crosswalk_modified": False,
             "formal_phase_authority_modified": False,
@@ -355,10 +387,7 @@ def make_bundle() -> None:
             "consumer_closure_generated": False,
             "old_archive_executed": False,
         },
-        "negative_case_codes": [
-            "E_TARGET_SET", "E_SOURCE_DIGEST", "E_SOURCE_ANCHOR", "E_WAVE_EDGE_COVERAGE",
-            "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION", "E_ASSET_EVIDENCE",
-        ],
+        "negative_case_codes": NEGATIVE_CASE_CODES,
     }
 
     (HERE / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
