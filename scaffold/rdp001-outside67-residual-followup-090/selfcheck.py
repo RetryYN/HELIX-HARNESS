@@ -60,6 +60,7 @@ def main() -> int:
         case("counterpart-relation", lambda root: mutate_json(root / (REL + "evidence-scan.json"), lambda value: value.__setitem__("current_counterpart_hash_equal_archive_ids", [])), "E_SCAN_RELATION")
         case("nonoverlap", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value["selection"].__setitem__("candidate_ids", ["OUTSIDE67-PATH-008"])), "E_SELECTION")
         case("scope", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value["scope"].__setitem__("remaining_after_candidate_selection", 11)), "E_SCOPE:remaining_after_candidate_selection")
+        case("scope-worktree", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value["scope"].__setitem__("worktree", "tampered-worktree")), "E_SCOPE_WORKTREE")
         case("scope-reason", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value["scope"].__setitem__("base_drift_reason", "tampered")), "E_SCOPE:base_drift_reason")
         case("scope-unexplored", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value["scope"].__setitem__("unexplored_scope", "tampered")), "E_SCOPE:unexplored_scope")
         case("scope-policy", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value["scope"].__setitem__("batch_width_policy", "tampered")), "E_SCOPE:batch_width_policy")

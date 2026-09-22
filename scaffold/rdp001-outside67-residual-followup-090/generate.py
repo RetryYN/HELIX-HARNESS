@@ -12,11 +12,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = Path(__file__).resolve().parent
+WORKTREE_PROVENANCE = "/home/tenni/HELIX-HARNESS-outside-residual-next5"
 PRE = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCH = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 HISTORICAL = "3df81ad27157c471e004083783f37a5860eaa2ee"
-HEAD = "f15c3ca2ed1dc865b242b0a21e1516fdeec6f9f6"
-PREVIOUS_HEAD = "3cdde5dfedfc51ff7c757a2f5fb2eb11a3c6b64c"
+HEAD = "a8f1ab1c7dce529cfb5293e1ddf4a23140877f22"
+PREVIOUS_HEAD = "44814977d9d9bf457b6be2184f38f25d4f9071ad"
 HOLDING = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
 REGISTER = "docs/governance/management-provisional-requirement-register.jsonl"
 LEDGERS = [
@@ -386,13 +387,13 @@ def make() -> None:
     )
 
     scope = {
-        "worktree": str(ROOT),
+        "worktree": WORKTREE_PROVENANCE,
         "base_origin_main": HEAD,
         "base_origin_main_expected_before_fetch": PREVIOUS_HEAD,
         "base_drift_observed": True,
         "base_drift_from": PREVIOUS_HEAD,
         "base_drift_to": HEAD,
-        "base_drift_reason": "SCF-B-0087 was merged by #2036, advancing origin/main from 3cdde5d to f15c3ca; this bundle was materialized from the resulting latest main.",
+        "base_drift_reason": "SCF-B-0090 was rebaselined from 4481497 after #2041; #2040 then advanced origin/main to a8f1ab1, so this review correction was rebaselined onto that exact latest main.",
         "read_only": True,
         "static_only": True,
         "holding_registration_id": "MPR-SH-OUTSIDE67-001",

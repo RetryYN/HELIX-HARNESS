@@ -1,6 +1,6 @@
 # outside67 residual source-chain research (028/039/040/042/044)
 
-`origin/main` `f15c3ca2e…`（#2036 merge後）から、outside67 の 67 `path_revision_pair` のうち、SCF-B-0087 が固定した 57 件と重複しない残余から 028／039／040／042／044 を静的に保持する research Scaffold です。研究会計は `62/67`、残りは `5` 件ですが、これは path_revision_pair の調査会計であり、正式な要求identity、四製品owner、phase、実装、縮退、authority の分母ではありません。
+`origin/main` `a8f1ab1c7d…`（#2040 merge後、#2039 のrebase先）から、outside67 の 67 `path_revision_pair` のうち、SCF-B-0087 が固定した 57 件と重複しない残余から 028／039／040／042／044 を静的に保持する research Scaffold です。研究会計は `62/67`、残りは `5` 件ですが、これは path_revision_pair の調査会計であり、正式な要求identity、四製品owner、phase、実装、縮退、authority の分母ではありません。
 
 028 は L2 freeze IR proposal の system tests patch、039／040／042／044 は投資候補・利用許諾配布・管理状態projection・refactoring trigger の各 crosswalk です。各 source pair は pre-isolation と archive の exact blob／bytes／SHA／line anchors、および現行 `source-rebaseline` counterpart の path／bytes／SHA を保持します。pre/archive/current の byte・path 関係と semantic inclusion は別観測です。
 

@@ -22,11 +22,12 @@ IDS = [
 ]
 PRE = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCH = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
-HEAD = "f15c3ca2ed1dc865b242b0a21e1516fdeec6f9f6"
-PREVIOUS_HEAD = "3cdde5dfedfc51ff7c757a2f5fb2eb11a3c6b64c"
-BASE_DRIFT_REASON = "SCF-B-0087 was merged by #2036, advancing origin/main from 3cdde5d to f15c3ca; this bundle was materialized from the resulting latest main."
+HEAD = "a8f1ab1c7dce529cfb5293e1ddf4a23140877f22"
+PREVIOUS_HEAD = "44814977d9d9bf457b6be2184f38f25d4f9071ad"
+BASE_DRIFT_REASON = "SCF-B-0090 was rebaselined from 4481497 after #2041; #2040 then advanced origin/main to a8f1ab1, so this review correction was rebaselined onto that exact latest main."
 UNEXPLORED_SCOPE = "all outside67 path_revision_pair not in the existing 57 or this five-source research set; candidate accounting remains scaffold evidence until any later holding admission"
 BATCH_WIDTH_POLICY = "width 5 is the observed verification width for this bundle; no safe batch upper bound is asserted; a later batch requires independent source-chain review from then-current origin/main"
+WORKTREE_PROVENANCE = "/home/tenni/HELIX-HARNESS-outside-residual-next5"
 HOLDING = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
 REGISTER = "docs/governance/management-provisional-requirement-register.jsonl"
 LEDGERS = [
@@ -194,7 +195,7 @@ def validate(root_arg: str | None) -> list[str]:
         "binding_reservation": "SCF-B-0090",
         "binding_registration_status": "registered",
     }
-    fail(errors, "E_SCOPE_WORKTREE", not isinstance(scope.get("worktree"), str) or not scope.get("worktree"))
+    fail(errors, "E_SCOPE_WORKTREE", scope.get("worktree") != WORKTREE_PROVENANCE)
     for key, value in expected_scope.items():
         fail(errors, f"E_SCOPE:{key}", scope.get(key) != value)
     fail(errors, "E_SCOPE_DIGEST", scope.get("holding_sha256") != digest(root / HOLDING) or scope.get("management_register_sha256") != digest(root / REGISTER))
@@ -299,7 +300,7 @@ def main() -> int:
     args = parser.parse_args()
     errors = validate(args.root)
     if errors:
-        print("FAIL outside67 concept/freeze follow-up validator\n" + "\n".join(errors))
+        print("FAIL outside67 residual follow-up validator\n" + "\n".join(errors))
         return 1
     print("PASS outside67 residual follow-up validator: 5 source pairs / 25 exact anchors / provisional 62-of-67 static-only")
     return 0

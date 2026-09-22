@@ -2,8 +2,8 @@
 
 - state: `research_scaffold_findings_only`
 - binding: `SCF-B-0090` registered
-- base: `f15c3ca2ed1dc865b242b0a21e1516fdeec6f9f6`（#2036 merge後の latest `origin/main`）
-- base drift: SCF-B-0087 の base `3cdde5dfed…` から進行したため、差分を scope に記録
+- base: `a8f1ab1c7dce529cfb5293e1ddf4a23140877f22`（#2040 merge後の latest `origin/main`、#2039 rebase先）
+- base drift: #2039 の旧base `44814977d9…` から `a8f1ab1c7d…` へrebaselineした差分を scope に記録
 - selected: `028, 039, 040, 042, 044` / 5 source pairs / 25 exact anchors
 - source accounting: provisional `62/67`, residual `5`, formal holding admission `false`
 - pre/archive relation: `028,039,040,042,044=same`
