@@ -56,6 +56,27 @@ ASSET_KEYS = {
     "asset_id", "ledger_record", "phase_classification_record", "decision_records", "read_after_records",
     "edge_refs", "source_exact", "evidence_boundary",
 }
+FORBIDDEN_OPERATIONS = [
+    "old archive runtime/test/CI/workflow/hook/adapter/source execution",
+    "formal authority or status promotion",
+    "merge",
+    "close",
+]
+DIRECTLY_ESTABLISHED = [
+    "the requirement source anchor and exact crosswalk row are fixed",
+    "the listed Wave semantic edges and their source/asset anchors exist at BASE",
+    "the listed historical ledger, phase, decision, and read-after records are exact static records",
+    "candidate/representative assets are not implementation proof and no legacy execution was performed",
+]
+UNRESOLVED = [
+    "unit-level old implementation status",
+    "unit-level old degradation status",
+    "unit-level old failure status",
+    "unit-level consumer closure and acceptance",
+    "current implementation and acceptance",
+    "formal phase/product authority and successor",
+    "explicit non-implementation verdict",
+]
 
 
 def fail(code: str, message: str) -> None:
@@ -193,6 +214,8 @@ def verify_inventory(inventory: dict, evidence_bytes: bytes) -> None:
         fail("E_INPUT_DIGEST", "fixed BASE input digest set drift")
     if inventory.get("output_sha256") != digest(evidence_bytes):
         fail("E_OUTPUT_DIGEST", "evidence output digest mismatch")
+    if inventory.get("forbidden_operations") != FORBIDDEN_OPERATIONS:
+        fail("E_FORBIDDEN_OPERATION", "forbidden operation boundary drift")
 
 
 def verify_ref(ref: dict, wave: int) -> None:
@@ -235,24 +258,118 @@ def expected_source_exact(asset: str, asset_edges: list[dict]) -> list[dict]:
     return [paths[path] for path in sorted(paths)]
 
 
-def verify_status_partition(status: dict, edges: list[dict], current: dict) -> None:
+def expected_status_partition(edges: list[dict], assets: list[dict], current: dict) -> dict:
+    asset_ids = [asset["asset_id"] for asset in assets]
+    observed_consumers = sorted({ref for edge in edges for ref in edge.get("observed_consumer_refs", [])})
+    phase_candidates = sorted({
+        phase
+        for asset in assets
+        for phase in asset["phase_classification_record"].get("candidate_phase_targets", [])
+    })
+    return {
+        "old_implementation": {
+            "status": "unknown",
+            "direct_unit_evidence": False,
+            "asset_ids": asset_ids,
+            "edge_ids": [edge["review_id"] for edge in edges],
+            "asset_level_observations": sorted({edge.get("legacy_requirement_implementation_contribution") for edge in edges}),
+            "reason_unknown": "implementation_source/design/requirement records are candidate or contract partitions; execution, unit acceptance, and complete consumer binding are absent",
+        },
+        "old_degradation": {
+            "status": "unknown",
+            "direct_unit_evidence": False,
+            "edge_ids": [edge["review_id"] for edge in edges],
+            "constraint_observations": [edge.get("coverage", {}) for edge in edges],
+            "reason_unknown": "edge constraint/failure fields are static coverage and counter-evidence, not an observed unit transition or degradation receipt",
+        },
+        "old_failure": {
+            "status": "unknown",
+            "direct_unit_evidence": False,
+            "observed_failure_receipts": [],
+            "edge_ids": [edge["review_id"] for edge in edges],
+            "reason_unknown": "no executed failure receipt is attached; static coverage.failure and counterevidence do not establish a unit failure",
+        },
+        "old_consumer": {
+            "status": "unknown",
+            "closure_status": "pending",
+            "observed_consumer_refs": observed_consumers,
+            "decision_or_read_after_count": sum(len(asset["decision_records"]) + len(asset["read_after_records"]) for asset in assets),
+            "direct_unit_evidence": False,
+            "reason_unknown": "consumer references/decision records are historical references; no closed unit consumer/acceptance relation is present",
+        },
+        "old_phase": {
+            "status": "candidate_only",
+            "phase_ids": phase_candidates,
+            "direct_authority": False,
+            "reason_unknown": "phase classification is a candidate record with authority_effect none and product boundary review pending",
+        },
+        "current_implementation": {
+            "status": "unknown",
+            "direct_unit_evidence": False,
+            "partition_status": current.get("current_implementation_evidence", {}).get("status"),
+            "reason_unknown": "current partition has no execution, implementation claim, or acceptance verdict; current source implementation is not established",
+        },
+        "acceptance": {
+            "status": "unknown",
+            "direct_unit_evidence": False,
+            "reason_unknown": "no acceptance verdict is present in the crosswalk, Wave edge, old ledger, or current partition",
+        },
+        "unimplemented": {
+            "status": "unknown",
+            "direct_unit_evidence": False,
+            "reason_unknown": "absence of a direct implementation receipt does not prove non-implementation",
+        },
+    }
+
+
+def verify_status_partition(status: dict, edges: list[dict], assets: list[dict], current: dict) -> None:
     for field in ("old_implementation", "old_degradation", "old_failure", "old_consumer", "current_implementation", "acceptance", "unimplemented"):
-        if status[field].get("status") != "unknown":
+        observed = status.get(field, {})
+        if observed.get("status") != "unknown":
             fail("E_STATUS_PROMOTION", f"{field} status was promoted")
-        if status[field].get("direct_unit_evidence") is not False:
+        if observed.get("direct_unit_evidence") is not False:
             fail("E_STATUS_PROMOTION", f"{field} direct unit evidence was promoted")
-        if not status[field].get("reason_unknown"):
+        if not observed.get("reason_unknown"):
             fail("E_STATUS_REASON", f"{field} has no unknown reason")
-    if status["old_phase"].get("status") != "candidate_only" or status["old_phase"].get("direct_authority") is not False:
+    old_phase = status.get("old_phase", {})
+    if old_phase.get("status") != "candidate_only" or old_phase.get("direct_authority") is not False:
         fail("E_STATUS_PROMOTION", "phase candidate was promoted to authority")
-    if status["old_phase"].get("reason_unknown") == "":
+    if old_phase.get("reason_unknown") == "":
         fail("E_STATUS_REASON", "phase candidate has no boundary reason")
-    if status["old_implementation"]["edge_ids"] != [e["review_id"] for e in edges]:
+    if status.get("old_consumer", {}).get("closure_status") != "pending":
+        fail("E_STATUS_PROMOTION", "consumer closure status was promoted")
+    if status.get("old_implementation", {}).get("asset_ids") != [asset["asset_id"] for asset in assets]:
+        fail("E_ASSET_SET", "implementation asset membership drift")
+    if status.get("old_phase", {}).get("phase_ids") != expected_status_partition(edges, assets, current)["old_phase"]["phase_ids"]:
+        fail("E_PHASE_RECORD", "phase candidate set drift")
+    if status.get("old_implementation", {}).get("edge_ids") != [e["review_id"] for e in edges]:
         fail("E_EDGE_SET", "implementation edge references drift")
-    if status["old_degradation"]["edge_ids"] != [e["review_id"] for e in edges] or status["old_failure"]["edge_ids"] != [e["review_id"] for e in edges]:
+    if status.get("old_degradation", {}).get("edge_ids") != [e["review_id"] for e in edges] or status.get("old_failure", {}).get("edge_ids") != [e["review_id"] for e in edges]:
         fail("E_EDGE_SET", "degradation/failure edge references drift")
-    if status["current_implementation"].get("partition_status") != current.get("current_implementation_evidence", {}).get("status"):
+    if status.get("current_implementation", {}).get("partition_status") != current.get("current_implementation_evidence", {}).get("status"):
         fail("E_CURRENT_PARTITION", "current partition status mismatch")
+    if status != expected_status_partition(edges, assets, current):
+        fail("E_STATUS_PARTITION", "status partition field/value drift")
+
+
+def expected_asset_record(asset_id: str, edge_for_asset: list[dict], ledger: dict, phase: dict, decisions: list[tuple[int, dict]], read_after: list[tuple[int, dict]]) -> dict:
+    return {
+        "asset_id": asset_id,
+        "ledger_record": ledger[asset_id],
+        "phase_classification_record": phase[asset_id],
+        "decision_records": [row for _, row in decisions if row.get("asset_id") == asset_id],
+        "read_after_records": [row for _, row in read_after if row.get("asset_id") == asset_id],
+        "edge_refs": sorted({edge["review_id"] for edge in edge_for_asset}),
+        "source_exact": expected_source_exact(asset_id, edge_for_asset),
+        "evidence_boundary": {
+            "asset_level_only": True,
+            "implementation_proof": False,
+            "degradation_proof": False,
+            "failure_receipt": False,
+            "consumer_closure": False,
+            "reason": "Wave edge and ledger/source records are static asset evidence; no unit acceptance or executed receipt is attached.",
+        },
+    }
 
 
 def validate(bundle: Path) -> None:
@@ -290,16 +407,35 @@ def validate(bundle: Path) -> None:
         unit = crosswalk["unit_candidate_id"]
         if set(got) != ROW_KEYS or got.get("schema") != "fr-os-first10-evidence-0129/v1":
             fail("E_SCHEMA", f"unit row key/schema drift at {unit}")
-        if got["source_requirement"].get("crosswalk_line") != crosswalk_line or got["source_requirement"].get("crosswalk_row") != crosswalk:
+        expected_source_requirement = {
+            "crosswalk_line": crosswalk_line,
+            "crosswalk_row": crosswalk,
+            "direct_legacy_asset_links": crosswalk.get("direct_legacy_asset_links", []),
+            "candidate_pool_is_not_proof": True,
+        }
+        if got.get("source_requirement") != expected_source_requirement:
             fail("E_SOURCE_REQUIREMENT", f"crosswalk row mismatch at {unit}")
-        if got["source_requirement"].get("direct_legacy_asset_links") != crosswalk.get("direct_legacy_asset_links", []) or got["source_requirement"].get("candidate_pool_is_not_proof") is not True:
-            fail("E_SOURCE_REQUIREMENT", f"candidate/direct-link boundary mismatch at {unit}")
         cur_line, cur_row, cur_digest = current[unit]
-        cur = got["current_evidence_partition"]
-        if cur.get("path") != CURRENT_EVIDENCE or cur.get("line") != cur_line or cur.get("row_sha256") != cur_digest or cur.get("row") != cur_row:
+        expected_existing_binding = {
+            "existing_unit": True,
+            "new_unit_count": 0,
+            "existing_partition_path": CURRENT_EVIDENCE,
+            "existing_partition_line": cur_line,
+            "existing_partition_row_sha256": cur_digest,
+        }
+        if got.get("existing_218_binding") != expected_existing_binding:
+            fail("E_SCOPE", f"existing 218-unit binding drift at {unit}")
+        expected_current_partition = {
+            "path": CURRENT_EVIDENCE,
+            "line": cur_line,
+            "row_sha256": cur_digest,
+            "row": cur_row,
+            "inventory_path": CURRENT_INVENTORY,
+            "inventory": local_json_from_base(CURRENT_INVENTORY),
+            "base_pin_limitation": "existing FR-0109 partition is compared as current-main evidence, while this bundle independently pins all inputs to BASE",
+        }
+        if got.get("current_evidence_partition") != expected_current_partition:
             fail("E_CURRENT_PARTITION", f"current-main partition row mismatch at {unit}")
-        if cur.get("inventory_path") != CURRENT_INVENTORY or cur.get("inventory") != local_json_from_base(CURRENT_INVENTORY):
-            fail("E_CURRENT_PARTITION", f"current-main inventory mismatch at {unit}")
         expected_edges = [{"wave": wave, "wave_line": line, "edge": edge} for wave, line, edge in all_edges[unit]]
         if got["semantic_review_edges"] != expected_edges:
             fail("E_EDGE_SET", f"Wave edge set/content mismatch at {unit}")
@@ -315,23 +451,26 @@ def validate(bundle: Path) -> None:
             aid = asset.get("asset_id")
             if set(asset) != ASSET_KEYS or aid not in ledger:
                 fail("E_SCHEMA", f"asset record schema/membership mismatch at {unit}/{aid}")
-            if asset["ledger_record"] != ledger[aid]:
+            if asset.get("ledger_record") != ledger[aid]:
                 fail("E_LEDGER_RECORD", f"full ledger record mismatch at {aid}")
-            if asset["phase_classification_record"] != phase[aid]:
+            if asset.get("phase_classification_record") != phase[aid]:
                 fail("E_PHASE_RECORD", f"phase classification record mismatch at {aid}")
             want_decisions = [row for _, row in decisions if row.get("asset_id") == aid]
             want_read_after = [row for _, row in read_after if row.get("asset_id") == aid]
-            if asset["decision_records"] != want_decisions or asset["read_after_records"] != want_read_after:
+            if asset.get("decision_records") != want_decisions or asset.get("read_after_records") != want_read_after:
                 fail("E_HISTORY_RECORD", f"decision/read-after record mismatch at {aid}")
             edge_for_asset = all_asset_edges[aid]
-            if asset["edge_refs"] != sorted({edge["review_id"] for edge in edge_for_asset}):
+            if asset.get("edge_refs") != sorted({edge["review_id"] for edge in edge_for_asset}):
                 fail("E_EDGE_SET", f"asset edge refs mismatch at {aid}")
-            if asset["source_exact"] != expected_source_exact(aid, edge_for_asset):
+            if asset.get("source_exact") != expected_source_exact(aid, edge_for_asset):
                 fail("E_SOURCE_EVIDENCE", f"source blob/path/anchor mismatch at {aid}")
-            boundary = asset["evidence_boundary"]
-            if boundary.get("asset_level_only") is not True or boundary.get("implementation_proof") is not False or boundary.get("degradation_proof") is not False or boundary.get("failure_receipt") is not False or boundary.get("consumer_closure") is not False:
+            expected_boundary = expected_asset_record(aid, edge_for_asset, ledger, phase, decisions, read_after)["evidence_boundary"]
+            if asset.get("evidence_boundary") != expected_boundary:
                 fail("E_STATUS_PROMOTION", f"asset evidence boundary promoted at {aid}")
-        verify_status_partition(got["status_partition"], edges, cur_row)
+            expected_asset = expected_asset_record(aid, edge_for_asset, ledger, phase, decisions, read_after)
+            if asset != expected_asset:
+                fail("E_ASSET_RECORD", f"asset record field/value drift at {unit}/{aid}")
+        verify_status_partition(got.get("status_partition", {}), edges, unit_assets, cur_row)
         expected_authority = {
             "authority_effect": "none", "research_only": True, "formal_implementation_claim": False,
             "formal_degradation_claim": False, "formal_failure_claim": False, "formal_unimplemented_claim": False,
@@ -339,9 +478,9 @@ def validate(bundle: Path) -> None:
         }
         if got["authority_boundary"] != expected_authority:
             fail("E_AUTHORITY_BOUNDARY", f"unit authority boundary drift at {unit}")
-        if got["existing_218_binding"].get("existing_unit") is not True or got["existing_218_binding"].get("new_unit_count") != 0:
-            fail("E_SCOPE", f"existing 218-unit binding drift at {unit}")
-        if not got["unresolved"] or not got["directly_established"]:
+        if got.get("directly_established") != DIRECTLY_ESTABLISHED:
+            fail("E_STATUS_REASON", f"directly-established evidence partition drift at {unit}")
+        if got.get("unresolved") != UNRESOLVED:
             fail("E_STATUS_REASON", f"missing unresolved/direct evidence partition at {unit}")
     print(f"PASS SCF-B-0129: 10 existing HELIX-OS units, 30 Wave edges, 23 unique old assets; all unit statuses remain unknown/candidate-only")
 
