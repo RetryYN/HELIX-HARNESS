@@ -113,8 +113,10 @@
     "product_boundary": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
     "web_l1": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
     "webos_l1": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+    "l1_approval_decision": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
     "new_generation_entry": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
   },
+  "negative_case_count": 15,
   "negative_case_codes": [
     "E_SOURCE_DIGEST",
     "E_SOURCE_SNAPSHOT",

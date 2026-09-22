@@ -32,6 +32,8 @@ CASES=[
  ('asset-history','E_ASSET_HISTORY',jsonl_change('asset-matrix.jsonl',0,lambda x:x.__setitem__('consumer_observation','closed'))),
  ('asset-link','E_ASSET_LINK',jsonl_change('candidate-assessments.jsonl',0,lambda x:x.__setitem__('asset_semantic_link_status','candidate_only'))),
  ('l1-anchor','E_L1_ANCHOR',jsonl_change('l1-connection-candidates.jsonl',0,lambda x:x.__setitem__('l1_anchor_candidate_ids',[]))),
+ ('l1-authority-input-pin','E_INPUT_DIGEST',jsonl_change('inputs/l1-anchor-0121/candidate-units.jsonl',0,lambda x:x.__setitem__('current_l1_effective_authority_status','awaiting_parent_approval'))),
+ ('l1-authority-output','E_L1_ANCHOR',jsonl_change('l1-connection-candidates.jsonl',0,lambda x:x.__setitem__('authority_status','approved'))),
  ('phase-boundary','E_PHASE_BOUNDARY',jsonl_change('candidate-assessments.jsonl',0,lambda x:x.__setitem__('phase_status','candidate'))),
  ('formal-boundary','E_FORMAL_BOUNDARY',json_change('inventory.json',lambda x:x.__setitem__('formal_requirement_unit_count',1))),
  ('product-boundary','E_PRODUCT_BOUNDARY',jsonl_change('candidate-assessments.jsonl',0,lambda x:x.__setitem__('candidate_product','HELIX-OS'))),

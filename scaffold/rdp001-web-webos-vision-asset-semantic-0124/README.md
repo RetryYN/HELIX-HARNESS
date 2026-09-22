@@ -1,6 +1,6 @@
 # SCF-B-0124 Vision 35 × legacy asset 12 semantic research
 
-固定BASE `1cfe3895d861e0cd1533fde08688a9f81f557645` で、SCF-B-0080／0081／0084／0088のVision 35候補と代表旧asset 12件をcandidate atom単位で静的照合する研究用Scaffoldである。#2073の固定commit `4b42faa2a0e3833b86818e0dec231da3e766c728` にあるWeb L1 6＋Web-OS L1 5のanchor候補も入力として、製品境界candidate-onlyの接続可能性を保持する。
+固定BASE `1cfe3895d861e0cd1533fde08688a9f81f557645` で、SCF-B-0080／0081／0084／0088のVision 35候補と代表旧asset 12件をcandidate atom単位で静的照合する研究用Scaffoldである。#2073の固定commit `882cbd0c56320f06dd06311499497b216b289542` にあるWeb L1 6＋Web-OS L1 5のanchor候補も入力として、製品境界candidate-onlyの接続可能性を保持する。
 
 候補35件はexact source span／ID／digestを保持し、phase connection 0/35、asset semantic link 0/35、formal requirement／phase／product authority／implementation／degradationは生成しない。製品固定候補はWeb 13、Web-OS 14、製品未解決8。未解決8はU18／U19／O05〜O10であり、L1接続を確定しない。
 
@@ -18,4 +18,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorは固定BASE、親4束／Vision source／12 asset source、#2073 anchor digest、35 candidate set、420 matrix cardinality、phase／asset／authority boundaryを独立照合する。selfcheckは14負例を期待error codeまで確認する。旧archiveは静的bytesの参照のみで、実行しない。
+validatorは固定BASE、親4束／Vision source／12 asset source、#2073 anchor digest、承認decision digest、35 candidate set、420 matrix cardinality、phase／asset／authority boundaryを独立照合する。#2073の11行はraw metadata（draft／awaiting_parent_approval）とdecision effective approved（HDEC-HELIXWEB／HELIXWEBOS-L1-01）を分離し、研究candidate authority noneを確認する。selfcheckは16負例を期待error codeまで確認する。旧archiveは静的bytesの参照のみで、実行しない。

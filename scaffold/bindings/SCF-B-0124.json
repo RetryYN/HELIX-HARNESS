@@ -6,7 +6,7 @@
   "product": "HELIX-Web",
   "owner_candidate": "Web／Web-OS Vision candidate atomとlegacy asset evidenceの意味照合review（最終owner未解決）",
   "state": "registered",
-  "reason": "SCF-B-0080／0081／0084／0088のVision 35 candidate atomを代表legacy asset 12件のsource／history／failure／consumer evidenceへcandidate atom単位で照合し、#2073固定HEADのWeb L1 6＋Web-OS L1 5 anchorへproduct scope candidate-onlyで接続可能性を記録する。35×12の420 pairはsource digest provenance、反証、history／failure／consumer不足へpartitionし、semantic asset link 0/35、phase link 0/35を維持する。製品未解決8件、formal phase／product／implementation／degradation／authorityを昇格しない。",
+  "reason": "SCF-B-0080／0081／0084／0088のVision 35 candidate atomを代表legacy asset 12件のsource／history／failure／consumer evidenceへcandidate atom単位で照合し、#2073固定HEAD（raw metadataと承認decision effective approvedを分離）のWeb L1 6＋Web-OS L1 5 anchorへproduct scope candidate-onlyで接続可能性を記録する。35×12の420 pairはsource digest provenance、反証、history／failure／consumer不足へpartitionし、semantic asset link 0/35、phase link 0/35を維持する。製品未解決8件、formal phase／product／implementation／degradation／authorityを昇格しない。",
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
@@ -27,6 +27,11 @@
       "path": "docs/helix-web-os/L1-planning/system-intent.md",
       "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
       "note": "fixed BASE static input; old source and archive reference only"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
+      "note": "fixed BASE static input; Web/Web-OS L1 effective approved decision; research candidate authority remains none"
     },
     {
       "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
@@ -117,7 +122,7 @@
     "#2073のWeb L1 6＋Web-OS L1 5 anchorを固定HEAD／digest／lineへ照合する",
     "製品固定候補27件はproduct scope candidate-only、製品未解決8件はboundary unresolvedとして保持する",
     "phase connection 0/35、asset semantic link 0/35、formal unit／authority／implementation／degradationを維持する",
-    "固定BASE、親入力digest、candidate／asset／matrix全field、14負例を独立検証する",
+    "固定BASE、親入力digest、candidate／asset／matrix全field、16負例（L1 raw/effective authority境界を含む）を独立検証する",
     "旧archive／旧runtime／test／CIを実行せず、merge／close／deploymentを行わない"
   ],
   "connections": {
@@ -208,7 +213,7 @@
     ],
     "oracles": [
       "validate.py（固定BASE、親4束、Vision exact span 35、asset source／history／failure／consumer 12、420 pair、#2073 L1 11、phase／asset／formal boundary）",
-      "selfcheck.py（14 negative casesと期待error code）",
+      "selfcheck.py（16 negative casesと期待error code）",
       "scfctl validate／stale／residuals",
       "git diff --check"
     ],
@@ -222,6 +227,8 @@
       "asset history／failure／consumer／decision観測改変はE_ASSET_HISTORYで拒否",
       "candidate atom asset linkの昇格はE_ASSET_LINKで拒否",
       "#2073の11 L1 anchor source／line／ID改変はE_L1_ANCHORで拒否",
+      "L1 raw metadata draft／awaiting_parent_approval、decision effective approved、research candidate authority noneのinput改変は固定input digestのE_INPUT_DIGESTで拒否",
+      "L1 candidate connection authority boundaryの改変はE_L1_ANCHORで拒否",
       "phase candidate／PHCAP linkの生成はE_PHASE_BOUNDARYで拒否",
       "formal requirement／authorityの生成はE_FORMAL_BOUNDARYで拒否",
       "product unresolved 8件の境界改変はE_PRODUCT_BOUNDARYで拒否",
