@@ -229,6 +229,7 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
         suite_failed = suite_counts["numFailedTestSuites"] or 0
         test_failed = _oracle_nonnegative_int(parsed, "numFailedTests") or 0
         pending = (suite_counts["numPendingTestSuites"] or 0) + (_oracle_nonnegative_int(parsed, "numPendingTests") or 0)
+        todo = (suite_todo or 0) + (_oracle_nonnegative_int(parsed, "numTodoTests") or 0)
         positive_success = (_oracle_nonnegative_int(parsed, "numPassedTests") or 0) > 0 and (suite_counts["numPassedTestSuites"] or 0) > 0
         failed_markers = [lines[0].strip()] if suite_failed + test_failed else []
         base_result = {
@@ -245,8 +246,8 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
             result = {**base_result, "reason": "test counts are inconsistent; result is unknown"}
         elif not positive_success:
             result = {**base_result, "reason": "no positive successful test count is present; result is unknown"}
-        elif pending:
-            result = {**base_result, "verdict": "pass_with_pending", "reason": "explicit pending count prevents a complete pass verdict"}
+        elif pending or todo:
+            result = {**base_result, "verdict": "pass_with_pending", "reason": "explicit pending or todo count prevents a complete pass verdict"}
         else:
             result = {**base_result, "verdict": "pass_observed", "reason": "complete zero-failure counts are observed only at asset level"}
         return (
@@ -267,6 +268,11 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
     passed = [line.strip() for line in lines if pass_pattern.search(line)]
     passed_counts = [int(match.group(1)) for line in lines if (match := pass_pattern.search(line))]
     exits = [line.strip() for line in lines if exit_pattern.search(line)]
+    exit_observations = [
+        {"line": line.strip(), "code": int(match.group(1))}
+        for line in lines
+        for match in exit_pattern.finditer(line)
+    ]
     failed_counts = [int(match.group(1)) for line in lines if (match := failed_count_pattern.search(line)) and int(match.group(1)) > 0]
     failed = []
     for line in lines:
@@ -278,16 +284,21 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
     execution = {
         "status": "observed_asset_level" if observed else "unknown",
         "kind": "vitest_text_summary" if observed else "unclassified_log",
-        "fields": {"passed_summary_lines": passed, "passed_counts": passed_counts, "failed_counts": failed_counts, "exit_lines": exits},
+        "fields": {
+            "passed_summary_lines": passed,
+            "passed_counts": passed_counts,
+            "failed_counts": failed_counts,
+            "exit_lines": exits,
+            "exit_observations": exit_observations,
+        },
         "unit_level_verdict": None,
     }
     positive_pass = any(count > 0 for count in passed_counts)
     nonzero = []
-    for line in exits:
-        match = exit_pattern.search(line)
-        if match and int(match.group(1)) != 0:
-            nonzero.append(line)
-    explicit_zero = any((match := exit_pattern.search(line)) and int(match.group(1)) == 0 for line in exits)
+    for observation in exit_observations:
+        if observation["code"] != 0:
+            nonzero.append(observation["line"])
+    explicit_zero = any(observation["code"] == 0 for observation in exit_observations)
     if failed and nonzero:
         reason = "contradictory failure marker and nonzero exit code prevent a pass verdict"
     elif failed and positive_pass:

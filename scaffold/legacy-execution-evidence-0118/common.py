@@ -112,6 +112,7 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
         )
         failed_count = (suite_counts["numFailedTestSuites"] or 0) + (counts["numFailedTests"] or 0)
         pending_count = (suite_counts["numPendingTestSuites"] or 0) + (counts["numPendingTests"] or 0)
+        todo_count = (suite_todo or 0) + (counts["numTodoTests"] or 0)
         positive_success = (counts["numPassedTests"] or 0) > 0 and (suite_counts["numPassedTestSuites"] or 0) > 0
         markers = [lines[0].strip()] if failed_count else []
         failure = _failure("observed_asset_level" if markers else "not_observed_in_asset", markers)
@@ -129,8 +130,8 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
             result = {**result_base, "reason": "test counts are inconsistent; result is unknown"}
         elif not positive_success:
             result = {**result_base, "reason": "no positive successful test count is present; result is unknown"}
-        elif pending_count:
-            result = {**result_base, "verdict": "pass_with_pending", "reason": "explicit pending count prevents a complete pass verdict"}
+        elif pending_count or todo_count:
+            result = {**result_base, "verdict": "pass_with_pending", "reason": "explicit pending or todo count prevents a complete pass verdict"}
         else:
             result = {**result_base, "verdict": "pass_observed", "reason": "complete zero-failure counts are observed only at asset level"}
         return execution, failure, result
@@ -138,6 +139,11 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
     passed = [line.strip() for line in lines if PASS_RE.search(line)]
     passed_counts = [int(match.group(1)) for line in lines if (match := PASS_RE.search(line))]
     exit_matches = [line.strip() for line in lines if EXIT_RE.search(line)]
+    exit_observations = [
+        {"line": line.strip(), "code": int(match.group(1))}
+        for line in lines
+        for match in EXIT_RE.finditer(line)
+    ]
     failed_counts = [int(match.group(1)) for line in lines if (match := FAILED_COUNT_RE.search(line)) and int(match.group(1)) > 0]
     failures = []
     for line in lines:
@@ -148,15 +154,20 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
     execution = {
         "status": "observed_asset_level" if passed or exit_matches or failures else "unknown",
         "kind": "vitest_text_summary" if passed or exit_matches or failures else "unclassified_log",
-        "fields": {"passed_summary_lines": passed, "passed_counts": passed_counts, "failed_counts": failed_counts, "exit_lines": exit_matches},
+        "fields": {
+            "passed_summary_lines": passed,
+            "passed_counts": passed_counts,
+            "failed_counts": failed_counts,
+            "exit_lines": exit_matches,
+            "exit_observations": exit_observations,
+        },
         "unit_level_verdict": None,
     }
     nonzero = []
-    for line in exit_matches:
-        match = EXIT_RE.search(line)
-        if match and int(match.group(1)) != 0:
-            nonzero.append(line)
-    explicit_zero = any((match := EXIT_RE.search(line)) and int(match.group(1)) == 0 for line in exit_matches)
+    for observation in exit_observations:
+        if observation["code"] != 0:
+            nonzero.append(observation["line"])
+    explicit_zero = any(observation["code"] == 0 for observation in exit_observations)
     failure_markers = list(failures)
     for line in nonzero:
         if line not in failure_markers:

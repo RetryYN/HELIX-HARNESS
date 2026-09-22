@@ -124,10 +124,11 @@ def expect_observation(label: str, data: bytes, verdict, reason: str, failure_st
 
 
 def observation_cases() -> None:
-    def summary(*, suite_total=1, suite_passed=1, suite_failed=0, suite_pending=0, total=2, passed=1, failed=0, pending=1, todo=0, omit=()):
+    def summary(*, suite_total=1, suite_passed=1, suite_failed=0, suite_pending=0, suite_todo=0, total=2, passed=1, failed=0, pending=1, todo=0, omit=()):
         value = {
             "numTotalTestSuites": suite_total, "numPassedTestSuites": suite_passed,
             "numFailedTestSuites": suite_failed, "numPendingTestSuites": suite_pending,
+            "numTodoTestSuites": suite_todo,
             "numTotalTests": total, "numPassedTests": passed, "numFailedTests": failed,
             "numPendingTests": pending, "numTodoTests": todo,
         }
@@ -141,7 +142,7 @@ def observation_cases() -> None:
     expect_observation("O04 json missing suite counts", summary(pending=0, omit=("numPassedTestSuites",)), None, "required test counts are missing or invalid; result is unknown", "not_observed_in_asset")
     expect_observation("O05 json inconsistent suite counts", summary(suite_total=2, suite_passed=1, total=1, passed=1, pending=0), None, "required test counts are missing or invalid; result is unknown", "not_observed_in_asset")
     expect_observation("O06 json zero total", summary(suite_total=0, suite_passed=0, total=0, passed=0, pending=0), None, "no positive successful test count is present; result is unknown", "not_observed_in_asset")
-    expect_observation("O07 json pending", summary(pending=1), "pass_with_pending", "explicit pending count prevents a complete pass verdict", "not_observed_in_asset")
+    expect_observation("O07 json pending", summary(pending=1), "pass_with_pending", "explicit pending or todo count prevents a complete pass verdict", "not_observed_in_asset")
     expect_observation("O08 text zero passed failed2", b"Test Files 0 passed (0)\nTests 0 passed (0)\n2 failed\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
     expect_observation("O09 text contradictory pass/failure", b"Tests 2 passed (2)\n1 failed\n", None, "contradictory pass summary and failure marker prevent a pass verdict", "observed_asset_level")
     expect_observation("O10 text pass exit2", b"Test Files 1 passed (1)\nTests 1 passed (1)\nvitest exit=2\n", None, "contradictory pass summary and nonzero exit code prevent a pass verdict", "observed_asset_level")
@@ -163,6 +164,8 @@ def observation_cases() -> None:
     expect_observation("O26 text npm ERR marker", b"npm ERR! code 1\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
     expect_observation("O27 text path error word with pass and exit zero", b"Tests 1 passed (1)\nsrc/error-handling.test.ts\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
     expect_observation("O28 text hyphen compound words with pass and exit zero", b"Tests 1 passed (1)\nerror-handling fail-safe failed-check fatal-error segmentation-fault npm-ERR!\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
+    expect_observation("O29 text mixed exit codes on one line", b"Tests 3 passed\nvitest exit=0; vitest exit=2\n", None, "contradictory pass summary and nonzero exit code prevent a pass verdict", "observed_asset_level")
+    expect_observation("O30 json consistent todo counts", summary(suite_total=2, suite_passed=1, suite_todo=1, total=2, passed=1, pending=0, todo=1), "pass_with_pending", "explicit pending or todo count prevents a complete pass verdict", "not_observed_in_asset")
 
 
 
