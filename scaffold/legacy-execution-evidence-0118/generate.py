@@ -9,6 +9,8 @@ import subprocess
 from collections import defaultdict
 from pathlib import Path
 
+from common import source_observation
+
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-execution-evidence-0118"
 BASE_REVISION = "44d546a40d2b4fa88701faf93ea8b618f4f1b86c"
@@ -89,91 +91,6 @@ def source_anchors(path: str, data: bytes) -> list[dict]:
         for i in indices
     ]
 
-
-def source_observation(path: str, data: bytes, anchors: list[dict]) -> tuple[dict, dict, dict]:
-    text = data.decode(errors="replace")
-    lines = text.splitlines()
-    parsed = None
-    try:
-        parsed = json.loads(text)
-    except json.JSONDecodeError:
-        pass
-    if isinstance(parsed, dict) and "head_sha" in parsed:
-        execution = {
-            "status": "observed_asset_level",
-            "kind": "ci_merge_head_receipt",
-            "fields": {k: parsed.get(k) for k in ("head_sha", "base_sha", "tested_merge_head")},
-            "unit_level_verdict": None,
-        }
-        result = {
-            "status": "asset_level_identity_only",
-            "verdict": None,
-            "reason": "head/base/tested merge identity is recorded without a test verdict or acceptance verdict",
-            "anchor_lines": [a["line"] for a in anchors],
-        }
-    elif isinstance(parsed, dict) and "numTotalTestSuites" in parsed:
-        fields = {
-            key: parsed.get(key)
-            for key in (
-                "numTotalTestSuites",
-                "numPassedTestSuites",
-                "numFailedTestSuites",
-                "numPendingTestSuites",
-                "numTotalTests",
-                "numPassedTests",
-                "numFailedTests",
-                "numPendingTests",
-                "numTodoTests",
-            )
-            if key in parsed
-        }
-        execution = {
-            "status": "observed_asset_level",
-            "kind": "vitest_json_summary",
-            "fields": fields,
-            "unit_level_verdict": None,
-        }
-        result = {
-            "status": "asset_level_test_result_only",
-            "verdict": "pass_with_pending" if fields.get("numPendingTests", 0) else "pass_observed",
-            "fields": fields,
-            "reason": "test result is recorded for the artifact but no unit/requirement/acceptance binding exists",
-            "anchor_lines": [a["line"] for a in anchors],
-        }
-    else:
-        passed = [line.strip() for line in lines if re.search(r"Test Files\s+\d+\s+passed|Tests\s+\d+\s+passed", line)]
-        exit_matches = [line.strip() for line in lines if re.search(r"(?:vitest\s+)?exit=", line, re.I)]
-        execution = {
-            "status": "observed_asset_level" if passed or exit_matches else "unknown",
-            "kind": "vitest_text_summary" if passed or exit_matches else "unclassified_log",
-            "fields": {"passed_summary_lines": passed, "exit_lines": exit_matches},
-            "unit_level_verdict": None,
-        }
-        result = {
-            "status": "asset_level_test_result_only" if passed or exit_matches else "no_result_marker",
-            "verdict": "pass_observed" if passed and not any("exit=1" in x for x in exit_matches) else None,
-            "reason": "text log has an asset-level summary without a unit/requirement/acceptance binding",
-            "anchor_lines": [a["line"] for a in anchors],
-        }
-    if isinstance(parsed, dict):
-        failed_count = sum(int(parsed.get(k, 0) or 0) for k in ("numFailedTestSuites", "numFailedTests"))
-        failures = [lines[0].strip()] if failed_count else []
-    else:
-        failures = [line.strip() for line in lines if re.search(r"fatal:|error|failed|failure", line, re.I)]
-    failure_status = "observed_asset_level" if failures else "not_observed_in_asset"
-    failure = {
-        "status": failure_status,
-        "marker_lines": failures[:32],
-        "reason": (
-            "static asset contains failure/error marker; it is not a unit-level degradation or failure verdict"
-            if failures
-            else "no failure/error marker was observed in this asset; absence does not prove success"
-        ),
-        "unit_level_verdict": None,
-    }
-    return execution, failure, result
-
-
 def input_digests() -> list[dict]:
     return [
         {"path": path, "blob": git_blob(path), "bytes": len((data := git_bytes(path))), "sha256": tagged(data)}
@@ -218,7 +135,7 @@ def main() -> None:
         archive_path = ARCHIVE_PREFIX + source_path
         source_data = git_bytes(archive_path)
         anchors = source_anchors(archive_path, source_data)
-        execution, failure, result = source_observation(source_path, source_data, anchors)
+        execution, failure, result = source_observation(source_data, anchors)
         candidate_units = sorted(candidate_pool_units.get(asset_id, set()))
         wave_refs = wave_by_asset.get(asset_id, [])
         direct_unit_refs = sorted(direct_links.get(asset_id, set()))
