@@ -1,0 +1,438 @@
+{
+  "asset_status_receipts": [
+    {
+      "asset_id": "LEGACY-ASSET-13362A81144CD6852A5B",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": null,
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-20B55B3292190135B82D",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-25D8367FB27CCF6AACA8",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-2B787F62211AD9705592",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": null,
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4FC5BCF06EE23819C5D6",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": null,
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "copy_read_after_records": [
+        {
+          "consumer_match": true,
+          "consumer_refs_observed": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "digest_match": true,
+          "failure": null,
+          "read_after_id": "READ-REQ-SNAPSHOT-A60CF91DD2AF6693E6F9"
+        }
+      ],
+      "decision_ids": [
+        {
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_id": "REQ-SNAPSHOT-A60CF91DD2AF6693E6F9",
+          "decision_revision": "PO-directive-requirements-preservation-2026-09-15",
+          "disposition": "source_snapshot_preservation"
+        },
+        {
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_id": "REQ-SNAPSHOT-CORRECTION-A60CF91DD2AF6693E6F9",
+          "decision_revision": null,
+          "disposition": "source_snapshot_preservation"
+        }
+      ],
+      "disposition_records": [
+        {
+          "authority_status": null,
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-A60CF91DD2AF6693E6F9",
+          "disposition": "source_snapshot_preservation",
+          "implementation_status": "non_executable_read_only_source",
+          "read_after_record_ref": "docs/governance/legacy-asset-copy-read-after.jsonl#READ-REQ-SNAPSHOT-A60CF91DD2AF6693E6F9",
+          "reuse_exclusion_class": null,
+          "revision": 3
+        }
+      ],
+      "failure_status": "historical_failure_field_preserved",
+      "historical_consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CFA0C589C5D817BB5DD8",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": null,
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    }
+  ],
+  "authority_effect": "none",
+  "base_revision": "74f724b4699feca7f9f2e87e939fe6578f75669e",
+  "batch_id": "LEGACY-SEMANTIC-WAVE42-2026-09-22",
+  "composite_unresolved_count": 5,
+  "consumer_closure_status": "pending",
+  "cumulative_reviewed_edge_count": 497,
+  "cumulative_reviewed_unit_count": 171,
+  "current_implementation": "unknown",
+  "degradation": "unknown",
+  "historical_status_note": "assertion_id／authority_id／historical consumer／failure codeは旧台帳の判断史のみであり、現行authority、implementation、degradation、phase admission、consumer closureを確定しない。",
+  "inspected_asset_count": 11,
+  "inspected_legacy_asset_ids": [
+    "LEGACY-ASSET-13362A81144CD6852A5B",
+    "LEGACY-ASSET-20B55B3292190135B82D",
+    "LEGACY-ASSET-25D8367FB27CCF6AACA8",
+    "LEGACY-ASSET-2B787F62211AD9705592",
+    "LEGACY-ASSET-451D9907D88A929B5E02",
+    "LEGACY-ASSET-4715728481A85D429B84",
+    "LEGACY-ASSET-4FC5BCF06EE23819C5D6",
+    "LEGACY-ASSET-787B224EBE62ACB57F52",
+    "LEGACY-ASSET-7F5DBC909D6DCBA27665",
+    "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "LEGACY-ASSET-CFA0C589C5D817BB5DD8"
+  ],
+  "legacy_execution_performed": false,
+  "missing_evidence_receipts": [
+    {
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [
+        "PHCAP-03",
+        "PHCAP-06",
+        "PHCAP-07"
+      ],
+      "phase_pool_asset_count": 346,
+      "reason": "crosswalk implementation_source candidates are already consumed by prior waves; no unused direct asset evidence was selected",
+      "role_kind": "implementation_source",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-HARNESS"
+    },
+    {
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [],
+      "phase_pool_asset_count": 0,
+      "reason": "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+      "role_kind": "design",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-OS"
+    },
+    {
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [],
+      "phase_pool_asset_count": 0,
+      "reason": "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+      "role_kind": "implementation_source",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-OS"
+    },
+    {
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [
+        "PHCAP-03",
+        "PHCAP-07"
+      ],
+      "phase_pool_asset_count": 165,
+      "reason": "crosswalk implementation_source candidates are already consumed by prior waves; no unused direct asset evidence was selected",
+      "role_kind": "implementation_source",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-12-HELIX-HARNESS"
+    }
+  ],
+  "new_build_allowed": false,
+  "remaining_unit_count": 47,
+  "reviewed_edges": [
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4FC5BCF06EE23819C5D6",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-25D8367FB27CCF6AACA8",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-13362A81144CD6852A5B",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-20B55B3292190135B82D",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-2B787F62211AD9705592",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-12-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CFA0C589C5D817BB5DD8",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-12-HELIX-HARNESS"
+    }
+  ],
+  "reviewed_unit_ids": [
+    "IRUNIT-HIL-NFR-09-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-09-HELIX-OS",
+    "IRUNIT-HIL-NFR-11-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-11-HELIX-OS",
+    "IRUNIT-HIL-NFR-12-HELIX-HARNESS"
+  ],
+  "schema_revision": 10,
+  "selected_asset_count": 7,
+  "selected_edge_count": 11,
+  "selected_non_requirement_asset_count": 6,
+  "selected_unit_count": 5,
+  "selected_units": [
+    "IRUNIT-HIL-NFR-09-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-09-HELIX-OS",
+    "IRUNIT-HIL-NFR-11-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-11-HELIX-OS",
+    "IRUNIT-HIL-NFR-12-HELIX-HARNESS"
+  ],
+  "semantic_atom_count": 11,
+  "source_atomization_holds": [
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-HARNESS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-OS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-HARNESS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-OS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-12-HELIX-HARNESS"
+    }
+  ],
+  "supplemental_asset_receipts": [
+    {
+      "artifact_evidence_kind": "design",
+      "asset_id": "LEGACY-ASSET-7F5DBC909D6DCBA27665",
+      "classification_id": "LASPH-0751",
+      "consumer_refs": [],
+      "current_implementation": "unknown_pending_direct_current_review",
+      "decision_count": 0,
+      "degradation": "unknown_pending_direct_current_review",
+      "legacy_execution_status": "not_run",
+      "legacy_implementation_status": "unknown",
+      "read_after_count": 0,
+      "selected_role_edge": false,
+      "source_path": "docs/design/helix/L6-function-design/windows-lite-canary-admission.md",
+      "source_sha256": "8862b2e59ee719bf173aa5e1a1e0fb69df798ac32683b9c3c801ddae8c885e88"
+    },
+    {
+      "artifact_evidence_kind": "design",
+      "asset_id": "LEGACY-ASSET-787B224EBE62ACB57F52",
+      "classification_id": "LASPH-0357",
+      "consumer_refs": [],
+      "current_implementation": "unknown_pending_direct_current_review",
+      "decision_count": 0,
+      "degradation": "unknown_pending_direct_current_review",
+      "legacy_execution_status": "not_run",
+      "legacy_implementation_status": "unknown",
+      "read_after_count": 0,
+      "selected_role_edge": false,
+      "source_path": "docs/design/harness/L4-basic-design/ui-standard.md",
+      "source_sha256": "ac7a0b00c5d9380ba33226f90dd6e75764cc293c79c862ef6cf1a42e16a9c968"
+    },
+    {
+      "artifact_evidence_kind": "configuration",
+      "asset_id": "LEGACY-ASSET-451D9907D88A929B5E02",
+      "classification_id": "LASPH-0255",
+      "consumer_refs": [],
+      "current_implementation": "unknown_pending_direct_current_review",
+      "decision_count": 0,
+      "degradation": "unknown_pending_direct_current_review",
+      "legacy_execution_status": "not_run",
+      "legacy_implementation_status": "unknown",
+      "read_after_count": 0,
+      "selected_role_edge": false,
+      "source_path": "config/workflow-classification-catalog.v1.json",
+      "source_sha256": "d1e771bd13f79c7b5e161e7da516c6366e580f8cc8bc71653dc452d44b952ce6"
+    },
+    {
+      "artifact_evidence_kind": "test_source",
+      "asset_id": "LEGACY-ASSET-4715728481A85D429B84",
+      "classification_id": "LASPH-3819",
+      "consumer_refs": [],
+      "current_implementation": "unknown_pending_direct_current_review",
+      "decision_count": 0,
+      "degradation": "unknown_pending_direct_current_review",
+      "legacy_execution_status": "not_run",
+      "legacy_implementation_status": "unknown",
+      "read_after_count": 0,
+      "selected_role_edge": false,
+      "source_path": "tests/requirement-refinement-authority.test.ts",
+      "source_sha256": "963468ff4e7a6123943cfce732a57eb803984c2d01c65500b87b151628f41e91"
+    }
+  ]
+}

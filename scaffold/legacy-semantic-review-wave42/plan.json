@@ -1,0 +1,296 @@
+{
+  "ancestor_base_gate": {
+    "checked_by": "validate.py",
+    "mode": "base_or_descendant",
+    "required_base_revision": "74f724b4699feca7f9f2e87e939fe6578f75669e"
+  },
+  "asset_read_scope": {
+    "catalog": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "crosswalk": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "decision": "docs/governance/legacy-asset-decisions.jsonl",
+    "decomposition": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+    "disposition": "docs/governance/legacy-asset-disposition.jsonl",
+    "execution": "not_run",
+    "failure_and_consumer": "archive historical governance ledgers; static fields only"
+  },
+  "base_revision": "74f724b4699feca7f9f2e87e939fe6578f75669e",
+  "batch_id": "LEGACY-SEMANTIC-WAVE42-2026-09-22",
+  "boundaries": [
+    "旧requirements JSON／保存markdown／decomposition span／source relationを逐語保持し、候補意味を現行authorityへ昇格しない",
+    "HIL-NFR-09 HARNESS／OSは共有source spanをtyped relationとして保持し、Linux primary・adapter contract test・OS別logic fork禁止の接続を分離しない",
+    "旧bootstrapのcandidate scopeはHARNESS／OSのみを保持し、Web／Web-OSは直接要求scopeとして扱わない。四製品routingは未確定である",
+    "candidate phase／product poolは検索候補であり、phase admission・owner・successor・implementation・degradation・consumer closureを確定しない",
+    "NFR-11 HARNESS、NFR-12 HARNESSのimplementation_sourceはpool候補が過去waveで消費済みのため未使用assetを選べず、NFR-11 OSはdesign／implementation pool zeroをmissing evidenceへ分離する",
+    "historical authority／consumer／failure codeは旧判断史としてのみ保持し、現行権限・実装・縮退へ昇格しない"
+  ],
+  "counts": {
+    "composite_unresolved": 5,
+    "inspected_legacy_assets": 11,
+    "missing_evidence_receipts": 4,
+    "role_edges": 11,
+    "selected_role_assets": 7,
+    "semantic_atoms": 11,
+    "units": 5
+  },
+  "legacy_execution": "not_run",
+  "new_build_allowed": false,
+  "per_chain_roles": [
+    "requirement",
+    "design",
+    "implementation_source"
+  ],
+  "schema_revision": 1,
+  "selected_units": [
+    "IRUNIT-HIL-NFR-09-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-09-HELIX-OS",
+    "IRUNIT-HIL-NFR-11-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-11-HELIX-OS",
+    "IRUNIT-HIL-NFR-12-HELIX-HARNESS"
+  ],
+  "unit_plan": [
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-HARNESS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-009",
+        "authority_id": "RAS-HIL-14",
+        "failure_code": "HIL_OS_LOGIC_FORK",
+        "failure_consumers": [
+          "HOT-HIL-12",
+          "HST-HIL-014"
+        ],
+        "failure_scope": "OS別logic forkを検出するcompatibility contract違反",
+        "historical_consumer": "OsContractRunner"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-07",
+        "PHCAP-11"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 236,
+      "responsibility_candidate": "HARNESS core gateとplatform compatibility testの成立条件",
+      "role_edges": 3,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-25D8367FB27CCF6AACA8",
+        "LEGACY-ASSET-4FC5BCF06EE23819C5D6",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 3,
+      "source_requirement_id": "HIL-NFR-09",
+      "source_statement_semantic_digest": "sha256:bd7c0c8c513f62da48ab6a012a04c35431b32ae1623e880ad1a2c26c33b2350d",
+      "source_statement_text": "Linux primaryで全core gateを実行し、macOS/Windows差異はadapter contract testで検出する。OS別logic forkを作らない。",
+      "source_text_spans": [
+        "Linux primaryで全core gateを実行し",
+        "adapter contract testで検出する",
+        "OS別logic forkを作らない"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-HARNESS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-009",
+        "authority_id": "RAS-HIL-14",
+        "failure_code": "HIL_OS_LOGIC_FORK",
+        "failure_consumers": [
+          "HOT-HIL-12",
+          "HST-HIL-014"
+        ],
+        "failure_scope": "OS別logic forkを検出するcompatibility contract違反",
+        "historical_consumer": "OsContractRunner"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-07",
+        "PHCAP-10",
+        "PHCAP-11"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 712,
+      "responsibility_candidate": "OS adapterでplatform差異を検出・運転する",
+      "role_edges": 3,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-13362A81144CD6852A5B",
+        "LEGACY-ASSET-20B55B3292190135B82D",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 3,
+      "source_requirement_id": "HIL-NFR-09",
+      "source_statement_semantic_digest": "sha256:bd7c0c8c513f62da48ab6a012a04c35431b32ae1623e880ad1a2c26c33b2350d",
+      "source_statement_text": "Linux primaryで全core gateを実行し、macOS/Windows差異はadapter contract testで検出する。OS別logic forkを作らない。",
+      "source_text_spans": [
+        "Linux primaryで全core gateを実行",
+        "macOS/Windows差異はadapter contract testで検出する",
+        "OS別logic forkを作らない"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-09-HELIX-OS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-HARNESS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-011",
+        "authority_id": "RAS-HIL-15",
+        "failure_code": "HIL_SCREEN_IMPLICIT_SKIP",
+        "failure_consumers": [
+          "HOT-HIL-18",
+          "HST-HIL-012"
+        ],
+        "failure_scope": "画面対象／非対象の暗黙skipまたは不適切なskip evidence",
+        "historical_consumer": "ScreenGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [
+        "implementation_source"
+      ],
+      "phase_candidates": [
+        "PHCAP-03",
+        "PHCAP-06",
+        "PHCAP-07"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 346,
+      "responsibility_candidate": "画面工程の暗黙skipを禁じ、画面対象では静的wireframe/proseだけを操作可能prototypeの代替にしない条件",
+      "role_edges": 2,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-2B787F62211AD9705592",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 2,
+      "source_requirement_id": "HIL-NFR-11",
+      "source_statement_semantic_digest": "sha256:5b24a2a3490b9e51b6ee169dbf9a2a97751f1848771fdb389f0d0b35482782a3",
+      "source_statement_text": "画面工程は暗黙skip不可とする。画面対象では静的wireframe/proseだけを操作可能prototypeの代替にせず、画面非対象ではLLMの自由文判断だけをskip evidenceにしない。",
+      "source_text_spans": [
+        "画面工程は暗黙skip不可とする",
+        "画面対象では静的wireframe/proseだけを操作可能prototypeの代替にせず"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-HARNESS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-011",
+        "authority_id": "RAS-HIL-15",
+        "failure_code": "HIL_SCREEN_IMPLICIT_SKIP",
+        "failure_consumers": [
+          "HOT-HIL-18",
+          "HST-HIL-012"
+        ],
+        "failure_scope": "画面対象／非対象の暗黙skipまたは不適切なskip evidence",
+        "historical_consumer": "ScreenGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [
+        "design",
+        "implementation_source"
+      ],
+      "phase_candidates": [],
+      "phase_classification_status": "unresolved",
+      "phase_pool_asset_count": 0,
+      "responsibility_candidate": "画面非対象ではLLMの自由文判断だけをskip evidenceにしない条件",
+      "role_edges": 1,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 1,
+      "source_requirement_id": "HIL-NFR-11",
+      "source_statement_semantic_digest": "sha256:5b24a2a3490b9e51b6ee169dbf9a2a97751f1848771fdb389f0d0b35482782a3",
+      "source_statement_text": "画面工程は暗黙skip不可とする。画面対象では静的wireframe/proseだけを操作可能prototypeの代替にせず、画面非対象ではLLMの自由文判断だけをskip evidenceにしない。",
+      "source_text_spans": [
+        "画面非対象ではLLMの自由文判断だけをskip evidenceにしない"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-11-HELIX-OS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-HARNESS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-012",
+        "authority_id": "RAS-HIL-09",
+        "failure_code": "HIL_SOURCE_COMPLETENESS_UNPROVEN",
+        "failure_consumers": [
+          "HOT-HIL-37",
+          "HST-HIL-011"
+        ],
+        "failure_scope": "atomic source span・digest・抽出時点なしのcoverage判定",
+        "historical_consumer": "CapabilityCoverageGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [
+        "implementation_source"
+      ],
+      "phase_candidates": [
+        "PHCAP-03",
+        "PHCAP-07"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 165,
+      "responsibility_candidate": "source atom coverageの分母と完全性条件を定める",
+      "role_edges": 2,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-CFA0C589C5D817BB5DD8"
+      ],
+      "semantic_atom_count": 2,
+      "source_requirement_id": "HIL-NFR-12",
+      "source_statement_semantic_digest": "sha256:a85de817bf5698825a759488e16ad07868c18cfe03a62d7b6fe478e3e422391e",
+      "source_statement_text": "source coverageは100%列挙を要求し、文書名の列挙、代表fixture、検索結果0件、単一包括要件を完全性証拠にしない。各判断はsource path/entry、digest、抽出時点へ再現可能に結ぶ。",
+      "source_text_spans": [
+        "source coverageは100%列挙を要求し",
+        "文書名の列挙、代表fixture、検索結果0件、単一包括要件を完全性証拠にしない"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-12-HELIX-HARNESS"
+    }
+  ],
+  "unresolved_questions": [
+    "四製品の正式product owner／authority／routingは未決定。HARNESS／OS候補を直接要求scopeとみなさず、Web／Web-OSへの接続根拠もない",
+    "NFR-09のHARNESS／OS共有spanを現行の責務境界へどう配分するかは人間review待ち",
+    "現行implementation、縮退、phase admission、consumer closure、successor、acceptanceは未確定。旧OsContractRunner／ScreenGate／CapabilityCoverageGateは歴史記録のみ",
+    "NFR-11／12 HARNESSのimplementation_source候補は旧waveで消費済みで、再計上せずmissingとして保持した"
+  ]
+}
