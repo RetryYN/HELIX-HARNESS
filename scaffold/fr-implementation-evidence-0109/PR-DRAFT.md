@@ -14,6 +14,8 @@ HIL-FR-01〜20の製品unitについて、旧実装／未実装／縮退／failu
 - 固定BASE `5562f04da0f3205f9aa58205ec0d478419fc4f2e`、全入力Git bytes digest、BASE祖先性を検証。
 - Binding `SCF-B-0109`へbundle全成果物を登録。
 
+validatorは`build.py`をimportせず、固定BASE Git object bytesから期待値を独立再導出する。generatorを一時改竄して再生成しても、実装成立／failure／consumer closure／未実装断定の混入を拒否する。
+
 ## 境界
 
 `implementation_source`や旧source存在は候補証拠であり、正式実装成立を示さない。静的なcoverage.failure／counterevidenceは実行failure receiptではない。旧assetのconsumer refs、decision、read-afterはclosureを示さず、unitの未実装・縮退・phase/product authority・successorも確定しない。正式crosswalk、PHCAP、product L1、authorityは変更しない。旧archive実行、現行runtime／CI、merge、closeは行わない。
@@ -21,7 +23,7 @@ HIL-FR-01〜20の製品unitについて、旧実装／未実装／縮退／failu
 ## 検証結果
 
 - `python3 scaffold/fr-implementation-evidence-0109/validate.py` PASS
-- `python3 scaffold/fr-implementation-evidence-0109/selfcheck.py` PASS（20 negative cases、期待error code照合）
+- `python3 scaffold/fr-implementation-evidence-0109/selfcheck.py` PASS（23 negative cases、期待error code照合。malformed bundle、source binding、generator再生成改竄を含む）
 - `python3 -m py_compile scaffold/fr-implementation-evidence-0109/*.py` PASS
 - `git diff origin/main...HEAD --check` PASS（commit後の最新HEADで実行済み）
 

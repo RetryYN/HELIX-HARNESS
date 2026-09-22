@@ -16,8 +16,8 @@ crosswalkの`representative_legacy_assets`とcandidate poolは検索候補とし
 - `inventory.json`: 固定BASE、入力Git bytes digest、29 unit／87 edge／46 assetの分母、unit別宣言、partition境界。
 - `evidence.jsonl`: unitごとの原文anchor、decomposition、Wave edge、旧asset source/history/failure/consumer、代表asset、current context、未解決理由。
 - `build.py`: 固定BASEを`git show`で静的に読み、bundleを決定的に再生成する。
-- `validate.py`: unit集合、Wave edge集合、asset集合、入力digest、source anchor、旧asset blob/history、partition、authority境界、BASE祖先性をfail-closedに検証する。
-- `selfcheck.py`: 20個の負例で期待error codeを照合する。
+- `validate.py`: `build.py`をimportせず、固定BASEのGit object bytesから独立に期待inventory/evidenceを再導出し、unit集合、Wave edge集合、asset集合、入力digest、source anchor、旧asset blob/history、partition、authority境界、BASE祖先性をfail-closedに検証する。
+- `selfcheck.py`: 23個の負例で期待error codeを照合し、generator改竄後の再生成が独立validatorで拒否されることも確認する。
 - `../bindings/SCF-B-0109.json`: 全成果物と入力責務をScaffold Bindingへ登録する。
 
 ## 検証
@@ -28,6 +28,6 @@ python3 scaffold/fr-implementation-evidence-0109/validate.py
 python3 scaffold/fr-implementation-evidence-0109/selfcheck.py
 ```
 
-旧archiveのsource、test、runtime、hook、CIは実行しない。現行runtime／CIも実行せず、current implementation／acceptance／operationはunknownに保つ。validatorのPASS、source存在、coverage.failure、transition assessment、consumer参照から、実装成立、未実装、縮退、failure、closure、phase/product authority、successorを生成しない。
+旧archiveのsource、test、runtime、hook、CIは実行しない。現行runtime／CIも実行せず、current implementation／acceptance／operationはunknownに保つ。validatorのPASS、source存在、coverage.failure、transition assessment、consumer参照から、実装成立、未実装、縮退、failure、closure、phase/product authority、successorを生成しない。generator側の改変と再生成だけでは検証oracleを変更できない。
 
 このbundleは#1813の進捗参照用の研究成果であり、正式crosswalk、PHCAP、product L1、authorityを変更しない。#2055／#2057のBR bundleとはHIL-FR対象の静的partitionとして分離している。

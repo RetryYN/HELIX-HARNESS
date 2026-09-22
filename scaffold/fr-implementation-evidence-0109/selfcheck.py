@@ -8,6 +8,7 @@ import importlib.util
 import io
 import json
 import shutil
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -44,12 +45,58 @@ def run_case(name: str, expected_code: str, mutate) -> None:
     print(f"PASS {name} -> {expected_code}")
 
 
+def run_raw_bundle_case(name: str, expected_code: str, inventory_text: str, evidence_text: str) -> None:
+    with tempfile.TemporaryDirectory(prefix="scf-b-0109-selfcheck-raw-") as temp:
+        bundle = Path(temp)
+        (bundle / "inventory.json").write_text(inventory_text, encoding="utf-8")
+        (bundle / "evidence.jsonl").write_text(evidence_text, encoding="utf-8")
+        checker = validate.Validator(validate.ROOT, bundle)
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            result = checker.validate()
+        if result == 0 or not any(error.startswith(expected_code + ":") for error in checker.errors):
+            raise AssertionError(f"{name}: expected {expected_code}, result={result}, errors={checker.errors}")
+    print(f"PASS {name} -> {expected_code}")
+
+
+def run_generator_tamper_case() -> None:
+    """Regenerate from a temporarily tampered generator; fixed validator must reject it."""
+    build_path = HERE / "build.py"
+    original = build_path.read_bytes()
+    needle = b'"unit_implementation_status": "unknown"'
+    replacement = b'"unit_implementation_status": "implemented"'
+    if needle not in original:
+        raise AssertionError("generator tamper needle missing")
+    try:
+        build_path.write_bytes(original.replace(needle, replacement, 1))
+        generated = subprocess.run(
+            [sys.executable, str(build_path)], cwd=validate.ROOT,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False,
+        )
+        if generated.returncode != 0:
+            raise AssertionError(f"tampered generator failed unexpectedly: {generated.stderr}")
+        checker = validate.Validator(validate.ROOT, validate.HERE)
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            result = checker.validate()
+        if result == 0 or not any(error.startswith("E_IMPLEMENTATION_EVIDENCE:") for error in checker.errors):
+            raise AssertionError(f"generator-rebuild tamper passed: result={result}, errors={checker.errors}")
+    finally:
+        build_path.write_bytes(original)
+        restored = subprocess.run(
+            [sys.executable, str(build_path)], cwd=validate.ROOT,
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False,
+        )
+        if restored.returncode != 0:
+            raise AssertionError(f"generator restore failed: {restored.stderr}")
+    print("PASS generator-rebuild implementation tamper -> E_IMPLEMENTATION_EVIDENCE")
+
+
 def main() -> int:
-    # 各負例で同じ固定BASEを再走査せず、期待bundleだけを一度計算する。
-    expected_bundle = validate.build.build_bundle()
-    validate.build.build_bundle = lambda: expected_bundle
+    # 各負例で同じ固定BASEを再走査せず、独立validatorの期待bundleだけを一度計算する。
+    expected_bundle = validate.build_bundle()
+    validate.build_bundle = lambda: expected_bundle
     cases = [
         ("unit-set", "E_UNIT_SET", lambda inv, ev: inv["unit_ids"].__setitem__(0, "IRUNIT-HIL-BR-01-HELIX-OS")),
+        ("source-binding", "E_SOURCE_BINDING", lambda inv, ev: ev[0]["source_requirement"].__setitem__("source_requirement_id", "HIL-BR-01")),
         ("edge-set", "E_REVIEW_EDGE_SET", lambda inv, ev: ev[0]["semantic_review_edges"].pop()),
         ("edge-duplicate", "E_REVIEW_EDGE_DUP", lambda inv, ev: ev[0]["semantic_review_edges"].append(copy.deepcopy(ev[0]["semantic_review_edges"][0]))),
         ("asset-set", "E_ASSET_SET", lambda inv, ev: ev[0]["asset_set"]["asset_ids"].pop()),
@@ -72,7 +119,9 @@ def main() -> int:
     ]
     for name, code, mutate in cases:
         run_case(name, code, mutate)
-    print(f"SCF-B-0109 selfcheck PASS ({len(cases)} negative cases)")
+    run_raw_bundle_case("malformed bundle", "E_BUNDLE", "{\n", "")
+    run_generator_tamper_case()
+    print(f"SCF-B-0109 selfcheck PASS ({len(cases) + 2} negative cases)")
     return 0
 
 

@@ -30,7 +30,7 @@
     "旧assetのsource／history／failure／consumerを代表assetとともに独立保持する",
     "current implementation／acceptance／operation、未実装、縮退、failure、consumer closureをunknown/pendingへ保持する",
     "固定BASE Git bytes、source anchor、input digest、祖先性を検証する",
-    "validatorと20件の期待error code付き負例を維持する"
+    "validatorと23件の期待error code付き負例を維持し、generator改竄後の再生成を独立validatorで拒否する"
   ],
   "operations": {
     "allowed": [
@@ -396,7 +396,10 @@
     "evidence_kind": "scaffold",
     "negative_cases": [
       "wrong unit set must emit E_UNIT_SET",
-      "missing or duplicate Wave edge must emit E_REVIEW_EDGE_SET/E_REVIEW_EDGE_DUP",
+      "malformed inventory/evidence bundle must emit E_BUNDLE",
+      "tampered source requirement binding must emit E_SOURCE_BINDING",
+      "missing Wave edge must emit E_REVIEW_EDGE_SET",
+      "duplicate Wave edge must emit E_REVIEW_EDGE_DUP",
       "wrong asset membership must emit E_ASSET_SET",
       "tampered inventory declaration must emit E_INVENTORY_DECLARATION",
       "tampered representative asset must emit E_REPRESENTATIVE_ASSET",
@@ -409,16 +412,18 @@
       "wrong old asset history/classification must emit E_OLD_ASSET_HISTORY",
       "tampered current context implementation_claim must emit E_CURRENT_STATUS",
       "wrong input digest must emit E_INPUT_DIGEST",
-      "wrong BASE commit/ancestor must emit E_BASE_COMMIT/E_BASE_NOT_ANCESTOR",
+      "wrong BASE commit must emit E_BASE_COMMIT",
+      "wrong BASE ancestor must emit E_BASE_NOT_ANCESTOR",
       "authority boundary violation must emit E_AUTHORITY_BOUNDARY",
       "current implementation claim must emit E_CURRENT_STATUS",
-      "non-implementation claim must emit E_UNIMPLEMENTED_CLAIM"
+      "non-implementation claim must emit E_UNIMPLEMENTED_CLAIM",
+      "tampered generator followed by regeneration must emit E_IMPLEMENTATION_EVIDENCE"
     ],
     "oracles": [
-      "validate.py PASS: 29 units／87 edges／46 old assets",
+      "validate.py independent fixed-BASE rederivation PASS: 29 units／87 edges／46 old assets",
       "fixed BASE Git bytes／source anchor／old blob digest exact match",
       "input snapshot and BASE ancestor exact match",
-      "selfcheck.py expected error code照合"
+      "selfcheck.py expected 23 negative executions including malformed bundle／source binding／generator regeneration tamper"
     ],
     "scope": [
       "schema_interface",
