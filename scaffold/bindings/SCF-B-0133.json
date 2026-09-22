@@ -135,7 +135,7 @@
       "validator independently derives fixed BASE 59 target set and source anchors without importing generate.py",
       "validator pins main241/open196 ID sets with recorded prior-bundle provenance and checks overlap empty",
       "PROFILE_PINS are manually authored semantic-review literals duplicated independently in generate.py and validate.py; they are not BASE-derived at runtime",
-      "selfcheck executes 49 negative cases with expected error codes, including generator category/products/L1/marker/reason mutations, category/edge/pin/base-source guards",
+      "selfcheck executes 50 negative cases with expected error codes, including generator category/products/L1/marker/reason mutations, category/edge/pin/base-source guards and inventory base_source_mode tamper",
       "validator checks raw L1 metadata separately from effective approved decision and concrete product boundary anchors"
     ],
     "scope": [

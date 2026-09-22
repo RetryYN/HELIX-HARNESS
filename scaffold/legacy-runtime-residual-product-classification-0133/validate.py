@@ -110,6 +110,7 @@ EXPECTED_NEGATIVE_CASES = [
     'record_top_level_extra_key',
     'source_read_mode_tamper',
     'inventory_scope_tamper',
+    'inventory_base_source_mode_tamper',
     'inventory_top_level_tamper',
     'inventory_target_set_tamper',
     'inventory_input_omission',

@@ -97,6 +97,7 @@ trial("source_read_mode_tamper", records_mutator(lambda rows: rows[0]["source_ex
 
 # Inventory declarations and fixed-set/digest guards.
 trial("inventory_scope_tamper", inventory_mutator(lambda inv: inv.__setitem__("scope", "all assets")), "E_INVENTORY")
+trial("inventory_base_source_mode_tamper", inventory_mutator(lambda inv: inv.__setitem__("base_source_mode", "live worktree bytes")), "E_BASE_SOURCE")
 trial("inventory_top_level_tamper", inventory_mutator(lambda inv: inv.__setitem__("undeclared", True)), "E_INVENTORY_SCHEMA")
 trial("inventory_target_set_tamper", inventory_mutator(lambda inv: inv["target_asset_ids"].pop()), "E_TARGET_SET")
 trial("inventory_input_omission", inventory_mutator(lambda inv: inv["input_digests"].pop()), "E_INPUT_DIGEST")
@@ -232,4 +233,4 @@ direct_trial("fixed_BASE_non_ancestor", base_not_ancestor, "E_BASE_NOT_ANCESTOR"
 direct_trial("base_source_missing", missing_source, "E_BASE_SOURCE")
 
 validator.BUNDLE = BUNDLE
-print("SCF-B-0133 selfcheck PASS negative_cases=49")
+print("SCF-B-0133 selfcheck PASS negative_cases=50")

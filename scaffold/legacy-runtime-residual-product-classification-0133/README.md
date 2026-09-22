@@ -16,7 +16,7 @@ python3 -B scaffold/legacy-runtime-residual-product-classification-0133/generate
 python3 -B scaffold/legacy-runtime-residual-product-classification-0133/validate.py
 # SCF-B-0133 validate PASS records=59 edges=40 counts={'direct_product_basis': 31, 'multi_product_conflict': 24, 'insufficient_basis': 4}
 python3 -B scaffold/legacy-runtime-residual-product-classification-0133/selfcheck.py
-# SCF-B-0133 selfcheck PASS negative_cases=49
+# SCF-B-0133 selfcheck PASS negative_cases=50
 python3 -m py_compile scaffold/legacy-runtime-residual-product-classification-0133/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale
