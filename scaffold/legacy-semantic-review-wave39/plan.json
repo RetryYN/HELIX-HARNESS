@@ -1,0 +1,401 @@
+{
+  "schema_revision": 1,
+  "batch_id": "LEGACY-SEMANTIC-WAVE39-2026-09-22",
+  "base_revision": "38d38f47794e70d621403ad8dbeac56518a76766",
+  "ancestor_base_gate": {
+    "checked_by": "validate.py",
+    "mode": "base_or_descendant",
+    "required_base_revision": "38d38f47794e70d621403ad8dbeac56518a76766"
+  },
+  "selected_units": [
+    "IRUNIT-HIL-NFR-14-HELIX-OS",
+    "IRUNIT-HIL-NFR-21-HELIX-OS",
+    "IRUNIT-HIL-TR-01-HELIX-OS",
+    "IRUNIT-HIL-TR-08-HELIX-HARNESS",
+    "IRUNIT-HIL-TR-08-HELIX-OS"
+  ],
+  "per_chain_roles": [
+    "requirement",
+    "design",
+    "implementation_source"
+  ],
+  "counts": {
+    "units": 5,
+    "role_edges": 15,
+    "semantic_atoms": 7,
+    "composite_unresolved": 5,
+    "inspected_legacy_assets": 13,
+    "selected_role_assets": 10,
+    "supplemental_assets": 3
+  },
+  "unit_plan": [
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-14-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-14",
+      "source_statement_text": "IPCは不正JSON、schema不一致、oversize、sequence欠落、worker crash、timeout、cancel、backpressure、親process消失をfail-closeし、partial resultを正本へ昇格しない。",
+      "source_statement_semantic_digest": "sha256:52fdf014fd081e0e7134b695d7bb4408868e1785f17f08c02d9479acd0e41ad0",
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:4984",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:194"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "routing_candidate": "single_product",
+      "routing_state": "candidate_product_routing_requires_human_review",
+      "routing_hold": null,
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "responsibility": "old source responsibility retained; current owner/authority unresolved",
+      "source_spans": [
+        "IPCは不正JSON、schema不一致、oversize、sequence欠落、worker crash、timeout、cancel、backpressure、親process消失をfail-closeし、partial resultを正本へ昇格しない。"
+      ],
+      "atom_ids": [
+        "NFR14-OS-A01"
+      ],
+      "atom_count": 1,
+      "composite_unresolved_count": 1,
+      "shared_source_overlaps": [],
+      "asset_chain": [
+        "LEGACY-ASSET-2E0E6FFB913F2A4DA67B",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-F67008331E92FA0A5773"
+      ],
+      "historical_failure_codes": [
+        "HIL_WORKER_JSON_INVALID",
+        "HIL_WORKER_PAYLOAD_OVERSIZE",
+        "HIL_WORKER_SEQUENCE_GAP",
+        "HIL_WORKER_TIMEOUT",
+        "HIL_WORKER_CRASHED",
+        "HIL_WORKER_BACKPRESSURE_EXCEEDED",
+        "HIL_WORKER_PARENT_LOST",
+        "HIL_IPC_FAIL_OPEN"
+      ],
+      "historical_consumers": [
+        "PythonWorkerBroker",
+        "HOT-HIL-24"
+      ],
+      "current_consumer": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-21-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-21",
+      "source_statement_text": "user directive/findingの原記録はappend-onlyで、AI dispositionは原記録を削除・不可視化・終端化しない。PO以外のcancel/supersedeと、独立reviewなしのfalse-positive/accepted-riskを拒否する。",
+      "source_statement_semantic_digest": "sha256:91fa0cf1803312552c129591509e87b6b6cb98a2c5abe24b33a48001ee2d027c",
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:5285",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:201"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "routing_candidate": "single_product",
+      "routing_state": "candidate_product_routing_requires_human_review",
+      "routing_hold": null,
+      "phase_candidates": [
+        "PHCAP-12"
+      ],
+      "responsibility": "old source responsibility retained; current owner/authority unresolved",
+      "source_spans": [
+        "user directive/findingの原記録はappend-onlyで、AI dispositionは原記録を削除・不可視化・終端化しない。PO以外のcancel/supersedeと、独立reviewなしのfalse-positive/accepted-riskを拒否する。"
+      ],
+      "atom_ids": [
+        "NFR21-OS-A01"
+      ],
+      "atom_count": 1,
+      "composite_unresolved_count": 1,
+      "shared_source_overlaps": [],
+      "asset_chain": [
+        "LEGACY-ASSET-4FED0B46C22941761357",
+        "LEGACY-ASSET-943484807D702E10503B",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "historical_failure_codes": [
+        "duplicate target",
+        "false-positive unverified",
+        "risk approval missing",
+        "unauthorized cancel",
+        "append-only violation"
+      ],
+      "historical_consumers": [
+        "DirectiveCustodyGate",
+        "HOT-HIL-36"
+      ],
+      "current_consumer": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-01-HELIX-OS",
+      "source_requirement_id": "HIL-TR-01",
+      "source_statement_text": "HELIX control planeはTypeScript strict＋Node.jsを唯一の正規runtimeとし、Bun固有API・command・lockfile・CI・distribution契約をactive surfaceから除去する。",
+      "source_statement_semantic_digest": "sha256:20132aa5c7cc5ca9107e826e3ee2be6b3eb959414424594fb8dfbf317b1c5afc",
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:6165",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:165"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "routing_candidate": "single_product",
+      "routing_state": "candidate_product_routing_requires_human_review",
+      "routing_hold": {
+        "decision_id": "IR-ROUTE-Q1",
+        "reason": "runtime_or_technology_constraint_product_contract_vs_internal_implementation",
+        "status": "unresolved",
+        "unit_candidate_id": "IRUNIT-HIL-TR-01-HELIX-OS"
+      },
+      "phase_candidates": [
+        "PHCAP-11",
+        "PHCAP-14"
+      ],
+      "responsibility": "old source responsibility retained; current owner/authority unresolved",
+      "source_spans": [
+        "HELIX control planeはTypeScript strict＋Node.jsを唯一の正規runtimeとし、Bun固有API・command・lockfile・CI・distribution契約をactive surfaceから除去する。"
+      ],
+      "atom_ids": [
+        "TR01-OS-A01"
+      ],
+      "atom_count": 1,
+      "composite_unresolved_count": 1,
+      "shared_source_overlaps": [],
+      "asset_chain": [
+        "LEGACY-ASSET-04C6A8AFA15A1BDF0A1D",
+        "LEGACY-ASSET-1B413588CFF3B1360B49",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "historical_failure_codes": [
+        "HIL_NODE_CONTROL_PLANE_INVALID",
+        "HIL_ACTIVE_BUN_*"
+      ],
+      "historical_consumers": [
+        "NodeControlPlane",
+        "BunDependencyCoverageGate"
+      ],
+      "current_consumer": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-HARNESS",
+      "source_requirement_id": "HIL-TR-08",
+      "source_statement_text": "Node↔Pythonの初期正規IPCはchild process＋versioned JSON Lines over stdioとし、stdoutをprotocol、stderrを診断専用にする。envelopeはschema/run/request/type/sequence/deadline/payload digestを持つ。",
+      "source_statement_semantic_digest": "sha256:4b8901dea297c274a7055c0c26840eef6a309aec0647557573de9372ffed2c95",
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:6466",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:172"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_target": [
+        "HELIX-HARNESS"
+      ],
+      "routing_candidate": "split_required",
+      "routing_state": "candidate_product_routing_requires_human_review",
+      "routing_hold": null,
+      "phase_candidates": [],
+      "responsibility": "old source responsibility retained; current owner/authority unresolved",
+      "source_spans": [
+        "Node↔Pythonの初期正規IPCはchild process＋versioned JSON Lines over stdioとし",
+        "envelopeはschema/run/request/type/sequence/deadline/payload digestを持つ"
+      ],
+      "atom_ids": [
+        "TR08-HARNESS-A01",
+        "TR08-HARNESS-A02"
+      ],
+      "atom_count": 2,
+      "composite_unresolved_count": 1,
+      "shared_source_overlaps": [
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-OS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        },
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-OS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        },
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-OS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        }
+      ],
+      "asset_chain": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-AF48B1E70AF60FEEE287",
+        "LEGACY-ASSET-BC2275DCE9BFFCF813C8"
+      ],
+      "historical_failure_codes": [
+        "HIL_IPC_ENVELOPE_INVALID",
+        "HIL_WORKER_PAYLOAD_DIGEST_MISMATCH"
+      ],
+      "historical_consumers": [
+        "PythonWorkerBroker"
+      ],
+      "current_consumer": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-OS",
+      "source_requirement_id": "HIL-TR-08",
+      "source_statement_text": "Node↔Pythonの初期正規IPCはchild process＋versioned JSON Lines over stdioとし、stdoutをprotocol、stderrを診断専用にする。envelopeはschema/run/request/type/sequence/deadline/payload digestを持つ。",
+      "source_statement_semantic_digest": "sha256:4b8901dea297c274a7055c0c26840eef6a309aec0647557573de9372ffed2c95",
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:6466",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:172"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "routing_candidate": "split_required",
+      "routing_state": "candidate_product_routing_requires_human_review",
+      "routing_hold": null,
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "responsibility": "old source responsibility retained; current owner/authority unresolved",
+      "source_spans": [
+        "child process＋versioned JSON Lines over stdio",
+        "stdoutをprotocol、stderrを診断専用にする"
+      ],
+      "atom_ids": [
+        "TR08-OS-A01",
+        "TR08-OS-A02"
+      ],
+      "atom_count": 2,
+      "composite_unresolved_count": 1,
+      "shared_source_overlaps": [
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        },
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        },
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        }
+      ],
+      "asset_chain": [
+        "LEGACY-ASSET-61D85EE372040EBCB68B",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-BC2275DCE9BFFCF813C8"
+      ],
+      "historical_failure_codes": [
+        "HIL_IPC_ENVELOPE_INVALID",
+        "HIL_WORKER_PAYLOAD_DIGEST_MISMATCH"
+      ],
+      "historical_consumers": [
+        "PythonWorkerBroker"
+      ],
+      "current_consumer": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run"
+    }
+  ],
+  "product_candidates": {
+    "HELIX-HARNESS": 1,
+    "HELIX-OS": 4,
+    "HELIX-Web": 0,
+    "HELIX-Web-OS": 0,
+    "unresolved_product_authority": 5
+  },
+  "cumulative_denominator": {
+    "prior_units": 151,
+    "prior_edges": 450,
+    "wave39_units": 5,
+    "wave39_edges": 15,
+    "cumulative_units": 156,
+    "cumulative_edges": 465,
+    "remaining_units": 62
+  },
+  "unknowns": [
+    "authority",
+    "successor",
+    "current_implementation",
+    "degradation",
+    "phase admission",
+    "consumer closure",
+    "failure outcome",
+    "acceptance",
+    "release",
+    "deployment"
+  ],
+  "historical_conflicts": [
+    "旧Node/Bun runtime source is historical and does not prove current implementation",
+    "TR08 shared protocol wording does not decide HARNESS versus OS ownership",
+    "IR-ROUTE-Q1 remains unresolved",
+    "BR19 selected asset LEGACY-ASSET-4AB89A46AE3C74CD5584 is excluded as already reviewed"
+  ],
+  "forbidden_transitions": [
+    "historical source -> current authority",
+    "catalog candidate -> current implementation",
+    "phase candidate -> admission",
+    "candidate product -> owner",
+    "old test source -> executed evidence",
+    "TR08 shared source -> one-product routing",
+    "Web=0 -> invented Web routing"
+  ]
+}

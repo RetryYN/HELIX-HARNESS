@@ -1,0 +1,1137 @@
+{
+  "ancestor_base_gate": {
+    "checked_by": "validate.py",
+    "mode": "base_or_descendant",
+    "required_base_revision": "38d38f47794e70d621403ad8dbeac56518a76766"
+  },
+  "asset_status_receipts": [
+    {
+      "asset_id": "LEGACY-ASSET-04C6A8AFA15A1BDF0A1D",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-1B413588CFF3B1360B49",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": null,
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-2E0E6FFB913F2A4DA67B",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4FED0B46C22941761357",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": null,
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-61D85EE372040EBCB68B",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-943484807D702E10503B",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "copy_read_after_records": [
+        {
+          "consumer_match": true,
+          "consumer_refs_observed": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "digest_match": true,
+          "failure": null,
+          "read_after_id": "READ-REQ-SNAPSHOT-A60CF91DD2AF6693E6F9"
+        }
+      ],
+      "decision_ids": [
+        {
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_id": "REQ-SNAPSHOT-A60CF91DD2AF6693E6F9",
+          "decision_revision": "PO-directive-requirements-preservation-2026-09-15",
+          "disposition": "source_snapshot_preservation"
+        },
+        {
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_id": "REQ-SNAPSHOT-CORRECTION-A60CF91DD2AF6693E6F9",
+          "decision_revision": null,
+          "disposition": "source_snapshot_preservation"
+        }
+      ],
+      "disposition_records": [
+        {
+          "authority_status": null,
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-A60CF91DD2AF6693E6F9",
+          "disposition": "source_snapshot_preservation",
+          "implementation_status": "non_executable_read_only_source",
+          "read_after_record_ref": "docs/governance/legacy-asset-copy-read-after.jsonl#READ-REQ-SNAPSHOT-A60CF91DD2AF6693E6F9",
+          "reuse_exclusion_class": null,
+          "revision": 3
+        }
+      ],
+      "failure_status": "historical_failure_field_preserved",
+      "historical_consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-AF48B1E70AF60FEEE287",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-BC2275DCE9BFFCF813C8",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": null,
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F67008331E92FA0A5773",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": null,
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    }
+  ],
+  "authority_effect": "none",
+  "batch_id": "LEGACY-SEMANTIC-WAVE39-2026-09-22",
+  "bounded_search_receipts": {
+    "IRUNIT-HIL-NFR-14-HELIX-OS": {
+      "candidate_asset_count": 2199,
+      "candidate_asset_ids_sha256": "sha256:eae00029baeb4fd28aeefa37fbc26818a7b510f77764449ef2b8ca57fd419817",
+      "catalog_record_count": 4020,
+      "phase_pool_asset_count": 418,
+      "phase_pool_asset_ids_sha256": "sha256:0ead93a3573866906009c5ecf0fb5bb0b0761ef0f09d262333092526b3d15146",
+      "query": {
+        "anchors": [
+          "worker",
+          "Codex"
+        ],
+        "match_mode": "archive_file_contains_any_utf8_anchor"
+      },
+      "selected_asset_ids": [
+        "LEGACY-ASSET-2E0E6FFB913F2A4DA67B",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-F67008331E92FA0A5773"
+      ],
+      "unreviewed_asset_count": 2196,
+      "unreviewed_asset_ids_sha256": "sha256:444ff04098c6ab46dcd96a6dd5237d59481f262a613135b4f24811a8b438443b"
+    },
+    "IRUNIT-HIL-NFR-21-HELIX-OS": {
+      "candidate_asset_count": 3490,
+      "candidate_asset_ids_sha256": "sha256:a61422491f3dbe3d0e8454578dd1037b33212ef9bfe4c622461ffd15e01cdefd",
+      "catalog_record_count": 4020,
+      "phase_pool_asset_count": 147,
+      "phase_pool_asset_ids_sha256": "sha256:d7ac281ebc16b817dfaf1c0e3b608ad76d9a2924e1cccc36cb6caf07f28cf1cc",
+      "query": {
+        "anchors": [
+          "review",
+          "receipt",
+          "PLAN"
+        ],
+        "match_mode": "archive_file_contains_any_utf8_anchor"
+      },
+      "selected_asset_ids": [
+        "LEGACY-ASSET-4FED0B46C22941761357",
+        "LEGACY-ASSET-943484807D702E10503B",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "unreviewed_asset_count": 3487,
+      "unreviewed_asset_ids_sha256": "sha256:dc507aa72de0c8be9e9d176218921418cdd0d0caa8fe7ed054e3b3b1e3abc5ec"
+    },
+    "IRUNIT-HIL-TR-01-HELIX-OS": {
+      "candidate_asset_count": 918,
+      "candidate_asset_ids_sha256": "sha256:51928ad36a4d67bd769e1e6b4e81635c1405bb86d869f175cfd08ad74be52819",
+      "catalog_record_count": 4020,
+      "phase_pool_asset_count": 245,
+      "phase_pool_asset_ids_sha256": "sha256:c442dcf495be551f34ebb0e4145dbeede6f8ee1c048af22e86d254d07f0da03b",
+      "query": {
+        "anchors": [
+          "Node",
+          "Bun",
+          "distribution"
+        ],
+        "match_mode": "archive_file_contains_any_utf8_anchor"
+      },
+      "selected_asset_ids": [
+        "LEGACY-ASSET-04C6A8AFA15A1BDF0A1D",
+        "LEGACY-ASSET-1B413588CFF3B1360B49",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "unreviewed_asset_count": 915,
+      "unreviewed_asset_ids_sha256": "sha256:bfa167e47a4393789b014414cbc9e6b035bc1a156ad4d9fe44724d73789995f3"
+    },
+    "IRUNIT-HIL-TR-08-HELIX-HARNESS": {
+      "candidate_asset_count": 2671,
+      "candidate_asset_ids_sha256": "sha256:b55d7e7dc3a337c9e3edc8e5f8057ced799b37ccc60852c5d4020f5a0c13869c",
+      "catalog_record_count": 4020,
+      "phase_pool_asset_count": 0,
+      "phase_pool_asset_ids_sha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "query": {
+        "anchors": [
+          "Python",
+          "worker",
+          "review"
+        ],
+        "match_mode": "archive_file_contains_any_utf8_anchor"
+      },
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-AF48B1E70AF60FEEE287",
+        "LEGACY-ASSET-BC2275DCE9BFFCF813C8"
+      ],
+      "unreviewed_asset_count": 2668,
+      "unreviewed_asset_ids_sha256": "sha256:354b69a4386b3e78fdcc3246f8395938e22bec5c22660df8de677bf5f8555f71"
+    },
+    "IRUNIT-HIL-TR-08-HELIX-OS": {
+      "candidate_asset_count": 91,
+      "candidate_asset_ids_sha256": "sha256:919755d1a48beb70002272dd28fd40fed0fc8d0c2f8782e5f19338185b6cf194",
+      "catalog_record_count": 4020,
+      "phase_pool_asset_count": 418,
+      "phase_pool_asset_ids_sha256": "sha256:0ead93a3573866906009c5ecf0fb5bb0b0761ef0f09d262333092526b3d15146",
+      "query": {
+        "anchors": [
+          "stdio"
+        ],
+        "match_mode": "archive_file_contains_any_utf8_anchor"
+      },
+      "selected_asset_ids": [
+        "LEGACY-ASSET-61D85EE372040EBCB68B",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-BC2275DCE9BFFCF813C8"
+      ],
+      "unreviewed_asset_count": 88,
+      "unreviewed_asset_ids_sha256": "sha256:dd9c9e65eac22475aa66bbaae035943a831c84a203ddd92e35c86dd2108bf192"
+    }
+  },
+  "composite_unresolved_count": 5,
+  "consumer_closure_status": "pending",
+  "cumulative_reviewed_edge_count": 465,
+  "cumulative_reviewed_unit_count": 156,
+  "current_tree_revision": "38d38f47794e70d621403ad8dbeac56518a76766",
+  "inputs": {
+    "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+    "docs/concept/product-boundary.md": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+    "docs/governance/legacy-asset-copy-read-after.jsonl": "sha256:9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+    "docs/governance/legacy-asset-decisions.jsonl": "sha256:cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+    "docs/governance/legacy-asset-disposition.jsonl": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "docs/governance/legacy-ir-document-source-relation.jsonl": "sha256:f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+    "docs/governance/legacy-ir-target-routing-queue.jsonl": "sha256:b543e5ae6009f1f5ae3d4617aa2bb5b809cc92ff83f8ce62cd6ae77e1ef2b2f3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave1.meta.json": "sha256:43db97a01faeee37608f9aa1a49ae6f0b6982dc75faa25b7adba2d4a456a38d5",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl": "sha256:f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave10.meta.json": "sha256:ee88ea1098a38943ae8751f6624fe645c6968411c13149b70e29baf05738f414",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl": "sha256:66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave11.meta.json": "sha256:ad54d937f1b3f281fbb2e5bcd377cdea1ba64296fad9dcbade9a93788484096c",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl": "sha256:1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave12.meta.json": "sha256:142e1c6ffe86e1fb5bc9bc80fba4e3ff0e21a90fa350f2e6b95bbf9f590915ae",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl": "sha256:f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave13.meta.json": "sha256:1b21db4f98ca783f528ffdfc4ed7b4317764ff9068de69e51f196dcc3f79110b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl": "sha256:361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave14.meta.json": "sha256:96f1181c43ff5d97c4904e1f0e25012e9f30f670459eaf25bbb319f2f2d8cd57",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl": "sha256:fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave15.meta.json": "sha256:ee03cf3175ac091aa71a486cf8851aadb0691e5a806ccc36c45eb1cc9158923f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.meta.json": "sha256:31392b688592d2087cfe3bd7309ebbb7fcf86baa3a5135441f0c61f56cd3fad3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl": "sha256:85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave17.meta.json": "sha256:aa0ed16c81f52526c60d7d3013ed93a18e644335cda154a31215cd98ff4a11e3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave18.meta.json": "sha256:85c2642a217d1f57f09f4b296da6f9e45cf66afd530b84caea37cfb751b96869",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave19.jsonl": "sha256:93024399f21cf03c439a81935f473b07e57e0827efb39ce05c0be64a7432a258",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave19.meta.json": "sha256:1290ec19183a8e6eb472fe672b7f0c42cc03c7390eac3ea3f72a3a7b171e8abc",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave2.meta.json": "sha256:711f3c4b24e0becc0568072393b42d1b9a3e1046b5b408b8a7b7c6c2d6146b79",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave20.jsonl": "sha256:e7983f9a07bd4ca939450e034b24499daaeff889317e7789779d82a90adafe49",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave20.meta.json": "sha256:0091c5ff7a1128fd3340833f35875064d04a9f2fd60a737edd87bf04a51c0e9d",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave21.jsonl": "sha256:8b726497d90cd4c430cafb5646765099af5898c1fd4200b693412b95ac1e0264",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave21.meta.json": "sha256:04b52ed3008ef7f936bac0fd491956e0bc8955c774cf16318dc12b095ed0aa05",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave22.jsonl": "sha256:f86ec2357fc2a79f18310a09bf8eee7cbabf5e620d86d671aec6f76987826dcc",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave22.meta.json": "sha256:b4c843e5559b765d02eb8db2adc2b78086ac5df805edea4b28e69952c71c1371",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonl": "sha256:b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave23.meta.json": "sha256:ac1bc16b4ebe1f567c252a93d1e2e6d2da5c5ed4d4c2d001e49e791e9ae510d5",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave24.jsonl": "sha256:bda37af1258af965f5137d063ba134b3185eaec7f1d88ba03d64a0e94efcb455",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave24.meta.json": "sha256:54d57f31ab82d4e1521919fb24ce323ce9bdf9531cd58932f1f6d4fcc5b84c2d",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave25.jsonl": "sha256:d30e7658f2d82448f56b85a516c416b1b1ddf4f14c82a592b71842d2e5f37bb3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave25.meta.json": "sha256:ae2a28612e0eac2a3195b1c9856983328fba1b661782bf82c62687200bc959c5",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave26.jsonl": "sha256:e196c2d6abae0db6f00faa0502356a7bdff6de234bfe5a504dfdd5e6bebb699b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave26.meta.json": "sha256:3987aedf08903486ad11056c273b64759fcfafff6ebd5eda5be919ead6459d41",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonl": "sha256:9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave27.meta.json": "sha256:d799be28f38e247371291175d61ced53b0daac55a1937b110125f9fa911dc42a",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl": "sha256:1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave28.meta.json": "sha256:6425831671ea71fba6e7e5aa3fad509854cbd64a2e783d88a84094c33b8a2534",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave29.meta.json": "sha256:a3443a93710741e8c05c329e640e2c6cb780c81a8ab1a9a11c5c0a0ff4dbd76a",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave3.meta.json": "sha256:3d40977879de7be93eaa6b35b651c6af9a7fb6132a74621300f2429eba931a14",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave30.jsonl": "sha256:a7e3e9d86d91fbd783cc5581611dc7e7f9a7f199a03e9d312f01f24fd8c4613f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave30.meta.json": "sha256:74d3c70cd22f70a2348376dde69026db049cb4be672a2559cfc03a72741962ab",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave31.jsonl": "sha256:51d54950943f7bc251a1bc22a103a2d3b81dc9190cdd778cce0178d857039383",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave31.meta.json": "sha256:3275e4a9161c047710fcafe0593c4a7e4705b0e125cc910fff12a45beefd7343",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave32.jsonl": "sha256:e9e51ed364e9f76cb02f7b66f364f87486ac95aaa43fd010645c789fcecd09fe",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave32.meta.json": "sha256:fdc01affe69af904a762492fd55dd724fc16866be7d62c3335142c0db47904ea",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonl": "sha256:701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave33.meta.json": "sha256:5926fc591f3e64878d7ed3071accac9834d8b2f4eaa3aa059ca9bde85b92dfd7",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave34.jsonl": "sha256:4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave34.meta.json": "sha256:b6f52ecc6bcc0eb7c946049ddafe70fe41e1399c7da1b62de1f66f8f85545e78",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave35.jsonl": "sha256:02713e03967810fb7ba6faf6b7c9dd561c45fbd36c23972317d8603c1fde2b12",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave35.meta.json": "sha256:e1729dc71e3e9a45d94f22ab73e7012cad5d28d7750701d0ce948b76c89a7ed2",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl": "sha256:fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave36.meta.json": "sha256:980f3593b44fd427296887325e7b252867eff436d66ceaf363ecb31fb69aa7ce",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave4.meta.json": "sha256:d59c92a3f0e770fa24d8ef2c781798dab58a3e9bb3085640305aefa000da5c23",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave5.meta.json": "sha256:604c1e3ddd1826ea3264e77e7f1c40118a5836ccf9164df4811d8c8884674fee",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl": "sha256:eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave6.meta.json": "sha256:397ad44cece596a8247b61e2679ac91010928f05cc3be2c8266ee843db11b45b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl": "sha256:610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave7.meta.json": "sha256:bb91b054dc5b86d777332e8b0d44995b8792273124f1478e8119b4a16a50195c",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl": "sha256:82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave8.meta.json": "sha256:09705497381dbb8a9ae35290b222ef818aee9698fdcd3ecbda19da8ed056aeff",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave9.meta.json": "sha256:a1791b6b5198d62d793d0a14b216141e57c49da643f6cbebc14a1397b7bdf504",
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "sha256:8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+    "docs/governance/phase-capability-inventory.json": "sha256:9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+    "docs/helix-harness/L1-planning/product-intent.md": "sha256:a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+    "docs/helix-os/L1-planning/system-intent.md": "sha256:0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+    "docs/helix-web-os/L1-planning/system-intent.md": "sha256:600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+    "docs/helix-web/L1-planning/product-intent.md": "sha256:26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+    "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl": "sha256:25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a",
+    "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.meta.json": "sha256:6e38f8169c4a7fda0cac19a679acd9c164dc5f036376b001339bd2e9c0957d36",
+    "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl": "sha256:df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8",
+    "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.meta.json": "sha256:0600255c3bd0486041f006d2dd8b7a959bd86ca7e6e12519d8c9ef7d68db3527"
+  },
+  "inspected_legacy_asset_ids": [
+    "LEGACY-ASSET-04C6A8AFA15A1BDF0A1D",
+    "LEGACY-ASSET-08488BBF033F37F536AB",
+    "LEGACY-ASSET-1B413588CFF3B1360B49",
+    "LEGACY-ASSET-2E0E6FFB913F2A4DA67B",
+    "LEGACY-ASSET-4FED0B46C22941761357",
+    "LEGACY-ASSET-50A93B0E753DC3840E03",
+    "LEGACY-ASSET-61D85EE372040EBCB68B",
+    "LEGACY-ASSET-943484807D702E10503B",
+    "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "LEGACY-ASSET-AF48B1E70AF60FEEE287",
+    "LEGACY-ASSET-BC2275DCE9BFFCF813C8",
+    "LEGACY-ASSET-F15959C1E9E9256ED64B",
+    "LEGACY-ASSET-F67008331E92FA0A5773"
+  ],
+  "legacy_execution_performed": false,
+  "main_merge_parents": [
+    "dbcc0f332704302d2f8181479552e7198f102db7",
+    "41a792110329e904c667896568cc6c4e7392c5d6"
+  ],
+  "main_merge_revision": "38d38f47794e70d621403ad8dbeac56518a76766",
+  "missing_evidence_receipts": [],
+  "new_build_allowed": false,
+  "output_sha256": "sha256:c94785daaef0f3a2546e3d7a906e606d499a81e180d65dcc2c5d7ffd04996c8d",
+  "parent_revision": "38d38f47794e70d621403ad8dbeac56518a76766",
+  "phase_rows": {
+    "IRUNIT-HIL-NFR-14-HELIX-OS": [
+      {
+        "catalog_asset_count": 471,
+        "current_status": "draft_requirement_and_bootstrap_decision",
+        "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+        "legacy_capability_status": "implemented_with_tests",
+        "phase_id": "PHCAP-10",
+        "product_intersection_count": 418,
+        "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+      }
+    ],
+    "IRUNIT-HIL-NFR-21-HELIX-OS": [
+      {
+        "catalog_asset_count": 303,
+        "current_status": "scaffold_operating",
+        "gap": "正式配送、receipt schema、再開、provider境界が未成立",
+        "legacy_capability_status": "implemented_with_tests",
+        "phase_id": "PHCAP-12",
+        "product_intersection_count": 147,
+        "transition_assessment": "degraded_to_operating_contract_and_gui_scaffold"
+      }
+    ],
+    "IRUNIT-HIL-TR-01-HELIX-OS": [
+      {
+        "catalog_asset_count": 405,
+        "current_status": "candidate",
+        "gap": "新世代CI、CI固有Scaffold Binding、責務別profile、現行oracleが未構築。一般Scaffoldのlocal検査はCI能力として数えない",
+        "legacy_capability_status": "implemented_with_workflow_and_test_design",
+        "phase_id": "PHCAP-11",
+        "product_intersection_count": 217,
+        "transition_assessment": "degraded_to_candidate"
+      },
+      {
+        "catalog_asset_count": 123,
+        "current_status": "requirement_candidate",
+        "gap": "製品別release責務、artifact、promotion、rollbackの正式契約が未成立",
+        "legacy_capability_status": "implemented_partial_with_test_design",
+        "phase_id": "PHCAP-14",
+        "product_intersection_count": 33,
+        "transition_assessment": "degraded_to_candidate"
+      }
+    ],
+    "IRUNIT-HIL-TR-08-HELIX-HARNESS": [],
+    "IRUNIT-HIL-TR-08-HELIX-OS": [
+      {
+        "catalog_asset_count": 471,
+        "current_status": "draft_requirement_and_bootstrap_decision",
+        "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+        "legacy_capability_status": "implemented_with_tests",
+        "phase_id": "PHCAP-10",
+        "product_intersection_count": 418,
+        "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+      }
+    ]
+  },
+  "prior_fixed_input_digests": {
+    "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "docs/governance/legacy-ir-document-source-relation.jsonl": "sha256:f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+    "docs/governance/phase-capability-inventory.json": "sha256:9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
+  },
+  "prior_review_batches": [
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE1-2026-09-21",
+      "ledger_sha256": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
+      "meta_sha256": "sha256:43db97a01faeee37608f9aa1a49ae6f0b6982dc75faa25b7adba2d4a456a38d5"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE2-2026-09-21",
+      "ledger_sha256": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce",
+      "meta_sha256": "sha256:711f3c4b24e0becc0568072393b42d1b9a3e1046b5b408b8a7b7c6c2d6146b79"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE3-2026-09-21",
+      "ledger_sha256": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
+      "meta_sha256": "sha256:3d40977879de7be93eaa6b35b651c6af9a7fb6132a74621300f2429eba931a14"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE4-2026-09-21",
+      "ledger_sha256": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
+      "meta_sha256": "sha256:d59c92a3f0e770fa24d8ef2c781798dab58a3e9bb3085640305aefa000da5c23"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE5-2026-09-21",
+      "ledger_sha256": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
+      "meta_sha256": "sha256:604c1e3ddd1826ea3264e77e7f1c40118a5836ccf9164df4811d8c8884674fee"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE6-2026-09-21",
+      "ledger_sha256": "sha256:eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4",
+      "meta_sha256": "sha256:397ad44cece596a8247b61e2679ac91010928f05cc3be2c8266ee843db11b45b"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE7-2026-09-21",
+      "ledger_sha256": "sha256:610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f",
+      "meta_sha256": "sha256:bb91b054dc5b86d777332e8b0d44995b8792273124f1478e8119b4a16a50195c"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE8-2026-09-21",
+      "ledger_sha256": "sha256:82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0",
+      "meta_sha256": "sha256:09705497381dbb8a9ae35290b222ef818aee9698fdcd3ecbda19da8ed056aeff"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE9-2026-09-21",
+      "ledger_sha256": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e",
+      "meta_sha256": "sha256:a1791b6b5198d62d793d0a14b216141e57c49da643f6cbebc14a1397b7bdf504"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE10-2026-09-21",
+      "ledger_sha256": "sha256:f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef",
+      "meta_sha256": "sha256:ee88ea1098a38943ae8751f6624fe645c6968411c13149b70e29baf05738f414"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE11-2026-09-21",
+      "ledger_sha256": "sha256:66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0",
+      "meta_sha256": "sha256:ad54d937f1b3f281fbb2e5bcd377cdea1ba64296fad9dcbade9a93788484096c"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE12-2026-09-21",
+      "ledger_sha256": "sha256:1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566",
+      "meta_sha256": "sha256:142e1c6ffe86e1fb5bc9bc80fba4e3ff0e21a90fa350f2e6b95bbf9f590915ae"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE13-2026-09-21",
+      "ledger_sha256": "sha256:f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f",
+      "meta_sha256": "sha256:1b21db4f98ca783f528ffdfc4ed7b4317764ff9068de69e51f196dcc3f79110b"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE14-2026-09-21",
+      "ledger_sha256": "sha256:361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199",
+      "meta_sha256": "sha256:96f1181c43ff5d97c4904e1f0e25012e9f30f670459eaf25bbb319f2f2d8cd57"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE15-2026-09-21",
+      "ledger_sha256": "sha256:fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953",
+      "meta_sha256": "sha256:ee03cf3175ac091aa71a486cf8851aadb0691e5a806ccc36c45eb1cc9158923f"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE16-2026-09-21",
+      "ledger_sha256": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
+      "meta_sha256": "sha256:31392b688592d2087cfe3bd7309ebbb7fcf86baa3a5135441f0c61f56cd3fad3"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE17-2026-09-21",
+      "ledger_sha256": "sha256:85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac",
+      "meta_sha256": "sha256:aa0ed16c81f52526c60d7d3013ed93a18e644335cda154a31215cd98ff4a11e3"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE18-2026-09-21",
+      "ledger_sha256": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15",
+      "meta_sha256": "sha256:85c2642a217d1f57f09f4b296da6f9e45cf66afd530b84caea37cfb751b96869"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE19-2026-09-21",
+      "ledger_sha256": "sha256:93024399f21cf03c439a81935f473b07e57e0827efb39ce05c0be64a7432a258",
+      "meta_sha256": "sha256:1290ec19183a8e6eb472fe672b7f0c42cc03c7390eac3ea3f72a3a7b171e8abc"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE20-2026-09-21",
+      "ledger_sha256": "sha256:e7983f9a07bd4ca939450e034b24499daaeff889317e7789779d82a90adafe49",
+      "meta_sha256": "sha256:0091c5ff7a1128fd3340833f35875064d04a9f2fd60a737edd87bf04a51c0e9d"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE21-2026-09-21",
+      "ledger_sha256": "sha256:8b726497d90cd4c430cafb5646765099af5898c1fd4200b693412b95ac1e0264",
+      "meta_sha256": "sha256:04b52ed3008ef7f936bac0fd491956e0bc8955c774cf16318dc12b095ed0aa05"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE22-2026-09-21",
+      "ledger_sha256": "sha256:f86ec2357fc2a79f18310a09bf8eee7cbabf5e620d86d671aec6f76987826dcc",
+      "meta_sha256": "sha256:b4c843e5559b765d02eb8db2adc2b78086ac5df805edea4b28e69952c71c1371"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE23-2026-09-21",
+      "ledger_sha256": "sha256:b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423",
+      "meta_sha256": "sha256:ac1bc16b4ebe1f567c252a93d1e2e6d2da5c5ed4d4c2d001e49e791e9ae510d5"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE24-2026-09-22",
+      "ledger_sha256": "sha256:bda37af1258af965f5137d063ba134b3185eaec7f1d88ba03d64a0e94efcb455",
+      "meta_sha256": "sha256:54d57f31ab82d4e1521919fb24ce323ce9bdf9531cd58932f1f6d4fcc5b84c2d"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE25-2026-09-22",
+      "ledger_sha256": "sha256:d30e7658f2d82448f56b85a516c416b1b1ddf4f14c82a592b71842d2e5f37bb3",
+      "meta_sha256": "sha256:ae2a28612e0eac2a3195b1c9856983328fba1b661782bf82c62687200bc959c5"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE26-2026-09-22",
+      "ledger_sha256": "sha256:e196c2d6abae0db6f00faa0502356a7bdff6de234bfe5a504dfdd5e6bebb699b",
+      "meta_sha256": "sha256:3987aedf08903486ad11056c273b64759fcfafff6ebd5eda5be919ead6459d41"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE27-2026-09-22",
+      "ledger_sha256": "sha256:9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6",
+      "meta_sha256": "sha256:d799be28f38e247371291175d61ced53b0daac55a1937b110125f9fa911dc42a"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE28-2026-09-22",
+      "ledger_sha256": "sha256:1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40",
+      "meta_sha256": "sha256:6425831671ea71fba6e7e5aa3fad509854cbd64a2e783d88a84094c33b8a2534"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE29-2026-09-22",
+      "ledger_sha256": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29",
+      "meta_sha256": "sha256:a3443a93710741e8c05c329e640e2c6cb780c81a8ab1a9a11c5c0a0ff4dbd76a"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE30-2026-09-22",
+      "ledger_sha256": "sha256:a7e3e9d86d91fbd783cc5581611dc7e7f9a7f199a03e9d312f01f24fd8c4613f",
+      "meta_sha256": "sha256:74d3c70cd22f70a2348376dde69026db049cb4be672a2559cfc03a72741962ab"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE31-2026-09-22",
+      "ledger_sha256": "sha256:51d54950943f7bc251a1bc22a103a2d3b81dc9190cdd778cce0178d857039383",
+      "meta_sha256": "sha256:3275e4a9161c047710fcafe0593c4a7e4705b0e125cc910fff12a45beefd7343"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE32-2026-09-22",
+      "ledger_sha256": "sha256:e9e51ed364e9f76cb02f7b66f364f87486ac95aaa43fd010645c789fcecd09fe",
+      "meta_sha256": "sha256:fdc01affe69af904a762492fd55dd724fc16866be7d62c3335142c0db47904ea"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE33-2026-09-22",
+      "ledger_sha256": "sha256:701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f",
+      "meta_sha256": "sha256:5926fc591f3e64878d7ed3071accac9834d8b2f4eaa3aa059ca9bde85b92dfd7"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE34-2026-09-22",
+      "ledger_sha256": "sha256:4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da",
+      "meta_sha256": "sha256:b6f52ecc6bcc0eb7c946049ddafe70fe41e1399c7da1b62de1f66f8f85545e78"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE35-2026-09-22",
+      "ledger_sha256": "sha256:02713e03967810fb7ba6faf6b7c9dd561c45fbd36c23972317d8603c1fde2b12",
+      "meta_sha256": "sha256:e1729dc71e3e9a45d94f22ab73e7012cad5d28d7750701d0ce948b76c89a7ed2"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE36-2026-09-22",
+      "ledger_sha256": "sha256:fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523",
+      "meta_sha256": "sha256:980f3593b44fd427296887325e7b252867eff436d66ceaf363ecb31fb69aa7ce"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE37-2026-09-22",
+      "ledger_sha256": "sha256:25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a",
+      "meta_sha256": "sha256:6e38f8169c4a7fda0cac19a679acd9c164dc5f036376b001339bd2e9c0957d36"
+    },
+    {
+      "batch_id": "LEGACY-SEMANTIC-WAVE38-2026-09-22",
+      "ledger_sha256": "sha256:df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8",
+      "meta_sha256": "sha256:0600255c3bd0486041f006d2dd8b7a959bd86ca7e6e12519d8c9ef7d68db3527"
+    }
+  ],
+  "record_count": 15,
+  "remaining_unit_count": 62,
+  "reviewed_edges": [
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-14-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F67008331E92FA0A5773",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-14-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-2E0E6FFB913F2A4DA67B",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-14-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-21-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4FED0B46C22941761357",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-21-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-943484807D702E10503B",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-21-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-TR-01-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-1B413588CFF3B1360B49",
+      "unit_candidate_id": "IRUNIT-HIL-TR-01-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-04C6A8AFA15A1BDF0A1D",
+      "unit_candidate_id": "IRUNIT-HIL-TR-01-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-BC2275DCE9BFFCF813C8",
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-AF48B1E70AF60FEEE287",
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-BC2275DCE9BFFCF813C8",
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-61D85EE372040EBCB68B",
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-OS"
+    }
+  ],
+  "reviewed_unit_ids": [
+    "IRUNIT-HIL-NFR-14-HELIX-OS",
+    "IRUNIT-HIL-NFR-21-HELIX-OS",
+    "IRUNIT-HIL-TR-01-HELIX-OS",
+    "IRUNIT-HIL-TR-08-HELIX-HARNESS",
+    "IRUNIT-HIL-TR-08-HELIX-OS"
+  ],
+  "routing_holds": [
+    {
+      "decision_id": "IR-ROUTE-Q1",
+      "reason": "runtime_or_technology_constraint_product_contract_vs_internal_implementation",
+      "status": "unresolved",
+      "unit_candidate_id": "IRUNIT-HIL-TR-01-HELIX-OS"
+    }
+  ],
+  "schema_revision": 10,
+  "semantic_atom_count": 7,
+  "semantic_link_counts": {
+    "confirmed": 5,
+    "rejected": 0,
+    "unresolved": 10
+  },
+  "source_atomization_holds": [
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-14-HELIX-OS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-21-HELIX-OS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": {
+        "decision_id": "IR-ROUTE-Q1",
+        "reason": "runtime_or_technology_constraint_product_contract_vs_internal_implementation",
+        "status": "unresolved"
+      },
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-TR-01-HELIX-OS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "split_required_pending_human_product_boundary_decision",
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "split_required_pending_human_product_boundary_decision",
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-OS"
+    }
+  ],
+  "source_main_base_revision": "38d38f47794e70d621403ad8dbeac56518a76766",
+  "source_requirement_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+  "source_requirement_ir_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+  "source_revision": "legacy-generation-2026-09-14",
+  "stacked_pr_parent_revision": "38d38f47794e70d621403ad8dbeac56518a76766",
+  "status": "candidate",
+  "supplemental_asset_receipts": [
+    {
+      "artifact_evidence_kind": "test_source",
+      "asset_id": "LEGACY-ASSET-08488BBF033F37F536AB",
+      "classification_id": "LASPH-3797",
+      "consumer_refs": [],
+      "current_implementation": "unknown_pending_direct_current_review",
+      "decision_count": 0,
+      "degradation": "unknown_pending_direct_current_review",
+      "legacy_execution_status": "not_run",
+      "legacy_implementation_status": "unknown",
+      "read_after_count": 0,
+      "selected_role_edge": false,
+      "source_path": "tests/provider-process-lifecycle.test.ts",
+      "source_sha256": "f353814309b1bda604f08e98ab36049c7f543b1abba77823c7c83deb2b057e09"
+    },
+    {
+      "artifact_evidence_kind": "test_design",
+      "asset_id": "LEGACY-ASSET-50A93B0E753DC3840E03",
+      "classification_id": "LASPH-2790",
+      "consumer_refs": [],
+      "current_implementation": "unknown_pending_direct_current_review",
+      "decision_count": 0,
+      "degradation": "unknown_pending_direct_current_review",
+      "legacy_execution_status": "not_run",
+      "legacy_implementation_status": "unknown",
+      "read_after_count": 0,
+      "selected_role_edge": false,
+      "source_path": "docs/test-design/helix/L9-worker-independent-review-system-test-design.md",
+      "source_sha256": "fd1bf27704c12072d56491ae66d21f9858f7275ec8c3f1a5e50714fd235eb672"
+    },
+    {
+      "artifact_evidence_kind": "test_design",
+      "asset_id": "LEGACY-ASSET-F15959C1E9E9256ED64B",
+      "classification_id": "LASPH-2560",
+      "consumer_refs": [],
+      "current_implementation": "unknown_pending_direct_current_review",
+      "decision_count": 0,
+      "degradation": "unknown_pending_direct_current_review",
+      "legacy_execution_status": "not_run",
+      "legacy_implementation_status": "unknown",
+      "read_after_count": 0,
+      "selected_role_edge": false,
+      "source_path": "docs/test-design/helix/L5-python-worker-runtime-integration-test-design.md",
+      "source_sha256": "06f494572775b32583fc4d1a23e4a602f088aa08c65f59ba93fac4e84dfa0c7c"
+    }
+  ],
+  "unit_aggregates": [
+    {
+      "direct_confirmed_implementation_asset_ids": [],
+      "phase_authority_status": "candidate_unchanged",
+      "reviewed_edge_count": 3,
+      "semantic_link_counts": {
+        "confirmed": 1,
+        "rejected": 0,
+        "unresolved": 2
+      },
+      "unit_candidate_id": "IRUNIT-HIL-NFR-14-HELIX-OS"
+    },
+    {
+      "direct_confirmed_implementation_asset_ids": [],
+      "phase_authority_status": "candidate_unchanged",
+      "reviewed_edge_count": 3,
+      "semantic_link_counts": {
+        "confirmed": 1,
+        "rejected": 0,
+        "unresolved": 2
+      },
+      "unit_candidate_id": "IRUNIT-HIL-NFR-21-HELIX-OS"
+    },
+    {
+      "direct_confirmed_implementation_asset_ids": [],
+      "phase_authority_status": "candidate_unchanged",
+      "reviewed_edge_count": 3,
+      "semantic_link_counts": {
+        "confirmed": 1,
+        "rejected": 0,
+        "unresolved": 2
+      },
+      "unit_candidate_id": "IRUNIT-HIL-TR-01-HELIX-OS"
+    },
+    {
+      "direct_confirmed_implementation_asset_ids": [],
+      "phase_authority_status": "candidate_unchanged",
+      "reviewed_edge_count": 3,
+      "semantic_link_counts": {
+        "confirmed": 1,
+        "rejected": 0,
+        "unresolved": 2
+      },
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+    },
+    {
+      "direct_confirmed_implementation_asset_ids": [],
+      "phase_authority_status": "candidate_unchanged",
+      "reviewed_edge_count": 3,
+      "semantic_link_counts": {
+        "confirmed": 1,
+        "rejected": 0,
+        "unresolved": 2
+      },
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-OS"
+    }
+  ],
+  "wave16_candidate_input_digests": {
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.meta.json": "sha256:31392b688592d2087cfe3bd7309ebbb7fcf86baa3a5135441f0c61f56cd3fad3"
+  },
+  "wave16_candidate_merge_base": "6dad906ed9a52c9e49611931645db2f298c6bf6a",
+  "wave16_candidate_ref": "74bfd04f7aa2384e1e30856ec6c29282b764e8c5",
+  "wave16_candidate_root": "current-tree:stacked-wave17",
+  "wave17_candidate_input_digests": {
+    "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl": "sha256:85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave17.meta.json": "sha256:aa0ed16c81f52526c60d7d3013ed93a18e644335cda154a31215cd98ff4a11e3"
+  },
+  "wave17_candidate_parent": "74bfd04f7aa2384e1e30856ec6c29282b764e8c5",
+  "wave17_candidate_ref": "cd88a4e24bc95613548edc17076b9a1d3dceb538",
+  "wave17_candidate_root": "current-tree:wave17",
+  "wave17_commit_parent": "74bfd04f7aa2384e1e30856ec6c29282b764e8c5",
+  "wave17_commit_ref": "cd88a4e24bc95613548edc17076b9a1d3dceb538",
+  "wave17_commit_root": "current-tree:wave17",
+  "wave18_candidate_input_digests": {
+    "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave18.meta.json": "sha256:85c2642a217d1f57f09f4b296da6f9e45cf66afd530b84caea37cfb751b96869"
+  },
+  "wave18_candidate_parent": "cd88a4e24bc95613548edc17076b9a1d3dceb538",
+  "wave18_candidate_ref": "e40f7f778117864dc2271af323977ca6e4fd1e4c",
+  "wave18_candidate_root": "current-tree:wave18-exact-e40f7f7",
+  "wave18_exact_head": "e40f7f778117864dc2271af323977ca6e4fd1e4c",
+  "wave19_candidate_input_digests": {
+    "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave1.meta.json": "sha256:43db97a01faeee37608f9aa1a49ae6f0b6982dc75faa25b7adba2d4a456a38d5",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl": "sha256:f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave10.meta.json": "sha256:ee88ea1098a38943ae8751f6624fe645c6968411c13149b70e29baf05738f414",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl": "sha256:66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave11.meta.json": "sha256:ad54d937f1b3f281fbb2e5bcd377cdea1ba64296fad9dcbade9a93788484096c",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl": "sha256:1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave12.meta.json": "sha256:142e1c6ffe86e1fb5bc9bc80fba4e3ff0e21a90fa350f2e6b95bbf9f590915ae",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl": "sha256:f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave13.meta.json": "sha256:1b21db4f98ca783f528ffdfc4ed7b4317764ff9068de69e51f196dcc3f79110b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl": "sha256:361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave14.meta.json": "sha256:96f1181c43ff5d97c4904e1f0e25012e9f30f670459eaf25bbb319f2f2d8cd57",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl": "sha256:fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave15.meta.json": "sha256:ee03cf3175ac091aa71a486cf8851aadb0691e5a806ccc36c45eb1cc9158923f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.meta.json": "sha256:31392b688592d2087cfe3bd7309ebbb7fcf86baa3a5135441f0c61f56cd3fad3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl": "sha256:85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave17.meta.json": "sha256:aa0ed16c81f52526c60d7d3013ed93a18e644335cda154a31215cd98ff4a11e3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave18.meta.json": "sha256:85c2642a217d1f57f09f4b296da6f9e45cf66afd530b84caea37cfb751b96869",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave2.meta.json": "sha256:711f3c4b24e0becc0568072393b42d1b9a3e1046b5b408b8a7b7c6c2d6146b79",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave3.meta.json": "sha256:3d40977879de7be93eaa6b35b651c6af9a7fb6132a74621300f2429eba931a14",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave4.meta.json": "sha256:d59c92a3f0e770fa24d8ef2c781798dab58a3e9bb3085640305aefa000da5c23",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave5.meta.json": "sha256:604c1e3ddd1826ea3264e77e7f1c40118a5836ccf9164df4811d8c8884674fee",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl": "sha256:eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave6.meta.json": "sha256:397ad44cece596a8247b61e2679ac91010928f05cc3be2c8266ee843db11b45b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl": "sha256:610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave7.meta.json": "sha256:bb91b054dc5b86d777332e8b0d44995b8792273124f1478e8119b4a16a50195c",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl": "sha256:82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave8.meta.json": "sha256:09705497381dbb8a9ae35290b222ef818aee9698fdcd3ecbda19da8ed056aeff",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave9.meta.json": "sha256:a1791b6b5198d62d793d0a14b216141e57c49da643f6cbebc14a1397b7bdf504",
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "sha256:8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+    "docs/governance/phase-capability-inventory.json": "sha256:9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
+  },
+  "wave19_candidate_parent": "e40f7f778117864dc2271af323977ca6e4fd1e4c",
+  "wave19_candidate_ref": "609338f19a6189b76f4e03a39fa0a2823ffadbf6",
+  "wave19_candidate_root": "609338f19a6189b76f4e03a39fa0a2823ffadbf6",
+  "wave19_exact_head": "609338f19a6189b76f4e03a39fa0a2823ffadbf6",
+  "wave20_candidate_input_digests": {
+    "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave1.meta.json": "sha256:43db97a01faeee37608f9aa1a49ae6f0b6982dc75faa25b7adba2d4a456a38d5",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl": "sha256:f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave10.meta.json": "sha256:ee88ea1098a38943ae8751f6624fe645c6968411c13149b70e29baf05738f414",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl": "sha256:66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave11.meta.json": "sha256:ad54d937f1b3f281fbb2e5bcd377cdea1ba64296fad9dcbade9a93788484096c",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl": "sha256:1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave12.meta.json": "sha256:142e1c6ffe86e1fb5bc9bc80fba4e3ff0e21a90fa350f2e6b95bbf9f590915ae",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl": "sha256:f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave13.meta.json": "sha256:1b21db4f98ca783f528ffdfc4ed7b4317764ff9068de69e51f196dcc3f79110b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl": "sha256:361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave14.meta.json": "sha256:96f1181c43ff5d97c4904e1f0e25012e9f30f670459eaf25bbb319f2f2d8cd57",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl": "sha256:fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave15.meta.json": "sha256:ee03cf3175ac091aa71a486cf8851aadb0691e5a806ccc36c45eb1cc9158923f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.meta.json": "sha256:31392b688592d2087cfe3bd7309ebbb7fcf86baa3a5135441f0c61f56cd3fad3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl": "sha256:85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave17.meta.json": "sha256:aa0ed16c81f52526c60d7d3013ed93a18e644335cda154a31215cd98ff4a11e3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave18.meta.json": "sha256:85c2642a217d1f57f09f4b296da6f9e45cf66afd530b84caea37cfb751b96869",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave19.jsonl": "sha256:93024399f21cf03c439a81935f473b07e57e0827efb39ce05c0be64a7432a258",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave19.meta.json": "sha256:1290ec19183a8e6eb472fe672b7f0c42cc03c7390eac3ea3f72a3a7b171e8abc",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave2.meta.json": "sha256:711f3c4b24e0becc0568072393b42d1b9a3e1046b5b408b8a7b7c6c2d6146b79",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave3.meta.json": "sha256:3d40977879de7be93eaa6b35b651c6af9a7fb6132a74621300f2429eba931a14",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave4.meta.json": "sha256:d59c92a3f0e770fa24d8ef2c781798dab58a3e9bb3085640305aefa000da5c23",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave5.meta.json": "sha256:604c1e3ddd1826ea3264e77e7f1c40118a5836ccf9164df4811d8c8884674fee",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl": "sha256:eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave6.meta.json": "sha256:397ad44cece596a8247b61e2679ac91010928f05cc3be2c8266ee843db11b45b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl": "sha256:610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave7.meta.json": "sha256:bb91b054dc5b86d777332e8b0d44995b8792273124f1478e8119b4a16a50195c",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl": "sha256:82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave8.meta.json": "sha256:09705497381dbb8a9ae35290b222ef818aee9698fdcd3ecbda19da8ed056aeff",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave9.meta.json": "sha256:a1791b6b5198d62d793d0a14b216141e57c49da643f6cbebc14a1397b7bdf504",
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "sha256:8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+    "docs/governance/phase-capability-inventory.json": "sha256:9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
+  },
+  "wave20_candidate_parent": "d9d1f3d8c9521314ba6ec73d9d877390defaf00c",
+  "wave20_candidate_ref": "68ab10163fe0b6025dd56fa5d34cd476f6110494",
+  "wave20_candidate_root": "current-tree:wave20-exact-68ab1016",
+  "wave20_exact_head": "68ab10163fe0b6025dd56fa5d34cd476f6110494",
+  "wave21_candidate_input_digests": {
+    "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave1.meta.json": "sha256:43db97a01faeee37608f9aa1a49ae6f0b6982dc75faa25b7adba2d4a456a38d5",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl": "sha256:f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave10.meta.json": "sha256:ee88ea1098a38943ae8751f6624fe645c6968411c13149b70e29baf05738f414",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl": "sha256:66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave11.meta.json": "sha256:ad54d937f1b3f281fbb2e5bcd377cdea1ba64296fad9dcbade9a93788484096c",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl": "sha256:1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave12.meta.json": "sha256:142e1c6ffe86e1fb5bc9bc80fba4e3ff0e21a90fa350f2e6b95bbf9f590915ae",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl": "sha256:f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave13.meta.json": "sha256:1b21db4f98ca783f528ffdfc4ed7b4317764ff9068de69e51f196dcc3f79110b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl": "sha256:361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave14.meta.json": "sha256:96f1181c43ff5d97c4904e1f0e25012e9f30f670459eaf25bbb319f2f2d8cd57",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl": "sha256:fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave15.meta.json": "sha256:ee03cf3175ac091aa71a486cf8851aadb0691e5a806ccc36c45eb1cc9158923f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave16.meta.json": "sha256:31392b688592d2087cfe3bd7309ebbb7fcf86baa3a5135441f0c61f56cd3fad3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl": "sha256:85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave17.meta.json": "sha256:aa0ed16c81f52526c60d7d3013ed93a18e644335cda154a31215cd98ff4a11e3",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave18.meta.json": "sha256:85c2642a217d1f57f09f4b296da6f9e45cf66afd530b84caea37cfb751b96869",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave19.jsonl": "sha256:93024399f21cf03c439a81935f473b07e57e0827efb39ce05c0be64a7432a258",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave19.meta.json": "sha256:1290ec19183a8e6eb472fe672b7f0c42cc03c7390eac3ea3f72a3a7b171e8abc",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave2.meta.json": "sha256:711f3c4b24e0becc0568072393b42d1b9a3e1046b5b408b8a7b7c6c2d6146b79",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave20.jsonl": "sha256:e7983f9a07bd4ca939450e034b24499daaeff889317e7789779d82a90adafe49",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave20.meta.json": "sha256:0091c5ff7a1128fd3340833f35875064d04a9f2fd60a737edd87bf04a51c0e9d",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave3.meta.json": "sha256:3d40977879de7be93eaa6b35b651c6af9a7fb6132a74621300f2429eba931a14",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave4.meta.json": "sha256:d59c92a3f0e770fa24d8ef2c781798dab58a3e9bb3085640305aefa000da5c23",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave5.meta.json": "sha256:604c1e3ddd1826ea3264e77e7f1c40118a5836ccf9164df4811d8c8884674fee",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl": "sha256:eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave6.meta.json": "sha256:397ad44cece596a8247b61e2679ac91010928f05cc3be2c8266ee843db11b45b",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl": "sha256:610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave7.meta.json": "sha256:bb91b054dc5b86d777332e8b0d44995b8792273124f1478e8119b4a16a50195c",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl": "sha256:82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave8.meta.json": "sha256:09705497381dbb8a9ae35290b222ef818aee9698fdcd3ecbda19da8ed056aeff",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave9.meta.json": "sha256:a1791b6b5198d62d793d0a14b216141e57c49da643f6cbebc14a1397b7bdf504",
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "sha256:8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+    "docs/governance/phase-capability-inventory.json": "sha256:9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
+  },
+  "wave21_candidate_parent": "053943791ceda83366fca01d375308ba5f7deb28",
+  "wave21_candidate_ref": "418500321edbc8bc3c45f4d8d0d8c994de9f7597",
+  "wave21_candidate_root": "current-tree:wave21-exact-41850032",
+  "wave21_exact_head": "418500321edbc8bc3c45f4d8d0d8c994de9f7597",
+  "wave39_candidate_parent": "38d38f47794e70d621403ad8dbeac56518a76766",
+  "wave39_candidate_ref": "research/legacy-semantic-review-wave39",
+  "wave39_candidate_root": "38d38f47794e70d621403ad8dbeac56518a76766",
+  "wave39_exact_head": "38d38f47794e70d621403ad8dbeac56518a76766"
+}
