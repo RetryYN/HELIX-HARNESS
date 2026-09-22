@@ -149,9 +149,9 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "validate.pyのqueue／semantic line／source／archive digest、59 input line、210 minimum semantic span、8 composite_unresolved closure",
-      "validate.pyのsemantic subject／predicate／action／condition／parent context／inherited subject／historical conflict／typed relation／product boundary、四製品分母、asset revision／decision／failure／consumer、authority／successor／status unknown境界",
-      "selfcheck.pyの同一行義務欠落・重複、source span／predicate改変、composite欠落、authority／implementation／degradation／phase昇格、input digest改変negative cases",
+      "validate.pyのqueue／semantic line／source／archive digest、59 input line、全行別210 atomと8 compositeの独立件数固定",
+      "validate.pyのsemantic subject／predicate／action／condition／typed relation／product boundary、HARNESS149・OS22・Web0・Web-OS0・unresolved39の独立分母固定、asset revision／decision／failure／consumer、authority／successor／status unknown境界",
+      "selfcheck.pyのplan+inventory再生成後のatom削除・composite削除・Web target差替え、unknown key注入を含むnegative cases",
       "generate.py再実行のdeterministic JSONL digest",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
@@ -165,7 +165,8 @@
       "composite_unresolved spanをatomized分母へ算入または欠落させること",
       "旧AI rosterのcommit／merge／tag、AI verifier、human residueを現行permission／approval／merge authorityへ昇格すること",
       "HARNESS／OS候補をsuccessorへ昇格し、Web／Web-OS直接根拠なしを分母から除去すること",
-      "implementation／degradation／phase／decision statusのunknown／pendingを解消したと表示すること"
+      "implementation／degradation／phase／decision statusのunknown／pendingを解消したと表示すること",
+      "計画と台帳を再生成して210 atom／8 composite／四製品分母を減少・反転させること"
     ]
   },
   "replacement": {
