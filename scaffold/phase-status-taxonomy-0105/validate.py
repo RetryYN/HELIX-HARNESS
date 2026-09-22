@@ -22,9 +22,15 @@ EXPECTED_PRODUCTS = {"HELIX-OS": 24, "HELIX-HARNESS": 6}
 EXPECTED_CODES = [
     "E_TARGET_SET", "E_BASE_COMMIT", "E_BASE_NOT_ANCESTOR", "E_SOURCE_INPUT_DIGEST",
     "E_SOURCE_ANCHOR", "E_WAVE_EDGE_COVERAGE", "E_ASSET_EVIDENCE", "E_TAXONOMY_COVERAGE",
-    "E_TAXONOMY_STATUS", "E_MATRIX_RULE", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION",
+    "E_TAXONOMY_STATUS", "E_PHCAP_BOUNDARY_CLASSIFICATION", "E_MATRIX_RULE", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION",
     "E_AUTHORITY_BOUNDARY",
 ]
+
+PHCAP_BOUNDARY_UNITS = {
+    "IRUNIT-HIL-FR-18-HELIX-OS",
+    "IRUNIT-HIL-FR-19-HELIX-HARNESS",
+    "IRUNIT-HIL-FR-20-HELIX-OS",
+}
 
 
 def error(errors: list[str], code: str, detail: str = "") -> None:
@@ -189,6 +195,8 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
             error(errors, "E_MATRIX_RULE", unit_id)
         else:
             matrix_members[rule_id].append(unit_id)
+        if unit_id in PHCAP_BOUNDARY_UNITS and rule_id != "M-WAIT-PHCAP-BOUNDARY":
+            error(errors, "E_PHCAP_BOUNDARY_CLASSIFICATION", unit_id)
         if not taxonomy.get("candidate_is_research_only") or taxonomy.get("formal_phase_candidate") is not None or taxonomy.get("direct_phase_candidate_count") != 0 or taxonomy.get("authority_phase_status") != "unchanged_unresolved":
             error(errors, "E_PHASE_AUTHORITY_SEPARATION", unit_id)
         waiting = taxonomy.get("judgment_waiting", {})

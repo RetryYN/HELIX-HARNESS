@@ -24,10 +24,11 @@
   "M-WAIT-PHCAP-BOUNDARY": {
     "status": "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW",
     "exclusive_group": "phase-status-primary",
-    "rule": "re-entry、snapshot、retention、state、canonicalization等がPHCAP-20語彙と隣接するが、直接責務を示す根拠がない場合は、phase非適用へ倒さずPHCAP境界の追加sourceとhuman判断待ちに置く。",
+    "rule": "re-entry、snapshot、retention、state、prototype、walkthrough、screen gate、canonicalization等がPHCAP語彙または複数PHCAP候補と接続し、原文・unit evidenceだけでは直接責務を除外できない場合は、phase非適用へ倒さずPHCAP境界の追加sourceとhuman判断待ちに置く。assetのcandidate_phase_targetsはauthorityではないが、unit自身のsource semanticsと併せて境界未解決を示す。",
     "required_evidence": [
       "exact source anchor",
       "PHCAP boundary contract",
+      "unit-level candidate phase evidence",
       "phase／authority human decision"
     ],
     "next_decision": "PHCAP境界source、human phase authority review、consumer closure"

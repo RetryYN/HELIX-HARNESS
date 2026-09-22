@@ -440,6 +440,7 @@
       "E_ASSET_EVIDENCE: source/history/failure/consumer evidence tamper",
       "E_TAXONOMY_COVERAGE: taxonomy status or matrix membership omission",
       "E_TAXONOMY_STATUS: invalid or mixed taxonomy status",
+      "E_PHCAP_BOUNDARY_CLASSIFICATION: FR-18/19/20 unit moved to phase-NA candidate despite unit-level PHCAP boundary evidence",
       "E_MATRIX_RULE: decision matrix overlap or rule drift",
       "E_PHASE_AUTHORITY_SEPARATION: formal phase promotion",
       "E_PRODUCT_AUTHORITY_SEPARATION: product authority promotion",

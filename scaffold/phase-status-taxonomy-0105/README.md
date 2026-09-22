@@ -3,8 +3,8 @@
 `SCF-B-0101`で直接phase gapとして保持した30 unitを、phase authorityへ昇格させず、二つの研究分類へ分ける
 research-only Scaffoldである。基準HEADは`5562f04da0f3205f9aa58205ec0d478419fc4f2e`。
 
-- `CROSS_CUTTING_PHASE_NA_CANDIDATE`（23 unit）: 原文がprotocol、security、custody、gate、portability、atomicity、identity、工程制約などの横断条件を要求し、PHCAP-20のmemory／continuation／handover／retention機構を直接要求しないという研究候補。
-- `UNRESOLVED_SOURCE_OR_HUMAN_REVIEW`（7 unit）: re-entry、snapshot、retention、state、canonicalization、source custody、authority境界などについて、追加sourceまたはhuman判断なしにはphase非適用も直接phaseも確定できない未解決。
+- `CROSS_CUTTING_PHASE_NA_CANDIDATE`（20 unit）: 原文がprotocol、security、custody、gate、portability、atomicity、identity、工程制約などの横断条件を要求し、PHCAP-20のmemory／continuation／handover／retention機構を直接要求しないという研究候補。unit自身の原文とPHCAP候補がphase境界へ接続する場合はこの分類へ倒さない。
+- `UNRESOLVED_SOURCE_OR_HUMAN_REVIEW`（10 unit）: re-entry、snapshot、retention、state、prototype、walkthrough、screen gate、canonicalization、source custody、authority境界などについて、追加sourceまたはhuman判断なしにはphase非適用も直接phaseも確定できない未解決。FR-18 Prototype Builder、FR-19 Walkthrough Loop、FR-20 Screen Gateは、Waveのunit-level candidate phase evidenceがPHCAP-01／04／05／06／07／11／15〜20へ接続するため、この分類に保持する。
 
 二分類とも正式phaseは`unchanged_unresolved`、`formal_phase_candidate=null`、`authority_effect=none`、`new_build_allowed=false`である。taxonomyの候補は判断準備のための記録であり、未解決を解消したとの主張、PHCAP／product authorityの変更、要求採否、successor、実装、consumer closureを生成しない。
 

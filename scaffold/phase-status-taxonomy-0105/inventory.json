@@ -60,8 +60,8 @@
       "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"
     ],
     "status_counts": {
-      "CROSS_CUTTING_PHASE_NA_CANDIDATE": 23,
-      "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW": 7
+      "CROSS_CUTTING_PHASE_NA_CANDIDATE": 20,
+      "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW": 10
     },
     "matrix_rule_ids": [
       "M-CROSS-CONSTRAINT",
@@ -96,10 +96,11 @@
     "M-WAIT-PHCAP-BOUNDARY": {
       "status": "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW",
       "exclusive_group": "phase-status-primary",
-      "rule": "re-entry、snapshot、retention、state、canonicalization等がPHCAP-20語彙と隣接するが、直接責務を示す根拠がない場合は、phase非適用へ倒さずPHCAP境界の追加sourceとhuman判断待ちに置く。",
+      "rule": "re-entry、snapshot、retention、state、prototype、walkthrough、screen gate、canonicalization等がPHCAP語彙または複数PHCAP候補と接続し、原文・unit evidenceだけでは直接責務を除外できない場合は、phase非適用へ倒さずPHCAP境界の追加sourceとhuman判断待ちに置く。assetのcandidate_phase_targetsはauthorityではないが、unit自身のsource semanticsと併せて境界未解決を示す。",
       "required_evidence": [
         "exact source anchor",
         "PHCAP boundary contract",
+        "unit-level candidate phase evidence",
         "phase／authority human decision"
       ],
       "next_decision": "PHCAP境界source、human phase authority review、consumer closure"
@@ -514,6 +515,7 @@
     "E_ASSET_EVIDENCE",
     "E_TAXONOMY_COVERAGE",
     "E_TAXONOMY_STATUS",
+    "E_PHCAP_BOUNDARY_CLASSIFICATION",
     "E_MATRIX_RULE",
     "E_PHASE_AUTHORITY_SEPARATION",
     "E_PRODUCT_AUTHORITY_SEPARATION",

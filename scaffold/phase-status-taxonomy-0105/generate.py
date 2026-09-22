@@ -37,9 +37,9 @@ CLASSIFICATION = {
     "IRUNIT-HIL-BR-14-HELIX-OS": ("M-WAIT-SOURCE-AUTHORITY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW", "ref authority、atomic decomposition、採否からGateまでのtraceを一つに束ねる要求。source custodyとproduct／authority境界を追加sourceとhuman判断で確認するまで、横断制約ともPHCAP直接機構とも確定しない。", ["旧IR source spanとref authority receiptの独立確認", "product unit／connectionのhuman decision", "consumer closureとsuccessor assignment"]),
     "IRUNIT-HIL-BR-24-HELIX-OS": ("M-WAIT-SOURCE-AUTHORITY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW", "原子要求、authority、分類、acceptance、capability、template、revisionの履歴を結ぶ要求定義契約。要件登録・分類・受入のphase境界は追加sourceとhuman判断が必要。", ["現行要求定義契約とPHCAP-02〜07の対応source", "product／authorityのhuman decision", "consumer closureとsuccessor assignment"]),
     "IRUNIT-HIL-FR-17-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW", "screen applicability、skip receipt、再entry triggerを定める工程gate。再entryはPHCAP-20のcontinuationと語が近いが、原文は画面工程の判定契約であり直接責務を確定できない。", ["skip／reentryの現行契約とcontinuation責務の境界source", "phase authority reviewerのhuman decision", "product ownerとconsumer closure"]),
-    "IRUNIT-HIL-FR-18-HELIX-OS": ("M-CROSS-CONSTRAINT", "CROSS_CUTTING_PHASE_NA_CANDIDATE", "prototype builderのscreen／interaction／state fixtureとartifact traceを定めるUI工程契約。PHCAP-20のmemory／continuation／handover／retentionを直接要求しない。", ["humanによるphase非適用候補の確認", "product／consumer closureとsuccessor assignment"]),
-    "IRUNIT-HIL-FR-19-HELIX-HARNESS": ("M-CROSS-CONSTRAINT", "CROSS_CUTTING_PHASE_NA_CANDIDATE", "prototype観測、requirements delta、iteration checkpointを記録するbounded walkthrough契約。利用者検証の工程条件でありPHCAP-20機構を直接要求しない。", ["HARNESSの工程責務としてのhuman確認", "product／consumer closureとsuccessor assignment"]),
-    "IRUNIT-HIL-FR-20-HELIX-OS": ("M-CROSS-CONSTRAINT", "CROSS_CUTTING_PHASE_NA_CANDIDATE", "画面対象／非対象のartifact、agreement、skip receiptを検査するScreen Gate。L1 freeze／L3開始の横断gateでありPHCAP-20直接機構ではない。", ["phase非適用候補のhuman確認", "OS／HARNESS境界とconsumer closure"]),
+    "IRUNIT-HIL-FR-18-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW", "原文はscreen ID、操作、遷移、9状態fixture、仮データ境界を実行可能artifactへ材料化するPrototype Builderを要求する。Waveのasset検索候補にはPHCAP-01／06およびPHCAP-16〜20が現れ、UI工程の横断制約だけとは確定できない。artifact／state replayとPHCAP境界の直接責務を追加sourceで分解するまで未解決に保持する。", ["Prototype Builderのartifact／state replayとPHCAP-01／06の責務境界を示すcurrent contract", "UI artifactの観測・再生とPHCAP-16〜20の直接責務を分解する追加source", "phase／product authority reviewerのhuman decisionとconsumer closure"]),
+    "IRUNIT-HIL-FR-19-HELIX-HARNESS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW", "原文はprototype版、ユーザー観測、requirements delta、L1反映先、再作成判断をboundedに反復して記録するWalkthrough Loopを要求する。Waveのasset検索候補にはPHCAP-15〜20が現れ、learning／improvementや継続再構成との接続をphase非適用と断定できない。walkthrough／iterationとPHCAP境界の追加source待ちに置く。", ["walkthrough／iteration checkpointとPHCAP-15／16／19／20の責務境界を示すcurrent contract", "requirements deltaからL1反映先へのauthority／consumer契約", "phase／product authority reviewerのhuman decisionとconsumer closure"]),
+    "IRUNIT-HIL-FR-20-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW", "原文はartifact、walkthrough、要求反映、prototype agreementまたはskip receiptを検査し、不足時にL1 freezeとL3開始をfail-closeするScreen Gateを要求する。Waveのasset検索候補にはPHCAP-04／05／07／11およびPHCAP-16〜20が現れ、単なる横断gateともPHCAP直接機構とも確定できない。Gate authorityとPHCAP境界を追加source・human判断で分解するまで未解決に保持する。", ["Screen GateのL1 freeze／L3 fail-close authorityとPHCAP-04／05／07／11の境界契約", "artifact／walkthrough／skip receiptとPHCAP-16〜20の直接責務を分解する追加source", "phase／product authority reviewerのhuman decisionとconsumer closure"]),
     "IRUNIT-HIL-FR-21-HELIX-OS": ("M-CROSS-CONSTRAINT", "CROSS_CUTTING_PHASE_NA_CANDIDATE", "source snapshot、ref、tree、entry、sealed mirror、stale条件を固定するsource custody契約。snapshot保持はPHCAP-20のmemory責務を直接要求する意味ではない。", ["source custodyとmemory／retention境界のhuman確認", "current source／consumer closureの追加evidence"]),
     "IRUNIT-HIL-FR-23-HELIX-OS": ("M-CROSS-CONSTRAINT", "CROSS_CUTTING_PHASE_NA_CANDIDATE", "connector/schema、credential reference、read/write policy、sync、owner、enabled stateを束ねる統合境界契約。PHCAP-20の直接責務ではない。", ["connector boundaryのphase非適用候補確認", "product／authority／consumer closure"]),
     "IRUNIT-HIL-FR-24-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW", "snapshot、watermark、provenance、freshness、tombstone、schema driftをread projectionへ投影する要求。retention／continuationとの境界を原文だけで除外できず、追加sourceとhuman判断が必要。", ["retention／purge／continuationを明示する現行data contract", "PHCAP-20境界のhuman decision", "consumer closureとproduct owner"]),
@@ -84,8 +84,8 @@ MATRIX = {
     "M-WAIT-PHCAP-BOUNDARY": {
         "status": "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW",
         "exclusive_group": "phase-status-primary",
-        "rule": "re-entry、snapshot、retention、state、canonicalization等がPHCAP-20語彙と隣接するが、直接責務を示す根拠がない場合は、phase非適用へ倒さずPHCAP境界の追加sourceとhuman判断待ちに置く。",
-        "required_evidence": ["exact source anchor", "PHCAP boundary contract", "phase／authority human decision"],
+        "rule": "re-entry、snapshot、retention、state、prototype、walkthrough、screen gate、canonicalization等がPHCAP語彙または複数PHCAP候補と接続し、原文・unit evidenceだけでは直接責務を除外できない場合は、phase非適用へ倒さずPHCAP境界の追加sourceとhuman判断待ちに置く。assetのcandidate_phase_targetsはauthorityではないが、unit自身のsource semanticsと併せて境界未解決を示す。",
+        "required_evidence": ["exact source anchor", "PHCAP boundary contract", "unit-level candidate phase evidence", "phase／authority human decision"],
         "next_decision": "PHCAP境界source、human phase authority review、consumer closure",
     },
 }
@@ -286,7 +286,7 @@ def make_bundle() -> None:
         "negative_case_codes": [
             "E_TARGET_SET", "E_BASE_COMMIT", "E_BASE_NOT_ANCESTOR", "E_SOURCE_INPUT_DIGEST",
             "E_SOURCE_ANCHOR", "E_WAVE_EDGE_COVERAGE", "E_ASSET_EVIDENCE", "E_TAXONOMY_COVERAGE",
-            "E_TAXONOMY_STATUS", "E_MATRIX_RULE", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION",
+            "E_TAXONOMY_STATUS", "E_PHCAP_BOUNDARY_CLASSIFICATION", "E_MATRIX_RULE", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION",
             "E_AUTHORITY_BOUNDARY",
         ],
     }
