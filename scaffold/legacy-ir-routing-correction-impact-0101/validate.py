@@ -90,9 +90,23 @@ EXPECTED_HUMAN_JUDGMENT = [
     "旧asset候補のsource/history/failure/consumerを直接意味linkへ昇格するかを個別に判断する。",
 ]
 EXPECTED_NEGATIVE_CASES = [
-    "duplicate_id", "record_count_guard", "missing_id", "correction_digest_tamper", "source_anchor_tamper", "before_candidate_tamper", "wave_digest_tamper", "boundary_reference_tamper", "l1_reference_tamper", "impact_count_tamper", "authority_promotion", "asset_digest_tamper", "asset_set_tamper", "human_judgment_tamper", "successor_promotion", "after_proposal_guard", "asset_reference_guard", "asset_state_guard", "boundary_interpretation_guard", "correction_reference_guard", "crosswalk_reference_guard", "crosswalk_state_guard", "decomp_reference_guard", "failure_consumer_reference_guard", "history_reference_guard", "history_state_guard", "source_missing_guard", "wave_asset_guard", "input_digest_tamper", "input_set_missing", "input_set_duplicate", "input_set_extra", "input_blob_guard", "base_head_guard", "source_provenance_guard", "current_counts_guard", "inventory_guard", "legacy_execution_guard", "base_ancestor_tamper",
+    "duplicate_id", "record_count_guard", "missing_id", "correction_digest_tamper", "source_anchor_tamper", "before_candidate_tamper", "wave_digest_tamper", "boundary_reference_tamper", "l1_reference_tamper", "impact_count_tamper", "authority_promotion", "asset_digest_tamper", "asset_set_tamper", "human_judgment_tamper", "successor_promotion", "after_proposal_guard", "consumer_impact_guard", "successor_impact_guard", "projected_unit_guard", "impact_interpretation_guard", "asset_reference_guard", "asset_state_guard", "boundary_interpretation_guard", "correction_reference_guard", "crosswalk_reference_guard", "crosswalk_state_guard", "decomp_reference_guard", "failure_consumer_reference_guard", "history_reference_guard", "history_state_guard", "source_missing_guard", "wave_asset_guard", "input_digest_tamper", "input_set_missing", "input_set_duplicate", "input_set_extra", "input_blob_guard", "base_head_guard", "source_provenance_guard", "current_counts_guard", "inventory_guard", "legacy_execution_guard", "inventory_authority_guard", "base_ancestor_tamper",
 ]
 WAVE_INTERPRETATION = "waveはexact source atom、候補phase/product、未完consumer／boundary reviewを保持する静的semantic review候補であり、correctionのPO承認や実装証拠ではない。"
+BEFORE_UNIT_IMPACT_INTERPRETATION = "current decomposition candidate unit/connection/composite counts are derived from its fixed-BASE candidate_units"
+PHASE_IMPACT_HUMAN_ACTION = "既存unitと追加候補unitの両方についてphase責務・source spanを対象revision付きで再審査する。既存phaseを新unitへ自動移送しない。"
+CONSUMER_IMPACT_HUMAN_ACTION = "追加候補のconsumer、source/history/failure relationを直接意味linkとして再審査する。pendingをclosureへ昇格しない。"
+SUCCESSOR_IMPACT_HUMAN_ACTION = "保持atom、未被覆atom、successor ID、L2/L11接続を人間が決める。"
+CONNECTION_IMPACT_INTERPRETATION = "split_requiredは二つの候補unitを示すだけで、connection/composite成立を生成しない。"
+SPLIT_RESPONSIBILITY = {
+    "HIL-FR-01": "HARNESS候補: intakeからmerge／issueまでの工程順序を定義する規範。OS候補のstate運転・digest binding・event causalityと境界を再審査する。",
+    "HIL-FR-11": "OS候補: Agent Registryの登録・版・保持を管理運転する規範。HARNESS候補のagent contract語彙・意味と境界を再審査する。",
+    "HIL-FR-15": "HARNESS候補: ZIP metadata／trace等をHELIX契約へ変換する規範。OS候補の取込実行・観測・記録と境界を再審査する。",
+    "HIL-FR-16": "HARNESS候補: 機能単位比較とadopt／harden／redesign／reject判断の規範。OS候補の観測・記録運転と境界を再審査する。",
+    "HIL-FR-37": "HARNESS候補: atomic behavior定義とcoverage分母の規範。OS候補のextractor実行・記録と境界を再審査する。",
+    "HIL-FR-41": "OS候補: template version、適用履歴、利用結果、改善の管理運転。HARNESS候補のschema・必須論点・適用条件の規範と境界を再審査する。",
+    "HIL-FR-57": "OS候補: Judgment Pack Registryの版・保持を管理運転する規範。HARNESS候補の観点・反証質問・停止条件の意味と境界を再審査する。",
+}
 
 
 def error(code: str, message: str) -> str:
@@ -174,6 +188,8 @@ def validate_inventory(inventory: dict, check_ancestor: bool = True):
     snapshot = inventory.get("source_snapshot", {})
     if snapshot.get("blob_command") != "git rev-parse <BASE>:<path>" or snapshot.get("bytes_command") != "git show <BASE>:<path>":
         errors.append(error("E_SOURCE_PROVENANCE", "source snapshot command drift"))
+    if inventory.get("authority_effect") != "none":
+        errors.append(error("E_AUTHORITY_BOUNDARY", "inventory authority_effect must remain none"))
     if inventory.get("negative_cases") != EXPECTED_NEGATIVE_CASES:
         errors.append(error("E_INVENTORY", "negative_cases declaration must equal executable selfcheck cases"))
     actual_input_paths = [entry.get("path") for entry in inventory.get("input_digests", [])]
@@ -316,20 +332,27 @@ def validate_records(records: list[dict]):
             errors.append(error("E_SOURCE_MISSING", f"{rid}/{uid}: crosswalk missing"))
             continue
         cs = bu.get("crosswalk_status", {})
-        for key in ("legacy_requirement_implementation_status", "current_requirement_implementation_status", "consumer_closure_status", "direct_legacy_asset_links", "legacy_execution_performed", "new_build_allowed"):
+        for key in ("legacy_requirement_implementation_status", "current_requirement_implementation_status", "consumer_closure_status", "direct_legacy_asset_links", "successor_assignment_status", "legacy_execution_performed", "new_build_allowed"):
             if cs.get(key) != x.get(key, [] if key == "direct_legacy_asset_links" else None):
                 errors.append(error("E_CROSSWALK_STATE", f"{rid}/{uid}: crosswalk {key} mismatch"))
         if cs.get("direct_legacy_asset_links") not in ([], None) or cs.get("legacy_execution_performed") is not False or cs.get("new_build_allowed") is not False:
             errors.append(error("E_AUTHORITY_BOUNDARY", f"{rid}/{uid}: crosswalk promoted"))
+        consumer = record.get("after_proposal", {}).get("consumer_impact", {})
+        if consumer.get("before_unit_consumer_closure_status") != x.get("consumer_closure_status") or consumer.get("before_direct_legacy_asset_links") != x.get("direct_legacy_asset_links", []):
+            errors.append(error("E_CONSUMER_IMPACT", f"{rid}/{uid}: consumer before projection differs from fixed BASE crosswalk"))
+        if consumer.get("projected_added_unit_consumer_edges") != []:
+            errors.append(error("E_CONSUMER_IMPACT", f"{rid}/{uid}: projected added-unit consumer edges must be empty"))
 
         after = record.get("after_proposal", {})
         if after.get("applied") is not False or after.get("authority_effect") != "none" or after.get("meaning_change_applied") is not False or after.get("formal_routing_updated") is not False or after.get("new_build_allowed") is not False:
             errors.append(error("E_AUTHORITY_BOUNDARY", f"{rid}: after proposal applied/formalized"))
         if after.get("candidate_product_targets") != EXPECTED_AFTER[rid] or after.get("routing_candidate") != "split_required" or after.get("candidate_shape") != "unit_set":
             errors.append(error("E_AFTER_PROPOSAL", f"{rid}: correction after mismatch"))
+        if after.get("human_split_responsibility") != SPLIT_RESPONSIBILITY[rid] or after.get("human_split_responsibility_sha256") != sha(SPLIT_RESPONSIBILITY[rid]):
+            errors.append(error("E_IMPACT_INTERPRETATION", f"{rid}: split responsibility interpretation mismatch"))
         added = after.get("projected_added_unit", {})
         expected_added = (set(EXPECTED_AFTER[rid]) - {BEFORE_PRODUCT[rid]}).pop()
-        if added.get("candidate_product") != expected_added or added.get("source_text_spans") != [] or added.get("phase_candidates") != [] or added.get("consumer_closure_status") != "pending_no_edge_generated" or added.get("successor_assignment_status") != "unassigned" or added.get("status") != "projection_only_not_a_decomposition_record":
+        if added.get("candidate_product") != expected_added or added.get("unit_kind") != "product_unit" or added.get("source_text_spans") != [] or added.get("phase_candidates") != [] or added.get("phase_status") != "pending_human_direct_phase_review" or added.get("candidate_assets") != [] or added.get("consumer_closure_status") != "pending_no_edge_generated" or added.get("successor_assignment_status") != "unassigned" or added.get("status") != "projection_only_not_a_decomposition_record":
             errors.append(error("E_AFTER_PROPOSAL", f"{rid}: projected unit boundary changed"))
         impact = after.get("unit_impact", {})
         derived_unit_ids = [u.get("unit_candidate_id") for u in dec.get("candidate_units", [])]
@@ -341,6 +364,8 @@ def validate_records(records: list[dict]):
         phase_impact = after.get("phase_impact", {})
         if phase_impact.get("before_phase_candidates") != unit.get("direct_phase_candidates", []) or phase_impact.get("projected_added_unit_phase_candidates") != [] or phase_impact.get("phase_candidate_units_current") != derived_current_phase_candidates or phase_impact.get("phase_candidate_units_projected_scaffold_only") != derived_current_phase_candidates or phase_impact.get("unresolved_phase_units_current") != derived_current_unresolved_phase or phase_impact.get("unresolved_phase_units_projected_scaffold_only") != derived_current_unresolved_phase + 1 or phase_impact.get("phase_links_current") != derived_current_phase_links or phase_impact.get("phase_links_projected_scaffold_only") != derived_current_phase_links:
             errors.append(error("E_IMPACT_COUNT", f"{rid}: phase impact counts mismatch"))
+        if after.get("successor_impact", {}).get("before_successor_assignment_status") != dec.get("successor_assignment_status") or after.get("successor_impact", {}).get("before_successor_assignment_status") != x.get("successor_assignment_status") or after.get("successor_impact", {}).get("projected_added_unit_successor_assignment_status") != "unassigned":
+            errors.append(error("E_SUCCESSOR", f"{rid}/{uid}: successor before/projected assignment mismatch"))
         for key in ("applied_phase_link_delta", "applied_consumer_edge_delta"):
             if after.get("phase_impact", {}).get(key, after.get("consumer_impact", {}).get(key)) != 0:
                 errors.append(error("E_IMPACT_COUNT", f"{rid}: applied impact delta {key} must be zero"))
@@ -349,6 +374,18 @@ def validate_records(records: list[dict]):
         conn_impact = after.get("connection_composite_impact", {})
         if conn_impact.get("before_connection_count") != derived_current_connections or conn_impact.get("projected_connection_count") != derived_current_connections or conn_impact.get("before_composite_count") != derived_current_composites or conn_impact.get("projected_composite_count") != derived_current_composites or conn_impact.get("applied_connection_delta") != 0:
             errors.append(error("E_UNIT_IMPACT", f"{rid}: connection/composite projected"))
+        if before.get("unit_connection_composite", {}).get("interpretation") != BEFORE_UNIT_IMPACT_INTERPRETATION or before.get("unit_connection_composite", {}).get("interpretation_sha256") != sha(BEFORE_UNIT_IMPACT_INTERPRETATION):
+            errors.append(error("E_IMPACT_INTERPRETATION", f"{rid}: before impact interpretation mismatch"))
+        if phase_impact.get("human_action") != PHASE_IMPACT_HUMAN_ACTION or phase_impact.get("human_action_sha256") != sha(PHASE_IMPACT_HUMAN_ACTION):
+            errors.append(error("E_IMPACT_INTERPRETATION", f"{rid}: phase human action mismatch"))
+        consumer = after.get("consumer_impact", {})
+        if consumer.get("human_action") != CONSUMER_IMPACT_HUMAN_ACTION or consumer.get("human_action_sha256") != sha(CONSUMER_IMPACT_HUMAN_ACTION):
+            errors.append(error("E_IMPACT_INTERPRETATION", f"{rid}: consumer human action mismatch"))
+        successor = after.get("successor_impact", {})
+        if successor.get("human_action") != SUCCESSOR_IMPACT_HUMAN_ACTION or successor.get("human_action_sha256") != sha(SUCCESSOR_IMPACT_HUMAN_ACTION):
+            errors.append(error("E_IMPACT_INTERPRETATION", f"{rid}: successor human action mismatch"))
+        if conn_impact.get("interpretation") != CONNECTION_IMPACT_INTERPRETATION or conn_impact.get("interpretation_sha256") != sha(CONNECTION_IMPACT_INTERPRETATION):
+            errors.append(error("E_IMPACT_INTERPRETATION", f"{rid}: connection/composite interpretation mismatch"))
 
         boundary = record.get("product_boundary", {})
         if boundary.get("path") != BOUNDARY_PATH or boundary.get("blob") != blob(BOUNDARY_PATH) or boundary.get("file_sha256") != sha(base_bytes(BOUNDARY_PATH)):

@@ -69,6 +69,11 @@ SPLIT_RESPONSIBILITY = {
 }
 BOUNDARY_INTERPRETATION = "HARNESSはV-model・工程・要求・設計・検証・外部提供の規範、HELIX-OSはauthority・Worker・CI・log・state・改善・配布の運転統制を持つ。管理対象と規則所有を同一ownerへ潰さず、correctionは正式routingへ昇格しない。"
 LEGACY_EVIDENCE_PATHS = (LEDGER, PHASE, DECISIONS, READ_AFTER, FAILURE, CONSUMER)
+BEFORE_UNIT_IMPACT_INTERPRETATION = "current decomposition candidate unit/connection/composite counts are derived from its fixed-BASE candidate_units"
+PHASE_IMPACT_HUMAN_ACTION = "既存unitと追加候補unitの両方についてphase責務・source spanを対象revision付きで再審査する。既存phaseを新unitへ自動移送しない。"
+CONSUMER_IMPACT_HUMAN_ACTION = "追加候補のconsumer、source/history/failure relationを直接意味linkとして再審査する。pendingをclosureへ昇格しない。"
+SUCCESSOR_IMPACT_HUMAN_ACTION = "保持atom、未被覆atom、successor ID、L2/L11接続を人間が決める。"
+CONNECTION_IMPACT_INTERPRETATION = "split_requiredは二つの候補unitを示すだけで、connection/composite成立を生成しない。"
 
 
 def base_bytes(path: str) -> bytes:
@@ -326,6 +331,7 @@ def main() -> None:
                 "current_requirement_implementation_status": cross.get("current_requirement_implementation_status"),
                 "consumer_closure_status": cross.get("consumer_closure_status"),
                 "direct_legacy_asset_links": cross.get("direct_legacy_asset_links", []),
+                "successor_assignment_status": cross.get("successor_assignment_status"),
                 "legacy_execution_performed": cross.get("legacy_execution_performed"),
                 "new_build_allowed": cross.get("new_build_allowed"),
             },
@@ -384,7 +390,8 @@ def main() -> None:
                     "unit_count": 1,
                     "connection_count": 0,
                     "composite_count": 0,
-                    "interpretation": "現行候補はproduct unit 1件。connection/compositeを生成しない。",
+                    "interpretation": BEFORE_UNIT_IMPACT_INTERPRETATION,
+                    "interpretation_sha256": digest_text(BEFORE_UNIT_IMPACT_INTERPRETATION),
                 },
             },
             "after_proposal": {
@@ -397,6 +404,7 @@ def main() -> None:
                 "routing_candidate": corr.get("routing_candidate_after"),
                 "candidate_shape": "unit_set",
                 "human_split_responsibility": SPLIT_RESPONSIBILITY[rid],
+                "human_split_responsibility_sha256": digest_text(SPLIT_RESPONSIBILITY[rid]),
                 "projected_added_unit": {
                     "projected_unit_candidate_id": candidate_added_id,
                     "candidate_product": added_product,
@@ -427,21 +435,24 @@ def main() -> None:
                     "unresolved_phase_units_projected_scaffold_only": 37,
                     "phase_links_current": 321,
                     "phase_links_projected_scaffold_only": 321,
-                    "human_action": "既存unitと追加候補unitの両方についてphase責務・source spanを対象revision付きで再審査する。既存phaseを新unitへ自動移送しない。",
+                    "human_action": PHASE_IMPACT_HUMAN_ACTION,
+                    "human_action_sha256": digest_text(PHASE_IMPACT_HUMAN_ACTION),
                 },
                 "consumer_impact": {
                     "before_unit_consumer_closure_status": cross.get("consumer_closure_status"),
                     "before_direct_legacy_asset_links": cross.get("direct_legacy_asset_links", []),
                     "projected_added_unit_consumer_edges": [],
                     "applied_consumer_edge_delta": 0,
-                    "human_action": "追加候補のconsumer、source/history/failure relationを直接意味linkとして再審査する。pendingをclosureへ昇格しない。",
+                    "human_action": CONSUMER_IMPACT_HUMAN_ACTION,
+                    "human_action_sha256": digest_text(CONSUMER_IMPACT_HUMAN_ACTION),
                 },
                 "successor_impact": {
                     "before_successor_assignment_status": d.get("successor_assignment_status"),
                     "projected_added_unit_successor_assignment_status": "unassigned",
                     "projected_successor_ids": [],
                     "applied_successor_delta": 0,
-                    "human_action": "保持atom、未被覆atom、successor ID、L2/L11接続を人間が決める。",
+                    "human_action": SUCCESSOR_IMPACT_HUMAN_ACTION,
+                    "human_action_sha256": digest_text(SUCCESSOR_IMPACT_HUMAN_ACTION),
                 },
                 "connection_composite_impact": {
                     "before_connection_count": 0,
@@ -449,7 +460,8 @@ def main() -> None:
                     "before_composite_count": 0,
                     "projected_composite_count": 0,
                     "applied_connection_delta": 0,
-                    "interpretation": "split_requiredは二つの候補unitを示すだけで、connection/composite成立を生成しない。",
+                    "interpretation": CONNECTION_IMPACT_INTERPRETATION,
+                    "interpretation_sha256": digest_text(CONNECTION_IMPACT_INTERPRETATION),
                 },
             },
             "product_boundary": boundary,
@@ -497,7 +509,8 @@ def main() -> None:
             "unit_count": len(current_unit_ids),
             "connection_count": sum(u.get("unit_kind") == "cross_product_connection" for u in d.get("candidate_units", [])),
             "composite_count": sum(u.get("unit_kind") == "composite" for u in d.get("candidate_units", [])),
-            "interpretation": "current decomposition candidate unit/connection/composite counts are derived from its fixed-BASE candidate_units",
+            "interpretation": BEFORE_UNIT_IMPACT_INTERPRETATION,
+            "interpretation_sha256": digest_text(BEFORE_UNIT_IMPACT_INTERPRETATION),
         }
         record["after_proposal"]["unit_impact"].update({
             "current_unit_ids": current_unit_ids,
@@ -575,7 +588,7 @@ def main() -> None:
         "successor_updated": False,
         "legacy_execution_performed": False,
         "new_build_allowed": False,
-        "negative_cases": ["duplicate_id", "record_count_guard", "missing_id", "correction_digest_tamper", "source_anchor_tamper", "before_candidate_tamper", "wave_digest_tamper", "boundary_reference_tamper", "l1_reference_tamper", "impact_count_tamper", "authority_promotion", "asset_digest_tamper", "asset_set_tamper", "human_judgment_tamper", "successor_promotion", "after_proposal_guard", "asset_reference_guard", "asset_state_guard", "boundary_interpretation_guard", "correction_reference_guard", "crosswalk_reference_guard", "crosswalk_state_guard", "decomp_reference_guard", "failure_consumer_reference_guard", "history_reference_guard", "history_state_guard", "source_missing_guard", "wave_asset_guard", "input_digest_tamper", "input_set_missing", "input_set_duplicate", "input_set_extra", "input_blob_guard", "base_head_guard", "source_provenance_guard", "current_counts_guard", "inventory_guard", "legacy_execution_guard", "base_ancestor_tamper"],
+        "negative_cases": ["duplicate_id", "record_count_guard", "missing_id", "correction_digest_tamper", "source_anchor_tamper", "before_candidate_tamper", "wave_digest_tamper", "boundary_reference_tamper", "l1_reference_tamper", "impact_count_tamper", "authority_promotion", "asset_digest_tamper", "asset_set_tamper", "human_judgment_tamper", "successor_promotion", "after_proposal_guard", "consumer_impact_guard", "successor_impact_guard", "projected_unit_guard", "impact_interpretation_guard", "asset_reference_guard", "asset_state_guard", "boundary_interpretation_guard", "correction_reference_guard", "crosswalk_reference_guard", "crosswalk_state_guard", "decomp_reference_guard", "failure_consumer_reference_guard", "history_reference_guard", "history_state_guard", "source_missing_guard", "wave_asset_guard", "input_digest_tamper", "input_set_missing", "input_set_duplicate", "input_set_extra", "input_blob_guard", "base_head_guard", "source_provenance_guard", "current_counts_guard", "inventory_guard", "legacy_execution_guard", "inventory_authority_guard", "base_ancestor_tamper"],
     }
     (BUNDLE / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 

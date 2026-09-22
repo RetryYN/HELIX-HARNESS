@@ -207,6 +207,10 @@
     "human_judgment_tamper",
     "successor_promotion",
     "after_proposal_guard",
+    "consumer_impact_guard",
+    "successor_impact_guard",
+    "projected_unit_guard",
+    "impact_interpretation_guard",
     "asset_reference_guard",
     "asset_state_guard",
     "boundary_interpretation_guard",
@@ -229,6 +233,7 @@
     "current_counts_guard",
     "inventory_guard",
     "legacy_execution_guard",
+    "inventory_authority_guard",
     "base_ancestor_tamper"
   ],
   "new_build_allowed": false,

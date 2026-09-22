@@ -91,6 +91,22 @@ def main() -> int:
     after[0]["after_proposal"]["routing_candidate"] = "tampered"
     expects("after_proposal_guard", after, "E_AFTER_PROPOSAL")
 
+    consumer_impact = copy.deepcopy(base)
+    consumer_impact[0]["after_proposal"]["consumer_impact"]["before_unit_consumer_closure_status"] = "closed"
+    expects("consumer_impact_guard", consumer_impact, "E_CONSUMER_IMPACT")
+
+    successor_impact = copy.deepcopy(base)
+    successor_impact[0]["after_proposal"]["successor_impact"]["before_successor_assignment_status"] = "assigned"
+    expects("successor_impact_guard", successor_impact, "E_SUCCESSOR")
+
+    projected_unit = copy.deepcopy(base)
+    projected_unit[0]["after_proposal"]["projected_added_unit"]["phase_status"] = "approved"
+    expects("projected_unit_guard", projected_unit, "E_AFTER_PROPOSAL")
+
+    impact_interpretation = copy.deepcopy(base)
+    impact_interpretation[0]["after_proposal"]["consumer_impact"]["human_action"] = "tampered"
+    expects("impact_interpretation_guard", impact_interpretation, "E_IMPACT_INTERPRETATION")
+
     asset_ref = copy.deepcopy(base)
     asset_ref[0]["legacy_asset_evidence"]["candidate_assets"][0]["ledger_ref"]["line"] = 999
     expects("asset_reference_guard", asset_ref, "E_ASSET_REFERENCE")
@@ -183,10 +199,14 @@ def main() -> int:
     legacy_execution["legacy_execution_performed"] = True
     expects_inventory("legacy_execution_guard", legacy_execution, "E_LEGACY_EXECUTION")
 
+    inventory_authority = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
+    inventory_authority["authority_effect"] = "approved"
+    expects_inventory("inventory_authority_guard", inventory_authority, "E_AUTHORITY_BOUNDARY")
+
     if not any(item.startswith("E_BASE_NOT_ANCESTOR:") for item in ancestor_errors("0" * 40)):
         raise AssertionError("base_ancestor_tamper: expected E_BASE_NOT_ANCESTOR")
 
-    print("SCF-B-0103 selfcheck: PASS negative_cases=39")
+    print("SCF-B-0103 selfcheck: PASS negative_cases=44")
     return 0
 
 

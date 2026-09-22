@@ -14,7 +14,7 @@ source provenanceは`fixed_git_object`である。入力blob、bytes、行anchor
 
 現在のdecompositionは153 requirement record、218 unit（product unit 217、cross-product connection 1）、product候補HARNESS 85／OS 132、phase候補unit 188、phase未割当30、phase link 321、successor assigned 0である。7件のbeforeは単一product unitで、FR-01／15／16／37はOS、FR-11／41／57はHARNESSに候補付けされている。afterを仮に全件採択した場合の影響を、追加候補unit 7件（HARNESS +4／OS +3）として225 unit（product unit 224、connection 1）へ投影するが、これは適用結果ではない。
 
-各recordのafter projectionは、追加unitのsource span、phase、consumer edge、successorを空／未割当で保持する。既存unitのphaseを移送せず、consumer closureや旧asset直接意味linkを生成せず、connection／compositeも生成しない。仮適用後のscaffold-only投影はphase候補unit 188、未割当37、phase link 321、consumer edge 0、successor assigned 0であり、実際の台帳・formal route・successorは変更しない。
+各recordのafter projectionは、追加unitのsource span、phase、consumer edge、successorを空／未割当で保持する。beforeのconsumer closure／direct legacy links／successor statusは固定BASEのcrosswalk／decompositionから再導出し、human_action／interpretation文字列とdigestも固定する。既存unitのphaseを移送せず、consumer closureや旧asset直接意味linkを生成せず、connection／compositeも生成しない。仮適用後のscaffold-only投影はphase候補unit 188、未割当37、phase link 321、consumer edge 0、successor assigned 0であり、実際の台帳・formal route・successorは変更しない。
 
 ## 検証
 
@@ -28,6 +28,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorは7 IDの重複・欠落、fixed BASE input path集合／digest／blob、old IR statement line／line digest／semantic digest、correction before／afterと未承認状態、routing／decomposition／crosswalkのbefore候補、四製品boundaryとL1のblob／行／digest、Wave 3行ずつのrow digest、旧assetのcrosswalk由来ID集合・source／history／failure／consumerの静的状態、human judgment項目、unit／phase／consumer／successor／connection／compositeの影響数を再導出する。selfcheckは各改竄が狙ったerror codeで拒否されることを確認する（39負例）。
+validatorは7 IDの重複・欠落、fixed BASE input path集合／digest／blob、old IR statement line／line digest／semantic digest、correction before／afterと未承認状態、routing／decomposition／crosswalkのbefore候補、consumer／successorのBASE照合、追加unitのproduct_unit／phase／candidate asset境界、固定human_action／interpretation digest、四製品boundaryとL1のblob／行／digest、Wave 3行ずつのrow digest、旧assetのcrosswalk由来ID集合・source／history／failure／consumerの静的状態、human judgment項目、unit／phase／consumer／successor／connection／compositeの影響数、inventory authority_effectを再導出する。selfcheckは各改竄が狙ったerror codeで拒否されることを確認する（44負例）。
 
 旧archiveのruntime、test、CI、workflow、hook、adapter、sourceは実行しない。この束の合格はPO decision、formal routing、owner、phase、設計、実装、consumer closure、successor、Issue closeを生成しない。

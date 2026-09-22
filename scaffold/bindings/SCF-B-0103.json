@@ -32,6 +32,9 @@
     "現行四製品L1とproduct-boundaryのGit blob／実行行／行digestを固定し、candidateを正式ownerへ昇格しない",
     "218 unit／phase／consumer／successorの現状と、全件採択時の+7 unit projectionを分離する",
     "旧asset source／history／failure／consumerは静的snapshotと未完closureを保持し、直接意味linkを生成しない",
+    "固定BASEのcrosswalk consumer_closure_status／direct_legacy_asset_linksとdecomposition／crosswalk successor_assignment_statusをbefore projectionへ再導出する",
+    "追加projected unitはproduct_unit、phase／consumer／successor／candidate_assetsを未確定・空として保持し、connection／composite件数とinventory 218→225 projectionへ整合させる",
+    "after/beforeのhuman_action／interpretation文字列とSHA-256を固定し、inventory authority_effect=noneを検査する",
     "authority_effect=none、new_build_allowed=false、formal routing／台帳／successor unchangedを守る",
     "archive runtime／test／CI／workflow／hook／adapter／sourceを実行しない"
   ],
@@ -275,7 +278,12 @@
       "E_BASE_HEAD: inventory BASE pin tamper",
       "E_SOURCE_PROVENANCE: fixed Git object snapshot tamper",
       "E_INVENTORY: inventory declaration tamper",
-      "E_LEGACY_EXECUTION: legacy execution/new build promotion"
+      "E_LEGACY_EXECUTION: legacy execution/new build promotion",
+      "E_CONSUMER_IMPACT: fixed BASE crosswalk consumer before／projected edge tamper",
+      "E_SUCCESSOR: fixed BASE decomposition／crosswalk successor before or projected successor tamper",
+      "E_AFTER_PROPOSAL: projected unit kind／phase status／candidate asset boundary tamper",
+      "E_IMPACT_INTERPRETATION: fixed human_action／interpretation text or digest tamper",
+      "E_AUTHORITY_BOUNDARY: inventory authority_effect promotion"
     ],
     "oracles": [
       "fixed BASE input bytes／blob digest and BASE ancestry",
