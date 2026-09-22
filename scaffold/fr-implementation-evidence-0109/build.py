@@ -116,6 +116,8 @@ def target_crosswalk() -> list[dict[str, Any]]:
 
 def source_range(requirement_id: str) -> dict[str, Any]:
     raw = base_bytes(IR)
+    ir_record = base_json(IR)[requirement_id]
+    statement = ir_record.get("statement", {})
     lines = raw.splitlines(keepends=True)
     start = next(i for i, line in enumerate(lines) if re.match(rb'^  "' + requirement_id.encode() + rb'": \{', line))
     next_start = next(
@@ -131,6 +133,8 @@ def source_range(requirement_id: str) -> dict[str, Any]:
         "span_sha256": sha256(selected),
         "file_sha256": base_digest(IR),
         "line_text_sha256": sha256(b"".join(lines[start:next_start]), prefix=False),
+        "source_statement_text": statement.get("text"),
+        "source_statement_semantic_digest": statement.get("semantic_digest"),
     }
 
 
@@ -520,7 +524,7 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
         "negative_case_codes": [
             "E_UNIT_SET", "E_REVIEW_EDGE_SET", "E_REVIEW_EDGE_DUP", "E_ASSET_SET", "E_INVENTORY_DECLARATION",
             "E_REPRESENTATIVE_ASSET", "E_IMPLEMENTATION_EVIDENCE", "E_DEGRADATION_EVIDENCE", "E_FAILURE_EVIDENCE",
-            "E_CONSUMER_EVIDENCE", "E_SOURCE_ANCHOR", "E_OLD_ASSET_SOURCE", "E_INPUT_DIGEST", "E_BASE_COMMIT",
+            "E_CONSUMER_EVIDENCE", "E_SOURCE_ANCHOR", "E_OLD_ASSET_SOURCE", "E_OLD_ASSET_HISTORY", "E_INPUT_DIGEST", "E_BASE_COMMIT",
             "E_BASE_NOT_ANCESTOR", "E_AUTHORITY_BOUNDARY", "E_CURRENT_STATUS", "E_UNIMPLEMENTED_CLAIM",
         ],
         "prohibited_inference": [

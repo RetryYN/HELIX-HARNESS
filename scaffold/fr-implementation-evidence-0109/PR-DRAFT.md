@@ -21,7 +21,7 @@ HIL-FR-01〜20の製品unitについて、旧実装／未実装／縮退／failu
 ## 検証結果
 
 - `python3 scaffold/fr-implementation-evidence-0109/validate.py` PASS
-- `python3 scaffold/fr-implementation-evidence-0109/selfcheck.py` PASS（18 negative cases、期待error code照合）
+- `python3 scaffold/fr-implementation-evidence-0109/selfcheck.py` PASS（19 negative cases、期待error code照合）
 - `python3 -m py_compile scaffold/fr-implementation-evidence-0109/*.py` PASS
 - `git diff origin/main...HEAD --check` はcommit後に実行
 

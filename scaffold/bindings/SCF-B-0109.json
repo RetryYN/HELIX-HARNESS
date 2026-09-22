@@ -30,7 +30,7 @@
     "旧assetのsource／history／failure／consumerを代表assetとともに独立保持する",
     "current implementation／acceptance／operation、未実装、縮退、failure、consumer closureをunknown/pendingへ保持する",
     "固定BASE Git bytes、source anchor、input digest、祖先性を検証する",
-    "validatorと18件の期待error code付き負例を維持する"
+    "validatorと19件の期待error code付き負例を維持する"
   ],
   "operations": {
     "allowed": [
@@ -406,6 +406,7 @@
       "consumer closure claim must emit E_CONSUMER_EVIDENCE",
       "wrong source anchor must emit E_SOURCE_ANCHOR",
       "wrong old asset source/blob must emit E_OLD_ASSET_SOURCE",
+      "wrong old asset history/classification must emit E_OLD_ASSET_HISTORY",
       "wrong input digest must emit E_INPUT_DIGEST",
       "wrong BASE commit/ancestor must emit E_BASE_COMMIT/E_BASE_NOT_ANCESTOR",
       "authority boundary violation must emit E_AUTHORITY_BOUNDARY",

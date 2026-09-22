@@ -61,6 +61,7 @@ def main() -> int:
         ("consumer-evidence", "E_CONSUMER_EVIDENCE", lambda inv, ev: ev[0]["consumer_evidence"].__setitem__("closure_status", "closed")),
         ("source-anchor", "E_SOURCE_ANCHOR", lambda inv, ev: ev[0]["source_anchor"].__setitem__("span_sha256", "sha256:" + "0" * 64)),
         ("old-asset-source", "E_OLD_ASSET_SOURCE", lambda inv, ev: ev[0]["old_asset_evidence"]["assets"][0]["source"].__setitem__("source_sha256", "0" * 64)),
+        ("old-asset-history", "E_OLD_ASSET_HISTORY", lambda inv, ev: ev[0]["old_asset_evidence"]["assets"][0]["history"].__setitem__("asset_class", "Tampered")),
         ("input-digest", "E_INPUT_DIGEST", lambda inv, ev: inv["input_snapshot"][0].__setitem__("sha256", "0" * 64)),
         ("base-commit", "E_BASE_COMMIT", lambda inv, ev: inv["base"].__setitem__("commit", "0" * 40)),
         ("base-not-ancestor", "E_BASE_NOT_ANCESTOR", lambda inv, ev: inv["base"].__setitem__("required_ancestor", "not-a-commit")),
