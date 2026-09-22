@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import copy
 import importlib.util
+import json
+import tempfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -14,38 +16,63 @@ spec.loader.exec_module(module)
 
 module.verify()
 rows = module.read_jsonl(module.LEDGER)
-design = next(row for row in rows if row["role_kind"] == "design")
-evidence = module.excerpt(
-    module.ROOT / design["evidence_refs"][0]["archive_path"],
-    design["evidence_refs"][0]["line_start"],
-    design["evidence_refs"][0]["line_end"],
-)
 
 
-def rejected(label: str, fn) -> None:
+def rejected(label: str, mutate) -> None:
+    original_ledger = module.LEDGER
+    original_meta = module.META
+    meta = json.loads(original_meta.read_text())
+    mutated_rows = copy.deepcopy(rows)
+    mutate(mutated_rows)
     try:
-        fn()
+        with tempfile.TemporaryDirectory(prefix="wave37-selfcheck-") as tmp:
+            root = Path(tmp)
+            ledger = root / original_ledger.name
+            ledger.write_text(
+                "".join(
+                    json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
+                    for row in mutated_rows
+                )
+            )
+            mutated_meta = copy.deepcopy(meta)
+            mutated_meta["output_sha256"] = module.file_digest(ledger)
+            meta_path = root / original_meta.name
+            meta_path.write_text(json.dumps(mutated_meta, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+            module.LEDGER = ledger
+            module.META = meta_path
+            module.verify()
     except AssertionError:
         print(f"PASS negative: {label}")
     else:
         raise AssertionError(f"negative accepted: {label}")
+    finally:
+        module.LEDGER = original_ledger
+        module.META = original_meta
 
 
-bad_binding = copy.deepcopy(design["evidence_atom_bindings"][0])
-bad_binding["source_fragment_anchors"] = ["unquoted-current-meaning"]
-rejected("stale source anchor", lambda: module.verify_binding(design, bad_binding, evidence))
+def mutate_stale_anchor(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["evidence_atom_bindings"][0]["source_fragment_anchors"] = ["unquoted-current-meaning"]
 
-bad_role = copy.deepcopy(design)
-bad_role["semantic_relation"] = "same_requirement_id_exact_source_contract_not_implementation"
-rejected("design/requirement semantic inversion", lambda: module.verify_role(bad_role))
 
-bad_atoms = copy.deepcopy(design)
-bad_atoms["covered_requirement_atoms"][0]["text"] = "inferred implementation is complete"
-rejected("inferred implementation meaning", lambda: module.require(bad_atoms["covered_requirement_atoms"] == design["covered_requirement_atoms"], "atom provenance changed"))
+def mutate_role_inversion(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["semantic_relation"] = "same_requirement_id_exact_source_contract_not_implementation"
 
-prior_assets = module.prior_edges_and_assets()[1]
-bad_edge = copy.deepcopy(rows[0])
-bad_edge["asset_id"] = next(iter(prior_assets))
-rejected("prior implementation asset reuse", lambda: module.require(bad_edge["asset_id"] not in prior_assets, "prior asset reused"))
+
+def mutate_inferred_meaning(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["covered_requirement_atoms"][0]["text"] = "inferred implementation is complete"
+
+
+def mutate_prior_asset_reuse(mutated_rows) -> None:
+    prior_assets = module.prior_edges_and_assets()[1]
+    mutated_rows[0]["asset_id"] = next(iter(prior_assets))
+
+
+rejected("stale source anchor", mutate_stale_anchor)
+rejected("design/requirement semantic inversion", mutate_role_inversion)
+rejected("inferred implementation meaning", mutate_inferred_meaning)
+rejected("prior implementation asset reuse", mutate_prior_asset_reuse)
 
 print("Wave37 selfcheck: PASS (validator plus four negative mutations)")

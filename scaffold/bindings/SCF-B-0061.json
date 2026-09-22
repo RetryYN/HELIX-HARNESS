@@ -120,7 +120,7 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave37/selfcheck.py",
-      "sha256": "3f3af94b4faa2105d935ad18df8fecb474e00e68889247072d7900e6e9e6d732",
+      "sha256": "a3d135d6e3a308545e579bdc5890d7a609599a0675c87868d1f438dde3cf9125",
       "note": "negative mutation selfcheck"
     }
   ],
