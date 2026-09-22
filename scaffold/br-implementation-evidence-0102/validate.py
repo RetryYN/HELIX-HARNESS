@@ -45,10 +45,27 @@ def file_digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def base_bytes(root: Path, path: str) -> bytes:
+    return subprocess.check_output(["git", "show", f"{BASE}:{path}"], cwd=root)
+
+
+def base_jsonl(root: Path, path: Path) -> list[dict]:
+    relative = str(path.relative_to(root))
+    return [json.loads(line) for line in base_bytes(root, relative).decode("utf-8").splitlines() if line.strip()]
+
+
+def base_digest(root: Path, path: str) -> str:
+    return hashlib.sha256(base_bytes(root, path)).hexdigest()
+
+
 def wave_path(root: Path, wave: int) -> Path:
     docs = root / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.jsonl"
     scaffold = root / f"scaffold/legacy-semantic-review-wave{wave}/legacy-requirement-direct-semantic-review-wave{wave}.jsonl"
-    return docs if docs.is_file() else scaffold
+    try:
+        subprocess.check_output(["git", "cat-file", "-e", f"{BASE}:{docs.relative_to(root)}"], cwd=root, stderr=subprocess.STDOUT)
+        return docs
+    except subprocess.CalledProcessError:
+        return scaffold
 
 
 def expected_review(row: dict, wave: int, path: Path, root: Path) -> dict:
@@ -102,11 +119,11 @@ class Validator:
             self.error("E_UNIT_SET", "unitが欠落または重複している")
 
         try:
-            crosswalk = load_jsonl(self.crosswalk_path)[:7]
-            ledger_rows = load_jsonl(self.ledger_path)
+            crosswalk = base_jsonl(self.root, self.crosswalk_path)[:7]
+            ledger_rows = base_jsonl(self.root, self.ledger_path)
             ledger = {x["asset_id"]: x for x in ledger_rows}
-            decisions = load_jsonl(self.decisions_path)
-            read_after = load_jsonl(self.read_after_path)
+            decisions = base_jsonl(self.root, self.decisions_path)
+            read_after = base_jsonl(self.root, self.read_after_path)
         except (OSError, json.JSONDecodeError, KeyError) as exc:
             self.error("E_INPUT", str(exc))
             return self.finish()
@@ -121,7 +138,7 @@ class Validator:
             if not path.is_file():
                 self.error("E_WAVE_SCAN", f"Wave{wave}のreview JSONLが見つからない")
                 continue
-            rows = load_jsonl(path)
+            rows = base_jsonl(self.root, path)
             all_scan_rows += len(rows)
             for row in rows:
                 if row.get("unit_candidate_id") in UNITS:
@@ -210,13 +227,21 @@ class Validator:
             for ref in row.get("current_implementation_evidence", {}).get("current_refs", []):
                 if isinstance(ref.get("path"), str):
                     paths.add(ref["path"])
+            for edge in row.get("semantic_review_edges", []):
+                for ref in edge.get("evidence_refs", []):
+                    if isinstance(ref.get("archive_path"), str):
+                        paths.add(ref["archive_path"])
         actual = inventory.get("input_digests")
+        if inventory.get("input_digest_basis") != "git_object_bytes_at_base":
+            self.error("E_INPUT_DIGEST_BASIS", "input digestが固定BASE Git object bytes基準ではない")
         if not isinstance(actual, dict) or set(actual) != paths:
             self.error("E_INPUT_DIGEST", "input digestのpath集合が不足または過剰")
             return
         for path in sorted(paths):
-            target = self.root / path
-            expected = file_digest(target) if target.is_file() else None
+            try:
+                expected = base_digest(self.root, path)
+            except (subprocess.CalledProcessError, OSError):
+                expected = None
             if expected is None or actual.get(path) != expected:
                 self.error("E_INPUT_DIGEST", f"input digest不一致: {path}")
 
@@ -232,9 +257,9 @@ class Validator:
         if not archive.is_file():
             self.error("E_OLD_ARCHIVE", f"旧asset archiveがない: {archive}")
         else:
-            if file_digest(archive) != old.get("source_sha256"):
-                self.error("E_OLD_BYTES", f"{asset_id} source bytes digest不一致")
             try:
+                if base_digest(self.root, f"archive/legacy-generation-2026-09-14/root/{old['source_path']}") != old.get("source_sha256"):
+                    self.error("E_OLD_BYTES", f"{asset_id} BASE source bytes digest不一致")
                 subprocess.check_output(["git", "rev-parse", f"{BASE}:archive/legacy-generation-2026-09-14/root/{old['source_path']}"], cwd=self.root, text=True, stderr=subprocess.STDOUT).strip()
             except (subprocess.CalledProcessError, OSError) as exc:
                 self.error("E_OLD_BLOB", f"{asset_id} Git blob確認失敗: {exc}")
@@ -249,7 +274,11 @@ class Validator:
         if not path.is_file():
             self.error("E_OLD_ANCHOR", f"anchor pathがない: {ref.get('archive_path')}")
             return
-        lines = path.read_bytes().splitlines(keepends=True)
+        try:
+            lines = base_bytes(self.root, ref["archive_path"]).splitlines(keepends=True)
+        except (subprocess.CalledProcessError, OSError):
+            self.error("E_OLD_ANCHOR", f"BASE anchor objectがない: {ref.get('archive_path')}")
+            return
         start, end = ref.get("line_start"), ref.get("line_end")
         if not isinstance(start, int) or not isinstance(end, int) or start < 1 or end < start or end > len(lines):
             self.error("E_OLD_ANCHOR", f"line anchor範囲不正: {ref.get('archive_path')}:{start}-{end}")
@@ -372,11 +401,12 @@ class Validator:
         if self.root not in path.parents or not path.is_file():
             self.error("E_CURRENT_PATH", f"current ref pathがない／root外: {raw_path}")
             return
-        if file_digest(path) != ref.get("file_sha256"):
-            self.error("E_CURRENT_BYTES", f"current file digest不一致: {raw_path}")
         try:
             start, end = int(ref["line_start"]), int(ref["line_end"])
-            lines = path.read_bytes().splitlines(keepends=True)
+            base_data = base_bytes(self.root, raw_path)
+            if hashlib.sha256(base_data).hexdigest() != ref.get("file_sha256"):
+                self.error("E_CURRENT_BYTES", f"current BASE file digest不一致: {raw_path}")
+            lines = base_data.splitlines(keepends=True)
             selected = lines[start - 1:end]
             if len(selected) != end - start + 1 or [x.decode("utf-8").rstrip("\r\n") for x in selected] != ref.get("line_text"):
                 self.error("E_CURRENT_SPAN", f"current line text不一致: {raw_path}:{start}-{end}")

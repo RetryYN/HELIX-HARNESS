@@ -14,7 +14,7 @@
 
 - [`inventory.json`](inventory.json): 分母、対象、入力path digest、証拠partition、非推論境界。
 - [`evidence.jsonl`](evidence.jsonl): 7 unitのsource snapshot、21 review edge、old asset ledger／decision／read-after、旧実装・failure・degradation・consumer、current refs、未解決欄。
-- [`build.py`](build.py): 固定HEADを変えずに入力を静的読取してbundleを再生成する。
+- [`build.py`](build.py): 固定BASEのGit object bytesを静的読取してbundleを再生成する。
 - [`validate.py`](validate.py): unit分母、crosswalk、wave edge、旧asset blob／bytes／anchor、current span digest、入力digest、BASE祖先性、consumer／counter evidence／unresolvedをfail-closedで検査する。
 - [`selfcheck.py`](selfcheck.py): blob、anchor、edge set、current status、failure claim、ledger／consumer、counter evidence、unresolved、input digestを壊す11個の負例について期待error codeを照合する。
 
@@ -25,7 +25,7 @@ python3 scaffold/br-implementation-evidence-0102/validate.py
 python3 scaffold/br-implementation-evidence-0102/selfcheck.py
 ```
 
-検証は静的なJSON／Git bytes／digest／行anchorだけを扱う。旧code、旧test、旧runtime、旧CI、新世代runtimeを実行しない。`scfctl validate`はBinding `SCF-B-0102`の登録と全artifactを検査する。
+検証は固定BASEのGit object bytes、digest、行anchorだけを扱う。旧code、旧test、旧runtime、旧CI、新世代runtimeを実行しない。`scfctl validate`はBinding `SCF-B-0102`の登録と全artifactを検査する。
 
 ## 保留
 

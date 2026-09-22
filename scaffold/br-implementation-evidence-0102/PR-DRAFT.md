@@ -21,6 +21,8 @@
 
 GUIレビュー `GUI-2054-RESPONSE-01` の指摘に対応し、consumer status／observed refs／closure evidenceをedgeとledgerから再導出して照合する。`counter_evidence`の全key・値とunitごとの`unresolved`集合も再導出し、固定BASEの祖先性と入力path digestを検証する。
 
+入力digestとline／anchor digestはlive working treeではなく、固定BASEのGit object bytesから計算する。BASEに存在しない入力や祖先でないHEADはfail-closeする。
+
 ## 検証
 
 ```text

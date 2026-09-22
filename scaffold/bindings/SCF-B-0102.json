@@ -393,6 +393,7 @@
     "oracles": [
       "validate.py PASS: 7 units／21 edges／16 old assets",
       "Git bytes／blob／line excerpt digest exact match at fixed base",
+      "固定BASE祖先性とBASE Git object input digestのexact match",
       "selfcheck.py expected E_OLD_BLOB／E_CURRENT_SPAN／E_REVIEW_EDGE_SET／E_CURRENT_STATUS／E_OLD_FAILURE_CLAIM／E_OLD_LEDGER_RECORD／E_CONSUMER_EVIDENCE／E_COUNTER_EVIDENCE／E_UNRESOLVED／E_INPUT_DIGEST"
     ],
     "scope": [

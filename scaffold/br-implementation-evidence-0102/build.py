@@ -18,11 +18,20 @@ CROSSWALK = ROOT / "docs/governance/legacy-requirement-implementation-crosswalk-
 LEDGER = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 DECISIONS = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER = ROOT / "docs/governance/legacy-asset-copy-read-after.jsonl"
+
+
+def _base_path_exists(path: str) -> bool:
+    return subprocess.run(
+        ["git", "cat-file", "-e", f"{BASE}:{path}"],
+        cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+    ).returncode == 0
+
+
 ALL_WAVE_FILES = {}
 for _wave in range(1, 51):
     _docs = ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{_wave}.jsonl"
     _scaffold = ROOT / f"scaffold/legacy-semantic-review-wave{_wave}/legacy-requirement-direct-semantic-review-wave{_wave}.jsonl"
-    ALL_WAVE_FILES[_wave] = _docs if _docs.exists() else _scaffold
+    ALL_WAVE_FILES[_wave] = _docs if _base_path_exists(str(_docs.relative_to(ROOT))) else _scaffold
 WAVE_FILES = {wave: ALL_WAVE_FILES[wave] for wave in (1, 5, 10, 13, 14)}
 UNIT_IDS = [
     "IRUNIT-HIL-BR-01-HELIX-HARNESS",
@@ -72,8 +81,12 @@ CURRENT_REFS = {
 }
 
 
+def read_jsonl_bytes(data: bytes) -> list[dict]:
+    return [json.loads(line) for line in data.decode("utf-8").splitlines() if line.strip()]
+
+
 def read_jsonl(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return read_jsonl_bytes(path.read_bytes())
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -84,13 +97,33 @@ def file_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def base_bytes(path: str) -> bytes:
+    return subprocess.check_output(["git", "show", f"{BASE}:{path}"], cwd=ROOT)
+
+
+def base_file_sha256(path: str) -> str:
+    return hashlib.sha256(base_bytes(path)).hexdigest()
+
+
+def base_has_path(path: str) -> bool:
+    return subprocess.run(
+        ["git", "cat-file", "-e", f"{BASE}:{path}"],
+        cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+    ).returncode == 0
+
+
+def base_jsonl(path: Path) -> list[dict]:
+    return read_jsonl_bytes(base_bytes(str(path.relative_to(ROOT))))
+
+
 def git_blob(path: str) -> str:
     archived = f"archive/legacy-generation-2026-09-14/root/{path}"
     return subprocess.check_output(["git", "rev-parse", f"{BASE}:{archived}"], cwd=ROOT, text=True).strip()
 
 
 def span(path: Path, start: int, end: int) -> dict:
-    data = path.read_bytes().splitlines(keepends=True)
+    relative = str(path.relative_to(ROOT))
+    data = base_bytes(relative).splitlines(keepends=True)
     selected = data[start - 1 : end]
     if len(selected) != end - start + 1:
         raise ValueError(f"line range out of bounds: {path}:{start}-{end}")
@@ -101,7 +134,7 @@ def span(path: Path, start: int, end: int) -> dict:
         "line_end": end,
         "line_text": text,
         "span_sha256": sha256_bytes(b"".join(selected)),
-        "file_sha256": file_sha256(path),
+        "file_sha256": base_file_sha256(relative),
     }
 
 
@@ -138,17 +171,18 @@ def candidate_snapshot(row: dict) -> list[dict]:
 
 
 def main() -> None:
-    crosswalk = read_jsonl(CROSSWALK)[:7]
+    crosswalk = base_jsonl(CROSSWALK)[:7]
     if [x["unit_candidate_id"] for x in crosswalk] != UNIT_IDS:
         raise SystemExit("crosswalk first seven units changed")
-    ledger = {x["asset_id"]: x for x in read_jsonl(LEDGER)}
-    decisions = read_jsonl(DECISIONS)
-    read_after = read_jsonl(READ_AFTER)
+    ledger = {x["asset_id"]: x for x in base_jsonl(LEDGER)}
+    decisions = base_jsonl(DECISIONS)
+    read_after = base_jsonl(READ_AFTER)
     reviews = []
     scan_rows = 0
     for wave, path in ALL_WAVE_FILES.items():
-        scan_rows += len(read_jsonl(path))
-        for row in read_jsonl(path):
+        rows = base_jsonl(path)
+        scan_rows += len(rows)
+        for row in rows:
             if row.get("unit_candidate_id") in UNIT_IDS:
                 reviews.append(exact_review_fields(row, wave))
     reviews_by_unit = {unit: [] for unit in UNIT_IDS}
@@ -325,13 +359,19 @@ def main() -> None:
     input_paths.update(str(path.relative_to(ROOT)) for path in ALL_WAVE_FILES.values())
     for row in evidence_rows:
         input_paths.update(ref["path"] for ref in row["current_implementation_evidence"]["current_refs"])
+        input_paths.update(
+            evidence_ref["archive_path"]
+            for edge in row["semantic_review_edges"]
+            for evidence_ref in edge.get("evidence_refs", [])
+        )
     inventory = {
         "schema": "br-implementation-evidence-0102/v1",
         "status": "research_only_scaffold_candidate",
         "authority_effect": "none",
         "base_commit": BASE,
         "source_revision": "legacy-generation-2026-09-14",
-        "input_digests": {path: file_sha256(ROOT / path) for path in sorted(input_paths)},
+        "input_digest_basis": "git_object_bytes_at_base",
+        "input_digests": {path: base_file_sha256(path) for path in sorted(input_paths)},
         "scope": {
             "source_requirement_ids": ["HIL-BR-01", "HIL-BR-02", "HIL-BR-03", "HIL-BR-04", "HIL-BR-05"],
             "unit_ids": UNIT_IDS,
