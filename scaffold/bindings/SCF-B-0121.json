@@ -6,7 +6,7 @@
   "product": "HELIX-Web",
   "owner_candidate": "outside67 Web／Web-OS L1 anchor semantic review（最終owner未解決）",
   "state": "registered",
-  "reason": "MPR-SH-OUTSIDE67-001の未処理4 path（PATH-007／009／010／012）についてholding、pre-isolation、archiveのexact Git bytes／digestと現行四製品L1候補を静的に照合し、Web L1 6＋Web-OS L1 5のrow-sized anchor候補およびREADME context 2件を保持するresearch-only Scaffold。現行L1はdraft／parent approval待ち、旧pathはpath-level contextであり、formal unit、phase、実装、縮退、failure、consumer、authorityへ昇格しない。既存SCF-B-0057／0062／0080〜0091の対象pathとの重複を拒否し、#1813は進捗参照のみとする。",
+  "reason": "MPR-SH-OUTSIDE67-001の既存SCF-B-0096／0099でsource調査済みの4 path（PATH-007／009／010／012）について追加のL1接続をholding、pre-isolation、archiveのexact Git bytes／digestと現行四製品L1候補へ静的に照合し、Web L1 6＋Web-OS L1 5のrow-sized anchor候補およびREADME context 2件を保持するresearch-only Scaffold。現行L1本文のraw metadataはdraft／parent approval待ちだが承認decisionでeffective approved、研究candidate authorityはnoneに保持し、旧pathはpath-level contextであり、formal unit、phase、実装、縮退、failure、consumer、authorityへ昇格しない。既存SCF-B-0057／0062／0080〜0091の対象pathとの重複を拒否し、#1813は進捗参照のみとする。",
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
@@ -37,6 +37,11 @@
       "path": "docs/helix-web-os/L1-planning/system-intent.md",
       "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
       "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
+      "note": "fixed BASE static input; effective approved decision for Web/Web-OS L1; research candidate authority remains none"
     },
     {
       "path": "scaffold/bindings/SCF-B-0057.json",
@@ -78,11 +83,11 @@
   "obligations": [
     "outside67 67 path_revision_pair分母、14 live holding、対象4 pathをholding／register digest付きで固定する",
     "対象4 pathのpre-isolation／archive commit、blob、SHA、bytes、snapshot原文を照合する",
-    "current Web L1 6行＋Web-OS L1 5行をsource path／line／text／L2接続へ束縛し、candidate-onlyとして保持する",
+    "current Web L1 6行＋Web-OS L1 5行をraw metadataとeffective approved decisionへ分離し、source path／line／text／L2接続へ束縛する",
     "README 2件をcontext-onlyとして保持し、formal unit集合へ算入しない",
     "phase／implementation／degradation／failure／consumerをunknown、formal unitをnot_generated、authorityをnoneに固定する",
     "既存SCF-B-0057／0062／0080／0081／0084／0088／0091との対象path重複とcandidate ID重複を拒否する",
-    "固定BASE祖先性、入力digest、全field schema、14負例の期待error codeを検証する",
+    "固定BASE祖先性、入力digest、L1承認decision digest、raw／effective authority分離、全field schema、15負例の期待error codeを検証する",
     "旧source／archive／runtime／test／CIを実行せず、要求採択、formal phase、authority、実装、縮退、failure／consumer closureを生成しない"
   ],
   "connections": {
@@ -150,8 +155,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "validate.py（固定BASE祖先性、4 source snapshot、11 L1 anchor候補、2 README context、holding／register／L1／boundary digest、既存binding重複、unknown／authority／formal boundary）",
-      "selfcheck.py（14 negative casesと期待error codeの一致）",
+      "validate.py（固定BASE祖先性、4 source snapshot、11 L1 anchor候補、2 README context、holding／register／L1／L1 approval decision／boundary digest、既存binding重複、unknown／authority／formal boundary）",
+      "selfcheck.py（15 negative casesと期待error codeの一致）",
       "scfctl validate／stale／residuals",
       "git diff --check"
     ],
@@ -169,7 +174,8 @@
       "holding／register／L1／boundary／entry digestまたはpinsの改変はE_INPUT_DIGESTで拒否",
       "fixed BASE宣言または祖先性の改変はE_BASE_COMMITで拒否",
       "old runtime／test／CI実行記録の混入を許さない",
-      "formal register／successor／meaning changeの生成を許さない"
+      "formal register／successor／meaning changeの生成を許さない",
+      "L1 approval decision digest mismatch is E_INPUT_DIGEST; raw draft metadata and effective approved decision must remain separated"
     ]
   },
   "replacement": {

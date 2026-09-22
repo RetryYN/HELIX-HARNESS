@@ -43,6 +43,7 @@ CASES=[
  ("overlap", "E_OVERLAP", change_file("inventory.json",lambda x:x["overlap_control"].__setitem__("existing_target_path_ids",["OUTSIDE67-PATH-007"]))),
  ("inventory-declaration", "E_INVENTORY_DECLARATION", change_file("inventory.json",lambda x:x["negative_case_codes"].pop())),
  ("input-digest", "E_INPUT_DIGEST", change_file("inventory.json",lambda x:x["input_digest_pins"].__setitem__("web_l1","0"*64))),
+ ("l1-approval-decision-digest", "E_INPUT_DIGEST", change_file("inventory.json",lambda x:x["input_digest_pins"].__setitem__("l1_approval_decision","0"*64))),
  ("base-commit", "E_BASE_COMMIT", change_file("inventory.json",lambda x:x["scope"].__setitem__("base_origin_main","0"*40))),
 ]
 for name,code,mutate in CASES: run_case(name,code,mutate)
