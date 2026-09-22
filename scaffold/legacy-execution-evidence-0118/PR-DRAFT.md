@@ -11,6 +11,7 @@
 - 非一致3,992行は除外した。`.helix/evidence/` 60行、`tests/` 597行、path名に `lint` を含む197行、`review-*/head.txt` 3行を含み、通常のtest source／lint logをreceiptへ混入させていない（分類は重複し得る）。
 - 21件はJSON test summary、5件はtext summary、2件はhead/base/tested merge identity receipt。安全な状態機械の再生成後は24件がasset-level `pass_observed`、1件が`pass_with_pending`、2件がidentity-only、1件（`LEGACY-ASSET-CE767996F54E28A6486B`）が`fatal:` markerとpass summaryの矛盾としてverdictなし・asset-level failure observedになった。unit-level failure／縮退とは分類していない。
 - JSONはsuite/test countの非負整数・総和整合・正のpass countを必須とし、textは正のpass／failed countとexit codeを分離して判定する。`0 failed` はfailure markerにせず、正のfailed count・fatal/error・非zero exitはfailure observationへ記録し、passとの併記はcontradictoryとしてverdictなしにする。
+- 監査再現で従来実装の5条件（JSON `success=0/fail=2`、JSON count全zero、JSON suite count欠測／不整合、text `0 passed/2 failed`、pass summary後の`exit=2`）が誤ってpassになったことを固定し、いずれもverdictなしへ倒した。実データは `pass_observed` 25→24、verdictなし2→3、`pass_with_pending` 1件は不変。CE767はpass summaryとfatal markerが混在するためverdictなし＋asset-level failure observedとした。unit-level verdict／acceptance verdictは全件不変で、生成していない。
 - selected 28件はWave edge、crosswalk direct／representative link、decision／read-after direct referenceに該当しない。candidate poolは検索候補であり、unit結合へ昇格しない。
 - 各recordは旧実装、縮退、current実装、acceptanceをunknown／absentとして保持する。test pass、pending、fatal／lint、receipt identityを実装・縮退・未実装・受入へ昇格しない。
 - inventoryはbundle_kind `research_scaffold_asset_level_receipt_partition`、expected_asset_count `28` と実record数、宣言済みtop-level key集合を固定照合し、3種類の改竄をselfcheckで拒否する。
