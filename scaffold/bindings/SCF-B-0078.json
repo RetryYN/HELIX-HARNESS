@@ -1,0 +1,226 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0078",
+  "kind": "scaffold",
+  "title": "Wave44 schema10 legacy requirement source chain research premise",
+  "product": "HELIX-OS",
+  "owner_candidate": "Wave44の10 legacy requirement product unitについて、HARNESS／OS境界・phase・authority・implementation・degradation・consumerを未確定のまま静的照合する研究候補（正式owner未解決）",
+  "state": "registered",
+  "reason": "Wave43確定176 unit／509 edgeの後、旧HIL-NFR-34/35/36/37/38/40とHIL-TR-02/03/09/10 source chainから重複しない10 unitを選び、旧requirements原文・decomposition span・29 role edge・10 semantic atom・10 composite unresolved・19 selected role asset・23 inspected assetのsource／判断史／failure／consumer状態を静的に突合する。独立phase/product poolを照合し、TR-10 implementation_sourceの直接証拠不足をmissing evidenceへ分離する。Web／Web-OS routing、現行authority、phase admission、current implementation、degradation、consumer closure、acceptance、release、deploymentは生成しない。replacement.issue=0はDraft PR未割当を表すtracker sentinelであり、PR番号を推定しない。",
+  "upstream": [
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-ir-document-source-relation.jsonl",
+      "sha256": "f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-ir-target-routing-queue.jsonl",
+      "sha256": "b543e5ae6009f1f5ae3d4617aa2bb5b809cc92ff83f8ce62cd6ae77e1ef2b2f3",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/README.md",
+      "sha256": "0d9eb65ddce77514d94df6ebc2c449d5d560b852302da3b8bc6c17e3bbc458d8",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/plan.json",
+      "sha256": "2142bf983fe3f6911ba349b9efd3a9c458bfdf224065d4e7f26534cd73d4b6c1",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/inventory.json",
+      "sha256": "94bc94fd8a020dc37b850c433f7d17907377150401c699a60942a7d4b46a0987",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/generate.py",
+      "sha256": "21e42ef8c649c95a44e22e41ecc82fe5d92ba7f64ae180cda32c2df54188e2af",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/validate.py",
+      "sha256": "8e8c0d15df7132aa071efea1c4a9dfd7419523cd4d03ddbb99cc0cbff447edc7",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/selfcheck.py",
+      "sha256": "f6df7019f4b0a9389b92dfe8fdb948ed7ca976c085fba73a2557a37bcae19ca5",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
+      "sha256": "2fd638f0dc975fc03790f03d34b579ba5513a1b8420d8c3b09c2c53b108a38f6",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.meta.json",
+      "sha256": "d4b28fad5e31a816187a0eec117b8287606ba699c3c291adacdf017a684081f9",
+      "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+    }
+  ],
+  "role": "Wave44のHELIX-OS product unit 10件について、requirements／design／implementation_sourceのcandidate edge、独立pool照合、missing evidence、旧asset status unknownを保持する静的Scaffold",
+  "obligations": [
+    "10 unit、29 role edge、10 semantic atom、10 composite_unresolvedを固定し、TR-10 implementation_sourceの直接証拠不足をmissing evidenceへ記録する",
+    "旧requirements原文、decomposition、source relation、catalog／crosswalk、decision／disposition、failure／consumerの静的状態を読み、旧実行は行わない",
+    "独立phase/product pool membershipとprior Wave1〜43 asset非重複を検査し、同一batchのnon-requirement asset重複を共有typed edgeなしで許可しない",
+    "HELIX-OS候補をcurrent product ownerやauthorityへ昇格させず、Web／Web-OSを218 unit分母から推定しない",
+    "旧authority／failure code／historical consumerはhistorical ledger onlyとして保持し、現行権限・実装・縮退・phase admission・consumer closureへ昇格しない",
+    "旧archiveのruntime／test／CI／workflow／hook／adapter／sourceを実行せず、Scaffold内の静的generator／validator／selfcheckだけを実行する"
+  ],
+  "connections": {
+    "consumers": [
+      "Wave44 semantic review担当",
+      "四製品boundary／phase review担当",
+      "旧asset failure／consumer／decision closure担当",
+      "SCF-B-0078 replacement review担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "current four-product boundary docs",
+      "legacy catalog/crosswalk/decomposition/route/disposition ledgers",
+      "Wave1〜43 prior semantic ledgers"
+    ],
+    "boundary": "候補ledger、meta、plan、inventory、generator、validator、selfcheckをscaffold/に保持する。旧sourceは意味・判断史・failure・consumerの静的referenceとしてだけ読み、正式要求・現行owner・権限・実装・縮退・phase admissionを確定しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/legacy-semantic-review-wave44/generate.py",
+      "python3 -B scaffold/legacy-semantic-review-wave44/validate.py",
+      "python3 -B scaffold/legacy-semantic-review-wave44/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "旧世代archive配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+      "旧sourceをcurrent oracle、fallback、implementation、passへ昇格すること",
+      "scaffold外への候補書き込み",
+      "要求採否、phase authority、product owner、successor、implementation、degradation、acceptance、release、deployment、consumer closureの生成",
+      "GitHub、Issue、PR、CI、DB、外部APIへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/legacy-semantic-review-wave44/README.md",
+    "scaffold/legacy-semantic-review-wave44/plan.json",
+    "scaffold/legacy-semantic-review-wave44/inventory.json",
+    "scaffold/legacy-semantic-review-wave44/generate.py",
+    "scaffold/legacy-semantic-review-wave44/validate.py",
+    "scaffold/legacy-semantic-review-wave44/selfcheck.py",
+    "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
+    "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.meta.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "Wave44 generate.py→ledger/meta deterministic regeneration",
+      "Wave44 validate.py（29 rows／10 unit／29 edge／10 atom／10 composite、source／asset receipt、独立pool、missing evidence、prior dynamic count、latest-main ancestor gate）",
+      "Wave44 selfcheck.py（本体validator経路の23 negative mutation）",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "unit／edge／asset keyset deletion or injection",
+      "source span／digest tamper",
+      "invented shared source connection",
+      "missing evidence receipt or reason tamper",
+      "prior asset reuse",
+      "same-batch non-requirement asset reuse without explicit shared relation",
+      "independent phase/product pool membership",
+      "authority／phase／implementation／degradation promotion",
+      "ancestor base gate tamper",
+      "old execution receipt invention",
+      "consumer closure invention",
+      "Web or Web-OS unsupported routing",
+      "cross-unit source span reuse",
+      "degradation promotion",
+      "selected role asset count mismatch",
+      "plan/inventory count mismatch"
+    ]
+  },
+  "replacement": {
+    "role_target": "Wave44の10 unitについて、人間がproduct／phase／authority／implementation／degradation／consumer判断を行った後の正式crosswalk／L1 downstream artifacts",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}

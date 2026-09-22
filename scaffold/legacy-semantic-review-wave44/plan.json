@@ -1,0 +1,1435 @@
+{
+  "asset_read_scope": {
+    "catalog": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "crosswalk": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "decision": "docs/governance/legacy-asset-decisions.jsonl",
+    "decomposition": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+    "disposition": "docs/governance/legacy-asset-disposition.jsonl",
+    "execution": "not_run",
+    "failure_consumer": "archive historical governance ledgers; static fields only",
+    "source_relation": "docs/governance/legacy-ir-document-source-relation.jsonl"
+  },
+  "base_revision": "ac33378e7846b6effc61110ed62971159e535ff5",
+  "batch_id": "LEGACY-SEMANTIC-WAVE44-2026-09-22",
+  "binding_id": "SCF-B-0078",
+  "boundaries": [
+    "旧requirements JSON、保存markdown、decomposition spanを逐語保持し、旧authority／failure／consumerはhistorical ledger onlyとして扱う",
+    "candidate asset poolは検索候補でありassetの存在を現行設計・実装・consumer closureの証拠へ昇格しない",
+    "10候補を一律採用せず、source chainと独立phase/product poolを照合し、TR-10 implementation_sourceは直接証拠をmissing receiptへ分離する",
+    "phase candidate、legacy implementation status、現行implementation、degradation、phase admissionを別フィールドで保持しunknown／pendingを補完しない",
+    "同一batch内のnon-requirement asset重複とprior Wave1–43 asset再利用を拒否する",
+    "旧archiveは静的読取のみとしruntime／test／CI／workflow／hook／adapter／sourceは実行しない"
+  ],
+  "counts": {
+    "composite_unresolved": 10,
+    "cumulative_edges_after_wave": 538,
+    "cumulative_units_after_wave": 186,
+    "inspected_legacy_assets": 23,
+    "missing_evidence_receipts": 1,
+    "remaining_units_after_wave": 32,
+    "role_edges": 29,
+    "selected_role_assets": 19,
+    "semantic_atoms": 10,
+    "units": 10
+  },
+  "created": "2026-09-22",
+  "missing_evidence_receipts": [
+    {
+      "candidate_product_targets": [
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "phase_pool_asset_count": 418,
+      "reason": "crosswalk direct implementation candidates are already consumed by prior/current review; no direct asset evidence was selected",
+      "role_kind": "implementation_source",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-TR-10-HELIX-OS"
+    }
+  ],
+  "purpose": "旧HIL-NFR／TR未review unitから、source／asset／判断史／failure／consumerの静的chainを四製品routing候補へ分類する研究Scaffold。正式要求・authority・implementation・degradation・phase admission・consumer closureは確定しない。",
+  "schema_revision": 1,
+  "selected_units": [
+    {
+      "assertion_id": "HIA-NFR-034",
+      "boundary": {
+        "authority": "none",
+        "consumer_closure": "pending",
+        "current_implementation": "not_established",
+        "degradation": "unknown",
+        "legacy_execution": "not_run",
+        "phase_admission": "candidate_unchanged"
+      },
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "historical_authority_id": "RAS-HIL-21",
+      "historical_ledger_only": {
+        "authority_id": "RAS-HIL-21",
+        "consumer_refs": [
+          "requirement-atomization-review",
+          "requirement-carry-forward-ledgers"
+        ],
+        "failure_consumer_status": "catalog/disposition/decision/read-after fields retained; no current closure"
+      },
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 525,
+      "phase_rationale": "PHCAP-07: self-verification/guard evidence；PHCAP-10: specialist agent/tool/subagent execution guard",
+      "phase_status": [
+        {
+          "catalog_asset_count": 278,
+          "current_status": "candidate_only",
+          "gap": "現行証拠はHARNESS／OS候補に限定。Web／Web-OSのL10、oracle registry、新世代CIが未構築",
+          "legacy_capability_status": "documented_with_test_design",
+          "phase_id": "PHCAP-07",
+          "product_intersection_count": 142,
+          "transition_assessment": "not_reimplemented_formally"
+        },
+        {
+          "catalog_asset_count": 471,
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+          "legacy_capability_status": "implemented_with_tests",
+          "phase_id": "PHCAP-10",
+          "product_intersection_count": 418,
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        }
+      ],
+      "responsibility_summary": "未監査packを権威化せず、生成元snapshot・digestへbindし、stale化と未許可tool・自己検証・無上限subagent・工程外completion authorityをfail-closeする条件",
+      "role_edges": [
+        {
+          "artifact_evidence_kind": "requirement",
+          "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+          "classification_id": "LASPH-2866",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-1",
+              "excerpt_sha256": "sha256:973aa25871418eb8659b197d7a2c96c40a5d77156f503dfba38479187894c840",
+              "excerpt_status": "static_read_only",
+              "line_end": 5883,
+              "line_start": 5842,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            },
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-2",
+              "excerpt_sha256": "sha256:caff7c98fbb388be37c8b72c135786905ac8512ee2ceca90a7c633aa46c220fc",
+              "excerpt_status": "static_read_only",
+              "line_end": 214,
+              "line_start": 214,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "non_executable_read_only_source",
+          "semantic_link_status": "confirmed",
+          "source_path": "requirements-ir/requirements.json",
+          "source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+        },
+        {
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-504B2BF06DD84DBD7D97",
+          "classification_id": "LASPH-0498",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-context-boundary-compiler.md",
+              "artifact_role": "design",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-design-1",
+              "excerpt_sha256": "sha256:4767b150c53582a262bd560f272e11aafde94b5a6fb9fd562cc0f34f06c6a770",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "design_contract_evidence"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "docs/design/helix/L3-requirements/worker-context-boundary-compiler.md",
+          "source_sha256": "fd16ae604427dc7e64b34718ffc263a5993b34fe70e2806f8442a8688f57036c"
+        },
+        {
+          "artifact_evidence_kind": "implementation_source",
+          "asset_id": "LEGACY-ASSET-27C28531046E4B2CF535",
+          "classification_id": "LASPH-3011",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/src/lint/legacy-orchestration-surface.ts",
+              "artifact_role": "implementation_source",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-implementation_source-1",
+              "excerpt_sha256": "sha256:a7e34f24da1e9e5e723ee824a67f596feb55e165d8c465498c0ca071bb2fa933",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "implementation_candidate_only"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "src/lint/legacy-orchestration-surface.ts",
+          "source_sha256": "ec4ada5d87b8afc32f72291e2f50ef7fa8c234a707ae6130ef89ba3006fdf7df"
+        }
+      ],
+      "routing_candidate": "single_product",
+      "semantic_atom_ids": [
+        "NFR34-OS-A01"
+      ],
+      "semantic_coverage_status": "pending_exact_head_independent_review",
+      "source_anchor": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#HIL-NFR-34 lines 5842-5883; preserved markdown docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:214",
+      "source_requirement_id": "HIL-NFR-34",
+      "source_statement_semantic_digest": "sha256:8c66fd80f98504563e3383bbca96dedd7f9ec43c2b82e969c841ea645b8c6f47",
+      "source_statement_text": "自動生成したjudgment packと専門agentは提案時点で権威を持たず、生成元snapshotとdigestへbindする。scope/requirement/template/skill/model catalog/allowlistの変更でstale化し、未監査pack、未許可tool、自己検証、無上限subagent生成、工程外のcompletion authorityをfail-closeする。",
+      "source_text_spans": [
+        "自動生成したjudgment packと専門agentは提案時点で権威を持たず、生成元snapshotとdigestへbindする。scope/requirement/template/skill/model catalog/allowlistの変更でstale化し、未監査pack、未許可tool、自己検証、無上限subagent生成、工程外のcompletion authorityをfail-closeする。"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-34-HELIX-OS"
+    },
+    {
+      "assertion_id": "HIA-NFR-035",
+      "boundary": {
+        "authority": "none",
+        "consumer_closure": "pending",
+        "current_implementation": "not_established",
+        "degradation": "unknown",
+        "legacy_execution": "not_run",
+        "phase_admission": "candidate_unchanged"
+      },
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "historical_authority_id": "RAS-HIL-22",
+      "historical_ledger_only": {
+        "authority_id": "RAS-HIL-22",
+        "consumer_refs": [
+          "requirement-atomization-review",
+          "requirement-carry-forward-ledgers"
+        ],
+        "failure_consumer_status": "catalog/disposition/decision/read-after fields retained; no current closure"
+      },
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 525,
+      "phase_rationale": "PHCAP-07: blind bench/verification；PHCAP-10: Worker runtime evaluation",
+      "phase_status": [
+        {
+          "catalog_asset_count": 278,
+          "current_status": "candidate_only",
+          "gap": "現行証拠はHARNESS／OS候補に限定。Web／Web-OSのL10、oracle registry、新世代CIが未構築",
+          "legacy_capability_status": "documented_with_test_design",
+          "phase_id": "PHCAP-07",
+          "product_intersection_count": 142,
+          "transition_assessment": "not_reimplemented_formally"
+        },
+        {
+          "catalog_asset_count": 471,
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+          "legacy_capability_status": "implemented_with_tests",
+          "phase_id": "PHCAP-10",
+          "product_intersection_count": 418,
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        }
+      ],
+      "responsibility_summary": "Worker benchをblind化し、fixture・rubric・judge version・sample・再試行を固定して再現可能に評価する",
+      "role_edges": [
+        {
+          "artifact_evidence_kind": "requirement",
+          "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+          "classification_id": "LASPH-2866",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-1",
+              "excerpt_sha256": "sha256:128265014da36df39c74aab5fbfc45390f1495f27d8b7d4951566556a9053142",
+              "excerpt_status": "static_read_only",
+              "line_end": 5926,
+              "line_start": 5885,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            },
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-2",
+              "excerpt_sha256": "sha256:9b5ec86c741f375d416ceb9796bf7a469794c8ddd4204e139adb1447c25bc5aa",
+              "excerpt_status": "static_read_only",
+              "line_end": 215,
+              "line_start": 215,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "non_executable_read_only_source",
+          "semantic_link_status": "confirmed",
+          "source_path": "requirements-ir/requirements.json",
+          "source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+        },
+        {
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-E357058A7A8CEE36DD94",
+          "classification_id": "LASPH-0595",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-descriptor-admission.md",
+              "artifact_role": "design",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-design-1",
+              "excerpt_sha256": "sha256:9eb720e70caced3ced114d14b7ae30e58bf04c2b30f9b94f948cdad19e6f47c7",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "design_contract_evidence"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "docs/design/helix/L5-detail/worker-descriptor-admission.md",
+          "source_sha256": "e0f5c7bf4ade4605da4330ebd737860324b0d37dc2b85db979461d5a4deef749"
+        },
+        {
+          "artifact_evidence_kind": "implementation_source",
+          "asset_id": "LEGACY-ASSET-51FFB9B717FAB30445BF",
+          "classification_id": "LASPH-3090",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/src/orchestration/autonomous-loop-run-receipts.ts",
+              "artifact_role": "implementation_source",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-implementation_source-1",
+              "excerpt_sha256": "sha256:bb9063de679d8735450858bf77bf8f050bc552cdff89fc9d21aa23d77c719962",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "implementation_candidate_only"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "src/orchestration/autonomous-loop-run-receipts.ts",
+          "source_sha256": "559e59b0b3f80b4c0c996f0428493de8dd9b2526baa343d8d2f90ce07f4800c7"
+        }
+      ],
+      "routing_candidate": "single_product",
+      "semantic_atom_ids": [
+        "NFR35-OS-A01"
+      ],
+      "semantic_coverage_status": "pending_exact_head_independent_review",
+      "source_anchor": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#HIL-NFR-35 lines 5885-5926; preserved markdown docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:215",
+      "source_requirement_id": "HIL-NFR-35",
+      "source_statement_semantic_digest": "sha256:75bc063dbce9013c692f5a213d4974fccff2809c64b5f28137f8181723621364",
+      "source_statement_text": "worker評価は候補runtime名をblind化し、fixture、rubric、judge version、sample、再試行を固定して再現可能にする。smoke合格だけでfull admissionせず、security failure、scope逸脱、検証不能な出力を平均点で相殺しない。",
+      "source_text_spans": [
+        "worker評価は候補runtime名をblind化し、fixture、rubric、judge version、sample、再試行を固定して再現可能にする。smoke合格だけでfull admissionせず、security failure、scope逸脱、検証不能な出力を平均点で相殺しない。"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-35-HELIX-OS"
+    },
+    {
+      "assertion_id": "HIA-NFR-036",
+      "boundary": {
+        "authority": "none",
+        "consumer_closure": "pending",
+        "current_implementation": "not_established",
+        "degradation": "unknown",
+        "legacy_execution": "not_run",
+        "phase_admission": "candidate_unchanged"
+      },
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "historical_authority_id": "RAS-HIL-22",
+      "historical_ledger_only": {
+        "authority_id": "RAS-HIL-22",
+        "consumer_refs": [
+          "requirement-atomization-review",
+          "requirement-carry-forward-ledgers"
+        ],
+        "failure_consumer_status": "catalog/disposition/decision/read-after fields retained; no current closure"
+      },
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 418,
+      "phase_rationale": "PHCAP-10: Worker routing/model/effort control",
+      "phase_status": [
+        {
+          "catalog_asset_count": 471,
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+          "legacy_capability_status": "implemented_with_tests",
+          "phase_id": "PHCAP-10",
+          "product_intersection_count": 418,
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        }
+      ],
+      "responsibility_summary": "model/effort/retry選択をtask・risk・runtime・品質・costへ追跡し、既定値逸脱・品質問題のescalation順序をreceipt化する条件を管理し、単価・単発成功だけの最適性主張を禁じる",
+      "role_edges": [
+        {
+          "artifact_evidence_kind": "requirement",
+          "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+          "classification_id": "LASPH-2866",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-1",
+              "excerpt_sha256": "sha256:b1801426429332d6ccdb8d2206f27dca5446ec01ff05b3950ad60671ecf50da2",
+              "excerpt_status": "static_read_only",
+              "line_end": 5969,
+              "line_start": 5928,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            },
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-2",
+              "excerpt_sha256": "sha256:b15aad6eeff64e21d844f136a4c65cfe26b0a77cefb8524aecdfa59ff3efd16f",
+              "excerpt_status": "static_read_only",
+              "line_end": 216,
+              "line_start": 216,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "non_executable_read_only_source",
+          "semantic_link_status": "confirmed",
+          "source_path": "requirements-ir/requirements.json",
+          "source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+        },
+        {
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-C7C0A502D2DA1B30CE0A",
+          "classification_id": "LASPH-0601",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-risk-admission.md",
+              "artifact_role": "design",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-design-1",
+              "excerpt_sha256": "sha256:161455fad382b66850d0e888655cb50be9d20a4c5be9174c76bc80d54000d266",
+              "excerpt_status": "static_read_only",
+              "line_end": 70,
+              "line_start": 1,
+              "source_requirement_relation": "design_contract_evidence"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "docs/design/helix/L5-detail/worker-risk-admission.md",
+          "source_sha256": "905bf9deb2538d8c7721a40ae01de4c7ab5b658878df8e4d74060bf7e61af68a"
+        },
+        {
+          "artifact_evidence_kind": "implementation_source",
+          "asset_id": "LEGACY-ASSET-7339DBE16914B6461DBC",
+          "classification_id": "LASPH-3131",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-observability-provenance.ts",
+              "artifact_role": "implementation_source",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-implementation_source-1",
+              "excerpt_sha256": "sha256:c8de8af6fe20df4cc67412cee2967aa5b9295906f1fe50c851f4fff7b5417928",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "implementation_candidate_only"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "src/runtime/agent-observability-provenance.ts",
+          "source_sha256": "ba74a2a22bb69c1ea722f1dc3a6b6afcd7a50e84532a2de67a004abdd07a748e"
+        }
+      ],
+      "routing_candidate": "single_product",
+      "semantic_atom_ids": [
+        "NFR36-OS-A01"
+      ],
+      "semantic_coverage_status": "pending_exact_head_independent_review",
+      "source_anchor": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#HIL-NFR-36 lines 5928-5969; preserved markdown docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:216",
+      "source_requirement_id": "HIL-NFR-36",
+      "source_statement_semantic_digest": "sha256:2224ab3bcd6e7974df0e119d9298a784abf86594399cfbe09c6d40b75620f8d3",
+      "source_statement_text": "model/effort選択はtask、risk、runtime、model、effort、retry、品質、costへ追跡可能にし、既定値からの逸脱と品質問題へのescalation順序をreceipt化する。単価だけ又は単発成功だけで最適構成を主張しない。",
+      "source_text_spans": [
+        "model/effort選択はtask、risk、runtime、model、effort、retry、品質、costへ追跡可能にし、既定値からの逸脱と品質問題へのescalation順序をreceipt化する。単価だけ又は単発成功だけで最適構成を主張しない。"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-36-HELIX-OS"
+    },
+    {
+      "assertion_id": "HIA-NFR-037",
+      "boundary": {
+        "authority": "none",
+        "consumer_closure": "pending",
+        "current_implementation": "not_established",
+        "degradation": "unknown",
+        "legacy_execution": "not_run",
+        "phase_admission": "candidate_unchanged"
+      },
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "historical_authority_id": "RAS-HIL-23",
+      "historical_ledger_only": {
+        "authority_id": "RAS-HIL-23",
+        "consumer_refs": [
+          "requirement-atomization-review",
+          "requirement-carry-forward-ledgers"
+        ],
+        "failure_consumer_status": "catalog/disposition/decision/read-after fields retained; no current closure"
+      },
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 525,
+      "phase_rationale": "PHCAP-07: path allowlist/secret scan evidence；PHCAP-10: third-party runtime delegation guard",
+      "phase_status": [
+        {
+          "catalog_asset_count": 278,
+          "current_status": "candidate_only",
+          "gap": "現行証拠はHARNESS／OS候補に限定。Web／Web-OSのL10、oracle registry、新世代CIが未構築",
+          "legacy_capability_status": "documented_with_test_design",
+          "phase_id": "PHCAP-07",
+          "product_intersection_count": 142,
+          "transition_assessment": "not_reimplemented_formally"
+        },
+        {
+          "catalog_asset_count": 471,
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+          "legacy_capability_status": "implemented_with_tests",
+          "phase_id": "PHCAP-10",
+          "product_intersection_count": 418,
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        }
+      ],
+      "responsibility_summary": "委譲データを分類し、機密以上の第三者runtime委譲をpath allowlist・secret scanで遮断し、訓練利用opt-out完了を採用条件として未完了時は公開可能コード以外を委譲しない",
+      "role_edges": [
+        {
+          "artifact_evidence_kind": "requirement",
+          "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+          "classification_id": "LASPH-2866",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-1",
+              "excerpt_sha256": "sha256:e1a5d1735d5443d0ba9affa454ae92540b4a0c945d0ed4bd7805fa1a36d007e1",
+              "excerpt_status": "static_read_only",
+              "line_end": 6017,
+              "line_start": 5971,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            },
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-2",
+              "excerpt_sha256": "sha256:e493bf6afa43ccf38100d8cec75a25bf7616d8b1d1937553a5b7f813a097923b",
+              "excerpt_status": "static_read_only",
+              "line_end": 217,
+              "line_start": 217,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "non_executable_read_only_source",
+          "semantic_link_status": "confirmed",
+          "source_path": "requirements-ir/requirements.json",
+          "source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+        },
+        {
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-8D9CC020932FDCDB7ACA",
+          "classification_id": "LASPH-0534",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-policy.md",
+              "artifact_role": "design",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-design-1",
+              "excerpt_sha256": "sha256:cb9088fd1804fde8afab598fbaf6af726ecd8f48cb71fd86bd9bc30b3895aac6",
+              "excerpt_status": "static_read_only",
+              "line_end": 69,
+              "line_start": 1,
+              "source_requirement_relation": "design_contract_evidence"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "docs/design/helix/L4-basic-design/worker-isolation-policy.md",
+          "source_sha256": "8ee84f79e82a3f814bef790f98d7ed3333348566f5ae036dd146a82436ae1552"
+        },
+        {
+          "artifact_evidence_kind": "implementation_source",
+          "asset_id": "LEGACY-ASSET-977081C63ADB4B6DA66C",
+          "classification_id": "LASPH-3251",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-isolation-policy.ts",
+              "artifact_role": "implementation_source",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-implementation_source-1",
+              "excerpt_sha256": "sha256:bfee92aef8a326bf16a833f4d3631930ea718c4927b9626be51d8e58ce3d7726",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "implementation_candidate_only"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "src/runtime/worker-isolation-policy.ts",
+          "source_sha256": "805e02513c6068ce1b00420fba88d80fd1e8f860e9078f7592153cf3ba6c55b2"
+        }
+      ],
+      "routing_candidate": "single_product",
+      "semantic_atom_ids": [
+        "NFR37-OS-A01"
+      ],
+      "semantic_coverage_status": "pending_exact_head_independent_review",
+      "source_anchor": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#HIL-NFR-37 lines 5971-6017; preserved markdown docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:217",
+      "source_requirement_id": "HIL-NFR-37",
+      "source_statement_semantic_digest": "sha256:c193885771e85f07857776dbce87ceac9cb91725d64aa68eddd53ff2aa4902db",
+      "source_statement_text": "委譲データを公開可能/機密/secret・PIIへ分類し、機密以上の第三者runtime委譲を機械ゲート（path allowlist+secret scan）で遮断する。訓練利用opt-outの完了を当該runtime採用の前提条件とし、未完了の間は公開可能コード以外を委譲しない。",
+      "source_text_spans": [
+        "委譲データを公開可能/機密/secret・PIIへ分類し、機密以上の第三者runtime委譲を機械ゲート（path allowlist+secret scan）で遮断する。訓練利用opt-outの完了を当該runtime採用の前提条件とし、未完了の間は公開可能コード以外を委譲しない。"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-37-HELIX-OS"
+    },
+    {
+      "assertion_id": "HIA-NFR-038",
+      "boundary": {
+        "authority": "none",
+        "consumer_closure": "pending",
+        "current_implementation": "not_established",
+        "degradation": "unknown",
+        "legacy_execution": "not_run",
+        "phase_admission": "candidate_unchanged"
+      },
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "historical_authority_id": "RAS-HIL-23",
+      "historical_ledger_only": {
+        "authority_id": "RAS-HIL-23",
+        "consumer_refs": [
+          "requirement-atomization-review",
+          "requirement-carry-forward-ledgers"
+        ],
+        "failure_consumer_status": "catalog/disposition/decision/read-after fields retained; no current closure"
+      },
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 418,
+      "phase_rationale": "PHCAP-10: runtime permission/bypass control",
+      "phase_status": [
+        {
+          "catalog_asset_count": 471,
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+          "legacy_capability_status": "implemented_with_tests",
+          "phase_id": "PHCAP-10",
+          "product_intersection_count": 418,
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        }
+      ],
+      "responsibility_summary": "実行時限定bypassを終了時に除去し、repositoryのdenyスイッチで恒久禁止できるheadless権限をdeny既定・明示allowlistとし、YOLOはallowlist型なしruntimeの経過措置に限定する",
+      "role_edges": [
+        {
+          "artifact_evidence_kind": "requirement",
+          "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+          "classification_id": "LASPH-2866",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-1",
+              "excerpt_sha256": "sha256:997ae71070235a357bc05ff2a335686a8de92f0afccacccd19fec23175d044fb",
+              "excerpt_status": "static_read_only",
+              "line_end": 6065,
+              "line_start": 6019,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            },
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-2",
+              "excerpt_sha256": "sha256:34a91d2f4e367f8500455e8dfd2f2283b7fac60b9eb028c3a2da1cef5c0f4c41",
+              "excerpt_status": "static_read_only",
+              "line_end": 218,
+              "line_start": 218,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "non_executable_read_only_source",
+          "semantic_link_status": "confirmed",
+          "source_path": "requirements-ir/requirements.json",
+          "source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+        },
+        {
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-A3A83F1432DF43D564F0",
+          "classification_id": "LASPH-0759",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-isolation-policy.md",
+              "artifact_role": "design",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-design-1",
+              "excerpt_sha256": "sha256:b1f1819e9b890836ca28414745bbd2bdf01d8b2103f6deed53c65e207cdcdda5",
+              "excerpt_status": "static_read_only",
+              "line_end": 27,
+              "line_start": 1,
+              "source_requirement_relation": "design_contract_evidence"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "docs/design/helix/L6-function-design/worker-isolation-policy.md",
+          "source_sha256": "1c57cd7da89b007a81b3b7477ef9b6fb13cbfb7af8c21286391086473c871990"
+        },
+        {
+          "artifact_evidence_kind": "implementation_source",
+          "asset_id": "LEGACY-ASSET-E2613D679D1889C98E6A",
+          "classification_id": "LASPH-0030",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/.claude/hooks/agent-guard.ts",
+              "artifact_role": "implementation_source",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-implementation_source-1",
+              "excerpt_sha256": "sha256:3802306795e236d7a16905c19f9a58282a06da04b2d31720d321727b7cceb8c0",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "implementation_candidate_only"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": ".claude/hooks/agent-guard.ts",
+          "source_sha256": "16f5b92bfc00095c17ae5fed84fb095bc428f3565bade37b8446a32a762ef544"
+        }
+      ],
+      "routing_candidate": "single_product",
+      "semantic_atom_ids": [
+        "NFR38-OS-A01"
+      ],
+      "semantic_coverage_status": "pending_exact_head_independent_review",
+      "source_anchor": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#HIL-NFR-38 lines 6019-6065; preserved markdown docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:218",
+      "source_requirement_id": "HIL-NFR-38",
+      "source_statement_semantic_digest": "sha256:623495c53d8e952d930ee57bc420714a8ed8e9749859fa4597543ff156e8fd9f",
+      "source_statement_text": "YOLO/bypass/auto-approve系設定は実行時のみ有効化し終了時に必ず除去する。repository設定でbypassを恒久禁止できるdenyスイッチを持ち、headless委譲の権限モデルはdeny既定+明示allowlistを理想形とし、YOLO許容はallowlist型を持たないruntimeへの経過措置に限定する。",
+      "source_text_spans": [
+        "YOLO/bypass/auto-approve系設定は実行時のみ有効化し終了時に必ず除去する。repository設定でbypassを恒久禁止できるdenyスイッチを持ち、headless委譲の権限モデルはdeny既定+明示allowlistを理想形とし、YOLO許容はallowlist型を持たないruntimeへの経過措置に限定する。"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-38-HELIX-OS"
+    },
+    {
+      "assertion_id": "HIA-NFR-040",
+      "boundary": {
+        "authority": "none",
+        "consumer_closure": "pending",
+        "current_implementation": "not_established",
+        "degradation": "unknown",
+        "legacy_execution": "not_run",
+        "phase_admission": "candidate_unchanged"
+      },
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "historical_authority_id": "RAS-HIL-23",
+      "historical_ledger_only": {
+        "authority_id": "RAS-HIL-23",
+        "consumer_refs": [
+          "requirement-atomization-review",
+          "requirement-carry-forward-ledgers"
+        ],
+        "failure_consumer_status": "catalog/disposition/decision/read-after fields retained; no current closure"
+      },
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 418,
+      "phase_rationale": "PHCAP-10: Worker runtime quota/rate orchestration",
+      "phase_status": [
+        {
+          "catalog_asset_count": 471,
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+          "legacy_capability_status": "implemented_with_tests",
+          "phase_id": "PHCAP-10",
+          "product_intersection_count": 418,
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        }
+      ],
+      "responsibility_summary": "worker runtimeのquota/rate枯渇を予定された状態としてlaneで扱い、fail-closeしてqueue保留または代替runtime routingへ退避し、無視した継続や無計画retryを行わない",
+      "role_edges": [
+        {
+          "artifact_evidence_kind": "requirement",
+          "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+          "classification_id": "LASPH-2866",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-1",
+              "excerpt_sha256": "sha256:f4532627c48974119862ffc2704e60dc5bccfaac7f0c05d512c604df9a58b241",
+              "excerpt_status": "static_read_only",
+              "line_end": 6161,
+              "line_start": 6115,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            },
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-2",
+              "excerpt_sha256": "sha256:89e31140c248c2f1bcb7140bd6549f7d86768c2c2bcf2ce88d623e7a06f01f95",
+              "excerpt_status": "static_read_only",
+              "line_end": 220,
+              "line_start": 220,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "non_executable_read_only_source",
+          "semantic_link_status": "confirmed",
+          "source_path": "requirements-ir/requirements.json",
+          "source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+        },
+        {
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-3B97572C12E528ACA4D8",
+          "classification_id": "LASPH-0681",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md",
+              "artifact_role": "design",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-design-1",
+              "excerpt_sha256": "sha256:ef59f9f5e645051bdefc600478abf186309886ee896d79ab07b56b4d9622230c",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "design_contract_evidence"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "docs/design/helix/L6-function-design/legacy-orchestration-retirement-ratchet.md",
+          "source_sha256": "96dd637a93f51451fe9db8546193d9577ccdb1f656a0afb8b506795eaa5a0439"
+        },
+        {
+          "artifact_evidence_kind": "implementation_source",
+          "asset_id": "LEGACY-ASSET-B60D38CF260DE6CDC35F",
+          "classification_id": "LASPH-3132",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-session-command-center.ts",
+              "artifact_role": "implementation_source",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-implementation_source-1",
+              "excerpt_sha256": "sha256:a55ae58fb511753b817435640799639a27712310e57c5d7e2a653c1fcd50b493",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "implementation_candidate_only"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "src/runtime/agent-session-command-center.ts",
+          "source_sha256": "1c3e8a7130d805782d4985658531454099d3aedef5a91189466a57c70ca80ccd"
+        }
+      ],
+      "routing_candidate": "single_product",
+      "semantic_atom_ids": [
+        "NFR40-OS-A01"
+      ],
+      "semantic_coverage_status": "pending_exact_head_independent_review",
+      "source_anchor": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#HIL-NFR-40 lines 6115-6161; preserved markdown docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:220",
+      "source_requirement_id": "HIL-NFR-40",
+      "source_statement_semantic_digest": "sha256:4171419553664d7150ffe9875c14b6bc5212f14635d339dafc2af08ddc656c54",
+      "source_statement_text": "worker runtimeのquota枯渇・rate制限を予定された状態として扱い、laneはfail-closeで退避（キュー保留または代替runtimeへのrouting提案）する。枯渇を無視した継続や無計画retryを行わない。",
+      "source_text_spans": [
+        "worker runtimeのquota枯渇・rate制限を予定された状態として扱い、laneはfail-closeで退避（キュー保留または代替runtimeへのrouting提案）する。枯渇を無視した継続や無計画retryを行わない。"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-40-HELIX-OS"
+    },
+    {
+      "assertion_id": "HIA-TR-002",
+      "boundary": {
+        "authority": "none",
+        "consumer_closure": "pending",
+        "current_implementation": "not_established",
+        "degradation": "unknown",
+        "legacy_execution": "not_run",
+        "phase_admission": "candidate_unchanged"
+      },
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "historical_authority_id": "RAS-HIL-12",
+      "historical_ledger_only": {
+        "authority_id": "RAS-HIL-12",
+        "consumer_refs": [
+          "requirement-atomization-review",
+          "requirement-carry-forward-ledgers"
+        ],
+        "failure_consumer_status": "catalog/disposition/decision/read-after fields retained; no current closure"
+      },
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 418,
+      "phase_rationale": "PHCAP-10: Python worker/control-plane execution",
+      "phase_status": [
+        {
+          "catalog_asset_count": 471,
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+          "legacy_capability_status": "implemented_with_tests",
+          "phase_id": "PHCAP-10",
+          "product_intersection_count": 418,
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        }
+      ],
+      "responsibility_summary": "Pythonをproduct-data／document-engine／detector／analysis workerのdata/detection planeとして第一級化し、Node control-planeへversioned contractで接続する",
+      "role_edges": [
+        {
+          "artifact_evidence_kind": "requirement",
+          "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+          "classification_id": "LASPH-2866",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-1",
+              "excerpt_sha256": "sha256:49a0728f44ca888242b0c937fac8d82c511c8c40be6b4342aac3665e5e881783",
+              "excerpt_status": "static_read_only",
+              "line_end": 6247,
+              "line_start": 6206,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            },
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-2",
+              "excerpt_sha256": "sha256:398c954fe379b991a5d67df87e6524b07489241198cdaa3465b5c9b103327f0b",
+              "excerpt_status": "static_read_only",
+              "line_end": 166,
+              "line_start": 166,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "non_executable_read_only_source",
+          "semantic_link_status": "confirmed",
+          "source_path": "requirements-ir/requirements.json",
+          "source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+        },
+        {
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-A4EAB5E3345E3C125C77",
+          "classification_id": "LASPH-0535",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
+              "artifact_role": "design",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-design-1",
+              "excerpt_sha256": "sha256:746f85e8a07d447715c3b90c9fb33ed7f7b9c2b51238d285b76656497d04ece5",
+              "excerpt_status": "static_read_only",
+              "line_end": 48,
+              "line_start": 1,
+              "source_requirement_relation": "design_contract_evidence"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
+          "source_sha256": "d39b3cdc2e7d9f72ad03d0d3db5571a6b0de579fadf0b147b8a6d4f90dc2ed2c"
+        },
+        {
+          "artifact_evidence_kind": "implementation_source",
+          "asset_id": "LEGACY-ASSET-AABA69A4BF867F47579C",
+          "classification_id": "LASPH-3261",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/src/schema/document-agent-metadata.ts",
+              "artifact_role": "implementation_source",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-implementation_source-1",
+              "excerpt_sha256": "sha256:d628a5fa8abdebc782e24e076dd1be1b59f1e86b1e13bc3cf149732fa24b6ed0",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "implementation_candidate_only"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "src/schema/document-agent-metadata.ts",
+          "source_sha256": "0bd74942921b8606e621a46df6c5966809f445362b4d881716624f322e1042c0"
+        }
+      ],
+      "routing_candidate": "single_product",
+      "semantic_atom_ids": [
+        "TR02-OS-A01"
+      ],
+      "semantic_coverage_status": "pending_exact_head_independent_review",
+      "source_anchor": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#HIL-TR-02 lines 6206-6247; preserved markdown docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:166",
+      "source_requirement_id": "HIL-TR-02",
+      "source_statement_semantic_digest": "sha256:290f35ed940fc065d587c05153f38deaae14d1757c950f442cb30ef1a1e297ec",
+      "source_statement_text": "Pythonはproduct-data、document-engine、detector、analysis workerのdata/detection planeとして第一級化し、Node control planeとはversioned schema/event/CLI contractで接続する。",
+      "source_text_spans": [
+        "Pythonはproduct-data、document-engine、detector、analysis workerのdata/detection planeとして第一級化し、Node control planeとはversioned schema/event/CLI contractで接続する。"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-TR-02-HELIX-OS"
+    },
+    {
+      "assertion_id": "HIA-TR-003",
+      "boundary": {
+        "authority": "none",
+        "consumer_closure": "pending",
+        "current_implementation": "not_established",
+        "degradation": "unknown",
+        "legacy_execution": "not_run",
+        "phase_admission": "candidate_unchanged"
+      },
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "historical_authority_id": "RAS-HIL-09",
+      "historical_ledger_only": {
+        "authority_id": "RAS-HIL-09",
+        "consumer_refs": [
+          "requirement-atomization-review",
+          "requirement-carry-forward-ledgers"
+        ],
+        "failure_consumer_status": "catalog/disposition/decision/read-after fields retained; no current closure"
+      },
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 418,
+      "phase_rationale": "HELIX state/gateを迂回しないPython実装の投影実行はPHCAP-10の実行境界を直接要求する。",
+      "phase_status": [
+        {
+          "catalog_asset_count": 471,
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+          "legacy_capability_status": "implemented_with_tests",
+          "phase_id": "PHCAP-10",
+          "product_intersection_count": 418,
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        }
+      ],
+      "responsibility_summary": "HELIX state/gateを迂回せず、旧Python実装の採否候補とprovenance付きprojectionを管理する",
+      "role_edges": [
+        {
+          "artifact_evidence_kind": "requirement",
+          "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+          "classification_id": "LASPH-2866",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-1",
+              "excerpt_sha256": "sha256:9e6b08c5cb692b16a32265daef6bcb8ec639d5584b2772a24b7ae30819442c9d",
+              "excerpt_status": "static_read_only",
+              "line_end": 6290,
+              "line_start": 6249,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            },
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-2",
+              "excerpt_sha256": "sha256:402bedf607bd03a88435f30d45358ea773cc1c6db77e1ebcdc27d295d53e4503",
+              "excerpt_status": "static_read_only",
+              "line_end": 167,
+              "line_start": 167,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "non_executable_read_only_source",
+          "semantic_link_status": "confirmed",
+          "source_path": "requirements-ir/requirements.json",
+          "source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+        },
+        {
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-A8FC47B7735B51A186A3",
+          "classification_id": "LASPH-0756",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-descriptor-admission.md",
+              "artifact_role": "design",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-design-1",
+              "excerpt_sha256": "sha256:a8e92e65e537013a65eaf5f41fd2836e05ba2637631f2cded80cb9e66cbfa62e",
+              "excerpt_status": "static_read_only",
+              "line_end": 61,
+              "line_start": 1,
+              "source_requirement_relation": "design_contract_evidence"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "docs/design/helix/L6-function-design/worker-descriptor-admission.md",
+          "source_sha256": "da94224a08b075f1a26dff6d715458eb010dc26bd31160235071547b07a0aa88"
+        },
+        {
+          "artifact_evidence_kind": "implementation_source",
+          "asset_id": "LEGACY-ASSET-BCBDD9458145232E78D5",
+          "classification_id": "LASPH-3161",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/src/runtime/document-agent-metadata-write-port.ts",
+              "artifact_role": "implementation_source",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-implementation_source-1",
+              "excerpt_sha256": "sha256:fe20b16aacaa194ba93ae346bbc6d3963febd23de8ab4feec1e9ff4684508a41",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "implementation_candidate_only"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "src/runtime/document-agent-metadata-write-port.ts",
+          "source_sha256": "f88ccaaf39c3fb994a70381d320e30cc8e182abd3bdda8cc77a1ba5580e26c8d"
+        }
+      ],
+      "routing_candidate": "single_product",
+      "semantic_atom_ids": [
+        "TR03-OS-A01"
+      ],
+      "semantic_coverage_status": "pending_exact_head_independent_review",
+      "source_anchor": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#HIL-TR-03 lines 6249-6290; preserved markdown docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:167",
+      "source_requirement_id": "HIL-TR-03",
+      "source_statement_semantic_digest": "sha256:8e14a234b93d4d5c78924b8ec9bd1fb6b926d7559504cde2371581f875ad8d92",
+      "source_statement_text": "ZIP Python実装は採用候補だが、HELIX state/gateを迂回して直接正本を書かない。入力digest、出力schema、provenance、detector resultをDBへ投影する。",
+      "source_text_spans": [
+        "ZIP Python実装は採用候補だが、HELIX state/gateを迂回して直接正本を書かない。入力digest、出力schema、provenance、detector resultをDBへ投影する。"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-TR-03-HELIX-OS"
+    },
+    {
+      "assertion_id": "HIA-TR-009",
+      "boundary": {
+        "authority": "none",
+        "consumer_closure": "pending",
+        "current_implementation": "not_established",
+        "degradation": "unknown",
+        "legacy_execution": "not_run",
+        "phase_admission": "candidate_unchanged"
+      },
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "historical_authority_id": "RAS-HIL-12",
+      "historical_ledger_only": {
+        "authority_id": "RAS-HIL-12",
+        "consumer_refs": [
+          "requirement-atomization-review",
+          "requirement-carry-forward-ledgers"
+        ],
+        "failure_consumer_status": "catalog/disposition/decision/read-after fields retained; no current closure"
+      },
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 418,
+      "phase_rationale": "PHCAP-10: Python worker/write-boundary execution",
+      "phase_status": [
+        {
+          "catalog_asset_count": 471,
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+          "legacy_capability_status": "implemented_with_tests",
+          "phase_id": "PHCAP-10",
+          "product_intersection_count": 418,
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        }
+      ],
+      "responsibility_summary": "Python workerを隔離し、必要最小限のread snapshotだけを渡してNode write boundaryを管理する",
+      "role_edges": [
+        {
+          "artifact_evidence_kind": "requirement",
+          "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+          "classification_id": "LASPH-2866",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-1",
+              "excerpt_sha256": "sha256:42f1aa9bd63c673ab1f39231320d5ed4efa557dbedd8d13f8ebf2c0e2698d041",
+              "excerpt_status": "static_read_only",
+              "line_end": 6548,
+              "line_start": 6507,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            },
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-2",
+              "excerpt_sha256": "sha256:cd97bee6bd8482ada1107a9d38e6f78557a61d0d91dc803d39147c46413cc050",
+              "excerpt_status": "static_read_only",
+              "line_end": 173,
+              "line_start": 173,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "non_executable_read_only_source",
+          "semantic_link_status": "confirmed",
+          "source_path": "requirements-ir/requirements.json",
+          "source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+        },
+        {
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-43228B3381B7441D9DF5",
+          "classification_id": "LASPH-0445",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/document-agent-metadata.md",
+              "artifact_role": "design",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-design-1",
+              "excerpt_sha256": "sha256:4457a6b23f2d74abbab75d33c1c70d1ddbf75dc4830218c2210c57beee43229a",
+              "excerpt_status": "static_read_only",
+              "line_end": 78,
+              "line_start": 1,
+              "source_requirement_relation": "design_contract_evidence"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "docs/design/helix/L3-requirements/document-agent-metadata.md",
+          "source_sha256": "878a89841797f5eccda57c51fcdab6329126433ae6e2a4fc4ab6cc0296902129"
+        },
+        {
+          "artifact_evidence_kind": "implementation_source",
+          "asset_id": "LEGACY-ASSET-B9F026AE27DC9D6CC18C",
+          "classification_id": "LASPH-3133",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-slots-roster.ts",
+              "artifact_role": "implementation_source",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-implementation_source-1",
+              "excerpt_sha256": "sha256:737c173d2e30e0a793f9efb78e61dccc69efd4547ac9a3727603adfc0be5bc16",
+              "excerpt_status": "static_read_only",
+              "line_end": 80,
+              "line_start": 1,
+              "source_requirement_relation": "implementation_candidate_only"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "src/runtime/agent-slots-roster.ts",
+          "source_sha256": "2ed9b18fb43b81f4b551db6e694a517bc46367a154b027b8487a7cf1165eee4e"
+        }
+      ],
+      "routing_candidate": "single_product",
+      "semantic_atom_ids": [
+        "TR09-OS-A01"
+      ],
+      "semantic_coverage_status": "pending_exact_head_independent_review",
+      "source_anchor": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#HIL-TR-09 lines 6507-6548; preserved markdown docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:173",
+      "source_requirement_id": "HIL-TR-09",
+      "source_statement_semantic_digest": "sha256:f00f879f39a72198d3f245da1391c7da88d661b9a9659a52925091169bdc65e6",
+      "source_statement_text": "Python workerはharness.dbへ直接writeせず、Nodeがschema検証済みresult/findingをtransactionalにcommitする。Pythonへは必要最小限のread snapshotだけを渡す。",
+      "source_text_spans": [
+        "Python workerはharness.dbへ直接writeせず、Nodeがschema検証済みresult/findingをtransactionalにcommitする。Pythonへは必要最小限のread snapshotだけを渡す。"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-TR-09-HELIX-OS"
+    },
+    {
+      "assertion_id": "HIA-TR-010",
+      "boundary": {
+        "authority": "none",
+        "consumer_closure": "pending",
+        "current_implementation": "not_established",
+        "degradation": "unknown",
+        "legacy_execution": "not_run",
+        "phase_admission": "candidate_unchanged"
+      },
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "historical_authority_id": "RAS-HIL-12",
+      "historical_ledger_only": {
+        "authority_id": "RAS-HIL-12",
+        "consumer_refs": [
+          "requirement-atomization-review",
+          "requirement-carry-forward-ledgers"
+        ],
+        "failure_consumer_status": "catalog/disposition/decision/read-after fields retained; no current closure"
+      },
+      "missing_evidence_roles": [
+        "implementation_source"
+      ],
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 418,
+      "phase_rationale": "PHCAP-10: agent instance/lifecycleとIPC runのruntime state/lifecycle管理",
+      "phase_status": [
+        {
+          "catalog_asset_count": 471,
+          "current_status": "draft_requirement_and_bootstrap_decision",
+          "gap": "正式L2/L11、L3/L10、worker runtime再実装が未成立。bootstrap decisionはlease存在、SCF-B-0004登録、executor実装、operation_change許可を成立させない",
+          "legacy_capability_status": "implemented_with_tests",
+          "phase_id": "PHCAP-10",
+          "product_intersection_count": 418,
+          "transition_assessment": "degraded_to_requirement_and_limited_bootstrap"
+        }
+      ],
+      "responsibility_summary": "control-plane DB projectionをsource/engine/detector/CI/agent lifecycleへ分離管理",
+      "role_edges": [
+        {
+          "artifact_evidence_kind": "requirement",
+          "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+          "classification_id": "LASPH-2866",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-1",
+              "excerpt_sha256": "sha256:8660f671e6a4a7845c754e740af046014149af6a392cd856041b3444da4fc10d",
+              "excerpt_status": "static_read_only",
+              "line_end": 6591,
+              "line_start": 6550,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            },
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+              "artifact_role": "requirement",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-requirement-2",
+              "excerpt_sha256": "sha256:3b5c0041f969f4b120a88747391b21e884f61bb3ca170d99e8678d93dcf45119",
+              "excerpt_status": "static_read_only",
+              "line_end": 174,
+              "line_start": 174,
+              "source_requirement_relation": "same_requirement_id_exact_source_contract_not_implementation"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "non_executable_read_only_source",
+          "semantic_link_status": "confirmed",
+          "source_path": "requirements-ir/requirements.json",
+          "source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+        },
+        {
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-9F5B7A285FB301CD667C",
+          "classification_id": "LASPH-0471",
+          "evidence_refs": [
+            {
+              "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/orchestration-runtime-bridge.md",
+              "artifact_role": "design",
+              "evidence_ref_id": "LEGACY-ASSET-WAVE44-design-1",
+              "excerpt_sha256": "sha256:fc9639f7f2670f9d5c5d5e7f8424187f83cec3ff5875b4163a6d2554fa372336",
+              "excerpt_status": "static_read_only",
+              "line_end": 45,
+              "line_start": 1,
+              "source_requirement_relation": "design_contract_evidence"
+            }
+          ],
+          "legacy_execution_status": "not_run",
+          "legacy_implementation_status": "unknown",
+          "semantic_link_status": "unresolved",
+          "source_path": "docs/design/helix/L3-requirements/orchestration-runtime-bridge.md",
+          "source_sha256": "c89200f3992b6af4031bbc8609723ee88985f0659cf3d7932595560d51c4122b"
+        }
+      ],
+      "routing_candidate": "single_product",
+      "semantic_atom_ids": [
+        "TR10-OS-A01"
+      ],
+      "semantic_coverage_status": "pending_exact_head_independent_review",
+      "source_anchor": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#HIL-TR-10 lines 6550-6591; preserved markdown docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:174",
+      "source_requirement_id": "HIL-TR-10",
+      "source_statement_semantic_digest": "sha256:f4aae528a618810c40344831e9fbf3290e29ff1786f7d07eae7a9ac73e175df7",
+      "source_statement_text": "harness.dbはproduct source/snapshot/mapping、engine registry/run/artifact、detector registry/run/finding、IPC run、CI stage/quarantine、agent instance/lifecycleを論理的に分離する。",
+      "source_text_spans": [
+        "harness.dbはproduct source/snapshot/mapping、engine registry/run/artifact、detector registry/run/finding、IPC run、CI stage/quarantine、agent instance/lifecycleを論理的に分離する。"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-TR-10-HELIX-OS"
+    }
+  ],
+  "status": "candidate",
+  "unresolved_questions": [
+    "四製品の正式routing／owner／authorityをどのL1で決定するか",
+    "旧failure／consumerを現行consumer closureへ採用できるか",
+    "10 source statementの全義務coverageとcomposite分割を人手で確定するか",
+    "TR-10の直接implementation evidenceが後続poolで成立するか"
+  ],
+  "updated": "2026-09-22",
+  "verification_plan": [
+    "generator deterministic regeneration",
+    "validator: source chain／lineage／prior dynamic counts／phase-product pool membership／duplicate asset rejection",
+    "selfcheck: validator本体経路のauthority／phase／implementation／degradation／pool／source／missing receipt negative mutation",
+    "scaffold/tools/scfctl.py validate／stale／residuals",
+    "git diff --check"
+  ],
+  "wave": "Wave44"
+}
