@@ -416,7 +416,9 @@
       "current FR-0109 row exact match",
       "4020 ledger rows",
       "Wave1-50 source records",
-      "old source Git object bytes"
+      "old source Git object bytes",
+      "full expected status partition, asset record, and inventory structure equality",
+      "nested history/edge/status/inventory mutation selfcheck"
     ],
     "negative_cases": [
       "E_BASE_NOT_ANCESTOR",
