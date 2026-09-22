@@ -200,6 +200,20 @@ def mutate_inventory_count(inventory) -> None:
     inventory["counts"]["inspected_legacy_assets"] = 24
 
 
+def mutate_tr10_consumed_overclaim(meta) -> None:
+    reconciliation = meta["tr10_candidate_pool_reconciliation"]
+    reconciliation["consumed_asset_ids"] = list(reconciliation["implementation_source_candidate_ids"])
+    reconciliation["consumed_asset_count"] = len(reconciliation["consumed_asset_ids"])
+    meta["missing_evidence_receipts"][0]["candidate_pool_reconciliation"] = copy.deepcopy(reconciliation)
+
+
+def mutate_tr10_examined_omission(meta) -> None:
+    reconciliation = meta["tr10_candidate_pool_reconciliation"]
+    reconciliation["examined_asset_receipts"] = reconciliation["examined_asset_receipts"][:-1]
+    reconciliation["unselected_examined_asset_count"] = len(reconciliation["examined_asset_receipts"])
+    meta["missing_evidence_receipts"][0]["candidate_pool_reconciliation"] = copy.deepcopy(reconciliation)
+
+
 def mutate_degradation_promotion(meta) -> None:
     meta["missing_evidence_receipts"][0]["degradation"] = "current_degradation_admitted"
 
@@ -227,10 +241,12 @@ rejected("current implementation promotion", mutate_implementation_promotion)
 rejected("unresolved literal binding promotion", mutate_unresolved_binding_promotion)
 rejected_meta("missing evidence receipt deletion", mutate_missing_receipt)
 rejected_meta("missing evidence reason tamper", mutate_missing_reason)
+rejected_meta("TR-10 consumed asset ID overclaim", mutate_tr10_consumed_overclaim)
+rejected_meta("TR-10 examined asset receipt omission", mutate_tr10_examined_omission)
 rejected_meta("selected role asset count mismatch", mutate_selected_role_asset_count)
 rejected_document("plan count mismatch", "PLAN", mutate_plan_count)
 rejected_document("inventory count mismatch", "INVENTORY", mutate_inventory_count)
 rejected_meta("degradation promotion", mutate_degradation_promotion)
 rejected_meta("prior cumulative counts left unchanged", mutate_prior_cumulative_counts)
 
-print("Wave44 selfcheck: PASS (validator plus twenty-three negative mutations)")
+print("Wave44 selfcheck: PASS (validator plus twenty-five negative mutations)")

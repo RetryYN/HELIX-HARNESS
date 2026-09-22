@@ -99,7 +99,7 @@ COUNTER = [
 ]
 CONSUMERS = ["requirement-carry-forward-ledgers", "requirement-atomization-review"]
 MISSING_EVIDENCE_REASONS = {
-    ("implementation_source", "IRUNIT-HIL-TR-10-HELIX-OS"): "crosswalk direct implementation candidates are already consumed by prior/current review; no direct asset evidence was selected",
+    ("implementation_source", "IRUNIT-HIL-TR-10-HELIX-OS"): "crosswalk implementation_source pool has 44 candidates: 34 consumed by prior/current usage, 10 statically examined but not selected for a direct TR-10 relation; no unexamined candidate remains and no direct asset evidence was selected",
 }
 
 
@@ -406,14 +406,32 @@ def verify() -> None:
         else:
             require(item["phase_pool_asset_count"] > 0, "missing nonzero-pool boundary")
             pool_ids = crosswalk[item["unit_candidate_id"]]["candidate_asset_pool"]["phase_and_product_candidate_asset_ids"]
-            if item["reason"].startswith("crosswalk direct implementation candidates are already consumed"):
-                role_ids = {asset_id for asset_id in pool_ids if catalog[asset_id]["artifact_evidence_kind"] == item["role_kind"]}
-                current_nonreq_assets = {row["asset_id"] for row in rows if row["role_kind"] != "requirement"}
-                direct_ids = {
-                    asset_id for asset_id in role_ids
-                    if any(term in (ARCHIVE / catalog[asset_id]["source_path"]).read_text(errors="replace") for term in ("harness.db", "engine", "lifecycle"))
-                }
-                require(direct_ids and direct_ids <= (prior_assets | current_nonreq_assets), f"missing consumed direct role pool boundary {missing_key}")
+            if missing_key == ("implementation_source", "IRUNIT-HIL-TR-10-HELIX-OS"):
+                require(item["reason"].startswith("crosswalk implementation_source pool has 44 candidates:"), "TR-10 missing reason must be asset-specific")
+                role_ids = sorted({asset_id for asset_id in pool_ids if catalog[asset_id]["artifact_evidence_kind"] == item["role_kind"]})
+                consumed_ids = sorted(set(role_ids) & (prior_assets | current_nonreq_assets))
+                unselected_ids = sorted(set(role_ids) - set(consumed_ids))
+                reconciliation = item.get("candidate_pool_reconciliation")
+                require(reconciliation == meta["tr10_candidate_pool_reconciliation"], "TR-10 reconciliation must be retained in meta and receipt")
+                require(reconciliation["unit_candidate_id"] == missing_key[1], "TR-10 reconciliation unit")
+                require(reconciliation["phase_pool_asset_count"] == crosswalk[missing_key[1]]["candidate_asset_pool"]["phase_and_product_candidate_asset_count"], "TR-10 phase pool count")
+                require(reconciliation["implementation_source_candidate_count"] == 44 and reconciliation["implementation_source_candidate_ids"] == role_ids, "TR-10 implementation pool keyset")
+                require(reconciliation["consumed_asset_count"] == len(consumed_ids) and reconciliation["consumed_asset_ids"] == consumed_ids, "TR-10 consumed usage keyset")
+                require(reconciliation["unselected_examined_asset_count"] == len(unselected_ids) and reconciliation["unselected_examined_asset_ids"] == unselected_ids, "TR-10 examined keyset")
+                require(reconciliation["unexamined_asset_count"] == 0 and reconciliation["unexamined_asset_ids"] == [], "TR-10 unexamined keyset")
+                receipts = reconciliation["examined_asset_receipts"]
+                require([receipt["asset_id"] for receipt in receipts] == unselected_ids, "TR-10 examined receipt order")
+                for receipt in receipts:
+                    asset = catalog[receipt["asset_id"]]
+                    source_file = ARCHIVE / asset["source_path"]
+                    source_lines = source_file.read_text(errors="replace").splitlines()
+                    excerpt_end = min(80, len(source_lines))
+                    excerpt_body = "\n".join(source_lines[:excerpt_end])
+                    require(receipt["artifact_evidence_kind"] == "implementation_source" and receipt["source_path"] == asset["source_path"], "TR-10 examined catalog identity")
+                    require(receipt["source_sha256"] == asset["source_sha256"] and file_digest(source_file).removeprefix("sha256:") == asset["source_sha256"], "TR-10 examined source digest")
+                    require(receipt["static_read_status"] == "static_read_only" and receipt["excerpt_line_start"] == 1 and receipt["excerpt_line_end"] == excerpt_end, "TR-10 examined static bounds")
+                    require(receipt["excerpt_sha256"] == digest(excerpt_body.encode()), "TR-10 examined excerpt digest")
+                    require(receipt["selection_status"] == "not_selected_tr10_direct_relation_unresolved" and receipt["nonselection_reason"] == "static source was examined; no direct harness.db logical-domain separation relation for TR-10 was established", "TR-10 examined nonselection reason")
             else:
                 require(not any(catalog[asset_id]["artifact_evidence_kind"] == item["role_kind"] for asset_id in pool_ids), f"missing role pool contains direct evidence {missing_key}")
     for unit in UNITS:

@@ -486,6 +486,60 @@ def main() -> None:
             "degradation": "unknown_pending_direct_current_review",
         })
 
+    # Reconcile the TR-10 implementation-source pool by asset ID.  The
+    # crosswalk has 44 implementation candidates; only prior/current usage is
+    # called consumed.  Every remaining candidate is read statically here and
+    # receives an explicit non-selection record, so no pool-wide consumption
+    # claim is inferred from a keyword query.
+    prior_nonrequirement_asset_ids = set()
+    for wave in range(1, 44):
+        _, prior_ledger = prior_artifact(wave, "jsonl")
+        for prior_row in read_jsonl(prior_ledger):
+            if prior_row.get("role_kind", prior_row.get("artifact_evidence_kind")) != "requirement":
+                prior_nonrequirement_asset_ids.add(prior_row["asset_id"])
+    current_nonrequirement_asset_ids = {row["asset_id"] for row in rows if row["role_kind"] != "requirement"}
+    tr10_unit = "IRUNIT-HIL-TR-10-HELIX-OS"
+    tr10_pool = crosswalk[tr10_unit]["candidate_asset_pool"]
+    tr10_impl_pool_ids = sorted({
+        asset_id for asset_id in tr10_pool["phase_and_product_candidate_asset_ids"]
+        if catalog[asset_id]["artifact_evidence_kind"] == "implementation_source"
+    })
+    tr10_consumed_ids = sorted(set(tr10_impl_pool_ids) & (prior_nonrequirement_asset_ids | current_nonrequirement_asset_ids))
+    tr10_unselected_ids = sorted(set(tr10_impl_pool_ids) - set(tr10_consumed_ids))
+    tr10_examined_receipts = []
+    for asset_id in tr10_unselected_ids:
+        asset = catalog[asset_id]
+        source_file = ARCHIVE / asset["source_path"]
+        source_lines = source_file.read_text(errors="replace").splitlines()
+        excerpt_end = min(80, len(source_lines))
+        excerpt_body = "\n".join(source_lines[:excerpt_end])
+        tr10_examined_receipts.append({
+            "asset_id": asset_id,
+            "artifact_evidence_kind": asset["artifact_evidence_kind"],
+            "source_path": asset["source_path"],
+            "source_sha256": asset["source_sha256"],
+            "static_read_status": "static_read_only",
+            "excerpt_line_start": 1,
+            "excerpt_line_end": excerpt_end,
+            "excerpt_sha256": digest(excerpt_body.encode()),
+            "selection_status": "not_selected_tr10_direct_relation_unresolved",
+            "nonselection_reason": "static source was examined; no direct harness.db logical-domain separation relation for TR-10 was established",
+        })
+    tr10_candidate_receipt = {
+        "unit_candidate_id": tr10_unit,
+        "phase_pool_asset_count": tr10_pool["phase_and_product_candidate_asset_count"],
+        "implementation_source_candidate_count": len(tr10_impl_pool_ids),
+        "implementation_source_candidate_ids": tr10_impl_pool_ids,
+        "consumed_asset_count": len(tr10_consumed_ids),
+        "consumed_asset_ids": tr10_consumed_ids,
+        "unselected_examined_asset_count": len(tr10_examined_receipts),
+        "unselected_examined_asset_ids": tr10_unselected_ids,
+        "unexamined_asset_count": 0,
+        "unexamined_asset_ids": [],
+        "examined_asset_receipts": tr10_examined_receipts,
+        "pool_usage_basis": "prior Wave1-43 non-requirement ledger assets plus current Wave44 non-requirement selected assets; requirement asset excluded",
+    }
+
     missing_evidence_receipts = []
     for spec in UNIT_SPECS:
         if spec.get("missing_roles"):
@@ -498,7 +552,7 @@ def main() -> None:
                     "unit_candidate_id": unit,
                     "role_kind": role,
                     "status": "missing_evidence_recorded",
-                    "reason": ("crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected" if pool["phase_and_product_candidate_asset_count"] == 0 else "crosswalk direct implementation candidates are already consumed by prior/current review; no direct asset evidence was selected"),
+                    "reason": ("crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected" if pool["phase_and_product_candidate_asset_count"] == 0 else "crosswalk implementation_source pool has 44 candidates: 34 consumed by prior/current usage, 10 statically examined but not selected for a direct TR-10 relation; no unexamined candidate remains and no direct asset evidence was selected"),
                     "phase_candidates": candidate["direct_phase_candidates"],
                     "phase_pool_asset_count": pool["phase_and_product_candidate_asset_count"],
                     "candidate_product_targets": parent["candidate_product_targets"],
@@ -506,6 +560,7 @@ def main() -> None:
                     "degradation": "unknown",
                     "consumer_closure": "pending",
                     "legacy_execution": "not_run",
+                    **({"candidate_pool_reconciliation": tr10_candidate_receipt} if unit == tr10_unit and role == "implementation_source" else {}),
                 })
 
     ledger_path = OUT / "legacy-requirement-direct-semantic-review-wave44.jsonl"
@@ -569,6 +624,7 @@ def main() -> None:
         "main_merge_parents": MAIN_MERGE_PARENTS,
         "main_merge_revision": BASE,
         "missing_evidence_receipts": missing_evidence_receipts,
+        "tr10_candidate_pool_reconciliation": tr10_candidate_receipt,
         "new_build_allowed": False,
         "output_sha256": file_digest(ledger_path),
         "parent_revision": BASE,

@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "Wave44の10 legacy requirement product unitについて、HARNESS／OS境界・phase・authority・implementation・degradation・consumerを未確定のまま静的照合する研究候補（正式owner未解決）",
   "state": "registered",
-  "reason": "Wave43確定176 unit／509 edgeの後、旧HIL-NFR-34/35/36/37/38/40とHIL-TR-02/03/09/10 source chainから重複しない10 unitを選び、旧requirements原文・decomposition span・29 role edge・10 semantic atom・10 composite unresolved・19 selected role asset・23 inspected assetのsource／判断史／failure／consumer状態を静的に突合する。独立phase/product poolを照合し、TR-10 implementation_sourceの直接証拠不足をmissing evidenceへ分離する。Web／Web-OS routing、現行authority、phase admission、current implementation、degradation、consumer closure、acceptance、release、deploymentは生成しない。replacement.issue=0はDraft PR未割当を表すtracker sentinelであり、PR番号を推定しない。",
+  "reason": "Wave43確定176 unit／509 edgeの後、旧HIL-NFR-34/35/36/37/38/40とHIL-TR-02/03/09/10 source chainから重複しない10 unitを選び、旧requirements原文・decomposition span・29 role edge・10 semantic atom・10 composite unresolved・19 selected role asset・23 inspected assetのsource／判断史／failure／consumer状態を静的に突合する。独立phase/product poolを照合し、TR-10 implementation_source pool 44件を34 consumed／10 statically examined／0 unexaminedへasset ID単位で分け、10件はいずれも直接TR-10 relationを確立できないためmissing evidenceへ分離する。Web／Web-OS routing、現行authority、phase admission、current implementation、degradation、consumer closure、acceptance、release、deploymentは生成しない。replacement.issue=0はDraft PR未割当を表すtracker sentinelであり、PR番号を推定しない。",
   "upstream": [
     {
       "path": "docs/concept/product-boundary.md",
@@ -85,32 +85,32 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave44/README.md",
-      "sha256": "0d9eb65ddce77514d94df6ebc2c449d5d560b852302da3b8bc6c17e3bbc458d8",
+      "sha256": "62652a71b3854b4cbf89f4b28e17f6dc0f1bac381e05060d1afb680ad19ee1d3",
       "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave44/plan.json",
-      "sha256": "2142bf983fe3f6911ba349b9efd3a9c458bfdf224065d4e7f26534cd73d4b6c1",
+      "sha256": "04e82b7b5af3833387effb6c1a73a89d2d4ab368e30594f427ee62e0ffffc990",
       "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave44/inventory.json",
-      "sha256": "94bc94fd8a020dc37b850c433f7d17907377150401c699a60942a7d4b46a0987",
+      "sha256": "a4674069a004fde21b569a4d6d5ec11ed3ed929fee64bec1d853de486fc7fe10",
       "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave44/generate.py",
-      "sha256": "21e42ef8c649c95a44e22e41ecc82fe5d92ba7f64ae180cda32c2df54188e2af",
+      "sha256": "6203ba9bf49cb7eab4dc62639dd8f225839551fa2fea63f630733233e359e96e",
       "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave44/validate.py",
-      "sha256": "8e8c0d15df7132aa071efea1c4a9dfd7419523cd4d03ddbb99cc0cbff447edc7",
+      "sha256": "fc66fae001464d253fe260c1e84ffc757e56a12f2e73473c2135b1f2f1290703",
       "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave44/selfcheck.py",
-      "sha256": "f6df7019f4b0a9389b92dfe8fdb948ed7ca976c085fba73a2557a37bcae19ca5",
+      "sha256": "2ab33f4ede0a31af7b5c4ae2f865c367409b09e9c8bd3f5b6ca204bff1a704db",
       "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
@@ -120,13 +120,13 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.meta.json",
-      "sha256": "d4b28fad5e31a816187a0eec117b8287606ba699c3c291adacdf017a684081f9",
+      "sha256": "e145b8eb1eb7d32b6aecfc7fcf159a69a881b6d5907350571067b479fb96adc6",
       "note": "Wave44 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     }
   ],
   "role": "Wave44のHELIX-OS product unit 10件について、requirements／design／implementation_sourceのcandidate edge、独立pool照合、missing evidence、旧asset status unknownを保持する静的Scaffold",
   "obligations": [
-    "10 unit、29 role edge、10 semantic atom、10 composite_unresolvedを固定し、TR-10 implementation_sourceの直接証拠不足をmissing evidenceへ記録する",
+    "10 unit、29 role edge、10 semantic atom、10 composite_unresolvedを固定し、TR-10 implementation_source pool 44件のconsumed／examined／unexamined asset IDを照合して直接証拠不足をmissing evidenceへ記録する",
     "旧requirements原文、decomposition、source relation、catalog／crosswalk、decision／disposition、failure／consumerの静的状態を読み、旧実行は行わない",
     "独立phase/product pool membershipとprior Wave1〜43 asset非重複を検査し、同一batchのnon-requirement asset重複を共有typed edgeなしで許可しない",
     "HELIX-OS候補をcurrent product ownerやauthorityへ昇格させず、Web／Web-OSを218 unit分母から推定しない",
@@ -187,8 +187,8 @@
     ],
     "oracles": [
       "Wave44 generate.py→ledger/meta deterministic regeneration",
-      "Wave44 validate.py（29 rows／10 unit／29 edge／10 atom／10 composite、source／asset receipt、独立pool、missing evidence、prior dynamic count、latest-main ancestor gate）",
-      "Wave44 selfcheck.py（本体validator経路の23 negative mutation）",
+      "Wave44 validate.py（29 rows／10 unit／29 edge／10 atom／10 composite、source／asset receipt、独立pool、TR-10 pool usage／examined receipt、missing evidence、prior dynamic count、latest-main ancestor gate）",
+      "Wave44 selfcheck.py（本体validator経路の25 negative mutation）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],
@@ -208,7 +208,9 @@
       "cross-unit source span reuse",
       "degradation promotion",
       "selected role asset count mismatch",
-      "plan/inventory count mismatch"
+      "plan/inventory count mismatch",
+      "TR-10 consumed asset ID overclaim",
+      "TR-10 examined asset receipt omission"
     ]
   },
   "replacement": {
