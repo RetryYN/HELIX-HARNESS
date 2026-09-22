@@ -1,0 +1,24 @@
+{
+  "anchor_count": 25,
+  "authority_effect": "none",
+  "base_origin_main": "b343360a104d377e545adc404a4151d70eac024e",
+  "base_origin_main_previous": "b343360a104d377e545adc404a4151d70eac024e",
+  "binding_registration_status": "registered",
+  "binding_reservation": "SCF-B-0074",
+  "bundle_id": "RDP-001-OUTSIDE67-CHAIN-FOLLOWUP-002-005-013-031-061",
+  "candidate_count": 5,
+  "candidate_ids": [
+    "OUTSIDE67-PATH-002",
+    "OUTSIDE67-PATH-005",
+    "OUTSIDE67-PATH-013",
+    "OUTSIDE67-PATH-031",
+    "OUTSIDE67-PATH-061"
+  ],
+  "combined_count": 32,
+  "denominator": 67,
+  "existing_reviewed_count": 27,
+  "old_runtime_test_ci_execution": false,
+  "remaining_after_research": 35,
+  "schema": "rdp001-outside67-followup-meta/v1",
+  "static_only": true
+}
