@@ -1,0 +1,75 @@
+{
+ "case": "40-reject-static-upstream-traversal",
+ "l11": "旧archive rootからのpath traversalを拒否する",
+ "requirements": [
+  "SCF-OS-003"
+ ],
+ "command": "validate",
+ "expect": "fail",
+ "binding": {
+  "schema_revision": 1,
+  "id": "SCF-B-0900",
+  "kind": "scaffold",
+  "title": "静的旧archive evidence",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "研究束",
+  "state": "registered",
+  "reason": "静的read-only入力",
+  "upstream": [
+   {
+    "path": "archive/legacy-generation-2026-09-14/root/../outside.txt",
+    "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "note": "固定digest。静的read-only参照のみ。旧archiveは実行しない"
+   }
+  ],
+  "role": "旧IR evidenceの静的参照",
+  "obligations": [
+   "旧archiveを実行しない"
+  ],
+  "connections": {
+   "consumers": [
+    "research reviewer"
+   ],
+   "dependencies": [],
+   "boundary": "scaffold/"
+  },
+  "operations": {
+   "allowed": [
+    "fixed Git bytes read"
+   ],
+   "forbidden": [
+    "execute old-generation archive source/runtime/test/hook/adapter/CI"
+   ]
+  },
+  "artifacts": [
+   "scaffold/tools/scfctl.py"
+  ],
+  "verification": {
+   "evidence_kind": "scaffold",
+   "scope": [
+    "negative_case"
+   ],
+   "oracles": [
+    "fixed digest"
+   ],
+   "negative_cases": [
+    "legacy static upstream"
+   ]
+  },
+  "replacement": {
+   "role_target": "pending human review",
+   "formal_artifacts": [],
+   "issue": 0,
+   "status": "pending",
+   "transfer": null,
+   "target_revisions": {},
+   "confirmation_ref": null,
+   "confirmation_digest": null
+  },
+  "created": "2026-09-23",
+  "updated": "2026-09-23"
+ },
+ "expect_codes": [
+  "E_STATIC_UPSTREAM"
+ ]
+}

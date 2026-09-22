@@ -1,0 +1,471 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0134",
+  "kind": "scaffold",
+  "title": "held30 phase-gap cross-analysis fixed BASE research",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "held30 phase-gap cross-analysis（正式phase／product authority未解決）",
+  "state": "registered",
+  "reason": "phase-status-taxonomy-0105のheld30（OS24／HARNESS6）を、固定BASEの旧IR原文・Wave1–50・RDP・PHCAP-20・四製品L1 decisionから静的に再集計する。4不足類型、direct phase evidence 0、formal phase 0、全20 PHCAP pendingを固定し、candidateとformal authorityを分離する。",
+  "upstream": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "note": "固定BASE bytes。旧IRは静的read-only参照のみ。旧archiveは実行しない"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl",
+      "sha256": "5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl",
+      "sha256": "762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl",
+      "sha256": "ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl",
+      "sha256": "299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl",
+      "sha256": "888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl",
+      "sha256": "eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl",
+      "sha256": "610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl",
+      "sha256": "82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl",
+      "sha256": "da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl",
+      "sha256": "f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl",
+      "sha256": "66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl",
+      "sha256": "1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl",
+      "sha256": "f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl",
+      "sha256": "361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl",
+      "sha256": "fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl",
+      "sha256": "dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl",
+      "sha256": "85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl",
+      "sha256": "50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave19.jsonl",
+      "sha256": "93024399f21cf03c439a81935f473b07e57e0827efb39ce05c0be64a7432a258",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave20.jsonl",
+      "sha256": "e7983f9a07bd4ca939450e034b24499daaeff889317e7789779d82a90adafe49",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave21.jsonl",
+      "sha256": "8b726497d90cd4c430cafb5646765099af5898c1fd4200b693412b95ac1e0264",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave22.jsonl",
+      "sha256": "f86ec2357fc2a79f18310a09bf8eee7cbabf5e620d86d671aec6f76987826dcc",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonl",
+      "sha256": "b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave24.jsonl",
+      "sha256": "bda37af1258af965f5137d063ba134b3185eaec7f1d88ba03d64a0e94efcb455",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave25.jsonl",
+      "sha256": "d30e7658f2d82448f56b85a516c416b1b1ddf4f14c82a592b71842d2e5f37bb3",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave26.jsonl",
+      "sha256": "e196c2d6abae0db6f00faa0502356a7bdff6de234bfe5a504dfdd5e6bebb699b",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonl",
+      "sha256": "9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl",
+      "sha256": "1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl",
+      "sha256": "d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave30.jsonl",
+      "sha256": "a7e3e9d86d91fbd783cc5581611dc7e7f9a7f199a03e9d312f01f24fd8c4613f",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave31.jsonl",
+      "sha256": "51d54950943f7bc251a1bc22a103a2d3b81dc9190cdd778cce0178d857039383",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave32.jsonl",
+      "sha256": "e9e51ed364e9f76cb02f7b66f364f87486ac95aaa43fd010645c789fcecd09fe",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonl",
+      "sha256": "701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave34.jsonl",
+      "sha256": "4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave35.jsonl",
+      "sha256": "02713e03967810fb7ba6faf6b7c9dd561c45fbd36c23972317d8603c1fde2b12",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
+      "sha256": "fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl",
+      "sha256": "25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
+      "sha256": "df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.jsonl",
+      "sha256": "c94785daaef0f3a2546e3d7a906e606d499a81e180d65dcc2c5d7ffd04996c8d",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
+      "sha256": "c98bf42916ef053050799e289bec8b28b7af3a0d62d2dc9e6adb30fdb606b3a8",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.jsonl",
+      "sha256": "03222010e1e8f67e4846ce006adb604fc3742b88d2e39e6eab01123f288563c5",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.jsonl",
+      "sha256": "95ff19ec877bb847510ee5f99565816e42bb59ffb60627145de03c2d24e56072",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.jsonl",
+      "sha256": "293962d91807a1c7f4e553e57db1fa854f1a904f34c4a53eee86d6dbb1ae9982",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
+      "sha256": "2fd638f0dc975fc03790f03d34b579ba5513a1b8420d8c3b09c2c53b108a38f6",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave45/legacy-requirement-direct-semantic-review-wave45.jsonl",
+      "sha256": "aa5328123645c1b8dc90dc2f04ff3ac007dfbdeda599bd66ccb6ad14441cebc6",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave46/legacy-requirement-direct-semantic-review-wave46.jsonl",
+      "sha256": "ff965e2316e4af3fe3f1be85674e879ad9cb57d209f67abec32575af95ac975c",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl",
+      "sha256": "853ec5f2b3784a5711d28c9a4246aff7f0b57bd438d5c84d02bb587d52554f2f",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave48/legacy-requirement-direct-semantic-review-wave48.jsonl",
+      "sha256": "5f318d3ba422359305392c305efc851630ca435374974494ccd7cf79e7d42fb0",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
+      "sha256": "e1d924c576ac36a51750758ac429b3457f658a8b0f62e802fa2ce7372740c356",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
+      "sha256": "8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/requirement-disposition-review-program.md",
+      "sha256": "9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/requirement-overlap-review-program.md",
+      "sha256": "8e8c3ef18ab263420bd6f01277dc20b7519b77c9c4f50051331de68aaf380380",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/requirement-technical-substitutability-review-program.md",
+      "sha256": "a116a505a52cc835a63448c81f9fc479f79110ebc48adb467548efdcfca22593",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/l2d-s1-01-input-holding-screen.jsonl",
+      "sha256": "e54824545dc5aca9844ca86dcae30f396dba8b6f06504344a1ea13f385ad87fa",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/phcap20-memory-research/README.md",
+      "sha256": "9ffeeaad81fb3f34daa419b9748e7cdc19a3ec0fb9d6f8591989f8cc59b931d1",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/phcap20-memory-research/inventory.json",
+      "sha256": "316f49667a9b4abf06e1a5d973615efdb2402d07ed4062bea5763a5aba4c39b5",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+    },
+    {
+      "path": "scaffold/phase-status-taxonomy-0105/units.jsonl",
+      "sha256": "e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4",
+      "note": "taxonomy immutable source。commit/blob/祖先性はvalidatorで固定照合"
+    },
+    {
+      "path": "scaffold/phase-status-taxonomy-0105/inventory.json",
+      "sha256": "89ddd6361743d37e809b2e5cd7aba217886770b5688787822426f6aa3bd123d2",
+      "note": "taxonomy inventory immutable source。commit/blob/祖先性はvalidatorで固定照合"
+    }
+  ],
+  "role": "phase-gap-cross-analysis-0134-static-research",
+  "obligations": [
+    "固定taxonomy commit/blob/digestと固定BASE ancestorからheld30のexact ID/status/rule/anchorを再導出する",
+    "HELIX-OS 24／HELIX-HARNESS 6、Wave 50 files／598 rows／66 edge、38 unique old assetsを固定する",
+    "direct phase evidence 0、formal phase 0、phase非適用立証0、excluded0、全30 unitのPHCAP-01..20 pendingを保持する",
+    "SOURCE_AUTHORITY_CUSTODY_GAP 2、PHCAP_BOUNDARY_GAP 8、CROSS_PHASE_COMPETITION 10、CROSS_PHASE_UNRESOLVED 10のunit集合と次アクションを固定する",
+    "原文anchor、Wave edge、asset、source/human/consumer不足をunit別に保持し、source存在・観測値から実装／未実装／縮退／failure／consumer closureを断定しない",
+    "正式phase、product authority、implementation、L2/L11 successor、crosswalkを変更せずauthority none／new_build falseを固定する",
+    "旧世代archiveのsource/runtime/test/hook/adapter/CIは実行せず、独立validatorと42負例、scfctl共通selftestの69ケース（symlink／directory／non-regular／separator）を期待error code付きで維持する。case44〜46はsymlink先bytes／directory・FIFO object-kind digestを宣言値と照合し、symlink／non_regular拒否returnの到達を直接検査する"
+  ],
+  "connections": {
+    "boundary": "research evidence only; no formal phase/product/implementation authority, crosswalk, acceptance, runtime, merge, or close",
+    "consumers": [
+      "phase authority reviewer",
+      "source/product authority reviewer",
+      "root held30 cross-analysis follow-up"
+    ],
+    "dependencies": [
+      "SCF-B-0105 phase-status taxonomy immutable source",
+      "Wave1–50 semantic review snapshots",
+      "RDP holding and disposition context",
+      "PHCAP-01..20 inventory and PHCAP-20 definition",
+      "four product L1 decision"
+    ]
+  },
+  "operations": {
+    "allowed": [
+      "read fixed BASE and immutable taxonomy bytes statically",
+      "write research scaffold and Binding",
+      "run deterministic generator/validator/selfcheck/scfctl"
+    ],
+    "forbidden": [
+      "execute old-generation archive source/runtime/test/hook/adapter/CI",
+      "promote formal phase/product/implementation/consumer authority",
+      "modify taxonomy/crosswalk/PHCAP authority",
+      "merge/close/deploy"
+    ]
+  },
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0134.json",
+    "scaffold/phase-gap-cross-analysis-0134/README.md",
+    "scaffold/phase-gap-cross-analysis-0134/PR-DRAFT.md",
+    "scaffold/phase-gap-cross-analysis-0134/generate.py",
+    "scaffold/phase-gap-cross-analysis-0134/validate.py",
+    "scaffold/phase-gap-cross-analysis-0134/selfcheck.py",
+    "scaffold/phase-gap-cross-analysis-0134/inventory.json",
+    "scaffold/phase-gap-cross-analysis-0134/analysis.jsonl",
+    "scaffold/phase-gap-cross-analysis-0134/phase-status-taxonomy-0105.units.jsonl"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "validator independently derives fixed BASE and taxonomy exact target set; it does not import generate.py",
+      "validator compares taxonomy commit/path/blob/digest/ancestor, all 64 input digests, 30 anchors, 66 edges, 38 assets, four reason sets, and authority boundaries",
+      "inventory and analysis fields are fail-closed against candidate/formal phase and product authority promotion",
+      "selfcheck executes 42 negative cases and checks expected error codes, including full taxonomy and analysis-text mutation sweep",
+      "scfctl selftest executes 69 cases: static legacy upstream evidence requires fixed sha256, exact `静的read-only参照のみ` note and execution boundary, exact legacy root, resolved containment, no symlink (including root-contained target), and regular-file source; directory/non-regular, backslash, and Windows-absolute paths are rejected. Symlink target bytes and deterministic directory/FIFO object-kind digests are checked, and cases 44-46 assert the symlink/non_regular rejection branches are reached",
+      "scfctl validate/stale/residuals and git diff --check"
+    ],
+    "negative_cases": [
+      "malformed bundle -> E_BUNDLE",
+      "schema or unknown key -> E_SCHEMA",
+      "binding id -> E_BINDING",
+      "BASE declaration -> E_BASE_COMMIT",
+      "BASE non-ancestor -> E_BASE_NOT_ANCESTOR",
+      "taxonomy non-ancestor -> E_TAXONOMY_NOT_ANCESTOR",
+      "taxonomy source/inventory blob -> E_TAXONOMY_BLOB",
+      "input digest -> E_SOURCE_INPUT_DIGEST",
+      "missing input path with caught BASE lookup error -> E_SOURCE_INPUT_DIGEST",
+      "source anchor -> E_SOURCE_ANCHOR",
+      "missing/duplicate target ID -> E_TARGET_SET",
+      "missing/duplicate Wave edge -> E_WAVE_EDGE_COVERAGE",
+      "Wave edge detail -> E_WAVE_EDGE_COVERAGE",
+      "asset membership -> E_ASSET_EVIDENCE",
+      "taxonomy snapshot declaration -> E_TAXONOMY_COVERAGE",
+      "taxonomy authority boundary -> E_TAXONOMY_COVERAGE",
+      "taxonomy status -> E_TAXONOMY_STATUS",
+      "matrix rule -> E_MATRIX_RULE",
+      "taxonomy candidate statement -> E_TAXONOMY_COVERAGE",
+      "taxonomy judgment waiting -> E_TAXONOMY_COVERAGE",
+      "taxonomy authority phase status -> E_TAXONOMY_COVERAGE",
+      "taxonomy formal phase candidate -> E_TAXONOMY_COVERAGE",
+      "taxonomy direct phase candidate count -> E_TAXONOMY_COVERAGE",
+      "candidate phase target -> E_TAXONOMY_COVERAGE",
+      "crosswalk binding -> E_SOURCE_ANCHOR",
+      "unit static-only flag -> E_AUTHORITY_BOUNDARY",
+      "unit schema -> E_SCHEMA",
+      "inventory schema -> E_SCHEMA",
+      "inventory scope/declaration -> E_INVENTORY_DECLARATION",
+      "reason class -> E_REASON_CLASS",
+      "reason description -> E_ANALYSIS_EVIDENCE",
+      "source evidence remainder -> E_ANALYSIS_EVIDENCE",
+      "human decision text -> E_ANALYSIS_EVIDENCE",
+      "consumer evidence text -> E_ANALYSIS_EVIDENCE",
+      "next action text -> E_ANALYSIS_EVIDENCE",
+      "product candidate scope -> E_ANALYSIS_EVIDENCE",
+      "source or human evidence replacement -> E_ANALYSIS_EVIDENCE",
+      "consumer evidence removal -> E_CONSUMER_EVIDENCE",
+      "formal phase promotion -> E_PHASE_AUTHORITY_SEPARATION",
+      "formal product promotion -> E_PRODUCT_AUTHORITY_SEPARATION",
+      "authority boundary promotion -> E_AUTHORITY_BOUNDARY",
+      "minimum condition removal -> E_MINIMUM_CONDITIONS",
+      "legacy upstream evil root -> E_STATIC_UPSTREAM",
+      "legacy upstream traversal -> E_STATIC_UPSTREAM",
+      "legacy upstream symlink -> E_STATIC_UPSTREAM",
+      "legacy upstream root-contained symlink -> E_STATIC_UPSTREAM",
+      "legacy upstream directory -> E_STATIC_UPSTREAM",
+      "legacy upstream non-regular -> E_STATIC_UPSTREAM",
+      "legacy upstream negated note `非静的read-only参照のみ` -> E_STATIC_UPSTREAM",
+      "legacy upstream ambiguous execution boundary -> E_STATIC_UPSTREAM",
+      "legacy upstream backslash path -> E_STATIC_UPSTREAM",
+      "legacy upstream Windows-absolute path -> E_STATIC_UPSTREAM"
+    ]
+  },
+  "replacement": {
+    "formal_artifacts": [],
+    "issue": 0,
+    "role_target": null,
+    "status": "pending"
+  },
+  "created": "2026-09-23",
+  "updated": "2026-09-23"
+}
