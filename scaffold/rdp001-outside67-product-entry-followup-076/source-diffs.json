@@ -1,0 +1,97 @@
+{
+  "archive_changed_ids": [
+    "OUTSIDE67-PATH-012",
+    "OUTSIDE67-PATH-014"
+  ],
+  "archive_relocation_ids": [
+    "OUTSIDE67-PATH-003",
+    "OUTSIDE67-PATH-006",
+    "OUTSIDE67-PATH-009",
+    "OUTSIDE67-PATH-012",
+    "OUTSIDE67-PATH-014"
+  ],
+  "current_counterpart_drift_ids": [
+    "OUTSIDE67-PATH-003",
+    "OUTSIDE67-PATH-006",
+    "OUTSIDE67-PATH-009",
+    "OUTSIDE67-PATH-012",
+    "OUTSIDE67-PATH-014"
+  ],
+  "items": [
+    {
+      "archive_bytes": 1444,
+      "archive_sha256": "81da974ef30055abc874371792775e9031c86cbfc2a855bc96d242b330eb018a",
+      "current_bytes": 1606,
+      "current_counterpart_path": "docs/helix-harness/README.md",
+      "current_relation": "current_counterpart_path_relocation_and_archive_revision_same_content_drift_observed",
+      "current_sha256": "e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117",
+      "pre_bytes": 1444,
+      "pre_sha256": "81da974ef30055abc874371792775e9031c86cbfc2a855bc96d242b330eb018a",
+      "source_item_id": "OUTSIDE67-PATH-003",
+      "source_path": "docs/design/harness/README.md",
+      "status": "same",
+      "unified_diff": ""
+    },
+    {
+      "archive_bytes": 2139,
+      "archive_sha256": "8ca1121104c30156a917e27177c060edd4ea7d46e13439ff13230a3df3a3b138",
+      "current_bytes": 2240,
+      "current_counterpart_path": "docs/helix-os/README.md",
+      "current_relation": "current_counterpart_path_relocation_and_archive_revision_same_content_drift_observed",
+      "current_sha256": "aa6c9976bf564ef4c2ff0f8d7b07220108e7157f697b8d92e11c689b4060f773",
+      "pre_bytes": 2139,
+      "pre_sha256": "8ca1121104c30156a917e27177c060edd4ea7d46e13439ff13230a3df3a3b138",
+      "source_item_id": "OUTSIDE67-PATH-006",
+      "source_path": "docs/design/helix-os/README.md",
+      "status": "same",
+      "unified_diff": ""
+    },
+    {
+      "archive_bytes": 995,
+      "archive_sha256": "1c12792b9626ba0355cb6542d047d2daeb900a837e7eea8f748ebd647b2bb8ed",
+      "current_bytes": 1187,
+      "current_counterpart_path": "docs/helix-web-os/README.md",
+      "current_relation": "current_counterpart_path_relocation_and_archive_revision_same_content_drift_observed",
+      "current_sha256": "f5aac7ab9bc83a8c7339a2190f1e39cbaf3f1271edffc80fbdc37e43a4598914",
+      "pre_bytes": 995,
+      "pre_sha256": "1c12792b9626ba0355cb6542d047d2daeb900a837e7eea8f748ebd647b2bb8ed",
+      "source_item_id": "OUTSIDE67-PATH-009",
+      "source_path": "docs/design/helix-web-os/README.md",
+      "status": "same",
+      "unified_diff": ""
+    },
+    {
+      "archive_bytes": 2460,
+      "archive_sha256": "ed7cc9bec604ad2a63324759b19b4ed5ab4be321b79c83ea9bb2cd69003ceb8a",
+      "current_bytes": 2531,
+      "current_counterpart_path": "docs/helix-web/README.md",
+      "current_relation": "current_counterpart_path_relocation_and_content_drift_observed",
+      "current_sha256": "0d73011e6ccc387189645c2158d55e02f444e3e3cb583b0aea29e28ea86ac1e6",
+      "pre_bytes": 2410,
+      "pre_sha256": "d6726dabd373d0d5794f42dcb73c296d546d92f0c30955ebc657b3c2634e3c96",
+      "source_item_id": "OUTSIDE67-PATH-012",
+      "source_path": "docs/design/helix-web/README.md",
+      "status": "different",
+      "unified_diff": "--- pre-isolation\n+++ archive-revision\n@@ -16,7 +16,7 @@\n \n ## 原文と現在の整理\n \n-[保存されたVision原文](../../archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の\n+[保存されたVision原文](../../../archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の\n §2.2、§3.2、§4、付録U07〜U11は、Webを別進行のAI開発SaaSとし、能力の受渡しと実践からの改善を示している。\n 原文は受領時の構想を残す資料であり、最新の責務名はPO指示のHELIX-OS／HARNESSへ対応づける。\n ユーザーの「Vision2」という呼称を、原文の本体2.0、公開版、実装期限と自動的に同一視しない。\n"
+    },
+    {
+      "archive_bytes": 15759,
+      "archive_sha256": "d66b53d18fae938fc0d58dc731569756c77d038337a253845b8ce2dc7d59b8fc",
+      "current_bytes": 15750,
+      "current_counterpart_path": "docs/governance/crosswalks/legacy-concept-derived-requirements.md",
+      "current_relation": "current_counterpart_path_relocation_and_content_drift_observed",
+      "current_sha256": "a65504da98057890ff55f598e8cae6f13cf823c84de9b8fae89f4940f895ab91",
+      "pre_bytes": 15540,
+      "pre_sha256": "427bfc9ec045fe64a0aa139b5018ad70d1d7ff02d105720e87980a7e969de6e6",
+      "source_item_id": "OUTSIDE67-PATH-014",
+      "source_path": "docs/design/helix/L2-requirements/concept-v4-derived-requirements.md",
+      "status": "different",
+      "unified_diff": "--- pre-isolation\n+++ archive-revision\n@@ -25,8 +25,8 @@\n 本書は最新の上位概念から利用者要求を具体化した、対象別移管のための混在要求整理案である。\n 最新のPO指示に従い、要求の所属先はHARNESS／HELIX-OS／個別プロダクトへ分離する。本書をそれらの共通要求正本として再固定しない。\n 最新の親候補は[Concept v4.1](../../../governance/candidates/helix-concept-v4.1.md)であり、出典要求は\n-[HCV4-BR-001..006](../../../governance/candidates/helix-concept-v4-requests.md)。\n-v4.0候補承認の対象revisionは[PLAN-L3-84](../../../plans/PLAN-L3-84-helix-concept-v4-upgrade.md)に記録されているが、\n+[HCV4-BR-001..006](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requests.md)。\n+v4.0候補承認の対象revisionは[PLAN-L3-84](../../../../archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md)に記録されているが、\n 製品境界を改訂したv4.1は人間承認待ちである。本書の具体化とL11条件もdraftであり、v4.0の候補承認を\n v4.1、対象別L2、L11の合意へ転用しない。\n 既存Requirement IRの置換・追加は未実施である。\n@@ -87,7 +87,7 @@\n \n ## L3への対応案\n \n-[v4 L3候補](../../../governance/candidates/helix-concept-v4-requirements.md)の18要件との意味対応を示す。\n+[v4 L3候補](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requirements.md)の18要件との意味対応を示す。\n これはIDのadmission、L3凍結、実装完了の記録ではない。複数要求に関係する要件は重複参照する。\n \n | L2要求 | L3候補 |\n@@ -101,7 +101,7 @@\n \n ## 既存柱要求との統合境界\n \n-[柱要求](../L1-requirements/pillar-requirements.md)の13 IDを次に対応づける。\n+[柱要求](../../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md)の13 IDを次に対応づける。\n 「対応する」は旧条件をすべて充足したという意味ではない。個別条件・追補・数値は出典に保持し、\n 本書の抽象的な6要求で上書き・削除しない。変更が必要な意味は別revisionとして扱う。\n \n"
+    }
+  ],
+  "source_archive_same_ids": [
+    "OUTSIDE67-PATH-003",
+    "OUTSIDE67-PATH-006",
+    "OUTSIDE67-PATH-009"
+  ]
+}
