@@ -79,7 +79,7 @@
       "note": "authority/scope/source/status/failure/consumer negative checks"
     }
   ],
-  "role": "PHCAP-15 Deployの未レビューcandidate 12件について、旧asset source／decision／failure／consumer evidence、旧phase／product候補、旧／現行implementationとdegradation unknownをread-onlyで保持し、既レビュー範囲との非重複と残分母を検証する",
+  "role": "PHCAP-15 Deploy third12 sampleの12旧assetについて、旧asset source／decision／failure／consumer evidence、旧phase／product候補、旧／現行implementationとdegradation unknownをread-onlyで保持し、pool12 sampleとの非重複と残分母を検証する",
   "obligations": [
     "PHCAP-15 classification pool 78件、PR #2001 7件、PR #2004 12件、SCF-B-0037 3件、pool12 12件、remaining 44件の分母と非重複を固定する",
     "12 assetのarchive source path、source SHA、line count、40個のexact source span／span SHA、phase/disposition ledger lineを照合する",
