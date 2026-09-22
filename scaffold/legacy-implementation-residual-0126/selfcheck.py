@@ -21,6 +21,7 @@ generator = importlib.util.module_from_spec(gen_spec)
 gen_spec.loader.exec_module(generator)
 BASE_LEDGER = [json.loads(x) for x in (HERE / "classification-research.jsonl").read_text().splitlines()]
 BASE_INV = json.loads((HERE / "inventory.json").read_text())
+BASE_BINDING = json.loads((HERE.parents[0] / "bindings/SCF-B-0126.json").read_text())
 
 
 def run_case(name: str, code: str, mutate_rows=None, mutate_inv=None):
@@ -49,6 +50,49 @@ def run_case(name: str, code: str, mutate_rows=None, mutate_inv=None):
                 raise AssertionError(f"{name}: validator unexpectedly passed")
         finally:
             validator.BUNDLE, validator.LEDGER, validator.INVENTORY = old
+
+
+def run_raw_case(name: str, code: str, ledger_text: str | None = None, inventory_text: str | None = None):
+    with tempfile.TemporaryDirectory(prefix="scf-b-0126-json-") as td:
+        root = Path(td)
+        ledger = root / "classification-research.jsonl"
+        inv = root / "inventory.json"
+        ledger.write_text(ledger_text if ledger_text is not None else "".join(json.dumps(r, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for r in BASE_LEDGER))
+        inv.write_text(inventory_text if inventory_text is not None else json.dumps(BASE_INV, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+        old = (validator.BUNDLE, validator.LEDGER, validator.INVENTORY)
+        validator.BUNDLE, validator.LEDGER, validator.INVENTORY = root, ledger, inv
+        try:
+            try:
+                validator.check()
+            except AssertionError as exc:
+                actual = str(exc).split(":", 1)[0]
+                if actual != code:
+                    raise AssertionError(f"{name}: expected {code}, got {actual}: {exc}")
+            else:
+                raise AssertionError(f"{name}: validator unexpectedly passed")
+        finally:
+            validator.BUNDLE, validator.LEDGER, validator.INVENTORY = old
+
+
+def run_binding_case(name: str, code: str, mutate):
+    with tempfile.TemporaryDirectory(prefix="scf-b-0126-binding-") as td:
+        binding = Path(td) / "SCF-B-0126.json"
+        value = copy.deepcopy(BASE_BINDING)
+        mutate(value)
+        binding.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+        old = validator.BINDING_FILE
+        validator.BINDING_FILE = binding
+        try:
+            try:
+                validator.check()
+            except AssertionError as exc:
+                actual = str(exc).split(":", 1)[0]
+                if actual != code:
+                    raise AssertionError(f"{name}: expected {code}, got {actual}: {exc}")
+            else:
+                raise AssertionError(f"{name}: validator unexpectedly passed")
+        finally:
+            validator.BINDING_FILE = old
 
 
 def remove_row(rows): rows.pop()
@@ -87,6 +131,10 @@ def source_extra_nested_key(rows): rows[0]["source_exact"]["fabricated"] = True
 def classification_extra_nested_key(rows): rows[0]["classification"]["fabricated"] = True
 def history_extra_nested_key(rows): rows[0]["legacy_history_failure_consumer"]["fabricated"] = True
 def shrink_extra_nested_key(rows): rows[0]["legacy_implementation_shrinkage_evidence"]["fabricated"] = True
+def anchor_coverage(rows): rows[0]["anchor_line_coverage"]["coverage_ratio"] = 1.0
+
+
+def binding_upstream_stale(binding): binding["upstream"][0]["sha256"] = "0" * 64
 
 
 def human_judgment(rows): rows[0]["human_judgment_remaining"].pop()
@@ -194,4 +242,16 @@ run_case("inventory_top_level_missing_key_tamper", "E_INVENTORY_DECLARATION", No
 run_direct_case("review_pin_tamper", "E_REVIEW_PIN", review_pin)
 run_generator_case("generator_profile_category_tamper", "E_CLASSIFICATION", "category")
 run_generator_case("generator_profile_products_tamper", "E_CLASSIFICATION", "products")
-print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 9}")
+
+base_lines = [json.dumps(r, ensure_ascii=False, sort_keys=True, separators=(",", ":")) for r in BASE_LEDGER]
+duplicate_record = base_lines[0][:-1] + ',"asset_id":"DUPLICATE"}'
+duplicate_nested = base_lines[0].replace('"authority_effect":"none"', '"authority_effect":"none","authority_effect":"none"', 1)
+duplicate_inventory = json.dumps(BASE_INV, ensure_ascii=False, sort_keys=True, separators=(",", ":"))[:-1] + ',"schema_revision":1}'
+run_raw_case("ledger_duplicate_key_json", "E_JSON", ledger_text="\n".join([duplicate_record, *base_lines[1:]]) + "\n")
+run_raw_case("nested_duplicate_key_json", "E_JSON", ledger_text="\n".join([duplicate_nested, *base_lines[1:]]) + "\n")
+run_raw_case("inventory_duplicate_key_json", "E_JSON", inventory_text=duplicate_inventory)
+run_raw_case("malformed_json", "E_JSON", ledger_text="{\"asset_id\":\n")
+run_raw_case("nonobject_json", "E_JSON", inventory_text="[]\n")
+run_case("anchor_line_coverage_tamper", "E_ANCHOR_COVERAGE", anchor_coverage, None)
+run_binding_case("binding_upstream_stale_tamper", "E_BINDING_UPSTREAM", binding_upstream_stale)
+print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 16}")

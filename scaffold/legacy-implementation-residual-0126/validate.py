@@ -24,6 +24,8 @@ PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jso
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
 DECISIONS = "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER = "docs/governance/legacy-asset-copy-read-after.jsonl"
+MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
+BINDING_FILE = ROOT / "scaffold/bindings/SCF-B-0126.json"
 BOUNDARY = "docs/concept/product-boundary.md"
 L1 = {
     "HELIX-HARNESS": "docs/helix-harness/L1-planning/product-intent.md",
@@ -163,6 +165,13 @@ EXPECTED_NEGATIVE_CASES = [
     'inventory_top_level_missing_key_tamper',
     'generator_profile_category_tamper',
     'generator_profile_products_tamper',
+    'ledger_duplicate_key_json',
+    'nested_duplicate_key_json',
+    'inventory_duplicate_key_json',
+    'malformed_json',
+    'nonobject_json',
+    'anchor_line_coverage_tamper',
+    'binding_upstream_stale_tamper',
 ]
 EXPECTED_INVENTORY_KEYS = {
     "schema_revision",
@@ -185,10 +194,12 @@ EXPECTED_INVENTORY_KEYS = {
     "artifacts",
     "negative_cases",
     "output_sha256",
+    "archive_manifest_resolution",
+    "binding_upstream",
 }
 EXPECTED_INPUT_DIGEST_KEYS = {"path", "blob", "bytes", "sha256"}
 EXPECTED_RECORD_KEYS = {"asset_id", "source_path", "source_exact", "phase_evidence", "legacy_asset_evidence", "classification", "boundary_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "wave_semantic_links", "wave_edge_count", "human_judgment_remaining", "authority_effect", "formal_asset_classification_updated", "new_build_allowed", "anchor_line_coverage"}
-EXPECTED_SOURCE_KEYS = {"archive_path", "source_path", "blob", "bytes", "line_count", "sha256", "ledger_source_sha256", "ledger_digest_match", "semantic_anchor", "read_mode"}
+EXPECTED_SOURCE_KEYS = {"archive_path", "source_path", "blob", "bytes", "line_count", "sha256", "ledger_source_sha256", "ledger_digest_match", "archive_manifest_sha256", "archive_manifest_match", "archive_manifest_resolution", "semantic_anchor", "read_mode"}
 EXPECTED_CLASSIFICATION_KEYS = {"category", "candidate_products", "semantic_status", "reason"}
 EXPECTED_PROFILES = {'.claude/hooks/git-command-guard.ts': {'category': 'insufficient_basis',
                                         'length': 12,
@@ -596,6 +607,25 @@ def fail(code: str, message: str) -> None:
     raise AssertionError(f"{code}: {message}")
 
 
+def strict_pairs(pairs: list[tuple[str, object]]) -> dict:
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
+def strict_json(text: str, label: str, require_object: bool = True) -> object:
+    try:
+        value = json.loads(text, object_pairs_hook=strict_pairs)
+    except (json.JSONDecodeError, TypeError, ValueError) as exc:
+        fail("E_JSON", f"{label}: {exc}")
+    if require_object and not isinstance(value, dict):
+        fail("E_JSON", f"{label}: top-level JSON object required")
+    return value
+
+
 def tagged(data: bytes) -> str:
     return "sha256:" + hashlib.sha256(data).hexdigest()
 
@@ -614,6 +644,25 @@ def git_blob(path: str, base: str = BASE_REVISION) -> str:
     except subprocess.CalledProcessError as exc:
         fail("E_BASE_SOURCE", path)
         raise exc
+
+
+def manifest_sha256(source_path: str) -> str:
+    expected = f" {source_path}"
+    for line in git_bytes(MANIFEST).decode(errors="replace").splitlines():
+        if line.endswith(expected):
+            digest, path = line.split(maxsplit=1)
+            if path == source_path:
+                return "sha256:" + digest
+    fail("E_ARCHIVE_MANIFEST", source_path)
+
+
+def expected_nonarchive_input_paths() -> list[str]:
+    global_inputs = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, "docs/governance/legacy-asset-reuse-control.md", "docs/governance/new-generation-start-here.md", MANIFEST]
+    return [*WAVE_PATHS.values(), *[path for path in global_inputs if not path.startswith("archive/")]]
+
+
+def expected_binding_upstream() -> list[dict]:
+    return [{"path": path, "sha256": tagged(git_bytes(path))[7:]} for path in expected_nonarchive_input_paths()]
 
 
 UNRESEARCHED_PROFILE_REASON = "This implementation_source asset is absent from the prior research asset-ID set; no direct product evidence is retained, so it remains insufficient basis pending dedicated review."
@@ -642,7 +691,11 @@ def row_digest(row: dict) -> str:
 def read_jsonl(path: str) -> list[tuple[int, dict]]:
     rows = []
     for n, line in enumerate(git_bytes(path).decode().splitlines(), 1):
-        if line.strip(): rows.append((n, json.loads(line)))
+        if line.strip():
+            row = strict_json(line, f"{path}:{n}")
+            if not isinstance(row, dict):
+                fail("E_JSON", f"{path}:{n}: top-level JSON object required")
+            rows.append((n, row))
     return rows
 
 
@@ -756,7 +809,11 @@ def expected_source_exact(asset: dict, spec: dict) -> dict:
     text = "\n".join(lines[start - 1:end])
     anchor = {"marker": spec["marker"], "line_start": start, "line_end": end, "line_text": lines[start - 1:end], "line_text_sha256": tagged(text.encode()), "interpretation": spec["reason"], "products_considered": spec["products"] or list(EXPECTED_PRODUCTS)}
     ledger_sha = asset.get("source_sha256")
-    return {"archive_path": archive, "source_path": path, "blob": git_blob(archive), "bytes": len(data), "line_count": len(lines), "sha256": tagged(data), "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": tagged(data) == "sha256:" + ledger_sha, "semantic_anchor": anchor, "read_mode": "git_object_static_read_only"}
+    archive_digest = tagged(data)
+    manifest_digest = manifest_sha256(path)
+    manifest_match = archive_digest == manifest_digest
+    manifest_resolution = {"status": "matched"} if manifest_match else {"status": "pending_human_source_resolution", "formal_admission": "stopped", "reuse_decision": "stopped", "reason": "archive bytes and manifest entry differ; static evidence is retained"}
+    return {"archive_path": archive, "source_path": path, "blob": git_blob(archive), "bytes": len(data), "line_count": len(lines), "sha256": archive_digest, "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": archive_digest == "sha256:" + ledger_sha, "archive_manifest_sha256": manifest_digest, "archive_manifest_match": manifest_match, "archive_manifest_resolution": manifest_resolution, "semantic_anchor": anchor, "read_mode": "git_object_static_read_only"}
 
 
 def expected_record(asset_id: str, phase: dict[str, tuple[int, dict]], dispositions: dict[str, tuple[int, dict]], decisions: list[tuple[int, dict]], read_afters: list[tuple[int, dict]]) -> dict:
@@ -835,6 +892,9 @@ def check_source(record: dict, expected: dict, asset: dict) -> None:
     if exact.get("sha256") != tagged(data) or exact.get("ledger_source_sha256") != "sha256:" + asset.get("source_sha256", ""): fail("E_OLD_ASSET_SOURCE", path)
     match = exact.get("ledger_digest_match")
     if (not match) != (path in EXPECTED_MISMATCH_PATHS): fail("E_OLD_ASSET_SOURCE", f"ledger mismatch declaration {path}")
+    archive_digest = tagged(data)
+    manifest_digest = manifest_sha256(path)
+    if exact.get("archive_manifest_sha256") != manifest_digest or exact.get("archive_manifest_match") != (archive_digest == manifest_digest): fail("E_ARCHIVE_MANIFEST", path)
     if exact.get("read_mode") != "git_object_static_read_only": fail("E_READ_MODE", path)
     anchor = exact.get("semantic_anchor")
     if not isinstance(anchor, dict) or anchor.get("marker") != expected["marker"]: fail("E_SOURCE_ANCHOR", path)
@@ -858,8 +918,19 @@ def check() -> None:
         subprocess.check_call(["git", "merge-base", "--is-ancestor", BASE_REVISION, "HEAD"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     except subprocess.CalledProcessError:
         fail("E_BASE_NOT_ANCESTOR", BASE_REVISION)
-    inv = json.loads(INVENTORY.read_text())
-    rows = [json.loads(line) for line in LEDGER.read_text().splitlines() if line.strip()]
+    inv = strict_json(INVENTORY.read_text(), str(INVENTORY))
+    if not isinstance(inv, dict):
+        fail("E_JSON", f"{INVENTORY}: top-level JSON object required")
+    rows = []
+    for n, line in enumerate(LEDGER.read_text().splitlines(), 1):
+        if line.strip():
+            row = strict_json(line, f"{LEDGER}:{n}")
+            if not isinstance(row, dict):
+                fail("E_JSON", f"{LEDGER}:{n}: top-level JSON object required")
+            rows.append(row)
+    binding = strict_json(BINDING_FILE.read_text(), str(BINDING_FILE))
+    if not isinstance(binding, dict):
+        fail("E_JSON", f"{BINDING_FILE}: top-level JSON object required")
     phase_list = read_jsonl(PHASE)
     phase = {r["asset_id"]: (n, r) for n, r in phase_list}
     disp = {r["asset_id"]: (n, r) for n, r in read_jsonl(DISPOSITION)}
@@ -907,6 +978,8 @@ def check() -> None:
         expected = EXPECTED_PROFILES.get(path)
         if expected is None: fail("E_REVIEW_PIN", path)
         if row.get("source_path") != path: fail("E_SOURCE_ANCHOR", aid)
+        expected_coverage = expected_record(aid, phase, disp, decisions, read_afters)["anchor_line_coverage"]
+        if row.get("anchor_line_coverage") != expected_coverage: fail("E_ANCHOR_COVERAGE", aid)
         cls = row.get("classification", {})
         if set(cls) != EXPECTED_CLASSIFICATION_KEYS: fail("E_RECORD_SCHEMA", aid)
         check_category_invariant(cls, aid)
@@ -955,6 +1028,7 @@ def check() -> None:
             if row.get("boundary_evidence") != expected_full["boundary_evidence"]: fail("E_BOUNDARY_ANCHOR", aid)
             if row.get("legacy_history_failure_consumer") != expected_full["legacy_history_failure_consumer"]: fail("E_HISTORY", aid)
             if row.get("legacy_implementation_shrinkage_evidence") != expected_full["legacy_implementation_shrinkage_evidence"]: fail("E_IMPLEMENTATION_EVIDENCE", aid)
+            if row.get("anchor_line_coverage") != expected_full["anchor_line_coverage"]: fail("E_ANCHOR_COVERAGE", aid)
             fail("E_RECORD_SCHEMA", aid)
     expected_counts = {
         "wave_files": 50,
@@ -970,7 +1044,29 @@ def check() -> None:
     if inv.get("phase_candidate_distribution") != dict(sorted(phase_distribution.items())): fail("E_INVENTORY_DECLARATION", "phase distribution")
     if inv.get("edge_contract") != {"target_wave_edges": 0, "duplicate_edges_forbidden": True, "missing_edges_forbidden": True}: fail("E_INVENTORY_DECLARATION", "edge contract")
     if inv.get("history_failure_consumer") != {"disposition_rows": 120, "decision_rows_for_targets": 0, "read_after_rows_for_targets": 0, "failure_consumer_refs_are_static_global_inventory": True}: fail("E_INVENTORY_DECLARATION", "history/failure/consumer declaration")
-    global_inputs = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, "docs/governance/legacy-asset-reuse-control.md", "docs/governance/new-generation-start-here.md", "archive/legacy-generation-2026-09-14/MANIFEST.sha256"]
+    expected_manifest_resolution = {
+        "status": "pending_human_source_resolution",
+        "formal_admission": "stopped",
+        "reuse_decision": "stopped",
+        "mismatches": [{
+            "source_path": "scripts/helix.ps1",
+            "archive_sha256": "sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b",
+            "manifest_sha256": "sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7",
+            "manifest_path": MANIFEST,
+            "reason": "archive bytes and manifest entry differ; static evidence is retained, but formal admission and legacy reuse remain stopped pending human/source resolution",
+        }],
+    }
+    if inv.get("archive_manifest_resolution") != expected_manifest_resolution: fail("E_ARCHIVE_MANIFEST", "resolution declaration")
+    expected_binding = expected_binding_upstream()
+    if inv.get("binding_upstream") != {
+        "policy": "all nonarchive input_digests are Binding upstream; archive static references remain in inventory/records because SCF-OS-003 forbids archive upstream paths",
+        "nonarchive_input_count": len(expected_binding),
+        "archive_input_count": 121,
+        "archive_upstream_count": 0,
+        "archive_nonexecution_boundary": "archive source/runtime/test/CI is read through fixed BASE Git objects only and never executed",
+    }: fail("E_BINDING_UPSTREAM", "binding upstream policy")
+    if binding.get("id") != BINDING_ID or binding.get("upstream") != expected_binding: fail("E_BINDING_UPSTREAM", "path/raw SHA closure")
+    global_inputs = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, "docs/governance/legacy-asset-reuse-control.md", "docs/governance/new-generation-start-here.md", MANIFEST]
     expected_input_paths = [*WAVE_PATHS.values(), *global_inputs, *[ARCHIVE_PREFIX + phase[a][1]["source_path"] for a in targets]]
     paths = [x.get("path") for x in inv.get("input_digests", [])]
     if paths != expected_input_paths or len(paths) != len(set(paths)): fail("E_INPUT_DIGEST", "input path set/order")

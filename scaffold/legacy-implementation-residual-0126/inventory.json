@@ -1,4 +1,18 @@
 {
+  "archive_manifest_resolution": {
+    "formal_admission": "stopped",
+    "mismatches": [
+      {
+        "archive_sha256": "sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b",
+        "manifest_path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+        "manifest_sha256": "sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7",
+        "reason": "archive bytes and manifest entry differ; static evidence is retained, but formal admission and legacy reuse remain stopped pending human/source resolution",
+        "source_path": "scripts/helix.ps1"
+      }
+    ],
+    "reuse_decision": "stopped",
+    "status": "pending_human_source_resolution"
+  },
   "artifacts": [
     "scaffold/bindings/SCF-B-0126.json",
     "scaffold/legacy-implementation-residual-0126/README.md",
@@ -18,6 +32,13 @@
   "base_revision": "5562f04da0f3205f9aa58205ec0d478419fc4f2e",
   "base_source_mode": "all input and archive evidence bytes from fixed BASE Git objects",
   "binding_id": "SCF-B-0126",
+  "binding_upstream": {
+    "archive_input_count": 121,
+    "archive_nonexecution_boundary": "archive source/runtime/test/CI is read through fixed BASE Git objects only and never executed",
+    "archive_upstream_count": 0,
+    "nonarchive_input_count": 63,
+    "policy": "all nonarchive input_digests are Binding upstream; archive static references remain in inventory/records because SCF-OS-003 forbids archive upstream paths"
+  },
   "classification_rule": {
     "direct_product_basis": "concrete source span plus product-boundary interpretation and counterevidence; path alone is invalid",
     "insufficient_basis": "wrapper/re-export/shared infrastructure or source span lacks product-boundary proof; Wave scope is not inherited",
@@ -1584,10 +1605,17 @@
     "inventory_top_level_extra_key_tamper",
     "inventory_top_level_missing_key_tamper",
     "generator_profile_category_tamper",
-    "generator_profile_products_tamper"
+    "generator_profile_products_tamper",
+    "ledger_duplicate_key_json",
+    "nested_duplicate_key_json",
+    "inventory_duplicate_key_json",
+    "malformed_json",
+    "nonobject_json",
+    "anchor_line_coverage_tamper",
+    "binding_upstream_stale_tamper"
   ],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
-  "output_sha256": "sha256:4e4c5f12370ea67c07d4eac107e518c37f169e37c895eee3143b049a272f832f",
+  "output_sha256": "sha256:7e8d5c296d795c6eb8214d0411865437fa1072d57c40e292f76525fdbd1435bb",
   "phase_candidate_distribution": {
     "": 109,
     "PHCAP-02": 1,

@@ -21,6 +21,7 @@ PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jso
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
 DECISIONS = "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER = "docs/governance/legacy-asset-copy-read-after.jsonl"
+MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
 BOUNDARY = "docs/concept/product-boundary.md"
 L1 = {
     "HELIX-HARNESS": "docs/helix-harness/L1-planning/product-intent.md",
@@ -233,7 +234,36 @@ if len(REVIEW_SPECS) != 120:
     raise AssertionError(f"review profile count drift: {len(REVIEW_SPECS)}")
 
 def read_jsonl(path: str) -> list[tuple[int, dict]]:
-    return [(n, json.loads(line)) for n, line in enumerate(git_bytes(path).decode().splitlines(), 1) if line.strip()]
+    rows = []
+    for n, line in enumerate(git_bytes(path).decode().splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            row = json.loads(line, object_pairs_hook=_strict_pairs)
+        except (json.JSONDecodeError, TypeError, ValueError) as exc:
+            raise AssertionError(f"E_JSON {path}:{n}: {exc}") from exc
+        if not isinstance(row, dict):
+            raise AssertionError(f"E_JSON {path}:{n}: top-level JSON object required")
+        rows.append((n, row))
+    return rows
+
+
+def _strict_pairs(pairs: list[tuple[str, object]]) -> dict:
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+
+def manifest_sha256(source_path: str) -> str:
+    for line in git_bytes(MANIFEST).decode(errors="replace").splitlines():
+        if line.endswith(f" {source_path}"):
+            digest, path = line.split(maxsplit=1)
+            if path == source_path:
+                return "sha256:" + digest
+    raise AssertionError(f"E_ARCHIVE_MANIFEST {source_path}")
 
 
 def canonical(value: object) -> bytes:
@@ -280,7 +310,11 @@ def static_source(asset: dict, spec: dict) -> dict:
     ledger_sha = asset.get("source_sha256")
     ledger_match = tagged(data) == "sha256:" + ledger_sha
     a = anchor(archive_path, spec)
-    return {"archive_path": archive_path, "source_path": asset["source_path"], "blob": git_blob(archive_path), "bytes": len(data), "line_count": len(data.decode(errors="replace").splitlines()), "sha256": tagged(data), "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": ledger_match, "semantic_anchor": a, "read_mode": "git_object_static_read_only"}
+    archive_digest = tagged(data)
+    manifest_digest = manifest_sha256(asset["source_path"])
+    manifest_match = archive_digest == manifest_digest
+    manifest_resolution = {"status": "matched"} if manifest_match else {"status": "pending_human_source_resolution", "formal_admission": "stopped", "reuse_decision": "stopped", "reason": "archive bytes and manifest entry differ; static evidence is retained"}
+    return {"archive_path": archive_path, "source_path": asset["source_path"], "blob": git_blob(archive_path), "bytes": len(data), "line_count": len(data.decode(errors="replace").splitlines()), "sha256": archive_digest, "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": ledger_match, "archive_manifest_sha256": manifest_digest, "archive_manifest_match": manifest_match, "archive_manifest_resolution": manifest_resolution, "semantic_anchor": a, "read_mode": "git_object_static_read_only"}
 
 
 def phase_target_set(phase_rows: dict[str, tuple[int, dict]], wave_asset_ids: set[str]) -> list[str]:
@@ -361,7 +395,7 @@ def build() -> None:
     ledger = BUNDLE / "classification-research.jsonl"
     ledger.write_text("".join(json.dumps(r, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for r in records))
     source_paths = [ARCHIVE_PREFIX + phase_rows[a][1]["source_path"] for a in targets]
-    global_inputs = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, "docs/governance/legacy-asset-reuse-control.md", "docs/governance/new-generation-start-here.md", "archive/legacy-generation-2026-09-14/MANIFEST.sha256"]
+    global_inputs = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, "docs/governance/legacy-asset-reuse-control.md", "docs/governance/new-generation-start-here.md", MANIFEST]
     input_paths = [*WAVE_PATHS.values(), *global_inputs, *source_paths]
     if len(input_paths) != len(set(input_paths)):
         raise AssertionError("input paths duplicated")
@@ -386,6 +420,25 @@ def build() -> None:
         "classification_rule": {"direct_product_basis": "concrete source span plus product-boundary interpretation and counterevidence; path alone is invalid", "multi_product_conflict": "concrete source span maps to two product boundaries and no single owner is proposed", "insufficient_basis": "wrapper/re-export/shared infrastructure or source span lacks product-boundary proof; Wave scope is not inherited"},
         "authority_boundary": {"authority_effect": "none", "classification_state": "research_proposal_pending_human_product_review", "formal_asset_classification_updated": False, "new_build_allowed": False},
         "history_failure_consumer": {"disposition_rows": len(records), "decision_rows_for_targets": sum(bool(r["legacy_history_failure_consumer"]["decisions"]) for r in records), "read_after_rows_for_targets": sum(bool(r["legacy_history_failure_consumer"]["read_after"]) for r in records), "failure_consumer_refs_are_static_global_inventory": True},
+        "archive_manifest_resolution": {
+            "status": "pending_human_source_resolution",
+            "formal_admission": "stopped",
+            "reuse_decision": "stopped",
+            "mismatches": [{
+                "source_path": "scripts/helix.ps1",
+                "archive_sha256": "sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b",
+                "manifest_sha256": "sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7",
+                "manifest_path": MANIFEST,
+                "reason": "archive bytes and manifest entry differ; static evidence is retained, but formal admission and legacy reuse remain stopped pending human/source resolution",
+            }],
+        },
+        "binding_upstream": {
+            "policy": "all nonarchive input_digests are Binding upstream; archive static references remain in inventory/records because SCF-OS-003 forbids archive upstream paths",
+            "nonarchive_input_count": len([path for path in input_paths if not path.startswith("archive/")]),
+            "archive_input_count": len([path for path in input_paths if path.startswith("archive/")]),
+            "archive_upstream_count": 0,
+            "archive_nonexecution_boundary": "archive source/runtime/test/CI is read through fixed BASE Git objects only and never executed",
+        },
         "edge_contract": {"target_wave_edges": 0, "duplicate_edges_forbidden": True, "missing_edges_forbidden": True},
         "artifacts": ["scaffold/bindings/SCF-B-0126.json", "scaffold/legacy-implementation-residual-0126/README.md", "scaffold/legacy-implementation-residual-0126/PR-DRAFT.md", "scaffold/legacy-implementation-residual-0126/generate.py", "scaffold/legacy-implementation-residual-0126/validate.py", "scaffold/legacy-implementation-residual-0126/selfcheck.py", "scaffold/legacy-implementation-residual-0126/inventory.json", "scaffold/legacy-implementation-residual-0126/classification-research.jsonl"],
         "negative_cases": [
@@ -432,6 +485,13 @@ def build() -> None:
             'inventory_top_level_missing_key_tamper',
             'generator_profile_category_tamper',
             'generator_profile_products_tamper',
+            'ledger_duplicate_key_json',
+            'nested_duplicate_key_json',
+            'inventory_duplicate_key_json',
+            'malformed_json',
+            'nonobject_json',
+            'anchor_line_coverage_tamper',
+            'binding_upstream_stale_tamper',
         ],
     }
     inventory["output_sha256"] = tagged(ledger.read_bytes())

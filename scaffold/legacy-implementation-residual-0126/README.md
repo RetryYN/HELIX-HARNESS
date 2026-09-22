@@ -10,7 +10,9 @@
 
 Wave1–50は50 files、598 edges、355 unique assetsを固定BASEから再走査し、対象Wave edgeは0です。旧assetのimplementation/degradation/failure/consumer/statusは観測値として保持し、consumer closure・正式status・successorを生成しません。全record/inventoryで`authority_effect=none`、`formal_asset_classification_updated=false`、`new_build_allowed=false`を固定しています。
 
-validatorはgenerate.pyをimportせず、53件のID/path集合、prior205件のdigest、union227/残余1,565、source anchor、category cardinality（direct=1 product、conflict>=2、insufficient=0）、全nested record/inventoryを固定BASEから独立再導出します。selfcheckは実行集合43 negative casesを期待error code付きで検査し、generatorのcategory/products改竄再生成、human judgment/review pin、ledger digest、Wave/union分母、inventory keyの負例も含めます。
+validatorはgenerate.pyをimportせず、53件のID/path集合、prior205件のdigest、union227/残余1,565、source anchor、category cardinality（direct=1 product、conflict>=2、insufficient=0）、全nested record/inventoryを固定BASEから独立再導出します。inventoryの184 input digestは63件の非archive入力をBinding upstreamへ完全閉包し、path/raw SHAを照合します。archive静的121入力はSCF-OS-003のためupstreamから除外し、record/inventoryへ固定した上で非実行境界を明示します。selfcheckは実行集合50 negative cases（strict JSON duplicate/malformed/nonobject、Binding upstream stale、anchor_line_coverage改竄を含む）を期待error code付きで検査し、generatorのcategory/products改竄再生成、human judgment/review pin、ledger digest、Wave/union分母、inventory keyの負例も含めます。
+
+archiveの`root/scripts/helix.ps1`はarchive bytes `sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b`とMANIFEST entry `sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7`が一致しません。この不一致はrecord/inventoryへ明示し、static evidenceだけを保持します。formal admissionとlegacy reuseは停止し、human/source resolution pendingとして扱います。
 
 ## 検証
 
@@ -19,7 +21,7 @@ python3 -B scaffold/legacy-implementation-residual-0126/generate.py
 python3 -B scaffold/legacy-implementation-residual-0126/validate.py
 # SCF-B-0126 validate: PASS records=120 categories={'direct_product_basis': 30, 'insufficient_basis': 67, 'multi_product_conflict': 23} target_wave_edges=0 union=227
 python3 -B scaffold/legacy-implementation-residual-0126/selfcheck.py
-# SCF-B-0126 selfcheck: PASS negative_cases=43
+# SCF-B-0126 selfcheck: PASS negative_cases=50
 python3 -m py_compile scaffold/legacy-implementation-residual-0126/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale

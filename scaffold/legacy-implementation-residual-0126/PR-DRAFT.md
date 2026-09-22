@@ -8,8 +8,9 @@
 - candidate分類はdirect product basis 30、multi-product conflict 23、insufficient basis 67。formal product/phase/implementation/consumer closureへ昇格しない。
 - 既存67件の領域内訳は`src/web/`7、`src/doctor/`5、`src/policy/`5、`src/vscode/`5、`src/audit/`4、`src/design/`4、`src/task/`4、`.claude/hooks/`3、`scripts/`3、`src/semantic/`3、`src/team/`3、`src/vmodel/`3、その他18件。追加53件は`src/cli/`、`src/requirements/`、`src/schema/`、`src/setup/`、`src/shared/`、`src/workflow/`の明示残余。
 - 各recordにsource anchorと`anchor_line_coverage`を追加。既存67件のanchor集計は1,023/10,997行=9.3%、最大18行で、未読領域を明記する。追加53件は1行の不足証拠anchorとして保持する。
-- validatorはgenerate.pyをoracle importせず、53件のID/path、prior205件digest、union227、残余1,565、全nested record/inventory、category cardinalityを固定BASEから独立再導出する。
-- selfcheckは43 negative cases（43 cases / 17 distinct error codes）を実行し、generator category/products改竄再生成、human judgment/review pin、ledger digest、Wave/union denominator、inventory top-level keyの負例を含める。
+- validatorはgenerate.pyをoracle importせず、53件のID/path、prior205件digest、union227、残余1,565、全nested record/inventory、category cardinalityを固定BASEから独立再導出する。inventory 184 input digestのうち全63非archive入力をBinding upstreamへ登録し、path/raw SHAを固定する。archive静的121入力はSCF-OS-003のためupstreamへ入れず、record/inventoryで保持して非実行境界を明示する。
+- selfcheckは50 negative cases（50 cases / strict JSON duplicate/malformed/nonobject、Binding upstream stale、anchor_line_coverage改竄を含む）を実行し、generator category/products改竄再生成、human judgment/review pin、ledger digest、Wave/union denominator、inventory top-level keyの負例を含める。
+- `scripts/helix.ps1`はarchive bytes `sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b`とMANIFEST entry `sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7`が不一致である。formal admission/reuseは停止し、human/source resolution pendingをrecord/inventoryへ固定する。
 - `authority_effect=none`、`formal_asset_classification_updated=false`、`new_build_allowed=false`を全record/inventoryに固定する。
 
 ## 検証
@@ -19,7 +20,7 @@ python3 -B scaffold/legacy-implementation-residual-0126/generate.py
 python3 -B scaffold/legacy-implementation-residual-0126/validate.py
 # SCF-B-0126 validate: PASS records=120 categories={'direct_product_basis': 30, 'insufficient_basis': 67, 'multi_product_conflict': 23} target_wave_edges=0 union=227
 python3 -B scaffold/legacy-implementation-residual-0126/selfcheck.py
-# SCF-B-0126 selfcheck: PASS negative_cases=43
+# SCF-B-0126 selfcheck: PASS negative_cases=50
 python3 -m py_compile scaffold/legacy-implementation-residual-0126/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale
