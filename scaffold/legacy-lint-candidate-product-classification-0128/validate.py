@@ -665,7 +665,7 @@ def check() -> None:
     disposition_rows = parse_jsonl(DISPOSITION)
     decisions = parse_jsonl(DECISIONS)
     read_after = parse_jsonl(READ_AFTER)
-    expected_phase = {r["asset_id"]: r for r in phase_rows if r.get("product_classification_status") == "candidate_needs_semantic_review" and r.get("source_path", "").startswith("src/lint/")}
+    expected_phase = {r["asset_id"]: r for r in phase_rows if r.get("product_classification_status") == "candidate_needs_semantic_review" and r.get("artifact_evidence_kind") == "implementation_source" and r.get("source_path", "").startswith("src/lint/")}
     expected_ids = sorted(expected_phase)
     if len(expected_ids) != 51 or len(rows) != 51 or [r.get("asset_id") for r in rows] != expected_ids or len({r.get("asset_id") for r in rows}) != len(rows):
         fail("E_TARGET_SET", {"expected": expected_ids, "actual": [r.get("asset_id") for r in rows]})
@@ -697,8 +697,14 @@ def check() -> None:
             fail("E_READ_MODE", aid)
         source_semantic = anchor(path, prof["marker"], True)
         expected_source = {"archive_path": source_path, "source_path": path, "blob": git_blob(source_path), "bytes": len(source), "line_count": len(source.decode("utf-8", "replace").splitlines()), "sha256": digest(source), "ledger_source_sha256": phase.get("source_sha256"), "ledger_digest_match": phase.get("source_sha256") == hashlib.sha256(source).hexdigest(), "semantic_anchor": source_semantic, "read_mode": "git_show_fixed_base_static_read"}
-        if row.get("source_exact") != expected_source:
+        actual_source = dict(row.get("source_exact", {}))
+        actual_anchor = actual_source.pop("semantic_anchor", None)
+        expected_source_without_anchor = dict(expected_source)
+        expected_source_without_anchor.pop("semantic_anchor", None)
+        if actual_source != expected_source_without_anchor:
             fail("E_OLD_ASSET_SOURCE", aid)
+        if actual_anchor != expected_source["semantic_anchor"]:
+            fail("E_SOURCE_ANCHOR", aid)
         expected_boundary = json.loads(json.dumps(expected_boundary_base))
         basis = {}
         for product in prof["candidate_products"]:

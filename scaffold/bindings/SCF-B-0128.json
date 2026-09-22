@@ -117,22 +117,22 @@
     "oracles": [
       "validator independently derives fixed BASE 51 target set and source anchors without importing generate.py",
       "validator derives fixed BASE SCF-B-0108 unresolved95 ID set and checks overlap empty",
-      "selfcheck expected 39 error codes",
+      "selfcheck expected 44 error codes (including E_RECORD_SHAPE and E_SOURCE_ANCHOR)",
       "validator checks raw L1 metadata separately from fixed human decision approval, exact decision/L1 digests, and per-product semantic anchors without importing generate.py"
     ],
     "negative_cases": [
       "target missing/duplicate/extra",
-      "source blob/anchor/read mode",
+      "source blob/anchor/read mode (E_SOURCE_ANCHOR is reached after immutable source fields match)",
       "classification category/product/reason/counter",
       "L1 raw metadata/effective approval/decision digest tamper -> E_L1_APPROVAL; concrete L1/boundary anchor tamper -> E_CLASSIFICATION or E_BOUNDARY_ANCHOR",
       "boundary/phase/disposition/history/implementation",
       "Wave edge injection",
-      "SCF-B-0108 overlap/count/digest tamper",
+      "SCF-B-0108 overlap/count/digest tamper (fixed BASE overlap uses E_OVERLAP; inventory declaration uses E_INVENTORY_DECLARATION)",
       "human judgment tamper",
       "authority promotion",
       "input digest missing/duplicate",
       "inventory top-level/schema/scope/count/rule/overlap tamper",
-      "BASE pin/output digest"
+      "BASE pin/source object/HEAD ancestry/output digest (BASE source and ancestry guards are fixed-object/HEAD derived)"
     ]
   },
   "artifacts": [

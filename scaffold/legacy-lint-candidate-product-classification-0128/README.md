@@ -1,6 +1,6 @@
 # SCF-B-0128 固定BASE `src/lint/` candidate 51件の製品責務候補研究
 
-この束は、固定BASE `cb5a45fea289d61b67cba100fd2406813021ef48` の旧asset bootstrapで `product_classification_status=candidate_needs_semantic_review` の2,228件から、`artifact_evidence_kind=implementation_source` かつ `source_path=src/lint/` の51件を静的に調査する research-only Scaffold です。SCF-B-0108の同prefix `product_classification_status=unresolved` 95件とは、固定BASEでasset ID集合を再導出し、重複0を確認しています。
+この束は、固定BASE `cb5a45fea289d61b67cba100fd2406813021ef48` の旧asset bootstrapで `product_classification_status=candidate_needs_semantic_review` の2,228件から、`artifact_evidence_kind=implementation_source` をgenerator/validator双方の対象条件として固定 かつ `source_path=src/lint/` の51件を静的に調査する research-only Scaffold です。SCF-B-0108の同prefix `product_classification_status=unresolved` 95件とは、固定BASEでasset ID集合を再導出し、重複0を確認しています。
 
 ## 対象と結果
 
@@ -28,7 +28,7 @@ python3 -B scaffold/legacy-lint-candidate-product-classification-0128/generate.p
 python3 -B scaffold/legacy-lint-candidate-product-classification-0128/validate.py
 # SCF-B-0128 validate: PASS records=51 categories={'direct_product_basis': 38, 'multi_product_conflict': 8, 'insufficient_basis': 5} target_wave_edges=24 overlap_0108=0
 python3 -B scaffold/legacy-lint-candidate-product-classification-0128/selfcheck.py
-# SCF-B-0128 selfcheck: PASS negative_cases=39
+# SCF-B-0128 selfcheck: PASS negative_cases=44
 python3 -m py_compile scaffold/legacy-lint-candidate-product-classification-0128/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale

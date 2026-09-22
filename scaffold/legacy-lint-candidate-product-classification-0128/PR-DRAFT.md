@@ -13,7 +13,7 @@
 - phase/disposition、implementation/degradation、failure/consumer、decision/read-afterを候補分類から分離。
 - L1 raw frontmatter（draft/awaiting_parent_approval）と、exact SHAをapproveしたeffective decision recordを分離し、4件のDecision ID・L1 SHA・decision/blob/digestをinventoryとrecordで固定。
 - `authority_effect=none`、formal分類・implementation・successor・new buildを未確定のまま固定。
-- record human judgmentとinventory全21 top-level key/valueを厳密検査し、selfcheckでoverlap/count/digest改竄を検証。
+- record human judgmentとinventory全21 top-level key/valueを厳密検査し、selfcheckでrecord shape/source anchor、overlap/count/digest改竄を検証。
 
 ## 検証
 
@@ -22,7 +22,7 @@ python3 -B scaffold/legacy-lint-candidate-product-classification-0128/generate.p
 python3 -B scaffold/legacy-lint-candidate-product-classification-0128/validate.py
 # PASS records=51 categories=direct_product_basis:38,multi_product_conflict:8,insufficient_basis:5 target_wave_edges=24 overlap_0108=0
 python3 -B scaffold/legacy-lint-candidate-product-classification-0128/selfcheck.py
-# PASS negative_cases=39
+# PASS negative_cases=44
 python3 -m py_compile scaffold/legacy-lint-candidate-product-classification-0128/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale
