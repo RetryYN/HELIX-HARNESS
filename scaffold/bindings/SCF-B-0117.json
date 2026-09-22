@@ -1,0 +1,156 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0117",
+  "kind": "scaffold",
+  "title": "src/runtime unresolved 73資産の四製品候補分類 research",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "src/runtime旧実装sourceの四製品責務候補を横断照合する研究（単一owner未確定）",
+  "state": "registered",
+  "reason": "固定BASEからproduct_classification_status=unresolved、source_path=src/runtime/配下の73旧assetを全件再導出する。旧source本文を静的に読んだ全73件を、具体span・四製品L1・product-boundary反証・history/failure/consumer境界付きのcandidate researchとして保持する。direct_product_basis 54件、multi_product_conflict 8件、insufficient_basis 11件を正式分類へ昇格せず、authority、formal routing、successor、implementation成立、consumer closure、new buildを生成しない。",
+  "upstream": [
+    {
+      "note": "fixed BASE Git object input; static read only; no authority promotion",
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+    },
+    {
+      "note": "fixed BASE Git object input; static read only; no authority promotion",
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    },
+    {
+      "note": "fixed BASE Git object input; static read only; no authority promotion",
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
+    },
+    {
+      "note": "fixed BASE Git object input; static read only; no authority promotion",
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
+    }
+  ],
+  "role": "src/runtime/implementation_source 73件について旧source本文と四製品L1／boundary、Wave semantic link、旧history／failure／consumerを静的に突合し、候補・競合・根拠不足を再現可能に保持する",
+  "obligations": [
+    "固定BASE 5562f04da0f3205f9aa58205ec0d478419fc4f2eの祖先性と入力path／blob／bytes／digest集合を検査する",
+    "phase ledgerの unresolved＋src/runtime/条件から73件exact setを再導出し、欠落・重複・余分を拒否する",
+    "Wave1–50の598 edge／355 unique assetと対象16 edge／16 linked assetを欠落・重複なく固定し、unresolved／rejected観測値を正式製品根拠へ継承しない",
+    "73件すべての旧source blob／bytes／digest／semantic anchor、phase／disposition、旧decision／failure／consumer状態を保持する",
+    "source本文から具体spanを読み、HARNESS 17件、OS 37件、HARNESS+OS conflict 8件、insufficient 11件を理由・反証付きcandidateとして記録する",
+    "四製品L1／product-boundary／failure／consumerのline text digestと解釈改竄、candidate／authority昇格をvalidator／selfcheckでfail-closedにする",
+    "正式asset分類、product route、phase、owner、successor、implementation成立、consumer closure、new buildを更新せず、旧資産は静的readだけに限定する"
+  ],
+  "connections": {
+    "consumers": [
+      "#1813 product classification progress reviewer（進捗参照のみ）",
+      "Wave1–50 semantic edge reviewer",
+      "四製品L1／product-boundary reviewer",
+      "legacy asset history／failure／consumer reviewer"
+    ],
+    "dependencies": [
+      "legacy asset phase product classification bootstrap",
+      "legacy asset disposition／decision／read-after",
+      "legacy requirement implementation crosswalk",
+      "legacy IR product-unit decomposition",
+      "Wave1–50 semantic link ledgers",
+      "current four-product L1 and product-boundary"
+    ],
+    "boundary": "成果物はscaffold/配下のresearch candidate。正式asset分類、単一product owner、formal routing、phase authority、successor、implementation成立、consumer closure、release、deploymentを生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "fixed BASE Git object static reads",
+      "deterministic generator／validator／selfcheck",
+      "scfctl validate／stale／residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "旧archive runtime／test／CI／workflow／hook／adapter／sourceの実行",
+      "formal asset／product／phase authorityの更新",
+      "既存台帳・formal route・successor・implementation成立・consumer closureの更新",
+      "merge／close／deployment"
+    ]
+  },
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0117.json",
+    "scaffold/legacy-runtime-product-classification-0117/README.md",
+    "scaffold/legacy-runtime-product-classification-0117/PR-DRAFT.md",
+    "scaffold/legacy-runtime-product-classification-0117/generate.py",
+    "scaffold/legacy-runtime-product-classification-0117/validate.py",
+    "scaffold/legacy-runtime-product-classification-0117/selfcheck.py",
+    "scaffold/legacy-runtime-product-classification-0117/inventory.json",
+    "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "fixed BASE ancestor and 140 input digest records",
+      "fixed BASE 73 target asset ID tuple and target phase/disposition rederivation",
+      "Wave1–50 598 edge／355 unique／16 target edge／16 linked asset denominator",
+      "73 target asset artifact evidence kinds: implementation_source 73",
+      "73 source blob／bytes／SHA-256／line anchor rederivation",
+      "validator-owned fixed 73 asset ID／category／product／span／interpretation oracle",
+      "category denominator direct_product_basis 54／multi_product_conflict 8／insufficient_basis 11",
+      "research overlap: 64 Wave unresolved-product + 95 lint unresolved-source + 73 runtime union 202; pairwise 16／0／14",
+      "four-product L1／boundary／failure／consumer line digest rederivation",
+      "validator／selfcheck／scfctl／git diff --check"
+    ],
+    "negative_cases": [
+      "target_record_omission",
+      "target_record_duplicate",
+      "edge_omission",
+      "edge_duplicate",
+      "source_digest_tamper",
+      "source_anchor_tamper",
+      "source_profile_tamper",
+      "candidate_product_tamper",
+      "classification_category_tamper",
+      "semantic_review_tamper",
+      "boundary_digest_tamper",
+      "input_digest_omission",
+      "input_digest_duplicate",
+      "input_digest_extra_path",
+      "authority_promotion",
+      "record_top_level_extra_key",
+      "source_read_mode_tamper",
+      "inventory_authority_promotion",
+      "inventory_scope_tamper",
+      "inventory_formal_update_tamper",
+      "inventory_classification_rule_tamper",
+      "inventory_counts_artifact_kind_tamper",
+      "inventory_edge_count_tamper",
+      "fixed_BASE_non_ancestor",
+      "generator_review_spec_tamper",
+      "generator_anchor_tamper",
+      "generator_l1_tamper",
+      "base_pin_tamper",
+      "base_source_missing",
+      "history_tamper",
+      "human_judgment_tamper",
+      "input_digest_value_tamper",
+      "inventory_negative_case_tamper",
+      "output_digest_tamper",
+      "phase_status_tamper",
+      "source_line_range_tamper",
+      "inventory_overlap_tamper"
+    ]
+  },
+  "replacement": {
+    "confirmation_digest": null,
+    "confirmation_ref": null,
+    "formal_artifacts": [],
+    "issue": 0,
+    "role_target": "人間レビュー後に必要なら正式asset classification／product ownership／route／successorへ個別移管するが、現束からは未定",
+    "status": "pending",
+    "target_revisions": {},
+    "transfer": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
