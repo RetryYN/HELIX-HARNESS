@@ -30,6 +30,7 @@ MAIN_MERGE_PARENTS = [
     "fc77504678955fda9b89d978494d0912c541cf22",
 ]
 REQ_SHA = "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+SOURCE_REVISION = "legacy-generation-2026-09-14"
 REQUIREMENT_ASSET = "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
 SUPPLEMENTAL_ASSET_IDS = {"LEGACY-ASSET-40E3F34560224E67EA45", "LEGACY-ASSET-5EBF86A0C7D3F666D94C", "LEGACY-ASSET-7CB03CCD765C31D87F0C", "LEGACY-ASSET-658101D8200B93100EFA"}
 UNITS = [
@@ -82,6 +83,14 @@ ROLE_POLICIES = {
     "implementation_source": ("implementation_source", "unresolved", "implementation_candidate_only", "implementation_candidate_only", 1, "implementation_source_present_unexecuted"),
 }
 CANDIDATE_MEMBERSHIP_SEMANTICS = "bounded_global_search_candidate_only_not_semantic_evidence"
+SELECTION_ROUTE = "bounded_global_search"
+ATOMIZATION_HOLD = "source_atomization_review_pending;product_boundary_pending_human_decision"
+COVERAGE = {
+    "constraint": "product boundary／phase authority／consumer closure未確定",
+    "failure": "未対応atom、partial evidence、またはmissing acceptance receipt",
+    "normal": "exact source anchorを固定したstatic evidence only",
+    "recovery": "not_evidenced",
+}
 UNRESOLVED = [
     "exact_head_independent_review_pending", "human_product_authority_decision_pending",
     "successor_assignment_unassigned", "product_boundary_human_decision_pending",
@@ -228,6 +237,9 @@ def verify_role(row: dict) -> None:
     require(row["legacy_requirement_implementation_contribution"] == contribution, f"role contribution {row['review_id']}")
     require(row["candidate_membership_semantics"] == CANDIDATE_MEMBERSHIP_SEMANTICS, f"candidate membership boundary {row['review_id']}")
     require(row["legacy_asset_evidence_state"] == evidence_state, f"legacy evidence state {row['review_id']}")
+    require(row["atomization_hold"] == ATOMIZATION_HOLD, f"atomization hold {row['review_id']}")
+    require(row["coverage"] == COVERAGE, f"coverage contract {row['review_id']}")
+    require(row["selection_route"] == SELECTION_ROUTE, f"selection route {row['review_id']}")
     require(row["evidence_refs"] and len(row["evidence_refs"]) == ref_count, f"role refs {row['review_id']}")
     require(row["review_scope"].startswith("Wave45 schema10"), f"review scope {row['review_id']}")
     require(row["unresolved"] == UNRESOLVED, f"unresolved vocabulary {row['review_id']}")
@@ -315,6 +327,11 @@ def verify() -> None:
     require(len(rows) == expected_current_edge_count and meta["record_count"] == expected_current_edge_count, "record count")
     require([row["review_id"] for row in rows] == [f"LSRW45-EDGE-{i:03d}" for i in range(1, expected_current_edge_count + 1)], "review order")
     require(meta["schema_revision"] == 10 and meta["batch_id"] == BATCH, "schema/batch")
+    require(meta["status"] == "candidate" and meta["consumer_closure_status"] == "pending", "meta candidate/consumer boundary")
+    require(meta["source_revision"] == SOURCE_REVISION and meta["source_requirement_ir_sha256"] == REQ_SHA, "meta source identity")
+    require(meta["routing_holds"] == [], "meta routing holds")
+    require(plan["status"] == "candidate" and inventory["status"] == "candidate", "document candidate status")
+    require(inventory["source_revision"] == SOURCE_REVISION and inventory["source_requirement_ir_sha256"] == REQ_SHA, "inventory source identity")
     require(meta["current_tree_revision"] == BASE and meta["parent_revision"] == BASE and meta["stacked_pr_parent_revision"] == BASE, "base lineage")
     require(meta["main_merge_revision"] == BASE and meta["main_merge_parents"] == MAIN_MERGE_PARENTS, "merge lineage")
     require(meta["source_main_base_revision"] == BASE and meta["wave44_exact_head"] == "30e372e6da1ae79baf2bd51e3ef5943eee74acf7", "source base")
@@ -328,6 +345,17 @@ def verify() -> None:
     require(meta["output_sha256"] == file_digest(LEDGER), "ledger digest")
     expected_atom_count = len({atom["atom_id"] for row in rows for atom in row["covered_requirement_atoms"]})
     expected_composite_count = len(meta["source_atomization_holds"])
+    expected_holds = [
+        {
+            "composite_unresolved_count": 1,
+            "routing_hold": None,
+            "shared_atom_ids": [],
+            "status": "product_boundary_shared_atom_hold",
+            "unit_candidate_id": unit,
+        }
+        for unit in UNITS
+    ]
+    require(meta["source_atomization_holds"] == expected_holds, "source atomization hold reconciliation")
     require(meta["semantic_atom_count"] == expected_atom_count and meta["composite_unresolved_count"] == expected_composite_count, "atomization counts")
     require(meta["asset_status_receipts"] == expected_asset_status_receipts({asset for assets in SELECTED.values() for asset in assets}, dispositions, decisions, read_afters), "asset decision/failure/consumer receipts")
     inspected = set(meta["inspected_legacy_asset_ids"])
@@ -486,6 +514,8 @@ def verify() -> None:
             verify_role(row)
             require(row["batch_id"] == BATCH and row["schema_revision"] == 10, f"row identity {row['review_id']}")
             require(row["product_scope"] == req["product_scope"] and row["phase_candidates"] == req["phase_candidates"], f"row scope {row['review_id']}")
+            require(row["routing_candidate"] == parent["routing_candidate"], f"routing candidate {row['review_id']}")
+            require(row["bounded_search_query"] == QUERIES[unit], f"bounded search query {row['review_id']}")
             require(row["source_text_spans"] == req["source_text_spans"], f"source text span preservation {row['review_id']}")
             require(row["covered_requirement_atoms"] == req["covered_requirement_atoms"], f"atom preservation {row['review_id']}")
             require(row["covered_requirement_atom_ids"] == atom_ids, f"atom IDs {row['review_id']}")
@@ -511,8 +541,10 @@ def verify() -> None:
             for binding in row["evidence_atom_bindings"]:
                 verify_binding(row, binding, evidence)
 
+    require(set(meta["bounded_search_receipts"]) == set(UNITS), "bounded search receipt units")
     for unit, receipt in meta["bounded_search_receipts"].items():
         require(unit in UNITS and receipt["query"] == QUERIES[unit], f"receipt shape {unit}")
+        require(receipt["catalog_record_count"] == len(catalog), f"catalog query denominator {unit}")
         ids = candidate_ids_for_query(catalog, receipt["query"])
         require(receipt["candidate_asset_count"] == len(ids) and receipt["candidate_asset_ids_sha256"] == canonical(ids), f"candidate receipt {unit}")
         require(receipt["selected_asset_ids"] == sorted(SELECTED[unit]) and set(receipt["selected_asset_ids"]) <= set(ids), f"selected receipt {unit}")

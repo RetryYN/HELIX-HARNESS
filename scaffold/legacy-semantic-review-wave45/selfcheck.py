@@ -135,6 +135,26 @@ def mutate_nonrequirement_source_spans(mutated_rows) -> None:
     design["source_text_spans"] = copy.deepcopy(requirement["source_text_spans"])
 
 
+def mutate_coverage(mutated_rows) -> None:
+    mutated_rows[0]["coverage"]["recovery"] = "evidenced"
+
+
+def mutate_atomization_hold(mutated_rows) -> None:
+    mutated_rows[0]["atomization_hold"] = "product_boundary_resolved"
+
+
+def mutate_routing_candidate(mutated_rows) -> None:
+    mutated_rows[0]["routing_candidate"] = "single_product"
+
+
+def mutate_selection_route(mutated_rows) -> None:
+    mutated_rows[0]["selection_route"] = "manual_selection"
+
+
+def mutate_bounded_search_query(mutated_rows) -> None:
+    mutated_rows[0]["bounded_search_query"]["anchors"] = ["invented-query-anchor"]
+
+
 def mutate_shared_connection(mutated_rows) -> None:
     row = next(row for row in mutated_rows if row["role_kind"] == "design")
     row["connection_records"] = [{
@@ -263,6 +283,46 @@ def mutate_prior_cumulative_counts(meta) -> None:
     meta["cumulative_reviewed_edge_count"] = 538
 
 
+def mutate_meta_status(meta) -> None:
+    meta["status"] = "accepted"
+
+
+def mutate_meta_consumer_closure(meta) -> None:
+    meta["consumer_closure_status"] = "closed"
+
+
+def mutate_meta_source_revision(meta) -> None:
+    meta["source_revision"] = "invented-source-revision"
+
+
+def mutate_meta_source_requirement_digest(meta) -> None:
+    meta["source_requirement_ir_sha256"] = "0" * 64
+
+
+def mutate_meta_routing_hold(meta) -> None:
+    meta["routing_holds"] = [{"unit_candidate_id": "IRUNIT-HIL-NFR-20-HELIX-HARNESS"}]
+
+
+def mutate_meta_atomization_hold(meta) -> None:
+    meta["source_atomization_holds"][0]["routing_hold"] = {"relation": "invented"}
+
+
+def mutate_catalog_record_count(meta) -> None:
+    meta["bounded_search_receipts"]["IRUNIT-HIL-NFR-20-HELIX-HARNESS"]["catalog_record_count"] += 1
+
+
+def mutate_plan_status(plan) -> None:
+    plan["status"] = "accepted"
+
+
+def mutate_inventory_status(inventory) -> None:
+    inventory["status"] = "accepted"
+
+
+def mutate_inventory_source_revision(inventory) -> None:
+    inventory["source_revision"] = "invented-source-revision"
+
+
 rejected_meta("ancestor base gate tamper", mutate_ancestor_gate)
 rejected("source span injection", mutate_source_span)
 rejected("cross-unit source span reuse", mutate_source_overlap)
@@ -272,6 +332,11 @@ rejected("stale source anchor", mutate_stale_anchor)
 rejected("non-requirement candidate membership semantics promotion", mutate_nonrequirement_membership_semantics)
 rejected("non-requirement legacy evidence state drift", mutate_nonrequirement_legacy_evidence_state)
 rejected("non-requirement source span mismatch", mutate_nonrequirement_source_spans)
+rejected("coverage contract drift", mutate_coverage)
+rejected("atomization hold drift", mutate_atomization_hold)
+rejected("routing candidate drift", mutate_routing_candidate)
+rejected("selection route drift", mutate_selection_route)
+rejected("bounded search query drift", mutate_bounded_search_query)
 rejected("shared source connection deletion", mutate_shared_connection)
 rejected("design/requirement semantic inversion", mutate_role_inversion)
 rejected("inferred implementation meaning", mutate_inferred_meaning)
@@ -293,5 +358,15 @@ rejected_document("plan count mismatch", "PLAN", mutate_plan_count)
 rejected_document("inventory count mismatch", "INVENTORY", mutate_inventory_count)
 rejected_meta("degradation promotion", mutate_degradation_promotion)
 rejected_meta("prior cumulative counts left unchanged", mutate_prior_cumulative_counts)
+rejected_meta("meta status promotion", mutate_meta_status)
+rejected_meta("meta consumer closure promotion", mutate_meta_consumer_closure)
+rejected_meta("meta source revision drift", mutate_meta_source_revision)
+rejected_meta("meta source requirement digest drift", mutate_meta_source_requirement_digest)
+rejected_meta("meta routing hold invention", mutate_meta_routing_hold)
+rejected_meta("meta atomization hold drift", mutate_meta_atomization_hold)
+rejected_meta("bounded search catalog denominator drift", mutate_catalog_record_count)
+rejected_document("plan status promotion", "PLAN", mutate_plan_status)
+rejected_document("inventory status promotion", "INVENTORY", mutate_inventory_status)
+rejected_document("inventory source revision drift", "INVENTORY", mutate_inventory_source_revision)
 
-print("Wave45 selfcheck: PASS (validator plus thirty negative mutations)")
+print("Wave45 selfcheck: PASS (validator plus forty-five negative mutations)")

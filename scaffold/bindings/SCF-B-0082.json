@@ -125,7 +125,7 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave45/README.md",
-      "sha256": "d6e44fb19dac965ff32631a527ac39729d57caab072d4dba39b7afdd2ffcab00",
+      "sha256": "fc4bbf8649c51b6feb1c8cdeeb6f9edac03e43596052c5f327815cd6ed8a9483",
       "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
@@ -145,12 +145,12 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave45/validate.py",
-      "sha256": "d27b91068a1ffa5a64986b7fbdf80a2be6a1244d0fedcedd6707dc1875bdf14a",
+      "sha256": "1a1be5e9c237fbbed14a18617a8ba371a2c3fc3658f00c9649e2c37bf37606b4",
       "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave45/selfcheck.py",
-      "sha256": "fa12a6ae89c106bdf92c2be229c8fe0170adc0c200b35b7f6c6ce1657d588ca3",
+      "sha256": "bde8ef53a1b88d368bb5269f1169938aba04dbb612baeab1aa3ce4222a9810dc",
       "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
@@ -229,7 +229,7 @@
     "oracles": [
       "Wave45 generate.py→ledger/meta deterministic regeneration",
       "Wave45 validate.py source／asset／decision／failure／consumer receipt、独立pool、prior dynamic count、same-batch duplicate、missing evidence検算",
-      "Wave45 selfcheck.py 本体validator経路の30 negative mutation（非requirement row candidate membership／legacy evidence state／source spanを含む）",
+      "Wave45 selfcheck.py 本体validator経路の45 negative mutation（meta status／consumer closure／source identity／routing hold、coverage／atomization hold／routing／selection／query、非requirement row candidate membership／legacy evidence state／source spanを含む）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],
@@ -238,6 +238,15 @@
       "non-requirement candidate membership semantics drift",
       "non-requirement legacy asset evidence state drift",
       "non-requirement source text span mismatch",
+      "coverage contract drift",
+      "atomization hold drift",
+      "routing candidate drift",
+      "selection route drift",
+      "bounded search query drift",
+      "meta status／consumer closure／source identity drift",
+      "meta routing／atomization hold drift",
+      "bounded search catalog denominator drift",
+      "plan／inventory candidate status and source revision drift",
       "cross-unit source span reuse",
       "atom identity injection",
       "unsupported product routing",
