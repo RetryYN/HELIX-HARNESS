@@ -366,8 +366,10 @@
     "helix_harness_units": 1,
     "semantic_review_edges": 13,
     "unique_old_assets": 9,
-    "decision_records_for_assets": 5,
-    "read_after_records_for_assets": 5,
+    "decision_records_for_asset_pairs": 5,
+    "unique_assets_with_decision_records": 1,
+    "read_after_records_for_asset_pairs": 5,
+    "unique_assets_with_read_after_records": 1,
     "failure_receipts": 0,
     "consumer_closures": 0
   },

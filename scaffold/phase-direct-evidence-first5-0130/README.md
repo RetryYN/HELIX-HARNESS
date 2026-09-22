@@ -32,13 +32,13 @@ taxonomyの入力は現行main `78e23a622bc9c40183269e22a59c566d22b93435`にあ�
 
 ## 分母と成果物
 
-- 5 units（OS 4／HARNESS 1）、Wave scan 598行、semantic edge 13件、旧asset 9件。
+- 5 units（OS 4／HARNESS 1）、Wave scan 598行、semantic edge 13件、旧asset 9件。decision/read-afterはunit×asset pair基準で各5件、unique asset基準では各1/9件（`LEGACY-ASSET-A60CF91DD2AF6693E6F9`のみ）として別集計する。
 - 旧assetのsource／history／decision／read-after／failure／consumerをunit別に保持する。
 - `inventory.json`: 固定BASE、taxonomy immutable source、入力digest、分母、authority境界、負例コード。
 - `evidence.jsonl`: 5 unitsの原文anchor、Wave edge、旧asset partition、実装／縮退／failure／consumerの未解決状態、phase候補、判断待ち。
 - `generate.py`: 固定BASE Git object bytesとimmutable taxonomy sourceから再生成する。
 - `validate.py`: `generate.py`をimportせず、固定BASEとtaxonomy sourceから独立再導出し、全fieldをfail-closed比較する。
-- `selfcheck.py`: 33負例でschema、Binding、BASE、入力digest、unit／edge／asset、taxonomy set／status／matrix join／authority boundary、各partition、phase／product境界を検証する。taxonomy本文を孤立commitへ改竄して再生成する負例も`E_TAXONOMY_NOT_ANCESTOR`で拒否する。
+- `selfcheck.py`: 37負例でschema、Binding、BASE、入力digest、unit／edge／asset、taxonomy set／status／matrix join／authority boundary、各partition、pair／unique asset集計、phase／product境界を検証する。taxonomy本文を孤立commitへ改竄して再生成する負例も`E_TAXONOMY_NOT_ANCESTOR`で拒否する。
 - `PR-DRAFT.md`: Draft PR本文。
 
 ## 検証
