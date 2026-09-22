@@ -1,0 +1,143 @@
+{
+  "authority_effect": "none",
+  "base_head": "36784d25aa4cc53d89c28c2ff81b4009db234605",
+  "binding_id": "SCF-B-0100",
+  "candidate_product_counts": {
+    "HELIX-HARNESS": 10,
+    "HELIX-OS": 17,
+    "HELIX-Web": 0,
+    "HELIX-Web-OS": 0
+  },
+  "candidate_shape_counts": {
+    "composite": 0,
+    "connection": 0,
+    "unit": 9,
+    "unit_set": 9,
+    "unresolved": 0
+  },
+  "input_digests": [
+    {
+      "blob": "dc37ea2f94a18647aed00c87ef15e04742335779",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
+    },
+    {
+      "blob": "1bf232965bfb35464395f080658c1334c6c25363",
+      "path": "docs/governance/legacy-ir-target-routing-queue.jsonl",
+      "sha256": "b543e5ae6009f1f5ae3d4617aa2bb5b809cc92ff83f8ce62cd6ae77e1ef2b2f3"
+    },
+    {
+      "blob": "240c278757031d7cd1351e24e544a7eb4da49aa5",
+      "path": "docs/governance/legacy-ir-product-routing-bootstrap.jsonl",
+      "sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
+    },
+    {
+      "blob": "bc659caf8df3f333cd939e51a9f2c9eabd62eb2c",
+      "path": "docs/governance/legacy-ir-product-routing-corrections.jsonl",
+      "sha256": "d57dc947f4d2fca1470c22eb6d0b0fe874914ded28401fb7ecafeddfeab230df"
+    },
+    {
+      "blob": "62b29b300ff14d65dafaa6d538622c54874ba77f",
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
+    },
+    {
+      "blob": "fcccc26f39db42b925cf349c9d8a79ee59b3429b",
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
+    },
+    {
+      "blob": "9c13c646ed9e1f5e62a038d1b796880661e62c90",
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    },
+    {
+      "blob": "cfa4a48dff89fb4b4066d958c1513ba405c2a3dd",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "blob": "62481e399bd448417fe3cba8378a269cd6427b07",
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+    },
+    {
+      "blob": "899b8d35f3657f1d6c6ecb635451da108c1fa034",
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
+    },
+    {
+      "blob": "b25759e0c3aff4154857f372583479ed5c4fa212",
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"
+    },
+    {
+      "blob": "73987e2db800e6989411108327d867cff9751e14",
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md",
+      "sha256": "5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5"
+    },
+    {
+      "blob": "b362ad05fc95864d43e8674a85923b3e34ed1763",
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
+      "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"
+    }
+  ],
+  "known_open_conditions": [
+    "queue_target_resolution_pending",
+    "exact_head_independent_review_pending",
+    "human_product_authority_decision_pending",
+    "successor_assignment_unassigned",
+    "legacy_asset_direct_link_pending",
+    "history_failure_consumer_closure_pending"
+  ],
+  "legacy_execution_performed": false,
+  "negative_cases": [
+    "duplicate_id",
+    "missing_id",
+    "source_statement_digest_tamper",
+    "source_exact_reference_tamper",
+    "source_line_anchor_tamper",
+    "source_line_digest_tamper",
+    "queue_status_tamper",
+    "boundary_blob_tamper",
+    "boundary_interpretation_tamper",
+    "candidate_product_boundary_tamper",
+    "authority_promotion",
+    "legacy_asset_digest_tamper",
+    "legacy_execution_promotion",
+    "base_ancestor_tamper",
+    "base_object_digest_tamper"
+  ],
+  "queue_unchanged": true,
+  "record_count": 18,
+  "requirement_ids": [
+    "HIL-BR-19",
+    "HIL-FR-27",
+    "HIL-FR-33",
+    "HIL-FR-34",
+    "HIL-NFR-09",
+    "HIL-NFR-14",
+    "HIL-NFR-19",
+    "HIL-NFR-25",
+    "HIL-TR-01",
+    "HIL-TR-02",
+    "HIL-TR-03",
+    "HIL-TR-04",
+    "HIL-TR-05",
+    "HIL-TR-06",
+    "HIL-TR-07",
+    "HIL-TR-08",
+    "HIL-TR-09",
+    "HIL-TR-11"
+  ],
+  "schema_revision": 1,
+  "source_revision": "legacy-generation-2026-09-14",
+  "source_snapshot": {
+    "base_head": "36784d25aa4cc53d89c28c2ff81b4009db234605",
+    "blob_command": "git rev-parse <BASE>:<path>",
+    "bytes_command": "git show <BASE>:<path>",
+    "kind": "fixed_git_object",
+    "working_tree_used_for_source_digest": false
+  },
+  "status": "research_only_candidate"
+}
