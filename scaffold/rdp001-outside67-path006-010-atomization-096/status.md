@@ -7,5 +7,5 @@
 - candidate line accounting: atomized 10 / metadata-only 101 / composite-unresolved 72
 - formal requirement／owner／successor／phase authority／implementation／degradation: unknown／open
 - old archive execution: none
-- base: `c52f27093869a0ecbdfbc416fb0bffdb49b85071`
+- base: `16f694ae07cdb2d56e15045054c147c7a15d3275`
 - stop condition: `origin/main` or source lineage changes require explicit rebaseline

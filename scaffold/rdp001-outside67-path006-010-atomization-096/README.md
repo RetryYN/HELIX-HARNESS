@@ -1,6 +1,6 @@
 # RDP-001 outside67 PATH-006〜010 source atomization research
 
-`MPR-SH-OUTSIDE67-001` の67 `path_revision_pair`から、PATH-006〜010の5 pairだけを選んだ静的研究 Scaffold です。基準 main は `c52f27093869a0ecbdfbc416fb0bffdb49b85071`、pre-isolation は `2d4991042be55268bac30a8bbcdac45b3865030a`、archive revision は `064280b5c1c5c98f949e6e3be5ef87cbe4a4b658`です。
+`MPR-SH-OUTSIDE67-001` の67 `path_revision_pair`から、PATH-006〜010の5 pairだけを選んだ静的研究 Scaffold です。基準 main は `16f694ae07cdb2d56e15045054c147c7a15d3275`、pre-isolation は `2d4991042be55268bac30a8bbcdac45b3865030a`、archive revision は `064280b5c1c5c98f949e6e3be5ef87cbe4a4b658`です。
 
 5 pairのpre/archive snapshotは25／50／38／14／56行、合計183行です。`line-coverage.jsonl`はこの183行をpair／lineごとに一度ずつ記録し、未選定の選択範囲内line残差は0です。これは選択5 pairのsource line coverageが完了したことを示します。67 pair全体の調査完了、正式な意味atomの確定、要求採択を示さないため、`research_completion.status`は`partial_research`、`path_atomization_complete`はfalseです。未選定pairは62件残ります。
 
@@ -20,6 +20,7 @@ holdingのpath-based product／phaseは候補境界だけを保持し、四製�
 - `inventory.json`: 分母、partial completion、四製品候補境界、unknown residual、digest
 - `generate.py`: merged snapshot／holding／ledgerを読む deterministic generator
 - `validate.py`: Git object、source line、atom reference、category、boundary、current main driftをfail-closedに検査
+- `coverage-audit.py`: validatorから独立して183行の全被覆と3分類の排他を再計算
 - `selfcheck.py`: 21件の意味ある負例（line／digest／重複／形式昇格／partial completion境界）
 
 ## 検証
@@ -27,6 +28,7 @@ holdingのpath-based product／phaseは候補境界だけを保持し、四製�
 ```text
 python3 -B scaffold/rdp001-outside67-path006-010-atomization-096/generate.py
 python3 -B scaffold/rdp001-outside67-path006-010-atomization-096/validate.py
+python3 -B scaffold/rdp001-outside67-path006-010-atomization-096/coverage-audit.py
 python3 -B scaffold/rdp001-outside67-path006-010-atomization-096/selfcheck.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale

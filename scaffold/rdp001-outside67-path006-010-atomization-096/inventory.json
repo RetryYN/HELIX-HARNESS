@@ -19,8 +19,8 @@
   "scope": {
     "worktree": "/home/tenni/HELIX-HARNESS-outside006-010-atoms",
     "materialization_path": "/home/tenni/HELIX-HARNESS-outside006-010-atoms",
-    "base_origin_main": "c52f27093869a0ecbdfbc416fb0bffdb49b85071",
-    "base_origin_main_observed_at_start": "c52f27093869a0ecbdfbc416fb0bffdb49b85071",
+    "base_origin_main": "16f694ae07cdb2d56e15045054c147c7a15d3275",
+    "base_origin_main_observed_at_start": "16f694ae07cdb2d56e15045054c147c7a15d3275",
     "read_only": true,
     "static_only": true,
     "holding_registration_id": "MPR-SH-OUTSIDE67-001",
@@ -100,7 +100,7 @@
       "artifact_kind": "markdown",
       "source_path": "docs/design/helix-os/README.md",
       "current_counterpart": {
-        "commit": "c52f27093869a0ecbdfbc416fb0bffdb49b85071",
+        "commit": "16f694ae07cdb2d56e15045054c147c7a15d3275",
         "path": "docs/helix-os/README.md",
         "blob_oid": "481ffe21ae7c678cc1022acb180309b7104aedd7",
         "bytes": 2240,
@@ -142,7 +142,7 @@
       "artifact_kind": "markdown",
       "source_path": "docs/design/helix-web-os/L1-planning/system-intent.md",
       "current_counterpart": {
-        "commit": "c52f27093869a0ecbdfbc416fb0bffdb49b85071",
+        "commit": "16f694ae07cdb2d56e15045054c147c7a15d3275",
         "path": "docs/helix-web-os/L1-planning/system-intent.md",
         "blob_oid": "40268a3ed70d64d710d7ed86f52257c653a20c5b",
         "bytes": 3018,
@@ -184,7 +184,7 @@
       "artifact_kind": "markdown",
       "source_path": "docs/design/helix-web-os/L2-requirements/service-governance-requirements.md",
       "current_counterpart": {
-        "commit": "c52f27093869a0ecbdfbc416fb0bffdb49b85071",
+        "commit": "16f694ae07cdb2d56e15045054c147c7a15d3275",
         "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
         "blob_oid": "8c0fcb438d9a8ea81480d2f8342b192d99670d1a",
         "bytes": 3319,
@@ -226,7 +226,7 @@
       "artifact_kind": "markdown",
       "source_path": "docs/design/helix-web-os/README.md",
       "current_counterpart": {
-        "commit": "c52f27093869a0ecbdfbc416fb0bffdb49b85071",
+        "commit": "16f694ae07cdb2d56e15045054c147c7a15d3275",
         "path": "docs/helix-web-os/README.md",
         "blob_oid": "20002cd56ce6538e2d840034ab293fa43631b186",
         "bytes": 1187,
@@ -268,7 +268,7 @@
       "artifact_kind": "markdown",
       "source_path": "docs/design/helix-web/L1-planning/product-intent.md",
       "current_counterpart": {
-        "commit": "c52f27093869a0ecbdfbc416fb0bffdb49b85071",
+        "commit": "16f694ae07cdb2d56e15045054c147c7a15d3275",
         "path": "docs/helix-web/L1-planning/product-intent.md",
         "blob_oid": "1799da6ab34c9d3f41316ac650becb146d5c625f",
         "bytes": 3559,

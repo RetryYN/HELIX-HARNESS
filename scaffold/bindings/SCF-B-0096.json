@@ -75,23 +75,28 @@
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/inventory.json",
-      "sha256": "90ad098362c8e83f23831c6340a000d421b1ffc88d72e4f3ca18d19c47c5b7f0",
+      "sha256": "c1aa72c0ab1545f4c15ca589b5c3f1d19515a441f85a562aebb747595051d4b6",
       "note": "static source/governance or merged lineage; no authority promotion"
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/generate.py",
-      "sha256": "34f082f17cad698c84c736e0882f807d3a36afad38742ec865f742ba77e85fd3",
+      "sha256": "0f414d0b708b4651f1d804d666466803f8dce88989eb944543bf1f254226b845",
       "note": "static source/governance or merged lineage; no authority promotion"
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/validate.py",
-      "sha256": "afd6cdc8258bc143445f1ebf3d6328611e77184828900c05adfa957f28a2d6ae",
+      "sha256": "bc142e77ae1ffe495cab78ca3bd59c8d4099bc73bea3cb552f0677f85ac22b21",
       "note": "static source/governance or merged lineage; no authority promotion"
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/selfcheck.py",
       "sha256": "455f6b447b6e24d28d189e1cd5212c5325f03cf3862b021360167f9b8e75511e",
       "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-path006-010-atomization-096/coverage-audit.py",
+      "sha256": "d5acbdaf7603d4469b24e0d4f51dee7a9da6d26bdf9e644245736c367f526fdb",
+      "note": "independent 183-line disjoint/full-coverage audit"
     }
   ],
   "role": "RDP-001 outside67 PATH-006〜010 source snapshot／line coverage／atom candidateを保持する静的Scaffold",
@@ -161,7 +166,8 @@
     "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-010/archive-revision.md",
     "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-010/pre-isolation.md",
     "scaffold/rdp001-outside67-path006-010-atomization-096/status.md",
-    "scaffold/rdp001-outside67-path006-010-atomization-096/validate.py"
+    "scaffold/rdp001-outside67-path006-010-atomization-096/validate.py",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/coverage-audit.py"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -174,6 +180,7 @@
     ],
     "oracles": [
       "holding 67／selected 5 denominator and exact snapshot rederivation",
+      "independent 183-line full-coverage and disjoint three-category audit",
       "183 unique source-line coverage and disjoint category accounting",
       "PATH-008 reused atom ID／line／digest rederivation",
       "current counterpart Git object digest rederivation",
@@ -193,7 +200,8 @@
       "reused PATH-008 atom duplicate/digest tamper",
       "legacy implementation／failure／consumer promotion",
       "partial research to path atomization complete promotion",
-      "formal product／owner／authority／phase promotion"
+      "formal product／owner／authority／phase promotion",
+      "coverage-audit line omission, duplicate, category overlap, and text tamper"
     ]
   },
   "replacement": {

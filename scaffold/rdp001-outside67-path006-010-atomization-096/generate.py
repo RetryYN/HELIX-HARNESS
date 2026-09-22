@@ -15,7 +15,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-BASE = "c52f27093869a0ecbdfbc416fb0bffdb49b85071"
+BASE = "16f694ae07cdb2d56e15045054c147c7a15d3275"
 PRE = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCH = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 HOLDING = ROOT / "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
