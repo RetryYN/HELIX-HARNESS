@@ -1,0 +1,103 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0053",
+  "kind": "scaffold",
+  "title": "PHCAP-15/17 candidate pool 69 membership semantic edge static audit",
+  "product": "HELIX-OS",
+  "owner_candidate": "PHCAP-15/17 legacy requirement-unit semantic review（正式owner未解決）",
+  "state": "registered",
+  "reason": "#1996で候補poolだけに現れた旧asset二件を対象に、68+1=69 membershipをcrosswalkの逐語source contractへ照合した。候補phase／製品membership、一般語一致、document_present、旧source内の別識別子だけではdirect semantic linkを生成せず、全件unknownを保持する。旧sourceのscope／connection／exception anchor、failure／consumer／decision残差、Historical／unresolved／implementation unknownを再計算可能なresearch premiseとして束ねる。authority、phase admission、product routing、旧実装、縮退／未実装、consumer closure、successor、現行実装は未解決のまま残す。",
+  "upstream": [
+    {"path": "scaffold/phcap15-17-membership-edges/README.md", "sha256": "2701da760ab8b7bc40285640e6a33dbb06293ec082a03303076653389de92a10", "note": "bounded scope、source contract、unknown分類、旧archive非実行境界"},
+    {"path": "scaffold/phcap15-17-membership-edges/inventory.json", "sha256": "2f5ae0c6c05f73c3fe50f4259f4e15091748916bf144932e704b7c243b63fda3", "note": "二asset、69 membership、anchor、failure／consumer／decision残差"},
+    {"path": "scaffold/phcap15-17-membership-edges/validate.py", "sha256": "5692a296581901d745946d345f18d37758b397a9b8dfe22902b757cbfe0496dc", "note": "candidate pool再導出、逐語span／ID exact guard、asset ledger、anchor、unknown validator"},
+    {"path": "scaffold/phcap15-17-membership-edges/selfcheck.py", "sha256": "21962b987b8510d43c125726bcacd95bbae537fd18ba25ab10f6ab434b01e844", "note": "authority、実装、consumer、decision、source、分類改変を拒否する18負例"},
+    {"path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl", "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65", "note": "218 requirement-unit crosswalkと候補asset pool、逐語source contract"},
+    {"path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.meta.json", "sha256": "a67f248c3dacf4c15af121ec8db1ba14ff8f8711b68cb9b688c20b6eb383df85", "note": "crosswalk revision／method static metadata"},
+    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "selected asset Historical／unresolved／implementation／consumer／decision state"},
+    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "二assetのcandidate phase／product分類"},
+    {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "note": "selected asset decision match 0のappend-only ledger"},
+    {"path": "docs/governance/legacy-asset-decision-log.md", "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b", "note": "decision history bounded search receipt"},
+    {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "note": "PHCAP phase inventory source revision"}
+  ],
+  "role": "PHCAP-15/17の候補pool membershipを要求unit逐語source contractと旧source scope／connection／exceptionへ静的照合し、direct semantic linkの肯定／否定／unknownと旧asset残差を束ねる",
+  "obligations": [
+    "189702 assetの68行と4618 assetの1行をcandidate poolから完全再導出する",
+    "各crosswalk行のsource_requirement_idとsource_text_spansを旧source bytesへ逐語照合し、exact match数を固定する",
+    "candidate phase／product membership、語一致、FR-L1-16の別識別子からdirect semantic linkを生成しない",
+    "scope／connection／exception anchorの行span、逐語本文、digest、意味を保持する",
+    "Historical／unresolved、implementation unknown、execution false、consumer refs空、decision match 0を固定する",
+    "failure／consumer closure pendingとcurrent implementation／acceptance unknownを維持する",
+    "正式requirement、product owner、phase authority、successor、実装、縮退／未実装、acceptanceを生成しない",
+    "旧archiveは静的bytes／span／digestだけを読み、旧workflow、runtime、CLI、hook、adapter、source、test、CIを実行しない"
+  ],
+  "connections": {
+    "consumers": [
+      "PHCAP-15/17 direct semantic review担当",
+      "legacy requirement-unit source contract review担当",
+      "旧asset failure／consumer／decision closure担当",
+      "SCF-B-0053差し替え確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "crosswalk／asset disposition／phase-product classification／decision ledgerのread-only照合",
+      "旧sourceの静的archive bytes／line spans",
+      "scaffold/phcap15-17-membership-edges validator／selfcheck"
+    ],
+    "boundary": "inventory、README、validator、selfcheckをscaffold/に保持する。旧sourceはreferenceとして静的に読む。正式authority、phase／product admission、requirement adoption、旧実装、failure closure、consumer closure、CI、Issue、PR、DB、runtime、deploymentは確定しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/phcap15-17-membership-edges/validate.py",
+      "python3 -B scaffold/phcap15-17-membership-edges/selfcheck.py",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "python3 -B scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、CLI、test、CI、hook、adapter、source実行",
+      "旧source／testをcurrent oracle、fallback、implementation、passへ昇格すること",
+      "candidate poolから正式phase／product admission、requirement adoption、successorを生成すること",
+      "scaffold/外への候補書き込み",
+      "未許可のGitHub、Issue、PR、CI、DB、外部API、deploymentへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/phcap15-17-membership-edges/README.md",
+    "scaffold/phcap15-17-membership-edges/inventory.json",
+    "scaffold/phcap15-17-membership-edges/validate.py",
+    "scaffold/phcap15-17-membership-edges/selfcheck.py",
+    "scaffold/bindings/SCF-B-0053.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": [
+      "PHCAP-15/17 membership validate.py（candidate pool、逐語source ID／span、asset／phase-product ledger、anchor、unknown、failure／consumer／decision残差）",
+      "selfcheck.py（authority、implementation、consumer、decision、source、分類、keysetの18負例）",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "authority、meaning、successor、human decision、equivalenceの昇格",
+      "candidate membershipや語一致からaffirmative／negative linkを捏造する改変",
+      "旧source anchor／archive digest／逐語spanの改変",
+      "旧execution、failure receipt、consumer refs、decision recordの捏造",
+      "implementation／acceptance／phase admission／product routingの昇格",
+      "FR-L1-16をHIL-NFR-17へ接続する改変"
+    ]
+  },
+  "replacement": {
+    "role_target": "PHCAP-15/17正式requirement-unit semantic link、product／phase authority、旧implementation／consumer evidence登録（人間判断後）",
+    "formal_artifacts": [],
+    "issue": 1996,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}

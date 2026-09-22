@@ -1,0 +1,171 @@
+{
+  "schema": "phcap15-17-membership-edges/v1",
+  "status": "research_premise_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "base": {
+    "origin_main_commit": "1310ada35dd8848a8b49b34caf373fc51398cb80",
+    "worktree": "/home/tenni/.helix-worktrees/phcap15-17-membership-edges",
+    "branch": "detached-origin-main",
+    "captured_at": "2026-09-22"
+  },
+  "provenance": {
+    "crosswalk": {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
+    },
+    "crosswalk_meta": {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.meta.json",
+      "sha256": "a67f248c3dacf4c15af121ec8db1ba14ff8f8711b68cb9b688c20b6eb383df85"
+    },
+    "asset_disposition": {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    "asset_phase_product": {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+    },
+    "asset_decisions": {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
+    },
+    "decision_log": {
+      "path": "docs/governance/legacy-asset-decision-log.md",
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b"
+    },
+    "phase_inventory": {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
+    }
+  },
+  "scope": {
+    "asset_ids": [
+      "LEGACY-ASSET-189702B332643A3BFDAF",
+      "LEGACY-ASSET-4618C7243C283228809A"
+    ],
+    "candidate_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"],
+    "classification_vocabulary": ["affirmative", "negative", "unknown"],
+    "membership_semantics": "search_candidate_only_not_direct_semantic_link"
+  },
+  "assets": [
+    {
+      "asset_id": "LEGACY-ASSET-189702B332643A3BFDAF",
+      "asset_class": "Historical",
+      "disposition": "unresolved",
+      "implementation_status": "unknown",
+      "legacy_execution_performed": false,
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "decision_record_ref": null,
+      "candidate_phases": ["PHCAP-07", "PHCAP-15"],
+      "candidate_products": ["HELIX-OS", "HELIX-Web-OS"],
+      "classification_id": "LASPH-1060",
+      "source_path": "docs/plans/PLAN-L13-00-post-deploy-verification-master.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L13-00-post-deploy-verification-master.md",
+      "source_sha256": "968a2da7ed628f2c69ab4e696327b4dd9e88a61aee99453c210c858a4eaf914a",
+      "source_line_count": 71,
+      "failure_evidence": {"execution_receipts": 0, "status": "source_contract_only_unexecuted", "anchor_ids": ["P1", "P2"]},
+      "consumer_evidence": {"consumer_refs": [], "status": "candidate_only_closure_pending", "anchor_ids": ["P3", "P4"]},
+      "anchors": [
+        {"anchor_id": "P1", "line_start": 28, "line_end": 36, "sha256": "f75a8e488cf2d69392bdfa66b4582c47ffbd855aaac7b78c8d5cd64a1bab76b5", "exact_text": "review_evidence:\n  - reviewer: subagent-doc-coverage\n    review_kind: intra_runtime_subagent\n    worker_model: codex\n    reviewer_model: explorer\n    tests_green_at: \"2026-07-04T21:23:00+09:00\"\n    reviewed_at: \"2026-07-04T21:23:00+09:00\"\n    verdict: pass\n    scope: \"L13 の filename-level PLAN gap を検出したため、この master は local smoke と monitoring 境界だけを文書証跡として記録する。\"", "meaning": "埋込みの過去review claimで、local smoke／monitoring境界だけを示す。現行実行証拠ではない。"},
+        {"anchor_id": "P2", "line_start": 37, "line_end": 53, "sha256": "5e318ebb7701e2ba14912355080160b43966f16c1eb0bb2641ca8ca66573854d", "exact_text": "    green_commands:\n      - kind: lint\n        command: \"./scripts/helix plan lint\"\n        runner: bun\n        scope: targeted\n        exit_code: 0\n        completed_at: \"2026-07-04T21:22:00+09:00\"\n        evidence_path: tests/plan-id-naming.test.ts\n        output_digest: \"sha256:9fa002ed0848a3f2c4aec076fabcfdd4e1c6d6391654f4089473d92a2eb9677d\"\n      - kind: unit_test\n        command: \"bun run test:local\"\n        runner: bun\n        scope: full\n        exit_code: 0\n        completed_at: \"2026-07-04T21:18:00+09:00\"\n        evidence_path: tests/distribution-acceptance.test.ts\n        output_digest: \"sha256:32c3780f9d989265036a756ef64eea84714c6d748b248bc9a978bbf605a67697\"", "meaning": "旧文書に埋込まれたhistorical command claim。旧test／CIを実行せず、passや実装成立へ昇格しない。"},
+        {"anchor_id": "P3", "line_start": 60, "line_end": 65, "sha256": "c20c01cd431de637fe7d0edbb60321bb7da5eca377e8294027eb4542606188ee", "exact_text": "L13 の forward PLAN ファイルが存在しない棚卸し穴を閉じ、local smoke と外部 rollout 境界を分離する。\n\n## 範囲\n\n- local build、consumer readiness、rename dry-run を L13 判断材料として示す。\n- 外部 rollout、release 公開、repository rule 変更は本 PLAN の実行対象外とし、別の承認済み PLAN に分離する。", "meaning": "local scopeと外部 rollout／release／repository rule exceptionを明示する。"},
+        {"anchor_id": "P4", "line_start": 67, "line_end": 71, "sha256": "b3ccb97812c67f7ba8b93ee61adcc489deeeb852a4685e8408633100cf0197ae", "exact_text": "## DoD\n\n- [x] L13 個別 PLAN が存在する。\n- [x] L13 harness design boundary が存在する。\n- [x] 外部 rollout を docs coverage と混同しない。", "meaning": "document presenceとdesign boundaryのDoD。外部rollout実施や要求unit実装の証明ではない。"}
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4618C7243C283228809A",
+      "asset_class": "Historical",
+      "disposition": "unresolved",
+      "implementation_status": "unknown",
+      "legacy_execution_performed": false,
+      "consumer_refs": [],
+      "consumer_closure_status": "pending",
+      "decision_record_ref": null,
+      "candidate_phases": ["PHCAP-16", "PHCAP-17"],
+      "candidate_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web-OS"],
+      "classification_id": "LASPH-2427",
+      "source_path": "docs/skills/incident-runbook.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/skills/incident-runbook.md",
+      "source_sha256": "f5ba60755a67d7aff8a38eb2fd4212a17fa3c9186a63ce4763843f25a458e402",
+      "source_line_count": 78,
+      "failure_evidence": {"execution_receipts": 0, "status": "source_contract_only_unexecuted", "anchor_ids": ["R1", "R2"]},
+      "consumer_evidence": {"consumer_refs": [], "status": "candidate_only_closure_pending", "anchor_ids": ["R3", "R4", "R5"]},
+      "anchors": [
+        {"anchor_id": "R1", "line_start": 20, "line_end": 28, "sha256": "cc11b2f0c60a97d26b53c1e2bab5cebb424cb57eb84dcaef0b25f975fc292f19", "exact_text": "runbook はインシデント発生中ではなく事前に書く。これにより、対応者は単一の正本を参照できる。\nこの skill は、(A) L11 ops-readiness の義務としてのリリース前 runbook 作成と、\n(B) live production incident に対する HELIX Incident drive 手順（FR-L1-16）を扱う。\n\n## この skill を load するタイミング\n\n- PLAN が L11 gate（system test / ops readiness）に近づいており、対象 service の runbook がまだ存在しない。\n- production signal から Incident drive の PLAN が開かれた。\n- `helix doctor` が production-incident / regression / hotfix signal を示した。", "meaning": "事前runbook、L11 ops readiness、live production Incident driveのscope。FR-L1-16は旧skill内の別識別子。"},
+        {"anchor_id": "R2", "line_start": 30, "line_end": 43, "sha256": "3a887f8e86e5699c6622577e35953b3eaf6c711f3bf65aa67fb6e3bc23c1dd30", "exact_text": "## Part A: リリース前 runbook（Forward / Add-feature）\n\nrunbook は `docs/ops/<service-slug>-runbook.md` に保存する。必須 section は次の3つ\n（3つすべてが無い場合、L11 gate は fail する）。\n\n1. **Alert response**: 名前付き alert を3件以上記載し、それぞれに trigger threshold、scope、\n   immediate mitigation、recovery-confirmation check、follow-up を含める。\n2. **Rollback**: trigger conditions、step-by-step rollback、data-integrity check を含める。\n   recovery-confirmation metric を含める。\n3. **Escalation chain**: 個人名ではなく role（on-call → TL → PM/PO）で記載し、\n   各 role へ escalation する条件を明示する。\n\nThreshold は observability design doc（single source of truth）を参照元にする。threshold value を重複記載しない。\nrunbook は PLAN の `generates` list に記録する。", "meaning": "runbookの契約構造とobservability SSoT／PLAN接続。要求unitの直接実装ではない。"},
+        {"anchor_id": "R3", "line_start": 45, "line_end": 61, "sha256": "3bd728263f884678702cbd0fbc42e60bf114bfc99c0f207e70f5b72877aace03", "exact_text": "## Part B の Incident drive（live production）\n\nIncident-drive PLAN の entry conditions は、signal が production incident / regression / hotfix であること、\ntarget が production であること、かつ production change の前に human approval\n（on-call + TL + PM）が記録されていることである。\n\n```\nhelix status        # PLAN entry を登録し、Incident drive を確認する\n```\n\nFirst response（最初の約15分）では、symptom と scope を確認し、severity を分類する\n（Sev1 primary-path-down または data-loss-risk、Sev2 major degradation、Sev3 minor）。\nrunbook を開き、該当する alert procedure に従う。安全であれば runbook の immediate mitigation を適用する。\nすべての action を timestamp 付きで `.helix/audit/<plan-id>-incident-timeline.md` に記録する。\n\nsymptom を cover する runbook procedure が無い場合、production で即興対応しない。\nTL へ escalate し、新しい procedure を post-incident action として runbook に追加する。", "meaning": "production signal／target／three-party approvalをconnection条件として定める。旧CLIやruntimeは実行していない。"},
+        {"anchor_id": "R4", "line_start": 63, "line_end": 69, "sha256": "96353cf958daeaad3fe222184c2caab1b3bab4df74bcbe515cb7c168098dff85", "exact_text": "## Post-incident（事後対応）\n\n1. 実際に使った procedure を runbook に反映する。\n2. root cause に code/design fix が必要な場合は Recovery PLAN（branch `hotfix/*`）を開く。\n   design-level は `add-design`、implementation-only は L7 の `add-impl` として分類し、\n   その問題を検出できたはずの regression test を追加する。\n3. resolution を監査証跡へ記録し、session boundary で `helix status` の continuation projection を確認する。", "meaning": "incident後のprocedure／recovery／regression／audit接続。実行済みfailureやconsumer closureではない。"},
+        {"anchor_id": "R5", "line_start": 71, "line_end": 78, "sha256": "3820cb90a5fb868afd10fbc4ffeb3e1ab49b70b5013347f993739affdc7a8a31", "exact_text": "## 完了 checklist\n\n- [ ] `docs/ops/<service-slug>-runbook.md` に runbook があり、3件以上の alert procedure、\n      rollback procedure、role-based escalation chain を含む。\n- [ ] Threshold は observability design doc を参照している（SSoT を重複させない）。\n- [ ] Incident timeline が `.helix/audit/` に記録されている。\n- [ ] production change の前に three-party approval が記録されている。\n- [ ] root cause に対して Recovery / add-design PLAN が開かれ、continuation projection に next action が反映されている。", "meaning": "未チェックの完了条件と例外境界。満たされたcompletion／failure evidenceを示さない。"}
+      ]
+    }
+  ],
+  "membership_sets": [
+    {
+      "asset_id": "LEGACY-ASSET-189702B332643A3BFDAF",
+      "count": 68,
+      "classification": "unknown",
+      "crosswalk_ids": ["IRIMPLX-0008", "IRIMPLX-0015", "IRIMPLX-0019", "IRIMPLX-0021", "IRIMPLX-0022", "IRIMPLX-0029", "IRIMPLX-0037", "IRIMPLX-0041", "IRIMPLX-0042", "IRIMPLX-0046", "IRIMPLX-0053", "IRIMPLX-0055", "IRIMPLX-0057", "IRIMPLX-0059", "IRIMPLX-0065", "IRIMPLX-0069", "IRIMPLX-0077", "IRIMPLX-0080", "IRIMPLX-0081", "IRIMPLX-0085", "IRIMPLX-0091", "IRIMPLX-0096", "IRIMPLX-0097", "IRIMPLX-0098", "IRIMPLX-0105", "IRIMPLX-0107", "IRIMPLX-0108", "IRIMPLX-0117", "IRIMPLX-0118", "IRIMPLX-0119", "IRIMPLX-0120", "IRIMPLX-0127", "IRIMPLX-0128", "IRIMPLX-0129", "IRIMPLX-0133", "IRIMPLX-0134", "IRIMPLX-0135", "IRIMPLX-0137", "IRIMPLX-0139", "IRIMPLX-0140", "IRIMPLX-0154", "IRIMPLX-0155", "IRIMPLX-0156", "IRIMPLX-0157", "IRIMPLX-0159", "IRIMPLX-0161", "IRIMPLX-0163", "IRIMPLX-0165", "IRIMPLX-0170", "IRIMPLX-0171", "IRIMPLX-0172", "IRIMPLX-0173", "IRIMPLX-0176", "IRIMPLX-0181", "IRIMPLX-0182", "IRIMPLX-0183", "IRIMPLX-0186", "IRIMPLX-0187", "IRIMPLX-0188", "IRIMPLX-0189", "IRIMPLX-0193", "IRIMPLX-0195", "IRIMPLX-0196", "IRIMPLX-0197", "IRIMPLX-0199", "IRIMPLX-0201", "IRIMPLX-0208", "IRIMPLX-0209"],
+      "source_contract": "The exact source_text_spans and source_requirement_id are read from each referenced crosswalk row and checked against this asset source. This membership has no exact requirement ID or source span match.",
+      "scope_anchor_ids": ["P3", "P4"],
+      "connection_anchor_ids": ["P1", "P2"],
+      "exception_anchor_ids": ["P3", "P4"],
+      "classification_reason": "Candidate phase/product membership and lexical overlap do not establish a direct semantic edge; all 68 rows retain unknown pending direct semantic review."
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4618C7243C283228809A",
+      "count": 1,
+      "classification": "unknown",
+      "crosswalk_ids": ["IRIMPLX-0168"],
+      "source_contract": "The exact source_text_spans and source_requirement_id are read from the crosswalk row and checked against this asset source. HIL-NFR-17 and its product-data contract have no exact match; FR-L1-16 is a different historical identifier.",
+      "scope_anchor_ids": ["R1", "R2"],
+      "connection_anchor_ids": ["R3", "R4"],
+      "exception_anchor_ids": ["R5"],
+      "classification_reason": "The runbook candidate pool has no exact requirement ID or source span match to HIL-NFR-17. Absence is insufficient for negative; the unit remains unknown."
+    }
+  ],
+  "semantic_link_audit": {
+    "affirmative": 0,
+    "negative": 0,
+    "unknown": 69,
+    "candidate_memberships": 69,
+    "requirement_id_exact_matches": 0,
+    "source_span_exact_matches": 0,
+    "direct_legacy_asset_links_observed": 0,
+    "candidate_pool_membership_is_not_semantic": true
+  },
+  "failure_consumer_decision_audit": {
+    "matching_decision_records": 0,
+    "asset_consumer_refs": 0,
+    "phase_consumer_refs": 0,
+    "execution_receipts": 0,
+    "legacy_execution_performed": false,
+    "failure_status": "source_contract_only_unexecuted",
+    "consumer_closure_status": "pending"
+  },
+  "unresolved": [
+    "all_69_direct_semantic_edges_require_independent_exact-head_review",
+    "human_product_routing_and_phase_authority_pending",
+    "successor_assignment_unassigned",
+    "legacy_implementation_status_unknown",
+    "legacy_failure_and_runtime_status_unknown",
+    "consumer_closure_pending",
+    "no_current_implementation_or_acceptance_claim",
+    "no_formal_requirement_adoption_or_new_build"
+  ],
+  "prohibited_inference": [
+    "phase membership is not a direct requirement-unit semantic link",
+    "product candidate membership is not product authority or routing",
+    "document_present does not mean implemented, tested, operational, or accepted",
+    "embedded historical command claims are not current test execution",
+    "absence of exact source evidence is unknown, not negative",
+    "old source contract does not authorize reuse or current implementation",
+    "FR-L1-16 does not equal HIL-NFR-17",
+    "consumer closure cannot be inferred from crosswalk membership"
+  ]
+}
