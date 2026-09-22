@@ -104,6 +104,7 @@ trial("source_anchor_tamper", records(lambda rows: rows[0]["source_exact"]["sema
 trial("source_coverage_tamper", records(lambda rows: rows[0]["source_exact"]["anchor_line_coverage"].__setitem__("unread_line_ranges", [])), "E_SOURCE")
 trial("phase_status_tamper", records(lambda rows: rows[0]["phase_evidence"].__setitem__("legacy_implementation_status", "implemented")), "E_PHASE")
 trial("manual_category_tamper", records(lambda rows: rows[0]["classification"].__setitem__("category", "multi_product_conflict")), "E_CLASSIFICATION")
+trial("bootstrap_all_product_rewrap_rejected", records(lambda rows: next(r for r in rows if r["source_path"] == "config/drive-route-catalog.json")["classification"].update({"category": "multi_product_conflict", "candidate_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]})), "E_CLASSIFICATION")
 trial("manual_product_tamper", records(lambda rows: rows[0]["classification"].__setitem__("candidate_products", ["HELIX-Web"])), "E_CLASSIFICATION")
 trial("manual_product_basis_tamper", records(lambda rows: rows[0]["classification"]["product_basis"].clear()), "E_CLASSIFICATION")
 trial("manual_counterevidence_tamper", records(lambda rows: rows[0]["classification"].__setitem__("counterevidence", [])), "E_CLASSIFICATION")
@@ -150,4 +151,4 @@ def generator_pin_tamper(target):
 
 trial("generator_manual_pin_drift", generator_pin_tamper, "E_SOURCE")
 
-print("SCF-B-0141 selfcheck PASS negative_cases=47")
+print("SCF-B-0141 selfcheck PASS negative_cases=48")

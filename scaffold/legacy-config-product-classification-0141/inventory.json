@@ -319,8 +319,8 @@
   "bundle_revision": "SCF-B-0141-r2",
   "classification_counts": {
     "direct_product_basis": 26,
-    "insufficient_basis": 2,
-    "multi_product_conflict": 13
+    "insufficient_basis": 6,
+    "multi_product_conflict": 9
   },
   "classification_rule": {
     "direct_product_basis": "manual semantic span maps to exactly one four-product L1 boundary; this is a research candidate and not formal ownership",
@@ -789,6 +789,7 @@
   "negative_cases": [
     "target omission/duplicate/extra",
     "manual semantic profile tamper",
+    "bootstrap match/divergence and all-product rewrap rejection",
     "bootstrap match/divergence tamper",
     "source regular-blob mode/type/path guard",
     "source blob/ledger/MANIFEST/SHA/semantic span/coverage tamper",
@@ -815,7 +816,7 @@
     "test": false,
     "workflow": false
   },
-  "output_sha256": "sha256:17a12e61bf47fb9510bb12ab842795ed03650057a29fa5d5263c45b07511be2b",
+  "output_sha256": "sha256:88448924b72165336db9699c4b026172782949725d97c38601a403046b497b36",
   "overlap_status": {
     "authoritative_union": "origin/main_current_429",
     "open_pr2078_status": "conditional_staleable_not_authoritative",

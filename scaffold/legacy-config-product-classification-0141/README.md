@@ -2,7 +2,7 @@
 
 `SCF-B-0141` は、固定BASE `5562f04da0f3205f9aa58205ec0d478419fc4f2e` の旧資産台帳から、`source_path` が `config/` で始まる未研究41件を対象にする research-only Scaffold Binding です。41件すべてについて旧config本文をGit objectとして静的に読み、具体的なsemantic span、意味解釈、四製品のL1/product-boundary対応、counterevidence、bootstrap候補との一致・不一致を手動pinします。
 
-分類は `direct_product_basis=26`、`multi_product_conflict=13`、`insufficient_basis=2` です。directはsemantic spanから一製品L1へ対応し、conflictは二製品以上へ対応し、insufficientは対応する責務証拠がありません。bootstrap `candidate_product_targets` は比較材料であり、分類の単独根拠ではありません。LABOや四製品以外の候補は受け付けません。
+分類は `direct_product_basis=26`、`multi_product_conflict=9`、`insufficient_basis=6` です。directはsemantic spanから一製品L1へ対応し、conflictは二製品以上へ対応し、insufficientは対応する責務証拠がありません。bootstrap `candidate_product_targets` は比較材料であり、分類の単独根拠ではありません。LABOや四製品以外の候補は受け付けません。
 
 各source receiptはGit `ls-tree` の正確なpath、mode `100644`、type `blob`、blob、bytes、SHA-256を確認し、固定BASEのMANIFESTとlegacy ledger digestを一致させます。semantic spanの行範囲、coverage、未読範囲を保持します。実装状態、未実装・不足証拠、degradation/failure、consumer、decision/read-after、Wave edgeは責務分類から分離しています。Wave 1–50は50ファイル・598 edgeを静的走査し、対象assetのedgeは1件です。
 
