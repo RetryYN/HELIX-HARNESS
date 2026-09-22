@@ -1,0 +1,24 @@
+{
+  "schema": "rdp001-outside67-followup-meta/v1",
+  "bundle_id": "RDP-001-OUTSIDE67-CONCEPT-FREEZE-FOLLOWUP-017-021-025-026-027",
+  "binding_reservation": "SCF-B-0087",
+  "binding_registration_status": "registered",
+  "base_origin_main": "3cdde5dfedfc51ff7c757a2f5fb2eb11a3c6b64c",
+  "base_origin_main_previous": "c5ed4587d8563bd473368f5eb0f3c311fefb44a6",
+  "candidate_ids": [
+    "OUTSIDE67-PATH-017",
+    "OUTSIDE67-PATH-021",
+    "OUTSIDE67-PATH-025",
+    "OUTSIDE67-PATH-026",
+    "OUTSIDE67-PATH-027"
+  ],
+  "existing_reviewed_count": 52,
+  "candidate_count": 5,
+  "combined_count": 57,
+  "denominator": 67,
+  "remaining_after_research": 10,
+  "anchor_count": 25,
+  "static_only": true,
+  "old_runtime_test_ci_execution": false,
+  "authority_effect": "none"
+}
