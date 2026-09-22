@@ -55,22 +55,22 @@
     },
     {
       "path": "scaffold/phcap15-deploy-followup-research/README.md",
-      "sha256": "c2f22ab745b602c64c38418cbb8694bd75f2979f9a165cfd77d52bfade3dab11",
+      "sha256": "d259233930c653bf2e834938fd3ac9332ef6e268e40a33dbd4e5f1af7dd654b4",
       "note": "follow-up scope／denominator／unknown boundary"
     },
     {
       "path": "scaffold/phcap15-deploy-followup-research/inventory.json",
-      "sha256": "25110993179303a37739a05d4a50ad90fcba415c89cdc2f2d96c5a973d89eb9b",
+      "sha256": "97f9872a8c8bf5717c8a51408cd60993f476937768d7d66446db29842cc9d617",
       "note": "pool／exclusion／12 selected asset static inventory"
     },
     {
       "path": "scaffold/phcap15-deploy-followup-research/validate.py",
-      "sha256": "a80a0a36b563e302e7931476557265f4b1299887dc5694b9a2a7c1b0e09c8b0a",
+      "sha256": "8a74072ab472d1d5a665bc5a2c5a7fbd9b3e9c0908bcaf0c27ba53a2d68441de",
       "note": "static denominator／digest／span／status validator"
     },
     {
       "path": "scaffold/phcap15-deploy-followup-research/selfcheck.py",
-      "sha256": "7f5e955b5f49a098090334be826bc61565e6861d76dc7fa0e510b32c7be6a775",
+      "sha256": "3fd3488e7510b589739193014d87c00f59867fd955ce494b3b4100c4d209c552",
       "note": "authority／scope／source／failure／consumer negative checks"
     }
   ],

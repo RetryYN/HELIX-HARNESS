@@ -1509,6 +1509,14 @@
       "consumer closure invention",
       "product owner/evidence promotion",
       "decision history invention"
+    ],
+    "required_commands": [
+      "python3 -B scaffold/phcap15-deploy-followup-research/validate.py",
+      "python3 -B scaffold/phcap15-deploy-followup-research/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
     ]
   },
   "counts": {

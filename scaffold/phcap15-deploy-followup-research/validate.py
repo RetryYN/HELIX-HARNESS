@@ -28,6 +28,117 @@ SCF0037_IDS = {
 }
 PRODUCTS = {"HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"}
 BASE_COMMIT = "685c69c3c174ac6121812dade30ed75e510986e6"
+EXPECTED_EQUIVALENCE_CLAIM = None
+EXPECTED_SEMANTIC_KINDS = {
+    "LEGACY-ASSET-7D081AD1F95E968FA77C": "audit／evidence boundary",
+    "LEGACY-ASSET-1C02673C4901B24D963D": "runtime-state／rename evidence inventory",
+    "LEGACY-ASSET-0AD2FD852BAB0CEC864B": "compatibility configuration inventory",
+    "LEGACY-ASSET-99E3BCA46E08C4A328FC": "plan-specific authority configuration",
+    "LEGACY-ASSET-17C4BF78919578FEBB18": "L3 lifecycle/deployment requirement",
+    "LEGACY-ASSET-A2F6A697D7FFFD490B57": "L3 release/bundle requirement",
+    "LEGACY-ASSET-897CAC574F146D976BD7": "L6 runtime guidance document",
+    "LEGACY-ASSET-FD0947CF40FB2B301664": "L7 cloud-deploy source-ledger plan",
+    "LEGACY-ASSET-9E033C3E39BE107D4CF1": "Incident workflow process",
+    "LEGACY-ASSET-3E3D84D599ED0476926B": "version-up workflow process",
+    "LEGACY-ASSET-92811340BD843B5EC3FD": "test source for objective evidence audit",
+    "LEGACY-ASSET-7E68FC7E2F08FD31B0C1": "test source for lifecycle operations authority",
+}
+EXPECTED_PRODUCT_BOUNDARIES = {
+    "HELIX-HARNESS": "工程・artifact内容・consumer条件の境界候補。配布運転を所有しない候補。",
+    "HELIX-OS": "project authority、release準備、artifact受渡し、deployment evidence統制の候補。展開先runtime authorityを吸収しない。",
+    "HELIX-Web": "利用者向けWeb体験の候補。直接deployment evidenceの不在は未実装を意味しない。",
+    "HELIX-Web-OS": "tenant/service runtime、配備、監視、復旧の候補。OSとはauthority/stateを分離する。",
+}
+EXPECTED_PRODUCT_EVIDENCE_STATUS = {
+    "HELIX-HARNESS": "boundary_candidate_only",
+    "HELIX-OS": "candidate_unresolved",
+    "HELIX-Web": "boundary_candidate_only",
+    "HELIX-Web-OS": "candidate_unresolved",
+}
+EXPECTED_ANCHOR_COUNTS = {
+    "LEGACY-ASSET-7D081AD1F95E968FA77C": 2,
+    "LEGACY-ASSET-1C02673C4901B24D963D": 2,
+    "LEGACY-ASSET-0AD2FD852BAB0CEC864B": 2,
+    "LEGACY-ASSET-99E3BCA46E08C4A328FC": 2,
+    "LEGACY-ASSET-17C4BF78919578FEBB18": 2,
+    "LEGACY-ASSET-A2F6A697D7FFFD490B57": 3,
+    "LEGACY-ASSET-897CAC574F146D976BD7": 2,
+    "LEGACY-ASSET-FD0947CF40FB2B301664": 2,
+    "LEGACY-ASSET-9E033C3E39BE107D4CF1": 3,
+    "LEGACY-ASSET-3E3D84D599ED0476926B": 3,
+    "LEGACY-ASSET-92811340BD843B5EC3FD": 2,
+    "LEGACY-ASSET-7E68FC7E2F08FD31B0C1": 2,
+}
+EXPECTED_ANCHOR_MEANINGS = {
+    "LEGACY-ASSET-7D081AD1F95E968FA77C": ["production deploy／post-deploy／PO signoffはlocal closureではない", "local closure、evidence path、historical carryの停止境界"],
+    "LEGACY-ASSET-1C02673C4901B24D963D": ["rename baselineのroot、token、hit/file集計", "source/test/runtime/config/consumer/plan/designカテゴリ集計"],
+    "LEGACY-ASSET-0AD2FD852BAB0CEC864B": ["compatibility input onlyとentries digest", "L13 post-deploy／L14 operations plan identity"],
+    "LEGACY-ASSET-99E3BCA46E08C4A328FC": ["plan-specific V-pair binding authority schema", "runtime capability matrixのverification binding absent entry"],
+    "LEGACY-ASSET-17C4BF78919578FEBB18": ["ReleaseとDeployment、runtime observationとauthorityの境界", "DeploymentManifest/Plan/ReceiptとRollback contract"],
+    "LEGACY-ASSET-A2F6A697D7FFFD490B57": ["HARNESS authority、Release ModuleとBundleの境界", "Module schemaとlifecycle", "release packet、consumer、rollback、static failure boundary"],
+    "LEGACY-ASSET-897CAC574F146D976BD7": ["runtime実装ではなくcommand guidance adapter", "L13 projectionと実副作用なしの境界"],
+    "LEGACY-ASSET-FD0947CF40FB2B301664": ["Cloud Deploy verification/canary/rollbackをledgerへ固定する旧review evidence", "source ledger必須rowとURL drift fail-close"],
+    "LEGACY-ASSET-9E033C3E39BE107D4CF1": ["Incident sourceのauthority/evidence boundary", "IncidentとRecoveryのworkflow identity分離", "phase禁止とtroubleshoot/recovery/reverseのplan分割"],
+    "LEGACY-ASSET-3E3D84D599ED0476926B": ["version-up sourceのauthority/evidence boundary", "activation approval/dry-run/rollback/parked review", "plan-only、activation不可、外部作用なし"],
+    "LEGACY-ASSET-92811340BD843B5EC3FD": ["objective evidence audit test sourceとcurrent evidence checks", "L13/L14等のevidence surfaceを参照するtest source"],
+    "LEGACY-ASSET-7E68FC7E2F08FD31B0C1": ["lifecycle authority、Release/Deployment分離のtest source", "Module/Bundle lifecycleとrelease planのtest source"],
+}
+EXPECTED_UNRESOLVED = ["semantic product split", "phase admission", "product owner", "current implementation/degradation/acceptance", "failure outcome", "consumer closure", "successor/decision"]
+EXPECTED_PROHIBITED_INFERENCE = [
+    "pool membership is a phase classification candidate only",
+    "source presence, configuration, implementation source, test source, runtime-state evidence or old command names do not establish current implementation, operation, acceptance, deployment or pass",
+    "phase candidate targets do not admit assets to PHCAP-15",
+    "current L1/L2/L11 candidate text does not generate authority or owner",
+    "empty consumer_refs and pending closure do not prove no historical consumer",
+    "missing direct Web evidence does not establish non-implementation",
+    "old review evidence, green commands or test source are not current execution receipts",
+    "archive is static reference only and not runtime, test, CI or fallback",
+]
+EXPECTED_REQUIRED_COMMANDS = [
+    "python3 -B scaffold/phcap15-deploy-followup-research/validate.py",
+    "python3 -B scaffold/phcap15-deploy-followup-research/selfcheck.py",
+    "python3 scaffold/tools/scfctl.py validate",
+    "python3 scaffold/tools/scfctl.py stale",
+    "python3 scaffold/tools/scfctl.py residuals",
+    "git diff --check",
+]
+EXPECTED_NEGATIVE_CASES = [
+    "pool denominator/remaining count tamper",
+    "PR2001 or SCF-B-0037 overlap",
+    "selected asset ID duplication",
+    "source span/text/digest tamper",
+    "authority promotion",
+    "implementation promotion",
+    "degradation promotion",
+    "phase admission promotion",
+    "failure receipt invention",
+    "consumer closure invention",
+    "product owner/evidence promotion",
+    "decision history invention",
+]
+EXPECTED_KEYSETS = {
+    "root": frozenset({"schema", "status", "authority_effect", "meaning_change_applied", "successor_requirement_ids", "human_decision_ref", "equivalence_claim", "old_archive_runtime_test_ci_execution", "base", "task", "provenance", "denominator", "scope", "product_boundary_candidates", "assets", "aggregate_evidence", "prohibited_inference", "verification_contract", "counts"}),
+    "root.base": frozenset({"origin_main_commit", "origin_main_at_start", "origin_main_at_final", "changed", "worktree", "captured_at", "stop_condition"}),
+    "root.task": frozenset({"task_id", "phase", "title", "phase_inventory_path", "phase_inventory_snapshot"}),
+    "root.task.phase_inventory_snapshot": frozenset({"status", "product_targets", "evidence_products", "refs", "legacy_layers_evidenced", "maximum_layer_evidenced", "legacy_capability_status", "transition_assessment", "gaps", "new_build_allowed", "authority_effect"}),
+    "root.provenance": frozenset({"ledgers", "phase_pool_basis", "pr_2001_head", "pr_2001_inventory", "existing_binding"}),
+    "root.provenance.ledgers.*": frozenset({"sha256", "records"}),
+    "root.denominator": frozenset({"pool_rows", "pool_unique_asset_ids", "pr_2001_selected_rows", "scf_b0037_selected_rows", "already_reviewed_excluded_rows", "followup_selected_rows", "reviewed_or_selected_total", "remaining_unreviewed_rows", "pool_coverage_statement"}),
+    "root.scope": frozenset({"pool_asset_ids", "excluded_scopes", "selected_asset_ids", "remaining_unreviewed_asset_ids", "overlap_checks"}),
+    "root.scope.excluded_scopes.pr_2001": frozenset({"pr_number", "head", "asset_ids"}),
+    "root.scope.excluded_scopes.scf_b0037": frozenset({"binding_path", "asset_ids"}),
+    "root.scope.overlap_checks": frozenset({"selected_vs_pr_2001", "selected_vs_scf_b0037", "pool_duplicate_ids"}),
+    "root.product_boundary_candidates": frozenset({"defined_products", "products", "current_implementation_claim", "authority_effect", "product_owner_status"}),
+    "root.product_boundary_candidates.products[]": frozenset({"product", "status", "boundary", "current_evidence_status", "current_authority_status", "current_implementation_status", "refs", "owner_status"}),
+    "root.product_boundary_candidates.products[].refs[]": frozenset({"path", "line_start", "line_end", "file_sha256", "span_sha256"}),
+    "root.assets[]": frozenset({"asset_id", "semantic_diversity_kind", "phase_ledger_line", "disposition_ledger_line", "source_path", "archive_path", "source_revision", "source_file_sha256", "source_line_count", "ledger_source_sha256", "artifact_evidence_kind", "source_anchors", "candidate_phase_targets", "phase_classification_status", "phase_admission", "candidate_product_targets", "product_classification_status", "product_owner_status", "legacy_implementation_status", "implementation_evidence_state", "legacy_execution_performed", "current_implementation_status", "current_operation_status", "current_acceptance_status", "current_degradation_status", "disposition", "authority_status", "decision_matches", "decision_record_refs", "copy_read_after_matches", "consumer_closure_status", "consumer_refs", "failure_evidence", "consumer_evidence", "unresolved"}),
+    "root.assets[].source_anchors[]": frozenset({"line_start", "line_end", "source_span_sha256", "exact_text", "meaning"}),
+    "root.assets[].failure_evidence": frozenset({"status", "execution_receipts", "source_failure_or_stop_conditions_observed", "failure_outcome_observed", "unknown"}),
+    "root.assets[].consumer_evidence": frozenset({"status", "consumer_refs_observed", "consumer_closure_observed", "unknown"}),
+    "root.aggregate_evidence": frozenset({"selected_asset_count", "selected_asset_decision_matches", "selected_asset_copy_read_after_matches", "selected_failure_execution_receipts", "selected_consumer_refs_nonempty", "selected_consumer_closure_pending", "selected_implementation_statuses", "current_implementation_status", "current_degradation_status", "current_phase_admission"}),
+    "root.verification_contract": frozenset({"requires_exact_source_spans", "requires_source_archive_digest_reconciliation", "requires_pool_nonoverlap", "requires_four_product_candidate_boundary", "unknowns_must_remain_explicit", "old_archive_runtime_test_ci_execution", "required_commands", "negative_cases"}),
+    "root.counts": frozenset({"pool_rows", "selected_rows", "excluded_rows", "remaining_unreviewed_rows", "four_products", "selected_source_anchors"}),
+}
 
 
 def digest_bytes(value: bytes) -> str:
@@ -51,6 +162,31 @@ def line_span(path: Path, start: int, end: int) -> str:
     return "\n".join(lines[start - 1 : end])
 
 
+def validate_keysets(value: object) -> list[str]:
+    errors: list[str] = []
+
+    def walk(node: object, path: str) -> None:
+        expected = EXPECTED_KEYSETS.get(path)
+        if expected is None:
+            if path.startswith("root.provenance.ledgers.") and not path.endswith((".sha256", ".records")):
+                expected = EXPECTED_KEYSETS.get("root.provenance.ledgers.*")
+        if expected is not None:
+            if not isinstance(node, dict):
+                errors.append(f"KEYSET_TYPE:{path}")
+            elif set(node) != expected:
+                errors.append(f"KEYSET:{path}")
+        if isinstance(node, dict):
+            for key, child in node.items():
+                walk(child, f"{path}.{key}")
+        elif isinstance(node, list):
+            for child in node:
+                if isinstance(child, (dict, list)):
+                    walk(child, f"{path}[]")
+
+    walk(value, "root")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2])
@@ -58,13 +194,13 @@ def main() -> int:
     args = parser.parse_args()
     root = args.root.resolve()
     inventory_path = args.inventory.resolve()
-    errors: list[str] = []
 
     try:
         inv = json.loads(inventory_path.read_text(encoding="utf-8"))
     except Exception as exc:  # pragma: no cover - a malformed candidate is a validation error
         print(f"FAIL PHCAP15-FOLLOWUP: inventory unreadable: {exc}")
         return 1
+    errors: list[str] = validate_keysets(inv)
 
     expected_paths = {
         "phase_inventory": root / "docs/governance/phase-capability-inventory.json",
@@ -77,6 +213,8 @@ def main() -> int:
         fail(errors, "SCHEMA", "schema mismatch")
     if inv.get("authority_effect") != "none" or inv.get("meaning_change_applied") is not False:
         fail(errors, "AUTHORITY_EFFECT", "authority_effect must be none and meaning_change_applied false")
+    if inv.get("equivalence_claim") != EXPECTED_EQUIVALENCE_CLAIM:
+        fail(errors, "EQUIVALENCE_CLAIM", "equivalence claim must remain null")
     if inv.get("old_archive_runtime_test_ci_execution") is not False:
         fail(errors, "OLD_EXECUTION", "old archive/runtime/test/CI execution must remain false")
 
@@ -160,6 +298,11 @@ def main() -> int:
     if boundary.get("authority_effect") != "none" or boundary.get("current_implementation_claim") is not False:
         fail(errors, "PRODUCT_PROMOTION", "product boundary cannot create authority or implementation claim")
     for product in product_rows:
+        product_name = product.get("product")
+        if product.get("boundary") != EXPECTED_PRODUCT_BOUNDARIES.get(product_name):
+            fail(errors, "PRODUCT_BOUNDARY_TEXT", f"{product_name} boundary changed")
+        if product.get("current_evidence_status") != EXPECTED_PRODUCT_EVIDENCE_STATUS.get(product_name):
+            fail(errors, "PRODUCT_EVIDENCE_STATUS", f"{product_name} current evidence changed")
         if product.get("current_authority_status") != "none" or product.get("current_implementation_status") != "unknown":
             fail(errors, "PRODUCT_STATUS", f"{product.get('product')} status promoted")
         for ref in product.get("refs", []):
@@ -205,6 +348,16 @@ def main() -> int:
             fail(errors, "PHASE_TARGETS", f"phase candidate targets changed {aid}")
         if asset.get("candidate_product_targets") != phase.get("candidate_product_targets"):
             fail(errors, "PRODUCT_TARGETS", f"product candidate targets changed {aid}")
+        if asset.get("semantic_diversity_kind") != EXPECTED_SEMANTIC_KINDS.get(aid):
+            fail(errors, "SEMANTIC_DIVERSITY_KIND", f"semantic evidence kind changed {aid}")
+        if asset.get("unresolved") != EXPECTED_UNRESOLVED:
+            fail(errors, "UNRESOLVED_BODY", f"unresolved evidence changed {aid}")
+        expected_anchor_count = EXPECTED_ANCHOR_COUNTS.get(aid)
+        if len(asset.get("source_anchors", [])) != expected_anchor_count:
+            fail(errors, "ANCHOR_COUNT", f"expected {expected_anchor_count} anchors for {aid}")
+        expected_meanings = EXPECTED_ANCHOR_MEANINGS.get(aid, [])
+        if [anchor.get("meaning") for anchor in asset.get("source_anchors", [])] != expected_meanings:
+            fail(errors, "ANCHOR_MEANINGS", f"anchor meaning changed {aid}")
         if asset.get("product_owner_status") != "unresolved":
             fail(errors, "OWNER_PROMOTION", f"product owner promoted {aid}")
         for key in ("legacy_implementation_status", "current_implementation_status", "current_operation_status", "current_acceptance_status", "current_degradation_status"):
@@ -251,6 +404,26 @@ def main() -> int:
     for key, expected in aggregate_expected.items():
         if aggregate.get(key) != expected:
             fail(errors, "AGGREGATE", f"{key} expected {expected}, got {aggregate.get(key)}")
+
+    count_expected = {
+        "pool_rows": 78,
+        "selected_rows": 12,
+        "excluded_rows": 10,
+        "remaining_unreviewed_rows": 56,
+        "four_products": 4,
+        "selected_source_anchors": 27,
+    }
+    counts = inv.get("counts", {})
+    for key, expected in count_expected.items():
+        if counts.get(key) != expected:
+            fail(errors, "COUNTS", f"{key} expected {expected}, got {counts.get(key)}")
+    if inv.get("prohibited_inference") != EXPECTED_PROHIBITED_INFERENCE:
+        fail(errors, "PROHIBITED_INFERENCE", "prohibited inference text changed")
+    verification = inv.get("verification_contract", {})
+    if verification.get("required_commands") != EXPECTED_REQUIRED_COMMANDS:
+        fail(errors, "REQUIRED_COMMANDS", "required commands changed")
+    if verification.get("negative_cases") != EXPECTED_NEGATIVE_CASES:
+        fail(errors, "NEGATIVE_CASES", "negative case contract changed")
 
     if errors:
         print("FAIL PHCAP15-FOLLOWUP")

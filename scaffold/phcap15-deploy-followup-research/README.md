@@ -23,7 +23,7 @@ phase/product classification ledgerで `candidate_phase_targets` に `PHCAP-15` 
 | `LEGACY-ASSET-92811340BD843B5EC3FD` | `tests/goal-evidence-audit.test.ts` | test source for objective evidence audit |
 | `LEGACY-ASSET-7E68FC7E2F08FD31B0C1` | `tests/product-lifecycle-operations-requirements.test.ts` | test source for lifecycle operations authority |
 
-`inventory.json` に78件全ID、除外集合、12件、残る56件を保持する。選択assetはすべてsource/archive path、source file digest、exact line span、span digest、phase ledger、asset disposition ledgerへ戻れる。選択assetに対するappend-only decision matchは0、copy/read-after matchは0、failure execution receiptは0、consumer refsは空、consumer closureはpendingである。
+`inventory.json` に78件全ID、除外集合、12件、残る56件を保持する。選択assetはすべてsource/archive path、source file digest、exact line span、span digest、phase ledger、asset disposition ledgerへ戻れる。選択assetに対するappend-only decision matchは0、copy/read-after matchは0、failure execution receiptは0、consumer refsは空、consumer closureはpendingである。source anchorは合計27件を資産別件数とmeaning本文まで固定し、semantic diversity kind、unresolved本文、equivalence claim、prohibited inference本文、required commands、negative cases、全階層keysetをvalidatorで独立照合する。
 
 ## 旧assetと現行境界
 
@@ -46,4 +46,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-`validate.py` はpool分母、除外／選択／残数、source/archive digestとexact span、asset／phase／decision／failure／consumer状態、四製品候補、authority／implementation／degradation unknownを静的に確認する。`selfcheck.py` はauthority、実装、劣化、phase admission、failure receipt、consumer closure、product owner、source span、pool非重複の改変を一時コピーで拒否する。
+`validate.py` はpool分母、除外／選択／残数、source/archive digestとexact span、asset／phase／decision／failure／consumer状態、四製品候補、authority／implementation／degradation unknownを静的に確認する。`selfcheck.py` はauthority、実装、劣化、phase admission、failure receipt、consumer closure、product owner、source span、anchor件数、unresolved、semantic kind、equivalence、禁止推論、commands、negative cases、nested keyの改変を一時コピーで拒否する。

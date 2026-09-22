@@ -51,6 +51,19 @@ def main() -> int:
             ("failure-receipt-invention", "FAILURE_PROMOTION", lambda d: d["assets"][0]["failure_evidence"].update({"execution_receipts": 1})),
             ("consumer-closure-invention", "CONSUMER_PROMOTION", lambda d: d["assets"][0].update({"consumer_closure_status": "closed", "consumer_refs": ["consumer-x"]})),
             ("decision-invention", "DECISION_PROMOTION", lambda d: d["assets"][0].update({"decision_matches": 1, "decision_record_refs": ["DECISION-X"]})),
+            ("anchor-meaning-drift", "ANCHOR_MEANINGS", lambda d: d["assets"][0]["source_anchors"][0].update({"meaning": "invented meaning"})),
+            ("anchor-count-deletion", "ANCHOR_COUNT", lambda d: d["assets"][1]["source_anchors"].pop()),
+            ("unresolved-empty", "UNRESOLVED_BODY", lambda d: d["assets"][0].update({"unresolved": []})),
+            ("semantic-kind-drift", "SEMANTIC_DIVERSITY_KIND", lambda d: d["assets"][0].update({"semantic_diversity_kind": "implementation"})),
+            ("equivalence-claim", "EQUIVALENCE_CLAIM", lambda d: d.update({"equivalence_claim": "equivalent"})),
+            ("prohibited-inference-body", "PROHIBITED_INFERENCE", lambda d: d["prohibited_inference"].__setitem__(0, "pool is a requirement link")),
+            ("required-command-drift", "REQUIRED_COMMANDS", lambda d: d["verification_contract"]["required_commands"].pop()),
+            ("negative-case-drift", "NEGATIVE_CASES", lambda d: d["verification_contract"]["negative_cases"].append("invented negative")),
+            ("asset-nested-key", "KEYSET", lambda d: d["assets"][0].update({"unexpected_key": True})),
+            ("anchor-nested-key", "KEYSET", lambda d: d["assets"][0]["source_anchors"][0].update({"unexpected_key": True})),
+            ("product-nested-key", "KEYSET", lambda d: d["product_boundary_candidates"]["products"][0].update({"unexpected_key": True})),
+            ("ref-nested-key", "KEYSET", lambda d: d["product_boundary_candidates"]["products"][0]["refs"][0].update({"unexpected_key": True})),
+            ("count-drift", "COUNTS", lambda d: d["counts"].update({"selected_source_anchors": 26})),
         ]
         for name, expected, mutate in cases:
             candidate = copy.deepcopy(baseline)
@@ -63,7 +76,7 @@ def main() -> int:
                 print(output)
                 return 1
             print(f"PASS negative/{name}: {expected}")
-    print("PASS selfcheck: scope/source/status/authority/product/failure/consumer/decision negatives")
+    print("PASS selfcheck: scope/source/status/authority/product/failure/consumer/decision/anchor/unresolved/schema negatives")
     return 0
 
 
