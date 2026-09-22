@@ -6,7 +6,7 @@
   "product": "HELIX-Web",
   "owner_candidate": "Web／Web-OS Vision候補の四製品境界、phase／implementation接続のbounded review（正式owner未解決）",
   "state": "registered",
-  "reason": "SCF-B-0080の29 parent spanとSCF-B-0081／0084／0088の35候補を全件再照合し、source line／source IDの重複を検査する。19 atomized candidateと16 composite_unresolvedを保持し、49件のcandidate product edgeと154件のconnection matrixを機械可読化する。WebとWeb-OSはcandidate boundaryとして分離し、正式product、owner、authority、requirement denominator、phase、implementation、degradation、failure／consumer closureへ昇格しない。専用ID／link fieldに候補parent span／atom IDが無い場合はphase／assetをunlinked_unknownとして残す。replacement.issue=0は未commit研究束のbinding登録sentinelである。",
+  "reason": "SCF-B-0080の29 parent spanとSCF-B-0081／0084／0088の35候補を全件再照合し、WebとWeb-OSの候補境界を分離した接続行列を作成する。19 atomized candidateと16 composite_unresolvedを保持し、49件のcandidate product edgeと154件のconnection matrixを機械可読化する。phase／asset未接続edgeは各35件についてcandidate atom IDのexact multiset（重複・欠落なし）を要求し、source lineも同一candidateへ束縛する。WebとWeb-OSはcandidate boundaryとして分離し、正式product、owner、authority、requirement denominator、phase、implementation、degradation、failure／consumer closureへ昇格しない。専用ID／link fieldに候補parent span／atom IDが無い場合はphase／assetをunlinked_unknownとして残す。baseはorigin/mainのdbe43847bfc7f4677c7e5d186b0afb82d38bab3bへrebaselineし、先行base変更時は停止する。replacement.issue=0は未commit研究束のbinding登録sentinelである。",
   "upstream": [
     {
       "path": "docs/concept/product-boundary.md",
@@ -142,6 +142,21 @@
       "path": "scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl",
       "sha256": "b4dbaaf0ba43ba6ab307212ef59559bd06a73089d2d17553cf79928f75e6dc4c",
       "note": "static source or prior candidate evidence; no semantic adoption"
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-coverage-0091/inventory.json",
+      "sha256": "4d5b74c90e4ff6a1561b9ff460ce79e55455c1517286d2e4171d4ce7f7ab7748",
+      "note": "target inventory with corrected validation digests"
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-coverage-0091/validate.py",
+      "sha256": "6c7eb033289414d89a95812b80eadc1ed92c8f103dfe655f33904b1f78b73c60",
+      "note": "fail-closed validator including phase/asset candidate ID multisets"
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-coverage-0091/selfcheck.py",
+      "sha256": "857c5e39c44da62d8ba8246e79363cce50c5747773c77a33cb3953a2d15cf512",
+      "note": "negative cases for phase/asset duplicate-plus-missing IDs with aligned source lines"
     }
   ],
   "role": "29 parent span全件と35 candidate recordのsource-bound coverage、四製品candidate boundary、phase／implementation未接続状態を再現可能なmatrixとして保持する",
@@ -152,6 +167,7 @@
     "candidate_product_candidatesの重複を正式な分母へ合算せず、WebとWeb-OSのcandidate boundary edgeを個別に保持する",
     "PHCAPとimplementation crosswalkは専用ID／link fieldのexact一致だけを直接リンク根拠とし、説明文一致を昇格させない",
     "formal owner、authority、formal requirement unit、phase、legacy／current implementation、degradation、failure、consumer closureをunknown／not_generatedに保つ",
+    "phase／asset未接続edge各35件のfrom_idをcandidate atom IDのexact multisetとして再導出し、複製・欠落と対応source lineの不整合をfail-closedに拒否する",
     "旧世代資料は静的参照に限定し、runtime／test／CI／workflow／hook／adapter／sourceを実行しない",
     "validator、selfcheck、scfctl validate／stale／residuals、git diff --checkで再現性と負例を確認する"
   ],
@@ -217,6 +233,7 @@
       "49 candidate product edge and Web／Web-OS boundary recheck",
       "exact dedicated ID／link field direct-match rederivation",
       "all JSONL record keysets and matrix edge status／type／source-line rederivation",
+      "phase／asset unlinked edgeのcandidate atom ID exact multisetとsource lineの再導出",
       "formal unknown／not_generated boundary recheck",
       "validator/selfcheck",
       "scfctl validate／stale／residuals",
@@ -255,7 +272,9 @@
       "product matrix type promotion",
       "parent matrix source line tamper",
       "product matrix source line tamper",
-      "phase matrix source line tamper"
+      "phase matrix source line tamper",
+      "phase edge candidate ID duplicate-plus-missing with aligned source lines",
+      "asset edge candidate ID duplicate-plus-missing with aligned source lines"
     ]
   },
   "replacement": {

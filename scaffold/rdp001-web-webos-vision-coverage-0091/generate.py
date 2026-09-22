@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
-BASE = "44814977d9d9bf457b6be2184f38f25d4f9071ad"
+BASE = "dbe43847bfc7f4677c7e5d186b0afb82d38bab3b"
 VISION = "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md"
 SPAN_PATH = "scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl"
 PHASE_PATH = "docs/governance/phase-capability-inventory.json"
@@ -229,6 +229,8 @@ def main() -> None:
     input_paths = [
         SPAN_PATH, PHASE_PATH, CROSSWALK_PATH, PRODUCT_BOUNDARY_PATH, *PRODUCT_DOCS, *LEGACY_LEDGER_PATHS,
         *[path for bundle in BUNDLES.values() for path in bundle.values()],
+        "scaffold/rdp001-web-webos-vision-coverage-0091/validate.py",
+        "scaffold/rdp001-web-webos-vision-coverage-0091/selfcheck.py",
     ]
     inputs = {path: file_sha(ROOT / path) for path in sorted(set(input_paths))}
     inventory = {

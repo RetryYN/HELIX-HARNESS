@@ -157,6 +157,20 @@ def break_matrix_product(rows):
     next(row for row in rows if row["edge_kind"] == "candidate_product_boundary")["to_id"] = "invented-product"
 
 
+def duplicate_phase_from_id_and_lines(rows):
+    edges = [row for row in rows if row["edge_kind"] == "candidate_phase_unlinked"]
+    edges[1]["from_id"] = edges[0]["from_id"]
+    edges[1]["source_line_start"] = edges[0]["source_line_start"]
+    edges[1]["source_line_end"] = edges[0]["source_line_end"]
+
+
+def duplicate_asset_from_id_and_lines(rows):
+    edges = [row for row in rows if row["edge_kind"] == "candidate_asset_unlinked"]
+    edges[1]["from_id"] = edges[0]["from_id"]
+    edges[1]["source_line_start"] = edges[0]["source_line_start"]
+    edges[1]["source_line_end"] = edges[0]["source_line_end"]
+
+
 def break_matrix_edge_order(rows):
     rows[0]["edge_id"] = "WVC-EDGE-999"
 
@@ -237,6 +251,8 @@ rejected("duplicate source line", "candidates", candidate_mutation(duplicate_can
 rejected("parent matrix target injection", "matrix", matrix_mutation(break_parent_matrix))
 rejected("matrix phase link promotion", "matrix", matrix_mutation(promote_matrix_phase))
 rejected("matrix product target injection", "matrix", matrix_mutation(break_matrix_product))
+rejected("phase from_id duplicate and missing candidate (line fields aligned)", "matrix", matrix_mutation(duplicate_phase_from_id_and_lines))
+rejected("asset from_id duplicate and missing candidate (line fields aligned)", "matrix", matrix_mutation(duplicate_asset_from_id_and_lines))
 rejected("matrix edge ordering tamper", "matrix", matrix_mutation(break_matrix_edge_order))
 rejected("matrix record extra key", "matrix", matrix_mutation(extra_matrix_key))
 rejected("parent matrix status promotion", "matrix", matrix_mutation(promote_parent_matrix_status))
@@ -255,4 +271,4 @@ rejected("product owner promotion", "inventory", inventory_mutation(product_owne
 rejected("current implementation boundary promotion", "inventory", inventory_mutation(current_implementation_promotion))
 rejected("direct phase count promotion", "inventory", inventory_mutation(direct_phase_count_promotion))
 
-print("Wave coverage 0091 selfcheck: PASS (validator plus thirty-three negative mutations)")
+print("Wave coverage 0091 selfcheck: PASS (validator plus thirty-five negative mutations)")

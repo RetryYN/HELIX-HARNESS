@@ -5,11 +5,12 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+from collections import Counter
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-BASE = "44814977d9d9bf457b6be2184f38f25d4f9071ad"
+BASE = "dbe43847bfc7f4677c7e5d186b0afb82d38bab3b"
 VISION = "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md"
 SPAN_PATH = "scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl"
 PHASE_PATH = "docs/governance/phase-capability-inventory.json"
@@ -36,6 +37,8 @@ INVENTORY_ARTIFACT = "scaffold/rdp001-web-webos-vision-coverage-0091/inventory.j
 PARENT_ARTIFACT = "scaffold/rdp001-web-webos-vision-coverage-0091/parent-coverage.jsonl"
 CANDIDATE_ARTIFACT = "scaffold/rdp001-web-webos-vision-coverage-0091/candidate-records.jsonl"
 MATRIX_ARTIFACT = "scaffold/rdp001-web-webos-vision-coverage-0091/connection-matrix.jsonl"
+VALIDATOR_ARTIFACT = "scaffold/rdp001-web-webos-vision-coverage-0091/validate.py"
+SELFCHECK_ARTIFACT = "scaffold/rdp001-web-webos-vision-coverage-0091/selfcheck.py"
 PARENT_KEYS = {
     "parent_span_id", "group", "label", "source_path", "source_line_start", "source_line_end",
     "exact_source_text", "source_span_sha256", "candidate_atom_ids", "candidate_atom_count", "coverage_status",
@@ -154,7 +157,7 @@ def validate() -> None:
     head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=False).stdout.strip()
     if inventory["base_origin_main"] != BASE or subprocess.run(["git", "merge-base", "--is-ancestor", BASE, head], cwd=ROOT, check=False).returncode:
         fail("E_BASE")
-    required_inputs = [SPAN_PATH, PHASE_PATH, CROSSWALK_PATH, PRODUCT_BOUNDARY_PATH, *PRODUCT_DOCS, *LEGACY_LEDGER_PATHS, *[path for bundle in BUNDLES.values() for path in bundle.values()]]
+    required_inputs = [SPAN_PATH, PHASE_PATH, CROSSWALK_PATH, PRODUCT_BOUNDARY_PATH, *PRODUCT_DOCS, *LEGACY_LEDGER_PATHS, *[path for bundle in BUNDLES.values() for path in bundle.values()], VALIDATOR_ARTIFACT, SELFCHECK_ARTIFACT]
     if set(inventory["inputs"]) != set(required_inputs):
         fail("E_INPUT_KEYSET")
     for path, expected in inventory["inputs"].items():
@@ -235,6 +238,11 @@ def validate() -> None:
     asset_edges = [row for row in matrix if row["edge_kind"] == "candidate_asset_unlinked"]
     if len(parent_edges) != 35 or len(product_edges) != 49 or len(phase_edges) != 35 or len(asset_edges) != 35:
         fail("E_MATRIX_EDGE_COUNTS")
+    expected_candidate_id_multiset = Counter(atom["atom_id"] for atom in atoms)
+    if Counter(edge["from_id"] for edge in phase_edges) != expected_candidate_id_multiset:
+        fail("E_MATRIX_PHASE_FROM_ID_MULTISET")
+    if Counter(edge["from_id"] for edge in asset_edges) != expected_candidate_id_multiset:
+        fail("E_MATRIX_ASSET_FROM_ID_MULTISET")
     if {(row["from_id"], row["to_id"]) for row in parent_edges} != {(atom["parent_span_id"], atom["atom_id"]) for atom in atoms}:
         fail("E_MATRIX_PARENT_COVERAGE")
     expected_parent_pairs = {(atom["parent_span_id"], atom["atom_id"]) for atom in atoms}
