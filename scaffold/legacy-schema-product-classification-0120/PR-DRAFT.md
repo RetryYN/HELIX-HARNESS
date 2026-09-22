@@ -20,7 +20,7 @@
 - `python3 scaffold/legacy-schema-product-classification-0120/selfcheck.py`（59負例、期待error code照合。重複／malformed／non-object JSON、Binding 66入力閉包、Wave1／37／50 stale SHA、generator category/products pin再生成、nested key閉包、型ガード、姉妹inventory blob drift、validator `PINNED_REVIEWS`欠落を含む）
 - `python3 -m py_compile`（generate／validate／selfcheck）
 - `python3 scaffold/tools/scfctl.py validate`
-- `python3 scaffold/tools/scfctl.py stale`（0）／`residuals`（0）; `validate`（129 bindings, fail=0）
-- `git diff --check`／`git diff origin/main...HEAD --check`（origin/main=`ccb27727a60bf13816a542efd1b2abb827b6d522`）
+- `python3 scaffold/tools/scfctl.py stale`（0）／`residuals`（0）; `validate`（131 bindings, fail=0）
+- `git diff --check`／`git diff origin/main...HEAD --check`（origin/main=`1c392251c7f1e2d04003b08f56fb2288df2796ff`）
 
 PR作成側はmerge／closeを実行しない。正式分類・authority昇格は人間レビュー後の別判断とする。
