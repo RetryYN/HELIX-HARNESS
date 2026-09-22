@@ -8,7 +8,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-import generate as expected_generation
 
 HERE = Path(__file__).resolve().parent
 DEFAULT_ROOT = HERE.parents[1]
@@ -71,6 +70,141 @@ EXPECTED_RULE_MAP = {
     "IRUNIT-HIL-TR-07-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"),
     "IRUNIT-HIL-TR-08-HELIX-HARNESS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
 }
+# Independent expected values for the fixed BASE research bundle.  These constants
+# deliberately do not import the generator, so changing generation logic and the
+# bundle together cannot make the validator accept a phase or authority claim.
+EXPECTED_CANDIDATE_STATEMENTS = {'IRUNIT-HIL-BR-14-HELIX-OS': 'ref authority、atomic decomposition、採否からGateまでのtraceを一つに束ねる要求。source '
+                              'custodyとproduct／authority境界を追加sourceとhuman判断で確認するまで、横断制約ともPHCAP直接機構とも確定しない。',
+ 'IRUNIT-HIL-BR-24-HELIX-OS': '原子要求、authority、分類、acceptance、capability、template、revisionの履歴を結ぶ要求定義契約。要件登録・分類・受入のphase境界は追加sourceとhuman判断が必要。',
+ 'IRUNIT-HIL-FR-17-HELIX-OS': 'screen applicability、skip receipt、再entry '
+                              'triggerを定める工程gate。再entryはPHCAP-20のcontinuationと語が近いが、原文は画面工程の判定契約であり直接責務を確定できない。',
+ 'IRUNIT-HIL-FR-18-HELIX-OS': '原文はscreen ID、操作、遷移、9状態fixture、仮データ境界を実行可能artifactへ材料化するPrototype '
+                              'Builderを要求する。Waveのasset検索候補にはPHCAP-01／06およびPHCAP-16〜20が現れ、UI工程の横断制約だけとは確定できない。artifact／state '
+                              'replayとPHCAP境界の直接責務を追加sourceで分解するまで未解決に保持する。',
+ 'IRUNIT-HIL-FR-19-HELIX-HARNESS': '原文はprototype版、ユーザー観測、requirements delta、L1反映先、再作成判断をboundedに反復して記録するWalkthrough '
+                                   'Loopを要求する。Waveのasset検索候補にはPHCAP-15〜20が現れ、learning／improvementや継続再構成との接続をphase非適用と断定できない。walkthrough／iterationとPHCAP境界の追加source待ちに置く。',
+ 'IRUNIT-HIL-FR-20-HELIX-OS': '原文はartifact、walkthrough、要求反映、prototype agreementまたはskip receiptを検査し、不足時にL1 '
+                              'freezeとL3開始をfail-closeするScreen '
+                              'Gateを要求する。Waveのasset検索候補にはPHCAP-04／05／07／11およびPHCAP-16〜20が現れ、単なる横断gateともPHCAP直接機構とも確定できない。Gate '
+                              'authorityとPHCAP境界を追加source・human判断で分解するまで未解決に保持する。',
+ 'IRUNIT-HIL-FR-21-HELIX-OS': 'source snapshot、ref、tree、entry、sealed mirror、stale条件を固定するsource '
+                              'custody契約。snapshot保持は要求収集／保持へ接続し得るため、全PHCAP-01〜20の直接性を除外する根拠がなくphase非適用は保留する。',
+ 'IRUNIT-HIL-FR-23-HELIX-OS': 'connector/schema、credential reference、read/write policy、sync、owner、enabled '
+                              'stateを束ねる統合境界契約。PHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-FR-24-HELIX-OS': 'snapshot、watermark、provenance、freshness、tombstone、schema driftをread '
+                              'projectionへ投影する要求。retention／continuationとの境界を原文だけで除外できず、追加sourceとhuman判断が必要。',
+ 'IRUNIT-HIL-FR-31-HELIX-OS': 'affected '
+                              'layerのstale化、再承認、re-freeze、Forward合流拒否を定めるre-entry契約。継続再構成に近い語を含むが、工程再承認のphase責務は追加sourceで確認する必要がある。',
+ 'IRUNIT-HIL-FR-33-HELIX-HARNESS': 'active surfaceからBun依存を抽出しclassified ledgerを作るcoverage／toolchain '
+                                   'gate。CI／releaseの横断条件でありPHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-FR-33-HELIX-OS': 'active Bun countを監査するdependency '
+                              'coverage条件。OSのCI／release境界を補助する横断制約でPHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-FR-46-HELIX-OS': 'L1–L12 layer '
+                              'ledgerのnode／edge／authority／gate／revisionを登録するcatalog契約。phaseを実行する機構に見えるが、PHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-FR-52-HELIX-OS': 'Markdown、asset、event '
+                              'ledger、trace、projection、receiptのall-or-nothing更新とCASを定めるcanonicalization '
+                              'transaction。汎用atomicity／authority制約でPHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-FR-53-HELIX-OS': 'immutable asset IDとrevision、rename／split／merge／supersedeの履歴を保つidentity契約。履歴はPHCAP-20 '
+                              'retentionへ接続し得るため、全PHCAP-01〜20の直接性を除外する根拠がなくphase非適用は保留する。',
+ 'IRUNIT-HIL-NFR-02-HELIX-HARNESS': 'worker、verifier、knowledge '
+                                    'promoterの自己承認を分離するrole／authority制約。memory昇格という語はあるが、PHCAP-01〜20の直接性を全て除外する根拠がなく、昇格権限の境界を定める。',
+ 'IRUNIT-HIL-NFR-03-HELIX-HARNESS': 'Reverse処理量、phase '
+                                    'skip、未完obligation免除を禁止する工程契約。phase運用条件に見えるが、PHCAP-01〜20の直接性を全て除外する根拠がなくphase非適用は保留する。',
+ 'IRUNIT-HIL-NFR-05-HELIX-OS': 'untrusted input、実行命令、metadata、evidenceの分離を定めるsecurity／intake境界。raw input '
+                               'intakeの安全制約でありPHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-NFR-06-HELIX-OS': '認証、認可、決済、PII、secret、license、migration、破壊的操作、外部infraのaction-binding '
+                               'approval条件。横断安全制約でPHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-NFR-07-HELIX-OS': 'complexity、public surface、運用負債とminimum-necessary proofを用いるscope '
+                               'gate。拡張抑制の横断制約でPHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-NFR-11-HELIX-OS': '画面対象／非対象のprototype／skip条件を定めるUI工程制約。画面工程の適用条件でありPHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-NFR-12-HELIX-OS': 'source '
+                               'coverage、path／entry、digest、抽出時点への再現可能なcustodyを要求する完全性条件。保持機構へ接続し得るため、PHCAP-01〜20の直接性を全て除外する根拠がなくphase非適用は保留する。',
+ 'IRUNIT-HIL-NFR-23-HELIX-OS': 'scope derivation graphのacyclic root到達とcycle拒否を要求する構造制約。graph '
+                               'integrityの横断条件でPHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-NFR-30-HELIX-OS': '可逆なAuthoring変更を自動Canonical化し真のauthority境界だけをescalateする要求。人間判断抑制とcanonicalizationの現行authority契約が不足し、PHCAP直接性を確定しない。',
+ 'IRUNIT-HIL-NFR-31-HELIX-OS': 'Authoring正本、ledger、trace、projection、receiptのall-or-nothingとfault後partial state '
+                               '0件を要求するatomicity制約。PHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-NFR-32-HELIX-OS': '意味変更時のauthority、impact、pair、oracle、rollback、stale '
+                               'propagationの同時成立を要求するrevision制約。汎用変更管理でPHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-TR-04-HELIX-HARNESS': 'Linux、macOS、Windowsのportable／compatibility profileを定めるruntime '
+                                   'portability条件。環境制約でPHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-TR-04-HELIX-OS': 'Linux、macOS、Windowsのportable／compatibility '
+                              'profileを定めるOS運転環境条件。環境制約でPHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。',
+ 'IRUNIT-HIL-TR-07-HELIX-OS': 'SQLite event／projection backboneとPython read model／Node write '
+                              'authorityの分離を定める実装境界。generic state／eventだけではPHCAP-20直接性を除外できず、L4決定と現行sourceが必要。',
+ 'IRUNIT-HIL-TR-08-HELIX-HARNESS': 'Node↔Pythonのversioned JSON Lines IPC '
+                                   'envelope、stdout／stderr、sequence、deadline、payload digestを定めるtransport '
+                                   'contract。PHCAP-01〜20の直接性を全て除外する根拠がなく、phase非適用は保留する。'}
+EXPECTED_JUDGMENT_WAITING_ITEMS = {'IRUNIT-HIL-BR-14-HELIX-OS': ['旧IR source spanとref authority receiptの独立確認',
+                               'product unit／connectionのhuman decision',
+                               'consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-BR-24-HELIX-OS': ['現行要求定義契約とPHCAP-02〜07の対応source',
+                               'product／authorityのhuman decision',
+                               'consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-FR-17-HELIX-OS': ['skip／reentryの現行契約とcontinuation責務の境界source',
+                               'phase authority reviewerのhuman decision',
+                               'product ownerとconsumer closure'],
+ 'IRUNIT-HIL-FR-18-HELIX-OS': ['Prototype Builderのartifact／state replayとPHCAP-01／06の責務境界を示すcurrent contract',
+                               'UI artifactの観測・再生とPHCAP-16〜20の直接責務を分解する追加source',
+                               'phase／product authority reviewerのhuman decisionとconsumer closure'],
+ 'IRUNIT-HIL-FR-19-HELIX-HARNESS': ['walkthrough／iteration checkpointとPHCAP-15／16／19／20の責務境界を示すcurrent contract',
+                                    'requirements deltaからL1反映先へのauthority／consumer契約',
+                                    'phase／product authority reviewerのhuman decisionとconsumer closure'],
+ 'IRUNIT-HIL-FR-20-HELIX-OS': ['Screen GateのL1 freeze／L3 fail-close authorityとPHCAP-04／05／07／11の境界契約',
+                               'artifact／walkthrough／skip receiptとPHCAP-16〜20の直接責務を分解する追加source',
+                               'phase／product authority reviewerのhuman decisionとconsumer closure'],
+ 'IRUNIT-HIL-FR-21-HELIX-OS': ['source custodyとmemory／retention境界のhuman確認',
+                               'current source／consumer closureの追加evidence'],
+ 'IRUNIT-HIL-FR-23-HELIX-OS': ['connector boundaryと全PHCAP境界のhuman確認', 'product／authority／consumer closure'],
+ 'IRUNIT-HIL-FR-24-HELIX-OS': ['retention／purge／continuationを明示する現行data contract',
+                               'PHCAP-20境界のhuman decision',
+                               'consumer closureとproduct owner'],
+ 'IRUNIT-HIL-FR-31-HELIX-OS': ['re-entryとPHCAP-20 continuationの現行契約境界',
+                               'phase／product authorityのhuman decision',
+                               'consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-FR-33-HELIX-HARNESS': ['HARNESS 全PHCAP境界レビューのhuman確認',
+                                    'active surface／consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-FR-33-HELIX-OS': ['OS／HARNESS owner境界のhuman確認', 'consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-FR-46-HELIX-OS': ['layer ledgerとPHCAP capabilityの境界確認', 'authority／consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-FR-52-HELIX-OS': ['canonicalizationとmemory／continuationの境界をhuman確認', 'write authority／consumer closure'],
+ 'IRUNIT-HIL-FR-53-HELIX-OS': ['asset historyとPHCAP-20 retentionの境界確認', 'authority／oracle／consumer closure'],
+ 'IRUNIT-HIL-NFR-02-HELIX-HARNESS': ['knowledge promotionとPHCAP-20 ownershipのhuman確認',
+                                     'role／consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-NFR-03-HELIX-HARNESS': ['工程契約と全PHCAP境界のhuman確認', 'HARNESS owner／consumer closure'],
+ 'IRUNIT-HIL-NFR-05-HELIX-OS': ['security boundaryのhuman確認', 'product／consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-NFR-06-HELIX-OS': ['安全境界と全PHCAP境界レビューのhuman確認', 'authority／consumer closure'],
+ 'IRUNIT-HIL-NFR-07-HELIX-OS': ['scope gateとphase capabilityの境界確認', 'authority／consumer closure'],
+ 'IRUNIT-HIL-NFR-11-HELIX-OS': ['FR-17／FR-20との重複atomをhuman確認', 'product／consumer closure'],
+ 'IRUNIT-HIL-NFR-12-HELIX-OS': ['source custodyとretentionの境界確認', 'consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-NFR-23-HELIX-OS': ['graph constraintとphase capabilityの境界確認', 'authority／consumer closure'],
+ 'IRUNIT-HIL-NFR-30-HELIX-OS': ['current authoring／canonicalization contract',
+                                'authority boundaryのhuman decision',
+                                'consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-NFR-31-HELIX-OS': ['atomicityとmemory／continuation境界のhuman確認', 'authority／consumer closure'],
+ 'IRUNIT-HIL-NFR-32-HELIX-OS': ['revision／rollbackとretentionの境界確認', 'authority／consumer closure'],
+ 'IRUNIT-HIL-TR-04-HELIX-HARNESS': ['HARNESS portabilityとしてのhuman確認', 'product／consumer closure'],
+ 'IRUNIT-HIL-TR-04-HELIX-OS': ['OS portability／authority境界のhuman確認', 'consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-TR-07-HELIX-OS': ['L4 write authority decision recordとstate／continuation contract',
+                               'PHCAP境界のhuman decision',
+                               'consumer closureとsuccessor assignment'],
+ 'IRUNIT-HIL-TR-08-HELIX-HARNESS': ['HARNESS transport contractとしてのhuman確認',
+                                    'product／consumer closureとsuccessor assignment']}
+EXPECTED_EVIDENCE_JOINS = {'M-CROSS-CONSTRAINT-REVIEW': {'exact source anchor': ['source_anchor'],
+                               'Wave edge is candidate-only or contract-only': ['wave_review.edges',
+                                                                                'wave_review.candidate_semantics'],
+                               'all PHCAP-01〜20 boundary review': ['phase_context.phcap_boundary_review'],
+                               'phase／authority human decision': ['taxonomy.judgment_waiting.items']},
+ 'M-WAIT-SOURCE-AUTHORITY': {'exact source anchor': ['source_anchor'],
+                             'current contract or independent source': ['source_anchor',
+                                                                        'taxonomy.judgment_waiting.items'],
+                             'product／authority human decision': ['product_context',
+                                                                  'taxonomy.judgment_waiting.items']},
+ 'M-WAIT-PHCAP-BOUNDARY': {'exact source anchor': ['source_anchor'],
+                           'PHCAP boundary contract': ['phase_context.phcap_boundary_review'],
+                           'unit-level candidate phase evidence': ['phase_context.observed_asset_candidate_phases',
+                                                                   'wave_review.asset_candidate_phase_targets'],
+                           'phase／authority human decision': ['taxonomy.judgment_waiting.items']}}
+
 
 
 def error(errors: list[str], code: str, detail: str = "") -> None:
@@ -248,11 +382,11 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
             matrix_members[rule_id].append(unit_id)
         if unit_id in PHCAP_BOUNDARY_UNITS and rule_id != "M-WAIT-PHCAP-BOUNDARY":
             error(errors, "E_PHCAP_BOUNDARY_CLASSIFICATION", unit_id)
-        expected_classification = expected_generation.CLASSIFICATION.get(unit_id)
-        if expected_classification is None:
+        expected_candidate = EXPECTED_CANDIDATE_STATEMENTS.get(unit_id)
+        expected_waiting = EXPECTED_JUDGMENT_WAITING_ITEMS.get(unit_id)
+        if expected_candidate is None or expected_waiting is None:
             error(errors, "E_TAXONOMY_EXPECTATION", unit_id)
         else:
-            _, _, expected_candidate, expected_waiting = expected_classification
             if taxonomy.get("candidate_statement") != expected_candidate:
                 error(errors, "E_TAXONOMY_EXPECTATION", unit_id + ":candidate_statement")
             waiting = taxonomy.get("judgment_waiting", {})
@@ -265,7 +399,7 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
             error(errors, "E_TAXONOMY_STATUS", unit_id)
         if taxonomy.get("required_evidence") != matrix.get(rule_id, {}).get("required_evidence"):
             error(errors, "E_TAXONOMY_EVIDENCE_JOIN", unit_id + ":required_evidence")
-        if taxonomy.get("required_evidence_join") != expected_generation.required_evidence_join(rule_id):
+        if taxonomy.get("required_evidence_join") != EXPECTED_EVIDENCE_JOINS.get(rule_id):
             error(errors, "E_TAXONOMY_EVIDENCE_JOIN", unit_id + ":join")
         source = parent["source"]
         anchor = unit.get("source_anchor", {})

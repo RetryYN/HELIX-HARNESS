@@ -442,7 +442,7 @@
       "E_ASSET_EVIDENCE: source/history/failure/consumer evidence tamper",
       "E_TAXONOMY_COVERAGE: taxonomy status or matrix membership omission",
       "E_TAXONOMY_STATUS: invalid or mixed taxonomy status",
-      "E_TAXONOMY_EXPECTATION: 15 valid unit rule reassignment, candidate statement, or judgment-waiting item tamper",
+      "E_TAXONOMY_EXPECTATION: 15 valid unit rule reassignment, candidate statement, phase nonapplicability/confirmation/implementation claim, or judgment-waiting item tamper",
       "E_TAXONOMY_EVIDENCE_JOIN: required_evidence or evidence-path binding tamper",
       "E_INVENTORY_DECLARATION: inventory status/scope/taxonomy/PHCAP role/negative-code declaration tamper",
       "E_UNIT_DECLARATION: requirement/crosswalk/product scope/candidate product/unit phase field tamper",

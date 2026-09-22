@@ -10,7 +10,7 @@ research-only Scaffoldである。基準HEADは`5562f04da0f3205f9aa58205ec0d4784
 
 `units.jsonl`は30 unit全件について、旧IR原文のJSON pointer・line anchor・semantic digest・exact span、Wave1–50の66 edge、旧asset 38件のsource／history／failure／consumer、PHCAP-01〜20全境界のレビュー保留（非適用立証なし）、四製品L1 context、研究候補、判断待ち項目を保持する。`decision-matrix.json`は二分類と、source／authority待ちを分ける三つの排他的ruleを定義する。
 
-`generate.py`と`validate.py`は固定BASEのGit object bytesから再導出・照合する。入力digestはcrosswalk、旧IR、decomposition、asset disposition／decision／copy-read-after、phase-product classificationとmeta、SCF-B-0101の親bundle、Wave1–50、PHCAP-01〜20を含むphase capability inventory、PHCAP-20補助定義、phase分類契約、四製品L1、product boundaryを含む。validatorは固定BASEの30 unit rule map、matrixのrequired_evidenceとunit evidenceのjoin、candidate_statement／judgment_waiting.items、inventory宣言leaf、unit識別子・product・PHCAP文脈を完全比較する。旧archiveは静的参照だけで、runtime、CI、test、workflow、hook、adapter、sourceを実行しない。
+`generate.py`と`validate.py`は固定BASEのGit object bytesから再導出・照合する。入力digestはcrosswalk、旧IR、decomposition、asset disposition／decision／copy-read-after、phase-product classificationとmeta、SCF-B-0101の親bundle、Wave1–50、PHCAP-01〜20を含むphase capability inventory、PHCAP-20補助定義、phase分類契約、四製品L1、product boundaryを含む。validatorは固定BASEの30 unit rule map、matrixのrequired_evidenceとunit evidenceのjoin、validate.py内の独立candidate_statement／judgment_waiting.items期待値、inventory宣言leaf、unit識別子・product・PHCAP文脈を完全比較する。旧archiveは静的参照だけで、runtime、CI、test、workflow、hook、adapter、sourceを実行しない。
 
 ## 検証
 
@@ -24,4 +24,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorは30 ID網羅、入力digest、BASE祖先性、原文anchor、Wave edge、asset evidence、固定taxonomy map、required_evidence join、inventory／unit宣言、PHCAP／product authority昇格禁止をfail-closedで検査する。selfcheckは21件のtamper負例で期待error codeを照合し、15 unitのrule再割当とstatus_counts追随も検出する。
+validatorは30 ID網羅、入力digest、BASE祖先性、原文anchor、Wave edge、asset evidence、固定taxonomy map、required_evidence join、inventory／unit宣言、PHCAP／product authority昇格禁止をfail-closedで検査する。selfcheckは22件のtamper負例で期待error codeを照合し、15 unitのrule再割当とstatus_counts追随、phase非適用・phase確定・実装成立の断定を検出する。

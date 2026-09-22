@@ -114,6 +114,12 @@ def mutate_taxonomy_candidate_statement(bundle: Path) -> None:
     save_units(bundle, rows)
 
 
+def mutate_taxonomy_nonapplicability_implementation_claim(bundle: Path) -> None:
+    rows = load_units(bundle)
+    rows[0]["taxonomy"]["candidate_statement"] = "phase非適用・phase確定・実装成立"
+    save_units(bundle, rows)
+
+
 def mutate_taxonomy_waiting_items(bundle: Path) -> None:
     rows = load_units(bundle)
     rows[0]["taxonomy"]["judgment_waiting"]["items"] = ["なし"]
@@ -216,6 +222,7 @@ if __name__ == "__main__":
     run_case("taxonomy count tamper", mutate_taxonomy_count, "E_TAXONOMY_COVERAGE")
     run_case("15-unit taxonomy map reassignment", mutate_taxonomy_expected_map_15, "E_TAXONOMY_EXPECTATION")
     run_case("taxonomy candidate statement tamper", mutate_taxonomy_candidate_statement, "E_TAXONOMY_EXPECTATION")
+    run_case("phase nonapplicability/confirmation/implementation claim", mutate_taxonomy_nonapplicability_implementation_claim, "E_TAXONOMY_EXPECTATION")
     run_case("taxonomy judgment waiting tamper", mutate_taxonomy_waiting_items, "E_TAXONOMY_EXPECTATION")
     run_case("taxonomy evidence join tamper", mutate_taxonomy_evidence_join, "E_TAXONOMY_EVIDENCE_JOIN")
     run_case("inventory declaration leaves tamper", mutate_inventory_declarations, "E_INVENTORY_DECLARATION")
