@@ -7,3 +7,4 @@
 - WebとWeb-OSのsource lineは意味接続候補を持つが、共有state／credential／writer／authorityを生成しない。
 - source_fragmentにないactor／action／condition／guard／sequenceの補完はcandidate_inferenceとして隔離し、source意味へ昇格しない。原文fragment自体の明示的否定・禁止だけを逐語negative／guardとして保持する。
 - fragmentが同一行の列挙語である場合、行全体の述語を意味継承してよい範囲を`inherited_predicate`のexact span／positionで束縛する。fragment＋述語で証明できるaction／conditionだけをsource-supportedへ復元し、行全体にない生成guardは残さない。
+- `normalized_statement`、`retained_meaning`、`unresolved_questions`、`diff_observation`は意味を追加する自由欄ではなく、各atomに独立recordとして固定する。inventoryのfindings／unresolved_questions／prohibited_inferenceも固定id／status／text recordとし、未知keyや無指定statusを受け入れない。

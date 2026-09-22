@@ -6,6 +6,8 @@ pre-isolation revision `2d4991042be55268bac30a8bbcdac45b3865030a` とarchive rev
 
 `semantic-atoms.jsonl` は選択した要求行を122候補（atomized candidate 109件、`composite_unresolved` 13件）へ分けて原文lineへ束縛します。同一source lineから複数のunit／connection／constraintを作る場合も、line coverageは一回だけ数え、各候補に逐語`source_fragment`を付けます。frontmatter、表関係、複数責務、未分割境界は `composite_unresolved` としてatomized完了数から除外しました。fragment自身に述語がある候補はdirect source supportとして保持し、fragmentが同一行の列挙語である場合は、`inherited_predicate`に同一行のexact text／character position／pre-isolation・archive spanを付けてfragment＋述語をsource-supportedへ復元します。今回の復元は109件全件（action direct 40、action inherited 53、condition direct 21、condition inherited 16）です。actor／sequenceや最終ownerを確定しない文脈は`candidate_inference`へ残し、行全体にない生成guardは削除します。原文fragment自身の明示的否定、またはexact inherited predicateで組み立てた否定だけをsource-supported conditionへ保持します。候補productは四製品（HELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS）を分母に残し、旧／現行implementation・旧／現行degradation・failure・consumer・decision・phase authorityはunknownです。
 
+J01再検収として、各atomの`normalized_statement`、`retained_meaning`、`unresolved_questions`、`diff_observation`を独立recordへ固定し、それぞれのkeyset・status・source referenceをvalidatorで検査します。regular atomと`composite_unresolved`は別の全keysetを持ち、未知keyは拒否します。inventoryの`findings`（F）、`unresolved_questions`（Q）、`prohibited_inference`（P）もid／status／textの固定record配列として扱い、順序とstatusを検査します。
+
 この研究束はcurrent requirement、successor、正式source、L2／L11合意、L3／L10設計、実装、受入、release、deploymentを生成しません。bindingは `SCF-B-0057` とし、0057以降に同IDが存在しないことを確認して登録します。
 
 ## 検証
@@ -19,4 +21,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorは別processでGit object、holding、revision snapshot、line coverage、atom unknown境界、fragmentとinherited predicateの同一行span／position、source provenanceの逐語支持と推論分離を再計算します。selfcheckはbaselineに加え、denominator／digest／span／inherited predicate／product／phase／implementation／degradation／failure／consumer／decision／authority／successor／旧実行／semantic fieldへの推論混入／guard inferenceの残留／candidate inference分離違反のnegative caseを期待error code付きで確認します。
+validatorは別processでGit object、holding、revision snapshot、line coverage、atom keyset／固定意味欄、inventory固定catalog、fragmentとinherited predicateの同一行span／position、source provenanceの逐語支持と推論分離を再計算します。exact PR HEADについては、記録した`base_origin_main`がHEADの祖先であることだけを検査し、live `origin/main`との一致を要求しません。selfcheckはbaselineに加え、denominator／digest／span／inherited predicate／product／phase／implementation／degradation／failure／consumer／decision／authority／successor／旧実行／semantic fieldへの推論混入／guard inferenceの残留／candidate inference分離違反／固定keyset改変のnegative caseを期待error code付きで確認します。

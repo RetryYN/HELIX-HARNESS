@@ -22,7 +22,7 @@ v.validate(base,base_atoms,base_diffs)
 cases=[
  ('denominator',lambda i,a,d:i['scope'].__setitem__('holding_path_revision_pair_denominator',68),'E_DENOMINATOR'),
  ('holding_digest',lambda i,a,d:i['scope'].__setitem__('holding_sha256','0'*64),'E_LEDGER_DIGEST'),
- ('base_drift',lambda i,a,d:i['scope'].__setitem__('base_origin_main','0'*40),'E_BASE_DRIFT'),
+ ('base_drift',lambda i,a,d:i['scope'].__setitem__('base_origin_main','0'*40),'E_BASE_NOT_ANCESTOR'),
  ('rebaseline_record',lambda i,a,d:i['scope'].__setitem__('base_rebaseline_count',1),'E_REBASELINE_RECORD'),
  ('selected_doc',lambda i,a,d:i['documents'][0].__setitem__('source_item_id','OUTSIDE67-PATH-010'),'E_SELECTED_DOCS'),
  ('snapshot_or_revision_digest',lambda i,a,d:i['documents'][0]['pre_isolation'].__setitem__('sha256','0'*64),'E_REVISION'),
@@ -45,12 +45,23 @@ cases=[
  ('source_support_tamper',lambda i,a,d:next(x for x in a if x['atom_id'].endswith('011-ATOM-007-S03'))['source_support']['guard'].__setitem__('text','互換性未確認を対応済み表示しない'),'E_SOURCE_SUPPORT'),
  ('unsupported_guard_classification',lambda i,a,d:(next(x for x in a if x['atom_id'].endswith('011-ATOM-007-S03'))['source_support']['guard'].update(status='exact',text='互換性')),'E_SOURCE_SUPPORT'),
  ('inference_partition',lambda i,a,d:next(x for x in a if x['atom_id'].endswith('011-ATOM-007-S03')).__setitem__('candidate_inference',[]),'E_INFERENCE_PARTITION'),
- ('composite_promotion',lambda i,a,d:a[0].__setitem__('normalized_statement_status','candidate_inference'),'E_INFERENCE_PARTITION'),
+ ('composite_promotion',lambda i,a,d:a[0].__setitem__('normalized_statement_status','candidate_inference'),'E_ATOM_FIXED_FIELD'),
  ('inherited_predicate_text',lambda i,a,d:next(x for x in a if x['atom_id'].endswith('011-ATOM-007-S03'))['inherited_predicate'].__setitem__('text','改変された述語'),'E_INHERITED_PREDICATE'),
  ('inherited_predicate_position',lambda i,a,d:next(x for x in a if x['atom_id'].endswith('011-ATOM-007-S03'))['inherited_predicate']['source_span']['pre_isolation'].__setitem__('character_start',0),'E_INHERITED_PREDICATE'),
  ('inherited_support_link',lambda i,a,d:next(x for x in a if x['atom_id'].endswith('011-ATOM-007-S03'))['source_support']['action'].__setitem__('predicate_text','改変された述語'),'E_SOURCE_SUPPORT'),
  ('inherited_action_promotion',lambda i,a,d:next(x for x in a if x['atom_id'].endswith('011-ATOM-007-S03')).__setitem__('semantic_action','互換性未確認を対応済み表示しない'),'E_SOURCE_FIELD_INFERENCE'),
  ('generated_guard_candidate',lambda i,a,d:next(x for x in a if x['atom_id'].endswith('011-ATOM-007-S03'))['candidate_inference'].append({'field':'negative_or_guard','value':'互換性未確認を対応済み表示しない','reason':'tampered'}),'E_GUARD_INFERENCE'),
+ ('atom_unknown_key',lambda i,a,d:a[0].__setitem__('free_text','tampered'),'E_ATOM_KEYS'),
+ ('normalized_statement_keyset',lambda i,a,d:a[0]['normalized_statement'].__setitem__('free_text','tampered'),'E_ATOM_FIXED_FIELD'),
+ ('retained_meaning_keyset',lambda i,a,d:a[0]['retained_meaning'].__setitem__('free_text','tampered'),'E_ATOM_FIXED_FIELD'),
+ ('unresolved_questions_keyset',lambda i,a,d:a[0]['unresolved_questions'].__setitem__('free_text','tampered'),'E_ATOM_FIXED_FIELD'),
+ ('diff_observation_keyset',lambda i,a,d:a[0]['diff_observation'].__setitem__('free_text','tampered'),'E_ATOM_FIXED_FIELD'),
+ ('inventory_findings_keyset',lambda i,a,d:i['findings'][0].__setitem__('free_text','tampered'),'E_INVENTORY_FIXED'),
+ ('inventory_questions_keyset',lambda i,a,d:i['unresolved_questions'][0].__setitem__('free_text','tampered'),'E_INVENTORY_FIXED'),
+ ('inventory_prohibitions_keyset',lambda i,a,d:i['prohibited_inference'][0].__setitem__('free_text','tampered'),'E_INVENTORY_FIXED'),
+ ('inventory_findings_count',lambda i,a,d:i['findings'].pop(),'E_INVENTORY_FIXED'),
+ ('inventory_questions_count',lambda i,a,d:i['unresolved_questions'].pop(),'E_INVENTORY_FIXED'),
+ ('inventory_prohibitions_count',lambda i,a,d:i['prohibited_inference'].pop(),'E_INVENTORY_FIXED'),
 ]
 for c in cases: expect(*c)
 print(f'PASS outside67 Web/Web-OS L2 gap selfcheck: baseline + {len(cases)} negative cases')

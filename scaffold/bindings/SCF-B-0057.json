@@ -45,51 +45,51 @@
     },
     {
       "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/inventory.json",
-      "sha256": "f3ab274c5ecdb0d0d8de0bdb78292716f3d00cf7b6a78a28f2d232ddf7c08413",
-      "note": "source provenance audit counts／base and coverage inventory"
+      "sha256": "5fe766e4cb3a68ab78e9a4eda429fa36d91f3e68cbb1a0aa7a161da4976c0d2c",
+      "note": "fixed F/Q/P inventory records, base ancestor gate record"
     },
     {
       "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/semantic-atoms.jsonl",
-      "sha256": "643182fa66e6550d82e0bd3474d90528f2fe613922c6b30642b4717672c32489",
-      "note": "109 atomized candidates source_support／candidate_inference provenance digest"
+      "sha256": "94d8743676cd78c1b96aa80e05b4269eddf20388edbfe5c6859c54e9ec398f94",
+      "note": "122 atoms with fixed independent meaning records"
     },
     {
       "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/validate.py",
-      "sha256": "ef9d4891a4c3c41d60b099f0bc3a3b13a3864563a83a1b5d1a38ca925aaa341a",
-      "note": "source provenance and inference partition validator"
+      "sha256": "1ad2971cbd1515cdf040d49aad3cfa0d9e1af1ee2031b228e9bb2f83c8199473",
+      "note": "exact atom/inventory keysets and recorded-base ancestor gate"
     },
     {
       "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/selfcheck.py",
-      "sha256": "4662043b54ed7651b0cb679348b3f2a873c61e99f62e549dff97c03ced1a090e",
-      "note": "25 provenance and boundary negative cases"
+      "sha256": "5a6f7ca61006559bd17b5632202f3fd38c722dd9e6a9c9ab5eab5776c8a85851",
+      "note": "42 negative cases including fixed record keysets and counts"
     },
     {
       "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/README.md",
-      "sha256": "17bf461814bc585cca4833a3ce4be9628e98c1b1ed70dee6d0cef7cacbeb8543",
-      "note": "research scope and provenance policy"
+      "sha256": "ce8cafc072925a9906c35df82326ade10f812eb69dc1be7e638e55f9683c5ae8",
+      "note": "J01 schema and base gate documentation"
     },
     {
       "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/method.md",
-      "sha256": "01b09c3e6ff85f7291e222ad4038e5ef6ebd2b842a52a900012f4e81674eb34b",
-      "note": "source provenance audit method"
+      "sha256": "9c18711b40e9b804bace5031b06780f3c984ea4b60fca4d6f7bf7bcb2ca82bfe",
+      "note": "J01 fixed record method"
     },
     {
       "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/premise.md",
-      "sha256": "6dc15158baded3a8195a7b22c0ff5e22762bbec43d07e1df7485f8dc8244d751",
-      "note": "inference and source boundary premise"
+      "sha256": "825a099dae703a18d848ab33069fa34838922dd875047f71dd6148d9bfaaa384",
+      "note": "fixed meaning/catalog boundary premise"
     },
     {
       "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/status.md",
-      "sha256": "1b7e438aa419c64d80624d5c74e2280558b408f1f858b53fd74967c4e3849bf7",
-      "note": "provenance audit status and unresolved boundary"
+      "sha256": "a1828f70a802d8e3d5905bf9d484a5ce0da62f0f93fd30508e68ae41173b4dca",
+      "note": "exact HEAD and live-origin independence status"
     }
   ],
   "role": "outside67 Web／Web-OS L2 source gapのsemantic line／atom candidate、revision差分、product／connection boundary、未確定実装・failure・consumer・decisionをsource anchor付きで保持する研究用Scaffold",
   "obligations": [
     "MPR-SH-OUTSIDE67-001の67 path_revision_pairと14 live source holdingを現行register／holding digest付きで固定する",
     "OUTSIDE67-PATH-011（HELIX-Web）とOUTSIDE67-PATH-008（HELIX-Web-OS）のpre-isolation／archive commit、blob OID、SHA、bytes、line count、exact snapshotを照合する",
-    "選択したL2要求rowをactor／action／condition／negative／sequenceの逐語source_fragmentへ分割し、122 semantic candidates（109 atomized candidate＋13 composite_unresolved）とする。compositeはatomized完了数へ算入しない",
-    "109 atomized candidates全件でsource_fragment内または同一source lineのinherited_predicate span／positionからactor／action／condition／guard／sequenceを逐語監査する。fragment＋exact述語で証明できるaction／conditionをsource-supportedへ復元し、行全体にない生成guardは削除する。semantic_conditionへ推論guardを混ぜず、fragment自身またはexact inherited predicateで証明できる否定だけを保持する",
+    "選択したL2要求rowをactor／action／condition／negative／sequenceの逐語source_fragmentへ分割し、122 semantic candidates（109 atomized candidate＋13 composite_unresolved）とする。compositeはatomized完了数へ算入せず、各atomのnormalized_statement／retained_meaning／unresolved_questions／diff_observationを固定recordで保持する",
+    "選択したL2要求rowをactor／action／condition／negative／sequenceの逐語source_fragmentへ分割し、122 semantic candidates（109 atomized candidate＋13 composite_unresolved）とする。compositeはatomized完了数へ算入せず、各atomのnormalized_statement／retained_meaning／unresolved_questions／diff_observationを固定recordで保持する",
     "HELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの候補とWeb↔Web-OS／Web-OS↔HELIX-OS接続候補を保持し、owner／authorityを確定しない",
     "旧phase、旧・現行implementation、degradation、failure、consumer、decision、採否、L2合意、L3凍結、successorをunknown／unresolvedのまま保持する",
     "Web line 17のsource link差分とWeb-OSのbyte-identical結果をexact diffへ束縛し、意味同値を推測しない",
@@ -156,8 +156,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "validate.py（MPR／67 denominator／14 holding／exact Git revision／snapshot／diff／122 semantic candidate／109 atomized＋13 composite、shared-line unique coverage／inherited predicate exact span／source provenance逐語支持／guard inference削除／candidate inference分離／four products／unknown boundary）",
-      "selfcheck.py（baseline＋31 negative cases: denominator、digest、base drift、rebaseline record、selection、revision、span、inherited predicate、product、successor、diff、authority、old execution、phase、decision、semantic fieldへの推論混入、source support改変、guard分類・残留、推論分離違反）",
+      "validate.py（MPR／67 denominator／14 holding／exact Git revision／snapshot／diff／122 semantic candidate／109 atomized＋13 composite、shared-line unique coverage／inherited predicate exact span／atom／inventory fixed keyset／source provenance逐語支持／guard inference削除／candidate inference分離／four products／unknown boundary）",
+      "selfcheck.py（baseline＋42 negative cases: denominator、digest、base drift、rebaseline record、selection、revision、span、inherited predicate、product、successor、diff、authority、old execution、phase、decision、semantic fieldへの推論混入、source support改変、guard分類・残留、推論分離違反）",
       "scfctl validate／stale／residuals",
       "git diff --check"
     ],
@@ -173,7 +173,8 @@
       "複数義務のfragmentを1 atomへ戻す、またはcomposite_unresolvedをatomized完了数へ加える",
       "connection source atom／edge IDの欠落・重複",
       "source_fragmentにないactor／action／condition／guard／sequenceをsemantic fieldへ昇格する",
-      "source_fragmentとinherited_predicateのline／position／digest不一致、candidate_inferenceの削除、推論guardのnegative_or_guardまたはcandidate_inferenceへの残留"
+      "source_fragmentとinherited_predicateのline／position／digest不一致、candidate_inferenceの削除、推論guardのnegative_or_guardまたはcandidate_inferenceへの残留",
+      "atomのnormalized_statement／retained_meaning／unresolved_questions／diff_observation、regular／composite keyset、inventory F／Q／P record keyset・status・順序の改変"
     ]
   },
   "replacement": {

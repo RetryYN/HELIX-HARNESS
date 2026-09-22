@@ -18,6 +18,19 @@ EXPECTED_ID='MPR-SH-OUTSIDE67-001'
 EXPLICIT_GUARD_MARKERS=('しない','せず','拒否','分け','分離','みなさない','算入せず','流れず','失わない')
 EXPECTED={'root':{'schema','candidate_id','status','authority_effect','meaning_change_applied','successor_requirement_ids','human_decision_ref','formal_register_append','old_runtime_test_ci_execution','scope','source_holding','classification_basis','four_products','documents','semantic_atoms','source_diffs','product_units','connections','legacy_evidence','findings','unresolved_questions','prohibited_inference','verification_scope','residuals'},'scope':{'worktree','base_origin_main','base_origin_main_observed_at_start','read_only','static_only','holding_registration_id','holding_path','holding_sha256','holding_path_revision_pair_denominator','holding_record_count','current_live_source_holding_count','management_register_path','management_register_sha256','selected_source_document_count','selected_path_revision_pair_count','unexplored_path_revision_pair_count','unexplored_scope','pre_isolation_commit','archive_commit','historical_capture_commit','archive_root_present_count','source_unit','requirement_atoms_are_not_path_pairs','base_drift_policy','base_drift_observed','base_drift_from','base_drift_to','base_rebaseline_count','base_drift_impact'},'residuals':{'legacy_implementation','current_implementation','legacy_degradation','current_degradation','failure','consumer','decision','asset_source','closure'},'source_holding':{'registration_id','product_target','coverage_result','authority_effect','source_atom_count','source_collection_scope','selected_item_ids','selected_ordinals','unselected_count'},'classification_basis':{'product','phase','semantic_units','implementation','degradation','failure_consumer_decision','revision_diff'},'product':{'product','candidate_role','status','authority_effect'},'document':{'source_item_id','source_ordinal','candidate_product','candidate_phase','source_unit','artifact_kind','source_path','holding_record','pre_isolation','archive_revision','reported_holding','diff','semantic_coverage','status','atoms'},'holding_ref':{'registration_id','source_atom_set_ref','source_atom_set_digest','path_revision_pair_denominator'},'revision':{'commit','blob_oid','bytes','sha256','line_count'},'reported_holding':{'pre_sha256','archive_sha256','relation_to_pre_isolation','diff_status','archive_root_present','legacy_catalog_record_count','human_decision_ref'},'diff':{'status','hunk_count','unified_diff_path'},'coverage':{'pre_isolation_line_count','archive_line_count','atom_count','atomized_complete_count','covered_pre_lines','covered_archive_lines','unresolved_composite_atom_count','unresolved_line_count','shared_source_line_count','coverage_occurrence_policy'},'status':{'semantic_disposition','source_holding_status','authority_effect','implementation_status','degradation_status','failure_status','consumer_status','decision_status','successor_requirement_ids','meaning_change_applied','legacy_implementation_status','current_implementation_status','legacy_degradation_status','current_degradation_status'},'unit':{'unit_id','candidate_product','source_item_id','status','authority_effect','successor_requirement_ids','owner_status','phase_status','implementation_status','degradation_status','failure_status','consumer_status','decision_status','legacy_implementation_status','current_implementation_status','legacy_degradation_status','current_degradation_status'},'connection':{'connection_id','source_atom_ids','from_product','to_product','relationship','status','authority_effect','owner_status','consumer_status','decision_status'},'legacy':{'asset_ledger_path','path_lookup_result','asset_decision_status','implementation_status','failure_status','consumer_status','decision_status','no_inference_from_absence','legacy_implementation_status','current_implementation_status','legacy_degradation_status','current_degradation_status','failure_residual','consumer_residual','decision_residual'}}
 
+ATOM_KEYS={'action','actor','atom_id','atomization_status','authority_effect','candidate_granularity','candidate_inference','candidate_kind','candidate_phase','candidate_product','candidate_product_candidates','condition','consumer_status','current_degradation_status','current_implementation_status','current_requirement_status','decision_status','degradation_status','diff_observation','failure_status','human_decision_ref','implementation_status','inference_status','inherited_predicate','legacy_degradation_status','legacy_implementation_status','legacy_source_requirement_id','meaning_change_applied','negative_or_guard','normalized_statement','normalized_statement_status','phase_status','retained_meaning','revision_pair','semantic_action','semantic_condition','semantic_subject','sequence','source_fragment','source_item_id','source_line_shared','source_ordinal','source_path','source_semantic_status','source_support','successor_requirement_ids','unresolved_questions'}
+COMPOSITE_ATOM_KEYS=ATOM_KEYS|{'span_kind'}
+FIXED_ATOM_FIELD_KEYS={
+    'normalized_statement': {'status','text','source_ref'},
+    'retained_meaning': {'status','items','source_ref'},
+    'unresolved_questions': {'status','items','scope'},
+    'diff_observation': {'status','text','source_ref'},
+}
+FIXED_INVENTORY_FIELD_KEYS={'findings': {'id','status','text'}, 'unresolved_questions': {'id','status','text'}, 'prohibited_inference': {'id','status','text'}}
+FIXED_INVENTORY_STATUS={'findings':'observed','unresolved_questions':'open','prohibited_inference':'prohibited'}
+FIXED_INVENTORY_PREFIX={'findings':'F','unresolved_questions':'Q','prohibited_inference':'P'}
+FIXED_INVENTORY_COUNTS={'findings':10,'unresolved_questions':9,'prohibited_inference':6}
+
 def fail(msg): raise AssertionError(msg)
 def sha(b): return hashlib.sha256(b).hexdigest()
 def read_json(path): return json.loads(path.read_text(encoding='utf-8'))
@@ -124,6 +137,43 @@ def validate_provenance(a):
     if support['condition']['status'] not in ('exact','inherited') and a['semantic_condition']!='unresolved':
         fail(f'E_SOURCE_FIELD_INFERENCE:{a["atom_id"]}:semantic_condition')
 
+def validate_fixed_inventory_catalogs(inv):
+    """inventoryのfinding／question／prohibitionを固定record schemaへ閉じる。"""
+    for field, expected_keys in FIXED_INVENTORY_FIELD_KEYS.items():
+        records=inv.get(field)
+        if not isinstance(records,list) or not records:
+            fail(f'E_INVENTORY_FIXED:{field}:list')
+        prefix=FIXED_INVENTORY_PREFIX[field]; status=FIXED_INVENTORY_STATUS[field]
+        if len(records)!=FIXED_INVENTORY_COUNTS[field]:
+            fail(f'E_INVENTORY_FIXED:{field}:count')
+        expected_ids=[f'{prefix}{i:03d}' for i in range(1,FIXED_INVENTORY_COUNTS[field]+1)]
+        for i,record in enumerate(records):
+            if not isinstance(record,dict) or set(record)!=expected_keys:
+                fail(f'E_INVENTORY_FIXED:{field}:keys')
+            if record['id']!=expected_ids[i] or record['status']!=status or not isinstance(record['text'],str) or not record['text'].strip():
+                fail(f'E_INVENTORY_FIXED:{field}:value')
+
+def validate_fixed_atom_fields(a):
+    """atomの4意味欄を独立した固定record schemaで検査する。"""
+    expected=COMPOSITE_ATOM_KEYS if a.get('candidate_granularity')=='composite_unresolved' else ATOM_KEYS
+    if set(a)!=expected:
+        fail(f'E_ATOM_KEYS:{a.get("atom_id","<missing>")}')
+    composite=a['candidate_granularity']=='composite_unresolved'
+    ns=a['normalized_statement']
+    if not isinstance(ns,dict) or set(ns)!=FIXED_ATOM_FIELD_KEYS['normalized_statement']:
+        fail(f'E_ATOM_FIXED_FIELD:{a["atom_id"]}:normalized_statement')
+    if ns['status']!=a.get('normalized_statement_status') or ns['status'] not in ('source_supported','source_supported_with_inherited_predicate','unresolved_composite') or not isinstance(ns['text'],str) or not ns['text'].strip() or ns['source_ref']!=('source_span' if composite else 'source_fragment'):
+        fail(f'E_ATOM_FIXED_FIELD:{a["atom_id"]}:normalized_statement_value')
+    rm=a['retained_meaning']
+    if not isinstance(rm,dict) or set(rm)!=FIXED_ATOM_FIELD_KEYS['retained_meaning'] or rm['status']!='preserved_source_meaning' or rm['source_ref']!=('source_span' if composite else 'source_fragment') or not isinstance(rm['items'],list) or not rm['items'] or any(not isinstance(x,str) or not x.strip() for x in rm['items']):
+        fail(f'E_ATOM_FIXED_FIELD:{a["atom_id"]}:retained_meaning')
+    uq=a['unresolved_questions']
+    if not isinstance(uq,dict) or set(uq)!=FIXED_ATOM_FIELD_KEYS['unresolved_questions'] or uq['status']!='open_unknowns' or uq['scope']!='atom' or not isinstance(uq['items'],list) or not uq['items'] or any(not isinstance(x,str) or not x.strip() for x in uq['items']):
+        fail(f'E_ATOM_FIXED_FIELD:{a["atom_id"]}:unresolved_questions')
+    diff=a['diff_observation']
+    if not isinstance(diff,dict) or set(diff)!=FIXED_ATOM_FIELD_KEYS['diff_observation'] or diff['status']!='unresolved' or diff['source_ref']!='source-diffs.json' or not isinstance(diff['text'],str) or not diff['text'].strip():
+        fail(f'E_ATOM_FIXED_FIELD:{a["atom_id"]}:diff_observation')
+
 def validate(inv=None, atoms=None, diffs=None, *, check_head=True):
     inv=read_json(INV) if inv is None else inv
     atoms=read_jsonl(ATOMS) if atoms is None else atoms
@@ -131,11 +181,14 @@ def validate(inv=None, atoms=None, diffs=None, *, check_head=True):
     keys(inv,'root')
     if inv['schema']!='rdp001-outside67-web-webos-l2-gap/v1': fail('E_SCHEMA')
     if inv['authority_effect']!='none' or inv['meaning_change_applied'] or inv['successor_requirement_ids'] or inv['human_decision_ref'] is not None or inv['formal_register_append'] or inv['old_runtime_test_ci_execution']: fail('E_AUTHORITY_BOUNDARY')
+    validate_fixed_inventory_catalogs(inv)
     sc=inv['scope']; keys(sc,'scope')
     if check_head:
         head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
-        origin=subprocess.check_output(['git','rev-parse','origin/main'],cwd=ROOT,text=True).strip()
-        if head!=sc['base_origin_main'] or head!=origin: fail('E_BASE_DRIFT')
+        base=sc['base_origin_main']
+        if head==base: fail('E_BASE_CONTENT')
+        ancestor=subprocess.run(['git','merge-base','--is-ancestor',base,head],cwd=ROOT,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+        if ancestor.returncode != 0: fail('E_BASE_NOT_ANCESTOR')
         if not sc['base_drift_observed'] or sc['base_rebaseline_count']!=2 or sc['base_drift_to']!=sc['base_origin_main'] or sc['base_drift_from']==sc['base_origin_main']: fail('E_REBASELINE_RECORD')
     if sc['holding_path_revision_pair_denominator']!=67 or sc['holding_record_count']!=67 or sc['selected_path_revision_pair_count']!=2 or sc['unexplored_path_revision_pair_count']!=65: fail('E_DENOMINATOR')
     if sc['current_live_source_holding_count']!=14: fail('E_LIVE_HOLDING_COUNT')
@@ -157,6 +210,7 @@ def validate(inv=None, atoms=None, diffs=None, *, check_head=True):
     if len(atoms)!=122 or len({a['atom_id'] for a in atoms})!=122: fail('E_ATOM_COUNT_OR_IDS')
     atom_by_doc={sid:[] for sid in d_by}
     for a in atoms:
+        validate_fixed_atom_fields(a)
         for required in ('atom_id','source_item_id','source_ordinal','source_path','revision_pair','candidate_kind','candidate_granularity','normalized_statement','normalized_statement_status','candidate_product','candidate_product_candidates','candidate_phase','phase_status','implementation_status','degradation_status','failure_status','consumer_status','decision_status','source_semantic_status','current_requirement_status','authority_effect','meaning_change_applied','successor_requirement_ids','human_decision_ref','retained_meaning','unresolved_questions','diff_observation','legacy_implementation_status','current_implementation_status','legacy_degradation_status','current_degradation_status','source_fragment','source_line_shared','legacy_source_requirement_id','atomization_status','actor','action','condition','negative_or_guard','sequence','semantic_subject','semantic_action','semantic_condition','inherited_predicate','source_support','candidate_inference','inference_status'):
             if required not in a: fail(f'E_ATOM_FIELD:{required}')
         if a['source_item_id'] not in atom_by_doc: fail('E_ATOM_DOC')

@@ -562,7 +562,7 @@
   "semantic_atoms": {
     "path": "semantic-atoms.jsonl",
     "record_count": 122,
-    "sha256": "643182fa66e6550d82e0bd3474d90528f2fe613922c6b30642b4717672c32489",
+    "sha256": "94d8743676cd78c1b96aa80e05b4269eddf20388edbfe5c6859c54e9ec398f94",
     "granularity_counts": {
       "composite_unresolved": 13,
       "unit": 33,
@@ -716,35 +716,135 @@
     "decision_residual": "unknown"
   },
   "findings": [
-    "MPR-SH-OUTSIDE67-001の67 path_revision_pair分母を保持し、14 live source holdingのうち追加outside67を現行registerで確認した。",
-    "HELIX-WebはOUTSIDE67-PATH-011、HELIX-Web-OSはOUTSIDE67-PATH-008を各1文書／pairとして選択した。",
-    "source blobを単一要求にせず、Web 48候補（40 atomized、8 composite_unresolved）、Web-OS 74候補（69 atomized、5 composite_unresolved）へline spanを分解し、metadata／表／複数責務はcomposite_unresolvedとして残した。",
-    "Webのpre-isolation／archive差分はline 17のVision link pathだけで、Web-OSはbyte-identicalだった。",
-    "四製品候補、L2 phase候補、旧／現行implementation、degradation、failure、consumer、decisionをunknownまたはcandidateとして保持し、authority／current requirement／successorを生成していない。",
-    "検収修正: 複数義務を含むL2行を逐語source_fragment付き109 atomized candidatesへ分割し、13 composite_unresolvedをatomized complete countから除外した。",
-    "初回provenance監査: 109 atomized candidatesでsource_supportをfragment単独照合し、継承述語の再検収前に未支持値をcandidate_inferenceへ分離した。",
-    "初回fragment単独監査: actorの逐語主体支持は2件、原文fragment自身の明示的否定21件をnegative_or_guardへ保持した。継承述語は次の再検収で同一行spanへ分離した。",
-    "再検収: 109 atomized candidatesへ同一source lineのexact inherited_predicate span／positionを付与し、69件（action 53、condition 16）をfragment＋述語としてsource-supportedへ復元した。行全体にない生成guardはcandidate_inferenceから削除した。",
-    "base drift再確認: af288f397からb6b4215bcへorigin/mainが進んだ。差分はA1 next-five研究成果のみでselected input不変を確認し、HEADをb6b4215bcへ明示再baselineした。"
+    {
+      "id": "F001",
+      "status": "observed",
+      "text": "MPR-SH-OUTSIDE67-001の67 path_revision_pair分母を保持し、14 live source holdingのうち追加outside67を現行registerで確認した。"
+    },
+    {
+      "id": "F002",
+      "status": "observed",
+      "text": "HELIX-WebはOUTSIDE67-PATH-011、HELIX-Web-OSはOUTSIDE67-PATH-008を各1文書／pairとして選択した。"
+    },
+    {
+      "id": "F003",
+      "status": "observed",
+      "text": "source blobを単一要求にせず、Web 48候補（40 atomized、8 composite_unresolved）、Web-OS 74候補（69 atomized、5 composite_unresolved）へline spanを分解し、metadata／表／複数責務はcomposite_unresolvedとして残した。"
+    },
+    {
+      "id": "F004",
+      "status": "observed",
+      "text": "Webのpre-isolation／archive差分はline 17のVision link pathだけで、Web-OSはbyte-identicalだった。"
+    },
+    {
+      "id": "F005",
+      "status": "observed",
+      "text": "四製品候補、L2 phase候補、旧／現行implementation、degradation、failure、consumer、decisionをunknownまたはcandidateとして保持し、authority／current requirement／successorを生成していない。"
+    },
+    {
+      "id": "F006",
+      "status": "observed",
+      "text": "検収修正: 複数義務を含むL2行を逐語source_fragment付き109 atomized candidatesへ分割し、13 composite_unresolvedをatomized complete countから除外した。"
+    },
+    {
+      "id": "F007",
+      "status": "observed",
+      "text": "初回provenance監査: 109 atomized candidatesでsource_supportをfragment単独照合し、継承述語の再検収前に未支持値をcandidate_inferenceへ分離した。"
+    },
+    {
+      "id": "F008",
+      "status": "observed",
+      "text": "初回fragment単独監査: actorの逐語主体支持は2件、原文fragment自身の明示的否定21件をnegative_or_guardへ保持した。継承述語は次の再検収で同一行spanへ分離した。"
+    },
+    {
+      "id": "F009",
+      "status": "observed",
+      "text": "再検収: 109 atomized candidatesへ同一source lineのexact inherited_predicate span／positionを付与し、69件（action 53、condition 16）をfragment＋述語としてsource-supportedへ復元した。行全体にない生成guardはcandidate_inferenceから削除した。"
+    },
+    {
+      "id": "F010",
+      "status": "observed",
+      "text": "base drift再確認: af288f397からb6b4215bcへorigin/mainが進んだ。差分はA1 next-five研究成果のみでselected input不変を確認し、HEADをb6b4215bcへ明示再baselineした。"
+    }
   ],
   "unresolved_questions": [
-    "各atomの要求採否、L2合意、L3凍結、IR admissionに紐づく人間decision revisionは何か。",
-    "旧文書の実装・運転・consumer・failure／degradation evidenceはどのasset／decision／運用記録へ接続するか。",
-    "Web dashboard、Web-OS service state、HELIX-OS改善入口、HARNESS contractの最終unit／connection ownerは何か。",
-    "pre-isolationとarchiveのWeb source link path差分が意味同値であるかを、人間が対象revision付きで確認するか。",
-    "未選択65 pairと、選択文書内composite_unresolvedの後続review順序は何か。",
-    "同一source lineから分割した候補のunit／connection／constraint境界と最終要求identityは未決である。",
-    "source fragment単独でactor／action／condition／順序を確定できない候補はhuman semantic reviewが必要である。",
-    "candidate_inferenceへ分離したactor／action／condition／順序の解釈を、source意味へ昇格できるかは人間review待ちである。",
-    "inherited_predicateで復元したfragment＋述語の最終actor／責務ownerと、同一行list predicateの分割境界は人間review待ちである。"
+    {
+      "id": "Q001",
+      "status": "open",
+      "text": "各atomの要求採否、L2合意、L3凍結、IR admissionに紐づく人間decision revisionは何か。"
+    },
+    {
+      "id": "Q002",
+      "status": "open",
+      "text": "旧文書の実装・運転・consumer・failure／degradation evidenceはどのasset／decision／運用記録へ接続するか。"
+    },
+    {
+      "id": "Q003",
+      "status": "open",
+      "text": "Web dashboard、Web-OS service state、HELIX-OS改善入口、HARNESS contractの最終unit／connection ownerは何か。"
+    },
+    {
+      "id": "Q004",
+      "status": "open",
+      "text": "pre-isolationとarchiveのWeb source link path差分が意味同値であるかを、人間が対象revision付きで確認するか。"
+    },
+    {
+      "id": "Q005",
+      "status": "open",
+      "text": "未選択65 pairと、選択文書内composite_unresolvedの後続review順序は何か。"
+    },
+    {
+      "id": "Q006",
+      "status": "open",
+      "text": "同一source lineから分割した候補のunit／connection／constraint境界と最終要求identityは未決である。"
+    },
+    {
+      "id": "Q007",
+      "status": "open",
+      "text": "source fragment単独でactor／action／condition／順序を確定できない候補はhuman semantic reviewが必要である。"
+    },
+    {
+      "id": "Q008",
+      "status": "open",
+      "text": "candidate_inferenceへ分離したactor／action／condition／順序の解釈を、source意味へ昇格できるかは人間review待ちである。"
+    },
+    {
+      "id": "Q009",
+      "status": "open",
+      "text": "inherited_predicateで復元したfragment＋述語の最終actor／責務ownerと、同一行list predicateの分割境界は人間review待ちである。"
+    }
   ],
   "prohibited_inference": [
-    "path_revision_pairまたはsnapshotをcurrent requirement、successor、authority、採否へ昇格しない。",
-    "candidate product／phaseをowner／phase authorityへ昇格しない。",
-    "旧・現行implementation、degradation、failure、consumer、decisionを本文やpathから推測しない。",
-    "WebとWeb-OSの接続候補を共有authority、暗黙credential／state／writer、採用済みcontractと解釈しない。",
-    "旧archive runtime／test／CI／hook／adapterを実行せず、旧test／runtimeをoracleやfallbackに使わない。",
-    "MPR registerへのappend、正式要求、L2／L11承認、L3／L10設計、CI、release、deploymentを生成しない。"
+    {
+      "id": "P001",
+      "status": "prohibited",
+      "text": "path_revision_pairまたはsnapshotをcurrent requirement、successor、authority、採否へ昇格しない。"
+    },
+    {
+      "id": "P002",
+      "status": "prohibited",
+      "text": "candidate product／phaseをowner／phase authorityへ昇格しない。"
+    },
+    {
+      "id": "P003",
+      "status": "prohibited",
+      "text": "旧・現行implementation、degradation、failure、consumer、decisionを本文やpathから推測しない。"
+    },
+    {
+      "id": "P004",
+      "status": "prohibited",
+      "text": "WebとWeb-OSの接続候補を共有authority、暗黙credential／state／writer、採用済みcontractと解釈しない。"
+    },
+    {
+      "id": "P005",
+      "status": "prohibited",
+      "text": "旧archive runtime／test／CI／hook／adapterを実行せず、旧test／runtimeをoracleやfallbackに使わない。"
+    },
+    {
+      "id": "P006",
+      "status": "prohibited",
+      "text": "MPR registerへのappend、正式要求、L2／L11承認、L3／L10設計、CI、release、deploymentを生成しない。"
+    }
   ],
   "verification_scope": {
     "evidence_kind": "scaffold",
