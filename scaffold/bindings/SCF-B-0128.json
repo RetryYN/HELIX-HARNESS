@@ -124,7 +124,7 @@
       "target missing/duplicate/extra",
       "source blob/anchor/read mode",
       "classification category/product/reason/counter",
-      "L1 raw metadata/effective approval/decision digest and concrete L1/boundary anchor tamper",
+      "L1 raw metadata/effective approval/decision digest tamper -> E_L1_APPROVAL; concrete L1/boundary anchor tamper -> E_CLASSIFICATION or E_BOUNDARY_ANCHOR",
       "boundary/phase/disposition/history/implementation",
       "Wave edge injection",
       "SCF-B-0108 overlap/count/digest tamper",
