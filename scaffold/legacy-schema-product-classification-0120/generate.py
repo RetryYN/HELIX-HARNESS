@@ -127,6 +127,10 @@ NEGATIVE_CASES = [
     "category_evidence_invariant_direct", "category_evidence_invariant_conflict", "category_evidence_invariant_insufficient",
     "failure_consumer_static_refs_key_closure", "unit_product_candidates_key_closure",
     "asset_id_type", "unit_product_candidates_type", "sister_inventory_blob_tamper", "generator_category_pin_tamper", "generator_products_pin_tamper", "review_pin_omission",
+    "ledger_record_duplicate_key", "ledger_nested_duplicate_key", "inventory_duplicate_key",
+    "ledger_malformed_json", "inventory_nonobject_json", "binding_upstream_omission",
+    "binding_upstream_extra_path", "binding_wave1_digest_tamper", "binding_wave37_digest_tamper",
+    "binding_wave50_digest_tamper",
 ]
 
 

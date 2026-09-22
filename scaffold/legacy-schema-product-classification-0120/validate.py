@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-schema-product-classification-0120"
 LEDGER = BUNDLE / "classification-research.jsonl"
 INVENTORY = BUNDLE / "inventory.json"
+BINDING = ROOT / "scaffold/bindings/SCF-B-0120.json"
 BASE_REVISION = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 BINDING_ID_FIXED = "SCF-B-0120"
 ARCHIVE_PREFIX_FIXED = "archive/legacy-generation-2026-09-14/root/"
@@ -38,7 +39,9 @@ SISTER_INVENTORY_BLOBS_FIXED = {
     "scaffold/legacy-lint-product-classification-0108/inventory.json": "a97ebd5190bef017b94499e75caf5a95dae162d8",
     "scaffold/legacy-runtime-product-classification-0117/inventory.json": "0003d5aa7bc4a3defc43b4b51c280941c206f1e4",
 }
-EXPECTED_NEGATIVE_CASES = ['target_record_omission', 'target_record_duplicate', 'edge_omission', 'edge_duplicate', 'source_digest_tamper', 'source_anchor_tamper', 'source_profile_tamper', 'candidate_product_tamper', 'classification_category_tamper', 'semantic_review_tamper', 'legacy_evidence_tamper', 'boundary_digest_tamper', 'input_digest_omission', 'input_digest_duplicate', 'input_digest_extra_path', 'authority_promotion', 'record_top_level_extra_key', 'source_read_mode_tamper', 'inventory_authority_promotion', 'inventory_scope_tamper', 'inventory_formal_update_tamper', 'inventory_classification_rule_tamper', 'inventory_counts_artifact_kind_tamper', 'inventory_edge_count_tamper', 'fixed_BASE_non_ancestor', 'generator_review_spec_tamper', 'generator_anchor_tamper', 'generator_l1_tamper', 'base_pin_tamper', 'base_source_missing', 'history_tamper', 'human_judgment_tamper', 'input_digest_value_tamper', 'inventory_negative_case_tamper', 'output_digest_tamper', 'phase_status_tamper', 'source_line_range_tamper', 'inventory_overlap_tamper', 'category_evidence_invariant_direct', 'category_evidence_invariant_conflict', 'category_evidence_invariant_insufficient', 'failure_consumer_static_refs_key_closure', 'unit_product_candidates_key_closure', 'asset_id_type', 'unit_product_candidates_type', 'sister_inventory_blob_tamper', 'generator_category_pin_tamper', 'generator_products_pin_tamper', 'review_pin_omission']
+EXPECTED_NEGATIVE_CASES = ['target_record_omission', 'target_record_duplicate', 'edge_omission', 'edge_duplicate', 'source_digest_tamper', 'source_anchor_tamper', 'source_profile_tamper', 'candidate_product_tamper', 'classification_category_tamper', 'semantic_review_tamper', 'legacy_evidence_tamper', 'boundary_digest_tamper', 'input_digest_omission', 'input_digest_duplicate', 'input_digest_extra_path', 'authority_promotion', 'record_top_level_extra_key', 'source_read_mode_tamper', 'inventory_authority_promotion', 'inventory_scope_tamper', 'inventory_formal_update_tamper', 'inventory_classification_rule_tamper', 'inventory_counts_artifact_kind_tamper', 'inventory_edge_count_tamper', 'fixed_BASE_non_ancestor', 'generator_review_spec_tamper', 'generator_anchor_tamper', 'generator_l1_tamper', 'base_pin_tamper', 'base_source_missing', 'history_tamper', 'human_judgment_tamper', 'input_digest_value_tamper', 'inventory_negative_case_tamper', 'output_digest_tamper', 'phase_status_tamper', 'source_line_range_tamper', 'inventory_overlap_tamper', 'category_evidence_invariant_direct', 'category_evidence_invariant_conflict', 'category_evidence_invariant_insufficient', 'failure_consumer_static_refs_key_closure', 'unit_product_candidates_key_closure', 'asset_id_type', 'unit_product_candidates_type', 'sister_inventory_blob_tamper', 'generator_category_pin_tamper', 'generator_products_pin_tamper', 'review_pin_omission', 'ledger_record_duplicate_key', 'ledger_nested_duplicate_key', 'inventory_duplicate_key', 'ledger_malformed_json', 'inventory_nonobject_json', 'binding_upstream_omission', 'binding_upstream_extra_path', 'binding_wave1_digest_tamper', 'binding_wave37_digest_tamper', 'binding_wave50_digest_tamper']
+EXPECTED_NONARCHIVE_INPUT_PATHS = tuple(path for path in [*WAVE_PATHS_FIXED.values(), *GLOBAL_INPUTS_FIXED] if not path.startswith("archive/"))
+EXPECTED_ARCHIVE_INPUT_PATHS = tuple(path for path in [*WAVE_PATHS_FIXED.values(), *GLOBAL_INPUTS_FIXED] if path.startswith("archive/"))
 RECORD_KEYS = frozenset({"artifact_evidence_kinds", "asset_id", "asset_ledger", "authority_effect", "boundary_evidence", "candidate_products", "classification_category", "classification_reason", "classification_state", "failure_consumer_static_refs", "formal_asset_classification_updated", "human_judgment_remaining", "l1_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "manual_semantic_review", "new_build_allowed", "observed_wave_products", "phase_ledger", "semantic_link_statuses", "source_exact", "source_profile", "unit_product_candidates", "wave_semantic_links"})
 SOURCE_KEYS = frozenset({"archive_path", "blob", "bytes", "ledger_source_sha256", "line_count", "read_mode", "semantic_anchors", "sha256", "source_path"})
 # Fixed BASE semantic review pins are independent of generate.py.  Generator
@@ -344,11 +347,33 @@ def git_blob(path: str, base: str = BASE_REVISION) -> str:
     except subprocess.CalledProcessError as exc:
         fail("E_BASE_SOURCE", f"missing fixed-base blob {path}: {exc}")
 
+def _strict_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key: {key}")
+        result[key] = value
+    return result
+
+def _strict_json(text: str, context: str):
+    try:
+        value = json.loads(text, object_pairs_hook=_strict_object)
+    except (json.JSONDecodeError, ValueError) as exc:
+        fail("E_JSON", f"{context}: malformed or duplicate-key JSON ({exc})")
+    if not isinstance(value, dict):
+        fail("E_JSON", f"{context}: expected JSON object")
+    return value
+
 def local_json(path: Path):
-    return json.loads(path.read_text())
+    return _strict_json(path.read_text(), str(path))
 
 def local_jsonl(path: Path):
-    return [json.loads(x) for x in path.read_text().splitlines() if x.strip()]
+    rows = []
+    for line_number, text in enumerate(path.read_text().splitlines(), 1):
+        if not text.strip():
+            continue
+        rows.append(_strict_json(text, f"{path}:{line_number}"))
+    return rows
 
 def base_jsonl(path: str):
     return [(i, json.loads(x)) for i, x in enumerate(git_bytes(path).decode().splitlines(), 1) if x.strip()]
@@ -466,11 +491,36 @@ def verify_inputs(inventory, targets, phase_by_asset):
     actual = inventory.get("input_digests")
     if not isinstance(actual, list) or [x.get("path") for x in actual] != expected_paths or len({x.get("path") for x in actual}) != len(expected_paths):
         fail("E_INPUT_SET", "input digest path set/order differs from fixed target source set")
+    expected_archive_paths = [*EXPECTED_ARCHIVE_INPUT_PATHS, *source_paths]
+    actual_archive_paths = [x.get("path") for x in actual if isinstance(x, dict) and str(x.get("path", "")).startswith("archive/")]
+    if actual_archive_paths != expected_archive_paths or len(actual_archive_paths) != 32:
+        fail("E_ARCHIVE_EVIDENCE", "archive static evidence path set/order differs from fixed BASE target sources")
     for item in actual:
         data = git_bytes(item["path"])
         expected = {"path": item["path"], "blob": git_blob(item["path"]), "bytes": len(data), "sha256": tagged(data)}
         if item != expected:
             fail("E_INPUT_DIGEST", f"input digest mismatch {item.get('path')}")
+
+def verify_binding_input_closure(inventory):
+    binding = local_json(BINDING)
+    upstream = binding.get("upstream")
+    if not isinstance(upstream, list) or any(not isinstance(item, dict) for item in upstream):
+        fail("E_BINDING_INPUT_SET", "Binding upstream must be an object list")
+    expected_paths = list(EXPECTED_NONARCHIVE_INPUT_PATHS)
+    actual_paths = [item.get("path") for item in upstream]
+    if actual_paths != expected_paths or len(actual_paths) != 66 or len(set(actual_paths)) != 66:
+        fail("E_BINDING_INPUT_SET", "Binding upstream must close over the 66 non-archive inventory inputs in order")
+    inventory_items = inventory.get("input_digests")
+    if not isinstance(inventory_items, list):
+        fail("E_BINDING_INPUT_SET", "inventory input_digests is not a list")
+    inventory_by_path = {item.get("path"): item for item in inventory_items if isinstance(item, dict)}
+    for item in upstream:
+        path, raw = item.get("path"), item.get("sha256")
+        if not isinstance(raw, str) or len(raw) != 64 or any(ch not in "0123456789abcdef" for ch in raw):
+            fail("E_BINDING_INPUT_DIGEST", f"Binding upstream raw SHA is invalid: {path}")
+        expected = inventory_by_path.get(path, {}).get("sha256")
+        if expected != f"sha256:{raw}":
+            fail("E_BINDING_INPUT_DIGEST", f"Binding upstream SHA differs from inventory: {path}")
 
 def verify_static_ranges(record):
     expected_boundary, expected_l1 = boundary_evidence(), l1_evidence()
@@ -516,6 +566,7 @@ def verify():
     if tuple(targets) != EXPECTED_TARGET_IDS or len(targets) != 31: fail("E_TARGET_SET", "fixed BASE target ID set drift")
     if set(PINNED_REVIEWS) != set(targets): fail("E_REVIEW_PIN", "independent review pin set drift")
     verify_inputs(inventory, targets, phase_by_asset)
+    verify_binding_input_closure(inventory)
     if len(rows) != 31 or any(not isinstance(r, dict) or not isinstance(r.get("asset_id"), str) for r in rows) or sorted(r.get("asset_id") for r in rows) != targets or len({r.get("asset_id") for r in rows}) != 31: fail("E_TARGET_SET", "records have missing, duplicate, or extra target asset")
     expected_set = {"target_asset_count": 31, "target_asset_ids": targets, "target_asset_ids_sha256": tagged("\n".join(targets).encode()), "source_paths": [phase_by_asset[a][1]["source_path"] for a in targets]}
     if inventory.get("expected_sets") != expected_set: fail("E_TARGET_SET", "expected target set declaration drift")

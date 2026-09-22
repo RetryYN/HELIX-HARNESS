@@ -10,6 +10,7 @@ assert spec and spec.loader
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 original_ledger, original_inventory = module.LEDGER, module.INVENTORY
+original_binding = module.BINDING
 module.verify()
 base_rows, base_inventory = module.local_jsonl(original_ledger), module.local_json(original_inventory)
 TARGET_WITH_EDGE = next(i for i, row in enumerate(base_rows) if row["wave_semantic_links"])
@@ -22,10 +23,10 @@ def tagged(data: bytes) -> str:
     return "sha256:" + hashlib.sha256(data).hexdigest()
 
 
-def run_case(label, expected_code, mutate_rows=None, mutate_inventory=None, mutate_module=None):
+def run_case(label, expected_code, mutate_rows=None, mutate_inventory=None, mutate_module=None, mutate_raw=None, mutate_binding=None):
     rows, inventory = copy.deepcopy(base_rows), copy.deepcopy(base_inventory)
     if mutate_rows: mutate_rows(rows)
-    old = {key: getattr(module, key) for key in ("LEDGER", "INVENTORY", "BASE_REVISION", "PHASE_FIXED", "SISTER_INVENTORY_BLOBS_FIXED", "PINNED_REVIEWS")}
+    old = {key: getattr(module, key) for key in ("LEDGER", "INVENTORY", "BINDING", "BASE_REVISION", "PHASE_FIXED", "SISTER_INVENTORY_BLOBS_FIXED", "PINNED_REVIEWS")}
     try:
         with tempfile.TemporaryDirectory(prefix="scf-b-0120-selfcheck-") as tmp:
             root = Path(tmp)
@@ -36,6 +37,14 @@ def run_case(label, expected_code, mutate_rows=None, mutate_inventory=None, muta
             inv = root / original_inventory.name
             inv.write_text(json.dumps(inventory, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
             module.LEDGER, module.INVENTORY = ledger, inv
+            binding_path = root / original_binding.name
+            binding_path.write_text(original_binding.read_text())
+            if mutate_binding:
+                binding = json.loads(binding_path.read_text())
+                mutate_binding(binding)
+                binding_path.write_text(json.dumps(binding, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
+                module.BINDING = binding_path
+            if mutate_raw: mutate_raw(ledger, inv)
             if mutate_module: mutate_module(module)
             module.git_bytes.cache_clear(); module.git_blob.cache_clear()
             try:
@@ -132,6 +141,21 @@ def sister_inventory_blob(mod):
 def review_pin_pop(mod):
     mod.PINNED_REVIEWS = dict(mod.PINNED_REVIEWS)
     mod.PINNED_REVIEWS.pop(next(iter(mod.PINNED_REVIEWS)))
+def ledger_record_duplicate_key(ledger, inventory): ledger.write_text('{"asset_id":"duplicate","asset_id":"duplicate"}\n')
+def ledger_nested_duplicate_key(ledger, inventory): ledger.write_text('{"asset_id":"nested","source_exact":{"blob":"a","blob":"b"}}\n')
+def inventory_duplicate_key(ledger, inventory): inventory.write_text('{"base_revision":"one","base_revision":"two"}\n')
+def ledger_malformed_json(ledger, inventory): ledger.write_text('{"asset_id":\n')
+def inventory_nonobject_json(ledger, inventory): inventory.write_text('[]\n')
+def binding_upstream_omission(binding): binding["upstream"].pop()
+def binding_upstream_extra_path(binding): binding["upstream"].append(copy.deepcopy(binding["upstream"][0])); binding["upstream"][-1]["path"] = "docs/extra-input.jsonl"
+def binding_digest_tamper(path):
+    def mutate(binding):
+        for item in binding["upstream"]:
+            if item["path"] == path:
+                item["sha256"] = "0" * 64
+                return
+        raise AssertionError(f"missing binding path {path}")
+    return mutate
 
 run_case("target record omission", "E_TARGET_SET", mutate_rows=remove_record)
 run_case("target record duplicate", "E_TARGET_SET", mutate_rows=duplicate_record)
@@ -177,9 +201,19 @@ run_case("asset id type", "E_TARGET_SET", mutate_rows=asset_id_type)
 run_case("unit product candidates type", "E_CANDIDATE_PRODUCTS", mutate_rows=unit_type)
 run_case("sister inventory blob tamper", "E_OVERLAP", mutate_module=sister_inventory_blob)
 run_case("review pin omission", "E_REVIEW_PIN", mutate_module=review_pin_pop)
+run_case("ledger record duplicate key", "E_JSON", mutate_raw=ledger_record_duplicate_key)
+run_case("ledger nested duplicate key", "E_JSON", mutate_raw=ledger_nested_duplicate_key)
+run_case("inventory duplicate key", "E_JSON", mutate_raw=inventory_duplicate_key)
+run_case("ledger malformed JSON", "E_JSON", mutate_raw=ledger_malformed_json)
+run_case("inventory nonobject JSON", "E_JSON", mutate_raw=inventory_nonobject_json)
+run_case("Binding upstream omission", "E_BINDING_INPUT_SET", mutate_binding=binding_upstream_omission)
+run_case("Binding upstream extra path", "E_BINDING_INPUT_SET", mutate_binding=binding_upstream_extra_path)
+run_case("Binding Wave1 stale digest", "E_BINDING_INPUT_DIGEST", mutate_binding=binding_digest_tamper("docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl"))
+run_case("Binding Wave37 stale digest", "E_BINDING_INPUT_DIGEST", mutate_binding=binding_digest_tamper("scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl"))
+run_case("Binding Wave50 stale digest", "E_BINDING_INPUT_DIGEST", mutate_binding=binding_digest_tamper("scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl"))
 run_generator_case("generator review spec tamper", "E_LEGACY_EVIDENCE", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(legacy="tampered legacy pin"))
 run_generator_case("generator category pin tamper", "E_CLASSIFICATION", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(category="insufficient_basis"))
 run_generator_case("generator products pin tamper", "E_CLASSIFICATION", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(products=[]))
 run_generator_case("generator anchor tamper", "E_SOURCE_ANCHOR", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(marker="export const ATOMIC_CONTRACT_ID_PATTERN"))
 run_generator_case("generator L1 tamper", "E_SEMANTIC_REVIEW", lambda g: g.L1_RANGES["HELIX-OS"].__setitem__(0, (22, 26)))
-print("SCF-B-0120 selfcheck: PASS negative_cases=49")
+print("SCF-B-0120 selfcheck: PASS negative_cases=59")

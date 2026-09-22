@@ -13,11 +13,11 @@
 
 ## 検証
 
-旧archive runtime・test・CIは実行していない。固定BASE Git objectの静的readと、現行Scaffoldの決定的生成・独立validator・selfcheckだけを使う。category evidenceは direct=候補product/L1 evidence各1、conflict=各2以上、insufficient=各0を固定し、nested static reference／unit candidate key閉包とasset/unit ID型を検査する。Wave64は固定BASEから再導出し、lint95／runtime73はHEAD固定の姉妹inventory blob／BASE／scope／exact ID setを検証して重複を再導出する。
+旧archive runtime・test・CIは実行していない。固定BASE Git objectの静的readと、現行Scaffoldの決定的生成・独立validator・selfcheckだけを使う。ledger/inventoryの重複JSON key・malformed/non-objectは`E_JSON`で拒否し、Binding upstreamはinventoryの66非archive input path／raw SHAを完全一致で閉包する。archive MANIFEST 1件＋対象source 31件は固定BASE static evidenceとしてvalidatorで保持する。category evidenceは direct=候補product/L1 evidence各1、conflict=各2以上、insufficient=各0を固定し、nested static reference／unit candidate key閉包とasset/unit ID型を検査する。Wave64は固定BASEから再導出し、lint95／runtime73はHEAD固定の姉妹inventory blob／BASE／scope／exact ID setを検証して重複を再導出する。
 
 - `python3 scaffold/legacy-schema-product-classification-0120/generate.py`
 - `python3 scaffold/legacy-schema-product-classification-0120/validate.py`
-- `python3 scaffold/legacy-schema-product-classification-0120/selfcheck.py`（49負例、期待error code照合。generator category/products pin再生成、nested key閉包、型ガード、姉妹inventory blob drift、validator `PINNED_REVIEWS`欠落（`E_REVIEW_PIN`）を含む）
+- `python3 scaffold/legacy-schema-product-classification-0120/selfcheck.py`（59負例、期待error code照合。重複／malformed／non-object JSON、Binding 66入力閉包、Wave1／37／50 stale SHA、generator category/products pin再生成、nested key閉包、型ガード、姉妹inventory blob drift、validator `PINNED_REVIEWS`欠落を含む）
 - `python3 -m py_compile`（generate／validate／selfcheck）
 - `python3 scaffold/tools/scfctl.py validate`
 - `python3 scaffold/tools/scfctl.py stale`（0）／`residuals`（0）; `validate`（129 bindings, fail=0）

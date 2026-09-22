@@ -815,7 +815,17 @@
     "sister_inventory_blob_tamper",
     "generator_category_pin_tamper",
     "generator_products_pin_tamper",
-    "review_pin_omission"
+    "review_pin_omission",
+    "ledger_record_duplicate_key",
+    "ledger_nested_duplicate_key",
+    "inventory_duplicate_key",
+    "ledger_malformed_json",
+    "inventory_nonobject_json",
+    "binding_upstream_omission",
+    "binding_upstream_extra_path",
+    "binding_wave1_digest_tamper",
+    "binding_wave37_digest_tamper",
+    "binding_wave50_digest_tamper"
   ],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
   "output_sha256": "sha256:c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204",
