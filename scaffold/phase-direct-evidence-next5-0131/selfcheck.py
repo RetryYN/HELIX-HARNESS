@@ -232,6 +232,10 @@ if __name__ == "__main__":
         ("taxonomy status", "E_TAXONOMY", lambda inv, rows: rows[0]["taxonomy_alignment"].__setitem__("status", "CROSS_CUTTING_PHASE_REVIEW_PENDING")),
         ("taxonomy authority boundary", "E_TAXONOMY", lambda inv, rows: rows[0]["taxonomy_alignment"]["authority_boundary"].__setitem__("formal_phase_authority_modified", True)),
         ("taxonomy evidence join", "E_TAXONOMY_JOIN", lambda inv, rows: rows[0]["taxonomy_alignment"]["required_evidence_join"].__setitem__("exact source anchor", ["tampered"])),
+        ("decision asset pair count", "E_INPUT_DIGEST", lambda inv, rows: inv["counts"].__setitem__("decision_records_for_asset_pairs", 0)),
+        ("decision unique asset count", "E_INPUT_DIGEST", lambda inv, rows: inv["counts"].__setitem__("unique_assets_with_decision_records", 0)),
+        ("read-after asset pair count", "E_INPUT_DIGEST", lambda inv, rows: inv["counts"].__setitem__("read_after_records_for_asset_pairs", 0)),
+        ("read-after unique asset count", "E_INPUT_DIGEST", lambda inv, rows: inv["counts"].__setitem__("unique_assets_with_read_after_records", 0)),
     ]
     for name, expected, mutate in cases:
         run_case(name, expected, mutate)

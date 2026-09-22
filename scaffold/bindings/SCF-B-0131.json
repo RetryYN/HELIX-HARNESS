@@ -384,6 +384,7 @@
     "5 unit（HELIX-OS 5）のexact ID setを保持する",
     "Wave1〜50の598 scan rowと15 semantic edge、11 old assetを固定する",
     "旧asset source／history／decision／read-after／failure／consumerを独立partitionで保持する",
+    "decision/read-after分母をunit×asset pairとunique assetへ分離し、pair 5件・unique 1/11件を固定する",
     "implementation／degradation／failureはunknown、consumer closure pending、taxonomy status別のphase review waitingを保持する",
     "candidate phaseとformal phase、product scope候補とformal product authorityを分離する",
     "validator独立再導出と33負例を維持する",
@@ -465,14 +466,18 @@
       "taxonomy authority boundary tamper must emit E_TAXONOMY",
       "taxonomy required-evidence join tamper must emit E_TAXONOMY_JOIN",
       "taxonomy body tamper regenerated from an orphan commit must emit E_TAXONOMY_NOT_ANCESTOR",
-      "degradation status tamper must emit E_AUTHORITY_BOUNDARY"
+      "degradation status tamper must emit E_AUTHORITY_BOUNDARY",
+      "decision asset-pair count tamper must emit E_INPUT_DIGEST",
+      "decision unique-asset count tamper must emit E_INPUT_DIGEST",
+      "read-after asset-pair count tamper must emit E_INPUT_DIGEST",
+      "read-after unique-asset count tamper must emit E_INPUT_DIGEST"
     ],
     "oracles": [
       "validate.py independent fixed-BASE rederivation PASS: 5 units／15 edges／11 old assets",
       "source／decision／read-after／failure／consumer partitions exact; implementation/degradation/failure unknown and degradation tamper fail-closed and consumer closure pending",
       "phase candidate, source/human matrix rule, and phase non-applicability separation exact",
       "all PHCAP-01〜20 boundary pending exact; four product L1 context-only",
-      "selfcheck.py expected 33 negative executions and error codes",
+      "selfcheck.py expected 37 negative executions and error codes, including pair/unique asset count tamper",
       "scfctl validate／stale／residuals",
       "git diff --check",
       "immutable taxonomy source commit/path/digest/blob OID, fixed source ancestry, and exact 5 ID/status/matrix-join/authority boundary comparison"

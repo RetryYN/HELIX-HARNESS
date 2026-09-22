@@ -29,12 +29,12 @@ taxonomyの入力はimmutable source `78e23a622bc9c40183269e22a59c566d22b93435:s
 
 ## 分母と成果物
 
-- 5 units（OS 5）、Wave scan 598行、semantic edge 15件、旧asset 11件。
+- 5 units（OS 5）、Wave scan 598行、semantic edge 15件、旧asset 11件。decision/read-afterはunit×asset pair基準で各5件、unique asset基準では各1/11件（`LEGACY-ASSET-A60CF91DD2AF6693E6F9`のみ）として別集計する。
 - `inventory.json`: 固定BASE、taxonomy immutable source、入力digest、混在statusの分母、authority境界、負例コード。
 - `evidence.jsonl`: 5 unitsの原文anchor、Wave edge、旧asset partition、実装／縮退／failure／consumerの未解決状態、phase候補、判断待ち。
 - `generate.py`: 固定BASE Git object bytesとimmutable taxonomy sourceから再生成する。
 - `validate.py`: `generate.py`をimportせず、固定BASEとtaxonomy sourceから独立再導出し、全fieldをfail-closed比較する。
-- `selfcheck.py`: 33負例でschema、Binding、BASE、入力digest、unit／edge／asset、taxonomy set/status/matrix join/authority boundary、各partition、phase／product境界を検証する。
+- `selfcheck.py`: 37負例でschema、Binding、BASE、入力digest、unit／edge／asset、taxonomy set/status/matrix join/authority boundary、各partition、pair／unique asset集計、phase／product境界を検証する。
 - `PR-DRAFT.md`: Draft PR本文。
 
 ## 検証

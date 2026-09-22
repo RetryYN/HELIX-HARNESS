@@ -15,6 +15,7 @@ research: record direct phase evidence gaps for next five held units (SCF-B-0131
 - 旧asset source／history／decision／read-after／failure／consumerを別partitionに保持する。implementation／degradation／failureはunknown、consumer closureはpendingであり、未実装・縮退・failureの確定を行わない。
 - asset／Wave由来のphase candidate targetsを候補として記録し、direct phase evidenceは0/5、phase非適用は`not_proven`、全PHCAP-01〜20境界は保留する。
 - Binding `SCF-B-0131`へ全9成果物を登録する。
+- decision/read-afterの分母をunit×asset pairとunique assetへ分離し、pairは各5件、uniqueは各1/11件（`LEGACY-ASSET-A60CF91DD2AF6693E6F9`のみ）としてinventory／validator／selfcheck／Bindingへ固定する。
 
 ## unit別の結果
 
@@ -32,7 +33,7 @@ research: record direct phase evidence gaps for next five held units (SCF-B-0131
 
 - `generate.py`: 5 units、15 edges、11 old assets、598 scan rows
 - `validate.py`: PASS（5 units、15 edges、11 assets; direct phase evidence unresolved）
-- `selfcheck.py`: PASS（33 negative cases、taxonomy set/status/matrix join/authority boundary、孤立commit本文改竄再生成を含む期待error code照合）
+- `selfcheck.py`: PASS（37 negative cases、pair／unique asset集計、taxonomy set/status/matrix join/authority boundary、孤立commit本文改竄再生成を含む期待error code照合）
 - `py_compile`: PASS
 - `scfctl validate`: PASS
 - `scfctl stale`: PASS
