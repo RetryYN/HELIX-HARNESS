@@ -221,8 +221,10 @@ class Validator:
                 self.error("E_CANDIDATE_BINDING", f"{unit} representative candidate record不一致")
             actual_unit_edges = current.get("semantic_review_edges", [])
             expected_unit_edges = expected_by_unit[unit]
-            if {x.get("review_id") for x in actual_unit_edges} != {x.get("review_id") for x in expected_unit_edges}:
-                self.error("E_REVIEW_EDGE_SET", f"{unit} unit edge集合不一致")
+            actual_edge_ids = [x.get("review_id") for x in actual_unit_edges]
+            expected_edge_ids = [x.get("review_id") for x in expected_unit_edges]
+            if sorted(actual_edge_ids) != sorted(expected_edge_ids):
+                self.error("E_REVIEW_EDGE_SET", f"{unit} unit edge multiset／件数が不一致")
             for edge in actual_unit_edges:
                 rid = edge.get("review_id")
                 expected = expected_edges.get(rid)
@@ -468,10 +470,16 @@ class Validator:
 
     def check_unit_asset_set(self, current: dict, expected_unit_edges: list[dict]) -> None:
         expected_assets = sorted({edge.get("asset_id") for edge in expected_unit_edges})
-        actual_assets = sorted({
+        actual_assets = [
             asset.get("asset_id")
             for asset in current.get("old_asset_evidence", {}).get("assets", [])
-        })
+        ]
+        if len(actual_assets) != len(set(actual_assets)):
+            self.error(
+                "E_OLD_ASSET_UNIT_SET",
+                f"{current.get('unit_candidate_id')} unit asset行に重複がある",
+            )
+        actual_assets = sorted(actual_assets)
         if actual_assets != expected_assets:
             self.error(
                 "E_OLD_ASSET_UNIT_SET",

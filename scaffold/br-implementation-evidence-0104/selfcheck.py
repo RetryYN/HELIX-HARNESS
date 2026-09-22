@@ -85,6 +85,12 @@ def main() -> None:
     def injected_unit_asset(rows):
         rows[0]["old_asset_evidence"]["assets"].append({"asset_id": "LEGACY-ASSET-FAKE-2055"})
 
+    def duplicated_unit_asset(rows):
+        rows[0]["old_asset_evidence"]["assets"].append(copy.deepcopy(rows[0]["old_asset_evidence"]["assets"][0]))
+
+    def duplicated_unit_edge(rows):
+        rows[0]["semantic_review_edges"].append(copy.deepcopy(rows[0]["semantic_review_edges"][0]))
+
     def tampered_inventory_declaration(inventory):
         inventory["counts"]["current_static_refs"] = 99999
 
@@ -121,6 +127,8 @@ def main() -> None:
     run_case("tampered-anchor-resolution", "E_OLD_ANCHOR_RESOLUTION", tampered_anchor_resolution)
     run_case("removed-unit-asset", "E_OLD_ASSET_UNIT_SET", removed_unit_asset)
     run_case("injected-unit-asset", "E_OLD_ASSET_UNIT_SET", injected_unit_asset)
+    run_case("duplicated-unit-asset", "E_OLD_ASSET_UNIT_SET", duplicated_unit_asset)
+    run_case("duplicated-unit-edge", "E_REVIEW_EDGE_SET", duplicated_unit_edge)
     run_case("tampered-inventory-declaration", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_inventory_declaration)
     run_case("reversed-impl-presence", "E_OLD_IMPL_EVIDENCE", reversed_impl_presence)
     run_case("emptied-impl-contribution", "E_OLD_IMPL_EVIDENCE", emptied_impl_contribution)
@@ -128,7 +136,7 @@ def main() -> None:
     run_case("fabricated-failure-ledger-status", "E_OLD_FAILURE_EVIDENCE", fabricated_failure_ledger_status)
     run_case("emptied-failure-reason", "E_OLD_FAILURE_EVIDENCE", emptied_failure_reason)
     run_case("tampered-candidate-record", "E_CANDIDATE_BINDING", tampered_candidate_record)
-    print("SCF-B-0104 selfcheck: PASS (22 negative cases; expected error codes matched)")
+    print("SCF-B-0104 selfcheck: PASS (24 negative cases; expected error codes matched)")
 
 
 if __name__ == "__main__":

@@ -26,7 +26,7 @@ research: HIL-BR-06-20 23 unit implementation evidence crosswalk (SCF-B-0104)
     SCF-B-0104 validate: PASS (23 units, 68 review edges, 47 old assets; static-only)
 
     python3 scaffold/br-implementation-evidence-0104/selfcheck.py
-    SCF-B-0104 selfcheck: PASS (22 negative cases; expected error codes matched)
+    SCF-B-0104 selfcheck: PASS (24 negative cases; expected error codes matched)
 
     python3 scaffold/tools/scfctl.py validate
 
