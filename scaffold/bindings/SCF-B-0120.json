@@ -1,0 +1,183 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0120",
+  "kind": "scaffold",
+  "title": "src/schema unresolved 31旧assetの四製品候補分類 research",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "src/schema旧sourceの四製品責務候補を横断照合する研究（単一owner未確定）",
+  "state": "registered",
+  "reason": "固定BASEからproduct_classification_status=unresolvedかつsource_path=src/schema/の31旧assetを全件再導出する。旧source本文の具体span、四製品L1、product-boundary反証、phase、Wave、旧history／failure／consumerを静的に突合し、direct_product_basis 17件、multi_product_conflict 10件、insufficient_basis 4件を研究候補として保持する。正式asset分類、単一product owner、formal route、phase authority、successor、implementation成立、consumer closure、new buildは生成しない。",
+  "upstream": [
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
+      "sha256": "fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md",
+      "sha256": "5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
+      "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "fixed BASE Git object input; static read only; no authority promotion"
+    }
+  ],
+  "role": "src/schema/implementation_source 31件について旧source本文と四製品L1／boundary、Wave semantic link、phase、旧history／failure／consumerを静的に突合し、候補・競合・根拠不足と縮退証拠を再現可能に保持する",
+  "obligations": [
+    "固定BASE 5562f04da0f3205f9aa58205ec0d478419fc4f2eの祖先性と入力path／blob／bytes／digest集合を検査する",
+    "phase ledgerの unresolved＋src/schema/条件から31件exact setを再導出し、欠落・重複・余分を拒否する",
+    "Wave1–50の598 edge／355 unique assetと対象1 edge／1 linked assetを欠落・重複なく固定し、Waveのobserved product scopeを正式候補へ継承しない",
+    "31件すべての旧source blob／bytes／SHA-256／具体line anchor、phase／disposition、旧decision／failure／consumer状態を保持する",
+    "旧source本文から具体spanを読み、HARNESS 10件、OS 7件、HARNESS+OSまたはHARNESS+Webのconflict 10件、insufficient 4件を理由・反証付きcandidateとして記録する",
+    "legacy入力抑制、fail-close、adapter-neutral、未実行・未成立の縮退証拠をsource anchorとともに記録し、旧sourceの実装成立を推測しない",
+    "四製品L1／boundary／failure／consumerのline text digestと解釈改竄、candidate／authority昇格をvalidator／selfcheckでfail-closedにする",
+    "正式asset分類、product route、phase、owner、successor、implementation成立、consumer closure、new buildを更新せず、旧資産は静的readだけに限定する"
+  ],
+  "connections": {
+    "consumers": [
+      "schema product-boundary reviewer",
+      "Wave1–50 semantic edge reviewer",
+      "四製品L1／product-boundary reviewer",
+      "legacy asset history／failure／consumer reviewer"
+    ],
+    "dependencies": [
+      "legacy asset phase product classification bootstrap",
+      "legacy asset disposition／decision／read-after",
+      "legacy requirement implementation crosswalk",
+      "legacy IR product-unit decomposition",
+      "Wave36 semantic link ledger",
+      "current four-product L1 and product-boundary"
+    ],
+    "boundary": "成果物はscaffold/配下のresearch candidate。正式asset分類、単一product owner、formal routing、phase authority、successor、implementation成立、consumer closure、release、deploymentを生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "fixed BASE Git object static reads",
+      "deterministic generator／validator／selfcheck",
+      "scfctl validate／stale／residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "旧archive runtime／test／CI／workflow／hook／adapter／sourceの実行",
+      "formal asset／product／phase authorityの更新",
+      "既存台帳・formal route・successor・implementation成立・consumer closureの更新",
+      "merge／close／deployment"
+    ]
+  },
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0120.json",
+    "scaffold/legacy-schema-product-classification-0120/README.md",
+    "scaffold/legacy-schema-product-classification-0120/PR-DRAFT.md",
+    "scaffold/legacy-schema-product-classification-0120/generate.py",
+    "scaffold/legacy-schema-product-classification-0120/validate.py",
+    "scaffold/legacy-schema-product-classification-0120/selfcheck.py",
+    "scaffold/legacy-schema-product-classification-0120/inventory.json",
+    "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "fixed BASE ancestor and 98 input digest records",
+      "fixed BASE 31 target asset ID tuple and target phase/disposition rederivation",
+      "Wave1–50 598 edge／355 unique／1 target edge／1 linked asset denominator",
+      "31 target asset artifact evidence kinds: implementation_source 31",
+      "31 source blob／bytes／SHA-256／concrete line anchor rederivation",
+      "validator-owned fixed 31 asset ID／category／product／span／interpretation／legacy-shrinkage oracle",
+      "category denominator direct_product_basis 17／multi_product_conflict 10／insufficient_basis 4",
+      "research overlap: Wave64 + lint95 + runtime73 + schema31 union 232; schema intersections 1／0／0"
+    ],
+    "negative_cases": [
+      "E_TARGET_SET: target_record_omission／target_record_duplicate",
+      "E_EDGE_SET: edge_omission／edge_duplicate",
+      "E_SOURCE_DIGEST／E_SOURCE_ANCHOR／E_SOURCE_LINE: source digest／read mode／anchor／line tamper",
+      "E_PROFILE／E_CLASSIFICATION／E_SEMANTIC_REVIEW／E_LEGACY_EVIDENCE: profile／candidate／category／manual semantic／legacy shrinkage tamper",
+      "E_BOUNDARY_DIGEST／E_HISTORY／E_HUMAN_JUDGMENT: boundary／history／human judgment tamper",
+      "E_INPUT_SET／E_INPUT_DIGEST: input omission／duplicate／extra／value tamper",
+      "E_AUTHORITY_PROMOTION／E_RECORD_SCHEMA: authority promotion／unexpected record key",
+      "E_INVENTORY／E_INVENTORY_DECLARATION／E_EXPECTED_DENOMINATOR／E_OVERLAP／E_OUTPUT_DIGEST: inventory and denominator mutations",
+      "E_BASE_PIN／E_BASE_SOURCE／E_BASE_NOT_ANCESTOR／E_PHASE_STATUS: BASE and phase mutations",
+      "generator review spec／anchor／L1 mutation followed by regeneration is rejected by independent validator (38 cases total)"
+    ]
+  },
+  "replacement": {
+    "confirmation_digest": null,
+    "confirmation_ref": null,
+    "formal_artifacts": [],
+    "issue": 0,
+    "role_target": "人間レビュー後に必要なら正式asset classification／product ownership／route／successorへ個別移管するが、現束からは未定",
+    "status": "pending",
+    "target_revisions": {},
+    "transfer": null
+  },
+  "created": "2026-09-23",
+  "updated": "2026-09-23"
+}
