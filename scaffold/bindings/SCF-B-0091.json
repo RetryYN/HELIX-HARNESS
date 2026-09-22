@@ -6,7 +6,7 @@
   "product": "HELIX-Web",
   "owner_candidate": "Web／Web-OS Vision候補の四製品境界、phase／implementation接続のbounded review（正式owner未解決）",
   "state": "registered",
-  "reason": "SCF-B-0080の29 parent spanとSCF-B-0081／0084／0088の35候補を全件再照合し、WebとWeb-OSの候補境界を分離した接続行列を作成する。19 atomized candidateと16 composite_unresolvedを保持し、49件のcandidate product edgeと154件のconnection matrixを機械可読化する。phase／asset未接続edgeは各35件についてcandidate atom IDのexact multiset（重複・欠落なし）を要求し、source lineも同一candidateへ束縛する。WebとWeb-OSはcandidate boundaryとして分離し、正式product、owner、authority、requirement denominator、phase、implementation、degradation、failure／consumer closureへ昇格しない。専用ID／link fieldに候補parent span／atom IDが無い場合はphase／assetをunlinked_unknownとして残す。baseはorigin/mainのd340ea82723c01fece5610dceea8eff81e03b686へrebaselineし、先行base変更時は停止する。replacement.issue=0は未commit研究束のbinding登録sentinelである。",
+  "reason": "SCF-B-0080の29 parent spanとSCF-B-0081／0084／0088の35候補を全件再照合し、WebとWeb-OSの候補境界を分離した接続行列を作成する。19 atomized candidateと16 composite_unresolvedを保持し、49件のcandidate product edgeと154件のconnection matrixを機械可読化する。phase／asset未接続edgeは各35件についてcandidate atom IDのexact multiset（重複・欠落なし）を要求し、source lineも同一candidateへ束縛する。WebとWeb-OSはcandidate boundaryとして分離し、正式product、owner、authority、requirement denominator、phase、implementation、degradation、failure／consumer closureへ昇格しない。専用ID／link fieldに候補parent span／atom IDが無い場合はphase／assetをunlinked_unknownとして残す。baseはorigin/mainのdbe43847bfc7f4677c7e5d186b0afb82d38bab3bへrebaselineし、先行base変更時は停止する。replacement.issue=0は未commit研究束のbinding登録sentinelである。",
   "upstream": [
     {
       "path": "docs/concept/product-boundary.md",
@@ -145,12 +145,12 @@
     },
     {
       "path": "scaffold/rdp001-web-webos-vision-coverage-0091/inventory.json",
-      "sha256": "9294f8f3c8d8f0a3409afe73e573b9c3b6950a0cc39a6ae2fb4ffae606d8c28f",
+      "sha256": "4d5b74c90e4ff6a1561b9ff460ce79e55455c1517286d2e4171d4ce7f7ab7748",
       "note": "target inventory with corrected validation digests"
     },
     {
       "path": "scaffold/rdp001-web-webos-vision-coverage-0091/validate.py",
-      "sha256": "2a20443d482e8d20a04963a4d8f653cd6ed03ad3fb05683f299adbf2673bc74d",
+      "sha256": "6c7eb033289414d89a95812b80eadc1ed92c8f103dfe655f33904b1f78b73c60",
       "note": "fail-closed validator including phase/asset candidate ID multisets"
     },
     {

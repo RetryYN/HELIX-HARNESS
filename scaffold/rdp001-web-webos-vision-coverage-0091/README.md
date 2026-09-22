@@ -1,6 +1,6 @@
 # SCF-B-0091 Web／Web-OS Vision coverage research
 
-基準は `origin/main` の `d340ea82723c01fece5610dceea8eff81e03b686`。SCF-B-0080 の Vision parent span と、SCF-B-0081／0084／0088 の候補を静的に再照合し、Web と Web-OS の候補境界を分離した接続行列を作成する bounded Scaffold です。
+基準は `origin/main` の `dbe43847bfc7f4677c7e5d186b0afb82d38bab3b`。SCF-B-0080 の Vision parent span と、SCF-B-0081／0084／0088 の候補を静的に再照合し、Web と Web-OS の候補境界を分離した接続行列を作成する bounded Scaffold です。
 
 入力から 29 parent span、35 candidate record（atomized 19、composite_unresolved 16）を保持しました。候補 product の重複を正式要求の分母へ合算せず、product candidate edge は 49 件として個別に記録しています。親span coverage edge は 35 件、phase／asset の未接続行を各35件含む connection matrix は154件です。候補ごとの source line と source ID は重複を検査します。
 
