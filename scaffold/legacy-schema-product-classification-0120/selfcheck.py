@@ -13,6 +13,9 @@ original_ledger, original_inventory = module.LEDGER, module.INVENTORY
 module.verify()
 base_rows, base_inventory = module.local_jsonl(original_ledger), module.local_json(original_inventory)
 TARGET_WITH_EDGE = next(i for i, row in enumerate(base_rows) if row["wave_semantic_links"])
+TARGET_DIRECT = next(i for i, row in enumerate(base_rows) if row["classification_category"] == "direct_product_basis")
+TARGET_CONFLICT = next(i for i, row in enumerate(base_rows) if row["classification_category"] == "multi_product_conflict")
+TARGET_INSUFFICIENT = next(i for i, row in enumerate(base_rows) if row["classification_category"] == "insufficient_basis")
 
 
 def tagged(data: bytes) -> str:
@@ -115,6 +118,13 @@ def non_ancestor(mod): mod.BASE_REVISION = "0" * 40
 def missing_base_source(mod): mod.PHASE_FIXED = "docs/missing-fixed-base.jsonl"
 def base_pin(inv): inv["base_revision"] = "0" * 40
 def phase_status(rows): rows[0]["phase_ledger"]["product_classification_status"] = "approved"
+def category_direct_invariant(rows): rows[TARGET_DIRECT]["manual_semantic_review"]["l1_evidence"] = {}
+def category_conflict_invariant(rows): rows[TARGET_CONFLICT]["candidate_products"] = [rows[TARGET_CONFLICT]["candidate_products"][0]]
+def category_insufficient_invariant(rows): rows[TARGET_INSUFFICIENT]["candidate_products"] = ["HELIX-HARNESS"]
+def static_ref_key_closure(rows): rows[0]["failure_consumer_static_refs"]["failure"]["extra"] = True
+def unit_key_closure(rows): rows[TARGET_WITH_EDGE]["unit_product_candidates"][0]["extra"] = True
+def asset_id_type(rows): rows[0]["asset_id"] = 123
+def unit_type(rows): rows[TARGET_WITH_EDGE]["unit_product_candidates"] = "invalid"
 
 run_case("target record omission", "E_TARGET_SET", mutate_rows=remove_record)
 run_case("target record duplicate", "E_TARGET_SET", mutate_rows=duplicate_record)
@@ -151,7 +161,16 @@ run_case("fixed BASE non-ancestor", "E_BASE_NOT_ANCESTOR", mutate_module=non_anc
 run_case("fixed BASE source missing", "E_BASE_SOURCE", mutate_module=missing_base_source)
 run_case("fixed BASE pin tamper", "E_BASE_PIN", mutate_inventory=base_pin)
 run_case("phase status tamper", "E_PHASE_STATUS", mutate_rows=phase_status)
-run_generator_case("generator review spec tamper", "E_PROFILE", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(category="insufficient_basis"))
+run_case("category evidence direct invariant", "E_CLASSIFICATION", mutate_rows=category_direct_invariant)
+run_case("category evidence conflict invariant", "E_CLASSIFICATION", mutate_rows=category_conflict_invariant)
+run_case("category evidence insufficient invariant", "E_CLASSIFICATION", mutate_rows=category_insufficient_invariant)
+run_case("failure consumer static refs key closure", "E_STATIC_REF_SCHEMA", mutate_rows=static_ref_key_closure)
+run_case("unit product candidates key closure", "E_CANDIDATE_PRODUCTS", mutate_rows=unit_key_closure)
+run_case("asset id type", "E_TARGET_SET", mutate_rows=asset_id_type)
+run_case("unit product candidates type", "E_CANDIDATE_PRODUCTS", mutate_rows=unit_type)
+run_generator_case("generator review spec tamper", "E_LEGACY_EVIDENCE", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(legacy="tampered legacy pin"))
+run_generator_case("generator category pin tamper", "E_CLASSIFICATION", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(category="insufficient_basis"))
+run_generator_case("generator products pin tamper", "E_CLASSIFICATION", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(products=[]))
 run_generator_case("generator anchor tamper", "E_SOURCE_ANCHOR", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(marker="export const ATOMIC_CONTRACT_ID_PATTERN"))
 run_generator_case("generator L1 tamper", "E_SEMANTIC_REVIEW", lambda g: g.L1_RANGES["HELIX-OS"].__setitem__(0, (22, 26)))
-print("SCF-B-0120 selfcheck: PASS negative_cases=38")
+print("SCF-B-0120 selfcheck: PASS negative_cases=47")

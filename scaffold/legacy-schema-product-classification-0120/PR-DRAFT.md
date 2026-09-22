@@ -13,11 +13,11 @@
 
 ## 検証
 
-旧archive runtime・test・CIは実行していない。固定BASE Git objectの静的readと、現行Scaffoldの決定的生成・独立validator・selfcheckだけを使う。
+旧archive runtime・test・CIは実行していない。固定BASE Git objectの静的readと、現行Scaffoldの決定的生成・独立validator・selfcheckだけを使う。category evidenceは direct=候補product/L1 evidence各1、conflict=各2以上、insufficient=各0を固定し、nested static reference／unit candidate key閉包とasset/unit ID型を検査する。重複は姉妹inventoryをoracleにせず、固定BASE phase/Waveから再導出する。
 
 - `python3 scaffold/legacy-schema-product-classification-0120/generate.py`
 - `python3 scaffold/legacy-schema-product-classification-0120/validate.py`
-- `python3 scaffold/legacy-schema-product-classification-0120/selfcheck.py`（38負例、期待error code照合）
+- `python3 scaffold/legacy-schema-product-classification-0120/selfcheck.py`（47負例、期待error code照合。generator category/products pin再生成、nested key閉包、型ガードを含む）
 - `python3 scaffold/tools/scfctl.py validate`
 - `python3 scaffold/tools/scfctl.py stale`
 - `python3 scaffold/tools/scfctl.py residuals`

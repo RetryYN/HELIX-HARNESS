@@ -11,7 +11,6 @@ BUNDLE = ROOT / "scaffold/legacy-schema-product-classification-0120"
 LEDGER = BUNDLE / "classification-research.jsonl"
 INVENTORY = BUNDLE / "inventory.json"
 BASE_REVISION = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
-FIXED_BASE_REVISION = BASE_REVISION
 BINDING_ID_FIXED = "SCF-B-0120"
 ARCHIVE_PREFIX_FIXED = "archive/legacy-generation-2026-09-14/root/"
 PHASE_FIXED = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
@@ -31,7 +30,7 @@ BOUNDARY_RANGES_FIXED = {"HELIX-HARNESS": [(36, 36), (54, 61), (86, 89)], "HELIX
 L1_RANGES_FIXED = {"HELIX-HARNESS": [(22, 24), (54, 58)], "HELIX-OS": [(22, 25), (59, 63)], "HELIX-Web": [(24, 26), (47, 49)], "HELIX-Web-OS": [(14, 15), (39, 44)]}
 FAILURE_RANGES_FIXED = [(17, 23), (52, 63)]
 CONSUMER_RANGES_FIXED = [(24, 36), (38, 50)]
-EXPECTED_NEGATIVE_CASES = ['target_record_omission', 'target_record_duplicate', 'edge_omission', 'edge_duplicate', 'source_digest_tamper', 'source_anchor_tamper', 'source_profile_tamper', 'candidate_product_tamper', 'classification_category_tamper', 'semantic_review_tamper', 'legacy_evidence_tamper', 'boundary_digest_tamper', 'input_digest_omission', 'input_digest_duplicate', 'input_digest_extra_path', 'authority_promotion', 'record_top_level_extra_key', 'source_read_mode_tamper', 'inventory_authority_promotion', 'inventory_scope_tamper', 'inventory_formal_update_tamper', 'inventory_classification_rule_tamper', 'inventory_counts_artifact_kind_tamper', 'inventory_edge_count_tamper', 'fixed_BASE_non_ancestor', 'generator_review_spec_tamper', 'generator_anchor_tamper', 'generator_l1_tamper', 'base_pin_tamper', 'base_source_missing', 'history_tamper', 'human_judgment_tamper', 'input_digest_value_tamper', 'inventory_negative_case_tamper', 'output_digest_tamper', 'phase_status_tamper', 'source_line_range_tamper', 'inventory_overlap_tamper']
+EXPECTED_NEGATIVE_CASES = ['target_record_omission', 'target_record_duplicate', 'edge_omission', 'edge_duplicate', 'source_digest_tamper', 'source_anchor_tamper', 'source_profile_tamper', 'candidate_product_tamper', 'classification_category_tamper', 'semantic_review_tamper', 'legacy_evidence_tamper', 'boundary_digest_tamper', 'input_digest_omission', 'input_digest_duplicate', 'input_digest_extra_path', 'authority_promotion', 'record_top_level_extra_key', 'source_read_mode_tamper', 'inventory_authority_promotion', 'inventory_scope_tamper', 'inventory_formal_update_tamper', 'inventory_classification_rule_tamper', 'inventory_counts_artifact_kind_tamper', 'inventory_edge_count_tamper', 'fixed_BASE_non_ancestor', 'generator_review_spec_tamper', 'generator_anchor_tamper', 'generator_l1_tamper', 'base_pin_tamper', 'base_source_missing', 'history_tamper', 'human_judgment_tamper', 'input_digest_value_tamper', 'inventory_negative_case_tamper', 'output_digest_tamper', 'phase_status_tamper', 'source_line_range_tamper', 'inventory_overlap_tamper', 'category_evidence_invariant_direct', 'category_evidence_invariant_conflict', 'category_evidence_invariant_insufficient', 'failure_consumer_static_refs_key_closure', 'unit_product_candidates_key_closure', 'asset_id_type', 'unit_product_candidates_type', 'generator_category_pin_tamper', 'generator_products_pin_tamper']
 RECORD_KEYS = frozenset({"artifact_evidence_kinds", "asset_id", "asset_ledger", "authority_effect", "boundary_evidence", "candidate_products", "classification_category", "classification_reason", "classification_state", "failure_consumer_static_refs", "formal_asset_classification_updated", "human_judgment_remaining", "l1_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "manual_semantic_review", "new_build_allowed", "observed_wave_products", "phase_ledger", "semantic_link_statuses", "source_exact", "source_profile", "unit_product_candidates", "wave_semantic_links"})
 SOURCE_KEYS = frozenset({"archive_path", "blob", "bytes", "ledger_source_sha256", "line_count", "read_mode", "semantic_anchors", "sha256", "source_path"})
 # Fixed BASE semantic review pins are independent of generate.py.  Generator
@@ -313,7 +312,6 @@ PINNED_REVIEWS = {'LEGACY-ASSET-11C75CC63968FB9A5BD2': {'category': 'direct_prod
                                        'start': 24}}
 EXPECTED_TARGET_IDS = ('LEGACY-ASSET-11C75CC63968FB9A5BD2', 'LEGACY-ASSET-132E6449FA96E5CABBBF', 'LEGACY-ASSET-18579F09E6B2C29E5622', 'LEGACY-ASSET-187E43CE3096B88CA8B4', 'LEGACY-ASSET-18EBF31B40C9A58DE958', 'LEGACY-ASSET-1ABE9822E36400BC82C2', 'LEGACY-ASSET-1AE119F9830818EAA0D5', 'LEGACY-ASSET-2B68A62292FADDC5BCA6', 'LEGACY-ASSET-30539BEC772802F50C9D', 'LEGACY-ASSET-32FD3269C766571AD5DA', 'LEGACY-ASSET-3AEDBB3A9A7B549C4C24', 'LEGACY-ASSET-3D7D5062903EE9CEDFEF', 'LEGACY-ASSET-414CC59CA35B28BB7AF4', 'LEGACY-ASSET-5442594ED146AD72850C', 'LEGACY-ASSET-67D77EEBF1209346882C', 'LEGACY-ASSET-72ECA3C318F8028A6D91', 'LEGACY-ASSET-85F302A8E7280A166171', 'LEGACY-ASSET-8A390337BEE15CED1AA2', 'LEGACY-ASSET-95ACDEA21F7AF6996D4A', 'LEGACY-ASSET-97D1784D53918F126E3B', 'LEGACY-ASSET-9BFD3E86A8F5AE0DA720', 'LEGACY-ASSET-B5482F292A2E654347E8', 'LEGACY-ASSET-B8033A9BCD9CC70BF8F6', 'LEGACY-ASSET-C6CF7E1C334856500558', 'LEGACY-ASSET-D60AE87D9DFA0740F4A8', 'LEGACY-ASSET-DBCE67DF3C1FE8648191', 'LEGACY-ASSET-E4EDA1517A4F062B2D64', 'LEGACY-ASSET-E595E192F58FF3B1A2A0', 'LEGACY-ASSET-E9FF2DF247348F5608F2', 'LEGACY-ASSET-EEC2DA57D64EC4908112', 'LEGACY-ASSET-F0ED1811C81FD1184188')
 EXPECTED_MANUAL_REVIEWED_ASSET_IDS = frozenset(EXPECTED_TARGET_IDS)
-EXPECTED_SCHEMA_WAVE_OVERLAP_IDS = ('LEGACY-ASSET-C6CF7E1C334856500558',)
 
 def fail(code: str, message: str) -> None:
     raise AssertionError(f"{code}: {message}")
@@ -402,6 +400,32 @@ def expected_manual(path: str, pin: dict):
     counter = [{"product": product, "evidence": receipt(BOUNDARY_FIXED, *BOUNDARY_RANGES_FIXED[product][1]), "interpretation": f"product-boundary text for {product} remains the human counter-boundary; the source span does not establish an approved owner"} for product in (products or PRODUCTS)]
     return {"status": status, "source_spans": expected_anchor(path, pin), "candidate_products": list(products), "l1_evidence": {p: l1_evidence()[p] for p in products}, "interpretation": pin["reason"], "boundary_counterevidence": counter, "consumer_boundary": {"status": "pending", "interpretation": "legacy consumer relation is retained as a pending closure boundary; no direct semantic link is accepted", "refs": [receipt(CONSUMER_SOURCE_FIXED, *pair) for pair in CONSUMER_RANGES_FIXED]}}
 
+
+def overlap_from_fixed_scopes(phase_by_asset: dict, by_asset: dict, schema_ids: list[str]) -> dict:
+    """Independently re-derive the four sister research scopes from BASE."""
+    unresolved = {aid for aid, (_, row) in phase_by_asset.items() if row.get("product_classification_status") == "unresolved"}
+    scopes = {
+        "wave_unresolved_product": {aid for aid in by_asset if aid in unresolved},
+        "lint_unresolved_src": {aid for aid, (_, row) in phase_by_asset.items() if aid in unresolved and row.get("artifact_evidence_kind") == "implementation_source" and row.get("source_path", "").startswith("src/lint/")},
+        "runtime_unresolved_src": {aid for aid, (_, row) in phase_by_asset.items() if aid in unresolved and row.get("artifact_evidence_kind") == "implementation_source" and row.get("source_path", "").startswith("src/runtime/")},
+        "schema_unresolved_src": set(schema_ids),
+    }
+    return {
+        "reference_bundle_counts": {key: len(value) for key, value in scopes.items()},
+        "pairwise_intersections": {
+            "schema_wave_unresolved_product": len(scopes["schema_unresolved_src"] & scopes["wave_unresolved_product"]),
+            "schema_lint_unresolved_src": len(scopes["schema_unresolved_src"] & scopes["lint_unresolved_src"]),
+            "schema_runtime_unresolved_src": len(scopes["schema_unresolved_src"] & scopes["runtime_unresolved_src"]),
+            "runtime_wave_unresolved_product": len(scopes["runtime_unresolved_src"] & scopes["wave_unresolved_product"]),
+            "runtime_lint_unresolved_src": len(scopes["runtime_unresolved_src"] & scopes["lint_unresolved_src"]),
+            "wave_unresolved_product_lint_unresolved_src": len(scopes["wave_unresolved_product"] & scopes["lint_unresolved_src"]),
+        },
+        "union_count": len(set().union(*scopes.values())),
+        "schema_wave_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["wave_unresolved_product"]),
+        "schema_lint_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["lint_unresolved_src"]),
+        "schema_runtime_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["runtime_unresolved_src"]),
+    }
+
 def verify_base():
     try:
         subprocess.check_call(["git", "merge-base", "--is-ancestor", BASE_REVISION, "HEAD"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -425,14 +449,38 @@ def verify_static_ranges(record):
     if record.get("boundary_evidence") != expected_boundary: fail("E_BOUNDARY_DIGEST", record.get("asset_id", ""))
     if record.get("l1_evidence") != expected_l1: fail("E_BOUNDARY_DIGEST", record.get("asset_id", ""))
     static = record.get("failure_consumer_static_refs", {})
+    if not isinstance(static, dict) or set(static) != {"failure", "consumer"}:
+        fail("E_STATIC_REF_SCHEMA", record.get("asset_id", ""))
     for key, path, pairs in (("failure", FAILURE_SOURCE_FIXED, FAILURE_RANGES_FIXED), ("consumer", CONSUMER_SOURCE_FIXED, CONSUMER_RANGES_FIXED)):
+        if not isinstance(static.get(key), dict) or set(static[key]) != {"path", "blob", "ranges"}:
+            fail("E_STATIC_REF_SCHEMA", f"{record.get('asset_id')}:{key}")
+        if not isinstance(static[key].get("ranges"), list) or any(not isinstance(item, dict) or set(item) != {"path", "blob", "line_start", "line_end", "line_count", "line_text_sha256", "line_text"} for item in static[key]["ranges"]):
+            fail("E_STATIC_REF_SCHEMA", f"{record.get('asset_id')}:{key}:ranges")
         expected = {"path": path, "blob": git_blob(path), "ranges": [receipt(path, *pair) for pair in pairs]}
         if static.get(key) != expected: fail("E_BOUNDARY_DIGEST", f"{record.get('asset_id')}:{key}")
+
+
+def verify_category_evidence(record, pin):
+    category = record.get("classification_category")
+    products = record.get("candidate_products")
+    review = record.get("manual_semantic_review")
+    reviewed_products = review.get("candidate_products") if isinstance(review, dict) else None
+    reviewed_l1 = review.get("l1_evidence") if isinstance(review, dict) else None
+    if category not in {"direct_product_basis", "multi_product_conflict", "insufficient_basis"} or not isinstance(products, list) or any(not isinstance(p, str) for p in products) or not isinstance(reviewed_products, list) or any(not isinstance(p, str) for p in reviewed_products) or not isinstance(reviewed_l1, dict) or any(not isinstance(p, str) for p in reviewed_l1):
+        fail("E_CLASSIFICATION", record.get("asset_id", ""))
+    if category == "direct_product_basis":
+        valid = len(products) == len(reviewed_products) == len(reviewed_l1) == 1
+    elif category == "multi_product_conflict":
+        valid = len(products) == len(reviewed_products) == len(reviewed_l1) and len(products) >= 2
+    else:
+        valid = not products and not reviewed_products and not reviewed_l1
+    if not valid or set(products) != set(reviewed_products) or set(products) != set(reviewed_l1):
+        fail("E_CLASSIFICATION", record.get("asset_id", ""))
 
 def verify():
     verify_base()
     inventory, rows = local_json(INVENTORY), local_jsonl(LEDGER)
-    if BASE_REVISION != FIXED_BASE_REVISION or inventory.get("base_revision") != FIXED_BASE_REVISION or inventory.get("base_source_mode") != "all input and archive evidence bytes from fixed BASE Git objects": fail("E_BASE_PIN", "BASE pin/source mode drift")
+    if inventory.get("base_revision") != BASE_REVISION or inventory.get("base_source_mode") != "all input and archive evidence bytes from fixed BASE Git objects": fail("E_BASE_PIN", "BASE pin/source mode drift")
     if inventory.get("negative_cases") != EXPECTED_NEGATIVE_CASES: fail("E_INVENTORY", "negative case declaration drift")
     phase_rows = base_jsonl(PHASE_FIXED)
     phase_by_asset = {r["asset_id"]: (n, r) for n, r in phase_rows}
@@ -440,7 +488,7 @@ def verify():
     if tuple(targets) != EXPECTED_TARGET_IDS or len(targets) != 31: fail("E_TARGET_SET", "fixed BASE target ID set drift")
     if set(PINNED_REVIEWS) != set(targets): fail("E_REVIEW_PIN", "independent review pin set drift")
     verify_inputs(inventory, targets, phase_by_asset)
-    if len(rows) != 31 or sorted(r.get("asset_id") for r in rows) != targets or len({r.get("asset_id") for r in rows}) != 31: fail("E_TARGET_SET", "records have missing, duplicate, or extra target asset")
+    if len(rows) != 31 or any(not isinstance(r, dict) or not isinstance(r.get("asset_id"), str) for r in rows) or sorted(r.get("asset_id") for r in rows) != targets or len({r.get("asset_id") for r in rows}) != 31: fail("E_TARGET_SET", "records have missing, duplicate, or extra target asset")
     expected_set = {"target_asset_count": 31, "target_asset_ids": targets, "target_asset_ids_sha256": tagged("\n".join(targets).encode()), "source_paths": [phase_by_asset[a][1]["source_path"] for a in targets]}
     if inventory.get("expected_sets") != expected_set: fail("E_TARGET_SET", "expected target set declaration drift")
     dispositions = {r["asset_id"]: (n, r) for n, r in base_jsonl(DISPOSITION_FIXED)}
@@ -471,6 +519,7 @@ def verify():
         if set(source) != SOURCE_KEYS or source.get("archive_path") != archive_path or source.get("source_path") != disp["source_path"] or source.get("blob") != git_blob(archive_path) or source.get("bytes") != len(data) or source.get("line_count") != len(data.decode(errors="replace").splitlines()) or source.get("sha256") != tagged(data) or source.get("ledger_source_sha256") != "sha256:" + disp["source_sha256"] or source.get("read_mode") != "git_object_static_read_only": fail("E_SOURCE_DIGEST", aid)
         for anchor in source.get("semantic_anchors", []):
             if not isinstance(anchor.get("line_start"), int) or not isinstance(anchor.get("line_end"), int) or anchor["line_start"] < 1 or anchor["line_start"] > anchor["line_end"] or anchor["line_end"] > source.get("line_count", 0): fail("E_SOURCE_LINE", aid)
+        verify_category_evidence(record, pin)
         if source.get("semantic_anchors") != expected_anchor(archive_path, pin): fail("E_SOURCE_ANCHOR", aid)
         links = expected_links(by_asset.get(aid, []))
         if record.get("wave_semantic_links") != links: fail("E_EDGE_SET", aid)
@@ -482,6 +531,8 @@ def verify():
         if record.get("source_profile") != expected_profile: fail("E_PROFILE", aid)
         unit_ids = sorted({x["unit_candidate_id"] for x in links if x.get("unit_candidate_id")})
         units = record.get("unit_product_candidates")
+        if not isinstance(units, list) or any(not isinstance(unit, dict) or set(unit) != {"unit_candidate_id", "crosswalk", "decomposition"} or not isinstance(unit.get("unit_candidate_id"), str) for unit in units):
+            fail("E_CANDIDATE_PRODUCTS", aid)
         if [u.get("unit_candidate_id") for u in units] != unit_ids: fail("E_CANDIDATE_PRODUCTS", aid)
         for unit in units:
             uid = unit.get("unit_candidate_id")
@@ -504,7 +555,7 @@ def verify():
     if inventory.get("review_counts") != {"source_semantic_reviewed": 31, "source_semantic_review_pending": 0, "direct_candidate_basis": expected_categories["direct_product_basis"], "multi_product_conflict": expected_categories["multi_product_conflict"], "insufficient_basis": expected_categories["insufficient_basis"]}: fail("E_SEMANTIC_REVIEW", "review counts mismatch")
     if set(inventory.get("manual_reviewed_asset_ids", [])) != set(targets) or len(inventory.get("manual_reviewed_asset_ids", [])) != 31: fail("E_SEMANTIC_REVIEW", "manual reviewed set mismatch")
     expected_meta = {"schema_revision": 1, "binding_id": BINDING_ID_FIXED, "scope": "phase product unresolved + src/schema/ exact 31 assets", "wave_source_paths": {str(n): path for n, path in WAVE_PATHS_FIXED.items()}, "expected_sets": expected_set, "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed", "formal_update": {"formal_asset_classification_updated": False, "phase_ledger_updated": False, "product_route_updated": False, "successor_updated": False, "new_build_allowed": False, "authority_effect": "none"}, "classification_rule": {"direct_product_basis": "a reviewed concrete source span mapped to one product L1 with explicit boundary counterevidence and pending consumer evidence", "multi_product_conflict": "reviewed source behavior contains concrete responsibilities mapped to two product boundaries; no single owner is proposed", "insufficient_basis": "source is generic, tombstone, shared infrastructure, or lacks an accepted product-boundary proof; observed Wave scope is not inherited"}, "boundary_refs": {"product_boundary": BOUNDARY_FIXED, "l1": L1_FIXED}, "history_failure_consumer": {"disposition_rows": 31, "decision_rows_for_targets": sum(bool(r["legacy_history_failure_consumer"]["decisions"]) for r in rows), "read_after_rows_for_targets": sum(bool(r["legacy_history_failure_consumer"]["read_after"]) for r in rows), "failure_consumer_refs_are_static_global_inventory": True}, "edge_contract": {"edge_identity": "edge_id derived from wave/path/line/asset_id/unit_candidate_id/semantic_link_status", "duplicate_edges_forbidden": True, "missing_edges_forbidden": True}, "authority_boundary": {"authority_effect": "none", "classification_state": "research_proposal_pending_human_product_review", "formal_asset_classification_updated": False, "new_build_allowed": False}, "artifacts": ["scaffold/bindings/SCF-B-0120.json", "scaffold/legacy-schema-product-classification-0120/README.md", "scaffold/legacy-schema-product-classification-0120/PR-DRAFT.md", "scaffold/legacy-schema-product-classification-0120/generate.py", "scaffold/legacy-schema-product-classification-0120/validate.py", "scaffold/legacy-schema-product-classification-0120/selfcheck.py", "scaffold/legacy-schema-product-classification-0120/inventory.json", "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl"]}
-    expected_overlap = {"reference_bundle_counts": {"wave_unresolved_product": 64, "lint_unresolved_src": 95, "runtime_unresolved_src": 73, "schema_unresolved_src": 31}, "pairwise_intersections": {"schema_wave_unresolved_product": 1, "schema_lint_unresolved_src": 0, "schema_runtime_unresolved_src": 0, "runtime_wave_unresolved_product": 16, "runtime_lint_unresolved_src": 0, "wave_unresolved_product_lint_unresolved_src": 14}, "union_count": 232, "schema_wave_overlap_asset_ids": list(EXPECTED_SCHEMA_WAVE_OVERLAP_IDS), "schema_lint_overlap_asset_ids": [], "schema_runtime_overlap_asset_ids": []}
+    expected_overlap = overlap_from_fixed_scopes(phase_by_asset, by_asset, targets)
     expected_top = set(expected_meta) | {"base_revision", "base_source_mode", "counts", "input_digests", "output_sha256", "review_counts", "manual_reviewed_asset_ids", "negative_cases", "research_overlap"}
     if set(inventory) != expected_top: fail("E_INVENTORY_DECLARATION", "inventory top-level key set mismatch")
     for key, value in expected_meta.items():

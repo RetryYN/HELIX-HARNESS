@@ -116,6 +116,9 @@ NEGATIVE_CASES = [
     "human_judgment_tamper", "input_digest_value_tamper", "inventory_negative_case_tamper",
     "output_digest_tamper", "phase_status_tamper", "source_line_range_tamper",
     "inventory_overlap_tamper",
+    "category_evidence_invariant_direct", "category_evidence_invariant_conflict", "category_evidence_invariant_insufficient",
+    "failure_consumer_static_refs_key_closure", "unit_product_candidates_key_closure",
+    "asset_id_type", "unit_product_candidates_type", "generator_category_pin_tamper", "generator_products_pin_tamper",
 ]
 
 
@@ -129,6 +132,40 @@ def tagged(data: bytes) -> str:
 
 def canonical(value: object) -> str:
     return tagged(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode())
+
+
+def overlap_from_fixed_scopes(phase_by_asset: dict, by_asset: dict, schema_ids: list[str]) -> dict:
+    """Re-derive sister research scopes from fixed BASE phase/Wave observations.
+
+    This deliberately reads the source selection rules rather than importing a
+    sister bundle inventory as an oracle.  The resulting sets correspond to
+    Wave unresolved-product, lint implementation-source, runtime
+    implementation-source, and this schema scope.
+    """
+    unresolved = {aid for aid, (_, row) in phase_by_asset.items() if row.get("product_classification_status") == "unresolved"}
+    wave_ids = {aid for aid in by_asset if aid in unresolved}
+    scopes = {
+        "wave_unresolved_product": wave_ids,
+        "lint_unresolved_src": {aid for aid, (_, row) in phase_by_asset.items() if aid in unresolved and row.get("artifact_evidence_kind") == "implementation_source" and row.get("source_path", "").startswith("src/lint/")},
+        "runtime_unresolved_src": {aid for aid, (_, row) in phase_by_asset.items() if aid in unresolved and row.get("artifact_evidence_kind") == "implementation_source" and row.get("source_path", "").startswith("src/runtime/")},
+        "schema_unresolved_src": set(schema_ids),
+    }
+    pairwise = {
+        "schema_wave_unresolved_product": len(scopes["schema_unresolved_src"] & scopes["wave_unresolved_product"]),
+        "schema_lint_unresolved_src": len(scopes["schema_unresolved_src"] & scopes["lint_unresolved_src"]),
+        "schema_runtime_unresolved_src": len(scopes["schema_unresolved_src"] & scopes["runtime_unresolved_src"]),
+        "runtime_wave_unresolved_product": len(scopes["runtime_unresolved_src"] & scopes["wave_unresolved_product"]),
+        "runtime_lint_unresolved_src": len(scopes["runtime_unresolved_src"] & scopes["lint_unresolved_src"]),
+        "wave_unresolved_product_lint_unresolved_src": len(scopes["wave_unresolved_product"] & scopes["lint_unresolved_src"]),
+    }
+    return {
+        "reference_bundle_counts": {key: len(value) for key, value in scopes.items()},
+        "pairwise_intersections": pairwise,
+        "union_count": len(set().union(*scopes.values())),
+        "schema_wave_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["wave_unresolved_product"]),
+        "schema_lint_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["lint_unresolved_src"]),
+        "schema_runtime_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["runtime_unresolved_src"]),
+    }
 
 
 def git_bytes(path: str) -> bytes:
@@ -293,6 +330,7 @@ def build() -> None:
         raise AssertionError("target absent from disposition ledger")
     boundary, l1 = boundary_receipts(), l1_receipts()
     records = [make_record(a, phase_by_asset[a], disposition_by_asset[a], by_asset.get(a, []), cw, decomp, decisions, read_afters, disposition_by_asset, boundary, l1) for a in targets]
+    research_overlap = overlap_from_fixed_scopes(phase_by_asset, by_asset, targets)
     out = BUNDLE / "classification-research.jsonl"
     out.write_text("".join(json.dumps(r, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for r in records))
     source_paths = [ARCHIVE_PREFIX + phase_by_asset[a][1]["source_path"] for a in targets]
@@ -315,14 +353,7 @@ def build() -> None:
         "classification_rule": {"direct_product_basis": "a reviewed concrete source span mapped to one product L1 with explicit boundary counterevidence and pending consumer evidence", "multi_product_conflict": "reviewed source behavior contains concrete responsibilities mapped to two product boundaries; no single owner is proposed", "insufficient_basis": "source is generic, tombstone, shared infrastructure, or lacks an accepted product-boundary proof; observed Wave scope is not inherited"},
         "manual_reviewed_asset_ids": targets,
         "negative_cases": NEGATIVE_CASES,
-        "research_overlap": {
-            "reference_bundle_counts": {"wave_unresolved_product": 64, "lint_unresolved_src": 95, "runtime_unresolved_src": 73, "schema_unresolved_src": 31},
-            "pairwise_intersections": {"schema_wave_unresolved_product": 1, "schema_lint_unresolved_src": 0, "schema_runtime_unresolved_src": 0, "runtime_wave_unresolved_product": 16, "runtime_lint_unresolved_src": 0, "wave_unresolved_product_lint_unresolved_src": 14},
-            "union_count": 232,
-            "schema_wave_overlap_asset_ids": sorted({a for a in targets if a in by_asset and phase_by_asset[a][1].get("product_classification_status") == "unresolved"}),
-            "schema_lint_overlap_asset_ids": [],
-            "schema_runtime_overlap_asset_ids": [],
-        },
+        "research_overlap": research_overlap,
         "boundary_refs": {"product_boundary": BOUNDARY, "l1": L1}, "history_failure_consumer": {"disposition_rows": 31, "decision_rows_for_targets": sum(bool(r["legacy_history_failure_consumer"]["decisions"]) for r in records), "read_after_rows_for_targets": sum(bool(r["legacy_history_failure_consumer"]["read_after"]) for r in records), "failure_consumer_refs_are_static_global_inventory": True},
         "edge_contract": {"edge_identity": "edge_id derived from wave/path/line/asset_id/unit_candidate_id/semantic_link_status", "duplicate_edges_forbidden": True, "missing_edges_forbidden": True},
         "authority_boundary": {"authority_effect": "none", "classification_state": "research_proposal_pending_human_product_review", "formal_asset_classification_updated": False, "new_build_allowed": False},
