@@ -1,0 +1,212 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0054",
+  "kind": "scaffold",
+  "title": "PHCAP-15 Deploy implementation／failure／consumer classification-gap research candidate",
+  "product": "HELIX-OS",
+  "owner_candidate": "PHCAP-15 Deploy old asset implementation／failure／consumer semantic review（正式owner未解決）",
+  "state": "registered",
+  "reason": "既存SCF-B-0037がPHCAP-15のL13 post-deploy代表3assetと四製品phase境界を保持するのに対し、本candidateは重複しない7asset（operation document、L3 requirement、implementation source、test source、runtime-state evidence）を旧asset catalog／classificationから選び、source／decision／failure／consumerの分類gapを静的に閉じる。旧sourceの存在、phase pool membership、failure条件、test source、local audit記述を現行implementation、degradation、failure outcome、consumer closureへ昇格させず、要求リンクも推定しない。",
+  "upstream": [
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "upstream authority／archive static-read boundary"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "note": "PHCAP-15 current／legacy／transition snapshot"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "4,020 asset disposition rows and unknown implementation／consumer state"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "78-row PHCAP-15 candidate pool and product/phase membership"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "append-only decision ledger; selected seven have zero matches"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "copy/read-after ledger; selected seven have zero matches"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "old asset reuse／unresolved／non-execution control"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decision-log.md",
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "note": "append-only decision and consumer read-after contract"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "four product boundary and OS/Web-OS authority split candidate"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "HARNESS boundary candidate"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "OS release／artifact／runtime authority boundary candidate"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "Web user-facing boundary candidate"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "Web-OS service deployment/runtime boundary candidate"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "note": "OS L2 draft requirement boundary"
+    },
+    {
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "note": "Web-OS L2 draft deployment／rollback/export boundary"
+    },
+    {
+      "path": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+      "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e",
+      "note": "Web-OS L11 unexecuted acceptance boundary"
+    },
+    {
+      "path": "scaffold/phcap15-deploy-research/README.md",
+      "sha256": "e9208ac1e6ef7f6eb1f2bc0527bb76f9ee0f645262adef643d164fb9adc09bf0",
+      "note": "existing PHCAP-15 three-asset candidate scope; complementary, not replaced"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0037.json",
+      "sha256": "ffb2a40603e50a22379351d3cfd092d5da1f42e38cbb3f735244d1808b2efc09",
+      "note": "existing PHCAP-15 binding; overlap avoided by seven-asset implementation/failure/consumer slice"
+    },
+    {
+      "path": "scaffold/phcap15-deploy-gap-research/README.md",
+      "sha256": "469fe1364422e4ceddcb4a5cbc2f29da263410898a1fcc6504cc9be3d7832f92",
+      "note": "bounded research scope and findings"
+    },
+    {
+      "path": "scaffold/phcap15-deploy-gap-research/inventory.json",
+      "sha256": "f24680d27e182cdcb021ee311477ee817b376bfca54f8c2e8e24296aa2c9523f",
+      "note": "seven selected asset rows, four products, denominator, evidence gaps"
+    },
+    {
+      "path": "scaffold/phcap15-deploy-gap-research/validate.py",
+      "sha256": "d815fc47e20b6963af3099582380a53c6a1a5a3d20233d8ab6a623dd25c0dcef",
+      "note": "static ledger／archive span／current ref／unknown validator"
+    },
+    {
+      "path": "scaffold/phcap15-deploy-gap-research/selfcheck.py",
+      "sha256": "b5e74daeecf5751c39fe0f35805e97b43e8411bd2e3b74a7435835257f47b1d4",
+      "note": "baseline/no-op and 12 negative promotion/drift cases"
+    }
+  ],
+  "role": "PHCAP-15 Deployの旧asset implementation／failure／consumer分類gapを、phase pool membershipと要求リンクを分離したread-only research premiseとして保持する",
+  "obligations": [
+    "PHCAP-15 current draft_requirement、legacy documented_partial、phase-level degraded_to_draft、new_build_allowed falseを固定し、個別assetへ直接継承しない",
+    "classification pool 78行、Historical/unresolved 75行、source snapshot pending 3行、全4,020行／unresolved 3,991行を分母として固定し、代表7行と残り71行を明示する",
+    "operation document、L3 requirement、implementation source、test source、runtime-state evidenceの7旧assetをledger／classificationへjoinし、asset path／digest／line spanを照合する",
+    "旧sourceのrollback、health、approval、failure condition、negative test、local audit boundaryを意味証拠として読むが、旧runtime／workflow／test／CI／hook／adapter／sourceは実行しない",
+    "selected sevenはlegacy implementation unknown、execution false、decision match 0、failure receipt 0、consumer refs empty、closure pendingとして保持する",
+    "HELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSを独立unitとして記録し、phase/product pool membershipからrequirement identity、owner、authority、successorを推定しない",
+    "HELIX-Web direct evidence不在を未実装と判定せず、OS／Web-OS L2／L11 draftの存在をimplementation／acceptanceへ昇格させない",
+    "formal L2／L11、L3／L10、runtime、CI、deployment、rollback、failure outcome、consumer handoff、human decisionを生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "PHCAP-15 Deploy classification／semantic review担当",
+      "四製品責務境界とphase/product membership review担当",
+      "旧asset implementation／failure receipt／consumer closure review担当",
+      "SCF-B-0037との重複境界確認担当",
+      "SCF-B-0054 replacement確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "phase capability／asset disposition／classification／decision／copy-read-after ledgers",
+      "current Concept／四製品L1／OS・Web-OS L2／L11 candidate refs",
+      "archive bytes／line span／digest static read",
+      "local validator／selfcheck／scfctl"
+    ],
+    "boundary": "成果物はscaffold/配下に限る。旧archiveはstatic referenceのみ。phase pool、source presence、old test、runtime prose、validator passから要求採否、product owner、authority、successor、current implementation、degradation、failure outcome、consumer closure、CI、release、deploymentを生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/phcap15-deploy-gap-research/validate.py",
+      "python3 -B scaffold/phcap15-deploy-gap-research/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+      "旧source／test／runtime stateをcurrent implementation、oracle、fallback、pass、deployment evidenceへ昇格すること",
+      "phase/product classification poolからrequirement link、owner、successor、authority、consumer closureを自動生成すること",
+      "scaffold/外への候補書き込み",
+      "未許可のGitHub、Issue、PR、CI、DB、外部API、release、deploymentへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/phcap15-deploy-gap-research/README.md",
+    "scaffold/phcap15-deploy-gap-research/inventory.json",
+    "scaffold/phcap15-deploy-gap-research/validate.py",
+    "scaffold/phcap15-deploy-gap-research/selfcheck.py",
+    "scaffold/bindings/SCF-B-0054.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "validate.py（phase／denominator／classification／disposition／decision／copy-read-after／archive SHA／line span／four product current refs／unknown boundary）",
+      "selfcheck.py（baseline/no-opとauthority、phase、分母、製品、digest、anchor、実装、failure、consumer、decision、inference、recursive keysetの12否定例）",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "phase pool membershipをrequirement linkまたはproduct ownerへ昇格する",
+      "archive source／command／test／runtime proseをcurrent implementation／pass／deploymentへ昇格する",
+      "phase-level degraded_to_draftをper-asset degraded／unimplementedへ変換する",
+      "failure condition／negative testをobserved failure receiptへ変換する",
+      "empty consumer refs／pending closureをno-consumer proofまたはclosedへ変換する",
+      "current product boundary candidateをauthority／adoptionへ変換する",
+      "source／archive digest、anchor span、pool denominator、四製品unitを改変する"
+    ]
+  },
+  "replacement": {
+    "role_target": "PHCAP-15の承認済み四製品責務、L2／L11、L3／L10、deployment runtime、failure／consumer contractへ、旧asset意味と残差を個別に移管する正式側（人間判断後）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "overlap_reason": "SCF-B-0037はPHCAP-15 L13 post-deploy代表3assetとphase／四製品境界を担う。本bindingはその3件を採用せず、分類poolから別に選んだ7件のimplementation／failure／consumer evidence gapだけを担うため、既存bindingのsource／role／replacementを置換しない。",
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}

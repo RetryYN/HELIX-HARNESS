@@ -1,0 +1,301 @@
+{
+  "schema": "phcap15-deploy-gap-research/v1",
+  "capture": {
+    "basis_revision": "2ff4f888249b350afb624e359eaa8e3f3ea6defb",
+    "basis_ref": "origin/main",
+    "observed_at": "2026-09-22",
+    "worktree": "/home/tenni/.helix-worktrees/phcap15-deploy-gap-research",
+    "authority_effect": "none",
+    "new_build_allowed": false,
+    "scope": "PHCAP-15 Deploy classification gap; seven old asset candidates, four product boundary candidates, and implementation/failure/consumer evidence",
+    "archive_read_mode": "static_bytes_spans_digests_only",
+    "old_execution_performed": false
+  },
+  "phase": {
+    "task_id": "PHCAP-15",
+    "title": "Deploy",
+    "current_status": "draft_requirement",
+    "current_evidence_products": ["HELIX-OS", "HELIX-Web-OS"],
+    "current_refs": [
+      "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "docs/helix-os/L2-requirements/governance-requirements.md"
+    ],
+    "legacy_layers_evidenced": ["L13 post-deploy", "L13 plan"],
+    "legacy_capability_status": "documented_partial",
+    "transition_assessment": "degraded_to_draft",
+    "gap_statement": "deployment authority、tenant/runtime境界、実装・検証は未成立",
+    "new_build_allowed": false,
+    "authority_effect": "inventory_and_work_projection_only",
+    "source": {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
+    }
+  },
+  "denominator": {
+    "archive_manifest_assets": 4020,
+    "asset_disposition_rows": 4020,
+    "asset_disposition_unresolved": 3991,
+    "phcap15_classification_pool_rows": 78,
+    "phcap15_pool_historical_unresolved": 75,
+    "phcap15_pool_source_snapshot_pending": 3,
+    "selected_representative_rows": 7,
+    "selected_rows_still_unresolved": 7,
+    "pool_rows_outside_selected_scope": 71,
+    "pool_coverage_statement": "78-row PHCAP-15 classification poolのうち7件だけを代表調査した。残る71件を未reviewのまま分母に残す。"
+  },
+  "products": [
+    {
+      "product_id": "HELIX-HARNESS",
+      "unit_boundary": "工程・artifact内容・consumer利用条件の候補。配布運転はHELIX-OS側へ分離する候補。",
+      "current_evidence_status": "four_product_boundary_candidate_only",
+      "refs": [
+        {"path": "docs/helix-harness/L1-planning/product-intent.md", "line_start": 34, "line_end": 56, "span_sha256": "b04e490b3d27235f09716e387f54737c38f0da0cb8d9dcc61622eb20f3f03d64", "file_sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"}
+      ]
+    },
+    {
+      "product_id": "HELIX-OS",
+      "unit_boundary": "project authority、release準備、artifact受渡し、配布運転を統制する候補。展開先runtime authorityは吸収しない。",
+      "current_evidence_status": "current_l2_draft_candidate",
+      "refs": [
+        {"path": "docs/concept/product-boundary.md", "line_start": 55, "line_end": 65, "span_sha256": "73a15d9b1da22b4495969156361d6615662ca617dad8d9fcd2c2a24330c445a6", "file_sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"},
+        {"path": "docs/helix-os/L1-planning/system-intent.md", "line_start": 22, "line_end": 35, "span_sha256": "31e8343dc8719fd0a5efae909b20a4828167da2721939b88e2475e83e8c14f36", "file_sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"},
+        {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "line_start": 59, "line_end": 63, "span_sha256": "32fc70a4b810003142b7d37df276c312121d586a21de781aabb0800ec61d5903", "file_sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be"}
+      ]
+    },
+    {
+      "product_id": "HELIX-Web",
+      "unit_boundary": "利用者向けWeb体験の候補。展開後のtenant、service state、配備、監視、復旧はWeb-OSへ分離する候補。",
+      "current_evidence_status": "boundary_candidate_no_direct_phcap15_evidence",
+      "refs": [
+        {"path": "docs/helix-web/L1-planning/product-intent.md", "line_start": 24, "line_end": 49, "span_sha256": "5fbf51cd3f1047420b3142547b84b21e3a8655e471b7cd89883ea904b31c0011", "file_sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756"}
+      ]
+    },
+    {
+      "product_id": "HELIX-Web-OS",
+      "unit_boundary": "Web展開先のtenant、service runtime、配備、監視、復旧の候補。HELIX-OSとはauthority、state、credential、writerを分離する候補。",
+      "current_evidence_status": "current_l2_draft_candidate",
+      "refs": [
+        {"path": "docs/helix-web-os/L1-planning/system-intent.md", "line_start": 14, "line_end": 49, "span_sha256": "5cf1c2f9016286bff33e619770e0166f275ea1e77c34b2dbd9c52fa091316df1", "file_sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"},
+        {"path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "line_start": 33, "line_end": 38, "span_sha256": "346254b4c8a2314ae4466d19f6af558588f2a9948d6fa7ed274e5df4633ce83d", "file_sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248"},
+        {"path": "docs/helix-web-os/L11-acceptance/service-acceptance.md", "line_start": 22, "line_end": 24, "span_sha256": "8a961da4fd8e27ac990be74228c20536a0dfb195bf0042e6a21c0099bafbfa69", "file_sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e"}
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "LEGACY-ASSET-042D2B732DC68AA7EE9A",
+      "source_path": ".claude/agents/devops-deploy.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/.claude/agents/devops-deploy.md",
+      "artifact_evidence_kind": "operation_document",
+      "source_file_sha256": "373422f0d55255110ce4f751f301b98a9f974c909039f5d35c5a3c4879e87ef1",
+      "source_line_count": 78,
+      "candidate_phase_targets": ["PHCAP-10", "PHCAP-15", "PHCAP-17"],
+      "candidate_product_targets": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web-OS"],
+      "phase_classification_status": "multi_phase_candidate",
+      "product_classification_status": "candidate_needs_semantic_review",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "legacy_implementation_status": "unknown",
+      "disposition": "unresolved",
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "decision_matches": 0,
+      "copy_read_after_matches": 0,
+      "anchors": [
+        {"line_start": 15, "line_end": 18, "span_sha256": "6134d3cab249b8854bfce9b38314ce06dade0941fad8aed44a875833cf4850b2", "meaning": "rollback planなしのdeployを完成扱いせず、監視提案に検証commandを要求する"},
+        {"line_start": 34, "line_end": 36, "span_sha256": "2cb75ed6de3c6fb057cc40b4c9ca7f3c415fb759326fd45d072e8fa9b6e9cb1e", "meaning": "Pushからstaging／prod deployまでの旧工程列を記述する"},
+        {"line_start": 48, "line_end": 50, "span_sha256": "41f2d4fdf0335f4698965821b1825b40c5312d3d29e950a1bee31159dda9a201", "meaning": "health／ready checkを記述する"}
+      ],
+      "current_interpretation": {"implementation": "unknown", "degradation": "phase aggregate degraded_to_draft only; per_asset relation unknown", "failure": "no failure receipt; source prose is not an outcome", "consumer": "ledger refs empty and closure pending"}
+    },
+    {
+      "asset_id": "LEGACY-ASSET-578A66F54CD01046B7BA",
+      "source_path": "docs/design/helix/L3-requirements/github-environment-promotion-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-environment-promotion-requirements.md",
+      "artifact_evidence_kind": "requirement",
+      "source_file_sha256": "f5b13f4b1602eda78a9bd474f6a98050f089ad734fb90afc871fd15f75cb5410",
+      "source_line_count": 69,
+      "candidate_phase_targets": ["PHCAP-15", "PHCAP-16", "PHCAP-19"],
+      "candidate_product_targets": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"],
+      "phase_classification_status": "multi_phase_candidate",
+      "product_classification_status": "candidate_needs_semantic_review",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "legacy_implementation_status": "unknown",
+      "disposition": "unresolved",
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "decision_matches": 0,
+      "copy_read_after_matches": 0,
+      "anchors": [
+        {"line_start": 16, "line_end": 17, "span_sha256": "1c4e2decc91b43392b745315bbada46393152dee583a1fe122c3666c554c19d0", "meaning": "同一artifact promotionを定義するが、実deployment・credential・cloud resource作成を行わない"},
+        {"line_start": 23, "line_end": 30, "span_sha256": "d824303b614949856f39af11d934ace0fa291236de0863972287794b50695e13", "meaning": "staging／production分離、approval receipt、rollback／health／monitoring bindingと拒否条件を定義する"},
+        {"line_start": 47, "line_end": 48, "span_sha256": "0ac18fd53fcc6d3d90b08b07d4b7ba263f3ea55e062256d400168ff46246bae1", "meaning": "rollback／health／monitoring evidenceとdeployment audit logを要求する"},
+        {"line_start": 67, "line_end": 69, "span_sha256": "c8845ed2a9f4e3cbaabb622778cc8187c5ac468781e52c91244eede899c51f77", "meaning": "L3要件がL6/L7実装と実cloud deploymentを先取りしないと明記する"}
+      ],
+      "current_interpretation": {"implementation": "unknown", "degradation": "current L2 draft is not equivalent to this old L3 requirement", "failure": "no failure receipt; required refusal conditions have no selected outcome", "consumer": "consumer identity unknown; no ledger consumer; current OS/Web-OS consumer contract remains candidate"}
+    },
+    {
+      "asset_id": "LEGACY-ASSET-18BB86CC5625C31430B8",
+      "source_path": "docs/skills/ci-deploy-and-rollback.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/skills/ci-deploy-and-rollback.md",
+      "artifact_evidence_kind": "operation_document",
+      "source_file_sha256": "fc185660f4ce7ee517453b9367eb7fc349f23824511e923ef7e9a6eef31e26e9",
+      "source_line_count": 100,
+      "candidate_phase_targets": ["PHCAP-11", "PHCAP-14", "PHCAP-15", "PHCAP-17"],
+      "candidate_product_targets": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web-OS"],
+      "phase_classification_status": "multi_phase_candidate",
+      "product_classification_status": "candidate_needs_semantic_review",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "legacy_implementation_status": "unknown",
+      "disposition": "unresolved",
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "decision_matches": 0,
+      "copy_read_after_matches": 0,
+      "anchors": [
+        {"line_start": 20, "line_end": 24, "span_sha256": "10853e0d4850d7c5d1174bec620fc692342c84bd96cc7782839750bd32a97fb7", "meaning": "deploy gate順序、rollback基準、証跡責務を定義する"},
+        {"line_start": 32, "line_end": 41, "span_sha256": "d720f8b80b4260e6c848a6ef2d54d6720a0621db37ac64cc6f77f1b6dac4e27c", "meaning": "pre-deploy gateとfailure時のblockを定義する"},
+        {"line_start": 57, "line_end": 84, "span_sha256": "2a09aba6c94fe9c366d20ace12a632609903af36a3560e5df0e1d51b7a898924", "meaning": "post-deploy smoke、rollback trigger／procedure、rollback後のfailure追跡を定義する"},
+        {"line_start": 95, "line_end": 100, "span_sha256": "65cb4956d6db25164e29f32bd7e47180967805679c549ef04be667c061325d8b", "meaning": "gate／smoke／monitoring／evidence／recoveryのchecklistを定義する"}
+      ],
+      "current_interpretation": {"implementation": "unknown", "degradation": "old process document is not current runtime evidence", "failure": "no failure receipt; failure triggers are stated, but no outcome was selected", "consumer": "consumer refs empty; closure pending and current owner/handoff evidence unknown"}
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FA8D4E24D8399E8350F1",
+      "source_path": "src/cli.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/src/cli.ts",
+      "artifact_evidence_kind": "implementation_source",
+      "source_file_sha256": "608660021df710e6c91239dbfbb4d23e9357d73bc0b7c9ffd5c4f5b4544f0dad",
+      "source_line_count": 17133,
+      "candidate_phase_targets": ["PHCAP-15", "PHCAP-16", "PHCAP-17", "PHCAP-19", "PHCAP-20"],
+      "candidate_product_targets": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"],
+      "phase_classification_status": "multi_phase_candidate",
+      "product_classification_status": "candidate_needs_semantic_review",
+      "implementation_evidence_state": "implementation_source_present_unexecuted",
+      "legacy_execution_performed": false,
+      "legacy_implementation_status": "unknown",
+      "disposition": "unresolved",
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "decision_matches": 0,
+      "copy_read_after_matches": 0,
+      "anchors": [
+        {"line_start": 3850, "line_end": 3890, "span_sha256": "d8829028fe60c4073dbce626633373614c555b37a53535ccde87a1327d8418a7", "meaning": "version-up dry-run CLIがrelease tag、migration、rollback、release gateのplan-only結果を投影する"}
+      ],
+      "current_interpretation": {"implementation": "unknown", "degradation": "archive implementation source cannot establish current CLI/runtime parity", "failure": "no failure receipt; blockedReasons are code paths, not observed outcomes", "consumer": "current product consumer closure unknown; source imports/CLI consumers were not closed"}
+    },
+    {
+      "asset_id": "LEGACY-ASSET-327A88B2141C43045AF1",
+      "source_path": "src/lint/version-up-readiness.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/src/lint/version-up-readiness.ts",
+      "artifact_evidence_kind": "implementation_source",
+      "source_file_sha256": "3bd473c91f541a6a3a5e2a7ba106630dfae5c1ed96ed932219fc5521034a4f93",
+      "source_line_count": 2890,
+      "candidate_phase_targets": ["PHCAP-11", "PHCAP-14", "PHCAP-15"],
+      "candidate_product_targets": ["HELIX-OS", "HELIX-Web-OS"],
+      "phase_classification_status": "multi_phase_candidate",
+      "product_classification_status": "candidate_needs_semantic_review",
+      "implementation_evidence_state": "implementation_source_present_unexecuted",
+      "legacy_execution_performed": false,
+      "legacy_implementation_status": "unknown",
+      "disposition": "unresolved",
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "decision_matches": 0,
+      "copy_read_after_matches": 0,
+      "anchors": [
+        {"line_start": 287, "line_end": 319, "span_sha256": "abfcb2cef02ae246792eebd7493b4dbbd68d058f325daf5e62a508e0d3b7f942", "meaning": "version-up readinessのdry-run、rollback plan、release gate構造を型で表す"},
+        {"line_start": 483, "line_end": 515, "span_sha256": "1a3286db1d776b653f11639cd8f84c014fcae7873b38037ffe44598318e4e1f7", "meaning": "activation approval／dry-run／rollback／exit条件を要求するrecord fieldsを定義する"},
+        {"line_start": 534, "line_end": 545, "span_sha256": "78375dfa178b2025d731db4b67b174a806154f5bd90834d259c508e1d4879295", "meaning": "no-prod-writeとrollback rehearsalを含むactivation evidence集合を定義する"}
+      ],
+      "current_interpretation": {"implementation": "unknown", "degradation": "source types do not prove current deployment implementation", "failure": "no failure receipt; blocked/readiness states are prescribed, not observed outcomes", "consumer": "consumer handoff unknown; no ledger consumer refs or current product handoff"}
+    },
+    {
+      "asset_id": "LEGACY-ASSET-BADD68B87BA5BE0F3906",
+      "source_path": "tests/doctor.test.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/tests/doctor.test.ts",
+      "artifact_evidence_kind": "test_source",
+      "source_file_sha256": "c5f51ade57cbfb08bec1496046955fe89f58fd3ffaa9a3a4457affd1df0eb299",
+      "source_line_count": 1979,
+      "candidate_phase_targets": ["PHCAP-11", "PHCAP-15", "PHCAP-17", "PHCAP-19", "PHCAP-20"],
+      "candidate_product_targets": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"],
+      "phase_classification_status": "multi_phase_candidate",
+      "product_classification_status": "candidate_needs_semantic_review",
+      "implementation_evidence_state": "test_source_present_unexecuted",
+      "legacy_execution_performed": false,
+      "legacy_implementation_status": "unknown",
+      "disposition": "unresolved",
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "decision_matches": 0,
+      "copy_read_after_matches": 0,
+      "anchors": [
+        {"line_start": 609, "line_end": 627, "span_sha256": "28a041aff2ca818d75151a8f2c18d72aa7507cb79a53e97076aa428b4f2e3116", "meaning": "consumer doctorが生成consumer setupを検査する旧test source"},
+        {"line_start": 1038, "line_end": 1075, "span_sha256": "e35cd3651dfda6a2139c564c9cc5d5a49c2469fda164f42df4d2b108f1ef8506", "meaning": "consumer CIのread-only smoke-test contract違反をfail-closeする旧test source"}
+      ],
+      "current_interpretation": {"implementation": "unknown", "degradation": "old test source does not establish current CI or runtime execution", "failure": "no failure receipt; negative test cases describe expected rejection, not an observed outcome", "consumer": "consumer closure unknown; test fixtures are historical consumer shape, not current product closure"}
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7995556682FC5493C37E",
+      "source_path": ".helix/audit/A-132-l8-l14-verification-band-execution.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/.helix/audit/A-132-l8-l14-verification-band-execution.md",
+      "artifact_evidence_kind": "runtime_state_evidence",
+      "source_file_sha256": "13125d8c60842151e47ba0ab091d5bf678428507420214c4c2c458e1649a881f",
+      "source_line_count": 38,
+      "candidate_phase_targets": ["PHCAP-15"],
+      "candidate_product_targets": ["HELIX-OS", "HELIX-Web-OS"],
+      "phase_classification_status": "unresolved_with_candidate",
+      "product_classification_status": "candidate_needs_semantic_review",
+      "implementation_evidence_state": "runtime_state_evidence_present_unverified",
+      "legacy_execution_performed": false,
+      "legacy_implementation_status": "unknown",
+      "disposition": "unresolved",
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "decision_matches": 0,
+      "copy_read_after_matches": 0,
+      "anchors": [
+        {"line_start": 14, "line_end": 17, "span_sha256": "c7e57530e0b026be60294cbae11d94ac4628a1237752e61409ff04cf6110c0af", "meaning": "local verification bandとproduction deploy／post-deploy observation／PO signoffの境界を明記する"},
+        {"line_start": 29, "line_end": 38, "span_sha256": "29a0b6d091864fdb07ddb506ea22049c9568e46d12b400b9366b73a0a5414cfc", "meaning": "旧test／doctor commandを列挙しつつproduction deploymentとfinal signoffではないと閉じる"}
+      ],
+      "current_interpretation": {"implementation": "unknown", "degradation": "local audit evidence is bounded outside current deployment authority", "failure": "no failure receipt; no production outcome or post-deploy observation is present", "consumer": "consumer closure pending; no ledger refs and local audit cannot close Web-OS runtime handoff"}
+    }
+  ],
+  "evidence_gaps": {
+    "decision": {"selected_asset_decision_matches": 0, "selected_asset_copy_read_after_matches": 0, "interpretation": "個別採否・再利用・replacementの判断行は無く、旧資産はunresolvedのまま"},
+    "failure": {"selected_failure_receipts": 0, "interpretation": "sourceのfailure条件、negative test、local audit境界はfailure outcome receiptではない"},
+    "consumer": {"selected_consumer_refs_nonempty": 0, "selected_consumer_closure_pending": 7, "interpretation": "consumer identity、scope、revision、read-after、handoff closureは未確定"},
+    "implementation": {"old_source_implementation_candidates": 2, "old_test_candidates": 1, "old_runtime_evidence_candidates": 1, "current_implementation_evidence": "unknown", "interpretation": "旧source／test／runtime evidenceは候補であり、現行implementation evidenceはunknown"}
+  },
+  "prohibited_inference": [
+    "PHCAP-15 pool membership is a classification candidate only; it is not a requirement link or product ownership.",
+    "legacy artifact layer, source presence, command names, test source, or runtime-state prose do not establish current implementation, pass, deployment, or acceptance.",
+    "phase transition_assessment degraded_to_draft is phase-level inventory language; it is not a per-asset current degraded/unimplemented verdict.",
+    "absence of direct HELIX-Web deployment refs is unknown and is not a non-implementation finding.",
+    "empty consumer_refs and pending closure are evidence gaps, not proof that no consumer ever existed.",
+    "this scaffold and its validation do not create authority, requirement adoption, successor, owner, implementation, acceptance, release, deployment, or human decision."
+  ],
+  "verification_contract": {
+    "archive_execution": "forbidden",
+    "current_implementation_claim": "unknown_only",
+    "required_commands": [
+      "python3 -B scaffold/phcap15-deploy-gap-research/validate.py",
+      "python3 -B scaffold/phcap15-deploy-gap-research/selfcheck.py",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "python3 -B scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "pool membership to requirement/product link promotion",
+      "archive source to current implementation/pass/deployment promotion",
+      "phase degraded_to_draft to per-asset degraded/unimplemented promotion",
+      "failure condition or negative test to observed failure receipt",
+      "empty consumer refs to no-consumer proof or pending to closure",
+      "current product boundary candidate to authority/owner/adoption",
+      "digest/span/source path/denominator mutation"
+    ]
+  }
+}
