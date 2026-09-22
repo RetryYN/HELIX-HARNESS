@@ -1,0 +1,211 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0096",
+  "kind": "scaffold",
+  "title": "RDP-001 outside67 PATH-006〜010 lossless source atomization research",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "outside67 PATH-006〜010のsource line／意味atom候補境界を静的に再照合する研究（正式owner未解決）",
+  "state": "registered",
+  "reason": "MPR-SH-OUTSIDE67-001の67 path_revision_pairからPATH-006〜010の5 pairを選び、pre/archive exact snapshot、current counterpart path/blob/SHA、183行のline coverageを固定する。既存merged PATH-008 atom 74件はID・line・digest参照へ分離し、新規145行候補と重複させない。atomized_candidate 10、metadata_only 101、composite_unresolved 72を一意line単位で会計し、選択5 pair内のline残差0と未選定62 pairを明示する。四製品、product／phaseは候補境界だけに留め、formal owner、successor、phase authority、implementation、degradation、failure、consumer、decision、adoptionを生成しない。origin/mainまたは先行source lineageが変われば停止し、新baseへrebaselineする。",
+  "upstream": [
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-entry-followup-076/selected-source-items.jsonl",
+      "sha256": "37d71f827772a8175970b0dada15a3692bf9e567d94953e4c697709a2dfdfa7e",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-073/selected-source-items.jsonl",
+      "sha256": "cd29ab5ac7be11ccb9a1f8d46ec071b6773476747c5b0019704670f7bd64278c",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/selected-source-items.jsonl",
+      "sha256": "1bb85fc4197325942035cb28ec6837f67343afd72a2d8bce1bfdc0d0967cc119",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/semantic-atoms.jsonl",
+      "sha256": "94d8743676cd78c1b96aa80e05b4269eddf20388edbfe5c6859c54e9ec398f94",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-path006-010-atomization-096/inventory.json",
+      "sha256": "90ad098362c8e83f23831c6340a000d421b1ffc88d72e4f3ca18d19c47c5b7f0",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-path006-010-atomization-096/generate.py",
+      "sha256": "34f082f17cad698c84c736e0882f807d3a36afad38742ec865f742ba77e85fd3",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-path006-010-atomization-096/validate.py",
+      "sha256": "afd6cdc8258bc143445f1ebf3d6328611e77184828900c05adfa957f28a2d6ae",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-path006-010-atomization-096/selfcheck.py",
+      "sha256": "455f6b447b6e24d28d189e1cd5212c5325f03cf3862b021360167f9b8e75511e",
+      "note": "static source/governance or merged lineage; no authority promotion"
+    }
+  ],
+  "role": "RDP-001 outside67 PATH-006〜010 source snapshot／line coverage／atom candidateを保持する静的Scaffold",
+  "obligations": [
+    "holding 67 pairからPATH-006〜010の5 pairを限定選択し、未選定62 pairを残差として保持する",
+    "pre-isolation／archive exact line、blob OID、bytes、SHA-256、current counterpartのbase時点digestを再計算する",
+    "5 pair全183行をpair／line一意にcoverageし、metadata_only／atomized_candidate／composite_unresolvedを重複なく会計する",
+    "既存PATH-008 atom 74件をID／line／digest参照へ分離し、新規候補との重複を拒否する",
+    "四製品候補境界、path-based phase、正式owner／authority／implementation／degradation／failure／consumer／decisionを分離する",
+    "旧HELIX source、判断史、failure／consumer ledgerはexact anchorの静的参照だけに限定し、no-hitから不在や完了を推定しない",
+    "旧archive runtime、workflow、test、CI、hook、adapter、sourceを実行しない",
+    "validator、selfcheck、scfctl validate／stale／residuals、git diff --checkで再現性と負例を確認する"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 source atomization reviewer",
+      "四製品boundary／phase reviewer",
+      "legacy failure／consumer evidence reviewer"
+    ],
+    "dependencies": [
+      "MPR-SH-OUTSIDE67-001 holding",
+      "merged PATH-006〜010 source snapshots",
+      "existing PATH-008 semantic atom bundle",
+      "current four-product boundary docs"
+    ],
+    "boundary": "成果物はscaffold/配下のpartial research candidate。183行のsource preservationと候補分類を正式要求、owner、authority、phase admission、implementation、degradation、failure／consumer closureへ昇格しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/rdp001-outside67-path006-010-atomization-096/generate.py",
+      "python3 -B scaffold/rdp001-outside67-path006-010-atomization-096/validate.py",
+      "python3 -B scaffold/rdp001-outside67-path006-010-atomization-096/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+      "candidateをformal requirement、owner、successor、authority、phase、implementation、degradation、failure、consumer closureへ昇格すること",
+      "unselected 62 pairを調査済みと扱うこと",
+      "scaffold/外への候補書き込み",
+      "GitHub、Issue、PR、CI、DB、外部APIへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-outside67-path006-010-atomization-096/README.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/generate.py",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/inventory.json",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/legacy-evidence.jsonl",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/line-coverage.jsonl",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/method.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/premise.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/reused-atom-references.jsonl",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/selected-source-items.jsonl",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/selfcheck.py",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/semantic-atoms.jsonl",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/source-diffs.json",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-006/archive-revision.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-006/pre-isolation.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-007/archive-revision.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-007/pre-isolation.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-008/archive-revision.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-008/pre-isolation.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-009/archive-revision.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-009/pre-isolation.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-010/archive-revision.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/source-snapshots/OUTSIDE67-PATH-010/pre-isolation.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/status.md",
+    "scaffold/rdp001-outside67-path006-010-atomization-096/validate.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "holding 67／selected 5 denominator and exact snapshot rederivation",
+      "183 unique source-line coverage and disjoint category accounting",
+      "PATH-008 reused atom ID／line／digest rederivation",
+      "current counterpart Git object digest rederivation",
+      "legacy ledger exact anchor scan with no-hit boundary",
+      "validator and selfcheck",
+      "scfctl validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "base/main drift",
+      "holding/register digest tamper",
+      "source snapshot text/blob/SHA tamper",
+      "current counterpart path/blob/SHA tamper",
+      "duplicate or missing coverage line",
+      "category overlap or count drift",
+      "new atom identity/product/source fragment promotion",
+      "reused PATH-008 atom duplicate/digest tamper",
+      "legacy implementation／failure／consumer promotion",
+      "partial research to path atomization complete promotion",
+      "formal product／owner／authority／phase promotion"
+    ]
+  },
+  "replacement": {
+    "role_target": "承認済みsource requirement／atom、owner、authority、phase、implementation、degradation、failure／consumer contractへの個別移管（人間判断後）",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
