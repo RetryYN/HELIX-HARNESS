@@ -8,6 +8,8 @@
 
 `36784d25aa4cc53d89c28c2ff81b4009db234605`を基準HEADとして、旧IRのHIL-BR-01〜05をsplitした7 unit、Wave1〜50 scan、対象21 semantic review edge、旧asset 16件を静的に照合する。旧実装source候補、旧failure／degradation、旧consumer、現行実装、現行受入を独立フィールドで保持し、直接証拠がない状態はunknownの理由とcounter-evidenceを付けて保留する。
 
+これはcrosswalk 218行のうち先頭BR01〜05由来7 unitを対象にしたpilotであり、旧実装・縮退の全件判定ではない。7 unitについて証拠を分離して判定保留を固定する。
+
 ## 変更内容
 
 - `inventory.json`で7 unit／21 edge／16 asset、Wave1〜50のscan fileと証拠partitionを固定。
