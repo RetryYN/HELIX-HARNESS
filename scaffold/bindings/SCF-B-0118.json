@@ -6,6 +6,7 @@
     "scaffold/legacy-execution-evidence-0118/generate.py",
     "scaffold/legacy-execution-evidence-0118/validate.py",
     "scaffold/legacy-execution-evidence-0118/selfcheck.py",
+    "scaffold/legacy-execution-evidence-0118/common.py",
     "scaffold/legacy-execution-evidence-0118/inventory.json",
     "scaffold/legacy-execution-evidence-0118/evidence.jsonl"
   ],
@@ -401,7 +402,7 @@
       "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
     }
   ],
-  "updated": "2026-09-22",
+  "updated": "2026-09-23",
   "verification": {
     "evidence_kind": "scaffold",
     "scope": [
@@ -416,6 +417,8 @@
       "ledger regex exact 28 asset set in fixed-base order",
       "218 units／153 source IDs／598 Wave edges／355 Wave assets／4020 ledger rows",
       "source archive Git object blob／bytes／SHA／anchor rederivation",
+      "shared fail-closed source observation state machine for JSON/text/identity",
+      "validator-side independent source observation oracle and generated-output equality",
       "candidate pool versus direct crosswalk link separation",
       "validator／selfcheck／scfctl／git diff --check"
     ],
@@ -442,7 +445,16 @@
       "E_HISTORY_BINDING unexpected decision/read-after reference probe",
       "E_SCHEMA bundle_kind expectation tamper",
       "E_SCOPE expected_asset_count versus actual record count",
-      "E_SCHEMA inventory top-level key set tamper"
+      "E_SCHEMA inventory top-level key set tamper",
+      "OBS_JSON_FAILURE explicit success0/fail2 does not pass",
+      "OBS_JSON_INCOMPLETE missing/invalid test or suite counts do not pass",
+      "OBS_JSON_ZERO no positive success does not pass",
+      "OBS_TEXT_FAILURE numeric failed count and fatal/error markers block pass",
+      "OBS_TEXT_EXIT nonzero exit blocks pass even after pass summary",
+      "OBS_TEXT_SUCCESS positive pass with exit=0 is asset-level only",
+      "OBS_TEXT_ZERO_FAILURE_COUNT zero failed count is not a failure marker",
+      "OBS_PENDING pending result remains incomplete pass",
+      "OBS_IDENTITY identity-only has no test verdict"
     ]
   }
 }

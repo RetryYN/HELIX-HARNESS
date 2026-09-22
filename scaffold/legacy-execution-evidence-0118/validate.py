@@ -108,14 +108,14 @@ def canonical(value: object) -> str:
 
 def git_bytes(path: str) -> bytes:
     try:
-        return subprocess.check_output(["git", "show", f"{BASE_REVISION}:{path}"], cwd=ROOT)
+        return subprocess.check_output(["git", "show", f"{BASE_REVISION}:{path}"], cwd=ROOT, stderr=subprocess.PIPE)
     except subprocess.CalledProcessError as exc:
         fail("E_BASE_SOURCE", f"missing fixed-base object {path}: {exc}")
 
 
 def git_blob(path: str) -> str:
     try:
-        return subprocess.check_output(["git", "rev-parse", f"{BASE_REVISION}:{path}"], cwd=ROOT, text=True).strip()
+        return subprocess.check_output(["git", "rev-parse", f"{BASE_REVISION}:{path}"], cwd=ROOT, text=True, stderr=subprocess.PIPE).strip()
     except subprocess.CalledProcessError as exc:
         fail("E_BASE_SOURCE", f"missing fixed-base blob {path}: {exc}")
 
@@ -149,88 +149,171 @@ def source_anchors(path: str, data: bytes) -> list[dict]:
     ]
 
 
-def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, dict]:
+
+def _oracle_nonnegative_int(parsed: dict, key: str) -> int | None:
+    value = parsed.get(key)
+    if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+        return None
+    return value
+
+
+def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, dict]:
+    """Independent expected classifier; deliberately does not import generator code."""
     text = data.decode(errors="replace")
     lines = text.splitlines()
-    parsed = None
+    anchor_lines = [item["line"] for item in anchors]
     try:
         parsed = json.loads(text)
     except json.JSONDecodeError:
-        pass
+        parsed = None
+
+    def failure(markers: list[str]) -> dict:
+        return {
+            "status": "observed_asset_level" if markers else "not_observed_in_asset",
+            "marker_lines": markers[:32],
+            "reason": (
+                "static asset contains failure/error/nonzero-exit marker; it is not a unit-level degradation or failure verdict"
+                if markers
+                else "no failure/error marker was observed in this asset; absence does not prove success"
+            ),
+            "unit_level_verdict": None,
+        }
+
     if isinstance(parsed, dict) and "head_sha" in parsed:
-        execution = {
-            "status": "observed_asset_level",
-            "kind": "ci_merge_head_receipt",
-            "fields": {k: parsed.get(k) for k in ("head_sha", "base_sha", "tested_merge_head")},
-            "unit_level_verdict": None,
-        }
-        result = {
-            "status": "asset_level_identity_only",
-            "verdict": None,
-            "reason": "head/base/tested merge identity is recorded without a test verdict or acceptance verdict",
-            "anchor_lines": [a["line"] for a in anchors],
-        }
-    elif isinstance(parsed, dict) and "numTotalTestSuites" in parsed:
-        fields = {
-            key: parsed.get(key)
-            for key in (
-                "numTotalTestSuites",
-                "numPassedTestSuites",
-                "numFailedTestSuites",
-                "numPendingTestSuites",
-                "numTotalTests",
-                "numPassedTests",
-                "numFailedTests",
-                "numPendingTests",
-                "numTodoTests",
-            )
-            if key in parsed
-        }
-        execution = {
-            "status": "observed_asset_level",
-            "kind": "vitest_json_summary",
-            "fields": fields,
-            "unit_level_verdict": None,
-        }
-        result = {
+        identity = {key: parsed.get(key) for key in ("head_sha", "base_sha", "tested_merge_head")}
+        return (
+            {
+                "status": "observed_asset_level",
+                "kind": "ci_merge_head_receipt",
+                "fields": identity,
+                "unit_level_verdict": None,
+            },
+            failure([]),
+            {
+                "status": "asset_level_identity_only",
+                "verdict": None,
+                "reason": (
+                    "head/base/tested merge identity is recorded without a test verdict or acceptance verdict"
+                    if all(identity[key] not in (None, "") for key in identity)
+                    else "identity receipt is incomplete and has no test verdict or acceptance verdict"
+                ),
+                "anchor_lines": anchor_lines,
+            },
+        )
+
+    summary_keys = (
+        "numTotalTestSuites", "numPassedTestSuites", "numFailedTestSuites", "numPendingTestSuites", "numTodoTestSuites",
+        "numTotalTests", "numPassedTests", "numFailedTests", "numPendingTests", "numTodoTests",
+    )
+    required = ("numTotalTests", "numPassedTests", "numFailedTests", "numPendingTests", "numTodoTests")
+    if isinstance(parsed, dict) and "numTotalTestSuites" in parsed:
+        fields = {key: parsed[key] for key in summary_keys if key in parsed}
+        counts = {key: _oracle_nonnegative_int(parsed, key) for key in required}
+        suite_counts = {key: _oracle_nonnegative_int(parsed, key) for key in ("numTotalTestSuites", "numPassedTestSuites", "numFailedTestSuites", "numPendingTestSuites")}
+        suite_todo = _oracle_nonnegative_int(parsed, "numTodoTestSuites")
+        suite_complete = all(value is not None for value in suite_counts.values()) and (
+            ("numTodoTestSuites" not in parsed or suite_todo is not None)
+        ) and (
+            suite_counts["numPassedTestSuites"]
+            + suite_counts["numFailedTestSuites"]
+            + suite_counts["numPendingTestSuites"]
+            + (suite_todo or 0)
+            == suite_counts["numTotalTestSuites"]
+        )
+        suite_failed = suite_counts["numFailedTestSuites"] or 0
+        test_failed = _oracle_nonnegative_int(parsed, "numFailedTests") or 0
+        pending = (suite_counts["numPendingTestSuites"] or 0) + (_oracle_nonnegative_int(parsed, "numPendingTests") or 0)
+        positive_success = (_oracle_nonnegative_int(parsed, "numPassedTests") or 0) > 0 and (suite_counts["numPassedTestSuites"] or 0) > 0
+        failed_markers = [lines[0].strip()] if suite_failed + test_failed else []
+        base_result = {
             "status": "asset_level_test_result_only",
-            "verdict": "pass_with_pending" if fields.get("numPendingTests", 0) else "pass_observed",
+            "verdict": None,
             "fields": fields,
-            "reason": "test result is recorded for the artifact but no unit/requirement/acceptance binding exists",
-            "anchor_lines": [a["line"] for a in anchors],
+            "anchor_lines": anchor_lines,
         }
-    else:
-        passed = [line.strip() for line in lines if re.search(r"Test Files\s+\d+\s+passed|Tests\s+\d+\s+passed", line)]
-        exit_matches = [line.strip() for line in lines if re.search(r"(?:vitest\s+)?exit=", line, re.I)]
-        execution = {
-            "status": "observed_asset_level" if passed or exit_matches else "unknown",
-            "kind": "vitest_text_summary" if passed or exit_matches else "unclassified_log",
-            "fields": {"passed_summary_lines": passed, "exit_lines": exit_matches},
-            "unit_level_verdict": None,
-        }
-        result = {
-            "status": "asset_level_test_result_only" if passed or exit_matches else "no_result_marker",
-            "verdict": "pass_observed" if passed and not any("exit=1" in x for x in exit_matches) else None,
-            "reason": "text log has an asset-level summary without a unit/requirement/acceptance binding",
-            "anchor_lines": [a["line"] for a in anchors],
-        }
-    if isinstance(parsed, dict):
-        failed_count = sum(int(parsed.get(k, 0) or 0) for k in ("numFailedTestSuites", "numFailedTests"))
-        failures = [lines[0].strip()] if failed_count else []
-    else:
-        failures = [line.strip() for line in lines if re.search(r"fatal:|error|failed|failure", line, re.I)]
-    failure = {
-        "status": "observed_asset_level" if failures else "not_observed_in_asset",
-        "marker_lines": failures[:32],
-        "reason": (
-            "static asset contains failure/error marker; it is not a unit-level degradation or failure verdict"
-            if failures
-            else "no failure/error marker was observed in this asset; absence does not prove success"
-        ),
+        if failed_markers:
+            result = {**base_result, "reason": "contradictory success and failure counts prevent a pass verdict" if positive_success else "explicit failure count prevents a pass verdict"}
+        elif any(counts[key] is None for key in required) or not suite_complete:
+            result = {**base_result, "reason": "required test counts are missing or invalid; result is unknown"}
+        elif sum(counts[key] for key in ("numPassedTests", "numFailedTests", "numPendingTests", "numTodoTests")) != counts["numTotalTests"]:
+            result = {**base_result, "reason": "test counts are inconsistent; result is unknown"}
+        elif not positive_success:
+            result = {**base_result, "reason": "no positive successful test count is present; result is unknown"}
+        elif pending:
+            result = {**base_result, "verdict": "pass_with_pending", "reason": "explicit pending count prevents a complete pass verdict"}
+        else:
+            result = {**base_result, "verdict": "pass_observed", "reason": "complete zero-failure counts are observed only at asset level"}
+        return (
+            {
+                "status": "observed_asset_level",
+                "kind": "vitest_json_summary",
+                "fields": fields,
+                "unit_level_verdict": None,
+            },
+            failure(failed_markers),
+            result,
+        )
+
+    pass_pattern = re.compile(r"(?:Test Files|Tests)\s+(\d+)\s+passed\b", re.IGNORECASE)
+    failed_count_pattern = re.compile(r"(?<!\d)(\d+)\s+failed\b", re.IGNORECASE)
+    passed = [line.strip() for line in lines if pass_pattern.search(line)]
+    passed_counts = [int(match.group(1)) for line in lines if (match := pass_pattern.search(line))]
+    exits = [line.strip() for line in lines if re.search(r"(?:vitest\s+)?exit\s*=\s*(\d+)", line, re.IGNORECASE)]
+    failed_counts = [int(match.group(1)) for line in lines if (match := failed_count_pattern.search(line)) and int(match.group(1)) > 0]
+    failed = []
+    for line in lines:
+        match = failed_count_pattern.search(line)
+        if re.search(r"fatal:|error|failure", line, re.IGNORECASE) or (match and int(match.group(1)) > 0):
+            if line.strip() not in failed:
+                failed.append(line.strip())
+    observed = bool(passed or exits or failed)
+    execution = {
+        "status": "observed_asset_level" if observed else "unknown",
+        "kind": "vitest_text_summary" if observed else "unclassified_log",
+        "fields": {"passed_summary_lines": passed, "passed_counts": passed_counts, "failed_counts": failed_counts, "exit_lines": exits},
         "unit_level_verdict": None,
     }
-    return execution, failure, result
-
+    positive_pass = any(count > 0 for count in passed_counts)
+    nonzero = []
+    for line in exits:
+        match = re.search(r"(?:vitest\s+)?exit\s*=\s*(\d+)", line, re.IGNORECASE)
+        if match and int(match.group(1)) != 0:
+            nonzero.append(line)
+    if failed and nonzero:
+        reason = "contradictory failure marker and nonzero exit code prevent a pass verdict"
+    elif failed and positive_pass:
+        reason = "contradictory pass summary and failure marker prevent a pass verdict"
+    elif nonzero and positive_pass:
+        reason = "contradictory pass summary and nonzero exit code prevent a pass verdict"
+    elif failed:
+        reason = "explicit failure/error text prevents a pass verdict"
+    elif nonzero:
+        reason = "nonzero exit code prevents a pass verdict"
+    elif positive_pass:
+        reason = "text pass summary has no failure marker or nonzero exit, and remains asset-level only"
+    else:
+        reason = "no positive test pass summary is present"
+    if failed or nonzero:
+        result = {
+            "status": "asset_level_test_result_only", "verdict": None,
+            "reason": reason, "anchor_lines": anchor_lines,
+        }
+    elif positive_pass:
+        result = {
+            "status": "asset_level_test_result_only", "verdict": "pass_observed",
+            "reason": reason,
+            "anchor_lines": anchor_lines,
+        }
+    else:
+        result = {
+            "status": "asset_level_test_result_only" if passed or exits else "no_result_marker", "verdict": None,
+            "reason": reason, "anchor_lines": anchor_lines,
+        }
+    failure_markers = list(failed)
+    for line in nonzero:
+        if line not in failure_markers:
+            failure_markers.append(line)
+    return execution, failure(failure_markers), result
 
 def verify_base() -> None:
     validation_head = os.environ.get("SCF_VALIDATION_HEAD", "HEAD")
@@ -396,7 +479,7 @@ def expected_records(selected: list[dict]) -> list[dict]:
         archive_path = ARCHIVE_PREFIX + source_path
         source_data = git_bytes(archive_path)
         anchors = source_anchors(archive_path, source_data)
-        execution, failure, result = source_observation(source_data, anchors)
+        execution, failure, result = oracle_source_observation(source_data, anchors)
         pool = sorted(pool_units.get(asset_id, set()))
         wave_refs = wave_by_asset.get(asset_id, [])
         direct_refs = sorted(direct.get(asset_id, set()))

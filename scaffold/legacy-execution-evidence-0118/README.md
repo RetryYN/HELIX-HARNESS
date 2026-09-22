@@ -7,7 +7,8 @@
 - 探索母集団は product unit 218件、source ID 153件、Wave1–50の598 edge／355 unique asset、旧asset ledger 4,020行です。
 - 選定条件は ledger の `source_path` に対する `(?:\.vitest\.log$|/vitest-targeted|test-result|receipt\.json$|full-receipt)` の大文字小文字無視検索です。ledger順の28件を全件対象化し、代表サンプルへ縮めていません。
 - 除外は同regexに一致しないledger 3,992行です。内訳は `.helix/evidence/` 60行、`tests/` 597行、path名に `lint` を含むもの197行、`review-*/head.txt` 3行（重複する分類を含む）で、これらや通常のtest source／lint logをexecution/result receiptへ混入させていません。
-- 28件のうち、asset-level test summaryは26件、merge-head identity receiptは2件です。旧source本文の `fatal:` marker は1件で観測されますが、unit-level failure／縮退の判定へ昇格していません。
+- 28件の内訳はJSON test summary 21件、text summary 5件、merge-head identity receipt 2件です。安全な状態機械で、完全な無失敗かつ正のpass countの24件だけをasset-level `pass_observed`、pending countの1件を`pass_with_pending`、identity-onlyの2件をverdictなし、`fatal:` markerとpass summaryが同居する `LEGACY-ASSET-CE767996F54E28A6486B` をverdictなし・asset-level failure observedとして保存しました。unit-level failure／縮退の判定へ昇格していません。
+- JSONはtest/suiteの必須count、非負整数、総和整合、正のpass countを満たさない限りverdictを出しません。textはpass／failed件数を数値化し、`0 passed`、正のfailed件数、非zero exit、passとfailureの併記をverdictなしへ倒します。非zero exitはfailure observationのmarkerにも記録し、`0 failed` はfailure markerにしません。識別情報だけのreceiptもtest verdictにはしません。
 - 選定28件はWave598 edgeに0件、crosswalkの `direct_legacy_asset_links` に0件、`representative_legacy_assets` に0件、legacy decision／copy read-afterの直接参照に0件です。一部はcrosswalkの `candidate_asset_pool` に含まれますが、これは正本crosswalk自身が `search_candidate_only_not_direct_semantic_link` と宣言する検索候補です。
 - そのため各recordで `product_unit_binding`、`requirement_binding`、`acceptance_binding` は `absent`、旧実装・縮退・current実装・受入は `unknown` としています。test pass、pending test、fatal／lint marker、head/base identityはasset-level観測欄に限定し、実装・縮退・未実装・受入 verdictを生成しません。
 
@@ -60,6 +61,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorは固定BASEから入力digest、分母、selection regex、28件exact set、inventoryのbundle_kind／expected_asset_count／top-level key集合、nested ledger record、archive blob／SHA／anchor、candidate poolとdirect linkの分離、観測分類、unknown／absent境界を独立再導出します。selfcheckは架空unit link、架空requirement link、架空acceptance verdict、consumer tamper、source tamper、asset重複／欠落、input／BASE／scope／selection改竄、unit verdict昇格、unknown field、bundle kind／record count／inventory key集合改竄の24負例を期待error code付きで検査します。
+`common.py` はJSON/text/identityをfail-closed分類するshared source observation state machineです。validatorはgeneratorをimportせず独立oracleで同じ期待結果を再導出します。selfcheckはJSON failure／欠測／zero total／suite不整合、text `0 passed/2 failed`／pass+nonzero exit／`0 failed`を含む正常pass、pending、identity-onlyの13状態例と、架空unit link、架空requirement link、架空acceptance verdict、consumer tamper、source tamper、asset重複／欠落、input／BASE／scope／selection改竄、unit verdict昇格、unknown field、bundle kind／record count／inventory key集合改竄の24負例を期待error code付きで検査します。
 
 Progress reference: Issue #1813（進捗参照のみ。closeは行わない）。#2067のレビュー中worktreeは変更していません。

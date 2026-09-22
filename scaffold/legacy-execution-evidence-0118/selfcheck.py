@@ -72,7 +72,59 @@ def expect_direct(label: str, action, code: str) -> None:
     raise AssertionError(f"{label}: expected {code}, action returned without failure")
 
 
+def load_module(path: Path, name: str):
+    spec = importlib.util.spec_from_file_location(name, path)
+    if spec is None or spec.loader is None:
+        raise AssertionError(f"{name}: module import failed")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def expect_observation(label: str, data: bytes, verdict, reason: str, failure_status: str) -> None:
+    validator = load_module(VALIDATOR, f"scf_b_0118_oracle_{label}")
+    common = load_module(BUNDLE / "common.py", f"scf_b_0118_common_{label}")
+    anchors = [{"line": 1}]
+    oracle = validator.oracle_source_observation(data, anchors)
+    generated = common.source_observation(data, anchors)
+    for source, observed in (("oracle", oracle), ("shared", generated)):
+        execution, failure, result = observed
+        if execution["unit_level_verdict"] is not None or result["verdict"] != verdict or result["reason"] != reason or failure["status"] != failure_status:
+            raise AssertionError(f"{label}/{source}: unexpected observation {observed!r}")
+    if oracle != generated:
+        raise AssertionError(f"{label}: shared state machine and independent oracle diverged")
+    print(f"PASS {label}: verdict={verdict!r}, failure={failure_status}")
+
+
+def observation_cases() -> None:
+    def summary(*, suite_total=1, suite_passed=1, suite_failed=0, suite_pending=0, total=2, passed=1, failed=0, pending=1, todo=0, omit=()):
+        value = {
+            "numTotalTestSuites": suite_total, "numPassedTestSuites": suite_passed,
+            "numFailedTestSuites": suite_failed, "numPendingTestSuites": suite_pending,
+            "numTotalTests": total, "numPassedTests": passed, "numFailedTests": failed,
+            "numPendingTests": pending, "numTodoTests": todo,
+        }
+        for key in omit:
+            value.pop(key, None)
+        return (json.dumps(value, separators=(",", ":")) + "\n").encode()
+
+    expect_observation("json success0 fail2", summary(suite_passed=0, suite_failed=1, total=2, passed=0, failed=2, pending=0), None, "explicit failure count prevents a pass verdict", "observed_asset_level")
+    expect_observation("json contradictory success/failure", summary(suite_total=2, suite_passed=1, suite_failed=1, total=2, passed=1, failed=1, pending=0), None, "contradictory success and failure counts prevent a pass verdict", "observed_asset_level")
+    expect_observation("json missing test counts", summary(pending=0, omit=("numPendingTests", "numTodoTests")), None, "required test counts are missing or invalid; result is unknown", "not_observed_in_asset")
+    expect_observation("json missing suite counts", summary(pending=0, omit=("numPassedTestSuites",)), None, "required test counts are missing or invalid; result is unknown", "not_observed_in_asset")
+    expect_observation("json inconsistent suite counts", summary(suite_total=2, suite_passed=1, total=1, passed=1, pending=0), None, "required test counts are missing or invalid; result is unknown", "not_observed_in_asset")
+    expect_observation("json zero total", summary(suite_total=0, suite_passed=0, total=0, passed=0, pending=0), None, "no positive successful test count is present; result is unknown", "not_observed_in_asset")
+    expect_observation("json pending", summary(pending=1), "pass_with_pending", "explicit pending count prevents a complete pass verdict", "not_observed_in_asset")
+    expect_observation("text zero passed failed2", b"Test Files 0 passed (0)\nTests 0 passed | 2 failed (2)\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
+    expect_observation("text contradictory pass/failure", b"Tests 2 passed | 1 failed (3)\n", None, "contradictory pass summary and failure marker prevent a pass verdict", "observed_asset_level")
+    expect_observation("text pass exit2", b"Test Files 1 passed (1)\nTests 1 passed (1)\nvitest exit=2\n", None, "contradictory pass summary and nonzero exit code prevent a pass verdict", "observed_asset_level")
+    expect_observation("text normal pass", b"Test Files 1 passed (1)\nTests 1 passed (1)\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
+    expect_observation("text zero failure count", b"Tests 1 passed | 0 failed (1)\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
+    expect_observation("identity only", b'{"head_sha":"abc","base_sha":"def","tested_merge_head":"abc"}\n', None, "head/base/tested merge identity is recorded without a test verdict or acceptance verdict", "not_observed_in_asset")
+
+
 def main() -> int:
+    observation_cases()
     expect("unit link forgery", lambda inv, rows: rows[0]["product_unit_binding"].update(status="bound", unit_candidate_ids=["FAKE-UNIT"]), "E_UNIT_BINDING")
     expect("requirement link forgery", lambda inv, rows: rows[0]["requirement_binding"].update(status="bound", requirement_ids=["FAKE-REQ"]), "E_REQUIREMENT_BINDING")
     expect("acceptance verdict forgery", lambda inv, rows: rows[0]["acceptance_binding"].update(status="accepted", verdict="passed"), "E_ACCEPTANCE_BINDING")
@@ -104,7 +156,7 @@ def main() -> int:
     expect("bundle kind tamper", lambda inv, rows: inv.update(bundle_kind="fabricated_bundle_kind"), "E_SCHEMA")
     expect("expected asset count tamper", lambda inv, rows: inv.update(expected_asset_count=27), "E_SCOPE")
     expect("inventory top-level key tamper", lambda inv, rows: inv.update(fabricated_field=True), "E_SCHEMA")
-    print("PASS SCF-B-0118 selfcheck: 24 negative cases")
+    print("PASS SCF-B-0118 selfcheck: 24 negative cases plus 13 observation-state cases")
     return 0
 
 
