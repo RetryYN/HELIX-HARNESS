@@ -24,10 +24,10 @@ REQ_IR = ARCHIVE / "requirements-ir/requirements.json"
 PLAN = HERE / "plan.json"
 INVENTORY = HERE / "inventory.json"
 BATCH = "LEGACY-SEMANTIC-WAVE45-2026-09-22"
-BASE = "ee03352d8fc36c4e16d65f861ac9f0262b47fe87"
+BASE = "f8abbba3c04fbbd3e0a4787701a53d854d37b889"
 MAIN_MERGE_PARENTS = [
-    "3184d6131a7c8aecc21c1544ec7882c2ef94f033",
-    "26124da8e9cf96a7454163ea73aafa71e2fee38a",
+    "ee03352d8fc36c4e16d65f861ac9f0262b47fe87",
+    "fc77504678955fda9b89d978494d0912c541cf22",
 ]
 REQ_SHA = "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688"
 REQUIREMENT_ASSET = "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
@@ -108,10 +108,10 @@ ZERO_MISSING_REASON = "crosswalk phase_and_product_candidate_asset_count is zero
 def expected_missing_reason(unit: str, role: str, pool: dict, reconciliation: dict) -> str:
     if pool["phase_and_product_candidate_asset_count"] == 0:
         return ZERO_MISSING_REASON
-    if role == "implementation_source" and reconciliation["unexamined_asset_count"] > 0:
-        return "crosswalk candidate pool is nonzero, but no direct asset evidence was selected for this role after asset-level usage reconciliation; remaining candidates are unexamined"
-    if role == "implementation_source" and reconciliation["implementation_source_candidate_count"] > 0:
-        return "crosswalk candidate pool is nonzero, but no direct implementation_source evidence was selected; all implementation_source candidate IDs were already consumed by prior/current non-requirement evidence"
+    if reconciliation["unexamined_asset_count"] > 0:
+        return f"crosswalk candidate pool is nonzero, but no direct {role} evidence was selected; unexamined candidate IDs remain outside direct evidence"
+    if reconciliation["candidate_asset_count"] > 0:
+        return f"crosswalk candidate pool is nonzero, but no direct {role} evidence was selected; all {role} candidate IDs were already consumed by prior/current non-requirement evidence"
     return f"crosswalk candidate pool is nonzero, but no direct {role} asset evidence was selected; role-specific candidate membership remains unresolved"
 
 
@@ -412,39 +412,47 @@ def verify() -> None:
     for item in meta["missing_evidence_receipts"]:
         missing_key = (item.get("role_kind"), item.get("unit_candidate_id"))
         pool = crosswalk[item["unit_candidate_id"]]["candidate_asset_pool"]
-        reconciliation = meta["implementation_candidate_pool_reconciliations"][UNITS.index(item["unit_candidate_id"])]
+        reconciliation = next(
+            rec for rec in meta["candidate_pool_reconciliations"]
+            if rec["unit_candidate_id"] == item["unit_candidate_id"] and rec["role_kind"] == item["role_kind"]
+        )
         expected_reason = expected_missing_reason(item["unit_candidate_id"], item["role_kind"], pool, reconciliation)
         require(item.get("reason") == expected_reason, f"missing evidence reason {missing_key}")
         require(item["status"] == "missing_evidence_recorded" and item["current_implementation"] == "unknown" and item["degradation"] == "unknown" and item["consumer_closure"] == "pending" and item["legacy_execution"] == "not_run", "missing evidence boundary")
         require(item["phase_pool_asset_count"] == pool["phase_and_product_candidate_asset_count"], f"missing phase pool {missing_key}")
-        if item["role_kind"] == "implementation_source":
-            reconciliation = item.get("candidate_pool_reconciliation")
-            require(reconciliation is not None, f"missing implementation pool receipt {missing_key}")
-            require(reconciliation == meta["implementation_candidate_pool_reconciliations"][UNITS.index(item["unit_candidate_id"])], f"missing implementation pool reconciliation {missing_key}")
+        require(item.get("candidate_pool_reconciliation") == reconciliation, f"missing role pool reconciliation {missing_key}")
 
-    # Independently recompute each implementation candidate pool's consumed
-    # and unexamined asset IDs.  An unexamined candidate is never treated as
-    # direct evidence or as proof of current implementation.
+    # Independently recompute every missing role's candidate pool, consumed,
+    # examined-not-selected, selected, and unexamined asset IDs.  An unexamined
+    # candidate is never treated as direct evidence or as proof of current
+    # implementation.
     expected_reconciliations = []
     for unit in UNITS:
         pool = crosswalk[unit]["candidate_asset_pool"]
-        role_ids = sorted({aid for aid in pool["phase_and_product_candidate_asset_ids"] if catalog[aid]["artifact_evidence_kind"] == "implementation_source"})
-        consumed = sorted(set(role_ids) & (prior_assets | current_nonreq_assets))
-        selected = sorted({row["asset_id"] for row in rows if row["unit_candidate_id"] == unit and row["role_kind"] == "implementation_source"})
-        expected_reconciliations.append({
-            "unit_candidate_id": unit,
-            "phase_pool_asset_count": pool["phase_and_product_candidate_asset_count"],
-            "implementation_source_candidate_count": len(role_ids),
-            "implementation_source_candidate_ids": role_ids,
-            "consumed_asset_count": len(consumed),
-            "consumed_asset_ids": consumed,
-            "selected_asset_ids": selected,
-            "unexamined_asset_count": len(set(role_ids) - set(consumed)),
-            "unexamined_asset_ids": sorted(set(role_ids) - set(consumed)),
-            "pool_usage_basis": "prior Wave1-44 non-requirement ledger assets plus current Wave45 non-requirement selected assets; requirement asset excluded",
-            "direct_evidence_status": "selected_asset_ids_only; remaining_pool_candidates_unexamined",
-        })
-    require(meta["implementation_candidate_pool_reconciliations"] == expected_reconciliations, "implementation candidate pool reconciliation")
+        for role in sorted(MISSING_ROLES[unit]):
+            role_ids = sorted({aid for aid in pool["phase_and_product_candidate_asset_ids"] if catalog[aid]["artifact_evidence_kind"] == role})
+            consumed = sorted(set(role_ids) & (prior_assets | current_nonreq_assets))
+            selected = sorted({row["asset_id"] for row in rows if row["unit_candidate_id"] == unit and row["role_kind"] == role})
+            examined_not_selected = sorted(set(consumed) - set(selected))
+            unexamined = sorted(set(role_ids) - set(consumed))
+            expected_reconciliations.append({
+                "unit_candidate_id": unit,
+                "role_kind": role,
+                "phase_pool_asset_count": pool["phase_and_product_candidate_asset_count"],
+                "candidate_asset_count": len(role_ids),
+                "candidate_asset_ids": role_ids,
+                "consumed_asset_count": len(consumed),
+                "consumed_asset_ids": consumed,
+                "selected_asset_count": len(selected),
+                "selected_asset_ids": selected,
+                "examined_not_selected_asset_count": len(examined_not_selected),
+                "examined_not_selected_asset_ids": examined_not_selected,
+                "unexamined_asset_count": len(unexamined),
+                "unexamined_asset_ids": unexamined,
+                "pool_usage_basis": "prior Wave1-44 non-requirement ledger assets plus current Wave45 non-requirement selected assets; requirement asset excluded",
+                "direct_evidence_status": "selected_asset_ids_only; examined-not-selected and unexamined candidates remain non-evidence",
+            })
+    require(meta["candidate_pool_reconciliations"] == expected_reconciliations, "missing role candidate pool reconciliation")
     for unit in UNITS:
         require(len(by_unit[unit]) == len(SELECTED[unit]), f"unit chain length {unit}")
         parent, candidate = decomposition[unit]

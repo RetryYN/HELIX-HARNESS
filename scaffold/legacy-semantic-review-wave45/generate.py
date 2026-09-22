@@ -18,10 +18,10 @@ ROOT = Path(__file__).resolve().parents[2]
 ARCHIVE = ROOT / "archive/legacy-generation-2026-09-14/root"
 OUT = Path(__file__).resolve().parent
 BATCH = "LEGACY-SEMANTIC-WAVE45-2026-09-22"
-BASE = "ee03352d8fc36c4e16d65f861ac9f0262b47fe87"
+BASE = "f8abbba3c04fbbd3e0a4787701a53d854d37b889"
 MAIN_MERGE_PARENTS = [
-    "3184d6131a7c8aecc21c1544ec7882c2ef94f033",
-    "26124da8e9cf96a7454163ea73aafa71e2fee38a",
+    "ee03352d8fc36c4e16d65f861ac9f0262b47fe87",
+    "fc77504678955fda9b89d978494d0912c541cf22",
 ]
 CATALOG_PATH = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 CROSSWALK_PATH = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
@@ -467,10 +467,11 @@ def main() -> None:
             "degradation": "unknown_pending_direct_current_review",
         })
 
-    # Reconcile every selected unit's implementation-source candidate pool by
-    # asset ID.  Prior/current usage is consumed; the remaining candidates stay
-    # explicitly unexamined.  This preserves the distinction between a pool
-    # candidate and direct semantic evidence without executing legacy code.
+    # Reconcile every missing role's candidate pool by asset ID.  Prior/current
+    # usage is consumed, consumed-but-not-selected IDs are examined-not-selected,
+    # and the remaining candidates stay explicitly unexamined.  This preserves
+    # the distinction between a pool candidate and direct semantic evidence
+    # without executing legacy code.
     prior_nonrequirement_asset_ids = set()
     for wave in range(1, 45):
         _, prior_ledger = prior_artifact(wave, "jsonl")
@@ -478,33 +479,39 @@ def main() -> None:
             if prior_row.get("role_kind", prior_row.get("artifact_evidence_kind")) != "requirement":
                 prior_nonrequirement_asset_ids.add(prior_row["asset_id"])
     current_nonrequirement_asset_ids = {row["asset_id"] for row in rows if row["role_kind"] != "requirement"}
-    implementation_candidate_pool_reconciliations = []
+    candidate_pool_reconciliations = []
     for spec in UNIT_SPECS:
         unit = spec["unit"]
         pool = crosswalk[unit]["candidate_asset_pool"]
-        implementation_ids = sorted({
-            asset_id for asset_id in pool["phase_and_product_candidate_asset_ids"]
-            if catalog[asset_id]["artifact_evidence_kind"] == "implementation_source"
-        })
-        consumed_ids = sorted(set(implementation_ids) & (prior_nonrequirement_asset_ids | current_nonrequirement_asset_ids))
-        unexamined_ids = sorted(set(implementation_ids) - set(consumed_ids))
-        selected_ids = sorted({
-            row["asset_id"] for row in rows
-            if row["unit_candidate_id"] == unit and row["role_kind"] == "implementation_source"
-        })
-        implementation_candidate_pool_reconciliations.append({
-            "unit_candidate_id": unit,
-            "phase_pool_asset_count": pool["phase_and_product_candidate_asset_count"],
-            "implementation_source_candidate_count": len(implementation_ids),
-            "implementation_source_candidate_ids": implementation_ids,
-            "consumed_asset_count": len(consumed_ids),
-            "consumed_asset_ids": consumed_ids,
-            "selected_asset_ids": selected_ids,
-            "unexamined_asset_count": len(unexamined_ids),
-            "unexamined_asset_ids": unexamined_ids,
-            "pool_usage_basis": "prior Wave1-44 non-requirement ledger assets plus current Wave45 non-requirement selected assets; requirement asset excluded",
-            "direct_evidence_status": "selected_asset_ids_only; remaining_pool_candidates_unexamined",
-        })
+        for role in spec.get("missing_roles", []):
+            candidate_ids = sorted({
+                asset_id for asset_id in pool["phase_and_product_candidate_asset_ids"]
+                if catalog[asset_id]["artifact_evidence_kind"] == role
+            })
+            consumed_ids = sorted(set(candidate_ids) & (prior_nonrequirement_asset_ids | current_nonrequirement_asset_ids))
+            selected_ids = sorted({
+                row["asset_id"] for row in rows
+                if row["unit_candidate_id"] == unit and row["role_kind"] == role
+            })
+            examined_not_selected_ids = sorted(set(consumed_ids) - set(selected_ids))
+            unexamined_ids = sorted(set(candidate_ids) - set(consumed_ids))
+            candidate_pool_reconciliations.append({
+                "unit_candidate_id": unit,
+                "role_kind": role,
+                "phase_pool_asset_count": pool["phase_and_product_candidate_asset_count"],
+                "candidate_asset_count": len(candidate_ids),
+                "candidate_asset_ids": candidate_ids,
+                "consumed_asset_count": len(consumed_ids),
+                "consumed_asset_ids": consumed_ids,
+                "selected_asset_count": len(selected_ids),
+                "selected_asset_ids": selected_ids,
+                "examined_not_selected_asset_count": len(examined_not_selected_ids),
+                "examined_not_selected_asset_ids": examined_not_selected_ids,
+                "unexamined_asset_count": len(unexamined_ids),
+                "unexamined_asset_ids": unexamined_ids,
+                "pool_usage_basis": "prior Wave1-44 non-requirement ledger assets plus current Wave45 non-requirement selected assets; requirement asset excluded",
+                "direct_evidence_status": "selected_asset_ids_only; examined-not-selected and unexamined candidates remain non-evidence",
+            })
 
     missing_evidence_receipts = []
     for spec in UNIT_SPECS:
@@ -514,13 +521,13 @@ def main() -> None:
             cross = crosswalk[unit]
             pool = cross["candidate_asset_pool"]
             for role in spec["missing_roles"]:
-                reconciliation = next(item for item in implementation_candidate_pool_reconciliations if item["unit_candidate_id"] == unit)
+                reconciliation = next(item for item in candidate_pool_reconciliations if item["unit_candidate_id"] == unit and item["role_kind"] == role)
                 if pool["phase_and_product_candidate_asset_count"] == 0:
                     reason = "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected"
-                elif role == "implementation_source" and reconciliation["unexamined_asset_count"] > 0:
-                    reason = "crosswalk candidate pool is nonzero, but no direct asset evidence was selected for this role after asset-level usage reconciliation; remaining candidates are unexamined"
-                elif role == "implementation_source" and reconciliation["implementation_source_candidate_count"] > 0:
-                    reason = "crosswalk candidate pool is nonzero, but no direct implementation_source evidence was selected; all implementation_source candidate IDs were already consumed by prior/current non-requirement evidence"
+                elif reconciliation["unexamined_asset_count"] > 0:
+                    reason = f"crosswalk candidate pool is nonzero, but no direct {role} evidence was selected; unexamined candidate IDs remain outside direct evidence"
+                elif reconciliation["candidate_asset_count"] > 0:
+                    reason = f"crosswalk candidate pool is nonzero, but no direct {role} evidence was selected; all {role} candidate IDs were already consumed by prior/current non-requirement evidence"
                 else:
                     reason = f"crosswalk candidate pool is nonzero, but no direct {role} asset evidence was selected; role-specific candidate membership remains unresolved"
                 missing_evidence_receipts.append({
@@ -535,7 +542,7 @@ def main() -> None:
                     "degradation": "unknown",
                     "consumer_closure": "pending",
                     "legacy_execution": "not_run",
-                    **({"candidate_pool_reconciliation": reconciliation} if role == "implementation_source" else {}),
+                    "candidate_pool_reconciliation": reconciliation,
                 })
 
     ledger_path = OUT / "legacy-requirement-direct-semantic-review-wave45.jsonl"
@@ -599,7 +606,7 @@ def main() -> None:
         "main_merge_parents": MAIN_MERGE_PARENTS,
         "main_merge_revision": BASE,
         "missing_evidence_receipts": missing_evidence_receipts,
-        "implementation_candidate_pool_reconciliations": implementation_candidate_pool_reconciliations,
+        "candidate_pool_reconciliations": candidate_pool_reconciliations,
         "new_build_allowed": False,
         "output_sha256": file_digest(ledger_path),
         "parent_revision": BASE,

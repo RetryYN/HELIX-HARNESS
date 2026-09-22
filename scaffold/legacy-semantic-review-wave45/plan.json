@@ -9,7 +9,7 @@
     "failure_consumer": "archive historical governance ledgers; static fields only",
     "source_relation": "docs/governance/legacy-ir-document-source-relation.jsonl"
   },
-  "base_revision": "ee03352d8fc36c4e16d65f861ac9f0262b47fe87",
+  "base_revision": "f8abbba3c04fbbd3e0a4787701a53d854d37b889",
   "batch_id": "LEGACY-SEMANTIC-WAVE45-2026-09-22",
   "binding_id": "SCF-B-0082",
   "boundaries": [
@@ -49,13 +49,17 @@
   "missing_evidence_receipts": [
     {
       "candidate_pool_reconciliation": {
+        "candidate_asset_count": 0,
+        "candidate_asset_ids": [],
         "consumed_asset_count": 0,
         "consumed_asset_ids": [],
-        "direct_evidence_status": "selected_asset_ids_only; remaining_pool_candidates_unexamined",
-        "implementation_source_candidate_count": 0,
-        "implementation_source_candidate_ids": [],
+        "direct_evidence_status": "selected_asset_ids_only; examined-not-selected and unexamined candidates remain non-evidence",
+        "examined_not_selected_asset_count": 0,
+        "examined_not_selected_asset_ids": [],
         "phase_pool_asset_count": 103,
         "pool_usage_basis": "prior Wave1-44 non-requirement ledger assets plus current Wave45 non-requirement selected assets; requirement asset excluded",
+        "role_kind": "implementation_source",
+        "selected_asset_count": 0,
         "selected_asset_ids": [],
         "unexamined_asset_count": 0,
         "unexamined_asset_ids": [],
@@ -80,21 +84,29 @@
     },
     {
       "candidate_pool_reconciliation": {
+        "candidate_asset_count": 3,
+        "candidate_asset_ids": [
+          "LEGACY-ASSET-33E80E6D11CC51ADA817",
+          "LEGACY-ASSET-C49354AF8D8E8DFE5B1D",
+          "LEGACY-ASSET-F70E61EEE69BB49DCC2B"
+        ],
         "consumed_asset_count": 3,
         "consumed_asset_ids": [
           "LEGACY-ASSET-33E80E6D11CC51ADA817",
           "LEGACY-ASSET-C49354AF8D8E8DFE5B1D",
           "LEGACY-ASSET-F70E61EEE69BB49DCC2B"
         ],
-        "direct_evidence_status": "selected_asset_ids_only; remaining_pool_candidates_unexamined",
-        "implementation_source_candidate_count": 3,
-        "implementation_source_candidate_ids": [
+        "direct_evidence_status": "selected_asset_ids_only; examined-not-selected and unexamined candidates remain non-evidence",
+        "examined_not_selected_asset_count": 3,
+        "examined_not_selected_asset_ids": [
           "LEGACY-ASSET-33E80E6D11CC51ADA817",
           "LEGACY-ASSET-C49354AF8D8E8DFE5B1D",
           "LEGACY-ASSET-F70E61EEE69BB49DCC2B"
         ],
         "phase_pool_asset_count": 70,
         "pool_usage_basis": "prior Wave1-44 non-requirement ledger assets plus current Wave45 non-requirement selected assets; requirement asset excluded",
+        "role_kind": "implementation_source",
+        "selected_asset_count": 0,
         "selected_asset_ids": [],
         "unexamined_asset_count": 0,
         "unexamined_asset_ids": [],
@@ -119,13 +131,17 @@
     },
     {
       "candidate_pool_reconciliation": {
+        "candidate_asset_count": 0,
+        "candidate_asset_ids": [],
         "consumed_asset_count": 0,
         "consumed_asset_ids": [],
-        "direct_evidence_status": "selected_asset_ids_only; remaining_pool_candidates_unexamined",
-        "implementation_source_candidate_count": 0,
-        "implementation_source_candidate_ids": [],
+        "direct_evidence_status": "selected_asset_ids_only; examined-not-selected and unexamined candidates remain non-evidence",
+        "examined_not_selected_asset_count": 0,
+        "examined_not_selected_asset_ids": [],
         "phase_pool_asset_count": 298,
         "pool_usage_basis": "prior Wave1-44 non-requirement ledger assets plus current Wave45 non-requirement selected assets; requirement asset excluded",
+        "role_kind": "implementation_source",
+        "selected_asset_count": 0,
         "selected_asset_ids": [],
         "unexamined_asset_count": 0,
         "unexamined_asset_ids": [],
@@ -149,6 +165,23 @@
       "unit_candidate_id": "IRUNIT-HIL-NFR-25-HELIX-HARNESS"
     },
     {
+      "candidate_pool_reconciliation": {
+        "candidate_asset_count": 0,
+        "candidate_asset_ids": [],
+        "consumed_asset_count": 0,
+        "consumed_asset_ids": [],
+        "direct_evidence_status": "selected_asset_ids_only; examined-not-selected and unexamined candidates remain non-evidence",
+        "examined_not_selected_asset_count": 0,
+        "examined_not_selected_asset_ids": [],
+        "phase_pool_asset_count": 0,
+        "pool_usage_basis": "prior Wave1-44 non-requirement ledger assets plus current Wave45 non-requirement selected assets; requirement asset excluded",
+        "role_kind": "design",
+        "selected_asset_count": 0,
+        "selected_asset_ids": [],
+        "unexamined_asset_count": 0,
+        "unexamined_asset_ids": [],
+        "unit_candidate_id": "IRUNIT-HIL-NFR-31-HELIX-OS"
+      },
       "candidate_product_targets": [
         "HELIX-OS"
       ],
@@ -165,13 +198,17 @@
     },
     {
       "candidate_pool_reconciliation": {
+        "candidate_asset_count": 0,
+        "candidate_asset_ids": [],
         "consumed_asset_count": 0,
         "consumed_asset_ids": [],
-        "direct_evidence_status": "selected_asset_ids_only; remaining_pool_candidates_unexamined",
-        "implementation_source_candidate_count": 0,
-        "implementation_source_candidate_ids": [],
+        "direct_evidence_status": "selected_asset_ids_only; examined-not-selected and unexamined candidates remain non-evidence",
+        "examined_not_selected_asset_count": 0,
+        "examined_not_selected_asset_ids": [],
         "phase_pool_asset_count": 0,
         "pool_usage_basis": "prior Wave1-44 non-requirement ledger assets plus current Wave45 non-requirement selected assets; requirement asset excluded",
+        "role_kind": "implementation_source",
+        "selected_asset_count": 0,
         "selected_asset_ids": [],
         "unexamined_asset_count": 0,
         "unexamined_asset_ids": [],
@@ -192,6 +229,45 @@
       "unit_candidate_id": "IRUNIT-HIL-NFR-31-HELIX-OS"
     },
     {
+      "candidate_pool_reconciliation": {
+        "candidate_asset_count": 7,
+        "candidate_asset_ids": [
+          "LEGACY-ASSET-174B63F415197A4B09C5",
+          "LEGACY-ASSET-24A3D981F1ED04404AA5",
+          "LEGACY-ASSET-4674004EAE02B2811AE0",
+          "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+          "LEGACY-ASSET-664EDC7E6280C3DD1691",
+          "LEGACY-ASSET-B3866EECAF22235E9EB5",
+          "LEGACY-ASSET-EA8C51BDF69B34E896AA"
+        ],
+        "consumed_asset_count": 4,
+        "consumed_asset_ids": [
+          "LEGACY-ASSET-174B63F415197A4B09C5",
+          "LEGACY-ASSET-24A3D981F1ED04404AA5",
+          "LEGACY-ASSET-4674004EAE02B2811AE0",
+          "LEGACY-ASSET-EA8C51BDF69B34E896AA"
+        ],
+        "direct_evidence_status": "selected_asset_ids_only; examined-not-selected and unexamined candidates remain non-evidence",
+        "examined_not_selected_asset_count": 4,
+        "examined_not_selected_asset_ids": [
+          "LEGACY-ASSET-174B63F415197A4B09C5",
+          "LEGACY-ASSET-24A3D981F1ED04404AA5",
+          "LEGACY-ASSET-4674004EAE02B2811AE0",
+          "LEGACY-ASSET-EA8C51BDF69B34E896AA"
+        ],
+        "phase_pool_asset_count": 142,
+        "pool_usage_basis": "prior Wave1-44 non-requirement ledger assets plus current Wave45 non-requirement selected assets; requirement asset excluded",
+        "role_kind": "design",
+        "selected_asset_count": 0,
+        "selected_asset_ids": [],
+        "unexamined_asset_count": 3,
+        "unexamined_asset_ids": [
+          "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+          "LEGACY-ASSET-664EDC7E6280C3DD1691",
+          "LEGACY-ASSET-B3866EECAF22235E9EB5"
+        ],
+        "unit_candidate_id": "IRUNIT-HIL-NFR-39-HELIX-OS"
+      },
       "candidate_product_targets": [
         "HELIX-OS"
       ],
@@ -203,20 +279,24 @@
         "PHCAP-07"
       ],
       "phase_pool_asset_count": 142,
-      "reason": "crosswalk candidate pool is nonzero, but no direct design asset evidence was selected; role-specific candidate membership remains unresolved",
+      "reason": "crosswalk candidate pool is nonzero, but no direct design evidence was selected; unexamined candidate IDs remain outside direct evidence",
       "role_kind": "design",
       "status": "missing_evidence_recorded",
       "unit_candidate_id": "IRUNIT-HIL-NFR-39-HELIX-OS"
     },
     {
       "candidate_pool_reconciliation": {
+        "candidate_asset_count": 0,
+        "candidate_asset_ids": [],
         "consumed_asset_count": 0,
         "consumed_asset_ids": [],
-        "direct_evidence_status": "selected_asset_ids_only; remaining_pool_candidates_unexamined",
-        "implementation_source_candidate_count": 0,
-        "implementation_source_candidate_ids": [],
+        "direct_evidence_status": "selected_asset_ids_only; examined-not-selected and unexamined candidates remain non-evidence",
+        "examined_not_selected_asset_count": 0,
+        "examined_not_selected_asset_ids": [],
         "phase_pool_asset_count": 142,
         "pool_usage_basis": "prior Wave1-44 non-requirement ledger assets plus current Wave45 non-requirement selected assets; requirement asset excluded",
+        "role_kind": "implementation_source",
+        "selected_asset_count": 0,
         "selected_asset_ids": [],
         "unexamined_asset_count": 0,
         "unexamined_asset_ids": [],

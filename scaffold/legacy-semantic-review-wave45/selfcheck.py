@@ -202,20 +202,37 @@ def mutate_inventory_count(inventory) -> None:
 
 def mutate_pool_consumed_overclaim(meta) -> None:
     reconciliation = next(
-        item for item in meta["implementation_candidate_pool_reconciliations"]
-        if item["unit_candidate_id"] == "IRUNIT-HIL-TR-06-HELIX-HARNESS"
+        item for item in meta["candidate_pool_reconciliations"]
+        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-22-HELIX-HARNESS" and item["role_kind"] == "implementation_source"
     )
-    reconciliation["consumed_asset_ids"] = list(reconciliation["implementation_source_candidate_ids"])
+    reconciliation["consumed_asset_ids"] = list(reconciliation["consumed_asset_ids"]) + ["LEGACY-ASSET-INJECTED"]
     reconciliation["consumed_asset_count"] = len(reconciliation["consumed_asset_ids"])
 
 
 def mutate_pool_unexamined_omission(meta) -> None:
     reconciliation = next(
-        item for item in meta["implementation_candidate_pool_reconciliations"]
-        if item["unit_candidate_id"] == "IRUNIT-HIL-TR-06-HELIX-HARNESS"
+        item for item in meta["candidate_pool_reconciliations"]
+        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-39-HELIX-OS" and item["role_kind"] == "design"
     )
     reconciliation["unexamined_asset_ids"] = reconciliation["unexamined_asset_ids"][:-1]
     reconciliation["unexamined_asset_count"] = len(reconciliation["unexamined_asset_ids"])
+
+
+def mutate_design_reconciliation_omission(meta) -> None:
+    receipt = next(
+        item for item in meta["missing_evidence_receipts"]
+        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-39-HELIX-OS" and item["role_kind"] == "design"
+    )
+    del receipt["candidate_pool_reconciliation"]
+
+
+def mutate_design_unexamined_hiding(meta) -> None:
+    reconciliation = next(
+        item for item in meta["candidate_pool_reconciliations"]
+        if item["unit_candidate_id"] == "IRUNIT-HIL-NFR-39-HELIX-OS" and item["role_kind"] == "design"
+    )
+    reconciliation["unexamined_asset_ids"] = []
+    reconciliation["unexamined_asset_count"] = 0
 
 
 def mutate_degradation_promotion(meta) -> None:
@@ -247,10 +264,12 @@ rejected_meta("missing evidence receipt deletion", mutate_missing_receipt)
 rejected_meta("missing evidence reason tamper", mutate_missing_reason)
 rejected_meta("implementation candidate consumed asset ID overclaim", mutate_pool_consumed_overclaim)
 rejected_meta("implementation candidate unexamined asset ID omission", mutate_pool_unexamined_omission)
+rejected_meta("design missing role reconciliation omission", mutate_design_reconciliation_omission)
+rejected_meta("design unexamined asset hiding", mutate_design_unexamined_hiding)
 rejected_meta("selected role asset count mismatch", mutate_selected_role_asset_count)
 rejected_document("plan count mismatch", "PLAN", mutate_plan_count)
 rejected_document("inventory count mismatch", "INVENTORY", mutate_inventory_count)
 rejected_meta("degradation promotion", mutate_degradation_promotion)
 rejected_meta("prior cumulative counts left unchanged", mutate_prior_cumulative_counts)
 
-print("Wave45 selfcheck: PASS (validator plus twenty-five negative mutations)")
+print("Wave45 selfcheck: PASS (validator plus twenty-seven negative mutations)")
