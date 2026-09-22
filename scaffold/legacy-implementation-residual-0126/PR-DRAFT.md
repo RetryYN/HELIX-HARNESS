@@ -1,26 +1,25 @@
-# 固定BASE implementation_source 残余120件を製品責務候補として固定する research Scaffold
+# 最新mainの製品研究重複を除いた67件のimplementation_source残余を固定する research Scaffold
 
 ## 変更
 
-固定BASE `5562f04da0f3205f9aa58205ec0d478419fc4f2e` から未解決1,792件を再導出し、先行研究asset-ID集合205件とWave未解決64件（重複42件）を分離しました。既存研究unionは227件、残余分母は1,565件です。prefixだけでは先行研究接続を示せない53件を固定ID/pathでinventoryへ列挙し、insufficient basisの対象として保持した上で、残余`implementation_source` 120件をrecord化しました。
+固定BASE `5562f04da0f3205f9aa58205ec0d478419fc4f2e` の未解決1,792件から、prior研究205件とWave未解決64件の旧union227件を再導出しました。初期`implementation_source` trancheは120件でした。最新main `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204` の8 product research bundleをasset IDとsource path/SHAで再集計し、global union429件、phase unresolvedとの交差280件を固定しました。
 
-- 対象120 asset / 120 records、Wave edge 0、Wave入力50 files / 598 edges / 355 unique assets。
-- candidate分類はdirect product basis 30、multi-product conflict 23、insufficient basis 67。formal product/phase/implementation/consumer closureへ昇格しない。
-- 既存67件の領域内訳は`src/web/`7、`src/doctor/`5、`src/policy/`5、`src/vscode/`5、`src/audit/`4、`src/design/`4、`src/task/`4、`.claude/hooks/`3、`scripts/`3、`src/semantic/`3、`src/team/`3、`src/vmodel/`3、その他18件。追加53件は`src/cli/`、`src/requirements/`、`src/schema/`、`src/setup/`、`src/shared/`、`src/workflow/`の明示残余。
-- 各recordにsource anchorと`anchor_line_coverage`を追加。既存67件のanchor集計は1,023/10,997行=9.3%、最大18行で、未読領域を明記する。追加53件は1行の不足証拠anchorとして保持する。
-- validatorはgenerate.pyをoracle importせず、53件のID/path、prior205件digest、union227、残余1,565、全nested record/inventory、category cardinalityを固定BASEから独立再導出する。inventory 184 input digestのうち全63非archive入力をBinding upstreamへ登録し、path/raw SHAを固定する。archive静的121入力はSCF-OS-003のためupstreamへ入れず、record/inventoryで保持して非実行境界を明示する。
-- selfcheckは50 negative cases（50 cases / strict JSON duplicate/malformed/nonobject、Binding upstream stale、anchor_line_coverage改竄を含む）を実行し、generator category/products改竄再生成、human judgment/review pin、ledger digest、Wave/union denominator、inventory top-level keyの負例を含める。
-- `scripts/helix.ps1`はarchive bytes `sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b`とMANIFEST entry `sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7`が不一致である。formal admission/reuseは停止し、human/source resolution pendingをrecord/inventoryへ固定する。
-- `authority_effect=none`、`formal_asset_classification_updated=false`、`new_build_allowed=false`を全record/inventoryに固定する。
+- 初期120件と既研究bundleの重複53件は新規targetから除外し、重複reconciliation inventoryへ移しました。17件は`same_source_same_method`、36件は`same_source_different_method`として保持します。
+- 新規targetは67件。candidate分類はdirect product basis 30、multi-product conflict 23、insufficient basis 14です。候補はformal product/phase/implementation/consumer closureへ昇格しません。
+- unresolved existing unionは280件、unresolved残余分母は1,512件です。global product union429件のうちunresolved外149件はこの分母へ算入していません。
+- 各recordに`research_scope`、`evidence_completeness`、`overlap_status`、`bundle_revision`、`denominator_role`を追加し、初期120件のsource input digestは維持しつつ、8 product bundleをBinding upstreamへ追加しました。
+- Wave1–50は50 files / 598 edges / 355 unique assets、対象Wave edge 0です。source anchor、旧disposition/history/failure/consumer、四製品L1、全nested record/inventoryを固定BASEから再導出します。
+- `authority_effect=none`、`formal_asset_classification_updated=false`、`new_build_allowed=false`を固定します。archive旧workflowは静的Git object参照のみです。
+- `scripts/helix.ps1`のarchive bytes `sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b`とMANIFEST entry `sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7`の不一致はhuman/source resolution pendingとして保持し、formal admission/reuseを停止します。
 
 ## 検証
 
 ```text
 python3 -B scaffold/legacy-implementation-residual-0126/generate.py
 python3 -B scaffold/legacy-implementation-residual-0126/validate.py
-# SCF-B-0126 validate: PASS records=120 categories={'direct_product_basis': 30, 'insufficient_basis': 67, 'multi_product_conflict': 23} target_wave_edges=0 union=227
+# SCF-B-0126 validate: PASS records=67 categories={'direct_product_basis': 30, 'insufficient_basis': 14, 'multi_product_conflict': 23} target_wave_edges=0 product_union=429 unresolved_existing_union=280 residual=1512 overlap=53
 python3 -B scaffold/legacy-implementation-residual-0126/selfcheck.py
-# SCF-B-0126 selfcheck: PASS negative_cases=50
+# SCF-B-0126 selfcheck: PASS negative_cases=53
 python3 -m py_compile scaffold/legacy-implementation-residual-0126/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale
@@ -28,4 +27,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-旧archive source/runtime/test/CIは実行していない。formal authorityの昇格、既存台帳変更、merge/closeは含めない。
+旧archive source/runtime/test/CIは実行せず、正式authorityの昇格、既存台帳変更、merge/closeは含めません。

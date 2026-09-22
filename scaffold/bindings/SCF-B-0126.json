@@ -26,20 +26,22 @@
   "id": "SCF-B-0126",
   "kind": "scaffold",
   "obligations": [
-    "固定BASE unresolved 1,792件・prior研究ID205件・Wave未解決64件（重複42件）・union227件・残余1,565件を分母として保持する",
-    "prefixだけでは先行研究接続を証明できない53件のasset ID/pathを固定列挙し、insufficient basisの残余として120対象へ含める",
-    "残余 implementation_source 120 assetのexact ID/path/source blob/digestを固定し欠落・重複を拒否する",
+    "固定BASE unresolved 1,792件・prior研究ID205件・Wave未解決64件（重複42件）・旧union227件を再導出し、最新main product union429件（unresolved交差280件）・unresolved残余1,512件を分母として保持する",
+    "初期120件と最新main product unionの重複53件をasset ID/source path/SHAでreconciliationへ固定し、新規target67件から除外する",
+    "初期implementation_source tranche120件と重複除外後の新規implementation_source target67件についてexact ID/path/source blob/digestを固定し欠落・重複を拒否する",
     "source spanとproduct-boundary/L1 counter-evidenceを使いdirect/conflict/insufficientを再導出し、direct=1 product、conflict>=2、insufficient=0を固定する",
     "Wave1-50の50 file・598 edge・355 unique assetを再走査し対象Wave edge=0を固定する",
-    "anchor_line_coverageを全recordへ保持し、既存67件の1,023/10,997=9.3%・最大18行と未読領域を文書化する",
+    "anchor_line_coverageを全recordへ保持し、未読領域を文書化する。新規targetは67件、重複53件はreconciliationへ分離する",
     "旧decision/read-after/failure/consumerを静的partitionで保持しconsumer closureを生成しない",
     "旧asset status・history・consumer blockと全nested record/inventoryを固定BASE由来の期待値と厳密一致させる",
     "authority none・formal分類/route/phase/successor/new build falseを固定する",
-    "旧archive source/runtime/test/CIを実行せず独立validatorと50 negative selfcheckを維持する",
-    "strict JSON parserでledger record/nested object/inventoryのduplicate key、malformed JSON、nonobjectをE_JSONとして拒否する50 negative selfcheckを維持する",
-    "inventory 184 input_digestのうち全63非archive入力をBinding upstreamへ登録し、path/raw SHA256をvalidatorで完全照合する。archive静的121入力はSCF-OS-003のためupstreamへ入れず、inventory/recordで固定し非実行境界を明示する",
+    "旧archive source/runtime/test/CIを実行せず独立validatorと53 negative selfcheckを維持する",
+    "strict JSON parserでledger record/nested object/inventoryのduplicate key、malformed JSON、nonobjectをE_JSONとして拒否する53 negative selfcheckを維持する",
+    "inventory 184 input_digestの全63非archive入力と最新main product bundle 8入力をBinding upstreamへ登録し、path/raw SHA256をvalidatorで完全照合する。archive静的121入力はSCF-OS-003のためupstreamへ入れず、inventory/recordで固定し非実行境界を明示する",
     "scripts/helix.ps1のarchive bytes sha256 2b86bf...とMANIFEST entry 9e5b68...の不一致を明示し、formal admission/reuseを停止してhuman/source resolution pendingを保持する",
-    "anchor_line_coverageの直接改竄を専用errorで拒否しBinding宣言・inventory・recordと同期する"
+    "anchor_line_coverageの直接改竄を専用errorで拒否しBinding宣言・inventory・recordと同期する",
+    "product union429件とunresolved交差280件をbundle revision/blob/bytes/SHAで固定し、unresolved denominatorへphase外149件を混入させない",
+    "recordのresearch_scope/evidence_completeness/overlap_status/bundle_revision/denominator_roleとoverlap reconciliation 53件を全値比較する"
   ],
   "operations": {
     "allowed": [
@@ -56,7 +58,7 @@
   },
   "owner_candidate": "四製品product-boundary研究（正式owner未解決）",
   "product": "HELIX-HARNESS",
-  "reason": "固定BASEの未解決1,792件から、先行研究asset-ID集合205件とWave未解決64件（重複42件）を分離し、既存研究union227件・残余1,565件とした。そのうちimplementation_source 120件を、source span・四製品L1・product-boundary・旧history/failure/consumerの静的証拠で候補分類する。prefixだけでは先行研究接続を示せない53件は固定ID/pathで不足証拠として列挙し、formal owner・phase・実装成立へ昇格しない。product欄はScaffold登録上のenumでありasset ownerを表さない。",
+  "reason": "固定BASEの未解決1,792件から、prior研究205件とWave未解決64件（旧union227件）を分離し、最新main product research bundle 8本のglobal union429件（phase unresolved交差280件）をsource path/SHAで照合する。初期implementation_source 120件のうち重複53件はreconciliationへ保持し、新規target67件をsource span・四製品L1・product-boundary・旧history/failure/consumerの静的証拠で候補分類する。formal owner・phase・実装成立へ昇格せず、product欄はScaffold上のcandidate enumに限る。",
   "replacement": {
     "formal_artifacts": [],
     "issue": 0,
@@ -66,7 +68,7 @@
   "role": "legacy-implementation-residual-product-boundary-research-0126-static",
   "schema_revision": 1,
   "state": "registered",
-  "title": "固定BASE未解決 implementation_source 残余120件の製品責務候補研究",
+  "title": "SCF-B-0126 固定BASE implementation_source残余67件の製品責務研究（初期120件から重複53件を除外）",
   "updated": "2026-09-23",
   "upstream": [
     {
@@ -320,6 +322,38 @@
     {
       "path": "docs/governance/new-generation-start-here.md",
       "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
+    },
+    {
+      "path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
+      "sha256": "ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76"
+    },
+    {
+      "path": "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
+      "sha256": "db407121029c9074e0679adf82e309caca9d7a33fabf7c6db23941c0b80e4251"
+    },
+    {
+      "path": "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl",
+      "sha256": "3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829"
+    },
+    {
+      "path": "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl",
+      "sha256": "ed5a673d065daf3c7254ea8812a4c3989b04dbb65855999c43e42139dc1b2104"
+    },
+    {
+      "path": "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
+      "sha256": "c4b769a2f2a2ce6852390a6d400ce819546f0d55ba0e48587e050d8e0955b9ee"
+    },
+    {
+      "path": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+      "sha256": "c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204"
+    },
+    {
+      "path": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+      "sha256": "06f4f5c6f331afe7662847461a1165b5b3e6361c23d6c9106fce62952e60fe1f"
+    },
+    {
+      "path": "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl",
+      "sha256": "bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad"
     }
   ],
   "verification": {
@@ -339,11 +373,11 @@
     ],
     "oracles": [
       "validator independently derives fixed BASE exact 120 target set, explicit 53 residual ID/path set, and source anchors without importing generate.py",
-      "validator checks prior research205 digest, union227, residual1,565, Wave files50/edges598/assets355, target Wave edges0",
-      "validator checks 120 records, 30 direct, 23 conflict, 67 insufficient and category cardinality invariant",
+      "validator checks prior research205 digest, old union227, product union429, unresolved union280, residual1,512, Wave files50/edges598/assets355, target Wave edges0",
+      "validator checks 67 records, 30 direct, 23 conflict, 14 insufficient; initial 120 and overlap53 are separately checked and category cardinality invariant",
       "validator compares full nested record/inventory equality including anchor_line_coverage, archive manifest resolution, and authority boundary",
-      "validator checks all 63 nonarchive inventory inputs are Binding upstream with exact path/raw SHA and rejects stale/mutated Wave upstream",
-      "selfcheck executes 50 negative cases with expected error codes (20 distinct codes), including strict JSON and archive manifest resolution cases"
+      "validator checks all 63 nonarchive inventory inputs plus 8 product bundle inputs are Binding upstream with exact path/raw SHA and rejects stale/mutated Wave upstream",
+      "selfcheck executes 53 negative cases with expected error codes (22 distinct codes), including strict JSON and archive manifest resolution cases"
     ],
     "scope": [
       "schema_interface",

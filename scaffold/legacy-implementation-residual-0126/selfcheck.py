@@ -132,6 +132,9 @@ def classification_extra_nested_key(rows): rows[0]["classification"]["fabricated
 def history_extra_nested_key(rows): rows[0]["legacy_history_failure_consumer"]["fabricated"] = True
 def shrink_extra_nested_key(rows): rows[0]["legacy_implementation_shrinkage_evidence"]["fabricated"] = True
 def anchor_coverage(rows): rows[0]["anchor_line_coverage"]["coverage_ratio"] = 1.0
+def research_scope(rows): rows[0]["research_scope"] = "formal_product_authority"
+def overlap_reconciliation(inv): inv["overlap_reconciliation"]["overlap_count"] -= 1
+def product_research_union(inv): inv["product_research_union"]["union_count"] -= 1
 
 
 def binding_upstream_stale(binding): binding["upstream"][0]["sha256"] = "0" * 64
@@ -254,4 +257,7 @@ run_raw_case("malformed_json", "E_JSON", ledger_text="{\"asset_id\":\n")
 run_raw_case("nonobject_json", "E_JSON", inventory_text="[]\n")
 run_case("anchor_line_coverage_tamper", "E_ANCHOR_COVERAGE", anchor_coverage, None)
 run_binding_case("binding_upstream_stale_tamper", "E_BINDING_UPSTREAM", binding_upstream_stale)
-print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 16}")
+run_case("research_scope_tamper", "E_RECORD_SCHEMA", research_scope, None)
+run_case("overlap_reconciliation_tamper", "E_OVERLAP_RECONCILIATION", None, overlap_reconciliation)
+run_case("product_research_union_tamper", "E_PRODUCT_RESEARCH_UNION", None, product_research_union)
+print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 19}")

@@ -18,6 +18,7 @@ BUNDLE = ROOT / "scaffold/legacy-implementation-residual-0126"
 LEDGER = BUNDLE / "classification-research.jsonl"
 INVENTORY = BUNDLE / "inventory.json"
 BASE_REVISION = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
+PRODUCT_RESEARCH_COMMIT = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
 BINDING_ID = "SCF-B-0126"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
@@ -39,6 +40,16 @@ WAVE_PATHS = {
     n: (f"docs/governance/legacy-requirement-direct-semantic-review-wave{n}.jsonl" if n <= 36 else f"scaffold/legacy-semantic-review-wave{n}/legacy-requirement-direct-semantic-review-wave{n}.jsonl")
     for n in range(1, 51)
 }
+PRODUCT_RESEARCH_BUNDLES = (
+    "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
+    "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
+    "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl",
+    "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl",
+    "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
+    "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+    "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+    "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl",
+)
 EXISTING_RESEARCH_PREFIXES = (
     "src/lint/", "src/runtime/", "src/schema/", "src/workflow/",
     "src/setup/", "src/cli/", "src/requirements/", "src/shared/",
@@ -104,7 +115,7 @@ if len(UNRESEARCHED_PREFIX_ASSET_PATHS) != 53 or len(UNRESEARCHED_PREFIX_ASSET_I
     raise AssertionError("unresearched prefix residual pin drift")
 EXPECTED_MISMATCH_PATHS = {"scripts/helix.ps1"}
 EXPECTED_PRODUCTS = ("HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS")
-EXPECTED_SCOPE = "fixed BASE unresolved implementation_source residual after fixed prior research ID set and explicit 53 prefix residual assets exact 120 assets"
+EXPECTED_SCOPE = "fixed BASE unresolved implementation_source residual after latest main product research union 429 and explicit overlap reconciliation; exact 67 new assets from the initial 120-asset tranche"
 EXPECTED_ARTIFACTS_ORDERED = [
     "scaffold/bindings/SCF-B-0126.json",
     "scaffold/legacy-implementation-residual-0126/README.md",
@@ -172,6 +183,9 @@ EXPECTED_NEGATIVE_CASES = [
     'nonobject_json',
     'anchor_line_coverage_tamper',
     'binding_upstream_stale_tamper',
+    'research_scope_tamper',
+    'overlap_reconciliation_tamper',
+    'product_research_union_tamper',
 ]
 EXPECTED_INVENTORY_KEYS = {
     "schema_revision",
@@ -196,9 +210,11 @@ EXPECTED_INVENTORY_KEYS = {
     "output_sha256",
     "archive_manifest_resolution",
     "binding_upstream",
+    "overlap_reconciliation",
+    "product_research_union",
 }
 EXPECTED_INPUT_DIGEST_KEYS = {"path", "blob", "bytes", "sha256"}
-EXPECTED_RECORD_KEYS = {"asset_id", "source_path", "source_exact", "phase_evidence", "legacy_asset_evidence", "classification", "boundary_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "wave_semantic_links", "wave_edge_count", "human_judgment_remaining", "authority_effect", "formal_asset_classification_updated", "new_build_allowed", "anchor_line_coverage"}
+EXPECTED_RECORD_KEYS = {"asset_id", "source_path", "source_exact", "phase_evidence", "legacy_asset_evidence", "classification", "boundary_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "wave_semantic_links", "wave_edge_count", "human_judgment_remaining", "authority_effect", "formal_asset_classification_updated", "new_build_allowed", "anchor_line_coverage", "research_scope", "evidence_completeness", "overlap_status", "bundle_revision", "denominator_role"}
 EXPECTED_SOURCE_KEYS = {"archive_path", "source_path", "blob", "bytes", "line_count", "sha256", "ledger_source_sha256", "ledger_digest_match", "archive_manifest_sha256", "archive_manifest_match", "archive_manifest_resolution", "semantic_anchor", "read_mode"}
 EXPECTED_CLASSIFICATION_KEYS = {"category", "candidate_products", "semantic_status", "reason"}
 EXPECTED_PROFILES = {'.claude/hooks/git-command-guard.ts': {'category': 'insufficient_basis',
@@ -646,6 +662,74 @@ def git_blob(path: str, base: str = BASE_REVISION) -> str:
         raise exc
 
 
+def git_bytes_at(path: str, revision: str) -> bytes:
+    try:
+        return subprocess.check_output(["git", "show", f"{revision}:{path}"])
+    except subprocess.CalledProcessError as exc:
+        fail("E_PRODUCT_RESEARCH_INPUT", path)
+        raise exc
+
+
+def git_blob_at(path: str, revision: str) -> str:
+    try:
+        return subprocess.check_output(["git", "rev-parse", f"{revision}:{path}"], text=True).strip()
+    except subprocess.CalledProcessError as exc:
+        fail("E_PRODUCT_RESEARCH_INPUT", path)
+        raise exc
+
+
+def read_product_jsonl(path: str) -> list[tuple[int, dict]]:
+    rows = []
+    for n, line in enumerate(git_bytes_at(path, PRODUCT_RESEARCH_COMMIT).decode().splitlines(), 1):
+        if line.strip():
+            row = strict_json(line, f"{PRODUCT_RESEARCH_COMMIT}:{path}:{n}")
+            if not isinstance(row, dict):
+                fail("E_JSON", f"{path}:{n}: top-level JSON object required")
+            rows.append((n, row))
+    return rows
+
+
+def product_record_info(row: dict, bundle: str) -> dict:
+    ledger = row.get("asset_ledger", {})
+    exact = row.get("source_exact", {})
+    phase = row.get("phase_ledger", {})
+    classification = row.get("classification", {})
+    source_path = row.get("source_path") or exact.get("source_path") or ledger.get("source_path") or phase.get("source_path")
+    source_sha = exact.get("sha256") or ledger.get("source_sha256") or row.get("source_sha256") or phase.get("source_sha256")
+    if isinstance(source_sha, str) and source_sha.startswith("sha256:"):
+        source_sha = source_sha[7:]
+    products = classification.get("candidate_products") if isinstance(classification, dict) else None
+    if products is None:
+        products = row.get("candidate_products") or []
+    category = classification.get("category") if isinstance(classification, dict) else None
+    if category is None:
+        category = row.get("classification_category") or row.get("classification_state")
+    return {
+        "asset_id": row.get("asset_id"),
+        "source_path": source_path,
+        "source_sha256": source_sha,
+        "bundle": bundle,
+        "category": category,
+        "candidate_products": products,
+    }
+
+
+def product_research_union() -> dict[str, list[dict]]:
+    by_id: dict[str, list[dict]] = {}
+    for bundle in PRODUCT_RESEARCH_BUNDLES:
+        for _, row in read_product_jsonl(bundle):
+            info = product_record_info(row, bundle)
+            if not info["asset_id"] or not info["source_path"] or not info["source_sha256"]:
+                fail("E_PRODUCT_RESEARCH_INPUT", bundle)
+            by_id.setdefault(info["asset_id"], []).append(info)
+    if len(by_id) != 429:
+        fail("E_PRODUCT_RESEARCH_UNION", f"union={len(by_id)}")
+    for asset_id, records in by_id.items():
+        if len({(r["source_path"], r["source_sha256"]) for r in records}) != 1:
+            fail("E_PRODUCT_RESEARCH_UNION", asset_id)
+    return by_id
+
+
 def manifest_sha256(source_path: str) -> str:
     expected = f" {source_path}"
     for line in git_bytes(MANIFEST).decode(errors="replace").splitlines():
@@ -662,7 +746,9 @@ def expected_nonarchive_input_paths() -> list[str]:
 
 
 def expected_binding_upstream() -> list[dict]:
-    return [{"path": path, "sha256": tagged(git_bytes(path))[7:]} for path in expected_nonarchive_input_paths()]
+    upstream = [{"path": path, "sha256": tagged(git_bytes(path))[7:]} for path in expected_nonarchive_input_paths()]
+    upstream.extend({"path": path, "sha256": tagged(git_bytes_at(path, PRODUCT_RESEARCH_COMMIT))[7:]} for path in PRODUCT_RESEARCH_BUNDLES)
+    return upstream
 
 
 UNRESEARCHED_PROFILE_REASON = "This implementation_source asset is absent from the prior research asset-ID set; no direct product evidence is retained, so it remains insufficient basis pending dedicated review."
@@ -843,6 +929,11 @@ def expected_record(asset_id: str, phase: dict[str, tuple[int, dict]], dispositi
         "authority_effect": "none",
         "formal_asset_classification_updated": False,
         "new_build_allowed": False,
+        "research_scope": "new_residual_after_main_product_union",
+        "evidence_completeness": "source_anchor_product_boundary_and_legacy_static_evidence; human_resolution_pending",
+        "overlap_status": "not_in_main_product_research_union",
+        "bundle_revision": PRODUCT_RESEARCH_COMMIT,
+        "denominator_role": "new_target",
     }
 
 
@@ -860,11 +951,18 @@ def derive_targets(phase_rows: dict[str, tuple[int, dict]]) -> tuple[list[str], 
     if declared != dict(UNRESEARCHED_PREFIX_ASSET_PATHS): fail("E_TARGET_SET", "unresearched prefix asset ID/path pin")
     if not UNRESEARCHED_PREFIX_ASSET_IDS <= prefix_ids: fail("E_TARGET_SET", "unresearched prefix residual outside prefix set")
     prior_research_ids = prefix_ids - UNRESEARCHED_PREFIX_ASSET_IDS
-    existing = prior_research_ids | wave_assets
-    if len(prior_research_ids) != 205 or len(existing) != 227: fail("E_TARGET_SET", f"existing_union prior={len(prior_research_ids)} union={len(existing)}")
-    targets = sorted(set(implementation) - existing)
-    if len(targets) != 120: fail("E_TARGET_SET", f"targets={len(targets)}")
-    return targets, wave_assets, existing
+    legacy_existing = prior_research_ids | wave_assets
+    if len(prior_research_ids) != 205 or len(legacy_existing) != 227: fail("E_TARGET_SET", f"legacy_existing prior={len(prior_research_ids)} union={len(legacy_existing)}")
+    initial_targets = set(implementation) - legacy_existing
+    if len(initial_targets) != 120: fail("E_TARGET_SET", f"initial_targets={len(initial_targets)}")
+    product_union = product_research_union()
+    product_ids = set(product_union)
+    product_ids_for_unresolved = product_ids & set(unresolved)
+    overlap = initial_targets & product_ids_for_unresolved
+    targets = sorted(initial_targets - product_ids_for_unresolved)
+    if len(overlap) != 53 or len(targets) != 67: fail("E_TARGET_SET", f"overlap={len(overlap)} targets={len(targets)}")
+    if len(product_ids_for_unresolved) != 280: fail("E_PRODUCT_RESEARCH_UNION", f"unresolved_union={len(product_ids_for_unresolved)}")
+    return targets, wave_assets, legacy_existing | product_ids_for_unresolved
 
 
 def check_category_invariant(classification: dict, asset_id: str) -> None:
@@ -911,7 +1009,46 @@ def check_source(record: dict, expected: dict, asset: dict) -> None:
 
 def expected_union_declaration(existing: set[str], prefix_ids: set[str]) -> dict:
     prior = prefix_ids - UNRESEARCHED_PREFIX_ASSET_IDS
-    return {"expected_unresolved_assets": 1792, "prior_research_asset_count": len(prior), "prior_research_asset_ids_sha256": tagged("\n".join(sorted(prior)).encode()), "unresearched_prefix_asset_count": 53, "unresearched_prefix_asset_ids": sorted(UNRESEARCHED_PREFIX_ASSET_IDS), "unresearched_prefix_source_paths": sorted(UNRESEARCHED_PREFIX_SOURCE_PATHS), "existing_union_count": len(existing), "residual_unresolved_count": 1792 - len(existing), "existing_prefixes": list(EXISTING_RESEARCH_PREFIXES), "wave_unresolved_assets": 64, "target_wave_overlap": 0}
+    return {"expected_unresolved_assets": 1792, "prior_research_asset_count": len(prior), "prior_research_asset_ids_sha256": tagged("\n".join(sorted(prior)).encode()), "unresearched_prefix_asset_count": 0, "unresearched_prefix_asset_ids": [], "unresearched_prefix_source_paths": [], "existing_union_count": len(existing), "residual_unresolved_count": 1792 - len(existing), "existing_prefixes": list(EXISTING_RESEARCH_PREFIXES), "wave_unresolved_assets": 64, "target_wave_overlap": 0, "legacy_prior_research_asset_count": len(prior), "legacy_existing_union_count": 227, "legacy_unresearched_prefix_asset_count": 53, "product_research_union_count": 429, "product_research_unresolved_union_count": 280, "initial_target_count": 120, "target_existing_research_overlap": 53, "new_target_count": 67}
+
+
+def expected_overlap_reconciliation(initial_targets: set[str], product_union: dict[str, list[dict]], phase: dict[str, tuple[int, dict]]) -> dict:
+    entries = []
+    for asset_id in sorted(initial_targets & set(product_union)):
+        source_path = phase[asset_id][1]["source_path"]
+        source_sha256 = phase[asset_id][1].get("source_sha256")
+        spec = EXPECTED_PROFILES[source_path]
+        if any(r["source_path"] != source_path or r["source_sha256"] != source_sha256 for r in product_union[asset_id]):
+            fail("E_PRODUCT_RESEARCH_UNION", asset_id)
+        methods = [{"bundle": r["bundle"], "category": r["category"], "candidate_products": r["candidate_products"]} for r in product_union[asset_id]]
+        methods.sort(key=lambda r: r["bundle"])
+        same_method = all(r["category"] == spec["category"] and r["candidate_products"] == spec["products"] for r in methods)
+        entries.append({
+            "asset_id": asset_id,
+            "source_path": source_path,
+            "source_sha256": "sha256:" + product_union[asset_id][0]["source_sha256"],
+            "overlap_status": "same_source_same_method" if same_method else "same_source_different_method",
+            "research_scope": "existing_main_product_research_union",
+            "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+            "bundle_revision": PRODUCT_RESEARCH_COMMIT,
+            "denominator_role": "existing_research_union",
+            "target_category": spec["category"],
+            "target_products": spec["products"],
+            "existing_methods": methods,
+        })
+    same = sum(e["overlap_status"] == "same_source_same_method" for e in entries)
+    different = len(entries) - same
+    return {
+        "bundle_revision": PRODUCT_RESEARCH_COMMIT,
+        "bundle_paths": list(PRODUCT_RESEARCH_BUNDLES),
+        "union_count": len(product_union),
+        "initial_target_count": len(initial_targets),
+        "overlap_count": len(entries),
+        "new_target_count": len(initial_targets) - len(entries),
+        "same_source_same_method_count": same,
+        "same_source_different_method_count": different,
+        "entries": entries,
+    }
 
 def check() -> None:
     try:
@@ -937,12 +1074,16 @@ def check() -> None:
     decisions = read_jsonl(DECISIONS)
     read_afters = read_jsonl(READ_AFTER)
     targets, wave_assets, existing = derive_targets(phase)
-    if sorted(r.get("asset_id") for r in rows) != targets or len({r.get("asset_id") for r in rows}) != 120: fail("E_TARGET_SET", "ledger IDs")
-    if set(inv.get("expected_sets", {}).get("target_asset_ids", [])) != set(targets) or inv.get("expected_sets", {}).get("target_asset_count") != 120: fail("E_INVENTORY_DECLARATION", "target set")
+    product_union = product_research_union()
+    legacy_existing = {a for a, (_, row) in phase.items() if row.get("product_classification_status") == "unresolved" and any(row.get("source_path", "").startswith(prefix) for prefix in EXISTING_RESEARCH_PREFIXES)} - UNRESEARCHED_PREFIX_ASSET_IDS | wave_assets
+    initial_targets = set(a for a, (_, row) in phase.items() if row.get("product_classification_status") == "unresolved" and row.get("artifact_evidence_kind") == "implementation_source") - legacy_existing
+    expected_overlap = expected_overlap_reconciliation(initial_targets, product_union, phase)
+    if sorted(r.get("asset_id") for r in rows) != targets or len({r.get("asset_id") for r in rows}) != 67: fail("E_TARGET_SET", "ledger IDs")
+    if set(inv.get("expected_sets", {}).get("target_asset_ids", [])) != set(targets) or inv.get("expected_sets", {}).get("target_asset_count") != 67: fail("E_INVENTORY_DECLARATION", "target set")
     if set(inv) != EXPECTED_INVENTORY_KEYS: fail("E_INVENTORY_DECLARATION", "inventory schema keys")
     if inv.get("schema_revision") != 1: fail("E_INVENTORY_DECLARATION", "schema revision")
     if inv.get("expected_sets") != {
-        "target_asset_count": 120,
+        "target_asset_count": 67,
         "target_asset_ids": targets,
         "target_asset_ids_sha256": tagged("\n".join(targets).encode()),
         "source_paths": [phase[a][1]["source_path"] for a in targets],
@@ -965,10 +1106,20 @@ def check() -> None:
     prefix_ids_for_union = {a for a, (_, row) in phase.items() if row.get("product_classification_status") == "unresolved" and any(row.get("source_path", "").startswith(prefix) for prefix in EXISTING_RESEARCH_PREFIXES)}
     if inv.get("existing_research_union") != expected_union_declaration(existing, prefix_ids_for_union): fail("E_INVENTORY_DECLARATION", "research union")
     if inv.get("old_asset_source_mode") != "archive bytes are read through git show BASE:<archive-path>; never executed": fail("E_INVENTORY_DECLARATION", "source mode")
-    if inv.get("existing_research_union", {}).get("existing_union_count") != 227 or inv.get("existing_research_union", {}).get("residual_unresolved_count") != 1565: fail("E_INVENTORY_DECLARATION", "union counts")
+    if inv.get("existing_research_union", {}).get("existing_union_count") != 280 or inv.get("existing_research_union", {}).get("residual_unresolved_count") != 1512: fail("E_INVENTORY_DECLARATION", "union counts")
+    if inv.get("product_research_union") != {
+        "bundle_revision": PRODUCT_RESEARCH_COMMIT,
+        "bundle_paths": list(PRODUCT_RESEARCH_BUNDLES),
+        "union_count": 429,
+        "unresolved_union_count": 280,
+        "union_asset_ids_sha256": tagged("\n".join(sorted(product_union)).encode()),
+        "bundle_input_count": 8,
+        "bundle_inputs": [{"path": pth, "blob": git_blob_at(pth, PRODUCT_RESEARCH_COMMIT), "bytes": len(git_bytes_at(pth, PRODUCT_RESEARCH_COMMIT)), "sha256": tagged(git_bytes_at(pth, PRODUCT_RESEARCH_COMMIT))} for pth in PRODUCT_RESEARCH_BUNDLES],
+    }: fail("E_PRODUCT_RESEARCH_UNION", "union declaration")
+    if inv.get("overlap_reconciliation") != expected_overlap: fail("E_OVERLAP_RECONCILIATION", "overlap metadata")
     categories = Counter()
     expected_paths = set(EXPECTED_PROFILES)
-    if expected_paths != {phase[a][1]["source_path"] for a in targets}: fail("E_REVIEW_PIN", "profile target paths")
+    if not {phase[a][1]["source_path"] for a in targets} <= expected_paths: fail("E_REVIEW_PIN", "profile target paths")
     for row in rows:
         if set(row) != EXPECTED_RECORD_KEYS: fail("E_RECORD_SCHEMA", row.get("asset_id", ""))
         aid = row["asset_id"]
@@ -1034,16 +1185,16 @@ def check() -> None:
         "wave_files": 50,
         "wave_edges_scanned": 598,
         "wave_unique_assets_scanned": 355,
-        "target_assets": 120,
+        "target_assets": 67,
         "target_wave_edges": 0,
         "categories": dict(sorted(categories.items())),
-        "target_asset_artifact_evidence_kinds": {"implementation_source": 120},
+        "target_asset_artifact_evidence_kinds": {"implementation_source": 67},
     }
     if inv.get("counts") != expected_counts: fail("E_INVENTORY_DECLARATION", "counts")
     phase_distribution = Counter("|".join(phase[a][1].get("candidate_phase_targets") or []) for a in targets)
     if inv.get("phase_candidate_distribution") != dict(sorted(phase_distribution.items())): fail("E_INVENTORY_DECLARATION", "phase distribution")
     if inv.get("edge_contract") != {"target_wave_edges": 0, "duplicate_edges_forbidden": True, "missing_edges_forbidden": True}: fail("E_INVENTORY_DECLARATION", "edge contract")
-    if inv.get("history_failure_consumer") != {"disposition_rows": 120, "decision_rows_for_targets": 0, "read_after_rows_for_targets": 0, "failure_consumer_refs_are_static_global_inventory": True}: fail("E_INVENTORY_DECLARATION", "history/failure/consumer declaration")
+    if inv.get("history_failure_consumer") != {"disposition_rows": 67, "decision_rows_for_targets": 0, "read_after_rows_for_targets": 0, "failure_consumer_refs_are_static_global_inventory": True}: fail("E_INVENTORY_DECLARATION", "history/failure/consumer declaration")
     expected_manifest_resolution = {
         "status": "pending_human_source_resolution",
         "formal_admission": "stopped",
@@ -1059,15 +1210,17 @@ def check() -> None:
     if inv.get("archive_manifest_resolution") != expected_manifest_resolution: fail("E_ARCHIVE_MANIFEST", "resolution declaration")
     expected_binding = expected_binding_upstream()
     if inv.get("binding_upstream") != {
-        "policy": "all nonarchive input_digests are Binding upstream; archive static references remain in inventory/records because SCF-OS-003 forbids archive upstream paths",
-        "nonarchive_input_count": len(expected_binding),
+        "policy": "all nonarchive input_digests and product research bundle inputs are Binding upstream; archive static references remain in inventory/records because SCF-OS-003 forbids archive upstream paths",
+        "nonarchive_input_count": 63,
+        "product_bundle_input_count": 8,
+        "total_nonarchive_upstream_count": len(expected_binding),
         "archive_input_count": 121,
         "archive_upstream_count": 0,
         "archive_nonexecution_boundary": "archive source/runtime/test/CI is read through fixed BASE Git objects only and never executed",
     }: fail("E_BINDING_UPSTREAM", "binding upstream policy")
     if binding.get("id") != BINDING_ID or binding.get("upstream") != expected_binding: fail("E_BINDING_UPSTREAM", "path/raw SHA closure")
     global_inputs = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, "docs/governance/legacy-asset-reuse-control.md", "docs/governance/new-generation-start-here.md", MANIFEST]
-    expected_input_paths = [*WAVE_PATHS.values(), *global_inputs, *[ARCHIVE_PREFIX + phase[a][1]["source_path"] for a in targets]]
+    expected_input_paths = [*WAVE_PATHS.values(), *global_inputs, *[ARCHIVE_PREFIX + phase[a][1]["source_path"] for a in sorted(initial_targets)]]
     paths = [x.get("path") for x in inv.get("input_digests", [])]
     if paths != expected_input_paths or len(paths) != len(set(paths)): fail("E_INPUT_DIGEST", "input path set/order")
     for item in inv["input_digests"]:
@@ -1075,7 +1228,7 @@ def check() -> None:
         b = git_bytes(item["path"])
         if item.get("blob") != git_blob(item["path"]) or item.get("bytes") != len(b) or item.get("sha256") != tagged(b): fail("E_INPUT_DIGEST", item.get("path", ""))
     if inv.get("output_sha256") != tagged(LEDGER.read_bytes()): fail("E_OUTPUT_DIGEST", "ledger")
-    print(f"SCF-B-0126 validate: PASS records=120 categories={dict(sorted(categories.items()))} target_wave_edges=0 union=227")
+    print(f"SCF-B-0126 validate: PASS records=67 categories={dict(sorted(categories.items()))} target_wave_edges=0 product_union=429 unresolved_existing_union=280 residual=1512 overlap=53")
 
 
 if __name__ == "__main__":

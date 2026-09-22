@@ -37,7 +37,9 @@
     "archive_nonexecution_boundary": "archive source/runtime/test/CI is read through fixed BASE Git objects only and never executed",
     "archive_upstream_count": 0,
     "nonarchive_input_count": 63,
-    "policy": "all nonarchive input_digests are Binding upstream; archive static references remain in inventory/records because SCF-OS-003 forbids archive upstream paths"
+    "policy": "all nonarchive input_digests and product research bundle inputs are Binding upstream; archive static references remain in inventory/records because SCF-OS-003 forbids archive upstream paths",
+    "product_bundle_input_count": 8,
+    "total_nonarchive_upstream_count": 71
   },
   "classification_rule": {
     "direct_product_basis": "concrete source span plus product-boundary interpretation and counterevidence; path alone is invalid",
@@ -47,13 +49,13 @@
   "counts": {
     "categories": {
       "direct_product_basis": 30,
-      "insufficient_basis": 67,
+      "insufficient_basis": 14,
       "multi_product_conflict": 23
     },
     "target_asset_artifact_evidence_kinds": {
-      "implementation_source": 120
+      "implementation_source": 67
     },
-    "target_assets": 120,
+    "target_assets": 67,
     "target_wave_edges": 0,
     "wave_edges_scanned": 598,
     "wave_files": 50,
@@ -75,123 +77,23 @@
       "src/requirements/",
       "src/shared/"
     ],
-    "existing_union_count": 227,
+    "existing_union_count": 280,
     "expected_unresolved_assets": 1792,
+    "initial_target_count": 120,
+    "legacy_existing_union_count": 227,
+    "legacy_prior_research_asset_count": 205,
+    "legacy_unresearched_prefix_asset_count": 53,
+    "new_target_count": 67,
     "prior_research_asset_count": 205,
     "prior_research_asset_ids_sha256": "sha256:e5d5552e5028bd836c65bb1dd5ebbc14375dcbc89e5fd0c7060849bebe99ecca",
-    "residual_unresolved_count": 1565,
+    "product_research_union_count": 429,
+    "product_research_unresolved_union_count": 280,
+    "residual_unresolved_count": 1512,
+    "target_existing_research_overlap": 53,
     "target_wave_overlap": 0,
-    "unresearched_prefix_asset_count": 53,
-    "unresearched_prefix_asset_ids": [
-      "LEGACY-ASSET-08F8688895B787BD3D5C",
-      "LEGACY-ASSET-0996E33E11CB9283EEC8",
-      "LEGACY-ASSET-110F52E3C367C3DCCFE5",
-      "LEGACY-ASSET-11C75CC63968FB9A5BD2",
-      "LEGACY-ASSET-132E6449FA96E5CABBBF",
-      "LEGACY-ASSET-18579F09E6B2C29E5622",
-      "LEGACY-ASSET-187E43CE3096B88CA8B4",
-      "LEGACY-ASSET-18EBF31B40C9A58DE958",
-      "LEGACY-ASSET-1ABE9822E36400BC82C2",
-      "LEGACY-ASSET-2B68A62292FADDC5BCA6",
-      "LEGACY-ASSET-30539BEC772802F50C9D",
-      "LEGACY-ASSET-313DC99AEF53834D9207",
-      "LEGACY-ASSET-3290C9A3BA7FAD7BA07C",
-      "LEGACY-ASSET-354670A58AC796DDC80F",
-      "LEGACY-ASSET-3AEDBB3A9A7B549C4C24",
-      "LEGACY-ASSET-3D7D5062903EE9CEDFEF",
-      "LEGACY-ASSET-414CC59CA35B28BB7AF4",
-      "LEGACY-ASSET-4329EAEA146D5D97E088",
-      "LEGACY-ASSET-4A9AB5B2EF182BC30431",
-      "LEGACY-ASSET-4D3446684F730BFEB99E",
-      "LEGACY-ASSET-5442594ED146AD72850C",
-      "LEGACY-ASSET-555329E1E192F23D2865",
-      "LEGACY-ASSET-5BABA53229DF9A5DECEF",
-      "LEGACY-ASSET-66A3EB90764ABB6E7F57",
-      "LEGACY-ASSET-67D77EEBF1209346882C",
-      "LEGACY-ASSET-6B10C0467A1A1918D46E",
-      "LEGACY-ASSET-72ECA3C318F8028A6D91",
-      "LEGACY-ASSET-85F302A8E7280A166171",
-      "LEGACY-ASSET-8A390337BEE15CED1AA2",
-      "LEGACY-ASSET-8F85476FEB95D1284680",
-      "LEGACY-ASSET-97D1784D53918F126E3B",
-      "LEGACY-ASSET-9BFD3E86A8F5AE0DA720",
-      "LEGACY-ASSET-A3EC7F28F52F2808041E",
-      "LEGACY-ASSET-B8033A9BCD9CC70BF8F6",
-      "LEGACY-ASSET-B85C45D7C5621BD8201C",
-      "LEGACY-ASSET-C4C93ABA07B48AAB6D05",
-      "LEGACY-ASSET-CD0EAE866A7CA2A0D1F8",
-      "LEGACY-ASSET-D331F13A1FA21B0C05FE",
-      "LEGACY-ASSET-D641C9E49847C74848CE",
-      "LEGACY-ASSET-D73981AB049C177AC184",
-      "LEGACY-ASSET-DBCE67DF3C1FE8648191",
-      "LEGACY-ASSET-E4EDA1517A4F062B2D64",
-      "LEGACY-ASSET-E595E192F58FF3B1A2A0",
-      "LEGACY-ASSET-E9F6609D6EBDEBD288BC",
-      "LEGACY-ASSET-E9FF2DF247348F5608F2",
-      "LEGACY-ASSET-ECE1AFAAE85425CD29BB",
-      "LEGACY-ASSET-EEC2DA57D64EC4908112",
-      "LEGACY-ASSET-EFFA71383D8FAE4EBBBA",
-      "LEGACY-ASSET-F0ED1811C81FD1184188",
-      "LEGACY-ASSET-F2B7BCF14B8563B15C14",
-      "LEGACY-ASSET-F45E18DC5CE003BD8D91",
-      "LEGACY-ASSET-F5C9B1066B7337E45182",
-      "LEGACY-ASSET-F6A0AC0CAC1590A754EC"
-    ],
-    "unresearched_prefix_source_paths": [
-      "src/cli/commands/issue-hierarchy-census.ts",
-      "src/cli/commands/rename.ts",
-      "src/cli/commands/route.ts",
-      "src/cli/full-regression-shards.ts",
-      "src/cli/helpers.ts",
-      "src/cli/lite-canary-selector.ts",
-      "src/cli/preflight-gate-aggregation.ts",
-      "src/requirements/nfr-registry.ts",
-      "src/requirements/requirement-generated-view-generator.ts",
-      "src/requirements/requirement-generated-view.ts",
-      "src/schema/atomic-contract-id.ts",
-      "src/schema/current-location-workflow-identity-resolver.ts",
-      "src/schema/current-location-workflow-identity.ts",
-      "src/schema/design-declarations.ts",
-      "src/schema/green-command.ts",
-      "src/schema/harness-db-catalog.ts",
-      "src/schema/harness-db-indexes.ts",
-      "src/schema/harness-db-table-builders.ts",
-      "src/schema/harness-db-tables-design.ts",
-      "src/schema/harness-db-tables-graph.ts",
-      "src/schema/harness-db-tables-registry.ts",
-      "src/schema/harness-db-tables-screen.ts",
-      "src/schema/harness-db-tables-semantic.ts",
-      "src/schema/harness-db-types.ts",
-      "src/schema/harness-db.ts",
-      "src/schema/loop-plan-id.ts",
-      "src/schema/model-registry.ts",
-      "src/schema/open-branch-plan-reservation-authority.ts",
-      "src/schema/runtime-verification.ts",
-      "src/schema/team.ts",
-      "src/schema/visualization-contract.ts",
-      "src/schema/visualization-tree-contract.ts",
-      "src/schema/visualization-view-contract.ts",
-      "src/schema/workflow-execution-policy-projection.ts",
-      "src/schema/workflow-execution-policy-registry.ts",
-      "src/setup/update-check.ts",
-      "src/shared/canonical-digest.ts",
-      "src/shared/collection-utils.ts",
-      "src/shared/commit-subject.ts",
-      "src/shared/file-walk.ts",
-      "src/shared/repo-info.ts",
-      "src/shared/shell-quote.ts",
-      "src/shared/string-utils.ts",
-      "src/shared/time-utils.ts",
-      "src/shared/typescript-lazy.ts",
-      "src/shared/value-guards.ts",
-      "src/workflow/cli-workflow-identity-projection.ts",
-      "src/workflow/contracts-extras.ts",
-      "src/workflow/contracts-types.ts",
-      "src/workflow/current-location-workflow-identity.ts",
-      "src/workflow/skill-applicability-authoring.ts",
-      "src/workflow/universal-workflow-envelope.ts",
-      "src/workflow/workflow-interview-unresolved.ts"
-    ],
+    "unresearched_prefix_asset_count": 0,
+    "unresearched_prefix_asset_ids": [],
+    "unresearched_prefix_source_paths": [],
     "wave_unresolved_assets": 64
   },
   "expected_sets": {
@@ -200,50 +102,23 @@
       "src/doctor/nfr-registry-check.ts",
       "src/design/design-registry-screen-intake.ts",
       "src/vscode/extension-adapter.ts",
-      "src/cli/commands/rename.ts",
-      "src/shared/time-utils.ts",
       "src/gate/static.ts",
-      "src/cli/helpers.ts",
-      "src/schema/current-location-workflow-identity-resolver.ts",
-      "src/schema/green-command.ts",
-      "src/schema/harness-db-types.ts",
-      "src/schema/current-location-workflow-identity.ts",
-      "src/schema/model-registry.ts",
-      "src/schema/harness-db-table-builders.ts",
       "src/doctor/failure.ts",
       "src/audit/quality.ts",
       "src/team/model-effort.ts",
-      "src/schema/loop-plan-id.ts",
       "src/design/screen-applicability-sqlite-store.ts",
-      "src/schema/harness-db-tables-graph.ts",
-      "src/cli/commands/route.ts",
       "src/security/secret-policy.ts",
       "src/policy/filesystem-durability.ts",
-      "src/workflow/contracts-extras.ts",
       "src/audit/branches.ts",
-      "src/requirements/nfr-registry.ts",
       "src/plan/lint-types.ts",
       ".claude/hooks/git-command-guard.ts",
-      "src/schema/team.ts",
-      "src/schema/open-branch-plan-reservation-authority.ts",
-      "src/schema/runtime-verification.ts",
-      "src/requirements/requirement-generated-view-generator.ts",
       "src/vscode/extension.ts",
-      "src/shared/canonical-digest.ts",
-      "src/workflow/contracts-types.ts",
-      "src/schema/harness-db-tables-design.ts",
       "src/semantic/semantic-contract-revalidator.ts",
-      "src/requirements/requirement-generated-view.ts",
       "src/web/index.ts",
-      "src/shared/file-walk.ts",
       "src/vscode/tree-decoration.ts",
-      "src/workflow/current-location-workflow-identity.ts",
-      "src/schema/workflow-execution-policy-registry.ts",
-      "src/shared/collection-utils.ts",
       "src/guardrail/ledger.ts",
       "src/doctor/check-registry.ts",
       "src/semantic/semantic-commit-store.ts",
-      "src/schema/visualization-tree-contract.ts",
       "src/feedback/lifecycle-node.ts",
       "src/policy/closure-authority-registry.ts",
       "src/doctor/workflow-guide-authority.ts",
@@ -252,20 +127,14 @@
       "src/config/requirements-binding-policy.ts",
       "src/policy/active-plan-selection.ts",
       "src/doctor/result.ts",
-      "src/schema/atomic-contract-id.ts",
       "src/composition/db-rebuild-composition.ts",
-      "src/schema/harness-db-tables-semantic.ts",
-      "src/shared/typescript-lazy.ts",
       "src/adapters/open-branch-plan-reservation-authority.ts",
       "src/task/proposal-document-pack-types.ts",
-      "src/schema/visualization-contract.ts",
-      "src/schema/harness-db-catalog.ts",
       "src/vmodel/zip-manifest.ts",
       "src/audit/repository-hygiene.ts",
       "src/adapters/document-semantic-diff-fs.ts",
       "src/task/tier-router.ts",
       "src/team/run-policy.ts",
-      "src/cli/preflight-gate-aggregation.ts",
       "src/web/render.ts",
       "src/measurement/bounded-probe-history.ts",
       ".claude/hooks/session-log.ts",
@@ -274,99 +143,52 @@
       "src/web/tokens.ts",
       "src/team/launch-policy.ts",
       "src/context/doc-router.ts",
-      "src/schema/harness-db-tables-registry.ts",
-      "src/cli/lite-canary-selector.ts",
       "src/plan/lint-policy.ts",
       "src/feedback/lifecycle.ts",
       "src/task/tier-router-policy.ts",
       "src/audit/enforcement-route-input.ts",
-      "src/cli/full-regression-shards.ts",
       "src/vscode/tree-view-provider.ts",
       "scripts/audit-l12-hybrid-recognition.ts",
-      "src/setup/update-check.ts",
       "src/assets/catalog.ts",
       "src/vmodel/fit.ts",
       "src/web/catalog.ts",
-      "src/cli/commands/issue-hierarchy-census.ts",
-      "src/workflow/workflow-interview-unresolved.ts",
       "src/policy/closure-authority-backfill.ts",
-      "src/workflow/universal-workflow-envelope.ts",
       ".claude/hooks/work-guard.ts",
-      "src/schema/workflow-execution-policy-projection.ts",
       "src/vscode/extension-manifest.ts",
       "src/search/index.ts",
       "src/web/share.ts",
       "src/semantic/semantic-intake-receipt.ts",
-      "src/schema/harness-db-tables-screen.ts",
-      "src/schema/visualization-view-contract.ts",
       "src/design/ui-domain-gate.ts",
-      "src/shared/repo-info.ts",
-      "src/schema/harness-db-indexes.ts",
       "src/export/document-export.ts",
-      "src/shared/value-guards.ts",
       "src/web/.gitkeep",
-      "src/schema/design-declarations.ts",
       "src/task/proposal-coverage-data.ts",
-      "src/shared/shell-quote.ts",
       "src/vmodel/design-declarations.ts",
-      "src/schema/harness-db.ts",
       "src/gate/review-tier.ts",
-      "src/shared/string-utils.ts",
-      "src/workflow/skill-applicability-authoring.ts",
-      "src/workflow/cli-workflow-identity-projection.ts",
-      "src/shared/commit-subject.ts",
       "src/graph/loader.ts"
     ],
-    "target_asset_count": 120,
+    "target_asset_count": 67,
     "target_asset_ids": [
       "LEGACY-ASSET-005BBC344AC83176CAE6",
       "LEGACY-ASSET-03846AA02084DC30318B",
       "LEGACY-ASSET-03D5246D4A367B77A10F",
       "LEGACY-ASSET-0404DA6A68E40E96A694",
-      "LEGACY-ASSET-08F8688895B787BD3D5C",
-      "LEGACY-ASSET-0996E33E11CB9283EEC8",
       "LEGACY-ASSET-0DA27939573DF620316D",
-      "LEGACY-ASSET-110F52E3C367C3DCCFE5",
-      "LEGACY-ASSET-11C75CC63968FB9A5BD2",
-      "LEGACY-ASSET-132E6449FA96E5CABBBF",
-      "LEGACY-ASSET-18579F09E6B2C29E5622",
-      "LEGACY-ASSET-187E43CE3096B88CA8B4",
-      "LEGACY-ASSET-18EBF31B40C9A58DE958",
-      "LEGACY-ASSET-1ABE9822E36400BC82C2",
       "LEGACY-ASSET-1EE90CF366091DF602C5",
       "LEGACY-ASSET-21E7CE8A9C05D7EFCBFD",
       "LEGACY-ASSET-2743C41663F961A0CFFA",
-      "LEGACY-ASSET-2B68A62292FADDC5BCA6",
       "LEGACY-ASSET-2BDB6E2B75978708D986",
-      "LEGACY-ASSET-30539BEC772802F50C9D",
-      "LEGACY-ASSET-313DC99AEF53834D9207",
       "LEGACY-ASSET-31C9851B52D827AC32D7",
       "LEGACY-ASSET-326AB574F2F843071474",
-      "LEGACY-ASSET-3290C9A3BA7FAD7BA07C",
       "LEGACY-ASSET-32A46322D3C6ADB5BD1B",
-      "LEGACY-ASSET-354670A58AC796DDC80F",
       "LEGACY-ASSET-39338BE85963C3866E5B",
       "LEGACY-ASSET-3AC78FD8A01E0F9811C5",
-      "LEGACY-ASSET-3AEDBB3A9A7B549C4C24",
-      "LEGACY-ASSET-3D7D5062903EE9CEDFEF",
-      "LEGACY-ASSET-414CC59CA35B28BB7AF4",
-      "LEGACY-ASSET-4329EAEA146D5D97E088",
       "LEGACY-ASSET-436BAA948FDA21E827A4",
-      "LEGACY-ASSET-4A9AB5B2EF182BC30431",
-      "LEGACY-ASSET-4D3446684F730BFEB99E",
-      "LEGACY-ASSET-5442594ED146AD72850C",
       "LEGACY-ASSET-552264057C6232AAD757",
-      "LEGACY-ASSET-555329E1E192F23D2865",
       "LEGACY-ASSET-5AEE5D0C1129F8203D7F",
-      "LEGACY-ASSET-5BABA53229DF9A5DECEF",
       "LEGACY-ASSET-5CA9E110DFEC7BC8F88F",
-      "LEGACY-ASSET-66A3EB90764ABB6E7F57",
-      "LEGACY-ASSET-67D77EEBF1209346882C",
-      "LEGACY-ASSET-6B10C0467A1A1918D46E",
       "LEGACY-ASSET-6C2D9FB1AC2411C4F6C5",
       "LEGACY-ASSET-6CC1A5B9E9472F1100AF",
       "LEGACY-ASSET-6CC51A08D6EC967FB3C4",
-      "LEGACY-ASSET-72ECA3C318F8028A6D91",
       "LEGACY-ASSET-739CB7B4CAD2EFB16EE9",
       "LEGACY-ASSET-78A29501ED3DEA2D0F60",
       "LEGACY-ASSET-7A34CAE0B6A9FE0AC8C1",
@@ -375,20 +197,14 @@
       "LEGACY-ASSET-8012D086429557C96ABE",
       "LEGACY-ASSET-80849CA0D9F8BCA0E2EF",
       "LEGACY-ASSET-8209F57B50731048C533",
-      "LEGACY-ASSET-85F302A8E7280A166171",
       "LEGACY-ASSET-86B073C47C6C44269176",
-      "LEGACY-ASSET-8A390337BEE15CED1AA2",
-      "LEGACY-ASSET-8F85476FEB95D1284680",
       "LEGACY-ASSET-8F9E298C14D238264B41",
       "LEGACY-ASSET-9574089EBA03747562DE",
-      "LEGACY-ASSET-97D1784D53918F126E3B",
-      "LEGACY-ASSET-9BFD3E86A8F5AE0DA720",
       "LEGACY-ASSET-9CB9A84027FD545A3FAA",
       "LEGACY-ASSET-9DC02A008F08BC1AD795",
       "LEGACY-ASSET-9E754AB6BD6F6FD401BB",
       "LEGACY-ASSET-9FCE13561CB549878FFC",
       "LEGACY-ASSET-A3863C4F66BDEE4D2548",
-      "LEGACY-ASSET-A3EC7F28F52F2808041E",
       "LEGACY-ASSET-A3EFCCDDE23BE538C306",
       "LEGACY-ASSET-A6C0C0BA3581CE8CF874",
       "LEGACY-ASSET-A8DD18BCB237675730CD",
@@ -397,50 +213,30 @@
       "LEGACY-ASSET-B2DC705A61BC491EB216",
       "LEGACY-ASSET-B3944C1C7EC3BB77939C",
       "LEGACY-ASSET-B4FA0A24B9B85A5A699B",
-      "LEGACY-ASSET-B8033A9BCD9CC70BF8F6",
-      "LEGACY-ASSET-B85C45D7C5621BD8201C",
       "LEGACY-ASSET-B921E1EDFB7A6A957F24",
       "LEGACY-ASSET-B9E3F1FC29F8F5DC9EF4",
       "LEGACY-ASSET-BB467B74BE402C816B10",
       "LEGACY-ASSET-C1654DA000F29AD9D03D",
-      "LEGACY-ASSET-C4C93ABA07B48AAB6D05",
       "LEGACY-ASSET-C8B7051BFC6F201F75A2",
       "LEGACY-ASSET-CCB181C10C2F3B9E6A89",
-      "LEGACY-ASSET-CD0EAE866A7CA2A0D1F8",
       "LEGACY-ASSET-CE6A9902267E2AB9E067",
       "LEGACY-ASSET-D0FBF54624FE5692EB0C",
       "LEGACY-ASSET-D26E81B1B66B8D4B1DF7",
-      "LEGACY-ASSET-D331F13A1FA21B0C05FE",
-      "LEGACY-ASSET-D641C9E49847C74848CE",
       "LEGACY-ASSET-D6435CA1A429370344FB",
-      "LEGACY-ASSET-D73981AB049C177AC184",
       "LEGACY-ASSET-DB4925588127A51391D7",
-      "LEGACY-ASSET-DBCE67DF3C1FE8648191",
       "LEGACY-ASSET-DC32226855EA24F55681",
       "LEGACY-ASSET-DE6D1A3716E224EEDA66",
       "LEGACY-ASSET-DFB34A1E986B5C4AB72B",
       "LEGACY-ASSET-E0B50FAAE6CF28DF8D4D",
-      "LEGACY-ASSET-E4EDA1517A4F062B2D64",
-      "LEGACY-ASSET-E595E192F58FF3B1A2A0",
       "LEGACY-ASSET-E895B32DA11986F4791F",
-      "LEGACY-ASSET-E9F6609D6EBDEBD288BC",
-      "LEGACY-ASSET-E9FF2DF247348F5608F2",
       "LEGACY-ASSET-EC6CE3ED85CCF628BB2A",
-      "LEGACY-ASSET-ECE1AFAAE85425CD29BB",
       "LEGACY-ASSET-ECFC53E723DFF13E9613",
-      "LEGACY-ASSET-EEC2DA57D64EC4908112",
       "LEGACY-ASSET-EFC8A62F3EF8133B437C",
-      "LEGACY-ASSET-EFFA71383D8FAE4EBBBA",
       "LEGACY-ASSET-F00FDCEBACC7D87FF718",
-      "LEGACY-ASSET-F0ED1811C81FD1184188",
       "LEGACY-ASSET-F1CE985A3EF848E016AF",
-      "LEGACY-ASSET-F2B7BCF14B8563B15C14",
-      "LEGACY-ASSET-F45E18DC5CE003BD8D91",
-      "LEGACY-ASSET-F5C9B1066B7337E45182",
-      "LEGACY-ASSET-F6A0AC0CAC1590A754EC",
       "LEGACY-ASSET-FF183AAF28E9A4682B4C"
     ],
-    "target_asset_ids_sha256": "sha256:286a9c9062f2641e4a275bdcc318f75041ef6eb244da160547bc1bd651439826"
+    "target_asset_ids_sha256": "sha256:6c03d924c3e357ad0ef8a82b7537117b07ba70e2014cc0a72b24421f3816581e"
   },
   "formal_update": {
     "authority_effect": "none",
@@ -452,7 +248,7 @@
   },
   "history_failure_consumer": {
     "decision_rows_for_targets": 0,
-    "disposition_rows": 120,
+    "disposition_rows": 67,
     "failure_consumer_refs_are_static_global_inventory": true,
     "read_after_rows_for_targets": 0
   },
@@ -1612,20 +1408,1202 @@
     "malformed_json",
     "nonobject_json",
     "anchor_line_coverage_tamper",
-    "binding_upstream_stale_tamper"
+    "binding_upstream_stale_tamper",
+    "research_scope_tamper",
+    "overlap_reconciliation_tamper",
+    "product_research_union_tamper"
   ],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
-  "output_sha256": "sha256:7e8d5c296d795c6eb8214d0411865437fa1072d57c40e292f76525fdbd1435bb",
+  "output_sha256": "sha256:175f0fa8b715bfc4ed147a980bbb0c50d8dde66c3006bd87ffaef91b94a0b5c4",
+  "overlap_reconciliation": {
+    "bundle_paths": [
+      "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
+      "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
+      "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl",
+      "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl",
+      "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
+      "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+      "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+      "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl"
+    ],
+    "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+    "entries": [
+      {
+        "asset_id": "LEGACY-ASSET-08F8688895B787BD3D5C",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/cli/commands/rename.ts",
+        "source_sha256": "sha256:fd9f192308ea45baf55a79f3e16315e3c51cdbaca5a9ce4d66e5882ec7c51b00",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-0996E33E11CB9283EEC8",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/shared/time-utils.ts",
+        "source_sha256": "sha256:3dbc260f44c64ed1776943c6e8830a9652c01fb528b969d76c005b45ee1fb237",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-110F52E3C367C3DCCFE5",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/cli/helpers.ts",
+        "source_sha256": "sha256:ef3cd23e8a2b2759ccf4710dc2c51a96e52cefdc9b0883095bb524c0f04af446",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-11C75CC63968FB9A5BD2",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/current-location-workflow-identity-resolver.ts",
+        "source_sha256": "sha256:51ea5fd61feb55912790caa9d0c4f650a75009bb1afa7efdf3b5cf119bdacdd3",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-132E6449FA96E5CABBBF",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/green-command.ts",
+        "source_sha256": "sha256:90e36fbcb7dd0620d06a3329c47e8a113228c53acb6183034040e46fbea5aa11",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-18579F09E6B2C29E5622",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/harness-db-types.ts",
+        "source_sha256": "sha256:b49dcb73101b7a6a103ad66e889bbf9c8772b3b1c401d8c0fa7dad4e6e45a967",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-187E43CE3096B88CA8B4",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/current-location-workflow-identity.ts",
+        "source_sha256": "sha256:868d69d67acd6c757be373a217dc5fe64b9b10bc2845c30ac2604db59c4e430a",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-18EBF31B40C9A58DE958",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/model-registry.ts",
+        "source_sha256": "sha256:52b31f11cebbe19321810d208686283cd793b96295fe62cda4bd5e152e7fd345",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-1ABE9822E36400BC82C2",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/harness-db-table-builders.ts",
+        "source_sha256": "sha256:b84c3c8c379c25828716c8749efae34a7614f1405dd1305077377b30bc17d6d2",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-2B68A62292FADDC5BCA6",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/loop-plan-id.ts",
+        "source_sha256": "sha256:77209a043af600894f850012f5260f3e7a4331ae855002a4008d7d5f23ae11df",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-30539BEC772802F50C9D",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/harness-db-tables-graph.ts",
+        "source_sha256": "sha256:a11010f5574933f13aef7c986921a06ba0e0be06d696fa7fbeab03fe0a5b8d56",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-313DC99AEF53834D9207",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/cli/commands/route.ts",
+        "source_sha256": "sha256:7f0a64b892472d82059bacdb841f0499a670ee10d00a620553d5be7a671197d4",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-3290C9A3BA7FAD7BA07C",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-OS"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/workflow/contracts-extras.ts",
+        "source_sha256": "sha256:7ba15efa32f3de02f980ab86b8b366d7a46c1660d1cb6916297e8c5dc1d979e7",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-354670A58AC796DDC80F",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-OS"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/requirements/nfr-registry.ts",
+        "source_sha256": "sha256:6258e9cb28637ebe18338354aaac89343c1f4a41507b1203471271e6d977daaa",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-3AEDBB3A9A7B549C4C24",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-OS"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/team.ts",
+        "source_sha256": "sha256:f13d34c6d34f15eca6f3953e88f8a518cd586fb52bc42f0a6bc2c79ce6d315bf",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-3D7D5062903EE9CEDFEF",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-OS"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/open-branch-plan-reservation-authority.ts",
+        "source_sha256": "sha256:c7c1a233abfea0d98457ee361b45c23c586ff07be6716eda99274506f2885336",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-414CC59CA35B28BB7AF4",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/runtime-verification.ts",
+        "source_sha256": "sha256:a11c4e797dd4e4357204ad9af2ab092e195afd1d0405b1e3e8bcfd1ff5319fc6",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-4329EAEA146D5D97E088",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/requirements/requirement-generated-view-generator.ts",
+        "source_sha256": "sha256:c999183b14ff36779c1b2e556371d733e09dfbd35cd40de0115b56468d8de09e",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-4A9AB5B2EF182BC30431",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/shared/canonical-digest.ts",
+        "source_sha256": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-4D3446684F730BFEB99E",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/workflow/contracts-types.ts",
+        "source_sha256": "sha256:2b8dcac19d45cd742cd7f996537c26ea0fb24273762405963b2d8e66e25417da",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-5442594ED146AD72850C",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/harness-db-tables-design.ts",
+        "source_sha256": "sha256:f152d5ea4a8e5973fa956b0d0c85330bf549bf22a7f1c5eb291d5e3c328b95b6",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-555329E1E192F23D2865",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/requirements/requirement-generated-view.ts",
+        "source_sha256": "sha256:a0839fc82da7af87996b9f44c5d5bb5c89b94637da79d1fe89110096bf71a9bf",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-5BABA53229DF9A5DECEF",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/shared/file-walk.ts",
+        "source_sha256": "sha256:045f57ff8022041352d0871df6cc744b5fb2b4243c67781f973770a0474397d2",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-66A3EB90764ABB6E7F57",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/workflow/current-location-workflow-identity.ts",
+        "source_sha256": "sha256:5975e2bd15af4fe44c7b1b405f7273c7c1353c05883b23d6a82c4e3902f81bc9",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-67D77EEBF1209346882C",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-OS"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/workflow-execution-policy-registry.ts",
+        "source_sha256": "sha256:79ba1d900f9d513706687ca3f06eeaeb8924c2c6534dbe4b58f1ead48cdf50c8",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-6B10C0467A1A1918D46E",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/shared/collection-utils.ts",
+        "source_sha256": "sha256:9639253d0240104af990b2aaa22b5c18b72893c5540737d39b938589a473e7a1",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-72ECA3C318F8028A6D91",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/visualization-tree-contract.ts",
+        "source_sha256": "sha256:2aeddd9900aebc2abd72aa3b7381aa0260cf6bd4de3cfd350ee7435dcab22ce4",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-85F302A8E7280A166171",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/atomic-contract-id.ts",
+        "source_sha256": "sha256:0f0305eb66c3f283eb446e23ac59287eedea2e6afc4f9182f177dec21741ffa6",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-8A390337BEE15CED1AA2",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/harness-db-tables-semantic.ts",
+        "source_sha256": "sha256:a3ed6665a0df2a16b898e9f34217a507d7d4b9cb24b53bead7d4d0cc38d5a905",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-8F85476FEB95D1284680",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/shared/typescript-lazy.ts",
+        "source_sha256": "sha256:7e791e76a94f1099c4779f3709d8bfb9a0f4ffaae52f3a8d4a7059306e141847",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-97D1784D53918F126E3B",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/visualization-contract.ts",
+        "source_sha256": "sha256:2a1edb950c94a25b0582e5df39120b651f0a33302b182594b0ea953fca0270fd",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-9BFD3E86A8F5AE0DA720",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-OS"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/harness-db-catalog.ts",
+        "source_sha256": "sha256:0f97120c762dfad239bd492f01205aeccb1ca93d2ef123d7bd552a11c66e917a",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A3EC7F28F52F2808041E",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/cli/preflight-gate-aggregation.ts",
+        "source_sha256": "sha256:51f20fae3c7b08bee546101bdac8906aca55b1351428a7de4bfb139a1fb4ab17",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B8033A9BCD9CC70BF8F6",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/harness-db-tables-registry.ts",
+        "source_sha256": "sha256:d1cb7e62b7ebc01cd5d834d8428f745237c48ec9c7e4f80d3b1109ca38e5312d",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-B85C45D7C5621BD8201C",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/cli/lite-canary-selector.ts",
+        "source_sha256": "sha256:6cb39dd168fce0b470a7f7206620b4fda8fd8ac2b415776a49148a26fe728e89",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-C4C93ABA07B48AAB6D05",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-OS"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/cli/full-regression-shards.ts",
+        "source_sha256": "sha256:1e14686b6ca2aa6e2f72327d252413093e3e0b6820c424085d09f93376f973b1",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-CD0EAE866A7CA2A0D1F8",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/setup/update-check.ts",
+        "source_sha256": "sha256:d2ced39b60b7bb283191b41384859549d3635d42f748f0a46eaa6c24afd765a8",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-D331F13A1FA21B0C05FE",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-OS"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/cli/commands/issue-hierarchy-census.ts",
+        "source_sha256": "sha256:21979bfe874268f86e99b00fa1292a9bb40b63acc6535a030beb793a9256d19b",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-D641C9E49847C74848CE",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/workflow/workflow-interview-unresolved.ts",
+        "source_sha256": "sha256:9d8d674caf4ed7d916bd5affa3d047a2712da5ab5de1fa3927c27a95a7748fef",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-D73981AB049C177AC184",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-OS"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/workflow/universal-workflow-envelope.ts",
+        "source_sha256": "sha256:81b9a975cb1004967d5707c432ac30201c0ebb2ccd138e5aed6184c4a2782e61",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-DBCE67DF3C1FE8648191",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/workflow-execution-policy-projection.ts",
+        "source_sha256": "sha256:dc7af9d59bb738cb0b20f553f3bfe263664a6ae786f4132181c41cf45cf6e5fa",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-E4EDA1517A4F062B2D64",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/harness-db-tables-screen.ts",
+        "source_sha256": "sha256:0a88381ecb0c9e11d5314a0d2a6c76b3effb3d5798f2b36e694cf5eff0e759ba",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-E595E192F58FF3B1A2A0",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-Web"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/visualization-view-contract.ts",
+        "source_sha256": "sha256:135094909c3fffdfc710478161453073987988bd2d8bc6ce9a8d7a61d7c2cc4d",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-E9F6609D6EBDEBD288BC",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/shared/repo-info.ts",
+        "source_sha256": "sha256:e8c194f5b9ecdfd599e3cb9de0bba6b53be19601e7f6d9cdaca72a199c10e632",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-E9FF2DF247348F5608F2",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-OS"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/harness-db-indexes.ts",
+        "source_sha256": "sha256:3480d9e7511c4a091c8ccb3c3f543f4e4a35560d3b145889d55ca30a10776ae3",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-ECE1AFAAE85425CD29BB",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/shared/value-guards.ts",
+        "source_sha256": "sha256:5f4872c47d431595a5e04f0bfd581b55c183cbf4cc1046e6b09ae9dfd81ca35f",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EEC2DA57D64EC4908112",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/design-declarations.ts",
+        "source_sha256": "sha256:df0922b4aa4b2de2f4b8fe9e9a72e75dd1b2eb44ce0177412060998bbf1032a1",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EFFA71383D8FAE4EBBBA",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/shared/shell-quote.ts",
+        "source_sha256": "sha256:68cf6f82d2461b364a1053ce5fd59f93a6055131964e5ab85371333979043d28",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F0ED1811C81FD1184188",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-HARNESS",
+              "HELIX-OS"
+            ],
+            "category": "multi_product_conflict"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/schema/harness-db.ts",
+        "source_sha256": "sha256:86b0ca470118e1ce4e100c313d39945bc62f3198720380850e4efb9aae7fd1ca",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F2B7BCF14B8563B15C14",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/shared/string-utils.ts",
+        "source_sha256": "sha256:c3070b30d821e0e4f10cd060ddc494950b54e993af3899078927c29aa1de18d3",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F45E18DC5CE003BD8D91",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/workflow/skill-applicability-authoring.ts",
+        "source_sha256": "sha256:64168537fc71bda6b6c8fec963062d9c048048647cf15bdde69fe2feb277f463",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F5C9B1066B7337E45182",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [
+              "HELIX-OS"
+            ],
+            "category": "direct_product_basis"
+          }
+        ],
+        "overlap_status": "same_source_different_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/workflow/cli-workflow-identity-projection.ts",
+        "source_sha256": "sha256:7510c6f7eb7e605a9c5bc8b15cd689190a8adbf3a255afdd0fa598bfba8bbaa9",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F6A0AC0CAC1590A754EC",
+        "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "denominator_role": "existing_research_union",
+        "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
+        "existing_methods": [
+          {
+            "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+            "candidate_products": [],
+            "category": "insufficient_basis"
+          }
+        ],
+        "overlap_status": "same_source_same_method",
+        "research_scope": "existing_main_product_research_union",
+        "source_path": "src/shared/commit-subject.ts",
+        "source_sha256": "sha256:43b9b3897c3c77a625236635371411d515828b59616487899fff3124dea4ec62",
+        "target_category": "insufficient_basis",
+        "target_products": []
+      }
+    ],
+    "initial_target_count": 120,
+    "new_target_count": 67,
+    "overlap_count": 53,
+    "same_source_different_method_count": 36,
+    "same_source_same_method_count": 17,
+    "union_count": 429
+  },
   "phase_candidate_distribution": {
-    "": 109,
+    "": 56,
     "PHCAP-02": 1,
     "PHCAP-03": 1,
     "PHCAP-06": 1,
     "PHCAP-11": 7,
     "PHCAP-12": 1
   },
+  "product_research_union": {
+    "bundle_input_count": 8,
+    "bundle_inputs": [
+      {
+        "blob": "4760a0719ca361e2df051980ee2502902d34f78c",
+        "bytes": 2034109,
+        "path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
+        "sha256": "sha256:ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76"
+      },
+      {
+        "blob": "548fbeced70ad4fc4275f42868fd0c044e546d65",
+        "bytes": 1381401,
+        "path": "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
+        "sha256": "sha256:db407121029c9074e0679adf82e309caca9d7a33fabf7c6db23941c0b80e4251"
+      },
+      {
+        "blob": "a9acacc754518eb5c46105ca8d3bc781a4c1f53f",
+        "bytes": 3173082,
+        "path": "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl",
+        "sha256": "sha256:3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829"
+      },
+      {
+        "blob": "0847f077797af0708b4f5ef1b7055291d06649ff",
+        "bytes": 3023227,
+        "path": "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl",
+        "sha256": "sha256:ed5a673d065daf3c7254ea8812a4c3989b04dbb65855999c43e42139dc1b2104"
+      },
+      {
+        "blob": "71eae8b08865520ed6eec362de8d9d77670c8728",
+        "bytes": 1695783,
+        "path": "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
+        "sha256": "sha256:c4b769a2f2a2ce6852390a6d400ce819546f0d55ba0e48587e050d8e0955b9ee"
+      },
+      {
+        "blob": "0fe0ea2ea108f217ca1b076195ef2c04bde5d9a2",
+        "bytes": 1313490,
+        "path": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+        "sha256": "sha256:c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204"
+      },
+      {
+        "blob": "e2f85c2becd63d8a6e5596a71bf5d968513e6850",
+        "bytes": 2663419,
+        "path": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+        "sha256": "sha256:06f4f5c6f331afe7662847461a1165b5b3e6361c23d6c9106fce62952e60fe1f"
+      },
+      {
+        "blob": "f2987efe0d42b1570557ad1bceeae907792e71ac",
+        "bytes": 405609,
+        "path": "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl",
+        "sha256": "sha256:bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad"
+      }
+    ],
+    "bundle_paths": [
+      "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
+      "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
+      "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl",
+      "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl",
+      "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
+      "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+      "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+      "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl"
+    ],
+    "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+    "union_asset_ids_sha256": "sha256:15cc62dabbf14bc9518a7f8110ba4fd422f5fa56f1eaf820014de75304fafe1a",
+    "union_count": 429,
+    "unresolved_union_count": 280
+  },
   "schema_revision": 1,
-  "scope": "fixed BASE unresolved implementation_source residual after fixed prior research ID set and explicit 53 prefix residual assets exact 120 assets",
+  "scope": "fixed BASE unresolved implementation_source residual after latest main product research union 429 and explicit overlap reconciliation; exact 67 new assets from the initial 120-asset tranche",
   "wave_source_paths": {
     "1": "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl",
     "2": "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl",
