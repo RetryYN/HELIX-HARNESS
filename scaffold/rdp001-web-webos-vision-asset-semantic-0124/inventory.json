@@ -22,8 +22,9 @@
     "vision_candidate_count": 35,
     "vision_parent_span_count": 29,
     "representative_asset_count": 12,
-    "l1_anchor_input_commit": "882cbd0c56320f06dd06311499497b216b289542",
+    "l1_anchor_input_commit": "cb5a45fea289d61b67cba100fd2406813021ef48",
     "l1_anchor_input_path": "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/candidate-units.jsonl",
+    "l1_anchor_input_blob_oid": "8d034128cc09a3b2c03abcfe31e89f8719ca170b",
     "l1_anchor_input_sha256": "0c00dfa823ac0302e3ab496f9b5c264c18d8239a679ff99bb9c8515744bb64fe",
     "read_after_path": "docs/governance/legacy-asset-copy-read-after.jsonl"
   },
@@ -89,10 +90,12 @@
     "parent_0084_atoms": "3abafb9a1408d78e2114f14d5935569b2a28c8dad59536a0ffa1142f2c12451a",
     "parent_0088_atoms": "eea5d17398c85f8fc42eeb7bf8f9984a026e519df972d31eda0477b4ae194c62",
     "l1_anchor_units": "0c00dfa823ac0302e3ab496f9b5c264c18d8239a679ff99bb9c8515744bb64fe",
+    "l1_anchor_input_commit": "cb5a45fea289d61b67cba100fd2406813021ef48",
+    "l1_anchor_input_blob_oid": "8d034128cc09a3b2c03abcfe31e89f8719ca170b",
     "l1_approval_decision": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
     "product_boundary": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
   },
-  "negative_case_count": 16,
+  "negative_case_count": 18,
   "negative_case_codes": [
     "E_INPUT_DIGEST",
     "E_BASE_COMMIT",
@@ -103,6 +106,8 @@
     "E_ASSET_HISTORY",
     "E_ASSET_LINK",
     "E_L1_ANCHOR",
+    "E_L1_COMMIT_ANCESTOR",
+    "E_L1_BLOB",
     "E_PHASE_BOUNDARY",
     "E_FORMAL_BOUNDARY",
     "E_PRODUCT_BOUNDARY",

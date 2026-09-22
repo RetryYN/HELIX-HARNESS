@@ -19,6 +19,9 @@
   },
   "l1_anchor_input": {
     "candidate_count": 11,
+    "commit": "cb5a45fea289d61b67cba100fd2406813021ef48",
+    "path": "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/candidate-units.jsonl",
+    "blob_oid": "8d034128cc09a3b2c03abcfe31e89f8719ca170b",
     "sha256": "0c00dfa823ac0302e3ab496f9b5c264c18d8239a679ff99bb9c8515744bb64fe",
     "status": "candidate_only"
   }

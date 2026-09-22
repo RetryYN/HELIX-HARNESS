@@ -94,18 +94,40 @@
       "SCF-B-0081",
       "SCF-B-0084",
       "SCF-B-0088",
-      "SCF-B-0091"
+      "SCF-B-0091",
+      "SCF-B-0096",
+      "SCF-B-0099"
+    ],
+    "target_path_ids": [
+      "OUTSIDE67-PATH-007",
+      "OUTSIDE67-PATH-009",
+      "OUTSIDE67-PATH-010",
+      "OUTSIDE67-PATH-012"
     ],
     "existing_target_path_ids": [
+      "OUTSIDE67-PATH-006",
+      "OUTSIDE67-PATH-007",
       "OUTSIDE67-PATH-008",
+      "OUTSIDE67-PATH-009",
+      "OUTSIDE67-PATH-010",
       "OUTSIDE67-PATH-011",
+      "OUTSIDE67-PATH-012",
+      "OUTSIDE67-PATH-013",
+      "OUTSIDE67-PATH-014",
+      "OUTSIDE67-PATH-015",
       "OUTSIDE67-PATH-059",
       "OUTSIDE67-PATH-063",
       "OUTSIDE67-PATH-064",
       "OUTSIDE67-PATH-065",
       "OUTSIDE67-PATH-066"
     ],
-    "overlap_result": "no target path selected by listed bindings",
+    "overlap_path_ids": [
+      "OUTSIDE67-PATH-007",
+      "OUTSIDE67-PATH-009",
+      "OUTSIDE67-PATH-010",
+      "OUTSIDE67-PATH-012"
+    ],
+    "overlap_result": "all 4 target paths overlap prior research selected by SCF-B-0096／0099; retained as prior research",
     "duplicate_candidate_ids": [],
     "formal_unit_ids": []
   },
@@ -116,7 +138,7 @@
     "l1_approval_decision": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
     "new_generation_entry": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
   },
-  "negative_case_count": 15,
+  "negative_case_count": 16,
   "negative_case_codes": [
     "E_SOURCE_DIGEST",
     "E_SOURCE_SNAPSHOT",

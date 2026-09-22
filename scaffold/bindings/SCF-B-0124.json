@@ -6,7 +6,7 @@
   "product": "HELIX-Web",
   "owner_candidate": "Web／Web-OS Vision candidate atomとlegacy asset evidenceの意味照合review（最終owner未解決）",
   "state": "registered",
-  "reason": "SCF-B-0080／0081／0084／0088のVision 35 candidate atomを代表legacy asset 12件のsource／history／failure／consumer evidenceへcandidate atom単位で照合し、#2073固定HEAD（raw metadataと承認decision effective approvedを分離）のWeb L1 6＋Web-OS L1 5 anchorへproduct scope candidate-onlyで接続可能性を記録する。35×12の420 pairはsource digest provenance、反証、history／failure／consumer不足へpartitionし、semantic asset link 0/35、phase link 0/35を維持する。製品未解決8件、formal phase／product／implementation／degradation／authorityを昇格しない。",
+  "reason": "SCF-B-0080／0081／0084／0088のVision 35 candidate atomを代表legacy asset 12件のsource／history／failure／consumer evidenceへcandidate atom単位で照合し、#2073 main統合commit cb5a45fea289d61b67cba100fd2406813021ef48の到達可能なL1 anchor（blob 8d034128cc09a3b2c03abcfe31e89f8719ca170b、digest 0c00dfa823ac0302e3ab496f9b5c264c18d8239a679ff99bb9c8515744bb64fe）へproduct scope candidate-onlyで接続可能性を記録する。35×12の420 pairはsource digest provenance、反証、history／failure／consumer不足へpartitionし、semantic asset link 0/35、phase link 0/35を維持する。製品未解決8件、formal phase／product／implementation／degradation／authorityを昇格しない。",
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
@@ -119,10 +119,10 @@
     "Vision source exact span 35件、parent span 29件、SHA／line／textを固定する",
     "代表legacy asset 12件のsource path／digest、history／failure／consumer／decision観測を固定する",
     "35×12=420 pairを一致観測・反証・不足へpartitionし、総当たり成立を生成しない",
-    "#2073のWeb L1 6＋Web-OS L1 5 anchorを固定HEAD／digest／lineへ照合する",
+    "#2073 main統合commit、固定blob、digestの祖先性・実体・lineを確認し、Web L1 6＋Web-OS L1 5 anchorへ照合する",
     "製品固定候補27件はproduct scope candidate-only、製品未解決8件はboundary unresolvedとして保持する",
     "phase connection 0/35、asset semantic link 0/35、formal unit／authority／implementation／degradationを維持する",
-    "固定BASE、親入力digest、candidate／asset／matrix全field、16負例（L1 raw/effective authority境界を含む）を独立検証する",
+    "固定BASE、親入力digest、candidate／asset／matrix全field、18負例（L1 raw/effective authority、merge commit祖先性、blob固定境界を含む）を独立検証する",
     "旧archive／旧runtime／test／CIを実行せず、merge／close／deploymentを行わない"
   ],
   "connections": {
@@ -134,7 +134,7 @@
     ],
     "dependencies": [
       "SCF-B-0080／0081／0084／0088 static evidence",
-      "SCF-B-0121 #2073 exact HEAD input snapshot",
+      "SCF-B-0121 #2073 main merge commit input snapshot（commit／blob／digest pinned）",
       "four-product boundary and current Web／Web-OS L1",
       "legacy asset ledgers and read-after ledger"
     ],
@@ -212,8 +212,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "validate.py（固定BASE、親4束、Vision exact span 35、asset source／history／failure／consumer 12、420 pair、#2073 L1 11、phase／asset／formal boundary）",
-      "selfcheck.py（16 negative casesと期待error code）",
+      "validate.py（固定BASE、親4束、Vision exact span 35、asset source／history／failure／consumer 12、420 pair、#2073 L1 11、main merge commit祖先性、blob／digest、phase／asset／formal boundary）",
+      "selfcheck.py（18 negative casesと期待error code）",
       "scfctl validate／stale／residuals",
       "git diff --check"
     ],
@@ -227,6 +227,8 @@
       "asset history／failure／consumer／decision観測改変はE_ASSET_HISTORYで拒否",
       "candidate atom asset linkの昇格はE_ASSET_LINKで拒否",
       "#2073の11 L1 anchor source／line／ID改変はE_L1_ANCHORで拒否",
+      "#2073 main merge commitがHEAD祖先でない改変はE_L1_COMMIT_ANCESTORで拒否",
+      "#2073 L1 anchorのblob OID改変はE_L1_BLOBで拒否",
       "L1 raw metadata draft／awaiting_parent_approval、decision effective approved、research candidate authority noneのinput改変は固定input digestのE_INPUT_DIGESTで拒否",
       "L1 candidate connection authority boundaryの改変はE_L1_ANCHORで拒否",
       "phase candidate／PHCAP linkの生成はE_PHASE_BOUNDARYで拒否",
