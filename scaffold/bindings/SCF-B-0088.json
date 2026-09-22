@@ -1,0 +1,85 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0088",
+  "kind": "scaffold",
+  "title": "Final bounded Web／Web-OS Vision semantic atom subset",
+  "product": "HELIX-Web",
+  "owner_candidate": "Web／Web-OS Vision残り9 spanのsource-bound semantic atom、四製品境界、phase／implementation／degradation status review（正式owner未解決）",
+  "state": "registered",
+  "reason": "SCF-B-0084が未処理として保持した9 Vision parent span（U17-U19、O05-O10）を全件処理する。3件の一行方向候補をatomized_candidate、6件の複数条件・実証時点を含むopen decision行をcomposite_unresolvedとして保持し、SCF-B-0081／0084とのparent span・source line重複を0件に固定する。HELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの候補境界を明示するが、formal owner、authority、採否、phase、implementation、unimplemented、degradation、failure／consumer closureは生成しない。replacement.issue=0は実Issue番号ではなく未commit研究束のbinding登録sentinelである。",
+  "upstream": [
+    {"path":"scaffold/bindings/SCF-B-0084.json","sha256":"2156e887025045d5c03303d0bc9006f8f7e678dff5c7ff7b49b2d81f9360571c","note":"prior subset binding; no semantic adoption or implementation claim"},
+    {"path":"scaffold/rdp001-web-webos-vision-semantic-atoms-0084/inventory.json","sha256":"759d6b0377c9bd9194b897db0fed8a86c91c451af7d37f7a0b66b7b828373d18","note":"prior denominator and source metadata"},
+    {"path":"scaffold/rdp001-web-webos-vision-semantic-atoms-0084/semantic-atoms.jsonl","sha256":"3abafb9a1408d78e2114f14d5935569b2a28c8dad59536a0ffa1142f2c12451a","note":"prior atom source-line exclusion set"},
+    {"path":"scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl","sha256":"b4dbaaf0ba43ba6ab307212ef59559bd06a73089d2d17553cf79928f75e6dc4c","note":"static source parent span register"},
+    {"path":"scaffold/rdp001-web-webos-vision-semantic-atoms-0088/inventory.json","sha256":"e5fca396f834c8357bd8b2f427214d0bfa32bff16d1703d5d57ec2ce4378e2f2","note":"this subset machine-readable inventory"},
+    {"path":"scaffold/rdp001-web-webos-vision-semantic-atoms-0088/semantic-atoms.jsonl","sha256":"eea5d17398c85f8fc42eeb7bf8f9984a026e519df972d31eda0477b4ae194c62","note":"this subset source-bound candidate records"},
+    {"path":"scaffold/rdp001-web-webos-vision-semantic-atoms-0088/legacy-links.jsonl","sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","note":"empty by boundary; no legacy semantic link generated"},
+    {"path":"docs/concept/product-boundary.md","sha256":"097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038","note":"four-product boundary candidate"},
+    {"path":"docs/helix-harness/L1-planning/product-intent.md","sha256":"a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04","note":"HARNESS boundary candidate"},
+    {"path":"docs/helix-os/L1-planning/system-intent.md","sha256":"0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8","note":"HELIX-OS boundary candidate"},
+    {"path":"docs/helix-web/L1-planning/product-intent.md","sha256":"26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756","note":"Web boundary candidate"},
+    {"path":"docs/helix-web-os/L1-planning/system-intent.md","sha256":"600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c","note":"Web-OS boundary candidate"}
+  ],
+  "role": "残り9 Vision parent spanをsource-bound Web／Web-OS semantic atom候補・composite_unresolvedとして保持し、四製品境界と未確定状態を機械検査する",
+  "obligations": [
+    "SCF-B-0084の未処理9 parent spanとdigestを再照合し、全9 spanを選択する",
+    "SCF-B-0081／0084のselected spanおよびatom source lineとの重複を0件として検証する",
+    "source line、exact text、source span digest、parent line containmentを保持する",
+    "U17-U19をatomized_candidate、O05-O10をcomposite_unresolvedとして意味境界を明示する",
+    "各atomのcandidate_product_candidatesから四製品のcandidate_parent_span_idsとcountを完全再導出し、片側だけの変更を拒否する",
+    "atom ID別のrelated_open_decision_idsを固定し、差替え・空化を拒否する",
+    "四製品のcandidate boundaryを列挙し、formal owner／authority／phase／implementation／degradationをunknownまたはnot_claimedに保つ",
+    "旧／現行implementation、unimplemented、degradation、failure、consumer closureを推測しない",
+    "正式要求unit、採否、successor、authority、L2／L11、実装、CI、受入を生成しない",
+    "旧archive runtime／test／CI／workflow／hook／adapter／sourceを実行しない"
+  ],
+  "connections": {
+    "consumers": ["Web／Web-OS semantic atom reviewer", "四製品boundary／phase reviewer", "prior-span overlap reviewer"],
+    "dependencies": ["SCF-B-0084 prior atom Scaffold", "SCF-B-0080 Vision span source", "current four-product boundary candidates"],
+    "boundary": "成果物はscaffold/配下のbounded research candidate。9候補（3 atoms + 6 composites）はsource-bound research recordであり、正式要求、owner、authority、phase、implementation、degradation、failure／consumer closureではない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/rdp001-web-webos-vision-semantic-atoms-0088/validate.py",
+      "python3 -B scaffold/rdp001-web-webos-vision-semantic-atoms-0088/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+      "candidateをformal requirement、owner、authority、phase、implementation、degradation、failure、consumer closureへ昇格すること",
+      "SCF-B-0081／0084のselected span／atomを重複登録すること",
+      "scaffold/外への候補書き込み",
+      "GitHub、Issue、PR、CI、DB、外部APIへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0088/README.md",
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0088/inventory.json",
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0088/semantic-atoms.jsonl",
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0088/legacy-links.jsonl",
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0088/validate.py",
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0088/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": ["SCF-B-0084 parent denominator／digest recheck", "SCF-B-0081／0084 prior span／line exclusion recheck", "exact source line／parent containment recheck", "four-product boundary and unknown status recheck", "validator/selfcheck", "scfctl validate／stale／residuals", "git diff --check"],
+    "negative_cases": ["parent denominator tamper", "selected parent duplicate or omission", "prior selected span／atom line overlap", "source text／digest tamper", "parent containment failure", "four-product boundary/status promotion", "atomized/composite drift", "composite reason replacement or swap", "formal owner/authority/phase/implementation/degradation promotion", "nested keyset injection"]
+  },
+  "replacement": {
+    "role_target": "承認済み四製品のsemantic unit、owner、authority、phase、implementation、degradation、failure／consumer contractへの個別移管（人間判断後）",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
