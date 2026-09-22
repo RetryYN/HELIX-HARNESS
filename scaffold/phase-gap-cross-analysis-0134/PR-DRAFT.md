@@ -39,4 +39,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
+実行結果: SCF-B-0134 validator/selfcheckはPASS（42負例）、scfctl selftestは69 cases / fail=0、scfctl validateは129 bindings / fail=0、stale=0、residuals=0、py_compileと`git diff --check`もPASS。最新main `ccb27727a60bf13816a542efd1b2abb827b6d522`を祖先にrebase済みである。
+
 旧archiveの実行、既存crosswalk・PHCAP・authorityの変更、merge/closeは行わない。
