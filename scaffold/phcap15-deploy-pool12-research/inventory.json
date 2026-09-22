@@ -8,9 +8,9 @@
   "equivalence_claim": null,
   "old_archive_runtime_test_ci_execution": false,
   "base": {
-    "origin_main_commit": "a32b7c086346d10462c1ca72962b99dc1b42b64e",
-    "origin_main_at_start": "a32b7c086346d10462c1ca72962b99dc1b42b64e",
-    "origin_main_at_final": "a32b7c086346d10462c1ca72962b99dc1b42b64e",
+    "origin_main_commit": "562e176c36844474b63424ec06beefe2f7722d18",
+    "origin_main_at_start": "562e176c36844474b63424ec06beefe2f7722d18",
+    "origin_main_at_final": "562e176c36844474b63424ec06beefe2f7722d18",
     "changed": false,
     "worktree": "/home/tenni/.helix-worktrees/phcap15-deploy-pool12",
     "branch": "research/phcap15-deploy-pool12",

@@ -57,9 +57,14 @@ def main() -> int:
             ("phase-admission-promotion", "PHASE_PROMOTION", lambda d: d["assets"][0].update({"phase_admission": "admitted"})),
             ("implementation-promotion", "IMPLEMENTATION_PROMOTION", lambda d: d["assets"][0].update({"current_implementation_status": "implemented"})),
             ("degradation-promotion", "IMPLEMENTATION_PROMOTION", lambda d: d["assets"][0].update({"current_degradation_status": "degraded"})),
+            ("unresolved-empty", "UNRESOLVED_BODY", lambda d: d["assets"][0].update({"unresolved": []})),
+            ("semantic-kind-drift", "SEMANTIC_DIVERSITY_KIND", lambda d: d["assets"][0].update({"semantic_diversity_kind": "implementation"})),
+            ("prohibited-inference-body", "PROHIBITED_INFERENCE", lambda d: d["prohibited_inference"].__setitem__(0, "pool is a requirement link")),
+            ("equivalence-claim", "EQUIVALENCE_CLAIM", lambda d: d.update({"equivalence_claim": "equivalent"})),
             ("failure-receipt-invention", "FAILURE_PROMOTION", lambda d: d["assets"][0]["failure_evidence"].update({"execution_receipts": 1})),
             ("consumer-closure-invention", "CONSUMER_PROMOTION", lambda d: d["assets"][0].update({"consumer_closure_status": "closed", "consumer_refs": ["consumer-x"]})),
             ("decision-invention", "DECISION_PROMOTION", lambda d: d["assets"][0].update({"decision_matches": 1, "decision_record_refs": ["DECISION-X"]})),
+            ("count-drift", "COUNTS", lambda d: d["counts"].update({"selected_source_anchors": 39})),
         ]
         for name, expected, mutate in cases:
             candidate = copy.deepcopy(baseline)

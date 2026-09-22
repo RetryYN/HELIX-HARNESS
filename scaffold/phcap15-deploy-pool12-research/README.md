@@ -2,7 +2,7 @@
 
 これは PHCAP-15 Deploy の旧asset pool 78件から、既レビュー範囲と重ならない代表12件を静的に分類する research Scaffold である。正式要求、phase admission、product owner、successor、current authority、implementation、acceptance、release、deployment、failure outcome、consumer closureは生成しない。
 
-基準は fresh isolated worktree `/home/tenni/.helix-worktrees/phcap15-deploy-pool12` の `origin/main` `a32b7c086346d10462c1ca72962b99dc1b42b64e` である。開始時と終了時のrefは同一で、変化した場合はinventoryの停止条件に従ってrebaselineする。
+基準は fresh isolated worktree `/home/tenni/.helix-worktrees/phcap15-deploy-pool12` の `origin/main` `562e176c36844474b63424ec06beefe2f7722d18` である。開始時と終了時のrefは同一で、変化した場合はinventoryの停止条件に従ってrebaselineする。
 
 ## 分母と非重複
 
@@ -46,4 +46,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-`validate.py` はpool分母、PR #2001/#2004とSCF-B-0037との非重複、残数、source/archive/ledger digest、独立固定した40個のanchor座標・source span digest・自由文meaning、phase/product候補、decision/copy-read-after/failure/consumer状態、四製品境界、unknown固定を確認する。inventory root、asset、failure/consumer、anchor、product boundary/refのnested keysetもvalidator側で固定し、候補側の追加・欠落・型違いを受け入れない。`selfcheck.py` は意味文、anchor集合・座標、各階層keyset、scope/statusの改変を一時コピーで拒否する。
+`validate.py` はpool分母、PR #2001/#2004とSCF-B-0037との非重複、残数、source/archive/ledger digest、独立固定した40個のanchor座標・source span digest・自由文meaning、phase/product候補、decision/copy-read-after/failure/consumer状態、四製品境界、unknown固定を確認する。counts全項目はpool、除外、選択、残数、4製品、evidence kind、asset anchor配列から独立再集計し、`unresolved`、`semantic_diversity_kind`、`prohibited_inference`、`equivalence_claim`もvalidator定数で固定する。inventory root、asset、failure/consumer、anchor、product boundary/refのnested keysetもvalidator側で固定し、候補側の追加・欠落・型違いを受け入れない。`selfcheck.py` は意味文、anchor集合・座標、各階層keyset、counts、unresolved、semantic kind、prohibited inference、equivalence、scope/statusの改変を一時コピーで拒否する。

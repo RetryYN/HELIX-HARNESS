@@ -60,22 +60,22 @@
     },
     {
       "path": "scaffold/phcap15-deploy-pool12-research/README.md",
-      "sha256": "807b9445900fc521d43dd87150e905b4fd2d26ab4eff710aa13e186c5395d77b",
+      "sha256": "3c2f6cbabe29eb64f473423fa672c048450cd18d7d68ae95d1d6f0de5cff6090",
       "note": "pool, exclusions, denominator and unknown boundary"
     },
     {
       "path": "scaffold/phcap15-deploy-pool12-research/inventory.json",
-      "sha256": "7f9373a8cdbe6644fb2eb0d5870ce826cc435cd19f0cd4e30f44274e309b286c",
+      "sha256": "eca33691fae94471f03bf8c85ba6617aa1b666038635c9a36a544e7985dbdf3f",
       "note": "pool/exclusion/selection/source capture inventory"
     },
     {
       "path": "scaffold/phcap15-deploy-pool12-research/validate.py",
-      "sha256": "7c323734efc1bb4e65736f474559c9a80791d77ff3e7b7a5adfdb04ed8298a42",
+      "sha256": "44f355833fc60ea7904bf5e01a9dcc7f95059bf1d509c6cb6351dbbe26d45765",
       "note": "static denominator/digest/span/status validator"
     },
     {
       "path": "scaffold/phcap15-deploy-pool12-research/selfcheck.py",
-      "sha256": "635b0bde3f8b4d6ccecc52aac05770fa79396c12efb055c979c1d7b7a61982e6",
+      "sha256": "e1b66cd53107923b247b662bf44c2ab4bc70bc4dfd50c114a0f81e22873afa85",
       "note": "authority/scope/source/status/failure/consumer negative checks"
     }
   ],
@@ -140,8 +140,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "pool12 validate.py（pool分母、3除外集合、source／archive／ledger digest、exact span、phase／product／decision／failure／consumer状態）",
-      "pool12 selfcheck.py（authority、scope、source、phase、implementation、degradation、failure、consumer、decisionのnegative cases）",
+      "pool12 validate.py（pool分母、3除外集合、counts全項目、asset別anchor総数、source／archive／ledger digest、exact span、phase／product／decision／failure／consumer状態）",
+      "pool12 selfcheck.py（authority、scope、source、phase、implementation、degradation、failure、consumer、decision、counts、unresolved、semantic kind、prohibited inference、equivalenceのnegative cases）",
       "scfctl validate／stale／residuals",
       "git diff --check"
     ],

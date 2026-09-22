@@ -41,7 +41,57 @@ SCF0037_IDS = {
     "LEGACY-ASSET-189702B332643A3BFDAF",
 }
 PRODUCTS = {"HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"}
-BASE_COMMIT = "a32b7c086346d10462c1ca72962b99dc1b42b64e"
+BASE_COMMIT = "562e176c36844474b63424ec06beefe2f7722d18"
+BASE_WORKTREE = "/home/tenni/.helix-worktrees/phcap15-deploy-pool12"
+
+EXPECTED_EQUIVALENCE_CLAIM = None
+EXPECTED_UNRESOLVED = [
+    "semantic product split",
+    "phase admission",
+    "product owner",
+    "current implementation/degradation/acceptance",
+    "failure outcome",
+    "consumer closure",
+    "successor/decision",
+]
+EXPECTED_SEMANTIC_DIVERSITY_KINDS = {
+    "LEGACY-ASSET-A297D67A1D8AD6EE6D6B": "catalog/package",
+    "LEGACY-ASSET-0C5F0695490FA5D87419": "catalog/release-version",
+    "LEGACY-ASSET-EC07511FF3E241F15359": "design/catalog",
+    "LEGACY-ASSET-809D616D0D7D844F5720": "design/function-spec",
+    "LEGACY-ASSET-B5B5E71B2AF1459D59A1": "requirement/functional",
+    "LEGACY-ASSET-13604CA85F3B7D8D5055": "governance/document-map",
+    "LEGACY-ASSET-D63398C5A382549DC905": "audit/design-consistency",
+    "LEGACY-ASSET-320E6F0B93975C430B1D": "plan/release-bundle",
+    "LEGACY-ASSET-3CB7630AEBBC5932E11D": "plan/lifecycle-operations",
+    "LEGACY-ASSET-26391F9FB236CBD4D270": "implementation-source/lint",
+    "LEGACY-ASSET-2149C3FCC5A18EB50185": "test-source/runtime-guidance",
+    "LEGACY-ASSET-FAAFFA616A44F65911EB": "test-design/unit",
+}
+EXPECTED_ARTIFACT_EVIDENCE_KINDS = {
+    "LEGACY-ASSET-A297D67A1D8AD6EE6D6B": "unknown",
+    "LEGACY-ASSET-0C5F0695490FA5D87419": "unknown",
+    "LEGACY-ASSET-EC07511FF3E241F15359": "design",
+    "LEGACY-ASSET-809D616D0D7D844F5720": "design",
+    "LEGACY-ASSET-B5B5E71B2AF1459D59A1": "requirement",
+    "LEGACY-ASSET-13604CA85F3B7D8D5055": "operation_document",
+    "LEGACY-ASSET-D63398C5A382549DC905": "operation_document",
+    "LEGACY-ASSET-320E6F0B93975C430B1D": "plan",
+    "LEGACY-ASSET-3CB7630AEBBC5932E11D": "plan",
+    "LEGACY-ASSET-26391F9FB236CBD4D270": "implementation_source",
+    "LEGACY-ASSET-2149C3FCC5A18EB50185": "test_source",
+    "LEGACY-ASSET-FAAFFA616A44F65911EB": "test_design",
+}
+EXPECTED_PROHIBITED_INFERENCE = [
+    "pool membership is a phase classification candidate only; it never admits an asset to PHCAP-15",
+    "source presence, design/requirement/plan/implementation-source/test-source evidence or old command names do not establish current implementation, operation, acceptance, deployment or pass",
+    "phase candidate targets do not admit assets to PHCAP-15 and candidate product targets do not assign a product owner",
+    "current L1/L2/L11 candidate text does not generate authority, owner, implementation or acceptance",
+    "empty consumer_refs and pending closure do not prove no historical consumer",
+    "missing direct Web evidence does not establish non-implementation",
+    "old review evidence, green commands or test source are not current execution receipts",
+    "archive is static reference only and not runtime, test, CI or fallback",
+]
 
 # These are validator-owned pins.  They deliberately do not come from the
 # candidate inventory, so adding/removing a field, anchor, or interpretation
@@ -284,6 +334,10 @@ def main() -> int:
         fail(errors, "BASE", "origin/main exact commit drifted")
     if base.get("changed") is not False:
         fail(errors, "REBASELINE", "origin/main changed flag must remain false")
+    if base.get("worktree") != BASE_WORKTREE:
+        fail(errors, "BASE_WORKTREE", "worktree path does not match this isolated pool12 worktree")
+    if inv.get("equivalence_claim") != EXPECTED_EQUIVALENCE_CLAIM:
+        fail(errors, "EQUIVALENCE_CLAIM", "equivalence claim must remain null")
 
     phase_rows = jsonl(expected_paths["phase_ledger"])
     disposition_rows = jsonl(expected_paths["disposition"])
@@ -396,6 +450,12 @@ def main() -> int:
         if aid not in selected_set:
             fail(errors, "ASSET_ID", f"unexpected selected asset {aid}")
             continue
+        if asset.get("semantic_diversity_kind") != EXPECTED_SEMANTIC_DIVERSITY_KINDS.get(aid):
+            fail(errors, "SEMANTIC_DIVERSITY_KIND", f"semantic diversity kind changed {aid}")
+        if asset.get("artifact_evidence_kind") != EXPECTED_ARTIFACT_EVIDENCE_KINDS.get(aid):
+            fail(errors, "ARTIFACT_EVIDENCE_KIND", f"artifact evidence kind changed {aid}")
+        if asset.get("unresolved") != EXPECTED_UNRESOLVED:
+            fail(errors, "UNRESOLVED_BODY", f"unresolved evidence changed {aid}")
         phase = phase_by_id.get(aid)
         disp = disposition_by_id.get(aid)
         if phase is None or disp is None:
@@ -451,6 +511,21 @@ def main() -> int:
                 fail(errors, "SOURCE_TEXT", f"exact source span mismatch {aid}:{start}-{end}")
             if digest_bytes(text.encode("utf-8")) != anchor.get("source_span_sha256"):
                 fail(errors, "SOURCE_SPAN_DIGEST", f"source span digest mismatch {aid}:{start}-{end}")
+
+    selected_anchor_total = sum(len(asset.get("source_anchors", [])) for asset in asset_rows)
+    expected_inventory_counts = {
+        "pool_rows": len(pool),
+        "selected_rows": len(selected),
+        "excluded_rows": len(pr_ids | pr2004_ids | scf_ids),
+        "remaining_unreviewed_rows": len(expected_remaining),
+        "four_products": len(PRODUCTS),
+        "selected_source_anchors": selected_anchor_total,
+        "evidence_kinds": sorted({asset.get("artifact_evidence_kind") for asset in asset_rows}),
+    }
+    if inv.get("counts") != expected_inventory_counts:
+        fail(errors, "COUNTS", f"inventory counts mismatch: expected={expected_inventory_counts!r} got={inv.get('counts')!r}")
+    if inv.get("prohibited_inference") != EXPECTED_PROHIBITED_INFERENCE:
+        fail(errors, "PROHIBITED_INFERENCE", "prohibited inference text changed")
 
     aggregate = inv.get("aggregate_evidence", {})
     aggregate_expected = {
