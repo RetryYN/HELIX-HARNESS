@@ -89,6 +89,21 @@ def main() -> None:
     def tampered_partition(inventory):
         inventory["partition_contract"]["failure"] = "failure_receipt"
 
+    def tampered_old_wrapper(rows):
+        rows[0]["old_asset_evidence"]["not_implementation_proof"] = False
+
+    def tampered_unit_schema(rows):
+        rows[0]["schema"] = "fr-implementation-evidence-0110/v1/tampered"
+
+    def tampered_unit_top_level(rows):
+        rows[0]["unexpected"] = True
+
+    def tampered_negative_case_codes(inventory):
+        inventory["negative_case_codes"] = inventory["negative_case_codes"][:-1]
+
+    def tampered_base_declaration(inventory):
+        inventory["base"]["branch"] = "research"
+
     def wrong_input_digest(inventory):
         inventory["input_snapshot"][0]["sha256"] = "0" * 64
 
@@ -109,11 +124,16 @@ def main() -> None:
     run_case("tampered-consumer", "E_CONSUMER_EVIDENCE", tampered_consumer)
     run_case("tampered-current", "E_CURRENT_STATUS", tampered_current)
     run_case("claimed-unimplemented", "E_UNIMPLEMENTED_CLAIM", claimed_unimplemented)
+    run_case("tampered-old-wrapper", "E_OLD_ASSET_EVIDENCE", tampered_old_wrapper)
+    run_case("tampered-unit-schema", "E_UNIT_SCHEMA", tampered_unit_schema)
+    run_case("tampered-unit-top-level", "E_UNIT_SCHEMA", tampered_unit_top_level)
     run_case("tampered-inventory-scope", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_inventory_scope)
     run_case("tampered-partition", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_partition)
+    run_case("tampered-negative-case-codes", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_negative_case_codes)
     run_case("wrong-input-digest", "E_INPUT_DIGEST", lambda rows: None, wrong_input_digest)
     run_case("wrong-base", "E_BASE_COMMIT", lambda rows: None, wrong_base)
-    print("SCF-B-0110 selfcheck: PASS (18 negative cases; expected error codes matched)")
+    run_case("tampered-base-declaration", "E_BASE_COMMIT", lambda rows: None, tampered_base_declaration)
+    print("SCF-B-0110 selfcheck: PASS (23 negative cases; expected error codes matched)")
 
 
 if __name__ == "__main__":

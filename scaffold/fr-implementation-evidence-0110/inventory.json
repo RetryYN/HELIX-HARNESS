@@ -1178,6 +1178,7 @@
   },
   "negative_case_codes": [
     "E_UNIT_SET",
+    "E_UNIT_SCHEMA",
     "E_REVIEW_EDGE_SET",
     "E_REVIEW_EDGE_DUP",
     "E_ASSET_SET",
@@ -1189,6 +1190,7 @@
     "E_CONSUMER_EVIDENCE",
     "E_SOURCE_ANCHOR",
     "E_OLD_ASSET_SOURCE",
+    "E_OLD_ASSET_EVIDENCE",
     "E_INPUT_DIGEST",
     "E_BASE_COMMIT",
     "E_BASE_NOT_ANCESTOR",

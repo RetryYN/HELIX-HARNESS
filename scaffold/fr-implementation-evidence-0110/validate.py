@@ -15,6 +15,22 @@ ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = Path(__file__).resolve().parent
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 SCHEMA = "fr-implementation-evidence-0110/v1"
+UNIT_SCHEMA = SCHEMA + "/unit"
+BINDING_ID = "SCF-B-0110"
+BASE_DECLARATION = {
+    "repository": "HELIX-HARNESS",
+    "commit": BASE,
+    "branch": "main",
+    "required_ancestor": BASE,
+}
+UNIT_TOP_LEVEL_KEYS = frozenset({
+    "schema", "unit_candidate_id", "source_requirement", "source_anchor",
+    "semantic_review_edges", "asset_set", "old_asset_evidence",
+    "implementation_evidence", "degradation_evidence", "failure_evidence",
+    "consumer_evidence", "representative_assets", "current_context",
+    "current_implementation_evidence", "unimplemented_assessment",
+    "authority_boundary", "unresolved",
+})
 CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 IR = "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
 DECOMP = "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
@@ -70,6 +86,13 @@ PARTITION_CONTRACT = {
     "failure": "coverage.failure/counterevidence/unresolvedの静的記録。failure receiptは空でunknown",
     "consumer": "edge/ledger/decision/read-after参照の静的記録。consumer closureはpending",
 }
+NEGATIVE_CASE_CODES = [
+    "E_UNIT_SET", "E_UNIT_SCHEMA", "E_REVIEW_EDGE_SET", "E_REVIEW_EDGE_DUP", "E_ASSET_SET",
+    "E_INVENTORY_DECLARATION", "E_REPRESENTATIVE_ASSET", "E_IMPLEMENTATION_EVIDENCE",
+    "E_DEGRADATION_EVIDENCE", "E_FAILURE_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_SOURCE_ANCHOR",
+    "E_OLD_ASSET_SOURCE", "E_OLD_ASSET_EVIDENCE", "E_INPUT_DIGEST", "E_BASE_COMMIT",
+    "E_BASE_NOT_ANCESTOR", "E_AUTHORITY_BOUNDARY", "E_CURRENT_STATUS", "E_UNIMPLEMENTED_CLAIM",
+]
 
 
 def base_bytes(path: str) -> bytes:
@@ -438,11 +461,12 @@ class Validator:
         inventory, evidence = loaded
         if inventory.get("schema") != SCHEMA:
             self.error("E_INVENTORY_SCHEMA", "schema不一致")
-        if inventory.get("binding_id") != "SCF-B-0110":
+        if inventory.get("binding_id") != BINDING_ID:
             self.error("E_BINDING_ID", "binding_id不一致")
-        base_meta = inventory.get("base", {})
-        if base_meta.get("commit") != BASE or base_meta.get("required_ancestor") != BASE:
+        if inventory.get("base") != BASE_DECLARATION:
             self.error("E_BASE_COMMIT", "固定BASE commit／ancestor宣言が不一致")
+        if inventory.get("negative_case_codes") != NEGATIVE_CASE_CODES:
+            self.error("E_INVENTORY_DECLARATION", "negative_case_codes宣言がvalidator固定集合と不一致")
         if subprocess.run(["git", "merge-base", "--is-ancestor", BASE, "HEAD"], cwd=ROOT).returncode != 0:
             self.error("E_BASE_NOT_ANCESTOR", "固定BASEが検証HEADの祖先ではない")
         if inventory.get("status") != "research_only_scaffold_candidate" or inventory.get("authority_effect") != "none" or inventory.get("new_build") is not False:
@@ -511,6 +535,10 @@ class Validator:
             current = evidence_by_unit.get(unit)
             if current is None:
                 continue
+            if set(current) != UNIT_TOP_LEVEL_KEYS:
+                self.error("E_UNIT_SCHEMA", f"{unit} unit top-level key集合が不一致")
+            if current.get("schema") != UNIT_SCHEMA:
+                self.error("E_UNIT_SCHEMA", f"{unit} unit schemaが不一致")
             edges = expected_by_unit[unit]
             asset_ids = sorted({edge["asset_id"] for edge in edges})
             assets = [old_asset_record(asset_id, edges, disposition, decisions, read_after, classifications) for asset_id in asset_ids]
@@ -545,6 +573,8 @@ class Validator:
             if current.get("asset_set") != expected_asset_set:
                 self.error("E_OLD_ASSET_UNIT_SET", f"{unit} unit asset_set宣言不一致")
             actual_unit_assets = current.get("old_asset_evidence", {}).get("assets", [])
+            if current.get("old_asset_evidence", {}).get("static_only") is not True or current.get("old_asset_evidence", {}).get("not_implementation_proof") is not True:
+                self.error("E_OLD_ASSET_EVIDENCE", f"{unit} old_asset_evidenceのstatic-only境界が不一致")
             actual_unit_asset_ids = [asset.get("asset_id") for asset in actual_unit_assets]
             if len(actual_unit_asset_ids) != len(set(actual_unit_asset_ids)) or sorted(actual_unit_asset_ids) != asset_ids:
                 self.error("E_OLD_ASSET_UNIT_SET", f"{unit} unit asset multiset／件数が不一致")

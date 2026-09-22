@@ -20,6 +20,20 @@ ROOT = BUNDLE.parents[1]
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 BINDING_ID = "SCF-B-0110"
 SCHEMA = "fr-implementation-evidence-0110/v1"
+UNIT_SCHEMA = SCHEMA + "/unit"
+BASE_DECLARATION = {
+    "repository": "HELIX-HARNESS",
+    "commit": BASE,
+    "branch": "main",
+    "required_ancestor": BASE,
+}
+NEGATIVE_CASE_CODES = [
+    "E_UNIT_SET", "E_UNIT_SCHEMA", "E_REVIEW_EDGE_SET", "E_REVIEW_EDGE_DUP", "E_ASSET_SET",
+    "E_INVENTORY_DECLARATION", "E_REPRESENTATIVE_ASSET", "E_IMPLEMENTATION_EVIDENCE",
+    "E_DEGRADATION_EVIDENCE", "E_FAILURE_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_SOURCE_ANCHOR",
+    "E_OLD_ASSET_SOURCE", "E_OLD_ASSET_EVIDENCE", "E_INPUT_DIGEST", "E_BASE_COMMIT",
+    "E_BASE_NOT_ANCESTOR", "E_AUTHORITY_BOUNDARY", "E_CURRENT_STATUS", "E_UNIMPLEMENTED_CLAIM",
+]
 CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 IR = "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
 DECOMP = "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
@@ -476,7 +490,7 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
         assets = [old_asset_record(asset_id, edges, disposition, decisions, read_after, classifications) for asset_id in asset_ids]
         reps, rep_rule = representative_ids(source, asset_ids)
         evidence.append({
-            "schema": SCHEMA + "/unit",
+            "schema": UNIT_SCHEMA,
             "unit_candidate_id": unit,
             "source_requirement": source_snapshot(source, decomp_row),
             "source_anchor": source_range(source["source_requirement_id"]),
@@ -551,7 +565,7 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
         "status": "research_only_scaffold_candidate",
         "authority_effect": "none",
         "new_build": False,
-        "base": {"repository": "HELIX-HARNESS", "commit": BASE, "branch": "main", "required_ancestor": BASE},
+        "base": BASE_DECLARATION,
         "scope": {
             "source_requirement_ids": SOURCE_IDS,
             "unit_count": 27,
@@ -604,12 +618,7 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
             "current_implementation": "current context refs only; direct implementation evidence absent, status unknown",
             "current_acceptance": "direct acceptance receipt only; none found, status unknown",
         },
-        "negative_case_codes": [
-            "E_UNIT_SET", "E_REVIEW_EDGE_SET", "E_REVIEW_EDGE_DUP", "E_ASSET_SET", "E_INVENTORY_DECLARATION",
-            "E_REPRESENTATIVE_ASSET", "E_IMPLEMENTATION_EVIDENCE", "E_DEGRADATION_EVIDENCE", "E_FAILURE_EVIDENCE",
-            "E_CONSUMER_EVIDENCE", "E_SOURCE_ANCHOR", "E_OLD_ASSET_SOURCE", "E_INPUT_DIGEST", "E_BASE_COMMIT",
-            "E_BASE_NOT_ANCESTOR", "E_AUTHORITY_BOUNDARY", "E_CURRENT_STATUS", "E_UNIMPLEMENTED_CLAIM",
-        ],
+        "negative_case_codes": NEGATIVE_CASE_CODES,
         "prohibited_inference": [
             "candidate_asset_pool、旧source存在、Wave edge、phase transition、coverage.failure、validator PASSから実装成立を導かない",
             "証拠欠落やunknownから未実装を断定しない",
