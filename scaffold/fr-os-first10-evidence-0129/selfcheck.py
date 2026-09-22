@@ -79,7 +79,7 @@ def main() -> int:
     expect("input path omission", lambda inv, rows: inv["input_digests"].pop(), "E_INPUT_DIGEST")
     root_commit = subprocess.check_output(["git", "rev-list", "--max-parents=0", "HEAD"], cwd=ROOT, text=True).strip().splitlines()[0]
     expect("fixed BASE non-ancestor", lambda inv, rows: None, "E_BASE_NOT_ANCESTOR", env={"SCF_VALIDATION_HEAD": root_commit})
-    print("PASS SCF-B-0129 selfcheck: 20 negative cases")
+    print("PASS SCF-B-0129 selfcheck: 21 negative cases")
     return 0
 
 

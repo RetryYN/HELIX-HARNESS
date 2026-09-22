@@ -27,3 +27,7 @@ git diff --check
 ```
 
 進捗参照先: #1813（closeは行わない）。
+
+## 最新検証結果
+
+`validate.py` は `PASS SCF-B-0129`（10 existing unit / 30 Wave edge / 23 unique old asset）。`selfcheck.py` は21負例（selection product scope、BASE/input/output digest、unit/edge/asset重複、ledger/phase/source改竄、status/authority昇格など）をすべてPASS。`scfctl validate` は `bindings=119 fail=0`、`stale=0`、`residuals=0`。`git diff --check` と `git diff origin/main...HEAD --check` もPASS。
