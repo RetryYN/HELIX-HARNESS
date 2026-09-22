@@ -95,6 +95,12 @@ def boundary(rows): rows[0]["boundary_evidence"]["HELIX-OS"]["ranges"][0]["line_
 def manual(rows): rows[0]["manual_semantic_review"]["interpretation"] = "tampered"
 def legacy(rows): rows[0]["legacy_implementation_shrinkage_evidence"]["interpretation"] = "tampered"
 def history(rows): rows[0]["legacy_history_failure_consumer"]["disposition"]["row_sha256"] = "sha256:" + "f" * 64
+def asset_ledger(rows): rows[0]["asset_ledger"]["product_target"] = "HELIX-OS"
+def phase_nested(rows): rows[0]["phase_ledger"]["candidate_product_targets"] = ["HELIX-OS"]
+def history_nested(rows): rows[0]["legacy_history_failure_consumer"]["decisions"].append({"decision_id": "FAKE"})
+def failure_consumer(rows): rows[0]["failure_consumer_static_refs"]["failure"]["ranges"][0]["line_text_sha256"] = "sha256:" + "f" * 64
+def unit_candidate(rows): rows[TARGET_WITH_EDGE]["unit_product_candidates"][0]["crosswalk"]["unit_candidate_id"] = "FAKE-UNIT"
+def semantic_edge_field(rows): rows[TARGET_WITH_EDGE]["wave_semantic_links"][0]["source_statement_text"] = "tampered"
 def human(rows): rows[0]["human_judgment_remaining"] = []
 def record_schema(rows): rows[0]["formal_owner"] = "HELIX-OS"
 def source_read_mode(rows): rows[0]["source_exact"]["read_mode"] = "executed"
@@ -130,6 +136,12 @@ run_case("semantic review tamper", "E_SEMANTIC_REVIEW", mutate_rows=manual)
 run_case("legacy evidence tamper", "E_LEGACY_EVIDENCE", mutate_rows=legacy)
 run_case("boundary digest tamper", "E_BOUNDARY_DIGEST", mutate_rows=boundary)
 run_case("history tamper", "E_HISTORY", mutate_rows=history)
+run_case("asset ledger nested tamper", "E_HISTORY", mutate_rows=asset_ledger)
+run_case("phase nested tamper", "E_PHASE_STATUS", mutate_rows=phase_nested)
+run_case("history nested tamper", "E_HISTORY", mutate_rows=history_nested)
+run_case("failure/consumer static ref tamper", "E_BOUNDARY_DIGEST", mutate_rows=failure_consumer)
+run_case("unit candidate nested tamper", "E_CANDIDATE_PRODUCTS", mutate_rows=unit_candidate)
+run_case("semantic edge field tamper", "E_EDGE_SET", mutate_rows=semantic_edge_field)
 run_case("human judgment tamper", "E_HUMAN_JUDGMENT", mutate_rows=human)
 run_case("authority promotion", "E_AUTHORITY_PROMOTION", mutate_rows=authority)
 run_case("record top-level extra key", "E_RECORD_SCHEMA", mutate_rows=record_schema)
@@ -154,4 +166,4 @@ run_case("phase status tamper", "E_PHASE_STATUS", mutate_rows=phase_status)
 run_generator_case("generator review spec tamper", "E_PROFILE", lambda g: g.REVIEW_SPECS["measurement-evidence-evaluator"].update(category="insufficient_basis"))
 run_generator_case("generator anchor tamper", "E_SOURCE_ANCHOR", lambda g: g.REVIEW_SPECS["measurement-evidence-evaluator"].update(marker="export const MEASUREMENT_EVALUATION_SCHEMA_VERSION"))
 run_generator_case("generator L1 tamper", "E_SEMANTIC_REVIEW", lambda g: g.L1_RANGES["HELIX-OS"].__setitem__(0, (22, 26)))
-print("SCF-B-0123 selfcheck: PASS negative_cases=38")
+print("SCF-B-0123 selfcheck: PASS negative_cases=44")

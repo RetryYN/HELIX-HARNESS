@@ -610,14 +610,14 @@ def canonical(value: object) -> str:
 @lru_cache(maxsize=None)
 def git_bytes(path: str, base: str = BASE_REVISION) -> bytes:
     try:
-        return subprocess.check_output(["git", "show", f"{base}:{path}"])
+        return subprocess.check_output(["git", "show", f"{base}:{path}"], stderr=subprocess.PIPE)
     except subprocess.CalledProcessError as exc:
         fail("E_BASE_SOURCE", f"missing fixed-base path {path}: {exc}")
 
 @lru_cache(maxsize=None)
 def git_blob(path: str, base: str = BASE_REVISION) -> str:
     try:
-        return subprocess.check_output(["git", "rev-parse", f"{base}:{path}"], text=True).strip()
+        return subprocess.check_output(["git", "rev-parse", f"{base}:{path}"], text=True, stderr=subprocess.PIPE).strip()
     except subprocess.CalledProcessError as exc:
         fail("E_BASE_SOURCE", f"missing fixed-base blob {path}: {exc}")
 

@@ -151,9 +151,11 @@
       "Wave1–50 598 edge／355 unique／14 target edge／11 linked asset denominator",
       "59 target asset artifact evidence kinds: implementation_source 59",
       "59 source blob／bytes／SHA-256／concrete line anchor rederivation",
+      "full nested record and inventory top-level／nested declaration equality",
       "validator-owned fixed 59 asset ID／category／product／span／interpretation／legacy-shrinkage oracle",
       "category denominator direct_product_basis 30／multi_product_conflict 15／insufficient_basis 14",
-      "research overlap: Wave64 + lint95 + runtime73 + schema31 + source59 union 280; source intersections 11／0／0／0"
+      "research overlap: Wave64 + lint95 + runtime73 + schema31 + source59 union 280; source intersections 11／0／0／0",
+      "HELIX-LABO excluded from the fixed four-product candidate set"
     ],
     "negative_cases": [
       "E_TARGET_SET: target_record_omission／target_record_duplicate",
@@ -164,8 +166,9 @@
       "E_INPUT_SET／E_INPUT_DIGEST: input omission／duplicate／extra／value tamper",
       "E_AUTHORITY_PROMOTION／E_RECORD_SCHEMA: authority promotion／unexpected record key",
       "E_INVENTORY／E_INVENTORY_DECLARATION／E_EXPECTED_DENOMINATOR／E_OVERLAP／E_OUTPUT_DIGEST: inventory and denominator mutations",
+      "nested asset ledger／phase／history／failure-consumer／unit candidate／semantic edge mutations",
       "E_BASE_PIN／E_BASE_SOURCE／E_BASE_NOT_ANCESTOR／E_PHASE_STATUS: BASE and phase mutations",
-      "generator review spec／anchor／L1 mutation followed by regeneration is rejected by independent validator (38 cases total)"
+      "generator review spec／anchor／L1 mutation followed by regeneration is rejected by independent validator (44 cases total)"
     ]
   },
   "replacement": {

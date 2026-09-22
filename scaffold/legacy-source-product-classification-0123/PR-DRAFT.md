@@ -11,6 +11,7 @@
 - Wave1–50: 598 edge／355 unique、対象14 edge／11 linked asset
 - 重複: 今回対象∩Wave64=11、∩lint95=0、∩runtime73=0、∩schema31=0、4束union=280
 - 境界: `authority_effect=none`、formal asset/product classification・route・phase authority・successor・implementation成立・consumer closure・new buildは未変更
+- validatorは59件の固定target set、Wave/source overlap、record全top-level keyとnested field、history／failure／consumer、inventoryのtop-level keyと全nested declarationを固定BASEから完全再導出する。HELIX-LABO候補は対象製品集合に含めず、旧実装・縮退・consumer closureを候補分類から正式statusへ昇格しない。
 
 各recordに旧asset ledger、旧source Git blob／bytes／SHA-256、具体的source spanとline text digest、四製品L1／boundary receipt、Wave link、旧history／failure／consumer参照、legacy縮退証拠、human judgmentを保持する。Waveのobserved scopeは正式product候補へ継承しない。
 
@@ -20,10 +21,13 @@
 
 - `python3 scaffold/legacy-source-product-classification-0123/generate.py`
 - `python3 scaffold/legacy-source-product-classification-0123/validate.py`
-- `python3 scaffold/legacy-source-product-classification-0123/selfcheck.py`（38負例、期待error code照合）
+- `python3 scaffold/legacy-source-product-classification-0123/selfcheck.py`（44負例、期待error code照合）
 - `python3 scaffold/tools/scfctl.py validate`
 - `python3 scaffold/tools/scfctl.py stale`
 - `python3 scaffold/tools/scfctl.py residuals`
 - `git diff --check`
+- `git diff origin/main...HEAD --check`
+
+最新main上の実測は `scfctl validate: bindings=124 fail=0`、`stale=0`、`residuals=0`。対象59件のrecord、target/overlap集合、旧実装・縮退・consumerの非昇格境界はvalidator/selfcheckで再確認した。
 
 PR作成側はmerge／closeを実行しない。正式分類・authority昇格は人間レビュー後の別判断とする。
