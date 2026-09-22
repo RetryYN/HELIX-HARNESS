@@ -4,7 +4,7 @@
 
 対象は59 asset / 59 record、Wave edgeは40、リンク資産は37です。source本文の具体的なmarker/span/blob/bytes/line count/行digestを、承認済み4製品L1の具体行、`docs/concept/product-boundary.md`の製品行、承認decisionの意味行、旧判断史・failure・consumer・read-afterと分離して記録しました。候補集計は direct product basis 31、multi-product conflict 24、insufficient basis 4 です。これは候補研究の状態であり、単一owner・formal product分類・実装成立を宣言しません。
 
-main確定研究241件とopen候補196件は固定validator pinから独立に再計算し、対象59件との重複を0件として検査します。既存bundleを分類oracleにはせず、生成器のprofile改竄後に再生成してもvalidator側固定pinで拒否する負例を含めます。
+main確定研究241件とopen候補196件は、先行研究bundleの固定ID集合を取得した出所をinventoryに記録し、validator内の手動固定`PRIOR_MAIN_IDS`/`PRIOR_OPEN_IDS` pin（digest付き）との一致・対象59件との重複0を検査します。出所は、main側の既存runtime/lint/schema/state-db/実装residual研究束と、open側のlint候補・実装residual・source/schema研究束です。既存bundleを分類oracleにはせず、`PROFILE_PINS`は旧source/L1を読んだ手動semantic-review pinとしてgenerate/validateへ同じ契約を独立記載し、生成器のprofile改竄後の再生成をvalidator側で拒否します。
 
 全record/inventory/Bindingで`authority_effect=none`、`formal_asset_classification_updated=false`、`formal_implementation_status=unknown`、`successor_assignment=null`、`new_build_allowed=false`を保持します。既存台帳、formal route、successor、phase admissionは更新していません。
 
@@ -16,7 +16,7 @@ python3 -B scaffold/legacy-runtime-residual-product-classification-0133/generate
 python3 -B scaffold/legacy-runtime-residual-product-classification-0133/validate.py
 # SCF-B-0133 validate PASS records=59 edges=40 counts={'direct_product_basis': 31, 'multi_product_conflict': 24, 'insufficient_basis': 4}
 python3 -B scaffold/legacy-runtime-residual-product-classification-0133/selfcheck.py
-# SCF-B-0133 selfcheck PASS negative_cases=36
+# SCF-B-0133 selfcheck PASS negative_cases=45
 python3 -m py_compile scaffold/legacy-runtime-residual-product-classification-0133/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale

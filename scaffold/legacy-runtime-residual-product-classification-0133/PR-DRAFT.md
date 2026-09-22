@@ -10,7 +10,7 @@
 - 固定BASE `36784d25aa4cc53d89c28c2ff81b4009db234605` から59 asset / 59 record、Wave edge40、リンク資産37を再導出。
 - direct product basis 31、multi-product conflict 24、insufficient basis 4を、旧source具体span、source blob/digest、承認済みL1具体行、product-boundary具体行、decision意味行、反証とともに保存。
 - phase、legacy implementation/degradation、history、failure、consumer、decision/read-after、Wave観測を別フィールドで保持。
-- main241/open196との重複0、asset分母59、Wave edge分母40を固定BASEと独立pinで検査。
+- main241/open196との重複0、asset分母59、Wave edge分母40を固定BASEと、先行bundleから取得したID集合の出所・digestを伴うvalidator固定pinで検査。main/openのID集合は分類oracleではなく、`PROFILE_PINS`は旧source/L1の手動semantic-review結果をgenerate/validateへ独立記載。
 - `authority_effect=none`、formal分類・implementation・successor・new buildを未確定のまま固定。
 - validatorは`generate.py`をimportせず、generatorのprofile改竄→再生成負例を含めて固定期待値と比較。
 
@@ -21,7 +21,7 @@ python3 -B scaffold/legacy-runtime-residual-product-classification-0133/generate
 python3 -B scaffold/legacy-runtime-residual-product-classification-0133/validate.py
 # SCF-B-0133 validate PASS records=59 edges=40 counts={'direct_product_basis': 31, 'multi_product_conflict': 24, 'insufficient_basis': 4}
 python3 -B scaffold/legacy-runtime-residual-product-classification-0133/selfcheck.py
-# SCF-B-0133 selfcheck PASS negative_cases=36
+# SCF-B-0133 selfcheck PASS negative_cases=45
 python3 -m py_compile scaffold/legacy-runtime-residual-product-classification-0133/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale

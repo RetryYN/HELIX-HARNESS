@@ -834,7 +834,15 @@
     "fixed_BASE_non_ancestor",
     "generator_profile_oracle_tamper",
     "base_pin_tamper",
-    "base_source_missing"
+    "base_source_missing",
+    "classification_count_tamper",
+    "target_wave_edge_count_tamper",
+    "profile_pin_set_tamper",
+    "prior_main_overlap_pin_tamper",
+    "profile_category_tamper",
+    "profile_products_tamper",
+    "profile_l1_anchor_tamper",
+    "profile_source_marker_tamper"
   ],
   "old_archive_execution": {
     "adapter": false,
