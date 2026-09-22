@@ -1,6 +1,6 @@
 # outside67 governance/crosswalk follow-up research (019/022/024/041/058)
 
-initial exact base `ee03352d8fc36c4e16d65f861ac9f0262b47fe87` のfresh isolated worktreeを #2033 merge後のlatest main `f8abbba3c04fbbd3e0a4787701a53d854d37b889` へrebaselineしたworktree `/home/tenni/.helix-worktrees/outside67-next-085` で、outside67 holding 67 path_revision_pairのうち既済47件と重複しない5 sourceを静的に保持するresearch Scaffoldです。研究会計は52/67、残15ですが、これはpath_revision_pairの研究会計であり、正式要求identity、四製品owner、実装・縮退・authorityの分母ではありません。
+initial exact base `ee03352d8fc36c4e16d65f861ac9f0262b47fe87` から、#2033 merge後の `f8abbba3c04fbbd3e0a4787701a53d854d37b889`、さらに#2032 merge後のlatest main `c5ed4587d8563bd473368f5eb0f3c311fefb44a6` へrebaselineしたworktree `/home/tenni/.helix-worktrees/outside67-next-085` で、outside67 holding 67 path_revision_pairのうち既済47件と重複しない5 sourceを静的に保持するresearch Scaffoldです。研究会計は52/67、残15ですが、これはpath_revision_pairの研究会計であり、正式要求identity、四製品owner、実装・縮退・authorityの分母ではありません。
 
 候補は019 GitHub PR cleanup、022 Infinity quality constraint crosswalk、024 L2 freeze IR proposal README、041 new-generation management-change source crosswalk、058 HELIX requirements source auditです。各sourceから5本ずつ、合計25本のpre-isolation/archive exact line anchorとcurrent counterpartを保持します。multi-duty lineの完全分解は未了なのでcomposite_unresolvedとして残し、source fragment外のactor/action/condition/guard/sequenceを生成しません。
 

@@ -2,7 +2,7 @@
 
 - state: `research_scaffold_findings_only`
 - binding: `SCF-B-0085` registered
-- base: `f8abbba3c04fbbd3e0a4787701a53d854d37b889` after #2033 rebaseline from `ee03352d8fc36c4e16d65f861ac9f0262b47fe87`
+- base: `c5ed4587d8563bd473368f5eb0f3c311fefb44a6` after #2032 rebaseline from `f8abbba3c04fbbd3e0a4787701a53d854d37b889` (initial exact base `ee03352d8fc36c4e16d65f861ac9f0262b47fe87`)
 - source accounting: `52/67` provisional path_revision_pair research accounting; `15` residual
 - selected: `019, 022, 024, 041, 058` / 5 source pairs / 25 exact anchors
 - exact path/blob/sha receipt and semantic inclusion: separate observations
