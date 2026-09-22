@@ -75,7 +75,7 @@ def main() -> int:
     expect("selection set tamper", lambda inv, rs: inv["selection"].update(selected_asset_ids_sha256="sha256:" + "0" * 64), "E_SELECTION")
     expect("authority boundary tamper", lambda inv, rs: inv["authority_boundary"].update(formal_implementation_claim_updated=True), "E_AUTHORITY_BOUNDARY")
     expect("output digest tamper", lambda inv, rs: inv.update(output_sha256="sha256:" + "0" * 64), "E_OUTPUT_DIGEST", recalc_digest=False)
-    print("PASS SCF-B-0122 selfcheck: 23 negative cases")
+    print("PASS SCF-B-0122 selfcheck: 24 negative cases")
     return 0
 
 

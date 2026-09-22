@@ -572,7 +572,7 @@
       "validate.py PASS: 29 selected source snapshots／218 product units／598 Wave edges／4,020 ledger rows",
       "fixed BASE Git object bytes／blob／line／anchor and current target provenance exact match",
       "fixed BASE ancestry and 98 non-archive input digest exact match",
-      "selfcheck.py PASS: 23 negative cases including nested history／consumer／candidate／unit／implementation／unimplemented／failure／degradation／acceptance guards"
+      "selfcheck.py PASS: 24 negative cases including nested history／consumer／candidate／unit／implementation／unimplemented／failure／degradation／acceptance guards"
     ],
     "negative_cases": [
       "tampered nested ledger consumer／phase／decision／read-after record must fail",

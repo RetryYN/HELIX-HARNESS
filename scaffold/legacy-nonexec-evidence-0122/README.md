@@ -34,6 +34,6 @@ python3 -B scaffold/legacy-nonexec-evidence-0122/validate.py
 python3 -B scaffold/legacy-nonexec-evidence-0122/selfcheck.py
 ```
 
-validatorは固定BASE Git objectから入力とsource／target bytesを再読し、BASE祖先性、98 input digest、29 asset集合、nested ledger／phase／decision／read-after、source anchor、Wave／candidate／representative集合、status境界をfail-closeします。selfcheckにはconsumer改竄、history改竄、source／target digest改竄、unit／representative／candidate forgery、implementation／unimplemented／degradation／failure／acceptance promotion、重複・欠落、input／BASE／scope／authority改竄を含む23負例があります。
+validatorは固定BASE Git objectから入力とsource／target bytesを再読し、BASE祖先性、98 input digest、29 asset集合、nested ledger／phase／decision／read-after、source anchor、Wave／candidate／representative集合、status境界をfail-closeします。selfcheckにはconsumer改竄、history改竄、source／target digest改竄、unit／representative／candidate forgery、implementation／unimplemented／degradation／failure／acceptance promotion、重複・欠落、input／BASE／scope／authority改竄を含む24負例があります。
 
 Bindingは `scaffold/bindings/SCF-B-0122.json`、差し替え台帳はIssue #1813を参照します。これは研究用Scaffoldであり、#1813のcloseや正式採否を生成しません。
