@@ -2,7 +2,7 @@
 
 `SCF-B-0107` は、固定BASE `5562f04da0f3205f9aa58205ec0d478419fc4f2e` のWave1–50を静的に再照合し、Waveで参照された355 unique旧assetと、`legacy-asset-phase-product-classification-bootstrap.jsonl` の `product_classification_status=unresolved` との交差64件を研究候補として保持する。
 
-Wave1–36は `docs/governance/` のJSONL、Wave37–50は既存の `scaffold/legacy-semantic-review-wave37..50/` JSONLを入力にする。598 edgeを再導出し、対象64件を単一製品候補の直接根拠56件、複数製品競合6件、根拠不足2件へ分類した。対象assetのsemantic linkはunresolved-only 61件、rejected-only 3件、confirmedを含むassetは0件である。単一候補でもsemantic link、product authority、phase admission、successor、consumer closureが未承認であるため、これは正式asset分類やroutingではない。
+Wave1–36は `docs/governance/` のJSONL、Wave37–50は既存の `scaffold/legacy-semantic-review-wave37..50/` JSONLを入力にする。598 edgeを再導出し、対象64件を単一製品候補の直接根拠56件、複数製品競合5件、根拠不足3件へ分類した。対象assetのsemantic linkはunresolved-only 61件、rejected-only 3件、confirmedを含むassetは0件である。単一候補でもsemantic link、product authority、phase admission、successor、consumer closureが未承認であるため、これは正式asset分類やroutingではない。
 
 各recordは次を結んでいる。
 
