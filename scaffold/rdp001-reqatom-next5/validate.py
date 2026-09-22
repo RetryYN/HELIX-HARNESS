@@ -29,6 +29,64 @@ SOURCE_COMMIT = "2654cf936719dee21dfbf1ceb8140163400f081a"
 ASSET_ID = "LEGACY-ASSET-9F48ADEEB477DCA54039"
 DECISION_ID = "REQ-SNAPSHOT-CORRECTION-9F48ADEEB477DCA54039"
 READ_AFTER_ID = "READ-REQ-SNAPSHOT-9F48ADEEB477DCA54039"
+EXPECTED_INVENTORY_KEYS = {
+    "schema_revision", "generated_at", "authority_effect", "proposal_status", "source_commit", "inputs",
+    "review_unit_ids", "review_unit_count", "input_line_count", "candidate_atom_count",
+    "four_product_denominator", "unresolved_target_candidate_atom_count", "status_preservation", "proposal_sha256",
+}
+EXPECTED_INPUT_KEYS = {
+    "queue_path", "queue_sha256", "semantic_line_ledger_path", "semantic_line_ledger_sha256", "source_path",
+    "source_sha256", "archive_source_path", "archive_source_sha256", "legacy_asset_id", "legacy_asset_revision",
+    "legacy_asset_disposition", "legacy_asset_implementation_status", "legacy_asset_product_target",
+    "legacy_asset_decision_status", "legacy_asset_decision_ref", "legacy_asset_correction_decision",
+    "legacy_asset_correction_supersedes", "legacy_asset_read_after_id", "legacy_asset_read_after_result",
+    "legacy_asset_read_after_digest_match", "legacy_asset_read_after_consumer_match", "legacy_asset_read_after_failure",
+    "legacy_asset_consumer_refs", "legacy_asset_read_after_consumer_refs",
+}
+EXPECTED_INVENTORY_PRODUCT_KEYS = {"candidate_atom_count", "status"}
+EXPECTED_STATUS_PRESERVATION_KEYS = {
+    "source_authority", "target_authority", "carry_forward", "implementation_status", "degradation_status",
+    "phase_status", "successor_requirement_ids", "decision_record",
+}
+EXPECTED_PROPOSAL_KEYS = {
+    "review_unit_id", "review_sequence", "input_source_path", "input_source_revision", "input_heading_path",
+    "input_source_line_range", "input_content_line_ids", "input_content_line_digests", "line_coverage",
+    "candidate_atoms", "four_product_denominator", "authority_claim", "proposal_status",
+    "meaning_change_applied", "successor_requirement_ids", "decision_record",
+}
+EXPECTED_LINE_COVERAGE_KEYS = {"consumed_once", "unresolved", "shared_context"}
+EXPECTED_ATOM_KEYS = {
+    "candidate_atom_id", "source_line_ids", "exact_source_text", "normalized_statement", "candidate_kind",
+    "candidate_target", "candidate_granularity", "existing_identity_relations", "retained_meaning",
+    "actor_candidate", "authority_boundary", "failure_or_stop_conditions", "evidence_or_acceptance_conditions",
+    "negative_or_exception_conditions", "legacy_failure_candidate", "consumer_candidate", "possible_conflicts",
+    "questions", "candidate_inference", "status_preservation",
+}
+EXPECTED_RELATION_KEYS = {"identity", "relation"}
+EXPECTED_LEGACY_FAILURE_KEYS = {"status", "conditions"}
+EXPECTED_CONSUMER_KEYS = {"legacy_refs", "current_status"}
+EXPECTED_ATOM_STATUS_KEYS = {
+    "source_authority", "target_authority", "carry_forward", "implementation_status", "degradation_status",
+    "phase_status", "successor_status",
+}
+EXPECTED_PRODUCT_KEYS = {"HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"}
+
+# This is intentionally independent of proposals.jsonl.  It is the bounded
+# semantic contract for the ten atom IDs, rather than a digest copied from the
+# candidate file under review.
+EXPECTED_NORMALIZED_STATEMENTS = {
+    "A1-0006-01": "旧business文書がBR-01〜08を収める業務要求節へ進むことを示す。",
+    "A1-0007-01": "旧business要求表の列見出しがID・業務要求・出所(trace)の三欄を宣言する。",
+    "A1-0008-01": "旧business文書がUX-01〜03を収めるUX要求節へ進むことを示す。",
+    "A1-0009-01": "旧UX要求表の列見出しがID・UX/価値要求・出所(trace)の三欄を宣言する。",
+    "A1-0010-01": "旧sourceはPOをscope・受入・最終承認と業務要求定義の主体として記述する。",
+    "A1-0010-02": "旧sourceはPOのscope・受入・最終承認というactor役割を記述する。HELIX-OS接続は別途確認する候補であり、旧sourceの機能記述ではない。",
+    "A1-0010-03": "旧sourceはAI agent rosterを実装・レビュー・検証agentとして記述し、workerとverifierの分離およびL0-L3人間承認境界をharnessが機械強制する対象とする。",
+    "A1-0010-04": "旧sourceはAI agent roster、worker≠verifier、L0-L3人間承認境界を記述する。HELIX-OS接続は別途確認する候補であり、旧sourceの機能記述ではない。",
+    "A1-0010-05": "旧sourceはHELIX運用者を、HELIXを超個人開発基盤として使う本人であり、社内・チーム利用の展開先はHELIX-HARNESS packageと記述する。",
+    "A1-0010-06": "旧sourceはHELIX運用者とHARNESS packageの展開先を記述する。HELIX-OS接続は別途確認する候補であり、旧sourceの配布機能記述ではない。",
+}
+EXPECTED_NORMALIZED_STATEMENTS_DIGEST = "d40fa1ab5669a20721672d740906e77e9f6538b105dff766216b39a1e55512f6"
 
 
 def sha256(data: bytes) -> str:
@@ -51,6 +109,20 @@ def load_jsonl(path: Path) -> list[dict]:
     return rows
 
 
+def check_keys(errors: list[str], value: object, expected: set[str], label: str) -> None:
+    """Fail closed when any inventory/proposal object gains or loses a field."""
+    if not isinstance(value, dict):
+        errors.append(f"{label}: objectではない")
+        return
+    if set(value) != expected:
+        errors.append(f"{label}: keyset不一致")
+
+
+def normalized_statement_digest(statements: dict[str, str]) -> str:
+    canonical = "\n".join(f"{atom_id}\t{statements[atom_id]}" for atom_id in sorted(statements)) + "\n"
+    return sha256(canonical.encode("utf-8"))
+
+
 def check() -> list[str]:
     errors: list[str] = []
     try:
@@ -63,6 +135,52 @@ def check() -> list[str]:
         read_rows = {row["read_after_id"]: row for row in load_jsonl(COPY_READ_AFTER)}
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         return [f"入力読み込み失敗: {exc}"]
+
+    # Inventory and proposals are closed scaffold interfaces.  Check every
+    # object before semantic validation so added fields cannot become silent
+    # evidence (for example merge_admission or verified flags).
+    check_keys(errors, inventory, EXPECTED_INVENTORY_KEYS, "inventory")
+    check_keys(errors, inventory.get("inputs"), EXPECTED_INPUT_KEYS, "inventory.inputs")
+    check_keys(errors, inventory.get("four_product_denominator"), EXPECTED_PRODUCT_KEYS, "inventory.four_product_denominator")
+    if isinstance(inventory.get("four_product_denominator"), dict):
+        for product in PRODUCTS:
+            check_keys(errors, inventory["four_product_denominator"].get(product), EXPECTED_INVENTORY_PRODUCT_KEYS, f"inventory.four_product_denominator.{product}")
+    check_keys(errors, inventory.get("status_preservation"), EXPECTED_STATUS_PRESERVATION_KEYS, "inventory.status_preservation")
+
+    for proposal_index, proposal in enumerate(proposals):
+        label = f"proposal[{proposal_index}]"
+        check_keys(errors, proposal, EXPECTED_PROPOSAL_KEYS, label)
+        if not isinstance(proposal, dict):
+            continue
+        check_keys(errors, proposal.get("line_coverage"), EXPECTED_LINE_COVERAGE_KEYS, label + ".line_coverage")
+        check_keys(errors, proposal.get("four_product_denominator"), EXPECTED_PRODUCT_KEYS, label + ".four_product_denominator")
+        if isinstance(proposal.get("four_product_denominator"), dict):
+            for product in PRODUCTS:
+                check_keys(errors, proposal["four_product_denominator"].get(product), EXPECTED_INVENTORY_PRODUCT_KEYS, f"{label}.four_product_denominator.{product}")
+        unit_id = proposal.get("review_unit_id")
+        queue = queue_rows.get(unit_id)
+        if queue:
+            check_keys(errors, proposal.get("input_content_line_digests"), set(queue.get("content_line_ids", [])), label + ".input_content_line_digests")
+        else:
+            check_keys(errors, proposal.get("input_content_line_digests"), set(), label + ".input_content_line_digests")
+        atoms = proposal.get("candidate_atoms")
+        if not isinstance(atoms, list):
+            errors.append(label + ".candidate_atoms: 配列ではない")
+            continue
+        for atom_index, atom in enumerate(atoms):
+            atom_label = f"{label}.candidate_atoms[{atom_index}]"
+            check_keys(errors, atom, EXPECTED_ATOM_KEYS, atom_label)
+            if not isinstance(atom, dict):
+                continue
+            relations = atom.get("existing_identity_relations")
+            if not isinstance(relations, list):
+                errors.append(atom_label + ".existing_identity_relations: 配列ではない")
+            else:
+                for relation_index, relation in enumerate(relations):
+                    check_keys(errors, relation, EXPECTED_RELATION_KEYS, f"{atom_label}.existing_identity_relations[{relation_index}]")
+            check_keys(errors, atom.get("legacy_failure_candidate"), EXPECTED_LEGACY_FAILURE_KEYS, atom_label + ".legacy_failure_candidate")
+            check_keys(errors, atom.get("consumer_candidate"), EXPECTED_CONSUMER_KEYS, atom_label + ".consumer_candidate")
+            check_keys(errors, atom.get("status_preservation"), EXPECTED_ATOM_STATUS_KEYS, atom_label + ".status_preservation")
 
     if inventory.get("schema_revision") != 1:
         errors.append("inventory schema_revision が1でない")
@@ -125,6 +243,7 @@ def check() -> list[str]:
     source_lines = SOURCE.read_text(encoding="utf-8").splitlines()
     all_input_ids: list[str] = []
     all_atoms: list[dict] = []
+    normalized_statements: dict[str, str] = {}
     target_counts = {product: 0 for product in PRODUCTS}
     unresolved_targets = 0
     for proposal in proposals:
@@ -201,6 +320,13 @@ def check() -> list[str]:
                     errors.append(f"{unit_id}/{atom_id}: ledger line digest自体が不一致")
             if not candidate.get("normalized_statement"):
                 errors.append(f"{unit_id}/{atom_id}: normalized_statement欠落")
+            expected_statement = EXPECTED_NORMALIZED_STATEMENTS.get(atom_id)
+            if expected_statement is None:
+                errors.append(f"{unit_id}/{atom_id}: canonical normalized_statementのatom IDが未知")
+            elif candidate.get("normalized_statement") != expected_statement:
+                errors.append(f"{unit_id}/{atom_id}: normalized_statementがcanonical意味と不一致")
+            if atom_id:
+                normalized_statements[atom_id] = candidate.get("normalized_statement")
             inference = candidate.get("candidate_inference")
             if not isinstance(inference, list) or any(not isinstance(item, str) or not item.strip() for item in inference):
                 errors.append(f"{unit_id}/{atom_id}: candidate_inferenceが配列でない")
@@ -276,6 +402,10 @@ def check() -> list[str]:
         errors.append("inventory input_line_countが7でない")
     if inventory.get("candidate_atom_count") != len(all_atoms) or len(all_atoms) != 10:
         errors.append("inventory candidate_atom_countが10でない")
+    if set(normalized_statements) != set(EXPECTED_NORMALIZED_STATEMENTS):
+        errors.append("normalized_statementのatom ID集合がcanonical集合と不一致")
+    if normalized_statement_digest(normalized_statements) != EXPECTED_NORMALIZED_STATEMENTS_DIGEST:
+        errors.append("normalized_statement canonical集合digestが不一致")
     expected_counts = {
         "HELIX-HARNESS": {"candidate_atom_count": target_counts["HELIX-HARNESS"], "status": "candidate_only"},
         "HELIX-OS": {"candidate_atom_count": target_counts["HELIX-OS"], "status": "candidate_only"},

@@ -53,6 +53,6 @@ python3 scaffold/tools/scfctl.py validate
 git diff --check
 ```
 
-`generate.py` は queue、semantic line台帳、source、asset catalog、append-only decision、copy read-afterから同じJSONL／inventoryを再生成する。`validate.py` は queue coverage全量、exact source／line digest、archive同一性、asset revision／decision／consumer、10 atom、四製品分母、actor／authority／failure／否定条件、OS現行推論のcandidate_inference分離、implementation／degradation／phase unknown、authority／successor／decision禁止を独立に検査する。`selfcheck.py` はcoverage欠落・重複、本文／digest改変、authority／successor／implementation／degradation／phase昇格、分母改変、actor conflict削除、OS機能意味のretained混入、推論分離解除、Web直接根拠の捏造を拒否する14否定例を一時ファイル上で確認する。
+`generate.py` は queue、semantic line台帳、source、asset catalog、append-only decision、copy read-afterから同じJSONL／inventoryを再生成する。`validate.py` は queue coverage全量、exact source／line digest、archive同一性、asset revision／decision／consumer、10 atom、独立canonical normalized statementと集合digest、四製品分母、actor／authority／failure／否定条件、OS現行推論のcandidate_inference分離、implementation／degradation／phase unknown、authority／successor／decision禁止、inventory／proposal全階層の未知key拒否を独立に検査する。`selfcheck.py` はcoverage欠落・重複、本文／digest改変、normalized statement意味反転後のproposal digest更新、authority／successor／implementation／degradation／phase昇格、分母改変、actor conflict削除、OS機能意味のretained混入、推論分離解除、Web直接根拠の捏造、nested／inventory未知key注入を拒否する17否定例を一時ファイル上で確認する。
 
 旧archiveは行テキスト・digestの静的比較だけに使い、旧workflow、runtime、CLI、hook、adapter、source、test、CIは実行していない。この候補は `scaffold/` 内の仮組みであり、正式な要求、設計、実装、CI、Issue、PR、承認、受入、release、deploymentではない。

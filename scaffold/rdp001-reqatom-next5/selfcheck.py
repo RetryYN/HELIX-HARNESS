@@ -11,7 +11,7 @@ from pathlib import Path
 import validate
 
 
-def run_case(name: str, mutate) -> None:
+def run_case(name: str, mutate, refresh_proposal_digest: bool = False) -> None:
     with tempfile.TemporaryDirectory(prefix="rdp001-reqatom-next5-selfcheck-") as temp_dir:
         temp = Path(temp_dir)
         original_prop = validate.PROP
@@ -21,10 +21,10 @@ def run_case(name: str, mutate) -> None:
         mutate(proposals, inventory)
         proposal_path = temp / "proposals.jsonl"
         inventory_path = temp / "inventory.json"
-        proposal_path.write_text(
-            "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in proposals),
-            encoding="utf-8",
-        )
+        proposal_text = "".join(json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n" for row in proposals)
+        if refresh_proposal_digest:
+            inventory["proposal_sha256"] = validate.sha256(proposal_text.encode("utf-8"))
+        proposal_path.write_text(proposal_text, encoding="utf-8")
         inventory_path.write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         validate.PROP = proposal_path
         validate.INVENTORY = inventory_path
@@ -57,6 +57,13 @@ def main() -> int:
     run_case(
         "exact source text drift",
         lambda rows, inventory: rows[0]["candidate_atoms"][0].update(exact_source_text="改変"),
+    )
+    run_case(
+        "normalized meaning reversal with refreshed digest",
+        lambda rows, inventory: rows[4]["candidate_atoms"][0].update(
+            normalized_statement="旧sourceはPOをscope・受入・最終承認の主体としない。"
+        ),
+        refresh_proposal_digest=True,
     )
     run_case(
         "source line digest drift",
@@ -105,7 +112,15 @@ def main() -> int:
         "Web direct evidence promotion",
         lambda rows, inventory: rows[2]["candidate_atoms"][0].update(candidate_target="HELIX-Web"),
     )
-    print("PASS all 14 negative selfchecks")
+    run_case(
+        "nested unknown key injection",
+        lambda rows, inventory: rows[4]["candidate_atoms"][0].update(verified=True),
+    )
+    run_case(
+        "inventory unknown key injection",
+        lambda rows, inventory: inventory.update(merge_admission="granted"),
+    )
+    print("PASS all 17 negative selfchecks")
     return 0
 
 

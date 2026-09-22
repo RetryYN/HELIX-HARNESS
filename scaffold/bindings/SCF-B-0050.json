@@ -75,8 +75,8 @@
     },
     {
       "path": "scaffold/rdp001-reqatom-next5/README.md",
-      "sha256": "5ac6292d2c0e89f6c77046cfb91f6e79d8b73dbb677642ce35f7005e77f537b3",
-      "note": "scope, product denominator, unknowns, verification contract"
+      "sha256": "a9a6caf03853923654db31707f932dd8460a8e355608723d98b0c7df8544495c",
+      "note": "scope, product denominator, unknowns, canonical normalized-statement and closed-keyset verification contract"
     },
     {
       "path": "scaffold/rdp001-reqatom-next5/generate.py",
@@ -95,13 +95,13 @@
     },
     {
       "path": "scaffold/rdp001-reqatom-next5/validate.py",
-      "sha256": "319cdae0f97d3469e07b3f5881ab8fb5974e4cd043ad94a56fb0c36cf578a0f7",
-      "note": "independent static validator"
+      "sha256": "ce3f2dac732aed02af95f4336d2ac6b6313b2fc0a4dfe7bb65ec0341315bf3bb",
+      "note": "independent static validator with canonical normalized statements, expected-set digest and closed inventory/proposal keysets"
     },
     {
       "path": "scaffold/rdp001-reqatom-next5/selfcheck.py",
-      "sha256": "636b0796b306dbc0b206c46cb1440ad8732505339133e4b345327c869a2bb23a",
-      "note": "twelve meaningful negative self-checks"
+      "sha256": "48de2fda96aeb926f780eacd20f59bef342010d55ad7c196ee255b912d6b0e3c",
+      "note": "17 meaningful negative self-checks including normalized meaning reversal with refreshed digest and nested/inventory unknown-key injection"
     }
   ],
   "role": "REQATOM A1 0006--0010のqueue／semantic line／exact source closure、四製品candidate routing、旧actor／authority／failure／consumer意味、implementation／degradation／phase unknownを独立review用に保持する",
@@ -171,8 +171,8 @@
     ],
     "oracles": [
       "validate.pyのqueue／semantic line／source／archive digestと7 line coverage",
-      "validate.pyの10 atom、四製品分母、asset revision／decision／consumer、OS推論分離、status unknown、authority／successor／decision禁止",
-      "selfcheck.pyの14 negative cases（line loss／duplication、本文／digest改変、authority／successor／implementation／degradation／phase昇格、denominator改変、actor conflict削除、OS意味混入、推論分離解除、Web根拠捏造）",
+      "validate.pyの10 atom、独立canonical normalized statementと集合digest、四製品分母、asset revision／decision／consumer、OS推論分離、status unknown、authority／successor／decision禁止、inventory／proposal全階層keyset",
+      "selfcheck.pyの17 negative cases（line loss／duplication、本文／digest改変、normalized statement意味反転後のproposal digest更新、authority／successor／implementation／degradation／phase昇格、denominator改変、actor conflict削除、OS意味混入、推論分離解除、Web根拠捏造、nested／inventory未知key注入）",
       "generate.py再実行のdeterministic JSONL digest",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
