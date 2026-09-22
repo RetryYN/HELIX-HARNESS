@@ -19,9 +19,9 @@ holdingのpath-based product／phaseは候補境界だけを保持し、四製�
 - `legacy-evidence.jsonl`: BASE時点7 legacy ledgerのexact anchor scan（5×7、ledger digest／hit-nohit／anchorをvalidatorが再導出）
 - `inventory.json`: 分母、partial completion、四製品候補境界、unknown residual、digest
 - `generate.py`: merged snapshot／holding／ledgerを読む deterministic generator
-- `validate.py`: Git object、source line、atom reference、category、boundary、current main driftをfail-closedに検査
+- `validate.py`: 固定BASEのGit object祖先性、source line、atom reference、category、boundaryをfail-closedに検査
 - `coverage-audit.py`: validatorから独立して183行の全被覆と3分類の排他を再計算
-- `selfcheck.py`: 26件の意味ある負例（line／digest／重複／PATH-008分類／legacy ledger pin・hit-nohit-anchor／形式昇格／partial completion境界）
+- `selfcheck.py`: 27件の意味ある負例（line／digest／重複／PATH-008分類／legacy ledger pin・hit-nohit-anchor／非祖先HEAD／形式昇格／partial completion境界）とremote進行模擬受理
 
 ## 検証
 
@@ -36,4 +36,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-`origin/main`が記録baseから進んだ場合、validatorは停止して`E_MAIN_DRIFT`を返します。#2043など先行研究のHEAD、holding、snapshot、current counterpartを再照合してからrebaselineします。
+提出前に`origin/main`が記録baseから進んだ場合は停止し、#2043など先行研究のHEAD、holding、snapshot、current counterpartを再照合してからrebaselineします。validatorは固定BASEが検査対象HEADの祖先であることと記録digestを検証し、merge後のlive remote進行を過去のScaffoldへ遡及させません。

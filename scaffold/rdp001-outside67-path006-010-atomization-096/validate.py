@@ -121,9 +121,6 @@ def validate_inventory(inv: dict) -> None:
     head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     if subprocess.run(["git", "merge-base", "--is-ancestor", BASE, head], cwd=ROOT, check=False).returncode:
         fail("E_BASE_NOT_ANCESTOR")
-    live_main = subprocess.check_output(["git", "ls-remote", "origin", "refs/heads/main"], cwd=ROOT, text=True).split()[0]
-    if live_main != BASE:
-        fail("E_MAIN_DRIFT", f"{live_main}")
     if scope["holding_sha256"] != sha(HOLDING.read_bytes()) or scope["management_register_sha256"] != sha(REGISTER.read_bytes()):
         fail("E_LEDGER_DIGEST")
     holding = read_jsonl(HOLDING)

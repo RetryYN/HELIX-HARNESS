@@ -51,6 +51,25 @@ def rejected(label, mutate):
 
 v.validate()
 
+
+def accepts_simulated_remote_advance():
+    original_check_output = v.subprocess.check_output
+
+    def simulated_check_output(args, *call_args, **call_kwargs):
+        if args == ["git", "ls-remote", "origin", "refs/heads/main"]:
+            return ("f" * 40 + "\trefs/heads/main\n") if call_kwargs.get("text") else (b"f" * 40 + b"\trefs/heads/main\n")
+        return original_check_output(args, *call_args, **call_kwargs)
+
+    v.subprocess.check_output = simulated_check_output
+    try:
+        v.validate()
+    finally:
+        v.subprocess.check_output = original_check_output
+    print("PASS simulated remote advance: fixed-base validation remains accepted")
+
+
+accepts_simulated_remote_advance()
+
 rejected("partial research promoted to path atomization complete", lambda d: d["inv"]["research_completion"].__setitem__("path_atomization_complete", True))
 rejected("base revision drift", lambda d: d["inv"]["scope"].__setitem__("base_origin_main", "0" * 40))
 rejected("67-pair denominator drift", lambda d: d["inv"]["scope"].__setitem__("holding_path_revision_pair_denominator", 68))
@@ -78,4 +97,27 @@ rejected("line accounting count drift", lambda d: d["inv"]["line_accounting"].__
 rejected("formal product boundary promotion", lambda d: d["inv"]["four_products"][0].__setitem__("status", "formal"))
 rejected("root authority promotion", lambda d: d["inv"].__setitem__("authority_effect", "adopted"))
 
-print("outside67 PATH-006..010 atomization selfcheck: PASS (baseline + 26 negative cases)")
+
+def rejects_non_ancestor_head():
+    original_check_output = v.subprocess.check_output
+
+    def simulated_non_ancestor(args, *call_args, **call_kwargs):
+        if args == ["git", "rev-parse", "HEAD"]:
+            value = "a8c0883a79de77c5aca1c8623cbfd70187a7e946"
+            return (value + "\n") if call_kwargs.get("text") else (value.encode() + b"\n")
+        return original_check_output(args, *call_args, **call_kwargs)
+
+    v.subprocess.check_output = simulated_non_ancestor
+    try:
+        v.validate()
+    except AssertionError:
+        print("PASS negative: non-ancestor HEAD remains rejected")
+    else:
+        raise AssertionError("negative accepted: non-ancestor HEAD remains rejected")
+    finally:
+        v.subprocess.check_output = original_check_output
+
+
+rejects_non_ancestor_head()
+
+print("outside67 PATH-006..010 atomization selfcheck: PASS (baseline + 27 negative cases)")

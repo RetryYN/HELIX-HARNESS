@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "outside67 PATH-006〜010のsource line／意味atom候補境界を静的に再照合する研究（正式owner未解決）",
   "state": "registered",
-  "reason": "MPR-SH-OUTSIDE67-001の67 path_revision_pairからPATH-006〜010の5 pairを選び、pre/archive exact snapshot、current counterpart path/blob/SHA、183行のline coverageを固定する。既存merged PATH-008 atom 74件はID・line・digest参照へ分離し、新規145行候補と重複させない。atomized_candidate 10、metadata_only 74、composite_unresolved 99を一意line単位で会計し、PATH-008の既存atom非参照27行は保守的にcomposite_unresolvedへ置く。選択5 pair内のline残差0と未選定62 pairを明示する。BASE時点7 legacy ledgerのdigest・hit/nohit・anchorはvalidatorが再導出し、hit/nohitから実装・縮退・failure・consumer・decisionを推測しない。四製品、product／phaseは候補境界だけに留め、formal owner、successor、phase authority、implementation、degradation、failure、consumer、decision、adoptionを生成しない。origin/mainまたは先行source lineageが変われば停止し、新baseへrebaselineする。",
+  "reason": "MPR-SH-OUTSIDE67-001の67 path_revision_pairからPATH-006〜010の5 pairを選び、pre/archive exact snapshot、current counterpart path/blob/SHA、183行のline coverageを固定する。既存merged PATH-008 atom 74件はID・line・digest参照へ分離し、新規145行候補と重複させない。atomized_candidate 10、metadata_only 74、composite_unresolved 99を一意line単位で会計し、PATH-008の既存atom非参照27行は保守的にcomposite_unresolvedへ置く。選択5 pair内のline残差0と未選定62 pairを明示する。BASE時点7 legacy ledgerのdigest・hit/nohit・anchorはvalidatorが再導出し、hit/nohitから実装・縮退・failure・consumer・decisionを推測しない。四製品、product／phaseは候補境界だけに留め、formal owner、successor、phase authority、implementation、degradation、failure、consumer、decision、adoptionを生成しない。提出前にorigin/mainまたは先行source lineageの進行を確認した場合は停止し、新baseへrebaselineする。merge後のlive remote進行は固定BASE検証へ遡及させない。",
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
@@ -75,22 +75,22 @@
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/inventory.json",
-      "sha256": "a206d689622738a1af7eba648d6ace9af50629f5d61f3045b755d345ba4981f9",
+      "sha256": "c8f553df3743f53a76f2a14f9fd7ae943d4d325a177d9acc5df49684ec4812ce",
       "note": "static source/governance or merged lineage; no authority promotion"
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/generate.py",
-      "sha256": "8a32f6f5185d40bc96cb8afb1451daccc29e3b63c4dceae368383b66b5ff49b7",
+      "sha256": "4d0179e8ea60b9d49560bdae55ccb84f796b27b7361d9fe9a8dc4fea9ab476c0",
       "note": "static source/governance or merged lineage; no authority promotion"
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/validate.py",
-      "sha256": "2f3427db25e4e31dc4c88e015fac63161877c6c5ff764171137ea83c60ffaac5",
+      "sha256": "9d97a2d36f6c4cd9f9b32bf175a6e51aae5dc737f30048cb7bbf0d9df805aa02",
       "note": "static source/governance or merged lineage; no authority promotion"
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/selfcheck.py",
-      "sha256": "86e750ec642c9954f5d42c195eda90e91e314f04ad0585293d77e789621388c6",
+      "sha256": "701a7472a73596f008789b29f860e9e9c452d6e7255e9cb4406ddf23bee1966e",
       "note": "static source/governance or merged lineage; no authority promotion"
     },
     {
@@ -191,7 +191,7 @@
       "git diff --check"
     ],
     "negative_cases": [
-      "base/main drift",
+      "recorded base／source lineage drift requiring pre-merge rebaseline",
       "holding/register digest tamper",
       "source snapshot text/blob/SHA tamper",
       "current counterpart path/blob/SHA tamper",
@@ -204,6 +204,7 @@
       "legacy ledger digest／hit-nohit／anchor tamper",
       "partial research to path atomization complete promotion",
       "formal product／owner／authority／phase promotion",
+      "non-ancestor HEAD",
       "coverage-audit line omission, duplicate, category overlap, and text tamper"
     ]
   },

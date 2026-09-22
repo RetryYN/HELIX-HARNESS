@@ -8,4 +8,4 @@
 - formal requirement／owner／successor／phase authority／implementation／degradation: unknown／open
 - old archive execution: none
 - base: `16f694ae07cdb2d56e15045054c147c7a15d3275`
-- stop condition: `origin/main` or source lineage changes require explicit rebaseline
+- stop condition: 提出前の`origin/main`またはsource lineage変更は明示rebaseline。merge後のlive remote進行は固定BASE検証へ遡及しない
