@@ -1,6 +1,6 @@
 ## 変更内容
 
-Latest HEAD: `9f6badfa561d26652e167e3ade2008088f0f3592`（origin/main=`ccb27727a60bf13816a542efd1b2abb827b6d522`）
+Latest HEAD: `2498324c1f2ef6182e988881f888e4b7b440dcb1`（origin/main=`ccb27727a60bf13816a542efd1b2abb827b6d522`）
 
 固定BASE `5562f04da0f3205f9aa58205ec0d478419fc4f2e` から、未解決かつ `src/schema/` 配下の旧asset 31件を全件再導出し、旧source本文と現行四製品境界を静的に突合する research-only Scaffold Binding `SCF-B-0120` を追加する。
 
