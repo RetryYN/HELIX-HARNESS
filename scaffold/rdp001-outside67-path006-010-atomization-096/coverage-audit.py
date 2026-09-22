@@ -9,7 +9,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 SELECTED = [f"OUTSIDE67-PATH-{n:03d}" for n in range(6, 11)]
 ALLOWED = {"atomized_candidate", "metadata_only", "composite_unresolved"}
-EXPECTED = {"metadata_only": 101, "atomized_candidate": 10, "composite_unresolved": 72}
+EXPECTED = {"metadata_only": 74, "atomized_candidate": 10, "composite_unresolved": 99}
 
 
 def fail(message: str) -> None:

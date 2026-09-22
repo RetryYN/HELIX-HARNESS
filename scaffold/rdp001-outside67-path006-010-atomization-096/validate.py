@@ -45,7 +45,7 @@ METADATA_LINES = {
     "OUTSIDE67-PATH-010": {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17, 18, 21, 22, 23, 27, 28, 29, 36, 38, 39, 44, 45, 46, 50, 51, 52},
 }
 ATOMIZED_LINES = {"OUTSIDE67-PATH-006": {3, 8, 10, 23}, "OUTSIDE67-PATH-009": set(), "OUTSIDE67-PATH-007": set(), "OUTSIDE67-PATH-010": set()}
-EXPECTED_COUNTS = {"OUTSIDE67-PATH-006": {"metadata_only": 8, "atomized_candidate": 4, "composite_unresolved": 13}, "OUTSIDE67-PATH-007": {"metadata_only": 27, "atomized_candidate": 0, "composite_unresolved": 23}, "OUTSIDE67-PATH-008": {"metadata_only": 27, "atomized_candidate": 6, "composite_unresolved": 5}, "OUTSIDE67-PATH-009": {"metadata_only": 7, "atomized_candidate": 0, "composite_unresolved": 7}, "OUTSIDE67-PATH-010": {"metadata_only": 32, "atomized_candidate": 0, "composite_unresolved": 24}}
+EXPECTED_COUNTS = {"OUTSIDE67-PATH-006": {"metadata_only": 8, "atomized_candidate": 4, "composite_unresolved": 13}, "OUTSIDE67-PATH-007": {"metadata_only": 27, "atomized_candidate": 0, "composite_unresolved": 23}, "OUTSIDE67-PATH-008": {"metadata_only": 0, "atomized_candidate": 6, "composite_unresolved": 32}, "OUTSIDE67-PATH-009": {"metadata_only": 7, "atomized_candidate": 0, "composite_unresolved": 7}, "OUTSIDE67-PATH-010": {"metadata_only": 32, "atomized_candidate": 0, "composite_unresolved": 24}}
 OLD_LEDGER_PATHS = [
     "docs/governance/legacy-asset-disposition.jsonl", "docs/governance/legacy-asset-decisions.jsonl", "docs/governance/legacy-asset-copy-read-after.jsonl", "docs/governance/legacy-asset-decision-log.md", "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl", "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
 ]
@@ -90,9 +90,7 @@ def category(sid: str, line_no: int) -> str:
         line_refs = [row for row in refs if row["source_line"] == line_no]
         if any(row["category"] == "atomized_candidate" for row in line_refs):
             return "atomized_candidate"
-        if line_refs:
-            return "composite_unresolved"
-        return "metadata_only"
+        return "composite_unresolved"
     if line_no in METADATA_LINES[sid]:
         return "metadata_only"
     if line_no in ATOMIZED_LINES[sid]:
@@ -117,6 +115,9 @@ def validate_inventory(inv: dict) -> None:
     scope = inv["scope"]
     if scope["base_origin_main"] != BASE or scope["base_origin_main_observed_at_start"] != BASE or scope["holding_path_revision_pair_denominator"] != 67 or scope["holding_record_count"] != 67 or scope["selected_path_revision_pair_count"] != 5 or scope["unexplored_path_revision_pair_count"] != 62 or scope["base_drift_observed"] or scope["base_rebaseline_count"] != 0:
         fail("E_SCOPE")
+    expected_ledger_digests = {rel: sha(git_show(BASE, rel)) for rel in OLD_LEDGER_PATHS}
+    if scope.get("legacy_ledger_sha256") != expected_ledger_digests:
+        fail("E_LEGACY_LEDGER_PIN")
     head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     if subprocess.run(["git", "merge-base", "--is-ancestor", BASE, head], cwd=ROOT, check=False).returncode:
         fail("E_BASE_NOT_ANCESTOR")
@@ -166,19 +167,45 @@ def validate_sources(inv: dict, selected: list[dict], diffs: dict) -> dict[str, 
     return holds
 
 
-def validate_legacy(rows: list[dict]) -> None:
+def validate_legacy(rows: list[dict], holds: dict[str, dict]) -> None:
     if len(rows) != 35:
         fail("E_LEGACY_DENOM")
     expected = {(sid, path) for sid in SELECTED_IDS for path in OLD_LEDGER_PATHS}
     got = {(row.get("source_item_id"), row.get("ledger_path")) for row in rows}
     if got != expected:
         fail("E_LEGACY_SCOPE")
+    expected_keys = {
+        "source_item_id", "ledger_path", "scan_commit", "ledger_sha256", "lookup", "anchors",
+        "implementation_status", "degradation_status", "failure_status", "consumer_status",
+        "decision_status", "no_inference_from_absence",
+    }
     for row in rows:
+        if set(row) != expected_keys:
+            fail("E_LEGACY_KEYS", row.get("source_item_id", ""))
         for key in ("implementation_status", "degradation_status", "failure_status", "consumer_status", "decision_status"):
             if row.get(key) != "unknown":
                 fail("E_LEGACY_PROMOTION", row.get("source_item_id", ""))
         if row.get("no_inference_from_absence") is not True or row.get("lookup") not in ("exact_text_hit", "no_exact_text_hit"):
             fail("E_LEGACY_BOUNDARY")
+        sid = row["source_item_id"]
+        ledger_path = row["ledger_path"]
+        if row["scan_commit"] != BASE:
+            fail("E_LEGACY_SCAN_COMMIT", sid)
+        ledger_bytes = git_show(BASE, ledger_path)
+        if row["ledger_sha256"] != sha(ledger_bytes):
+            fail("E_LEGACY_DIGEST", f"{sid}:{ledger_path}")
+        hold = holds[sid]
+        terms = [sid, hold["source_path"], hold["pre_isolation"]["blob_oid"], hold["archive"]["blob_oid"]]
+        expected_anchors = []
+        for line_no, line in enumerate(ledger_bytes.decode("utf-8", errors="replace").splitlines(), 1):
+            matched_terms = [term for term in terms if term in line]
+            if matched_terms:
+                expected_anchors.append({"line": line_no, "text_sha256": sha(line.encode("utf-8")), "matched_terms": matched_terms})
+        expected_lookup = "exact_text_hit" if expected_anchors else "no_exact_text_hit"
+        if row["lookup"] != expected_lookup:
+            fail("E_LEGACY_LOOKUP", f"{sid}:{ledger_path}")
+        if row["anchors"] != expected_anchors:
+            fail("E_LEGACY_ANCHORS", f"{sid}:{ledger_path}")
 
 
 def validate_atom(atom: dict, sid: str, line_no: int, text: str, cat: str) -> None:
@@ -249,7 +276,7 @@ def validate_atoms(atoms: list[dict], reused: list[dict], coverage: list[dict]) 
             fail("E_COVERAGE_ATOM_IDS", sid + f":{n}")
         counts[cat] += 1; per_path[sid][cat] += 1
     normalized_per_path = {sid: {kind: per_path[sid][kind] for kind in ("metadata_only", "atomized_candidate", "composite_unresolved")} for sid in SELECTED_IDS}
-    if dict(counts) != {"metadata_only": 101, "atomized_candidate": 10, "composite_unresolved": 72} or normalized_per_path != EXPECTED_COUNTS:
+    if dict(counts) != {"metadata_only": 74, "atomized_candidate": 10, "composite_unresolved": 99} or normalized_per_path != EXPECTED_COUNTS:
         fail("E_CATEGORY_COUNTS")
     return
 
@@ -265,15 +292,15 @@ def validate(inv=None, selected=None, atoms=None, reused=None, coverage=None, di
     global REUSED_ROWS
     REUSED_ROWS = reused
     validate_inventory(inv)
-    validate_sources(inv, selected, diffs)
+    holds = validate_sources(inv, selected, diffs)
     validate_atoms(atoms, reused, coverage)
-    validate_legacy(legacy)
+    validate_legacy(legacy, holds)
     line_accounting = inv["line_accounting"]
-    if line_accounting["unique_source_line_count"] != 183 or line_accounting["category_counts"] != {"metadata_only": 101, "atomized_candidate": 10, "composite_unresolved": 72} or line_accounting["selected_line_residual_count"] != 0 or line_accounting["path008_reused_atom_count"] != 74 or line_accounting["new_atom_count"] != 145 or line_accounting["total_atom_references"] != 219:
+    if line_accounting["unique_source_line_count"] != 183 or line_accounting["category_counts"] != {"metadata_only": 74, "atomized_candidate": 10, "composite_unresolved": 99} or line_accounting["selected_line_residual_count"] != 0 or line_accounting["path008_reused_atom_count"] != 74 or line_accounting["new_atom_count"] != 145 or line_accounting["total_atom_references"] != 219:
         fail("E_INVENTORY_ACCOUNTING")
-    if inv["semantic_atoms"] != {"new_atom_file": "semantic-atoms.jsonl", "new_atom_count": 145, "reused_atom_file": "reused-atom-references.jsonl", "reused_atom_count": 74, "line_coverage_file": "line-coverage.jsonl", "atomized_candidate_line_count": 10, "metadata_only_line_count": 101, "composite_unresolved_line_count": 72}:
+    if inv["semantic_atoms"] != {"new_atom_file": "semantic-atoms.jsonl", "new_atom_count": 145, "reused_atom_file": "reused-atom-references.jsonl", "reused_atom_count": 74, "line_coverage_file": "line-coverage.jsonl", "atomized_candidate_line_count": 10, "metadata_only_line_count": 74, "composite_unresolved_line_count": 99}:
         fail("E_INVENTORY_ATOMS")
-    print("PASS validate: PATH-006..010 183/183 source lines, 10 atomized + 101 metadata-only + 72 composite_unresolved, PATH-008 reused=74")
+    print("PASS validate: PATH-006..010 183/183 source lines, 10 atomized + 74 metadata-only + 99 composite_unresolved, PATH-008 reused=74")
 
 
 if __name__ == "__main__":

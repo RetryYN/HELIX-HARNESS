@@ -36,7 +36,16 @@
     "base_drift_policy": "先行#2043またはorigin/mainが変わった場合は停止し、source holding・snapshot・current counterpartを再照合してこの束を新baseへrebaselineする。静かに追随しない。",
     "base_drift_observed": false,
     "base_rebaseline_count": 0,
-    "stop_condition": "#2043のreview修正・merge、またはorigin/mainがbase_origin_main以外へ進んだ場合は、current HEADを固定して停止し再baselineする。"
+    "stop_condition": "#2043のreview修正・merge、またはorigin/mainがbase_origin_main以外へ進んだ場合は、current HEADを固定して停止し再baselineする。",
+    "legacy_ledger_sha256": {
+      "docs/governance/legacy-asset-disposition.jsonl": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "docs/governance/legacy-asset-decisions.jsonl": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "docs/governance/legacy-asset-copy-read-after.jsonl": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "docs/governance/legacy-asset-decision-log.md": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
+    }
   },
   "source_holding": {
     "registration_id": "MPR-SH-OUTSIDE67-001",
@@ -307,9 +316,9 @@
   "line_accounting": {
     "unique_source_line_count": 183,
     "category_counts": {
-      "metadata_only": 101,
+      "metadata_only": 74,
       "atomized_candidate": 10,
-      "composite_unresolved": 72
+      "composite_unresolved": 99
     },
     "per_path": {
       "OUTSIDE67-PATH-006": {
@@ -322,8 +331,7 @@
         "composite_unresolved": 23
       },
       "OUTSIDE67-PATH-008": {
-        "composite_unresolved": 5,
-        "metadata_only": 27,
+        "composite_unresolved": 32,
         "atomized_candidate": 6
       },
       "OUTSIDE67-PATH-009": {
@@ -348,8 +356,8 @@
     "reused_atom_count": 74,
     "line_coverage_file": "line-coverage.jsonl",
     "atomized_candidate_line_count": 10,
-    "metadata_only_line_count": 101,
-    "composite_unresolved_line_count": 72
+    "metadata_only_line_count": 74,
+    "composite_unresolved_line_count": 99
   },
   "legacy_evidence": {
     "file": "legacy-evidence.jsonl",

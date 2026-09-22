@@ -4,7 +4,7 @@
 
 5 pairのpre/archive snapshotは25／50／38／14／56行、合計183行です。`line-coverage.jsonl`はこの183行をpair／lineごとに一度ずつ記録し、未選定の選択範囲内line残差は0です。これは選択5 pairのsource line coverageが完了したことを示します。67 pair全体の調査完了、正式な意味atomの確定、要求採択を示さないため、`research_completion.status`は`partial_research`、`path_atomization_complete`はfalseです。未選定pairは62件残ります。
 
-既存 merged Scaffold の PATH-008 atom 74件は `reused-atom-references.jsonl`へID・source line・canonical digestだけを参照記録し、`semantic-atoms.jsonl`へ複製しません。新規145件はPATH-006／007／009／010の各行候補です。line単位の会計は `atomized_candidate` 10、`metadata_only` 101、`composite_unresolved` 72で、複合行を推測で分割しません。原文、pre/archive exact line、blob OID、SHA-256、current counterpartのbase時点path/blob/SHAは機械可読記録に固定しています。
+既存 merged Scaffold の PATH-008 atom 74件は `reused-atom-references.jsonl`へID・source line・canonical digestだけを参照記録し、`semantic-atoms.jsonl`へ複製しません。新規145件はPATH-006／007／009／010の各行候補です。line単位の会計は `atomized_candidate` 10、`metadata_only` 74、`composite_unresolved` 99です。PATH-008は既存atom参照のない27行をmetadataへfallbackせず、保守的に`composite_unresolved`へ置きます。複合行を推測で分割しません。原文、pre/archive exact line、blob OID、SHA-256、current counterpartのbase時点path/blob/SHAは機械可読記録に固定しています。
 
 holdingのpath-based product／phaseは候補境界だけを保持し、四製品候補を全件に残します。正式owner、successor、phase authority、implementation、degradation、failure、consumer、decision、adoption、authorityはunknown／openのままです。旧HELIXのsource、判断履歴、failure／consumer ledgerは`legacy-evidence.jsonl`でexact source_item/path/blob anchorだけを静的参照し、no-hitを不在・完了の証拠にしません。archive旧workflow、runtime、test、CI、hook、adapter、sourceは実行していません。
 
@@ -16,12 +16,12 @@ holdingのpath-based product／phaseは候補境界だけを保持し、四製�
 - `reused-atom-references.jsonl`: merged PATH-008の既存74 atom ID／line／digest参照
 - `line-coverage.jsonl`: 183行の重複なしmetadata／atomized／composite会計
 - `source-diffs.json`: pre/archive same、current counterpart relocation/content driftの静的比較
-- `legacy-evidence.jsonl`: 7 legacy ledgerのexact anchor scan（5×7）
+- `legacy-evidence.jsonl`: BASE時点7 legacy ledgerのexact anchor scan（5×7、ledger digest／hit-nohit／anchorをvalidatorが再導出）
 - `inventory.json`: 分母、partial completion、四製品候補境界、unknown residual、digest
 - `generate.py`: merged snapshot／holding／ledgerを読む deterministic generator
 - `validate.py`: Git object、source line、atom reference、category、boundary、current main driftをfail-closedに検査
 - `coverage-audit.py`: validatorから独立して183行の全被覆と3分類の排他を再計算
-- `selfcheck.py`: 21件の意味ある負例（line／digest／重複／形式昇格／partial completion境界）
+- `selfcheck.py`: 26件の意味ある負例（line／digest／重複／PATH-008分類／legacy ledger pin・hit-nohit-anchor／形式昇格／partial completion境界）
 
 ## 検証
 

@@ -148,7 +148,23 @@ def current_record(sid: str):
 
 def line_category(sid: str, line_no: int) -> str:
     if sid == "OUTSIDE67-PATH-008":
-        raise AssertionError("PATH-008 uses reused mapping")
+        # Every source line without a prior merged atom reference remains
+        # composite_unresolved. This avoids treating unreferenced prose as
+        # metadata merely because the earlier bundle did not atomize it.
+        refs = []
+        prior_path = ROOT / PATHS[sid]["prior_bundle"] / "semantic-atoms.jsonl"
+        for raw in prior_path.read_text(encoding="utf-8").splitlines():
+            if not raw.strip():
+                continue
+            atom = json.loads(raw)
+            if atom.get("source_item_id") != sid:
+                continue
+            line = atom["source_fragment"].get("line") or atom["revision_pair"]["pre_isolation"]["line_start"]
+            if line == line_no:
+                refs.append(atom)
+        if any(atom["atomization_status"] == "atomized_candidate" for atom in refs):
+            return "atomized_candidate"
+        return "composite_unresolved" if refs else "composite_unresolved"
     if line_no in METADATA_LINES[sid]:
         return "metadata_only"
     if line_no in ATOMIZED_LINES.get(sid, set()):
@@ -253,12 +269,12 @@ def make_legacy_evidence(holds):
         terms = [sid, h["source_path"], h["pre_isolation"]["blob_oid"], h["archive"]["blob_oid"]]
         for rel in OLD_LEDGER_PATHS:
             path = ROOT / rel
-            text = path.read_text(encoding="utf-8", errors="replace")
+            text = git_show(BASE, rel).decode("utf-8", errors="replace")
             anchors = []
             for no, line in enumerate(text.splitlines(), 1):
                 if any(term in line for term in terms):
                     anchors.append({"line": no, "text_sha256": sha(line.encode("utf-8")), "matched_terms": [term for term in terms if term in line]})
-            out.append({"source_item_id": sid, "ledger_path": rel, "lookup": "exact_text_hit" if anchors else "no_exact_text_hit", "anchors": anchors, "implementation_status": "unknown", "degradation_status": "unknown", "failure_status": "unknown", "consumer_status": "unknown", "decision_status": "unknown", "no_inference_from_absence": True})
+            out.append({"source_item_id": sid, "ledger_path": rel, "scan_commit": BASE, "ledger_sha256": sha(text.encode("utf-8")), "lookup": "exact_text_hit" if anchors else "no_exact_text_hit", "anchors": anchors, "implementation_status": "unknown", "degradation_status": "unknown", "failure_status": "unknown", "consumer_status": "unknown", "decision_status": "unknown", "no_inference_from_absence": True})
     return out
 
 
@@ -290,10 +306,11 @@ def main():
         category = "atomized_candidate" if "atomized_candidate" in categories else "composite_unresolved"
         for a in atoms:
             reused.append({"atom_id": a["atom_id"], "source_item_id": "OUTSIDE67-PATH-008", "source_line": line_no, "category": "atomized_candidate" if a["atomization_status"] == "atomized_candidate" else "composite_unresolved", "source_bundle": PATHS["OUTSIDE67-PATH-008"]["prior_bundle"], "source_atom_sha256": sha(json.dumps(a, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8"))})
-    # PATH-008 has every source line in its merged coverage; lines without an atom are metadata-only.
+    # PATH-008 has every source line in its merged coverage; lines without an existing
+    # atom reference remain composite_unresolved rather than receiving a metadata fallback.
     path008_lines = lines(snapshot_path("OUTSIDE67-PATH-008", "pre").read_bytes())
     for n, text in enumerate(path008_lines, 1):
-        coverage.append({"coverage_id": f"COV-008-{n:03d}", "source_item_id": "OUTSIDE67-PATH-008", "source_line": n, "archive_line": n, "pre_text": text, "archive_text": text, "pre_line_sha256": sha(text.encode()), "archive_line_sha256": sha(text.encode()), "category": ("atomized_candidate" if any(r["source_line"] == n and r["category"] == "atomized_candidate" for r in reused) else ("composite_unresolved" if any(r["source_line"] == n for r in reused) else "metadata_only")), "atom_ids": [r["atom_id"] for r in reused if r["source_line"] == n], "accounting_source": "reused_existing_merged_bundle"})
+        coverage.append({"coverage_id": f"COV-008-{n:03d}", "source_item_id": "OUTSIDE67-PATH-008", "source_line": n, "archive_line": n, "pre_text": text, "archive_text": text, "pre_line_sha256": sha(text.encode()), "archive_line_sha256": sha(text.encode()), "category": ("atomized_candidate" if any(r["source_line"] == n and r["category"] == "atomized_candidate" for r in reused) else "composite_unresolved"), "atom_ids": [r["atom_id"] for r in reused if r["source_line"] == n], "accounting_source": "reused_existing_merged_bundle"})
 
     atoms = []
     for sid in ("OUTSIDE67-PATH-006", "OUTSIDE67-PATH-007", "OUTSIDE67-PATH-009", "OUTSIDE67-PATH-010"):
@@ -367,6 +384,7 @@ def main():
             "base_drift_observed": False,
             "base_rebaseline_count": 0,
             "stop_condition": "#2043のreview修正・merge、またはorigin/mainがbase_origin_main以外へ進んだ場合は、current HEADを固定して停止し再baselineする。",
+            "legacy_ledger_sha256": {rel: sha(git_show(BASE, rel)) for rel in OLD_LEDGER_PATHS},
         },
         "source_holding": {"registration_id": "MPR-SH-OUTSIDE67-001", "source_atom_count": 67, "path_revision_pair_denominator": 67, "selected_item_ids": list(PATHS), "selected_ordinals": [6, 7, 8, 9, 10], "unselected_count": 62, "coverage_result": "source_preserved_candidate_atomization_only", "product_target": "unassigned_cross_product", "authority_effect": "none"},
         "classification_basis": {"product": "holding reported product/path is a boundary candidate only; all four products remain possible and no owner/routing is assigned", "phase": "reported phase is retained as an unapproved candidate label; no phase authority or admission is inferred", "semantic_units": "one unique source line coverage record per pair/line; compound lines remain composite_unresolved; PATH-008 uses merged atom IDs by reference", "implementation": "source text, current counterpart hash, and ledger hits do not prove implementation", "degradation": "failure/degraded/unimplemented are unknown", "failure_consumer_decision": "failure, consumer, decision closure and adoption are not inferred from presence or absence", "revision_diff": "pre-isolation/archive Git objects and current counterpart at the fixed main base are compared statically"},
