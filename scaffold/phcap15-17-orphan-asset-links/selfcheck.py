@@ -36,6 +36,10 @@ expect_failure("legacy implementation promotion", lambda x: x["assets"][0].updat
 expect_failure("failure receipt invention", lambda x: x["failure_consumer_decision_audit"].update(execution_receipts_observed=1))
 expect_failure("failure audit closure mutation", lambda x: x["failure_consumer_decision_audit"].update(consumer_closure="closed"))
 expect_failure("consumer closure promotion", lambda x: x["assets"][0].update(consumer_refs=["HELIX-OS"], consumer_closure_status="closed"))
+expect_failure("asset consumer closure promotion without refs", lambda x: x["assets"][0].update(consumer_closure_status="closed"))
+expect_failure("asset failure meaning replacement", lambda x: x["assets"][0].update(failure_or_degradation="ZZZ"))
+expect_failure("anchor removal with count adjusted", lambda x: (x["assets"][0]["source_anchors"].pop(), x["counts"].update(source_anchors=12)))
+expect_failure("base unknown key injection", lambda x: x["base"].update(ZZZ=True))
 expect_failure("source digest tamper", lambda x: x["assets"][0].update(source_sha256="0" * 64))
 expect_failure("source anchor tamper", lambda x: x["assets"][0]["source_anchors"][0].update(sha256="0" * 64))
 expect_failure("source anchor meaning mutation", lambda x: x["assets"][0]["source_anchors"][0].update(meaning="current implementation verified"))
@@ -45,4 +49,4 @@ expect_failure("phase admission invention", lambda x: x["phase_snapshots"]["PHCA
 expect_failure("unknown key injection", lambda x: x.update(unexpected_key=True))
 expect_failure("unresolved deletion", lambda x: x["unresolved"].clear())
 
-print("PASS PHCAP-15/17 orphan selfcheck: 20 negative cases")
+print("PASS PHCAP-15/17 orphan selfcheck: 24 negative cases")

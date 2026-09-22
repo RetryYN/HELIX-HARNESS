@@ -55,13 +55,13 @@
     },
     {
       "path": "scaffold/phcap15-17-orphan-asset-links/validate.py",
-      "sha256": "be29a082cdd179789c4a9188f4ea36b9323e0ecca031c4e9cb35d8cf0c3032ca",
+      "sha256": "012726d60c751ac68f7b039f056b05688e421a62de0305a6e13d7411c6248c5e",
       "note": "read-only ledger/source/crosswalk static validator with exact nested keysets, audit-value pins and source-anchor meaning pins"
     },
     {
       "path": "scaffold/phcap15-17-orphan-asset-links/selfcheck.py",
-      "sha256": "bdc1fc3df1855a416ad4d5a941c2cd5dc4e2bf7c6dc4a5ff8193c224fa3cee4c",
-      "note": "20 negative cases against evidence, authority promotion, audit-field mutation, anchor-meaning mutation and nested-key injection"
+      "sha256": "f0b3018b762c7651561c3036da7fcc38007ebec0a31311eafe4ba67e855f2c11",
+      "note": "24 negative cases against evidence, authority, closure/failure promotion, anchor loss and nested keys"
     }
   ],
   "role": "PHCAP-15/17代表旧asset六件と218要求unit crosswalkのbounded direct-link監査を、要求採否・phase authority・製品owner・旧実装・current implementationへ昇格させないresearch premiseとして固定する",
@@ -113,10 +113,16 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "phcap15-17-orphan-asset-links/validate.py（crosswalk exact counts、ledger state、archive source anchors、routing and residuals）",
-      "phcap15-17-orphan-asset-links/selfcheck.py（17 authority／link／implementation／failure／consumer／source negative cases）",
+      "phcap15-17-orphan-asset-links/selfcheck.py（24 authority／link／implementation／failure／consumer／source／anchor count／base-key negative cases）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],
@@ -125,7 +131,8 @@
       "document／embedded review claimをold implementation／passへ変換する",
       "failure receipt／consumer closure／decisionを捏造する",
       "source anchor／ledger／phase snapshotを改変する",
-      "product owner／phase admission／successorを発明する"
+      "product owner／phase admission／successorを発明する",
+      "asset closure/failure本文の昇格、anchor削除＋count整合、base未知keyを拒否する"
     ]
   },
   "replacement": {

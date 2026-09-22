@@ -142,6 +142,25 @@ EXPECTED_ANCHOR_MEANINGS = {
     "A4618-03": "uncompleted runbook, timeline, approval and recovery checklist",
 }
 
+EXPECTED_BASE_KEYS = {"origin_main_commit", "captured_at", "source_revision", "stop_condition"}
+EXPECTED_FAILURE_OR_DEGRADATION = {'LEGACY-ASSET-1251704E0BE627232E00': 'source limits evidence to local build/consumer readiness and blocks '
+                                      'repository/package rename, protection, tag publish, and state move '
+                                      'without approval and rollback plan',
+ 'LEGACY-ASSET-189702B332643A3BFDAF': 'source embeds historical review/test-green claims but its scope '
+                                      'explicitly separates local smoke/document coverage from external '
+                                      'rollout; no rollout result is present',
+ 'LEGACY-ASSET-4618C7243C283228809A': 'source requires escalation when a runbook procedure is missing and '
+                                      'lists uncompleted runbook/timeline/approval/recovery checklist items; '
+                                      'no live incident receipt was observed',
+ 'LEGACY-ASSET-54330A68064B58B22259': 'source states remote/production post-deploy verification incomplete '
+                                      'and irreversible cutover/release blocked pending approval',
+ 'LEGACY-ASSET-6582F09E55B33723B679': 'source acceptance condition says incident route without approval '
+                                      'policy exits 1; this is a historical failure condition, not an '
+                                      'observed execution receipt',
+ 'LEGACY-ASSET-9E033C3E39BE107D4CF1': 'source declares incident flow and authority language, but no incident '
+                                      'receipt, owner/approval result, rollback outcome, or postmortem '
+                                      'execution was observed; current-boundary conflict is preserved'}
+
 
 def sha256_bytes(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
@@ -185,6 +204,7 @@ def validate(inv: dict) -> list[str]:
 
     # The research inventory is a closed scaffold contract.  Pin the shape before
     # reading any evidence so nested additions cannot silently become evidence.
+    check_keys(errors, inv.get("base"), EXPECTED_BASE_KEYS, "E_BASE_KEYS")
     check_keys(errors, inv.get("scope"), EXPECTED_SCOPE_KEYS, "E_SCOPE_KEYS")
     check_keys(errors, inv.get("requirement_link_audit"), EXPECTED_REQUIREMENT_LINK_AUDIT_KEYS, "E_REQUIREMENT_AUDIT_KEYS")
     check_keys(errors, inv.get("failure_consumer_decision_audit"), EXPECTED_FAILURE_AUDIT_KEYS, "E_FAILURE_AUDIT_KEYS")
@@ -322,6 +342,7 @@ def validate(inv: dict) -> list[str]:
     classification = {row.get("asset_id"): row for row in load_jsonl(ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")}
     decisions = load_jsonl(ROOT / "docs/governance/legacy-asset-decisions.jsonl")
     selected = inv.get("assets", [])
+    seen_anchor_ids: list[str] = []
     fail(errors, len(selected) == 6 and {item.get("asset_id") for item in selected} == set(ASSET_IDS), "E_SELECTED_ASSETS")
     for item in selected:
         aid = item.get("asset_id")
@@ -338,6 +359,8 @@ def validate(inv: dict) -> list[str]:
             fail(errors, phase.get("consumer_refs") == [] and phase.get("consumer_closure_status") == "pending", "E_PHASE_CONSUMER:" + aid)
             fail(errors, phase.get("legacy_implementation_status") == "unknown" and phase.get("legacy_execution_performed") is False, "E_PHASE_IMPL_EXEC:" + aid)
             fail(errors, phase.get("candidate_phase_targets") == EXPECTED_PHASES[aid], "E_CANDIDATE_PHASES:" + aid)
+        fail(errors, item.get("consumer_closure_status") == "pending", "E_ASSET_CONSUMER_CLOSURE:" + aid)
+        fail(errors, item.get("failure_or_degradation") == EXPECTED_FAILURE_OR_DEGRADATION.get(aid), "E_ASSET_FAILURE_MEANING:" + aid)
         fail(errors, item.get("implementation_evidence_state") == "document_present", "E_IMPLEMENTATION_EVIDENCE_STATE:" + aid)
         fail(errors, item.get("legacy_implementation_status") == "unknown" and item.get("legacy_execution_performed") is False, "E_INVENTORY_IMPL_EXEC:" + aid)
         fail(errors, sum(row.get("asset_id") == aid for row in decisions) == 0, "E_DECISION_MATCH:" + aid)
@@ -349,6 +372,7 @@ def validate(inv: dict) -> list[str]:
             fail(errors, sha256_bytes(archive_path.read_bytes()) == item.get("source_sha256"), "E_ARCHIVE_DIGEST:" + aid)
             fail(errors, len(archive_path.read_text(encoding="utf-8").splitlines()) == item.get("source_line_count"), "E_ARCHIVE_LINES:" + aid)
             for anchor in item.get("source_anchors", []):
+                seen_anchor_ids.append(anchor.get("id"))
                 fail(errors, archive_span_hash(archive_path, anchor.get("start_line", 0), anchor.get("end_line", 0)) == anchor.get("sha256"), "E_ANCHOR:" + anchor.get("id", aid))
                 expected_meaning = EXPECTED_ANCHOR_MEANINGS.get(anchor.get("id"))
                 fail(errors, expected_meaning is not None and anchor.get("meaning") == expected_meaning, "E_ANCHOR_MEANING:" + anchor.get("id", aid))
@@ -363,6 +387,8 @@ def validate(inv: dict) -> list[str]:
         expected = {"selected_assets": 6, "decision_records_found": 0, "asset_consumer_refs_observed": 0, "phase_consumer_refs_observed": 0, "execution_receipts_observed": 0}[key]
         fail(errors, failure_audit.get(key) == expected, "E_FAILURE_AUDIT:" + key)
     fail(errors, inv.get("counts", {}).get("assets") == 6 and inv.get("counts", {}).get("direct_requirement_links") == 0, "E_COUNTS")
+    fail(errors, inv.get("counts", {}).get("source_anchors") == len(seen_anchor_ids) == len(EXPECTED_ANCHOR_MEANINGS), "E_ANCHOR_COUNT")
+    fail(errors, set(seen_anchor_ids) == set(EXPECTED_ANCHOR_MEANINGS) and len(seen_anchor_ids) == len(set(seen_anchor_ids)), "E_ANCHOR_ID_SET")
     fail(errors, isinstance(inv.get("unresolved"), list) and len(inv["unresolved"]) >= 6 and all(isinstance(value, str) and value.strip() for value in inv["unresolved"]), "E_UNRESOLVED")
     return errors
 
