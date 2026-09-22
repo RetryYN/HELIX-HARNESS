@@ -100,12 +100,12 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave40/validate.py",
-      "sha256": "e8817a831a0209dbd40ed191e6996219c2d71a9757cf3954541bca8d23bf72f0",
+      "sha256": "dac76ecb15aa3afb8ddc789340b84cafcd44ca37b8f1650f2d5c6daf0861ccc2",
       "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave40/selfcheck.py",
-      "sha256": "0d14c749f4ebedd220912587c801ea4582ec3b3baea8be0b76abb73e96521266",
+      "sha256": "b437c0e087f6996c9e077b112be32dfedbf6c42eadcc7c7f53cb766fea212fba",
       "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
     },
     {

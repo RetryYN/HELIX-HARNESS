@@ -86,6 +86,12 @@ COUNTER = [
     "source／phase／product candidateはresearch-premiseの静的候補であり、現行設計・実装へ昇格しない",
 ]
 CONSUMERS = ["requirement-carry-forward-ledgers", "requirement-atomization-review"]
+MISSING_EVIDENCE_REASONS = {
+    ("design", "IRUNIT-HIL-FR-33-HELIX-OS"): "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+    ("implementation_source", "IRUNIT-HIL-FR-33-HELIX-OS"): "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+    ("design", "IRUNIT-HIL-NFR-05-HELIX-OS"): "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+    ("implementation_source", "IRUNIT-HIL-NFR-05-HELIX-OS"): "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+}
 
 
 def require(condition: bool, message: str) -> None:
@@ -310,6 +316,8 @@ def verify() -> None:
     actual_missing = {(item["role_kind"], item["unit_candidate_id"]) for item in meta["missing_evidence_receipts"]}
     require(actual_missing == expected_missing, "missing evidence keyset")
     for item in meta["missing_evidence_receipts"]:
+        missing_key = (item.get("role_kind"), item.get("unit_candidate_id"))
+        require(item.get("reason") == MISSING_EVIDENCE_REASONS.get(missing_key), f"missing evidence reason {missing_key}")
         require(item["status"] == "missing_evidence_recorded" and item["phase_pool_asset_count"] == 0 and item["current_implementation"] == "unknown" and item["degradation"] == "unknown" and item["consumer_closure"] == "pending" and item["legacy_execution"] == "not_run", "missing evidence boundary")
     for unit in UNITS:
         require(len(by_unit[unit]) == len(SELECTED[unit]), f"unit chain length {unit}")

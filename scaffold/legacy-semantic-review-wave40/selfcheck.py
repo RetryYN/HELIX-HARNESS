@@ -129,6 +129,10 @@ def mutate_missing_receipt(meta) -> None:
     meta["missing_evidence_receipts"] = meta["missing_evidence_receipts"][:-1]
 
 
+def mutate_missing_reason(meta) -> None:
+    meta["missing_evidence_receipts"][0]["reason"] = "ZZZ"
+
+
 rejected_meta("ancestor base gate tamper", mutate_ancestor_gate)
 rejected("source span injection", mutate_source_span)
 rejected("atom identity injection", mutate_atom_identity)
@@ -142,5 +146,6 @@ rejected("phase admission promotion", mutate_phase_promotion)
 rejected("current implementation promotion", mutate_implementation_promotion)
 rejected("unresolved literal binding promotion", mutate_unresolved_binding_promotion)
 rejected_meta("missing evidence receipt deletion", mutate_missing_receipt)
+rejected_meta("missing evidence reason tamper", mutate_missing_reason)
 
-print("Wave40 selfcheck: PASS (validator plus twelve negative mutations)")
+print("Wave40 selfcheck: PASS (validator plus thirteen negative mutations)")
