@@ -75,6 +75,13 @@ def output(inv): inv["output_sha256"] = "sha256:" + "0" * 64
 def formal_update(inv): inv["formal_update"]["formal_asset_classification_updated"] = True
 def inventory_schema(inv): inv["schema_revision"] = 2
 def inventory_source_paths(inv): inv["expected_sets"]["source_paths"][0] = "archive/fabricated-source.ts"
+def phase_extra_key(rows): rows[0]["phase_evidence"]["fabricated"] = True
+def boundary_extra_product(rows): rows[0]["boundary_evidence"]["l1"]["FAKE-PRODUCT"] = {}
+def boundary_extra_key(rows): rows[0]["boundary_evidence"]["product_boundary"]["fabricated"] = True
+def source_extra_nested_key(rows): rows[0]["source_exact"]["fabricated"] = True
+def classification_extra_nested_key(rows): rows[0]["classification"]["fabricated"] = True
+def history_extra_nested_key(rows): rows[0]["legacy_history_failure_consumer"]["fabricated"] = True
+def shrink_extra_nested_key(rows): rows[0]["legacy_implementation_shrinkage_evidence"]["fabricated"] = True
 
 
 CASES = [
@@ -98,6 +105,13 @@ CASES = [
     ("formal update reversal", "E_AUTHORITY_PROMOTION", None, formal_update),
     ("inventory schema", "E_INVENTORY_DECLARATION", None, inventory_schema),
     ("inventory source paths", "E_INVENTORY_DECLARATION", None, inventory_source_paths),
+    ("phase extra key", "E_PHASE_STATUS", phase_extra_key, None),
+    ("boundary extra product", "E_BOUNDARY_ANCHOR", boundary_extra_product, None),
+    ("boundary extra key", "E_BOUNDARY_ANCHOR", boundary_extra_key, None),
+    ("source extra nested key", "E_SOURCE_ANCHOR", source_extra_nested_key, None),
+    ("classification extra nested key", "E_RECORD_SCHEMA", classification_extra_nested_key, None),
+    ("history extra nested key", "E_HISTORY", history_extra_nested_key, None),
+    ("shrink extra nested key", "E_IMPLEMENTATION_EVIDENCE", shrink_extra_nested_key, None),
     ("read mode", "E_READ_MODE", read_mode, None),
     ("input missing", "E_INPUT_DIGEST", None, input_missing),
     ("input duplicate", "E_INPUT_DIGEST", None, input_duplicate),

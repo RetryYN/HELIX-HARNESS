@@ -44,4 +44,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-selfcheckは対象欠落・重複、source blob/anchor/read mode、分類候補・製品、Wave edge注入、phase/asset/旧status/consumer/history/implementation evidence/boundary、authority・formal_update昇格、inventory schema/source_paths、input digest schema、scope、BASE pin、output digestを27負例で検査します。
+selfcheckは対象欠落・重複、source blob/anchor/read mode、分類候補・製品、Wave edge注入、phase/asset/旧status/consumer/history/implementation evidence/boundary、authority・formal_update昇格、inventory schema/source_paths、input digest schema、scope、BASE pin、output digestを34負例で検査します。

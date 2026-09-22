@@ -79,6 +79,13 @@ EXPECTED_NEGATIVE_CASES = [
     "formal_update_reversal_tamper",
     "inventory_schema_tamper",
     "inventory_source_paths_tamper",
+    "phase_evidence_extra_key_tamper",
+    "boundary_extra_product_tamper",
+    "boundary_extra_key_tamper",
+    "source_nested_extra_key_tamper",
+    "classification_nested_extra_key_tamper",
+    "history_nested_extra_key_tamper",
+    "shrink_nested_extra_key_tamper",
     "input_digest_missing_or_duplicate",
     "input_digest_schema_tamper",
     "inventory_scope_tamper",
@@ -631,6 +638,67 @@ def range_check(receipt: dict, expected_path: str, start: int, end: int) -> None
         fail("E_BOUNDARY_ANCHOR", expected_path)
 
 
+
+def expected_range_receipt(path: str, start: int, end: int) -> dict:
+    lines = git_bytes(path).decode(errors="replace").splitlines()
+    text = "\n".join(lines[start - 1:end])
+    return {"path": path, "line_start": start, "line_end": end, "line_text_sha256": tagged(text.encode()), "line_text": lines[start - 1:end]}
+
+
+def expected_boundary_receipt() -> dict:
+    return {"path": BOUNDARY, "blob": git_blob(BOUNDARY), "sha256": tagged(git_bytes(BOUNDARY)), "ranges": [expected_range_receipt(BOUNDARY, *rg) for rg in BOUNDARY_RANGES]}
+
+
+def expected_l1_receipts(products: list[str]) -> dict:
+    return {product: {"path": L1[product], "blob": git_blob(L1[product]), "sha256": tagged(git_bytes(L1[product])), "ranges": [expected_range_receipt(L1[product], *rg) for rg in L1_RANGES[product]]} for product in products}
+
+
+def expected_source_exact(asset: dict, spec: dict) -> dict:
+    path = asset["source_path"]
+    archive = ARCHIVE_PREFIX + path
+    data = git_bytes(archive)
+    lines = data.decode(errors="replace").splitlines()
+    hits = [i for i, line in enumerate(lines, 1) if spec["marker"] in line]
+    exact_hits = [i for i, line in enumerate(lines, 1) if line.strip().startswith(spec["marker"]) and (len(line.strip()) == len(spec["marker"]) or not line.strip()[len(spec["marker"])] .isalnum() and line.strip()[len(spec["marker"])] not in "_$")]
+    if exact_hits:
+        hits = exact_hits
+    if len(hits) != 1:
+        fail("E_SOURCE_ANCHOR", path)
+    start = hits[0]
+    end = min(len(lines), start + spec["length"] - 1)
+    text = "\n".join(lines[start - 1:end])
+    anchor = {"marker": spec["marker"], "line_start": start, "line_end": end, "line_text": lines[start - 1:end], "line_text_sha256": tagged(text.encode()), "interpretation": spec["reason"], "products_considered": spec["products"] or list(EXPECTED_PRODUCTS)}
+    ledger_sha = asset.get("source_sha256")
+    return {"archive_path": archive, "source_path": path, "blob": git_blob(archive), "bytes": len(data), "line_count": len(lines), "sha256": tagged(data), "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": tagged(data) == "sha256:" + ledger_sha, "semantic_anchor": anchor, "read_mode": "git_object_static_read_only"}
+
+
+def expected_record(asset_id: str, phase: dict[str, tuple[int, dict]], dispositions: dict[str, tuple[int, dict]], decisions: list[tuple[int, dict]], read_afters: list[tuple[int, dict]]) -> dict:
+    phase_line, phase_row = phase[asset_id]
+    disposition_line, disposition_row = dispositions[asset_id]
+    path = disposition_row["source_path"]
+    spec = EXPECTED_PROFILES[path]
+    category = spec["category"]
+    products = list(spec["products"])
+    status = {"direct_product_basis": "reviewed_candidate", "multi_product_conflict": "reviewed_conflict", "insufficient_basis": "reviewed_insufficient_basis"}[category]
+    return {
+        "asset_id": asset_id,
+        "source_path": path,
+        "source_exact": expected_source_exact(disposition_row, spec),
+        "phase_evidence": {"path": PHASE, "line": phase_line, "row_sha256": row_digest(phase_row), "product_classification_status": phase_row.get("product_classification_status"), "artifact_evidence_kind": phase_row.get("artifact_evidence_kind"), "source_path": phase_row.get("source_path"), "source_sha256": phase_row.get("source_sha256"), "candidate_phase_targets": phase_row.get("candidate_phase_targets") or []},
+        "legacy_asset_evidence": expected_legacy_asset_evidence(disposition_row, disposition_line),
+        "classification": {"category": category, "candidate_products": products, "semantic_status": status, "reason": spec["reason"] + " Candidate only; formal product authority remains unresolved."},
+        "boundary_evidence": {"product_boundary": expected_boundary_receipt(), "l1": expected_l1_receipts(products or list(EXPECTED_PRODUCTS))},
+        "legacy_history_failure_consumer": expected_history_failure_consumer(disposition_row, disposition_line, decisions, read_afters),
+        "legacy_implementation_shrinkage_evidence": {"artifact_evidence_kind": phase_row.get("artifact_evidence_kind"), "implementation_evidence_state": phase_row.get("implementation_evidence_state"), "legacy_implementation_status": phase_row.get("legacy_implementation_status"), "disposition_implementation_status": disposition_row.get("implementation_status"), "legacy_execution_performed": phase_row.get("legacy_execution_performed"), "interpretation": "implementation source presence is historical static evidence; unknown status and pending consumer closure are preserved"},
+        "wave_semantic_links": [],
+        "wave_edge_count": 0,
+        "human_judgment_remaining": EXPECTED_HUMAN,
+        "authority_effect": "none",
+        "formal_asset_classification_updated": False,
+        "new_build_allowed": False,
+    }
+
+
 def derive_targets(phase_rows: dict[str, tuple[int, dict]]) -> tuple[list[str], set[str], set[str]]:
     unresolved = {a: row for a, (_, row) in phase_rows.items() if row.get("product_classification_status") == "unresolved"}
     implementation = {a: row for a, row in unresolved.items() if row.get("artifact_evidence_kind") == "implementation_source"}
@@ -760,6 +828,17 @@ def check() -> None:
             if lr.get("path") != L1[product] or lr.get("blob") != git_blob(L1[product]) or lr.get("sha256") != tagged(b): fail("E_BOUNDARY_ANCHOR", aid)
             if len(lr.get("ranges", [])) != len(L1_RANGES[product]): fail("E_BOUNDARY_ANCHOR", aid)
             for rec, rg in zip(lr.get("ranges", []), L1_RANGES[product]): range_check(rec, L1[product], *rg)
+        # Full independent reconstruction closes the prior subset-comparison gap:
+        # every nested key/value is derived from fixed BASE bytes and compared.
+        expected_full = expected_record(aid, phase, disp, decisions, read_afters)
+        if row != expected_full:
+            if row.get("phase_evidence") != expected_full["phase_evidence"]: fail("E_PHASE_STATUS", aid)
+            if row.get("source_exact") != expected_full["source_exact"]: fail("E_SOURCE_ANCHOR", aid)
+            if row.get("classification") != expected_full["classification"]: fail("E_CLASSIFICATION", aid)
+            if row.get("boundary_evidence") != expected_full["boundary_evidence"]: fail("E_BOUNDARY_ANCHOR", aid)
+            if row.get("legacy_history_failure_consumer") != expected_full["legacy_history_failure_consumer"]: fail("E_HISTORY", aid)
+            if row.get("legacy_implementation_shrinkage_evidence") != expected_full["legacy_implementation_shrinkage_evidence"]: fail("E_IMPLEMENTATION_EVIDENCE", aid)
+            fail("E_RECORD_SCHEMA", aid)
     expected_counts = {
         "wave_files": 50,
         "wave_edges_scanned": 598,

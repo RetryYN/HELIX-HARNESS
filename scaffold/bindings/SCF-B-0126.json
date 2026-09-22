@@ -120,7 +120,7 @@
       "source blob or line anchor tamper",
       "classification category/product tamper",
       "Wave edge injection",
-      "phase/asset/history/boundary tamper",
+      "phase/asset/history/boundary tamper plus phase extra key, boundary extra product/key, source/classification/history/shrink nested extra key",
       "legacy status promotion、disposition/product resolution、consumer tamper、closure closed",
       "read mode and authority promotion",
       "formal_update reversal、inventory schema/source_paths tamper",
@@ -131,7 +131,7 @@
       "validator independently derives fixed BASE exact target set and source anchors",
       "validator checks 67 records, 30 direct, 23 conflict, 14 insufficient, target Wave edges=0",
       "fixed BASE Git object blob/bytes/digest and input snapshot checks",
-      "selfcheck expected 27 error codes"
+      "selfcheck expected 34 error codes including full nested record mutations"
     ],
     "scope": [
       "schema_interface",

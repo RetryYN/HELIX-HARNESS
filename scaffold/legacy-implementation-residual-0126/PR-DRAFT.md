@@ -29,7 +29,7 @@ python3 -B scaffold/legacy-implementation-residual-0126/generate.py
 python3 -B scaffold/legacy-implementation-residual-0126/validate.py
 # SCF-B-0126 validate: PASS records=67 categories={'direct_product_basis': 30, 'insufficient_basis': 14, 'multi_product_conflict': 23} target_wave_edges=0 union=280
 python3 -B scaffold/legacy-implementation-residual-0126/selfcheck.py
-# SCF-B-0126 selfcheck: PASS negative_cases=27
+# SCF-B-0126 selfcheck: PASS negative_cases=34
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale
 python3 scaffold/tools/scfctl.py residuals
