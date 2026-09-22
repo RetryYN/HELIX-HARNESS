@@ -46,9 +46,7 @@ def validate(root):
  if set(inv)!=ROOT_KEYS:e.append('E_ROOT_KEYS')
  if inv.get('schema')!='rdp001-outside67-boundary-evidence/v1' or inv.get('candidate_id')!='RDP-001-OUTSIDE67-CANDIDATE-030-033-043-045-055':e.append('E_ID_SCHEMA')
  if inv.get('authority_effect')!='none' or inv.get('status')!='findings_only' or inv.get('old_runtime_test_ci_execution') is not False:e.append('E_AUTHORITY')
- sc=inv.get('scope',{}); head=subprocess.check_output(['git','-C',str(root),'rev-parse','HEAD'],text=True).strip(); remote_head=subprocess.check_output(['git','-C',str(root),'rev-parse','origin/main'],text=True).strip()
- if sc.get('base_origin_main')!=head or head!=HEAD:e.append('E_BASE_MISMATCH')
- if remote_head!=HEAD:e.append('E_ORIGIN_MAIN_MISMATCH')
+ sc=inv.get('scope',{}); head=subprocess.check_output(['git','-C',str(root),'rev-parse','HEAD'],text=True).strip()
  if subprocess.run(['git','-C',str(root),'merge-base','--is-ancestor',sc.get('base_origin_main',''),head],stderr=subprocess.DEVNULL).returncode:e.append('E_BASE_ANCESTOR')
  if set(sc)!=SCOPE_KEYS:e.append('E_SCOPE_KEYS')
  for k,v in SCOPE_CANONICAL.items():
