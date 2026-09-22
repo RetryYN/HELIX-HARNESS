@@ -30,6 +30,13 @@ LEDGERS = [
 NORMATIVE = re.compile(r"できる|できない|する|しない|すべき|必要|保持|追跡|区別|確認|定義|適用|規定|所有|提供|含め|置く|扱う|停止|実行|許可|禁止|採択|変更|記録|管理|監査|戻|再|移管|満た|要求|検証|受け入|構成|利用|選び|進行|運用|参照|分離|回復|復旧|推測|生成|宣言|表示|送信|保存|継承|隔離|判断|対応|評価|行う|処理|確定|失敗|改善|展開|承認|担う|揃|外す|追補|正本|consumer|failure|degrad|implementation|requirement|acceptance|must|shall|required|should|unknown|review_waiting|MUST|SHALL")
 COMPOSITE = re.compile(r"、|／|/|・|→|；|;|\|.*\||\b(and|or)\b|複数|全件|各product|L[0-9]+[-–]L[0-9]+")
 FRONTMATTER_KEYS = re.compile(r"^(title|canonical_|layer|kind|status|authority_|parent_|created|updated):")
+TABLE_REQUIREMENT = re.compile(r"^\|\s*[A-Z][A-Z0-9]*(?:[-_][A-Z0-9]+)+\s*\|.+\|$")
+PROHIBITIVE_SUFFIX = re.compile(r"(?:ない|ません|ず|ならない|禁止|不可|できない|しない)(?:[。．、,:：]|$)")
+RESPONSIBILITY_CLAUSE = re.compile(r"(?:責務|所有|担当|担う|束縛|分ける|統制|管理)(?:である|とする|する|。|、|$)")
+NORMATIVE_VERB_SUFFIX = re.compile(r"(?:する|できる|必要|保持|追跡|確認|適用|定義|記録|実行|停止|許可|変更|採択|検証|要求|移管|隔離|再構築|更新)(?:[。．、,:：]|$)")
+ROLE_NORMATIVE = re.compile(r"(?:責務|所有|担当|担う|束縛|分ける|統制|管理|として扱|として|扱い|留め|留まり)")
+SENTENCE_END = re.compile(r"[。．.!！？!?]$")
+CLASSIFICATION_POLICY = "independent structural guard for requirement/prohibition/responsibility shapes; sentence-ending non-structural lines are retained as composite_unresolved; metadata_only is limited to structural metadata/navigation"
 ALLOWED = {"atomized_candidate", "metadata_only", "composite_unresolved"}
 
 
@@ -45,15 +52,54 @@ def git_blob(data: bytes) -> str:
     return hashlib.sha1(f"blob {len(data)}\0".encode() + data).hexdigest()
 
 
+def structural_metadata(text: str) -> bool:
+    stripped = text.strip()
+    return not stripped or stripped == "---" or bool(FRONTMATTER_KEYS.match(stripped)) or stripped.startswith("#") or stripped.startswith("<!--") or stripped.endswith("-->")
+
+
+def structurally_normative(text: str) -> bool:
+    stripped = text.strip()
+    if structural_metadata(stripped):
+        return False
+    return bool(TABLE_REQUIREMENT.match(stripped) or PROHIBITIVE_SUFFIX.search(stripped) or RESPONSIBILITY_CLAUSE.search(stripped) or NORMATIVE_VERB_SUFFIX.search(stripped) or ROLE_NORMATIVE.search(stripped))
+
+
+def independent_normative_structure(text: str) -> bool:
+    """Review gate independent of the candidate classifier's NORMATIVE lexicon."""
+    stripped = text.strip()
+    if structural_metadata(stripped):
+        return False
+    if TABLE_REQUIREMENT.match(stripped) or re.search(r"(?:ない|ません|ず|ならない|禁止|不可|できない|しない)(?:[。．、,:：]|$)", stripped) or SENTENCE_END.search(stripped):
+        return True
+    if re.search(r"(?:責務|所有|担当|担う|束縛|統制|留め|扱い|分ける)", stripped) and re.search(r"(?:は|が|を|へ|に|として)", stripped):
+        return True
+    return False
+
+
+def align_lines(pre_lines: list[str], archive_lines: list[str]) -> dict[int, dict]:
+    mapping: dict[int, dict] = {}
+    for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, pre_lines, archive_lines, autojunk=False).get_opcodes():
+        if tag == "equal":
+            for offset in range(j2 - j1):
+                mapping[j1 + offset + 1] = {"status": "equal", "pre_line": i1 + offset + 1, "pre_line_range": [i1 + offset + 1, i1 + offset + 1]}
+        elif tag in ("replace", "insert"):
+            pre_range = [i1 + 1, i2] if i2 > i1 else []
+            for archive_line in range(j1 + 1, j2 + 1):
+                mapping[archive_line] = {"status": tag, "pre_line": None, "pre_line_range": pre_range}
+    return mapping
+
+
 def classify(text: str) -> str:
     stripped = text.strip()
-    if not stripped or stripped == "---" or FRONTMATTER_KEYS.match(stripped) or stripped.startswith("#") or stripped.startswith("<!--") or stripped.endswith("-->"):
+    if structural_metadata(stripped):
         return "metadata_only"
     if stripped.startswith("|") and not stripped.replace("|", "").replace(":", "").replace("-", "").strip():
         return "metadata_only"
-    if stripped.startswith("|") and ("内容" in stripped or "状態" in stripped or stripped.count("|") <= 2) and not NORMATIVE.search(stripped):
+    if stripped.startswith("|") and ("内容" in stripped or "状態" in stripped or stripped.count("|") <= 2) and not NORMATIVE.search(stripped) and not structurally_normative(stripped):
         return "metadata_only"
-    if not NORMATIVE.search(stripped):
+    if not NORMATIVE.search(stripped) and not structurally_normative(stripped):
+        if SENTENCE_END.search(stripped):
+            return "composite_unresolved"
         return "metadata_only"
     if COMPOSITE.search(stripped) or len(stripped) > 180 or stripped.count("。") > 1:
         return "composite_unresolved"
@@ -83,6 +129,9 @@ def validate(root: Path = ROOT, out: Path = HERE) -> list[str]:
     fail(inv.get("schema") != "rdp001-outside67-path-atomization/v2" or inv.get("binding") != "SCF-B-0095" or inv.get("status") != "findings_only" or inv.get("authority_effect") != "none" or inv.get("meaning_change_applied") is not False, "E_BOUNDARY")
     fail(plan.get("base_origin_main") != BASE or plan.get("binding") != "SCF-B-0095", "E_PLAN_BASE")
     fail(inv.get("base_origin_main") != BASE or plan.get("pre_isolation_commit") != PRE or plan.get("archive_commit") != ARCH, "E_REVISION_PINS")
+    fail(plan.get("alignment_policy") != "difflib.SequenceMatcher(autojunk=False); only equal opcodes receive pre_anchor; replace/insert opcodes retain pre_alignment status and null pre_anchor", "E_ALIGNMENT_POLICY")
+    fail(inv.get("alignment_policy") != "equal-only pre anchors; replace/insert pre anchors are null with explicit status", "E_INVENTORY_ALIGNMENT_POLICY")
+    fail(plan.get("classification_policy") != CLASSIFICATION_POLICY or inv.get("classification_policy") != CLASSIFICATION_POLICY, "E_CLASSIFICATION_POLICY")
     fail(subprocess.run(["git", "-C", str(root), "merge-base", "--is-ancestor", BASE, "HEAD"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode != 0, "E_BASE_NOT_ANCESTOR")
     holding = jsonl(root / "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl")
     holds = {row["source_item_id"]: row for row in holding}
@@ -99,11 +148,17 @@ def validate(root: Path = ROOT, out: Path = HERE) -> list[str]:
         source, current_path = SOURCE_INFO[sid]
         pair = pair_by.get(sid, {})
         pre, archive, current = git_bytes(PRE, source), git_bytes(ARCH, source), git_bytes(BASE, current_path)
+        snapshot_dir = out / "source-snapshots" / sid
+        fail(not (snapshot_dir / "pre-isolation.md").is_file() or (snapshot_dir / "pre-isolation.md").read_bytes() != pre, f"E_SNAPSHOT_PRE:{sid}")
+        fail(not (snapshot_dir / "archive-revision.md").is_file() or (snapshot_dir / "archive-revision.md").read_bytes() != archive, f"E_SNAPSHOT_ARCHIVE:{sid}")
+        fail(pair.get("snapshot_paths") != {"pre_isolation": f"source-snapshots/{sid}/pre-isolation.md", "archive_revision": f"source-snapshots/{sid}/archive-revision.md"}, f"E_SNAPSHOT_PATHS:{sid}")
         fail(pair.get("source_path") != source or pair.get("current_counterpart_path") != current_path, f"E_PAIR_PATH:{sid}")
         for key, rev, data in (("pre_isolation", PRE, pre), ("archive_revision", ARCH, archive), ("current_counterpart", BASE, current)):
             rec = pair.get(key, {})
             fail(rec.get("commit") != rev or rec.get("blob_oid") != git_blob(data) or rec.get("sha256") != sha(data) or rec.get("bytes") != len(data) or rec.get("line_count") != len(data.decode().splitlines()), f"E_REV_DIGEST:{sid}:{key}")
         archive_lines, pre_lines = archive.decode().splitlines(), pre.decode().splitlines()
+        alignment = align_lines(pre_lines, archive_lines)
+        fail(pair.get("pre_archive_alignment") != list(alignment.values()), f"E_ALIGNMENT_RECORD:{sid}")
         fail(pair.get("archive_line_count") != len(archive_lines), f"E_ARCHIVE_COUNT:{sid}")
         rows = [row for row in coverage if row.get("source_item_id") == sid]
         fail([row.get("archive_line") for row in rows] != list(range(1, len(archive_lines) + 1)), f"E_LINE_ORDER:{sid}")
@@ -112,16 +167,17 @@ def validate(root: Path = ROOT, out: Path = HERE) -> list[str]:
         for n, text in enumerate(archive_lines, 1):
             row, atom = cov_by.get((sid, n), {}), atom_by.get((sid, n), {})
             want = classify(text)
-            pre_text = pre_lines[n - 1] if n <= len(pre_lines) else None
+            align = alignment[n]
+            pre_text = pre_lines[align["pre_line"] - 1] if align["pre_line"] is not None else None
             fail(row.get("archive_fragment") != text or row.get("archive_line_sha256") != sha(text.encode()) or row.get("line_status") != want, f"E_LINE_ANCHOR:{sid}:{n}")
             fail(atom.get("source_fragment") != text or atom.get("atomization_status") != want or atom.get("archive_anchor", {}).get("line_sha256") != sha(text.encode()), f"E_ATOM_ANCHOR:{sid}:{n}")
-            fail(atom.get("pre_anchor") is None and pre_text is not None, f"E_PRE_MISSING:{sid}:{n}")
-            fail(atom.get("pre_anchor") is not None and pre_text is None, f"E_PRE_EXTRA:{sid}:{n}")
+            fail(row.get("pre_alignment") != align or atom.get("pre_alignment") != align, f"E_ALIGNMENT_ROW:{sid}:{n}")
+            fail(atom.get("pre_anchor") is None and align["status"] == "equal", f"E_PRE_MISSING:{sid}:{n}")
+            fail(atom.get("pre_anchor") is not None and align["status"] != "equal", f"E_PRE_EXTRA:{sid}:{n}")
             if pre_text is not None:
-                fail(atom.get("pre_anchor", {}).get("source_fragment") != pre_text or atom.get("pre_anchor", {}).get("line_sha256") != sha(pre_text.encode()), f"E_PRE_TEXT:{sid}:{n}")
-            fail(want != "metadata_only" and not NORMATIVE.search(text), f"E_CLASSIFIER_UNSUPPORTED:{sid}:{n}")
-            structural_metadata = (text.strip().startswith("#") or text.strip() == "---" or FRONTMATTER_KEYS.match(text.strip()) or not text.strip())
-            fail(NORMATIVE.search(text) and want == "metadata_only" and not structural_metadata, f"E_NORMATIVE_METADATA:{sid}:{n}")
+                fail(atom.get("pre_anchor", {}).get("line") != align["pre_line"] or atom.get("pre_anchor", {}).get("source_fragment") != pre_text or atom.get("pre_anchor", {}).get("line_sha256") != sha(pre_text.encode()), f"E_PRE_TEXT:{sid}:{n}")
+            fail(want != "metadata_only" and not (NORMATIVE.search(text) or structurally_normative(text) or SENTENCE_END.search(text)), f"E_CLASSIFIER_UNSUPPORTED:{sid}:{n}")
+            fail(independent_normative_structure(text) and (row.get("line_status") == "metadata_only" or atom.get("atomization_status") == "metadata_only"), f"E_NORMATIVE_METADATA:{sid}:{n}")
             fail(atom.get("candidate_product") != "unresolved_cross_product" or atom.get("candidate_product_candidates") != PRODUCTS or atom.get("candidate_product_scope") not in PRODUCTS or atom.get("candidate_product_scope_status") != "unknown_path_based_candidate_only" or atom.get("candidate_phase_status") != "unknown_path_based_candidate_only" or atom.get("authority_effect") != "none", f"E_PRODUCT_PROMOTION:{sid}:{n}")
             for key in ("formal_owner_status", "implementation_status", "legacy_implementation_status", "current_implementation_status", "degradation_status", "legacy_degradation_status", "current_degradation_status", "failure_status", "consumer_status", "decision_status", "adoption_status"):
                 fail(atom.get(key) != "unknown", f"E_UNKNOWN_PROMOTION:{sid}:{n}:{key}")
@@ -145,6 +201,8 @@ def validate(root: Path = ROOT, out: Path = HERE) -> list[str]:
     fail(inv.get("archive_line_denominator") != 863 or inv.get("line_inventory_count") != 863 or inv.get("semantic_atom_count") != 863 or inv.get("atomization_status_counts") != counts or inv.get("selected_line_residual_count") != 0 or inv.get("formal_requirement_unit_count") != 0, "E_ACCOUNTING")
     fail(plan.get("accounting", {}).get("status_counts") != counts or plan.get("accounting", {}).get("mutually_exclusive_categories") is not True, "E_PLAN_ACCOUNTING")
     fail(inv.get("candidate_products") != [{"product": p, "status": "boundary_candidate_only", "formal_owner": "unknown", "authority": "none"} for p in PRODUCTS], "E_BOUNDARY_PRODUCTS")
+    expected_snapshots = {f"source-snapshots/{sid}/{side}.md": sha(git_bytes(PRE if side == "pre-isolation" else ARCH, SOURCE_INFO[sid][0])) for sid in TARGETS for side in ("pre-isolation", "archive-revision")}
+    fail(plan.get("snapshot_manifest") != expected_snapshots or inv.get("snapshot_manifest") != expected_snapshots, "E_SNAPSHOT_MANIFEST")
     fail(binding.get("id") != "SCF-B-0095" or binding.get("state") != "registered", "E_BINDING")
     return errors
 

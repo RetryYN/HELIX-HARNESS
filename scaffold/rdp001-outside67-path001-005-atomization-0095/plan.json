@@ -4,14 +4,16 @@
     "deduplication_key": "(source_item_id, archive_line)",
     "mutually_exclusive_categories": true,
     "status_counts": {
-      "atomized_candidate": 10,
-      "composite_unresolved": 503,
-      "metadata_only": 350
+      "atomized_candidate": 13,
+      "composite_unresolved": 535,
+      "metadata_only": 315
     }
   },
+  "alignment_policy": "difflib.SequenceMatcher(autojunk=False); only equal opcodes receive pre_anchor; replace/insert opcodes retain pre_alignment status and null pre_anchor",
   "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
   "base_origin_main": "72b9f368a044709437841c5e862f01802b1a88ec",
   "binding": "SCF-B-0095",
+  "classification_policy": "independent structural guard for requirement/prohibition/responsibility shapes; sentence-ending non-structural lines are retained as composite_unresolved; metadata_only is limited to structural metadata/navigation",
   "input_digests": {
     "docs/concept/product-boundary.md": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
     "docs/governance/legacy-asset-copy-read-after.jsonl": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
@@ -55,5 +57,17 @@
     "selected_path_pairs": 5,
     "semantic_atomization_complete": false,
     "unselected_path_revision_pair_count": 62
+  },
+  "snapshot_manifest": {
+    "source-snapshots/OUTSIDE67-PATH-001/archive-revision.md": "1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9",
+    "source-snapshots/OUTSIDE67-PATH-001/pre-isolation.md": "1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9",
+    "source-snapshots/OUTSIDE67-PATH-002/archive-revision.md": "dc8a85e869297e7172ae8cb6a8ec2b4468558dd94f2cc825d35f2d55c3e546c3",
+    "source-snapshots/OUTSIDE67-PATH-002/pre-isolation.md": "1e66811d929783bd04e62c3cb13edd46254f890633cce3fcde153399a67be7a7",
+    "source-snapshots/OUTSIDE67-PATH-003/archive-revision.md": "81da974ef30055abc874371792775e9031c86cbfc2a855bc96d242b330eb018a",
+    "source-snapshots/OUTSIDE67-PATH-003/pre-isolation.md": "81da974ef30055abc874371792775e9031c86cbfc2a855bc96d242b330eb018a",
+    "source-snapshots/OUTSIDE67-PATH-004/archive-revision.md": "80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492",
+    "source-snapshots/OUTSIDE67-PATH-004/pre-isolation.md": "80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492",
+    "source-snapshots/OUTSIDE67-PATH-005/archive-revision.md": "ce87775c10e6d21e182e78ee2f95ac507aa77801055add27934def657d9e81f5",
+    "source-snapshots/OUTSIDE67-PATH-005/pre-isolation.md": "4bbaa7e437e36346c5e0e32e685de822a4736b70a74feeef7877ee2401314ad9"
   }
 }

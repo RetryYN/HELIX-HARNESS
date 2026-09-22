@@ -211,7 +211,7 @@
       "current four-product L1 documents",
       "PHCAP and implementation crosswalk static inventories"
     ],
-    "boundary": "成果物はscaffold/配下の研究記録。863 archive lines、25 selected fragments、838 residual linesは正式要求、owner、authority、phase、implementation、degradation、failure、consumer closure、採用ではない。"
+    "boundary": "成果物はscaffold/配下の研究記録。選択5経路の863 archive linesは正式要求、owner、authority、phase、implementation、degradation、failure、consumer closure、採用ではない。"
   },
   "operations": {
     "allowed": [
@@ -244,7 +244,17 @@
     "scaffold/rdp001-outside67-path001-005-atomization-0095/evidence-scan.json",
     "scaffold/rdp001-outside67-path001-005-atomization-0095/generate.py",
     "scaffold/rdp001-outside67-path001-005-atomization-0095/validate.py",
-    "scaffold/rdp001-outside67-path001-005-atomization-0095/selfcheck.py"
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/selfcheck.py",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-001/pre-isolation.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-001/archive-revision.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-002/pre-isolation.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-002/archive-revision.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-003/pre-isolation.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-003/archive-revision.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-004/pre-isolation.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-004/archive-revision.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-005/pre-isolation.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-005/archive-revision.md"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -258,8 +268,10 @@
     "oracles": [
       "pre/archive/current revision and digest rederivation",
       "863 archive line denominator and selected/residual accounting",
-      "25 selected fragment exact-once atomization accounting",
-      "PATH-005 U005 pre/archive anchor distinction",
+      "863 selected archive line exact-once atomization accounting",
+      "all 10 source-snapshot Git object bytes/digests",
+      "difflib equal-only pre anchor and replace/insert unresolved status",
+      "independent structural normative metadata guard",
       "four candidate-product boundary and unknown status gate",
       "legacy exact-hit boundary and input digest gate",
       "validator/selfcheck",
@@ -276,7 +288,10 @@
       "line inventory omission",
       "line inventory duplicate line",
       "line inventory residual promotion",
-      "selected fragment duplicate",
+      "source snapshot bytes tamper",
+      "pre anchor assigned to replace/insert line",
+      "normative responsibility/prohibition line hidden as metadata",
+      "sentence-ending normative line hidden as metadata",
       "atomization status promotion",
       "atom count drift",
       "candidate product promotion",

@@ -1,10 +1,11 @@
 {
+  "alignment_policy": "equal-only pre anchors; replace/insert pre anchors are null with explicit status",
   "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
   "archive_line_denominator": 863,
   "atomization_status_counts": {
-    "atomized_candidate": 10,
-    "composite_unresolved": 503,
-    "metadata_only": 350
+    "atomized_candidate": 13,
+    "composite_unresolved": 535,
+    "metadata_only": 315
   },
   "authority_effect": "none",
   "base_origin_main": "72b9f368a044709437841c5e862f01802b1a88ec",
@@ -35,6 +36,7 @@
       "status": "boundary_candidate_only"
     }
   ],
+  "classification_policy": "independent structural guard for requirement/prohibition/responsibility shapes; sentence-ending non-structural lines are retained as composite_unresolved; metadata_only is limited to structural metadata/navigation",
   "current_counterpart_paths": {
     "OUTSIDE67-PATH-001": "docs/helix-harness/L1-planning/product-intent.md",
     "OUTSIDE67-PATH-002": "docs/helix-harness/L2-requirements/product-requirements.md",
@@ -89,6 +91,18 @@
   ],
   "semantic_atom_count": 863,
   "semantic_atomization_complete": false,
+  "snapshot_manifest": {
+    "source-snapshots/OUTSIDE67-PATH-001/archive-revision.md": "1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9",
+    "source-snapshots/OUTSIDE67-PATH-001/pre-isolation.md": "1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9",
+    "source-snapshots/OUTSIDE67-PATH-002/archive-revision.md": "dc8a85e869297e7172ae8cb6a8ec2b4468558dd94f2cc825d35f2d55c3e546c3",
+    "source-snapshots/OUTSIDE67-PATH-002/pre-isolation.md": "1e66811d929783bd04e62c3cb13edd46254f890633cce3fcde153399a67be7a7",
+    "source-snapshots/OUTSIDE67-PATH-003/archive-revision.md": "81da974ef30055abc874371792775e9031c86cbfc2a855bc96d242b330eb018a",
+    "source-snapshots/OUTSIDE67-PATH-003/pre-isolation.md": "81da974ef30055abc874371792775e9031c86cbfc2a855bc96d242b330eb018a",
+    "source-snapshots/OUTSIDE67-PATH-004/archive-revision.md": "80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492",
+    "source-snapshots/OUTSIDE67-PATH-004/pre-isolation.md": "80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492",
+    "source-snapshots/OUTSIDE67-PATH-005/archive-revision.md": "ce87775c10e6d21e182e78ee2f95ac507aa77801055add27934def657d9e81f5",
+    "source-snapshots/OUTSIDE67-PATH-005/pre-isolation.md": "4bbaa7e437e36346c5e0e32e685de822a4736b70a74feeef7877ee2401314ad9"
+  },
   "source_pair_count": 5,
   "source_paths": {
     "OUTSIDE67-PATH-001": "docs/design/harness/L1-planning/product-intent.md",
