@@ -1,0 +1,35 @@
+{
+  "schema_revision": 1,
+  "batch_id": "LEGACY-SEMANTIC-WAVE38-2026-09-22",
+  "selection_rule": "Wave1–37既済unit／edge／non-requirement assetと交差せず、旧source requirementの未レビューcandidateを3 chainに限定する",
+  "selected_units": ["IRUNIT-HIL-NFR-02-HELIX-OS", "IRUNIT-HIL-NFR-06-HELIX-OS", "IRUNIT-HIL-TR-07-HELIX-OS"],
+  "per_chain_roles": ["requirement", "design", "implementation_source"],
+  "atomization": {
+    "NFR02-OS-A01": "decompositionの最小source spanを逐語保持。親文のworker≠verifier≠knowledge promoter関係とCodex条件は結合したまま、composite_unresolvedとして独立reviewへ残す。",
+    "NFR06-OS-A01": "列挙された高影響対象とapproval obligationを一つずつ現行権限へ分解せず、結合したsource span候補をcomposite_unresolvedとして保持する。",
+    "TR07-OS-A01": "SQLite projection、Python read model、Node write authority、L4変更決定が一文に結合しているため一つのcomposite_unresolved候補とし、独立reviewで分割する。"
+  },
+  "unresolved": [
+    "product_boundary_pending_human_decision",
+    "phase_authority_pending",
+    "implementation_status_not_established",
+    "degradation_status_not_established",
+    "consumer_closure_pending",
+    "successor_assignment_unassigned",
+    "legacy_execution_not_run",
+    "TR07 semantic split pending independent review"
+  ],
+  "historical_conflicts": [
+    "NFR02の旧actor／role記述は現行authorityまたは自己承認権限へ昇格しない",
+    "NFR06の旧approval条件は現行の承認実行路を生成しない",
+    "TR07のADR／implementation記述は旧decision historyとして保持し、現行OS実装完了またはwrite authority確定と解釈しない"
+  ],
+  "forbidden_transitions": [
+    "historical source statement -> current authority",
+    "catalog candidate -> current implementation",
+    "phase candidate -> phase admission",
+    "OS candidate -> HELIX-Web or HELIX-Web-OS identity",
+    "old implementation source -> executed evidence",
+    "composite source atom -> multiple accepted requirements without independent review"
+  ]
+}

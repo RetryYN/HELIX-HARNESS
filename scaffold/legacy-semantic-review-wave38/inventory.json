@@ -1,0 +1,82 @@
+{
+  "schema_revision": 1,
+  "batch_id": "LEGACY-SEMANTIC-WAVE38-2026-09-22",
+  "base_revision": "f369e2fd400a02104a67645dca681721989d63be",
+  "legacy_decomposition_units": 218,
+  "prior_reviewed_units": 148,
+  "prior_reviewed_edges": 441,
+  "selected_units": [
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-02-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-02",
+      "candidate_product_targets": ["HELIX-OS"],
+      "candidate_phase_targets": ["PHCAP-19"],
+      "routing_candidate": "split_required",
+      "asset_chain": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9", "LEGACY-ASSET-E8B32F8D6519FFCED39A", "LEGACY-ASSET-8ABCBFC4F18A6AD865EB"],
+      "source_chain": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:4475",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:182",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-independent-review.md:1-42",
+        "archive/legacy-generation-2026-09-14/root/src/runtime/worker-review-receipt.ts:1-203"
+      ],
+      "semantic_atoms": ["NFR02-OS-A01"],
+      "composite_unresolved": 1,
+      "unknowns": ["authority", "successor", "current_implementation", "degradation", "consumer_closure"]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-06-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-06",
+      "candidate_product_targets": ["HELIX-OS"],
+      "candidate_phase_targets": [],
+      "routing_candidate": "split_required",
+      "asset_chain": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9", "LEGACY-ASSET-2291163DF1ADDB5E11FD", "LEGACY-ASSET-26391F9FB236CBD4D270"],
+      "source_chain": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:4647",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:186",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/action-binding-approval-readiness.md:1-50",
+        "archive/legacy-generation-2026-09-14/root/src/lint/action-binding-approval-readiness.ts:154-205"
+      ],
+      "semantic_atoms": ["NFR06-OS-A01"],
+      "composite_unresolved": 1,
+      "unknowns": ["authority", "successor", "current_implementation", "degradation", "phase", "consumer_closure"]
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-07-HELIX-OS",
+      "source_requirement_id": "HIL-TR-07",
+      "candidate_product_targets": ["HELIX-OS"],
+      "candidate_phase_targets": [],
+      "routing_candidate": "single_product",
+      "asset_chain": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9", "LEGACY-ASSET-8771887517A619A2D501", "LEGACY-ASSET-C6C0601C113C6B713D78"],
+      "source_chain": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:6430",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:171",
+        "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-007-harness-db-sqlite-projection.md:1-39",
+        "archive/legacy-generation-2026-09-14/root/src/state-db/index.ts:1-5"
+      ],
+      "semantic_atoms": ["TR07-OS-A01"],
+      "composite_unresolved": 1,
+      "unknowns": ["authority", "successor", "current_implementation", "degradation", "phase", "consumer_closure", "semantic_split"]
+    }
+  ],
+  "denominator": {
+    "wave38_units": 3,
+    "wave38_edges": 9,
+    "wave38_atoms": 3,
+    "wave38_composite_unresolved": 3,
+    "cumulative_reviewed_units": 151,
+    "cumulative_reviewed_edges": 450,
+    "remaining_units": 67,
+    "products": {"HELIX-HARNESS": 0, "HELIX-OS": 3, "HELIX-Web": 0, "HELIX-Web-OS": 0, "unresolved_product_authority": 3}
+  },
+  "boundary": {
+    "authority_effect": "none",
+    "current_requirement_implementation_status": "not_established",
+    "catalog_legacy_implementation_status": "asset-specific_unknown",
+    "phase_authority_status": "candidate_unchanged",
+    "consumer_closure_status": "pending",
+    "degradation_status": "not_established",
+    "legacy_execution_status": "not_run",
+    "new_build_allowed": false,
+    "web_direct_evidence": "not_asserted"
+  }
+}
