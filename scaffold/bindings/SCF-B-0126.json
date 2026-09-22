@@ -26,15 +26,16 @@
   "id": "SCF-B-0126",
   "kind": "scaffold",
   "obligations": [
-    "固定BASE unresolved 1,792件・既存研究union280件・残余1,512件を分母として保持する",
-    "残余 implementation_source 67 assetのexact ID/path/source blob/digestを固定し欠落・重複を拒否する",
-    "source spanとproduct-boundary/L1 counter-evidenceを使いdirect/conflict/insufficientを再導出する",
+    "固定BASE unresolved 1,792件・prior研究ID205件・Wave未解決64件（重複42件）・union227件・残余1,565件を分母として保持する",
+    "prefixだけでは先行研究接続を証明できない53件のasset ID/pathを固定列挙し、insufficient basisの残余として120対象へ含める",
+    "残余 implementation_source 120 assetのexact ID/path/source blob/digestを固定し欠落・重複を拒否する",
+    "source spanとproduct-boundary/L1 counter-evidenceを使いdirect/conflict/insufficientを再導出し、direct=1 product、conflict>=2、insufficient=0を固定する",
     "Wave1-50の50 file・598 edge・355 unique assetを再走査し対象Wave edge=0を固定する",
+    "anchor_line_coverageを全recordへ保持し、既存67件の1,023/10,997=9.3%・最大18行と未読領域を文書化する",
     "旧decision/read-after/failure/consumerを静的partitionで保持しconsumer closureを生成しない",
-    "旧asset status・history・consumer blockを固定BASE由来の期待record全fieldと厳密一致させる",
-    "inventory schema、formal_update、expected source_pathsを固定期待値と全field照合する",
+    "旧asset status・history・consumer blockと全nested record/inventoryを固定BASE由来の期待値と厳密一致させる",
     "authority none・formal分類/route/phase/successor/new build falseを固定する",
-    "旧archive source/runtime/test/CIを実行せず独立validatorと期待error code付きnegative selfcheckを維持する"
+    "旧archive source/runtime/test/CIを実行せず独立validatorと43 negative selfcheckを維持する"
   ],
   "operations": {
     "allowed": [
@@ -51,7 +52,7 @@
   },
   "owner_candidate": "四製品product-boundary研究（正式owner未解決）",
   "product": "HELIX-HARNESS",
-  "reason": "固定BASEの未解決1,792件から既存研究union280件を除いた残余1,512件のうち implementation_source 67件を、source span・四製品L1・product-boundary・旧history/failure/consumerの静的証拠で候補分類する。product欄はScaffold登録上の単一enumであり、assetのownerを表さない。",
+  "reason": "固定BASEの未解決1,792件から、先行研究asset-ID集合205件とWave未解決64件（重複42件）を分離し、既存研究union227件・残余1,565件とした。そのうちimplementation_source 120件を、source span・四製品L1・product-boundary・旧history/failure/consumerの静的証拠で候補分類する。prefixだけでは先行研究接続を示せない53件は固定ID/pathで不足証拠として列挙し、formal owner・phase・実装成立へ昇格しない。product欄はScaffold登録上のenumでありasset ownerを表さない。",
   "replacement": {
     "formal_artifacts": [],
     "issue": 0,
@@ -61,7 +62,7 @@
   "role": "legacy-implementation-residual-product-boundary-research-0126-static",
   "schema_revision": 1,
   "state": "registered",
-  "title": "固定BASE未解決 implementation_source 残余67件の製品責務候補研究",
+  "title": "固定BASE未解決 implementation_source 残余120件の製品責務候補研究",
   "updated": "2026-09-23",
   "upstream": [
     {
@@ -116,22 +117,23 @@
   "verification": {
     "evidence_kind": "scaffold",
     "negative_cases": [
-      "target missing/duplicate",
-      "source blob or line anchor tamper",
-      "classification category/product tamper",
-      "Wave edge injection",
-      "phase/asset/history/boundary tamper plus phase extra key, boundary extra product/key, source/classification/history/shrink nested extra key",
-      "legacy status promotion、disposition/product resolution、consumer tamper、closure closed",
-      "read mode and authority promotion",
-      "formal_update reversal、inventory schema/source_paths tamper",
-      "input digest missing/duplicate",
-      "inventory scope/base/output digest tamper"
+      "target ID missing/duplicate; explicit 53 residual ID/path set",
+      "source blob/line anchor/read mode and anchor_line_coverage tamper",
+      "classification category/product/cardinality invariant and nested record tamper",
+      "Wave edge and Wave denominator injection",
+      "phase/asset/history/failure/consumer/implementation status promotion or closure",
+      "authority/formal_update/new_build promotion",
+      "inventory schema/source paths/top-level key/scope/union/denominator/output digest",
+      "input digest missing/duplicate/schema tamper and fixed BASE pin",
+      "human judgment/review pin/ledger digest mismatch",
+      "generator PROFILE category/products mutation and regeneration"
     ],
     "oracles": [
-      "validator independently derives fixed BASE exact target set and source anchors",
-      "validator checks 67 records, 30 direct, 23 conflict, 14 insufficient, target Wave edges=0",
-      "fixed BASE Git object blob/bytes/digest and input snapshot checks",
-      "selfcheck expected 34 error codes including full nested record mutations"
+      "validator independently derives fixed BASE exact 120 target set, explicit 53 residual ID/path set, and source anchors without importing generate.py",
+      "validator checks prior research205 digest, union227, residual1,565, Wave files50/edges598/assets355, target Wave edges0",
+      "validator checks 120 records, 30 direct, 23 conflict, 67 insufficient and category cardinality invariant",
+      "validator compares full nested record/inventory equality including anchor_line_coverage and authority boundary",
+      "selfcheck executes 43 negative cases with expected error codes (17 distinct codes), including generator profile category/products regeneration mutation"
     ],
     "scope": [
       "schema_interface",

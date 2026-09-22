@@ -26,13 +26,13 @@
   "counts": {
     "categories": {
       "direct_product_basis": 30,
-      "insufficient_basis": 14,
+      "insufficient_basis": 67,
       "multi_product_conflict": 23
     },
     "target_asset_artifact_evidence_kinds": {
-      "implementation_source": 67
+      "implementation_source": 120
     },
-    "target_assets": 67,
+    "target_assets": 120,
     "target_wave_edges": 0,
     "wave_edges_scanned": 598,
     "wave_files": 50,
@@ -54,10 +54,123 @@
       "src/requirements/",
       "src/shared/"
     ],
-    "existing_union_count": 280,
+    "existing_union_count": 227,
     "expected_unresolved_assets": 1792,
-    "residual_unresolved_count": 1512,
+    "prior_research_asset_count": 205,
+    "prior_research_asset_ids_sha256": "sha256:e5d5552e5028bd836c65bb1dd5ebbc14375dcbc89e5fd0c7060849bebe99ecca",
+    "residual_unresolved_count": 1565,
     "target_wave_overlap": 0,
+    "unresearched_prefix_asset_count": 53,
+    "unresearched_prefix_asset_ids": [
+      "LEGACY-ASSET-08F8688895B787BD3D5C",
+      "LEGACY-ASSET-0996E33E11CB9283EEC8",
+      "LEGACY-ASSET-110F52E3C367C3DCCFE5",
+      "LEGACY-ASSET-11C75CC63968FB9A5BD2",
+      "LEGACY-ASSET-132E6449FA96E5CABBBF",
+      "LEGACY-ASSET-18579F09E6B2C29E5622",
+      "LEGACY-ASSET-187E43CE3096B88CA8B4",
+      "LEGACY-ASSET-18EBF31B40C9A58DE958",
+      "LEGACY-ASSET-1ABE9822E36400BC82C2",
+      "LEGACY-ASSET-2B68A62292FADDC5BCA6",
+      "LEGACY-ASSET-30539BEC772802F50C9D",
+      "LEGACY-ASSET-313DC99AEF53834D9207",
+      "LEGACY-ASSET-3290C9A3BA7FAD7BA07C",
+      "LEGACY-ASSET-354670A58AC796DDC80F",
+      "LEGACY-ASSET-3AEDBB3A9A7B549C4C24",
+      "LEGACY-ASSET-3D7D5062903EE9CEDFEF",
+      "LEGACY-ASSET-414CC59CA35B28BB7AF4",
+      "LEGACY-ASSET-4329EAEA146D5D97E088",
+      "LEGACY-ASSET-4A9AB5B2EF182BC30431",
+      "LEGACY-ASSET-4D3446684F730BFEB99E",
+      "LEGACY-ASSET-5442594ED146AD72850C",
+      "LEGACY-ASSET-555329E1E192F23D2865",
+      "LEGACY-ASSET-5BABA53229DF9A5DECEF",
+      "LEGACY-ASSET-66A3EB90764ABB6E7F57",
+      "LEGACY-ASSET-67D77EEBF1209346882C",
+      "LEGACY-ASSET-6B10C0467A1A1918D46E",
+      "LEGACY-ASSET-72ECA3C318F8028A6D91",
+      "LEGACY-ASSET-85F302A8E7280A166171",
+      "LEGACY-ASSET-8A390337BEE15CED1AA2",
+      "LEGACY-ASSET-8F85476FEB95D1284680",
+      "LEGACY-ASSET-97D1784D53918F126E3B",
+      "LEGACY-ASSET-9BFD3E86A8F5AE0DA720",
+      "LEGACY-ASSET-A3EC7F28F52F2808041E",
+      "LEGACY-ASSET-B8033A9BCD9CC70BF8F6",
+      "LEGACY-ASSET-B85C45D7C5621BD8201C",
+      "LEGACY-ASSET-C4C93ABA07B48AAB6D05",
+      "LEGACY-ASSET-CD0EAE866A7CA2A0D1F8",
+      "LEGACY-ASSET-D331F13A1FA21B0C05FE",
+      "LEGACY-ASSET-D641C9E49847C74848CE",
+      "LEGACY-ASSET-D73981AB049C177AC184",
+      "LEGACY-ASSET-DBCE67DF3C1FE8648191",
+      "LEGACY-ASSET-E4EDA1517A4F062B2D64",
+      "LEGACY-ASSET-E595E192F58FF3B1A2A0",
+      "LEGACY-ASSET-E9F6609D6EBDEBD288BC",
+      "LEGACY-ASSET-E9FF2DF247348F5608F2",
+      "LEGACY-ASSET-ECE1AFAAE85425CD29BB",
+      "LEGACY-ASSET-EEC2DA57D64EC4908112",
+      "LEGACY-ASSET-EFFA71383D8FAE4EBBBA",
+      "LEGACY-ASSET-F0ED1811C81FD1184188",
+      "LEGACY-ASSET-F2B7BCF14B8563B15C14",
+      "LEGACY-ASSET-F45E18DC5CE003BD8D91",
+      "LEGACY-ASSET-F5C9B1066B7337E45182",
+      "LEGACY-ASSET-F6A0AC0CAC1590A754EC"
+    ],
+    "unresearched_prefix_source_paths": [
+      "src/cli/commands/issue-hierarchy-census.ts",
+      "src/cli/commands/rename.ts",
+      "src/cli/commands/route.ts",
+      "src/cli/full-regression-shards.ts",
+      "src/cli/helpers.ts",
+      "src/cli/lite-canary-selector.ts",
+      "src/cli/preflight-gate-aggregation.ts",
+      "src/requirements/nfr-registry.ts",
+      "src/requirements/requirement-generated-view-generator.ts",
+      "src/requirements/requirement-generated-view.ts",
+      "src/schema/atomic-contract-id.ts",
+      "src/schema/current-location-workflow-identity-resolver.ts",
+      "src/schema/current-location-workflow-identity.ts",
+      "src/schema/design-declarations.ts",
+      "src/schema/green-command.ts",
+      "src/schema/harness-db-catalog.ts",
+      "src/schema/harness-db-indexes.ts",
+      "src/schema/harness-db-table-builders.ts",
+      "src/schema/harness-db-tables-design.ts",
+      "src/schema/harness-db-tables-graph.ts",
+      "src/schema/harness-db-tables-registry.ts",
+      "src/schema/harness-db-tables-screen.ts",
+      "src/schema/harness-db-tables-semantic.ts",
+      "src/schema/harness-db-types.ts",
+      "src/schema/harness-db.ts",
+      "src/schema/loop-plan-id.ts",
+      "src/schema/model-registry.ts",
+      "src/schema/open-branch-plan-reservation-authority.ts",
+      "src/schema/runtime-verification.ts",
+      "src/schema/team.ts",
+      "src/schema/visualization-contract.ts",
+      "src/schema/visualization-tree-contract.ts",
+      "src/schema/visualization-view-contract.ts",
+      "src/schema/workflow-execution-policy-projection.ts",
+      "src/schema/workflow-execution-policy-registry.ts",
+      "src/setup/update-check.ts",
+      "src/shared/canonical-digest.ts",
+      "src/shared/collection-utils.ts",
+      "src/shared/commit-subject.ts",
+      "src/shared/file-walk.ts",
+      "src/shared/repo-info.ts",
+      "src/shared/shell-quote.ts",
+      "src/shared/string-utils.ts",
+      "src/shared/time-utils.ts",
+      "src/shared/typescript-lazy.ts",
+      "src/shared/value-guards.ts",
+      "src/workflow/cli-workflow-identity-projection.ts",
+      "src/workflow/contracts-extras.ts",
+      "src/workflow/contracts-types.ts",
+      "src/workflow/current-location-workflow-identity.ts",
+      "src/workflow/skill-applicability-authoring.ts",
+      "src/workflow/universal-workflow-envelope.ts",
+      "src/workflow/workflow-interview-unresolved.ts"
+    ],
     "wave_unresolved_assets": 64
   },
   "expected_sets": {
@@ -66,23 +179,50 @@
       "src/doctor/nfr-registry-check.ts",
       "src/design/design-registry-screen-intake.ts",
       "src/vscode/extension-adapter.ts",
+      "src/cli/commands/rename.ts",
+      "src/shared/time-utils.ts",
       "src/gate/static.ts",
+      "src/cli/helpers.ts",
+      "src/schema/current-location-workflow-identity-resolver.ts",
+      "src/schema/green-command.ts",
+      "src/schema/harness-db-types.ts",
+      "src/schema/current-location-workflow-identity.ts",
+      "src/schema/model-registry.ts",
+      "src/schema/harness-db-table-builders.ts",
       "src/doctor/failure.ts",
       "src/audit/quality.ts",
       "src/team/model-effort.ts",
+      "src/schema/loop-plan-id.ts",
       "src/design/screen-applicability-sqlite-store.ts",
+      "src/schema/harness-db-tables-graph.ts",
+      "src/cli/commands/route.ts",
       "src/security/secret-policy.ts",
       "src/policy/filesystem-durability.ts",
+      "src/workflow/contracts-extras.ts",
       "src/audit/branches.ts",
+      "src/requirements/nfr-registry.ts",
       "src/plan/lint-types.ts",
       ".claude/hooks/git-command-guard.ts",
+      "src/schema/team.ts",
+      "src/schema/open-branch-plan-reservation-authority.ts",
+      "src/schema/runtime-verification.ts",
+      "src/requirements/requirement-generated-view-generator.ts",
       "src/vscode/extension.ts",
+      "src/shared/canonical-digest.ts",
+      "src/workflow/contracts-types.ts",
+      "src/schema/harness-db-tables-design.ts",
       "src/semantic/semantic-contract-revalidator.ts",
+      "src/requirements/requirement-generated-view.ts",
       "src/web/index.ts",
+      "src/shared/file-walk.ts",
       "src/vscode/tree-decoration.ts",
+      "src/workflow/current-location-workflow-identity.ts",
+      "src/schema/workflow-execution-policy-registry.ts",
+      "src/shared/collection-utils.ts",
       "src/guardrail/ledger.ts",
       "src/doctor/check-registry.ts",
       "src/semantic/semantic-commit-store.ts",
+      "src/schema/visualization-tree-contract.ts",
       "src/feedback/lifecycle-node.ts",
       "src/policy/closure-authority-registry.ts",
       "src/doctor/workflow-guide-authority.ts",
@@ -91,14 +231,20 @@
       "src/config/requirements-binding-policy.ts",
       "src/policy/active-plan-selection.ts",
       "src/doctor/result.ts",
+      "src/schema/atomic-contract-id.ts",
       "src/composition/db-rebuild-composition.ts",
+      "src/schema/harness-db-tables-semantic.ts",
+      "src/shared/typescript-lazy.ts",
       "src/adapters/open-branch-plan-reservation-authority.ts",
       "src/task/proposal-document-pack-types.ts",
+      "src/schema/visualization-contract.ts",
+      "src/schema/harness-db-catalog.ts",
       "src/vmodel/zip-manifest.ts",
       "src/audit/repository-hygiene.ts",
       "src/adapters/document-semantic-diff-fs.ts",
       "src/task/tier-router.ts",
       "src/team/run-policy.ts",
+      "src/cli/preflight-gate-aggregation.ts",
       "src/web/render.ts",
       "src/measurement/bounded-probe-history.ts",
       ".claude/hooks/session-log.ts",
@@ -107,52 +253,99 @@
       "src/web/tokens.ts",
       "src/team/launch-policy.ts",
       "src/context/doc-router.ts",
+      "src/schema/harness-db-tables-registry.ts",
+      "src/cli/lite-canary-selector.ts",
       "src/plan/lint-policy.ts",
       "src/feedback/lifecycle.ts",
       "src/task/tier-router-policy.ts",
       "src/audit/enforcement-route-input.ts",
+      "src/cli/full-regression-shards.ts",
       "src/vscode/tree-view-provider.ts",
       "scripts/audit-l12-hybrid-recognition.ts",
+      "src/setup/update-check.ts",
       "src/assets/catalog.ts",
       "src/vmodel/fit.ts",
       "src/web/catalog.ts",
+      "src/cli/commands/issue-hierarchy-census.ts",
+      "src/workflow/workflow-interview-unresolved.ts",
       "src/policy/closure-authority-backfill.ts",
+      "src/workflow/universal-workflow-envelope.ts",
       ".claude/hooks/work-guard.ts",
+      "src/schema/workflow-execution-policy-projection.ts",
       "src/vscode/extension-manifest.ts",
       "src/search/index.ts",
       "src/web/share.ts",
       "src/semantic/semantic-intake-receipt.ts",
+      "src/schema/harness-db-tables-screen.ts",
+      "src/schema/visualization-view-contract.ts",
       "src/design/ui-domain-gate.ts",
+      "src/shared/repo-info.ts",
+      "src/schema/harness-db-indexes.ts",
       "src/export/document-export.ts",
+      "src/shared/value-guards.ts",
       "src/web/.gitkeep",
+      "src/schema/design-declarations.ts",
       "src/task/proposal-coverage-data.ts",
+      "src/shared/shell-quote.ts",
       "src/vmodel/design-declarations.ts",
+      "src/schema/harness-db.ts",
       "src/gate/review-tier.ts",
+      "src/shared/string-utils.ts",
+      "src/workflow/skill-applicability-authoring.ts",
+      "src/workflow/cli-workflow-identity-projection.ts",
+      "src/shared/commit-subject.ts",
       "src/graph/loader.ts"
     ],
-    "target_asset_count": 67,
+    "target_asset_count": 120,
     "target_asset_ids": [
       "LEGACY-ASSET-005BBC344AC83176CAE6",
       "LEGACY-ASSET-03846AA02084DC30318B",
       "LEGACY-ASSET-03D5246D4A367B77A10F",
       "LEGACY-ASSET-0404DA6A68E40E96A694",
+      "LEGACY-ASSET-08F8688895B787BD3D5C",
+      "LEGACY-ASSET-0996E33E11CB9283EEC8",
       "LEGACY-ASSET-0DA27939573DF620316D",
+      "LEGACY-ASSET-110F52E3C367C3DCCFE5",
+      "LEGACY-ASSET-11C75CC63968FB9A5BD2",
+      "LEGACY-ASSET-132E6449FA96E5CABBBF",
+      "LEGACY-ASSET-18579F09E6B2C29E5622",
+      "LEGACY-ASSET-187E43CE3096B88CA8B4",
+      "LEGACY-ASSET-18EBF31B40C9A58DE958",
+      "LEGACY-ASSET-1ABE9822E36400BC82C2",
       "LEGACY-ASSET-1EE90CF366091DF602C5",
       "LEGACY-ASSET-21E7CE8A9C05D7EFCBFD",
       "LEGACY-ASSET-2743C41663F961A0CFFA",
+      "LEGACY-ASSET-2B68A62292FADDC5BCA6",
       "LEGACY-ASSET-2BDB6E2B75978708D986",
+      "LEGACY-ASSET-30539BEC772802F50C9D",
+      "LEGACY-ASSET-313DC99AEF53834D9207",
       "LEGACY-ASSET-31C9851B52D827AC32D7",
       "LEGACY-ASSET-326AB574F2F843071474",
+      "LEGACY-ASSET-3290C9A3BA7FAD7BA07C",
       "LEGACY-ASSET-32A46322D3C6ADB5BD1B",
+      "LEGACY-ASSET-354670A58AC796DDC80F",
       "LEGACY-ASSET-39338BE85963C3866E5B",
       "LEGACY-ASSET-3AC78FD8A01E0F9811C5",
+      "LEGACY-ASSET-3AEDBB3A9A7B549C4C24",
+      "LEGACY-ASSET-3D7D5062903EE9CEDFEF",
+      "LEGACY-ASSET-414CC59CA35B28BB7AF4",
+      "LEGACY-ASSET-4329EAEA146D5D97E088",
       "LEGACY-ASSET-436BAA948FDA21E827A4",
+      "LEGACY-ASSET-4A9AB5B2EF182BC30431",
+      "LEGACY-ASSET-4D3446684F730BFEB99E",
+      "LEGACY-ASSET-5442594ED146AD72850C",
       "LEGACY-ASSET-552264057C6232AAD757",
+      "LEGACY-ASSET-555329E1E192F23D2865",
       "LEGACY-ASSET-5AEE5D0C1129F8203D7F",
+      "LEGACY-ASSET-5BABA53229DF9A5DECEF",
       "LEGACY-ASSET-5CA9E110DFEC7BC8F88F",
+      "LEGACY-ASSET-66A3EB90764ABB6E7F57",
+      "LEGACY-ASSET-67D77EEBF1209346882C",
+      "LEGACY-ASSET-6B10C0467A1A1918D46E",
       "LEGACY-ASSET-6C2D9FB1AC2411C4F6C5",
       "LEGACY-ASSET-6CC1A5B9E9472F1100AF",
       "LEGACY-ASSET-6CC51A08D6EC967FB3C4",
+      "LEGACY-ASSET-72ECA3C318F8028A6D91",
       "LEGACY-ASSET-739CB7B4CAD2EFB16EE9",
       "LEGACY-ASSET-78A29501ED3DEA2D0F60",
       "LEGACY-ASSET-7A34CAE0B6A9FE0AC8C1",
@@ -161,14 +354,20 @@
       "LEGACY-ASSET-8012D086429557C96ABE",
       "LEGACY-ASSET-80849CA0D9F8BCA0E2EF",
       "LEGACY-ASSET-8209F57B50731048C533",
+      "LEGACY-ASSET-85F302A8E7280A166171",
       "LEGACY-ASSET-86B073C47C6C44269176",
+      "LEGACY-ASSET-8A390337BEE15CED1AA2",
+      "LEGACY-ASSET-8F85476FEB95D1284680",
       "LEGACY-ASSET-8F9E298C14D238264B41",
       "LEGACY-ASSET-9574089EBA03747562DE",
+      "LEGACY-ASSET-97D1784D53918F126E3B",
+      "LEGACY-ASSET-9BFD3E86A8F5AE0DA720",
       "LEGACY-ASSET-9CB9A84027FD545A3FAA",
       "LEGACY-ASSET-9DC02A008F08BC1AD795",
       "LEGACY-ASSET-9E754AB6BD6F6FD401BB",
       "LEGACY-ASSET-9FCE13561CB549878FFC",
       "LEGACY-ASSET-A3863C4F66BDEE4D2548",
+      "LEGACY-ASSET-A3EC7F28F52F2808041E",
       "LEGACY-ASSET-A3EFCCDDE23BE538C306",
       "LEGACY-ASSET-A6C0C0BA3581CE8CF874",
       "LEGACY-ASSET-A8DD18BCB237675730CD",
@@ -177,30 +376,50 @@
       "LEGACY-ASSET-B2DC705A61BC491EB216",
       "LEGACY-ASSET-B3944C1C7EC3BB77939C",
       "LEGACY-ASSET-B4FA0A24B9B85A5A699B",
+      "LEGACY-ASSET-B8033A9BCD9CC70BF8F6",
+      "LEGACY-ASSET-B85C45D7C5621BD8201C",
       "LEGACY-ASSET-B921E1EDFB7A6A957F24",
       "LEGACY-ASSET-B9E3F1FC29F8F5DC9EF4",
       "LEGACY-ASSET-BB467B74BE402C816B10",
       "LEGACY-ASSET-C1654DA000F29AD9D03D",
+      "LEGACY-ASSET-C4C93ABA07B48AAB6D05",
       "LEGACY-ASSET-C8B7051BFC6F201F75A2",
       "LEGACY-ASSET-CCB181C10C2F3B9E6A89",
+      "LEGACY-ASSET-CD0EAE866A7CA2A0D1F8",
       "LEGACY-ASSET-CE6A9902267E2AB9E067",
       "LEGACY-ASSET-D0FBF54624FE5692EB0C",
       "LEGACY-ASSET-D26E81B1B66B8D4B1DF7",
+      "LEGACY-ASSET-D331F13A1FA21B0C05FE",
+      "LEGACY-ASSET-D641C9E49847C74848CE",
       "LEGACY-ASSET-D6435CA1A429370344FB",
+      "LEGACY-ASSET-D73981AB049C177AC184",
       "LEGACY-ASSET-DB4925588127A51391D7",
+      "LEGACY-ASSET-DBCE67DF3C1FE8648191",
       "LEGACY-ASSET-DC32226855EA24F55681",
       "LEGACY-ASSET-DE6D1A3716E224EEDA66",
       "LEGACY-ASSET-DFB34A1E986B5C4AB72B",
       "LEGACY-ASSET-E0B50FAAE6CF28DF8D4D",
+      "LEGACY-ASSET-E4EDA1517A4F062B2D64",
+      "LEGACY-ASSET-E595E192F58FF3B1A2A0",
       "LEGACY-ASSET-E895B32DA11986F4791F",
+      "LEGACY-ASSET-E9F6609D6EBDEBD288BC",
+      "LEGACY-ASSET-E9FF2DF247348F5608F2",
       "LEGACY-ASSET-EC6CE3ED85CCF628BB2A",
+      "LEGACY-ASSET-ECE1AFAAE85425CD29BB",
       "LEGACY-ASSET-ECFC53E723DFF13E9613",
+      "LEGACY-ASSET-EEC2DA57D64EC4908112",
       "LEGACY-ASSET-EFC8A62F3EF8133B437C",
+      "LEGACY-ASSET-EFFA71383D8FAE4EBBBA",
       "LEGACY-ASSET-F00FDCEBACC7D87FF718",
+      "LEGACY-ASSET-F0ED1811C81FD1184188",
       "LEGACY-ASSET-F1CE985A3EF848E016AF",
+      "LEGACY-ASSET-F2B7BCF14B8563B15C14",
+      "LEGACY-ASSET-F45E18DC5CE003BD8D91",
+      "LEGACY-ASSET-F5C9B1066B7337E45182",
+      "LEGACY-ASSET-F6A0AC0CAC1590A754EC",
       "LEGACY-ASSET-FF183AAF28E9A4682B4C"
     ],
-    "target_asset_ids_sha256": "sha256:6c03d924c3e357ad0ef8a82b7537117b07ba70e2014cc0a72b24421f3816581e"
+    "target_asset_ids_sha256": "sha256:286a9c9062f2641e4a275bdcc318f75041ef6eb244da160547bc1bd651439826"
   },
   "formal_update": {
     "authority_effect": "none",
@@ -212,7 +431,7 @@
   },
   "history_failure_consumer": {
     "decision_rows_for_targets": 0,
-    "disposition_rows": 67,
+    "disposition_rows": 120,
     "failure_consumer_refs_are_static_global_inventory": true,
     "read_after_rows_for_targets": 0
   },
@@ -626,10 +845,64 @@
       "sha256": "sha256:35cda9733b41225c1d503559e02ef0d22e3a876fcbefc40c4e38f895f414636f"
     },
     {
+      "blob": "c23b2e135e29a78bf32719ea198c37481d790a51",
+      "bytes": 16480,
+      "path": "archive/legacy-generation-2026-09-14/root/src/cli/commands/rename.ts",
+      "sha256": "sha256:fd9f192308ea45baf55a79f3e16315e3c51cdbaca5a9ce4d66e5882ec7c51b00"
+    },
+    {
+      "blob": "e4d48c2dc2f3058eb5f1835e8afeb892d33e2f8f",
+      "bytes": 131,
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/time-utils.ts",
+      "sha256": "sha256:3dbc260f44c64ed1776943c6e8830a9652c01fb528b969d76c005b45ee1fb237"
+    },
+    {
       "blob": "b29ddcd71826ae1cfaf875d4819864a8efd733eb",
       "bytes": 8262,
       "path": "archive/legacy-generation-2026-09-14/root/src/gate/static.ts",
       "sha256": "sha256:60c42b8af7686125557512df1ea37d8f261e1f4f3dda3ac9fb044905511d3549"
+    },
+    {
+      "blob": "df97749df23ba5adef8f107ae38b5bddc0112f19",
+      "bytes": 2114,
+      "path": "archive/legacy-generation-2026-09-14/root/src/cli/helpers.ts",
+      "sha256": "sha256:ef3cd23e8a2b2759ccf4710dc2c51a96e52cefdc9b0883095bb524c0f04af446"
+    },
+    {
+      "blob": "3f15e049ee91ed8e176d4d014ae94b798e345575",
+      "bytes": 8419,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/current-location-workflow-identity-resolver.ts",
+      "sha256": "sha256:51ea5fd61feb55912790caa9d0c4f650a75009bb1afa7efdf3b5cf119bdacdd3"
+    },
+    {
+      "blob": "58de286aef4fc0722cbe3bf5b1b31e269d9f6260",
+      "bytes": 1358,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/green-command.ts",
+      "sha256": "sha256:90e36fbcb7dd0620d06a3329c47e8a113228c53acb6183034040e46fbea5aa11"
+    },
+    {
+      "blob": "1baec87439223d4ec4e3905fc80d6d724de4f2d0",
+      "bytes": 399,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-types.ts",
+      "sha256": "sha256:b49dcb73101b7a6a103ad66e889bbf9c8772b3b1c401d8c0fa7dad4e6e45a967"
+    },
+    {
+      "blob": "a9c42d51696ca8fb65c178455ea5a2196d732f38",
+      "bytes": 1213,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/current-location-workflow-identity.ts",
+      "sha256": "sha256:868d69d67acd6c757be373a217dc5fe64b9b10bc2845c30ac2604db59c4e430a"
+    },
+    {
+      "blob": "183180d9550a999787a06dfa3e8a14d2677798a0",
+      "bytes": 11630,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/model-registry.ts",
+      "sha256": "sha256:52b31f11cebbe19321810d208686283cd793b96295fe62cda4bd5e152e7fd345"
+    },
+    {
+      "blob": "eb55ca2572344f9b8c76f58ded540989c8d0bc51",
+      "bytes": 188,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-table-builders.ts",
+      "sha256": "sha256:b84c3c8c379c25828716c8749efae34a7614f1405dd1305077377b30bc17d6d2"
     },
     {
       "blob": "5745d7a07593b1da4b4fa37843fbc2fb51e057dd",
@@ -650,10 +923,28 @@
       "sha256": "sha256:9474103b36f6d5e91ce93609032d558b75e50752bbfcc209dbc4f7ad4015ca7b"
     },
     {
+      "blob": "713e0799f27de104077da5e86a6f31e5a98b5102",
+      "bytes": 279,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/loop-plan-id.ts",
+      "sha256": "sha256:77209a043af600894f850012f5260f3e7a4331ae855002a4008d7d5f23ae11df"
+    },
+    {
       "blob": "6cae92b312f0ef1801d5a42a3f7c7ea8e0baa6f2",
       "bytes": 16241,
       "path": "archive/legacy-generation-2026-09-14/root/src/design/screen-applicability-sqlite-store.ts",
       "sha256": "sha256:3a62fa10e05ef35bc606cab3dc8dd58cf02346aad1493c937d30a5abbbdf808e"
+    },
+    {
+      "blob": "9601b08cb1063c44dcdf68e59595942828b4c99b",
+      "bytes": 7471,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-graph.ts",
+      "sha256": "sha256:a11010f5574933f13aef7c986921a06ba0e0be06d696fa7fbeab03fe0a5b8d56"
+    },
+    {
+      "blob": "38849fc200e7475f541ec9b90a579124b77ee67e",
+      "bytes": 4383,
+      "path": "archive/legacy-generation-2026-09-14/root/src/cli/commands/route.ts",
+      "sha256": "sha256:7f0a64b892472d82059bacdb841f0499a670ee10d00a620553d5be7a671197d4"
     },
     {
       "blob": "c6785502a46640a80df1cf78a4a8ad3e7b6e666f",
@@ -668,10 +959,22 @@
       "sha256": "sha256:b0876c3fa8f9f4b3bd083edc58718806d21218db148acac695619d04491547ef"
     },
     {
+      "blob": "1defcbca1242a878d645cc4476e4dfe3c801fafe",
+      "bytes": 9520,
+      "path": "archive/legacy-generation-2026-09-14/root/src/workflow/contracts-extras.ts",
+      "sha256": "sha256:7ba15efa32f3de02f980ab86b8b366d7a46c1660d1cb6916297e8c5dc1d979e7"
+    },
+    {
       "blob": "0e89f6d56c861bee4f034d61f93673a3a8d8baa9",
       "bytes": 7580,
       "path": "archive/legacy-generation-2026-09-14/root/src/audit/branches.ts",
       "sha256": "sha256:a90bd7f961272edc9def84416b64b0263e82ab1edd74d7cb02041e7d024e02a7"
+    },
+    {
+      "blob": "0f009b6bf222066395e3ce4b05eadc88f8c3cd38",
+      "bytes": 35376,
+      "path": "archive/legacy-generation-2026-09-14/root/src/requirements/nfr-registry.ts",
+      "sha256": "sha256:6258e9cb28637ebe18338354aaac89343c1f4a41507b1203471271e6d977daaa"
     },
     {
       "blob": "89308cf84b9fa1c34ad67c084beab157284ca6c0",
@@ -686,10 +989,52 @@
       "sha256": "sha256:94519967c5565bd024b3da03384f7a12d9622c16af0b0836e534d4ff0434853d"
     },
     {
+      "blob": "47dac8b7d815fc5c9fba984c254f670a60db3267",
+      "bytes": 4099,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/team.ts",
+      "sha256": "sha256:f13d34c6d34f15eca6f3953e88f8a518cd586fb52bc42f0a6bc2c79ce6d315bf"
+    },
+    {
+      "blob": "4d3b598515fe529bcccb886f7fd89ba4dafce469",
+      "bytes": 3081,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/open-branch-plan-reservation-authority.ts",
+      "sha256": "sha256:c7c1a233abfea0d98457ee361b45c23c586ff07be6716eda99274506f2885336"
+    },
+    {
+      "blob": "711d51254f8c98b8732afd74f143940a372019a1",
+      "bytes": 8023,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/runtime-verification.ts",
+      "sha256": "sha256:a11c4e797dd4e4357204ad9af2ab092e195afd1d0405b1e3e8bcfd1ff5319fc6"
+    },
+    {
+      "blob": "b535332c06770c88cd1e7c947cf329081e24dad8",
+      "bytes": 1017,
+      "path": "archive/legacy-generation-2026-09-14/root/src/requirements/requirement-generated-view-generator.ts",
+      "sha256": "sha256:c999183b14ff36779c1b2e556371d733e09dfbd35cd40de0115b56468d8de09e"
+    },
+    {
       "blob": "8bd5340e0e85f81613ebf1e275f75f2dc5ea2e06",
       "bytes": 1198,
       "path": "archive/legacy-generation-2026-09-14/root/src/vscode/extension.ts",
       "sha256": "sha256:3c6913374dd44f6f7d444e3f2ab5306cc6f6c767b4f7816cd94339a50cef252b"
+    },
+    {
+      "blob": "e5a4b2d7ce7eb165b46ccd4c849a0fc7c8047a58",
+      "bytes": 1453,
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/canonical-digest.ts",
+      "sha256": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000"
+    },
+    {
+      "blob": "78e9629eb92fbebc585bed30ed3f57c5c55c7545",
+      "bytes": 1026,
+      "path": "archive/legacy-generation-2026-09-14/root/src/workflow/contracts-types.ts",
+      "sha256": "sha256:2b8dcac19d45cd742cd7f996537c26ea0fb24273762405963b2d8e66e25417da"
+    },
+    {
+      "blob": "12bd57b79cc7ee57e1ae3ed88d3de9ad211d735a",
+      "bytes": 10825,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-design.ts",
+      "sha256": "sha256:f152d5ea4a8e5973fa956b0d0c85330bf549bf22a7f1c5eb291d5e3c328b95b6"
     },
     {
       "blob": "a84d5be2c997157dc59efd71f508178589eb6a7c",
@@ -698,16 +1043,46 @@
       "sha256": "sha256:67500c8594ee574f7bbaf47e3d6edaaa052266e1465aeae09c2ee29e9298d110"
     },
     {
+      "blob": "e1063d7953cd088ef389306a0e93402c77b754c9",
+      "bytes": 17705,
+      "path": "archive/legacy-generation-2026-09-14/root/src/requirements/requirement-generated-view.ts",
+      "sha256": "sha256:a0839fc82da7af87996b9f44c5d5bb5c89b94637da79d1fe89110096bf71a9bf"
+    },
+    {
       "blob": "e4cd2be6fdb345da9d65f2be5bd588f0fa64dcc5",
       "bytes": 737,
       "path": "archive/legacy-generation-2026-09-14/root/src/web/index.ts",
       "sha256": "sha256:a7ad813e098c51941d2ef6e48e511879f43c552626009591f9f03e40fd3586fb"
     },
     {
+      "blob": "b0571d208115adc93daca9fbe2cef96ff99184b6",
+      "bytes": 1218,
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/file-walk.ts",
+      "sha256": "sha256:045f57ff8022041352d0871df6cc744b5fb2b4243c67781f973770a0474397d2"
+    },
+    {
       "blob": "4690c0fd434ac04f33538a2a7621267495fc3e25",
       "bytes": 2033,
       "path": "archive/legacy-generation-2026-09-14/root/src/vscode/tree-decoration.ts",
       "sha256": "sha256:e30578c2e34f5948039d49a13f92ae4b036e18ee12157702ceee716d6641433d"
+    },
+    {
+      "blob": "d70864e09a2d4275f2f7b4322f62a30284f169bc",
+      "bytes": 867,
+      "path": "archive/legacy-generation-2026-09-14/root/src/workflow/current-location-workflow-identity.ts",
+      "sha256": "sha256:5975e2bd15af4fe44c7b1b405f7273c7c1353c05883b23d6a82c4e3902f81bc9"
+    },
+    {
+      "blob": "5f12095760e3170a18a0ad7f7da42c9304159ecc",
+      "bytes": 11150,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/workflow-execution-policy-registry.ts",
+      "sha256": "sha256:79ba1d900f9d513706687ca3f06eeaeb8924c2c6534dbe4b58f1ead48cdf50c8"
+    },
+    {
+      "blob": "691b743051ef4789ee6e55372201ccf5cf491768",
+      "bytes": 465,
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/collection-utils.ts",
+      "sha256": "sha256:9639253d0240104af990b2aaa22b5c18b72893c5540737d39b938589a473e7a1"
     },
     {
       "blob": "577d9f2d4ecf634e9481b12fdaa9f6185b3c6a64",
@@ -726,6 +1101,12 @@
       "bytes": 15246,
       "path": "archive/legacy-generation-2026-09-14/root/src/semantic/semantic-commit-store.ts",
       "sha256": "sha256:78cd4aca5079218bc49d085f63359a9ecfdbe5439dca3880bcdad99262e7532b"
+    },
+    {
+      "blob": "dc4fef4e51f71a4ddd97494bff06342349939380",
+      "bytes": 544,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/visualization-tree-contract.ts",
+      "sha256": "sha256:2aeddd9900aebc2abd72aa3b7381aa0260cf6bd4de3cfd350ee7435dcab22ce4"
     },
     {
       "blob": "fb1775eae793d0d73ca2dff1feee2c5e2ce98701",
@@ -776,10 +1157,28 @@
       "sha256": "sha256:a11b22ca0544439e819e648acbdce1c191ea9357e4e21571e27904491cd7a93e"
     },
     {
+      "blob": "1272e59190309da2d533f5370c26b84966ceb026",
+      "bytes": 394,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/atomic-contract-id.ts",
+      "sha256": "sha256:0f0305eb66c3f283eb446e23ac59287eedea2e6afc4f9182f177dec21741ffa6"
+    },
+    {
       "blob": "6714a7688cb489be741985d19f12b30b3b4d33d9",
       "bytes": 1739,
       "path": "archive/legacy-generation-2026-09-14/root/src/composition/db-rebuild-composition.ts",
       "sha256": "sha256:652b3ec7c6537110c57cce7532a5b6a5f751e627e29cf352031286bc1505ec18"
+    },
+    {
+      "blob": "957dc0c93455f527b19d0bb82d08dd439824e302",
+      "bytes": 1668,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-semantic.ts",
+      "sha256": "sha256:a3ed6665a0df2a16b898e9f34217a507d7d4b9cb24b53bead7d4d0cc38d5a905"
+    },
+    {
+      "blob": "bbbe262e7caa3737556537bd57926004daaf52ca",
+      "bytes": 1505,
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/typescript-lazy.ts",
+      "sha256": "sha256:7e791e76a94f1099c4779f3709d8bfb9a0f4ffaae52f3a8d4a7059306e141847"
     },
     {
       "blob": "3926adeb46bd7a57e0ead80abf619c1f65706489",
@@ -792,6 +1191,18 @@
       "bytes": 842,
       "path": "archive/legacy-generation-2026-09-14/root/src/task/proposal-document-pack-types.ts",
       "sha256": "sha256:e2c59a540a7b3a5e9cb4ebff4c670d15890c5e47438c6e39712ce8d0c556ce03"
+    },
+    {
+      "blob": "24f742095987036098dc144f0035fc1f9b869689",
+      "bytes": 3043,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/visualization-contract.ts",
+      "sha256": "sha256:2a1edb950c94a25b0582e5df39120b651f0a33302b182594b0ea953fca0270fd"
+    },
+    {
+      "blob": "da5b62c5a0571b763fe2373f0f5183e6e6e82296",
+      "bytes": 873,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-catalog.ts",
+      "sha256": "sha256:0f97120c762dfad239bd492f01205aeccb1ca93d2ef123d7bd552a11c66e917a"
     },
     {
       "blob": "d4b49faacd092a544e45159f9a41a347152118d9",
@@ -822,6 +1233,12 @@
       "bytes": 2001,
       "path": "archive/legacy-generation-2026-09-14/root/src/team/run-policy.ts",
       "sha256": "sha256:5cf3a59ec1f2fb3f053bdc607b5d2244dd2178152075fc72fa3ae76fa26518c3"
+    },
+    {
+      "blob": "7c323ad227e19bd8842a5571bba0e6f092187eaa",
+      "bytes": 1974,
+      "path": "archive/legacy-generation-2026-09-14/root/src/cli/preflight-gate-aggregation.ts",
+      "sha256": "sha256:51f20fae3c7b08bee546101bdac8906aca55b1351428a7de4bfb139a1fb4ab17"
     },
     {
       "blob": "fce0b20c7e4a4953032932471de906ac5e1f0e22",
@@ -872,6 +1289,18 @@
       "sha256": "sha256:0fa55999a3e92360edf6c2475f16706d4c48e242dd02b0b05aa2b3ffb9c4b382"
     },
     {
+      "blob": "3665c7ac620c32c6348c877a26e7105ec39d329b",
+      "bytes": 1832,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-registry.ts",
+      "sha256": "sha256:d1cb7e62b7ebc01cd5d834d8428f745237c48ec9c7e4f80d3b1109ca38e5312d"
+    },
+    {
+      "blob": "7dedf7f30b130021bcf11731a4f791db63c4adc5",
+      "bytes": 5552,
+      "path": "archive/legacy-generation-2026-09-14/root/src/cli/lite-canary-selector.ts",
+      "sha256": "sha256:6cb39dd168fce0b470a7f7206620b4fda8fd8ac2b415776a49148a26fe728e89"
+    },
+    {
       "blob": "3491ed95806f200d0f25d3efc7d006649c173775",
       "bytes": 2927,
       "path": "archive/legacy-generation-2026-09-14/root/src/plan/lint-policy.ts",
@@ -896,6 +1325,12 @@
       "sha256": "sha256:a8bf33ec725511f1b89cd67abd53c1f6c489353075f38a3c4bb01f320662c754"
     },
     {
+      "blob": "6b8586049d628725135a8edfe7764a4560edc1f0",
+      "bytes": 4730,
+      "path": "archive/legacy-generation-2026-09-14/root/src/cli/full-regression-shards.ts",
+      "sha256": "sha256:1e14686b6ca2aa6e2f72327d252413093e3e0b6820c424085d09f93376f973b1"
+    },
+    {
       "blob": "bb93e309950d111fc820a8ee660815e783964988",
       "bytes": 869,
       "path": "archive/legacy-generation-2026-09-14/root/src/vscode/tree-view-provider.ts",
@@ -906,6 +1341,12 @@
       "bytes": 2543,
       "path": "archive/legacy-generation-2026-09-14/root/scripts/audit-l12-hybrid-recognition.ts",
       "sha256": "sha256:28256297c0aac7fde97cbef837092c8cbb09cb5c0821abb14946c56d42f1082d"
+    },
+    {
+      "blob": "d49d6830c94b6c413afcff08549d3825cde527e0",
+      "bytes": 8128,
+      "path": "archive/legacy-generation-2026-09-14/root/src/setup/update-check.ts",
+      "sha256": "sha256:d2ced39b60b7bb283191b41384859549d3635d42f748f0a46eaa6c24afd765a8"
     },
     {
       "blob": "7cefef0159fc88385c784f302b008ccf6276dcf1",
@@ -926,16 +1367,40 @@
       "sha256": "sha256:0c6e84c16beaf4f21fd5f37176a58e0eadd7ff04d8f2f851bfa7b13a4fc5b7a2"
     },
     {
+      "blob": "7e243a9193789b265f2adeff6866e270300835ac",
+      "bytes": 2964,
+      "path": "archive/legacy-generation-2026-09-14/root/src/cli/commands/issue-hierarchy-census.ts",
+      "sha256": "sha256:21979bfe874268f86e99b00fa1292a9bb40b63acc6535a030beb793a9256d19b"
+    },
+    {
+      "blob": "776ff87a4402ef06d9b1ba2a48bcec001d31e96e",
+      "bytes": 6235,
+      "path": "archive/legacy-generation-2026-09-14/root/src/workflow/workflow-interview-unresolved.ts",
+      "sha256": "sha256:9d8d674caf4ed7d916bd5affa3d047a2712da5ab5de1fa3927c27a95a7748fef"
+    },
+    {
       "blob": "4225de46ffbd0e3fa4f9bc2a9a996201d598f364",
       "bytes": 18968,
       "path": "archive/legacy-generation-2026-09-14/root/src/policy/closure-authority-backfill.ts",
       "sha256": "sha256:908807ca8e3ac93684a446b0fe24684df0db3cb279fe64d563729f06ea1fb34e"
     },
     {
+      "blob": "2a1dbb7832bc75b1b2d80cdd4bd1e47ec51bea12",
+      "bytes": 14124,
+      "path": "archive/legacy-generation-2026-09-14/root/src/workflow/universal-workflow-envelope.ts",
+      "sha256": "sha256:81b9a975cb1004967d5707c432ac30201c0ebb2ccd138e5aed6184c4a2782e61"
+    },
+    {
       "blob": "d71403295fcc98044dbbe9f1664a0f38a62f623c",
       "bytes": 2581,
       "path": "archive/legacy-generation-2026-09-14/root/.claude/hooks/work-guard.ts",
       "sha256": "sha256:c9aa80b399925bb258de728314dc43f531e0f219c771585d9f661cd0772a7009"
+    },
+    {
+      "blob": "0ec761c4aa0dafea654d9459e65eeb0d5f678fe7",
+      "bytes": 4639,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/workflow-execution-policy-projection.ts",
+      "sha256": "sha256:dc7af9d59bb738cb0b20f553f3bfe263664a6ae786f4132181c41cf45cf6e5fa"
     },
     {
       "blob": "cd3c1fcac280a5dd35a3d31dbb5e39d17bf7965f",
@@ -962,10 +1427,34 @@
       "sha256": "sha256:50e88b265a93871602d6b25a553c4cca8a5c05d9ca1911644b7df6162ce29ce3"
     },
     {
+      "blob": "e77a653027cf133810a96636dc462809de543dcb",
+      "bytes": 2616,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-tables-screen.ts",
+      "sha256": "sha256:0a88381ecb0c9e11d5314a0d2a6c76b3effb3d5798f2b36e694cf5eff0e759ba"
+    },
+    {
+      "blob": "af4a668641ec204a40a8595e0d35ab769925ad24",
+      "bytes": 960,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/visualization-view-contract.ts",
+      "sha256": "sha256:135094909c3fffdfc710478161453073987988bd2d8bc6ce9a8d7a61d7c2cc4d"
+    },
+    {
       "blob": "49de3b23974c14068213578b5143173cd28986c0",
       "bytes": 6220,
       "path": "archive/legacy-generation-2026-09-14/root/src/design/ui-domain-gate.ts",
       "sha256": "sha256:4c7835483ec280900b90ba6bc235e2a0a15250d7b425247860f9e10975c219be"
+    },
+    {
+      "blob": "b01dceae35f9a225fd9e3e13b3268d238d0a1979",
+      "bytes": 1019,
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/repo-info.ts",
+      "sha256": "sha256:e8c194f5b9ecdfd599e3cb9de0bba6b53be19601e7f6d9cdaca72a199c10e632"
+    },
+    {
+      "blob": "92706ab21b65f4ca3c7f5b974d12bd33e2e04c67",
+      "bytes": 14009,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db-indexes.ts",
+      "sha256": "sha256:3480d9e7511c4a091c8ccb3c3f543f4e4a35560d3b145889d55ca30a10776ae3"
     },
     {
       "blob": "bd1d0954ac3ddb63e8d589b1af813c1280838479",
@@ -974,10 +1463,22 @@
       "sha256": "sha256:0972aabbefc245d0a8204c10bdfa411662b898591267922459441c4328b7a1a9"
     },
     {
+      "blob": "87e32f5a68a80f179ea97393958af2de91078ccb",
+      "bytes": 583,
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/value-guards.ts",
+      "sha256": "sha256:5f4872c47d431595a5e04f0bfd581b55c183cbf4cc1046e6b09ae9dfd81ca35f"
+    },
+    {
       "blob": "80ab90666ffa93f14418c76f87914e9de56e9f1a",
       "bytes": 252,
       "path": "archive/legacy-generation-2026-09-14/root/src/web/.gitkeep",
       "sha256": "sha256:5e9a6f7ac2537cdf821a12870afa0a0380cdbb74d0c078bf2b7bc6476eb8c73b"
+    },
+    {
+      "blob": "75940324eb54b356e34f4d98f475d913e1390cc8",
+      "bytes": 13135,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/design-declarations.ts",
+      "sha256": "sha256:df0922b4aa4b2de2f4b8fe9e9a72e75dd1b2eb44ce0177412060998bbf1032a1"
     },
     {
       "blob": "297acf420ea7a4962c5ccb09be228b94d5439312",
@@ -986,16 +1487,52 @@
       "sha256": "sha256:7d90403d7b0dcbc190e67c46405e6c468a8a481fbcfba1fdffafeff8d756807f"
     },
     {
+      "blob": "a18660698d5daf78ffe4a1d65fc9e1181fc5440a",
+      "bytes": 321,
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/shell-quote.ts",
+      "sha256": "sha256:68cf6f82d2461b364a1053ce5fd59f93a6055131964e5ab85371333979043d28"
+    },
+    {
       "blob": "e837c68466c87d661ebc3560e05305102154bc32",
       "bytes": 47,
       "path": "archive/legacy-generation-2026-09-14/root/src/vmodel/design-declarations.ts",
       "sha256": "sha256:e82f9975490001e5e9a66e52105271c34e7c843f5ef552098f2787b6f27dd603"
     },
     {
+      "blob": "ae3217d0a7b8a929c441945859120aa079952810",
+      "bytes": 3763,
+      "path": "archive/legacy-generation-2026-09-14/root/src/schema/harness-db.ts",
+      "sha256": "sha256:86b0ca470118e1ce4e100c313d39945bc62f3198720380850e4efb9aae7fd1ca"
+    },
+    {
       "blob": "4eee70983a4fdf54f5430dcc8dacf67db5d3b519",
       "bytes": 9665,
       "path": "archive/legacy-generation-2026-09-14/root/src/gate/review-tier.ts",
       "sha256": "sha256:967ceac6118c22bfe90694677e417d70cda0799e983e07b76170da3fae581d99"
+    },
+    {
+      "blob": "0144d7d0352717a6b8a65bef6fef3849820f8d4b",
+      "bytes": 188,
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/string-utils.ts",
+      "sha256": "sha256:c3070b30d821e0e4f10cd060ddc494950b54e993af3899078927c29aa1de18d3"
+    },
+    {
+      "blob": "4550206bccd4cc415e19b88381bd7de5bf26a8d9",
+      "bytes": 129,
+      "path": "archive/legacy-generation-2026-09-14/root/src/workflow/skill-applicability-authoring.ts",
+      "sha256": "sha256:64168537fc71bda6b6c8fec963062d9c048048647cf15bdde69fe2feb277f463"
+    },
+    {
+      "blob": "967e48b49e7185c491e3099b773f65c19f747308",
+      "bytes": 2117,
+      "path": "archive/legacy-generation-2026-09-14/root/src/workflow/cli-workflow-identity-projection.ts",
+      "sha256": "sha256:7510c6f7eb7e605a9c5bc8b15cd689190a8adbf3a255afdd0fa598bfba8bbaa9"
+    },
+    {
+      "blob": "73798e0f79c0656a6922d406f829680f48fae117",
+      "bytes": 1583,
+      "path": "archive/legacy-generation-2026-09-14/root/src/shared/commit-subject.ts",
+      "sha256": "sha256:43b9b3897c3c77a625236635371411d515828b59616487899fff3124dea4ec62"
     },
     {
       "blob": "0ac17119f6aafb85ed404f1f1c331fb60fe19c9d",
@@ -1005,7 +1542,8 @@
     }
   ],
   "negative_cases": [
-    "target_set_missing_or_duplicate",
+    "target_set_missing",
+    "target_set_duplicate",
     "source_blob_tamper",
     "source_line_anchor_tamper",
     "classification_category_tamper",
@@ -1018,6 +1556,7 @@
     "legacy_consumer_tamper",
     "history_tamper",
     "history_consumer_closure_tamper",
+    "implementation_evidence_tamper",
     "boundary_blob_tamper",
     "authority_promotion",
     "formal_update_reversal_tamper",
@@ -1030,16 +1569,27 @@
     "classification_nested_extra_key_tamper",
     "history_nested_extra_key_tamper",
     "shrink_nested_extra_key_tamper",
-    "input_digest_missing_or_duplicate",
+    "read_mode_tamper",
+    "input_digest_missing",
+    "input_digest_duplicate",
     "input_digest_schema_tamper",
     "inventory_scope_tamper",
     "fixed_base_pin_tamper",
-    "output_digest_tamper"
+    "output_digest_tamper",
+    "human_judgment_tamper",
+    "review_pin_tamper",
+    "ledger_digest_match_tamper",
+    "wave_denominator_tamper",
+    "existing_union_tamper",
+    "inventory_top_level_extra_key_tamper",
+    "inventory_top_level_missing_key_tamper",
+    "generator_profile_category_tamper",
+    "generator_profile_products_tamper"
   ],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
-  "output_sha256": "sha256:0159e439950fe0ba9f1c4584aecb2b1ef0d0b6767e636901b9ca5c520b3cd1b9",
+  "output_sha256": "sha256:4e4c5f12370ea67c07d4eac107e518c37f169e37c895eee3143b049a272f832f",
   "phase_candidate_distribution": {
-    "": 56,
+    "": 109,
     "PHCAP-02": 1,
     "PHCAP-03": 1,
     "PHCAP-06": 1,
@@ -1047,7 +1597,7 @@
     "PHCAP-12": 1
   },
   "schema_revision": 1,
-  "scope": "fixed BASE unresolved implementation_source residual after existing research union exact 67 assets",
+  "scope": "fixed BASE unresolved implementation_source residual after fixed prior research ID set and explicit 53 prefix residual assets exact 120 assets",
   "wave_source_paths": {
     "1": "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl",
     "2": "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl",

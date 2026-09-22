@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Materialize SCF-B-0126 for the fixed-base residual 67 legacy source assets.
+"""Materialize SCF-B-0126 for the fixed-base residual 120 legacy source assets.
 
 This is a static research generator. It reads archive bytes only with ``git
 show BASE:path`` and never imports or executes archive code.
@@ -38,6 +38,65 @@ EXISTING_RESEARCH_PREFIXES = (
     "src/lint/", "src/runtime/", "src/schema/", "src/workflow/",
     "src/setup/", "src/cli/", "src/requirements/", "src/shared/",
 )
+UNRESEARCHED_PREFIX_ASSET_PATHS = (
+    ('LEGACY-ASSET-D331F13A1FA21B0C05FE', 'src/cli/commands/issue-hierarchy-census.ts'),
+    ('LEGACY-ASSET-08F8688895B787BD3D5C', 'src/cli/commands/rename.ts'),
+    ('LEGACY-ASSET-313DC99AEF53834D9207', 'src/cli/commands/route.ts'),
+    ('LEGACY-ASSET-C4C93ABA07B48AAB6D05', 'src/cli/full-regression-shards.ts'),
+    ('LEGACY-ASSET-110F52E3C367C3DCCFE5', 'src/cli/helpers.ts'),
+    ('LEGACY-ASSET-B85C45D7C5621BD8201C', 'src/cli/lite-canary-selector.ts'),
+    ('LEGACY-ASSET-A3EC7F28F52F2808041E', 'src/cli/preflight-gate-aggregation.ts'),
+    ('LEGACY-ASSET-354670A58AC796DDC80F', 'src/requirements/nfr-registry.ts'),
+    ('LEGACY-ASSET-4329EAEA146D5D97E088', 'src/requirements/requirement-generated-view-generator.ts'),
+    ('LEGACY-ASSET-555329E1E192F23D2865', 'src/requirements/requirement-generated-view.ts'),
+    ('LEGACY-ASSET-85F302A8E7280A166171', 'src/schema/atomic-contract-id.ts'),
+    ('LEGACY-ASSET-11C75CC63968FB9A5BD2', 'src/schema/current-location-workflow-identity-resolver.ts'),
+    ('LEGACY-ASSET-187E43CE3096B88CA8B4', 'src/schema/current-location-workflow-identity.ts'),
+    ('LEGACY-ASSET-EEC2DA57D64EC4908112', 'src/schema/design-declarations.ts'),
+    ('LEGACY-ASSET-132E6449FA96E5CABBBF', 'src/schema/green-command.ts'),
+    ('LEGACY-ASSET-9BFD3E86A8F5AE0DA720', 'src/schema/harness-db-catalog.ts'),
+    ('LEGACY-ASSET-E9FF2DF247348F5608F2', 'src/schema/harness-db-indexes.ts'),
+    ('LEGACY-ASSET-1ABE9822E36400BC82C2', 'src/schema/harness-db-table-builders.ts'),
+    ('LEGACY-ASSET-5442594ED146AD72850C', 'src/schema/harness-db-tables-design.ts'),
+    ('LEGACY-ASSET-30539BEC772802F50C9D', 'src/schema/harness-db-tables-graph.ts'),
+    ('LEGACY-ASSET-B8033A9BCD9CC70BF8F6', 'src/schema/harness-db-tables-registry.ts'),
+    ('LEGACY-ASSET-E4EDA1517A4F062B2D64', 'src/schema/harness-db-tables-screen.ts'),
+    ('LEGACY-ASSET-8A390337BEE15CED1AA2', 'src/schema/harness-db-tables-semantic.ts'),
+    ('LEGACY-ASSET-18579F09E6B2C29E5622', 'src/schema/harness-db-types.ts'),
+    ('LEGACY-ASSET-F0ED1811C81FD1184188', 'src/schema/harness-db.ts'),
+    ('LEGACY-ASSET-2B68A62292FADDC5BCA6', 'src/schema/loop-plan-id.ts'),
+    ('LEGACY-ASSET-18EBF31B40C9A58DE958', 'src/schema/model-registry.ts'),
+    ('LEGACY-ASSET-3D7D5062903EE9CEDFEF', 'src/schema/open-branch-plan-reservation-authority.ts'),
+    ('LEGACY-ASSET-414CC59CA35B28BB7AF4', 'src/schema/runtime-verification.ts'),
+    ('LEGACY-ASSET-3AEDBB3A9A7B549C4C24', 'src/schema/team.ts'),
+    ('LEGACY-ASSET-97D1784D53918F126E3B', 'src/schema/visualization-contract.ts'),
+    ('LEGACY-ASSET-72ECA3C318F8028A6D91', 'src/schema/visualization-tree-contract.ts'),
+    ('LEGACY-ASSET-E595E192F58FF3B1A2A0', 'src/schema/visualization-view-contract.ts'),
+    ('LEGACY-ASSET-DBCE67DF3C1FE8648191', 'src/schema/workflow-execution-policy-projection.ts'),
+    ('LEGACY-ASSET-67D77EEBF1209346882C', 'src/schema/workflow-execution-policy-registry.ts'),
+    ('LEGACY-ASSET-CD0EAE866A7CA2A0D1F8', 'src/setup/update-check.ts'),
+    ('LEGACY-ASSET-4A9AB5B2EF182BC30431', 'src/shared/canonical-digest.ts'),
+    ('LEGACY-ASSET-6B10C0467A1A1918D46E', 'src/shared/collection-utils.ts'),
+    ('LEGACY-ASSET-F6A0AC0CAC1590A754EC', 'src/shared/commit-subject.ts'),
+    ('LEGACY-ASSET-5BABA53229DF9A5DECEF', 'src/shared/file-walk.ts'),
+    ('LEGACY-ASSET-E9F6609D6EBDEBD288BC', 'src/shared/repo-info.ts'),
+    ('LEGACY-ASSET-EFFA71383D8FAE4EBBBA', 'src/shared/shell-quote.ts'),
+    ('LEGACY-ASSET-F2B7BCF14B8563B15C14', 'src/shared/string-utils.ts'),
+    ('LEGACY-ASSET-0996E33E11CB9283EEC8', 'src/shared/time-utils.ts'),
+    ('LEGACY-ASSET-8F85476FEB95D1284680', 'src/shared/typescript-lazy.ts'),
+    ('LEGACY-ASSET-ECE1AFAAE85425CD29BB', 'src/shared/value-guards.ts'),
+    ('LEGACY-ASSET-F5C9B1066B7337E45182', 'src/workflow/cli-workflow-identity-projection.ts'),
+    ('LEGACY-ASSET-3290C9A3BA7FAD7BA07C', 'src/workflow/contracts-extras.ts'),
+    ('LEGACY-ASSET-4D3446684F730BFEB99E', 'src/workflow/contracts-types.ts'),
+    ('LEGACY-ASSET-66A3EB90764ABB6E7F57', 'src/workflow/current-location-workflow-identity.ts'),
+    ('LEGACY-ASSET-F45E18DC5CE003BD8D91', 'src/workflow/skill-applicability-authoring.ts'),
+    ('LEGACY-ASSET-D73981AB049C177AC184', 'src/workflow/universal-workflow-envelope.ts'),
+    ('LEGACY-ASSET-D641C9E49847C74848CE', 'src/workflow/workflow-interview-unresolved.ts'),
+)
+UNRESEARCHED_PREFIX_ASSET_IDS = frozenset(a for a, _ in UNRESEARCHED_PREFIX_ASSET_PATHS)
+UNRESEARCHED_PREFIX_SOURCE_PATHS = frozenset(p for _, p in UNRESEARCHED_PREFIX_ASSET_PATHS)
+if len(UNRESEARCHED_PREFIX_ASSET_PATHS) != 53 or len(UNRESEARCHED_PREFIX_ASSET_IDS) != 53 or len(UNRESEARCHED_PREFIX_SOURCE_PATHS) != 53:
+    raise AssertionError("unresearched prefix residual pin drift")
 PRODUCTS = ("HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS")
 
 # These are manually read source-semantic pins. A path is never sufficient:
@@ -158,6 +217,21 @@ def git_blob(path: str, base: str = BASE_REVISION) -> str:
     return subprocess.check_output(["git", "rev-parse", f"{base}:{path}"], text=True).strip()
 
 
+UNRESEARCHED_PROFILE_REASON = "This implementation_source asset is absent from the prior research asset-ID set; no direct product evidence is retained, so it remains insufficient basis pending dedicated review."
+
+def unique_anchor_marker(path: str) -> str:
+    lines = git_bytes(ARCHIVE_PREFIX + path).decode(errors="replace").splitlines()
+    for line in lines:
+        marker = line.strip()
+        if marker and sum(marker in candidate for candidate in lines) == 1:
+            return marker
+    raise AssertionError(f"no unique static anchor for {path}")
+
+for _, _path in UNRESEARCHED_PREFIX_ASSET_PATHS:
+    REVIEW_SPECS[_path] = p("insufficient_basis", [], unique_anchor_marker(_path), UNRESEARCHED_PROFILE_REASON, 1)
+if len(REVIEW_SPECS) != 120:
+    raise AssertionError(f"review profile count drift: {len(REVIEW_SPECS)}")
+
 def read_jsonl(path: str) -> list[tuple[int, dict]]:
     return [(n, json.loads(line)) for n, line in enumerate(git_bytes(path).decode().splitlines(), 1) if line.strip()]
 
@@ -212,12 +286,19 @@ def static_source(asset: dict, spec: dict) -> dict:
 def phase_target_set(phase_rows: dict[str, tuple[int, dict]], wave_asset_ids: set[str]) -> list[str]:
     unresolved = {a: row for a, (_, row) in phase_rows.items() if row.get("product_classification_status") == "unresolved"}
     implementation = {a: row for a, row in unresolved.items() if row.get("artifact_evidence_kind") == "implementation_source"}
-    existing = {a for a, row in unresolved.items() if any(row.get("source_path", "").startswith(prefix) for prefix in EXISTING_RESEARCH_PREFIXES)} | (wave_asset_ids & set(unresolved))
-    if len(existing) != 280:
-        raise AssertionError(f"existing research union drift: {len(existing)}")
+    prefix_ids = {a for a, row in unresolved.items() if any(row.get("source_path", "").startswith(prefix) for prefix in EXISTING_RESEARCH_PREFIXES)}
+    declared = {a: row.get("source_path") for a, row in unresolved.items() if a in UNRESEARCHED_PREFIX_ASSET_IDS}
+    if declared != dict(UNRESEARCHED_PREFIX_ASSET_PATHS):
+        raise AssertionError("unresearched prefix asset ID/path pin drift")
+    if not UNRESEARCHED_PREFIX_ASSET_IDS <= prefix_ids:
+        raise AssertionError("unresearched prefix residual outside fixed prefix set")
+    prior_research_ids = prefix_ids - UNRESEARCHED_PREFIX_ASSET_IDS
+    existing = prior_research_ids | (wave_asset_ids & set(unresolved))
+    if len(prior_research_ids) != 205 or len(existing) != 227:
+        raise AssertionError(f"existing research union drift: prior={len(prior_research_ids)} union={len(existing)}")
     targets = sorted(set(implementation) - existing)
-    if len(targets) != 67:
-        raise AssertionError(f"expected 67 residual implementation assets, got {len(targets)}")
+    if len(targets) != 120:
+        raise AssertionError(f"expected 120 residual implementation assets, got {len(targets)}")
     return targets
 
 
@@ -237,6 +318,7 @@ def make_record(asset_id: str, phase_rows: dict[str, tuple[int, dict]], disposit
     return {
         "asset_id": asset_id,
         "source_path": asset["source_path"],
+        "anchor_line_coverage": {"source_line_count": source["line_count"], "anchor_line_count": source["semantic_anchor"]["line_end"] - source["semantic_anchor"]["line_start"] + 1, "coverage_ratio": round((source["semantic_anchor"]["line_end"] - source["semantic_anchor"]["line_start"] + 1) / source["line_count"], 6)},
         "source_exact": source,
         "phase_evidence": {"path": PHASE, "line": phase_line, "row_sha256": row_digest(phase), "product_classification_status": phase.get("product_classification_status"), "artifact_evidence_kind": phase.get("artifact_evidence_kind"), "source_path": phase.get("source_path"), "source_sha256": phase.get("source_sha256"), "candidate_phase_targets": phase.get("candidate_phase_targets") or []},
         "legacy_asset_evidence": {"path": DISPOSITION, "line": asset_line, "row_sha256": row_digest(asset), "disposition": asset.get("disposition"), "asset_class": asset.get("asset_class"), "product_target": asset.get("product_target"), "implementation_status": asset.get("implementation_status"), "consumer_refs": sorted(asset.get("consumer_refs", [])), "decision_record_ref": asset.get("decision_record_ref"), "read_after_record_ref": asset.get("read_after_record_ref")},
@@ -268,6 +350,8 @@ def build() -> None:
         wave_asset_ids.update(row.get("asset_id") for _, row in [(n, row) for n, row in rows] if row.get("asset_id"))
     unresolved_wave = {a for a in wave_asset_ids if phase_rows.get(a, (0, {}))[1].get("product_classification_status") == "unresolved"}
     targets = phase_target_set(phase_rows, unresolved_wave)
+    prefix_ids = {a for a, (_, row) in phase_rows.items() if row.get("product_classification_status") == "unresolved" and any(row.get("source_path", "").startswith(prefix) for prefix in EXISTING_RESEARCH_PREFIXES)}
+    prior_research_ids = prefix_ids - UNRESEARCHED_PREFIX_ASSET_IDS
     if set(REVIEW_SPECS) != {phase_rows[a][1]["source_path"] for a in targets}:
         raise AssertionError("review spec/source target set mismatch")
     if any(a not in dispositions for a in targets):
@@ -290,12 +374,12 @@ def build() -> None:
         "binding_id": BINDING_ID,
         "base_revision": BASE_REVISION,
         "base_source_mode": "all input and archive evidence bytes from fixed BASE Git objects",
-        "scope": "fixed BASE unresolved implementation_source residual after existing research union exact 67 assets",
-        "existing_research_union": {"expected_unresolved_assets": 1792, "existing_union_count": 280, "residual_unresolved_count": 1512, "existing_prefixes": list(EXISTING_RESEARCH_PREFIXES), "wave_unresolved_assets": 64, "target_wave_overlap": 0},
+        "scope": "fixed BASE unresolved implementation_source residual after fixed prior research ID set and explicit 53 prefix residual assets exact 120 assets",
+        "existing_research_union": {"expected_unresolved_assets": 1792, "prior_research_asset_count": 205, "prior_research_asset_ids_sha256": tagged("\n".join(sorted(prior_research_ids)).encode()), "unresearched_prefix_asset_count": 53, "unresearched_prefix_asset_ids": sorted(UNRESEARCHED_PREFIX_ASSET_IDS), "unresearched_prefix_source_paths": sorted(UNRESEARCHED_PREFIX_SOURCE_PATHS), "existing_union_count": 227, "residual_unresolved_count": 1565, "existing_prefixes": list(EXISTING_RESEARCH_PREFIXES), "wave_unresolved_assets": 64, "target_wave_overlap": 0},
         "wave_source_paths": WAVE_PATHS,
         "counts": {"wave_files": 50, "wave_edges_scanned": len(wave_rows), "wave_unique_assets_scanned": len(wave_asset_ids), "target_assets": len(records), "target_wave_edges": 0, "categories": dict(sorted(categories.items())), "target_asset_artifact_evidence_kinds": {"implementation_source": len(records)}},
         "phase_candidate_distribution": dict(sorted(phase_counts.items())),
-        "expected_sets": {"target_asset_count": 67, "target_asset_ids": targets, "target_asset_ids_sha256": tagged("\n".join(targets).encode()), "source_paths": target_paths},
+        "expected_sets": {"target_asset_count": 120, "target_asset_ids": targets, "target_asset_ids_sha256": tagged("\n".join(targets).encode()), "source_paths": target_paths},
         "input_digests": input_digests,
         "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
         "formal_update": {"formal_asset_classification_updated": False, "phase_ledger_updated": False, "product_route_updated": False, "successor_updated": False, "new_build_allowed": False, "authority_effect": "none"},
@@ -305,36 +389,49 @@ def build() -> None:
         "edge_contract": {"target_wave_edges": 0, "duplicate_edges_forbidden": True, "missing_edges_forbidden": True},
         "artifacts": ["scaffold/bindings/SCF-B-0126.json", "scaffold/legacy-implementation-residual-0126/README.md", "scaffold/legacy-implementation-residual-0126/PR-DRAFT.md", "scaffold/legacy-implementation-residual-0126/generate.py", "scaffold/legacy-implementation-residual-0126/validate.py", "scaffold/legacy-implementation-residual-0126/selfcheck.py", "scaffold/legacy-implementation-residual-0126/inventory.json", "scaffold/legacy-implementation-residual-0126/classification-research.jsonl"],
         "negative_cases": [
-            "target_set_missing_or_duplicate",
-            "source_blob_tamper",
-            "source_line_anchor_tamper",
-            "classification_category_tamper",
-            "classification_product_tamper",
-            "wave_edge_injection",
-            "phase_status_tamper",
-            "asset_ledger_tamper",
-            "legacy_status_promotion_tamper",
-            "legacy_disposition_or_product_resolution_tamper",
-            "legacy_consumer_tamper",
-            "history_tamper",
-            "history_consumer_closure_tamper",
-            "boundary_blob_tamper",
-            "authority_promotion",
-            "formal_update_reversal_tamper",
-            "inventory_schema_tamper",
-            "inventory_source_paths_tamper",
-            "phase_evidence_extra_key_tamper",
-            "boundary_extra_product_tamper",
-            "boundary_extra_key_tamper",
-            "source_nested_extra_key_tamper",
-            "classification_nested_extra_key_tamper",
-            "history_nested_extra_key_tamper",
-            "shrink_nested_extra_key_tamper",
-            "input_digest_missing_or_duplicate",
-            "input_digest_schema_tamper",
-            "inventory_scope_tamper",
-            "fixed_base_pin_tamper",
-            "output_digest_tamper",
+            'target_set_missing',
+            'target_set_duplicate',
+            'source_blob_tamper',
+            'source_line_anchor_tamper',
+            'classification_category_tamper',
+            'classification_product_tamper',
+            'wave_edge_injection',
+            'phase_status_tamper',
+            'asset_ledger_tamper',
+            'legacy_status_promotion_tamper',
+            'legacy_disposition_or_product_resolution_tamper',
+            'legacy_consumer_tamper',
+            'history_tamper',
+            'history_consumer_closure_tamper',
+            'implementation_evidence_tamper',
+            'boundary_blob_tamper',
+            'authority_promotion',
+            'formal_update_reversal_tamper',
+            'inventory_schema_tamper',
+            'inventory_source_paths_tamper',
+            'phase_evidence_extra_key_tamper',
+            'boundary_extra_product_tamper',
+            'boundary_extra_key_tamper',
+            'source_nested_extra_key_tamper',
+            'classification_nested_extra_key_tamper',
+            'history_nested_extra_key_tamper',
+            'shrink_nested_extra_key_tamper',
+            'read_mode_tamper',
+            'input_digest_missing',
+            'input_digest_duplicate',
+            'input_digest_schema_tamper',
+            'inventory_scope_tamper',
+            'fixed_base_pin_tamper',
+            'output_digest_tamper',
+            'human_judgment_tamper',
+            'review_pin_tamper',
+            'ledger_digest_match_tamper',
+            'wave_denominator_tamper',
+            'existing_union_tamper',
+            'inventory_top_level_extra_key_tamper',
+            'inventory_top_level_missing_key_tamper',
+            'generator_profile_category_tamper',
+            'generator_profile_products_tamper',
         ],
     }
     inventory["output_sha256"] = tagged(ledger.read_bytes())

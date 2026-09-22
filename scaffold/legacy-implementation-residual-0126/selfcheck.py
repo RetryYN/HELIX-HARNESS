@@ -14,6 +14,11 @@ if spec is None or spec.loader is None:
     raise RuntimeError("cannot load validator")
 validator = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(validator)
+gen_spec = importlib.util.spec_from_file_location("scf0126_generate", HERE / "generate.py")
+if gen_spec is None or gen_spec.loader is None:
+    raise RuntimeError("cannot load generator")
+generator = importlib.util.module_from_spec(gen_spec)
+gen_spec.loader.exec_module(generator)
 BASE_LEDGER = [json.loads(x) for x in (HERE / "classification-research.jsonl").read_text().splitlines()]
 BASE_INV = json.loads((HERE / "inventory.json").read_text())
 
@@ -84,42 +89,109 @@ def history_extra_nested_key(rows): rows[0]["legacy_history_failure_consumer"]["
 def shrink_extra_nested_key(rows): rows[0]["legacy_implementation_shrinkage_evidence"]["fabricated"] = True
 
 
+def human_judgment(rows): rows[0]["human_judgment_remaining"].pop()
+def ledger_digest_match(rows): rows[0]["source_exact"]["ledger_digest_match"] = False
+def wave_denominator(inv): inv["counts"]["wave_edges_scanned"] -= 1
+def existing_union(inv): inv["existing_research_union"]["existing_union_count"] -= 1
+def inventory_top_level_extra(inv): inv["undeclared"] = True
+def inventory_top_level_missing(inv): inv.pop("scope")
+
+def run_direct_case(name: str, code: str, mutate) -> None:
+    old_profiles = validator.EXPECTED_PROFILES
+    profiles = copy.deepcopy(old_profiles)
+    mutate(profiles)
+    validator.EXPECTED_PROFILES = profiles
+    try:
+        try:
+            validator.check()
+        except AssertionError as exc:
+            actual = str(exc).split(":", 1)[0]
+            if actual != code:
+                raise AssertionError(f"{name}: expected {code}, got {actual}: {exc}")
+        else:
+            raise AssertionError(f"{name}: validator unexpectedly passed")
+    finally:
+        validator.EXPECTED_PROFILES = old_profiles
+
+def review_pin(profiles): profiles.pop(next(iter(profiles)))
+
+def run_generator_case(name: str, code: str, field: str) -> None:
+    with tempfile.TemporaryDirectory(prefix="scf-b-0126-generator-") as td:
+        root = Path(td)
+        old_bundle = generator.BUNDLE
+        old_profiles = generator.REVIEW_SPECS
+        old_validator = (validator.BUNDLE, validator.LEDGER, validator.INVENTORY)
+        profiles = copy.deepcopy(old_profiles)
+        path = "src/web/index.ts"
+        if field == "category":
+            profiles[path]["category"] = "direct_product_basis"
+        else:
+            profiles[path]["products"] = ["HELIX-Web"]
+        generator.BUNDLE = root
+        generator.REVIEW_SPECS = profiles
+        validator.BUNDLE = root
+        validator.LEDGER = root / "classification-research.jsonl"
+        validator.INVENTORY = root / "inventory.json"
+        try:
+            generator.build()
+            try:
+                validator.check()
+            except AssertionError as exc:
+                actual = str(exc).split(":", 1)[0]
+                if actual != code:
+                    raise AssertionError(f"{name}: expected {code}, got {actual}: {exc}")
+            else:
+                raise AssertionError(f"{name}: validator unexpectedly passed")
+        finally:
+            generator.BUNDLE = old_bundle
+            generator.REVIEW_SPECS = old_profiles
+            validator.BUNDLE, validator.LEDGER, validator.INVENTORY = old_validator
+
 CASES = [
-    ("target missing", "E_TARGET_SET", remove_row, None),
-    ("target duplicate", "E_TARGET_SET", duplicate_row, None),
-    ("source blob", "E_OLD_ASSET_SOURCE", source_blob, None),
-    ("source anchor", "E_SOURCE_ANCHOR", source_anchor, None),
-    ("classification category", "E_CLASSIFICATION", category, None),
-    ("classification product", "E_CLASSIFICATION", product, None),
-    ("wave edge injection", "E_WAVE_EDGE_SET", wave_edge, None),
-    ("phase status", "E_PHASE_STATUS", phase_status, None),
-    ("asset ledger", "E_OLD_LEDGER_RECORD", asset_ledger, None),
-    ("legacy status promotion", "E_OLD_LEDGER_RECORD", legacy_status, None),
-    ("legacy disposition/product resolution", "E_OLD_LEDGER_RECORD", disposition_product, None),
-    ("legacy consumer tamper", "E_OLD_LEDGER_RECORD", legacy_consumer, None),
-    ("history", "E_HISTORY", history, None),
-    ("history consumer closure", "E_HISTORY", history_closure, None),
-    ("implementation evidence", "E_IMPLEMENTATION_EVIDENCE", implementation_evidence, None),
-    ("boundary blob", "E_BOUNDARY_ANCHOR", boundary, None),
-    ("authority promotion", "E_AUTHORITY_PROMOTION", authority, None),
-    ("formal update reversal", "E_AUTHORITY_PROMOTION", None, formal_update),
-    ("inventory schema", "E_INVENTORY_DECLARATION", None, inventory_schema),
-    ("inventory source paths", "E_INVENTORY_DECLARATION", None, inventory_source_paths),
-    ("phase extra key", "E_PHASE_STATUS", phase_extra_key, None),
-    ("boundary extra product", "E_BOUNDARY_ANCHOR", boundary_extra_product, None),
-    ("boundary extra key", "E_BOUNDARY_ANCHOR", boundary_extra_key, None),
-    ("source extra nested key", "E_SOURCE_ANCHOR", source_extra_nested_key, None),
-    ("classification extra nested key", "E_RECORD_SCHEMA", classification_extra_nested_key, None),
-    ("history extra nested key", "E_HISTORY", history_extra_nested_key, None),
-    ("shrink extra nested key", "E_IMPLEMENTATION_EVIDENCE", shrink_extra_nested_key, None),
-    ("read mode", "E_READ_MODE", read_mode, None),
-    ("input missing", "E_INPUT_DIGEST", None, input_missing),
-    ("input duplicate", "E_INPUT_DIGEST", None, input_duplicate),
-    ("input digest schema", "E_INPUT_DIGEST", None, input_schema),
-    ("inventory scope", "E_INVENTORY_DECLARATION", None, scope),
-    ("fixed BASE pin", "E_BASE_PIN", None, base_pin),
-    ("output digest", "E_OUTPUT_DIGEST", None, output),
+    ("target_set_missing", "E_TARGET_SET", remove_row, None),
+    ("target_set_duplicate", "E_TARGET_SET", duplicate_row, None),
+    ("source_blob_tamper", "E_OLD_ASSET_SOURCE", source_blob, None),
+    ("source_line_anchor_tamper", "E_SOURCE_ANCHOR", source_anchor, None),
+    ("classification_category_tamper", "E_CLASSIFICATION", category, None),
+    ("classification_product_tamper", "E_CLASSIFICATION", product, None),
+    ("wave_edge_injection", "E_WAVE_EDGE_SET", wave_edge, None),
+    ("phase_status_tamper", "E_PHASE_STATUS", phase_status, None),
+    ("asset_ledger_tamper", "E_OLD_LEDGER_RECORD", asset_ledger, None),
+    ("legacy_status_promotion_tamper", "E_OLD_LEDGER_RECORD", legacy_status, None),
+    ("legacy_disposition_or_product_resolution_tamper", "E_OLD_LEDGER_RECORD", disposition_product, None),
+    ("legacy_consumer_tamper", "E_OLD_LEDGER_RECORD", legacy_consumer, None),
+    ("history_tamper", "E_HISTORY", history, None),
+    ("history_consumer_closure_tamper", "E_HISTORY", history_closure, None),
+    ("implementation_evidence_tamper", "E_IMPLEMENTATION_EVIDENCE", implementation_evidence, None),
+    ("boundary_blob_tamper", "E_BOUNDARY_ANCHOR", boundary, None),
+    ("authority_promotion", "E_AUTHORITY_PROMOTION", authority, None),
+    ("formal_update_reversal_tamper", "E_AUTHORITY_PROMOTION", None, formal_update),
+    ("inventory_schema_tamper", "E_INVENTORY_DECLARATION", None, inventory_schema),
+    ("inventory_source_paths_tamper", "E_INVENTORY_DECLARATION", None, inventory_source_paths),
+    ("phase_evidence_extra_key_tamper", "E_PHASE_STATUS", phase_extra_key, None),
+    ("boundary_extra_product_tamper", "E_BOUNDARY_ANCHOR", boundary_extra_product, None),
+    ("boundary_extra_key_tamper", "E_BOUNDARY_ANCHOR", boundary_extra_key, None),
+    ("source_nested_extra_key_tamper", "E_SOURCE_ANCHOR", source_extra_nested_key, None),
+    ("classification_nested_extra_key_tamper", "E_RECORD_SCHEMA", classification_extra_nested_key, None),
+    ("history_nested_extra_key_tamper", "E_HISTORY", history_extra_nested_key, None),
+    ("shrink_nested_extra_key_tamper", "E_IMPLEMENTATION_EVIDENCE", shrink_extra_nested_key, None),
+    ("read_mode_tamper", "E_READ_MODE", read_mode, None),
+    ("input_digest_missing", "E_INPUT_DIGEST", None, input_missing),
+    ("input_digest_duplicate", "E_INPUT_DIGEST", None, input_duplicate),
+    ("input_digest_schema_tamper", "E_INPUT_DIGEST", None, input_schema),
+    ("inventory_scope_tamper", "E_INVENTORY_DECLARATION", None, scope),
+    ("fixed_base_pin_tamper", "E_BASE_PIN", None, base_pin),
+    ("output_digest_tamper", "E_OUTPUT_DIGEST", None, output),
 ]
 for name, code, rows, inventory in CASES:
     run_case(name, code, rows, inventory)
-print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES)}")
+run_case("human_judgment_tamper", "E_HUMAN_JUDGMENT", human_judgment, None)
+run_case("ledger_digest_match_tamper", "E_OLD_ASSET_SOURCE", ledger_digest_match, None)
+run_case("wave_denominator_tamper", "E_WAVE_EDGE_SET", None, wave_denominator)
+run_case("existing_union_tamper", "E_INVENTORY_DECLARATION", None, existing_union)
+run_case("inventory_top_level_extra_key_tamper", "E_INVENTORY_DECLARATION", None, inventory_top_level_extra)
+run_case("inventory_top_level_missing_key_tamper", "E_INVENTORY_DECLARATION", None, inventory_top_level_missing)
+run_direct_case("review_pin_tamper", "E_REVIEW_PIN", review_pin)
+run_generator_case("generator_profile_category_tamper", "E_CLASSIFICATION", "category")
+run_generator_case("generator_profile_products_tamper", "E_CLASSIFICATION", "products")
+print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 9}")
