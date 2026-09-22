@@ -405,6 +405,7 @@
       "fixed BASE ancestor and 162 input digest records (66 current plus 96 source objects)",
       "95 target asset exact set and phase/disposition rederivation",
       "Wave1–50 598 edge／355 unique／17 target edge denominator",
+      "95 target asset artifact evidence kinds: implementation_source 95",
       "95 source blob／bytes／SHA-256／line anchor rederivation",
       "14 manual semantic span／L1／boundary counterevidence／consumer boundary rederivation",
       "four-product L1／boundary／failure／consumer line digest rederivation",
@@ -421,6 +422,9 @@
       "E_BOUNDARY_DIGEST boundary／L1／failure／consumer line tamper",
       "E_INPUT_SET input digest omission／duplicate／extra path",
       "E_AUTHORITY_PROMOTION authority／formal classification／new build promotion",
+      "E_RECORD_SCHEMA unexpected record key",
+      "E_INVENTORY_DECLARATION inventory authority／scope／formal update／classification rule tamper",
+      "E_EXPECTED_DENOMINATOR target asset artifact kind count tamper",
       "E_BASE_NOT_ANCESTOR fixed BASE non-ancestor"
     ]
   },
