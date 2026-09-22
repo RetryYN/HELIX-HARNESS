@@ -91,7 +91,7 @@ def inventory_top_key_extra(inv): inv["unexpected"] = True
 
 
 def direct_case(name, code, mutate):
-    old_values = (validator.subprocess.call, validator.git_bytes, validator.EXPECTED_PROFILES, validator.parse_jsonl)
+    old_values = (validator.subprocess.call, validator.subprocess.check_output, validator.git_bytes, validator.EXPECTED_PROFILES, validator.parse_jsonl)
     try:
         mutate()
         try:
@@ -103,7 +103,7 @@ def direct_case(name, code, mutate):
         else:
             raise AssertionError(f"{name}: validator unexpectedly passed")
     finally:
-        validator.subprocess.call, validator.git_bytes, validator.EXPECTED_PROFILES, validator.parse_jsonl = old_values
+        validator.subprocess.call, validator.subprocess.check_output, validator.git_bytes, validator.EXPECTED_PROFILES, validator.parse_jsonl = old_values
 
 
 def non_ancestor():
@@ -111,12 +111,13 @@ def non_ancestor():
 
 
 def missing_base_source():
-    original = validator.git_bytes
-    def missing(path):
-        if path == validator.PHASE:
-            validator.fail("E_BASE_SOURCE", path)
-        return original(path)
-    validator.git_bytes = missing
+    original = validator.subprocess.check_output
+    target = f"{validator.BASE_REVISION}:{validator.PHASE}"
+    def missing(command, *args, **kwargs):
+        if len(command) >= 3 and command[0:2] == ["git", "show"] and command[2] == target:
+            raise validator.subprocess.CalledProcessError(128, command)
+        return original(command, *args, **kwargs)
+    validator.subprocess.check_output = missing
 
 
 def missing_profile():
