@@ -21,7 +21,7 @@ STATES = ["registered", "active", "stale", "conflict", "orphan", "replacing", "r
 PRODUCTS = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
 SCOPES = ["schema_interface", "deterministic_behavior", "stub_adapter_connection",
           "source_revision_stale", "negative_case", "forbidden_write_scope"]
-LEGACY = re.compile(r"(^|[\s/\"'=:(])archive/legacy-generation-")
+LEGACY = re.compile(r"(^|[\s/\\\"'=:(])archive[\\/]legacy-generation-")
 LEGACY_ROOT = "archive/legacy-generation-2026-09-14"
 STATIC_READ_ONLY_NOTE = "静的read-only参照のみ"
 LEGACY_EXECUTION_BOUNDARIES = {
@@ -311,7 +311,7 @@ def check_rules(b, all_bindings, fs=True, digests=None):
         e.append("E_ACTIVATE: 置換先の役割が未特定のbindingは有効にできない（登録だけ。SCF-OS-001）")
     # SCF-OS-002: orphan
     if fs:
-        exists = (lambda pth: pth in digests) if digests is not None else (lambda pth: os.path.isfile(os.path.join(ROOT, pth)))
+        exists = (lambda pth: pth in digests) if digests is not None else (lambda pth: os.path.lexists(os.path.join(ROOT, pth)) if pth in legacy_upstream_paths else os.path.isfile(os.path.join(ROOT, pth)))
         for u in b["upstream"]:
             if not isinstance(u.get("path"), str) or not exists(u["path"]):
                 e.append("E_ORPHAN: 上流が存在しない %s（SCF-OS-002）" % u["path"])
@@ -707,6 +707,12 @@ def legacy_static_fs_case_errors(case):
                 os.makedirs(os.path.dirname(file_path), exist_ok=True)
                 with open(file_path, "w", encoding="utf-8") as f:
                     f.write(str(text))
+            for rel in (fixture.get("directories") or []):
+                os.makedirs(os.path.join(ROOT, rel), exist_ok=True)
+            for rel in (fixture.get("non_regular") or []):
+                non_regular_path = os.path.join(ROOT, rel)
+                os.makedirs(os.path.dirname(non_regular_path), exist_ok=True)
+                os.mkfifo(non_regular_path)
             for rel, target in (fixture.get("symlinks") or {}).items():
                 link_path = os.path.join(ROOT, rel)
                 os.makedirs(os.path.dirname(link_path), exist_ok=True)

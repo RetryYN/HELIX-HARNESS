@@ -1,10 +1,10 @@
 {
- "case": "42-reject-static-upstream-negated-note",
- "l11": "非静的を含むnoteのsubstring通過を拒否する",
+ "case": "44-reject-static-upstream-root-contained-symlink",
+ "l11": "旧archive root内でroot内へ解決するsymlink sourceも拒否する",
  "requirements": [
   "SCF-OS-003"
  ],
- "command": "validate",
+ "command": "legacy-static-fs",
  "expect": "fail",
  "binding": {
   "schema_revision": 1,
@@ -17,9 +17,9 @@
   "reason": "静的read-only入力",
   "upstream": [
    {
-    "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "path": "archive/legacy-generation-2026-09-14/root/link-inside.txt",
     "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
-    "note": "固定digest。非静的read-only参照のみ。旧archiveは実行しない"
+    "note": "固定digest。静的read-only参照のみ。旧archiveは実行しない"
    }
   ],
   "role": "旧IR evidenceの静的参照",
@@ -71,5 +71,13 @@
  },
  "expect_codes": [
   "E_STATIC_UPSTREAM"
- ]
+ ],
+ "filesystem": {
+  "files": {
+   "archive/legacy-generation-2026-09-14/root/inside.txt": "inside\n"
+  },
+  "symlinks": {
+   "archive/legacy-generation-2026-09-14/root/link-inside.txt": "archive/legacy-generation-2026-09-14/root/inside.txt"
+  }
+ }
 }

@@ -1,10 +1,10 @@
 {
- "case": "42-reject-static-upstream-negated-note",
- "l11": "非静的を含むnoteのsubstring通過を拒否する",
+ "case": "46-reject-static-upstream-non-regular",
+ "l11": "旧archive root内のnon-regular sourceを拒否する",
  "requirements": [
   "SCF-OS-003"
  ],
- "command": "validate",
+ "command": "legacy-static-fs",
  "expect": "fail",
  "binding": {
   "schema_revision": 1,
@@ -17,9 +17,9 @@
   "reason": "静的read-only入力",
   "upstream": [
    {
-    "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+    "path": "archive/legacy-generation-2026-09-14/root/non-regular-source",
     "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
-    "note": "固定digest。非静的read-only参照のみ。旧archiveは実行しない"
+    "note": "固定digest。静的read-only参照のみ。旧archiveは実行しない"
    }
   ],
   "role": "旧IR evidenceの静的参照",
@@ -71,5 +71,10 @@
  },
  "expect_codes": [
   "E_STATIC_UPSTREAM"
- ]
+ ],
+ "filesystem": {
+  "non_regular": [
+   "archive/legacy-generation-2026-09-14/root/non-regular-source"
+  ]
+ }
 }

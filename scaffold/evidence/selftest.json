@@ -1,7 +1,7 @@
 {
  "authority_effect": "none",
- "cases": 64,
- "cases_sha256": "c44cf681d1585fbedba917d6e3bcaf7ccd76c46c63d02a3c6373f4ddee6a717f",
+ "cases": 69,
+ "cases_sha256": "d7ec289a9b06628dd9fe23cdc4ead9d0b404ad7b0be4f5c32e288b95cf215bb3",
  "checked_at": "2026-09-23",
  "evidence_kind": "scaffold",
  "fail": 0,
@@ -840,7 +840,72 @@
    "requirements": [
     "SCF-OS-003"
    ]
+  },
+  {
+   "case": "44-reject-static-upstream-root-contained-symlink.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "旧archive root内でroot内へ解決するsymlink sourceも拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: archive/legacy-generation-2026-09-14/root/link-inside.txt"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "45-reject-static-upstream-directory.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "旧archive root内のdirectory sourceを拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: archive/legacy-generation-2026-09-14/root/directory-source"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "46-reject-static-upstream-non-regular.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "旧archive root内のnon-regular sourceを拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: archive/legacy-generation-2026-09-14/root/non-regular-source"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "47-reject-static-upstream-backslash.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "backslash区切りのlegacy upstreamをE_STATIC_UPSTREAMで拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: archive\\legacy-generation-2026-09-14\\root\\requirements.json"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "48-reject-static-upstream-windows-absolute.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "Windows absoluteのlegacy upstreamをE_STATIC_UPSTREAMで拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: C:\\archive\\legacy-generation-2026-09-14\\root\\requirements.json"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
   }
  ],
- "tool_sha256": "455257219ce98b280cebf680f615715035c411f0d3d0c9960e201ff06aad5597"
+ "tool_sha256": "61c45f6014968cbe53e612211e81361e26d937599abb7391e3012cde0cd79b6e"
 }
