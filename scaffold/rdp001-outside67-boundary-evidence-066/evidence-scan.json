@@ -1,0 +1,120 @@
+{
+  "selected_ids": [
+    "OUTSIDE67-PATH-030",
+    "OUTSIDE67-PATH-033",
+    "OUTSIDE67-PATH-043",
+    "OUTSIDE67-PATH-045",
+    "OUTSIDE67-PATH-055"
+  ],
+  "existing_reviewed_ids": [
+    "OUTSIDE67-PATH-008",
+    "OUTSIDE67-PATH-011",
+    "OUTSIDE67-PATH-059",
+    "OUTSIDE67-PATH-063",
+    "OUTSIDE67-PATH-064",
+    "OUTSIDE67-PATH-065",
+    "OUTSIDE67-PATH-066"
+  ],
+  "ledger_files": [
+    "docs/governance/legacy-asset-disposition.jsonl",
+    "docs/governance/legacy-asset-decisions.jsonl",
+    "docs/governance/legacy-asset-copy-read-after.jsonl",
+    "docs/governance/legacy-asset-decision-log.md",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+  ],
+  "files": {
+    "docs/governance/legacy-asset-disposition.jsonl": {
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "bytes": 4857919
+    },
+    "docs/governance/legacy-asset-decisions.jsonl": {
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "bytes": 109547
+    },
+    "docs/governance/legacy-asset-copy-read-after.jsonl": {
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "bytes": 29632
+    },
+    "docs/governance/legacy-asset-decision-log.md": {
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "bytes": 5000
+    },
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": {
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "bytes": 6311877
+    },
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": {
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "bytes": 7938664
+    },
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": {
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "bytes": 602042
+    },
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": {
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "bytes": 425087
+    },
+    "docs/governance/management-provisional-requirement-register.jsonl": {
+      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "bytes": 46979
+    }
+  },
+  "counterparts": {
+    "OUTSIDE67-PATH-030": {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ai-consumer-relation-inventory.md",
+      "sha256": "a0bd3266b2f272d1d50e3df2ad905f9ad9298798dcea89c88b6276dc094d7abe",
+      "bytes": 6324,
+      "content_hash_matches_archive": true,
+      "relation": "archive_relocated_counterpart_hash_equal"
+    },
+    "OUTSIDE67-PATH-033": {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
+      "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e",
+      "bytes": 5951,
+      "content_hash_matches_archive": true,
+      "relation": "archive_relocated_counterpart_hash_equal"
+    },
+    "OUTSIDE67-PATH-043": {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md",
+      "sha256": "0a48e51ddb95212c4fcf45f218c25f110af7c2cdd30f75ec4c75ae90d47b39b6",
+      "bytes": 6929,
+      "content_hash_matches_archive": true,
+      "relation": "archive_current_counterpart_hash_equal"
+    },
+    "OUTSIDE67-PATH-045": {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-release-composition-source-crosswalk.md",
+      "sha256": "27adb4a61269159e30837376e29b20873d2e43fc20dd2692862002888d4a62d2",
+      "bytes": 7174,
+      "content_hash_matches_archive": true,
+      "relation": "archive_current_counterpart_hash_equal"
+    },
+    "OUTSIDE67-PATH-055": {
+      "path": "docs/governance/candidates/legacy-asset-retirement-requirements.md",
+      "sha256": "25fb1a2beea09e679bcad5c4459c5b7b3360549e2d325977f08c06097082cec3",
+      "bytes": 4419,
+      "content_hash_matches_archive": false,
+      "relation": "current_counterpart_drift_observed_hash_unequal"
+    }
+  },
+  "exact_ledger_hits": {
+    "OUTSIDE67-PATH-030": [],
+    "OUTSIDE67-PATH-033": [],
+    "OUTSIDE67-PATH-043": [],
+    "OUTSIDE67-PATH-045": [],
+    "OUTSIDE67-PATH-055": []
+  },
+  "archive_relocation_ids": [
+    "OUTSIDE67-PATH-030",
+    "OUTSIDE67-PATH-033"
+  ],
+  "content_same_ids": [
+    "OUTSIDE67-PATH-043",
+    "OUTSIDE67-PATH-045"
+  ],
+  "current_counterpart_drift_ids": [
+    "OUTSIDE67-PATH-055"
+  ]
+}

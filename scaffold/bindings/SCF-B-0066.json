@@ -1,0 +1,304 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0066",
+  "kind": "scaffold",
+  "title": "outside67 candidate source boundary research 030/033/043/045/055",
+  "product": "HELIX-OS",
+  "owner_candidate": "outside67 candidate source chainの四製品境界・旧source relation・unknown status review（正式owner未解決）",
+  "state": "registered",
+  "reason": "MPR-SH-OUTSIDE67-001の67 path_revision_pairについて、既レビュー7件に加える未レビュー候補5件を選び、12/67の候補研究会計と残55を正式holding採否から分離して静的固定する。5 source pairの25 exact anchors、pre/archive revision、030/033 relocation、043/045 hash-equal counterpart、055 current counterpart driftを保持し、四製品候補、implementation、degradation、failure、consumer、decision、phase、authorityをunknownのまま残す。SCF-B-0066はresearch Scaffoldの登録であり、正式要求・owner・successor・holding admissionを生成しない。",
+  "upstream": [
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decision-log.md",
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ai-consumer-relation-inventory.md",
+      "sha256": "a0bd3266b2f272d1d50e3df2ad905f9ad9298798dcea89c88b6276dc094d7abe",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
+      "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md",
+      "sha256": "0a48e51ddb95212c4fcf45f218c25f110af7c2cdd30f75ec4c75ae90d47b39b6",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-release-composition-source-crosswalk.md",
+      "sha256": "27adb4a61269159e30837376e29b20873d2e43fc20dd2692862002888d4a62d2",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "docs/governance/candidates/legacy-asset-retirement-requirements.md",
+      "sha256": "25fb1a2beea09e679bcad5c4459c5b7b3360549e2d325977f08c06097082cec3",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/README.md",
+      "sha256": "a6fee040cd551dab6683cb07b7458582fb680e4aeb769724378783a2f6f78f1a",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/inventory.json",
+      "sha256": "f9d8ebf15f53f9589c3372c28fa3d96bf8406832afa9be57e755b399d3857ade",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/method.md",
+      "sha256": "9ce0c2002b661a0ace3bccef24c23fb98c6d031e28cffabbbb1993a345f6fa5d",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/premise.md",
+      "sha256": "2a990f437017864eac378f167c6d0f2ba4f7dd704d9c0e84dd24cef0eb171ca9",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/status.md",
+      "sha256": "e73b7d2c8c322579e6ba8df0eaa403d1d6fe124fa7551e4ad79e944d8a0fe416",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/selected-source-items.jsonl",
+      "sha256": "f42a11de29a075a84c151afe9d30934e669cfcc556aa87536cca26718ed0ecc2",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/product-units.jsonl",
+      "sha256": "db0f4a81822ac49300bb9f4ec4b1e6561126e071cbbba0f2441be378ba27788f",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/source-diffs.json",
+      "sha256": "14f1c5685556d9aba7577efa7553a88226b9b43695c164ca5c6ca52afa2921f7",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/evidence-scan.json",
+      "sha256": "5215814267021b775e3f444a65e17580661b301d7393388858de2b1c75ef14cc",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/validate.py",
+      "sha256": "06d5c9d231e1c9a5f1d221d26e188db3a384b468a7583f4495ef1efada1ead3c",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/selfcheck.py",
+      "sha256": "3f7dea48dbde2fa934fa7e2e1ec8cfc68eea3a4f5c28cbaaa1ca0b3e18d56557",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-030/archive-revision.md",
+      "sha256": "a0bd3266b2f272d1d50e3df2ad905f9ad9298798dcea89c88b6276dc094d7abe",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-030/pre-isolation.md",
+      "sha256": "71994390925749d9aa501a01db080eb895aaf000e05c558c5507b5bc1f3f7f1f",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-033/archive-revision.md",
+      "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-033/pre-isolation.md",
+      "sha256": "d8fc2f53a6b0d245dee0388f8b39770879f6df419eba9859dfd1dc664fa95887",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-043/archive-revision.md",
+      "sha256": "0a48e51ddb95212c4fcf45f218c25f110af7c2cdd30f75ec4c75ae90d47b39b6",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-043/pre-isolation.md",
+      "sha256": "0a48e51ddb95212c4fcf45f218c25f110af7c2cdd30f75ec4c75ae90d47b39b6",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-045/archive-revision.md",
+      "sha256": "27adb4a61269159e30837376e29b20873d2e43fc20dd2692862002888d4a62d2",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-045/pre-isolation.md",
+      "sha256": "27adb4a61269159e30837376e29b20873d2e43fc20dd2692862002888d4a62d2",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-055/archive-revision.md",
+      "sha256": "8bdf72bba1d3da2800e12c43ef957c551e876ae80541043a4122df79b5dfef39",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-055/pre-isolation.md",
+      "sha256": "8bdf72bba1d3da2800e12c43ef957c551e876ae80541043a4122df79b5dfef39",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+    }
+  ],
+  "role": "outside67 030/033/043/045/055 source pairのsemantic candidate、revision差分、四製品候補、legacy evidence unknownをread-onlyで保持する",
+  "obligations": [
+    "67 path_revision_pair denominator、既レビュー7件、候補5件、combined 12/67、残55を独立canonical tableで固定し、正式holding採否と分離する",
+    "5 source pair、25 exact line anchors、source snapshot、source diff、pre/archive SHA／bytes／blobを照合する",
+    "030/033 relocation、043/045 counterpart hash-equal、055 current counterpart hash-unequalを重複・意味同値・authorityへ変換しない",
+    "四製品をcandidate boundaryとして保持し、product assignment、phase authority、owner、successorを生成しない",
+    "product-unit keyset、normalized_statement、retained_meaning、unresolved_questions、diff_observation、scope canonical fieldsをvalidatorで固定する",
+    "product substitution、unknown promotion、duplicate、anchor、denominatorを含む本体validator経由のnegative selfcheckを実行する",
+    "legacy implementation、current implementation、degradation、failure outcome、consumer closure、decisionをunknownのまま保持する",
+    "旧archive source／runtime／test／CI／hook／adapterを実行せず、static referenceとしてのみ読む"
+  ],
+  "connections": {
+    "consumers": [
+      "outside67 source chain reviewer",
+      "四製品 boundary semantic reviewer",
+      "legacy failure／consumer／decision unknown reviewer",
+      "SCF-B-0066 replacement reviewer"
+    ],
+    "dependencies": [
+      "MPR-SH-OUTSIDE67-001",
+      "current four-product boundary",
+      "legacy static ledger set",
+      "Python standard library／git object read-only"
+    ],
+    "boundary": "成果物はscaffold/配下のresearch candidate。12/67会計は候補研究用で、正式holding admission、requirement、phase、owner、implementation、degradation、acceptance、release、deploymentを確定しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/rdp001-outside67-boundary-evidence-066/validate.py",
+      "python3 -B scaffold/rdp001-outside67-boundary-evidence-066/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+      "旧sourceをcurrent implementation、oracle、fallback、pass、deployment evidenceへ昇格すること",
+      "scaffold/外への候補書き込み",
+      "正式holding採否、requirement、phase authority、product owner、successor、implementation、degradation、acceptance、release、deployment、consumer closureの生成",
+      "GitHub、Issue、PR、CI、DB、外部APIへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-outside67-boundary-evidence-066/README.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/inventory.json",
+    "scaffold/rdp001-outside67-boundary-evidence-066/method.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/premise.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/status.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/selected-source-items.jsonl",
+    "scaffold/rdp001-outside67-boundary-evidence-066/product-units.jsonl",
+    "scaffold/rdp001-outside67-boundary-evidence-066/source-diffs.json",
+    "scaffold/rdp001-outside67-boundary-evidence-066/evidence-scan.json",
+    "scaffold/rdp001-outside67-boundary-evidence-066/validate.py",
+    "scaffold/rdp001-outside67-boundary-evidence-066/selfcheck.py",
+    "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-030/archive-revision.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-030/pre-isolation.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-033/archive-revision.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-033/pre-isolation.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-043/archive-revision.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-043/pre-isolation.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-045/archive-revision.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-045/pre-isolation.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-055/archive-revision.md",
+    "scaffold/rdp001-outside67-boundary-evidence-066/source-snapshots/OUTSIDE67-PATH-055/pre-isolation.md",
+    "scaffold/bindings/SCF-B-0066.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "outside67 candidate validate.py（12/67、55 residual、scope/unit keyset、canonical non-digest fields、exact anchors、four products、unknowns）",
+      "outside67 candidate selfcheck.py（baseline＋12 negative cases）",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "12/67 denominator or remaining tamper",
+      "reviewed/candidate overlap",
+      "product substitution",
+      "unknown status promotion",
+      "duplicate anchor",
+      "source fragment or anchor keyset tamper",
+      "scope keyset or canonical field tamper",
+      "source-holding count tamper",
+      "unit nested keyset tamper",
+      "old execution flag tamper"
+    ]
+  },
+  "replacement": {
+    "role_target": "承認済みoutside67 source semantic units、四製品責務、phase、implementation、failure／consumer contractへの個別移管（人間判断後）",
+    "formal_artifacts": [],
+    "issue": 2010,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
