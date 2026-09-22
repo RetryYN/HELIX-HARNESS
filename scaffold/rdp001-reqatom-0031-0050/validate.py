@@ -26,15 +26,320 @@ GRANULARITIES = ["unit", "connection", "composite", "unresolved"]
 RELATIONS = ["exact", "partial", "adds-condition", "conflicts", "example-of", "rationale-for", "unrelated", "unresolved"]
 SOURCE_COMMIT = "685c69c3c174ac6121812dade30ed75e510986e6"
 CURRENT_PREFIX = "docs/governance/requirements-source/legacy-documents/"
-REQUIRED_SPLIT_COUNTS = {
-    "REQSRC-LINE-00086": 1,
-    "REQSRC-LINE-00087": 1,
-    "REQSRC-LINE-00088": 1,
-    "REQSRC-LINE-00116": 1,
-    "REQSRC-LINE-00138": 1,
-    "REQSRC-LINE-00180": 2,
-    "REQSRC-LINE-00193": 6,
+# These expected values are independent of generated inventory/proposal counts.
+# They pin the reviewed source shape so plan/inventory regeneration cannot silently
+# make a missing atom, composite span, or product target authoritative.
+EXPECTED_UNIT_KEYSET = frozenset({
+    'REQATOM-QUEUE-0031', 'REQATOM-QUEUE-0032', 'REQATOM-QUEUE-0033', 'REQATOM-QUEUE-0034',
+    'REQATOM-QUEUE-0035', 'REQATOM-QUEUE-0036', 'REQATOM-QUEUE-0037', 'REQATOM-QUEUE-0038',
+    'REQATOM-QUEUE-0039', 'REQATOM-QUEUE-0040', 'REQATOM-QUEUE-0041', 'REQATOM-QUEUE-0042',
+    'REQATOM-QUEUE-0043', 'REQATOM-QUEUE-0044', 'REQATOM-QUEUE-0045', 'REQATOM-QUEUE-0046',
+    'REQATOM-QUEUE-0047', 'REQATOM-QUEUE-0048', 'REQATOM-QUEUE-0049', 'REQATOM-QUEUE-0050',
+})
+EXPECTED_LINE_KEYSET = frozenset({
+    'REQSRC-LINE-00086', 'REQSRC-LINE-00087', 'REQSRC-LINE-00088', 'REQSRC-LINE-00089',
+    'REQSRC-LINE-00090', 'REQSRC-LINE-00091', 'REQSRC-LINE-00092', 'REQSRC-LINE-00093',
+    'REQSRC-LINE-00094', 'REQSRC-LINE-00095', 'REQSRC-LINE-00096', 'REQSRC-LINE-00097',
+    'REQSRC-LINE-00098', 'REQSRC-LINE-00099', 'REQSRC-LINE-00100', 'REQSRC-LINE-00101',
+    'REQSRC-LINE-00102', 'REQSRC-LINE-00103', 'REQSRC-LINE-00104', 'REQSRC-LINE-00105',
+    'REQSRC-LINE-00115', 'REQSRC-LINE-00116', 'REQSRC-LINE-00117', 'REQSRC-LINE-00118',
+    'REQSRC-LINE-00119', 'REQSRC-LINE-00120', 'REQSRC-LINE-00121', 'REQSRC-LINE-00122',
+    'REQSRC-LINE-00123', 'REQSRC-LINE-00124', 'REQSRC-LINE-00125', 'REQSRC-LINE-00126',
+    'REQSRC-LINE-00127', 'REQSRC-LINE-00128', 'REQSRC-LINE-00129', 'REQSRC-LINE-00130',
+    'REQSRC-LINE-00131', 'REQSRC-LINE-00132', 'REQSRC-LINE-00133', 'REQSRC-LINE-00134',
+    'REQSRC-LINE-00135', 'REQSRC-LINE-00136', 'REQSRC-LINE-00137', 'REQSRC-LINE-00138',
+    'REQSRC-LINE-00139', 'REQSRC-LINE-00140', 'REQSRC-LINE-00141', 'REQSRC-LINE-00142',
+    'REQSRC-LINE-00143', 'REQSRC-LINE-00144', 'REQSRC-LINE-00145', 'REQSRC-LINE-00146',
+    'REQSRC-LINE-00147', 'REQSRC-LINE-00148', 'REQSRC-LINE-00149', 'REQSRC-LINE-00150',
+    'REQSRC-LINE-00151', 'REQSRC-LINE-00152', 'REQSRC-LINE-00153', 'REQSRC-LINE-00154',
+    'REQSRC-LINE-00155', 'REQSRC-LINE-00156', 'REQSRC-LINE-00157', 'REQSRC-LINE-00158',
+    'REQSRC-LINE-00159', 'REQSRC-LINE-00160', 'REQSRC-LINE-00161', 'REQSRC-LINE-00162',
+    'REQSRC-LINE-00163', 'REQSRC-LINE-00164', 'REQSRC-LINE-00165', 'REQSRC-LINE-00166',
+    'REQSRC-LINE-00167', 'REQSRC-LINE-00168', 'REQSRC-LINE-00169', 'REQSRC-LINE-00170',
+    'REQSRC-LINE-00171', 'REQSRC-LINE-00172', 'REQSRC-LINE-00173', 'REQSRC-LINE-00174',
+    'REQSRC-LINE-00175', 'REQSRC-LINE-00176', 'REQSRC-LINE-00177', 'REQSRC-LINE-00178',
+    'REQSRC-LINE-00179', 'REQSRC-LINE-00180', 'REQSRC-LINE-00181', 'REQSRC-LINE-00182',
+    'REQSRC-LINE-00183', 'REQSRC-LINE-00184', 'REQSRC-LINE-00185', 'REQSRC-LINE-00186',
+    'REQSRC-LINE-00187', 'REQSRC-LINE-00188', 'REQSRC-LINE-00189', 'REQSRC-LINE-00190',
+    'REQSRC-LINE-00191', 'REQSRC-LINE-00192', 'REQSRC-LINE-00193', 'REQSRC-LINE-00194',
+    'REQSRC-LINE-00195',
+})
+EXPECTED_ATOM_COUNTS_BY_LINE = {
+    'REQSRC-LINE-00086': 1,
+    'REQSRC-LINE-00087': 1,
+    'REQSRC-LINE-00088': 1,
+    'REQSRC-LINE-00089': 1,
+    'REQSRC-LINE-00090': 1,
+    'REQSRC-LINE-00091': 0,
+    'REQSRC-LINE-00092': 1,
+    'REQSRC-LINE-00093': 1,
+    'REQSRC-LINE-00094': 1,
+    'REQSRC-LINE-00095': 1,
+    'REQSRC-LINE-00096': 1,
+    'REQSRC-LINE-00097': 1,
+    'REQSRC-LINE-00098': 1,
+    'REQSRC-LINE-00099': 0,
+    'REQSRC-LINE-00100': 1,
+    'REQSRC-LINE-00101': 1,
+    'REQSRC-LINE-00102': 1,
+    'REQSRC-LINE-00103': 1,
+    'REQSRC-LINE-00104': 1,
+    'REQSRC-LINE-00105': 0,
+    'REQSRC-LINE-00115': 0,
+    'REQSRC-LINE-00116': 1,
+    'REQSRC-LINE-00117': 1,
+    'REQSRC-LINE-00118': 1,
+    'REQSRC-LINE-00119': 1,
+    'REQSRC-LINE-00120': 1,
+    'REQSRC-LINE-00121': 1,
+    'REQSRC-LINE-00122': 1,
+    'REQSRC-LINE-00123': 1,
+    'REQSRC-LINE-00124': 1,
+    'REQSRC-LINE-00125': 1,
+    'REQSRC-LINE-00126': 1,
+    'REQSRC-LINE-00127': 1,
+    'REQSRC-LINE-00128': 0,
+    'REQSRC-LINE-00129': 1,
+    'REQSRC-LINE-00130': 1,
+    'REQSRC-LINE-00131': 1,
+    'REQSRC-LINE-00132': 1,
+    'REQSRC-LINE-00133': 1,
+    'REQSRC-LINE-00134': 1,
+    'REQSRC-LINE-00135': 1,
+    'REQSRC-LINE-00136': 1,
+    'REQSRC-LINE-00137': 0,
+    'REQSRC-LINE-00138': 1,
+    'REQSRC-LINE-00139': 1,
+    'REQSRC-LINE-00140': 1,
+    'REQSRC-LINE-00141': 1,
+    'REQSRC-LINE-00142': 1,
+    'REQSRC-LINE-00143': 1,
+    'REQSRC-LINE-00144': 1,
+    'REQSRC-LINE-00145': 1,
+    'REQSRC-LINE-00146': 1,
+    'REQSRC-LINE-00147': 1,
+    'REQSRC-LINE-00148': 1,
+    'REQSRC-LINE-00149': 1,
+    'REQSRC-LINE-00150': 1,
+    'REQSRC-LINE-00151': 1,
+    'REQSRC-LINE-00152': 1,
+    'REQSRC-LINE-00153': 1,
+    'REQSRC-LINE-00154': 1,
+    'REQSRC-LINE-00155': 1,
+    'REQSRC-LINE-00156': 1,
+    'REQSRC-LINE-00157': 1,
+    'REQSRC-LINE-00158': 1,
+    'REQSRC-LINE-00159': 1,
+    'REQSRC-LINE-00160': 1,
+    'REQSRC-LINE-00161': 1,
+    'REQSRC-LINE-00162': 1,
+    'REQSRC-LINE-00163': 1,
+    'REQSRC-LINE-00164': 1,
+    'REQSRC-LINE-00165': 1,
+    'REQSRC-LINE-00166': 1,
+    'REQSRC-LINE-00167': 0,
+    'REQSRC-LINE-00168': 1,
+    'REQSRC-LINE-00169': 1,
+    'REQSRC-LINE-00170': 1,
+    'REQSRC-LINE-00171': 1,
+    'REQSRC-LINE-00172': 1,
+    'REQSRC-LINE-00173': 1,
+    'REQSRC-LINE-00174': 1,
+    'REQSRC-LINE-00175': 1,
+    'REQSRC-LINE-00176': 1,
+    'REQSRC-LINE-00177': 1,
+    'REQSRC-LINE-00178': 1,
+    'REQSRC-LINE-00179': 1,
+    'REQSRC-LINE-00180': 2,
+    'REQSRC-LINE-00181': 0,
+    'REQSRC-LINE-00182': 1,
+    'REQSRC-LINE-00183': 1,
+    'REQSRC-LINE-00184': 1,
+    'REQSRC-LINE-00185': 1,
+    'REQSRC-LINE-00186': 1,
+    'REQSRC-LINE-00187': 1,
+    'REQSRC-LINE-00188': 1,
+    'REQSRC-LINE-00189': 1,
+    'REQSRC-LINE-00190': 1,
+    'REQSRC-LINE-00191': 1,
+    'REQSRC-LINE-00192': 1,
+    'REQSRC-LINE-00193': 6,
+    'REQSRC-LINE-00194': 1,
+    'REQSRC-LINE-00195': 0,
 }
+EXPECTED_COMPOSITE_COUNTS_BY_LINE = {
+    'REQSRC-LINE-00086': 0,
+    'REQSRC-LINE-00087': 0,
+    'REQSRC-LINE-00088': 0,
+    'REQSRC-LINE-00089': 0,
+    'REQSRC-LINE-00090': 0,
+    'REQSRC-LINE-00091': 1,
+    'REQSRC-LINE-00092': 0,
+    'REQSRC-LINE-00093': 0,
+    'REQSRC-LINE-00094': 0,
+    'REQSRC-LINE-00095': 0,
+    'REQSRC-LINE-00096': 0,
+    'REQSRC-LINE-00097': 0,
+    'REQSRC-LINE-00098': 0,
+    'REQSRC-LINE-00099': 1,
+    'REQSRC-LINE-00100': 0,
+    'REQSRC-LINE-00101': 0,
+    'REQSRC-LINE-00102': 0,
+    'REQSRC-LINE-00103': 0,
+    'REQSRC-LINE-00104': 0,
+    'REQSRC-LINE-00105': 1,
+    'REQSRC-LINE-00115': 1,
+    'REQSRC-LINE-00116': 0,
+    'REQSRC-LINE-00117': 0,
+    'REQSRC-LINE-00118': 0,
+    'REQSRC-LINE-00119': 0,
+    'REQSRC-LINE-00120': 0,
+    'REQSRC-LINE-00121': 0,
+    'REQSRC-LINE-00122': 0,
+    'REQSRC-LINE-00123': 0,
+    'REQSRC-LINE-00124': 0,
+    'REQSRC-LINE-00125': 0,
+    'REQSRC-LINE-00126': 0,
+    'REQSRC-LINE-00127': 0,
+    'REQSRC-LINE-00128': 1,
+    'REQSRC-LINE-00129': 0,
+    'REQSRC-LINE-00130': 0,
+    'REQSRC-LINE-00131': 0,
+    'REQSRC-LINE-00132': 0,
+    'REQSRC-LINE-00133': 0,
+    'REQSRC-LINE-00134': 0,
+    'REQSRC-LINE-00135': 0,
+    'REQSRC-LINE-00136': 0,
+    'REQSRC-LINE-00137': 1,
+    'REQSRC-LINE-00138': 0,
+    'REQSRC-LINE-00139': 0,
+    'REQSRC-LINE-00140': 0,
+    'REQSRC-LINE-00141': 0,
+    'REQSRC-LINE-00142': 0,
+    'REQSRC-LINE-00143': 0,
+    'REQSRC-LINE-00144': 0,
+    'REQSRC-LINE-00145': 0,
+    'REQSRC-LINE-00146': 0,
+    'REQSRC-LINE-00147': 0,
+    'REQSRC-LINE-00148': 0,
+    'REQSRC-LINE-00149': 0,
+    'REQSRC-LINE-00150': 0,
+    'REQSRC-LINE-00151': 0,
+    'REQSRC-LINE-00152': 0,
+    'REQSRC-LINE-00153': 0,
+    'REQSRC-LINE-00154': 0,
+    'REQSRC-LINE-00155': 0,
+    'REQSRC-LINE-00156': 0,
+    'REQSRC-LINE-00157': 0,
+    'REQSRC-LINE-00158': 0,
+    'REQSRC-LINE-00159': 0,
+    'REQSRC-LINE-00160': 0,
+    'REQSRC-LINE-00161': 0,
+    'REQSRC-LINE-00162': 0,
+    'REQSRC-LINE-00163': 0,
+    'REQSRC-LINE-00164': 0,
+    'REQSRC-LINE-00165': 0,
+    'REQSRC-LINE-00166': 0,
+    'REQSRC-LINE-00167': 1,
+    'REQSRC-LINE-00168': 0,
+    'REQSRC-LINE-00169': 0,
+    'REQSRC-LINE-00170': 0,
+    'REQSRC-LINE-00171': 0,
+    'REQSRC-LINE-00172': 0,
+    'REQSRC-LINE-00173': 0,
+    'REQSRC-LINE-00174': 0,
+    'REQSRC-LINE-00175': 0,
+    'REQSRC-LINE-00176': 0,
+    'REQSRC-LINE-00177': 0,
+    'REQSRC-LINE-00178': 0,
+    'REQSRC-LINE-00179': 0,
+    'REQSRC-LINE-00180': 0,
+    'REQSRC-LINE-00181': 1,
+    'REQSRC-LINE-00182': 0,
+    'REQSRC-LINE-00183': 0,
+    'REQSRC-LINE-00184': 0,
+    'REQSRC-LINE-00185': 0,
+    'REQSRC-LINE-00186': 0,
+    'REQSRC-LINE-00187': 0,
+    'REQSRC-LINE-00188': 0,
+    'REQSRC-LINE-00189': 0,
+    'REQSRC-LINE-00190': 0,
+    'REQSRC-LINE-00191': 0,
+    'REQSRC-LINE-00192': 0,
+    'REQSRC-LINE-00193': 0,
+    'REQSRC-LINE-00194': 0,
+    'REQSRC-LINE-00195': 1,
+}
+EXPECTED_ATOM_KEYSET = frozenset({
+    'A1-0031-01-01', 'A1-0031-02-01', 'A1-0031-03-01', 'A1-0031-04-01', 'A1-0031-05-01',
+    'A1-0033-01-01', 'A1-0033-02-01', 'A1-0033-03-01', 'A1-0033-04-01', 'A1-0033-05-01',
+    'A1-0033-06-01', 'A1-0033-07-01', 'A1-0035-01-01', 'A1-0035-02-01', 'A1-0035-03-01',
+    'A1-0035-04-01', 'A1-0035-05-01', 'A1-0038-01-01', 'A1-0038-02-01', 'A1-0038-03-01',
+    'A1-0038-04-01', 'A1-0038-05-01', 'A1-0038-06-01', 'A1-0038-07-01', 'A1-0038-08-01',
+    'A1-0038-09-01', 'A1-0038-10-01', 'A1-0038-11-01', 'A1-0038-12-01', 'A1-0040-01-01',
+    'A1-0040-02-01', 'A1-0040-03-01', 'A1-0040-04-01', 'A1-0040-05-01', 'A1-0040-06-01',
+    'A1-0040-07-01', 'A1-0040-08-01', 'A1-0042-01-01', 'A1-0042-02-01', 'A1-0042-03-01',
+    'A1-0042-04-01', 'A1-0042-05-01', 'A1-0042-06-01', 'A1-0042-07-01', 'A1-0042-08-01',
+    'A1-0042-09-01', 'A1-0042-10-01', 'A1-0042-11-01', 'A1-0042-12-01', 'A1-0042-13-01',
+    'A1-0042-14-01', 'A1-0042-15-01', 'A1-0042-16-01', 'A1-0042-17-01', 'A1-0042-18-01',
+    'A1-0042-19-01', 'A1-0042-20-01', 'A1-0042-21-01', 'A1-0042-22-01', 'A1-0042-23-01',
+    'A1-0042-24-01', 'A1-0042-25-01', 'A1-0042-26-01', 'A1-0042-27-01', 'A1-0042-28-01',
+    'A1-0042-29-01', 'A1-0044-01-01', 'A1-0044-02-01', 'A1-0044-03-01', 'A1-0044-04-01',
+    'A1-0044-05-01', 'A1-0044-06-01', 'A1-0044-07-01', 'A1-0044-08-01', 'A1-0044-09-01',
+    'A1-0044-10-01', 'A1-0044-11-01', 'A1-0044-12-01', 'A1-0045-01-01', 'A1-0045-01-02',
+    'A1-0047-01-01', 'A1-0047-02-01', 'A1-0047-03-01', 'A1-0047-04-01', 'A1-0047-05-01',
+    'A1-0047-06-01', 'A1-0047-07-01', 'A1-0047-08-01', 'A1-0047-09-01', 'A1-0047-10-01',
+    'A1-0047-11-01', 'A1-0048-01-01', 'A1-0048-01-02', 'A1-0048-01-03', 'A1-0048-01-04',
+    'A1-0048-01-05', 'A1-0048-01-06', 'A1-0049-01-01',
+})
+EXPECTED_COMPOSITE_KEYSET = frozenset({
+    'A1-CU-0032-01-01', 'A1-CU-0034-01-01', 'A1-CU-0036-01-01', 'A1-CU-0037-01-01',
+    'A1-CU-0039-01-01', 'A1-CU-0041-01-01', 'A1-CU-0043-01-01', 'A1-CU-0046-01-01',
+    'A1-CU-0050-01-01',
+})
+EXPECTED_PROPOSAL_FIELDS = frozenset({
+    'atomized_candidate_atom_count', 'authority_claim', 'candidate_atoms', 'composite_unresolved',
+    'composite_unresolved_count', 'decision_record', 'four_product_denominator', 'input_content_line_digests',
+    'input_content_line_ids', 'input_heading_path', 'input_source_line_range', 'input_source_path',
+    'input_source_revision', 'line_coverage', 'meaning_change_applied', 'proposal_status',
+    'review_sequence', 'review_unit_id', 'successor_requirement_ids',
+})
+EXPECTED_ATOM_FIELDS = frozenset({
+    'actor_candidate', 'atomization_status', 'authority_boundary', 'candidate_atom_id',
+    'candidate_granularity', 'candidate_inference', 'candidate_kind', 'candidate_target',
+    'consumer_candidate', 'evidence_or_acceptance_conditions', 'exact_source_text', 'existing_identity_relations',
+    'failure_or_stop_conditions', 'historical_conflict', 'inherited_subject', 'legacy_failure_candidate',
+    'negative_or_exception_conditions', 'normalized_statement', 'parent_context', 'possible_conflicts',
+    'product_boundary', 'questions', 'retained_meaning', 'semantic_action',
+    'semantic_condition', 'semantic_predicate', 'semantic_subject', 'source_line_ids',
+    'source_line_text', 'source_span', 'source_span_role', 'status_preservation',
+    'typed_relation', 'unresolved_points', 'verbatim_anchor',
+})
+EXPECTED_COMPOSITE_FIELDS = frozenset({
+    'atomization_status', 'candidate_target', 'composite_unresolved_id', 'exact_source_text',
+    'historical_conflict', 'inherited_subject', 'normalized_statement', 'parent_context',
+    'product_boundary', 'questions', 'semantic_action', 'semantic_condition',
+    'semantic_predicate', 'semantic_subject', 'source_line_ids', 'source_line_text',
+    'source_span', 'source_span_role', 'typed_relation', 'unresolved_points',
+    'verbatim_anchor',
+})
+EXPECTED_INVENTORY_FIELDS = frozenset({
+    'atomized_candidate_atom_count', 'authority_effect', 'candidate_atom_count', 'composite_unresolved_count',
+    'four_product_denominator', 'generated_at', 'input_line_count', 'inputs',
+    'proposal_sha256', 'proposal_status', 'review_unit_count', 'review_unit_ids',
+    'schema_revision', 'source_commit', 'status_preservation', 'unresolved_target_candidate_atom_count',
+})
+EXPECTED_INPUT_LINE_COUNT = 101
+EXPECTED_ATOMIZED_TOTAL = 98
+EXPECTED_COMPOSITE_TOTAL = 9
+EXPECTED_TARGET_COUNTS = {
+    "HELIX-HARNESS": 58,
+    "HELIX-OS": 26,
+    "HELIX-Web": 0,
+    "HELIX-Web-OS": 0,
+}
+EXPECTED_UNRESOLVED_TARGET_COUNT = 14
+
 
 
 def sha256(data: bytes) -> str:
@@ -98,6 +403,20 @@ def check() -> list[str]:
         errors.append("proposal_status が needs_independent_review でない")
     if plan.get("schema_revision") != 1:
         errors.append("atomization plan schema_revision が1でない")
+    if set(UNIT_IDS) != EXPECTED_UNIT_KEYSET:
+        errors.append("validator unit keyset constant is inconsistent")
+    if set(plan_lines) != EXPECTED_LINE_KEYSET:
+        errors.append("atomization plan line keysetが固定101行と不一致")
+    for line_id, expected_count in EXPECTED_ATOM_COUNTS_BY_LINE.items():
+        actual_count = len(plan_lines.get(line_id, {}).get("atomized", []))
+        if actual_count != expected_count:
+            errors.append(f"{line_id}: exact atomized line count {actual_count} != {expected_count}")
+    for line_id, expected_count in EXPECTED_COMPOSITE_COUNTS_BY_LINE.items():
+        actual_count = len(plan_lines.get(line_id, {}).get("composite_unresolved", []))
+        if actual_count != expected_count:
+            errors.append(f"{line_id}: exact composite line count {actual_count} != {expected_count}")
+    if set(inventory) != EXPECTED_INVENTORY_FIELDS:
+        errors.append("inventory fields contain unknown or missing key")
 
     inputs = inventory.get("inputs", {})
     if inputs.get("queue_sha256") != file_sha(QUEUE):
@@ -113,6 +432,8 @@ def check() -> list[str]:
         return errors
     if [row.get("review_unit_id") for row in proposals] != UNIT_IDS:
         errors.append("proposal unit順序または集合がREQATOM-QUEUE-0031..0050でない")
+    if set(row.get("review_unit_id") for row in proposals) != EXPECTED_UNIT_KEYSET or set(inventory.get("review_unit_ids", [])) != EXPECTED_UNIT_KEYSET:
+        errors.append("proposal/inventory unit keysetが固定20 unitと不一致")
     if inventory.get("review_unit_ids") != UNIT_IDS or inventory.get("review_unit_count") != 20 or len(proposals) != 20:
         errors.append("review unit分母が20でない")
 
@@ -174,6 +495,8 @@ def check() -> list[str]:
     expected_line_total = 0
 
     for proposal in proposals:
+        if set(proposal) != EXPECTED_PROPOSAL_FIELDS:
+            errors.append(f"{proposal.get('review_unit_id')}: proposal fields contain unknown or missing key")
         unit_id = proposal.get("review_unit_id")
         queue = queue_rows.get(unit_id)
         if queue is None:
@@ -232,6 +555,8 @@ def check() -> list[str]:
         spans_by_line: dict[str, list[tuple[int, int, str]]] = {}
         for index, (atom_id, line, spec) in enumerate(expected_atoms):
             candidate = atoms[index] if index < len(atoms) else {}
+            if set(candidate) != EXPECTED_ATOM_FIELDS:
+                errors.append(f"{unit_id}/{atom_id}: unknown candidate atom field")
             actual_id = candidate.get("candidate_atom_id")
             if actual_id != atom_id:
                 errors.append(f"{unit_id}: candidate_atom_idが決定規則と不一致")
@@ -296,6 +621,8 @@ def check() -> list[str]:
 
         for index, (composite_id, line, spec) in enumerate(expected_composites):
             record = composites[index] if index < len(composites) else {}
+            if set(record) != EXPECTED_COMPOSITE_FIELDS:
+                errors.append(f"{unit_id}/{composite_id}: unknown composite field")
             all_composites.append(record)
             all_composite_ids.append(record.get("composite_unresolved_id"))
             line_id = line["content_line_id"]
@@ -345,23 +672,32 @@ def check() -> list[str]:
         errors.append("candidate_atom_id重複")
     if len(all_composite_ids) != len(set(all_composite_ids)):
         errors.append("composite_unresolved_id重複")
+    if set(all_atom_ids) != EXPECTED_ATOM_KEYSET:
+        errors.append("candidate atom keysetが固定98 atomと不一致")
+    if set(all_composite_ids) != EXPECTED_COMPOSITE_KEYSET:
+        errors.append("composite keysetが固定9 spanと不一致")
     expected_atomized_total = sum(len(row.get("atomized", [])) for row in plan_lines.values())
     expected_composite_total = sum(len(row.get("composite_unresolved", [])) for row in plan_lines.values())
-    if inventory.get("input_line_count") != expected_line_total or expected_line_total != 101:
-        errors.append("input_line_countが101でない")
+    if inventory.get("input_line_count") != expected_line_total or expected_line_total != EXPECTED_INPUT_LINE_COUNT:
+        errors.append("input_line_countが固定101行でない")
     if inventory.get("candidate_atom_count") != len(all_atoms) or inventory.get("atomized_candidate_atom_count") != len(all_atoms) or len(all_atoms) != expected_atomized_total:
         errors.append("atomized candidate atom countがatomization planと不一致")
     if inventory.get("composite_unresolved_count") != len(all_composites) or len(all_composites) != expected_composite_total:
         errors.append("composite_unresolved countがatomization planと不一致")
-    for line_id, expected_count in REQUIRED_SPLIT_COUNTS.items():
-        actual_count = len(plan_lines.get(line_id, {}).get("atomized", []))
-        if actual_count < expected_count:
-            errors.append(f"{line_id}: semantic splitが不足（{actual_count} < {expected_count}）")
+    # Exact line counts are checked above before generated totals are trusted.
     actual_counts = {product: {"candidate_atom_count": target_counts[product], "status": "candidate_only" if target_counts[product] else "no_direct_source_evidence"} for product in PRODUCTS}
     if inventory.get("four_product_denominator") != actual_counts:
         errors.append("four-product denominatorがatomized候補集計と不一致")
     if inventory.get("unresolved_target_candidate_atom_count") != unresolved_count:
         errors.append("unresolved target candidate atom countが一致しない")
+    if len(all_atoms) != EXPECTED_ATOMIZED_TOTAL or inventory.get("candidate_atom_count") != EXPECTED_ATOMIZED_TOTAL or inventory.get("atomized_candidate_atom_count") != EXPECTED_ATOMIZED_TOTAL:
+        errors.append("independent atom total is not 98")
+    if len(all_composites) != EXPECTED_COMPOSITE_TOTAL or inventory.get("composite_unresolved_count") != EXPECTED_COMPOSITE_TOTAL:
+        errors.append("independent composite total is not 9")
+    if target_counts != EXPECTED_TARGET_COUNTS:
+        errors.append("independent four-product target counts are not pinned")
+    if unresolved_count != EXPECTED_UNRESOLVED_TARGET_COUNT or inventory.get("unresolved_target_candidate_atom_count") != EXPECTED_UNRESOLVED_TARGET_COUNT:
+        errors.append("independent unresolved target count is not 14")
     expected_inventory_status = {"source_authority": "confirmed (legacy queue declaration)", "target_authority": "none", "carry_forward": "preserved_pending_atomization", "implementation_status": "unknown", "degradation_status": "unknown", "phase_status": "legacy declaration preserved; current phase placement unresolved", "successor_requirement_ids": [], "decision_record": None}
     if any(inventory.get("status_preservation", {}).get(key) != value for key, value in expected_inventory_status.items()):
         errors.append("inventory status_preservationを昇格または改変")
