@@ -31,4 +31,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-`validate.py` はbase lineage、source digest、unit／edge／atom keyset、bounded candidate search、独立phase/product pool、prior cumulative count、同一batch内のnon-requirement asset重複、asset単位のcandidate／consumed／examined_not_selected／unexamined reconciliation、missing evidence reason、authority／phase／implementation／degradation boundaryをfail-closedに検査する。`selfcheck.py` は本体validator経路で27件の意味ある負例を検査し、README、plan、inventoryにWave45のtemplate残留がないことも確認する。`replacement.issue=0` はDraft PR未割当を表すtracker sentinelであり、PR番号を推定しない。
+`validate.py` はbase lineage、source digest、unit／edge／atom keyset、bounded candidate search、独立phase/product pool、prior cumulative count、同一batch内のnon-requirement asset重複、asset単位のcandidate／consumed／examined_not_selected／unexamined reconciliation、missing evidence reason、authority／phase／implementation／degradation boundaryをfail-closedに検査する。`selfcheck.py` は本体validator経路で39件の意味ある負例を検査し、README、plan、inventoryにWave45のtemplate残留がないことも確認する。`replacement.issue=0` はDraft PR未割当を表すtracker sentinelであり、PR番号を推定しない。

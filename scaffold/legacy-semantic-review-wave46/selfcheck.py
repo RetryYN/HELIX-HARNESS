@@ -135,6 +135,47 @@ def mutate_inferred_meaning(mutated_rows) -> None:
     design["covered_requirement_atoms"][0]["text"] = "inferred implementation is complete"
 
 
+def mutate_direct_semantic_link(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["candidate_membership_semantics"] = "direct_semantic_link"
+
+
+def mutate_legacy_evidence_promotion(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["legacy_asset_evidence_state"] = "current_design_authority"
+
+
+def mutate_nonrequirement_source_spans(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["source_text_spans"] = list(design["source_text_spans"]) + ["invented nonrequirement span"]
+
+
+def mutate_coverage_contract(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["coverage"] = dict(design["coverage"])
+    design["coverage"]["normal"] = "direct semantic evidence"
+
+
+def mutate_atomization_hold(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["atomization_hold"] = "atomization_admitted"
+
+
+def mutate_routing_candidate(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["routing_candidate"] = "HELIX-Web"
+
+
+def mutate_selection_route(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["selection_route"] = "direct_semantic_match"
+
+
+def mutate_bounded_search_query(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["bounded_search_query"] = {"anchors": ["invented"], "match_mode": "archive_file_contains_any_utf8_anchor"}
+
+
 def mutate_prior_asset_reuse(mutated_rows) -> None:
     prior_assets = module.prior_edges_and_assets()[1]
     mutated_rows[0]["asset_id"] = next(iter(prior_assets))
@@ -239,6 +280,22 @@ def mutate_degradation_promotion(meta) -> None:
     meta["missing_evidence_receipts"][0]["degradation"] = "current_degradation_admitted"
 
 
+def mutate_meta_status(meta) -> None:
+    meta["status"] = "reviewed"
+
+
+def mutate_meta_consumer_closure(meta) -> None:
+    meta["consumer_closure_status"] = "closed"
+
+
+def mutate_meta_source_revision(meta) -> None:
+    meta["source_revision"] = "current-generation"
+
+
+def mutate_meta_requirement_digest(meta) -> None:
+    meta["source_requirement_ir_sha256"] = "0" * 64
+
+
 def mutate_prior_cumulative_counts(meta) -> None:
     meta["cumulative_reviewed_unit_count"] = 193
     meta["cumulative_reviewed_edge_count"] = 552
@@ -271,6 +328,14 @@ rejected("stale source anchor", mutate_stale_anchor)
 rejected("shared source connection deletion", mutate_shared_connection)
 rejected("design/requirement semantic inversion", mutate_role_inversion)
 rejected("inferred implementation meaning", mutate_inferred_meaning)
+rejected("direct semantic link promotion", mutate_direct_semantic_link)
+rejected("legacy asset evidence promotion", mutate_legacy_evidence_promotion)
+rejected("non-requirement source span drift", mutate_nonrequirement_source_spans)
+rejected("coverage contract tamper", mutate_coverage_contract)
+rejected("atomization hold promotion", mutate_atomization_hold)
+rejected("routing candidate promotion", mutate_routing_candidate)
+rejected("selection route promotion", mutate_selection_route)
+rejected("bounded search query tamper", mutate_bounded_search_query)
 rejected("same-batch non-requirement asset reuse without explicit shared relation", mutate_same_batch_asset_reuse)
 rejected("independent phase/product pool membership", mutate_independent_pool_membership)
 rejected("prior implementation asset reuse", mutate_prior_asset_reuse)
@@ -288,6 +353,10 @@ rejected_meta("selected role asset count mismatch", mutate_selected_role_asset_c
 rejected_document("plan count mismatch", "PLAN", mutate_plan_count)
 rejected_document("inventory count mismatch", "INVENTORY", mutate_inventory_count)
 rejected_meta("degradation promotion", mutate_degradation_promotion)
+rejected_meta("meta status promotion", mutate_meta_status)
+rejected_meta("meta consumer closure promotion", mutate_meta_consumer_closure)
+rejected_meta("meta source revision tamper", mutate_meta_source_revision)
+rejected_meta("meta requirement digest tamper", mutate_meta_requirement_digest)
 rejected_meta("prior cumulative counts left unchanged", mutate_prior_cumulative_counts)
 
-print("Wave46 selfcheck: PASS (validator plus twenty-seven negative mutations)")
+print("Wave46 selfcheck: PASS (validator plus thirty-nine negative mutations)")

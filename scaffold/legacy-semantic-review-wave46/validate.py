@@ -90,6 +90,20 @@ COUNTER = [
     "source／phase／product candidateはresearch-premiseの静的候補であり、現行設計・実装へ昇格しない",
 ]
 CONSUMERS = ["requirement-carry-forward-ledgers", "requirement-atomization-review"]
+SOURCE_REVISION = "legacy-generation-2026-09-14"
+COVERAGE_HOLD = "source_atomization_review_pending;product_boundary_pending_human_decision"
+CANDIDATE_MEMBERSHIP = "bounded_global_search_candidate_only_not_semantic_evidence"
+COVERAGE = {
+    "constraint": "product boundary／phase authority／consumer closure未確定",
+    "failure": "未対応atom、partial evidence、またはmissing acceptance receipt",
+    "normal": "exact source anchorを固定したstatic evidence only",
+    "recovery": "not_evidenced",
+}
+LEGACY_EVIDENCE_STATES = {
+    "requirement": "non_executable_source_snapshot",
+    "design": "document_present",
+    "implementation_source": "implementation_source_present_unexecuted",
+}
 MISSING_ROLES = {
     "IRUNIT-HIL-NFR-27-HELIX-HARNESS": {"implementation_source"},
     "IRUNIT-HIL-NFR-27-HELIX-OS": set(),
@@ -226,6 +240,11 @@ def verify_role(row: dict) -> None:
     require(row["unresolved"] == UNRESOLVED, f"unresolved vocabulary {row['review_id']}")
     require(row["counterevidence"] == COUNTER, f"counterevidence vocabulary {row['review_id']}")
     require(row["observed_consumer_refs"] == CONSUMERS, f"consumer vocabulary {row['review_id']}")
+    require(row["atomization_hold"] == COVERAGE_HOLD, f"atomization boundary {row['review_id']}")
+    require(row["coverage"] == COVERAGE, f"coverage contract {row['review_id']}")
+    require(row["candidate_membership_semantics"] == CANDIDATE_MEMBERSHIP, f"candidate membership boundary {row['review_id']}")
+    require(row["legacy_asset_evidence_state"] == LEGACY_EVIDENCE_STATES[role], f"legacy evidence boundary {row['review_id']}")
+    require(row["selection_route"] == "bounded_global_search", f"selection route {row['review_id']}")
     require(row["consumer_closure_status"] == "pending" and row["consumer_closure_evidence"] == [], f"consumer boundary {row['review_id']}")
     require(row["authority_effect"] == "none" and row["new_build_allowed"] is False, f"authority boundary {row['review_id']}")
     require(row["legacy_execution_status"] == "not_run", f"execution boundary {row['review_id']}")
@@ -308,6 +327,8 @@ def verify() -> None:
     require(len(rows) == expected_current_edge_count and meta["record_count"] == expected_current_edge_count, "record count")
     require([row["review_id"] for row in rows] == [f"LSRW46-EDGE-{i:03d}" for i in range(1, expected_current_edge_count + 1)], "review order")
     require(meta["schema_revision"] == 10 and meta["batch_id"] == BATCH, "schema/batch")
+    require(meta["status"] == "candidate" and meta["consumer_closure_status"] == "pending", "meta candidate/consumer boundary")
+    require(meta["source_revision"] == SOURCE_REVISION and meta["source_requirement_ir_sha256"] == REQ_SHA, "meta source identity")
     require(meta["current_tree_revision"] == BASE and meta["parent_revision"] == BASE and meta["stacked_pr_parent_revision"] == BASE, "base lineage")
     require(meta["main_merge_revision"] == BASE and meta["main_merge_parents"] == MAIN_MERGE_PARENTS, "merge lineage")
     require(meta["source_main_base_revision"] == BASE and meta["wave45_exact_head"] == "d0c2e2e2aab746a60f3d51b20647de8e59fbfa09", "source base")
@@ -479,6 +500,9 @@ def verify() -> None:
             verify_role(row)
             require(row["batch_id"] == BATCH and row["schema_revision"] == 10, f"row identity {row['review_id']}")
             require(row["product_scope"] == req["product_scope"] and row["phase_candidates"] == req["phase_candidates"], f"row scope {row['review_id']}")
+            require(row["source_text_spans"] == req["source_text_spans"], f"row source spans {row['review_id']}")
+            require(row["routing_candidate"] == parent["routing_candidate"], f"routing candidate {row['review_id']}")
+            require(row["bounded_search_query"] == QUERIES[unit], f"bounded search query {row['review_id']}")
             require(row["covered_requirement_atoms"] == req["covered_requirement_atoms"], f"atom preservation {row['review_id']}")
             require(row["covered_requirement_atom_ids"] == atom_ids, f"atom IDs {row['review_id']}")
             asset = catalog[row["asset_id"]]
