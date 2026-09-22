@@ -12,6 +12,7 @@
 - 26件はasset-level test summary、2件はhead/base/tested merge identity receipt。`fatal:` markerは1件で観測されたが、unit-level failure／縮退とは分類していない。
 - selected 28件はWave edge、crosswalk direct／representative link、decision／read-after direct referenceに該当しない。candidate poolは検索候補であり、unit結合へ昇格しない。
 - 各recordは旧実装、縮退、current実装、acceptanceをunknown／absentとして保持する。test pass、pending、fatal／lint、receipt identityを実装・縮退・未実装・受入へ昇格しない。
+- inventoryはbundle_kind `research_scaffold_asset_level_receipt_partition`、expected_asset_count `28` と実record数、宣言済みtop-level key集合を固定照合し、3種類の改竄をselfcheckで拒否する。
 
 ## 変更範囲
 
@@ -24,7 +25,7 @@
 ```text
 python3 -B scaffold/legacy-execution-evidence-0118/generate.py  # PASS
 python3 -B scaffold/legacy-execution-evidence-0118/validate.py  # PASS: 28
-python3 -B scaffold/legacy-execution-evidence-0118/selfcheck.py  # PASS: 21 negative cases
+python3 -B scaffold/legacy-execution-evidence-0118/selfcheck.py  # PASS: 24 negative cases
 python3 scaffold/tools/scfctl.py validate  # PASS: 105 bindings / fail=0
 python3 scaffold/tools/scfctl.py stale     # PASS: stale=0
 python3 scaffold/tools/scfctl.py residuals # PASS: residuals=0

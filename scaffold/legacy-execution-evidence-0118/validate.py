@@ -71,6 +71,23 @@ TOP_LEVEL_KEYS = {
     "source_exact",
     "unresolved",
 }
+INVENTORY_TOP_LEVEL_KEYS = {
+    "schema_revision",
+    "binding_id",
+    "bundle_kind",
+    "base_revision",
+    "base_source_mode",
+    "authority_boundary",
+    "scope",
+    "selection",
+    "anchor_rule",
+    "exploration",
+    "input_digests",
+    "expected_asset_count",
+    "output_sha256",
+}
+EXPECTED_BUNDLE_KIND = "research_scaffold_asset_level_receipt_partition"
+EXPECTED_ASSET_COUNT = 28
 
 
 def fail(code: str, message: str) -> None:
@@ -223,8 +240,14 @@ def verify_base() -> None:
 
 def verify_inventory(inventory: dict, evidence_path: Path) -> tuple[list[dict], list[dict], dict, dict]:
     expected_paths = [*WAVE_PATHS.values(), *GLOBAL_INPUTS]
+    if set(inventory) != INVENTORY_TOP_LEVEL_KEYS:
+        fail("E_SCHEMA", "inventory top-level key set drift")
     if inventory.get("schema_revision") != 1 or inventory.get("binding_id") != "SCF-B-0118":
         fail("E_SCHEMA", "inventory schema or binding id mismatch")
+    if inventory.get("bundle_kind") != EXPECTED_BUNDLE_KIND:
+        fail("E_SCHEMA", "inventory bundle_kind drift")
+    if inventory.get("expected_asset_count") != EXPECTED_ASSET_COUNT:
+        fail("E_SCOPE", "inventory expected_asset_count drift")
     if inventory.get("base_revision") != BASE_REVISION or inventory.get("base_source_mode") != "all input and archive evidence bytes from fixed BASE Git objects":
         fail("E_BASE_PIN", "inventory BASE pin/source mode drift")
     expected_authority = {
@@ -418,8 +441,9 @@ def validate(bundle: Path) -> None:
     selected, _, _, _ = verify_inventory(inventory, evidence_path)
     actual = local_jsonl(evidence_path)
     expected = expected_records(selected)
-    if len(actual) != 28 or len({row.get("asset_id") for row in actual}) != 28 or [row.get("asset_id") for row in actual] != [row["asset_id"] for row in expected]:
-        fail("E_ASSET_SET", "evidence must contain each of the 28 selected assets exactly once in ledger order")
+    expected_count = inventory["expected_asset_count"]
+    if len(actual) != expected_count or len({row.get("asset_id") for row in actual}) != expected_count or [row.get("asset_id") for row in actual] != [row["asset_id"] for row in expected]:
+        fail("E_ASSET_SET", f"evidence must contain each of the {expected_count} selected assets exactly once in ledger order")
     for i, (got, want) in enumerate(zip(actual, expected), 1):
         aid = want["asset_id"]
         if set(got) != TOP_LEVEL_KEYS:

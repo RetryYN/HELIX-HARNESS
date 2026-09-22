@@ -30,6 +30,7 @@
   "kind": "scaffold",
   "obligations": [
     "固定BASEからsource_path regexに一致するexecution/result系28 assetをledger順で全件再導出し欠落・重複を拒否する",
+    "inventoryのbundle_kind、expected_asset_count、top-level key集合を固定期待値と照合し、record実数との不一致を拒否する",
     "28 asset全件のledger record、archive source Git blob／bytes／SHA／該当行digestを保持する",
     "Wave598 edge、355 unique asset、218 product unit、153 source ID、ledger4020行を固定BASEから再導出する",
     "asset-level execution／failure／result observationとunit／requirement／acceptance binding欠落を別fieldで保持する",
@@ -438,7 +439,10 @@
       "E_OUTPUT_DIGEST output digest omission",
       "E_BASE_NOT_ANCESTOR fixed BASE non-ancestor HEAD",
       "E_BASE_SOURCE missing fixed-base object probe",
-      "E_HISTORY_BINDING unexpected decision/read-after reference probe"
+      "E_HISTORY_BINDING unexpected decision/read-after reference probe",
+      "E_SCHEMA bundle_kind expectation tamper",
+      "E_SCOPE expected_asset_count versus actual record count",
+      "E_SCHEMA inventory top-level key set tamper"
     ]
   }
 }

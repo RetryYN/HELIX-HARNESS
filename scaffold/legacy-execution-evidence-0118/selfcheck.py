@@ -101,7 +101,10 @@ def main() -> int:
         probe["asset_id"] = decision_asset
         module.expected_records([probe])
     expect_direct("unexpected history binding", history_probe, "E_HISTORY_BINDING")
-    print("PASS SCF-B-0118 selfcheck: 21 negative cases")
+    expect("bundle kind tamper", lambda inv, rows: inv.update(bundle_kind="fabricated_bundle_kind"), "E_SCHEMA")
+    expect("expected asset count tamper", lambda inv, rows: inv.update(expected_asset_count=27), "E_SCOPE")
+    expect("inventory top-level key tamper", lambda inv, rows: inv.update(fabricated_field=True), "E_SCHEMA")
+    print("PASS SCF-B-0118 selfcheck: 24 negative cases")
     return 0
 
 
