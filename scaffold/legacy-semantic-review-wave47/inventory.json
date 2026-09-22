@@ -1,0 +1,39 @@
+{
+  "wave": "Wave47",
+  "schema_revision": 10,
+  "binding_id": "SCF-B-0089",
+  "base_revision": "f15c3ca2ed1dc865b242b0a21e1516fdeec6f9f6",
+  "source_revision": "legacy-generation-2026-09-14",
+  "batch_id": "LEGACY-SEMANTIC-WAVE47-2026-09-22",
+  "status": "candidate",
+  "legacy_execution_performed": false,
+  "authority_effect": "none",
+  "current_implementation": "unknown",
+  "degradation": "unknown",
+  "inspected_legacy_asset_ids": [
+    "LEGACY-ASSET-031E336AD25200116528", "LEGACY-ASSET-1D471065A4A8B6927ED7", "LEGACY-ASSET-3A9E0A965FD97CDE3840", "LEGACY-ASSET-70DA9B8C03E54A629039",
+    "LEGACY-ASSET-55D80AF7AE6E1413BF01", "LEGACY-ASSET-ABFB9E11830D370D3141", "LEGACY-ASSET-B2FF7D3277DFA9874AA2", "LEGACY-ASSET-B3866EECAF22235E9EB5", "LEGACY-ASSET-C4CEF7FCC912FC833714", "LEGACY-ASSET-DD7B5EE4399473BA4FF6", "LEGACY-ASSET-DCF5C98796FC654D17C4"
+  ],
+  "units": [
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-23-HELIX-HARNESS", "requirement_id": "HIL-NFR-23", "product": "HELIX-HARNESS", "role_edges": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9", "LEGACY-ASSET-C4CEF7FCC912FC833714"], "missing_roles": ["implementation_source"]},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-23-HELIX-OS", "requirement_id": "HIL-NFR-23", "product": "HELIX-OS", "role_edges": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9"], "missing_roles": ["design", "implementation_source"]},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-24-HELIX-HARNESS", "requirement_id": "HIL-NFR-24", "product": "HELIX-HARNESS", "role_edges": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9", "LEGACY-ASSET-ABFB9E11830D370D3141", "LEGACY-ASSET-DCF5C98796FC654D17C4"], "missing_roles": []},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-24-HELIX-OS", "requirement_id": "HIL-NFR-24", "product": "HELIX-OS", "role_edges": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9", "LEGACY-ASSET-DD7B5EE4399473BA4FF6", "LEGACY-ASSET-B2FF7D3277DFA9874AA2"], "missing_roles": []},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-26-HELIX-HARNESS", "requirement_id": "HIL-NFR-26", "product": "HELIX-HARNESS", "role_edges": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9", "LEGACY-ASSET-55D80AF7AE6E1413BF01"], "missing_roles": ["implementation_source"]},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-26-HELIX-OS", "requirement_id": "HIL-NFR-26", "product": "HELIX-OS", "role_edges": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9", "LEGACY-ASSET-B3866EECAF22235E9EB5"], "missing_roles": ["implementation_source"]}
+  ],
+  "missing_evidence_receipts": "See legacy-requirement-direct-semantic-review-wave47.meta.json; role-level candidate/consumed/examined_not_selected/unexamined arrays are retained for all five missing roles.",
+  "negative_cases": ["source tamper", "unsupported product routing", "authority promotion", "implementation promotion", "missing receipt", "candidate pool omission", "prior asset reuse", "count drift"],
+  "counts": {
+    "units": 6,
+    "role_edges": 13,
+    "semantic_atoms": 19,
+    "composite_unresolved": 6,
+    "selected_role_assets": 7,
+    "inspected_legacy_assets": 11,
+    "missing_evidence_receipts": 5,
+    "cumulative_units_after_wave": 205,
+    "cumulative_edges_after_wave": 577,
+    "remaining_units_after_wave": 13
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "wave": "Wave47",
+  "base_revision": "f15c3ca2ed1dc865b242b0a21e1516fdeec6f9f6",
+  "batch_id": "LEGACY-SEMANTIC-WAVE47-2026-09-22",
+  "binding_id": "SCF-B-0089",
+  "selection_basis": "Wave46後の残19 unitから、NFR-23/24/26のHARNESS／OS対をscope-cycle、refactor、obligation/oracleのsource chainとproduct／phase candidate poolの境界で選定。6 unitへ限定し、旧sourceの候補を現行実装へ昇格しない。TR系、NFR-20/22/29/32/33は未選択残差として保持する。",
+  "selected_units": [
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-23-HELIX-HARNESS", "product": "HELIX-HARNESS", "phases": ["PHCAP-04"], "missing_roles": ["implementation_source"]},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-23-HELIX-OS", "product": "HELIX-OS", "phases": [], "missing_roles": ["design", "implementation_source"]},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-24-HELIX-HARNESS", "product": "HELIX-HARNESS", "phases": ["PHCAP-18"], "missing_roles": []},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-24-HELIX-OS", "product": "HELIX-OS", "phases": ["PHCAP-18"], "missing_roles": []},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-26-HELIX-HARNESS", "product": "HELIX-HARNESS", "phases": ["PHCAP-06", "PHCAP-07"], "missing_roles": ["implementation_source"]},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-26-HELIX-OS", "product": "HELIX-OS", "phases": ["PHCAP-07"], "missing_roles": ["implementation_source"]}
+  ],
+  "counts": {
+    "units": 6,
+    "role_edges": 13,
+    "semantic_atoms": 19,
+    "composite_unresolved": 6,
+    "selected_role_assets": 7,
+    "inspected_legacy_assets": 11,
+    "missing_evidence_receipts": 5,
+    "cumulative_units_after_wave": 205,
+    "cumulative_edges_after_wave": 577,
+    "remaining_units_after_wave": 13
+  },
+  "boundary": {
+    "authority_effect": "none",
+    "current_implementation": "unknown",
+    "degradation": "unknown",
+    "phase_admission": "candidate_unchanged",
+    "consumer_closure": "pending",
+    "legacy_execution": "not_run",
+    "web_routing": "not_inferred"
+  },
+  "missing_role_reconciliation": "Each missing unit/role records candidate_asset_ids, consumed_asset_ids, examined_not_selected_asset_ids, and unexamined_asset_ids independently. Candidate membership is not direct evidence; unknown implementation and degradation remain explicit.",
+  "verification_plan": [
+    "generate.pyの再生成とledger/meta digestの決定性",
+    "validate.pyのsource／asset／decision／failure／consumer receipt、prior Wave1-46 dynamic count、candidate pool reconciliation、same-batch duplicate、ancestor base gate",
+    "selfcheck.pyの本体validator経路によるsource／authority／missing／pool／count負例",
+    "scfctl validate／stale／residualsとgit diff --check"
+  ],
+  "status": "candidate"
+}
