@@ -219,7 +219,7 @@
     "candidate_records_path": "scaffold/rdp001-web-webos-vision-coverage-0091/candidate-records.jsonl",
     "candidate_records_sha256": "620a9d40b0f56c86aac3a1757b4f025a8ca7673be4249ad1cfbd84d14b2c6c8c",
     "connection_matrix_path": "scaffold/rdp001-web-webos-vision-coverage-0091/connection-matrix.jsonl",
-    "connection_matrix_sha256": "b507b9ef6d4d477b8fe64b72d3034b2586984a9634c5967b1a58fe90e487f71d",
+    "connection_matrix_sha256": "af6c1fa6870b3e1a776c9087ce2ddbb25a39d39f6b3e81b9dc4769bcd191ca72",
     "parent_coverage_path": "scaffold/rdp001-web-webos-vision-coverage-0091/parent-coverage.jsonl",
     "parent_coverage_sha256": "d775bfa879a890147e85b165db82643654675cfc2de37fe964ee49d08312dd35",
     "parent_span_count": 29,

@@ -17,7 +17,7 @@ PHCAP inventory と implementation crosswalk には、候補の parent span／at
 - `plan.json`: 対象選定と接続判定の研究計画
 - `generate.py`: 入力から上記JSONL／inventoryを再生成
 - `validate.py`: source line／ID重複、digest、件数、専用ID/link fieldによる直接リンク、境界を検査
-- `selfcheck.py`: validatorと23個の意味ある負例を実行
+- `selfcheck.py`: validatorと33個の意味ある負例を実行（3 artifactの余剰key、matrix全edge種別のstatus／type／lineを含む）
 
 ## 検証
 

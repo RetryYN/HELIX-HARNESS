@@ -36,6 +36,37 @@ INVENTORY_ARTIFACT = "scaffold/rdp001-web-webos-vision-coverage-0091/inventory.j
 PARENT_ARTIFACT = "scaffold/rdp001-web-webos-vision-coverage-0091/parent-coverage.jsonl"
 CANDIDATE_ARTIFACT = "scaffold/rdp001-web-webos-vision-coverage-0091/candidate-records.jsonl"
 MATRIX_ARTIFACT = "scaffold/rdp001-web-webos-vision-coverage-0091/connection-matrix.jsonl"
+PARENT_KEYS = {
+    "parent_span_id", "group", "label", "source_path", "source_line_start", "source_line_end",
+    "exact_source_text", "source_span_sha256", "candidate_atom_ids", "candidate_atom_count", "coverage_status",
+}
+CANDIDATE_KEYS = {
+    "atom_id", "bundle_id", "parent_span_id", "source_path", "source_line_start", "source_line_end",
+    "exact_source_text", "source_span_sha256", "candidate_text", "candidate_kind", "atomization_status",
+    "candidate_role", "candidate_product", "candidate_product_candidates", "formal_product_boundary_status",
+    "formal_owner_status", "authority_status", "phase_status", "phase_candidate_ids", "asset_status",
+    "implementation_crosswalk_unit_ids", "legacy_implementation_status", "current_implementation_status",
+    "legacy_degradation_status", "current_degradation_status", "failure_status", "consumer_status",
+    "formal_requirement_unit_status", "semantic_equivalence", "related_open_decision_ids", "meaning_change_applied",
+}
+MATRIX_KEYS_BY_KIND = {
+    "parent_span_coverage": {
+        "edge_id", "edge_kind", "from_type", "from_id", "to_type", "to_id",
+        "source_line_start", "source_line_end", "status",
+    },
+    "candidate_product_boundary": {
+        "edge_id", "edge_kind", "from_type", "from_id", "to_type", "to_id",
+        "source_line_start", "source_line_end", "status", "formal_owner_status", "authority_status",
+    },
+    "candidate_phase_unlinked": {
+        "edge_id", "edge_kind", "from_type", "from_id", "to_type", "to_id",
+        "source_line_start", "source_line_end", "status", "basis",
+    },
+    "candidate_asset_unlinked": {
+        "edge_id", "edge_kind", "from_type", "from_id", "to_type", "to_id",
+        "source_line_start", "source_line_end", "status", "basis",
+    },
+}
 BUNDLES = {
     "0080": {"binding": "scaffold/bindings/SCF-B-0080.json", "inventory": "scaffold/rdp001-web-webos-vision-source-0080/inventory.json", "spans": SPAN_PATH, "relations": "scaffold/rdp001-web-webos-vision-source-0080/source-relations.jsonl", "legacy": "scaffold/rdp001-web-webos-vision-source-0080/legacy-evidence.jsonl"},
     "0081": {"binding": "scaffold/bindings/SCF-B-0081.json", "inventory": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/inventory.json", "atoms": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/semantic-atoms.jsonl", "links": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/legacy-links.jsonl"},
@@ -109,6 +140,10 @@ def validate() -> None:
     parents = load_jsonl(PARENT_ARTIFACT)
     candidates = load_jsonl(CANDIDATE_ARTIFACT)
     matrix = load_jsonl(MATRIX_ARTIFACT)
+    for row in parents:
+        exact_keys(row, PARENT_KEYS, "E_PARENT_KEYS")
+    for row in candidates:
+        exact_keys(row, CANDIDATE_KEYS, "E_CANDIDATE_KEYS")
     exact_keys(inventory, {"schema", "candidate_id", "status", "authority_effect", "meaning_change_applied", "formal_requirement_unit_count", "formal_owner_status", "successor_requirement_ids", "human_decision_ref", "formal_register_append", "old_runtime_test_ci_execution", "base_origin_main", "inputs", "source", "counts", "products", "boundary", "unresolved_questions", "verification_contract", "residuals"}, "E_INV_KEYS")
     if inventory["schema"] != "rdp001-web-webos-vision-coverage/v1" or inventory["candidate_id"] != "RDP-001-WEB-WEBOS-VISION-COVERAGE-0091":
         fail("E_IDENTITY")
@@ -202,11 +237,71 @@ def validate() -> None:
         fail("E_MATRIX_EDGE_COUNTS")
     if {(row["from_id"], row["to_id"]) for row in parent_edges} != {(atom["parent_span_id"], atom["atom_id"]) for atom in atoms}:
         fail("E_MATRIX_PARENT_COVERAGE")
-    if {(row["from_id"], row["to_id"]) for row in product_edges} != {(atom["atom_id"], product) for atom in atoms for product in (atom.get("candidate_product_candidates") or [atom.get("candidate_product")]) if product}:
+    expected_parent_pairs = {(atom["parent_span_id"], atom["atom_id"]) for atom in atoms}
+    expected_product_pairs = {
+        (atom["atom_id"], product)
+        for atom in atoms
+        for product in (atom.get("candidate_product_candidates") or [atom.get("candidate_product")])
+        if product
+    }
+    if {(row["from_id"], row["to_id"]) for row in parent_edges} != expected_parent_pairs:
+        fail("E_MATRIX_PARENT_COVERAGE")
+    if {(row["from_id"], row["to_id"]) for row in product_edges} != expected_product_pairs:
         fail("E_MATRIX_PRODUCT_BOUNDARY")
-    for edge in phase_edges + asset_edges:
-        if edge["to_id"] is not None or edge["status"] != "unlinked_unknown":
-            fail("E_MATRIX_UNLINKED_PROMOTION", edge["edge_id"])
+
+    for edge in matrix:
+        edge_kind = edge["edge_kind"]
+        if edge_kind not in MATRIX_KEYS_BY_KIND:
+            fail("E_MATRIX_KIND", edge.get("edge_id", ""))
+        exact_keys(edge, MATRIX_KEYS_BY_KIND[edge_kind], "E_MATRIX_KEYS")
+        if edge_kind == "parent_span_coverage":
+            atom = atom_by.get(edge["to_id"])
+            span = span_by.get(edge["from_id"])
+            if atom is None or span is None or atom["parent_span_id"] != edge["from_id"]:
+                fail("E_MATRIX_PARENT_SOURCE", edge["edge_id"])
+            if edge["from_type"] != "parent_span" or edge["to_type"] != "candidate_atom":
+                fail("E_MATRIX_PARENT_TYPES", edge["edge_id"])
+            if edge["status"] != "exact_source_line_covered":
+                fail("E_MATRIX_PARENT_STATUS", edge["edge_id"])
+            if edge["source_line_start"] != atom["source_line_start"] or edge["source_line_end"] != atom["source_line_end"]:
+                fail("E_MATRIX_PARENT_LINES", edge["edge_id"])
+            if not (span["line_start"] <= edge["source_line_start"] <= edge["source_line_end"] <= span["line_end"]):
+                fail("E_MATRIX_PARENT_CONTAINMENT", edge["edge_id"])
+        elif edge_kind == "candidate_product_boundary":
+            atom = atom_by.get(edge["from_id"])
+            if atom is None or edge["to_id"] not in (atom.get("candidate_product_candidates") or [atom.get("candidate_product")]):
+                fail("E_MATRIX_PRODUCT_SOURCE", edge["edge_id"])
+            if edge["from_type"] != "candidate_atom" or edge["to_type"] != "product_candidate":
+                fail("E_MATRIX_PRODUCT_TYPES", edge["edge_id"])
+            if edge["source_line_start"] != atom["source_line_start"] or edge["source_line_end"] != atom["source_line_end"]:
+                fail("E_MATRIX_PRODUCT_LINES", edge["edge_id"])
+            span = span_by[atom["parent_span_id"]]
+            if not (span["line_start"] <= edge["source_line_start"] <= edge["source_line_end"] <= span["line_end"]):
+                fail("E_MATRIX_PRODUCT_CONTAINMENT", edge["edge_id"])
+            if edge["status"] != "candidate_boundary_only" or edge["formal_owner_status"] != "unknown" or edge["authority_status"] != "none":
+                fail("E_MATRIX_PRODUCT_STATUS", edge["edge_id"])
+        elif edge_kind == "candidate_phase_unlinked":
+            if edge["from_id"] not in atom_by or edge["from_type"] != "candidate_atom" or edge["to_type"] != "phase_candidate":
+                fail("E_MATRIX_PHASE_TYPES", edge["edge_id"])
+            atom = atom_by[edge["from_id"]]
+            if edge["source_line_start"] != atom["source_line_start"] or edge["source_line_end"] != atom["source_line_end"]:
+                fail("E_MATRIX_PHASE_LINES", edge["edge_id"])
+            span = span_by[atom["parent_span_id"]]
+            if not (span["line_start"] <= edge["source_line_start"] <= edge["source_line_end"] <= span["line_end"]):
+                fail("E_MATRIX_PHASE_CONTAINMENT", edge["edge_id"])
+            if edge["to_id"] is not None or edge["status"] != "unlinked_unknown" or edge["basis"] != "no_exact_parent_span_or_atom_id_in_phase_capability_inventory":
+                fail("E_MATRIX_PHASE_STATUS", edge["edge_id"])
+        else:
+            if edge["from_id"] not in atom_by or edge["from_type"] != "candidate_atom" or edge["to_type"] != "implementation_crosswalk_asset":
+                fail("E_MATRIX_ASSET_TYPES", edge["edge_id"])
+            atom = atom_by[edge["from_id"]]
+            if edge["source_line_start"] != atom["source_line_start"] or edge["source_line_end"] != atom["source_line_end"]:
+                fail("E_MATRIX_ASSET_LINES", edge["edge_id"])
+            span = span_by[atom["parent_span_id"]]
+            if not (span["line_start"] <= edge["source_line_start"] <= edge["source_line_end"] <= span["line_end"]):
+                fail("E_MATRIX_ASSET_CONTAINMENT", edge["edge_id"])
+            if edge["to_id"] is not None or edge["status"] != "unlinked_unknown" or edge["basis"] != "no_exact_parent_span_or_atom_id_in_implementation_crosswalk":
+                fail("E_MATRIX_ASSET_STATUS", edge["edge_id"])
 
     expected_counts = {
         "parent_spans": 29, "candidate_records": 35, "atomized_candidates": 19, "composite_unresolved": 16,

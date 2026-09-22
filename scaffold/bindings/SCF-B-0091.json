@@ -216,6 +216,7 @@
       "35 candidate source line／ID deduplication",
       "49 candidate product edge and Web／Web-OS boundary recheck",
       "exact dedicated ID／link field direct-match rederivation",
+      "all JSONL record keysets and matrix edge status／type／source-line rederivation",
       "formal unknown／not_generated boundary recheck",
       "validator/selfcheck",
       "scfctl validate／stale／residuals",
@@ -244,7 +245,17 @@
       "old execution promotion",
       "product owner promotion",
       "current implementation boundary promotion",
-      "direct phase count promotion"
+      "direct phase count promotion",
+      "parent record extra key",
+      "candidate record extra key",
+      "matrix record extra key",
+      "parent matrix status promotion",
+      "product matrix status promotion",
+      "parent matrix type promotion",
+      "product matrix type promotion",
+      "parent matrix source line tamper",
+      "product matrix source line tamper",
+      "phase matrix source line tamper"
     ]
   },
   "replacement": {

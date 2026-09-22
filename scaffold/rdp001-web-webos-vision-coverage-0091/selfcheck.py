@@ -86,6 +86,18 @@ def matrix_mutation(fn):
     return apply
 
 
+def extra_parent_key(rows):
+    rows[0]["unexpected_key"] = True
+
+
+def extra_candidate_key(rows):
+    rows[0]["unexpected_key"] = True
+
+
+def extra_matrix_key(rows):
+    rows[0]["unexpected_key"] = True
+
+
 def remove_parent_candidate(rows):
     rows[0]["candidate_atom_ids"] = rows[0]["candidate_atom_ids"][1:]
 
@@ -149,6 +161,34 @@ def break_matrix_edge_order(rows):
     rows[0]["edge_id"] = "WVC-EDGE-999"
 
 
+def promote_parent_matrix_status(rows):
+    next(row for row in rows if row["edge_kind"] == "parent_span_coverage")["status"] = "formal_coverage"
+
+
+def promote_product_matrix_status(rows):
+    next(row for row in rows if row["edge_kind"] == "candidate_product_boundary")["status"] = "formal_product_assignment"
+
+
+def promote_parent_matrix_type(rows):
+    next(row for row in rows if row["edge_kind"] == "parent_span_coverage")["from_type"] = "formal_parent_span"
+
+
+def promote_product_matrix_type(rows):
+    next(row for row in rows if row["edge_kind"] == "candidate_product_boundary")["to_type"] = "formal_product"
+
+
+def tamper_matrix_source_line(rows):
+    next(row for row in rows if row["edge_kind"] == "parent_span_coverage")["source_line_start"] = 999
+
+
+def tamper_product_matrix_source_line(rows):
+    next(row for row in rows if row["edge_kind"] == "candidate_product_boundary")["source_line_start"] = 999
+
+
+def tamper_phase_matrix_source_line(rows):
+    next(row for row in rows if row["edge_kind"] == "candidate_phase_unlinked")["source_line_start"] = 999
+
+
 def bad_count(inv):
     inv["counts"]["candidate_records"] = 36
 
@@ -182,8 +222,10 @@ def direct_phase_count_promotion(inv):
 
 
 rejected("parent coverage omission", "parents", parent_mutation(remove_parent_candidate))
+rejected("parent record extra key", "parents", parent_mutation(extra_parent_key))
 rejected("candidate source line drift", "candidates", candidate_mutation(drift_candidate_source_line))
 rejected("candidate ID duplication", "candidates", candidate_mutation(duplicate_candidate_id))
+rejected("candidate record extra key", "candidates", candidate_mutation(extra_candidate_key))
 rejected("formal owner promotion", "candidates", candidate_mutation(promote_candidate_owner))
 rejected("phase candidate promotion", "candidates", candidate_mutation(promote_candidate_phase))
 rejected("asset linkage promotion", "candidates", candidate_mutation(promote_candidate_asset))
@@ -196,6 +238,14 @@ rejected("parent matrix target injection", "matrix", matrix_mutation(break_paren
 rejected("matrix phase link promotion", "matrix", matrix_mutation(promote_matrix_phase))
 rejected("matrix product target injection", "matrix", matrix_mutation(break_matrix_product))
 rejected("matrix edge ordering tamper", "matrix", matrix_mutation(break_matrix_edge_order))
+rejected("matrix record extra key", "matrix", matrix_mutation(extra_matrix_key))
+rejected("parent matrix status promotion", "matrix", matrix_mutation(promote_parent_matrix_status))
+rejected("product matrix status promotion", "matrix", matrix_mutation(promote_product_matrix_status))
+rejected("parent matrix type promotion", "matrix", matrix_mutation(promote_parent_matrix_type))
+rejected("product matrix type promotion", "matrix", matrix_mutation(promote_product_matrix_type))
+rejected("parent matrix source line tamper", "matrix", matrix_mutation(tamper_matrix_source_line))
+rejected("product matrix source line tamper", "matrix", matrix_mutation(tamper_product_matrix_source_line))
+rejected("phase matrix source line tamper", "matrix", matrix_mutation(tamper_phase_matrix_source_line))
 rejected("inventory count drift", "inventory", inventory_mutation(bad_count))
 rejected("base revision tamper", "inventory", inventory_mutation(bad_base))
 rejected("input digest tamper", "inventory", inventory_mutation(bad_input_digest))
@@ -205,4 +255,4 @@ rejected("product owner promotion", "inventory", inventory_mutation(product_owne
 rejected("current implementation boundary promotion", "inventory", inventory_mutation(current_implementation_promotion))
 rejected("direct phase count promotion", "inventory", inventory_mutation(direct_phase_count_promotion))
 
-print("Wave coverage 0091 selfcheck: PASS (validator plus twenty-three negative mutations)")
+print("Wave coverage 0091 selfcheck: PASS (validator plus thirty-three negative mutations)")

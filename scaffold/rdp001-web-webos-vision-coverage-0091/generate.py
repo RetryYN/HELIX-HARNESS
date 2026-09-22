@@ -202,17 +202,20 @@ def main() -> None:
             matrix.append({
                 "edge_id": f"WVC-EDGE-{edge_number:03d}", "edge_kind": "candidate_product_boundary",
                 "from_type": "candidate_atom", "from_id": record["atom_id"], "to_type": "product_candidate", "to_id": product,
+                "source_line_start": record["source_line_start"], "source_line_end": record["source_line_end"],
                 "status": "candidate_boundary_only", "formal_owner_status": "unknown", "authority_status": "none",
             }); edge_number += 1
     for record in candidate_records:
         matrix.append({
             "edge_id": f"WVC-EDGE-{edge_number:03d}", "edge_kind": "candidate_phase_unlinked",
             "from_type": "candidate_atom", "from_id": record["atom_id"], "to_type": "phase_candidate", "to_id": None,
+            "source_line_start": record["source_line_start"], "source_line_end": record["source_line_end"],
             "status": "unlinked_unknown", "basis": "no_exact_parent_span_or_atom_id_in_phase_capability_inventory",
         }); edge_number += 1
         matrix.append({
             "edge_id": f"WVC-EDGE-{edge_number:03d}", "edge_kind": "candidate_asset_unlinked",
             "from_type": "candidate_atom", "from_id": record["atom_id"], "to_type": "implementation_crosswalk_asset", "to_id": None,
+            "source_line_start": record["source_line_start"], "source_line_end": record["source_line_end"],
             "status": "unlinked_unknown", "basis": "no_exact_parent_span_or_atom_id_in_implementation_crosswalk",
         }); edge_number += 1
 
