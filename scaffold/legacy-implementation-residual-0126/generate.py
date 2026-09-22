@@ -285,6 +285,21 @@ def git_blob(path: str, base: str = BASE_REVISION) -> str:
     return subprocess.check_output(["git", "rev-parse", f"{base}:{path}"], text=True).strip()
 
 
+def git_tree_entry(path: str, base: str = BASE_REVISION) -> dict[str, str]:
+    raw = subprocess.check_output(["git", "ls-tree", base, "--", path], text=True)
+    lines = [line for line in raw.splitlines() if line]
+    if len(lines) != 1 or "\t" not in lines[0]:
+        raise AssertionError(f"E_SOURCE_TREE exact path {path}")
+    header, entry_path = lines[0].split("\t", 1)
+    parts = header.split()
+    if len(parts) != 3 or entry_path != path:
+        raise AssertionError(f"E_SOURCE_TREE path {path}")
+    mode, entry_type, oid = parts
+    if entry_type != "blob" or mode not in {"100644", "100755"} or len(oid) != 40:
+        raise AssertionError(f"E_SOURCE_TREE mode/type {path}")
+    return {"mode": mode, "type": entry_type}
+
+
 UNRESEARCHED_PROFILE_REASON = "This implementation_source asset is absent from the prior research asset-ID set; no direct product evidence is retained, so it remains insufficient basis pending dedicated review."
 
 def unique_anchor_marker(path: str) -> str:
@@ -373,6 +388,7 @@ def anchor(path: str, spec: dict) -> dict:
 
 def static_source(asset: dict, spec: dict) -> dict:
     archive_path = ARCHIVE_PREFIX + asset["source_path"]
+    tree = git_tree_entry(archive_path)
     data = git_bytes(archive_path)
     ledger_sha = asset.get("source_sha256")
     ledger_match = tagged(data) == "sha256:" + ledger_sha
@@ -381,7 +397,7 @@ def static_source(asset: dict, spec: dict) -> dict:
     manifest_digest = manifest_sha256(asset["source_path"])
     manifest_match = archive_digest == manifest_digest
     manifest_resolution = {"status": "matched"} if manifest_match else {"status": "pending_human_source_resolution", "formal_admission": "stopped", "reuse_decision": "stopped", "reason": "archive bytes and manifest entry differ; static evidence is retained"}
-    return {"archive_path": archive_path, "source_path": asset["source_path"], "blob": git_blob(archive_path), "bytes": len(data), "line_count": len(data.decode(errors="replace").splitlines()), "sha256": archive_digest, "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": ledger_match, "archive_manifest_sha256": manifest_digest, "archive_manifest_match": manifest_match, "archive_manifest_resolution": manifest_resolution, "semantic_anchor": a, "read_mode": "git_object_static_read_only"}
+    return {"archive_path": archive_path, "source_path": asset["source_path"], "mode": tree["mode"], "type": tree["type"], "blob": git_blob(archive_path), "bytes": len(data), "line_count": len(data.decode(errors="replace").splitlines()), "sha256": archive_digest, "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": ledger_match, "archive_manifest_sha256": manifest_digest, "archive_manifest_match": manifest_match, "archive_manifest_resolution": manifest_resolution, "semantic_anchor": a, "read_mode": "git_object_static_read_only"}
 
 
 def phase_target_set(phase_rows: dict[str, tuple[int, dict]], wave_asset_ids: set[str]) -> list[str]:
@@ -481,6 +497,8 @@ def build() -> None:
         wave_rows.extend((wave, path, n, row) for n, row in rows)
         wave_asset_ids.update(row.get("asset_id") for _, row in [(n, row) for n, row in rows] if row.get("asset_id"))
     unresolved_wave = {a for a in wave_asset_ids if phase_rows.get(a, (0, {}))[1].get("product_classification_status") == "unresolved"}
+    if len(wave_rows) != 598 or len(wave_asset_ids) != 355:
+        raise AssertionError(f"E_WAVE_EDGE_SET recomputed edges={len(wave_rows)} assets={len(wave_asset_ids)}")
     targets = phase_target_set(phase_rows, unresolved_wave)
     prefix_ids = {a for a, (_, row) in phase_rows.items() if row.get("product_classification_status") == "unresolved" and any(row.get("source_path", "").startswith(prefix) for prefix in EXISTING_RESEARCH_PREFIXES)}
     prior_research_ids = prefix_ids - UNRESEARCHED_PREFIX_ASSET_IDS
@@ -603,6 +621,12 @@ def build() -> None:
             'pre_target_residual_tamper',
             'post_batch_remaining_tamper',
             'denominator_label_tamper',
+            'source_symlink_mode_tamper',
+            'source_tree_type_tamper',
+            'source_nonregular_mode_tamper',
+            'source_path_mismatch_tamper',
+            'archive_manifest_mismatch_tamper',
+            'asset_source_alias_tamper',
         ],
     }
     inventory["output_sha256"] = tagged(ledger.read_bytes())

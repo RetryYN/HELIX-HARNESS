@@ -35,13 +35,16 @@
     "旧decision/read-after/failure/consumerを静的partitionで保持しconsumer closureを生成しない",
     "旧asset status・history・consumer blockと全nested record/inventoryを固定BASE由来の期待値と厳密一致させる",
     "authority none・formal分類/route/phase/successor/new build falseを固定する",
-    "旧archive source/runtime/test/CIを実行せず独立validatorと56 negative selfcheckを維持する",
-    "strict JSON parserでledger record/nested object/inventoryのduplicate key、malformed JSON、nonobjectをE_JSONとして拒否する56 negative selfcheckを維持する",
+    "旧archive source/runtime/test/CIを実行せず独立validatorと62 negative selfcheckを維持する",
+    "strict JSON parserでledger record/nested object/inventoryのduplicate key、malformed JSON、nonobjectをE_JSONとして拒否する62 negative selfcheckを維持する",
     "inventory 184 input_digestの全63非archive入力と最新main product bundle 8入力をBinding upstreamへ登録し、path/raw SHA256をvalidatorで完全照合する。archive静的121入力はSCF-OS-003のためupstreamへ入れず、inventory/recordで固定し非実行境界を明示する",
     "scripts/helix.ps1のarchive bytes sha256 2b86bf...とMANIFEST entry 9e5b68...の不一致を明示し、formal admission/reuseを停止してhuman/source resolution pendingを保持する",
     "anchor_line_coverageの直接改竄を専用errorで拒否しBinding宣言・inventory・recordと同期する",
     "product union429件とunresolved交差280件をbundle revision/blob/bytes/SHAで固定し、unresolved denominatorへphase外149件を混入させない",
-    "recordのresearch_scope/evidence_completeness/overlap_status/bundle_revision/denominator_roleとoverlap reconciliation 53件を全値比較する。statusはsame_source_same_candidate_resultまたはsame_source_different_candidate_resultとし、method identityは主張しない"
+    "recordのresearch_scope/evidence_completeness/overlap_status/bundle_revision/denominator_roleとoverlap reconciliation 53件を全値比較する。statusはsame_source_same_candidate_resultまたはsame_source_different_candidate_resultとし、method identityは主張しない",
+    "固定BASE git treeの全source_exactでexact path、type=blob、mode=100644/100755を照合し、symlink/tree/nonregular/path mismatchを拒否する",
+    "Wave1-50全50入力をvalidatorが再集計し、edge598・unique asset355を固定値だけでなく実体集合から検証する",
+    "scripts/helix.ps1 manifest mismatch改竄とtarget間source path/SHA aliasを専用negative caseで拒否する"
   ],
   "operations": {
     "allowed": [
@@ -360,7 +363,7 @@
     "evidence_kind": "scaffold",
     "negative_cases": [
       "target ID missing/duplicate; explicit 53 overlap ID/path/SHA set",
-      "source blob/line anchor/read mode/anchor_line_coverage tamper",
+      "source blob/line anchor/read mode/git-tree type/mode/path/anchor_line_coverage tamper",
       "classification category/product/cardinality invariant and nested record tamper",
       "Wave edge and Wave denominator injection; Binding upstream path/raw SHA and stale mutation",
       "phase/asset/history/failure/consumer/implementation status promotion or closure",
@@ -368,7 +371,7 @@
       "inventory schema/source paths/top-level key/scope/union/denominator/output digest",
       "input digest missing/duplicate/schema tamper and fixed BASE pin",
       "strict JSON duplicate-key/malformed/nonobject ledger, nested, inventory rejection",
-      "human judgment/review pin/ledger digest mismatch and archive manifest mismatch resolution",
+      "human judgment/review pin/ledger digest mismatch/archive manifest mismatch/target source alias resolution",
       "generator PROFILE category/products mutation and regeneration"
     ],
     "oracles": [
@@ -377,7 +380,9 @@
       "validator checks 67 records, 30 direct, 23 conflict, 14 insufficient; initial 120、overlap53、処理前残余1512、新規target67、処理後残数1445を別々に固定し、candidate result比較はmethod identityを主張しない",
       "validator compares full nested record/inventory equality including anchor_line_coverage, archive manifest resolution, and authority boundary",
       "validator checks all 63 nonarchive inventory inputs plus 8 product bundle inputs are Binding upstream with exact path/raw SHA and rejects stale/mutated Wave upstream",
-      "selfcheck executes 56 negative cases with expected error codes (22 distinct codes), including denominator pre/postとlabel改竄、strict JSON、archive manifest resolution cases"
+      "selfcheck executes 62 negative cases with expected error codes (22 distinct codes), including denominator pre/postとlabel改竄、strict JSON、archive manifest resolution cases",
+      "validator compares source_exact git-tree path/type/mode and full Wave1-50 edge/asset recomputation",
+      "selfcheck covers symlink/tree/nonregular/path source guards, manifest mismatch tamper, and same source path/SHA alias"
     ],
     "scope": [
       "schema_interface",

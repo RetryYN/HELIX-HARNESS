@@ -1421,10 +1421,16 @@
     "product_research_union_tamper",
     "pre_target_residual_tamper",
     "post_batch_remaining_tamper",
-    "denominator_label_tamper"
+    "denominator_label_tamper",
+    "source_symlink_mode_tamper",
+    "source_tree_type_tamper",
+    "source_nonregular_mode_tamper",
+    "source_path_mismatch_tamper",
+    "archive_manifest_mismatch_tamper",
+    "asset_source_alias_tamper"
   ],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
-  "output_sha256": "sha256:175f0fa8b715bfc4ed147a980bbb0c50d8dde66c3006bd87ffaef91b94a0b5c4",
+  "output_sha256": "sha256:2ff1671f4aa1764a90b3a817c6d4e1539b8a8ac49f463bb48640191044efc40c",
   "overlap_reconciliation": {
     "bundle_paths": [
       "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",

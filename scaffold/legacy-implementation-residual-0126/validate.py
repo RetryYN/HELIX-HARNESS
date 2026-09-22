@@ -189,6 +189,12 @@ EXPECTED_NEGATIVE_CASES = [
     'pre_target_residual_tamper',
     'post_batch_remaining_tamper',
     'denominator_label_tamper',
+    'source_symlink_mode_tamper',
+    'source_tree_type_tamper',
+    'source_nonregular_mode_tamper',
+    'source_path_mismatch_tamper',
+    'archive_manifest_mismatch_tamper',
+    'asset_source_alias_tamper',
 ]
 EXPECTED_INVENTORY_KEYS = {
     "schema_revision",
@@ -218,7 +224,7 @@ EXPECTED_INVENTORY_KEYS = {
 }
 EXPECTED_INPUT_DIGEST_KEYS = {"path", "blob", "bytes", "sha256"}
 EXPECTED_RECORD_KEYS = {"asset_id", "source_path", "source_exact", "phase_evidence", "legacy_asset_evidence", "classification", "boundary_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "wave_semantic_links", "wave_edge_count", "human_judgment_remaining", "authority_effect", "formal_asset_classification_updated", "new_build_allowed", "anchor_line_coverage", "research_scope", "evidence_completeness", "overlap_status", "bundle_revision", "denominator_role"}
-EXPECTED_SOURCE_KEYS = {"archive_path", "source_path", "blob", "bytes", "line_count", "sha256", "ledger_source_sha256", "ledger_digest_match", "archive_manifest_sha256", "archive_manifest_match", "archive_manifest_resolution", "semantic_anchor", "read_mode"}
+EXPECTED_SOURCE_KEYS = {"archive_path", "source_path", "blob", "bytes", "line_count", "sha256", "ledger_source_sha256", "ledger_digest_match", "archive_manifest_sha256", "archive_manifest_match", "archive_manifest_resolution", "semantic_anchor", "read_mode", "mode", "type"}
 EXPECTED_CLASSIFICATION_KEYS = {"category", "candidate_products", "semantic_status", "reason"}
 EXPECTED_PROFILES = {'.claude/hooks/git-command-guard.ts': {'category': 'insufficient_basis',
                                         'length': 12,
@@ -665,6 +671,25 @@ def git_blob(path: str, base: str = BASE_REVISION) -> str:
         raise exc
 
 
+def git_tree_entry(path: str, base: str = BASE_REVISION) -> dict[str, str]:
+    try:
+        raw = subprocess.check_output(["git", "ls-tree", base, "--", path], text=True)
+    except subprocess.CalledProcessError as exc:
+        fail("E_SOURCE_TREE", path)
+        raise exc
+    lines = [line for line in raw.splitlines() if line]
+    if len(lines) != 1 or "\t" not in lines[0]:
+        fail("E_SOURCE_TREE", f"exact path {path}")
+    header, entry_path = lines[0].split("\t", 1)
+    parts = header.split()
+    if len(parts) != 3 or entry_path != path:
+        fail("E_SOURCE_TREE", f"path {path}")
+    mode, entry_type, oid = parts
+    if entry_type != "blob" or mode not in {"100644", "100755"} or len(oid) != 40:
+        fail("E_SOURCE_TREE", f"mode/type {path}")
+    return {"mode": mode, "type": entry_type}
+
+
 def git_bytes_at(path: str, revision: str) -> bytes:
     try:
         return subprocess.check_output(["git", "show", f"{revision}:{path}"])
@@ -885,6 +910,7 @@ def expected_l1_receipts(products: list[str]) -> dict:
 def expected_source_exact(asset: dict, spec: dict) -> dict:
     path = asset["source_path"]
     archive = ARCHIVE_PREFIX + path
+    tree = git_tree_entry(archive)
     data = git_bytes(archive)
     lines = data.decode(errors="replace").splitlines()
     hits = [i for i, line in enumerate(lines, 1) if spec["marker"] in line]
@@ -902,7 +928,7 @@ def expected_source_exact(asset: dict, spec: dict) -> dict:
     manifest_digest = manifest_sha256(path)
     manifest_match = archive_digest == manifest_digest
     manifest_resolution = {"status": "matched"} if manifest_match else {"status": "pending_human_source_resolution", "formal_admission": "stopped", "reuse_decision": "stopped", "reason": "archive bytes and manifest entry differ; static evidence is retained"}
-    return {"archive_path": archive, "source_path": path, "blob": git_blob(archive), "bytes": len(data), "line_count": len(lines), "sha256": archive_digest, "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": archive_digest == "sha256:" + ledger_sha, "archive_manifest_sha256": manifest_digest, "archive_manifest_match": manifest_match, "archive_manifest_resolution": manifest_resolution, "semantic_anchor": anchor, "read_mode": "git_object_static_read_only"}
+    return {"archive_path": archive, "source_path": path, "mode": tree["mode"], "type": tree["type"], "blob": git_blob(archive), "bytes": len(data), "line_count": len(lines), "sha256": archive_digest, "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": archive_digest == "sha256:" + ledger_sha, "archive_manifest_sha256": manifest_digest, "archive_manifest_match": manifest_match, "archive_manifest_resolution": manifest_resolution, "semantic_anchor": anchor, "read_mode": "git_object_static_read_only"}
 
 
 def expected_record(asset_id: str, phase: dict[str, tuple[int, dict]], dispositions: dict[str, tuple[int, dict]], decisions: list[tuple[int, dict]], read_afters: list[tuple[int, dict]]) -> dict:
@@ -944,10 +970,16 @@ def derive_targets(phase_rows: dict[str, tuple[int, dict]]) -> tuple[list[str], 
     unresolved = {a: row for a, (_, row) in phase_rows.items() if row.get("product_classification_status") == "unresolved"}
     implementation = {a: row for a, row in unresolved.items() if row.get("artifact_evidence_kind") == "implementation_source"}
     wave_assets = set()
+    wave_edge_count = 0
+    wave_all_asset_ids = set()
     for path in WAVE_PATHS.values():
-        for _, row in read_jsonl(path):
+        wave_rows = read_jsonl(path)
+        wave_edge_count += len(wave_rows)
+        wave_all_asset_ids.update(row.get("asset_id") for _, row in wave_rows if row.get("asset_id"))
+        for _, row in wave_rows:
             if row.get("asset_id") in unresolved:
                 wave_assets.add(row["asset_id"])
+    if wave_edge_count != 598 or len(wave_all_asset_ids) != 355: fail("E_WAVE_EDGE_SET", f"recomputed edges={wave_edge_count} assets={len(wave_all_asset_ids)}")
     prefix_ids = {a for a, row in unresolved.items() if any(row.get("source_path", "").startswith(prefix) for prefix in EXISTING_RESEARCH_PREFIXES)}
     declared = {a: row.get("source_path") for a, row in unresolved.items() if a in UNRESEARCHED_PREFIX_ASSET_IDS}
     if len(unresolved) != 1792: fail("E_TARGET_SET", f"unresolved={len(unresolved)}")
@@ -987,7 +1019,9 @@ def check_source(record: dict, expected: dict, asset: dict) -> None:
     if not isinstance(exact, dict): fail("E_SOURCE_ANCHOR", path)
     if set(exact) != EXPECTED_SOURCE_KEYS: fail("E_SOURCE_ANCHOR", path)
     archive = ARCHIVE_PREFIX + path
-    if exact.get("archive_path") != archive or exact.get("source_path") != path: fail("E_SOURCE_ANCHOR", path)
+    if exact.get("archive_path") != archive or exact.get("source_path") != path: fail("E_SOURCE_TREE", path)
+    tree = git_tree_entry(archive)
+    if exact.get("mode") != tree["mode"] or exact.get("type") != tree["type"]: fail("E_SOURCE_TREE", path)
     data = git_bytes(archive)
     if exact.get("blob") != git_blob(archive) or exact.get("bytes") != len(data) or exact.get("line_count") != len(data.decode(errors="replace").splitlines()): fail("E_OLD_ASSET_SOURCE", path)
     if exact.get("sha256") != tagged(data) or exact.get("ledger_source_sha256") != "sha256:" + asset.get("source_sha256", ""): fail("E_OLD_ASSET_SOURCE", path)
@@ -1085,6 +1119,13 @@ def check() -> None:
     initial_targets = set(a for a, (_, row) in phase.items() if row.get("product_classification_status") == "unresolved" and row.get("artifact_evidence_kind") == "implementation_source") - legacy_existing
     expected_overlap = expected_overlap_reconciliation(initial_targets, product_union, phase)
     if sorted(r.get("asset_id") for r in rows) != targets or len({r.get("asset_id") for r in rows}) != 67: fail("E_TARGET_SET", "ledger IDs")
+    source_aliases = {}
+    for row in rows:
+        exact_source = row.get("source_exact")
+        if not isinstance(exact_source, dict): fail("E_RECORD_SCHEMA", row.get("asset_id", ""))
+        source_key = (row.get("source_path"), exact_source.get("sha256"))
+        prior_asset = source_aliases.setdefault(source_key, row.get("asset_id"))
+        if prior_asset != row.get("asset_id"): fail("E_SOURCE_ALIAS", f"{source_key}: {prior_asset}/{row.get('asset_id')}")
     if set(inv.get("expected_sets", {}).get("target_asset_ids", [])) != set(targets) or inv.get("expected_sets", {}).get("target_asset_count") != 67: fail("E_INVENTORY_DECLARATION", "target set")
     if set(inv) != EXPECTED_INVENTORY_KEYS: fail("E_INVENTORY_DECLARATION", "inventory schema keys")
     if inv.get("schema_revision") != 1: fail("E_INVENTORY_DECLARATION", "schema revision")

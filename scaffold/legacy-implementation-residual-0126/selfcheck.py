@@ -138,6 +138,14 @@ def product_research_union(inv): inv["product_research_union"]["union_count"] -=
 def pre_target_residual(inv): inv["existing_research_union"]["pre_target_residual_unresolved_count"] -= 1
 def post_batch_remaining(inv): inv["existing_research_union"]["post_batch_remaining_unresolved_count"] += 1
 def denominator_label(inv): inv["existing_research_union"]["denominator_labels"]["new_target"] = "processed_target"
+def source_symlink_mode(rows): rows[0]["source_exact"]["mode"] = "120000"
+def source_tree_type(rows): rows[0]["source_exact"]["type"] = "tree"
+def source_nonregular_mode(rows): rows[0]["source_exact"]["mode"] = "100600"
+def source_path_mismatch(rows): rows[0]["source_exact"]["archive_path"] = "archive/fabricated/source.ts"
+def archive_manifest_mismatch(inv): inv["archive_manifest_resolution"]["mismatches"][0]["archive_sha256"] = "sha256:" + "0" * 64
+def asset_source_alias(rows):
+    rows[1]["source_path"] = rows[0]["source_path"]
+    rows[1]["source_exact"]["sha256"] = rows[0]["source_exact"]["sha256"]
 
 
 def binding_upstream_stale(binding): binding["upstream"][0]["sha256"] = "0" * 64
@@ -266,4 +274,10 @@ run_case("product_research_union_tamper", "E_PRODUCT_RESEARCH_UNION", None, prod
 run_case("pre_target_residual_tamper", "E_INVENTORY_DECLARATION", None, pre_target_residual)
 run_case("post_batch_remaining_tamper", "E_INVENTORY_DECLARATION", None, post_batch_remaining)
 run_case("denominator_label_tamper", "E_INVENTORY_DECLARATION", None, denominator_label)
-print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 22}")
+run_case("source_symlink_mode_tamper", "E_SOURCE_TREE", source_symlink_mode, None)
+run_case("source_tree_type_tamper", "E_SOURCE_TREE", source_tree_type, None)
+run_case("source_nonregular_mode_tamper", "E_SOURCE_TREE", source_nonregular_mode, None)
+run_case("source_path_mismatch_tamper", "E_SOURCE_TREE", source_path_mismatch, None)
+run_case("archive_manifest_mismatch_tamper", "E_ARCHIVE_MANIFEST", None, archive_manifest_mismatch)
+run_case("asset_source_alias_tamper", "E_SOURCE_ALIAS", asset_source_alias, None)
+print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 28}")

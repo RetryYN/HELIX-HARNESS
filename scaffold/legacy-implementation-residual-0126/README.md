@@ -10,7 +10,7 @@ Wave1–50は50 files、598 edges、355 unique assetsを固定BASEから再走�
 
 各recordにはsource anchorと`anchor_line_coverage`、旧disposition/history/failure/consumerの静的参照、承認済み四製品L1とproduct-boundaryのdigestを保持します。`scripts/helix.ps1`はarchive bytes `sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b`とMANIFEST entry `sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7`が不一致です。formal admission/reuseは停止し、human/source resolution pendingとして固定しています。
 
-validatorは`generate.py`をoracle importせず、固定BASEから旧union、最新mainの8 bundle（commit、blob、bytes、SHA、global union429、unresolved union280）、初期120と重複53、新規67、全nested record/inventoryを独立再導出します。inventoryの184 input digestのうち63非archive入力に加えて、8つの製品研究bundleをBinding upstreamへ登録し、path/raw SHAを照合します。archive静的121入力はSCF-OS-003のためupstreamへ入れず、inventory/recordで保持して非実行境界を明示します。selfcheckは56 negative casesを期待error code付きで実行し、strict JSON、重複・source anchor・全record、union/overlap分母、Binding upstream、generator分類pin、authority境界を検査します。
+validatorは`generate.py`をoracle importせず、固定BASEのgit treeでsource path/type/mode（blobかつ100644/100755）を照合し、全50 Wave入力を再走査してedge598・unique asset355を独立再集計した上で、旧union、最新mainの8 bundle（commit、blob、bytes、SHA、global union429、unresolved union280）、初期120と重複53、新規67、全nested record/inventoryを独立再導出します。inventoryの184 input digestのうち63非archive入力に加えて、8つの製品研究bundleをBinding upstreamへ登録し、path/raw SHAを照合します。archive静的121入力はSCF-OS-003のためupstreamへ入れず、inventory/recordで保持して非実行境界を明示します。selfcheckは62 negative casesを期待error code付きで実行し、strict JSON、重複・source anchor・全record、union/overlap分母、Binding upstream、generator分類pin、authority境界を検査します。
 
 ## 検証
 
@@ -19,7 +19,7 @@ python3 -B scaffold/legacy-implementation-residual-0126/generate.py
 python3 -B scaffold/legacy-implementation-residual-0126/validate.py
 # SCF-B-0126 validate: PASS records=67 categories={'direct_product_basis': 30, 'insufficient_basis': 14, 'multi_product_conflict': 23} target_wave_edges=0 product_union=429 unresolved_existing_union=280 pre_target_residual=1512 new_target=67 post_batch_remaining=1445 overlap=53
 python3 -B scaffold/legacy-implementation-residual-0126/selfcheck.py
-# SCF-B-0126 selfcheck: PASS negative_cases=56
+# SCF-B-0126 selfcheck: PASS negative_cases=62
 python3 -m py_compile scaffold/legacy-implementation-residual-0126/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale
