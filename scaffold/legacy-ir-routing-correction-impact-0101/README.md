@@ -1,8 +1,11 @@
 # SCF-B-0103 PO未承認routing correction 7件の影響研究
 
-status: `research_only_candidate`  
-authority_effect: `none`  
-base_head: `36784d25aa4cc53d89c28c2ff81b4009db234605`  
+status: `research_only_candidate`
+
+authority_effect: `none`
+
+base_head: `36784d25aa4cc53d89c28c2ff81b4009db234605`
+
 binding: `scaffold/bindings/SCF-B-0103.json`
 
 このbundleは、`legacy-ir-product-routing-corrections.jsonl`のHIL-FR-01／11／15／16／37／41／57について、旧IRのexact statement、現行四製品L1、`docs/concept/product-boundary.md`、routing／decomposition／crosswalk、該当Wave semantic review、旧assetのsource／history／failure／consumer inventoryを固定BASEから静的に突合する研究束である。7件はすべて`correction_state=proposed_pending_po_review`、`authority_effect=none`、`meaning_change_applied=false`であり、correctionのafterをeffective routingへ上書きしない。
