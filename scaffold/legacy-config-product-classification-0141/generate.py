@@ -68,6 +68,53 @@ BASE_INPUTS = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values()
 NONARCHIVE_INPUTS = [p for p in BASE_INPUTS if not p.startswith("archive/")]
 ALL_HEAD_INPUTS = NONARCHIVE_INPUTS + MAIN_RESEARCH_INPUTS
 
+EXPECTED_NEGATIVE_CASES = (
+    "target_omission",
+    "target_duplicate",
+    "target_extra",
+    "source_sha_tamper",
+    "source_blob_tamper",
+    "source_anchor_tamper",
+    "source_coverage_tamper",
+    "phase_status_tamper",
+    "manual_category_tamper",
+    "bootstrap_all_product_rewrap_rejected",
+    "manual_product_tamper",
+    "manual_product_basis_tamper",
+    "manual_counterevidence_tamper",
+    "implementation_tamper",
+    "history_failure_nested_tamper",
+    "history_consumer_nested_tamper",
+    "boundary_tamper",
+    "edge_injection",
+    "authority_promotion",
+    "inventory_input_omission",
+    "inventory_input_duplicate",
+    "input_wave1_stale",
+    "input_wave37_stale",
+    "input_wave50_stale",
+    "input_main_bundle_stale",
+    "inventory_nested_duplicate",
+    "ledger_nested_duplicate",
+    "inventory_target_tamper",
+    "inventory_category_count",
+    "inventory_union_tamper",
+    "inventory_overlap_tamper",
+    "inventory_authority_tamper",
+    "inventory_output_tamper",
+    "inventory_base_tamper",
+    "binding_omission",
+    "binding_extra",
+    "binding_stale",
+    "malformed_json",
+    "duplicate_json_key",
+    "archive_symlink_mode",
+    "archive_nonregular_type",
+    "archive_path_mismatch",
+    "manifest_mismatch",
+    "generator_manual_pin_drift",
+)
+
 # These are reviewer-pinned semantic spans from every fixed BASE config body.
 # The bootstrap phase candidates are retained only for comparison below.
 PROFILE_DATA = {
@@ -317,7 +364,7 @@ def build() -> None:
         "classification_rule": RULES, "authority_boundary": {"authority_effect": "none", "formal_product_authority": None, "formal_asset_classification_updated": False, "formal_implementation_status": "unknown", "phase_updated": False, "successor_assignment": None, "new_build_allowed": False, "read_mode": "static_git_object_only"},
         "old_archive_execution": {"source_read": "git show fixed BASE regular blobs only", "runtime": False, "test": False, "ci": False, "workflow": False, "hook": False, "adapter": False},
         "wave_scan": {"files": 50, "edges": 598, "target_edges": sum(len(v) for v in wave_by_asset.values()), "target_linked_assets": len(wave_by_asset)},
-        "negative_cases": ["target omission/duplicate/extra", "manual semantic profile tamper", "bootstrap match/divergence and all-product rewrap rejection", "bootstrap match/divergence tamper", "source regular-blob mode/type/path guard", "source blob/ledger/MANIFEST/SHA/semantic span/coverage tamper", "phase implementation status tamper", "classification category/product/meaning/counterevidence tamper", "missing evidence/degradation/consumer tamper", "Wave edge injection", "input freshness omission/duplicate/extra/stale including Wave1/37/50 and main bundles", "nested duplicate JSON keys in ledger/inventory", "authoritative current-main overlap/conditional union/denominator tamper", "category partition/evidence invariant tamper", "authority/new_build promotion", "fixed BASE pin/ancestor/source missing", "output digest tamper", "Binding upstream closure omission/extra/stale", "archive symlink/nonregular/mismatch guards"],
+        "negative_cases": list(EXPECTED_NEGATIVE_CASES),
         "artifacts": [f"scaffold/bindings/{BINDING_ID}.json", f"scaffold/legacy-config-product-classification-0141/README.md", f"scaffold/legacy-config-product-classification-0141/PR-DRAFT.md", f"scaffold/legacy-config-product-classification-0141/generate.py", f"scaffold/legacy-config-product-classification-0141/validate.py", f"scaffold/legacy-config-product-classification-0141/selfcheck.py", f"scaffold/legacy-config-product-classification-0141/inventory.json", f"scaffold/legacy-config-product-classification-0141/classification-research.jsonl"],
     }
     (BUNDLE / "inventory.json").write_text(json.dumps(inv, ensure_ascii=False, sort_keys=True, indent=2) + "\n")

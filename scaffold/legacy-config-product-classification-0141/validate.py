@@ -35,6 +35,53 @@ MAIN_RESEARCH_INPUTS = ["scaffold/legacy-asset-product-classification-0107/inven
 BASE_INPUTS = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE, CONSUMER, DECISION_RECORD, DECISION_PACKET, REUSE, START, MANIFEST, *WAVE_PATHS.values()]
 NONARCHIVE_INPUTS = [p for p in BASE_INPUTS if not p.startswith("archive/")]
 ALL_HEAD_INPUTS = NONARCHIVE_INPUTS + MAIN_RESEARCH_INPUTS
+
+EXPECTED_NEGATIVE_CASES = (
+    "target_omission",
+    "target_duplicate",
+    "target_extra",
+    "source_sha_tamper",
+    "source_blob_tamper",
+    "source_anchor_tamper",
+    "source_coverage_tamper",
+    "phase_status_tamper",
+    "manual_category_tamper",
+    "bootstrap_all_product_rewrap_rejected",
+    "manual_product_tamper",
+    "manual_product_basis_tamper",
+    "manual_counterevidence_tamper",
+    "implementation_tamper",
+    "history_failure_nested_tamper",
+    "history_consumer_nested_tamper",
+    "boundary_tamper",
+    "edge_injection",
+    "authority_promotion",
+    "inventory_input_omission",
+    "inventory_input_duplicate",
+    "input_wave1_stale",
+    "input_wave37_stale",
+    "input_wave50_stale",
+    "input_main_bundle_stale",
+    "inventory_nested_duplicate",
+    "ledger_nested_duplicate",
+    "inventory_target_tamper",
+    "inventory_category_count",
+    "inventory_union_tamper",
+    "inventory_overlap_tamper",
+    "inventory_authority_tamper",
+    "inventory_output_tamper",
+    "inventory_base_tamper",
+    "binding_omission",
+    "binding_extra",
+    "binding_stale",
+    "malformed_json",
+    "duplicate_json_key",
+    "archive_symlink_mode",
+    "archive_nonregular_type",
+    "archive_path_mismatch",
+    "manifest_mismatch",
+    "generator_manual_pin_drift",
+)
 HUMAN_JUDGMENT = ["product_owner_and_boundary_decision", "configuration_semantic_anchor_acceptance", "phase_candidate_admission_and_successor_assignment", "legacy_implementation_degradation_failure_and_consumer_closure", "formal_asset_classification_update"]
 RULES = {"direct_product_basis": "manual semantic span maps to exactly one four-product L1 boundary; this is a research candidate and not formal ownership", "multi_product_conflict": "manual semantic span maps to two or more four-product L1 boundaries; retain the conflict without choosing an owner", "insufficient_basis": "manual semantic span has no product responsibility mapping; retain the insufficiency without inferring ownership"}
 RECORD_KEYS = {"asset_id", "source_path", "source_exact", "phase_evidence", "legacy_asset_evidence", "classification", "boundary_evidence", "legacy_history_failure_consumer", "implementation_evidence", "wave_semantic_links", "wave_edge_count", "human_judgment_remaining", "authority_effect", "formal_asset_classification_updated", "new_build_allowed"}
@@ -251,6 +298,7 @@ def verify_inventory(inv: dict) -> None:
     if inv["artifacts"] != expected_artifacts: fail("E_INVENTORY", "artifacts")
     if inv["authority_boundary"] != {"authority_effect": "none", "formal_product_authority": None, "formal_asset_classification_updated": False, "formal_implementation_status": "unknown", "phase_updated": False, "successor_assignment": None, "new_build_allowed": False, "read_mode": "static_git_object_only"}: fail("E_AUTHORITY", "authority boundary")
     if inv["old_archive_execution"] != {"source_read": "git show fixed BASE regular blobs only", "runtime": False, "test": False, "ci": False, "workflow": False, "hook": False, "adapter": False}: fail("E_ARCHIVE_EXECUTION", "archive execution declaration")
+    if inv["negative_cases"] != list(EXPECTED_NEGATIVE_CASES): fail("E_NEGATIVE_CASES", "ordered exact negative case IDs")
 
 def verify_inputs(inv: dict) -> None:
     got = inv.get("input_digests")

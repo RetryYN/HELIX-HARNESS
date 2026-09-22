@@ -6,7 +6,7 @@
 
 分母は区別して記録する。archive populationは4,020件。既存研究の現在 `origin/main` unionは429件で、今回41件との重複は0。この current-main 429がauthoritativeであり、今回の候補分母は `429 + 41 = 470 / 4,020` になる。#2074統合前のmain 399件、#2074の31件、旧open PR #2078の120件を順に足す旧projectionは496件、今回41件を加えたprojectionは537件（いずれも /4,020）だが、#2078旧HEAD `5322a99b96f75e210c68aa56690f2da4fcb4415c` はmutable/staleableなので conditional projection として分離した。新HEAD確定後の再計算が必要である。
 
-Binding upstreamはMANIFESTを除く固定BASE nonarchive入力65件と、current-main union算出に読む8つのmain inventoryを含む73件へ完全閉包する。validatorはcurrent-main各inventoryのblob/bytes/SHA/count/ID digest、target overlap、exact 41 set、category evidence invariants、nested duplicate key、Wave 1/37/50を含む入力freshness、archive symlink/nonregular/path/digest mismatch、Binding omission/extra/staleをfail-closeで検査する。selfcheckは48件の負例を実行する。
+Binding upstreamはMANIFESTを除く固定BASE nonarchive入力65件と、current-main union算出に読む8つのmain inventoryを含む73件へ完全閉包する。validatorはcurrent-main各inventoryのblob/bytes/SHA/count/ID digest、target overlap、exact 41 set、category evidence invariants、nested duplicate key、Wave 1/37/50を含む入力freshness、archive symlink/nonregular/path/digest mismatch、Binding omission/extra/staleをfail-closeで検査する。selfcheckは44件の負例を実行する。
 
 検証コマンド:
 

@@ -16,6 +16,7 @@ validator = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
 spec.loader.exec_module(validator)
 
+EXECUTED_CASES = []
 
 def load_json(path: Path):
     return json.loads(path.read_text())
@@ -53,6 +54,7 @@ def trial(name, mutate, expected):
     except AssertionError as exc:
         if not str(exc).startswith(expected + ":"):
             raise AssertionError(f"{name}: expected {expected}, got {exc}") from exc
+        EXECUTED_CASES.append(name)
     else:
         raise AssertionError(f"{name}: mutation unexpectedly passed")
     finally:
@@ -70,6 +72,7 @@ def direct_trial(name, mutate, expected):
     except AssertionError as exc:
         if not str(exc).startswith(expected + ":"):
             raise AssertionError(f"{name}: expected {expected}, got {exc}") from exc
+        EXECUTED_CASES.append(name)
     else:
         raise AssertionError(f"{name}: mutation unexpectedly passed")
     finally:
@@ -151,4 +154,8 @@ def generator_pin_tamper(target):
 
 trial("generator_manual_pin_drift", generator_pin_tamper, "E_SOURCE")
 
-print("SCF-B-0141 selfcheck PASS negative_cases=48")
+if len(EXECUTED_CASES) != len(set(EXECUTED_CASES)):
+    raise AssertionError(f"duplicate executed negative case IDs: {EXECUTED_CASES}")
+if tuple(EXECUTED_CASES) != tuple(validator.EXPECTED_NEGATIVE_CASES):
+    raise AssertionError(f"negative case order/set mismatch: executed={EXECUTED_CASES} expected={validator.EXPECTED_NEGATIVE_CASES}")
+print(f"SCF-B-0141 selfcheck PASS negative_cases={len(EXECUTED_CASES)}")
