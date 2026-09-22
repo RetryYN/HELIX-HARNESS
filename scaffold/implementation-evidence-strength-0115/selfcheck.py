@@ -128,6 +128,9 @@ def main() -> None:
     def tampered_selection_score(inventory):
         inventory["selection"]["selected_metrics"][inventory["selection"]["selected_unit_ids"][0]]["selection_score"] += 1
 
+    def tampered_candidate_denominator(inventory):
+        inventory["selection"]["candidate_unit_count"] = 218
+
     run_case("wrong-asset-blob", "E_OLD_ASSET_SOURCE", wrong_asset_blob)
     run_case("wrong-anchor", "E_SOURCE_ANCHOR", wrong_anchor)
     run_case("missing-edge", "E_REVIEW_EDGE_SET", missing_edge)
@@ -157,7 +160,8 @@ def main() -> None:
     run_case("tampered-base-declaration", "E_BASE_COMMIT", lambda rows: None, tampered_base_declaration)
     run_case("tampered-selection", "E_SELECTION_RULE", lambda rows: None, tampered_selection)
     run_case("tampered-selection-score", "E_SELECTION_RULE", lambda rows: None, tampered_selection_score)
-    print("SCF-B-0115 selfcheck: PASS (29 negative cases; expected error codes matched)")
+    run_case("tampered-candidate-denominator", "E_SELECTION_RULE", lambda rows: None, tampered_candidate_denominator)
+    print("SCF-B-0115 selfcheck: PASS (30 negative cases; expected error codes matched)")
 
 
 if __name__ == "__main__":

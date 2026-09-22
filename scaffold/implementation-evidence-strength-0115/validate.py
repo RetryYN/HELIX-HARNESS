@@ -884,7 +884,7 @@ class Validator:
         }
         if inventory.get("novel_evidence_counts") != expected_novel_counts:
             self.error("E_INVENTORY_DECLARATION", "novel evidence分母宣言が固定BASE導出値と不一致")
-        candidate_rows = [row for row in base_jsonl(CROSSWALK) if row.get("source_requirement_id", "").startswith(("HIL-BR-", "HIL-FR-", "HIL-TR-", "HIL-NFR-"))]
+        candidate_rows = [row for row in base_jsonl(CROSSWALK) if row.get("source_requirement_id", "").startswith(("HIL-BR-", "HIL-FR-", "HIL-TR-", "HIL-NFR-")) and UNIT_PATTERN.fullmatch(row.get("unit_candidate_id", ""))]
         expected_selection = {
             "candidate_source_count": len({row["source_requirement_id"] for row in candidate_rows}),
             "candidate_unit_count": len({row["unit_candidate_id"] for row in candidate_rows}),

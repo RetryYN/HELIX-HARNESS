@@ -934,7 +934,7 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
             bool(row["novel_evidence"]["missing_for_unit_level_judgment"]) for row in evidence
         ),
     }
-    candidate_rows = [row for row in base_jsonl(CROSSWALK) if row.get("source_requirement_id", "").startswith(("HIL-BR-", "HIL-FR-", "HIL-TR-", "HIL-NFR-"))]
+    candidate_rows = [row for row in base_jsonl(CROSSWALK) if row.get("source_requirement_id", "").startswith(("HIL-BR-", "HIL-FR-", "HIL-TR-", "HIL-NFR-")) and UNIT_PATTERN.fullmatch(row.get("unit_candidate_id", ""))]
     selected_metrics = {
         row["unit_candidate_id"]: strength_metrics(row["unit_candidate_id"], edges_by_unit[row["unit_candidate_id"]], [old_asset_record(asset_id, edges_by_unit[row["unit_candidate_id"]], disposition, decisions, read_after, classifications) for asset_id in sorted({edge["asset_id"] for edge in edges_by_unit[row["unit_candidate_id"]]})])
         for row in crosswalk

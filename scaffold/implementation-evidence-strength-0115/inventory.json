@@ -395,10 +395,10 @@
     "unit_count_with_missing_judgment_evidence": 20
   },
   "selection": {
-    "candidate_source_count": 153,
-    "candidate_unit_count": 218,
+    "candidate_source_count": 152,
+    "candidate_unit_count": 217,
     "candidate_family_unit_counts": {
-      "BR": 49,
+      "BR": 48,
       "FR": 93,
       "TR": 16,
       "NFR": 60

@@ -1,8 +1,8 @@
 # SCF-B-0115 旧実装証拠強度の追加研究 Scaffold
 
-このbundleは、固定BASE `0d51a994f418450efc40438244f0552e428fc207` の正本crosswalk候補218 unit（BR 49、FR 93、TR 16、NFR 60、153 source ID）から、各family 5 unitを選んだ20 product unitを静的に調べる研究用Scaffoldである。選定は実装判定ではなく、旧source本文・test候補・判断史・failure finding／receipt・consumer参照を追加確認するための固定サンプルである。
+このbundleは、固定BASE `0d51a994f418450efc40438244f0552e428fc207` の正本crosswalk候補217 unit（BR 48、FR 93、TR 16、NFR 60、152 source ID。IRCONN connection rowは候補外）から、各family 5 unitを選んだ20 product unitを静的に調べる研究用Scaffoldである。選定は実装判定ではなく、旧source本文・test候補・判断史・failure finding／receipt・consumer参照を追加確認するための固定サンプルである。
 
-対象は16 HELIX-OS unitと4 HELIX-HARNESS unit、60 Wave1〜50 semantic review edge、38 unique old asset、598 scan row、180 current context参照である。選定スコアは `implementation_source_asset_count*5 + test_evidence_asset_count*4 + coverage_failure_count*2 + observed_consumer_ref_count + ledger_consumer_ref_count + decision_record_count + read_after_record_count` とし、固定BASEの候補pool内でfamily quota 5、score降順、unit ID昇順。candidate poolはunit schemaに一致する行だけで、IRCONN-*接続行を明示的に除外するを記録している。選定unitの完全な集合と単位別metricsは `inventory.json` に固定する。
+対象は16 HELIX-OS unitと4 HELIX-HARNESS unit、60 Wave1〜50 semantic review edge、38 unique old asset、598 scan row、180 current context参照である。選定スコアは `implementation_source_asset_count*5 + test_evidence_asset_count*4 + coverage_failure_count*2 + observed_consumer_ref_count + ledger_consumer_ref_count + decision_record_count + read_after_record_count` とし、固定BASEの候補pool内でfamily quota 5、score降順、unit ID昇順。candidate poolはunit schemaに一致する行だけで、IRCONN-*接続行を明示的に除外する規則を記録している。選定unitの完全な集合と単位別metricsは `inventory.json` に固定する。
 
 成果物は次のとおりである。
 
@@ -10,7 +10,7 @@
 - `evidence.jsonl`: unitごとのcrosswalk source snapshot、IR原文anchor、Wave edgeとedge別anchor resolution、旧assetのsource本文静的読了metadata（path／blob／bytes／lines／body digest）、ledger／判断史／read-after、failure finding／receipt、consumer参照、旧implementation／degradation／failure／consumer partition、代表asset完全record、現行context、反証、未解決を記録する。`novel_evidence`では、追加で読んだsource／test本文の具体的なanchor行、旧契約のnormal／recovery／constraint候補、failure findingとreceiptの有無、consumerのledger／decision／read-after行、unit成立判断に欠ける証拠と次の判断点をunit別に固定する。
 - `build.py`: crosswalk、IR、decomposition、旧asset ledger、判断史、read-after、classification、Wave1〜50、現行contextを固定BASEのGit object bytesから読み、旧source／test／runtime／CIは実行しない。
 - `validate.py`: 選定unit、unit別edge／assetの件数・多重集合・重複、source／edge anchor、旧asset source／body／ledger完全一致、representation、implementation／degradation／failure／consumer partition、strength assessment、current status、inventory宣言、BASE祖先性と全入力digestをfail-closedで検査する。
-- `selfcheck.py`: source／asset／anchor、edge／asset欠落・重複、ledger、代表asset、partition、current／未実装、strength assessment、novel evidence、inventory宣言、input digest、BASEを改竄する29負例を期待error code付きで検査する。
+- `selfcheck.py`: source／asset／anchor、edge／asset欠落・重複、ledger、代表asset、partition、current／未実装、strength assessment、novel evidence、inventory宣言、input digest、BASEを改竄する30負例を期待error code付きで検査する。
 - `scaffold/bindings/SCF-B-0115.json`: bundle全成果物をScaffold Bindingへ登録する。
 
 ## 既存bundleとの差分（novel evidence）
