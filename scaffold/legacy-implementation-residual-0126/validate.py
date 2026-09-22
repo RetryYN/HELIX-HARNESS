@@ -195,6 +195,10 @@ EXPECTED_NEGATIVE_CASES = [
     'source_path_mismatch_tamper',
     'archive_manifest_mismatch_tamper',
     'asset_source_alias_tamper',
+    'overlap_archive_tree_mode_tamper',
+    'overlap_archive_tree_type_tamper',
+    'overlap_archive_path_tamper',
+    'overlap_archive_manifest_tamper',
 ]
 EXPECTED_INVENTORY_KEYS = {
     "schema_revision",
@@ -221,6 +225,7 @@ EXPECTED_INVENTORY_KEYS = {
     "binding_upstream",
     "overlap_reconciliation",
     "product_research_union",
+    "archive_source_provenance",
 }
 EXPECTED_INPUT_DIGEST_KEYS = {"path", "blob", "bytes", "sha256"}
 EXPECTED_RECORD_KEYS = {"asset_id", "source_path", "source_exact", "phase_evidence", "legacy_asset_evidence", "classification", "boundary_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "wave_semantic_links", "wave_edge_count", "human_judgment_remaining", "authority_effect", "formal_asset_classification_updated", "new_build_allowed", "anchor_line_coverage", "research_scope", "evidence_completeness", "overlap_status", "bundle_revision", "denominator_role"}
@@ -931,6 +936,18 @@ def expected_source_exact(asset: dict, spec: dict) -> dict:
     return {"archive_path": archive, "source_path": path, "mode": tree["mode"], "type": tree["type"], "blob": git_blob(archive), "bytes": len(data), "line_count": len(lines), "sha256": archive_digest, "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": archive_digest == "sha256:" + ledger_sha, "archive_manifest_sha256": manifest_digest, "archive_manifest_match": manifest_match, "archive_manifest_resolution": manifest_resolution, "semantic_anchor": anchor, "read_mode": "git_object_static_read_only"}
 
 
+def expected_archive_source_provenance(initial_targets: set[str], dispositions: dict[str, tuple[int, dict]]) -> list[dict]:
+    result = []
+    for asset_id in sorted(initial_targets):
+        source_path = dispositions[asset_id][1]["source_path"]
+        spec = EXPECTED_PROFILES.get(source_path)
+        if spec is None: fail("E_REVIEW_PIN", source_path)
+        source_exact = expected_source_exact(dispositions[asset_id][1], spec)
+        source_exact.pop("semantic_anchor")
+        result.append({"asset_id": asset_id, "source_path": source_path, "source_exact": source_exact})
+    return result
+
+
 def expected_record(asset_id: str, phase: dict[str, tuple[int, dict]], dispositions: dict[str, tuple[int, dict]], decisions: list[tuple[int, dict]], read_afters: list[tuple[int, dict]]) -> dict:
     phase_line, phase_row = phase[asset_id]
     disposition_line, disposition_row = dispositions[asset_id]
@@ -1071,6 +1088,7 @@ def expected_overlap_reconciliation(initial_targets: set[str], product_union: di
             "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
             "bundle_revision": PRODUCT_RESEARCH_COMMIT,
             "denominator_role": "existing_research_union",
+            "archive_provenance_ref": "archive_source_provenance:" + asset_id,
             "target_category": spec["category"],
             "target_products": spec["products"],
             "existing_candidate_results": candidate_results,
@@ -1164,6 +1182,8 @@ def check() -> None:
         "bundle_inputs": [{"path": pth, "blob": git_blob_at(pth, PRODUCT_RESEARCH_COMMIT), "bytes": len(git_bytes_at(pth, PRODUCT_RESEARCH_COMMIT)), "sha256": tagged(git_bytes_at(pth, PRODUCT_RESEARCH_COMMIT))} for pth in PRODUCT_RESEARCH_BUNDLES],
     }: fail("E_PRODUCT_RESEARCH_UNION", "union declaration")
     if inv.get("overlap_reconciliation") != expected_overlap: fail("E_OVERLAP_RECONCILIATION", "overlap metadata")
+    expected_archive_provenance = expected_archive_source_provenance(initial_targets, disp)
+    if inv.get("archive_source_provenance") != expected_archive_provenance: fail("E_ARCHIVE_PROVENANCE", "initial target archive provenance")
     categories = Counter()
     expected_paths = set(EXPECTED_PROFILES)
     if not {phase[a][1]["source_path"] for a in targets} <= expected_paths: fail("E_REVIEW_PIN", "profile target paths")

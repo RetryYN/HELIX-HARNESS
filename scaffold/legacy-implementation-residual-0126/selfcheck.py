@@ -146,6 +146,13 @@ def archive_manifest_mismatch(inv): inv["archive_manifest_resolution"]["mismatch
 def asset_source_alias(rows):
     rows[1]["source_path"] = rows[0]["source_path"]
     rows[1]["source_exact"]["sha256"] = rows[0]["source_exact"]["sha256"]
+def overlap_archive_exact(inv):
+    aid = inv["overlap_reconciliation"]["entries"][0]["asset_id"]
+    return next(item["source_exact"] for item in inv["archive_source_provenance"] if item["asset_id"] == aid)
+def overlap_archive_tree_mode(inv): overlap_archive_exact(inv)["mode"] = "120000"
+def overlap_archive_tree_type(inv): overlap_archive_exact(inv)["type"] = "tree"
+def overlap_archive_path(inv): overlap_archive_exact(inv)["archive_path"] = "archive/fabricated/source.ts"
+def overlap_archive_manifest(inv): overlap_archive_exact(inv)["archive_manifest_sha256"] = "sha256:" + "0" * 64
 
 
 def binding_upstream_stale(binding): binding["upstream"][0]["sha256"] = "0" * 64
@@ -280,4 +287,8 @@ run_case("source_nonregular_mode_tamper", "E_SOURCE_TREE", source_nonregular_mod
 run_case("source_path_mismatch_tamper", "E_SOURCE_TREE", source_path_mismatch, None)
 run_case("archive_manifest_mismatch_tamper", "E_ARCHIVE_MANIFEST", None, archive_manifest_mismatch)
 run_case("asset_source_alias_tamper", "E_SOURCE_ALIAS", asset_source_alias, None)
-print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 28}")
+run_case("overlap_archive_tree_mode_tamper", "E_ARCHIVE_PROVENANCE", None, overlap_archive_tree_mode)
+run_case("overlap_archive_tree_type_tamper", "E_ARCHIVE_PROVENANCE", None, overlap_archive_tree_type)
+run_case("overlap_archive_path_tamper", "E_ARCHIVE_PROVENANCE", None, overlap_archive_path)
+run_case("overlap_archive_manifest_tamper", "E_ARCHIVE_PROVENANCE", None, overlap_archive_manifest)
+print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 32}")

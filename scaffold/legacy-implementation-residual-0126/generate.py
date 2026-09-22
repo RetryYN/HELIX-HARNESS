@@ -400,6 +400,16 @@ def static_source(asset: dict, spec: dict) -> dict:
     return {"archive_path": archive_path, "source_path": asset["source_path"], "mode": tree["mode"], "type": tree["type"], "blob": git_blob(archive_path), "bytes": len(data), "line_count": len(data.decode(errors="replace").splitlines()), "sha256": archive_digest, "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": ledger_match, "archive_manifest_sha256": manifest_digest, "archive_manifest_match": manifest_match, "archive_manifest_resolution": manifest_resolution, "semantic_anchor": a, "read_mode": "git_object_static_read_only"}
 
 
+def archive_source_provenance(initial_targets: set[str], dispositions: dict[str, tuple[int, dict]]) -> list[dict]:
+    result = []
+    for asset_id in sorted(initial_targets):
+        asset = dispositions[asset_id][1]
+        source_exact = static_source(asset, REVIEW_SPECS[asset["source_path"]])
+        source_exact.pop("semantic_anchor")
+        result.append({"asset_id": asset_id, "source_path": asset["source_path"], "source_exact": source_exact})
+    return result
+
+
 def phase_target_set(phase_rows: dict[str, tuple[int, dict]], wave_asset_ids: set[str]) -> list[str]:
     unresolved = {a: row for a, (_, row) in phase_rows.items() if row.get("product_classification_status") == "unresolved"}
     implementation = {a: row for a, row in unresolved.items() if row.get("artifact_evidence_kind") == "implementation_source"}
@@ -439,7 +449,7 @@ def overlap_reconciliation(initial_targets: set[str], product_union: dict[str, l
         candidate_results = [{"bundle": r["bundle"], "category": r["category"], "candidate_products": r["candidate_products"]} for r in product_union[asset_id]]
         candidate_results.sort(key=lambda r: r["bundle"])
         same_candidate_result = all(r["category"] == spec["category"] and r["candidate_products"] == spec["products"] for r in candidate_results)
-        entries.append({"asset_id": asset_id, "source_path": source_path, "source_sha256": "sha256:" + product_union[asset_id][0]["source_sha256"], "overlap_status": "same_source_same_candidate_result" if same_candidate_result else "same_source_different_candidate_result", "comparison_basis": "source_path_sha256_and_candidate_category_products", "method_identity_claimed": False, "research_scope": "existing_main_product_research_union", "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation", "bundle_revision": PRODUCT_RESEARCH_COMMIT, "denominator_role": "existing_research_union", "target_category": spec["category"], "target_products": spec["products"], "existing_candidate_results": candidate_results})
+        entries.append({"asset_id": asset_id, "source_path": source_path, "source_sha256": "sha256:" + product_union[asset_id][0]["source_sha256"], "overlap_status": "same_source_same_candidate_result" if same_candidate_result else "same_source_different_candidate_result", "comparison_basis": "source_path_sha256_and_candidate_category_products", "method_identity_claimed": False, "research_scope": "existing_main_product_research_union", "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation", "bundle_revision": PRODUCT_RESEARCH_COMMIT, "denominator_role": "existing_research_union", "archive_provenance_ref": "archive_source_provenance:" + asset_id, "target_category": spec["category"], "target_products": spec["products"], "existing_candidate_results": candidate_results})
     same = sum(e["overlap_status"] == "same_source_same_candidate_result" for e in entries)
     return {"bundle_revision": PRODUCT_RESEARCH_COMMIT, "bundle_paths": list(PRODUCT_RESEARCH_BUNDLES), "union_count": len(product_union), "initial_target_count": len(initial_targets), "overlap_count": len(entries), "new_target_count": len(initial_targets) - len(entries), "candidate_result_comparison": "category_and_candidate_products_exact_equality; method_identity_not_claimed", "same_source_same_candidate_result_count": same, "same_source_different_candidate_result_count": len(entries) - same, "entries": entries}
 
@@ -534,6 +544,7 @@ def build() -> None:
         "phase_candidate_distribution": dict(sorted(phase_counts.items())),
         "expected_sets": {"target_asset_count": 67, "target_asset_ids": targets, "target_asset_ids_sha256": tagged("\n".join(targets).encode()), "source_paths": target_paths},
         "input_digests": input_digests,
+        "archive_source_provenance": archive_source_provenance(initial_targets, dispositions),
         "product_research_union": {"bundle_revision": PRODUCT_RESEARCH_COMMIT, "bundle_paths": list(PRODUCT_RESEARCH_BUNDLES), "union_count": 429, "unresolved_union_count": 280, "union_asset_ids_sha256": tagged("\n".join(sorted(product_union)).encode()), "bundle_input_count": 8, "bundle_inputs": [{"path": pth, "blob": subprocess.check_output(["git", "rev-parse", f"{PRODUCT_RESEARCH_COMMIT}:{pth}"], text=True).strip(), "bytes": len(git_bytes_at(pth, PRODUCT_RESEARCH_COMMIT)), "sha256": tagged(git_bytes_at(pth, PRODUCT_RESEARCH_COMMIT))} for pth in PRODUCT_RESEARCH_BUNDLES]},
         "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
         "formal_update": {"formal_asset_classification_updated": False, "phase_ledger_updated": False, "product_route_updated": False, "successor_updated": False, "new_build_allowed": False, "authority_effect": "none"},
@@ -627,6 +638,10 @@ def build() -> None:
             'source_path_mismatch_tamper',
             'archive_manifest_mismatch_tamper',
             'asset_source_alias_tamper',
+            'overlap_archive_tree_mode_tamper',
+            'overlap_archive_tree_type_tamper',
+            'overlap_archive_path_tamper',
+            'overlap_archive_manifest_tamper',
         ],
     }
     inventory["output_sha256"] = tagged(ledger.read_bytes())
