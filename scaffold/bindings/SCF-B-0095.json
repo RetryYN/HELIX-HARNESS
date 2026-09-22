@@ -1,0 +1,327 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0095",
+  "kind": "scaffold",
+  "title": "RDP-001 outside67 PATH-001..005 lossless source-line atomization research",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "outside67 PATH-001..005 semantic-fragment review across four product boundaries（正式owner未解決）",
+  "state": "registered",
+  "reason": "holding 67件から選んだPATH-001〜005のarchive全863行を、source原文・pre/archive/current revision・差分・旧資産のsource／decision／failure／consumer ledgerと併せて静的に保持し、各行をatomized_candidate／metadata_only／composite_unresolvedへ相互排他的に一度だけ分類する。要求・制約・失敗条件を含む行は、分割根拠が足りなくてもcomposite_unresolvedで保持しmetadataへ落とさない。四製品はcandidate boundaryだけに留め、formal owner／successor／phase authority／implementation／degradation／failure／consumer／decision／adoptionへ昇格しない。line partition完了を正式要求の採否・再配置・authority成立とは扱わない。",
+  "upstream": [
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md",
+      "sha256": "941ba49fd874ae514d25e45d93f0921fa0d8bfc199c632a62ba475a53f923556",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/governance/upstream-authority-register-2026-09-14.md",
+      "sha256": "6665c5b5ae391523d644eb4bd73ba3fa025d6c6df37dd82f18a621f5cdece93f",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-073/product-units.jsonl",
+      "sha256": "f3e68ab86fd74a06836ff9f51fecf022d5f162dcc8af963bdfeb10392a2a7b5e",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-073/selected-source-items.jsonl",
+      "sha256": "cd29ab5ac7be11ccb9a1f8d46ec071b6773476747c5b0019704670f7bd64278c",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-073/source-diffs.json",
+      "sha256": "0e1073721bbf56309ead0c97fafccfa2175c6abc43361f3828fdceba1660d97b",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-073/source-snapshots/OUTSIDE67-PATH-001/archive-revision.md",
+      "sha256": "1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-073/source-snapshots/OUTSIDE67-PATH-001/pre-isolation.md",
+      "sha256": "1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-073/source-snapshots/OUTSIDE67-PATH-004/archive-revision.md",
+      "sha256": "80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-073/source-snapshots/OUTSIDE67-PATH-004/pre-isolation.md",
+      "sha256": "80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-074/product-units.jsonl",
+      "sha256": "fd9529a523a8feb63e5eeaff8ca865345b170f3902dfd552093cd9d37124ef31",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-074/selected-source-items.jsonl",
+      "sha256": "46c2f2ea956ac55c66301338c10e50848788044e079f0fc777b77c85bd4d4787",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-074/source-diffs.json",
+      "sha256": "05b3aceee88d019ca694d15f96a25622e674ea33d16f6f73ba7d7d3a12773e68",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-074/source-snapshots/OUTSIDE67-PATH-002/archive-revision.md",
+      "sha256": "dc8a85e869297e7172ae8cb6a8ec2b4468558dd94f2cc825d35f2d55c3e546c3",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-074/source-snapshots/OUTSIDE67-PATH-002/pre-isolation.md",
+      "sha256": "1e66811d929783bd04e62c3cb13edd46254f890633cce3fcde153399a67be7a7",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-074/source-snapshots/OUTSIDE67-PATH-005/archive-revision.md",
+      "sha256": "ce87775c10e6d21e182e78ee2f95ac507aa77801055add27934def657d9e81f5",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-boundary-followup-074/source-snapshots/OUTSIDE67-PATH-005/pre-isolation.md",
+      "sha256": "4bbaa7e437e36346c5e0e32e685de822a4736b70a74feeef7877ee2401314ad9",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-entry-followup-076/product-units.jsonl",
+      "sha256": "3a983273e8831b5316ffd60ee7c8a73e3d9f0bf71ae021a7d856a52f94d8d3e1",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-entry-followup-076/selected-source-items.jsonl",
+      "sha256": "37d71f827772a8175970b0dada15a3692bf9e567d94953e4c697709a2dfdfa7e",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-entry-followup-076/source-diffs.json",
+      "sha256": "d636b720a77d3033fd3810eb823d1cabf6192d4fe6104a7dc82e53ce64f5a87f",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-003/archive-revision.md",
+      "sha256": "81da974ef30055abc874371792775e9031c86cbfc2a855bc96d242b330eb018a",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-003/pre-isolation.md",
+      "sha256": "81da974ef30055abc874371792775e9031c86cbfc2a855bc96d242b330eb018a",
+      "note": "static source or prior research evidence; no execution, adoption, or authority"
+    }
+  ],
+  "role": "PATH-001〜005のpre-isolation/archive source line、全863行のline partition、差分、旧資産証拠境界を再現可能な静的研究束として保持する",
+  "obligations": [
+    "5 path_revision_pairのpre/archive/current revision、blob、SHA、byte、line coverageを再照合する",
+    "archive全863行をline-inventoryとsemantic-atomsでsource item／archive line一意に一度だけ会計する",
+    "全863行をatomized_candidate／metadata_only／composite_unresolvedへ相互排他的に分類し、normative source lineをmetadata_onlyにしない",
+    "四製品をcandidate boundaryとして保持し、formal product／owner／authority／successor／phase／implementation／degradation／failure／consumer／decision／adoptionへ昇格しない",
+    "旧資産台帳のsource path／source ID exact hitなしをunknown evidence boundaryとして保持し、absence／completion／approvalを推論しない",
+    "旧runtime／test／CI／workflow／hook／adapter／sourceを実行せず、validator／selfcheck／scfctl／diff checkで静的検証する"
+  ],
+  "connections": {
+    "consumers": [
+      "outside67 source-fragment reviewer",
+      "four-product boundary reviewer",
+      "legacy asset evidence reviewer",
+      "formal owner and implementation reviewer"
+    ],
+    "dependencies": [
+      "MPR-SH-OUTSIDE67-001 holding source set",
+      "SCF-B-0073／0074／0076 prior static research bundles",
+      "current four-product L1 documents",
+      "PHCAP and implementation crosswalk static inventories"
+    ],
+    "boundary": "成果物はscaffold/配下の研究記録。選択5経路の863 archive linesは正式要求、owner、authority、phase、implementation、degradation、failure、consumer closure、採用ではない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/rdp001-outside67-path001-005-atomization-0095/generate.py",
+      "python3 -B scaffold/rdp001-outside67-path001-005-atomization-0095/validate.py",
+      "python3 -B scaffold/rdp001-outside67-path001-005-atomization-0095/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+      "source fragmentをformal requirement、正式product、owner、authority、successor、phase、implementation、degradation、failure、consumer、decision、adoptionへ昇格すること",
+      "67/67 path調査や863行line inventoryをsemantic atomization／holding closureと扱うこと",
+      "旧資産台帳exact hitなしを不在、完了、承認の証拠とすること",
+      "scaffold/外への候補書き込み",
+      "GitHub、Issue、PR、CI、DB、外部APIへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/README.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/plan.json",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/inventory.json",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-pairs.jsonl",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/semantic-atoms.jsonl",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/line-inventory.jsonl",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-diffs.json",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/legacy-evidence.jsonl",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/evidence-scan.json",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/generate.py",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/validate.py",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/selfcheck.py",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-001/pre-isolation.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-001/archive-revision.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-002/pre-isolation.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-002/archive-revision.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-003/pre-isolation.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-003/archive-revision.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-004/pre-isolation.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-004/archive-revision.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-005/pre-isolation.md",
+    "scaffold/rdp001-outside67-path001-005-atomization-0095/source-snapshots/OUTSIDE67-PATH-005/archive-revision.md"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "pre/archive/current revision and digest rederivation",
+      "863 archive line denominator and selected/residual accounting",
+      "863 selected archive line exact-once atomization accounting",
+      "all 10 source-snapshot Git object bytes/digests",
+      "difflib equal-only pre anchor and replace/insert unresolved status",
+      "independent structural normative metadata guard",
+      "four candidate-product boundary and unknown status gate",
+      "legacy exact-hit boundary and input digest gate",
+      "validator/selfcheck",
+      "scfctl validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "pre snapshot digest tamper",
+      "archive snapshot line tamper",
+      "current counterpart digest tamper",
+      "blob OID tamper",
+      "source pair line count tamper",
+      "source pair extra key",
+      "line inventory omission",
+      "line inventory duplicate line",
+      "line inventory residual promotion",
+      "source snapshot bytes tamper",
+      "pre anchor assigned to replace/insert line",
+      "normative responsibility/prohibition line hidden as metadata",
+      "sentence-ending normative line hidden as metadata",
+      "atomization status promotion",
+      "atom count drift",
+      "candidate product promotion",
+      "formal owner promotion",
+      "successor injection",
+      "phase status promotion",
+      "implementation promotion",
+      "degradation promotion",
+      "failure promotion",
+      "consumer promotion",
+      "decision promotion",
+      "adoption promotion",
+      "legacy catalog hit injection",
+      "source diff tamper",
+      "input digest tamper",
+      "base revision tamper",
+      "formal requirement count promotion",
+      "README denominator copy drift"
+    ]
+  },
+  "replacement": {
+    "role_target": "承認済みsource-fragment atom／formal requirement／owner／authority／phase／implementation／degradation／failure／consumer contractへの個別移管（人間判断後）",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}

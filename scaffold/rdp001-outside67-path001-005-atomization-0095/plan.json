@@ -1,0 +1,73 @@
+{
+  "accounting": {
+    "archive_lines_exactly_once": true,
+    "deduplication_key": "(source_item_id, archive_line)",
+    "mutually_exclusive_categories": true,
+    "status_counts": {
+      "atomized_candidate": 13,
+      "composite_unresolved": 535,
+      "metadata_only": 315
+    }
+  },
+  "alignment_policy": "difflib.SequenceMatcher(autojunk=False); only equal opcodes receive pre_anchor; replace/insert opcodes retain pre_alignment status and null pre_anchor",
+  "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+  "base_origin_main": "72b9f368a044709437841c5e862f01802b1a88ec",
+  "binding": "SCF-B-0095",
+  "classification_policy": "independent structural guard for requirement/prohibition/responsibility shapes; sentence-ending non-structural lines are retained as composite_unresolved; metadata_only is limited to structural metadata/navigation",
+  "input_digests": {
+    "docs/concept/product-boundary.md": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+    "docs/governance/legacy-asset-copy-read-after.jsonl": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+    "docs/governance/legacy-asset-decision-log.md": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+    "docs/governance/legacy-asset-decisions.jsonl": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+    "docs/governance/legacy-asset-disposition.jsonl": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+    "docs/governance/management-provisional-requirement-register.jsonl": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+    "docs/governance/upstream-authority-register-2026-09-14.md": "6665c5b5ae391523d644eb4bd73ba3fa025d6c6df37dd82f18a621f5cdece93f",
+    "scaffold/rdp001-outside67-boundary-followup-073/product-units.jsonl": "f3e68ab86fd74a06836ff9f51fecf022d5f162dcc8af963bdfeb10392a2a7b5e",
+    "scaffold/rdp001-outside67-boundary-followup-073/selected-source-items.jsonl": "cd29ab5ac7be11ccb9a1f8d46ec071b6773476747c5b0019704670f7bd64278c",
+    "scaffold/rdp001-outside67-boundary-followup-073/source-diffs.json": "0e1073721bbf56309ead0c97fafccfa2175c6abc43361f3828fdceba1660d97b",
+    "scaffold/rdp001-outside67-boundary-followup-074/product-units.jsonl": "fd9529a523a8feb63e5eeaff8ca865345b170f3902dfd552093cd9d37124ef31",
+    "scaffold/rdp001-outside67-boundary-followup-074/selected-source-items.jsonl": "46c2f2ea956ac55c66301338c10e50848788044e079f0fc777b77c85bd4d4787",
+    "scaffold/rdp001-outside67-boundary-followup-074/source-diffs.json": "05b3aceee88d019ca694d15f96a25622e674ea33d16f6f73ba7d7d3a12773e68",
+    "scaffold/rdp001-outside67-product-entry-followup-076/product-units.jsonl": "3a983273e8831b5316ffd60ee7c8a73e3d9f0bf71ae021a7d856a52f94d8d3e1",
+    "scaffold/rdp001-outside67-product-entry-followup-076/selected-source-items.jsonl": "37d71f827772a8175970b0dada15a3692bf9e567d94953e4c697709a2dfdfa7e",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-diffs.json": "d636b720a77d3033fd3810eb823d1cabf6192d4fe6104a7dc82e53ce64f5a87f"
+  },
+  "method": [
+    "preserve exact archive/pre line text and revision metadata",
+    "classify every selected archive line exactly once",
+    "retain composite normative lines unresolved instead of speculative splitting",
+    "keep product/phase/owner/authority/implementation/degradation/failure/consumer/decision/adoption unknown"
+  ],
+  "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+  "prohibited": [
+    "old runtime/test/CI execution",
+    "formal requirement/product/owner promotion",
+    "ledger no-hit interpreted as absence or completion",
+    "archive content executed"
+  ],
+  "schema": "rdp001-outside67-path-atomization-plan/v2",
+  "scope": {
+    "archive_line_denominator": 863,
+    "holding_denominator": 67,
+    "line_partition_complete": true,
+    "selected_path_pairs": 5,
+    "semantic_atomization_complete": false,
+    "unselected_path_revision_pair_count": 62
+  },
+  "snapshot_manifest": {
+    "source-snapshots/OUTSIDE67-PATH-001/archive-revision.md": "1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9",
+    "source-snapshots/OUTSIDE67-PATH-001/pre-isolation.md": "1ecebf2d72d91f24f66482c244ee93d7b5fbfec14d817d68f36d34ce895321b9",
+    "source-snapshots/OUTSIDE67-PATH-002/archive-revision.md": "dc8a85e869297e7172ae8cb6a8ec2b4468558dd94f2cc825d35f2d55c3e546c3",
+    "source-snapshots/OUTSIDE67-PATH-002/pre-isolation.md": "1e66811d929783bd04e62c3cb13edd46254f890633cce3fcde153399a67be7a7",
+    "source-snapshots/OUTSIDE67-PATH-003/archive-revision.md": "81da974ef30055abc874371792775e9031c86cbfc2a855bc96d242b330eb018a",
+    "source-snapshots/OUTSIDE67-PATH-003/pre-isolation.md": "81da974ef30055abc874371792775e9031c86cbfc2a855bc96d242b330eb018a",
+    "source-snapshots/OUTSIDE67-PATH-004/archive-revision.md": "80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492",
+    "source-snapshots/OUTSIDE67-PATH-004/pre-isolation.md": "80c13d9d6a24254e0d2340fa0c696feda507fbdbbab85b1afa7c8d731f5cd492",
+    "source-snapshots/OUTSIDE67-PATH-005/archive-revision.md": "ce87775c10e6d21e182e78ee2f95ac507aa77801055add27934def657d9e81f5",
+    "source-snapshots/OUTSIDE67-PATH-005/pre-isolation.md": "4bbaa7e437e36346c5e0e32e685de822a4736b70a74feeef7877ee2401314ad9"
+  }
+}

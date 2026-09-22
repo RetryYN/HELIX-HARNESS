@@ -1,0 +1,31 @@
+{
+  "exact_ledger_hits": {
+    "OUTSIDE67-PATH-001": [],
+    "OUTSIDE67-PATH-002": [],
+    "OUTSIDE67-PATH-003": [],
+    "OUTSIDE67-PATH-004": [],
+    "OUTSIDE67-PATH-005": []
+  },
+  "holding_denominator": 67,
+  "holding_source_set_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+  "legacy_catalog_absence_interpretation": "lookup result is evidence boundary only; no absence/completion/approval inference",
+  "legacy_catalog_ledgers": [
+    "docs/governance/legacy-asset-disposition.jsonl",
+    "docs/governance/legacy-asset-decisions.jsonl",
+    "docs/governance/legacy-asset-copy-read-after.jsonl",
+    "docs/governance/legacy-asset-decision-log.md",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+  ],
+  "old_runtime_test_ci_execution": false,
+  "schema": "rdp001-outside67-atomization-evidence-scan/v2",
+  "selected_ids": [
+    "OUTSIDE67-PATH-001",
+    "OUTSIDE67-PATH-002",
+    "OUTSIDE67-PATH-003",
+    "OUTSIDE67-PATH-004",
+    "OUTSIDE67-PATH-005"
+  ],
+  "static_only": true
+}
