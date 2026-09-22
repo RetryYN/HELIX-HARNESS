@@ -1,0 +1,227 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0064",
+  "kind": "scaffold",
+  "title": "Wave38 schema10 legacy semantic review candidate（NFR/TR source chain 3件）",
+  "product": "HELIX-OS",
+  "owner_candidate": "Wave38旧NFR／TR source chain、四製品routing、phase・implementation・degradation・consumer境界のsemantic review（正式owner未解決）",
+  "state": "registered",
+  "reason": "Wave1–37で未レビューの3 product unit source chainを、旧requirements／design／implementation source、asset catalog、crosswalk、decomposition、判断・failure・consumer境界へ静的に結び、9 edge・3 atom候補・3 composite_unresolvedとして保持する。現行authority、successor、実装、縮退、phase admission、consumer closure、採否は未解決のまま残す。",
+  "upstream": [
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "旧asset catalog classification and candidate phase/product"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "legacy implementation/degradation/consumer disposition"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "append-only historical asset decisions"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "historical failure/consumer read-after observations"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "unit phase and legacy implementation crosswalk"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "note": "218-unit source decomposition and product candidates"
+    },
+    {
+      "path": "docs/governance/legacy-ir-document-source-relation.jsonl",
+      "sha256": "f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f",
+      "note": "preserved requirement-to-markdown source relation"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl",
+      "sha256": "25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a",
+      "note": "Wave37 prior ledger for exact non-overlap"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.meta.json",
+      "sha256": "6e38f8169c4a7fda0cac19a679acd9c164dc5f036376b001339bd2e9c0957d36",
+      "note": "Wave37 prior meta and cumulative denominator"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "current four-product boundary candidate input"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "HARNESS L1 comparison input"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "OS L1 comparison input"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "Web L1 comparison input; no direct source assertion"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "Web-OS L1 comparison input; no direct source assertion"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "authority and scaffold boundary"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/README.md",
+      "sha256": "5278cb30acd74ae2e92e280634a6ce4ba028479d0fc63dbcb1fc3b80cf2b9ab3",
+      "note": "candidate scope and static-only boundary"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/inventory.json",
+      "sha256": "24cc51e90e413d926c4463ee3f22b73ecad0032cf6304eabe9bf5a5a3e3acce7",
+      "note": "unit and denominator inventory"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/plan.json",
+      "sha256": "54d4e283dd5999a1647cdaaba16ff313efed415af1d85330b84f96a7063eb5e7",
+      "note": "selection and atom preservation plan"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
+      "sha256": "df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8",
+      "note": "generated schema10 ledger"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.meta.json",
+      "sha256": "0600255c3bd0486041f006d2dd8b7a959bd86ca7e6e12519d8c9ef7d68db3527",
+      "note": "generated schema10 meta"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/generate.py",
+      "sha256": "bc888932ad74dfa6f14efca171bc602f0ab4b4f07711ee0943474859ecbd5a46",
+      "note": "deterministic static generator"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/validate.py",
+      "sha256": "1d802e6b83ed6de10febf2097e6042444a1b8f02fe28e5a52ef67d3f88263b5b",
+      "note": "fail-closed schema10 validator"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/selfcheck.py",
+      "sha256": "f52ae229d0375f5b343cafce205228b4b323719b29dbf77335815e9229f987d0",
+      "note": "negative mutation selfcheck"
+    }
+  ],
+  "role": "Wave38 schema10 research premiseとして、旧sourceの要求文とsource chain、四製品candidate、phase候補、旧asset implementation status、failure／consumer unknownを独立reviewへ渡す。",
+  "overlap_reason": "最新main=f369e2fd4でSCF-B-0065まで、open/local candidateを確認した。SCF-B-0064はmainおよび確認した候補に存在しないため、この欠番を予約する。Wave1–37のunit／edgeとnon-requirement assetを再利用せず、Web／Web-OS単独routing根拠を生成しない。",
+  "obligations": [
+    "218 unit decompositionとWave1–37の148 reviewed unit／441 edgeをsource orderとdigestで固定し、Wave38の3 unit／9 edgeをprior edgeなしで追加する",
+    "各unitをrequirement／design／implementation_sourceの3 roleへ結び、source path、source SHA、excerpt line、excerpt digest、verbatim spanを照合する",
+    "NFR02の旧worker／verifier／knowledge promoter関係とCodex条件、NFR06のapproval obligation、TR07のPython／Node／L4関係をsource atom候補として保持する",
+    "旧sourceのhistorical statement、catalog candidate、phase candidate、implementation/degradation/consumer unknownを現行authority、実装、phase admission、releaseへ昇格しない",
+    "四製品境界を候補比較として保持し、Web／Web-OSの直接根拠がない状態で単独routingを生成しない",
+    "role別semantic relation、counterevidence、unresolved、consumer refs、empty-field契約をschema10でfail-closeする",
+    "既存non-requirement asset再利用、prior unit/edge重複、stale anchor、意味注入、source excerpt改変をnegative caseで拒否する",
+    "旧archiveのruntime／test／CI／hook／adapter／sourceは実行せず、静的読取・digest照合だけを行う"
+  ],
+  "connections": {
+    "consumers": [
+      "Wave38 independent semantic reviewer",
+      "four-product responsibility boundary reviewer",
+      "legacy asset decision/failure/consumer reviewer",
+      "subsequent L1/L2/L11 human decision reviewer",
+      "Scaffold Binding replacement reviewer"
+    ],
+    "dependencies": [
+      "Python 3 standard library",
+      "Wave1–37 schema10 prior ledgers",
+      "legacy source catalog/crosswalk/decomposition",
+      "Concept and four product L1 boundary documents"
+    ],
+    "boundary": "候補ledger、meta、inventory、plan、generator、validator、selfcheck、README、Bindingはscaffold内に置く。正式requirement identity、successor、現行implementation、phase admission、authority、consumer closure、CI、Issue／PR、release、deployment、外部作用は生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/legacy-semantic-review-wave38/generate.py",
+      "python3 -B scaffold/legacy-semantic-review-wave38/validate.py",
+      "python3 -B scaffold/legacy-semantic-review-wave38/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check",
+      "git show／git rev-parse／git cat-fileによるread-only照合"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source、設定の実行",
+      "旧CI／旧runtimeをoracle、実装、受入、完了証拠として使用",
+      "旧source／actor／PO／phase記述を現行permission、implementation、phase、merge、release、deploymentへ昇格",
+      "scaffold外への候補書き込み、GitHub、Issue、PR、CI、DB、memory、外部APIへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/legacy-semantic-review-wave38/README.md",
+    "scaffold/legacy-semantic-review-wave38/generate.py",
+    "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
+    "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.meta.json",
+    "scaffold/legacy-semantic-review-wave38/inventory.json",
+    "scaffold/legacy-semantic-review-wave38/plan.json",
+    "scaffold/legacy-semantic-review-wave38/validate.py",
+    "scaffold/legacy-semantic-review-wave38/selfcheck.py",
+    "scaffold/bindings/SCF-B-0064.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "validate.pyの9 row／3 unit source chain、excerpt／span／atom provenance、3 composite_unresolved、role契約、phase projection、prior edge／asset非重複、151／450／67分母",
+      "selfcheck.pyのstale anchor、role inversion、意味注入、既済asset再利用、authority／phase／implementation promotion、binding unresolved promotion negative cases",
+      "generate.py再実行のJSONL／meta digest安定性",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "source span anchorをstaleまたは現行意味へ差し替える",
+      "designをrequirement semantic relationへ反転する",
+      "旧implementation候補をcurrent implementation completeへ書き換える",
+      "既済non-requirement assetをWave38 edgeへ再利用する",
+      "TR07 composite atomを独立accepted requirementへ昇格する",
+      "OS候補をWeb／Web-OS単独へ推定routingする",
+      "phase／consumer／authority／degradation unknownを解消済みと表示する",
+      "archive runtime／test／CI／hook／adapter／sourceを実行する",
+      "authority effect promotion",
+      "phase admission promotion",
+      "current implementation status promotion",
+      "unresolved literal binding promotion"
+    ]
+  },
+  "replacement": {
+    "role_target": "四製品boundary、L1/L2/L11、consumer closure、successor、authorityが人間reviewで確定した正式requirement semantic review record",
+    "formal_artifacts": [],
+    "issue": 2013,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
