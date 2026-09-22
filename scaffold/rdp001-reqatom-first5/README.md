@@ -42,8 +42,11 @@ python3 scaffold/rdp001-reqatom-first5/generate.py
 python3 scaffold/rdp001-reqatom-first5/validate.py
 python3 scaffold/rdp001-reqatom-first5/selfcheck.py
 python3 scaffold/tools/scfctl.py validate
+python3 scaffold/tools/scfctl.py stale
 git diff --check
 ```
+
+review 依頼の直前に `scfctl stale` を再実行し、`stale=0` を確認する。
 
 `generate.py`は queue、semantic line台帳、source snapshotから同じJSONLを再生成する。`validate.py`はqueue coverage全量、exact source／line digest、archive同一性、16 atom、四製品分母、actor／authority／failure／evidence／negative条件、unknown status、authority/successor/decision禁止を独立に検査する。`selfcheck.py`はcoverage欠落・重複、本文／digest改変、authority／successor／decision／implementation昇格、四製品分母改変、旧無人merge conflictの削除を拒否する10否定例を一時ファイル上で確認する。
 
