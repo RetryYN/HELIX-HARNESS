@@ -1,0 +1,126 @@
+{
+  "selected_ids": [
+    "OUTSIDE67-PATH-034",
+    "OUTSIDE67-PATH-036",
+    "OUTSIDE67-PATH-046",
+    "OUTSIDE67-PATH-052",
+    "OUTSIDE67-PATH-056"
+  ],
+  "existing_reviewed_ids": [
+    "OUTSIDE67-PATH-008",
+    "OUTSIDE67-PATH-011",
+    "OUTSIDE67-PATH-030",
+    "OUTSIDE67-PATH-033",
+    "OUTSIDE67-PATH-043",
+    "OUTSIDE67-PATH-045",
+    "OUTSIDE67-PATH-055",
+    "OUTSIDE67-PATH-059",
+    "OUTSIDE67-PATH-063",
+    "OUTSIDE67-PATH-064",
+    "OUTSIDE67-PATH-065",
+    "OUTSIDE67-PATH-066"
+  ],
+  "ledger_files": [
+    "docs/governance/legacy-asset-disposition.jsonl",
+    "docs/governance/legacy-asset-decisions.jsonl",
+    "docs/governance/legacy-asset-copy-read-after.jsonl",
+    "docs/governance/legacy-asset-decision-log.md",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+  ],
+  "files": {
+    "docs/governance/legacy-asset-disposition.jsonl": {
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "bytes": 4857919
+    },
+    "docs/governance/legacy-asset-decisions.jsonl": {
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "bytes": 109547
+    },
+    "docs/governance/legacy-asset-copy-read-after.jsonl": {
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "bytes": 29632
+    },
+    "docs/governance/legacy-asset-decision-log.md": {
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "bytes": 5000
+    },
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": {
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "bytes": 6311877
+    },
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": {
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "bytes": 7938664
+    },
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": {
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "bytes": 602042
+    }
+  },
+  "counterparts": {
+    "OUTSIDE67-PATH-034": {
+      "path": "docs/governance/audits/source-rebaseline/legacy-harness-requirements-source-crosswalk.md",
+      "sha256": "75fd1f06bd4b87473009f536500fde555cd27ff0b6a95089cc0c67772d07909c",
+      "bytes": 6284,
+      "content_hash_matches_archive": false,
+      "relation": "current_counterpart_wording_and_path_drift_observed"
+    },
+    "OUTSIDE67-PATH-036": {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-bounded-repair-source-crosswalk.md",
+      "sha256": "99ef22ebabc9432bb2092d7f29a01d2c3a1acd208875feb866dce4e5bd15ccae",
+      "bytes": 5219,
+      "content_hash_matches_archive": true,
+      "relation": "current_counterpart_hash_equal_archive"
+    },
+    "OUTSIDE67-PATH-046": {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-security-engagement-source-crosswalk.md",
+      "sha256": "1d7e18c3208f3eccf5ad9b96ad547fa30b576b7d417bbaaca96c52691b35c7c9",
+      "bytes": 6771,
+      "content_hash_matches_archive": true,
+      "relation": "current_counterpart_hash_equal_archive"
+    },
+    "OUTSIDE67-PATH-052": {
+      "path": "docs/governance/candidates/ai-readable-authority-requirements.md",
+      "sha256": "5b81d1498af275eba03ea20bbe8893a1d4180078af7da3cf1800a559b907dcc9",
+      "bytes": 7494,
+      "content_hash_matches_archive": false,
+      "relation": "current_candidate_revision_drift_observed"
+    },
+    "OUTSIDE67-PATH-056": {
+      "path": "docs/governance/candidates/next-generation-ci-requirements.md",
+      "sha256": "5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba",
+      "bytes": 7905,
+      "content_hash_matches_archive": false,
+      "relation": "current_candidate_revision_drift_observed"
+    }
+  },
+  "exact_ledger_hits": {
+    "OUTSIDE67-PATH-034": [],
+    "OUTSIDE67-PATH-036": [],
+    "OUTSIDE67-PATH-046": [],
+    "OUTSIDE67-PATH-052": [],
+    "OUTSIDE67-PATH-056": []
+  },
+  "archive_relocation_ids": [],
+  "archive_changed_ids": [
+    "OUTSIDE67-PATH-052"
+  ],
+  "source_archive_same_ids": [
+    "OUTSIDE67-PATH-034",
+    "OUTSIDE67-PATH-036",
+    "OUTSIDE67-PATH-046",
+    "OUTSIDE67-PATH-056"
+  ],
+  "current_counterpart_drift_ids": [
+    "OUTSIDE67-PATH-034",
+    "OUTSIDE67-PATH-052",
+    "OUTSIDE67-PATH-056"
+  ],
+  "notes": [
+    "pre-isolation/archive source revisions are held separately",
+    "current counterpart hashes are observations only; semantic equivalence and authority are unresolved",
+    "exact candidate ID/path scan across seven legacy ledgers returned zero hits"
+  ]
+}

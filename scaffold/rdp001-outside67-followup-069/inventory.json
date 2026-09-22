@@ -1,0 +1,464 @@
+{
+  "schema": "rdp001-outside67-followup/v1",
+  "candidate_id": "RDP-001-OUTSIDE67-FOLLOWUP-034-036-046-052-056",
+  "status": "findings_only",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "formal_register_append": null,
+  "old_runtime_test_ci_execution": false,
+  "scope": {
+    "worktree": "/home/tenni/.helix-worktrees/outside67-followup-selection",
+    "base_origin_main": "98b5fb0f0743969835dcde7ebd00b476470a53a8",
+    "base_origin_main_expected_before_fetch": "38d38f47794e70d621403ad8dbeac56518a76766",
+    "base_drift_observed": true,
+    "base_drift_from": "38d38f47794e70d621403ad8dbeac56518a76766",
+    "base_drift_to": "98b5fb0f0743969835dcde7ebd00b476470a53a8",
+    "base_drift_reason": "#2017 merged after the prior 38d38f4 baseline; rebaseline performed at latest origin/main 98b5fb0 before this validation fix.",
+    "read_only": true,
+    "static_only": true,
+    "holding_registration_id": "MPR-SH-OUTSIDE67-001",
+    "holding_path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "holding_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+    "holding_path_revision_pair_denominator": 67,
+    "holding_record_count": 67,
+    "current_live_source_holding_count": 14,
+    "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "management_register_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+    "existing_reviewed_ids": [
+      "OUTSIDE67-PATH-008",
+      "OUTSIDE67-PATH-011",
+      "OUTSIDE67-PATH-030",
+      "OUTSIDE67-PATH-033",
+      "OUTSIDE67-PATH-043",
+      "OUTSIDE67-PATH-045",
+      "OUTSIDE67-PATH-055",
+      "OUTSIDE67-PATH-059",
+      "OUTSIDE67-PATH-063",
+      "OUTSIDE67-PATH-064",
+      "OUTSIDE67-PATH-065",
+      "OUTSIDE67-PATH-066"
+    ],
+    "remaining_before_candidate_selection": 55,
+    "candidate_ids": [
+      "OUTSIDE67-PATH-034",
+      "OUTSIDE67-PATH-036",
+      "OUTSIDE67-PATH-046",
+      "OUTSIDE67-PATH-052",
+      "OUTSIDE67-PATH-056"
+    ],
+    "candidate_count": 5,
+    "remaining_after_candidate_selection": 50,
+    "accounting_status": "provisional_17_of_67_research_no_formal_holding_admission",
+    "unexplored_scope": "all outside67 path_revision_pair not in the existing 12 or this five-source research set; candidate accounting remains scaffold evidence until any later holding admission",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "historical_capture_commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
+    "source_unit": "path_revision_pair",
+    "requirement_atoms_are_not_path_pairs": true,
+    "batch_width_observed": 5,
+    "batch_width_policy": "width 5 is the observed verification width for this bundle; no safe batch upper bound is asserted; next batch requires independent source-chain review from the then-current origin/main",
+    "origin_main_rebaseline_required_after_2016_merge": false,
+    "binding_reservation": "SCF-B-0069",
+    "binding_registration_status": "registered"
+  },
+  "source_holding": {
+    "registration_id": "MPR-SH-OUTSIDE67-001",
+    "selected_item_ids": [
+      "OUTSIDE67-PATH-034",
+      "OUTSIDE67-PATH-036",
+      "OUTSIDE67-PATH-046",
+      "OUTSIDE67-PATH-052",
+      "OUTSIDE67-PATH-056"
+    ],
+    "existing_reviewed_ids": [
+      "OUTSIDE67-PATH-008",
+      "OUTSIDE67-PATH-011",
+      "OUTSIDE67-PATH-030",
+      "OUTSIDE67-PATH-033",
+      "OUTSIDE67-PATH-043",
+      "OUTSIDE67-PATH-045",
+      "OUTSIDE67-PATH-055",
+      "OUTSIDE67-PATH-059",
+      "OUTSIDE67-PATH-063",
+      "OUTSIDE67-PATH-064",
+      "OUTSIDE67-PATH-065",
+      "OUTSIDE67-PATH-066"
+    ],
+    "denominator": 67,
+    "candidate_count": 5,
+    "reviewed_count": 12,
+    "combined_reviewed_and_candidate_count": 17,
+    "remaining_after_research": 50,
+    "accounting_status": "provisional_17_of_67_no_formal_holding_admission"
+  },
+  "selection": {
+    "candidate_ids": [
+      "OUTSIDE67-PATH-034",
+      "OUTSIDE67-PATH-036",
+      "OUTSIDE67-PATH-046",
+      "OUTSIDE67-PATH-052",
+      "OUTSIDE67-PATH-056"
+    ],
+    "excluded_existing_ids": [
+      "OUTSIDE67-PATH-008",
+      "OUTSIDE67-PATH-011",
+      "OUTSIDE67-PATH-030",
+      "OUTSIDE67-PATH-033",
+      "OUTSIDE67-PATH-043",
+      "OUTSIDE67-PATH-045",
+      "OUTSIDE67-PATH-055",
+      "OUTSIDE67-PATH-059",
+      "OUTSIDE67-PATH-063",
+      "OUTSIDE67-PATH-064",
+      "OUTSIDE67-PATH-065",
+      "OUTSIDE67-PATH-066"
+    ],
+    "reason": "source-chain diversity across harness crosswalk, bounded repair, security engagement, AI-readable authority, and next-generation CI; no exact source ID/path overlap with the existing twelve"
+  },
+  "classification_basis": {
+    "product": "shared-cross-product holding candidate; four products retained as boundary candidates only",
+    "phase": "upstream-governance-or-crosswalk path-based candidate only",
+    "semantic_units": "five exact source line anchors per source; lines with multiple duties remain composite_unresolved in open questions",
+    "implementation": "unknown",
+    "degradation": "unknown",
+    "failure_consumer_decision": "source wording and ledger scan only; no closure inferred",
+    "counterpart_difference": "pre/archive revisions and current counterparts are preserved as separate observations; no semantic equivalence or relocation inference"
+  },
+  "four_products": [
+    {
+      "product": "HELIX-HARNESS",
+      "status": "candidate_boundary_only",
+      "authority_effect": "none"
+    },
+    {
+      "product": "HELIX-OS",
+      "status": "candidate_boundary_only",
+      "authority_effect": "none"
+    },
+    {
+      "product": "HELIX-Web",
+      "status": "candidate_boundary_only",
+      "authority_effect": "none"
+    },
+    {
+      "product": "HELIX-Web-OS",
+      "status": "candidate_boundary_only",
+      "authority_effect": "none"
+    }
+  ],
+  "documents": [
+    {
+      "source_item_id": "OUTSIDE67-PATH-034",
+      "source_path": "docs/governance/audits/l2-requirements/legacy-harness-requirements-source-crosswalk.md",
+      "candidate_product": "shared-cross-product",
+      "candidate_phase": "upstream-governance-or-crosswalk",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "phase_status": "unknown_path_based_candidate_only",
+      "product_status": "unknown_path_based_candidate_only",
+      "archive_counterpart": {
+        "path": "docs/governance/audits/source-rebaseline/legacy-harness-requirements-source-crosswalk.md",
+        "sha256": "75fd1f06bd4b87473009f536500fde555cd27ff0b6a95089cc0c67772d07909c",
+        "bytes": 6284,
+        "content_hash_matches_archive": false,
+        "relation": "current_counterpart_wording_and_path_drift_observed"
+      },
+      "status": {
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_degradation_status": "unknown"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-036",
+      "source_path": "docs/governance/audits/l2-requirements/new-generation-bounded-repair-source-crosswalk.md",
+      "candidate_product": "shared-cross-product",
+      "candidate_phase": "upstream-governance-or-crosswalk",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "phase_status": "unknown_path_based_candidate_only",
+      "product_status": "unknown_path_based_candidate_only",
+      "archive_counterpart": {
+        "path": "docs/governance/audits/source-rebaseline/new-generation-bounded-repair-source-crosswalk.md",
+        "sha256": "99ef22ebabc9432bb2092d7f29a01d2c3a1acd208875feb866dce4e5bd15ccae",
+        "bytes": 5219,
+        "content_hash_matches_archive": true,
+        "relation": "current_counterpart_hash_equal_archive"
+      },
+      "status": {
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_degradation_status": "unknown"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-046",
+      "source_path": "docs/governance/audits/l2-requirements/new-generation-security-engagement-source-crosswalk.md",
+      "candidate_product": "shared-cross-product",
+      "candidate_phase": "upstream-governance-or-crosswalk",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "phase_status": "unknown_path_based_candidate_only",
+      "product_status": "unknown_path_based_candidate_only",
+      "archive_counterpart": {
+        "path": "docs/governance/audits/source-rebaseline/new-generation-security-engagement-source-crosswalk.md",
+        "sha256": "1d7e18c3208f3eccf5ad9b96ad547fa30b576b7d417bbaaca96c52691b35c7c9",
+        "bytes": 6771,
+        "content_hash_matches_archive": true,
+        "relation": "current_counterpart_hash_equal_archive"
+      },
+      "status": {
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_degradation_status": "unknown"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-052",
+      "source_path": "docs/governance/candidates/ai-readable-authority-requirements.md",
+      "candidate_product": "shared-cross-product",
+      "candidate_phase": "upstream-governance-or-crosswalk",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "phase_status": "unknown_path_based_candidate_only",
+      "product_status": "unknown_path_based_candidate_only",
+      "archive_counterpart": {
+        "path": "docs/governance/candidates/ai-readable-authority-requirements.md",
+        "sha256": "5b81d1498af275eba03ea20bbe8893a1d4180078af7da3cf1800a559b907dcc9",
+        "bytes": 7494,
+        "content_hash_matches_archive": false,
+        "relation": "current_candidate_revision_drift_observed"
+      },
+      "status": {
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_degradation_status": "unknown"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-056",
+      "source_path": "docs/governance/candidates/next-generation-ci-requirements.md",
+      "candidate_product": "shared-cross-product",
+      "candidate_phase": "upstream-governance-or-crosswalk",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "phase_status": "unknown_path_based_candidate_only",
+      "product_status": "unknown_path_based_candidate_only",
+      "archive_counterpart": {
+        "path": "docs/governance/candidates/next-generation-ci-requirements.md",
+        "sha256": "5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba",
+        "bytes": 7905,
+        "content_hash_matches_archive": false,
+        "relation": "current_candidate_revision_drift_observed"
+      },
+      "status": {
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_degradation_status": "unknown"
+      }
+    }
+  ],
+  "product_unit_count": 25,
+  "product_unit_ids": [
+    "RDP-001-OUTSIDE67-034-U001",
+    "RDP-001-OUTSIDE67-034-U002",
+    "RDP-001-OUTSIDE67-034-U003",
+    "RDP-001-OUTSIDE67-034-U004",
+    "RDP-001-OUTSIDE67-034-U005",
+    "RDP-001-OUTSIDE67-036-U001",
+    "RDP-001-OUTSIDE67-036-U002",
+    "RDP-001-OUTSIDE67-036-U003",
+    "RDP-001-OUTSIDE67-036-U004",
+    "RDP-001-OUTSIDE67-036-U005",
+    "RDP-001-OUTSIDE67-046-U001",
+    "RDP-001-OUTSIDE67-046-U002",
+    "RDP-001-OUTSIDE67-046-U003",
+    "RDP-001-OUTSIDE67-046-U004",
+    "RDP-001-OUTSIDE67-046-U005",
+    "RDP-001-OUTSIDE67-052-U001",
+    "RDP-001-OUTSIDE67-052-U002",
+    "RDP-001-OUTSIDE67-052-U003",
+    "RDP-001-OUTSIDE67-052-U004",
+    "RDP-001-OUTSIDE67-052-U005",
+    "RDP-001-OUTSIDE67-056-U001",
+    "RDP-001-OUTSIDE67-056-U002",
+    "RDP-001-OUTSIDE67-056-U003",
+    "RDP-001-OUTSIDE67-056-U004",
+    "RDP-001-OUTSIDE67-056-U005"
+  ],
+  "unknown_counts": {
+    "implementation": 5,
+    "degradation": 5,
+    "failure": 5,
+    "consumer": 5,
+    "decision": 5,
+    "phase": 5,
+    "authority": 5,
+    "legacy_implementation": 5,
+    "current_implementation": 5,
+    "legacy_degradation": 5,
+    "current_degradation": 5
+  },
+  "source_diffs": {
+    "path": "source-diffs.json",
+    "pre_archive_semantic_equivalence": "unresolved",
+    "current_counterpart_semantic_equivalence": "unresolved"
+  },
+  "evidence_scan": {
+    "path": "evidence-scan.json",
+    "exact_ledger_hits": "none for all selected IDs"
+  },
+  "prohibited_inference": [
+    "archive/current hash or path does not establish semantic equivalence, authority, successor, implementation, degradation, failure closure, consumer closure, or decision",
+    "source line text does not prove product ownership, phase authority, or runtime behavior",
+    "holding denominator is path_revision_pair count, not semantic product-unit count"
+  ],
+  "findings": [
+    {
+      "id": "F001",
+      "status": "observed",
+      "text": "67 path_revision_pair holding denominator; five new source IDs are candidate research only"
+    },
+    {
+      "id": "F002",
+      "status": "observed",
+      "text": "existing twelve IDs and five selected IDs are disjoint by exact source ID/path"
+    },
+    {
+      "id": "F003",
+      "status": "observed",
+      "text": "five source chains retain pre-isolation and archive revisions with exact line anchors; 052 differs across revisions"
+    },
+    {
+      "id": "F004",
+      "status": "observed",
+      "text": "current counterpart hash matches archive only for 036 and 046; 034, 052, and 056 show drift observations"
+    },
+    {
+      "id": "F005",
+      "status": "observed",
+      "text": "seven legacy ledgers contain no exact selected ID/path hits; this does not establish absence or closure"
+    },
+    {
+      "id": "F006",
+      "status": "observed",
+      "text": "four products remain candidate boundaries; no unit is assigned or promoted"
+    },
+    {
+      "id": "F007",
+      "status": "observed",
+      "text": "batch width 5 is recorded as observed verification width; no upper safety bound is asserted"
+    }
+  ],
+  "unresolved_questions": [
+    {
+      "id": "Q001",
+      "status": "open",
+      "text": "which multi-duty source lines decompose into separate product units versus composite_unresolved"
+    },
+    {
+      "id": "Q002",
+      "status": "open",
+      "text": "whether each current counterpart is a semantic counterpart, relocation, or independent document"
+    },
+    {
+      "id": "Q003",
+      "status": "open",
+      "text": "product owner and phase authority across HARNESS, HELIX-OS, HELIX-Web, and HELIX-Web-OS"
+    },
+    {
+      "id": "Q004",
+      "status": "open",
+      "text": "legacy/current implementation and degradation status"
+    },
+    {
+      "id": "Q005",
+      "status": "open",
+      "text": "candidate-specific failure, consumer closure, decision, owner, successor, and formal holding admission"
+    }
+  ],
+  "verification_scope": {
+    "static_only": true,
+    "old_runtime_test_ci_execution": false,
+    "checks": [
+      "latest main ancestor-only base gate",
+      "holding denominator and 12-plus-5 accounting",
+      "source revision blob/sha/bytes",
+      "25 independent pre/archive line anchors",
+      "current counterpart hash observations",
+      "legacy ledger exact hits",
+      "four-product candidate boundary",
+      "unknown statuses and composite unresolved questions",
+      "existing twelve non-overlap",
+      "negative product/unknown/duplicate/anchor/denominator/keyset cases"
+    ],
+    "finalization_blockers": [
+      "SCF-B-0069 research Binding is registered; formal holding admission remains pending",
+      "formal holding admission and human product/phase authority",
+      "semantic decomposition and current counterpart meaning",
+      "no commit/push/PR for this scaffold"
+    ]
+  }
+}
