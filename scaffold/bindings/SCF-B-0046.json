@@ -1,0 +1,65 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0046",
+  "kind": "scaffold",
+  "title": "PHCAP-12／13 Review convergence・Merge admission 四製品静的research premise",
+  "product": "HELIX-OS",
+  "owner_candidate": "PHCAP-12/13 review／merge semantic review（正式owner未解決）",
+  "state": "registered",
+  "reason": "PHCAP-12/13の旧代表9asset、phase／product候補、現行review／merge contract ref、四製品unit／connection、failure／consumer残差をsource digestとexact spanで静的に束ねる。旧phaseのimplemented／test記述、SCF-B-0003、旧runtime／testは現行implementation、oracle、pass、authority、merge成立へ昇格させない。",
+  "upstream": [
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995", "note": "authority／archive read-only boundary"},
+    {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "note": "PHCAP-12/13 phase snapshots and new_build boundary"},
+    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "selected asset disposition／implementation／consumer state"},
+    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "selected phase／product candidate classification"},
+    {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "note": "append-only decision ledger"},
+    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "four product unit／connection boundary"},
+    {"path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md", "sha256": "0e8894cb12e0188b079e6fc0c251c3867f88d561dfc2a595070bb90facd7cb09", "note": "OS review handoff candidate"},
+    {"path": "docs/governance/github-upstream-operating-model.md", "sha256": "7feda9e40b813081608ee5d776861f9f7f24638e9b2a3e4b472aba781b29cb25", "note": "review／merge admission operating candidate"},
+    {"path": "docs/governance/audits/source-rebaseline/legacy-reviewed-merge-rehost-assessment-2026-09-20.md", "sha256": "5277e6637f2de2421a6ef73112238a83dec38eb04129a5e44d2ac4649cc7b8c0", "note": "legacy merge rehost assessment"},
+    {"path": "docs/helix-harness/L2-requirements/product-requirements.md", "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77", "note": "HARNESS L2 candidate"},
+    {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be", "note": "OS L2 candidate"},
+    {"path": "docs/helix-web/L2-requirements/product-requirements.md", "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0", "note": "Web adjacent L2 candidate"},
+    {"path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248", "note": "Web-OS adjacent L2 candidate"},
+    {"path": "docs/helix-harness/L11-acceptance/product-acceptance.md", "sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b", "note": "HARNESS L11 unexecuted boundary"},
+    {"path": "docs/helix-os/L11-acceptance/governance-acceptance.md", "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19", "note": "OS L11 unexecuted boundary"},
+    {"path": "docs/helix-web/L11-acceptance/product-acceptance.md", "sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec", "note": "Web L11 unexecuted boundary"},
+    {"path": "docs/helix-web-os/L11-acceptance/service-acceptance.md", "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e", "note": "Web-OS L11 unexecuted boundary"},
+    {"path": "scaffold/bindings/SCF-B-0003.json", "sha256": "9e70f950fe3323925b340cf13b9d125387df8e1b8367576b9a6f9eedc0ba8d6f", "note": "existing GUI notification scaffold context only"},
+    {"path": "scaffold/phcap12-13-review/README.md", "sha256": "a2f1ff85f023474c26473a667f50099596a8e108db86ac28f8806f95b8280250", "note": "candidate scope／boundary／verification"},
+    {"path": "scaffold/phcap12-13-review/generate.py", "sha256": "5d3e5c7acd54db66f3f6352e9436c485a6d83ffe599f58fe9610f069ed731701", "note": "deterministic static inventory generator"},
+    {"path": "scaffold/phcap12-13-review/inventory.json", "sha256": "fba3b9ab63388915def18666b2b5aa88ae0946b900130587b77fcfc1c67b1d8d", "note": "phase／asset／product／consumer candidate inventory"},
+    {"path": "scaffold/phcap12-13-review/validate.py", "sha256": "64fb0229f78c0705f49c2fa762419afc912d5513b19ccf8d7ef6824709de6f76", "note": "static validator"},
+    {"path": "scaffold/phcap12-13-review/selfcheck.py", "sha256": "c7424d6cf8f2d80ccb0eb4eba963275bf963de6b5765c6e110b99bcf7bb6674a", "note": "baseline/no-op plus 46 expected-error negative cases"}
+  ],
+  "role": "PHCAP-12/13の旧asset、四製品unit／connection、現行candidate ref、failure／consumer unknownをread-only research premiseとして保持する",
+  "obligations": [
+    "PHCAP-12/13 phase summaryのimplemented／operating記述とselected assetのimplementation unknown／execution falseを分離する",
+    "9旧assetのledger／phase snapshot、source bytes／digest、16 exact anchor、decision match 0を照合する",
+    "HARNESS、OS、Web、Web-OSのunitを分離し、Web／Web-OS direct evidence欠落を未実装へ変換しない",
+    "HARNESS↔OS、OS→Web、Web→Web-OS、Web-OS→OSの5 candidate connectionをauthority none／consumer pendingで保持する",
+    "SCF-B-0003をGUI通知のscaffold-only contextとして扱い、independent review／receipt／CI／DB／merge authorityへ昇格しない",
+    "failure execution receipt 0、ledger consumer refs空、consumer closure pendingとconsumer候補を保持する",
+    "旧archiveは静的bytes／span／digest参照だけに限定し、旧runtime／test／CI／hook／adapterを実行しない",
+    "正式要求、owner、successor、implementation、acceptance、merge、Issue／PR／DB／外部API作用を生成しない"
+  ],
+  "connections": {
+    "consumers": ["PHCAP-12 review convergence semantic review担当", "PHCAP-13 merge admission semantic review担当", "四製品unit／connection boundary review担当", "旧failure／consumer closure review担当", "SCF-B-0046 replacement確認担当"],
+    "dependencies": ["Python標準library", "phase／asset／decision ledgers", "current four-product L2／L11 and governance refs", "SCF-B-0003 scaffold context", "candidate validator／selfcheck"],
+    "boundary": "成果物はscaffold/配下。旧archiveは静的referenceだけで、正式review／merge contract、authority、owner、implementation、acceptance、consumer closureは生成しない。"
+  },
+  "operations": {
+    "allowed": ["python3 -B scaffold/phcap12-13-review/generate.py", "python3 -B scaffold/phcap12-13-review/validate.py", "python3 -B scaffold/phcap12-13-review/selfcheck.py", "python3 scaffold/tools/scfctl.py validate", "python3 scaffold/tools/scfctl.py stale", "python3 scaffold/tools/scfctl.py residuals", "python3 scaffold/tools/scfctl.py selftest", "git diff --check"],
+    "forbidden": ["archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行", "旧source／testをcurrent oracle、fallback、implementation、passへ昇格すること", "scaffold/外への候補書き込み", "正式要求、owner、successor、implementation、acceptance、merge、consumer closureの生成", "未許可のGitHub、Issue、PR、CI、DB、外部APIへの作用"]
+  },
+  "artifacts": ["scaffold/phcap12-13-review/README.md", "scaffold/phcap12-13-review/generate.py", "scaffold/phcap12-13-review/inventory.json", "scaffold/phcap12-13-review/validate.py", "scaffold/phcap12-13-review/selfcheck.py", "scaffold/bindings/SCF-B-0046.json"],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": ["PHCAP-12/13 validate.py（phase／asset ledger、source digest／span、四製品unit／edge、candidate denominator、decision matching asset IDs、failure／consumer interpretation本文／digest、recursive keyset、unknown）", "selfcheck.py（baseline/no-op、authority／implementation／semantic reversal／direct evidence／decision／failure／consumer／digest／recursive keyset 46 expected-error negative cases）", "scaffold/tools/scfctl.py validate／stale／residuals／selftest", "git diff --check"],
+    "negative_cases": ["authority／successor／human decision／equivalenceを候補から生成する", "current implementation／operation／acceptance／ownerをunknownから昇格する", "Web／Web-OS adjacent refをdirect evidenceへ昇格する", "old source／test／runtimeをexecution／oracle／passへ昇格する", "consumer candidate／pending／failure receipt 0をclosureへ変換する", "unit／connection候補をapproved authority／shared writer／shared stateへ変換する", "unit capability／transition、connection meaning、phase join interpretationを反転する", "phase candidate joinをadmissionへ変換する", "source／ledger／current ref digestまたはexact anchorを改変する", "decision matching asset IDへFAKEを混入する", "failure／consumer interpretation本文またはdigestを反転する", "assets／current refsのnested unknown keyを通す", "origin/main変更後にrebaselineなしでcurrent扱いする"]
+  },
+  "replacement": {"role_target": "正式PHCAP-12/13 review convergence／merge admission contract、四製品routing、failure／consumer crosswalk（承認・freeze後）", "formal_artifacts": [], "issue": 1866, "status": "pending", "transfer": null, "target_revisions": {}, "confirmation_ref": null, "confirmation_digest": null},
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}

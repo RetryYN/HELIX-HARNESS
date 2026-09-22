@@ -1,0 +1,2155 @@
+{
+  "schema": "phcap12-13-review-research/v1",
+  "status": "research_premise_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_runtime_test_ci_execution": false,
+  "base": {
+    "repository": "HELIX-HARNESS",
+    "commit": "fbeee47920ed8b2992ae123b00c224ff88987c50",
+    "origin": "origin/main",
+    "branch": "research/phcap12-13-review",
+    "worktree": "/home/tenni/.helix-worktrees/phcap12-13-review",
+    "captured_at": "2026-09-22",
+    "rebaseline_rule": "origin/mainがcapture commitから変化したらstopし、rebaseline後にledger・source・current ref digestを再取得する。候補をcurrent扱いしない"
+  },
+  "ledger_provenance": {
+    "phase_inventory_path": "docs/governance/phase-capability-inventory.json",
+    "phase_inventory_sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+    "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "asset_ledger_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+    "phase_classification_path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "phase_classification_sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "decision_ledger_path": "docs/governance/legacy-asset-decisions.jsonl",
+    "decision_ledger_sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+    "asset_record_count": 4020,
+    "phase_record_count": 4020,
+    "decision_record_count": 58,
+    "selected_asset_count": 9,
+    "matching_decision_record_count": 0
+  },
+  "tasks": [
+    {
+      "task_id": "PHCAP-12",
+      "phase_record_snapshot": {
+        "task_id": "PHCAP-12",
+        "phase": "review_convergence",
+        "title": "Review convergence",
+        "product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "current": {
+          "status": "scaffold_operating",
+          "evidence_products": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "refs": [
+            "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
+            "docs/governance/github-upstream-operating-model.md"
+          ]
+        },
+        "scaffold": [
+          "SCF-B-0003"
+        ],
+        "legacy": {
+          "exists": true,
+          "layers_evidenced": [
+            "L4",
+            "L5",
+            "L6",
+            "L7 implementation/test",
+            "L9 test design"
+          ],
+          "maximum_layer_evidenced": "L9",
+          "capability_status": "implemented_with_tests",
+          "representative_assets": [
+            {
+              "asset_id": "LEGACY-ASSET-D107FD145A2588FAAD09",
+              "source_path": "docs/design/helix/L4-basic-design/worker-independent-review.md",
+              "implementation_status": "unknown"
+            },
+            {
+              "asset_id": "LEGACY-ASSET-D6816E22DAF2E990410B",
+              "source_path": "docs/design/helix/L5-detail/github-cross-review-admission.md",
+              "implementation_status": "unknown"
+            },
+            {
+              "asset_id": "LEGACY-ASSET-4FED0B46C22941761357",
+              "source_path": "docs/design/helix/L6-function-design/review-receipt-plan-binding.md",
+              "implementation_status": "unknown"
+            },
+            {
+              "asset_id": "LEGACY-ASSET-188DE92635DFB97B0200",
+              "source_path": "src/runtime/review-lane-closure.ts",
+              "implementation_status": "unknown"
+            },
+            {
+              "asset_id": "LEGACY-ASSET-50A93B0E753DC3840E03",
+              "source_path": "docs/test-design/helix/L9-worker-independent-review-system-test-design.md",
+              "implementation_status": "unknown"
+            },
+            {
+              "asset_id": "LEGACY-ASSET-A2E186B3A66077923537",
+              "source_path": "tests/review-receipt-plan-binding.test.ts",
+              "implementation_status": "unknown"
+            }
+          ],
+          "assessment": "旧世代には独立review、receipt、finding収束、review lane実装があった。"
+        },
+        "transition_assessment": "degraded_to_operating_contract_and_gui_scaffold",
+        "gaps": "正式配送、receipt schema、再開、provider境界が未成立",
+        "new_build_allowed": false,
+        "authority_effect": "inventory_and_work_projection_only"
+      }
+    },
+    {
+      "task_id": "PHCAP-13",
+      "phase_record_snapshot": {
+        "task_id": "PHCAP-13",
+        "phase": "merge_admission",
+        "title": "Merge admission",
+        "product_targets": [
+          "HELIX-HARNESS",
+          "HELIX-OS"
+        ],
+        "current": {
+          "status": "operating_contract_only",
+          "evidence_products": [
+            "HELIX-HARNESS",
+            "HELIX-OS"
+          ],
+          "refs": [
+            "docs/governance/github-upstream-operating-model.md",
+            "docs/governance/audits/source-rebaseline/legacy-reviewed-merge-rehost-assessment-2026-09-20.md"
+          ]
+        },
+        "scaffold": [],
+        "legacy": {
+          "exists": true,
+          "layers_evidenced": [
+            "L3",
+            "L7 implementation",
+            "L10 draft system test design"
+          ],
+          "maximum_layer_evidenced": "L10",
+          "capability_status": "implemented_with_draft_system_test_design",
+          "representative_assets": [
+            {
+              "asset_id": "LEGACY-ASSET-8686BB8CF396BAF57F2E",
+              "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
+              "implementation_status": "unknown"
+            },
+            {
+              "asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
+              "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
+              "implementation_status": "unknown"
+            },
+            {
+              "asset_id": "LEGACY-ASSET-EA1DFC00D984068C2444",
+              "source_path": "src/runtime/github-cross-review-admission.ts",
+              "implementation_status": "unknown"
+            }
+          ],
+          "assessment": "旧世代にはreviewed merge／merge admissionの要求、実装、draftのsystem test designがあった。旧system testの成立・実行passは主張しない。"
+        },
+        "transition_assessment": "degraded_to_manual_operating_contract",
+        "gaps": "canonical receipt、current CI、DB convergenceを再導出する必要あり",
+        "new_build_allowed": false,
+        "authority_effect": "inventory_and_work_projection_only"
+      }
+    }
+  ],
+  "scope": {
+    "phase_ids": [
+      "PHCAP-12",
+      "PHCAP-13"
+    ],
+    "product_targets": [
+      "HELIX-HARNESS",
+      "HELIX-OS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "legacy_asset_ids": [
+      "LEGACY-ASSET-D107FD145A2588FAAD09",
+      "LEGACY-ASSET-D6816E22DAF2E990410B",
+      "LEGACY-ASSET-4FED0B46C22941761357",
+      "LEGACY-ASSET-188DE92635DFB97B0200",
+      "LEGACY-ASSET-50A93B0E753DC3840E03",
+      "LEGACY-ASSET-A2E186B3A66077923537",
+      "LEGACY-ASSET-8686BB8CF396BAF57F2E",
+      "LEGACY-ASSET-0CC674CB78470B86E7A8",
+      "LEGACY-ASSET-EA1DFC00D984068C2444"
+    ],
+    "selected_source_asset_count": 9,
+    "source_anchor_count": 16,
+    "candidate_asset_counts": {
+      "PHCAP-12": 303,
+      "PHCAP-13": 61,
+      "both": 20,
+      "either": 344
+    },
+    "closure_rule": "PHCAP-12/13 representative assets and current refs only; unselected asset, failure, consumer, and implementation closure remains residual"
+  },
+  "product_units": [
+    {
+      "unit_id": "PHCAP12-13-UNIT-HARNESS",
+      "product": "HELIX-HARNESS",
+      "status": "research_premise_candidate",
+      "current_capability": "V-model review contract, evidence vocabulary, and merge-facing obligation candidate",
+      "current_evidence_status": "direct_candidate_refs",
+      "current_implementation_status": "unknown",
+      "legacy_transition_status": "degraded_to_candidate_contract",
+      "authority_status": "candidate_unresolved",
+      "acceptance_status": "draft_unexecuted",
+      "current_ref_ids": [
+        "BOUNDARY-UNIT-CONNECTION",
+        "HARNESS-L2",
+        "HARNESS-L11"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-D6816E22DAF2E990410B",
+        "LEGACY-ASSET-8686BB8CF396BAF57F2E",
+        "LEGACY-ASSET-0CC674CB78470B86E7A8"
+      ],
+      "unresolved": [
+        "formal owner",
+        "L2/L11 adoption",
+        "current implementation",
+        "consumer closure"
+      ]
+    },
+    {
+      "unit_id": "PHCAP12-13-UNIT-OS",
+      "product": "HELIX-OS",
+      "status": "research_premise_candidate",
+      "current_capability": "review handoff, progression, receipt/finding, and merge admission management candidate",
+      "current_evidence_status": "direct_candidate_refs",
+      "current_implementation_status": "unknown",
+      "legacy_transition_status": "degraded_to_manual_or_candidate_contract",
+      "authority_status": "candidate_unresolved",
+      "acceptance_status": "draft_unexecuted",
+      "current_ref_ids": [
+        "BOUNDARY-UNIT-CONNECTION",
+        "OS-REVIEW-HANDOFF",
+        "GITHUB-UPSTREAM-MODEL",
+        "MERGE-REHOST-ASSESSMENT",
+        "OS-L2",
+        "OS-L11"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-D107FD145A2588FAAD09",
+        "LEGACY-ASSET-D6816E22DAF2E990410B",
+        "LEGACY-ASSET-4FED0B46C22941761357",
+        "LEGACY-ASSET-188DE92635DFB97B0200",
+        "LEGACY-ASSET-50A93B0E753DC3840E03",
+        "LEGACY-ASSET-A2E186B3A66077923537",
+        "LEGACY-ASSET-8686BB8CF396BAF57F2E",
+        "LEGACY-ASSET-0CC674CB78470B86E7A8",
+        "LEGACY-ASSET-EA1DFC00D984068C2444"
+      ],
+      "unresolved": [
+        "canonical receipt schema",
+        "DB convergence",
+        "current CI",
+        "formal owner",
+        "consumer closure"
+      ]
+    },
+    {
+      "unit_id": "PHCAP12-13-UNIT-WEB",
+      "product": "HELIX-Web",
+      "status": "adjacent_boundary_only",
+      "current_capability": "user-facing review/result presentation boundary candidate",
+      "current_evidence_status": "adjacent_refs_only",
+      "current_implementation_status": "unknown",
+      "legacy_transition_status": "unresolved_adjacent_candidate",
+      "authority_status": "adjacent_candidate_only",
+      "acceptance_status": "draft_unexecuted",
+      "current_ref_ids": [
+        "BOUNDARY-UNIT-CONNECTION",
+        "WEB-L2",
+        "WEB-L11"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-0CC674CB78470B86E7A8"
+      ],
+      "unresolved": [
+        "PHCAP-12/13 direct evidence",
+        "owner",
+        "review consumer",
+        "implementation"
+      ]
+    },
+    {
+      "unit_id": "PHCAP12-13-UNIT-WEBOS",
+      "product": "HELIX-Web-OS",
+      "status": "adjacent_boundary_only",
+      "current_capability": "tenant/job/service observation boundary and permitted export candidate",
+      "current_evidence_status": "adjacent_refs_only",
+      "current_implementation_status": "unknown",
+      "legacy_transition_status": "unresolved_adjacent_candidate",
+      "authority_status": "adjacent_candidate_only",
+      "acceptance_status": "draft_unexecuted",
+      "current_ref_ids": [
+        "BOUNDARY-UNIT-CONNECTION",
+        "WEBOS-L2",
+        "WEBOS-L11"
+      ],
+      "legacy_asset_ids": [
+        "LEGACY-ASSET-D6816E22DAF2E990410B",
+        "LEGACY-ASSET-8686BB8CF396BAF57F2E",
+        "LEGACY-ASSET-0CC674CB78470B86E7A8"
+      ],
+      "unresolved": [
+        "service consumer scope",
+        "credential/state separation",
+        "implementation",
+        "acceptance"
+      ]
+    }
+  ],
+  "candidate_connections": [
+    {
+      "edge_id": "CONN-HARNESS-OS-REVIEW-CONTRACT",
+      "from": "HELIX-HARNESS",
+      "to": "HELIX-OS",
+      "kind": "contract_to_progression",
+      "status": "candidate",
+      "authority_effect": "none",
+      "meaning": "HARNESS review/evidence vocabulary may constrain OS progression and admission; no authority or implementation is inferred."
+    },
+    {
+      "edge_id": "CONN-OS-HARNESS-RECEIPT-PROJECTION",
+      "from": "HELIX-OS",
+      "to": "HELIX-HARNESS",
+      "kind": "receipt_to_contract_feedback",
+      "status": "candidate",
+      "authority_effect": "none",
+      "meaning": "OS receipt/finding projection may feed HARNESS contract review; a receipt does not create approval or acceptance."
+    },
+    {
+      "edge_id": "CONN-OS-WEB-PROJECT-RESULT",
+      "from": "HELIX-OS",
+      "to": "HELIX-Web",
+      "kind": "project_to_user_result",
+      "status": "adjacent_candidate",
+      "authority_effect": "none",
+      "meaning": "OS may expose scoped project/review result state to Web; Web has no WBS, ticket, or merge authority."
+    },
+    {
+      "edge_id": "CONN-WEB-WEBOS-SERVICE-REQUEST",
+      "from": "HELIX-Web",
+      "to": "HELIX-Web-OS",
+      "kind": "user_request_to_service",
+      "status": "adjacent_candidate",
+      "authority_effect": "none",
+      "meaning": "Web user operation may reach Web-OS service state through a bounded contract; tenant state and credentials remain separate."
+    },
+    {
+      "edge_id": "CONN-WEBOS-OS-OBSERVATION-EXPORT",
+      "from": "HELIX-Web-OS",
+      "to": "HELIX-OS",
+      "kind": "scoped_observation_export",
+      "status": "adjacent_candidate",
+      "authority_effect": "none",
+      "meaning": "Permitted service observation may be exported to OS improvement/review evidence; raw tenant data and writer authority are not shared."
+    }
+  ],
+  "candidate_phase_joins": [
+    {
+      "phase_id": "PHCAP-12",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-D107FD145A2588FAAD09",
+        "LEGACY-ASSET-D6816E22DAF2E990410B",
+        "LEGACY-ASSET-4FED0B46C22941761357",
+        "LEGACY-ASSET-188DE92635DFB97B0200",
+        "LEGACY-ASSET-50A93B0E753DC3840E03",
+        "LEGACY-ASSET-A2E186B3A66077923537",
+        "LEGACY-ASSET-EA1DFC00D984068C2444"
+      ],
+      "interpretation": "candidate phase join only; no admission, owner, or successor is generated"
+    },
+    {
+      "phase_id": "PHCAP-13",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-D6816E22DAF2E990410B",
+        "LEGACY-ASSET-8686BB8CF396BAF57F2E",
+        "LEGACY-ASSET-0CC674CB78470B86E7A8",
+        "LEGACY-ASSET-EA1DFC00D984068C2444"
+      ],
+      "interpretation": "candidate phase join only; no admission, owner, or successor is generated"
+    }
+  ],
+  "legacy_phase_assessment": {
+    "assets": [
+      {
+        "asset_id": "LEGACY-ASSET-D107FD145A2588FAAD09",
+        "source_path": "docs/design/helix/L4-basic-design/worker-independent-review.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-independent-review.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "9fff293ed71c7a0be0e4dfcd7a5cca70eaacfdbf2cd553a605fd15510a3c99b3",
+        "source_line_count": 71,
+        "artifact_evidence_kind": "design",
+        "implementation_evidence_state": "document_present",
+        "legacy_layers": [
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:worker-independent-review.md"
+            ],
+            "phase": "PHCAP-10",
+            "source_batches": [
+              "PHCAP-08-14"
+            ]
+          },
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:worker-independent-review.md",
+              "inventory:representative_asset:PHCAP-12"
+            ],
+            "phase": "PHCAP-12",
+            "source_batches": [
+              "PHCAP-08-14",
+              "PHCAP-INVENTORY"
+            ]
+          }
+        ],
+        "ledger_snapshot": {
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/helix/L4-basic-design/worker-independent-review.md",
+          "source_sha256": "9fff293ed71c7a0be0e4dfcd7a5cca70eaacfdbf2cd553a605fd15510a3c99b3",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "executability_status": "unreviewed",
+          "external_effect_status": "unreviewed"
+        },
+        "phase_classification_snapshot": {
+          "archive_manifest_digest_match": true,
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-D107FD145A2588FAAD09",
+          "authority_effect": "none",
+          "candidate_phase_targets": [
+            "PHCAP-10",
+            "PHCAP-12"
+          ],
+          "candidate_product_targets": [
+            "HELIX-OS"
+          ],
+          "classification_id": "LASPH-0532",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "implementation_evidence_state": "document_present",
+          "legacy_execution_performed": false,
+          "legacy_implementation_status": "unknown",
+          "phase_assessments": [
+            {
+              "confidence": "high",
+              "evidence": [
+                "basename:worker-independent-review.md"
+              ],
+              "phase": "PHCAP-10",
+              "source_batches": [
+                "PHCAP-08-14"
+              ]
+            },
+            {
+              "confidence": "high",
+              "evidence": [
+                "basename:worker-independent-review.md",
+                "inventory:representative_asset:PHCAP-12"
+              ],
+              "phase": "PHCAP-12",
+              "source_batches": [
+                "PHCAP-08-14",
+                "PHCAP-INVENTORY"
+              ]
+            }
+          ],
+          "phase_classification_status": "multi_phase_candidate",
+          "product_assessments": [
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-OS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-08-14"
+              ]
+            }
+          ],
+          "product_classification_status": "candidate_needs_semantic_review",
+          "source_path": "docs/design/helix/L4-basic-design/worker-independent-review.md",
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_sha256": "9fff293ed71c7a0be0e4dfcd7a5cca70eaacfdbf2cd553a605fd15510a3c99b3",
+          "unresolved": [
+            "requires_semantic_split",
+            "product_candidate_requires_semantic_review",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        },
+        "decision_history": {
+          "matching_count": 0,
+          "matching_records": [],
+          "status": "no_matching_append_only_decision_record"
+        },
+        "source_anchors": [
+          {
+            "anchor_id": "D107-01",
+            "line_start": 1,
+            "line_end": 33,
+            "exact_text": "---\ntitle: \"worker independent review基本設計\"\nlayer: L4\nartifact_type: design\nstatus: confirmed\ncreated: 2026-08-03\nupdated: 2026-08-04\nowner: SE\nplan: docs/plans/PLAN-L4-65-worker-independent-review.md\npair_artifact: docs/test-design/helix/L9-worker-independent-review-system-test-design.md\ngithub_issue_id: 227\nbehavior_contract_id: WCC-FR-06\nresponsibility_owner: worker-independent-review\n---\n\n# worker independent review基本設計\n\n## 1. 境界\n\nFR-05のsealed output capabilityをproposalとreviewer実行の入力とし、隔離brokerが実行成功後に発行したprocess-local originからactorを導出する。receiptによるactor自己申告は受け付けない。\nprovider／model familyは双方へ必須記録するが、それ自体をidentity解決キーにせず、同一provider／modelでも三軸が独立なら受理する。\n成功時だけcanonical digest付きsealed review capabilityを返す。\n\n## 2. 構成\n\n| 構成要素 | 責務 | fail-close |\n|---|---|---|\n| FR-05 proposal join | sealed capabilityとproposal digestを照合 | copy、forge、digest drift |\n| execution origin join | current admission、descriptor、runtime、model、session、contextを照合 | copy、未実行、stale |\n| strict receipt parser | 4-field exact set、digest、verdict | actor自己申告、unknown、欠落 |\n| finding join | `finding_digest`をsealed reviewer outputの`payload_digest`へexact束縛 | 任意claim、copy、digest drift |\n| separation validator | identity→session→contextを別検証 | 各collision |\n| receipt sealer | canonical receipt digestとactor記録を封印 | copy capability |\n",
+            "sha256": "3aea1b75ace1a25adfede5fd97527dc2ac7c9e4f7b2b4c66b5849de9d1c14376",
+            "meaning": "historical independent review boundary and sealed receipt contract"
+          },
+          {
+            "anchor_id": "D107-02",
+            "line_start": 35,
+            "line_end": 40,
+            "exact_text": "## 3. 設計リファクタリング\n\n既存FR-05 capabilityとdigest helperを再利用し、DB、ledger、CLI、workflow、provider別adapterを追加しない。\ndurable lifecycle、Node commit transaction、quarantineは本契約の完了claimへ含めない。\nこれらはIssue #227内の後続原子sliceでcurrent L3契約へexact traceしてから実装し、\ncurrent mainに存在しない将来IDを正本参照として先書きしない。\n",
+            "sha256": "7b887f395376ac9cb87e035d5b04a31340619916bea3c3189168a64a7f673a9c",
+            "meaning": "historical non-runtime and later-slice boundary"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_only_unexecuted",
+          "execution_receipts": 0,
+          "anchor_ids": [
+            "D107-01"
+          ],
+          "finding": "historical review/admission failure or negative boundary candidate; no current execution or pass is inferred"
+        },
+        "consumer_evidence": {
+          "status": "candidate_only_closure_pending",
+          "consumer_refs": [],
+          "anchor_ids": [
+            "D107-02"
+          ],
+          "candidates": [
+            "HELIX-OS review progression and independent reviewer candidate"
+          ],
+          "finding": "historical consumer or trace candidate; current consumer read-after and closure remain unknown"
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-D6816E22DAF2E990410B",
+        "source_path": "docs/design/helix/L5-detail/github-cross-review-admission.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/github-cross-review-admission.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "c0a5cf042f66d378bb20aa50c7b3fdd0aa633e6ef4cb2f8742952075f72b0b35",
+        "source_line_count": 229,
+        "artifact_evidence_kind": "design",
+        "implementation_evidence_state": "document_present",
+        "legacy_layers": [
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:github-cross-review-admission.md",
+              "inventory:representative_asset:PHCAP-12"
+            ],
+            "phase": "PHCAP-12",
+            "source_batches": [
+              "PHCAP-08-14",
+              "PHCAP-INVENTORY"
+            ]
+          },
+          {
+            "confidence": "medium",
+            "evidence": [
+              "frontmatter:related_l3:docs/design/helix/L3-requirements/github-merge-admission-requirements.md"
+            ],
+            "phase": "PHCAP-13",
+            "source_batches": [
+              "PHCAP-08-14"
+            ]
+          },
+          {
+            "confidence": "medium",
+            "evidence": [
+              "subject:recovery"
+            ],
+            "phase": "PHCAP-17",
+            "source_batches": [
+              "PHCAP-15-20"
+            ]
+          }
+        ],
+        "ledger_snapshot": {
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/helix/L5-detail/github-cross-review-admission.md",
+          "source_sha256": "c0a5cf042f66d378bb20aa50c7b3fdd0aa633e6ef4cb2f8742952075f72b0b35",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "executability_status": "unreviewed",
+          "external_effect_status": "unreviewed"
+        },
+        "phase_classification_snapshot": {
+          "archive_manifest_digest_match": true,
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-D6816E22DAF2E990410B",
+          "authority_effect": "none",
+          "candidate_phase_targets": [
+            "PHCAP-12",
+            "PHCAP-13",
+            "PHCAP-17"
+          ],
+          "candidate_product_targets": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web-OS"
+          ],
+          "classification_id": "LASPH-0557",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "implementation_evidence_state": "document_present",
+          "legacy_execution_performed": false,
+          "legacy_implementation_status": "unknown",
+          "phase_assessments": [
+            {
+              "confidence": "high",
+              "evidence": [
+                "basename:github-cross-review-admission.md",
+                "inventory:representative_asset:PHCAP-12"
+              ],
+              "phase": "PHCAP-12",
+              "source_batches": [
+                "PHCAP-08-14",
+                "PHCAP-INVENTORY"
+              ]
+            },
+            {
+              "confidence": "medium",
+              "evidence": [
+                "frontmatter:related_l3:docs/design/helix/L3-requirements/github-merge-admission-requirements.md"
+              ],
+              "phase": "PHCAP-13",
+              "source_batches": [
+                "PHCAP-08-14"
+              ]
+            },
+            {
+              "confidence": "medium",
+              "evidence": [
+                "subject:recovery"
+              ],
+              "phase": "PHCAP-17",
+              "source_batches": [
+                "PHCAP-15-20"
+              ]
+            }
+          ],
+          "phase_classification_status": "multi_phase_candidate",
+          "product_assessments": [
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-HARNESS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-08-14",
+                "PHCAP-15-20"
+              ]
+            },
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-OS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-08-14",
+                "PHCAP-15-20"
+              ]
+            },
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-Web-OS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-15-20"
+              ]
+            }
+          ],
+          "product_classification_status": "candidate_needs_semantic_review",
+          "source_path": "docs/design/helix/L5-detail/github-cross-review-admission.md",
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_sha256": "c0a5cf042f66d378bb20aa50c7b3fdd0aa633e6ef4cb2f8742952075f72b0b35",
+          "unresolved": [
+            "requires_semantic_split",
+            "product_candidate_requires_semantic_review",
+            "requires_unit_connection_composite_split",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        },
+        "decision_history": {
+          "matching_count": 0,
+          "matching_records": [],
+          "status": "no_matching_append_only_decision_record"
+        },
+        "source_anchors": [
+          {
+            "anchor_id": "D681-01",
+            "line_start": 1,
+            "line_end": 44,
+            "exact_text": "---\ntitle: \"GitHub cross-review admission 詳細設計\"\ncanonical_layer_scheme: L1-L12\nlayer: L5\npaired_layer: L8\nstatus: draft\nplan: docs/plans/PLAN-RECOVERY-40-github-cross-review-admission.md\npair_artifact: docs/test-design/helix/L8-github-cross-review-admission-unit-test-design.md\nrelated_l3: docs/design/helix/L3-requirements/github-merge-admission-requirements.md\nbehavior_contract_id: GITHUB-CROSS-REVIEW-ADMISSION-001\nresponsibility_owner: github-cross-review-admission\n---\n\n# GitHub cross-review admission 詳細設計\n\n## 1. 判定境界\n\n`evaluateGitHubCrossReviewAdmission` はGitHub APIやDBを直接呼ばず、current PR、comment、required CI run、\nreview packet、current logical DB receiptを入力snapshotとして受け取るpure evaluatorとする。Draftはfull CIを\n先行させるためreview admissionだけをdeferし、Readyではexactly oneのcanonical receiptを必須とする。\n\ncurrent Readyでの受理対象はClaude/Codex receipt v4またはprovider-neutral receipt v4だけとする。Claude receipt v3とv2はhistorical\nclosureの読取互換に限定し、旧builderと同じ意味検証を再実行した後もcurrent receiptへ昇格しない。Kimi bootstrapのprovider-neutral receipt v4は\n現行経路として扱うが、Claude/Codex receiptと同じgeneration identityを要求する設計変更は本sliceの対象外とする。\n文字列marker、PLAN内review evidence、自己申告runtime identityをcanonical receiptへ昇格しない。provider-neutral経路ではKimi admission、\n独立Claude verifier comment、fallback failure、lease、review packet、output/findings、current logical DB receiptを\nsealed provenanceとして照合する。\n\n## 2. exact bindingと判定順序\n\nReady admissionは次の順序でfail-closeする。\n\n1. PRが`OPEN`であり、receiptがcanonical schemaとしてdecodeできる。\n2. repository、PR number、candidate HEAD、approve、blocker 0、runtime独立性が一致する。\n\n   runtime独立性は**向きではなく差**で判定する（`authorRuntime !== reviewerRuntime`）。author=codex /\n   reviewer=claudeとauthor=claude / reviewer=codexを同じcanonical経路で受理し、どちらかを既定の向きとして\n   固定しない。canonical receiptが識別するruntimeは`claude`と`codex`に限り、未知識別子は\n   `runtime_identity_invalid`で拒否する。\n\n   current v4のruntime/model独立性のauthorityは`claude-pr-convergence.ts`の共通pair coreである。v4は\n   `buildClaudePrReviewReceipt`とmerge判定が、runtime差、`checkCrossAgentModelPair`、runtime↔model provider対応を\n   同じ判定でfail-closeする。v4は`validateProviderNeutralReviewReceipt`が\n   `declared_author_runtime === reviewer_runtime`で、それぞれdecode前にfail-closeする。したがって\n",
+            "sha256": "d2ddafc87ce702d930686de1b4fcbf7b614949e8b8e7b11d613af22667743437",
+            "meaning": "historical cross-review admission input and independence contract"
+          },
+          {
+            "anchor_id": "D681-02",
+            "line_start": 45,
+            "line_end": 80,
+            "exact_text": "   `checkCrossAgentModelPair`がsame model/providerを拒否する。v2はhistorical decoderだけに残り、\n   Ready admissionではcanonical receiptへ昇格せず`current_head_review_receipt_missing`になる。\n   admission側に独立性の別実装は置かない（PLAN-RECOVERY-41、`U-GCRA-006`〜`U-GCRA-008`）。\n\n   申告`authorRuntime`は自己申告のままcanonicalへ昇格しない。receipt seal（`github pr-review-receipt`）と\n   merge判定（`pr-merge-reviewed`のcanonical v4経路）は、PR head commitsのcommit messageから実測した\n   authoring runtime（merge commit＝parent 2個以上を除く実装commitに対する行頭\n   `Co-Authored-By: Claude` trailerの整合。同一行内・大文字小文字不問）と申告値を突き合わせ、不一致`author_runtime_attestation_mismatch`、\n   evidence空`author_runtime_evidence_missing`、実装commit間のtrailer混在`author_runtime_evidence_mixed`、\n   API取得失敗またはbase64不正evidence`author_runtime_evidence_unavailable`でfail-closeする。\n   本attestationはcryptographic identityの証明ではなく自己整合検査であり、捏造の攻撃面を\n   申告1フィールドからPR全commitの履歴改変へ引き上げる（限界はPLAN-RECOVERY-42 §2に記録）。\n   実測coreは`claude-pr-convergence.ts`のpure function（`measuredAuthorRuntimeFromCommits`／\n   `authorRuntimeAttestationFailure`／`parseAuthorRuntimeEvidence`）が所有する\n   （PLAN-RECOVERY-42、Issue #534、`U-CPRCONV-012`〜`U-CPRCONV-017`）。\n   merge commitの判定はcommit subjectではなくparent数で行う。`Merge `始まりのsubjectを条件にすると、\n   任意subjectを与えたmain同期merge（例: `chore(memory): sync ... with latest main`）を実装commitと\n   誤認し、trailer無しとして`author_runtime_evidence_mixed`へ落とすfalse fail-closeになる\n   （PR #517で実測、PLAN-RECOVERY-43）。evidence行は`<parent数>:<bot flag>:<base64 message>`であり（PLAN-RECOVERY-51で拡張）、\n   parent数はcommit graphの事実としてsubject表記の影響を受けない。\n\n   parent数判定でfalse positiveを除いてもなお、実測mixedは残る。`CLAUDE.md`「Hybrid 多ランタイム\n   commit 協調」は相手runtimeのcommitの上へ成果を積むこと（stack／rebase）を必須運用として規定しており、\n   両runtimeの実装commit（parent 1）が同居するブランチは規定運用の正常な帰結である。そこで実測mixedに\n   対しては`authorRuntime: \"mixed\"`の正直な申告だけをsealで受理し（単一runtime申告は従来どおり\n   `author_runtime_evidence_mixed`、単一runtime実測に対するmixed申告は\n   `author_runtime_attestation_mismatch`で拒否）、admissionでは受理条件を緩めるのではなく分割する。\n   mixed receiptは「相手runtimeが書いた分を自分がレビューした」証跡と定義し、独立性のauthorityを\n   `authorModel`のruntimeが`reviewerRuntime`と異なることに置く。Ready条件は、現HEADに対する\n   valid receiptがすべてmixed申告であり、かつ`reviewerRuntime`がclaudeとcodexの両方を覆うこと。\n   片方のみ、同一reviewerの2通、mixedと単一申告の混在は`mixed_author_dual_review_incomplete`で\n   fail-closeする。受理receiptが2通になるため`receipt_digest`はreceipt digest群をcanonical順に\n   束ねた1値へ確定させる。単一runtime authored PRの複数receiptは従来どおり`review_receipt_conflict`\n   のままであり緩和しない（PLAN-RECOVERY-44、Issue #539、`U-CPRCONV-015b`／`U-CPRCONV-015c`／`U-GCRA-011`）。\n\n   実測値域にはさらに`external`（bot著）がある。「trailer無し＝Codexが書いた」という推定は、\n",
+            "sha256": "22f77fe357d13ac9ffc7cf84f0a4c29c0dc549b0fd061a26ee28b76ec04f336a",
+            "meaning": "historical fail-close and receipt lifecycle candidate"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_only_unexecuted",
+          "execution_receipts": 0,
+          "anchor_ids": [
+            "D681-01"
+          ],
+          "finding": "historical review/admission failure or negative boundary candidate; no current execution or pass is inferred"
+        },
+        "consumer_evidence": {
+          "status": "candidate_only_closure_pending",
+          "consumer_refs": [],
+          "anchor_ids": [
+            "D681-02"
+          ],
+          "candidates": [
+            "HARNESS review contract",
+            "OS merge admission progression",
+            "Web-OS bounded observation candidate"
+          ],
+          "finding": "historical consumer or trace candidate; current consumer read-after and closure remain unknown"
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-4FED0B46C22941761357",
+        "source_path": "docs/design/helix/L6-function-design/review-receipt-plan-binding.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/review-receipt-plan-binding.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "4607470ce4ac335e7b0598bfd2b5c1df022683af05ba39babab0646893d7dd21",
+        "source_line_count": 56,
+        "artifact_evidence_kind": "design",
+        "implementation_evidence_state": "document_present",
+        "legacy_layers": [
+          {
+            "confidence": "medium",
+            "evidence": [
+              "frontmatter:pair_artifact/parent_design=>classification/refinement"
+            ],
+            "phase": "PHCAP-03",
+            "source_batches": [
+              "PHCAP-01-07"
+            ]
+          },
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:review-receipt-plan-binding.md",
+              "heading:10:Review receipt と PLAN review evidence の接合",
+              "inventory:representative_asset:PHCAP-12"
+            ],
+            "phase": "PHCAP-12",
+            "source_batches": [
+              "PHCAP-08-14",
+              "PHCAP-INVENTORY"
+            ]
+          }
+        ],
+        "ledger_snapshot": {
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/helix/L6-function-design/review-receipt-plan-binding.md",
+          "source_sha256": "4607470ce4ac335e7b0598bfd2b5c1df022683af05ba39babab0646893d7dd21",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "executability_status": "unreviewed",
+          "external_effect_status": "unreviewed"
+        },
+        "phase_classification_snapshot": {
+          "archive_manifest_digest_match": true,
+          "artifact_evidence_kind": "design",
+          "asset_id": "LEGACY-ASSET-4FED0B46C22941761357",
+          "authority_effect": "none",
+          "candidate_phase_targets": [
+            "PHCAP-03",
+            "PHCAP-12"
+          ],
+          "candidate_product_targets": [],
+          "classification_id": "LASPH-0727",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "implementation_evidence_state": "document_present",
+          "legacy_execution_performed": false,
+          "legacy_implementation_status": "unknown",
+          "phase_assessments": [
+            {
+              "confidence": "medium",
+              "evidence": [
+                "frontmatter:pair_artifact/parent_design=>classification/refinement"
+              ],
+              "phase": "PHCAP-03",
+              "source_batches": [
+                "PHCAP-01-07"
+              ]
+            },
+            {
+              "confidence": "high",
+              "evidence": [
+                "basename:review-receipt-plan-binding.md",
+                "heading:10:Review receipt と PLAN review evidence の接合",
+                "inventory:representative_asset:PHCAP-12"
+              ],
+              "phase": "PHCAP-12",
+              "source_batches": [
+                "PHCAP-08-14",
+                "PHCAP-INVENTORY"
+              ]
+            }
+          ],
+          "phase_classification_status": "multi_phase_candidate",
+          "product_assessments": [],
+          "product_classification_status": "unresolved",
+          "source_path": "docs/design/helix/L6-function-design/review-receipt-plan-binding.md",
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_sha256": "4607470ce4ac335e7b0598bfd2b5c1df022683af05ba39babab0646893d7dd21",
+          "unresolved": [
+            "requires_semantic_split",
+            "product_candidate_not_established",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        },
+        "decision_history": {
+          "matching_count": 0,
+          "matching_records": [],
+          "status": "no_matching_append_only_decision_record"
+        },
+        "source_anchors": [
+          {
+            "anchor_id": "4FED-01",
+            "line_start": 1,
+            "line_end": 42,
+            "exact_text": "---\nartifact_id: HELIX-L6-REVIEW-RECEIPT-PLAN-BINDING\nlayer: L6\nstatus: draft\nrelated_plan: PLAN-RECOVERY-1603-review-receipt-plan-binding\nrelated_issue: 1603\npair_artifact: docs/test-design/helix/L8-review-receipt-plan-binding-unit-test-design.md\n---\n\n# Review receipt と PLAN review evidence の接合\n\nIssue #1627の未解消変更要求と引用receipt exact joinは、本責務の追加Recoveryとして扱う。\n\n## 目的\n\nPRの最終merge admissionが採用するsealed review receiptと、変更対象PLANがterminal化に使用した\n`review_evidence`を同じreviewer sessionへ束縛する。作成側が起動した限定worker runの結果を\nPLANだけへ転記し、常駐収束レーンの検収と見せかける経路を拒否する。\n\n## 境界\n\n- Git差分から変更対象のPLANを決定し、worktree全体の無関係な過去PLANを母集団にしない。\n- local HEADがreceipt／GitHubのcandidate HEADと一致しないworktreeからのseal・mergeを拒否する。\n- PLAN本文も取得時に固定したcandidate commitから読み、未commitのstatus／review記録で検査対象を変更させない。\n- baseで非terminal、HEADで`confirmed`／`completed`／`accepted`へ遷移したPLANだけを検査する。\n  既存terminal PLANへの注記・supersession metadata追加は再terminal化ではないため母集団外とする。\n- Git／frontmatter取得不能の場合は上記対象外と推定せず検査対象へ送り、\n  `review_plan_binding_unavailable`で拒否する。terminal状態へ認定する意味ではない。\n- PR receiptの`reviewerSessionId`、`reviewerModel`とPLAN側の`reviewer_session_id`、\n  `reviewer_model`を照合する。modelはproviderを一致させた上でprovider prefixだけを正規化する。\n- 対象PLANごとに一致する`cross_agent`承認がなければreceipt sealとmerge admissionをfail-closeする。\n- 同一PR・HEADの`block`は、同じreviewer sessionかつ時刻が後のapproveまで未解消findingとして保持する。\n  対象receipt IDを明示したsupersessionもsession一致条件を迂回しない。同時刻・別sessionでは解除しない。\n- terminalへ昇格するPLANは`receipt_url`をlookup keyとしてsealed receiptを取得し、\n  `reviewer_session_id`、`reviewer_model`、`reviewed_head_sha`、`verdict`、\n  `ci_evidence_generation`をexact照合する。最終merge receiptと過去の実装review receiptは同一とは限らないため、\n  current receiptへ推測接合せず、PLANが明示的に引用したreceiptだけを根拠にする。\n  独立承認entryは全件照合し、正しい一件で別entryの欠落・不一致を相殺しない。\n- draft中の修正は継続可能とし、未解消block中のterminal昇格とmergeだけを拒否する。\n- receipt履歴を取得できない場合は単一approveやPAT経路へfallbackせずfail-closeする。\n- schemaとdigestを検証して取得した同一PR／HEADのblockは、CI失敗・DB未収束・CI世代差を理由に\n  検出集合から除外しない。解除に使うapproveには成功receiptの成立条件を引き続き要求する。\n",
+            "sha256": "ea13fa5408bae222d14831f2b5ae2ad1daa4b706027771bed128a2533adbfb19",
+            "meaning": "historical review receipt and PLAN binding boundary"
+          },
+          {
+            "anchor_id": "4FED-02",
+            "line_start": 43,
+            "line_end": 56,
+            "exact_text": "- human approval、`intra_runtime_subagent`、proseのscopeは独立検収を代替しない。\n- evidence logの実体検査はIssue #1430の責務を再実装しない。\n\n## 失敗コード\n\n- `review_plan_binding_unavailable`: Git差分またはPLAN frontmatterを決定的に取得できない。\n- `review_plan_session_mismatch`: terminal変更PLANとreceiptのreviewer sessionが一致しない。\n- `review_plan_model_mismatch`: sessionは一致するがreviewer modelが一致しない。\n- `review_plan_cross_agent_approval_missing`: 独立技術承認entryがない。\n- `outstanding_request_changes`: 同一PR・HEADに未解消の変更要求がある。\n- `outstanding_request_changes_terminal_plan`: 未解消変更要求中にPLANをterminalへ昇格した。\n- `review_plan_receipt_locator_missing`／`review_plan_receipt_missing`: 引用receiptを特定・取得できない。\n- `review_plan_head_mismatch`／`review_plan_verdict_mismatch`／`review_plan_ci_generation_mismatch`:\n  PLAN転記値と引用sealed receiptが一致しない。\n",
+            "sha256": "83cc1fca5f09fbf6e01947afb4dbbef196f65ff3ffc90ea8389a6bfb49731bce",
+            "meaning": "historical receipt evidence and terminal binding candidate"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_only_unexecuted",
+          "execution_receipts": 0,
+          "anchor_ids": [
+            "4FED-01"
+          ],
+          "finding": "historical review/admission failure or negative boundary candidate; no current execution or pass is inferred"
+        },
+        "consumer_evidence": {
+          "status": "candidate_only_closure_pending",
+          "consumer_refs": [],
+          "anchor_ids": [
+            "4FED-02"
+          ],
+          "candidates": [
+            "OS PLAN/review evidence consumer candidate"
+          ],
+          "finding": "historical consumer or trace candidate; current consumer read-after and closure remain unknown"
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-188DE92635DFB97B0200",
+        "source_path": "src/runtime/review-lane-closure.ts",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/src/runtime/review-lane-closure.ts",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "b1c6ef042a4ed62f33e99f952502b5719c6d85a979ec81096ab67bef208bd5e3",
+        "source_line_count": 142,
+        "artifact_evidence_kind": "implementation_source",
+        "implementation_evidence_state": "implementation_source_present_unexecuted",
+        "legacy_layers": [
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:review-lane-closure.ts",
+              "inventory:representative_asset:PHCAP-12"
+            ],
+            "phase": "PHCAP-12",
+            "source_batches": [
+              "PHCAP-08-14",
+              "PHCAP-INVENTORY"
+            ]
+          }
+        ],
+        "ledger_snapshot": {
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "src/runtime/review-lane-closure.ts",
+          "source_sha256": "b1c6ef042a4ed62f33e99f952502b5719c6d85a979ec81096ab67bef208bd5e3",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "executability_status": "unreviewed",
+          "external_effect_status": "unreviewed"
+        },
+        "phase_classification_snapshot": {
+          "archive_manifest_digest_match": true,
+          "artifact_evidence_kind": "implementation_source",
+          "asset_id": "LEGACY-ASSET-188DE92635DFB97B0200",
+          "authority_effect": "none",
+          "candidate_phase_targets": [
+            "PHCAP-12"
+          ],
+          "candidate_product_targets": [],
+          "classification_id": "LASPH-3217",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "implementation_evidence_state": "implementation_source_present_unexecuted",
+          "legacy_execution_performed": false,
+          "legacy_implementation_status": "unknown",
+          "phase_assessments": [
+            {
+              "confidence": "high",
+              "evidence": [
+                "basename:review-lane-closure.ts",
+                "inventory:representative_asset:PHCAP-12"
+              ],
+              "phase": "PHCAP-12",
+              "source_batches": [
+                "PHCAP-08-14",
+                "PHCAP-INVENTORY"
+              ]
+            }
+          ],
+          "phase_classification_status": "classified_candidate",
+          "product_assessments": [],
+          "product_classification_status": "unresolved",
+          "source_path": "src/runtime/review-lane-closure.ts",
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_sha256": "b1c6ef042a4ed62f33e99f952502b5719c6d85a979ec81096ab67bef208bd5e3",
+          "unresolved": [
+            "product_candidate_not_established",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        },
+        "decision_history": {
+          "matching_count": 0,
+          "matching_records": [],
+          "status": "no_matching_append_only_decision_record"
+        },
+        "source_anchors": [
+          {
+            "anchor_id": "188D-01",
+            "line_start": 1,
+            "line_end": 33,
+            "exact_text": "/**\n * Kimi 独立レビュー lane の material closure digest（PLAN-RECOVERY-40 / issue #390）。\n *\n * admission が担保したいのは「受け入れ試験を通した実装＝実際に動く実装」の同一性である。\n * 旧実装はこれを `git rev-parse HEAD` の 40 桁 sha へ束縛していたが、この repository は\n * merge commit 方式なので lane PR の head sha は merge 後の main HEAD と決して一致せず、\n * さらに lane と無関係な merge のたびに失効する。担保対象が「実装」ではなく\n * 「repository 全体の commit id」になっていたのが誤りである。\n *\n * 本 module は担保対象を lane 実装そのもの（source closure ＋ provider material）の\n * digest に置き換える。lane closure が 1 byte でも変われば digest が動き、lane と無関係な\n * merge では動かない。closure member の path 一覧自体も manifest に含めるため、member を\n * 削って digest を素通りさせることもできない。\n */\nimport { readFileSync, statSync } from \"node:fs\";\nimport { isAbsolute, join } from \"node:path\";\nimport { canonicalJson, type Sha256Digest, sha256Digest } from \"./digest\";\n\n/**\n * lane の振る舞いを決める source closure。ここに載っていない file の変更は admission を\n * 失効させないため、追加・削除は lane の security 境界の変更として扱う。\n */\nexport const REVIEW_LANE_CLOSURE_PATHS: readonly string[] = Object.freeze([\n  \"src/cli/commands/review-fallback.ts\",\n  \"src/runtime/claude-pr-convergence.ts\",\n  \"src/runtime/digest.ts\",\n  \"src/runtime/independent-review-fallback.ts\",\n  \"src/runtime/review-lane-closure.ts\",\n  \"tests/tools/kimi-review-admission/admission-evidence.ts\",\n  \"tests/tools/kimi-review-admission/run-admission-bench.ts\",\n]);\n\n/**\n",
+            "sha256": "444e66b36eab26db978f6e302364e187fa0e2ce02e467c8ebaaad65f81cd9122",
+            "meaning": "historical review lane closure digest boundary"
+          },
+          {
+            "anchor_id": "188D-02",
+            "line_start": 34,
+            "line_end": 80,
+            "exact_text": " * closure に含める provider 側の material。source が同一でも CLI binary や model が入れ替われば\n * 「受け入れ試験を通した lane」と同じ挙動である保証は無いため、freshness key に含める。\n */\nexport interface ReviewLaneProviderMaterial {\n  /**\n   * Kimi CLI 実行 binary 全体の digest。version 文字列ではなく binary そのものを見る。\n   * version 表示は CLI を起動しないと得られず、かつ同一 version 内の差し替えを捕まえられない。\n   */\n  readonly cli_binary_digest: Sha256Digest;\n  readonly model: string;\n}\n\nexport interface ReviewLaneClosureMember {\n  readonly path: string;\n  readonly digest: Sha256Digest;\n}\n\nexport interface ReviewLaneClosureManifest {\n  readonly schema_version: \"helix-kimi-review-lane-closure.v1\";\n  readonly members: readonly ReviewLaneClosureMember[];\n  readonly provider: ReviewLaneProviderMaterial;\n}\n\nfunction validProviderMaterial(material: ReviewLaneProviderMaterial): boolean {\n  return (\n    typeof material.model === \"string\" &&\n    material.model.length > 0 &&\n    typeof material.cli_binary_digest === \"string\" &&\n    /^sha256:[a-f0-9]{64}$/u.test(material.cli_binary_digest)\n  );\n}\n\n/**\n * closure manifest を作る。member が 1 件でも読めない場合は fail-close する\n * （読み飛ばして digest を出すと、消えた member を「変更なし」として通してしまう）。\n */\nexport function buildReviewLaneClosureManifest(\n  repoRoot: string,\n  provider: ReviewLaneProviderMaterial,\n): ReviewLaneClosureManifest {\n  if (!isAbsolute(repoRoot)) throw new Error(\"review_lane_closure_root_invalid\");\n  if (!validProviderMaterial(provider)) throw new Error(\"review_lane_closure_provider_invalid\");\n  const members = [...REVIEW_LANE_CLOSURE_PATHS]\n    .sort((a, b) => (a < b ? -1 : a > b ? 1 : 0))\n    .map((path) => {\n      const absolute = join(repoRoot, path);\n      let stats: ReturnType<typeof statSync>;\n",
+            "sha256": "6d6e2ca5079ce7377721fcc8a6382b151c80644a2eb920dc135a72479046a306",
+            "meaning": "historical closure manifest and provider material candidate"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_only_unexecuted",
+          "execution_receipts": 0,
+          "anchor_ids": [
+            "188D-01"
+          ],
+          "finding": "historical review/admission failure or negative boundary candidate; no current execution or pass is inferred"
+        },
+        "consumer_evidence": {
+          "status": "candidate_only_closure_pending",
+          "consumer_refs": [],
+          "anchor_ids": [
+            "188D-02"
+          ],
+          "candidates": [
+            "OS review lane closure candidate"
+          ],
+          "finding": "historical consumer or trace candidate; current consumer read-after and closure remain unknown"
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-50A93B0E753DC3840E03",
+        "source_path": "docs/test-design/helix/L9-worker-independent-review-system-test-design.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L9-worker-independent-review-system-test-design.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "fd1bf27704c12072d56491ae66d21f9858f7275ec8c3f1a5e50714fd235eb672",
+        "source_line_count": 27,
+        "artifact_evidence_kind": "test_design",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_layers": [
+          {
+            "confidence": "medium",
+            "evidence": [
+              "frontmatter:layer=L9",
+              "subject:verification/evidence/oracle",
+              "subject:verification/evidence/oracle/test design"
+            ],
+            "phase": "PHCAP-07",
+            "source_batches": [
+              "PHCAP-01-07"
+            ]
+          },
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:L9-worker-independent-review-system-test-design.md"
+            ],
+            "phase": "PHCAP-10",
+            "source_batches": [
+              "PHCAP-08-14"
+            ]
+          },
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:L9-worker-independent-review-system-test-design.md",
+              "frontmatter:title:worker independent review L9 system test設計",
+              "inventory:representative_asset:PHCAP-12"
+            ],
+            "phase": "PHCAP-12",
+            "source_batches": [
+              "PHCAP-08-14",
+              "PHCAP-INVENTORY"
+            ]
+          }
+        ],
+        "ledger_snapshot": {
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/test-design/helix/L9-worker-independent-review-system-test-design.md",
+          "source_sha256": "fd1bf27704c12072d56491ae66d21f9858f7275ec8c3f1a5e50714fd235eb672",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": "legacy_test_design_or_oracle",
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "executability_status": "unreviewed",
+          "external_effect_status": "unreviewed"
+        },
+        "phase_classification_snapshot": {
+          "archive_manifest_digest_match": true,
+          "artifact_evidence_kind": "test_design",
+          "asset_id": "LEGACY-ASSET-50A93B0E753DC3840E03",
+          "authority_effect": "none",
+          "candidate_phase_targets": [
+            "PHCAP-07",
+            "PHCAP-10",
+            "PHCAP-12"
+          ],
+          "candidate_product_targets": [
+            "HELIX-OS"
+          ],
+          "classification_id": "LASPH-2790",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "implementation_evidence_state": "test_design_present_unexecuted",
+          "legacy_execution_performed": false,
+          "legacy_implementation_status": "unknown",
+          "phase_assessments": [
+            {
+              "confidence": "medium",
+              "evidence": [
+                "frontmatter:layer=L9",
+                "subject:verification/evidence/oracle",
+                "subject:verification/evidence/oracle/test design"
+              ],
+              "phase": "PHCAP-07",
+              "source_batches": [
+                "PHCAP-01-07"
+              ]
+            },
+            {
+              "confidence": "high",
+              "evidence": [
+                "basename:L9-worker-independent-review-system-test-design.md"
+              ],
+              "phase": "PHCAP-10",
+              "source_batches": [
+                "PHCAP-08-14"
+              ]
+            },
+            {
+              "confidence": "high",
+              "evidence": [
+                "basename:L9-worker-independent-review-system-test-design.md",
+                "frontmatter:title:worker independent review L9 system test設計",
+                "inventory:representative_asset:PHCAP-12"
+              ],
+              "phase": "PHCAP-12",
+              "source_batches": [
+                "PHCAP-08-14",
+                "PHCAP-INVENTORY"
+              ]
+            }
+          ],
+          "phase_classification_status": "multi_phase_candidate",
+          "product_assessments": [
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-OS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-08-14"
+              ]
+            }
+          ],
+          "product_classification_status": "candidate_needs_semantic_review",
+          "source_path": "docs/test-design/helix/L9-worker-independent-review-system-test-design.md",
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_sha256": "fd1bf27704c12072d56491ae66d21f9858f7275ec8c3f1a5e50714fd235eb672",
+          "unresolved": [
+            "requires_semantic_split",
+            "product_candidate_requires_semantic_review",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        },
+        "decision_history": {
+          "matching_count": 0,
+          "matching_records": [],
+          "status": "no_matching_append_only_decision_record"
+        },
+        "source_anchors": [
+          {
+            "anchor_id": "50A9-01",
+            "line_start": 1,
+            "line_end": 27,
+            "exact_text": "---\ntitle: \"worker independent review L9 system test設計\"\nlayer: L9\nartifact_type: test_design\nstatus: confirmed\ncreated: 2026-08-03\nupdated: 2026-08-04\nowner: QA\nplan: docs/plans/PLAN-L4-65-worker-independent-review.md\npair_artifact: docs/design/helix/L4-basic-design/worker-independent-review.md\ngithub_issue_id: 227\nbehavior_contract_id: WCC-FR-06\nresponsibility_owner: worker-independent-review\n---\n\n# worker independent review L9 system test設計\n\n| ST-ID | 経路 | 期待結果 |\n|---|---|---|\n| ST-WRR-001 | worker／reviewer別broker実行→strict receipt→三軸分離 | sealed review capability 1件 |\n| ST-WRR-002 | copied output／digest drift／schema違反 | capability 0、typed failure |\n| ST-WRR-003 | identity／session／context collision | 各固有reason code、capability 0 |\n| ST-WRR-004 | same provider／model、三軸独立 | 正常受理しmodel metadataを保持 |\n| ST-WRR-005 | DB／Git／merge surface | write 0、後続lifecycle責務へ非混載 |\n| ST-WRR-006 | actor自己申告／copy output／stale registry | broker origin不成立として拒否 |\n| ST-WRR-007 | 任意finding claim／copied reviewer output | sealed reviewer payloadと不一致ならtyped拒否 |\n| ST-WRR-008 | Ubuntu required CIのbubblewrap実process | packageを導入し、Ubuntu 24.04 AppArmorのunprivileged user namespace制限だけをephemeral runnerで解除した後に実sandboxを起動する。backend欠落・namespace起動失敗時はskipせずrequired checkをRed |\n",
+            "sha256": "fd1bf27704c12072d56491ae66d21f9858f7275ec8c3f1a5e50714fd235eb672",
+            "meaning": "historical worker review system-test design and negative cases"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_only_unexecuted",
+          "execution_receipts": 0,
+          "anchor_ids": [
+            "50A9-01"
+          ],
+          "finding": "historical review/admission failure or negative boundary candidate; no current execution or pass is inferred"
+        },
+        "consumer_evidence": {
+          "status": "candidate_only_closure_pending",
+          "consumer_refs": [],
+          "anchor_ids": [
+            "50A9-01"
+          ],
+          "candidates": [
+            "OS verification/evidence consumer candidate"
+          ],
+          "finding": "historical consumer or trace candidate; current consumer read-after and closure remain unknown"
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A2E186B3A66077923537",
+        "source_path": "tests/review-receipt-plan-binding.test.ts",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/tests/review-receipt-plan-binding.test.ts",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "4ecc2b73c1c32a848664404f19967ef6b755224df9ef150950b6a722f629b33d",
+        "source_line_count": 443,
+        "artifact_evidence_kind": "test_source",
+        "implementation_evidence_state": "test_source_present_unexecuted",
+        "legacy_layers": [
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:review-receipt-plan-binding.test.ts",
+              "inventory:representative_asset:PHCAP-12"
+            ],
+            "phase": "PHCAP-12",
+            "source_batches": [
+              "PHCAP-08-14",
+              "PHCAP-INVENTORY"
+            ]
+          }
+        ],
+        "ledger_snapshot": {
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "tests/review-receipt-plan-binding.test.ts",
+          "source_sha256": "4ecc2b73c1c32a848664404f19967ef6b755224df9ef150950b6a722f629b33d",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": "legacy_test_fixture_or_oracle",
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "executability_status": "unreviewed",
+          "external_effect_status": "unreviewed"
+        },
+        "phase_classification_snapshot": {
+          "archive_manifest_digest_match": true,
+          "artifact_evidence_kind": "test_source",
+          "asset_id": "LEGACY-ASSET-A2E186B3A66077923537",
+          "authority_effect": "none",
+          "candidate_phase_targets": [
+            "PHCAP-12"
+          ],
+          "candidate_product_targets": [],
+          "classification_id": "LASPH-3831",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "implementation_evidence_state": "test_source_present_unexecuted",
+          "legacy_execution_performed": false,
+          "legacy_implementation_status": "unknown",
+          "phase_assessments": [
+            {
+              "confidence": "high",
+              "evidence": [
+                "basename:review-receipt-plan-binding.test.ts",
+                "inventory:representative_asset:PHCAP-12"
+              ],
+              "phase": "PHCAP-12",
+              "source_batches": [
+                "PHCAP-08-14",
+                "PHCAP-INVENTORY"
+              ]
+            }
+          ],
+          "phase_classification_status": "classified_candidate",
+          "product_assessments": [],
+          "product_classification_status": "unresolved",
+          "source_path": "tests/review-receipt-plan-binding.test.ts",
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_sha256": "4ecc2b73c1c32a848664404f19967ef6b755224df9ef150950b6a722f629b33d",
+          "unresolved": [
+            "product_candidate_not_established",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        },
+        "decision_history": {
+          "matching_count": 0,
+          "matching_records": [],
+          "status": "no_matching_append_only_decision_record"
+        },
+        "source_anchors": [
+          {
+            "anchor_id": "A2E-01",
+            "line_start": 1,
+            "line_end": 55,
+            "exact_text": "import { execFileSync } from \"node:child_process\";\nimport { mkdirSync, mkdtempSync, writeFileSync } from \"node:fs\";\nimport { tmpdir } from \"node:os\";\nimport { join } from \"node:path\";\nimport { describe, expect, it } from \"vitest\";\nimport {\n  evaluateReviewEvidenceReceiptJoin,\n  evaluateReviewReceiptPlanBinding,\n  hasTerminalPlanPromotion,\n  loadChangedPlanReviewBindings,\n  type ReviewReceiptPlanBindingInput,\n  type SealedReviewReceiptBinding,\n} from \"../src/runtime/review-receipt-plan-binding\";\n\n// PLAN-RECOVERY-1603-review-receipt-plan-binding\n// PLAN-RECOVERY-1627-review-request-changes-fail-close / U-RRCF-001\n// PLAN-RECOVERY-1677-review-session-model-receipt-drift\n\nconst SESSION = \"9867601a-a3ad-4369-980c-11757d63a7de\";\nconst MODEL = \"claude:claude-fable-5-1\";\nconst REVIEW_HEAD = \"a\".repeat(40);\nconst RECEIPT_URL = \"https://github.com/RetryYN/HELIX-HARNESS/pull/1628#issuecomment-5570000000\";\nconst CI_GENERATION = \"run:34100000000:attempt:1:success\";\n\nconst resolveSessionModel = (sessionId: string, reviewedAt: string): string | null => {\n  if (sessionId !== SESSION) return null;\n  if (reviewedAt >= \"2026-09-12T00:00:00Z\" && reviewedAt < \"2026-09-12T12:40:41Z\") {\n    return MODEL;\n  }\n  if (reviewedAt >= \"2026-09-12T12:40:41Z\") return \"claude:claude-opus-5\";\n  return null;\n};\n\nfunction input(\n  overrides: Partial<ReviewReceiptPlanBindingInput> = {},\n): ReviewReceiptPlanBindingInput {\n  return {\n    receipt: { reviewer_session_id: SESSION, reviewer_model: MODEL },\n    changed_plans: [\n      {\n        plan_id: \"PLAN-RECOVERY-X\",\n        status: \"confirmed\",\n        review_entries: [\n          {\n            review_kind: \"cross_agent\",\n            verdict: \"approve\",\n            reviewer_session_id: SESSION,\n            reviewer_model: MODEL,\n          },\n        ],\n      },\n    ],\n    ...overrides,\n  };\n}\n",
+            "sha256": "2e9f2791fccd5f2b20171fae9ae2cfb5a9f5a10c392cd8f9d6b42ba8da8a8c09",
+            "meaning": "historical review receipt/PLAN binding test fixture and cases"
+          },
+          {
+            "anchor_id": "A2E-02",
+            "line_start": 56,
+            "line_end": 120,
+            "exact_text": "\ndescribe(\"review receipt / PLAN binding\", () => {\n  it(\"U-RRPB-001: 全terminal変更PLANがreceiptと同じ独立review主体なら受理する\", () => {\n    expect(evaluateReviewReceiptPlanBinding(input())).toEqual({ ok: true, failures: [] });\n  });\n\n  it(\"U-RRPB-002: 作成側spawn sessionを独立収束sessionへ昇格できない\", () => {\n    const changed = input().changed_plans[0];\n    expect(\n      evaluateReviewReceiptPlanBinding(\n        input({\n          changed_plans: [\n            {\n              ...changed,\n              review_entries: [\n                { ...changed.review_entries[0], reviewer_session_id: \"author-spawn-session\" },\n              ],\n            },\n          ],\n        }),\n      ),\n    ).toMatchObject({ ok: false, failures: [{ reason: \"review_plan_session_mismatch\" }] });\n  });\n\n  it(\"U-RRPB-003: session一致でもreviewer model不一致を拒否する\", () => {\n    const changed = input().changed_plans[0];\n    expect(\n      evaluateReviewReceiptPlanBinding(\n        input({\n          changed_plans: [\n            {\n              ...changed,\n              review_entries: [\n                { ...changed.review_entries[0], reviewer_model: \"claude:claude-opus-5\" },\n              ],\n            },\n          ],\n        }),\n      ),\n    ).toMatchObject({ ok: false, failures: [{ reason: \"review_plan_model_mismatch\" }] });\n  });\n\n  it(\"U-RRPB-014: 同一sessionの登録済みmodel window遷移を時刻付きで受理する\", () => {\n    const changed = input().changed_plans[0];\n    expect(\n      evaluateReviewReceiptPlanBinding(\n        input({\n          receipt: {\n            reviewer_session_id: SESSION,\n            reviewer_model: \"claude:claude-opus-5\",\n            reviewed_at: \"2026-09-12T21:00:00Z\",\n          },\n          resolve_session_model: resolveSessionModel,\n          changed_plans: [\n            {\n              ...changed,\n              review_entries: [\n                { ...changed.review_entries[0], reviewed_at: \"2026-09-12T03:44:20Z\" },\n              ],\n            },\n          ],\n        }),\n      ),\n    ).toEqual({ ok: true, failures: [] });\n  });\n",
+            "sha256": "0c624af8ecb80461ffd7278eefab38b7430ab7ef6d3cab81adcaa7833ee77c2d",
+            "meaning": "historical receipt drift and failure test cases"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_only_unexecuted",
+          "execution_receipts": 0,
+          "anchor_ids": [
+            "A2E-01"
+          ],
+          "finding": "historical review/admission failure or negative boundary candidate; no current execution or pass is inferred"
+        },
+        "consumer_evidence": {
+          "status": "candidate_only_closure_pending",
+          "consumer_refs": [],
+          "anchor_ids": [
+            "A2E-02"
+          ],
+          "candidates": [
+            "OS receipt/PLAN binding consumer candidate"
+          ],
+          "finding": "historical consumer or trace candidate; current consumer read-after and closure remain unknown"
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-8686BB8CF396BAF57F2E",
+        "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "cdd4f9fd0ab9b4862ec52c6b6dbcd9fd5f97c5e7bb5440f1b2cda69d37c504f8",
+        "source_line_count": 140,
+        "artifact_evidence_kind": "requirement",
+        "implementation_evidence_state": "document_present",
+        "legacy_layers": [
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:github-merge-admission-requirements.md",
+              "frontmatter:title:GitHub merge admission 要件定義",
+              "inventory:representative_asset:PHCAP-13"
+            ],
+            "phase": "PHCAP-13",
+            "source_batches": [
+              "PHCAP-08-14",
+              "PHCAP-INVENTORY"
+            ]
+          },
+          {
+            "confidence": "medium",
+            "evidence": [
+              "body:lifecycle",
+              "body:operations"
+            ],
+            "phase": "PHCAP-16",
+            "source_batches": [
+              "PHCAP-15-20"
+            ]
+          }
+        ],
+        "ledger_snapshot": {
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
+          "source_sha256": "cdd4f9fd0ab9b4862ec52c6b6dbcd9fd5f97c5e7bb5440f1b2cda69d37c504f8",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": null,
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "executability_status": "unreviewed",
+          "external_effect_status": "unreviewed"
+        },
+        "phase_classification_snapshot": {
+          "archive_manifest_digest_match": true,
+          "artifact_evidence_kind": "requirement",
+          "asset_id": "LEGACY-ASSET-8686BB8CF396BAF57F2E",
+          "authority_effect": "none",
+          "candidate_phase_targets": [
+            "PHCAP-13",
+            "PHCAP-16"
+          ],
+          "candidate_product_targets": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web-OS"
+          ],
+          "classification_id": "LASPH-0452",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "implementation_evidence_state": "document_present",
+          "legacy_execution_performed": false,
+          "legacy_implementation_status": "unknown",
+          "phase_assessments": [
+            {
+              "confidence": "high",
+              "evidence": [
+                "basename:github-merge-admission-requirements.md",
+                "frontmatter:title:GitHub merge admission 要件定義",
+                "inventory:representative_asset:PHCAP-13"
+              ],
+              "phase": "PHCAP-13",
+              "source_batches": [
+                "PHCAP-08-14",
+                "PHCAP-INVENTORY"
+              ]
+            },
+            {
+              "confidence": "medium",
+              "evidence": [
+                "body:lifecycle",
+                "body:operations"
+              ],
+              "phase": "PHCAP-16",
+              "source_batches": [
+                "PHCAP-15-20"
+              ]
+            }
+          ],
+          "phase_classification_status": "multi_phase_candidate",
+          "product_assessments": [
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-HARNESS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-08-14"
+              ]
+            },
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-OS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-08-14",
+                "PHCAP-15-20"
+              ]
+            },
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-Web-OS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-15-20"
+              ]
+            }
+          ],
+          "product_classification_status": "candidate_needs_semantic_review",
+          "source_path": "docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_sha256": "cdd4f9fd0ab9b4862ec52c6b6dbcd9fd5f97c5e7bb5440f1b2cda69d37c504f8",
+          "unresolved": [
+            "requires_semantic_split",
+            "product_candidate_requires_semantic_review",
+            "requires_unit_connection_composite_split",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        },
+        "decision_history": {
+          "matching_count": 0,
+          "matching_records": [],
+          "status": "no_matching_append_only_decision_record"
+        },
+        "source_anchors": [
+          {
+            "anchor_id": "8686-01",
+            "line_start": 1,
+            "line_end": 50,
+            "exact_text": "---\ntitle: \"GitHub merge admission 要件定義\"\nlayer: L3\nkind: add-design\nstatus: draft\ncreated: 2026-07-22\nupdated: 2026-08-25\nowner: PO / TL\npair_artifact: docs/test-design/helix/github-merge-admission-system-test-design.md\n---\n\n# GitHub merge admission 要件定義\n\n## 1. 目的と適用境界\n\n本書は`github-autonomous-operations-requirements.md`のGH-FR-001..017を変更せず、PRの同一HEAD文脈レビューと\n`harness.db`追従をmerge必須条件として追加する。CI green単独、自分自身の判断、別HEADのreceiptをmerge根拠にしない。\n\n## 2. 機能要件\n\n### GH-FR-018 同一HEAD文脈レビューとDB追従\n\n作成者と別identity・別session・独立contextのAI-Bが、L0 authority、L2要求、L3要件とAC、L4基本設計、Issue/PLAN、\n変更diff、trace、既存consumer、security・blast radiusを読み、要件適合と設計整合を判断する。入力path/digest集合、\nreviewer identity/runtime/model/provider/session、finding/disposition、verdictをcurrent PR HEAD SHAへ束縛したtyped receiptに記録する。\n\n同じHEADから隔離再構築した`harness.db`について、source HEAD、event head、projection digest、checkpoint digest、schema revision、\nstale/orphan件数、rebuild一致結果をDB追従receiptへ記録する。DB未更新、event/projection片肺、checkpoint stale、rebuild不一致、\nsource HEAD不一致のいずれかがあれば文脈レビューPASSとmerge readinessを拒否する。\n\npush、CI self-heal、base更新、入力正本digest変更のいずれかでHEADまたは入力集合が変わった場合、両receiptをstale化し、\nAI-Bレビューから再実行する。runtime/provider familyの違いだけを独立性とみなさず、AI-A自身のverdict、単一AI fallback、\n`degraded_mode`を禁止する。\n\n### GH-FR-019 作成・監査・修正・クロスレビュー責務\n\nAI-AはPR作成前の内部CI、blocker修正、局所検証、pushを担う。AI-Bはcurrent HEADをread-onlyでレビューし、\nfinding disposition、後続Issue記録、merge判断を担い、編集・push・Ready化を行わない。\nAI-Bはreview receiptをPR commentへ記録し、AI-Aはreceiptのidentity、reviewed HEAD、verdict、時刻、digestを\nPLANの`review_evidence`と`left_arm_carry.review_binding`へ意味変更せず機械転記してReady化する。\nAI-Bは最終HEADで転記一致を再照合し、値の欠落・改変・別HEAD束縛があればmergeを拒否する。\n\n現在のbehavior contract違反、correctness/security/data loss、必須oracle red、mainをredにする問題、\n虚偽または過大な完了証拠はblockerとする。同じ責務・既存scope内で安全かつ局所的に閉じるfindingは\nseverityにかかわらずcurrent PRでAI-Aが修正する。独立責務、別設計、lifecycle、性能改善、将来の堅牢化だけを\n後続Issueへ送り、current PRへ再流入させない。\n\nAI-Bはblockerを同一HEADにつき一括返却する。修正pushで旧receiptをstale化し、新HEADのAI-B review、\n内部CI、GitHub Actions、DB追従が全て合格した場合だけAI-Bが明示mergeする。新しい独立blockerの実証が\nない限り再レビューは一巡で収束し、改善提案によるscope expansionを行わない。\n",
+            "sha256": "ad752fa4ada44c5b770d57244b7301c7b58e792733a7df460193866aea24f800",
+            "meaning": "historical merge admission requirement and same-HEAD receipt boundary"
+          },
+          {
+            "anchor_id": "8686-02",
+            "line_start": 51,
+            "line_end": 100,
+            "exact_text": "\n### GH-FR-020 typed workflow identity admission追加契約\n\nchanged pathにcurrent `workflow_identity`を持つPLANが含まれるPRは、そのPLANの`github_issue_id`を\n唯一のIssue authorityとして使用する。PR本文と当該Issue本文は、同じversioned marker付きstrict JSONで\n`registry_version`、`registry_source_digest`、`target_axis`、`target_id`を宣言し、PLANおよび\nrequirements-owned workflow分類registryとexact一致しなければならない。`Refs`、label、title、prose、\n旧15-route、`mode`／`model`／`route_mode`／`catalog_route_id`／`route_class`からidentityを推測しない。\n\n同一PRにcurrent `workflow_identity`を持つchanged PLANが複数ある場合は、通常PRでは原子的slice違反として拒否する。\nただしrequirements-owned workflow分類registryのversion-upでは、PR本文のstrict migration bundle contractが\nexactly oneの`VERSION_UP` owner PLAN、sorted uniqueなchanged PLAN path全件、同一の新registry version／digest、\n新catalogに存在する各typed identityを宣言し、canonical registryとgenerated catalogを同時変更する場合だけ受理する。\nmanifest外PLAN、owner欠落／複数、旧新version／digest混在、未知identity、authority path欠落はfail-closeする。\nまた、Forward PLANとReverse fullback PLANを同一Issueの終端closureへ束ねる場合は、migrationとは別の\nterminal fullback bundle contractを使用する。terminal bundleはrequirements version-upを主張せず、sorted uniqueな\nchanged PLAN manifest、exactly oneのowner PLAN、全PLANのcurrent registry version／digest／catalog identity、\n全PLANの同一`github_issue_id`、Issue／PR／PLANの同一tuple、current HEADを要求する。ForwardとReverseの\n`target_id`はそれぞれ保持し、ownerのidentityへ潰してはならない。registry authority pathの同時変更を要求せず、\nmigration markerとの併記、manifest／owner／identity／Issue／HEADの欠落・不一致、legacy推測は専用reasonで\nfail-closeする。terminal bundleはIssueとPLANの終端を許可する契約ではなく、終端fullbackを検査可能にする\nadmission契約であり、completion claimは別のcurrent-head review、CI、main read-afterを満たすまで禁止する。\nmarker欠落・重複、JSON／schema不正、legacy field、authority drift、未知identity、signalのunknown／\ndecision待ち／ambiguity／identity矛盾、Issue／PR／PLAN不一致を別reasonでfail-closeする。changed PLANが\nlegacy compatibility-onlyでcurrent `workflow_identity`を持たない場合に限り本追加gateを非適用とし、\nlegacy identityの成功でcurrent gateの失敗を相殺しない。\n\n### GH-FR-021 execution episode identityと同一責務束縛\n\nGitHub signalを受理した時点で、再生成や別work itemへの流用ができないopaqueな`episode_id`を一件だけ発行する。\n`episode_id`はworkflow identityと別fieldで保持し、requirements-owned registryのversion／digest／axis／ID、\nsource event ID／digest、Issue、PLAN、branch、PR、base、current HEAD、owner、behavior contractを同じepisodeへ\nexact束縛する。Issue、PLAN、branch、PR、source event、behavior contractの所有resourceは高々一つのactive episodeへ所属し、\n同じbehavior contractを別episodeへ暗黙複製しない。baseとcurrent HEADはepisodeへexact束縛する照合属性であり、\n異なるepisodeが同じbase／commitを参照すること自体はglobal resource競合にしない。\n\nPLAN、PR、review、CI、DB、right-arm evidenceは`episode_id`とcurrent HEADを明示し、別episode、旧HEAD、旧owner、\n未束縛resourceのevidenceを拒否する。`project_current_location`はcurrent episode identityとworkflow identityを別columnで\n投影し、legacy `mode`／`model`／旧route ID、prose、label、branch名から補完しない。未分類、複数候補、decision待ち、\nresource競合はunknownをForwardへ丸めずfail-closeする。\n\n複数のactive episodeは正常な並行workとして許可するため、単一行のglobal `project_current_location`へ任意の一件を\ncurrent episodeとして選択しない。global snapshotはactive／terminal episode件数とepisode set digestだけを保持し、\nepisodeごとのcurrent locationは`episode_id`を主キーとする独立projectionへ、workflow identity、state、current HEAD、owner、\nbehavior contract、last event digestをexact投影する。0件は空集合、1件は一意、複数件は全件を保持し、配列順、updated time、\nbranch名から代表episodeを推測しない。episode event／outbox／projectionとepisode locationは同じDB transactionで更新する。\nglobal snapshot未生成時は、他fieldを推測せず`current_status=uninitialized`のcanonical bootstrap rowをepisode transaction内で\n一度だけ生成し、episode event、outbox、episode projection、location、aggregateと同時rollback可能にする。件数またはepisode set digestの更新時はglobal `snapshot_hash`も同一transactionで\n再導出し、aggregate、global fields、hashのいずれかが不一致ならconvergenceをfail-closeする。\n\n",
+            "sha256": "80269b54ca9b6295023113ecd6d88e60df12c690d6aa251918e3bb3a6cf2bcee",
+            "meaning": "historical merge readiness and identity gate candidate"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_only_unexecuted",
+          "execution_receipts": 0,
+          "anchor_ids": [
+            "8686-01"
+          ],
+          "finding": "historical review/admission failure or negative boundary candidate; no current execution or pass is inferred"
+        },
+        "consumer_evidence": {
+          "status": "candidate_only_closure_pending",
+          "consumer_refs": [],
+          "anchor_ids": [
+            "8686-02"
+          ],
+          "candidates": [
+            "HARNESS requirement and OS merge admission candidate"
+          ],
+          "finding": "historical consumer or trace candidate; current consumer read-after and closure remain unknown"
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
+        "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-merge-admission-system-test-design.md",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "301149dc90ce99901d6405282874bbeacc86355acc8f8099e885bb134631fcb1",
+        "source_line_count": 36,
+        "artifact_evidence_kind": "test_design",
+        "implementation_evidence_state": "test_design_present_unexecuted",
+        "legacy_layers": [
+          {
+            "confidence": "high",
+            "evidence": [
+              "frontmatter:layer=L10",
+              "inventory:representative_asset:PHCAP-07",
+              "subject:verification/evidence/oracle"
+            ],
+            "phase": "PHCAP-07",
+            "source_batches": [
+              "PHCAP-01-07",
+              "PHCAP-INVENTORY"
+            ]
+          },
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:github-merge-admission-system-test-design.md",
+              "frontmatter:title:GitHub merge admission システムテスト設計",
+              "inventory:representative_asset:PHCAP-13"
+            ],
+            "phase": "PHCAP-13",
+            "source_batches": [
+              "PHCAP-08-14",
+              "PHCAP-INVENTORY"
+            ]
+          },
+          {
+            "confidence": "medium",
+            "evidence": [
+              "body:lifecycle",
+              "body:observation"
+            ],
+            "phase": "PHCAP-16",
+            "source_batches": [
+              "PHCAP-15-20"
+            ]
+          }
+        ],
+        "ledger_snapshot": {
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
+          "source_sha256": "301149dc90ce99901d6405282874bbeacc86355acc8f8099e885bb134631fcb1",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": "legacy_test_design_or_oracle",
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "executability_status": "unreviewed",
+          "external_effect_status": "unreviewed"
+        },
+        "phase_classification_snapshot": {
+          "archive_manifest_digest_match": true,
+          "artifact_evidence_kind": "test_design",
+          "asset_id": "LEGACY-ASSET-0CC674CB78470B86E7A8",
+          "authority_effect": "none",
+          "candidate_phase_targets": [
+            "PHCAP-07",
+            "PHCAP-13",
+            "PHCAP-16"
+          ],
+          "candidate_product_targets": [
+            "HELIX-HARNESS",
+            "HELIX-OS",
+            "HELIX-Web",
+            "HELIX-Web-OS"
+          ],
+          "classification_id": "LASPH-2817",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "implementation_evidence_state": "test_design_present_unexecuted",
+          "legacy_execution_performed": false,
+          "legacy_implementation_status": "unknown",
+          "phase_assessments": [
+            {
+              "confidence": "high",
+              "evidence": [
+                "frontmatter:layer=L10",
+                "inventory:representative_asset:PHCAP-07",
+                "subject:verification/evidence/oracle"
+              ],
+              "phase": "PHCAP-07",
+              "source_batches": [
+                "PHCAP-01-07",
+                "PHCAP-INVENTORY"
+              ]
+            },
+            {
+              "confidence": "high",
+              "evidence": [
+                "basename:github-merge-admission-system-test-design.md",
+                "frontmatter:title:GitHub merge admission システムテスト設計",
+                "inventory:representative_asset:PHCAP-13"
+              ],
+              "phase": "PHCAP-13",
+              "source_batches": [
+                "PHCAP-08-14",
+                "PHCAP-INVENTORY"
+              ]
+            },
+            {
+              "confidence": "medium",
+              "evidence": [
+                "body:lifecycle",
+                "body:observation"
+              ],
+              "phase": "PHCAP-16",
+              "source_batches": [
+                "PHCAP-15-20"
+              ]
+            }
+          ],
+          "phase_classification_status": "multi_phase_candidate",
+          "product_assessments": [
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-HARNESS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-01-07",
+                "PHCAP-08-14"
+              ]
+            },
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-OS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-01-07",
+                "PHCAP-08-14",
+                "PHCAP-15-20"
+              ]
+            },
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-Web",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-01-07"
+              ]
+            },
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-Web-OS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-01-07",
+                "PHCAP-15-20"
+              ]
+            }
+          ],
+          "product_classification_status": "candidate_needs_semantic_review",
+          "source_path": "docs/test-design/helix/github-merge-admission-system-test-design.md",
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_sha256": "301149dc90ce99901d6405282874bbeacc86355acc8f8099e885bb134631fcb1",
+          "unresolved": [
+            "requires_semantic_split",
+            "product_candidate_requires_semantic_review",
+            "requires_unit_connection_composite_split",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        },
+        "decision_history": {
+          "matching_count": 0,
+          "matching_records": [],
+          "status": "no_matching_append_only_decision_record"
+        },
+        "source_anchors": [
+          {
+            "anchor_id": "0CC6-01",
+            "line_start": 1,
+            "line_end": 36,
+            "exact_text": "---\ntitle: \"GitHub merge admission システムテスト設計\"\nlayer: L10\nartifact_type: test_design\nstatus: draft\ncreated: 2026-07-23\nupdated: 2026-08-16\nowner: QA\npair_artifact: docs/design/helix/L3-requirements/github-merge-admission-requirements.md\n---\n\n# GitHub merge admission システムテスト設計\n\n- pair: `docs/design/helix/L3-requirements/github-merge-admission-requirements.md`\n- status: draft\n- 実行層: L10\n\n## テスト束\n\n| Test ID | 対応AC | 入力 | 期待結果 |\n|---|---|---|---|\n| GH-T-014 | GH-AC-014 | CI greenの同一diffへ、文脈入力欠落、AI-Aと同一identity/session、別HEADのreview receiptを個別投入する | 必須文脈を全て読んだAI-Bのcurrent HEAD receipt以外はmerge不可 |\n| GH-T-015 | GH-AC-015 | current HEADから隔離DBを再構築し、event片肺、projection drift、checkpoint stale、schema不一致、orphan、旧receiptを個別投入する | source HEAD・event・projection・checkpoint・schemaが一致しstale/orphan 0の場合だけ受理する |\n| GH-T-016 | GH-AC-016 | PR前内部CI、修正後クロスレビュー、内部CI、GitHub Actions、DB追従を一つずつ欠落または別HEAD化する | 全receiptが同じ修正HEADへ収束するまでmerge不可 |\n| GH-T-017 | GH-AC-017 | current contract内の局所blockerと、独立責務／別設計／lifecycle／性能改善findingを混在させる | 局所blockerだけをcurrent PRへ戻し、後続findingは別Issueへexactly onceで分離する |\n| GH-T-018 | GH-AC-018 | Issue／PR／PLAN／registry tupleの一致ケースと、marker欠落／重複、複数typed PLAN、legacy field、authority drift、identity不一致を個別投入する | exact一致する単一typed PLANだけを受理し、各反例を専用reasonで拒否する |\n| GH-T-019 | GH-AC-019 | 同じresourceを二つのactive episodeへ束縛し、別episode／旧HEAD／旧owner evidence、legacy `mode`補完、未分類／複数候補を個別投入する | workflow identityとepisode identityを別fieldで返し、exact ownershipを満たさない入力をfail-closeする |\n| GH-T-020 | GH-AC-020 | 各transitionをduplicate／out-of-order／crash後retryし、merge後outbox未送達、terminal episode再利用、closure receipt／main read-after欠落を個別投入する | append-only replayが一意stateへ収束し、transitionはexactly once、terminal後signalは新episodeとしてadmissionされる |\n\n## 証跡要件\n\n文脈レビューは入力path/digest集合とreviewer identity/runtime/model/provider/sessionを保存する。DB追従検証はsource HEAD、\nevent head、projection/checkpoint digest、schema revision、stale/orphan件数、隔離rebuild結果を保存する。各実行はcommand、\nexit code、output digest、HEAD、GitHub observation timestampを持ち、画面キャプチャ単体を合格根拠にしない。\nexecution episode検証は`episode_id`、workflow identity tuple、resource binding、preimage revision、idempotency key、\nevent／outbox sequence、terminal disposition、closure receipt、main read-after、replay digestを保存する。\n",
+            "sha256": "301149dc90ce99901d6405282874bbeacc86355acc8f8099e885bb134631fcb1",
+            "meaning": "historical merge admission system-test design and negative cases"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_only_unexecuted",
+          "execution_receipts": 0,
+          "anchor_ids": [
+            "0CC6-01"
+          ],
+          "finding": "historical review/admission failure or negative boundary candidate; no current execution or pass is inferred"
+        },
+        "consumer_evidence": {
+          "status": "candidate_only_closure_pending",
+          "consumer_refs": [],
+          "anchor_ids": [
+            "0CC6-01"
+          ],
+          "candidates": [
+            "HARNESS/OS merge admission verification candidate",
+            "Web/Web-OS adjacent evidence candidate"
+          ],
+          "finding": "historical consumer or trace candidate; current consumer read-after and closure remain unknown"
+        }
+      },
+      {
+        "asset_id": "LEGACY-ASSET-EA1DFC00D984068C2444",
+        "source_path": "src/runtime/github-cross-review-admission.ts",
+        "archive_path": "archive/legacy-generation-2026-09-14/root/src/runtime/github-cross-review-admission.ts",
+        "source_revision": "legacy-generation-2026-09-14",
+        "source_sha256": "dc49bad26c9ed553ce5b040e77f0c95895fad51aa0fe20aa5573360764119cc7",
+        "source_line_count": 824,
+        "artifact_evidence_kind": "implementation_source",
+        "implementation_evidence_state": "implementation_source_present_unexecuted",
+        "legacy_layers": [
+          {
+            "confidence": "high",
+            "evidence": [
+              "basename:github-cross-review-admission.ts"
+            ],
+            "phase": "PHCAP-12",
+            "source_batches": [
+              "PHCAP-08-14"
+            ]
+          },
+          {
+            "confidence": "high",
+            "evidence": [
+              "inventory:representative_asset:PHCAP-13"
+            ],
+            "phase": "PHCAP-13",
+            "source_batches": [
+              "PHCAP-INVENTORY"
+            ]
+          }
+        ],
+        "ledger_snapshot": {
+          "revision": 1,
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_path": "src/runtime/github-cross-review-admission.ts",
+          "source_sha256": "dc49bad26c9ed553ce5b040e77f0c95895fad51aa0fe20aa5573360764119cc7",
+          "asset_class": "Historical",
+          "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+          "product_target": "unresolved",
+          "authority_status": "historical",
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "executability_status": "unreviewed",
+          "external_effect_status": "unreviewed"
+        },
+        "phase_classification_snapshot": {
+          "archive_manifest_digest_match": true,
+          "artifact_evidence_kind": "implementation_source",
+          "asset_id": "LEGACY-ASSET-EA1DFC00D984068C2444",
+          "authority_effect": "none",
+          "candidate_phase_targets": [
+            "PHCAP-12",
+            "PHCAP-13"
+          ],
+          "candidate_product_targets": [
+            "HELIX-OS"
+          ],
+          "classification_id": "LASPH-3176",
+          "consumer_closure_status": "pending",
+          "consumer_refs": [],
+          "implementation_evidence_state": "implementation_source_present_unexecuted",
+          "legacy_execution_performed": false,
+          "legacy_implementation_status": "unknown",
+          "phase_assessments": [
+            {
+              "confidence": "high",
+              "evidence": [
+                "basename:github-cross-review-admission.ts"
+              ],
+              "phase": "PHCAP-12",
+              "source_batches": [
+                "PHCAP-08-14"
+              ]
+            },
+            {
+              "confidence": "high",
+              "evidence": [
+                "inventory:representative_asset:PHCAP-13"
+              ],
+              "phase": "PHCAP-13",
+              "source_batches": [
+                "PHCAP-INVENTORY"
+              ]
+            }
+          ],
+          "phase_classification_status": "multi_phase_candidate",
+          "product_assessments": [
+            {
+              "confidence": "low",
+              "evidence_status": "direct_product_boundary_evidence_pending",
+              "product": "HELIX-OS",
+              "rationale": "working batch candidate only; direct semantic comparison with current product boundary is not retained in this record",
+              "source_batches": [
+                "PHCAP-08-14"
+              ]
+            }
+          ],
+          "product_classification_status": "candidate_needs_semantic_review",
+          "source_path": "src/runtime/github-cross-review-admission.ts",
+          "source_revision": "legacy-generation-2026-09-14",
+          "source_sha256": "dc49bad26c9ed553ce5b040e77f0c95895fad51aa0fe20aa5573360764119cc7",
+          "unresolved": [
+            "requires_semantic_split",
+            "product_candidate_requires_semantic_review",
+            "consumer_closure_pending",
+            "legacy_implementation_status_unknown"
+          ]
+        },
+        "decision_history": {
+          "matching_count": 0,
+          "matching_records": [],
+          "status": "no_matching_append_only_decision_record"
+        },
+        "source_anchors": [
+          {
+            "anchor_id": "EA1D-01",
+            "line_start": 1,
+            "line_end": 65,
+            "exact_text": "import { closeSync, existsSync, mkdirSync, openSync, readFileSync, writeFileSync } from \"node:fs\";\nimport { join } from \"node:path\";\nimport { claudeMemoryRuntimeRoot } from \"./claude-memory-wake\";\nimport {\n  CLAUDE_PR_REVIEW_RECEIPT_SCHEMA,\n  type ClaudePrReviewReceipt,\n  type ClaudePrReviewReceiptAny,\n  INDEPENDENT_PR_REVIEW_COMMENT_MARKER,\n  INDEPENDENT_REVIEW_RUNTIMES,\n  parseClaudeIndependentPrReviewComment,\n  parseClaudePrCiEvidenceGeneration,\n  unresolvedClaudePrBlockReceipts,\n  validateClaudePrReviewReceipt,\n} from \"./claude-pr-convergence\";\nimport { canonicalJson, sha256Digest } from \"./digest\";\nimport { selectLatestSuccessfulReviewCiGeneration } from \"./github-review-ci-generation\";\nimport {\n  type KimiReviewFallbackAdmissionReceiptV2,\n  type KimiReviewOutputCapability,\n  kimiReviewPacketDigest,\n  type ProviderNeutralReviewReceiptV4,\n  type ReviewFallbackLeaseCapability,\n  type ReviewProviderFailureCapability,\n  validateKimiReviewFallbackAdmissionForImplementation,\n  validateProviderNeutralReviewReceipt,\n} from \"./independent-review-fallback\";\n\nexport interface ReviewAdmissionComment {\n  readonly html_url: string;\n  readonly created_at: string;\n  readonly updated_at: string;\n  readonly body: string;\n}\n\nexport interface ReviewAdmissionCiRun {\n  readonly id: number;\n  readonly attempt: number;\n  readonly head_sha: string;\n  readonly name: string;\n  readonly path: string;\n  readonly event: string;\n  readonly status: string;\n  readonly conclusion: string | null;\n  readonly updated_at: string;\n  readonly pull_request_numbers: readonly number[];\n}\n\nexport interface GitHubCrossReviewAdmissionInput {\n  readonly repository: string;\n  readonly pr_number: number;\n  readonly candidate_head: string;\n  readonly state: \"OPEN\" | \"CLOSED\" | \"MERGED\";\n  readonly is_draft: boolean;\n  readonly observed_at: string;\n  readonly review_packet: string;\n  readonly current_db_receipt: Readonly<Record<string, unknown>>;\n  readonly comments: readonly ReviewAdmissionComment[];\n  readonly ci_runs: readonly ReviewAdmissionCiRun[];\n}\n\nexport interface GitHubCrossReviewAdmissionDecision {\n  readonly ok: boolean;\n  readonly deferred: boolean;\n  readonly receipt_digest: string | null;\n  readonly reasons: readonly string[];\n",
+            "sha256": "75edcb25644b4da5889e52fc6a54ee6544697399017f5f2f7120239ad5052a18",
+            "meaning": "historical GitHub cross-review admission input and decision envelope"
+          },
+          {
+            "anchor_id": "EA1D-02",
+            "line_start": 66,
+            "line_end": 140,
+            "exact_text": "  readonly candidate_diagnostics?: readonly ReviewAdmissionCandidateDiagnostic[];\n}\n\nexport type ReviewAdmissionCandidateFailure =\n  | \"review_receipt_envelope_invalid\"\n  | \"review_receipt_schema_invalid\"\n  | \"review_receipt_independence_invalid\"\n  | \"review_receipt_ci_run_missing\"\n  | \"review_receipt_repository_mismatch\"\n  | \"review_receipt_pr_mismatch\"\n  | \"review_receipt_head_mismatch\"\n  | \"review_receipt_verdict_invalid\"\n  | \"review_receipt_ci_claim_invalid\"\n  | \"review_receipt_db_provenance_invalid\"\n  | \"review_receipt_comment_binding_invalid\"\n  | \"review_receipt_time_order_invalid\"\n  | \"review_receipt_ci_provenance_invalid\"\n  | \"review_receipt_ci_generation_invalid\";\n\nexport interface ReviewAdmissionCandidateDiagnostic {\n  readonly comment_url: string;\n  readonly reason: ReviewAdmissionCandidateFailure;\n}\n\nexport interface ReviewedMergeReadAfterInput {\n  readonly repository: string;\n  readonly pr_number: number;\n  readonly pr_state: \"OPEN\" | \"CLOSED\" | \"MERGED\";\n  readonly candidate_head: string;\n  readonly candidate_commit: string | null;\n  readonly candidate_tree: string | null;\n  readonly reported_merge_commit: string | null;\n  readonly merge_commit: string | null;\n  readonly merge_tree: string | null;\n  readonly merge_parents: readonly string[];\n  readonly observed_at: string;\n  readonly review_receipt_digest: string;\n}\n\nexport interface ReviewedMergeReadAfterReceipt {\n  readonly schema_version: \"helix-reviewed-merge-read-after-receipt.v1\";\n  readonly repository: string;\n  readonly pr_number: number;\n  readonly candidate_head: string;\n  readonly candidate_commit: string | null;\n  readonly candidate_tree: string | null;\n  readonly reported_merge_commit: string | null;\n  readonly merge_commit: string | null;\n  readonly merge_tree: string | null;\n  readonly merge_parents: readonly string[];\n  readonly observed_state: \"OPEN\" | \"CLOSED\" | \"MERGED\";\n  readonly observed_at: string;\n  readonly review_receipt_digest: string;\n  readonly outcome: \"verified\" | \"merged_unverified\";\n  readonly reasons: readonly string[];\n  readonly receipt_digest: string;\n}\n\nexport interface ReviewedMergeReadAfterDecision {\n  readonly ok: boolean;\n  readonly receipt: ReviewedMergeReadAfterReceipt;\n  readonly reasons: readonly string[];\n}\n\ntype CanonicalReceipt = ClaudePrReviewReceiptAny | ProviderNeutralReviewReceiptV4;\n\nexport interface KimiReviewCommentProvenanceV1 {\n  readonly admission_receipt: KimiReviewFallbackAdmissionReceiptV2;\n  readonly admission_verifier_receipt: ClaudePrReviewReceiptAny;\n  readonly admission_verifier_comment: ReviewAdmissionComment;\n  readonly fallback_evidence: ReviewProviderFailureCapability;\n  readonly lease: ReviewFallbackLeaseCapability;\n  readonly output: KimiReviewOutputCapability;\n  readonly logical_db_receipt: Readonly<Record<string, unknown>>;\n}\n",
+            "sha256": "5913291f334cf63b23b708e859ec4c7a8c6509497fa2f557357e2df3a7d0e739",
+            "meaning": "historical admission failure reasons and read-after candidate"
+          }
+        ],
+        "failure_evidence": {
+          "status": "source_contract_only_unexecuted",
+          "execution_receipts": 0,
+          "anchor_ids": [
+            "EA1D-01"
+          ],
+          "finding": "historical review/admission failure or negative boundary candidate; no current execution or pass is inferred"
+        },
+        "consumer_evidence": {
+          "status": "candidate_only_closure_pending",
+          "consumer_refs": [],
+          "anchor_ids": [
+            "EA1D-02"
+          ],
+          "candidates": [
+            "OS admission evaluator consumer candidate"
+          ],
+          "finding": "historical consumer or trace candidate; current consumer read-after and closure remain unknown"
+        }
+      }
+    ],
+    "decision_matching_asset_ids": [],
+    "phase_summary_is_historical_only": true
+  },
+  "current_evidence": {
+    "implementation_status": "unknown",
+    "operation_status": "unknown",
+    "acceptance_status": "unknown",
+    "refs": [
+      {
+        "ref_id": "BOUNDARY-UNIT-CONNECTION",
+        "path": "docs/concept/product-boundary.md",
+        "product": "ALL",
+        "classification": "boundary_current_ref",
+        "layer": "Concept",
+        "start_line": 12,
+        "end_line": 44,
+        "exact_text": "| 「要求を整理してそれを正しく分離するのが正解な。何に対する要求なのかを。これはフォルダ管理的に分離したほうがいい。」 | 要求は対象別のフォルダに分離し、管理機構と個別プロダクトの機能を混在させない |\n| 「Oじゃなくて、OSな。」 | 管理・統制機構の名称はHELIX-OS |\n| 「OSは管理、統制、Worker、学習、ログ、CIとかだな。HARNESSはVモデルとかの話になるんじゃないかな？」 | OSは実行・管理・改善、HARNESSは提供する開発工程の仕組みを担う |\n| 「プロダクトとして輸出するのはHARNESSのほうね。HELIX-OSはそれらの管理統制をしてHELIXを改善し続ける機構な。」 | HARNESSを外部提供する。OSはHELIXプロジェクト群を統制し、継続改善する |\n| 「Vision2のHELIX-WebはHELIX-OSが管理すると考えればわかるだろ？」 | WebはOSが管理する個別プロダクト。Web固有要求はWeb側に置く |\n| 「HELIX-Webの展開要件がHELIX-HARNESS製品群の完成が必須になるってこと。だからバージョン1で切ってるわけな。」 | Version 1はHARNESS製品群の完成境界。Web自体をVersion 1へ含めず、その完成をWeb展開の必須前提にする |\n| 「検証フェーズでいくつかのプロダクトを作ってみてWeb展開だから自己プロジェクトへの適応が入ると思ってくれ。」 | Version 1完成前に複数プロダクトを実開発し、HELIX自身のプロジェクトへの適用も検証する。その実証後にWebを展開する |\n| 「HELIX-Webの展開時はHELIX-OSの外にHELIX-Web-OSを作る感じだな。」 | Webのservice runtimeは独立したHELIX-Web-OSが担う。HELIX-OSはその開発・改善projectを統制する |\n| 「Web-OSからのログをHELIX-OSが吸収してサービスを改善していくから最終的に接続される。」 | Web-OSは許可されたservice log・telemetryをHELIX-OSへ連携し、HELIX-OSが改善候補へ統合する。運転authorityは分離したまま改善loopで接続する |\n| 「HARNESS側だと思うぞ。要求エンジンから導いたものを管理に登録する仕組みだからな。」 | 要求エンジンの意味機能はHARNESS、導出結果の登録・管理はHELIX-OS |\n| 「管理層は企画から要求エンジンとの齟齬管理できないとな。」 | Concept／企画L1から要求候補・採用要求までの意味差分はHARNESS engineが提示し、OS管理層が系譜・routing・状態を管理する |\n| 「要求自体も細分化したほうがよくて単体要求と接続要求で事前に意味を持たせておくといい。機能Aの要求なのか、機能A～Cの集まったシステムAの要求なのかで。」 | 要求をunit、connection、compositeへ分け、単体成立から接続・構成体成立を推定しない |\n| 「登録層と分類層に分離する必要がある。」 | 意味未分類の原event登録を先行し、engine確定後の分類をversioned projectionとして分離する |\n| 「いまこれがチケット発行の役割をしていると思え。そしてイシューに登録される。」 | local ticketを意味sourceとして発行し、GitHub Issueへ作業projectionする |\n| 「初期はテンプレがないと参照するものがなくて適当になる。だからHELIXが必要になるって話な。」 | HARNESSはDesign Templateと初期seedを持ち、HELIX-OSが版・適用・利用結果・改善を管理する |\n| 「意味割合の多い部分をPython化する方針で旧実装から引き込む。」 | 旧実装のsemantic-dominant behaviorをPython coreへ再導出し、外部作用は新世代architectureで技術選定する |\n| 「要求側にPoCや画面プロトの接続があったと思うがこれらはそもそもチケットで切れる必要がある」 | PoC、UI prototype、Featureを要求へ接続する別ticketとして発行する |\n| 「管理層が推進側へ工程を渡して推進機構がチケットを切る。」「HARNESSがtag語彙とworkflow生成規則を所有ここが違う。推進側が生成する。」「HARNESSには明確に順序がある」 | HARNESSはnormative workflow vocabulary、その意味、trigger、適用条件、route内順序、join、停止・差戻し・完了条件を所有する。管理が目的・要求・制約・許可・予算・期限・HARNESS版を推進へ渡し、推進機構はoperational tag、HARNESS語彙へのversioned mapping、composition、workflow instance生成規則を所有してticket graphとworkflow instanceを生成する。HARNESSは個別ticket・workflow instanceを生成せず、管理は生成物を登録・統制し、検収が独立確認する |\n| 「旧要求はそのまま使いたい」「要求にはほぼHELIXの全体要求が入っている」 | 旧sourceでのauthority状態と要求意味を保持し、新世代target authorityへの配置・分割・言換えは全requirement PRで人間が確認する |\n\n## 対象別の正規入口\n\n| 対象 | 所有する要求 | ローカル入口 |\n|---|---|---|\n| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |\n| HELIX-OS | プロジェクト群の管理・統制、Worker、CI、ログ、学習、継続・復旧、HELIXの改善循環 | [HELIX-OS](../helix-os/README.md) |\n| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../helix-web/README.md) |\n| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |\n\n要求対象の一覧はこの四つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。\nHARNESS自身もOSが管理する開発対象である。HARNESSの工程規則をOSが適用し、OSの運用から得た改善を\nHARNESS自身の要求・設計・実装・検証へ戻す。HELIX-OSはこの自己適用・改善loopを継続運転し、HARNESSを\n改善し続ける責務を持つ。管理対象と規則の参照関係を、同一の要求所有へ潰さない。\n",
+        "line_sha256": "42f0b080fc30e37b3257bc5611d9c34dcc0470304662c23c94390489358a85d6",
+        "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+        "role": "four-product unit and connection boundary",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      },
+      {
+        "ref_id": "OS-REVIEW-HANDOFF",
+        "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
+        "product": "HELIX-OS",
+        "classification": "direct_current_ref",
+        "layer": "Feature candidate",
+        "start_line": 1,
+        "end_line": 64,
+        "exact_text": "---\nfeature_ticket_id: FT-OS-REVIEWHANDOFF-001\ntitle: \"共通ルール参照とVS Code GUIレーン間通知\"\nproduct_target: HELIX-OS\nstate: proposed_upstream_waiting\nauthority_effect: work_projection_only\ncreated: 2026-09-20\nprimary_role: progression\npriority_order: 11\nparent_requirements: [HELIXOS-L2-003, HELIXOS-L2-004, HELIXOS-L2-007, HELIXOS-L2-010]\nacceptance_source: docs/helix-os/L11-acceptance/governance-acceptance.md\ndepends_on: [FT-OS-REQREG-001]\ngithub_projection:\n  issue: 1884\n  url: https://github.com/RetryYN/HELIX-HARNESS/issues/1884\n  projection_receipt_ref: docs/governance/audits/source-rebaseline/github-review-handoff-projection-2026-09-20.md\n  read_after_state: OPEN\nrelated_parent_issue: 1864\nrelated_issues: [1859, 1860, 1866, 1812]\nscaffold_binding: SCF-B-0003\n---\n\n# FT-OS-REVIEWHANDOFF-001\n\n## 目的と親\n\n同じVS CodeのClaude Code拡張とCodex拡張の既存セッション間で、実行レーンとレビュー／マージレーンの依頼・指摘返却を通知する。両者が同じ版の規則とreview対象を参照する。\n親はConcept v4.1とHELIXOS-L1-002／003／004／008／009。\nexact revisionは[調査記録](../audits/source-rebaseline/rule-review-handoff-investigation-2026-09-20.md)と\n[承認record](../decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)へ束縛する。\n接続候補はHELIXOS-L2-003／004／007／010と対応L11であり、このticketから採否・正式実装許可を生成しない。\n\n## 正式Featureのscopeと停止条件\n\nこのticketは正式な共通規則参照・通知経路の要求候補を整理する。`proposed_upstream_waiting`のため、正式な設計・実装・runtime起動は開始しない。\nparent_requirementsは未承認L2候補への接続であり、承認済み親Concept／L1からの具体化を待つ。GitHub番号は親要求identityではない。\n仮組みSCF-B-0003は別identityであり、本ticketを起動許可に使わない。\n既存GUIへ接続する操作scope・原文・実装判断は[別記録](../audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md)、仮組み契約は[README](../../../scaffold/review-handoff/README.md)へ分離する。\n\n## Issue接続と責務\n\n- #1864: GitHub上の関連親Issue。旧レーン設定の11論点の引継ぎを残す。本作業でcloseしない。\n- #1859: context、依頼scope、将来の起動・隔離。\n- #1860: exact HEADの指摘返却と修正後の再review。\n- #1866: 仮設の置換・撤去。正式側への対応確認までcloseしない。\n- #1812: 将来のGitHub配送とread-after。今回のtoolは外部へ送信しない。\n\n## authority境界\n\n仮組みの合格や実GUIのACKから正式Featureの採否・承認・受入を生成しない。\n旧CLI・旧hook・旧runtimeは起動しない。Issue／PR作成からmerge・Issue close・別通路のreviewer起動を推定しない。\n\n## 後続と置換\n\nL2／L11採否→L3／L10で正式なcontext・配送・応答照合を導出する。\n正式側へ役割・義務・接続・検査・否定例を移し、#1866でcheck-replacement→retireを行う。\nGitHubへの投影source commitとdigestはIssue本文および別の投影receiptへ記録し、本文に自己commit SHAを埋め込まない。\n\n## 2026-09-20 scaffold merge後の状態\n\nPR #1885はmerge commit `3a00732031d78f2e19b98b6da39ca317f691bdc2`でmainへ統合された。成立したのは`authority_effect: none`のSCF-B-0003だけであり、本ticket、親要求、L3／L10、受入、CI、運用成立は生成していない。\nmerge完了応答の受領後、初回consumer接続は契約どおり撤去し、Claude／Codexの所有hook 0件と一時worktree削除を確認した。\n\n利用者の後続指示「それで進めて」はGUI経路を復旧しながら正式化を進める作業指示として扱い、続く「期限とかだるいことやる意味がない」により固定日時とOS bootによる接続期限を設けない。再接続はSCF-B-0003の別revisionであり、Binding lifecycleに従って利用者の停止指示または正式経路への置換・retireまで維持する。正式Featureの採否・実装許可には使わない。\n",
+        "line_sha256": "0e8894cb12e0188b079e6fc0c251c3867f88d561dfc2a595070bb90facd7cb09",
+        "sha256": "0e8894cb12e0188b079e6fc0c251c3867f88d561dfc2a595070bb90facd7cb09",
+        "role": "review handoff candidate and authority boundary",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      },
+      {
+        "ref_id": "GITHUB-UPSTREAM-MODEL",
+        "path": "docs/governance/github-upstream-operating-model.md",
+        "product": "HELIX-OS",
+        "classification": "direct_current_ref",
+        "layer": "Governance",
+        "start_line": 112,
+        "end_line": 169,
+        "exact_text": "## review、判断、merge admission\n\nすべてのPRは対象HEADを固定してreviewする。作成側と意味判断側を分け、許可されたGitHub Claude通路を用いる。\nreviewはfindingであり、人間判断を代替しない。旧CI、旧test、旧runtime、ローカルClaude CLIをfallbackにしない。\nPR classが未選択または複数指定のPRはReadyにしない。\n\n### 作成側とレビュー対応側の責務\n\n- `レビュー対応側`は、PR作成・修正側から独立して割り当てられ、対象PRのreview応答を受け取り、merge／Issue close通路を明示許可された人またはruntimeである。review findingを投稿した主体、`@claude`へのmention、ローカルClaude session、reviewer名だけからこのidentityや通路許可を推定しない。\n- PR作成・修正側は、対象差分の作成、証拠提示、review依頼、finding対応、再review依頼までを担う。\n- PR作成・修正側は、自分のPRをReady化、merge、auto-merge予約、対応Issueのcloseまで進めない。\n- レビュー対応側は、依頼と応答が同じexact base／content HEAD pairへ束縛され、必要なfinding対応が反映されたことを確認する。\n- レビュー対応側は、PR classを問わず、merge admissionの直前に、PRのcontent HEADを変えずに、最新baseとのmerge結果（GitHubの`refs/pull/<番号>/merge`、またはローカルの試験merge）に対して`scfctl stale`が`stale=0`を返すことを確認し、結果をreview記録に残す。Scaffold Bindingの上流（`upstream[].path`）は文書・台帳を問わず`scaffold/`の外にあり、どのclassのPRでも変更されうる。PRのhead時点で一致していても、baseの進行や積んだPRのmergeで変わりうる。PR branchへbaseを取り込んでcontent HEADを変えると、exact HEADに束縛したreviewをやり直すことになるため、そうしない。`refs/pull/<番号>/merge`はGitHubが非同期に再計算するため最新baseより古いことがある。使う場合は、その第1親が再取得したbase HEADと、第2親がcontent HEADと一致することを確かめ、一致しなければローカルの試験mergeで実行する。`stale`が1件以上ならmergeせず作成側へ返す。\n- merge admission成立後のmerge、post-merge read-after、対応Issueのcloseはレビュー対応側が行う。merge後に不一致があればcloseせず、作成側へ返す。\n- review結果の投稿だけではmerge指示にならない。レビュー対応側がmerge責務を引き受け、対象PRと方式を確認して実行する。\n- 責務の割当はGitHub、CLI、API、IDE、Worker等の実行通路の許可を兼ねない。レビュー対応側は、当該通路と作用について明示許可を確認できない場合、mergeせず停止する。\n\n### governance／operation_change PRのmerge admission\n\n個別のmerge admissionが定義されていないgovernance／`operation_change` PRは、少なくとも次をすべて満たす。\n\n1. review request、最後に有効なdelivery receipt、review responseが同じrequest identityとexact base／content full SHAを示し、payload digestが一致する。誤ったreceiptは削除せず、`correction_of`付きの後続receiptで訂正する。\n2. current content HEADに未解消のBlocker／Major／Minorが0件である。\n3. merge直前にbase HEAD、content HEAD、main HEAD、merge可能性、merge方式を再取得し、review済みpairから変化していない。\n4. レビュー対応側に対象PRのmerge、post-merge read-after、対応Issue closeを行う通路が明示許可されている。\n5. merge commit方式で統合し、第1親、第2親、content HEADの祖先性をread-afterする。期待と一致しない場合はIssueをcloseせず作成側へ返す。\n\nreview依頼もGitHubへの一方向projectionとして扱う。送信前にreview request identity、対象PR、target full SHA、完全な\n依頼本文、payload SHA-256を固定し、送信後にcomment ID、remote本文、remote本文SHA-256、target full SHAをread-afterする。\nremote本文がpayloadと一致しない、`@claude`本文がなくlocal file pathまたは`@file`文字列だけが投稿された、対象HEADが\ncurrentでない場合は配送失敗またはstaleとして、review待ちへ進めない。comment作成成功、mention、reaction、workflow起動は\nreview receiptではない。review結果は、応答本文が対象exact HEADを示し、依頼後のcommentとして取得できた場合だけ受理する。\n\nread-after成立後、同じPR threadへ依頼commentとは別の`review_request_delivery_receipt` commentをappendする。このcommentを\nPR branch外の配送記録とし、`review_request_id`、対象PR、target full SHA、送信前payload SHA-256、依頼comment ID、取得した\nremote本文SHA-256、read-after時点を記録する。payload SHA-256は送信する依頼本文byteに対して計算し、receipt comment自身を\n含めない。依頼commentのremote本文byteと送信前payload byteが一致し、両SHA-256も一致した場合だけ`delivery_result: delivered`\nとする。訂正は旧receiptを消さず、新しいreceipt identityと`correction_of`で追記する。merge admission判定時はGitHub APIから\n依頼comment、delivery receipt、review応答を再取得し、三者のrequest identityとtarget base／content full SHAが一致することを確認する。\n\n### PR #1797 `repository_foundation`\n\n条件1〜6をすべて満たした場合だけReady化し、merge実行候補にできる。条件7はmerge後の統合完了条件である。\n\n1. archive manifestが旧資産集合を完全に固定し、現行pathから旧workflow、runtime、AI instruction、testを実行できない。\n2. active文書がConcept、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS、governanceへ物理分離されている。\n3. 本運用モデル、authority入口、旧資産採否・copy・Issue／Project操作記録が相互参照できる。\n4. 相対リンク、対象別L2↔L11、merge admission packet等の静的整合が対象content HEADで成立する。\n5. GitHub Claudeのexact base／content HEAD pair意味reviewで未解消Blocker／Major／Minorが0であり、request、delivery receipt、\n   responseのidentity、full SHA、payload digestがread-afterで一致する。\n6. merge直前にPR base／HEAD、main HEAD、merge可能性、merge方式、branch protection、ruleset、required platform gateを再取得し、\n   review済みpairと一致する。repository整理だけを対象とするため、別の人間承認やdecision recordは要求しない。\n7. merge APIまたは`gh pr merge --merge`で方式を明示し、squash／rebaseを使わずmerge commitで取り込む。API応答のmerge SHAを\n   直ちに取得し、第1親がreview済みbase HEAD、第2親がreview済みcontent HEADで、PR途中commitを含む全履歴がmainの祖先に\n   なったことをread-afterする。baseが動いた、merge commitが利用できない、またはread-afterが不成立なら統合完了にせず停止する。\n   post-merge不一致はrevert／force-pushで隠さず、local監査文書のcorrective PRから専用Issueへ投影して人間判断を求める。\n\n既存CodeQL、旧`harness-check`、旧testのgreenは条件に含めない。#1797に含まれるConcept、Vision、L1、L2、L11、Feature Ticketはbootstrap用のcandidate／draft containerとinventoryであり、mergeしても内容の承認revision、要求採否、ticket Readyを生成しない。個別の人間decisionは対応する後続PRへ分離する。#1797では旧要求sourceを同一byteのread-only snapshotとして保持し、153件と補助sourceを原文・digest付き台帳へ固定する。37件の対象別L2は整理先を示すrouting containerであり、旧要求の代替、縮約、棄却ではない。merge admissionの詳細は[repository foundation merge admission packet](audits/source-rebaseline/repository-foundation-merge-admission-packet.md)を正とする。\n",
+        "line_sha256": "0e84b297cf9dbdea77ac37b5bf55ee3bc8a2fd24e35f10798089f7187806bea5",
+        "sha256": "7feda9e40b813081608ee5d776861f9f7f24638e9b2a3e4b472aba781b29cb25",
+        "role": "review and merge admission operating candidate",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      },
+      {
+        "ref_id": "MERGE-REHOST-ASSESSMENT",
+        "path": "docs/governance/audits/source-rebaseline/legacy-reviewed-merge-rehost-assessment-2026-09-20.md",
+        "product": "HELIX-OS",
+        "classification": "direct_current_ref",
+        "layer": "Audit",
+        "start_line": 1,
+        "end_line": 82,
+        "exact_text": "# 旧HELIX reviewed merge経路の再配置評価\n\nstatus: reuse_assessment\nauthority_effect: none\ntarget_pr: 1886\nassessed_at: 2026-09-20\n\n## 目的\n\nPR #1886を、新しいCapability Leaseを独自開発する作業から、旧HELIXに存在したreview済みPRのmerge経路を現行HELIXへ\n再配置する作業へ戻す。HELIXの現行作業は旧HELIXを捨てた新規開発ではなく、既存の意味・判断史・failure・consumerを保持しながら\n最適化と拡張を行いやすい構造へ組み替える再編である。\n\n本評価は旧runtimeを実行せず、旧資産を新世代のbaseline、oracle、fallbackにも使わない。旧契約と既知の失敗を抽出し、\n現行側との差分を特定する。実装の採否、要求承認、merge authorityは生成しない。\n\n## 参照した旧資産\n\n| asset ID | 台帳source path（`archive/legacy-generation-2026-09-14/root/`相対） | SHA-256 | 読んだ役割 | 現在の台帳状態 |\n|---|---|---|---|---|\n| `LEGACY-ASSET-FA8D4E24D8399E8350F1` | `src/cli.ts` | `608660021df710e6c91239dbfbb4d23e9357d73bc0b7c9ffd5c4f5b4544f0dad` | `helix github pr-merge-reviewed --receipt`、dry-run／apply、GitHub読取り、merge、read-after | `unresolved`、`legacy_runtime_cli_or_adapter` |\n| `LEGACY-ASSET-AC2078FFF049D6B56D19` | `src/runtime/claude-pr-convergence.ts` | `059f5e925c727fe8003c9e6c72b595d4697bd4d930d97a92cd4a9ee1f5ebdff8` | current HEAD、required CI、review receipt履歴、独立性、未解消blockのadmission | `unresolved`、`legacy_runtime_cli_or_adapter` |\n| `LEGACY-ASSET-EA1DFC00D984068C2444` | `src/runtime/github-cross-review-admission.ts` | `dc49bad26c9ed553ce5b040e77f0c95895fad51aa0fe20aa5573360764119cc7` | merge後のstate、commit、parent、treeのread-afterとreceipt | `unresolved`、`legacy_runtime_cli_or_adapter` |\n| `LEGACY-ASSET-54515309EF4528FEED70` | `src/lint/github-guards.ts` | `ce66b773779cb85340bce805b93b427772a8a30f59101780d46cd234098d1b55` | PR scope manifestの必須fieldと変更pathの境界 | `unresolved`、`legacy_runtime_cli_or_adapter` |\n| `LEGACY-ASSET-0F431CE7CE360BCBB909` | `src/runtime/independent-review-fallback.ts` | `864927c4261b7a34a80c8abb73a901c44faf034cd7de06340cd62b600fbe4e15` | provider-neutral v4 receiptの検証とadvisory-only境界 | `unresolved`、`legacy_runtime_cli_or_adapter` |\n| `LEGACY-ASSET-0659C4937EA6463385A0` | `src/runtime/git-command-guard-hook.ts` | `4566d6206c0c38472ea7f4e9fc44b0052795159aec0a07f4c442faa5b1c2be8b` | 単一入口外の直接`gh pr merge`を拒否するguard | `unresolved`、`legacy_runtime_cli_or_adapter` |\n\n台帳の6資産はいずれも個別採否前である。旧runtime／CLI／adapterは完全一致再利用の対象外なので、現行pathへbyte copyしない。\n意味を再導出する場合は、親要求、owner、consumer、権利、実行性、secret、外部作用を確認し、台帳と判断ログを更新してから行う。\n\n## 旧経路がすでに持っていた契約\n\n1. merge入口は`helix github pr-merge-reviewed --receipt`の一つで、既定はdry-run、`--apply`のときだけ書き込む。guard hookは入口外の直接`gh pr merge`とPR close／reopenを拒否し、単一入口を実行面でも強制する。この拒否はoverride対象外であり、nonce付き記録によるoverrideは別層の破壊的git操作だけに限る。\n2. repository、PR番号、PR URL、review済みHEADをreceiptと現在のGitHub状態で照合する。\n3. Claude専用receipt経路では、PRがopenで、review receiptがcurrent HEADへ束縛され、approveかつblocker 0であることを求める。\n4. Claude専用receipt経路ではauthorとreviewerのruntimeを分け、review commentのread-after、author runtimeの実測、過去のrequest changesが後続reviewで解消されていること、CI generationを確認する。\n5. provider-neutral v4 receipt経路は上記より弱く、判定理由へ常に`provider_neutral_receipt_advisory_only`を加えるためmergeを成立させない。この停止境界を維持し、他providerのreview応答からmerge authorityを生成しない。\n6. Claude専用receipt経路では、CI runが同じHEAD、completed、event=`pull_request`、name=`harness-check`、successで、attempt／generationも一致することを求める。provider-neutral v4経路のCI照合はhead SHA一致とconclusion=`success`だけである。required check全件passは両経路に共通する。\n7. DBが収束し、receiptがその状態へ束縛されていなければ`db_not_converged`としてmergeを拒否する。\n8. 変更された計画・scope manifestとreview receiptをjoinし、対象外の変更や必要なcompanion pathの欠落を拒否する。\n9. mergeは`gh pr merge --merge --match-head-commit <review済みHEAD>`でHEAD driftを拒否する。\n10. merge後にPRのMERGED表示、報告されたmerge commit、review済みHEADがparentであること、candidate treeとmerge treeの一致を読み直す。\n11. read-after結果をdigest付きreceiptとして保存し、不一致は`merged_unverified`として成功扱いしない。\n\n## 現行側との対応\n\n| 旧契約 | 現行に存在するもの | 未成立の差分 |\n|---|---|---|\n| exact HEAD review | GitHub上流運用モデルのexact base／content HEAD pair、review request／delivery receipt／response | canonicalな現行receipt schemaと実行commandへの接続 |\n| scope manifest | PR class、対象範囲、Scaffold Binding、`scfctl stale` | 旧scope manifestとのfield対応と、どのPR classで何を必須にするかの採否 |\n| required CI | `scfctl`、govcheckのローカル検査 | 新世代CIは未構築。旧`harness-check`とDB receiptを代替したと推定してはならない |\n| 独立review | 作成側とレビュー対応側の分離、Claude×Codex GUI通知scaffold（PR #1885） | GUI応答をcanonical receiptへ変換する正式契約 |\n| provider-neutral receipt | GUI通知で他providerの応答を運べる | 旧v4はadvisory onlyでmergeを成立させない。GUI応答を強いreceiptへ昇格する要件・独立性・認証は未成立 |\n| DB収束 | 対応物なし | 旧DB停止条件を何で置換するか、またはどの判断で削除するか未確定 |\n| 単一入口の迂回拒否 | 現行規則では直接mergeを禁止 | 現行`helix` commandと同時に成立する実行面のguardは未構築。直接merge／PR close／reopenをoverride不能で拒否し、破壊的git操作だけを記録付きoverrideの対象にする境界の採否も未確定 |\n| HEAD固定merge | 現行運用モデルのmerge直前再取得 | 現行`helix` wrapper内の単一commandは未構築 |\n| merge後read-after | 現行運用モデルに責務として存在 | digest付きreceiptの現行保存先とschema |\n\n## PR #1886で作っていたものの扱い\n\n旧経路との差分確認より先に追加したGitHub App、専用OS user、root所有copy、sudoers、Capability Lease、独自executor、\n非常経路、削除不能probeは、旧HELIXのreviewed merge経路に無かった。これらは外部監査向けの追加trust boundaryであり、\n現行の最適化・拡張に必須であることを旧契約との差分から示していない。\n\nしたがってPR #1886からこれらの実装と、それらを前提にした`AGENTS.md`・GitHub運用モデルの変更を外す。\nPR #1883のCapability Lease判断recordは履歴としてmainに残るが、再編したPR #1886の実装根拠には使わない。Capability Leaseを\n将来再開する場合は、旧経路では満たせない具体的な要求と追加する差分を改めて示す。\n\n## 再配置の順序\n\n1. 上表6資産とその参照閉包の意味、failure、consumerを本評価へ固定する。\n2. 資産台帳で採否を判断し、採用する資産を`semantic_rederive`としてHELIX-OSの親要求へ接続する。\n3. 旧CLI名と一入口、dry-run既定、current HEAD receipt、scope、required CI、独立review、read-afterという契約を保持する。\n4. 旧`harness-check`、DB receipt、Claude専用receiptは、現行の承認済み契約が成立した部分だけ差し替える。未成立部分はmissingとして止める。\n5. PR #1885のGUI通知はreview transportとして接続し、merge admissionやauthorityを通知から生成しない。GUI応答がClaude専用receipt相当か、advisory-onlyのprovider-neutral receipt相当かは未成立差分として扱う。\n6. 実装は現行`helix` wrapperの一commandへ置き、既存認証を使う。同時に入口外の直接mergeを拒否するguardを成立させ、guardが無い間は単一入口が未成立として止める。GitHub Appや専用OS userは、別の承認済み要求が必要とした場合だけ追加する。\n\n## このPRでの停止位置\n\n本PRでは参照義務を`AGENTS.md`と`CLAUDE.md`へ追加し、本評価を置くところで止める。6資産が`unresolved`で、正式なHELIX-OSの\n委任authority要求もL2／L11未承認であるため、merge runtimeを新しく実装しない。この停止は機能の放棄ではなく、旧HELIXの契約を\n基準にした無損失の再配置へ戻すための境界である。\n",
+        "line_sha256": "5277e6637f2de2421a6ef73112238a83dec38eb04129a5e44d2ac4649cc7b8c0",
+        "sha256": "5277e6637f2de2421a6ef73112238a83dec38eb04129a5e44d2ac4649cc7b8c0",
+        "role": "legacy reviewed merge rehost assessment boundary",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      },
+      {
+        "ref_id": "HARNESS-L2",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "product": "HELIX-HARNESS",
+        "classification": "direct_current_ref",
+        "layer": "L2",
+        "start_line": 1,
+        "end_line": 45,
+        "exact_text": "---\ntitle: \"提供プロダクトHARNESSの利用要求\"\ncanonical_vmodel: L1-L12\ncanonical_layer: L2\ncanonical_pair: L11\nlayer: L2\nkind: design\nstatus: draft\nfreeze_blocking: true\ncreated: 2026-09-14\nupdated: 2026-09-15\npair_artifact: docs/helix-harness/L11-acceptance/product-acceptance.md\nparent_l1_candidate: docs/helix-harness/L1-planning/product-intent.md\n---\n\n# 提供プロダクトHARNESSの利用要求\n\n2026-09-14のPO指示に従い、提供するプロダクトをHARNESS、HELIXプロジェクト群の統制をHELIX-OSとして\n要求の対象を分離する。本書は既存の混在要求から分離した案であり、個別要求の合意・IR移管は未完了である。\n旧`harness/L1-requirements`や`L2-screen`の配置だけを現行採用の根拠にしない。\n\nsourceで採用済みだった要求意味は、そのsource authorityを保って[無損失carry-forward方針](../../governance/legacy-requirement-carry-forward-policy.md)に従って保持する。新世代targetへの配置は未承認である。\n本書と参照crosswalkに残る「再採否」「不採用」「棄却」は、明示された旧owner、旧技術、旧CI、旧実装方式、\nまたは元からcandidateだった項目にだけ適用する。原要求IDと要求意味を削除・縮退・candidate降格する意味には使わない。\n原要求は対象product、責務、粒度、接続関係を再配置し、未被覆atomを`pending`として残す。要求意味の変更または\nretireには、対象ID・revision・理由・影響を持つ人間decisionを必要とする。\n\nHARNESSはVモデル等の開発工程を規定する提供プロダクトである。Worker実行、CI運転、ログ保存、学習、\nプロジェクト群の管理・統制はHELIX-OS側に置く。\n\n外部利用者へ提供する範囲はHARNESSである。提供物の仕様・版・導入条件を明示し、HELIX内部の\nプロジェクト群、Worker割当、学習記録、ログ、CI運用をそのまま利用者の必須構成にしない。\n提供範囲と依存条件は明示して管理し、内部運用が存在することだけを暗黙の外部依存にしない。\n\n親は[HARNESS L1企画候補](../L1-planning/product-intent.md)である。現在は親ConceptとL1が未承認のため、\n以下のrelationは接続案であり、承認済み導出ではない。\n\n| L2要求 | 親L1候補 |\n|---|---|\n| HARNESS-L2-001 | HARNESS-L1-001 |\n| HARNESS-L2-002 | HARNESS-L1-002 |\n| HARNESS-L2-003 | HARNESS-L1-002／HARNESS-L1-003／HARNESS-L1-006 |\n| HARNESS-L2-004 | HARNESS-L1-003／HARNESS-L1-004／HARNESS-L1-006 |\n| HARNESS-L2-005 | HARNESS-L1-004 |\n| HARNESS-L2-006 | HARNESS-L1-005 |\n",
+        "line_sha256": "6c450d9c97a57be5a4edc8fb003ffbee42521022832aff1269d0934d9382edae",
+        "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77",
+        "role": "HARNESS V-model and review contract candidate",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      },
+      {
+        "ref_id": "OS-L2",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "product": "HELIX-OS",
+        "classification": "direct_current_ref",
+        "layer": "L2",
+        "start_line": 1,
+        "end_line": 45,
+        "exact_text": "---\ntitle: \"HELIX-OSのプロジェクト群統制要求\"\ncanonical_vmodel: L1-L12\ncanonical_layer: L2\ncanonical_pair: L11\nlayer: L2\nkind: design\nstatus: draft\nfreeze_blocking: true\ncreated: 2026-09-14\nupdated: 2026-09-15\npair_artifact: docs/helix-os/L11-acceptance/governance-acceptance.md\nparent_l1_candidate: docs/helix-os/L1-planning/system-intent.md\n---\n\n# HELIX-OSのプロジェクト群統制要求\n\n2026-09-14のPO指示に基づく対象別の分離案。HELIX-OSは管理・統制、Worker、学習、ログ、CI、継続・復旧の機能を所有する。\nHARNESSは提供プロダクトである。名称やフォルダの分離だけで個別要求の合意・実装・受入は成立しない。\n\nsourceで採用済みだった要求意味は、そのsource authorityを保って[無損失carry-forward方針](../../governance/legacy-requirement-carry-forward-policy.md)に従って保持する。新世代targetへの配置は未承認である。\n本書と参照crosswalkに残る「再採否」「不採用」「棄却」は、明示された旧owner、旧技術、旧CI、旧実装方式、\nまたは元からcandidateだった項目にだけ適用する。原要求IDと要求意味を削除・縮退・candidate降格する意味には使わない。\nOSは原要求からsuccessorへのtraceと未被覆atomを管理し、意味変更・縮退・retireを人間decisionなしに登録しない。\n旧source集合を管理層の`registered_source_holding`へ先に仮登録する。要求PRのmerge前に、要求候補revision、対象product、入力source atom完全集合、HARNESS無損失被覆receipt、今回保持するatom、別の生存中仮登録へ残すatom、人間decision対象atomを`registered_proposal`へ仮登録する。未計上atom、stale、digest不一致、wrong product、仮登録欠落が一件でもあればmerge可能状態にしない。いずれの仮登録も要求採用や実装許可ではない。\n\nHELIX-OSの目的は、HARNESSを含むHELIXプロジェクト群を管理・統制し、HARNESSを自身へ適用してHARNESSそのものを\n改善し続けることにある。各product、HELIX自身、Web-OSからの許可された運用結果も同じ改善機構へ接続する。\n外部へ輸出するプロダクトはHARNESSであり、本要求でHELIX-OSの外販・配布を目的化しない。\nHELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変更→検証→再観測まで追跡する。\n候補の生成件数やログの蓄積だけで改善達成とせず、採用した変更の効果と退行を確認する。\n\n親は[HELIX-OS L1企画候補](../L1-planning/system-intent.md)である。現在は親ConceptとL1が未承認のため、\n以下のrelationは接続案であり、承認済み導出ではない。\n\n| L2要求 | 親L1候補 |\n|---|---|\n| HELIXOS-L2-001 | HELIXOS-L1-001／HELIXOS-L1-008 |\n| HELIXOS-L2-002 | HELIXOS-L1-002／HELIXOS-L1-007／HELIXOS-L1-008 |\n| HELIXOS-L2-003 | HELIXOS-L1-001 |\n| HELIXOS-L2-004 | HELIXOS-L1-003 |\n| HELIXOS-L2-005 | HELIXOS-L1-006 |\n| HELIXOS-L2-006 | HELIXOS-L1-005／HELIXOS-L1-007 |\n| HELIXOS-L2-007 | HELIXOS-L1-002／HELIXOS-L1-004／HELIXOS-L1-007／HELIXOS-L1-008 |\n| HELIXOS-L2-008 | HELIXOS-L1-004 |\n",
+        "line_sha256": "04d86bd4f19a9037d2897152d7cee4c869fd3b6d57fb8b4f986a6064d78e24af",
+        "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+        "role": "OS progression and evidence governance candidate",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      },
+      {
+        "ref_id": "WEB-L2",
+        "path": "docs/helix-web/L2-requirements/product-requirements.md",
+        "product": "HELIX-Web",
+        "classification": "adjacent_current_ref",
+        "layer": "L2",
+        "start_line": 1,
+        "end_line": 45,
+        "exact_text": "---\ntitle: \"HELIX-WebのVision由来利用要求案\"\ncanonical_vmodel: L1-L12\ncanonical_layer: L2\ncanonical_pair: L11\nlayer: L2\nkind: design\nstatus: draft\nfreeze_blocking: true\npair_artifact: docs/helix-web/L11-acceptance/product-acceptance.md\nparent_l1_candidate: docs/helix-web/L1-planning/product-intent.md\n---\n\n# HELIX-WebのVision由来利用要求案\n\nHELIX-WebはHELIX-OSが開発・改善projectとして管理し、HELIX-Web-OSが展開後のservice runtimeを担う個別プロダクトである。本書は保存された\n[Vision原文](../../../archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の§6／7／10／11／13／14から、\nWebの利用者に対する要求を具体化した案である。最新PO指示の管理関係と原文の将来構想を区別する。\n以下の9件の個別採択・L2合意・L3凍結・IR admission・提供時期は未確定。HELIX-Web自体はHARNESS Version 1の\n完成条件へ追加しない。一方、HELIX-Webの展開はHARNESS製品群Version 1の完成を必須前提とする。\n\n親は[HELIX-Web L1企画候補](../L1-planning/product-intent.md)である。現在は親ConceptとL1が未承認のため、\n以下のrelationは接続案であり、承認済み導出ではない。\n\n| L2要求 | 親L1候補 |\n|---|---|\n| HELIXWEB-L2-001／HELIXWEB-L2-002／HELIXWEB-L2-004 | HELIXWEB-L1-001 |\n| HELIXWEB-L2-003 | HELIXWEB-L1-002 |\n| HELIXWEB-L2-005 | HELIXWEB-L1-003 |\n| HELIXWEB-L2-006／HELIXWEB-L2-007 | HELIXWEB-L1-004 |\n| HELIXWEB-L2-008 | HELIXWEB-L1-005 |\n| HELIXWEB-L2-009 | HELIXWEB-L1-006 |\n\n| ID | 構想段階 | 出典 | Webに対する利用要求 |\n|---|---|---|---|\n| HELIXWEB-L2-001 | 初期Connector構想 | §6.1、U08／09 | 利用者がWebから自分の許可された開発環境を選び、対象プロジェクトの操作と進行をダッシュボードで確認できる。全コード・計算資源をSaaSへ移すことを必須にしない |\n| HELIXWEB-L2-002 | 初期Connector構想 | §3.2、§6.1、§10 | 必要な開発能力の提供版を選び、Connectorへの導入・互換性・更新・撤去と結果を確認できる。Connectorに開発engineを重複実装しない |\n| HELIXWEB-L2-003 | 初期Connector構想 | §6.2、§10、§13 | 長時間jobの実行・切断・取消・再開・終端と証拠を確認できる。結果不明の副作用を無条件に再実行しない |\n| HELIXWEB-L2-004 | 接続前に方式確定 | §6.2、O03／04 | 対応するprovider経路と利用条件、利用者環境から返送する情報の範囲を確認できる。未確認のログイン再利用や経路を対応済みと表示しない |\n| HELIXWEB-L2-005 | 操作別に段階採択 | §7、U17、O05 | 何を変更し、何を許可し、何を受け入れるかを自分で判断し、検収済み範囲の保守・改修を行える。残る専門判断を確認できる |\n| HELIXWEB-L2-006 | Web3の将来構想 | §6.3、U14、O08 | 適用範囲・版・評価証拠を確認したHDAを開発補助に利用できる。学習と分散推論の提供責務を分け、応答を独立検収済みとみなさない |\n| HELIXWEB-L2-007 | 能力接続時に採択 | §10、§11 | Webが採用する開発能力・Connector・モデル・接続契約の構成版を確認できる。Webの変更で無関係なHARNESSやモデルを一斉更新しない |\n| HELIXWEB-L2-008 | 改善還流時に採択 | §10、§11 学習とデータ利用 | Web-OSのservice log・telemetry・利用結果をどの目的・範囲でHELIX-OSの改善へ渡すかを確認できる。サービス利用をログexportや横断学習への包括同意とみなさない |\n| HELIXWEB-L2-009 | 展開前に必須 | §3、§13、2026-09-14 PO指示 | 複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成証拠を確認した後にHELIX-Webを展開できる。Webの完成をVersion 1へ算入せず、HARNESS未完成のまま展開しない |\n\n",
+        "line_sha256": "d7cb5f81c94daf3d1dc43a1695e1de926e8ab007ec9c89f468ca67991874ecf5",
+        "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+        "role": "Web user-facing product boundary candidate",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      },
+      {
+        "ref_id": "WEBOS-L2",
+        "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+        "product": "HELIX-Web-OS",
+        "classification": "adjacent_current_ref",
+        "layer": "L2",
+        "start_line": 1,
+        "end_line": 38,
+        "exact_text": "---\ntitle: \"HELIX-Web-OSサービス運転要求案\"\ncanonical_vmodel: L1-L12\ncanonical_layer: L2\ncanonical_pair: L11\nstatus: draft\nfreeze_blocking: true\npair_artifact: docs/helix-web-os/L11-acceptance/service-acceptance.md\nparent_l1_candidate: docs/helix-web-os/L1-planning/system-intent.md\ncreated: 2026-09-14\n---\n\n# HELIX-Web-OSサービス運転要求案\n\n本書はHELIX-Web展開時にHELIX-OSの外へ構成するサービス運転基盤の要求案である。HARNESS Version 1完成前の\n展開、外部接続、実装起動を許可しない。\n\n| L2要求 | 親L1候補 |\n|---|---|\n| HELIXWEBOS-L2-001 | HELIXWEBOS-L1-001 |\n| HELIXWEBOS-L2-002／003 | HELIXWEBOS-L1-002 |\n| HELIXWEBOS-L2-004 | HELIXWEBOS-L1-003 |\n| HELIXWEBOS-L2-005 | HELIXWEBOS-L1-004 |\n| HELIXWEBOS-L2-006 | HELIXWEBOS-L1-005 |\n\n| ID | HELIX-Web-OSに対する要求 | 確認する結果 |\n|---|---|---|\n| HELIXWEBOS-L2-001 | tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる | 一利用者の資格・job・data・結果が別scopeへ流れず、HELIX-OS内部stateをservice authorityとして共有しない |\n| HELIXWEBOS-L2-002 | 適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる | Connectorに開発engineを重複実装せず、不適格版や更新失敗を利用可能と表示しない |\n| HELIXWEBOS-L2-003 | 長時間jobの受付、配信、進行、切断、取消、再開、終端、結果不明を同じjob identityで管理できる | 再送・障害・再接続で副作用を二重実行せず、期限・予算・許可・未完義務を失わない |\n| HELIXWEBOS-L2-004 | 認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる | 未確認経路、期限切れ権限、秘密送信、範囲外data返送を拒否し、サービス利用を横断学習同意へ変換しない |\n| HELIXWEBOS-L2-005 | jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる | projection欠落・遅延・stale・conflict・結果不明を成功表示せず、画面表示を実行事実や受入の正本にしない |\n| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-Web-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWeb-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、\nartifact、receipt、telemetry export、改善proposalとして行う。\n",
+        "line_sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+        "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+        "role": "Web-OS service boundary candidate",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      },
+      {
+        "ref_id": "HARNESS-L11",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "product": "HELIX-HARNESS",
+        "classification": "direct_current_ref",
+        "layer": "L11",
+        "start_line": 1,
+        "end_line": 45,
+        "exact_text": "---\ntitle: \"HARNESS利用要求の受入案\"\ncanonical_vmodel: L1-L12\ncanonical_layer: L11\ncanonical_pair: L2\nlayer: L11\nkind: test_design\nstatus: draft\nfreeze_blocking: true\npair_artifact: docs/helix-harness/L2-requirements/product-requirements.md\n---\n\n# HARNESS利用要求の受入案\n\n全件未実行。合意した要求revision・対象artifact・操作・実結果を記録して判定する。\n旧要求の整理では、原要求ID・原文digest・successor・未被覆atomを照合し、37件のrouting containerへの関連付けだけで\n移管完了にしない。人間decisionのない削除・縮退・candidate降格を一件でも検出した場合は不合格とする。\n\n| 親要求 | 利用者が確認する結果と反例 |\n|---|---|\n| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる |\n| HARNESS-L2-002 | 異なる開発styleの工程を確認し、Discovery／PoCをScrumへ混入させない |\n| HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない |\n| HARNESS-L2-004 | 要求変更から影響設計・テストへ辿り、変更した条件の検証漏れを識別できる |\n| HARNESS-L2-005 | 異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |\n| HARNESS-L2-006 | 提供版・機能・依存・導入条件を確認し、HELIX内部の運用状態を持たない利用環境で対象機能を利用できる |\n| HARNESS-L2-007 | 検証対象として選定した複数プロダクトとHELIX自身のプロジェクトについて、要求revision、適用構成、成果、L11受入、L12運用評価へ辿る。単一demo、HARNESS単体test、文書整合だけならVersion 1未完成とし、HELIX-Webの完成有無を判定へ混入させない |\n| HARNESS-L2-008 | 指示と要求候補を意味単位で比較し、欠落・意味追加・対象違い・未確定事項を確認できる。Python coreの出力、ログ、Issue、PR、CIだけでは要求合意や操作許可を成立させない |\n| HARNESS-L2-009 | unit、connection、compositeの各要求に適用するtemplateと設計義務を確認し、必要input欠落を上流質問へ戻せる。template適用や文書生成だけでは要求合意・設計完成・検証成功を成立させない |\n\n## 工程条件の確認シナリオ\n\n- HARNESS-L2-001：旧L0–L14 pathを持つ成果でも現行6 pairを確認でき、L2の対をL10とする入力を拒否する。\n- HARNESS-L2-002：3 styleそれぞれでL1–L3の共通条件とslice開始位置を確認する。Discovery／PoCのS4未判断をproductionへ持ち込まない。\n- HARNESS-L2-002：style未選択、複数選択、適用条件不成立をfail-closeし、Discovery trigger不成立ではS0–S4を無条件起動しない。\n- HARNESS-L2-002／003：Discovery trigger成立時はS0–S4とS4人間判断を要求し、S4未判断のままL3へ合流しない。Research trigger成立時はresearch memoとADRをL4参照点へ合流し、L3要求合意の前段へ固定しない。成立性実験が必要ならDiscovery／PoCへ切り替える。\n- HARNESS-L2-002／003：Production ScrumまたはV設計＋Scrum実装Hybridのcheckpoint trigger成立時にSR0–SR4を要求し、SR4 receipt欠落をrelease-readyにしない。findingの修正routeが0件または複数なら拒否する。\n- HARNESS-L2-002／003：v1.3 L104-106に従い、`ProvisionalVProjection`をcanonical traceの根拠へ使う入力、SR4 receiptなしの`CanonicalVPublication`、4 entityを単一進捗値へ縮退する入力を拒否する。Design Refactorでobservable behavior／public surface／DB semantics／要求を変える入力はRedesign／Retrofitへrerouteし、送り先が0件なら拒否する。Performance Refactorはbaseline／budget／workload／profile／統計条件／回帰oracleを先に固定し、測定不能な高速化を拒否する。\n- HARNESS-L2-003：プロト合意欠落と非UI記録欠落を別々に投入し、L2要求を飛ばしてL3凍結可能にならないことを確認する。\n- HARNESS-L2-003：実装済み・総合検証済み・利用者受入済み・運用評価済みを区別し、一つの状態から残りを推定しない。\n- HARNESS-L2-004：要求変更に対して影響する設計・V-pairが示され、無関係な要求を再承認対象へ巻き込まず、必要な検証を落とさない。\n- HARNESS-L2-004：入力source atom集合の各atomが、当該要求への保持、別の生存中仮登録への保持、対象revision付き人間decisionのいずれか一つへ割り当てられる。未計上、根拠のない重複、digest違い、仮登録先の失効があれば`no_loss`を発行しない。\n- HARNESS-L2-005：別revisionの証拠やCI成功のみを提示しても利用者受入成立と判定しない。実行基盤を変えても必要な証拠条件を維持する。\n- HARNESS-L2-005：required oracleを欠くprofile、unknownをN/Aへ変えたprofile、expected failureと差戻し先を持たないprofileを不成立とする。providerを交換してもrequirement・pair・oracle・evidence identityが維持されることを確認する。\n\n",
+        "line_sha256": "2d77447a521f1cf9da001f64c5e9061922a3b67f46af44c15ea9c2d357190e48",
+        "sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b",
+        "role": "HARNESS acceptance remains draft/unexecuted",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      },
+      {
+        "ref_id": "OS-L11",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "product": "HELIX-OS",
+        "classification": "direct_current_ref",
+        "layer": "L11",
+        "start_line": 1,
+        "end_line": 45,
+        "exact_text": "---\ntitle: \"HELIX-OS統制要求の受入案\"\ncanonical_vmodel: L1-L12\ncanonical_layer: L11\ncanonical_pair: L2\nlayer: L11\nkind: test_design\nstatus: draft\nfreeze_blocking: true\npair_artifact: docs/helix-os/L2-requirements/governance-requirements.md\n---\n\n# HELIX-OS統制要求の受入案\n\n全件未実行。複数プロジェクトを対象に要求revision・判断・実結果を照合する。\n旧要求の整理では、原要求ID・原文digest・successor・未被覆atomをOSが追跡できることを確認する。\nIssue close、PR merge、旧owner・技術との衝突、37件のrouting containerへの接続から要求削除を生成した場合は不合格とする。\n\n| 親要求 | 利用者が確認する結果と反例 |\n|---|---|\n| HELIXOS-L2-001 | 各要求の対象プロダクト・正本・合意revisionへ辿る。Issue closeを要求の削除・受入として表示しない |\n| HELIXOS-L2-002 | 異なるプロジェクトの欠落・競合・未検証を個別に把握し、一方の成功で他方の未完を相殺しない |\n| HELIXOS-L2-003 | 開発方式の変更で影響する範囲だけを再評価し、共通統制の無断変更を拒否する |\n| HELIXOS-L2-004 | 割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否する |\n| HELIXOS-L2-005 | HARNESS自身への適用と各productの観測から改善候補・採否・変更・再検証・効果確認を追跡し、未承認経験の規則化、HARNESS改善責務の欠落、棄却理由の消失を拒否する |\n| HELIXOS-L2-006 | fresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失や別artifactへの切替を拒否する |\n| HELIXOS-L2-007 | Worker・判断・検証ログを要求revisionから辿り、欠落・重複・staleを成功証拠として使わない |\n| HELIXOS-L2-008 | 承認上流から生成したCI profileの起動・失敗・修復・再実行を追跡し、旧CI成功で新世代の未実行・中断・staleやreview欠落を相殺しない |\n| HELIXOS-L2-009 | 中断・担当交代後も制約と未完義務を引き継ぎ、二重実行・予算リセット・無許可復旧を拒否する |\n| HELIXOS-L2-010 | 管理・推進・検収が同じticketと因果IDで直接調整し、scope・優先度・共有資源・要求意味の変更だけを正しい判断先へ返す。役割を固定モデル数や中央中継へ変換しない |\n| HELIXOS-L2-011 | HARNESS契約で同じ検証義務を与え、A→Bの依存を実際のbase+A+Bで具体化する。base更新・候補増減・順序変更で再計画し、OSによるoracle削除・追加、必要CI欠落、影響証明不能、契約解釈不明、別HEADの成功ではmerge可能としない |\n| HELIXOS-L2-012 | 内部情報の欠落と外部情報の相違を保持し、秘密送信、取得命令実行、外部patch自動採用、closed／mergedだけの解決認定を拒否する |\n| HELIXOS-L2-013 | 同じ仕事について上流からの欠落と失敗からの原因候補を突合し、管理自身を含む是正ticket、再検証、再観測へ辿る。未着手や観測停止を正常と表示しない |\n\n## 実行・記録の反例\n\n- HELIXOS-L2-004：成果未回収、期限超過、検証者不在、hook非強制surfaceを個別に与え、停止・不足理由を確認する。Worker自身の完了報告だけで独立検証済みにしない。\n- HELIXOS-L2-004／007：reviewer名だけ、GitHub routeだけ、CLI routeだけを順に許可し、指定route以外を起動しないことを確認する。route未指定、別routeの過去許可、timeout、無出力では`review_waiting`を維持し、無許可実行の出力をreview receiptへ採用しない。\n- HELIXOS-L2-005：未計測のSkill、誤推薦、旧版を投入し、候補・利用結果・失効を区別できる。学習結果がHARNESS規則へ無断反映されない。\n- HELIXOS-L2-001／002／005／007／013：Concept／企画L1、要求エンジンの入力・出力L2候補、人間の訂正・採否、採用要求、後続の見逃しを同じ因果IDで登録する。企画価値の要求化漏れ、企画外の意味追加、対象違い、scope／non-goal逸脱を個別に示し、戻す層と判断者へ辿る。登録やログ件数だけでは要求採用・改善成立とせず、許可外の生会話・PII・別project dataを学習へ転用しない。\n- HELIXOS-L2-001／005／007：改善入力の利用同意欠落、data class不明、retention期限超過、許可scope不一致を個別に投入し、拒否または隔離して学習・要求化・別project転用へ進めない。後から許可を補っても、過去の無許可処理を成功へ書き換えない。\n- HELIXOS-L2-001／002／007／013：機能A–Cの単体、A→B／B→Cの接続、システムAの構成体を別identityとrelationで登録する。全単体を完了にしても接続・構成体を自動完了せず、接続変更から影響する単体・構成体・検証へ辿る。\n- HELIXOS-L2-001／002／007／013：要求分類schemaを与えずに原eventを登録し、意味未分類のまま出典と因果関係を再構築できる。後から異なるengine／schema版で分類しても原eventを改変せず、旧分類、stale、新分類を別projectionとして確認する。\n- HELIXOS-L2-001／002／007／013：旧source集合の`registered_source_holding`を先行させる。要求PRごとに、候補semantic digest、入力source atom集合digest、HARNESS無損失被覆receipt、保持atom、別の生存中仮登録へ残すatom、人間decision対象atomを管理層の`registered_proposal`へ束縛する。未計上atom、仮登録欠落、stale record、wrong product、digest不一致、`authority_effect`が`none`以外のいずれかを投入した場合はmerge可能にしない。Issue／PRだけが存在する場合も仮登録済みにしない。\n- HELIXOS-L2-001／002／005／007／013：要求kindとriskを変えてtemplate候補、選定版、設計義務、N/A、backflow、消込を追跡する。template欠落、stale、conflict、必要input欠落では自由形式へfallbackせず、旧template利用実績や文書生成から適用・完成を生成しない。\n",
+        "line_sha256": "5c1db9939c24f590abb7fa2b900f6e446e1dda6b7c89183f428dac2aaadb339a",
+        "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19",
+        "role": "OS acceptance remains draft/unexecuted",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      },
+      {
+        "ref_id": "WEB-L11",
+        "path": "docs/helix-web/L11-acceptance/product-acceptance.md",
+        "product": "HELIX-Web",
+        "classification": "adjacent_current_ref",
+        "layer": "L11",
+        "start_line": 1,
+        "end_line": 31,
+        "exact_text": "---\ntitle: \"HELIX-Web利用要求の受入案\"\ncanonical_vmodel: L1-L12\ncanonical_layer: L11\ncanonical_pair: L2\nlayer: L11\nkind: test_design\nstatus: draft\nfreeze_blocking: true\npair_artifact: docs/helix-web/L2-requirements/product-requirements.md\n---\n\n# HELIX-Web利用要求の受入案\n\n全件未実行。対象要求の採用revision、プロト合意、対象構成、操作、期待結果・実結果と証拠を揃えて評価する。\n将来構想は段階別に採択し、初期サービスの受入へ一律追加しない。\n\n| 親要求 | 利用者による確認と反例 |\n|---|---|\n| HELIXWEB-L2-001 | 選択した環境と別環境を区別し、対象不明・未接続を操作成功と表示しない。対象projectの進行・状態・成果をダッシュボードで辿れる |\n| HELIXWEB-L2-002 | 選択構成・依存・版と導入結果を照合し、未適格な構成や更新失敗を利用可能と表示しない |\n| HELIXWEB-L2-003 | 切断中・取消待ち・結果不明を成功と区別し、復帰後に同じjobと結果へ辿る。二重実行を拒否する |\n| HELIXWEB-L2-004 | 未対応経路・返送対象外の情報を与え、対応済み表示や無断転送が起きない。実方式の採用前に根拠と適用範囲を確認する |\n| HELIXWEB-L2-005 | 診断・更新・復旧と案内付き改修を操作別に評価し、要求差分・影響・プレビュー・回復結果へ辿る。一操作の成功を全改修対応と表示しない |\n| HELIXWEB-L2-006 | モデル版・適用範囲・根拠・不確実性を確認し、不適格モデルや未検証応答を検収済み成果として採用しない |\n| HELIXWEB-L2-007 | Web版と構成版が異なるケースで実構成へ辿り、同一版番号だけを互換性・接続成功の証拠にしない |\n| HELIXWEB-L2-008 | project内利用、Web-OSからHELIX-OSへの運用log export、事業改善、横断知識化、モデル学習を区別し、範囲外の共有を拒否する。改善候補の採否をWeb固有の要求変更と混同しない |\n| HELIXWEB-L2-009 | 複数プロダクトの開発検証またはHELIX自身への適用証拠を欠くHARNESS Version 1ではWeb展開を拒否する。全証拠が揃えば展開可能と判定し、それをWeb完成・公開済みと読み替えない |\n\nHARNESSの単体テスト成功、OSのCI運転成功、Web画面の存在だけでは本受入を満たさない。\n認証・データ返送・学習利用の試験は、採用した方式と許可範囲を確定した検証環境で行う。現時点で外部サービスを操作しない。\n",
+        "line_sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec",
+        "sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec",
+        "role": "Web acceptance remains draft/unexecuted",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      },
+      {
+        "ref_id": "WEBOS-L11",
+        "path": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+        "product": "HELIX-Web-OS",
+        "classification": "adjacent_current_ref",
+        "layer": "L11",
+        "start_line": 1,
+        "end_line": 24,
+        "exact_text": "---\ntitle: \"HELIX-Web-OSサービス運転受入案\"\ncanonical_vmodel: L1-L12\ncanonical_layer: L11\ncanonical_pair: L2\nstatus: draft\nfreeze_blocking: true\npair_artifact: docs/helix-web-os/L2-requirements/service-governance-requirements.md\n---\n\n# HELIX-Web-OSサービス運転受入案\n\n全件未実行。HARNESS Version 1完成とHELIX-Web／Web-OS要求の合意後に、採択した展開環境で評価する。\n\n| 親要求 | 利用者・運用者が確認する結果と反例 |\n|---|---|\n| HELIXWEBOS-L2-001 | 異なるtenant・利用者・projectへ同じ識別子やdataを与え、scope越境とHELIX-OS内部stateのservice利用を拒否する |\n| HELIXWEBOS-L2-002 | Web・Connector・HARNESS能力の版を不一致にし、不適格構成の起動、暗黙更新、engine重複を拒否する |\n| HELIXWEBOS-L2-003 | 切断、再送、取消競合、timeout、結果不明、再起動を与え、二重副作用なしで同じjobと未完義務へ戻る |\n| HELIXWEBOS-L2-004 | wrong target、期限切れ、revoke、範囲外network／data、secret混入を与え、接続・返送・学習利用を拒否する |\n| HELIXWEBOS-L2-005 | event欠落、projection遅延、stale revision、conflictを与え、ダッシュボードが成功・受入済みへ補完しない |\n| HELIXWEBOS-L2-006 | deployment、monitoring、rollback、restore、恒久修復、利用者受入を個別に失敗させ、一つの成功で残りを完了にしない。許可logだけがscope・目的・同意・revision付きでHELIX-OSへ届き、credential、tenant原data、同意範囲外logを拒否する。改善proposalが各対象要求を直接変更しない |\n\nHELIX-OS側のproject管理成功、HARNESS単体成功、Web画面の存在は本受入を代替しない。\n",
+        "line_sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e",
+        "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e",
+        "role": "Web-OS acceptance remains draft/unexecuted",
+        "implementation_status": "not_evidence",
+        "execution_status": "not_run"
+      }
+    ],
+    "scaffold_context": {
+      "binding_id": "SCF-B-0003",
+      "path": "scaffold/bindings/SCF-B-0003.json",
+      "sha256": "9e70f950fe3323925b340cf13b9d125387df8e1b8367576b9a6f9eedc0ba8d6f",
+      "state": "active",
+      "authority_effect": "none",
+      "implementation_status": "scaffold_only",
+      "acceptance_status": "unknown",
+      "meaning": "GUI notification scaffold is a bounded operating projection; it does not establish independent review, canonical receipt, CI, DB convergence, merge authority, or requirement adoption"
+    }
+  },
+  "failure_consumer_residual": {
+    "failure_execution_receipts": 0,
+    "selected_asset_consumer_refs": [],
+    "consumer_closure_status": "pending",
+    "consumer_candidates": [
+      {
+        "consumer_id": "CONSUMER-HARNESS-REVIEW-CONTRACT",
+        "product": "HELIX-HARNESS",
+        "candidate_input": "review/evidence contract",
+        "observed": false,
+        "closure_status": "pending",
+        "evidence_status": "candidate_only",
+        "authority_effect": "none"
+      },
+      {
+        "consumer_id": "CONSUMER-OS-PROGRESSION-ADMISSION",
+        "product": "HELIX-OS",
+        "candidate_input": "receipt/finding/merge admission state",
+        "observed": false,
+        "closure_status": "pending",
+        "evidence_status": "candidate_only",
+        "authority_effect": "none"
+      },
+      {
+        "consumer_id": "CONSUMER-WEB-RESULT-PRESENTATION",
+        "product": "HELIX-Web",
+        "candidate_input": "scoped review/project result",
+        "observed": false,
+        "closure_status": "pending",
+        "evidence_status": "adjacent_candidate_only",
+        "authority_effect": "none"
+      },
+      {
+        "consumer_id": "CONSUMER-WEBOS-SERVICE-OBSERVATION",
+        "product": "HELIX-Web-OS",
+        "candidate_input": "bounded service observation/export",
+        "observed": false,
+        "closure_status": "pending",
+        "evidence_status": "adjacent_candidate_only",
+        "authority_effect": "none"
+      }
+    ],
+    "interpretation": "historical source failure/consumer descriptions remain candidate evidence; current execution, read-after, and closure are unknown",
+    "interpretation_sha256": "d224531d8093b7fcfcd991a4bb29ac0163170f7e74ece6f0a380648000c1d1db"
+  },
+  "unresolved": [
+    "PHCAP-12 review receipt schema、delivery、再開、provider boundaryの正式化",
+    "PHCAP-13 canonical merge admission、current CI、DB convergence、main read-afterの再導出",
+    "HARNESSとOSのunit／connection／composite splitと正式owner",
+    "Web／Web-OSのdirect evidence、service scope、consumer identity",
+    "旧sourceのimplemented／test design記述と現行implementation statusの差分",
+    "failure finding、receipt、consumer read-after、closureの現行証拠",
+    "旧assetの意味再利用、再導出、置換、退役に関する人間decision",
+    "L2/L11 adoption、successor requirement、正式なacceptanceとrelease境界"
+  ],
+  "verification_contract": {
+    "evidence_kind": "scaffold",
+    "negative_cases": [
+      "authority、successor、human decision、equivalenceを候補から生成する",
+      "current implementation、operation、acceptance、product ownerをunknownから昇格する",
+      "Web／Web-OSの隣接refをPHCAP-12/13 direct evidenceへ昇格する",
+      "old source／test／runtimeをexecution、oracle、pass、fallbackへ昇格する",
+      "consumer candidate、pending、failure receipt 0をclosureへ変換する",
+      "unit／connection候補をapproved authority、shared writer、shared stateへ変換する",
+      "unit capability／transition、connection meaning、phase join interpretationを反転する",
+      "phase candidate joinをadmission、successor、要求採否へ変換する",
+      "source／ledger/current ref digestまたはexact anchorを改変する",
+      "origin/main変更後にrebaselineなしでcandidateをcurrent扱いする"
+    ]
+  },
+  "counts": {
+    "selected_legacy_assets": 9,
+    "source_anchors": 16,
+    "current_refs": 12,
+    "product_units": 4,
+    "candidate_connections": 5,
+    "candidate_phase_joins": 2,
+    "consumer_candidates": 4,
+    "decision_records_found": 0,
+    "failure_execution_receipts": 0,
+    "legacy_consumer_refs_observed": 0
+  }
+}
