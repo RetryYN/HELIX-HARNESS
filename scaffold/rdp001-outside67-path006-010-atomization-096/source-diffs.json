@@ -1,0 +1,152 @@
+{
+  "OUTSIDE67-PATH-006": {
+    "pre_isolation": {
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "blob_oid": "f39049a76aa848b3689e0ede767ee048903a9a8c",
+      "bytes": 2139,
+      "sha256": "8ca1121104c30156a917e27177c060edd4ea7d46e13439ff13230a3df3a3b138",
+      "line_count": 25
+    },
+    "archive_revision": {
+      "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "blob_oid": "f39049a76aa848b3689e0ede767ee048903a9a8c",
+      "bytes": 2139,
+      "sha256": "8ca1121104c30156a917e27177c060edd4ea7d46e13439ff13230a3df3a3b138",
+      "line_count": 25
+    },
+    "status": "same",
+    "hunk_count": 0,
+    "unified_diff": [],
+    "current_counterpart": {
+      "commit": "16f694ae07cdb2d56e15045054c147c7a15d3275",
+      "path": "docs/helix-os/README.md",
+      "blob_oid": "481ffe21ae7c678cc1022acb180309b7104aedd7",
+      "bytes": 2240,
+      "sha256": "aa6c9976bf564ef4c2ff0f8d7b07220108e7157f697b8d92e11c689b4060f773",
+      "line_count": 26,
+      "relation": "current_counterpart_path_relocation_and_content_drift_observed"
+    },
+    "meaning_equivalence": "unresolved",
+    "source_ref": "scaffold/rdp001-outside67-product-entry-followup-076"
+  },
+  "OUTSIDE67-PATH-007": {
+    "pre_isolation": {
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "blob_oid": "9b261bb1adbdd655c4149e80c9c420def6fc3f40",
+      "bytes": 3032,
+      "sha256": "9f19c758791a2b8298c5fc848ffdbf434069f3501e0382b5c2677e8843e8643f",
+      "line_count": 50
+    },
+    "archive_revision": {
+      "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "blob_oid": "9b261bb1adbdd655c4149e80c9c420def6fc3f40",
+      "bytes": 3032,
+      "sha256": "9f19c758791a2b8298c5fc848ffdbf434069f3501e0382b5c2677e8843e8643f",
+      "line_count": 50
+    },
+    "status": "same",
+    "hunk_count": 0,
+    "unified_diff": [],
+    "current_counterpart": {
+      "commit": "16f694ae07cdb2d56e15045054c147c7a15d3275",
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "blob_oid": "40268a3ed70d64d710d7ed86f52257c653a20c5b",
+      "bytes": 3018,
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "line_count": 50,
+      "relation": "current_counterpart_path_relocation_and_content_drift_observed"
+    },
+    "meaning_equivalence": "unresolved",
+    "source_ref": "scaffold/rdp001-outside67-boundary-followup-073"
+  },
+  "OUTSIDE67-PATH-008": {
+    "pre_isolation": {
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "blob_oid": "03b19714f5b17095a45181292f6554d754a17f8a",
+      "bytes": 3327,
+      "sha256": "9463747280271ac8fd6de02836c18afbbdbf0de422f6246299aadd45b855f48c",
+      "line_count": 38
+    },
+    "archive_revision": {
+      "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "blob_oid": "03b19714f5b17095a45181292f6554d754a17f8a",
+      "bytes": 3327,
+      "sha256": "9463747280271ac8fd6de02836c18afbbdbf0de422f6246299aadd45b855f48c",
+      "line_count": 38
+    },
+    "status": "same",
+    "hunk_count": 0,
+    "unified_diff": [],
+    "current_counterpart": {
+      "commit": "16f694ae07cdb2d56e15045054c147c7a15d3275",
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "blob_oid": "8c0fcb438d9a8ea81480d2f8342b192d99670d1a",
+      "bytes": 3319,
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "line_count": 38,
+      "relation": "current_counterpart_path_relocation_and_content_drift_observed"
+    },
+    "meaning_equivalence": "unresolved",
+    "source_ref": "scaffold/rdp001-outside67-web-webos-l2-gap-057"
+  },
+  "OUTSIDE67-PATH-009": {
+    "pre_isolation": {
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "blob_oid": "bea226ad2412562c418635b7509af253daefd639",
+      "bytes": 995,
+      "sha256": "1c12792b9626ba0355cb6542d047d2daeb900a837e7eea8f748ebd647b2bb8ed",
+      "line_count": 14
+    },
+    "archive_revision": {
+      "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "blob_oid": "bea226ad2412562c418635b7509af253daefd639",
+      "bytes": 995,
+      "sha256": "1c12792b9626ba0355cb6542d047d2daeb900a837e7eea8f748ebd647b2bb8ed",
+      "line_count": 14
+    },
+    "status": "same",
+    "hunk_count": 0,
+    "unified_diff": [],
+    "current_counterpart": {
+      "commit": "16f694ae07cdb2d56e15045054c147c7a15d3275",
+      "path": "docs/helix-web-os/README.md",
+      "blob_oid": "20002cd56ce6538e2d840034ab293fa43631b186",
+      "bytes": 1187,
+      "sha256": "f5aac7ab9bc83a8c7339a2190f1e39cbaf3f1271edffc80fbdc37e43a4598914",
+      "line_count": 17,
+      "relation": "current_counterpart_path_relocation_and_content_drift_observed"
+    },
+    "meaning_equivalence": "unresolved",
+    "source_ref": "scaffold/rdp001-outside67-product-entry-followup-076"
+  },
+  "OUTSIDE67-PATH-010": {
+    "pre_isolation": {
+      "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+      "blob_oid": "8266c20ee4eaac9e66762ec550076214e4f35f02",
+      "bytes": 3531,
+      "sha256": "5bbf0bbd1919a0668030d29662f45a510d8129e80cbdcc014511826b1ffd004e",
+      "line_count": 56
+    },
+    "archive_revision": {
+      "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+      "blob_oid": "8266c20ee4eaac9e66762ec550076214e4f35f02",
+      "bytes": 3531,
+      "sha256": "5bbf0bbd1919a0668030d29662f45a510d8129e80cbdcc014511826b1ffd004e",
+      "line_count": 56
+    },
+    "status": "same",
+    "hunk_count": 0,
+    "unified_diff": [],
+    "current_counterpart": {
+      "commit": "16f694ae07cdb2d56e15045054c147c7a15d3275",
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "blob_oid": "1799da6ab34c9d3f41316ac650becb146d5c625f",
+      "bytes": 3559,
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "line_count": 56,
+      "relation": "current_counterpart_path_relocation_and_content_drift_observed"
+    },
+    "meaning_equivalence": "unresolved",
+    "source_ref": "scaffold/rdp001-outside67-boundary-followup-073"
+  }
+}
