@@ -1,0 +1,187 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0121",
+  "kind": "scaffold",
+  "title": "outside67 Web／Web-OS 未処理4 path L1 anchor research candidate",
+  "product": "HELIX-Web",
+  "owner_candidate": "outside67 Web／Web-OS L1 anchor semantic review（最終owner未解決）",
+  "state": "registered",
+  "reason": "MPR-SH-OUTSIDE67-001の未処理4 path（PATH-007／009／010／012）についてholding、pre-isolation、archiveのexact Git bytes／digestと現行四製品L1候補を静的に照合し、Web L1 6＋Web-OS L1 5のrow-sized anchor候補およびREADME context 2件を保持するresearch-only Scaffold。現行L1はdraft／parent approval待ち、旧pathはpath-level contextであり、formal unit、phase、実装、縮退、failure、consumer、authorityへ昇格しない。既存SCF-B-0057／0062／0080〜0091の対象pathとの重複を拒否し、#1813は進捗参照のみとする。",
+  "upstream": [
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0057.json",
+      "sha256": "0eee02ec11f6c6e3bc7e7f741de6b2d7b1e6cc39f733528bc26926b685cc70eb",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0062.json",
+      "sha256": "114d2186012af42356929a9c9b539e15f9eac64c7b09aa798bfe2b7d0ee0b952",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0080.json",
+      "sha256": "3d0f61775d0095774a6057c381f581576fca420e43c7e511c94cad761681a6e2",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0081.json",
+      "sha256": "5ac1b306f661909e633ab3a4c97de74808acd776652b24c077ba7ce9ec5b758c",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0084.json",
+      "sha256": "2156e887025045d5c03303d0bc9006f8f7e678dff5c7ff7b49b2d81f9360571c",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0088.json",
+      "sha256": "4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3",
+      "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0091.json",
+      "sha256": "51c4ea21a0531384c3a3cff9262248a2e25e8732b46b2da295ab688423ad026b",
+      "note": "fixed BASE static input; no old runtime execution"
+    }
+  ],
+  "role": "outside67 Web／Web-OS未処理4 pathのL1 anchor候補とREADME contextをsource digest／line／全field比較で保持するresearch-only Scaffold",
+  "obligations": [
+    "outside67 67 path_revision_pair分母、14 live holding、対象4 pathをholding／register digest付きで固定する",
+    "対象4 pathのpre-isolation／archive commit、blob、SHA、bytes、snapshot原文を照合する",
+    "current Web L1 6行＋Web-OS L1 5行をsource path／line／text／L2接続へ束縛し、candidate-onlyとして保持する",
+    "README 2件をcontext-onlyとして保持し、formal unit集合へ算入しない",
+    "phase／implementation／degradation／failure／consumerをunknown、formal unitをnot_generated、authorityをnoneに固定する",
+    "既存SCF-B-0057／0062／0080／0081／0084／0088／0091との対象path重複とcandidate ID重複を拒否する",
+    "固定BASE祖先性、入力digest、全field schema、14負例の期待error codeを検証する",
+    "旧source／archive／runtime／test／CIを実行せず、要求採択、formal phase、authority、実装、縮退、failure／consumer closureを生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "outside67 source／L1 semantic reviewer",
+      "四製品 product-boundary reviewer",
+      "Scaffold Binding stale／replacement reviewer"
+    ],
+    "dependencies": [
+      "MPR-SH-OUTSIDE67-001 source holding",
+      "current four-product boundary and Web／Web-OS L1 draft",
+      "existing SCF-B-0057／0062／0080／0081／0084／0088／0091 overlap records",
+      "Python standard library and Git read-only object bytes"
+    ],
+    "boundary": "bundle内のsource snapshot、candidate、context、inventory、validator、selfcheckはresearch candidate。旧pathはstatic reference only。検証結果からformal requirement、phase、implementation、degradation、failure、consumer closure、authority、successor、下流設計を生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/rdp001-outside67-web-webos-l1-anchor-0121/generate.py",
+      "python3 scaffold/rdp001-outside67-web-webos-l1-anchor-0121/validate.py",
+      "python3 scaffold/rdp001-outside67-web-webos-l1-anchor-0121/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "旧archive source／runtime／test／CI／hook／adapterの実行",
+      "正式要求、L1採択、phase、実装、縮退、failure、consumer、authority、successorの生成",
+      "scaffold外への書き込み",
+      "merge／close／deployment"
+    ]
+  },
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0121.json",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/README.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/method.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/premise.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/status.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/PR-DRAFT.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/generate.py",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/inventory.json",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/source-items.jsonl",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/candidate-units.jsonl",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/context-records.jsonl",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/source-diffs.json",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/validate.py",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/selfcheck.py",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/source-snapshots/OUTSIDE67-PATH-007/pre-isolation.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/source-snapshots/OUTSIDE67-PATH-007/archive.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/source-snapshots/OUTSIDE67-PATH-009/pre-isolation.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/source-snapshots/OUTSIDE67-PATH-009/archive.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/source-snapshots/OUTSIDE67-PATH-010/pre-isolation.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/source-snapshots/OUTSIDE67-PATH-010/archive.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/source-snapshots/OUTSIDE67-PATH-012/pre-isolation.md",
+    "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/source-snapshots/OUTSIDE67-PATH-012/archive.md"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "validate.py（固定BASE祖先性、4 source snapshot、11 L1 anchor候補、2 README context、holding／register／L1／boundary digest、既存binding重複、unknown／authority／formal boundary）",
+      "selfcheck.py（14 negative casesと期待error codeの一致）",
+      "scfctl validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "4 source item IDs／pre-isolation／archive snapshotの改変はE_SOURCE_DIGEST／E_SOURCE_SNAPSHOT／E_SOURCE_SCHEMAで拒否",
+      "候補IDの欠落・重複・余分はE_UNIT_SETで拒否",
+      "11 anchor候補のsource／line／text／全field改変はE_CANDIDATE_RECORDで拒否",
+      "2 README contextをformal unitへ変更する改変はE_CONTEXT_BOUNDARYで拒否",
+      "phase unknownからcandidateへの昇格はE_PHASE_BOUNDARYで拒否",
+      "implementation unknownからimplementedへの昇格はE_IMPLEMENTATION_BOUNDARYで拒否",
+      "formal unit count/statusの生成はE_FORMAL_UNITで拒否",
+      "authority noneからgrantedへの昇格はE_AUTHORITY_BOUNDARYで拒否",
+      "既存SCF-B-0057／0062／0080／0081／0084／0088／0091とのpath重複はE_OVERLAPで拒否",
+      "inventory negative_case_codes／candidate countsの改変はE_INVENTORY_DECLARATIONで拒否",
+      "holding／register／L1／boundary／entry digestまたはpinsの改変はE_INPUT_DIGESTで拒否",
+      "fixed BASE宣言または祖先性の改変はE_BASE_COMMITで拒否",
+      "old runtime／test／CI実行記録の混入を許さない",
+      "formal register／successor／meaning changeの生成を許さない"
+    ]
+  },
+  "replacement": {
+    "role_target": "対象revision付きoutside67 source／L1 anchor管理を扱う正式なHELIX上流管理契約（L1／L2から導出）",
+    "formal_artifacts": [],
+    "issue": 1813,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-23",
+  "updated": "2026-09-23"
+}

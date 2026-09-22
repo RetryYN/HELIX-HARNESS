@@ -1,0 +1,134 @@
+{
+  "schema": "rdp001-outside67-web-webos-l1-anchor/v1",
+  "candidate_id": "RDP-001-OUTSIDE67-WEB-WEBOS-L1-0121",
+  "status": "findings_only",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "formal_register_append": false,
+  "old_runtime_test_ci_execution": false,
+  "new_build": false,
+  "scope": {
+    "worktree": "outside67-web-l1-0121",
+    "base_origin_main": "e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b",
+    "base_origin_main_observed_at": "e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b",
+    "required_ancestor": "e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b",
+    "read_only": true,
+    "static_only": true,
+    "holding_registration_id": "MPR-SH-OUTSIDE67-001",
+    "holding_path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "holding_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+    "holding_path_revision_pair_denominator": 67,
+    "holding_record_count": 67,
+    "current_live_source_holding_count": 14,
+    "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "management_register_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+    "selected_source_document_count": 4,
+    "selected_path_revision_pair_count": 4,
+    "unselected_path_revision_pair_count": 63,
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "historical_capture_commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
+    "old_runtime_test_ci_execution": false
+  },
+  "source_holding": {
+    "registration_id": "MPR-SH-OUTSIDE67-001",
+    "source_collection_scope": "outside67 reportの67 path_revision_pair。要求unitではなくsource保存単位。",
+    "selected_item_ids": [
+      "OUTSIDE67-PATH-007",
+      "OUTSIDE67-PATH-009",
+      "OUTSIDE67-PATH-010",
+      "OUTSIDE67-PATH-012"
+    ],
+    "selected_ordinals": [
+      7,
+      9,
+      10,
+      12
+    ],
+    "unselected_count": 63,
+    "current_live_source_holding_count": 14
+  },
+  "candidate_summary": {
+    "candidate_unit_count": 11,
+    "web_l1_candidate_unit_count": 6,
+    "webos_l1_candidate_unit_count": 5,
+    "readme_context_record_count": 2,
+    "source_item_count": 4,
+    "formal_requirement_unit_count": 0,
+    "formal_requirement_unit_status": "not_generated",
+    "row_sized_anchor_candidate_status": "research_only",
+    "context_records_are_units": false
+  },
+  "unknown_partition": {
+    "phase_status": "unknown",
+    "implementation_status": "unknown",
+    "degradation_status": "unknown",
+    "failure_status": "unknown",
+    "consumer_status": "unknown",
+    "authority_status": "none",
+    "formal_unit_status": "not_generated",
+    "all_candidate_units_unknown_count": 11,
+    "all_context_records_unknown_count": 2
+  },
+  "four_product_boundary": {
+    "products": [
+      "HELIX-HARNESS",
+      "HELIX-OS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "candidate_products": [
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "source_product_status": "candidate_only",
+    "authority_effect": "none"
+  },
+  "overlap_control": {
+    "existing_binding_ids": [
+      "SCF-B-0057",
+      "SCF-B-0062",
+      "SCF-B-0080",
+      "SCF-B-0081",
+      "SCF-B-0084",
+      "SCF-B-0088",
+      "SCF-B-0091"
+    ],
+    "existing_target_path_ids": [
+      "OUTSIDE67-PATH-008",
+      "OUTSIDE67-PATH-011",
+      "OUTSIDE67-PATH-059",
+      "OUTSIDE67-PATH-063",
+      "OUTSIDE67-PATH-064",
+      "OUTSIDE67-PATH-065",
+      "OUTSIDE67-PATH-066"
+    ],
+    "overlap_result": "no target path selected by listed bindings",
+    "duplicate_candidate_ids": [],
+    "formal_unit_ids": []
+  },
+  "input_digest_pins": {
+    "product_boundary": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+    "web_l1": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+    "webos_l1": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+    "new_generation_entry": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
+  },
+  "negative_case_codes": [
+    "E_SOURCE_DIGEST",
+    "E_SOURCE_SNAPSHOT",
+    "E_SOURCE_SCHEMA",
+    "E_UNIT_SET",
+    "E_CANDIDATE_RECORD",
+    "E_CONTEXT_BOUNDARY",
+    "E_PHASE_BOUNDARY",
+    "E_IMPLEMENTATION_BOUNDARY",
+    "E_FORMAL_UNIT",
+    "E_AUTHORITY_BOUNDARY",
+    "E_OVERLAP",
+    "E_INVENTORY_DECLARATION",
+    "E_INPUT_DIGEST",
+    "E_BASE_COMMIT"
+  ]
+}
