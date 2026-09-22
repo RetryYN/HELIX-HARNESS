@@ -1,8 +1,8 @@
 # SCF-B-0100 旧IR対象routing未解決18件の製品unit bridge
 
-status: research_only_candidate  
-authority_effect: none  
-binding: `scaffold/bindings/SCF-B-0100.json`  
+status: research_only_candidate
+authority_effect: none
+binding: `scaffold/bindings/SCF-B-0100.json`
 base_head: `36784d25aa4cc53d89c28c2ff81b4009db234605`
 
 このbundleは、`legacy-ir-target-routing-queue.jsonl`で`target_resolution_status=unresolved_target`となっている18件を、旧IR原文、四製品routing bootstrap、製品unit decomposition bootstrap、製品責務境界、旧資産台帳と照合するread-only研究束である。queue側の18件を正式変更せず、先行台帳側に存在する候補unitとの状態差分を記録する。
