@@ -286,8 +286,10 @@ def verify() -> None:
             decomposition[candidate["unit_candidate_id"]] = (parent, candidate)
     relations = {row["requirement_id"]: row for row in read_jsonl(RELATION_PATH)}
 
-    require(len(rows) == 12 and meta["record_count"] == 12, "record count")
-    require([row["review_id"] for row in rows] == [f"LSRW43-EDGE-{i:03d}" for i in range(1, 13)], "review order")
+    expected_current_edge_count = sum(len(SELECTED[unit]) for unit in UNITS)
+    expected_current_unit_count = len(UNITS)
+    require(len(rows) == expected_current_edge_count and meta["record_count"] == expected_current_edge_count, "record count")
+    require([row["review_id"] for row in rows] == [f"LSRW43-EDGE-{i:03d}" for i in range(1, expected_current_edge_count + 1)], "review order")
     require(meta["schema_revision"] == 10 and meta["batch_id"] == BATCH, "schema/batch")
     require(meta["current_tree_revision"] == BASE and meta["parent_revision"] == BASE and meta["stacked_pr_parent_revision"] == BASE, "base lineage")
     require(meta["main_merge_revision"] == BASE and meta["main_merge_parents"] == MAIN_MERGE_PARENTS, "merge lineage")
@@ -298,10 +300,11 @@ def verify() -> None:
     ancestor = subprocess.run(["git", "merge-base", "--is-ancestor", BASE, head.stdout.strip()], cwd=ROOT, capture_output=True, check=False)
     require(ancestor.returncode == 0, "required base is ancestor")
     require(meta["reviewed_unit_ids"] == UNITS, "unit order")
-    require(meta["semantic_link_counts"] == {"confirmed": 5, "rejected": 0, "unresolved": 7}, "semantic counts")
-    require(meta["cumulative_reviewed_unit_count"] == 171 and meta["cumulative_reviewed_edge_count"] == 497 and meta["remaining_unit_count"] == 42, "cumulative counts")
+    require(meta["semantic_link_counts"] == {"confirmed": expected_current_unit_count, "rejected": 0, "unresolved": expected_current_edge_count - expected_current_unit_count}, "semantic counts")
     require(meta["output_sha256"] == file_digest(LEDGER), "ledger digest")
-    require(meta["semantic_atom_count"] == 8 and meta["composite_unresolved_count"] == 5, "atomization counts")
+    expected_atom_count = len({atom["atom_id"] for row in rows for atom in row["covered_requirement_atoms"]})
+    expected_composite_count = len(meta["source_atomization_holds"])
+    require(meta["semantic_atom_count"] == expected_atom_count and meta["composite_unresolved_count"] == expected_composite_count, "atomization counts")
     require(meta["asset_status_receipts"] == expected_asset_status_receipts({asset for assets in SELECTED.values() for asset in assets}, dispositions, decisions, read_afters), "asset decision/failure/consumer receipts")
     inspected = set(meta["inspected_legacy_asset_ids"])
     selected_assets = {asset for assets in SELECTED.values() for asset in assets}
@@ -342,7 +345,10 @@ def verify() -> None:
     prior_edges, prior_assets, prior_units = prior_edges_and_assets()
     require(not current_edges & prior_edges, "prior unit/asset edge overlap")
     require(not ({row["asset_id"] for row in rows if row["role_kind"] != "requirement"} & prior_assets), "prior implementation/design asset overlap")
-    require(len(prior_units | set(UNITS)) == 176 and len(prior_edges | current_edges) == 509, "cumulative union")
+    cumulative_units = prior_units | set(UNITS)
+    cumulative_edges = prior_edges | current_edges
+    require(len(set(current_edges)) == expected_current_edge_count and len(set(UNITS)) == expected_current_unit_count, "current wave dynamic counts")
+    require(meta["cumulative_reviewed_unit_count"] == len(cumulative_units) and meta["cumulative_reviewed_edge_count"] == len(cumulative_edges) and meta["remaining_unit_count"] == len(decomposition) - len(cumulative_units), "cumulative counts")
 
     by_unit = {unit: [row for row in rows if row["unit_candidate_id"] == unit] for unit in UNITS}
     expected_missing = {("design", "IRUNIT-HIL-NFR-12-HELIX-OS"), ("implementation_source", "IRUNIT-HIL-NFR-12-HELIX-OS"), ("implementation_source", "IRUNIT-HIL-NFR-13-HELIX-OS")}

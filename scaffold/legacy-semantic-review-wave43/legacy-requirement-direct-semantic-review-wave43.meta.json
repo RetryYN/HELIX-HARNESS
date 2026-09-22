@@ -307,8 +307,8 @@
   },
   "composite_unresolved_count": 5,
   "consumer_closure_status": "pending",
-  "cumulative_reviewed_edge_count": 497,
-  "cumulative_reviewed_unit_count": 171,
+  "cumulative_reviewed_edge_count": 509,
+  "cumulative_reviewed_unit_count": 176,
   "current_tree_revision": "f805a12cc16d2c776107ae224349e8863c8b602f",
   "inputs": {
     "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",

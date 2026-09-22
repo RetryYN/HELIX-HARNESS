@@ -525,6 +525,17 @@ def main() -> None:
         prior_meta = json.loads(meta_path.read_text())
         prior_batches.append({"batch_id": prior_meta["batch_id"], "ledger_sha256": file_digest(ledger), "meta_sha256": file_digest(meta_path)})
 
+    prior_unit_ids = set()
+    prior_edge_ids = set()
+    for wave in range(1, 43):
+        _, ledger = prior_artifact(wave, "jsonl")
+        for prior_row in read_jsonl(ledger):
+            prior_unit_ids.add(prior_row["unit_candidate_id"])
+            prior_edge_ids.add((prior_row["unit_candidate_id"], prior_row["asset_id"]))
+    current_edge_ids = {(row["unit_candidate_id"], row["asset_id"]) for row in rows}
+    cumulative_unit_ids = prior_unit_ids | set(selected_units)
+    cumulative_edge_ids = prior_edge_ids | current_edge_ids
+
     meta = {
         "authority_effect": "none",
         "batch_id": BATCH,
@@ -533,8 +544,8 @@ def main() -> None:
         "supplemental_asset_receipts": supplemental_asset_receipts,
         "inspected_legacy_asset_ids": sorted(set(selected_asset_ids) | set(SUPPLEMENTAL_ASSET_IDS)),
         "consumer_closure_status": "pending",
-        "cumulative_reviewed_edge_count": 497,
-        "cumulative_reviewed_unit_count": 171,
+        "cumulative_reviewed_edge_count": len(cumulative_edge_ids),
+        "cumulative_reviewed_unit_count": len(cumulative_unit_ids),
         "current_tree_revision": BASE,
         "inputs": inputs,
         "legacy_execution_performed": False,
@@ -550,7 +561,7 @@ def main() -> None:
         "record_count": len(rows),
         "semantic_atom_count": len({atom["atom_id"] for row in rows for atom in row["covered_requirement_atoms"]}),
         "composite_unresolved_count": sum(spec["composite_unresolved_count"] for spec in UNIT_SPECS),
-        "remaining_unit_count": 42,
+        "remaining_unit_count": len(decomposition) - len(cumulative_unit_ids),
         "reviewed_edges": [{"asset_id": row["asset_id"], "unit_candidate_id": row["unit_candidate_id"]} for row in rows],
         "reviewed_unit_ids": selected_units,
         "schema_revision": 10,

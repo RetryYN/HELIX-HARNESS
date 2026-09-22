@@ -144,6 +144,11 @@ def mutate_missing_reason(meta) -> None:
     meta["missing_evidence_receipts"][0]["reason"] = "ZZZ"
 
 
+def mutate_prior_cumulative_counts(meta) -> None:
+    meta["cumulative_reviewed_unit_count"] = 171
+    meta["cumulative_reviewed_edge_count"] = 497
+
+
 rejected_meta("ancestor base gate tamper", mutate_ancestor_gate)
 rejected("source span injection", mutate_source_span)
 rejected("atom identity injection", mutate_atom_identity)
@@ -160,5 +165,6 @@ rejected("current implementation promotion", mutate_implementation_promotion)
 rejected("unresolved literal binding promotion", mutate_unresolved_binding_promotion)
 rejected_meta("missing evidence receipt deletion", mutate_missing_receipt)
 rejected_meta("missing evidence reason tamper", mutate_missing_reason)
+rejected_meta("prior cumulative counts left unchanged", mutate_prior_cumulative_counts)
 
-print("Wave43 selfcheck: PASS (validator plus sixteen negative mutations)")
+print("Wave43 selfcheck: PASS (validator plus seventeen negative mutations)")

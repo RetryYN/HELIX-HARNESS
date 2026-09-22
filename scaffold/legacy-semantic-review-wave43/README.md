@@ -20,6 +20,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-`validate.py`はlatest-main ancestor、source digest、unit／edge／atom keyset、bounded candidate search、asset catalog／decision／failure／consumer receipt、prior non-overlap、同一batch内のnon-requirement asset重複、NFR-15 shared relation、missing evidence、authority／phase／implementation／degradation boundaryをfail-closedに検査する。`selfcheck.py`は本体validator経路で16件の負例を検査する。
+`validate.py`はlatest-main ancestor、source digest、unit／edge／atom keyset、bounded candidate search、asset catalog／decision／failure／consumer receipt、prior ledger再集計、同一batch内のnon-requirement asset重複、NFR-15 shared relation、missing evidence、authority／phase／implementation／degradation boundaryをfail-closedに検査する。`selfcheck.py`は本体validator経路で17件の負例を検査する。
 
 候補はDraft PRで意味reviewへ渡し、正式化、採否、merge、release、deployment、旧archive実行はreview側境界に従う。このBindingの `replacement.issue=0` はDraft PR未割当を表すtracker sentinelであり、PR番号を推定しない。

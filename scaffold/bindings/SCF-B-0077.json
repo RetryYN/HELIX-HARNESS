@@ -85,7 +85,7 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave43/README.md",
-      "sha256": "0fa2cb24a00ee5b89a7a956eb7659b5a7aff3fec762d06fc5dedcf15ac8cf906",
+      "sha256": "0af3ef35a0fc55cb7389fbcedec705b93f00657e4fa98c2f5781790b942c9772",
       "note": "Wave43 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
@@ -100,17 +100,17 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave43/generate.py",
-      "sha256": "a97162eb6adce103bc90ca926a956e6503573937c5ab92c60cb6c3a78beae380",
+      "sha256": "7467188c8a4dc8c7da41a3232208ab4cb2522a9801b5d8e6e5a2e02a4e1bb0c0",
       "note": "Wave43 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave43/validate.py",
-      "sha256": "64a2c43b21e84c7f67aaedb4f867c6fd5611010445239cbbcab7c656af5207a3",
+      "sha256": "951d53d0f5c4579c7ed46fa8bce9fd7767beef14703832b75c04220e45ca075a",
       "note": "Wave43 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave43/selfcheck.py",
-      "sha256": "0a293089375141533e487e040ace0e4aa0a9a4fabba69c41ee4fd264b1a2b3ed",
+      "sha256": "cf29886c0e7f7e2cff06a13694b495959d23d0c17a3024b6150d1ef64422930a",
       "note": "Wave43 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
@@ -120,7 +120,7 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.meta.json",
-      "sha256": "c9e8b2eee9960cacec06e8b630178cf9871edf73d86fcabd063499c0c8c7953d",
+      "sha256": "8b56237ca8fb0f7ce3c63ec9757594478e5025d99ed3bc1d1a9479a2e0fc91ef",
       "note": "Wave43 static input or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     }
   ],
@@ -188,7 +188,7 @@
     "oracles": [
       "Wave43 generate.py→ledger/meta deterministic regeneration",
       "Wave43 validate.py（12 rows／5 unit／12 edge／8 atom／5 composite、source／asset receipt、shared relation、missing evidence、prior non-overlap、latest-main ancestor gate）",
-      "Wave43 selfcheck.py（本体validator経路の16 negative mutation）",
+      "Wave43 selfcheck.py（本体validator経路の17 negative mutation）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],
