@@ -63,6 +63,20 @@ SELECTOR = {
     "asset_class": "RequirementSourceSnapshot",
     "disposition": "source_snapshot_preservation",
 }
+INVENTORY_TOP_LEVEL_KEYS = {
+    "anchor_rule", "authority_boundary", "base_revision", "base_source_mode",
+    "binding_id", "bundle_kind", "expected_asset_count", "input_digests",
+    "negative_case_codes", "output_sha256", "schema_revision", "scope",
+    "search_boundaries", "selection",
+}
+EXPECTED_BUNDLE_KIND = "research_scaffold_non_executable_requirement_source_evidence_partition"
+NEGATIVE_CASE_CODES = [
+    "E_SCHEMA", "E_BASE_PIN", "E_BASE_NOT_ANCESTOR", "E_INPUT_SET", "E_INPUT_DIGEST",
+    "E_OUTPUT_DIGEST", "E_SCOPE", "E_SELECTION", "E_LEDGER_RECORD", "E_SOURCE_EVIDENCE",
+    "E_ANCHOR", "E_BOUNDARY", "E_UNIT_BINDING", "E_IMPLEMENTATION_EVIDENCE",
+    "E_DEGRADATION_EVIDENCE", "E_UNIMPLEMENTED_EVIDENCE", "E_FAILURE_EVIDENCE",
+    "E_ACCEPTANCE_EVIDENCE", "E_AUTHORITY_BOUNDARY", "E_ASSET_SET", "E_EVIDENCE",
+]
 
 
 def git_bytes(path: str) -> bytes:
@@ -271,7 +285,7 @@ def build() -> None:
     inventory = {
         "schema_revision": 1,
         "binding_id": "SCF-B-0122",
-        "bundle_kind": "research_scaffold_non_executable_requirement_source_evidence_partition",
+        "bundle_kind": EXPECTED_BUNDLE_KIND,
         "base_revision": BASE_REVISION,
         "base_source_mode": "all ledger/history/crosswalk/Wave/audit and source/target evidence bytes from fixed BASE Git objects",
         "authority_boundary": {"authority_effect": "none", "formal_implementation_claim_updated": False, "formal_degradation_claim_updated": False, "formal_unimplemented_claim_updated": False, "formal_current_implementation_claim_updated": False, "acceptance_verdict_created": False, "new_build_allowed": False, "status_rule": "unknown_when_direct_unit_evidence_is_missing"},
@@ -281,6 +295,7 @@ def build() -> None:
         "search_boundaries": {"all_product_units": 218, "all_source_ids": 153, "all_wave_edges": wave_count, "all_wave_unique_assets": len({r["asset_id"] for _, _, _, r in all_wave}), "all_ledger_rows": len(disposition), "crosswalk_fields": ["candidate_asset_pool.phase_and_product_candidate_asset_ids", "representative_legacy_assets", "direct_legacy_asset_links"], "history_fields": ["legacy-asset-decisions.jsonl", "legacy-asset-copy-read-after.jsonl", "legacy-asset-phase-product-classification-bootstrap.jsonl"], "failure_consumer_sources": [FAILURE_SOURCE, CONSUMER_SOURCE], "negative_boundary": "source/design/IR text, candidate product/phase, preservation copy/read-after, Wave semantic relation, and definition-only acceptance assets do not establish old/current implementation, degradation, unimplementation, failure verdict, consumer closure, or acceptance verdict"},
         "input_digests": input_digests(input_paths(selected)),
         "expected_asset_count": 29,
+        "negative_case_codes": NEGATIVE_CASE_CODES,
         "output_sha256": "",
     }
     inventory_path = BUNDLE / "inventory.json"

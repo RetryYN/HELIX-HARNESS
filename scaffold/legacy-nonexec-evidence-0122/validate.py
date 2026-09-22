@@ -51,6 +51,20 @@ TOP_LEVEL_KEYS = {
     "degradation_evidence", "failure_evidence", "history_evidence", "unimplemented_evidence", "legacy_implementation_evidence", "legacy_status",
     "ledger_record", "product_phase_candidates", "requirement_binding", "source_exact", "unit_binding", "unresolved",
 }
+INVENTORY_TOP_LEVEL_KEYS = {
+    "anchor_rule", "authority_boundary", "base_revision", "base_source_mode",
+    "binding_id", "bundle_kind", "expected_asset_count", "input_digests",
+    "negative_case_codes", "output_sha256", "schema_revision", "scope",
+    "search_boundaries", "selection",
+}
+EXPECTED_BUNDLE_KIND = "research_scaffold_non_executable_requirement_source_evidence_partition"
+NEGATIVE_CASE_CODES = [
+    "E_SCHEMA", "E_BASE_PIN", "E_BASE_NOT_ANCESTOR", "E_INPUT_SET", "E_INPUT_DIGEST",
+    "E_OUTPUT_DIGEST", "E_SCOPE", "E_SELECTION", "E_LEDGER_RECORD", "E_SOURCE_EVIDENCE",
+    "E_ANCHOR", "E_BOUNDARY", "E_UNIT_BINDING", "E_IMPLEMENTATION_EVIDENCE",
+    "E_DEGRADATION_EVIDENCE", "E_UNIMPLEMENTED_EVIDENCE", "E_FAILURE_EVIDENCE",
+    "E_ACCEPTANCE_EVIDENCE", "E_AUTHORITY_BOUNDARY", "E_ASSET_SET", "E_EVIDENCE",
+]
 
 
 def fail(code: str, message: str) -> None:
@@ -147,8 +161,12 @@ def verify_inventory(inventory: dict, evidence_path: Path) -> list[dict]:
     selected = selected_rows()
     if len(selected) != 29:
         fail("E_SELECTION", f"fixed-base selector yielded {len(selected)}, expected 29")
+    if set(inventory) != INVENTORY_TOP_LEVEL_KEYS:
+        fail("E_SCHEMA", "inventory top-level key set drift")
     if inventory.get("schema_revision") != 1 or inventory.get("binding_id") != "SCF-B-0122":
         fail("E_SCHEMA", "inventory schema or binding id mismatch")
+    if inventory.get("bundle_kind") != EXPECTED_BUNDLE_KIND:
+        fail("E_SCHEMA", "inventory bundle_kind drift")
     if inventory.get("base_revision") != BASE_REVISION or inventory.get("base_source_mode") != "all ledger/history/crosswalk/Wave/audit and source/target evidence bytes from fixed BASE Git objects":
         fail("E_BASE_PIN", "fixed BASE or source mode drift")
     expected_authority = {"authority_effect": "none", "formal_implementation_claim_updated": False, "formal_degradation_claim_updated": False, "formal_unimplemented_claim_updated": False, "formal_current_implementation_claim_updated": False, "acceptance_verdict_created": False, "new_build_allowed": False, "status_rule": "unknown_when_direct_unit_evidence_is_missing"}
@@ -182,6 +200,8 @@ def verify_inventory(inventory: dict, evidence_path: Path) -> list[dict]:
     expected_boundaries = {"all_product_units": 218, "all_source_ids": 153, "all_wave_edges": 598, "all_wave_unique_assets": 355, "all_ledger_rows": 4020, "crosswalk_fields": ["candidate_asset_pool.phase_and_product_candidate_asset_ids", "representative_legacy_assets", "direct_legacy_asset_links"], "history_fields": ["legacy-asset-decisions.jsonl", "legacy-asset-copy-read-after.jsonl", "legacy-asset-phase-product-classification-bootstrap.jsonl"], "failure_consumer_sources": [FAILURE_SOURCE, CONSUMER_SOURCE], "negative_boundary": "source/design/IR text, candidate product/phase, preservation copy/read-after, Wave semantic relation, and definition-only acceptance assets do not establish old/current implementation, degradation, unimplementation, failure verdict, consumer closure, or acceptance verdict"}
     if boundaries != expected_boundaries:
         fail("E_BOUNDARY", "search boundary declaration drift")
+    if inventory.get("expected_asset_count") != 29 or inventory.get("expected_asset_count") != len(selected) or inventory.get("negative_case_codes") != NEGATIVE_CASE_CODES:
+        fail("E_SCOPE", "inventory declaration drift")
     return selected
 
 

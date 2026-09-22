@@ -693,5 +693,28 @@
     }
   ],
   "expected_asset_count": 29,
+  "negative_case_codes": [
+    "E_SCHEMA",
+    "E_BASE_PIN",
+    "E_BASE_NOT_ANCESTOR",
+    "E_INPUT_SET",
+    "E_INPUT_DIGEST",
+    "E_OUTPUT_DIGEST",
+    "E_SCOPE",
+    "E_SELECTION",
+    "E_LEDGER_RECORD",
+    "E_SOURCE_EVIDENCE",
+    "E_ANCHOR",
+    "E_BOUNDARY",
+    "E_UNIT_BINDING",
+    "E_IMPLEMENTATION_EVIDENCE",
+    "E_DEGRADATION_EVIDENCE",
+    "E_UNIMPLEMENTED_EVIDENCE",
+    "E_FAILURE_EVIDENCE",
+    "E_ACCEPTANCE_EVIDENCE",
+    "E_AUTHORITY_BOUNDARY",
+    "E_ASSET_SET",
+    "E_EVIDENCE"
+  ],
   "output_sha256": "sha256:8ff02aec3aeb83bea3a65335033d5353a5c382e829bd6f79f9cf4784ac2c7315"
 }

@@ -13,9 +13,9 @@
 
 ## 検証
 
-- `validate.py`: PASS（29件、98 input digest、source／target／history／Wave／crosswalk集合を固定BASEから再導出）
-- `selfcheck.py`: PASS（24負例）
-- `scfctl validate`: PASS（bindings=124 fail=0、最新origin/main祖先性確認済み）
+- `validate.py`: PASS（29件、98 input digest＝non-archive 97＋archive MANIFEST 1、source／target／history／Wave／crosswalk集合を固定BASEから再導出。inventory key集合／bundle_kind／expected_asset_count／negative_case_codes／binding_id／path集合／anchor_rule／search_boundariesも厳密比較）
+- `selfcheck.py`: PASS（34負例。inventory top-level key追加・欠落、bundle_kind、expected count、negative_case_codes、binding_id、input path、anchor_rule、search_boundariesを含む）
+- `scfctl validate`: PASS（bindings=127 fail=0、最新origin/main祖先性確認済み）
 - `scfctl stale`: PASS（stale=0）
 - `scfctl residuals`: PASS（residuals=0）
 - `git diff --check`: PASS

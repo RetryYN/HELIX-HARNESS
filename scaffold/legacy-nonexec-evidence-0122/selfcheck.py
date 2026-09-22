@@ -70,12 +70,22 @@ def main() -> int:
     expect("duplicate asset row", lambda inv, rs: rs.__setitem__(1, copy.deepcopy(rs[0])), "E_ASSET_SET")
     expect("missing asset row", lambda inv, rs: rs.pop(), "E_ASSET_SET")
     expect("input digest tamper", lambda inv, rs: inv["input_digests"][0].update(sha256="sha256:" + "0" * 64), "E_INPUT_DIGEST")
+    expect("input path omission", lambda inv, rs: inv["input_digests"].pop(), "E_INPUT_SET")
+    expect("input path duplicate", lambda inv, rs: inv["input_digests"].__setitem__(1, copy.deepcopy(inv["input_digests"][0])), "E_INPUT_SET")
     expect("base pin tamper", lambda inv, rs: inv.update(base_revision="0" * 40), "E_BASE_PIN")
     expect("scope denominator tamper", lambda inv, rs: inv["scope"].update(selected_assets=28), "E_SCOPE")
+    expect("expected asset count tamper", lambda inv, rs: inv.update(expected_asset_count=28), "E_SCOPE")
+    expect("negative case declaration tamper", lambda inv, rs: inv["negative_case_codes"].pop(), "E_SCOPE")
     expect("selection set tamper", lambda inv, rs: inv["selection"].update(selected_asset_ids_sha256="sha256:" + "0" * 64), "E_SELECTION")
+    expect("binding id tamper", lambda inv, rs: inv.update(binding_id="SCF-B-9999"), "E_SCHEMA")
+    expect("inventory bundle kind tamper", lambda inv, rs: inv.update(bundle_kind="formal_implementation"), "E_SCHEMA")
+    expect("inventory anchor rule tamper", lambda inv, rs: inv["anchor_rule"].update(limit=0), "E_ANCHOR")
+    expect("inventory search boundary tamper", lambda inv, rs: inv["search_boundaries"].update(all_ledger_rows=0), "E_BOUNDARY")
     expect("authority boundary tamper", lambda inv, rs: inv["authority_boundary"].update(formal_implementation_claim_updated=True), "E_AUTHORITY_BOUNDARY")
     expect("output digest tamper", lambda inv, rs: inv.update(output_sha256="sha256:" + "0" * 64), "E_OUTPUT_DIGEST", recalc_digest=False)
-    print("PASS SCF-B-0122 selfcheck: 24 negative cases")
+    expect("inventory top-level key omission", lambda inv, rs: inv.pop("bundle_kind"), "E_SCHEMA")
+    expect("inventory top-level key addition", lambda inv, rs: inv.update(fabricated_field=True), "E_SCHEMA")
+    print("PASS SCF-B-0122 selfcheck: 34 negative cases")
     return 0
 
 

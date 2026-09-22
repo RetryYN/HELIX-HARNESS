@@ -37,7 +37,7 @@
     "218 product unit、153 source ID、Wave1–50の598 edge／355 unique asset、4,020 ledger、selected 222 edge／49 representative／868 candidate rowsの探索範囲を固定する",
     "candidate pool、representative asset、Wave semantic relation、product／phase candidate、acceptance definitionをunit実装・縮退・未実装・failure・consumer closure・受入verdictへ昇格しない",
     "old implementation／degradation／failure／current implementation／acceptance statusをdirect evidence不足時unknownとし、failure／consumer監査sourceのasset/path検索結果と未解決理由を残す",
-    "固定BASE input digest／BASE祖先性、source／target anchor、history nested record、candidate／representative／wave集合、status promotion、架空acceptance／unit linkをvalidator／selfcheckでfail-closeする",
+    "固定BASE input digest（98件＝non-archive 97＋archive MANIFEST 1）／BASE祖先性、source／target anchor、history nested record、candidate／representative／wave集合、status promotion、架空acceptance／unit link、inventory宣言（top-level keys／bundle_kind／expected_asset_count=29／negative_case_codes／binding_id／input path集合／anchor_rule／search_boundaries）をvalidator／selfcheckでfail-closeする",
     "旧世代runtime／test／CI／workflow／hook／adapter／sourceを実行しない"
   ],
   "operations": {
@@ -571,8 +571,8 @@
     "oracles": [
       "validate.py PASS: 29 selected source snapshots／218 product units／598 Wave edges／4,020 ledger rows",
       "fixed BASE Git object bytes／blob／line／anchor and current target provenance exact match",
-      "fixed BASE ancestry and 98 non-archive input digest exact match",
-      "selfcheck.py PASS: 24 negative cases including nested history／consumer／candidate／unit／implementation／unimplemented／failure／degradation／acceptance guards"
+      "fixed BASE ancestry and 98 input digest exact match（non-archive 97＋archive MANIFEST 1）; inventory top-level keys／bundle_kind／expected_asset_count=29=len(selected)／negative_case_codes／binding_id／input path集合／anchor_rule／search_boundaries are exact",
+      "selfcheck.py PASS: 34 negative cases including inventory key／bundle_kind／count／code declaration／binding／path／anchor／boundary guards plus nested history／consumer／candidate／unit／implementation／unimplemented／failure／degradation／acceptance guards"
     ],
     "negative_cases": [
       "tampered nested ledger consumer／phase／decision／read-after record must fail",
@@ -580,7 +580,8 @@
       "tampered Wave edge／candidate pool／representative record or fabricated unit link must fail",
       "promoted old implementation／degradation／failure／acceptance status must fail",
       "duplicate or missing selected asset must fail",
-      "wrong BASE／input digest／scope／selection／authority／output digest must fail"
+      "wrong BASE／input digest／input path omission or duplication／scope／expected asset count／negative case declaration／selection／authority／output digest must fail",
+      "wrong binding_id／bundle_kind／inventory top-level key addition or omission／anchor_rule／search_boundaries must fail with the declared schema or boundary code"
     ]
   }
 }
