@@ -1,12 +1,18 @@
 # SCF-B-0141 config/** 41件の四製品責務研究
 
-`SCF-B-0141` は、固定BASE `5562f04da0f3205f9aa58205ec0d478419fc4f2e` の旧資産台帳から、`source_path` が `config/` で始まる41件を対象にした research-only のScaffold Bindingです。#2074統合前のorigin/main研究union（399件）、#2074統合後の現在main（429件）、PR #2078（120件）をasset IDで照合し、両open PRを含む候補union（496件）と対象41件との重複が0であることを固定します。
+`SCF-B-0141` は、固定BASE `5562f04da0f3205f9aa58205ec0d478419fc4f2e` の旧資産台帳から、`source_path` が `config/` で始まる未研究41件を対象にする research-only Scaffold Binding です。41件すべてについて旧config本文をGit objectとして静的に読み、具体的なsemantic span、意味解釈、四製品のL1/product-boundary対応、counterevidence、bootstrap候補との一致・不一致を手動pinします。
 
-対象はすべて `artifact_evidence_kind=configuration`、`implementation_evidence_state=configuration_present_unexecuted`、`legacy_implementation_status=unknown` です。静的なJSON sourceのblob、bytes、SHA-256、行数、先頭非空行のanchorを保存し、旧disposition、phase候補、failure inventory、consumer inventory、decision/read-afterを別々の証拠として保持します。Wave 1–50は50ファイル・598 edgeを走査し、対象assetのedgeは1件（`config/requirement-discovery-event-schema.json`）です。
+分類は `direct_product_basis=26`、`multi_product_conflict=13`、`insufficient_basis=2` です。directはsemantic spanから一製品L1へ対応し、conflictは二製品以上へ対応し、insufficientは対応する責務証拠がありません。bootstrap `candidate_product_targets` は比較材料であり、分類の単独根拠ではありません。LABOや四製品以外の候補は受け付けません。
 
-候補分類は、phase snapshotの暫定候補を根拠の一部として扱います。単一候補15件を`direct_product_basis`、複数候補11件を`multi_product_conflict`、候補なし15件を`insufficient_basis`とし、いずれも人間のproduct owner・phase・successor・正式implementation判断を生成しません。候補は4製品（HELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS）だけを許し、LABOや未知の製品名を受け付けません。
+各source receiptはGit `ls-tree` の正確なpath、mode `100644`、type `blob`、blob、bytes、SHA-256を確認し、固定BASEのMANIFESTとlegacy ledger digestを一致させます。semantic spanの行範囲、coverage、未読範囲を保持します。実装状態、未実装・不足証拠、degradation/failure、consumer、decision/read-after、Wave edgeは責務分類から分離しています。Wave 1–50は50ファイル・598 edgeを静的走査し、対象assetのedgeは1件です。
 
-inventoryと独立validatorは、対象の欠落・重複・余分、source/blob/SHA、入力freshness、JSON重複key、Wave edge、category partition、既存研究union、consumer/failure evidence、authority境界、固定BASE祖先性をfail-closeで検査します。旧archiveは `git show BASE:<path>` とGit blob参照だけに限定し、source/runtime/test/CI/workflow/hook/adapterを実行しません。
+分母の扱いは次の通りです。
+
+- 現在の `origin/main` 既存研究union: 429 / archive population 4,020。今回41件との重複は0で、authoritativeです。
+- `origin/main` 前の399、#2074の31、旧open PR #2078の120を使った496 / 4,020と、そこへ41件を加えた537 / 4,020はconditional projectionです。#2078旧HEAD `5322a99b96f75e210c68aa56690f2da4fcb4415c` はmutable/staleableで、authoritative unionには含めません。
+- authoritativeな統合候補分母は `429 + 41 = 470 / 4,020` です。いずれも正式採否や完了を意味しません。
+
+Binding upstreamはMANIFESTを除くfixed BASE nonarchive入力65件と、current-main union算出に読む8つのmain inventory（計73件）へ完全閉包します。inventoryと独立validatorは、対象集合、nested duplicate key、入力 omission/extra/stale、archive regular-blob guard、MANIFEST/ledger mismatch、category evidence invariants、union overlap、Binding closure、authority境界をfail-closeで検査します。旧archiveはGit object/static readだけに限定し、source/runtime/test/CI/workflow/hook/adapterを実行しません。
 
 ## 検証
 
@@ -22,4 +28,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-PR本文では、origin/main統合前の399/4020、PR #2074・#2078を含む候補union496/4020、現在main（#2074統合後）の429/4020を区別して記載します。main399 → PR #2074統合後429 → PR #2078込み496 → 本41件込み537という統合順の候補分母は、研究証拠の分母であり、正式採否や完了を意味しません。
+残るhuman判断はproduct owner/boundary、semantic anchor受入れ、phase admission、successor、実装・consumer closure、正式asset分類です。
