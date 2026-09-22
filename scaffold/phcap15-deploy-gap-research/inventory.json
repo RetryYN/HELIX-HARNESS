@@ -267,7 +267,7 @@
     "decision": {"selected_asset_decision_matches": 0, "selected_asset_copy_read_after_matches": 0, "interpretation": "個別採否・再利用・replacementの判断行は無く、旧資産はunresolvedのまま"},
     "failure": {"selected_failure_receipts": 0, "interpretation": "sourceのfailure条件、negative test、local audit境界はfailure outcome receiptではない"},
     "consumer": {"selected_consumer_refs_nonempty": 0, "selected_consumer_closure_pending": 7, "interpretation": "consumer identity、scope、revision、read-after、handoff closureは未確定"},
-    "implementation": {"old_source_implementation_candidates": 2, "old_test_candidates": 1, "old_runtime_evidence_candidates": 1, "current_implementation_evidence": "unknown"}
+    "implementation": {"old_source_implementation_candidates": 2, "old_test_candidates": 1, "old_runtime_evidence_candidates": 1, "current_implementation_evidence": "unknown", "interpretation": "旧source／test／runtime evidenceは候補であり、現行implementation evidenceはunknown"}
   },
   "prohibited_inference": [
     "PHCAP-15 pool membership is a classification candidate only; it is not a requirement link or product ownership.",

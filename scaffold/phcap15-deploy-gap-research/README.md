@@ -33,7 +33,7 @@ PHCAP-15 の classification pool は78行である。全4,020 archive asset／di
 - selected consumer refs は0件、closure pendingは7件。current productのowner、tenant／runtime scope、artifact revision、approval、read-after、handoffを閉じる証拠は未成立である。
 - phase pool membershipは requirement identity、product ownership、consumer relationを生成しない。後続で意味を採否する場合は、source atom、承認済み親、pair、owner、consumer、実行境界を個別に再確認する。
 
-旧archiveのworkflow、runtime、test、CI、hook、adapter、sourceは実行していない。`validate.py` と `selfcheck.py` は台帳・source bytes・span digest・分母・unknown境界を読み取り検査するだけで、正式設計・実装・CI・deploymentを作らない。
+旧archiveのworkflow、runtime、test、CI、hook、adapter、sourceは実行していない。`validate.py` と `selfcheck.py` は台帳・source bytes・span digest・分母・unknown境界を読み取り検査するだけで、正式設計・実装・CI・deploymentを作らない。capture scope／archive read mode、四製品のunit boundary／current evidence status、evidence gap interpretation、6文のprohibited inference、required commands／negative cases、asset別anchor件数と全階層keysetを独立に固定し、29件のnegative caseで改変を拒否する。
 
 ```text
 python3 -B scaffold/phcap15-deploy-gap-research/validate.py
