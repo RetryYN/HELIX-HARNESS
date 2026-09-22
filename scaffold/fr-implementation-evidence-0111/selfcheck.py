@@ -107,6 +107,13 @@ def main() -> None:
     def wrong_base(inventory):
         inventory["base"]["commit"] = "0" * 40
 
+    def wrong_base_declaration(inventory):
+        inventory["base"]["repository"] = "OTHER"
+        inventory["base"]["branch"] = "research"
+
+    def wrong_unit_schema(rows):
+        rows[0]["schema"] = "fr-implementation-evidence-0111/v0/unit"
+
     run_case("wrong-asset-blob", "E_OLD_ASSET_SOURCE", wrong_asset_blob)
     run_case("wrong-anchor", "E_SOURCE_ANCHOR", wrong_anchor)
     run_case("missing-edge", "E_REVIEW_EDGE_SET", missing_edge)
@@ -129,7 +136,9 @@ def main() -> None:
     run_case("extra-inventory-key", "E_INVENTORY_DECLARATION", lambda rows: None, extra_inventory_key)
     run_case("wrong-input-digest", "E_INPUT_DIGEST", lambda rows: None, wrong_input_digest)
     run_case("wrong-base", "E_BASE_COMMIT", lambda rows: None, wrong_base)
-    print("SCF-B-0111 selfcheck: PASS (22 negative executions; expected error codes matched)")
+    run_case("wrong-base-repository-branch", "E_BASE_COMMIT", lambda rows: None, wrong_base_declaration)
+    run_case("wrong-unit-schema", "E_UNIT_SCHEMA", wrong_unit_schema)
+    print("SCF-B-0111 selfcheck: PASS (24 negative executions; expected error codes matched)")
 
 
 if __name__ == "__main__":

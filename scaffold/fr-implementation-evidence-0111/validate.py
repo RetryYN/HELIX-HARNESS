@@ -72,6 +72,12 @@ PARTITION_CONTRACT = {
     "failure": "coverage.failure/counterevidence/unresolvedの静的記録。failure receiptは空でunknown",
     "consumer": "edge/ledger/decision/read-after参照の静的記録。consumer closureはpending",
 }
+EXPECTED_NEGATIVE_CASE_CODES = [
+    "E_UNIT_SET", "E_REVIEW_EDGE_SET", "E_REVIEW_EDGE_DUP", "E_ASSET_SET", "E_INVENTORY_DECLARATION",
+    "E_REPRESENTATIVE_ASSET", "E_IMPLEMENTATION_EVIDENCE", "E_DEGRADATION_EVIDENCE", "E_FAILURE_EVIDENCE",
+    "E_CONSUMER_EVIDENCE", "E_SOURCE_ANCHOR", "E_OLD_ASSET_SOURCE", "E_OLD_ASSET_HISTORY", "E_INPUT_DIGEST", "E_BASE_COMMIT",
+    "E_BASE_NOT_ANCESTOR", "E_AUTHORITY_BOUNDARY", "E_CURRENT_STATUS", "E_UNIMPLEMENTED_CLAIM", "E_UNIT_SCHEMA",
+]
 
 
 def base_bytes(path: str) -> bytes:
@@ -459,7 +465,13 @@ class Validator:
         if inventory.get("binding_id") != "SCF-B-0111":
             self.error("E_BINDING_ID", "binding_id不一致")
         base_meta = inventory.get("base", {})
-        if base_meta.get("commit") != BASE or base_meta.get("required_ancestor") != BASE:
+        expected_base = {
+            "repository": "HELIX-HARNESS",
+            "commit": BASE,
+            "branch": "main",
+            "required_ancestor": BASE,
+        }
+        if base_meta != expected_base:
             self.error("E_BASE_COMMIT", "固定BASE commit／ancestor宣言が不一致")
         if subprocess.run(["git", "merge-base", "--is-ancestor", BASE, "HEAD"], cwd=ROOT).returncode != 0:
             self.error("E_BASE_NOT_ANCESTOR", "固定BASEが検証HEADの祖先ではない")
@@ -497,6 +509,8 @@ class Validator:
             self.error("E_INVENTORY_DECLARATION", "prohibited inference宣言が不一致")
         if inventory.get("unresolved") != UNRESOLVED:
             self.error("E_INVENTORY_DECLARATION", "inventory unresolved宣言が不一致")
+        if inventory.get("negative_case_codes") != EXPECTED_NEGATIVE_CASE_CODES:
+            self.error("E_INVENTORY_DECLARATION", "negative_case_codes宣言が期待集合と不一致")
         if inventory.get("partition_contract") != PARTITION_CONTRACT:
             self.error("E_INVENTORY_DECLARATION", "partition contract宣言が不一致")
         expected_assets = set(expected_edges.values() and edge["asset_id"] for edge in expected_edges.values())
@@ -537,6 +551,8 @@ class Validator:
             }
             if set(current) != expected_unit_keys:
                 self.error("E_INVENTORY_DECLARATION", f"{unit} evidenceトップレベルkey集合が期待値と一致しない")
+            if current.get("schema") != SCHEMA + "/unit":
+                self.error("E_UNIT_SCHEMA", f"{unit} evidence schema不一致")
             edges = expected_by_unit[unit]
             asset_ids = sorted({edge["asset_id"] for edge in edges})
             assets = [old_asset_record(asset_id, edges, disposition, decisions, read_after, classifications) for asset_id in asset_ids]

@@ -619,7 +619,7 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
             "E_UNIT_SET", "E_REVIEW_EDGE_SET", "E_REVIEW_EDGE_DUP", "E_ASSET_SET", "E_INVENTORY_DECLARATION",
             "E_REPRESENTATIVE_ASSET", "E_IMPLEMENTATION_EVIDENCE", "E_DEGRADATION_EVIDENCE", "E_FAILURE_EVIDENCE",
             "E_CONSUMER_EVIDENCE", "E_SOURCE_ANCHOR", "E_OLD_ASSET_SOURCE", "E_OLD_ASSET_HISTORY", "E_INPUT_DIGEST", "E_BASE_COMMIT",
-            "E_BASE_NOT_ANCESTOR", "E_AUTHORITY_BOUNDARY", "E_CURRENT_STATUS", "E_UNIMPLEMENTED_CLAIM",
+            "E_BASE_NOT_ANCESTOR", "E_AUTHORITY_BOUNDARY", "E_CURRENT_STATUS", "E_UNIMPLEMENTED_CLAIM", "E_UNIT_SCHEMA",
         ],
         "prohibited_inference": [
             "candidate_asset_pool、旧source存在、Wave edge、phase transition、coverage.failure、validator PASSから実装成立を導かない",

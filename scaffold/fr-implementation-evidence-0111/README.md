@@ -8,7 +8,7 @@
 - `evidence.jsonl`: crosswalk source snapshot、source IR anchor、Wave edge、edge別anchor resolution、旧asset ledger／history／failure／consumer、旧implementation／degradation／failure／consumer、representative asset完全record、current refs、未実装保留をunit別に記録する。
 - `build.py`: crosswalk、decomposition、ledger、判断史、read-after、classification、Wave1〜50、現行contextを固定BASEのGit object bytesから読む。旧code／test／runtime／CIは実行しない。
 - `validate.py`: 37 unit／111 edge／75 assetの集合、unit別edge／asset multisetと重複、inventory宣言、source／IR anchor、edge別anchor、旧asset ledger完全一致、実装／degradation／failure／consumer partition、representative asset完全record、current status、未実装断定禁止、BASE祖先性とinput digestをfail-closedで検査する。
-- `selfcheck.py`: source／asset blob、anchor、edge／assetの欠落・重複、ledger、代表asset、implementation／degradation／failure／consumer、current／unimplemented、inventory、input digest、BASEを壊す22負例と期待error codeを照合する。
+- `selfcheck.py`: source／asset blob、anchor、edge／assetの欠落・重複、ledger、代表asset、implementation／degradation／failure／consumer、current／unimplemented、inventory、input digest、BASE、unit schemaを壊す24負例と期待error codeを照合する。
 
 旧semantic reviewの`evidence_refs`はasset source pathと異なる原文pathを取り得るため、asset relationと各anchorを独立して照合する。Wave1〜17は選択spanのraw bytes（最終改行を含む）、Wave18〜50は各行のCR/LFを除いてLFでjoinし最終改行を付けない方式を採用し、edgeごとに宣言digest、BASE実digest、blob、line、hash basisを保持する。
 
@@ -21,7 +21,7 @@
     SCF-B-0111 validate: PASS (37 units, 111 review edges, 75 old assets; static-only)
 
     python3 scaffold/fr-implementation-evidence-0111/selfcheck.py
-    SCF-B-0111 selfcheck: PASS (22 negative executions; expected error codes matched)
+    SCF-B-0111 selfcheck: PASS (24 negative executions; expected error codes matched)
 
     python3 scaffold/tools/scfctl.py validate
 

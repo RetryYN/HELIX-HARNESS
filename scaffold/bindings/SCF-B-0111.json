@@ -31,7 +31,7 @@
     "旧実装・旧failure／degradation・旧consumer・現行実装／受入を独立partitionで保持する",
     "unit edge／asset multisetの重複を拒否する",
     "unknownを未実装・縮退・failure・完了へ変換しない",
-    "anchor hash provenanceと期待error code付き22負例を維持する"
+    "anchor hash provenanceと期待error code付き24負例を維持する"
   ],
   "operations": {
     "allowed": [
@@ -426,13 +426,15 @@
       "tampered old asset history must emit E_OLD_ASSET_HISTORY",
       "tampered current context implementation_claim must emit E_CURRENT_STATUS",
       "unknown top-level unit key must emit E_INVENTORY_DECLARATION",
-      "unknown top-level inventory key must emit E_INVENTORY_DECLARATION"
+      "unknown top-level inventory key must emit E_INVENTORY_DECLARATION",
+      "wrong BASE repository/branch declaration must emit E_BASE_COMMIT",
+      "wrong unit evidence schema must emit E_UNIT_SCHEMA"
     ],
     "oracles": [
       "validate.py PASS: 37 units／111 edges／75 old assets",
       "fixed BASE Git object bytes／blob／line／anchor provenance exact match",
       "fixed BASE ancestry and input snapshot digest exact match",
-      "selfcheck.py expected 22 negative executions and matching error codes including edge／asset multiset／inventory／implementation／degradation／failure／consumer／candidate／ledger／current checks"
+      "selfcheck.py expected 24 negative executions and matching error codes including edge／asset multiset／inventory／implementation／degradation／failure／consumer／candidate／ledger／current／BASE declaration／unit schema checks"
     ],
     "scope": [
       "schema_interface",

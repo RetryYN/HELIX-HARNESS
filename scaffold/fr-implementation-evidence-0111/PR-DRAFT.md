@@ -24,7 +24,7 @@ research: HIL-FR-41-69 37 product unit implementation evidence crosswalk (SCF-B-
     SCF-B-0111 validate: PASS (37 units, 111 review edges, 75 old assets; static-only)
 
     python3 scaffold/fr-implementation-evidence-0111/selfcheck.py
-    SCF-B-0111 selfcheck: PASS (22 negative executions; expected error codes matched)
+    SCF-B-0111 selfcheck: PASS (24 negative executions; expected error codes matched)
 
     python3 scaffold/tools/scfctl.py validate
     bindings=101 fail=0
