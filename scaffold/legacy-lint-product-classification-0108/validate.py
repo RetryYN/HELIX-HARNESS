@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 import generate as g
@@ -15,7 +15,20 @@ BUNDLE = ROOT / "scaffold/legacy-lint-product-classification-0108"
 LEDGER = BUNDLE / "classification-research.jsonl"
 INVENTORY = BUNDLE / "inventory.json"
 BASE_REVISION = g.BASE_REVISION
-EXPECTED_NEGATIVE_CASES = ["target_record_omission", "target_record_duplicate", "edge_omission", "edge_duplicate", "source_digest_tamper", "source_line_text_digest_tamper", "source_profile_tamper", "candidate_product_tamper", "authority_promotion", "boundary_line_digest_tamper", "input_digest_omission", "input_digest_duplicate", "input_digest_extra_path", "manual_semantic_review_tamper", "manual_review_inventory_tamper", "fixed_BASE_non_ancestor"]
+EXPECTED_NEGATIVE_CASES = ["target_record_omission", "target_record_duplicate", "edge_omission", "edge_duplicate", "source_digest_tamper", "source_line_text_digest_tamper", "source_profile_tamper", "candidate_product_tamper", "authority_promotion", "boundary_line_digest_tamper", "input_digest_omission", "input_digest_duplicate", "input_digest_extra_path", "manual_semantic_review_tamper", "manual_review_inventory_tamper", "record_top_level_extra_key", "source_read_mode_tamper", "inventory_authority_promotion", "inventory_scope_tamper", "inventory_formal_update_tamper", "inventory_classification_rule_tamper", "fixed_BASE_non_ancestor"]
+RECORD_KEYS = frozenset({
+    "artifact_evidence_kinds", "asset_id", "asset_ledger", "authority_effect",
+    "boundary_evidence", "candidate_products", "classification_category",
+    "classification_reason", "classification_state", "failure_consumer_static_refs",
+    "formal_asset_classification_updated", "human_judgment_remaining", "l1_evidence",
+    "legacy_history_failure_consumer", "manual_semantic_review", "new_build_allowed",
+    "observed_wave_products", "phase_ledger", "semantic_link_statuses", "source_exact",
+    "source_profile", "unit_product_candidates", "wave_semantic_links",
+})
+SOURCE_KEYS = frozenset({
+    "archive_path", "blob", "bytes", "ledger_source_sha256", "line_count", "read_mode",
+    "semantic_anchors", "sha256", "source_path",
+})
 
 
 def fail(code: str, message: str) -> None:
@@ -175,6 +188,8 @@ def verify() -> dict:
     expected_edges = 0
     for record in rows:
         aid = record["asset_id"]
+        if set(record) != RECORD_KEYS:
+            fail("E_RECORD_SCHEMA", f"record key set mismatch {aid}")
         phase_line, phase = phase_by_asset[aid]
         expected_phase = {"path": g.PHASE, "line": phase_line, "row_sha256": row_digest(phase), "product_classification_status": phase.get("product_classification_status"), "candidate_product_targets": phase.get("candidate_product_targets") or [], "candidate_phase_targets": phase.get("candidate_phase_targets") or [], "source_path": phase.get("source_path"), "source_sha256": phase.get("source_sha256"), "consumer_closure_status": phase.get("consumer_closure_status")}
         if record.get("phase_ledger") != expected_phase: fail("E_PHASE_STATUS", aid)
@@ -183,7 +198,7 @@ def verify() -> dict:
         if record.get("asset_ledger") != expected_asset: fail("E_HISTORY", aid)
         if disp.get("disposition") != "unresolved" or disp.get("product_target") != "unresolved" or disp.get("authority_status") != "historical": fail("E_PHASE_STATUS", aid)
         source = record.get("source_exact", {}); archive_path = g.ARCHIVE_PREFIX + disp["source_path"]; data = git_bytes(archive_path)
-        if source.get("archive_path") != archive_path or source.get("source_path") != disp["source_path"] or source.get("blob") != git_blob(archive_path) or source.get("bytes") != len(data) or source.get("sha256") != tagged(data) or source.get("ledger_source_sha256") != "sha256:" + disp["source_sha256"]: fail("E_SOURCE_DIGEST", aid)
+        if set(source) != SOURCE_KEYS or source.get("archive_path") != archive_path or source.get("source_path") != disp["source_path"] or source.get("blob") != git_blob(archive_path) or source.get("bytes") != len(data) or source.get("line_count") != len(data.decode(errors="replace").splitlines()) or source.get("sha256") != tagged(data) or source.get("ledger_source_sha256") != "sha256:" + disp["source_sha256"] or source.get("read_mode") != "git_object_static_read_only": fail("E_SOURCE_DIGEST", aid)
         profile = record.get("source_profile", {}); name = disp["source_path"].rsplit("/", 1)[-1].removesuffix(".ts")
         base_category, source_products, base_reason = g.profile_for(name)
         links = expected_links(by_asset.get(aid, [])); wave_products = sorted({p for link in links for p in (link.get("candidate_product_targets") or []) + (link.get("product_scope") or [])}); all_products = sorted(set(source_products) | set(wave_products))
@@ -216,10 +231,35 @@ def verify() -> dict:
         expected_categories[category] += 1
     expected_counts = {"direct_product_basis": expected_categories["direct_product_basis"], "multi_product_conflict": expected_categories["multi_product_conflict"], "insufficient_basis": expected_categories["insufficient_basis"]}
     counts = inventory.get("counts", {})
-    if counts.get("wave_files") != 50 or counts.get("wave_edges") != 598 or counts.get("wave_unique_assets") != 355 or counts.get("target_assets") != 95 or counts.get("target_wave_edges") != expected_edges or counts.get("categories") != expected_counts or counts.get("artifact_evidence_kinds") != {"implementation_source": 95}: fail("E_EXPECTED_DENOMINATOR", "inventory counts mismatch")
+    phase_distribution = Counter(tuple(phase_by_asset[a][1].get("candidate_phase_targets") or []) for a in targets)
+    expected_counts_block = {"wave_files": 50, "wave_edges": 598, "wave_unique_assets": 355, "target_assets": 95, "target_wave_edges": expected_edges, "target_wave_linked_assets": sum(bool(by_asset.get(a)) for a in targets), "categories": expected_counts, "artifact_evidence_kinds": {"implementation_source": 95}, "target_phase_candidate_distribution": {"|".join(k): v for k, v in sorted(phase_distribution.items())}}
+    if counts != expected_counts_block: fail("E_EXPECTED_DENOMINATOR", "inventory counts mismatch")
     manual_ids = sorted(r["asset_id"] for r in rows if r.get("manual_semantic_review", {}).get("status") == "reviewed_candidate")
     expected_review_counts = {"source_semantic_reviewed": len(manual_ids), "source_semantic_review_pending": 95 - len(manual_ids), "direct_candidate_basis": expected_categories["direct_product_basis"], "multi_product_conflict": expected_categories["multi_product_conflict"], "insufficient_basis": expected_categories["insufficient_basis"]}
     if inventory.get("review_counts") != expected_review_counts or sorted(inventory.get("manual_reviewed_asset_ids", [])) != manual_ids: fail("E_SEMANTIC_REVIEW", "manual semantic review inventory mismatch")
+    expected_inventory_meta = {
+        "schema_revision": 1,
+        "binding_id": g.BINDING_ID,
+        "scope": "phase product unresolved + implementation_source + src/lint/ exact 95 assets",
+        "wave_source_paths": {str(n): path for n, path in g.WAVE_PATHS.items()},
+        "expected_sets": {"target_asset_count": 95, "target_asset_ids": targets, "target_asset_ids_sha256": tagged("\n".join(targets).encode()), "source_paths": [phase_by_asset[a][1]["source_path"] for a in targets]},
+        "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
+        "formal_update": {"formal_asset_classification_updated": False, "phase_ledger_updated": False, "product_route_updated": False, "successor_updated": False, "new_build_allowed": False, "authority_effect": "none"},
+        "classification_rule": {"direct_product_basis": "a manually reviewed concrete source span mapped to one product L1 with explicit counter-boundary and pending consumer evidence", "multi_product_conflict": "requires separately reviewed source spans proving two product boundaries (none admitted in this bundle)", "insufficient_basis": "filename seed, generic declaration, or unresolved Wave unit scope without accepted product-boundary proof"},
+        "boundary_refs": {"product_boundary": g.BOUNDARY, "l1": g.L1},
+        "history_failure_consumer": {"disposition_rows": 95, "decision_rows_for_targets": sum(bool(r["legacy_history_failure_consumer"]["decisions"]) for r in rows), "read_after_rows_for_targets": sum(bool(r["legacy_history_failure_consumer"]["read_after"]) for r in rows), "failure_consumer_refs_are_static_global_inventory": True},
+        "edge_contract": {"edge_identity": "edge_id derived from wave/path/line/asset_id/unit_candidate_id/semantic_link_status", "duplicate_edges_forbidden": True, "missing_edges_forbidden": True},
+        "authority_boundary": {"authority_effect": "none", "classification_state": "research_proposal_pending_human_product_review", "formal_asset_classification_updated": False, "new_build_allowed": False},
+        "artifacts": ["scaffold/bindings/SCF-B-0108.json", "scaffold/legacy-lint-product-classification-0108/README.md", "scaffold/legacy-lint-product-classification-0108/PR-DRAFT.md", "scaffold/legacy-lint-product-classification-0108/generate.py", "scaffold/legacy-lint-product-classification-0108/validate.py", "scaffold/legacy-lint-product-classification-0108/selfcheck.py", "scaffold/legacy-lint-product-classification-0108/inventory.json", "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl"],
+    }
+    expected_top = set(expected_inventory_meta) | {"base_revision", "base_source_mode", "counts", "input_digests", "output_sha256", "review_counts", "manual_reviewed_asset_ids", "negative_cases"}
+    if set(inventory) != expected_top:
+        fail("E_INVENTORY_DECLARATION", "inventory top-level key set mismatch")
+    for key, expected_value in expected_inventory_meta.items():
+        if inventory.get(key) != expected_value:
+            fail("E_INVENTORY_DECLARATION", f"inventory {key} mismatch")
+    if inventory.get("negative_cases") != EXPECTED_NEGATIVE_CASES:
+        fail("E_INVENTORY_DECLARATION", "inventory negative case declaration mismatch")
     if inventory.get("output_sha256") != tagged(LEDGER.read_bytes()): fail("E_OUTPUT_DIGEST", "classification output digest mismatch")
     print(f"SCF-B-0108 validate: PASS records=95 target_edges={expected_edges} categories={dict(sorted(expected_categories.items()))}")
     return {"rows": rows, "inventory": inventory}

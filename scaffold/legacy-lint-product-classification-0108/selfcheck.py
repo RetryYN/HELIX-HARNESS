@@ -71,6 +71,12 @@ def extra_input(inv): inv["input_digests"].append(copy.deepcopy(inv["input_diges
 def non_ancestor(mod): mod.BASE_REVISION = "0" * 40
 def manual_review(rows): rows[MANUAL_REVIEWED]["manual_semantic_review"]["interpretation"] = "tampered"
 def manual_inventory(inv): inv["review_counts"]["source_semantic_reviewed"] = 999
+def record_top_level_key(rows): rows[0]["formal_owner"] = "HELIX-OS"
+def source_read_mode(rows): rows[0]["source_exact"]["read_mode"] = "executed"
+def inventory_authority(inv): inv["authority_boundary"]["authority_effect"] = "approved"
+def inventory_scope(inv): inv["scope"] = "all source owners approved"
+def inventory_formal_update(inv): inv["formal_update"]["product_route_updated"] = True
+def inventory_classification_rule(inv): inv["classification_rule"]["direct_product_basis"] = "filename only"
 
 
 run_case("target record omission", "E_TARGET_SET", mutate_rows=remove_record)
@@ -88,5 +94,11 @@ run_case("input digest duplicate", "E_INPUT_SET", mutate_inventory=duplicate_inp
 run_case("input digest extra path", "E_INPUT_SET", mutate_inventory=extra_input)
 run_case("manual semantic review tamper", "E_SEMANTIC_REVIEW", mutate_rows=manual_review)
 run_case("manual review inventory tamper", "E_SEMANTIC_REVIEW", mutate_inventory=manual_inventory)
+run_case("record top-level extra key", "E_RECORD_SCHEMA", mutate_rows=record_top_level_key)
+run_case("source read mode tamper", "E_SOURCE_DIGEST", mutate_rows=source_read_mode)
+run_case("inventory authority promotion", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_authority)
+run_case("inventory scope tamper", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_scope)
+run_case("inventory formal update tamper", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_formal_update)
+run_case("inventory classification rule tamper", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_classification_rule)
 run_case("fixed BASE non-ancestor", "E_BASE_NOT_ANCESTOR", mutate_module=non_ancestor)
-print("SCF-B-0108 selfcheck: PASS negative_cases=16")
+print("SCF-B-0108 selfcheck: PASS negative_cases=22")

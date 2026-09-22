@@ -6,6 +6,6 @@
 
 旧sourceを実読した14件（HARNESS 8、OS 6）は、source span・対応L1行・product-boundary counter-evidence・consumer pending boundaryを個別に固定し、直接候補根拠として提案する。残り81件は `source_semantic_review_pending`／`insufficient_basis` のまま保持し、filename／汎用語／宣言名／unresolved Wave unit scopeを製品候補へ昇格しない。全件 `authority_effect=none`、正式asset分類／product route／successor／implementation成立／consumer closure／new buildは変更しない。
 
-validatorは固定BASE祖先性、input path集合／digest（Wave1–50、研究入力、95 archive source）、95件exact set、598／355分母、17 edge欠落／重複、source blob／bytes／digest／実source line digest、14件manual evidence、81件pending、phase／disposition未変更、四製品boundary／L1／failure／consumer行digest、authority昇格をfail-closedに検査する。selfcheckは16 negative casesを期待error code付きで検査する。
+validatorは固定BASE祖先性、input path集合／digest（Wave1–50、研究入力、95 archive source）、95件exact set、598／355分母、17 edge欠落／重複、source blob／bytes／digest／line_count／read_mode／実source line digest、14件manual evidence、81件pending、phase／disposition未変更、record／inventory全宣言、四製品boundary／L1／failure／consumer行digest、authority昇格をfail-closedに検査する。selfcheckは22 negative casesを期待error code付きで検査する。
 
 旧archive runtime／test／CI／workflow／hook／adapter／sourceは実行していない。Progress referenceはIssue #1813のみ（closeなし）。

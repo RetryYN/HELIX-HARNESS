@@ -1281,10 +1281,16 @@
     "input_digest_extra_path",
     "manual_semantic_review_tamper",
     "manual_review_inventory_tamper",
+    "record_top_level_extra_key",
+    "source_read_mode_tamper",
+    "inventory_authority_promotion",
+    "inventory_scope_tamper",
+    "inventory_formal_update_tamper",
+    "inventory_classification_rule_tamper",
     "fixed_BASE_non_ancestor"
   ],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
-  "output_sha256": "sha256:0346461b6c49ba66d0cf3d789d0d976e687567c357f3d1f70f71e33d84f37d26",
+  "output_sha256": "sha256:3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829",
   "review_counts": {
     "direct_candidate_basis": 14,
     "insufficient_basis": 81,
