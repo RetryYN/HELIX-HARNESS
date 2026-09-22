@@ -28,8 +28,8 @@
     {"path": "scaffold/legacy-semantic-review-wave49/plan.json", "sha256": "e5ab3a0f2ca022a488cf911186e187646ace2d2aa3f1b821a8a5814e7d088bfd", "note": "Wave49 selection and count contract"},
     {"path": "scaffold/legacy-semantic-review-wave49/inventory.json", "sha256": "dfff252a420ac0069ec82722f8d01d84bf16964ab147d21ec8c98a2875e45d68", "note": "Wave49 inspected asset inventory"},
     {"path": "scaffold/legacy-semantic-review-wave49/generate.py", "sha256": "d21a8aaffdada393857b6e36c52695753a4132c9564760a9f8ddd01d513f5412", "note": "Wave49 deterministic static generator"},
-    {"path": "scaffold/legacy-semantic-review-wave49/validate.py", "sha256": "0a441f1e5ea2d0c2237a4a5dd1c5ee782dd4ff67836e238c2a55c151ce2769df", "note": "Wave49 fail-closed validator with rebaseline gate"},
-    {"path": "scaffold/legacy-semantic-review-wave49/selfcheck.py", "sha256": "79a1ba458be2dd40cbd5008c83881e9e3538069984ce867a6e43ae44574f8350", "note": "Wave49 validator negative mutation suite"},
+    {"path": "scaffold/legacy-semantic-review-wave49/validate.py", "sha256": "9b7725a366a31062dc988c04f614519cbb621ac7b822928e14aa519b92358f8c", "note": "Wave49 fail-closed validator with rebaseline and reciprocal shared-source gates"},
+    {"path": "scaffold/legacy-semantic-review-wave49/selfcheck.py", "sha256": "e3bedee83bfe06a857a9ba44721960f58927152f07a7c574c1299a63fe7ddef1", "note": "Wave49 validator negative mutation suite including keyset, duplicate, nonexistent and prior-wave targets"},
     {"path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl", "sha256": "e1d924c576ac36a51750758ac429b3457f658a8b0f62e802fa2ce7372740c356", "note": "Wave49 exact source-role ledger"},
     {"path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.meta.json", "sha256": "ba315824038686077b64561a03c670335726a6a6dea3b88cdc75d36ff954a30c", "note": "Wave49 receipts and cumulative counts"}
   ],
@@ -57,7 +57,7 @@
     "evidence_kind": "scaffold",
     "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
     "oracles": ["Wave49 generate.py→ledger/meta deterministic regeneration", "Wave49 validate.py source／asset／decision／failure／consumer receipts, independent pool, prior dynamic count, same-batch duplicate, shared source relation, exact-head rebaseline gate", "Wave49 selfcheck.py validator negative mutations", "scfctl validate／stale／residuals", "git diff --check"],
-    "negative_cases": ["source span／digest tamper", "cross-unit source span reuse", "atom identity injection", "unsupported product routing", "role semantic inversion", "current authority／phase／implementation／degradation promotion", "missing receipt", "candidate pool omission", "prior asset reuse", "same-batch asset reuse", "count drift", "ancestor/main lineage tamper"]
+    "negative_cases": ["source span／digest tamper", "cross-unit source span reuse", "atom identity injection", "unsupported product routing", "role semantic inversion", "current authority／phase／implementation／degradation promotion", "missing receipt", "candidate pool omission", "prior asset reuse", "same-batch asset reuse", "connection exact-keyset injection", "duplicate connection", "nonexistent or prior-wave shared target", "reciprocal source-span declaration omission", "count drift", "ancestor/main lineage tamper"]
   },
   "replacement": {"role_target": "承認済み旧IR source unit、owner、authority、phase、implementation、degradation、failure／consumer contractへの個別移管（人間判断後）", "formal_artifacts": [], "issue": 0, "status": "pending", "transfer": null, "target_revisions": {}, "confirmation_ref": null, "confirmation_digest": null},
   "created": "2026-09-22",
