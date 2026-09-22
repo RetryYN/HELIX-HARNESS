@@ -13,6 +13,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import validate  # noqa: E402  (同じ scaffold 候補の validator を検査する)
+import generate  # noqa: E402  (generator出力もvalidatorへ通す)
 
 
 def read_jsonl(path: Path) -> list[dict]:
@@ -57,6 +58,35 @@ def inventory_negative(label: str, mutate, needle: str) -> None:
             validate.INVENTORY = original
     if not any(needle in error for error in errors):
         raise AssertionError(f"{label}: expected validator error containing {needle!r}, got {errors[:4]!r}")
+    print(f"PASS negative/{label}: {needle}")
+
+
+def generator_negative(label: str, mutate_plan, needle: str) -> None:
+    """Generate a mutated plan into a temporary scaffold, then reject it."""
+    plan = copy.deepcopy(json.loads(validate.PLAN.read_text(encoding="utf-8")))
+    mutate_plan(plan)
+    with tempfile.TemporaryDirectory(prefix="reqatom-generator-selfcheck-", dir=generate.ROOT / "scaffold") as directory:
+        directory_path = Path(directory)
+        candidate_plan = directory_path / "atomization_plan.json"
+        candidate_proposals = directory_path / "proposals.jsonl"
+        candidate_inventory = directory_path / "inventory.json"
+        candidate_plan.write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        original_generate = (generate.ATOMIZATION_PLAN, generate.PROP, generate.INVENTORY)
+        original_validate = (validate.PLAN, validate.PROP, validate.INVENTORY)
+        try:
+            generate.ATOMIZATION_PLAN = candidate_plan
+            generate.PROP = candidate_proposals
+            generate.INVENTORY = candidate_inventory
+            generate.main()
+            validate.PLAN = candidate_plan
+            validate.PROP = candidate_proposals
+            validate.INVENTORY = candidate_inventory
+            errors = validate.check()
+        finally:
+            generate.ATOMIZATION_PLAN, generate.PROP, generate.INVENTORY = original_generate
+            validate.PLAN, validate.PROP, validate.INVENTORY = original_validate
+    if not any(needle in error for error in errors):
+        raise AssertionError(f"{label}: expected validator error containing {needle!r}, got {errors[:6]!r}")
     print(f"PASS negative/{label}: {needle}")
 
 
@@ -154,7 +184,31 @@ def main() -> int:
         lambda data: data["inputs"].update(queue_sha256="0" * 64),
         "queue digest",
     )
-    print("PASS selfcheck: coverage/table-cell/authority/implementation/degradation/phase/source/predicate/typed-relation/product-boundary/web-routing/negative-relation/composite/digest negative cases")
+    inventory_negative("unknown-inventory-key", lambda data: data.update(unreviewed_field="injected"), "keyset/inventory")
+    generator_negative(
+        "generator-unfixed-line-atom-loss",
+        lambda plan: plan["line_specs"]["REQSRC-LINE-00203"]["atomized"].pop(),
+        "exact atomized line count",
+    )
+    generator_negative(
+        "generator-composite-loss",
+        lambda plan: plan["line_specs"]["REQSRC-LINE-00209"]["composite_unresolved"].pop(),
+        "exact composite line count",
+    )
+
+    def replace_target(plan: dict) -> None:
+        spec = plan["line_specs"]["REQSRC-LINE-00203"]["atomized"][0]
+        spec["candidate_target"] = "HELIX-Web"
+        spec["product_boundary"]["candidate_product"] = "HELIX-Web"
+        spec["product_boundary"]["candidate_products"] = ["HELIX-Web"]
+
+    generator_negative("generator-target-replacement", replace_target, "independent four-product target counts")
+    generator_negative(
+        "generator-unknown-plan-key",
+        lambda plan: plan["line_specs"]["REQSRC-LINE-00203"]["atomized"][0].update(unreviewed_field="injected"),
+        "keyset/plan.line_specs.REQSRC-LINE-00203.atomized[0]",
+    )
+    print("PASS selfcheck: coverage/table-cell/keyset/authority/implementation/degradation/phase/source/predicate/typed-relation/product-boundary/web-routing/negative-relation/composite/digest/generator-plan negatives")
     return 0
 
 

@@ -67,7 +67,7 @@ failure は旧sourceの原文・actor・condition・trace欠落またはdigest�
 
 `generate.py` は queue unit、semantic line ledger、`atomization_plan.json` を読み、source pathごとにasset／decision／read-after／consumerを解決する。source line順、意味義務anchor、`A1-0051-...`〜`A1-0070-...` のIDを固定し、再実行時のJSONLを決定的にする。sourceが増えてもpath単位でasset closureを確認できる。
 
-`validate.py` は queue／ledger／source／archive digest、asset revision・append-only decision・read-after、非重複span、同一行義務の欠落・重複、actor／action／condition、否定・順序・接続を含むtyped relation、四製品分母、composite分離、authority／successor／implementation／degradation／phase unknown境界を静的に検査する。`selfcheck.py` は同一行の義務欠落・重複、表cell断片化、source／predicate／typed relation／product boundary／Web単独routing／否定関係改変、authority／implementation／degradation／phase昇格、composite欠落、input digest改変をvalidatorが拒否することを確認する。
+`validate.py` は queue／ledger／source／archive digest、asset revision・append-only decision・read-after、非重複span、同一行義務の欠落・重複、actor／action／condition、否定・順序・接続を含むtyped relation、四製品分母、composite分離、authority／successor／implementation／degradation／phase unknown境界を静的に検査する。59行を使う前段と同じ方式で、37 input lineごとのatom/composite数、44 atom／6 composite、unit／line／atom／composite keyset、HARNESS13／OS0／Web0／Web-OS0／unresolved31をvalidator側の独立定数として固定し、inventory／plan／proposal／atom／composite／typed relation／product boundary／statusのnested keysetも拒否する。`selfcheck.py` は同一行の義務欠落・重複、表cell断片化、source／predicate／typed relation／product boundary／Web単独routing／否定関係改変、authority／implementation／degradation／phase昇格、composite欠落、unknown key、input digest改変をvalidatorが拒否することを確認する。generatorのatom削除、composite削除、Web target差替え、plan unknown keyも一時生成物で拒否する。
 
 ```sh
 python3 -B scaffold/rdp001-reqatom-0051-0070/generate.py
