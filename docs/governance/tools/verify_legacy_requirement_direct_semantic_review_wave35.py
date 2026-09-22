@@ -65,6 +65,100 @@ ROW_FIELDS = {
     "source_scope_fragments", "source_sha256", "source_statement_semantic_digest", "source_statement_text",
     "source_text_spans", "unit_candidate_id", "unresolved",
 }
+
+# These are deliberately separate per role.  A row must not become valid by
+# borrowing the vocabulary or the empty-field contract of another evidence
+# role.  The values below are the role contracts already present in the
+# Wave35 rows; they are not inferred from the current implementation.
+ROLE_POLICIES = {
+    "requirement": {
+        "artifact_evidence_kind": "requirement",
+        "semantic_link_status": "confirmed",
+        "semantic_relation": "same_requirement_id_exact_source_contract_not_implementation",
+        "legacy_requirement_implementation_contribution": "contract_only_no_implementation_claim",
+        "evidence_ref_count": 2,
+        "evidence_atom_bindings": "empty",
+        "review_scope": "Wave35 schema10 research-premise candidate: exact requirement source / product boundary / phase candidate / catalog asset role",
+        "unresolved": (
+            "exact_head_independent_review_pending",
+            "human_product_authority_decision_pending",
+            "successor_assignment_unassigned",
+            "product_boundary_human_decision_pending",
+            "candidate_product_routing_requires_human_review",
+            "source_atomization_review_pending",
+            "unit_split_requires_independent_review",
+            "consumer_closure_pending",
+            "legacy_execution_not_run",
+        ),
+        "counterevidence": (
+            "Requirement／候補assetの静的snapshotであり実装・実行証拠ではない",
+            "候補assetの存在は同一要求IDの実装成立・consumer closure・authorityを示さない",
+            "source／phase／product candidateはresearch-premiseの静的候補であり、現行設計・実装へ昇格しない",
+        ),
+        "observed_consumer_refs": ("requirement-carry-forward-ledgers", "requirement-atomization-review"),
+    },
+    "design": {
+        "artifact_evidence_kind": "design",
+        "semantic_link_status": "unresolved",
+        "semantic_relation": "design_contract_evidence",
+        "legacy_requirement_implementation_contribution": "design_contract_only_no_implementation_claim",
+        "evidence_ref_count": 1,
+        "evidence_atom_bindings": "required",
+        "review_scope": "Wave35 schema10 research-premise candidate: exact requirement source / product boundary / phase candidate / catalog asset role",
+        "unresolved": (
+            "exact_head_independent_review_pending",
+            "human_product_authority_decision_pending",
+            "successor_assignment_unassigned",
+            "product_boundary_human_decision_pending",
+            "candidate_product_routing_requires_human_review",
+            "source_atomization_review_pending",
+            "unit_split_requires_independent_review",
+            "consumer_closure_pending",
+            "legacy_execution_not_run",
+        ),
+        "counterevidence": (
+            "Requirement／候補assetの静的snapshotであり実装・実行証拠ではない",
+            "候補assetの存在は同一要求IDの実装成立・consumer closure・authorityを示さない",
+            "source／phase／product candidateはresearch-premiseの静的候補であり、現行設計・実装へ昇格しない",
+        ),
+        "observed_consumer_refs": ("requirement-carry-forward-ledgers", "requirement-atomization-review"),
+    },
+    "implementation_source": {
+        "artifact_evidence_kind": "implementation_source",
+        "semantic_link_status": "unresolved",
+        "semantic_relation": "implementation_candidate_only",
+        "legacy_requirement_implementation_contribution": "implementation_candidate_only",
+        "evidence_ref_count": 1,
+        "evidence_atom_bindings": "required",
+        "review_scope": "Wave35 schema10 research-premise candidate: exact requirement source / product boundary / phase candidate / catalog asset role",
+        "unresolved": (
+            "exact_head_independent_review_pending",
+            "human_product_authority_decision_pending",
+            "successor_assignment_unassigned",
+            "product_boundary_human_decision_pending",
+            "candidate_product_routing_requires_human_review",
+            "source_atomization_review_pending",
+            "unit_split_requires_independent_review",
+            "consumer_closure_pending",
+            "legacy_execution_not_run",
+        ),
+        "counterevidence": (
+            "Requirement／候補assetの静的snapshotであり実装・実行証拠ではない",
+            "候補assetの存在は同一要求IDの実装成立・consumer closure・authorityを示さない",
+            "source／phase／product candidateはresearch-premiseの静的候補であり、現行設計・実装へ昇格しない",
+        ),
+        "observed_consumer_refs": ("requirement-carry-forward-ledgers", "requirement-atomization-review"),
+    },
+}
+
+# Empty values are meaningful only in these fields for this Wave35 snapshot.
+# In particular, pending consumer closure requires an empty evidence list;
+# the four review-boundary fields above are always mandatory.
+ROLE_ALLOWED_EMPTY_FIELDS = {
+    "requirement": {"source_scope_fragments", "source_connective_fragments", "evidence_atom_bindings", "connection_records", "consumer_closure_evidence", "reuse_exclusion_class"},
+    "design": {"source_scope_fragments", "source_connective_fragments", "connection_records", "consumer_closure_evidence", "reuse_exclusion_class"},
+    "implementation_source": {"source_scope_fragments", "source_connective_fragments", "connection_records", "consumer_closure_evidence", "reuse_exclusion_class"},
+}
 META_FIELDS = {
     "authority_effect", "batch_id", "bounded_search_receipts", "consumer_closure_status",
     "cumulative_reviewed_edge_count", "cumulative_reviewed_unit_count", "current_tree_revision",
@@ -168,6 +262,47 @@ def verify_binding(row: dict, binding: dict, joined: str) -> None:
             terms = mapping.get(anchor, [])
             require(terms and all(term in joined for term in terms), f"excerpt anchor {row['review_id']}")
     require(all(term in joined for term in binding["required_terms"]), f"binding terms joined {row['review_id']}")
+
+
+def verify_role_contract(row: dict) -> None:
+    """Enforce the independent vocabulary and empty-field contract per role."""
+    role = row["role_kind"]
+    policy = ROLE_POLICIES.get(role)
+    require(policy is not None, f"unknown role vocabulary {row['review_id']}")
+    prefix = row["review_id"]
+
+    for field in ("unresolved", "counterevidence", "review_scope", "observed_consumer_refs"):
+        value = row[field]
+        require(value not in (None, "", []), f"required role field empty {prefix}:{field}")
+
+    require(row["artifact_evidence_kind"] == policy["artifact_evidence_kind"], f"role artifact kind {prefix}")
+    require(row["semantic_link_status"] == policy["semantic_link_status"], f"role semantic status {prefix}")
+    require(row["semantic_relation"] == policy["semantic_relation"], f"role semantic relation {prefix}")
+    require(
+        row["legacy_requirement_implementation_contribution"] == policy["legacy_requirement_implementation_contribution"],
+        f"role implementation contribution {prefix}",
+    )
+    require(len(row["evidence_refs"]) == policy["evidence_ref_count"], f"role evidence ref count {prefix}")
+    require(row["review_scope"] == policy["review_scope"], f"role review scope {prefix}")
+    require(tuple(row["unresolved"]) == policy["unresolved"], f"role unresolved vocabulary {prefix}")
+    require(tuple(row["counterevidence"]) == policy["counterevidence"], f"role counterevidence vocabulary {prefix}")
+    require(tuple(row["observed_consumer_refs"]) == policy["observed_consumer_refs"], f"role consumer vocabulary {prefix}")
+
+    for field in ROLE_ALLOWED_EMPTY_FIELDS[role]:
+        value = row[field]
+        if field == "reuse_exclusion_class":
+            require(value is None, f"allowed-empty field mutated {prefix}:{field}")
+        else:
+            require(value == [], f"allowed-empty field mutated {prefix}:{field}")
+
+    if policy["evidence_atom_bindings"] == "empty":
+        require(row["evidence_atom_bindings"] == [], f"requirement evidence binding must be empty {prefix}")
+    else:
+        require(row["evidence_atom_bindings"], f"non-requirement evidence binding missing {prefix}")
+    require(row["consumer_closure_status"] == "pending" and row["consumer_closure_evidence"] == [], f"consumer closure boundary {prefix}")
+    for field in ("source_text_spans", "covered_requirement_atom_ids", "covered_requirement_atoms", "evidence_refs"):
+        require(row[field], f"required role structure empty {prefix}:{field}")
+    require(row["source_requirement_pointer"] and row["source_requirement_legacy_markdown_span"], f"source pointer empty {prefix}")
 
 
 def verify_atom_provenance(row: dict, requirement: dict, requirement_excerpt: str) -> None:
@@ -312,6 +447,7 @@ def verify() -> None:
 
         req_excerpt = selected_excerpt(requirement, list(range(len(requirement["evidence_refs"]))))
         for row in by_unit[unit]:
+            verify_role_contract(row)
             require(row["batch_id"] == BATCH and row["schema_revision"] == 10, f"row identity {row['review_id']}")
             require(row["product_scope"] == requirement["product_scope"] and row["phase_candidates"] == requirement["phase_candidates"], f"row scope {row['review_id']}")
             require(row["authority_effect"] == "none" and row["consumer_closure_status"] == "pending" and row["consumer_closure_evidence"] == [], f"row authority {row['review_id']}")
@@ -382,10 +518,95 @@ def verify() -> None:
         require(str(exc) == f"selected subset {receipt_unit}", "negative candidate-outside wrong failure")
     else:
         raise AssertionError("negative candidate-outside case accepted")
+
+    def expect_role_rejection(label: str, original: dict, mutate, needle: str) -> None:
+        bad_row = deepcopy(original)
+        mutate(bad_row)
+        try:
+            verify_role_contract(bad_row)
+        except AssertionError as exc:
+            require(needle in str(exc), f"negative {label} wrong failure")
+        else:
+            raise AssertionError(f"negative {label} accepted")
+
+    requirement_row = next(r for r in rows if r["role_kind"] == "requirement")
+    implementation_row = next(r for r in rows if r["role_kind"] == "implementation_source")
+    expect_role_rejection(
+        "role-semantic-inversion",
+        controlled,
+        lambda row: row.update(semantic_relation=requirement_row["semantic_relation"]),
+        "role semantic relation",
+    )
+    expect_role_rejection(
+        "unresolved-empty",
+        requirement_row,
+        lambda row: row.update(unresolved=[]),
+        "required role field empty",
+    )
+    expect_role_rejection(
+        "counterevidence-empty",
+        controlled,
+        lambda row: row.update(counterevidence=[]),
+        "required role field empty",
+    )
+    expect_role_rejection(
+        "counterevidence-bogus-token",
+        controlled,
+        lambda row: row.update(counterevidence=[*row["counterevidence"], "bogus-counterevidence"]),
+        "role counterevidence vocabulary",
+    )
+    expect_role_rejection(
+        "review-scope-empty",
+        implementation_row,
+        lambda row: row.update(review_scope=""),
+        "required role field empty",
+    )
+    expect_role_rejection(
+        "review-scope-bogus-token",
+        implementation_row,
+        lambda row: row.update(review_scope="bogus-review-scope"),
+        "role review scope",
+    )
+    expect_role_rejection(
+        "consumer-refs-empty",
+        requirement_row,
+        lambda row: row.update(observed_consumer_refs=[]),
+        "required role field empty",
+    )
+    expect_role_rejection(
+        "implementation-binding-empty",
+        implementation_row,
+        lambda row: row.update(evidence_atom_bindings=[]),
+        "non-requirement evidence binding missing",
+    )
+    expect_role_rejection(
+        "requirement-binding-injected",
+        requirement_row,
+        lambda row: row.update(evidence_atom_bindings=[{"bogus": True}]),
+        "allowed-empty field mutated",
+    )
+    expect_role_rejection(
+        "bogus-unresolved-token",
+        controlled,
+        lambda row: row.update(unresolved=[*row["unresolved"], "bogus-token"]),
+        "role unresolved vocabulary",
+    )
+    expect_role_rejection(
+        "bogus-consumer-reference",
+        implementation_row,
+        lambda row: row.update(observed_consumer_refs=["bogus-consumer"]),
+        "role consumer vocabulary",
+    )
+    expect_role_rejection(
+        "forbidden-empty-field-injection",
+        controlled,
+        lambda row: row.update(connection_records=[{"bogus": True}]),
+        "allowed-empty field mutated",
+    )
     injected = deepcopy(controlled)
     injected["merge_admission"] = "granted"
     require(set(injected) != ROW_FIELDS, "extra authority field accepted")
-    print("Wave35 static schema10 verification: PASS")
+    print("Wave35 static schema10 verification: PASS (role contracts and negative mutations included)")
 
 
 if __name__ == "__main__":
