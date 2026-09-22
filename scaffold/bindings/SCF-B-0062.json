@@ -1,0 +1,212 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0062",
+  "kind": "scaffold",
+  "title": "outside67 four-product boundary source research candidate",
+  "product": "HELIX-OS",
+  "owner_candidate": "outside67 059／063／064／065／066の四製品責務・接続境界semantic review（最終owner未解決）",
+  "state": "registered",
+  "reason": "MPR-SH-OUTSIDE67-001の67 path_revision_pairから製品境界に直結する5 sourceを選び、四製品候補、exact pre／archive revision、26 product unit、旧asset・実装・劣化・failure・consumer・decision unknownをauthority noneで静的保持する。#2007対象と001／010参照混入は除外し、今回幅5件を安全上限とは断定しない。",
+  "upstream": [
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "current authority and static scaffold boundary"
+    },
+    {
+      "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "67 path_revision_pair source holding"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "note": "14 live source holding register"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "legacy ledger static evidence and unknown boundary"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "legacy ledger static evidence and unknown boundary"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "legacy ledger static evidence and unknown boundary"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decision-log.md",
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "note": "legacy ledger static evidence and unknown boundary"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "legacy ledger static evidence and unknown boundary"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "legacy ledger static evidence and unknown boundary"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "note": "legacy ledger static evidence and unknown boundary"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "legacy ledger static evidence and unknown boundary"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-058/README.md",
+      "sha256": "35d8f7b2943ffe3fbadc000a9991fe55e9ee213b0d26a0bdebb29f45273985af",
+      "note": "SCF-B-0058 product-boundary research artifact"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-058/inventory.json",
+      "sha256": "4bc5e9f98620ad9b61882b10288feee42d65b441d35587169e9a07f1614969f5",
+      "note": "SCF-B-0058 product-boundary research artifact"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-058/method.md",
+      "sha256": "3d85f75d1dd53b32a811019b4b115d42c8839a34b6f055ab6a23f16fcdb9aedf",
+      "note": "SCF-B-0058 product-boundary research artifact"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-058/premise.md",
+      "sha256": "d4f5374e0c32b9f35bae5d507dd45de02f4fe34a17c6c79ce3271c43e7683bf1",
+      "note": "SCF-B-0058 product-boundary research artifact"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-058/status.md",
+      "sha256": "4d1c98d2747ed1861dfb779cd01d6e2c050baf009dfec8ac1c25a33d8a339f04",
+      "note": "SCF-B-0058 product-boundary research artifact"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-058/selected-source-items.jsonl",
+      "sha256": "6d30b1585f26655731957cd51139f97ddf893412ae97ecbb24c3584a41b9c13c",
+      "note": "SCF-B-0058 product-boundary research artifact"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-058/product-units.jsonl",
+      "sha256": "38e92057ec93b2e06ce2c74d531712d6c963f363b1fdba2c65602d509897abb2",
+      "note": "SCF-B-0058 product-boundary research artifact"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-058/source-diffs.json",
+      "sha256": "9c8de3f37abc023cfcff46ea92a8f4a15694c35e1a669c8a42430be7a629e1ef",
+      "note": "SCF-B-0058 product-boundary research artifact"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-058/evidence-scan.json",
+      "sha256": "9377a539100d5e584b105b6c290ddf327a0e89e007d71e02c55d821f87ec6a53",
+      "note": "SCF-B-0058 product-boundary research artifact"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-058/validate.py",
+      "sha256": "7c508701bb6eafd28c107436b1b3fd8dc98fc03ef82218bb715312a1c47665e3",
+      "note": "SCF-B-0058 product-boundary research artifact"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-product-boundary-058/selfcheck.py",
+      "sha256": "f304e7172147463ed0ff8fc84bf1189969da2daa55ba6dd89bc637dd8c316842",
+      "note": "SCF-B-0058 product-boundary research artifact"
+    }
+  ],
+  "role": "outside67製品境界sourceのsemantic unit、revision差分、四製品候補、legacy unknownを扱うread-only Scaffold research",
+  "obligations": [
+    "outside67 67 path_revision_pair分母、既レビュー2件、今回5件、未調査60件、batch幅5の観測を固定する",
+    "059、063、064、065、066のpre／archive commit、blob OID、SHA、bytes、line anchor、snapshot、diffを照合する",
+    "26 product unitを逐語source fragmentへ束縛し、同一line重複を拒否する。actor／action／condition／guard／sequenceはunresolvedで保持する",
+    "HELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSを全unitへ候補として保持し、owner／authority／successorを推定しない",
+    "normalized_statement、retained_meaning、unresolved_questions、diff_observationとinventory F／Q／P catalogの固定keyset・status・件数を検査する",
+    "旧asset ledger、判断史、copy/read-after、phase/product、implementation crosswalkを静的に読み、0 matchを不在・正常・廃止・不要へ変換しない",
+    "旧runtime／test／CI／hook／adapterを実行せず、正式要求、L2／L11合意、L3／L10、実装、受入、release、deploymentを生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "四製品責務境界semantic reviewer",
+      "outside67 source chain reviewer",
+      "旧asset unknown／failure／consumer reviewer",
+      "SCF-B-0058 replacement reviewer"
+    ],
+    "dependencies": [
+      "MPR-SH-OUTSIDE67-001 source holding",
+      "Concept／四製品L1 boundary candidate",
+      "legacy static ledger set",
+      "Python standard library／Git read-only object"
+    ],
+    "boundary": "成果物はscaffold/配下のresearch candidate。旧sourceはstatic reference only。validator passから要求採否、authority、owner、successor、実装、failure／consumer closure、下流設計を生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/rdp001-outside67-product-boundary-058/validate.py",
+      "python3 scaffold/rdp001-outside67-product-boundary-058/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+      "旧source／test／runtime proseをcurrent implementation、oracle、fallback、pass、deployment evidenceへ昇格すること",
+      "scaffold/外への候補書き込み",
+      "未許可のGitHub、Issue、PR、CI、DB、外部API、release、deploymentへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-outside67-product-boundary-058/README.md",
+    "scaffold/rdp001-outside67-product-boundary-058/inventory.json",
+    "scaffold/rdp001-outside67-product-boundary-058/method.md",
+    "scaffold/rdp001-outside67-product-boundary-058/premise.md",
+    "scaffold/rdp001-outside67-product-boundary-058/status.md",
+    "scaffold/rdp001-outside67-product-boundary-058/selected-source-items.jsonl",
+    "scaffold/rdp001-outside67-product-boundary-058/product-units.jsonl",
+    "scaffold/rdp001-outside67-product-boundary-058/source-diffs.json",
+    "scaffold/rdp001-outside67-product-boundary-058/evidence-scan.json",
+    "scaffold/rdp001-outside67-product-boundary-058/validate.py",
+    "scaffold/rdp001-outside67-product-boundary-058/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "validate.py（67 denominator／selection／overlap／exact revision／snapshot／diff／26 unit anchor／four products／unknown boundary／fixed records／base ancestor）",
+      "selfcheck.py（baseline＋17 negative cases: denominator、anchor mirror、overlap、authority、fixed keyset／catalog、base ancestor、旧実行）",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "67 denominator、65→5→60 accountingまたはbatch policyの改変",
+      "#2007既レビュー／参照混入IDの選択",
+      "source path／blob／SHA／bytes／snapshot／line anchor／fragmentの改変",
+      "unit／inventory keyset、fixed meaning record、F/Q/P catalogの改変",
+      "四製品候補、phase、implementation、degradation、failure、consumer、decisionの昇格",
+      "旧runtime／test／CI実行やformal requirement／successor／authority生成"
+    ]
+  },
+  "replacement": {
+    "role_target": "承認済み四製品責務、L2／L11、L3／L10、runtime、failure／consumer contractへの個別移管（人間判断後）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}

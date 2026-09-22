@@ -1,0 +1,52 @@
+{
+  "schema": "rdp001-outside67-product-boundary-diff/v1",
+  "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+  "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+  "items": [
+    {
+      "source_item_id": "OUTSIDE67-PATH-059",
+      "source_path": "docs/governance/product-governance-boundary-2026-09-14.md",
+      "status": "different",
+      "hunk_count": 2,
+      "pre_sha256": "ad0dd8f0eb4f3b6fae59d7dcb7d861e221ee332cc676b41b1052a320e3028c58",
+      "archive_sha256": "f7794dde960cc3716c8f5ae4ca42801b4d0e8f9f7510c6a30343fc6c2b65a4b5",
+      "unified_diff": "--- pre-isolation\n+++ archive-revision\n@@ -60,7 +60,7 @@\n \n ## 既存Conceptとの意味差分\n \n-[Concept v4.0候補](candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは\n+[Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは\n 本決定より前の区分を含む。その差分は[Concept v4.1候補](candidates/helix-concept-v4.1.md)へ投影済みである。\n v4.0の承認を流用せず、v4.1の人間承認後に次の境界を同じrevisionで固定する。\n \n"
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-063",
+      "source_path": "docs/test-design/harness/L11-product-acceptance.md",
+      "status": "same",
+      "hunk_count": 0,
+      "pre_sha256": "5ecc525d9ec52e54270941f6b532b2162c03ae64b089cae3781f2c016a2e2fa0",
+      "archive_sha256": "5ecc525d9ec52e54270941f6b532b2162c03ae64b089cae3781f2c016a2e2fa0",
+      "unified_diff": ""
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-064",
+      "source_path": "docs/test-design/helix-os/L11-governance-acceptance.md",
+      "status": "different",
+      "hunk_count": 4,
+      "pre_sha256": "f46533f608ce24e5e43c5ff0f7fd52fb63aec39fae72cb5cb298a87bc9e3e443",
+      "archive_sha256": "73b2e055d6173ca5e8f023d0b5448ef98fe0d6871ed78d5ba4dfb45d3e196040",
+      "unified_diff": "--- pre-isolation\n+++ archive-revision\n@@ -33,6 +33,7 @@\n ## 実行・記録の反例\n \n - HELIXOS-L2-004：成果未回収、期限超過、検証者不在、hook非強制surfaceを個別に与え、停止・不足理由を確認する。Worker自身の完了報告だけで独立検証済みにしない。\n+- HELIXOS-L2-004／007：reviewer名だけ、GitHub routeだけ、CLI routeだけを順に許可し、指定route以外を起動しないことを確認する。route未指定、別routeの過去許可、timeout、無出力では`review_waiting`を維持し、無許可実行の出力をreview receiptへ採用しない。\n - HELIXOS-L2-005：未計測のSkill、誤推薦、旧版を投入し、候補・利用結果・失効を区別できる。学習結果がHARNESS規則へ無断反映されない。\n - HELIXOS-L2-007：未ack finding、未反映memory、重複配送、期限切れ通知を投入し、内容消失・二重利用・古い指示の再提示を拒否する。\n - HELIXOS-L2-008：上流意味review、下流verification、merge admission、releaseを別pipeline classとして生成する。Concept候補のremote syncで旧CI／merge pipelineが起動する構成を拒否する。\n@@ -244,7 +245,7 @@\n \n ## Execution Ticketの受入\n \n-[既存L11候補](../../governance/candidates/execution-ticket-validation.md)から対象別に接続する。全件未実行。\n+[既存L11候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-validation.md)から対象別に接続する。全件未実行。\n HELIXOS-L2-004／005／007／009について、次の利用条件を確認する。\n \n | 出典 | 確認する結果と反例 |\n"
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-065",
+      "source_path": "docs/test-design/helix-web-os/L11-service-acceptance.md",
+      "status": "same",
+      "hunk_count": 0,
+      "pre_sha256": "5dc62392dfa8e0960469188fa8774188d89ea4d73e0c61230d4ed094c8843720",
+      "archive_sha256": "5dc62392dfa8e0960469188fa8774188d89ea4d73e0c61230d4ed094c8843720",
+      "unified_diff": ""
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-066",
+      "source_path": "docs/test-design/helix-web/L11-product-acceptance.md",
+      "status": "same",
+      "hunk_count": 0,
+      "pre_sha256": "f55b4b36ac4eb653214e8615a35dc330f719c47cf75697d5ba47fdb2cd8dd80d",
+      "archive_sha256": "f55b4b36ac4eb653214e8615a35dc330f719c47cf75697d5ba47fdb2cd8dd80d",
+      "unified_diff": ""
+    }
+  ]
+}
