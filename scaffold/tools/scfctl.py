@@ -331,6 +331,33 @@ def check_receipt_revisions(binding, receipt, current_revisions):
     return []
 
 
+def operation_preflight(binding, operation, all_bindings=None):
+    """Mutation/evidence entry guard: shape first, then applicable local rules.
+
+    Operation commands receive one binding by ID.  Include only bindings that
+    can conflict with the target role, so an unrelated malformed sibling cannot
+    change the result while the duplicate-role rule still applies.
+    """
+    errors = check_shape(binding)
+    if errors:
+        return errors
+    allowed_states = {
+        "check-replacement": {"registered", "active", "replacing"},
+        "retire": {"replacing"},
+    }.get(operation)
+    if allowed_states is not None and binding["state"] not in allowed_states:
+        return ["E_STATE: %s はstate=%sでは実行できない" % (operation, binding["state"])]
+    candidates = all_bindings
+    if candidates is None:
+        candidates = [candidate for _, candidate, _ in load_bindings() if isinstance(candidate, dict)]
+    related = [candidate for candidate in candidates
+               if candidate is binding or candidate.get("id") == binding.get("id")
+               or candidate.get("role") == binding.get("role")]
+    if not related:
+        related = [binding]
+    return check_rules(binding, related)
+
+
 def external_hook_residuals(binding, home=None, manifest_path=None):
     """binding隣接の参照台帳を読む。利用者設定を実行・変更しない。"""
     declared_manifest = os.path.join(SCF, "external-references", binding["id"] + ".json")
@@ -504,13 +531,18 @@ def cmd_residuals(args):
 
 def find(bid):
     for p, b, _ in load_bindings():
-        if b and b["id"] == bid:
+        if isinstance(b, dict) and b.get("id") == bid:
             return p, b
     print("E_INPUT: binding %s が無い" % bid); sys.exit(2)
 
 
 def cmd_check_replacement(args):
     p, b = find(args.id)
+    preflight = operation_preflight(b, "check-replacement")
+    for x in preflight: print("  - " + x)
+    if preflight:
+        print("check-replacement %s: FAIL (%d)" % (b.get("id", args.id), len(preflight)))
+        return 1
     errs, revs = check_replacement(b)
     for x in errs: print("  - " + x)
     if errs:
@@ -527,6 +559,10 @@ def cmd_check_replacement(args):
 
 def cmd_retire(args):
     p, b = find(args.id)
+    preflight = operation_preflight(b, "retire")
+    for x in preflight: print("  - " + x)
+    if preflight:
+        print("retire %s: 拒否" % b.get("id", args.id)); return 1
     r = b["replacement"]
     errs = []
     if b["state"] != "replacing": errs.append("E_RETIRE: state=replacing からだけ撤去できる（現在 %s）" % b["state"])

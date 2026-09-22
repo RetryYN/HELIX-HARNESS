@@ -44,7 +44,8 @@
  },
  "operations": {
   "allowed": [
-   "python3 scaffold/tools/scfctl.py validate|list|stale|residuals|check-replacement|retire|selftest"
+   "python3 scaffold/tools/scfctl.py validate|list|stale|residuals|check-replacement|retire|selftest",
+   "python3 -B scaffold/tools/scfctl_operation_entry_test.py"
   ],
   "forbidden": [
    "archive/legacy-generation-*配下の実行・読込",
@@ -58,6 +59,7 @@
   "scaffold/README.md",
   "scaffold/schema/binding.schema.json",
   "scaffold/tools/scfctl.py",
+  "scaffold/tools/scfctl_operation_entry_test.py",
   "scaffold/checks/cases",
   "scaffold/evidence/selftest.json"
  ],
@@ -72,7 +74,8 @@
   ],
   "oracles": [
    "scaffold/checks/cases（L11受入候補の写し）",
-   "scaffold/review-handoff/gui_selftest.pyの外部hook残留否定例"
+   "scaffold/review-handoff/gui_selftest.pyの外部hook残留否定例",
+   "scaffold/tools/scfctl_operation_entry_test.pyの一時filesystem直接コマンド結果"
   ],
   "negative_cases": [
    "上流なし／役割なしの登録拒否",
@@ -83,7 +86,8 @@
    "確認前・read-after不一致での撤去拒否",
    "残留・二重役割の検出",
    "poc／research identityの拒否",
-   "承認・受入の生成入力の拒否"
+   "承認・受入の生成入力の拒否",
+   "retire／check-replacement入口でshape・rules不合格時のbinding／receipt副作用拒否"
   ]
  },
  "replacement": {
