@@ -45,10 +45,12 @@ def main():
         case("canonical_selection_reason",lambda c:mutate_jsonl(c/"scaffold/rdp001-outside67-product-boundary-062/product-units.jsonl",0,lambda d:d.__setitem__("selection_reason","tampered")),"E_UNIT_CANONICAL:selection_reason")
         case("canonical_anchor_keyset",lambda c:mutate_jsonl(c/"scaffold/rdp001-outside67-product-boundary-062/product-units.jsonl",0,lambda d:d["source_anchor"]["pre_isolation"].__setitem__("free_text","tampered")),"E_UNIT_ANCHOR_KEYS")
         case("scope_keyset",lambda c:mutate_json(c/"scaffold/rdp001-outside67-product-boundary-062/inventory.json",lambda d:d["scope"].__setitem__("free_text","tampered")),"E_SCOPE_KEYS")
+        case("anchor_root_keyset",lambda c:mutate_jsonl(c/"scaffold/rdp001-outside67-product-boundary-062/product-units.jsonl",0,lambda d:d["source_anchor"].__setitem__("free_text","tampered")),"E_UNIT_ANCHOR_ROOT_KEYS")
+        case("scope_canonical_string",lambda c:mutate_json(c/"scaffold/rdp001-outside67-product-boundary-062/inventory.json",lambda d:d["scope"].__setitem__("base_drift_reason","ZZZ")),"E_SCOPE_CANONICAL:base_drift_reason")
         bad=[x for x in cases if not x[1]]
         if bad:
             print("FAIL selfcheck cases: "+", ".join(x[0] for x in bad)); print("\n".join(x[2] for x in bad)); return 1
-    print("PASS outside67 product-boundary selfcheck: baseline + 21 negative cases")
+    print("PASS outside67 product-boundary selfcheck: baseline + 23 negative cases")
     return 0
 
 if __name__ == "__main__": sys.exit(main())

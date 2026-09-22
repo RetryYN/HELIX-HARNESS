@@ -65,7 +65,7 @@
     },
     {
       "path": "scaffold/rdp001-outside67-product-boundary-062/README.md",
-      "sha256": "0c06e6855753fbaed3a2d3ab6097745865101b47d8a7208318ff0f1e7628ff57",
+      "sha256": "c67e4703aff69081fa2976b5faf18785506d775d23c2f004d03b6c4d3523ff5c",
       "note": "SCF-B-0062 product-boundary research artifact"
     },
     {
@@ -75,7 +75,7 @@
     },
     {
       "path": "scaffold/rdp001-outside67-product-boundary-062/method.md",
-      "sha256": "beae0d6669c8dc23e7d5b82c04c81c3cdc0bd6ac3deacfc7c99d391d00666bf1",
+      "sha256": "7c11741eeec54c1e983745ef1dd1d030b7d0a1e2703b9c67f42b2e69c85784d3",
       "note": "SCF-B-0062 product-boundary research artifact"
     },
     {
@@ -85,7 +85,7 @@
     },
     {
       "path": "scaffold/rdp001-outside67-product-boundary-062/status.md",
-      "sha256": "9d682a4ac8f2b5e3a41473cba696fba41856523262292ad933a2d8dda2c99afa",
+      "sha256": "da318aecf58a8e9c670d20de7474fcafc114fef3346be309fb3431e971e4f6e3",
       "note": "SCF-B-0062 product-boundary research artifact"
     },
     {
@@ -110,12 +110,12 @@
     },
     {
       "path": "scaffold/rdp001-outside67-product-boundary-062/validate.py",
-      "sha256": "26c7ddb732e52c0a62494c18025c365351b9f2e79d9111ca0c771c9c38cb20ea",
+      "sha256": "c2ccdd4710b3daaaf5c9aa03660100f93c4d5e4bb065110031ff9458e3ebd7b9",
       "note": "SCF-B-0062 product-boundary research artifact"
     },
     {
       "path": "scaffold/rdp001-outside67-product-boundary-062/selfcheck.py",
-      "sha256": "9d462f31a322c341135dd0bb272a00957e096ea5d3a282c429f4d0a2db026202",
+      "sha256": "7892cb529ea4c737036c50a1ea0e53c9f097add7e1f39cefdc00f4203e34c485",
       "note": "SCF-B-0062 product-boundary research artifact"
     }
   ],
@@ -184,7 +184,7 @@
     ],
     "oracles": [
       "validate.py（67 denominator／selection／overlap／exact revision／snapshot／diff／26 unit anchor／four products／unknown boundary／fixed records／base ancestor）",
-      "selfcheck.py（baseline＋21 negative cases: denominator、anchor mirror／keyset、canonical product／selection reason、scope keyset、overlap、authority、fixed keyset／catalog、base ancestor、旧実行）",
+      "selfcheck.py（baseline＋23 negative cases: denominator、anchor mirror／root・side keyset、canonical product／selection reason、scope keyset／canonical string、overlap、authority、fixed keyset／catalog、base ancestor、旧実行）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],
@@ -195,7 +195,7 @@
       "unit／inventory keyset、fixed meaning record、F/Q/P catalogの改変",
       "四製品候補、phase、implementation、degradation、failure、consumer、decisionの昇格",
       "旧runtime／test／CI実行やformal requirement／successor／authority生成",
-      "独立canonical table、source anchor直下keyset、scope keyset、candidate product、selection reasonの改変"
+      "独立canonical table、source_anchor直下／side keyset、scope keysetと全非digest文字列、revision commit、holding/register pathの改変"
     ]
   },
   "replacement": {

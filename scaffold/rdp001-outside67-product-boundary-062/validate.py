@@ -27,6 +27,7 @@ UNIT_KEYS={
     'authority_effect','candidate_kind','candidate_product','consumer_status','current_degradation_status','current_implementation_status','decision_status','degradation_status','diff_observation','failure_status','implementation_status','inference_status','legacy_degradation_status','legacy_implementation_status','meaning_change_applied','normalized_statement','phase_candidate','phase_status','product_candidates','product_status','retained_meaning','selection_reason','semantic_fields','source_anchor','source_fragment','source_item_id','source_path','source_support','successor_requirement_ids','unit_id','unresolved_questions'
 }
 ANCHOR_KEYS={'commit','line','line_sha256','source_fragment'}
+SOURCE_ANCHOR_KEYS={'pre_isolation','archive'}
 SEMANTIC_KEYS={'action','actor','condition','guard','sequence'}
 FIXED_UNIT_FIELD_KEYS={
     'normalized_statement': {'status','text','source_ref'},
@@ -49,6 +50,46 @@ SCOPE_KEYS={
     'remaining_after_batch','remaining_before_batch','requirement_atoms_are_not_path_pairs',
     'selected_path_revision_pair_count','selected_source_document_count','source_unit','static_only',
     'unexplored_scope','worktree'
+}
+# Scope is a recorded contract, not a free-form annotation.  Keep this table
+# independent of inventory.json so every non-digest string has a stable value.
+CANONICAL_SCOPE_VALUES={
+    'worktree':'/home/tenni/.helix-worktrees/outside67-product-boundary',
+    'base_origin_main':'294bfd90bf58390798733a1437f1c91b8dc7fce8',
+    'base_origin_main_expected_before_fetch':'b0b233f2712f69abebc18e698b8661d34bc5a804',
+    'base_drift_observed':True,
+    'base_drift_from':'b0b233f2712f69abebc18e698b8661d34bc5a804',
+    'base_drift_to':'294bfd90bf58390798733a1437f1c91b8dc7fce8',
+    'base_drift_reason':'Wave36 parent通知後にorigin/mainがb0b233f2から294bfd90へ進み、その後#2008 mergeでce66af3bへ進行した。記録baseは294bfd90のまま固定し、branchをce66af3bへrebaseしてmaterializeした。holding/register/sourceは不変。',
+    'read_only':True,
+    'static_only':True,
+    'holding_registration_id':'MPR-SH-OUTSIDE67-001',
+    'holding_path':HOLDING_REL,
+    'holding_sha256':'d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54',
+    'holding_path_revision_pair_denominator':67,
+    'holding_record_count':67,
+    'current_live_source_holding_count':14,
+    'management_register_path':REGISTER_REL,
+    'management_register_sha256':'b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd',
+    'previous_reviewed_path_revision_pair_count':2,
+    'previous_reviewed_ids':['OUTSIDE67-PATH-008','OUTSIDE67-PATH-011'],
+    'remaining_before_batch':65,
+    'selected_path_revision_pair_count':5,
+    'selected_source_document_count':5,
+    'remaining_after_batch':60,
+    'unexplored_scope':'既レビュー2件と今回5件を除く60 path_revision_pair。#2007差分内の001／010は参照混入のため除外するが既レビュー件数には算入しない。',
+    'pr_2007_head':'e2c8f63e0d34ea8131d26f5671e96bca3f34437c',
+    'pr_2007_excluded_ids':['OUTSIDE67-PATH-001','OUTSIDE67-PATH-008','OUTSIDE67-PATH-010','OUTSIDE67-PATH-011'],
+    'pre_isolation_commit':EXPECTED_PRE,
+    'archive_commit':EXPECTED_ARCHIVE,
+    'historical_capture_commit':'3df81ad27157c471e004083783f37a5860eaa2ee',
+    'source_unit':'path_revision_pair',
+    'requirement_atoms_are_not_path_pairs':True,
+    'batch_width_observed':5,
+    'batch_width_policy':'今回検証した幅5件。安全な拡大上限は断定せず、次batchはsource chainごとに独立確認する。',
+    'live_origin_main_observed_after_base':'ce66af3b36727872369a549f01941b26c2b19088',
+    'live_origin_drift_after_recorded_base':True,
+    'live_origin_drift_impact':'記録base 294bfd90は変更せず、branchはce66af3b（#2008 merge後main）へrebaseしてmaterializeした。HEAD／holding／register／selected sourceを静的再照合し、live origin/mainとの同値は要求しない。'
 }
 CANONICAL_SELECTION_REASON='製品境界に直接関係する逐語source line。source fragment外のactor/action/condition/guard/sequenceは生成しない。'
 # This table is deliberately independent of product-units.jsonl.  It fixes every
@@ -158,11 +199,18 @@ def add_unit_field_errors(u, errors):
         elif field=='diff_observation':
             if value.get('status')!='unresolved' or value.get('source_ref')!='source-diffs.json' or not isinstance(value.get('text'),str) or not value['text'].strip():
                 errors.append(f'E_UNIT_FIXED_FIELD:{uid}:diff_observation_value')
-    if u.get('source_fragment')!=u.get('source_anchor',{}).get('pre_isolation',{}).get('source_fragment'):
+    raw_source_anchor=u.get('source_anchor',{})
+    source_anchor=raw_source_anchor if isinstance(raw_source_anchor,dict) else {}
+    if not isinstance(raw_source_anchor,dict) or set(source_anchor)!=SOURCE_ANCHOR_KEYS:
+        errors.append(f'E_UNIT_ANCHOR_ROOT_KEYS:{uid}')
+    pre_anchor=source_anchor.get('pre_isolation',{})
+    if not isinstance(pre_anchor,dict): pre_anchor={}
+    if u.get('source_fragment')!=pre_anchor.get('source_fragment'):
         errors.append(f'E_UNIT_FRAGMENT_MIRROR:{uid}')
     for side in ('pre_isolation','archive'):
-        anchor=u.get('source_anchor',{}).get(side,{})
-        if set(anchor)!=ANCHOR_KEYS:
+        raw_anchor=source_anchor.get(side,{})
+        anchor=raw_anchor if isinstance(raw_anchor,dict) else {}
+        if not isinstance(raw_anchor,dict) or set(anchor)!=ANCHOR_KEYS:
             errors.append(f'E_UNIT_ANCHOR_KEYS:{uid}:{side}')
     sid=u.get('source_item_id')
     canonical=CANONICAL_SOURCE_TABLE.get(sid)
@@ -179,7 +227,8 @@ def add_unit_field_errors(u, errors):
             errors.append(f'E_UNIT_CANONICAL:selection_reason:{uid}')
         expected_lines={'pre_isolation':canonical['unit_lines'][uid], 'archive':canonical.get('archive_lines',{}).get(uid,canonical['unit_lines'][uid])}
         for side, expected_commit in (('pre_isolation',EXPECTED_PRE),('archive',EXPECTED_ARCHIVE)):
-            anchor=u.get('source_anchor',{}).get(side,{})
+            raw_anchor=source_anchor.get(side,{})
+            anchor=raw_anchor if isinstance(raw_anchor,dict) else {}
             if anchor.get('commit')!=expected_commit or anchor.get('line')!=expected_lines[side]:
                 errors.append(f'E_UNIT_CANONICAL:source_anchor:{uid}:{side}')
 
@@ -199,6 +248,9 @@ def validate(root):
     add_catalog_errors(inv, errors)
     sc = inv.get("scope", {})
     if set(sc)!=SCOPE_KEYS: errors.append("E_SCOPE_KEYS")
+    for key, expected in CANONICAL_SCOPE_VALUES.items():
+        if sc.get(key)!=expected:
+            errors.append(f"E_SCOPE_CANONICAL:{key}")
     if sc.get("base_origin_main") != EXPECTED_BASE: errors.append("E_BASE")
     head=subprocess.check_output(["git","-C",str(root),"rev-parse","HEAD"],text=True).strip()
     ancestor=subprocess.run(["git","-C",str(root),"merge-base","--is-ancestor",sc.get("base_origin_main",""),head],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
