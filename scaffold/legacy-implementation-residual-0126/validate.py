@@ -61,6 +61,8 @@ EXPECTED_RULES = {
 }
 EXPECTED_NEGATIVE_CASES = ["target_set_missing_or_duplicate", "source_blob_tamper", "source_line_anchor_tamper", "classification_category_tamper", "classification_product_tamper", "wave_edge_injection", "phase_status_tamper", "asset_ledger_tamper", "history_tamper", "boundary_blob_tamper", "authority_promotion", "input_digest_missing_or_duplicate", "inventory_scope_tamper", "fixed_base_pin_tamper", "output_digest_tamper"]
 EXPECTED_RECORD_KEYS = {"asset_id", "source_path", "source_exact", "phase_evidence", "legacy_asset_evidence", "classification", "boundary_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "wave_semantic_links", "wave_edge_count", "human_judgment_remaining", "authority_effect", "formal_asset_classification_updated", "new_build_allowed"}
+EXPECTED_SOURCE_KEYS = {"archive_path", "source_path", "blob", "bytes", "line_count", "sha256", "ledger_source_sha256", "ledger_digest_match", "semantic_anchor", "read_mode"}
+EXPECTED_CLASSIFICATION_KEYS = {"category", "candidate_products", "semantic_status", "reason"}
 EXPECTED_PROFILES = {'.claude/hooks/git-command-guard.ts': {'category': 'insufficient_basis',
                                         'length': 12,
                                         'marker': 'PreToolUse(Bash / exec_command) hook',
@@ -531,6 +533,7 @@ def check_source(record: dict, expected: dict, asset: dict) -> None:
     path = asset["source_path"]
     exact = record.get("source_exact")
     if not isinstance(exact, dict): fail("E_SOURCE_ANCHOR", path)
+    if set(exact) != EXPECTED_SOURCE_KEYS: fail("E_SOURCE_ANCHOR", path)
     archive = ARCHIVE_PREFIX + path
     if exact.get("archive_path") != archive or exact.get("source_path") != path: fail("E_SOURCE_ANCHOR", path)
     data = git_bytes(archive)
@@ -573,6 +576,9 @@ def check() -> None:
     if inv.get("binding_id") != BINDING_ID or inv.get("formal_update", {}).get("authority_effect") != "none": fail("E_AUTHORITY_PROMOTION", "binding/authority")
     if inv.get("formal_update", {}).get("new_build_allowed") is not False or inv.get("formal_update", {}).get("formal_asset_classification_updated") is not False: fail("E_AUTHORITY_PROMOTION", "formal update")
     if inv.get("counts", {}).get("target_wave_edges") != 0 or inv.get("counts", {}).get("wave_files") != 50 or inv.get("counts", {}).get("wave_edges_scanned") != 598 or inv.get("counts", {}).get("wave_unique_assets_scanned") != 355: fail("E_WAVE_EDGE_SET", "wave denominator")
+    if inv.get("wave_source_paths") != {str(n): path for n, path in WAVE_PATHS.items()}: fail("E_WAVE_EDGE_SET", "wave input paths")
+    if inv.get("existing_research_union") != {"expected_unresolved_assets": 1792, "existing_union_count": 280, "residual_unresolved_count": 1512, "existing_prefixes": list(EXISTING_RESEARCH_PREFIXES), "wave_unresolved_assets": 64, "target_wave_overlap": 0}: fail("E_INVENTORY_DECLARATION", "research union")
+    if inv.get("old_asset_source_mode") != "archive bytes are read through git show BASE:<archive-path>; never executed": fail("E_INVENTORY_DECLARATION", "source mode")
     if inv.get("existing_research_union", {}).get("existing_union_count") != 280 or inv.get("existing_research_union", {}).get("residual_unresolved_count") != 1512: fail("E_INVENTORY_DECLARATION", "union counts")
     categories = Counter()
     expected_paths = set(EXPECTED_PROFILES)
@@ -595,6 +601,7 @@ def check() -> None:
         dline, drow = disp[aid]
         if le.get("path") != DISPOSITION or le.get("line") != dline or le.get("row_sha256") != row_digest(drow): fail("E_OLD_LEDGER_RECORD", aid)
         cls = row.get("classification", {})
+        if set(cls) != EXPECTED_CLASSIFICATION_KEYS: fail("E_RECORD_SCHEMA", aid)
         if cls.get("category") != expected["category"] or cls.get("candidate_products") != expected["products"]: fail("E_CLASSIFICATION", aid)
         if cls.get("semantic_status") != {"direct_product_basis": "reviewed_candidate", "multi_product_conflict": "reviewed_conflict", "insufficient_basis": "reviewed_insufficient_basis"}[expected["category"]]: fail("E_CLASSIFICATION", aid)
         if cls.get("reason") != expected["reason"] + " Candidate only; formal product authority remains unresolved.": fail("E_CLASSIFICATION", aid)
@@ -624,6 +631,10 @@ def check() -> None:
             for rec, rg in zip(lr.get("ranges", []), L1_RANGES[product]): range_check(rec, L1[product], *rg)
     if dict(sorted(categories.items())) != {k: inv.get("counts", {}).get("categories", {}).get(k) for k in sorted(categories)}: fail("E_INVENTORY_DECLARATION", "category counts")
     if inv.get("counts", {}).get("target_assets") != 67 or inv.get("counts", {}).get("target_asset_artifact_evidence_kinds") != {"implementation_source": 67}: fail("E_INVENTORY_DECLARATION", "asset denominator")
+    phase_distribution = Counter("|".join(phase[a][1].get("candidate_phase_targets") or []) for a in targets)
+    if inv.get("phase_candidate_distribution") != dict(sorted(phase_distribution.items())): fail("E_INVENTORY_DECLARATION", "phase distribution")
+    if inv.get("edge_contract") != {"target_wave_edges": 0, "duplicate_edges_forbidden": True, "missing_edges_forbidden": True}: fail("E_INVENTORY_DECLARATION", "edge contract")
+    if inv.get("history_failure_consumer") != {"disposition_rows": 67, "decision_rows_for_targets": 0, "read_after_rows_for_targets": 0, "failure_consumer_refs_are_static_global_inventory": True}: fail("E_INVENTORY_DECLARATION", "history/failure/consumer declaration")
     paths = [x.get("path") for x in inv.get("input_digests", [])]
     if len(paths) != len(set(paths)) or set(paths) != set(WAVE_PATHS.values()) | {PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, "docs/governance/legacy-asset-reuse-control.md", "docs/governance/new-generation-start-here.md", "archive/legacy-generation-2026-09-14/MANIFEST.sha256"} | {ARCHIVE_PREFIX + phase[a][1]["source_path"] for a in targets}: fail("E_INPUT_DIGEST", "input path set")
     for item in inv["input_digests"]:
