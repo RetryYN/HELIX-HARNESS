@@ -92,6 +92,9 @@ def main() -> None:
     def tampered_old_wrapper(rows):
         rows[0]["old_asset_evidence"]["not_implementation_proof"] = False
 
+    def extra_old_wrapper_key(rows):
+        rows[0]["old_asset_evidence"]["implementation_proven"] = True
+
     def tampered_unit_schema(rows):
         rows[0]["schema"] = "fr-implementation-evidence-0110/v1/tampered"
 
@@ -125,6 +128,7 @@ def main() -> None:
     run_case("tampered-current", "E_CURRENT_STATUS", tampered_current)
     run_case("claimed-unimplemented", "E_UNIMPLEMENTED_CLAIM", claimed_unimplemented)
     run_case("tampered-old-wrapper", "E_OLD_ASSET_EVIDENCE", tampered_old_wrapper)
+    run_case("extra-old-wrapper-key", "E_OLD_ASSET_EVIDENCE", extra_old_wrapper_key)
     run_case("tampered-unit-schema", "E_UNIT_SCHEMA", tampered_unit_schema)
     run_case("tampered-unit-top-level", "E_UNIT_SCHEMA", tampered_unit_top_level)
     run_case("tampered-inventory-scope", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_inventory_scope)
@@ -133,7 +137,7 @@ def main() -> None:
     run_case("wrong-input-digest", "E_INPUT_DIGEST", lambda rows: None, wrong_input_digest)
     run_case("wrong-base", "E_BASE_COMMIT", lambda rows: None, wrong_base)
     run_case("tampered-base-declaration", "E_BASE_COMMIT", lambda rows: None, tampered_base_declaration)
-    print("SCF-B-0110 selfcheck: PASS (23 negative cases; expected error codes matched)")
+    print("SCF-B-0110 selfcheck: PASS (24 negative cases; expected error codes matched)")
 
 
 if __name__ == "__main__":

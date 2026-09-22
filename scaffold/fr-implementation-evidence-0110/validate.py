@@ -31,6 +31,7 @@ UNIT_TOP_LEVEL_KEYS = frozenset({
     "current_implementation_evidence", "unimplemented_assessment",
     "authority_boundary", "unresolved",
 })
+OLD_ASSET_WRAPPER_KEYS = frozenset({"assets", "static_only", "not_implementation_proof"})
 CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 IR = "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
 DECOMP = "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
@@ -573,7 +574,10 @@ class Validator:
             if current.get("asset_set") != expected_asset_set:
                 self.error("E_OLD_ASSET_UNIT_SET", f"{unit} unit asset_set宣言不一致")
             actual_unit_assets = current.get("old_asset_evidence", {}).get("assets", [])
-            if current.get("old_asset_evidence", {}).get("static_only") is not True or current.get("old_asset_evidence", {}).get("not_implementation_proof") is not True:
+            old_asset_wrapper = current.get("old_asset_evidence", {})
+            if set(old_asset_wrapper) != OLD_ASSET_WRAPPER_KEYS:
+                self.error("E_OLD_ASSET_EVIDENCE", f"{unit} old_asset_evidence key集合が不一致")
+            if old_asset_wrapper.get("static_only") is not True or old_asset_wrapper.get("not_implementation_proof") is not True:
                 self.error("E_OLD_ASSET_EVIDENCE", f"{unit} old_asset_evidenceのstatic-only境界が不一致")
             actual_unit_asset_ids = [asset.get("asset_id") for asset in actual_unit_assets]
             if len(actual_unit_asset_ids) != len(set(actual_unit_asset_ids)) or sorted(actual_unit_asset_ids) != asset_ids:
