@@ -12,6 +12,7 @@
 - 候補: direct product basis **30**、multi-product conflict **23**、insufficient basis **14**
 - phase候補: phase台帳の値を各recordで保持。正式phase admissionは行わない
 - 旧asset decision/read-after対象行: 対象asset別に再照合。failure/consumerはglobal inventoryを静的参照
+- 旧asset status（disposition／product／implementation／consumer／decision／read-after）とhistory/consumer blockは、固定BASE由来の期待record全fieldと厳密一致させる。inventoryのschema、formal_update、expected source_pathsも全field照合する。
 
 各candidateはsource pathではなく、固定BASE archive Git objectの具体span、行テキストdigest、product-boundary/L1のcounter-evidenceに基づく。複数責務は単一ownerへ潰さずconflict、wrapper/re-export/compatibility facadeはinsufficientとした。
 
@@ -28,7 +29,7 @@ python3 -B scaffold/legacy-implementation-residual-0126/generate.py
 python3 -B scaffold/legacy-implementation-residual-0126/validate.py
 # SCF-B-0126 validate: PASS records=67 categories={'direct_product_basis': 30, 'insufficient_basis': 14, 'multi_product_conflict': 23} target_wave_edges=0 union=280
 python3 -B scaffold/legacy-implementation-residual-0126/selfcheck.py
-# SCF-B-0126 selfcheck: PASS negative_cases=19
+# SCF-B-0126 selfcheck: PASS negative_cases=27
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale
 python3 scaffold/tools/scfctl.py residuals

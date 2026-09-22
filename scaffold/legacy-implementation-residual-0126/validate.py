@@ -44,7 +44,7 @@ EXISTING_RESEARCH_PREFIXES = (
 EXPECTED_MISMATCH_PATHS = {"scripts/helix.ps1"}
 EXPECTED_PRODUCTS = ("HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS")
 EXPECTED_SCOPE = "fixed BASE unresolved implementation_source residual after existing research union exact 67 assets"
-EXPECTED_ARTIFACTS = {
+EXPECTED_ARTIFACTS_ORDERED = [
     "scaffold/bindings/SCF-B-0126.json",
     "scaffold/legacy-implementation-residual-0126/README.md",
     "scaffold/legacy-implementation-residual-0126/PR-DRAFT.md",
@@ -53,13 +53,61 @@ EXPECTED_ARTIFACTS = {
     "scaffold/legacy-implementation-residual-0126/selfcheck.py",
     "scaffold/legacy-implementation-residual-0126/inventory.json",
     "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
-}
+]
+EXPECTED_ARTIFACTS = set(EXPECTED_ARTIFACTS_ORDERED)
 EXPECTED_RULES = {
     "direct_product_basis": "concrete source span plus product-boundary interpretation and counterevidence; path alone is invalid",
     "multi_product_conflict": "concrete source span maps to two product boundaries and no single owner is proposed",
     "insufficient_basis": "wrapper/re-export/shared infrastructure or source span lacks product-boundary proof; Wave scope is not inherited",
 }
-EXPECTED_NEGATIVE_CASES = ["target_set_missing_or_duplicate", "source_blob_tamper", "source_line_anchor_tamper", "classification_category_tamper", "classification_product_tamper", "wave_edge_injection", "phase_status_tamper", "asset_ledger_tamper", "history_tamper", "boundary_blob_tamper", "authority_promotion", "input_digest_missing_or_duplicate", "inventory_scope_tamper", "fixed_base_pin_tamper", "output_digest_tamper"]
+EXPECTED_NEGATIVE_CASES = [
+    "target_set_missing_or_duplicate",
+    "source_blob_tamper",
+    "source_line_anchor_tamper",
+    "classification_category_tamper",
+    "classification_product_tamper",
+    "wave_edge_injection",
+    "phase_status_tamper",
+    "asset_ledger_tamper",
+    "legacy_status_promotion_tamper",
+    "legacy_disposition_or_product_resolution_tamper",
+    "legacy_consumer_tamper",
+    "history_tamper",
+    "history_consumer_closure_tamper",
+    "boundary_blob_tamper",
+    "authority_promotion",
+    "formal_update_reversal_tamper",
+    "inventory_schema_tamper",
+    "inventory_source_paths_tamper",
+    "input_digest_missing_or_duplicate",
+    "input_digest_schema_tamper",
+    "inventory_scope_tamper",
+    "fixed_base_pin_tamper",
+    "output_digest_tamper",
+]
+EXPECTED_INVENTORY_KEYS = {
+    "schema_revision",
+    "binding_id",
+    "base_revision",
+    "base_source_mode",
+    "scope",
+    "existing_research_union",
+    "wave_source_paths",
+    "counts",
+    "phase_candidate_distribution",
+    "expected_sets",
+    "input_digests",
+    "old_asset_source_mode",
+    "formal_update",
+    "classification_rule",
+    "authority_boundary",
+    "history_failure_consumer",
+    "edge_contract",
+    "artifacts",
+    "negative_cases",
+    "output_sha256",
+}
+EXPECTED_INPUT_DIGEST_KEYS = {"path", "blob", "bytes", "sha256"}
 EXPECTED_RECORD_KEYS = {"asset_id", "source_path", "source_exact", "phase_evidence", "legacy_asset_evidence", "classification", "boundary_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "wave_semantic_links", "wave_edge_count", "human_judgment_remaining", "authority_effect", "formal_asset_classification_updated", "new_build_allowed"}
 EXPECTED_SOURCE_KEYS = {"archive_path", "source_path", "blob", "bytes", "line_count", "sha256", "ledger_source_sha256", "ledger_digest_match", "semantic_anchor", "read_mode"}
 EXPECTED_CLASSIFICATION_KEYS = {"category", "candidate_products", "semantic_status", "reason"}
@@ -504,6 +552,76 @@ def read_jsonl(path: str) -> list[tuple[int, dict]]:
     return rows
 
 
+def expected_legacy_asset_evidence(asset: dict, line: int) -> dict:
+    return {
+        "path": DISPOSITION,
+        "line": line,
+        "row_sha256": row_digest(asset),
+        "disposition": asset.get("disposition"),
+        "asset_class": asset.get("asset_class"),
+        "product_target": asset.get("product_target"),
+        "implementation_status": asset.get("implementation_status"),
+        "consumer_refs": sorted(asset.get("consumer_refs", [])),
+        "decision_record_ref": asset.get("decision_record_ref"),
+        "read_after_record_ref": asset.get("read_after_record_ref"),
+    }
+
+
+def expected_history_failure_consumer(
+    asset: dict,
+    line: int,
+    decisions: list[tuple[int, dict]],
+    read_afters: list[tuple[int, dict]],
+) -> dict:
+    failure = git_bytes(FAILURE_SOURCE)
+    consumer = git_bytes(CONSUMER_SOURCE)
+    disposition = expected_legacy_asset_evidence(asset, line)
+    disposition.update({"source_path": asset.get("source_path"), "source_sha256": asset.get("source_sha256")})
+    return {
+        "disposition": disposition,
+        "decisions": [
+            {
+                "path": DECISIONS,
+                "line": n,
+                "row_sha256": row_digest(row),
+                "decision_id": row.get("decision_id"),
+                "product_target": row.get("product_target"),
+                "disposition": row.get("disposition"),
+            }
+            for n, row in decisions
+            if row.get("asset_id") == asset.get("asset_id")
+        ],
+        "read_after": [
+            {
+                "path": READ_AFTER,
+                "line": n,
+                "row_sha256": row_digest(row),
+                "read_after_id": row.get("read_after_id"),
+                "result": row.get("result"),
+                "digest_match": row.get("digest_match"),
+                "consumer_match": row.get("consumer_match"),
+            }
+            for n, row in read_afters
+            if row.get("asset_id") == asset.get("asset_id")
+        ],
+        "failure_consumer_static": {
+            "failure": {
+                "path": FAILURE_SOURCE,
+                "blob": git_blob(FAILURE_SOURCE),
+                "sha256": tagged(failure),
+                "read_mode": "git_object_static_read_only",
+            },
+            "consumer": {
+                "path": CONSUMER_SOURCE,
+                "blob": git_blob(CONSUMER_SOURCE),
+                "sha256": tagged(consumer),
+                "read_mode": "git_object_static_read_only",
+            },
+        },
+        "closure_status": "asset-level history/consumer closure absent; global failure/consumer inventories retained for human review",
+    }
+
+
 def range_check(receipt: dict, expected_path: str, start: int, end: int) -> None:
     if receipt.get("path") != expected_path or receipt.get("line_start") != start or receipt.get("line_end") != end:
         fail("E_BOUNDARY_ANCHOR", f"range {expected_path} {start}-{end}")
@@ -565,16 +683,32 @@ def check() -> None:
     phase_list = read_jsonl(PHASE)
     phase = {r["asset_id"]: (n, r) for n, r in phase_list}
     disp = {r["asset_id"]: (n, r) for n, r in read_jsonl(DISPOSITION)}
+    decisions = read_jsonl(DECISIONS)
+    read_afters = read_jsonl(READ_AFTER)
     targets, wave_assets, existing = derive_targets(phase)
     if sorted(r.get("asset_id") for r in rows) != targets or len({r.get("asset_id") for r in rows}) != 67: fail("E_TARGET_SET", "ledger IDs")
     if set(inv.get("expected_sets", {}).get("target_asset_ids", [])) != set(targets) or inv.get("expected_sets", {}).get("target_asset_count") != 67: fail("E_INVENTORY_DECLARATION", "target set")
-    if inv.get("expected_sets", {}).get("target_asset_ids_sha256") != tagged("\n".join(targets).encode()): fail("E_INVENTORY_DECLARATION", "target IDs digest")
+    if set(inv) != EXPECTED_INVENTORY_KEYS: fail("E_INVENTORY_DECLARATION", "inventory schema keys")
+    if inv.get("schema_revision") != 1: fail("E_INVENTORY_DECLARATION", "schema revision")
+    if inv.get("expected_sets") != {
+        "target_asset_count": 67,
+        "target_asset_ids": targets,
+        "target_asset_ids_sha256": tagged("\n".join(targets).encode()),
+        "source_paths": [phase[a][1]["source_path"] for a in targets],
+    }: fail("E_INVENTORY_DECLARATION", "target/source path sets")
     if inv.get("base_revision") != BASE_REVISION or inv.get("base_source_mode") != "all input and archive evidence bytes from fixed BASE Git objects": fail("E_BASE_PIN", "inventory")
-    if inv.get("scope") != EXPECTED_SCOPE or set(inv.get("artifacts", [])) != EXPECTED_ARTIFACTS or inv.get("negative_cases") != EXPECTED_NEGATIVE_CASES: fail("E_INVENTORY_DECLARATION", "scope/artifacts/negative cases")
+    if inv.get("scope") != EXPECTED_SCOPE or inv.get("artifacts") != EXPECTED_ARTIFACTS_ORDERED or inv.get("negative_cases") != EXPECTED_NEGATIVE_CASES: fail("E_INVENTORY_DECLARATION", "scope/artifacts/negative cases")
     if inv.get("classification_rule") != EXPECTED_RULES: fail("E_INVENTORY_DECLARATION", "classification rule")
     if inv.get("authority_boundary") != {"authority_effect": "none", "classification_state": "research_proposal_pending_human_product_review", "formal_asset_classification_updated": False, "new_build_allowed": False}: fail("E_INVENTORY_DECLARATION", "authority boundary")
-    if inv.get("binding_id") != BINDING_ID or inv.get("formal_update", {}).get("authority_effect") != "none": fail("E_AUTHORITY_PROMOTION", "binding/authority")
-    if inv.get("formal_update", {}).get("new_build_allowed") is not False or inv.get("formal_update", {}).get("formal_asset_classification_updated") is not False: fail("E_AUTHORITY_PROMOTION", "formal update")
+    if inv.get("binding_id") != BINDING_ID: fail("E_INVENTORY_DECLARATION", "binding id")
+    if inv.get("formal_update") != {
+        "formal_asset_classification_updated": False,
+        "phase_ledger_updated": False,
+        "product_route_updated": False,
+        "successor_updated": False,
+        "new_build_allowed": False,
+        "authority_effect": "none",
+    }: fail("E_AUTHORITY_PROMOTION", "formal update")
     if inv.get("counts", {}).get("target_wave_edges") != 0 or inv.get("counts", {}).get("wave_files") != 50 or inv.get("counts", {}).get("wave_edges_scanned") != 598 or inv.get("counts", {}).get("wave_unique_assets_scanned") != 355: fail("E_WAVE_EDGE_SET", "wave denominator")
     if inv.get("wave_source_paths") != {str(n): path for n, path in WAVE_PATHS.items()}: fail("E_WAVE_EDGE_SET", "wave input paths")
     if inv.get("existing_research_union") != {"expected_unresolved_assets": 1792, "existing_union_count": 280, "residual_unresolved_count": 1512, "existing_prefixes": list(EXISTING_RESEARCH_PREFIXES), "wave_unresolved_assets": 64, "target_wave_overlap": 0}: fail("E_INVENTORY_DECLARATION", "research union")
@@ -599,7 +733,7 @@ def check() -> None:
             if pe.get(k) != v: fail("E_PHASE_STATUS", aid)
         le = row.get("legacy_asset_evidence", {})
         dline, drow = disp[aid]
-        if le.get("path") != DISPOSITION or le.get("line") != dline or le.get("row_sha256") != row_digest(drow): fail("E_OLD_LEDGER_RECORD", aid)
+        if le != expected_legacy_asset_evidence(drow, dline): fail("E_OLD_LEDGER_RECORD", aid)
         cls = row.get("classification", {})
         if set(cls) != EXPECTED_CLASSIFICATION_KEYS: fail("E_RECORD_SCHEMA", aid)
         if cls.get("category") != expected["category"] or cls.get("candidate_products") != expected["products"]: fail("E_CLASSIFICATION", aid)
@@ -613,10 +747,7 @@ def check() -> None:
         if row.get("authority_effect") != "none" or row.get("formal_asset_classification_updated") is not False or row.get("new_build_allowed") is not False: fail("E_AUTHORITY_PROMOTION", aid)
         if row.get("human_judgment_remaining") != EXPECTED_HUMAN: fail("E_HUMAN_JUDGMENT", aid)
         h = row.get("legacy_history_failure_consumer", {})
-        for key, source in (("failure", FAILURE_SOURCE), ("consumer", CONSUMER_SOURCE)):
-            obj = h.get("failure_consumer_static", {}).get(key, {})
-            b = git_bytes(source)
-            if obj.get("path") != source or obj.get("blob") != git_blob(source) or obj.get("sha256") != tagged(b) or obj.get("read_mode") != "git_object_static_read_only": fail("E_HISTORY", aid)
+        if h != expected_history_failure_consumer(drow, dline, decisions, read_afters): fail("E_HISTORY", aid)
         bnd = row.get("boundary_evidence", {})
         pb = bnd.get("product_boundary", {})
         bd = git_bytes(BOUNDARY)
@@ -629,15 +760,26 @@ def check() -> None:
             if lr.get("path") != L1[product] or lr.get("blob") != git_blob(L1[product]) or lr.get("sha256") != tagged(b): fail("E_BOUNDARY_ANCHOR", aid)
             if len(lr.get("ranges", [])) != len(L1_RANGES[product]): fail("E_BOUNDARY_ANCHOR", aid)
             for rec, rg in zip(lr.get("ranges", []), L1_RANGES[product]): range_check(rec, L1[product], *rg)
-    if dict(sorted(categories.items())) != {k: inv.get("counts", {}).get("categories", {}).get(k) for k in sorted(categories)}: fail("E_INVENTORY_DECLARATION", "category counts")
-    if inv.get("counts", {}).get("target_assets") != 67 or inv.get("counts", {}).get("target_asset_artifact_evidence_kinds") != {"implementation_source": 67}: fail("E_INVENTORY_DECLARATION", "asset denominator")
+    expected_counts = {
+        "wave_files": 50,
+        "wave_edges_scanned": 598,
+        "wave_unique_assets_scanned": 355,
+        "target_assets": 67,
+        "target_wave_edges": 0,
+        "categories": dict(sorted(categories.items())),
+        "target_asset_artifact_evidence_kinds": {"implementation_source": 67},
+    }
+    if inv.get("counts") != expected_counts: fail("E_INVENTORY_DECLARATION", "counts")
     phase_distribution = Counter("|".join(phase[a][1].get("candidate_phase_targets") or []) for a in targets)
     if inv.get("phase_candidate_distribution") != dict(sorted(phase_distribution.items())): fail("E_INVENTORY_DECLARATION", "phase distribution")
     if inv.get("edge_contract") != {"target_wave_edges": 0, "duplicate_edges_forbidden": True, "missing_edges_forbidden": True}: fail("E_INVENTORY_DECLARATION", "edge contract")
     if inv.get("history_failure_consumer") != {"disposition_rows": 67, "decision_rows_for_targets": 0, "read_after_rows_for_targets": 0, "failure_consumer_refs_are_static_global_inventory": True}: fail("E_INVENTORY_DECLARATION", "history/failure/consumer declaration")
+    global_inputs = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, "docs/governance/legacy-asset-reuse-control.md", "docs/governance/new-generation-start-here.md", "archive/legacy-generation-2026-09-14/MANIFEST.sha256"]
+    expected_input_paths = [*WAVE_PATHS.values(), *global_inputs, *[ARCHIVE_PREFIX + phase[a][1]["source_path"] for a in targets]]
     paths = [x.get("path") for x in inv.get("input_digests", [])]
-    if len(paths) != len(set(paths)) or set(paths) != set(WAVE_PATHS.values()) | {PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, "docs/governance/legacy-asset-reuse-control.md", "docs/governance/new-generation-start-here.md", "archive/legacy-generation-2026-09-14/MANIFEST.sha256"} | {ARCHIVE_PREFIX + phase[a][1]["source_path"] for a in targets}: fail("E_INPUT_DIGEST", "input path set")
+    if paths != expected_input_paths or len(paths) != len(set(paths)): fail("E_INPUT_DIGEST", "input path set/order")
     for item in inv["input_digests"]:
+        if set(item) != EXPECTED_INPUT_DIGEST_KEYS: fail("E_INPUT_DIGEST", "input digest schema")
         b = git_bytes(item["path"])
         if item.get("blob") != git_blob(item["path"]) or item.get("bytes") != len(b) or item.get("sha256") != tagged(b): fail("E_INPUT_DIGEST", item.get("path", ""))
     if inv.get("output_sha256") != tagged(LEDGER.read_bytes()): fail("E_OUTPUT_DIGEST", "ledger")

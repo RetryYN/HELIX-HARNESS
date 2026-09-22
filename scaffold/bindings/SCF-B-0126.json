@@ -31,6 +31,8 @@
     "source spanとproduct-boundary/L1 counter-evidenceを使いdirect/conflict/insufficientを再導出する",
     "Wave1-50の50 file・598 edge・355 unique assetを再走査し対象Wave edge=0を固定する",
     "旧decision/read-after/failure/consumerを静的partitionで保持しconsumer closureを生成しない",
+    "旧asset status・history・consumer blockを固定BASE由来の期待record全fieldと厳密一致させる",
+    "inventory schema、formal_update、expected source_pathsを固定期待値と全field照合する",
     "authority none・formal分類/route/phase/successor/new build falseを固定する",
     "旧archive source/runtime/test/CIを実行せず独立validatorと期待error code付きnegative selfcheckを維持する"
   ],
@@ -119,7 +121,9 @@
       "classification category/product tamper",
       "Wave edge injection",
       "phase/asset/history/boundary tamper",
+      "legacy status promotion、disposition/product resolution、consumer tamper、closure closed",
       "read mode and authority promotion",
+      "formal_update reversal、inventory schema/source_paths tamper",
       "input digest missing/duplicate",
       "inventory scope/base/output digest tamper"
     ],
@@ -127,7 +131,7 @@
       "validator independently derives fixed BASE exact target set and source anchors",
       "validator checks 67 records, 30 direct, 23 conflict, 14 insufficient, target Wave edges=0",
       "fixed BASE Git object blob/bytes/digest and input snapshot checks",
-      "selfcheck expected 18 error codes"
+      "selfcheck expected 27 error codes"
     ],
     "scope": [
       "schema_interface",

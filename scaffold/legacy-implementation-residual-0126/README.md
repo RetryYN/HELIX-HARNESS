@@ -22,6 +22,8 @@
 - 旧decision/read-afterの対象別行、failure inventory、consumer inventory（いずれも静的参照）
 - phase候補、Wave edge分母、残る人間判断、authority境界
 
+旧asset status block（disposition、product、implementation status、consumer、decision/read-after参照）とhistory/consumer blockは、固定BASEの期待record全fieldと厳密一致させます。inventoryもschema、formal_update、expected source_pathsを含む全fieldを固定期待値と照合し、status昇格、disposition/product解決、consumer改竄、closure closed、formal_update反転をfail-closeします。
+
 `scripts/helix.ps1`はphase台帳のsource digestと固定BASE archive Git object digestに差分があるため、両方を保持し `ledger_digest_match=false` として可視化しています。この差分は分類根拠へ昇格させず、人間確認事項として残します。
 
 ## authority境界
@@ -42,4 +44,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-selfcheckは対象欠落・重複、source blob/anchor/read mode、分類候補・製品、Wave edge注入、phase/asset/implementation evidence/history/boundary、authority昇格、input digest、scope、BASE pin、output digestを検査します。
+selfcheckは対象欠落・重複、source blob/anchor/read mode、分類候補・製品、Wave edge注入、phase/asset/旧status/consumer/history/implementation evidence/boundary、authority・formal_update昇格、inventory schema/source_paths、input digest schema、scope、BASE pin、output digestを27負例で検査します。
