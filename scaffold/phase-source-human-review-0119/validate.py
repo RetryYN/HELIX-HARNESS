@@ -23,6 +23,7 @@ SCHEMA = "phase-source-human-review-0119/v1"
 TAXONOMY_COMMIT = "78e23a622bc9c40183269e22a59c566d22b93435"
 TAXONOMY_PATH = "scaffold/phase-status-taxonomy-0105/units.jsonl"
 TAXONOMY_SHA256 = "e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4"
+TAXONOMY_BLOB_OID = "c55fdcc06c23d53a5b2949ccf1a239c6064e6a8f"
 TAXONOMY_SNAPSHOT = "scaffold/phase-source-human-review-0119/phase-status-taxonomy-0105.units.jsonl"
 PARENT = "scaffold/legacy-phase-gap-review-0101"
 CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
@@ -61,7 +62,7 @@ NEGATIVE_CASE_CODES = [
     "E_BUNDLE", "E_SCHEMA", "E_BINDING", "E_BASE_COMMIT", "E_BASE_NOT_ANCESTOR", "E_INPUT_DIGEST",
     "E_UNIT_SET", "E_SOURCE_ANCHOR", "E_WAVE_EDGE_SET", "E_WAVE_EDGE_DUP", "E_ASSET_SET", "E_ASSET_SOURCE",
     "E_ASSET_HISTORY", "E_DECISION_EVIDENCE", "E_FAILURE_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_PHASE_REVIEW",
-    "E_PRODUCT_AUTHORITY", "E_CURRENT_CONTEXT", "E_AUTHORITY_BOUNDARY", "E_TAXONOMY", "E_TAXONOMY_JOIN",
+    "E_PRODUCT_AUTHORITY", "E_CURRENT_CONTEXT", "E_AUTHORITY_BOUNDARY", "E_TAXONOMY", "E_TAXONOMY_JOIN", "E_TAXONOMY_NOT_ANCESTOR", "E_TAXONOMY_BLOB",
 ]
 
 
@@ -117,7 +118,7 @@ def taxonomy_snapshot(rows: list[dict[str, Any]]) -> dict[str, Any]:
         status = row.get("taxonomy", {}).get("status")
         status_counts[status] = status_counts.get(status, 0) + 1
     return {
-        "commit": TAXONOMY_COMMIT, "path": TAXONOMY_PATH, "sha256": TAXONOMY_SHA256,
+        "commit": TAXONOMY_COMMIT, "path": TAXONOMY_PATH, "sha256": TAXONOMY_SHA256, "blob_oid": TAXONOMY_BLOB_OID,
         "row_count": sum(status_counts.values()), "status_counts": status_counts,
         "target_status": "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW", "unit_ids": [row["unit_candidate_id"] for row in rows],
         "unit_count": len(rows), "authority_phase_status": "unchanged_unresolved", "formal_phase_candidate": None,
@@ -324,6 +325,18 @@ class Validator:
         ancestor = actual_inventory.get("base", {}).get("required_ancestor") or BASE
         if subprocess.run(["git", "merge-base", "--is-ancestor", ancestor, "HEAD"], cwd=self.root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False).returncode != 0:
             self.error("E_BASE_NOT_ANCESTOR", ancestor)
+        if subprocess.run(["git", "merge-base", "--is-ancestor", TAXONOMY_COMMIT, "HEAD"], cwd=self.root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False).returncode != 0:
+            self.error("E_TAXONOMY_NOT_ANCESTOR", "fixed taxonomy source commit")
+        taxonomy_decl = actual_inventory.get("taxonomy_snapshot", {})
+        taxonomy_commit = taxonomy_decl.get("commit")
+        if not isinstance(taxonomy_commit, str) or subprocess.run(["git", "merge-base", "--is-ancestor", taxonomy_commit, "HEAD"], cwd=self.root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False).returncode != 0:
+            self.error("E_TAXONOMY_NOT_ANCESTOR", str(taxonomy_commit))
+        if taxonomy_decl.get("blob_oid") != TAXONOMY_BLOB_OID:
+            self.error("E_TAXONOMY_BLOB", "taxonomy blob OID declaration")
+        else:
+            blob_result = subprocess.run(["git", "rev-parse", f"{TAXONOMY_COMMIT}:{TAXONOMY_PATH}"], cwd=self.root, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True, check=False)
+            if blob_result.returncode != 0 or blob_result.stdout.strip() != TAXONOMY_BLOB_OID:
+                self.error("E_TAXONOMY_BLOB", "taxonomy immutable blob OID")
         self.check_inventory(actual_inventory, expected_inventory)
         self.check_inputs(actual_inventory, expected_inventory)
         if actual_inventory.get("unit_ids") != TARGET_UNIT_IDS or [row.get("unit_candidate_id") for row in actual_rows] != TARGET_UNIT_IDS or len(actual_rows) != 10 or len({row.get("unit_candidate_id") for row in actual_rows}) != 10:

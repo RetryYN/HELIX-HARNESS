@@ -21,6 +21,7 @@ SCHEMA = "phase-source-human-review-0119/v1"
 TAXONOMY_COMMIT = "78e23a622bc9c40183269e22a59c566d22b93435"
 TAXONOMY_PATH = "scaffold/phase-status-taxonomy-0105/units.jsonl"
 TAXONOMY_SHA256 = "e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4"
+TAXONOMY_BLOB_OID = "c55fdcc06c23d53a5b2949ccf1a239c6064e6a8f"
 TAXONOMY_SNAPSHOT = "scaffold/phase-source-human-review-0119/phase-status-taxonomy-0105.units.jsonl"
 PARENT = "scaffold/legacy-phase-gap-review-0101"
 CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
@@ -59,7 +60,7 @@ NEGATIVE_CASE_CODES = [
     "E_BUNDLE", "E_SCHEMA", "E_BINDING", "E_BASE_COMMIT", "E_BASE_NOT_ANCESTOR", "E_INPUT_DIGEST",
     "E_UNIT_SET", "E_SOURCE_ANCHOR", "E_WAVE_EDGE_SET", "E_WAVE_EDGE_DUP", "E_ASSET_SET", "E_ASSET_SOURCE",
     "E_ASSET_HISTORY", "E_DECISION_EVIDENCE", "E_FAILURE_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_PHASE_REVIEW",
-    "E_PRODUCT_AUTHORITY", "E_CURRENT_CONTEXT", "E_AUTHORITY_BOUNDARY", "E_TAXONOMY", "E_TAXONOMY_JOIN",
+    "E_PRODUCT_AUTHORITY", "E_CURRENT_CONTEXT", "E_AUTHORITY_BOUNDARY", "E_TAXONOMY", "E_TAXONOMY_JOIN", "E_TAXONOMY_NOT_ANCESTOR", "E_TAXONOMY_BLOB",
 ]
 
 
@@ -87,6 +88,9 @@ def immutable_bytes(commit: str, path: str) -> bytes:
 
 def taxonomy_rows() -> list[dict[str, Any]]:
     raw = immutable_bytes(TAXONOMY_COMMIT, TAXONOMY_PATH)
+    blob = subprocess.run(["git", "rev-parse", f"{TAXONOMY_COMMIT}:{TAXONOMY_PATH}"], cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False).stdout.strip()
+    if blob != TAXONOMY_BLOB_OID:
+        raise ValueError("taxonomy immutable blob mismatch")
     if hashlib.sha256(raw).hexdigest() != TAXONOMY_SHA256:
         raise ValueError("taxonomy immutable digest mismatch")
     rows = [json.loads(line) for line in raw.decode("utf-8").splitlines() if line.strip()]
@@ -115,7 +119,7 @@ def taxonomy_snapshot(rows: list[dict[str, Any]]) -> dict[str, Any]:
         status = row.get("taxonomy", {}).get("status")
         status_counts[status] = status_counts.get(status, 0) + 1
     return {
-        "commit": TAXONOMY_COMMIT, "path": TAXONOMY_PATH, "sha256": TAXONOMY_SHA256,
+        "commit": TAXONOMY_COMMIT, "path": TAXONOMY_PATH, "sha256": TAXONOMY_SHA256, "blob_oid": TAXONOMY_BLOB_OID,
         "row_count": sum(status_counts.values()), "status_counts": status_counts,
         "target_status": "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW", "unit_ids": [row["unit_candidate_id"] for row in rows],
         "unit_count": len(rows), "authority_phase_status": "unchanged_unresolved", "formal_phase_candidate": None,

@@ -4,7 +4,8 @@
 
 taxonomyの入力は現行main `78e23a622bc9c40183269e22a59c566d22b93435`にある
 `scaffold/phase-status-taxonomy-0105/units.jsonl`をimmutable sourceとして固定する。SHA-256は
-`e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4`で、30行中対象statusは10行である。snapshotを同ディレクトリの`phase-status-taxonomy-0105.units.jsonl`へ保存し、validatorがcommit／path／digestを再照合する。
+`e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4`、Git blob OIDは
+`c55fdcc06c23d53a5b2949ccf1a239c6064e6a8f`で、30行中対象statusは10行である。固定taxonomy commitが現HEADの祖先であること、pathのblob OID、snapshotのdigestをvalidatorが再照合する。
 
 各unitは次を分離して記録する。
 
@@ -22,7 +23,7 @@ taxonomyの入力は現行main `78e23a622bc9c40183269e22a59c566d22b93435`にあ�
 - `evidence.jsonl`: 10 unitの原文anchor、Wave edge、旧asset partition、実装／縮退／failure／consumerの未解決状態、phase候補、判断待ち。
 - `generate.py`: 固定BASE Git object bytesとimmutable taxonomy sourceから再生成する。
 - `validate.py`: `generate.py`をimportせず、固定BASEとtaxonomy sourceから独立再導出し、全fieldをfail-closed比較する。
-- `selfcheck.py`: 29負例でschema、Binding、BASE、入力digest、unit／edge／asset、taxonomy set／status／matrix join／authority boundary、各partition、phase／product境界を検証する。
+- `selfcheck.py`: 32負例でschema、Binding、BASE、入力digest、unit／edge／asset、taxonomy set／status／matrix join／authority boundary、各partition、phase／product境界を検証する。taxonomy本文を孤立commitへ改竄して再生成する負例も`E_TAXONOMY_NOT_ANCESTOR`で拒否する。
 - `PR-DRAFT.md`: Draft PR本文。
 
 ## 検証

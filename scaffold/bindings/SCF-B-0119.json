@@ -386,8 +386,8 @@
     "旧asset source／history／decision／read-after／failure／consumerを独立partitionで保持する",
     "implementation／degradation／failureはunknown、consumer closure pending、source/human judgment waitingを保持する",
     "candidate phaseとformal phase、product scope候補とformal product authorityを分離する",
-    "validator独立再導出と29負例を維持する",
-    "immutable taxonomy source commit/path/digestとUNRESOLVED_SOURCE_OR_HUMAN_REVIEW 10 ID、matrix join、formal phase null、authority boundaryを独立照合する"
+    "validator独立再導出と32負例を維持する",
+    "immutable taxonomy source commit/path/digest/blob OID、固定taxonomy commitのHEAD祖先性、UNRESOLVED_SOURCE_OR_HUMAN_REVIEW 10 ID、matrix join、formal phase null、authority boundaryを独立照合する"
   ],
   "connections": {
     "boundary": "static research evidence only; no phase/product authority, implementation, acceptance, runtime, merge, or close",
@@ -437,6 +437,8 @@
       "inventory binding tamper must emit E_BINDING",
       "wrong BASE commit must emit E_BASE_COMMIT",
       "wrong BASE ancestor must emit E_BASE_NOT_ANCESTOR",
+      "taxonomy source commit outside the current HEAD ancestry must emit E_TAXONOMY_NOT_ANCESTOR",
+      "taxonomy immutable blob OID declaration or source mismatch must emit E_TAXONOMY_BLOB",
       "wrong input digest must emit E_INPUT_DIGEST",
       "missing or duplicate target unit must emit E_UNIT_SET",
       "wrong source anchor or source binding must emit E_SOURCE_ANCHOR",
@@ -460,6 +462,7 @@
       "taxonomy status tamper must emit E_TAXONOMY",
       "taxonomy authority boundary tamper must emit E_TAXONOMY",
       "taxonomy required-evidence join tamper must emit E_TAXONOMY_JOIN",
+      "taxonomy body tamper regenerated from an orphan commit must emit E_TAXONOMY_NOT_ANCESTOR",
       "degradation status tamper must emit E_AUTHORITY_BOUNDARY"
     ],
     "oracles": [
@@ -467,10 +470,10 @@
       "source／decision／read-after／failure／consumer partitions exact; implementation/degradation/failure unknown and degradation tamper fail-closed and consumer closure pending",
       "phase candidate, source/human matrix rule, and phase non-applicability separation exact",
       "all PHCAP-01〜20 boundary pending exact; four product L1 context-only",
-      "selfcheck.py expected 29 negative executions and error codes",
+      "selfcheck.py expected 32 negative executions and error codes",
       "scfctl validate／stale／residuals",
       "git diff --check",
-      "immutable taxonomy source commit/path/digest and exact 10 ID/status/matrix-join/authority boundary comparison"
+      "immutable taxonomy source commit/path/digest/blob OID, fixed source ancestry, and exact 10 ID/status/matrix-join/authority boundary comparison"
     ],
     "scope": [
       "schema_interface",
@@ -487,5 +490,5 @@
     "status": "pending"
   },
   "created": "2026-09-22",
-  "updated": "2026-09-22"
+  "updated": "2026-09-23"
 }

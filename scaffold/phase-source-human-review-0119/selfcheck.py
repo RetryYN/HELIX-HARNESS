@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import contextlib
 import copy
+import hashlib
 import importlib.util
 import io
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -83,6 +85,119 @@ def run_generator_tamper_case() -> None:
     print("PASS generator regeneration phase tamper -> E_PHASE_REVIEW")
 
 
+def _git(*args: str, input_bytes: bytes | None = None, text: bool = True) -> str:
+    result = subprocess.run(
+        ["git", *args],
+        cwd=validate.ROOT,
+        input=input_bytes if not text else (input_bytes.decode("utf-8") if input_bytes is not None else None),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=text,
+        check=False,
+    )
+    if result.returncode != 0:
+        detail = result.stderr.decode("utf-8", errors="replace") if isinstance(result.stderr, bytes) else result.stderr
+        raise AssertionError(f"git {' '.join(args)} failed: {detail}")
+    output = result.stdout
+    return output.decode("utf-8").strip() if isinstance(output, bytes) else output.strip()
+
+
+def _replace_tree_path(tree_oid: str, path_parts: list[str], replacement_oid: str) -> str:
+    entries = _git("ls-tree", tree_oid).splitlines()
+    target = path_parts[0]
+    rewritten: list[str] = []
+    found = False
+    for entry in entries:
+        mode, kind, oid, name = entry.split(None, 3)
+        if name != target:
+            rewritten.append(entry)
+            continue
+        found = True
+        if len(path_parts) == 1:
+            rewritten.append(f"{mode} blob {replacement_oid}\t{name}")
+        else:
+            if kind != "tree":
+                raise AssertionError(f"taxonomy path component is not a tree: {name}")
+            child = _replace_tree_path(oid, path_parts[1:], replacement_oid)
+            rewritten.append(f"{mode} tree {child}\t{name}")
+    if not found:
+        raise AssertionError(f"taxonomy path component missing: {target}")
+    return _git("mktree", input_bytes=("\n".join(rewritten) + "\n").encode("utf-8"))
+
+
+def run_taxonomy_body_regeneration_case() -> None:
+    """Regenerate from a forged orphan taxonomy and require the ancestry guard."""
+    original_path = HERE / "generate.py"
+    original = original_path.read_bytes()
+    source = subprocess.run(
+        ["git", "show", f"{validate.TAXONOMY_COMMIT}:{validate.TAXONOMY_PATH}"],
+        cwd=validate.ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    if source.returncode != 0:
+        raise AssertionError("unable to read fixed taxonomy source")
+    rows = []
+    for index, line in enumerate(source.stdout.splitlines()):
+        row = json.loads(line)
+        if index == 0:
+            row["taxonomy"]["candidate_statement"] = row["taxonomy"]["candidate_statement"] + " [selfcheck taxonomy body tamper]"
+        rows.append(json.dumps(row, ensure_ascii=False, separators=(",", ":")).encode("utf-8"))
+    forged_bytes = b"\n".join(rows) + b"\n"
+    forged_blob = _git("hash-object", "-w", "--stdin", input_bytes=forged_bytes)
+    fixed_tree = _git("rev-parse", f"{validate.TAXONOMY_COMMIT}^{{tree}}")
+    forged_tree = _replace_tree_path(fixed_tree, validate.TAXONOMY_PATH.split("/"), forged_blob)
+    env = os.environ.copy()
+    env.update({
+        "GIT_AUTHOR_NAME": "SCF-B-0119 selfcheck",
+        "GIT_AUTHOR_EMAIL": "scf-b-0119-selfcheck@example.invalid",
+        "GIT_COMMITTER_NAME": "SCF-B-0119 selfcheck",
+        "GIT_COMMITTER_EMAIL": "scf-b-0119-selfcheck@example.invalid",
+    })
+    forged_commit_result = subprocess.run(
+        ["git", "commit-tree", forged_tree],
+        cwd=validate.ROOT,
+        input=b"selfcheck forged taxonomy body\n",
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        env=env,
+        check=False,
+    )
+    if forged_commit_result.returncode != 0:
+        raise AssertionError(f"unable to create orphan taxonomy commit: {forged_commit_result.stderr.decode()}")
+    forged_commit = forged_commit_result.stdout.decode().strip()
+    if subprocess.run(["git", "merge-base", "--is-ancestor", forged_commit, "HEAD"], cwd=validate.ROOT, check=False).returncode == 0:
+        raise AssertionError("forged taxonomy commit unexpectedly became an ancestor")
+    forged_sha = hashlib.sha256(forged_bytes).hexdigest()
+    replacements = {
+        f'TAXONOMY_COMMIT = "{validate.TAXONOMY_COMMIT}"': f'TAXONOMY_COMMIT = "{forged_commit}"',
+        f'TAXONOMY_SHA256 = "{validate.TAXONOMY_SHA256}"': f'TAXONOMY_SHA256 = "{forged_sha}"',
+        f'TAXONOMY_BLOB_OID = "{validate.TAXONOMY_BLOB_OID}"': f'TAXONOMY_BLOB_OID = "{forged_blob}"',
+    }
+    patched = original.decode("utf-8")
+    for needle, replacement in replacements.items():
+        if needle not in patched:
+            raise AssertionError(f"taxonomy generator tamper needle missing: {needle}")
+        patched = patched.replace(needle, replacement, 1)
+    try:
+        original_path.write_text(patched, encoding="utf-8")
+        generated = subprocess.run([sys.executable, str(original_path)], cwd=validate.ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False)
+        if generated.returncode != 0:
+            raise AssertionError(f"forged taxonomy generator failed: {generated.stderr}")
+        checker = validate.Validator(validate.ROOT, HERE)
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            code = checker.validate()
+        if code == 0 or not any(error.startswith("E_TAXONOMY_NOT_ANCESTOR:") for error in checker.errors):
+            raise AssertionError(f"forged taxonomy regeneration passed: code={code}, errors={checker.errors}")
+    finally:
+        original_path.write_bytes(original)
+        restored = subprocess.run([sys.executable, str(original_path)], cwd=validate.ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=False)
+        if restored.returncode != 0:
+            raise AssertionError(f"taxonomy generator restore failed: {restored.stderr}")
+    print("PASS taxonomy body tamper regeneration -> E_TAXONOMY_NOT_ANCESTOR")
+
+
 if __name__ == "__main__":
     expected_inventory, expected_rows = validate.build_bundle()
     validate.build_bundle = lambda: (expected_inventory, expected_rows)
@@ -91,6 +206,8 @@ if __name__ == "__main__":
         ("binding", "E_BINDING", lambda inv, rows: inv.__setitem__("binding_id", "SCF-B-9999")),
         ("base commit", "E_BASE_COMMIT", lambda inv, rows: inv["base"].__setitem__("commit", "0" * 40)),
         ("base ancestor", "E_BASE_NOT_ANCESTOR", lambda inv, rows: inv["base"].__setitem__("required_ancestor", "not-a-commit")),
+        ("taxonomy non-ancestor", "E_TAXONOMY_NOT_ANCESTOR", lambda inv, rows: inv["taxonomy_snapshot"].__setitem__("commit", "not-a-commit")),
+        ("taxonomy blob oid", "E_TAXONOMY_BLOB", lambda inv, rows: inv["taxonomy_snapshot"].__setitem__("blob_oid", "0" * 40)),
         ("input digest", "E_INPUT_DIGEST", lambda inv, rows: inv["input_snapshot"][0].__setitem__("sha256", "0" * 64)),
         ("unit set", "E_UNIT_SET", lambda inv, rows: rows.__setitem__(0, copy.deepcopy(rows[1]))),
         ("source anchor", "E_SOURCE_ANCHOR", lambda inv, rows: rows[0]["source_anchor"].__setitem__("statement_text_sha256", "sha256:" + "0" * 64)),
@@ -119,4 +236,5 @@ if __name__ == "__main__":
         run_case(name, expected, mutate)
     run_raw_bundle_case()
     run_generator_tamper_case()
-    print(f"SCF-B-0119 selfcheck PASS ({len(cases) + 2} negative cases)")
+    run_taxonomy_body_regeneration_case()
+    print(f"SCF-B-0119 selfcheck PASS ({len(cases) + 3} negative cases)")
