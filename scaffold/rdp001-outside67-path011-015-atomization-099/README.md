@@ -25,6 +25,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorは記録した固定base `72b9f368a044709437841c5e862f01802b1a88ec` が現在HEADの祖先であることだけを検査し、live `origin/main`との同値を要求しない。coverage-auditはvalidatorと独立に両revisionの全行・digest・カテゴリを再計算する。selfcheckには偽ledger hit、normative metadata fallback、他PATHのfrontmatter分類、atomized coverage↔atom_ids不整合、既存atom digest改変、source改変、重複行、67分母改変、source-diffの3種改変、product／implementation／successor昇格の負例を含む。
+validatorは記録した固定base `72b9f368a044709437841c5e862f01802b1a88ec` が現在HEADの祖先であることだけを検査し、live `origin/main`との同値を要求しない。coverage-auditはvalidatorと独立に両revisionの全行・digest・カテゴリを再計算する。selfcheckには偽ledger hit、normative metadata fallback、他PATHのfrontmatter分類、atomized coverage↔atom_ids不整合、既存atom digest改変、source改変、重複行、67分母改変、source-diffの3種改変、product／implementation／successor昇格の負例を含み、各負例は期待error codeの一致まで検査する。
 
 旧HELIX archiveのruntime／test／CI／workflow／hook／adapterは実行していない。成果物は `scaffold/` 内の `findings_only` 候補であり、正式要求、承認、L2／L11合意、L3／L10設計、実装、release、deploymentを生成しない。

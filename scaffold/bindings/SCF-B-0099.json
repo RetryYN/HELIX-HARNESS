@@ -75,7 +75,7 @@
     },
     {
       "path": "scaffold/rdp001-outside67-path011-015-atomization-099/validate.py",
-      "sha256": "73e33917814ffa661699fd57a39fa8fb1002a20b01460ec4970c9005312c9d49",
+      "sha256": "77c1c1ed96b9ed489333a57d6bd5e9a3074f3ff76ee0f7bfebf8396270b837d7",
       "note": "fixed-base ancestor, source, atom, ledger and boundary validator"
     },
     {
@@ -85,7 +85,7 @@
     },
     {
       "path": "scaffold/rdp001-outside67-path011-015-atomization-099/selfcheck.py",
-      "sha256": "ca5751d9373ece165e372a4eb5d8ac89fa1ee4cd6dfd78a1585cceb98d50c58e",
+      "sha256": "7ec9121f96741719d294fca41a33ea8aa3edf48750963f8e65a06422ac30c0e8",
       "note": "negative mutations including fake ledger hit, normative metadata fallback and binding identity drift"
     },
     {
@@ -154,6 +154,7 @@
     "scaffold/rdp001-outside67-path011-015-atomization-099/line-coverage.jsonl",
     "scaffold/rdp001-outside67-path011-015-atomization-099/legacy-evidence.jsonl",
     "scaffold/rdp001-outside67-path011-015-atomization-099/source-diffs.json",
+    "scaffold/rdp001-outside67-path011-015-atomization-099/source_classification.py",
     "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-011/pre-isolation.md",
     "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-011/archive-revision.md",
     "scaffold/rdp001-outside67-path011-015-atomization-099/source-snapshots/OUTSIDE67-PATH-012/pre-isolation.md",
@@ -193,7 +194,8 @@
       "non-ancestor base",
       "frontmatter structure drift on every selected PATH",
       "source-diffs status/hunks/unified-diff tamper and meaning-equivalence promotion",
-      "atomized coverage↔atom_ids bidirectional mismatch and both-side normative metadata fallback"
+      "atomized coverage↔atom_ids bidirectional mismatch and both-side normative metadata fallback",
+      "selfcheck expected-code matching for E_COVERAGE_ATOMIZED_BIDIRECTIONAL／E_METADATA_CATEGORY／E_MEANING_EQUIVALENCE_PROMOTION"
     ]
   },
   "replacement": {

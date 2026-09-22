@@ -155,10 +155,10 @@ def check_diffs(source_diffs: dict, snapshots) -> None:
         actual = source_diffs[sid]
         if set(actual) != set(expected):
             fail("E_DIFF_KEYS", sid)
-        if actual != expected:
-            fail("E_DIFF_DERIVATION", sid)
         if actual["meaning_equivalence"] != "unresolved":
             fail("E_MEANING_EQUIVALENCE_PROMOTION", sid)
+        if actual != expected:
+            fail("E_DIFF_DERIVATION", sid)
 
 
 def check_coverage(coverage: list[dict], snapshots, reused, atoms, inv) -> None:

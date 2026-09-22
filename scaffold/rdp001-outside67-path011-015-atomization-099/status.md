@@ -8,4 +8,4 @@ coverageはpre側534行とarchive側534行を各一度ずつ保持し、coverage
 
 PATH011–014はpre/archive source revisionが異なり、PATH015は同一である。10 source snapshotからstatus／hunks／unified diffを再導出し、meaning equivalenceはunresolvedに固定する。正式source、要求採否、L2合意、L3凍結、IR admission、owner、successor、implementation、degradation、failure、consumer、decision、acceptanceは未解決である。PATH013／014にbase時点のexact current counterpartは登録していないため、存在・不在や実装状態を推測しない。
 
-validatorはfixed baseの祖先性だけを確認し、live `origin/main`との一致を要求しない。提出前にbaseがHEADの祖先でなくなった場合は停止し、holding／source／ledgerを再照合してrebaselineする。
+validatorはfixed baseの祖先性だけを確認し、live `origin/main`との一致を要求しない。selfcheckは各negative mutationの期待error codeを照合し、E_COVERAGE_ATOMIZED_BIDIRECTIONAL、E_METADATA_CATEGORY、E_MEANING_EQUIVALENCE_PROMOTIONが別guardに先行されないことを固定する。提出前にbaseがHEADの祖先でなくなった場合は停止し、holding／source／ledgerを再照合してrebaselineする。
