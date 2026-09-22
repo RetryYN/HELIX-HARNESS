@@ -121,6 +121,21 @@ def non_ancestor(mod): mod.BASE_REVISION = "0" * 40
 def missing_base_source(mod): mod.PHASE_FIXED = "docs/missing-fixed-base.jsonl"
 def base_pin(inv): inv["base_revision"] = "0" * 40
 def phase_status(rows): rows[0]["phase_ledger"]["product_classification_status"] = "approved"
+def asset_id_missing(rows): rows[0].pop("asset_id")
+def unit_candidate_non_dict(rows): rows[TARGET_WITH_EDGE]["unit_product_candidates"][0] = "not-an-object"
+def unit_candidate_top_level_extra(rows): rows[TARGET_WITH_EDGE]["unit_product_candidates"][0]["extra"] = True
+def failure_consumer_top_level_extra(rows): rows[0]["failure_consumer_static_refs"]["extra"] = {}
+def failure_consumer_nested_extra(rows): rows[0]["failure_consumer_static_refs"]["failure"]["extra"] = True
+def inventory_manual_ids(inv): inv["manual_reviewed_asset_ids"] = list(reversed(inv["manual_reviewed_asset_ids"]))[:-1]
+def inventory_top_level_extra(inv): inv["unexpected"] = True
+def category_row(rows, category):
+    return next(row for row in rows if row.get("classification_category") == category)
+def direct_category_cardinality(rows): category_row(rows, "direct_product_basis")["candidate_products"] = []
+def conflict_category_cardinality(rows): category_row(rows, "multi_product_conflict")["candidate_products"] = ["HELIX-HARNESS"]
+def insufficient_category_cardinality(rows): category_row(rows, "insufficient_basis")["candidate_products"] = ["HELIX-OS"]
+def manual_l1_evidence(rows):
+    review = category_row(rows, "direct_product_basis")["manual_semantic_review"]
+    review["l1_evidence"][next(iter(review["l1_evidence"]))]["path"] = "tampered"
 
 run_case("target record omission", "E_TARGET_SET", mutate_rows=remove_record)
 run_case("target record duplicate", "E_TARGET_SET", mutate_rows=duplicate_record)
@@ -130,7 +145,7 @@ run_case("source digest tamper", "E_SOURCE_DIGEST", mutate_rows=source_digest)
 run_case("source anchor tamper", "E_SOURCE_ANCHOR", mutate_rows=source_anchor)
 run_case("source line range tamper", "E_SOURCE_LINE", mutate_rows=source_line)
 run_case("source profile tamper", "E_PROFILE", mutate_rows=profile)
-run_case("candidate product tamper", "E_CLASSIFICATION", mutate_rows=candidate)
+run_case("candidate product tamper", "E_SEMANTIC_REVIEW", mutate_rows=candidate)
 run_case("classification category tamper", "E_CLASSIFICATION", mutate_rows=category)
 run_case("semantic review tamper", "E_SEMANTIC_REVIEW", mutate_rows=manual)
 run_case("legacy evidence tamper", "E_LEGACY_EVIDENCE", mutate_rows=legacy)
@@ -163,7 +178,19 @@ run_case("fixed BASE non-ancestor", "E_BASE_NOT_ANCESTOR", mutate_module=non_anc
 run_case("fixed BASE source missing", "E_BASE_SOURCE", mutate_module=missing_base_source)
 run_case("fixed BASE pin tamper", "E_BASE_PIN", mutate_inventory=base_pin)
 run_case("phase status tamper", "E_PHASE_STATUS", mutate_rows=phase_status)
+run_case("asset id missing", "E_TARGET_SET", mutate_rows=asset_id_missing)
+run_case("unit candidate non-dict", "E_CANDIDATE_PRODUCTS", mutate_rows=unit_candidate_non_dict)
+run_case("unit candidate top-level extra", "E_CANDIDATE_PRODUCTS", mutate_rows=unit_candidate_top_level_extra)
+run_case("failure/consumer top-level extra", "E_BOUNDARY_DIGEST", mutate_rows=failure_consumer_top_level_extra)
+run_case("failure/consumer nested extra", "E_BOUNDARY_DIGEST", mutate_rows=failure_consumer_nested_extra)
+run_case("inventory manual IDs tamper", "E_SEMANTIC_REVIEW", mutate_inventory=inventory_manual_ids)
+run_case("inventory top-level extra", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_top_level_extra)
+run_case("direct category cardinality", "E_CLASSIFICATION", mutate_rows=direct_category_cardinality)
+run_case("conflict category cardinality", "E_CLASSIFICATION", mutate_rows=conflict_category_cardinality)
+run_case("insufficient category cardinality", "E_CLASSIFICATION", mutate_rows=insufficient_category_cardinality)
+run_case("manual L1 evidence mismatch", "E_SEMANTIC_REVIEW", mutate_rows=manual_l1_evidence)
 run_generator_case("generator review spec tamper", "E_PROFILE", lambda g: g.REVIEW_SPECS["measurement-evidence-evaluator"].update(category="insufficient_basis"))
 run_generator_case("generator anchor tamper", "E_SOURCE_ANCHOR", lambda g: g.REVIEW_SPECS["measurement-evidence-evaluator"].update(marker="export const MEASUREMENT_EVALUATION_SCHEMA_VERSION"))
 run_generator_case("generator L1 tamper", "E_SEMANTIC_REVIEW", lambda g: g.L1_RANGES["HELIX-OS"].__setitem__(0, (22, 26)))
-print("SCF-B-0123 selfcheck: PASS negative_cases=44")
+run_generator_case("generator products tamper", "E_SOURCE_ANCHOR", lambda g: g.REVIEW_SPECS["measurement-evidence-evaluator"].update(products=["HELIX-OS"]))
+print("SCF-B-0123 selfcheck: PASS negative_cases=56")

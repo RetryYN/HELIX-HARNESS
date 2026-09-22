@@ -42,6 +42,12 @@ GLOBAL_INPUTS = [
 ]
 PRODUCTS = ("HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS")
 SOURCE_PREFIXES = ("src/workflow/", "src/setup/", "src/cli/", "src/requirements/", "src/shared/")
+REFERENCE_INVENTORY_PINS = {
+    "wave_unresolved_product": {"binding_id": "SCF-B-0107", "path": "scaffold/legacy-asset-product-classification-0107/inventory.json", "sha256": "sha256:0bbcd6433312154f131d9d4ff71e47886ae352aba87f96f62cb97715117f6393", "count": 64},
+    "lint_unresolved_src": {"binding_id": "SCF-B-0108", "path": "scaffold/legacy-lint-product-classification-0108/inventory.json", "sha256": "sha256:66f46326fa5344921365252bbec17058b3dddb97733674373758215d1e76a267", "count": 95},
+    "runtime_unresolved_src": {"binding_id": "SCF-B-0117", "path": "scaffold/legacy-runtime-product-classification-0117/inventory.json", "sha256": "sha256:6451b00b8ba68fdfa7960a3593c73d168f1d9be64d64d7275b0c5e12fe22f496", "count": 73},
+}
+SCHEMA_DEPENDENCY = {"binding_id": "SCF-B-0120", "commit": "30e2b06bdf636fa18afb0e7a58fb0c14a72eb7f2", "path": "scaffold/legacy-schema-product-classification-0120/inventory.json", "sha256": "sha256:5d4beecc52546acaa7825d323fa1fc557faf1212f48a480845a717cef904314b", "count": 31}
 
 # Every entry is a source-semantic review record.  The marker is located in
 # the fixed BASE blob, so the stored line/digest is not inferred from a path
@@ -134,16 +140,20 @@ FAILURE_RANGES = [(17, 23), (52, 63)]
 CONSUMER_RANGES = [(24, 36), (38, 50)]
 NEGATIVE_CASES = [
     "target_record_omission", "target_record_duplicate", "edge_omission", "edge_duplicate",
-    "source_digest_tamper", "source_anchor_tamper", "source_profile_tamper", "candidate_product_tamper",
+    "source_digest_tamper", "source_anchor_tamper", "source_line_range_tamper", "source_profile_tamper", "candidate_product_tamper",
     "classification_category_tamper", "semantic_review_tamper", "legacy_evidence_tamper", "boundary_digest_tamper", "input_digest_omission",
     "input_digest_duplicate", "input_digest_extra_path", "authority_promotion", "record_top_level_extra_key",
     "source_read_mode_tamper", "inventory_authority_promotion", "inventory_scope_tamper", "inventory_formal_update_tamper",
-    "inventory_classification_rule_tamper", "inventory_counts_artifact_kind_tamper", "inventory_edge_count_tamper",
-    "fixed_BASE_non_ancestor", "generator_review_spec_tamper", "generator_anchor_tamper",
-    "generator_l1_tamper", "base_pin_tamper", "base_source_missing", "history_tamper",
-    "human_judgment_tamper", "input_digest_value_tamper", "inventory_negative_case_tamper",
-    "output_digest_tamper", "phase_status_tamper", "source_line_range_tamper",
-    "inventory_overlap_tamper",
+    "inventory_classification_rule_tamper", "inventory_artifact_kind_denominator_tamper", "inventory_edge_denominator_tamper",
+    "fixed_base_non_ancestor", "generator_review_spec_tamper", "generator_anchor_tamper", "generator_l1_tamper",
+    "generator_products_tamper", "base_pin_tamper", "base_source_missing", "history_tamper", "asset_ledger_nested_tamper",
+    "phase_nested_tamper", "history_nested_tamper", "failure_consumer_static_ref_tamper", "unit_candidate_nested_tamper",
+    "semantic_edge_field_tamper", "human_judgment_tamper", "input_digest_value_tamper", "inventory_negative_case_tamper",
+    "output_digest_tamper", "phase_status_tamper", "inventory_overlap_tamper", "asset_id_missing",
+    "unit_candidate_non_dict", "unit_candidate_top_level_extra", "failure_consumer_top_level_extra",
+    "failure_consumer_nested_extra", "inventory_manual_ids_tamper", "inventory_top_level_extra",
+    "direct_category_cardinality", "conflict_category_cardinality", "insufficient_category_cardinality",
+    "manual_l1_evidence_mismatch",
 ]
 
 
@@ -163,8 +173,61 @@ def git_bytes(path: str) -> bytes:
     return subprocess.check_output(["git", "show", f"{BASE_REVISION}:{path}"])
 
 
+def git_bytes_at(revision: str, path: str) -> bytes:
+    return subprocess.check_output(["git", "show", f"{revision}:{path}"])
+
+
 def git_blob(path: str) -> str:
     return subprocess.check_output(["git", "rev-parse", f"{BASE_REVISION}:{path}"], text=True).strip()
+
+
+def reference_inventory_ids(pin: dict) -> set[str]:
+    data = (ROOT / pin["path"]).read_bytes()
+    if tagged(data) != pin["sha256"]:
+        raise AssertionError(f"reference inventory digest drift: {pin['path']}")
+    obj = json.loads(data)
+    ids = obj.get("expected_sets", {}).get("target_asset_ids")
+    if not isinstance(ids, list) or len(ids) != pin["count"] or len(set(ids)) != pin["count"]:
+        raise AssertionError(f"reference inventory target set drift: {pin['path']}")
+    if obj.get("binding_id") != pin["binding_id"] or obj.get("expected_sets", {}).get("target_asset_count") != pin["count"]:
+        raise AssertionError(f"reference inventory identity/count drift: {pin['path']}")
+    return set(ids)
+
+
+def schema_dependency_ids() -> set[str]:
+    subprocess.check_call(["git", "merge-base", "--is-ancestor", BASE_REVISION, SCHEMA_DEPENDENCY["commit"]], stdout=subprocess.DEVNULL)
+    data = git_bytes_at(SCHEMA_DEPENDENCY["commit"], SCHEMA_DEPENDENCY["path"])
+    if tagged(data) != SCHEMA_DEPENDENCY["sha256"]:
+        raise AssertionError("schema dependency inventory digest drift")
+    obj = json.loads(data)
+    ids = obj.get("expected_sets", {}).get("target_asset_ids")
+    if not isinstance(ids, list) or len(ids) != SCHEMA_DEPENDENCY["count"] or len(set(ids)) != SCHEMA_DEPENDENCY["count"]:
+        raise AssertionError("schema dependency target set drift")
+    if obj.get("binding_id") != SCHEMA_DEPENDENCY["binding_id"] or obj.get("expected_sets", {}).get("target_asset_count") != SCHEMA_DEPENDENCY["count"]:
+        raise AssertionError("schema dependency identity/count drift")
+    return set(ids)
+
+
+def research_overlap(source_ids: set[str]) -> dict:
+    sets = {name: reference_inventory_ids(pin) for name, pin in REFERENCE_INVENTORY_PINS.items()}
+    sets["schema_unresolved_src"] = schema_dependency_ids()
+    sets["source_prefix_unresolved"] = set(source_ids)
+    pairs = [
+        ("schema_unresolved_src", "wave_unresolved_product", "schema_wave_unresolved_product"),
+        ("schema_unresolved_src", "lint_unresolved_src", "schema_lint_unresolved_src"),
+        ("schema_unresolved_src", "runtime_unresolved_src", "schema_runtime_unresolved_src"),
+        ("runtime_unresolved_src", "wave_unresolved_product", "runtime_wave_unresolved_product"),
+        ("runtime_unresolved_src", "lint_unresolved_src", "runtime_lint_unresolved_src"),
+        ("wave_unresolved_product", "lint_unresolved_src", "wave_unresolved_product_lint_unresolved_src"),
+        ("source_prefix_unresolved", "wave_unresolved_product", "source_wave_unresolved_product"),
+        ("source_prefix_unresolved", "lint_unresolved_src", "source_lint_unresolved_src"),
+        ("source_prefix_unresolved", "runtime_unresolved_src", "source_runtime_unresolved_src"),
+        ("source_prefix_unresolved", "schema_unresolved_src", "source_schema_unresolved_src"),
+    ]
+    counts = {key: len(sets[left] & sets[right]) for left, right, key in pairs}
+    ids = {f"{key}_asset_ids": sorted(sets[left] & sets[right]) for left, right, key in pairs if key != "source_schema_unresolved_src"}
+    ids["source_schema_overlap_asset_ids"] = sorted(sets["source_prefix_unresolved"] & sets["schema_unresolved_src"])
+    return {"reference_bundle_counts": {name: len(items) for name, items in sets.items()}, "reference_inventory_pins": REFERENCE_INVENTORY_PINS, "schema_dependency": SCHEMA_DEPENDENCY, "pairwise_intersections": counts, "union_count": len(set().union(*sets.values())), **ids}
 
 
 def read_jsonl(path: str) -> list[tuple[int, dict]]:
@@ -343,18 +406,7 @@ def build() -> None:
         "classification_rule": {"direct_product_basis": "a reviewed concrete source span mapped to one product L1 with explicit boundary counterevidence and pending consumer evidence", "multi_product_conflict": "reviewed source behavior contains concrete responsibilities mapped to two product boundaries; no single owner is proposed", "insufficient_basis": "source is generic, tombstone, shared infrastructure, or lacks an accepted product-boundary proof; observed Wave scope is not inherited"},
         "manual_reviewed_asset_ids": targets,
         "negative_cases": NEGATIVE_CASES,
-        "research_overlap": {
-            "reference_bundle_counts": {"wave_unresolved_product": 64, "lint_unresolved_src": 95, "runtime_unresolved_src": 73, "schema_unresolved_src": 31, "source_prefix_unresolved": 59},
-            "pairwise_intersections": {"schema_wave_unresolved_product": 1, "schema_lint_unresolved_src": 0, "schema_runtime_unresolved_src": 0, "runtime_wave_unresolved_product": 16, "runtime_lint_unresolved_src": 0, "wave_unresolved_product_lint_unresolved_src": 14, "source_wave_unresolved_product": 11, "source_lint_unresolved_src": 0, "source_runtime_unresolved_src": 0, "source_schema_unresolved_src": 0},
-            "union_count": 280,
-            "schema_wave_overlap_asset_ids": [],
-            "source_wave_overlap_asset_ids": sorted({a for a in targets if a in by_asset and phase_by_asset[a][1].get("product_classification_status") == "unresolved"}),
-            "schema_lint_overlap_asset_ids": [],
-            "schema_runtime_overlap_asset_ids": [],
-            "source_lint_overlap_asset_ids": [],
-            "source_runtime_overlap_asset_ids": [],
-            "source_schema_overlap_asset_ids": [],
-        },
+        "research_overlap": research_overlap(set(targets)),
         "boundary_refs": {"product_boundary": BOUNDARY, "l1": L1}, "history_failure_consumer": {"disposition_rows": 59, "decision_rows_for_targets": sum(bool(r["legacy_history_failure_consumer"]["decisions"]) for r in records), "read_after_rows_for_targets": sum(bool(r["legacy_history_failure_consumer"]["read_after"]) for r in records), "failure_consumer_refs_are_static_global_inventory": True},
         "edge_contract": {"edge_identity": "edge_id derived from wave/path/line/asset_id/unit_candidate_id/semantic_link_status", "duplicate_edges_forbidden": True, "missing_edges_forbidden": True},
         "authority_boundary": {"authority_effect": "none", "classification_state": "research_proposal_pending_human_product_review", "formal_asset_classification_updated": False, "new_build_allowed": False},

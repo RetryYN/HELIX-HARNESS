@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "workflow／setup／cli／requirements／shared旧sourceの責務候補を横断照合する研究（単一owner未確定）",
   "state": "registered",
-  "reason": "固定BASEからproduct_classification_status=unresolvedかつartifact_evidence_kind=implementation_sourceの旧assetをsrc/workflow 15、src/setup 14、src/cli 10、src/requirements 10、src/shared 10の計59件全件再導出する。旧source本文の具体span、四製品L1、product-boundary反証、phase、Wave、旧history／failure／consumerを静的に突合し、direct_product_basis 30件、multi_product_conflict 15件、insufficient_basis 14件を研究候補として保持する。正式asset分類、単一product owner、formal route、phase authority、successor、implementation成立、consumer closure、new buildは生成しない。",
+  "reason": "固定BASEからproduct_classification_status=unresolvedかつartifact_evidence_kind=implementation_sourceの旧assetをsrc/workflow 15、src/setup 14、src/cli 10、src/requirements 10、src/shared 10の計59件全件再導出する。旧source本文の具体span、四製品L1、product-boundary反証、phase、Wave、旧history／failure／consumerを静的に突合し、direct_product_basis 30件、multi_product_conflict 15件、insufficient_basis 14件を研究候補として保持する。カテゴリは候補product数・manual review status・対応L1を相互固定し、record／unit／failure-consumer／inventoryのnested keyと全fieldを完全比較する。正式asset分類、単一product owner、formal route、phase authority、successor、implementation成立、consumer closure、new buildは生成しない。",
   "upstream": [
     {
       "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
@@ -93,7 +93,10 @@
     "旧source本文から具体spanを読み、direct 30件、multi-product conflict 15件、insufficient basis 14件を理由・反証付きcandidateとして記録する",
     "legacy入力抑制、fail-close、migration-only、no-write、adapter-neutral、未実行・未成立の縮退証拠をsource anchorとともに記録し、旧sourceの実装成立を推測しない",
     "四製品L1／boundary／failure／consumerのline text digestと解釈改竄、candidate／authority昇格をvalidator／selfcheckでfail-closedにする",
-    "正式asset分類、product route、phase、owner、successor、implementation成立、consumer closure、new buildを更新せず、旧資産は静的readだけに限定する"
+    "正式asset分類、product route、phase、owner、successor、implementation成立、consumer closure、new buildを更新せず、旧資産は静的readだけに限定する",
+    "direct=候補product 1件＋reviewed_candidate＋対応L1、conflict=2件＋reviewed_conflict、insufficient=0件＋reviewed_insufficient_basisのカテゴリ不変条件を検査し、manual review pinからのdriftを拒否する",
+    "failure_consumer_static_refsはfailure／consumerの厳密2キー、unit_product_candidatesは厳密3キーを要求し、asset_id欠落・unit非object・unexpected nested keyを拒否する",
+    "重複はSCF-B-0107／0108／0117の固定raw inventory pinから再導出し、未統合SCF-B-0120 schema31はcommit・path・bytes digest・binding・件数を固定依存として明示する"
   ],
   "connections": {
     "consumers": [
@@ -153,22 +156,23 @@
       "59 source blob／bytes／SHA-256／concrete line anchor rederivation",
       "full nested record and inventory top-level／nested declaration equality",
       "validator-owned fixed 59 asset ID／category／product／span／interpretation／legacy-shrinkage oracle",
-      "category denominator direct_product_basis 30／multi_product_conflict 15／insufficient_basis 14",
-      "research overlap: Wave64 + lint95 + runtime73 + schema31 + source59 union 280; source intersections 11／0／0／0",
+      "category invariants direct_product_basis 30／multi_product_conflict 15／insufficient_basis 14 with manual status and L1 equality",
+      "strict failure／consumer and unit candidate nested key sets plus asset_id／unit object shape checks",
+      "research overlap is rederived from pinned SCF-B-0107 (64), SCF-B-0108 (95), SCF-B-0117 (73) raw inventory bytes and pinned unmerged SCF-B-0120 schema31 dependency; union 280 and source intersections 11／0／0／0",
       "HELIX-LABO excluded from the fixed four-product candidate set"
     ],
     "negative_cases": [
-      "E_TARGET_SET: target_record_omission／target_record_duplicate",
-      "E_EDGE_SET: edge_omission／edge_duplicate",
+      "E_TARGET_SET: target_record_omission／target_record_duplicate／asset_id_missing",
+      "E_EDGE_SET: edge_omission／edge_duplicate／semantic edge mutation",
       "E_SOURCE_DIGEST／E_SOURCE_ANCHOR／E_SOURCE_LINE: source digest／read mode／anchor／line tamper",
-      "E_PROFILE／E_CLASSIFICATION／E_SEMANTIC_REVIEW／E_LEGACY_EVIDENCE: profile／candidate／category／manual semantic／legacy shrinkage tamper",
-      "E_BOUNDARY_DIGEST／E_HISTORY／E_HUMAN_JUDGMENT: boundary／history／human judgment tamper",
+      "E_PROFILE／E_CLASSIFICATION／E_SEMANTIC_REVIEW／E_LEGACY_EVIDENCE: profile／candidate／category cardinality／manual semantic／legacy shrinkage tamper",
+      "E_BOUNDARY_DIGEST／E_HISTORY／E_HUMAN_JUDGMENT: boundary／history／failure-consumer／human judgment tamper",
+      "E_CANDIDATE_PRODUCTS: unit non-dict／nested key／unit field tamper",
       "E_INPUT_SET／E_INPUT_DIGEST: input omission／duplicate／extra／value tamper",
       "E_AUTHORITY_PROMOTION／E_RECORD_SCHEMA: authority promotion／unexpected record key",
-      "E_INVENTORY／E_INVENTORY_DECLARATION／E_EXPECTED_DENOMINATOR／E_OVERLAP／E_OUTPUT_DIGEST: inventory and denominator mutations",
-      "nested asset ledger／phase／history／failure-consumer／unit candidate／semantic edge mutations",
+      "E_INVENTORY／E_INVENTORY_DECLARATION／E_EXPECTED_DENOMINATOR／E_OVERLAP／E_OUTPUT_DIGEST: inventory and denominator mutations including manual IDs／top-level key／pinned overlap",
       "E_BASE_PIN／E_BASE_SOURCE／E_BASE_NOT_ANCESTOR／E_PHASE_STATUS: BASE and phase mutations",
-      "generator review spec／anchor／L1 mutation followed by regeneration is rejected by independent validator (44 cases total)"
+      "generator review spec／products／anchor／L1 mutation followed by regeneration is rejected by independent validator (56 cases total)"
     ]
   },
   "replacement": {
