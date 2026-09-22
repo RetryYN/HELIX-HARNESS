@@ -1,4 +1,4 @@
-# SCF-B-0128 held30 phase-gap cross analysis
+# SCF-B-0134 held30 phase-gap cross analysis
 
 これは `phase-status-taxonomy-0105` が `held` とした旧IR 30 unit の再現可能な横断分析である。目的は、直接phase根拠が無い理由を、原文・Wave 1–50・RDP holding・PHCAP-20・四製品L1 decisionの固定バイトから再導出し、次の人間判断に必要な証拠を明示することに限る。`#2082` と `#2084` の成果物は入力、oracle、集計元として使用していない。
 
@@ -104,9 +104,9 @@ prototype、re-entry、ingestion、canonicalization、L4 write authorityなど�
 ## 検証と成果物
 
 ```text
-python3 -B scaffold/phase-gap-cross-analysis-0128/generate.py
-python3 -B scaffold/phase-gap-cross-analysis-0128/validate.py
-python3 -B scaffold/phase-gap-cross-analysis-0128/selfcheck.py
+python3 -B scaffold/phase-gap-cross-analysis-0134/generate.py
+python3 -B scaffold/phase-gap-cross-analysis-0134/validate.py
+python3 -B scaffold/phase-gap-cross-analysis-0134/selfcheck.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py selftest
 python3 scaffold/tools/scfctl.py stale
@@ -114,6 +114,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-独立validatorは`generate.py`をimportせず、固定BASEとtaxonomy commit/blob/digest、30 ID/status/rule/anchor、66 edge、38 asset、phase/product authority境界を再導出する。taxonomy全値と30行の分析テキストは独立期待値digestで固定し、selfcheckは42 negative casesで各改変の期待error codeを照合する。共通scfctlは旧archiveをupstream static evidenceとして許可する条件（固定sha256、static/read-only note、非実行forbidden）と欠落時の負例を59 casesで検査する。Binding `SCF-B-0128` の全成果物登録と、入力digest・負例集合・authority noneも同じ契約に固定する。
+独立validatorは`generate.py`をimportせず、固定BASEとtaxonomy commit/blob/digest、30 ID/status/rule/anchor、66 edge、38 asset、phase/product authority境界を再導出する。taxonomy全値と30行の分析テキストは独立期待値digestで固定し、selfcheckは42 negative casesで各改変の期待error codeを照合する。共通scfctlは旧archiveをupstream static evidenceとして許可する条件（固定sha256、static/read-only note、非実行forbidden）と欠落時の負例を59 casesで検査する。scfctlと共有evidence/caseの変更はSCF-B-0001所有の共通検証依存としてBinding artifactsに含めず、0134の成果物・入力digest・負例集合・authority noneだけをこのBindingに固定する。
 
 成果物は `inventory.json`（集計・全入力digest）、`analysis.jsonl`（unit別anchor・Wave edge・asset・不足証拠・判断待ち）、taxonomy保存snapshot、generator、validator、selfcheck、README、PR-DRAFT、Bindingである。

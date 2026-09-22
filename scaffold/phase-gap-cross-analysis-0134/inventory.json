@@ -1,6 +1,6 @@
 {
-  "schema": "phase-gap-cross-analysis-0128/v1",
-  "binding_id": "SCF-B-0128",
+  "schema": "phase-gap-cross-analysis-0134/v1",
+  "binding_id": "SCF-B-0134",
   "status": "research_only_scaffold_candidate",
   "authority_effect": "none",
   "new_build": false,
@@ -18,7 +18,7 @@
     "inventory_path": "scaffold/phase-status-taxonomy-0105/inventory.json",
     "inventory_sha256": "89ddd6361743d37e809b2e5cd7aba217886770b5688787822426f6aa3bd123d2",
     "inventory_blob_oid": "e3430907c65b3c74cf3f799875ca0f1c34fdc35e",
-    "snapshot_artifact": "scaffold/phase-gap-cross-analysis-0128/phase-status-taxonomy-0105.units.jsonl"
+    "snapshot_artifact": "scaffold/phase-gap-cross-analysis-0134/phase-status-taxonomy-0105.units.jsonl"
   },
   "scope": {
     "unit_count": 30,

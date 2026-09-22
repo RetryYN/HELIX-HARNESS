@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic negative checks for SCF-B-0128."""
+"""Deterministic negative checks for SCF-B-0134."""
 from __future__ import annotations
 
 import contextlib
@@ -29,7 +29,7 @@ def write_bundle(path: Path, inventory: dict, rows: list[dict]) -> None:
 def run_case(name: str, expected: str, mutate) -> None:
     inventory, rows = load_bundle()
     mutate(inventory, rows)
-    with tempfile.TemporaryDirectory(prefix="scf-b-0128-selfcheck-") as temp:
+    with tempfile.TemporaryDirectory(prefix="scf-b-0134-selfcheck-") as temp:
         bundle = Path(temp)
         write_bundle(bundle, inventory, rows)
         checker = validate.Validator(validate.ROOT, bundle)
@@ -41,7 +41,7 @@ def run_case(name: str, expected: str, mutate) -> None:
 
 
 def run_raw_bundle_case() -> None:
-    with tempfile.TemporaryDirectory(prefix="scf-b-0128-raw-") as temp:
+    with tempfile.TemporaryDirectory(prefix="scf-b-0134-raw-") as temp:
         bundle = Path(temp)
         (bundle / "inventory.json").write_text("{\n", encoding="utf-8")
         (bundle / "analysis.jsonl").write_text("", encoding="utf-8")
@@ -128,4 +128,4 @@ if __name__ == "__main__":
     for name, expected, mutate in cases:
         run_case(name, expected, mutate)
     run_raw_bundle_case()
-    print(f"SCF-B-0128 selfcheck PASS ({len(cases) + 1} negative cases)")
+    print(f"SCF-B-0134 selfcheck PASS ({len(cases) + 1} negative cases)")

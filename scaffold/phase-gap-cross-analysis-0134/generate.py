@@ -15,8 +15,8 @@ from typing import Any
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
-BINDING_ID = "SCF-B-0128"
-SCHEMA = "phase-gap-cross-analysis-0128/v1"
+BINDING_ID = "SCF-B-0134"
+SCHEMA = "phase-gap-cross-analysis-0134/v1"
 TAXONOMY_COMMIT = "78e23a622bc9c40183269e22a59c566d22b93435"
 TAXONOMY_PATH = "scaffold/phase-status-taxonomy-0105/units.jsonl"
 TAXONOMY_SHA256 = "e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4"
@@ -24,7 +24,7 @@ TAXONOMY_BLOB_OID = "c55fdcc06c23d53a5b2949ccf1a239c6064e6a8f"
 TAXONOMY_INVENTORY_PATH = "scaffold/phase-status-taxonomy-0105/inventory.json"
 TAXONOMY_INVENTORY_SHA256 = "89ddd6361743d37e809b2e5cd7aba217886770b5688787822426f6aa3bd123d2"
 TAXONOMY_INVENTORY_BLOB_OID = "e3430907c65b3c74cf3f799875ca0f1c34fdc35e"
-TAXONOMY_SNAPSHOT = "scaffold/phase-gap-cross-analysis-0128/phase-status-taxonomy-0105.units.jsonl"
+TAXONOMY_SNAPSHOT = "scaffold/phase-gap-cross-analysis-0134/phase-status-taxonomy-0105.units.jsonl"
 IR = "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
 RDP = "docs/governance/requirement-disposition-review-program.md"
 RDP_OVERLAP = "docs/governance/requirement-overlap-review-program.md"
@@ -347,4 +347,4 @@ def write_bundle(inventory: dict[str, Any], analyses: list[dict[str, Any]]) -> N
 
 if __name__ == "__main__":
     write_bundle(*build_bundle())
-    print("SCF-B-0128 bundle generated: 30 units, 66 edges, 38 assets")
+    print("SCF-B-0134 bundle generated: 30 units, 66 edges, 38 assets")
