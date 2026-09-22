@@ -21,10 +21,11 @@
 ## 成果物
 
 - `inventory.json`: 固定BASE、73入力digest、分母、全PHCAP境界保留、authority境界、負例コード。
+- taxonomy入力として、#2058統合時点のimmutable commit `48a91dd1a8fcadf9687c698ae3c8a5df0df974fa`にある`scaffold/phase-status-taxonomy-0105/units.jsonl`（SHA-256 `e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4`）を固定し、30行中statusが`CROSS_CUTTING_PHASE_REVIEW_PENDING`の20 ID、`formal_phase_candidate=null`、authority boundaryを独立照合する。snapshot bytesは同ディレクトリの`phase-status-taxonomy-0105.units.jsonl`に保存する。
 - `evidence.jsonl`: unit別の原文anchor、Wave edge、旧asset source/history/decision/read-after/failure/consumer、phase review、product review、current context、人間判断点。
 - `generate.py`: 固定BASE Git object bytesだけからbundleを再生成する。
 - `validate.py`: `generate.py`をimportせず、固定BASEから独立再導出した期待値で全fieldをfail-closed検証する。
-- `selfcheck.py`: 23負例でschema、binding、BASE、入力digest、unit／edge／asset、各partition、phase／product／current／authority境界とgenerator再生成改竄を検証する。
+- `selfcheck.py`: 27負例でschema、binding、BASE、入力digest、taxonomyの欠落／余分／status／authority boundary、unit／edge／asset、各partition、phase／product／current／authority境界とgenerator再生成改竄を検証する。
 - `PR-DRAFT.md`: Draft PR本文。
 
 ## 検証

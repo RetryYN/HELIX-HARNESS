@@ -10,6 +10,51 @@
     "branch": "main",
     "required_ancestor": "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
   },
+  "taxonomy_snapshot": {
+    "commit": "48a91dd1a8fcadf9687c698ae3c8a5df0df974fa",
+    "path": "scaffold/phase-status-taxonomy-0105/units.jsonl",
+    "sha256": "e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4",
+    "row_count": 30,
+    "status_counts": {
+      "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW": 10,
+      "CROSS_CUTTING_PHASE_REVIEW_PENDING": 20
+    },
+    "target_status": "CROSS_CUTTING_PHASE_REVIEW_PENDING",
+    "unit_ids": [
+      "IRUNIT-HIL-FR-21-HELIX-OS",
+      "IRUNIT-HIL-FR-23-HELIX-OS",
+      "IRUNIT-HIL-FR-33-HELIX-HARNESS",
+      "IRUNIT-HIL-FR-33-HELIX-OS",
+      "IRUNIT-HIL-FR-46-HELIX-OS",
+      "IRUNIT-HIL-FR-52-HELIX-OS",
+      "IRUNIT-HIL-FR-53-HELIX-OS",
+      "IRUNIT-HIL-NFR-02-HELIX-HARNESS",
+      "IRUNIT-HIL-NFR-03-HELIX-HARNESS",
+      "IRUNIT-HIL-NFR-05-HELIX-OS",
+      "IRUNIT-HIL-NFR-06-HELIX-OS",
+      "IRUNIT-HIL-NFR-07-HELIX-OS",
+      "IRUNIT-HIL-NFR-11-HELIX-OS",
+      "IRUNIT-HIL-NFR-12-HELIX-OS",
+      "IRUNIT-HIL-NFR-23-HELIX-OS",
+      "IRUNIT-HIL-NFR-31-HELIX-OS",
+      "IRUNIT-HIL-NFR-32-HELIX-OS",
+      "IRUNIT-HIL-TR-04-HELIX-HARNESS",
+      "IRUNIT-HIL-TR-04-HELIX-OS",
+      "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+    ],
+    "unit_count": 20,
+    "authority_phase_status": "unchanged_unresolved",
+    "formal_phase_candidate": null,
+    "authority_boundary": {
+      "consumer_closure_generated": false,
+      "formal_crosswalk_modified": false,
+      "formal_phase_authority_modified": false,
+      "formal_product_authority_modified": false,
+      "new_build_allowed": false,
+      "successor_assigned": false
+    },
+    "snapshot_artifact": "scaffold/phase-cross-20-review-0116/phase-status-taxonomy-0105.units.jsonl"
+  },
   "scope": {
     "unit_count": 20,
     "target_unit_ids": [
@@ -686,7 +731,8 @@
     "E_PHASE_REVIEW",
     "E_PRODUCT_AUTHORITY",
     "E_CURRENT_CONTEXT",
-    "E_AUTHORITY_BOUNDARY"
+    "E_AUTHORITY_BOUNDARY",
+    "E_TAXONOMY"
   ],
   "prohibited_inference": [
     "asset candidate phase targets do not establish formal phase",

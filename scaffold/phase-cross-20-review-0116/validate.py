@@ -20,6 +20,10 @@ ROOT = HERE.parents[1]
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 BINDING_ID = "SCF-B-0116"
 SCHEMA = "phase-cross-20-review-0116/v1"
+TAXONOMY_COMMIT = "48a91dd1a8fcadf9687c698ae3c8a5df0df974fa"
+TAXONOMY_PATH = "scaffold/phase-status-taxonomy-0105/units.jsonl"
+TAXONOMY_SHA256 = "e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4"
+TAXONOMY_SNAPSHOT = "scaffold/phase-cross-20-review-0116/phase-status-taxonomy-0105.units.jsonl"
 PARENT = "scaffold/legacy-phase-gap-review-0101"
 CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 IR = "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
@@ -62,7 +66,7 @@ NEGATIVE_CASE_CODES = [
     "E_BUNDLE", "E_SCHEMA", "E_BINDING", "E_BASE_COMMIT", "E_BASE_NOT_ANCESTOR", "E_INPUT_DIGEST",
     "E_UNIT_SET", "E_SOURCE_ANCHOR", "E_WAVE_EDGE_SET", "E_WAVE_EDGE_DUP", "E_ASSET_SET", "E_ASSET_SOURCE",
     "E_ASSET_HISTORY", "E_DECISION_EVIDENCE", "E_FAILURE_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_PHASE_REVIEW",
-    "E_PRODUCT_AUTHORITY", "E_CURRENT_CONTEXT", "E_AUTHORITY_BOUNDARY",
+    "E_PRODUCT_AUTHORITY", "E_CURRENT_CONTEXT", "E_AUTHORITY_BOUNDARY", "E_TAXONOMY",
 ]
 
 
@@ -79,6 +83,56 @@ def base_json(path: str) -> Any:
 
 def base_jsonl(path: str) -> list[dict[str, Any]]:
     return [json.loads(line) for line in base_bytes(path).decode("utf-8").splitlines() if line.strip()]
+
+
+def immutable_bytes(commit: str, path: str) -> bytes:
+    result = subprocess.run(["git", "show", f"{commit}:{path}"], cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False)
+    if result.returncode != 0:
+        raise ValueError(f"missing immutable input: {commit}:{path}")
+    return result.stdout
+
+
+def taxonomy_rows() -> list[dict[str, Any]]:
+    raw = immutable_bytes(TAXONOMY_COMMIT, TAXONOMY_PATH)
+    if hashlib.sha256(raw).hexdigest() != TAXONOMY_SHA256:
+        raise ValueError("taxonomy immutable digest mismatch")
+    rows = [json.loads(line) for line in raw.decode("utf-8").splitlines() if line.strip()]
+    selected = [row for row in rows if row.get("taxonomy", {}).get("status") == "CROSS_CUTTING_PHASE_REVIEW_PENDING"]
+    if [row.get("unit_candidate_id") for row in selected] != TARGET_UNIT_IDS or len(selected) != 20:
+        raise ValueError("taxonomy target set mismatch")
+    for row in selected:
+        taxonomy = row.get("taxonomy", {})
+        if taxonomy.get("formal_phase_candidate") is not None or taxonomy.get("authority_phase_status") != "unchanged_unresolved":
+            raise ValueError(f"taxonomy authority boundary mismatch: {row.get('unit_candidate_id')}")
+        boundary = row.get("authority_boundary", {})
+        expected = {
+            "consumer_closure_generated": False, "formal_crosswalk_modified": False,
+            "formal_phase_authority_modified": False, "formal_product_authority_modified": False,
+            "new_build_allowed": False, "successor_assigned": False,
+        }
+        if boundary != expected:
+            raise ValueError(f"taxonomy authority boundary mismatch: {row.get('unit_candidate_id')}")
+    return selected
+
+
+def taxonomy_snapshot(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    raw = immutable_bytes(TAXONOMY_COMMIT, TAXONOMY_PATH)
+    status_counts: dict[str, int] = {}
+    for row in [json.loads(line) for line in raw.decode("utf-8").splitlines() if line.strip()]:
+        status = row.get("taxonomy", {}).get("status")
+        status_counts[status] = status_counts.get(status, 0) + 1
+    return {
+        "commit": TAXONOMY_COMMIT, "path": TAXONOMY_PATH, "sha256": TAXONOMY_SHA256,
+        "row_count": sum(status_counts.values()), "status_counts": status_counts,
+        "target_status": "CROSS_CUTTING_PHASE_REVIEW_PENDING", "unit_ids": [row["unit_candidate_id"] for row in rows],
+        "unit_count": len(rows), "authority_phase_status": "unchanged_unresolved", "formal_phase_candidate": None,
+        "authority_boundary": {
+            "consumer_closure_generated": False, "formal_crosswalk_modified": False,
+            "formal_phase_authority_modified": False, "formal_product_authority_modified": False,
+            "new_build_allowed": False, "successor_assigned": False,
+        },
+        "snapshot_artifact": TAXONOMY_SNAPSHOT,
+    }
 
 
 def digest(raw: bytes, prefix: bool = True) -> str:
@@ -168,6 +222,8 @@ def phase_review(edges: list[dict[str, Any]], assets: list[dict[str, Any]]) -> d
 
 
 def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    taxonomy = taxonomy_rows()
+    taxonomy_by_id = {row["unit_candidate_id"]: row for row in taxonomy}
     crosswalk = {row["unit_candidate_id"]: row for row in base_jsonl(CROSSWALK) if row.get("unit_candidate_id") in TARGET_UNIT_IDS}
     if list(crosswalk) != TARGET_UNIT_IDS or len(crosswalk) != 20 or any(row.get("phase_classification_status") != "unresolved" for row in crosswalk.values()):
         raise ValueError("target crosswalk must be exactly 20 unresolved units")
@@ -181,6 +237,7 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
     unique_assets: set[str] = set()
     for unit_id in TARGET_UNIT_IDS:
         parent, cross = parent_units[unit_id], crosswalk[unit_id]
+        taxonomy_row = taxonomy_by_id[unit_id]
         decomp_record, decomp_unit = decomposition[unit_id]
         edges = [parent_edges[ref] for ref in parent["wave_review"]["edge_refs"]]
         all_edges.extend(edges)
@@ -190,6 +247,13 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
         representatives = [item.get("asset_id") for item in cross.get("representative_legacy_assets", []) if item.get("asset_id") in asset_ids][:3] or asset_ids[:3]
         evidence.append({
             "schema": SCHEMA + "/unit", "unit_candidate_id": unit_id,
+            "taxonomy_alignment": {
+                "source_commit": TAXONOMY_COMMIT, "source_path": TAXONOMY_PATH,
+                "status": taxonomy_row["taxonomy"]["status"],
+                "authority_phase_status": taxonomy_row["taxonomy"]["authority_phase_status"],
+                "formal_phase_candidate": taxonomy_row["taxonomy"]["formal_phase_candidate"],
+                "authority_boundary": taxonomy_row["authority_boundary"],
+            },
             "source_requirement": {"crosswalk_id": cross["crosswalk_id"], "requirement_id": cross["source_requirement_id"], "unit_candidate_id": unit_id, "product_scope": cross.get("product_scope", []), "responsibility_summary": cross.get("responsibility_summary"), "phase_classification_status": cross.get("phase_classification_status"), "decomposition_id": decomp_record.get("decomposition_id"), "decomposition_unit": decomp_unit},
             "source_anchor": source_anchor(cross["source_requirement_id"], cross, {"statement_text": decomp_record.get("statement_text"), **decomp_unit}),
             "semantic_review_edges": edges, "asset_set": {"asset_ids": asset_ids, "count": len(asset_ids), "edge_asset_membership": {asset_id: [edge["review_id"] for edge in edges if edge["asset_id"] == asset_id] for asset_id in asset_ids}},
@@ -208,6 +272,7 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
     scan_count = sum(len(base_jsonl(path)) for path in WAVE_PATHS)
     inventory = {
         "schema": SCHEMA, "binding_id": BINDING_ID, "status": "research_only_scaffold_candidate", "authority_effect": "none", "new_build": False, "base": {"repository": "HELIX-HARNESS", "commit": BASE, "branch": "main", "required_ancestor": BASE},
+        "taxonomy_snapshot": taxonomy_snapshot(taxonomy),
         "scope": {"unit_count": 20, "target_unit_ids": TARGET_UNIT_IDS, "product_counts": PRODUCTS, "wave_range": [1, 50], "wave_scan_file_count": 50, "wave_scan_row_count": scan_count, "semantic_review_edge_count": 40, "unique_old_asset_count": 22, "direct_phase_candidate_count": 0, "phase_nonapplicability_proven": 0, "formal_product_authority_count": 0},
         "input_snapshot": [{"path": path, "sha256": digest(base_bytes(path), prefix=False)} for path in INPUT_PATHS], "counts": {"units": 20, "helix_os_units": 15, "helix_harness_units": 5, "semantic_review_edges": 40, "unique_old_assets": 22, "decision_records_for_assets": sum(bool(asset["decision_evidence"]["records"]) for row in evidence for asset in row["old_asset_evidence"]["assets"]), "read_after_records_for_assets": sum(bool(asset["read_after_evidence"]["records"]) for row in evidence for asset in row["old_asset_evidence"]["assets"]), "failure_receipts": 0, "consumer_closures": 0},
         "unit_ids": TARGET_UNIT_IDS, "unit_declarations": [{"unit_candidate_id": row["unit_candidate_id"], "requirement_id": row["source_requirement"]["requirement_id"], "crosswalk_id": row["source_requirement"]["crosswalk_id"], "product_scope": row["product_review"]["product_scope_candidate"], "edge_count": len(row["semantic_review_edges"]), "asset_count": row["asset_set"]["count"], "candidate_phase_count": len(row["phase_review"]["candidate_phase_targets"]), "direct_phase_count": len(row["phase_review"]["direct_phase_candidates_from_edges"]), "phase_na_status": row["phase_review"]["phase_nonapplicability"]["status"], "authority_product": None} for row in evidence],
@@ -279,9 +344,9 @@ class Validator:
     def check_inventory(self, actual: dict[str, Any], expected: dict[str, Any]) -> None:
         if set(actual) != set(expected):
             self.error("E_SCHEMA", "inventory top-level keys")
-        for key in ("status", "authority_effect", "new_build", "base", "scope", "counts", "unit_ids", "unit_declarations", "partition_contract", "negative_case_codes", "prohibited_inference", "authority_boundary"):
+        for key in ("status", "authority_effect", "new_build", "base", "taxonomy_snapshot", "scope", "counts", "unit_ids", "unit_declarations", "partition_contract", "negative_case_codes", "prohibited_inference", "authority_boundary"):
             if actual.get(key) != expected.get(key):
-                code = "E_AUTHORITY_BOUNDARY" if key in {"status", "authority_effect", "new_build", "authority_boundary", "prohibited_inference"} else "E_SCHEMA" if key == "base" else "E_UNIT_SET" if key in {"scope", "unit_ids", "unit_declarations"} else "E_INPUT_DIGEST" if key == "counts" else "E_AUTHORITY_BOUNDARY"
+                code = "E_AUTHORITY_BOUNDARY" if key in {"status", "authority_effect", "new_build", "authority_boundary", "prohibited_inference"} else "E_TAXONOMY" if key == "taxonomy_snapshot" else "E_SCHEMA" if key == "base" else "E_UNIT_SET" if key in {"scope", "unit_ids", "unit_declarations"} else "E_INPUT_DIGEST" if key == "counts" else "E_AUTHORITY_BOUNDARY"
                 self.error(code, "inventory." + key)
         if actual.get("negative_case_codes") != NEGATIVE_CASE_CODES:
             self.error("E_SCHEMA", "negative_case_codes")
@@ -293,6 +358,17 @@ class Validator:
             path = item.get("path")
             if not isinstance(path, str) or item.get("sha256") != digest(base_bytes(path), prefix=False):
                 self.error("E_INPUT_DIGEST", str(path))
+        taxonomy = actual.get("taxonomy_snapshot")
+        if taxonomy != expected.get("taxonomy_snapshot"):
+            self.error("E_TAXONOMY", "immutable source metadata")
+        else:
+            snapshot_path = self.root / TAXONOMY_SNAPSHOT
+            try:
+                snapshot_digest = hashlib.sha256(snapshot_path.read_bytes()).hexdigest()
+            except OSError:
+                snapshot_digest = None
+            if snapshot_digest != TAXONOMY_SHA256:
+                self.error("E_TAXONOMY", "snapshot artifact digest")
 
     def check_unit(self, actual: dict[str, Any], expected: dict[str, Any]) -> None:
         unit = expected["unit_candidate_id"]
@@ -300,6 +376,8 @@ class Validator:
             self.error("E_SCHEMA", unit + " keys")
         if actual.get("schema") != SCHEMA + "/unit":
             self.error("E_SCHEMA", unit + " schema")
+        if actual.get("taxonomy_alignment") != expected.get("taxonomy_alignment"):
+            self.error("E_TAXONOMY", unit)
         if actual.get("source_requirement") != expected.get("source_requirement"):
             self.error("E_SOURCE_ANCHOR", unit + " source binding")
         if actual.get("source_anchor") != expected.get("source_anchor"):

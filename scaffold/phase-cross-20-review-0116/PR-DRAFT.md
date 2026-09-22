@@ -11,6 +11,7 @@ research: cross-cutting phase review for 20 unresolved units (SCF-B-0116)
 ## 変更
 
 - 固定BASE `5562f04da0f3205f9aa58205ec0d478419fc4f2e`の原文anchor、Wave1〜50の598 scan row／40対象edge、旧asset 22件を固定。
+- #2058統合時点のimmutable taxonomy source `48a91dd1a8fcadf9687c698ae3c8a5df0df974fa:scaffold/phase-status-taxonomy-0105/units.jsonl`（SHA-256 `e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4`）を固定し、30行から`CROSS_CUTTING_PHASE_REVIEW_PENDING`のexact 20 ID、status、`formal_phase_candidate=null`、authority boundaryを独立照合する。
 - 旧asset source／history／decision／read-after／failure／consumerを別partitionに保持し、実装成立、縮退、failure receipt、consumer closure、未実装断定を生成しない。
 - 各unitについてasset／Wave由来のphase candidate targetsを候補として記録し、直接phase evidenceは0件、phase非適用は`not_proven`、全PHCAP-01〜20境界はhuman review pendingとした。
 - product scope候補とformal product authority、current contextとimplementation／acceptance／operationを分離した。
@@ -21,7 +22,7 @@ research: cross-cutting phase review for 20 unresolved units (SCF-B-0116)
 
 - `generate.py`: 20 units、40 edges、22 old assets、598 scan rows
 - `validate.py`: PASS（20 units、40 edges、22 assets; phase/NA unresolved）
-- `selfcheck.py`: PASS（23 negative cases、期待error code照合）
+- `selfcheck.py`: PASS（27 negative cases、taxonomyの欠落／余分／status／authority boundaryを含む期待error code照合）
 - `py_compile`: PASS
 - `scfctl validate`: PASS
 - `scfctl stale`: PASS

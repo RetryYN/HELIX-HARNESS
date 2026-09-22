@@ -61,8 +61,8 @@ def run_raw_bundle_case() -> None:
 def run_generator_tamper_case() -> None:
     path = HERE / "generate.py"
     original = path.read_bytes()
-    needle = b'"formal_phase_candidate": None'
-    replacement = b'"formal_phase_candidate": "PHCAP-20"'
+    needle = b'"candidate_basis": "asset_search_candidates_only; source semantics are cross-cutting research evidence", "formal_phase_candidate": None'
+    replacement = b'"candidate_basis": "asset_search_candidates_only; source semantics are cross-cutting research evidence", "formal_phase_candidate": "PHCAP-20"'
     if needle not in original:
         raise AssertionError("generator tamper needle missing")
     try:
@@ -108,6 +108,10 @@ if __name__ == "__main__":
         ("current implementation", "E_CURRENT_CONTEXT", lambda inv, rows: rows[0]["current_implementation"].__setitem__("status", "implemented")),
         ("unimplemented claim", "E_AUTHORITY_BOUNDARY", lambda inv, rows: rows[0]["unimplemented_assessment"].__setitem__("explicit_non_implementation_claim", True)),
         ("authority boundary", "E_AUTHORITY_BOUNDARY", lambda inv, rows: rows[0]["authority_boundary"].__setitem__("formal_phase_authority", True)),
+        ("taxonomy unit set missing", "E_TAXONOMY", lambda inv, rows: inv["taxonomy_snapshot"]["unit_ids"].pop()),
+        ("taxonomy unit set extra", "E_TAXONOMY", lambda inv, rows: inv["taxonomy_snapshot"]["unit_ids"].append("IRUNIT-HIL-TAXONOMY-EXTRA")),
+        ("taxonomy status", "E_TAXONOMY", lambda inv, rows: rows[0]["taxonomy_alignment"].__setitem__("status", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW")),
+        ("taxonomy authority boundary", "E_TAXONOMY", lambda inv, rows: rows[0]["taxonomy_alignment"]["authority_boundary"].__setitem__("formal_phase_authority_modified", True)),
     ]
     for name, expected, mutate in cases:
         run_case(name, expected, mutate)

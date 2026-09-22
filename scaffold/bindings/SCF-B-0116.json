@@ -372,6 +372,11 @@
       "path": "docs/governance/audits/source-rebaseline/legacy-phase-product-classification-method-2026-09-20.md",
       "sha256": "151b7bab746a855c7c5f16426e7a68aebc960a83e96150e9e2d8cd721caa466e",
       "note": "fixed BASE Git object bytes; static research input only; no authority effect"
+    },
+    {
+      "path": "scaffold/phase-cross-20-review-0116/phase-status-taxonomy-0105.units.jsonl",
+      "sha256": "e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4",
+      "note": "snapshot of immutable source scaffold/phase-status-taxonomy-0105/units.jsonl at commit 48a91dd1a8fcadf9687c698ae3c8a5df0df974fa; validator checks source commit/path/digest and authority boundary"
     }
   ],
   "role": "phase-cross-20-review-0116-static-research",
@@ -381,7 +386,8 @@
     "旧asset source／history／decision／read-after／failure／consumerを独立partitionで保持する",
     "直接phase evidence 0件、phase非適用not_proven、全PHCAP-01〜20保留を保持する",
     "formal phase／product authority、実装成立、縮退、failure、consumer closure、未実装を生成しない",
-    "validator独立再導出と23負例を維持する"
+    "validator独立再導出と27負例を維持する",
+    "immutable taxonomy source commit/path/digestとCROSS_CUTTING_PHASE_REVIEW_PENDING 20 ID、formal phase null、authority boundaryを独立照合する"
   ],
   "connections": {
     "boundary": "static research evidence only; no phase/product authority, implementation, acceptance, runtime, merge, or close",
@@ -394,7 +400,8 @@
       "Wave1〜50 semantic review snapshots",
       "old asset disposition/history/decision/read-after ledgers",
       "PHCAP-01〜20 inventory and PHCAP-20 definition",
-      "four product L1 context"
+      "four product L1 context",
+      "SCF-B-0105 taxonomy source commit 48a91dd1a8fcadf9687c698ae3c8a5df0df974fa"
     ]
   },
   "operations": {
@@ -418,7 +425,8 @@
     "scaffold/phase-cross-20-review-0116/validate.py",
     "scaffold/phase-cross-20-review-0116/selfcheck.py",
     "scaffold/phase-cross-20-review-0116/inventory.json",
-    "scaffold/phase-cross-20-review-0116/evidence.jsonl"
+    "scaffold/phase-cross-20-review-0116/evidence.jsonl",
+    "scaffold/phase-cross-20-review-0116/phase-status-taxonomy-0105.units.jsonl"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -445,16 +453,21 @@
       "unimplemented or formal authority claim must emit E_AUTHORITY_BOUNDARY",
       "generator regeneration phase tamper must emit E_PHASE_REVIEW",
       "unknown evidence key must emit E_SCHEMA",
-      "unknown inventory key must emit E_SCHEMA"
+      "unknown inventory key must emit E_SCHEMA",
+      "taxonomy target unit set missing must emit E_TAXONOMY",
+      "taxonomy target unit set extra must emit E_TAXONOMY",
+      "taxonomy status tamper must emit E_TAXONOMY",
+      "taxonomy authority boundary tamper must emit E_TAXONOMY"
     ],
     "oracles": [
       "validate.py independent fixed-BASE rederivation PASS: 20 units／40 edges／22 old assets",
       "source／decision／read-after／failure／consumer partitions exact",
       "phase candidate and phase non-applicability separation exact",
       "all PHCAP-01〜20 boundary pending exact",
-      "selfcheck.py expected 23 negative executions and error codes",
+      "selfcheck.py expected 27 negative executions and error codes",
       "scfctl validate／stale／residuals",
-      "git diff --check"
+      "git diff --check",
+      "immutable taxonomy source commit/path/digest and exact 20 ID/status/authority boundary comparison"
     ],
     "scope": [
       "schema_interface",
