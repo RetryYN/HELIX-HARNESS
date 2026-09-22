@@ -1,0 +1,207 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0076",
+  "kind": "scaffold",
+  "title": "outside67 four-product entry and shared L2 crosswalk research 003/006/009/012/014",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "outside67未調査5 sourceの四製品entry・shared L2 crosswalk境界・判断史・unknown status review（正式owner未解決）",
+  "state": "registered",
+  "reason": "MPR-SH-OUTSIDE67-001の67 path_revision_pairについて、既済32件と重複しない003/006/009/012/014を選び、37/67の研究会計と残30を正式holding採否から分離して静的固定する。この37/67はpath_revision_pairの研究会計であり、正式要求identity、四製品ownerの割当、実装・縮退状態の分母ではない。5 source pairの25 exact anchors、pre/archive/current hash・path・wording差分、四製品候補、product／phase／implementation／degradation／failure／consumer／decision unknownを保持し、entry path・crosswalk・hash差分観測をsemantic equivalence・authority・successor・implementationへ昇格しない。SCF-B-0076はresearch Scaffoldの登録であり、正式要求・owner・successor・holding admissionを生成しない。",
+  "upstream": [
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-harness/README.md",
+      "sha256": "e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-os/README.md",
+      "sha256": "aa6c9976bf564ef4c2ff0f8d7b07220108e7157f697b8d92e11c689b4060f773",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-web-os/README.md",
+      "sha256": "f5aac7ab9bc83a8c7339a2190f1e39cbaf3f1271edffc80fbdc37e43a4598914",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-web/README.md",
+      "sha256": "0d73011e6ccc387189645c2158d55e02f444e3e3cb583b0aea29e28ea86ac1e6",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/crosswalks/legacy-concept-derived-requirements.md",
+      "sha256": "a65504da98057890ff55f598e8cae6f13cf823c84de9b8fae89f4940f895ab91",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "sha256": "5a95be78b2341d3934e2b9c6cef66428387d7862c94b60e9145f27ca92d9ff85",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decision-log.md",
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    }
+  ],
+  "role": "outside67 003/006/009/012/014 source pairのproduct entry／shared L2 crosswalk candidate、revision差分、四製品候補、legacy evidence unknownをread-onlyで保持する",
+  "obligations": [
+    "67 path_revision_pair denominator、既済32件、候補5件、combined 37/67、残30を独立canonical tableで固定し、正式holding採否と分離する",
+    "5 source pair、25 exact line anchors、source snapshot、source diff、pre/archive/current hash・bytes・blob・pathを照合する",
+    "003/006/009のarchive同一・current relocation/content drift、012/014のpre/archive/current driftを意味同値・authorityへ変換しない",
+    "四製品をcandidate boundaryとして保持し、product assignment、phase authority、owner、successorを生成しない",
+    "product-unit keyset、normalized_statement、retained_meaning、unresolved_questions、diff_observation、scope canonical fieldsをvalidatorで固定する",
+    "product substitution、unknown promotion、duplicate、anchor、counterpart、denominator、nested keyset、base ancestorを本体validator経由のnegative selfcheckで検査する",
+    "legacy implementation、current implementation、degradation、failure outcome、consumer closure、decisionをunknownのまま保持する",
+    "旧archive source／runtime／test／CI／hook／adapterを実行せず、static referenceとしてのみ読む",
+    "origin/main driftまたはstacked parent lineageの進行を検知した場合はsource選定・正式化を停止し、latest mainへrebaselineしてscope/base digestを再検証する"
+  ],
+  "connections": {
+    "consumers": [
+      "outside67 source-chain reviewer",
+      "four-product entry boundary semantic reviewer",
+      "shared L2 crosswalk reviewer",
+      "legacy failure／consumer／decision unknown reviewer",
+      "SCF-B-0076 replacement reviewer"
+    ],
+    "dependencies": [
+      "MPR-SH-OUTSIDE67-001",
+      "current four-product boundary",
+      "current product entry READMEs",
+      "current shared L2 crosswalk",
+      "legacy static ledger set",
+      "Python standard library／git object read-only"
+    ],
+    "boundary": "成果物はscaffold/配下のresearch candidate。37/67会計は候補研究用で、正式holding admission、requirement identity、phase、四製品owner、implementation、degradation、acceptance、release、deploymentを確定しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/rdp001-outside67-product-entry-followup-076/validate.py",
+      "python3 -B scaffold/rdp001-outside67-product-entry-followup-076/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+      "旧sourceをcurrent implementation、oracle、fallback、pass、deployment evidenceへ昇格すること",
+      "scaffold/外への候補書き込み",
+      "正式holding採否、requirement、phase authority、product owner、successor、implementation、degradation、acceptance、release、deployment、consumer closureの生成",
+      "GitHub、Issue、PR、CI、DB、外部APIへの作用",
+      "origin/mainまたはstacked parent lineageが進んだ状態でのsilent rebase、merge、正式holding昇格"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-outside67-product-entry-followup-076/README.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/evidence-scan.json",
+    "scaffold/rdp001-outside67-product-entry-followup-076/inventory.json",
+    "scaffold/rdp001-outside67-product-entry-followup-076/ledger.json",
+    "scaffold/rdp001-outside67-product-entry-followup-076/meta.json",
+    "scaffold/rdp001-outside67-product-entry-followup-076/method.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/premise.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/product-units.jsonl",
+    "scaffold/rdp001-outside67-product-entry-followup-076/selected-source-items.jsonl",
+    "scaffold/rdp001-outside67-product-entry-followup-076/selfcheck.py",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-diffs.json",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-003/archive-revision.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-003/pre-isolation.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-006/archive-revision.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-006/pre-isolation.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-009/archive-revision.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-009/pre-isolation.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-012/archive-revision.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-012/pre-isolation.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-014/archive-revision.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/source-snapshots/OUTSIDE67-PATH-014/pre-isolation.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/status.md",
+    "scaffold/rdp001-outside67-product-entry-followup-076/validate.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "outside67 product-entry follow-up validate.py（37/67、30 residual、ancestor-only scope、unit keyset、canonical non-digest fields、exact anchors、four products、unknowns）",
+      "outside67 product-entry selfcheck.py（baseline＋18 negative cases）",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "37/67 denominator or remaining tamper",
+      "reviewed/candidate overlap",
+      "product substitution",
+      "unknown status promotion",
+      "duplicate anchor",
+      "source fragment or anchor keyset tamper",
+      "current counterpart path or digest tamper",
+      "scope keyset or canonical field tamper",
+      "unit nested keyset tamper",
+      "old execution flag tamper",
+      "meta reservation or ledger count tamper",
+      "source diff status tamper"
+    ]
+  },
+  "replacement": {
+    "role_target": "承認済みoutside67 source semantic units、四製品責務、phase、implementation、failure／consumer contractへの個別移管（人間判断後）",
+    "formal_artifacts": [],
+    "issue": 2024,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}

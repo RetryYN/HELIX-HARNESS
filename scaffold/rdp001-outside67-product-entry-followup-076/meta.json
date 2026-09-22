@@ -1,0 +1,24 @@
+{
+  "anchor_count": 25,
+  "authority_effect": "none",
+  "base_origin_main": "6396443e150d285b0b08edd43ea52a26f85dd434",
+  "base_origin_main_previous": "74f724b4699feca7f9f2e87e939fe6578f75669e",
+  "binding_registration_status": "registered",
+  "binding_reservation": "SCF-B-0076",
+  "bundle_id": "RDP-001-OUTSIDE67-PRODUCT-ENTRY-FOLLOWUP-003-006-009-012-014",
+  "candidate_count": 5,
+  "candidate_ids": [
+    "OUTSIDE67-PATH-003",
+    "OUTSIDE67-PATH-006",
+    "OUTSIDE67-PATH-009",
+    "OUTSIDE67-PATH-012",
+    "OUTSIDE67-PATH-014"
+  ],
+  "combined_count": 37,
+  "denominator": 67,
+  "existing_reviewed_count": 32,
+  "old_runtime_test_ci_execution": false,
+  "remaining_after_research": 30,
+  "schema": "rdp001-outside67-followup-meta/v1",
+  "static_only": true
+}
