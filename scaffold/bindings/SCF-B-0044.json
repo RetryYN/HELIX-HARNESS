@@ -8,15 +8,51 @@
   "state": "registered",
   "reason": "PR #1978 source setのoutside-67 reportからglobal ordinal 49–67の19 path_revision_pairを固定し、path由来の四製品／phase候補、pre-isolation／archive blob、歴史的13 live holdingのexact path／blob／SHA relationを保存する。実装、failure／degraded／unimplemented、semantic inclusion、authority、要求identity、successorはunknownまたは未開始に留める。",
   "upstream": [
-    {"path": "scaffold/outside67-global-49-67/README.md", "sha256": "95cbf989d655ee0b3dfbeb31e2d26b4fe6dda585c7d43cdf5ba3e5d3f0bce549", "note": "対象範囲・unknown境界・static-only契約"},
-    {"path": "scaffold/outside67-global-49-67/generate.py", "sha256": "15dccf6fec265e91b7df34aa410964565069e24bf96863d4f69ce35237180440", "note": "fixed report／Git object／13 holdingからの再生成"},
-    {"path": "scaffold/outside67-global-49-67/validate.py", "sha256": "4d764e898ad4d60ae25334aede472a7ce70737e3c675d77d86970b0ed2a771de", "note": "generator非依存のexact relation、findings／prohibited text、recursive keyset validator"},
-    {"path": "scaffold/outside67-global-49-67/selfcheck.py", "sha256": "38620dc79afe26513c9f560c4e89b3dc9417051d7348c1e37f52a345b4b3c3fa", "note": "19否定自己検査（exact code／no-op guard含む）"},
-    {"path": "scaffold/outside67-global-49-67/inventory.json", "sha256": "b9d8e717763bb15d72f89f6e664f26e05aacc9168140349d9593091b222d53da", "note": "19件の分類集計・13 holding snapshot・unknown境界"},
-    {"path": "scaffold/outside67-global-49-67/source-items.jsonl", "sha256": "db916f5d64af2b8daf545f518da0d8c52e9dba579f15d91e13b47cc91a1f5c04", "note": "49–67各pathのblob／SHA／holding relation"},
-    {"path": "scaffold/pre-isolation-outside-holding-67/report.json", "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795", "note": "PR #1978 outside-67 67 path source set"},
-    {"path": "docs/governance/management-provisional-requirement-register.jsonl", "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b", "note": "supersedes終端の歴史的13 live holding算出元"},
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995", "note": "scaffold／authority／旧資産static-only境界"}
+    {
+      "path": "scaffold/outside67-global-49-67/README.md",
+      "sha256": "f8c33c01e6b7b90f8b2509a5b9c2b9a963cb4a34bb20899f0dea07e71c4d5b6f",
+      "note": "対象範囲・unknown境界・static-only契約"
+    },
+    {
+      "path": "scaffold/outside67-global-49-67/generate.py",
+      "sha256": "58bbc804afa3f0b503e5be409f1353c9ccfe4184067eb45b6961b59e89b20f79",
+      "note": "fixed report／Git object／13 holdingからの再生成"
+    },
+    {
+      "path": "scaffold/outside67-global-49-67/validate.py",
+      "sha256": "724c5e1bc59551b33cf0a260daac1de5cf1a1414e87b09fa7c60ba29919b2e3f",
+      "note": "generator非依存のexact relation、findings／prohibited text、recursive keyset validator"
+    },
+    {
+      "path": "scaffold/outside67-global-49-67/selfcheck.py",
+      "sha256": "38620dc79afe26513c9f560c4e89b3dc9417051d7348c1e37f52a345b4b3c3fa",
+      "note": "19否定自己検査（exact code／no-op guard含む）"
+    },
+    {
+      "path": "scaffold/outside67-global-49-67/inventory.json",
+      "sha256": "01b33bd2ab541068aabd6a34e4418e0b3ea33b2cc713877cafa4f2fc5734a87e",
+      "note": "19件の分類集計・13 holding snapshot・unknown境界"
+    },
+    {
+      "path": "scaffold/outside67-global-49-67/source-items.jsonl",
+      "sha256": "db916f5d64af2b8daf545f518da0d8c52e9dba579f15d91e13b47cc91a1f5c04",
+      "note": "49–67各pathのblob／SHA／holding relation"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67/report.json",
+      "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795",
+      "note": "PR #1978 outside-67 67 path source set"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+      "note": "親d272時点の13 live holdingを固定したhistorical register snapshot"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "scaffold／authority／旧資産static-only境界"
+    }
   ],
   "role": "outside67 global ordinal 49–67のpath-based product／phase候補とimplementation／degradation／semantic inclusion unknown、13 live holding exact relationを固定する研究用分類束",
   "obligations": [
@@ -72,7 +108,13 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "validate.py（19 ordinal、Git blob OID／SHA／bytes、13 live holding exact relation、四製品／phase集計）",
       "selfcheck.py（authority、product／phase、implementation／degradation／semantic inclusion、holding、blob、旧実行の15否定例）",

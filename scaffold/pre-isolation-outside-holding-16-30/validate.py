@@ -28,17 +28,20 @@ EXPECTED = generator.build()
 ANCHOR_COMMIT = "480d1c2a027f065a4150853039f3141092a84b42"
 GENERATOR_PATH = "scaffold/pre-isolation-outside-holding-16-30/generate.py"
 INVENTORY_PATH = "scaffold/pre-isolation-outside-holding-16-30/inventory.json"
-EXPECTED_GENERATOR_BLOB_OID = "88916178e6b7dc6dd08df9904c8fe4b60e0525ab"
-EXPECTED_INVENTORY_BLOB_OID = "7f40386d59c42cc49fcac86b326c85a34bdd4fbe"
-EXPECTED_GENERATOR_SHA256 = "dbcb6ae174e0b948f10e36b62d506a6ca7ee20ced1b9d5edf57e82e3c8f8b7bd"
-EXPECTED_INVENTORY_SHA256 = "db86c9dd73ea081fcbb1e62645181f0d41449fe62cfdf1a7ad4a9551205d2fed"
+BASE_ANCHOR_GENERATOR_BLOB_OID = "88916178e6b7dc6dd08df9904c8fe4b60e0525ab"
+BASE_ANCHOR_INVENTORY_BLOB_OID = "7f40386d59c42cc49fcac86b326c85a34bdd4fbe"
+# The historical-register correction is an uncommitted candidate layered on
+# the reviewed PR tip. Pin the candidate bytes explicitly while retaining the
+# immutable base object checks above.
+EXPECTED_GENERATOR_SHA256 = "e701be0fa9c9bdf378f6a0d7347f105ddb03c3e1b2e1cca8a9c90de53cb2f01a"
+EXPECTED_INVENTORY_SHA256 = "ab01a1e6d3bda955b40cf434d9c5d213c291b9800cb393c4e52fa6b25acb71f0"
 
 REPORT_PATH = "scaffold/pre-isolation-outside-holding-67/report.json"
 SOURCE_SET_PATH = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
 PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 CURRENT_CAPTURE = "3df81ad27157c471e004083783f37a5860eaa2ee"
-REGISTER_PATH = "docs/governance/management-provisional-requirement-register.jsonl"
+REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
 LIVE_HOLDING_IDS = {
     "MPR-SH-HEADING-002",
     "MPR-SH-IR-003",
@@ -99,8 +102,8 @@ def git_object_anchor_errors(
             cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
         ).returncode == 0
         fail(errors, anchored, "E_GIT_ANCHOR_NOT_ANCESTOR")
-        fail(errors, git_blob_oid(ANCHOR_COMMIT, GENERATOR_PATH) == EXPECTED_GENERATOR_BLOB_OID, "E_GIT_ANCHOR_GENERATOR_OBJECT")
-        fail(errors, git_blob_oid(ANCHOR_COMMIT, INVENTORY_PATH) == EXPECTED_INVENTORY_BLOB_OID, "E_GIT_ANCHOR_INVENTORY_OBJECT")
+        fail(errors, git_blob_oid(ANCHOR_COMMIT, GENERATOR_PATH) == BASE_ANCHOR_GENERATOR_BLOB_OID, "E_GIT_ANCHOR_GENERATOR_OBJECT")
+        fail(errors, git_blob_oid(ANCHOR_COMMIT, INVENTORY_PATH) == BASE_ANCHOR_INVENTORY_BLOB_OID, "E_GIT_ANCHOR_INVENTORY_OBJECT")
         generator_bytes = (ROOT / GENERATOR_PATH).read_bytes() if generator_bytes is None else generator_bytes
         inventory_bytes = (ROOT / INVENTORY_PATH).read_bytes() if inventory_bytes is None else inventory_bytes
         fail(errors, sha256(generator_bytes) == EXPECTED_GENERATOR_SHA256, "E_WORKTREE_GENERATOR_DIGEST")

@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "scaffold/pre-isolation-outside-holding-67-proposal/inventory.json",
-      "sha256": "3dcfed7b2b37a24acef92823f54b822f84ce799d46b2adbbd9ea145a8d33e761",
+      "sha256": "79233238c130fe7fe1000064dffc97d74745539987a05c73f714581d1556f4a8",
       "note": "67 path pair, independent roster/digest/keyset/formal-doc checks"
     },
     {
@@ -30,12 +30,12 @@
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py",
-      "sha256": "5e343ae3acab6c86f6151756866d15415fb6f28defb59eb3d59aaa4a444f36ff",
+      "sha256": "0d743b42bc43e75613c42104ce546e6b30fce2136e001257677042283427e117",
       "note": "proposal generator and formal byte identity gate"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py",
-      "sha256": "8c4ea5146ba0f72d882a900f987d585eca5772c3be4e7102fb40c1a3a5bc1bcc",
+      "sha256": "3112c79cd261bef186005c75a995da9b144e3daeeb6ecc5a8c74932d1f4f6baa",
       "note": "independent roster, source digest, denominator, keyset validator"
     },
     {
@@ -49,17 +49,17 @@
       "note": "outside-67 reportの67 path分母"
     },
     {
-      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
       "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
       "note": "3df81ad時点の32 register／13 live holding"
     },
     {
-      "path": "docs/governance/requirement-disposition-review-program.md",
+      "path": "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md",
       "sha256": "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308",
       "note": "source発見時のsource_holding先行登録契約"
     },
     {
-      "path": "docs/governance/management-provisional-requirement-registration.md",
+      "path": "docs/governance/management-provisional-requirement-registration-pre-append-3df81ad.md",
       "sha256": "86e0eae4c447a4d7113b84b72d6b3a8cb89188189090584fbcc76fbbbe810176",
       "note": "source_holdingとrequirement_candidateの管理schema"
     },

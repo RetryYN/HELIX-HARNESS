@@ -1,0 +1,270 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0040",
+  "kind": "scaffold",
+  "title": "RDP-001 outside-67 historical 13→14 source_holding migration candidate",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "RDP-001 source preservation／historical capture migration review（正式owner未解決）",
+  "state": "registered",
+  "reason": "3df81ad時点の13 live source holdingを固定snapshotとして保持し、outside-67の67 path_revision_pairをappend-only source_holdingへ記録した候補と、current 14 holding read-afterを分離する。authority_effectはnone、source setは要求atomではなく、semantic disposition、product、phase、implementation、successor、consumer closureは未開始である。#1975のmain merge済み反映と、main f122d65eへmerge済みの#1978（parent d272a97 exact）のrebaseline境界、Issue #1813の別更新対象を記録し、正式admission前のrebaselineを要求する。",
+  "upstream": [
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+      "sha256": "f2434cdc2244af81b0b14a963439661e55591159ea39a63fe19d3fefd08c8540",
+      "note": "13 snapshot／14 append read-after migration inventory"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-migration/README.md",
+      "sha256": "24137779f3461483174a8060a07a8462e522e82a92d0240ffcbe73bfe4ecd288",
+      "note": "migration boundary, timestamp/state semantics, dependency and issue projection record"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-migration/generate.py",
+      "sha256": "9796b2d781be53d8031588be90328678ce1788ecc3cb3b502982f1a8dc74885b",
+      "note": "migration generator with fixed-capture comparison"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
+      "sha256": "d5fbbe9205176bb661401ae94ed54317f2112a873896ff1fab9f90f288f4d09c",
+      "note": "independent migration validator"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-migration/selfcheck.py",
+      "sha256": "e95bf3d0c510a8b2e2aaf9407a747b69739d4a85251a9bc55cad7c9618d97307",
+      "note": "migration negative cases and baseline assertion"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.py",
+      "sha256": "e7710ff5bf68bd87c2dafcb6c06be20e29d4e12120ec47c19ac9c464a63f7e3b",
+      "note": "current 14 holding read-after generator"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.json",
+      "sha256": "05e0ccf553268696d58478920d1402b305a4d6042dc2f2f95687b847e7755df0",
+      "note": "current register 14 holding read-after"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-migration/proposed-register-record.json",
+      "sha256": "bf8eeb6070aa62fd3ea9879771f4abf10f05c56b223c9a4d8fe27e6fc2fa6b84",
+      "note": "append-only source_holding record candidate"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+      "note": "exact 3df historical 13 holding snapshot"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "note": "append-only current 14 holding register candidate"
+    },
+    {
+      "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "67 path_revision_pair source set, no atom adoption"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/pre-isolation-outside-holding-67-coverage-receipt-2026-09-22.md",
+      "sha256": "941ba49fd874ae514d25e45d93f0921fa0d8bfc199c632a62ba475a53f923556",
+      "note": "永続coverage receipt、Scaffold退役後も正式register参照を保持"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-registration.md",
+      "sha256": "4641b2fa1edd4d22748b85598e7bde1561aa8225305a6e54d90595b9b4c28ab8",
+      "note": "current 14 and historical 13 registration contract"
+    },
+    {
+      "path": "docs/governance/requirement-disposition-review-program.md",
+      "sha256": "9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59",
+      "note": "current 14 source-holding disposition input boundary"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "note": "phase inventory historical register binding"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "authority and static-read operation boundary"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/inventory.json",
+      "sha256": "79233238c130fe7fe1000064dffc97d74745539987a05c73f714581d1556f4a8",
+      "note": "67 path source capture and pre-append evidence"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-first15/generate.py",
+      "sha256": "663db1c54876f3a8b63fd665d5eeee9222af2d95929beca563ee4b6f394bb142",
+      "note": "historical 13 capture generator"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-first15/README.md",
+      "sha256": "9fc83be825db547b30841eb232aec35dc51e48f48a77d8d642715bc8140f68aa",
+      "note": "historical 13 capture scope"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-first15/inventory.json",
+      "sha256": "8fdc22ce260ca23889f114ad85491d055cb656686fd52c829add05e84d9de12d",
+      "note": "historical 13 first15 inventory"
+    },
+    {
+      "path": "scaffold/phcap02-03-registration-classification-audit/generate.py",
+      "sha256": "136f2deadba2a7018f9aca95511b3e73d8ba7e76659de5df92a20225a0e65f2c",
+      "note": "PHCAP historical 13 capture generator"
+    },
+    {
+      "path": "scaffold/phcap02-03-registration-classification-audit/validate.py",
+      "sha256": "df439195e47bc175b2f6435b07b4f76f02d15155b63e553fa6066ce17b984b64",
+      "note": "PHCAP historical 13 independent validator"
+    },
+    {
+      "path": "scaffold/phcap02-03-registration-classification-audit/inventory.json",
+      "sha256": "44b91a48b911d3d5d0fc6c845d87c06388582adcf5d8eaef3b288951672eaebb",
+      "note": "PHCAP phase/product/evidence gap inventory"
+    },
+    {
+      "path": "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py",
+      "sha256": "4222f1c9eb947350d4097d2ce60f572f28181368e17a0d132dd688c47b6afa71",
+      "note": "delegated-doc003 historical capture validator"
+    },
+    {
+      "path": "scaffold/rdp001-unassessed-atom-audit/validate.py",
+      "sha256": "ed991c3cd6475be6c9af8ca13105e8c51c3dfbce577cbd7e564f004207e6dc6a",
+      "note": "unassessed atom historical capture validator"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67/validate.py",
+      "sha256": "455cbf4cea1cd2da2ba8e0e4963bb6863747cd28b0cfb1e139388d7b911ab979",
+      "note": "existing 67 holding audit dependency"
+    },
+    {
+      "path": "docs/governance/requirement-disposition-review-program-pre-append-3df81ad.md",
+      "sha256": "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308",
+      "note": "3df historical disposition program snapshot"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/README.md",
+      "sha256": "4771d9344756e2c2ec0d4bb335ed2214169d0a095d99a31d4d0d3eb655531d02",
+      "note": "historical 13 source-holding proposal boundary"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/generate.py",
+      "sha256": "0d743b42bc43e75613c42104ce546e6b30fce2136e001257677042283427e117",
+      "note": "historical proposal generator bound to fixed snapshots"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/validate.py",
+      "sha256": "3112c79cd261bef186005c75a995da9b144e3daeeb6ecc5a8c74932d1f4f6baa",
+      "note": "historical proposal independent validator"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/selfcheck.py",
+      "sha256": "a1432e8348cbf844eb44692d48530c73e4619f2e8eb56f4f12f473b5f8b45525",
+      "note": "historical proposal negative cases"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/source-items.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "historical 67 path revision pair source set"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67-proposal/proposed-register-record.json",
+      "sha256": "9fc02926f6b57f034af42b903342af3e0e439dd31c163341c4f1e58e1abc5252",
+      "note": "historical append candidate record"
+    }
+  ],
+  "role": "outside-67のhistorical 13 captureを14 holding current stateから分離し、67 path_revision_pair source_holding登録候補と移行阻害をreview可能に固定する",
+  "obligations": [
+    "3df81adのregister bytesをsnapshot digest付きで固定し、旧13 live holdingをcurrent 14件として再生成しない",
+    "67件をpre-isolation／archiveのpath_revision_pairとして保持し、requirement atom、semantic equivalence、product、phase、implementationへ変換しない",
+    "append recordのregistered_at、registered_by、management_stateを候補記録として明示し、authority_effect noneとsource_preserved_unassignedを維持する",
+    "current registerの33 rows／14 live holdingsとread-afterを生成し、historical 32 rows／13 live holdingsのprefixとIDを独立に確認する",
+    "PHCAP、first15、delegated-doc003、unassessed-atom、既存outside67監査のhistorical register参照をsnapshotへ束縛し、Binding digestを追随させる",
+    "#1975のmerge commit 4919cfdと、#1978のmerge commit f122d65e（exact parent d272a97）を依存として固定し、Issue #1813 projectionは別更新対象のままにする",
+    "旧archiveのruntime、test、CI、hook、adapter、source実行、GitHub／Issue／PR／外部作用を行わない"
+  ],
+  "connections": {
+    "consumers": [
+      "RDP-001 source_holding registration／historical migration review担当",
+      "PHCAP-02/03、first15、delegated-doc003、unassessed capture移行担当",
+      "#1975/#1978 rebaseline担当",
+      "SCF-B-0040差し替え確認担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "3df81ad fixed register object",
+      "current append candidate register",
+      "67 path_revision_pair source set",
+      "management registration／disposition contracts"
+    ],
+    "boundary": "candidate migration artifactsとBindingはscaffold/に置く。formal register appendはcandidate worktreeの静的検証用に保持するが、human authority、requirement adoption、product owner、phase authority、implementation、semantic disposition、Issue/PR操作は確定・実行しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/pre-isolation-outside-holding-67-migration/read-after-14.py",
+      "python3 scaffold/pre-isolation-outside-holding-67-migration/generate.py",
+      "python3 scaffold/pre-isolation-outside-holding-67-migration/validate.py",
+      "python3 scaffold/pre-isolation-outside-holding-67-migration/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git show／git rev-parse／git cat-fileによるread-only object照合",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source、設定の実行",
+      "historical 13 captureを14 holdingへ上書き・再生成すること",
+      "67 path_revision_pairをrequirement atom、requirement identity、product owner、phase authority、implementation、successorへ昇格すること",
+      "formal appendを人間承認、要求採用、実装完了、Issue close、PR mergeと解釈すること",
+      "scaffold外への候補書き込み、GitHub、Issue、PR、CI、DB、memory、外部API、deploymentへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/pre-isolation-outside-holding-67-migration/README.md",
+    "scaffold/pre-isolation-outside-holding-67-migration/migration.json",
+    "scaffold/pre-isolation-outside-holding-67-migration/generate.py",
+    "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
+    "scaffold/pre-isolation-outside-holding-67-migration/selfcheck.py",
+    "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.py",
+    "scaffold/pre-isolation-outside-holding-67-migration/read-after-14.json",
+    "scaffold/pre-isolation-outside-holding-67-migration/proposed-register-record.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "独立migration validate.pyのcapture blob、append prefix、13／14 count、67 path source set検証",
+      "migration selfcheck.pyのbaseline greenと25 negative cases",
+      "read-after-14.pyとgenerate.pyのdeterministic output",
+      "影響validator群とscaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "historical snapshot digestまたは行を改変する",
+      "append prefixを失う、14 holdingを13として記録する",
+      "67 path_revision_pairをrequirement atomまたはsemantic dispositionへ昇格する",
+      "registered_by／management_state／authority_effectの境界を変更する",
+      "未解決parent依存またはIssue #1813の別更新境界を削除する",
+      "旧archive実行や外部作用を候補の完了証拠にする"
+    ]
+  },
+  "replacement": {
+    "role_target": "RDP-001正式source_holding migration、historical capture read-after、semantic/product/phase/implementation review（承認後）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}

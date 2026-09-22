@@ -15,6 +15,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 INV = HERE / "inventory.json"
 EXPECTED_BASE = "3524e3dcc092500969046f2545b55e835c87512f"
+EXPECTED_REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
 EXPECTED_REGISTER_SHA = "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b"
 EXPECTED_REPORT_SHA = "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795"
 EXPECTED_HOLDING_SHA = "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180"
@@ -54,6 +55,7 @@ def validate(inv: dict) -> list[str]:
         errors.append(f"E_GIT:{exc}")
     fail(errors, scope.get("selected_count") == 15, "E_SELECTION_COUNT")
     fail(errors, scope.get("live_holding_count") == 13, "E_LIVE_HOLDING_COUNT")
+    fail(errors, scope.get("holding_register_path") == EXPECTED_REGISTER_PATH, "E_REGISTER_PATH")
     fail(errors, scope.get("approved_products") == ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "E_PRODUCTS")
     fail(errors, scope.get("holding_register_sha256") == EXPECTED_REGISTER_SHA, "E_REGISTER_SHA")
     fail(errors, scope.get("outside_report_sha256") == EXPECTED_REPORT_SHA, "E_REPORT_SHA")

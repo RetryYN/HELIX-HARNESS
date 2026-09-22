@@ -1,40 +1,32 @@
 {
-  "schema": "rdp001-outside67-global-classification-49-67/v1",
-  "candidate_id": "RDP-001-OUTSIDE67-GLOBAL-49-67-0044",
-  "status": "findings_only",
-  "authority_effect": "none",
-  "meaning_change_applied": false,
-  "successor_requirement_ids": [],
-  "human_decision_ref": null,
-  "formal_register_append": false,
-  "old_runtime_test_ci_execution": false,
-  "scope": {
-    "source_report_path": "scaffold/pre-isolation-outside-holding-67/report.json",
-    "source_report_sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795",
-    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
-    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
-    "historical_capture_commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
-    "selected_ordinal_start": 49,
-    "selected_ordinal_end": 67,
-    "selected_count": 19,
-    "source_unit": "path_revision_pair",
-    "requirement_atoms": false,
-    "archive_root_present_count": 0,
-    "same_blob_count": 9,
-    "changed_blob_count": 10,
-    "live_holding_count": 13,
-    "management_register_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
-    "management_register_sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
-    "base_change_condition": "main/baseが親d272以後へ進んでもhistorical 13 holding relationは固定SHAで保持する。現行mainへ移す場合はread-afterと再baselineを先に行い、静かに追随しない。",
-    "read_only": true
-  },
-  "classification_basis": {
-    "product": "outside-67 reportのpath prefix／既存path分類を候補として保持",
-    "phase": "outside-67 reportのphase_scopeを候補として保持",
-    "implementation": "path／blob catalogのみ。実装・実行・consumer evidenceなし",
-    "degradation": "path／blob catalogのみ。failure／degraded／unimplemented evidenceなし",
-    "semantic_inclusion": "path_revision_pairから要求atomやsemantic inclusionを生成しない"
-  },
+  "schema": "rdp001-source-holding-register-read-after/v1",
+  "read_after_id": "RDP-001-SH-OUTSIDE67-READ-AFTER-14-001",
+  "capture_commit": "f122d65e1435b4709fbb7b07fbb8e42b70f0b110",
+  "register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+  "register_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+  "register_record_count": 33,
+  "historical_snapshot_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+  "historical_snapshot_sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+  "historical_snapshot_register_record_count": 32,
+  "historical_13_registration_ids": [
+    "MPR-SH-HEADING-002",
+    "MPR-SH-IR-003",
+    "MPR-SH-CONFIRMED-003",
+    "MPR-SH-SEMANTIC-LINE-003",
+    "MPR-SH-SUPPLEMENTARY-003",
+    "MPR-SH-CANDIDATE-003",
+    "MPR-SH-WORKFLOW-003",
+    "MPR-SH-SCRUM-REVERSE-001",
+    "MPR-SH-PREISOLATION-002",
+    "MPR-SH-DELEGATED-DOC-003",
+    "MPR-SH-DELEGATED-REF-001",
+    "MPR-SH-PO-GOALS-PRINCIPLES-001",
+    "MPR-SH-LEGACY-RULE-004"
+  ],
+  "added_registration_ids": [
+    "MPR-SH-OUTSIDE67-001"
+  ],
+  "live_holding_count": 14,
   "live_holdings": [
     {
       "registration_id": "MPR-SH-HEADING-002",
@@ -43,7 +35,8 @@
       "source_atom_set_record_count": 317,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-IR-003",
@@ -52,7 +45,8 @@
       "source_atom_set_record_count": 153,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-CONFIRMED-003",
@@ -61,7 +55,8 @@
       "source_atom_set_record_count": 175,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-SEMANTIC-LINE-003",
@@ -70,7 +65,8 @@
       "source_atom_set_record_count": 2386,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-SUPPLEMENTARY-003",
@@ -79,7 +75,8 @@
       "source_atom_set_record_count": 655,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-CANDIDATE-003",
@@ -88,7 +85,8 @@
       "source_atom_set_record_count": 4755,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-WORKFLOW-003",
@@ -97,7 +95,8 @@
       "source_atom_set_record_count": 108,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-SCRUM-REVERSE-001",
@@ -106,7 +105,8 @@
       "source_atom_set_record_count": 300,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-PREISOLATION-002",
@@ -115,7 +115,8 @@
       "source_atom_set_record_count": 333,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-DELEGATED-DOC-003",
@@ -124,7 +125,8 @@
       "source_atom_set_record_count": 114,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-DELEGATED-REF-001",
@@ -133,7 +135,8 @@
       "source_atom_set_record_count": 788,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-PO-GOALS-PRINCIPLES-001",
@@ -142,7 +145,8 @@
       "source_atom_set_record_count": 12,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     },
     {
       "registration_id": "MPR-SH-LEGACY-RULE-004",
@@ -151,61 +155,23 @@
       "source_atom_set_record_count": 7622,
       "registration_kind": "source_holding",
       "product_target": "unassigned_cross_product",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
+    },
+    {
+      "registration_id": "MPR-SH-OUTSIDE67-001",
+      "source_atom_set_ref": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "source_atom_set_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "source_atom_set_record_count": 67,
+      "registration_kind": "source_holding",
+      "product_target": "unassigned_cross_product",
+      "authority_effect": "none",
+      "management_state": "registered_source_holding"
     }
   ],
-  "source_items": {
-    "path": "scaffold/outside67-global-49-67/source-items.jsonl",
-    "record_count": 19,
-    "sha256": "db916f5d64af2b8daf545f518da0d8c52e9dba579f15d91e13b47cc91a1f5c04"
-  },
-  "aggregate": {
-    "product_candidate_counts": {
-      "HELIX-HARNESS": 1,
-      "HELIX-OS": 1,
-      "HELIX-Web": 1,
-      "HELIX-Web-OS": 1,
-      "shared-cross-product": 15
-    },
-    "phase_candidate_counts": {
-      "L11-acceptance": 5,
-      "upstream-governance-or-crosswalk": 14
-    },
-    "same_blob_count": 9,
-    "changed_blob_count": 10,
-    "not_in_any_live_holding_count": 18,
-    "path_reference_only_match_count": 1,
-    "exact_blob_or_sha_match_count": 0,
-    "implementation_unknown_count": 19,
-    "degradation_unknown_count": 19,
-    "semantic_inclusion_unknown_count": 19,
-    "source_holding_unassigned_count": 19
-  },
-  "findings": [
-    "PR #1978 source setのoutside-67 reportからglobal ordinal 49–67の19 path_revision_pairを固定した。",
-    "四製品候補とphase候補はpath由来の候補に留め、product／phase authorityへ昇格していない。",
-    "全19件でimplementation、degradation、semantic inclusionをunknownとして保持した。",
-    "pre-isolation／archiveのblob OID、SHA-256、bytes、same／differentをGit objectから再照合した。",
-    "歴史的13 live holdingをsupersedes終端から再計算し、path／blob／SHAのexact relationを全件保持した。",
-    "ordinal 58はLEGACY-RULE holdingへのpath文字列参照のみで、blob／SHA包含ではない。"
-  ],
-  "prohibited_inference": [
-    "path_revision_pairをrequirement atom、requirement identity、successorへ変換しない",
-    "path由来product／phase候補をproduct owner／phase authorityへ昇格しない",
-    "unknown implementation／degradationをimplemented／degraded／unimplementedへ補完しない",
-    "path／blob／SHAの不一致を意味の不在、不採用、廃止へ解釈しない",
-    "旧archive runtime／test／CI／hook／adapterを実行せず、oracleやfallbackに使わない",
-    "正式registerへのappend、採否、承認、L3/L10/L11、releaseを生成しない"
-  ],
-  "verification_scope": {
-    "evidence_kind": "scaffold",
-    "static_only": true,
-    "checks": [
-      "19 path ordinalとsource report SHA",
-      "pre-isolation／archive Git blob OID・SHA・bytes・same/different",
-      "歴史的13 live holdingのpath／blob／SHA exact scan",
-      "product／phase candidate countとunknown implementation/degradation/semantic inclusion",
-      "authority・append・旧実行の境界"
-    ]
-  }
+  "new_holding_scope": "67 path_revision_pair source items; requirement_atoms=false; semantic disposition not started",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "old_runtime_test_ci_execution": false,
+  "historical_capture_preserved": true
 }

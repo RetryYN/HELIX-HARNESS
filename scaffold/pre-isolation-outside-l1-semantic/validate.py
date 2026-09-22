@@ -30,12 +30,14 @@ EXPECTED_CURRENT_SHA = {
 }
 EXPECTED_DECISION_SHA = "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
 EXPECTED_BOUNDARY_SHA = "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
-EXPECTED_DISPOSITION_PROGRAM_SHA = "6eb28f5fef9b5551c84231ceb8fefca949f6cfd5449224b5ab644d61f7136308"
+EXPECTED_DISPOSITION_PROGRAM_SHA = "9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59"
 EXPECTED_WORK_ENTRY_SHA = "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
 EXPECTED_PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
 EXPECTED_ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
-EXPECTED_INVENTORY_SHA = "4813191726f5ba2246daa85bc71928a6fab8db2f9bff954935c08d1b32bac81c"
-EXPECTED_GENERATOR_SHA = "e5bd4dbb4e6455cf90d7e0b7117b4482ebd497776976b5b16682cb0462ea0a91"
+HISTORICAL_REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
+EXPECTED_REGISTER_SHA = "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b"
+EXPECTED_INVENTORY_SHA = "12513f6df96440afd4813f3295fc7c3d5c17df5766cf5b671c1307c43a71f17e"
+EXPECTED_GENERATOR_SHA = "c4ac3e5c8636f9b9e25346cc7b77d16fc6a17c6d5f926448240ccccae34598f1"
 EXPECTED_CASES = {
     "HELIX-HARNESS": ("OUTSIDE67-L1-HARNESS", "docs/design/harness/L1-planning/product-intent.md", "docs/helix-harness/L1-planning/product-intent.md", "HDEC-HARNESS-L1-01", "partial_substantive_subset"),
     "HELIX-OS": ("OUTSIDE67-L1-OS", "docs/design/helix-os/L1-planning/system-intent.md", "docs/helix-os/L1-planning/system-intent.md", "HDEC-HELIXOS-L1-01", "partial_refined_boundary"),
@@ -106,9 +108,11 @@ def independent_evidence_errors(inv: dict) -> list[str]:
     fail(errors, scope.get("archive_commit") == EXPECTED_ARCHIVE, "E_ARCHIVE_COMMIT_PIN")
     fail(errors, scope.get("work_entry_path") == "docs/governance/new-generation-start-here.md", "E_WORK_ENTRY_PATH")
     fail(errors, scope.get("work_entry_sha256") == EXPECTED_WORK_ENTRY_SHA == digest((ROOT / "docs/governance/new-generation-start-here.md").read_bytes()), "E_WORK_ENTRY_DIGEST")
-    register_path = ROOT / "docs/governance/management-provisional-requirement-register.jsonl"
+    register_path = ROOT / HISTORICAL_REGISTER_PATH
     register_bytes = register_path.read_bytes()
-    fail(errors, scope.get("management_register_sha256") == digest(register_bytes), "E_REGISTER_DIGEST")
+    fail(errors, scope.get("management_register_path") == HISTORICAL_REGISTER_PATH, "E_REGISTER_PATH")
+    fail(errors, scope.get("management_register_capture_commit") == EXPECTED_BASE, "E_REGISTER_CAPTURE")
+    fail(errors, scope.get("management_register_sha256") == EXPECTED_REGISTER_SHA == digest(register_bytes), "E_REGISTER_DIGEST")
     register = [json.loads(line) for line in register_bytes.splitlines() if line.strip()]
     superseded = {row["supersedes_registration_id"] for row in register if row.get("supersedes_registration_id")}
     live = [row for row in register if row["registration_id"] not in superseded]
@@ -224,6 +228,7 @@ def validate(inv: dict) -> list[str]:
     fail(errors, scope.get("current_head") == EXPECTED_BASE, "E_BASE")
     fail(errors, scope.get("selected_old_path_count") == 4, "E_SELECTION")
     fail(errors, scope.get("approved_products") == ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "E_PRODUCTS")
+    fail(errors, scope.get("management_register_path") == HISTORICAL_REGISTER_PATH, "E_REGISTER_PATH")
     fail(errors, scope.get("live_holding_count") == 13, "E_HOLDINGS")
     fail(errors, scope.get("decision_record_sha256") == EXPECTED_DECISION_SHA, "E_DECISION_SHA")
     fail(errors, scope.get("product_boundary_sha256") == EXPECTED_BOUNDARY_SHA, "E_BOUNDARY_SHA")

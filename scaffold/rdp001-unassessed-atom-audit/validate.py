@@ -20,7 +20,7 @@ BINDING_PATH = ROOT / "scaffold/bindings/SCF-B-0027.json"
 HOLDING_PATH = ROOT / "docs/governance/pre-isolation-revision-delta-source-holding.jsonl"
 DISPOSITION_PATH = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 DECISIONS_PATH = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
-REGISTER_PATH = ROOT / "docs/governance/management-provisional-requirement-register.jsonl"
+REGISTER_PATH = ROOT / "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
 SCREEN_PATH = ROOT / "docs/governance/audits/source-rebaseline/l2d-s1-01-input-holding-screen.jsonl"
 PROJECTION_PATH = ROOT / "docs/governance/audits/source-rebaseline/github-requirement-review-program-projection-2026-09-15.md"
 PACKET_PATH = ROOT / "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md"
@@ -345,7 +345,7 @@ def validate(report: dict | None = None) -> list[str]:
     expect(errors, binding.get("role") == "RDP-001 PREISOLATION未評価source holdingのatom化前静的監査", "binding role不一致")
     expect(errors, binding.get("replacement", {}).get("issue") == 1866, "binding replacement issue不一致")
     upstream = {x.get("path"): x.get("sha256") for x in binding.get("upstream", [])}
-    for path in ("scaffold/rdp001-unassessed-atom-audit/report.json", "docs/governance/pre-isolation-revision-delta-source-holding.jsonl", "docs/governance/legacy-asset-disposition.jsonl", "docs/governance/legacy-asset-decisions.jsonl", "docs/governance/management-provisional-requirement-register.jsonl", "docs/governance/audits/source-rebaseline/l2d-s1-01-input-holding-screen.jsonl", "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md", "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md", "docs/governance/audits/source-rebaseline/github-requirement-review-program-projection-2026-09-15.md"):
+    for path in ("scaffold/rdp001-unassessed-atom-audit/report.json", "docs/governance/pre-isolation-revision-delta-source-holding.jsonl", "docs/governance/legacy-asset-disposition.jsonl", "docs/governance/legacy-asset-decisions.jsonl", "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl", "docs/governance/audits/source-rebaseline/l2d-s1-01-input-holding-screen.jsonl", "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md", "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md", "docs/governance/audits/source-rebaseline/github-requirement-review-program-projection-2026-09-15.md"):
         expect(errors, upstream.get(path) == digest(ROOT / path), f"binding upstream digest不一致: {path}")
     for path in ("scaffold/rdp001-unassessed-atom-audit/report.json", "scaffold/rdp001-unassessed-atom-audit/README.md", "scaffold/rdp001-unassessed-atom-audit/validate.py", "scaffold/rdp001-unassessed-atom-audit/selfcheck.py", "scaffold/bindings/SCF-B-0027.json"):
         expect(errors, (ROOT / path).is_file(), f"binding artifactが無い: {path}")

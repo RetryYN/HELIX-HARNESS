@@ -11,7 +11,7 @@
   "base": {
     "origin_main_commit": "2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c",
     "branch": "research/phcap02-03-audit",
-    "worktree": "/home/tenni/.helix-worktrees/phcap02-03-audit",
+    "worktree": "/home/tenni/.helix-worktrees/outside67-migration",
     "rebaseline": {
       "origin_main_at_start": "2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c",
       "origin_main_at_final": "2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c",

@@ -47,6 +47,8 @@ cases = [
     ("line anchor tamper", lambda x: x["cases"][0]["line_anchored_evidence"][0].update(claim="changed")),
     ("old execution", lambda x: x.update(old_runtime_test_ci_execution=True)),
     ("prohibited boundary deletion", lambda x: x["prohibited_inference"].pop()),
+    ("current register substitution", lambda x: x["scope"].update(management_register_path="docs/governance/management-provisional-requirement-register.jsonl")),
+    ("current fourteen holding substitution", lambda x: x["scope"].update(live_holding_count=14)),
 ]
 
 for label, mutate in cases:

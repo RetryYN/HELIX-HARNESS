@@ -13,7 +13,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 REPORT = ROOT / "scaffold/pre-isolation-outside-holding-67/report.json"
-REGISTER = ROOT / "docs/governance/management-provisional-requirement-register.jsonl"
+REGISTER = ROOT / "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
 PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 HISTORICAL_CAPTURE = "3df81ad27157c471e004083783f37a5860eaa2ee"
@@ -227,7 +227,7 @@ def build() -> tuple[dict, list[dict]]:
             "same_blob_count": same,
             "changed_blob_count": changed,
             "live_holding_count": len(holdings),
-            "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+            "management_register_path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
             "management_register_sha256": REGISTER_SHA,
             "base_change_condition": "main/baseが親d272以後へ進んでもhistorical 13 holding relationは固定SHAで保持する。現行mainへ移す場合はread-afterと再baselineを先に行い、静かに追随しない。",
             "read_only": True,

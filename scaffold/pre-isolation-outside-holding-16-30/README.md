@@ -16,7 +16,7 @@ outside-67正式source set候補（PR #1978）と先頭15件の監査をread-onl
 
 分類状態は`unknown_path_based_candidate_only`を維持する。物理的なblob／SHA関係から意味同値、要求identity、採否、successor、実装、受入、完了を生成しない。
 
-既存13 holdingは管理registerの`supersedes`終端集合から再計算する。`inventory.json`は正式67 item source set、coverage receipt、outside report、既存333 path holdingをdigestで固定する。登録appendや外部作用は行わない。
+既存13 holdingは`docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl`のhistorical 32行snapshotにある`supersedes`終端集合から再計算する。append後のcurrent registerは14 live holdingへ進んでいるが、この候補の13件の証拠境界を置換しない。`inventory.json`は正式67 item source set、coverage receipt、outside report、既存13 path holdingをdigestで固定する。登録appendや外部作用は行わない。
 
 ## 行schema
 
@@ -24,7 +24,7 @@ outside-67正式source set候補（PR #1978）と先頭15件の監査をread-onl
 
 ## 静的検証
 
-`validate.py`は`generator.build()`とinventoryの自己一致だけに依存しない。レビュー済みPR HEAD `480d1c2a027f065a4150853039f3141092a84b42` のgenerator／inventory Git blob OIDとSHA-256を固定し、作業treeの同時改竄をfail-closedする。さらにreport、source set、management registerから13 live holdingをvalidator自身で再計算し、各pathのGit objectと13 holdingのpath／blob／SHA関係を独立再計算する。
+`validate.py`は`generator.build()`とinventoryの自己一致だけに依存しない。レビュー済みPR HEAD `480d1c2a027f065a4150853039f3141092a84b42` のgenerator／inventory Git blob OIDをbase objectとして固定し、historical-register correction後の作業tree generator／inventory bytesも候補digestで固定して同時改竄をfail-closedする。さらにreport、source set、historical 32行management registerから13 live holdingをvalidator自身で再計算し、各pathのGit objectと13 holdingのpath／blob／SHA関係を独立再計算する。
 
 ```text
 python3 scaffold/pre-isolation-outside-holding-16-30/generate.py
