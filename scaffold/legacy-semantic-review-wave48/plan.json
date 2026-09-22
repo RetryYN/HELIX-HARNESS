@@ -1,0 +1,49 @@
+{
+  "wave": "Wave48",
+  "base_revision": "a8f1ab1c7dce529cfb5293e1ddf4a23140877f22",
+  "batch_id": "LEGACY-SEMANTIC-WAVE48-2026-09-22",
+  "binding_id": "SCF-B-0093",
+  "selection_basis": "Wave47 merge後の残13 unitから、NFR-29／32／33のatomic obligation、pair edge、Canonical条件、contract/template coverageを同じ意味境界で静的照合できる5 unitを選定した。TR系とNFR-20／22は次候補として保持し、残差を先取りしない。",
+  "selected_units": [
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-29-HELIX-HARNESS", "product": "HELIX-HARNESS", "phases": ["PHCAP-06", "PHCAP-07"], "missing_roles": ["implementation_source"]},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-29-HELIX-OS", "product": "HELIX-OS", "phases": ["PHCAP-07"], "missing_roles": ["design", "implementation_source"]},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-32-HELIX-HARNESS", "product": "HELIX-HARNESS", "phases": ["PHCAP-04", "PHCAP-06", "PHCAP-07"], "missing_roles": ["implementation_source"]},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-32-HELIX-OS", "product": "HELIX-OS", "phases": [], "missing_roles": ["design", "implementation_source"]},
+    {"unit_candidate_id": "IRUNIT-HIL-NFR-33-HELIX-HARNESS", "product": "HELIX-HARNESS", "phases": ["PHCAP-06", "PHCAP-07"], "missing_roles": ["implementation_source"]}
+  ],
+  "counts": {
+    "units": 5,
+    "role_edges": 8,
+    "semantic_atoms": 14,
+    "composite_unresolved": 5,
+    "selected_role_assets": 3,
+    "inspected_legacy_assets": 7,
+    "missing_evidence_receipts": 7,
+    "cumulative_units_after_wave": 210,
+    "cumulative_edges_after_wave": 585,
+    "remaining_units_after_wave": 8
+  },
+  "boundary": {
+    "authority_effect": "none",
+    "current_implementation": "unknown",
+    "degradation": "unknown",
+    "phase_admission": "candidate_unchanged",
+    "consumer_closure": "pending",
+    "legacy_execution": "not_run",
+    "web_routing": "not_inferred"
+  },
+  "rebaseline_gate": {
+    "required_main_revision": "a8f1ab1c7dce529cfb5293e1ddf4a23140877f22",
+    "required_wave47_exact_head": "d5dff5ef176e144c4a45b39a4e18a7e427c4ad17",
+    "stop_if_parent_changes": true,
+    "post_merge_read_after": "not_run"
+  },
+  "missing_role_reconciliation": "各missing unit／roleについてcandidate_asset_ids、consumed_asset_ids、examined_not_selected_asset_ids、unexamined_asset_idsを独立保持する。candidate membershipは直接証拠ではなく、unknown implementation／degradationを維持する。",
+  "verification_plan": [
+    "generate.pyの再生成とledger/meta digestの決定性",
+    "validate.pyのmain merge lineage、Wave47 exact HEAD、source／asset／decision／failure／consumer receipt、prior cumulative count、candidate pool reconciliation、same-batch duplicate、ancestor base gate",
+    "selfcheck.pyの本体validator経路によるsource／authority／missing／pool／count負例",
+    "scfctl validate／stale／residualsとgit diff --check"
+  ],
+  "status": "candidate"
+}
