@@ -304,6 +304,10 @@ EXPECTED_PROPOSAL_FIELDS = frozenset({
     'input_source_revision', 'line_coverage', 'meaning_change_applied', 'proposal_status',
     'review_sequence', 'review_unit_id', 'successor_requirement_ids',
 })
+EXPECTED_LINE_COVERAGE_FIELDS = frozenset({
+    'input_lines', 'atomized_source_line_ids', 'atomized_obligation_anchors',
+    'composite_unresolved_source_line_ids', 'composite_unresolved_anchors',
+})
 EXPECTED_ATOM_FIELDS = frozenset({
     'actor_candidate', 'atomization_status', 'authority_boundary', 'candidate_atom_id',
     'candidate_granularity', 'candidate_inference', 'candidate_kind', 'candidate_target',
@@ -513,6 +517,8 @@ def check() -> list[str]:
             errors.append(f"{unit_id}: source line range不一致")
 
         coverage = proposal.get("line_coverage", {})
+        if not isinstance(coverage, dict) or set(coverage) != EXPECTED_LINE_COVERAGE_FIELDS:
+            errors.append(f"{unit_id}: line_coverage fields不一致")
         if "consumed_once" in coverage:
             errors.append(f"{unit_id}: legacy 1:1 consumed_once coverageを使用している")
         if coverage.get("input_lines") != expected_ids:

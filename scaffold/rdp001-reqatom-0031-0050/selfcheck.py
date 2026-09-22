@@ -169,6 +169,11 @@ def main() -> int:
         "unknown candidate atom field",
     )
     proposal_negative(
+        "unknown-line-coverage-key",
+        lambda rows: rows[0]["line_coverage"].update(unknown_key="bogus"),
+        "line_coverage fields",
+    )
+    proposal_negative(
         "ambiguous-web-singleton-routing",
         lambda rows: rows[2]["candidate_atoms"][4].update(candidate_target="HELIX-Web"),
         "semantic normalized/product/unresolved",

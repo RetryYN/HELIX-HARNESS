@@ -75,7 +75,7 @@ product targetは`product_boundary`、現行routingの理由は`candidate_infere
 - atomized候補と`composite_unresolved`分母の分離。headerや説明行の単語分割を許さない
 - 四製品分母、未確定分母、candidate inferenceとretained source meaningの分離
 - generated inventory／proposalから期待値を再計算せず、101 source line、98 atom、9 composite、HARNESS 58／OS 26／Web 0／Web-OS 0／unresolved 14、unit／atom／composite keysetをvalidator側の独立定数で固定すること
-- proposal／atom／composite／inventoryの未知keyを拒否するschema keyset
+- proposal／line_coverage／atom／composite／inventoryの未知keyを拒否するschema keyset
 - authority、successor、implementation、degradation、phase、decisionが未解決のままであること
 
 `selfcheck.py`はbaselineを保ったまま、同一行の義務欠落・重複、table cellの断片化、authority／implementation／degradation／phaseの昇格、source meaning／semantic predicate／typed relation／product boundary／Web単独routing／ordered sequence改変、composite欠落、未知key、inventory authority effect、queue digest改変を一時ファイルでvalidatorへ入力し、拒否を確認する。さらにgeneratorを一時planへ向け、未固定行atom削除、composite削除、product target差替えを生成後validatorが拒否することを確認する。
