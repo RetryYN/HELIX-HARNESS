@@ -24,6 +24,10 @@ PRE = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCH = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 HEAD = "3cdde5dfedfc51ff7c757a2f5fb2eb11a3c6b64c"
 PREVIOUS_HEAD = "c5ed4587d8563bd473368f5eb0f3c311fefb44a6"
+WORKTREE_PROVENANCE = "/home/tenni/HELIX-HARNESS-outside-next5"
+BASE_DRIFT_REASON = "SCF-B-0085 was merged by #2034, advancing origin/main from c5ed4587 to 3cdde5d; this bundle was materialized from the resulting latest main."
+UNEXPLORED_SCOPE = "all outside67 path_revision_pair not in the existing 52 or this five-source research set; candidate accounting remains scaffold evidence until any later holding admission"
+BATCH_WIDTH_POLICY = "width 5 is the observed verification width for this bundle; no safe batch upper bound is asserted; a later batch requires independent source-chain review from then-current origin/main"
 HOLDING = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
 REGISTER = "docs/governance/management-provisional-requirement-register.jsonl"
 LEDGERS = [
@@ -91,6 +95,27 @@ ITEM_KEYS = {
     "reported_holding", "source_item_id", "source_path", "source_unit", "status",
 }
 ANCHOR_KEYS = {"commit", "line", "line_sha256", "source_fragment"}
+NORM_KEYS = {"source_ref", "status", "text"}
+RETAINED_KEYS = {"items", "source_ref", "status"}
+UNRESOLVED_KEYS = {"items", "scope", "status"}
+DIFF_KEYS = {"source_ref", "status", "text"}
+SEMANTIC_FIELDS = {key: "unresolved" for key in ["action", "actor", "condition", "guard", "sequence"]}
+UNRESOLVED_ITEMS = [
+    "composite_line_decomposition", "product_boundary_owner", "phase_authority", "implementation",
+    "degradation", "failure", "consumer", "decision", "current_counterpart_relation",
+]
+SELECTION_REASON = (
+    "旧source／判断史／failure／consumer境界に関係するlineを静的保持する。"
+    "fragment外のactor/action/condition/guard/sequence、正式要求identity、owner、phase authority、"
+    "implementation、degradation、failure、consumer、decisionのclosureを生成しない。"
+)
+KINDS = {
+    "OUTSIDE67-PATH-017": ["claude_review_date_boundary", "claude_review_verdict_boundary", "claude_review_scope_boundary", "claude_review_permission_boundary", "claude_review_timeout_boundary"],
+    "OUTSIDE67-PATH-021": ["functional_crosswalk_source_boundary", "functional_crosswalk_transaction_boundary", "functional_crosswalk_digest_boundary", "functional_crosswalk_mapping_boundary", "functional_crosswalk_evidence_boundary"],
+    "OUTSIDE67-PATH-025": ["acceptance_patch_test_boundary", "acceptance_patch_digest_boundary", "acceptance_patch_statement_boundary", "acceptance_patch_replace_boundary", "acceptance_patch_freeze_boundary"],
+    "OUTSIDE67-PATH-026": ["requirements_patch_test_boundary", "requirements_patch_digest_boundary", "requirements_patch_statement_boundary", "requirements_patch_replace_boundary", "requirements_patch_freeze_boundary"],
+    "OUTSIDE67-PATH-027": ["contract_patch_test_boundary", "contract_patch_digest_boundary", "contract_patch_behavior_boundary", "contract_patch_replace_boundary", "contract_patch_freeze_boundary"],
+}
 
 
 def digest(value: bytes | str | Path) -> str:
@@ -139,12 +164,13 @@ def validate(root_arg: str | None) -> list[str]:
     scope = inventory.get("scope", {})
     fail(errors, "E_SCOPE_KEYS", set(scope) != SCOPE_KEYS)
     expected_scope = {
-        "worktree": str(root),
+        "worktree": WORKTREE_PROVENANCE,
         "base_origin_main": HEAD,
         "base_origin_main_expected_before_fetch": PREVIOUS_HEAD,
         "base_drift_observed": True,
         "base_drift_from": PREVIOUS_HEAD,
         "base_drift_to": HEAD,
+        "base_drift_reason": BASE_DRIFT_REASON,
         "read_only": True,
         "static_only": True,
         "holding_registration_id": "MPR-SH-OUTSIDE67-001",
@@ -158,12 +184,14 @@ def validate(root_arg: str | None) -> list[str]:
         "candidate_count": 5,
         "remaining_after_candidate_selection": 10,
         "accounting_status": "provisional_57_of_67_research_no_formal_holding_admission",
+        "unexplored_scope": UNEXPLORED_SCOPE,
         "pre_isolation_commit": PRE,
         "archive_commit": ARCH,
         "historical_capture_commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
         "source_unit": "path_revision_pair",
         "requirement_atoms_are_not_path_pairs": True,
         "batch_width_observed": 5,
+        "batch_width_policy": BATCH_WIDTH_POLICY,
         "origin_main_rebaseline_required_after_2016_merge": False,
         "binding_reservation": "SCF-B-0087",
         "binding_registration_status": "registered",
@@ -219,9 +247,13 @@ def validate(root_arg: str | None) -> list[str]:
         uid = unit.get("unit_id")
         sid = unit.get("source_item_id")
         fail(errors, f"E_UNIT_KEYS:{uid}", set(unit) != UNIT_KEYS)
-        fail(errors, f"E_UNIT_BOUNDARY:{uid}", sid not in IDS or unit.get("source_path") != SOURCE.get(sid) or unit.get("candidate_product") != "shared-cross-product" or unit.get("phase_candidate") != "upstream-governance-or-crosswalk" or unit.get("product_candidates") != FOUR or unit.get("source_support") != "exact_line_anchor_only" or unit.get("inference_status") != "none")
+        unit_number = int(uid.rsplit("-U", 1)[1]) if isinstance(uid, str) and "-U" in uid else 0
+        fail(errors, f"E_UNIT_BOUNDARY:{uid}", sid not in IDS or unit.get("source_path") != SOURCE.get(sid) or unit.get("candidate_product") != "shared-cross-product" or unit.get("phase_candidate") != "upstream-governance-or-crosswalk" or unit.get("product_candidates") != FOUR or unit.get("source_support") != "exact_line_anchor_only" or unit.get("inference_status") != "none" or unit.get("authority_effect") != "none" or unit.get("meaning_change_applied") is not False or unit.get("successor_requirement_ids") != [] or unit.get("phase_status") != "unknown_path_based_candidate_only" or unit.get("product_status") != "unknown_path_based_candidate_only" or unit_number < 1 or unit_number > 5 or unit.get("candidate_kind") != KINDS.get(sid, [None] * 5)[unit_number - 1] or unit.get("selection_reason") != SELECTION_REASON)
         fail(errors, f"E_UNIT_UNKNOWN:{uid}", any(unit.get(key) != "unknown" for key in ["implementation_status", "current_implementation_status", "legacy_implementation_status", "degradation_status", "current_degradation_status", "legacy_degradation_status", "failure_status", "consumer_status", "decision_status"]))
-        fail(errors, f"E_UNIT_SEMANTIC:{uid}", unit.get("semantic_fields") != {key: "unresolved" for key in ["action", "actor", "condition", "guard", "sequence"]})
+        fail(errors, f"E_UNIT_SEMANTIC:{uid}", unit.get("semantic_fields") != SEMANTIC_FIELDS)
+        fail(errors, f"E_UNIT_NESTED_KEYS:{uid}", set(unit.get("normalized_statement", {})) != NORM_KEYS or set(unit.get("retained_meaning", {})) != RETAINED_KEYS or set(unit.get("unresolved_questions", {})) != UNRESOLVED_KEYS or set(unit.get("diff_observation", {})) != DIFF_KEYS)
+        expected_pre_archive = "same" if sid in SOURCE and git_blob(root, PRE, SOURCE[sid]) == git_blob(root, ARCH, SOURCE[sid]) else "different"
+        fail(errors, f"E_UNIT_CANONICAL:{uid}", unit.get("normalized_statement", {}).get("source_ref") != "source_fragment" or unit.get("normalized_statement", {}).get("status") != "source_supported_exact_fragment" or unit.get("normalized_statement", {}).get("text") != unit.get("source_fragment") or unit.get("retained_meaning", {}).get("source_ref") != "source_fragment" or unit.get("retained_meaning", {}).get("status") != "preserved_source_meaning" or unit.get("retained_meaning", {}).get("items") != [unit.get("source_fragment")] or unit.get("unresolved_questions") != {"items": UNRESOLVED_ITEMS, "scope": "unit", "status": "open_unknowns"} or unit.get("diff_observation", {}).get("source_ref") != "source-diffs.json" or unit.get("diff_observation", {}).get("status") != expected_pre_archive or unit.get("diff_observation", {}).get("text") != "pre/archive relation is retained as a byte-level observation; no semantic equivalence is inferred")
         anchor = unit.get("source_anchor", {})
         fail(errors, f"E_ANCHOR_ROOT:{uid}", set(anchor) != {"pre_isolation", "archive"})
         pre_anchor = anchor.get("pre_isolation", {})

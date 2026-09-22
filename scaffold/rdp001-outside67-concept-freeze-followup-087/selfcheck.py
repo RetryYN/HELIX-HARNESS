@@ -39,7 +39,6 @@ def main() -> int:
         source_root = TARGET.parents[1]
         root = Path(temp) / "repo"
         shutil.copytree(source_root, root)
-        mutate_json(root / (REL + "inventory.json"), lambda value: value["scope"].__setitem__("worktree", str(root)))
         baseline = run(root)
         if baseline.returncode:
             print("FAIL baseline\n" + baseline.stdout + baseline.stderr)
@@ -48,7 +47,6 @@ def main() -> int:
         def case(name, change, expected):
             candidate = Path(temp) / name
             shutil.copytree(root, candidate)
-            mutate_json(candidate / (REL + "inventory.json"), lambda value: value["scope"].__setitem__("worktree", str(candidate)))
             change(candidate)
             result = run(candidate)
             output = result.stdout + result.stderr
@@ -62,16 +60,28 @@ def main() -> int:
         case("counterpart-relation", lambda root: mutate_json(root / (REL + "evidence-scan.json"), lambda value: value.__setitem__("current_counterpart_hash_equal_archive_ids", [])), "E_SCAN_RELATION")
         case("nonoverlap", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value["selection"].__setitem__("candidate_ids", ["OUTSIDE67-PATH-008"])), "E_SELECTION")
         case("scope", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value["scope"].__setitem__("remaining_after_candidate_selection", 11)), "E_SCOPE:remaining_after_candidate_selection")
+        case("scope-reason", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value["scope"].__setitem__("base_drift_reason", "tampered")), "E_SCOPE:base_drift_reason")
+        case("scope-unexplored", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value["scope"].__setitem__("unexplored_scope", "tampered")), "E_SCOPE:unexplored_scope")
+        case("scope-policy", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value["scope"].__setitem__("batch_width_policy", "tampered")), "E_SCOPE:batch_width_policy")
+        case("unit-authority", lambda root: mutate_lines(root / (REL + "product-units.jsonl"), 0, lambda row: row.__setitem__("authority_effect", "adopted")), "E_UNIT_BOUNDARY")
+        case("unit-successor", lambda root: mutate_lines(root / (REL + "product-units.jsonl"), 0, lambda row: row.__setitem__("successor_requirement_ids", ["REQ-1"])), "E_UNIT_BOUNDARY")
+        case("unit-phase", lambda root: mutate_lines(root / (REL + "product-units.jsonl"), 0, lambda row: row.__setitem__("phase_status", "confirmed")), "E_UNIT_BOUNDARY")
+        case("unit-normalized", lambda root: mutate_lines(root / (REL + "product-units.jsonl"), 0, lambda row: row["normalized_statement"].__setitem__("status", "adopted")), "E_UNIT_CANONICAL")
+        case("unit-retained", lambda root: mutate_lines(root / (REL + "product-units.jsonl"), 0, lambda row: row["retained_meaning"].__setitem__("items", [])), "E_UNIT_CANONICAL")
+        case("unit-kind", lambda root: mutate_lines(root / (REL + "product-units.jsonl"), 0, lambda row: row.__setitem__("candidate_kind", "wrong_kind")), "E_UNIT_BOUNDARY")
+        case("unit-selection", lambda root: mutate_lines(root / (REL + "product-units.jsonl"), 0, lambda row: row.__setitem__("selection_reason", "tampered")), "E_UNIT_BOUNDARY")
+        case("unit-unresolved", lambda root: mutate_lines(root / (REL + "product-units.jsonl"), 0, lambda row: row["unresolved_questions"].__setitem__("status", "closed")), "E_UNIT_CANONICAL")
         case("denominator", lambda root: mutate_json(root / (REL + "ledger.json"), lambda value: value.__setitem__("source_anchor_count", 24)), "E_LEDGER")
         case("root-authority", lambda root: mutate_json(root / (REL + "inventory.json"), lambda value: value.__setitem__("old_runtime_test_ci_execution", True)), "E_AUTHORITY")
         case("source-diff", lambda root: mutate_json(root / (REL + "source-diffs.json"), lambda value: value["items"][1].__setitem__("status", "same")), "E_DIFF:OUTSIDE67-PATH-021")
+        case("unit-diff", lambda root: mutate_lines(root / (REL + "product-units.jsonl"), 5, lambda row: row["diff_observation"].__setitem__("status", "same")), "E_UNIT_CANONICAL")
         case("snapshot", lambda root: (root / (REL + "source-snapshots/OUTSIDE67-PATH-017/pre-isolation.md")).write_text("tampered\n", encoding="utf-8"), "E_SNAPSHOT:OUTSIDE67-PATH-017:pre_isolation")
         failed = [item for item in cases if not item[1]]
         if failed:
             print("FAIL negative cases: " + ",".join(item[0] for item in failed))
             print("\n".join(item[2] for item in failed))
             return 1
-    print("PASS outside67 concept/freeze follow-up selfcheck: baseline + 12 negative cases")
+    print("PASS outside67 concept/freeze follow-up selfcheck: baseline + 24 negative cases")
     return 0
 
 

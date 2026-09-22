@@ -73,7 +73,7 @@
   "verification": {
     "evidence_kind": "scaffold",
     "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
-    "oracles": ["outside67 concept/freeze validate.py（57/67、10 residual、ancestor-only scope、unit keyset、exact anchors、current counterpart relation、four products、unknowns）", "outside67 concept/freeze selfcheck.py（baseline＋12 negative cases）", "scaffold/tools/scfctl.py validate／stale／residuals", "git diff --check"],
+    "oracles": ["outside67 concept/freeze validate.py（57/67、10 residual、ancestor-only scope、unit keyset、exact anchors、current counterpart relation、four products、unknowns）", "outside67 concept/freeze selfcheck.py（baseline＋24 negative cases）", "scaffold/tools/scfctl.py validate／stale／residuals", "git diff --check"],
     "negative_cases": ["57/67 denominator or remaining tamper", "reviewed/candidate overlap", "product substitution", "unknown status promotion", "duplicate anchor", "source fragment or anchor keyset tamper", "current counterpart path or digest tamper", "scope keyset or canonical field tamper", "old execution flag tamper", "source diff status tamper", "snapshot tamper"]
   },
   "replacement": {
