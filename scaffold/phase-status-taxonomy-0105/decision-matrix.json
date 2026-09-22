@@ -1,0 +1,35 @@
+{
+  "M-CROSS-CONSTRAINT": {
+    "status": "CROSS_CUTTING_PHASE_NA_CANDIDATE",
+    "exclusive_group": "phase-status-primary",
+    "rule": "原文の主体がprotocol、security、custody、gate、portability、atomicity、identity、工程制約のいずれかで、PHCAP-20のmemory／continuation／handover／retention責務を直接要求しない場合は、phase非適用を研究候補として記録する。",
+    "required_evidence": [
+      "exact source anchor",
+      "Wave edge is candidate-only or contract-only",
+      "no direct PHCAP-20 responsibility"
+    ],
+    "next_decision": "人間のphase非適用確認、product／authority／consumer closure"
+  },
+  "M-WAIT-SOURCE-AUTHORITY": {
+    "status": "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW",
+    "exclusive_group": "phase-status-primary",
+    "rule": "原文のsource custody、要求定義、authority、product boundaryが未閉包で、静的原文だけではphaseの非適用も直接性も確定できない場合は追加sourceとhuman判断待ちに置く。",
+    "required_evidence": [
+      "exact source anchor",
+      "current contract or independent source",
+      "product／authority human decision"
+    ],
+    "next_decision": "追加source、product／authority判断、consumer closure"
+  },
+  "M-WAIT-PHCAP-BOUNDARY": {
+    "status": "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW",
+    "exclusive_group": "phase-status-primary",
+    "rule": "re-entry、snapshot、retention、state、canonicalization等がPHCAP-20語彙と隣接するが、直接責務を示す根拠がない場合は、phase非適用へ倒さずPHCAP境界の追加sourceとhuman判断待ちに置く。",
+    "required_evidence": [
+      "exact source anchor",
+      "PHCAP boundary contract",
+      "phase／authority human decision"
+    ],
+    "next_decision": "PHCAP境界source、human phase authority review、consumer closure"
+  }
+}
