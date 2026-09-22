@@ -16,8 +16,10 @@
 - `evidence.jsonl`で、crosswalk source、代表candidate、旧asset ledger／decision／read-after、Git blob／source bytes／line anchor、旧実装候補、failure／degradation／consumer、current refsをunit別に記録。
 - 旧`implementation_source`を静的候補としてのみ記録し、旧unit実装成立を主張しない。phase transitionと`coverage.failure`は実行failure receiptへ昇格しない。
 - 現行L2／L11／Scaffoldは候補・境界の静的証拠として記録し、現行実装／operation／acceptanceをunknownに保持する。未実装は断定しない。
-- `validate.py`と`selfcheck.py`を追加し、bytes／digest／blob／anchorと期待error code付き6負例を検査。
+- `validate.py`と`selfcheck.py`を追加し、bytes／digest／blob／anchorと期待error code付き11負例を検査。
 - `SCF-B-0102` Bindingへbundle全成果物を登録。
+
+GUIレビュー `GUI-2054-RESPONSE-01` の指摘に対応し、consumer status／observed refs／closure evidenceをedgeとledgerから再導出して照合する。`counter_evidence`の全key・値とunitごとの`unresolved`集合も再導出し、固定BASEの祖先性と入力path digestを検証する。
 
 ## 検証
 
@@ -26,7 +28,7 @@ python3 scaffold/br-implementation-evidence-0102/validate.py
 SCF-B-0102 validate: PASS (7 units, 21 review edges, 16 old assets; static-only)
 
 python3 scaffold/br-implementation-evidence-0102/selfcheck.py
-SCF-B-0102 selfcheck: PASS (6 negative cases; expected error codes matched)
+SCF-B-0102 selfcheck: PASS (11 negative cases; expected error codes matched)
 
 python3 scaffold/tools/scfctl.py validate
 bindings=98 fail=0

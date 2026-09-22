@@ -384,12 +384,16 @@
       "missing review edge must emit E_REVIEW_EDGE_SET",
       "claimed current implementation must emit E_CURRENT_STATUS",
       "claimed old failure must emit E_OLD_FAILURE_CLAIM",
-      "tampered ledger consumer must emit E_OLD_LEDGER_RECORD"
+      "tampered ledger consumer must emit E_OLD_LEDGER_RECORD",
+      "tampered consumer status or refs must emit E_CONSUMER_EVIDENCE",
+      "missing counter evidence must emit E_COUNTER_EVIDENCE",
+      "missing unresolved must emit E_UNRESOLVED",
+      "wrong input digest must emit E_INPUT_DIGEST"
     ],
     "oracles": [
       "validate.py PASS: 7 units／21 edges／16 old assets",
       "Git bytes／blob／line excerpt digest exact match at fixed base",
-      "selfcheck.py expected E_OLD_BLOB／E_CURRENT_SPAN／E_REVIEW_EDGE_SET／E_CURRENT_STATUS／E_OLD_FAILURE_CLAIM／E_OLD_LEDGER_RECORD"
+      "selfcheck.py expected E_OLD_BLOB／E_CURRENT_SPAN／E_REVIEW_EDGE_SET／E_CURRENT_STATUS／E_OLD_FAILURE_CLAIM／E_OLD_LEDGER_RECORD／E_CONSUMER_EVIDENCE／E_COUNTER_EVIDENCE／E_UNRESOLVED／E_INPUT_DIGEST"
     ],
     "scope": [
       "schema_interface",

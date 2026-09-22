@@ -318,12 +318,20 @@ def main() -> None:
 
     evidence_path = BUNDLE / "evidence.jsonl"
     evidence_path.write_text("".join(json.dumps(x, ensure_ascii=False, sort_keys=True) + "\n" for x in evidence_rows), encoding="utf-8")
+    input_paths = {
+        str(CROSSWALK.relative_to(ROOT)), str(LEDGER.relative_to(ROOT)),
+        str(DECISIONS.relative_to(ROOT)), str(READ_AFTER.relative_to(ROOT)),
+    }
+    input_paths.update(str(path.relative_to(ROOT)) for path in ALL_WAVE_FILES.values())
+    for row in evidence_rows:
+        input_paths.update(ref["path"] for ref in row["current_implementation_evidence"]["current_refs"])
     inventory = {
         "schema": "br-implementation-evidence-0102/v1",
         "status": "research_only_scaffold_candidate",
         "authority_effect": "none",
         "base_commit": BASE,
         "source_revision": "legacy-generation-2026-09-14",
+        "input_digests": {path: file_sha256(ROOT / path) for path in sorted(input_paths)},
         "scope": {
             "source_requirement_ids": ["HIL-BR-01", "HIL-BR-02", "HIL-BR-03", "HIL-BR-04", "HIL-BR-05"],
             "unit_ids": UNIT_IDS,

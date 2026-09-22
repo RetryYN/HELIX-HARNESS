@@ -12,11 +12,11 @@
 
 ## 成果物
 
-- [`inventory.json`](inventory.json): 分母、対象、証拠partition、非推論境界。
+- [`inventory.json`](inventory.json): 分母、対象、入力path digest、証拠partition、非推論境界。
 - [`evidence.jsonl`](evidence.jsonl): 7 unitのsource snapshot、21 review edge、old asset ledger／decision／read-after、旧実装・failure・degradation・consumer、current refs、未解決欄。
 - [`build.py`](build.py): 固定HEADを変えずに入力を静的読取してbundleを再生成する。
-- [`validate.py`](validate.py): unit分母、crosswalk、wave edge、旧asset blob／bytes／anchor、current span digest、状態分離をfail-closedで検査する。
-- [`selfcheck.py`](selfcheck.py): blob、anchor、edge set、current status、failure claim、ledger consumerを壊す6つの負例について期待error codeを照合する。
+- [`validate.py`](validate.py): unit分母、crosswalk、wave edge、旧asset blob／bytes／anchor、current span digest、入力digest、BASE祖先性、consumer／counter evidence／unresolvedをfail-closedで検査する。
+- [`selfcheck.py`](selfcheck.py): blob、anchor、edge set、current status、failure claim、ledger／consumer、counter evidence、unresolved、input digestを壊す11個の負例について期待error codeを照合する。
 
 ## 検証
 

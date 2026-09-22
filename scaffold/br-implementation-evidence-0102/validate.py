@@ -89,6 +89,11 @@ class Validator:
             self.error("E_INVENTORY_SCHEMA", "inventory schema不一致")
         if inventory.get("base_commit") != BASE:
             self.error("E_BASE", "base_commitが固定HEADと一致しない")
+        elif subprocess.run(
+            ["git", "merge-base", "--is-ancestor", BASE, "HEAD"],
+            cwd=self.root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        ).returncode != 0:
+            self.error("E_BASE_ANCESTRY", "固定BASEが検証対象HEADの祖先ではない")
         if inventory.get("status") != "research_only_scaffold_candidate" or inventory.get("authority_effect") != "none":
             self.error("E_BOUNDARY", "research-only/authority boundaryが壊れている")
         if [x.get("unit_candidate_id") for x in evidence] != UNITS:
@@ -142,6 +147,7 @@ class Validator:
         expected_scan = [str(wave_path(self.root, wave).relative_to(self.root)) for wave in range(1, 51)]
         if listed_scan != expected_scan:
             self.error("E_SCAN_FILES", "Wave1-50 scan file一覧が一致しない")
+        self.check_input_digests(inventory, evidence)
 
         unit_by_id = {x.get("unit_candidate_id"): x for x in evidence}
         for source in crosswalk:
@@ -190,6 +196,29 @@ class Validator:
             if counts.get(key) != value:
                 self.error("E_COUNTS", f"counts.{key}={counts.get(key)!r}（期待{value!r}）")
         return self.finish()
+
+    def check_input_digests(self, inventory: dict, evidence: list[dict]) -> None:
+        paths = {
+            "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+            "docs/governance/legacy-asset-disposition.jsonl",
+            "docs/governance/legacy-asset-decisions.jsonl",
+            "docs/governance/legacy-asset-copy-read-after.jsonl",
+        }
+        for wave in range(1, 51):
+            paths.add(str(wave_path(self.root, wave).relative_to(self.root)))
+        for row in evidence:
+            for ref in row.get("current_implementation_evidence", {}).get("current_refs", []):
+                if isinstance(ref.get("path"), str):
+                    paths.add(ref["path"])
+        actual = inventory.get("input_digests")
+        if not isinstance(actual, dict) or set(actual) != paths:
+            self.error("E_INPUT_DIGEST", "input digestのpath集合が不足または過剰")
+            return
+        for path in sorted(paths):
+            target = self.root / path
+            expected = file_digest(target) if target.is_file() else None
+            if expected is None or actual.get(path) != expected:
+                self.error("E_INPUT_DIGEST", f"input digest不一致: {path}")
 
     def check_review_edge(self, edge: dict, ledger: dict) -> None:
         asset_id = edge.get("asset_id")
@@ -278,6 +307,61 @@ class Validator:
                 self.error("E_HISTORY", f"decision history mismatch: {aid}")
             if asset.get("read_after_records") != expected_read_after:
                 self.error("E_HISTORY", f"read-after history mismatch: {aid}")
+        self.check_consumer_evidence(current, ledger)
+        self.check_counter_evidence(current)
+        expected_unresolved = sorted(set(source.get("unresolved", []) + [
+            "legacy_unit_implementation_unknown", "legacy_failure_observation_unknown",
+            "legacy_degradation_unit_status_unknown", "consumer_closure_pending",
+            "current_implementation_evidence_missing", "current_acceptance_evidence_missing",
+            "product_boundary_human_decision_pending", "successor_assignment_unassigned",
+            "old_execution_not_run", "current_runtime_not_executed",
+        ]))
+        if current.get("unresolved") != expected_unresolved:
+            self.error("E_UNRESOLVED", f"{current.get('unit_candidate_id')} unresolved集合が期待値と不一致")
+
+    def check_consumer_evidence(self, current: dict, ledger: dict) -> None:
+        edges = current.get("semantic_review_edges", [])
+        assets = current.get("old_asset_evidence", {}).get("assets", [])
+        expected_observed = sorted({item for edge in edges for item in edge.get("observed_consumer_refs", [])})
+        expected_ledger = sorted({item for asset in assets for item in ledger.get(asset.get("asset_id"), {}).get("consumer_refs", [])})
+        expected_closure = [
+            {"review_id": edge["review_id"], "status": edge.get("consumer_closure_status"), "evidence": edge.get("consumer_closure_evidence", [])}
+            for edge in edges
+        ]
+        expected_present = bool(any(asset.get("decision_records") or asset.get("read_after_records") for asset in assets))
+        expected = {
+            "closure_status": "pending",
+            "review_observed_consumer_refs": expected_observed,
+            "ledger_consumer_refs": expected_ledger,
+            "decision_and_read_after_records_present": expected_present,
+            "consumer_closure_evidence": expected_closure,
+            "why_pending": "consumer参照の列挙はconsumer chainの成立・全atom接続・現行利用を証明しない",
+        }
+        actual = current.get("legacy_consumer_evidence")
+        if not isinstance(actual, dict) or set(actual) != set(expected):
+            self.error("E_CONSUMER_REQUIRED", f"{current.get('unit_candidate_id')} consumer evidenceのkey集合が不正")
+            return
+        for key, value in expected.items():
+            if actual.get(key) != value:
+                self.error("E_CONSUMER_EVIDENCE", f"{current.get('unit_candidate_id')} consumer evidence不一致: {key}")
+
+    def check_counter_evidence(self, current: dict) -> None:
+        edges = current.get("semantic_review_edges", [])
+        expected = {
+            "catalog_candidate_warning": "crosswalk代表assetとasset catalog implementation_sourceは検索候補であり、unit実装成立の証拠ではない",
+            "review_edge_counterevidence": [
+                {"review_id": edge["review_id"], "items": edge.get("counterevidence", [])} for edge in edges
+            ],
+            "ledger_boundary": "ledgerのHistorical／unknown／unreviewedは、failure・implementation・consumer closureの肯定証拠ではない",
+            "current_boundary": "current L2/L11/scaffold候補の存在は、current implementation・acceptance・operationの成立を証明しない",
+        }
+        actual = current.get("counter_evidence")
+        if not isinstance(actual, dict) or set(actual) != set(expected):
+            self.error("E_COUNTER_EVIDENCE", f"{current.get('unit_candidate_id')} counter evidenceのkey集合が不正")
+            return
+        for key, value in expected.items():
+            if actual.get(key) != value or (isinstance(value, (str, list)) and not value):
+                self.error("E_COUNTER_EVIDENCE", f"{current.get('unit_candidate_id')} counter evidence不一致: {key}")
 
     def check_current_ref(self, ref: dict) -> None:
         raw_path = ref.get("path")
