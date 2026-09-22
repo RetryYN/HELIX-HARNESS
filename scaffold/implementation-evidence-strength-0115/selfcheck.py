@@ -110,6 +110,9 @@ def main() -> None:
     def tampered_negative_case_codes(inventory):
         inventory["negative_case_codes"] = inventory["negative_case_codes"][:-1]
 
+    def tampered_novel_inventory(inventory):
+        inventory["novel_evidence_counts"]["source_test_body_asset_count"] = 999
+
     def tampered_base_declaration(inventory):
         inventory["base"]["branch"] = "research"
 
@@ -142,10 +145,11 @@ def main() -> None:
     run_case("tampered-inventory-scope", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_inventory_scope)
     run_case("tampered-partition", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_partition)
     run_case("tampered-negative-case-codes", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_negative_case_codes)
+    run_case("tampered-novel-inventory", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_novel_inventory)
     run_case("wrong-input-digest", "E_INPUT_DIGEST", lambda rows: None, wrong_input_digest)
     run_case("wrong-base", "E_BASE_COMMIT", lambda rows: None, wrong_base)
     run_case("tampered-base-declaration", "E_BASE_COMMIT", lambda rows: None, tampered_base_declaration)
-    print("SCF-B-0115 selfcheck: PASS (26 negative cases; expected error codes matched)")
+    print("SCF-B-0115 selfcheck: PASS (27 negative cases; expected error codes matched)")
 
 
 if __name__ == "__main__":

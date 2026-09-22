@@ -348,7 +348,7 @@
     "unit edge／assetの件数・多重集合・重複を拒否し、representative asset recordを正本と完全一致させる",
     "選定metricsと候補poolを固定BASEから再導出し、selectionをauthorityや実装判定に使わない",
     "unknown／pendingを未実装・縮退・failure・consumer closure・受入・完了へ変換しない",
-    "anchor provenance、novel evidence boundary、期待error code付き26負例、全成果物Bindingを維持する"
+    "anchor provenance、novel evidence boundary、期待error code付き27負例、全成果物Bindingを維持する"
   ],
   "connections": {
     "boundary": "static research evidence only; no authority, implementation, acceptance, runtime, merge, or close",
@@ -406,7 +406,7 @@
       "tampered old asset wrapper boolean must emit E_OLD_ASSET_EVIDENCE",
       "extra old asset wrapper key must emit E_OLD_ASSET_EVIDENCE",
       "tampered strength assessment must emit E_STRENGTH_ASSESSMENT",
-      "tampered novel evidence boundary must emit E_NOVEL_EVIDENCE",
+      "tampered novel evidence boundary or inventory must emit E_NOVEL_EVIDENCE／E_INVENTORY_DECLARATION",
       "tampered unit schema must emit E_UNIT_SCHEMA",
       "tampered unit top-level key must emit E_UNIT_SCHEMA",
       "tampered inventory scope must emit E_INVENTORY_DECLARATION",
@@ -421,7 +421,7 @@
       "fixed BASE Git object bytes／source body byte-line digest／blob／IR and edge anchor provenance exact match",
       "fixed BASE ancestry and all input snapshot digest exact match",
       "unit edge／asset multiset and duplicate rejection plus representative record and full ledger equality",
-      "selfcheck.py expected 26 error codes including selection／strength／novel evidence／partition／edge／asset／ledger／current checks",
+      "selfcheck.py expected 27 error codes including selection／strength／novel evidence／partition／edge／asset／ledger／current checks",
       "scfctl validate fail=0 with all bundle artifacts registered"
     ],
     "scope": [

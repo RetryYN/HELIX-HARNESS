@@ -6,11 +6,11 @@
 
 成果物は次のとおりである。
 
-- `inventory.json`: 固定BASE宣言、入力path／Git bytes digest、候補poolと選定規則、20 unit／60 edge／38 asset／598 scan row／180 current refの分母、anchor hash provenance、partition契約、禁止推論、未解決、負例codeを固定する。
+- `inventory.json`: 固定BASE宣言、入力path／Git bytes digest、候補poolと選定規則、20 unit／60 edge／38 asset／598 scan row／180 current refの分母、novel evidenceのbody読了／契約候補面／failure／consumer分母、anchor hash provenance、partition契約、禁止推論、未解決、負例codeを固定する。
 - `evidence.jsonl`: unitごとのcrosswalk source snapshot、IR原文anchor、Wave edgeとedge別anchor resolution、旧assetのsource本文静的読了metadata（path／blob／bytes／lines／body digest）、ledger／判断史／read-after、failure finding／receipt、consumer参照、旧implementation／degradation／failure／consumer partition、代表asset完全record、現行context、反証、未解決を記録する。`novel_evidence`では、追加で読んだsource／test本文の具体的なanchor行、旧契約のnormal／recovery／constraint候補、failure findingとreceiptの有無、consumerのledger／decision／read-after行、unit成立判断に欠ける証拠と次の判断点をunit別に固定する。
 - `build.py`: crosswalk、IR、decomposition、旧asset ledger、判断史、read-after、classification、Wave1〜50、現行contextを固定BASEのGit object bytesから読み、旧source／test／runtime／CIは実行しない。
 - `validate.py`: 選定unit、unit別edge／assetの件数・多重集合・重複、source／edge anchor、旧asset source／body／ledger完全一致、representation、implementation／degradation／failure／consumer partition、strength assessment、current status、inventory宣言、BASE祖先性と全入力digestをfail-closedで検査する。
-- `selfcheck.py`: source／asset／anchor、edge／asset欠落・重複、ledger、代表asset、partition、current／未実装、strength assessment、novel evidence、inventory宣言、input digest、BASEを改竄する26負例を期待error code付きで検査する。
+- `selfcheck.py`: source／asset／anchor、edge／asset欠落・重複、ledger、代表asset、partition、current／未実装、strength assessment、novel evidence、inventory宣言、input digest、BASEを改竄する27負例を期待error code付きで検査する。
 - `scaffold/bindings/SCF-B-0115.json`: bundle全成果物をScaffold Bindingへ登録する。
 
 ## 既存bundleとの差分（novel evidence）
@@ -35,7 +35,7 @@ python3 scaffold/implementation-evidence-strength-0115/validate.py
 SCF-B-0115 validate: PASS (20 selected units; counts derived from fixed BASE; static-only)
 
 python3 scaffold/implementation-evidence-strength-0115/selfcheck.py
-SCF-B-0115 selfcheck: PASS (26 negative cases; expected error codes matched)
+SCF-B-0115 selfcheck: PASS (27 negative cases; expected error codes matched)
 
 python3 scaffold/tools/scfctl.py validate
 ```

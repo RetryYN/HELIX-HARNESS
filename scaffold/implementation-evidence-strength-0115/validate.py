@@ -803,6 +803,30 @@ class Validator:
         }
         if inventory.get("counts") != expected_counts:
             self.error("E_INVENTORY_DECLARATION", "inventory countsが導出値と不一致")
+        selected_edges = [edge for edges in expected_by_unit.values() for edge in edges]
+        body_read_assets = {
+            edge["asset_id"] for edge in selected_edges
+            if edge.get("artifact_evidence_kind") in {"implementation_source", "test_source", "test_design"}
+        }
+        test_source_assets = {
+            edge["asset_id"] for edge in selected_edges if edge.get("artifact_evidence_kind") == "test_source"
+        }
+        test_design_assets = {
+            edge["asset_id"] for edge in selected_edges if edge.get("artifact_evidence_kind") == "test_design"
+        }
+        expected_novel_counts = {
+            "unit_count_with_novel_evidence": len(units),
+            "source_test_body_asset_count": len(body_read_assets),
+            "test_source_asset_count": len(test_source_assets),
+            "test_design_asset_count": len(test_design_assets),
+            "possible_contract_surface_count": len(selected_edges),
+            "failure_finding_count": sum(bool(edge.get("coverage", {}).get("failure")) for edge in selected_edges),
+            "failure_receipt_count": expected_old_failure_receipt_count,
+            "consumer_observation_count": len(selected_edges),
+            "unit_count_with_missing_judgment_evidence": len(units),
+        }
+        if inventory.get("novel_evidence_counts") != expected_novel_counts:
+            self.error("E_INVENTORY_DECLARATION", "novel evidence分母宣言が固定BASE導出値と不一致")
         candidate_rows = [row for row in base_jsonl(CROSSWALK) if row.get("source_requirement_id", "").startswith(("HIL-BR-", "HIL-FR-", "HIL-TR-", "HIL-NFR-"))]
         expected_selection = {
             "candidate_source_count": len({row["source_requirement_id"] for row in candidate_rows}),

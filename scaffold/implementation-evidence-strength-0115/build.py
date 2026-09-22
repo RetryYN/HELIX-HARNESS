@@ -840,6 +840,30 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
         "old_runtime_test_ci_executions": 0,
         "current_runtime_executions": 0,
     }
+    selected_edges = [edge for edges in edges_by_unit.values() for edge in edges]
+    body_read_assets = {
+        edge["asset_id"] for edge in selected_edges
+        if edge.get("artifact_evidence_kind") in {"implementation_source", "test_source", "test_design"}
+    }
+    test_source_assets = {
+        edge["asset_id"] for edge in selected_edges if edge.get("artifact_evidence_kind") == "test_source"
+    }
+    test_design_assets = {
+        edge["asset_id"] for edge in selected_edges if edge.get("artifact_evidence_kind") == "test_design"
+    }
+    novel_counts = {
+        "unit_count_with_novel_evidence": len(evidence),
+        "source_test_body_asset_count": len(body_read_assets),
+        "test_source_asset_count": len(test_source_assets),
+        "test_design_asset_count": len(test_design_assets),
+        "possible_contract_surface_count": len(selected_edges),
+        "failure_finding_count": sum(bool(edge.get("coverage", {}).get("failure")) for edge in selected_edges),
+        "failure_receipt_count": selected_failure_receipt_count,
+        "consumer_observation_count": len(selected_edges),
+        "unit_count_with_missing_judgment_evidence": sum(
+            bool(row["novel_evidence"]["missing_for_unit_level_judgment"]) for row in evidence
+        ),
+    }
     candidate_rows = [row for row in base_jsonl(CROSSWALK) if row.get("source_requirement_id", "").startswith(("HIL-BR-", "HIL-FR-", "HIL-TR-", "HIL-NFR-"))]
     selected_metrics = {
         row["unit_candidate_id"]: strength_metrics(row["unit_candidate_id"], edges_by_unit[row["unit_candidate_id"]], [old_asset_record(asset_id, edges_by_unit[row["unit_candidate_id"]], disposition, decisions, read_after, classifications) for asset_id in sorted({edge["asset_id"] for edge in edges_by_unit[row["unit_candidate_id"]]})])
@@ -870,6 +894,7 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
         },
         "input_snapshot": [{"path": path, "sha256": base_digest(path)} for path in INPUT_PATHS],
         "counts": counts,
+        "novel_evidence_counts": novel_counts,
         "selection": {
             "candidate_source_count": len({row["source_requirement_id"] for row in candidate_rows}),
             "candidate_unit_count": len({row["unit_candidate_id"] for row in candidate_rows}),
