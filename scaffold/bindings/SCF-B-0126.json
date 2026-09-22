@@ -26,22 +26,22 @@
   "id": "SCF-B-0126",
   "kind": "scaffold",
   "obligations": [
-    "固定BASE unresolved 1,792件・prior研究ID205件・Wave未解決64件（重複42件）・旧union227件を再導出し、最新main product union429件（unresolved交差280件）・unresolved残余1,512件を分母として保持する",
-    "初期120件と最新main product unionの重複53件をasset ID/source path/SHAでreconciliationへ固定し、新規target67件から除外する",
+    "固定BASE unresolved 1,792件・prior研究ID205件・Wave未解決64件（重複42件）・旧union227件を再導出し、最新main product union429件（unresolved交差280件）を固定する。処理前残余は1,512件、新規targetは67件、処理後残数は1,445件として分離保持する",
+    "初期120件と最新main product unionの重複53件をasset ID/source path/SHAでreconciliationへ固定し、新規target67件から除外する。candidate result一致とmethod identityを混同しない",
     "初期implementation_source tranche120件と重複除外後の新規implementation_source target67件についてexact ID/path/source blob/digestを固定し欠落・重複を拒否する",
     "source spanとproduct-boundary/L1 counter-evidenceを使いdirect/conflict/insufficientを再導出し、direct=1 product、conflict>=2、insufficient=0を固定する",
     "Wave1-50の50 file・598 edge・355 unique assetを再走査し対象Wave edge=0を固定する",
-    "anchor_line_coverageを全recordへ保持し、未読領域を文書化する。新規targetは67件、重複53件はreconciliationへ分離する",
+    "anchor_line_coverageを全recordへ保持し、未読領域を文書化する。処理前残余1512件、新規target67件、処理後残数1445件、重複53件は別denominatorとしてreconciliationへ分離する",
     "旧decision/read-after/failure/consumerを静的partitionで保持しconsumer closureを生成しない",
     "旧asset status・history・consumer blockと全nested record/inventoryを固定BASE由来の期待値と厳密一致させる",
     "authority none・formal分類/route/phase/successor/new build falseを固定する",
-    "旧archive source/runtime/test/CIを実行せず独立validatorと53 negative selfcheckを維持する",
-    "strict JSON parserでledger record/nested object/inventoryのduplicate key、malformed JSON、nonobjectをE_JSONとして拒否する53 negative selfcheckを維持する",
+    "旧archive source/runtime/test/CIを実行せず独立validatorと56 negative selfcheckを維持する",
+    "strict JSON parserでledger record/nested object/inventoryのduplicate key、malformed JSON、nonobjectをE_JSONとして拒否する56 negative selfcheckを維持する",
     "inventory 184 input_digestの全63非archive入力と最新main product bundle 8入力をBinding upstreamへ登録し、path/raw SHA256をvalidatorで完全照合する。archive静的121入力はSCF-OS-003のためupstreamへ入れず、inventory/recordで固定し非実行境界を明示する",
     "scripts/helix.ps1のarchive bytes sha256 2b86bf...とMANIFEST entry 9e5b68...の不一致を明示し、formal admission/reuseを停止してhuman/source resolution pendingを保持する",
     "anchor_line_coverageの直接改竄を専用errorで拒否しBinding宣言・inventory・recordと同期する",
     "product union429件とunresolved交差280件をbundle revision/blob/bytes/SHAで固定し、unresolved denominatorへphase外149件を混入させない",
-    "recordのresearch_scope/evidence_completeness/overlap_status/bundle_revision/denominator_roleとoverlap reconciliation 53件を全値比較する"
+    "recordのresearch_scope/evidence_completeness/overlap_status/bundle_revision/denominator_roleとoverlap reconciliation 53件を全値比較する。statusはsame_source_same_candidate_resultまたはsame_source_different_candidate_resultとし、method identityは主張しない"
   ],
   "operations": {
     "allowed": [
@@ -359,7 +359,7 @@
   "verification": {
     "evidence_kind": "scaffold",
     "negative_cases": [
-      "target ID missing/duplicate; explicit 53 residual ID/path set",
+      "target ID missing/duplicate; explicit 53 overlap ID/path/SHA set",
       "source blob/line anchor/read mode/anchor_line_coverage tamper",
       "classification category/product/cardinality invariant and nested record tamper",
       "Wave edge and Wave denominator injection; Binding upstream path/raw SHA and stale mutation",
@@ -372,12 +372,12 @@
       "generator PROFILE category/products mutation and regeneration"
     ],
     "oracles": [
-      "validator independently derives fixed BASE exact 120 target set, explicit 53 residual ID/path set, and source anchors without importing generate.py",
+      "validator independently derives fixed BASE exact 120 target set, explicit 53 overlap ID/path/SHA set, and source anchors without importing generate.py",
       "validator checks prior research205 digest, old union227, product union429, unresolved union280, residual1,512, Wave files50/edges598/assets355, target Wave edges0",
-      "validator checks 67 records, 30 direct, 23 conflict, 14 insufficient; initial 120 and overlap53 are separately checked and category cardinality invariant",
+      "validator checks 67 records, 30 direct, 23 conflict, 14 insufficient; initial 120、overlap53、処理前残余1512、新規target67、処理後残数1445を別々に固定し、candidate result比較はmethod identityを主張しない",
       "validator compares full nested record/inventory equality including anchor_line_coverage, archive manifest resolution, and authority boundary",
       "validator checks all 63 nonarchive inventory inputs plus 8 product bundle inputs are Binding upstream with exact path/raw SHA and rejects stale/mutated Wave upstream",
-      "selfcheck executes 53 negative cases with expected error codes (22 distinct codes), including strict JSON and archive manifest resolution cases"
+      "selfcheck executes 56 negative cases with expected error codes (22 distinct codes), including denominator pre/postとlabel改竄、strict JSON、archive manifest resolution cases"
     ],
     "scope": [
       "schema_interface",

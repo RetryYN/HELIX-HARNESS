@@ -420,12 +420,12 @@ def overlap_reconciliation(initial_targets: set[str], product_union: dict[str, l
         spec = REVIEW_SPECS[source_path]
         if any(r["source_path"] != source_path or r["source_sha256"] != source_sha256 for r in product_union[asset_id]):
             raise AssertionError(f"E_PRODUCT_RESEARCH_UNION {asset_id}")
-        methods = [{"bundle": r["bundle"], "category": r["category"], "candidate_products": r["candidate_products"]} for r in product_union[asset_id]]
-        methods.sort(key=lambda r: r["bundle"])
-        same_method = all(r["category"] == spec["category"] and r["candidate_products"] == spec["products"] for r in methods)
-        entries.append({"asset_id": asset_id, "source_path": source_path, "source_sha256": "sha256:" + product_union[asset_id][0]["source_sha256"], "overlap_status": "same_source_same_method" if same_method else "same_source_different_method", "research_scope": "existing_main_product_research_union", "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation", "bundle_revision": PRODUCT_RESEARCH_COMMIT, "denominator_role": "existing_research_union", "target_category": spec["category"], "target_products": spec["products"], "existing_methods": methods})
-    same = sum(e["overlap_status"] == "same_source_same_method" for e in entries)
-    return {"bundle_revision": PRODUCT_RESEARCH_COMMIT, "bundle_paths": list(PRODUCT_RESEARCH_BUNDLES), "union_count": len(product_union), "initial_target_count": len(initial_targets), "overlap_count": len(entries), "new_target_count": len(initial_targets) - len(entries), "same_source_same_method_count": same, "same_source_different_method_count": len(entries) - same, "entries": entries}
+        candidate_results = [{"bundle": r["bundle"], "category": r["category"], "candidate_products": r["candidate_products"]} for r in product_union[asset_id]]
+        candidate_results.sort(key=lambda r: r["bundle"])
+        same_candidate_result = all(r["category"] == spec["category"] and r["candidate_products"] == spec["products"] for r in candidate_results)
+        entries.append({"asset_id": asset_id, "source_path": source_path, "source_sha256": "sha256:" + product_union[asset_id][0]["source_sha256"], "overlap_status": "same_source_same_candidate_result" if same_candidate_result else "same_source_different_candidate_result", "comparison_basis": "source_path_sha256_and_candidate_category_products", "method_identity_claimed": False, "research_scope": "existing_main_product_research_union", "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation", "bundle_revision": PRODUCT_RESEARCH_COMMIT, "denominator_role": "existing_research_union", "target_category": spec["category"], "target_products": spec["products"], "existing_candidate_results": candidate_results})
+    same = sum(e["overlap_status"] == "same_source_same_candidate_result" for e in entries)
+    return {"bundle_revision": PRODUCT_RESEARCH_COMMIT, "bundle_paths": list(PRODUCT_RESEARCH_BUNDLES), "union_count": len(product_union), "initial_target_count": len(initial_targets), "overlap_count": len(entries), "new_target_count": len(initial_targets) - len(entries), "candidate_result_comparison": "category_and_candidate_products_exact_equality; method_identity_not_claimed", "same_source_same_candidate_result_count": same, "same_source_different_candidate_result_count": len(entries) - same, "entries": entries}
 
 
 def history(asset_id: str, dispositions: dict[str, tuple[int, dict]], decisions: list[tuple[int, dict]], read_afters: list[tuple[int, dict]]) -> dict:
@@ -510,7 +510,7 @@ def build() -> None:
         "base_revision": BASE_REVISION,
         "base_source_mode": "all input and archive evidence bytes from fixed BASE Git objects",
         "scope": "fixed BASE unresolved implementation_source residual after latest main product research union 429 and explicit overlap reconciliation; exact 67 new assets from the initial 120-asset tranche",
-        "existing_research_union": {"expected_unresolved_assets": 1792, "prior_research_asset_count": len(prior_research_ids), "prior_research_asset_ids_sha256": tagged("\n".join(sorted(prior_research_ids)).encode()), "unresearched_prefix_asset_count": 0, "unresearched_prefix_asset_ids": [], "unresearched_prefix_source_paths": [], "existing_union_count": len(legacy_existing | (set(product_union) & unresolved_ids)), "residual_unresolved_count": 1792 - len(legacy_existing | (set(product_union) & unresolved_ids)), "existing_prefixes": list(EXISTING_RESEARCH_PREFIXES), "wave_unresolved_assets": 64, "target_wave_overlap": 0, "legacy_prior_research_asset_count": len(prior_research_ids), "legacy_existing_union_count": 227, "legacy_unresearched_prefix_asset_count": 53, "product_research_union_count": 429, "product_research_unresolved_union_count": 280, "initial_target_count": 120, "target_existing_research_overlap": 53, "new_target_count": 67},
+        "existing_research_union": {"expected_unresolved_assets": 1792, "prior_research_asset_count": len(prior_research_ids), "prior_research_asset_ids_sha256": tagged("\n".join(sorted(prior_research_ids)).encode()), "unresearched_prefix_asset_count": 0, "unresearched_prefix_asset_ids": [], "unresearched_prefix_source_paths": [], "existing_union_count": len(legacy_existing | (set(product_union) & unresolved_ids)), "pre_target_residual_unresolved_count": 1792 - len(legacy_existing | (set(product_union) & unresolved_ids)), "new_target_count": 67, "post_batch_remaining_unresolved_count": 1792 - len(legacy_existing | (set(product_union) & unresolved_ids)) - 67, "denominator_labels": {"existing_union": "existing_unresolved_union", "pre_target_residual": "pre_target_residual_unresolved", "new_target": "new_target", "post_batch_remaining": "post_batch_remaining_unresolved"}, "existing_prefixes": list(EXISTING_RESEARCH_PREFIXES), "wave_unresolved_assets": 64, "target_wave_overlap": 0, "legacy_prior_research_asset_count": len(prior_research_ids), "legacy_existing_union_count": 227, "legacy_unresearched_prefix_asset_count": 53, "product_research_union_count": 429, "product_research_unresolved_union_count": 280, "initial_target_count": 120, "target_existing_research_overlap": 53},
         "wave_source_paths": WAVE_PATHS,
         "counts": {"wave_files": 50, "wave_edges_scanned": len(wave_rows), "wave_unique_assets_scanned": len(wave_asset_ids), "target_assets": len(records), "target_wave_edges": 0, "categories": dict(sorted(categories.items())), "target_asset_artifact_evidence_kinds": {"implementation_source": len(records)}},
         "phase_candidate_distribution": dict(sorted(phase_counts.items())),
@@ -600,6 +600,9 @@ def build() -> None:
             'research_scope_tamper',
             'overlap_reconciliation_tamper',
             'product_research_union_tamper',
+            'pre_target_residual_tamper',
+            'post_batch_remaining_tamper',
+            'denominator_label_tamper',
         ],
     }
     inventory["output_sha256"] = tagged(ledger.read_bytes())

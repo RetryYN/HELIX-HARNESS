@@ -186,6 +186,9 @@ EXPECTED_NEGATIVE_CASES = [
     'research_scope_tamper',
     'overlap_reconciliation_tamper',
     'product_research_union_tamper',
+    'pre_target_residual_tamper',
+    'post_batch_remaining_tamper',
+    'denominator_label_tamper',
 ]
 EXPECTED_INVENTORY_KEYS = {
     "schema_revision",
@@ -1009,7 +1012,7 @@ def check_source(record: dict, expected: dict, asset: dict) -> None:
 
 def expected_union_declaration(existing: set[str], prefix_ids: set[str]) -> dict:
     prior = prefix_ids - UNRESEARCHED_PREFIX_ASSET_IDS
-    return {"expected_unresolved_assets": 1792, "prior_research_asset_count": len(prior), "prior_research_asset_ids_sha256": tagged("\n".join(sorted(prior)).encode()), "unresearched_prefix_asset_count": 0, "unresearched_prefix_asset_ids": [], "unresearched_prefix_source_paths": [], "existing_union_count": len(existing), "residual_unresolved_count": 1792 - len(existing), "existing_prefixes": list(EXISTING_RESEARCH_PREFIXES), "wave_unresolved_assets": 64, "target_wave_overlap": 0, "legacy_prior_research_asset_count": len(prior), "legacy_existing_union_count": 227, "legacy_unresearched_prefix_asset_count": 53, "product_research_union_count": 429, "product_research_unresolved_union_count": 280, "initial_target_count": 120, "target_existing_research_overlap": 53, "new_target_count": 67}
+    return {"expected_unresolved_assets": 1792, "prior_research_asset_count": len(prior), "prior_research_asset_ids_sha256": tagged("\n".join(sorted(prior)).encode()), "unresearched_prefix_asset_count": 0, "unresearched_prefix_asset_ids": [], "unresearched_prefix_source_paths": [], "existing_union_count": len(existing), "pre_target_residual_unresolved_count": 1792 - len(existing), "new_target_count": 67, "post_batch_remaining_unresolved_count": 1792 - len(existing) - 67, "denominator_labels": {"existing_union": "existing_unresolved_union", "pre_target_residual": "pre_target_residual_unresolved", "new_target": "new_target", "post_batch_remaining": "post_batch_remaining_unresolved"}, "existing_prefixes": list(EXISTING_RESEARCH_PREFIXES), "wave_unresolved_assets": 64, "target_wave_overlap": 0, "legacy_prior_research_asset_count": len(prior), "legacy_existing_union_count": 227, "legacy_unresearched_prefix_asset_count": 53, "product_research_union_count": 429, "product_research_unresolved_union_count": 280, "initial_target_count": 120, "target_existing_research_overlap": 53}
 
 
 def expected_overlap_reconciliation(initial_targets: set[str], product_union: dict[str, list[dict]], phase: dict[str, tuple[int, dict]]) -> dict:
@@ -1020,23 +1023,25 @@ def expected_overlap_reconciliation(initial_targets: set[str], product_union: di
         spec = EXPECTED_PROFILES[source_path]
         if any(r["source_path"] != source_path or r["source_sha256"] != source_sha256 for r in product_union[asset_id]):
             fail("E_PRODUCT_RESEARCH_UNION", asset_id)
-        methods = [{"bundle": r["bundle"], "category": r["category"], "candidate_products": r["candidate_products"]} for r in product_union[asset_id]]
-        methods.sort(key=lambda r: r["bundle"])
-        same_method = all(r["category"] == spec["category"] and r["candidate_products"] == spec["products"] for r in methods)
+        candidate_results = [{"bundle": r["bundle"], "category": r["category"], "candidate_products": r["candidate_products"]} for r in product_union[asset_id]]
+        candidate_results.sort(key=lambda r: r["bundle"])
+        same_candidate_result = all(r["category"] == spec["category"] and r["candidate_products"] == spec["products"] for r in candidate_results)
         entries.append({
             "asset_id": asset_id,
             "source_path": source_path,
             "source_sha256": "sha256:" + product_union[asset_id][0]["source_sha256"],
-            "overlap_status": "same_source_same_method" if same_method else "same_source_different_method",
+            "overlap_status": "same_source_same_candidate_result" if same_candidate_result else "same_source_different_candidate_result",
+            "comparison_basis": "source_path_sha256_and_candidate_category_products",
+            "method_identity_claimed": False,
             "research_scope": "existing_main_product_research_union",
             "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
             "bundle_revision": PRODUCT_RESEARCH_COMMIT,
             "denominator_role": "existing_research_union",
             "target_category": spec["category"],
             "target_products": spec["products"],
-            "existing_methods": methods,
+            "existing_candidate_results": candidate_results,
         })
-    same = sum(e["overlap_status"] == "same_source_same_method" for e in entries)
+    same = sum(e["overlap_status"] == "same_source_same_candidate_result" for e in entries)
     different = len(entries) - same
     return {
         "bundle_revision": PRODUCT_RESEARCH_COMMIT,
@@ -1045,8 +1050,9 @@ def expected_overlap_reconciliation(initial_targets: set[str], product_union: di
         "initial_target_count": len(initial_targets),
         "overlap_count": len(entries),
         "new_target_count": len(initial_targets) - len(entries),
-        "same_source_same_method_count": same,
-        "same_source_different_method_count": different,
+        "candidate_result_comparison": "category_and_candidate_products_exact_equality; method_identity_not_claimed",
+        "same_source_same_candidate_result_count": same,
+        "same_source_different_candidate_result_count": different,
         "entries": entries,
     }
 
@@ -1106,7 +1112,7 @@ def check() -> None:
     prefix_ids_for_union = {a for a, (_, row) in phase.items() if row.get("product_classification_status") == "unresolved" and any(row.get("source_path", "").startswith(prefix) for prefix in EXISTING_RESEARCH_PREFIXES)}
     if inv.get("existing_research_union") != expected_union_declaration(existing, prefix_ids_for_union): fail("E_INVENTORY_DECLARATION", "research union")
     if inv.get("old_asset_source_mode") != "archive bytes are read through git show BASE:<archive-path>; never executed": fail("E_INVENTORY_DECLARATION", "source mode")
-    if inv.get("existing_research_union", {}).get("existing_union_count") != 280 or inv.get("existing_research_union", {}).get("residual_unresolved_count") != 1512: fail("E_INVENTORY_DECLARATION", "union counts")
+    if inv.get("existing_research_union", {}).get("existing_union_count") != 280 or inv.get("existing_research_union", {}).get("pre_target_residual_unresolved_count") != 1512 or inv.get("existing_research_union", {}).get("new_target_count") != 67 or inv.get("existing_research_union", {}).get("post_batch_remaining_unresolved_count") != 1445: fail("E_INVENTORY_DECLARATION", "denominator counts")
     if inv.get("product_research_union") != {
         "bundle_revision": PRODUCT_RESEARCH_COMMIT,
         "bundle_paths": list(PRODUCT_RESEARCH_BUNDLES),
@@ -1228,7 +1234,7 @@ def check() -> None:
         b = git_bytes(item["path"])
         if item.get("blob") != git_blob(item["path"]) or item.get("bytes") != len(b) or item.get("sha256") != tagged(b): fail("E_INPUT_DIGEST", item.get("path", ""))
     if inv.get("output_sha256") != tagged(LEDGER.read_bytes()): fail("E_OUTPUT_DIGEST", "ledger")
-    print(f"SCF-B-0126 validate: PASS records=67 categories={dict(sorted(categories.items()))} target_wave_edges=0 product_union=429 unresolved_existing_union=280 residual=1512 overlap=53")
+    print(f"SCF-B-0126 validate: PASS records=67 categories={dict(sorted(categories.items()))} target_wave_edges=0 product_union=429 unresolved_existing_union=280 pre_target_residual=1512 new_target=67 post_batch_remaining=1445 overlap=53")
 
 
 if __name__ == "__main__":

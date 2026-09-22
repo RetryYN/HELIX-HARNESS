@@ -67,6 +67,12 @@
     "target_wave_edges": 0
   },
   "existing_research_union": {
+    "denominator_labels": {
+      "existing_union": "existing_unresolved_union",
+      "new_target": "new_target",
+      "post_batch_remaining": "post_batch_remaining_unresolved",
+      "pre_target_residual": "pre_target_residual_unresolved"
+    },
     "existing_prefixes": [
       "src/lint/",
       "src/runtime/",
@@ -84,11 +90,12 @@
     "legacy_prior_research_asset_count": 205,
     "legacy_unresearched_prefix_asset_count": 53,
     "new_target_count": 67,
+    "post_batch_remaining_unresolved_count": 1445,
+    "pre_target_residual_unresolved_count": 1512,
     "prior_research_asset_count": 205,
     "prior_research_asset_ids_sha256": "sha256:e5d5552e5028bd836c65bb1dd5ebbc14375dcbc89e5fd0c7060849bebe99ecca",
     "product_research_union_count": 429,
     "product_research_unresolved_union_count": 280,
-    "residual_unresolved_count": 1512,
     "target_existing_research_overlap": 53,
     "target_wave_overlap": 0,
     "unresearched_prefix_asset_count": 0,
@@ -1411,7 +1418,10 @@
     "binding_upstream_stale_tamper",
     "research_scope_tamper",
     "overlap_reconciliation_tamper",
-    "product_research_union_tamper"
+    "product_research_union_tamper",
+    "pre_target_residual_tamper",
+    "post_batch_remaining_tamper",
+    "denominator_label_tamper"
   ],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
   "output_sha256": "sha256:175f0fa8b715bfc4ed147a980bbb0c50d8dde66c3006bd87ffaef91b94a0b5c4",
@@ -1427,13 +1437,15 @@
       "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl"
     ],
     "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+    "candidate_result_comparison": "category_and_candidate_products_exact_equality; method_identity_not_claimed",
     "entries": [
       {
         "asset_id": "LEGACY-ASSET-08F8688895B787BD3D5C",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -1442,7 +1454,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/cli/commands/rename.ts",
         "source_sha256": "sha256:fd9f192308ea45baf55a79f3e16315e3c51cdbaca5a9ce4d66e5882ec7c51b00",
@@ -1452,16 +1465,18 @@
       {
         "asset_id": "LEGACY-ASSET-0996E33E11CB9283EEC8",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/shared/time-utils.ts",
         "source_sha256": "sha256:3dbc260f44c64ed1776943c6e8830a9652c01fb528b969d76c005b45ee1fb237",
@@ -1471,16 +1486,18 @@
       {
         "asset_id": "LEGACY-ASSET-110F52E3C367C3DCCFE5",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/cli/helpers.ts",
         "source_sha256": "sha256:ef3cd23e8a2b2759ccf4710dc2c51a96e52cefdc9b0883095bb524c0f04af446",
@@ -1490,9 +1507,10 @@
       {
         "asset_id": "LEGACY-ASSET-11C75CC63968FB9A5BD2",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1501,7 +1519,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/current-location-workflow-identity-resolver.ts",
         "source_sha256": "sha256:51ea5fd61feb55912790caa9d0c4f650a75009bb1afa7efdf3b5cf119bdacdd3",
@@ -1511,9 +1530,10 @@
       {
         "asset_id": "LEGACY-ASSET-132E6449FA96E5CABBBF",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1522,7 +1542,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/green-command.ts",
         "source_sha256": "sha256:90e36fbcb7dd0620d06a3329c47e8a113228c53acb6183034040e46fbea5aa11",
@@ -1532,16 +1553,18 @@
       {
         "asset_id": "LEGACY-ASSET-18579F09E6B2C29E5622",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/harness-db-types.ts",
         "source_sha256": "sha256:b49dcb73101b7a6a103ad66e889bbf9c8772b3b1c401d8c0fa7dad4e6e45a967",
@@ -1551,9 +1574,10 @@
       {
         "asset_id": "LEGACY-ASSET-187E43CE3096B88CA8B4",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1562,7 +1586,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/current-location-workflow-identity.ts",
         "source_sha256": "sha256:868d69d67acd6c757be373a217dc5fe64b9b10bc2845c30ac2604db59c4e430a",
@@ -1572,9 +1597,10 @@
       {
         "asset_id": "LEGACY-ASSET-18EBF31B40C9A58DE958",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1583,7 +1609,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/model-registry.ts",
         "source_sha256": "sha256:52b31f11cebbe19321810d208686283cd793b96295fe62cda4bd5e152e7fd345",
@@ -1593,16 +1620,18 @@
       {
         "asset_id": "LEGACY-ASSET-1ABE9822E36400BC82C2",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/harness-db-table-builders.ts",
         "source_sha256": "sha256:b84c3c8c379c25828716c8749efae34a7614f1405dd1305077377b30bc17d6d2",
@@ -1612,9 +1641,10 @@
       {
         "asset_id": "LEGACY-ASSET-2B68A62292FADDC5BCA6",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1623,7 +1653,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/loop-plan-id.ts",
         "source_sha256": "sha256:77209a043af600894f850012f5260f3e7a4331ae855002a4008d7d5f23ae11df",
@@ -1633,9 +1664,10 @@
       {
         "asset_id": "LEGACY-ASSET-30539BEC772802F50C9D",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1644,7 +1676,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/harness-db-tables-graph.ts",
         "source_sha256": "sha256:a11010f5574933f13aef7c986921a06ba0e0be06d696fa7fbeab03fe0a5b8d56",
@@ -1654,9 +1687,10 @@
       {
         "asset_id": "LEGACY-ASSET-313DC99AEF53834D9207",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -1665,7 +1699,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/cli/commands/route.ts",
         "source_sha256": "sha256:7f0a64b892472d82059bacdb841f0499a670ee10d00a620553d5be7a671197d4",
@@ -1675,9 +1710,10 @@
       {
         "asset_id": "LEGACY-ASSET-3290C9A3BA7FAD7BA07C",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -1687,7 +1723,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/workflow/contracts-extras.ts",
         "source_sha256": "sha256:7ba15efa32f3de02f980ab86b8b366d7a46c1660d1cb6916297e8c5dc1d979e7",
@@ -1697,9 +1734,10 @@
       {
         "asset_id": "LEGACY-ASSET-354670A58AC796DDC80F",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -1709,7 +1747,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/requirements/nfr-registry.ts",
         "source_sha256": "sha256:6258e9cb28637ebe18338354aaac89343c1f4a41507b1203471271e6d977daaa",
@@ -1719,9 +1758,10 @@
       {
         "asset_id": "LEGACY-ASSET-3AEDBB3A9A7B549C4C24",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1731,7 +1771,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/team.ts",
         "source_sha256": "sha256:f13d34c6d34f15eca6f3953e88f8a518cd586fb52bc42f0a6bc2c79ce6d315bf",
@@ -1741,9 +1782,10 @@
       {
         "asset_id": "LEGACY-ASSET-3D7D5062903EE9CEDFEF",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1753,7 +1795,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/open-branch-plan-reservation-authority.ts",
         "source_sha256": "sha256:c7c1a233abfea0d98457ee361b45c23c586ff07be6716eda99274506f2885336",
@@ -1763,9 +1806,10 @@
       {
         "asset_id": "LEGACY-ASSET-414CC59CA35B28BB7AF4",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1774,7 +1818,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/runtime-verification.ts",
         "source_sha256": "sha256:a11c4e797dd4e4357204ad9af2ab092e195afd1d0405b1e3e8bcfd1ff5319fc6",
@@ -1784,9 +1829,10 @@
       {
         "asset_id": "LEGACY-ASSET-4329EAEA146D5D97E088",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -1795,7 +1841,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/requirements/requirement-generated-view-generator.ts",
         "source_sha256": "sha256:c999183b14ff36779c1b2e556371d733e09dfbd35cd40de0115b56468d8de09e",
@@ -1805,16 +1852,18 @@
       {
         "asset_id": "LEGACY-ASSET-4A9AB5B2EF182BC30431",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/shared/canonical-digest.ts",
         "source_sha256": "sha256:c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000",
@@ -1824,16 +1873,18 @@
       {
         "asset_id": "LEGACY-ASSET-4D3446684F730BFEB99E",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/workflow/contracts-types.ts",
         "source_sha256": "sha256:2b8dcac19d45cd742cd7f996537c26ea0fb24273762405963b2d8e66e25417da",
@@ -1843,9 +1894,10 @@
       {
         "asset_id": "LEGACY-ASSET-5442594ED146AD72850C",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1854,7 +1906,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/harness-db-tables-design.ts",
         "source_sha256": "sha256:f152d5ea4a8e5973fa956b0d0c85330bf549bf22a7f1c5eb291d5e3c328b95b6",
@@ -1864,9 +1917,10 @@
       {
         "asset_id": "LEGACY-ASSET-555329E1E192F23D2865",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -1875,7 +1929,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/requirements/requirement-generated-view.ts",
         "source_sha256": "sha256:a0839fc82da7af87996b9f44c5d5bb5c89b94637da79d1fe89110096bf71a9bf",
@@ -1885,16 +1940,18 @@
       {
         "asset_id": "LEGACY-ASSET-5BABA53229DF9A5DECEF",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/shared/file-walk.ts",
         "source_sha256": "sha256:045f57ff8022041352d0871df6cc744b5fb2b4243c67781f973770a0474397d2",
@@ -1904,9 +1961,10 @@
       {
         "asset_id": "LEGACY-ASSET-66A3EB90764ABB6E7F57",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -1915,7 +1973,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/workflow/current-location-workflow-identity.ts",
         "source_sha256": "sha256:5975e2bd15af4fe44c7b1b405f7273c7c1353c05883b23d6a82c4e3902f81bc9",
@@ -1925,9 +1984,10 @@
       {
         "asset_id": "LEGACY-ASSET-67D77EEBF1209346882C",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1937,7 +1997,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/workflow-execution-policy-registry.ts",
         "source_sha256": "sha256:79ba1d900f9d513706687ca3f06eeaeb8924c2c6534dbe4b58f1ead48cdf50c8",
@@ -1947,16 +2008,18 @@
       {
         "asset_id": "LEGACY-ASSET-6B10C0467A1A1918D46E",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/shared/collection-utils.ts",
         "source_sha256": "sha256:9639253d0240104af990b2aaa22b5c18b72893c5540737d39b938589a473e7a1",
@@ -1966,16 +2029,18 @@
       {
         "asset_id": "LEGACY-ASSET-72ECA3C318F8028A6D91",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/visualization-tree-contract.ts",
         "source_sha256": "sha256:2aeddd9900aebc2abd72aa3b7381aa0260cf6bd4de3cfd350ee7435dcab22ce4",
@@ -1985,9 +2050,10 @@
       {
         "asset_id": "LEGACY-ASSET-85F302A8E7280A166171",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -1996,7 +2062,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/atomic-contract-id.ts",
         "source_sha256": "sha256:0f0305eb66c3f283eb446e23ac59287eedea2e6afc4f9182f177dec21741ffa6",
@@ -2006,9 +2073,10 @@
       {
         "asset_id": "LEGACY-ASSET-8A390337BEE15CED1AA2",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -2017,7 +2085,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/harness-db-tables-semantic.ts",
         "source_sha256": "sha256:a3ed6665a0df2a16b898e9f34217a507d7d4b9cb24b53bead7d4d0cc38d5a905",
@@ -2027,16 +2096,18 @@
       {
         "asset_id": "LEGACY-ASSET-8F85476FEB95D1284680",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/shared/typescript-lazy.ts",
         "source_sha256": "sha256:7e791e76a94f1099c4779f3709d8bfb9a0f4ffaae52f3a8d4a7059306e141847",
@@ -2046,16 +2117,18 @@
       {
         "asset_id": "LEGACY-ASSET-97D1784D53918F126E3B",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/visualization-contract.ts",
         "source_sha256": "sha256:2a1edb950c94a25b0582e5df39120b651f0a33302b182594b0ea953fca0270fd",
@@ -2065,9 +2138,10 @@
       {
         "asset_id": "LEGACY-ASSET-9BFD3E86A8F5AE0DA720",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -2077,7 +2151,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/harness-db-catalog.ts",
         "source_sha256": "sha256:0f97120c762dfad239bd492f01205aeccb1ca93d2ef123d7bd552a11c66e917a",
@@ -2087,9 +2162,10 @@
       {
         "asset_id": "LEGACY-ASSET-A3EC7F28F52F2808041E",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -2098,7 +2174,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/cli/preflight-gate-aggregation.ts",
         "source_sha256": "sha256:51f20fae3c7b08bee546101bdac8906aca55b1351428a7de4bfb139a1fb4ab17",
@@ -2108,9 +2185,10 @@
       {
         "asset_id": "LEGACY-ASSET-B8033A9BCD9CC70BF8F6",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -2119,7 +2197,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/harness-db-tables-registry.ts",
         "source_sha256": "sha256:d1cb7e62b7ebc01cd5d834d8428f745237c48ec9c7e4f80d3b1109ca38e5312d",
@@ -2129,9 +2208,10 @@
       {
         "asset_id": "LEGACY-ASSET-B85C45D7C5621BD8201C",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -2140,7 +2220,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/cli/lite-canary-selector.ts",
         "source_sha256": "sha256:6cb39dd168fce0b470a7f7206620b4fda8fd8ac2b415776a49148a26fe728e89",
@@ -2150,9 +2231,10 @@
       {
         "asset_id": "LEGACY-ASSET-C4C93ABA07B48AAB6D05",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -2162,7 +2244,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/cli/full-regression-shards.ts",
         "source_sha256": "sha256:1e14686b6ca2aa6e2f72327d252413093e3e0b6820c424085d09f93376f973b1",
@@ -2172,9 +2255,10 @@
       {
         "asset_id": "LEGACY-ASSET-CD0EAE866A7CA2A0D1F8",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -2183,7 +2267,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/setup/update-check.ts",
         "source_sha256": "sha256:d2ced39b60b7bb283191b41384859549d3635d42f748f0a46eaa6c24afd765a8",
@@ -2193,9 +2278,10 @@
       {
         "asset_id": "LEGACY-ASSET-D331F13A1FA21B0C05FE",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -2205,7 +2291,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/cli/commands/issue-hierarchy-census.ts",
         "source_sha256": "sha256:21979bfe874268f86e99b00fa1292a9bb40b63acc6535a030beb793a9256d19b",
@@ -2215,9 +2302,10 @@
       {
         "asset_id": "LEGACY-ASSET-D641C9E49847C74848CE",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -2226,7 +2314,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/workflow/workflow-interview-unresolved.ts",
         "source_sha256": "sha256:9d8d674caf4ed7d916bd5affa3d047a2712da5ab5de1fa3927c27a95a7748fef",
@@ -2236,9 +2325,10 @@
       {
         "asset_id": "LEGACY-ASSET-D73981AB049C177AC184",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -2248,7 +2338,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/workflow/universal-workflow-envelope.ts",
         "source_sha256": "sha256:81b9a975cb1004967d5707c432ac30201c0ebb2ccd138e5aed6184c4a2782e61",
@@ -2258,9 +2349,10 @@
       {
         "asset_id": "LEGACY-ASSET-DBCE67DF3C1FE8648191",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -2269,7 +2361,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/workflow-execution-policy-projection.ts",
         "source_sha256": "sha256:dc7af9d59bb738cb0b20f553f3bfe263664a6ae786f4132181c41cf45cf6e5fa",
@@ -2279,9 +2372,10 @@
       {
         "asset_id": "LEGACY-ASSET-E4EDA1517A4F062B2D64",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -2290,7 +2384,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/harness-db-tables-screen.ts",
         "source_sha256": "sha256:0a88381ecb0c9e11d5314a0d2a6c76b3effb3d5798f2b36e694cf5eff0e759ba",
@@ -2300,9 +2395,10 @@
       {
         "asset_id": "LEGACY-ASSET-E595E192F58FF3B1A2A0",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -2312,7 +2408,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/visualization-view-contract.ts",
         "source_sha256": "sha256:135094909c3fffdfc710478161453073987988bd2d8bc6ce9a8d7a61d7c2cc4d",
@@ -2322,16 +2419,18 @@
       {
         "asset_id": "LEGACY-ASSET-E9F6609D6EBDEBD288BC",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/shared/repo-info.ts",
         "source_sha256": "sha256:e8c194f5b9ecdfd599e3cb9de0bba6b53be19601e7f6d9cdaca72a199c10e632",
@@ -2341,9 +2440,10 @@
       {
         "asset_id": "LEGACY-ASSET-E9FF2DF247348F5608F2",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -2353,7 +2453,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/harness-db-indexes.ts",
         "source_sha256": "sha256:3480d9e7511c4a091c8ccb3c3f543f4e4a35560d3b145889d55ca30a10776ae3",
@@ -2363,16 +2464,18 @@
       {
         "asset_id": "LEGACY-ASSET-ECE1AFAAE85425CD29BB",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/shared/value-guards.ts",
         "source_sha256": "sha256:5f4872c47d431595a5e04f0bfd581b55c183cbf4cc1046e6b09ae9dfd81ca35f",
@@ -2382,9 +2485,10 @@
       {
         "asset_id": "LEGACY-ASSET-EEC2DA57D64EC4908112",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -2393,7 +2497,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/design-declarations.ts",
         "source_sha256": "sha256:df0922b4aa4b2de2f4b8fe9e9a72e75dd1b2eb44ce0177412060998bbf1032a1",
@@ -2403,16 +2508,18 @@
       {
         "asset_id": "LEGACY-ASSET-EFFA71383D8FAE4EBBBA",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/shared/shell-quote.ts",
         "source_sha256": "sha256:68cf6f82d2461b364a1053ce5fd59f93a6055131964e5ab85371333979043d28",
@@ -2422,9 +2529,10 @@
       {
         "asset_id": "LEGACY-ASSET-F0ED1811C81FD1184188",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
             "candidate_products": [
@@ -2434,7 +2542,8 @@
             "category": "multi_product_conflict"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/schema/harness-db.ts",
         "source_sha256": "sha256:86b0ca470118e1ce4e100c313d39945bc62f3198720380850e4efb9aae7fd1ca",
@@ -2444,16 +2553,18 @@
       {
         "asset_id": "LEGACY-ASSET-F2B7BCF14B8563B15C14",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/shared/string-utils.ts",
         "source_sha256": "sha256:c3070b30d821e0e4f10cd060ddc494950b54e993af3899078927c29aa1de18d3",
@@ -2463,16 +2574,18 @@
       {
         "asset_id": "LEGACY-ASSET-F45E18DC5CE003BD8D91",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/workflow/skill-applicability-authoring.ts",
         "source_sha256": "sha256:64168537fc71bda6b6c8fec963062d9c048048647cf15bdde69fe2feb277f463",
@@ -2482,9 +2595,10 @@
       {
         "asset_id": "LEGACY-ASSET-F5C9B1066B7337E45182",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [
@@ -2493,7 +2607,8 @@
             "category": "direct_product_basis"
           }
         ],
-        "overlap_status": "same_source_different_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_different_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/workflow/cli-workflow-identity-projection.ts",
         "source_sha256": "sha256:7510c6f7eb7e605a9c5bc8b15cd689190a8adbf3a255afdd0fa598bfba8bbaa9",
@@ -2503,16 +2618,18 @@
       {
         "asset_id": "LEGACY-ASSET-F6A0AC0CAC1590A754EC",
         "bundle_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+        "comparison_basis": "source_path_sha256_and_candidate_category_products",
         "denominator_role": "existing_research_union",
         "evidence_completeness": "existing_bundle_static_evidence_present; candidate difference retained for human reconciliation",
-        "existing_methods": [
+        "existing_candidate_results": [
           {
             "bundle": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
             "candidate_products": [],
             "category": "insufficient_basis"
           }
         ],
-        "overlap_status": "same_source_same_method",
+        "method_identity_claimed": false,
+        "overlap_status": "same_source_same_candidate_result",
         "research_scope": "existing_main_product_research_union",
         "source_path": "src/shared/commit-subject.ts",
         "source_sha256": "sha256:43b9b3897c3c77a625236635371411d515828b59616487899fff3124dea4ec62",
@@ -2523,8 +2640,8 @@
     "initial_target_count": 120,
     "new_target_count": 67,
     "overlap_count": 53,
-    "same_source_different_method_count": 36,
-    "same_source_same_method_count": 17,
+    "same_source_different_candidate_result_count": 36,
+    "same_source_same_candidate_result_count": 17,
     "union_count": 429
   },
   "phase_candidate_distribution": {

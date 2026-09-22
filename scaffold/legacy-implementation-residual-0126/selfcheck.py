@@ -135,6 +135,9 @@ def anchor_coverage(rows): rows[0]["anchor_line_coverage"]["coverage_ratio"] = 1
 def research_scope(rows): rows[0]["research_scope"] = "formal_product_authority"
 def overlap_reconciliation(inv): inv["overlap_reconciliation"]["overlap_count"] -= 1
 def product_research_union(inv): inv["product_research_union"]["union_count"] -= 1
+def pre_target_residual(inv): inv["existing_research_union"]["pre_target_residual_unresolved_count"] -= 1
+def post_batch_remaining(inv): inv["existing_research_union"]["post_batch_remaining_unresolved_count"] += 1
+def denominator_label(inv): inv["existing_research_union"]["denominator_labels"]["new_target"] = "processed_target"
 
 
 def binding_upstream_stale(binding): binding["upstream"][0]["sha256"] = "0" * 64
@@ -260,4 +263,7 @@ run_binding_case("binding_upstream_stale_tamper", "E_BINDING_UPSTREAM", binding_
 run_case("research_scope_tamper", "E_RECORD_SCHEMA", research_scope, None)
 run_case("overlap_reconciliation_tamper", "E_OVERLAP_RECONCILIATION", None, overlap_reconciliation)
 run_case("product_research_union_tamper", "E_PRODUCT_RESEARCH_UNION", None, product_research_union)
-print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 19}")
+run_case("pre_target_residual_tamper", "E_INVENTORY_DECLARATION", None, pre_target_residual)
+run_case("post_batch_remaining_tamper", "E_INVENTORY_DECLARATION", None, post_batch_remaining)
+run_case("denominator_label_tamper", "E_INVENTORY_DECLARATION", None, denominator_label)
+print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 22}")
