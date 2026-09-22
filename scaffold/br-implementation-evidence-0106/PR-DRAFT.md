@@ -13,8 +13,9 @@ research: HIL-BR-21-33 19 unit implementation evidence crosswalk (SCF-B-0106)
 ## 変更内容
 
 - inventory.jsonで19 unit、55 edge、38 old asset、57 current static refs、Wave1〜50のscan row、BASE ancestry、入力digestを固定する。
-- evidence.jsonlでsource snapshot、representative candidate、旧asset ledger／decision／read-after、旧実装候補、failure／degradation／consumer、current refs、未解決欄をunit別に記録する。
+- evidence.jsonlでsource snapshot、representative candidateの完全record、旧asset ledger／decision／read-after、旧実装候補、failure／degradation／consumer、current refs、未解決欄をunit別に記録する。unitごとのasset集合とinventoryのscope／count／evidence partition宣言も正本から導出して固定する。
 - 旧implementation_sourceは静的候補としてのみ保持し、unit実装成立を主張しない。coverage.failure、phase transition、ledger statusは実行failure／縮退receiptへ昇格しない。
+- 旧実装のevidence_presence、asset_ids、review_edge_ids、semantic_contribution_by_edgeを期待edgeから完全一致で照合する。failureはcoverage.failure／asset ledger、degradationはsource phase evidence／counterevidenceを固定BASEから再導出し、source spanとtrace statusを検証する。
 - current L2／L11／boundaryは候補参照として保持し、current implementation／operation／acceptanceをunknownにする。未実装を断定しない。
 - evidence_refsはasset source_pathとの一致を要求せず、各refのpath／line／blobを固定BASE Git objectから個別検証する。Wave1〜17はraw span bytes（最終改行を含む）、Wave18〜50はCR/LF除去後のLF join（最終改行なし）というhash provenanceをinventoryとlegacy_anchor_resolutionに記録する。
 - SCF-B-0106 Bindingへbundle全成果物を登録する。
@@ -25,7 +26,7 @@ research: HIL-BR-21-33 19 unit implementation evidence crosswalk (SCF-B-0106)
     SCF-B-0106 validate: PASS (19 units, 55 review edges, 38 old assets; static-only)
 
     python3 scaffold/br-implementation-evidence-0106/selfcheck.py
-    SCF-B-0106 selfcheck: PASS (13 negative cases; expected error codes matched)
+    SCF-B-0106 selfcheck: PASS (24 negative cases; expected error codes matched)
 
     python3 scaffold/tools/scfctl.py validate
 

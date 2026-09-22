@@ -211,18 +211,7 @@ def exact_review_fields(row: dict, wave: int) -> dict:
 
 
 def candidate_snapshot(row: dict) -> list[dict]:
-    result = []
-    for candidate in row.get("representative_legacy_assets", []):
-        result.append({
-            key: candidate.get(key)
-            for key in (
-                "asset_id", "source_path", "source_sha256", "artifact_evidence_kind", "classification_id",
-                "confidence", "link_basis", "semantic_review_state", "implementation_evidence_state",
-                "legacy_implementation_status", "direct_requirement_semantic_link", "consumer_closure_status",
-            )
-            if key in candidate
-        })
-    return result
+    return [dict(candidate) for candidate in row.get("representative_legacy_assets", [])]
 
 
 def main() -> None:

@@ -36,6 +36,33 @@ ROW_KEYS = [
     "observed_consumer_refs", "consumer_closure_status", "consumer_closure_evidence", "evidence_refs",
     "unresolved", "current_requirement_implementation_status", "new_build_allowed", "authority_effect",
 ]
+ANCHOR_POLICY = {
+    "wave_1_17": "raw_span_bytes_including_final_newline",
+    "wave_18_50": "utf8_lines_strip_crlf_join_lf_without_terminal_newline",
+    "provenance": "legacy semantic review evidence_refs excerpt_sha256 static contract; policy is selected by edge wave",
+}
+EXPECTED_EVIDENCE_PARTITION = {
+    "source_statement": "crosswalk source_requirement snapshot",
+    "candidate": "representative_legacy_assets and catalog status; search candidates only",
+    "old_implementation": "implementation_source review edges; static, unexecuted, unit status unknown",
+    "old_failure": "observed receipt only; none found, status unknown",
+    "old_degradation": "phase transition assessment only; unit status unknown",
+    "old_consumer": "observed refs and ledger refs; closure pending",
+    "current_implementation": "direct implementation evidence only; none found, status unknown",
+    "current_acceptance": "direct acceptance receipt only; none found, status unknown",
+}
+EXPECTED_PROHIBITED_INFERENCE = [
+    "代表asset・catalog implementation_source・design・requirementはunitの実装成立を示さない",
+    "phase transition assessment・coverage.failure・unreviewed ledger statusは実行failureのreceiptではない",
+    "current L2/L11/scaffoldの存在・validator合格から実装・受入・運用・未実装を生成しない",
+    "unknown／pendingを未実装・縮退・完了へ変換しない",
+]
+EXPECTED_INVENTORY_UNRESOLVED = [
+    "legacy_unit_implementation_unknown", "legacy_failure_observation_unknown",
+    "legacy_degradation_unit_status_unknown", "consumer_closure_pending",
+    "current_implementation_evidence_missing", "current_acceptance_evidence_missing",
+    "product_boundary_human_decision_pending", "successor_assignment_unassigned",
+]
 
 
 def load_jsonl(path: Path) -> list[dict]:
@@ -174,11 +201,7 @@ class Validator:
         if listed_scan != expected_scan:
             self.error("E_SCAN_FILES", "Wave1-50 scan file一覧が一致しない")
         self.check_input_digests(inventory, evidence)
-        if inventory.get("anchor_digest_policy") != {
-            "wave_1_17": "raw_span_bytes_including_final_newline",
-            "wave_18_50": "utf8_lines_strip_crlf_join_lf_without_terminal_newline",
-            "provenance": "legacy semantic review evidence_refs excerpt_sha256 static contract; policy is selected by edge wave",
-        }:
+        if inventory.get("anchor_digest_policy") != ANCHOR_POLICY:
             self.error("E_OLD_ANCHOR_POLICY", "anchor digest normalization provenanceが不一致")
 
         unit_by_id = {x.get("unit_candidate_id"): x for x in evidence}
@@ -195,14 +218,14 @@ class Validator:
             ):
                 if source_snapshot.get(key) != source.get(key):
                     self.error("E_SOURCE_BINDING", f"{unit} source field不一致: {key}")
-            candidate_ids = [x.get("asset_id") for x in source_snapshot.get("representative_legacy_assets", [])]
-            expected_candidate_ids = [x.get("asset_id") for x in source.get("representative_legacy_assets", [])]
-            if candidate_ids != expected_candidate_ids:
-                self.error("E_CANDIDATE_BINDING", f"{unit} representative candidate set不一致")
+            if source_snapshot.get("representative_legacy_assets") != source.get("representative_legacy_assets", []):
+                self.error("E_CANDIDATE_BINDING", f"{unit} representative candidate record不一致")
             actual_unit_edges = current.get("semantic_review_edges", [])
             expected_unit_edges = expected_by_unit[unit]
-            if {x.get("review_id") for x in actual_unit_edges} != {x.get("review_id") for x in expected_unit_edges}:
-                self.error("E_REVIEW_EDGE_SET", f"{unit} unit edge集合不一致")
+            actual_edge_ids = [x.get("review_id") for x in actual_unit_edges]
+            expected_edge_ids = [x.get("review_id") for x in expected_unit_edges]
+            if sorted(actual_edge_ids) != sorted(expected_edge_ids):
+                self.error("E_REVIEW_EDGE_SET", f"{unit} unit edge multiset／件数が不一致")
             for edge in actual_unit_edges:
                 rid = edge.get("review_id")
                 expected = expected_edges.get(rid)
@@ -211,7 +234,7 @@ class Validator:
                 if edge != expected:
                     self.error("E_REVIEW_EDGE_BYTES", f"{rid} semantic review edge snapshot不一致")
                 self.check_review_edge(edge, ledger)
-            self.check_unit(current, source, ledger, decisions, read_after)
+            self.check_unit(current, source, ledger, decisions, read_after, expected_unit_edges)
 
         expected_assets = {x["asset_id"] for x in expected_edges.values()}
         actual_assets = {
@@ -221,12 +244,39 @@ class Validator:
         }
         if actual_assets != expected_assets:
             self.error("E_ASSET_SET", f"old asset集合が不一致: actual={len(actual_assets)} expected={len(expected_assets)}")
+        scope = inventory.get("scope", {})
+        expected_scope = {
+            "source_requirement_ids": list(dict.fromkeys(x["source_requirement_id"] for x in crosswalk)),
+            "unit_ids": UNITS,
+            "wave_range": "1-50",
+            "review_files": [str(wave_path(self.root, wave).relative_to(self.root)) for wave in range(1, 51)],
+            "semantic_review_scan_files": [str(wave_path(self.root, wave).relative_to(self.root)) for wave in range(1, 51)],
+            "semantic_review_scan_row_count": all_scan_rows,
+            "review_edge_count": len(expected_edges),
+            "unique_asset_count": len(expected_assets),
+        }
+        if any(scope.get(key) != value for key, value in expected_scope.items()):
+            self.error("E_INVENTORY_DECLARATION", "inventory scope declarationが導出値と不一致")
+        expected_current_static_refs = sum(
+            len(row.get("current_implementation_evidence", {}).get("current_refs", []))
+            for row in evidence
+        )
+        if inventory.get("evidence_partition") != EXPECTED_EVIDENCE_PARTITION:
+            self.error("E_INVENTORY_DECLARATION", "inventory evidence_partitionが固定宣言と不一致")
+        if inventory.get("prohibited_inference") != EXPECTED_PROHIBITED_INFERENCE:
+            self.error("E_INVENTORY_DECLARATION", "inventory prohibited_inferenceが固定宣言と不一致")
+        if inventory.get("unresolved") != EXPECTED_INVENTORY_UNRESOLVED:
+            self.error("E_INVENTORY_DECLARATION", "inventory unresolvedが固定宣言と不一致")
         counts = inventory.get("counts", {})
-        expected_counts = {"units": 19, "semantic_review_edges": 55, "unique_old_assets": 38, "old_failure_receipts": 0,
-                           "old_runtime_test_ci_executions": 0, "current_runtime_executions": 0}
+        expected_counts = {
+            "units": len(UNITS), "semantic_review_edges": len(expected_edges),
+            "unique_old_assets": len(expected_assets), "current_static_refs": expected_current_static_refs,
+            "old_failure_receipts": 0, "old_runtime_test_ci_executions": 0,
+            "current_runtime_executions": 0,
+        }
         for key, value in expected_counts.items():
             if counts.get(key) != value:
-                self.error("E_COUNTS", f"counts.{key}={counts.get(key)!r}（期待{value!r}）")
+                self.error("E_INVENTORY_DECLARATION", f"counts.{key}={counts.get(key)!r}（期待{value!r}）")
         return self.finish()
 
     def check_input_digests(self, inventory: dict, evidence: list[dict]) -> None:
@@ -382,7 +432,156 @@ class Validator:
         if current.get("legacy_anchor_resolution") != expected:
             self.error("E_OLD_ANCHOR_RESOLUTION", f"{current.get('unit_candidate_id')} anchor resolution不一致")
 
-    def check_unit(self, current: dict, source: dict, ledger: dict, decisions: list[dict], read_after: list[dict]) -> None:
+    def expected_phase_evidence(self, source: dict) -> list[dict]:
+        keys = (
+            "phase_id", "title", "status_scope", "current_status", "legacy_capability_status",
+            "transition_assessment", "gap", "evidence_spans", "evidence_span_matches",
+            "evidence_trace_status", "product_candidate_evidence_status", "legacy_layers_evidenced",
+        )
+        return [
+            {key: item.get(key) for key in keys if key in item}
+            for item in source.get("phase_capability_evidence", [])
+        ]
+
+    def check_phase_source_spans(self, source: dict, phase: list[dict], unit: str) -> None:
+        source_spans = source.get("source_text_spans", [])
+        for item in phase:
+            matches = item.get("evidence_span_matches", [])
+            for text in item.get("evidence_spans", []):
+                if not any(text == candidate or text in candidate for candidate in source_spans):
+                    self.error("E_OLD_DEGRADATION_EVIDENCE", f"{unit} phase evidence spanがsource spanに存在しない")
+            for match in matches:
+                text = match.get("text")
+                kind = match.get("match_kind")
+                if kind == "exact_source_span_element":
+                    valid = text in source_spans
+                elif kind == "source_span_substring":
+                    valid = any(text in candidate for candidate in source_spans)
+                else:
+                    valid = False
+                if not valid:
+                    self.error("E_OLD_DEGRADATION_EVIDENCE", f"{unit} phase evidence_span_matchがsource bytes由来でない")
+            expected_trace = (
+                "exact_source_span_element_traced"
+                if matches and all(match.get("match_kind") == "exact_source_span_element" for match in matches)
+                else "source_substring_quote_traced"
+            )
+            if item.get("evidence_trace_status") != expected_trace:
+                self.error("E_OLD_DEGRADATION_EVIDENCE", f"{unit} phase evidence_trace_statusが導出値と不一致")
+
+    def check_unit_asset_set(self, current: dict, expected_unit_edges: list[dict]) -> None:
+        expected_assets = sorted({edge.get("asset_id") for edge in expected_unit_edges})
+        actual_assets = [
+            asset.get("asset_id")
+            for asset in current.get("old_asset_evidence", {}).get("assets", [])
+        ]
+        if len(actual_assets) != len(set(actual_assets)):
+            self.error(
+                "E_OLD_ASSET_UNIT_SET",
+                f"{current.get('unit_candidate_id')} unit asset行に重複がある",
+            )
+        actual_assets = sorted(actual_assets)
+        if actual_assets != expected_assets:
+            self.error(
+                "E_OLD_ASSET_UNIT_SET",
+                f"{current.get('unit_candidate_id')} unit asset集合がedge由来集合と不一致",
+            )
+
+    def check_legacy_implementation(self, current: dict, expected_unit_edges: list[dict]) -> None:
+        impl_edges = [
+            edge for edge in expected_unit_edges
+            if edge.get("artifact_evidence_kind") == "implementation_source"
+        ]
+        expected = {
+            "evidence_presence": (
+                "static_implementation_source_candidate_present"
+                if impl_edges else "no_static_implementation_source_edge"
+            ),
+            "unit_implementation_status": "unknown",
+            "execution_performed": False,
+            "review_edge_ids": [edge["review_id"] for edge in impl_edges],
+            "asset_ids": [edge["asset_id"] for edge in impl_edges],
+            "semantic_contribution_by_edge": [
+                {
+                    "review_id": edge["review_id"],
+                    "asset_id": edge["asset_id"],
+                    "semantic_link_status": edge["semantic_link_status"],
+                    "semantic_relation": edge["semantic_relation"],
+                    "contribution": edge["legacy_requirement_implementation_contribution"],
+                    "counterevidence": edge.get("counterevidence", []),
+                }
+                for edge in impl_edges
+            ],
+            "why_unit_status_is_unknown": [
+                "implementation_sourceは旧sourceの静的候補であり、unit全atomの成立・consumer接続・受入を証明しない",
+                "旧code/test/runtime/CIを実行していない",
+                "旧asset ledgerのimplementation_statusはHistorical assetではunknownである",
+            ],
+        }
+        if current.get("legacy_implementation_evidence") != expected:
+            self.error("E_OLD_IMPL_EVIDENCE", f"{current.get('unit_candidate_id')} old implementation evidenceがedge由来でない")
+
+    def check_legacy_failure_degradation(
+        self,
+        current: dict,
+        source: dict,
+        ledger: dict,
+        expected_unit_edges: list[dict],
+    ) -> None:
+        assets = current.get("old_asset_evidence", {}).get("assets", [])
+        expected_failure = {
+            "observed_failure_status": "unknown",
+            "observed_failure_receipts": [],
+            "review_coverage_failure_values": [
+                {
+                    "review_id": edge["review_id"],
+                    "value": (
+                        edge.get("coverage", {}).get("failure", "unknown")
+                        if isinstance(edge.get("coverage"), dict)
+                        else edge.get("coverage", "unknown")
+                    ),
+                }
+                for edge in expected_unit_edges
+            ],
+            "ledger_external_effect_statuses": [
+                {
+                    "asset_id": asset["asset_id"],
+                    "value": ledger[asset["asset_id"]].get("external_effect_status"),
+                }
+                for asset in assets if asset.get("asset_id") in ledger
+            ],
+            "why_unknown": [
+                "semantic reviewのcoverage.failureは観測failure receiptではなく、対応範囲の静的分類である",
+                "Historical assetのfailure receiptは見つからず、ledgerのexternal_effect_statusも実行観測を示さない",
+                "旧failure/runtime/testを実行していないため、失敗・正常・縮退を実行結果から判定できない",
+            ],
+        }
+        if current.get("legacy_failure_evidence") != expected_failure:
+            self.error("E_OLD_FAILURE_EVIDENCE", f"{current.get('unit_candidate_id')} failure evidenceがedge/ledger由来でない")
+        expected_phase = self.expected_phase_evidence(source)
+        expected_degradation = {
+            "phase_level_evidence": expected_phase,
+            "phase_transition_evidence_status": "present_in_crosswalk_assessment",
+            "unit_degradation_status": "unknown",
+            "why_phase_transition_is_not_unit_failure": "crosswalkのtransition_assessmentはphase capability候補の静的評価であり、unitの実装失敗receiptではない",
+            "counterevidence": [item for edge in expected_unit_edges for item in edge.get("counterevidence", [])],
+        }
+        if current.get("legacy_degradation_evidence") != expected_degradation:
+            self.error("E_OLD_DEGRADATION_EVIDENCE", f"{current.get('unit_candidate_id')} degradation evidenceがsource由来でない")
+        self.check_phase_source_spans(source, expected_phase, current.get("unit_candidate_id"))
+
+    def check_unit(
+        self,
+        current: dict,
+        source: dict,
+        ledger: dict,
+        decisions: list[dict],
+        read_after: list[dict],
+        expected_unit_edges: list[dict],
+    ) -> None:
+        self.check_unit_asset_set(current, expected_unit_edges)
+        self.check_legacy_implementation(current, expected_unit_edges)
+        self.check_legacy_failure_degradation(current, source, ledger, expected_unit_edges)
         impl = current.get("legacy_implementation_evidence", {})
         if impl.get("unit_implementation_status") != "unknown" or impl.get("execution_performed") is not False:
             self.error("E_OLD_IMPL_STATUS", f"{current.get('unit_candidate_id')} old implementation statusがunknown/not-runではない")
