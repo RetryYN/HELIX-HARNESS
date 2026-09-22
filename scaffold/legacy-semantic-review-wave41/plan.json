@@ -1,0 +1,291 @@
+{
+  "ancestor_base_gate": {
+    "checked_by": "validate.py",
+    "mode": "base_or_descendant",
+    "required_base_revision": "f83b277c6e3e9d48e3ce2f2b0faeed7ac2caf50f"
+  },
+  "asset_read_scope": {
+    "catalog": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "crosswalk": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "decision": "docs/governance/legacy-asset-decisions.jsonl",
+    "decomposition": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+    "disposition": "docs/governance/legacy-asset-disposition.jsonl",
+    "execution": "not_run",
+    "failure_and_consumer": "archive historical governance ledgers; static fields only"
+  },
+  "base_revision": "f83b277c6e3e9d48e3ce2f2b0faeed7ac2caf50f",
+  "batch_id": "LEGACY-SEMANTIC-WAVE41-2026-09-22",
+  "boundaries": [
+    "旧requirements原文、分解span、source relationを逐語保持し、候補意味を現行authorityへ昇格しない",
+    "HARNESS／OSのcandidate decompositionを保持し、Web／Web-OSを旧asset candidate_product_targetsからroutingしない",
+    "candidate phase／product poolは検索候補であり、phase admission・owner・successor・implementation・degradation・consumer closureを確定しない",
+    "NFR-06／NFR-07のHARNESS implementation_source欠落とNFR-07 OSのpool zeroをmissing evidenceへ分離する",
+    "NFR-07 HARNESS／OSの共有source spanはshared relationとして保持し、単語や表セルを独立要求にしない",
+    "historical authority／consumer／failure codeは旧判断史としてのみ保持し、現行権限へ昇格しない"
+  ],
+  "counts": {
+    "composite_unresolved": 5,
+    "inspected_legacy_assets": 9,
+    "missing_evidence_receipts": 5,
+    "role_edges": 10,
+    "selected_role_assets": 5,
+    "semantic_atoms": 9,
+    "units": 5
+  },
+  "legacy_execution": "not_run",
+  "new_build_allowed": false,
+  "per_chain_roles": [
+    "requirement",
+    "design",
+    "implementation_source"
+  ],
+  "schema_revision": 1,
+  "selected_units": [
+    "IRUNIT-HIL-NFR-06-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-07-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-07-HELIX-OS",
+    "IRUNIT-HIL-NFR-08-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-08-HELIX-OS"
+  ],
+  "unit_plan": [
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-HARNESS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-006",
+        "authority_id": "RAS-HIL-05",
+        "failure_code": "HIL_ACTION_BINDING_APPROVAL_MISSING",
+        "failure_consumers": [
+          "HOT-HIL-15",
+          "HST-HIL-017"
+        ],
+        "failure_scope": "action-binding approval missing for high-impact operation",
+        "historical_consumer": "ActionBindingGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [
+        "implementation_source"
+      ],
+      "phase_candidates": [
+        "PHCAP-04"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 53,
+      "responsibility_candidate": "不可逆・高リスク操作に対する工程上のaction-binding approval条件",
+      "role_edges": 2,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-5429AA05B022E9F49B0A",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 2,
+      "source_requirement_id": "HIL-NFR-06",
+      "source_statement_semantic_digest": "sha256:fb3dadec4964b55ee41b0849950ab28bdcb8808e80d065d38c06bc9ca91bf279",
+      "source_statement_text": "認証・認可・決済・PII・secret・license・schema migration・破壊的データ・本番/外部infraはaction-binding approvalを必要とする。",
+      "source_text_spans": [
+        "認証・認可・決済・PII・secret・license・schema migration・破壊的データ・本番/外部infraは",
+        "action-binding approvalを必要とする"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-06-HELIX-HARNESS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-HARNESS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-007",
+        "authority_id": "RAS-HIL-05",
+        "failure_code": "HIL_SCOPE_NECESSITY_MISSING",
+        "failure_consumers": [
+          "HOT-HIL-38",
+          "HST-HIL-021"
+        ],
+        "failure_scope": "scope necessity and authoritative oracle contribution missing",
+        "historical_consumer": "ScopeAuthorityGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [
+        "implementation_source"
+      ],
+      "phase_candidates": [
+        "PHCAP-04"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 53,
+      "responsibility_candidate": "Scope Gateの最小必要性・oracle寄与・拒否条件を定める",
+      "role_edges": 2,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-5429AA05B022E9F49B0A",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 2,
+      "source_requirement_id": "HIL-NFR-07",
+      "source_statement_semantic_digest": "sha256:e3df2d68697433af977cfca1e4f63d83f2f9f9b7fa305e66734cd046fbad2058",
+      "source_statement_text": "Scope Gateは機能追加数だけでなくcomplexity、public surface、運用負債を測り、authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する。",
+      "source_text_spans": [
+        "Scope Gateは機能追加数だけでなくcomplexity、public surface、運用負債を測り",
+        "authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-HARNESS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-007",
+        "authority_id": "RAS-HIL-05",
+        "failure_code": "HIL_SCOPE_NECESSITY_MISSING",
+        "failure_consumers": [
+          "HOT-HIL-38",
+          "HST-HIL-021"
+        ],
+        "failure_scope": "scope necessity and authoritative oracle contribution missing",
+        "historical_consumer": "ScopeAuthorityGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [
+        "design",
+        "implementation_source"
+      ],
+      "phase_candidates": [],
+      "phase_classification_status": "unresolved",
+      "phase_pool_asset_count": 0,
+      "responsibility_candidate": "complexity等を計測しScope違反を拒否する管理運転",
+      "role_edges": 1,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 2,
+      "source_requirement_id": "HIL-NFR-07",
+      "source_statement_semantic_digest": "sha256:e3df2d68697433af977cfca1e4f63d83f2f9f9b7fa305e66734cd046fbad2058",
+      "source_statement_text": "Scope Gateは機能追加数だけでなくcomplexity、public surface、運用負債を測り、authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する。",
+      "source_text_spans": [
+        "complexity、public surface、運用負債を測り",
+        "拡張を拒否する"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-OS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-HARNESS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-008",
+        "authority_id": "RAS-HIL-09",
+        "failure_code": "HIL_PROSE_ONLY_EVIDENCE",
+        "failure_consumers": [
+          "HOT-HIL-14",
+          "HST-HIL-009"
+        ],
+        "failure_scope": "prose-only evidence without failure code/provenance",
+        "historical_consumer": "EvidenceProvenanceGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [
+        "implementation_source"
+      ],
+      "phase_candidates": [
+        "PHCAP-07"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 103,
+      "responsibility_candidate": "prose合格を禁じ、evidence/failure条件を要求するcontract",
+      "role_edges": 2,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-EA8C51BDF69B34E896AA"
+      ],
+      "semantic_atom_count": 1,
+      "source_requirement_id": "HIL-NFR-08",
+      "source_statement_semantic_digest": "sha256:8724cbf48e2e8c314888e5bb12ca828a87ff3abea6e434155031ca65c74d4110",
+      "source_statement_text": "PR監査、Issue Gate、agent registry、memory compaction、ZIP detectorはfailure codeとprovenanceを持ち、proseだけの合格を禁止する。",
+      "source_text_spans": [
+        "proseだけの合格を禁止する"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-HARNESS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-008",
+        "authority_id": "RAS-HIL-09",
+        "failure_code": "HIL_PROSE_ONLY_EVIDENCE",
+        "failure_consumers": [
+          "HOT-HIL-14",
+          "HST-HIL-009"
+        ],
+        "failure_scope": "prose-only evidence without failure code/provenance",
+        "historical_consumer": "EvidenceProvenanceGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-07",
+        "PHCAP-09",
+        "PHCAP-12",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 726,
+      "responsibility_candidate": "PR監査・Issue Gate・registry・memory compaction・detectorのfailure/provenanceを記録・運転",
+      "role_edges": 3,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A4DD57E39031B1402494",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-B9FEE35D2F064EEA4784"
+      ],
+      "semantic_atom_count": 2,
+      "source_requirement_id": "HIL-NFR-08",
+      "source_statement_semantic_digest": "sha256:8724cbf48e2e8c314888e5bb12ca828a87ff3abea6e434155031ca65c74d4110",
+      "source_statement_text": "PR監査、Issue Gate、agent registry、memory compaction、ZIP detectorはfailure codeとprovenanceを持ち、proseだけの合格を禁止する。",
+      "source_text_spans": [
+        "PR監査、Issue Gate、agent registry、memory compaction、ZIP detectorは",
+        "failure codeとprovenanceを持ち"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-OS"
+    }
+  ],
+  "unresolved_questions": [
+    "IRUNIT-HIL-NFR-06-HELIX-OSは本batchの5 unit境界外で、shared action-binding spanとpool zeroの扱いを別reviewで決める必要がある",
+    "HARNESS／OS product boundaryとPHCAP phase authorityは人間のexact-head review待ち",
+    "実装・縮退・current consumer closureは全unitでunknown／pending、旧asset sourceの存在から推定しない"
+  ]
+}
