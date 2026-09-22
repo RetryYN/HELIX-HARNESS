@@ -1,0 +1,650 @@
+{
+  "schema": "rdp001-outside67-product-boundary/v1",
+  "candidate_id": "RDP-001-OUTSIDE67-PRODUCT-BOUNDARY-0062",
+  "status": "findings_only",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "formal_register_append": false,
+  "old_runtime_test_ci_execution": false,
+  "scope": {
+    "worktree": "/home/tenni/.helix-worktrees/outside67-product-boundary",
+    "base_origin_main": "294bfd90bf58390798733a1437f1c91b8dc7fce8",
+    "base_origin_main_expected_before_fetch": "b0b233f2712f69abebc18e698b8661d34bc5a804",
+    "base_drift_observed": true,
+    "base_drift_from": "b0b233f2712f69abebc18e698b8661d34bc5a804",
+    "base_drift_to": "294bfd90bf58390798733a1437f1c91b8dc7fce8",
+    "base_drift_reason": "Wave36 parent通知後にorigin/mainがb0b233f2から294bfd90へ進み、その後#2008 mergeでce66af3bへ進行した。記録baseは294bfd90のまま固定し、branchをce66af3bへrebaseしてmaterializeした。holding/register/sourceは不変。",
+    "read_only": true,
+    "static_only": true,
+    "holding_registration_id": "MPR-SH-OUTSIDE67-001",
+    "holding_path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "holding_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+    "holding_path_revision_pair_denominator": 67,
+    "holding_record_count": 67,
+    "current_live_source_holding_count": 14,
+    "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "management_register_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+    "previous_reviewed_path_revision_pair_count": 2,
+    "previous_reviewed_ids": [
+      "OUTSIDE67-PATH-008",
+      "OUTSIDE67-PATH-011"
+    ],
+    "remaining_before_batch": 65,
+    "selected_path_revision_pair_count": 5,
+    "selected_source_document_count": 5,
+    "remaining_after_batch": 60,
+    "unexplored_scope": "既レビュー2件と今回5件を除く60 path_revision_pair。#2007差分内の001／010は参照混入のため除外するが既レビュー件数には算入しない。",
+    "pr_2007_head": "e2c8f63e0d34ea8131d26f5671e96bca3f34437c",
+    "pr_2007_excluded_ids": [
+      "OUTSIDE67-PATH-001",
+      "OUTSIDE67-PATH-008",
+      "OUTSIDE67-PATH-010",
+      "OUTSIDE67-PATH-011"
+    ],
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "historical_capture_commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
+    "source_unit": "path_revision_pair",
+    "requirement_atoms_are_not_path_pairs": true,
+    "batch_width_observed": 5,
+    "batch_width_policy": "今回検証した幅5件。安全な拡大上限は断定せず、次batchはsource chainごとに独立確認する。",
+    "live_origin_main_observed_after_base": "ce66af3b36727872369a549f01941b26c2b19088",
+    "live_origin_drift_after_recorded_base": true,
+    "live_origin_drift_impact": "記録base 294bfd90は変更せず、branchはce66af3b（#2008 merge後main）へrebaseしてmaterializeした。HEAD／holding／register／selected sourceを静的再照合し、live origin/mainとの同値は要求しない。"
+  },
+  "source_holding": {
+    "registration_id": "MPR-SH-OUTSIDE67-001",
+    "product_target": "unassigned_cross_product",
+    "coverage_result": "source_preserved_unassigned",
+    "authority_effect": "none",
+    "source_atom_count": 67,
+    "source_collection_scope": "outside67 67 path_revision_pair。path／blob／SHAは要求atomやauthorityではない。",
+    "selected_item_ids": [
+      "OUTSIDE67-PATH-059",
+      "OUTSIDE67-PATH-063",
+      "OUTSIDE67-PATH-064",
+      "OUTSIDE67-PATH-065",
+      "OUTSIDE67-PATH-066"
+    ],
+    "selected_ordinals": [
+      59,
+      63,
+      64,
+      65,
+      66
+    ],
+    "unselected_count_after_batch": 60
+  },
+  "selection": {
+    "selection_rule": "product-boundary-direct",
+    "selected": [
+      {
+        "id": "OUTSIDE67-PATH-059",
+        "reason": "四製品の所有、runtime、改善loop、状態分離を直接記録する責務決定文書。",
+        "path_product_candidate": "shared-cross-product"
+      },
+      {
+        "id": "OUTSIDE67-PATH-063",
+        "reason": "HARNESS L11が外部提供、複数product、製品別受入境界を明示する。",
+        "path_product_candidate": "HELIX-HARNESS"
+      },
+      {
+        "id": "OUTSIDE67-PATH-064",
+        "reason": "HELIX-OS L11が内部統制、scope、Web／Web-OS接続とHARNESS外部提供を分離する。",
+        "path_product_candidate": "HELIX-OS"
+      },
+      {
+        "id": "OUTSIDE67-PATH-065",
+        "reason": "HELIX-Web-OS L11がtenant、service runtime、HARNESS能力、OS exportの境界を明示する。",
+        "path_product_candidate": "HELIX-Web-OS"
+      },
+      {
+        "id": "OUTSIDE67-PATH-066",
+        "reason": "HELIX-Web L11がWeb利用、Web-OS→OS export、HARNESS Version 1前提を分離する。",
+        "path_product_candidate": "HELIX-Web"
+      }
+    ]
+  },
+  "classification_basis": {
+    "product": "holding path候補を入口とし、source fragmentの四製品関係を候補として保持。最終owner／authorityはunknown。",
+    "phase": "holding reported_path_scopeのcandidateを保持。phase authorityはunknown。",
+    "semantic_units": "製品境界に直接関係するsource lineだけをproduct unit候補へ束縛し、要求atom化の完了とは扱わない。",
+    "implementation": "holding catalog、source本文、current ledger exact-key scanのみ。旧／現行実装を証明しない。",
+    "degradation": "failure／degraded／unimplemented evidenceを実装状態へ変換せずunknown。",
+    "failure_consumer_decision": "ledger 0 matchでも不在・正常・廃止・不要を推定せずunknown。",
+    "revision_diff": "Git objectのpre-isolation／archive revisionを静的比較。"
+  },
+  "four_products": [
+    {
+      "product": "HELIX-HARNESS",
+      "status": "candidate_boundary_only",
+      "authority_effect": "none"
+    },
+    {
+      "product": "HELIX-OS",
+      "status": "candidate_boundary_only",
+      "authority_effect": "none"
+    },
+    {
+      "product": "HELIX-Web",
+      "status": "candidate_boundary_only",
+      "authority_effect": "none"
+    },
+    {
+      "product": "HELIX-Web-OS",
+      "status": "candidate_boundary_only",
+      "authority_effect": "none"
+    }
+  ],
+  "documents": [
+    {
+      "source_item_id": "OUTSIDE67-PATH-059",
+      "source_ordinal": 59,
+      "source_path": "docs/governance/product-governance-boundary-2026-09-14.md",
+      "source_unit": "path_revision_pair",
+      "artifact_kind": "markdown",
+      "candidate_product": "shared-cross-product",
+      "product_candidate_status": "unknown_path_based_candidate_only",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_phase": "upstream-governance-or-crosswalk",
+      "phase_status": "unknown_path_based_candidate_only",
+      "pre_isolation": {
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "16154441d04f340e5c9108bcd0fb4f12c675250c",
+        "bytes": 9792,
+        "sha256": "ad0dd8f0eb4f3b6fae59d7dcb7d861e221ee332cc676b41b1052a320e3028c58",
+        "line_count": 95
+      },
+      "archive_revision": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "dcc84e71e7b583cc4296fd4235cf097817a93f7a",
+        "bytes": 9856,
+        "sha256": "f7794dde960cc3716c8f5ae4ca42801b4d0e8f9f7510c6a30343fc6c2b65a4b5",
+        "line_count": 95
+      },
+      "reported_holding": {
+        "registration_id": "MPR-SH-OUTSIDE67-001",
+        "denominator": 67,
+        "archive_root_present": false,
+        "diff_status": "A",
+        "relation_to_pre_isolation": "different",
+        "legacy_catalog_record_count": 0,
+        "human_decision_ref": null,
+        "source_holding_status": "proposed_preserved_unassigned"
+      },
+      "status": {
+        "authority_effect": "none",
+        "semantic_disposition": "not_started",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "current_degradation_status": "unknown"
+      },
+      "overlap_check": {
+        "pr_2007_head": "e2c8f63e0d34ea8131d26f5671e96bca3f34437c",
+        "excluded_ids": [
+          "OUTSIDE67-PATH-001",
+          "OUTSIDE67-PATH-008",
+          "OUTSIDE67-PATH-010",
+          "OUTSIDE67-PATH-011"
+        ],
+        "overlap": "none"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-063",
+      "source_ordinal": 63,
+      "source_path": "docs/test-design/harness/L11-product-acceptance.md",
+      "source_unit": "path_revision_pair",
+      "artifact_kind": "markdown",
+      "candidate_product": "HELIX-HARNESS",
+      "product_candidate_status": "unknown_path_based_candidate_only",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_phase": "L11-acceptance",
+      "phase_status": "unknown_path_based_candidate_only",
+      "pre_isolation": {
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "cf943fc714972fca14b228beddff2541daf2cb6b",
+        "bytes": 12729,
+        "sha256": "5ecc525d9ec52e54270941f6b532b2162c03ae64b089cae3781f2c016a2e2fa0",
+        "line_count": 141
+      },
+      "archive_revision": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "cf943fc714972fca14b228beddff2541daf2cb6b",
+        "bytes": 12729,
+        "sha256": "5ecc525d9ec52e54270941f6b532b2162c03ae64b089cae3781f2c016a2e2fa0",
+        "line_count": 141
+      },
+      "reported_holding": {
+        "registration_id": "MPR-SH-OUTSIDE67-001",
+        "denominator": 67,
+        "archive_root_present": false,
+        "diff_status": "A",
+        "relation_to_pre_isolation": "same",
+        "legacy_catalog_record_count": 0,
+        "human_decision_ref": null,
+        "source_holding_status": "proposed_preserved_unassigned"
+      },
+      "status": {
+        "authority_effect": "none",
+        "semantic_disposition": "not_started",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "current_degradation_status": "unknown"
+      },
+      "overlap_check": {
+        "pr_2007_head": "e2c8f63e0d34ea8131d26f5671e96bca3f34437c",
+        "excluded_ids": [
+          "OUTSIDE67-PATH-001",
+          "OUTSIDE67-PATH-008",
+          "OUTSIDE67-PATH-010",
+          "OUTSIDE67-PATH-011"
+        ],
+        "overlap": "none"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-064",
+      "source_ordinal": 64,
+      "source_path": "docs/test-design/helix-os/L11-governance-acceptance.md",
+      "source_unit": "path_revision_pair",
+      "artifact_kind": "markdown",
+      "candidate_product": "HELIX-OS",
+      "product_candidate_status": "unknown_path_based_candidate_only",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_phase": "L11-acceptance",
+      "phase_status": "unknown_path_based_candidate_only",
+      "pre_isolation": {
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "619c6d2fad7b367187a64f3b0d56e6b3c704bbb0",
+        "bytes": 26627,
+        "sha256": "f46533f608ce24e5e43c5ff0f7fd52fb63aec39fae72cb5cb298a87bc9e3e443",
+        "line_count": 261
+      },
+      "archive_revision": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "a1fb77185441b5a12870f7e4734afd0ffbc068ac",
+        "bytes": 27000,
+        "sha256": "73b2e055d6173ca5e8f023d0b5448ef98fe0d6871ed78d5ba4dfb45d3e196040",
+        "line_count": 262
+      },
+      "reported_holding": {
+        "registration_id": "MPR-SH-OUTSIDE67-001",
+        "denominator": 67,
+        "archive_root_present": false,
+        "diff_status": "A",
+        "relation_to_pre_isolation": "different",
+        "legacy_catalog_record_count": 0,
+        "human_decision_ref": null,
+        "source_holding_status": "proposed_preserved_unassigned"
+      },
+      "status": {
+        "authority_effect": "none",
+        "semantic_disposition": "not_started",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "current_degradation_status": "unknown"
+      },
+      "overlap_check": {
+        "pr_2007_head": "e2c8f63e0d34ea8131d26f5671e96bca3f34437c",
+        "excluded_ids": [
+          "OUTSIDE67-PATH-001",
+          "OUTSIDE67-PATH-008",
+          "OUTSIDE67-PATH-010",
+          "OUTSIDE67-PATH-011"
+        ],
+        "overlap": "none"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-065",
+      "source_ordinal": 65,
+      "source_path": "docs/test-design/helix-web-os/L11-service-acceptance.md",
+      "source_unit": "path_revision_pair",
+      "artifact_kind": "markdown",
+      "candidate_product": "HELIX-Web-OS",
+      "product_candidate_status": "unknown_path_based_candidate_only",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_phase": "L11-acceptance",
+      "phase_status": "unknown_path_based_candidate_only",
+      "pre_isolation": {
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "ae4608e3a56e2654c8a7d977276c81ffec5a7031",
+        "bytes": 1784,
+        "sha256": "5dc62392dfa8e0960469188fa8774188d89ea4d73e0c61230d4ed094c8843720",
+        "line_count": 24
+      },
+      "archive_revision": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "ae4608e3a56e2654c8a7d977276c81ffec5a7031",
+        "bytes": 1784,
+        "sha256": "5dc62392dfa8e0960469188fa8774188d89ea4d73e0c61230d4ed094c8843720",
+        "line_count": 24
+      },
+      "reported_holding": {
+        "registration_id": "MPR-SH-OUTSIDE67-001",
+        "denominator": 67,
+        "archive_root_present": false,
+        "diff_status": "A",
+        "relation_to_pre_isolation": "same",
+        "legacy_catalog_record_count": 0,
+        "human_decision_ref": null,
+        "source_holding_status": "proposed_preserved_unassigned"
+      },
+      "status": {
+        "authority_effect": "none",
+        "semantic_disposition": "not_started",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "current_degradation_status": "unknown"
+      },
+      "overlap_check": {
+        "pr_2007_head": "e2c8f63e0d34ea8131d26f5671e96bca3f34437c",
+        "excluded_ids": [
+          "OUTSIDE67-PATH-001",
+          "OUTSIDE67-PATH-008",
+          "OUTSIDE67-PATH-010",
+          "OUTSIDE67-PATH-011"
+        ],
+        "overlap": "none"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-066",
+      "source_ordinal": 66,
+      "source_path": "docs/test-design/helix-web/L11-product-acceptance.md",
+      "source_unit": "path_revision_pair",
+      "artifact_kind": "markdown",
+      "candidate_product": "HELIX-Web",
+      "product_candidate_status": "unknown_path_based_candidate_only",
+      "product_candidates": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_phase": "L11-acceptance",
+      "phase_status": "unknown_path_based_candidate_only",
+      "pre_isolation": {
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "1ee8a756b95880bed28a286f2a00bc0194dc65ff",
+        "bytes": 2643,
+        "sha256": "f55b4b36ac4eb653214e8615a35dc330f719c47cf75697d5ba47fdb2cd8dd80d",
+        "line_count": 31
+      },
+      "archive_revision": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "1ee8a756b95880bed28a286f2a00bc0194dc65ff",
+        "bytes": 2643,
+        "sha256": "f55b4b36ac4eb653214e8615a35dc330f719c47cf75697d5ba47fdb2cd8dd80d",
+        "line_count": 31
+      },
+      "reported_holding": {
+        "registration_id": "MPR-SH-OUTSIDE67-001",
+        "denominator": 67,
+        "archive_root_present": false,
+        "diff_status": "A",
+        "relation_to_pre_isolation": "same",
+        "legacy_catalog_record_count": 0,
+        "human_decision_ref": null,
+        "source_holding_status": "proposed_preserved_unassigned"
+      },
+      "status": {
+        "authority_effect": "none",
+        "semantic_disposition": "not_started",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "current_degradation_status": "unknown"
+      },
+      "overlap_check": {
+        "pr_2007_head": "e2c8f63e0d34ea8131d26f5671e96bca3f34437c",
+        "excluded_ids": [
+          "OUTSIDE67-PATH-001",
+          "OUTSIDE67-PATH-008",
+          "OUTSIDE67-PATH-010",
+          "OUTSIDE67-PATH-011"
+        ],
+        "overlap": "none"
+      }
+    }
+  ],
+  "product_unit_count": 26,
+  "product_unit_ids": [
+    "RDP-001-OUTSIDE67-059-U001",
+    "RDP-001-OUTSIDE67-059-U002",
+    "RDP-001-OUTSIDE67-059-U003",
+    "RDP-001-OUTSIDE67-059-U004",
+    "RDP-001-OUTSIDE67-059-U005",
+    "RDP-001-OUTSIDE67-059-U006",
+    "RDP-001-OUTSIDE67-059-U007",
+    "RDP-001-OUTSIDE67-063-U001",
+    "RDP-001-OUTSIDE67-063-U002",
+    "RDP-001-OUTSIDE67-063-U003",
+    "RDP-001-OUTSIDE67-063-U004",
+    "RDP-001-OUTSIDE67-063-U005",
+    "RDP-001-OUTSIDE67-064-U001",
+    "RDP-001-OUTSIDE67-064-U002",
+    "RDP-001-OUTSIDE67-064-U003",
+    "RDP-001-OUTSIDE67-064-U004",
+    "RDP-001-OUTSIDE67-064-U005",
+    "RDP-001-OUTSIDE67-064-U006",
+    "RDP-001-OUTSIDE67-065-U001",
+    "RDP-001-OUTSIDE67-065-U002",
+    "RDP-001-OUTSIDE67-065-U003",
+    "RDP-001-OUTSIDE67-065-U004",
+    "RDP-001-OUTSIDE67-066-U001",
+    "RDP-001-OUTSIDE67-066-U002",
+    "RDP-001-OUTSIDE67-066-U003",
+    "RDP-001-OUTSIDE67-066-U004"
+  ],
+  "unknown_counts": {
+    "implementation": 5,
+    "degradation": 5,
+    "failure": 5,
+    "consumer": 5,
+    "decision": 5,
+    "phase": 5,
+    "semantic_inclusion": 5,
+    "legacy_implementation": 5,
+    "current_implementation": 5,
+    "legacy_degradation": 5,
+    "current_degradation": 5
+  },
+  "source_diffs": {
+    "path": "source-diffs.json",
+    "items": 5,
+    "changed_count": 2,
+    "same_count": 3
+  },
+  "evidence_scan": {
+    "path": "evidence-scan.json",
+    "exact_key_match_policy": "path/pre_oid/archive_oid; matches are observations only"
+  },
+  "prohibited_inference": [
+    {
+      "id": "P001",
+      "status": "prohibited",
+      "text": "path_revision_pairを要求atom・current requirement・successorへ変換しない"
+    },
+    {
+      "id": "P002",
+      "status": "prohibited",
+      "text": "path由来product／phase候補をowner／authorityへ昇格しない"
+    },
+    {
+      "id": "P003",
+      "status": "prohibited",
+      "text": "unknown implementation／degradation／failure／consumer／decisionを別状態へ補完しない"
+    },
+    {
+      "id": "P004",
+      "status": "prohibited",
+      "text": "source_fragmentにないactor/action/condition/guard/sequenceを生成しない"
+    },
+    {
+      "id": "P005",
+      "status": "prohibited",
+      "text": "旧archive runtime／test／CI／hook／adapterを実行しない"
+    },
+    {
+      "id": "P006",
+      "status": "prohibited",
+      "text": "#2007の選択済み008／011および差分参照001／010とsource／unitを重複させない"
+    },
+    {
+      "id": "P007",
+      "status": "prohibited",
+      "text": "正式register append、L2／L11合意、L3／L10、release、deploymentを生成しない"
+    }
+  ],
+  "verification_scope": {
+    "evidence_kind": "scaffold",
+    "static_only": true,
+    "checks": [
+      "holding/register digest and 67 denominator",
+      "#2007 overlap exclusion and 65→5→60 accounting",
+      "pre/archive Git blob OID/SHA/bytes/line anchors",
+      "source diff hunk/status",
+      "product unit exact fragment support and four-product candidates",
+      "ledger decision/failure/consumer/implementation/degradation observations",
+      "unknown/authority/successor/non-execution boundaries",
+      "base drift record"
+    ]
+  },
+  "findings": [
+    {
+      "id": "F001",
+      "status": "observed",
+      "text": "outside67の67 path_revision_pair分母、既レビュー2件、今回5件、未調査60件を固定した。"
+    },
+    {
+      "id": "F002",
+      "status": "observed",
+      "text": "製品境界へ直接関係する059、063、064、065、066を選択し、008／011および001／010との重複を除外した。"
+    },
+    {
+      "id": "F003",
+      "status": "observed",
+      "text": "各選択pairのpre-isolation／archive Git blob、snapshot、SHA-256、bytes、line anchor、unified diffを静的照合した。"
+    },
+    {
+      "id": "F004",
+      "status": "observed",
+      "text": "5文書から26 product unit候補を抽出し、source lineを重複計上せず、四製品候補を保持した。"
+    },
+    {
+      "id": "F005",
+      "status": "observed",
+      "text": "旧asset ledger、判断史、copy/read-after、phase/product分類、implementation crosswalkを静的照会し、catalog record 0とhuman decision nullを観測した。"
+    },
+    {
+      "id": "F006",
+      "status": "observed",
+      "text": "implementation、degradation、failure、consumer、decision、phase authorityはunknownとして保持した。"
+    },
+    {
+      "id": "F007",
+      "status": "observed",
+      "text": "059と064のrevision差分をsource-diffs.jsonへ保持したが、意味同値や採否は判定していない。"
+    }
+  ],
+  "unresolved_questions": [
+    {
+      "id": "Q001",
+      "status": "open",
+      "text": "各source lineの最終product unit、owner、connection境界は何か。"
+    },
+    {
+      "id": "Q002",
+      "status": "open",
+      "text": "path由来phase候補をどの人間decision revisionで確定するか。"
+    },
+    {
+      "id": "Q003",
+      "status": "open",
+      "text": "旧／現行implementationのasset・decision・運用evidenceはどこに接続するか。"
+    },
+    {
+      "id": "Q004",
+      "status": "open",
+      "text": "degradation／failureの実証と状態遷移をどの記録で確認するか。"
+    },
+    {
+      "id": "Q005",
+      "status": "open",
+      "text": "consumerとdecision closure、Web／Web-OS／OS／HARNESSの責務ownerは何か。"
+    },
+    {
+      "id": "Q006",
+      "status": "open",
+      "text": "pre-isolationとarchiveのsource差分が意味同値か、対象revision付きで誰が確認するか。"
+    },
+    {
+      "id": "Q007",
+      "status": "open",
+      "text": "未調査60 pairと今回unit候補の次回review順序は何か。"
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "schema": "rdp001-outside67-product-boundary-evidence-scan/v1",
+  "search_scope": "static ledger/path/blob exact-key scan only",
+  "files": {
+    "docs/governance/legacy-asset-disposition.jsonl": {
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "bytes": 4857919,
+      "line_count": 4020,
+      "query_match_counts": {
+        "OUTSIDE67-PATH-059": {
+          "docs/governance/product-governance-boundary-2026-09-14.md": 0,
+          "16154441d04f340e5c9108bcd0fb4f12c675250c": 0,
+          "dcc84e71e7b583cc4296fd4235cf097817a93f7a": 0
+        },
+        "OUTSIDE67-PATH-063": {
+          "docs/test-design/harness/L11-product-acceptance.md": 0,
+          "cf943fc714972fca14b228beddff2541daf2cb6b": 0
+        },
+        "OUTSIDE67-PATH-064": {
+          "docs/test-design/helix-os/L11-governance-acceptance.md": 0,
+          "619c6d2fad7b367187a64f3b0d56e6b3c704bbb0": 0,
+          "a1fb77185441b5a12870f7e4734afd0ffbc068ac": 0
+        },
+        "OUTSIDE67-PATH-065": {
+          "docs/test-design/helix-web-os/L11-service-acceptance.md": 0,
+          "ae4608e3a56e2654c8a7d977276c81ffec5a7031": 0
+        },
+        "OUTSIDE67-PATH-066": {
+          "docs/test-design/helix-web/L11-product-acceptance.md": 0,
+          "1ee8a756b95880bed28a286f2a00bc0194dc65ff": 0
+        }
+      }
+    },
+    "docs/governance/legacy-asset-decisions.jsonl": {
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "bytes": 109547,
+      "line_count": 58,
+      "query_match_counts": {
+        "OUTSIDE67-PATH-059": {
+          "docs/governance/product-governance-boundary-2026-09-14.md": 0,
+          "16154441d04f340e5c9108bcd0fb4f12c675250c": 0,
+          "dcc84e71e7b583cc4296fd4235cf097817a93f7a": 0
+        },
+        "OUTSIDE67-PATH-063": {
+          "docs/test-design/harness/L11-product-acceptance.md": 0,
+          "cf943fc714972fca14b228beddff2541daf2cb6b": 0
+        },
+        "OUTSIDE67-PATH-064": {
+          "docs/test-design/helix-os/L11-governance-acceptance.md": 0,
+          "619c6d2fad7b367187a64f3b0d56e6b3c704bbb0": 0,
+          "a1fb77185441b5a12870f7e4734afd0ffbc068ac": 0
+        },
+        "OUTSIDE67-PATH-065": {
+          "docs/test-design/helix-web-os/L11-service-acceptance.md": 0,
+          "ae4608e3a56e2654c8a7d977276c81ffec5a7031": 0
+        },
+        "OUTSIDE67-PATH-066": {
+          "docs/test-design/helix-web/L11-product-acceptance.md": 0,
+          "1ee8a756b95880bed28a286f2a00bc0194dc65ff": 0
+        }
+      }
+    },
+    "docs/governance/legacy-asset-copy-read-after.jsonl": {
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "bytes": 29632,
+      "line_count": 29,
+      "query_match_counts": {
+        "OUTSIDE67-PATH-059": {
+          "docs/governance/product-governance-boundary-2026-09-14.md": 0,
+          "16154441d04f340e5c9108bcd0fb4f12c675250c": 0,
+          "dcc84e71e7b583cc4296fd4235cf097817a93f7a": 0
+        },
+        "OUTSIDE67-PATH-063": {
+          "docs/test-design/harness/L11-product-acceptance.md": 0,
+          "cf943fc714972fca14b228beddff2541daf2cb6b": 0
+        },
+        "OUTSIDE67-PATH-064": {
+          "docs/test-design/helix-os/L11-governance-acceptance.md": 0,
+          "619c6d2fad7b367187a64f3b0d56e6b3c704bbb0": 0,
+          "a1fb77185441b5a12870f7e4734afd0ffbc068ac": 0
+        },
+        "OUTSIDE67-PATH-065": {
+          "docs/test-design/helix-web-os/L11-service-acceptance.md": 0,
+          "ae4608e3a56e2654c8a7d977276c81ffec5a7031": 0
+        },
+        "OUTSIDE67-PATH-066": {
+          "docs/test-design/helix-web/L11-product-acceptance.md": 0,
+          "1ee8a756b95880bed28a286f2a00bc0194dc65ff": 0
+        }
+      }
+    },
+    "docs/governance/legacy-asset-decision-log.md": {
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "bytes": 5000,
+      "line_count": 64,
+      "query_match_counts": {
+        "OUTSIDE67-PATH-059": {
+          "docs/governance/product-governance-boundary-2026-09-14.md": 0,
+          "16154441d04f340e5c9108bcd0fb4f12c675250c": 0,
+          "dcc84e71e7b583cc4296fd4235cf097817a93f7a": 0
+        },
+        "OUTSIDE67-PATH-063": {
+          "docs/test-design/harness/L11-product-acceptance.md": 0,
+          "cf943fc714972fca14b228beddff2541daf2cb6b": 0
+        },
+        "OUTSIDE67-PATH-064": {
+          "docs/test-design/helix-os/L11-governance-acceptance.md": 0,
+          "619c6d2fad7b367187a64f3b0d56e6b3c704bbb0": 0,
+          "a1fb77185441b5a12870f7e4734afd0ffbc068ac": 0
+        },
+        "OUTSIDE67-PATH-065": {
+          "docs/test-design/helix-web-os/L11-service-acceptance.md": 0,
+          "ae4608e3a56e2654c8a7d977276c81ffec5a7031": 0
+        },
+        "OUTSIDE67-PATH-066": {
+          "docs/test-design/helix-web/L11-product-acceptance.md": 0,
+          "1ee8a756b95880bed28a286f2a00bc0194dc65ff": 0
+        }
+      }
+    },
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": {
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "bytes": 6311877,
+      "line_count": 4020,
+      "query_match_counts": {
+        "OUTSIDE67-PATH-059": {
+          "docs/governance/product-governance-boundary-2026-09-14.md": 0,
+          "16154441d04f340e5c9108bcd0fb4f12c675250c": 0,
+          "dcc84e71e7b583cc4296fd4235cf097817a93f7a": 0
+        },
+        "OUTSIDE67-PATH-063": {
+          "docs/test-design/harness/L11-product-acceptance.md": 0,
+          "cf943fc714972fca14b228beddff2541daf2cb6b": 0
+        },
+        "OUTSIDE67-PATH-064": {
+          "docs/test-design/helix-os/L11-governance-acceptance.md": 0,
+          "619c6d2fad7b367187a64f3b0d56e6b3c704bbb0": 0,
+          "a1fb77185441b5a12870f7e4734afd0ffbc068ac": 0
+        },
+        "OUTSIDE67-PATH-065": {
+          "docs/test-design/helix-web-os/L11-service-acceptance.md": 0,
+          "ae4608e3a56e2654c8a7d977276c81ffec5a7031": 0
+        },
+        "OUTSIDE67-PATH-066": {
+          "docs/test-design/helix-web/L11-product-acceptance.md": 0,
+          "1ee8a756b95880bed28a286f2a00bc0194dc65ff": 0
+        }
+      }
+    },
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": {
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "bytes": 7938664,
+      "line_count": 218,
+      "query_match_counts": {
+        "OUTSIDE67-PATH-059": {
+          "docs/governance/product-governance-boundary-2026-09-14.md": 0,
+          "16154441d04f340e5c9108bcd0fb4f12c675250c": 0,
+          "dcc84e71e7b583cc4296fd4235cf097817a93f7a": 0
+        },
+        "OUTSIDE67-PATH-063": {
+          "docs/test-design/harness/L11-product-acceptance.md": 0,
+          "cf943fc714972fca14b228beddff2541daf2cb6b": 0
+        },
+        "OUTSIDE67-PATH-064": {
+          "docs/test-design/helix-os/L11-governance-acceptance.md": 0,
+          "619c6d2fad7b367187a64f3b0d56e6b3c704bbb0": 0,
+          "a1fb77185441b5a12870f7e4734afd0ffbc068ac": 0
+        },
+        "OUTSIDE67-PATH-065": {
+          "docs/test-design/helix-web-os/L11-service-acceptance.md": 0,
+          "ae4608e3a56e2654c8a7d977276c81ffec5a7031": 0
+        },
+        "OUTSIDE67-PATH-066": {
+          "docs/test-design/helix-web/L11-product-acceptance.md": 0,
+          "1ee8a756b95880bed28a286f2a00bc0194dc65ff": 0
+        }
+      }
+    },
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": {
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "bytes": 602042,
+      "line_count": 153,
+      "query_match_counts": {
+        "OUTSIDE67-PATH-059": {
+          "docs/governance/product-governance-boundary-2026-09-14.md": 0,
+          "16154441d04f340e5c9108bcd0fb4f12c675250c": 0,
+          "dcc84e71e7b583cc4296fd4235cf097817a93f7a": 0
+        },
+        "OUTSIDE67-PATH-063": {
+          "docs/test-design/harness/L11-product-acceptance.md": 0,
+          "cf943fc714972fca14b228beddff2541daf2cb6b": 0
+        },
+        "OUTSIDE67-PATH-064": {
+          "docs/test-design/helix-os/L11-governance-acceptance.md": 0,
+          "619c6d2fad7b367187a64f3b0d56e6b3c704bbb0": 0,
+          "a1fb77185441b5a12870f7e4734afd0ffbc068ac": 0
+        },
+        "OUTSIDE67-PATH-065": {
+          "docs/test-design/helix-web-os/L11-service-acceptance.md": 0,
+          "ae4608e3a56e2654c8a7d977276c81ffec5a7031": 0
+        },
+        "OUTSIDE67-PATH-066": {
+          "docs/test-design/helix-web/L11-product-acceptance.md": 0,
+          "1ee8a756b95880bed28a286f2a00bc0194dc65ff": 0
+        }
+      }
+    }
+  },
+  "selected_ids": [
+    "OUTSIDE67-PATH-059",
+    "OUTSIDE67-PATH-063",
+    "OUTSIDE67-PATH-064",
+    "OUTSIDE67-PATH-065",
+    "OUTSIDE67-PATH-066"
+  ],
+  "interpretation": "zero matches are an observation; implementation/degradation/failure/consumer/decision remain unknown."
+}
