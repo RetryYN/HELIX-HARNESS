@@ -26,8 +26,8 @@ phaseについては、旧phase候補と `PHCAP-*` を `candidate_only` とし�
 - `inventory.json`: 固定BASE、selection、分母、入力digest、authority boundary。
 - `evidence.jsonl`: 10 unitごとのsource/crosswalk、既存partition、Wave edge、asset台帳、source anchor、状態partition。
 - `build.py`: 固定BASE Git objectからの決定的再生成。
-- `validate.py`: BASE祖先性、入力digest、unit/edge/asset集合、crosswalk/current row、ledger/phase/history、source blob/anchor、状態昇格、authority境界のfail-closed検査。
-- `selfcheck.py`: 改竄・重複・候補昇格・架空binding・BASE/input/output digestの負例。
+- `validate.py`: BASE祖先性、入力digest、unit/edge/asset集合、crosswalk/current row、ledger/phase/history、source blob/anchor、状態昇格、authority境界のfail-closed検査。evidence行のsource/current/binding/status/directly-established/unresolvedとasset boundary、inventoryのforbidden_operationsを期待構造全体と比較し、closure_status・asset_ids・phase_idsの昇格や未知fieldも拒否します。
+- `selfcheck.py`: 改竄・重複・候補昇格・架空binding・BASE/input/output digest・closure/asset/phase/forbidden-operation/directly-established/unresolvedの負例33件。
 - `../bindings/SCF-B-0132.json`: 全成果物と依存入力を登録するBinding。
 - `PR-DRAFT.md`: Draft PR本文。
 
