@@ -14,6 +14,8 @@ HELIX-HARNESSのFR先頭10 product unitについて、現行mainの既存FR evid
 
 既存218 unitの状態台帳へ追加計上せず、`authority_effect=none`、`new_build_allowed=false` のままにしている。正式な実装・縮退・未実装・受入・authorityの変更は含まない。
 
+SCF-B-0129とは同一roleの製品別並行researchです。SCF-B-0129はHELIX-OS FR先頭10 unit（BASE `217e3a6e1c3e6ce25205d8330a96e0853c18f61b`）、本束はHELIX-HARNESS FR先頭10 unit（BASE `94d99ebb4c55c2edb0575ac2dc100af0d5b93b90`）に限定し、Binding `overlap_reason`で相互参照と非置換境界を固定しました。HELIX-LABO候補は適用していません。
+
 ## 検証結果
 
 ```text

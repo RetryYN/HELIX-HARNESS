@@ -21,6 +21,8 @@
 
 phaseについては、旧phase候補と `PHCAP-*` を `candidate_only` として記録します。`authority_effect=none`、product/phase authority、successor、formal statusは未確定です。旧archiveのruntime、test、CI、workflow、hook、adapter、sourceは実行していません。
 
+SCF-B-0129（HELIX-OS FR先頭10 unit）とrole文字列は共有しますが、SCF-B-0132はHELIX-HARNESS FR先頭10 unitの別product／別固定BASE／別target sliceです。Bindingの`overlap_reason`にこの関係を固定し、target unit・Wave edge・asset集合・入力digest・正式evidenceを相互に置換しません。HELIX-LABOは候補集合に含めません。
+
 ## 成果物
 
 - `inventory.json`: 固定BASE、selection、分母、入力digest、authority boundary。

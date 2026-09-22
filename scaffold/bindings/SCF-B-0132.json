@@ -10,6 +10,7 @@
   "role": "research-only static cross-check of existing FR unit evidence",
   "owner_candidate": "旧実装状態の直接証拠境界を静的に固定する研究（正式owner未解決）",
   "reason": "既存218 product unitからHELIX-HARNESS FR先頭10 unitを固定BASE順で再導出し、現行mainの既存evidence partition、Wave edge、旧asset ledger/source/history/failure/consumer/phaseを同一unitごとに照合する。直接unit実装・縮退・障害・consumer closure・current実装・受入・未実装証拠がないためunknownを保持し、新unitは追加しない。",
+  "overlap_reason": "SCF-B-0129と同一のresearch-only static cross-check roleを共有するが、SCF-B-0129はHELIX-OS FR先頭10 unit（BASE 217e3a6e1c3e6ce25205d8330a96e0853c18f61b）、本bindingはHELIX-HARNESS FR先頭10 unit（BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90）の製品別並行sliceである。target unit、Wave edge、asset集合、固定BASE入力、product scopeを混同せず、相互に正式evidence、implementation、degradation、acceptance、authorityを置換しない。",
   "upstream": [
     {
       "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
