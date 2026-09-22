@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "scaffold/phcap15-17-membership-edges/README.md",
-      "sha256": "2701da760ab8b7bc40285640e6a33dbb06293ec082a03303076653389de92a10",
+      "sha256": "b40575041dd273413b46adad9050cf0912e53a691af676f359d69ade5d01e55e",
       "note": "bounded scope、source contract、unknown分類、旧archive非実行境界"
     },
     {
@@ -20,13 +20,13 @@
     },
     {
       "path": "scaffold/phcap15-17-membership-edges/validate.py",
-      "sha256": "6a4480e66fc16f1f805ef7dac5ab4feed4d9ff3fa00fda48f2ce67617a3ac274",
+      "sha256": "2747879c46068963f6131abdbbde54666319a7773936fc8294885b1d65cbb348",
       "note": "candidate pool再導出、逐語span／ID exact guard、asset ledger、anchor、unknown validator"
     },
     {
       "path": "scaffold/phcap15-17-membership-edges/selfcheck.py",
-      "sha256": "7bc8d05af483437d6cf25a2effc2b9041163512087686641d914df0c3d36222d",
-      "note": "authority、実装、consumer、decision、source、分類、禁止推論、nested keyset改変を拒否する24負例"
+      "sha256": "26c704a9603288dbd78e3731cf0983118804e2eec286e88448f724a4d35d7b04",
+      "note": "authority、実装、consumer、decision、source、分類、禁止推論、nested keyset、anchor meaning、membership contract／reason改変を拒否する27負例"
     },
     {
       "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
@@ -125,7 +125,7 @@
     ],
     "oracles": [
       "PHCAP-15/17 membership validate.py（candidate pool、逐語source ID／span、asset／phase-product ledger、anchor、unknown、failure／consumer／decision残差）",
-      "selfcheck.py（authority、implementation、consumer、decision、source、分類、禁止推論、nested keysetの24負例）",
+      "selfcheck.py（authority、implementation、consumer、decision、source、分類、禁止推論、nested keyset、anchor meaning、membership contract／reasonの27負例）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],
@@ -136,7 +136,8 @@
       "旧execution、failure receipt、consumer refs、decision recordの捏造",
       "implementation／acceptance／phase admission／product routingの昇格",
       "FR-L1-16をHIL-NFR-17へ接続する改変",
-      "prohibited_inference意味反転とasset／membership／scope／provenance nested key注入"
+      "prohibited_inference意味反転とasset／membership／scope／provenance nested key注入",
+      "anchor meaning、membership source_contract、membership classification_reasonの改変"
     ]
   },
   "replacement": {

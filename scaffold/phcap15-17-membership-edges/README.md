@@ -18,7 +18,7 @@ source span の exact match は 0 件であり、candidate pool の所属だけ�
 negative を導かないため、分類は `unknown` である。`negative` は明示的な契約矛盾を示す
 証拠がある場合だけ使うが、この bounded audit ではその証拠も無かった。
 
-旧sourceの anchor は inventory に行範囲、逐語本文、SHA-256、意味上の役割を記録した。
+旧sourceの anchor は inventory に行範囲、逐語本文、SHA-256、意味上の役割を記録し、各 `meaning` は validator の独立期待値で固定した。membershipごとの `source_contract` と `classification_reason` も inventory の自己記述だけに依存せず、asset ID別の独立期待値で固定する。
 Plan asset の P1/P2 は source の接続候補（historical review／embedded commands）を、P3/P4 は
 scope と外部 rollout exception を、runbook asset の R1/R2 は runbook scope／observability を、
 R3/R4 は production connection／recovery を、R5 は未完了 checklist／exception を表す。

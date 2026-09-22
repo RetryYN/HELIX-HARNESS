@@ -25,6 +25,25 @@ PROHIBITED_INFERENCE = [
     "FR-L1-16 does not equal HIL-NFR-17",
     "consumer closure cannot be inferred from crosswalk membership",
 ]
+EXPECTED_ANCHOR_MEANINGS = {
+    "P1": "埋込みの過去review claimで、local smoke／monitoring境界だけを示す。現行実行証拠ではない。",
+    "P2": "旧文書に埋込まれたhistorical command claim。旧test／CIを実行せず、passや実装成立へ昇格しない。",
+    "P3": "local scopeと外部 rollout／release／repository rule exceptionを明示する。",
+    "P4": "document presenceとdesign boundaryのDoD。外部rollout実施や要求unit実装の証明ではない。",
+    "R1": "事前runbook、L11 ops readiness、live production Incident driveのscope。FR-L1-16は旧skill内の別識別子。",
+    "R2": "runbookの契約構造とobservability SSoT／PLAN接続。要求unitの直接実装ではない。",
+    "R3": "production signal／target／three-party approvalをconnection条件として定める。旧CLIやruntimeは実行していない。",
+    "R4": "incident後のprocedure／recovery／regression／audit接続。実行済みfailureやconsumer closureではない。",
+    "R5": "未チェックの完了条件と例外境界。満たされたcompletion／failure evidenceを示さない。",
+}
+EXPECTED_MEMBERSHIP_SOURCE_CONTRACTS = {
+    "LEGACY-ASSET-189702B332643A3BFDAF": "The exact source_text_spans and source_requirement_id are read from each referenced crosswalk row and checked against this asset source. This membership has no exact requirement ID or source span match.",
+    "LEGACY-ASSET-4618C7243C283228809A": "The exact source_text_spans and source_requirement_id are read from the crosswalk row and checked against this asset source. HIL-NFR-17 and its product-data contract have no exact match; FR-L1-16 is a different historical identifier.",
+}
+EXPECTED_MEMBERSHIP_CLASSIFICATION_REASONS = {
+    "LEGACY-ASSET-189702B332643A3BFDAF": "Candidate phase/product membership and lexical overlap do not establish a direct semantic edge; all 68 rows retain unknown pending direct semantic review.",
+    "LEGACY-ASSET-4618C7243C283228809A": "The runbook candidate pool has no exact requirement ID or source span match to HIL-NFR-17. Absence is insufficient for negative; the unit remains unknown.",
+}
 CROSSWALK_PATH = ROOT / "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 DISPOSITION_PATH = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 CLASSIFICATION_PATH = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
@@ -167,6 +186,7 @@ def validate(data: dict[str, Any], check_files: bool = True) -> list[str]:
                 if actual is not None:
                     req(sha_bytes(actual.encode("utf-8")) == anchor.get("sha256"), "E_ANCHOR_SHA:" + str(aid))
                 req(bool(anchor.get("meaning")), "E_ANCHOR_MEANING:" + str(aid))
+                req(anchor.get("meaning") == EXPECTED_ANCHOR_MEANINGS.get(aid), "E_ANCHOR_MEANING_PIN:" + str(aid))
             for anchor_id in inv.get("failure_evidence", {}).get("anchor_ids", []) + inv.get("consumer_evidence", {}).get("anchor_ids", []):
                 req(anchor_id in seen, "E_ANCHOR_REF:" + asset_id + ":" + str(anchor_id))
         req(inv.get("failure_evidence", {}).get("execution_receipts") == 0, "E_FAILURE_RECEIPTS:" + asset_id)
@@ -186,6 +206,8 @@ def validate(data: dict[str, Any], check_files: bool = True) -> list[str]:
         req(len(ids) == membership.get("count"), "E_MEMBERSHIP_COUNT:" + str(aid))
         req(membership.get("classification") == "unknown", "E_MEMBERSHIP_CLASS:" + str(aid))
         req(bool(membership.get("source_contract")), "E_MEMBERSHIP_CONTRACT:" + str(aid))
+        req(membership.get("source_contract") == EXPECTED_MEMBERSHIP_SOURCE_CONTRACTS.get(aid), "E_MEMBERSHIP_SOURCE_CONTRACT:" + str(aid))
+        req(membership.get("classification_reason") == EXPECTED_MEMBERSHIP_CLASSIFICATION_REASONS.get(aid), "E_MEMBERSHIP_CLASSIFICATION_REASON:" + str(aid))
         req(bool(membership.get("scope_anchor_ids")) and bool(membership.get("connection_anchor_ids")) and bool(membership.get("exception_anchor_ids")), "E_MEMBERSHIP_ANCHORS:" + str(aid))
         old_text = archive_texts.get(aid, "")
         for crosswalk_id in ids:

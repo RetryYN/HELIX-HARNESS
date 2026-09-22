@@ -48,6 +48,9 @@ def main() -> int:
     case("membership_nested_authority", lambda d: d["membership_sets"][0].__setitem__("confirmed", True), "E_NESTED_KEYS:membership_sets[0]")
     case("scope_nested_authority", lambda d: d["scope"].__setitem__("approved", True), "E_NESTED_KEYS:scope")
     case("provenance_nested_authority", lambda d: d["provenance"]["crosswalk"].__setitem__("verified", True), "E_NESTED_KEYS:provenance.crosswalk")
+    case("anchor_meaning", lambda d: d["assets"][0]["anchors"][0].__setitem__("meaning", "invented meaning"), "E_ANCHOR_MEANING_PIN:P1")
+    case("membership_source_contract", lambda d: d["membership_sets"][0].__setitem__("source_contract", "invented contract"), "E_MEMBERSHIP_SOURCE_CONTRACT:LEGACY-ASSET-189702B332643A3BFDAF")
+    case("membership_classification_reason", lambda d: d["membership_sets"][1].__setitem__("classification_reason", "invented reason"), "E_MEMBERSHIP_CLASSIFICATION_REASON:LEGACY-ASSET-4618C7243C283228809A")
 
     failed = 0
     for name, data, expected_code in cases:
