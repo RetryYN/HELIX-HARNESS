@@ -15,7 +15,7 @@
 
 - `validate.py`: PASS（29件、98 input digest、source／target／history／Wave／crosswalk集合を固定BASEから再導出）
 - `selfcheck.py`: PASS（23負例）
-- `scfctl validate`: PASS（bindings=106 fail=0）
+- `scfctl validate`: PASS（bindings=124 fail=0、最新origin/main祖先性確認済み）
 - `scfctl stale`: PASS（stale=0）
 - `scfctl residuals`: PASS（residuals=0）
 - `git diff --check`: PASS
