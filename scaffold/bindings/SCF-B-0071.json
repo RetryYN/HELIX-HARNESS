@@ -1,0 +1,222 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0071",
+  "kind": "scaffold",
+  "title": "outside67 boundary follow-up source chain research 035/037/047/054/057",
+  "product": "HELIX-OS",
+  "owner_candidate": "outside67未調査5 sourceの四製品境界・revision・unknown status review（正式owner未解決）",
+  "state": "registered",
+  "reason": "MPR-SH-OUTSIDE67-001の67 path_revision_pairについて、#2018までの既済17件と重複しない035/037/047/054/057を選び、22/67の研究会計と残45を正式holding採否から分離して静的固定する。5 source pairの25 exact anchors、pre/archive/current hash一致、035/037/047のpath relocation、四製品候補、product／phase／implementation／degradation／failure／consumer／decision unknownを保持し、hash一致・移設をsemantic equivalenceやauthorityへ昇格しない。SCF-B-0071はresearch Scaffoldの登録であり、正式要求・owner・successor・holding admissionを生成しない。",
+  "upstream": [
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decision-log.md",
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-authority-asset-governance-crosswalk.md",
+      "sha256": "ab7a0752130b34f8b7fb2ce5e29f699621677eb45e7a3dcd666e1b77632db847",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md",
+      "sha256": "fb4e8bdc6ffb29acf17d79aeb961a97dea239ef59291e79522dae8fe13c551cf",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/new-generation-worker-capacity-source-crosswalk.md",
+      "sha256": "cb44de35be3bbf6b2276625cad8db06b24fa43d691c498bac9f01e3396555648",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/candidates/helix-os-organization-intake-2026-09-14.md",
+      "sha256": "6a56e569907628cf108dd78bfdbd8ea2fef71e2de385ca426404a73953b32da5",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    },
+    {
+      "path": "docs/governance/intake/helix-os-foundation-directive-2026-09-14.md",
+      "sha256": "c5333bc7cf875aedf52f482541083d66a906cb08320fbe04940d8c5061cbd54e",
+      "note": "static source or boundary input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+    }
+  ],
+  "role": "outside67 035/037/047/054/057 source pairのsemantic candidate、revision差分、四製品候補、legacy evidence unknownをread-onlyで保持する",
+  "obligations": [
+    "67 path_revision_pair denominator、既済17件、候補5件、combined 22/67、残45を独立canonical tableで固定し、正式holding採否と分離する",
+    "5 source pair、25 exact line anchors、source snapshot、source diff、pre/archive/current hashとpath relocationを照合する",
+    "hash一致・path relocation・current counterpartの同一pathを意味同値・authority・successorへ変換しない",
+    "四製品をcandidate boundaryとして保持し、product assignment、phase authority、owner、successorを生成しない",
+    "product-unit keyset、normalized_statement、retained_meaning、unresolved_questions、diff_observation、scope canonical fieldsをvalidatorで固定する",
+    "product substitution、unknown promotion、duplicate、anchor、counterpart、denominator、nested keyset、base ancestorを本体validator経由のnegative selfcheckで検査する",
+    "legacy implementation、current implementation、degradation、failure outcome、consumer closure、decisionをunknownのまま保持する",
+    "旧archive source／runtime／test／CI／hook／adapterを実行せず、static referenceとしてのみ読む"
+  ],
+  "connections": {
+    "consumers": [
+      "outside67 source-chain reviewer",
+      "四製品 boundary semantic reviewer",
+      "legacy failure／consumer／decision unknown reviewer",
+      "SCF-B-0071 replacement reviewer"
+    ],
+    "dependencies": [
+      "MPR-SH-OUTSIDE67-001",
+      "current four-product boundary",
+      "legacy static ledger set",
+      "Python standard library／git object read-only"
+    ],
+    "boundary": "成果物はscaffold/配下のresearch candidate。22/67会計は候補研究用で、正式holding admission、requirement、phase、owner、implementation、degradation、acceptance、release、deploymentを確定しない。"
+  },
+  "operations": {
+    "allowed": [
+      "scaffold/rdp001-outside67-boundary-followup-071/validate.py",
+      "scaffold/rdp001-outside67-boundary-followup-071/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+      "旧sourceをcurrent implementation、oracle、fallback、pass、deployment evidenceへ昇格すること",
+      "scaffold/外への候補書き込み",
+      "正式holding採否、requirement、phase authority、product owner、successor、implementation、degradation、acceptance、release、deployment、consumer closureの生成",
+      "GitHub、Issue、PR、CI、DB、外部APIへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-outside67-boundary-followup-071/README.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/evidence-scan.json",
+    "scaffold/rdp001-outside67-boundary-followup-071/inventory.json",
+    "scaffold/rdp001-outside67-boundary-followup-071/ledger.json",
+    "scaffold/rdp001-outside67-boundary-followup-071/meta.json",
+    "scaffold/rdp001-outside67-boundary-followup-071/method.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/premise.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/product-units.jsonl",
+    "scaffold/rdp001-outside67-boundary-followup-071/selected-source-items.jsonl",
+    "scaffold/rdp001-outside67-boundary-followup-071/selfcheck.py",
+    "scaffold/rdp001-outside67-boundary-followup-071/source-diffs.json",
+    "scaffold/rdp001-outside67-boundary-followup-071/source-snapshots/OUTSIDE67-PATH-035/archive-revision.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/source-snapshots/OUTSIDE67-PATH-035/pre-isolation.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/source-snapshots/OUTSIDE67-PATH-037/archive-revision.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/source-snapshots/OUTSIDE67-PATH-037/pre-isolation.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/source-snapshots/OUTSIDE67-PATH-047/archive-revision.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/source-snapshots/OUTSIDE67-PATH-047/pre-isolation.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/source-snapshots/OUTSIDE67-PATH-054/archive-revision.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/source-snapshots/OUTSIDE67-PATH-054/pre-isolation.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/source-snapshots/OUTSIDE67-PATH-057/archive-revision.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/source-snapshots/OUTSIDE67-PATH-057/pre-isolation.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/status.md",
+    "scaffold/rdp001-outside67-boundary-followup-071/validate.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "outside67 boundary follow-up validate.py（22/67、45 residual、ancestor-only scope、unit keyset、canonical non-digest fields、exact anchors、four products、unknowns）",
+      "outside67 boundary follow-up selfcheck.py（baseline＋18 negative cases）",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "22/67 denominator or remaining tamper",
+      "reviewed/candidate overlap",
+      "product substitution",
+      "unknown status promotion",
+      "duplicate anchor",
+      "source fragment or anchor keyset tamper",
+      "current counterpart path or digest tamper",
+      "scope keyset or canonical field tamper",
+      "unit nested keyset tamper",
+      "old execution flag tamper",
+      "meta reservation or ledger count tamper",
+      "source diff status tamper"
+    ]
+  },
+  "replacement": {
+    "role_target": "承認済みoutside67 source semantic units、四製品責務、phase、implementation、failure／consumer contractへの個別移管（人間判断後）",
+    "formal_artifacts": [],
+    "issue": 2018,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
