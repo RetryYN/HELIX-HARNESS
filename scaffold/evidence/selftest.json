@@ -1,7 +1,7 @@
 {
  "authority_effect": "none",
- "cases": 59,
- "cases_sha256": "1d9d3bbfafd1dda6f41e5878db14382b740252ee94b5995e96041a2086f33213",
+ "cases": 64,
+ "cases_sha256": "c44cf681d1585fbedba917d6e3bcaf7ccd76c46c63d02a3c6373f4ddee6a717f",
  "checked_at": "2026-09-23",
  "evidence_kind": "scaffold",
  "fail": 0,
@@ -775,7 +775,72 @@
    "requirements": [
     "SCF-OS-003"
    ]
+  },
+  {
+   "case": "39-reject-static-upstream-evil-root.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "旧archive root以外のlegacy-generation prefixを拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: archive/legacy-generation-evil/root/requirements.json"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "40-reject-static-upstream-traversal.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "旧archive rootからのpath traversalを拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: archive/legacy-generation-2026-09-14/root/../outside.txt"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "41-reject-static-upstream-symlink.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "旧archive root内のsymlink sourceを拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: archive/legacy-generation-2026-09-14/root/link.txt"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "42-reject-static-upstream-negated-note.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "非静的を含むnoteのsubstring通過を拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "43-reject-static-upstream-ambiguous-boundary.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "旧archive実行許可を含むforbiddenのsubstring通過を拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
   }
  ],
- "tool_sha256": "026fd16cd5b10108a259854409e02d6a5b3e3690c65ffdd4221fb4f05b87f0ed"
+ "tool_sha256": "455257219ce98b280cebf680f615715035c411f0d3d0c9960e201ff06aad5597"
 }

@@ -6,7 +6,8 @@ check-replacement --record / selftest --record: evidence/）。要求・設計�
 
 終了code: 0 合格 / 1 不合格 / 2 入力不正
 """
-import argparse, datetime, glob, hashlib, json, os, re, shlex, sys
+import argparse, datetime, glob, hashlib, json, os, re, shlex, stat, sys, tempfile
+from pathlib import Path
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SCF = os.path.dirname(HERE)                       # scaffold/
@@ -21,6 +22,12 @@ PRODUCTS = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
 SCOPES = ["schema_interface", "deterministic_behavior", "stub_adapter_connection",
           "source_revision_stale", "negative_case", "forbidden_write_scope"]
 LEGACY = re.compile(r"(^|[\s/\"'=:(])archive/legacy-generation-")
+LEGACY_ROOT = "archive/legacy-generation-2026-09-14"
+STATIC_READ_ONLY_NOTE = "静的read-only参照のみ"
+LEGACY_EXECUTION_BOUNDARIES = {
+    "execute old-generation archive source/runtime/test/hook/adapter/CI",
+    "旧archiveは実行しない",
+}
 SHA = re.compile(r"^[0-9a-f]{64}$")
 DATE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}$")
 INSTRUCTION_FORBIDDEN_TEXT = ("許可している", "承認済み", "権限を与える", "authorized", "#1888")
@@ -37,6 +44,60 @@ def sha256_file(rel):
 
 def sha256_obj(o):
     return hashlib.sha256(json.dumps(o, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+
+def legacy_path_issue(path, check_filesystem=False):
+    """旧archive参照を固定root内の通常ファイルに限定する。"""
+    if not isinstance(path, str) or not path:
+        return "pathが空または文字列でない"
+    if os.path.isabs(path) or path.startswith(("/", "\\")) or re.match(r"^[A-Za-z]:[\\/]", path):
+        return "absolute path"
+    if "\\" in path:
+        return "backslash path"
+    prefix = LEGACY_ROOT + "/"
+    if not path.startswith(prefix):
+        return "固定legacy root外"
+    parts = path.split("/")
+    if any(part in ("", ".", "..") for part in parts):
+        return "path normalizationまたはtraversal"
+    if os.path.normpath(path) != path:
+        return "path normalizationまたはtraversal"
+    if not check_filesystem:
+        return None
+
+    candidate = os.path.join(ROOT, path)
+    if not os.path.lexists(candidate):
+        return "source file missing"
+    current = ROOT
+    for part in parts:
+        current = os.path.join(current, part)
+        if os.path.islink(current):
+            return "path component is symlink"
+    try:
+        resolved = Path(candidate).resolve(strict=True)
+        allowed_root = Path(os.path.join(ROOT, LEGACY_ROOT)).resolve(strict=True)
+        if os.path.commonpath((str(resolved), str(allowed_root))) != str(allowed_root):
+            return "resolved path outside fixed legacy root"
+        if not stat.S_ISREG(os.stat(candidate, follow_symlinks=False).st_mode):
+            return "source is not a regular file"
+    except (OSError, ValueError):
+        return "source path cannot be resolved"
+    return None
+
+
+def has_static_read_only_note(note):
+    """正規句を要求し、否定形によるsubstring通過を拒否する。"""
+    if not isinstance(note, str) or STATIC_READ_ONLY_NOTE not in note:
+        return False
+    return not any(term in note.lower() for term in ("非静的", "not static", "non-static", "not read-only"))
+
+
+def has_legacy_execution_boundary(forbidden):
+    """旧archive非実行の正規句だけを許可する。"""
+    return isinstance(forbidden, list) and any(
+        isinstance(item, str) and item.strip() in LEGACY_EXECUTION_BOUNDARIES
+        for item in forbidden
+    )
 
 
 def binding_core_digest(b):
@@ -216,16 +277,16 @@ def check_rules(b, all_bindings, fs=True, digests=None):
         legacy_upstream_paths.add(path)
         note = upstream.get("note", "") if isinstance(upstream, dict) else ""
         forbidden = b.get("operations", {}).get("forbidden", [])
-        static_note = isinstance(note, str) and "静的" in note and ("read-only" in note or "static" in note)
-        execution_boundary = isinstance(forbidden, list) and any(
-            isinstance(item, str) and "archive" in item and ("実行" in item or "execute" in item or "execution" in item)
-            for item in forbidden
-        )
+        static_note = has_static_read_only_note(note)
+        execution_boundary = has_legacy_execution_boundary(forbidden)
         digest_pinned = isinstance(upstream, dict) and SHA.match(str(upstream.get("sha256", "")))
-        if not (digest_pinned and static_note and execution_boundary):
+        path_issue = legacy_path_issue(path, check_filesystem=(fs and digests is None))
+        if not (digest_pinned and static_note and execution_boundary) or path_issue:
             e.append("E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: %s" % path)
-        elif fs and sha256_file(path) != upstream["sha256"]:
-            e.append("E_STATIC_UPSTREAM: legacy upstream sha256不一致: %s" % path)
+        elif fs:
+            current_digest = digests.get(path) if digests is not None else sha256_file(path)
+            if current_digest != upstream["sha256"]:
+                e.append("E_STATIC_UPSTREAM: legacy upstream sha256不一致: %s" % path)
 
     # SCF-OS-003: 旧資産を仮設名義で使わない。binding全体を走査し、禁止事項の列挙（operations.forbidden）だけ除く
     def walk(o, path):
@@ -627,8 +688,42 @@ def cmd_retire(args):
     return 0
 
 
+def legacy_static_fs_case_errors(case):
+    """selftest専用。旧archiveを実行せず、隔離した一時filesystemでpath境界だけを検査する。"""
+    global ROOT
+    bindings = case.get("bindings") or [case["binding"]]
+    old_root = ROOT
+    with tempfile.TemporaryDirectory(prefix="scfctl-legacy-static-") as td:
+        ROOT = td
+        try:
+            for artifact in bindings[0].get("artifacts", []):
+                artifact_path = os.path.join(ROOT, artifact)
+                os.makedirs(os.path.dirname(artifact_path), exist_ok=True)
+                with open(artifact_path, "w", encoding="utf-8") as f:
+                    f.write("selftest artifact\n")
+            fixture = case.get("filesystem") or {}
+            for rel, text in (fixture.get("files") or {}).items():
+                file_path = os.path.join(ROOT, rel)
+                os.makedirs(os.path.dirname(file_path), exist_ok=True)
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(str(text))
+            for rel, target in (fixture.get("symlinks") or {}).items():
+                link_path = os.path.join(ROOT, rel)
+                os.makedirs(os.path.dirname(link_path), exist_ok=True)
+                target_path = target if os.path.isabs(target) else os.path.join(ROOT, target)
+                os.symlink(target_path, link_path)
+            errs = []
+            for binding in bindings:
+                e1 = check_shape(binding)
+                if not e1:
+                    errs += check_rules(binding, bindings, fs=True)
+            return errs
+        finally:
+            ROOT = old_root
+
+
 def cmd_selftest(args):
-    """checks/cases/*.json を実行する。file systemを見ない検査（fs=False）と、見る検査を分ける。"""
+    """checks/cases/*.json を実行する。旧archiveは実行せず、必要なfs検査は隔離fixtureだけを見る。"""
     cases = sorted(glob.glob(os.path.join(CASES, "*.json")))
     results = []; fails = 0
     for cp in cases:
@@ -652,6 +747,8 @@ def cmd_selftest(args):
         elif cmd == "orphan":
             errs = check_shape(target)
             if not errs: errs = check_rules(target, bs, digests=dg or {})
+        elif cmd == "legacy-static-fs":
+            errs = legacy_static_fs_case_errors(c)
         elif cmd == "retire-precheck":
             errs = []
             if target["state"] != "replacing": errs.append("E_RETIRE: state=replacing からだけ撤去できる")

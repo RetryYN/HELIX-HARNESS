@@ -21,7 +21,7 @@
   "role": "旧IR evidenceの静的参照",
   "obligations": ["旧archiveを実行しない"],
   "connections": {"consumers": ["research reviewer"], "dependencies": [], "boundary": "scaffold/"},
-  "operations": {"allowed": ["fixed Git bytes read"], "forbidden": ["never execute archive/legacy-generation-2026-09-14/root requirements source"]},
+  "operations": {"allowed": ["fixed Git bytes read"], "forbidden": ["execute old-generation archive source/runtime/test/hook/adapter/CI"]},
   "artifacts": ["scaffold/tools/scfctl.py"],
   "verification": {"evidence_kind": "scaffold", "scope": ["negative_case"], "oracles": ["fixed digest"], "negative_cases": ["legacy static upstream"]},
   "replacement": {"role_target": "pending human review", "formal_artifacts": [], "issue": 0, "status": "pending", "transfer": null, "target_revisions": {}, "confirmation_ref": null, "confirmation_digest": null},

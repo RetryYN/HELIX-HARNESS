@@ -402,7 +402,7 @@
       "validator compares taxonomy commit/path/blob/digest/ancestor, all 64 input digests, 30 anchors, 66 edges, 38 assets, four reason sets, and authority boundaries",
       "inventory and analysis fields are fail-closed against candidate/formal phase and product authority promotion",
       "selfcheck executes 42 negative cases and checks expected error codes, including full taxonomy and analysis-text mutation sweep",
-      "scfctl selftest executes 59 cases: static legacy upstream evidence requires fixed sha256, read-only note, and old-archive execution boundary",
+      "scfctl selftest executes 64 cases: static legacy upstream evidence requires fixed sha256, canonical static-read-only note and execution boundary, exact legacy root, resolved containment, no symlink, and regular-file source",
       "scfctl validate/stale/residuals and git diff --check"
     ],
     "negative_cases": [
@@ -447,7 +447,12 @@
       "formal phase promotion -> E_PHASE_AUTHORITY_SEPARATION",
       "formal product promotion -> E_PRODUCT_AUTHORITY_SEPARATION",
       "authority boundary promotion -> E_AUTHORITY_BOUNDARY",
-      "minimum condition removal -> E_MINIMUM_CONDITIONS"
+      "minimum condition removal -> E_MINIMUM_CONDITIONS",
+      "legacy upstream evil root -> E_STATIC_UPSTREAM",
+      "legacy upstream traversal -> E_STATIC_UPSTREAM",
+      "legacy upstream symlink -> E_STATIC_UPSTREAM",
+      "legacy upstream negated note -> E_STATIC_UPSTREAM",
+      "legacy upstream ambiguous execution boundary -> E_STATIC_UPSTREAM"
     ]
   },
   "replacement": {
