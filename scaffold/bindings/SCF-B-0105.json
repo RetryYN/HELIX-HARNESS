@@ -1,0 +1,469 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0105",
+  "kind": "scaffold",
+  "title": "30 unit phase-status taxonomy research",
+  "product": "HELIX-OS",
+  "owner_candidate": "30 unit phase status taxonomy and decision matrix research（正式phase／product owner未解決）",
+  "state": "registered",
+  "reason": "SCF-B-0101の直接phase gap 30 unitについて、横断制約らしさのレビュー保留と、別source／human判断が必要な未解決を分離する。旧source、Wave edge、PHCAP-01〜20、四製品L1、asset source／history／failure／consumerは静的参照として保持し、正式crosswalk、phase／product authority、要求採否、successor、実装、consumer closureを変更しない。research-onlyであり未解決を解消したとの主張を生成しない。",
+  "upstream": [
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-phase-product-classification-method-2026-09-20.md",
+      "sha256": "151b7bab746a855c7c5f16426e7a68aebc960a83e96150e9e2d8cd721caa466e",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.md",
+      "sha256": "1fdbd85da6a987e945bfaeef97c18696819799fbdbaed09dd3eae410f295508d",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/phcap20-memory-research/README.md",
+      "sha256": "9ffeeaad81fb3f34daa419b9748e7cdc19a3ec0fb9d6f8591989f8cc59b931d1",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/phcap20-memory-research/inventory.json",
+      "sha256": "316f49667a9b4abf06e1a5d973615efdb2402d07ed4062bea5763a5aba4c39b5",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.meta.json",
+      "sha256": "26cc605fdf52ae550208d645bc86cad1edde83587003d42860bbc0f689cddb7c",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-phase-gap-review-0101/inventory.json",
+      "sha256": "8df04cca1d8f85a159a1efe2197995227d023c167256a83ef17659b31eac5465",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-phase-gap-review-0101/units.jsonl",
+      "sha256": "fad1e9129b0c5cfc6f533e980d7f29622c9f9a81c3314191c71351fdbefc1545",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-phase-gap-review-0101/edges.jsonl",
+      "sha256": "d6786e31953f042a1a3436799c24fd36ad24aef4cdcb9778462a1479c8383139",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl",
+      "sha256": "5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl",
+      "sha256": "762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl",
+      "sha256": "ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl",
+      "sha256": "299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl",
+      "sha256": "888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl",
+      "sha256": "eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl",
+      "sha256": "610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl",
+      "sha256": "82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl",
+      "sha256": "da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl",
+      "sha256": "f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl",
+      "sha256": "66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl",
+      "sha256": "1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl",
+      "sha256": "f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl",
+      "sha256": "361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl",
+      "sha256": "fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl",
+      "sha256": "dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl",
+      "sha256": "85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl",
+      "sha256": "50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave19.jsonl",
+      "sha256": "93024399f21cf03c439a81935f473b07e57e0827efb39ce05c0be64a7432a258",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave20.jsonl",
+      "sha256": "e7983f9a07bd4ca939450e034b24499daaeff889317e7789779d82a90adafe49",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave21.jsonl",
+      "sha256": "8b726497d90cd4c430cafb5646765099af5898c1fd4200b693412b95ac1e0264",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave22.jsonl",
+      "sha256": "f86ec2357fc2a79f18310a09bf8eee7cbabf5e620d86d671aec6f76987826dcc",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonl",
+      "sha256": "b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave24.jsonl",
+      "sha256": "bda37af1258af965f5137d063ba134b3185eaec7f1d88ba03d64a0e94efcb455",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave25.jsonl",
+      "sha256": "d30e7658f2d82448f56b85a516c416b1b1ddf4f14c82a592b71842d2e5f37bb3",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave26.jsonl",
+      "sha256": "e196c2d6abae0db6f00faa0502356a7bdff6de234bfe5a504dfdd5e6bebb699b",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonl",
+      "sha256": "9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl",
+      "sha256": "1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl",
+      "sha256": "d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave30.jsonl",
+      "sha256": "a7e3e9d86d91fbd783cc5581611dc7e7f9a7f199a03e9d312f01f24fd8c4613f",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave31.jsonl",
+      "sha256": "51d54950943f7bc251a1bc22a103a2d3b81dc9190cdd778cce0178d857039383",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave32.jsonl",
+      "sha256": "e9e51ed364e9f76cb02f7b66f364f87486ac95aaa43fd010645c789fcecd09fe",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonl",
+      "sha256": "701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave34.jsonl",
+      "sha256": "4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave35.jsonl",
+      "sha256": "02713e03967810fb7ba6faf6b7c9dd561c45fbd36c23972317d8603c1fde2b12",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
+      "sha256": "fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl",
+      "sha256": "25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
+      "sha256": "df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.jsonl",
+      "sha256": "c94785daaef0f3a2546e3d7a906e606d499a81e180d65dcc2c5d7ffd04996c8d",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
+      "sha256": "c98bf42916ef053050799e289bec8b28b7af3a0d62d2dc9e6adb30fdb606b3a8",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.jsonl",
+      "sha256": "03222010e1e8f67e4846ce006adb604fc3742b88d2e39e6eab01123f288563c5",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.jsonl",
+      "sha256": "95ff19ec877bb847510ee5f99565816e42bb59ffb60627145de03c2d24e56072",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.jsonl",
+      "sha256": "293962d91807a1c7f4e553e57db1fa854f1a904f34c4a53eee86d6dbb1ae9982",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
+      "sha256": "2fd638f0dc975fc03790f03d34b579ba5513a1b8420d8c3b09c2c53b108a38f6",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave45/legacy-requirement-direct-semantic-review-wave45.jsonl",
+      "sha256": "aa5328123645c1b8dc90dc2f04ff3ac007dfbdeda599bd66ccb6ad14441cebc6",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave46/legacy-requirement-direct-semantic-review-wave46.jsonl",
+      "sha256": "ff965e2316e4af3fe3f1be85674e879ad9cb57d209f67abec32575af95ac975c",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl",
+      "sha256": "853ec5f2b3784a5711d28c9a4246aff7f0b57bd438d5c84d02bb587d52554f2f",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave48/legacy-requirement-direct-semantic-review-wave48.jsonl",
+      "sha256": "5f318d3ba422359305392c305efc851630ca435374974494ccd7cf79e7d42fb0",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
+      "sha256": "e1d924c576ac36a51750758ac429b3457f658a8b0f62e802fa2ce7372740c356",
+      "note": "static input; taxonomy research only; no authority effect"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
+      "sha256": "8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5",
+      "note": "static input; taxonomy research only; no authority effect"
+    }
+  ],
+  "role": "phase-status-taxonomy-30-unit-research",
+  "obligations": [
+    "crosswalk unresolved 30 unit（HELIX-OS 24／HELIX-HARNESS 6）のexact ID setを保持する",
+    "横断制約らしさのレビュー保留とsource／human判断待ちを排他的matrix ruleで分類する",
+    "旧IR原文anchor、Wave1–50 edge、旧asset source／history／failure／consumerをunitへ結ぶ",
+    "PHCAP-01〜20全境界（PHCAP-20を含む）と四製品L1 contextをauthorityから分離する",
+    "new_build_allowed=falseと正式authority不変更を保持する"
+  ],
+  "connections": {
+    "consumers": [
+      "phase authority reviewer",
+      "product boundary reviewer",
+      "requirement disposition review"
+    ],
+    "dependencies": [
+      "SCF-B-0101 parent phase-gap bundle",
+      "PHCAP-01〜20 phase capability inventory plus PHCAP-20 static definition",
+      "phase classification method",
+      "four product L1 context"
+    ],
+    "boundary": "research candidate only; formal phase、product authority、crosswalk、要求採否、successor、implementation、consumer closureを生成しない"
+  },
+  "operations": {
+    "allowed": [
+      "fixed BASE Git objectの静的読取",
+      "taxonomy bundleとdecision matrixの生成",
+      "deterministic validatorとnegative selfcheckの実行"
+    ],
+    "forbidden": [
+      "旧世代資産の実行",
+      "新世代runtime／CIの起動",
+      "正式phase／product authorityの変更",
+      "要求採否、successor、実装、consumer closureの生成",
+      "merge／close／deployment"
+    ]
+  },
+  "artifacts": [
+    "scaffold/phase-status-taxonomy-0105/README.md",
+    "scaffold/phase-status-taxonomy-0105/inventory.json",
+    "scaffold/phase-status-taxonomy-0105/decision-matrix.json",
+    "scaffold/phase-status-taxonomy-0105/units.jsonl",
+    "scaffold/phase-status-taxonomy-0105/generate.py",
+    "scaffold/phase-status-taxonomy-0105/validate.py",
+    "scaffold/phase-status-taxonomy-0105/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "generate.py→inventory／decision-matrix／units deterministic rederivation",
+      "validate.py exact 30 ID set／BASE／source anchor／Wave edge／asset evidence／taxonomy separation",
+      "validate.py fixed 30-unit taxonomy expectation map／required-evidence join／candidate and judgment-waiting exact fields",
+      "validate.py inventory declaration leaves／unit identity-product-PHCAP leaves／PHCAP reference roles",
+      "selfcheck.py expected error code tamper cases",
+      "scfctl validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "E_TARGET_SET: missing or duplicate target ID",
+      "E_BASE_COMMIT: fixed base metadata tamper",
+      "E_BASE_NOT_ANCESTOR: fixed base is not an ancestor of HEAD",
+      "E_SOURCE_INPUT_DIGEST: BASE input digest tamper",
+      "E_SOURCE_ANCHOR: source statement or line anchor tamper",
+      "E_WAVE_EDGE_COVERAGE: Wave edge omission or drift",
+      "E_ASSET_EVIDENCE: source/history/failure/consumer evidence tamper",
+      "E_TAXONOMY_COVERAGE: taxonomy status or matrix membership omission",
+      "E_TAXONOMY_STATUS: invalid or mixed taxonomy status",
+      "E_TAXONOMY_EXPECTATION: 15 valid unit rule reassignment, candidate statement, phase nonapplicability/confirmation/implementation claim, or judgment-waiting item tamper",
+      "E_TAXONOMY_EVIDENCE_JOIN: required_evidence or evidence-path binding tamper",
+      "E_INVENTORY_DECLARATION: inventory status/scope/taxonomy/PHCAP role/negative-code declaration tamper",
+      "E_UNIT_DECLARATION: requirement/crosswalk/product scope/candidate product/unit phase field tamper",
+      "E_PHCAP_BOUNDARY_CLASSIFICATION: FR-18/19/20 unit moved out of PHCAP-boundary review-pending despite unit-level PHCAP evidence",
+      "E_PHCAP_BOUNDARY_COVERAGE: missing or altered PHCAP-01..20 review coverage",
+      "E_MATRIX_RULE: decision matrix overlap or rule drift",
+      "E_PHASE_AUTHORITY_SEPARATION: formal phase promotion",
+      "E_PRODUCT_AUTHORITY_SEPARATION: product authority promotion",
+      "E_AUTHORITY_BOUNDARY: new build or formal artifact boundary tamper"
+    ]
+  },
+  "replacement": {
+    "role_target": "人間判断後のphase非適用確認または追加source／human phase authority reviewへの個別移管",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}

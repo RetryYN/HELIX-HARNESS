@@ -1,0 +1,37 @@
+{
+  "M-CROSS-CONSTRAINT-REVIEW": {
+    "status": "CROSS_CUTTING_PHASE_REVIEW_PENDING",
+    "exclusive_group": "phase-status-primary",
+    "rule": "原文の主体がprotocol、security、custody、gate、portability、atomicity、identity、工程制約のいずれかに見える場合でも、PHCAP-20の不在だけからphase非適用を導かない。PHCAP-01〜20の全境界をunit原文・Wave候補・現行境界sourceで照合するまで横断制約らしさのレビュー保留として記録する。",
+    "required_evidence": [
+      "exact source anchor",
+      "Wave edge is candidate-only or contract-only",
+      "all PHCAP-01〜20 boundary review",
+      "phase／authority human decision"
+    ],
+    "next_decision": "全PHCAP境界の追加source、phase／product authority reviewerのhuman decision、consumer closure"
+  },
+  "M-WAIT-SOURCE-AUTHORITY": {
+    "status": "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW",
+    "exclusive_group": "phase-status-primary",
+    "rule": "原文のsource custody、要求定義、authority、product boundaryが未閉包で、静的原文だけではphaseの非適用も直接性も確定できない場合は追加sourceとhuman判断待ちに置く。",
+    "required_evidence": [
+      "exact source anchor",
+      "current contract or independent source",
+      "product／authority human decision"
+    ],
+    "next_decision": "追加source、product／authority判断、consumer closure"
+  },
+  "M-WAIT-PHCAP-BOUNDARY": {
+    "status": "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW",
+    "exclusive_group": "phase-status-primary",
+    "rule": "re-entry、snapshot、retention、state、prototype、walkthrough、screen gate、canonicalization等がPHCAP語彙または複数PHCAP候補と接続し、原文・unit evidenceだけでは直接責務を除外できない場合は、phase非適用へ倒さずPHCAP境界の追加sourceとhuman判断待ちに置く。assetのcandidate_phase_targetsはauthorityではないが、unit自身のsource semanticsと併せて境界未解決を示す。",
+    "required_evidence": [
+      "exact source anchor",
+      "PHCAP boundary contract",
+      "unit-level candidate phase evidence",
+      "phase／authority human decision"
+    ],
+    "next_decision": "PHCAP境界source、human phase authority review、consumer closure"
+  }
+}
