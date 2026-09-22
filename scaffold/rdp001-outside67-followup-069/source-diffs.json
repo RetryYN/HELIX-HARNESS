@@ -1,0 +1,55 @@
+{
+  "schema": "rdp001-outside67-source-diff/v1",
+  "items": [
+    {
+      "source_item_id": "OUTSIDE67-PATH-034",
+      "source_path": "docs/governance/audits/l2-requirements/legacy-harness-requirements-source-crosswalk.md",
+      "pre_sha256": "9cc9d04aeb9cc403805ff73bc7f580989006be53a67d9e67449ae32eadcacaf1",
+      "archive_sha256": "9cc9d04aeb9cc403805ff73bc7f580989006be53a67d9e67449ae32eadcacaf1",
+      "pre_bytes": 6235,
+      "archive_bytes": 6235,
+      "status": "same",
+      "unified_diff": ""
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-036",
+      "source_path": "docs/governance/audits/l2-requirements/new-generation-bounded-repair-source-crosswalk.md",
+      "pre_sha256": "99ef22ebabc9432bb2092d7f29a01d2c3a1acd208875feb866dce4e5bd15ccae",
+      "archive_sha256": "99ef22ebabc9432bb2092d7f29a01d2c3a1acd208875feb866dce4e5bd15ccae",
+      "pre_bytes": 5219,
+      "archive_bytes": 5219,
+      "status": "same",
+      "unified_diff": ""
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-046",
+      "source_path": "docs/governance/audits/l2-requirements/new-generation-security-engagement-source-crosswalk.md",
+      "pre_sha256": "1d7e18c3208f3eccf5ad9b96ad547fa30b576b7d417bbaaca96c52691b35c7c9",
+      "archive_sha256": "1d7e18c3208f3eccf5ad9b96ad547fa30b576b7d417bbaaca96c52691b35c7c9",
+      "pre_bytes": 6771,
+      "archive_bytes": 6771,
+      "status": "same",
+      "unified_diff": ""
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-052",
+      "source_path": "docs/governance/candidates/ai-readable-authority-requirements.md",
+      "pre_sha256": "dd9c9b272914293de3121a24d81497ae34109085cb3facff87c880893b52b451",
+      "archive_sha256": "2547a3baa4737277b241065aff7f93bfaf9c08aa608bfab8425388d4035e50ac",
+      "pre_bytes": 6735,
+      "archive_bytes": 7509,
+      "status": "different",
+      "unified_diff": "--- pre-isolation\n+++ archive-revision\n@@ -23,7 +23,8 @@\n \n AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済みのConcept・L1・L2・L3と対象revisionから、\n 現在の責務、許可範囲、停止条件、次の工程を再取得できる文書体系を新世代として構成する。\n-本候補は要求整理だけを行い、現行`AGENTS.md`、`CLAUDE.md`、hook、adapter、prompt、runtime stateを変更しない。\n+本候補は要求整理だけを行う。旧`AGENTS.md`、`CLAUDE.md`、hook、adapter、prompt、runtime stateは非実行archiveへ隔離し、\n+現行pathには新世代上流の読込順と停止条件だけを持つ最小入口を置く。生成器やruntime適用はまだ行わない。\n \n ## 文書責務の分離\n \n@@ -53,6 +54,7 @@\n | AIDOC-OS-006 | AIの読取りと判断を対象revisionへ記録し、文書未読・参照失敗・競合を明示して停止する | 「読んだはず」やsession記憶を読取り証拠にしない |\n | AIDOC-OS-007 | 現行AI文書を新世代のbaselineにせず、source inventoryと判断史を保持する非実行archiveへ移せる | 旧prompt・旧Core Reads・旧adapterが新世代sessionへ再注入されない |\n | AIDOC-OS-008 | AI文書のinput、registry、activation、generation、distribution、enforcement、recovery、citationを別relationとして追跡し、各consumerの主体・時点・scope・revisionを保持する | 一件の文字列置換や一つのread setだけで移管完了と誤判定しない |\n+| AIDOC-OS-009 | reviewer identityとreview実行通路の許可を分け、GitHub、CLI、API、IDE、Workerごとのroute・account・network・費用・write範囲・期限を解決してから起動する | 「Claudeレビュー」等のprovider指定や別通路の過去許可だけからローカルCLIその他の実行権限を生成しない |\n \n ## 新世代のAI読取り入口\n \n@@ -70,11 +72,11 @@\n \n ## 現在の停止条件\n \n-- 現行`AGENTS.md`、`CLAUDE.md`、`.claude/`、`.codex/`、hook、adapterを変更しない。\n+- archive済みの旧`AGENTS.md`、`CLAUDE.md`、`.claude/`、`.codex/`、hook、adapterを現行pathへ戻さない。\n - 現行Core Readsの順序を新世代の正解として移植しない。\n - 既存AI sessionで新世代文書をruntime適用・強制しない。\n - Concept／L1／L2確定前に生成器、manifest schema、prompt、token budget値を設計しない。\n-- 現行AI文書を削除・移動せず、archive対象inventoryとしてだけ登録する。\n+- 旧AI文書を物理削除せず非実行archiveで保全し、現行の最小入口から参照・fallbackしない。\n \n ## L11受入候補\n \n@@ -87,6 +89,7 @@\n - 現行AI文書をarchiveへ移した後、新世代sessionのread setとpromptに旧文書が含まれない。\n - 同じ旧pathをsession input、registry、生成template、配布物、lint、復元経路へ配置し、各relationを別consumerとして検出する。\n - source欠落、digest不一致、競合revision、未読を個別に与え、推測で作業開始しない。\n+- reviewerだけを指定してreview routeを省略した場合は`review_waiting`で停止する。一つのrouteを許可しても別routeを起動せず、無出力やtimeoutから無許可fallbackしない。\n \n 本候補はAI文書の内容と生成・適用責務を上流で分けるための入力であり、現行runtimeへの適用を認可しない。\n [既存CI・AI候補との対応](../audits/l2-requirements/new-generation-ci-ai-source-crosswalk.md)は、旧候補の承認を流用せず、\n"
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-056",
+      "source_path": "docs/governance/candidates/next-generation-ci-requirements.md",
+      "pre_sha256": "dafc9a4dfcc6ef0739c536e5461e490a061b8bd73a68337690bb8849f84cf4fe",
+      "archive_sha256": "dafc9a4dfcc6ef0739c536e5461e490a061b8bd73a68337690bb8849f84cf4fe",
+      "pre_bytes": 7917,
+      "archive_bytes": 7917,
+      "status": "same",
+      "unified_diff": ""
+    }
+  ]
+}
