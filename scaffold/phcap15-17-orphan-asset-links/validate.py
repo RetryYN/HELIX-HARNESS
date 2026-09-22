@@ -51,6 +51,96 @@ EXPECTED_PHASES = {
     ASSET_IDS[5]: ["PHCAP-16", "PHCAP-17"],
 }
 EXPECTED_MEMBERSHIP = dict(zip(ASSET_IDS, [0, 0, 68, 0, 0, 1]))
+EXPECTED_SCOPE_KEYS = {"phase_ids", "products", "asset_ids"}
+EXPECTED_ROUTING_KEYS = {
+    "product", "candidate_role", "asset_basis", "current_evidence_status", "routing_status",
+}
+EXPECTED_PHASE_SNAPSHOT_KEYS = {
+    "title", "product_targets", "current_status", "current_evidence_products",
+    "legacy_capability_status", "legacy_maximum_layer", "transition_assessment", "new_build_allowed",
+}
+EXPECTED_REQUIREMENT_LINK_AUDIT_KEYS = {
+    "crosswalk_records", "crosswalk_unit_phase_links", "phase_direct_unit_counts",
+    "all_direct_legacy_asset_links", "unreferenced_phase_representative_assets", "unreferenced_asset_ids",
+    "source_requirement_id_matches", "source_span_exact_matches", "candidate_pool_membership",
+    "candidate_pool_semantics", "direct_link_conclusion",
+}
+EXPECTED_FAILURE_AUDIT_KEYS = {
+    "selected_assets", "decision_records_found", "asset_consumer_refs_observed",
+    "phase_consumer_refs_observed", "execution_receipts_observed", "consumer_closure",
+    "failure_status", "interpretation",
+}
+EXPECTED_PROVENANCE_KEYS = {
+    "phase_inventory", "asset_ledger", "phase_product_ledger", "decision_ledger", "decision_contract",
+    "crosswalk", "crosswalk_metadata", "product_boundary", "crosswalk_status",
+}
+EXPECTED_PROVENANCE_LEAF_KEYS = {
+    "phase_inventory": {"path", "sha256"},
+    "asset_ledger": {"path", "sha256", "record_count"},
+    "phase_product_ledger": {"path", "sha256", "record_count"},
+    "decision_ledger": {"path", "sha256", "record_count"},
+    "decision_contract": {"path", "sha256"},
+    "crosswalk": {"path", "sha256", "record_count"},
+    "crosswalk_metadata": {"path", "sha256"},
+    "product_boundary": {"path", "sha256"},
+    "crosswalk_status": {"path", "sha256"},
+}
+EXPECTED_COUNTS_KEYS = {
+    "assets", "source_anchors", "products", "requirement_units", "unit_phase_links",
+    "direct_requirement_links", "decision_records", "consumer_refs", "failure_receipts",
+}
+EXPECTED_VERIFICATION_KEYS = {
+    "archive_read_only", "old_runtime_test_ci_execution", "source_anchor_digests_required",
+    "crosswalk_candidate_pool_not_semantic", "unknowns_must_remain_explicit", "negative_cases",
+}
+EXPECTED_ASSET_KEYS_BASE = {
+    "asset_id", "phase", "artifact_evidence_kind", "source_path", "archive_path", "source_sha256",
+    "source_line_count", "candidate_products", "implementation_evidence_state",
+    "legacy_implementation_status", "legacy_execution_performed", "failure_or_degradation",
+    "failure_receipts_observed", "consumer_refs", "consumer_closure_status", "decision_records_found",
+    "source_anchors", "direct_requirement_connection",
+}
+EXPECTED_ASSET_KEYS = {
+    aid: EXPECTED_ASSET_KEYS_BASE | optional
+    for aid, optional in {
+        ASSET_IDS[0]: set(),
+        ASSET_IDS[1]: set(),
+        ASSET_IDS[2]: {"additional_phase_candidate", "candidate_pool_membership_note"},
+        ASSET_IDS[3]: {"additional_phase_candidate"},
+        ASSET_IDS[4]: set(),
+        ASSET_IDS[5]: {"additional_phase_candidate"},
+    }.items()
+}
+EXPECTED_SOURCE_ANCHOR_KEYS = {"id", "start_line", "end_line", "sha256", "meaning"}
+EXPECTED_DIRECT_CONNECTION_KEYS = {"status", "matched_unit_ids", "reason"}
+EXPECTED_FAILURE_AUDIT_VALUES = {
+    "selected_assets": 6,
+    "decision_records_found": 0,
+    "asset_consumer_refs_observed": 0,
+    "phase_consumer_refs_observed": 0,
+    "execution_receipts_observed": 0,
+    "consumer_closure": "pending_for_all_selected_assets",
+    "failure_status": "historical_conditions_only_no_execution_receipt",
+    "interpretation": (
+        "absence of decision/consumer/failure receipt does not create adoption, rejection, owner, "
+        "implementation, or closure"
+    ),
+}
+EXPECTED_ANCHOR_MEANINGS = {
+    "A54330-01": "post-deploy scope and explicit incomplete remote/production boundary",
+    "A54330-02": "static source/test/oracle rows and approval-gated cutover blocker",
+    "A12517-01": "local smoke/consumer evidence and approval-gated external change boundary",
+    "A12517-02": "explicit L13 incomplete blockers",
+    "A18970-01": "embedded historical review/test-green metadata retained as unexecuted historical claim",
+    "A18970-02": "local smoke versus external rollout boundary and documentation DoD",
+    "A9E03-01": "historical current-authority/incident identity claim retained as contradiction",
+    "A9E03-02": "incident flow, approval, recovery and reverse/fullback obligations as historical process text",
+    "A6582-01": "embedded historical review/test-green metadata retained without execution claim",
+    "A6582-02": "route-token scope and approval-dependent acceptance/failure condition",
+    "A4618-01": "runbook purpose and L11/incident applicability",
+    "A4618-02": "approval-gated live incident entry and missing-procedure escalation",
+    "A4618-03": "uncompleted runbook, timeline, approval and recovery checklist",
+}
 
 
 def sha256_bytes(value: bytes) -> str:
@@ -64,6 +154,14 @@ def load_jsonl(path: Path) -> list[dict]:
 def fail(errors: list[str], condition: bool, message: str) -> None:
     if not condition:
         errors.append(message)
+
+
+def check_keys(errors: list[str], value: object, expected: set[str], code: str) -> None:
+    """Reject schema drift in every bounded nested object, including added keys."""
+    if not isinstance(value, dict):
+        errors.append(code + ":TYPE")
+        return
+    fail(errors, set(value) == expected, code)
 
 
 def archive_span_hash(path: Path, start: int, end: int) -> str | None:
@@ -84,6 +182,62 @@ def validate(inv: dict) -> list[str]:
     fail(errors, inv.get("successor_requirement_ids") == [] and inv.get("human_decision_ref") is None, "E_DECISION_FIELDS")
     fail(errors, inv.get("old_runtime_test_ci_execution") is False, "E_OLD_EXECUTION")
     fail(errors, inv.get("base", {}).get("origin_main_commit") == "2654cf936719dee21dfbf1ceb8140163400f081a", "E_BASE")
+
+    # The research inventory is a closed scaffold contract.  Pin the shape before
+    # reading any evidence so nested additions cannot silently become evidence.
+    check_keys(errors, inv.get("scope"), EXPECTED_SCOPE_KEYS, "E_SCOPE_KEYS")
+    check_keys(errors, inv.get("requirement_link_audit"), EXPECTED_REQUIREMENT_LINK_AUDIT_KEYS, "E_REQUIREMENT_AUDIT_KEYS")
+    check_keys(errors, inv.get("failure_consumer_decision_audit"), EXPECTED_FAILURE_AUDIT_KEYS, "E_FAILURE_AUDIT_KEYS")
+    check_keys(errors, inv.get("counts"), EXPECTED_COUNTS_KEYS, "E_COUNTS_KEYS")
+    check_keys(errors, inv.get("verification_contract"), EXPECTED_VERIFICATION_KEYS, "E_VERIFICATION_KEYS")
+
+    prov_shape = inv.get("provenance")
+    check_keys(errors, prov_shape, EXPECTED_PROVENANCE_KEYS, "E_PROVENANCE_KEYS")
+    if isinstance(prov_shape, dict):
+        for name, expected_keys in EXPECTED_PROVENANCE_LEAF_KEYS.items():
+            check_keys(errors, prov_shape.get(name), expected_keys, "E_PROVENANCE_LEAF_KEYS:" + name)
+
+    audit_shape = inv.get("requirement_link_audit")
+    if isinstance(audit_shape, dict):
+        check_keys(errors, audit_shape.get("phase_direct_unit_counts"), {"PHCAP-15", "PHCAP-17"}, "E_PHASE_DIRECT_UNIT_KEYS")
+        check_keys(errors, audit_shape.get("candidate_pool_membership"), set(ASSET_IDS), "E_POOL_MEMBERSHIP_KEYS")
+
+    phase_snapshots = inv.get("phase_snapshots")
+    if not isinstance(phase_snapshots, dict):
+        errors.append("E_PHASE_SNAPSHOT_KEYS:TYPE")
+    else:
+        fail(errors, set(phase_snapshots) == {"PHCAP-15", "PHCAP-17"}, "E_PHASE_SNAPSHOT_IDS")
+        for phase_id in ("PHCAP-15", "PHCAP-17"):
+            check_keys(errors, phase_snapshots.get(phase_id), EXPECTED_PHASE_SNAPSHOT_KEYS, "E_PHASE_SNAPSHOT_KEYS:" + phase_id)
+
+    routing_shape = inv.get("routing_candidates")
+    if not isinstance(routing_shape, list):
+        errors.append("E_ROUTING_KEYS:TYPE")
+    else:
+        for index, candidate in enumerate(routing_shape):
+            check_keys(errors, candidate, EXPECTED_ROUTING_KEYS, "E_ROUTING_KEYS:" + str(index))
+
+    assets_shape = inv.get("assets")
+    if not isinstance(assets_shape, list):
+        errors.append("E_ASSET_KEYS:TYPE")
+    else:
+        for index, asset in enumerate(assets_shape):
+            aid = asset.get("asset_id") if isinstance(asset, dict) else str(index)
+            check_keys(errors, asset, EXPECTED_ASSET_KEYS.get(aid, EXPECTED_ASSET_KEYS_BASE), "E_ASSET_KEYS:" + str(aid))
+            if isinstance(asset, dict):
+                anchors = asset.get("source_anchors")
+                if not isinstance(anchors, list):
+                    errors.append("E_ANCHOR_KEYS:" + str(aid) + ":TYPE")
+                else:
+                    for anchor_index, anchor in enumerate(anchors):
+                        anchor_id = anchor.get("id") if isinstance(anchor, dict) else str(anchor_index)
+                        check_keys(errors, anchor, EXPECTED_SOURCE_ANCHOR_KEYS, "E_ANCHOR_KEYS:" + str(anchor_id))
+                check_keys(errors, asset.get("direct_requirement_connection"), EXPECTED_DIRECT_CONNECTION_KEYS, "E_DIRECT_CONNECTION_KEYS:" + str(aid))
+
+    failure_audit = inv.get("failure_consumer_decision_audit")
+    if isinstance(failure_audit, dict):
+        for key, expected in EXPECTED_FAILURE_AUDIT_VALUES.items():
+            fail(errors, failure_audit.get(key) == expected, "E_FAILURE_AUDIT_VALUE:" + key)
 
     prov = inv.get("provenance", {})
     for name, expected in {
@@ -196,6 +350,8 @@ def validate(inv: dict) -> list[str]:
             fail(errors, len(archive_path.read_text(encoding="utf-8").splitlines()) == item.get("source_line_count"), "E_ARCHIVE_LINES:" + aid)
             for anchor in item.get("source_anchors", []):
                 fail(errors, archive_span_hash(archive_path, anchor.get("start_line", 0), anchor.get("end_line", 0)) == anchor.get("sha256"), "E_ANCHOR:" + anchor.get("id", aid))
+                expected_meaning = EXPECTED_ANCHOR_MEANINGS.get(anchor.get("id"))
+                fail(errors, expected_meaning is not None and anchor.get("meaning") == expected_meaning, "E_ANCHOR_MEANING:" + anchor.get("id", aid))
         link = item.get("direct_requirement_connection", {})
         fail(errors, link.get("status") == "no_exact_evidence_bounded_search" and link.get("matched_unit_ids") == [], "E_DIRECT_CONNECTION:" + aid)
 

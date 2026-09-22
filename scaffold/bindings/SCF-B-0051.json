@@ -55,13 +55,13 @@
     },
     {
       "path": "scaffold/phcap15-17-orphan-asset-links/validate.py",
-      "sha256": "618ff7f7d1077b7b33def765de9040aa298ce0f34a5fd15ae79db641d1f05ad5",
-      "note": "read-only ledger/source/crosswalk static validator"
+      "sha256": "be29a082cdd179789c4a9188f4ea36b9323e0ecca031c4e9cb35d8cf0c3032ca",
+      "note": "read-only ledger/source/crosswalk static validator with exact nested keysets, audit-value pins and source-anchor meaning pins"
     },
     {
       "path": "scaffold/phcap15-17-orphan-asset-links/selfcheck.py",
-      "sha256": "0c28d71d1c66721515143ef2fdcb95ff45bc1cd85e9b61360888fd720cf30998",
-      "note": "17 negative cases against evidence and authority promotion"
+      "sha256": "bdc1fc3df1855a416ad4d5a941c2cd5dc4e2bf7c6dc4a5ff8193c224fa3cee4c",
+      "note": "20 negative cases against evidence, authority promotion, audit-field mutation, anchor-meaning mutation and nested-key injection"
     }
   ],
   "role": "PHCAP-15/17代表旧asset六件と218要求unit crosswalkのbounded direct-link監査を、要求採否・phase authority・製品owner・旧実装・current implementationへ昇格させないresearch premiseとして固定する",
