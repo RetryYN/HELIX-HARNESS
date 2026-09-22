@@ -814,7 +814,8 @@
     "unit_product_candidates_type",
     "sister_inventory_blob_tamper",
     "generator_category_pin_tamper",
-    "generator_products_pin_tamper"
+    "generator_products_pin_tamper",
+    "review_pin_omission"
   ],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
   "output_sha256": "sha256:c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204",

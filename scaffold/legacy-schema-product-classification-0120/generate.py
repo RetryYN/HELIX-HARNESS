@@ -126,7 +126,7 @@ NEGATIVE_CASES = [
     "inventory_overlap_tamper",
     "category_evidence_invariant_direct", "category_evidence_invariant_conflict", "category_evidence_invariant_insufficient",
     "failure_consumer_static_refs_key_closure", "unit_product_candidates_key_closure",
-    "asset_id_type", "unit_product_candidates_type", "sister_inventory_blob_tamper", "generator_category_pin_tamper", "generator_products_pin_tamper",
+    "asset_id_type", "unit_product_candidates_type", "sister_inventory_blob_tamper", "generator_category_pin_tamper", "generator_products_pin_tamper", "review_pin_omission",
 ]
 
 

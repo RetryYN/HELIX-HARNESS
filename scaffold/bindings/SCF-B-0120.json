@@ -171,7 +171,7 @@
       "E_AUTHORITY_PROMOTION／E_RECORD_SCHEMA: authority promotion／unexpected record key",
       "E_INVENTORY／E_INVENTORY_DECLARATION／E_EXPECTED_DENOMINATOR／E_OVERLAP／E_OUTPUT_DIGEST: inventory and denominator mutations",
       "E_BASE_PIN／E_BASE_SOURCE／E_BASE_NOT_ANCESTOR／E_PHASE_STATUS: BASE and phase mutations",
-      "E_CLASSIFICATION／E_STATIC_REF_SCHEMA／E_CANDIDATE_PRODUCTS／E_TARGET_SET／E_OVERLAP: category evidence invariant、nested key closure、asset／unit type、sister inventory blob drift、generator category/products pin regeneration; generator review spec／anchor／L1も含む（48 cases total）"
+      "E_CLASSIFICATION／E_STATIC_REF_SCHEMA／E_CANDIDATE_PRODUCTS／E_TARGET_SET／E_OVERLAP／E_REVIEW_PIN: category evidence invariant、nested key closure、asset／unit type、sister inventory blob drift、generator category/products pin regeneration、validator PINNED_REVIEWS omission; generator review spec／anchor／L1も含む（49 cases total）"
     ]
   },
   "replacement": {
