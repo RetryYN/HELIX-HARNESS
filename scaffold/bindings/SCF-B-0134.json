@@ -347,7 +347,7 @@
     "SOURCE_AUTHORITY_CUSTODY_GAP 2、PHCAP_BOUNDARY_GAP 8、CROSS_PHASE_COMPETITION 10、CROSS_PHASE_UNRESOLVED 10のunit集合と次アクションを固定する",
     "原文anchor、Wave edge、asset、source/human/consumer不足をunit別に保持し、source存在・観測値から実装／未実装／縮退／failure／consumer closureを断定しない",
     "正式phase、product authority、implementation、L2/L11 successor、crosswalkを変更せずauthority none／new_build falseを固定する",
-    "旧世代archiveのsource/runtime/test/hook/adapter/CIは実行せず、独立validatorと42負例、scfctl共通selftestの69ケース（symlink／directory／non-regular／separator）を期待error code付きで維持する"
+    "旧世代archiveのsource/runtime/test/hook/adapter/CIは実行せず、独立validatorと42負例、scfctl共通selftestの69ケース（symlink／directory／non-regular／separator）を期待error code付きで維持する。case44〜46はsymlink先bytes／directory・FIFO object-kind digestを宣言値と照合し、symlink／non_regular拒否returnの到達を直接検査する"
   ],
   "connections": {
     "boundary": "research evidence only; no formal phase/product/implementation authority, crosswalk, acceptance, runtime, merge, or close",
@@ -402,7 +402,7 @@
       "validator compares taxonomy commit/path/blob/digest/ancestor, all 64 input digests, 30 anchors, 66 edges, 38 assets, four reason sets, and authority boundaries",
       "inventory and analysis fields are fail-closed against candidate/formal phase and product authority promotion",
       "selfcheck executes 42 negative cases and checks expected error codes, including full taxonomy and analysis-text mutation sweep",
-      "scfctl selftest executes 69 cases: static legacy upstream evidence requires fixed sha256, exact `静的read-only参照のみ` note and execution boundary, exact legacy root, resolved containment, no symlink (including root-contained target), and regular-file source; directory/non-regular, backslash, and Windows-absolute paths are rejected",
+      "scfctl selftest executes 69 cases: static legacy upstream evidence requires fixed sha256, exact `静的read-only参照のみ` note and execution boundary, exact legacy root, resolved containment, no symlink (including root-contained target), and regular-file source; directory/non-regular, backslash, and Windows-absolute paths are rejected. Symlink target bytes and deterministic directory/FIFO object-kind digests are checked, and cases 44-46 assert the symlink/non_regular rejection branches are reached",
       "scfctl validate/stale/residuals and git diff --check"
     ],
     "negative_cases": [

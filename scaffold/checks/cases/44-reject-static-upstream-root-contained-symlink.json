@@ -18,7 +18,7 @@
   "upstream": [
    {
     "path": "archive/legacy-generation-2026-09-14/root/link-inside.txt",
-    "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "sha256": "7b2441693c861bf6969869d8b6f45f098bc8ef07b78ca043a1cb663159aabb10",
     "note": "固定digest。静的read-only参照のみ。旧archiveは実行しない"
    }
   ],
@@ -79,5 +79,6 @@
   "symlinks": {
    "archive/legacy-generation-2026-09-14/root/link-inside.txt": "archive/legacy-generation-2026-09-14/root/inside.txt"
   }
- }
+ },
+ "expected_path_guard": "symlink"
 }

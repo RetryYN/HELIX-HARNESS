@@ -31,15 +31,34 @@ LEGACY_EXECUTION_BOUNDARIES = {
 SHA = re.compile(r"^[0-9a-f]{64}$")
 DATE = re.compile(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}$")
 INSTRUCTION_FORBIDDEN_TEXT = ("許可している", "承認済み", "権限を与える", "authorized", "#1888")
+# The isolated static-fs selftests assert that the intended rejection branch
+# was reached, rather than merely observing an unrelated digest failure.
+STATIC_PATH_GUARD_HITS = {}
 
 
 # ---------- 基本 ----------
 def sha256_file(rel):
     p = os.path.join(ROOT, rel)
-    if not os.path.isfile(p):
+    try:
+        mode = os.lstat(p).st_mode
+    except OSError:
         return None
-    with open(p, "rb") as f:
-        return hashlib.sha256(f.read()).hexdigest()
+    # Static-fs selftests need a deterministic digest for rejected non-regular
+    # fixtures.  It is only used after legacy_path_issue has classified the
+    # object; it never makes a non-regular upstream acceptable.
+    if stat.S_ISDIR(mode):
+        data = b"scfctl-static-fixture:directory\n"
+    elif stat.S_ISFIFO(mode):
+        data = b"scfctl-static-fixture:fifo\n"
+    elif stat.S_ISREG(mode) or stat.S_ISLNK(mode):
+        try:
+            with open(p, "rb") as f:
+                data = f.read()
+        except OSError:
+            return None
+    else:
+        return None
+    return hashlib.sha256(data).hexdigest()
 
 
 def sha256_obj(o):
@@ -72,6 +91,7 @@ def legacy_path_issue(path, check_filesystem=False):
     for part in parts:
         current = os.path.join(current, part)
         if os.path.islink(current):
+            STATIC_PATH_GUARD_HITS["symlink"] = STATIC_PATH_GUARD_HITS.get("symlink", 0) + 1
             return "path component is symlink"
     try:
         resolved = Path(candidate).resolve(strict=True)
@@ -79,6 +99,7 @@ def legacy_path_issue(path, check_filesystem=False):
         if os.path.commonpath((str(resolved), str(allowed_root))) != str(allowed_root):
             return "resolved path outside fixed legacy root"
         if not stat.S_ISREG(os.stat(candidate, follow_symlinks=False).st_mode):
+            STATIC_PATH_GUARD_HITS["non_regular"] = STATIC_PATH_GUARD_HITS.get("non_regular", 0) + 1
             return "source is not a regular file"
     except (OSError, ValueError):
         return "source path cannot be resolved"
@@ -691,6 +712,7 @@ def cmd_retire(args):
 def legacy_static_fs_case_errors(case):
     """selftest専用。旧archiveを実行せず、隔離した一時filesystemでpath境界だけを検査する。"""
     global ROOT
+    STATIC_PATH_GUARD_HITS.clear()
     bindings = case.get("bindings") or [case["binding"]]
     old_root = ROOT
     with tempfile.TemporaryDirectory(prefix="scfctl-legacy-static-") as td:
@@ -723,6 +745,15 @@ def legacy_static_fs_case_errors(case):
                 e1 = check_shape(binding)
                 if not e1:
                     errs += check_rules(binding, bindings, fs=True)
+                for upstream in binding.get("upstream", []):
+                    path = upstream.get("path") if isinstance(upstream, dict) else None
+                    if isinstance(path, str) and LEGACY.search(path):
+                        actual = sha256_file(path)
+                        if actual != upstream.get("sha256"):
+                            errs.append("E_FIXTURE_DIGEST: static-fs fixture digest does not match the represented object: %s" % path)
+            expected_guard = case.get("expected_path_guard")
+            if expected_guard and STATIC_PATH_GUARD_HITS.get(expected_guard, 0) < 1:
+                errs.append("E_STATIC_GUARD: expected %s rejection branch was not reached" % expected_guard)
             return errs
         finally:
             ROOT = old_root

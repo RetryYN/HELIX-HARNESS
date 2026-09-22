@@ -18,7 +18,7 @@
   "upstream": [
    {
     "path": "archive/legacy-generation-2026-09-14/root/link.txt",
-    "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "sha256": "92a214fa61579091222f97eaf8e9bf11c1a728af5a077a3b5568231b6dc5be43",
     "note": "固定digest。静的read-only参照のみ。旧archiveは実行しない"
    }
   ],

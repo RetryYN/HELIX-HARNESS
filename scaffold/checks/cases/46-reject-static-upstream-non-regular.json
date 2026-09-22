@@ -18,7 +18,7 @@
   "upstream": [
    {
     "path": "archive/legacy-generation-2026-09-14/root/non-regular-source",
-    "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+    "sha256": "071461249680c8e108b6527a020e4ee0ff4eb570fb2d3eac2819cf945fb92385",
     "note": "固定digest。静的read-only参照のみ。旧archiveは実行しない"
    }
   ],
@@ -76,5 +76,6 @@
   "non_regular": [
    "archive/legacy-generation-2026-09-14/root/non-regular-source"
   ]
- }
+ },
+ "expected_path_guard": "non_regular"
 }

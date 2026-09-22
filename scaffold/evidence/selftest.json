@@ -1,7 +1,7 @@
 {
  "authority_effect": "none",
  "cases": 69,
- "cases_sha256": "d7ec289a9b06628dd9fe23cdc4ead9d0b404ad7b0be4f5c32e288b95cf215bb3",
+ "cases_sha256": "1ee0561f4984cd578297ae2f0beadbfc0565eab3a7bf3a8860e2fb4be0e9b5f1",
  "checked_at": "2026-09-23",
  "evidence_kind": "scaffold",
  "fail": 0,
@@ -907,5 +907,5 @@
    ]
   }
  ],
- "tool_sha256": "61c45f6014968cbe53e612211e81361e26d937599abb7391e3012cde0cd79b6e"
+ "tool_sha256": "6a0be284da79b090821bbcc7a0630498ff97020ac6d8b4f29cb1d23f93af119e"
 }
