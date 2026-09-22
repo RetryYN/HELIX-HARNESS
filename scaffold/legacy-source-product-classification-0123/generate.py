@@ -149,7 +149,7 @@ NEGATIVE_CASES = [
     "generator_products_tamper", "base_pin_tamper", "base_source_missing", "history_tamper", "asset_ledger_nested_tamper",
     "phase_nested_tamper", "history_nested_tamper", "failure_consumer_static_ref_tamper", "unit_candidate_nested_tamper",
     "semantic_edge_field_tamper", "human_judgment_tamper", "input_digest_value_tamper", "inventory_negative_case_tamper",
-    "output_digest_tamper", "phase_status_tamper", "inventory_overlap_tamper", "asset_id_missing",
+    "output_digest_tamper", "phase_status_tamper", "review_pin_omission", "inventory_overlap_tamper", "asset_id_missing",
     "unit_candidate_non_dict", "unit_candidate_top_level_extra", "failure_consumer_top_level_extra",
     "failure_consumer_nested_extra", "inventory_manual_ids_tamper", "inventory_top_level_extra",
     "direct_category_cardinality", "conflict_category_cardinality", "insufficient_category_cardinality",
@@ -163,6 +163,29 @@ def sha(data: bytes) -> str:
 
 def tagged(data: bytes) -> str:
     return "sha256:" + sha(data)
+
+
+class StrictJSONError(ValueError):
+    """Reject duplicate keys and non-object JSON in generator inputs."""
+
+
+def _strict_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise StrictJSONError(f"duplicate key {key!r}")
+        result[key] = value
+    return result
+
+
+def strict_json(text: str, context: str) -> dict:
+    try:
+        value = json.loads(text, object_pairs_hook=_strict_object)
+    except (json.JSONDecodeError, StrictJSONError, UnicodeDecodeError) as exc:
+        raise AssertionError(f"invalid or duplicate-key JSON at {context}: {exc}") from exc
+    if not isinstance(value, dict):
+        raise AssertionError(f"JSON object required at {context}")
+    return value
 
 
 def canonical(value: object) -> str:
@@ -185,7 +208,7 @@ def reference_inventory_ids(pin: dict) -> set[str]:
     data = (ROOT / pin["path"]).read_bytes()
     if tagged(data) != pin["sha256"]:
         raise AssertionError(f"reference inventory digest drift: {pin['path']}")
-    obj = json.loads(data)
+    obj = strict_json(data.decode(), pin["path"])
     ids = obj.get("expected_sets", {}).get("target_asset_ids")
     if not isinstance(ids, list) or len(ids) != pin["count"] or len(set(ids)) != pin["count"]:
         raise AssertionError(f"reference inventory target set drift: {pin['path']}")
@@ -199,7 +222,7 @@ def schema_dependency_ids() -> set[str]:
     data = git_bytes_at(SCHEMA_DEPENDENCY["commit"], SCHEMA_DEPENDENCY["path"])
     if tagged(data) != SCHEMA_DEPENDENCY["sha256"]:
         raise AssertionError("schema dependency inventory digest drift")
-    obj = json.loads(data)
+    obj = strict_json(data.decode(), SCHEMA_DEPENDENCY["path"])
     ids = obj.get("expected_sets", {}).get("target_asset_ids")
     if not isinstance(ids, list) or len(ids) != SCHEMA_DEPENDENCY["count"] or len(set(ids)) != SCHEMA_DEPENDENCY["count"]:
         raise AssertionError("schema dependency target set drift")
@@ -231,7 +254,7 @@ def research_overlap(source_ids: set[str]) -> dict:
 
 
 def read_jsonl(path: str) -> list[tuple[int, dict]]:
-    return [(i, json.loads(line)) for i, line in enumerate(git_bytes(path).decode().splitlines(), 1) if line.strip()]
+    return [(i, strict_json(line, f"{path}:{i}")) for i, line in enumerate(git_bytes(path).decode().splitlines(), 1) if line.strip()]
 
 
 def row_digest(row: dict) -> str:

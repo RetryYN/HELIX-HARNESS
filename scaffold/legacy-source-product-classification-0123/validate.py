@@ -18,6 +18,7 @@ PHASE_FIXED = "docs/governance/legacy-asset-phase-product-classification-bootstr
 DISPOSITION_FIXED = "docs/governance/legacy-asset-disposition.jsonl"
 DECISIONS_FIXED = "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER_FIXED = "docs/governance/legacy-asset-copy-read-after.jsonl"
+BINDING_FIXED = "scaffold/bindings/SCF-B-0123.json"
 CROSSWALK_FIXED = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 DECOMPOSITION_FIXED = "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
 BOUNDARY_FIXED = "docs/concept/product-boundary.md"
@@ -43,7 +44,7 @@ CATEGORY_RULES = {
     "multi_product_conflict": {"status": "reviewed_conflict", "product_count": 2},
     "insufficient_basis": {"status": "reviewed_insufficient_basis", "product_count": 0},
 }
-EXPECTED_NEGATIVE_CASES = ['target_record_omission', 'target_record_duplicate', 'edge_omission', 'edge_duplicate', 'source_digest_tamper', 'source_anchor_tamper', 'source_line_range_tamper', 'source_profile_tamper', 'candidate_product_tamper', 'classification_category_tamper', 'semantic_review_tamper', 'legacy_evidence_tamper', 'boundary_digest_tamper', 'input_digest_omission', 'input_digest_duplicate', 'input_digest_extra_path', 'authority_promotion', 'record_top_level_extra_key', 'source_read_mode_tamper', 'inventory_authority_promotion', 'inventory_scope_tamper', 'inventory_formal_update_tamper', 'inventory_classification_rule_tamper', 'inventory_artifact_kind_denominator_tamper', 'inventory_edge_denominator_tamper', 'fixed_base_non_ancestor', 'generator_review_spec_tamper', 'generator_anchor_tamper', 'generator_l1_tamper', 'generator_products_tamper', 'base_pin_tamper', 'base_source_missing', 'history_tamper', 'asset_ledger_nested_tamper', 'phase_nested_tamper', 'history_nested_tamper', 'failure_consumer_static_ref_tamper', 'unit_candidate_nested_tamper', 'semantic_edge_field_tamper', 'human_judgment_tamper', 'input_digest_value_tamper', 'inventory_negative_case_tamper', 'output_digest_tamper', 'phase_status_tamper', 'inventory_overlap_tamper', 'asset_id_missing', 'unit_candidate_non_dict', 'unit_candidate_top_level_extra', 'failure_consumer_top_level_extra', 'failure_consumer_nested_extra', 'inventory_manual_ids_tamper', 'inventory_top_level_extra', 'direct_category_cardinality', 'conflict_category_cardinality', 'insufficient_category_cardinality', 'manual_l1_evidence_mismatch']
+EXPECTED_NEGATIVE_CASES = ['target_record_omission', 'target_record_duplicate', 'edge_omission', 'edge_duplicate', 'source_digest_tamper', 'source_anchor_tamper', 'source_line_range_tamper', 'source_profile_tamper', 'candidate_product_tamper', 'classification_category_tamper', 'semantic_review_tamper', 'legacy_evidence_tamper', 'boundary_digest_tamper', 'input_digest_omission', 'input_digest_duplicate', 'input_digest_extra_path', 'authority_promotion', 'record_top_level_extra_key', 'source_read_mode_tamper', 'inventory_authority_promotion', 'inventory_scope_tamper', 'inventory_formal_update_tamper', 'inventory_classification_rule_tamper', 'inventory_artifact_kind_denominator_tamper', 'inventory_edge_denominator_tamper', 'fixed_base_non_ancestor', 'generator_review_spec_tamper', 'generator_anchor_tamper', 'generator_l1_tamper', 'generator_products_tamper', 'base_pin_tamper', 'base_source_missing', 'history_tamper', 'asset_ledger_nested_tamper', 'phase_nested_tamper', 'history_nested_tamper', 'failure_consumer_static_ref_tamper', 'unit_candidate_nested_tamper', 'semantic_edge_field_tamper', 'human_judgment_tamper', 'input_digest_value_tamper', 'inventory_negative_case_tamper', 'output_digest_tamper', 'phase_status_tamper', 'review_pin_omission', 'inventory_overlap_tamper', 'asset_id_missing', 'unit_candidate_non_dict', 'unit_candidate_top_level_extra', 'failure_consumer_top_level_extra', 'failure_consumer_nested_extra', 'inventory_manual_ids_tamper', 'inventory_top_level_extra', 'direct_category_cardinality', 'conflict_category_cardinality', 'insufficient_category_cardinality', 'manual_l1_evidence_mismatch']
 RECORD_KEYS = frozenset({"artifact_evidence_kinds", "asset_id", "asset_ledger", "authority_effect", "boundary_evidence", "candidate_products", "classification_category", "classification_reason", "classification_state", "failure_consumer_static_refs", "formal_asset_classification_updated", "human_judgment_remaining", "l1_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "manual_semantic_review", "new_build_allowed", "observed_wave_products", "phase_ledger", "semantic_link_statuses", "source_exact", "source_profile", "unit_product_candidates", "wave_semantic_links"})
 SOURCE_KEYS = frozenset({"archive_path", "blob", "bytes", "ledger_source_sha256", "line_count", "read_mode", "semantic_anchors", "sha256", "source_path"})
 # Fixed BASE semantic review pins are independent of generate.py.  Generator
@@ -619,11 +620,37 @@ def canonical(value: object) -> str:
     return tagged(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode())
 
 
+class StrictJSONError(ValueError):
+    """入力JSONの重複key・構文・型を一貫して拒否する内部エラー。"""
+
+
+def _strict_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise StrictJSONError(f"duplicate key {key!r}")
+        result[key] = value
+    return result
+
+
+def strict_json(text: str, context: str):
+    try:
+        value = json.loads(text, object_pairs_hook=_strict_object)
+    except (json.JSONDecodeError, StrictJSONError, UnicodeDecodeError) as exc:
+        fail("E_JSON", f"invalid or duplicate-key JSON at {context}: {exc}")
+    if not isinstance(value, dict):
+        fail("E_JSON", f"JSON object required at {context}")
+    return value
+
+
 def fixed_inventory_ids(pin: dict) -> set[str]:
     data = (ROOT / pin["path"]).read_bytes()
     if tagged(data) != pin["sha256"]:
         fail("E_OVERLAP", f"reference inventory digest drift {pin['path']}")
-    obj = json.loads(data)
+    try:
+        obj = strict_json(data.decode(), pin["path"])
+    except UnicodeDecodeError as exc:
+        fail("E_JSON", f"invalid UTF-8 at {pin['path']}: {exc}")
     ids = obj.get("expected_sets", {}).get("target_asset_ids")
     if not isinstance(ids, list) or len(ids) != pin["count"] or len(set(ids)) != pin["count"]:
         fail("E_OVERLAP", f"reference inventory target set drift {pin['path']}")
@@ -640,7 +667,10 @@ def fixed_schema_ids() -> set[str]:
         fail("E_OVERLAP", f"schema dependency is unavailable: {exc}")
     if tagged(data) != SCHEMA_DEPENDENCY["sha256"]:
         fail("E_OVERLAP", "schema dependency inventory digest drift")
-    obj = json.loads(data)
+    try:
+        obj = strict_json(data.decode(), SCHEMA_DEPENDENCY["path"])
+    except UnicodeDecodeError as exc:
+        fail("E_JSON", f"invalid UTF-8 at {SCHEMA_DEPENDENCY['path']}: {exc}")
     ids = obj.get("expected_sets", {}).get("target_asset_ids")
     if not isinstance(ids, list) or len(ids) != SCHEMA_DEPENDENCY["count"] or len(set(ids)) != SCHEMA_DEPENDENCY["count"]:
         fail("E_OVERLAP", "schema dependency target set drift")
@@ -693,13 +723,13 @@ def git_blob(path: str, base: str = BASE_REVISION) -> str:
         fail("E_BASE_SOURCE", f"missing fixed-base blob {path}: {exc}")
 
 def local_json(path: Path):
-    return json.loads(path.read_text())
+    return strict_json(path.read_text(), str(path))
 
 def local_jsonl(path: Path):
-    return [json.loads(x) for x in path.read_text().splitlines() if x.strip()]
+    return [strict_json(x, f"{path}:{i}") for i, x in enumerate(path.read_text().splitlines(), 1) if x.strip()]
 
 def base_jsonl(path: str):
-    return [(i, json.loads(x)) for i, x in enumerate(git_bytes(path).decode().splitlines(), 1) if x.strip()]
+    return [(i, strict_json(x, f"{path}:{i}")) for i, x in enumerate(git_bytes(path).decode().splitlines(), 1) if x.strip()]
 
 def row_digest(row: dict) -> str:
     return canonical(row)
@@ -792,6 +822,23 @@ def verify_inputs(inventory, targets, phase_by_asset):
         if item != expected:
             fail("E_INPUT_DIGEST", f"input digest mismatch {item.get('path')}")
 
+def verify_binding_input_closure(inventory):
+    binding = strict_json((ROOT / BINDING_FIXED).read_text(), BINDING_FIXED)
+    upstream = binding.get("upstream")
+    if not isinstance(upstream, list):
+        fail("E_INPUT_SET", "binding upstream must be a list")
+    actual = {}
+    for item in upstream:
+        if not isinstance(item, dict) or not isinstance(item.get("path"), str) or not isinstance(item.get("sha256"), str):
+            fail("E_INPUT_SET", "binding upstream entry is malformed")
+        path = item["path"]
+        if path in actual:
+            fail("E_INPUT_SET", f"duplicate binding upstream path {path}")
+        actual[path] = item["sha256"]
+    expected = {item["path"]: item["sha256"].removeprefix("sha256:") for item in inventory["input_digests"] if not item["path"].startswith("archive/")}
+    if actual != expected:
+        fail("E_INPUT_SET", "binding upstream does not close non-archive input_digests")
+
 def verify_static_ranges(record):
     expected_boundary, expected_l1 = boundary_evidence(), l1_evidence()
     if record.get("boundary_evidence") != expected_boundary: fail("E_BOUNDARY_DIGEST", record.get("asset_id", ""))
@@ -814,6 +861,7 @@ def verify():
     if tuple(targets) != EXPECTED_TARGET_IDS or len(targets) != 59: fail("E_TARGET_SET", "fixed BASE target ID set drift")
     if set(PINNED_REVIEWS) != set(targets): fail("E_REVIEW_PIN", "independent review pin set drift")
     verify_inputs(inventory, targets, phase_by_asset)
+    verify_binding_input_closure(inventory)
     if any(not isinstance(row, dict) for row in rows): fail("E_RECORD_SCHEMA", "record is not an object")
     row_ids = [row.get("asset_id") for row in rows]
     if any(not isinstance(asset_id, str) or not asset_id for asset_id in row_ids): fail("E_TARGET_SET", "record asset_id is missing or not a string")

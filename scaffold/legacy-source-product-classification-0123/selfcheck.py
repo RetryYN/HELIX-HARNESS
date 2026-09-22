@@ -22,7 +22,7 @@ def tagged(data: bytes) -> str:
 def run_case(label, expected_code, mutate_rows=None, mutate_inventory=None, mutate_module=None):
     rows, inventory = copy.deepcopy(base_rows), copy.deepcopy(base_inventory)
     if mutate_rows: mutate_rows(rows)
-    old = {key: getattr(module, key) for key in ("LEDGER", "INVENTORY", "BASE_REVISION", "PHASE_FIXED")}
+    old = {key: getattr(module, key) for key in ("LEDGER", "INVENTORY", "BASE_REVISION", "PHASE_FIXED", "PINNED_REVIEWS")}
     try:
         with tempfile.TemporaryDirectory(prefix="scf-b-0123-selfcheck-") as tmp:
             root = Path(tmp)
@@ -79,6 +79,43 @@ def run_generator_case(label, expected_code, mutate):
         module.git_bytes.cache_clear(); module.git_blob.cache_clear()
 
 
+def strict_json_loader_suite():
+    """Exercise duplicate-key, malformed, and non-object ledger/inventory inputs."""
+    old = module.LEDGER, module.INVENTORY
+    ledger_lines = [json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")) for row in base_rows]
+    inventory_text = json.dumps(base_inventory, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
+    first = ledger_lines[0]
+    duplicate_record = first[:-1] + ',"asset_id":"DUPLICATE"}'
+    duplicate_nested = first[:-1] + ',"candidate_products":[]}'
+    cases = [
+        ("record duplicate key", duplicate_record + "\n" + "\n".join(ledger_lines[1:]), inventory_text),
+        ("nested duplicate key", duplicate_nested + "\n" + "\n".join(ledger_lines[1:]), inventory_text),
+        ("malformed ledger JSON", '{"asset_id":\n' + "\n".join(ledger_lines[1:]), inventory_text),
+        ("non-object inventory JSON", "\n".join(ledger_lines), "[]\n"),
+    ]
+    try:
+        with tempfile.TemporaryDirectory(prefix="scf-b-0123-json-loader-") as tmp:
+            root = Path(tmp)
+            ledger = root / original_ledger.name
+            inv = root / original_inventory.name
+            module.LEDGER, module.INVENTORY = ledger, inv
+            for label, ledger_text, inv_text in cases:
+                ledger.write_text(ledger_text + ("\n" if not ledger_text.endswith("\n") else ""))
+                inv.write_text(inv_text)
+                try:
+                    module.verify()
+                except AssertionError as exc:
+                    if "E_JSON" not in str(exc):
+                        raise AssertionError(f"{label}: expected E_JSON, got {exc}") from exc
+                else:
+                    raise AssertionError(f"{label}: malformed input was accepted")
+                module.git_bytes.cache_clear(); module.git_blob.cache_clear()
+    finally:
+        module.LEDGER, module.INVENTORY = old
+        module.git_bytes.cache_clear(); module.git_blob.cache_clear()
+    print("PASS negative: strict JSON loader guards [E_JSON]")
+
+
 def remove_record(rows): rows.pop()
 def duplicate_record(rows): rows.append(copy.deepcopy(rows[0]))
 def remove_edge(rows): rows[TARGET_WITH_EDGE]["wave_semantic_links"].pop()
@@ -121,6 +158,9 @@ def non_ancestor(mod): mod.BASE_REVISION = "0" * 40
 def missing_base_source(mod): mod.PHASE_FIXED = "docs/missing-fixed-base.jsonl"
 def base_pin(inv): inv["base_revision"] = "0" * 40
 def phase_status(rows): rows[0]["phase_ledger"]["product_classification_status"] = "approved"
+def review_pin(mod):
+    mod.PINNED_REVIEWS = copy.deepcopy(mod.PINNED_REVIEWS)
+    mod.PINNED_REVIEWS.pop(next(iter(mod.PINNED_REVIEWS)))
 def asset_id_missing(rows): rows[0].pop("asset_id")
 def unit_candidate_non_dict(rows): rows[TARGET_WITH_EDGE]["unit_product_candidates"][0] = "not-an-object"
 def unit_candidate_top_level_extra(rows): rows[TARGET_WITH_EDGE]["unit_product_candidates"][0]["extra"] = True
@@ -160,6 +200,7 @@ run_case("semantic edge field tamper", "E_EDGE_SET", mutate_rows=semantic_edge_f
 run_case("human judgment tamper", "E_HUMAN_JUDGMENT", mutate_rows=human)
 run_case("authority promotion", "E_AUTHORITY_PROMOTION", mutate_rows=authority)
 run_case("record top-level extra key", "E_RECORD_SCHEMA", mutate_rows=record_schema)
+strict_json_loader_suite()
 run_case("source read mode tamper", "E_SOURCE_DIGEST", mutate_rows=source_read_mode)
 run_case("input digest omission", "E_INPUT_SET", mutate_inventory=remove_input)
 run_case("input digest duplicate", "E_INPUT_SET", mutate_inventory=duplicate_input)
@@ -178,6 +219,7 @@ run_case("fixed BASE non-ancestor", "E_BASE_NOT_ANCESTOR", mutate_module=non_anc
 run_case("fixed BASE source missing", "E_BASE_SOURCE", mutate_module=missing_base_source)
 run_case("fixed BASE pin tamper", "E_BASE_PIN", mutate_inventory=base_pin)
 run_case("phase status tamper", "E_PHASE_STATUS", mutate_rows=phase_status)
+run_case("review pin omission", "E_REVIEW_PIN", mutate_module=review_pin)
 run_case("asset id missing", "E_TARGET_SET", mutate_rows=asset_id_missing)
 run_case("unit candidate non-dict", "E_CANDIDATE_PRODUCTS", mutate_rows=unit_candidate_non_dict)
 run_case("unit candidate top-level extra", "E_CANDIDATE_PRODUCTS", mutate_rows=unit_candidate_top_level_extra)
@@ -193,4 +235,4 @@ run_generator_case("generator review spec tamper", "E_PROFILE", lambda g: g.REVI
 run_generator_case("generator anchor tamper", "E_SOURCE_ANCHOR", lambda g: g.REVIEW_SPECS["measurement-evidence-evaluator"].update(marker="export const MEASUREMENT_EVALUATION_SCHEMA_VERSION"))
 run_generator_case("generator L1 tamper", "E_SEMANTIC_REVIEW", lambda g: g.L1_RANGES["HELIX-OS"].__setitem__(0, (22, 26)))
 run_generator_case("generator products tamper", "E_SOURCE_ANCHOR", lambda g: g.REVIEW_SPECS["measurement-evidence-evaluator"].update(products=["HELIX-OS"]))
-print("SCF-B-0123 selfcheck: PASS negative_cases=56")
+print("SCF-B-0123 selfcheck: PASS negative_cases=57")

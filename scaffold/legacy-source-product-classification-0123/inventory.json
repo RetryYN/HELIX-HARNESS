@@ -1065,6 +1065,7 @@
     "inventory_negative_case_tamper",
     "output_digest_tamper",
     "phase_status_tamper",
+    "review_pin_omission",
     "inventory_overlap_tamper",
     "asset_id_missing",
     "unit_candidate_non_dict",
