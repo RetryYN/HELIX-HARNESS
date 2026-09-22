@@ -93,6 +93,46 @@ SOURCE_EVIDENCE_SENTINELS = {
     "IRUNIT-HIL-TR-07-HELIX-OS": "L4 write-authority decision record",
     "IRUNIT-HIL-TR-08-HELIX-HARNESS": "versioned Node/Python JSON Lines transport contract",
 }
+ANALYSIS_TEXT_KEYS = (
+    "reason_class", "reason_description", "required_source_evidence",
+    "required_human_decision", "required_consumer_evidence", "next_action",
+    "product_review",
+)
+# Full expected-value digests are pinned independently of generate.py.  This
+# closes the gap where a well-shaped second evidence item or explanatory text
+# could otherwise be replaced without changing the structural fields.
+ANALYSIS_TEXT_DIGESTS = {
+    "IRUNIT-HIL-BR-14-HELIX-OS": "sha256:7f8aba5409c1cf060c7c291dcd5bc607ca8d3be3a414b01f1846f38db6425a86",
+    "IRUNIT-HIL-BR-24-HELIX-OS": "sha256:12fca713b4c73aac20d4e7ffc0a73f14884169fc2b4d4f3495f789080232cf59",
+    "IRUNIT-HIL-FR-17-HELIX-OS": "sha256:fbe380156e72565329cea425a52f420969f3993b7447eb40e2212d9c7fdc128e",
+    "IRUNIT-HIL-FR-18-HELIX-OS": "sha256:cf7f4a2e82bdeec3afe1d2e5c85c7d4f7808fed0116a0887c8f0359abed577f3",
+    "IRUNIT-HIL-FR-19-HELIX-HARNESS": "sha256:0ebce1aa5a1e76c0180c325a3c7dc0898c3a7ae947527fdc935388a95766be41",
+    "IRUNIT-HIL-FR-20-HELIX-OS": "sha256:f52c567b5f1d979871ebe506fcd512a8b260847869c5719444c069cca15e5b42",
+    "IRUNIT-HIL-FR-21-HELIX-OS": "sha256:25401df99cec03bc07168b8afe280418147c9c08120a36b6f65271b8c6506446",
+    "IRUNIT-HIL-FR-23-HELIX-OS": "sha256:fd0079996f876a29d998db32663a99063da5815d4dc2f47b073db253d27318e7",
+    "IRUNIT-HIL-FR-24-HELIX-OS": "sha256:9e0e20dd92b717e68af6ead4e77c8faa0b2752f759028eff132d0c372ae1b2cb",
+    "IRUNIT-HIL-FR-31-HELIX-OS": "sha256:e33e64006d374273fed21a848a8d4cef49cc5cb289c885613da317aaa015dc6f",
+    "IRUNIT-HIL-FR-33-HELIX-HARNESS": "sha256:501fa5d8be455fed353286563a88a6834b709f3bfd3fa56415edab66a8dc20fb",
+    "IRUNIT-HIL-FR-33-HELIX-OS": "sha256:42b6eac0cdac40474b4d4e50a7f9ec8517e037aaa5ba45b44ed38154ff1648ec",
+    "IRUNIT-HIL-FR-46-HELIX-OS": "sha256:8b18b092c959f368d70aec382501cf2d499304b86983dfb5a844d695eb132570",
+    "IRUNIT-HIL-FR-52-HELIX-OS": "sha256:df2001a3d0da274d7d4b2185e930cde9eae9de6f7c7f53f47630871e67c4c134",
+    "IRUNIT-HIL-FR-53-HELIX-OS": "sha256:7a1755b263f15ebbe90b38e45261cd490913bdb1bfd69e524030a9e2a0d10e4f",
+    "IRUNIT-HIL-NFR-02-HELIX-HARNESS": "sha256:235b3b465b02be15e31617491556d0e73491bb934ec57a4bcadc419b1bebae03",
+    "IRUNIT-HIL-NFR-03-HELIX-HARNESS": "sha256:4fd216217299b6c023b311e368da0879dd7d045e2418f372a51812105673c931",
+    "IRUNIT-HIL-NFR-05-HELIX-OS": "sha256:8134601a61eece34f7ac429bd992770982d9b23d10c82b14e34d2884a4b51483",
+    "IRUNIT-HIL-NFR-06-HELIX-OS": "sha256:98921cbcf6460ccb845ea14ebc8066ebaf4a79f93a14fa6ec506cc88fe67167d",
+    "IRUNIT-HIL-NFR-07-HELIX-OS": "sha256:6e5e7d44b0cd102ca5fc7613aa96fb88ecc0ba33bc81fc0d20e089855a0e5451",
+    "IRUNIT-HIL-NFR-11-HELIX-OS": "sha256:d6e1ac5dc523b6f8922209ab6d55bd5737555926e8fad830c4a1aa69c838a261",
+    "IRUNIT-HIL-NFR-12-HELIX-OS": "sha256:cd1c109f19d73d98c2f79ece92577f53985ae40e05ff84804a1abb5c0e8ccd62",
+    "IRUNIT-HIL-NFR-23-HELIX-OS": "sha256:36dbe384f67427720d3718baef94afe9656ebd2bfc59943d16f14f697644a6fb",
+    "IRUNIT-HIL-NFR-30-HELIX-OS": "sha256:7085ac9a7bccabb8d4f5f64ac540de5a4e0f30549449d0ee821efe331ba7e96d",
+    "IRUNIT-HIL-NFR-31-HELIX-OS": "sha256:f2ca05e94a52356d18e8ccb2a8f997f7391070b135044e89a992f747e8315e3d",
+    "IRUNIT-HIL-NFR-32-HELIX-OS": "sha256:f00ddbc17a9bb972ec11d110d5ba010be3b2f93de6be733275f5736e91b6a889",
+    "IRUNIT-HIL-TR-04-HELIX-HARNESS": "sha256:9a4c306e83abbe69130b13812336d2c13d797463058fc34254667d4075898832",
+    "IRUNIT-HIL-TR-04-HELIX-OS": "sha256:f479932bc66312ce7a57375c376966fa83a2e9cc3cb9ce7250679103e36404a4",
+    "IRUNIT-HIL-TR-07-HELIX-OS": "sha256:5d5b795c3f1be5a2db738f2297cf480924ace91bf7f4d03f0cbcc9dd643107be",
+    "IRUNIT-HIL-TR-08-HELIX-HARNESS": "sha256:0e4732be2ad2c7f55ef7069b55fd01c08d99e3f983a5d6d9e262bf672fab3a65",
+}
 MINIMUM_CONDITIONS = [
     "current source contractが責務主語、対象product、input/output、acceptance、failure/recovery、revision/digestを固定する",
     "PHCAP-01〜20の競合境界を直接照合し、candidate／connection／shared capability／非適用の理由を原文anchorで分離する",
@@ -120,6 +160,11 @@ def tax_bytes(path: str = TAXONOMY_PATH) -> bytes:
 def sha(raw: bytes, prefix: bool = True) -> str:
     value = hashlib.sha256(raw).hexdigest()
     return f"sha256:{value}" if prefix else value
+
+
+def analysis_text_digest(row: dict[str, Any]) -> str:
+    payload = {key: row.get(key) for key in ANALYSIS_TEXT_KEYS}
+    return sha(json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode())
 
 
 def base_json(path: str) -> Any:
@@ -270,6 +315,7 @@ class Validator:
             if actual.get("taxonomy", {}).get("status") != tax["status"]: self.error("E_TAXONOMY_STATUS", unit)
             if actual.get("taxonomy", {}).get("matrix_rule_id") != tax["matrix_rule_id"]: self.error("E_MATRIX_RULE", unit)
             if actual.get("taxonomy", {}).get("authority_boundary") != source["authority_boundary"]: self.error("E_TAXONOMY_COVERAGE", unit)
+            self.error("E_TAXONOMY_COVERAGE", unit + " full taxonomy value")
         if actual.get("candidate_phase_targets") != source["phase_context"]["observed_asset_candidate_phases"]: self.error("E_TAXONOMY_COVERAGE", unit + " candidates")
         expected_ids = source["wave_review"]["edge_refs"]
         if set(actual.get("wave_edge_ids", [])) != set(expected_ids) or len(actual.get("wave_edge_ids", [])) != len(expected_ids): self.error("E_WAVE_EDGE_COVERAGE", unit)
@@ -280,6 +326,7 @@ class Validator:
         if actual.get("reason_class") != reason: self.error("E_REASON_CLASS", unit)
         desc, action = CLASS_DEFS[reason]
         if actual.get("reason_description") != desc or actual.get("next_action") != action: self.error("E_REASON_CLASS", unit + " text")
+        if analysis_text_digest(actual) != ANALYSIS_TEXT_DIGESTS.get(unit): self.error("E_ANALYSIS_EVIDENCE", unit + " full text digest")
         source_evidence = actual.get("required_source_evidence")
         if (not isinstance(source_evidence, list) or len(source_evidence) < 2 or
                 not all(isinstance(x, str) and x for x in source_evidence) or

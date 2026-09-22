@@ -113,6 +113,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-独立validatorは`generate.py`をimportせず、固定BASEとtaxonomy commit/blob/digest、30 ID/status/rule/anchor、66 edge、38 asset、phase/product authority境界を再導出する。selfcheckは24 negative casesで期待error codeを照合する。Binding `SCF-B-0128` の全成果物登録と、入力digest・負例集合・authority noneも同じ契約に固定する。
+独立validatorは`generate.py`をimportせず、固定BASEとtaxonomy commit/blob/digest、30 ID/status/rule/anchor、66 edge、38 asset、phase/product authority境界を再導出する。taxonomy全値と30行の分析テキストは独立期待値digestで固定し、selfcheckは35 negative casesで各改変の期待error codeを照合する。Binding `SCF-B-0128` の全成果物登録と、入力digest・負例集合・authority noneも同じ契約に固定する。
 
 成果物は `inventory.json`（集計・全入力digest）、`analysis.jsonl`（unit別anchor・Wave edge・asset・不足証拠・判断待ち）、taxonomy保存snapshot、generator、validator、selfcheck、README、PR-DRAFT、Bindingである。
