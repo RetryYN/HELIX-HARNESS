@@ -1,0 +1,213 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0070",
+  "kind": "scaffold",
+  "title": "Wave40 schema10 legacy requirement source chain research premise",
+  "product": "HELIX-OS",
+  "owner_candidate": "Wave40の5 legacy requirement unitについて、四製品境界・phase・authority・implementation・degradation・consumerを未確定のまま静的照合する研究候補（正式owner未解決）",
+  "state": "registered",
+  "reason": "Wave39確定156 unit／465 edgeの後、未レビュー候補5 unitを選び、旧requirements原文・10 inspected legacy assetのsource／判断史／failure／consumer状態を静的に突合する。FR33／NFR05はphase and product candidate pool 0を欠落receiptとして保持し、design／implementation evidenceを水増ししない。現行四製品へのrouting、authority、phase admission、current implementation、degradation、consumer closure、acceptance、release、deploymentは生成しない。",
+  "upstream": [
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/governance/legacy-ir-document-source-relation.jsonl",
+      "sha256": "f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/governance/legacy-ir-target-routing-queue.jsonl",
+      "sha256": "b543e5ae6009f1f5ae3d4617aa2bb5b809cc92ff83f8ce62cd6ae77e1ef2b2f3",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "current static governance/product-boundary input; no authority or implementation inference"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/README.md",
+      "sha256": "b9a416a27248218e71fa6e9c37e61179b1c778370add3b9f5273b323dad693bd",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/plan.json",
+      "sha256": "e226d530e8943a30d183f7b13bea04200f9ff3c81ae671664734c49a06b322b4",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/inventory.json",
+      "sha256": "655d807d1af4f468cbe6832cc4f14912f69cfb4f64f059370e79f06a4ee8046e",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/generate.py",
+      "sha256": "fb377d851ebdb4aaf2151729bd39411a4f34950dcec9c9eebc333ac005458580",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/validate.py",
+      "sha256": "dac76ecb15aa3afb8ddc789340b84cafcd44ca37b8f1650f2d5c6daf0861ccc2",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/selfcheck.py",
+      "sha256": "b437c0e087f6996c9e077b112be32dfedbf6c42eadcc7c7f53cb766fea212fba",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
+      "sha256": "c98bf42916ef053050799e289bec8b28b7af3a0d62d2dc9e6adb30fdb606b3a8",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.meta.json",
+      "sha256": "dcb11e2de949d11892d55c2c2d7bcb599948221482262066c150ad3898ae4ada",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
+    }
+  ],
+  "role": "Wave40のrequirements／design／implementation_source 11 edgeと8 source atom候補を、FR33／NFR05 missing evidence、製品境界・phase未確定、旧asset status unknownを含む静的Scaffoldとしてroot reviewへ渡す",
+  "obligations": [
+    "5 unit、11 role edge、8 source atom、5 composite_unresolvedを固定し、FR33/NFR05の欠落design／implementation evidenceを4 receiptへ記録する",
+    "旧requirements原文、source／catalog／decision／failure／consumerの静的状態を読み、旧実行は行わない",
+    "HARNESS／OS／Web／Web-OSの候補境界を現行authorityへ昇格させず、Web／Web-OSの根拠を補わない",
+    "FR33／NFR05はphase_and_product_candidate_asset_count=0のためdesign／implementation edgeを生成せず、current implementation／degradation／consumerをunknown／pendingとする",
+    "旧consumer／failureはhistorical ledger onlyとして保持し、現行権限・実装・縮退・phase admission・consumer closureへ昇格させない",
+    "旧archiveのruntime／test／CI／workflow／hook／adapter／sourceを実行せず、Scaffold内の静的generator／validator／selfcheckだけを実行する"
+  ],
+  "connections": {
+    "consumers": [
+      "Wave40 semantic review担当",
+      "四製品boundary／phase review担当",
+      "旧asset failure／consumer／decision closure担当",
+      "SCF-B-0070 replacement review担当"
+    ],
+    "dependencies": [
+      "Python標準library",
+      "current four-product boundary docs",
+      "legacy catalog/crosswalk/decomposition/route/disposition ledgers",
+      "Wave1〜39 prior semantic ledgers"
+    ],
+    "boundary": "候補ledger、meta、plan、inventory、generator、validator、selfcheckをscaffold/に保持する。旧sourceは意味・判断史・failure・consumerの静的referenceとしてだけ読み、正式要求・現行owner・権限・実装・縮退・phase admissionを確定しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/legacy-semantic-review-wave40/generate.py",
+      "python3 -B scaffold/legacy-semantic-review-wave40/validate.py",
+      "python3 -B scaffold/legacy-semantic-review-wave40/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "旧世代archive配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+      "旧sourceをcurrent oracle、fallback、implementation、passへ昇格すること",
+      "scaffold外への候補書き込み",
+      "要求採否、phase authority、product owner、successor、implementation、degradation、acceptance、release、deployment、consumer closureの生成",
+      "GitHub、Issue、PR、CI、DB、外部APIへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/legacy-semantic-review-wave40/README.md",
+    "scaffold/legacy-semantic-review-wave40/plan.json",
+    "scaffold/legacy-semantic-review-wave40/inventory.json",
+    "scaffold/legacy-semantic-review-wave40/generate.py",
+    "scaffold/legacy-semantic-review-wave40/validate.py",
+    "scaffold/legacy-semantic-review-wave40/selfcheck.py",
+    "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
+    "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.meta.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "Wave40 validate.py（11 rows／5 unit／11 edge／8 atom／5 composite、source digest、missing evidence、prior non-overlap、latest-main ancestor gate）",
+      "Wave40 selfcheck.py（本体validator経路の12 negative mutation）",
+      "scaffold/tools/scfctl.py validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "unit／edge／asset keyset deletion or injection",
+      "source span／digest tamper",
+      "missing evidence receipt deletion",
+      "prior asset reuse",
+      "authority／phase／implementation／degradation promotion",
+      "ancestor base gate tamper",
+      "old execution receipt invention",
+      "consumer closure invention",
+      "Web or Web-OS unsupported routing"
+    ]
+  },
+  "replacement": {
+    "role_target": "Wave40の5 unitについて、人間がproduct／phase／authority／implementation／degradation／consumer判断を行った後の正式crosswalk／L1 downstream artifacts",
+    "formal_artifacts": [],
+    "issue": 2019,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
