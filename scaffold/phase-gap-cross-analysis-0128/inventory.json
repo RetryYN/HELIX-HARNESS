@@ -75,7 +75,33 @@
     "formal_phase_candidate_count": 0,
     "phase_nonapplicability_proven": 0,
     "excluded_phase_count": 0,
-    "pending_all_20_count": 30
+    "pending_all_20_count": 30,
+    "full_phcap_boundary_review": {
+      "phase_ids": [
+        "PHCAP-01",
+        "PHCAP-02",
+        "PHCAP-03",
+        "PHCAP-04",
+        "PHCAP-05",
+        "PHCAP-06",
+        "PHCAP-07",
+        "PHCAP-08",
+        "PHCAP-09",
+        "PHCAP-10",
+        "PHCAP-11",
+        "PHCAP-12",
+        "PHCAP-13",
+        "PHCAP-14",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "status": "pending_all_20",
+      "non_applicability_proven": false
+    }
   },
   "reason_classes": {
     "SOURCE_AUTHORITY_CUSTODY_GAP": {

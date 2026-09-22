@@ -30,6 +30,7 @@
 | PHCAP-01..20 pending | 30（全unitで20件保留） |
 
 `direct phase evidence=0` はWave edge上の文字列やasset digestをphase証拠として数えないことを意味する。`formal phase candidate=0` は権限を変更しない境界であり、phase gapが解消したという意味ではない。
+`inventory.scope.full_phcap_boundary_review.status` はtaxonomyと同じ `pending_all_20`、`non_applicability_proven=false` で、30 unitすべての20 phase保留を表す。
 
 ## 直接phase根拠が0となる4類型
 

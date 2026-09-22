@@ -14,6 +14,7 @@
 - 不足類型: source authority/custody 2、PHCAP boundary 8、cross phase competition 10、cross phase unresolved 10
 
 各unitは原文anchor、原文statement digest、taxonomy status/rule、Wave edge、old asset、required source/human/consumer evidenceを持つ。phase候補が無いこととphase非適用を分離し、全行の`authority_boundary`はformal crosswalk/phase/product authority、implementation/degradation/failure/consumer closure/successorをfalseに固定する。
+`inventory.scope.full_phcap_boundary_review` は `status=pending_all_20`、`non_applicability_proven=false` としてtaxonomyの境界状態を保存する。
 
 ## 固定入力と再現性
 

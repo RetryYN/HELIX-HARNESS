@@ -317,6 +317,7 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
             "direct_phase_evidence_count": 0, "formal_phase_candidate_count": 0,
             "phase_nonapplicability_proven": 0, "excluded_phase_count": 0,
             "pending_all_20_count": 30,
+            "full_phcap_boundary_review": {"phase_ids": PHCAP_IDS, "status": "pending_all_20", "non_applicability_proven": False},
         },
         "reason_classes": plans_inventory(),
         "formal_judgment_minimum_conditions": MINIMUM_CONDITIONS,
