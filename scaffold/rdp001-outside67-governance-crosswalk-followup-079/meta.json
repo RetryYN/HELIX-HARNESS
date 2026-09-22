@@ -1,0 +1,24 @@
+{
+  "anchor_count": 25,
+  "authority_effect": "none",
+  "base_origin_main": "8e4a737a919caf768c9e0b916c83a5428966e58f",
+  "base_origin_main_previous": "ea771fb2c496d40fcc429877b0fcd8cff6999526",
+  "binding_registration_status": "registered",
+  "binding_reservation": "SCF-B-0079",
+  "bundle_id": "RDP-001-OUTSIDE67-GOVERNANCE-CROSSWALK-FOLLOWUP-015-018-029-032-067",
+  "candidate_count": 5,
+  "candidate_ids": [
+    "OUTSIDE67-PATH-015",
+    "OUTSIDE67-PATH-018",
+    "OUTSIDE67-PATH-029",
+    "OUTSIDE67-PATH-032",
+    "OUTSIDE67-PATH-067"
+  ],
+  "combined_count": 42,
+  "denominator": 67,
+  "existing_reviewed_count": 37,
+  "old_runtime_test_ci_execution": false,
+  "remaining_after_research": 25,
+  "schema": "rdp001-outside67-followup-meta/v1",
+  "static_only": true
+}

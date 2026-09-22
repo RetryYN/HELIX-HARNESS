@@ -1,0 +1,58 @@
+# 候補要求源の対象別台帳
+
+確認日: 2026-09-14
+
+本書は `docs/governance/candidates/` に置かれた候補系列を、要求対象と文書整理の状態で分類する監査台帳である。
+候補本文、Issue、PR、実装状態のいずれも、この台帳への記載だけで要求正本へ昇格しない。
+要求の意味は対象別L2文書と指定JSONに置き、候補は出典として参照する。
+
+状態の意味は次のとおり。
+
+- `L2接続済み`: 出典IDまたは具体条件を対象別L2案へ記載した。採択・freeze・実装・受入は別状態。
+- `台帳接続`: 対象だけを確定し、個別条件の採否とL2への編入は未実施。
+- `分解待ち`: 複数対象の責務が混在し、対象別の要求atomへ分ける必要がある。
+- `照合済み・再採否待ち`: 新世代とのcrosswalkを作成し、保持候補・不採用前提・未判断を分けた。新世代での承認は未取得。
+- `照合済み・人間承認待ち`: 最新責務・出典・下流接続を照合し、次の意味判断だけが人間authorityに残る。承認済みではない。
+- `保留`: 現時点で対象製品・採否・承認revisionを確定できない。
+
+| 候補系列 | 主対象 | 整理状態 | 文書整理上の扱い |
+|---|---|---|---|
+| `agentic-audit-future-state-delta` | HELIX-OS | L2接続済み | 監査提案、future差分、model比較をOSの改善・証拠要求へ接続 |
+| `ai-readable-authority-requirements` | HARNESS / HELIX-OS | L2接続済み | AIDOC-HARNESS-001..003をHARNESS-L2-001／003／005、AIDOC-OS-001..008をHELIXOS-L2-001..005／006／007／009へ接続。AI consumer relationを別々に追跡し、対象別L1／L2確定まで現行AI文書を変更しない |
+| `authority-vocabulary` | HELIX-OS | L2接続済み | 人間authority、作業指示、通知、技術判断の分離をOS統制へ接続 |
+| `bugbot-bounded-repair` / `bugbot-intake-source.md` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 修復後の検証義務はHARNESS、検出・提案・許可・隔離適用・停止・証拠はOSへ分離。旧GH-FR-011権限、既存CI／DB／transaction再利用は棄却。未提供別紙あり |
+| `ci-event-concurrency-generation` | HELIX-OS | 照合済み・再採否待ち | generation・非干渉・replayの意味だけをNCIへ候補接続。GitHub event enum、旧receipt、既存provider再利用は持ち込まない |
+| `conversation-lifetime-reconstruction` | HELIX-OS | L2接続済み | 継続、外部状態からの再構成、累積制約をOSの継続・復旧要求へ接続 |
+| `design-grounding-human-convergence` | HELIX-OS | L2接続済み | 根拠、人間反応、収束を要求形成・判断履歴の統制へ接続 |
+| `execution-ticket` | HELIX-OS | L2接続済み | Workerへの実行契約、測定、証拠、replayをOSの割当・観測要求へ接続 |
+| `functional-release-slice` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 提供構成・検証閉包はHARNESS、投影・導入・配布・復旧の実行統制はOSへ分離。旧CI先行利用は棄却し、Cursor固有条件はWorker要求源へ移送 |
+| `harness-memory-coordination-boundary` | HELIX-OS | L2接続済み | memoryを有期限通知とpointerへ限定し、意味正本を複製しない条件をOSへ接続 |
+| `helix-commercial-license` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | HARNESSの提供許諾、OSのasset・配布統制、個別製品契約へ分離。「HELIX全体」の一括商用方針は採用せず、条文・権利・価格・準拠法等は法務判断待ち。現行LICENSE不変 |
+| `helix-concept-v4` | HELIX全体 | 照合済み・人間承認待ち | v4.1でHARNESS、HELIX-OS、HELIX-Webを分離し、対象別L2／L11へ接続。旧提供構成identityを未採択化。承認準備監査済みだがhuman approval未実施 |
+| `helix-os-organization-intake-2026-09-14` | HELIX-OS | L2接続済み | 管理・推進・検収、統合再計画、内部／外部crawler、因果診断をHELIXOS-L2-010..013へ接続。Worker、限定修復、CI、Ticket、実行境界は既存要求を具体化 |
+| `infrastructure-operations-quality` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | 運用品質を要求・検証へ接続する工程条件はHARNESS、配備・監視・incident・復旧統制はOS、具体SLO・環境・保持値は適用先製品へ分離。旧owner／engine再利用は棄却 |
+| `instruction-path-change-resilience` | HELIX-OS | 照合済み・再採否待ち | provenance・版固定・stale・provider差をAIDOCへ候補接続。旧owner・consumer・adapterは持ち込まない |
+| `legacy-asset-retirement-requirements` | HARNESS / HELIX-OS | L2接続済み | 意味移管・pair・oracleはHARNESS、inventory・consumer切断・非実行archive・復元防止・物理削除承認はOSへ分ける。要求整理中は現行資産を移動・削除しない |
+| `management-scrum-product-forward` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 管理観測・採否・実行統制はOS、製品Forwardへの差戻し・再検証条件はHARNESSへ分離。Issue-first、PLANを含むGit一括authority、旧adapter／CI強制は棄却 |
+| `mechanism-adequacy` | HELIX-OS | 照合済み・再採否待ち | unknown・反証・証拠・効果観測を候補接続。既存方式再利用分類、旧UIL／Learning／DB／CI／workflow接続は新世代へ持ち込まない |
+| `next-generation-ci-requirements` | HARNESS / HELIX-OS | L2接続済み | layer・pair・risk別の検証契約はHARNESS、profile生成・実行・隔離・証拠回収・consumer relation・legacy archiveはOSへ分ける。上流確定までCI実装へ進めない |
+| `producer-provenance-separation` | HELIX-OS | L2接続済み | 作成者、commit実行者、公開者、reviewerの出所をOSの証拠要求へ接続 |
+| `refactoring-trigger-admission` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 意味保存・変更・検証条件はHARNESS、観測・候補・採否・効果管理はOSへ分離。L1要求欠落。旧UIL／RF0／current 9 scope／既存CIは継承しない |
+| `requirement-formation-scoped-admission` | HELIX-OS | L2接続済み | 根拠付き要求形成と影響範囲限定の再確定をOS統制へ接続 |
+| `requirements-authority-materialization` | HELIX-OS | 照合済み・再採否待ち | GitHub非authority・一方向投影・状態分離を候補接続。JSON-only意味正本、旧IR／main／Issue admissionは新世代へ持ち込まない |
+| `responsibility-centric-learning` | HELIX-OS | L2接続済み | 責務単位の学習、失効、段階昇格、authority非奪取をOS学習要求へ接続 |
+| `rule-derivation` | HELIX-OS / HARNESS | 照合済み・再採否待ち | 旧revisionのapprovalを流用せず、工程上の境界はHARNESS、生成・適用・診断はOSへ再採否する |
+| `scrum-operation-typed-projection` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 着手・完了の工程条件はHARNESS、管理状態・指標・projectionはOSへ分離。固定7 operation、旧layer、DB／roadmap／CI oracleは継承しない |
+| `security-engagement-authority` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | 保護対象・data・操作・開示要求は個別製品、security検証工程はHARNESS、操作authority・特権Worker・取消・証拠はOSへ分離。旧broker／provider／DB／CIは継承せず、実行権限は未付与 |
+| `three-lane-capacity-profile` | HARNESS / HELIX-OS | 照合済み・再採否待ち | 独立検証・revision有効性はHARNESS、pool・WIP・backpressure・段階拡張はOSへ分離。三社、provider別固定数、8-slot、既存CI／Merge Trainは継承しない |
+| `world-governance` | HELIX-OS | 照合済み・再採否待ち | 全件棚卸し・状態分離・影響限定を候補接続。旧owner、旧graph／DB、旧CI／policy、JSON-only authorityは持ち込まない |
+| `concept-vision-package-intake` / `concept-vision-release-crosswalk.md` | HELIX全体 | 照合済み・再採否待ち | 上位Concept、HARNESS提供契約、OSのWorker／CI／配布運用、個別製品の将来構想へ分離。PKG-D01..13、旧Module／Bundle数、旧CI先行利用は固定要求にしない |
+| `development-investment-stage-directives-intake_v1.0.md` | HARNESS / HELIX-OS / 個別製品 | 照合済み・再採否待ち | INV-001..072を全件一回ずつ5群へ分類。旧実装指示・P0..P4・既存CI／Cursor順序は不採用。工程／検証はHARNESS、統制／学習はOS、将来研究は個別製品要求待ち |
+
+## 現時点の適用待ち
+
+`台帳接続`、`分解待ち`、`保留`の行は、候補が未確認という意味ではない。候補の存在・状態・主題を確認したうえで、
+対象別L2への個別採否が未確定であることを示す。Issueのopen／close、PRのmerge、実装の有無から採否を補完しない。
+
+今回、L2本文へ具体条件を移したのは `L2接続済み` の系列である。残る系列は、本台帳を適用待ち差分の入口とし、
+次の改訂で要求atom、対象、承認revision、L3要件、L11受入を一組ずつ確定する。
