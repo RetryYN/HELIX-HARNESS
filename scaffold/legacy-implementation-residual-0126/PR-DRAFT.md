@@ -11,6 +11,7 @@
 - Wave1–50は全50入力をvalidatorが再走査し、598 edges / 355 unique assets、対象Wave edge 0を独立再集計します。fixed BASE git treeのexact path/type/mode（blob、100644/100755）も固定します。source anchor、旧disposition/history/failure/consumer、四製品L1、全nested record/inventoryを固定BASEから再導出します。
 - `authority_effect=none`、`formal_asset_classification_updated=false`、`new_build_allowed=false`を固定します。archive旧workflowは静的Git object参照のみです。
 - `scripts/helix.ps1`のarchive bytes `sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b`とMANIFEST entry `sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7`の不一致はhuman/source resolution pendingとして保持し、formal admission/reuseを停止します。
+- 負例IDはvalidatorの`EXPECTED_NEGATIVE_CASES`、inventory、selfcheck実行収集で順序付き完全一致・重複なしを検査し、実測は76件・28 distinct error codesです。
 - 初期120件（新規67件＋重複53件）の全archive sourceを`archive_source_provenance`へ保存し、固定BASE git-treeのexact path/type/mode、blob/bytes/SHA、ledger digest、個別MANIFEST digest/match/resolution、read modeをvalidatorが全値照合します。overlap 53件は同じprovenanceを参照し、既知の`helix.ps1` MANIFEST不一致は停止境界として明示します。
 
 ## 検証
@@ -20,7 +21,7 @@ python3 -B scaffold/legacy-implementation-residual-0126/generate.py
 python3 -B scaffold/legacy-implementation-residual-0126/validate.py
 # SCF-B-0126 validate: PASS records=67 categories={'direct_product_basis': 30, 'insufficient_basis': 14, 'multi_product_conflict': 23} target_wave_edges=0 product_union=429 unresolved_existing_union=280 pre_target_residual=1512 new_target=67 post_batch_remaining=1445 overlap=53
 python3 -B scaffold/legacy-implementation-residual-0126/selfcheck.py
-# SCF-B-0126 selfcheck: PASS negative_cases=66
+# SCF-B-0126 selfcheck: PASS negative_cases=76
 python3 -m py_compile scaffold/legacy-implementation-residual-0126/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale

@@ -22,9 +22,13 @@ gen_spec.loader.exec_module(generator)
 BASE_LEDGER = [json.loads(x) for x in (HERE / "classification-research.jsonl").read_text().splitlines()]
 BASE_INV = json.loads((HERE / "inventory.json").read_text())
 BASE_BINDING = json.loads((HERE.parents[0] / "bindings/SCF-B-0126.json").read_text())
+EXECUTED_CASES = []
+EXECUTED_CODES = []
 
 
 def run_case(name: str, code: str, mutate_rows=None, mutate_inv=None):
+    EXECUTED_CASES.append(name)
+    EXECUTED_CODES.append(code)
     with tempfile.TemporaryDirectory(prefix="scf-b-0126-") as td:
         root = Path(td)
         ledger = root / "classification-research.jsonl"
@@ -53,6 +57,8 @@ def run_case(name: str, code: str, mutate_rows=None, mutate_inv=None):
 
 
 def run_raw_case(name: str, code: str, ledger_text: str | None = None, inventory_text: str | None = None):
+    EXECUTED_CASES.append(name)
+    EXECUTED_CODES.append(code)
     with tempfile.TemporaryDirectory(prefix="scf-b-0126-json-") as td:
         root = Path(td)
         ledger = root / "classification-research.jsonl"
@@ -75,6 +81,8 @@ def run_raw_case(name: str, code: str, ledger_text: str | None = None, inventory
 
 
 def run_binding_case(name: str, code: str, mutate):
+    EXECUTED_CASES.append(name)
+    EXECUTED_CODES.append(code)
     with tempfile.TemporaryDirectory(prefix="scf-b-0126-binding-") as td:
         binding = Path(td) / "SCF-B-0126.json"
         value = copy.deepcopy(BASE_BINDING)
@@ -97,6 +105,9 @@ def run_binding_case(name: str, code: str, mutate):
 
 def remove_row(rows): rows.pop()
 def duplicate_row(rows): rows.append(copy.deepcopy(rows[-1]))
+def record_asset_id_missing(rows): rows[0].pop("asset_id")
+def record_asset_id_none(rows): rows[0]["asset_id"] = None
+def record_asset_id_bool(rows): rows[0]["asset_id"] = True
 def source_blob(rows): rows[0]["source_exact"]["blob"] = "0" * 40
 def source_anchor(rows): rows[0]["source_exact"]["semantic_anchor"]["line_text_sha256"] = "sha256:" + "0" * 64
 def category(rows): rows[0]["classification"]["category"] = "insufficient_basis"
@@ -142,6 +153,8 @@ def source_symlink_mode(rows): rows[0]["source_exact"]["mode"] = "120000"
 def source_tree_type(rows): rows[0]["source_exact"]["type"] = "tree"
 def source_nonregular_mode(rows): rows[0]["source_exact"]["mode"] = "100600"
 def source_path_mismatch(rows): rows[0]["source_exact"]["archive_path"] = "archive/fabricated/source.ts"
+def record_archive_manifest_sha(rows): rows[0]["source_exact"]["archive_manifest_sha256"] = "sha256:" + "0" * 64
+def record_archive_manifest_match(rows): rows[0]["source_exact"]["archive_manifest_match"] = not rows[0]["source_exact"]["archive_manifest_match"]
 def archive_manifest_mismatch(inv): inv["archive_manifest_resolution"]["mismatches"][0]["archive_sha256"] = "sha256:" + "0" * 64
 def asset_source_alias(rows):
     rows[1]["source_path"] = rows[0]["source_path"]
@@ -162,10 +175,17 @@ def human_judgment(rows): rows[0]["human_judgment_remaining"].pop()
 def ledger_digest_match(rows): rows[0]["source_exact"]["ledger_digest_match"] = False
 def wave_denominator(inv): inv["counts"]["wave_edges_scanned"] -= 1
 def existing_union(inv): inv["existing_research_union"]["existing_union_count"] -= 1
+def inventory_archive_manifest_resolution(inv): inv["archive_manifest_resolution"]["status"] = "matched"
+def inventory_binding_upstream(inv): inv["binding_upstream"]["total_nonarchive_upstream_count"] += 1
+def input_digest_blob(inv): inv["input_digests"][0]["blob"] = "0" * 40
+def input_digest_bytes(inv): inv["input_digests"][0]["bytes"] += 1
+def input_digest_sha(inv): inv["input_digests"][0]["sha256"] = "sha256:" + "0" * 64
 def inventory_top_level_extra(inv): inv["undeclared"] = True
 def inventory_top_level_missing(inv): inv.pop("scope")
 
 def run_direct_case(name: str, code: str, mutate) -> None:
+    EXECUTED_CASES.append(name)
+    EXECUTED_CODES.append(code)
     old_profiles = validator.EXPECTED_PROFILES
     profiles = copy.deepcopy(old_profiles)
     mutate(profiles)
@@ -185,6 +205,8 @@ def run_direct_case(name: str, code: str, mutate) -> None:
 def review_pin(profiles): profiles.pop(next(iter(profiles)))
 
 def run_generator_case(name: str, code: str, field: str) -> None:
+    EXECUTED_CASES.append(name)
+    EXECUTED_CODES.append(code)
     with tempfile.TemporaryDirectory(prefix="scf-b-0126-generator-") as td:
         root = Path(td)
         old_bundle = generator.BUNDLE
@@ -291,4 +313,22 @@ run_case("overlap_archive_tree_mode_tamper", "E_ARCHIVE_PROVENANCE", None, overl
 run_case("overlap_archive_tree_type_tamper", "E_ARCHIVE_PROVENANCE", None, overlap_archive_tree_type)
 run_case("overlap_archive_path_tamper", "E_ARCHIVE_PROVENANCE", None, overlap_archive_path)
 run_case("overlap_archive_manifest_tamper", "E_ARCHIVE_PROVENANCE", None, overlap_archive_manifest)
-print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(CASES) + 32}")
+run_case("record_asset_id_missing", "E_RECORD_SCHEMA", record_asset_id_missing, None)
+run_case("record_asset_id_none", "E_RECORD_SCHEMA", record_asset_id_none, None)
+run_case("record_asset_id_bool", "E_RECORD_SCHEMA", record_asset_id_bool, None)
+run_case("record_archive_manifest_sha_tamper", "E_ARCHIVE_MANIFEST", record_archive_manifest_sha, None)
+run_case("record_archive_manifest_match_tamper", "E_ARCHIVE_MANIFEST", record_archive_manifest_match, None)
+run_case("inventory_archive_manifest_resolution_tamper", "E_ARCHIVE_MANIFEST", None, inventory_archive_manifest_resolution)
+run_case("inventory_binding_upstream_tamper", "E_BINDING_UPSTREAM", None, inventory_binding_upstream)
+run_case("input_digest_blob_tamper", "E_INPUT_DIGEST", None, input_digest_blob)
+run_case("input_digest_bytes_tamper", "E_INPUT_DIGEST", None, input_digest_bytes)
+run_case("input_digest_sha_tamper", "E_INPUT_DIGEST", None, input_digest_sha)
+if EXECUTED_CASES != validator.EXPECTED_NEGATIVE_CASES:
+    raise AssertionError(f"negative case sequence mismatch: expected {validator.EXPECTED_NEGATIVE_CASES}, got {EXECUTED_CASES}")
+if len(EXECUTED_CASES) != len(set(EXECUTED_CASES)):
+    raise AssertionError("negative case IDs must be unique")
+if BASE_INV["negative_cases"] != EXECUTED_CASES:
+    raise AssertionError("inventory negative case declaration does not match executed cases")
+if len(EXECUTED_CODES) != len(EXECUTED_CASES):
+    raise AssertionError("negative case code collection is incomplete")
+print(f"SCF-B-0126 selfcheck: PASS negative_cases={len(EXECUTED_CASES)} distinct_error_codes={len(set(EXECUTED_CODES))}")

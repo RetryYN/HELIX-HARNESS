@@ -35,8 +35,8 @@
     "旧decision/read-after/failure/consumerを静的partitionで保持しconsumer closureを生成しない",
     "旧asset status・history・consumer blockと全nested record/inventoryを固定BASE由来の期待値と厳密一致させる",
     "authority none・formal分類/route/phase/successor/new build falseを固定する",
-    "旧archive source/runtime/test/CIを実行せず独立validatorと66 negative selfcheckを維持する",
-    "strict JSON parserでledger record/nested object/inventoryのduplicate key、malformed JSON、nonobjectをE_JSONとして拒否する66 negative selfcheckを維持する",
+    "旧archive source/runtime/test/CIを実行せず独立validatorと76 negative selfcheckを維持する",
+    "strict JSON parserでledger record/nested object/inventoryのduplicate key、malformed JSON、nonobjectをE_JSONとして拒否する76 negative selfcheckを維持する",
     "inventory 184 input_digestの全63非archive入力と最新main product bundle 8入力をBinding upstreamへ登録し、path/raw SHA256をvalidatorで完全照合する。archive静的121入力はSCF-OS-003のためupstreamへ入れず、inventory/recordで固定し非実行境界を明示する",
     "scripts/helix.ps1のarchive bytes sha256 2b86bf...とMANIFEST entry 9e5b68...の不一致を明示し、formal admission/reuseを停止してhuman/source resolution pendingを保持する",
     "anchor_line_coverageの直接改竄を専用errorで拒否しBinding宣言・inventory・recordと同期する",
@@ -45,7 +45,8 @@
     "固定BASE git treeの全source_exactでexact path、type=blob、mode=100644/100755を照合し、symlink/tree/nonregular/path mismatchを拒否する",
     "Wave1-50全50入力をvalidatorが再集計し、edge598・unique asset355を固定値だけでなく実体集合から検証する",
     "scripts/helix.ps1 manifest mismatch改竄とtarget間source path/SHA aliasを専用negative caseで拒否する",
-    "初期120件（新規67件＋重複53件）の全archive sourceについて、archive_source_provenanceへasset ID/source path、固定BASE git-treeのexact path/type=blob/mode=100644|100755、blob/bytes/SHA、ledger digest、個別MANIFEST digest/match/resolution、read modeを保存し、validatorで全値を独立照合する。既知のscripts/helix.ps1 MANIFEST不一致は停止境界として保持する"
+    "初期120件（新規67件＋重複53件）の全archive sourceについて、archive_source_provenanceへasset ID/source path、固定BASE git-treeのexact path/type=blob/mode=100644|100755、blob/bytes/SHA、ledger digest、個別MANIFEST digest/match/resolution、read modeを保存し、validatorで全値を独立照合する。既知のscripts/helix.ps1 MANIFEST不一致は停止境界として保持する",
+    "validatorのEXPECTED_NEGATIVE_CASES、inventoryのnegative_cases、selfcheckの実行収集を順序付き完全一致・重複なしで照合し、負例76件・実測distinct error codes 28件を固定する"
   ],
   "operations": {
     "allowed": [
@@ -382,11 +383,12 @@
       "validator checks 67 records, 30 direct, 23 conflict, 14 insufficient; initial 120、overlap53、処理前残余1512、新規target67、処理後残数1445を別々に固定し、candidate result比較はmethod identityを主張しない",
       "validator compares full nested record/inventory equality including anchor_line_coverage, archive manifest resolution, and authority boundary",
       "validator checks all 63 nonarchive inventory inputs plus 8 product bundle inputs are Binding upstream with exact path/raw SHA and rejects stale/mutated Wave upstream",
-      "selfcheck executes 66 negative cases with expected error codes (22 distinct codes), including denominator pre/postとlabel改竄、strict JSON、archive manifest resolution cases",
+      "selfcheck executes 76 negative cases with expected error codes (28 distinct codes), including denominator pre/postとlabel改竄、strict JSON、archive manifest resolution cases",
       "validator compares source_exact git-tree path/type/mode and full Wave1-50 edge/asset recomputation",
       "selfcheck covers symlink/tree/nonregular/path source guards, manifest mismatch tamper, and same source path/SHA alias",
       "validator independently compares all 120 archive_source_provenance entries, including fixed BASE tree path/type/mode, blob/bytes/SHA, ledger digest, individual MANIFEST match/resolution, and overlap53 references",
-      "selfcheck covers overlap53 archive provenance mode/type/path/manifest tamper cases with E_ARCHIVE_PROVENANCE"
+      "selfcheck covers overlap53 archive provenance mode/type/path/manifest tamper cases with E_ARCHIVE_PROVENANCE",
+      "validator/inventory/selfcheckが負例IDの順序付き完全一致と重複なしを検査し、case削除・偽追加・重複をfail-closeする"
     ],
     "scope": [
       "schema_interface",

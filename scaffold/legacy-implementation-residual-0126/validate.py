@@ -168,12 +168,12 @@ EXPECTED_NEGATIVE_CASES = [
     'fixed_base_pin_tamper',
     'output_digest_tamper',
     'human_judgment_tamper',
-    'review_pin_tamper',
     'ledger_digest_match_tamper',
     'wave_denominator_tamper',
     'existing_union_tamper',
     'inventory_top_level_extra_key_tamper',
     'inventory_top_level_missing_key_tamper',
+    'review_pin_tamper',
     'generator_profile_category_tamper',
     'generator_profile_products_tamper',
     'ledger_duplicate_key_json',
@@ -199,6 +199,16 @@ EXPECTED_NEGATIVE_CASES = [
     'overlap_archive_tree_type_tamper',
     'overlap_archive_path_tamper',
     'overlap_archive_manifest_tamper',
+    'record_asset_id_missing',
+    'record_asset_id_none',
+    'record_asset_id_bool',
+    'record_archive_manifest_sha_tamper',
+    'record_archive_manifest_match_tamper',
+    'inventory_archive_manifest_resolution_tamper',
+    'inventory_binding_upstream_tamper',
+    'input_digest_blob_tamper',
+    'input_digest_bytes_tamper',
+    'input_digest_sha_tamper',
 ]
 EXPECTED_INVENTORY_KEYS = {
     "schema_revision",
@@ -1123,6 +1133,13 @@ def check() -> None:
             if not isinstance(row, dict):
                 fail("E_JSON", f"{LEDGER}:{n}: top-level JSON object required")
             rows.append(row)
+    for row in rows:
+        if not isinstance(row, dict):
+            fail("E_RECORD_SCHEMA", "record must be an object")
+        if set(row) != EXPECTED_RECORD_KEYS:
+            fail("E_RECORD_SCHEMA", str(row.get("asset_id", "")))
+        if not isinstance(row.get("asset_id"), str) or not isinstance(row.get("source_path"), str):
+            fail("E_RECORD_SCHEMA", str(row.get("asset_id", "")))
     binding = strict_json(BINDING_FILE.read_text(), str(BINDING_FILE))
     if not isinstance(binding, dict):
         fail("E_JSON", f"{BINDING_FILE}: top-level JSON object required")
@@ -1136,7 +1153,7 @@ def check() -> None:
     legacy_existing = {a for a, (_, row) in phase.items() if row.get("product_classification_status") == "unresolved" and any(row.get("source_path", "").startswith(prefix) for prefix in EXISTING_RESEARCH_PREFIXES)} - UNRESEARCHED_PREFIX_ASSET_IDS | wave_assets
     initial_targets = set(a for a, (_, row) in phase.items() if row.get("product_classification_status") == "unresolved" and row.get("artifact_evidence_kind") == "implementation_source") - legacy_existing
     expected_overlap = expected_overlap_reconciliation(initial_targets, product_union, phase)
-    if sorted(r.get("asset_id") for r in rows) != targets or len({r.get("asset_id") for r in rows}) != 67: fail("E_TARGET_SET", "ledger IDs")
+    if sorted(r["asset_id"] for r in rows) != targets or len({r["asset_id"] for r in rows}) != 67: fail("E_TARGET_SET", "ledger IDs")
     source_aliases = {}
     for row in rows:
         exact_source = row.get("source_exact")
@@ -1154,6 +1171,7 @@ def check() -> None:
         "source_paths": [phase[a][1]["source_path"] for a in targets],
     }: fail("E_INVENTORY_DECLARATION", "target/source path sets")
     if inv.get("base_revision") != BASE_REVISION or inv.get("base_source_mode") != "all input and archive evidence bytes from fixed BASE Git objects": fail("E_BASE_PIN", "inventory")
+    if len(EXPECTED_NEGATIVE_CASES) != len(set(EXPECTED_NEGATIVE_CASES)): fail("E_INVENTORY_DECLARATION", "validator negative case IDs are duplicated")
     if inv.get("scope") != EXPECTED_SCOPE or inv.get("artifacts") != EXPECTED_ARTIFACTS_ORDERED or inv.get("negative_cases") != EXPECTED_NEGATIVE_CASES: fail("E_INVENTORY_DECLARATION", "scope/artifacts/negative cases")
     if inv.get("classification_rule") != EXPECTED_RULES: fail("E_INVENTORY_DECLARATION", "classification rule")
     if inv.get("authority_boundary") != {"authority_effect": "none", "classification_state": "research_proposal_pending_human_product_review", "formal_asset_classification_updated": False, "new_build_allowed": False}: fail("E_INVENTORY_DECLARATION", "authority boundary")
