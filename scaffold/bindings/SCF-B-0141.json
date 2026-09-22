@@ -1,0 +1,62 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0141",
+  "kind": "scaffold",
+  "title": "固定BASE config/** 41件の四製品責務候補研究",
+  "product": "HELIX-OS",
+  "owner_candidate": "四製品product-boundary研究（正式owner未解決）",
+  "state": "registered",
+  "reason": "固定BASEのlegacy dispositionからconfig/** exact 41 assetを抽出し、source/blob/SHA、configuration実装状態、phase候補、failure/degradation、consumer、Wave edgeを静的に研究する。product欄はScaffold登録先であり、単一ownerや正式authorityを表さない。",
+  "upstream": [
+    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"},
+    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"},
+    {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"},
+    {"path": "docs/governance/legacy-asset-copy-read-after.jsonl", "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"},
+    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"},
+    {"path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md", "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"},
+    {"path": "docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md", "sha256": "4a2e2f4799a7c0981330d608b5a4b3dc883150bcc9e22090be72bb2d8e5c230b"},
+    {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"},
+    {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"},
+    {"path": "docs/helix-web/L1-planning/product-intent.md", "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756"},
+    {"path": "docs/helix-web-os/L1-planning/system-intent.md", "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"},
+    {"path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md", "sha256": "5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5"},
+    {"path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md", "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"}
+  ],
+  "role": "legacy-config-product-boundary-research-0141-static",
+  "obligations": [
+    "固定BASEのlegacy dispositionからconfig/** exact 41 asset ID/pathを独立再導出し欠落・重複・余分を拒否する",
+    "各archive configuration sourceのGit blob/bytes/SHA/line countと静的anchorを保持する",
+    "direct/conflict/insufficientを四製品候補、product-boundary、phase evidenceの差として分離する",
+    "implementation status、未実装・不足証拠、degradation/failure、consumer、decision/read-after、Wave edgeを候補分類から分離する",
+    "origin/main前399、PR #2074/#2078込み496、現在main429、対象41との重複0を分母として固定する",
+    "旧archive source/runtime/test/CI/workflow/hook/adapterは実行せず独立validator/selfcheckを維持する"
+  ],
+  "connections": {
+    "consumers": ["parent legacy product-classification research ledger", "human review handoff after author validation"],
+    "dependencies": ["fixed BASE phase/disposition/decision/read-after snapshots", "approved four-product L1 and product-boundary", "Wave1-50 static snapshots", "main399/current-main429/open-PR2078 research union"],
+    "boundary": "research evidence only; no formal product, phase, implementation, successor, or authority"
+  },
+  "operations": {
+    "allowed": ["read fixed BASE and archive bytes statically", "write scaffold bundle and Binding", "run deterministic generator/validator/selfcheck/scfctl"],
+    "forbidden": ["execute archive legacy source/runtime/test/hook/adapter/CI", "promote candidate to formal owner/phase/successor/implementation", "modify existing ledgers or Wave snapshots", "merge/close/deploy"]
+  },
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0141.json",
+    "scaffold/legacy-config-product-classification-0141/README.md",
+    "scaffold/legacy-config-product-classification-0141/PR-DRAFT.md",
+    "scaffold/legacy-config-product-classification-0141/generate.py",
+    "scaffold/legacy-config-product-classification-0141/validate.py",
+    "scaffold/legacy-config-product-classification-0141/selfcheck.py",
+    "scaffold/legacy-config-product-classification-0141/inventory.json",
+    "scaffold/legacy-config-product-classification-0141/classification-research.jsonl"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": ["validator independently derives config/** exact41 and source evidence without importing generator", "main/open research snapshot pins enforce union and zero overlap", "strict JSON duplicate-key and input freshness guards", "selfcheck covers target/source/phase/category/implementation/consumer/union/authority/base/output failures"],
+    "negative_cases": ["target omission/duplicate/extra", "source blob/SHA/anchor tamper", "phase and implementation status tamper", "classification category/product/reason tamper", "failure/degradation/consumer tamper", "Wave edge injection", "input freshness and duplicate JSON keys", "union/count/authority/base/output tamper"]
+  },
+  "replacement": {"role_target": null, "formal_artifacts": [], "issue": 0, "status": "pending"},
+  "created": "2026-09-23",
+  "updated": "2026-09-23"
+}
