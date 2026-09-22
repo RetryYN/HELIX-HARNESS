@@ -1,0 +1,25 @@
+{
+  "vision_source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md",
+    "sha256": "1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74",
+    "line_count": 583,
+    "relation": "all candidate spans are exact source spans; no formal adoption"
+  },
+  "candidate_source_paths": {
+    "unique_count": 1,
+    "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md",
+    "candidate_count": 35,
+    "span_count": 35,
+    "duplicate_span_count": 0
+  },
+  "asset_source": {
+    "representative_count": 12,
+    "source_digest_match_count": 35,
+    "semantic_asset_link_count": 0
+  },
+  "l1_anchor_input": {
+    "candidate_count": 11,
+    "sha256": "238c78b02a67629051f3e5680fea72ecd52cf3ad8e02c8c6b5382b52325604a7",
+    "status": "candidate_only"
+  }
+}

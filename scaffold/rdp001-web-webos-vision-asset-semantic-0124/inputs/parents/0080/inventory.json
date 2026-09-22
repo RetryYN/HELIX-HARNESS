@@ -1,0 +1,215 @@
+{
+  "schema": "rdp001-web-webos-vision-source/v1",
+  "candidate_id": "RDP-001-WEB-WEBOS-VISION-SOURCE-0080",
+  "status": "findings_only",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "formal_requirement_unit_count": "not_generated",
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "formal_register_append": false,
+  "old_runtime_test_ci_execution": false,
+  "scope": {
+    "worktree": "/home/tenni/.helix-worktrees/phcap15-deploy-final-audit",
+    "base_origin_main": "ea771fb2c496d40fcc429877b0fcd8cff6999526",
+    "read_only": true,
+    "static_only": true,
+    "source_capture": "git object and current text read only",
+    "old_archive_reference_only": true,
+    "old_archive_execution": false,
+    "vision_source_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md",
+    "vision_source_sha256": "1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74",
+    "vision_source_bytes": 50481,
+    "vision_span_record_count": 29,
+    "current_web_l2_path": "docs/helix-web/L2-requirements/product-requirements.md",
+    "current_web_l2_sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+    "current_webos_l2_path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+    "current_webos_l2_sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+    "web_l2_count": 9,
+    "webos_l2_count": 6,
+    "selected_legacy_asset_count": 12,
+    "selected_legacy_asset_scope": "Vision / Package-Release / Connector / post-deploy / dashboard representative candidates; not a denominator",
+    "unreviewed_vision_lines": "all lines outside the 29 selected spans remain outside this bounded capture",
+    "unreviewed_asset_denominator": "legacy catalog assets outside selected 12 are not reviewed in this bundle",
+    "vision_source_line_count": 583,
+    "vision_selected_unique_line_count": 179,
+    "vision_unreviewed_line_count": 404,
+    "legacy_catalog_record_count": 4020,
+    "legacy_catalog_unreviewed_count": 4008
+  },
+  "four_products": [
+    {
+      "product": "HELIX-HARNESS",
+      "boundary_status": "candidate_boundary_only",
+      "owner_status": "unknown",
+      "authority_status": "none",
+      "implementation_status": "unknown",
+      "degradation_status": "unknown"
+    },
+    {
+      "product": "HELIX-OS",
+      "boundary_status": "candidate_boundary_only",
+      "owner_status": "unknown",
+      "authority_status": "none",
+      "implementation_status": "unknown",
+      "degradation_status": "unknown"
+    },
+    {
+      "product": "HELIX-Web",
+      "boundary_status": "candidate_boundary_only",
+      "owner_status": "unknown",
+      "authority_status": "none",
+      "implementation_status": "unknown",
+      "degradation_status": "unknown"
+    },
+    {
+      "product": "HELIX-Web-OS",
+      "boundary_status": "candidate_boundary_only",
+      "owner_status": "unknown",
+      "authority_status": "none",
+      "implementation_status": "unknown",
+      "degradation_status": "unknown"
+    }
+  ],
+  "source_spans": {
+    "path": "scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl",
+    "record_count": 29,
+    "sha256": "b4dbaaf0ba43ba6ab307212ef59559bd06a73089d2d17553cf79928f75e6dc4c",
+    "required_groups": [
+      "§3",
+      "§4",
+      "§6.1",
+      "§6.2",
+      "§6.3",
+      "§7",
+      "§8",
+      "§12",
+      "U07-U19",
+      "O03-O10"
+    ]
+  },
+  "current_source_relations": {
+    "path": "scaffold/rdp001-web-webos-vision-source-0080/source-relations.jsonl",
+    "record_count": 15,
+    "sha256": "37b106a1d63395e8581a1e56347169d6088e70dc60f6e347e595047936f830e1",
+    "web_record_count": 9,
+    "webos_record_count": 6,
+    "all_relation_status": "candidate_only"
+  },
+  "legacy_evidence": {
+    "path": "scaffold/rdp001-web-webos-vision-source-0080/legacy-evidence.jsonl",
+    "record_count": 12,
+    "sha256": "cfcb9172ee0d528daea0385f6262b6a7b18e5c6bfb03beee8c9db531e06c82ae",
+    "catalog_path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "disposition_path": "docs/governance/legacy-asset-disposition.jsonl",
+    "decision_path": "docs/governance/legacy-asset-decisions.jsonl",
+    "failure_search_status": "no_dedicated_asset_failure_ledger_found",
+    "consumer_search_status": "catalog_disposition_decision_fields_checked",
+    "read_after_path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+    "read_after_search_status": "no_matching_read_after_record_for_selected_12"
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "status": "observed",
+      "text": "旧Visionの対象29 exact spanは保存できるが、Vision本文は歴史的構想であり正式Web/Web-OS要求unitを確定しない。"
+    },
+    {
+      "id": "F-002",
+      "status": "observed",
+      "text": "現行Web L2 9件は文書自身が§／U／O出典を列記する。これは個別採択・L2合意・L3凍結・IR admissionを確定しない。"
+    },
+    {
+      "id": "F-003",
+      "status": "observed",
+      "text": "現行Web-OS L2 6件は現行文書内に旧Visionのexact source mappingを持たず、旧Vision接続は候補semantic relationに留まる。"
+    },
+    {
+      "id": "F-004",
+      "status": "observed",
+      "text": "選択した旧asset 12件はcatalog上のsource／phase／product候補を保持するが、実装unknown、consumer pending、authority noneである。"
+    },
+    {
+      "id": "F-005",
+      "status": "observed",
+      "text": "選択12件に一致するlegacy-asset decision recordは0件、dedicated asset failure recordは確認できず、decision／failure closureはunknownのままである。"
+    }
+  ],
+  "unresolved_questions": [
+    {
+      "id": "Q-001",
+      "status": "unresolved",
+      "text": "Web/Web-OSの正式な直接要求unit分母、owner、authority、採否、phase、実装、縮退を決める上流判断は未提示。"
+    },
+    {
+      "id": "Q-002",
+      "status": "unresolved",
+      "text": "旧Vision spanと現行Web/Web-OS L2のsemantic equivalence、分割・統合・欠落・追加の判定は未実施。"
+    },
+    {
+      "id": "Q-003",
+      "status": "unresolved",
+      "text": "旧asset sourceに対応するfailure事実、consumer closure、現行実装・縮退の個別証拠が未確認。"
+    }
+  ],
+  "prohibited_inference": [
+    {
+      "id": "P-001",
+      "text": "VisionのU／O／section membershipから正式要求unit、採否、owner、authorityを推定しない。"
+    },
+    {
+      "id": "P-002",
+      "text": "現行L2の9件／6件を旧Vision由来の正式direct denominatorとして数えない。"
+    },
+    {
+      "id": "P-003",
+      "text": "legacy-asset catalogのcandidate_product_targets／phase_targetsをsemantic requirement linkや実装証拠に昇格しない。"
+    },
+    {
+      "id": "P-004",
+      "text": "archive source snapshotや旧asset sourceの存在・hashをlegacy implementation、current implementation、degradation、success、consumer closureと扱わない。"
+    },
+    {
+      "id": "P-005",
+      "text": "decision recordが無いことを採否否定・failure不存在・owner不存在の確定結論に変換しない。"
+    },
+    {
+      "id": "P-006",
+      "text": "現行Web／Web-OS文書のcandidate relationをauthority、L2 agreement、L3/L10 admission、deployment permissionへ昇格しない."
+    }
+  ],
+  "verification_contract": {
+    "required_commands": [
+      "python3 -B scaffold/rdp001-web-webos-vision-source-0080/validate.py",
+      "python3 -B scaffold/rdp001-web-webos-vision-source-0080/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "vision source digest tamper",
+      "vision exact span text／line tamper",
+      "current Web L2 row tamper",
+      "current Web-OS row tamper",
+      "relation product/status promotion",
+      "formal unit count generation",
+      "legacy asset source digest tamper",
+      "legacy catalog candidate promotion",
+      "decision/failure unknown promotion",
+      "nested keyset injection"
+    ],
+    "archive_rule": "archive/legacy-generation-2026-09-14 is static reference only; no old runtime/test/CI/workflow/source execution"
+  },
+  "residuals": {
+    "formal_requirement_unit": "pending",
+    "owner_authority": "pending",
+    "semantic_equivalence": "pending",
+    "legacy_failure": "pending",
+    "legacy_consumer_closure": "pending",
+    "legacy_current_implementation": "pending",
+    "legacy_degradation": "pending"
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}

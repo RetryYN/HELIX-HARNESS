@@ -1,0 +1,110 @@
+{
+  "schema": "rdp001-web-webos-vision-asset-semantic/v1",
+  "candidate_id": "RDP-001-WEB-WEBOS-VISION-ASSET-SEMANTIC-0124",
+  "status": "findings_only",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "formal_requirement_unit_count": "not_generated",
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "formal_register_append": false,
+  "old_runtime_test_ci_execution": false,
+  "new_build": false,
+  "scope": {
+    "worktree": "vision-asset-semantic-0124",
+    "base_origin_main": "1cfe3895d861e0cd1533fde08688a9f81f557645",
+    "required_ancestor": "1cfe3895d861e0cd1533fde08688a9f81f557645",
+    "read_only": true,
+    "static_only": true,
+    "old_archive_execution": false,
+    "vision_source_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md",
+    "vision_source_sha256": "1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74",
+    "vision_candidate_count": 35,
+    "vision_parent_span_count": 29,
+    "representative_asset_count": 12,
+    "l1_anchor_input_commit": "4b42faa2a0e3833b86818e0dec231da3e766c728",
+    "l1_anchor_input_path": "scaffold/rdp001-outside67-web-webos-l1-anchor-0121/candidate-units.jsonl",
+    "l1_anchor_input_sha256": "238c78b02a67629051f3e5680fea72ecd52cf3ad8e02c8c6b5382b52325604a7",
+    "read_after_path": "docs/governance/legacy-asset-copy-read-after.jsonl"
+  },
+  "candidate_counts": {
+    "total": 35,
+    "atomized_candidate": 19,
+    "composite_unresolved": 16,
+    "product_fixed_web": 13,
+    "product_fixed_webos": 14,
+    "product_unresolved": 8,
+    "phase_connection_count": 0,
+    "asset_connection_count": 0,
+    "phase_unknown_count": 35,
+    "asset_unknown_count": 35
+  },
+  "product_candidate_membership": {
+    "HELIX-HARNESS": 3,
+    "HELIX-OS": 6,
+    "HELIX-Web": 18,
+    "HELIX-Web-OS": 22,
+    "overlapping_membership": true,
+    "unresolved_atom_ids": [
+      "WEB-FINAL-ATOM-002",
+      "WEBOS-FINAL-ATOM-003",
+      "WEB-FINAL-COMPOSITE-004",
+      "HARNESS-OS-FINAL-COMPOSITE-005",
+      "OS-WEBOS-FINAL-COMPOSITE-006",
+      "OS-WEBOS-FINAL-COMPOSITE-007",
+      "OS-WEB-FINAL-COMPOSITE-008",
+      "HARNESS-WEBOS-FINAL-COMPOSITE-009"
+    ]
+  },
+  "l1_anchor_input": {
+    "total": 11,
+    "web": 6,
+    "webos": 5,
+    "fixed_product_connection_record_count": 27,
+    "l1_product_edge_count": 148,
+    "unresolved_product_boundary_count": 8,
+    "formal_l1_relation_count": 0
+  },
+  "asset_comparison": {
+    "matrix_pair_count": 420,
+    "source_digest_match_pair_count": 35,
+    "source_digest_mismatch_pair_count": 385,
+    "parent_asset_candidate_only_pair_count": 210,
+    "no_candidate_asset_relation_pair_count": 210,
+    "history_failure_consumer_insufficient_pair_count": 420,
+    "candidate_atom_asset_link_count": 0,
+    "formal_asset_relation_count": 0
+  },
+  "decision_partition": {
+    "match_observation": "source digest provenance only; not semantic link",
+    "counterevidence_observation": "path／digest mismatch or shared-source identity insufficiency",
+    "insufficient_observation": "no atom-level asset link; history read-after absent; failure unknown; consumer pending; decision absent"
+  },
+  "input_pins": {
+    "parent_0080_inventory": "b1a0851a9ccca47ec73f558f4a1136b669daefd46563421c83a792e54d2c65b5",
+    "parent_0080_spans": "b4dbaaf0ba43ba6ab307212ef59559bd06a73089d2d17553cf79928f75e6dc4c",
+    "parent_0080_assets": "cfcb9172ee0d528daea0385f6262b6a7b18e5c6bfb03beee8c9db531e06c82ae",
+    "parent_0081_atoms": "6a6fdbec06e4c7ad41a9ecbf83cfe1c6420f9c5cbefb1f370c10c2bdc3be2078",
+    "parent_0081_links": "ab493ded99eeefd70b1de5a8b3ec0587d0b92b25ed836c349485d3d897d19947",
+    "parent_0084_atoms": "3abafb9a1408d78e2114f14d5935569b2a28c8dad59536a0ffa1142f2c12451a",
+    "parent_0088_atoms": "eea5d17398c85f8fc42eeb7bf8f9984a026e519df972d31eda0477b4ae194c62",
+    "l1_anchor_units": "238c78b02a67629051f3e5680fea72ecd52cf3ad8e02c8c6b5382b52325604a7",
+    "product_boundary": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+  },
+  "negative_case_codes": [
+    "E_INPUT_DIGEST",
+    "E_BASE_COMMIT",
+    "E_CANDIDATE_SET",
+    "E_SPAN_ANCHOR",
+    "E_ASSET_SET",
+    "E_ASSET_SOURCE",
+    "E_ASSET_HISTORY",
+    "E_ASSET_LINK",
+    "E_L1_ANCHOR",
+    "E_PHASE_BOUNDARY",
+    "E_FORMAL_BOUNDARY",
+    "E_PRODUCT_BOUNDARY",
+    "E_MATRIX_CARDINALITY",
+    "E_INVENTORY_DECLARATION"
+  ]
+}

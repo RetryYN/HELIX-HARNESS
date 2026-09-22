@@ -1,0 +1,3 @@
+# Immutable historical reference snapshots intentionally preserve source whitespace.
+inputs/asset-sources/* whitespace=-trailing-space
+inputs/vision-source.md whitespace=-trailing-space

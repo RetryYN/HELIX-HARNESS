@@ -1,0 +1,3 @@
+# Premise and unresolved boundary
+
+source spanの一致や旧assetのcatalog relationはsemantic equivalence、実装成立、縮退、failure、consumer closureを証明しない。製品固定27候補はL1 product scopeへのcandidate-only edgeを持つが、製品未解決8候補は人間のproduct boundary判断待ちである。正式phaseにはPHCAP直接根拠、authority、acceptance、revisionが必要で、正式asset linkにはcandidate atom単位のsource／history／failure／consumer evidenceが必要である。
