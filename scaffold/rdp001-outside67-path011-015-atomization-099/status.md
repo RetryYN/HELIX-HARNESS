@@ -1,0 +1,9 @@
+# 状態
+
+`findings_only`、`authority_effect:none`、`meaning_change_applied:false`。固定baseは `72b9f368a044709437841c5e862f01802b1a88ec`、選択はPATH011–015の5件、未選択残差は62件である。
+
+coverageはpre側534行とarchive側534行を各一度ずつ保持し、coverage record 534件、`atomized_candidate` 209行、`metadata_only` 154行、`composite_unresolved` 171行。新規atomは200件、既存PATH011の参照は48件で、既存atomを新規ファイルへ重複計上していない。
+
+PATH011–014はpre/archive source revisionが異なり、PATH015は同一である。差分の意味同値、正式source、要求採否、L2合意、L3凍結、IR admission、owner、successor、implementation、degradation、failure、consumer、decision、acceptanceは未解決である。PATH013／014にbase時点のexact current counterpartは登録していないため、存在・不在や実装状態を推測しない。
+
+validatorはfixed baseの祖先性だけを確認し、live `origin/main`との一致を要求しない。提出前にbaseがHEADの祖先でなくなった場合は停止し、holding／source／ledgerを再照合してrebaselineする。

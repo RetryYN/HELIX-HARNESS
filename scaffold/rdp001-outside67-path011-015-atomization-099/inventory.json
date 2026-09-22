@@ -1,0 +1,522 @@
+{
+  "schema": "rdp001-outside67-path011-015-atomization/v1",
+  "candidate_id": "RDP-001-OUTSIDE67-PATH011-015-ATOMIZATION-0099",
+  "status": "findings_only",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "formal_register_append": false,
+  "old_runtime_test_ci_execution": false,
+  "research_completion": {
+    "status": "partial_research",
+    "selected_line_coverage": "complete",
+    "selected_line_residual_count": 0,
+    "path_atomization_complete": false,
+    "unselected_path_revision_pair_count": 62
+  },
+  "scope": {
+    "base_origin_main": "72b9f368a044709437841c5e862f01802b1a88ec",
+    "base_origin_main_observed_at_start": "72b9f368a044709437841c5e862f01802b1a88ec",
+    "holding_path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "holding_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+    "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
+    "management_register_sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+    "holding_path_revision_pair_denominator": 67,
+    "holding_record_count": 67,
+    "selected_path_revision_pair_count": 5,
+    "selected_source_document_count": 5,
+    "unexplored_path_revision_pair_count": 62,
+    "unexplored_scope": "OUTSIDE67-PATH-001..010,016..067（選択5 pairを除く62 pair。選択文書内の未分割意味も含む）",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "read_only": true,
+    "static_only": true,
+    "base_drift_policy": "base_origin_mainは固定した祖先ゲート。live origin/mainとの同値を要求せず、baseがHEADの祖先でない場合だけ停止してrebaselineする。",
+    "legacy_ledger_sha256": {
+      "docs/governance/legacy-asset-disposition.jsonl": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "docs/governance/legacy-asset-decisions.jsonl": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "docs/governance/legacy-asset-copy-read-after.jsonl": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "docs/governance/legacy-asset-decision-log.md": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
+    }
+  },
+  "source_holding": {
+    "registration_id": "MPR-SH-OUTSIDE67-001",
+    "source_atom_count": 67,
+    "path_revision_pair_denominator": 67,
+    "selected_item_ids": [
+      "OUTSIDE67-PATH-011",
+      "OUTSIDE67-PATH-012",
+      "OUTSIDE67-PATH-013",
+      "OUTSIDE67-PATH-014",
+      "OUTSIDE67-PATH-015"
+    ],
+    "selected_ordinals": [
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "unselected_count": 62,
+    "coverage_result": "source_preserved_candidate_atomization_only",
+    "product_target": "unassigned_cross_product",
+    "authority_effect": "none"
+  },
+  "classification_basis": {
+    "product": "holding reported product scope is a path-based candidate only; four-product candidate pool is retained and no final owner is assigned",
+    "phase": "holding reported phase is an unapproved candidate label; no phase authority or admission is inferred",
+    "semantic_units": "each pre/archive source line is covered once per revision side; equal non-table prose becomes a source-line candidate, compound/table rows remain composite_unresolved, and PATH-011 prior atoms are ID/digest references",
+    "implementation": "current counterpart and old ledger exact hits are evidence-gated; absence is not evidence of implementation state",
+    "degradation": "legacy/current degradation is unknown without exact evidence",
+    "failure_consumer_decision": "failure, consumer, decision closure and adoption are unknown",
+    "revision_diff": "pre-isolation and archive Git objects are statically diffed; meaning equivalence remains unresolved"
+  },
+  "four_products": [
+    {
+      "product": "HELIX-HARNESS",
+      "status": "boundary_candidate_only",
+      "authority_effect": "none"
+    },
+    {
+      "product": "HELIX-OS",
+      "status": "boundary_candidate_only",
+      "authority_effect": "none"
+    },
+    {
+      "product": "HELIX-Web",
+      "status": "boundary_candidate_only",
+      "authority_effect": "none"
+    },
+    {
+      "product": "HELIX-Web-OS",
+      "status": "boundary_candidate_only",
+      "authority_effect": "none"
+    }
+  ],
+  "documents": [
+    {
+      "source_item_id": "OUTSIDE67-PATH-011",
+      "source_ordinal": 11,
+      "source_unit": "path_revision_pair",
+      "artifact_kind": "markdown",
+      "source_path": "docs/design/helix-web/L2-requirements/product-requirements.md",
+      "candidate_product": "HELIX-Web",
+      "candidate_phase": "L2-requirements",
+      "candidate_product_status": "unknown_path_based_candidate_only",
+      "candidate_phase_status": "unknown_path_based_candidate_only",
+      "holding": {
+        "registration_id": "MPR-SH-OUTSIDE67-001",
+        "denominator": 67,
+        "pre_sha256": "07ca853a76098ae273ad7524fb77630895d4d7d6d22d9d8af41e45ceb5ee9047",
+        "archive_sha256": "23105d0f7b5f5df2a36ee4fe2384fffacfb0f10012a4763e1008f07e8566920e",
+        "source_holding_status": "proposed_preserved_unassigned"
+      },
+      "pre_isolation": {
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "81392c2627a4bdfd17251ffee0f8522b978baaf9",
+        "bytes": 5469,
+        "sha256": "07ca853a76098ae273ad7524fb77630895d4d7d6d22d9d8af41e45ceb5ee9047",
+        "line_count": 59
+      },
+      "archive_revision": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "fb405b63af57bfa6110a79bf740305a17578603a",
+        "bytes": 5519,
+        "sha256": "23105d0f7b5f5df2a36ee4fe2384fffacfb0f10012a4763e1008f07e8566920e",
+        "line_count": 59
+      },
+      "current_counterpart": {
+        "state": "current_counterpart_observed",
+        "path": "docs/helix-web/L2-requirements/product-requirements.md",
+        "commit": "72b9f368a044709437841c5e862f01802b1a88ec",
+        "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+        "blob_oid": "9bb0009b49bc5d5bacd01fe5b6d8acad5bce3ce9",
+        "bytes": 5508,
+        "line_count": 59
+      },
+      "status": {
+        "semantic_disposition": "not_started",
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_degradation_status": "unknown"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-012",
+      "source_ordinal": 12,
+      "source_unit": "path_revision_pair",
+      "artifact_kind": "markdown",
+      "source_path": "docs/design/helix-web/README.md",
+      "candidate_product": "HELIX-Web",
+      "candidate_phase": "shared-design",
+      "candidate_product_status": "unknown_path_based_candidate_only",
+      "candidate_phase_status": "unknown_path_based_candidate_only",
+      "holding": {
+        "registration_id": "MPR-SH-OUTSIDE67-001",
+        "denominator": 67,
+        "pre_sha256": "d6726dabd373d0d5794f42dcb73c296d546d92f0c30955ebc657b3c2634e3c96",
+        "archive_sha256": "ed7cc9bec604ad2a63324759b19b4ed5ab4be321b79c83ea9bb2cd69003ceb8a",
+        "source_holding_status": "proposed_preserved_unassigned"
+      },
+      "pre_isolation": {
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "55f3fd62f6929235ef8b5a0284b9230edd2f7e32",
+        "bytes": 2410,
+        "sha256": "d6726dabd373d0d5794f42dcb73c296d546d92f0c30955ebc657b3c2634e3c96",
+        "line_count": 28
+      },
+      "archive_revision": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "af9502ee041fcd25d887951b17942a125fad3f77",
+        "bytes": 2460,
+        "sha256": "ed7cc9bec604ad2a63324759b19b4ed5ab4be321b79c83ea9bb2cd69003ceb8a",
+        "line_count": 28
+      },
+      "current_counterpart": {
+        "state": "current_counterpart_observed",
+        "path": "docs/helix-web/README.md",
+        "commit": "72b9f368a044709437841c5e862f01802b1a88ec",
+        "sha256": "0d73011e6ccc387189645c2158d55e02f444e3e3cb583b0aea29e28ea86ac1e6",
+        "blob_oid": "c546eef6f83782c61666e2910ce34eca0e00896c",
+        "bytes": 2531,
+        "line_count": 29
+      },
+      "status": {
+        "semantic_disposition": "not_started",
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_degradation_status": "unknown"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-013",
+      "source_ordinal": 13,
+      "source_unit": "path_revision_pair",
+      "artifact_kind": "markdown",
+      "source_path": "docs/design/helix/L2-requirements/README.md",
+      "candidate_product": "shared-cross-product",
+      "candidate_phase": "L2-requirements",
+      "candidate_product_status": "unknown_path_based_candidate_only",
+      "candidate_phase_status": "unknown_path_based_candidate_only",
+      "holding": {
+        "registration_id": "MPR-SH-OUTSIDE67-001",
+        "denominator": 67,
+        "pre_sha256": "d50826f172c940db4c7a6593d46f870f7daeeb51989bea402000673254eba01f",
+        "archive_sha256": "db0737ed4f55c6b736a009d44ad5c73972b3b1ddc079a2f0e4c4cb88f316bdc3",
+        "source_holding_status": "proposed_preserved_unassigned"
+      },
+      "pre_isolation": {
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "0aaa6cfe356e36df26cbc2ca4854e0eb8951aaa2",
+        "bytes": 21880,
+        "sha256": "d50826f172c940db4c7a6593d46f870f7daeeb51989bea402000673254eba01f",
+        "line_count": 226
+      },
+      "archive_revision": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "6d0c8d6b850ae93148e8324af30128e6df6183c7",
+        "bytes": 23176,
+        "sha256": "db0737ed4f55c6b736a009d44ad5c73972b3b1ddc079a2f0e4c4cb88f316bdc3",
+        "line_count": 226
+      },
+      "current_counterpart": {
+        "state": "no_exact_current_counterpart_selected",
+        "path": null,
+        "commit": "72b9f368a044709437841c5e862f01802b1a88ec",
+        "sha256": null,
+        "blob_oid": null,
+        "bytes": null,
+        "line_count": null
+      },
+      "status": {
+        "semantic_disposition": "not_started",
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_degradation_status": "unknown"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-014",
+      "source_ordinal": 14,
+      "source_unit": "path_revision_pair",
+      "artifact_kind": "markdown",
+      "source_path": "docs/design/helix/L2-requirements/concept-v4-derived-requirements.md",
+      "candidate_product": "shared-cross-product",
+      "candidate_phase": "L2-requirements",
+      "candidate_product_status": "unknown_path_based_candidate_only",
+      "candidate_phase_status": "unknown_path_based_candidate_only",
+      "holding": {
+        "registration_id": "MPR-SH-OUTSIDE67-001",
+        "denominator": 67,
+        "pre_sha256": "427bfc9ec045fe64a0aa139b5018ad70d1d7ff02d105720e87980a7e969de6e6",
+        "archive_sha256": "d66b53d18fae938fc0d58dc731569756c77d038337a253845b8ce2dc7d59b8fc",
+        "source_holding_status": "proposed_preserved_unassigned"
+      },
+      "pre_isolation": {
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "6d1f222859908a48ad873ee4011a9c69ade75a11",
+        "bytes": 15540,
+        "sha256": "427bfc9ec045fe64a0aa139b5018ad70d1d7ff02d105720e87980a7e969de6e6",
+        "line_count": 163
+      },
+      "archive_revision": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "a5dbb12fbc75bb4c1af043d0b8ae1d766d7d48de",
+        "bytes": 15759,
+        "sha256": "d66b53d18fae938fc0d58dc731569756c77d038337a253845b8ce2dc7d59b8fc",
+        "line_count": 163
+      },
+      "current_counterpart": {
+        "state": "no_exact_current_counterpart_selected",
+        "path": null,
+        "commit": "72b9f368a044709437841c5e862f01802b1a88ec",
+        "sha256": null,
+        "blob_oid": null,
+        "bytes": null,
+        "line_count": null
+      },
+      "status": {
+        "semantic_disposition": "not_started",
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_degradation_status": "unknown"
+      }
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-015",
+      "source_ordinal": 15,
+      "source_unit": "path_revision_pair",
+      "artifact_kind": "markdown",
+      "source_path": "docs/governance/audits/l2-requirements/candidate-source-target-inventory.md",
+      "candidate_product": "shared-cross-product",
+      "candidate_phase": "upstream-governance-or-crosswalk",
+      "candidate_product_status": "unknown_path_based_candidate_only",
+      "candidate_phase_status": "unknown_path_based_candidate_only",
+      "holding": {
+        "registration_id": "MPR-SH-OUTSIDE67-001",
+        "denominator": 67,
+        "pre_sha256": "f9fabd2106d29db63e1a09e266ee8857b014d4334f2d359ecf4112fabb5fa5fb",
+        "archive_sha256": "f9fabd2106d29db63e1a09e266ee8857b014d4334f2d359ecf4112fabb5fa5fb",
+        "source_holding_status": "proposed_preserved_unassigned"
+      },
+      "pre_isolation": {
+        "commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+        "blob_oid": "2a702e13c21802135c903fa8f55c5c1d4bf4bac9",
+        "bytes": 9381,
+        "sha256": "f9fabd2106d29db63e1a09e266ee8857b014d4334f2d359ecf4112fabb5fa5fb",
+        "line_count": 58
+      },
+      "archive_revision": {
+        "commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+        "blob_oid": "2a702e13c21802135c903fa8f55c5c1d4bf4bac9",
+        "bytes": 9381,
+        "sha256": "f9fabd2106d29db63e1a09e266ee8857b014d4334f2d359ecf4112fabb5fa5fb",
+        "line_count": 58
+      },
+      "current_counterpart": {
+        "state": "current_counterpart_observed",
+        "path": "docs/governance/audits/source-rebaseline/candidate-source-target-inventory.md",
+        "commit": "72b9f368a044709437841c5e862f01802b1a88ec",
+        "sha256": "f9fabd2106d29db63e1a09e266ee8857b014d4334f2d359ecf4112fabb5fa5fb",
+        "blob_oid": "2a702e13c21802135c903fa8f55c5c1d4bf4bac9",
+        "bytes": 9381,
+        "line_count": 58
+      },
+      "status": {
+        "semantic_disposition": "not_started",
+        "authority_effect": "none",
+        "meaning_change_applied": false,
+        "successor_requirement_ids": [],
+        "implementation_status": "unknown",
+        "degradation_status": "unknown",
+        "failure_status": "unknown",
+        "consumer_status": "unknown",
+        "decision_status": "unknown",
+        "legacy_implementation_status": "unknown",
+        "current_implementation_status": "unknown",
+        "legacy_degradation_status": "unknown",
+        "current_degradation_status": "unknown"
+      }
+    }
+  ],
+  "line_accounting": {
+    "unique_coverage_record_count": 534,
+    "pre_source_line_count": 534,
+    "archive_source_line_count": 534,
+    "category_counts": {
+      "composite_unresolved": 171,
+      "metadata_only": 154,
+      "atomized_candidate": 209
+    },
+    "per_path": {
+      "OUTSIDE67-PATH-011": {
+        "composite_unresolved": 33,
+        "metadata_only": 17,
+        "atomized_candidate": 9
+      },
+      "OUTSIDE67-PATH-012": {
+        "metadata_only": 10,
+        "atomized_candidate": 11,
+        "composite_unresolved": 7
+      },
+      "OUTSIDE67-PATH-013": {
+        "metadata_only": 64,
+        "atomized_candidate": 108,
+        "composite_unresolved": 54
+      },
+      "OUTSIDE67-PATH-014": {
+        "metadata_only": 52,
+        "atomized_candidate": 66,
+        "composite_unresolved": 45
+      },
+      "OUTSIDE67-PATH-015": {
+        "metadata_only": 11,
+        "atomized_candidate": 15,
+        "composite_unresolved": 32
+      }
+    },
+    "selected_line_residual_count": 0,
+    "disjoint_categories": true,
+    "path011_reused_atom_count": 48,
+    "new_atom_count": 200,
+    "total_atom_references": 248
+  },
+  "semantic_atoms": {
+    "new_atom_file": "semantic-atoms.jsonl",
+    "new_atom_count": 200,
+    "reused_atom_file": "reused-atom-references.jsonl",
+    "reused_atom_count": 48,
+    "line_coverage_file": "line-coverage.jsonl",
+    "atomized_candidate_line_count": 209,
+    "metadata_only_line_count": 154,
+    "composite_unresolved_line_count": 171
+  },
+  "legacy_evidence": {
+    "file": "legacy-evidence.jsonl",
+    "ledger_paths": [
+      "docs/governance/legacy-asset-disposition.jsonl",
+      "docs/governance/legacy-asset-decisions.jsonl",
+      "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "docs/governance/legacy-asset-decision-log.md",
+      "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+    ],
+    "lookup_mode": "exact source_item/path/blob anchors only; no-hit remains unknown"
+  },
+  "findings": [
+    {
+      "id": "F001",
+      "status": "observed",
+      "text": "Five selected outside67 path_revision_pairs preserve exact pre-isolation/archive Git metadata for static review."
+    },
+    {
+      "id": "F002",
+      "status": "observed",
+      "text": "PATH-011 existing atoms are referenced by stable ID and canonical JSON digest; no duplicate atom rows are emitted."
+    },
+    {
+      "id": "F003",
+      "status": "observed",
+      "text": "Every selected pre/archive line is covered once per revision side, with normative table/compound content retained as composite_unresolved rather than metadata fallback."
+    }
+  ],
+  "unresolved_questions": [
+    {
+      "id": "Q001",
+      "status": "open",
+      "text": "Which source-line candidates become formally adopted requirements, if any?"
+    },
+    {
+      "id": "Q002",
+      "status": "open",
+      "text": "Which product owner, phase authority, successor, implementation/degradation evidence and decision revision is approved?"
+    },
+    {
+      "id": "Q003",
+      "status": "open",
+      "text": "What exact failure and consumer evidence closes each candidate?"
+    }
+  ],
+  "prohibited_inference": [
+    {
+      "id": "P001",
+      "status": "prohibited",
+      "text": "Do not treat path/blob/current counterpart as formal requirement or implementation proof."
+    },
+    {
+      "id": "P002",
+      "status": "prohibited",
+      "text": "Do not promote product/phase candidates into final owner, authority, successor or admission."
+    },
+    {
+      "id": "P003",
+      "status": "prohibited",
+      "text": "Do not infer implementation, degradation, failure, consumer closure or decision from ledger hit/no-hit or absence."
+    },
+    {
+      "id": "P004",
+      "status": "prohibited",
+      "text": "Do not execute old archive runtime, tests, CI, workflows, hooks, adapters or source."
+    }
+  ],
+  "residuals": {
+    "formal_requirement": "open",
+    "owner": "open",
+    "successor": "open",
+    "phase_authority": "open",
+    "implementation": "open",
+    "degradation": "open",
+    "failure": "open",
+    "consumer": "open",
+    "decision": "open",
+    "adoption": "open"
+  },
+  "verification_scope": [
+    "source_revision_stale",
+    "schema_interface",
+    "deterministic_behavior",
+    "negative_case",
+    "forbidden_write_scope"
+  ]
+}
