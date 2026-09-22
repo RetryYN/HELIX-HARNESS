@@ -14,7 +14,7 @@ HELIX-HARNESSのFR先頭10 product unitについて、現行mainの既存FR evid
 
 既存218 unitの状態台帳へ追加計上せず、`authority_effect=none`、`new_build_allowed=false` のままにしている。正式な実装・縮退・未実装・受入・authorityの変更は含まない。
 
-SCF-B-0129とは同一roleの製品別並行researchです。SCF-B-0129はHELIX-OS FR先頭10 unit（BASE `217e3a6e1c3e6ce25205d8330a96e0853c18f61b`）、本束はHELIX-HARNESS FR先頭10 unit（BASE `94d99ebb4c55c2edb0575ac2dc100af0d5b93b90`）に限定し、Binding `overlap_reason`で相互参照と非置換境界を固定しました。HELIX-LABO候補は適用していません。
+SCF-B-0129とは同一roleの製品別並行researchです。SCF-B-0129はHELIX-OS FR先頭10 unit（BASE `217e3a6e1c3e6ce25205d8330a96e0853c18f61b`）、本束はHELIX-HARNESS FR先頭10 unit（BASE `94d99ebb4c55c2edb0575ac2dc100af0d5b93b90`）に限定し、本束のBinding `overlap_reason`でcounterpart ID `SCF-B-0129`を参照して非置換境界を固定しました。HELIX-LABO候補は適用していません。
 
 ## 検証結果
 
@@ -32,4 +32,4 @@ git diff --check
 
 ## 最新検証結果
 
-`validate.py` は `PASS SCF-B-0132`（10 existing unit / 30 Wave edge / 22 unique old asset）。evidence行の全固定field、asset boundary、status partition、直接確立／未解決配列、inventoryの全fieldとtop-level key集合まで固定BASEから期待構造全体を再導出し、closure status・asset_ids・phase_ids・history/edge/status/inventoryの改竄をfail-closeする。`selfcheck.py` は46負例（selection product scope、BASE/input/output digest、unit/edge/asset重複、ledger/phase/history/source改竄、closure/asset/phase/status/inventory/directly-established/unresolved/forbidden-operation、authority昇格など）をすべてPASS。`scfctl validate` は `bindings=124 fail=0`、`stale=0`、`residuals=0`。`git diff --check` と `git diff origin/main...HEAD --check` もPASS。
+`validate.py` は `PASS SCF-B-0132`（10 existing unit / 30 Wave edge / 22 unique old asset）。evidence行の全固定field、asset boundary、status partition、直接確立／未解決配列、inventoryの全fieldとtop-level key集合まで固定BASEから期待構造全体を再導出し、closure status・asset_ids・phase_ids・history/edge/status/inventoryの改竄をfail-closeする。`selfcheck.py` は46負例（selection product scope、BASE/input/output digest、unit/edge/asset重複、ledger/phase/history/source改竄、closure/asset/phase/status/inventory/directly-established/unresolved/forbidden-operation、authority昇格など）をすべてPASS。最新mainとのsynthetic mergeで `scfctl validate` は `bindings=125 fail=0`、`stale=0`、`residuals=0`。`git diff --check` と `git diff origin/main...HEAD` もPASS。
