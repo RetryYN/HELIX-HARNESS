@@ -1,0 +1,169 @@
+{
+  "schema": "rdp001-outside67-evidence-scan/v1",
+  "selected_ids": [
+    "OUTSIDE67-PATH-048",
+    "OUTSIDE67-PATH-049",
+    "OUTSIDE67-PATH-050",
+    "OUTSIDE67-PATH-051",
+    "OUTSIDE67-PATH-053"
+  ],
+  "existing_reviewed_ids": [
+    "OUTSIDE67-PATH-008",
+    "OUTSIDE67-PATH-011",
+    "OUTSIDE67-PATH-030",
+    "OUTSIDE67-PATH-033",
+    "OUTSIDE67-PATH-034",
+    "OUTSIDE67-PATH-035",
+    "OUTSIDE67-PATH-036",
+    "OUTSIDE67-PATH-037",
+    "OUTSIDE67-PATH-043",
+    "OUTSIDE67-PATH-045",
+    "OUTSIDE67-PATH-046",
+    "OUTSIDE67-PATH-047",
+    "OUTSIDE67-PATH-052",
+    "OUTSIDE67-PATH-054",
+    "OUTSIDE67-PATH-055",
+    "OUTSIDE67-PATH-056",
+    "OUTSIDE67-PATH-057",
+    "OUTSIDE67-PATH-059",
+    "OUTSIDE67-PATH-063",
+    "OUTSIDE67-PATH-064",
+    "OUTSIDE67-PATH-065",
+    "OUTSIDE67-PATH-066",
+    "OUTSIDE67-PATH-001",
+    "OUTSIDE67-PATH-004",
+    "OUTSIDE67-PATH-007",
+    "OUTSIDE67-PATH-010",
+    "OUTSIDE67-PATH-060",
+    "OUTSIDE67-PATH-002",
+    "OUTSIDE67-PATH-005",
+    "OUTSIDE67-PATH-013",
+    "OUTSIDE67-PATH-031",
+    "OUTSIDE67-PATH-061",
+    "OUTSIDE67-PATH-003",
+    "OUTSIDE67-PATH-006",
+    "OUTSIDE67-PATH-009",
+    "OUTSIDE67-PATH-012",
+    "OUTSIDE67-PATH-014",
+    "OUTSIDE67-PATH-015",
+    "OUTSIDE67-PATH-018",
+    "OUTSIDE67-PATH-029",
+    "OUTSIDE67-PATH-032",
+    "OUTSIDE67-PATH-067",
+    "OUTSIDE67-PATH-016",
+    "OUTSIDE67-PATH-020",
+    "OUTSIDE67-PATH-023",
+    "OUTSIDE67-PATH-038",
+    "OUTSIDE67-PATH-062",
+    "OUTSIDE67-PATH-019",
+    "OUTSIDE67-PATH-022",
+    "OUTSIDE67-PATH-024",
+    "OUTSIDE67-PATH-041",
+    "OUTSIDE67-PATH-058",
+    "OUTSIDE67-PATH-017",
+    "OUTSIDE67-PATH-021",
+    "OUTSIDE67-PATH-025",
+    "OUTSIDE67-PATH-026",
+    "OUTSIDE67-PATH-027",
+    "OUTSIDE67-PATH-028",
+    "OUTSIDE67-PATH-039",
+    "OUTSIDE67-PATH-040",
+    "OUTSIDE67-PATH-042",
+    "OUTSIDE67-PATH-044"
+  ],
+  "exact_ledger_hits": {
+    "OUTSIDE67-PATH-048": [],
+    "OUTSIDE67-PATH-049": [],
+    "OUTSIDE67-PATH-050": [],
+    "OUTSIDE67-PATH-051": [],
+    "OUTSIDE67-PATH-053": []
+  },
+  "exact_ledger_hits_by_file": {
+    "docs/governance/legacy-asset-disposition.jsonl": [],
+    "docs/governance/legacy-asset-decisions.jsonl": [],
+    "docs/governance/legacy-asset-copy-read-after.jsonl": [],
+    "docs/governance/legacy-asset-decision-log.md": [],
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": [],
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": [],
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": []
+  },
+  "files": {
+    "docs/governance/legacy-asset-disposition.jsonl": {
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "bytes": 4857919
+    },
+    "docs/governance/legacy-asset-decisions.jsonl": {
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "bytes": 109547
+    },
+    "docs/governance/legacy-asset-copy-read-after.jsonl": {
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "bytes": 29632
+    },
+    "docs/governance/legacy-asset-decision-log.md": {
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "bytes": 5000
+    },
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": {
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "bytes": 6311877
+    },
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": {
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "bytes": 7938664
+    },
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": {
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "bytes": 602042
+    }
+  },
+  "archive_relocation_ids": [
+    "OUTSIDE67-PATH-048",
+    "OUTSIDE67-PATH-049",
+    "OUTSIDE67-PATH-050",
+    "OUTSIDE67-PATH-051",
+    "OUTSIDE67-PATH-053"
+  ],
+  "current_counterpart_relocation_ids": [
+    "OUTSIDE67-PATH-048",
+    "OUTSIDE67-PATH-049",
+    "OUTSIDE67-PATH-050",
+    "OUTSIDE67-PATH-051",
+    "OUTSIDE67-PATH-053"
+  ],
+  "current_counterpart_hash_equal_archive_ids": [
+    "OUTSIDE67-PATH-049",
+    "OUTSIDE67-PATH-050"
+  ],
+  "current_counterpart_content_drift_ids": [
+    "OUTSIDE67-PATH-048",
+    "OUTSIDE67-PATH-051",
+    "OUTSIDE67-PATH-053"
+  ],
+  "current_counterpart_drift_ids": [
+    "OUTSIDE67-PATH-048",
+    "OUTSIDE67-PATH-051",
+    "OUTSIDE67-PATH-053"
+  ],
+  "current_counterpart_paths": {
+    "OUTSIDE67-PATH-048": "docs/governance/audits/source-rebaseline/pillar-target-crosswalk.md",
+    "OUTSIDE67-PATH-049": "docs/governance/audits/source-rebaseline/product-requirement-placement-audit-2026-09-14.md",
+    "OUTSIDE67-PATH-050": "docs/governance/audits/source-rebaseline/refinement-target-crosswalk.md",
+    "OUTSIDE67-PATH-051": "docs/governance/audits/source-rebaseline/requirements-v1.3-target-crosswalk.md",
+    "OUTSIDE67-PATH-053": "docs/concept/helix-concept-v4.1.md"
+  },
+  "current_counterpart_sha256": {
+    "OUTSIDE67-PATH-048": "833388095a635c22448a172743fc5b95f552103a6b37a455ecffe762c90555ed",
+    "OUTSIDE67-PATH-049": "c08711e3d06be27304f02ec68ad7151501fc435716e64258853208751465552c",
+    "OUTSIDE67-PATH-050": "291b6f55507a82eb841c5a54b30e0ff06b4b6dc3dc37f6bcbdf123b89f74b525",
+    "OUTSIDE67-PATH-051": "9b45e7d6d03d2b49187d939b74a9c4750ecc928fd972c64b096e391267e06559",
+    "OUTSIDE67-PATH-053": "181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad"
+  },
+  "old_runtime_test_ci_execution": false,
+  "source_revision_commits": {
+    "pre_isolation": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "historical_capture": "3df81ad27157c471e004083783f37a5860eaa2ee",
+    "current": "36accee66242338ded01dcc24d44148faadd3045"
+  }
+}
