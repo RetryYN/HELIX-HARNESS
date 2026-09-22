@@ -12,6 +12,7 @@
   },
   "taxonomy_snapshot": {
     "commit": "48a91dd1a8fcadf9687c698ae3c8a5df0df974fa",
+    "required_ancestor": "48a91dd1a8fcadf9687c698ae3c8a5df0df974fa",
     "path": "scaffold/phase-status-taxonomy-0105/units.jsonl",
     "sha256": "e6f78052a998afbd0af43769fd639486a07e04472b79823e7cddff0a662600d4",
     "row_count": 30,
@@ -732,7 +733,8 @@
     "E_PRODUCT_AUTHORITY",
     "E_CURRENT_CONTEXT",
     "E_AUTHORITY_BOUNDARY",
-    "E_TAXONOMY"
+    "E_TAXONOMY",
+    "E_TAXONOMY_NOT_ANCESTOR"
   ],
   "prohibited_inference": [
     "asset candidate phase targets do not establish formal phase",

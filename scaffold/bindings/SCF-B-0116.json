@@ -386,8 +386,8 @@
     "旧asset source／history／decision／read-after／failure／consumerを独立partitionで保持する",
     "直接phase evidence 0件、phase非適用not_proven、全PHCAP-01〜20保留を保持する",
     "formal phase／product authority、実装成立、縮退、failure、consumer closure、未実装を生成しない",
-    "validator独立再導出と27負例を維持する",
-    "immutable taxonomy source commit/path/digestとCROSS_CUTTING_PHASE_REVIEW_PENDING 20 ID、formal phase null、authority boundaryを独立照合する"
+    "validator独立再導出と28負例を維持する",
+    "immutable taxonomy source commit/path/digest、required_ancestor到達性、CROSS_CUTTING_PHASE_REVIEW_PENDING 20 ID、formal phase null、authority boundaryを独立照合する"
   ],
   "connections": {
     "boundary": "static research evidence only; no phase/product authority, implementation, acceptance, runtime, merge, or close",
@@ -436,6 +436,7 @@
       "inventory binding tamper must emit E_BINDING",
       "wrong BASE commit must emit E_BASE_COMMIT",
       "wrong BASE ancestor must emit E_BASE_NOT_ANCESTOR",
+      "taxonomy required ancestor not reachable from PR HEAD must emit E_TAXONOMY_NOT_ANCESTOR",
       "wrong input digest must emit E_INPUT_DIGEST",
       "missing or duplicate target unit must emit E_UNIT_SET",
       "wrong source anchor or source binding must emit E_SOURCE_ANCHOR",
@@ -464,7 +465,7 @@
       "source／decision／read-after／failure／consumer partitions exact",
       "phase candidate and phase non-applicability separation exact",
       "all PHCAP-01〜20 boundary pending exact",
-      "selfcheck.py expected 27 negative executions and error codes",
+      "selfcheck.py expected 28 negative executions and error codes",
       "scfctl validate／stale／residuals",
       "git diff --check",
       "immutable taxonomy source commit/path/digest and exact 20 ID/status/authority boundary comparison"

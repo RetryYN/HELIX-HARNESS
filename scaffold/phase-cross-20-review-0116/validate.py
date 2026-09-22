@@ -66,7 +66,7 @@ NEGATIVE_CASE_CODES = [
     "E_BUNDLE", "E_SCHEMA", "E_BINDING", "E_BASE_COMMIT", "E_BASE_NOT_ANCESTOR", "E_INPUT_DIGEST",
     "E_UNIT_SET", "E_SOURCE_ANCHOR", "E_WAVE_EDGE_SET", "E_WAVE_EDGE_DUP", "E_ASSET_SET", "E_ASSET_SOURCE",
     "E_ASSET_HISTORY", "E_DECISION_EVIDENCE", "E_FAILURE_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_PHASE_REVIEW",
-    "E_PRODUCT_AUTHORITY", "E_CURRENT_CONTEXT", "E_AUTHORITY_BOUNDARY", "E_TAXONOMY",
+    "E_PRODUCT_AUTHORITY", "E_CURRENT_CONTEXT", "E_AUTHORITY_BOUNDARY", "E_TAXONOMY", "E_TAXONOMY_NOT_ANCESTOR",
 ]
 
 
@@ -122,7 +122,7 @@ def taxonomy_snapshot(rows: list[dict[str, Any]]) -> dict[str, Any]:
         status = row.get("taxonomy", {}).get("status")
         status_counts[status] = status_counts.get(status, 0) + 1
     return {
-        "commit": TAXONOMY_COMMIT, "path": TAXONOMY_PATH, "sha256": TAXONOMY_SHA256,
+        "commit": TAXONOMY_COMMIT, "required_ancestor": TAXONOMY_COMMIT, "path": TAXONOMY_PATH, "sha256": TAXONOMY_SHA256,
         "row_count": sum(status_counts.values()), "status_counts": status_counts,
         "target_status": "CROSS_CUTTING_PHASE_REVIEW_PENDING", "unit_ids": [row["unit_candidate_id"] for row in rows],
         "unit_count": len(rows), "authority_phase_status": "unchanged_unresolved", "formal_phase_candidate": None,
@@ -322,6 +322,9 @@ class Validator:
         ancestor = actual_inventory.get("base", {}).get("required_ancestor") or BASE
         if subprocess.run(["git", "merge-base", "--is-ancestor", ancestor, "HEAD"], cwd=self.root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False).returncode != 0:
             self.error("E_BASE_NOT_ANCESTOR", ancestor)
+        taxonomy_ancestor = actual_inventory.get("taxonomy_snapshot", {}).get("required_ancestor")
+        if not isinstance(taxonomy_ancestor, str) or subprocess.run(["git", "merge-base", "--is-ancestor", taxonomy_ancestor, "HEAD"], cwd=self.root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False).returncode != 0:
+            self.error("E_TAXONOMY_NOT_ANCESTOR", taxonomy_ancestor)
         self.check_inventory(actual_inventory, expected_inventory)
         self.check_inputs(actual_inventory, expected_inventory)
         if actual_inventory.get("unit_ids") != TARGET_UNIT_IDS or [row.get("unit_candidate_id") for row in actual_rows] != TARGET_UNIT_IDS or len(actual_rows) != 20 or len({row.get("unit_candidate_id") for row in actual_rows}) != 20:
