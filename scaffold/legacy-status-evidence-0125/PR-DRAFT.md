@@ -20,7 +20,7 @@ research: add fixed-base legacy status evidence partition (SCF-B-0125)
 ## 検証
 
 - `validate.py`: 13件、入力Git object digest、BASE祖先性、ledger/source/anchor/status partition PASS
-- `selfcheck.py`: 21負例 PASS
+- `selfcheck.py`: 25負例 PASS
 - `scfctl validate`: Binding整合 PASS
 - `scfctl stale`: stale=0
 - `scfctl residuals`: residuals=0

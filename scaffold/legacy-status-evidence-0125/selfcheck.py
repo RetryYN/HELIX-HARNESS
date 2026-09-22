@@ -28,6 +28,10 @@ def main():
  expect("unit binding forgery",lambda i,r:r[0]["unit_binding"].update(status="bound",unit_candidate_ids=["FAKE"]),"E_UNIT_BINDING")
  expect("requirement binding forgery",lambda i,r:r[0]["requirement_binding"].update(status="bound",requirement_ids=["FAKE"]),"E_REQUIREMENT_BINDING")
  expect("old implementation promotion",lambda i,r:r[0]["legacy_implementation_evidence"].update(status="implemented"),"E_IMPLEMENTATION_EVIDENCE")
+ expect("legacy status implemented promotion",lambda i,r:r[0]["legacy_status"].update(old_implementation="implemented"),"E_CURRENT_STATUS")
+ expect("legacy status accepted promotion",lambda i,r:r[0]["legacy_status"].update(acceptance="accepted"),"E_CURRENT_STATUS")
+ expect("legacy status closed promotion",lambda i,r:r[0]["legacy_status"].update(consumer_closure="closed"),"E_CURRENT_STATUS")
+ expect("legacy status unresolved omission",lambda i,r:r[0]["legacy_status"]["unknown_reasons"].pop(),"E_CURRENT_STATUS")
  expect("degradation promotion",lambda i,r:r[4]["degradation_evidence"].update(status="degraded"),"E_DEGRADATION_EVIDENCE")
  expect("failure promotion",lambda i,r:r[5]["failure_evidence"].update(status="failed"),"E_FAILURE_EVIDENCE")
  expect("consumer closure forgery",lambda i,r:r[8]["consumer_evidence"].update(closure_status="closed"),"E_CONSUMER_EVIDENCE")
@@ -44,5 +48,5 @@ def main():
  expect("unknown top-level field",lambda i,r:r[0].update(fabricated=True),"E_SCHEMA")
  root=subprocess.check_output(["git","rev-list","--max-parents=0","HEAD"],text=True).splitlines()[0]
  expect("fixed BASE non-ancestor",lambda i,r:None,"E_BASE_NOT_ANCESTOR",env={"SCF_VALIDATION_HEAD":root})
- print("PASS SCF-B-0125 selfcheck: 21 negative cases")
+ print("PASS SCF-B-0125 selfcheck: 25 negative cases")
 if __name__=="__main__": raise SystemExit(main())

@@ -107,14 +107,13 @@ def validate(bundle):
   if r.get("asset_id") in ids: read_after[r["asset_id"]].append(r)
  expected=[expected_record(l,phase,decisions,read_after,pool,rep,direct,wave) for l in selected]; actual=local_jsonl(ep)
  if len(actual)!=13 or [r.get("asset_id") for r in actual]!=SELECTED_IDS or len({r.get("asset_id") for r in actual})!=13: fail("E_ASSET_SET","selected assets must be unique and in fixed order")
+ field_codes={"acceptance_evidence":"E_ACCEPTANCE_EVIDENCE","asset_id":"E_ASSET_SET","asset_role":"E_CURRENT_STATUS","authority_effect":"E_AUTHORITY_BOUNDARY","counter_evidence":"E_CLAIM_ANCHOR","current_implementation":"E_CURRENT_STATUS","degradation_evidence":"E_DEGRADATION_EVIDENCE","failure_evidence":"E_FAILURE_EVIDENCE","history_evidence":"E_LEDGER_RECORD","unimplemented_evidence":"E_IMPLEMENTATION_EVIDENCE","legacy_implementation_evidence":"E_IMPLEMENTATION_EVIDENCE","legacy_status":"E_CURRENT_STATUS","ledger_record":"E_LEDGER_RECORD","product_phase_candidates":"E_REQUIREMENT_BINDING","requirement_binding":"E_REQUIREMENT_BINDING","source_exact":"E_SOURCE_EVIDENCE","unit_binding":"E_UNIT_BINDING","consumer_evidence":"E_CONSUMER_EVIDENCE","status_claims":"E_CLAIM_ANCHOR","unresolved":"E_CURRENT_STATUS"}
  for got,want in zip(actual,expected):
   aid=want["asset_id"]
   if set(got)!=TOP_LEVEL_KEYS: fail("E_SCHEMA",f"top-level key drift {aid}")
-  if got.get("ledger_record")!=want["ledger_record"]: fail("E_LEDGER_RECORD",aid)
-  if got.get("source_exact")!=want["source_exact"]: fail("E_SOURCE_EVIDENCE",aid)
-  for field,code in [("status_claims","E_CLAIM_ANCHOR"),("unit_binding","E_UNIT_BINDING"),("requirement_binding","E_REQUIREMENT_BINDING"),("legacy_implementation_evidence","E_IMPLEMENTATION_EVIDENCE"),("degradation_evidence","E_DEGRADATION_EVIDENCE"),("failure_evidence","E_FAILURE_EVIDENCE"),("consumer_evidence","E_CONSUMER_EVIDENCE"),("current_implementation","E_CURRENT_STATUS"),("acceptance_evidence","E_ACCEPTANCE_EVIDENCE")]:
+  for field,code in field_codes.items():
    if got.get(field)!=want.get(field): fail(code,aid)
-  if got.get("authority_effect")!="none": fail("E_AUTHORITY_BOUNDARY",aid)
+  if got!=want: fail("E_SCHEMA",f"uncompared record field drift {aid}")
  print(f"PASS SCF-B-0125: {len(actual)} asset-level status partitions; direct unit status remains unknown/pending")
 def main():
  p=argparse.ArgumentParser(); p.add_argument("--bundle",type=Path,default=Path(__file__).resolve().parent); a=p.parse_args()

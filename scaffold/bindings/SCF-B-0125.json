@@ -383,7 +383,7 @@
     "各assetのarchive source path/blob/bytes/SHAとclaim-specific line anchorを固定BASEから再導出する",
     "old implementation／unimplemented／degradation／failure／consumerを別partitionで保存しunit statusはunknown、consumer closureはpendingに保つ",
     "218 unit／153 source／598 Wave edge／355 Wave asset／4020 ledgerの探索分母、candidate poolとdirect binding境界を固定する",
-    "nested ledger record、source claim、unit/requirement/acceptance binding、status promotion、入力digest、BASE祖先性をvalidator/selfcheckでfail-closeする",
+    "nested ledger record、source claim、unit/requirement/acceptance binding、status／legacy_status promotion、unresolved消去、入力digest、BASE祖先性をvalidator/selfcheckでfail-closeする",
     "旧archiveのruntime/test/CI/source実行、formal authority/implementation/acceptance変更、merge/closeを行わない"
   ],
   "operations": {
@@ -412,6 +412,7 @@
     "oracles": [
       "fixed BASE ancestor and all nonarchive input digests",
       "13 selected ledger IDs and nested ledger exact equality",
+      "expected_record全field厳密比較（legacy_status／unresolved／asset_role／counter_evidence／history_evidence／product_phase_candidates／unimplemented_evidenceを含む）",
       "source blob/bytes/SHA and claim anchor rederivation",
       "218 units／153 source IDs／598 Wave edges／355 Wave assets／4020 ledger rows",
       "validator／selfcheck／scfctl／git diff --check"
@@ -435,6 +436,10 @@
       "E_FAILURE_EVIDENCE failure promotion",
       "E_CONSUMER_EVIDENCE closure promotion",
       "E_CURRENT_STATUS current implementation promotion",
+      "E_CURRENT_STATUS legacy_status old_implementation promotion",
+      "E_CURRENT_STATUS legacy_status acceptance promotion",
+      "E_CURRENT_STATUS legacy_status consumer_closure promotion",
+      "E_CURRENT_STATUS legacy_status unresolved reason omission",
       "E_ACCEPTANCE_EVIDENCE acceptance verdict forgery",
       "E_AUTHORITY_BOUNDARY authority promotion",
       "E_ASSET_SET missing/duplicate asset"

@@ -16,11 +16,11 @@
 - `LEGACY-ASSET-61D85EE372040EBCB68B`
 - `LEGACY-ASSET-0C8803AA14C9967096DF`
 
-source本文は固定BASEのGit objectから読み、archive旧code／test／runtime／CIは実行しない。各行にはsource blob、source SHA、exact path、claim anchor、履歴レコード、candidate pool／Wave relation、反証、未解決欄を保存する。asset本文に「implemented」「partial」「failed」「consumer」等の記載があっても、`legacy_status`、`current_implementation`、`acceptance_evidence`、`unit_binding`は直接unit receiptがないためunknown／pendingに保つ。
+source本文は固定BASEのGit objectから読み、archive旧code／test／runtime／CIは実行しない。各行にはsource blob、source SHA、exact path、claim anchor、履歴レコード、candidate pool／Wave relation、反証、未解決欄を保存する。asset本文に「implemented」「partial」「failed」「consumer」等の記載があっても、`legacy_status`全fieldを固定期待recordと比較し、`current_implementation`、`acceptance_evidence`、`unit_binding`は直接unit receiptがないためunknown／pendingに保つ。
 
 対象範囲の分母は固定BASEから再導出する。218 product unit、153 source ID、Wave1–50の598 edge／355 unique asset、legacy ledger 4,020行、選定13 asset、選定assetのcandidate-pool 281行、Wave edge 1行である。candidate poolは検索関係でありunit結合ではなく、representative/direct linkは0件である。
 
-`generate.py`は証拠束を固定BASEから再生成し、`validate.py`は同じBASE objectからledger完全一致、source claim anchor、status partition、unit/requirement/acceptance境界、入力digest、BASE祖先性を独立検査する。`selfcheck.py`は21件の改竄負例を期待error codeと照合する。Bindingには束の全成果物を登録する。
+`generate.py`は証拠束を固定BASEから再生成し、`validate.py`は同じBASE objectからledger完全一致、source claim anchor、status partition、legacy_status全field、unit/requirement/acceptance境界、入力digest、BASE祖先性を独立検査する。`selfcheck.py`は25件の改竄負例を期待error codeと照合する。Bindingには束の全成果物を登録する。
 
 ## 検証
 
