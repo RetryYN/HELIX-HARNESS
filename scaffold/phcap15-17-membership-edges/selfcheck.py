@@ -19,10 +19,10 @@ def main() -> int:
         return 1
     cases = []
 
-    def case(name, mutate):
+    def case(name, mutate, expected_code=None):
         data = copy.deepcopy(baseline)
         mutate(data)
-        cases.append((name, data))
+        cases.append((name, data, expected_code))
 
     case("authority", lambda d: d.__setitem__("authority_effect", "formal"))
     case("meaning", lambda d: d.__setitem__("meaning_change_applied", True))
@@ -42,10 +42,17 @@ def main() -> int:
     case("anchor_hash", lambda d: d["assets"][1]["anchors"][0].__setitem__("sha256", "0" * 64))
     case("unknown_count", lambda d: d["semantic_link_audit"].__setitem__("unknown", 68))
     case("key_injection", lambda d: d.__setitem__("unapproved_key", True))
+    case("prohibited_inference_reversal", lambda d: d["prohibited_inference"].__setitem__(0, "candidate pool membershipを意味関係とみなしてよい"), "E_PROHIBITED_INFERENCE")
+    case("prohibited_inference_removed", lambda d: d["prohibited_inference"].pop(), "E_PROHIBITED_INFERENCE")
+    case("asset_nested_authority", lambda d: d["assets"][0].__setitem__("verified", True), "E_NESTED_KEYS:assets[0]")
+    case("membership_nested_authority", lambda d: d["membership_sets"][0].__setitem__("confirmed", True), "E_NESTED_KEYS:membership_sets[0]")
+    case("scope_nested_authority", lambda d: d["scope"].__setitem__("approved", True), "E_NESTED_KEYS:scope")
+    case("provenance_nested_authority", lambda d: d["provenance"]["crosswalk"].__setitem__("verified", True), "E_NESTED_KEYS:provenance.crosswalk")
 
     failed = 0
-    for name, data in cases:
-        if not validate(data):
+    for name, data, expected_code in cases:
+        errors = validate(data)
+        if not errors or (expected_code is not None and expected_code not in errors):
             print("FAIL selfcheck case unexpectedly accepted:", name)
             failed += 1
     if failed:

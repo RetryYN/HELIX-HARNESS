@@ -15,6 +15,16 @@ ASSET_IDS = [
     "LEGACY-ASSET-189702B332643A3BFDAF",
     "LEGACY-ASSET-4618C7243C283228809A",
 ]
+PROHIBITED_INFERENCE = [
+    "phase membership is not a direct requirement-unit semantic link",
+    "product candidate membership is not product authority or routing",
+    "document_present does not mean implemented, tested, operational, or accepted",
+    "embedded historical command claims are not current test execution",
+    "absence of exact source evidence is unknown, not negative",
+    "old source contract does not authorize reuse or current implementation",
+    "FR-L1-16 does not equal HIL-NFR-17",
+    "consumer closure cannot be inferred from crosswalk membership",
+]
 CROSSWALK_PATH = ROOT / "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 DISPOSITION_PATH = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 CLASSIFICATION_PATH = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
@@ -54,6 +64,29 @@ def validate(data: dict[str, Any], check_files: bool = True) -> list[str]:
         "unresolved", "prohibited_inference",
     }
     req(set(data) == expected_top, "E_TOP_KEYS")
+    expected_nested = {
+        "base": {"origin_main_commit", "worktree", "branch", "captured_at"},
+        "scope": {"asset_ids", "candidate_products", "classification_vocabulary", "membership_semantics"},
+        "semantic_link_audit": {"affirmative", "negative", "unknown", "candidate_memberships", "requirement_id_exact_matches", "source_span_exact_matches", "direct_legacy_asset_links_observed", "candidate_pool_membership_is_not_semantic"},
+        "failure_consumer_decision_audit": {"matching_decision_records", "asset_consumer_refs", "phase_consumer_refs", "execution_receipts", "legacy_execution_performed", "failure_status", "consumer_closure_status"},
+    }
+    for name, keys in expected_nested.items():
+        obj = data.get(name)
+        req(isinstance(obj, dict) and set(obj) == keys, "E_NESTED_KEYS:" + name)
+    for name, ref in data.get("provenance", {}).items():
+        req(isinstance(ref, dict) and set(ref) == {"path", "sha256"}, "E_NESTED_KEYS:provenance." + name)
+    asset_keys = {"asset_id", "asset_class", "disposition", "implementation_status", "legacy_execution_performed", "consumer_refs", "consumer_closure_status", "decision_record_ref", "candidate_phases", "candidate_products", "classification_id", "source_path", "archive_path", "source_sha256", "source_line_count", "failure_evidence", "consumer_evidence", "anchors"}
+    for index, asset in enumerate(data.get("assets", [])):
+        req(isinstance(asset, dict) and set(asset) == asset_keys, f"E_NESTED_KEYS:assets[{index}]")
+        if isinstance(asset, dict):
+            for key, expected in (("failure_evidence", {"execution_receipts", "status", "anchor_ids"}), ("consumer_evidence", {"consumer_refs", "status", "anchor_ids"})):
+                obj = asset.get(key)
+                req(isinstance(obj, dict) and set(obj) == expected, f"E_NESTED_KEYS:assets[{index}].{key}")
+            for anchor_index, anchor in enumerate(asset.get("anchors", [])):
+                req(isinstance(anchor, dict) and set(anchor) == {"anchor_id", "line_start", "line_end", "sha256", "exact_text", "meaning"}, f"E_NESTED_KEYS:assets[{index}].anchors[{anchor_index}]")
+    membership_keys = {"asset_id", "count", "classification", "crosswalk_ids", "source_contract", "scope_anchor_ids", "connection_anchor_ids", "exception_anchor_ids", "classification_reason"}
+    for index, membership in enumerate(data.get("membership_sets", [])):
+        req(isinstance(membership, dict) and set(membership) == membership_keys, f"E_NESTED_KEYS:membership_sets[{index}]")
     req(data.get("schema") == "phcap15-17-membership-edges/v1", "E_SCHEMA")
     req(data.get("status") == "research_premise_candidate", "E_STATUS")
     req(data.get("authority_effect") == "none", "E_AUTHORITY")
@@ -194,7 +227,7 @@ def validate(data: dict[str, Any], check_files: bool = True) -> list[str]:
     req(residual.get("consumer_closure_status") == "pending", "E_RESIDUAL_CLOSURE")
 
     req(isinstance(data.get("unresolved"), list) and len(data["unresolved"]) >= 8, "E_UNRESOLVED")
-    req(isinstance(data.get("prohibited_inference"), list) and len(data["prohibited_inference"]) >= 8, "E_PROHIBITED_INFERENCE")
+    req(data.get("prohibited_inference") == PROHIBITED_INFERENCE, "E_PROHIBITED_INFERENCE")
     return errors
 
 
