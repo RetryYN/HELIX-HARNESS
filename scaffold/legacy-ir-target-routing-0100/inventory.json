@@ -105,7 +105,8 @@
     "authority_promotion",
     "legacy_asset_digest_tamper",
     "legacy_execution_promotion",
-    "base_ancestor_tamper"
+    "base_ancestor_tamper",
+    "base_object_digest_tamper"
   ],
   "queue_unchanged": true,
   "record_count": 18,
@@ -131,5 +132,12 @@
   ],
   "schema_revision": 1,
   "source_revision": "legacy-generation-2026-09-14",
+  "source_snapshot": {
+    "base_head": "36784d25aa4cc53d89c28c2ff81b4009db234605",
+    "blob_command": "git rev-parse <BASE>:<path>",
+    "bytes_command": "git show <BASE>:<path>",
+    "kind": "fixed_git_object",
+    "working_tree_used_for_source_digest": false
+  },
   "status": "research_only_candidate"
 }

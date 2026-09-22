@@ -5,6 +5,8 @@ authority_effect: none
 binding: `scaffold/bindings/SCF-B-0100.json`
 base_head: `36784d25aa4cc53d89c28c2ff81b4009db234605`
 
+source provenance: `fixed_git_object`。旧IR、台帳、queue、routing、decomposition、crosswalk、boundaryのblob／bytes／行anchor／digestはすべて固定BASEの`git rev-parse <BASE>:<path>`／`git show <BASE>:<path>`から取得し、working treeはsource digestの入力にしない。検証HEADは固定BASEの祖先でなければ`E_BASE_NOT_ANCESTOR`で停止する。
+
 このbundleは、`legacy-ir-target-routing-queue.jsonl`で`target_resolution_status=unresolved_target`となっている18件を、旧IR原文、四製品routing bootstrap、製品unit decomposition bootstrap、製品責務境界、旧資産台帳と照合するread-only研究束である。queue側の18件を正式変更せず、先行台帳側に存在する候補unitとの状態差分を記録する。
 
 `research.jsonl`は要求IDごとに次を保持する。
@@ -30,6 +32,6 @@ python3 scaffold/tools/scfctl.py validate
 git diff --check
 ```
 
-`validate.py`はqueue台帳から`target_resolution_status=unresolved_target`のID集合を動的に再導出して18 recordのqueue状態と照合する。さらに18 IDのexact set（重複・欠落）、旧IR statement digest、source file digest、Git blob、実ファイルから再導出した`statement.text` line／行テキストdigest／pointer、queue／routing／decomposition候補集合、責務境界のGit blob／実行行／行digest／interpretation digest、固定BASEの祖先性、authority／successor／execution境界、asset ledger digestとhistory／failure／consumer未完状態を検査する。`selfcheck.py`はduplicate、missing、digest tamper、line anchor／line digest tamper、queue status、boundary blob／interpretation、candidate boundary、authority promotion、asset digest、旧実行promotion、BASE祖先性の否定例について、狙ったerror codeを照合する。
+`validate.py`はqueue台帳から`target_resolution_status=unresolved_target`のID集合を動的に再導出して18 recordのqueue状態と照合する。さらに18 IDのexact set（重複・欠落）、旧IR statement digest、固定BASE bytes digest、Git object、実ファイルから再導出した`statement.text` line／行テキストdigest／pointer、queue／routing／decomposition候補集合、責務境界のGit blob／実行行／行digest／interpretation digest、固定BASEの祖先性、authority／successor／execution境界、asset ledger digestとhistory／failure／consumer未完状態を検査する。`selfcheck.py`はduplicate、missing、digest tamper、line anchor／line digest tamper、queue status、boundary blob／interpretation、candidate boundary、authority promotion、asset digest、旧実行promotion、BASE祖先性、固定BASE object bytes digestの否定例について、狙ったerror codeを照合する。
 
 この合格は人間decision、要求採否、owner確定、L2／L11、phase、設計、実装、consumer closure、Issue closeを生成しない。

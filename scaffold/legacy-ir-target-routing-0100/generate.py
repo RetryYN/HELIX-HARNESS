@@ -25,8 +25,14 @@ BOUNDARY_LINES = {
 }
 
 
-def sha_file(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def base_bytes(path: str) -> bytes:
+    """すべてのsource snapshotを固定BASEのGit objectから読む。"""
+    return subprocess.check_output(["git", "show", f"{BASE_HEAD}:{path}"], cwd=ROOT)
+
+
+def sha_file(path: Path | str) -> str:
+    source = str(path.relative_to(ROOT)) if isinstance(path, Path) else path
+    return hashlib.sha256(base_bytes(source)).hexdigest()
 
 
 def rel(path: str) -> Path:
@@ -34,12 +40,12 @@ def rel(path: str) -> Path:
 
 
 def blob(path: str) -> str:
-    return subprocess.check_output(["git", "rev-parse", "HEAD:" + path], cwd=ROOT, text=True).strip()
+    return subprocess.check_output(["git", "rev-parse", f"{BASE_HEAD}:{path}"], cwd=ROOT, text=True).strip()
 
 
 def jsonl(path: str):
     rows, lines = [], {}
-    for number, raw in enumerate(rel(path).read_text(encoding="utf-8").splitlines(), 1):
+    for number, raw in enumerate(base_bytes(path).decode("utf-8").splitlines(), 1):
         if not raw.strip():
             continue
         item = json.loads(raw)
@@ -52,7 +58,7 @@ def jsonl(path: str):
 
 def composite_lines(path: str, first: str, second: str) -> dict:
     result = {}
-    for number, raw in enumerate(rel(path).read_text(encoding="utf-8").splitlines(), 1):
+    for number, raw in enumerate(base_bytes(path).decode("utf-8").splitlines(), 1):
         if not raw.strip():
             continue
         item = json.loads(raw)
@@ -69,7 +75,7 @@ def ref(path: str, line: int, pointer: str | None = None) -> dict:
 
 def line_anchor(path: str, line: int) -> tuple[str, str]:
     """テキスト文書の実行行と、その改行を除いた行bytesのdigestを返す。"""
-    lines = rel(path).read_text(encoding="utf-8").splitlines()
+    lines = base_bytes(path).decode("utf-8").splitlines()
     if line < 1 or line > len(lines):
         raise ValueError(f"line out of range: {path}:{line}")
     text = lines[line - 1]
@@ -78,7 +84,7 @@ def line_anchor(path: str, line: int) -> tuple[str, str]:
 
 def statement_line_anchor(requirement_id: str) -> tuple[int, str, str]:
     """整形JSON上の statement.text の実行行と行テキストdigestを返す。"""
-    lines = (ROOT / OLD_IR).read_text(encoding="utf-8").splitlines()
+    lines = base_bytes(OLD_IR).decode("utf-8").splitlines()
     found_id = None
     in_statement = False
     for number, line in enumerate(lines, 1):
@@ -170,7 +176,7 @@ def main() -> None:
     crosswalk_lines = composite_lines("docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl", "source_requirement_id", "unit_candidate_id")
     correction_rows, correction_lines = jsonl("docs/governance/legacy-ir-product-routing-corrections.jsonl")
     ledger_rows, ledger_lines = jsonl("docs/governance/legacy-asset-disposition.jsonl")
-    ledger_lines = {item["asset_id"]: number for number, raw in enumerate(rel("docs/governance/legacy-asset-disposition.jsonl").read_text(encoding="utf-8").splitlines(), 1) if raw.strip() for item in [json.loads(raw)]}
+    ledger_lines = {item["asset_id"]: number for number, raw in enumerate(base_bytes("docs/governance/legacy-asset-disposition.jsonl").decode("utf-8").splitlines(), 1) if raw.strip() for item in [json.loads(raw)]}
     phase_rows, _ = jsonl("docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")
     phase_rows = {r["asset_id"]: r for r in phase_rows}
     decisions, _ = jsonl("docs/governance/legacy-asset-decisions.jsonl")
@@ -187,7 +193,7 @@ def main() -> None:
     decomposition = {r["source_requirement_id"]: r for r in decomposition_rows}
     queue = {r["requirement_id"]: r for r in queue_rows}
     corrections = {r["source_requirement_id"]: r for r in correction_rows}
-    old_ir = json.loads(rel(OLD_IR).read_text(encoding="utf-8"))
+    old_ir = json.loads(base_bytes(OLD_IR))
 
     records = []
     for requirement_id in (x for x in queue if x in IDS):
@@ -280,7 +286,7 @@ def main() -> None:
                 "line_text": statement_line_text,
                 "line_text_sha256": statement_line_digest,
                 "json_pointer": f"requirements.json#/{requirement_id}/statement/text",
-                "source_file_sha256": sha_file(rel(OLD_IR)),
+                "source_file_sha256": sha_file(OLD_IR),
                 "statement_text": statement["text"],
                 "statement_semantic_digest": statement["semantic_digest"],
                 "requirement_revision": source.get("revision"),
@@ -361,6 +367,13 @@ def main() -> None:
         "authority_effect": "none",
         "source_revision": "legacy-generation-2026-09-14",
         "base_head": BASE_HEAD,
+        "source_snapshot": {
+            "kind": "fixed_git_object",
+            "base_head": BASE_HEAD,
+            "blob_command": "git rev-parse <BASE>:<path>",
+            "bytes_command": "git show <BASE>:<path>",
+            "working_tree_used_for_source_digest": False,
+        },
         "record_count": len(records),
         "requirement_ids": [item["source_requirement_id"] for item in records],
         "candidate_shape_counts": {shape: sum(item["decomposition_candidate"]["candidate_shape"] == shape for item in records) for shape in ("unit", "unit_set", "connection", "composite", "unresolved")},
@@ -369,7 +382,7 @@ def main() -> None:
         "queue_unchanged": True,
         "legacy_execution_performed": False,
         "known_open_conditions": ["queue_target_resolution_pending", "exact_head_independent_review_pending", "human_product_authority_decision_pending", "successor_assignment_unassigned", "legacy_asset_direct_link_pending", "history_failure_consumer_closure_pending"],
-        "negative_cases": ["duplicate_id", "missing_id", "source_statement_digest_tamper", "source_exact_reference_tamper", "source_line_anchor_tamper", "source_line_digest_tamper", "queue_status_tamper", "boundary_blob_tamper", "boundary_interpretation_tamper", "candidate_product_boundary_tamper", "authority_promotion", "legacy_asset_digest_tamper", "legacy_execution_promotion", "base_ancestor_tamper"],
+        "negative_cases": ["duplicate_id", "missing_id", "source_statement_digest_tamper", "source_exact_reference_tamper", "source_line_anchor_tamper", "source_line_digest_tamper", "queue_status_tamper", "boundary_blob_tamper", "boundary_interpretation_tamper", "candidate_product_boundary_tamper", "authority_promotion", "legacy_asset_digest_tamper", "legacy_execution_promotion", "base_ancestor_tamper", "base_object_digest_tamper"],
     }
     (BUNDLE / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 

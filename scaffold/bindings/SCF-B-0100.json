@@ -107,7 +107,10 @@
       "E_AUTHORITY_BOUNDARY: authority/meaning/successor promotion",
       "E_ASSET_LEDGER_DIGEST: legacy asset source digest tamper",
       "E_LEGACY_EXECUTION: old execution or new-build promotion",
-      "E_BASE_NOT_ANCESTOR: fixed BASE is not an ancestor of validation HEAD"
+      "E_BASE_NOT_ANCESTOR: fixed BASE is not an ancestor of validation HEAD",
+      "E_SOURCE_PROVENANCE: source snapshot is not fixed BASE Git object",
+      "E_INPUT_DIGEST: fixed BASE input bytes digest tamper",
+      "E_INPUT_BLOB: fixed BASE input Git object tamper"
     ]
   },
   "replacement": {

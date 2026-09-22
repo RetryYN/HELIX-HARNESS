@@ -9,7 +9,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from validate import base_ancestor_errors, validate_records  # noqa: E402
+from validate import base_ancestor_errors, validate_inventory, validate_records  # noqa: E402
 
 
 def load():
@@ -82,7 +82,12 @@ def main():
     if not any(item.startswith("E_BASE_NOT_ANCESTOR:") for item in base_ancestor_errors("0" * 40)):
         raise AssertionError("base_ancestor_tamper: expected E_BASE_NOT_ANCESTOR")
 
-    print("SCF-B-0100 selfcheck: PASS negative_cases=14")
+    inventory = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
+    inventory["input_digests"][0]["sha256"] = "0" * 64
+    if not any(item.startswith("E_INPUT_DIGEST:") for item in validate_inventory(inventory, check_ancestor=False)):
+        raise AssertionError("base_object_digest_tamper: expected E_INPUT_DIGEST")
+
+    print("SCF-B-0100 selfcheck: PASS negative_cases=15")
     return 0
 
 

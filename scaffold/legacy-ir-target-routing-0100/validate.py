@@ -24,12 +24,13 @@ BOUNDARY_INTERPRETATION = "HARNESSは工程・提供契約、HELIX-OSは管理�
 
 
 def sha_file(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    relative = str(path.relative_to(ROOT))
+    return hashlib.sha256(base_bytes(relative)).hexdigest()
 
 
 def load_jsonl(path: str):
     rows, lines = [], {}
-    for number, raw in enumerate((ROOT / path).read_text(encoding="utf-8").splitlines(), 1):
+    for number, raw in enumerate(base_bytes(path).decode("utf-8").splitlines(), 1):
         if not raw.strip():
             continue
         item = json.loads(raw)
@@ -43,7 +44,7 @@ def load_jsonl(path: str):
 def load_crosswalk():
     rows, lines = [], {}
     path = ROOT / "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
-    for number, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+    for number, raw in enumerate(base_bytes("docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl").decode("utf-8").splitlines(), 1):
         if not raw.strip():
             continue
         item = json.loads(raw)
@@ -53,11 +54,16 @@ def load_crosswalk():
 
 
 def blob(path: str) -> str:
-    return subprocess.check_output(["git", "rev-parse", "HEAD:" + path], cwd=ROOT, text=True).strip()
+    return subprocess.check_output(["git", "rev-parse", f"{EXPECTED_BASE}:{path}"], cwd=ROOT, text=True).strip()
+
+
+def base_bytes(path: str) -> bytes:
+    """すべてのsource snapshotを固定BASEのGit objectから読む。"""
+    return subprocess.check_output(["git", "show", f"{EXPECTED_BASE}:{path}"], cwd=ROOT)
 
 
 def line_anchor(path: str, line: int):
-    lines = (ROOT / path).read_text(encoding="utf-8").splitlines()
+    lines = base_bytes(path).decode("utf-8").splitlines()
     if line < 1 or line > len(lines):
         return None, None
     text = lines[line - 1]
@@ -69,7 +75,7 @@ def error(code: str, message: str) -> str:
 
 
 def statement_line_anchor(requirement_id: str):
-    lines = (ROOT / OLD_IR).read_text(encoding="utf-8").splitlines()
+    lines = base_bytes(OLD_IR).decode("utf-8").splitlines()
     found_id = False
     in_statement = False
     for number, line in enumerate(lines, 1):
@@ -107,6 +113,11 @@ def validate_inventory(inventory, check_ancestor: bool = True):
         errors.append(error("E_BASE_HEAD", f"base_head={inventory.get('base_head')}"))
     elif check_ancestor:
         errors.extend(base_ancestor_errors(inventory.get("base_head")))
+    snapshot = inventory.get("source_snapshot", {})
+    if snapshot.get("kind") != "fixed_git_object" or snapshot.get("base_head") != EXPECTED_BASE:
+        errors.append(error("E_SOURCE_PROVENANCE", "source snapshot provenance is not fixed BASE Git object"))
+    if snapshot.get("working_tree_used_for_source_digest") is not False:
+        errors.append(error("E_SOURCE_PROVENANCE", "working tree is marked as source digest input"))
     if inventory.get("record_count") != 18 or inventory.get("queue_unchanged") is not True:
         errors.append(error("E_INVENTORY", "inventory count/queue_unchanged不一致"))
     for entry in inventory.get("input_digests", []):
@@ -147,7 +158,7 @@ def validate_records(records, check_files: bool = True):
     decomposition = {item.get("source_requirement_id"): item for item in decomp_rows}
     corrections = {item.get("source_requirement_id") for item in correction_rows}
     crosswalk = {(item.get("source_requirement_id"), item.get("unit_candidate_id")): item for item in crosswalk_rows}
-    old_ir = json.loads((ROOT / OLD_IR).read_text(encoding="utf-8"))
+    old_ir = json.loads(base_bytes(OLD_IR))
 
     ids = [item.get("source_requirement_id") for item in records]
     if len(ids) != len(set(ids)):
