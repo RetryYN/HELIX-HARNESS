@@ -27,6 +27,16 @@ research: HIL-FR-41-69 37 product unit implementation evidence crosswalk (SCF-B-
     SCF-B-0111 selfcheck: PASS (22 negative executions; expected error codes matched)
 
     python3 scaffold/tools/scfctl.py validate
+    bindings=101 fail=0
+
+    python3 scaffold/tools/scfctl.py stale
+    stale=0
+
+    python3 scaffold/tools/scfctl.py residuals
+    residuals=0
+
+    git diff origin/main...HEAD --check
+    PASS
 
 #1813は進捗参照のみであり、Issue close、merge、formal crosswalk／authority／successorの変更は行わない。旧code／test／runtime／CIと現行runtime／CIは実行しない。
 
