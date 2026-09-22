@@ -24,6 +24,143 @@ GRANULARITIES = ["unit", "connection", "composite", "unresolved"]
 RELATIONS = ["exact", "partial", "adds-condition", "conflicts", "example-of", "rationale-for", "unrelated", "unresolved"]
 
 
+# Fixed reviewer contracts independent of mutable proposal bytes.
+EXPECTED_NORMALIZED_STATEMENTS = {'A1-0001-01': 'business sourceはL0のSSoT用語・業界標準・Bounded Contextを参照し、独自の用語定義を行わない。',
+ 'A1-0001-02': '旧business sourceはBR 10件（BR-01〜08、BR-21、BR-22）とUX 3件を確定件数として宣言する。',
+ 'A1-0001-03': '旧sourceはNFR 15件をnfr.mdの正本として宣言し、NFR-09/10欠番とNFR-17統合セキュリティ追加を明記する。',
+ 'A1-0001-04': '旧L3 PLANはbusiness sub-docの全件をdependencies.requiresへ列挙する接続規約を持つ。',
+ 'A1-0002-01': '旧sourceは社内開発チーム前提を、1人の開発者がAIへ委譲するsolo＋AI agent rosterへ写像し、機械機構は不変とする。',
+ 'A1-0003-01': 'AI実装エージェントへ安全に開発を委譲するための検証・開発基盤が旧source時点で存在しない。',
+ 'A1-0003-02': 'AI委譲後も回帰を壊さず、設計・実装・テストの整合を機械強制する仕組みが必要である。',
+ 'A1-0003-03': 'POはL0企画・L1業務要求・L2デザインモック・L3承認のみを担うという旧actor boundaryを保持する。',
+ 'A1-0003-04': '旧sourceはL3起草からL7実装までをAI agent rosterが無人完走する工程接続として記述する。',
+ 'A1-0003-05': '旧sourceはL8〜L14検証をAI agent rosterが無人完走する実行接続として記述する。',
+ 'A1-0003-06': '旧sourceはPR/CI/merge/tagまでAI agent rosterが無人完走する範囲として列挙する。',
+ 'A1-0004-01': 'HELIXはAI実装エージェントへ安全に開発を委譲する検証・開発基盤を提供する。',
+ 'A1-0004-02': 'V-model L0-L14の全工程についてPLAN管理・gate判定・trace整合を機械強制し、工程規律を保つ。',
+ 'A1-0004-03': '旧sourceはsolo前提で人間1名（PO）とAI agent roster（tl/qa/aim/uiux）が全工程を回す接続を記述する。',
+ 'A1-0004-04': 'この文脈でHELIX-HARNESSは仕組みを実装・配布するrepository／harness package名として扱う。',
+ 'A1-0005-01': '本プロダクトの価値はprocess・safety・automationを偏らせず統合することであり、単一要素への最適化を禁ずる。'}
+EXPECTED_IDENTITY_RELATIONS = {'A1-0001-01': [{'identity': 'current-l1:HARNESS-L1-001', 'relation': 'unresolved'}],
+ 'A1-0001-02': [{'identity': 'legacy-source:business-requirement-count-declaration', 'relation': 'exact'}],
+ 'A1-0001-03': [{'identity': 'legacy-source:nfr-count-declaration', 'relation': 'exact'}],
+ 'A1-0001-04': [{'identity': 'current-l1:HARNESS-L1-003', 'relation': 'partial'}],
+ 'A1-0002-01': [{'identity': 'current-l1:HARNESS-L1-004', 'relation': 'partial'},
+                {'identity': 'current-l1:HELIXOS-L1-003', 'relation': 'unresolved'}],
+ 'A1-0003-01': [{'identity': 'current-l1:HARNESS-L1-001', 'relation': 'partial'}],
+ 'A1-0003-02': [{'identity': 'current-l1:HARNESS-L1-003', 'relation': 'partial'},
+                {'identity': 'current-l1:HARNESS-L1-004', 'relation': 'partial'}],
+ 'A1-0003-03': [{'identity': 'current-l1:HARNESS-L1-004', 'relation': 'partial'},
+                {'identity': 'current-l1:HELIXOS-L1-003', 'relation': 'unresolved'}],
+ 'A1-0003-04': [{'identity': 'current-l1:HARNESS-L1-001', 'relation': 'partial'},
+                {'identity': 'current-l1:HELIXOS-L1-003', 'relation': 'unresolved'}],
+ 'A1-0003-05': [{'identity': 'current-l1:HELIXOS-L1-003', 'relation': 'partial'},
+                {'identity': 'current-l1:HARNESS-L1-004', 'relation': 'unresolved'}],
+ 'A1-0003-06': [{'identity': 'current-l1:HELIXOS-L1-004', 'relation': 'conflicts'}],
+ 'A1-0004-01': [{'identity': 'current-l1:HARNESS-L1-001', 'relation': 'partial'}],
+ 'A1-0004-02': [{'identity': 'current-l1:HARNESS-L1-001', 'relation': 'partial'},
+                {'identity': 'current-l1:HARNESS-L1-003', 'relation': 'partial'},
+                {'identity': 'current-l1:HARNESS-L1-004', 'relation': 'partial'}],
+ 'A1-0004-03': [{'identity': 'current-l1:HARNESS-L1-004', 'relation': 'partial'},
+                {'identity': 'current-l1:HELIXOS-L1-003', 'relation': 'unresolved'}],
+ 'A1-0004-04': [{'identity': 'current-boundary:HARNESS-external-product', 'relation': 'partial'}],
+ 'A1-0005-01': [{'identity': 'current-l1:HARNESS-L1-001', 'relation': 'partial'},
+                {'identity': 'current-l1:HARNESS-L1-003', 'relation': 'partial'},
+                {'identity': 'current-l1:HARNESS-L1-004', 'relation': 'partial'}]}
+EXPECTED_KEYSETS = {'atom': {'actor_candidate',
+          'authority_boundary',
+          'candidate_atom_id',
+          'candidate_granularity',
+          'candidate_kind',
+          'candidate_target',
+          'consumer_candidate',
+          'evidence_or_acceptance_conditions',
+          'exact_source_text',
+          'existing_identity_relations',
+          'failure_or_stop_conditions',
+          'legacy_failure_candidate',
+          'negative_or_exception_conditions',
+          'normalized_statement',
+          'possible_conflicts',
+          'questions',
+          'retained_meaning',
+          'source_line_ids',
+          'status_preservation'},
+ 'atom_status': {'carry_forward',
+                 'degradation_status',
+                 'implementation_status',
+                 'phase_status',
+                 'source_authority',
+                 'successor_status',
+                 'target_authority'},
+ 'consumer': {'current_status', 'legacy_refs'},
+ 'failure': {'status', 'conditions'},
+ 'inputs': {'archive_source_path',
+            'archive_source_sha256',
+            'legacy_asset_consumer_refs',
+            'legacy_asset_decision_ref',
+            'legacy_asset_decision_status',
+            'legacy_asset_disposition',
+            'legacy_asset_id',
+            'legacy_asset_implementation_status',
+            'legacy_asset_product_target',
+            'legacy_asset_read_after_consumer_match',
+            'legacy_asset_read_after_consumer_refs',
+            'legacy_asset_read_after_digest_match',
+            'legacy_asset_read_after_failure',
+            'legacy_asset_read_after_id',
+            'legacy_asset_read_after_result',
+            'legacy_asset_revision',
+            'queue_path',
+            'queue_sha256',
+            'semantic_line_ledger_path',
+            'semantic_line_ledger_sha256',
+            'source_path',
+            'source_sha256'},
+ 'inventory': {'authority_effect',
+               'candidate_atom_count',
+               'four_product_denominator',
+               'generated_at',
+               'input_line_count',
+               'inputs',
+               'proposal_sha256',
+               'proposal_status',
+               'review_unit_count',
+               'review_unit_ids',
+               'schema_revision',
+               'source_commit',
+               'status_preservation',
+               'unresolved_target_candidate_atom_count'},
+ 'inventory_status': {'carry_forward',
+                      'decision_record',
+                      'degradation_status',
+                      'implementation_status',
+                      'phase_status',
+                      'source_authority',
+                      'successor_requirement_ids',
+                      'target_authority'},
+ 'line_coverage': {'shared_context', 'consumed_once', 'unresolved'},
+ 'product_entry': {'candidate_atom_count', 'status'},
+ 'products': {'HELIX-Web', 'HELIX-HARNESS', 'HELIX-OS', 'HELIX-Web-OS'},
+ 'proposal': {'authority_claim',
+              'candidate_atoms',
+              'decision_record',
+              'four_product_denominator',
+              'input_content_line_digests',
+              'input_content_line_ids',
+              'input_heading_path',
+              'input_source_line_range',
+              'input_source_path',
+              'input_source_revision',
+              'line_coverage',
+              'meaning_change_applied',
+              'proposal_status',
+              'review_sequence',
+              'review_unit_id',
+              'successor_requirement_ids'},
+ 'relation': {'relation', 'identity'}}
+
+
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -53,6 +190,36 @@ def check() -> list[str]:
         ledger_rows = {row["content_line_id"]: row for row in load_jsonl(LEDGER)}
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as exc:
         return [f"入力読み込み失敗: {exc}"]
+
+
+    def check_keys(value: object, expected: set[str], label: str) -> None:
+        if not isinstance(value, dict) or set(value) != expected:
+            errors.append(f"E_KEYSET:{label}")
+
+    check_keys(inventory, EXPECTED_KEYSETS["inventory"], "inventory")
+    check_keys(inventory.get("inputs"), EXPECTED_KEYSETS["inputs"], "inventory.inputs")
+    check_keys(inventory.get("four_product_denominator"), EXPECTED_KEYSETS["products"], "inventory.four_product_denominator")
+    check_keys(inventory.get("status_preservation"), EXPECTED_KEYSETS["inventory_status"], "inventory.status_preservation")
+    for product in PRODUCTS:
+        check_keys(inventory.get("four_product_denominator", {}).get(product), EXPECTED_KEYSETS["product_entry"], f"inventory.four_product_denominator.{product}")
+    for index, proposal in enumerate(proposals):
+        label = f"proposal[{index}]"
+        check_keys(proposal, EXPECTED_KEYSETS["proposal"], label)
+        check_keys(proposal.get("line_coverage"), EXPECTED_KEYSETS["line_coverage"], label + ".line_coverage")
+        unit_id = proposal.get("review_unit_id")
+        if unit_id in queue_rows:
+            check_keys(proposal.get("input_content_line_digests"), set(queue_rows[unit_id]["content_line_ids"]), label + ".input_content_line_digests")
+        check_keys(proposal.get("four_product_denominator"), EXPECTED_KEYSETS["products"], label + ".four_product_denominator")
+        for product in PRODUCTS:
+            check_keys(proposal.get("four_product_denominator", {}).get(product), EXPECTED_KEYSETS["product_entry"], label + f".four_product_denominator.{product}")
+        for atom_index, atom in enumerate(proposal.get("candidate_atoms", [])):
+            atom_label = label + f".candidate_atoms[{atom_index}]"
+            check_keys(atom, EXPECTED_KEYSETS["atom"], atom_label)
+            for relation_index, relation in enumerate(atom.get("existing_identity_relations", [])):
+                check_keys(relation, EXPECTED_KEYSETS["relation"], atom_label + f".existing_identity_relations[{relation_index}]")
+            check_keys(atom.get("legacy_failure_candidate"), EXPECTED_KEYSETS["failure"], atom_label + ".legacy_failure_candidate")
+            check_keys(atom.get("consumer_candidate"), EXPECTED_KEYSETS["consumer"], atom_label + ".consumer_candidate")
+            check_keys(atom.get("status_preservation"), EXPECTED_KEYSETS["atom_status"], atom_label + ".status_preservation")
 
     if inventory.get("schema_revision") != 1:
         errors.append("inventory schema_revision が1でない")
@@ -159,6 +326,10 @@ def check() -> list[str]:
                 errors.append(f"{unit_id}/{atom_id}: candidate_target不正")
             if candidate.get("candidate_granularity") not in GRANULARITIES:
                 errors.append(f"{unit_id}/{atom_id}: candidate_granularity不正")
+            if candidate.get("normalized_statement") != EXPECTED_NORMALIZED_STATEMENTS.get(atom_id):
+                errors.append(f"{unit_id}/{atom_id}: normalized_statementが独立canonical意味と不一致")
+            if candidate.get("existing_identity_relations") != EXPECTED_IDENTITY_RELATIONS.get(atom_id):
+                errors.append(f"{unit_id}/{atom_id}: existing_identity_relationsが独立canonical関係と不一致")
             relations = candidate.get("existing_identity_relations")
             if not isinstance(relations, list):
                 errors.append(f"{unit_id}/{atom_id}: existing_identity_relations欠落")

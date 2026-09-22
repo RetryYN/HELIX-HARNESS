@@ -75,7 +75,7 @@
     },
     {
       "path": "scaffold/rdp001-reqatom-first5/README.md",
-      "sha256": "a461ff7daad2fce655c985209e8574ca4d7c518d1e63d8df83beb4dcf4836d3e",
+      "sha256": "a06f9a4d148bf3305e8025f79df077ed9e401acb282b974a8fb3422cffa14706",
       "note": "scope, product denominator, unknowns, verification contract"
     },
     {
@@ -95,13 +95,13 @@
     },
     {
       "path": "scaffold/rdp001-reqatom-first5/validate.py",
-      "sha256": "e23c44955b3d873cd0346671e2c60598b7b29f9cc8c3eb4333712ce8c36b657a",
+      "sha256": "89cbcfff8b3fc2464f674fe305bdeed02382fb9e5c3f125677e5b6732ef773e5",
       "note": "independent static validator"
     },
     {
       "path": "scaffold/rdp001-reqatom-first5/selfcheck.py",
-      "sha256": "06f26e9d3a343778e8705d2b97f7655cbf282f0856691416ac6ae556f6b25482",
-      "note": "ten meaningful negative self-checks"
+      "sha256": "a90b10826aef77a8b8e0bb4a2184ddd93b386459d9bf7ec2c570d37839ef8bdb",
+      "note": "fourteen meaningful negative self-checks including refreshed proposal digest"
     }
   ],
   "role": "REQATOM A1 first fiveのqueue／semantic line／exact source closure、四製品candidate routing、implementation／degradation／phase unknown、actor／authority／failure／negative意味を独立review用に保持する",
@@ -171,7 +171,7 @@
     "oracles": [
       "validate.pyのqueue／semantic line／source／archive digestと7 line coverage",
       "validate.pyの16 atom、four-product denominator、status unknown、authority/successor/decision禁止",
-      "selfcheck.pyの10 negative cases（line loss／duplication、本文／digest改変、authority／successor／decision／implementation昇格、denominator改変、merge conflict削除）",
+      "selfcheck.pyの14 negative cases（line loss／duplication、本文／digest改変、authority／successor／decision／implementation昇格、denominator改変、merge conflict削除、意味反転、identity消失、未知key注入）",
       "generate.py二回実行のdeterministic JSONL digest",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
@@ -183,7 +183,8 @@
       "solo改訂またはAI roster actor claimを現行permissionへ昇格すること",
       "PR／CI／merge／tag無人完走をcurrent authority／implementation／acceptanceへ昇格すること",
       "HARNESS／OS候補をsuccessorへ昇格、Web／Web-OS直接根拠なしを不要化すること",
-      "implementation／degradation／phase／decision statusのunknown／pendingを解消したと表示すること"
+      "implementation／degradation／phase／decision statusのunknown／pendingを解消したと表示すること",
+      "proposal digest再計算後のnormalized_statement意味反転、identity relation空化、unit／atom未知key追加"
     ]
   },
   "replacement": {
