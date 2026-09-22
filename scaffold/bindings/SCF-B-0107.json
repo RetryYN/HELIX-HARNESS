@@ -410,11 +410,16 @@
       "E_BOUNDARY_DIGEST boundary／L1／failure／consumer line tamper",
       "E_INPUT_SET input digest missing／duplicate／extra",
       "E_AUTHORITY_PROMOTION authority／formal classification／new build promotion",
+      "E_RECORD_SCHEMA unexpected record key including formal owner",
+      "E_INVENTORY_DECLARATION inventory authority／classification rule declaration tamper",
+      "E_EXPECTED_DENOMINATOR edge／asset denominator tamper",
       "E_BASE_NOT_ANCESTOR fixed BASE non-ancestor"
     ],
     "oracles": [
       "fixed BASE ancestor and input digest set",
-      "Wave1–50 598 edge／355 asset／64 target denominator",
+      "Wave1–50 598 edge／355 asset／64 target asset denominator",
+      "target 70 edge statuses: unresolved 65／rejected 5",
+      "target 64 asset link profiles: unresolved_only 61／rejected_only 3",
       "source blob／line digest rederivation",
       "four-product boundary／L1 line digest rederivation",
       "validator／selfcheck／scfctl／git diff --check"
