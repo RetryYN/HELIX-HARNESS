@@ -82,7 +82,7 @@ def main() -> int:
             print("FAIL negative cases: " + ",".join(item[0] for item in failed))
             print("\n".join(item[2] for item in failed))
             return 1
-    print("PASS outside67 residual follow-up selfcheck: baseline + 24 negative cases")
+    print("PASS outside67 residual follow-up selfcheck: baseline + 25 negative cases")
     return 0
 
 
