@@ -146,7 +146,7 @@ def observation_cases() -> None:
     expect_observation("O09 text contradictory pass/failure", b"Tests 2 passed (2)\n1 failed\n", None, "contradictory pass summary and failure marker prevent a pass verdict", "observed_asset_level")
     expect_observation("O10 text pass exit2", b"Test Files 1 passed (1)\nTests 1 passed (1)\nvitest exit=2\n", None, "contradictory pass summary and nonzero exit code prevent a pass verdict", "observed_asset_level")
     expect_observation("O11 text normal pass", b"Test Files 1 passed (1)\nTests 1 passed (1)\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
-    expect_observation("O12 text zero failure count", b"Tests 1 passed (1)\n0 failed\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
+    expect_observation("O12 text zero failed is not failure", b"Tests 1 passed (1)\n0 failed\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
     expect_observation("O13 text pass missing exit", b"Tests 1 passed (1)\n", None, "text pass summary has no explicit exit code 0; result is unknown", "not_observed_in_asset")
     expect_observation("O14 text negative exit", b"Tests 1 passed (1)\nexited with code -1\n", None, "contradictory pass summary and nonzero exit code prevent a pass verdict", "observed_asset_level")
     expect_observation("O15 text hexadecimal exit is not parsed", b"Tests 1 passed (1)\nvitest exit=0x1\n", None, "text pass summary has no explicit exit code 0; result is unknown", "not_observed_in_asset")
@@ -156,6 +156,9 @@ def observation_cases() -> None:
     expect_observation("O19 text error word boundary", b"Tests 1 passed (1)\nterrorism marker\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
     expect_observation("O20 text prose is not a summary", b"prose says Tests 1 passed (1)\nvitest exit=0\n", None, "no positive test pass summary is present", "not_observed_in_asset")
     expect_observation("O21 identity only", b'{"head_sha":"abc","base_sha":"def","tested_merge_head":"abc"}\n', None, "head/base/tested merge identity is recorded without a test verdict or acceptance verdict", "not_observed_in_asset")
+    expect_observation("O22 text bare FAIL marker", b"Tests 1 passed (1)\nFAIL src/x.test.ts\nvitest exit=0\n", None, "contradictory pass summary and failure marker prevent a pass verdict", "observed_asset_level")
+    expect_observation("O23 text bare failed marker", b"failed\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
+    expect_observation("O24 text segmentation fault marker", b"Segmentation fault\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
 
 
 

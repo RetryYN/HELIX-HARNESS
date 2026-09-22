@@ -26,8 +26,8 @@ REQUIRED_TEST_COUNTS = (
 )
 PASS_RE = re.compile(r"^\s*(?:Test Files|Tests)\s+(\d+)\s+passed(?:\s+\(\d+\))?\s*$", re.IGNORECASE)
 EXIT_RE = re.compile(r"\b(?:vitest\s+exit|exit\s+code|exited\s+with\s+code)\s*(?:=|:)?\s*(-?\d+)(?!\w)", re.IGNORECASE)
-FAIL_RE = re.compile(r"\b(?:fatal|error|failure)\b", re.IGNORECASE)
-ZERO_FAILURE_LINE_RE = re.compile(r"^\s*0\s+(?:errors?|failures?)\s*$", re.IGNORECASE)
+FAIL_RE = re.compile(r"\b(?:fatal|error|failure|fail|failed|segmentation\s+fault)\b", re.IGNORECASE)
+ZERO_FAILURE_LINE_RE = re.compile(r"(?<!\d)0\s+(?:errors?|fail(?:ed|ure)s?)\b", re.IGNORECASE)
 FAILED_COUNT_RE = re.compile(r"(?<!\d)(\d+)\s+failed\b", re.IGNORECASE)
 
 

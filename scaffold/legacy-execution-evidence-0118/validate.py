@@ -257,8 +257,8 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
     pass_pattern = re.compile(r"^\s*(?:Test Files|Tests)\s+(\d+)\s+passed(?:\s+\(\d+\))?\s*$", re.IGNORECASE)
     failed_count_pattern = re.compile(r"(?<!\d)(\d+)\s+failed\b", re.IGNORECASE)
     exit_pattern = re.compile(r"\b(?:vitest\s+exit|exit\s+code|exited\s+with\s+code)\s*(?:=|:)?\s*(-?\d+)(?!\w)", re.IGNORECASE)
-    failure_pattern = re.compile(r"\b(?:fatal|error|failure)\b", re.IGNORECASE)
-    zero_failure_line = re.compile(r"^\s*0\s+(?:errors?|failures?)\s*$", re.IGNORECASE)
+    failure_pattern = re.compile(r"\b(?:fatal|error|failure|fail|failed|segmentation\s+fault)\b", re.IGNORECASE)
+    zero_failure_line = re.compile(r"(?<!\d)0\s+(?:errors?|fail(?:ed|ure)s?)\b", re.IGNORECASE)
     passed = [line.strip() for line in lines if pass_pattern.search(line)]
     passed_counts = [int(match.group(1)) for line in lines if (match := pass_pattern.search(line))]
     exits = [line.strip() for line in lines if exit_pattern.search(line)]
