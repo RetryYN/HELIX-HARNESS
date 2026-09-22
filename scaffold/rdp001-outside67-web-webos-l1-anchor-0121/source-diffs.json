@@ -1,0 +1,38 @@
+{
+  "OUTSIDE67-PATH-007": {
+    "source_path": "docs/design/helix-web-os/L1-planning/system-intent.md",
+    "diff_status": "A",
+    "pre_sha256": "9f19c758791a2b8298c5fc848ffdbf434069f3501e0382b5c2677e8843e8643f",
+    "archive_sha256": "9f19c758791a2b8298c5fc848ffdbf434069f3501e0382b5c2677e8843e8643f",
+    "pre_bytes": 3032,
+    "archive_bytes": 3032,
+    "meaning_change_applied": false
+  },
+  "OUTSIDE67-PATH-009": {
+    "source_path": "docs/design/helix-web-os/README.md",
+    "diff_status": "A",
+    "pre_sha256": "1c12792b9626ba0355cb6542d047d2daeb900a837e7eea8f748ebd647b2bb8ed",
+    "archive_sha256": "1c12792b9626ba0355cb6542d047d2daeb900a837e7eea8f748ebd647b2bb8ed",
+    "pre_bytes": 995,
+    "archive_bytes": 995,
+    "meaning_change_applied": false
+  },
+  "OUTSIDE67-PATH-010": {
+    "source_path": "docs/design/helix-web/L1-planning/product-intent.md",
+    "diff_status": "A",
+    "pre_sha256": "5bbf0bbd1919a0668030d29662f45a510d8129e80cbdcc014511826b1ffd004e",
+    "archive_sha256": "5bbf0bbd1919a0668030d29662f45a510d8129e80cbdcc014511826b1ffd004e",
+    "pre_bytes": 3531,
+    "archive_bytes": 3531,
+    "meaning_change_applied": false
+  },
+  "OUTSIDE67-PATH-012": {
+    "source_path": "docs/design/helix-web/README.md",
+    "diff_status": "A",
+    "pre_sha256": "d6726dabd373d0d5794f42dcb73c296d546d92f0c30955ebc657b3c2634e3c96",
+    "archive_sha256": "ed7cc9bec604ad2a63324759b19b4ed5ab4be321b79c83ea9bb2cd69003ceb8a",
+    "pre_bytes": 2410,
+    "archive_bytes": 2460,
+    "meaning_change_applied": false
+  }
+}

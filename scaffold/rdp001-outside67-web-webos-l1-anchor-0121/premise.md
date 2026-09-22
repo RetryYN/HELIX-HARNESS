@@ -1,0 +1,3 @@
+# Premise and unresolved boundary
+
+このbundleはoutside67の未処理pathを行単位anchor候補として整理するだけで、旧pathから正式要求、phase、実装、縮退、failure、consumer、製品authorityを導出しない。READMEは意味文脈でありunit集合に算入しない。現行L1はraw metadata（draft／awaiting_parent_approval）と承認decisionによるeffective approvedを分離して入力し、研究candidateのauthorityはnoneに保持する。今回の4 pathはSCF-B-0096／0099でselected済みであり、source itemごとの先行Binding IDと重複path集合を明示する。次の判断には旧原文のrequirement row化、phase／asset／implementation evidenceの追加が必要である。
