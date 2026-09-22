@@ -60,6 +60,7 @@ def main() -> int:
     expect("input digest tamper", lambda inv, rows: inv["input_digests"][0].update(sha256="sha256:" + "0" * 64), "E_INPUT_DIGEST")
     expect("base pin tamper", lambda inv, rows: inv.update(base_revision="0" * 40), "E_BASE_PIN")
     expect("scope denominator tamper", lambda inv, rows: inv.update(expected_unit_count=9), "E_SCOPE")
+    expect("selection product scope tamper", lambda inv, rows: inv["selection"].update(product_scope="HELIX-HARNESS"), "E_SELECTION")
     expect("unit duplicate", lambda inv, rows: rows.__setitem__(1, copy.deepcopy(rows[0])), "E_UNIT_SET")
     expect("crosswalk direct link forgery", lambda inv, rows: rows[0]["source_requirement"].update(direct_legacy_asset_links=["FAKE-ASSET"]), "E_SOURCE_REQUIREMENT")
     expect("current partition tamper", lambda inv, rows: rows[0]["current_evidence_partition"].__setitem__("row_sha256", "sha256:" + "0" * 64), "E_CURRENT_PARTITION")

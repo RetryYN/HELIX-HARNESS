@@ -423,6 +423,7 @@
       "E_BASE_PIN",
       "E_INPUT_DIGEST",
       "E_OUTPUT_DIGEST",
+      "E_SELECTION",
       "E_UNIT_SET",
       "E_EDGE_SET",
       "E_ASSET_SET",

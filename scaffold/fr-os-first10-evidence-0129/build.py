@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/fr-os-first10-evidence-0129"
-BASE = "217e3a6e1c3e6ce25205d8330a96e0853c18f61b" 
+BASE = "217e3a6e1c3e6ce25205d8330a96e0853c18f61b"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
@@ -70,7 +70,7 @@ def first_ten_units() -> list[tuple[int, dict]]:
     result: list[tuple[int, dict]] = []
     for number, row in read_jsonl(CROSSWALK):
         unit = row.get("unit_candidate_id", "")
-        if unit.startswith("IRUNIT-HIL-FR-") and unit.endswith("-HELIX-OS"):
+        if unit.startswith("IRUNIT-HIL-FR-") and unit.endswith("-HELIX-OS") and row.get("product_scope") == ["HELIX-OS"]:
             result.append((number, row))
             if len(result) == 10:
                 break

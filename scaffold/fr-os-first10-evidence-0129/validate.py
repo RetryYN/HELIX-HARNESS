@@ -110,7 +110,7 @@ def targets() -> list[tuple[int, dict]]:
     selected = []
     for line, row in base_rows(CROSSWALK):
         unit = row.get("unit_candidate_id", "")
-        if unit.startswith("IRUNIT-HIL-FR-") and unit.endswith("-HELIX-OS"):
+        if unit.startswith("IRUNIT-HIL-FR-") and unit.endswith("-HELIX-OS") and row.get("product_scope") == ["HELIX-OS"]:
             selected.append((line, row))
             if len(selected) == 10:
                 break
