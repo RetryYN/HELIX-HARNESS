@@ -58,16 +58,16 @@
     "vision_source_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md",
     "vision_source_sha256": "1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74",
     "vision_source_line_count": 583,
-    "selected_candidate_source_line_count": 22,
-    "unprocessed_candidate_source_line_count": 561,
-    "semantic_atom_record_count": 15,
+    "selected_candidate_source_line_count": 23,
+    "unprocessed_candidate_source_line_count": 560,
+    "semantic_atom_record_count": 16,
     "atomized_candidate_count": 9,
-    "composite_unresolved_count": 6,
+    "composite_unresolved_count": 7,
     "web_user_atom_count": 7,
-    "webos_runtime_atom_count": 8,
+    "webos_runtime_atom_count": 9,
     "selected_legacy_asset_count": 6,
     "legacy_asset_unreviewed_count": 4014,
-    "selection_rule": "10 of 29 parent spans; only explicit source lines chosen; multi-clause/table/open-decision records remain composite_unresolved"
+    "selection_rule": "10 of 29 parent spans; only explicit source lines chosen; multi-clause/table/open-decision records remain composite_unresolved; every selected parent span has an atom reference"
   },
   "candidate_products": [
     {
@@ -82,7 +82,7 @@
     {
       "product": "HELIX-Web-OS",
       "candidate_role": "service_runtime",
-      "atom_count": 8,
+      "atom_count": 9,
       "owner_status": "unknown",
       "authority_status": "none",
       "implementation_status": "unknown",
@@ -95,7 +95,7 @@
     "parent_span_file": "scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl",
     "parent_span_file_sha256": "b4dbaaf0ba43ba6ab307212ef59559bd06a73089d2d17553cf79928f75e6dc4c",
     "semantic_atoms_path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/semantic-atoms.jsonl",
-    "semantic_atoms_sha256": "a728e56286eb76319de41b35c1f56717eccd7da1fa66106b44c04751a2eb6fba",
+    "semantic_atoms_sha256": "6a6fdbec06e4c7ad41a9ecbf83cfe1c6420f9c5cbefb1f370c10c2bdc3be2078",
     "legacy_links_path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/legacy-links.jsonl",
     "legacy_links_sha256": "ab493ded99eeefd70b1de5a8b3ec0587d0b92b25ed836c349485d3d897d19947"
   },
@@ -103,17 +103,17 @@
     {
       "id": "F-001",
       "status": "observed",
-      "text": "10/29 parent Vision spansを選び、source line exact textとconnective tokensを保持した15候補を作成した。"
+      "text": "10/29 parent Vision spansを選び、source line exact textとconnective tokensを保持した16候補を作成した。"
     },
     {
       "id": "F-002",
       "status": "observed",
-      "text": "Web候補9件とWeb-OS service runtime候補6件をproduct role別に分離した。"
+      "text": "Web利用者責務候補7件とWeb-OS service runtime候補9件をproduct role別に分離した。"
     },
     {
       "id": "F-003",
       "status": "observed",
-      "text": "複数責務、表、将来方向、open decision、phase gateは6件のcomposite_unresolvedとして保持し、雑なunit分割を行っていない。"
+      "text": "複数責務、表、将来方向、open decision、phase gateは7件のcomposite_unresolvedとして保持し、雑なunit分割を行っていない。"
     },
     {
       "id": "F-004",
@@ -181,7 +181,10 @@
       "atomized/composite status promotion",
       "formal requirement or owner generation",
       "legacy source/decision/failure/consumer promotion",
-      "nested keyset injection"
+      "nested keyset injection",
+      "atom source line range outside its actual parent span",
+      "selected parent span with no actual atom reference",
+      "related open decision field used as a parent link"
     ],
     "archive_rule": "archive/legacy-generation-2026-09-14 is static reference only; no old runtime/test/CI/workflow/source execution"
   },

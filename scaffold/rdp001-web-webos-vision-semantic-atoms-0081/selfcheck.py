@@ -20,6 +20,7 @@ cases=[
  ('base_digest',lambda i,a,l:i['scope'].__setitem__('parent_span_file_sha256','0'*64),'E_PARENT_DIGEST'),
  ('parent_denominator',lambda i,a,l:i['scope'].__setitem__('unprocessed_parent_span_count',18),'E_PARENT_COUNTS'),
  ('source_text',lambda i,a,l:a[0].__setitem__('exact_source_text','tampered'),'E_ATOM_TEXT'),
+ ('wrong_parent',lambda i,a,l:a[10].__setitem__('parent_span_id','VISION-O04'),'E_ATOM_PARENT_CONTAINMENT'),
  ('connectives',lambda i,a,l:a[0].__setitem__('connective_tokens',['and']),'E_ATOM_META'),
  ('role_swap',lambda i,a,l:a[0].__setitem__('candidate_product','HELIX-Web-OS'),'E_ATOM_META'),
  ('atom_promotion',lambda i,a,l:a[0].__setitem__('atomization_status','composite_unresolved'),'E_ATOM_META'),

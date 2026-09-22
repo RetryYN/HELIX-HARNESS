@@ -6,7 +6,7 @@
   "product": "HELIX-Web",
   "owner_candidate": "Web利用者責務／Web-OS service runtime候補のsource-bound semantic atom review（正式owner未解決）",
   "state": "registered",
-  "reason": "SCF-B-0080の29 Vision exact spanから10 spanだけをbounded subsetとして選び、source lineとconnective tokenを保持した15候補をWeb利用者責務とWeb-OS service runtimeへ分ける。複数責務・表・将来方向・open decision・phase gateはcomposite_unresolvedに留め、19 parent spanと未選択lineを未処理分母として明示する。正式要求unit、owner、authority、採否、実装、縮退、failure closure、consumer closureは生成しない。parent legacy evidenceは静的再照合だけを行う。replacement.issue=0は実Issue番号ではなく、未commit研究束のbinding登録sentinelである。",
+  "reason": "SCF-B-0080の29 Vision exact spanから10 spanだけをbounded subsetとして選び、source lineとconnective tokenを保持した16候補をWeb利用者責務とWeb-OS service runtimeへ分ける。複数責務・表・将来方向・open decision・phase gateはcomposite_unresolvedに留め、19 parent spanと未選択lineを未処理分母として明示する。正式要求unit、owner、authority、採否、実装、縮退、failure closure、consumer closureは生成しない。parent legacy evidenceは静的再照合だけを行う。replacement.issue=0は実Issue番号ではなく、未commit研究束のbinding登録sentinelである。",
   "upstream": [
     {
       "path": "scaffold/bindings/SCF-B-0080.json",
@@ -72,7 +72,8 @@
     "複数責務・表・将来方向・open decision・phase gateをcomposite_unresolvedへ残す",
     "親legacy evidenceからsource／decision／failure／consumer statusを静的再確認し、unknown／pendingを保持する",
     "正式要求unit、owner、authority、採否、phase、implementation、degradationを生成しない",
-    "旧archive runtime／test／CI／workflow／hook／adapter／sourceを実行しない"
+    "旧archive runtime／test／CI／workflow／hook／adapter／sourceを実行しない",
+    "各atomのsource line範囲が実parent spanへ包含され、選択10 spanを各1件以上のatomが実参照することを検証する"
   ],
   "connections": {
     "consumers": [
@@ -85,7 +86,7 @@
       "old Vision static Git object",
       "legacy asset ledgers"
     ],
-    "boundary": "成果物はscaffold/配下のbounded research candidate。15候補と6 composite_unresolvedはsource-bound research recordであり、正式要求、owner、authority、adoption、implementation、degradation、failure／consumer closureではない。"
+    "boundary": "成果物はscaffold/配下のbounded research candidate。16候補と7 composite_unresolvedはsource-bound research recordであり、正式要求、owner、authority、adoption、implementation、degradation、failure／consumer closureではない。"
   },
   "operations": {
     "allowed": [
@@ -138,7 +139,10 @@
       "atomized/composite promotion",
       "formal unit／owner generation",
       "legacy evidence promotion",
-      "nested keyset injection"
+      "nested keyset injection",
+      "atom source line range outside actual parent span",
+      "selected parent span coverage gap",
+      "wrong parent disguised as related open decision"
     ]
   },
   "replacement": {
