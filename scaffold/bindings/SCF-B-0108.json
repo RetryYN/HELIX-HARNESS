@@ -430,6 +430,7 @@
       "E_PHASE_STATUS phase status tamper",
       "E_SOURCE_LINE source line range tamper",
       "E_INVENTORY_DECLARATION inventory authority／scope／formal update／classification rule tamper",
+      "E_INVENTORY negative case declaration tamper",
       "E_EXPECTED_DENOMINATOR target asset artifact kind count tamper",
       "E_OUTPUT_DIGEST output digest tamper",
       "E_BASE_PIN fixed BASE pin tamper",
