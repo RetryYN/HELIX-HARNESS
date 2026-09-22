@@ -13,10 +13,11 @@ research: add selected legacy implementation evidence strength scaffold (SCF-B-0
 ## 変更内容
 
 - `inventory.json`へ候補218 unit／153 source IDと、family quota 5・score順・unit ID順の固定選定規則を記録し、20 unit／60 edge／38 old asset／598 Wave scan row／180 current context refの分母を固定する。
-- `evidence.jsonl`へunit別source anchor、Wave1〜50 edge、edge別anchor hash provenance、旧assetのsource path／Git blob／body byte・line数・body digest、ledger／判断史／failure／consumer、counter-evidence、未解決を記録する。
+- `evidence.jsonl`へunit別source anchor、Wave1〜50 edge、edge別anchor hash provenance、旧assetのsource path／Git blob／body byte・line数・body digest、ledger／判断史／failure／consumer、counter-evidence、未解決を記録する。`novel_evidence`で、各unitのsource／test本文の具体的anchor行、旧契約のnormal／recovery／constraint候補、failure finding／receiptの有無、consumerの正本行／blob、unit成立判定に欠ける証拠と次の判断点を追加する。
+- 既存218 bundleとの差分として、catalog種別やWave edgeの再包装で終わらせず、38 asset本文を固定BASE bytesとして読了し、asset body digest／blobと独立したevidence refのline／blobを結び、旧契約候補面・反証・不足証拠をunit別に記録する。test_source／実行receiptはなく、FR-23のtest_designは受入観点候補に留まるため、statusはunknown／pendingを維持する。
 - 旧implementation_sourceとtest_designは候補source存在の静的証拠として保持する。旧unit実装成立はunknown、旧degradationはunknown、旧failureはreceipt不在のためunknown、consumer closureはpending、現行implementation／acceptanceはunknown、未実装はnot_assessedとする。
 - unit edge／assetの件数・多重集合・重複、代表asset完全record、旧asset ledger、partition、strength assessment、inventory宣言、固定BASE祖先性・input digestをvalidatorで再導出する。
-- 25負例でsource／anchor／edge／asset／ledger／partition／strength assessment／current／未実装／inventory／BASEの改竄を期待error codeと照合する。
+- 26負例でsource／anchor／edge／asset／ledger／partition／strength assessment／novel evidence／current／未実装／inventory／BASEの改竄を期待error codeと照合する。
 - bundle全成果物をBinding `SCF-B-0115`へ登録する。
 
 ## 検証
@@ -28,7 +29,7 @@ python3 scaffold/implementation-evidence-strength-0115/selfcheck.py
 python3 scaffold/tools/scfctl.py validate
 ```
 
-期待値は `20 selected units / 60 semantic review edges / 38 old assets / 598 Wave scan rows / 180 current context refs`、validator PASS、selfcheck 25負例PASS、scfctl fail 0である。stale／residual／diff checkも実施する。
+期待値は `20 selected units / 60 semantic review edges / 38 old assets / 598 Wave scan rows / 180 current context refs`、validator PASS、selfcheck 26負例PASS、scfctl fail 0である。stale／residual／diff checkも実施する。
 
 #1813は進捗参照のみとし、Issue close、merge、formal crosswalk／authority／successorの変更は行わない。旧code／test／runtime／CIと現行runtime／CIは実行しない。
 

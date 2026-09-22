@@ -7,6 +7,7 @@ import hashlib
 import json
 import re
 import subprocess
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -29,7 +30,7 @@ UNIT_TOP_LEVEL_KEYS = frozenset({
     "implementation_evidence", "degradation_evidence", "failure_evidence",
     "consumer_evidence", "representative_assets", "current_context",
     "current_implementation_evidence", "unimplemented_assessment",
-    "authority_boundary", "unresolved", "strength_assessment",
+    "authority_boundary", "unresolved", "strength_assessment", "novel_evidence",
 })
 OLD_ASSET_WRAPPER_KEYS = frozenset({"assets", "static_only", "not_implementation_proof"})
 CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
@@ -103,7 +104,7 @@ NEGATIVE_CASE_CODES = [
     "E_DEGRADATION_EVIDENCE", "E_FAILURE_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_SOURCE_ANCHOR",
     "E_OLD_ASSET_SOURCE", "E_OLD_ASSET_EVIDENCE", "E_INPUT_DIGEST", "E_BASE_COMMIT",
     "E_BASE_NOT_ANCESTOR", "E_AUTHORITY_BOUNDARY", "E_CURRENT_STATUS", "E_UNIMPLEMENTED_CLAIM",
-    "E_STRENGTH_ASSESSMENT",
+    "E_STRENGTH_ASSESSMENT", "E_NOVEL_EVIDENCE",
 ]
 
 
@@ -117,6 +118,17 @@ def base_json(path: str) -> Any:
 
 def base_jsonl(path: str) -> list[dict[str, Any]]:
     return [json.loads(line) for line in base_bytes(path).decode("utf-8").splitlines() if line.strip()]
+
+
+@lru_cache(maxsize=None)
+def jsonl_line_map(path: str, key: str) -> dict[str, int]:
+    return {
+        row.get(key): line_number
+        for line_number, raw in enumerate(base_bytes(path).splitlines(), 1)
+        if raw.strip()
+        for row in [json.loads(raw)]
+        if row.get(key)
+    }
 
 
 def sha256(data: bytes, prefix: bool = True) -> str:
@@ -315,6 +327,33 @@ def old_asset_record(asset_id: str, edges: list[dict[str, Any]], disposition: di
     source_bytes = base_bytes(archive_path)
     source_lines = source_bytes.splitlines(keepends=True)
     failure_receipts = [row for row in read_after if row.get("asset_id") == asset_id and row.get("failure")]
+    decision_records = [row for row in decisions if row.get("asset_id") == asset_id]
+    read_after_records = [row for row in read_after if row.get("asset_id") == asset_id]
+    provenance = {
+        "ledger": {
+            "path": DISPOSITION,
+            "line": jsonl_line_map(DISPOSITION, "asset_id")[asset_id],
+            "file_sha256": base_digest(DISPOSITION),
+        },
+        "decisions": [
+            {
+                "decision_id": row.get("decision_id"),
+                "path": DECISIONS,
+                "line": jsonl_line_map(DECISIONS, "decision_id")[row["decision_id"]],
+                "file_sha256": base_digest(DECISIONS),
+            }
+            for row in decision_records
+        ],
+        "read_after": [
+            {
+                "read_after_id": row.get("read_after_id"),
+                "path": READ_AFTER,
+                "line": jsonl_line_map(READ_AFTER, "read_after_id")[row["read_after_id"]],
+                "file_sha256": base_digest(READ_AFTER),
+            }
+            for row in read_after_records
+        ],
+    }
     return {
         "asset_id": asset_id,
         "source": {
@@ -350,10 +389,11 @@ def old_asset_record(asset_id: str, edges: list[dict[str, Any]], disposition: di
             "static_only": True, "closure_status": old.get("consumer_refs") and "pending" or "unknown",
             "ledger_consumer_refs": sorted(old.get("consumer_refs", [])), "edge_consumer_refs": edge_consumers,
             "edge_evidence_count": len(asset_edges),
-            "decision_records": [row for row in decisions if row.get("asset_id") == asset_id],
-            "read_after_records": [row for row in read_after if row.get("asset_id") == asset_id],
+            "decision_records": decision_records,
+            "read_after_records": read_after_records,
         },
         "ledger_record": old, "classification_record": classification,
+        "provenance": provenance,
         "edge_refs": [edge["review_id"] for edge in asset_edges],
         "static_only": True, "not_implementation_proof": True,
     }
@@ -483,6 +523,145 @@ def expected_strength_assessment(unit: str, source: dict[str, Any], edges: list[
         },
         "counter_evidence": [{"review_id": edge["review_id"], "counterevidence": edge.get("counterevidence", [])} for edge in edges],
         "unresolved": sorted({item for edge in edges for item in edge.get("unresolved", [])}),
+    }
+
+
+def expected_novel_evidence(source: dict[str, Any], edges: list[dict[str, Any]], assets: list[dict[str, Any]]) -> dict[str, Any]:
+    asset_by_id = {asset["asset_id"]: asset for asset in assets}
+
+    def anchor_spans(edge: dict[str, Any]) -> list[dict[str, Any]]:
+        return [
+            {
+                "evidence_ref_id": ref.get("evidence_ref_id"),
+                "archive_path": ref.get("archive_path"),
+                "line_start": ref.get("line_start"),
+                "line_end": ref.get("line_end"),
+                "git_blob_oid_at_base": ref.get("git_blob_oid_at_base"),
+                "base_file_sha256": ref.get("base_file_sha256"),
+                "declared_hash_basis": ref.get("declared_hash_basis"),
+                "digest_matches": ref.get("digest_matches"),
+            }
+            for ref in edge.get("anchor_resolution", {}).get("references", [])
+        ]
+
+    source_test_reads = []
+    for asset in assets:
+        relevant = [
+            edge for edge in edges
+            if edge.get("asset_id") == asset["asset_id"]
+            and edge.get("artifact_evidence_kind") in {"implementation_source", "test_source", "test_design"}
+        ]
+        if not relevant:
+            continue
+        source_test_reads.append({
+            "asset_id": asset["asset_id"],
+            "artifact_evidence_kinds": sorted({edge.get("artifact_evidence_kind") for edge in relevant}),
+            "source_path": asset["source"]["source_path"],
+            "archive_path": asset["source"]["archive_path"],
+            "git_blob_oid_at_base": asset["source"]["git_blob_oid_at_base"],
+            "body_sha256": asset["source"]["body_read"]["body_sha256"],
+            "body_byte_count": asset["source"]["body_read"]["byte_count"],
+            "body_line_count": asset["source"]["body_read"]["line_count"],
+            "review_spans": [
+                {
+                    "review_id": edge["review_id"],
+                    "artifact_evidence_kind": edge.get("artifact_evidence_kind"),
+                    "legacy_requirement_implementation_contribution": edge.get("legacy_requirement_implementation_contribution"),
+                    "anchor_spans": anchor_spans(edge),
+                }
+                for edge in relevant
+            ],
+            "static_observation": "旧source/test本文を固定BASE bytesとして読了したが、実行・受入・unit wiringの証拠ではない",
+        })
+
+    possible_contract_surfaces = []
+    for edge in edges:
+        kind = edge.get("artifact_evidence_kind")
+        interpretation = {
+            "implementation_source": "旧source spanがnormal／recovery／constraintの一部を担う実装候補である可能性",
+            "test_source": "旧test source spanが旧契約の検証面を担う可能性",
+            "test_design": "旧test design spanが旧契約の受入観点を候補化する可能性",
+            "design": "旧design spanが契約の設計面を候補化する可能性",
+            "requirement": "旧requirement spanが契約文面を保持する可能性",
+        }.get(kind, "旧asset spanの契約面は未分類")
+        possible_contract_surfaces.append({
+            "review_id": edge["review_id"], "asset_id": edge["asset_id"],
+            "artifact_evidence_kind": kind, "source_path": edge.get("source_path"),
+            "source_sha256": edge.get("source_sha256"),
+            "git_blob_oid_at_base": asset_by_id[edge["asset_id"]]["source"]["git_blob_oid_at_base"],
+            "source_requirement_id": source.get("source_requirement_id"),
+            "responsibility_summary": source.get("responsibility_summary"),
+            "legacy_requirement_implementation_contribution": edge.get("legacy_requirement_implementation_contribution"),
+            "coverage_contract_fields": {
+                key: edge.get("coverage", {}).get(key)
+                for key in ("normal", "recovery", "constraint", "acceptance")
+                if key in edge.get("coverage", {})
+            },
+            "possible_surface_interpretation": interpretation,
+            "anchor_spans": anchor_spans(edge),
+            "counterevidence": edge.get("counterevidence", []),
+            "static_only": True,
+        })
+
+    failure_findings = []
+    for edge in edges:
+        if not edge.get("coverage", {}).get("failure"):
+            continue
+        asset = asset_by_id[edge["asset_id"]]
+        failure_findings.append({
+            "review_id": edge["review_id"], "asset_id": edge["asset_id"],
+            "coverage_failure": edge["coverage"]["failure"],
+            "counterevidence": edge.get("counterevidence", []), "anchor_spans": anchor_spans(edge),
+            "failure_receipt_status": asset["failure"]["observed_failure_status"],
+            "observed_failure_receipts": asset["failure"]["observed_failure_receipts"],
+            "static_only": True,
+        })
+
+    consumer_observations = []
+    for edge in edges:
+        asset = asset_by_id[edge["asset_id"]]
+        consumer_observations.append({
+            "review_id": edge["review_id"], "asset_id": edge["asset_id"],
+            "anchor_spans": anchor_spans(edge),
+            "observed_consumer_refs": edge.get("observed_consumer_refs", []),
+            "edge_consumer_closure_status": edge.get("consumer_closure_status"),
+            "ledger_consumer_refs": asset["consumer"]["ledger_consumer_refs"],
+            "decision_ids": [row.get("decision_id") for row in asset["consumer"]["decision_records"]],
+            "read_after_ids": [row.get("read_after_id") for row in asset["consumer"]["read_after_records"]],
+            "ledger_provenance": asset["provenance"]["ledger"],
+            "decision_provenance": asset["provenance"]["decisions"],
+            "read_after_provenance": asset["provenance"]["read_after"],
+            "closure_status": "pending", "static_only": True,
+        })
+
+    selected_test_kinds = {
+        edge.get("artifact_evidence_kind")
+        for edge in edges
+        if edge.get("artifact_evidence_kind") in {"test_source", "test_design"}
+    }
+    missing = [
+        "旧source/testの実行結果またはruntime/test/CI receiptがない",
+        "unitの全requirement atomへのwire-up／coverageと受入receiptがない",
+        "failure findingを実行failureへ結ぶ旧receiptがない",
+        "consumer参照をclosureへ結ぶ承認・read-after closure receiptがない",
+    ]
+    if not selected_test_kinds:
+        missing.append("固定BASE候補poolにtest_source/test_designがない")
+    elif "test_source" not in selected_test_kinds:
+        missing.append("test_design候補はあるがtest_sourceと実行receiptがない")
+    return {
+        "scope": "selected-unit novel static evidence read; existing candidate/edge wrapper is not a status claim",
+        "source_test_body_reads": source_test_reads,
+        "possible_legacy_contract_surfaces": possible_contract_surfaces,
+        "failure_findings": failure_findings,
+        "consumer_observations": consumer_observations,
+        "missing_for_unit_level_judgment": missing,
+        "next_judgment_points": [
+            "source／test body spanを要求atomと照合する独立review",
+            "旧execution／test／acceptance receiptの静的所在確認（実行は不可）",
+            "consumer closureとphase／product authorityを示す承認recordの確認",
+        ],
+        "static_only": True, "not_implementation_proof": True,
     }
 
 
@@ -702,6 +881,8 @@ class Validator:
                 self.error("E_CONSUMER_EVIDENCE", f"{unit} consumer partition不一致")
             if current.get("strength_assessment") != expected_strength_assessment(unit, source, edges, expected_asset_records):
                 self.error("E_STRENGTH_ASSESSMENT", f"{unit} old evidence strength assessment不一致")
+            if current.get("novel_evidence") != expected_novel_evidence(source, edges, expected_asset_records):
+                self.error("E_NOVEL_EVIDENCE", f"{unit} novel evidence read／contract／missing boundary不一致")
             if current.get("representative_assets") != expected_representative(source, expected_asset_records):
                 self.error("E_REPRESENTATIVE_ASSET", f"{unit} representative asset record不一致")
             expected_context = current_context()

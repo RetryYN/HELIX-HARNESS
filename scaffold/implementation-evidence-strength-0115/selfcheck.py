@@ -98,6 +98,9 @@ def main() -> None:
     def tampered_strength_assessment(rows):
         rows[0]["strength_assessment"]["old_implementation"]["unit_status"] = "implemented"
 
+    def tampered_novel_evidence(rows):
+        rows[0]["novel_evidence"]["missing_for_unit_level_judgment"] = []
+
     def tampered_unit_schema(rows):
         rows[0]["schema"] = "implementation-evidence-strength-0115/v1/tampered"
 
@@ -133,6 +136,7 @@ def main() -> None:
     run_case("tampered-old-wrapper", "E_OLD_ASSET_EVIDENCE", tampered_old_wrapper)
     run_case("extra-old-wrapper-key", "E_OLD_ASSET_EVIDENCE", extra_old_wrapper_key)
     run_case("tampered-strength-assessment", "E_STRENGTH_ASSESSMENT", tampered_strength_assessment)
+    run_case("tampered-novel-evidence", "E_NOVEL_EVIDENCE", tampered_novel_evidence)
     run_case("tampered-unit-schema", "E_UNIT_SCHEMA", tampered_unit_schema)
     run_case("tampered-unit-top-level", "E_UNIT_SCHEMA", tampered_unit_top_level)
     run_case("tampered-inventory-scope", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_inventory_scope)
@@ -141,7 +145,7 @@ def main() -> None:
     run_case("wrong-input-digest", "E_INPUT_DIGEST", lambda rows: None, wrong_input_digest)
     run_case("wrong-base", "E_BASE_COMMIT", lambda rows: None, wrong_base)
     run_case("tampered-base-declaration", "E_BASE_COMMIT", lambda rows: None, tampered_base_declaration)
-    print("SCF-B-0115 selfcheck: PASS (25 negative cases; expected error codes matched)")
+    print("SCF-B-0115 selfcheck: PASS (26 negative cases; expected error codes matched)")
 
 
 if __name__ == "__main__":

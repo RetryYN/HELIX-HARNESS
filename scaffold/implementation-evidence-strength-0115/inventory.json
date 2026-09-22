@@ -1377,7 +1377,8 @@
     "E_AUTHORITY_BOUNDARY",
     "E_CURRENT_STATUS",
     "E_UNIMPLEMENTED_CLAIM",
-    "E_STRENGTH_ASSESSMENT"
+    "E_STRENGTH_ASSESSMENT",
+    "E_NOVEL_EVIDENCE"
   ],
   "prohibited_inference": [
     "candidate_asset_pool、旧source存在、Wave edge、phase transition、coverage.failure、validator PASSから実装成立を導かない",
