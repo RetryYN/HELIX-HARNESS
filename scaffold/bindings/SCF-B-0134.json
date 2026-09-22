@@ -347,7 +347,7 @@
     "SOURCE_AUTHORITY_CUSTODY_GAP 2、PHCAP_BOUNDARY_GAP 8、CROSS_PHASE_COMPETITION 10、CROSS_PHASE_UNRESOLVED 10のunit集合と次アクションを固定する",
     "原文anchor、Wave edge、asset、source/human/consumer不足をunit別に保持し、source存在・観測値から実装／未実装／縮退／failure／consumer closureを断定しない",
     "正式phase、product authority、implementation、L2/L11 successor、crosswalkを変更せずauthority none／new_build falseを固定する",
-    "旧世代archiveのsource/runtime/test/hook/adapter/CIは実行せず、独立validatorと35負例の期待error codeを維持する"
+    "旧世代archiveのsource/runtime/test/hook/adapter/CIは実行せず、独立validatorと42負例の期待error codeを維持する"
   ],
   "connections": {
     "boundary": "research evidence only; no formal phase/product/implementation authority, crosswalk, acceptance, runtime, merge, or close",
