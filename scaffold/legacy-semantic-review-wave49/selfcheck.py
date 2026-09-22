@@ -125,6 +125,26 @@ def mutate_shared_connection(mutated_rows) -> None:
     }]
 
 
+def mutate_connection_key_injection(mutated_rows) -> None:
+    row = next(row for row in mutated_rows if row["role_kind"] == "requirement" and row["connection_records"])
+    row["connection_records"][0]["unexpected_key"] = "injected"
+
+
+def mutate_duplicate_connection(mutated_rows) -> None:
+    row = next(row for row in mutated_rows if row["role_kind"] == "requirement" and row["connection_records"])
+    row["connection_records"].append(copy.deepcopy(row["connection_records"][0]))
+
+
+def mutate_nonexistent_shared_target(mutated_rows) -> None:
+    row = next(row for row in mutated_rows if row["role_kind"] == "requirement" and row["connection_records"])
+    row["connection_records"][0]["shared_with_units"].append("IRUNIT-HIL-TR-99-HELIX-OS")
+
+
+def mutate_prior_wave_shared_target(mutated_rows) -> None:
+    row = next(row for row in mutated_rows if row["role_kind"] == "requirement" and row["connection_records"])
+    row["connection_records"][0]["shared_with_units"].append("IRUNIT-HIL-NFR-29-HELIX-HARNESS")
+
+
 def mutate_role_inversion(mutated_rows) -> None:
     design = next(row for row in mutated_rows if row["role_kind"] == "design")
     design["semantic_relation"] = "same_requirement_id_exact_source_contract_not_implementation"
@@ -327,6 +347,10 @@ rejected("atom identity injection", mutate_atom_identity)
 rejected("unsupported product routing", mutate_product_scope)
 rejected("stale source anchor", mutate_stale_anchor)
 rejected("shared source connection deletion", mutate_shared_connection)
+rejected("shared connection exact keyset", mutate_connection_key_injection)
+rejected("duplicate shared connection", mutate_duplicate_connection)
+rejected("nonexistent shared target", mutate_nonexistent_shared_target)
+rejected("prior-wave shared target", mutate_prior_wave_shared_target)
 rejected("design/requirement semantic inversion", mutate_role_inversion)
 rejected("inferred implementation meaning", mutate_inferred_meaning)
 rejected("direct semantic link promotion", mutate_direct_semantic_link)
@@ -360,4 +384,4 @@ rejected_meta("meta source revision tamper", mutate_meta_source_revision)
 rejected_meta("meta requirement digest tamper", mutate_meta_requirement_digest)
 rejected_meta("prior cumulative counts left unchanged", mutate_prior_cumulative_counts)
 
-print("Wave49 selfcheck: PASS (validator plus thirty-nine negative mutations)")
+print("Wave49 selfcheck: PASS (validator plus forty-three negative mutations)")

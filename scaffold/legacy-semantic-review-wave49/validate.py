@@ -93,6 +93,7 @@ CONSUMERS = ["requirement-carry-forward-ledgers", "requirement-atomization-revie
 SOURCE_REVISION = "legacy-generation-2026-09-14"
 COVERAGE_HOLD = "source_atomization_review_pending;product_boundary_pending_human_decision"
 CANDIDATE_MEMBERSHIP = "bounded_global_search_candidate_only_not_semantic_evidence"
+CONNECTION_FIELDS = {"relation", "review_state", "shared_with_units", "source_fragments"}
 COVERAGE = {
     "constraint": "product boundary／phase authority／consumer closure未確定",
     "failure": "未対応atom、partial evidence、またはmissing acceptance receipt",
@@ -227,7 +228,7 @@ def verify_binding(row: dict, binding: dict, joined: str) -> None:
     require(all(term in joined for term in binding["required_terms"]), f"binding terms {row['review_id']}")
 
 
-def verify_role(row: dict) -> None:
+def verify_role(row: dict, reviewed_unit_ids: set[str] | None = None) -> None:
     role = row["role_kind"]
     require(role in ROLE_POLICIES, f"unknown role {row['review_id']}")
     kind, link_status, relation, contribution, ref_count = ROLE_POLICIES[role]
@@ -255,10 +256,20 @@ def verify_role(row: dict) -> None:
     require(row["source_scope_fragments"] == [], f"empty field {row['review_id']}:source_scope_fragments")
     # Shared source spans are retained only with an explicit typed relation;
     # product ownership remains unresolved until independent human review.
+    reviewed_unit_ids = set(UNITS if reviewed_unit_ids is None else reviewed_unit_ids)
+    seen_connections = set()
     for connection in row["connection_records"]:
+        require(set(connection) == CONNECTION_FIELDS, f"connection keyset {row['review_id']}")
+        connection_key = json.dumps(connection, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        require(connection_key not in seen_connections, f"duplicate connection {row['review_id']}")
+        seen_connections.add(connection_key)
         require(connection.get("relation") == "shared_source_span", f"connection relation {row['review_id']}")
         require(connection.get("review_state") == "product_boundary_pending_human_decision", f"connection review state {row['review_id']}")
-        require(connection.get("shared_with_units") and connection.get("source_fragments"), f"connection fields {row['review_id']}")
+        targets = connection.get("shared_with_units")
+        fragments = connection.get("source_fragments")
+        require(isinstance(targets, list) and targets and len(targets) == len(set(targets)), f"connection targets {row['review_id']}")
+        require(all(target in reviewed_unit_ids for target in targets), f"connection target review set {row['review_id']}")
+        require(isinstance(fragments, list) and fragments and len(fragments) == len(set(fragments)), f"connection fragments {row['review_id']}")
     require(set(row["source_connective_fragments"]) == {
         fragment for connection in row["connection_records"] for fragment in connection.get("source_fragments", [])
     }, f"connection fragment reconciliation {row['review_id']}")
@@ -377,15 +388,53 @@ def verify() -> None:
     # No two selected units may silently reuse the same requirement source span;
     # shared source is admissible only with reciprocal typed relations.
     source_keys = {}
+    requirement_rows_by_key = {}
     for row in rows:
         if row["role_kind"] != "requirement":
             continue
         key = (row["source_requirement_id"], tuple(row["source_text_spans"]))
+        requirement_rows_by_key.setdefault(key, {})[row["unit_candidate_id"]] = row
         prior_unit = source_keys.setdefault(key, row["unit_candidate_id"])
         if prior_unit != row["unit_candidate_id"]:
-            prior_row = next(item for item in rows if item["role_kind"] == "requirement" and item["unit_candidate_id"] == prior_unit and (item["source_requirement_id"], tuple(item["source_text_spans"])) == key)
+            prior_row = requirement_rows_by_key[key][prior_unit]
             require(any(connection.get("relation") == "shared_source_span" and row["unit_candidate_id"] in connection.get("shared_with_units", []) for connection in prior_row["connection_records"]), f"source span typed relation {row['review_id']}")
             require(any(connection.get("relation") == "shared_source_span" and prior_unit in connection.get("shared_with_units", []) for connection in row["connection_records"]), f"source span reciprocal relation {row['review_id']}")
+
+    # Every declared shared target must be another requirement row carrying the
+    # exact same source-span key (requirement ID plus declared source fragments),
+    # and that row must declare the reciprocal edge.  This rejects nonexistent/
+    # prior-wave targets and partial ``any`` matches while allowing a shared
+    # fragment to occur among otherwise different atom spans.
+    shared_rows_by_key = {}
+    for row in rows:
+        if row["role_kind"] != "requirement":
+            continue
+        for connection in row["connection_records"]:
+            if connection["relation"] != "shared_source_span":
+                continue
+            fragments = tuple(connection["source_fragments"])
+            require(all(fragment in row["source_text_spans"] for fragment in fragments), f"source span fragment membership {row['review_id']}")
+            key = (row["source_requirement_id"], fragments)
+            shared_rows_by_key.setdefault(key, {})[row["unit_candidate_id"]] = row
+    for key, group in shared_rows_by_key.items():
+        for row in group.values():
+            matching_connections = [
+                connection for connection in row["connection_records"]
+                if connection["relation"] == "shared_source_span"
+                and tuple(connection["source_fragments"]) == key[1]
+            ]
+            require(len(matching_connections) == 1, f"source span connection count {row['review_id']}")
+            connection = matching_connections[0]
+            targets = set(connection["shared_with_units"])
+            require(targets == set(group) - {row["unit_candidate_id"]}, f"source span target set {row['review_id']}")
+            for target in targets:
+                target_row = group[target]
+                require(any(
+                    other["relation"] == "shared_source_span"
+                    and row["unit_candidate_id"] in other["shared_with_units"]
+                    and tuple(other["source_fragments"]) == key[1]
+                    for other in target_row["connection_records"]
+                ), f"source span reciprocal declaration {row['review_id']}")
 
     # Every declared input is digest-bound, including current four-product boundary docs.
     for path, value in meta["inputs"].items():
@@ -515,7 +564,7 @@ def verify() -> None:
             else:
                 require(atom["text"] not in req["source_connective_fragments"], f"untyped shared atom relation {unit}")
         for row in by_unit[unit]:
-            verify_role(row)
+            verify_role(row, set(meta["reviewed_unit_ids"]))
             require(row["batch_id"] == BATCH and row["schema_revision"] == 10, f"row identity {row['review_id']}")
             require(row["product_scope"] == req["product_scope"] and row["phase_candidates"] == req["phase_candidates"], f"row scope {row['review_id']}")
             require(row["source_text_spans"] == req["source_text_spans"], f"row source spans {row['review_id']}")
