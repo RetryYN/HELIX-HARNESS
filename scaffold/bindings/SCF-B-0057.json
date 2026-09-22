@@ -1,0 +1,192 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0057",
+  "kind": "scaffold",
+  "title": "outside67 Web／Web-OS L2 source gap semantic research candidate",
+  "product": "HELIX-Web",
+  "owner_candidate": "HELIX-Web／HELIX-Web-OSを中心にHELIX-HARNESS／HELIX-OSとの四製品境界を保持する上流semantic review（最終owner未解決）",
+  "state": "registered",
+  "reason": "MPR-SH-OUTSIDE67-001の67 path_revision_pairからWeb／Web-OSのL2 sourceを各1件だけ選び、pre-isolation／archiveのexact revision、line span、composite_unresolved、四製品候補、旧phase・implementation・degradation・failure・consumer・decision unknownをauthority noneでread-only保持する。",
+  "upstream": [
+    {
+      "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+      "sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
+      "note": "67 pair source holding; MPR-SH-OUTSIDE67-001"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register.jsonl",
+      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
+      "note": "14 live source holding read-after"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "four product boundary candidate reference"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "HELIX-Web L1 candidate reference"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "HELIX-Web-OS L1 candidate reference"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+      "note": "source span and unresolved coverage contract"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "legacy asset static research boundary"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/inventory.json",
+      "sha256": "5fe766e4cb3a68ab78e9a4eda429fa36d91f3e68cbb1a0aa7a161da4976c0d2c",
+      "note": "fixed F/Q/P inventory records, base ancestor gate record"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/semantic-atoms.jsonl",
+      "sha256": "94d8743676cd78c1b96aa80e05b4269eddf20388edbfe5c6859c54e9ec398f94",
+      "note": "122 atoms with fixed independent meaning records"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/validate.py",
+      "sha256": "1ad2971cbd1515cdf040d49aad3cfa0d9e1af1ee2031b228e9bb2f83c8199473",
+      "note": "exact atom/inventory keysets and recorded-base ancestor gate"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/selfcheck.py",
+      "sha256": "5a6f7ca61006559bd17b5632202f3fd38c722dd9e6a9c9ab5eab5776c8a85851",
+      "note": "42 negative cases including fixed record keysets and counts"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/README.md",
+      "sha256": "ce8cafc072925a9906c35df82326ade10f812eb69dc1be7e638e55f9683c5ae8",
+      "note": "J01 schema and base gate documentation"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/method.md",
+      "sha256": "9c18711b40e9b804bace5031b06780f3c984ea4b60fca4d6f7bf7bcb2ca82bfe",
+      "note": "J01 fixed record method"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/premise.md",
+      "sha256": "825a099dae703a18d848ab33069fa34838922dd875047f71dd6148d9bfaaa384",
+      "note": "fixed meaning/catalog boundary premise"
+    },
+    {
+      "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/status.md",
+      "sha256": "a1828f70a802d8e3d5905bf9d484a5ce0da62f0f93fd30508e68ae41173b4dca",
+      "note": "exact HEAD and live-origin independence status"
+    }
+  ],
+  "role": "outside67 Web／Web-OS L2 source gapのsemantic line／atom candidate、revision差分、product／connection boundary、未確定実装・failure・consumer・decisionをsource anchor付きで保持する研究用Scaffold",
+  "obligations": [
+    "MPR-SH-OUTSIDE67-001の67 path_revision_pairと14 live source holdingを現行register／holding digest付きで固定する",
+    "OUTSIDE67-PATH-011（HELIX-Web）とOUTSIDE67-PATH-008（HELIX-Web-OS）のpre-isolation／archive commit、blob OID、SHA、bytes、line count、exact snapshotを照合する",
+    "選択したL2要求rowをactor／action／condition／negative／sequenceの逐語source_fragmentへ分割し、122 semantic candidates（109 atomized candidate＋13 composite_unresolved）とする。compositeはatomized完了数へ算入せず、各atomのnormalized_statement／retained_meaning／unresolved_questions／diff_observationを固定recordで保持する",
+    "選択したL2要求rowをactor／action／condition／negative／sequenceの逐語source_fragmentへ分割し、122 semantic candidates（109 atomized candidate＋13 composite_unresolved）とする。compositeはatomized完了数へ算入せず、各atomのnormalized_statement／retained_meaning／unresolved_questions／diff_observationを固定recordで保持する",
+    "HELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの候補とWeb↔Web-OS／Web-OS↔HELIX-OS接続候補を保持し、owner／authorityを確定しない",
+    "旧phase、旧・現行implementation、degradation、failure、consumer、decision、採否、L2合意、L3凍結、successorをunknown／unresolvedのまま保持する",
+    "Web line 17のsource link差分とWeb-OSのbyte-identical結果をexact diffへ束縛し、意味同値を推測しない",
+    "旧archive runtime／test／CI／hook／adapter、GitHub、Issue、PR、DB、外部APIを実行・更新しない",
+    "authority、current requirement、successor、正式設計、実装、受入、release、deploymentを生成しない"
+  ],
+  "connections": {
+    "consumers": [
+      "independent semantic reviewer",
+      "HELIX-Web／HELIX-Web-OS product boundary reviewer",
+      "HELIX-OS improvement-entry and service-state boundary reviewer",
+      "HELIX-HARNESS source／L2 review reviewer",
+      "Scaffold Binding stale／replacement reviewer"
+    ],
+    "dependencies": [
+      "MPR-SH-OUTSIDE67-001 source holding",
+      "four product boundary candidate",
+      "L1 product／system intent candidates",
+      "requirement atomization review contract",
+      "Python standard library／Git read-only object"
+    ],
+    "boundary": "scaffold/内のREADME、inventory、atoms、snapshot、diff、validator、selfcheckは研究候補。旧sourceはstatic reference only。検証結果から採否、authority、phase、実装、failure／consumer closure、L2／L11合意、下流設計／実装を生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 scaffold/rdp001-outside67-web-webos-l2-gap-057/validate.py",
+      "python3 scaffold/rdp001-outside67-web-webos-l2-gap-057/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のruntime／test／CI／hook／adapter実行",
+      "旧source／path／blob／snapshotからcurrent authority、採否、successor、実装、degradation、failure、consumer、decisionを生成すること",
+      "scaffold/外への書き込み",
+      "正式要求、L2／L11合意、L3／L10設計、CI、acceptance、release、deployment",
+      "GitHub、Issue、PR、DB、外部APIへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/README.md",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/inventory.json",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/method.md",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/premise.md",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/status.md",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/selected-source-items.jsonl",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/semantic-atoms.jsonl",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/source-diffs.json",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/validate.py",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/selfcheck.py",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/source-snapshots/OUTSIDE67-PATH-008/archive-revision.md",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/source-snapshots/OUTSIDE67-PATH-008/pre-isolation.md",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/source-snapshots/OUTSIDE67-PATH-011/archive-revision.md",
+    "scaffold/rdp001-outside67-web-webos-l2-gap-057/source-snapshots/OUTSIDE67-PATH-011/pre-isolation.md"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "validate.py（MPR／67 denominator／14 holding／exact Git revision／snapshot／diff／122 semantic candidate／109 atomized＋13 composite、shared-line unique coverage／inherited predicate exact span／atom／inventory fixed keyset／source provenance逐語支持／guard inference削除／candidate inference分離／four products／unknown boundary）",
+      "selfcheck.py（baseline＋42 negative cases: denominator、digest、base drift、rebaseline record、selection、revision、span、inherited predicate、product、successor、diff、authority、old execution、phase、decision、semantic fieldへの推論混入、source support改変、guard分類・残留、推論分離違反）",
+      "scfctl validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "67 denominatorまたは14 holding countの改変",
+      "source path／revision／blob／SHA／snapshot／line span／exact textの改変",
+      "composite_unresolvedの削除またはline重複／欠落",
+      "四製品候補、connection、phase、implementation、degradation、failure、consumer、decisionの昇格",
+      "authority、current requirement、successor、採用、承認、正式設計、CI、release、deploymentの生成",
+      "旧runtime／test／CIの実行記録の混入",
+      "legacy／current implementation・degradationまたはfailure／consumer／decision residualの昇格",
+      "同一source lineのfragmentを重複line coverageとして計上する",
+      "複数義務のfragmentを1 atomへ戻す、またはcomposite_unresolvedをatomized完了数へ加える",
+      "connection source atom／edge IDの欠落・重複",
+      "source_fragmentにないactor／action／condition／guard／sequenceをsemantic fieldへ昇格する",
+      "source_fragmentとinherited_predicateのline／position／digest不一致、candidate_inferenceの削除、推論guardのnegative_or_guardまたはcandidate_inferenceへの残留",
+      "atomのnormalized_statement／retained_meaning／unresolved_questions／diff_observation、regular／composite keyset、inventory F／Q／P record keyset・status・順序の改変"
+    ]
+  },
+  "replacement": {
+    "role_target": "対象revision付きsemantic source atomizationと四製品／connection crosswalkを扱う正式なHELIX-OS上流管理契約（L2／L11から導出）",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
