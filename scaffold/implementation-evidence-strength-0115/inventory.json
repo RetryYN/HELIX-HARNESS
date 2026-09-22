@@ -19,7 +19,7 @@
       "HIL-FR-04",
       "HIL-FR-06",
       "HIL-FR-16",
-      "HIL-FR-23",
+      "HIL-FR-37",
       "HIL-NFR-01",
       "HIL-NFR-02",
       "HIL-NFR-03",
@@ -387,7 +387,7 @@
     "unit_count_with_novel_evidence": 20,
     "source_test_body_asset_count": 19,
     "test_source_asset_count": 0,
-    "test_design_asset_count": 1,
+    "test_design_asset_count": 0,
     "possible_contract_surface_count": 60,
     "failure_finding_count": 60,
     "failure_receipt_count": 0,
@@ -405,27 +405,29 @@
     },
     "selected_unit_ids": [
       "IRUNIT-HIL-BR-01-HELIX-HARNESS",
-      "IRUNIT-HIL-BR-20-HELIX-HARNESS",
       "IRUNIT-HIL-BR-01-HELIX-OS",
       "IRUNIT-HIL-BR-02-HELIX-OS",
       "IRUNIT-HIL-BR-03-HELIX-OS",
+      "IRUNIT-HIL-BR-20-HELIX-HARNESS",
+      "IRUNIT-HIL-FR-04-HELIX-OS",
       "IRUNIT-HIL-FR-06-HELIX-HARNESS",
       "IRUNIT-HIL-FR-06-HELIX-OS",
       "IRUNIT-HIL-FR-16-HELIX-OS",
-      "IRUNIT-HIL-FR-04-HELIX-OS",
-      "IRUNIT-HIL-FR-23-HELIX-OS",
-      "IRUNIT-HIL-TR-01-HELIX-OS",
-      "IRUNIT-HIL-TR-02-HELIX-OS",
-      "IRUNIT-HIL-TR-03-HELIX-OS",
-      "IRUNIT-HIL-TR-06-HELIX-HARNESS",
-      "IRUNIT-HIL-TR-07-HELIX-OS",
+      "IRUNIT-HIL-FR-37-HELIX-OS",
       "IRUNIT-HIL-NFR-01-HELIX-OS",
       "IRUNIT-HIL-NFR-02-HELIX-OS",
       "IRUNIT-HIL-NFR-03-HELIX-OS",
       "IRUNIT-HIL-NFR-06-HELIX-OS",
-      "IRUNIT-HIL-NFR-08-HELIX-OS"
+      "IRUNIT-HIL-NFR-08-HELIX-OS",
+      "IRUNIT-HIL-TR-01-HELIX-OS",
+      "IRUNIT-HIL-TR-02-HELIX-OS",
+      "IRUNIT-HIL-TR-03-HELIX-OS",
+      "IRUNIT-HIL-TR-06-HELIX-HARNESS",
+      "IRUNIT-HIL-TR-07-HELIX-OS"
     ],
     "family_quota": 5,
+    "candidate_scope": "crosswalk rows whose unit_candidate_id matches IRUNIT-HIL-(BR|FR|TR|NFR)-<n>-HELIX-(OS|HARNESS)",
+    "excluded_from_candidate_pool": "IRCONN-* connection rows and every non-matching unit id",
     "score_formula": "implementation_source_asset_count*5 + test_evidence_asset_count*4 + coverage_failure_count*2 + observed_consumer_ref_count + ledger_consumer_ref_count + decision_record_count + read_after_record_count",
     "tie_break": "selection_score_desc_then_unit_id_asc",
     "selected_metrics": {
@@ -585,22 +587,22 @@
         ],
         "test_evidence_asset_ids": []
       },
-      "IRUNIT-HIL-FR-23-HELIX-OS": {
+      "IRUNIT-HIL-FR-37-HELIX-OS": {
         "family": "FR",
         "asset_count": 3,
         "edge_count": 3,
-        "implementation_source_asset_count": 0,
-        "test_evidence_asset_count": 1,
+        "implementation_source_asset_count": 1,
+        "test_evidence_asset_count": 0,
         "coverage_failure_count": 3,
-        "observed_consumer_ref_count": 2,
+        "observed_consumer_ref_count": 6,
         "ledger_consumer_ref_count": 2,
         "decision_record_count": 2,
         "read_after_record_count": 1,
-        "selection_score": 17,
-        "implementation_source_asset_ids": [],
-        "test_evidence_asset_ids": [
-          "LEGACY-ASSET-087481E8D6706D4C5E29"
-        ]
+        "selection_score": 22,
+        "implementation_source_asset_ids": [
+          "LEGACY-ASSET-DDDED793C93712190619"
+        ],
+        "test_evidence_asset_ids": []
       },
       "IRUNIT-HIL-NFR-01-HELIX-OS": {
         "family": "NFR",
@@ -784,7 +786,7 @@
     "IRUNIT-HIL-FR-06-HELIX-HARNESS",
     "IRUNIT-HIL-FR-06-HELIX-OS",
     "IRUNIT-HIL-FR-16-HELIX-OS",
-    "IRUNIT-HIL-FR-23-HELIX-OS",
+    "IRUNIT-HIL-FR-37-HELIX-OS",
     "IRUNIT-HIL-NFR-01-HELIX-OS",
     "IRUNIT-HIL-NFR-02-HELIX-OS",
     "IRUNIT-HIL-NFR-03-HELIX-OS",
@@ -1045,32 +1047,32 @@
       "phase_classification_status": "candidate_pending_exact_head_independent_review"
     },
     {
-      "unit_candidate_id": "IRUNIT-HIL-FR-23-HELIX-OS",
+      "unit_candidate_id": "IRUNIT-HIL-FR-37-HELIX-OS",
       "product_scope": [
         "HELIX-OS"
       ],
       "asset_ids": [
-        "LEGACY-ASSET-087481E8D6706D4C5E29",
-        "LEGACY-ASSET-310E87378AFE8095809C",
-        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+        "LEGACY-ASSET-0EFB21D7C0DC01F9A35B",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-DDDED793C93712190619"
       ],
       "asset_count": 3,
       "edge_refs": [
-        "LSRW30-EDGE-010",
-        "LSRW30-EDGE-011",
-        "LSRW30-EDGE-012"
+        "LSRW34-EDGE-001",
+        "LSRW34-EDGE-002",
+        "LSRW34-EDGE-003"
       ],
       "edge_count": 3,
       "representative_asset_ids": [
-        "LEGACY-ASSET-087481E8D6706D4C5E29",
-        "LEGACY-ASSET-310E87378AFE8095809C",
-        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+        "LEGACY-ASSET-0EFB21D7C0DC01F9A35B",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-DDDED793C93712190619"
       ],
-      "implementation_record_count": 0,
-      "degradation_phase_record_count": 0,
+      "implementation_record_count": 1,
+      "degradation_phase_record_count": 1,
       "failure_record_count": 3,
       "consumer_record_count": 3,
-      "phase_classification_status": "unresolved"
+      "phase_classification_status": "candidate_pending_exact_head_independent_review"
     },
     {
       "unit_candidate_id": "IRUNIT-HIL-NFR-01-HELIX-OS",
@@ -1389,7 +1391,8 @@
     "E_CURRENT_STATUS",
     "E_UNIMPLEMENTED_CLAIM",
     "E_STRENGTH_ASSESSMENT",
-    "E_NOVEL_EVIDENCE"
+    "E_NOVEL_EVIDENCE",
+    "E_SELECTION_RULE"
   ],
   "prohibited_inference": [
     "candidate_asset_pool、旧source存在、Wave edge、phase transition、coverage.failure、validator PASSから実装成立を導かない",

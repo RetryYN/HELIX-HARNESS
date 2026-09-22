@@ -122,6 +122,12 @@ def main() -> None:
     def wrong_base(inventory):
         inventory["base"]["commit"] = "0" * 40
 
+    def tampered_selection(inventory):
+        inventory["selection"]["selected_unit_ids"] = inventory["selection"]["selected_unit_ids"] + ["IRCONN-HIL-BR-09-HARNESS-OS"]
+
+    def tampered_selection_score(inventory):
+        inventory["selection"]["selected_metrics"][inventory["selection"]["selected_unit_ids"][0]]["selection_score"] += 1
+
     run_case("wrong-asset-blob", "E_OLD_ASSET_SOURCE", wrong_asset_blob)
     run_case("wrong-anchor", "E_SOURCE_ANCHOR", wrong_anchor)
     run_case("missing-edge", "E_REVIEW_EDGE_SET", missing_edge)
@@ -149,7 +155,9 @@ def main() -> None:
     run_case("wrong-input-digest", "E_INPUT_DIGEST", lambda rows: None, wrong_input_digest)
     run_case("wrong-base", "E_BASE_COMMIT", lambda rows: None, wrong_base)
     run_case("tampered-base-declaration", "E_BASE_COMMIT", lambda rows: None, tampered_base_declaration)
-    print("SCF-B-0115 selfcheck: PASS (27 negative cases; expected error codes matched)")
+    run_case("tampered-selection", "E_SELECTION_RULE", lambda rows: None, tampered_selection)
+    run_case("tampered-selection-score", "E_SELECTION_RULE", lambda rows: None, tampered_selection_score)
+    print("SCF-B-0115 selfcheck: PASS (29 negative cases; expected error codes matched)")
 
 
 if __name__ == "__main__":

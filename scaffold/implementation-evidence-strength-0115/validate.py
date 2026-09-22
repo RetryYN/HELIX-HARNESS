@@ -41,18 +41,16 @@ DECISIONS = "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER = "docs/governance/legacy-asset-copy-read-after.jsonl"
 CLASSIFICATION = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 CLASSIFICATION_META = "docs/governance/legacy-asset-phase-product-classification-bootstrap.meta.json"
-SELECTED_UNITS = [
-    "IRUNIT-HIL-BR-01-HELIX-HARNESS", "IRUNIT-HIL-BR-20-HELIX-HARNESS",
-    "IRUNIT-HIL-BR-01-HELIX-OS", "IRUNIT-HIL-BR-02-HELIX-OS", "IRUNIT-HIL-BR-03-HELIX-OS",
-    "IRUNIT-HIL-FR-06-HELIX-HARNESS", "IRUNIT-HIL-FR-06-HELIX-OS", "IRUNIT-HIL-FR-16-HELIX-OS",
-    "IRUNIT-HIL-FR-04-HELIX-OS", "IRUNIT-HIL-FR-23-HELIX-OS",
-    "IRUNIT-HIL-TR-01-HELIX-OS", "IRUNIT-HIL-TR-02-HELIX-OS", "IRUNIT-HIL-TR-03-HELIX-OS",
-    "IRUNIT-HIL-TR-06-HELIX-HARNESS", "IRUNIT-HIL-TR-07-HELIX-OS",
-    "IRUNIT-HIL-NFR-01-HELIX-OS", "IRUNIT-HIL-NFR-02-HELIX-OS", "IRUNIT-HIL-NFR-03-HELIX-OS",
-    "IRUNIT-HIL-NFR-06-HELIX-OS", "IRUNIT-HIL-NFR-08-HELIX-OS",
-]
-SOURCE_IDS = sorted({unit.split("-HELIX-")[0].replace("IRUNIT-", "") for unit in SELECTED_UNITS})
+SELECTED_UNITS: list[str] = []
+SOURCE_IDS: list[str] = []
 UNIT_PATTERN = re.compile(r"^IRUNIT-HIL-(BR|FR|TR|NFR)-[0-9]+-HELIX-(OS|HARNESS)$")
+SELECTION_RULE = {
+    "candidate_scope": "crosswalk rows whose unit_candidate_id matches IRUNIT-HIL-(BR|FR|TR|NFR)-<n>-HELIX-(OS|HARNESS)",
+    "excluded_from_candidate_pool": "IRCONN-* connection rows and every non-matching unit id",
+    "family_quota": 5,
+    "score_formula": "implementation_source_asset_count*5 + test_evidence_asset_count*4 + coverage_failure_count*2 + observed_consumer_ref_count + ledger_consumer_ref_count + decision_record_count + read_after_record_count",
+    "tie_break": "selection_score_desc_then_unit_id_asc",
+}
 CONTEXT_INPUTS = [
     "docs/concept/product-boundary.md",
     "docs/helix-harness/L1-planning/product-intent.md",
@@ -104,7 +102,7 @@ NEGATIVE_CASE_CODES = [
     "E_DEGRADATION_EVIDENCE", "E_FAILURE_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_SOURCE_ANCHOR",
     "E_OLD_ASSET_SOURCE", "E_OLD_ASSET_EVIDENCE", "E_INPUT_DIGEST", "E_BASE_COMMIT",
     "E_BASE_NOT_ANCESTOR", "E_AUTHORITY_BOUNDARY", "E_CURRENT_STATUS", "E_UNIMPLEMENTED_CLAIM",
-    "E_STRENGTH_ASSESSMENT", "E_NOVEL_EVIDENCE",
+    "E_STRENGTH_ASSESSMENT", "E_NOVEL_EVIDENCE", "E_SELECTION_RULE",
 ]
 
 
@@ -164,6 +162,64 @@ WAVE_PATHS = wave_paths()
 INPUT_PATHS = [CROSSWALK, IR, DECOMP, DISPOSITION, DECISIONS, READ_AFTER, CLASSIFICATION, CLASSIFICATION_META]
 INPUT_PATHS += [WAVE_PATHS[n] for n in range(1, 51)]
 INPUT_PATHS += CONTEXT_INPUTS
+
+
+def _selection_metrics_from_base() -> tuple[list[dict[str, Any]], dict[str, dict[str, Any]]]:
+    """固定BASE全candidateからunit選定を再導出し、宣言集合を信用しない。"""
+    rows = [
+        row for row in base_jsonl(CROSSWALK)
+        if row.get("source_requirement_id", "").startswith(("HIL-BR-", "HIL-FR-", "HIL-TR-", "HIL-NFR-"))
+        and UNIT_PATTERN.fullmatch(row.get("unit_candidate_id", ""))
+    ]
+    disposition = {row["asset_id"]: row for row in base_jsonl(DISPOSITION)}
+    decision_counts: dict[str, int] = {}
+    read_after_counts: dict[str, int] = {}
+    for record in base_jsonl(DECISIONS):
+        if record.get("asset_id"):
+            decision_counts[record["asset_id"]] = decision_counts.get(record["asset_id"], 0) + 1
+    for record in base_jsonl(READ_AFTER):
+        if record.get("asset_id"):
+            read_after_counts[record["asset_id"]] = read_after_counts.get(record["asset_id"], 0) + 1
+    edges_by_unit: dict[str, list[dict[str, Any]]] = {row["unit_candidate_id"]: [] for row in rows}
+    for path in WAVE_PATHS.values():
+        for edge in base_jsonl(path):
+            if edge.get("unit_candidate_id") in edges_by_unit:
+                edges_by_unit[edge["unit_candidate_id"]].append(edge)
+    metrics: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        unit = row["unit_candidate_id"]
+        edges = edges_by_unit[unit]
+        assets = {edge.get("asset_id") for edge in edges if edge.get("asset_id")}
+        impl = {edge["asset_id"] for edge in edges if edge.get("artifact_evidence_kind") == "implementation_source"}
+        tests = {edge["asset_id"] for edge in edges if edge.get("artifact_evidence_kind") in {"test_source", "test_design"}}
+        failures = sum(bool(edge.get("coverage", {}).get("failure")) if isinstance(edge.get("coverage"), dict) else False for edge in edges)
+        observed = sum(len(edge.get("observed_consumer_refs", [])) for edge in edges)
+        ledger = sum(len(disposition.get(asset, {}).get("consumer_refs", [])) for asset in assets)
+        decisions = sum(decision_counts.get(asset, 0) for asset in assets)
+        reads = sum(read_after_counts.get(asset, 0) for asset in assets)
+        metrics[unit] = {
+            "family": unit.split("-")[2], "asset_count": len(assets), "edge_count": len(edges),
+            "implementation_source_asset_count": len(impl), "test_evidence_asset_count": len(tests),
+            "coverage_failure_count": failures, "observed_consumer_ref_count": observed,
+            "ledger_consumer_ref_count": ledger, "decision_record_count": decisions,
+            "read_after_record_count": reads,
+            "selection_score": len(impl) * 5 + len(tests) * 4 + failures * 2 + observed + ledger + decisions + reads,
+        }
+    selected: set[str] = set()
+    for family in ("BR", "FR", "TR", "NFR"):
+        family_units = [unit for unit, metric in metrics.items() if metric["family"] == family]
+        selected.update(sorted(family_units, key=lambda unit: (-metrics[unit]["selection_score"], unit))[:5])
+    selected_ordered = [row["unit_candidate_id"] for row in rows if row["unit_candidate_id"] in selected]
+    return rows, {unit: metrics[unit] for unit in selected_ordered}
+
+
+def ensure_selection() -> None:
+    global SELECTED_UNITS, SOURCE_IDS
+    if SELECTED_UNITS:
+        return
+    _, selected_metrics = _selection_metrics_from_base()
+    SELECTED_UNITS = list(selected_metrics)
+    SOURCE_IDS = sorted({unit.split("-HELIX-")[0].replace("IRUNIT-", "") for unit in SELECTED_UNITS})
 
 
 def source_range(requirement_id: str) -> dict[str, Any]:
@@ -251,6 +307,7 @@ def compact_edge(row: dict[str, Any], wave: int, source_file: str) -> dict[str, 
 
 
 def target_crosswalk() -> list[dict[str, Any]]:
+    ensure_selection()
     rows = [row for row in base_jsonl(CROSSWALK) if row.get("unit_candidate_id") in SELECTED_UNITS]
     if len(rows) != 20 or any(not UNIT_PATTERN.fullmatch(row.get("unit_candidate_id", "")) for row in rows):
         raise ValueError("implementation-strength選定unit集合が不正")
@@ -833,9 +890,7 @@ class Validator:
             "candidate_unit_count": len({row["unit_candidate_id"] for row in candidate_rows}),
             "candidate_family_unit_counts": {family: len({row["unit_candidate_id"] for row in candidate_rows if row["unit_candidate_id"].split("-")[2] == family}) for family in ("BR", "FR", "TR", "NFR")},
             "selected_unit_ids": SELECTED_UNITS,
-            "family_quota": 5,
-            "score_formula": "implementation_source_asset_count*5 + test_evidence_asset_count*4 + coverage_failure_count*2 + observed_consumer_ref_count + ledger_consumer_ref_count + decision_record_count + read_after_record_count",
-            "tie_break": "selection_score_desc_then_unit_id_asc",
+            **SELECTION_RULE,
             "selected_metrics": {},
         }
         evidence_by_unit = {row.get("unit_candidate_id"): row for row in evidence}
@@ -943,7 +998,7 @@ class Validator:
         if inventory.get("unit_declarations") != expected_declarations:
             self.error("E_INVENTORY_DECLARATION", "unit_declarationsが証拠行から再導出した値と不一致")
         if inventory.get("selection") != expected_selection:
-            self.error("E_INVENTORY_DECLARATION", "selection metrics／candidate pool宣言が固定BASE導出値と不一致")
+            self.error("E_SELECTION_RULE", "selection score／quota／tie-break／connection除外宣言が固定BASE導出値と不一致")
         return self.finish()
 
 
