@@ -40,8 +40,9 @@ rejected("reused atom digest tamper", lambda d: d["reused"][0].__setitem__("sour
 rejected("new atom source text tamper", lambda d: d["atoms"][0]["source_fragment"].__setitem__("text", "tampered"))
 rejected("source line duplicate", lambda d: d["coverage"][1].__setitem__("pre_line", d["coverage"][0]["pre_line"]))
 rejected("67 denominator drift", lambda d: d["inv"]["scope"].__setitem__("holding_path_revision_pair_denominator", 68))
+rejected("scaffold binding identity drift", lambda d: d["inv"].__setitem__("scaffold_binding_id", "SCF-B-0095"))
 rejected("product promotion", lambda d: d["atoms"][0].__setitem__("candidate_product", "HELIX-OS"))
 rejected("implementation promotion", lambda d: d["atoms"][0].__setitem__("implementation_status", "implemented"))
 rejected("successor promotion", lambda d: d["atoms"][0].__setitem__("successor_requirement_ids", ["REQ-001"]))
 
-print("outside67 PATH-011..015 atomization selfcheck: PASS (baseline + 9 negative cases)")
+print("outside67 PATH-011..015 atomization selfcheck: PASS (baseline + 10 negative cases)")

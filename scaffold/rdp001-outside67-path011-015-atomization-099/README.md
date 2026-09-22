@@ -4,6 +4,8 @@
 
 PATH011 は既存束 [`rdp001-outside67-web-webos-l2-gap-057`](../rdp001-outside67-web-webos-l2-gap-057) が保持する48 atomを、atom本文の複製なしに `reused-atom-references.jsonl` のID・canonical JSON digest参照へ移した。新規 `semantic-atoms.jsonl` は PATH012–015 の200候補だけを含み、二重計上を拒否する。
 
+この束の Scaffold Binding は `SCF-B-0099` である。inventoryにも同じbinding identityを固定し、別束とのbinding衝突をvalidator／selfcheckで拒否する。
+
 pre-isolation と archive revision の各行は、revision差分による対応行を含めて、pre側・archive側それぞれ一度だけ `line-coverage.jsonl` へ置く。等しい非空の説明・要求行は `atomized_candidate`、見出し・空行・表見出しは `metadata_only`、表の内容行・複数責務・revision差分行は `composite_unresolved` とする。規範内容を metadata へ退避させない。
 
 product／phase はholdingのpath-based candidate labelだけを保持し、4製品候補、正式owner、phase authority、successor、implementation、degradation、failure、consumer、decisionは未確定とする。旧ledgerのexact text hit／no-hitは静的証拠の有無だけを示し、no-hitから不在・未実装・完了を推測しない。

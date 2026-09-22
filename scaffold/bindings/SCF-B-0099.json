@@ -1,6 +1,6 @@
 {
   "schema_revision": 1,
-  "id": "SCF-B-0095",
+  "id": "SCF-B-0099",
   "kind": "scaffold",
   "title": "RDP-001 outside67 PATH-011〜015 source atomization research",
   "product": "HELIX-HARNESS",
@@ -19,11 +19,11 @@
     {"path": "docs/helix-web-os/L1-planning/system-intent.md", "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c", "note": "Web-OS L1 boundary candidate"},
     {"path": "docs/governance/requirement-atomization-review-contract.md", "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba", "note": "source-line atomization and unresolved boundary"},
     {"path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/semantic-atoms.jsonl", "sha256": "94d8743676cd78c1b96aa80e05b4269eddf20388edbfe5c6859c54e9ec398f94", "note": "PATH-011 prior atoms reused by ID/digest"},
-    {"path": "scaffold/rdp001-outside67-path011-015-atomization-099/inventory.json", "sha256": "a793f8cec3578d6ae6de6772807fad5bc4a4b10388c50651932d3562d7223ba8", "note": "selected denominator and three-category accounting"},
-    {"path": "scaffold/rdp001-outside67-path011-015-atomization-099/generate.py", "sha256": "d2621beb7dc414f356eabf739e276755bc28a5c501a5d4fa408963909982591e", "note": "deterministic static materializer"},
-    {"path": "scaffold/rdp001-outside67-path011-015-atomization-099/validate.py", "sha256": "85d92cecbf8f5b33b7957482766b075a7b95108601f76f29afe6b02452d860af", "note": "fixed-base ancestor, source, atom, ledger and boundary validator"},
+    {"path": "scaffold/rdp001-outside67-path011-015-atomization-099/inventory.json", "sha256": "58c0d6128335a577887c70c23c6d005836fabe9cb81a3696dcfe0c7c0ab9f7c4", "note": "selected denominator, three-category accounting and SCF-B-0099 identity"},
+    {"path": "scaffold/rdp001-outside67-path011-015-atomization-099/generate.py", "sha256": "9bca1c2a01a16309bc730f27c6159af52647f307d8e932984a7c339a12752e19", "note": "deterministic static materializer"},
+    {"path": "scaffold/rdp001-outside67-path011-015-atomization-099/validate.py", "sha256": "bc48981c0b9b67f241c62d65c1de3a992f1702a13c9323bc715587734c44b39f", "note": "fixed-base ancestor, source, atom, ledger and boundary validator"},
     {"path": "scaffold/rdp001-outside67-path011-015-atomization-099/coverage-audit.py", "sha256": "f8f36d8d6c29d9ec924b204d9a7eb0db002cfb272f550ff4c5b9330eb01029f6", "note": "independent two-sided line coverage audit"},
-    {"path": "scaffold/rdp001-outside67-path011-015-atomization-099/selfcheck.py", "sha256": "19b9253d03800815ee7d87ab9d600769761a22c002912ed91ab7b8639a1b5811", "note": "negative mutations including fake ledger hit and normative metadata fallback"}
+    {"path": "scaffold/rdp001-outside67-path011-015-atomization-099/selfcheck.py", "sha256": "2a6d5bb717cd82a9ea42e97e5071ee70dbef996fab6b918e1e3ebfed72b5bcdc", "note": "negative mutations including fake ledger hit, normative metadata fallback and binding identity drift"}
   ],
   "role": "RDP-001 outside67 PATH-011〜015 source snapshot／line coverage／semantic atom候補を保持する静的Scaffold",
   "obligations": [

@@ -1,6 +1,7 @@
 {
   "schema": "rdp001-outside67-path011-015-atomization/v1",
   "candidate_id": "RDP-001-OUTSIDE67-PATH011-015-ATOMIZATION-0099",
+  "scaffold_binding_id": "SCF-B-0099",
   "status": "findings_only",
   "authority_effect": "none",
   "meaning_change_applied": false,

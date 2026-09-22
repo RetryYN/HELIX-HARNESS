@@ -79,10 +79,10 @@ def check_ancestor() -> None:
 
 
 def check_inventory(inv: dict) -> None:
-    expected = {"schema", "candidate_id", "status", "authority_effect", "meaning_change_applied", "successor_requirement_ids", "human_decision_ref", "formal_register_append", "old_runtime_test_ci_execution", "research_completion", "scope", "source_holding", "classification_basis", "four_products", "documents", "line_accounting", "semantic_atoms", "legacy_evidence", "findings", "unresolved_questions", "prohibited_inference", "residuals", "verification_scope"}
+    expected = {"schema", "candidate_id", "scaffold_binding_id", "status", "authority_effect", "meaning_change_applied", "successor_requirement_ids", "human_decision_ref", "formal_register_append", "old_runtime_test_ci_execution", "research_completion", "scope", "source_holding", "classification_basis", "four_products", "documents", "line_accounting", "semantic_atoms", "legacy_evidence", "findings", "unresolved_questions", "prohibited_inference", "residuals", "verification_scope"}
     if set(inv) != expected:
         fail("E_INVENTORY_KEYS")
-    if inv["status"] != "findings_only" or inv["authority_effect"] != "none" or inv["meaning_change_applied"] or inv["successor_requirement_ids"] or inv["human_decision_ref"] is not None or inv["formal_register_append"] or inv["old_runtime_test_ci_execution"]:
+    if inv["scaffold_binding_id"] != "SCF-B-0099" or inv["status"] != "findings_only" or inv["authority_effect"] != "none" or inv["meaning_change_applied"] or inv["successor_requirement_ids"] or inv["human_decision_ref"] is not None or inv["formal_register_append"] or inv["old_runtime_test_ci_execution"]:
         fail("E_INVENTORY_PROMOTION")
     scope = inv["scope"]
     if scope["base_origin_main"] != BASE or scope["base_origin_main_observed_at_start"] != BASE or scope["holding_path_revision_pair_denominator"] != 67 or scope["holding_record_count"] != 67 or scope["selected_path_revision_pair_count"] != 5 or scope["selected_source_document_count"] != 5 or scope["unexplored_path_revision_pair_count"] != 62:
