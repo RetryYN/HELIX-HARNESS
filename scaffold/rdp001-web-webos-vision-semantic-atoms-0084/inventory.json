@@ -1,0 +1,192 @@
+{
+  "schema": "rdp001-web-webos-vision-semantic-atoms/v1",
+  "candidate_id": "RDP-001-WEB-WEBOS-VISION-SEMANTIC-ATOMS-0084",
+  "status": "findings_only",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "formal_requirement_unit_count": "not_generated",
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "formal_register_append": false,
+  "old_runtime_test_ci_execution": false,
+  "scope": {
+    "worktree": "/home/tenni/.helix-worktrees/phcap15-web-semantic-atoms-0084",
+    "base_origin_main": "ee03352d8fc36c4e16d65f861ac9f0262b47fe87",
+    "read_only": true,
+    "static_only": true,
+    "old_archive_execution": false,
+    "parent_binding_id": "SCF-B-0081",
+    "parent_scaffold_path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081",
+    "parent_inventory_sha256": "0b55229cb18f2495798cf80ba2f8d49d240ab8dfe8de190aaa85a3bb5c97a835",
+    "parent_span_file_sha256": "b4dbaaf0ba43ba6ab307212ef59559bd06a73089d2d17553cf79928f75e6dc4c",
+    "parent_span_count": 19,
+    "selected_parent_span_ids": [
+      "VISION-SEC-4",
+      "VISION-SEC-6.3",
+      "VISION-SEC-8",
+      "VISION-U10",
+      "VISION-U11",
+      "VISION-U12",
+      "VISION-U13",
+      "VISION-U14",
+      "VISION-U15",
+      "VISION-U16"
+    ],
+    "selected_parent_span_count": 10,
+    "unprocessed_parent_span_ids": [
+      "VISION-U17",
+      "VISION-U18",
+      "VISION-U19",
+      "VISION-O05",
+      "VISION-O06",
+      "VISION-O07",
+      "VISION-O08",
+      "VISION-O09",
+      "VISION-O10"
+    ],
+    "unprocessed_parent_span_count": 9,
+    "vision_source_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md",
+    "vision_source_sha256": "1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74",
+    "vision_source_line_count": 583,
+    "selected_candidate_source_line_count": 10,
+    "unprocessed_candidate_source_line_count": 573,
+    "semantic_atom_record_count": 10,
+    "atomized_candidate_count": 7,
+    "composite_unresolved_count": 3,
+    "web_user_atom_count": 5,
+    "webos_runtime_atom_count": 5,
+    "selected_legacy_asset_count": 0,
+    "legacy_asset_unreviewed_count": 4020,
+    "selection_rule": "10 of SCF-B-0081's 19 unprocessed parent spans; one explicit source line per selected span; multi-clause section lines remain composite_unresolved; prior selected spans and atom lines are excluded"
+  },
+  "candidate_products": [
+    {
+      "product": "HELIX-Web",
+      "candidate_role": "web_user_responsibility",
+      "atom_count": 5,
+      "owner_status": "unknown",
+      "authority_status": "none",
+      "implementation_status": "unknown",
+      "degradation_status": "unknown"
+    },
+    {
+      "product": "HELIX-Web-OS",
+      "candidate_role": "service_runtime",
+      "atom_count": 5,
+      "owner_status": "unknown",
+      "authority_status": "none",
+      "implementation_status": "unknown",
+      "degradation_status": "unknown"
+    }
+  ],
+  "source": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md",
+    "sha256": "1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74",
+    "parent_span_file": "scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl",
+    "parent_span_file_sha256": "b4dbaaf0ba43ba6ab307212ef59559bd06a73089d2d17553cf79928f75e6dc4c",
+    "semantic_atoms_path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0084/semantic-atoms.jsonl",
+    "semantic_atoms_sha256": "3abafb9a1408d78e2114f14d5935569b2a28c8dad59536a0ffa1142f2c12451a",
+    "legacy_links_path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0084/legacy-links.jsonl",
+    "legacy_links_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "status": "observed",
+      "text": "SCF-B-0081の未処理19 parent spanから10 spanを選び、各spanのexplicit source line、exact text、connective tokensを保持した10候補を作成した。"
+    },
+    {
+      "id": "F-002",
+      "status": "observed",
+      "text": "Web利用者責務候補5件とWeb-OS service runtime候補5件をproduct role別に分離した。"
+    },
+    {
+      "id": "F-003",
+      "status": "observed",
+      "text": "長いsection行の複合責務は3件のcomposite_unresolvedとして保持し、7件のU行候補をsource-bound atomized_candidateとして保持した。"
+    },
+    {
+      "id": "F-004",
+      "status": "observed",
+      "text": "SCF-B-0081のprior selected atomとsource lineを再照合し、新束では重複候補・新規legacy semantic linkを生成していない。"
+    }
+  ],
+  "unresolved_questions": [
+    {
+      "id": "Q-001",
+      "status": "unresolved",
+      "text": "候補atomのsemantic equivalence、formal requirement adoption、owner、authority、採否は未決定。"
+    },
+    {
+      "id": "Q-002",
+      "status": "unresolved",
+      "text": "未選択9 parent spansと、選択span内の未処理source linesは未分解。"
+    },
+    {
+      "id": "Q-003",
+      "status": "unresolved",
+      "text": "旧／現行implementation、縮退、failure／consumer closureの個別証拠は未閉鎖であり、新束のlegacy semantic linkは0件。"
+    }
+  ],
+  "prohibited_inference": [
+    {
+      "id": "P-001",
+      "text": "source line、U／section membership、connective tokenから正式要求unitを推定しない。"
+    },
+    {
+      "id": "P-002",
+      "text": "candidate_productやcandidate_roleをowner、authority、採否、implementation、degradationへ昇格しない。"
+    },
+    {
+      "id": "P-003",
+      "text": "composite_unresolvedを複数要求や単一要求へ黙って分割・統合しない。"
+    },
+    {
+      "id": "P-004",
+      "text": "SCF-B-0081またはSCF-B-0080のsource／legacy evidenceを新しいsemantic equivalence、failure closure、consumer closureの証拠へ再解釈しない。"
+    },
+    {
+      "id": "P-005",
+      "text": "未処理parent span／source lineを未要求、不要、重複と扱わない。"
+    },
+    {
+      "id": "P-006",
+      "text": "旧archive sourceのsnapshot・digest・存在を現行実装、oracle、fallback、成功証拠と扱わない。"
+    }
+  ],
+  "verification_contract": {
+    "required_commands": [
+      "python3 -B scaffold/rdp001-web-webos-vision-semantic-atoms-0084/validate.py",
+      "python3 -B scaffold/rdp001-web-webos-vision-semantic-atoms-0084/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "prior selected span or atom line overlap",
+      "parent unprocessed denominator tamper",
+      "source line or connective tamper",
+      "parent line containment failure",
+      "selected parent coverage gap",
+      "composite reason replacement",
+      "two composite reasons swapped",
+      "Web/Web-OS product role swap",
+      "formal requirement or owner generation",
+      "nested keyset injection"
+    ],
+    "archive_rule": "archive/legacy-generation-2026-09-14 is static reference only; no old runtime/test/CI/workflow/source execution"
+  },
+  "residuals": {
+    "formal_requirement_unit": "pending",
+    "semantic_equivalence": "pending",
+    "owner_authority": "pending",
+    "legacy_failure": "pending",
+    "legacy_consumer_closure": "pending",
+    "legacy_implementation": "pending",
+    "current_implementation": "pending",
+    "degradation": "pending"
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
