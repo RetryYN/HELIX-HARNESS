@@ -1,6 +1,6 @@
 # Wave46 legacy semantic review Scaffold
 
-このScaffoldは、`origin/main` の `3cdde5dfedfc51ff7c757a2f5fb2eb11a3c6b64c` を起点に、Wave45後の残19 unitから、HELIX-HARNESS／HELIX-OSのNFR-27、NFR-28、NFR-30を対象にした研究候補である。選定はsource chain、product境界、phase候補、catalog asset roleの複雑性を静的に照合して6 unitへ限定した。Bindingは `SCF-B-0086` である。
+このScaffoldは、`origin/main` の `3cdde5dfedfc51ff7c757a2f5fb2eb11a3c6b64c` を起点に、Wave45後の残25 unitから、HELIX-HARNESS／HELIX-OSのNFR-27、NFR-28、NFR-30を対象にした研究候補である。選定はsource chain、product境界、phase候補、catalog asset roleの複雑性を静的に照合して6 unitへ限定した。Bindingは `SCF-B-0086` である。
 
 対象unitは次の6件である。
 
