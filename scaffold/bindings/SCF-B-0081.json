@@ -1,0 +1,162 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0081",
+  "kind": "scaffold",
+  "title": "Web／Web-OS Vision semantic atom candidate subset",
+  "product": "HELIX-Web",
+  "owner_candidate": "Web利用者責務／Web-OS service runtime候補のsource-bound semantic atom review（正式owner未解決）",
+  "state": "registered",
+  "reason": "SCF-B-0080の29 Vision exact spanから10 spanだけをbounded subsetとして選び、source lineとconnective tokenを保持した16候補をWeb利用者責務とWeb-OS service runtimeへ分ける。複数責務・表・将来方向・open decision・phase gateはcomposite_unresolvedに留め、19 parent spanと未選択lineを未処理分母として明示する。正式要求unit、owner、authority、採否、実装、縮退、failure closure、consumer closureは生成しない。parent legacy evidenceは静的再照合だけを行う。replacement.issue=0は実Issue番号ではなく、未commit研究束のbinding登録sentinelである。",
+  "upstream": [
+    {
+      "path": "scaffold/bindings/SCF-B-0080.json",
+      "sha256": "3d0f61775d0095774a6057c381f581576fca420e43c7e511c94cad761681a6e2",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-source-0080/inventory.json",
+      "sha256": "b1a0851a9ccca47ec73f558f4a1136b669daefd46563421c83a792e54d2c65b5",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl",
+      "sha256": "b4dbaaf0ba43ba6ab307212ef59559bd06a73089d2d17553cf79928f75e6dc4c",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+    },
+    {
+      "path": "scaffold/rdp001-web-webos-vision-source-0080/legacy-evidence.jsonl",
+      "sha256": "cfcb9172ee0d528daea0385f6262b6a7b18e5c6bfb03beee8c9db531e06c82ae",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+    },
+    {
+      "path": "docs/helix-web/L2-requirements/product-requirements.md",
+      "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+    },
+    {
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decision-log.md",
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+    }
+  ],
+  "role": "Web／Web-OS Vision bounded semantic atom candidateとcomposite_unresolvedをsource line／connective付きで保持する",
+  "obligations": [
+    "SCF-B-0080の29 parent spanとdigestを再照合し、選択10／未処理19を固定する",
+    "source line、exact text、connective tokenを保持し、候補文の意味を拡張しない",
+    "Web利用者責務候補とWeb-OS service runtime候補をproduct role別に分ける",
+    "複数責務・表・将来方向・open decision・phase gateをcomposite_unresolvedへ残す",
+    "親legacy evidenceからsource／decision／failure／consumer statusを静的再確認し、unknown／pendingを保持する",
+    "正式要求unit、owner、authority、採否、phase、implementation、degradationを生成しない",
+    "旧archive runtime／test／CI／workflow／hook／adapter／sourceを実行しない",
+    "各atomのsource line範囲が実parent spanへ包含され、選択10 spanを各1件以上のatomが実参照することを検証する"
+  ],
+  "connections": {
+    "consumers": [
+      "Web／Web-OS semantic atom reviewer",
+      "direct requirement denominator reviewer",
+      "legacy evidence reviewer"
+    ],
+    "dependencies": [
+      "SCF-B-0080 parent source relation Scaffold",
+      "old Vision static Git object",
+      "legacy asset ledgers"
+    ],
+    "boundary": "成果物はscaffold/配下のbounded research candidate。16候補と7 composite_unresolvedはsource-bound research recordであり、正式要求、owner、authority、adoption、implementation、degradation、failure／consumer closureではない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/rdp001-web-webos-vision-semantic-atoms-0081/validate.py",
+      "python3 -B scaffold/rdp001-web-webos-vision-semantic-atoms-0081/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行",
+      "candidate atomをformal requirement、owner、authority、adoption、implementation、degradation、failure、consumer closureへ昇格すること",
+      "parent compositeを黙ってsplit／mergeすること",
+      "scaffold/外への候補書き込み",
+      "GitHub、Issue、PR、CI、DB、外部APIへの作用"
+    ]
+  },
+  "artifacts": [
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/README.md",
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/inventory.json",
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/semantic-atoms.jsonl",
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/legacy-links.jsonl",
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/validate.py",
+    "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/selfcheck.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "SCF-B-0080 parent span/digest recheck",
+      "exact source line and connective recheck",
+      "Web／Web-OS role and unknown boundary recheck",
+      "legacy evidence recheck",
+      "validator/selfcheck",
+      "scfctl validate／stale／residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "parent span digest tamper",
+      "selected/unprocessed denominator tamper",
+      "source line／connective tamper",
+      "Web／Web-OS role swap",
+      "atomized/composite promotion",
+      "formal unit／owner generation",
+      "legacy evidence promotion",
+      "nested keyset injection",
+      "atom source line range outside actual parent span",
+      "selected parent span coverage gap",
+      "wrong parent disguised as related open decision",
+      "composite reason replacement",
+      "two composite reasons swapped"
+    ]
+  },
+  "replacement": {
+    "role_target": "承認済みWeb／Web-OS semantic unit、owner、authority、implementation、degradation、failure／consumer contractへの個別移管（人間判断後）",
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
