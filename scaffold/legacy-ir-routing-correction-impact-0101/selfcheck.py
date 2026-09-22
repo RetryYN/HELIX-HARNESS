@@ -47,13 +47,29 @@ def main() -> int:
     source[0]["source_exact"]["line"] = 1
     expects("source_anchor_tamper", source, "E_SOURCE_ANCHOR")
 
+    source_digest = copy.deepcopy(base)
+    source_digest[0]["source_exact"]["source_file_sha256"] = "0" * 64
+    expects("source_digest_tamper", source_digest, "E_SOURCE_DIGEST")
+
     before = copy.deepcopy(base)
     before[0]["before"]["routing"]["candidate_product_targets"].append("HELIX-Web")
     expects("before_candidate_tamper", before, "E_BEFORE_CANDIDATE")
 
+    routing_ref = copy.deepcopy(base)
+    routing_ref[0]["before"]["routing"]["ref"]["line"] = 999
+    expects("routing_reference_guard", routing_ref, "E_ROUTING_REFERENCE")
+
+    unit_impact = copy.deepcopy(base)
+    unit_impact[0]["before"]["decomposition"]["unit_set"] = []
+    expects("unit_impact_guard", unit_impact, "E_UNIT_IMPACT")
+
     wave = copy.deepcopy(base)
     wave[0]["wave_semantic_review"]["review_rows"][0]["ref"]["row_sha256"] = "0" * 64
     expects("wave_digest_tamper", wave, "E_WAVE_DIGEST")
+
+    wave_method = copy.deepcopy(base)
+    wave_method[0]["wave_semantic_review"]["method_premise_refs"] = []
+    expects("wave_method_reference_guard", wave_method, "E_WAVE_METHOD_REFERENCE")
 
     boundary = copy.deepcopy(base)
     boundary[0]["product_boundary"]["refs"][0]["blob"] = "0" * 40
@@ -206,7 +222,7 @@ def main() -> int:
     if not any(item.startswith("E_BASE_NOT_ANCESTOR:") for item in ancestor_errors("0" * 40)):
         raise AssertionError("base_ancestor_tamper: expected E_BASE_NOT_ANCESTOR")
 
-    print("SCF-B-0103 selfcheck: PASS negative_cases=44")
+    print("SCF-B-0103 selfcheck: PASS negative_cases=48")
     return 0
 
 

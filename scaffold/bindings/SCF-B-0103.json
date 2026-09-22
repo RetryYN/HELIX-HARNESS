@@ -276,6 +276,7 @@
       "E_INPUT_DIGEST: input bytes digest tamper",
       "E_INPUT_BLOB: input Git blob tamper",
       "E_BASE_HEAD: inventory BASE pin tamper",
+      "E_BASE_NOT_ANCESTOR: fixed BASE ancestry tamper",
       "E_SOURCE_PROVENANCE: fixed Git object snapshot tamper",
       "E_INVENTORY: inventory declaration tamper",
       "E_LEGACY_EXECUTION: legacy execution/new build promotion",
