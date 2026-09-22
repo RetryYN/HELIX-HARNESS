@@ -1288,7 +1288,17 @@
     "inventory_formal_update_tamper",
     "inventory_classification_rule_tamper",
     "inventory_counts_artifact_kind_tamper",
-    "fixed_BASE_non_ancestor"
+    "fixed_BASE_non_ancestor",
+    "generator_manual_oracle_tamper",
+    "base_pin_tamper",
+    "base_source_missing",
+    "history_tamper",
+    "human_judgment_tamper",
+    "input_digest_value_tamper",
+    "inventory_negative_case_tamper",
+    "output_digest_tamper",
+    "phase_status_tamper",
+    "source_line_range_tamper"
   ],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
   "output_sha256": "sha256:3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829",

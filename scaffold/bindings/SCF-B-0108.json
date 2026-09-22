@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "src/lint旧実装sourceの四製品責務候補を横断照合する研究（単一owner未確定）",
   "state": "registered",
-  "reason": "固定BASEからproduct_classification_status=unresolved、artifact_evidence_kind=implementation_source、src/lint/配下の95旧assetを全件再導出する。旧source本文を実読した14件だけを具体span・L1・product-boundary反証・consumer境界付きのcandidate researchとして保持し、残り81件はsource_semantic_review_pendingに保留する。filename、汎用語、Waveの未承認unit scopeを正式owner／分類へ昇格せず、authority、formal routing、successor、implementation成立、consumer closure、new buildを生成しない。",
+  "reason": "固定BASEからproduct_classification_status=unresolved、artifact_evidence_kind=implementation_source、src/lint/配下の95旧assetを全件再導出する。validatorはgeneratorのmanual tableをoracleにせず、固定BASEから独立pinした14 asset ID・product・source span・L1・counter・interpretationを照合し、14件direct_product_basis／81件insufficient_basisを固定する。残りをsource_semantic_review_pendingに保留し、filename、汎用語、Waveの未承認unit scopeを正式owner／分類へ昇格せず、authority、formal routing、successor、implementation成立、consumer closure、new buildを生成しない。",
   "upstream": [
     {
       "note": "fixed BASE Git object input; static read only; no authority promotion",
@@ -342,11 +342,11 @@
   "role": "src/lint/ implementation_source 95件について旧source本文と四製品L1／boundary、Wave semantic link、旧history／failure／consumerを静的に突合し、14件の意味review済み候補と81件の未評価分母を再現可能に保持する",
   "obligations": [
     "固定BASE 5562f04da0f3205f9aa58205ec0d478419fc4f2eの祖先性と入力path／blob／bytes／digest集合を検査する",
-    "phase ledgerの unresolved＋implementation_source＋src/lint/条件から95件exact setを再導出し、欠落・重複・余分を拒否する",
+    "phase ledgerの unresolved＋implementation_source＋src/lint/条件から固定BASEの95件exact asset ID集合を再導出し、欠落・重複・余分を拒否する",
     "Wave1–50の598 edge／355 unique assetと対象17 edge／14 linked assetを欠落・重複なく固定し、未承認semantic linkを正式製品根拠へ継承しない",
     "95件すべての旧source blob／bytes／digest／semantic anchor、phase／disposition、旧decision／failure／consumer状態を保持する",
-    "実sourceを個別に読んだ14件のみ具体的span、対応L1行、product-boundary反証、consumer境界を再導出し、candidate_product_targetsの空状態を保つ",
-    "残り81件をsource_semantic_review_pending／insufficient_basisとして保全し、filename／汎用語／宣言名のheuristic direct分類を禁止する",
+    "固定BASE asset IDをkeyに独立pinした14件のproduct／span／L1／counter／interpretationをvalidatorで再導出し、14件direct_product_basis／81件insufficient_basisを固定する",
+    "generator manual tableの追加・削除・product／span／L1／interpretation改竄後に再生成してもvalidatorが失敗する負例を保持する",
     "四製品L1／product-boundary／failure／consumerのline text digestと解釈改竄、candidate／authority昇格をvalidator／selfcheckでfail-closedにする",
     "正式asset分類、product route、phase、owner、successor、implementation成立、consumer closure、new buildを更新せず、旧資産は静的readだけに限定する"
   ],
@@ -403,11 +403,12 @@
     ],
     "oracles": [
       "fixed BASE ancestor and 162 input digest records (66 current plus 96 source objects)",
-      "95 target asset exact set and phase/disposition rederivation",
+      "fixed BASE 95 target asset ID tuple and target phase/disposition rederivation",
       "Wave1–50 598 edge／355 unique／17 target edge denominator",
       "95 target asset artifact evidence kinds: implementation_source 95",
       "95 source blob／bytes／SHA-256／line anchor rederivation",
-      "14 manual semantic span／L1／boundary counterevidence／consumer boundary rederivation",
+      "validator-owned fixed 14 asset ID／product／span／L1／counter／interpretation oracle (table key set 14)",
+      "category denominator direct_product_basis 14／multi_product_conflict 0／insufficient_basis 81",
       "four-product L1／boundary／failure／consumer line digest rederivation",
       "validator／selfcheck／scfctl／git diff --check"
     ],
@@ -421,11 +422,20 @@
       "E_SEMANTIC_REVIEW manual span／L1／counterevidence／pending status tamper",
       "E_BOUNDARY_DIGEST boundary／L1／failure／consumer line tamper",
       "E_INPUT_SET input digest omission／duplicate／extra path",
+      "E_INPUT_DIGEST input digest value tamper",
       "E_AUTHORITY_PROMOTION authority／formal classification／new build promotion",
       "E_RECORD_SCHEMA unexpected record key",
+      "E_HUMAN_JUDGMENT human judgment tamper",
+      "E_HISTORY history tamper",
+      "E_PHASE_STATUS phase status tamper",
+      "E_SOURCE_LINE source line range tamper",
       "E_INVENTORY_DECLARATION inventory authority／scope／formal update／classification rule tamper",
       "E_EXPECTED_DENOMINATOR target asset artifact kind count tamper",
-      "E_BASE_NOT_ANCESTOR fixed BASE non-ancestor"
+      "E_OUTPUT_DIGEST output digest tamper",
+      "E_BASE_PIN fixed BASE pin tamper",
+      "E_BASE_SOURCE missing fixed BASE path",
+      "E_BASE_NOT_ANCESTOR fixed BASE non-ancestor",
+      "generator manual oracle／span／L1改竄後再生成の独立validator拒否"
     ]
   },
   "replacement": {
