@@ -49,7 +49,7 @@
       "properties": {
         "role_target": {"type": ["string", "null"], "description": "正式な物が担うべき役割。nullのbindingはactiveにできない（SCF-OS-001）"},
         "formal_artifacts": {"type": "array", "items": {"type": "string"}, "description": "正式artifactのpath。未決なら空でよい"},
-        "issue": {"type": ["integer", "null"], "description": "差し替え台帳IssueのGitHub番号（projection）。nullは不合格"},
+        "issue": {"type": "integer", "minimum": 0, "description": "差し替え台帳Issue。registered+pendingだけ0 sentinelを許可し、それ以外は正整数"},
         "status": {"enum": ["pending", "in_progress", "confirmed"]},
         "transfer": {
           "type": ["object", "null"],

@@ -1,12 +1,14 @@
 {
- "case": "07c-full-transfer-pass",
- "l11": "全件対応した置換確認は合格する（file systemを見ない範囲）",
+ "case": "19-reject-issue-negative",
+ "l11": "issueのnegative値を拒否する",
  "requirements": [
-  "SCF-HARNESS-005"
+  "SCF-OS-006"
  ],
- "command": "check-replacement",
- "expect": "pass",
- "expect_codes": [],
+ "command": "validate",
+ "expect": "fail",
+ "expect_codes": [
+  "E_ISSUE"
+ ],
  "binding": {
   "schema_revision": 1,
   "id": "SCF-B-0900",
@@ -56,29 +58,11 @@
   },
   "replacement": {
    "role_target": "正式の役割X",
-   "formal_artifacts": [
-    "src/os/scaffold.py"
-   ],
-   "issue": 1,
+   "formal_artifacts": [],
+   "issue": -1,
    "status": "pending",
-   "transfer": {
-    "role": "正式X",
-    "obligations": {
-     "義務1": "正式A"
-    },
-    "consumers": {
-     "consumer1": "正式B"
-    },
-    "oracles": {
-     "oracle1": "正式C"
-    },
-    "negative_cases": {
-     "neg1": "正式D"
-    }
-   },
-   "target_revisions": {
-    "src/os/scaffold.py": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-   },
+   "transfer": null,
+   "target_revisions": {},
    "confirmation_ref": null,
    "confirmation_digest": null
   },

@@ -1,13 +1,13 @@
 {
- "case": "08d-reject-other-bindings-record",
- "l11": "別bindingの確認記録を使った撤去を拒否する",
+ "case": "33-reject-retire-receipt-missing",
+ "l11": "receiptにtarget_revisionsが無い退役を拒否する",
  "requirements": [
+  "SCF-OS-004",
   "SCF-OS-005"
  ],
  "command": "retire-precheck",
  "expect": "fail",
  "expect_codes": [
-  "E_RETIRE: 確認記録は別のbinding",
   "E_RECEIPT_REVISION_SET"
  ],
  "binding": {
@@ -91,7 +91,7 @@
  "confirmation_digest": "0000000000000000000000000000000000000000000000000000000000000000",
  "read_after_digest": "0000000000000000000000000000000000000000000000000000000000000000",
  "confirmation_record": {
-  "binding": "SCF-B-0901",
+  "binding": "SCF-B-0900",
   "result": "pass"
  },
  "file_digests": {

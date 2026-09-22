@@ -111,18 +111,31 @@ def check_shape(b):
         e.append("E_UPSTREAM: 上流が無い（SCF-HARNESS-001）")
     else:
         for u in b["upstream"]:
-            if not isinstance(u, dict) or not u.get("path") or not SHA.match(str(u.get("sha256", ""))):
+            if (not isinstance(u, dict) or not isinstance(u.get("path"), str) or not u.get("path")
+                    or not isinstance(u.get("sha256"), str) or not SHA.match(u.get("sha256", ""))
+                    or ("note" in u and not isinstance(u.get("note"), str))):
                 e.append("E_UPSTREAM: 上流はpathとsha256を持つ（SCF-HARNESS-001）")
     if not isinstance(b["obligations"], list) or not b["obligations"]:
         e.append("E_ROLE: 義務が無い（SCF-HARNESS-002）")
+    elif any(not isinstance(x, str) or not x for x in b["obligations"]):
+        e.append("E_SHAPE: obligations は空でない文字列list")
     c = b["connections"]
     if not isinstance(c, dict) or any(k not in c for k in ("consumers", "dependencies", "boundary")) or not str(c.get("boundary", "")).strip():
         e.append("E_ROLE: 接続（consumers／dependencies／boundary）が無い（SCF-HARNESS-002）")
+    elif (not isinstance(c["consumers"], list) or any(not isinstance(x, str) for x in c["consumers"])
+          or not isinstance(c["dependencies"], list) or any(not isinstance(x, str) for x in c["dependencies"])
+          or not isinstance(c["boundary"], str)):
+        e.append("E_SHAPE: connections.consumers／dependencies は文字列list")
     o = b["operations"]
     if not isinstance(o, dict) or "allowed" not in o or not o.get("forbidden"):
         e.append("E_ROLE: 許可／禁止する操作が無い（SCF-HARNESS-002）")
+    elif (not isinstance(o["allowed"], list) or any(not isinstance(x, str) for x in o["allowed"])
+          or not isinstance(o["forbidden"], list) or any(not isinstance(x, str) or not x for x in o["forbidden"])):
+        e.append("E_SHAPE: operations.allowed／forbidden は文字列list")
     if not isinstance(b["artifacts"], list) or not b["artifacts"]:
         e.append("E_ROLE: 仮artifactが無い（SCF-OS-001）")
+    elif any(not isinstance(x, str) or not x for x in b["artifacts"]):
+        e.append("E_SHAPE: artifacts は空でない文字列list")
     v = b["verification"]
     if not isinstance(v, dict) or v.get("evidence_kind") != "scaffold":
         e.append("E_EVIDENCE: evidence_kindはscaffold以外にできない（SCF-HARNESS-004）")
@@ -133,16 +146,53 @@ def check_shape(b):
         for k in ("oracles", "negative_cases"):
             if not isinstance(v.get(k), list):
                 e.append("E_SHAPE: verification.%s はlist" % k)
+            elif any(not isinstance(x, str) or not x for x in v[k]):
+                e.append("E_SHAPE: verification.%s は空でない文字列list" % k)
     r = b["replacement"]
     if not isinstance(r, dict) or any(k not in r for k in ("role_target", "formal_artifacts", "issue", "status")):
         e.append("E_SHAPE: replacementはrole_target／formal_artifacts／issue／statusを持つ")
     else:
         if r["status"] not in ("pending", "in_progress", "confirmed"): e.append("E_SHAPE: replacement.status不正")
-        if not isinstance(r["issue"], int): e.append("E_ISSUE: 差し替え台帳Issueの番号が無い（差し替え忘れ防止）")
+        if r.get("role_target") is not None and not isinstance(r.get("role_target"), str):
+            e.append("E_SHAPE: replacement.role_target はstringまたはnull")
+        issue = r["issue"]
+        if isinstance(issue, bool) or not isinstance(issue, int):
+            e.append("E_ISSUE: 差し替え台帳Issueは整数でなければならない（null／boolを拒否）")
+        elif issue < 0:
+            e.append("E_ISSUE: 差し替え台帳Issueは負数にできない")
+        elif issue == 0 and not (b["state"] == "registered" and r["status"] == "pending"):
+            e.append("E_ISSUE: issue=0はregistered+pendingの仮値だけに限る。正式置換は正整数Issueを持つ")
+        if not isinstance(r.get("formal_artifacts"), list) or any(not isinstance(x, str) or not x for x in r.get("formal_artifacts", [])):
+            e.append("E_SHAPE: replacement.formal_artifacts は文字列list")
+        if ("target_revisions" in r and
+                (not isinstance(r.get("target_revisions"), dict) or
+                 any(not isinstance(k, str) or not SHA.match(str(v)) for k, v in r.get("target_revisions", {}).items()))):
+            e.append("E_SHAPE: replacement.target_revisions はpath→sha256のobject")
+        if r.get("confirmation_ref") is not None and not isinstance(r.get("confirmation_ref"), str):
+            e.append("E_SHAPE: replacement.confirmation_ref はstringまたはnull")
+        t = r.get("transfer")
+        if t is not None:
+            if not isinstance(t, dict):
+                e.append("E_SHAPE: replacement.transfer はobjectまたはnull")
+            else:
+                required_transfer = ("role", "obligations", "consumers", "oracles", "negative_cases")
+                if any(k not in t for k in required_transfer):
+                    e.append("E_SHAPE: replacement.transfer の必須keyが欠落")
+                elif (not isinstance(t["role"], str)
+                      or any(not isinstance(t[k], dict) for k in required_transfer[1:])
+                      or any(not isinstance(key, str) or not isinstance(value, str) for k in ("obligations", "consumers", "negative_cases") for key, value in t[k].items())
+                      or any(not isinstance(key, str) or not isinstance(value, (str, dict)) for key, value in t["oracles"].items())):
+                    e.append("E_SHAPE: replacement.transfer は宣言schemaの型を満たさない")
         if r.get("confirmation_digest") is not None and not SHA.match(str(r["confirmation_digest"])):
             e.append("E_SHAPE: confirmation_digest形式")
     for k in ("created", "updated"):
         if not DATE.match(str(b[k])): e.append("E_SHAPE: %s は YYYY-MM-DD" % k)
+    if "overlap_reason" in b and not isinstance(b["overlap_reason"], str):
+        e.append("E_SHAPE: overlap_reason はstring")
+    if "retired" in b:
+        retired = b["retired"]
+        if not isinstance(retired, dict) or any(not isinstance(retired.get(k), str) for k in ("at", "confirmation_ref", "read_after_digest") if k in retired):
+            e.append("E_SHAPE: retired の値はstring")
     return e
 
 
@@ -174,7 +224,7 @@ def check_rules(b, all_bindings, fs=True, digests=None):
     if fs:
         exists = (lambda pth: pth in digests) if digests is not None else (lambda pth: os.path.isfile(os.path.join(ROOT, pth)))
         for u in b["upstream"]:
-            if not exists(u["path"]):
+            if not isinstance(u.get("path"), str) or not exists(u["path"]):
                 e.append("E_ORPHAN: 上流が存在しない %s（SCF-OS-002）" % u["path"])
         if b["state"] != "retired" and digests is None:
             for a in b["artifacts"]:
@@ -240,6 +290,15 @@ def check_replacement(b, fs=True, digests=None):
         extra = set(m) - set(items)
         if extra:
             e.append("E_REPL: %s にbindingに無い項目 %s" % (name, sorted(extra)))
+    formal = list(r.get("formal_artifacts") or [])
+    want = r.get("target_revisions") or {}
+    # A receipt that names only a subset leaves an unverified formal artifact.
+    # Check this after transfer completeness so older partial-transfer cases keep
+    # their precise failure, while a complete A/B transfer cannot pass with A only.
+    if not e and set(want) != set(formal):
+        missing = sorted(set(formal) - set(want))
+        extra = sorted(set(want) - set(formal))
+        e.append("E_REVISION_SET: target_revisions must cover every formal_artifact (missing=%s extra=%s)" % (missing, extra))
     # 二重owner／二重writer／二重CI: 移管先が複数の正式artifactを同一項目に持つことは表せないので、
     # 同じ移管先が別bindingの正式側と衝突していないかは residuals で見る。ここでは対象revisionを固定する。
     revs = {}
@@ -250,7 +309,6 @@ def check_replacement(b, fs=True, digests=None):
                 e.append("E_REPL: 正式artifactが存在しない %s" % a)
             else:
                 revs[a] = s
-        want = r.get("target_revisions") or {}
         for a, s in revs.items():
             if a in want and want[a] != s:
                 e.append("E_REVISION: 正式artifact %s のrevisionが記録と一致しない（SCF-OS-004）" % a)
@@ -260,6 +318,17 @@ def check_replacement(b, fs=True, digests=None):
         if not want:
             e.append("E_REVISION: target_revisions（置換対象のrevision）が未記録（SCF-OS-004）")
     return e, revs
+
+
+def check_receipt_revisions(binding, receipt, current_revisions):
+    """Require the recorded receipt to cover and match every formal artifact."""
+    formal = set(binding["replacement"].get("formal_artifacts") or [])
+    recorded = receipt.get("target_revisions") if isinstance(receipt, dict) else None
+    if not isinstance(recorded, dict) or set(recorded) != formal:
+        return ["E_RECEIPT_REVISION_SET: confirmation receipt must record every formal_artifact revision"]
+    if any(recorded.get(path) != digest for path, digest in current_revisions.items()):
+        return ["E_RECEIPT_REVISION: confirmation receipt artifact revision changed"]
+    return []
 
 
 def external_hook_residuals(binding, home=None, manifest_path=None):
@@ -475,6 +544,12 @@ def cmd_retire(args):
             if rec.get("binding") != b["id"]: errs.append("E_RETIRE: 確認記録は別のbinding %s のもの" % rec.get("binding"))
             if rec.get("binding_core_digest") != binding_core_digest(b):
                 errs.append("E_RETIRE: 確認後にbindingの内容が変わっている（対象revision不一致。SCF-OS-004）")
+            current_revisions = {}
+            for artifact in b["replacement"].get("formal_artifacts") or []:
+                digest = sha256_file(artifact)
+                if digest is not None:
+                    current_revisions[artifact] = digest
+            errs += check_receipt_revisions(b, rec, current_revisions)
             e2, _ = check_replacement(b)
             errs += e2
     for x in errs: print("  - " + x)
@@ -522,6 +597,8 @@ def cmd_selftest(args):
             if rec and rec.get("binding") != target["id"]: errs.append("E_RETIRE: 確認記録は別のbinding")
             if rec and rec.get("binding_core_digest") not in (None, binding_core_digest(target)):
                 errs.append("E_RETIRE: 確認後にbindingの内容が変わっている")
+            if rec:
+                errs += check_receipt_revisions(target, rec, c.get("file_digests") or {})
             if rec: errs += check_replacement(target, digests=dg or {})[0]
         elif cmd == "evidence-scope":
             errs = []

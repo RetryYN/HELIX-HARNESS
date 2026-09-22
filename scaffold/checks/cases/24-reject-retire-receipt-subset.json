@@ -1,14 +1,14 @@
 {
- "case": "08d-reject-other-bindings-record",
- "l11": "別bindingの確認記録を使った撤去を拒否する",
+ "case": "24-reject-retire-receipt-subset",
+ "l11": "retire時にformal artifact全件のreceipt revisionを要求する",
  "requirements": [
-  "SCF-OS-005"
+  "SCF-HARNESS-005"
  ],
  "command": "retire-precheck",
  "expect": "fail",
  "expect_codes": [
-  "E_RETIRE: 確認記録は別のbinding",
-  "E_RECEIPT_REVISION_SET"
+  "E_RECEIPT_REVISION_SET",
+  "E_REVISION_SET"
  ],
  "binding": {
   "schema_revision": 1,
@@ -60,7 +60,8 @@
   "replacement": {
    "role_target": "正式の役割X",
    "formal_artifacts": [
-    "src/os/scaffold.py"
+    "src/a",
+    "src/b"
    ],
    "issue": 1,
    "status": "confirmed",
@@ -80,7 +81,7 @@
     }
    },
    "target_revisions": {
-    "src/os/scaffold.py": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "src/a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
    },
    "confirmation_ref": null,
    "confirmation_digest": null
@@ -91,10 +92,14 @@
  "confirmation_digest": "0000000000000000000000000000000000000000000000000000000000000000",
  "read_after_digest": "0000000000000000000000000000000000000000000000000000000000000000",
  "confirmation_record": {
-  "binding": "SCF-B-0901",
-  "result": "pass"
+  "binding": "SCF-B-0900",
+  "result": "pass",
+  "target_revisions": {
+   "src/a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
  },
  "file_digests": {
-  "src/os/scaffold.py": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  "src/a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "src/b": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
  }
 }
