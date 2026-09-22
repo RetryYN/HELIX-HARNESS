@@ -1,0 +1,382 @@
+{
+  "authority_effect": "none",
+  "base_revision": "f07602eef199048ba27200f81b78e838926cae8b",
+  "batch_id": "LEGACY-SEMANTIC-WAVE40-2026-09-22",
+  "composite_unresolved_count": 5,
+  "consumer_closure_status": "pending",
+  "cumulative_reviewed_edge_count": 476,
+  "cumulative_reviewed_unit_count": 161,
+  "current_implementation": "unknown",
+  "degradation": "unknown",
+  "historical_status_note": "authority_id/assertion_id/consumer/failure_scope are preserved historical references only; they do not establish current authority, implementation, degradation, or consumer closure.",
+  "inspected_asset_count": 10,
+  "legacy_execution_performed": false,
+  "missing_evidence_receipts": [
+    {
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [],
+      "phase_pool_asset_count": 0,
+      "reason": "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+      "role_kind": "design",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-FR-33-HELIX-OS"
+    },
+    {
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [],
+      "phase_pool_asset_count": 0,
+      "reason": "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+      "role_kind": "implementation_source",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-FR-33-HELIX-OS"
+    },
+    {
+      "candidate_product_targets": [
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [],
+      "phase_pool_asset_count": 0,
+      "reason": "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+      "role_kind": "design",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-05-HELIX-OS"
+    },
+    {
+      "candidate_product_targets": [
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [],
+      "phase_pool_asset_count": 0,
+      "reason": "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+      "role_kind": "implementation_source",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-05-HELIX-OS"
+    }
+  ],
+  "new_build_allowed": false,
+  "remaining_unit_count": 57,
+  "schema_revision": 1,
+  "selected_asset_count": 7,
+  "selected_edge_count": 11,
+  "selected_non_requirement_asset_count": 6,
+  "selected_unit_count": 5,
+  "selected_units": [
+    {
+      "atom_ids": [
+        "BR20-HARNESS-A01",
+        "BR20-HARNESS-A02"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": [
+        "HELIX-HARNESS"
+      ],
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-BR-020",
+        "authority_id": "RAS-HIL-06",
+        "failure_scope": "known-failure quarantine, bypass/new-fingerprint/minimum-gate failure conditions",
+        "historical_consumer": "CiQuarantineManager"
+      },
+      "legacy_execution": "not_run",
+      "legacy_requirement_implementation_status": "unknown_pending_direct_asset_semantic_review",
+      "missing_evidence_roles": [],
+      "new_build_allowed": false,
+      "phase_candidates": [
+        "PHCAP-07",
+        "PHCAP-11"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 236,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-112AF1725DFB5F16FB6A",
+        "LEGACY-ASSET-174B63F415197A4B09C5",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 2,
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:821",
+        "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:72"
+      ],
+      "source_requirement_id": "HIL-BR-20",
+      "source_statement_semantic_digest": "sha256:0ca36b9296e24ed2386ed4170647831649a51d83dbac8b2efb37d6c5048f131c",
+      "source_statement_text": "既知の内部CI failureは証拠を保持した機械的quarantineで一時隔離できるが、対象外failure、新規fingerprint、最低代替gate失敗を無視してはならない。旧UTの検証契約を棚卸し後に再構築する。",
+      "source_text_spans": [
+        "最低代替gate失敗を無視してはならない",
+        "旧UTの検証契約を棚卸し後に再構築する"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-BR-20-HELIX-HARNESS",
+      "unresolved": [
+        "product_boundary_human_decision_pending",
+        "phase_authority_status_candidate_unchanged",
+        "current_implementation_unknown",
+        "degradation_unknown",
+        "consumer_closure_pending",
+        "legacy_execution_not_run"
+      ]
+    },
+    {
+      "atom_ids": [
+        "FR04-OS-A01",
+        "FR04-OS-A02"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-FR-004",
+        "authority_id": "RAS-HIL-04",
+        "failure_scope": "phase skip/empty/wrong-layer/re-entry bypass conditions",
+        "historical_consumer": "UniversalReverseGate"
+      },
+      "legacy_execution": "not_run",
+      "legacy_requirement_implementation_status": "unknown_pending_direct_asset_semantic_review",
+      "missing_evidence_roles": [],
+      "new_build_allowed": false,
+      "phase_candidates": [
+        "PHCAP-09",
+        "PHCAP-10"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 429,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-0449CFE6165EF25515B7",
+        "LEGACY-ASSET-172EBB6DBA696EC454E9",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 2,
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:1557",
+        "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:94"
+      ],
+      "source_requirement_id": "HIL-FR-04",
+      "source_statement_semantic_digest": "sha256:4d8c9fcc0db7c1e522c6e8b42f49521348381d44a6b9a53b01fb47c9f7e5d97b",
+      "source_statement_text": "Universal Reverse Gateは全IssueのR0–R4を順序実行し、各phaseのobligation集合、input/output digest、stage固有schema、source coverage、R4 routing、双方向参照を検査する。R1を含むphase skipは認めず、該当契約なしも探索証拠付き結論として記録する。 | pass/fail receipt＋不足/空洞化code",
+      "source_text_spans": [
+        "全IssueのR0–R4を順序実行し",
+        "pass/fail receipt＋不足/空洞化code"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-FR-04-HELIX-OS",
+      "unresolved": [
+        "product_boundary_human_decision_pending",
+        "phase_authority_status_candidate_unchanged",
+        "current_implementation_unknown",
+        "degradation_unknown",
+        "consumer_closure_pending",
+        "legacy_execution_not_run"
+      ]
+    },
+    {
+      "atom_ids": [
+        "FR33-OS-A01"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-FR-033",
+        "authority_id": "RAS-HIL-13",
+        "failure_scope": "active Bun API/command/lock/CI/distribution coverage gaps",
+        "historical_consumer": "BunDependencyCoverageGate"
+      },
+      "legacy_execution": "not_run",
+      "legacy_requirement_implementation_status": "unknown_pending_direct_asset_semantic_review",
+      "missing_evidence_roles": [
+        "design",
+        "implementation_source"
+      ],
+      "new_build_allowed": false,
+      "phase_candidates": [],
+      "phase_classification_status": "unresolved",
+      "phase_pool_asset_count": 0,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 1,
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:2804",
+        "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:123"
+      ],
+      "source_requirement_id": "HIL-FR-33",
+      "source_statement_semantic_digest": "sha256:21cb2d593ce14771ea0675e9dd5e441eb2ffaa214c7e300437836f052a2b80dd",
+      "source_statement_text": "Bun Dependency Coverage Gateはactive source/import/command/script/test/package/lockfile/CI/hook/template/setup/distributionからBun依存を抽出する。historical/archiveだけを理由付きallowlist可能とする。 | classified dependency ledger、active Bun count",
+      "source_text_spans": [
+        "active Bun count"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-FR-33-HELIX-OS",
+      "unresolved": [
+        "product_boundary_human_decision_pending",
+        "phase_authority_status_candidate_unchanged",
+        "current_implementation_unknown",
+        "degradation_unknown",
+        "consumer_closure_pending",
+        "legacy_execution_not_run"
+      ]
+    },
+    {
+      "atom_ids": [
+        "NFR03-OS-A01",
+        "NFR03-OS-A02"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-003",
+        "authority_id": "RAS-HIL-04",
+        "failure_scope": "Reverse skip/empty/wrong-layer and incomplete-obligation checkpoint conditions",
+        "historical_consumer": "UniversalReverseGate"
+      },
+      "legacy_execution": "not_run",
+      "legacy_requirement_implementation_status": "unknown_pending_direct_asset_semantic_review",
+      "missing_evidence_roles": [],
+      "new_build_allowed": false,
+      "phase_candidates": [
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 488,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-09D2A49CAA02AAFAC195",
+        "LEGACY-ASSET-0F66E2A823A36187D315",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 2,
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:4511",
+        "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:183"
+      ],
+      "source_requirement_id": "HIL-NFR-03",
+      "source_statement_semantic_digest": "sha256:294163bef1e714afa828760f2d6ca8a77417abfa9b5a80eea30b0256c82b5057",
+      "source_statement_text": "全IssueのReverse処理量を省略しない。`none/not-required/exempt`とphase skipを禁止し、budget到達は未完obligationを免除せずcheckpoint＋未完了状態へ遷移する。",
+      "source_text_spans": [
+        "checkpoint＋未完了状態へ遷移する",
+        "budget到達は未完obligationを免除せず"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-03-HELIX-OS",
+      "unresolved": [
+        "product_boundary_human_decision_pending",
+        "phase_authority_status_candidate_unchanged",
+        "current_implementation_unknown",
+        "degradation_unknown",
+        "consumer_closure_pending",
+        "legacy_execution_not_run"
+      ]
+    },
+    {
+      "atom_ids": [
+        "NFR05-OS-A01"
+      ],
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-005",
+        "authority_id": "RAS-HIL-01",
+        "failure_scope": "missing trust fields/untrusted command execution/intake conflict conditions",
+        "historical_consumer": "IntakeTrustGate"
+      },
+      "legacy_execution": "not_run",
+      "legacy_requirement_implementation_status": "unknown_pending_direct_asset_semantic_review",
+      "missing_evidence_roles": [
+        "design",
+        "implementation_source"
+      ],
+      "new_build_allowed": false,
+      "phase_candidates": [],
+      "phase_classification_status": "unresolved",
+      "phase_pool_asset_count": 0,
+      "routing_candidate": "single_product",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 1,
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:4597",
+        "docs/governance/requirements-source/legacy-documents/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:185"
+      ],
+      "source_requirement_id": "HIL-NFR-05",
+      "source_statement_semantic_digest": "sha256:bfbdefa59ad1ea92f81aaaa1a9a5e626055e7da54ab952d8fbd82fe5d4c71402",
+      "source_statement_text": "Issue/PR/comment/ZIP/外部データはuntrusted inputとして扱い、実行命令、metadata、evidenceを分離する。",
+      "source_text_spans": [
+        "Issue/PR/comment/ZIP/外部データはuntrusted inputとして扱い、実行命令、metadata、evidenceを分離する。"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-05-HELIX-OS",
+      "unresolved": [
+        "product_boundary_human_decision_pending",
+        "phase_authority_status_candidate_unchanged",
+        "current_implementation_unknown",
+        "degradation_unknown",
+        "consumer_closure_pending",
+        "legacy_execution_not_run"
+      ]
+    }
+  ],
+  "semantic_atom_count": 8,
+  "source_requirement_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+  "source_requirement_ir_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+  "source_revision": "legacy-generation-2026-09-14",
+  "supplemental_asset_count": 3
+}
