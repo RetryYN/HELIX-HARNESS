@@ -184,7 +184,9 @@
       "nested keyset injection",
       "atom source line range outside its actual parent span",
       "selected parent span with no actual atom reference",
-      "related open decision field used as a parent link"
+      "related open decision field used as a parent link",
+      "composite reason replacement",
+      "two composite reasons swapped"
     ],
     "archive_rule": "archive/legacy-generation-2026-09-14 is static reference only; no old runtime/test/CI/workflow/source execution"
   },

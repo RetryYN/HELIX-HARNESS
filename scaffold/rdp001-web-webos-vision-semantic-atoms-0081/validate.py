@@ -38,6 +38,15 @@ ATOM_EXPECTED={
  'WEBOS-COMPOSITE-004':('VISION-O03','HELIX-Web-OS','provider_connection_open_decision','service_runtime',478,478,['・','／','・'],'composite_unresolved'),
  'WEBOS-COMPOSITE-005':('VISION-O04','HELIX-Web-OS','connector_mcp_open_decision','service_runtime',479,479,['と','：','、','・','。'],'composite_unresolved'),
 }
+COMPOSITE_REASONS={
+ 'WEBOS-COMPOSITE-001':'contrast, provider routes, and display guard are one unresolved source sentence',
+ 'WEBOS-COMPOSITE-002':'communication, lifecycle, evidence, and protocol adoption remain coupled',
+ 'WEB-COMPOSITE-001':'table contains multiple stages, actions, checks, and recovery boundaries',
+ 'WEB-COMPOSITE-002':'two linked future-direction clauses; no unit split performed',
+ 'WEBOS-COMPOSITE-003':'phase table mixes timing, exclusions, evidence, and service exposure guards',
+ 'WEBOS-COMPOSITE-004':'open decision lists alternatives and timing; no requirement unit inferred',
+ 'WEBOS-COMPOSITE-005':'The open decision couples communication method, long-job lifecycle, interruption/restart behavior, and environment trust boundary; it remains composite until those decisions are separately resolved.',
+}
 LEGACY_IDS=['LEGACY-ASSET-DD53551C74BB4939A325','LEGACY-ASSET-A297D67A1D8AD6EE6D6B','LEGACY-ASSET-0C5F0695490FA5D87419','LEGACY-ASSET-C3DE79BA9451172F3E43','LEGACY-ASSET-DD66C1B6B7BE234B37E6','LEGACY-ASSET-54330A68064B58B22259']
 
 def fail(code,detail=''): raise AssertionError(code+((':'+detail) if detail else ''))
@@ -105,7 +114,7 @@ def validate(inv,atoms,legacy):
         for st in ('legacy_implementation_status','current_implementation_status','legacy_degradation_status','current_degradation_status','failure_status','consumer_status','decision_status'):
             if a[st]!='unknown':fail('E_ATOM_UNKNOWN',aid+':'+st)
         if not isinstance(a['unresolved_questions'],list) or not a['unresolved_questions']:fail('E_ATOM_UNRESOLVED',aid)
-        if status=='composite_unresolved' and not a['composite_reason']:fail('E_COMPOSITE_REASON',aid)
+        if status=='composite_unresolved' and a['composite_reason']!=COMPOSITE_REASONS[aid]:fail('E_COMPOSITE_REASON',aid)
         if status=='atomized_candidate' and a['composite_reason'] is not None:fail('E_ATOM_COMPOSITE_REASON',aid)
         seen.update(range(start,end+1))
     if referenced_parents!=GROUPS:fail('E_PARENT_COVERAGE',','.join(sorted(GROUPS-referenced_parents)))

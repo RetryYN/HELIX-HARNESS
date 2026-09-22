@@ -15,6 +15,8 @@ def expect(label,mutate,expected):
         if not str(e).startswith(expected):raise AssertionError(f'{label}: expected {expected}, got {e}')
         return
     raise AssertionError(f'{label}: mutation accepted')
+def swap_composite_reasons(i,a,l):
+    left=a[9]['composite_reason'];a[9]['composite_reason']=a[10]['composite_reason'];a[10]['composite_reason']=left
 v.validate(base,atoms,legacy)
 cases=[
  ('base_digest',lambda i,a,l:i['scope'].__setitem__('parent_span_file_sha256','0'*64),'E_PARENT_DIGEST'),
@@ -25,6 +27,8 @@ cases=[
  ('role_swap',lambda i,a,l:a[0].__setitem__('candidate_product','HELIX-Web-OS'),'E_ATOM_META'),
  ('atom_promotion',lambda i,a,l:a[0].__setitem__('atomization_status','composite_unresolved'),'E_ATOM_META'),
  ('composite_reason',lambda i,a,l:a[9].__setitem__('composite_reason',None),'E_COMPOSITE_REASON'),
+ ('composite_reason_replacement',lambda i,a,l:a[9].__setitem__('composite_reason','ZZZ'),'E_COMPOSITE_REASON'),
+ ('composite_reason_swap',swap_composite_reasons,'E_COMPOSITE_REASON'),
  ('formal_count',lambda i,a,l:i.__setitem__('formal_requirement_unit_count',15),'E_BOUNDARY'),
  ('legacy_source',lambda i,a,l:l[0].__setitem__('source_sha256','0'*64),'E_LEGACY_SOURCE'),
  ('legacy_decision',lambda i,a,l:l[0]['decision_evidence'].__setitem__('status','decided'),'E_LEGACY_EVIDENCE'),

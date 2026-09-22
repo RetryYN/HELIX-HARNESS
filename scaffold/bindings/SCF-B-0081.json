@@ -142,7 +142,9 @@
       "nested keyset injection",
       "atom source line range outside actual parent span",
       "selected parent span coverage gap",
-      "wrong parent disguised as related open decision"
+      "wrong parent disguised as related open decision",
+      "composite reason replacement",
+      "two composite reasons swapped"
     ]
   },
   "replacement": {
