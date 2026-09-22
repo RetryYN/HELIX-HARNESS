@@ -1,0 +1,211 @@
+{
+  "archive_changed_ids": [
+    "OUTSIDE67-PATH-022",
+    "OUTSIDE67-PATH-041",
+    "OUTSIDE67-PATH-058"
+  ],
+  "archive_relocation_ids": [
+    "OUTSIDE67-PATH-019",
+    "OUTSIDE67-PATH-022",
+    "OUTSIDE67-PATH-024",
+    "OUTSIDE67-PATH-041",
+    "OUTSIDE67-PATH-058"
+  ],
+  "counterparts": {
+    "OUTSIDE67-PATH-019": {
+      "bytes": 1911,
+      "content_hash_matches_archive": true,
+      "path": "docs/governance/audits/source-rebaseline/github-pr-cleanup-2026-09-14.md",
+      "relation": "current_counterpart_path_relocation_content_hash_equal_archive_observed",
+      "sha256": "27799154ad005473fccafb41096ac206c63ca3f82ee199681bd7f23597cb7a6c"
+    },
+    "OUTSIDE67-PATH-022": {
+      "bytes": 6195,
+      "content_hash_matches_archive": false,
+      "path": "docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md",
+      "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+      "sha256": "89e623cfb9274034c37e52af9fe0598c0052ee2d743bdf7bb648334289b4f6a8"
+    },
+    "OUTSIDE67-PATH-024": {
+      "bytes": 960,
+      "content_hash_matches_archive": false,
+      "path": "docs/governance/audits/source-rebaseline/l2-freeze-ir-proposal/README.md",
+      "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+      "sha256": "7f889fae4fb8bdc31babf5349a8b352dd509b85adc4cc911bc83bfdd7f09350c"
+    },
+    "OUTSIDE67-PATH-041": {
+      "bytes": 4516,
+      "content_hash_matches_archive": true,
+      "path": "docs/governance/audits/source-rebaseline/new-generation-management-change-source-crosswalk.md",
+      "relation": "current_counterpart_path_relocation_content_hash_equal_archive_observed",
+      "sha256": "93d5b2c6b3929743204b9cfdf03a6d33d234106b8f253a81becc877334c6ee75"
+    },
+    "OUTSIDE67-PATH-058": {
+      "bytes": 46103,
+      "content_hash_matches_archive": false,
+      "path": "docs/governance/audits/source-rebaseline/source-audit.md",
+      "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+      "sha256": "d346374f28ec1243c1e404cd03f026593cd5573dafb1526951d0eecc7dd373cd"
+    }
+  },
+  "current_counterpart_drift_ids": [
+    "OUTSIDE67-PATH-022",
+    "OUTSIDE67-PATH-024",
+    "OUTSIDE67-PATH-058"
+  ],
+  "exact_ledger_hits": {
+    "OUTSIDE67-PATH-019": [],
+    "OUTSIDE67-PATH-022": [],
+    "OUTSIDE67-PATH-024": [],
+    "OUTSIDE67-PATH-041": [],
+    "OUTSIDE67-PATH-058": []
+  },
+  "existing_reviewed_ids": [
+    "OUTSIDE67-PATH-008",
+    "OUTSIDE67-PATH-011",
+    "OUTSIDE67-PATH-030",
+    "OUTSIDE67-PATH-033",
+    "OUTSIDE67-PATH-034",
+    "OUTSIDE67-PATH-035",
+    "OUTSIDE67-PATH-036",
+    "OUTSIDE67-PATH-037",
+    "OUTSIDE67-PATH-043",
+    "OUTSIDE67-PATH-045",
+    "OUTSIDE67-PATH-046",
+    "OUTSIDE67-PATH-047",
+    "OUTSIDE67-PATH-052",
+    "OUTSIDE67-PATH-054",
+    "OUTSIDE67-PATH-055",
+    "OUTSIDE67-PATH-056",
+    "OUTSIDE67-PATH-057",
+    "OUTSIDE67-PATH-059",
+    "OUTSIDE67-PATH-063",
+    "OUTSIDE67-PATH-064",
+    "OUTSIDE67-PATH-065",
+    "OUTSIDE67-PATH-066",
+    "OUTSIDE67-PATH-001",
+    "OUTSIDE67-PATH-004",
+    "OUTSIDE67-PATH-007",
+    "OUTSIDE67-PATH-010",
+    "OUTSIDE67-PATH-060",
+    "OUTSIDE67-PATH-002",
+    "OUTSIDE67-PATH-005",
+    "OUTSIDE67-PATH-013",
+    "OUTSIDE67-PATH-031",
+    "OUTSIDE67-PATH-061",
+    "OUTSIDE67-PATH-003",
+    "OUTSIDE67-PATH-006",
+    "OUTSIDE67-PATH-009",
+    "OUTSIDE67-PATH-012",
+    "OUTSIDE67-PATH-014",
+    "OUTSIDE67-PATH-015",
+    "OUTSIDE67-PATH-018",
+    "OUTSIDE67-PATH-029",
+    "OUTSIDE67-PATH-032",
+    "OUTSIDE67-PATH-067",
+    "OUTSIDE67-PATH-016",
+    "OUTSIDE67-PATH-020",
+    "OUTSIDE67-PATH-023",
+    "OUTSIDE67-PATH-038",
+    "OUTSIDE67-PATH-062"
+  ],
+  "files": {
+    "docs/governance/legacy-asset-disposition.jsonl": {
+      "bytes": 4857919,
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    "docs/governance/legacy-asset-decisions.jsonl": {
+      "bytes": 109547,
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
+    },
+    "docs/governance/legacy-asset-copy-read-after.jsonl": {
+      "bytes": 29632,
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"
+    },
+    "docs/governance/legacy-asset-decision-log.md": {
+      "bytes": 5000,
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b"
+    },
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": {
+      "bytes": 6311877,
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+    },
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": {
+      "bytes": 7938664,
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
+    },
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": {
+      "bytes": 602042,
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
+    }
+  },
+  "legacy_evidence_summary": {
+    "OUTSIDE67-PATH-019": {
+      "legacy_catalog_record_count": 0,
+      "exact_ledger_hits": [],
+      "path_or_sha_in_live_holdings": "no exact candidate ID/path hit in seven legacy ledgers; holding/register scope is separate",
+      "status": "unknown_no_closure"
+    },
+    "OUTSIDE67-PATH-022": {
+      "legacy_catalog_record_count": 0,
+      "exact_ledger_hits": [],
+      "path_or_sha_in_live_holdings": "no exact candidate ID/path hit in seven legacy ledgers; holding/register scope is separate",
+      "status": "unknown_no_closure"
+    },
+    "OUTSIDE67-PATH-024": {
+      "legacy_catalog_record_count": 0,
+      "exact_ledger_hits": [],
+      "path_or_sha_in_live_holdings": "no exact candidate ID/path hit in seven legacy ledgers; holding/register scope is separate",
+      "status": "unknown_no_closure"
+    },
+    "OUTSIDE67-PATH-041": {
+      "legacy_catalog_record_count": 0,
+      "exact_ledger_hits": [],
+      "path_or_sha_in_live_holdings": "no exact candidate ID/path hit in seven legacy ledgers; holding/register scope is separate",
+      "status": "unknown_no_closure"
+    },
+    "OUTSIDE67-PATH-058": {
+      "legacy_catalog_record_count": 0,
+      "exact_ledger_hits": [],
+      "path_or_sha_in_live_holdings": "no exact candidate ID/path hit in seven legacy ledgers; holding/register scope is separate",
+      "status": "unknown_no_closure"
+    }
+  },
+  "ledger_files": [
+    "docs/governance/legacy-asset-disposition.jsonl",
+    "docs/governance/legacy-asset-decisions.jsonl",
+    "docs/governance/legacy-asset-copy-read-after.jsonl",
+    "docs/governance/legacy-asset-decision-log.md",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+  ],
+  "notes": [
+    "Exact path/blob/sha receipts and semantic inclusion are separate observations.",
+    "Current counterpart relocation and content/hash relation are retained without semantic equivalence, authority, successor, owner, implementation, degradation, failure, consumer, or decision inference.",
+    "The five source paths are selected from the remaining twenty outside67 pairs and do not overlap the existing 47 reviewed/candidate IDs."
+  ],
+  "selected_ids": [
+    "OUTSIDE67-PATH-019",
+    "OUTSIDE67-PATH-022",
+    "OUTSIDE67-PATH-024",
+    "OUTSIDE67-PATH-041",
+    "OUTSIDE67-PATH-058"
+  ],
+  "current_counterpart_relocation_ids": [
+    "OUTSIDE67-PATH-019",
+    "OUTSIDE67-PATH-022",
+    "OUTSIDE67-PATH-024",
+    "OUTSIDE67-PATH-041",
+    "OUTSIDE67-PATH-058"
+  ],
+  "current_counterpart_hash_equal_archive_ids": [
+    "OUTSIDE67-PATH-019",
+    "OUTSIDE67-PATH-041"
+  ],
+  "current_counterpart_content_drift_ids": [
+    "OUTSIDE67-PATH-022",
+    "OUTSIDE67-PATH-024",
+    "OUTSIDE67-PATH-058"
+  ]
+}
