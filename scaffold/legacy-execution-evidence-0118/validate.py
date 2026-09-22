@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -215,8 +216,9 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
 
 
 def verify_base() -> None:
-    if subprocess.run(["git", "merge-base", "--is-ancestor", BASE_REVISION, "HEAD"], cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
-        fail("E_BASE_NOT_ANCESTOR", f"fixed BASE {BASE_REVISION} is not an ancestor of HEAD")
+    validation_head = os.environ.get("SCF_VALIDATION_HEAD", "HEAD")
+    if subprocess.run(["git", "merge-base", "--is-ancestor", BASE_REVISION, validation_head], cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
+        fail("E_BASE_NOT_ANCESTOR", f"fixed BASE {BASE_REVISION} is not an ancestor of {validation_head}")
 
 
 def verify_inventory(inventory: dict, evidence_path: Path) -> tuple[list[dict], list[dict], dict, dict]:

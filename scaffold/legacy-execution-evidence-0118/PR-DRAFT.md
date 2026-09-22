@@ -24,7 +24,7 @@
 ```text
 python3 -B scaffold/legacy-execution-evidence-0118/generate.py  # PASS
 python3 -B scaffold/legacy-execution-evidence-0118/validate.py  # PASS: 28
-python3 -B scaffold/legacy-execution-evidence-0118/selfcheck.py  # PASS: 14 negative cases
+python3 -B scaffold/legacy-execution-evidence-0118/selfcheck.py  # PASS: 21 negative cases
 python3 scaffold/tools/scfctl.py validate  # PASS: 105 bindings / fail=0
 python3 scaffold/tools/scfctl.py stale     # PASS: stale=0
 python3 scaffold/tools/scfctl.py residuals # PASS: residuals=0

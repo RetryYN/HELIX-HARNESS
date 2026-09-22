@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import copy
+import importlib.util
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -39,16 +41,35 @@ def save(bundle: Path, inventory: dict, rows: list[dict], digest_output: bool = 
     (bundle / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n")
 
 
-def expect(label: str, mutate, code: str) -> None:
+def expect(label: str, mutate, code: str, *, digest_output: bool = True, env: dict[str, str] | None = None) -> None:
     bundle = clone()
     inventory, rows = load(bundle)
     mutate(inventory, rows)
-    save(bundle, inventory, rows)
-    proc = subprocess.run([sys.executable, "-B", str(VALIDATOR), "--bundle", str(bundle)], text=True, capture_output=True)
+    save(bundle, inventory, rows, digest_output=digest_output)
+    process_env = os.environ.copy()
+    if env:
+        process_env.update(env)
+    proc = subprocess.run([sys.executable, "-B", str(VALIDATOR), "--bundle", str(bundle)], text=True, capture_output=True, env=process_env)
     if proc.returncode == 0 or code not in proc.stderr:
         raise AssertionError(f"{label}: expected {code}, got exit={proc.returncode} stderr={proc.stderr!r}")
     print(f"PASS {label}: {code}")
     shutil.rmtree(bundle.parent, ignore_errors=True)
+
+
+def expect_direct(label: str, action, code: str) -> None:
+    spec = importlib.util.spec_from_file_location("scf_b_0118_validate_probe", VALIDATOR)
+    if spec is None or spec.loader is None:
+        raise AssertionError(f"{label}: validator import failed")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    try:
+        action(module)
+    except AssertionError as exc:
+        if code not in str(exc):
+            raise AssertionError(f"{label}: expected {code}, got {exc}") from exc
+        print(f"PASS {label}: {code}")
+        return
+    raise AssertionError(f"{label}: expected {code}, action returned without failure")
 
 
 def main() -> int:
@@ -66,7 +87,21 @@ def main() -> int:
     expect("scope denominator tamper", lambda inv, rows: inv["scope"].update(product_units=217), "E_SCOPE")
     expect("selection rule tamper", lambda inv, rows: inv["selection"].update(source_path_regex=".*"), "E_EXPLORATION")
     expect("unknown evidence field", lambda inv, rows: rows[0].update(fabricated_field=True), "E_SCHEMA")
-    print("PASS SCF-B-0118 selfcheck: 14 negative cases")
+    expect("authority boundary tamper", lambda inv, rows: inv["authority_boundary"].update(authority_effect="implementation"), "E_AUTHORITY_BOUNDARY")
+    expect("history/counter tamper", lambda inv, rows: rows[0]["counter_evidence"].clear(), "E_HISTORY_OR_COUNTER")
+    expect("input path set tamper", lambda inv, rows: inv["input_digests"].pop(), "E_INPUT_SET")
+    expect("output digest omission", lambda inv, rows: rows[0].update(asset_role="tampered"), "E_OUTPUT_DIGEST", digest_output=False)
+    root_commit = subprocess.check_output(["git", "rev-list", "--max-parents=0", "HEAD"], text=True).strip().splitlines()[0]
+    expect("fixed BASE non-ancestor", lambda inv, rows: None, "E_BASE_NOT_ANCESTOR", env={"SCF_VALIDATION_HEAD": root_commit})
+    expect_direct("missing fixed-base source object", lambda module: module.git_bytes("__scf_missing_base_source__"), "E_BASE_SOURCE")
+    def history_probe(module):
+        selected = [row for _, row in module.base_rows(module.DISPOSITION) if module.re.search(module.SELECTION_REGEX, row.get("source_path", ""), module.re.IGNORECASE)]
+        decision_asset = module.base_rows(module.DECISIONS)[0][1]["asset_id"]
+        probe = dict(selected[0])
+        probe["asset_id"] = decision_asset
+        module.expected_records([probe])
+    expect_direct("unexpected history binding", history_probe, "E_HISTORY_BINDING")
+    print("PASS SCF-B-0118 selfcheck: 21 negative cases")
     return 0
 
 

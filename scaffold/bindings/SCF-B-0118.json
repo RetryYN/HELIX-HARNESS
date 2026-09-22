@@ -431,7 +431,14 @@
       "E_STATUS_PROMOTION implementation／degradation／current promotion",
       "E_SCOPE denominator tamper",
       "E_EXPLORATION selection／counter-evidence tamper",
-      "E_SCHEMA unknown evidence field"
+      "E_SCHEMA unknown evidence field",
+      "E_AUTHORITY_BOUNDARY authority promotion tamper",
+      "E_HISTORY_OR_COUNTER counter-evidence tamper",
+      "E_INPUT_SET input path omission",
+      "E_OUTPUT_DIGEST output digest omission",
+      "E_BASE_NOT_ANCESTOR fixed BASE non-ancestor HEAD",
+      "E_BASE_SOURCE missing fixed-base object probe",
+      "E_HISTORY_BINDING unexpected decision/read-after reference probe"
     ]
   }
 }

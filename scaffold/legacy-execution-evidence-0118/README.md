@@ -60,6 +60,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorは固定BASEから入力digest、分母、selection regex、28件exact set、nested ledger record、archive blob／SHA／anchor、candidate poolとdirect linkの分離、観測分類、unknown／absent境界を独立再導出します。selfcheckは架空unit link、架空requirement link、架空acceptance verdict、consumer tamper、source tamper、asset重複／欠落、input／BASE／scope／selection改竄、unit verdict昇格、unknown fieldの14負例を期待error code付きで検査します。
+validatorは固定BASEから入力digest、分母、selection regex、28件exact set、nested ledger record、archive blob／SHA／anchor、candidate poolとdirect linkの分離、観測分類、unknown／absent境界を独立再導出します。selfcheckは架空unit link、架空requirement link、架空acceptance verdict、consumer tamper、source tamper、asset重複／欠落、input／BASE／scope／selection改竄、unit verdict昇格、unknown fieldの21負例を期待error code付きで検査します。
 
 Progress reference: Issue #1813（進捗参照のみ。closeは行わない）。#2067のレビュー中worktreeは変更していません。
