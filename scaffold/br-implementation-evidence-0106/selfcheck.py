@@ -1,0 +1,143 @@
+#!/usr/bin/env python3
+"""SCF-B-0106 validatorの意味ある負例と期待error codeを確認する。"""
+from __future__ import annotations
+
+import copy
+import json
+import shutil
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+
+BUNDLE = Path(__file__).resolve().parent
+ROOT = BUNDLE.parents[1]
+VALIDATE = BUNDLE / "validate.py"
+
+
+def run_case(name: str, expected_code: str, mutate, mutate_inventory=None) -> None:
+    with tempfile.TemporaryDirectory(prefix=f"scf-b-0106-{name}-") as tmp:
+        target = Path(tmp)
+        inventory = json.loads((BUNDLE / "inventory.json").read_text(encoding="utf-8"))
+        if mutate_inventory:
+            mutate_inventory(inventory)
+        (target / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
+        rows = [json.loads(line) for line in (BUNDLE / "evidence.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+        mutate(rows)
+        (target / "evidence.jsonl").write_text(
+            "".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows), encoding="utf-8"
+        )
+        result = subprocess.run(
+            [sys.executable, str(VALIDATE), "--bundle", str(target), "--repo", str(ROOT)],
+            text=True, capture_output=True, check=False,
+        )
+        output = result.stdout + result.stderr
+        if result.returncode == 0 or expected_code not in output:
+            raise SystemExit(f"{name}: expected {expected_code}, got rc={result.returncode}\n{output}")
+        print(f"PASS {name}: {expected_code}")
+
+
+def main() -> None:
+    def wrong_blob(rows):
+        rows[0]["old_asset_evidence"]["assets"][0]["git_blob_oid_at_base"] = "0" * 40
+
+    def wrong_current_span(rows):
+        rows[0]["current_implementation_evidence"]["current_refs"][0]["span_sha256"] = "sha256:" + "0" * 64
+
+    def missing_edge(rows):
+        rows[0]["semantic_review_edges"].pop()
+
+    def claimed_current_impl(rows):
+        rows[0]["current_implementation_evidence"]["status"] = "implemented"
+
+    def claimed_failure(rows):
+        rows[0]["legacy_failure_evidence"]["observed_failure_status"] = "observed"
+
+    def tampered_ledger_consumer(rows):
+        rows[0]["old_asset_evidence"]["assets"][0]["ledger_record"]["consumer_refs"] = ["FAKE-CONSUMER"]
+
+    def tampered_consumer_status(rows):
+        rows[0]["legacy_consumer_evidence"]["closure_status"] = "closed"
+
+    def tampered_consumer_refs(rows):
+        rows[0]["legacy_consumer_evidence"]["review_observed_consumer_refs"].append("FAKE-CONSUMER")
+
+    def missing_counter_evidence(rows):
+        rows[0]["counter_evidence"] = {}
+
+    def missing_unresolved(rows):
+        rows[0]["unresolved"] = []
+
+    def wrong_input_digest(inventory):
+        first = sorted(inventory["input_digests"])[0]
+        inventory["input_digests"][first] = "0" * 64
+
+    def wrong_anchor_policy(inventory):
+        inventory["anchor_digest_policy"]["wave_18_50"] = "raw_span_bytes"
+
+    def tampered_anchor_resolution(rows):
+        rows[0]["legacy_anchor_resolution"]["review_edges"][0]["references"][0]["base_excerpt_sha256"] = "sha256:" + "0" * 64
+
+    def removed_unit_asset(rows):
+        rows[0]["old_asset_evidence"]["assets"].pop()
+
+    def injected_unit_asset(rows):
+        rows[0]["old_asset_evidence"]["assets"].append({"asset_id": "LEGACY-ASSET-FAKE-2057"})
+
+    def duplicated_unit_asset(rows):
+        rows[0]["old_asset_evidence"]["assets"].append(copy.deepcopy(rows[0]["old_asset_evidence"]["assets"][0]))
+
+    def duplicated_unit_edge(rows):
+        rows[0]["semantic_review_edges"].append(copy.deepcopy(rows[0]["semantic_review_edges"][0]))
+
+    def tampered_inventory_declaration(inventory):
+        inventory["counts"]["current_static_refs"] = 99999
+
+    def reversed_impl_presence(rows):
+        rows[0]["legacy_implementation_evidence"]["evidence_presence"] = "no_static_implementation_source_edge"
+
+    def emptied_impl_contribution(rows):
+        rows[0]["legacy_implementation_evidence"]["semantic_contribution_by_edge"] = {}
+
+    def fabricated_degradation_span(rows):
+        rows[0]["legacy_degradation_evidence"]["phase_level_evidence"][0]["evidence_spans"] = ["FAKE-SPAN-2057"]
+
+    def fabricated_failure_ledger_status(rows):
+        rows[0]["legacy_failure_evidence"]["ledger_external_effect_statuses"][0]["value"] = "external_effect_confirmed"
+
+    def emptied_failure_reason(rows):
+        rows[0]["legacy_failure_evidence"]["why_unknown"] = []
+
+    def tampered_candidate_record(rows):
+        rows[0]["source_requirement"]["representative_legacy_assets"][0]["confidence"] = "confirmed_implementation_evidence"
+
+    run_case("wrong-blob", "E_OLD_BLOB", wrong_blob)
+    run_case("wrong-current-span", "E_CURRENT_SPAN", wrong_current_span)
+    run_case("missing-edge", "E_REVIEW_EDGE_SET", missing_edge)
+    run_case("claimed-current-implementation", "E_CURRENT_STATUS", claimed_current_impl)
+    run_case("claimed-old-failure", "E_OLD_FAILURE_CLAIM", claimed_failure)
+    run_case("tampered-ledger-consumer", "E_OLD_LEDGER_RECORD", tampered_ledger_consumer)
+    run_case("tampered-consumer-status", "E_CONSUMER_EVIDENCE", tampered_consumer_status)
+    run_case("tampered-consumer-refs", "E_CONSUMER_EVIDENCE", tampered_consumer_refs)
+    run_case("missing-counter-evidence", "E_COUNTER_EVIDENCE", missing_counter_evidence)
+    run_case("missing-unresolved", "E_UNRESOLVED", missing_unresolved)
+    run_case("wrong-input-digest", "E_INPUT_DIGEST", lambda rows: None, wrong_input_digest)
+    run_case("wrong-anchor-policy", "E_OLD_ANCHOR_POLICY", lambda rows: None, wrong_anchor_policy)
+    run_case("tampered-anchor-resolution", "E_OLD_ANCHOR_RESOLUTION", tampered_anchor_resolution)
+    run_case("removed-unit-asset", "E_OLD_ASSET_UNIT_SET", removed_unit_asset)
+    run_case("injected-unit-asset", "E_OLD_ASSET_UNIT_SET", injected_unit_asset)
+    run_case("duplicated-unit-asset", "E_OLD_ASSET_UNIT_SET", duplicated_unit_asset)
+    run_case("duplicated-unit-edge", "E_REVIEW_EDGE_SET", duplicated_unit_edge)
+    run_case("tampered-inventory-declaration", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_inventory_declaration)
+    run_case("reversed-impl-presence", "E_OLD_IMPL_EVIDENCE", reversed_impl_presence)
+    run_case("emptied-impl-contribution", "E_OLD_IMPL_EVIDENCE", emptied_impl_contribution)
+    run_case("fabricated-degradation-span", "E_OLD_DEGRADATION_EVIDENCE", fabricated_degradation_span)
+    run_case("fabricated-failure-ledger-status", "E_OLD_FAILURE_EVIDENCE", fabricated_failure_ledger_status)
+    run_case("emptied-failure-reason", "E_OLD_FAILURE_EVIDENCE", emptied_failure_reason)
+    run_case("tampered-candidate-record", "E_CANDIDATE_BINDING", tampered_candidate_record)
+    print("SCF-B-0106 selfcheck: PASS (24 negative cases; expected error codes matched)")
+
+
+if __name__ == "__main__":
+    main()
