@@ -20,7 +20,7 @@ source本文は固定BASEのGit objectから読み、archive旧code／test／run
 
 対象範囲の分母は固定BASEから再導出する。218 product unit、153 source ID、Wave1–50の598 edge／355 unique asset、legacy ledger 4,020行、選定13 asset、選定assetのcandidate-pool 281行、Wave edge 1行である。candidate poolは検索関係でありunit結合ではなく、representative/direct linkは0件である。
 
-`generate.py`は証拠束を固定BASEから再生成し、`validate.py`は同じBASE objectからledger完全一致、source claim anchor、status partition、legacy_status全field、unit/requirement/acceptance境界、入力digest、BASE祖先性を独立検査する。`selfcheck.py`は25件の改竄負例を期待error codeと照合する。Bindingには束の全成果物を登録する。
+`generate.py`は証拠束を固定BASEから再生成し、`validate.py`は同じBASE objectからledger完全一致、source claim anchor、status partition、legacy_status全field、unit/requirement/acceptance境界、入力digest、BASE祖先性を独立検査する。inventoryのbundle_kind、anchor_rule.claim_rules、search_boundaries、top-level key集合も固定BASE由来の期待値と全体比較する。`selfcheck.py`は29件の改竄負例を期待error codeと照合する。Bindingには束の全成果物を登録する。
 
 ## 検証
 

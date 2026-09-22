@@ -383,7 +383,7 @@
     "各assetのarchive source path/blob/bytes/SHAとclaim-specific line anchorを固定BASEから再導出する",
     "old implementation／unimplemented／degradation／failure／consumerを別partitionで保存しunit statusはunknown、consumer closureはpendingに保つ",
     "218 unit／153 source／598 Wave edge／355 Wave asset／4020 ledgerの探索分母、candidate poolとdirect binding境界を固定する",
-    "nested ledger record、source claim、unit/requirement/acceptance binding、status／legacy_status promotion、unresolved消去、入力digest、BASE祖先性をvalidator/selfcheckでfail-closeする",
+    "nested ledger record、source claim、unit/requirement/acceptance binding、status／legacy_status promotion、unresolved消去、入力digest、BASE祖先性、inventory bundle_kind／anchor_rule.claim_rules／search_boundaries／top-level key集合をvalidator/selfcheckでfail-closeする",
     "旧archiveのruntime/test/CI/source実行、formal authority/implementation/acceptance変更、merge/closeを行わない"
   ],
   "operations": {
@@ -418,13 +418,15 @@
       "validator／selfcheck／scfctl／git diff --check"
     ],
     "negative_cases": [
-      "E_SCHEMA top-level or inventory key tamper",
+      "E_SCHEMA top-level or inventory key/bundle_kind tamper",
+      "E_CLAIM_ANCHOR inventory anchor_rule.claim_rules tamper",
       "E_BASE_PIN fixed BASE tamper",
       "E_BASE_NOT_ANCESTOR unrelated validation HEAD",
       "E_INPUT_SET input path omission",
       "E_INPUT_DIGEST input digest tamper",
       "E_OUTPUT_DIGEST output tamper",
       "E_SCOPE denominator tamper",
+      "E_SCOPE inventory search_boundaries tamper",
       "E_SELECTION selected ID digest tamper",
       "E_LEDGER_RECORD nested ledger consumer tamper",
       "E_SOURCE_EVIDENCE source blob/SHA tamper",
