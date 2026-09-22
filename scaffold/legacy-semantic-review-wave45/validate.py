@@ -77,10 +77,11 @@ ROW_FIELDS = {
     "source_text_spans", "unit_candidate_id", "unresolved",
 }
 ROLE_POLICIES = {
-    "requirement": ("requirement", "confirmed", "same_requirement_id_exact_source_contract_not_implementation", "contract_only_no_implementation_claim", 2),
-    "design": ("design", "unresolved", "design_contract_evidence", "design_contract_only_no_implementation_claim", 1),
-    "implementation_source": ("implementation_source", "unresolved", "implementation_candidate_only", "implementation_candidate_only", 1),
+    "requirement": ("requirement", "confirmed", "same_requirement_id_exact_source_contract_not_implementation", "contract_only_no_implementation_claim", 2, "non_executable_source_snapshot"),
+    "design": ("design", "unresolved", "design_contract_evidence", "design_contract_only_no_implementation_claim", 1, "document_present"),
+    "implementation_source": ("implementation_source", "unresolved", "implementation_candidate_only", "implementation_candidate_only", 1, "implementation_source_present_unexecuted"),
 }
+CANDIDATE_MEMBERSHIP_SEMANTICS = "bounded_global_search_candidate_only_not_semantic_evidence"
 UNRESOLVED = [
     "exact_head_independent_review_pending", "human_product_authority_decision_pending",
     "successor_assignment_unassigned", "product_boundary_human_decision_pending",
@@ -220,11 +221,13 @@ def verify_binding(row: dict, binding: dict, joined: str) -> None:
 def verify_role(row: dict) -> None:
     role = row["role_kind"]
     require(role in ROLE_POLICIES, f"unknown role {row['review_id']}")
-    kind, link_status, relation, contribution, ref_count = ROLE_POLICIES[role]
+    kind, link_status, relation, contribution, ref_count, evidence_state = ROLE_POLICIES[role]
     require(row["artifact_evidence_kind"] == kind, f"role kind {row['review_id']}")
     require(row["semantic_link_status"] == link_status, f"role link status {row['review_id']}")
     require(row["semantic_relation"] == relation, f"role relation {row['review_id']}")
     require(row["legacy_requirement_implementation_contribution"] == contribution, f"role contribution {row['review_id']}")
+    require(row["candidate_membership_semantics"] == CANDIDATE_MEMBERSHIP_SEMANTICS, f"candidate membership boundary {row['review_id']}")
+    require(row["legacy_asset_evidence_state"] == evidence_state, f"legacy evidence state {row['review_id']}")
     require(row["evidence_refs"] and len(row["evidence_refs"]) == ref_count, f"role refs {row['review_id']}")
     require(row["review_scope"].startswith("Wave45 schema10"), f"review scope {row['review_id']}")
     require(row["unresolved"] == UNRESOLVED, f"unresolved vocabulary {row['review_id']}")
@@ -483,6 +486,7 @@ def verify() -> None:
             verify_role(row)
             require(row["batch_id"] == BATCH and row["schema_revision"] == 10, f"row identity {row['review_id']}")
             require(row["product_scope"] == req["product_scope"] and row["phase_candidates"] == req["phase_candidates"], f"row scope {row['review_id']}")
+            require(row["source_text_spans"] == req["source_text_spans"], f"source text span preservation {row['review_id']}")
             require(row["covered_requirement_atoms"] == req["covered_requirement_atoms"], f"atom preservation {row['review_id']}")
             require(row["covered_requirement_atom_ids"] == atom_ids, f"atom IDs {row['review_id']}")
             asset = catalog[row["asset_id"]]

@@ -116,6 +116,25 @@ def mutate_stale_anchor(mutated_rows) -> None:
     design["source_scope_fragments"] = ["invented-current-scope"]
 
 
+def mutate_nonrequirement_membership_semantics(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    design["candidate_membership_semantics"] = "semantic_evidence"
+
+
+def mutate_nonrequirement_legacy_evidence_state(mutated_rows) -> None:
+    implementation = next(row for row in mutated_rows if row["role_kind"] == "implementation_source")
+    implementation["legacy_asset_evidence_state"] = "document_present"
+
+
+def mutate_nonrequirement_source_spans(mutated_rows) -> None:
+    design = next(row for row in mutated_rows if row["role_kind"] == "design")
+    requirement = next(
+        row for row in mutated_rows
+        if row["role_kind"] == "requirement" and row["unit_candidate_id"] != design["unit_candidate_id"]
+    )
+    design["source_text_spans"] = copy.deepcopy(requirement["source_text_spans"])
+
+
 def mutate_shared_connection(mutated_rows) -> None:
     row = next(row for row in mutated_rows if row["role_kind"] == "design")
     row["connection_records"] = [{
@@ -250,6 +269,9 @@ rejected("cross-unit source span reuse", mutate_source_overlap)
 rejected("atom identity injection", mutate_atom_identity)
 rejected("unsupported product routing", mutate_product_scope)
 rejected("stale source anchor", mutate_stale_anchor)
+rejected("non-requirement candidate membership semantics promotion", mutate_nonrequirement_membership_semantics)
+rejected("non-requirement legacy evidence state drift", mutate_nonrequirement_legacy_evidence_state)
+rejected("non-requirement source span mismatch", mutate_nonrequirement_source_spans)
 rejected("shared source connection deletion", mutate_shared_connection)
 rejected("design/requirement semantic inversion", mutate_role_inversion)
 rejected("inferred implementation meaning", mutate_inferred_meaning)
@@ -272,4 +294,4 @@ rejected_document("inventory count mismatch", "INVENTORY", mutate_inventory_coun
 rejected_meta("degradation promotion", mutate_degradation_promotion)
 rejected_meta("prior cumulative counts left unchanged", mutate_prior_cumulative_counts)
 
-print("Wave45 selfcheck: PASS (validator plus twenty-seven negative mutations)")
+print("Wave45 selfcheck: PASS (validator plus thirty negative mutations)")

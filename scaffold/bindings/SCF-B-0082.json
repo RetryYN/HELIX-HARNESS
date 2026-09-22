@@ -125,7 +125,7 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave45/README.md",
-      "sha256": "00ab72da8d1e744444867af34f4774c1cbfc80753a577786c7f95bb7b4cacb8b",
+      "sha256": "d6e44fb19dac965ff32631a527ac39729d57caab072d4dba39b7afdd2ffcab00",
       "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
@@ -145,12 +145,12 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave45/validate.py",
-      "sha256": "312b25007d71d7010a265be0992900dd3059077a9e0cbc9eb47db2d57a18af56",
+      "sha256": "d27b91068a1ffa5a64986b7fbdf80a2be6a1244d0fedcedd6707dc1875bdf14a",
       "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave45/selfcheck.py",
-      "sha256": "f28bfde1b4a5f095ae89e31ffaa8bdbc1c643bbb2797de81b99cab88fc886ea0",
+      "sha256": "fa12a6ae89c106bdf92c2be229c8fe0170adc0c200b35b7f6c6ce1657d588ca3",
       "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {
@@ -229,12 +229,15 @@
     "oracles": [
       "Wave45 generate.py→ledger/meta deterministic regeneration",
       "Wave45 validate.py source／asset／decision／failure／consumer receipt、独立pool、prior dynamic count、same-batch duplicate、missing evidence検算",
-      "Wave45 selfcheck.py 本体validator経路の27 negative mutation",
+      "Wave45 selfcheck.py 本体validator経路の30 negative mutation（非requirement row candidate membership／legacy evidence state／source spanを含む）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],
     "negative_cases": [
       "source span／digest tamper",
+      "non-requirement candidate membership semantics drift",
+      "non-requirement legacy asset evidence state drift",
+      "non-requirement source text span mismatch",
       "cross-unit source span reuse",
       "atom identity injection",
       "unsupported product routing",
