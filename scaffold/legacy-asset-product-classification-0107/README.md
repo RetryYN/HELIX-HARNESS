@@ -28,4 +28,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-negative selfcheckはtarget欠落／重複、edge欠落／重複、source digest、candidate product、authority昇格、boundary line digest、input digest欠落／重複、固定BASE祖先性を期待error code付きで拒否する。
+15件のnegative selfcheckはtarget欠落／重複、edge欠落／重複、source digestと静的read mode、candidate product、recordへの正式owner混入、authority昇格、boundary line digest、input digest欠落／重複、inventoryの権限・分類規則改竄、固定BASE祖先性を期待error code付きで拒否する。

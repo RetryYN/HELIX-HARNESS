@@ -281,7 +281,15 @@ def make_record(asset_id: str, phase_row: tuple[int, dict], asset_row: tuple[int
     elif "rejected" in statuses:
         category = "insufficient_basis"
         reason = "The only semantic link is rejected; the source anchor does not support a product proposal despite the adjacent unit candidate."
-    elif len(products) == 1 and links and all(link["source_path"] and link["source_sha256"] for link in links):
+    elif len(products) == 1 and links and all(
+        link["source_path"] and link["source_sha256"] and any(
+            ref.get("archive_path") == ARCHIVE_PREFIX + link["source_path"]
+            and isinstance(ref.get("line_start"), int)
+            and isinstance(ref.get("line_end"), int)
+            and 1 <= ref["line_start"] <= ref["line_end"]
+            for ref in link["evidence_refs"]
+        ) for link in links
+    ):
         category = "direct_product_basis"
         reason = "Every observed link has an exact legacy source anchor and one unit product candidate; the proposal remains unresolved because semantic_link_status and product authority are not approved."
     else:

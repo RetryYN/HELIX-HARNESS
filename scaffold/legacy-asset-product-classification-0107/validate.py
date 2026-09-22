@@ -38,6 +38,19 @@ BOUNDARY_RANGES = {"HELIX-HARNESS": [(36, 36), (54, 61), (86, 89)], "HELIX-OS": 
 L1_RANGES = {"HELIX-HARNESS": [(22, 24), (54, 58)], "HELIX-OS": [(22, 25), (59, 63)], "HELIX-Web": [(24, 26), (47, 49)], "HELIX-Web-OS": [(14, 15), (39, 44)]}
 FAILURE_RANGES = [(17, 23), (52, 63)]
 CONSUMER_RANGES = [(24, 36), (38, 50)]
+RECORD_KEYS = frozenset({
+    "artifact_evidence_kinds", "asset_id", "asset_ledger", "authority_effect",
+    "boundary_evidence", "candidate_products", "classification_category",
+    "classification_reason", "classification_state", "failure_consumer_static_refs",
+    "formal_asset_classification_updated", "human_judgment_remaining", "l1_evidence",
+    "legacy_history_failure_consumer", "new_build_allowed", "observed_wave_products",
+    "phase_ledger", "semantic_link_statuses", "source_exact", "unit_product_candidates",
+    "wave_semantic_links",
+})
+SOURCE_KEYS = frozenset({
+    "archive_path", "blob", "bytes", "evidence_anchors", "ledger_source_sha256",
+    "line_count", "read_mode", "sha256", "source_path",
+})
 
 
 def fail(code: str, message: str) -> None:
@@ -132,7 +145,15 @@ def expected_category(links: list[dict]) -> tuple[str, str, list[str]]:
         return "multi_product_conflict", "Wave unit product_scope/candidate_product_targets contain multiple distinct products; a single owner cannot be inferred." + (" All observed semantic links are rejected, so the candidate is retained as counter-evidence only." if statuses == {"rejected"} else ""), products
     if "rejected" in statuses:
         return "insufficient_basis", "The only semantic link is rejected; the source anchor does not support a product proposal despite the adjacent unit candidate.", products
-    if len(products) == 1 and links and all(link.get("source_path") and link.get("source_sha256") for link in links):
+    if len(products) == 1 and links and all(
+        link.get("source_path") and link.get("source_sha256") and any(
+            ref.get("archive_path") == ARCHIVE_PREFIX + link["source_path"]
+            and isinstance(ref.get("line_start"), int)
+            and isinstance(ref.get("line_end"), int)
+            and 1 <= ref["line_start"] <= ref["line_end"]
+            for ref in link.get("evidence_refs", [])
+        ) for link in links
+    ):
         return "direct_product_basis", "Every observed link has an exact legacy source anchor and one unit product candidate; the proposal remains unresolved because semantic_link_status and product authority are not approved.", products
     return "insufficient_basis", "No complete single-product source-backed candidate survives the Wave semantic-link evidence.", products
 
@@ -219,6 +240,8 @@ def verify() -> dict:
         for unit in parent.get("candidate_units", []): decomp_by_unit[unit["unit_candidate_id"]] = compact_decomp(parent, unit, line)
     for record in rows:
         aid = record["asset_id"]
+        if set(record) != RECORD_KEYS:
+            fail("E_RECORD_SCHEMA", f"record key set mismatch {aid}")
         if aid not in targets: fail("E_TARGET_SET", f"record outside target set {aid}")
         phase_line, phase = phase_by_asset[aid]
         if record.get("phase_ledger") != {"path": PHASE, "line": phase_line, "row_sha256": row_digest(phase), "product_classification_status": phase.get("product_classification_status"), "candidate_product_targets": phase.get("candidate_product_targets") or [], "candidate_phase_targets": phase.get("candidate_phase_targets") or [], "source_path": phase.get("source_path"), "source_sha256": phase.get("source_sha256"), "consumer_closure_status": phase.get("consumer_closure_status")}:
@@ -228,7 +251,7 @@ def verify() -> dict:
         if record.get("asset_ledger") != expected_asset: fail("E_HISTORY", f"asset disposition receipt mismatch {aid}")
         if disp.get("disposition") != "unresolved" or disp.get("product_target") != "unresolved" or disp.get("authority_status") != "historical": fail("E_PHASE_STATUS", f"formal asset state changed for {aid}")
         source = record.get("source_exact", {}); archive_path = ARCHIVE_PREFIX + disp["source_path"]; source_data = git_bytes(archive_path)
-        if source.get("archive_path") != archive_path or source.get("source_path") != disp["source_path"] or source.get("blob") != git_blob(archive_path) or source.get("bytes") != len(source_data) or source.get("sha256") != tagged(source_data) or source.get("ledger_source_sha256") != "sha256:" + disp["source_sha256"]:
+        if set(source) != SOURCE_KEYS or source.get("archive_path") != archive_path or source.get("source_path") != disp["source_path"] or source.get("blob") != git_blob(archive_path) or source.get("bytes") != len(source_data) or source.get("line_count") != len(source_data.decode(errors="replace").splitlines()) or source.get("sha256") != tagged(source_data) or source.get("ledger_source_sha256") != "sha256:" + disp["source_sha256"] or source.get("read_mode") != "git_object_static_read_only":
             fail("E_SOURCE_DIGEST", f"source exact mismatch {aid}")
         links = record.get("wave_semantic_links", []); expected = expected_links(by_asset[aid]);
         if len(links) != len(expected) or len({l.get("edge_id") for l in links}) != len(links) or {l.get("edge_id") for l in links} != {l["edge_id"] for l in expected}:
@@ -263,6 +286,59 @@ def verify() -> dict:
         expected_hist = {"disposition": {"path": DISPOSITION, "line": disp_line, "row_sha256": row_digest(disp), "asset_id": aid, "revision": disp.get("revision"), "disposition": disp.get("disposition"), "asset_class": disp.get("asset_class"), "product_target": disp.get("product_target"), "authority_status": disp.get("authority_status"), "implementation_status": disp.get("implementation_status"), "consumer_refs": sorted(disp.get("consumer_refs", [])), "decision_record_ref": disp.get("decision_record_ref"), "read_after_record_ref": disp.get("read_after_record_ref")}, "decisions": [{"path": DECISIONS, "line": line, "row_sha256": row_digest(row), "decision_id": row.get("decision_id"), "disposition": row.get("disposition"), "product_target": row.get("product_target"), "consumer_refs": sorted(row.get("consumer_refs", []))} for line, row in decisions if row.get("asset_id") == aid], "read_after": [{"path": READ_AFTER, "line": line, "row_sha256": row_digest(row), "read_after_id": row.get("read_after_id"), "result": row.get("result"), "digest_match": row.get("digest_match"), "consumer_match": row.get("consumer_match"), "failure": row.get("failure"), "consumer_refs_observed": sorted(row.get("consumer_refs_observed", []))} for line, row in read_afters if row.get("asset_id") == aid], "state_boundary": "disposition remains unresolved; no historical decision/read-after row exists for this target"}
         if history != expected_hist: fail("E_HISTORY", f"history receipt mismatch {aid}")
         verify_range_groups(record)
+    expected_inventory_meta = {
+        "schema_revision": 1,
+        "binding_id": "SCF-B-0107",
+        "scope": "Wave1-50 referenced legacy assets intersected with phase product_classification_status=unresolved",
+        "wave_source_paths": {str(n): path for n, path in WAVE_PATHS.items()},
+        "missing_expected_waves": [],
+        "expected_sets": {
+            "wave_unique_asset_count": len(referenced), "target_asset_count": len(targets),
+            "target_asset_ids": targets,
+            "target_asset_ids_sha256": tagged("\n".join(targets).encode()),
+        },
+        "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
+        "formal_update": {
+            "formal_asset_classification_updated": False, "phase_ledger_updated": False,
+            "product_route_updated": False, "new_build_allowed": False, "authority_effect": "none",
+        },
+        "classification_rule": {
+            "direct_product_basis": "one distinct product candidate plus complete source path/digest/line anchor on every link and no rejected link",
+            "multi_product_conflict": "more than one distinct product across Wave unit product_scope/candidate_product_targets",
+            "insufficient_basis": "rejected semantic link or no complete single-product source-backed candidate",
+        },
+        "boundary_refs": {"product_boundary": BOUNDARY, "l1": L1},
+        "history_failure_consumer": {
+            "disposition_rows": len(targets),
+            "decision_rows_for_targets": sum(row.get("asset_id") in targets for _, row in decisions),
+            "read_after_rows_for_targets": sum(row.get("asset_id") in targets for _, row in read_afters),
+            "failure_consumer_refs_are_static_global_inventory": True,
+        },
+        "edge_contract": {
+            "edge_identity": "edge_id derived from wave/path/line/asset_id/unit_candidate_id/semantic_link_status",
+            "expected_target_edge_count": sum(len(by_asset[a]) for a in targets),
+            "duplicate_edges_forbidden": True, "missing_edges_forbidden": True,
+        },
+        "authority_boundary": {
+            "authority_effect": "none", "classification_state": "research_proposal_pending_human_product_review",
+            "formal_asset_classification_updated": False, "new_build_allowed": False,
+        },
+        "artifacts": [
+            "scaffold/bindings/SCF-B-0107.json",
+            "scaffold/legacy-asset-product-classification-0107/README.md",
+            "scaffold/legacy-asset-product-classification-0107/PR-DRAFT.md",
+            "scaffold/legacy-asset-product-classification-0107/generate.py",
+            "scaffold/legacy-asset-product-classification-0107/validate.py",
+            "scaffold/legacy-asset-product-classification-0107/selfcheck.py",
+            "scaffold/legacy-asset-product-classification-0107/inventory.json",
+            "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
+        ],
+    }
+    if set(inventory) != set(expected_inventory_meta) | {"base_revision", "base_source_mode", "counts", "input_digests", "output_sha256"}:
+        fail("E_INVENTORY_DECLARATION", "inventory top-level key set mismatch")
+    for key, expected_value in expected_inventory_meta.items():
+        if inventory.get(key) != expected_value:
+            fail("E_INVENTORY_DECLARATION", f"inventory {key} mismatch")
     if inventory.get("counts") != {"wave_files": 50, "wave_edges": 598, "wave_unique_assets": 355, "target_assets": 64, "categories": {"direct_product_basis": 56, "insufficient_basis": 3, "multi_product_conflict": 5}, "artifact_evidence_kinds": {"implementation_source": 55, "design": 8, "plan": 1}, "semantic_link_statuses": {"unresolved": 61, "rejected": 3}, "semantic_link_asset_profiles": {"rejected_only": 3, "unresolved_only": 61}, "target_wave_edges": sum(len(by_asset[a]) for a in targets)}:
         fail("E_EXPECTED_DENOMINATOR", "inventory counts mismatch")
     print(f"SCF-B-0107 validate: PASS records={len(rows)} edges={sum(len(by_asset[a]) for a in targets)} categories=direct:56 multi:5 insufficient:3")
