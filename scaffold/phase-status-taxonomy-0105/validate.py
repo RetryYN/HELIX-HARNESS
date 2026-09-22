@@ -8,6 +8,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import generate as expected_generation
+
 HERE = Path(__file__).resolve().parent
 DEFAULT_ROOT = HERE.parents[1]
 BASE_COMMIT = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
@@ -22,7 +24,7 @@ EXPECTED_PRODUCTS = {"HELIX-OS": 24, "HELIX-HARNESS": 6}
 EXPECTED_CODES = [
     "E_TARGET_SET", "E_BASE_COMMIT", "E_BASE_NOT_ANCESTOR", "E_SOURCE_INPUT_DIGEST",
     "E_SOURCE_ANCHOR", "E_WAVE_EDGE_COVERAGE", "E_ASSET_EVIDENCE", "E_TAXONOMY_COVERAGE",
-    "E_TAXONOMY_STATUS", "E_PHCAP_BOUNDARY_CLASSIFICATION", "E_PHCAP_BOUNDARY_COVERAGE", "E_MATRIX_RULE", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION",
+    "E_TAXONOMY_STATUS", "E_PHCAP_BOUNDARY_CLASSIFICATION", "E_PHCAP_BOUNDARY_COVERAGE", "E_MATRIX_RULE", "E_TAXONOMY_EXPECTATION", "E_TAXONOMY_EVIDENCE_JOIN", "E_INVENTORY_DECLARATION", "E_UNIT_DECLARATION", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION",
     "E_AUTHORITY_BOUNDARY",
 ]
 
@@ -32,6 +34,43 @@ PHCAP_BOUNDARY_UNITS = {
     "IRUNIT-HIL-FR-20-HELIX-OS",
 }
 PHCAP_PHASE_IDS = [f"PHCAP-{index:02d}" for index in range(1, 21)]
+PHCAP20_DIRECT_RULE = "memory／continuation／handover／retention responsibility must be directly evidenced; generic state／ledger／event／process terms remain unresolved"
+
+# This is the fixed research expectation for the 30 BASE target units.  It is
+# deliberately separate from the bundle so a status-count mutation cannot make
+# an arbitrary reassignment appear valid.
+EXPECTED_RULE_MAP = {
+    "IRUNIT-HIL-BR-14-HELIX-OS": ("M-WAIT-SOURCE-AUTHORITY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"),
+    "IRUNIT-HIL-BR-24-HELIX-OS": ("M-WAIT-SOURCE-AUTHORITY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"),
+    "IRUNIT-HIL-FR-17-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"),
+    "IRUNIT-HIL-FR-18-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"),
+    "IRUNIT-HIL-FR-19-HELIX-HARNESS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"),
+    "IRUNIT-HIL-FR-20-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"),
+    "IRUNIT-HIL-FR-21-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-FR-23-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-FR-24-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"),
+    "IRUNIT-HIL-FR-31-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"),
+    "IRUNIT-HIL-FR-33-HELIX-HARNESS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-FR-33-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-FR-46-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-FR-52-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-FR-53-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-NFR-02-HELIX-HARNESS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-NFR-03-HELIX-HARNESS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-NFR-05-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-NFR-06-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-NFR-07-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-NFR-11-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-NFR-12-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-NFR-23-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-NFR-30-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"),
+    "IRUNIT-HIL-NFR-31-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-NFR-32-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-TR-04-HELIX-HARNESS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-TR-04-HELIX-OS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+    "IRUNIT-HIL-TR-07-HELIX-OS": ("M-WAIT-PHCAP-BOUNDARY", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"),
+    "IRUNIT-HIL-TR-08-HELIX-HARNESS": ("M-CROSS-CONSTRAINT-REVIEW", "CROSS_CUTTING_PHASE_REVIEW_PENDING"),
+}
 
 
 def error(errors: list[str], code: str, detail: str = "") -> None:
@@ -117,6 +156,7 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
 
     if inventory.get("schema") != "phase-status-taxonomy-0105/v1": error(errors, "E_SCHEMA")
     if inventory.get("binding_id") != "SCF-B-0105": error(errors, "E_BINDING_ID")
+    if inventory.get("status") != "research_candidate": error(errors, "E_INVENTORY_DECLARATION", "status")
     if inventory.get("authority_effect") != "none": error(errors, "E_AUTHORITY_BOUNDARY", "authority_effect")
     if inventory.get("new_build_allowed") is not False: error(errors, "E_AUTHORITY_BOUNDARY", "new_build_allowed")
 
@@ -164,11 +204,18 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
         error(errors, "E_TARGET_SET", "base_target_input")
     if len(units) != 30 or len(set(unit_ids)) != 30 or set(unit_ids) != set(expected_ids):
         error(errors, "E_TARGET_SET")
+    if set(EXPECTED_RULE_MAP) != set(expected_ids):
+        error(errors, "E_TAXONOMY_EXPECTATION", "fixed_map_coverage")
     if inventory.get("scope", {}).get("unit_count") != 30 or inventory.get("scope", {}).get("target_unit_ids") != expected_ids:
         error(errors, "E_TARGET_SET", "inventory")
     expected_product_counts = {product: sum(row.get("product_scope", []) == [product] for row in targets) for product in EXPECTED_PRODUCTS}
     if expected_product_counts != EXPECTED_PRODUCTS or inventory.get("scope", {}).get("target_product_counts") != EXPECTED_PRODUCTS:
         error(errors, "E_TARGET_SET", "product_counts")
+    scope = inventory.get("scope", {})
+    if scope.get("parent_binding_id") != "SCF-B-0101":
+        error(errors, "E_INVENTORY_DECLARATION", "parent_binding_id")
+    if scope.get("target_crosswalk_status") != "unresolved":
+        error(errors, "E_INVENTORY_DECLARATION", "target_crosswalk_status")
 
     if set(matrix) != EXPECTED_MATRIX or inventory.get("decision_matrix") != matrix:
         error(errors, "E_MATRIX_RULE", "matrix_set")
@@ -192,17 +239,34 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
             error(errors, "E_TAXONOMY_STATUS", unit_id)
         else:
             taxonomy_counts[status] += 1
+        expected_rule_status = EXPECTED_RULE_MAP.get(unit_id)
+        if expected_rule_status != (rule_id, status):
+            error(errors, "E_TAXONOMY_EXPECTATION", unit_id)
         if rule_id not in EXPECTED_MATRIX or (rule_id in matrix and matrix[rule_id].get("status") != status):
             error(errors, "E_MATRIX_RULE", unit_id)
         else:
             matrix_members[rule_id].append(unit_id)
         if unit_id in PHCAP_BOUNDARY_UNITS and rule_id != "M-WAIT-PHCAP-BOUNDARY":
             error(errors, "E_PHCAP_BOUNDARY_CLASSIFICATION", unit_id)
+        expected_classification = expected_generation.CLASSIFICATION.get(unit_id)
+        if expected_classification is None:
+            error(errors, "E_TAXONOMY_EXPECTATION", unit_id)
+        else:
+            _, _, expected_candidate, expected_waiting = expected_classification
+            if taxonomy.get("candidate_statement") != expected_candidate:
+                error(errors, "E_TAXONOMY_EXPECTATION", unit_id + ":candidate_statement")
+            waiting = taxonomy.get("judgment_waiting", {})
+            if waiting.get("items") != expected_waiting:
+                error(errors, "E_TAXONOMY_EXPECTATION", unit_id + ":judgment_waiting")
         if not taxonomy.get("candidate_is_research_only") or taxonomy.get("formal_phase_candidate") is not None or taxonomy.get("direct_phase_candidate_count") != 0 or taxonomy.get("authority_phase_status") != "unchanged_unresolved":
             error(errors, "E_PHASE_AUTHORITY_SEPARATION", unit_id)
         waiting = taxonomy.get("judgment_waiting", {})
         if waiting.get("status") != "pending_human_or_additional_source" or waiting.get("authority_effect") != "none" or waiting.get("new_build_allowed") is not False or not waiting.get("items"):
             error(errors, "E_TAXONOMY_STATUS", unit_id)
+        if taxonomy.get("required_evidence") != matrix.get(rule_id, {}).get("required_evidence"):
+            error(errors, "E_TAXONOMY_EVIDENCE_JOIN", unit_id + ":required_evidence")
+        if taxonomy.get("required_evidence_join") != expected_generation.required_evidence_join(rule_id):
+            error(errors, "E_TAXONOMY_EVIDENCE_JOIN", unit_id + ":join")
         source = parent["source"]
         anchor = unit.get("source_anchor", {})
         expected_anchor = {
@@ -256,8 +320,15 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
             if sorted(asset.get("edge_refs", [])) != sorted(expected_asset_edges):
                 error(errors, "E_ASSET_EVIDENCE", asset_id)
         phase_context = unit.get("phase_context", {})
-        if phase_context.get("parent_direct_phase_candidates") != parent["phase_classification"]["eligible_phase_candidates"] or phase_context.get("phase_authority_status") != "unchanged_unresolved":
+        if (
+            phase_context.get("parent_direct_phase_candidates") != parent["phase_classification"]["eligible_phase_candidates"]
+            or phase_context.get("observed_asset_candidate_phases") != parent["wave_review"]["asset_candidate_phase_targets"]
+            or phase_context.get("phcap20_direct_rule") != PHCAP20_DIRECT_RULE
+            or phase_context.get("phase_authority_status") != "unchanged_unresolved"
+        ):
             error(errors, "E_PHASE_AUTHORITY_SEPARATION", unit_id)
+        if phase_context.get("phcap20_direct_rule") != PHCAP20_DIRECT_RULE:
+            error(errors, "E_PHCAP_BOUNDARY_COVERAGE", unit_id + ":direct_rule")
         expected_boundary_review = {
             "phase_ids": PHCAP_PHASE_IDS,
             "status": "pending_all_20",
@@ -269,8 +340,19 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
         if phase_context.get("phcap_boundary_review") != expected_boundary_review:
             error(errors, "E_PHCAP_BOUNDARY_COVERAGE", unit_id)
         product_context = unit.get("product_context", {})
-        if product_context.get("authority_product") is not None or product_context.get("l1_context_only") is not True:
+        if (
+            product_context.get("candidate_products") != parent["product_classification"]["candidate_products"]
+            or product_context.get("authority_product") is not None
+            or product_context.get("l1_context_only") is not True
+        ):
+            error(errors, "E_UNIT_DECLARATION", unit_id + ":product_context")
             error(errors, "E_PRODUCT_AUTHORITY_SEPARATION", unit_id)
+        if (
+            unit.get("requirement_id") != parent.get("requirement_id")
+            or unit.get("crosswalk_id") != parent.get("crosswalk_id")
+            or unit.get("product_scope_candidate") != parent.get("product_scope_candidate")
+        ):
+            error(errors, "E_UNIT_DECLARATION", unit_id + ":identity_scope")
         boundary = unit.get("authority_boundary", {})
         if boundary != {
             "formal_crosswalk_modified": False,
@@ -296,6 +378,22 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
     if inventory.get("taxonomy", {}).get("full_phcap_boundary_review") != expected_full_review:
         error(errors, "E_PHCAP_BOUNDARY_COVERAGE", "inventory")
 
+    expected_wave_edge_count = sum(len(edges_by_unit.get(unit_id, [])) for unit_id in expected_ids)
+    expected_asset_count = len({edge["asset_id"] for unit_id in expected_ids for edge in edges_by_unit.get(unit_id, [])})
+    if scope.get("wave_edge_count") != expected_wave_edge_count:
+        error(errors, "E_INVENTORY_DECLARATION", "wave_edge_count")
+    if scope.get("legacy_asset_count") != expected_asset_count:
+        error(errors, "E_INVENTORY_DECLARATION", "legacy_asset_count")
+    taxonomy_declaration = inventory.get("taxonomy", {})
+    if taxonomy_declaration.get("version") != "phase-status-taxonomy-0105/v1":
+        error(errors, "E_INVENTORY_DECLARATION", "taxonomy.version")
+    if taxonomy_declaration.get("primary_statuses") != sorted(EXPECTED_STATUSES):
+        error(errors, "E_INVENTORY_DECLARATION", "taxonomy.primary_statuses")
+    if taxonomy_declaration.get("matrix_rule_ids") != sorted(EXPECTED_MATRIX):
+        error(errors, "E_INVENTORY_DECLARATION", "taxonomy.matrix_rule_ids")
+    if inventory.get("negative_case_codes") != EXPECTED_CODES:
+        error(errors, "E_INVENTORY_DECLARATION", "negative_case_codes")
+
     phase_refs = inventory.get("phcap20_definition_refs", [])
     expected_phase_paths = {
         "docs/governance/phase-capability-inventory.json",
@@ -304,9 +402,16 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
     }
     if {item.get("path") for item in phase_refs} != expected_phase_paths:
         error(errors, "E_SOURCE_INPUT_DIGEST", "phcap20_refs")
+    expected_phase_roles = {
+        "docs/governance/phase-capability-inventory.json": "PHCAP_inventory",
+        "scaffold/phcap20-memory-research/README.md": "PHCAP-20_definition",
+        "scaffold/phcap20-memory-research/inventory.json": "PHCAP-20_static_inventory",
+    }
     for item in phase_refs:
         raw = base_bytes(root / item.get("path", ""), root)
-        if raw is None or item.get("sha256") != digest(raw):
+        if raw is None or item.get("sha256") != digest(raw) or item.get("role") != expected_phase_roles.get(item.get("path")):
+            if item.get("role") != expected_phase_roles.get(item.get("path")):
+                error(errors, "E_INVENTORY_DECLARATION", "phcap20_definition_refs.role")
             error(errors, "E_SOURCE_INPUT_DIGEST", str(item.get("path")))
 
     authority_boundary = inventory.get("authority_boundary", {})

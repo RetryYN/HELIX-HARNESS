@@ -89,6 +89,74 @@ def mutate_taxonomy_count(bundle: Path) -> None:
     save_inventory(bundle, inventory)
 
 
+def mutate_taxonomy_expected_map_15(bundle: Path) -> None:
+    """Reassign 15 valid units and reconcile counts; the fixed map must reject it."""
+    rows = load_units(bundle)
+    for row in rows[:15]:
+        if row["taxonomy"]["matrix_rule_id"] == "M-CROSS-CONSTRAINT-REVIEW":
+            row["taxonomy"]["matrix_rule_id"] = "M-WAIT-SOURCE-AUTHORITY"
+            row["taxonomy"]["status"] = "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"
+        else:
+            row["taxonomy"]["matrix_rule_id"] = "M-CROSS-CONSTRAINT-REVIEW"
+            row["taxonomy"]["status"] = "CROSS_CUTTING_PHASE_REVIEW_PENDING"
+    save_units(bundle, rows)
+    inventory = json.loads((bundle / "inventory.json").read_text(encoding="utf-8"))
+    inventory["taxonomy"]["status_counts"] = {
+        status: sum(row["taxonomy"]["status"] == status for row in rows)
+        for status in validate.EXPECTED_STATUSES
+    }
+    save_inventory(bundle, inventory)
+
+
+def mutate_taxonomy_candidate_statement(bundle: Path) -> None:
+    rows = load_units(bundle)
+    rows[0]["taxonomy"]["candidate_statement"] = "phase非適用と確定した"
+    save_units(bundle, rows)
+
+
+def mutate_taxonomy_waiting_items(bundle: Path) -> None:
+    rows = load_units(bundle)
+    rows[0]["taxonomy"]["judgment_waiting"]["items"] = ["なし"]
+    save_units(bundle, rows)
+
+
+def mutate_taxonomy_evidence_join(bundle: Path) -> None:
+    rows = load_units(bundle)
+    rows[0]["taxonomy"]["required_evidence_join"]["exact source anchor"] = ["fabricated"]
+    save_units(bundle, rows)
+
+
+def mutate_inventory_declarations(bundle: Path) -> None:
+    inventory = json.loads((bundle / "inventory.json").read_text(encoding="utf-8"))
+    inventory["status"] = "formal_phase_authority"
+    inventory["scope"].update({
+        "parent_binding_id": "SCF-B-9999",
+        "target_crosswalk_status": "resolved",
+        "wave_edge_count": 999,
+        "legacy_asset_count": 999,
+    })
+    inventory["taxonomy"].update({
+        "version": "MUT",
+        "primary_statuses": ["MUT"],
+        "matrix_rule_ids": ["MUT"],
+    })
+    inventory["phcap20_definition_refs"][0]["role"] = "MUT"
+    inventory["negative_case_codes"] = ["MUT"]
+    save_inventory(bundle, inventory)
+
+
+def mutate_unit_declarations(bundle: Path) -> None:
+    rows = load_units(bundle)
+    row = rows[0]
+    row["requirement_id"] = "HIL-FAKE-99"
+    row["crosswalk_id"] = "IRIMPLX-9999"
+    row["product_scope_candidate"] = ["HELIX-Web"]
+    row["product_context"]["candidate_products"] = ["HELIX-Web-OS"]
+    row["phase_context"]["observed_asset_candidate_phases"] = ["PHCAP-01"]
+    row["phase_context"]["phcap20_direct_rule"] = "PHCAP-20の不在はphase非適用を意味する"
+    save_units(bundle, rows)
+
+
 def mutate_phcap_boundary_classification(bundle: Path) -> None:
     rows = load_units(bundle)
     for row in rows:
@@ -146,6 +214,12 @@ if __name__ == "__main__":
     run_case("taxonomy status tamper", mutate_taxonomy_status, "E_TAXONOMY_STATUS")
     run_case("matrix rule tamper", mutate_matrix_rule, "E_MATRIX_RULE")
     run_case("taxonomy count tamper", mutate_taxonomy_count, "E_TAXONOMY_COVERAGE")
+    run_case("15-unit taxonomy map reassignment", mutate_taxonomy_expected_map_15, "E_TAXONOMY_EXPECTATION")
+    run_case("taxonomy candidate statement tamper", mutate_taxonomy_candidate_statement, "E_TAXONOMY_EXPECTATION")
+    run_case("taxonomy judgment waiting tamper", mutate_taxonomy_waiting_items, "E_TAXONOMY_EXPECTATION")
+    run_case("taxonomy evidence join tamper", mutate_taxonomy_evidence_join, "E_TAXONOMY_EVIDENCE_JOIN")
+    run_case("inventory declaration leaves tamper", mutate_inventory_declarations, "E_INVENTORY_DECLARATION")
+    run_case("unit declaration leaves tamper", mutate_unit_declarations, "E_UNIT_DECLARATION")
     run_case("PHCAP boundary classification tamper", mutate_phcap_boundary_classification, "E_PHCAP_BOUNDARY_CLASSIFICATION")
     run_case("PHCAP boundary coverage tamper", mutate_phcap_boundary_coverage, "E_PHCAP_BOUNDARY_COVERAGE")
     run_case("phase authority promotion", mutate_phase_authority, "E_PHASE_AUTHORITY_SEPARATION")

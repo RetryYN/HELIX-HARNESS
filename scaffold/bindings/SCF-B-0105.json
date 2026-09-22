@@ -426,6 +426,8 @@
     "oracles": [
       "generate.py→inventory／decision-matrix／units deterministic rederivation",
       "validate.py exact 30 ID set／BASE／source anchor／Wave edge／asset evidence／taxonomy separation",
+      "validate.py fixed 30-unit taxonomy expectation map／required-evidence join／candidate and judgment-waiting exact fields",
+      "validate.py inventory declaration leaves／unit identity-product-PHCAP leaves／PHCAP reference roles",
       "selfcheck.py expected error code tamper cases",
       "scfctl validate／stale／residuals",
       "git diff --check"
@@ -440,6 +442,10 @@
       "E_ASSET_EVIDENCE: source/history/failure/consumer evidence tamper",
       "E_TAXONOMY_COVERAGE: taxonomy status or matrix membership omission",
       "E_TAXONOMY_STATUS: invalid or mixed taxonomy status",
+      "E_TAXONOMY_EXPECTATION: 15 valid unit rule reassignment, candidate statement, or judgment-waiting item tamper",
+      "E_TAXONOMY_EVIDENCE_JOIN: required_evidence or evidence-path binding tamper",
+      "E_INVENTORY_DECLARATION: inventory status/scope/taxonomy/PHCAP role/negative-code declaration tamper",
+      "E_UNIT_DECLARATION: requirement/crosswalk/product scope/candidate product/unit phase field tamper",
       "E_PHCAP_BOUNDARY_CLASSIFICATION: FR-18/19/20 unit moved out of PHCAP-boundary review-pending despite unit-level PHCAP evidence",
       "E_PHCAP_BOUNDARY_COVERAGE: missing or altered PHCAP-01..20 review coverage",
       "E_MATRIX_RULE: decision matrix overlap or rule drift",

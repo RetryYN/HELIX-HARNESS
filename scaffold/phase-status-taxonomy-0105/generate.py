@@ -91,6 +91,41 @@ MATRIX = {
     },
 }
 
+PHCAP20_DIRECT_RULE = "memory／continuation／handover／retention responsibility must be directly evidenced; generic state／ledger／event／process terms remain unresolved"
+
+
+def required_evidence_join(matrix_rule_id: str) -> dict[str, list[str]]:
+    """Bind each matrix requirement to concrete unit evidence paths."""
+    joins = {
+        "M-CROSS-CONSTRAINT-REVIEW": {
+            "exact source anchor": ["source_anchor"],
+            "Wave edge is candidate-only or contract-only": [
+                "wave_review.edges", "wave_review.candidate_semantics"
+            ],
+            "all PHCAP-01〜20 boundary review": ["phase_context.phcap_boundary_review"],
+            "phase／authority human decision": ["taxonomy.judgment_waiting.items"],
+        },
+        "M-WAIT-SOURCE-AUTHORITY": {
+            "exact source anchor": ["source_anchor"],
+            "current contract or independent source": [
+                "source_anchor", "taxonomy.judgment_waiting.items"
+            ],
+            "product／authority human decision": [
+                "product_context", "taxonomy.judgment_waiting.items"
+            ],
+        },
+        "M-WAIT-PHCAP-BOUNDARY": {
+            "exact source anchor": ["source_anchor"],
+            "PHCAP boundary contract": ["phase_context.phcap_boundary_review"],
+            "unit-level candidate phase evidence": [
+                "phase_context.observed_asset_candidate_phases",
+                "wave_review.asset_candidate_phase_targets",
+            ],
+            "phase／authority human decision": ["taxonomy.judgment_waiting.items"],
+        },
+    }
+    return joins[matrix_rule_id]
+
 
 def digest(raw: bytes) -> str:
     return "sha256:" + hashlib.sha256(raw).hexdigest()
@@ -187,6 +222,8 @@ def make_bundle() -> None:
                 "candidate_statement": candidate,
                 "candidate_is_research_only": True,
                 "direct_phase_candidate_count": 0,
+                "required_evidence": MATRIX[matrix_id]["required_evidence"],
+                "required_evidence_join": required_evidence_join(matrix_id),
                 "judgment_waiting": {
                     "status": "pending_human_or_additional_source",
                     "items": waiting,
@@ -218,7 +255,7 @@ def make_bundle() -> None:
             },
             "legacy_asset_evidence": copy.deepcopy(parent["legacy_assets"]),
             "phase_context": {
-                "phcap20_direct_rule": "memory／continuation／handover／retention responsibility must be directly evidenced; generic state／ledger／event／process terms remain unresolved",
+                "phcap20_direct_rule": PHCAP20_DIRECT_RULE,
                 "phcap_boundary_review": {
                     "phase_ids": PHCAP_PHASE_IDS,
                     "status": "pending_all_20",
@@ -300,7 +337,7 @@ def make_bundle() -> None:
         "negative_case_codes": [
             "E_TARGET_SET", "E_BASE_COMMIT", "E_BASE_NOT_ANCESTOR", "E_SOURCE_INPUT_DIGEST",
             "E_SOURCE_ANCHOR", "E_WAVE_EDGE_COVERAGE", "E_ASSET_EVIDENCE", "E_TAXONOMY_COVERAGE",
-            "E_TAXONOMY_STATUS", "E_PHCAP_BOUNDARY_CLASSIFICATION", "E_PHCAP_BOUNDARY_COVERAGE", "E_MATRIX_RULE", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION",
+            "E_TAXONOMY_STATUS", "E_PHCAP_BOUNDARY_CLASSIFICATION", "E_PHCAP_BOUNDARY_COVERAGE", "E_MATRIX_RULE", "E_TAXONOMY_EXPECTATION", "E_TAXONOMY_EVIDENCE_JOIN", "E_INVENTORY_DECLARATION", "E_UNIT_DECLARATION", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION",
             "E_AUTHORITY_BOUNDARY",
         ],
     }
