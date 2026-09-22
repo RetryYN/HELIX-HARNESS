@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "30 unit phase status taxonomy and decision matrix research（正式phase／product owner未解決）",
   "state": "registered",
-  "reason": "SCF-B-0101の直接phase gap 30 unitについて、横断制約／phase非適用の研究候補と、別source／human判断が必要な未解決を分離する。旧source、Wave edge、PHCAP-20、四製品L1、asset source／history／failure／consumerは静的参照として保持し、正式crosswalk、phase／product authority、要求採否、successor、実装、consumer closureを変更しない。research-onlyであり未解決を解消したとの主張を生成しない。",
+  "reason": "SCF-B-0101の直接phase gap 30 unitについて、横断制約らしさのレビュー保留と、別source／human判断が必要な未解決を分離する。旧source、Wave edge、PHCAP-01〜20、四製品L1、asset source／history／failure／consumerは静的参照として保持し、正式crosswalk、phase／product authority、要求採否、successor、実装、consumer closureを変更しない。research-onlyであり未解決を解消したとの主張を生成しない。",
   "upstream": [
     {
       "path": "docs/concept/product-boundary.md",
@@ -372,9 +372,9 @@
   "role": "phase-status-taxonomy-30-unit-research",
   "obligations": [
     "crosswalk unresolved 30 unit（HELIX-OS 24／HELIX-HARNESS 6）のexact ID setを保持する",
-    "横断制約／phase非適用候補とsource／human判断待ちを排他的matrix ruleで分類する",
+    "横断制約らしさのレビュー保留とsource／human判断待ちを排他的matrix ruleで分類する",
     "旧IR原文anchor、Wave1–50 edge、旧asset source／history／failure／consumerをunitへ結ぶ",
-    "PHCAP-20直接基準と四製品L1 contextをauthorityから分離する",
+    "PHCAP-01〜20全境界（PHCAP-20を含む）と四製品L1 contextをauthorityから分離する",
     "new_build_allowed=falseと正式authority不変更を保持する"
   ],
   "connections": {
@@ -385,7 +385,7 @@
     ],
     "dependencies": [
       "SCF-B-0101 parent phase-gap bundle",
-      "PHCAP-20 static definition",
+      "PHCAP-01〜20 phase capability inventory plus PHCAP-20 static definition",
       "phase classification method",
       "four product L1 context"
     ],
@@ -440,7 +440,8 @@
       "E_ASSET_EVIDENCE: source/history/failure/consumer evidence tamper",
       "E_TAXONOMY_COVERAGE: taxonomy status or matrix membership omission",
       "E_TAXONOMY_STATUS: invalid or mixed taxonomy status",
-      "E_PHCAP_BOUNDARY_CLASSIFICATION: FR-18/19/20 unit moved to phase-NA candidate despite unit-level PHCAP boundary evidence",
+      "E_PHCAP_BOUNDARY_CLASSIFICATION: FR-18/19/20 unit moved out of PHCAP-boundary review-pending despite unit-level PHCAP evidence",
+      "E_PHCAP_BOUNDARY_COVERAGE: missing or altered PHCAP-01..20 review coverage",
       "E_MATRIX_RULE: decision matrix overlap or rule drift",
       "E_PHASE_AUTHORITY_SEPARATION: formal phase promotion",
       "E_PRODUCT_AUTHORITY_SEPARATION: product authority promotion",

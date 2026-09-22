@@ -79,13 +79,13 @@ def mutate_taxonomy_status(bundle: Path) -> None:
 
 def mutate_matrix_rule(bundle: Path) -> None:
     matrix = json.loads((bundle / "decision-matrix.json").read_text(encoding="utf-8"))
-    matrix["M-CROSS-CONSTRAINT"]["status"] = "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"
+    matrix["M-CROSS-CONSTRAINT-REVIEW"]["status"] = "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"
     (bundle / "decision-matrix.json").write_text(json.dumps(matrix, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def mutate_taxonomy_count(bundle: Path) -> None:
     inventory = json.loads((bundle / "inventory.json").read_text(encoding="utf-8"))
-    inventory["taxonomy"]["status_counts"]["CROSS_CUTTING_PHASE_NA_CANDIDATE"] = 22
+    inventory["taxonomy"]["status_counts"]["CROSS_CUTTING_PHASE_REVIEW_PENDING"] = 22
     save_inventory(bundle, inventory)
 
 
@@ -93,8 +93,17 @@ def mutate_phcap_boundary_classification(bundle: Path) -> None:
     rows = load_units(bundle)
     for row in rows:
         if row["unit_candidate_id"] == "IRUNIT-HIL-FR-18-HELIX-OS":
-            row["taxonomy"]["matrix_rule_id"] = "M-CROSS-CONSTRAINT"
-            row["taxonomy"]["status"] = "CROSS_CUTTING_PHASE_NA_CANDIDATE"
+            row["taxonomy"]["matrix_rule_id"] = "M-CROSS-CONSTRAINT-REVIEW"
+            row["taxonomy"]["status"] = "CROSS_CUTTING_PHASE_REVIEW_PENDING"
+            break
+    save_units(bundle, rows)
+
+
+def mutate_phcap_boundary_coverage(bundle: Path) -> None:
+    rows = load_units(bundle)
+    for row in rows:
+        if row["unit_candidate_id"] == "IRUNIT-HIL-FR-21-HELIX-OS":
+            row["phase_context"]["phcap_boundary_review"]["phase_ids"] = row["phase_context"]["phcap_boundary_review"]["phase_ids"][:-1]
             break
     save_units(bundle, rows)
 
@@ -138,6 +147,7 @@ if __name__ == "__main__":
     run_case("matrix rule tamper", mutate_matrix_rule, "E_MATRIX_RULE")
     run_case("taxonomy count tamper", mutate_taxonomy_count, "E_TAXONOMY_COVERAGE")
     run_case("PHCAP boundary classification tamper", mutate_phcap_boundary_classification, "E_PHCAP_BOUNDARY_CLASSIFICATION")
+    run_case("PHCAP boundary coverage tamper", mutate_phcap_boundary_coverage, "E_PHCAP_BOUNDARY_COVERAGE")
     run_case("phase authority promotion", mutate_phase_authority, "E_PHASE_AUTHORITY_SEPARATION")
     run_case("product authority promotion", mutate_product_authority, "E_PRODUCT_AUTHORITY_SEPARATION")
     run_case("input digest tamper", mutate_input_digest, "E_SOURCE_INPUT_DIGEST")

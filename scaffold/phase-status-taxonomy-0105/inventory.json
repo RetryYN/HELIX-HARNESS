@@ -56,31 +56,58 @@
   "taxonomy": {
     "version": "phase-status-taxonomy-0105/v1",
     "primary_statuses": [
-      "CROSS_CUTTING_PHASE_NA_CANDIDATE",
+      "CROSS_CUTTING_PHASE_REVIEW_PENDING",
       "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"
     ],
     "status_counts": {
-      "CROSS_CUTTING_PHASE_NA_CANDIDATE": 20,
+      "CROSS_CUTTING_PHASE_REVIEW_PENDING": 20,
       "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW": 10
     },
     "matrix_rule_ids": [
-      "M-CROSS-CONSTRAINT",
+      "M-CROSS-CONSTRAINT-REVIEW",
       "M-WAIT-PHCAP-BOUNDARY",
       "M-WAIT-SOURCE-AUTHORITY"
     ],
-    "all_statuses_remain_unresolved": true
+    "all_statuses_remain_unresolved": true,
+    "full_phcap_boundary_review": {
+      "phase_ids": [
+        "PHCAP-01",
+        "PHCAP-02",
+        "PHCAP-03",
+        "PHCAP-04",
+        "PHCAP-05",
+        "PHCAP-06",
+        "PHCAP-07",
+        "PHCAP-08",
+        "PHCAP-09",
+        "PHCAP-10",
+        "PHCAP-11",
+        "PHCAP-12",
+        "PHCAP-13",
+        "PHCAP-14",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "status": "pending_all_20",
+      "non_applicability_proven": false
+    }
   },
   "decision_matrix": {
-    "M-CROSS-CONSTRAINT": {
-      "status": "CROSS_CUTTING_PHASE_NA_CANDIDATE",
+    "M-CROSS-CONSTRAINT-REVIEW": {
+      "status": "CROSS_CUTTING_PHASE_REVIEW_PENDING",
       "exclusive_group": "phase-status-primary",
-      "rule": "原文の主体がprotocol、security、custody、gate、portability、atomicity、identity、工程制約のいずれかで、PHCAP-20のmemory／continuation／handover／retention責務を直接要求しない場合は、phase非適用を研究候補として記録する。",
+      "rule": "原文の主体がprotocol、security、custody、gate、portability、atomicity、identity、工程制約のいずれかに見える場合でも、PHCAP-20の不在だけからphase非適用を導かない。PHCAP-01〜20の全境界をunit原文・Wave候補・現行境界sourceで照合するまで横断制約らしさのレビュー保留として記録する。",
       "required_evidence": [
         "exact source anchor",
         "Wave edge is candidate-only or contract-only",
-        "no direct PHCAP-20 responsibility"
+        "all PHCAP-01〜20 boundary review",
+        "phase／authority human decision"
       ],
-      "next_decision": "人間のphase非適用確認、product／authority／consumer closure"
+      "next_decision": "全PHCAP境界の追加source、phase／product authority reviewerのhuman decision、consumer closure"
     },
     "M-WAIT-SOURCE-AUTHORITY": {
       "status": "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW",
@@ -516,6 +543,7 @@
     "E_TAXONOMY_COVERAGE",
     "E_TAXONOMY_STATUS",
     "E_PHCAP_BOUNDARY_CLASSIFICATION",
+    "E_PHCAP_BOUNDARY_COVERAGE",
     "E_MATRIX_RULE",
     "E_PHASE_AUTHORITY_SEPARATION",
     "E_PRODUCT_AUTHORITY_SEPARATION",

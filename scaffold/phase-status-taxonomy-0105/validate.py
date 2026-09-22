@@ -16,13 +16,13 @@ WAVE_REL = [
     *(f"docs/governance/legacy-requirement-direct-semantic-review-wave{i}.jsonl" for i in range(1, 37)),
     *(f"scaffold/legacy-semantic-review-wave{i}/legacy-requirement-direct-semantic-review-wave{i}.jsonl" for i in range(37, 51)),
 ]
-EXPECTED_STATUSES = {"CROSS_CUTTING_PHASE_NA_CANDIDATE", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"}
-EXPECTED_MATRIX = {"M-CROSS-CONSTRAINT", "M-WAIT-SOURCE-AUTHORITY", "M-WAIT-PHCAP-BOUNDARY"}
+EXPECTED_STATUSES = {"CROSS_CUTTING_PHASE_REVIEW_PENDING", "UNRESOLVED_SOURCE_OR_HUMAN_REVIEW"}
+EXPECTED_MATRIX = {"M-CROSS-CONSTRAINT-REVIEW", "M-WAIT-SOURCE-AUTHORITY", "M-WAIT-PHCAP-BOUNDARY"}
 EXPECTED_PRODUCTS = {"HELIX-OS": 24, "HELIX-HARNESS": 6}
 EXPECTED_CODES = [
     "E_TARGET_SET", "E_BASE_COMMIT", "E_BASE_NOT_ANCESTOR", "E_SOURCE_INPUT_DIGEST",
     "E_SOURCE_ANCHOR", "E_WAVE_EDGE_COVERAGE", "E_ASSET_EVIDENCE", "E_TAXONOMY_COVERAGE",
-    "E_TAXONOMY_STATUS", "E_PHCAP_BOUNDARY_CLASSIFICATION", "E_MATRIX_RULE", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION",
+    "E_TAXONOMY_STATUS", "E_PHCAP_BOUNDARY_CLASSIFICATION", "E_PHCAP_BOUNDARY_COVERAGE", "E_MATRIX_RULE", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION",
     "E_AUTHORITY_BOUNDARY",
 ]
 
@@ -31,6 +31,7 @@ PHCAP_BOUNDARY_UNITS = {
     "IRUNIT-HIL-FR-19-HELIX-HARNESS",
     "IRUNIT-HIL-FR-20-HELIX-OS",
 }
+PHCAP_PHASE_IDS = [f"PHCAP-{index:02d}" for index in range(1, 21)]
 
 
 def error(errors: list[str], code: str, detail: str = "") -> None:
@@ -257,6 +258,16 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
         phase_context = unit.get("phase_context", {})
         if phase_context.get("parent_direct_phase_candidates") != parent["phase_classification"]["eligible_phase_candidates"] or phase_context.get("phase_authority_status") != "unchanged_unresolved":
             error(errors, "E_PHASE_AUTHORITY_SEPARATION", unit_id)
+        expected_boundary_review = {
+            "phase_ids": PHCAP_PHASE_IDS,
+            "status": "pending_all_20",
+            "non_applicability_proven": False,
+            "excluded_phase_ids": [],
+            "observed_candidate_phase_ids": parent["wave_review"]["asset_candidate_phase_targets"],
+            "basis": "full PHCAP-01〜20 boundary review is required before any phase-non-applicability judgment",
+        }
+        if phase_context.get("phcap_boundary_review") != expected_boundary_review:
+            error(errors, "E_PHCAP_BOUNDARY_COVERAGE", unit_id)
         product_context = unit.get("product_context", {})
         if product_context.get("authority_product") is not None or product_context.get("l1_context_only") is not True:
             error(errors, "E_PRODUCT_AUTHORITY_SEPARATION", unit_id)
@@ -273,10 +284,17 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HE
 
     if any(len(members) == 0 for members in matrix_members.values()) or sum(len(members) for members in matrix_members.values()) != 30 or len({item for members in matrix_members.values() for item in members}) != 30:
         error(errors, "E_TAXONOMY_COVERAGE", "matrix_membership")
-    if inventory.get("taxonomy", {}).get("status_counts") != taxonomy_counts or inventory.get("taxonomy", {}).get("status_counts", {}).get("CROSS_CUTTING_PHASE_NA_CANDIDATE") != len(matrix_members["M-CROSS-CONSTRAINT"]):
+    if inventory.get("taxonomy", {}).get("status_counts") != taxonomy_counts or inventory.get("taxonomy", {}).get("status_counts", {}).get("CROSS_CUTTING_PHASE_REVIEW_PENDING") != len(matrix_members["M-CROSS-CONSTRAINT-REVIEW"]):
         error(errors, "E_TAXONOMY_COVERAGE", "status_counts")
     if inventory.get("taxonomy", {}).get("all_statuses_remain_unresolved") is not True:
         error(errors, "E_PHASE_AUTHORITY_SEPARATION", "unresolved_marker")
+    expected_full_review = {
+        "phase_ids": PHCAP_PHASE_IDS,
+        "status": "pending_all_20",
+        "non_applicability_proven": False,
+    }
+    if inventory.get("taxonomy", {}).get("full_phcap_boundary_review") != expected_full_review:
+        error(errors, "E_PHCAP_BOUNDARY_COVERAGE", "inventory")
 
     phase_refs = inventory.get("phcap20_definition_refs", [])
     expected_phase_paths = {
