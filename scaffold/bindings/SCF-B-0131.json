@@ -387,7 +387,7 @@
     "decision/read-after分母をunit×asset pairとunique assetへ分離し、pair 5件・unique 1/11件を固定する",
     "implementation／degradation／failureはunknown、consumer closure pending、taxonomy status別のphase review waitingを保持する",
     "candidate phaseとformal phase、product scope候補とformal product authorityを分離する",
-    "validator独立再導出と33負例を維持する",
+    "validator独立再導出と37負例を維持する",
     "immutable taxonomy source commit/path/digest/blob OID、固定taxonomy commitのHEAD祖先性、target 5 IDと混在taxonomy status（UNRESOLVED_SOURCE_OR_HUMAN_REVIEW 3／CROSS_CUTTING_PHASE_REVIEW_PENDING 2）、matrix join、formal phase null、authority boundaryを独立照合する"
   ],
   "connections": {
