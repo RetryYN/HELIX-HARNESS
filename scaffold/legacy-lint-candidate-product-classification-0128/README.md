@@ -11,7 +11,7 @@
 
 ## 記録する証拠
 
-各recordは旧phase/disposition行のdigest、archive Git blob・bytes・sha256・line count、具体source spanと行テキストdigestを持ちます。候補分類にはcandidate products、意味説明、counter-evidenceを保持します。candidate_product_basisには候補製品ごとのL1要求行、product-boundary行、decision record製品意味行の実行行・テキストdigest・SHA参照を固定します。
+各recordは旧phase/disposition行のdigest、archive Git blob・bytes・sha256・line count、具体source spanと行テキストdigestを持ちます。候補分類にはcandidate products、意味説明、counter-evidenceを保持します。candidate_product_basisには候補製品ごとの旧source semantic marker/行・L1要求行・product-boundary行・decision record製品意味行の実行行・本文digest・SHA参照を固定します。
 
 旧`implementation_status`と`implementation_evidence_state`は台帳値のまま保持し、`degradation_status=unknown_pending_human_semantic_review`としています。旧failure/consumer inventoryはasset ID/source pathの静的行照合として分離し、decision/read-afterは対象ID一致行を別配列で保持します。Wave linksも観測値として保持します。
 
