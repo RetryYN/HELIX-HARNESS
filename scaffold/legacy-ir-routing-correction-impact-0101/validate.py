@@ -244,6 +244,8 @@ def validate_records(records: list[dict]):
                 errors.append(error("E_CORRECTION_DIGEST" if key in ("source_statement_semantic_digest", "correction_rationale") else "E_CORRECTION_STATE", f"{rid}: correction {key} mismatch"))
         if exact_corr.get("ref") != expected_jsonl_ref(CORRECTIONS, correction_lines[rid], "PO-pending correction"):
             errors.append(error("E_CORRECTION_REFERENCE", f"{rid}: correction ref mismatch"))
+        if corr.get("source_statement_semantic_digest") != source["statement"].get("semantic_digest"):
+            errors.append(error("E_CORRECTION_DIGEST", f"{rid}: correction/source statement digest mismatch"))
         if corr.get("correction_state") != "proposed_pending_po_review" or corr.get("authority_effect") != "none" or corr.get("meaning_change_applied") is not False:
             errors.append(error("E_AUTHORITY_BOUNDARY", f"{rid}: correction source is not pending/no-effect"))
         if corr.get("product_targets_before") != route.get("candidate_product_targets") or corr.get("routing_candidate_before") != route.get("routing_candidate"):
@@ -254,8 +256,12 @@ def validate_records(records: list[dict]):
         bd = before.get("decomposition", {})
         if br.get("candidate_product_targets") != route.get("candidate_product_targets") or br.get("routing_candidate") != route.get("routing_candidate") or br.get("classification_state") != route.get("classification_state"):
             errors.append(error("E_BEFORE_CANDIDATE", f"{rid}: routing before mismatch"))
+        if br.get("ref") != expected_jsonl_ref(ROUTING, routing_lines[rid], "153 routing candidate"):
+            errors.append(error("E_ROUTING_REFERENCE", f"{rid}: routing ref mismatch"))
         if bd.get("candidate_product_targets") != dec.get("candidate_product_targets") or bd.get("routing_candidate") != dec.get("routing_candidate") or bd.get("classification_state") != dec.get("classification_state"):
             errors.append(error("E_BEFORE_CANDIDATE", f"{rid}: decomposition before mismatch"))
+        if bd.get("ref") != expected_jsonl_ref(DECOMP, decomp_lines[rid], "current decomposition candidate"):
+            errors.append(error("E_DECOMP_REFERENCE", f"{rid}: decomposition ref mismatch"))
         if bd.get("unit_set") is None or len(bd["unit_set"]) != 1:
             errors.append(error("E_UNIT_IMPACT", f"{rid}: before unit set must contain one unit"))
             continue
@@ -375,6 +381,19 @@ def validate_records(records: list[dict]):
             errors.append(error("E_ASSET_SET", f"{rid}/{uid}: candidate asset ID集合がcrosswalkと不一致"))
         if bu.get("candidate_asset_ids") != expected_asset_ids:
             errors.append(error("E_ASSET_SET", f"{rid}/{uid}: before unit asset ID集合がcrosswalkと不一致"))
+        legacy_evidence = record.get("legacy_asset_evidence", {})
+        if legacy_evidence.get("crosswalk_ref") != expected_jsonl_ref(CROSSWALK, crosswalk_line[(rid, uid)], "affected implementation crosswalk"):
+            errors.append(error("E_CROSSWALK_REFERENCE", f"{rid}/{uid}: legacy evidence crosswalk ref mismatch"))
+        expected_static_refs = [
+            line_ref_expected(LEDGER, 1, "static legacy evidence inventory"),
+            line_ref_expected(PHASE, 1, "static legacy evidence inventory"),
+            line_ref_expected(DECISIONS, 1, "static legacy evidence inventory"),
+            line_ref_expected(READ_AFTER, 1, "static legacy evidence inventory"),
+            line_ref_expected(FAILURE, 1, "static legacy evidence inventory"),
+            line_ref_expected(CONSUMER, 1, "static legacy evidence inventory"),
+        ]
+        if legacy_evidence.get("source_history_failure_consumer_refs") != expected_static_refs:
+            errors.append(error("E_FAILURE_CONSUMER_REFERENCE", f"{rid}: static source/history/failure/consumer refs mismatch"))
         if record.get("human_judgment_remaining") != EXPECTED_HUMAN_JUDGMENT:
             errors.append(error("E_HUMAN_JUDGMENT", f"{rid}: human judgment項目の欠落・改変"))
 
