@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
-BASE = "f15c3ca2ed1dc865b242b0a21e1516fdeec6f9f6"
+BASE = "44814977d9d9bf457b6be2184f38f25d4f9071ad"
 VISION = "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md"
 SPAN_PATH = "scaffold/rdp001-web-webos-vision-source-0080/vision-spans.jsonl"
 PHASE_PATH = "docs/governance/phase-capability-inventory.json"
