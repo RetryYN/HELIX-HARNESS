@@ -38,6 +38,57 @@ FIXED_CATALOG_KEYS={'findings': {'id','status','text'}, 'unresolved_questions': 
 FIXED_CATALOG_COUNTS={'findings':7,'unresolved_questions':7,'prohibited_inference':7}
 FIXED_CATALOG_STATUS={'findings':'observed','unresolved_questions':'open','prohibited_inference':'prohibited'}
 FIXED_CATALOG_PREFIX={'findings':'F','unresolved_questions':'Q','prohibited_inference':'P'}
+SCOPE_KEYS={
+    'archive_commit','base_drift_from','base_drift_observed','base_drift_reason','base_drift_to',
+    'base_origin_main','base_origin_main_expected_before_fetch','batch_width_observed','batch_width_policy',
+    'current_live_source_holding_count','historical_capture_commit','holding_path',
+    'holding_path_revision_pair_denominator','holding_record_count','holding_registration_id','holding_sha256',
+    'live_origin_drift_after_recorded_base','live_origin_drift_impact','live_origin_main_observed_after_base',
+    'management_register_path','management_register_sha256','pr_2007_excluded_ids','pr_2007_head',
+    'pre_isolation_commit','previous_reviewed_ids','previous_reviewed_path_revision_pair_count','read_only',
+    'remaining_after_batch','remaining_before_batch','requirement_atoms_are_not_path_pairs',
+    'selected_path_revision_pair_count','selected_source_document_count','source_unit','static_only',
+    'unexplored_scope','worktree'
+}
+CANONICAL_SELECTION_REASON='製品境界に直接関係する逐語source line。source fragment外のactor/action/condition/guard/sequenceは生成しない。'
+# This table is deliberately independent of product-units.jsonl.  It fixes every
+# non-digest routing value and the allowed pre-isolation line for each unit.
+CANONICAL_SOURCE_TABLE={
+    'OUTSIDE67-PATH-059': {
+        'source_path':'docs/governance/product-governance-boundary-2026-09-14.md',
+        'candidate_product':'shared-cross-product','phase_candidate':'upstream-governance-or-crosswalk',
+        'unit_lines':{
+            'RDP-001-OUTSIDE67-059-U001':11,'RDP-001-OUTSIDE67-059-U002':25,'RDP-001-OUTSIDE67-059-U003':28,
+            'RDP-001-OUTSIDE67-059-U004':45,'RDP-001-OUTSIDE67-059-U005':52,'RDP-001-OUTSIDE67-059-U006':56,
+            'RDP-001-OUTSIDE67-059-U007':88}},
+    'OUTSIDE67-PATH-063': {
+        'source_path':'docs/test-design/harness/L11-product-acceptance.md',
+        'candidate_product':'HELIX-HARNESS','phase_candidate':'L11-acceptance',
+        'unit_lines':{
+            'RDP-001-OUTSIDE67-063-U001':15,'RDP-001-OUTSIDE67-063-U002':24,'RDP-001-OUTSIDE67-063-U003':25,
+            'RDP-001-OUTSIDE67-063-U004':67,'RDP-001-OUTSIDE67-063-U005':58}},
+    'OUTSIDE67-PATH-064': {
+        'source_path':'docs/test-design/helix-os/L11-governance-acceptance.md',
+        'candidate_product':'HELIX-OS','phase_candidate':'L11-acceptance',
+        'unit_lines':{
+            'RDP-001-OUTSIDE67-064-U001':15,'RDP-001-OUTSIDE67-064-U002':19,'RDP-001-OUTSIDE67-064-U003':104,
+            'RDP-001-OUTSIDE67-064-U004':141,'RDP-001-OUTSIDE67-064-U005':143,'RDP-001-OUTSIDE67-064-U006':146},
+        'archive_lines':{
+            'RDP-001-OUTSIDE67-064-U001':15,'RDP-001-OUTSIDE67-064-U002':19,'RDP-001-OUTSIDE67-064-U003':105,
+            'RDP-001-OUTSIDE67-064-U004':142,'RDP-001-OUTSIDE67-064-U005':144,'RDP-001-OUTSIDE67-064-U006':147}},
+    'OUTSIDE67-PATH-065': {
+        'source_path':'docs/test-design/helix-web-os/L11-service-acceptance.md',
+        'candidate_product':'HELIX-Web-OS','phase_candidate':'L11-acceptance',
+        'unit_lines':{
+            'RDP-001-OUTSIDE67-065-U001':13,'RDP-001-OUTSIDE67-065-U002':18,'RDP-001-OUTSIDE67-065-U003':22,
+            'RDP-001-OUTSIDE67-065-U004':24}},
+    'OUTSIDE67-PATH-066': {
+        'source_path':'docs/test-design/helix-web/L11-product-acceptance.md',
+        'candidate_product':'HELIX-Web','phase_candidate':'L11-acceptance',
+        'unit_lines':{
+            'RDP-001-OUTSIDE67-066-U001':15,'RDP-001-OUTSIDE67-066-U002':27,'RDP-001-OUTSIDE67-066-U003':28,
+            'RDP-001-OUTSIDE67-066-U004':30}}
+}
 
 
 def digest_bytes(data):
@@ -113,22 +164,41 @@ def add_unit_field_errors(u, errors):
         anchor=u.get('source_anchor',{}).get(side,{})
         if set(anchor)!=ANCHOR_KEYS:
             errors.append(f'E_UNIT_ANCHOR_KEYS:{uid}:{side}')
+    sid=u.get('source_item_id')
+    canonical=CANONICAL_SOURCE_TABLE.get(sid)
+    if canonical is None or uid not in canonical['unit_lines']:
+        errors.append(f'E_UNIT_CANONICAL:unit_id:{uid}')
+    else:
+        if u.get('source_path')!=canonical['source_path']:
+            errors.append(f'E_UNIT_CANONICAL:source_path:{uid}')
+        if u.get('candidate_product')!=canonical['candidate_product']:
+            errors.append(f'E_UNIT_CANONICAL:candidate_product:{uid}')
+        if u.get('phase_candidate')!=canonical['phase_candidate']:
+            errors.append(f'E_UNIT_CANONICAL:phase_candidate:{uid}')
+        if u.get('selection_reason')!=CANONICAL_SELECTION_REASON:
+            errors.append(f'E_UNIT_CANONICAL:selection_reason:{uid}')
+        expected_lines={'pre_isolation':canonical['unit_lines'][uid], 'archive':canonical.get('archive_lines',{}).get(uid,canonical['unit_lines'][uid])}
+        for side, expected_commit in (('pre_isolation',EXPECTED_PRE),('archive',EXPECTED_ARCHIVE)):
+            anchor=u.get('source_anchor',{}).get(side,{})
+            if anchor.get('commit')!=expected_commit or anchor.get('line')!=expected_lines[side]:
+                errors.append(f'E_UNIT_CANONICAL:source_anchor:{uid}:{side}')
 
 
 def validate(root):
     root = Path(root).resolve()
-    out = root / "scaffold/rdp001-outside67-product-boundary-058"
+    out = root / "scaffold/rdp001-outside67-product-boundary-062"
     errors = []
     inv = load_json(out / "inventory.json", errors, "E_INVENTORY_JSON")
     if not isinstance(inv, dict):
         return errors
     if set(inv)!=INVENTORY_KEYS: errors.append("E_INVENTORY_KEYS")
     if inv.get("schema") != "rdp001-outside67-product-boundary/v1": errors.append("E_SCHEMA")
-    if inv.get("candidate_id") != "RDP-001-OUTSIDE67-PRODUCT-BOUNDARY-0058": errors.append("E_CANDIDATE")
+    if inv.get("candidate_id") != "RDP-001-OUTSIDE67-PRODUCT-BOUNDARY-0062": errors.append("E_CANDIDATE")
     if inv.get("authority_effect") != "none" or inv.get("status") != "findings_only": errors.append("E_AUTHORITY")
     if inv.get("old_runtime_test_ci_execution") is not False: errors.append("E_EXECUTION")
     add_catalog_errors(inv, errors)
     sc = inv.get("scope", {})
+    if set(sc)!=SCOPE_KEYS: errors.append("E_SCOPE_KEYS")
     if sc.get("base_origin_main") != EXPECTED_BASE: errors.append("E_BASE")
     head=subprocess.check_output(["git","-C",str(root),"rev-parse","HEAD"],text=True).strip()
     ancestor=subprocess.run(["git","-C",str(root),"merge-base","--is-ancestor",sc.get("base_origin_main",""),head],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
@@ -158,6 +228,9 @@ def validate(root):
         h = by_id[sid]; scp = h.get("reported_path_scope", {})
         if item.get("source_path") != h.get("source_path"): errors.append(f"E_ITEM_PATH:{sid}")
         if item.get("candidate_product") != scp.get("product_scope") or item.get("candidate_phase") != scp.get("phase_scope"): errors.append(f"E_ITEM_SCOPE:{sid}")
+        canonical=CANONICAL_SOURCE_TABLE.get(sid)
+        if canonical is None or item.get('source_path')!=canonical['source_path'] or item.get('candidate_product')!=canonical['candidate_product'] or item.get('candidate_phase')!=canonical['phase_candidate']:
+            errors.append(f"E_ITEM_CANONICAL:{sid}")
         if item.get("reported_holding", {}).get("legacy_catalog_record_count") != 0 or item.get("reported_holding", {}).get("human_decision_ref") is not None: errors.append(f"E_ITEM_CATALOG:{sid}")
         if item.get("status", {}).get("authority_effect") != "none" or item.get("status", {}).get("meaning_change_applied") is not False: errors.append(f"E_ITEM_STATUS:{sid}")
         if sid in PR_EXCLUDED: errors.append(f"E_OVERLAP:{sid}")

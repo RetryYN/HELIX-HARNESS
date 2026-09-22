@@ -14,17 +14,17 @@ pre-isolation revision `2d4991042be55268bac30a8bbcdac45b3865030a` と旧archive 
 
 `product-units.jsonl`はsource全体を要求atom化した台帳ではありません。製品境界に直接関係するsource lineを、四製品候補とpath由来phase候補へ束縛した研究候補です。actor／action／condition／guard／sequenceはsource fragment外から補完せず`unresolved`で保持し、選択lineを重複計上しません。残りのsource lineはsnapshotに保存したまま未調査です。
 
-各product unitの`normalized_statement`、`retained_meaning`、`unresolved_questions`、`diff_observation`は独立recordとして固定し、固定keyset・status・source referenceをvalidatorで検査します。`source_fragment`はpre-isolation anchorと一致し、normalized statementはその逐語fragmentだけを保持します。inventoryの`findings`（F001–F007）、`unresolved_questions`（Q001–Q007）、`prohibited_inference`（P001–P007）もid／status／textの固定record配列です。未知key、件数、順序、statusの改変は負例で拒否します。
+各product unitの`normalized_statement`、`retained_meaning`、`unresolved_questions`、`diff_observation`は独立recordとして固定し、固定keyset・status・source referenceをvalidatorで検査します。validatorにはsource IDごとの独立canonical tableを置き、candidate product、phase、source path、selection reason、pre／archive line anchorとcommitをproduct-units側の値とは別に照合します。inventory scopeとsource anchorの直下keysetも固定します。`source_fragment`はpre-isolation anchorと一致し、normalized statementはその逐語fragmentだけを保持します。inventoryの`findings`（F001–F007）、`unresolved_questions`（Q001–Q007）、`prohibited_inference`（P001–P007）もid／status／textの固定record配列です。未知key、件数、順序、statusの改変は負例で拒否します。
 
 旧資産明細、判断ログ、copy/read-after、phase/product分類、implementation crosswalkのpath／pre blob／archive blobを静的に照会しました。選択5件は既存holdingでcatalog record 0、human decision ref null、exact ledger key matchなしです。この観測は「不在」「未実装」「正常」「廃止」「consumer不要」を意味しません。legacy／current implementation、legacy／current degradation、failure、consumer、decision、phase authorityはunknownのままです。
 
-この束は正式要求、current requirement、successor、L2／L11合意、L3／L10設計、実装、受入、release、deploymentを生成しません。bindingは`SCF-B-0058`です。
+この束は正式要求、current requirement、successor、L2／L11合意、L3／L10設計、実装、受入、release、deploymentを生成しません。bindingは`SCF-B-0062`です。旧binding 0058はmain側で既使用、0061は別束が予約しているため、0062を使用します。
 
 ## 検証
 
 ```text
-python3 scaffold/rdp001-outside67-product-boundary-058/validate.py
-python3 scaffold/rdp001-outside67-product-boundary-058/selfcheck.py
+python3 scaffold/rdp001-outside67-product-boundary-062/validate.py
+python3 scaffold/rdp001-outside67-product-boundary-062/selfcheck.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale
 python3 scaffold/tools/scfctl.py residuals

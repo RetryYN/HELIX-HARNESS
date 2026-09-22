@@ -1,6 +1,6 @@
 {
   "schema": "rdp001-outside67-product-boundary/v1",
-  "candidate_id": "RDP-001-OUTSIDE67-PRODUCT-BOUNDARY-0058",
+  "candidate_id": "RDP-001-OUTSIDE67-PRODUCT-BOUNDARY-0062",
   "status": "findings_only",
   "authority_effect": "none",
   "meaning_change_applied": false,
@@ -15,7 +15,7 @@
     "base_drift_observed": true,
     "base_drift_from": "b0b233f2712f69abebc18e698b8661d34bc5a804",
     "base_drift_to": "294bfd90bf58390798733a1437f1c91b8dc7fce8",
-    "base_drift_reason": "Wave36 parent通知後にorigin/mainが#2001 mergeへ進んだためfresh detached worktreeを最新294bfd90へ更新。holding/register/sourceは不変。",
+    "base_drift_reason": "Wave36 parent通知後にorigin/mainがb0b233f2から294bfd90へ進み、その後#2008 mergeでce66af3bへ進行した。記録baseは294bfd90のまま固定し、branchをce66af3bへrebaseしてmaterializeした。holding/register/sourceは不変。",
     "read_only": true,
     "static_only": true,
     "holding_registration_id": "MPR-SH-OUTSIDE67-001",
@@ -50,9 +50,9 @@
     "requirement_atoms_are_not_path_pairs": true,
     "batch_width_observed": 5,
     "batch_width_policy": "今回検証した幅5件。安全な拡大上限は断定せず、次batchはsource chainごとに独立確認する。",
-    "live_origin_main_observed_after_base": "562e176c36844474b63424ec06beefe2f7722d18",
+    "live_origin_main_observed_after_base": "ce66af3b36727872369a549f01941b26c2b19088",
     "live_origin_drift_after_recorded_base": true,
-    "live_origin_drift_impact": "記録base 294bfd90は変更せず、HEAD／holding／register／selected sourceを静的再照合した。live origin/mainとの同値は要求せず、origin側へ静かに追随しない。"
+    "live_origin_drift_impact": "記録base 294bfd90は変更せず、branchはce66af3b（#2008 merge後main）へrebaseしてmaterializeした。HEAD／holding／register／selected sourceを静的再照合し、live origin/mainとの同値は要求しない。"
   },
   "source_holding": {
     "registration_id": "MPR-SH-OUTSIDE67-001",
