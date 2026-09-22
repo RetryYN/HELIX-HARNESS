@@ -1,0 +1,651 @@
+{
+  "schema_revision": 1,
+  "batch_id": "LEGACY-SEMANTIC-WAVE39-2026-09-22",
+  "base_revision": "38d38f47794e70d621403ad8dbeac56518a76766",
+  "source_requirement_asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+  "requirements_source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+  "selected_unit_count": 5,
+  "selected_edge_count": 15,
+  "semantic_atom_count": 7,
+  "composite_unresolved_count": 5,
+  "inspected_asset_count": 13,
+  "selected_asset_count": 10,
+  "supplemental_asset_count": 3,
+  "selected_units": [
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-14-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-14",
+      "source_statement_text": "IPCは不正JSON、schema不一致、oversize、sequence欠落、worker crash、timeout、cancel、backpressure、親process消失をfail-closeし、partial resultを正本へ昇格しない。",
+      "source_statement_semantic_digest": "sha256:52fdf014fd081e0e7134b695d7bb4408868e1785f17f08c02d9479acd0e41ad0",
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:4984",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:194"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "routing_candidate": "single_product",
+      "routing_state": "candidate_product_routing_requires_human_review",
+      "routing_hold": null,
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "responsibility": "old source responsibility retained; current owner/authority unresolved",
+      "source_spans": [
+        "IPCは不正JSON、schema不一致、oversize、sequence欠落、worker crash、timeout、cancel、backpressure、親process消失をfail-closeし、partial resultを正本へ昇格しない。"
+      ],
+      "atom_ids": [
+        "NFR14-OS-A01"
+      ],
+      "atom_count": 1,
+      "composite_unresolved_count": 1,
+      "shared_source_overlaps": [],
+      "asset_chain": [
+        "LEGACY-ASSET-2E0E6FFB913F2A4DA67B",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-F67008331E92FA0A5773"
+      ],
+      "historical_failure_codes": [
+        "HIL_WORKER_JSON_INVALID",
+        "HIL_WORKER_PAYLOAD_OVERSIZE",
+        "HIL_WORKER_SEQUENCE_GAP",
+        "HIL_WORKER_TIMEOUT",
+        "HIL_WORKER_CRASHED",
+        "HIL_WORKER_BACKPRESSURE_EXCEEDED",
+        "HIL_WORKER_PARENT_LOST",
+        "HIL_IPC_FAIL_OPEN"
+      ],
+      "historical_consumers": [
+        "PythonWorkerBroker",
+        "HOT-HIL-24"
+      ],
+      "current_consumer": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-21-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-21",
+      "source_statement_text": "user directive/findingの原記録はappend-onlyで、AI dispositionは原記録を削除・不可視化・終端化しない。PO以外のcancel/supersedeと、独立reviewなしのfalse-positive/accepted-riskを拒否する。",
+      "source_statement_semantic_digest": "sha256:91fa0cf1803312552c129591509e87b6b6cb98a2c5abe24b33a48001ee2d027c",
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:5285",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:201"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "routing_candidate": "single_product",
+      "routing_state": "candidate_product_routing_requires_human_review",
+      "routing_hold": null,
+      "phase_candidates": [
+        "PHCAP-12"
+      ],
+      "responsibility": "old source responsibility retained; current owner/authority unresolved",
+      "source_spans": [
+        "user directive/findingの原記録はappend-onlyで、AI dispositionは原記録を削除・不可視化・終端化しない。PO以外のcancel/supersedeと、独立reviewなしのfalse-positive/accepted-riskを拒否する。"
+      ],
+      "atom_ids": [
+        "NFR21-OS-A01"
+      ],
+      "atom_count": 1,
+      "composite_unresolved_count": 1,
+      "shared_source_overlaps": [],
+      "asset_chain": [
+        "LEGACY-ASSET-4FED0B46C22941761357",
+        "LEGACY-ASSET-943484807D702E10503B",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "historical_failure_codes": [
+        "duplicate target",
+        "false-positive unverified",
+        "risk approval missing",
+        "unauthorized cancel",
+        "append-only violation"
+      ],
+      "historical_consumers": [
+        "DirectiveCustodyGate",
+        "HOT-HIL-36"
+      ],
+      "current_consumer": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-01-HELIX-OS",
+      "source_requirement_id": "HIL-TR-01",
+      "source_statement_text": "HELIX control planeはTypeScript strict＋Node.jsを唯一の正規runtimeとし、Bun固有API・command・lockfile・CI・distribution契約をactive surfaceから除去する。",
+      "source_statement_semantic_digest": "sha256:20132aa5c7cc5ca9107e826e3ee2be6b3eb959414424594fb8dfbf317b1c5afc",
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:6165",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:165"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "routing_candidate": "single_product",
+      "routing_state": "candidate_product_routing_requires_human_review",
+      "routing_hold": {
+        "decision_id": "IR-ROUTE-Q1",
+        "reason": "runtime_or_technology_constraint_product_contract_vs_internal_implementation",
+        "status": "unresolved",
+        "unit_candidate_id": "IRUNIT-HIL-TR-01-HELIX-OS"
+      },
+      "phase_candidates": [
+        "PHCAP-11",
+        "PHCAP-14"
+      ],
+      "responsibility": "old source responsibility retained; current owner/authority unresolved",
+      "source_spans": [
+        "HELIX control planeはTypeScript strict＋Node.jsを唯一の正規runtimeとし、Bun固有API・command・lockfile・CI・distribution契約をactive surfaceから除去する。"
+      ],
+      "atom_ids": [
+        "TR01-OS-A01"
+      ],
+      "atom_count": 1,
+      "composite_unresolved_count": 1,
+      "shared_source_overlaps": [],
+      "asset_chain": [
+        "LEGACY-ASSET-04C6A8AFA15A1BDF0A1D",
+        "LEGACY-ASSET-1B413588CFF3B1360B49",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "historical_failure_codes": [
+        "HIL_NODE_CONTROL_PLANE_INVALID",
+        "HIL_ACTIVE_BUN_*"
+      ],
+      "historical_consumers": [
+        "NodeControlPlane",
+        "BunDependencyCoverageGate"
+      ],
+      "current_consumer": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-HARNESS",
+      "source_requirement_id": "HIL-TR-08",
+      "source_statement_text": "Node↔Pythonの初期正規IPCはchild process＋versioned JSON Lines over stdioとし、stdoutをprotocol、stderrを診断専用にする。envelopeはschema/run/request/type/sequence/deadline/payload digestを持つ。",
+      "source_statement_semantic_digest": "sha256:4b8901dea297c274a7055c0c26840eef6a309aec0647557573de9372ffed2c95",
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:6466",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:172"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_target": [
+        "HELIX-HARNESS"
+      ],
+      "routing_candidate": "split_required",
+      "routing_state": "candidate_product_routing_requires_human_review",
+      "routing_hold": null,
+      "phase_candidates": [],
+      "responsibility": "old source responsibility retained; current owner/authority unresolved",
+      "source_spans": [
+        "Node↔Pythonの初期正規IPCはchild process＋versioned JSON Lines over stdioとし",
+        "envelopeはschema/run/request/type/sequence/deadline/payload digestを持つ"
+      ],
+      "atom_ids": [
+        "TR08-HARNESS-A01",
+        "TR08-HARNESS-A02"
+      ],
+      "atom_count": 2,
+      "composite_unresolved_count": 1,
+      "shared_source_overlaps": [
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-OS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        },
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-OS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        },
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-OS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        }
+      ],
+      "asset_chain": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-AF48B1E70AF60FEEE287",
+        "LEGACY-ASSET-BC2275DCE9BFFCF813C8"
+      ],
+      "historical_failure_codes": [
+        "HIL_IPC_ENVELOPE_INVALID",
+        "HIL_WORKER_PAYLOAD_DIGEST_MISMATCH"
+      ],
+      "historical_consumers": [
+        "PythonWorkerBroker"
+      ],
+      "current_consumer": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run"
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-TR-08-HELIX-OS",
+      "source_requirement_id": "HIL-TR-08",
+      "source_statement_text": "Node↔Pythonの初期正規IPCはchild process＋versioned JSON Lines over stdioとし、stdoutをprotocol、stderrを診断専用にする。envelopeはschema/run/request/type/sequence/deadline/payload digestを持つ。",
+      "source_statement_semantic_digest": "sha256:4b8901dea297c274a7055c0c26840eef6a309aec0647557573de9372ffed2c95",
+      "source_lines": [
+        "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:6466",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:172"
+      ],
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "candidate_target": [
+        "HELIX-OS"
+      ],
+      "routing_candidate": "split_required",
+      "routing_state": "candidate_product_routing_requires_human_review",
+      "routing_hold": null,
+      "phase_candidates": [
+        "PHCAP-10"
+      ],
+      "responsibility": "old source responsibility retained; current owner/authority unresolved",
+      "source_spans": [
+        "child process＋versioned JSON Lines over stdio",
+        "stdoutをprotocol、stderrを診断専用にする"
+      ],
+      "atom_ids": [
+        "TR08-OS-A01",
+        "TR08-OS-A02"
+      ],
+      "atom_count": 2,
+      "composite_unresolved_count": 1,
+      "shared_source_overlaps": [
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        },
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        },
+        {
+          "relation": "shared_source_span",
+          "review_state": "product_boundary_pending_human_decision",
+          "shared_with_units": [
+            "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+          ],
+          "source_fragment": "child process＋versioned JSON Lines over stdio"
+        }
+      ],
+      "asset_chain": [
+        "LEGACY-ASSET-61D85EE372040EBCB68B",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-BC2275DCE9BFFCF813C8"
+      ],
+      "historical_failure_codes": [
+        "HIL_IPC_ENVELOPE_INVALID",
+        "HIL_WORKER_PAYLOAD_DIGEST_MISMATCH"
+      ],
+      "historical_consumers": [
+        "PythonWorkerBroker"
+      ],
+      "current_consumer": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run"
+    }
+  ],
+  "inspected_assets": [
+    {
+      "asset_id": "LEGACY-ASSET-04C6A8AFA15A1BDF0A1D",
+      "selected_role_edge": true,
+      "source_path": "src/setup/distribution-consumer-node-adapter.ts",
+      "source_sha256": "9863db3145d254c47022398e53a1977fdcf4a133206362120ab814d2e2168d4b",
+      "artifact_evidence_kind": "implementation_source",
+      "classification_id": "LASPH-3307",
+      "candidate_phase_targets": [
+        "PHCAP-14"
+      ],
+      "candidate_product_targets": [],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-08488BBF033F37F536AB",
+      "selected_role_edge": false,
+      "source_path": "tests/provider-process-lifecycle.test.ts",
+      "source_sha256": "f353814309b1bda604f08e98ab36049c7f543b1abba77823c7c83deb2b057e09",
+      "artifact_evidence_kind": "test_source",
+      "classification_id": "LASPH-3797",
+      "candidate_phase_targets": [
+        "PHCAP-10"
+      ],
+      "candidate_product_targets": [],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-1B413588CFF3B1360B49",
+      "selected_role_edge": true,
+      "source_path": "docs/adr/ADR-009-node-python-linux-runtime.md",
+      "source_sha256": "bdd1c9a00243b723342e42531ddeabbf2f7570594943c11226d5b0461769753c",
+      "artifact_evidence_kind": "design",
+      "classification_id": "LASPH-0266",
+      "candidate_phase_targets": [
+        "PHCAP-10"
+      ],
+      "candidate_product_targets": [
+        "HELIX-OS"
+      ],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-2E0E6FFB913F2A4DA67B",
+      "selected_role_edge": true,
+      "source_path": "src/runtime/codex-native-worker-policy.ts",
+      "source_sha256": "900e535c39cf682941b44c14a0857de643a2f7d8d9df70917726554249cb4da4",
+      "artifact_evidence_kind": "implementation_source",
+      "classification_id": "LASPH-3153",
+      "candidate_phase_targets": [
+        "PHCAP-10"
+      ],
+      "candidate_product_targets": [
+        "HELIX-OS"
+      ],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4FED0B46C22941761357",
+      "selected_role_edge": true,
+      "source_path": "docs/design/helix/L6-function-design/review-receipt-plan-binding.md",
+      "source_sha256": "4607470ce4ac335e7b0598bfd2b5c1df022683af05ba39babab0646893d7dd21",
+      "artifact_evidence_kind": "design",
+      "classification_id": "LASPH-0727",
+      "candidate_phase_targets": [
+        "PHCAP-03",
+        "PHCAP-12"
+      ],
+      "candidate_product_targets": [],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-50A93B0E753DC3840E03",
+      "selected_role_edge": false,
+      "source_path": "docs/test-design/helix/L9-worker-independent-review-system-test-design.md",
+      "source_sha256": "fd1bf27704c12072d56491ae66d21f9858f7275ec8c3f1a5e50714fd235eb672",
+      "artifact_evidence_kind": "test_design",
+      "classification_id": "LASPH-2790",
+      "candidate_phase_targets": [
+        "PHCAP-07",
+        "PHCAP-10",
+        "PHCAP-12"
+      ],
+      "candidate_product_targets": [
+        "HELIX-OS"
+      ],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-61D85EE372040EBCB68B",
+      "selected_role_edge": true,
+      "source_path": "src/lint/legacy-orchestration-semantic-consumers.ts",
+      "source_sha256": "56c5d05b85ee5cb000276fec9d20724bd2d3fe6c979140f9cfc65013e88e1b23",
+      "artifact_evidence_kind": "implementation_source",
+      "classification_id": "LASPH-3010",
+      "candidate_phase_targets": [
+        "PHCAP-10",
+        "PHCAP-11"
+      ],
+      "candidate_product_targets": [
+        "HELIX-OS"
+      ],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-943484807D702E10503B",
+      "selected_role_edge": true,
+      "source_path": "src/runtime/review-receipt-plan-binding.ts",
+      "source_sha256": "f5d632bec4c8215a094e417309301441799e0470add147d442a8a31800ec5319",
+      "artifact_evidence_kind": "implementation_source",
+      "classification_id": "LASPH-3218",
+      "candidate_phase_targets": [
+        "PHCAP-12"
+      ],
+      "candidate_product_targets": [],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "selected_role_edge": true,
+      "source_path": "requirements-ir/requirements.json",
+      "source_sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "artifact_evidence_kind": "requirement",
+      "classification_id": "LASPH-2866",
+      "candidate_phase_targets": [
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "legacy_implementation_status": "non_executable_read_only_source",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-AF48B1E70AF60FEEE287",
+      "selected_role_edge": true,
+      "source_path": "src/lint/review-evidence.ts",
+      "source_sha256": "48ac1c4d61f95f7b95a833dc262723669da1b28d509596cda81c6f75dbddc52c",
+      "artifact_evidence_kind": "implementation_source",
+      "classification_id": "LASPH-3045",
+      "candidate_phase_targets": [
+        "PHCAP-11",
+        "PHCAP-12",
+        "PHCAP-18"
+      ],
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-BC2275DCE9BFFCF813C8",
+      "selected_role_edge": true,
+      "source_path": "docs/design/helix/L5-detail/python-worker-runtime.md",
+      "source_sha256": "4c26544b5cf6e63ed226838ff5e04b3a669f6a9aa13456ffc5e5fb41fc755f8a",
+      "artifact_evidence_kind": "design",
+      "classification_id": "LASPH-0577",
+      "candidate_phase_targets": [
+        "PHCAP-10"
+      ],
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F15959C1E9E9256ED64B",
+      "selected_role_edge": false,
+      "source_path": "docs/test-design/helix/L5-python-worker-runtime-integration-test-design.md",
+      "source_sha256": "06f494572775b32583fc4d1a23e4a602f088aa08c65f59ba93fac4e84dfa0c7c",
+      "artifact_evidence_kind": "test_design",
+      "classification_id": "LASPH-2560",
+      "candidate_phase_targets": [
+        "PHCAP-10"
+      ],
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F67008331E92FA0A5773",
+      "selected_role_edge": true,
+      "source_path": "docs/design/helix/L4-basic-design/worker-isolation-broker.md",
+      "source_sha256": "2ae62269bc67bd926c552fb1a418645a157feb0c701f3833494155cb3dabca26",
+      "artifact_evidence_kind": "design",
+      "classification_id": "LASPH-0533",
+      "candidate_phase_targets": [
+        "PHCAP-10"
+      ],
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "legacy_implementation_status": "unknown",
+      "disposition": "historical/unresolved static receipt; see meta asset_status_receipts",
+      "decision": "preserved from ledger; no current decision inferred",
+      "failure": "historical failure field only; no execution receipt generated",
+      "consumer": "historical refs only; current closure pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown"
+    }
+  ],
+  "four_product_candidate_counts": {
+    "HELIX-HARNESS": 1,
+    "HELIX-OS": 4,
+    "HELIX-Web": 0,
+    "HELIX-Web-OS": 0,
+    "unresolved_product_authority": 5
+  },
+  "prior_exclusion": {
+    "prior_reviewed_units": 151,
+    "prior_reviewed_edges": 450,
+    "prior_non_requirement_assets_excluded": true,
+    "BR19_excluded_asset": "LEGACY-ASSET-4AB89A46AE3C74CD5584"
+  },
+  "boundary": {
+    "authority_effect": "none",
+    "current_requirement_implementation_status": "not_established",
+    "legacy_execution_status": "not_run",
+    "phase_authority_status": "candidate_unchanged",
+    "consumer_closure_status": "pending",
+    "degradation_status": "unknown",
+    "web_direct_evidence": "not_asserted",
+    "tr08_shared_source": "preserved_with_connection_records",
+    "tr01_routing": "IR-ROUTE-Q1 unresolved"
+  }
+}
