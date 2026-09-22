@@ -6,7 +6,7 @@
   "product": "HELIX-Web",
   "owner_candidate": "outside67 Web／Web-OS L1 anchor semantic review（最終owner未解決）",
   "state": "registered",
-  "reason": "MPR-SH-OUTSIDE67-001の既存SCF-B-0096／0099でsource調査済みの4 path（PATH-007／009／010／012）について追加のL1接続をholding、pre-isolation、archiveのexact Git bytes／digestと現行四製品L1候補へ静的に照合し、Web L1 6＋Web-OS L1 5のrow-sized anchor候補およびREADME context 2件を保持するresearch-only Scaffold。現行L1本文のraw metadataはdraft／parent approval待ちだが承認decisionでeffective approved、研究candidate authorityはnoneに保持し、旧pathはpath-level contextであり、formal unit、phase、実装、縮退、failure、consumer、authorityへ昇格しない。既存SCF-B-0057／0062／0080〜0091の対象pathとの重複を拒否し、#1813は進捗参照のみとする。",
+  "reason": "MPR-SH-OUTSIDE67-001の既存SCF-B-0096／0099でsource調査済みの4 path（PATH-007／009／010／012）について追加のL1接続をholding、pre-isolation、archiveのexact Git bytes／digestと現行四製品L1候補へ静的に照合し、Web L1 6＋Web-OS L1 5のrow-sized anchor候補およびREADME context 2件を保持するresearch-only Scaffold。現行L1本文のraw metadataはdraft／parent approval待ちだが承認decisionでeffective approved、研究candidate authorityはnoneに保持し、旧pathはpath-level contextであり、formal unit、phase、実装、縮退、failure、consumer、authorityへ昇格しない。既存SCF-B-0057／0062／0080〜0091に加え、SCF-B-0096／0099のselected path集合との重複を明示し、各source itemに先行Binding IDを保持する。#1813は進捗参照のみとする。",
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
@@ -77,6 +77,16 @@
       "path": "scaffold/bindings/SCF-B-0091.json",
       "sha256": "51c4ea21a0531384c3a3cff9262248a2e25e8732b46b2da295ab688423ad026b",
       "note": "fixed BASE static input; no old runtime execution"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0096.json",
+      "sha256": "cd5a3bf91fcdd3a451bb4af71854c9031669f292cd23541863b51597e9d1735d",
+      "note": "fixed BASE static overlap input; selected outside67 path set is checked without executing legacy assets"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0099.json",
+      "sha256": "4edce812c65a617acc11172a6e381c94c7d4dcaa4f0d936112c5b52adb689273",
+      "note": "fixed BASE static overlap input; selected outside67 path set is checked without executing legacy assets"
     }
   ],
   "role": "outside67 Web／Web-OS未処理4 pathのL1 anchor候補とREADME contextをsource digest／line／全field比較で保持するresearch-only Scaffold",
@@ -86,8 +96,8 @@
     "current Web L1 6行＋Web-OS L1 5行をraw metadataとeffective approved decisionへ分離し、source path／line／text／L2接続へ束縛する",
     "README 2件をcontext-onlyとして保持し、formal unit集合へ算入しない",
     "phase／implementation／degradation／failure／consumerをunknown、formal unitをnot_generated、authorityをnoneに固定する",
-    "既存SCF-B-0057／0062／0080／0081／0084／0088／0091との対象path重複とcandidate ID重複を拒否する",
-    "固定BASE祖先性、入力digest、L1承認decision digest、raw／effective authority分離、全field schema、15負例の期待error codeを検証する",
+    "既存SCF-B-0057／0062／0080／0081／0084／0088／0091／0096／0099のselected path集合とcandidate ID重複を検査し、4 target pathのoverlapを明示する",
+    "固定BASE祖先性、入力digest、L1承認decision digest、raw／effective authority分離、全field schema、16負例の期待error code、source itemごとのprior_research_binding_ids欠落検査を検証する",
     "旧source／archive／runtime／test／CIを実行せず、要求採択、formal phase、authority、実装、縮退、failure／consumer closureを生成しない"
   ],
   "connections": {
@@ -99,7 +109,7 @@
     "dependencies": [
       "MPR-SH-OUTSIDE67-001 source holding",
       "current four-product boundary and Web／Web-OS L1 draft",
-      "existing SCF-B-0057／0062／0080／0081／0084／0088／0091 overlap records",
+      "existing SCF-B-0057／0062／0080／0081／0084／0088／0091／0096／0099 selected path overlap records",
       "Python standard library and Git read-only object bytes"
     ],
     "boundary": "bundle内のsource snapshot、candidate、context、inventory、validator、selfcheckはresearch candidate。旧pathはstatic reference only。検証結果からformal requirement、phase、implementation、degradation、failure、consumer closure、authority、successor、下流設計を生成しない。"
@@ -155,8 +165,8 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "validate.py（固定BASE祖先性、4 source snapshot、11 L1 anchor候補、2 README context、holding／register／L1／L1 approval decision／boundary digest、既存binding重複、unknown／authority／formal boundary）",
-      "selfcheck.py（15 negative casesと期待error codeの一致）",
+      "validate.py（固定BASE祖先性、4 source snapshot、11 L1 anchor候補、2 README context、holding／register／L1／L1 approval decision／boundary digest、既存binding selected path集合、source item別prior Binding IDの重複、unknown／authority／formal boundary）",
+      "selfcheck.py（16 negative casesと期待error codeの一致）",
       "scfctl validate／stale／residuals",
       "git diff --check"
     ],
@@ -169,7 +179,8 @@
       "implementation unknownからimplementedへの昇格はE_IMPLEMENTATION_BOUNDARYで拒否",
       "formal unit count/statusの生成はE_FORMAL_UNITで拒否",
       "authority noneからgrantedへの昇格はE_AUTHORITY_BOUNDARYで拒否",
-      "既存SCF-B-0057／0062／0080／0081／0084／0088／0091とのpath重複はE_OVERLAPで拒否",
+      "既存SCF-B-0057／0062／0080／0081／0084／0088／0091／0096／0099のselected path集合とのoverlap宣言改変はE_OVERLAPで拒否",
+      "source-itemsのprior_research_binding_ids欠落はE_OVERLAPで拒否",
       "inventory negative_case_codes／candidate countsの改変はE_INVENTORY_DECLARATIONで拒否",
       "holding／register／L1／boundary／entry digestまたはpinsの改変はE_INPUT_DIGESTで拒否",
       "fixed BASE宣言または祖先性の改変はE_BASE_COMMITで拒否",

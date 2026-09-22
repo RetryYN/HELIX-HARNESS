@@ -3,7 +3,7 @@
 The expected records below are fixed review constants; generate.py is never imported.
 """
 from pathlib import Path
-import argparse, hashlib, json, subprocess, sys
+import argparse, hashlib, json, re, subprocess, sys
 
 BASE = "e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b"
 PRE = "2d4991042be55268bac30a8bbcdac45b3865030a"
@@ -19,6 +19,12 @@ TARGET_PATHS = {
     "OUTSIDE67-PATH-009": "docs/design/helix-web-os/README.md",
     "OUTSIDE67-PATH-010": "docs/design/helix-web/L1-planning/product-intent.md",
     "OUTSIDE67-PATH-012": "docs/design/helix-web/README.md",
+}
+PRIOR_RESEARCH_BINDINGS = {
+    "OUTSIDE67-PATH-007": ["SCF-B-0096"],
+    "OUTSIDE67-PATH-009": ["SCF-B-0096"],
+    "OUTSIDE67-PATH-010": ["SCF-B-0096"],
+    "OUTSIDE67-PATH-012": ["SCF-B-0099"],
 }
 PRODUCT_BOUNDARY_SHA = "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
 ENTRY_SHA = "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
@@ -37,10 +43,22 @@ EXISTING_BINDING_SHA = {
     "SCF-B-0084": "2156e887025045d5c03303d0bc9006f8f7e678dff5c7ff7b49b2d81f9360571c",
     "SCF-B-0088": "4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3",
     "SCF-B-0091": "51c4ea21a0531384c3a3cff9262248a2e25e8732b46b2da295ab688423ad026b",
+    "SCF-B-0096": "cd5a3bf91fcdd3a451bb4af71854c9031669f292cd23541863b51597e9d1735d",
+    "SCF-B-0099": "4edce812c65a617acc11172a6e381c94c7d4dcaa4f0d936112c5b52adb689273",
 }
-EXISTING_TARGET_PATH_IDS = ["OUTSIDE67-PATH-008", "OUTSIDE67-PATH-011", "OUTSIDE67-PATH-059", "OUTSIDE67-PATH-063", "OUTSIDE67-PATH-064", "OUTSIDE67-PATH-065", "OUTSIDE67-PATH-066"]
+EXISTING_BINDING_TARGET_PATHS = {
+    "SCF-B-0096": ["OUTSIDE67-PATH-006", "OUTSIDE67-PATH-007", "OUTSIDE67-PATH-008", "OUTSIDE67-PATH-009", "OUTSIDE67-PATH-010"],
+    "SCF-B-0099": ["OUTSIDE67-PATH-011", "OUTSIDE67-PATH-012", "OUTSIDE67-PATH-013", "OUTSIDE67-PATH-014", "OUTSIDE67-PATH-015"],
+}
+EXISTING_BINDING_IDS = ["SCF-B-0057", "SCF-B-0062", "SCF-B-0080", "SCF-B-0081", "SCF-B-0084", "SCF-B-0088", "SCF-B-0091", "SCF-B-0096", "SCF-B-0099"]
+EXISTING_TARGET_PATH_IDS = [
+    "OUTSIDE67-PATH-006", "OUTSIDE67-PATH-007", "OUTSIDE67-PATH-008", "OUTSIDE67-PATH-009", "OUTSIDE67-PATH-010",
+    "OUTSIDE67-PATH-011", "OUTSIDE67-PATH-012", "OUTSIDE67-PATH-013", "OUTSIDE67-PATH-014", "OUTSIDE67-PATH-015",
+    "OUTSIDE67-PATH-059", "OUTSIDE67-PATH-063", "OUTSIDE67-PATH-064", "OUTSIDE67-PATH-065", "OUTSIDE67-PATH-066",
+]
+OVERLAP_RESULT = "all 4 target paths overlap prior research selected by SCF-B-0096／0099; retained as prior research"
 NEGATIVE_CODES = ["E_SOURCE_DIGEST","E_SOURCE_SNAPSHOT","E_SOURCE_SCHEMA","E_UNIT_SET","E_CANDIDATE_RECORD","E_CONTEXT_BOUNDARY","E_PHASE_BOUNDARY","E_IMPLEMENTATION_BOUNDARY","E_FORMAL_UNIT","E_AUTHORITY_BOUNDARY","E_OVERLAP","E_INVENTORY_DECLARATION","E_INPUT_DIGEST","E_BASE_COMMIT"]
-EXPECTED_INVENTORY = {'schema': 'rdp001-outside67-web-webos-l1-anchor/v1', 'candidate_id': 'RDP-001-OUTSIDE67-WEB-WEBOS-L1-0121', 'status': 'findings_only', 'authority_effect': 'none', 'meaning_change_applied': False, 'successor_requirement_ids': [], 'human_decision_ref': None, 'formal_register_append': False, 'old_runtime_test_ci_execution': False, 'new_build': False, 'scope': {'worktree': 'outside67-web-l1-0121', 'base_origin_main': 'e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b', 'base_origin_main_observed_at': 'e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b', 'required_ancestor': 'e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b', 'read_only': True, 'static_only': True, 'holding_registration_id': 'MPR-SH-OUTSIDE67-001', 'holding_path': 'docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl', 'holding_sha256': 'd703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54', 'holding_path_revision_pair_denominator': 67, 'holding_record_count': 67, 'current_live_source_holding_count': 14, 'management_register_path': 'docs/governance/management-provisional-requirement-register.jsonl', 'management_register_sha256': 'b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd', 'selected_source_document_count': 4, 'selected_path_revision_pair_count': 4, 'unselected_path_revision_pair_count': 63, 'pre_isolation_commit': '2d4991042be55268bac30a8bbcdac45b3865030a', 'archive_commit': '064280b5c1c5c98f949e6e3be5ef87cbe4a4b658', 'historical_capture_commit': '3df81ad27157c471e004083783f37a5860eaa2ee', 'old_runtime_test_ci_execution': False}, 'source_holding': {'registration_id': 'MPR-SH-OUTSIDE67-001', 'source_collection_scope': 'outside67 reportの67 path_revision_pair。要求unitではなくsource保存単位。', 'selected_item_ids': ['OUTSIDE67-PATH-007', 'OUTSIDE67-PATH-009', 'OUTSIDE67-PATH-010', 'OUTSIDE67-PATH-012'], 'selected_ordinals': [7, 9, 10, 12], 'unselected_count': 63, 'current_live_source_holding_count': 14}, 'candidate_summary': {'candidate_unit_count': 11, 'web_l1_candidate_unit_count': 6, 'webos_l1_candidate_unit_count': 5, 'readme_context_record_count': 2, 'source_item_count': 4, 'formal_requirement_unit_count': 0, 'formal_requirement_unit_status': 'not_generated', 'row_sized_anchor_candidate_status': 'research_only', 'context_records_are_units': False}, 'unknown_partition': {'phase_status': 'unknown', 'implementation_status': 'unknown', 'degradation_status': 'unknown', 'failure_status': 'unknown', 'consumer_status': 'unknown', 'authority_status': 'none', 'formal_unit_status': 'not_generated', 'all_candidate_units_unknown_count': 11, 'all_context_records_unknown_count': 2}, 'four_product_boundary': {'products': ['HELIX-HARNESS', 'HELIX-OS', 'HELIX-Web', 'HELIX-Web-OS'], 'candidate_products': ['HELIX-Web', 'HELIX-Web-OS'], 'source_product_status': 'candidate_only', 'authority_effect': 'none'}, 'overlap_control': {'existing_binding_ids': ['SCF-B-0057', 'SCF-B-0062', 'SCF-B-0080', 'SCF-B-0081', 'SCF-B-0084', 'SCF-B-0088', 'SCF-B-0091'], 'existing_target_path_ids': ['OUTSIDE67-PATH-008', 'OUTSIDE67-PATH-011', 'OUTSIDE67-PATH-059', 'OUTSIDE67-PATH-063', 'OUTSIDE67-PATH-064', 'OUTSIDE67-PATH-065', 'OUTSIDE67-PATH-066'], 'overlap_result': 'no target path selected by listed bindings', 'duplicate_candidate_ids': [], 'formal_unit_ids': []}, 'input_digest_pins': {'product_boundary': '097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038', 'web_l1': '26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756', 'webos_l1': '600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c', 'l1_approval_decision': 'b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2', 'new_generation_entry': '6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995'}, 'negative_case_count': 15, 'negative_case_codes': ['E_SOURCE_DIGEST', 'E_SOURCE_SNAPSHOT', 'E_SOURCE_SCHEMA', 'E_UNIT_SET', 'E_CANDIDATE_RECORD', 'E_CONTEXT_BOUNDARY', 'E_PHASE_BOUNDARY', 'E_IMPLEMENTATION_BOUNDARY', 'E_FORMAL_UNIT', 'E_AUTHORITY_BOUNDARY', 'E_OVERLAP', 'E_INVENTORY_DECLARATION', 'E_INPUT_DIGEST', 'E_BASE_COMMIT']}
+EXPECTED_INVENTORY = {'schema': 'rdp001-outside67-web-webos-l1-anchor/v1', 'candidate_id': 'RDP-001-OUTSIDE67-WEB-WEBOS-L1-0121', 'status': 'findings_only', 'authority_effect': 'none', 'meaning_change_applied': False, 'successor_requirement_ids': [], 'human_decision_ref': None, 'formal_register_append': False, 'old_runtime_test_ci_execution': False, 'new_build': False, 'scope': {'worktree': 'outside67-web-l1-0121', 'base_origin_main': 'e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b', 'base_origin_main_observed_at': 'e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b', 'required_ancestor': 'e80cb07ce7c6d5d59da39ddacaf3694bdc951e6b', 'read_only': True, 'static_only': True, 'holding_registration_id': 'MPR-SH-OUTSIDE67-001', 'holding_path': 'docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl', 'holding_sha256': 'd703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54', 'holding_path_revision_pair_denominator': 67, 'holding_record_count': 67, 'current_live_source_holding_count': 14, 'management_register_path': 'docs/governance/management-provisional-requirement-register.jsonl', 'management_register_sha256': 'b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd', 'selected_source_document_count': 4, 'selected_path_revision_pair_count': 4, 'unselected_path_revision_pair_count': 63, 'pre_isolation_commit': '2d4991042be55268bac30a8bbcdac45b3865030a', 'archive_commit': '064280b5c1c5c98f949e6e3be5ef87cbe4a4b658', 'historical_capture_commit': '3df81ad27157c471e004083783f37a5860eaa2ee', 'old_runtime_test_ci_execution': False}, 'source_holding': {'registration_id': 'MPR-SH-OUTSIDE67-001', 'source_collection_scope': 'outside67 reportの67 path_revision_pair。要求unitではなくsource保存単位。', 'selected_item_ids': ['OUTSIDE67-PATH-007', 'OUTSIDE67-PATH-009', 'OUTSIDE67-PATH-010', 'OUTSIDE67-PATH-012'], 'selected_ordinals': [7, 9, 10, 12], 'unselected_count': 63, 'current_live_source_holding_count': 14}, 'candidate_summary': {'candidate_unit_count': 11, 'web_l1_candidate_unit_count': 6, 'webos_l1_candidate_unit_count': 5, 'readme_context_record_count': 2, 'source_item_count': 4, 'formal_requirement_unit_count': 0, 'formal_requirement_unit_status': 'not_generated', 'row_sized_anchor_candidate_status': 'research_only', 'context_records_are_units': False}, 'unknown_partition': {'phase_status': 'unknown', 'implementation_status': 'unknown', 'degradation_status': 'unknown', 'failure_status': 'unknown', 'consumer_status': 'unknown', 'authority_status': 'none', 'formal_unit_status': 'not_generated', 'all_candidate_units_unknown_count': 11, 'all_context_records_unknown_count': 2}, 'four_product_boundary': {'products': ['HELIX-HARNESS', 'HELIX-OS', 'HELIX-Web', 'HELIX-Web-OS'], 'candidate_products': ['HELIX-Web', 'HELIX-Web-OS'], 'source_product_status': 'candidate_only', 'authority_effect': 'none'}, 'overlap_control': {'existing_binding_ids': ['SCF-B-0057', 'SCF-B-0062', 'SCF-B-0080', 'SCF-B-0081', 'SCF-B-0084', 'SCF-B-0088', 'SCF-B-0091', 'SCF-B-0096', 'SCF-B-0099'], 'target_path_ids': ['OUTSIDE67-PATH-007', 'OUTSIDE67-PATH-009', 'OUTSIDE67-PATH-010', 'OUTSIDE67-PATH-012'], 'existing_target_path_ids': ['OUTSIDE67-PATH-006', 'OUTSIDE67-PATH-007', 'OUTSIDE67-PATH-008', 'OUTSIDE67-PATH-009', 'OUTSIDE67-PATH-010', 'OUTSIDE67-PATH-011', 'OUTSIDE67-PATH-012', 'OUTSIDE67-PATH-013', 'OUTSIDE67-PATH-014', 'OUTSIDE67-PATH-015', 'OUTSIDE67-PATH-059', 'OUTSIDE67-PATH-063', 'OUTSIDE67-PATH-064', 'OUTSIDE67-PATH-065', 'OUTSIDE67-PATH-066'], 'overlap_path_ids': ['OUTSIDE67-PATH-007', 'OUTSIDE67-PATH-009', 'OUTSIDE67-PATH-010', 'OUTSIDE67-PATH-012'], 'overlap_result': 'all 4 target paths overlap prior research selected by SCF-B-0096／0099; retained as prior research', 'duplicate_candidate_ids': [], 'formal_unit_ids': []}, 'input_digest_pins': {'product_boundary': '097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038', 'web_l1': '26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756', 'webos_l1': '600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c', 'l1_approval_decision': 'b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2', 'new_generation_entry': '6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995'}, 'negative_case_count': 16, 'negative_case_codes': ['E_SOURCE_DIGEST', 'E_SOURCE_SNAPSHOT', 'E_SOURCE_SCHEMA', 'E_UNIT_SET', 'E_CANDIDATE_RECORD', 'E_CONTEXT_BOUNDARY', 'E_PHASE_BOUNDARY', 'E_IMPLEMENTATION_BOUNDARY', 'E_FORMAL_UNIT', 'E_AUTHORITY_BOUNDARY', 'E_OVERLAP', 'E_INVENTORY_DECLARATION', 'E_INPUT_DIGEST', 'E_BASE_COMMIT']}
 EXPECTED_DIFF = {'OUTSIDE67-PATH-007': {'source_path': 'docs/design/helix-web-os/L1-planning/system-intent.md', 'diff_status': 'A', 'pre_sha256': '9f19c758791a2b8298c5fc848ffdbf434069f3501e0382b5c2677e8843e8643f', 'archive_sha256': '9f19c758791a2b8298c5fc848ffdbf434069f3501e0382b5c2677e8843e8643f', 'pre_bytes': 3032, 'archive_bytes': 3032, 'meaning_change_applied': False}, 'OUTSIDE67-PATH-009': {'source_path': 'docs/design/helix-web-os/README.md', 'diff_status': 'A', 'pre_sha256': '1c12792b9626ba0355cb6542d047d2daeb900a837e7eea8f748ebd647b2bb8ed', 'archive_sha256': '1c12792b9626ba0355cb6542d047d2daeb900a837e7eea8f748ebd647b2bb8ed', 'pre_bytes': 995, 'archive_bytes': 995, 'meaning_change_applied': False}, 'OUTSIDE67-PATH-010': {'source_path': 'docs/design/helix-web/L1-planning/product-intent.md', 'diff_status': 'A', 'pre_sha256': '5bbf0bbd1919a0668030d29662f45a510d8129e80cbdcc014511826b1ffd004e', 'archive_sha256': '5bbf0bbd1919a0668030d29662f45a510d8129e80cbdcc014511826b1ffd004e', 'pre_bytes': 3531, 'archive_bytes': 3531, 'meaning_change_applied': False}, 'OUTSIDE67-PATH-012': {'source_path': 'docs/design/helix-web/README.md', 'diff_status': 'A', 'pre_sha256': 'd6726dabd373d0d5794f42dcb73c296d546d92f0c30955ebc657b3c2634e3c96', 'archive_sha256': 'ed7cc9bec604ad2a63324759b19b4ed5ab4be321b79c83ea9bb2cd69003ceb8a', 'pre_bytes': 2410, 'archive_bytes': 2460, 'meaning_change_applied': False}}
 
 
@@ -86,7 +104,7 @@ def source_expected():
       scope={"classification_state":"path_based_candidate_only","implementation_status":"unknown_not_evidenced_by_path_or_blob_catalog","phase_scope":phase,"phase_status":"unknown_path_based_candidate_only","product_scope":product,"product_status":"unknown_path_based_candidate_only"}
       pre={"blob_oid":blob,"bytes":prebytes,"commit":PRE,"reported_blob_oid":blob,"reported_blob_oid_matches_git":True,"sha256":presha,"snapshot_path":f"source-snapshots/{sid}/pre-isolation.md"}
       arc={"blob_oid":ablob,"bytes":abytes,"commit":ARCHIVE,"relation_to_pre_isolation":relation,"reported_blob_oid":ablob,"reported_blob_oid_matches_git":True,"sha256":asha,"snapshot_path":f"source-snapshots/{sid}/archive.md"}
-      out[sid]={**common,"source_item_id":sid,"source_path":path,"pre_isolation":pre,"archive":arc,"current_capture":{"blob_oid":None,"commit":CAPTURE,"state":"absent"},"reported_path_scope":scope,"holding_evidence":{"path":HOLDING,"record_id":sid,"sha256":HOLDING_SHA},"snapshot_checks":{"pre_sha256_recomputed":presha,"archive_sha256_recomputed":asha,"pre_bytes_recomputed":prebytes,"archive_bytes_recomputed":abytes}}
+      out[sid]={**common,"source_item_id":sid,"source_path":path,"pre_isolation":pre,"archive":arc,"current_capture":{"blob_oid":None,"commit":CAPTURE,"state":"absent"},"reported_path_scope":scope,"holding_evidence":{"path":HOLDING,"record_id":sid,"sha256":HOLDING_SHA},"prior_research_binding_ids":PRIOR_RESEARCH_BINDINGS[sid],"snapshot_checks":{"pre_sha256_recomputed":presha,"archive_sha256_recomputed":asha,"pre_bytes_recomputed":prebytes,"archive_bytes_recomputed":abytes}}
     return out
 
 def expected_units():
@@ -125,6 +143,9 @@ def validate(bundle, repo):
       if digest_file(p) != expected: fail("E_INPUT_DIGEST",f"overlap binding digest changed: {bid}")
       b=json_load(p,"E_INPUT_DIGEST")
       if b.get("id") != bid: fail("E_OVERLAP",f"binding identity mismatch: {bid}")
+      if bid in EXISTING_BINDING_TARGET_PATHS:
+        selected = sorted({match for artifact in b.get("artifacts",[]) for match in re.findall(r"OUTSIDE67-PATH-\d+", artifact)})
+        if selected != EXISTING_BINDING_TARGET_PATHS[bid]: fail("E_OVERLAP",f"selected path set mismatch: {bid}")
     if digest_file(repo/HOLDING) != HOLDING_SHA: fail("E_INPUT_DIGEST","holding digest changed")
     holding_ids=[]
     for line in (repo/HOLDING).read_text().splitlines():
@@ -138,6 +159,7 @@ def validate(bundle, repo):
     for got in source_rows:
       sid=got.get("source_item_id")
       if sid not in expected_sources: fail("E_SOURCE_SCHEMA",f"unknown source id {sid}")
+      if "prior_research_binding_ids" not in got: fail("E_OVERLAP",f"missing prior research binding IDs: {sid}")
       for rev,label in [(got["pre_isolation"],"pre-isolation"),(got["archive"],"archive")]:
         actual_obj=git_bytes(repo,rev["commit"],got["source_path"])
         actual_sha=digest_bytes(actual_obj)
@@ -174,14 +196,14 @@ def validate(bundle, repo):
       for field in ("formal_unit_status","authority_status"):
         if got.get(field)!=want[field]: fail("E_CONTEXT_BOUNDARY",f"context {field} changed")
       exact(got,want,"E_CONTEXT_BOUNDARY",f"context {want['candidate_id']}")
-    expected_overlap=["SCF-B-0057","SCF-B-0062","SCF-B-0080","SCF-B-0081","SCF-B-0084","SCF-B-0088","SCF-B-0091"]
-    if inv.get("overlap_control",{}).get("existing_binding_ids") != expected_overlap or inv.get("overlap_control",{}).get("existing_target_path_ids") != EXISTING_TARGET_PATH_IDS: fail("E_OVERLAP","overlap declaration changed")
+    overlap=inv.get("overlap_control",{})
+    if overlap.get("existing_binding_ids") != EXISTING_BINDING_IDS or overlap.get("target_path_ids") != TARGET_IDS or overlap.get("existing_target_path_ids") != EXISTING_TARGET_PATH_IDS or overlap.get("overlap_path_ids") != TARGET_IDS or overlap.get("overlap_result") != OVERLAP_RESULT: fail("E_OVERLAP","overlap declaration changed")
     pins=inv.get("input_digest_pins",{})
     if pins != {"product_boundary":PRODUCT_BOUNDARY_SHA,"web_l1":L1["HELIX-Web"][1],"webos_l1":L1["HELIX-Web-OS"][1],"l1_approval_decision":L1_APPROVAL_DECISION_SHA,"new_generation_entry":ENTRY_SHA}: fail("E_INPUT_DIGEST","inventory input digest pins changed")
     if inv.get("candidate_summary",{}).get("formal_requirement_unit_count") != 0: fail("E_FORMAL_UNIT","formal unit count promoted")
     if inv.get("authority_effect") != "none" or inv.get("unknown_partition",{}).get("authority_status") != "none": fail("E_AUTHORITY_BOUNDARY","authority boundary changed")
     if inv.get("negative_case_codes") != NEGATIVE_CODES: fail("E_INVENTORY_DECLARATION","negative_case_codes mismatch")
-    if inv.get("negative_case_count") != 15: fail("E_INVENTORY_DECLARATION","negative_case_count mismatch")
+    if inv.get("negative_case_count") != 16: fail("E_INVENTORY_DECLARATION","negative_case_count mismatch")
     if inv.get("candidate_summary",{}).get("candidate_unit_count") != 11 or inv.get("candidate_summary",{}).get("web_l1_candidate_unit_count") != 6 or inv.get("candidate_summary",{}).get("webos_l1_candidate_unit_count") != 5 or inv.get("candidate_summary",{}).get("readme_context_record_count") != 2: fail("E_INVENTORY_DECLARATION","candidate counts mismatch")
     exact(inv,EXPECTED_INVENTORY,"E_INVENTORY_DECLARATION","inventory")
     print("SCF-B-0121 validate: PASS (4 source snapshots, 11 L1 anchor candidates, 2 README contexts; static-only)")

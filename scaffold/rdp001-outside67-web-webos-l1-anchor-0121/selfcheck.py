@@ -41,6 +41,7 @@ CASES=[
  ("formal-unit", "E_FORMAL_UNIT", change_jsonl("candidate-units.jsonl",0,lambda x:x.__setitem__("formal_unit_status","formal"))),
  ("authority-boundary", "E_AUTHORITY_BOUNDARY", change_jsonl("candidate-units.jsonl",0,lambda x:x.__setitem__("authority_status","granted"))),
  ("overlap", "E_OVERLAP", change_file("inventory.json",lambda x:x["overlap_control"].__setitem__("existing_target_path_ids",["OUTSIDE67-PATH-007"]))),
+ ("overlap-prior-binding-missing", "E_OVERLAP", change_jsonl("source-items.jsonl",0,lambda x:x.pop("prior_research_binding_ids"))),
  ("inventory-declaration", "E_INVENTORY_DECLARATION", change_file("inventory.json",lambda x:x["negative_case_codes"].pop())),
  ("input-digest", "E_INPUT_DIGEST", change_file("inventory.json",lambda x:x["input_digest_pins"].__setitem__("web_l1","0"*64))),
  ("l1-approval-decision-digest", "E_INPUT_DIGEST", change_file("inventory.json",lambda x:x["input_digest_pins"].__setitem__("l1_approval_decision","0"*64))),
