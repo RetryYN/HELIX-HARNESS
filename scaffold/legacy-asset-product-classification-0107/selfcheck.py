@@ -100,6 +100,14 @@ def inventory_rule(inventory):
     inventory["classification_rule"]["direct_product_basis"] = "filename only"
 
 
+def edge_status_denominator(inventory):
+    inventory["counts"]["target_edge_semantic_link_statuses"]["unresolved"] -= 1
+
+
+def asset_kind_denominator(inventory):
+    inventory["counts"]["target_asset_artifact_evidence_kinds"]["implementation_source"] -= 1
+
+
 def authority_promotion(rows):
     rows[0]["authority_effect"] = "approved"
     rows[0]["classification_state"] = "effective"
@@ -137,5 +145,7 @@ run_case("input digest omission", "E_INPUT_SET", mutate_inventory=remove_input)
 run_case("input digest duplicate", "E_INPUT_SET", mutate_inventory=duplicate_input)
 run_case("inventory authority promotion", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_authority)
 run_case("inventory classification rule tamper", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_rule)
+run_case("edge status denominator tamper", "E_EXPECTED_DENOMINATOR", mutate_inventory=edge_status_denominator)
+run_case("asset kind denominator tamper", "E_EXPECTED_DENOMINATOR", mutate_inventory=asset_kind_denominator)
 run_case("fixed BASE non-ancestor", "E_BASE_NOT_ANCESTOR", mutate_module=non_ancestor)
-print("SCF-B-0107 selfcheck: PASS negative_cases=15")
+print("SCF-B-0107 selfcheck: PASS negative_cases=17")

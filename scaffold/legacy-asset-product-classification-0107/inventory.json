@@ -33,25 +33,25 @@
     "multi_product_conflict": "more than one distinct product across Wave unit product_scope/candidate_product_targets"
   },
   "counts": {
-    "artifact_evidence_kinds": {
-      "design": 8,
-      "implementation_source": 55,
-      "plan": 1
-    },
     "categories": {
       "direct_product_basis": 56,
       "insufficient_basis": 3,
       "multi_product_conflict": 5
     },
-    "semantic_link_asset_profiles": {
+    "target_asset_artifact_evidence_kinds": {
+      "design": 8,
+      "implementation_source": 55,
+      "plan": 1
+    },
+    "target_asset_semantic_link_profiles": {
       "rejected_only": 3,
       "unresolved_only": 61
     },
-    "semantic_link_statuses": {
-      "rejected": 3,
-      "unresolved": 61
-    },
     "target_assets": 64,
+    "target_edge_semantic_link_statuses": {
+      "rejected": 5,
+      "unresolved": 65
+    },
     "target_wave_edges": 70,
     "wave_edges": 598,
     "wave_files": 50,

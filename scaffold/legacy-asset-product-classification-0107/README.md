@@ -4,6 +4,8 @@
 
 Wave1–36は `docs/governance/` のJSONL、Wave37–50は既存の `scaffold/legacy-semantic-review-wave37..50/` JSONLを入力にする。598 edgeを再導出し、対象64件を単一製品候補の直接根拠56件、複数製品競合5件、根拠不足3件へ分類した。対象assetのsemantic linkはunresolved-only 61件、rejected-only 3件、confirmedを含むassetは0件である。単一候補でもsemantic link、product authority、phase admission、successor、consumer closureが未承認であるため、これは正式asset分類やroutingではない。
 
+対象70 edgeのstatusはunresolved 65・rejected 5である。対象64 assetのprofileはunresolved-only 61・rejected-only 3であり、edge数とasset数を別分母として保持する。artifact evidence kindもasset単位でimplementation_source 55・design 8・plan 1と明記する。
+
 各recordは次を結んでいる。
 
 - 旧asset台帳の行、旧archive sourceのGit blob・bytes・SHA-256、Wave evidenceのline anchorと行テキストdigest
@@ -28,4 +30,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-15件のnegative selfcheckはtarget欠落／重複、edge欠落／重複、source digestと静的read mode、candidate product、recordへの正式owner混入、authority昇格、boundary line digest、input digest欠落／重複、inventoryの権限・分類規則改竄、固定BASE祖先性を期待error code付きで拒否する。
+17件のnegative selfcheckはtarget欠落／重複、edge欠落／重複、source digestと静的read mode、candidate product、recordへの正式owner混入、authority昇格、boundary line digest、input digest欠落／重複、inventoryの権限・分類規則・edge／asset分母の改竄、固定BASE祖先性を期待error code付きで拒否する。

@@ -339,7 +339,26 @@ def verify() -> dict:
     for key, expected_value in expected_inventory_meta.items():
         if inventory.get(key) != expected_value:
             fail("E_INVENTORY_DECLARATION", f"inventory {key} mismatch")
-    if inventory.get("counts") != {"wave_files": 50, "wave_edges": 598, "wave_unique_assets": 355, "target_assets": 64, "categories": {"direct_product_basis": 56, "insufficient_basis": 3, "multi_product_conflict": 5}, "artifact_evidence_kinds": {"implementation_source": 55, "design": 8, "plan": 1}, "semantic_link_statuses": {"unresolved": 61, "rejected": 3}, "semantic_link_asset_profiles": {"rejected_only": 3, "unresolved_only": 61}, "target_wave_edges": sum(len(by_asset[a]) for a in targets)}:
+    target_edges = [item[3] for aid in targets for item in by_asset[aid]]
+    target_profiles = Counter(
+        "rejected_only" if {item[3].get("semantic_link_status") for item in by_asset[aid]} == {"rejected"}
+        else "unresolved_only" if {item[3].get("semantic_link_status") for item in by_asset[aid]} == {"unresolved"}
+        else "confirmed_any" if "confirmed" in {item[3].get("semantic_link_status") for item in by_asset[aid]}
+        else "mixed_unresolved_rejected"
+        for aid in targets
+    )
+    expected_counts = {
+        "wave_files": len(WAVE_PATHS),
+        "wave_edges": len(wave_rows),
+        "wave_unique_assets": len(referenced),
+        "target_assets": len(targets),
+        "categories": dict(sorted(Counter(record["classification_category"] for record in rows).items())),
+        "target_asset_artifact_evidence_kinds": dict(sorted(Counter(phase_by_asset[aid][1].get("artifact_evidence_kind") for aid in targets).items())),
+        "target_edge_semantic_link_statuses": dict(sorted(Counter(edge.get("semantic_link_status") for edge in target_edges).items())),
+        "target_asset_semantic_link_profiles": dict(sorted(target_profiles.items())),
+        "target_wave_edges": len(target_edges),
+    }
+    if inventory.get("counts") != expected_counts:
         fail("E_EXPECTED_DENOMINATOR", "inventory counts mismatch")
     print(f"SCF-B-0107 validate: PASS records={len(rows)} edges={sum(len(by_asset[a]) for a in targets)} categories=direct:56 multi:5 insufficient:3")
     return {"inventory": inventory, "rows": rows}

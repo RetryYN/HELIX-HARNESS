@@ -393,7 +393,13 @@ def build() -> None:
     semantic_asset_profiles = Counter()
     for record in records:
         statuses = set(record["semantic_link_statuses"])
-        semantic_asset_profiles["rejected_only" if statuses == {"rejected"} else "unresolved_only" if statuses == {"unresolved"} else "confirmed_any"] += 1
+        profile = (
+            "rejected_only" if statuses == {"rejected"}
+            else "unresolved_only" if statuses == {"unresolved"}
+            else "confirmed_any" if "confirmed" in statuses
+            else "mixed_unresolved_rejected"
+        )
+        semantic_asset_profiles[profile] += 1
     inventory = {
         "schema_revision": 1,
         "binding_id": BINDING_ID,
@@ -402,7 +408,17 @@ def build() -> None:
         "scope": "Wave1-50 referenced legacy assets intersected with phase product_classification_status=unresolved",
         "wave_source_paths": WAVE_PATHS,
         "missing_expected_waves": [],
-        "counts": {"wave_files": 50, "wave_edges": len(all_wave_rows), "wave_unique_assets": len(referenced_assets), "target_assets": len(records), "categories": dict(sorted(category_counts.items())), "artifact_evidence_kinds": {"implementation_source": 55, "design": 8, "plan": 1}, "semantic_link_statuses": {"unresolved": 61, "rejected": 3}, "semantic_link_asset_profiles": dict(sorted(semantic_asset_profiles.items())), "target_wave_edges": sum(len(r["wave_semantic_links"]) for r in records)},
+        "counts": {
+            "wave_files": len(WAVE_PATHS),
+            "wave_edges": len(all_wave_rows),
+            "wave_unique_assets": len(referenced_assets),
+            "target_assets": len(records),
+            "categories": dict(sorted(category_counts.items())),
+            "target_asset_artifact_evidence_kinds": dict(sorted(Counter(phase_by_asset[a][1].get("artifact_evidence_kind") for a in targets).items())),
+            "target_edge_semantic_link_statuses": dict(sorted(Counter(link["semantic_link_status"] for record in records for link in record["wave_semantic_links"]).items())),
+            "target_asset_semantic_link_profiles": dict(sorted(semantic_asset_profiles.items())),
+            "target_wave_edges": sum(len(r["wave_semantic_links"]) for r in records),
+        },
         "expected_sets": {"wave_unique_asset_count": 355, "target_asset_count": 64, "target_asset_ids": targets, "target_asset_ids_sha256": tagged_sha("\n".join(targets).encode())},
         "input_digests": input_digests,
         "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
