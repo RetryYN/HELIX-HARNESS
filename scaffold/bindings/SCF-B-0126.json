@@ -343,7 +343,7 @@
       "validator checks 120 records, 30 direct, 23 conflict, 67 insufficient and category cardinality invariant",
       "validator compares full nested record/inventory equality including anchor_line_coverage, archive manifest resolution, and authority boundary",
       "validator checks all 63 nonarchive inventory inputs are Binding upstream with exact path/raw SHA and rejects stale/mutated Wave upstream",
-      "selfcheck executes 50 negative cases with expected error codes (18 distinct codes), including strict JSON and archive manifest resolution cases"
+      "selfcheck executes 50 negative cases with expected error codes (20 distinct codes), including strict JSON and archive manifest resolution cases"
     ],
     "scope": [
       "schema_interface",
