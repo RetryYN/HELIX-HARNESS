@@ -8,6 +8,8 @@ import subprocess
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from source_classification import derive_source_diff, generic_metadata_line, metadata_line_numbers
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 BASE = "72b9f368a044709437841c5e862f01802b1a88ec"
@@ -51,21 +53,6 @@ def read_json(path: Path):
 
 def read_jsonl(path: Path):
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
-
-
-def line_metadata(text: str) -> bool:
-    stripped = text.strip()
-    if not stripped or stripped.startswith("#"):
-        return True
-    if stripped in {"---", "|---|", "| --- |", "|---|---|", "| --- | --- |", "|---|---|---|", "| --- | --- | --- |"}:
-        return True
-    if stripped.startswith("|") and "---" in stripped:
-        return True
-    return False
-
-
-def is_metadata_line(sid: str, line_no: int, text: str) -> bool:
-    return (sid == "OUTSIDE67-PATH-011" and 2 <= line_no <= 11) or line_metadata(text)
 
 
 def atom_digest(atom: dict) -> str:
@@ -138,11 +125,13 @@ def check_selected(rows: list[dict], holds: dict[str, dict]) -> dict[str, tuple[
 def check_atoms(atoms: list[dict], reused: list[dict], snapshots, holds) -> None:
     prior = [json.loads(line) for line in PRIOR.read_text(encoding="utf-8").splitlines() if line.strip() and json.loads(line).get("source_item_id") == "OUTSIDE67-PATH-011"]
     prior_by_id = {row["atom_id"]: row for row in prior}
-    if len(reused) != len(prior_by_id) or {row["atom_id"] for row in reused} != set(prior_by_id):
+    pre_lines, _ = snapshots["OUTSIDE67-PATH-011"]
+    valid_prior = {row["atom_id"] for row in prior if row["atomization_status"] == "atomized_candidate" and row["source_fragment"]["line"] not in metadata_line_numbers(pre_lines)}
+    if len(reused) != len(valid_prior) or {row["atom_id"] for row in reused} != valid_prior:
         fail("E_REUSED_ATOM_SCOPE")
     for ref in reused:
         old = prior_by_id.get(ref["atom_id"])
-        if ref["source_item_id"] != "OUTSIDE67-PATH-011" or ref["source_bundle"] != "scaffold/rdp001-outside67-web-webos-l2-gap-057" or ref["source_atom_sha256"] != atom_digest(old) or ref["category"] != ("atomized_candidate" if old["atomization_status"] == "atomized_candidate" else "composite_unresolved"):
+        if ref["source_item_id"] != "OUTSIDE67-PATH-011" or ref["source_bundle"] != "scaffold/rdp001-outside67-web-webos-l2-gap-057" or ref["source_atom_sha256"] != atom_digest(old) or old["atomization_status"] != "atomized_candidate" or ref["category"] != "atomized_candidate":
             fail("E_REUSED_ATOM_DIGEST", ref["atom_id"])
     if len({row["atom_id"] for row in atoms}) != len(atoms) or any(row["source_item_id"] == "OUTSIDE67-PATH-011" for row in atoms):
         fail("E_NEW_ATOM_DUPLICATE_OR_PRIOR")
@@ -152,10 +141,24 @@ def check_atoms(atoms: list[dict], reused: list[dict], snapshots, holds) -> None
             fail("E_ATOM_KEYS", row.get("atom_id", ""))
         line = row["source_fragment"]["line"]
         pre, arch = snapshots[sid]
-        if line < 1 or line > len(pre) or pre[line - 1] != arch[line - 1] or line_metadata(pre[line - 1]) or row["atomization_status"] != "atomized_candidate" or row["source_fragment"]["text"] != pre[line - 1]:
+        if line < 1 or line > len(pre) or pre[line - 1] != arch[line - 1] or line in metadata_line_numbers(pre) or generic_metadata_line(pre[line - 1]) or row["atomization_status"] != "atomized_candidate" or row["source_fragment"]["text"] != pre[line - 1]:
             fail("E_ATOM_LINE_BOUNDARY", row["atom_id"])
         if row["candidate_product"] != "unresolved_cross_product" or row["candidate_product_candidates"] != FOUR_PRODUCTS or row["authority_effect"] != "none" or row["candidate_inference"] or row["inference_status"] != "none" or row["implementation_status"] != "unknown" or row["degradation_status"] != "unknown" or row["current_implementation_status"] != "unknown" or row["current_degradation_status"] != "unknown" or row["failure_status"] != "unknown" or row["consumer_status"] != "unknown" or row["decision_status"] != "unknown" or row["phase_status"] != "unknown_path_based_candidate_only" or row["successor_requirement_ids"] or row["human_decision_ref"] is not None or row["meaning_change_applied"]:
             fail("E_ATOM_PROMOTION", row["atom_id"])
+
+
+def check_diffs(source_diffs: dict, snapshots) -> None:
+    if set(source_diffs) != set(SELECTED_IDS):
+        fail("E_DIFF_SCOPE")
+    for sid in SELECTED_IDS:
+        expected = derive_source_diff(*snapshots[sid])
+        actual = source_diffs[sid]
+        if set(actual) != set(expected):
+            fail("E_DIFF_KEYS", sid)
+        if actual != expected:
+            fail("E_DIFF_DERIVATION", sid)
+        if actual["meaning_equivalence"] != "unresolved":
+            fail("E_MEANING_EQUIVALENCE_PROMOTION", sid)
 
 
 def check_coverage(coverage: list[dict], snapshots, reused, atoms, inv) -> None:
@@ -186,13 +189,19 @@ def check_coverage(coverage: list[dict], snapshots, reused, atoms, inv) -> None:
             fail("E_COVERAGE_ARCH_DIGEST", sid)
         if row["category"] not in {"atomized_candidate", "metadata_only", "composite_unresolved"}:
             fail("E_COVERAGE_CATEGORY", sid)
-        if row["pre_line"] is not None and row["archive_line"] is not None and row["pre_text"] == row["archive_text"]:
-            normative = not line_metadata(row["pre_text"])
-            if normative and row["category"] == "metadata_only" and not is_metadata_line(sid, row["pre_line"], row["pre_text"]):
-                fail("E_NORMATIVE_METADATA_FALLBACK", f"{sid}:{row['pre_line']}")
+        pre_metadata = metadata_line_numbers(pre)
+        archive_metadata = metadata_line_numbers(arch)
+        pre_is_metadata = row["pre_line"] is None or row["pre_line"] in pre_metadata or generic_metadata_line(row["pre_text"] or "")
+        archive_is_metadata = row["archive_line"] is None or row["archive_line"] in archive_metadata or generic_metadata_line(row["archive_text"] or "")
+        if row["category"] == "metadata_only" and not (pre_is_metadata and archive_is_metadata):
+            fail("E_NORMATIVE_METADATA_FALLBACK", f"{sid}:{row.get('pre_line')}:{row.get('archive_line')}")
+        if row["pre_line"] is not None and row["archive_line"] is not None and pre_is_metadata and archive_is_metadata and row["category"] != "metadata_only":
+            fail("E_METADATA_CATEGORY", f"{sid}:{row['pre_line']}:{row['archive_line']}")
         expected_atoms = reused_by_line.get((sid, row["pre_line"]), []) if sid == "OUTSIDE67-PATH-011" else ([atom_by_line[(sid, row["pre_line"])]] if (sid, row["pre_line"]) in atom_by_line else [])
         if row["atom_ids"] != expected_atoms:
             fail("E_COVERAGE_ATOM_IDS", sid)
+        if (row["category"] == "atomized_candidate") != bool(row["atom_ids"]):
+            fail("E_COVERAGE_ATOMIZED_BIDIRECTIONAL", f"{sid}:{row.get('pre_line')}:{row.get('archive_line')}")
         counts[row["category"]] += 1
     line_accounting = inv["line_accounting"]
     if dict(counts) != line_accounting["category_counts"] or line_accounting["unique_coverage_record_count"] != len(coverage) or line_accounting["selected_line_residual_count"] != 0 or line_accounting["path011_reused_atom_count"] != len(reused) or line_accounting["new_atom_count"] != len(atoms) or line_accounting["total_atom_references"] != len(reused) + len(atoms):
@@ -221,7 +230,7 @@ def check_legacy(rows: list[dict], holds) -> None:
             fail("E_LEGACY_LOOKUP", sid + ":" + path)
 
 
-def validate(inv=None, selected=None, atoms=None, reused=None, coverage=None, legacy=None, holds=None, snapshots=None):
+def validate(inv=None, selected=None, atoms=None, reused=None, coverage=None, legacy=None, source_diffs=None, holds=None, snapshots=None):
     check_ancestor()
     inv = read_json(HERE / "inventory.json") if inv is None else inv
     selected = read_jsonl(HERE / "selected-source-items.jsonl") if selected is None else selected
@@ -229,13 +238,15 @@ def validate(inv=None, selected=None, atoms=None, reused=None, coverage=None, le
     reused = read_jsonl(HERE / "reused-atom-references.jsonl") if reused is None else reused
     coverage = read_jsonl(HERE / "line-coverage.jsonl") if coverage is None else coverage
     legacy = read_jsonl(HERE / "legacy-evidence.jsonl") if legacy is None else legacy
+    source_diffs = read_json(HERE / "source-diffs.json") if source_diffs is None else source_diffs
     holds = source_holdings() if holds is None else holds
     snapshots = check_selected(selected, holds) if snapshots is None else snapshots
     check_inventory(inv)
     check_atoms(atoms, reused, snapshots, holds)
+    check_diffs(source_diffs, snapshots)
     check_coverage(coverage, snapshots, reused, atoms, inv)
     check_legacy(legacy, holds)
-    print("PASS validate: PATH-011..015 full pre/archive coverage, 48 reused PATH-011 atoms, new atoms and three-category accounting")
+    print("PASS validate: PATH-011..015 full pre/archive coverage, reused PATH-011 candidates, new atoms and three-category accounting")
 
 
 if __name__ == "__main__":

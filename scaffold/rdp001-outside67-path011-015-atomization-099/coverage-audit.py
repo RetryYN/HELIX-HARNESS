@@ -7,6 +7,8 @@ import json
 from collections import Counter
 from pathlib import Path
 
+from source_classification import generic_metadata_line, metadata_line_numbers
+
 HERE = Path(__file__).resolve().parent
 IDS = [f"OUTSIDE67-PATH-{n:03d}" for n in range(11, 16)]
 ALLOWED = {"atomized_candidate", "metadata_only", "composite_unresolved"}
@@ -14,21 +16,6 @@ ALLOWED = {"atomized_candidate", "metadata_only", "composite_unresolved"}
 
 def digest(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
-
-
-def metadata(text: str) -> bool:
-    s = text.strip()
-    if not s or s.startswith("#"):
-        return True
-    if s in {"---", "|---|", "| --- |", "|---|---|", "| --- | --- |", "|---|---|---|", "| --- | --- | --- |"}:
-        return True
-    if s.startswith("|") and "---" in s:
-        return True
-    return False
-
-
-def is_metadata_line(sid: str, line_no: int, text: str) -> bool:
-    return (sid == "OUTSIDE67-PATH-011" and 2 <= line_no <= 11) or metadata(text)
 
 
 def fail(message: str) -> None:
@@ -39,9 +26,13 @@ def main() -> None:
     coverage = [json.loads(line) for line in (HERE / "line-coverage.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
     pre_keys, archive_keys = set(), set()
     source = {}
+    pre_metadata = {}
+    archive_metadata = {}
     for sid in IDS:
         pre = (HERE / "source-snapshots" / sid / "pre-isolation.md").read_text(encoding="utf-8").splitlines()
         archive = (HERE / "source-snapshots" / sid / "archive-revision.md").read_text(encoding="utf-8").splitlines()
+        pre_metadata[sid] = metadata_line_numbers(pre)
+        archive_metadata[sid] = metadata_line_numbers(archive)
         for no, text in enumerate(pre, 1):
             pre_keys.add((sid, no)); source[(sid, "pre", no)] = text
         for no, text in enumerate(archive, 1):
@@ -65,8 +56,14 @@ def main() -> None:
             text = source.get((sid, "archive", archive_no))
             if text is None or row.get("archive_text") != text or row.get("archive_line_sha256") != digest(text):
                 fail(f"archive anchor mismatch {key}")
-        if pre_no is not None and archive_no is not None and row.get("pre_text") == row.get("archive_text") and not is_metadata_line(sid, pre_no, row["pre_text"]) and row.get("category") == "metadata_only":
-            fail(f"normative line fell back to metadata {sid}:{pre_no}")
+        pre_is_meta = pre_no is None or pre_no in pre_metadata[sid] or generic_metadata_line(row.get("pre_text") or "")
+        archive_is_meta = archive_no is None or archive_no in archive_metadata[sid] or generic_metadata_line(row.get("archive_text") or "")
+        if row.get("category") == "metadata_only" and not (pre_is_meta and archive_is_meta):
+            fail(f"normative line fell back to metadata {sid}:{pre_no}:{archive_no}")
+        if pre_no is not None and archive_no is not None and pre_is_meta and archive_is_meta and row.get("category") != "metadata_only":
+            fail(f"metadata line category mismatch {sid}:{pre_no}:{archive_no}")
+        if (row.get("category") == "atomized_candidate") != bool(row.get("atom_ids")):
+            fail(f"atomized category/atom_ids mismatch {sid}:{pre_no}:{archive_no}")
         counts[row["category"]] += 1
     if len(actual_pre) != len(set(actual_pre)) or set(actual_pre) != pre_keys:
         fail("pre-isolation lines are not covered once")

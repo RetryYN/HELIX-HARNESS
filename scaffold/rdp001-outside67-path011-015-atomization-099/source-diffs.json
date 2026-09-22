@@ -1,6 +1,9 @@
 {
   "OUTSIDE67-PATH-011": {
     "status": "different",
+    "hunks": [
+      "@@ -14,7 +14,7 @@"
+    ],
     "hunk_count": 1,
     "unified_diff": [
       "--- pre-isolation",
@@ -20,6 +23,9 @@
   },
   "OUTSIDE67-PATH-012": {
     "status": "different",
+    "hunks": [
+      "@@ -16,7 +16,7 @@"
+    ],
     "hunk_count": 1,
     "unified_diff": [
       "--- pre-isolation",
@@ -39,6 +45,13 @@
   },
   "OUTSIDE67-PATH-013": {
     "status": "different",
+    "hunks": [
+      "@@ -89,7 +89,7 @@",
+      "@@ -107,13 +107,13 @@",
+      "@@ -133,16 +133,16 @@",
+      "@@ -164,28 +164,28 @@",
+      "@@ -219,8 +219,8 @@"
+    ],
     "hunk_count": 5,
     "unified_diff": [
       "--- pre-isolation",
@@ -149,6 +162,11 @@
   },
   "OUTSIDE67-PATH-014": {
     "status": "different",
+    "hunks": [
+      "@@ -25,8 +25,8 @@",
+      "@@ -87,7 +87,7 @@",
+      "@@ -101,7 +101,7 @@"
+    ],
     "hunk_count": 3,
     "unified_diff": [
       "--- pre-isolation",
@@ -188,6 +206,7 @@
   },
   "OUTSIDE67-PATH-015": {
     "status": "same",
+    "hunks": [],
     "hunk_count": 0,
     "unified_diff": [],
     "meaning_equivalence": "unresolved",

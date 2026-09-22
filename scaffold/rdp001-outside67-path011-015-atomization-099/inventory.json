@@ -70,11 +70,11 @@
   "classification_basis": {
     "product": "holding reported product scope is a path-based candidate only; four-product candidate pool is retained and no final owner is assigned",
     "phase": "holding reported phase is an unapproved candidate label; no phase authority or admission is inferred",
-    "semantic_units": "each pre/archive source line is covered once per revision side; equal non-table prose becomes a source-line candidate, compound/table rows remain composite_unresolved, and PATH-011 prior atoms are ID/digest references",
+    "semantic_units": "each pre/archive source line is covered once per revision side; structurally valid frontmatter is metadata_only, equal non-table prose becomes a source-line candidate, compound/table rows remain composite_unresolved, and PATH-011 prior atomized candidates are ID/digest references",
     "implementation": "current counterpart and old ledger exact hits are evidence-gated; absence is not evidence of implementation state",
     "degradation": "legacy/current degradation is unknown without exact evidence",
     "failure_consumer_decision": "failure, consumer, decision closure and adoption are unknown",
-    "revision_diff": "pre-isolation and archive Git objects are statically diffed; meaning equivalence remains unresolved"
+    "revision_diff": "pre-isolation and archive snapshots are statically diffed into status/hunks/unified_diff; meaning_equivalence remains unresolved"
   },
   "four_products": [
     {
@@ -385,14 +385,14 @@
     "pre_source_line_count": 534,
     "archive_source_line_count": 534,
     "category_counts": {
-      "composite_unresolved": 171,
-      "metadata_only": 154,
-      "atomized_candidate": 209
+      "metadata_only": 177,
+      "composite_unresolved": 163,
+      "atomized_candidate": 194
     },
     "per_path": {
       "OUTSIDE67-PATH-011": {
-        "composite_unresolved": 33,
-        "metadata_only": 17,
+        "metadata_only": 25,
+        "composite_unresolved": 25,
         "atomized_candidate": 9
       },
       "OUTSIDE67-PATH-012": {
@@ -406,8 +406,8 @@
         "composite_unresolved": 54
       },
       "OUTSIDE67-PATH-014": {
-        "metadata_only": 52,
-        "atomized_candidate": 66,
+        "metadata_only": 67,
+        "atomized_candidate": 51,
         "composite_unresolved": 45
       },
       "OUTSIDE67-PATH-015": {
@@ -418,19 +418,19 @@
     },
     "selected_line_residual_count": 0,
     "disjoint_categories": true,
-    "path011_reused_atom_count": 48,
-    "new_atom_count": 200,
-    "total_atom_references": 248
+    "path011_reused_atom_count": 40,
+    "new_atom_count": 185,
+    "total_atom_references": 225
   },
   "semantic_atoms": {
     "new_atom_file": "semantic-atoms.jsonl",
-    "new_atom_count": 200,
+    "new_atom_count": 185,
     "reused_atom_file": "reused-atom-references.jsonl",
-    "reused_atom_count": 48,
+    "reused_atom_count": 40,
     "line_coverage_file": "line-coverage.jsonl",
-    "atomized_candidate_line_count": 209,
-    "metadata_only_line_count": 154,
-    "composite_unresolved_line_count": 171
+    "atomized_candidate_line_count": 194,
+    "metadata_only_line_count": 177,
+    "composite_unresolved_line_count": 163
   },
   "legacy_evidence": {
     "file": "legacy-evidence.jsonl",
@@ -454,12 +454,12 @@
     {
       "id": "F002",
       "status": "observed",
-      "text": "PATH-011 existing atoms are referenced by stable ID and canonical JSON digest; no duplicate atom rows are emitted."
+      "text": "PATH-011 existing atomized candidates are referenced by stable ID and canonical JSON digest; metadata/excluded atoms are not reused."
     },
     {
       "id": "F003",
       "status": "observed",
-      "text": "Every selected pre/archive line is covered once per revision side, with normative table/compound content retained as composite_unresolved rather than metadata fallback."
+      "text": "Every selected pre/archive line is covered once per revision side; structurally valid frontmatter is metadata_only while normative table/compound content remains composite_unresolved, and coverage atomized_candidate↔atom_ids is bidirectional."
     }
   ],
   "unresolved_questions": [
