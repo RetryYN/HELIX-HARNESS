@@ -161,6 +161,8 @@ def observation_cases() -> None:
     expect_observation("O24 text segmentation fault marker", b"Segmentation fault\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
     expect_observation("O25 text mixed FAIL and zero errors", b"FAIL src/x.test.ts 0 errors\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
     expect_observation("O26 text npm ERR marker", b"npm ERR! code 1\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
+    expect_observation("O27 text path error word with pass and exit zero", b"Tests 1 passed (1)\nsrc/error-handling.test.ts\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
+    expect_observation("O28 text hyphen compound words with pass and exit zero", b"Tests 1 passed (1)\nerror-handling fail-safe failed-check fatal-error segmentation-fault npm-ERR!\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
 
 
 

@@ -62,6 +62,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-`common.py` とvalidatorは同じ明示仕様を二重実装し、生成結果と検証結果のdriftを一致比較で検出します。意味的独立性を主張するものではありません。selfcheckはO01–O26の26観測状態（JSON failure／欠測／zero total／suite不整合、textの厳格summary、exit形式、exit欠落／負値／hex、0 failed／0 errors、混在したFAIL＋zero errors、npm ERR marker、bare FAIL／failed／Segmentation fault、error境界、散文、pending、identity）と、N01–N32の32負例（unit／requirement／acceptance結合、consumer／source、asset集合、input／BASE／scope／selection、authority／実装status、record authority_effect／asset_role、inventory schema_revision／binding_id、anchor_rule／exploration、破損JSON／JSONL、digest／履歴、schema）を期待error code付きで検査します。
+`common.py` とvalidatorは同じ明示仕様を二重実装し、生成結果と検証結果のdriftを一致比較で検出します。意味的独立性を主張するものではありません。selfcheckはO01–O28の28観測状態（JSON failure／欠測／zero total／suite不整合、textの厳格summary、exit形式、exit欠落／負値／hex、0 failed／0 errors、混在したFAIL＋zero errors、npm ERR marker、bare FAIL／failed／Segmentation fault、path中のerror語、ハイフン連結語、error境界、散文、pending、identity）と、N01–N32の32負例（unit／requirement／acceptance結合、consumer／source、asset集合、input／BASE／scope／selection、authority／実装status、record authority_effect／asset_role、inventory schema_revision／binding_id、anchor_rule／exploration、破損JSON／JSONL、digest／履歴、schema）を期待error code付きで検査します。FAIL_REはpath区切り、dot、ハイフンに連結された語をmarkerにせず、bare FAIL／failed／fatal／error／segmentation fault／npm ERR!を維持します。
 
 Progress reference: Issue #1813（進捗参照のみ。closeは行わない）。#2067のレビュー中worktreeは変更していません。

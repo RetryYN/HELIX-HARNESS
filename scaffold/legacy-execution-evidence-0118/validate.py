@@ -51,6 +51,12 @@ ANCHOR_REGEX = re.compile(
     r"numFailedTestSuites|numTotalTests|numPassedTests|numFailedTests|head_sha|base_sha|tested_merge_head)",
     re.IGNORECASE,
 )
+# Keep this literal synchronized with common.py.  A slash, dot, or hyphen
+# binds a word into a path/compound identifier and is not a bare marker.
+FAIL_RE = re.compile(
+    r"(?<![\w./-])(?:fatal|error|failure|fail|failed|segmentation\s+fault|npm\s+ERR!)(?![\w./-])",
+    re.IGNORECASE,
+)
 TOP_LEVEL_KEYS = {
     "acceptance_binding",
     "asset_id",
@@ -257,7 +263,6 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
     pass_pattern = re.compile(r"^\s*(?:Test Files|Tests)\s+(\d+)\s+passed(?:\s+\(\d+\))?\s*$", re.IGNORECASE)
     failed_count_pattern = re.compile(r"(?<!\d)(\d+)\s+failed\b", re.IGNORECASE)
     exit_pattern = re.compile(r"\b(?:vitest\s+exit|exit\s+code|exited\s+with\s+code)\s*(?:=|:)?\s*(-?\d+)(?!\w)", re.IGNORECASE)
-    failure_pattern = re.compile(r"(?:\b(?:fatal|error|failure|fail|failed|segmentation\s+fault)\b|\bnpm\s+ERR!)", re.IGNORECASE)
     zero_failure_line = re.compile(r"^\s*0\s+(?:errors?|fail(?:ed|ure)s?)\s*$", re.IGNORECASE)
     passed = [line.strip() for line in lines if pass_pattern.search(line)]
     passed_counts = [int(match.group(1)) for line in lines if (match := pass_pattern.search(line))]
@@ -266,7 +271,7 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
     failed = []
     for line in lines:
         match = failed_count_pattern.search(line)
-        if ((failure_pattern.search(line) and not zero_failure_line.search(line)) or (match and int(match.group(1)) > 0)):
+        if ((FAIL_RE.search(line) and not zero_failure_line.search(line)) or (match and int(match.group(1)) > 0)):
             if line.strip() not in failed:
                 failed.append(line.strip())
     observed = bool(passed or exits or failed)
