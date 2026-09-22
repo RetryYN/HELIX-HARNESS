@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "src/schema旧sourceの四製品責務候補を横断照合する研究（単一owner未確定）",
   "state": "registered",
-  "reason": "固定BASEからproduct_classification_status=unresolvedかつsource_path=src/schema/の31旧assetを全件再導出する。旧source本文の具体span、四製品L1、product-boundary反証、phase、Wave、旧history／failure／consumerを静的に突合し、direct_product_basis 17件、multi_product_conflict 10件、insufficient_basis 4件を研究候補として保持する。正式asset分類、単一product owner、formal route、phase authority、successor、implementation成立、consumer closure、new buildは生成しない。 category evidenceのdirect=候補product/L1 evidence各1、conflict=各2以上、insufficient=各0の不変条件、nested参照key閉包、asset/unit ID型、generator pin driftを独立検査する。重複は姉妹inventoryをoracleにせず固定BASE phase/Waveから再導出する。",
+  "reason": "固定BASEからproduct_classification_status=unresolvedかつsource_path=src/schema/の31旧assetを全件再導出する。旧source本文の具体span、四製品L1、product-boundary反証、phase、Wave、旧history／failure／consumerを静的に突合し、direct_product_basis 17件、multi_product_conflict 10件、insufficient_basis 4件を研究候補として保持する。正式asset分類、単一product owner、formal route、phase authority、successor、implementation成立、consumer closure、new buildは生成しない。 category evidenceのdirect=候補product/L1 evidence各1、conflict=各2以上、insufficient=各0の不変条件、nested参照key閉包、asset/unit ID型、generator pin driftを独立検査する。Waveは固定BASEから再導出し、lint/runtimeはHEAD固定の姉妹inventory blob／BASE／scope／exact ID setを検証してから重複を再導出する。",
   "upstream": [
     {
       "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
@@ -96,7 +96,8 @@
     "正式asset分類、product route、phase、owner、successor、implementation成立、consumer closure、new buildを更新せず、旧資産は静的readだけに限定する",
     "classification_categoryとmanual_semantic_reviewのcandidate_products／l1_evidenceを照合し、directは各1、conflictは各2以上、insufficientは各0をfail-closeで拘束する",
     "failure_consumer_static_refsとunit_product_candidatesのnested key集合、asset_id／unit_candidate_idの型を検査し、余分key・欠落・型改竄を拒否する",
-    "Wave64・lint95・runtime73・schema31の姉妹研究scope重複を固定BASE phase/Wave選択規則から再導出し、generator category/products pin改竄後再生成を独立validatorとselfcheckで拒否する"
+    "Wave64を固定BASE phase/Wave選択規則から再導出し、lint95／runtime73は姉妹inventoryの固定blob／BASE／scope／exact ID set検査後に重複を再導出して、generator category/products pin改竄後再生成を独立validatorとselfcheckで拒否する",
+    "姉妹SCF-B-0108／0117 inventoryのHEAD blob、BASE、scope、exact ID setを固定検査し、blob driftをE_OVERLAPで拒否する"
   ],
   "connections": {
     "consumers": [
@@ -158,7 +159,7 @@
       "category denominator direct_product_basis 17／multi_product_conflict 10／insufficient_basis 4",
       "research overlap: Wave64 + lint95 + runtime73 + schema31 union 232; schema intersections 1／0／0",
       "category evidence invariant: direct各1／conflict各2以上／insufficient各0、nested key closure、asset／unit ID string type",
-      "sister-scope overlap is independently re-derived from fixed BASE phase/Wave selection rules: Wave64／lint95／runtime73／schema31 union232"
+      "sister inventory overlap: Wave64 is re-derived from fixed BASE; lint95/runtime73 are re-derived from pinned HEAD inventory blobs (a97ebd5… / 0003d5a…) after BASE/scope/exact ID validation; union232"
     ],
     "negative_cases": [
       "E_TARGET_SET: target_record_omission／target_record_duplicate",
@@ -170,7 +171,7 @@
       "E_AUTHORITY_PROMOTION／E_RECORD_SCHEMA: authority promotion／unexpected record key",
       "E_INVENTORY／E_INVENTORY_DECLARATION／E_EXPECTED_DENOMINATOR／E_OVERLAP／E_OUTPUT_DIGEST: inventory and denominator mutations",
       "E_BASE_PIN／E_BASE_SOURCE／E_BASE_NOT_ANCESTOR／E_PHASE_STATUS: BASE and phase mutations",
-      "E_CLASSIFICATION／E_STATIC_REF_SCHEMA／E_CANDIDATE_PRODUCTS／E_TARGET_SET: category evidence invariant、nested key closure、asset／unit type、generator category/products pin regeneration; generator review spec／anchor／L1も含む（47 cases total）"
+      "E_CLASSIFICATION／E_STATIC_REF_SCHEMA／E_CANDIDATE_PRODUCTS／E_TARGET_SET／E_OVERLAP: category evidence invariant、nested key closure、asset／unit type、sister inventory blob drift、generator category/products pin regeneration; generator review spec／anchor／L1も含む（48 cases total）"
     ]
   },
   "replacement": {

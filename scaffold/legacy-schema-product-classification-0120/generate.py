@@ -41,6 +41,14 @@ GLOBAL_INPUTS = [
     "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
 ]
 PRODUCTS = ("HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS")
+SISTER_INVENTORIES = {
+    "lint_unresolved_src": "scaffold/legacy-lint-product-classification-0108/inventory.json",
+    "runtime_unresolved_src": "scaffold/legacy-runtime-product-classification-0117/inventory.json",
+}
+SISTER_INVENTORY_BLOBS = {
+    "scaffold/legacy-lint-product-classification-0108/inventory.json": "a97ebd5190bef017b94499e75caf5a95dae162d8",
+    "scaffold/legacy-runtime-product-classification-0117/inventory.json": "0003d5aa7bc4a3defc43b4b51c280941c206f1e4",
+}
 
 # Every entry is a source-semantic review record.  The marker is located in
 # the fixed BASE blob, so the stored line/digest is not inferred from a path
@@ -118,7 +126,7 @@ NEGATIVE_CASES = [
     "inventory_overlap_tamper",
     "category_evidence_invariant_direct", "category_evidence_invariant_conflict", "category_evidence_invariant_insufficient",
     "failure_consumer_static_refs_key_closure", "unit_product_candidates_key_closure",
-    "asset_id_type", "unit_product_candidates_type", "generator_category_pin_tamper", "generator_products_pin_tamper",
+    "asset_id_type", "unit_product_candidates_type", "sister_inventory_blob_tamper", "generator_category_pin_tamper", "generator_products_pin_tamper",
 ]
 
 
@@ -134,20 +142,37 @@ def canonical(value: object) -> str:
     return tagged(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode())
 
 
+def sister_inventory(path: str) -> dict:
+    expected_blob = SISTER_INVENTORY_BLOBS[path]
+    actual_blob = subprocess.check_output(["git", "rev-parse", f"HEAD:{path}"], text=True).strip()
+    if actual_blob != expected_blob:
+        raise AssertionError(f"sister inventory blob drift: {path}")
+    return json.loads(subprocess.check_output(["git", "show", f"HEAD:{path}"]))
+
+
 def overlap_from_fixed_scopes(phase_by_asset: dict, by_asset: dict, schema_ids: list[str]) -> dict:
     """Re-derive sister research scopes from fixed BASE phase/Wave observations.
 
-    This deliberately reads the source selection rules rather than importing a
-    sister bundle inventory as an oracle.  The resulting sets correspond to
-    Wave unresolved-product, lint implementation-source, runtime
-    implementation-source, and this schema scope.
+    Wave is re-derived from fixed BASE; lint/runtime IDs come from pinned
+    sister inventories whose BASE and scope declarations are checked before
+    their sets are used.  No sister classification record is imported.
     """
     unresolved = {aid for aid, (_, row) in phase_by_asset.items() if row.get("product_classification_status") == "unresolved"}
     wave_ids = {aid for aid in by_asset if aid in unresolved}
+    sister_sets = {}
+    for key, path in SISTER_INVENTORIES.items():
+        inventory = sister_inventory(path)
+        expected_scope = {"lint_unresolved_src": "phase product unresolved + implementation_source + src/lint/ exact 95 assets", "runtime_unresolved_src": "phase product unresolved + src/runtime/ exact 73 assets"}[key]
+        expected_count = {"lint_unresolved_src": 95, "runtime_unresolved_src": 73}[key]
+        expected_sets = inventory.get("expected_sets", {})
+        target_ids = expected_sets.get("target_asset_ids")
+        if inventory.get("base_revision") != BASE_REVISION or inventory.get("scope") != expected_scope or expected_sets.get("target_asset_count") != expected_count or not isinstance(target_ids, list) or len(target_ids) != expected_count or len(set(target_ids)) != expected_count or any(not isinstance(aid, str) for aid in target_ids):
+            raise AssertionError(f"sister inventory scope drift: {path}")
+        sister_sets[key] = set(target_ids)
     scopes = {
         "wave_unresolved_product": wave_ids,
-        "lint_unresolved_src": {aid for aid, (_, row) in phase_by_asset.items() if aid in unresolved and row.get("artifact_evidence_kind") == "implementation_source" and row.get("source_path", "").startswith("src/lint/")},
-        "runtime_unresolved_src": {aid for aid, (_, row) in phase_by_asset.items() if aid in unresolved and row.get("artifact_evidence_kind") == "implementation_source" and row.get("source_path", "").startswith("src/runtime/")},
+        "lint_unresolved_src": sister_sets["lint_unresolved_src"],
+        "runtime_unresolved_src": sister_sets["runtime_unresolved_src"],
         "schema_unresolved_src": set(schema_ids),
     }
     pairwise = {
@@ -162,6 +187,7 @@ def overlap_from_fixed_scopes(phase_by_asset: dict, by_asset: dict, schema_ids: 
         "reference_bundle_counts": {key: len(value) for key, value in scopes.items()},
         "pairwise_intersections": pairwise,
         "union_count": len(set().union(*scopes.values())),
+        "sister_inventory_sources": {key: {"path": path, "commit": "HEAD", "blob": SISTER_INVENTORY_BLOBS[path], "target_asset_count": len(scopes[key])} for key, path in SISTER_INVENTORIES.items()},
         "schema_wave_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["wave_unresolved_product"]),
         "schema_lint_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["lint_unresolved_src"]),
         "schema_runtime_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["runtime_unresolved_src"]),

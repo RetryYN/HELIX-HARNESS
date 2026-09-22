@@ -25,7 +25,7 @@ def tagged(data: bytes) -> str:
 def run_case(label, expected_code, mutate_rows=None, mutate_inventory=None, mutate_module=None):
     rows, inventory = copy.deepcopy(base_rows), copy.deepcopy(base_inventory)
     if mutate_rows: mutate_rows(rows)
-    old = {key: getattr(module, key) for key in ("LEDGER", "INVENTORY", "BASE_REVISION", "PHASE_FIXED")}
+    old = {key: getattr(module, key) for key in ("LEDGER", "INVENTORY", "BASE_REVISION", "PHASE_FIXED", "SISTER_INVENTORY_BLOBS_FIXED")}
     try:
         with tempfile.TemporaryDirectory(prefix="scf-b-0120-selfcheck-") as tmp:
             root = Path(tmp)
@@ -125,6 +125,10 @@ def static_ref_key_closure(rows): rows[0]["failure_consumer_static_refs"]["failu
 def unit_key_closure(rows): rows[TARGET_WITH_EDGE]["unit_product_candidates"][0]["extra"] = True
 def asset_id_type(rows): rows[0]["asset_id"] = 123
 def unit_type(rows): rows[TARGET_WITH_EDGE]["unit_product_candidates"] = "invalid"
+def sister_inventory_blob(mod):
+    mod.SISTER_INVENTORY_BLOBS_FIXED = dict(mod.SISTER_INVENTORY_BLOBS_FIXED)
+    path = next(iter(mod.SISTER_INVENTORY_BLOBS_FIXED))
+    mod.SISTER_INVENTORY_BLOBS_FIXED[path] = "0" * 40
 
 run_case("target record omission", "E_TARGET_SET", mutate_rows=remove_record)
 run_case("target record duplicate", "E_TARGET_SET", mutate_rows=duplicate_record)
@@ -168,9 +172,10 @@ run_case("failure consumer static refs key closure", "E_STATIC_REF_SCHEMA", muta
 run_case("unit product candidates key closure", "E_CANDIDATE_PRODUCTS", mutate_rows=unit_key_closure)
 run_case("asset id type", "E_TARGET_SET", mutate_rows=asset_id_type)
 run_case("unit product candidates type", "E_CANDIDATE_PRODUCTS", mutate_rows=unit_type)
+run_case("sister inventory blob tamper", "E_OVERLAP", mutate_module=sister_inventory_blob)
 run_generator_case("generator review spec tamper", "E_LEGACY_EVIDENCE", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(legacy="tampered legacy pin"))
 run_generator_case("generator category pin tamper", "E_CLASSIFICATION", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(category="insufficient_basis"))
 run_generator_case("generator products pin tamper", "E_CLASSIFICATION", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(products=[]))
 run_generator_case("generator anchor tamper", "E_SOURCE_ANCHOR", lambda g: g.REVIEW_SPECS["atomic-contract-id"].update(marker="export const ATOMIC_CONTRACT_ID_PATTERN"))
 run_generator_case("generator L1 tamper", "E_SEMANTIC_REVIEW", lambda g: g.L1_RANGES["HELIX-OS"].__setitem__(0, (22, 26)))
-print("SCF-B-0120 selfcheck: PASS negative_cases=47")
+print("SCF-B-0120 selfcheck: PASS negative_cases=48")

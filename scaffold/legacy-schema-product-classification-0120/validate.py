@@ -30,7 +30,15 @@ BOUNDARY_RANGES_FIXED = {"HELIX-HARNESS": [(36, 36), (54, 61), (86, 89)], "HELIX
 L1_RANGES_FIXED = {"HELIX-HARNESS": [(22, 24), (54, 58)], "HELIX-OS": [(22, 25), (59, 63)], "HELIX-Web": [(24, 26), (47, 49)], "HELIX-Web-OS": [(14, 15), (39, 44)]}
 FAILURE_RANGES_FIXED = [(17, 23), (52, 63)]
 CONSUMER_RANGES_FIXED = [(24, 36), (38, 50)]
-EXPECTED_NEGATIVE_CASES = ['target_record_omission', 'target_record_duplicate', 'edge_omission', 'edge_duplicate', 'source_digest_tamper', 'source_anchor_tamper', 'source_profile_tamper', 'candidate_product_tamper', 'classification_category_tamper', 'semantic_review_tamper', 'legacy_evidence_tamper', 'boundary_digest_tamper', 'input_digest_omission', 'input_digest_duplicate', 'input_digest_extra_path', 'authority_promotion', 'record_top_level_extra_key', 'source_read_mode_tamper', 'inventory_authority_promotion', 'inventory_scope_tamper', 'inventory_formal_update_tamper', 'inventory_classification_rule_tamper', 'inventory_counts_artifact_kind_tamper', 'inventory_edge_count_tamper', 'fixed_BASE_non_ancestor', 'generator_review_spec_tamper', 'generator_anchor_tamper', 'generator_l1_tamper', 'base_pin_tamper', 'base_source_missing', 'history_tamper', 'human_judgment_tamper', 'input_digest_value_tamper', 'inventory_negative_case_tamper', 'output_digest_tamper', 'phase_status_tamper', 'source_line_range_tamper', 'inventory_overlap_tamper', 'category_evidence_invariant_direct', 'category_evidence_invariant_conflict', 'category_evidence_invariant_insufficient', 'failure_consumer_static_refs_key_closure', 'unit_product_candidates_key_closure', 'asset_id_type', 'unit_product_candidates_type', 'generator_category_pin_tamper', 'generator_products_pin_tamper']
+SISTER_INVENTORIES_FIXED = {
+    "lint_unresolved_src": "scaffold/legacy-lint-product-classification-0108/inventory.json",
+    "runtime_unresolved_src": "scaffold/legacy-runtime-product-classification-0117/inventory.json",
+}
+SISTER_INVENTORY_BLOBS_FIXED = {
+    "scaffold/legacy-lint-product-classification-0108/inventory.json": "a97ebd5190bef017b94499e75caf5a95dae162d8",
+    "scaffold/legacy-runtime-product-classification-0117/inventory.json": "0003d5aa7bc4a3defc43b4b51c280941c206f1e4",
+}
+EXPECTED_NEGATIVE_CASES = ['target_record_omission', 'target_record_duplicate', 'edge_omission', 'edge_duplicate', 'source_digest_tamper', 'source_anchor_tamper', 'source_profile_tamper', 'candidate_product_tamper', 'classification_category_tamper', 'semantic_review_tamper', 'legacy_evidence_tamper', 'boundary_digest_tamper', 'input_digest_omission', 'input_digest_duplicate', 'input_digest_extra_path', 'authority_promotion', 'record_top_level_extra_key', 'source_read_mode_tamper', 'inventory_authority_promotion', 'inventory_scope_tamper', 'inventory_formal_update_tamper', 'inventory_classification_rule_tamper', 'inventory_counts_artifact_kind_tamper', 'inventory_edge_count_tamper', 'fixed_BASE_non_ancestor', 'generator_review_spec_tamper', 'generator_anchor_tamper', 'generator_l1_tamper', 'base_pin_tamper', 'base_source_missing', 'history_tamper', 'human_judgment_tamper', 'input_digest_value_tamper', 'inventory_negative_case_tamper', 'output_digest_tamper', 'phase_status_tamper', 'source_line_range_tamper', 'inventory_overlap_tamper', 'category_evidence_invariant_direct', 'category_evidence_invariant_conflict', 'category_evidence_invariant_insufficient', 'failure_consumer_static_refs_key_closure', 'unit_product_candidates_key_closure', 'asset_id_type', 'unit_product_candidates_type', 'sister_inventory_blob_tamper', 'generator_category_pin_tamper', 'generator_products_pin_tamper']
 RECORD_KEYS = frozenset({"artifact_evidence_kinds", "asset_id", "asset_ledger", "authority_effect", "boundary_evidence", "candidate_products", "classification_category", "classification_reason", "classification_state", "failure_consumer_static_refs", "formal_asset_classification_updated", "human_judgment_remaining", "l1_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "manual_semantic_review", "new_build_allowed", "observed_wave_products", "phase_ledger", "semantic_link_statuses", "source_exact", "source_profile", "unit_product_candidates", "wave_semantic_links"})
 SOURCE_KEYS = frozenset({"archive_path", "blob", "bytes", "ledger_source_sha256", "line_count", "read_mode", "semantic_anchors", "sha256", "source_path"})
 # Fixed BASE semantic review pins are independent of generate.py.  Generator
@@ -402,12 +410,31 @@ def expected_manual(path: str, pin: dict):
 
 
 def overlap_from_fixed_scopes(phase_by_asset: dict, by_asset: dict, schema_ids: list[str]) -> dict:
-    """Independently re-derive the four sister research scopes from BASE."""
+    """Re-derive Wave from BASE and verify pinned sister inventory ID sets."""
     unresolved = {aid for aid, (_, row) in phase_by_asset.items() if row.get("product_classification_status") == "unresolved"}
+    sister_sets = {}
+    for key, path in SISTER_INVENTORIES_FIXED.items():
+        try:
+            blob = subprocess.check_output(["git", "rev-parse", f"HEAD:{path}"], text=True).strip()
+        except (subprocess.CalledProcessError, OSError) as exc:
+            fail("E_OVERLAP", f"sister inventory missing {path}: {exc}")
+        if blob != SISTER_INVENTORY_BLOBS_FIXED[path]:
+            fail("E_OVERLAP", f"sister inventory blob drift {path}")
+        try:
+            inventory = json.loads(subprocess.check_output(["git", "show", f"HEAD:{path}"]))
+        except (subprocess.CalledProcessError, OSError, json.JSONDecodeError) as exc:
+            fail("E_OVERLAP", f"sister inventory unreadable {path}: {exc}")
+        expected_scope = {"lint_unresolved_src": "phase product unresolved + implementation_source + src/lint/ exact 95 assets", "runtime_unresolved_src": "phase product unresolved + src/runtime/ exact 73 assets"}[key]
+        expected_count = {"lint_unresolved_src": 95, "runtime_unresolved_src": 73}[key]
+        expected_sets = inventory.get("expected_sets", {})
+        target_ids = expected_sets.get("target_asset_ids")
+        if inventory.get("base_revision") != BASE_REVISION or inventory.get("scope") != expected_scope or expected_sets.get("target_asset_count") != expected_count or not isinstance(target_ids, list) or len(target_ids) != expected_count or len(set(target_ids)) != expected_count or any(not isinstance(aid, str) for aid in target_ids):
+            fail("E_OVERLAP", f"sister inventory scope drift {path}")
+        sister_sets[key] = set(target_ids)
     scopes = {
         "wave_unresolved_product": {aid for aid in by_asset if aid in unresolved},
-        "lint_unresolved_src": {aid for aid, (_, row) in phase_by_asset.items() if aid in unresolved and row.get("artifact_evidence_kind") == "implementation_source" and row.get("source_path", "").startswith("src/lint/")},
-        "runtime_unresolved_src": {aid for aid, (_, row) in phase_by_asset.items() if aid in unresolved and row.get("artifact_evidence_kind") == "implementation_source" and row.get("source_path", "").startswith("src/runtime/")},
+        "lint_unresolved_src": sister_sets["lint_unresolved_src"],
+        "runtime_unresolved_src": sister_sets["runtime_unresolved_src"],
         "schema_unresolved_src": set(schema_ids),
     }
     return {
@@ -421,6 +448,7 @@ def overlap_from_fixed_scopes(phase_by_asset: dict, by_asset: dict, schema_ids: 
             "wave_unresolved_product_lint_unresolved_src": len(scopes["wave_unresolved_product"] & scopes["lint_unresolved_src"]),
         },
         "union_count": len(set().union(*scopes.values())),
+        "sister_inventory_sources": {key: {"path": path, "commit": "HEAD", "blob": SISTER_INVENTORY_BLOBS_FIXED[path], "target_asset_count": len(scopes[key])} for key, path in SISTER_INVENTORIES_FIXED.items()},
         "schema_wave_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["wave_unresolved_product"]),
         "schema_lint_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["lint_unresolved_src"]),
         "schema_runtime_overlap_asset_ids": sorted(scopes["schema_unresolved_src"] & scopes["runtime_unresolved_src"]),

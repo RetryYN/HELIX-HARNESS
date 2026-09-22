@@ -812,6 +812,7 @@
     "unit_product_candidates_key_closure",
     "asset_id_type",
     "unit_product_candidates_type",
+    "sister_inventory_blob_tamper",
     "generator_category_pin_tamper",
     "generator_products_pin_tamper"
   ],
@@ -837,6 +838,20 @@
     "schema_wave_overlap_asset_ids": [
       "LEGACY-ASSET-C6CF7E1C334856500558"
     ],
+    "sister_inventory_sources": {
+      "lint_unresolved_src": {
+        "blob": "a97ebd5190bef017b94499e75caf5a95dae162d8",
+        "commit": "HEAD",
+        "path": "scaffold/legacy-lint-product-classification-0108/inventory.json",
+        "target_asset_count": 95
+      },
+      "runtime_unresolved_src": {
+        "blob": "0003d5aa7bc4a3defc43b4b51c280941c206f1e4",
+        "commit": "HEAD",
+        "path": "scaffold/legacy-runtime-product-classification-0117/inventory.json",
+        "target_asset_count": 73
+      }
+    },
     "union_count": 232
   },
   "review_counts": {
