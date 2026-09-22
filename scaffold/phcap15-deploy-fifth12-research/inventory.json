@@ -1,0 +1,1644 @@
+{
+  "schema": "phcap15-deploy-fifth12-research/v1",
+  "status": "research_premise_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_archive_runtime_test_ci_execution": false,
+  "base": {
+    "origin_main_commit": "ce66af3b36727872369a549f01941b26c2b19088",
+    "origin_main_at_start": "ce66af3b36727872369a549f01941b26c2b19088",
+    "origin_main_at_final": "ce66af3b36727872369a549f01941b26c2b19088",
+    "changed": false,
+    "worktree": "/home/tenni/.helix-worktrees/phcap15-deploy-fifth12",
+    "captured_at": "2026-09-22",
+    "stop_condition": "latest origin/mainが変わったらrebaselineしてから静的判定を再実行する"
+  },
+  "task": {
+    "task_id": "PHCAP-15",
+    "phase": "deploy",
+    "title": "Deploy",
+    "phase_inventory_path": "docs/governance/phase-capability-inventory.json",
+    "phase_inventory_snapshot": {
+      "status": "draft_requirement",
+      "product_targets": [
+        "HELIX-Web-OS",
+        "HELIX-OS"
+      ],
+      "evidence_products": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "refs": [
+        "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+        "docs/helix-os/L2-requirements/governance-requirements.md"
+      ],
+      "legacy_layers_evidenced": [
+        "L13 post-deploy",
+        "L13 plan"
+      ],
+      "maximum_layer_evidenced": "L13",
+      "legacy_capability_status": "documented_partial",
+      "transition_assessment": "degraded_to_draft",
+      "gaps": "旧世代にはpost-deploy evidenceと計画があったが、現行Web-OS authorityへの適合は未評価。 deployment authority、tenant/runtime境界、実装・検証は未成立",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    }
+  },
+  "provenance": {
+    "ledgers": {
+      "docs/governance/phase-capability-inventory.json": {
+        "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+        "records": null
+      },
+      "docs/governance/legacy-asset-disposition.jsonl": {
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "records": 4020
+      },
+      "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": {
+        "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+        "records": 4020
+      },
+      "docs/governance/legacy-asset-decisions.jsonl": {
+        "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+        "records": 58
+      },
+      "archive/legacy-generation-2026-09-14/MANIFEST.sha256": {
+        "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+        "records": null
+      },
+      "docs/governance/legacy-asset-copy-read-after.jsonl": {
+        "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+        "records": 29
+      }
+    },
+    "phase_pool_basis": "candidate_phase_targets contains PHCAP-15",
+    "reviewed_sets": {
+      "pr_2001": {
+        "asset_ids": [
+          "LEGACY-ASSET-042D2B732DC68AA7EE9A",
+          "LEGACY-ASSET-578A66F54CD01046B7BA",
+          "LEGACY-ASSET-18BB86CC5625C31430B8",
+          "LEGACY-ASSET-FA8D4E24D8399E8350F1",
+          "LEGACY-ASSET-327A88B2141C43045AF1",
+          "LEGACY-ASSET-BADD68B87BA5BE0F3906",
+          "LEGACY-ASSET-7995556682FC5493C37E"
+        ],
+        "pr_number": 2001,
+        "head": "c864cebfbda69707529cbb0307625eac1b543add"
+      },
+      "pr_2004": {
+        "asset_ids": [
+          "LEGACY-ASSET-7D081AD1F95E968FA77C",
+          "LEGACY-ASSET-1C02673C4901B24D963D",
+          "LEGACY-ASSET-0AD2FD852BAB0CEC864B",
+          "LEGACY-ASSET-99E3BCA46E08C4A328FC",
+          "LEGACY-ASSET-17C4BF78919578FEBB18",
+          "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+          "LEGACY-ASSET-897CAC574F146D976BD7",
+          "LEGACY-ASSET-FD0947CF40FB2B301664",
+          "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+          "LEGACY-ASSET-3E3D84D599ED0476926B",
+          "LEGACY-ASSET-92811340BD843B5EC3FD",
+          "LEGACY-ASSET-7E68FC7E2F08FD31B0C1"
+        ],
+        "pr_number": 2004,
+        "head": "2642d3f88e4c44233ea649a83a7fb739c9d20430"
+      },
+      "scf_b0037": {
+        "asset_ids": [
+          "LEGACY-ASSET-54330A68064B58B22259",
+          "LEGACY-ASSET-1251704E0BE627232E00",
+          "LEGACY-ASSET-189702B332643A3BFDAF"
+        ],
+        "binding_path": "scaffold/bindings/SCF-B-0037.json"
+      },
+      "third12": {
+        "asset_ids": [
+          "LEGACY-ASSET-A297D67A1D8AD6EE6D6B",
+          "LEGACY-ASSET-0C5F0695490FA5D87419",
+          "LEGACY-ASSET-EC07511FF3E241F15359",
+          "LEGACY-ASSET-809D616D0D7D844F5720",
+          "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+          "LEGACY-ASSET-13604CA85F3B7D8D5055",
+          "LEGACY-ASSET-D63398C5A382549DC905",
+          "LEGACY-ASSET-320E6F0B93975C430B1D",
+          "LEGACY-ASSET-3CB7630AEBBC5932E11D",
+          "LEGACY-ASSET-26391F9FB236CBD4D270",
+          "LEGACY-ASSET-2149C3FCC5A18EB50185",
+          "LEGACY-ASSET-FAAFFA616A44F65911EB"
+        ],
+        "binding_path": "scaffold/bindings/SCF-B-0059.json"
+      },
+      "next12": {
+        "binding_path": "scaffold/bindings/SCF-B-0060.json",
+        "asset_ids": [
+          "LEGACY-ASSET-9F48ADEEB477DCA54039",
+          "LEGACY-ASSET-D4DBE31CF7179061E284",
+          "LEGACY-ASSET-3530C6D5B44F55C1692A",
+          "LEGACY-ASSET-9B1B5B55B610942F3216",
+          "LEGACY-ASSET-0CC9B511C4846B2D7489",
+          "LEGACY-ASSET-8EB1660DDE8803009282",
+          "LEGACY-ASSET-FC1E6AE8D3FD1352413B",
+          "LEGACY-ASSET-A569CF70586E9679DB01",
+          "LEGACY-ASSET-3C4A61F623B392DC88D6",
+          "LEGACY-ASSET-03B06987CECB57AC4AE2",
+          "LEGACY-ASSET-2224C11CCDA22CAAFF23",
+          "LEGACY-ASSET-3D576E223565C34899F1"
+        ]
+      }
+    },
+    "existing_binding": "scaffold/bindings/SCF-B-0060.json"
+  },
+  "denominator": {
+    "pool_rows": 78,
+    "pool_unique_asset_ids": 78,
+    "pr_2001_selected_rows": 7,
+    "pr_2004_selected_rows": 12,
+    "scf_b0037_selected_rows": 3,
+    "third12_selected_rows": 12,
+    "next12_selected_rows": 12,
+    "already_reviewed_excluded_rows": 46,
+    "followup_selected_rows": 12,
+    "reviewed_or_selected_total": 58,
+    "remaining_unreviewed_rows": 20,
+    "pool_coverage_statement": "PHCAP-15 pool 78件から既レビュー5束46件を除外した残分母32件から第五12件を選択。既レビュー5束と本束を合わせた58件をレビュー済み／選択済み範囲として固定し、残る20件は未レビュー分母として保持する。"
+  },
+  "scope": {
+    "pool_asset_ids": [
+      "LEGACY-ASSET-042D2B732DC68AA7EE9A",
+      "LEGACY-ASSET-7995556682FC5493C37E",
+      "LEGACY-ASSET-7D081AD1F95E968FA77C",
+      "LEGACY-ASSET-1C02673C4901B24D963D",
+      "LEGACY-ASSET-0AD2FD852BAB0CEC864B",
+      "LEGACY-ASSET-99E3BCA46E08C4A328FC",
+      "LEGACY-ASSET-A297D67A1D8AD6EE6D6B",
+      "LEGACY-ASSET-0C5F0695490FA5D87419",
+      "LEGACY-ASSET-EC07511FF3E241F15359",
+      "LEGACY-ASSET-9F48ADEEB477DCA54039",
+      "LEGACY-ASSET-1251704E0BE627232E00",
+      "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "LEGACY-ASSET-809D616D0D7D844F5720",
+      "LEGACY-ASSET-54330A68064B58B22259",
+      "LEGACY-ASSET-578A66F54CD01046B7BA",
+      "LEGACY-ASSET-17C4BF78919578FEBB18",
+      "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+      "LEGACY-ASSET-897CAC574F146D976BD7",
+      "LEGACY-ASSET-D5630716F221DA23DB09",
+      "LEGACY-ASSET-93505A0E6A989C5C0F09",
+      "LEGACY-ASSET-13604CA85F3B7D8D5055",
+      "LEGACY-ASSET-02319C2481B9E01698D5",
+      "LEGACY-ASSET-D63398C5A382549DC905",
+      "LEGACY-ASSET-5D71CA1E0DB0DBDAD8F2",
+      "LEGACY-ASSET-10DC603C5CC9499788F0",
+      "LEGACY-ASSET-DF1EA776C672AEB4E55F",
+      "LEGACY-ASSET-269C287365D652DEAD93",
+      "LEGACY-ASSET-D4DBE31CF7179061E284",
+      "LEGACY-ASSET-DE68E15724FB6EC258AB",
+      "LEGACY-ASSET-38BEF2B0F4373A2749B4",
+      "LEGACY-ASSET-20466A68C0622610B827",
+      "LEGACY-ASSET-8F3454E00276A341622B",
+      "LEGACY-ASSET-D52C1596B4C54B842920",
+      "LEGACY-ASSET-6929C09B95A444D95B49",
+      "LEGACY-ASSET-189702B332643A3BFDAF",
+      "LEGACY-ASSET-320E6F0B93975C430B1D",
+      "LEGACY-ASSET-3CB7630AEBBC5932E11D",
+      "LEGACY-ASSET-3530C6D5B44F55C1692A",
+      "LEGACY-ASSET-9B1B5B55B610942F3216",
+      "LEGACY-ASSET-0CC9B511C4846B2D7489",
+      "LEGACY-ASSET-FD0947CF40FB2B301664",
+      "LEGACY-ASSET-7A4ACACE4FCC342FEB03",
+      "LEGACY-ASSET-35E8708A100679F1E4E6",
+      "LEGACY-ASSET-98DD78AA6C120986F753",
+      "LEGACY-ASSET-8EB1660DDE8803009282",
+      "LEGACY-ASSET-45EBBAE400D6A7382026",
+      "LEGACY-ASSET-719F06F33C59C70EEE6A",
+      "LEGACY-ASSET-41F36667354D71D9E014",
+      "LEGACY-ASSET-8D8E740D55956A2A91E0",
+      "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+      "LEGACY-ASSET-3E3D84D599ED0476926B",
+      "LEGACY-ASSET-F3000D26921558AA2E0C",
+      "LEGACY-ASSET-18BB86CC5625C31430B8",
+      "LEGACY-ASSET-FC1E6AE8D3FD1352413B",
+      "LEGACY-ASSET-FAAFFA616A44F65911EB",
+      "LEGACY-ASSET-8B786D9FDDF61B2D569E",
+      "LEGACY-ASSET-4A7A45BC495D1B2677A2",
+      "LEGACY-ASSET-FA8D4E24D8399E8350F1",
+      "LEGACY-ASSET-26391F9FB236CBD4D270",
+      "LEGACY-ASSET-A569CF70586E9679DB01",
+      "LEGACY-ASSET-4357DACF4BA46C0B044F",
+      "LEGACY-ASSET-3C4A61F623B392DC88D6",
+      "LEGACY-ASSET-7642909D8AA62C75E88D",
+      "LEGACY-ASSET-327A88B2141C43045AF1",
+      "LEGACY-ASSET-2224C11CCDA22CAAFF23",
+      "LEGACY-ASSET-03B06987CECB57AC4AE2",
+      "LEGACY-ASSET-BFCA76AA319FBC61AF05",
+      "LEGACY-ASSET-2149C3FCC5A18EB50185",
+      "LEGACY-ASSET-BADD68B87BA5BE0F3906",
+      "LEGACY-ASSET-92811340BD843B5EC3FD",
+      "LEGACY-ASSET-3D576E223565C34899F1",
+      "LEGACY-ASSET-5FEB7612134679928006",
+      "LEGACY-ASSET-48C1BA64B0D481CA806D",
+      "LEGACY-ASSET-7CAE3DCABA0F5008EB63",
+      "LEGACY-ASSET-7E68FC7E2F08FD31B0C1",
+      "LEGACY-ASSET-4916736CCB699929CAC0",
+      "LEGACY-ASSET-2FA49FB93A1EFF48115F",
+      "LEGACY-ASSET-E0574CEA8F5B95E551C1"
+    ],
+    "excluded_scopes": {
+      "pr_2001": {
+        "pr_number": 2001,
+        "head": "c864cebfbda69707529cbb0307625eac1b543add",
+        "asset_ids": [
+          "LEGACY-ASSET-042D2B732DC68AA7EE9A",
+          "LEGACY-ASSET-578A66F54CD01046B7BA",
+          "LEGACY-ASSET-18BB86CC5625C31430B8",
+          "LEGACY-ASSET-FA8D4E24D8399E8350F1",
+          "LEGACY-ASSET-327A88B2141C43045AF1",
+          "LEGACY-ASSET-BADD68B87BA5BE0F3906",
+          "LEGACY-ASSET-7995556682FC5493C37E"
+        ]
+      },
+      "pr_2004": {
+        "pr_number": 2004,
+        "head": "2642d3f88e4c44233ea649a83a7fb739c9d20430",
+        "asset_ids": [
+          "LEGACY-ASSET-7D081AD1F95E968FA77C",
+          "LEGACY-ASSET-1C02673C4901B24D963D",
+          "LEGACY-ASSET-0AD2FD852BAB0CEC864B",
+          "LEGACY-ASSET-99E3BCA46E08C4A328FC",
+          "LEGACY-ASSET-17C4BF78919578FEBB18",
+          "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+          "LEGACY-ASSET-897CAC574F146D976BD7",
+          "LEGACY-ASSET-FD0947CF40FB2B301664",
+          "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+          "LEGACY-ASSET-3E3D84D599ED0476926B",
+          "LEGACY-ASSET-92811340BD843B5EC3FD",
+          "LEGACY-ASSET-7E68FC7E2F08FD31B0C1"
+        ]
+      },
+      "scf_b0037": {
+        "binding_path": "scaffold/bindings/SCF-B-0037.json",
+        "asset_ids": [
+          "LEGACY-ASSET-54330A68064B58B22259",
+          "LEGACY-ASSET-1251704E0BE627232E00",
+          "LEGACY-ASSET-189702B332643A3BFDAF"
+        ]
+      },
+      "third12": {
+        "binding_path": "scaffold/bindings/SCF-B-0059.json",
+        "asset_ids": [
+          "LEGACY-ASSET-A297D67A1D8AD6EE6D6B",
+          "LEGACY-ASSET-0C5F0695490FA5D87419",
+          "LEGACY-ASSET-EC07511FF3E241F15359",
+          "LEGACY-ASSET-809D616D0D7D844F5720",
+          "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+          "LEGACY-ASSET-13604CA85F3B7D8D5055",
+          "LEGACY-ASSET-D63398C5A382549DC905",
+          "LEGACY-ASSET-320E6F0B93975C430B1D",
+          "LEGACY-ASSET-3CB7630AEBBC5932E11D",
+          "LEGACY-ASSET-26391F9FB236CBD4D270",
+          "LEGACY-ASSET-2149C3FCC5A18EB50185",
+          "LEGACY-ASSET-FAAFFA616A44F65911EB"
+        ]
+      },
+      "next12": {
+        "binding_path": "scaffold/bindings/SCF-B-0060.json",
+        "asset_ids": [
+          "LEGACY-ASSET-9F48ADEEB477DCA54039",
+          "LEGACY-ASSET-D4DBE31CF7179061E284",
+          "LEGACY-ASSET-3530C6D5B44F55C1692A",
+          "LEGACY-ASSET-9B1B5B55B610942F3216",
+          "LEGACY-ASSET-0CC9B511C4846B2D7489",
+          "LEGACY-ASSET-8EB1660DDE8803009282",
+          "LEGACY-ASSET-FC1E6AE8D3FD1352413B",
+          "LEGACY-ASSET-A569CF70586E9679DB01",
+          "LEGACY-ASSET-3C4A61F623B392DC88D6",
+          "LEGACY-ASSET-03B06987CECB57AC4AE2",
+          "LEGACY-ASSET-2224C11CCDA22CAAFF23",
+          "LEGACY-ASSET-3D576E223565C34899F1"
+        ]
+      }
+    },
+    "selected_asset_ids": [
+      "LEGACY-ASSET-D5630716F221DA23DB09",
+      "LEGACY-ASSET-93505A0E6A989C5C0F09",
+      "LEGACY-ASSET-02319C2481B9E01698D5",
+      "LEGACY-ASSET-5D71CA1E0DB0DBDAD8F2",
+      "LEGACY-ASSET-10DC603C5CC9499788F0",
+      "LEGACY-ASSET-DF1EA776C672AEB4E55F",
+      "LEGACY-ASSET-269C287365D652DEAD93",
+      "LEGACY-ASSET-DE68E15724FB6EC258AB",
+      "LEGACY-ASSET-38BEF2B0F4373A2749B4",
+      "LEGACY-ASSET-20466A68C0622610B827",
+      "LEGACY-ASSET-8F3454E00276A341622B",
+      "LEGACY-ASSET-D52C1596B4C54B842920"
+    ],
+    "remaining_unreviewed_asset_ids": [
+      "LEGACY-ASSET-6929C09B95A444D95B49",
+      "LEGACY-ASSET-7A4ACACE4FCC342FEB03",
+      "LEGACY-ASSET-35E8708A100679F1E4E6",
+      "LEGACY-ASSET-98DD78AA6C120986F753",
+      "LEGACY-ASSET-45EBBAE400D6A7382026",
+      "LEGACY-ASSET-719F06F33C59C70EEE6A",
+      "LEGACY-ASSET-41F36667354D71D9E014",
+      "LEGACY-ASSET-8D8E740D55956A2A91E0",
+      "LEGACY-ASSET-F3000D26921558AA2E0C",
+      "LEGACY-ASSET-8B786D9FDDF61B2D569E",
+      "LEGACY-ASSET-4A7A45BC495D1B2677A2",
+      "LEGACY-ASSET-4357DACF4BA46C0B044F",
+      "LEGACY-ASSET-7642909D8AA62C75E88D",
+      "LEGACY-ASSET-BFCA76AA319FBC61AF05",
+      "LEGACY-ASSET-5FEB7612134679928006",
+      "LEGACY-ASSET-48C1BA64B0D481CA806D",
+      "LEGACY-ASSET-7CAE3DCABA0F5008EB63",
+      "LEGACY-ASSET-4916736CCB699929CAC0",
+      "LEGACY-ASSET-2FA49FB93A1EFF48115F",
+      "LEGACY-ASSET-E0574CEA8F5B95E551C1"
+    ],
+    "overlap_checks": {
+      "selected_vs_pr_2001": [],
+      "selected_vs_pr_2004": [],
+      "selected_vs_scf_b0037": [],
+      "selected_vs_third12": [],
+      "selected_vs_next12": [],
+      "pool_duplicate_ids": []
+    }
+  },
+  "product_boundary_candidates": {
+    "defined_products": [
+      "HELIX-HARNESS",
+      "HELIX-OS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "products": [
+      {
+        "product": "HELIX-HARNESS",
+        "status": "research_premise_candidate",
+        "boundary": "工程・artifact内容・consumer条件の境界候補。配布運転を所有しない候補。",
+        "current_evidence_status": "boundary_candidate_only",
+        "current_authority_status": "none",
+        "current_implementation_status": "unknown",
+        "refs": [
+          {
+            "path": "docs/helix-harness/L1-planning/product-intent.md",
+            "line_start": 34,
+            "line_end": 56,
+            "file_sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+            "span_sha256": "8dd0e891965dd171d7040d9d491259e44184157c6dc4845eac58315bc63fbe8b"
+          }
+        ],
+        "owner_status": "unresolved"
+      },
+      {
+        "product": "HELIX-OS",
+        "status": "research_premise_candidate",
+        "boundary": "project authority、release準備、artifact受渡し、deployment evidence統制の候補。展開先runtime authorityを吸収しない。",
+        "current_evidence_status": "candidate_unresolved",
+        "current_authority_status": "none",
+        "current_implementation_status": "unknown",
+        "refs": [
+          {
+            "path": "docs/concept/product-boundary.md",
+            "line_start": 55,
+            "line_end": 65,
+            "file_sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+            "span_sha256": "ae03bc7e7bed72b7b365024ae85787325612a71fe695e4897f1349cd5b943817"
+          },
+          {
+            "path": "docs/helix-os/L1-planning/system-intent.md",
+            "line_start": 22,
+            "line_end": 35,
+            "file_sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+            "span_sha256": "c2c19bf4e1b2e2b0aa619699e4221bcffaa41112c99a063c424148d3f57cf5f3"
+          },
+          {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line_start": 59,
+            "line_end": 63,
+            "file_sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+            "span_sha256": "fd1037b7ce5c7cdfe0fe3a7b9b48f434af71ec333b4b36cf4e280eb9e6b40980"
+          }
+        ],
+        "owner_status": "unresolved"
+      },
+      {
+        "product": "HELIX-Web",
+        "status": "research_premise_candidate",
+        "boundary": "利用者向けWeb体験の候補。直接deployment evidenceの不在は未実装を意味しない。",
+        "current_evidence_status": "boundary_candidate_only",
+        "current_authority_status": "none",
+        "current_implementation_status": "unknown",
+        "refs": [
+          {
+            "path": "docs/helix-web/L1-planning/product-intent.md",
+            "line_start": 24,
+            "line_end": 49,
+            "file_sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+            "span_sha256": "c8515dd8244c245e445a5765b28042f00e3edf62c5445bdb9d6bb826f44fdb1a"
+          }
+        ],
+        "owner_status": "unresolved"
+      },
+      {
+        "product": "HELIX-Web-OS",
+        "status": "research_premise_candidate",
+        "boundary": "tenant/service runtime、配備、監視、復旧の候補。OSとはauthority/stateを分離する。",
+        "current_evidence_status": "candidate_unresolved",
+        "current_authority_status": "none",
+        "current_implementation_status": "unknown",
+        "refs": [
+          {
+            "path": "docs/helix-web-os/L1-planning/system-intent.md",
+            "line_start": 14,
+            "line_end": 49,
+            "file_sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+            "span_sha256": "3d3fd4e9e7662497f68a95ce4659c624ea335598646d19ace1149970e453f4d7"
+          },
+          {
+            "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+            "line_start": 33,
+            "line_end": 38,
+            "file_sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+            "span_sha256": "9329190769887485fef6b9bba87b956959403df5be319f1ed8a1c9b92e30a58a"
+          },
+          {
+            "path": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+            "line_start": 22,
+            "line_end": 24,
+            "file_sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e",
+            "span_sha256": "67a9be70dace10896eb7bd0de717d434c22c7c76763407ab62cecda385756a29"
+          }
+        ],
+        "owner_status": "unresolved"
+      }
+    ],
+    "current_implementation_claim": false,
+    "authority_effect": "none",
+    "product_owner_status": "unresolved"
+  },
+  "assets": [
+    {
+      "asset_id": "LEGACY-ASSET-D5630716F221DA23DB09",
+      "semantic_diversity_kind": "L6 function contract design",
+      "phase_ledger_line": 697,
+      "disposition_ledger_line": 697,
+      "source_path": "docs/design/helix/L6-function-design/pillar-function-design.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/pillar-function-design.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "0c14883e32ab87a99be1b18ef85a12e43ba4950b962a5d5ebebe57d38facf490",
+      "source_line_count": 579,
+      "ledger_source_sha256": "0c14883e32ab87a99be1b18ef85a12e43ba4950b962a5d5ebebe57d38facf490",
+      "artifact_evidence_kind": "design",
+      "source_anchors": [
+        {
+          "line_start": 16,
+          "line_end": 18,
+          "source_span_sha256": "39a8310c268d95290271928cef666ebcccc8225f49f5af73f4c1fc5acba1f8b6",
+          "exact_text": "本書は `docs/design/helix/L5-detail/pillar-detail-design.md` の `HC-*` 10 contract を、L7 で実装可能な\nfunction contract へ降ろす。既存 `orchestration-memory.md` は Route-B P2/P7 の深掘りであり、本書は\npillar 43 要件全体の L6 横断設計を受け持つ。",
+          "meaning": "L6 function contract design connects deployment and distribution functions to later verification"
+        },
+        {
+          "line_start": 351,
+          "line_end": 356,
+          "source_span_sha256": "99cfeec14dbe8358d9b40aaba9851ccb18b84ab9b8409077120e36bf3ecf866b",
+          "exact_text": "| HC-P1 | autonomous-work | `evaluateAutonomyResume(input) => AutonomyResumeDecision` / `planVersionUpgradeDryRun(input) => VersionUpgradePlan` / `buildVersionUpActivationPackets(input) => VersionUpActivationPacket[]` / `selectL2TemplatePack(input) => L2TemplateDecision` / `appendContinuationEvent(input) => ContinuationEventRef` / `projectContinuationEvent(event) => ContinuationProjectionResult` / `replayContinuationEvents(input) => ContinuationReplayResult` | resume 3条件、job availability、budget、DB-backed next actionが揃わない場合はdispatchしない。continuationはJSONLとSQLiteを同一transactionと見なさず、durable append後にevent ID/payload hashで冪等投影し、投影成功前はcheckpointを公開しない。append失敗、append後/projection前、projection後/memory前、DB消失、同seq異payloadを区別し、replay/rebuildまたはfail-close findingへrouteする。version-up dry-run は current/target を SemVer として正規化し、target が current 以下、invalid、または target release tag 未解決なら `ok=false` にする。`version-up-dry-run-plan.v1` は `releaseTagRef` / `releaseTagExists` / `releaseTriggerResolved`、migration/rollback/idempotency/release gate/source basis を出すが、`planOnly=true` / `mustNotApply=true` / `applyCommandAvailable=false` に固定し、apply surface を作らない。activation packet は `planOnly=true` / `mustNotApply=true` / `applyCommandAvailable=false` / `activationAllowed=false` を返す。外部 activation では `activationReadinessChecks[]` が rehearsal/provenance evidence を `present` / `pending_evidence` に分類し、pending の項目を `blockedReasons[]` に残す。証跡 path / audit id / digest / 実行ログ / result exit code / report artifact などの concrete locator を伴わない手順文・予定文・recorded 宣言文は `present` にしない。`reapprovalTriggers[]` は HEAD/scope/source/evidence drift 時に version-up dry-run、activation packet、DB rebuild、doctor、action-binding approval packet を再実行させ、古い承認根拠を activation に流用させない | `jobs` / `budget_events` / `version_target` ledger / append-only session event / continuation projection / bounded memory breadcrumb / provider delegation evidence audit | HU-PILLAR-P1-01..04 / HU-PILLAR-N5-01..02 |\n| HC-P2 | agent-loop | `validateToolContractSurface(input) => ToolSurfaceDecision` / `tickLoopEffortBudget(input) => LoopBudgetDecision` / `createLoopEffortBudget(input) => LoopEffortBudgetState` / `writeLoopTraceSpan(input) => TraceSpanWriteResult` / `selectWorkflowComplexity(input) => WorkflowComplexityDecision` / `buildPairAgentTddPlan(input) => PairAgentTddPlan` / `runPairAgentTddPlan(input) => PairAgentRunResult` | 未登録 surface は fail-close または explicit defer。登録 surface は request required fields / response required fields / forbidden fields / deny disposition を検証し、contract id mismatch や response 欠落を accept しない。loop budget は plan size / model role から既定上限を導出でき、iteration / toolCalls / costUsd / elapsedMs のいずれかが上限以上なら `allowContinue=false` / `allowWorkerPass=false`。`tick` は worker dispatch 前と verifier verdict 記録前に `tickLoopEffortBudget` を通し、超過時は `stopReason=\"effort_budget\"` と `blockedReason` を記録して停止する。verifier が `pass` を返しても超過後は `lastVerdict=\"error\"` に落とし、同 worker の pass/continue を成立させない。provider API/SDK daemon を required path にしない。TDD pair route は smart review agent の test/oracle 作成を light implementation より前に置き、Red/oracle marker に加えて `RED_TEST_COMMAND` と非ゼロ `RED_EXIT_CODE` が無い場合は light implementation へ進めない。light agent に closing authority を与えず、light implementation output が `VERDICT` / `FINAL_VERDICT` / `COMPLETION_CLAIM` / `CLOSE_PLAN` / `PLAN_STATUS` / `READY_FOR_REVIEW` / `APPROVAL` marker を出した場合は fail-close する。light implementation は changed-files / targeted-test-command / implementation-notes evidence を出すか、consultation question を出す。consultation は pass ではなく smart review の implementation directive / fix response を経て次の light fix cycle に戻す。consultation question が changed-files / targeted-test-command / implementation-notes と混在しても consultation を優先し、smart response 無しに実装 pass としない。smart review は明示 `VERDICT: pass|fail|error|pending` を必須とし、`pending` verdict は次の light fix cycle 用の implementation directive / fix response を欠けば error とする。smart review の fail 指示は bounded transcript として次の light implementation prompt に渡し、fail verdict が fix instruction を欠く場合は error とする。review finding だけを fix instruction とみなさない。pass verdict は Green evidence と review finding を欠く場合に fail-close する。`pair-agent plan --save-evidence` は adapter plan / prompt digest / frontier guardrail decision を `.helix/evidence/pair-agent/` に保存し、DB rebuild で plan phase agent を `model_runs`、plan gate を `gate_runs`、frontier approval を `guardrail_decisions` へ投影する。`pair-agent run --save-evidence` は plan/run/transcript と run/span/tool/handoff/guardrail/eval/duration/cost、`loop_summary`、`transcript_digest`、phase `output_excerpt_digest` を保存し、DB rebuild で `model_runs` / `gate_runs` / `guardrail_decisions` / `quality_signals` へ投影する。DB projection は `smart_test_author` から開始し、その後 `light_implementation` / `smart_review` が cycle 順に交互に並ぶことを検査し、順序違反の保存済み evidence は `pair-agent-run-evidence` gate を `blocked` にして finding を残す。`quality_signals` は phase_count だけでなく smart_test_author/light_implementation/smart_review/pending_consultation/consultation/failed_review/fix_cycle count を投影する | `model_runs` / `gate_runs` / `guardrail_decisions` / `quality_signals` / trace span / tool contract registry / pair-agent plan/run JSON / bounded pair transcript / pair-agent evidence JSON / loop effort budget decision | HU-PILLAR-P2-01..04 |\n| HC-P3 | verification | `validatePairClosure(input) => PairClosureDecision` / `classifyVerificationEvidenceProfile(input) => VerificationEvidenceProfile` / `validateExternalGrounding(input) => GroundingDecision` / `validateTddOracle(input) => TddOracleDecision` / `selectVerificationProfile(input) => VerificationProfileDecision` | pair 欠落、coverage-only pass、self-review cross-agent 僭称、stale digest、external span 欠落、Red/oracle 欠落を accept しない。profile は timeout / p95 duration budget / worker count を必須にする | `trace_edges` / `test_runs` / `review_evidence` / runtime verification log | HU-PILLAR-P3-01..02 / HU-PILLAR-N3-01..04 / HU-PILLAR-N5-03 |\n| HC-P4 | repair-feedback | `routeRepairFinding(input) => RepairCandidate` / `promoteRepairRecipe(input) => RepairRecipeDecision` / `projectMetricImprovementSignal(input) => MetricImprovementSignal` | detector finding は owner/route/rollback 無しに close しない。auth/PII/license/destructive repair は approval 無しで apply しない | `findings` / `quality_signals` / `feedback_events` / improvement backlog | HU-PILLAR-P4-01..03 |\n| HC-P6 | distribution | `buildDistributionPlan(input) => DistributionPlan` / `planHelixProjectSetup(input) => SetupPlan` / `runHelixProjectSetup(input) => HelixProjectSetupResult` / `runConsumerDoctor(input) => LintResult` / `projectRuntimeAdapterAssets(input) => RuntimeAssetProjectionPlan` / `validatePrReviewRoute(input) => ReviewRouteDecision` / `planReleaseAutomationDecision(input) => ReleaseAutomationDecision` / `gateCiAutoFixRepush(input) => CiAutoFixDecision` / `auditIdentifierRenameBlastRadius(input) => IdentifierRenameAudit` / `buildIdentifierRenameCutoverPlan(input) => IdentifierRenameCutoverPlan` | raw push path、ruleset apply、branch protection apply、destructive setup overwrite、confidence<0.75 repush、release ADR 欠落を reject。consumer runtime asset は `.claude/agents` / `.claude/commands` / `.codex/hooks.json` / `.codex/config.toml` を明示投影し、dogfood `.claude/` / `.codex/` / `.helix/` runtime state、design/plans、`src/web/`、web 専用テスト、frontend asset/dependency residue は clean channel から除外する。clean artifact の core CLI は web module を静的 import せず、UI 非同梱でも `status` / `distribution plan` / `typecheck` が通る。`helix setup project` は HELIX 導入済み VSCode の新規 project 用に status / completion decision-packet / completion review-bundle / version-up dry-run / consumer doctor / rename plan / memory list / feedback list の `.vscode/tasks.json` と `.helix` memory/evidence/feedback/teams baseline を追加するが、dry-run 副作用ゼロと branch protection 既定 emit-only 境界を維持する。legacy `helix setup --apply-branch-protection` と生成される `setup-branch-protection.sh` / built-in fallback は、明示 apply 時も action-binding approval と `gh auth status` / repository admin preflight を通した場合だけ remote apply surface を持ち、script は token を保持せず `gh api -X PUT` で `harness-check` required status を設定できる。consumer doctor profile は setup 投影済み `AGENTS.md` / `CLAUDE.md` / `.claude` / `.codex` / `.vscode/tasks.json` / `.helix` baseline を検査し、dogfood repo 用 `docs/plans` / `docs/design/harness` / `docs/test-design` / runtime state を要求しない。さらに承認前 `.helix/**` state、`package.json` の `bin.helix`、`helix setup|doctor|status|handover|team` scripts、`.vscode/tasks.json` / `.github/workflows/harness-check.yml` / `.claude/settings.json` / `.codex/hooks.json` 上の executable HELIX alias を PLAN-M-02 承認前の alias activation として fail-close し、setup 完了を rename/cutover 完了に読み替えない。配布 adapter doc / Claude subagent / Claude slash-command / setup next action は日本語-first の説明文を持ち、CLI 名・識別子・stable token だけを原語許容にする。`HelixProjectSetupResult.githubPlan` は `schemaVersion=helix-project-github-plan.v1`、`planOnly=true`、`appliesRemote=false`、`applyCommandAvailable=true`、`workflowPath=.github/workflows/harness-check.yml`、`requiredChecks=[\"harness-check\"]`、branch protection approval-bound script、action-binding approval、gh auth/admin preflight を返す。さらに `HelixProjectSetupResult.githubPlan.pullRequestCreation` は `gh auth status`、repo default branch 確認、GitHub App connector の `metadata:read` / `contents:read` / `pull_requests:write` 権限、`resource_not_accessible_by_integration` 失敗時の remediation、draft PR command template を plan として出し、PR 作成不能時に main 直 merge へ逃げない。`HelixProjectSetupResult.doctorBaseline` は `schemaVersion=helix-project-doctor-baseline.v1`、setup dry-run / status / `helix completion decision-packet --json` / `helix completion review-bundle --json` / `helix version-up dry-run --current v0.1.0 --target v0.1.4 --release-remote https://github.com/RetryYN/HELIX-HARNESS-OS.git --json` / `helix doctor --profile consumer` / `helix rename plan --json` / memory list / feedback list / team-run dry-run、`.helix/memory|evidence|feedback|teams` baseline、`completionClaimAllowed=false` を返す。`HelixProjectSetupResult.importReport` は `schemaVersion=helix-project-import-report.v1`、`mode=fresh|brownfield`、`managedPaths`、`previewPaths`、`existingPaths`、実書込だけの `writtenPaths`、既存 non-mergeable 保持の `skippedExistingPaths`、`mergeableManagedBlockPaths`、`requiresReview`、`reviewRequiredReasons`、`nextRoute=ready|review_import_report` を持つ。`HelixProjectSetupResult.consumerReadiness` は consumer repo で projected hook が呼ぶ `helix` CLI の PATH 解決性、Node/npm/Git/GitHub CLI、Claude/Codex runtime mode、secret 不要の consumer CI smoke を setup output に含める。`HelixProjectSetupResult.postSetupWorkflow` は `importReport` と `consumerReadiness` を合成し、`nextRoute=ready|review_import_report|fix_consumer_readiness`、`unmetGates`、`nextActions`、`verificationCommands`、`blockedUntil`、`manualDocSearchRequired=false` を返す。verification commands は setup dry-run / status / completion decision-packet / completion review-bundle / version-up dry-run / consumer doctor / rename plan / memory list / feedback list / team-run dry-run を含め、ready route は completion blocked packet、PLAN-M-02 blocked packet、DB-backed continuationまたはcurrent PLAN route に接続する。brownfield conflict は `review_import_report` を優先し、fresh でも readiness 未充足なら `fix_consumer_readiness` を返す。`helix` が PATH 上で解決できない場合は setup を silent pass させず、`npm link` / `npm link helix --no-save` の actionable remediation を返す。setup JSON/text は `.helix` 現行 baseline と 現行 `.helix` state dir / `helix setup project` 目標 command を `identifierTransition` として返し、PLAN-M-02 cutover approval までは `blocked_pending_cutover_approval` / `mustNotApply=true` を明示する。`commandAvailability` は現行 `helix setup project` を available、現行 `helix setup project` を canonical とし、外部適用・完了判断 frontier が cutover approval 待ちであることを示す。PLAN-M-02 cutover は `.helix` / `helix` / `area=helix` blast radius audit と cutover approval record が揃うまで apply しない。rename audit は hit 数に加えて source/test/runtime-state/adapter-config/consumer-template/plan/design/governance/distribution surface 別の `hitsByCategory` を出し、cutover plan は category ごとの `cutoverCategoryChecklist` を返す。cutover plan は dry-run / rollback / monitoring / approval gate を出す plan-only surface で、apply command を提供しない。`approvalMaterialReady` は `approve_cutover` / `approve_action_binding` / actor/tool/target だけでは true にせず、approved params、current `cutoverSnapshot` sha256 binding、review evidence、expiry、audit、backup/rollback/monitoring evidence が揃う場合だけ true にする。`applyAuthorized` は plan-only packet では常に false とし、実 apply 許可とは読ませない | setup baseline / VSCode task baseline / GitHub rules/checks plan / consumer doctor baseline / release ledger / GitHub dry-run plan / import report / consumer readiness preflight / post-setup workflow / runtime asset manifest / rename audit/cutover-plan JSON | HU-PILLAR-P6-01..05 / HU-PILLAR-DIST-01 |\n| HC-P7 | knowledge | `buildBoundedRecallPacket(input) => BoundedRecallPacket` / `detectGlossaryDrift(input) => GlossaryDriftFinding[]` / `validateContextMapBoundary(input) => ContextBoundaryDecision` | per-agent silo を SSoT にしない。provider delegation evidenceをrecall/continuation sourceへjoinしない。rename は supersedes 無しに close しない。context-crossing は anti-corruption boundary 無しなら drift | `.helix/memory` / provider delegation evidence audit / glossary / context-map / relation graph | HU-PILLAR-P7-01..03 |",
+          "meaning": "pillar function table names distribution and memory families without proving current runtime"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-06",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-93505A0E6A989C5C0F09",
+      "semantic_diversity_kind": "concept capability delta operation document",
+      "phase_ledger_line": 827,
+      "disposition_ledger_line": 827,
+      "source_path": "docs/governance/candidates/helix-concept-v4-capability-delta.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-capability-delta.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc",
+      "source_line_count": 54,
+      "ledger_source_sha256": "af5a4cd6ad6dcb85be811bba8213a185d64a17239bfc3b5d69e728bfb03ac0cc",
+      "artifact_evidence_kind": "operation_document",
+      "source_anchors": [
+        {
+          "line_start": 13,
+          "line_end": 15,
+          "source_span_sha256": "0b24f4656814cb82bed63ac682fe03377f3e5870d82b9082ee7ddf8e243db9cb",
+          "exact_text": "この文書はConcept候補の根拠であり、機能の完成証明ではない。OPERATIONALはbaseline mainで実行面が存在すること、\nHARDENINGは実行面に未収束gapがあること、CONFIRMEDはauthorityが存在すること、CANDIDATE／SHADOWはcurrent未昇格、\nGAPは責務欠落を表す。",
+          "meaning": "capability delta records deployment and operations as historical capability framing"
+        },
+        {
+          "line_start": 34,
+          "line_end": 35,
+          "source_span_sha256": "cc301e567f6babafa6a7128230a576b840c3022777b54da6bea7a82585c0d2a1",
+          "exact_text": "| Release／Distribution | CONFIRMED + primitive稼働 | Release | Slice registry、stable consumer適格性 |\n| Deployment／Operations | CONFIRMED + runtime混在 | Lifecycle | provider-neutral runtime、本番E2E |",
+          "meaning": "concept document distinguishes candidate or confirmed labels from implementation"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-01",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-19"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "semantic_diversity_kind": "HELIX-HARNESS requirements source snapshot",
+      "phase_ledger_line": 956,
+      "disposition_ledger_line": 956,
+      "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "source_line_count": 664,
+      "ledger_source_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "artifact_evidence_kind": "requirement",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 10,
+          "source_span_sha256": "2b0292c82d58b3ea67bdaf8f2b852a142d4725d15c34b0b628f17f027d3c25a8",
+          "exact_text": "<!-- HELIX:L3-PROGRESSION-AUTHORITY:v1 -->\n> **L3進行authority**: 層・pair・runtime判断は\n> `docs/governance/l3-progression-authority-rebaseline-2026-07-19.md`と本書のcurrent contractを\n> 同時に満たす。compatibility文書はL3 freeze条件へ使用しない。\n\n# HELIX 要件定義書 v1.3 — L1〜L12・3 development style正本\n\n- **Version**: 1.3.14\n- **Status**: document revision confirmed（既存revisionの承認記録。Infinity Loop由来の要件定義 lifecycle は153/153 frozenであり、HELIX全要求の網羅・実装・受入完了を示さない。JSON正本rootへsnapshot-bound G1/G3 freeze済み。PO再確認 2026-07-18、全harness memory追突 2026-07-19、freeze transaction 2026-07-31。安全capability broker候補はPO確認 2026-08-19により本版へ昇格）\n- **設計コア**: `hybrid-vmodel-source.v1`、`universal-workflow-requirements-skill.v1.1.0`、`hybrid-core-rebaseline.v0.5.1`。旧archive filename、archive SHA、Git blobは`docs/migration/source-manifests/`のprovenance input-onlyであり、current source identityとして再出力しない。",
+          "meaning": "requirements snapshot records current layer and source preservation boundary"
+        },
+        {
+          "line_start": 255,
+          "line_end": 259,
+          "source_span_sha256": "67bb26626e649c5e6cea8ab45ce13a2b1478db0f3a2391ca1a9c881dc409d970",
+          "exact_text": "`universal-workflow-requirements-skill.v1.1.0`を、自然言語の業務を要求へ翻訳し、実行時の候補選択を提案するAI判断エンジンのversioned source familyとして採用する。archive由来のidentityとdigestは`docs/migration/source-manifests/universal-workflow-requirements-skill.v1.1.0.json`へinput-onlyで隔離し、詳細な採否とhardeningは`docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md`を正とする。\n\n判断の正規形は`current_state × trigger × condition → candidate actions/routes/resources → proposed decision → next_state`とする。AIは業務事実、候補、根拠、confidence、unresolved item、反証可能なoracleを提案できるが、要求の確定、権限付与、high-impact action、正本state更新、gate passを自己承認しない。Node transaction境界がschema、authority、policy、HEAD、evidence digestを再検証して初めてcommitする。\n\nFull Vではsystem全体のworkflow modelをL1〜L5で段階的に凍結し、右腕で全transition、loop、terminal、exception、permission、timeout、notification、audit、data、switching、routing、resource allocationを検証する。Production Scrumではslice deltaだけを先行利用できるが、sprint reviewまたはrelease合流前にScrum Reverseでsystem workflowとL1〜L5設計資産へbackfillし、SR4 pair-freezeなしにrelease-readyとしない。",
+          "meaning": "requirements text separates freeze, implementation and release evidence from current deployment"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-04",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "non_executable_read_only_source",
+      "implementation_evidence_state": "non_executable_source_snapshot",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "source_snapshot_preservation",
+      "authority_status": "historical",
+      "decision_matches": 2,
+      "decision_record_refs": [
+        "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-02319C2481B9E01698D5",
+        "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-02319C2481B9E01698D5"
+      ],
+      "copy_read_after_matches": 1,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [
+        "requirement-carry-forward-ledgers",
+        "requirement-atomization-review"
+      ],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "observed_reference_closure_pending",
+        "consumer_refs_observed": [
+          "requirement-carry-forward-ledgers",
+          "requirement-atomization-review"
+        ],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5D71CA1E0DB0DBDAD8F2",
+      "semantic_diversity_kind": "objective evidence audit operation document",
+      "phase_ledger_line": 959,
+      "disposition_ledger_line": 959,
+      "source_path": "docs/governance/helix-objective-evidence-audit.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-objective-evidence-audit.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "edc71490df4fbf49bcf5739105b9d0f8098332b9272ee97f82ced63acc400f7e",
+      "source_line_count": 204,
+      "ledger_source_sha256": "edc71490df4fbf49bcf5739105b9d0f8098332b9272ee97f82ced63acc400f7e",
+      "artifact_evidence_kind": "operation_document",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 7,
+          "source_span_sha256": "a240501edfe422cafd0aebd158881e8b18e75982015518e0f8b9752dcfee9b9d",
+          "exact_text": "# HELIX 目標証跡監査\n\n更新日: 2026-07-24\n\nこの監査は、現在のユーザー目標をリポジトリ上の証跡へ対応付ける。\n設計書の代替ではなく、要求ごとに「意味がどの層へ降下済みか」「どこで実装済みか」\n「どこを意図的に保留しているか」「全件完了がどこで block されているか」を示す索引である。",
+          "meaning": "objective audit maps completion evidence and blocked work across deployment and operations"
+        },
+        {
+          "line_start": 68,
+          "line_end": 78,
+          "source_span_sha256": "a641b7d23ce4b7027038e00013594acd994a423df95ee86a80b0796a54a4f318",
+          "exact_text": "PLAN-L3-38はPR #114 review HEAD `0f47ea04fd59183efc4a0e7bd0303d0279aa5181`の独立AI-B review、\nActions run `30048193951` green、clean隔離DB rebuild 2回一致を根拠に、Issue #30本文と\n#73/#74/#75 dispositionのcurrent L3分母、84 downstream予約slot、未実装境界への同期だけを\nslice単位でconfirmed化した。5問のPO回答、G1/G3 freeze、pair closure、L6/L7実装、L8〜L12実行証拠は\n完了扱いにしない。review receipt:\nhttps://github.com/RetryYN/HELIX-HARNESS/pull/114#issuecomment-5064177750\n\nPLAN-L3-39はPR #116 review HEAD `c140046b4690a4da3d575cb4a3ff97003ead1422`の独立AI-B review、\nActions run `30055664298` green、merge HEADでのsource-only DB rebuild 2回一致\n（schemaVersion=39、tables=90、rows=48652、orphanTraceEdges=0）を根拠に、PO承認済み5判断の\n正本反映だけをslice単位でconfirmed化した。Claude receiptのrows=48651はmerge HEAD再測定で",
+          "meaning": "audit records known non-goals and incomplete closure rather than a deployment receipt"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-10DC603C5CC9499788F0",
+      "semantic_diversity_kind": "L12 canonical V-model directive",
+      "phase_ledger_line": 983,
+      "disposition_ledger_line": 983,
+      "source_path": "docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l12-canonical-vmodel-direction-directive_v0.1.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "c151e56dbd9ddca67a68b42f595e53114a63166be38c74c321bc9349e602866f",
+      "source_line_count": 84,
+      "ledger_source_sha256": "c151e56dbd9ddca67a68b42f595e53114a63166be38c74c321bc9349e602866f",
+      "artifact_evidence_kind": "operation_document",
+      "source_anchors": [
+        {
+          "line_start": 10,
+          "line_end": 16,
+          "source_span_sha256": "da3c619ec6adb3b9f7df2ddeee12cc84564ebc5271302e54ace9a9fce02fe9fb",
+          "exact_text": "## 1. 決定\n\n工程骨格は **L1–L12 モデルを canonical とする**。L0–L14 モデルは compatibility projection 側とし、\n新規の要件・設計・trace・gate は L1–L12 の層 ID を正とする。\n\nこれは既存 L3 要件（vmodel-docgen-fit の「L12 を canonical target にする」）の再確認であり、\n新規の裁定ではない。本指示書は PO の方向確認と、L14 モデルから保存すべき 2 資産を明文化する。",
+          "meaning": "L12 directive records canonical V-model layer direction"
+        },
+        {
+          "line_start": 28,
+          "line_end": 36,
+          "source_span_sha256": "5a64a96dd44a00fb6723ca91a12ef73a2f37f08ee25971ee2d2682134203a351",
+          "exact_text": "| L | 工程 | 検証の対（⇔） | 位置 |\n|---|---|---|---|\n| L1 | 企画 | ⇔ L12 運用テスト | 下降 |\n| L2 | 要求（画面プロトで引き出し） | ⇔ L11 受入テスト | 下降（反復） |\n| L3 | 要件（締める＝凍結点） | ⇔ L10 総合テスト | 下降 |\n| L4 | 基本設計 | ⇔ L9 結合テスト | 下降 |\n| L5 | 詳細設計（＋テスト設計、シフトレフト） | ⇔ L8 単体テスト | 下降 |\n| L6 | 実装（プロダクトコード） | ⇔ L7 テスト実装（TDD クロージャ） | 下降 |\n| L7 | テスト実装 ⇔ 実装（TDD クロージャ） | 頂点＝V が閉じる | 頂点 |",
+          "meaning": "directive distinguishes direction confirmation from actual cutover and requirements gates"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-15"
+      ],
+      "phase_classification_status": "unresolved_with_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DF1EA776C672AEB4E55F",
+      "semantic_diversity_kind": "L12 current authority disposition",
+      "phase_ledger_line": 984,
+      "disposition_ledger_line": 984,
+      "source_path": "docs/governance/l12-hybrid-current-authority-disposition-2026-07-19.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l12-hybrid-current-authority-disposition-2026-07-19.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "54589a719702383e1db8d1b59a8a2fb73210a75076c09a5364ddc34437961d4d",
+      "source_line_count": 276,
+      "ledger_source_sha256": "54589a719702383e1db8d1b59a8a2fb73210a75076c09a5364ddc34437961d4d",
+      "artifact_evidence_kind": "operation_document",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 13,
+          "source_span_sha256": "cfe64ab45e60233e456da1f30d4d2792e4b366b4fcf1a1130cce0eb35ae2c823",
+          "exact_text": "# L12・ハイブリッド current authority disposition（2026-07-19）\n\n> status: historical-audit-snapshot。以下は2026-07-19時点の検出・判定記録であり、current runtime authorityではない。\n> 現行判断はADR-009/010とroot `AGENTS.md` / `CLAUDE.md`に従い、Bunをactive、fallback、rollbackへ再昇格させない。\n\n## 1. 判定基準\n\n`bun scripts/audit-l12-hybrid-recognition.ts --status unresolved --disposition current_authority_review --paths`の候補を人手確認する。第一段でrules / governance / process 38件、独立クロスレビューでdesign / test-design 118件を判定済み。判定は次の4値。\n\n- `conflict`: 旧layer/pair/runtimeを現行手順・SSoT・gate・targetとして使う\n- `compatibility-labeled`: 旧記述がcompatibility/superseded/historical evidenceとして明示され、canonical判断と分離済み\n- `false-positive`: canonical pair、恒久Python semantic core、物理path、識別子、検査対象語の引用であり旧authority主張ではない\n- `historical`: 当時点audit/cutover packetでありcurrent判断へ使わない",
+          "meaning": "historical authority disposition separates old authority conflicts from compatibility and historical records"
+        },
+        {
+          "line_start": 255,
+          "line_end": 263,
+          "source_span_sha256": "42bf3eb958c7f65f9cb366e32123309778a8735875af410f127037f50f68fd31",
+          "exact_text": "## 13. 全809件の最終disposition\n\n| final disposition | 件数 | 意味 |\n|---|---:|---|\n| conflict | 327 | 現行authority、gate、target、生成契約へ旧基準を接続している |\n| compatibility-labeled | 22 | compatibility/supersede/reference境界が本文で明示される |\n| false-positive | 444 | command/evidence、canonical pair、現行Python semantic core等の語彙一致 |\n| historical | 16 | 当時点記録・researchでありcurrent authorityにしない |\n| **合計** | **809** | path重複なし |",
+          "meaning": "final disposition keeps historical documents out of current authority"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-269C287365D652DEAD93",
+      "semantic_diversity_kind": "L3 rebaseline freeze packet",
+      "phase_ledger_line": 991,
+      "disposition_ledger_line": 991,
+      "source_path": "docs/governance/l3-rebaseline-g3-freeze-packet.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/l3-rebaseline-g3-freeze-packet.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "519be70ab005c875d57acab510869b67bea23bd3304f8f24d9b0223da37a2ebd",
+      "source_line_count": 539,
+      "ledger_source_sha256": "519be70ab005c875d57acab510869b67bea23bd3304f8f24d9b0223da37a2ebd",
+      "artifact_evidence_kind": "operation_document",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 10,
+          "source_span_sha256": "0806faf39ba6e9f318fdf2bfe27adf9b9d207393e8b8854646fef1d01170918a",
+          "exact_text": "# L3 rebaseline G1/G3 freeze packet v2（definition freeze完了）\n\n状態: `g1-g3-definition-freeze-confirmed`\n対象 PLAN: `PLAN-L3-20-infinity-loop-g3-freeze`\n再生成: 2026-07-31（Codex / TL）\n\n> **G1/G3 freeze transaction（2026-07-31）**:\n> PR #298でRequirement JSON authority cutoverを完了し、main\n> `01dc7a6ad3bf0df33605c00eab18bf41587f01e4`／tree\n> `13b891f4101e7fe7378a3825f0e924ec615cd135`をmaterial snapshotへ固定した。",
+          "meaning": "freeze packet distinguishes requirement freeze from operational PLAN closure"
+        },
+        {
+          "line_start": 92,
+          "line_end": 97,
+          "source_span_sha256": "d0782b1d8122918ee1b739b810cc39c256e553bc5518dedeaba0cdf3b53a0770",
+          "exact_text": "33件のPLANはfreeze対象となる要件判断の入力集合であり、全PLANのoperational closure済みを意味しない。\n承認前の`draft`は次の10件である。G1/G3承認は153件のrequirement definitionを`active`から`frozen`へ\n遷移させるが、これら10件のPLAN statusを一括で`confirmed`へ変更しない。各PLANは自身の独立AI-B review、\nCI、DB／oracle、未解決責務のdispositionが揃ったslice closure時にのみ`confirmed`へ遷移する。\nしたがって、G1/G3後も`draft`であることをrequirement未freezeまたはL4着手不能へ読み替えず、逆に\nrequirement freezeを各PLANの設計・実装・検証完了へ読み替えない。",
+          "meaning": "draft status cannot be read as design implementation or verification completion"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-18",
+        "PHCAP-19"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DE68E15724FB6EC258AB",
+      "semantic_diversity_kind": "plan descent baseline configuration",
+      "phase_ledger_line": 998,
+      "disposition_ledger_line": 998,
+      "source_path": "docs/governance/plan-descent-baseline.json",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/plan-descent-baseline.json",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "50afda44a67952468f011e06c734a3536c3321f737d71c2b65814d88fab6aa8d",
+      "source_line_count": 219,
+      "ledger_source_sha256": "50afda44a67952468f011e06c734a3536c3321f737d71c2b65814d88fab6aa8d",
+      "artifact_evidence_kind": "operation_document",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 8,
+          "source_span_sha256": "d6eaf74d7ea5eac3cf3f102f3a885a785223607b3ac1ec7b0480ef12a3f66b04",
+          "exact_text": "{\n  \"recorded\": \"2026-07-06\",\n  \"grandfathered\": [\n    \"PLAN-L7-01-session-log\",\n    \"PLAN-L7-02-forced-stop-feedback\",\n    \"PLAN-L7-04-handover-mechanism\",\n    \"PLAN-L7-06-handover-enforcement\",\n    \"PLAN-L7-07-handover-prefill-scope\",",
+          "meaning": "plan descent baseline catalogs historical PLAN candidates including deployment and operations"
+        },
+        {
+          "line_start": 186,
+          "line_end": 194,
+          "source_span_sha256": "4c8744f0c1a8be7af187630f5163ba4a032b5a5f8c9249a0c1e2a4d2ed4cdc54",
+          "exact_text": "    \"PLAN-L7-339-p6-release-automation-descent\",\n    \"PLAN-L7-34-tool-adapter-probes\",\n    \"PLAN-L7-340-p6-release-automation-descent\",\n    \"PLAN-L7-342-version-up-activation-review-bundle\",\n    \"PLAN-L7-346-test-plan-id-remediation\",\n    \"PLAN-L7-35-canonical-document-export\",\n    \"PLAN-L7-36-relation-graph-export\",\n    \"PLAN-L7-43-implementation-verification-group\",\n    \"PLAN-L7-44-harness-db-master\",",
+          "meaning": "baseline list is a static plan inventory without an execution receipt"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-08",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-38BEF2B0F4373A2749B4",
+      "semantic_diversity_kind": "plan entry routing baseline configuration",
+      "phase_ledger_line": 999,
+      "disposition_ledger_line": 999,
+      "source_path": "docs/governance/plan-entry-routing-baseline.json",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/plan-entry-routing-baseline.json",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "f51d3f28c1bfa3d5d922c002a76efe1bdeb5ff7c679140304a30ad629f49ea72",
+      "source_line_count": 542,
+      "ledger_source_sha256": "f51d3f28c1bfa3d5d922c002a76efe1bdeb5ff7c679140304a30ad629f49ea72",
+      "artifact_evidence_kind": "operation_document",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 8,
+          "source_span_sha256": "d36ee53d38a6cf20fa77cc96ac6fa89f3292cf161651f2bca8553f73dd2c3b02",
+          "exact_text": "{\n  \"recorded\": \"2026-07-06T07:05:44.247Z\",\n  \"grandfathered\": [\n    \"PLAN-L0-01-helix-charter\",\n    \"PLAN-L1-01-business-requirements\",\n    \"PLAN-L1-02-functional-requirements\",\n    \"PLAN-L1-03-screen-requirements\",\n    \"PLAN-L1-04-technical-requirements\",",
+          "meaning": "plan entry routing baseline catalogs post-deploy and operations plan routes"
+        },
+        {
+          "line_start": 529,
+          "line_end": 537,
+          "source_span_sha256": "9efc75bc8490e17b1c07aa5b60d97f02e4c30b48101f057983c3b209f55a496b",
+          "exact_text": "    \"PLAN-REVERSE-342-design-bottomup-mode-fullback\",\n    \"PLAN-REVERSE-343-asset-visualization-fullback\",\n    \"PLAN-REVERSE-35-canonical-document-export\",\n    \"PLAN-REVERSE-36-verification-cycle-gate-naming\",\n    \"PLAN-REVERSE-40-orphan-governance\",\n    \"PLAN-REVERSE-41-substance-lints\",\n    \"PLAN-REVERSE-42-regression-dependency-drift\",\n    \"PLAN-REVERSE-43-implementation-verification-group\",\n    \"PLAN-REVERSE-44-roadmap-definition-design\",",
+          "meaning": "routing baseline does not establish current route execution or authority"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-09",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-20466A68C0622610B827",
+      "semantic_diversity_kind": "release Module Bundle rollout roadmap",
+      "phase_ledger_line": 1003,
+      "disposition_ledger_line": 1003,
+      "source_path": "docs/governance/release-module-bundle-rollout-roadmap.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/release-module-bundle-rollout-roadmap.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "0f834413b0be1e7811e56ac4fd4541a53e375d693701952a2fa4b330028d06bd",
+      "source_line_count": 79,
+      "ledger_source_sha256": "0f834413b0be1e7811e56ac4fd4541a53e375d693701952a2fa4b330028d06bd",
+      "artifact_evidence_kind": "operation_document",
+      "source_anchors": [
+        {
+          "line_start": 3,
+          "line_end": 17,
+          "source_span_sha256": "f00fa2b2204def4bfbba834a5f41af98ea8562cdf460709bba261628a7aea44e",
+          "exact_text": "## authority\n\nL3正本は`docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md`、L10 pairは\n`docs/test-design/helix/release-module-bundle-composition-acceptance.md`である。本書は実装順projectionであり意味正本ではない。\n\n## Functional Release Slice candidate（未承認projection）\n\n`PLAN-L3-83-functional-release-slice-composition` と Issue #1494 は、既存のModule／Bundle要件を置き換えず、\n`Capability / Behavior Contract → Functional Release Slice → Release Module → Bundle` の中間昇格単位を提案する。\n候補の意味authorityは `docs/governance/candidates/functional-release-slice-requests.md`、\n`docs/governance/candidates/functional-release-slice-requirements.md`、\n`docs/governance/candidates/functional-release-slice-acceptance.md` である。\nL3承認、L10対、#397 Requirement IR admissionまでは、runtime、DB、CLI、generated catalog、tag、publish、cutoverへ投影しない。\nSliceはModule／Bundle、workflow、route、drive、execution mode、provider、repositoryとは別軸であり、既存11 Module／8 Bundleの\n意味を変更しない。承認後の差分対象はRLS-02／03／05／09／11／12／13に限定する。",
+          "meaning": "release roadmap defines Module and Bundle promotion candidates and their authority prerequisites"
+        },
+        {
+          "line_start": 41,
+          "line_end": 48,
+          "source_span_sha256": "96d0f6be1e9c264fd7c39285d6b495deef6dde5dfd2a17a3a124a3d2d1dc3c1c",
+          "exact_text": "### Candidate Wave 0.x（#1494承認後のみ）\n\n1. Wave 0.1: #1074のcurrent release path／Module inventoryを確定する。\n2. Wave 0.2: `FunctionalReleaseSliceV1` registry、channel、qualification packet、Module／Bundle差分をshadowで生成する。\n3. Wave 0.3: Slice exact setのshadow builder、CI impact closure、clean consumer parityを検証する。\n\nこの0.xは既存Wave 0の意味を変更せず、candidateがcanonical promotionされた場合にだけRLS-02以降へ接続する。\nSliceのpreview／stableをBundleへ暗黙包含せず、unknown／ambiguous／staleはfullまたはfail-closeへ送る。",
+          "meaning": "roadmap prohibits runtime publish or cutover projection before approval"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-08",
+        "PHCAP-14",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-19"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-8F3454E00276A341622B",
+      "semantic_diversity_kind": "system synthesis rollout roadmap",
+      "phase_ledger_line": 1017,
+      "disposition_ledger_line": 1017,
+      "source_path": "docs/governance/system-synthesis-rollout-roadmap.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/system-synthesis-rollout-roadmap.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "a331ef529a5e4dd956dba36451fc6b17b0311d904381b572d12ac0e4ebdfcd7b",
+      "source_line_count": 34,
+      "ledger_source_sha256": "a331ef529a5e4dd956dba36451fc6b17b0311d904381b572d12ac0e4ebdfcd7b",
+      "artifact_evidence_kind": "operation_document",
+      "source_anchors": [
+        {
+          "line_start": 3,
+          "line_end": 7,
+          "source_span_sha256": "ca0c672223f68bf127bc9caadf25ff9da2c0a1671e6b71fa1efc76603de1fb8b",
+          "exact_text": "## authority\n\n要求正本は`docs/design/helix/L3-requirements/system-synthesis-requirements.md`、受入正本は\n`docs/test-design/helix/system-synthesis-acceptance.md`である。本書は実装順とparking条件だけを所有し、\n独自のrequirement、route、DB authorityを追加しない。",
+          "meaning": "synthesis roadmap records candidate dependency order and terminal evidence"
+        },
+        {
+          "line_start": 11,
+          "line_end": 19,
+          "source_span_sha256": "573f632dd55d3ce33a3b41ea9894e91a4f06e29eceed2d0f2576bcc6e9faba9d",
+          "exact_text": "| 順序 | Issue | capability | entry condition | terminal evidence |\n|---:|---:|---|---|---|\n| 1 | #1036 | semantic connection graph kernel | #204 typed identityを再利用可能 | deterministic replay、unknown edge mutation |\n| 2 | #1039 | deterministic partial synthesis | #1036、#179、#188、#233のtyped input成立 | same-input same-digest、required omission拒否 |\n| 3 | #1040 | REFACTORING specialist workflow | #204、#234、#235のaxis／lifecycle接続成立 | RF0〜RF6 exact set、route混同拒否 |\n| 4 | #1038 | replacement lifecycle | #233／#235のportfolio／lifecycle接続成立 | parity、migration、rollback、no-degradation |\n| 5 | #1041 | V-pair／Scrum DoD接続 | #1038 terminal | pair trace、separate PR admission |\n| 6 | #1034 | Impact CI composition | #1036、#1039のimpact graph成立 | capability closure、full fallback |\n| 7 | #1035 | observation／pattern promotion | NOW実装の実測が2 project以上 | counterexample、mutation、human approval |",
+          "meaning": "future pattern promotion requires observations and human approval"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-08",
+        "PHCAP-15",
+        "PHCAP-16"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D52C1596B4C54B842920",
+      "semantic_diversity_kind": "upstream reconciliation completeness audit",
+      "phase_ledger_line": 1020,
+      "disposition_ledger_line": 1020,
+      "source_path": "docs/governance/upstream-helix-reconciliation-completeness-2026-07-04.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/governance/upstream-helix-reconciliation-completeness-2026-07-04.md",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "790a4e2334e5321795006e9bf3d4329979e603be19b3776158be827297b007de",
+      "source_line_count": 102,
+      "ledger_source_sha256": "790a4e2334e5321795006e9bf3d4329979e603be19b3776158be827297b007de",
+      "artifact_evidence_kind": "operation_document",
+      "source_anchors": [
+        {
+          "line_start": 7,
+          "line_end": 13,
+          "source_span_sha256": "011cecc0fdcd628ded01f2faec11a415082204f39c27ad02e676bbd0fc503d95",
+          "exact_text": "## 0. 正直な結論\n\n初回パスは **網羅的ではなかった**。completeness pass で、初回が見落としていた実 gap\n（adapter runtime、安全 spawn、session-log skill_injection、route_mode 投影、relation-graph node、\nprovider 起動結果分類）を追加検出した。二 fork（各 900〜1150 ファイル）の完全な逐語突合は\n規模が大きく、本 pass でも **PR ブランチ変更 src の一部と PLAN-L7-202..362 全 skim は未検証**のまま残る。\n未検証面は下記に**明示追跡**する（silent truncation にしない）。",
+          "meaning": "reconciliation completeness audit records unreviewed residual gaps explicitly"
+        },
+        {
+          "line_start": 76,
+          "line_end": 86,
+          "source_span_sha256": "990e7ffc75a0101484b10669bc91df900777d450a26e8a06cb90430c3339a468",
+          "exact_text": "## 6. 設計ドキュメント群 突合（`docs/design/`、2026-07-04）\n\n`docs/design/harness/`（V モデル設計、共有 48・上流のみ 8・LOCAL のみ 7）を突合。`docs/design/helix/` は LOCAL 固有。\n\n- **LOCAL-only 7件**（L7-L14 evidence-boundary: implementation/integration/system/uat/acceptance/post-deploy/operations）\n  = **LOCAL 先行**（右腕 evidence 設計）。gap でない。\n- **UPSTREAM-only 8件**の帰属:\n  - `screen-functional`(L3) / `ui-detail`(L5) / `screen-spec`(L6) = **screen 設計連鎖の実 gap**（LOCAL は L2 mock 止まりで testable な screen 契約無し）→ PLAN-L7-323（design-methodology）。\n  - `context`(L6) = doc-router 設計 → PLAN-L7-315。`skill-index`(L6) = skill scaffold 設計 → PLAN-L7-317。\n  - `graph`(L6) = relation-graph（LOCAL 保持、node 投影の一部欠落 → PLAN-L7-321）の設計side。\n  - `memory`(L6) = 保持済み（`orchestration-memory`）。`secret`(L6) = 保持済み（`SECRET_PATTERN`）。",
+          "meaning": "design comparison labels implementation and post-deploy evidence gaps without closing them"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "document_present",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    }
+  ],
+  "aggregate_evidence": {
+    "selected_asset_count": 12,
+    "selected_asset_decision_matches": 2,
+    "selected_asset_copy_read_after_matches": 1,
+    "selected_failure_execution_receipts": 0,
+    "selected_consumer_refs_nonempty": 1,
+    "selected_consumer_closure_pending": 12,
+    "selected_implementation_statuses": {
+      "legacy_source_snapshot": 1,
+      "legacy_unknown": 11,
+      "current_unknown": 12,
+      "current_degradation_unknown": 12
+    },
+    "current_implementation_status": "unknown",
+    "current_degradation_status": "unknown",
+    "current_phase_admission": "unresolved_candidate_only"
+  },
+  "prohibited_inference": [
+    "pool membership is a phase classification candidate only and does not create a requirement link or product owner",
+    "source presence, design text, plan text, implementation/test references or old command claims do not establish current implementation, operation, acceptance, deployment or pass",
+    "source snapshot preservation or historical decision records do not create current authority or requirement adoption",
+    "phase candidate targets do not admit an asset to PHCAP-15",
+    "product candidate membership does not create authority, owner or routing",
+    "empty consumer_refs and pending closure do not prove no historical consumer",
+    "no failure receipt does not prove no historical failure or rollback",
+    "missing direct Web evidence does not establish non-implementation",
+    "archive is static reference only and not runtime, test, CI or fallback"
+  ],
+  "verification_contract": {
+    "requires_exact_source_spans": true,
+    "requires_source_archive_digest_reconciliation": true,
+    "requires_pool_nonoverlap": true,
+    "requires_four_product_candidate_boundary": true,
+    "unknowns_must_remain_explicit": true,
+    "old_archive_runtime_test_ci_execution": false,
+    "required_commands": [
+      "python3 -B scaffold/phcap15-deploy-fifth12-research/validate.py",
+      "python3 -B scaffold/phcap15-deploy-fifth12-research/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "pool denominator/remaining count tamper",
+      "overlap with #2001/#2004/SCF-B-0037/third12/next12",
+      "selected asset ID duplication",
+      "source file digest tamper",
+      "source anchor exact text tamper",
+      "phase admission promotion",
+      "current implementation promotion",
+      "current degradation promotion",
+      "failure receipt invention",
+      "consumer closure invention",
+      "decision match/read-after tamper",
+      "four-product boundary/owner promotion",
+      "root nested keyset tamper",
+      "provenance nested keyset tamper",
+      "scope nested keyset tamper",
+      "anchor meaning tamper",
+      "anchor count deletion",
+      "selected anchor count tamper",
+      "unresolved body deletion",
+      "semantic kind drift",
+      "equivalence claim promotion",
+      "prohibited inference body tamper",
+      "required command tamper",
+      "negative case contract tamper",
+      "copy-read-after ledger tamper"
+    ]
+  },
+  "counts": {
+    "pool_rows": 78,
+    "selected_rows": 12,
+    "excluded_rows": 46,
+    "remaining_unreviewed_rows": 20,
+    "four_products": 4,
+    "selected_source_anchors": 24,
+    "selected_decision_matches": 2,
+    "selected_copy_read_after_matches": 1,
+    "selected_consumer_refs_nonempty": 1
+  }
+}
