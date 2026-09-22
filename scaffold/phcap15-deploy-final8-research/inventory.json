@@ -1,0 +1,1320 @@
+{
+  "schema": "phcap15-deploy-final8-research/v1",
+  "status": "research_premise_candidate",
+  "authority_effect": "none",
+  "meaning_change_applied": false,
+  "successor_requirement_ids": [],
+  "human_decision_ref": null,
+  "equivalence_claim": null,
+  "old_archive_runtime_test_ci_execution": false,
+  "base": {
+    "origin_main_commit": "f369e2fd400a02104a67645dca681721989d63be",
+    "origin_main_at_start": "f369e2fd400a02104a67645dca681721989d63be",
+    "origin_main_at_final": "f369e2fd400a02104a67645dca681721989d63be",
+    "changed": false,
+    "worktree": "/home/tenni/.helix-worktrees/phcap15-deploy-final-audit",
+    "captured_at": "2026-09-22",
+    "stop_condition": "latest origin/mainが変わったらrebaselineしてから静的判定を再実行する"
+  },
+  "task": {
+    "task_id": "PHCAP-15",
+    "phase": "deploy",
+    "title": "Deploy",
+    "phase_inventory_path": "docs/governance/phase-capability-inventory.json",
+    "phase_inventory_snapshot": {
+      "status": "draft_requirement",
+      "product_targets": [
+        "HELIX-Web-OS",
+        "HELIX-OS"
+      ],
+      "evidence_products": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "refs": [
+        "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+        "docs/helix-os/L2-requirements/governance-requirements.md"
+      ],
+      "legacy_layers_evidenced": [
+        "L13 post-deploy",
+        "L13 plan"
+      ],
+      "maximum_layer_evidenced": "L13",
+      "legacy_capability_status": "documented_partial",
+      "transition_assessment": "degraded_to_draft",
+      "gaps": "旧世代にはpost-deploy evidenceと計画があったが、現行Web-OS authorityへの適合は未評価。 deployment authority、tenant/runtime境界、実装・検証は未成立",
+      "new_build_allowed": false,
+      "authority_effect": "inventory_and_work_projection_only"
+    }
+  },
+  "provenance": {
+    "ledgers": {
+      "docs/governance/phase-capability-inventory.json": {
+        "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+        "records": null
+      },
+      "docs/governance/legacy-asset-disposition.jsonl": {
+        "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+        "records": 4020
+      },
+      "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": {
+        "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+        "records": 4020
+      },
+      "docs/governance/legacy-asset-decisions.jsonl": {
+        "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+        "records": 58
+      },
+      "archive/legacy-generation-2026-09-14/MANIFEST.sha256": {
+        "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+        "records": null
+      },
+      "docs/governance/legacy-asset-copy-read-after.jsonl": {
+        "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+        "records": 29
+      }
+    },
+    "phase_pool_basis": "candidate_phase_targets contains PHCAP-15",
+    "reviewed_sets": {
+      "pr_2001": {
+        "asset_ids": [
+          "LEGACY-ASSET-042D2B732DC68AA7EE9A",
+          "LEGACY-ASSET-578A66F54CD01046B7BA",
+          "LEGACY-ASSET-18BB86CC5625C31430B8",
+          "LEGACY-ASSET-FA8D4E24D8399E8350F1",
+          "LEGACY-ASSET-327A88B2141C43045AF1",
+          "LEGACY-ASSET-BADD68B87BA5BE0F3906",
+          "LEGACY-ASSET-7995556682FC5493C37E"
+        ],
+        "pr_number": 2001,
+        "head": "c864cebfbda69707529cbb0307625eac1b543add"
+      },
+      "pr_2004": {
+        "asset_ids": [
+          "LEGACY-ASSET-7D081AD1F95E968FA77C",
+          "LEGACY-ASSET-1C02673C4901B24D963D",
+          "LEGACY-ASSET-0AD2FD852BAB0CEC864B",
+          "LEGACY-ASSET-99E3BCA46E08C4A328FC",
+          "LEGACY-ASSET-17C4BF78919578FEBB18",
+          "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+          "LEGACY-ASSET-897CAC574F146D976BD7",
+          "LEGACY-ASSET-FD0947CF40FB2B301664",
+          "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+          "LEGACY-ASSET-3E3D84D599ED0476926B",
+          "LEGACY-ASSET-92811340BD843B5EC3FD",
+          "LEGACY-ASSET-7E68FC7E2F08FD31B0C1"
+        ],
+        "pr_number": 2004,
+        "head": "2642d3f88e4c44233ea649a83a7fb739c9d20430"
+      },
+      "scf_b0037": {
+        "asset_ids": [
+          "LEGACY-ASSET-54330A68064B58B22259",
+          "LEGACY-ASSET-1251704E0BE627232E00",
+          "LEGACY-ASSET-189702B332643A3BFDAF"
+        ],
+        "binding_path": "scaffold/bindings/SCF-B-0037.json"
+      },
+      "third12": {
+        "asset_ids": [
+          "LEGACY-ASSET-A297D67A1D8AD6EE6D6B",
+          "LEGACY-ASSET-0C5F0695490FA5D87419",
+          "LEGACY-ASSET-EC07511FF3E241F15359",
+          "LEGACY-ASSET-809D616D0D7D844F5720",
+          "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+          "LEGACY-ASSET-13604CA85F3B7D8D5055",
+          "LEGACY-ASSET-D63398C5A382549DC905",
+          "LEGACY-ASSET-320E6F0B93975C430B1D",
+          "LEGACY-ASSET-3CB7630AEBBC5932E11D",
+          "LEGACY-ASSET-26391F9FB236CBD4D270",
+          "LEGACY-ASSET-2149C3FCC5A18EB50185",
+          "LEGACY-ASSET-FAAFFA616A44F65911EB"
+        ],
+        "binding_path": "scaffold/bindings/SCF-B-0059.json"
+      },
+      "next12": {
+        "binding_path": "scaffold/bindings/SCF-B-0060.json",
+        "asset_ids": [
+          "LEGACY-ASSET-9F48ADEEB477DCA54039",
+          "LEGACY-ASSET-D4DBE31CF7179061E284",
+          "LEGACY-ASSET-3530C6D5B44F55C1692A",
+          "LEGACY-ASSET-9B1B5B55B610942F3216",
+          "LEGACY-ASSET-0CC9B511C4846B2D7489",
+          "LEGACY-ASSET-8EB1660DDE8803009282",
+          "LEGACY-ASSET-FC1E6AE8D3FD1352413B",
+          "LEGACY-ASSET-A569CF70586E9679DB01",
+          "LEGACY-ASSET-3C4A61F623B392DC88D6",
+          "LEGACY-ASSET-03B06987CECB57AC4AE2",
+          "LEGACY-ASSET-2224C11CCDA22CAAFF23",
+          "LEGACY-ASSET-3D576E223565C34899F1"
+        ]
+      },
+      "fifth12": {
+        "binding_path": "scaffold/bindings/SCF-B-0063.json",
+        "asset_ids": [
+          "LEGACY-ASSET-D5630716F221DA23DB09",
+          "LEGACY-ASSET-93505A0E6A989C5C0F09",
+          "LEGACY-ASSET-02319C2481B9E01698D5",
+          "LEGACY-ASSET-5D71CA1E0DB0DBDAD8F2",
+          "LEGACY-ASSET-10DC603C5CC9499788F0",
+          "LEGACY-ASSET-DF1EA776C672AEB4E55F",
+          "LEGACY-ASSET-269C287365D652DEAD93",
+          "LEGACY-ASSET-DE68E15724FB6EC258AB",
+          "LEGACY-ASSET-38BEF2B0F4373A2749B4",
+          "LEGACY-ASSET-20466A68C0622610B827",
+          "LEGACY-ASSET-8F3454E00276A341622B",
+          "LEGACY-ASSET-D52C1596B4C54B842920"
+        ]
+      },
+      "sixth12": {
+        "binding_path": "scaffold/bindings/SCF-B-0065.json",
+        "asset_ids": [
+          "LEGACY-ASSET-6929C09B95A444D95B49",
+          "LEGACY-ASSET-7A4ACACE4FCC342FEB03",
+          "LEGACY-ASSET-35E8708A100679F1E4E6",
+          "LEGACY-ASSET-98DD78AA6C120986F753",
+          "LEGACY-ASSET-45EBBAE400D6A7382026",
+          "LEGACY-ASSET-719F06F33C59C70EEE6A",
+          "LEGACY-ASSET-41F36667354D71D9E014",
+          "LEGACY-ASSET-8D8E740D55956A2A91E0",
+          "LEGACY-ASSET-F3000D26921558AA2E0C",
+          "LEGACY-ASSET-8B786D9FDDF61B2D569E",
+          "LEGACY-ASSET-4A7A45BC495D1B2677A2",
+          "LEGACY-ASSET-4357DACF4BA46C0B044F"
+        ]
+      }
+    },
+    "existing_binding": "scaffold/bindings/SCF-B-0065.json"
+  },
+  "denominator": {
+    "pool_rows": 78,
+    "pool_unique_asset_ids": 78,
+    "pr_2001_selected_rows": 7,
+    "pr_2004_selected_rows": 12,
+    "scf_b0037_selected_rows": 3,
+    "third12_selected_rows": 12,
+    "next12_selected_rows": 12,
+    "fifth12_selected_rows": 12,
+    "sixth12_selected_rows": 12,
+    "already_reviewed_excluded_rows": 70,
+    "followup_selected_rows": 8,
+    "reviewed_or_selected_total": 78,
+    "remaining_unreviewed_rows": 0,
+    "finalization_status": "prior_bundle_merged_final_candidate_pending_root_review",
+    "pool_coverage_statement": "PHCAP-15 pool 78件について、第六束SCF-B-0065の#2013 merge後に既レビュー6束70件と最終候補8件を静的に照合した。pool全体を候補分類済みとして保持するが、正式な採否・authority・implementation・degradationはroot reviewへ保留する。"
+  },
+  "scope": {
+    "pool_asset_ids": [
+      "LEGACY-ASSET-042D2B732DC68AA7EE9A",
+      "LEGACY-ASSET-7995556682FC5493C37E",
+      "LEGACY-ASSET-7D081AD1F95E968FA77C",
+      "LEGACY-ASSET-1C02673C4901B24D963D",
+      "LEGACY-ASSET-0AD2FD852BAB0CEC864B",
+      "LEGACY-ASSET-99E3BCA46E08C4A328FC",
+      "LEGACY-ASSET-A297D67A1D8AD6EE6D6B",
+      "LEGACY-ASSET-0C5F0695490FA5D87419",
+      "LEGACY-ASSET-EC07511FF3E241F15359",
+      "LEGACY-ASSET-9F48ADEEB477DCA54039",
+      "LEGACY-ASSET-1251704E0BE627232E00",
+      "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "LEGACY-ASSET-809D616D0D7D844F5720",
+      "LEGACY-ASSET-54330A68064B58B22259",
+      "LEGACY-ASSET-578A66F54CD01046B7BA",
+      "LEGACY-ASSET-17C4BF78919578FEBB18",
+      "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+      "LEGACY-ASSET-897CAC574F146D976BD7",
+      "LEGACY-ASSET-D5630716F221DA23DB09",
+      "LEGACY-ASSET-93505A0E6A989C5C0F09",
+      "LEGACY-ASSET-13604CA85F3B7D8D5055",
+      "LEGACY-ASSET-02319C2481B9E01698D5",
+      "LEGACY-ASSET-D63398C5A382549DC905",
+      "LEGACY-ASSET-5D71CA1E0DB0DBDAD8F2",
+      "LEGACY-ASSET-10DC603C5CC9499788F0",
+      "LEGACY-ASSET-DF1EA776C672AEB4E55F",
+      "LEGACY-ASSET-269C287365D652DEAD93",
+      "LEGACY-ASSET-D4DBE31CF7179061E284",
+      "LEGACY-ASSET-DE68E15724FB6EC258AB",
+      "LEGACY-ASSET-38BEF2B0F4373A2749B4",
+      "LEGACY-ASSET-20466A68C0622610B827",
+      "LEGACY-ASSET-8F3454E00276A341622B",
+      "LEGACY-ASSET-D52C1596B4C54B842920",
+      "LEGACY-ASSET-6929C09B95A444D95B49",
+      "LEGACY-ASSET-189702B332643A3BFDAF",
+      "LEGACY-ASSET-320E6F0B93975C430B1D",
+      "LEGACY-ASSET-3CB7630AEBBC5932E11D",
+      "LEGACY-ASSET-3530C6D5B44F55C1692A",
+      "LEGACY-ASSET-9B1B5B55B610942F3216",
+      "LEGACY-ASSET-0CC9B511C4846B2D7489",
+      "LEGACY-ASSET-FD0947CF40FB2B301664",
+      "LEGACY-ASSET-7A4ACACE4FCC342FEB03",
+      "LEGACY-ASSET-35E8708A100679F1E4E6",
+      "LEGACY-ASSET-98DD78AA6C120986F753",
+      "LEGACY-ASSET-8EB1660DDE8803009282",
+      "LEGACY-ASSET-45EBBAE400D6A7382026",
+      "LEGACY-ASSET-719F06F33C59C70EEE6A",
+      "LEGACY-ASSET-41F36667354D71D9E014",
+      "LEGACY-ASSET-8D8E740D55956A2A91E0",
+      "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+      "LEGACY-ASSET-3E3D84D599ED0476926B",
+      "LEGACY-ASSET-F3000D26921558AA2E0C",
+      "LEGACY-ASSET-18BB86CC5625C31430B8",
+      "LEGACY-ASSET-FC1E6AE8D3FD1352413B",
+      "LEGACY-ASSET-FAAFFA616A44F65911EB",
+      "LEGACY-ASSET-8B786D9FDDF61B2D569E",
+      "LEGACY-ASSET-4A7A45BC495D1B2677A2",
+      "LEGACY-ASSET-FA8D4E24D8399E8350F1",
+      "LEGACY-ASSET-26391F9FB236CBD4D270",
+      "LEGACY-ASSET-A569CF70586E9679DB01",
+      "LEGACY-ASSET-4357DACF4BA46C0B044F",
+      "LEGACY-ASSET-3C4A61F623B392DC88D6",
+      "LEGACY-ASSET-7642909D8AA62C75E88D",
+      "LEGACY-ASSET-327A88B2141C43045AF1",
+      "LEGACY-ASSET-2224C11CCDA22CAAFF23",
+      "LEGACY-ASSET-03B06987CECB57AC4AE2",
+      "LEGACY-ASSET-BFCA76AA319FBC61AF05",
+      "LEGACY-ASSET-2149C3FCC5A18EB50185",
+      "LEGACY-ASSET-BADD68B87BA5BE0F3906",
+      "LEGACY-ASSET-92811340BD843B5EC3FD",
+      "LEGACY-ASSET-3D576E223565C34899F1",
+      "LEGACY-ASSET-5FEB7612134679928006",
+      "LEGACY-ASSET-48C1BA64B0D481CA806D",
+      "LEGACY-ASSET-7CAE3DCABA0F5008EB63",
+      "LEGACY-ASSET-7E68FC7E2F08FD31B0C1",
+      "LEGACY-ASSET-4916736CCB699929CAC0",
+      "LEGACY-ASSET-2FA49FB93A1EFF48115F",
+      "LEGACY-ASSET-E0574CEA8F5B95E551C1"
+    ],
+    "excluded_scopes": {
+      "pr_2001": {
+        "asset_ids": [
+          "LEGACY-ASSET-042D2B732DC68AA7EE9A",
+          "LEGACY-ASSET-578A66F54CD01046B7BA",
+          "LEGACY-ASSET-18BB86CC5625C31430B8",
+          "LEGACY-ASSET-FA8D4E24D8399E8350F1",
+          "LEGACY-ASSET-327A88B2141C43045AF1",
+          "LEGACY-ASSET-BADD68B87BA5BE0F3906",
+          "LEGACY-ASSET-7995556682FC5493C37E"
+        ],
+        "pr_number": 2001,
+        "head": "c864cebfbda69707529cbb0307625eac1b543add"
+      },
+      "pr_2004": {
+        "asset_ids": [
+          "LEGACY-ASSET-7D081AD1F95E968FA77C",
+          "LEGACY-ASSET-1C02673C4901B24D963D",
+          "LEGACY-ASSET-0AD2FD852BAB0CEC864B",
+          "LEGACY-ASSET-99E3BCA46E08C4A328FC",
+          "LEGACY-ASSET-17C4BF78919578FEBB18",
+          "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+          "LEGACY-ASSET-897CAC574F146D976BD7",
+          "LEGACY-ASSET-FD0947CF40FB2B301664",
+          "LEGACY-ASSET-9E033C3E39BE107D4CF1",
+          "LEGACY-ASSET-3E3D84D599ED0476926B",
+          "LEGACY-ASSET-92811340BD843B5EC3FD",
+          "LEGACY-ASSET-7E68FC7E2F08FD31B0C1"
+        ],
+        "pr_number": 2004,
+        "head": "2642d3f88e4c44233ea649a83a7fb739c9d20430"
+      },
+      "scf_b0037": {
+        "asset_ids": [
+          "LEGACY-ASSET-54330A68064B58B22259",
+          "LEGACY-ASSET-1251704E0BE627232E00",
+          "LEGACY-ASSET-189702B332643A3BFDAF"
+        ],
+        "binding_path": "scaffold/bindings/SCF-B-0037.json"
+      },
+      "third12": {
+        "asset_ids": [
+          "LEGACY-ASSET-A297D67A1D8AD6EE6D6B",
+          "LEGACY-ASSET-0C5F0695490FA5D87419",
+          "LEGACY-ASSET-EC07511FF3E241F15359",
+          "LEGACY-ASSET-809D616D0D7D844F5720",
+          "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+          "LEGACY-ASSET-13604CA85F3B7D8D5055",
+          "LEGACY-ASSET-D63398C5A382549DC905",
+          "LEGACY-ASSET-320E6F0B93975C430B1D",
+          "LEGACY-ASSET-3CB7630AEBBC5932E11D",
+          "LEGACY-ASSET-26391F9FB236CBD4D270",
+          "LEGACY-ASSET-2149C3FCC5A18EB50185",
+          "LEGACY-ASSET-FAAFFA616A44F65911EB"
+        ],
+        "binding_path": "scaffold/bindings/SCF-B-0059.json"
+      },
+      "next12": {
+        "binding_path": "scaffold/bindings/SCF-B-0060.json",
+        "asset_ids": [
+          "LEGACY-ASSET-9F48ADEEB477DCA54039",
+          "LEGACY-ASSET-D4DBE31CF7179061E284",
+          "LEGACY-ASSET-3530C6D5B44F55C1692A",
+          "LEGACY-ASSET-9B1B5B55B610942F3216",
+          "LEGACY-ASSET-0CC9B511C4846B2D7489",
+          "LEGACY-ASSET-8EB1660DDE8803009282",
+          "LEGACY-ASSET-FC1E6AE8D3FD1352413B",
+          "LEGACY-ASSET-A569CF70586E9679DB01",
+          "LEGACY-ASSET-3C4A61F623B392DC88D6",
+          "LEGACY-ASSET-03B06987CECB57AC4AE2",
+          "LEGACY-ASSET-2224C11CCDA22CAAFF23",
+          "LEGACY-ASSET-3D576E223565C34899F1"
+        ]
+      },
+      "fifth12": {
+        "binding_path": "scaffold/bindings/SCF-B-0063.json",
+        "asset_ids": [
+          "LEGACY-ASSET-D5630716F221DA23DB09",
+          "LEGACY-ASSET-93505A0E6A989C5C0F09",
+          "LEGACY-ASSET-02319C2481B9E01698D5",
+          "LEGACY-ASSET-5D71CA1E0DB0DBDAD8F2",
+          "LEGACY-ASSET-10DC603C5CC9499788F0",
+          "LEGACY-ASSET-DF1EA776C672AEB4E55F",
+          "LEGACY-ASSET-269C287365D652DEAD93",
+          "LEGACY-ASSET-DE68E15724FB6EC258AB",
+          "LEGACY-ASSET-38BEF2B0F4373A2749B4",
+          "LEGACY-ASSET-20466A68C0622610B827",
+          "LEGACY-ASSET-8F3454E00276A341622B",
+          "LEGACY-ASSET-D52C1596B4C54B842920"
+        ]
+      },
+      "sixth12": {
+        "binding_path": "scaffold/bindings/SCF-B-0065.json",
+        "asset_ids": [
+          "LEGACY-ASSET-6929C09B95A444D95B49",
+          "LEGACY-ASSET-7A4ACACE4FCC342FEB03",
+          "LEGACY-ASSET-35E8708A100679F1E4E6",
+          "LEGACY-ASSET-98DD78AA6C120986F753",
+          "LEGACY-ASSET-45EBBAE400D6A7382026",
+          "LEGACY-ASSET-719F06F33C59C70EEE6A",
+          "LEGACY-ASSET-41F36667354D71D9E014",
+          "LEGACY-ASSET-8D8E740D55956A2A91E0",
+          "LEGACY-ASSET-F3000D26921558AA2E0C",
+          "LEGACY-ASSET-8B786D9FDDF61B2D569E",
+          "LEGACY-ASSET-4A7A45BC495D1B2677A2",
+          "LEGACY-ASSET-4357DACF4BA46C0B044F"
+        ]
+      }
+    },
+    "selected_asset_ids": [
+      "LEGACY-ASSET-7642909D8AA62C75E88D",
+      "LEGACY-ASSET-BFCA76AA319FBC61AF05",
+      "LEGACY-ASSET-5FEB7612134679928006",
+      "LEGACY-ASSET-48C1BA64B0D481CA806D",
+      "LEGACY-ASSET-7CAE3DCABA0F5008EB63",
+      "LEGACY-ASSET-4916736CCB699929CAC0",
+      "LEGACY-ASSET-2FA49FB93A1EFF48115F",
+      "LEGACY-ASSET-E0574CEA8F5B95E551C1"
+    ],
+    "remaining_unreviewed_asset_ids": [],
+    "overlap_checks": {
+      "selected_vs_pr_2001": [],
+      "selected_vs_pr_2004": [],
+      "selected_vs_scf_b0037": [],
+      "selected_vs_third12": [],
+      "selected_vs_next12": [],
+      "selected_vs_fifth12": [],
+      "selected_vs_sixth12": [],
+      "pool_duplicate_ids": []
+    }
+  },
+  "product_boundary_candidates": {
+    "defined_products": [
+      "HELIX-HARNESS",
+      "HELIX-OS",
+      "HELIX-Web",
+      "HELIX-Web-OS"
+    ],
+    "products": [
+      {
+        "product": "HELIX-HARNESS",
+        "status": "research_premise_candidate",
+        "boundary": "工程・artifact内容・consumer条件の境界候補。配布運転を所有しない候補。",
+        "current_evidence_status": "boundary_candidate_only",
+        "current_authority_status": "none",
+        "current_implementation_status": "unknown",
+        "refs": [
+          {
+            "path": "docs/helix-harness/L1-planning/product-intent.md",
+            "line_start": 34,
+            "line_end": 56,
+            "file_sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+            "span_sha256": "8dd0e891965dd171d7040d9d491259e44184157c6dc4845eac58315bc63fbe8b"
+          }
+        ],
+        "owner_status": "unresolved"
+      },
+      {
+        "product": "HELIX-OS",
+        "status": "research_premise_candidate",
+        "boundary": "project authority、release準備、artifact受渡し、deployment evidence統制の候補。展開先runtime authorityを吸収しない。",
+        "current_evidence_status": "candidate_unresolved",
+        "current_authority_status": "none",
+        "current_implementation_status": "unknown",
+        "refs": [
+          {
+            "path": "docs/concept/product-boundary.md",
+            "line_start": 55,
+            "line_end": 65,
+            "file_sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+            "span_sha256": "ae03bc7e7bed72b7b365024ae85787325612a71fe695e4897f1349cd5b943817"
+          },
+          {
+            "path": "docs/helix-os/L1-planning/system-intent.md",
+            "line_start": 22,
+            "line_end": 35,
+            "file_sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+            "span_sha256": "c2c19bf4e1b2e2b0aa619699e4221bcffaa41112c99a063c424148d3f57cf5f3"
+          },
+          {
+            "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "line_start": 59,
+            "line_end": 63,
+            "file_sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+            "span_sha256": "fd1037b7ce5c7cdfe0fe3a7b9b48f434af71ec333b4b36cf4e280eb9e6b40980"
+          }
+        ],
+        "owner_status": "unresolved"
+      },
+      {
+        "product": "HELIX-Web",
+        "status": "research_premise_candidate",
+        "boundary": "利用者向けWeb体験の候補。直接deployment evidenceの不在は未実装を意味しない。",
+        "current_evidence_status": "boundary_candidate_only",
+        "current_authority_status": "none",
+        "current_implementation_status": "unknown",
+        "refs": [
+          {
+            "path": "docs/helix-web/L1-planning/product-intent.md",
+            "line_start": 24,
+            "line_end": 49,
+            "file_sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+            "span_sha256": "c8515dd8244c245e445a5765b28042f00e3edf62c5445bdb9d6bb826f44fdb1a"
+          }
+        ],
+        "owner_status": "unresolved"
+      },
+      {
+        "product": "HELIX-Web-OS",
+        "status": "research_premise_candidate",
+        "boundary": "tenant/service runtime、配備、監視、復旧の候補。OSとはauthority/stateを分離する。",
+        "current_evidence_status": "candidate_unresolved",
+        "current_authority_status": "none",
+        "current_implementation_status": "unknown",
+        "refs": [
+          {
+            "path": "docs/helix-web-os/L1-planning/system-intent.md",
+            "line_start": 14,
+            "line_end": 49,
+            "file_sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+            "span_sha256": "3d3fd4e9e7662497f68a95ce4659c624ea335598646d19ace1149970e453f4d7"
+          },
+          {
+            "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+            "line_start": 33,
+            "line_end": 38,
+            "file_sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+            "span_sha256": "9329190769887485fef6b9bba87b956959403df5be319f1ed8a1c9b92e30a58a"
+          },
+          {
+            "path": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+            "line_start": 22,
+            "line_end": 24,
+            "file_sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e",
+            "span_sha256": "67a9be70dace10896eb7bd0de717d434c22c7c76763407ab62cecda385756a29"
+          }
+        ],
+        "owner_status": "unresolved"
+      }
+    ],
+    "current_implementation_claim": false,
+    "authority_effect": "none",
+    "product_owner_status": "unresolved"
+  },
+  "assets": [
+    {
+      "asset_id": "LEGACY-ASSET-7642909D8AA62C75E88D",
+      "semantic_diversity_kind": "L12 reviewed-safe disposition implementation source",
+      "phase_ledger_line": 3002,
+      "disposition_ledger_line": 3002,
+      "source_path": "src/lint/l12-hybrid-reviewed-safe-v2.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/src/lint/l12-hybrid-reviewed-safe-v2.ts",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "c72836ddf17752efd7c7fa5a0ef34a290768d72cb2d5d97da0ed76caff7a063f",
+      "source_line_count": 2801,
+      "ledger_source_sha256": "c72836ddf17752efd7c7fa5a0ef34a290768d72cb2d5d97da0ed76caff7a063f",
+      "artifact_evidence_kind": "implementation_source",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 16,
+          "source_span_sha256": "543c1a3a88c3cf81b2aac8815d2b6e21f193a45ce823744fd2a8633cd7a7c618",
+          "exact_text": "// Generated from the 2026-07-19 full-text review. Any content change invalidates the review.\nexport const REVIEWED_SAFE_DISPOSITIONS = [\n  {\n    // #1639: 層metadataの隣接とbackprop理由の正規source併記だけを旧pairと誤検出する。\n    // signal位置はPLANの4-5行目・39-41行目。旧pairの実行authorityは含まない。\n    // 正規pairはL1↔L12・L3↔L10。最終PLAN bytes限定のprojectionであり、独立技術reviewは別途必要。\n    path: \"docs/plans/PLAN-L3-1639-bugbot-generation.md\",\n    contentDigest: \"a5cfb869aba3c0e2c3eaa5e0c07f7aa564b50bd1c2d188e3beb5ffbe168086cd\",\n    finalDisposition: \"false_positive\",\n  },\n  {\n    // #1594: L1/L3/L10/L12 canonical sourceへの一方向配置を列挙するPLAN。\n    // 正規pairはL1↔L12・L3↔L10であり、旧L3↔L12 pairの再導入ではない。\n    path: \"docs/plans/PLAN-L3-1594-skill-mechanism-migration.md\",\n    contentDigest: \"29d6c06f5d7c706be8bc1609f6c6dac6b9a6e179ccc1e42adf53e2dbd48f2776\",\n    finalDisposition: \"false_positive\",",
+          "meaning": "reviewed-safe source records static false-positive dispositions and content digests"
+        },
+        {
+          "line_start": 2795,
+          "line_end": 2800,
+          "source_span_sha256": "e8ad6bfd8bc43ba497f42125acf715472e83b2d11bdc49d83d9b88e2632c5f03",
+          "exact_text": "    // #242のL8 toolchain専用oracle。旧Python runtime authorityを採用せず、exact patch、\n    // provenance、offline lock、SBOM、OS parity、rollbackを反証するcurrent test designである。\n    path: \"docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md\",\n    contentDigest: \"87e21af09ae55eabf36f2902c23766023a9ae4ecbe351fa0f78d92566c55482d\",\n    finalDisposition: \"false_positive\",\n  },",
+          "meaning": "toolchain oracle text rejects old runtime authority while preserving provenance and rollback checks"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-11",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "implementation_source_present_unexecuted",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-BFCA76AA319FBC61AF05",
+      "semantic_diversity_kind": "proposal research adoption implementation source",
+      "phase_ledger_line": 3377,
+      "disposition_ledger_line": 3377,
+      "source_path": "src/task/proposal-research-data.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/src/task/proposal-research-data.ts",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "0b1891479162a9c2879c5bf3425e5a2acb9d81b8a520e4c5eda49dd4c0168432",
+      "source_line_count": 430,
+      "ledger_source_sha256": "0b1891479162a9c2879c5bf3425e5a2acb9d81b8a520e4c5eda49dd4c0168432",
+      "artifact_evidence_kind": "implementation_source",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 17,
+          "source_span_sha256": "c1db6c83d8103ab71c32d5b81a2f1524cc3a085b1a0dd3ee10340beb06798174",
+          "exact_text": "import type { ResearchAdoptionDecision } from \"./classify\";\n\nconst SOURCE_NABLARCH_FINTAN = \"Nablarch/Fintan\";\nconst SOURCE_NABLARCH_STANDARDS = \"Nablarch development standards\";\nconst SOURCE_IPA = \"IPA\";\nconst SOURCE_KU_WIEGERS = \"KU Wiegers\";\nconst SOURCE_SMARTSHEET = \"Smartsheet\";\nconst SOURCE_STANFORD = \"Stanford\";\nconst SOURCE_HELIX_GOVERNANCE = \"HELIX governance\";\n\nexport const RESEARCH_ADOPTION_BY_PATTERN: Record<string, ResearchAdoptionDecision> = {\n  \"screen-ui\": {\n    pattern: \"screen-ui\",\n    disposition: \"incorporate\",\n    sources: [\"Bizroute\", \"PocketDOC\", \"CreativeContentLab\", SOURCE_NABLARCH_FINTAN],\n    use_cases: [\"new screen\", \"screen redesign\", \"admin form\", \"dashboard\", \"mobile/web UI\"],\n    incorporated_as: [",
+          "meaning": "research adoption table maps proposal patterns to sources and incorporation decisions"
+        },
+        {
+          "line_start": 421,
+          "line_end": 430,
+          "source_span_sha256": "8e2ab515fdfd5bbad1ee2e03124f53d437d781bf7a4b7c51f2ce66d5361cfc54",
+          "exact_text": "export const LLM_SHRINK_TERMS = [\n  \"minor\",\n  \"simple\",\n  \"small\",\n  \"not needed\",\n  \"skip\",\n  \"\\u8efd\\u5fae\",\n  \"\\u4e0d\\u8981\",\n  \"\\u7701\\u7565\",\n];",
+          "meaning": "shrink terms enumerate wording that must not reduce required coverage"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "implementation_source_present_unexecuted",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5FEB7612134679928006",
+      "semantic_diversity_kind": "L0-L8 design consistency test source",
+      "phase_ledger_line": 3684,
+      "disposition_ledger_line": 3684,
+      "source_path": "tests/l0-l8-design-consistency-audit.test.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/tests/l0-l8-design-consistency-audit.test.ts",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "9183484c8b19efe3bc906a73e4feb1d7def1a20c74b1651e665bb669a85a61bb",
+      "source_line_count": 282,
+      "ledger_source_sha256": "9183484c8b19efe3bc906a73e4feb1d7def1a20c74b1651e665bb669a85a61bb",
+      "artifact_evidence_kind": "test_source",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 17,
+          "source_span_sha256": "96e9a601772702a0746901cfcbf7fa8b2cb9afbde8cf9f8b07c164ffa7e5424f",
+          "exact_text": "import { existsSync, readFileSync } from \"node:fs\";\nimport { describe, expect, it } from \"vitest\";\n\nconst AUDIT_PATH = \"docs/governance/helix-l0-l8-design-consistency-audit.md\";\nconst PLAN_L7_141 = \"docs/plans/PLAN-L7-141-web-dashboard-component-derived.md\";\nconst PLAN_L7_146 = \"docs/plans/PLAN-L7-146-serverless-readonly-share.md\";\nconst VERSION_UP_MODE = \"docs/process/modes/version-up.md\";\nconst VERSION_UP_DISCOVERY = \"docs/plans/PLAN-DISCOVERY-09-version-up-mode.md\";\nconst FORWARD_DESIGN = \"docs/process/forward/L00-L06-design-phase.md\";\nconst FORWARD_OVERVIEW = \"docs/process/forward/overview.md\";\nconst DISCOVERY_MODE = \"docs/process/modes/discovery.md\";\nconst ADD_FEATURE_MODE = \"docs/process/modes/add-feature.md\";\nconst REVERSE_MODE = \"docs/process/modes/reverse.md\";\n\nfunction auditText(): string {\n  return readFileSync(AUDIT_PATH, \"utf8\");\n}",
+          "meaning": "test defines source paths for L0-L8 design consistency audit"
+        },
+        {
+          "line_start": 270,
+          "line_end": 281,
+          "source_span_sha256": "8a92affe3f3d3030c2b275e830290fdfaf183d946ef1ad56712ac863784a4410",
+          "exact_text": "    expect(frontmatterValue(PLAN_L7_141, \"status\")).toBe(\"confirmed\");\n    expect(frontmatterValue(PLAN_L7_141, \"version_target\")).toBeNull();\n    expect(frontmatterValue(PLAN_L7_146, \"status\")).toBe(\"draft\");\n    expect(frontmatterValue(PLAN_L7_146, \"version_target\")).toBe(\"future\");\n\n    expect(fileText(VERSION_UP_MODE)).toContain(\"PLAN-L7-141 は component-derived\");\n    expect(fileText(VERSION_UP_MODE)).toContain(\"PLAN-L7-146 は外部 serverless\");\n    expect(fileText(VERSION_UP_DISCOVERY)).toContain(\"activation note (2026-06-30)\");\n    expect(fileText(PLAN_L7_146)).toContain(\"version-up parked\");\n    expect(fileText(PLAN_L7_146)).toContain(\"archive せず future-version backlog\");\n    expect(fileText(PLAN_L7_146)).toContain(\"mode=version-up\");\n  });",
+          "meaning": "test keeps version-up parked and future labels while checking source text"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-15",
+        "PHCAP-16"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "test_source_present_unexecuted",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-48C1BA64B0D481CA806D",
+      "semantic_diversity_kind": "L12 hybrid recognition test source",
+      "phase_ledger_line": 3689,
+      "disposition_ledger_line": 3689,
+      "source_path": "tests/l12-hybrid-recognition.test.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/tests/l12-hybrid-recognition.test.ts",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "7064455d01ae901e2984d704e1749529cd12bec314574c5ddbaee014e364f039",
+      "source_line_count": 377,
+      "ledger_source_sha256": "7064455d01ae901e2984d704e1749529cd12bec314574c5ddbaee014e364f039",
+      "artifact_evidence_kind": "test_source",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 18,
+          "source_span_sha256": "75acef39423af73ca55aedd587f1fee3125023c00cc8e2a544f0fe7ac204c873",
+          "exact_text": "import { createHash } from \"node:crypto\";\nimport { readFileSync } from \"node:fs\";\nimport { describe, expect, it } from \"vitest\";\nimport {\n  classifyFinalRecognitionDisposition,\n  classifyRecognitionAuditDisposition,\n  classifyRecognitionCandidate,\n  classifyRecognitionReviewStatus,\n  detectL12HybridRecognitionSignals,\n  scanL12HybridRecognitionCandidates,\n} from \"../src/lint/l12-hybrid-recognition\";\nimport { REVIEWED_SAFE_DISPOSITIONS } from \"../src/lint/l12-hybrid-reviewed-safe-v2\";\n\n// PLAN-RECOVERY-1404-confirmed-design-active-bun-command — active Bun command removal and reviewed-safe pin convergence.\n// PLAN-REVERSE-567-current-runtime-guidance / PLAN-REVERSE-568-issue-template-label-typed-authority — broad scanner count projection after current guidance updates.\n\n// PLAN-L7-578-github-execution-episode-right-arm-evidence — U-GHEPRE-007\n",
+          "meaning": "test imports hybrid recognition scanning and reviewed-safe disposition surfaces"
+        },
+        {
+          "line_start": 360,
+          "line_end": 377,
+          "source_span_sha256": "58e5f5aca53020a3ffc411cd212b2abb060c7bcbd9513bb29c5f35eb311f3076",
+          "exact_text": "    }\n    for (const path of [\n      \"docs/design/helix/L3-requirements/technology-stack-authority.md\",\n      \"docs/plans/PLAN-L3-50-technology-stack-authority.md\",\n      \"docs/test-design/helix/technology-stack-authority-acceptance.md\",\n    ]) {\n      const candidate = candidateByPath.get(path);\n      expect(candidate, path).toBeDefined();\n      if (!candidate) {\n        throw new Error(`technology authority candidate missing: ${path}`);\n      }\n      expect(classifyFinalRecognitionDisposition(candidate), path).toBe(\"false_positive\");\n    }\n    expect(\n      candidateByPath.get(\"docs/plans/PLAN-L3-50-technology-stack-authority.md\")?.contentDigest,\n    ).toBe(\"a1f530d6afcd7912a5487f5e3c6e433897b61bc51cc76b0f9df5fbe02375c66e\");\n  });\n});",
+          "meaning": "test requires technology authority candidates to remain false positives with pinned digest"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "test_source_present_unexecuted",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-7CAE3DCABA0F5008EB63",
+      "semantic_diversity_kind": "plan governance lint test source",
+      "phase_ledger_line": 3761,
+      "disposition_ledger_line": 3761,
+      "source_path": "tests/plan-lint.test.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/tests/plan-lint.test.ts",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "ce92ab373e1f13df242adfc5ccdc58d8e78513794cbd5528cdfde46a0d721d23",
+      "source_line_count": 1091,
+      "ledger_source_sha256": "ce92ab373e1f13df242adfc5ccdc58d8e78513794cbd5528cdfde46a0d721d23",
+      "artifact_evidence_kind": "test_source",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 18,
+          "source_span_sha256": "30d2c92b462fd27c44e180c9e628f4203441291dd1ff7280696e74e5336136d5",
+          "exact_text": "import { createHash } from \"node:crypto\";\nimport { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from \"node:fs\";\nimport { tmpdir } from \"node:os\";\nimport { join } from \"node:path\";\nimport { describe, expect, it } from \"vitest\";\nimport {\n  analyzePlanGovernance,\n  analyzePlanSchedule,\n  extractScheduleSection,\n  lintPlanWithGate,\n  planGovernanceMessages,\n  planScheduleMessages,\n} from \"../src/plan/lint\";\nimport { READY_DEPENDENCY_STATUSES } from \"../src/plan/lint-policy\";\nimport type { LintResult as SidecarLintResult } from \"../src/plan/lint-types\";\n\nconst compliant = `---\nplan_id: PLAN-X",
+          "meaning": "plan lint test imports governance and schedule lint surfaces with typed status contracts"
+        },
+        {
+          "line_start": 1079,
+          "line_end": 1091,
+          "source_span_sha256": "7e41d59ca744824ca0c8403e4f846726d58c407d856f6dfb8517f1cd00028e8b",
+          "exact_text": "    const activeDocs = [\n      \"docs/test-design/harness/L1-operational-test-design.md\",\n      \"docs/design/harness/L3-functional/README.md\",\n      \"docs/test-design/harness/L3-acceptance-test-design.md\",\n      \"docs/design/harness/L3-functional/functional-requirements.md\",\n      \"docs/design/harness/L3-functional/roadmap.md\",\n    ];\n    const text = activeDocs.map((p) => readFileSync(join(process.cwd(), p), \"utf8\")).join(\"\\n\");\n    expect(text).not.toContain(\"helix trace --g1\");\n    expect(text).not.toMatch(/G3-trace.*L7 carry/);\n    expect(text).not.toMatch(/plan lint.*stub/);\n  });\n});",
+          "meaning": "test checks active docs for forbidden stale trace and stub patterns"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-11",
+        "PHCAP-15",
+        "PHCAP-16"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "test_source_present_unexecuted",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4916736CCB699929CAC0",
+      "semantic_diversity_kind": "doctor slow test source",
+      "phase_ledger_line": 3888,
+      "disposition_ledger_line": 3888,
+      "source_path": "tests/slow/doctor.test.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/tests/slow/doctor.test.ts",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "a64bc5c06f85a3e10ec1c092a101eeab7eebf35ac00e3fb78ec7e548d9cae595",
+      "source_line_count": 4044,
+      "ledger_source_sha256": "a64bc5c06f85a3e10ec1c092a101eeab7eebf35ac00e3fb78ec7e548d9cae595",
+      "artifact_evidence_kind": "test_source",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 18,
+          "source_span_sha256": "4dae734b128faa7f81e14ecefd5c5228a7c8437e55ab5184a55179a5a9bbb19e",
+          "exact_text": "// PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-012\nimport { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from \"node:fs\";\nimport { tmpdir } from \"node:os\";\nimport { join } from \"node:path\";\nimport { describe, expect, it } from \"vitest\";\nimport {\n  checkActionBindingApprovalReadiness,\n  checkAgentSlots,\n  checkAllowlistSync,\n  checkApprovalReviewBinding,\n  checkAssetDrift,\n  checkBackfillResult,\n  checkChangeImpact,\n  checkChangeSetIntegrity,\n  checkClosureApplyBinding,\n  checkCodexWrapperParity,\n  checkCodingRules,\n  checkCompletionDecisionPacket,",
+          "meaning": "doctor test imports checker surfaces and filesystem evidence helpers"
+        },
+        {
+          "line_start": 4032,
+          "line_end": 4044,
+          "source_span_sha256": "bff3aef585f0dc08697b075b642a626480614d41a83a7809baea7a36fbd3dfd8",
+          "exact_text": "          workerProvider: \"codex\",\n          verifierProvider: \"codex\",\n        }),\n      );\n\n      const result = checkVerifierProviderMismatch(root);\n      expect(result.ok).toBe(false);\n      expect(result.messages.join(\"\\n\")).toContain(\"hybrid self-evaluation rows=1\");\n    } finally {\n      rmSync(root, { recursive: true, force: true });\n    }\n  });\n});",
+          "meaning": "test rejects hybrid self-evaluation provider mismatch"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-11",
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-19",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "test_source_present_unexecuted",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-2FA49FB93A1EFF48115F",
+      "semantic_diversity_kind": "task classification test source",
+      "phase_ledger_line": 3912,
+      "disposition_ledger_line": 3912,
+      "source_path": "tests/task-classify.test.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/tests/task-classify.test.ts",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "979e10bdc6ed3590d2accab95900dfbb9449b8477ac4f13bdf8bd0d03745e59a",
+      "source_line_count": 442,
+      "ledger_source_sha256": "979e10bdc6ed3590d2accab95900dfbb9449b8477ac4f13bdf8bd0d03745e59a",
+      "artifact_evidence_kind": "test_source",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 18,
+          "source_span_sha256": "a6d0326fc024e4b5e9bd79eebed3a387dd45bf8daab3f3923532eb47ff308c05",
+          "exact_text": "import { existsSync } from \"node:fs\";\nimport { describe, expect, it } from \"vitest\";\nimport { classifyProposalDocumentCoverage, classifyTask } from \"../src/task/classify\";\nimport {\n  BASELINE_DOCUMENT_PACK,\n  KIND_PATTERNS,\n  PROPOSAL_COVERAGE_GUARDRAILS,\n  RISK_TERMS,\n} from \"../src/task/classify-policy\";\nimport { DOCUMENT_PACKS } from \"../src/task/proposal-coverage-data\";\nimport { doc, LEVEL_RANK } from \"../src/task/proposal-document-pack-types\";\nimport { DOCUMENT_PACKS_CORE } from \"../src/task/proposal-document-packs-core\";\nimport { DOCUMENT_PACKS_OPERATIONS } from \"../src/task/proposal-document-packs-operations\";\nimport {\n  RESEARCH_ADOPTION_BY_PATTERN,\n  RESEARCH_REJECTION_KEYWORDS,\n} from \"../src/task/proposal-research-data\";\nimport { MODEL_IDS, PROPOSAL_SUBAGENT_LANES } from \"../src/team/model-policy\";",
+          "meaning": "task classification test covers proposal coverage and model-policy inputs"
+        },
+        {
+          "line_start": 430,
+          "line_end": 442,
+          "source_span_sha256": "0a2eddad37fcb86f0e9f0baa2088f841341ac0cd370699aa43349b615123aa00",
+          "exact_text": "          guard: expect.stringContaining(\"cannot reduce required coverage\"),\n        }),\n        expect.objectContaining({\n          role: \"se\",\n          tier: \"T1-worker\",\n          parallel_slots: 2,\n          closing_authority: false,\n          ownership: expect.stringContaining(\"disjoint\"),\n        }),\n      ]),\n    );\n  });\n});",
+          "meaning": "test asserts disjoint worker ownership and no closing authority"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-15",
+        "PHCAP-16",
+        "PHCAP-17",
+        "PHCAP-18"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS",
+        "HELIX-Web",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "test_source_present_unexecuted",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E0574CEA8F5B95E551C1",
+      "semantic_diversity_kind": "version-up readiness test source",
+      "phase_ledger_line": 3973,
+      "disposition_ledger_line": 3973,
+      "source_path": "tests/version-up-readiness.test.ts",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/tests/version-up-readiness.test.ts",
+      "source_revision": "legacy-generation-2026-09-14",
+      "source_file_sha256": "9374343ffaeb4131dbf7827b97d762dc1e4b4e74b500fee5f917c6ee88e190f5",
+      "source_line_count": 3084,
+      "ledger_source_sha256": "9374343ffaeb4131dbf7827b97d762dc1e4b4e74b500fee5f917c6ee88e190f5",
+      "artifact_evidence_kind": "test_source",
+      "source_anchors": [
+        {
+          "line_start": 1,
+          "line_end": 18,
+          "source_span_sha256": "f6bfb71ff9d27635afd00b904eaca7e107683017bb10939660d668baf5830f31",
+          "exact_text": "// @helix-repo-wide-guard\n// PLAN-L7-655-distribution-devos-runtime-identity — U-DISTID-014\nimport { execFileSync, spawnSync } from \"node:child_process\";\nimport { chmodSync, mkdtempSync, rmSync, writeFileSync } from \"node:fs\";\nimport { tmpdir } from \"node:os\";\nimport { join } from \"node:path\";\nimport { describe, expect, it } from \"vitest\";\nimport { buildVersionUpActivationReviewBundle } from \"../src/lint/version-up-bundle\";\nimport {\n  analyzeVersionUpReadiness,\n  buildVersionUpActivationPackets,\n  buildVersionUpActivationRehearsalPacket,\n  buildVersionUpgradeDryRunPlan,\n  buildVersionUpSecurityChecklistPacket,\n  loadVersionUpReadinessInput,\n  type VersionUpReadinessInput,\n  versionUpActivationVerificationCommandViolations,\n  versionUpReadinessMessages,",
+          "meaning": "version-up readiness test imports activation and dry-run readiness surfaces"
+        },
+        {
+          "line_start": 3072,
+          "line_end": 3084,
+          "source_span_sha256": "b979470ecf187ae73578da34f723f77a07b5bb913646ef02d222eaf6cebf11c8",
+          "exact_text": "          expect.objectContaining({\n            check: \"repeat_dry_run_has_no_state_change\",\n            command:\n              \"helix version-up dry-run --current v0.1.0 --target v0.1.3 --release-remote https://github.com/RetryYN/HELIX-HARNESS-DevOS.git --json\",\n          }),\n        ]),\n      );\n      expect(plan.blockedReasons).toEqual([]);\n    } finally {\n      rmSync(binDir, { recursive: true, force: true });\n    }\n  });\n});",
+          "meaning": "test checks repeat dry-run output and blocked-reason state"
+        }
+      ],
+      "candidate_phase_targets": [
+        "PHCAP-14",
+        "PHCAP-15"
+      ],
+      "phase_classification_status": "multi_phase_candidate",
+      "phase_admission": "unresolved_candidate_only",
+      "candidate_product_targets": [
+        "HELIX-OS",
+        "HELIX-Web-OS"
+      ],
+      "product_classification_status": "candidate_needs_semantic_review",
+      "product_owner_status": "unresolved",
+      "legacy_implementation_status": "unknown",
+      "implementation_evidence_state": "test_source_present_unexecuted",
+      "legacy_execution_performed": false,
+      "current_implementation_status": "unknown",
+      "current_operation_status": "unknown",
+      "current_acceptance_status": "unknown",
+      "current_degradation_status": "unknown",
+      "disposition": "unresolved",
+      "authority_status": "historical",
+      "decision_matches": 0,
+      "decision_record_refs": [],
+      "copy_read_after_matches": 0,
+      "consumer_closure_status": "pending",
+      "consumer_refs": [],
+      "failure_evidence": {
+        "status": "source_boundary_only_unexecuted",
+        "execution_receipts": 0,
+        "source_failure_or_stop_conditions_observed": true,
+        "failure_outcome_observed": false,
+        "unknown": [
+          "historical execution outcome",
+          "failure/rollback receipt",
+          "current failure behavior and owner"
+        ]
+      },
+      "consumer_evidence": {
+        "status": "candidate_only_closure_pending",
+        "consumer_refs_observed": [],
+        "consumer_closure_observed": false,
+        "unknown": [
+          "consumer identity scope/revision",
+          "read-after/current runtime handoff",
+          "closure decision"
+        ]
+      },
+      "unresolved": [
+        "semantic product split",
+        "phase admission",
+        "product owner",
+        "current implementation/degradation/acceptance",
+        "failure outcome",
+        "consumer closure",
+        "successor/decision"
+      ]
+    }
+  ],
+  "aggregate_evidence": {
+    "selected_asset_count": 8,
+    "selected_asset_decision_matches": 0,
+    "selected_asset_copy_read_after_matches": 0,
+    "selected_failure_execution_receipts": 0,
+    "selected_consumer_refs_nonempty": 0,
+    "selected_consumer_closure_pending": 8,
+    "selected_implementation_statuses": {
+      "legacy_source_snapshot": 0,
+      "legacy_unknown": 8,
+      "current_unknown": 8,
+      "current_degradation_unknown": 8
+    },
+    "current_implementation_status": "unknown",
+    "current_degradation_status": "unknown",
+    "current_phase_admission": "unresolved_candidate_only"
+  },
+  "prohibited_inference": [
+    "pool membership is a phase classification candidate only and does not create a requirement link or product owner",
+    "source presence, design text, plan text, implementation/test references or old command claims do not establish current implementation, operation, acceptance, deployment or pass",
+    "source snapshot preservation or historical decision records do not create current authority or requirement adoption",
+    "phase candidate targets do not admit an asset to PHCAP-15",
+    "product candidate membership does not create authority, owner or routing",
+    "empty consumer_refs and pending closure do not prove no historical consumer",
+    "no failure receipt does not prove no historical failure or rollback",
+    "missing direct Web evidence does not establish non-implementation",
+    "archive is static reference only and not runtime, test, CI or fallback"
+  ],
+  "verification_contract": {
+    "requires_exact_source_spans": true,
+    "requires_source_archive_digest_reconciliation": true,
+    "requires_pool_nonoverlap": true,
+    "requires_four_product_candidate_boundary": true,
+    "unknowns_must_remain_explicit": true,
+    "old_archive_runtime_test_ci_execution": false,
+    "required_commands": [
+      "python3 -B scaffold/phcap15-deploy-final8-research/validate.py",
+      "python3 -B scaffold/phcap15-deploy-final8-research/selfcheck.py",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "pool denominator/remaining count tamper",
+      "overlap with #2001/#2004/SCF-B-0037/third12/next12/fifth12/sixth12",
+      "selected asset ID duplication",
+      "source file digest tamper",
+      "source anchor exact text tamper",
+      "phase admission promotion",
+      "current implementation promotion",
+      "current degradation promotion",
+      "failure receipt invention",
+      "consumer closure invention",
+      "decision match/read-after tamper",
+      "four-product boundary/owner promotion",
+      "root nested keyset tamper",
+      "provenance nested keyset tamper",
+      "scope nested keyset tamper",
+      "anchor meaning tamper",
+      "anchor count deletion",
+      "selected anchor count tamper",
+      "unresolved body deletion",
+      "semantic kind drift",
+      "equivalence claim promotion",
+      "prohibited inference body tamper",
+      "required command tamper",
+      "negative case contract tamper",
+      "copy-read-after ledger tamper"
+    ]
+  },
+  "counts": {
+    "pool_rows": 78,
+    "selected_rows": 8,
+    "excluded_rows": 70,
+    "remaining_unreviewed_rows": 0,
+    "four_products": 4,
+    "selected_source_anchors": 16,
+    "selected_decision_matches": 0,
+    "selected_copy_read_after_matches": 0,
+    "selected_consumer_refs_nonempty": 0
+  }
+}
