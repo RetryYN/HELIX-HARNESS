@@ -1,0 +1,48 @@
+{
+  "wave": "Wave49",
+  "base_revision": "d340ea82723c01fece5610dceea8eff81e03b686",
+  "binding_id": "SCF-B-0094",
+  "selected_units": [
+    "IRUNIT-HIL-TR-04-HELIX-HARNESS",
+    "IRUNIT-HIL-TR-04-HELIX-OS",
+    "IRUNIT-HIL-TR-05-HELIX-HARNESS",
+    "IRUNIT-HIL-TR-05-HELIX-OS",
+    "IRUNIT-HIL-TR-06-HELIX-OS",
+    "IRUNIT-HIL-TR-11-HELIX-OS"
+  ],
+  "selected_role_asset_ids": [
+    "LEGACY-ASSET-2C8125EAAADD462E2FDB",
+    "LEGACY-ASSET-C92153AA69C31107617D",
+    "LEGACY-ASSET-D888FB040D52499EE09E",
+    "LEGACY-ASSET-D94F2C0530850989B5F4"
+  ],
+  "supplemental_asset_ids": [
+    "LEGACY-ASSET-06AAC4428C2234FBCE28",
+    "LEGACY-ASSET-70D2389B7A28A79D8B1D",
+    "LEGACY-ASSET-BD13CC67526B48D461F9",
+    "LEGACY-ASSET-4462A16C8BAD769BA2D4"
+  ],
+  "inspected_legacy_asset_ids": [
+    "LEGACY-ASSET-06AAC4428C2234FBCE28",
+    "LEGACY-ASSET-2C8125EAAADD462E2FDB",
+    "LEGACY-ASSET-4462A16C8BAD769BA2D4",
+    "LEGACY-ASSET-70D2389B7A28A79D8B1D",
+    "LEGACY-ASSET-BD13CC67526B48D461F9",
+    "LEGACY-ASSET-C92153AA69C31107617D",
+    "LEGACY-ASSET-D888FB040D52499EE09E",
+    "LEGACY-ASSET-D94F2C0530850989B5F4"
+  ],
+  "counts": {
+    "units": 6,
+    "role_edges": 10,
+    "semantic_atoms": 11,
+    "composite_unresolved": 6,
+    "selected_role_assets": 4,
+    "inspected_legacy_assets": 8,
+    "missing_evidence_receipts": 8,
+    "cumulative_units_after_wave": 216,
+    "cumulative_edges_after_wave": 595,
+    "remaining_units_after_wave": 2
+  },
+  "status": "candidate"
+}
