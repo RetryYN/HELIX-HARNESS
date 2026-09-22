@@ -28,6 +28,6 @@
 - `git diff --check`
 - `git diff origin/main...HEAD --check`
 
-最新main上の実測値は検証実行後にPR本文へ同期する。対象59件のrecord、target/overlap集合、旧実装・縮退・consumerの非昇格境界はvalidator/selfcheckで再確認した。
+最新origin/main `f946cf7b0e4178d5b8f146699e3d651b4d65add9` 上の実測は `scfctl validate: bindings=128 fail=0`、`stale=0`、`residuals=0`。対象59件のrecord、target/overlap集合、旧実装・縮退・consumerの非昇格境界はvalidator/selfcheckで再確認した。
 
 PR作成側はmerge／closeを実行しない。正式分類・authority昇格は人間レビュー後の別判断とする。
