@@ -8,7 +8,7 @@
 
 - `SCF-B-0128` Bindingと全8成果物を追加。
 - 固定BASE `cb5a45fea289d61b67cba100fd2406813021ef48` から51 asset / 51 recordを再導出。
-- direct product basis 38、multi-product conflict 8、insufficient basis 5を、具体的source marker/span・対応L1要求行・product-boundary行・承認decisionの製品意味行・反証つきで保存。
+- direct product basis 38、multi-product conflict 8、insufficient basis 5を、具体的source marker/span・旧source行digest・対応L1要求行・product-boundary行・承認decisionの製品意味行・反証つきで保存。
 - Wave対象edge 24を保持し、SCF-B-0108のunresolved95 ID集合との重複0を独立検査。
 - phase/disposition、implementation/degradation、failure/consumer、decision/read-afterを候補分類から分離。
 - L1 raw frontmatter（draft/awaiting_parent_approval）と、exact SHAをapproveしたeffective decision recordを分離し、4件のDecision ID・L1 SHA・decision/blob/digestをinventoryとrecordで固定。
