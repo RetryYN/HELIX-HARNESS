@@ -126,6 +126,8 @@ def compact_decomp(parent: dict, unit: dict, line: int) -> dict:
 def expected_category(links: list[dict]) -> tuple[str, str, list[str]]:
     products = sorted({p for link in links for p in (link.get("candidate_product_targets") or []) + (link.get("product_scope") or [])})
     statuses = {link.get("semantic_link_status") for link in links}
+    if statuses == {"rejected"}:
+        return "insufficient_basis", "All observed semantic links are rejected; adjacent unit product scope is retained as counter-evidence only and cannot produce an asset product candidate.", []
     if len(products) > 1:
         return "multi_product_conflict", "Wave unit product_scope/candidate_product_targets contain multiple distinct products; a single owner cannot be inferred." + (" All observed semantic links are rejected, so the candidate is retained as counter-evidence only." if statuses == {"rejected"} else ""), products
     if "rejected" in statuses:
@@ -246,7 +248,8 @@ def verify() -> dict:
                 anchors.append({"line_start": ref["line_start"], "line_end": ref["line_end"], "line_text_sha256": tagged(text.encode()), "evidence_ref_excerpt_sha256": ref.get("excerpt_sha256"), "artifact_role": ref.get("artifact_role"), "source_requirement_relation": ref.get("source_requirement_relation")})
         if source.get("evidence_anchors") != sorted(anchors, key=lambda x: (x["line_start"], x["line_end"], x["evidence_ref_excerpt_sha256"])): fail("E_SOURCE_DIGEST", f"source line anchor mismatch {aid}")
         category, reason, products = expected_category(expected)
-        if record.get("classification_category") != category or record.get("classification_reason") != reason or record.get("candidate_products") != products: fail("E_CANDIDATE_PRODUCTS", f"category/product derivation mismatch {aid}")
+        observed_products = sorted({p for link in expected for p in (link.get("candidate_product_targets") or []) + (link.get("product_scope") or [])})
+        if record.get("classification_category") != category or record.get("classification_reason") != reason or record.get("candidate_products") != products or record.get("observed_wave_products") != observed_products: fail("E_CANDIDATE_PRODUCTS", f"category/product derivation mismatch {aid}")
         if record.get("semantic_link_statuses") != sorted({l.get("semantic_link_status") for l in expected}): fail("E_EDGE_SET", f"semantic status set mismatch {aid}")
         if record.get("artifact_evidence_kinds") != sorted({l.get("artifact_evidence_kind") for l in expected}): fail("E_CANDIDATE_PRODUCTS", f"artifact evidence kind mismatch {aid}")
         unit_ids = sorted({l["unit_candidate_id"] for l in expected}); units = record.get("unit_product_candidates", [])
@@ -260,9 +263,9 @@ def verify() -> dict:
         expected_hist = {"disposition": {"path": DISPOSITION, "line": disp_line, "row_sha256": row_digest(disp), "asset_id": aid, "revision": disp.get("revision"), "disposition": disp.get("disposition"), "asset_class": disp.get("asset_class"), "product_target": disp.get("product_target"), "authority_status": disp.get("authority_status"), "implementation_status": disp.get("implementation_status"), "consumer_refs": sorted(disp.get("consumer_refs", [])), "decision_record_ref": disp.get("decision_record_ref"), "read_after_record_ref": disp.get("read_after_record_ref")}, "decisions": [{"path": DECISIONS, "line": line, "row_sha256": row_digest(row), "decision_id": row.get("decision_id"), "disposition": row.get("disposition"), "product_target": row.get("product_target"), "consumer_refs": sorted(row.get("consumer_refs", []))} for line, row in decisions if row.get("asset_id") == aid], "read_after": [{"path": READ_AFTER, "line": line, "row_sha256": row_digest(row), "read_after_id": row.get("read_after_id"), "result": row.get("result"), "digest_match": row.get("digest_match"), "consumer_match": row.get("consumer_match"), "failure": row.get("failure"), "consumer_refs_observed": sorted(row.get("consumer_refs_observed", []))} for line, row in read_afters if row.get("asset_id") == aid], "state_boundary": "disposition remains unresolved; no historical decision/read-after row exists for this target"}
         if history != expected_hist: fail("E_HISTORY", f"history receipt mismatch {aid}")
         verify_range_groups(record)
-    if inventory.get("counts") != {"wave_files": 50, "wave_edges": 598, "wave_unique_assets": 355, "target_assets": 64, "categories": {"direct_product_basis": 56, "insufficient_basis": 2, "multi_product_conflict": 6}, "artifact_evidence_kinds": {"implementation_source": 55, "design": 8, "plan": 1}, "semantic_link_statuses": {"unresolved": 61, "rejected": 3}, "semantic_link_asset_profiles": {"rejected_only": 3, "unresolved_only": 61}, "target_wave_edges": sum(len(by_asset[a]) for a in targets)}:
+    if inventory.get("counts") != {"wave_files": 50, "wave_edges": 598, "wave_unique_assets": 355, "target_assets": 64, "categories": {"direct_product_basis": 56, "insufficient_basis": 3, "multi_product_conflict": 5}, "artifact_evidence_kinds": {"implementation_source": 55, "design": 8, "plan": 1}, "semantic_link_statuses": {"unresolved": 61, "rejected": 3}, "semantic_link_asset_profiles": {"rejected_only": 3, "unresolved_only": 61}, "target_wave_edges": sum(len(by_asset[a]) for a in targets)}:
         fail("E_EXPECTED_DENOMINATOR", "inventory counts mismatch")
-    print(f"SCF-B-0107 validate: PASS records={len(rows)} edges={sum(len(by_asset[a]) for a in targets)} categories=direct:56 multi:6 insufficient:2")
+    print(f"SCF-B-0107 validate: PASS records={len(rows)} edges={sum(len(by_asset[a]) for a in targets)} categories=direct:56 multi:5 insufficient:3")
     return {"inventory": inventory, "rows": rows}
 
 

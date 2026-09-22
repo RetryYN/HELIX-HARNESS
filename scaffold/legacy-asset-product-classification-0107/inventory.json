@@ -40,8 +40,8 @@
     },
     "categories": {
       "direct_product_basis": 56,
-      "insufficient_basis": 2,
-      "multi_product_conflict": 6
+      "insufficient_basis": 3,
+      "multi_product_conflict": 5
     },
     "semantic_link_asset_profiles": {
       "rejected_only": 3,
@@ -553,7 +553,7 @@
   ],
   "missing_expected_waves": [],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
-  "output_sha256": "sha256:3317f6b3c23c85e3abe21ad7c1a2d9a6d9554bb537b0a67e4a305401463f2045",
+  "output_sha256": "sha256:ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76",
   "schema_revision": 1,
   "scope": "Wave1-50 referenced legacy assets intersected with phase product_classification_status=unresolved",
   "wave_source_paths": {

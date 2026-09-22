@@ -14,7 +14,7 @@ Wave1–36は `docs/governance/` のJSONL、Wave37–50は既存の `scaffold/le
 
 旧archiveは `git show BASE:<path>` による静的read-only参照だけに限定し、runtime、test、CI、workflow、hook、adapter、旧sourceを実行しない。既存のphase台帳、asset台帳、Wave台帳、formal product routeは変更しない。
 
-分類規則はvalidatorが再導出する。複数製品候補は競合、rejected semantic linkは根拠不足、単一製品かつ全linkにsource anchorがある場合は直接根拠候補とする。ただし全recordは `authority_effect=none`、`formal_asset_classification_updated=false`、`new_build_allowed=false` に固定する。
+分類規則はvalidatorが再導出する。複数製品候補は競合、rejected-only semantic linkは隣接unitの製品scopeをcounter-evidenceとして保持するだけの根拠不足（asset `candidate_products=[]`）、単一製品かつ全linkにsource anchorがある場合は直接根拠候補とする。ただし全recordは `authority_effect=none`、`formal_asset_classification_updated=false`、`new_build_allowed=false` に固定する。
 
 検証:
 

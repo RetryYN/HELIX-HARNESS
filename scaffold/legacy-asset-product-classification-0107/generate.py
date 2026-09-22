@@ -267,7 +267,15 @@ def make_record(asset_id: str, phase_row: tuple[int, dict], asset_row: tuple[int
             "new_build_allowed": row.get("new_build_allowed"),
         })
     products = sorted(products)
-    if len(products) > 1:
+    observed_products = products[:]
+    if statuses == {"rejected"}:
+        # Rejected links are counter-evidence only. Keep the adjacent unit
+        # scope in wave_semantic_links, but never inherit it as an asset
+        # product candidate.
+        category = "insufficient_basis"
+        reason = "All observed semantic links are rejected; adjacent unit product scope is retained as counter-evidence only and cannot produce an asset product candidate."
+        products = []
+    elif len(products) > 1:
         category = "multi_product_conflict"
         reason = "Wave unit product_scope/candidate_product_targets contain multiple distinct products; a single owner cannot be inferred." + (" All observed semantic links are rejected, so the candidate is retained as counter-evidence only." if statuses == {"rejected"} else "")
     elif "rejected" in statuses:
@@ -311,6 +319,7 @@ def make_record(asset_id: str, phase_row: tuple[int, dict], asset_row: tuple[int
         "wave_semantic_links": sorted(links, key=lambda x: (x["wave"], x["line"], x["edge_id"])),
         "unit_product_candidates": units,
         "candidate_products": products,
+        "observed_wave_products": observed_products,
         "semantic_link_statuses": sorted(statuses),
         "artifact_evidence_kinds": sorted({link.get("artifact_evidence_kind") for link in links}),
         "legacy_history_failure_consumer": history_receipt(asset_id, dispositions, decisions, read_afters),
