@@ -1,14 +1,13 @@
 {
- "case": "08d-reject-other-bindings-record",
- "l11": "別bindingの確認記録を使った撤去を拒否する",
+ "case": "23-reject-formal-revision-subset",
+ "l11": "formal_artifacts A/Bに対しtarget_revisions Aだけの置換を拒否する",
  "requirements": [
-  "SCF-OS-005"
+  "SCF-HARNESS-005"
  ],
- "command": "retire-precheck",
+ "command": "check-replacement",
  "expect": "fail",
  "expect_codes": [
-  "E_RETIRE: 確認記録は別のbinding",
-  "E_RECEIPT_REVISION_SET"
+  "E_REVISION_SET"
  ],
  "binding": {
   "schema_revision": 1,
@@ -17,7 +16,7 @@
   "title": "例",
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS 管理",
-  "state": "replacing",
+  "state": "active",
   "reason": "正式な物が未成立",
   "upstream": [
    {
@@ -60,10 +59,11 @@
   "replacement": {
    "role_target": "正式の役割X",
    "formal_artifacts": [
-    "src/os/scaffold.py"
+    "src/a",
+    "src/b"
    ],
    "issue": 1,
-   "status": "confirmed",
+   "status": "pending",
    "transfer": {
     "role": "正式X",
     "obligations": {
@@ -80,7 +80,7 @@
     }
    },
    "target_revisions": {
-    "src/os/scaffold.py": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "src/a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
    },
    "confirmation_ref": null,
    "confirmation_digest": null
@@ -88,13 +88,8 @@
   "created": "2026-09-18",
   "updated": "2026-09-18"
  },
- "confirmation_digest": "0000000000000000000000000000000000000000000000000000000000000000",
- "read_after_digest": "0000000000000000000000000000000000000000000000000000000000000000",
- "confirmation_record": {
-  "binding": "SCF-B-0901",
-  "result": "pass"
- },
  "file_digests": {
-  "src/os/scaffold.py": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  "src/a": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "src/b": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
  }
 }

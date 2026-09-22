@@ -1,12 +1,14 @@
 {
- "case": "07c-full-transfer-pass",
- "l11": "全件対応した置換確認は合格する（file systemを見ない範囲）",
+ "case": "32-reject-transfer-role-nonstring",
+ "l11": "replacement.transfer.roleの数値を拒否する",
  "requirements": [
-  "SCF-HARNESS-005"
+  "SCF-OS-001"
  ],
- "command": "check-replacement",
- "expect": "pass",
- "expect_codes": [],
+ "command": "validate",
+ "expect": "fail",
+ "expect_codes": [
+  "E_SHAPE"
+ ],
  "binding": {
   "schema_revision": 1,
   "id": "SCF-B-0900",
@@ -14,7 +16,7 @@
   "title": "例",
   "product": "HELIX-OS",
   "owner_candidate": "HELIX-OS 管理",
-  "state": "active",
+  "state": "registered",
   "reason": "正式な物が未成立",
   "upstream": [
    {
@@ -55,30 +57,18 @@
    ]
   },
   "replacement": {
-   "role_target": "正式の役割X",
-   "formal_artifacts": [
-    "src/os/scaffold.py"
-   ],
+   "role_target": null,
+   "formal_artifacts": [],
    "issue": 1,
    "status": "pending",
    "transfer": {
-    "role": "正式X",
-    "obligations": {
-     "義務1": "正式A"
-    },
-    "consumers": {
-     "consumer1": "正式B"
-    },
-    "oracles": {
-     "oracle1": "正式C"
-    },
-    "negative_cases": {
-     "neg1": "正式D"
-    }
+    "role": 42,
+    "obligations": {},
+    "consumers": {},
+    "oracles": {},
+    "negative_cases": {}
    },
-   "target_revisions": {
-    "src/os/scaffold.py": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-   },
+   "target_revisions": {},
    "confirmation_ref": null,
    "confirmation_digest": null
   },

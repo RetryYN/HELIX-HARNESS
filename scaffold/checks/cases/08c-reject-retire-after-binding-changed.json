@@ -8,7 +8,8 @@
  "command": "retire-precheck",
  "expect": "fail",
  "expect_codes": [
-  "E_RETIRE: 確認後にbindingの内容が変わっている"
+  "E_RETIRE: 確認後にbindingの内容が変わっている",
+  "E_RECEIPT_REVISION_SET"
  ],
  "binding": {
   "schema_revision": 1,

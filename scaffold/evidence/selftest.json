@@ -1,8 +1,8 @@
 {
  "authority_effect": "none",
- "cases": 38,
- "cases_sha256": "9f1daef1da85872fafca5ac0cff3c36484b0e292655642745cececfb8ed8ebb6",
- "checked_at": "2026-09-21",
+ "cases": 55,
+ "cases_sha256": "094f85870c86278a13781d2e43078d419c74fc8087f6823d86d122c1f5fc9c84",
+ "checked_at": "2026-09-22",
  "evidence_kind": "scaffold",
  "fail": 0,
  "note": "仮の検証の記録。正式なCI／検証／受入の成立を意味しない",
@@ -227,7 +227,8 @@
    "got": "fail",
    "l11": "置換確認後にbindingの内容が変わった状態での撤去を拒否する（確認記録のdigestと不一致）",
    "messages": [
-    "E_RETIRE: 確認後にbindingの内容が変わっている"
+    "E_RETIRE: 確認後にbindingの内容が変わっている",
+    "E_RECEIPT_REVISION_SET: confirmation receipt must record every formal_artifact revision"
    ],
    "ok": true,
    "requirements": [
@@ -241,7 +242,8 @@
    "got": "fail",
    "l11": "別bindingの確認記録を使った撤去を拒否する",
    "messages": [
-    "E_RETIRE: 確認記録は別のbinding"
+    "E_RETIRE: 確認記録は別のbinding",
+    "E_RECEIPT_REVISION_SET: confirmation receipt must record every formal_artifact revision"
    ],
    "ok": true,
    "requirements": [
@@ -454,7 +456,7 @@
    "got": "fail",
    "l11": "差し替え台帳Issueの無いbindingを拒否する（差し替え忘れ防止）",
    "messages": [
-    "E_ISSUE: 差し替え台帳Issueの番号が無い（差し替え忘れ防止）"
+    "E_ISSUE: 差し替え台帳Issueは整数でなければならない（null／boolを拒否）"
    ],
    "ok": true,
    "requirements": [
@@ -501,7 +503,229 @@
     "SCF-HARNESS-004",
     "SCF-OS-003"
    ]
+  },
+  {
+   "case": "18-reject-issue-bool.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "issueのbool値を拒否する",
+   "messages": [
+    "E_ISSUE: 差し替え台帳Issueは整数でなければならない（null／boolを拒否）"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-006"
+   ]
+  },
+  {
+   "case": "19-reject-issue-negative.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "issueのnegative値を拒否する",
+   "messages": [
+    "E_ISSUE: 差し替え台帳Issueは負数にできない"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-006"
+   ]
+  },
+  {
+   "case": "20-reject-issue-null.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "issueのnull値を拒否する",
+   "messages": [
+    "E_ISSUE: 差し替え台帳Issueは整数でなければならない（null／boolを拒否）"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-006"
+   ]
+  },
+  {
+   "case": "21-reject-null-obligation.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "obligations内のnullを拒否する",
+   "messages": [
+    "E_SHAPE: obligations は空でない文字列list"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-001"
+   ]
+  },
+  {
+   "case": "22-reject-null-consumer.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "connections内のnullを拒否する",
+   "messages": [
+    "E_SHAPE: connections.consumers／dependencies は文字列list"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-001"
+   ]
+  },
+  {
+   "case": "23-reject-formal-revision-subset.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "formal_artifacts A/Bに対しtarget_revisions Aだけの置換を拒否する",
+   "messages": [
+    "E_REVISION_SET: target_revisions must cover every formal_artifact (missing=['src/b'] extra=[])"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-HARNESS-005"
+   ]
+  },
+  {
+   "case": "24-reject-retire-receipt-subset.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "retire時にformal artifact全件のreceipt revisionを要求する",
+   "messages": [
+    "E_RECEIPT_REVISION_SET: confirmation receipt must record every formal_artifact revision",
+    "E_REVISION_SET: target_revisions must cover every formal_artifact (missing=['src/b'] extra=[])"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-HARNESS-005"
+   ]
+  },
+  {
+   "case": "25-reject-retire-receipt-drift.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "retire時にreceiptのB revision driftを拒否する",
+   "messages": [
+    "E_RECEIPT_REVISION: confirmation receipt artifact revision changed",
+    "E_REVISION: 正式artifact src/b のrevisionが記録と一致しない（SCF-OS-004）"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-HARNESS-005"
+   ]
+  },
+  {
+   "case": "26-reject-active-issue-zero.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "active状態のissue=0 sentinelを拒否する",
+   "messages": [
+    "E_ISSUE: issue=0はregistered+pendingの仮値だけに限る。正式置換は正整数Issueを持つ"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-001"
+   ]
+  },
+  {
+   "case": "27-reject-boundary-nonstring.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "connections.boundaryの数値を拒否する",
+   "messages": [
+    "E_SHAPE: connections.consumers／dependencies は文字列list"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-001"
+   ]
+  },
+  {
+   "case": "28-reject-upstream-note-nonstring.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "upstream.noteの数値を拒否する",
+   "messages": [
+    "E_UPSTREAM: 上流はpathとsha256を持つ（SCF-HARNESS-001）"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-001"
+   ]
+  },
+  {
+   "case": "29-reject-role-target-nonstring.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "replacement.role_targetの数値を拒否する",
+   "messages": [
+    "E_SHAPE: replacement.role_target はstringまたはnull"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-001"
+   ]
+  },
+  {
+   "case": "30-reject-overlap-reason-nonstring.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "overlap_reasonの数値を拒否する",
+   "messages": [
+    "E_SHAPE: overlap_reason はstring"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-001"
+   ]
+  },
+  {
+   "case": "31-reject-retired-at-nonstring.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "retired.atの数値を拒否する",
+   "messages": [
+    "E_SHAPE: retired の値はstring"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-001"
+   ]
+  },
+  {
+   "case": "32-reject-transfer-role-nonstring.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "replacement.transfer.roleの数値を拒否する",
+   "messages": [
+    "E_SHAPE: replacement.transfer は宣言schemaの型を満たさない"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-001"
+   ]
+  },
+  {
+   "case": "33-reject-retire-receipt-missing.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "receiptにtarget_revisionsが無い退役を拒否する",
+   "messages": [
+    "E_RECEIPT_REVISION_SET: confirmation receipt must record every formal_artifact revision"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-004",
+    "SCF-OS-005"
+   ]
+  },
+  {
+   "case": "34-allow-omitted-target-revisions.json",
+   "expect": "pass",
+   "got": "pass",
+   "l11": "optionalなtarget_revisionsを省略したregistered bindingを受理する",
+   "messages": [],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-001"
+   ]
   }
  ],
- "tool_sha256": "2632ce13c7ad0148b4ff516161ed12a8ded500ef9b7f2e53e4fc836c6168916f"
+ "tool_sha256": "62517e00a979904b7dc46a088ad9e514b5872c5dac2b83c30f892442656b69db"
 }
