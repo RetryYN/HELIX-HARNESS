@@ -126,16 +126,16 @@
       "classification category/products/basis/L1 anchor/source marker -> E_CLASSIFICATION",
       "classification count and Wave edge denominator -> E_CLASSIFICATION/E_EDGE_SET",
       "manual PROFILE_PINS set and main overlap pin -> E_TARGET_SET/E_OVERLAP",
+      "generator PROFILE_PINS category/products/L1/marker/reason mutation and regeneration -> E_CLASSIFICATION/E_RECORD_EVIDENCE",
       "L1/boundary/decision anchor and phase/history/failure/consumer/read-after tamper",
       "inventory input/target/output/authority/negative-case mutation",
-      "fixed BASE pin/source/ancestor, including actual CalledProcessError guards",
-      "generator profile mutation -> expected record evidence failure"
+      "fixed BASE pin/source/ancestor, including actual CalledProcessError guards"
     ],
     "oracles": [
       "validator independently derives fixed BASE 59 target set and source anchors without importing generate.py",
       "validator pins main241/open196 ID sets with recorded prior-bundle provenance and checks overlap empty",
       "PROFILE_PINS are manually authored semantic-review literals duplicated independently in generate.py and validate.py; they are not BASE-derived at runtime",
-      "selfcheck executes 45 negative cases with expected error codes, including category/edge/pin/base-source guards",
+      "selfcheck executes 49 negative cases with expected error codes, including generator category/products/L1/marker/reason mutations, category/edge/pin/base-source guards",
       "validator checks raw L1 metadata separately from effective approved decision and concrete product boundary anchors"
     ],
     "scope": [

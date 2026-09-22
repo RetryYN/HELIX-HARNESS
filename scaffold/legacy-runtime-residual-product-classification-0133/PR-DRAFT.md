@@ -12,7 +12,7 @@
 - phase、legacy implementation/degradation、history、failure、consumer、decision/read-after、Wave観測を別フィールドで保持。
 - main241/open196との重複0、asset分母59、Wave edge分母40を固定BASEと、先行bundleから取得したID集合の出所・digestを伴うvalidator固定pinで検査。main/openのID集合は分類oracleではなく、`PROFILE_PINS`は旧source/L1の手動semantic-review結果をgenerate/validateへ独立記載。
 - `authority_effect=none`、formal分類・implementation・successor・new buildを未確定のまま固定。
-- validatorは`generate.py`をimportせず、generatorのprofile改竄→再生成負例を含めて固定期待値と比較。
+- validatorは`generate.py`をimportせず、generatorのPROFILE_PINSをcategory/products/L1/marker/reasonごとに改竄して再生成する負例を、category invariantまたはrecord evidenceの期待error codeで検査する。手動duplicated pinを使い、generator改竄が自己承認されないことを固定する。
 
 ## 検証
 
@@ -21,7 +21,7 @@ python3 -B scaffold/legacy-runtime-residual-product-classification-0133/generate
 python3 -B scaffold/legacy-runtime-residual-product-classification-0133/validate.py
 # SCF-B-0133 validate PASS records=59 edges=40 counts={'direct_product_basis': 31, 'multi_product_conflict': 24, 'insufficient_basis': 4}
 python3 -B scaffold/legacy-runtime-residual-product-classification-0133/selfcheck.py
-# SCF-B-0133 selfcheck PASS negative_cases=45
+# SCF-B-0133 selfcheck PASS negative_cases=49
 python3 -m py_compile scaffold/legacy-runtime-residual-product-classification-0133/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale

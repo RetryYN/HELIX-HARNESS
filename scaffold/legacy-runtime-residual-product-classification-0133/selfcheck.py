@@ -112,11 +112,29 @@ trial("base_pin_tamper", inventory_mutator(lambda inv: inv.__setitem__("base_rev
 
 # The generator-oracle guard: changing generator's pinned reason and regenerating
 # a separate bundle must fail against this validator's independent PROFILE_PINS.
-def generator_oracle_tamper(target: Path):
+def generator_profile_tamper(target: Path, field: str):
     original = (BUNDLE / "generate.py").read_text()
-    old = next(p["reason"] for p in validator.PROFILE_PINS.values())
-    changed = original.replace(old, old + " generator-tampered", 1)
-    gen_dir = Path(tempfile.mkdtemp(prefix="scf-b-0133-generator-mutated-"))
+    path = next(iter(validator.PROFILE_PINS))
+    original_profile = validator.PROFILE_PINS[path]
+    mutated = copy.deepcopy(original_profile)
+    if field == "category":
+        mutated["category"] = "insufficient_basis"
+    elif field == "products":
+        mutated["products"] = []
+    elif field == "l1":
+        mutated["l1"] = {"HELIX-OS": "| HELIXOS-L1-001 |"}
+    elif field == "marker":
+        mutated["marker"] = "export const ADAPTER_AVAILABLE_MESSAGE"
+    elif field == "reason":
+        mutated["reason"] += " generator-tampered"
+    else:
+        raise AssertionError(f"unknown profile field: {field}")
+    old_entry = f'"{path}": {json.dumps(original_profile, ensure_ascii=False)}'
+    new_entry = f'"{path}": {json.dumps(mutated, ensure_ascii=False)}'
+    if original.count(old_entry) != 1:
+        raise AssertionError(f"generator profile entry not unique: {field}")
+    changed = original.replace(old_entry, new_entry, 1)
+    gen_dir = Path(tempfile.mkdtemp(prefix=f"scf-b-0133-generator-{field}-"))
     changed = changed.replace(
         "ROOT=Path(__file__).resolve().parents[2]",
         f"ROOT=Path({str(ROOT)!r})",
@@ -136,7 +154,14 @@ def generator_oracle_tamper(target: Path):
     finally:
         shutil.rmtree(gen_dir, ignore_errors=True)
 
+def generator_oracle_tamper(target: Path):
+    generator_profile_tamper(target, "reason")
+
 trial("generator_profile_oracle_tamper", generator_oracle_tamper, "E_RECORD_EVIDENCE")
+trial("generator_profile_category_tamper", lambda target: generator_profile_tamper(target, "category"), "E_CLASSIFICATION")
+trial("generator_profile_products_tamper", lambda target: generator_profile_tamper(target, "products"), "E_CLASSIFICATION")
+trial("generator_profile_l1_tamper", lambda target: generator_profile_tamper(target, "l1"), "E_RECORD_EVIDENCE")
+trial("generator_profile_marker_tamper", lambda target: generator_profile_tamper(target, "marker"), "E_RECORD_EVIDENCE")
 
 # Profile/evidence category guards are exercised on the actual output shape.
 trial("profile_category_tamper", records_mutator(lambda rows: rows[0]["classification"].__setitem__("category", "direct_product_basis")), "E_CLASSIFICATION")
@@ -207,4 +232,4 @@ direct_trial("fixed_BASE_non_ancestor", base_not_ancestor, "E_BASE_NOT_ANCESTOR"
 direct_trial("base_source_missing", missing_source, "E_BASE_SOURCE")
 
 validator.BUNDLE = BUNDLE
-print("SCF-B-0133 selfcheck PASS negative_cases=45")
+print("SCF-B-0133 selfcheck PASS negative_cases=49")

@@ -133,6 +133,10 @@ EXPECTED_NEGATIVE_CASES = [
     'profile_products_tamper',
     'profile_l1_anchor_tamper',
     'profile_source_marker_tamper',
+    'generator_profile_category_tamper',
+    'generator_profile_products_tamper',
+    'generator_profile_l1_tamper',
+    'generator_profile_marker_tamper',
 ]
 EXPECTED_ARTIFACTS = [
     "scaffold/bindings/SCF-B-0133.json",
