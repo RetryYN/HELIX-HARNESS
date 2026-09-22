@@ -69,6 +69,11 @@
       "note": "static input; no authority promotion or archive execution"
     },
     {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "note": "static input; no authority promotion or archive execution"
+    },
+    {
       "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
       "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
       "note": "static input; no authority promotion or archive execution"
@@ -415,6 +420,7 @@
       "E_PRODUCT_AUTHORITY_SEPARATION: candidate product promoted to authority owner",
       "E_AUTHORITY_BOUNDARY: old execution or successor/implementation claim injection",
       "E_BASE_COMMIT: fixed base commit or ancestor tamper",
+      "E_BASE_NOT_ANCESTOR: fixed base commit is not an ancestor of HEAD",
       "E_SOURCE_INPUT_DIGEST: crosswalk, old IR, decomposition, asset ledgers, or Wave input digest tamper",
       "E_PHCAP20_DEFINITION_DIGEST: PHCAP-20 definition reference digest tamper"
     ]

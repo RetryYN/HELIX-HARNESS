@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -54,6 +55,7 @@ NEGATIVE_CASE_CODES = [
     "E_PRODUCT_AUTHORITY_SEPARATION",
     "E_AUTHORITY_BOUNDARY",
     "E_BASE_COMMIT",
+    "E_BASE_NOT_ANCESTOR",
     "E_SOURCE_INPUT_DIGEST",
     "E_PHCAP20_DEFINITION_DIGEST",
 ]
@@ -67,8 +69,22 @@ def digest_text(value: str) -> str:
     return digest_bytes(value.encode("utf-8"))
 
 
+def base_bytes(path: Path) -> bytes:
+    relative = path.relative_to(ROOT).as_posix()
+    result = subprocess.run(
+        ["git", "show", f"{BASE_COMMIT}:{relative}"],
+        cwd=ROOT,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    if result.returncode != 0:
+        raise ValueError(f"missing BASE source: {relative}")
+    return result.stdout
+
+
 def read_jsonl(path: Path) -> list[dict]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [json.loads(line) for line in base_bytes(path).decode("utf-8").splitlines() if line.strip()]
 
 
 def wave_number(path: Path) -> int:
@@ -200,8 +216,8 @@ def make_bundle() -> None:
         for unit in record.get("candidate_units", [])
         if unit.get("unit_candidate_id") in cross_by_unit
     }
-    ir = json.loads(IR.read_text(encoding="utf-8"))
-    ir_lines = IR.read_text(encoding="utf-8").splitlines()
+    ir = json.loads(base_bytes(IR).decode("utf-8"))
+    ir_lines = base_bytes(IR).decode("utf-8").splitlines()
     disposition = {row["asset_id"]: row for row in read_jsonl(DISPOSITION)}
     classification = {row["asset_id"]: row for row in read_jsonl(CLASSIFICATION)}
 
@@ -318,7 +334,7 @@ def make_bundle() -> None:
     current_refs = []
     for relative, role in CURRENT_REFS:
         path = ROOT / relative
-        current_refs.append({"path": relative, "role": role, "sha256": digest_bytes(path.read_bytes())})
+        current_refs.append({"path": relative, "role": role, "sha256": digest_bytes(base_bytes(path))})
 
     source_inputs = [
         (CROSSWALK, "crosswalk"),
@@ -340,7 +356,7 @@ def make_bundle() -> None:
     inventory = {
         "schema": "legacy-phase-gap-review-0101/v1",
         "binding_id": "SCF-B-0101",
-        "status": "research_candidate",
+            "status": "research_candidate",
         "authority_effect": "none",
         "base": {"repository": "HELIX-HARNESS", "commit": BASE_COMMIT, "branch": "main", "ancestor_required": True},
         "scope": {
@@ -377,6 +393,11 @@ def make_bundle() -> None:
             "direct_phase_rule": "PHCAP-20 only when memory/continuation/handover/retention responsibility is directly evidenced; generic state, ledger, event, or process terms remain unresolved.",
         },
         "current_context_refs": current_refs,
+        "source_input_snapshot": {
+            "commit": BASE_COMMIT,
+            "mode": "git_object",
+            "live_input_gate": False,
+        },
         "source_input_digests": source_input_digests,
         "authority_boundary": {
             "formal_crosswalk_modified": False,

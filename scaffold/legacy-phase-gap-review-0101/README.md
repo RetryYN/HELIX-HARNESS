@@ -17,9 +17,10 @@ memory／continuation／handover／retentionの直接責務だけを対象とし
 phase gapとして扱う。
 
 `units.jsonl`がunit別の判断、`edges.jsonl`がWave1–50の対象edge、`inventory.json`が分母、固定base祖先、全source input digest、
-PHCAP-20 definition refs digestを保持する。`generate.py`はこれらを再導出し、`validate.py`は30 ID網羅、旧IR原文digest／anchor、
-edge coverage、候補とauthorityの分離、asset source/history/failure/consumer、Bindingの11負例コード同期をfail-closedで検査する。
-`selfcheck.py`は各負例で期待error codeを照合する。
+PHCAP-20 definition refs digestを保持する。source inputと比較contextは固定BASE commitのGit objectから再計算し、live input gateは無効にして
+過去証拠の再現性を保つ。`generate.py`はこれらを再導出し、`validate.py`は30 ID網羅、旧IR原文digest／anchor、edge coverage、
+候補とauthorityの分離、asset source/history/failure/consumer、Bindingの12負例コード同期をfail-closedで検査する。
+`selfcheck.py`は各負例で期待error codeを照合し、固定baseの祖先性失敗も`E_BASE_NOT_ANCESTOR`として検査する。
 
 旧archive内のruntime、CI、test、workflow、hook、adapter、sourceは実行していない。正式crosswalk、phase inventory、
 製品L1、successor、要求採否、実装を変更しない。#1813は進捗参照だけであり、close／完了判断を生成しない。

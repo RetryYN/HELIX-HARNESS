@@ -210,6 +210,11 @@
       "sha256": "sha256:316f49667a9b4abf06e1a5d973615efdb2402d07ed4062bea5763a5aba4c39b5"
     }
   ],
+  "source_input_snapshot": {
+    "commit": "36784d25aa4cc53d89c28c2ff81b4009db234605",
+    "mode": "git_object",
+    "live_input_gate": false
+  },
   "source_input_digests": [
     {
       "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
@@ -506,6 +511,7 @@
     "E_PRODUCT_AUTHORITY_SEPARATION",
     "E_AUTHORITY_BOUNDARY",
     "E_BASE_COMMIT",
+    "E_BASE_NOT_ANCESTOR",
     "E_SOURCE_INPUT_DIGEST",
     "E_PHCAP20_DEFINITION_DIGEST"
   ]

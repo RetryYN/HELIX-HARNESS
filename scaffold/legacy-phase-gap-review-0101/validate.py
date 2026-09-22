@@ -27,6 +27,7 @@ NEGATIVE_CASE_CODES = [
     "E_PRODUCT_AUTHORITY_SEPARATION",
     "E_AUTHORITY_BOUNDARY",
     "E_BASE_COMMIT",
+    "E_BASE_NOT_ANCESTOR",
     "E_SOURCE_INPUT_DIGEST",
     "E_PHCAP20_DEFINITION_DIGEST",
 ]
@@ -34,6 +35,28 @@ NEGATIVE_CASE_CODES = [
 
 def dig(value: bytes) -> str:
     return "sha256:" + hashlib.sha256(value).hexdigest()
+
+
+def base_bytes(path: Path, root: Path) -> bytes | None:
+    try:
+        relative = path.relative_to(root).as_posix()
+    except ValueError:
+        return None
+    result = subprocess.run(
+        ["git", "show", f"{BASE_COMMIT}:{relative}"],
+        cwd=root,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+    return result.stdout if result.returncode == 0 else None
+
+
+def snapshot_jsonl(path: Path, root: Path) -> list[dict]:
+    raw = base_bytes(path, root)
+    if raw is None:
+        return []
+    return [json.loads(line) for line in raw.decode("utf-8").splitlines() if line.strip()]
 
 
 def jsonl(path: Path) -> list[dict]:
@@ -92,7 +115,7 @@ def compact_edge(row: dict, rel: str) -> dict:
     }
 
 
-def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT) -> list[str]:
+def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT, head_ref: str = "HEAD") -> list[str]:
     errors: list[str] = []
     try:
         inventory = json.loads((bundle / "inventory.json").read_text(encoding="utf-8"))
@@ -114,14 +137,14 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT) -> list[str]:
         error(errors, "E_BASE_COMMIT")
     else:
         ancestor = subprocess.run(
-            ["git", "merge-base", "--is-ancestor", BASE_COMMIT, "HEAD"],
+            ["git", "merge-base", "--is-ancestor", BASE_COMMIT, head_ref],
             cwd=root,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
             check=False,
         )
         if ancestor.returncode != 0:
-            error(errors, "E_BASE_COMMIT")
+            error(errors, "E_BASE_NOT_ANCESTOR")
     declared_codes = inventory.get("negative_case_codes")
     if declared_codes != NEGATIVE_CASE_CODES:
         error(errors, "E_SCHEMA", "negative_case_codes")
@@ -139,7 +162,7 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT) -> list[str]:
         if boundary.get(key) is not False: error(errors, "E_AUTHORITY_BOUNDARY", key)
 
     cross_path = root / "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
-    crosswalk = jsonl(cross_path)
+    crosswalk = snapshot_jsonl(cross_path, root)
     targets = [row for row in crosswalk if row.get("phase_classification_status") == "unresolved"]
     expected_ids = [row.get("unit_candidate_id") for row in targets]
     target_map = {row.get("unit_candidate_id"): row for row in targets}
@@ -152,16 +175,24 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT) -> list[str]:
         error(errors, "E_PRODUCT_COUNTS")
 
     ir_path = root / "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
-    ir = json.loads(ir_path.read_text(encoding="utf-8"))
-    ir_lines = ir_path.read_text(encoding="utf-8").splitlines()
+    ir_raw = base_bytes(ir_path, root)
+    if ir_raw is None:
+        error(errors, "E_SOURCE_INPUT_DIGEST", str(ir_path.relative_to(root)))
+        return errors
+    ir = json.loads(ir_raw.decode("utf-8"))
+    ir_lines = ir_raw.decode("utf-8").splitlines()
     decomposition = {
         unit["unit_candidate_id"]: (record, unit)
-        for record in jsonl(root / "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl")
+        for record in snapshot_jsonl(root / "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl", root)
         for unit in record.get("candidate_units", [])
         if unit.get("unit_candidate_id") in target_map
     }
-    disposition = {row["asset_id"]: row for row in jsonl(root / "docs/governance/legacy-asset-disposition.jsonl")}
-    classification = {row["asset_id"]: row for row in jsonl(root / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")}
+    disposition = {row["asset_id"]: row for row in snapshot_jsonl(root / "docs/governance/legacy-asset-disposition.jsonl", root)}
+    classification = {row["asset_id"]: row for row in snapshot_jsonl(root / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", root)}
+
+    expected_snapshot = {"commit": BASE_COMMIT, "mode": "git_object", "live_input_gate": False}
+    if inventory.get("source_input_snapshot") != expected_snapshot:
+        error(errors, "E_SOURCE_INPUT_DIGEST", "snapshot_mode")
 
     source_input_expected = {
         "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "crosswalk",
@@ -178,7 +209,8 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT) -> list[str]:
     for rel, kind in source_input_expected.items():
         item = recorded_source_map.get(rel)
         path = root / rel
-        if item is None or item.get("kind") != kind or not path.is_file() or dig(path.read_bytes()) != item.get("sha256"):
+        snapshot = base_bytes(path, root)
+        if item is None or item.get("kind") != kind or snapshot is None or dig(snapshot) != item.get("sha256"):
             error(errors, "E_SOURCE_INPUT_DIGEST", rel)
 
     canonical_edges: list[dict] = []
@@ -186,10 +218,14 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT) -> list[str]:
     all_wave_edges = []
     for rel in WAVE_REL:
         path = root / rel
-        if not path.is_file():
+        raw = base_bytes(path, root)
+        if raw is None:
             error(errors, "E_WAVE_INPUT", rel)
             continue
-        for row in jsonl(path):
+        for line in raw.decode("utf-8").splitlines():
+            if not line.strip():
+                continue
+            row = json.loads(line)
             all_wave_edges.append(row)
             if row.get("unit_candidate_id") in edges_by_unit:
                 edge = compact_edge(row, rel)
@@ -271,7 +307,8 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT) -> list[str]:
 
     for item in inventory.get("current_context_refs", []):
         path = root / item.get("path", "")
-        if not path.is_file() or dig(path.read_bytes()) != item.get("sha256"):
+        snapshot = base_bytes(path, root)
+        if snapshot is None or dig(snapshot) != item.get("sha256"):
             error(errors, "E_CURRENT_CONTEXT_DIGEST", item.get("path", ""))
     current_context_map = {item.get("path"): item for item in inventory.get("current_context_refs", [])}
     definition_refs = inventory.get("phcap20_definition", {}).get("definition_refs", [])
@@ -289,8 +326,8 @@ def validate(bundle: Path = HERE, root: Path = DEFAULT_ROOT) -> list[str]:
         if (
             context is None
             or item.get("sha256") != context.get("sha256")
-            or not path.is_file()
-            or dig(path.read_bytes()) != item.get("sha256")
+            or base_bytes(path, root) is None
+            or dig(base_bytes(path, root) or b"") != item.get("sha256")
         ):
             error(errors, "E_PHCAP20_DEFINITION_DIGEST", str(rel))
     scope = inventory.get("scope", {})

@@ -90,6 +90,10 @@ def mutate_phcap20_definition_digest(bundle: Path) -> None:
     (bundle / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def no_mutation(bundle: Path) -> None:
+    return None
+
+
 if __name__ == "__main__":
     run_case("source digest tamper", mutate_source_digest, "E_SOURCE_DIGEST")
     run_case("target set tamper", mutate_target_set, "E_TARGET_SET")
@@ -100,5 +104,14 @@ if __name__ == "__main__":
     run_case("asset evidence tamper", mutate_asset_evidence, "E_ASSET_EVIDENCE")
     run_case("authority boundary tamper", mutate_authority_boundary, "E_AUTHORITY_BOUNDARY")
     run_case("base commit tamper", mutate_base_commit, "E_BASE_COMMIT")
+    with tempfile.TemporaryDirectory(prefix="scf-b-0101-") as temp:
+        bundle = Path(temp)
+        for filename in ("inventory.json", "units.jsonl", "edges.jsonl"):
+            shutil.copy2(HERE / filename, bundle / filename)
+        no_mutation(bundle)
+        errors = validate.validate(bundle=bundle, root=HERE.parents[1], head_ref=f"{validate.BASE_COMMIT}^")
+        if not any(item.startswith("E_BASE_NOT_ANCESTOR") for item in errors):
+            raise SystemExit(f"FAIL base not ancestor: expected E_BASE_NOT_ANCESTOR, got {errors}")
+        print("PASS base not ancestor: E_BASE_NOT_ANCESTOR")
     run_case("source input digest tamper", mutate_source_input_digest, "E_SOURCE_INPUT_DIGEST")
     run_case("PHCAP-20 definition digest tamper", mutate_phcap20_definition_digest, "E_PHCAP20_DEFINITION_DIGEST")
