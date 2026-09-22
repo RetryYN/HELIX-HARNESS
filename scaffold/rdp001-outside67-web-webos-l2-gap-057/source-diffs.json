@@ -1,0 +1,34 @@
+{
+  "OUTSIDE67-PATH-011": {
+    "source_item_id": "OUTSIDE67-PATH-011",
+    "source_path": "docs/design/helix-web/L2-requirements/product-requirements.md",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "status": "different",
+    "hunks": [],
+    "unified_diff": [
+      "--- pre-isolation/docs/design/helix-web/L2-requirements/product-requirements.md\n",
+      "+++ archive-revision/docs/design/helix-web/L2-requirements/product-requirements.md\n",
+      "@@ -14,7 +14,7 @@\n",
+      " # HELIX-WebのVision由来利用要求案\n",
+      " \n",
+      " HELIX-WebはHELIX-OSが開発・改善projectとして管理し、HELIX-Web-OSが展開後のservice runtimeを担う個別プロダクトである。本書は保存された\n",
+      "-[Vision原文](../../../archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の§6／7／10／11／13／14から、\n",
+      "+[Vision原文](../../../../archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の§6／7／10／11／13／14から、\n",
+      " Webの利用者に対する要求を具体化した案である。最新PO指示の管理関係と原文の将来構想を区別する。\n",
+      " 以下の9件の個別採択・L2合意・L3凍結・IR admission・提供時期は未確定。HELIX-Web自体はHARNESS Version 1の\n",
+      " 完成条件へ追加しない。一方、HELIX-Webの展開はHARNESS製品群Version 1の完成を必須前提とする。\n"
+    ],
+    "meaning_observation": "Webはsource link pathだけがrevision間で変化。Web-OSはbyte-identical。これはauthority／採否／実装／consumerの判断を生成しない。"
+  },
+  "OUTSIDE67-PATH-008": {
+    "source_item_id": "OUTSIDE67-PATH-008",
+    "source_path": "docs/design/helix-web-os/L2-requirements/service-governance-requirements.md",
+    "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+    "archive_commit": "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658",
+    "status": "same",
+    "hunks": [],
+    "unified_diff": [],
+    "meaning_observation": "Webはsource link pathだけがrevision間で変化。Web-OSはbyte-identical。これはauthority／採否／実装／consumerの判断を生成しない。"
+  }
+}
