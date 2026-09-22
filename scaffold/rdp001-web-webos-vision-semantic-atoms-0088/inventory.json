@@ -100,8 +100,8 @@
     {
       "product": "HELIX-Web",
       "boundary": "利用者向けWeb製品の価値、保守・改修体験、商品・サービス面の候補。Web-OSのtenant/job/state運転を吸収しない。",
-      "candidate_parent_span_ids": ["VISION-U17", "VISION-U18", "VISION-O05", "VISION-O09", "VISION-O10"],
-      "candidate_atom_count": 5,
+      "candidate_parent_span_ids": ["VISION-U17", "VISION-U18", "VISION-U19", "VISION-O05", "VISION-O09", "VISION-O10"],
+      "candidate_atom_count": 6,
       "owner_status": "unknown",
       "authority_status": "none",
       "implementation_status": "unknown",
@@ -112,8 +112,8 @@
     {
       "product": "HELIX-Web-OS",
       "boundary": "Web展開後のtenant、Connector、job、service state、配備・監視・復旧候補。HELIX-OSのproject authorityを吸収しない。",
-      "candidate_parent_span_ids": ["VISION-U19", "VISION-O05", "VISION-O06", "VISION-O07", "VISION-O08", "VISION-O09", "VISION-O10"],
-      "candidate_atom_count": 7,
+      "candidate_parent_span_ids": ["VISION-U17", "VISION-U19", "VISION-O05", "VISION-O06", "VISION-O07", "VISION-O08", "VISION-O09", "VISION-O10"],
+      "candidate_atom_count": 8,
       "owner_status": "unknown",
       "authority_status": "none",
       "implementation_status": "unknown",
@@ -150,7 +150,7 @@
     {"id":"F-0088-01","status":"observed","text":"SCF-B-0084の残り9 parent spanはU17-U19とO05-O10で閉じており、本束で全9件を選択した。"},
     {"id":"F-0088-02","status":"observed","text":"U17-U19は各一行の方向候補としてatomized_candidate、O05-O10は複数条件・実証時点を含むopen decisionとしてcomposite_unresolvedに分類した。"},
     {"id":"F-0088-03","status":"observed","text":"全候補は旧source lineと実parent spanに束縛し、0081／0084の選択parent spanおよびatom source lineと重複させていない。"},
-    {"id":"F-0088-04","status":"observed","text":"四製品の候補境界を列挙したが、candidate_productがunresolvedの複合候補を単一ownerへ丸めていない。"},
+    {"id":"F-0088-04","status":"observed","text":"四製品の候補境界は各atomのcandidate_product_candidatesから完全再導出し、U19のWeb候補とU17のWeb-OS候補を含めている。candidate_productがunresolvedの複合候補を単一ownerへ丸めていない。"},
     {"id":"F-0088-05","status":"observed","text":"正式要求、authority、owner、採否、phase admission、implementation、degradation、failure／consumer closureは生成していない。"}
   ],
   "unresolved_questions": [
@@ -183,6 +183,7 @@
       "atomized/composite kind drift",
       "composite reason replacement or swap",
       "formal owner/authority/implementation/degradation/phase promotion",
+      "related open-decision ID replacement or emptying",
       "nested keyset injection"
     ],
     "archive_rule": "archive/legacy-generation-2026-09-14は静的source／digest参照のみ。workflow、runtime、test、CI、hook、adapter、sourceは実行しない。"

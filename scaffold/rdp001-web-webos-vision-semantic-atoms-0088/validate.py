@@ -47,6 +47,17 @@ REASONS = {
     "OS-WEB-FINAL-COMPOSITE-008": "open decision couples first product, users, pricing, commonization, and provider responsibility",
     "HARNESS-WEBOS-FINAL-COMPOSITE-009": "open decision couples target system type, acceptance scope, data migration, environment permissions, and residual risk",
 }
+RELATED_OPEN_DECISIONS = {
+    "WEB-FINAL-ATOM-001": ["VISION-O05"],
+    "WEB-FINAL-ATOM-002": ["VISION-O09"],
+    "WEBOS-FINAL-ATOM-003": ["VISION-O09"],
+    "WEB-FINAL-COMPOSITE-004": [],
+    "HARNESS-OS-FINAL-COMPOSITE-005": [],
+    "OS-WEBOS-FINAL-COMPOSITE-006": [],
+    "OS-WEBOS-FINAL-COMPOSITE-007": [],
+    "OS-WEB-FINAL-COMPOSITE-008": [],
+    "HARNESS-WEBOS-FINAL-COMPOSITE-009": [],
+}
 INV_KEYS = {"schema", "candidate_id", "status", "authority_effect", "meaning_change_applied", "formal_requirement_unit_count", "successor_requirement_ids", "human_decision_ref", "formal_register_append", "old_runtime_test_ci_execution", "scope", "candidate_products", "source", "lineage", "findings", "unresolved_questions", "prohibited_inference", "verification_contract", "residuals", "created", "updated"}
 SCOPE_KEYS = {"worktree", "base_origin_main", "read_only", "static_only", "old_archive_execution", "parent_binding_id", "parent_scaffold_path", "parent_inventory_sha256", "parent_atom_file_sha256", "parent_span_file_sha256", "parent_span_count", "selected_parent_span_ids", "selected_parent_span_count", "unprocessed_parent_span_ids", "unprocessed_parent_span_count", "prior_selected_parent_span_ids", "vision_source_path", "vision_source_sha256", "vision_source_line_count", "selected_candidate_source_line_count", "unprocessed_candidate_source_line_count", "semantic_atom_record_count", "atomized_candidate_count", "composite_unresolved_count", "web_user_atom_count", "webos_runtime_atom_count", "unresolved_product_candidate_count", "selected_legacy_asset_count", "legacy_asset_unreviewed_count", "selection_rule"}
 PRODUCT_KEYS = {"product", "boundary", "candidate_parent_span_ids", "candidate_atom_count", "owner_status", "authority_status", "implementation_status", "degradation_status", "phase_status", "unimplemented_status"}
@@ -146,18 +157,12 @@ def validate(inv, atoms, links):
     exact_keys(source, SOURCE_KEYS, "E_SOURCE_KEYS")
     if source["path"] != VISION or source["sha256"] != sha(source_bytes) or source["line_count"] != len(lines) or source["parent_span_file"] != SPAN_FILE or source["parent_span_file_sha256"] != sha(span_bytes) or source["semantic_atoms_path"] != SOURCE_ATOMS or source["semantic_atoms_sha256"] != sha((HERE / "semantic-atoms.jsonl").read_bytes()) or source["legacy_links_path"] != SOURCE_LINKS or source["legacy_links_sha256"] != sha((HERE / "legacy-links.jsonl").read_bytes()):
         fail("E_SOURCE_METADATA")
-    expected_products = {
-        "HELIX-HARNESS": ["VISION-O06", "VISION-O09", "VISION-O10"],
-        "HELIX-OS": ["VISION-U18", "VISION-U19", "VISION-O06", "VISION-O07", "VISION-O08", "VISION-O09"],
-        "HELIX-Web": ["VISION-U17", "VISION-U18", "VISION-O05", "VISION-O09", "VISION-O10"],
-        "HELIX-Web-OS": ["VISION-U19", "VISION-O05", "VISION-O06", "VISION-O07", "VISION-O08", "VISION-O09", "VISION-O10"],
-    }
     if [p.get("product") for p in inv["candidate_products"]] != PRODUCTS:
         fail("E_PRODUCT_ORDER")
     for product in inv["candidate_products"]:
         exact_keys(product, PRODUCT_KEYS, "E_PRODUCT_KEYS")
         name = product["product"]
-        if name not in PRODUCTS or product["candidate_parent_span_ids"] != expected_products[name] or product["candidate_atom_count"] != len(expected_products[name]):
+        if name not in PRODUCTS:
             fail("E_PRODUCT_BOUNDARY", name)
         if any(product[key] != expected for key, expected in (("owner_status", "unknown"), ("authority_status", "none"), ("implementation_status", "unknown"), ("degradation_status", "unknown"), ("phase_status", "unknown"), ("unimplemented_status", "not_claimed"))):
             fail("E_PRODUCT_STATUS", name)
@@ -184,16 +189,24 @@ def validate(inv, atoms, links):
         if aid not in EXPECTED:
             fail("E_ATOM_ID", aid)
         parent, candidate_product, role, kind, line_no, connective, status = EXPECTED[aid]
-        if atom["parent_span_id"] != parent or parent not in SELECTED or parent not in parent_by or atom["candidate_product"] != candidate_product or atom["candidate_role"] != role or atom["candidate_kind"] != kind or atom["source_line_start"] != line_no or atom["source_line_end"] != line_no or atom["connective_tokens"] != connective or atom["atomization_status"] != status:
-            fail("E_ATOM_META", aid)
         if atom["source_path"] != VISION:
             fail("E_ATOM_SOURCE", aid)
-        span = parent_by[parent]
-        if not span["line_start"] <= line_no <= line_no <= span["line_end"]:
+        if not isinstance(atom["source_line_start"], int) or not isinstance(atom["source_line_end"], int) or atom["source_line_start"] > atom["source_line_end"]:
             fail("E_PARENT_CONTAINMENT", aid)
-        if set(range(line_no, line_no + 1)) & prior_lines:
+        if set(range(atom["source_line_start"], atom["source_line_end"] + 1)) & prior_lines:
             fail("E_PRIOR_LINE_OVERLAP", aid)
+        if atom["parent_span_id"] != parent or parent not in SELECTED or parent not in parent_by:
+            fail("E_ATOM_META", aid)
+        span = parent_by[parent]
+        if not span["line_start"] <= atom["source_line_start"] <= atom["source_line_end"] <= span["line_end"]:
+            fail("E_PARENT_CONTAINMENT", aid)
+        if atom["candidate_product"] != candidate_product or atom["candidate_role"] != role or atom["candidate_kind"] != kind or atom["source_line_start"] != line_no or atom["source_line_end"] != line_no or atom["connective_tokens"] != connective or atom["atomization_status"] != status:
+            fail("E_ATOM_META", aid)
+        if atom["related_open_decision_ids"] != RELATED_OPEN_DECISIONS[aid]:
+            fail("E_ATOM_RELATION", aid)
         if not set(atom["candidate_product_candidates"]).issubset(PRODUCTS) or not atom["candidate_product_candidates"]:
+            fail("E_PRODUCT_CANDIDATES", aid)
+        if atom["candidate_product"] != "unresolved" and atom["candidate_product"] not in atom["candidate_product_candidates"]:
             fail("E_PRODUCT_CANDIDATES", aid)
         exact = lines[line_no - 1]
         if atom["exact_source_text"] != exact or atom["candidate_text"] != exact.rstrip("\n") or atom["source_span_sha256"] != sha(exact.encode()):
@@ -210,9 +223,18 @@ def validate(inv, atoms, links):
         if status == "atomized_candidate" and atom["composite_reason"] is not None:
             fail("E_ATOM_COMPOSITE_REASON", aid)
         referenced.add(parent)
-        selected_lines.add(line_no)
+        selected_lines.add(atom["source_line_start"])
     if referenced != set(SELECTED):
         fail("E_PARENT_COVERAGE", ",".join(sorted(set(SELECTED) - referenced)))
+    derived_products = {product: [] for product in PRODUCTS}
+    for atom in atoms:
+        for product in atom["candidate_product_candidates"]:
+            if atom["parent_span_id"] not in derived_products[product]:
+                derived_products[product].append(atom["parent_span_id"])
+    for product in inv["candidate_products"]:
+        name = product["product"]
+        if product["candidate_parent_span_ids"] != derived_products[name] or product["candidate_atom_count"] != len(derived_products[name]):
+            fail("E_PRODUCT_DERIVATION", name)
     if scope["selected_candidate_source_line_count"] != len(selected_lines) or scope["unprocessed_candidate_source_line_count"] != len(lines) - len(selected_lines):
         fail("E_SOURCE_LINE_COUNTS")
     for field in ("findings", "unresolved_questions", "prohibited_inference"):
