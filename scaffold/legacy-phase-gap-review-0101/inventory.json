@@ -1,0 +1,230 @@
+{
+  "schema": "legacy-phase-gap-review-0101/v1",
+  "binding_id": "SCF-B-0101",
+  "status": "research_candidate",
+  "authority_effect": "none",
+  "base": {
+    "repository": "HELIX-HARNESS",
+    "commit": "36784d25aa4cc53d89c28c2ff81b4009db234605",
+    "branch": "main"
+  },
+  "scope": {
+    "crosswalk_path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "unresolved_unit_count": 30,
+    "target_product_counts": {
+      "HELIX-OS": 24,
+      "HELIX-HARNESS": 6
+    },
+    "target_unit_ids": [
+      "IRUNIT-HIL-BR-14-HELIX-OS",
+      "IRUNIT-HIL-BR-24-HELIX-OS",
+      "IRUNIT-HIL-FR-17-HELIX-OS",
+      "IRUNIT-HIL-FR-18-HELIX-OS",
+      "IRUNIT-HIL-FR-19-HELIX-HARNESS",
+      "IRUNIT-HIL-FR-20-HELIX-OS",
+      "IRUNIT-HIL-FR-21-HELIX-OS",
+      "IRUNIT-HIL-FR-23-HELIX-OS",
+      "IRUNIT-HIL-FR-24-HELIX-OS",
+      "IRUNIT-HIL-FR-31-HELIX-OS",
+      "IRUNIT-HIL-FR-33-HELIX-HARNESS",
+      "IRUNIT-HIL-FR-33-HELIX-OS",
+      "IRUNIT-HIL-FR-46-HELIX-OS",
+      "IRUNIT-HIL-FR-52-HELIX-OS",
+      "IRUNIT-HIL-FR-53-HELIX-OS",
+      "IRUNIT-HIL-NFR-02-HELIX-HARNESS",
+      "IRUNIT-HIL-NFR-03-HELIX-HARNESS",
+      "IRUNIT-HIL-NFR-05-HELIX-OS",
+      "IRUNIT-HIL-NFR-06-HELIX-OS",
+      "IRUNIT-HIL-NFR-07-HELIX-OS",
+      "IRUNIT-HIL-NFR-11-HELIX-OS",
+      "IRUNIT-HIL-NFR-12-HELIX-OS",
+      "IRUNIT-HIL-NFR-23-HELIX-OS",
+      "IRUNIT-HIL-NFR-30-HELIX-OS",
+      "IRUNIT-HIL-NFR-31-HELIX-OS",
+      "IRUNIT-HIL-NFR-32-HELIX-OS",
+      "IRUNIT-HIL-TR-04-HELIX-HARNESS",
+      "IRUNIT-HIL-TR-04-HELIX-OS",
+      "IRUNIT-HIL-TR-07-HELIX-OS",
+      "IRUNIT-HIL-TR-08-HELIX-HARNESS"
+    ],
+    "direct_phase_candidate_count": 0,
+    "unresolved_phase_gap_count": 30
+  },
+  "wave_review": {
+    "wave_paths": [
+      "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave19.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave20.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave21.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave22.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave24.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave25.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave26.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave30.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave31.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave32.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave34.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave35.jsonl",
+      "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
+      "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl",
+      "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
+      "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.jsonl",
+      "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
+      "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.jsonl",
+      "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.jsonl",
+      "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.jsonl",
+      "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
+      "scaffold/legacy-semantic-review-wave45/legacy-requirement-direct-semantic-review-wave45.jsonl",
+      "scaffold/legacy-semantic-review-wave46/legacy-requirement-direct-semantic-review-wave46.jsonl",
+      "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl",
+      "scaffold/legacy-semantic-review-wave48/legacy-requirement-direct-semantic-review-wave48.jsonl",
+      "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
+      "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl"
+    ],
+    "wave_count": 50,
+    "all_wave_edge_count": 598,
+    "all_wave_unit_count": 218,
+    "target_edge_count": 66,
+    "target_edge_status_counts": {
+      "confirmed": 30,
+      "unresolved": 34,
+      "rejected": 2
+    },
+    "target_asset_count": 38,
+    "semantic_edge_scope": "Wave1-50 is static semantic evidence; edge candidates never promote phase authority."
+  },
+  "phcap20_definition": {
+    "task_id": "PHCAP-20",
+    "title": "Memory／継続再構成",
+    "product_targets": [
+      "HELIX-OS"
+    ],
+    "current_status": "draft_requirement",
+    "current_evidence_products": [
+      "HELIX-OS"
+    ],
+    "legacy_layers_evidenced": [
+      "L3",
+      "L5",
+      "L6",
+      "L7 implementation/test"
+    ],
+    "legacy_capability_status": "implemented_with_tests",
+    "transition_assessment": "degraded_to_draft",
+    "definition_refs": [
+      {
+        "path": "docs/governance/phase-capability-inventory.json",
+        "role": "PHCAP_inventory",
+        "sha256": "sha256:9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
+      },
+      {
+        "path": "scaffold/phcap20-memory-research/README.md",
+        "role": "PHCAP-20_definition",
+        "sha256": "sha256:9ffeeaad81fb3f34daa419b9748e7cdc19a3ec0fb9d6f8591989f8cc59b931d1"
+      },
+      {
+        "path": "scaffold/phcap20-memory-research/inventory.json",
+        "role": "PHCAP-20_static_inventory",
+        "sha256": "sha256:316f49667a9b4abf06e1a5d973615efdb2402d07ed4062bea5763a5aba4c39b5"
+      }
+    ],
+    "direct_phase_rule": "PHCAP-20 only when memory/continuation/handover/retention responsibility is directly evidenced; generic state, ledger, event, or process terms remain unresolved."
+  },
+  "current_context_refs": [
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "role": "governance_entry",
+      "sha256": "sha256:6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "role": "legacy_read_only_boundary",
+      "sha256": "sha256:50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "role": "four_product_boundary_candidate",
+      "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "role": "HELIX-HARNESS_L1",
+      "sha256": "sha256:a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "role": "HELIX-OS_L1",
+      "sha256": "sha256:0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "role": "HELIX-Web_L1",
+      "sha256": "sha256:26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "role": "HELIX-Web-OS_L1",
+      "sha256": "sha256:600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-phase-product-classification-method-2026-09-20.md",
+      "role": "phase_method",
+      "sha256": "sha256:151b7bab746a855c7c5f16426e7a68aebc960a83e96150e9e2d8cd721caa466e"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "role": "PHCAP_inventory",
+      "sha256": "sha256:9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
+    },
+    {
+      "path": "scaffold/phcap20-memory-research/README.md",
+      "role": "PHCAP-20_definition",
+      "sha256": "sha256:9ffeeaad81fb3f34daa419b9748e7cdc19a3ec0fb9d6f8591989f8cc59b931d1"
+    },
+    {
+      "path": "scaffold/phcap20-memory-research/inventory.json",
+      "role": "PHCAP-20_static_inventory",
+      "sha256": "sha256:316f49667a9b4abf06e1a5d973615efdb2402d07ed4062bea5763a5aba4c39b5"
+    }
+  ],
+  "authority_boundary": {
+    "formal_crosswalk_modified": false,
+    "formal_phase_authority_modified": false,
+    "formal_product_authority_modified": false,
+    "successor_assignment_generated": false,
+    "implementation_claim_generated": false,
+    "consumer_closure_generated": false,
+    "old_archive_executed": false
+  },
+  "negative_case_codes": [
+    "E_TARGET_SET",
+    "E_SOURCE_DIGEST",
+    "E_SOURCE_ANCHOR",
+    "E_WAVE_EDGE_COVERAGE",
+    "E_PHASE_AUTHORITY_SEPARATION",
+    "E_PRODUCT_AUTHORITY_SEPARATION",
+    "E_ASSET_EVIDENCE"
+  ]
+}
