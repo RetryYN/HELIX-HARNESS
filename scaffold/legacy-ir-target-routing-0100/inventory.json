@@ -96,6 +96,8 @@
     "missing_id",
     "source_statement_digest_tamper",
     "source_exact_reference_tamper",
+    "source_line_anchor_tamper",
+    "source_line_digest_tamper",
     "candidate_product_boundary_tamper",
     "authority_promotion",
     "legacy_asset_digest_tamper",

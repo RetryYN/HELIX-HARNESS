@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = Path(__file__).resolve().parent
 OLD_IR = "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
+BASE_HEAD = "36784d25aa4cc53d89c28c2ff81b4009db234605"
 IDS = {
     "HIL-BR-19", "HIL-FR-27", "HIL-FR-33", "HIL-FR-34", "HIL-NFR-09",
     "HIL-NFR-14", "HIL-NFR-19", "HIL-NFR-25", "HIL-TR-01", "HIL-TR-02",
@@ -64,6 +65,28 @@ def ref(path: str, line: int, pointer: str | None = None) -> dict:
     if pointer:
         result["json_pointer"] = pointer
     return result
+
+
+def statement_line_anchor(requirement_id: str) -> tuple[int, str, str]:
+    """整形JSON上の statement.text の実行行と行テキストdigestを返す。"""
+    lines = (ROOT / OLD_IR).read_text(encoding="utf-8").splitlines()
+    found_id = None
+    in_statement = False
+    for number, line in enumerate(lines, 1):
+        if f'"requirement_id": "{requirement_id}"' in line:
+            found_id = number
+            continue
+        if found_id is None:
+            continue
+        if '"statement": {' in line:
+            in_statement = True
+            continue
+        if in_statement and '"text": ' in line:
+            digest = hashlib.sha256(line.encode("utf-8")).hexdigest()
+            return number, line, digest
+        if found_id and number > found_id and line.startswith("  \"HIL-"):
+            break
+    raise ValueError(f"statement.text line not found: {requirement_id}")
 
 
 def product_boundary_refs() -> list[dict]:
@@ -155,6 +178,7 @@ def main() -> None:
         r = routing[requirement_id]
         source = old_ir[requirement_id]
         statement = source["statement"]
+        statement_line, statement_line_text, statement_line_digest = statement_line_anchor(requirement_id)
         units = []
         all_asset_ids = set()
         for unit in d.get("candidate_units", []):
@@ -185,7 +209,7 @@ def main() -> None:
                     "new_build_allowed": x.get("new_build_allowed", False),
                 },
                 "evidence_refs": [
-                    ref(OLD_IR, 1, f"requirements.json#/{requirement_id}/statement/text"),
+                    ref(OLD_IR, statement_line, f"requirements.json#/{requirement_id}/statement/text"),
                     ref("docs/governance/legacy-ir-target-routing-queue.jsonl", queue_lines[requirement_id]),
                     ref("docs/governance/legacy-ir-product-routing-bootstrap.jsonl", routing_lines[requirement_id]),
                     ref("docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl", decomposition_lines[requirement_id]),
@@ -234,7 +258,9 @@ def main() -> None:
             "source_exact": {
                 "path": OLD_IR,
                 "blob": blob(OLD_IR),
-                "line": 1,
+                "line": statement_line,
+                "line_text": statement_line_text,
+                "line_text_sha256": statement_line_digest,
                 "json_pointer": f"requirements.json#/{requirement_id}/statement/text",
                 "source_file_sha256": sha_file(rel(OLD_IR)),
                 "statement_text": statement["text"],
@@ -315,7 +341,7 @@ def main() -> None:
         "status": "research_only_candidate",
         "authority_effect": "none",
         "source_revision": "legacy-generation-2026-09-14",
-        "base_head": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "base_head": BASE_HEAD,
         "record_count": len(records),
         "requirement_ids": [item["source_requirement_id"] for item in records],
         "candidate_shape_counts": {shape: sum(item["decomposition_candidate"]["candidate_shape"] == shape for item in records) for shape in ("unit", "unit_set", "connection", "composite", "unresolved")},
@@ -324,7 +350,7 @@ def main() -> None:
         "queue_unchanged": True,
         "legacy_execution_performed": False,
         "known_open_conditions": ["queue_target_resolution_pending", "exact_head_independent_review_pending", "human_product_authority_decision_pending", "successor_assignment_unassigned", "legacy_asset_direct_link_pending", "history_failure_consumer_closure_pending"],
-        "negative_cases": ["duplicate_id", "missing_id", "source_statement_digest_tamper", "source_exact_reference_tamper", "candidate_product_boundary_tamper", "authority_promotion", "legacy_asset_digest_tamper", "legacy_execution_promotion"],
+        "negative_cases": ["duplicate_id", "missing_id", "source_statement_digest_tamper", "source_exact_reference_tamper", "source_line_anchor_tamper", "source_line_digest_tamper", "candidate_product_boundary_tamper", "authority_promotion", "legacy_asset_digest_tamper", "legacy_execution_promotion"],
     }
     (BUNDLE / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 

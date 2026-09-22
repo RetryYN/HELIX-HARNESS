@@ -38,7 +38,11 @@ def main():
 
     source_ref = copy.deepcopy(base)
     source_ref[0]["source_exact"]["line"] = 2
-    expects("source_exact_reference_tamper", source_ref, "E_SOURCE_REFERENCE")
+    expects("source_exact_reference_tamper", source_ref, "E_SOURCE_LINE_ANCHOR")
+
+    source_line_digest = copy.deepcopy(base)
+    source_line_digest[0]["source_exact"]["line_text_sha256"] = "0" * 64
+    expects("source_line_digest_tamper", source_line_digest, "E_SOURCE_LINE_DIGEST")
 
     target = copy.deepcopy(base)
     target[0]["decomposition_candidate"]["candidate_product_targets"].append("HELIX-Web")
@@ -63,7 +67,7 @@ def main():
     execution[0]["legacy_execution_performed"] = True
     expects("legacy_execution_promotion", execution, "E_LEGACY_EXECUTION")
 
-    print("SCF-B-0100 selfcheck: PASS negative_cases=8")
+    print("SCF-B-0100 selfcheck: PASS negative_cases=9")
     return 0
 
 

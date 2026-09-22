@@ -84,6 +84,7 @@
       "固定base HEADと入力source digest",
       "queue18 exact ID setとdecomposition/routing candidate一致",
       "旧IR statement digest、Git blob、line、JSON pointerの再導出",
+      "旧IR実ファイルからstatement.text lineと行テキストdigestの再導出",
       "四製品責務境界のpath／blob／line引用",
       "旧asset ledger source digest、history／failure／consumer未完状態の再照合",
       "validate／selfcheck／scfctl／git diff --check"
@@ -93,6 +94,8 @@
       "E_ID_SET: missing ID",
       "E_SOURCE_DIGEST: old IR or prior ledger digest tamper",
       "E_SOURCE_REFERENCE: path/blob/line/pointer tamper",
+      "E_SOURCE_LINE_ANCHOR: statement.text line or line text tamper",
+      "E_SOURCE_LINE_DIGEST: statement.text line digest tamper",
       "E_CANDIDATE_BOUNDARY: candidate target or four-product set tamper",
       "E_AUTHORITY_BOUNDARY: authority/meaning/successor promotion",
       "E_ASSET_LEDGER_DIGEST: legacy asset source digest tamper",

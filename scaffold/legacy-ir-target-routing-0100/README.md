@@ -9,7 +9,7 @@ base_head: `36784d25aa4cc53d89c28c2ff81b4009db234605`
 
 `research.jsonl`は要求IDごとに次を保持する。
 
-- 旧IR原文のexact path、Git blob、line、JSON pointer、statement semantic digest。
+- 旧IR原文のexact path、Git blob、`statement.text`実行line、行テキストSHA-256、JSON pointer、statement semantic digest。
 - queueの`unresolved_target`と空の候補target。
 - routing bootstrapの153/153候補、decompositionの候補product unit、candidate shape（`unit`／`unit_set`／`connection`／`composite`／`unresolved`）。
 - HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの責務境界引用。候補targetがWeb／Web-OSに無いことを正式な不要性・除外へ昇格しない。
@@ -30,6 +30,6 @@ python3 scaffold/tools/scfctl.py validate
 git diff --check
 ```
 
-`validate.py`は18 IDのexact set（重複・欠落）、旧IR statement digest、source file digest、Git blob／line／pointer、queue／routing／decomposition候補集合、責務境界の四製品語彙、authority／successor／execution境界、asset ledger digestとhistory／failure／consumer未完状態を検査する。`selfcheck.py`はduplicate、missing、digest tamper、source reference tamper、candidate boundary tamper、authority promotion、asset digest tamper、旧実行promotionの否定例について、狙ったerror codeを照合する。
+`validate.py`は18 IDのexact set（重複・欠落）、旧IR statement digest、source file digest、Git blob、実ファイルから再導出した`statement.text` line／行テキストdigest／pointer、queue／routing／decomposition候補集合、責務境界の四製品語彙、authority／successor／execution境界、asset ledger digestとhistory／failure／consumer未完状態を検査する。`selfcheck.py`はduplicate、missing、digest tamper、line anchor／line digest tamper、candidate boundary tamper、authority promotion、asset digest tamper、旧実行promotionの否定例について、狙ったerror codeを照合する。
 
 この合格は人間decision、要求採否、owner確定、L2／L11、phase、設計、実装、consumer closure、Issue closeを生成しない。

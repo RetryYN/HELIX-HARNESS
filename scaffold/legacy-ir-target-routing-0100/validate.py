@@ -59,6 +59,26 @@ def error(code: str, message: str) -> str:
     return f"{code}: {message}"
 
 
+def statement_line_anchor(requirement_id: str):
+    lines = (ROOT / OLD_IR).read_text(encoding="utf-8").splitlines()
+    found_id = False
+    in_statement = False
+    for number, line in enumerate(lines, 1):
+        if f'"requirement_id": "{requirement_id}"' in line:
+            found_id = True
+            continue
+        if not found_id:
+            continue
+        if '"statement": {' in line:
+            in_statement = True
+            continue
+        if in_statement and '"text": ' in line:
+            return number, line, hashlib.sha256(line.encode("utf-8")).hexdigest()
+        if line.startswith('  "HIL-'):
+            break
+    return None, None, None
+
+
 def validate_records(records, check_files: bool = True):
     errors = []
     queue_rows, queue_lines = load_jsonl("docs/governance/legacy-ir-target-routing-queue.jsonl")
@@ -93,8 +113,15 @@ def validate_records(records, check_files: bool = True):
             continue
         src = item.get("source_exact", {})
         statement = source.get("statement", {})
-        if src.get("path") != OLD_IR or src.get("line") != 1:
-            errors.append(error("E_SOURCE_REFERENCE", f"{rid}: old IR path/line不一致"))
+        expected_line, expected_line_text, expected_line_digest = statement_line_anchor(rid)
+        if src.get("path") != OLD_IR:
+            errors.append(error("E_SOURCE_REFERENCE", f"{rid}: old IR path不一致"))
+        if src.get("line") != expected_line:
+            errors.append(error("E_SOURCE_LINE_ANCHOR", f"{rid}: statement.text line={src.get('line')} expected={expected_line}"))
+        if src.get("line_text") != expected_line_text:
+            errors.append(error("E_SOURCE_LINE_ANCHOR", f"{rid}: statement.text line text不一致"))
+        if src.get("line_text_sha256") != expected_line_digest:
+            errors.append(error("E_SOURCE_LINE_DIGEST", f"{rid}: statement.text line digest不一致"))
         if src.get("json_pointer") != f"requirements.json#/{rid}/statement/text":
             errors.append(error("E_SOURCE_REFERENCE", f"{rid}: JSON pointer不一致"))
         if src.get("statement_text") != statement.get("text"):
@@ -138,6 +165,9 @@ def validate_records(records, check_files: bool = True):
                     errors.append(error("E_UNIT_SOURCE", f"{rid}/{uid}: {key}不一致"))
             if unit.get("candidate_product") not in PRODUCTS:
                 errors.append(error("E_CANDIDATE_BOUNDARY", f"{rid}/{uid}: unknown product"))
+            old_refs = [x for x in unit.get("evidence_refs", []) if x.get("path") == OLD_IR]
+            if not old_refs or any(x.get("line") != expected_line for x in old_refs):
+                errors.append(error("E_SOURCE_LINE_ANCHOR", f"{rid}/{uid}: unit evidence line不一致"))
             x = crosswalk.get((rid, uid))
             if x is None:
                 errors.append(error("E_CROSSWALK_MISSING", f"{rid}/{uid}: crosswalk missing"))
