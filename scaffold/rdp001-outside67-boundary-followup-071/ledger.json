@@ -1,0 +1,37 @@
+{
+  "schema": "rdp001-outside67-followup-ledger/v1",
+  "source_holding_registration": "MPR-SH-OUTSIDE67-001",
+  "denominator": 67,
+  "existing_reviewed_ids": [
+    "OUTSIDE67-PATH-008",
+    "OUTSIDE67-PATH-011",
+    "OUTSIDE67-PATH-030",
+    "OUTSIDE67-PATH-033",
+    "OUTSIDE67-PATH-034",
+    "OUTSIDE67-PATH-036",
+    "OUTSIDE67-PATH-043",
+    "OUTSIDE67-PATH-045",
+    "OUTSIDE67-PATH-046",
+    "OUTSIDE67-PATH-052",
+    "OUTSIDE67-PATH-055",
+    "OUTSIDE67-PATH-056",
+    "OUTSIDE67-PATH-059",
+    "OUTSIDE67-PATH-063",
+    "OUTSIDE67-PATH-064",
+    "OUTSIDE67-PATH-065",
+    "OUTSIDE67-PATH-066"
+  ],
+  "selected_ids": [
+    "OUTSIDE67-PATH-035",
+    "OUTSIDE67-PATH-037",
+    "OUTSIDE67-PATH-047",
+    "OUTSIDE67-PATH-054",
+    "OUTSIDE67-PATH-057"
+  ],
+  "selected_source_count": 5,
+  "product_unit_candidate_count": 25,
+  "exact_ledger_hit_count": 0,
+  "source_anchor_count": 25,
+  "status": "findings_only",
+  "formal_admission": false
+}

@@ -1,0 +1,75 @@
+{
+  "schema": "rdp001-outside67-source-diff/v1",
+  "items": [
+    {
+      "source_item_id": "OUTSIDE67-PATH-035",
+      "source_path": "docs/governance/audits/l2-requirements/new-generation-authority-asset-governance-crosswalk.md",
+      "current_counterpart_path": "docs/governance/audits/source-rebaseline/new-generation-authority-asset-governance-crosswalk.md",
+      "pre_sha256": "ab7a0752130b34f8b7fb2ce5e29f699621677eb45e7a3dcd666e1b77632db847",
+      "archive_sha256": "ab7a0752130b34f8b7fb2ce5e29f699621677eb45e7a3dcd666e1b77632db847",
+      "current_sha256": "ab7a0752130b34f8b7fb2ce5e29f699621677eb45e7a3dcd666e1b77632db847",
+      "pre_bytes": 9147,
+      "archive_bytes": 9147,
+      "current_bytes": 9147,
+      "status": "same",
+      "current_relation": "current_counterpart_path_relocation_observed; content_hash_equal_archive",
+      "unified_diff": ""
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-037",
+      "source_path": "docs/governance/audits/l2-requirements/new-generation-ci-ai-source-crosswalk.md",
+      "current_counterpart_path": "docs/governance/audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md",
+      "pre_sha256": "fb4e8bdc6ffb29acf17d79aeb961a97dea239ef59291e79522dae8fe13c551cf",
+      "archive_sha256": "fb4e8bdc6ffb29acf17d79aeb961a97dea239ef59291e79522dae8fe13c551cf",
+      "current_sha256": "fb4e8bdc6ffb29acf17d79aeb961a97dea239ef59291e79522dae8fe13c551cf",
+      "pre_bytes": 7272,
+      "archive_bytes": 7272,
+      "current_bytes": 7272,
+      "status": "same",
+      "current_relation": "current_counterpart_path_relocation_observed; content_hash_equal_archive",
+      "unified_diff": ""
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-047",
+      "source_path": "docs/governance/audits/l2-requirements/new-generation-worker-capacity-source-crosswalk.md",
+      "current_counterpart_path": "docs/governance/audits/source-rebaseline/new-generation-worker-capacity-source-crosswalk.md",
+      "pre_sha256": "cb44de35be3bbf6b2276625cad8db06b24fa43d691c498bac9f01e3396555648",
+      "archive_sha256": "cb44de35be3bbf6b2276625cad8db06b24fa43d691c498bac9f01e3396555648",
+      "current_sha256": "cb44de35be3bbf6b2276625cad8db06b24fa43d691c498bac9f01e3396555648",
+      "pre_bytes": 3961,
+      "archive_bytes": 3961,
+      "current_bytes": 3961,
+      "status": "same",
+      "current_relation": "current_counterpart_path_relocation_observed; content_hash_equal_archive",
+      "unified_diff": ""
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-054",
+      "source_path": "docs/governance/candidates/helix-os-organization-intake-2026-09-14.md",
+      "current_counterpart_path": "docs/governance/candidates/helix-os-organization-intake-2026-09-14.md",
+      "pre_sha256": "6a56e569907628cf108dd78bfdbd8ea2fef71e2de385ca426404a73953b32da5",
+      "archive_sha256": "6a56e569907628cf108dd78bfdbd8ea2fef71e2de385ca426404a73953b32da5",
+      "current_sha256": "6a56e569907628cf108dd78bfdbd8ea2fef71e2de385ca426404a73953b32da5",
+      "pre_bytes": 4904,
+      "archive_bytes": 4904,
+      "current_bytes": 4904,
+      "status": "same",
+      "current_relation": "current_counterpart_path_and_hash_equal_archive",
+      "unified_diff": ""
+    },
+    {
+      "source_item_id": "OUTSIDE67-PATH-057",
+      "source_path": "docs/governance/intake/helix-os-foundation-directive-2026-09-14.md",
+      "current_counterpart_path": "docs/governance/intake/helix-os-foundation-directive-2026-09-14.md",
+      "pre_sha256": "c5333bc7cf875aedf52f482541083d66a906cb08320fbe04940d8c5061cbd54e",
+      "archive_sha256": "c5333bc7cf875aedf52f482541083d66a906cb08320fbe04940d8c5061cbd54e",
+      "current_sha256": "c5333bc7cf875aedf52f482541083d66a906cb08320fbe04940d8c5061cbd54e",
+      "pre_bytes": 8042,
+      "archive_bytes": 8042,
+      "current_bytes": 8042,
+      "status": "same",
+      "current_relation": "current_counterpart_path_and_hash_equal_archive",
+      "unified_diff": ""
+    }
+  ]
+}
