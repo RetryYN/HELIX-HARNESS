@@ -108,11 +108,12 @@ python3 -B scaffold/phase-gap-cross-analysis-0128/generate.py
 python3 -B scaffold/phase-gap-cross-analysis-0128/validate.py
 python3 -B scaffold/phase-gap-cross-analysis-0128/selfcheck.py
 python3 scaffold/tools/scfctl.py validate
+python3 scaffold/tools/scfctl.py selftest
 python3 scaffold/tools/scfctl.py stale
 python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-独立validatorは`generate.py`をimportせず、固定BASEとtaxonomy commit/blob/digest、30 ID/status/rule/anchor、66 edge、38 asset、phase/product authority境界を再導出する。taxonomy全値と30行の分析テキストは独立期待値digestで固定し、selfcheckは35 negative casesで各改変の期待error codeを照合する。Binding `SCF-B-0128` の全成果物登録と、入力digest・負例集合・authority noneも同じ契約に固定する。
+独立validatorは`generate.py`をimportせず、固定BASEとtaxonomy commit/blob/digest、30 ID/status/rule/anchor、66 edge、38 asset、phase/product authority境界を再導出する。taxonomy全値と30行の分析テキストは独立期待値digestで固定し、selfcheckは42 negative casesで各改変の期待error codeを照合する。共通scfctlは旧archiveをupstream static evidenceとして許可する条件（固定sha256、static/read-only note、非実行forbidden）と欠落時の負例を59 casesで検査する。Binding `SCF-B-0128` の全成果物登録と、入力digest・負例集合・authority noneも同じ契約に固定する。
 
 成果物は `inventory.json`（集計・全入力digest）、`analysis.jsonl`（unit別anchor・Wave edge・asset・不足証拠・判断待ち）、taxonomy保存snapshot、generator、validator、selfcheck、README、PR-DRAFT、Bindingである。

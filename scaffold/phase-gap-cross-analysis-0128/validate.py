@@ -274,7 +274,13 @@ class Validator:
         if inventory.get("taxonomy_snapshot") != expected_inv["taxonomy_snapshot"]: self.error("E_TAXONOMY_COVERAGE", "taxonomy snapshot")
         if inventory.get("input_snapshot") != expected_inv["input_snapshot"]: self.error("E_SOURCE_INPUT_DIGEST", "input snapshot declaration")
         for item in inventory.get("input_snapshot", []):
-            if not isinstance(item.get("path"), str) or item.get("sha256") != sha(base_bytes(item["path"]), False): self.error("E_SOURCE_INPUT_DIGEST", str(item.get("path")))
+            path = item.get("path") if isinstance(item, dict) else None
+            try:
+                actual_digest = sha(base_bytes(path), False) if isinstance(path, str) else None
+            except (KeyError, TypeError, ValueError) as exc:
+                self.error("E_SOURCE_INPUT_DIGEST", f"{path!r}: {exc}")
+                continue
+            if not isinstance(path, str) or item.get("sha256") != actual_digest: self.error("E_SOURCE_INPUT_DIGEST", str(path))
         try:
             if sha((self.bundle / "phase-status-taxonomy-0105.units.jsonl").read_bytes(), False) != TAXONOMY_SHA256: self.error("E_TAXONOMY_COVERAGE", "snapshot artifact")
         except OSError: self.error("E_TAXONOMY_COVERAGE", "snapshot artifact missing")

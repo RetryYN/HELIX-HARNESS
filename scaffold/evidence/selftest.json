@@ -1,8 +1,8 @@
 {
  "authority_effect": "none",
- "cases": 55,
- "cases_sha256": "094f85870c86278a13781d2e43078d419c74fc8087f6823d86d122c1f5fc9c84",
- "checked_at": "2026-09-22",
+ "cases": 59,
+ "cases_sha256": "1d9d3bbfafd1dda6f41e5878db14382b740252ee94b5995e96041a2086f33213",
+ "checked_at": "2026-09-23",
  "evidence_kind": "scaffold",
  "fail": 0,
  "note": "仮の検証の記録。正式なCI／検証／受入の成立を意味しない",
@@ -725,7 +725,57 @@
    "requirements": [
     "SCF-OS-001"
    ]
+  },
+  {
+   "case": "35-allow-static-legacy-upstream.json",
+   "expect": "pass",
+   "got": "pass",
+   "l11": "固定digestと静的read-only境界を持つ旧archive upstream evidenceを許可する",
+   "messages": [],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "36-reject-static-upstream-note.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "旧archive upstream evidenceの静的read-only根拠欠落を拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "37-reject-static-upstream-sha.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "旧archive upstream evidenceのdigest形式欠落を拒否する",
+   "messages": [
+    "E_UPSTREAM: 上流はpathとsha256を持つ（SCF-HARNESS-001）"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
+  },
+  {
+   "case": "38-reject-static-upstream-boundary.json",
+   "expect": "fail",
+   "got": "fail",
+   "l11": "旧archive upstream evidenceの非実行境界欠落を拒否する",
+   "messages": [
+    "E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json"
+   ],
+   "ok": true,
+   "requirements": [
+    "SCF-OS-003"
+   ]
   }
  ],
- "tool_sha256": "b9b2c98cee5d3afeedb66c7a1aa64ecdb395ce933a90ed580d04c9caa4b39ccb"
+ "tool_sha256": "026fd16cd5b10108a259854409e02d6a5b3e3690c65ffdd4221fb4f05b87f0ed"
 }

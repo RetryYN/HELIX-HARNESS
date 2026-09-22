@@ -204,6 +204,29 @@ def check_rules(b, all_bindings, fs=True, digests=None):
         fs = True
     e = []
     r = b["replacement"]
+    # A legacy path may be an upstream evidence input only when the binding
+    # pins its digest, states the static/read-only boundary, and forbids old
+    # archive execution.  The path is still rejected in artifacts, consumers,
+    # oracles, and every other binding field.
+    legacy_upstream_paths = set()
+    for upstream in b.get("upstream", []):
+        path = upstream.get("path") if isinstance(upstream, dict) else None
+        if not isinstance(path, str) or not LEGACY.search(path):
+            continue
+        legacy_upstream_paths.add(path)
+        note = upstream.get("note", "") if isinstance(upstream, dict) else ""
+        forbidden = b.get("operations", {}).get("forbidden", [])
+        static_note = isinstance(note, str) and "静的" in note and ("read-only" in note or "static" in note)
+        execution_boundary = isinstance(forbidden, list) and any(
+            isinstance(item, str) and "archive" in item and ("実行" in item or "execute" in item or "execution" in item)
+            for item in forbidden
+        )
+        digest_pinned = isinstance(upstream, dict) and SHA.match(str(upstream.get("sha256", "")))
+        if not (digest_pinned and static_note and execution_boundary):
+            e.append("E_STATIC_UPSTREAM: legacy upstreamはsha256固定・静的read-only根拠・旧archive非実行境界が必要: %s" % path)
+        elif fs and sha256_file(path) != upstream["sha256"]:
+            e.append("E_STATIC_UPSTREAM: legacy upstream sha256不一致: %s" % path)
+
     # SCF-OS-003: 旧資産を仮設名義で使わない。binding全体を走査し、禁止事項の列挙（operations.forbidden）だけ除く
     def walk(o, path):
         if isinstance(o, dict):
@@ -215,6 +238,11 @@ def check_rules(b, all_bindings, fs=True, digests=None):
             for i, v in enumerate(o):
                 walk(v, "%s[%d]" % (path, i))
         elif isinstance(o, str) and LEGACY.search(o):
+            # Validated upstream evidence paths are the sole static-reference
+            # exception. Invalid upstream metadata already produced
+            # E_STATIC_UPSTREAM above, while all other fields stay fail-closed.
+            if re.match(r"^upstream\[\d+\]\.path$", path) and o in legacy_upstream_paths:
+                return
             e.append("E_LEGACY: 旧世代archiveを指す %s: %s（SCF-OS-003）" % (path, o[:80]))
     walk(b, "")
     # SCF-OS-001: 置換先の役割が未特定なら有効化不可

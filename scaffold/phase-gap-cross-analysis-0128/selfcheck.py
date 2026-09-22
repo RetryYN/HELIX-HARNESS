@@ -53,6 +53,34 @@ def run_raw_bundle_case() -> None:
     print("PASS malformed bundle -> E_BUNDLE")
 
 
+def wave_edge_detail(rows):
+    rows[0]["wave_edges"][0]["asset_id"] = "tampered"
+
+
+def candidate_phase(rows):
+    rows[0]["candidate_phase_targets"].append("PHCAP-20")
+
+
+def crosswalk(rows):
+    rows[0]["crosswalk_id"] = "tampered"
+
+
+def static_only(rows):
+    rows[0]["static_only"] = False
+
+
+def unit_schema(rows):
+    rows[0]["schema"] = "tampered"
+
+
+def inventory_schema(inventory):
+    inventory["schema"] = "tampered"
+
+
+def input_missing_path(inventory):
+    inventory["input_snapshot"][0]["path"] = "docs/missing-input.jsonl"
+
+
 if __name__ == "__main__":
     cases = [
         ("schema", "E_SCHEMA", lambda inv, rows: inv.__setitem__("unknown", True)),
@@ -62,6 +90,7 @@ if __name__ == "__main__":
         ("taxonomy non-ancestor", "E_TAXONOMY_NOT_ANCESTOR", lambda inv, rows: inv["taxonomy_snapshot"].__setitem__("commit", "not-a-commit")),
         ("taxonomy blob", "E_TAXONOMY_BLOB", lambda inv, rows: inv["taxonomy_snapshot"].__setitem__("blob_oid", "0" * 40)),
         ("input digest", "E_SOURCE_INPUT_DIGEST", lambda inv, rows: inv["input_snapshot"][0].__setitem__("sha256", "0" * 64)),
+        ("input missing path", "E_SOURCE_INPUT_DIGEST", lambda inv, rows: input_missing_path(inv)),
         ("taxonomy snapshot declaration", "E_TAXONOMY_COVERAGE", lambda inv, rows: inv["taxonomy_snapshot"].__setitem__("path", "tampered")),
         ("source anchor", "E_SOURCE_ANCHOR", lambda inv, rows: rows[0]["source_anchor"].__setitem__("statement_text_sha256", "sha256:" + "0" * 64)),
         ("target set", "E_TARGET_SET", lambda inv, rows: rows.pop()),
@@ -75,6 +104,12 @@ if __name__ == "__main__":
         ("taxonomy authority phase status", "E_TAXONOMY_COVERAGE", lambda inv, rows: rows[0]["taxonomy"].__setitem__("authority_phase_status", "approved")),
         ("taxonomy formal phase candidate", "E_TAXONOMY_COVERAGE", lambda inv, rows: rows[0]["taxonomy"].__setitem__("formal_phase_candidate", "PHCAP-20")),
         ("taxonomy direct phase candidate count", "E_TAXONOMY_COVERAGE", lambda inv, rows: rows[0]["taxonomy"].__setitem__("direct_phase_candidate_count", 1)),
+        ("wave edge detail", "E_WAVE_EDGE_COVERAGE", lambda inv, rows: wave_edge_detail(rows)),
+        ("candidate phase target", "E_TAXONOMY_COVERAGE", lambda inv, rows: candidate_phase(rows)),
+        ("crosswalk binding", "E_SOURCE_ANCHOR", lambda inv, rows: crosswalk(rows)),
+        ("unit static-only flag", "E_AUTHORITY_BOUNDARY", lambda inv, rows: static_only(rows)),
+        ("unit schema", "E_SCHEMA", lambda inv, rows: unit_schema(rows)),
+        ("inventory schema", "E_SCHEMA", lambda inv, rows: inventory_schema(inv)),
         ("inventory declaration", "E_INVENTORY_DECLARATION", lambda inv, rows: inv["scope"].__setitem__("wave_scan_row_count", 0)),
         ("reason class", "E_REASON_CLASS", lambda inv, rows: rows[0].__setitem__("reason_class", "CROSS_PHASE_UNRESOLVED")),
         ("reason description", "E_ANALYSIS_EVIDENCE", lambda inv, rows: rows[0].__setitem__("reason_description", "tampered")),

@@ -26,13 +26,14 @@ BASEは`5562f04da0f3205f9aa58205ec0d478419fc4f2e`、taxonomyはcommit `78e23a622
 
 ## 検証
 
-独立validatorはgeneratorをimportせず、30 IDの欠落・重複・余分、taxonomy commit/blob/digest/ancestor、BASE ancestor、全input digest、source anchor、66 edge、38 asset、status/rule、4不足類型、authority境界を検査する。taxonomyのcandidate_statement等全フィールドと30行の分析テキストを独立期待値digestで固定し、selfcheckは35負例を期待error codeと照合する。次を実行済みとして提出する。
+独立validatorはgeneratorをimportせず、30 IDの欠落・重複・余分、taxonomy commit/blob/digest/ancestor、BASE ancestor、全input digest、source anchor、66 edge、38 asset、status/rule、4不足類型、authority境界を検査する。taxonomyのcandidate_statement等全フィールドと30行の分析テキストを独立期待値digestで固定し、selfcheckは42負例を期待error codeと照合する。次を実行済みとして提出する。
 
 ```text
 python3 -B scaffold/phase-gap-cross-analysis-0128/generate.py
 python3 -B scaffold/phase-gap-cross-analysis-0128/validate.py
 python3 -B scaffold/phase-gap-cross-analysis-0128/selfcheck.py
 python3 scaffold/tools/scfctl.py validate
+python3 scaffold/tools/scfctl.py selftest
 python3 scaffold/tools/scfctl.py stale
 python3 scaffold/tools/scfctl.py residuals
 git diff --check

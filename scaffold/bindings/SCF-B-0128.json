@@ -9,6 +9,16 @@
   "reason": "phase-status-taxonomy-0105のheld30（OS24／HARNESS6）を、固定BASEの旧IR原文・Wave1–50・RDP・PHCAP-20・四製品L1 decisionから静的に再集計する。4不足類型、direct phase evidence 0、formal phase 0、全20 PHCAP pendingを固定し、candidateとformal authorityを分離する。",
   "upstream": [
     {
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json",
+      "sha256": "80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688",
+      "note": "固定BASE bytes。旧IRは静的read-only参照のみ。旧archiveは実行しない"
+    },
+    {
+      "path": "scaffold/phase-gap-cross-analysis-0128/inventory.json",
+      "sha256": "fb5272a55a0ac63e6766156f5e6bcc1748af2a26a733c786339251615d4eeee5",
+      "note": "保存済みresearch inventoryの固定Git bytes。authority effectなし"
+    },
+    {
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl",
       "sha256": "5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
       "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
@@ -381,7 +391,13 @@
     "scaffold/phase-gap-cross-analysis-0128/selfcheck.py",
     "scaffold/phase-gap-cross-analysis-0128/inventory.json",
     "scaffold/phase-gap-cross-analysis-0128/analysis.jsonl",
-    "scaffold/phase-gap-cross-analysis-0128/phase-status-taxonomy-0105.units.jsonl"
+    "scaffold/phase-gap-cross-analysis-0128/phase-status-taxonomy-0105.units.jsonl",
+    "scaffold/tools/scfctl.py",
+    "scaffold/checks/cases/35-allow-static-legacy-upstream.json",
+    "scaffold/checks/cases/36-reject-static-upstream-note.json",
+    "scaffold/checks/cases/37-reject-static-upstream-sha.json",
+    "scaffold/checks/cases/38-reject-static-upstream-boundary.json",
+    "scaffold/evidence/selftest.json"
   ],
   "verification": {
     "evidence_kind": "scaffold",
@@ -396,7 +412,8 @@
       "validator independently derives fixed BASE and taxonomy exact target set; it does not import generate.py",
       "validator compares taxonomy commit/path/blob/digest/ancestor, all 64 input digests, 30 anchors, 66 edges, 38 assets, four reason sets, and authority boundaries",
       "inventory and analysis fields are fail-closed against candidate/formal phase and product authority promotion",
-      "selfcheck executes 35 negative cases and checks expected error codes, including full taxonomy and analysis-text mutation sweep",
+      "selfcheck executes 42 negative cases and checks expected error codes, including full taxonomy and analysis-text mutation sweep",
+      "scfctl selftest executes 59 cases: static legacy upstream evidence requires fixed sha256, read-only note, and old-archive execution boundary",
       "scfctl validate/stale/residuals and git diff --check"
     ],
     "negative_cases": [
@@ -408,9 +425,11 @@
       "taxonomy non-ancestor -> E_TAXONOMY_NOT_ANCESTOR",
       "taxonomy source/inventory blob -> E_TAXONOMY_BLOB",
       "input digest -> E_SOURCE_INPUT_DIGEST",
+      "missing input path with caught BASE lookup error -> E_SOURCE_INPUT_DIGEST",
       "source anchor -> E_SOURCE_ANCHOR",
       "missing/duplicate target ID -> E_TARGET_SET",
       "missing/duplicate Wave edge -> E_WAVE_EDGE_COVERAGE",
+      "Wave edge detail -> E_WAVE_EDGE_COVERAGE",
       "asset membership -> E_ASSET_EVIDENCE",
     "taxonomy snapshot declaration -> E_TAXONOMY_COVERAGE",
     "taxonomy authority boundary -> E_TAXONOMY_COVERAGE",
@@ -421,6 +440,11 @@
     "taxonomy authority phase status -> E_TAXONOMY_COVERAGE",
     "taxonomy formal phase candidate -> E_TAXONOMY_COVERAGE",
     "taxonomy direct phase candidate count -> E_TAXONOMY_COVERAGE",
+    "candidate phase target -> E_TAXONOMY_COVERAGE",
+    "crosswalk binding -> E_SOURCE_ANCHOR",
+    "unit static-only flag -> E_AUTHORITY_BOUNDARY",
+    "unit schema -> E_SCHEMA",
+    "inventory schema -> E_SCHEMA",
     "inventory scope/declaration -> E_INVENTORY_DECLARATION",
     "reason class -> E_REASON_CLASS",
     "reason description -> E_ANALYSIS_EVIDENCE",
