@@ -1,0 +1,1354 @@
+{
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0133.json",
+    "scaffold/legacy-runtime-residual-product-classification-0133/README.md",
+    "scaffold/legacy-runtime-residual-product-classification-0133/PR-DRAFT.md",
+    "scaffold/legacy-runtime-residual-product-classification-0133/generate.py",
+    "scaffold/legacy-runtime-residual-product-classification-0133/validate.py",
+    "scaffold/legacy-runtime-residual-product-classification-0133/selfcheck.py",
+    "scaffold/legacy-runtime-residual-product-classification-0133/inventory.json",
+    "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl"
+  ],
+  "authority_boundary": {
+    "authority_effect": "none",
+    "consumer_closure_updated": false,
+    "formal_asset_classification_updated": false,
+    "formal_implementation_status": "unknown",
+    "formal_product_authority": null,
+    "new_build_allowed": false,
+    "phase_updated": false,
+    "read_mode": "static_git_object_only",
+    "successor_assignment": null
+  },
+  "base_revision": "36784d25aa4cc53d89c28c2ff81b4009db234605",
+  "base_source_mode": "all input and archive evidence bytes from fixed BASE Git objects",
+  "binding_id": "SCF-B-0133",
+  "classification_counts": {
+    "direct_product_basis": 31,
+    "insufficient_basis": 4,
+    "multi_product_conflict": 24
+  },
+  "classification_rule": {
+    "direct_product_basis": "concrete old-source behavior span mapped to one approved L1 row and boundary/decision meaning with counter-evidence; path alone is invalid",
+    "insufficient_basis": "shared constant/plumbing/generic utility span lacks product-boundary proof; no candidate product proposed",
+    "multi_product_conflict": "concrete old-source behavior spans two or more product boundaries; no single owner proposed"
+  },
+  "input_digests": [
+    {
+      "blob": "62481e399bd448417fe3cba8378a269cd6427b07",
+      "bytes": 6311877,
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+    },
+    {
+      "blob": "cfa4a48dff89fb4b4066d958c1513ba405c2a3dd",
+      "bytes": 4857919,
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "blob": "899b8d35f3657f1d6c6ecb635451da108c1fa034",
+      "bytes": 109547,
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "sha256:cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
+    },
+    {
+      "blob": "b25759e0c3aff4154857f372583479ed5c4fa212",
+      "bytes": 29632,
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "sha256:9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"
+    },
+    {
+      "blob": "fcccc26f39db42b925cf349c9d8a79ee59b3429b",
+      "bytes": 7938664,
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "sha256:8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
+    },
+    {
+      "blob": "62b29b300ff14d65dafaa6d538622c54874ba77f",
+      "bytes": 602042,
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
+    },
+    {
+      "blob": "9c13c646ed9e1f5e62a038d1b796880661e62c90",
+      "bytes": 13307,
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    },
+    {
+      "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
+      "bytes": 4479,
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+    },
+    {
+      "blob": "e517c0b1571e3c720c7ba13e3453b27e2dc1d343",
+      "bytes": 18852,
+      "path": "docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md",
+      "sha256": "sha256:4a2e2f4799a7c0981330d608b5a4b3dc883150bcc9e22090be72bb2d8e5c230b"
+    },
+    {
+      "blob": "d45a13e9b4aa376177a3e144d58d908d1ddda178",
+      "bytes": 4096,
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "sha256:a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+    },
+    {
+      "blob": "7566e26f3ee5fda862b788c7e5e07ba89955dc5d",
+      "bytes": 4938,
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "sha256:0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+    },
+    {
+      "blob": "1799da6ab34c9d3f41316ac650becb146d5c625f",
+      "bytes": 3559,
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "sha256:26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756"
+    },
+    {
+      "blob": "40268a3ed70d64d710d7ed86f52257c653a20c5b",
+      "bytes": 3018,
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "sha256:600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
+    },
+    {
+      "blob": "73987e2db800e6989411108327d867cff9751e14",
+      "bytes": 6545,
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md",
+      "sha256": "sha256:5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5"
+    },
+    {
+      "blob": "b362ad05fc95864d43e8674a85923b3e34ed1763",
+      "bytes": 5951,
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
+      "sha256": "sha256:14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"
+    },
+    {
+      "blob": "2f35542c393badd030e6509bcab499c13635c87b",
+      "bytes": 7759,
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "sha256:6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
+    },
+    {
+      "blob": "bb88c1b4b35222439959b580d3e221326c7c8519",
+      "bytes": 7991,
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "sha256:50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+    },
+    {
+      "blob": "9a4ef2197c520cb323fee6259cd6a3aff5a47f0e",
+      "bytes": 478316,
+      "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6"
+    },
+    {
+      "blob": "78dc47ccf12c093684e958804c8ab9b5268d8d72",
+      "bytes": 20904,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl",
+      "sha256": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b"
+    },
+    {
+      "blob": "178edfe2cd96b4d3c55e4bb70dabcc0abaaafbfe",
+      "bytes": 32211,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl",
+      "sha256": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce"
+    },
+    {
+      "blob": "450c26e6e7c82105c8514f16c32e9d4c96ed197f",
+      "bytes": 35219,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl",
+      "sha256": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55"
+    },
+    {
+      "blob": "7e4e41f11ff3b6936a571da29500d9aeb0bf4357",
+      "bytes": 33848,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl",
+      "sha256": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7"
+    },
+    {
+      "blob": "32546a347b191200c9e666ad351f777d2fba45a7",
+      "bytes": 38724,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl",
+      "sha256": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a"
+    },
+    {
+      "blob": "35edc3ca413196b4020e34665a3e9889c06de768",
+      "bytes": 48334,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl",
+      "sha256": "sha256:eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4"
+    },
+    {
+      "blob": "6a743c7d5751c690fab5c13412bd0e27eb9af4f1",
+      "bytes": 38977,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl",
+      "sha256": "sha256:610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f"
+    },
+    {
+      "blob": "af6a38235d072b7bcd2dd0caafe0ba97186c4cdf",
+      "bytes": 42401,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl",
+      "sha256": "sha256:82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0"
+    },
+    {
+      "blob": "6ea3f9b564f53022de441fa46fd6381caae0df49",
+      "bytes": 43249,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl",
+      "sha256": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e"
+    },
+    {
+      "blob": "d5757b69aef21716c33e3babed85adeec8aeaf3e",
+      "bytes": 47456,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl",
+      "sha256": "sha256:f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef"
+    },
+    {
+      "blob": "1adb65bc2c7fa7a9e4a674997e17d9ddfe1b8cf2",
+      "bytes": 36787,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl",
+      "sha256": "sha256:66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0"
+    },
+    {
+      "blob": "80816ad890c14eadcfb9dbdbff5fd2518bad437a",
+      "bytes": 38598,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl",
+      "sha256": "sha256:1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566"
+    },
+    {
+      "blob": "ea06f4827b9daf95ad9035ab7dc93806eca1b893",
+      "bytes": 43388,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl",
+      "sha256": "sha256:f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f"
+    },
+    {
+      "blob": "81823365d88719d60734b01480bd1f592704d27b",
+      "bytes": 37074,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl",
+      "sha256": "sha256:361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199"
+    },
+    {
+      "blob": "91ec566994ade7c7228a73090a1d1dabddc3e8c9",
+      "bytes": 37546,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl",
+      "sha256": "sha256:fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953"
+    },
+    {
+      "blob": "c214accd8bf7c049f42b98d5bcbd3f3036e8e3d1",
+      "bytes": 42337,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl",
+      "sha256": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6"
+    },
+    {
+      "blob": "c623f3426ef1030453d812a91b24ce3dfbb8dd17",
+      "bytes": 41267,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl",
+      "sha256": "sha256:85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac"
+    },
+    {
+      "blob": "686a4a61f86f0dc0137448c148a9e23a21bf72d3",
+      "bytes": 80309,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl",
+      "sha256": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15"
+    },
+    {
+      "blob": "cd48a9be78f469000832fcdb3afe190132c8f603",
+      "bytes": 62299,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave19.jsonl",
+      "sha256": "sha256:93024399f21cf03c439a81935f473b07e57e0827efb39ce05c0be64a7432a258"
+    },
+    {
+      "blob": "0b4a189114f0f187ba1f685516e6760572dd935a",
+      "bytes": 78126,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave20.jsonl",
+      "sha256": "sha256:e7983f9a07bd4ca939450e034b24499daaeff889317e7789779d82a90adafe49"
+    },
+    {
+      "blob": "da58f53b6e9d15a56a96b2256c9defbbc6516183",
+      "bytes": 99977,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave21.jsonl",
+      "sha256": "sha256:8b726497d90cd4c430cafb5646765099af5898c1fd4200b693412b95ac1e0264"
+    },
+    {
+      "blob": "a16978acb5edd3d9febc24cb83d7e7a2d73fa946",
+      "bytes": 63604,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave22.jsonl",
+      "sha256": "sha256:f86ec2357fc2a79f18310a09bf8eee7cbabf5e620d86d671aec6f76987826dcc"
+    },
+    {
+      "blob": "1b7e8226b40ba516beb26460d671519f4c01f768",
+      "bytes": 43312,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonl",
+      "sha256": "sha256:b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423"
+    },
+    {
+      "blob": "adec8c103587b640293dc884f43197e6e52cfdf8",
+      "bytes": 42556,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave24.jsonl",
+      "sha256": "sha256:bda37af1258af965f5137d063ba134b3185eaec7f1d88ba03d64a0e94efcb455"
+    },
+    {
+      "blob": "760f51df7a862b5502f3115a6f6532a2981e820a",
+      "bytes": 41987,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave25.jsonl",
+      "sha256": "sha256:d30e7658f2d82448f56b85a516c416b1b1ddf4f14c82a592b71842d2e5f37bb3"
+    },
+    {
+      "blob": "27823cfa7116d9af1d4a6856bf78129c38f8cc85",
+      "bytes": 49437,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave26.jsonl",
+      "sha256": "sha256:e196c2d6abae0db6f00faa0502356a7bdff6de234bfe5a504dfdd5e6bebb699b"
+    },
+    {
+      "blob": "64a6690504bb73191896cfa2a4fe7aeb18757eca",
+      "bytes": 73404,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonl",
+      "sha256": "sha256:9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6"
+    },
+    {
+      "blob": "ec4d8015260817adcd22e5769e405501a35cb8d4",
+      "bytes": 108402,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl",
+      "sha256": "sha256:1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40"
+    },
+    {
+      "blob": "7f74d2ee5ca93f00617ba4e791a1c479ce2717e1",
+      "bytes": 107633,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl",
+      "sha256": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29"
+    },
+    {
+      "blob": "639b0948ab9d5610c31fdbd12a9416ec9a0692da",
+      "bytes": 76823,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave30.jsonl",
+      "sha256": "sha256:a7e3e9d86d91fbd783cc5581611dc7e7f9a7f199a03e9d312f01f24fd8c4613f"
+    },
+    {
+      "blob": "50580ee453433f49a582216dc67d9eedddad969f",
+      "bytes": 69557,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave31.jsonl",
+      "sha256": "sha256:51d54950943f7bc251a1bc22a103a2d3b81dc9190cdd778cce0178d857039383"
+    },
+    {
+      "blob": "42893b7cafa8a4fb4e185d9677e80bde86cd1e53",
+      "bytes": 145447,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave32.jsonl",
+      "sha256": "sha256:e9e51ed364e9f76cb02f7b66f364f87486ac95aaa43fd010645c789fcecd09fe"
+    },
+    {
+      "blob": "40dc848f39f96a3a7228aadd1c96f34b49ad216a",
+      "bytes": 153339,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonl",
+      "sha256": "sha256:701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f"
+    },
+    {
+      "blob": "9eac87525345c169224c56c0267315df078d01f4",
+      "bytes": 215239,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave34.jsonl",
+      "sha256": "sha256:4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da"
+    },
+    {
+      "blob": "05ed3f9be9f48e6fc2d5470de3478f911aded947",
+      "bytes": 184459,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave35.jsonl",
+      "sha256": "sha256:02713e03967810fb7ba6faf6b7c9dd561c45fbd36c23972317d8603c1fde2b12"
+    },
+    {
+      "blob": "4a553567c8ce88c5ead9b14913b373e3ff4e3afc",
+      "bytes": 130645,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
+      "sha256": "sha256:fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523"
+    },
+    {
+      "blob": "fcb5e148f7c0dc12b59d06e1280eb26957aaa6e4",
+      "bytes": 48233,
+      "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl",
+      "sha256": "sha256:25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a"
+    },
+    {
+      "blob": "8550cf3e8221331c0c586a0613917826732e12e9",
+      "bytes": 46439,
+      "path": "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
+      "sha256": "sha256:df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8"
+    },
+    {
+      "blob": "d673ab07ddeebaa8c593922086834feb688342e3",
+      "bytes": 84316,
+      "path": "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.jsonl",
+      "sha256": "sha256:c94785daaef0f3a2546e3d7a906e606d499a81e180d65dcc2c5d7ffd04996c8d"
+    },
+    {
+      "blob": "dc6cc8c933de3ff736d0549ed860873df210ffda",
+      "bytes": 59816,
+      "path": "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
+      "sha256": "sha256:c98bf42916ef053050799e289bec8b28b7af3a0d62d2dc9e6adb30fdb606b3a8"
+    },
+    {
+      "blob": "4f3bcdc07c6333fbe1e178e75e0ae3f3b9b5d31e",
+      "bytes": 55975,
+      "path": "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.jsonl",
+      "sha256": "sha256:03222010e1e8f67e4846ce006adb604fc3742b88d2e39e6eab01123f288563c5"
+    },
+    {
+      "blob": "47d5d9a6319828ca040ab8cb9fa3a421356d9a91",
+      "bytes": 64863,
+      "path": "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.jsonl",
+      "sha256": "sha256:95ff19ec877bb847510ee5f99565816e42bb59ffb60627145de03c2d24e56072"
+    },
+    {
+      "blob": "08d54a03591e7971da579c088b864d5d6ac4daca",
+      "bytes": 66938,
+      "path": "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.jsonl",
+      "sha256": "sha256:293962d91807a1c7f4e553e57db1fa854f1a904f34c4a53eee86d6dbb1ae9982"
+    },
+    {
+      "blob": "b2b0bb9f2311100171e5fee75f0437e6ef2b9662",
+      "bytes": 164754,
+      "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
+      "sha256": "sha256:2fd638f0dc975fc03790f03d34b579ba5513a1b8420d8c3b09c2c53b108a38f6"
+    },
+    {
+      "blob": "a11497ef4f03b7ece64cea54de9e61ac23518013",
+      "bytes": 80687,
+      "path": "scaffold/legacy-semantic-review-wave45/legacy-requirement-direct-semantic-review-wave45.jsonl",
+      "sha256": "sha256:aa5328123645c1b8dc90dc2f04ff3ac007dfbdeda599bd66ccb6ad14441cebc6"
+    },
+    {
+      "blob": "bd4833ea7271a589e2a8adfc2ed06b806b273738",
+      "bytes": 69076,
+      "path": "scaffold/legacy-semantic-review-wave46/legacy-requirement-direct-semantic-review-wave46.jsonl",
+      "sha256": "sha256:ff965e2316e4af3fe3f1be85674e879ad9cb57d209f67abec32575af95ac975c"
+    },
+    {
+      "blob": "60ecfb4d31ad5fcf2f073d27d7d6d390c194120a",
+      "bytes": 84971,
+      "path": "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl",
+      "sha256": "sha256:853ec5f2b3784a5711d28c9a4246aff7f0b57bd438d5c84d02bb587d52554f2f"
+    },
+    {
+      "blob": "0da930f12db4600cc183df2e2aaeb26e7fe3c92f",
+      "bytes": 49159,
+      "path": "scaffold/legacy-semantic-review-wave48/legacy-requirement-direct-semantic-review-wave48.jsonl",
+      "sha256": "sha256:5f318d3ba422359305392c305efc851630ca435374974494ccd7cf79e7d42fb0"
+    },
+    {
+      "blob": "11e81064c8745f09f274d4b3930405ab176c84b1",
+      "bytes": 57244,
+      "path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
+      "sha256": "sha256:e1d924c576ac36a51750758ac429b3457f658a8b0f62e802fa2ce7372740c356"
+    },
+    {
+      "blob": "12f13df720962f356ea250ce62b43b5c1d3ed92e",
+      "bytes": 16257,
+      "path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
+      "sha256": "sha256:8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5"
+    },
+    {
+      "blob": "2ee45cc07178d265a8fabf8a903f0d951d63423a",
+      "bytes": 12865,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-output-admission.ts",
+      "sha256": "sha256:dfdbf9bdb2ab14dd8302ad2b9c8f6c717b5527727ca59b6b5cdb87e9983e0bf5"
+    },
+    {
+      "blob": "4ced98b94e9e9a815c187d7b03434339a554db90",
+      "bytes": 55697,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/claude-memory-wake.ts",
+      "sha256": "sha256:34e6e1e49170ae9e19beb8543291cbbb2294a124f59049a50e756771d52bdc91"
+    },
+    {
+      "blob": "74243e6201ab27ae9a7e5bbef1ed86d2644f3502",
+      "bytes": 15260,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/ci-verification-plan.ts",
+      "sha256": "sha256:868694d8f94f676dbbf3091d9ad0dd9f7c62d3216dba0e7110323f6dae1bf669"
+    },
+    {
+      "blob": "6ca50f19ec3150948e04e90de0583921aa9dc0ac",
+      "bytes": 2064,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/github-review-ci-generation.ts",
+      "sha256": "sha256:7fa4e39f792e0a5366f3ed81b7fa892a539b522e862fca9bb978edde8d0022d0"
+    },
+    {
+      "blob": "1bfa799d8033a9a1527363ed21b7c88d9e9042b8",
+      "bytes": 13481,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-slots.ts",
+      "sha256": "sha256:1151a2ddb6b57581759a82bbaf799a722047070d0fa76d422a49bb46628b2168"
+    },
+    {
+      "blob": "6516d20ee2a177b37ba07731be5783f5189acb42",
+      "bytes": 42523,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/ci-execution-telemetry.ts",
+      "sha256": "sha256:e8c3bcbd502bf78153773da0903c702523a0d8fb02dcaa236ba944625bf47a3d"
+    },
+    {
+      "blob": "87e7965d2f3b88150bb6bf58e8bda9f63dcb75cc",
+      "bytes": 3669,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/state-machine-template-planner.ts",
+      "sha256": "sha256:53c7ef8f244d2088eaa4f09f886d7b6961dcb9db99ddbd7e14a5e052a0e069a4"
+    },
+    {
+      "blob": "606019787c4b95551afc2f075960cc7d6bbb940b",
+      "bytes": 22756,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/slot-scheduler-quota-handover.ts",
+      "sha256": "sha256:923b792ed7db89813c3ae12bccdade457e3a5469207c5b6533dfae71491365e5"
+    },
+    {
+      "blob": "3e86efb30df37df20f1482b2e5e333f2088263b7",
+      "bytes": 2255,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/codex-native-worker-policy.ts",
+      "sha256": "sha256:900e535c39cf682941b44c14a0857de643a2f7d8d9df70917726554249cb4da4"
+    },
+    {
+      "blob": "a701ae4ad5c8ad80b800ab76c98897aa6280c3de",
+      "bytes": 17366,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/legacy-adoption.ts",
+      "sha256": "sha256:67dcbbb9af539cd954090dbea20cd462f45ed4d668bfa1a8de7eb706e9917aab"
+    },
+    {
+      "blob": "b04247936047da10ac39e13f230ffeeebb106def",
+      "bytes": 4161,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/provider-handover.ts",
+      "sha256": "sha256:0051049a7b9d6826c53e6dc9395b8bd34fb8291d01d28423dce91fd484f39547"
+    },
+    {
+      "blob": "2a9b8e448c37286422cd8779a443a9a52de79299",
+      "bytes": 16309,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-context-packet.ts",
+      "sha256": "sha256:e0019264841da35c7018cd41931073234f6ddd1926d6f923ba675c1b445e035f"
+    },
+    {
+      "blob": "1f2e936d799f12c248e2c132e89c2eb705642739",
+      "bytes": 6679,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/attempt-escalation.ts",
+      "sha256": "sha256:b0911f34d4a5bf241925c073300c0e23bf1327abd41c92c5abb52cd05f356cdd"
+    },
+    {
+      "blob": "5b6a1910c4616e8a2f820fa2a6be613b579b5378",
+      "bytes": 2522,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/verb-classify.ts",
+      "sha256": "sha256:e25598673776677a3927ac495d4d2d3267cddfafee37bd61a7a78aa9aadbcf4a"
+    },
+    {
+      "blob": "5019f7b70d0c65b133326e9b1c75eff4bd8d0928",
+      "bytes": 1440,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/adapter-policy.ts",
+      "sha256": "sha256:a344b08dff7c0a102c9a512850c95220583f0fa7357353e61375492bd7a9f00d"
+    },
+    {
+      "blob": "808375bf8f8a322cb9bf8536ad46db2e6996bea9",
+      "bytes": 27086,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/adapter.ts",
+      "sha256": "sha256:20f49fbb67631a80a18f11da8457370ef90ca7ce5873b576b66e27e35744d28c"
+    },
+    {
+      "blob": "2ea7ed8ad7cf5261f0aee40477fe79fb20d1d206",
+      "bytes": 21122,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/universal-improvement-finding-qualification.ts",
+      "sha256": "sha256:01c69f48f4786a8e502e210b501b813cd9fbc2f61623c7a1955a6cf29c4f1ae8"
+    },
+    {
+      "blob": "f70a16e744fb941f0c843e464d93584357d65a9d",
+      "bytes": 2847,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-guard-policy.ts",
+      "sha256": "sha256:f2d315428aff3de2154af827c59f29c8b4ab75aa8f2f1635ae5129345b87ae16"
+    },
+    {
+      "blob": "41a797b587758e5a3dba11918bb9be035cf0682e",
+      "bytes": 5361,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-blind-definition.ts",
+      "sha256": "sha256:0217dc0a5c888ea95a5a37964ee6f3b22c5e0dab78eb4359d0ccce9b6e605d44"
+    },
+    {
+      "blob": "4753999cd35972b577a784954eb026879e8c8e13",
+      "bytes": 4166,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/role-judgment.ts",
+      "sha256": "sha256:383741bb020445e878d39819ac99cc1ad4f87ef3f598ffc01421fbfcae97c449"
+    },
+    {
+      "blob": "cfe5ffcfb9fba65a4e0398c4d9e0fee27186f1c1",
+      "bytes": 1720,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/memory-injection.ts",
+      "sha256": "sha256:a92db5358fd3e4505886ce65ff5cddd31697288baa87ad899832bbe5218068fd"
+    },
+    {
+      "blob": "31c6803215c033c18851fab4633aacab5ff60c7b",
+      "bytes": 7432,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-observability-provenance.ts",
+      "sha256": "sha256:ba74a2a22bb69c1ea722f1dc3a6b6afcd7a50e84532a2de67a004abdd07a748e"
+    },
+    {
+      "blob": "3a8c8230e5f7f1e99c62b572fd57777b0f516706",
+      "bytes": 2425,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/issue-metadata-audit.ts",
+      "sha256": "sha256:588c4024d4bbcca4a41701710bf13e68399fe03cdfbba7dec71eb95349f49edd"
+    },
+    {
+      "blob": "0518c453ba545a5d4343ca3d1001a8e815ca344c",
+      "bytes": 4036,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-ssot-runtime-projection.ts",
+      "sha256": "sha256:6ea2694b00e797ddc021981ea7c1d014b81f1b12ac4b6583b0f856f65e318e3c"
+    },
+    {
+      "blob": "6df50559212459eb772d55273528cf78902f8b4c",
+      "bytes": 37098,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/retirement-preserve.ts",
+      "sha256": "sha256:62289fe6684e408c9bbbeb41cfc546586855218b559fbb02f3f5b11c4a2618a0"
+    },
+    {
+      "blob": "a7a723e88fe42798bf55585ebbf53dfdeb99cab7",
+      "bytes": 7675,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/task-lens.ts",
+      "sha256": "sha256:8c3e8d240edccdefeaec72aa82ffd8c811c0c49736d1eac639f5169b77715a6b"
+    },
+    {
+      "blob": "b2d1aad48d638cfb378d0f0123163c6f905f5012",
+      "bytes": 12679,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/ci-responsibility-registry.ts",
+      "sha256": "sha256:e8f0b477d11d4a32f4cd0a845790dc56974015a306d86788d079565d2b877e14"
+    },
+    {
+      "blob": "03b9ebfca970188f0e454740dd2c5042239f26be",
+      "bytes": 7732,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-review-receipt.ts",
+      "sha256": "sha256:76ced4ac5d3ac84dfb08f88a9263133242275dbb5b738a704620f9be6fba9eee"
+    },
+    {
+      "blob": "9b5f17326059d83f196b05574918042afc836e24",
+      "bytes": 10915,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-guard.ts",
+      "sha256": "sha256:62dc35d9af4a52fdaf8a532ba30d44e8cae41eab60aaa6c78639c8c884eea055"
+    },
+    {
+      "blob": "466fe26edb24d63dfa84d9d18d4dc7dec9310cd0",
+      "bytes": 1465,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/memory-commit-hygiene.ts",
+      "sha256": "sha256:000f603c3ce5d8eae1c39943b6cd30a6337d8f900f8c87316ccdc434ea6e874c"
+    },
+    {
+      "blob": "3ec20f5ca0541ac7dd583a3b760e18c4a610d711",
+      "bytes": 33736,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-isolation-broker.ts",
+      "sha256": "sha256:5a0f69619306f27c2c04fac3f05566346aec5c499631d62440d34c7e7b0e220d"
+    },
+    {
+      "blob": "f85775c985eaadcc78d4a0546e84dd2dfbba4a3a",
+      "bytes": 7944,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-isolation-policy.ts",
+      "sha256": "sha256:805e02513c6068ce1b00420fba88d80fd1e8f860e9078f7592153cf3ba6c55b2"
+    },
+    {
+      "blob": "5efdd763e3f76008ee4621b29ba38520592d621e",
+      "bytes": 4275,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/review-feedback-session-intake.ts",
+      "sha256": "sha256:44f4d64fbe27d8f3d3416a45fce5f598ca9adfffc0c0fe606d4c45f015ef67ea"
+    },
+    {
+      "blob": "b7676f271e82da69be67eea1d789de900b0345ee",
+      "bytes": 37699,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/universal-improvement-source-registry.ts",
+      "sha256": "sha256:b0f3c59abd8e275a4665761373fdf36d3d7b625491e87b99b897dd0f12ea9fba"
+    },
+    {
+      "blob": "0f3b0c3bf85a5deaf1236946fd2dce21daebd1eb",
+      "bytes": 12477,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-lifecycle-receipt.ts",
+      "sha256": "sha256:0bffec75b257d7f101ade5e7e54974e13a46e596b714ecf1ed4d747f8553e2a4"
+    },
+    {
+      "blob": "ccabe22ef5faf1c209f87c902d28fee70e817d52",
+      "bytes": 5100,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-session-command-center.ts",
+      "sha256": "sha256:1c3e8a7130d805782d4985658531454099d3aedef5a91189466a57c70ca80ccd"
+    },
+    {
+      "blob": "8aa790438ee8f36486efd37c3b12ce71d2c66ec8",
+      "bytes": 3558,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-mailbox-conflict-locks.ts",
+      "sha256": "sha256:f5b599a2eb4ffdd8cb929d3708afd1982841acb3a46158af7a4d61535163092a"
+    },
+    {
+      "blob": "61eadb0ae7246bd82f67c09479682b63003ff4b3",
+      "bytes": 2749,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-slots-roster.ts",
+      "sha256": "sha256:2ed9b18fb43b81f4b551db6e694a517bc46367a154b027b8487a7cf1165eee4e"
+    },
+    {
+      "blob": "2b290b9dc17e13ce29813d1dafffa8e9a3fa969d",
+      "bytes": 3013,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/document-agent-metadata-write-port.ts",
+      "sha256": "sha256:f88ccaaf39c3fb994a70381d320e30cc8e182abd3bdda8cc77a1ba5580e26c8d"
+    },
+    {
+      "blob": "473ff219cdb6a1ddc4928db7297b2fb576b7bd4b",
+      "bytes": 11955,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-risk-admission.ts",
+      "sha256": "sha256:78443940baec8b5d51e043d892bbc66afc7da3d68051d40229edbad30cbbfad3"
+    },
+    {
+      "blob": "a78662b02bd659f545520ef8282c8f5133f427d2",
+      "bytes": 15622,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/escalation-consult-gate.ts",
+      "sha256": "sha256:7b84df4ecf60be113cf3235e88a624f5a68b5c70d6d97b67e5060dc793e54c35"
+    },
+    {
+      "blob": "e01350a93ce15f445ed13b1d7fb3e68b35369754",
+      "bytes": 10525,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/specialist-agent-registry.ts",
+      "sha256": "sha256:0db8ae86339ccf90607753a7bd7054edb5b07c1a3577ddb34a8154b1fbf18a91"
+    },
+    {
+      "blob": "f56c57442a109c4ff534af1a94ee2572a997eceb",
+      "bytes": 18997,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/ci-critical-path-scheduler.ts",
+      "sha256": "sha256:422379c12afc877d5865eff2841610575259814fef282ecafc9196009285ffb0"
+    },
+    {
+      "blob": "258adfb8ac9a798bda26f529c4fd55b2c8aecbfb",
+      "bytes": 20150,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/impact-ci.ts",
+      "sha256": "sha256:ffd4208d01ff9b00a7e34e69c73959002412b0e0d52ff45eea5971de1c4f9ddc"
+    },
+    {
+      "blob": "2ecff55660368db3a215d7701f9077f190137636",
+      "bytes": 7053,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/agent-catalog-watch.ts",
+      "sha256": "sha256:0b68d28912a5819ad97d010c88cf84aad206a6f6efe09f4072afd252feca316b"
+    },
+    {
+      "blob": "b66f9e52754eea31083cf5768d1e7170eb1c40e7",
+      "bytes": 2254,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/memory-promotion.ts",
+      "sha256": "sha256:4816170737cbda53bf203617a1b9360e726952b1fa18244f32497244fa398e95"
+    },
+    {
+      "blob": "248dfb97e8df67d7399a5b402fe57ba1df73a360",
+      "bytes": 12204,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/ci-deferred-obligation-recovery.ts",
+      "sha256": "sha256:b9665019b3aae03d1352fa31305a4a2b4ae09ca43fd64e247cea1bae92947ed9"
+    },
+    {
+      "blob": "1546f6912c3f764135824e429681e33029b0f998",
+      "bytes": 15955,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-descriptor-admission.ts",
+      "sha256": "sha256:14e67487b627a0043e0cd06630a6ca6aed6a9341901c0311aec99d6b0170cd6d"
+    },
+    {
+      "blob": "d99df2f3eadfc51ed62a28ea5f4c8ce06160c4b4",
+      "bytes": 15234,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/worker-blind-benchmark.ts",
+      "sha256": "sha256:0468b3dd7e491e20c6160014e36dd930db106fccc4aab80952f1283a340ceefd"
+    },
+    {
+      "blob": "22d8ab40e52765c0056627149e16a2d1b344553a",
+      "bytes": 5327,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/document-agent-metadata-apply.ts",
+      "sha256": "sha256:7143e05570c0fa611b340ced9ebce62d17646adaa69eb886bf156f889f8500a2"
+    },
+    {
+      "blob": "c1ccb1189d39e5ebfa537353fc7c77d53630e29c",
+      "bytes": 5062,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/tool-augmentation-registry.ts",
+      "sha256": "sha256:444bbe4e051f4c1c1bffbaaa580f6d92913b40b20cfcd783de6411d3dd0fea0f"
+    },
+    {
+      "blob": "c17d6139ae84ee457cb28936ca44c4e060eba93c",
+      "bytes": 9498,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/universal-improvement-observation-normalizer.ts",
+      "sha256": "sha256:9c3fda2a24eba2b4ab60151029924771f2827ae67522cd4ffc2b60dbfc828f1a"
+    },
+    {
+      "blob": "0646588221e6b3336d611b026c9c4d5e4bcc9ab5",
+      "bytes": 52729,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/continuation.ts",
+      "sha256": "sha256:f3f2d8b70a28c9d3fa9b504a00441e0811ed5a9f45804d304e9e379725dea6ee"
+    },
+    {
+      "blob": "7d45c10cddbef2da95a1dfc2ade71c479d6c40a3",
+      "bytes": 5263,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/skill-memory-hygiene.ts",
+      "sha256": "sha256:44fec8dd062109c309602e0b2c1c0861e3b857f69268182cf14832099d9a5aa5"
+    },
+    {
+      "blob": "f96ccd956c77aff277e2edcfc6f17c5f8f9d0f9f",
+      "bytes": 30651,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/github-cross-review-admission.ts",
+      "sha256": "sha256:dc49bad26c9ed553ce5b040e77f0c95895fad51aa0fe20aa5573360764119cc7"
+    },
+    {
+      "blob": "fea9fb8ac4fe14a38cbce49c45ece2cb65b7e743",
+      "bytes": 38356,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/cli-r00-throughput-baseline.ts",
+      "sha256": "sha256:9998a92fd437cd114bae51e656174597753f949922ad8faa8c243768d576009c"
+    },
+    {
+      "blob": "e2d77c7855660006a2aa4b2c663d73b7d3289658",
+      "bytes": 4411,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/ci-branch-base.ts",
+      "sha256": "sha256:293ff33ad02d32d97b50cdbebf25af2cc85245679c94d4ac93a553b45dce95ab"
+    },
+    {
+      "blob": "6a4903392bf943854648c792ded9e96a777f6d3d",
+      "bytes": 24701,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/session-log.ts",
+      "sha256": "sha256:0a4b6c94207eda8032520142449e6024f4aa2b6cbf77ea5de1d6be2eb2f35626"
+    },
+    {
+      "blob": "2ca56a6a937f4adaf9696eac333a38bb31004522",
+      "bytes": 4897,
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/github-issue-native-graph-provider.ts",
+      "sha256": "sha256:6bff05d5266c4faa4630bcb62483e37a3a5de7d519357305d5b5ea0ff49e8c7e"
+    }
+  ],
+  "negative_cases": [
+    "target_record_omission",
+    "target_record_duplicate",
+    "target_record_extra",
+    "source_digest_tamper",
+    "source_line_text_digest_tamper",
+    "source_line_range_tamper",
+    "source_profile_tamper",
+    "classification_category_tamper",
+    "candidate_product_tamper",
+    "l1_anchor_tamper",
+    "boundary_anchor_tamper",
+    "decision_anchor_tamper",
+    "phase_status_tamper",
+    "history_tamper",
+    "failure_consumer_tamper",
+    "edge_omission",
+    "edge_duplicate",
+    "authority_promotion",
+    "human_judgment_tamper",
+    "record_top_level_extra_key",
+    "source_read_mode_tamper",
+    "inventory_scope_tamper",
+    "inventory_base_source_mode_tamper",
+    "inventory_top_level_tamper",
+    "inventory_target_set_tamper",
+    "inventory_input_omission",
+    "inventory_input_duplicate",
+    "inventory_input_extra_path",
+    "inventory_input_value_tamper",
+    "inventory_denominator_tamper",
+    "inventory_overlap_tamper",
+    "inventory_authority_promotion",
+    "inventory_output_digest_tamper",
+    "inventory_negative_case_tamper",
+    "fixed_BASE_non_ancestor",
+    "generator_profile_oracle_tamper",
+    "base_pin_tamper",
+    "base_source_missing",
+    "classification_count_tamper",
+    "target_wave_edge_count_tamper",
+    "profile_pin_set_tamper",
+    "prior_main_overlap_pin_tamper",
+    "profile_category_tamper",
+    "profile_products_tamper",
+    "profile_l1_anchor_tamper",
+    "profile_source_marker_tamper",
+    "generator_profile_category_tamper",
+    "generator_profile_products_tamper",
+    "generator_profile_l1_tamper",
+    "generator_profile_marker_tamper"
+  ],
+  "old_archive_execution": {
+    "adapter": false,
+    "ci": false,
+    "hook": false,
+    "runtime": false,
+    "source_read": "git show fixed BASE only",
+    "test": false,
+    "workflow": false
+  },
+  "output_sha256": "sha256:c4b769a2f2a2ce6852390a6d400ce819546f0d55ba0e48587e050d8e0955b9ee",
+  "overlap_control": {
+    "main_ids_sha256": "sha256:f3b9828872cdf3958ac3c3e0d27ba5be4cb67b27445b07ac83daa8903da18b29",
+    "main_merged_research_count": 241,
+    "open_candidate_new_count": 196,
+    "open_ids_sha256": "sha256:65409786ed2003836107fccd2011ad36cf9b8085e0cac190aefb76df99bb7026",
+    "rule": "target IDs must be disjoint from fixed validator pins for main241/open196",
+    "target_overlap_main": 0,
+    "target_overlap_open": 0
+  },
+  "schema_revision": 1,
+  "scope": "candidate_needs_semantic_review + implementation_source + src/runtime exact 59 assets",
+  "target_asset_artifact_evidence_kinds": {
+    "implementation_source": 59
+  },
+  "target_asset_ids": [
+    "LEGACY-ASSET-012EA51D011B87B05A5D",
+    "LEGACY-ASSET-0F66E2A823A36187D315",
+    "LEGACY-ASSET-0FF72046071B80359A3D",
+    "LEGACY-ASSET-13BA93ADBFD33682AF62",
+    "LEGACY-ASSET-1C71A99A33A288FF901D",
+    "LEGACY-ASSET-20B55B3292190135B82D",
+    "LEGACY-ASSET-2A13F8D0A8B9E9DC370F",
+    "LEGACY-ASSET-2A7828D8C2AA114D0A1A",
+    "LEGACY-ASSET-2E0E6FFB913F2A4DA67B",
+    "LEGACY-ASSET-3B0429583DCEA146D4DD",
+    "LEGACY-ASSET-41C7692FD16A5DB9AC4C",
+    "LEGACY-ASSET-447711D94AA87E82F544",
+    "LEGACY-ASSET-45D1566ED706CA374CB5",
+    "LEGACY-ASSET-496DC9A161B6E03AD021",
+    "LEGACY-ASSET-4F402D03C2514928D3DE",
+    "LEGACY-ASSET-573CC6D5360F04EEDEE3",
+    "LEGACY-ASSET-57A29D57A3AD07CA4DFF",
+    "LEGACY-ASSET-5A748954441750D244A0",
+    "LEGACY-ASSET-63CA5B35FD7F7873B06C",
+    "LEGACY-ASSET-656954739FE68600D018",
+    "LEGACY-ASSET-6EBB000CE88A053342EC",
+    "LEGACY-ASSET-7339DBE16914B6461DBC",
+    "LEGACY-ASSET-765C29D319A18601C4B6",
+    "LEGACY-ASSET-7B8261E520354DF48FD0",
+    "LEGACY-ASSET-7DF9500E3FB2DEAF4B78",
+    "LEGACY-ASSET-88B0838D2DA14CC06AF0",
+    "LEGACY-ASSET-89AAD6A7A30D59AEB302",
+    "LEGACY-ASSET-8ABCBFC4F18A6AD865EB",
+    "LEGACY-ASSET-8EB0EDD06A4197FD3532",
+    "LEGACY-ASSET-8F18EFF4688F75FFC81C",
+    "LEGACY-ASSET-93040CD4C281E3AC3C06",
+    "LEGACY-ASSET-977081C63ADB4B6DA66C",
+    "LEGACY-ASSET-9C61492DBFD9ED23564C",
+    "LEGACY-ASSET-9CC8ADC4CDBC20F12A64",
+    "LEGACY-ASSET-AAA841EE3711C67DC1EE",
+    "LEGACY-ASSET-B60D38CF260DE6CDC35F",
+    "LEGACY-ASSET-B9158B0AD8DBBE96E40C",
+    "LEGACY-ASSET-B9F026AE27DC9D6CC18C",
+    "LEGACY-ASSET-BCBDD9458145232E78D5",
+    "LEGACY-ASSET-BF2D3287A89CD8C5877D",
+    "LEGACY-ASSET-BFD4C08B3FD051326DC8",
+    "LEGACY-ASSET-C7235C17F972EC7A663A",
+    "LEGACY-ASSET-CA0C7F22EA2ACBBF417E",
+    "LEGACY-ASSET-CB3417C6C933B5786878",
+    "LEGACY-ASSET-CCA2CCE3B1B81B9C3E6C",
+    "LEGACY-ASSET-CF2CB803B354FE85E408",
+    "LEGACY-ASSET-CF70C0AC609614D8AF2E",
+    "LEGACY-ASSET-D1CCFACACCDB6FC251AE",
+    "LEGACY-ASSET-D390493C08A4F62A178C",
+    "LEGACY-ASSET-D470D299F671CB71680F",
+    "LEGACY-ASSET-DC9CCB9A21216186C472",
+    "LEGACY-ASSET-DF6684528CA400101068",
+    "LEGACY-ASSET-DFF9BADFBFC93A632EBA",
+    "LEGACY-ASSET-E1937310AD75D57B1D83",
+    "LEGACY-ASSET-EA1DFC00D984068C2444",
+    "LEGACY-ASSET-EBFE99824F89D778C760",
+    "LEGACY-ASSET-F07DDD78B9BEDD9D2F03",
+    "LEGACY-ASSET-F1BD3A9DFCBB40405A0B",
+    "LEGACY-ASSET-FAAF9B71E2283E1929E1"
+  ],
+  "target_asset_ids_sha256": "sha256:b8d304a4abe5c7d0f7764e1367e7ec35c6ab11104bf6691b34cf44ded0256f03",
+  "target_count": 59,
+  "target_source_paths": [
+    "src/runtime/worker-output-admission.ts",
+    "src/runtime/claude-memory-wake.ts",
+    "src/runtime/ci-verification-plan.ts",
+    "src/runtime/github-review-ci-generation.ts",
+    "src/runtime/agent-slots.ts",
+    "src/runtime/ci-execution-telemetry.ts",
+    "src/runtime/state-machine-template-planner.ts",
+    "src/runtime/slot-scheduler-quota-handover.ts",
+    "src/runtime/codex-native-worker-policy.ts",
+    "src/runtime/legacy-adoption.ts",
+    "src/runtime/provider-handover.ts",
+    "src/runtime/worker-context-packet.ts",
+    "src/runtime/attempt-escalation.ts",
+    "src/runtime/verb-classify.ts",
+    "src/runtime/adapter-policy.ts",
+    "src/runtime/adapter.ts",
+    "src/runtime/universal-improvement-finding-qualification.ts",
+    "src/runtime/agent-guard-policy.ts",
+    "src/runtime/worker-blind-definition.ts",
+    "src/runtime/role-judgment.ts",
+    "src/runtime/memory-injection.ts",
+    "src/runtime/agent-observability-provenance.ts",
+    "src/runtime/issue-metadata-audit.ts",
+    "src/runtime/agent-ssot-runtime-projection.ts",
+    "src/runtime/retirement-preserve.ts",
+    "src/runtime/task-lens.ts",
+    "src/runtime/ci-responsibility-registry.ts",
+    "src/runtime/worker-review-receipt.ts",
+    "src/runtime/agent-guard.ts",
+    "src/runtime/memory-commit-hygiene.ts",
+    "src/runtime/worker-isolation-broker.ts",
+    "src/runtime/worker-isolation-policy.ts",
+    "src/runtime/review-feedback-session-intake.ts",
+    "src/runtime/universal-improvement-source-registry.ts",
+    "src/runtime/worker-lifecycle-receipt.ts",
+    "src/runtime/agent-session-command-center.ts",
+    "src/runtime/agent-mailbox-conflict-locks.ts",
+    "src/runtime/agent-slots-roster.ts",
+    "src/runtime/document-agent-metadata-write-port.ts",
+    "src/runtime/worker-risk-admission.ts",
+    "src/runtime/escalation-consult-gate.ts",
+    "src/runtime/specialist-agent-registry.ts",
+    "src/runtime/ci-critical-path-scheduler.ts",
+    "src/runtime/impact-ci.ts",
+    "src/runtime/agent-catalog-watch.ts",
+    "src/runtime/memory-promotion.ts",
+    "src/runtime/ci-deferred-obligation-recovery.ts",
+    "src/runtime/worker-descriptor-admission.ts",
+    "src/runtime/worker-blind-benchmark.ts",
+    "src/runtime/document-agent-metadata-apply.ts",
+    "src/runtime/tool-augmentation-registry.ts",
+    "src/runtime/universal-improvement-observation-normalizer.ts",
+    "src/runtime/continuation.ts",
+    "src/runtime/skill-memory-hygiene.ts",
+    "src/runtime/github-cross-review-admission.ts",
+    "src/runtime/cli-r00-throughput-baseline.ts",
+    "src/runtime/ci-branch-base.ts",
+    "src/runtime/session-log.ts",
+    "src/runtime/github-issue-native-graph-provider.ts"
+  ],
+  "target_wave_edge_count": 40,
+  "target_wave_linked_asset_count": 37,
+  "wave_files": [
+    {
+      "blob": "78dc47ccf12c093684e958804c8ab9b5268d8d72",
+      "bytes": 20904,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl",
+      "sha256": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b",
+      "wave": 1
+    },
+    {
+      "blob": "178edfe2cd96b4d3c55e4bb70dabcc0abaaafbfe",
+      "bytes": 32211,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl",
+      "sha256": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce",
+      "wave": 2
+    },
+    {
+      "blob": "450c26e6e7c82105c8514f16c32e9d4c96ed197f",
+      "bytes": 35219,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl",
+      "sha256": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55",
+      "wave": 3
+    },
+    {
+      "blob": "7e4e41f11ff3b6936a571da29500d9aeb0bf4357",
+      "bytes": 33848,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl",
+      "sha256": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7",
+      "wave": 4
+    },
+    {
+      "blob": "32546a347b191200c9e666ad351f777d2fba45a7",
+      "bytes": 38724,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl",
+      "sha256": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a",
+      "wave": 5
+    },
+    {
+      "blob": "35edc3ca413196b4020e34665a3e9889c06de768",
+      "bytes": 48334,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl",
+      "sha256": "sha256:eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4",
+      "wave": 6
+    },
+    {
+      "blob": "6a743c7d5751c690fab5c13412bd0e27eb9af4f1",
+      "bytes": 38977,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl",
+      "sha256": "sha256:610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f",
+      "wave": 7
+    },
+    {
+      "blob": "af6a38235d072b7bcd2dd0caafe0ba97186c4cdf",
+      "bytes": 42401,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl",
+      "sha256": "sha256:82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0",
+      "wave": 8
+    },
+    {
+      "blob": "6ea3f9b564f53022de441fa46fd6381caae0df49",
+      "bytes": 43249,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl",
+      "sha256": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e",
+      "wave": 9
+    },
+    {
+      "blob": "d5757b69aef21716c33e3babed85adeec8aeaf3e",
+      "bytes": 47456,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl",
+      "sha256": "sha256:f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef",
+      "wave": 10
+    },
+    {
+      "blob": "1adb65bc2c7fa7a9e4a674997e17d9ddfe1b8cf2",
+      "bytes": 36787,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl",
+      "sha256": "sha256:66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0",
+      "wave": 11
+    },
+    {
+      "blob": "80816ad890c14eadcfb9dbdbff5fd2518bad437a",
+      "bytes": 38598,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl",
+      "sha256": "sha256:1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566",
+      "wave": 12
+    },
+    {
+      "blob": "ea06f4827b9daf95ad9035ab7dc93806eca1b893",
+      "bytes": 43388,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl",
+      "sha256": "sha256:f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f",
+      "wave": 13
+    },
+    {
+      "blob": "81823365d88719d60734b01480bd1f592704d27b",
+      "bytes": 37074,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl",
+      "sha256": "sha256:361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199",
+      "wave": 14
+    },
+    {
+      "blob": "91ec566994ade7c7228a73090a1d1dabddc3e8c9",
+      "bytes": 37546,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl",
+      "sha256": "sha256:fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953",
+      "wave": 15
+    },
+    {
+      "blob": "c214accd8bf7c049f42b98d5bcbd3f3036e8e3d1",
+      "bytes": 42337,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl",
+      "sha256": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6",
+      "wave": 16
+    },
+    {
+      "blob": "c623f3426ef1030453d812a91b24ce3dfbb8dd17",
+      "bytes": 41267,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl",
+      "sha256": "sha256:85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac",
+      "wave": 17
+    },
+    {
+      "blob": "686a4a61f86f0dc0137448c148a9e23a21bf72d3",
+      "bytes": 80309,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl",
+      "sha256": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15",
+      "wave": 18
+    },
+    {
+      "blob": "cd48a9be78f469000832fcdb3afe190132c8f603",
+      "bytes": 62299,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave19.jsonl",
+      "sha256": "sha256:93024399f21cf03c439a81935f473b07e57e0827efb39ce05c0be64a7432a258",
+      "wave": 19
+    },
+    {
+      "blob": "0b4a189114f0f187ba1f685516e6760572dd935a",
+      "bytes": 78126,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave20.jsonl",
+      "sha256": "sha256:e7983f9a07bd4ca939450e034b24499daaeff889317e7789779d82a90adafe49",
+      "wave": 20
+    },
+    {
+      "blob": "da58f53b6e9d15a56a96b2256c9defbbc6516183",
+      "bytes": 99977,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave21.jsonl",
+      "sha256": "sha256:8b726497d90cd4c430cafb5646765099af5898c1fd4200b693412b95ac1e0264",
+      "wave": 21
+    },
+    {
+      "blob": "a16978acb5edd3d9febc24cb83d7e7a2d73fa946",
+      "bytes": 63604,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave22.jsonl",
+      "sha256": "sha256:f86ec2357fc2a79f18310a09bf8eee7cbabf5e620d86d671aec6f76987826dcc",
+      "wave": 22
+    },
+    {
+      "blob": "1b7e8226b40ba516beb26460d671519f4c01f768",
+      "bytes": 43312,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonl",
+      "sha256": "sha256:b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423",
+      "wave": 23
+    },
+    {
+      "blob": "adec8c103587b640293dc884f43197e6e52cfdf8",
+      "bytes": 42556,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave24.jsonl",
+      "sha256": "sha256:bda37af1258af965f5137d063ba134b3185eaec7f1d88ba03d64a0e94efcb455",
+      "wave": 24
+    },
+    {
+      "blob": "760f51df7a862b5502f3115a6f6532a2981e820a",
+      "bytes": 41987,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave25.jsonl",
+      "sha256": "sha256:d30e7658f2d82448f56b85a516c416b1b1ddf4f14c82a592b71842d2e5f37bb3",
+      "wave": 25
+    },
+    {
+      "blob": "27823cfa7116d9af1d4a6856bf78129c38f8cc85",
+      "bytes": 49437,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave26.jsonl",
+      "sha256": "sha256:e196c2d6abae0db6f00faa0502356a7bdff6de234bfe5a504dfdd5e6bebb699b",
+      "wave": 26
+    },
+    {
+      "blob": "64a6690504bb73191896cfa2a4fe7aeb18757eca",
+      "bytes": 73404,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonl",
+      "sha256": "sha256:9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6",
+      "wave": 27
+    },
+    {
+      "blob": "ec4d8015260817adcd22e5769e405501a35cb8d4",
+      "bytes": 108402,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl",
+      "sha256": "sha256:1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40",
+      "wave": 28
+    },
+    {
+      "blob": "7f74d2ee5ca93f00617ba4e791a1c479ce2717e1",
+      "bytes": 107633,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl",
+      "sha256": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29",
+      "wave": 29
+    },
+    {
+      "blob": "639b0948ab9d5610c31fdbd12a9416ec9a0692da",
+      "bytes": 76823,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave30.jsonl",
+      "sha256": "sha256:a7e3e9d86d91fbd783cc5581611dc7e7f9a7f199a03e9d312f01f24fd8c4613f",
+      "wave": 30
+    },
+    {
+      "blob": "50580ee453433f49a582216dc67d9eedddad969f",
+      "bytes": 69557,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave31.jsonl",
+      "sha256": "sha256:51d54950943f7bc251a1bc22a103a2d3b81dc9190cdd778cce0178d857039383",
+      "wave": 31
+    },
+    {
+      "blob": "42893b7cafa8a4fb4e185d9677e80bde86cd1e53",
+      "bytes": 145447,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave32.jsonl",
+      "sha256": "sha256:e9e51ed364e9f76cb02f7b66f364f87486ac95aaa43fd010645c789fcecd09fe",
+      "wave": 32
+    },
+    {
+      "blob": "40dc848f39f96a3a7228aadd1c96f34b49ad216a",
+      "bytes": 153339,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonl",
+      "sha256": "sha256:701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f",
+      "wave": 33
+    },
+    {
+      "blob": "9eac87525345c169224c56c0267315df078d01f4",
+      "bytes": 215239,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave34.jsonl",
+      "sha256": "sha256:4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da",
+      "wave": 34
+    },
+    {
+      "blob": "05ed3f9be9f48e6fc2d5470de3478f911aded947",
+      "bytes": 184459,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave35.jsonl",
+      "sha256": "sha256:02713e03967810fb7ba6faf6b7c9dd561c45fbd36c23972317d8603c1fde2b12",
+      "wave": 35
+    },
+    {
+      "blob": "4a553567c8ce88c5ead9b14913b373e3ff4e3afc",
+      "bytes": 130645,
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
+      "sha256": "sha256:fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523",
+      "wave": 36
+    },
+    {
+      "blob": "fcb5e148f7c0dc12b59d06e1280eb26957aaa6e4",
+      "bytes": 48233,
+      "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl",
+      "sha256": "sha256:25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a",
+      "wave": 37
+    },
+    {
+      "blob": "8550cf3e8221331c0c586a0613917826732e12e9",
+      "bytes": 46439,
+      "path": "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
+      "sha256": "sha256:df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8",
+      "wave": 38
+    },
+    {
+      "blob": "d673ab07ddeebaa8c593922086834feb688342e3",
+      "bytes": 84316,
+      "path": "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.jsonl",
+      "sha256": "sha256:c94785daaef0f3a2546e3d7a906e606d499a81e180d65dcc2c5d7ffd04996c8d",
+      "wave": 39
+    },
+    {
+      "blob": "dc6cc8c933de3ff736d0549ed860873df210ffda",
+      "bytes": 59816,
+      "path": "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
+      "sha256": "sha256:c98bf42916ef053050799e289bec8b28b7af3a0d62d2dc9e6adb30fdb606b3a8",
+      "wave": 40
+    },
+    {
+      "blob": "4f3bcdc07c6333fbe1e178e75e0ae3f3b9b5d31e",
+      "bytes": 55975,
+      "path": "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.jsonl",
+      "sha256": "sha256:03222010e1e8f67e4846ce006adb604fc3742b88d2e39e6eab01123f288563c5",
+      "wave": 41
+    },
+    {
+      "blob": "47d5d9a6319828ca040ab8cb9fa3a421356d9a91",
+      "bytes": 64863,
+      "path": "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.jsonl",
+      "sha256": "sha256:95ff19ec877bb847510ee5f99565816e42bb59ffb60627145de03c2d24e56072",
+      "wave": 42
+    },
+    {
+      "blob": "08d54a03591e7971da579c088b864d5d6ac4daca",
+      "bytes": 66938,
+      "path": "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.jsonl",
+      "sha256": "sha256:293962d91807a1c7f4e553e57db1fa854f1a904f34c4a53eee86d6dbb1ae9982",
+      "wave": 43
+    },
+    {
+      "blob": "b2b0bb9f2311100171e5fee75f0437e6ef2b9662",
+      "bytes": 164754,
+      "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
+      "sha256": "sha256:2fd638f0dc975fc03790f03d34b579ba5513a1b8420d8c3b09c2c53b108a38f6",
+      "wave": 44
+    },
+    {
+      "blob": "a11497ef4f03b7ece64cea54de9e61ac23518013",
+      "bytes": 80687,
+      "path": "scaffold/legacy-semantic-review-wave45/legacy-requirement-direct-semantic-review-wave45.jsonl",
+      "sha256": "sha256:aa5328123645c1b8dc90dc2f04ff3ac007dfbdeda599bd66ccb6ad14441cebc6",
+      "wave": 45
+    },
+    {
+      "blob": "bd4833ea7271a589e2a8adfc2ed06b806b273738",
+      "bytes": 69076,
+      "path": "scaffold/legacy-semantic-review-wave46/legacy-requirement-direct-semantic-review-wave46.jsonl",
+      "sha256": "sha256:ff965e2316e4af3fe3f1be85674e879ad9cb57d209f67abec32575af95ac975c",
+      "wave": 46
+    },
+    {
+      "blob": "60ecfb4d31ad5fcf2f073d27d7d6d390c194120a",
+      "bytes": 84971,
+      "path": "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl",
+      "sha256": "sha256:853ec5f2b3784a5711d28c9a4246aff7f0b57bd438d5c84d02bb587d52554f2f",
+      "wave": 47
+    },
+    {
+      "blob": "0da930f12db4600cc183df2e2aaeb26e7fe3c92f",
+      "bytes": 49159,
+      "path": "scaffold/legacy-semantic-review-wave48/legacy-requirement-direct-semantic-review-wave48.jsonl",
+      "sha256": "sha256:5f318d3ba422359305392c305efc851630ca435374974494ccd7cf79e7d42fb0",
+      "wave": 48
+    },
+    {
+      "blob": "11e81064c8745f09f274d4b3930405ab176c84b1",
+      "bytes": 57244,
+      "path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
+      "sha256": "sha256:e1d924c576ac36a51750758ac429b3457f658a8b0f62e802fa2ce7372740c356",
+      "wave": 49
+    },
+    {
+      "blob": "12f13df720962f356ea250ce62b43b5c1d3ed92e",
+      "bytes": 16257,
+      "path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
+      "sha256": "sha256:8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5",
+      "wave": 50
+    }
+  ]
+}

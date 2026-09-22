@@ -1,0 +1,149 @@
+{
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0133.json",
+    "scaffold/legacy-runtime-residual-product-classification-0133/README.md",
+    "scaffold/legacy-runtime-residual-product-classification-0133/PR-DRAFT.md",
+    "scaffold/legacy-runtime-residual-product-classification-0133/generate.py",
+    "scaffold/legacy-runtime-residual-product-classification-0133/validate.py",
+    "scaffold/legacy-runtime-residual-product-classification-0133/selfcheck.py",
+    "scaffold/legacy-runtime-residual-product-classification-0133/inventory.json",
+    "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl"
+  ],
+  "connections": {
+    "boundary": "research evidence only; no formal product or implementation authority",
+    "consumers": [
+      "parent product-classification research ledger",
+      "GUI review handoff after author validation"
+    ],
+    "dependencies": [
+      "fixed BASE phase/disposition/decision/read-after snapshots",
+      "approved four-product L1 and product-boundary",
+      "Wave1-50 static semantic link snapshots",
+      "main241/open196 fixed prior research ID pins"
+    ]
+  },
+  "created": "2026-09-23",
+  "id": "SCF-B-0133",
+  "kind": "scaffold",
+  "obligations": [
+    "固定BASEからcandidate_needs_semantic_review + implementation_source + src/runtime exact59 asset ID/pathを独立再導出し欠落・重複・余分を拒否する",
+    "各archive sourceのGit blob/bytes/digest/line countと具体span・行digestを保持する",
+    "direct/conflict/insufficientをsource span・L1・product-boundary・decision意味・反証つきで区別しpathだけでownerを決めない",
+    "phase/history/failure/consumer/read-after/Wave edgeを候補分類から分離する",
+    "main241/open196との重複0、asset分母59、Wave edge分母40を固定する",
+    "旧archive source/runtime/test/hook/adapter/CIを実行せず独立validator/selfcheckを維持する"
+  ],
+  "operations": {
+    "allowed": [
+      "read fixed BASE and archive bytes statically",
+      "write scaffold bundle and Binding",
+      "run deterministic generator/validator/selfcheck/scfctl"
+    ],
+    "forbidden": [
+      "execute archive legacy source/runtime/test/hook/adapter/CI",
+      "promote candidate to formal owner/phase/successor/implementation",
+      "modify existing ledgers or Wave snapshots",
+      "merge/close/deploy"
+    ]
+  },
+  "owner_candidate": "四製品product-boundary研究（正式owner未解決）",
+  "product": "HELIX-OS",
+  "reason": "固定BASEのcandidate_needs_semantic_review implementation_source src/runtime 59資産を、旧source具体span、承認済みL1、product-boundary、decision意味、旧判断史・failure・consumer・read-afterで静的照合する。product欄はScaffold登録先であり単一ownerを表さない。",
+  "replacement": {
+    "formal_artifacts": [],
+    "issue": 0,
+    "role_target": null,
+    "status": "pending"
+  },
+  "role": "legacy-runtime-residual-product-boundary-research-0133-static",
+  "schema_revision": 1,
+  "state": "registered",
+  "title": "固定BASE src/runtime residual 59件の四製品責務候補研究",
+  "updated": "2026-09-23",
+  "upstream": [
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md",
+      "sha256": "4a2e2f4799a7c0981330d608b5a4b3dc883150bcc9e22090be72bb2d8e5c230b"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md",
+      "sha256": "5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5"
+    }
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "negative_cases": [
+      "target omission/duplicate/extra and exact record equality",
+      "source blob/line/span digest and static read mode",
+      "classification category/products/basis/L1 anchor/source marker -> E_CLASSIFICATION",
+      "classification count and Wave edge denominator -> E_CLASSIFICATION/E_EDGE_SET",
+      "manual PROFILE_PINS set and main overlap pin -> E_TARGET_SET/E_OVERLAP",
+      "generator PROFILE_PINS category/products/L1/marker/reason mutation and regeneration -> E_CLASSIFICATION/E_RECORD_EVIDENCE",
+      "L1/boundary/decision anchor and phase/history/failure/consumer/read-after tamper",
+      "inventory input/target/output/authority/negative-case mutation",
+      "fixed BASE pin/source/ancestor, including actual CalledProcessError guards"
+    ],
+    "oracles": [
+      "validator independently derives fixed BASE 59 target set and source anchors without importing generate.py",
+      "validator pins main241/open196 ID sets with recorded prior-bundle provenance and checks overlap empty",
+      "PROFILE_PINS are manually authored semantic-review literals duplicated independently in generate.py and validate.py; they are not BASE-derived at runtime",
+      "selfcheck executes 50 negative cases with expected error codes, including generator category/products/L1/marker/reason mutations, category/edge/pin/base-source guards and inventory base_source_mode tamper",
+      "validator checks raw L1 metadata separately from effective approved decision and concrete product boundary anchors"
+    ],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ]
+  }
+}
