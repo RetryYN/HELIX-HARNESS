@@ -33,13 +33,13 @@
     "multi_product_conflict": "requires separately reviewed source spans proving two product boundaries (none admitted in this bundle)"
   },
   "counts": {
-    "artifact_evidence_kinds": {
-      "implementation_source": 95
-    },
     "categories": {
       "direct_product_basis": 14,
       "insufficient_basis": 81,
       "multi_product_conflict": 0
+    },
+    "target_asset_artifact_evidence_kinds": {
+      "implementation_source": 95
     },
     "target_assets": 95,
     "target_phase_candidate_distribution": {
@@ -1287,6 +1287,7 @@
     "inventory_scope_tamper",
     "inventory_formal_update_tamper",
     "inventory_classification_rule_tamper",
+    "inventory_counts_artifact_kind_tamper",
     "fixed_BASE_non_ancestor"
   ],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",

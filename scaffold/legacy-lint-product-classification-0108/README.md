@@ -22,4 +22,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorは固定BASE祖先性、input path集合・digest、95件exact set、598/355 Wave分母、17 edge欠落／重複、source blob／bytes／digest／line_count／read_mode／semantic line anchor、14件manual span／L1／反証／consumer boundary、81件pending宣言、phase／disposition未変更、record／inventory全宣言、四製品boundary／L1／failure／consumer行digest、authority昇格をfail-closedに検査する。selfcheckは22 negative casesを期待error code付きで検査する。
+validatorは固定BASE祖先性、input path集合・digest、95件exact set、598/355 Wave分母、17 edge欠落／重複、source blob／bytes／digest／line_count／read_mode／semantic line anchor、14件manual span／L1／反証／consumer boundary、81件pending宣言、phase／disposition未変更、record／inventory全宣言、target asset artifact kind分母、四製品boundary／L1／failure／consumer行digest、authority昇格をfail-closedに検査する。selfcheckは23 negative casesを期待error code付きで検査する。

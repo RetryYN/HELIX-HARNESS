@@ -15,7 +15,7 @@ BUNDLE = ROOT / "scaffold/legacy-lint-product-classification-0108"
 LEDGER = BUNDLE / "classification-research.jsonl"
 INVENTORY = BUNDLE / "inventory.json"
 BASE_REVISION = g.BASE_REVISION
-EXPECTED_NEGATIVE_CASES = ["target_record_omission", "target_record_duplicate", "edge_omission", "edge_duplicate", "source_digest_tamper", "source_line_text_digest_tamper", "source_profile_tamper", "candidate_product_tamper", "authority_promotion", "boundary_line_digest_tamper", "input_digest_omission", "input_digest_duplicate", "input_digest_extra_path", "manual_semantic_review_tamper", "manual_review_inventory_tamper", "record_top_level_extra_key", "source_read_mode_tamper", "inventory_authority_promotion", "inventory_scope_tamper", "inventory_formal_update_tamper", "inventory_classification_rule_tamper", "fixed_BASE_non_ancestor"]
+EXPECTED_NEGATIVE_CASES = ["target_record_omission", "target_record_duplicate", "edge_omission", "edge_duplicate", "source_digest_tamper", "source_line_text_digest_tamper", "source_profile_tamper", "candidate_product_tamper", "authority_promotion", "boundary_line_digest_tamper", "input_digest_omission", "input_digest_duplicate", "input_digest_extra_path", "manual_semantic_review_tamper", "manual_review_inventory_tamper", "record_top_level_extra_key", "source_read_mode_tamper", "inventory_authority_promotion", "inventory_scope_tamper", "inventory_formal_update_tamper", "inventory_classification_rule_tamper", "inventory_counts_artifact_kind_tamper", "fixed_BASE_non_ancestor"]
 RECORD_KEYS = frozenset({
     "artifact_evidence_kinds", "asset_id", "asset_ledger", "authority_effect",
     "boundary_evidence", "candidate_products", "classification_category",
@@ -232,7 +232,8 @@ def verify() -> dict:
     expected_counts = {"direct_product_basis": expected_categories["direct_product_basis"], "multi_product_conflict": expected_categories["multi_product_conflict"], "insufficient_basis": expected_categories["insufficient_basis"]}
     counts = inventory.get("counts", {})
     phase_distribution = Counter(tuple(phase_by_asset[a][1].get("candidate_phase_targets") or []) for a in targets)
-    expected_counts_block = {"wave_files": 50, "wave_edges": 598, "wave_unique_assets": 355, "target_assets": 95, "target_wave_edges": expected_edges, "target_wave_linked_assets": sum(bool(by_asset.get(a)) for a in targets), "categories": expected_counts, "artifact_evidence_kinds": {"implementation_source": 95}, "target_phase_candidate_distribution": {"|".join(k): v for k, v in sorted(phase_distribution.items())}}
+    target_asset_evidence_kinds = Counter(phase_by_asset[a][1].get("artifact_evidence_kind") for a in targets)
+    expected_counts_block = {"wave_files": 50, "wave_edges": 598, "wave_unique_assets": 355, "target_assets": 95, "target_wave_edges": expected_edges, "target_wave_linked_assets": sum(bool(by_asset.get(a)) for a in targets), "categories": expected_counts, "target_asset_artifact_evidence_kinds": dict(sorted(target_asset_evidence_kinds.items())), "target_phase_candidate_distribution": {"|".join(k): v for k, v in sorted(phase_distribution.items())}}
     if counts != expected_counts_block: fail("E_EXPECTED_DENOMINATOR", "inventory counts mismatch")
     manual_ids = sorted(r["asset_id"] for r in rows if r.get("manual_semantic_review", {}).get("status") == "reviewed_candidate")
     expected_review_counts = {"source_semantic_reviewed": len(manual_ids), "source_semantic_review_pending": 95 - len(manual_ids), "direct_candidate_basis": expected_categories["direct_product_basis"], "multi_product_conflict": expected_categories["multi_product_conflict"], "insufficient_basis": expected_categories["insufficient_basis"]}

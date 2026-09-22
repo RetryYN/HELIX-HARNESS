@@ -77,6 +77,7 @@ def inventory_authority(inv): inv["authority_boundary"]["authority_effect"] = "a
 def inventory_scope(inv): inv["scope"] = "all source owners approved"
 def inventory_formal_update(inv): inv["formal_update"]["product_route_updated"] = True
 def inventory_classification_rule(inv): inv["classification_rule"]["direct_product_basis"] = "filename only"
+def inventory_counts_artifact_kind(inv): inv["counts"]["target_asset_artifact_evidence_kinds"] = {"implementation_source": 17}
 
 
 run_case("target record omission", "E_TARGET_SET", mutate_rows=remove_record)
@@ -100,5 +101,6 @@ run_case("inventory authority promotion", "E_INVENTORY_DECLARATION", mutate_inve
 run_case("inventory scope tamper", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_scope)
 run_case("inventory formal update tamper", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_formal_update)
 run_case("inventory classification rule tamper", "E_INVENTORY_DECLARATION", mutate_inventory=inventory_classification_rule)
+run_case("inventory counts artifact kind tamper", "E_EXPECTED_DENOMINATOR", mutate_inventory=inventory_counts_artifact_kind)
 run_case("fixed BASE non-ancestor", "E_BASE_NOT_ANCESTOR", mutate_module=non_ancestor)
-print("SCF-B-0108 selfcheck: PASS negative_cases=22")
+print("SCF-B-0108 selfcheck: PASS negative_cases=23")
