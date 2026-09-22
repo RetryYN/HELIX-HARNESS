@@ -20,6 +20,7 @@ EXPECTED_IDS = {
     "HIL-TR-08", "HIL-TR-09", "HIL-TR-11",
 }
 BOUNDARY_LINES = {"HELIX-HARNESS": 36, "HELIX-OS": 37, "HELIX-Web": 38, "HELIX-Web-OS": 39}
+BOUNDARY_INTERPRETATION = "HARNESSは工程・提供契約、HELIX-OSは管理・Worker・CI・状態・改善の責務。candidateは正式ownerを確定しない。"
 
 
 def sha_file(path: Path) -> str:
@@ -55,6 +56,14 @@ def blob(path: str) -> str:
     return subprocess.check_output(["git", "rev-parse", "HEAD:" + path], cwd=ROOT, text=True).strip()
 
 
+def line_anchor(path: str, line: int):
+    lines = (ROOT / path).read_text(encoding="utf-8").splitlines()
+    if line < 1 or line > len(lines):
+        return None, None
+    text = lines[line - 1]
+    return text, hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
 def error(code: str, message: str) -> str:
     return f"{code}: {message}"
 
@@ -79,6 +88,47 @@ def statement_line_anchor(requirement_id: str):
     return None, None, None
 
 
+def base_ancestor_errors(base_head: str = EXPECTED_BASE, head: str = "HEAD"):
+    """固定BASEが検証対象HEADの祖先であることを確認する。"""
+    errors = []
+    if subprocess.run(
+        ["git", "merge-base", "--is-ancestor", base_head, head],
+        cwd=ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    ).returncode != 0:
+        errors.append(error("E_BASE_NOT_ANCESTOR", f"base={base_head} head={head}"))
+    return errors
+
+
+def validate_inventory(inventory, check_ancestor: bool = True):
+    errors = []
+    if inventory.get("base_head") != EXPECTED_BASE:
+        errors.append(error("E_BASE_HEAD", f"base_head={inventory.get('base_head')}"))
+    elif check_ancestor:
+        errors.extend(base_ancestor_errors(inventory.get("base_head")))
+    if inventory.get("record_count") != 18 or inventory.get("queue_unchanged") is not True:
+        errors.append(error("E_INVENTORY", "inventory count/queue_unchanged不一致"))
+    for entry in inventory.get("input_digests", []):
+        path = entry.get("path")
+        if not path:
+            errors.append(error("E_INPUT_DIGEST", "input digest path missing"))
+            continue
+        source = ROOT / path
+        if not source.exists():
+            errors.append(error("E_INPUT_DIGEST", f"input missing: {path}"))
+            continue
+        if sha_file(source) != entry.get("sha256"):
+            errors.append(error("E_INPUT_DIGEST", f"input bytes digest drift: {path}"))
+        try:
+            current_blob = blob(path)
+        except subprocess.CalledProcessError:
+            current_blob = None
+        if current_blob != entry.get("blob"):
+            errors.append(error("E_INPUT_BLOB", f"input Git blob drift: {path}"))
+    return errors
+
+
 def validate_records(records, check_files: bool = True):
     errors = []
     queue_rows, queue_lines = load_jsonl("docs/governance/legacy-ir-target-routing-queue.jsonl")
@@ -88,7 +138,11 @@ def validate_records(records, check_files: bool = True):
     crosswalk_rows, crosswalk_lines = load_crosswalk()
     ledger_rows, _ = load_jsonl("docs/governance/legacy-asset-disposition.jsonl")
     ledger = {item.get("asset_id"): item for item in ledger_rows}
-    queue = {item.get("requirement_id"): item for item in queue_rows}
+    unresolved_queue_rows = [item for item in queue_rows if item.get("target_resolution_status") == "unresolved_target"]
+    unresolved_queue_ids = {item.get("requirement_id") for item in unresolved_queue_rows}
+    if unresolved_queue_ids != EXPECTED_IDS or len(unresolved_queue_rows) != len(EXPECTED_IDS):
+        errors.append(error("E_QUEUE_SET", f"queueから動的再導出したunresolved_target set不一致 missing={sorted(EXPECTED_IDS-unresolved_queue_ids)} extra={sorted(unresolved_queue_ids-EXPECTED_IDS)} count={len(unresolved_queue_rows)}"))
+    queue = {item.get("requirement_id"): item for item in unresolved_queue_rows}
     routing = {item.get("source_requirement_id"): item for item in routing_rows}
     decomposition = {item.get("source_requirement_id"): item for item in decomp_rows}
     corrections = {item.get("source_requirement_id") for item in correction_rows}
@@ -136,6 +190,11 @@ def validate_records(records, check_files: bool = True):
             errors.append(error("E_SOURCE_DIGEST", f"{rid}: old IR file digest不一致"))
 
         qs = item.get("queue_status", {})
+        for key in ("target_resolution_status", "candidate_product_targets", "original_target_assessment", "unresolved_reason"):
+            if qs.get(key) != q.get(key):
+                errors.append(error("E_QUEUE_STATE", f"{rid}: queue台帳の動的再導出値 {key} とrecordが不一致"))
+        if q.get("target_resolution_status") != "unresolved_target" or q.get("candidate_product_targets") != []:
+            errors.append(error("E_QUEUE_SOURCE_STATE", f"{rid}: queue台帳自身が18件unresolved空候補の契約に不一致"))
         if qs.get("target_resolution_status") != "unresolved_target" or qs.get("candidate_product_targets") != []:
             errors.append(error("E_QUEUE_STATE", f"{rid}: queue unresolved stateを変形"))
         prior = item.get("prior_routing", {})
@@ -201,8 +260,29 @@ def validate_records(records, check_files: bool = True):
         if boundary.get("evaluated_products") != ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]:
             errors.append(error("E_CANDIDATE_BOUNDARY", f"{rid}: four-product evaluated set drift"))
         refs = boundary.get("boundary_refs", [])
-        if {x.get("line") for x in refs} != set(BOUNDARY_LINES.values()) or any(x.get("path") != "docs/concept/product-boundary.md" for x in refs):
-            errors.append(error("E_BOUNDARY_REFERENCE", f"{rid}: product-boundary path/line不一致"))
+        expected_boundary_blob = blob("docs/concept/product-boundary.md")
+        expected_refs = []
+        for product in ("HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"):
+            line = BOUNDARY_LINES[product]
+            line_text, line_digest = line_anchor("docs/concept/product-boundary.md", line)
+            expected_refs.append({
+                "product": product,
+                "path": "docs/concept/product-boundary.md",
+                "blob": expected_boundary_blob,
+                "line": line,
+                "line_text": line_text,
+                "line_text_sha256": line_digest,
+            })
+        if refs != expected_refs:
+            if any(x.get("blob") != expected_boundary_blob for x in refs):
+                errors.append(error("E_BOUNDARY_BLOB", f"{rid}: product-boundary blob不一致"))
+            if any(x.get("line_text") != expected.get("line_text") or x.get("line_text_sha256") != expected.get("line_text_sha256") for x, expected in zip(refs, expected_refs)):
+                errors.append(error("E_BOUNDARY_LINE_ANCHOR", f"{rid}: product-boundary実行行または行digest不一致"))
+            if not any(item.startswith("E_BOUNDARY_BLOB:") for item in errors[-4:]) and not any(item.startswith("E_BOUNDARY_LINE_ANCHOR:") for item in errors[-4:]):
+                errors.append(error("E_BOUNDARY_REFERENCE", f"{rid}: product-boundary path/product/line参照不一致"))
+        expected_interpretation_digest = hashlib.sha256(BOUNDARY_INTERPRETATION.encode("utf-8")).hexdigest()
+        if boundary.get("interpretation") != BOUNDARY_INTERPRETATION or boundary.get("interpretation_sha256") != expected_interpretation_digest:
+            errors.append(error("E_BOUNDARY_INTERPRETATION", f"{rid}: product-boundary interpretationまたはdigest不一致"))
         if item.get("authority_effect") != "none" or item.get("meaning_change_applied") is not False or item.get("successor_assignment_status") != "unassigned":
             errors.append(error("E_AUTHORITY_BOUNDARY", f"{rid}: authority/meaning/successor promoted"))
         if item.get("legacy_execution_performed") is not False:
@@ -221,11 +301,9 @@ def main() -> int:
         print("\n".join(errors), file=sys.stderr)
         return 1
     inventory = json.loads((BUNDLE / "inventory.json").read_text(encoding="utf-8"))
-    if inventory.get("base_head") != EXPECTED_BASE:
-        print(error("E_BASE_HEAD", f"base_head={inventory.get('base_head')}"), file=sys.stderr)
-        return 1
-    if inventory.get("record_count") != 18 or inventory.get("queue_unchanged") is not True:
-        print(error("E_INVENTORY", "inventory count/queue_unchanged不一致"), file=sys.stderr)
+    inventory_errors = validate_inventory(inventory)
+    if inventory_errors:
+        print("\n".join(inventory_errors), file=sys.stderr)
         return 1
     print("SCF-B-0100 validate: PASS records=18 candidate_units=27 queue_unchanged=true")
     return 0

@@ -9,7 +9,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from validate import validate_records  # noqa: E402
+from validate import base_ancestor_errors, validate_records  # noqa: E402
 
 
 def load():
@@ -44,6 +44,18 @@ def main():
     source_line_digest[0]["source_exact"]["line_text_sha256"] = "0" * 64
     expects("source_line_digest_tamper", source_line_digest, "E_SOURCE_LINE_DIGEST")
 
+    queue_status = copy.deepcopy(base)
+    queue_status[0]["queue_status"]["target_resolution_status"] = "resolved_target"
+    expects("queue_status_tamper", queue_status, "E_QUEUE_STATE")
+
+    boundary_blob = copy.deepcopy(base)
+    boundary_blob[0]["product_boundary"]["boundary_refs"][0]["blob"] = "0" * 40
+    expects("boundary_blob_tamper", boundary_blob, "E_BOUNDARY_BLOB")
+
+    boundary_interpretation = copy.deepcopy(base)
+    boundary_interpretation[0]["product_boundary"]["interpretation"] = "tampered"
+    expects("boundary_interpretation_tamper", boundary_interpretation, "E_BOUNDARY_INTERPRETATION")
+
     target = copy.deepcopy(base)
     target[0]["decomposition_candidate"]["candidate_product_targets"].append("HELIX-Web")
     expects("candidate_product_boundary_tamper", target, "E_CANDIDATE_BOUNDARY")
@@ -67,7 +79,10 @@ def main():
     execution[0]["legacy_execution_performed"] = True
     expects("legacy_execution_promotion", execution, "E_LEGACY_EXECUTION")
 
-    print("SCF-B-0100 selfcheck: PASS negative_cases=9")
+    if not any(item.startswith("E_BASE_NOT_ANCESTOR:") for item in base_ancestor_errors("0" * 40)):
+        raise AssertionError("base_ancestor_tamper: expected E_BASE_NOT_ANCESTOR")
+
+    print("SCF-B-0100 selfcheck: PASS negative_cases=14")
     return 0
 
 

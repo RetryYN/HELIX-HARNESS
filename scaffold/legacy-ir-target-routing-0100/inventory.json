@@ -98,10 +98,14 @@
     "source_exact_reference_tamper",
     "source_line_anchor_tamper",
     "source_line_digest_tamper",
+    "queue_status_tamper",
+    "boundary_blob_tamper",
+    "boundary_interpretation_tamper",
     "candidate_product_boundary_tamper",
     "authority_promotion",
     "legacy_asset_digest_tamper",
-    "legacy_execution_promotion"
+    "legacy_execution_promotion",
+    "base_ancestor_tamper"
   ],
   "queue_unchanged": true,
   "record_count": 18,

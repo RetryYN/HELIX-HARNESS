@@ -67,6 +67,15 @@ def ref(path: str, line: int, pointer: str | None = None) -> dict:
     return result
 
 
+def line_anchor(path: str, line: int) -> tuple[str, str]:
+    """テキスト文書の実行行と、その改行を除いた行bytesのdigestを返す。"""
+    lines = rel(path).read_text(encoding="utf-8").splitlines()
+    if line < 1 or line > len(lines):
+        raise ValueError(f"line out of range: {path}:{line}")
+    text = lines[line - 1]
+    return text, hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
 def statement_line_anchor(requirement_id: str) -> tuple[int, str, str]:
     """整形JSON上の statement.text の実行行と行テキストdigestを返す。"""
     lines = (ROOT / OLD_IR).read_text(encoding="utf-8").splitlines()
@@ -90,10 +99,19 @@ def statement_line_anchor(requirement_id: str) -> tuple[int, str, str]:
 
 
 def product_boundary_refs() -> list[dict]:
-    return [
-        ref("docs/concept/product-boundary.md", BOUNDARY_LINES[product])
-        for product in ("HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS")
-    ]
+    refs = []
+    for product in ("HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"):
+        line = BOUNDARY_LINES[product]
+        text, digest = line_anchor("docs/concept/product-boundary.md", line)
+        refs.append({
+            "product": product,
+            "path": "docs/concept/product-boundary.md",
+            "blob": blob("docs/concept/product-boundary.md"),
+            "line": line,
+            "line_text": text,
+            "line_text_sha256": digest,
+        })
+    return refs
 
 
 def asset_record(asset_id: str, ledger_rows, phase_rows, decisions, read_afters, ledger_lines):
@@ -292,6 +310,7 @@ def main() -> None:
                 "evaluated_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"],
                 "boundary_refs": product_boundary_refs(),
                 "interpretation": "HARNESSは工程・提供契約、HELIX-OSは管理・Worker・CI・状態・改善の責務。candidateは正式ownerを確定しない。",
+                "interpretation_sha256": hashlib.sha256("HARNESSは工程・提供契約、HELIX-OSは管理・Worker・CI・状態・改善の責務。candidateは正式ownerを確定しない。".encode("utf-8")).hexdigest(),
             },
             "legacy_asset_review": {
                 "crosswalk_record_count": len(units),
@@ -350,7 +369,7 @@ def main() -> None:
         "queue_unchanged": True,
         "legacy_execution_performed": False,
         "known_open_conditions": ["queue_target_resolution_pending", "exact_head_independent_review_pending", "human_product_authority_decision_pending", "successor_assignment_unassigned", "legacy_asset_direct_link_pending", "history_failure_consumer_closure_pending"],
-        "negative_cases": ["duplicate_id", "missing_id", "source_statement_digest_tamper", "source_exact_reference_tamper", "source_line_anchor_tamper", "source_line_digest_tamper", "candidate_product_boundary_tamper", "authority_promotion", "legacy_asset_digest_tamper", "legacy_execution_promotion"],
+        "negative_cases": ["duplicate_id", "missing_id", "source_statement_digest_tamper", "source_exact_reference_tamper", "source_line_anchor_tamper", "source_line_digest_tamper", "queue_status_tamper", "boundary_blob_tamper", "boundary_interpretation_tamper", "candidate_product_boundary_tamper", "authority_promotion", "legacy_asset_digest_tamper", "legacy_execution_promotion", "base_ancestor_tamper"],
     }
     (BUNDLE / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 

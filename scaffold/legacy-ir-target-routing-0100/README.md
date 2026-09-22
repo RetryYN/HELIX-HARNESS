@@ -12,7 +12,7 @@ base_head: `36784d25aa4cc53d89c28c2ff81b4009db234605`
 - 旧IR原文のexact path、Git blob、`statement.text`実行line、行テキストSHA-256、JSON pointer、statement semantic digest。
 - queueの`unresolved_target`と空の候補target。
 - routing bootstrapの153/153候補、decompositionの候補product unit、candidate shape（`unit`／`unit_set`／`connection`／`composite`／`unresolved`）。
-- HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの責務境界引用。候補targetがWeb／Web-OSに無いことを正式な不要性・除外へ昇格しない。
+- HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSの責務境界引用（Git blob、実行行、行テキストdigest、解釈digest）。候補targetがWeb／Web-OSに無いことを正式な不要性・除外へ昇格しない。
 - 旧assetのrepresentative candidate pool、asset ledger行、source digest、history decision/read-after、failure未確認、consumer closure pending。phase／product候補assetは要求への直接意味linkではない。
 - 対象revision付きで人間が判断するowner、unit／connection／composite境界、successor、atom、意味差分、technology／domain design適用範囲。
 
@@ -30,6 +30,6 @@ python3 scaffold/tools/scfctl.py validate
 git diff --check
 ```
 
-`validate.py`は18 IDのexact set（重複・欠落）、旧IR statement digest、source file digest、Git blob、実ファイルから再導出した`statement.text` line／行テキストdigest／pointer、queue／routing／decomposition候補集合、責務境界の四製品語彙、authority／successor／execution境界、asset ledger digestとhistory／failure／consumer未完状態を検査する。`selfcheck.py`はduplicate、missing、digest tamper、line anchor／line digest tamper、candidate boundary tamper、authority promotion、asset digest tamper、旧実行promotionの否定例について、狙ったerror codeを照合する。
+`validate.py`はqueue台帳から`target_resolution_status=unresolved_target`のID集合を動的に再導出して18 recordのqueue状態と照合する。さらに18 IDのexact set（重複・欠落）、旧IR statement digest、source file digest、Git blob、実ファイルから再導出した`statement.text` line／行テキストdigest／pointer、queue／routing／decomposition候補集合、責務境界のGit blob／実行行／行digest／interpretation digest、固定BASEの祖先性、authority／successor／execution境界、asset ledger digestとhistory／failure／consumer未完状態を検査する。`selfcheck.py`はduplicate、missing、digest tamper、line anchor／line digest tamper、queue status、boundary blob／interpretation、candidate boundary、authority promotion、asset digest、旧実行promotion、BASE祖先性の否定例について、狙ったerror codeを照合する。
 
 この合格は人間decision、要求採否、owner確定、L2／L11、phase、設計、実装、consumer closure、Issue closeを生成しない。

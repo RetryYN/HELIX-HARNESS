@@ -85,7 +85,9 @@
       "queue18 exact ID setとdecomposition/routing candidate一致",
       "旧IR statement digest、Git blob、line、JSON pointerの再導出",
       "旧IR実ファイルからstatement.text lineと行テキストdigestの再導出",
-      "四製品責務境界のpath／blob／line引用",
+      "queue台帳からのunresolved_target 18件動的再導出とrecord状態照合",
+      "四製品責務境界のpath／Git blob／実行行／行digest／interpretation digest引用",
+      "固定BASE pinと検証対象HEADの祖先性",
       "旧asset ledger source digest、history／failure／consumer未完状態の再照合",
       "validate／selfcheck／scfctl／git diff --check"
     ],
@@ -96,10 +98,16 @@
       "E_SOURCE_REFERENCE: path/blob/line/pointer tamper",
       "E_SOURCE_LINE_ANCHOR: statement.text line or line text tamper",
       "E_SOURCE_LINE_DIGEST: statement.text line digest tamper",
+      "E_QUEUE_SET: queue台帳から動的再導出したunresolved_target ID集合のtamper",
+      "E_QUEUE_STATE: queue status record tamper",
+      "E_BOUNDARY_BLOB: product-boundary Git blob tamper",
+      "E_BOUNDARY_LINE_ANCHOR: product-boundary実行行／行digest tamper",
+      "E_BOUNDARY_INTERPRETATION: product-boundary interpretation／digest tamper",
       "E_CANDIDATE_BOUNDARY: candidate target or four-product set tamper",
       "E_AUTHORITY_BOUNDARY: authority/meaning/successor promotion",
       "E_ASSET_LEDGER_DIGEST: legacy asset source digest tamper",
-      "E_LEGACY_EXECUTION: old execution or new-build promotion"
+      "E_LEGACY_EXECUTION: old execution or new-build promotion",
+      "E_BASE_NOT_ANCESTOR: fixed BASE is not an ancestor of validation HEAD"
     ]
   },
   "replacement": {
