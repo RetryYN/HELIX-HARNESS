@@ -1,0 +1,680 @@
+{
+  "asset_status_receipts": [
+    {
+      "asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A",
+      "copy_read_after_records": [
+        {
+          "consumer_match": true,
+          "consumer_refs_observed": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "digest_match": true,
+          "failure": null,
+          "read_after_id": "READ-REQ-SNAPSHOT-5429AA05B022E9F49B0A"
+        }
+      ],
+      "decision_ids": [
+        {
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_id": "REQ-SNAPSHOT-5429AA05B022E9F49B0A",
+          "decision_revision": "PO-directive-requirements-preservation-2026-09-15",
+          "disposition": "source_snapshot_preservation"
+        },
+        {
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_id": "REQ-SNAPSHOT-CORRECTION-5429AA05B022E9F49B0A",
+          "decision_revision": null,
+          "disposition": "source_snapshot_preservation"
+        }
+      ],
+      "disposition_records": [
+        {
+          "authority_status": null,
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-5429AA05B022E9F49B0A",
+          "disposition": "source_snapshot_preservation",
+          "implementation_status": "non_executable_read_only_source",
+          "read_after_record_ref": "docs/governance/legacy-asset-copy-read-after.jsonl#READ-REQ-SNAPSHOT-5429AA05B022E9F49B0A",
+          "reuse_exclusion_class": null,
+          "revision": 3
+        }
+      ],
+      "failure_status": "historical_failure_field_preserved",
+      "historical_consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A4DD57E39031B1402494",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": null,
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "copy_read_after_records": [
+        {
+          "consumer_match": true,
+          "consumer_refs_observed": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "digest_match": true,
+          "failure": null,
+          "read_after_id": "READ-REQ-SNAPSHOT-A60CF91DD2AF6693E6F9"
+        }
+      ],
+      "decision_ids": [
+        {
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_id": "REQ-SNAPSHOT-A60CF91DD2AF6693E6F9",
+          "decision_revision": "PO-directive-requirements-preservation-2026-09-15",
+          "disposition": "source_snapshot_preservation"
+        },
+        {
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_id": "REQ-SNAPSHOT-CORRECTION-A60CF91DD2AF6693E6F9",
+          "decision_revision": null,
+          "disposition": "source_snapshot_preservation"
+        }
+      ],
+      "disposition_records": [
+        {
+          "authority_status": null,
+          "consumer_refs": [
+            "requirement-atomization-review",
+            "requirement-carry-forward-ledgers"
+          ],
+          "decision_record_ref": "docs/governance/legacy-asset-decisions.jsonl#REQ-SNAPSHOT-CORRECTION-A60CF91DD2AF6693E6F9",
+          "disposition": "source_snapshot_preservation",
+          "implementation_status": "non_executable_read_only_source",
+          "read_after_record_ref": "docs/governance/legacy-asset-copy-read-after.jsonl#READ-REQ-SNAPSHOT-A60CF91DD2AF6693E6F9",
+          "reuse_exclusion_class": null,
+          "revision": 3
+        }
+      ],
+      "failure_status": "historical_failure_field_preserved",
+      "historical_consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B9FEE35D2F064EEA4784",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": "legacy_runtime_cli_or_adapter",
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EA8C51BDF69B34E896AA",
+      "copy_read_after_records": [],
+      "decision_ids": [],
+      "disposition_records": [
+        {
+          "authority_status": "historical",
+          "consumer_refs": [],
+          "decision_record_ref": null,
+          "disposition": "unresolved",
+          "implementation_status": "unknown",
+          "read_after_record_ref": null,
+          "reuse_exclusion_class": null,
+          "revision": 1
+        }
+      ],
+      "failure_status": "no_selected_failure_record",
+      "historical_consumer_refs": []
+    }
+  ],
+  "authority_effect": "none",
+  "base_revision": "f83b277c6e3e9d48e3ce2f2b0faeed7ac2caf50f",
+  "batch_id": "LEGACY-SEMANTIC-WAVE41-2026-09-22",
+  "composite_unresolved_count": 5,
+  "consumer_closure_status": "pending",
+  "cumulative_reviewed_edge_count": 486,
+  "cumulative_reviewed_unit_count": 166,
+  "current_implementation": "unknown",
+  "degradation": "unknown",
+  "historical_status_note": "assertion_id／authority_id／historical consumer／failure codeは旧台帳の判断史のみであり、現行authority、implementation、degradation、phase admission、consumer closureを確定しない。",
+  "inspected_asset_count": 9,
+  "inspected_legacy_asset_ids": [
+    "LEGACY-ASSET-02319C2481B9E01698D5",
+    "LEGACY-ASSET-5429AA05B022E9F49B0A",
+    "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+    "LEGACY-ASSET-9F48ADEEB477DCA54039",
+    "LEGACY-ASSET-A4DD57E39031B1402494",
+    "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+    "LEGACY-ASSET-B3866EECAF22235E9EB5",
+    "LEGACY-ASSET-B9FEE35D2F064EEA4784",
+    "LEGACY-ASSET-EA8C51BDF69B34E896AA"
+  ],
+  "legacy_execution_performed": false,
+  "missing_evidence_receipts": [
+    {
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [
+        "PHCAP-04"
+      ],
+      "phase_pool_asset_count": 53,
+      "reason": "crosswalk candidate pool contains no implementation_source asset available for this role; no direct asset evidence was selected",
+      "role_kind": "implementation_source",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-06-HELIX-HARNESS"
+    },
+    {
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [
+        "PHCAP-04"
+      ],
+      "phase_pool_asset_count": 53,
+      "reason": "crosswalk candidate pool contains no implementation_source asset available for this role; no direct asset evidence was selected",
+      "role_kind": "implementation_source",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-HARNESS"
+    },
+    {
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [],
+      "phase_pool_asset_count": 0,
+      "reason": "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+      "role_kind": "design",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-OS"
+    },
+    {
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [],
+      "phase_pool_asset_count": 0,
+      "reason": "crosswalk phase_and_product_candidate_asset_count is zero; no direct asset evidence was selected",
+      "role_kind": "implementation_source",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-OS"
+    },
+    {
+      "candidate_product_targets": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "consumer_closure": "pending",
+      "current_implementation": "unknown",
+      "degradation": "unknown",
+      "legacy_execution": "not_run",
+      "phase_candidates": [
+        "PHCAP-07"
+      ],
+      "phase_pool_asset_count": 103,
+      "reason": "crosswalk candidate pool contains no implementation_source asset available for this role; no direct asset evidence was selected",
+      "role_kind": "implementation_source",
+      "status": "missing_evidence_recorded",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-HARNESS"
+    }
+  ],
+  "new_build_allowed": false,
+  "remaining_unit_count": 52,
+  "reviewed_edges": [
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-06-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-06-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EA8C51BDF69B34E896AA",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-HARNESS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A4DD57E39031B1402494",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-OS"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B9FEE35D2F064EEA4784",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-OS"
+    }
+  ],
+  "reviewed_unit_ids": [
+    "IRUNIT-HIL-NFR-06-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-07-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-07-HELIX-OS",
+    "IRUNIT-HIL-NFR-08-HELIX-HARNESS",
+    "IRUNIT-HIL-NFR-08-HELIX-OS"
+  ],
+  "schema_revision": 1,
+  "selected_asset_count": 5,
+  "selected_edge_count": 10,
+  "selected_non_requirement_asset_count": 4,
+  "selected_unit_count": 5,
+  "selected_units": [
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-HARNESS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-006",
+        "authority_id": "RAS-HIL-05",
+        "failure_code": "HIL_ACTION_BINDING_APPROVAL_MISSING",
+        "failure_consumers": [
+          "HOT-HIL-15",
+          "HST-HIL-017"
+        ],
+        "failure_scope": "action-binding approval missing for high-impact operation",
+        "historical_consumer": "ActionBindingGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [
+        "implementation_source"
+      ],
+      "phase_candidates": [
+        "PHCAP-04"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 53,
+      "responsibility_candidate": "不可逆・高リスク操作に対する工程上のaction-binding approval条件",
+      "role_edges": 2,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-5429AA05B022E9F49B0A",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 2,
+      "source_requirement_id": "HIL-NFR-06",
+      "source_statement_semantic_digest": "sha256:fb3dadec4964b55ee41b0849950ab28bdcb8808e80d065d38c06bc9ca91bf279",
+      "source_statement_text": "認証・認可・決済・PII・secret・license・schema migration・破壊的データ・本番/外部infraはaction-binding approvalを必要とする。",
+      "source_text_spans": [
+        "認証・認可・決済・PII・secret・license・schema migration・破壊的データ・本番/外部infraは",
+        "action-binding approvalを必要とする"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-06-HELIX-HARNESS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-HARNESS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-007",
+        "authority_id": "RAS-HIL-05",
+        "failure_code": "HIL_SCOPE_NECESSITY_MISSING",
+        "failure_consumers": [
+          "HOT-HIL-38",
+          "HST-HIL-021"
+        ],
+        "failure_scope": "scope necessity and authoritative oracle contribution missing",
+        "historical_consumer": "ScopeAuthorityGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [
+        "implementation_source"
+      ],
+      "phase_candidates": [
+        "PHCAP-04"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 53,
+      "responsibility_candidate": "Scope Gateの最小必要性・oracle寄与・拒否条件を定める",
+      "role_edges": 2,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-5429AA05B022E9F49B0A",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 2,
+      "source_requirement_id": "HIL-NFR-07",
+      "source_statement_semantic_digest": "sha256:e3df2d68697433af977cfca1e4f63d83f2f9f9b7fa305e66734cd046fbad2058",
+      "source_statement_text": "Scope Gateは機能追加数だけでなくcomplexity、public surface、運用負債を測り、authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する。",
+      "source_text_spans": [
+        "Scope Gateは機能追加数だけでなくcomplexity、public surface、運用負債を測り",
+        "authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-HARNESS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-007",
+        "authority_id": "RAS-HIL-05",
+        "failure_code": "HIL_SCOPE_NECESSITY_MISSING",
+        "failure_consumers": [
+          "HOT-HIL-38",
+          "HST-HIL-021"
+        ],
+        "failure_scope": "scope necessity and authoritative oracle contribution missing",
+        "historical_consumer": "ScopeAuthorityGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [
+        "design",
+        "implementation_source"
+      ],
+      "phase_candidates": [],
+      "phase_classification_status": "unresolved",
+      "phase_pool_asset_count": 0,
+      "responsibility_candidate": "complexity等を計測しScope違反を拒否する管理運転",
+      "role_edges": 1,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9"
+      ],
+      "semantic_atom_count": 2,
+      "source_requirement_id": "HIL-NFR-07",
+      "source_statement_semantic_digest": "sha256:e3df2d68697433af977cfca1e4f63d83f2f9f9b7fa305e66734cd046fbad2058",
+      "source_statement_text": "Scope Gateは機能追加数だけでなくcomplexity、public surface、運用負債を測り、authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する。",
+      "source_text_spans": [
+        "complexity、public surface、運用負債を測り",
+        "拡張を拒否する"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-OS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-HARNESS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-008",
+        "authority_id": "RAS-HIL-09",
+        "failure_code": "HIL_PROSE_ONLY_EVIDENCE",
+        "failure_consumers": [
+          "HOT-HIL-14",
+          "HST-HIL-009"
+        ],
+        "failure_scope": "prose-only evidence without failure code/provenance",
+        "historical_consumer": "EvidenceProvenanceGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [
+        "implementation_source"
+      ],
+      "phase_candidates": [
+        "PHCAP-07"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 103,
+      "responsibility_candidate": "prose合格を禁じ、evidence/failure条件を要求するcontract",
+      "role_edges": 2,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-EA8C51BDF69B34E896AA"
+      ],
+      "semantic_atom_count": 1,
+      "source_requirement_id": "HIL-NFR-08",
+      "source_statement_semantic_digest": "sha256:8724cbf48e2e8c314888e5bb12ca828a87ff3abea6e434155031ca65c74d4110",
+      "source_statement_text": "PR監査、Issue Gate、agent registry、memory compaction、ZIP detectorはfailure codeとprovenanceを持ち、proseだけの合格を禁止する。",
+      "source_text_spans": [
+        "proseだけの合格を禁止する"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-HARNESS"
+    },
+    {
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "candidate_target": "HELIX-OS",
+      "composite_unresolved_count": 1,
+      "consumer_closure_status": "pending",
+      "current_requirement_implementation_status": "not_established",
+      "degradation": "unknown",
+      "historical_ledger_only": {
+        "assertion_id": "HIA-NFR-008",
+        "authority_id": "RAS-HIL-09",
+        "failure_code": "HIL_PROSE_ONLY_EVIDENCE",
+        "failure_consumers": [
+          "HOT-HIL-14",
+          "HST-HIL-009"
+        ],
+        "failure_scope": "prose-only evidence without failure code/provenance",
+        "historical_consumer": "EvidenceProvenanceGate"
+      },
+      "legacy_execution": "not_run",
+      "missing_evidence_roles": [],
+      "phase_candidates": [
+        "PHCAP-07",
+        "PHCAP-09",
+        "PHCAP-12",
+        "PHCAP-20"
+      ],
+      "phase_classification_status": "candidate_pending_exact_head_independent_review",
+      "phase_pool_asset_count": 726,
+      "responsibility_candidate": "PR監査・Issue Gate・registry・memory compaction・detectorのfailure/provenanceを記録・運転",
+      "role_edges": 3,
+      "routing_candidate": "split_required",
+      "selected_asset_ids": [
+        "LEGACY-ASSET-A4DD57E39031B1402494",
+        "LEGACY-ASSET-A60CF91DD2AF6693E6F9",
+        "LEGACY-ASSET-B9FEE35D2F064EEA4784"
+      ],
+      "semantic_atom_count": 2,
+      "source_requirement_id": "HIL-NFR-08",
+      "source_statement_semantic_digest": "sha256:8724cbf48e2e8c314888e5bb12ca828a87ff3abea6e434155031ca65c74d4110",
+      "source_statement_text": "PR監査、Issue Gate、agent registry、memory compaction、ZIP detectorはfailure codeとprovenanceを持ち、proseだけの合格を禁止する。",
+      "source_text_spans": [
+        "PR監査、Issue Gate、agent registry、memory compaction、ZIP detectorは",
+        "failure codeとprovenanceを持ち"
+      ],
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-OS"
+    }
+  ],
+  "semantic_atom_count": 9,
+  "source_atomization_holds": [
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-06-HELIX-HARNESS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-HARNESS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-07-HELIX-OS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-HARNESS"
+    },
+    {
+      "composite_unresolved_count": 1,
+      "routing_hold": null,
+      "shared_atom_ids": [],
+      "status": "product_boundary_shared_atom_hold",
+      "unit_candidate_id": "IRUNIT-HIL-NFR-08-HELIX-OS"
+    }
+  ],
+  "supplemental_asset_receipts": [
+    {
+      "artifact_evidence_kind": "requirement",
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "classification_id": "LASPH-0956",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "current_implementation": "unknown_pending_direct_current_review",
+      "decision_count": 2,
+      "degradation": "unknown_pending_direct_current_review",
+      "legacy_execution_status": "not_run",
+      "legacy_implementation_status": "non_executable_read_only_source",
+      "read_after_count": 1,
+      "selected_role_edge": false,
+      "source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+      "source_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406"
+    },
+    {
+      "artifact_evidence_kind": "requirement",
+      "asset_id": "LEGACY-ASSET-9F48ADEEB477DCA54039",
+      "classification_id": "LASPH-0330",
+      "consumer_refs": [
+        "requirement-atomization-review",
+        "requirement-carry-forward-ledgers"
+      ],
+      "current_implementation": "unknown_pending_direct_current_review",
+      "decision_count": 2,
+      "degradation": "unknown_pending_direct_current_review",
+      "legacy_execution_status": "not_run",
+      "legacy_implementation_status": "non_executable_read_only_source",
+      "read_after_count": 1,
+      "selected_role_edge": false,
+      "source_path": "docs/design/harness/L1-requirements/business-requirements.md",
+      "source_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61"
+    },
+    {
+      "artifact_evidence_kind": "design",
+      "asset_id": "LEGACY-ASSET-614BF1FA7A7310E3BB4A",
+      "classification_id": "LASPH-0777",
+      "consumer_refs": [],
+      "current_implementation": "unknown_pending_direct_current_review",
+      "decision_count": 0,
+      "degradation": "unknown_pending_direct_current_review",
+      "legacy_execution_status": "not_run",
+      "legacy_implementation_status": "unknown",
+      "read_after_count": 0,
+      "selected_role_edge": false,
+      "source_path": "docs/design/helix/L8-integration/integration-evidence-index.md",
+      "source_sha256": "98b2936b0e10524baab67e503d270e2e2d07be2ce60db4613a865686cb8ed288"
+    },
+    {
+      "artifact_evidence_kind": "design",
+      "asset_id": "LEGACY-ASSET-B3866EECAF22235E9EB5",
+      "classification_id": "LASPH-0430",
+      "consumer_refs": [],
+      "current_implementation": "unknown_pending_direct_current_review",
+      "decision_count": 0,
+      "degradation": "unknown_pending_direct_current_review",
+      "legacy_execution_status": "not_run",
+      "legacy_implementation_status": "unknown",
+      "read_after_count": 0,
+      "selected_role_edge": false,
+      "source_path": "docs/design/helix/L11-uat/uat-evidence-boundary.md",
+      "source_sha256": "6e92ffa1941cf58dd44577dbbc32e9d67e3d61003230d200c4966589b0137934"
+    }
+  ]
+}
