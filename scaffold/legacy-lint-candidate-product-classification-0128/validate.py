@@ -32,6 +32,64 @@ L1 = {
     "HELIX-Web-OS": "docs/helix-web-os/L1-planning/system-intent.md",
 }
 L1_MARKERS = {"HELIX-HARNESS": "## 提供価値", "HELIX-OS": "## 提供価値", "HELIX-Web": "## 提供価値", "HELIX-Web-OS": "## 境界"}
+PRODUCTS = tuple(L1)
+APPROVAL_DECISION = "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md"
+APPROVAL_PACKET = "docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md"
+PRODUCT_BOUNDARY_MARKERS = {"HELIX-HARNESS": "| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 |", "HELIX-OS": "| HELIX-OS | プロジェクト群の管理・統制、Worker、CI、ログ、学習、継続・復旧、HELIXの改善循環 |", "HELIX-Web": "| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 |", "HELIX-Web-OS": "| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 |"}
+APPROVAL_ROW_MARKERS = {"HELIX-HARNESS": "| `HDEC-HARNESS-L1-01` |", "HELIX-OS": "| `HDEC-HELIXOS-L1-01` |", "HELIX-Web": "| `HDEC-HELIXWEB-L1-01` |", "HELIX-Web-OS": "| `HDEC-HELIXWEBOS-L1-01` |"}
+APPROVAL_MEANING_MARKERS = {"HELIX-HARNESS": "- HELIX-HARNESSを外部提供製品とし、", "HELIX-OS": "- HELIX-OSをHELIX project群の管理・統制・Worker・学習・log・CI・継続改善機構とし、", "HELIX-Web": "- HELIX-WebをHELIX-OSが開発・改善管理するConnector型Web製品とする。", "HELIX-Web-OS": "- HELIX-Web-OSをHELIX-OS外のservice runtimeとし、"}
+L1_BASIS_MARKERS = {'src/lint/action-binding-approval-readiness.ts': {'HELIX-HARNESS': '| HARNESS-L1-004 |',
+                                                   'HELIX-OS': '| HELIXOS-L1-004 |'},
+ 'src/lint/agent-model-ssot.ts': {'HELIX-OS': '| HELIXOS-L1-003 |'},
+ 'src/lint/asset-drift.ts': {'HELIX-OS': '| HELIXOS-L1-008 |'},
+ 'src/lint/backfill-pairing.ts': {'HELIX-HARNESS': '| HARNESS-L1-003 |'},
+ 'src/lint/branch-kind.ts': {'HELIX-HARNESS': '| HARNESS-L1-003 |', 'HELIX-OS': '| HELIXOS-L1-004 |'},
+ 'src/lint/canonical-reuse-authority.ts': {'HELIX-HARNESS': '| HARNESS-L1-003 |', 'HELIX-OS': '| HELIXOS-L1-008 |'},
+ 'src/lint/canonical-reuse-consumer-baseline.ts': {},
+ 'src/lint/change-impact.ts': {'HELIX-HARNESS': '| HARNESS-L1-003 |'},
+ 'src/lint/coding-rules.ts': {'HELIX-HARNESS': '| HARNESS-L1-002 |'},
+ 'src/lint/completion-decision-packet.ts': {'HELIX-HARNESS': '| HARNESS-L1-004 |'},
+ 'src/lint/cutover-readiness.ts': {'HELIX-OS': '| HELIXOS-L1-007 |'},
+ 'src/lint/descent-obligation.ts': {'HELIX-HARNESS': '| HARNESS-L1-003 |'},
+ 'src/lint/design-language.ts': {'HELIX-HARNESS': '| HARNESS-L1-009 |'},
+ 'src/lint/design-reality-binding.ts': {'HELIX-HARNESS': '| HARNESS-L1-009 |', 'HELIX-OS': '| HELIXOS-L1-008 |'},
+ 'src/lint/digest-inventory.ts': {'HELIX-OS': '| HELIXOS-L1-008 |'},
+ 'src/lint/document-agent-metadata.ts': {'HELIX-HARNESS': '| HARNESS-L1-001 |'},
+ 'src/lint/drive-db-registration.ts': {'HELIX-OS': '| HELIXOS-L1-008 |'},
+ 'src/lint/drive-model-passage.ts': {'HELIX-HARNESS': '| HARNESS-L1-008 |'},
+ 'src/lint/feedback-log.ts': {'HELIX-OS': '| HELIXOS-L1-006 |'},
+ 'src/lint/forward-convergence.ts': {'HELIX-HARNESS': '| HARNESS-L1-004 |', 'HELIX-OS': '| HELIXOS-L1-005 |'},
+ 'src/lint/frontend-design-coverage.ts': {'HELIX-HARNESS': '| HARNESS-L1-009 |', 'HELIX-Web': '| HELIXWEB-L1-002 |'},
+ 'src/lint/github-guards.ts': {'HELIX-OS': '| HELIXOS-L1-004 |'},
+ 'src/lint/handover-cutover-approval.ts': {'HELIX-OS': '| HELIXOS-L1-007 |'},
+ 'src/lint/handover-resurrection.ts': {'HELIX-OS': '| HELIXOS-L1-003 |'},
+ 'src/lint/handover-retirement.ts': {'HELIX-OS': '| HELIXOS-L1-003 |'},
+ 'src/lint/identifier-rename.ts': {},
+ 'src/lint/improvement-backlog.ts': {'HELIX-OS': '| HELIXOS-L1-006 |'},
+ 'src/lint/l1-l2-consistency.ts': {'HELIX-HARNESS': '| HARNESS-L1-003 |'},
+ 'src/lint/l1-l2-gap-check.ts': {'HELIX-HARNESS': '| HARNESS-L1-003 |'},
+ 'src/lint/l12-hybrid-reviewed-safe-v2.ts': {},
+ 'src/lint/l14-close-audit.ts': {'HELIX-HARNESS': '| HARNESS-L1-004 |'},
+ 'src/lint/l3-progression-authority.ts': {'HELIX-HARNESS': '| HARNESS-L1-003 |'},
+ 'src/lint/l3-progression-reviewed-digests.ts': {},
+ 'src/lint/legacy-orchestration-semantic-consumers.ts': {'HELIX-OS': '| HELIXOS-L1-007 |'},
+ 'src/lint/legacy-orchestration-surface.ts': {'HELIX-OS': '| HELIXOS-L1-007 |'},
+ 'src/lint/memory-handover-isolation.ts': {'HELIX-OS': '| HELIXOS-L1-003 |'},
+ 'src/lint/objective-evidence-audit.ts': {'HELIX-HARNESS': '| HARNESS-L1-004 |'},
+ 'src/lint/outstanding.ts': {'HELIX-HARNESS': '| HARNESS-L1-004 |', 'HELIX-OS': '| HELIXOS-L1-008 |'},
+ 'src/lint/pin-chain-derivation.ts': {'HELIX-OS': '| HELIXOS-L1-006 |'},
+ 'src/lint/project-hook.ts': {'HELIX-OS': '| HELIXOS-L1-008 |'},
+ 'src/lint/proposal-document-coverage-policy.ts': {'HELIX-HARNESS': '| HARNESS-L1-006 |'},
+ 'src/lint/readability.ts': {'HELIX-HARNESS': '| HARNESS-L1-009 |'},
+ 'src/lint/review-evidence.ts': {'HELIX-HARNESS': '| HARNESS-L1-004 |'},
+ 'src/lint/right-arm-verification-strategy.ts': {'HELIX-OS': '| HELIXOS-L1-003 |'},
+ 'src/lint/secret-scan.ts': {'HELIX-OS': '| HELIXOS-L1-008 |'},
+ 'src/lint/semantic-frontier-consistency.ts': {'HELIX-HARNESS': '| HARNESS-L1-003 |'},
+ 'src/lint/shared.ts': {},
+ 'src/lint/skill-assignment.ts': {'HELIX-OS': '| HELIXOS-L1-003 |'},
+ 'src/lint/telemetry-closure.ts': {'HELIX-OS': '| HELIXOS-L1-008 |'},
+ 'src/lint/version-up-readiness.ts': {'HELIX-HARNESS': '| HARNESS-L1-007 |', 'HELIX-OS': '| HELIXOS-L1-005 |'},
+ 'src/lint/workflow-classification-terminal-fullback.ts': {'HELIX-OS': '| HELIXOS-L1-008 |'}}
 FAILURE_SOURCE = "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md"
 CONSUMER_SOURCE = "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md"
 WAVE_PATHS = {n: (f"docs/governance/legacy-requirement-direct-semantic-review-wave{n}.jsonl" if n <= 36 else f"scaffold/legacy-semantic-review-wave{n}/legacy-requirement-direct-semantic-review-wave{n}.jsonl") for n in range(1, 51)}
@@ -497,7 +555,7 @@ EXPECTED_PROFILES = {
 }
 EXPECTED_RECORD_KEYS = {"asset_id", "source_path", "source_exact", "phase_evidence", "legacy_asset_evidence", "classification", "boundary_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "wave_semantic_links", "wave_edge_count", "human_judgment_remaining", "authority_effect", "formal_asset_classification_updated", "new_build_allowed"}
 EXPECTED_HUMAN_JUDGMENT = ["formal_product_owner", "formal_product_classification", "phase_admission", "implementation_or_reuse_decision", "degradation_meaning", "consumer_closure", "successor_assignment", "new_build_authority"]
-EXPECTED_INVENTORY_KEYS = {"schema_revision", "binding_id", "base_revision", "scope", "candidate_needs_semantic_review_total", "target_count", "target_asset_ids", "target_source_paths", "classification_counts", "target_wave_edge_count", "wave_files", "existing_research_overlap", "existing_0108_target_count", "existing_0108_target_asset_ids_sha256", "input_digests", "output_sha256", "authority_boundary", "classification_rule", "old_archive_execution", "overlap_rule"}
+EXPECTED_INVENTORY_KEYS = {"schema_revision", "binding_id", "base_revision", "scope", "candidate_needs_semantic_review_total", "target_count", "target_asset_ids", "target_source_paths", "l1_approval", "classification_counts", "target_wave_edge_count", "wave_files", "existing_research_overlap", "existing_0108_target_count", "existing_0108_target_asset_ids_sha256", "input_digests", "output_sha256", "authority_boundary", "classification_rule", "old_archive_execution", "overlap_rule"}
 EXPECTED_OVERLAP_RULE = "candidate 51 IDs are compared with fixed BASE SCF-B-0108 unresolved src/lint 95 IDs; overlap must be empty"
 
 
@@ -554,9 +612,17 @@ def static_matches(path: str, terms: list[str]) -> dict:
     return {"path": path, "blob": git_blob(path), "sha256": digest(data), "matched_lines": hits}
 
 
+def approval_evidence() -> dict:
+    products = {}
+    ids = {"HELIX-HARNESS": "HDEC-HARNESS-L1-01", "HELIX-OS": "HDEC-HELIXOS-L1-01", "HELIX-Web": "HDEC-HELIXWEB-L1-01", "HELIX-Web-OS": "HDEC-HELIXWEBOS-L1-01"}
+    for product, path in L1.items():
+        products[product] = {"decision_id": ids[product], "result": "approve", "l1_path": path, "approved_l1_sha256": digest(git_bytes(path)), "decision_record_anchor": anchor(APPROVAL_DECISION, APPROVAL_ROW_MARKERS[product], False), "l1_revision_matches_decision": True}
+    return {"decision_record": {**anchor(APPROVAL_DECISION, "decision_status: approved", False), "decision_record_id": "HDEC-CONCEPT-V4.1-AND-FOUR-L1-2026-09-17", "decision_status": "approved", "authority_effect_declared_by_record": "effective_when_this_record_is_admitted_to_main"}, "human_decision_packet": anchor(APPROVAL_PACKET, "human_decision_record:", False), "products": products}
+
 def boundary_evidence() -> dict:
     data = anchor(BOUNDARY, "## 対象別の正規入口", False)
-    return {"product_boundary": {**data, "interpretation": "candidate boundary reference only; no permanent authority"}, "l1": {product: {**anchor(path, L1_MARKERS[product], False), "interpretation": "draft L1 candidate; awaiting parent approval"} for product, path in L1.items()}}
+    approval = approval_evidence()
+    return {"product_boundary": {**data, "interpretation": "approved four-product meaning is referenced from the fixed human decision; this research scaffold grants no authority", "product_spans": {product: anchor(BOUNDARY, PRODUCT_BOUNDARY_MARKERS[product], False) for product in PRODUCTS}, "approved_meaning_spans": {product: anchor(APPROVAL_DECISION, APPROVAL_MEANING_MARKERS[product], False) for product in PRODUCTS}}, "l1": {product: {"raw_document": anchor(path, L1_MARKERS[product], False), "raw_metadata": {"status": "draft", "authority_status": "awaiting_parent_approval", "status_anchor": anchor(path, "status: draft", False), "authority_anchor": anchor(path, "authority_status: awaiting_parent_approval", False)}, "semantic_anchor": anchor(path, L1_MARKERS[product], False), "effective_approval": approval["products"][product], "interpretation": "raw L1 metadata remains draft; the effective approved decision is evidenced separately below; this scaffold does not grant product authority"} for product, path in L1.items()}}
 
 
 def wave_data(target_ids: set[str], target_paths: set[str]) -> tuple[list[dict], list[dict]]:
@@ -583,7 +649,7 @@ def wave_data(target_ids: set[str], target_paths: set[str]) -> tuple[list[dict],
 
 
 def expected_input_digests(wave_files: list[dict]) -> list[dict]:
-    paths = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, *[f["path"] for f in wave_files]]
+    paths = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, APPROVAL_DECISION, APPROVAL_PACKET, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, *[f["path"] for f in wave_files]]
     return [{"path": p, "blob": git_blob(p), "bytes": len(git_bytes(p)), "sha256": digest(git_bytes(p))} for p in paths]
 
 
@@ -609,7 +675,10 @@ def check() -> None:
     if len(existing_ids) != 95 or set(expected_ids) & set(existing_ids):
         fail("E_OVERLAP", {"existing_0108": len(existing_ids), "overlap": sorted(set(expected_ids) & set(existing_ids))})
     disp = {r["asset_id"]: r for r in disposition_rows}
-    expected_boundary = boundary_evidence()
+    expected_boundary_base = boundary_evidence()
+    expected_approval = approval_evidence()
+    if inv.get("l1_approval") != expected_approval:
+        fail("E_L1_APPROVAL", "inventory approval evidence")
     target_ids, target_paths = set(expected_phase), {r["source_path"] for r in expected_phase.values()}
     wave_files, wave_edges = wave_data(target_ids, target_paths)
     failure_global = static_matches(FAILURE_SOURCE, [])
@@ -629,9 +698,20 @@ def check() -> None:
         expected_source = {"archive_path": source_path, "source_path": path, "blob": git_blob(source_path), "bytes": len(source), "line_count": len(source.decode("utf-8", "replace").splitlines()), "sha256": digest(source), "ledger_source_sha256": phase.get("source_sha256"), "ledger_digest_match": phase.get("source_sha256") == hashlib.sha256(source).hexdigest(), "semantic_anchor": anchor(path, prof["marker"], True), "read_mode": "git_show_fixed_base_static_read"}
         if row.get("source_exact") != expected_source:
             fail("E_OLD_ASSET_SOURCE", aid)
-        expected_class = {"category": prof["category"], "candidate_products": prof["candidate_products"], "semantic_status": "research_candidate_not_formal", "reason": prof["reason"], "counter_evidence": prof["counter_evidence"]}
+        expected_boundary = json.loads(json.dumps(expected_boundary_base))
+        basis = {}
+        for product in prof["candidate_products"]:
+            l1_span = anchor(L1[product], L1_BASIS_MARKERS[path][product], False)
+            expected_boundary["l1"][product]["semantic_anchor"] = l1_span
+            product_span = expected_boundary["product_boundary"]["product_spans"][product]
+            meaning_span = expected_boundary["product_boundary"]["approved_meaning_spans"][product]
+            basis[product] = {"l1_marker": L1_BASIS_MARKERS[path][product], "l1_line": l1_span["line"], "l1_line_text": l1_span["line_text"], "l1_line_text_sha256": l1_span["line_text_sha256"], "l1_span_sha256": l1_span["line_text_sha256"], "l1_document_sha256": digest(git_bytes(L1[product])), "product_boundary_marker": PRODUCT_BOUNDARY_MARKERS[product], "product_boundary_line": product_span["line"], "product_boundary_line_text": product_span["line_text"], "product_boundary_line_text_sha256": product_span["line_text_sha256"], "decision_id": expected_boundary["l1"][product]["effective_approval"]["decision_id"], "decision_meaning_marker": APPROVAL_MEANING_MARKERS[product], "decision_meaning_line": meaning_span["line"], "decision_meaning_line_text": meaning_span["line_text"], "decision_meaning_line_text_sha256": meaning_span["line_text_sha256"]}
+        expected_class = {"category": prof["category"], "candidate_products": prof["candidate_products"], "candidate_product_basis": basis, "semantic_status": "research_candidate_not_formal", "reason": prof["reason"], "counter_evidence": prof["counter_evidence"]}
         if row.get("classification") != expected_class:
             fail("E_CLASSIFICATION", aid)
+        for product in prof["candidate_products"]:
+            if row.get("boundary_evidence", {}).get("l1", {}).get(product, {}).get("effective_approval") != expected_approval["products"][product]:
+                fail("E_L1_APPROVAL", aid)
         if row.get("boundary_evidence") != expected_boundary:
             fail("E_BOUNDARY_ANCHOR", aid)
         if row.get("phase_evidence") != {"row": phase, "row_sha256": row_hash(phase)}:

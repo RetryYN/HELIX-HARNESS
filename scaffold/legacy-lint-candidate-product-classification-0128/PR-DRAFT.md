@@ -8,11 +8,12 @@
 
 - `SCF-B-0128` Bindingと全8成果物を追加。
 - 固定BASE `cb5a45fea289d61b67cba100fd2406813021ef48` から51 asset / 51 recordを再導出。
-- direct product basis 38、multi-product conflict 8、insufficient basis 5を、具体的source marker/span・L1/boundaryの反証つきで保存。
+- direct product basis 38、multi-product conflict 8、insufficient basis 5を、具体的source marker/span・対応L1要求行・product-boundary行・承認decisionの製品意味行・反証つきで保存。
 - Wave対象edge 24を保持し、SCF-B-0108のunresolved95 ID集合との重複0を独立検査。
 - phase/disposition、implementation/degradation、failure/consumer、decision/read-afterを候補分類から分離。
+- L1 raw frontmatter（draft/awaiting_parent_approval）と、exact SHAをapproveしたeffective decision recordを分離し、4件のDecision ID・L1 SHA・decision/blob/digestをinventoryとrecordで固定。
 - `authority_effect=none`、formal分類・implementation・successor・new buildを未確定のまま固定。
-- record human judgmentとinventory全20 top-level key/valueを厳密検査し、selfcheckでoverlap/count/digest改竄を検証。
+- record human judgmentとinventory全21 top-level key/valueを厳密検査し、selfcheckでoverlap/count/digest改竄を検証。
 
 ## 検証
 
@@ -21,7 +22,7 @@ python3 -B scaffold/legacy-lint-candidate-product-classification-0128/generate.p
 python3 -B scaffold/legacy-lint-candidate-product-classification-0128/validate.py
 # PASS records=51 categories=direct_product_basis:38,multi_product_conflict:8,insufficient_basis:5 target_wave_edges=24 overlap_0108=0
 python3 -B scaffold/legacy-lint-candidate-product-classification-0128/selfcheck.py
-# PASS negative_cases=36
+# PASS negative_cases=39
 python3 -m py_compile scaffold/legacy-lint-candidate-product-classification-0128/*.py
 python3 scaffold/tools/scfctl.py validate
 python3 scaffold/tools/scfctl.py stale

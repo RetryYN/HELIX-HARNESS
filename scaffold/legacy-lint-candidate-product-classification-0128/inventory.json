@@ -58,6 +58,18 @@
       "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
     },
     {
+      "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
+      "bytes": 4479,
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+    },
+    {
+      "blob": "e517c0b1571e3c720c7ba13e3453b27e2dc1d343",
+      "bytes": 18852,
+      "path": "docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md",
+      "sha256": "sha256:4a2e2f4799a7c0981330d608b5a4b3dc883150bcc9e22090be72bb2d8e5c230b"
+    },
+    {
       "blob": "d45a13e9b4aa376177a3e144d58d908d1ddda178",
       "bytes": 4096,
       "path": "docs/helix-harness/L1-planning/product-intent.md",
@@ -394,6 +406,95 @@
       "sha256": "sha256:8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5"
     }
   ],
+  "l1_approval": {
+    "decision_record": {
+      "authority_effect_declared_by_record": "effective_when_this_record_is_admitted_to_main",
+      "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
+      "decision_record_id": "HDEC-CONCEPT-V4.1-AND-FOUR-L1-2026-09-17",
+      "decision_status": "approved",
+      "line": 4,
+      "line_text": "decision_status: approved",
+      "line_text_sha256": "sha256:dc582333a0875371632cdd0db2f949659a293500d46ac60820119e07d3d9cf1c",
+      "marker": "decision_status: approved",
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+    },
+    "human_decision_packet": {
+      "blob": "e517c0b1571e3c720c7ba13e3453b27e2dc1d343",
+      "line": 9,
+      "line_text": "human_decision_record: ../../decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "line_text_sha256": "sha256:2b92102a40e7a912593d8b8a3672efe3cd906a9a70232ed14187e109b497c5db",
+      "marker": "human_decision_record:",
+      "path": "docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md",
+      "sha256": "sha256:4a2e2f4799a7c0981330d608b5a4b3dc883150bcc9e22090be72bb2d8e5c230b"
+    },
+    "products": {
+      "HELIX-HARNESS": {
+        "approved_l1_sha256": "sha256:a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+        "decision_id": "HDEC-HARNESS-L1-01",
+        "decision_record_anchor": {
+          "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
+          "line": 26,
+          "line_text": "| `HDEC-HARNESS-L1-01` | `docs/helix-harness/L1-planning/product-intent.md` | `a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04` | approve |",
+          "line_text_sha256": "sha256:1278923ff961462927bdb71ff3f1393fb08e2bec0626e5321016ddb7e2c65a83",
+          "marker": "| `HDEC-HARNESS-L1-01` |",
+          "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+          "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+        },
+        "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+        "l1_revision_matches_decision": true,
+        "result": "approve"
+      },
+      "HELIX-OS": {
+        "approved_l1_sha256": "sha256:0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+        "decision_id": "HDEC-HELIXOS-L1-01",
+        "decision_record_anchor": {
+          "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
+          "line": 27,
+          "line_text": "| `HDEC-HELIXOS-L1-01` | `docs/helix-os/L1-planning/system-intent.md` | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | approve |",
+          "line_text_sha256": "sha256:a8c06b9b9e6626380f161dfe1c51a7236061b8676142fe47977eb4c92be33273",
+          "marker": "| `HDEC-HELIXOS-L1-01` |",
+          "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+          "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+        },
+        "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+        "l1_revision_matches_decision": true,
+        "result": "approve"
+      },
+      "HELIX-Web": {
+        "approved_l1_sha256": "sha256:26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+        "decision_id": "HDEC-HELIXWEB-L1-01",
+        "decision_record_anchor": {
+          "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
+          "line": 28,
+          "line_text": "| `HDEC-HELIXWEB-L1-01` | `docs/helix-web/L1-planning/product-intent.md` | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | approve |",
+          "line_text_sha256": "sha256:0f1346ec47ee862126bdee38cdae075015e7b644612059e32e6806cadc4bef6e",
+          "marker": "| `HDEC-HELIXWEB-L1-01` |",
+          "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+          "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+        },
+        "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+        "l1_revision_matches_decision": true,
+        "result": "approve"
+      },
+      "HELIX-Web-OS": {
+        "approved_l1_sha256": "sha256:600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+        "decision_id": "HDEC-HELIXWEBOS-L1-01",
+        "decision_record_anchor": {
+          "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
+          "line": 29,
+          "line_text": "| `HDEC-HELIXWEBOS-L1-01` | `docs/helix-web-os/L1-planning/system-intent.md` | `600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c` | approve |",
+          "line_text_sha256": "sha256:1a61a964a4c5761e2a95b908e9a990481bfe5f0b14d85e8bf6d415ce0eef85a5",
+          "marker": "| `HDEC-HELIXWEBOS-L1-01` |",
+          "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+          "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+        },
+        "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+        "l1_revision_matches_decision": true,
+        "result": "approve"
+      }
+    }
+  },
   "old_archive_execution": {
     "ci": false,
     "read_mode": "git show fixed BASE only",
@@ -401,7 +502,7 @@
     "source": false,
     "test": false
   },
-  "output_sha256": "sha256:136dc01cd8803e49a46982ed317c0a55cb5dd989ae7dda11d71f6d6ad58a3114",
+  "output_sha256": "sha256:b33caaf7481e9d43085c7953903135f130b24891cfc70fe7e7c50664106e880e",
   "overlap_rule": "candidate 51 IDs are compared with fixed BASE SCF-B-0108 unresolved src/lint 95 IDs; overlap must be empty",
   "schema_revision": 1,
   "scope": "fixed BASE candidate_needs_semantic_review src/lint exact 51 assets",

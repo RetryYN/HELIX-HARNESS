@@ -19,7 +19,7 @@ BASE_INV = json.loads((HERE / "inventory.json").read_text())
 
 
 def run_case(name: str, code: str, row_mut=None, inv_mut=None):
-    with tempfile.TemporaryDirectory(prefix="scf-b-0127-") as td:
+    with tempfile.TemporaryDirectory(prefix="scf-b-0128-") as td:
         root = Path(td)
         ledger = root / "classification-research.jsonl"
         inventory = root / "inventory.json"
@@ -57,6 +57,8 @@ def product(rows): rows[0]["classification"]["candidate_products"] = ["HELIX-Web
 def reason(rows): rows[0]["classification"]["reason"] = "filename based guess"
 def counter(rows): rows[0]["classification"]["counter_evidence"] = ""
 def boundary(rows): rows[0]["boundary_evidence"]["product_boundary"]["blob"] = "0" * 40
+def l1_approval(rows): rows[0]["boundary_evidence"]["l1"]["HELIX-OS"]["effective_approval"]["approved_l1_sha256"] = "sha256:" + "0" * 64
+def l1_basis(rows): rows[0]["classification"]["candidate_product_basis"]["HELIX-OS"]["l1_line"] = 999
 def phase_status(rows): rows[0]["phase_evidence"]["row"]["product_classification_status"] = "approved"
 def asset_ledger(rows): rows[0]["legacy_asset_evidence"]["row_sha256"] = "sha256:" + "0" * 64
 def history(rows): rows[0]["legacy_history_failure_consumer"]["failure_consumer_static"]["failure"]["matched_lines"] = [{"line": 1}]
@@ -80,6 +82,7 @@ def inventory_existing_count(inv): inv["existing_0108_target_count"] = 94
 def inventory_existing_digest(inv): inv["existing_0108_target_asset_ids_sha256"] = "sha256:" + "0" * 64
 def inventory_overlap(inv): inv["existing_research_overlap"]["SCF-B-0108"] = ["fake"]
 def inventory_overlap_rule(inv): inv["overlap_rule"] = "all overlap accepted"
+def inventory_l1_approval(inv): inv["l1_approval"]["decision_record"]["decision_status"] = "pending"
 def inventory_top_key_missing(inv): inv.pop("classification_counts")
 def inventory_top_key_extra(inv): inv["unexpected"] = True
 
@@ -96,6 +99,8 @@ CASES = [
     ("classification reason", "E_CLASSIFICATION", reason, None),
     ("classification counter", "E_CLASSIFICATION", counter, None),
     ("boundary blob", "E_BOUNDARY_ANCHOR", boundary, None),
+    ("L1 approval row", "E_L1_APPROVAL", l1_approval, None),
+    ("L1 semantic basis", "E_CLASSIFICATION", l1_basis, None),
     ("phase status", "E_PHASE_STATUS", phase_status, None),
     ("asset ledger", "E_OLD_LEDGER_RECORD", asset_ledger, None),
     ("history", "E_HISTORY", history, None),
@@ -117,6 +122,7 @@ CASES = [
     ("inventory existing digest", "E_INVENTORY_DECLARATION", None, inventory_existing_digest),
     ("inventory overlap", "E_INVENTORY_DECLARATION", None, inventory_overlap),
     ("inventory overlap rule", "E_INVENTORY_DECLARATION", None, inventory_overlap_rule),
+    ("inventory L1 approval", "E_L1_APPROVAL", None, inventory_l1_approval),
     ("inventory top key missing", "E_INVENTORY_SCHEMA", None, inventory_top_key_missing),
     ("inventory top key extra", "E_INVENTORY_SCHEMA", None, inventory_top_key_extra),
     ("fixed BASE pin", "E_BASE_PIN", None, base_pin),

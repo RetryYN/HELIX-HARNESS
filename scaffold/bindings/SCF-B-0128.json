@@ -9,7 +9,7 @@
   "updated": "2026-09-23",
   "owner_candidate": "四製品product-boundary研究（正式owner未解決）",
   "product": "HELIX-HARNESS",
-  "reason": "固定BASEのcandidate_needs_semantic_review src/lint 51資産をarchive sourceの具体span・四製品L1・product-boundary・旧実装/縮退/failure/consumer/decision/read-afterで静的照合する。SCF-B-0108の同prefix unresolved95件とはID集合重複0を独立検査する。product欄はScaffold登録先であり単一ownerを表さない。",
+  "reason": "固定BASEのcandidate_needs_semantic_review src/lint 51資産をarchive sourceの具体span、対応する承認済み4製品L1要求行、product-boundary行、承認decisionの製品意味行、旧実装/縮退/failure/consumer/decision/read-afterで静的照合する。raw L1 metadataとeffective approved decisionを分離し、SCF-B-0108の同prefix unresolved95件とはID集合重複0を独立検査する。product欄はScaffold登録先であり単一ownerを表さない。",
   "upstream": [
     {
       "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
@@ -54,6 +54,14 @@
     {
       "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
       "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md",
+      "sha256": "4a2e2f4799a7c0981330d608b5a4b3dc883150bcc9e22090be72bb2d8e5c230b"
     }
   ],
   "connections": {
@@ -109,13 +117,14 @@
     "oracles": [
       "validator independently derives fixed BASE 51 target set and source anchors without importing generate.py",
       "validator derives fixed BASE SCF-B-0108 unresolved95 ID set and checks overlap empty",
-      "validator checks phase/disposition/history/failure/consumer/Wave evidence and authority boundary",
-      "selfcheck expected 36 error codes"
+      "selfcheck expected 39 error codes",
+      "validator checks raw L1 metadata separately from fixed human decision approval, exact decision/L1 digests, and per-product semantic anchors without importing generate.py"
     ],
     "negative_cases": [
       "target missing/duplicate/extra",
       "source blob/anchor/read mode",
       "classification category/product/reason/counter",
+      "L1 raw metadata/effective approval/decision digest and concrete L1/boundary anchor tamper",
       "boundary/phase/disposition/history/implementation",
       "Wave edge injection",
       "SCF-B-0108 overlap/count/digest tamper",
