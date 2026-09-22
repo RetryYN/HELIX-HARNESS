@@ -36,6 +36,15 @@ def rejected(label: str, expected_code: str, mutate) -> None:
 
 v.validate()
 
+table_lines = [
+    "| ID | 要求内容 | 状態 |",
+    "|:---|:---:|---:|",
+    "| REQ-1 | 入力文字列 `---` を保存する | candidate |",
+]
+assert v.metadata_line_numbers(table_lines) == {2}, "normative table row containing --- became metadata"
+assert v.generic_metadata_line("| --- | --- |"), "table separator was not metadata"
+print("PASS table separator syntax and literal --- in a normative cell")
+
 rejected("fake ledger hit / anchor", "E_LEGACY_LOOKUP", lambda d: d["legacy"][0].update({"lookup": "exact_text_hit", "anchors": [{"line": 1, "text_sha256": "0" * 64, "matched_terms": ["FAKE"]}]}))
 rejected("normative line metadata fallback", "E_NORMATIVE_METADATA_FALLBACK", lambda d: next(row for row in d["coverage"] if row["source_item_id"] == "OUTSIDE67-PATH-012" and row["pre_line"] == 3).__setitem__("category", "metadata_only"))
 rejected("other PATH frontmatter category drift", "E_METADATA_CATEGORY", lambda d: next(row for row in d["coverage"] if row["source_item_id"] == "OUTSIDE67-PATH-014" and row["pre_line"] == 2).__setitem__("category", "composite_unresolved"))

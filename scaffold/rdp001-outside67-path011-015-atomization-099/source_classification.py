@@ -6,6 +6,7 @@ import difflib
 import re
 
 FRONTMATTER_KEY = re.compile(r"^[A-Za-z_][A-Za-z0-9_-]*\s*:")
+TABLE_SEPARATOR = re.compile(r"^\|(?:\s*:?-{3,}:?\s*\|)+$")
 GENERIC_METADATA = {
     "---", "|---|", "| --- |", "|---|---|", "| --- | --- |",
     "|---|---|---|", "| --- | --- | --- |",
@@ -49,7 +50,7 @@ def generic_metadata_line(text: str) -> bool:
         return True
     if stripped in GENERIC_METADATA:
         return True
-    return stripped.startswith("|") and "---" in stripped
+    return bool(TABLE_SEPARATOR.fullmatch(stripped))
 
 
 def metadata_line_numbers(lines: list[str]) -> set[int]:

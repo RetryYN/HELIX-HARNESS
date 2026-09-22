@@ -85,12 +85,12 @@
     },
     {
       "path": "scaffold/rdp001-outside67-path011-015-atomization-099/selfcheck.py",
-      "sha256": "7ec9121f96741719d294fca41a33ea8aa3edf48750963f8e65a06422ac30c0e8",
+      "sha256": "7b9694db7f49d7c6cfa489a3455ef0ea84585cce3b0b67de59dae6bedd4ac0ec",
       "note": "negative mutations including fake ledger hit, normative metadata fallback and binding identity drift"
     },
     {
       "path": "scaffold/rdp001-outside67-path011-015-atomization-099/source_classification.py",
-      "sha256": "7ffbe267318492143c1471e30dab2c90f846a49ee69c7872dc1245d9dbe234b9",
+      "sha256": "3e298a446aedd4ee6a8f81fb3270f47f357dc66b2e45cc2161d975cad595e6e7",
       "note": "shared frontmatter classification and PRE/ARCH diff derivation"
     }
   ],
@@ -180,7 +180,8 @@
       "independent two-sided 534-line coverage audit",
       "PATH-011 prior atom ID／digest rederivation",
       "base-time legacy ledger exact hit/no-hit rederivation",
-      "validator／selfcheck／scfctl／git diff --check"
+      "validator／selfcheck／scfctl／git diff --check",
+      "table separator syntax keeps a normative table cell containing literal --- out of metadata"
     ],
     "negative_cases": [
       "fake ledger hit／anchor",
