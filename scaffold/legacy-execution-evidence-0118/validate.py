@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent fail-closed validator for the fixed-base receipt partition."""
+"""Fail-closed validator for the fixed-base receipt partition."""
 from __future__ import annotations
 
 import argparse
@@ -158,7 +158,7 @@ def _oracle_nonnegative_int(parsed: dict, key: str) -> int | None:
 
 
 def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, dict]:
-    """Independent expected classifier; deliberately does not import generator code."""
+    """Validator-side expected classifier; deliberately does not import generator code."""
     text = data.decode(errors="replace")
     lines = text.splitlines()
     anchor_lines = [item["line"] for item in anchors]
@@ -254,16 +254,19 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
             result,
         )
 
-    pass_pattern = re.compile(r"(?:Test Files|Tests)\s+(\d+)\s+passed\b", re.IGNORECASE)
+    pass_pattern = re.compile(r"^\s*(?:Test Files|Tests)\s+(\d+)\s+passed(?:\s+\(\d+\))?\s*$", re.IGNORECASE)
     failed_count_pattern = re.compile(r"(?<!\d)(\d+)\s+failed\b", re.IGNORECASE)
+    exit_pattern = re.compile(r"\b(?:vitest\s+exit|exit\s+code|exited\s+with\s+code)\s*(?:=|:)?\s*(-?\d+)(?!\w)", re.IGNORECASE)
+    failure_pattern = re.compile(r"\b(?:fatal|error|failure)\b", re.IGNORECASE)
+    zero_failure_line = re.compile(r"^\s*0\s+(?:errors?|failures?)\s*$", re.IGNORECASE)
     passed = [line.strip() for line in lines if pass_pattern.search(line)]
     passed_counts = [int(match.group(1)) for line in lines if (match := pass_pattern.search(line))]
-    exits = [line.strip() for line in lines if re.search(r"(?:vitest\s+)?exit\s*=\s*(\d+)", line, re.IGNORECASE)]
+    exits = [line.strip() for line in lines if exit_pattern.search(line)]
     failed_counts = [int(match.group(1)) for line in lines if (match := failed_count_pattern.search(line)) and int(match.group(1)) > 0]
     failed = []
     for line in lines:
         match = failed_count_pattern.search(line)
-        if re.search(r"fatal:|error|failure", line, re.IGNORECASE) or (match and int(match.group(1)) > 0):
+        if ((failure_pattern.search(line) and not zero_failure_line.search(line)) or (match and int(match.group(1)) > 0)):
             if line.strip() not in failed:
                 failed.append(line.strip())
     observed = bool(passed or exits or failed)
@@ -276,9 +279,10 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
     positive_pass = any(count > 0 for count in passed_counts)
     nonzero = []
     for line in exits:
-        match = re.search(r"(?:vitest\s+)?exit\s*=\s*(\d+)", line, re.IGNORECASE)
+        match = exit_pattern.search(line)
         if match and int(match.group(1)) != 0:
             nonzero.append(line)
+    explicit_zero = any((match := exit_pattern.search(line)) and int(match.group(1)) == 0 for line in exits)
     if failed and nonzero:
         reason = "contradictory failure marker and nonzero exit code prevent a pass verdict"
     elif failed and positive_pass:
@@ -289,6 +293,8 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
         reason = "explicit failure/error text prevents a pass verdict"
     elif nonzero:
         reason = "nonzero exit code prevents a pass verdict"
+    elif positive_pass and not explicit_zero:
+        reason = "text pass summary has no explicit exit code 0; result is unknown"
     elif positive_pass:
         reason = "text pass summary has no failure marker or nonzero exit, and remains asset-level only"
     else:
@@ -298,7 +304,7 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
             "status": "asset_level_test_result_only", "verdict": None,
             "reason": reason, "anchor_lines": anchor_lines,
         }
-    elif positive_pass:
+    elif positive_pass and explicit_zero:
         result = {
             "status": "asset_level_test_result_only", "verdict": "pass_observed",
             "reason": reason,

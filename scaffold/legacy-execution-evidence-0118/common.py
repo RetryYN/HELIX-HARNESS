@@ -24,9 +24,10 @@ REQUIRED_TEST_COUNTS = (
     "numPendingTests",
     "numTodoTests",
 )
-PASS_RE = re.compile(r"(?:Test Files|Tests)\s+(\d+)\s+passed\b", re.IGNORECASE)
-EXIT_RE = re.compile(r"(?:vitest\s+)?exit\s*=\s*(\d+)", re.IGNORECASE)
-FAIL_RE = re.compile(r"fatal:|error|failure", re.IGNORECASE)
+PASS_RE = re.compile(r"^\s*(?:Test Files|Tests)\s+(\d+)\s+passed(?:\s+\(\d+\))?\s*$", re.IGNORECASE)
+EXIT_RE = re.compile(r"\b(?:vitest\s+exit|exit\s+code|exited\s+with\s+code)\s*(?:=|:)?\s*(-?\d+)(?!\w)", re.IGNORECASE)
+FAIL_RE = re.compile(r"\b(?:fatal|error|failure)\b", re.IGNORECASE)
+ZERO_FAILURE_LINE_RE = re.compile(r"^\s*0\s+(?:errors?|failures?)\s*$", re.IGNORECASE)
 FAILED_COUNT_RE = re.compile(r"(?<!\d)(\d+)\s+failed\b", re.IGNORECASE)
 
 
@@ -135,7 +136,7 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
     failures = []
     for line in lines:
         match = FAILED_COUNT_RE.search(line)
-        if FAIL_RE.search(line) or (match and int(match.group(1)) > 0):
+        if (FAIL_RE.search(line) and not ZERO_FAILURE_LINE_RE.search(line)) or (match and int(match.group(1)) > 0):
             if line.strip() not in failures:
                 failures.append(line.strip())
     execution = {
@@ -149,6 +150,7 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
         match = EXIT_RE.search(line)
         if match and int(match.group(1)) != 0:
             nonzero.append(line)
+    explicit_zero = any((match := EXIT_RE.search(line)) and int(match.group(1)) == 0 for line in exit_matches)
     failure_markers = list(failures)
     for line in nonzero:
         if line not in failure_markers:
@@ -165,6 +167,8 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
         reason = "explicit failure/error text prevents a pass verdict"
     elif nonzero:
         reason = "nonzero exit code prevents a pass verdict"
+    elif positive_pass and not explicit_zero:
+        reason = "text pass summary has no explicit exit code 0; result is unknown"
     elif positive_pass:
         reason = "text pass summary has no failure marker or nonzero exit, and remains asset-level only"
     else:
@@ -176,7 +180,7 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
             "reason": reason,
             "anchor_lines": anchor_lines,
         }
-    elif positive_pass:
+    elif positive_pass and explicit_zero:
         result = {
             "status": "asset_level_test_result_only",
             "verdict": "pass_observed",
@@ -187,7 +191,7 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
         result = {
             "status": "asset_level_test_result_only" if passed or exit_matches else "no_result_marker",
             "verdict": None,
-            "reason": "no positive test pass summary is present",
+            "reason": reason,
             "anchor_lines": anchor_lines,
         }
     return execution, failure, result
