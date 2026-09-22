@@ -1,0 +1,56 @@
+{
+  "schema_revision": 1,
+  "batch_id": "LEGACY-SEMANTIC-WAVE37-2026-09-22",
+  "base_revision": "562e176c36844474b63424ec06beefe2f7722d18",
+  "candidate_scope": "未レビューのNFR source chain 3件。旧archiveは静的照合だけに限定する。",
+  "selected_units": [
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-01-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-01",
+      "product_scope": ["HELIX-OS"],
+      "phase_candidates": ["PHCAP-09", "PHCAP-20"],
+      "asset_chain": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9", "LEGACY-ASSET-899A61905AFBC415F595", "LEGACY-ASSET-79AD1AFBFB2A4B00CC95"],
+      "semantic_atoms": 1,
+      "composite_unresolved": 0
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-10-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-10",
+      "product_scope": ["HELIX-OS"],
+      "phase_candidates": ["PHCAP-10"],
+      "asset_chain": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9", "LEGACY-ASSET-25EB3B29EA909B050987", "LEGACY-ASSET-44F2DE5EBB3DF3A4744A"],
+      "semantic_atoms": 1,
+      "composite_unresolved": 0
+    },
+    {
+      "unit_candidate_id": "IRUNIT-HIL-NFR-19-HELIX-OS",
+      "source_requirement_id": "HIL-NFR-19",
+      "product_scope": ["HELIX-OS"],
+      "phase_candidates": ["PHCAP-07"],
+      "asset_chain": ["LEGACY-ASSET-A60CF91DD2AF6693E6F9", "LEGACY-ASSET-E212E913117C5C247DAE", "LEGACY-ASSET-573CC6D5360F04EEDEE3"],
+      "semantic_atoms": 2,
+      "composite_unresolved": 0
+    }
+  ],
+  "denominator": {
+    "legacy_decomposition_units": 218,
+    "prior_reviewed_units": 145,
+    "prior_reviewed_edges": 432,
+    "wave37_units": 3,
+    "wave37_edges": 9,
+    "cumulative_reviewed_units": 148,
+    "cumulative_reviewed_edges": 441,
+    "remaining_units": 70,
+    "products": {"HELIX-HARNESS": 0, "HELIX-OS": 3, "HELIX-Web": 0, "HELIX-Web-OS": 0, "unresolved_product_authority": 3}
+  },
+  "boundary": {
+    "authority_effect": "none",
+    "current_requirement_implementation_status": "not_established",
+    "catalog_legacy_implementation_status": "asset-specific; no current implementation claim",
+    "phase_authority_status": "candidate_unchanged",
+    "consumer_closure_status": "pending",
+    "legacy_execution_status": "not_run",
+    "new_build_allowed": false,
+    "web_direct_evidence": "not asserted; four-product boundary docs are included as candidate comparison inputs"
+  }
+}

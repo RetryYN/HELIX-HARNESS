@@ -1,0 +1,15 @@
+{
+  "schema_revision": 1,
+  "batch_id": "LEGACY-SEMANTIC-WAVE37-2026-09-22",
+  "selection_rule": "source requirement未レビューかつ既存unit/edge/非requirement assetと交差しない3 chain",
+  "selected_units": ["IRUNIT-HIL-NFR-01-HELIX-OS", "IRUNIT-HIL-NFR-10-HELIX-OS", "IRUNIT-HIL-NFR-19-HELIX-OS"],
+  "per_chain_roles": ["requirement", "design", "implementation_source"],
+  "atomization": {
+    "NFR01-OS-A01": "source span全文を保持。重複副作用／重複Issue／実装／memory昇格という旧記述を一つの未分割意味候補として保持。",
+    "NFR10-OS-A01": "source span全文を保持。adapter削除、HARNESS registry再生成、runtime silo非正本という接続を一つの候補として保持。",
+    "NFR19-OS-A01": "macOS／Windows portability未実施明示のsource spanを保持。",
+    "NFR19-OS-A02": "Windows wrapper成功をLinux互換証拠にしないという否定関係を保持。"
+  },
+  "unresolved": ["product_boundary_pending_human_decision", "phase_authority_pending", "implementation_status_not_established", "degradation_status_not_established", "consumer_closure_pending", "successor_assignment_unassigned", "legacy_execution_not_run"],
+  "forbidden_transitions": ["historical source statement -> current authority", "catalog candidate -> current implementation", "phase candidate -> phase admission", "OS candidate -> HELIX-Web or HELIX-Web-OS identity", "old implementation source -> executed evidence"]
+}
