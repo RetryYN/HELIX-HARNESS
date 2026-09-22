@@ -37,9 +37,9 @@ phaseについては、旧phase候補と `PHCAP-*` を `candidate_only` とし�
 python3 -B scaffold/fr-os-first10-evidence-0129/build.py
 python3 -B scaffold/fr-os-first10-evidence-0129/validate.py --bundle scaffold/fr-os-first10-evidence-0129
 python3 -B scaffold/fr-os-first10-evidence-0129/selfcheck.py
-python3 -B scaffold/tools/scfctl.py validate --root .
-python3 -B scaffold/tools/scfctl.py stale --root .
-python3 -B scaffold/tools/scfctl.py residuals --root .
+python3 -B scaffold/tools/scfctl.py validate
+python3 -B scaffold/tools/scfctl.py stale
+python3 -B scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
