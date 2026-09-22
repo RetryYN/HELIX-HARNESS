@@ -1,0 +1,62 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0097",
+  "kind": "scaffold",
+  "title": "Wave50 schema10 legacy IR residual source chain research premise",
+  "product": "HELIX-OS",
+  "owner_candidate": "Wave50の旧IR残2 unit HIL-NFR-20／22 HELIX-OS候補について、source／evidence／coverage境界、phase、authority、implementation、degradation、consumerを未確定のまま静的照合する研究候補（正式owner未解決）",
+  "state": "registered",
+  "reason": "#2044/#2045 merge後の最新main c52f2709から旧IR残2 unitを選定した。NFR-20は新規未使用design candidate 1件を選定し、NFR-22は同じphase/product poolのdesign候補を全てconsumedとしてexamined-not-selectedに記録する。3 role edge、3 semantic atom、2 composite unresolved、1 selected role asset、5 inspected asset、3 missing evidence receiptを固定し、candidate／consumed／examined_not_selected／unexaminedをrole別に保持する。formal owner、authority、phase admission、current implementation、degradation、formal successor、consumer closure、acceptance、release、deploymentは生成しない。Wave49 reviewed exact HEAD 36795d575とmain merge base c52f2709をrebaseline gateへ固定し、先行HEADまたはmain変更時は停止する。replacement.issue=0はDraft PR未割当を示すtracker sentinelである。",
+  "upstream": [
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995", "note": "current governance entry; static boundary only"},
+    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "four-product boundary candidate; no routing admission"},
+    {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "OS L1 boundary candidate"},
+    {"path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl", "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3", "note": "source unit spans and candidate products"},
+    {"path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl", "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65", "note": "phase/product candidate pools; not direct evidence"},
+    {"path": "scaffold/legacy-semantic-review-wave49/README.md", "sha256": "0560f0b37f4c77a0639a3660ae16ca95cc459aa2f900b0da550f845f27696152", "note": "prior Wave49 bounded scope"},
+    {"path": "scaffold/legacy-semantic-review-wave49/plan.json", "sha256": "e5ab3a0f2ca022a488cf911186e187646ace2d2aa3f1b821a8a5814e7d088bfd", "note": "prior Wave49 count contract"},
+    {"path": "scaffold/legacy-semantic-review-wave49/inventory.json", "sha256": "dfff252a420ac0069ec82722f8d01d84bf16964ab147d21ec8c98a2875e45d68", "note": "prior Wave49 inspected asset inventory"},
+    {"path": "scaffold/legacy-semantic-review-wave49/generate.py", "sha256": "d21a8aaffdada393857b6e36c52695753a4132c9564760a9f8ddd01d513f5412", "note": "prior Wave49 deterministic generator"},
+    {"path": "scaffold/legacy-semantic-review-wave49/validate.py", "sha256": "9b7725a366a31062dc988c04f614519cbb621ac7b822928e14aa519b92358f8c", "note": "prior Wave49 reciprocal shared-source validator"},
+    {"path": "scaffold/legacy-semantic-review-wave49/selfcheck.py", "sha256": "e3bedee83bfe06a857a9ba44721960f58927152f07a7c574c1299a63fe7ddef1", "note": "prior Wave49 negative mutation suite"},
+    {"path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl", "sha256": "e1d924c576ac36a51750758ac429b3457f658a8b0f62e802fa2ce7372740c356", "note": "prior Wave49 source-role ledger"},
+    {"path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.meta.json", "sha256": "ba315824038686077b64561a03c670335726a6a6dea3b88cdc75d36ff954a30c", "note": "prior Wave49 receipts and cumulative counts"},
+    {"path": "scaffold/legacy-semantic-review-wave50/README.md", "sha256": "5cf15a2295ee5840f262fe80809507275b7c99749e8a44901f52c2a6b83cd31c", "note": "Wave50 bounded scope and latest-main rebaseline boundary"},
+    {"path": "scaffold/legacy-semantic-review-wave50/plan.json", "sha256": "1bbbee4fa1606947b8f148e22d5f68b5a1157d5d72386883a2e6c69d3f4815af", "note": "Wave50 selection and count contract"},
+    {"path": "scaffold/legacy-semantic-review-wave50/inventory.json", "sha256": "8deac7ff7f734d11d34b62345b11c377f68829702ae79e05f425aa1ca5793732", "note": "Wave50 inspected asset inventory"},
+    {"path": "scaffold/legacy-semantic-review-wave50/generate.py", "sha256": "8535e1413fb58307558e2b5fc985ecf069f1d1e93745899500d99e54077bfda6", "note": "Wave50 deterministic static generator"},
+    {"path": "scaffold/legacy-semantic-review-wave50/validate.py", "sha256": "e4b2c1786896a84d3ba200438e73176b125797089ebd7feed2d2c1b94cd357d2", "note": "Wave50 fail-closed validator with latest-main rebaseline gate"},
+    {"path": "scaffold/legacy-semantic-review-wave50/selfcheck.py", "sha256": "374a6be9774b2379ab79d9278b011b4d08ded81fe5a8acff15fe0a623b6d5dde", "note": "Wave50 validator negative mutation suite"},
+    {"path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl", "sha256": "8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5", "note": "Wave50 exact source-role ledger"},
+    {"path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.meta.json", "sha256": "e62712988c2c006a0fb31c7231d83b9cba25882d533404e02b6ee0d659971016", "note": "Wave50 receipts and cumulative counts"}
+  ],
+  "role": "Wave50の旧IR残2 source unitについて、exact anchor、role candidate pool、phase／product候補境界、implementation／degradation statusをresearch premiseとして保持する静的Scaffold",
+  "obligations": [
+    "#2044 merge後mainの旧IR残2 unit HIL-NFR-20／22 HELIX-OSをsource／evidence／coverage境界で限定する",
+    "要求原文、decomposition span、保存markdownのsource relation、catalog／crosswalk、decision／disposition、failure／consumerを静的状態として照合し、旧archiveを実行しない",
+    "3 role edge、3 semantic atom、2 composite unresolved、1 selected role asset、5 inspected asset、3 missing evidence receiptのdenominatorを固定する",
+    "Wave1–49のprior dynamic countとWave50後の218 unit／598 edge／残0 unitを再集計し、218/218を旧IR研究分母だけとして扱う",
+    "missing roleごとにcandidate／consumed／examined_not_selected／unexamined asset IDを分離し、unexaminedを直接証拠へ昇格しない",
+    "候補product、phase、legacy implementation status、現行authority、current implementation、degradation、formal successor、consumer closureを混同しない",
+    "旧runtime／test／CI／workflow／hook／adapter／sourceを実行せず、scaffold検査だけを使う"
+  ],
+  "connections": {
+    "consumers": ["Wave50 semantic review担当", "四製品boundary／phase review担当", "旧asset failure／consumer／decision closure担当", "SCF-B-0097 replacement review担当"],
+    "dependencies": ["current four-product boundary and OS L1 docs", "legacy catalog/crosswalk/decomposition/source relation", "Wave1–49 prior semantic ledgers", "Wave49 reviewed exact-head lineage and latest main merge"],
+    "boundary": "成果物はscaffold/配下のbounded research candidateであり、正式要求、owner、authority、phase admission、current implementation、degradation、formal successor、failure／consumer closureを生成しない。218/218は旧IR研究分母のみである。"
+  },
+  "operations": {
+    "allowed": ["python3 -B scaffold/legacy-semantic-review-wave50/generate.py", "python3 -B scaffold/legacy-semantic-review-wave50/validate.py", "python3 -B scaffold/legacy-semantic-review-wave50/selfcheck.py", "python3 scaffold/tools/scfctl.py validate", "python3 scaffold/tools/scfctl.py stale", "python3 scaffold/tools/scfctl.py residuals", "git diff --check"],
+    "forbidden": ["旧世代archive配下のworkflow、runtime、test、CI、hook、adapter、source実行", "candidateをformal requirement、owner、authority、phase、implementation、degradation、formal successor、failure、consumer closureへ昇格すること", "scaffold/外への候補書き込み", "要求採否、successor、acceptance、release、deploymentの生成", "Wave49 exact HEADまたはmain merge lineage変更後の継続作業（rebaseline必須）"]
+  },
+  "artifacts": ["scaffold/legacy-semantic-review-wave50/README.md", "scaffold/legacy-semantic-review-wave50/plan.json", "scaffold/legacy-semantic-review-wave50/inventory.json", "scaffold/legacy-semantic-review-wave50/generate.py", "scaffold/legacy-semantic-review-wave50/validate.py", "scaffold/legacy-semantic-review-wave50/selfcheck.py", "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl", "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.meta.json"],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": ["Wave50 generate.py→ledger/meta deterministic regeneration", "Wave50 validate.py source／asset／decision／failure／consumer receipts, independent pool, prior dynamic count, same-batch duplicate, exact-main rebaseline gate", "Wave50 selfcheck.py validator negative mutations", "scfctl validate／stale／residuals", "git diff --check"],
+    "negative_cases": ["source span／digest tamper", "cross-unit source span reuse", "atom identity injection", "unsupported product routing", "role semantic inversion", "current authority／phase／implementation／degradation promotion", "missing receipt", "candidate pool omission", "prior asset reuse", "same-batch asset reuse", "count drift", "main/wave49 lineage tamper", "Wave49 template residue"]
+  },
+  "replacement": {"role_target": "承認済み旧IR source unit、owner、authority、phase、implementation、degradation、formal successor、failure／consumer contractへの個別移管（人間判断後）", "formal_artifacts": [], "issue": 0, "status": "pending", "transfer": null, "target_revisions": {}, "confirmation_ref": null, "confirmation_digest": null},
+  "created": "2026-09-22",
+  "updated": "2026-09-22"
+}
