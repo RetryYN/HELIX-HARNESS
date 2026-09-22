@@ -79,6 +79,33 @@ def main() -> None:
     def tampered_anchor_resolution(rows):
         rows[0]["legacy_anchor_resolution"]["review_edges"][0]["references"][0]["base_excerpt_sha256"] = "sha256:" + "0" * 64
 
+    def removed_unit_asset(rows):
+        rows[0]["old_asset_evidence"]["assets"].pop()
+
+    def injected_unit_asset(rows):
+        rows[0]["old_asset_evidence"]["assets"].append({"asset_id": "LEGACY-ASSET-FAKE-2055"})
+
+    def tampered_inventory_declaration(inventory):
+        inventory["counts"]["current_static_refs"] = 99999
+
+    def reversed_impl_presence(rows):
+        rows[0]["legacy_implementation_evidence"]["evidence_presence"] = "no_static_implementation_source_edge"
+
+    def emptied_impl_contribution(rows):
+        rows[0]["legacy_implementation_evidence"]["semantic_contribution_by_edge"] = {}
+
+    def fabricated_degradation_span(rows):
+        rows[0]["legacy_degradation_evidence"]["phase_level_evidence"][0]["evidence_spans"] = ["FAKE-SPAN-2055"]
+
+    def fabricated_failure_ledger_status(rows):
+        rows[0]["legacy_failure_evidence"]["ledger_external_effect_statuses"][0]["value"] = "external_effect_confirmed"
+
+    def emptied_failure_reason(rows):
+        rows[0]["legacy_failure_evidence"]["why_unknown"] = []
+
+    def tampered_candidate_record(rows):
+        rows[0]["source_requirement"]["representative_legacy_assets"][0]["confidence"] = "confirmed_implementation_evidence"
+
     run_case("wrong-blob", "E_OLD_BLOB", wrong_blob)
     run_case("wrong-current-span", "E_CURRENT_SPAN", wrong_current_span)
     run_case("missing-edge", "E_REVIEW_EDGE_SET", missing_edge)
@@ -92,7 +119,16 @@ def main() -> None:
     run_case("wrong-input-digest", "E_INPUT_DIGEST", lambda rows: None, wrong_input_digest)
     run_case("wrong-anchor-policy", "E_OLD_ANCHOR_POLICY", lambda rows: None, wrong_anchor_policy)
     run_case("tampered-anchor-resolution", "E_OLD_ANCHOR_RESOLUTION", tampered_anchor_resolution)
-    print("SCF-B-0104 selfcheck: PASS (13 negative cases; expected error codes matched)")
+    run_case("removed-unit-asset", "E_OLD_ASSET_UNIT_SET", removed_unit_asset)
+    run_case("injected-unit-asset", "E_OLD_ASSET_UNIT_SET", injected_unit_asset)
+    run_case("tampered-inventory-declaration", "E_INVENTORY_DECLARATION", lambda rows: None, tampered_inventory_declaration)
+    run_case("reversed-impl-presence", "E_OLD_IMPL_EVIDENCE", reversed_impl_presence)
+    run_case("emptied-impl-contribution", "E_OLD_IMPL_EVIDENCE", emptied_impl_contribution)
+    run_case("fabricated-degradation-span", "E_OLD_DEGRADATION_EVIDENCE", fabricated_degradation_span)
+    run_case("fabricated-failure-ledger-status", "E_OLD_FAILURE_EVIDENCE", fabricated_failure_ledger_status)
+    run_case("emptied-failure-reason", "E_OLD_FAILURE_EVIDENCE", emptied_failure_reason)
+    run_case("tampered-candidate-record", "E_CANDIDATE_BINDING", tampered_candidate_record)
+    print("SCF-B-0104 selfcheck: PASS (22 negative cases; expected error codes matched)")
 
 
 if __name__ == "__main__":
