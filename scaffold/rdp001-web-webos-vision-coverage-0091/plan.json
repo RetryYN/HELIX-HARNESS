@@ -1,0 +1,42 @@
+{
+  "schema": "rdp001-web-webos-vision-coverage-plan/v1",
+  "binding_id": "SCF-B-0091",
+  "base_origin_main": "f15c3ca2ed1dc865b242b0a21e1516fdeec6f9f6",
+  "scope": {
+    "parent_span_source": "SCF-B-0080",
+    "candidate_bundles": ["SCF-B-0081", "SCF-B-0084", "SCF-B-0088"],
+    "parent_span_count": 29,
+    "candidate_record_count": 35,
+    "atomized_candidate_count": 19,
+    "composite_unresolved_count": 16
+  },
+  "selection_basis": [
+    "all 29 parent spans from the source scaffold",
+    "all candidates from the three semantic atom bundles",
+    "exact source line and source span digest recheck",
+    "global candidate ID and source-line deduplication"
+  ],
+  "connection_rules": {
+    "parent_coverage": "one exact source-line edge for each candidate",
+    "product_boundary": "preserve every candidate_product or candidate_product_candidates value as candidate-only edge",
+    "phase": "promote only an exact parent or atom identifier in a dedicated ID/link field of PHCAP; otherwise unlinked_unknown",
+    "implementation_asset": "promote only an exact parent or atom identifier in a dedicated ID/link field of the implementation crosswalk; otherwise unlinked_unknown",
+    "description_text": "free-text or unrelated JSON fields never establish a direct link"
+  },
+  "expected_current_state": {
+    "candidate_product_edges": 49,
+    "matrix_edges": 154,
+    "phase_direct_links": 0,
+    "asset_direct_links": 0,
+    "formal_owner": "unknown",
+    "authority": "none",
+    "formal_requirement_unit": "not_generated",
+    "implementation": "unknown",
+    "degradation": "unknown"
+  },
+  "stop_conditions": [
+    "do not create formal requirement units or product assignments",
+    "do not infer phase, implementation, degradation, failure, or consumer status",
+    "do not execute archive runtime, test, CI, workflow, hook, adapter, or source"
+  ]
+}
