@@ -20,4 +20,4 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorは固定BASE祖先性、holding／register／L1／L1 approval decision／product-boundary入力digest、pre/archive snapshotのbytes・digest・blob、4 path集合、11 candidate／2 contextの全field、raw L1 metadataとeffective approved decisionの分離、既存bindingのselected path集合とsource-itemごとの先行Binding ID、formal／authority境界を独立定数で検査する。selfcheckは宣言済み16 negative casesを期待error codeまで照合する。
+validatorは固定BASE祖先性、holding／register／L1／L1 approval decision／product-boundary入力digest、pre/archive snapshotのbytes・digest・blob、4 path集合、11 candidate／2 contextの全field、raw L1 metadataとeffective approved decisionの分離、既存Binding IDの存在とselected path集合、source-itemごとの先行Binding ID、formal／authority境界を独立定数で検査する。重複Bindingの全体bytes digestは固定せず、selected path集合の実体照合で重複事実を保持する。selfcheckは宣言済み16 negative casesを期待error codeまで照合する。

@@ -6,6 +6,6 @@ Refs #1813（進捗参照のみ）
 
 ## Validation
 
-- `validate.py`: 4 source / 11 candidate / 2 context; fixed input digests and snapshot bytes
+- `validate.py`: 4 source / 11 candidate / 2 context; fixed source/input digests and snapshot bytes, with overlap Binding IDs and selected path sets checked without whole-Binding digest pins
 - `selfcheck.py`: 16 negative cases with expected error codes, including missing prior research overlap evidence
-- `scfctl validate`, `stale`, `residuals`, `git diff --check`
+- `scfctl validate`: 116 bindings, 0 failures; `stale`, `residuals`, `git diff --check`

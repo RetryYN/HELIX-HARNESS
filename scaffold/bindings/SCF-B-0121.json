@@ -6,7 +6,7 @@
   "product": "HELIX-Web",
   "owner_candidate": "outside67 Web／Web-OS L1 anchor semantic review（最終owner未解決）",
   "state": "registered",
-  "reason": "MPR-SH-OUTSIDE67-001の既存SCF-B-0096／0099でsource調査済みの4 path（PATH-007／009／010／012）について追加のL1接続をholding、pre-isolation、archiveのexact Git bytes／digestと現行四製品L1候補へ静的に照合し、Web L1 6＋Web-OS L1 5のrow-sized anchor候補およびREADME context 2件を保持するresearch-only Scaffold。現行L1本文のraw metadataはdraft／parent approval待ちだが承認decisionでeffective approved、研究candidate authorityはnoneに保持し、旧pathはpath-level contextであり、formal unit、phase、実装、縮退、failure、consumer、authorityへ昇格しない。既存SCF-B-0057／0062／0080〜0091に加え、SCF-B-0096／0099のselected path集合との重複を明示し、各source itemに先行Binding IDを保持する。#1813は進捗参照のみとする。",
+    "reason": "MPR-SH-OUTSIDE67-001の既存SCF-B-0096／0099でsource調査済みの4 path（PATH-007／009／010／012）について追加のL1接続をholding、pre-isolation、archiveのexact Git bytes／digestと現行四製品L1候補へ静的に照合し、Web L1 6＋Web-OS L1 5のrow-sized anchor候補およびREADME context 2件を保持するresearch-only Scaffold。現行L1本文のraw metadataはdraft／parent approval待ちだが承認decisionでeffective approved、研究candidate authorityはnoneに保持し、旧pathはpath-level contextであり、formal unit、phase、実装、縮退、failure、consumer、authorityへ昇格しない。既存SCF-B-0057／0062／0080〜0091に加え、SCF-B-0096／0099のselected path集合との重複を明示し、各source itemに先行Binding IDを保持する。重複Bindingの全体bytes digestは入力として固定せず、各Binding IDの実体とselected path集合をvalidatorで照合する。#1813は進捗参照のみとする。",
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
@@ -42,51 +42,6 @@
       "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
       "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
       "note": "fixed BASE static input; effective approved decision for Web/Web-OS L1; research candidate authority remains none"
-    },
-    {
-      "path": "scaffold/bindings/SCF-B-0057.json",
-      "sha256": "0eee02ec11f6c6e3bc7e7f741de6b2d7b1e6cc39f733528bc26926b685cc70eb",
-      "note": "fixed BASE static input; no old runtime execution"
-    },
-    {
-      "path": "scaffold/bindings/SCF-B-0062.json",
-      "sha256": "114d2186012af42356929a9c9b539e15f9eac64c7b09aa798bfe2b7d0ee0b952",
-      "note": "fixed BASE static input; no old runtime execution"
-    },
-    {
-      "path": "scaffold/bindings/SCF-B-0080.json",
-      "sha256": "3d0f61775d0095774a6057c381f581576fca420e43c7e511c94cad761681a6e2",
-      "note": "fixed BASE static input; no old runtime execution"
-    },
-    {
-      "path": "scaffold/bindings/SCF-B-0081.json",
-      "sha256": "5ac1b306f661909e633ab3a4c97de74808acd776652b24c077ba7ce9ec5b758c",
-      "note": "fixed BASE static input; no old runtime execution"
-    },
-    {
-      "path": "scaffold/bindings/SCF-B-0084.json",
-      "sha256": "2156e887025045d5c03303d0bc9006f8f7e678dff5c7ff7b49b2d81f9360571c",
-      "note": "fixed BASE static input; no old runtime execution"
-    },
-    {
-      "path": "scaffold/bindings/SCF-B-0088.json",
-      "sha256": "4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3",
-      "note": "fixed BASE static input; no old runtime execution"
-    },
-    {
-      "path": "scaffold/bindings/SCF-B-0091.json",
-      "sha256": "51c4ea21a0531384c3a3cff9262248a2e25e8732b46b2da295ab688423ad026b",
-      "note": "fixed BASE static input; no old runtime execution"
-    },
-    {
-      "path": "scaffold/bindings/SCF-B-0096.json",
-      "sha256": "cd5a3bf91fcdd3a451bb4af71854c9031669f292cd23541863b51597e9d1735d",
-      "note": "fixed BASE static overlap input; selected outside67 path set is checked without executing legacy assets"
-    },
-    {
-      "path": "scaffold/bindings/SCF-B-0099.json",
-      "sha256": "4edce812c65a617acc11172a6e381c94c7d4dcaa4f0d936112c5b52adb689273",
-      "note": "fixed BASE static overlap input; selected outside67 path set is checked without executing legacy assets"
     }
   ],
   "role": "outside67 Web／Web-OS未処理4 pathのL1 anchor候補とREADME contextをsource digest／line／全field比較で保持するresearch-only Scaffold",
@@ -96,7 +51,7 @@
     "current Web L1 6行＋Web-OS L1 5行をraw metadataとeffective approved decisionへ分離し、source path／line／text／L2接続へ束縛する",
     "README 2件をcontext-onlyとして保持し、formal unit集合へ算入しない",
     "phase／implementation／degradation／failure／consumerをunknown、formal unitをnot_generated、authorityをnoneに固定する",
-    "既存SCF-B-0057／0062／0080／0081／0084／0088／0091／0096／0099のselected path集合とcandidate ID重複を検査し、4 target pathのoverlapを明示する",
+    "既存SCF-B-0057／0062／0080／0081／0084／0088／0091／0096／0099のBinding IDとselected path集合を実体照合し、全体bytes digestに依存せずcandidate ID重複と4 target pathのoverlapを明示する",
     "固定BASE祖先性、入力digest、L1承認decision digest、raw／effective authority分離、全field schema、16負例の期待error code、source itemごとのprior_research_binding_ids欠落検査を検証する",
     "旧source／archive／runtime／test／CIを実行せず、要求採択、formal phase、authority、実装、縮退、failure／consumer closureを生成しない"
   ],

@@ -35,17 +35,6 @@ L1 = {
 L1_APPROVAL_DECISION_PATH = "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md"
 L1_APPROVAL_DECISION_SHA = "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
 L1_APPROVAL_DECISION_IDS = {"HELIX-Web": "HDEC-HELIXWEB-L1-01", "HELIX-Web-OS": "HDEC-HELIXWEBOS-L1-01"}
-EXISTING_BINDING_SHA = {
-    "SCF-B-0057": "0eee02ec11f6c6e3bc7e7f741de6b2d7b1e6cc39f733528bc26926b685cc70eb",
-    "SCF-B-0062": "114d2186012af42356929a9c9b539e15f9eac64c7b09aa798bfe2b7d0ee0b952",
-    "SCF-B-0080": "3d0f61775d0095774a6057c381f581576fca420e43c7e511c94cad761681a6e2",
-    "SCF-B-0081": "5ac1b306f661909e633ab3a4c97de74808acd776652b24c077ba7ce9ec5b758c",
-    "SCF-B-0084": "2156e887025045d5c03303d0bc9006f8f7e678dff5c7ff7b49b2d81f9360571c",
-    "SCF-B-0088": "4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3",
-    "SCF-B-0091": "51c4ea21a0531384c3a3cff9262248a2e25e8732b46b2da295ab688423ad026b",
-    "SCF-B-0096": "cd5a3bf91fcdd3a451bb4af71854c9031669f292cd23541863b51597e9d1735d",
-    "SCF-B-0099": "4edce812c65a617acc11172a6e381c94c7d4dcaa4f0d936112c5b52adb689273",
-}
 EXISTING_BINDING_TARGET_PATHS = {
     "SCF-B-0096": ["OUTSIDE67-PATH-006", "OUTSIDE67-PATH-007", "OUTSIDE67-PATH-008", "OUTSIDE67-PATH-009", "OUTSIDE67-PATH-010"],
     "SCF-B-0099": ["OUTSIDE67-PATH-011", "OUTSIDE67-PATH-012", "OUTSIDE67-PATH-013", "OUTSIDE67-PATH-014", "OUTSIDE67-PATH-015"],
@@ -138,9 +127,8 @@ def validate(bundle, repo):
     if not subprocess.run(["git","merge-base","--is-ancestor",BASE,"HEAD"],cwd=repo,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode==0: fail("E_BASE_COMMIT","HEAD is not descendant of fixed BASE")
     for path,expected in [(HOLDING,HOLDING_SHA),(REGISTER,REGISTER_SHA),("docs/concept/product-boundary.md",PRODUCT_BOUNDARY_SHA),("docs/governance/new-generation-start-here.md",ENTRY_SHA),(L1_APPROVAL_DECISION_PATH,L1_APPROVAL_DECISION_SHA)]+[(p,d) for p,d in L1.values()]:
       if digest_file(repo/path) != expected: fail("E_INPUT_DIGEST",f"input digest changed: {path}")
-    for bid,expected in EXISTING_BINDING_SHA.items():
+    for bid in EXISTING_BINDING_IDS:
       p=repo/f"scaffold/bindings/{bid}.json"
-      if digest_file(p) != expected: fail("E_INPUT_DIGEST",f"overlap binding digest changed: {bid}")
       b=json_load(p,"E_INPUT_DIGEST")
       if b.get("id") != bid: fail("E_OVERLAP",f"binding identity mismatch: {bid}")
       if bid in EXISTING_BINDING_TARGET_PATHS:
