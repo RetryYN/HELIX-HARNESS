@@ -3,8 +3,8 @@
   "bundle_id": "RDP-001-OUTSIDE67-FOLLOWUP-034-036-046-052-056",
   "binding_reservation": "SCF-B-0069",
   "binding_registration_status": "registered",
-  "base_origin_main": "38d38f47794e70d621403ad8dbeac56518a76766",
-  "base_origin_main_previous": "dbcc0f332704302d2f8181479552e7198f102db7",
+  "base_origin_main": "98b5fb0f0743969835dcde7ebd00b476470a53a8",
+  "base_origin_main_previous": "38d38f47794e70d621403ad8dbeac56518a76766",
   "candidate_ids": [
     "OUTSIDE67-PATH-034",
     "OUTSIDE67-PATH-036",

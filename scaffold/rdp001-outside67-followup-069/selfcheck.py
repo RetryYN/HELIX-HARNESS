@@ -25,6 +25,7 @@ def main():
   case('denominator',lambda c:mutate(c/(REL+'inventory.json'),lambda d:d['source_holding'].__setitem__('combined_reviewed_and_candidate_count',16)),'E_SOURCE_HOLDING_CANONICAL')
   case('scope_keyset',lambda c:mutate(c/(REL+'inventory.json'),lambda d:d['scope'].__setitem__('unknown_key','x')),'E_SCOPE_KEYS')
   case('scope_canonical',lambda c:mutate(c/(REL+'inventory.json'),lambda d:d['scope'].__setitem__('batch_width_observed',6)),'E_SCOPE_CANONICAL')
+  case('scope_unexplored_scope',lambda c:mutate(c/(REL+'inventory.json'),lambda d:d['scope'].__setitem__('unexplored_scope','ZZZ')),'E_SCOPE_CANONICAL:unexplored_scope')
   case('root_authority',lambda c:mutate(c/(REL+'inventory.json'),lambda d:d.__setitem__('old_runtime_test_ci_execution',True)),'E_AUTHORITY')
   case('unit_keyset',lambda c:mutatel(c/(REL+'product-units.jsonl'),0,lambda d:d['normalized_statement'].__setitem__('free_text','x')),'E_UNIT_NESTED_KEYS')
   case('meta_reservation',lambda c:mutate(c/(REL+'meta.json'),lambda d:d.__setitem__('binding_reservation','SCF-B-0000')),'E_META:binding_reservation')
@@ -32,5 +33,5 @@ def main():
   bad=[x for x in cases if not x[1]]
   if bad:
    print('FAIL negative cases: '+','.join(x[0] for x in bad)); print('\n'.join(x[2] for x in bad)); return 1
- print('PASS outside67 follow-up selfcheck: baseline + 14 negative cases'); return 0
+ print('PASS outside67 follow-up selfcheck: baseline + 15 negative cases'); return 0
 if __name__=='__main__':sys.exit(main())

@@ -116,7 +116,7 @@
     "current counterpart hash一致・不一致、052 revision差分、034/052/056 driftを意味同値・relocation・authorityへ変換しない",
     "四製品をcandidate boundaryとして保持し、product assignment、phase authority、owner、successorを生成しない",
     "product-unit keyset、normalized_statement、retained_meaning、unresolved_questions、diff_observation、scope canonical fieldsをvalidatorで固定する",
-    "product substitution、unknown promotion、duplicate、anchor、denominator、nested keysetを含む本体validator経由のnegative selfcheckを実行する",
+    "product substitution、unknown promotion、duplicate、anchor、denominator、nested keysetとscope.unexplored_scope canonical pinを含む本体validator経由のnegative selfcheckを実行する",
     "legacy implementation、current implementation、degradation、failure outcome、consumer closure、decisionをunknownのまま保持する",
     "旧archive source／runtime／test／CI／hook／adapterを実行せず、static referenceとしてのみ読む"
   ],
@@ -188,7 +188,7 @@
     ],
     "oracles": [
       "outside67 follow-up validate.py（17/67、50 residual、ancestor-only scope、unit keyset、canonical non-digest fields、exact anchors、four products、unknowns）",
-      "outside67 follow-up selfcheck.py（baseline＋14 negative cases）",
+      "outside67 follow-up selfcheck.py（baseline＋15 negative cases）",
       "scaffold/tools/scfctl.py validate／stale／residuals",
       "git diff --check"
     ],
@@ -203,7 +203,8 @@
       "source-holding count tamper",
       "unit nested keyset tamper",
       "old execution flag tamper",
-      "meta reservation or ledger count tamper"
+      "meta reservation or ledger count tamper",
+      "scope.unexplored_scope canonical value tamper"
     ]
   },
   "replacement": {
