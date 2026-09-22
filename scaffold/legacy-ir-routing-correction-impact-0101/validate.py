@@ -43,6 +43,14 @@ WAVE_FILES = {
     "HIL-FR-41": "docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonl",
     "HIL-FR-57": "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
 }
+WAVE_METHODS = {
+    23: ("docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave23-method-2026-09-21.md", "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave23-premise-packet-2026-09-21.md"),
+    27: ("docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave27-method-2026-09-22.md", "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave27-premise-packet-2026-09-22.md"),
+    28: ("docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave28-method-2026-09-22.md", "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave28-premise-packet-2026-09-22.md"),
+    33: (None, "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave33-premise-packet-2026-09-22.md"),
+    34: ("docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave34-method-2026-09-22.md", "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave34-premise-packet-2026-09-22.md"),
+    36: ("docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave36-method-2026-09-22.md", "docs/governance/audits/source-rebaseline/legacy-requirement-direct-semantic-review-wave36-premise-packet-2026-09-22.md"),
+}
 BOUNDARY_INTERPRETATION = "HARNESSはV-model・工程・要求・設計・検証・外部提供の規範、HELIX-OSはauthority・Worker・CI・log・state・改善・配布の運転統制を持つ。管理対象と規則所有を同一ownerへ潰さず、correctionは正式routingへ昇格しない。"
 EXPECTED_INPUT_PATHS = [
     OLD_IR, CORRECTIONS, ROUTING, DECOMP, CROSSWALK, BOUNDARY_PATH,
@@ -81,6 +89,10 @@ EXPECTED_HUMAN_JUDGMENT = [
     "unit、connection、compositeの境界、single ownerの有無、phase、consumer、successor、L2/L11接続を別々に決める。",
     "旧asset候補のsource/history/failure/consumerを直接意味linkへ昇格するかを個別に判断する。",
 ]
+EXPECTED_NEGATIVE_CASES = [
+    "duplicate_id", "record_count_guard", "missing_id", "correction_digest_tamper", "source_anchor_tamper", "before_candidate_tamper", "wave_digest_tamper", "boundary_reference_tamper", "l1_reference_tamper", "impact_count_tamper", "authority_promotion", "asset_digest_tamper", "asset_set_tamper", "human_judgment_tamper", "successor_promotion", "after_proposal_guard", "asset_reference_guard", "asset_state_guard", "boundary_interpretation_guard", "correction_reference_guard", "crosswalk_reference_guard", "crosswalk_state_guard", "decomp_reference_guard", "failure_consumer_reference_guard", "history_reference_guard", "history_state_guard", "source_missing_guard", "wave_asset_guard", "input_digest_tamper", "input_set_missing", "input_set_duplicate", "input_set_extra", "input_blob_guard", "base_head_guard", "source_provenance_guard", "current_counts_guard", "inventory_guard", "legacy_execution_guard", "base_ancestor_tamper",
+]
+WAVE_INTERPRETATION = "waveはexact source atom、候補phase/product、未完consumer／boundary reviewを保持する静的semantic review候補であり、correctionのPO承認や実装証拠ではない。"
 
 
 def error(code: str, message: str) -> str:
@@ -135,6 +147,11 @@ def expected_jsonl_ref(path: str, line: int, label: str | None = None):
     return result
 
 
+def wave_doc_refs_expected(requirement_id: str) -> list[dict]:
+    wave_number = int(WAVE_FILES[requirement_id].split("wave")[1].split(".")[0])
+    return [line_ref_expected(path, 1, "wave method/premise") for path in WAVE_METHODS[wave_number] if path]
+
+
 def ancestor_errors(base: str = BASE_HEAD, head: str = "HEAD"):
     if subprocess.run(["git", "merge-base", "--is-ancestor", base, head], cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode:
         return [error("E_BASE_NOT_ANCESTOR", f"base={base} head={head}")]
@@ -152,6 +169,13 @@ def validate_inventory(inventory: dict, check_ancestor: bool = True):
         errors.append(error("E_SOURCE_PROVENANCE", "source snapshot provenance must be fixed BASE Git object"))
     if inventory.get("record_count") != 7 or inventory.get("requirement_ids") != sorted(IDS):
         errors.append(error("E_INVENTORY", "record_count/requirement_ids不一致"))
+    if inventory.get("schema_revision") != 1 or inventory.get("binding_id") != "SCF-B-0103" or inventory.get("status") != "research_only_candidate" or inventory.get("correction_state") != "proposed_pending_po_review":
+        errors.append(error("E_INVENTORY", "schema/binding/status/correction state drift"))
+    snapshot = inventory.get("source_snapshot", {})
+    if snapshot.get("blob_command") != "git rev-parse <BASE>:<path>" or snapshot.get("bytes_command") != "git show <BASE>:<path>":
+        errors.append(error("E_SOURCE_PROVENANCE", "source snapshot command drift"))
+    if inventory.get("negative_cases") != EXPECTED_NEGATIVE_CASES:
+        errors.append(error("E_INVENTORY", "negative_cases declaration must equal executable selfcheck cases"))
     actual_input_paths = [entry.get("path") for entry in inventory.get("input_digests", [])]
     if actual_input_paths != EXPECTED_INPUT_PATHS or len(actual_input_paths) != len(set(actual_input_paths)):
         errors.append(error("E_INPUT_SET", "input digest path集合／順序／重複が期待集合と不一致"))
@@ -204,6 +228,12 @@ def validate_records(records: list[dict]):
     corrections, correction_lines = index_rows(CORRECTIONS, "source_requirement_id")
     routing, routing_lines = index_rows(ROUTING, "source_requirement_id")
     decomp, decomp_lines = index_rows(DECOMP, "source_requirement_id")
+    all_decomp_units = [unit for item in decomp.values() for unit in item.get("candidate_units", [])]
+    derived_current_phase_candidates = sum(bool(unit.get("direct_phase_candidates")) for unit in all_decomp_units)
+    derived_current_unresolved_phase = sum(not unit.get("direct_phase_candidates") for unit in all_decomp_units)
+    derived_current_phase_links = sum(len(unit.get("direct_phase_candidates", [])) for unit in all_decomp_units)
+    derived_current_connections = sum(unit.get("unit_kind") == "cross_product_connection" for unit in all_decomp_units)
+    derived_current_composites = sum(unit.get("unit_kind") == "composite" for unit in all_decomp_units)
     crosswalk_rows, _ = jsonl_rows(CROSSWALK)
     crosswalk = {(x.get("source_requirement_id"), x.get("unit_candidate_id")): x for x in crosswalk_rows}
     crosswalk_line = {(x.get("source_requirement_id"), x.get("unit_candidate_id")): n for n, raw in enumerate(base_bytes(CROSSWALK).decode("utf-8").splitlines(), 1) if raw.strip() for x in [json.loads(raw)]}
@@ -228,16 +258,22 @@ def validate_records(records: list[dict]):
         rid = record.get("source_requirement_id")
         if rid not in IDS:
             continue
+        if record.get("schema_revision") != 1 or record.get("binding_id") != "SCF-B-0103" or record.get("record_id") != f"SCF-B-0103-{rid}":
+            errors.append(error("E_INVENTORY", f"{rid}: record schema/binding/id mismatch"))
         corr, route, dec = corrections.get(rid), routing.get(rid), decomp.get(rid)
         if not all((corr, route, dec, old_ir.get(rid))):
             errors.append(error("E_SOURCE_MISSING", f"{rid}: correction/routing/decomp/IR missing"))
             continue
         src = record.get("source_exact", {})
+        if src.get("path") != OLD_IR:
+            errors.append(error("E_SOURCE_MISSING", f"{rid}: source_exact path is outside fixed old IR"))
         expected_line, expected_text, expected_line_sha = statement_anchor(rid)
         source = old_ir[rid]
         for key, expected in (("path", OLD_IR), ("blob", blob(OLD_IR)), ("line", expected_line), ("line_text", expected_text), ("line_text_sha256", expected_line_sha), ("json_pointer", f"requirements.json#/{rid}/statement/text"), ("source_file_sha256", sha(base_bytes(OLD_IR))), ("statement_text", source["statement"]["text"]), ("statement_semantic_digest", source["statement"]["semantic_digest"])):
             if src.get(key) != expected:
                 errors.append(error("E_SOURCE_ANCHOR" if key in ("line", "line_text", "line_text_sha256", "json_pointer") else "E_SOURCE_DIGEST", f"{rid}: source_exact {key} mismatch"))
+        if src.get("revision") != source.get("revision"):
+            errors.append(error("E_SOURCE_PROVENANCE", f"{rid}: source revision mismatch"))
         exact_corr = record.get("correction_exact", {})
         for key in ("correction_id", "routing_registration_id", "source_statement_semantic_digest", "from_classification_revision", "product_targets_before", "routing_candidate_before", "product_targets_after", "routing_candidate_after", "correction_rationale", "correction_state", "authority_effect", "meaning_change_applied"):
             if exact_corr.get(key) != corr.get(key):
@@ -254,11 +290,11 @@ def validate_records(records: list[dict]):
         before = record.get("before", {})
         br = before.get("routing", {})
         bd = before.get("decomposition", {})
-        if br.get("candidate_product_targets") != route.get("candidate_product_targets") or br.get("routing_candidate") != route.get("routing_candidate") or br.get("classification_state") != route.get("classification_state"):
+        if br.get("candidate_product_targets") != route.get("candidate_product_targets") or br.get("routing_candidate") != route.get("routing_candidate") or br.get("classification_state") != route.get("classification_state") or br.get("authority_effect") != route.get("authority_effect") or br.get("meaning_change_applied") != route.get("meaning_change_applied"):
             errors.append(error("E_BEFORE_CANDIDATE", f"{rid}: routing before mismatch"))
         if br.get("ref") != expected_jsonl_ref(ROUTING, routing_lines[rid], "153 routing candidate"):
             errors.append(error("E_ROUTING_REFERENCE", f"{rid}: routing ref mismatch"))
-        if bd.get("candidate_product_targets") != dec.get("candidate_product_targets") or bd.get("routing_candidate") != dec.get("routing_candidate") or bd.get("classification_state") != dec.get("classification_state"):
+        if bd.get("candidate_product_targets") != dec.get("candidate_product_targets") or bd.get("routing_candidate") != dec.get("routing_candidate") or bd.get("classification_state") != dec.get("classification_state") or bd.get("successor_assignment_status") != dec.get("successor_assignment_status"):
             errors.append(error("E_BEFORE_CANDIDATE", f"{rid}: decomposition before mismatch"))
         if bd.get("ref") != expected_jsonl_ref(DECOMP, decomp_lines[rid], "current decomposition candidate"):
             errors.append(error("E_DECOMP_REFERENCE", f"{rid}: decomposition ref mismatch"))
@@ -271,6 +307,8 @@ def validate_records(records: list[dict]):
         for key, expected in (("unit_candidate_id", uid), ("unit_kind", unit.get("unit_kind")), ("candidate_product", unit.get("product_target")), ("responsibility_summary", unit.get("responsibility_summary")), ("source_text_spans", unit.get("source_text_spans", [])), ("direct_phase_candidates", unit.get("direct_phase_candidates", [])), ("phase_classification_status", unit.get("phase_classification_status")), ("semantic_coverage_status", unit.get("semantic_coverage_status"))):
             if bu.get(key) != expected:
                 errors.append(error("E_BEFORE_CANDIDATE", f"{rid}/{uid}: unit {key} mismatch"))
+        if bu.get("successor_assignment_status") != dec.get("successor_assignment_status"):
+            errors.append(error("E_SUCCESSOR", f"{rid}/{uid}: before unit successor state mismatch"))
         if bu.get("crosswalk_ref") != expected_jsonl_ref(CROSSWALK, crosswalk_line[(rid, uid)], "affected current unit"):
             errors.append(error("E_CROSSWALK_REFERENCE", f"{rid}/{uid}: crosswalk ref mismatch"))
         x = crosswalk.get((rid, uid))
@@ -294,14 +332,22 @@ def validate_records(records: list[dict]):
         if added.get("candidate_product") != expected_added or added.get("source_text_spans") != [] or added.get("phase_candidates") != [] or added.get("consumer_closure_status") != "pending_no_edge_generated" or added.get("successor_assignment_status") != "unassigned" or added.get("status") != "projection_only_not_a_decomposition_record":
             errors.append(error("E_AFTER_PROPOSAL", f"{rid}: projected unit boundary changed"))
         impact = after.get("unit_impact", {})
-        if impact.get("current_unit_ids") != [uid] or impact.get("projected_unit_count") != 2 or impact.get("applied_unit_count_delta") != 0 or impact.get("hypothetical_unit_count_delta_if_adopted") != 1:
+        derived_unit_ids = [u.get("unit_candidate_id") for u in dec.get("candidate_units", [])]
+        if impact.get("current_unit_ids") != derived_unit_ids or impact.get("projected_after_unit_ids") != derived_unit_ids + [added.get("projected_unit_candidate_id")] or impact.get("current_unit_count") != len(derived_unit_ids) or impact.get("projected_unit_count") != len(derived_unit_ids) + 1 or impact.get("applied_unit_count_delta") != 0 or impact.get("hypothetical_unit_count_delta_if_adopted") != 1:
             errors.append(error("E_IMPACT_COUNT", f"{rid}: unit impact count mismatch"))
+        unit_conn = before.get("unit_connection_composite", {})
+        if unit_conn.get("unit_count") != len(derived_unit_ids) or unit_conn.get("connection_count") != sum(u.get("unit_kind") == "cross_product_connection" for u in dec.get("candidate_units", [])) or unit_conn.get("composite_count") != sum(u.get("unit_kind") == "composite" for u in dec.get("candidate_units", [])):
+            errors.append(error("E_UNIT_IMPACT", f"{rid}: before unit/connection/composite counts mismatch"))
+        phase_impact = after.get("phase_impact", {})
+        if phase_impact.get("before_phase_candidates") != unit.get("direct_phase_candidates", []) or phase_impact.get("projected_added_unit_phase_candidates") != [] or phase_impact.get("phase_candidate_units_current") != derived_current_phase_candidates or phase_impact.get("phase_candidate_units_projected_scaffold_only") != derived_current_phase_candidates or phase_impact.get("unresolved_phase_units_current") != derived_current_unresolved_phase or phase_impact.get("unresolved_phase_units_projected_scaffold_only") != derived_current_unresolved_phase + 1 or phase_impact.get("phase_links_current") != derived_current_phase_links or phase_impact.get("phase_links_projected_scaffold_only") != derived_current_phase_links:
+            errors.append(error("E_IMPACT_COUNT", f"{rid}: phase impact counts mismatch"))
         for key in ("applied_phase_link_delta", "applied_consumer_edge_delta"):
             if after.get("phase_impact", {}).get(key, after.get("consumer_impact", {}).get(key)) != 0:
                 errors.append(error("E_IMPACT_COUNT", f"{rid}: applied impact delta {key} must be zero"))
         if after.get("successor_impact", {}).get("projected_successor_ids") != [] or after.get("successor_impact", {}).get("applied_successor_delta") != 0:
             errors.append(error("E_SUCCESSOR", f"{rid}: successor projected"))
-        if after.get("connection_composite_impact", {}).get("projected_connection_count") != 0 or after.get("connection_composite_impact", {}).get("projected_composite_count") != 0:
+        conn_impact = after.get("connection_composite_impact", {})
+        if conn_impact.get("before_connection_count") != derived_current_connections or conn_impact.get("projected_connection_count") != derived_current_connections or conn_impact.get("before_composite_count") != derived_current_composites or conn_impact.get("projected_composite_count") != derived_current_composites or conn_impact.get("applied_connection_delta") != 0:
             errors.append(error("E_UNIT_IMPACT", f"{rid}: connection/composite projected"))
 
         boundary = record.get("product_boundary", {})
@@ -338,8 +384,16 @@ def validate_records(records: list[dict]):
                 "new_build_allowed": row.get("new_build_allowed"),
                 "semantic_link_status": row.get("semantic_link_status"),
             })
-        if record.get("wave_semantic_review", {}).get("review_rows") != expected_wave or len(expected_wave) != 3:
+        wave_review = record.get("wave_semantic_review", {})
+        for observed in wave_review.get("review_rows", []):
+            if observed.get("asset_id") not in ledger:
+                errors.append(error("E_WAVE_ASSET", f"{rid}/{observed.get('asset_id')}: Wave candidate asset missing from legacy ledger"))
+        if wave_review.get("review_rows") != expected_wave or len(expected_wave) != 3:
             errors.append(error("E_WAVE_DIGEST", f"{rid}: Wave semantic review rows/digests mismatch"))
+        if wave_review.get("method_premise_refs") != wave_doc_refs_expected(rid):
+            errors.append(error("E_WAVE_METHOD_REFERENCE", f"{rid}: method/premise refs mismatch"))
+        if wave_review.get("interpretation") != WAVE_INTERPRETATION or wave_review.get("interpretation_sha256") != sha(WAVE_INTERPRETATION):
+            errors.append(error("E_WAVE_METHOD_REFERENCE", f"{rid}: Wave interpretation mismatch"))
         for wave in expected_wave:
             if wave.get("asset_id") not in ledger:
                 errors.append(error("E_WAVE_ASSET", f"{rid}/{wave.get('asset_id')}: Wave candidate asset missing from legacy ledger"))
@@ -374,6 +428,28 @@ def validate_records(records: list[dict]):
                 if actual_refs != [expected_jsonl_ref(path, n, label) for n, _ in source_rows]:
                     errors.append(error("E_HISTORY_REFERENCE", f"{rid}/{aid}: history ref mismatch"))
 
+            expected_asset = {
+                "asset_id": aid,
+                "ledger_match": True,
+                "source_path": ledger_row.get("source_path"),
+                "source_sha256": ledger_row.get("source_sha256"),
+                "disposition": ledger_row.get("disposition"),
+                "implementation_status": ledger_row.get("implementation_status"),
+                "artifact_evidence_kind": next((asset_row.get("artifact_evidence_kind") for asset_row in x.get("representative_legacy_assets", []) if asset_row.get("asset_id") == aid), None),
+                "legacy_implementation_status": next((asset_row.get("legacy_implementation_status") for asset_row in x.get("representative_legacy_assets", []) if asset_row.get("asset_id") == aid), None),
+                "implementation_evidence_state": next((asset_row.get("implementation_evidence_state") for asset_row in x.get("representative_legacy_assets", []) if asset_row.get("asset_id") == aid), None),
+                "direct_requirement_semantic_link": next((asset_row.get("direct_requirement_semantic_link") for asset_row in x.get("representative_legacy_assets", []) if asset_row.get("asset_id") == aid), None),
+                "consumer_closure_status": next((asset_row.get("consumer_closure_status") for asset_row in x.get("representative_legacy_assets", []) if asset_row.get("asset_id") == aid), None),
+                "consumer_refs_observed": next((asset_row.get("consumer_refs_observed", []) for asset_row in x.get("representative_legacy_assets", []) if asset_row.get("asset_id") == aid), []),
+                "unresolved": next((asset_row.get("unresolved", []) for asset_row in x.get("representative_legacy_assets", []) if asset_row.get("asset_id") == aid), []),
+                "phase_ids": next((asset_row.get("phase_ids", []) for asset_row in x.get("representative_legacy_assets", []) if asset_row.get("asset_id") == aid), []),
+            }
+            actual_projection = {key: asset.get(key) for key in expected_asset}
+            if actual_projection != expected_asset:
+                errors.append(error("E_ASSET_STATE", f"{rid}/{aid}: legacy asset state/source fields mismatch"))
+            if asset.get("failure_status") != "unreviewed_pending_semantic_review" or asset.get("consumer_closure") != "pending":
+                errors.append(error("E_ASSET_STATE", f"{rid}/{aid}: failure/consumer closure promoted"))
+
         candidate_assets = record.get("legacy_asset_evidence", {}).get("candidate_assets", [])
         expected_asset_ids = sorted(a.get("asset_id") for a in x.get("representative_legacy_assets", []))
         actual_asset_ids = [a.get("asset_id") for a in candidate_assets]
@@ -382,6 +458,8 @@ def validate_records(records: list[dict]):
         if bu.get("candidate_asset_ids") != expected_asset_ids:
             errors.append(error("E_ASSET_SET", f"{rid}/{uid}: before unit asset ID集合がcrosswalkと不一致"))
         legacy_evidence = record.get("legacy_asset_evidence", {})
+        if legacy_evidence.get("implementation_status") != x.get("legacy_requirement_implementation_status") or legacy_evidence.get("consumer_closure_status") != x.get("consumer_closure_status") or legacy_evidence.get("failure_closure_status") != x.get("failure_closure_status") or legacy_evidence.get("history_closure_status") != x.get("history_closure_status") or legacy_evidence.get("crosswalk_record_count") != x.get("crosswalk_record_count") or legacy_evidence.get("legacy_execution_performed") is not False or legacy_evidence.get("new_build_allowed") is not False:
+            errors.append(error("E_ASSET_STATE", f"{rid}: legacy_asset_evidence state mismatch"))
         if legacy_evidence.get("crosswalk_ref") != expected_jsonl_ref(CROSSWALK, crosswalk_line[(rid, uid)], "affected implementation crosswalk"):
             errors.append(error("E_CROSSWALK_REFERENCE", f"{rid}/{uid}: legacy evidence crosswalk ref mismatch"))
         expected_static_refs = [

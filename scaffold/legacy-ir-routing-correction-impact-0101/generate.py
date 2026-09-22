@@ -277,6 +277,15 @@ def main() -> None:
     boundary = boundary_evidence()
     l1 = l1_evidence()
 
+    all_decomp, _ = jsonl_rows(DECOMP)
+    all_units = [u for x in all_decomp for u in x.get("candidate_units", [])]
+    current_products = Counter(u.get("product_target") for u in all_units if u.get("unit_kind") == "product_unit")
+    current_connections = sum(u.get("unit_kind") == "cross_product_connection" for u in all_units)
+    current_composites = sum(u.get("unit_kind") == "composite" for u in all_units)
+    current_phase_candidates = sum(bool(u.get("direct_phase_candidates")) for u in all_units)
+    current_unresolved_phase = sum(not u.get("direct_phase_candidates") for u in all_units)
+    current_phase_links = sum(len(u.get("direct_phase_candidates", [])) for u in all_units)
+
     records = []
     for rid in IDS:
         corr = corrections[rid]
@@ -449,6 +458,7 @@ def main() -> None:
                 "review_rows": wave_snapshot(rid),
                 "method_premise_refs": wave_doc_refs(rid),
                 "interpretation": "waveはexact source atom、候補phase/product、未完consumer／boundary reviewを保持する静的semantic review候補であり、correctionのPO承認や実装証拠ではない。",
+                "interpretation_sha256": digest_text("waveはexact source atom、候補phase/product、未完consumer／boundary reviewを保持する静的semantic review候補であり、correctionのPO承認や実装証拠ではない。"),
             },
             "legacy_asset_evidence": {
                 "crosswalk_record_count": cross.get("crosswalk_record_count"),
@@ -475,12 +485,45 @@ def main() -> None:
         records.append(record)
 
     records.sort(key=lambda x: x["source_requirement_id"])
+    # Recompute every declared impact count from fixed-base decomposition before
+    # writing records. These fields are evidence, not hand-entered narrative.
+    for record in records:
+        rid = record["source_requirement_id"]
+        d = decomp[rid]
+        uid = d["candidate_units"][0]["unit_candidate_id"]
+        current_unit_ids = [u["unit_candidate_id"] for u in d.get("candidate_units", [])]
+        added_id = record["after_proposal"]["projected_added_unit"]["projected_unit_candidate_id"]
+        record["before"]["unit_connection_composite"] = {
+            "unit_count": len(current_unit_ids),
+            "connection_count": sum(u.get("unit_kind") == "cross_product_connection" for u in d.get("candidate_units", [])),
+            "composite_count": sum(u.get("unit_kind") == "composite" for u in d.get("candidate_units", [])),
+            "interpretation": "current decomposition candidate unit/connection/composite counts are derived from its fixed-BASE candidate_units",
+        }
+        record["after_proposal"]["unit_impact"].update({
+            "current_unit_ids": current_unit_ids,
+            "projected_after_unit_ids": current_unit_ids + [added_id],
+            "current_unit_count": len(current_unit_ids),
+            "projected_unit_count": len(current_unit_ids) + 1,
+            "applied_unit_count_delta": 0,
+            "hypothetical_unit_count_delta_if_adopted": 1,
+        })
+        record["after_proposal"]["phase_impact"].update({
+            "phase_candidate_units_current": current_phase_candidates,
+            "phase_candidate_units_projected_scaffold_only": current_phase_candidates,
+            "unresolved_phase_units_current": current_unresolved_phase,
+            "unresolved_phase_units_projected_scaffold_only": current_unresolved_phase + 1,
+            "phase_links_current": current_phase_links,
+            "phase_links_projected_scaffold_only": current_phase_links,
+        })
+        record["after_proposal"]["connection_composite_impact"].update({
+            "before_connection_count": current_connections,
+            "projected_connection_count": current_connections,
+            "before_composite_count": current_composites,
+            "projected_composite_count": current_composites,
+            "applied_connection_delta": 0,
+        })
     (BUNDLE / "impact.jsonl").write_text("".join(json.dumps(x, ensure_ascii=False, sort_keys=True) + "\n" for x in records), encoding="utf-8")
 
-    all_decomp, _ = jsonl_rows(DECOMP)
-    all_units = [u for x in all_decomp for u in x.get("candidate_units", [])]
-    current_products = Counter(u.get("product_target") for u in all_units if u.get("unit_kind") == "product_unit")
-    current_connections = sum(u.get("unit_kind") == "cross_product_connection" for u in all_units)
     inputs = [OLD_IR, CORRECTIONS, ROUTING, DECOMP, CROSSWALK, BOUNDARY_PATH, *[x[0] for x in L1_LINES.values()], LEDGER, PHASE, DECISIONS, READ_AFTER, FAILURE, CONSUMER, *sorted(set(WAVE_FILES.values()))]
     for pair in WAVE_METHODS.values():
         inputs.extend(path for path in pair if path)
@@ -532,7 +575,7 @@ def main() -> None:
         "successor_updated": False,
         "legacy_execution_performed": False,
         "new_build_allowed": False,
-        "negative_cases": ["duplicate_id", "missing_id", "correction_digest_tamper", "source_anchor_tamper", "before_candidate_tamper", "wave_digest_tamper", "boundary_reference_tamper", "l1_reference_tamper", "impact_count_tamper", "authority_promotion", "asset_digest_tamper", "asset_set_tamper", "human_judgment_tamper", "successor_promotion", "input_digest_tamper", "base_ancestor_tamper", "input_set_missing", "input_set_duplicate", "input_set_extra"],
+        "negative_cases": ["duplicate_id", "record_count_guard", "missing_id", "correction_digest_tamper", "source_anchor_tamper", "before_candidate_tamper", "wave_digest_tamper", "boundary_reference_tamper", "l1_reference_tamper", "impact_count_tamper", "authority_promotion", "asset_digest_tamper", "asset_set_tamper", "human_judgment_tamper", "successor_promotion", "after_proposal_guard", "asset_reference_guard", "asset_state_guard", "boundary_interpretation_guard", "correction_reference_guard", "crosswalk_reference_guard", "crosswalk_state_guard", "decomp_reference_guard", "failure_consumer_reference_guard", "history_reference_guard", "history_state_guard", "source_missing_guard", "wave_asset_guard", "input_digest_tamper", "input_set_missing", "input_set_duplicate", "input_set_extra", "input_blob_guard", "base_head_guard", "source_provenance_guard", "current_counts_guard", "inventory_guard", "legacy_execution_guard", "base_ancestor_tamper"],
     }
     (BUNDLE / "inventory.json").write_text(json.dumps(inventory, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 

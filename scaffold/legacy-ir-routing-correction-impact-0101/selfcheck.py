@@ -22,12 +22,19 @@ def expects(name, records, code):
         raise AssertionError(f"{name}: expected {code}, got {errors[:5]}")
 
 
+def expects_inventory(name, inventory, code):
+    errors = validate_inventory(inventory, check_ancestor=False)
+    if not any(item.startswith(code + ":") for item in errors):
+        raise AssertionError(f"{name}: expected {code}, got {errors[:5]}")
+
+
 def main() -> int:
     base = load_records()
 
     duplicate = copy.deepcopy(base)
     duplicate.append(copy.deepcopy(base[0]))
     expects("duplicate_id", duplicate, "E_ID_DUPLICATE")
+    expects("record_count_guard", duplicate, "E_ID_COUNT")
 
     missing = copy.deepcopy(base[:-1])
     expects("missing_id", missing, "E_ID_SET")
@@ -80,6 +87,58 @@ def main() -> int:
     successor[0]["after_proposal"]["successor_impact"]["projected_successor_ids"] = ["SUCCESSOR-TAMPER"]
     expects("successor_promotion", successor, "E_SUCCESSOR")
 
+    after = copy.deepcopy(base)
+    after[0]["after_proposal"]["routing_candidate"] = "tampered"
+    expects("after_proposal_guard", after, "E_AFTER_PROPOSAL")
+
+    asset_ref = copy.deepcopy(base)
+    asset_ref[0]["legacy_asset_evidence"]["candidate_assets"][0]["ledger_ref"]["line"] = 999
+    expects("asset_reference_guard", asset_ref, "E_ASSET_REFERENCE")
+
+    asset_state = copy.deepcopy(base)
+    asset_state[0]["legacy_asset_evidence"]["candidate_assets"][0]["legacy_implementation_status"] = "implemented"
+    expects("asset_state_guard", asset_state, "E_ASSET_STATE")
+
+    boundary_interpretation = copy.deepcopy(base)
+    boundary_interpretation[0]["product_boundary"]["interpretation"] = "tampered"
+    expects("boundary_interpretation_guard", boundary_interpretation, "E_BOUNDARY_INTERPRETATION")
+
+    correction_ref = copy.deepcopy(base)
+    correction_ref[0]["correction_exact"]["ref"]["line"] = 999
+    expects("correction_reference_guard", correction_ref, "E_CORRECTION_REFERENCE")
+
+    crosswalk_ref = copy.deepcopy(base)
+    crosswalk_ref[0]["before"]["decomposition"]["unit_set"][0]["crosswalk_ref"]["line"] = 999
+    expects("crosswalk_reference_guard", crosswalk_ref, "E_CROSSWALK_REFERENCE")
+
+    crosswalk_state = copy.deepcopy(base)
+    crosswalk_state[0]["before"]["decomposition"]["unit_set"][0]["crosswalk_status"]["new_build_allowed"] = True
+    expects("crosswalk_state_guard", crosswalk_state, "E_CROSSWALK_STATE")
+
+    decomp_ref = copy.deepcopy(base)
+    decomp_ref[0]["before"]["decomposition"]["ref"]["line"] = 999
+    expects("decomp_reference_guard", decomp_ref, "E_DECOMP_REFERENCE")
+
+    failure_ref = copy.deepcopy(base)
+    failure_ref[0]["legacy_asset_evidence"]["source_history_failure_consumer_refs"][0]["line"] = 999
+    expects("failure_consumer_reference_guard", failure_ref, "E_FAILURE_CONSUMER_REFERENCE")
+
+    history_ref = copy.deepcopy(base)
+    history_ref[0]["legacy_asset_evidence"]["candidate_assets"][0]["history"]["decision_refs"].append({"path": "tampered"})
+    expects("history_reference_guard", history_ref, "E_HISTORY_REFERENCE")
+
+    history_state = copy.deepcopy(base)
+    history_state[0]["legacy_asset_evidence"]["candidate_assets"][0]["history"]["closure_status"] = "closed"
+    expects("history_state_guard", history_state, "E_HISTORY_STATE")
+
+    source_missing = copy.deepcopy(base)
+    source_missing[0]["source_exact"]["path"] = "docs/FABRICATED.json"
+    expects("source_missing_guard", source_missing, "E_SOURCE_MISSING")
+
+    wave_asset = copy.deepcopy(base)
+    wave_asset[0]["wave_semantic_review"]["review_rows"][0]["asset_id"] = "LEGACY-ASSET-FABRICATED"
+    expects("wave_asset_guard", wave_asset, "E_WAVE_ASSET")
+
     inventory = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
     inventory["input_digests"][0]["sha256"] = "0" * 64
     if not any(item.startswith("E_INPUT_DIGEST:") for item in validate_inventory(inventory, check_ancestor=False)):
@@ -100,10 +159,34 @@ def main() -> int:
     if not any(item.startswith("E_INPUT_SET:") for item in validate_inventory(input_extra, check_ancestor=False)):
         raise AssertionError("input_set_extra: expected E_INPUT_SET")
 
+    input_blob = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
+    input_blob["input_digests"][0]["blob"] = "0" * 40
+    expects_inventory("input_blob_guard", input_blob, "E_INPUT_BLOB")
+
+    base_head = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
+    base_head["base_head"] = "0" * 40
+    expects_inventory("base_head_guard", base_head, "E_BASE_HEAD")
+
+    source_provenance = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
+    source_provenance["source_snapshot"]["working_tree_used_for_source_digest"] = True
+    expects_inventory("source_provenance_guard", source_provenance, "E_SOURCE_PROVENANCE")
+
+    current_counts = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
+    current_counts["current_decomposition"]["unit_count"] = 999
+    expects_inventory("current_counts_guard", current_counts, "E_CURRENT_COUNTS")
+
+    inventory_decl = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
+    inventory_decl["schema_revision"] = 999
+    expects_inventory("inventory_guard", inventory_decl, "E_INVENTORY")
+
+    legacy_execution = json.loads((HERE / "inventory.json").read_text(encoding="utf-8"))
+    legacy_execution["legacy_execution_performed"] = True
+    expects_inventory("legacy_execution_guard", legacy_execution, "E_LEGACY_EXECUTION")
+
     if not any(item.startswith("E_BASE_NOT_ANCESTOR:") for item in ancestor_errors("0" * 40)):
         raise AssertionError("base_ancestor_tamper: expected E_BASE_NOT_ANCESTOR")
 
-    print("SCF-B-0103 selfcheck: PASS negative_cases=20")
+    print("SCF-B-0103 selfcheck: PASS negative_cases=39")
     return 0
 
 

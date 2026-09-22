@@ -28,6 +28,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-validatorは7 IDの重複・欠落、fixed BASE input path集合／digest／blob、old IR statement line／line digest／semantic digest、correction before／afterと未承認状態、routing／decomposition／crosswalkのbefore候補、四製品boundaryとL1のblob／行／digest、Wave 3行ずつのrow digest、旧assetのcrosswalk由来ID集合・source／history／failure／consumerの静的状態、human judgment項目、unit／phase／consumer／successor／connection／compositeの影響数を再導出する。selfcheckは各改竄が狙ったerror codeで拒否されることを確認する（20負例）。
+validatorは7 IDの重複・欠落、fixed BASE input path集合／digest／blob、old IR statement line／line digest／semantic digest、correction before／afterと未承認状態、routing／decomposition／crosswalkのbefore候補、四製品boundaryとL1のblob／行／digest、Wave 3行ずつのrow digest、旧assetのcrosswalk由来ID集合・source／history／failure／consumerの静的状態、human judgment項目、unit／phase／consumer／successor／connection／compositeの影響数を再導出する。selfcheckは各改竄が狙ったerror codeで拒否されることを確認する（39負例）。
 
 旧archiveのruntime、test、CI、workflow、hook、adapter、sourceは実行しない。この束の合格はPO decision、formal routing、owner、phase、設計、実装、consumer closure、successor、Issue closeを生成しない。
