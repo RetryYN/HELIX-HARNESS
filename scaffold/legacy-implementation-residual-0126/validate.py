@@ -218,6 +218,21 @@ EXPECTED_NEGATIVE_CASES = [
     'nested_nonobject_json',
     'archive_manifest_translation_bytes_tamper',
     'archive_manifest_translation_sha_tamper',
+    'inventory_classification_rule_tamper',
+    'inventory_authority_classification_approved',
+    'inventory_binding_id_tamper',
+    'inventory_wave_source_paths_tamper',
+    'inventory_old_asset_source_mode_tamper',
+    'inventory_target_assets_tamper',
+    'inventory_phase_candidate_distribution_tamper',
+    'inventory_missing_edges_allowed',
+    'inventory_history_disposition_rows_tamper',
+    'inventory_expected_sets_nonobject',
+    'inventory_input_digest_nonobject',
+    'record_boundary_product_boundary_nonobject',
+    'record_source_sha256_nonstring',
+    'record_archive_manifest_translation_bytes_tamper',
+    'record_archive_manifest_translation_sha_tamper',
 ]
 EXPECTED_INVENTORY_KEYS = {
     "schema_revision",
@@ -1142,6 +1157,14 @@ def check_source(record: dict, expected: dict, asset: dict) -> None:
     archive_digest = tagged(data)
     manifest_digest = manifest_sha256(path)
     if exact.get("archive_manifest_sha256") != manifest_digest or exact.get("archive_manifest_match") != (archive_digest == manifest_digest): fail("E_ARCHIVE_MANIFEST", path)
+    expected_resolution = {"status": "matched"} if archive_digest == manifest_digest else {
+        "status": "pending_human_source_resolution",
+        "formal_admission": "stopped",
+        "reuse_decision": "stopped",
+        "reason": "archive bytes and manifest entry differ; static evidence is retained",
+        "line_ending_translation": expected_line_ending_translation(path, data, manifest_digest),
+    }
+    if not same_typed_value(exact.get("archive_manifest_resolution"), expected_resolution): fail("E_ARCHIVE_MANIFEST", path)
     if exact.get("read_mode") != "git_object_static_read_only": fail("E_READ_MODE", path)
     anchor = exact.get("semantic_anchor")
     if not isinstance(anchor, dict) or anchor.get("marker") != expected["marker"]: fail("E_SOURCE_ANCHOR", path)
@@ -1211,6 +1234,19 @@ def check() -> None:
     inv = strict_json(INVENTORY.read_text(), str(INVENTORY))
     if not isinstance(inv, dict):
         fail("E_JSON", f"{INVENTORY}: top-level JSON object required")
+    if set(inv) != EXPECTED_INVENTORY_KEYS:
+        fail("E_INVENTORY_DECLARATION", "inventory schema keys")
+    for field, expected_type in EXPECTED_INVENTORY_FIELD_TYPES.items():
+        if type(inv.get(field)) is not expected_type:
+            fail("E_INVENTORY_DECLARATION", f"{field} must be {expected_type.__name__}")
+    for item in inv["input_digests"]:
+        if not isinstance(item, dict):
+            fail("E_INPUT_DIGEST", "input digest entry must be an object")
+        if set(item) != EXPECTED_INPUT_DIGEST_KEYS:
+            fail("E_INPUT_DIGEST", "input digest schema")
+        for field, expected_type in {"path": str, "blob": str, "bytes": int, "sha256": str}.items():
+            if type(item.get(field)) is not expected_type:
+                fail("E_INPUT_DIGEST", f"input digest {field} must be {expected_type.__name__}")
     rows = []
     for n, line in enumerate(LEDGER.read_text().splitlines(), 1):
         if line.strip():
@@ -1227,6 +1263,15 @@ def check() -> None:
             if type(row.get(field)) is not expected_type:
                 code = "E_WAVE_EDGE_SET" if field == "wave_edge_count" else "E_RECORD_SCHEMA"
                 fail(code, f"{row.get('asset_id', '')}: {field} must be {expected_type.__name__}")
+    source_aliases = {}
+    for row in rows:
+        exact_source = row["source_exact"]
+        if type(exact_source.get("sha256")) is not str:
+            fail("E_SOURCE_ANCHOR", f"{row['source_path']}: source_exact.sha256 must be str")
+        source_key = (row["source_path"], exact_source["sha256"])
+        prior_asset = source_aliases.setdefault(source_key, row["asset_id"])
+        if prior_asset != row["asset_id"]:
+            fail("E_SOURCE_ALIAS", f"{source_key}: {prior_asset}/{row['asset_id']}")
     binding = strict_json(BINDING_FILE.read_text(), str(BINDING_FILE))
     if not isinstance(binding, dict):
         fail("E_JSON", f"{BINDING_FILE}: top-level JSON object required")
@@ -1241,18 +1286,6 @@ def check() -> None:
     initial_targets = set(a for a, (_, row) in phase.items() if row.get("product_classification_status") == "unresolved" and row.get("artifact_evidence_kind") == "implementation_source") - legacy_existing
     expected_overlap = expected_overlap_reconciliation(initial_targets, product_union, phase)
     if sorted(r["asset_id"] for r in rows) != targets or len({r["asset_id"] for r in rows}) != 67: fail("E_TARGET_SET", "ledger IDs")
-    source_aliases = {}
-    for row in rows:
-        exact_source = row.get("source_exact")
-        if not isinstance(exact_source, dict): fail("E_RECORD_SCHEMA", row.get("asset_id", ""))
-        source_key = (row.get("source_path"), exact_source.get("sha256"))
-        prior_asset = source_aliases.setdefault(source_key, row.get("asset_id"))
-        if prior_asset != row.get("asset_id"): fail("E_SOURCE_ALIAS", f"{source_key}: {prior_asset}/{row.get('asset_id')}")
-    if set(inv.get("expected_sets", {}).get("target_asset_ids", [])) != set(targets) or not same_typed_value(inv.get("expected_sets", {}).get("target_asset_count"), 67): fail("E_INVENTORY_DECLARATION", "target set")
-    if set(inv) != EXPECTED_INVENTORY_KEYS: fail("E_INVENTORY_DECLARATION", "inventory schema keys")
-    for field, expected_type in EXPECTED_INVENTORY_FIELD_TYPES.items():
-        if type(inv.get(field)) is not expected_type:
-            fail("E_INVENTORY_DECLARATION", f"{field} must be {expected_type.__name__}")
     if not same_typed_value(inv.get("schema_revision"), 1): fail("E_INVENTORY_DECLARATION", "schema revision")
     if not same_typed_value(inv.get("expected_sets"), {
         "target_asset_count": 67,
@@ -1334,6 +1367,12 @@ def check() -> None:
         if not same_typed_value(h, expected_history_failure_consumer(drow, dline, decisions, read_afters)): fail("E_HISTORY", aid)
         bnd = row.get("boundary_evidence", {})
         pb = bnd.get("product_boundary", {})
+        if not isinstance(pb, dict) or not isinstance(bnd.get("l1"), dict): fail("E_RECORD_SCHEMA", aid)
+        if not isinstance(pb.get("ranges"), list) or any(not isinstance(item, dict) for item in pb["ranges"]): fail("E_RECORD_SCHEMA", aid)
+        for product in expected["products"] or EXPECTED_PRODUCTS:
+            lr = bnd["l1"].get(product)
+            if not isinstance(lr, dict) or not isinstance(lr.get("ranges"), list) or any(not isinstance(item, dict) for item in lr["ranges"]):
+                fail("E_RECORD_SCHEMA", aid)
         bd = git_bytes(BOUNDARY)
         if pb.get("path") != BOUNDARY or pb.get("blob") != git_blob(BOUNDARY) or pb.get("sha256") != tagged(bd): fail("E_BOUNDARY_ANCHOR", aid)
         if len(pb.get("ranges", [])) != len(BOUNDARY_RANGES): fail("E_BOUNDARY_ANCHOR", aid)

@@ -223,6 +223,27 @@ def record_wave_edge_count_bool(rows): rows[0]["wave_edge_count"] = False
 def inventory_target_wave_edges_bool(inv): inv["counts"]["target_wave_edges"] = False
 def archive_manifest_translation_bytes(inv): inv["archive_manifest_resolution"]["mismatches"][0]["line_ending_translation"]["translated_bytes"] += 1
 def archive_manifest_translation_sha(inv): inv["archive_manifest_resolution"]["mismatches"][0]["line_ending_translation"]["translated_sha256"] = "sha256:" + "0" * 64
+def inventory_classification_rule(inv): inv["classification_rule"]["direct_product_basis"] = "path-only"
+def inventory_authority_classification_approved(inv): inv["authority_boundary"]["classification_state"] = "approved"
+def inventory_binding_id(inv): inv["binding_id"] = "SCF-B-FAKE"
+def inventory_wave_source_paths(inv): inv["wave_source_paths"]["1"] = "archive/fabricated-wave.jsonl"
+def inventory_old_asset_source_mode(inv): inv["old_asset_source_mode"] = "live worktree"
+def inventory_target_assets(inv): inv["counts"]["target_assets"] += 1
+def inventory_phase_candidate_distribution(inv):
+    key = next(iter(inv["phase_candidate_distribution"]))
+    inv["phase_candidate_distribution"][key] += 1
+def inventory_missing_edges_allowed(inv): inv["edge_contract"]["missing_edges_forbidden"] = False
+def inventory_history_disposition_rows(inv): inv["history_failure_consumer"]["disposition_rows"] += 1
+def inventory_expected_sets_nonobject(inv): inv["expected_sets"] = []
+def inventory_input_digest_nonobject(inv): inv["input_digests"] = [1]
+def record_boundary_product_boundary_nonobject(rows): rows[0]["boundary_evidence"]["product_boundary"] = []
+def record_source_sha256_nonstring(rows): rows[0]["source_exact"]["sha256"] = ["x"]
+def record_archive_manifest_translation_target(rows):
+    return next(row for row in rows if row["source_path"] == "scripts/helix.ps1")
+def record_archive_manifest_translation_bytes(rows):
+    record_archive_manifest_translation_target(rows)["source_exact"]["archive_manifest_resolution"]["line_ending_translation"]["translated_bytes"] += 1
+def record_archive_manifest_translation_sha(rows):
+    record_archive_manifest_translation_target(rows)["source_exact"]["archive_manifest_resolution"]["line_ending_translation"]["translated_sha256"] = "sha256:" + "0" * 64
 def inventory_top_level_extra(inv): inv["undeclared"] = True
 def inventory_top_level_missing(inv): inv.pop("scope")
 
@@ -453,6 +474,21 @@ run_raw_case(
 )
 run_case("archive_manifest_translation_bytes_tamper", "E_ARCHIVE_MANIFEST", None, archive_manifest_translation_bytes)
 run_case("archive_manifest_translation_sha_tamper", "E_ARCHIVE_MANIFEST", None, archive_manifest_translation_sha)
+run_case("inventory_classification_rule_tamper", "E_INVENTORY_DECLARATION", None, inventory_classification_rule)
+run_case("inventory_authority_classification_approved", "E_INVENTORY_DECLARATION", None, inventory_authority_classification_approved)
+run_case("inventory_binding_id_tamper", "E_INVENTORY_DECLARATION", None, inventory_binding_id)
+run_case("inventory_wave_source_paths_tamper", "E_WAVE_EDGE_SET", None, inventory_wave_source_paths)
+run_case("inventory_old_asset_source_mode_tamper", "E_INVENTORY_DECLARATION", None, inventory_old_asset_source_mode)
+run_case("inventory_target_assets_tamper", "E_INVENTORY_DECLARATION", None, inventory_target_assets)
+run_case("inventory_phase_candidate_distribution_tamper", "E_INVENTORY_DECLARATION", None, inventory_phase_candidate_distribution)
+run_case("inventory_missing_edges_allowed", "E_INVENTORY_DECLARATION", None, inventory_missing_edges_allowed)
+run_case("inventory_history_disposition_rows_tamper", "E_INVENTORY_DECLARATION", None, inventory_history_disposition_rows)
+run_case("inventory_expected_sets_nonobject", "E_INVENTORY_DECLARATION", None, inventory_expected_sets_nonobject)
+run_case("inventory_input_digest_nonobject", "E_INPUT_DIGEST", None, inventory_input_digest_nonobject)
+run_case("record_boundary_product_boundary_nonobject", "E_RECORD_SCHEMA", record_boundary_product_boundary_nonobject, None)
+run_case("record_source_sha256_nonstring", "E_SOURCE_ANCHOR", record_source_sha256_nonstring, None)
+run_case("record_archive_manifest_translation_bytes_tamper", "E_ARCHIVE_MANIFEST", record_archive_manifest_translation_bytes, None)
+run_case("record_archive_manifest_translation_sha_tamper", "E_ARCHIVE_MANIFEST", record_archive_manifest_translation_sha, None)
 if EXECUTED_CASES != validator.EXPECTED_NEGATIVE_CASES:
     raise AssertionError(f"negative case sequence mismatch: expected {validator.EXPECTED_NEGATIVE_CASES}, got {EXECUTED_CASES}")
 if len(EXECUTED_CASES) != len(set(EXECUTED_CASES)):
