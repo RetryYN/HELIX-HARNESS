@@ -71,4 +71,4 @@ unitとphase候補assetのmembershipは延べ87,731件、さらに製品候補�
 4. 製品境界、routing訂正5件、successor／L11の人間decision。
 5. 要求unit単位の旧実装、縮退、未実装、現行差分の独立review。
 
-これらが閉じるまでは、旧能力の完全性、要求実装済み、再利用可否、`new_build_allowed`、正式設計・実装開始を生成しない。
+これらは全量crosswalkと全旧資産の評価を完了と主張できない条件であり、個別要求の要否・製品scope判断を一律に止める条件ではない。個別unitではscope確定後、L3で選んだ関係旧資産だけを必要な根拠まで調べ、未選定資産の全件consumer closureを開始前提にしない（[旧資産の判断時期に関するPO決定](../../decisions/legacy-asset-review-timing-2026-09-23.md)）。旧能力・要求実装済み・再利用可否は証拠のある範囲でだけ判断する。[Phase Capability Inventory](../../phase-capability-inventory.json)の`new_build_allowed:false`は変更せず、正式設計・実装は[新世代作業入口](../../new-generation-start-here.md)の停止を維持する。
