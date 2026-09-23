@@ -7,7 +7,8 @@
 `archive/legacy-generation-2026-09-14/root/.claude/`および同階層の旧`CLAUDE.md`に隔離されている。
 これらは実行せず、実行fallbackにもしないが、規則、運用、工程、役割分担、承認手続き、要求、設計を決めるときは
 必ず先に読み、起点にする。旧HELIXに根拠のない規則や手続きを推測で新設しない。旧HELIXと異なる内容にする場合は、
-旧source、保持点、変更点、理由を記録して人の判断を経る。詳細は[AGENTS.md](AGENTS.md)「再構築の原則」に従う。
+旧source、保持点、変更点、理由を記録して人の判断を経る。文書は同じファイルを更新し、版ごとの別ファイルを作らない。
+詳細は[AGENTS.md](AGENTS.md)「再構築の原則」に従う。
 
 現在は上流再構築中であり、新世代CIとAI context生成器は未構築である。Conceptから対象別layerへ順に降ろし、
 GitHubは共有・review・証拠projectionとして扱う。通常のGitHub作業では作成側がpushとDraft PR作成、独立review結果の確認後にReady化し、
