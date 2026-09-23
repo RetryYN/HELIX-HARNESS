@@ -74,49 +74,55 @@
       "note": "fixed-base source or static research evidence"
     },
     {
+      "path": "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl",
+      "sha256": "488d795223c73386da579ea7018583f2276ea22dc333852fdd646f1a1bbacb99",
+      "note": "merged #2096 main comparison ledger; static Git object read only"
+    },
+    {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/PR-DRAFT.md",
-      "sha256": "aec684c295571b9f1c903fb4ed72978ef26a963417868de0de9029aa7f7e5680",
+      "sha256": "965657fb4ebcf86dc376a2e2e56982bca11311f97b0ce0fdefb6479cf7f073cd",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/README.md",
-      "sha256": "4ea21529a6b5ee0118ef04a00d3815b60c7d40650bd052fdf3f00ef6556a9f0e",
+      "sha256": "fead3ae39e97a6b6c0da4735ef979539b18816b4e2996b157c54a676f6e5f66d",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/classification-research.jsonl",
-      "sha256": "123be19a7f30a5ec0af0a04f51095ed80e701e29cc5fbcc4ba7aa68a7d62a6ad",
+      "sha256": "2d5f3c3592f754fbecc30d6b2efe93c28360af506814a4c5ed597d9ba5fa829d",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/inventory.json",
-      "sha256": "ee26b22afb1ba2b777e2ef3c5b7c57b50accdbdf59dc672c8fbc3d36eccd2f06",
+      "sha256": "dca24386088b8f44bb99d557c10ff3a20e1bfd34f14e887fd28537e2c9e7fa6b",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/selection-manifest.json",
-      "sha256": "3eba60c72519258e562db539849e5e55d8172ffda3b78d69c2e37799bf6b9dc2",
-      "note": "SCF-B-0148 research artifact; static candidate work only"
-    },
-    {
-      "path": "scaffold/legacy-test-design-worker-workflow-0148/validate.py",
-      "sha256": "0c8ad57c7f4887efb3a276778dc5ffeea0667e2e9870922d309e57d88ee004eb",
+      "sha256": "1f18e128a75a0394409d7870bde3ed665a870503f495e34524aff9e702eb12bd",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/selfcheck.py",
-      "sha256": "2173f1550f425f7e4d5bd140380fe89b49cdb509ed5ac59bf95f28af68ef2857",
+      "sha256": "1fdc714068629218e02aafacd1380586add1c2de6f4cb6bd50e2cf462de00084",
+      "note": "SCF-B-0148 research artifact; static candidate work only"
+    },
+    {
+      "path": "scaffold/legacy-test-design-worker-workflow-0148/validate.py",
+      "sha256": "42a25f0c330534d5a9ca6408e1d304b870c79eefed986cb04d24337db3b6275f",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     }
   ],
   "role": "legacy-test-design-worker-workflow-phase-product-classification-0148-static",
   "obligations": [
-    "指定条件でasset ID/pathを独立再導出し、52件のarchive blob/SHAと意味spanを固定する",
-    "全52件のparent pairを静的に読んでsourceとの関係を記録し、旧owner metadataを新世代へ昇格させない",
-    "4製品L1/product-boundaryを根拠にcandidateとcounterevidenceを記録し、実装内容責務と運用実行責務の未決splitを保つ",
+    "固定BASEのbootstrapから選択ID/pathを独立再導出し、52件のarchive blob/SHA/MANIFESTと意味spanを固定する",
+    "全52件のsource frontmatterからparent pairを導き、固定BASE pair blob/title/owner/statusを照合する。歴史的ownerを新世代へ昇格させない",
+    "4製品L1/product-boundaryを根拠にcandidateを保持し、bootstrap全差分をsource-specific basisまたは限定counterevidenceへ接続する",
+    "product_basisとother_product_assessmentsの交差を禁止し、direct/split/insufficient categoryの件数を候補数から再計算する",
     "PHCAP-07及び元bootstrapの複数phase候補を保持し、phase admission/owner/successorを生成しない",
-    "test-design status、oracle citation、phase-wide degradation、observed failure、implementation、consumerを混ぜず unknown/pending を保持する",
-    "main 537件およびopen #2094/#2096/#2097 exact headsとのID/path/SHA重複0を記録する",
+    "test-design status、oracle citation、phase-wide degradation、observed failure、implementation、consumerを混ぜずunknown/pendingを保持する",
+    "current main be9cf8c exact BASE 666件とopen #2097 HEAD 211712a0 exact 8件に対するID/path/SHA重複0を独立再計算する",
     "旧archive source/runtime/test/CI/workflow/hook/adapterを実行しない。正式asset/phase ledgerを更新しない"
   ],
   "connections": {
@@ -125,10 +131,11 @@
       "main legacy asset classification research register (reference only)"
     ],
     "dependencies": [
-      "fixed main BASE 8a9fdc973f3553bea78d022e8d73f109aca526da",
+      "fixed research BASE 8a9fdc973f3553bea78d022e8d73f109aca526da",
       "approved Concept v4.1 and four-product L1/product-boundary revision evidence",
       "phase-capability-inventory contextual evidence",
-      "exact open PR heads #2094/#2096/#2097 as comparison snapshots"
+      "current main 666 candidate records at be9cf8cf99ee94a487e54d372d7a34e9266b1ee3, including merged PR #2096",
+      "open PR #2097 exact comparison snapshot 211712a0aba71ea7461f53e7f824879de5bcff48"
     ],
     "boundary": "research-only; authority_effect=none; no formal owner, asset classification, phase admission, implementation, test pass, successor, CI, requirement adoption, or consumer closure"
   },
@@ -167,23 +174,25 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "fixed BASE bootstrap independently selects exactly the 52 pinned asset IDs/paths",
-      "canonical full-record and ledger byte digests pin every generated classification record",
-      "archive source blob SHA and selected semantic line spans match the fixed BASE objects",
-      "generated category, candidate products, phase candidates and authority boundary match selection-manifest.json",
-      "manifest, inventory and Binding authority-sensitive keysets/values reject expansion; phase remains not_admitted",
-      "implementation/test execution and consumer closure remain unknown/not_run/pending",
-      "current main 609 plus open PR #2096/#2097 exact snapshots are disjoint by ID/path/SHA"
+      "fixed BASE bootstrap independently selects exactly 52 unique asset IDs/paths and source SHA values",
+      "archive source and every linked parent-pair are independently read as regular fixed-BASE Git blobs and checked against archive MANIFEST, byte count, SHA, and frontmatter relation",
+      "complete typed records match fixed code-pinned canonical contract digests; category cardinality, product_basis, other assessments, phase and authority invariants are checked independently",
+      "bootstrap candidate targets are retained per row; every added target has source-specific product-basis evidence and every removed target has span/pair-bound bounded counterevidence",
+      "inventory category/product counts and parent-pair set are recomputed from records; inventory bytes are code-pinned",
+      "main 666 and open #2097 8 row sets are read from exact pinned Git revisions; ID, path, and SHA intersections with target 52 are recomputed independently and equal zero",
+      "Binding artifact/upstream path closure is exact; BASE-input digests, target file digests, and no-effect operation boundary are checked",
+      "test-design citations and designed failures remain distinct from execution, observed failure, implementation, and consumer closure"
     ],
     "negative_cases": [
-      "omitted ID",
-      "extra record field",
-      "changed candidate product",
-      "altered semantic span",
-      "phase admission",
-      "authority escalation",
-      "inventory formal-effect addition",
-      "Binding deploy permission addition"
+      "digest-resynchronized product/category/parent-pair tampering",
+      "bootstrap candidate omission without bounded counterevidence",
+      "added candidate without matching product_basis evidence",
+      "product_basis/other_product_assessments overlap",
+      "phase admission or authority promotion",
+      "duplicate/omitted manifest row and wrong typed cardinality",
+      "inventory count/union resynchronization",
+      "Binding artifact/upstream omission, extra, or stale digest",
+      "malformed JSON, duplicate JSON keys, null/list/object type substitution"
     ]
   },
   "replacement": {

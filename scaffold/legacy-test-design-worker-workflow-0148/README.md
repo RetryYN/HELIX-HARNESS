@@ -14,7 +14,7 @@
 
 HELIX-Web／HELIX-Web-OSを含む4製品を確認対象に置いた。52件の選択spanと親pairにはWeb利用者向けConnector SaaS体験や展開後のtenant/service運転を直接支える候補根拠が見つからなかったため、`not_assessed_no_direct_support_in_selected_span` とした。これは反証の発見や永久的な非適用判断ではなく、consumer closure等を含む未調査境界である。
 
-bootstrapの `candidate_product_targets` は横に保持する比較列で、根拠や採択としては使わない。空またはHELIX-OS候補のassetも同じ条件でspanを確認し、直接根拠を得られない文書は `insufficient_direct_basis` として保留する。親pairの `responsibility_owner` や歴史的frontmatterも新世代ownerへ昇格させない。
+bootstrapの `candidate_product_targets` は全行で原文のまま保持する。bootstrapと今回候補の差分は各recordの `bootstrap_candidate_comparison` で全件列挙し、追加候補はproduct_basisのsource-specific reason／anchor／pair titleに、bootstrapから外す候補は選択span／pair digestに結び付いた限定counterevidenceに接続する。Web-OSの非適用・永久除外は判断しない。空またはHELIX-OS候補のassetも同じ条件でspanを確認し、直接根拠を得られない文書は `insufficient_direct_basis` として保留する。親pairの `responsibility_owner` や歴史的frontmatterも新世代ownerへ昇格させない。
 
 ## Phase、実装、failure、consumer
 
@@ -26,7 +26,7 @@ bootstrapは全52件を `test_design_present_unexecuted`、legacy implementation
 
 ## 重複と分母
 
-初回選択BASEは `8a9fdc973f3553bea78d022e8d73f109aca526da`。作業中に#2094がmergeされたため、排他照合を現main `a577a7cddd1405de27bf01d22b050eb2acaa9ba9` に更新した。現main609件（#2094の72件を含む）、0148の52件とのID/path/SHA重複は0件。open PR比較から#2094を外し、#2096 HEAD `ab0a1faa4e2b310206b97a786c329334a2a0e151` の57件と#2097 HEAD `d233e6e99f705439043a07f0a96bdd9e535a288a` の8件を静的Git objectとして比較し、ID/path/SHA重複は各0件・集計0件。現main609件、open PR65件、0148の52件は候補分類の比較分母であり、正式分類や完了を示さない。
+初回選択BASEは `8a9fdc973f3553bea78d022e8d73f109aca526da`。作業後に#2096もmainへmergeされたため、排他照合を現main `be9cf8cf99ee94a487e54d372d7a34e9266b1ee3` に更新した。現main `be9cf8cf99ee94a487e54d372d7a34e9266b1ee3` は#2094の72件と#2096の57件を含む666 unique asset ID（原ledger行708件）。#2097は提示されたopen HEAD `211712a0aba71ea7461f53e7f824879de5bcff48` の8件を静的Git objectとして比較した。main 666件、open #2097 8件、0148の52件についてasset ID・source path・source SHA-256の各射影を個別に比較し、target overlapはすべて0件。比較集合全726件は候補分類の比較分母であり、正式分類や完了を示さない。
 
 より広いworker/workflow調査分母208件のうち、今回52件を記録し、残り156件を未調査として残す。208は本bundleの選択条件で抽出した全件数ではなく、初回cohortの進捗分母である。
 
@@ -36,4 +36,4 @@ archiveは固定BASEのGit objectを静的に読み取った。旧source、runti
 
 ## 確認範囲
 
-必要な静的確認は、対象集合・ID/path/SHA一意性、archive manifest/source digest、親pair path/blob/digest、4製品L1/product-boundary参照、phase候補参照、mainとopen PRの排他、Binding/ledger/参照の整合である。分類出力は固定manifestと固定BASE bootstrap/archive blobに対して `python3 scaffold/legacy-test-design-worker-workflow-0148/validate.py` で独立照合する。`python3 scaffold/legacy-test-design-worker-workflow-0148/selfcheck.py` はID欠落、余分なledger field、製品候補改変、意味span改変、phase admission、authority昇格、inventory authority field追加、Bindingへのdeploy許可追加の8負例をvalidatorが拒否することを確認する。加えて `python3 scaffold/tools/scfctl.py validate`、`stale`、`residuals`、`git diff --check` を行う。旧assetのtestは起動しない。
+必要な静的確認は、対象集合・ID/path/SHA一意性、archive manifest/source digest、親pair path/blob/digest、4製品L1/product-boundary参照、phase候補参照、mainとopen PRの排他、Binding/ledger/参照の整合である。分類record全体は固定validator内のbyte/canonical digest契約に照合する。候補の意味を機械生成・採択したとは主張しない。validatorは固定BASEのbootstrap、archive Git blob／MANIFEST、test-designから宣言された親pairとそのGit blobをledgerから独立に再導出して照合し、各recordの完全一致、型・cardinality、product_basisとother assessmentの非重複、bootstrap候補との差を検査する。比較集合はmainの各pinned ledgerとopen #2097 exact HEADから実際にunionを計算する。 `python3 scaffold/legacy-test-design-worker-workflow-0148/validate.py` で検査する。`python3 scaffold/legacy-test-design-worker-workflow-0148/selfcheck.py` はledger／manifest／Binding digestを同時に再同期した分類改変、bootstrap差分の除去、basis/assessment overlap、main unionの再同期、重複JSON key、malformed inputを含む負例が固定contractまたは個別guardで拒否されることを確認する。加えて `python3 scaffold/tools/scfctl.py validate`、`stale`、`residuals`、`git diff --check` を行う。旧assetのtestは起動しない。
