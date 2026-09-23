@@ -6,17 +6,17 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "outside67 final 5 sourceのcrosswalk／placement audit／Concept candidate source-chain・failure／consumer境界・四製品候補・unknown status review（正式owner未解決）",
   "state": "registered",
-  "reason": "MPR-SH-OUTSIDE67-001の67 path_revision_pairについて、SCF-B-0090が固定した62件と重複しない048/049/050/051/053を選び、67/67の研究会計と残0を正式holding採否から分離して静的固定する。この67/67はpath_revision_pairの研究会計であり、正式要求identity、四製品ownerの割当、phase、実装・縮退・authorityの分母ではない。5 source pairの25 exact anchors、pre/archive/current path・blob・sha・wording差分、source/judgement-history/failure/consumer boundary、四製品候補、product／phase／implementation／degradation／failure／consumer／decision unknownを保持し、exact receiptとsemantic inclusionを分離して差分をsemantic equivalence・authority・successor・implementationへ昇格しない。SCF-B-0092はresearch Scaffoldの登録であり、正式要求・owner・successor・holding admissionを生成しない。parent #2039のexact reviewed HEAD ad11da4はmain merge HEAD 36acceeに含まれる。reviewed lineageまたはmerged main HEADが変われば停止してrebaselineする。",
+  "reason": "MPR-SH-OUTSIDE67-001の67 path_revision_pairについて、SCF-B-0090が固定した62件と重複しない048/049/050/051/053を選び、67/67の研究会計と残0を正式holding採否から分離して静的固定する。この67/67はpath_revision_pairの研究会計であり、正式要求identity、四製品ownerの割当、phase、実装・縮退・authorityの分母ではない。5 source pairの25 exact anchors、pre/archive/current path・blob・sha・wording差分、source/judgement-history/failure/consumer boundary、四製品候補、product／phase／implementation／degradation／failure／consumer／decision unknownを保持し、exact receiptとsemantic inclusionを分離して差分をsemantic equivalence・authority・successor・implementationへ昇格しない。SCF-B-0092はresearch Scaffoldの登録であり、正式要求・owner・successor・holding admissionを生成しない。parent #2039のexact reviewed HEAD ad11da4はmain merge HEAD 36acceeに含まれる。reviewed lineageまたはmerged main HEADが変われば停止してrebaselineする。 現行親はdocs/concept/helix-concept.mdであり、四対象候補は旧調査scopeである。",
   "upstream": [
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83",
-      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a",
+      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a]"
     },
     {
       "path": "docs/governance/legacy-asset-reuse-control.md",
@@ -35,23 +35,23 @@
     },
     {
       "path": "docs/helix-harness/README.md",
-      "sha256": "e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117",
-      "note": "current product boundary reference only"
+      "sha256": "f70528c8fd054ea4f18634ad98bd93b0a390186d1c6cbc4e15d19ffa3639b2b5",
+      "note": "current product boundary reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-os/README.md",
-      "sha256": "aa6c9976bf564ef4c2ff0f8d7b07220108e7157f697b8d92e11c689b4060f773",
-      "note": "current product boundary reference only"
+      "sha256": "6a19117ad1d2f1556d11214da277837fc73adb76e8854d76591468cac4f54f3f",
+      "note": "current product boundary reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=aa6c9976bf564ef4c2ff0f8d7b07220108e7157f697b8d92e11c689b4060f773; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web/README.md",
-      "sha256": "0d73011e6ccc387189645c2158d55e02f444e3e3cb583b0aea29e28ea86ac1e6",
-      "note": "current product boundary reference only"
+      "sha256": "07a5db2ee00421e92338906715b6b103f587df6fbcf9101a59784cd23082b5fc",
+      "note": "current product boundary reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0d73011e6ccc387189645c2158d55e02f444e3e3cb583b0aea29e28ea86ac1e6; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web-os/README.md",
-      "sha256": "f5aac7ab9bc83a8c7339a2190f1e39cbaf3f1271edffc80fbdc37e43a4598914",
-      "note": "current product boundary reference only"
+      "sha256": "8a3f3ba3d8dcb985d536f9925814ffdd5a63d9b84ba12444ea9ad72825b3d3dc",
+      "note": "current product boundary reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=f5aac7ab9bc83a8c7339a2190f1e39cbaf3f1271edffc80fbdc37e43a4598914; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/pillar-target-crosswalk.md",
@@ -74,9 +74,9 @@
       "note": "current counterpart receipt only; no semantic adoption"
     },
     {
-      "path": "docs/concept/helix-concept-v4.1.md",
-      "sha256": "181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad",
-      "note": "current counterpart receipt only; no semantic adoption"
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "2be6bc63af5ae2d191a8bd0ea1df0c45a497461724e868161bcea4dfd59df61a",
+      "note": "current counterpart receipt only; no semantic adoption [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad; 旧意味の採否・authorityは変更しない。]"
     }
   ],
   "role": "outside67 final 048/049/050/051/053 source pairのsource/judgement-history/failure/consumer boundary、exact path/blob/sha receipt、revision差分、四製品候補、legacy evidence unknownをread-onlyで保持する",
@@ -100,7 +100,7 @@
     ],
     "dependencies": [
       "MPR-SH-OUTSIDE67-001",
-      "current four-product boundary",
+      "旧4対象boundaryの履歴receiptと現行Conceptの機構/製品属性候補",
       "current product entry READMEs",
       "current shared L2 crosswalk",
       "legacy static ledger set",

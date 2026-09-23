@@ -6,9 +6,7 @@ authority_status: awaiting_human_approval
 source_basis: PO direction 2026-09-16
 source_quote_record: docs/concept/helix-principles.md#PO提示原文
 derived_from:
-  - docs/concept/helix-concept-v4.1.md
-  - docs/concept/product-boundary.md
-  - docs/governance/upstream-rebaseline-and-asset-governance-policy-2026-09-14.md
+  - docs/concept/helix-concept.md
 canonical_promotion: pending
 approval_scope: exact_body_revision_pending
 approved_body_sha256: pending_human_decision
@@ -21,14 +19,14 @@ authority_effect_before_approval: none
 
 本書は、HELIXで企画、要求整理、設計、実装、検証、運用改善を担うエージェントの共通行動原則を定める。
 HELIXの製品identity、authority、V-model、責務境界、要求、設計、実装を置換する文書ではない。HELIX全体の構造原則と
-system invariantは[Concept v4.1候補](helix-concept-v4.1.md)に置き、本書はその下でエージェントがどう考え、どう変更を
+system invariantは[HELIX Concept](helix-concept.md)に置き、本書はその下でエージェントがどう考え、どう変更を
 進めるかに限定する。
 
 別PR #1827の「HELIX自体の5大目標」はHELIXの到達方向・価値を示し、本書の七大原則はそこへ進むエージェントの
 行動基準を示す。どちらもConceptに従属し、目標または原則だけから要求、責務、workflow、実装を直接生成しない。
 統合後の読込順はConcept／製品責務境界→5大目標→七大原則→対象別L1とする。
 
-本候補は人間がexact revisionを承認するまでauthorityを持たない。PRの作成・review・merge、Issueの状態、CI結果から
+本書は現行Conceptの子であり、それ自体から別のauthorityを生成しない。七大原則の独立authorityは未承認で、Conceptへの入力接続だけに旧decisionがある。PRの作成・review・merge、Issueの状態、CI結果から
 承認を生成しない。承認後も、対象作業では承認済みConcept、企画、要求、設計、権限、停止条件を先に適用する。
 HARNESSが対象作業に適用するProduction、Discovery／PoC、Research、UI prototype等のrouteとroute内順序を所有し、
 七大原則は独自の固定workflowを作らず、そのroute内の判断規律として働く。
@@ -58,7 +56,7 @@ Discovery／PoC、Research、UI prototypeは、HARNESSが各routeに定める仮
 
 実装、test、CI、統合、運用で問題が起きたときは、局所的な修正だけで閉じず、要件定義や設計に原因がないかを先に疑う。
 要求の欠落、曖昧さ、矛盾、責務違い、依存不足、検証条件不足を確認し、原因が上流にあれば元revisionを保持した変更候補を
-作る。その層のauthorityと採否手続を経て、要求およびL3要件は人間decisionへ束縛し、承認されたrevisionから影響する
+作る。その層のauthorityと採否手続を経て、要求の意味変更とL3要件承認は対象revisionの人間decisionへ束縛し、承認されたrevisionから影響する
 下流を再導出・再検証する。下流のgreenで上流の不整合を隠さない。
 
 ### 5. ミニマム実装/適時リファクタリング

@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "RDP-001 / L2D-S1-01 delegated document atomization review（authority未成立）",
   "state": "registered",
-  "reason": "DELEGATED-DOC-001の126行file blobをVDH-FR、旧HBR対応、L1-L12配置、Hybrid、完了式、metadataへ分解し、4対象の製品境界と旧implementation／degraded／phase状態を静的に束ねる必要がある。仮分類は採否・successor・authority・実装を生成しない。",
+  "reason": "DELEGATED-DOC-001の126行file blobをVDH-FR、旧HBR対応、L1-L12配置、Hybrid、完了式、metadataへ分解し、旧4対象境界と現行Conceptの機構・製品属性と旧implementation／degraded／phase状態を静的に束ねる必要がある。仮分類は採否・successor・authority・実装を生成しない。",
   "upstream": [
     {
       "path": "scaffold/rdp001-delegated-doc003-unprocessed8/report.json",
@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "4対象の責務境界候補"
+      "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+      "note": "4対象の責務境界候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
@@ -58,7 +58,7 @@
     "dependencies": [
       "Python 3標準library",
       "読み取り専用Git cat-fileによるarchive blob照合",
-      "Concept v4.1・4対象L1承認decision record"
+      "旧Concept v4.1・旧4対象L1のexact SHA承認decision record。現行Concept・L1は未承認候補として別revision"
     ],
     "boundary": "scaffold内だけにcandidate inventory、builder、validator、selfcheck、binding、READMEを置く。archive、source holding、asset catalog、phase catalog、current authority docsはread-onlyで読む。旧workflow、CLI、hook、adapter、source、test、CI、runtimeは実行しない。"
   },

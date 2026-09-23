@@ -20,10 +20,10 @@
     "phase": "concept_l1",
     "title": "Concept／L1企画",
     "product_targets": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"],
-    "current_status": "approved_current",
+    "current_status": "approved_historical_revision_current_l1_draft",
     "evidence_products": ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"],
     "current_refs": [
-      "docs/concept/helix-concept-v4.1.md",
+      "docs/concept/helix-concept.md",
       "docs/concept/product-boundary.md",
       "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
       "docs/helix-harness/L1-planning/product-intent.md",
@@ -41,14 +41,14 @@
       "LEGACY-ASSET-18F7940E7994634D39A1",
       "LEGACY-ASSET-75776FE016E550F5355F"
     ],
-    "assessment": "旧Concept、charter、L1要求が存在した。現行は四製品境界へ再編済み。",
+    "assessment": "旧Concept、charter、L1要求が存在した。四対象の旧exact revisionは承認済みだが、Concept親へ付け替えた現行L1本文は未承認候補。四対象は当時の調査scopeであり現行の製品数ではない。",
     "transition_assessment": "rederived_current",
     "gaps": "旧L0/L1 atomと現行四製品L1の無損失対応が未完了",
     "new_build_allowed": false,
     "authority_effect": "inventory_and_work_projection_only"
   },
   "ledger_provenance": {
-    "phase_inventory": {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "records": 20},
+    "phase_inventory": {"path": "docs/governance/phase-capability-inventory.json", "sha256": "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2", "records": 20},
     "asset_disposition": {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "records": 4020},
     "phase_product_classification": {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "records": 4020},
     "decisions": {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "records": 58}

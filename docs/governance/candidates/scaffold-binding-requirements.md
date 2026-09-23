@@ -10,7 +10,7 @@ product_targets:
   - HELIX-HARNESS
   - HELIX-OS
 derived_from:
-  - docs/concept/helix-concept-v4.1.md
+  - docs/concept/helix-concept.md
   - docs/helix-harness/L1-planning/product-intent.md
   - docs/helix-os/L1-planning/system-intent.md
 related_projection:

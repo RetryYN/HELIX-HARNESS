@@ -14,13 +14,13 @@ successor、Issue、実装を生成しない。
 
 | 対象 | SHA-256 | 件数・役割 |
 |---|---|---|
-| [Concept v4.1候補](../../../concept/helix-concept-v4.1.md) | `181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad` | 5大目標と七大原則の接続、製品責務、authority、上流順序 |
-| [5大目標候補](../../../concept/helix-five-goals.md) | `cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca` | 5目標 |
-| [七大原則候補](../../../concept/helix-principles.md) | `41d8fbe759bf24a7245df0597ddaa9c8eb6c4c0184b124ecd5d349e6c19a2dbb` | 7原則 |
-| [HARNESS L1](../../../helix-harness/L1-planning/product-intent.md) | `a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04` | 9件 |
-| [HELIX-OS L1](../../../helix-os/L1-planning/system-intent.md) | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | 12件 |
-| [HELIX-Web L1](../../../helix-web/L1-planning/product-intent.md) | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | 6件 |
-| [HELIX-Web-OS L1](../../../helix-web-os/L1-planning/system-intent.md) | `600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c` | 5件 |
+| [Concept v4.1候補](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/concept/helix-concept-v4.1.md) | `181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad` | 5大目標と七大原則の接続、製品責務、authority、上流順序 |
+| [5大目標候補](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/concept/helix-five-goals.md) | `cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca` | 5目標 |
+| [七大原則候補](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/concept/helix-principles.md) | `41d8fbe759bf24a7245df0597ddaa9c8eb6c4c0184b124ecd5d349e6c19a2dbb` | 7原則 |
+| [HARNESS L1](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/helix-harness/L1-planning/product-intent.md) | `a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04` | 9件 |
+| [HELIX-OS L1](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/helix-os/L1-planning/system-intent.md) | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | 12件 |
+| [HELIX-Web L1](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/helix-web/L1-planning/product-intent.md) | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | 6件 |
+| [HELIX-Web-OS L1](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/helix-web-os/L1-planning/system-intent.md) | `600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c` | 5件 |
 
 ## 判定語彙
 

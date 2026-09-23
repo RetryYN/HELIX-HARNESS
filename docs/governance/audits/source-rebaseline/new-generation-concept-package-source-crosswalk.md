@@ -1,5 +1,7 @@
 # 新世代のConcept・提供構成と旧Concept Vision Package候補の対応
 
+親：[HELIX Concept](../../../concept/helix-concept.md)。本書の旧PKG-D01〜13、四対象、Concept v4.1という表記は当時の照合履歴である。現行Conceptの8機構＋2共通部品、1.0／1.x／2.0／3.0／4.0／5.0、HARNESSとWebだけの製品属性へ要求を割り付ける候補は[全件要求対応表](../../crosswalks/concept-mechanism-version-requirement-crosswalk.md)に置く。旧Packageの数、旧四対象routing、旧実装方式から現行の製品数・完成条件・successorを生成しない。
+
 確認日: 2026-09-14
 
 ## 目的

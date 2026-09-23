@@ -30,7 +30,7 @@ scope: upstream documents, requirement carry-forward, management provisional reg
 | 旧要求文書3件の`draft`、1件の`proposed`、1件の`placeholder` | sourceの未確定状態を保持する | 不要、削除済み、retired |
 | 旧IR 6ファイルの`specified`／`frozen`と、frontmatter statusを持たず本文L9で文書revisionだけをconfirmedとするv1.3 | source表現を`specified_frozen`／`source_status_not_declared`として保持し、v1.3本文の限定も併記する | target要求、網羅、実装、受入まで`confirmed`と自動読替え |
 | IR 153件の`preserved_pending_rehome` | 原文・identity・意味を保持し、successor被覆が未完 | candidateへ降格、未採用、37件へ置換済み |
-| Concept v4.1の`draft_candidate`／`awaiting_human_approval` | 人間へ提示する最新Concept案 | 旧要求の採用状態を解除済み、canonical化済み |
+| 旧Concept v4.1の`draft_candidate`／`awaiting_human_approval` | 2026-09-17 decision前のsnapshot metadata。旧v4.1の対象revisionは後に承認され、現行は[単一Concept](../concept/helix-concept.md)へ移った | 現行Conceptを未承認と読み替えること、旧要求の採用状態を解除済みとすること |
 | 対象別L1／L2／L11の`draft` | 新しい対象・粒度・接続での構成案 | 参照した旧要求をdraftへ降格済み |
 | Feature Ticketの`proposed_upstream_waiting` | local作業契約の候補で、上流承認待ち | 要求採用済み、実装Ready |
 | GitHub Issueのopen／closed、PRのDraft／Ready／merged、checkのgreen／failure | 外部作業・review・証拠projection | 要求の採否、意味変更、retire、受入 |

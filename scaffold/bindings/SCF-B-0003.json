@@ -10,7 +10,8 @@
   "upstream": [
     {
       "path": "docs/governance/candidates/scaffold-binding-requirements.md",
-      "sha256": "c7e47993c2ae0ba9524b55f7ba1041026712d5f6cf281cf10c7ee812cb8c26eb"
+      "sha256": "871c8c123934bd35fc6c5600400f587a9befc5824a3667975f852f583aa9fdbd",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=c7e47993c2ae0ba9524b55f7ba1041026712d5f6cf281cf10c7ee812cb8c26eb; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
@@ -22,11 +23,13 @@
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+      "sha256": "ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc]"
     },
     {
       "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
-      "sha256": "0e8894cb12e0188b079e6fc0c251c3867f88d561dfc2a595070bb90facd7cb09"
+      "sha256": "b5d3cb951bdad297bebcca9a3aa90931c22e2d96d1f63e3003566324d0c7c9f2",
+      "note": "[2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=0e8894cb12e0188b079e6fc0c251c3867f88d561dfc2a595070bb90facd7cb09; 現receipt=b5d3cb951bdad297bebcca9a3aa90931c22e2d96d1f63e3003566324d0c7c9f2; 採否・authorityは不変。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md",

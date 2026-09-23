@@ -59,7 +59,7 @@ GitHub Issue番号、branch、PRはこの契約への参照として追加でき
 | ID | Wave | 対象 | 入力 | 出口 | 現在状態 |
 |---|---|---|---|---|---|
 | URB-U0-001 | U0 | HELIX全体 | 上流authority管理台帳、旧active path | 非実行archive、最小上流入口、既知母集団と未解決sourceのexact inventory | active（実行面隔離済み、文書分離中） |
-| URB-U1-001 | U1 | HELIX全体 | Concept v3.1、v4候補、責務決定 | `candidates/helix-concept-v4.1.md` | drafted_awaiting_human_approval |
+| URB-U1-001 | U1 | HELIX全体 | Concept v3.1、v4候補、責務決定 | [現行Concept](../concept/helix-concept.md)と旧revisionのdecision record | 旧候補は履歴。現行Conceptは同一ファイルで改訂 |
 | URB-U2-HARNESS-001 | U2 | HARNESS | Concept revision、柱対応表 | 外部提供物としてのL1企画 | upstream_waiting |
 | URB-U2-OS-001 | U2 | HELIX-OS | Concept revision、柱対応表 | 管理・統制・改善機構としてのL1企画 | upstream_waiting |
 | URB-U2-WEB-001 | U2 | HELIX-Web | Concept revision、Vision原文 | 管理対象製品としてのL1企画 | upstream_waiting |

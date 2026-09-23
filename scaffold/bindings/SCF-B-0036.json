@@ -6,29 +6,93 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "RDP-001 four-product upstream semantic review（正式owner未解決）",
   "state": "registered",
-  "reason": "outside-67 first15の旧L1 path 4件について、pre-isolation blob、現行承認L1、product boundary、decision、`docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl` の13 live holding exact関係を静的に照合する。HARNESS／OSはpartial、Web／Web-OSはexact substantive relationとして行アンカーを保持するが、要求disposition contractに従いsource_holding登録をsemantic dispositionの前提として保存残差を未解決に留める。",
+  "reason": "outside-67 first15の旧L1 path 4件について、pre-isolation blob、旧承認L1の固定revisionと現行未承認L1、product boundary、decision、`docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl` の13 live holding exact関係を静的に照合する。HARNESS／OSはpartial、旧固定BASEではWeb／Web-OSはexact substantive relationとして行アンカーを保持するが、要求disposition contractに従いsource_holding登録をsemantic dispositionの前提として保存残差を未解決に留める。",
   "upstream": [
-    {"path": "scaffold/pre-isolation-outside-l1-semantic/inventory.json", "sha256": "12513f6df96440afd4813f3295fc7c3d5c17df5766cf5b671c1307c43a71f17e", "note": "4旧L1 blob、現行L1 SHA、line anchors、historical 13 holding scan"},
-    {"path": "scaffold/pre-isolation-outside-l1-semantic/README.md", "sha256": "3dae7187fe8a285186d7df61680aa2d8449ed2df9b8014cd1e708ce34cccb1c1", "note": "HARNESS／OS partial、Web／Web-OS exact、historical snapshot由来source_holding先行境界"},
-    {"path": "scaffold/pre-isolation-outside-l1-semantic/generate.py", "sha256": "c4ac3e5c8636f9b9e25346cc7b77d16fc6a17c6d5f926448240ccccae34598f1", "note": "Git objectとhistorical register snapshot由来sourceのread-only evidence生成"},
-    {"path": "scaffold/pre-isolation-outside-l1-semantic/validate.py", "sha256": "5349a06f22102f2a41eed289d277821ffce71966ba9b231e19a0193d071683c9", "note": "approved SHA、line anchor、historical 13 holding atom setの独立検査と固定digest"},
-    {"path": "scaffold/pre-isolation-outside-l1-semantic/selfcheck.py", "sha256": "ad29a7731514b7a0d019da7e30044c38bdbe28baec9f1ff45d1637a4b2ad2375", "note": "inventory改変13件（current register／14 holding置換を含む）、digest pin更新後の生成器改変14件、独立oracle削除のfail-close検査"},
-    {"path": "scaffold/pre-isolation-outside-holding-first15/inventory.json", "sha256": "8fdc22ce260ca23889f114ad85491d055cb656686fd52c829add05e84d9de12d", "note": "outside-67 first15の旧L1 pathとhistorical 13 snapshot由来pre-isolation blob台帳"},
-    {"path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl", "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b", "note": "3df81ad時点で固定したsupersedes終端13 live source holdingの導出元"},
-    {"path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md", "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2", "note": "4対象L1のapproved SHAと意味境界"},
-    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "四製品の責務ownerとruntime境界"},
-    {"path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl", "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180", "note": "333 existing-path holdingの保存契約"},
-    {"path": "docs/governance/requirement-disposition-review-program.md", "sha256": "9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59", "note": "新しいsourceはsemantic disposition前にsource_holdingへ追加する契約（30-31行）"},
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83", "note": "authority、旧資産静的参照、scaffold境界"},
-    {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "note": "承認済みHARNESS L1本文"},
-    {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "承認済みHELIX-OS L1本文"},
-    {"path": "docs/helix-web/L1-planning/product-intent.md", "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756", "note": "承認済みHELIX-Web L1本文"},
-    {"path": "docs/helix-web-os/L1-planning/system-intent.md", "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c", "note": "承認済みHELIX-Web-OS L1本文"}
+    {
+      "path": "scaffold/pre-isolation-outside-l1-semantic/inventory.json",
+      "sha256": "12513f6df96440afd4813f3295fc7c3d5c17df5766cf5b671c1307c43a71f17e",
+      "note": "4旧L1 blob、現行L1 SHA、line anchors、historical 13 holding scan"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-l1-semantic/README.md",
+      "sha256": "3dae7187fe8a285186d7df61680aa2d8449ed2df9b8014cd1e708ce34cccb1c1",
+      "note": "HARNESS／OS partial、Web／Web-OS exact、historical snapshot由来source_holding先行境界"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-l1-semantic/generate.py",
+      "sha256": "c4ac3e5c8636f9b9e25346cc7b77d16fc6a17c6d5f926448240ccccae34598f1",
+      "note": "Git objectとhistorical register snapshot由来sourceのread-only evidence生成"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-l1-semantic/validate.py",
+      "sha256": "5349a06f22102f2a41eed289d277821ffce71966ba9b231e19a0193d071683c9",
+      "note": "approved SHA、line anchor、historical 13 holding atom setの独立検査と固定digest"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-l1-semantic/selfcheck.py",
+      "sha256": "ad29a7731514b7a0d019da7e30044c38bdbe28baec9f1ff45d1637a4b2ad2375",
+      "note": "inventory改変13件（current register／14 holding置換を含む）、digest pin更新後の生成器改変14件、独立oracle削除のfail-close検査"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-first15/inventory.json",
+      "sha256": "8fdc22ce260ca23889f114ad85491d055cb656686fd52c829add05e84d9de12d",
+      "note": "outside-67 first15の旧L1 pathとhistorical 13 snapshot由来pre-isolation blob台帳"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+      "note": "3df81ad時点で固定したsupersedes終端13 live source holdingの導出元"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
+      "note": "4対象L1のapproved SHAと意味境界"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+      "note": "四製品の責務ownerとruntime境界 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "note": "333 existing-path holdingの保存契約"
+    },
+    {
+      "path": "docs/governance/requirement-disposition-review-program.md",
+      "sha256": "36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb",
+      "note": "新しいsourceはsemantic disposition前にsource_holdingへ追加する契約（30-31行） [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59; 現receipt=36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb; 採否・authorityは不変。]"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a",
+      "note": "authority、旧資産静的参照、scaffold境界 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a]"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96",
+      "note": "現行未承認候補。旧承認はdecision recordの旧SHAのみ：HARNESS L1本文 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47; 現receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96]"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc",
+      "note": "現行未承認候補。旧承認はdecision recordの旧SHAのみ：HELIX-OS L1本文 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc]"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23",
+      "note": "現行未承認候補。旧承認はdecision recordの旧SHAのみ：HELIX-Web L1本文 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271; 現receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23]"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c",
+      "note": "現行未承認候補。旧承認はdecision recordの旧SHAのみ：HELIX-Web-OS L1本文 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d; 現receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c]"
+    }
   ],
   "role": "outside-67旧L1 4件のsemantic relationとhistorical snapshot由来13 live holdingへの保存関係をread-onlyで固定する",
   "obligations": [
     "pre-isolation commitとarchive commitの4旧L1 blob OID／SHA／bytes／同一関係を照合する",
-    "現行4対象L1のapproved SHAとdecision record行を照合する",
+    "旧4対象L1のapproved SHAと現行L1の未承認SHAを区別し、decision record行を照合する",
     "旧sourceと現行L1のsemantic relationをexact／partial／unresolvedへ分類し、行アンカーと差分根拠を記録する",
     "product-boundaryのowner／runtime境界を対象別に記録する",
     "historical register snapshotのsupersedes終端13 live holdingへ旧path／blob／SHAのexact matchを照合する",
@@ -43,7 +107,7 @@
     "dependencies": [
       "outside-67 first15 inventory",
       "pre-isolation Git objects",
-      "Concept v4.1・4対象L1 approval decision",
+      "旧Concept v4.1・旧4対象L1 exact revision approval decision。現行Concept・L1は別の未承認候補",
       "product boundary",
       "historical management register snapshotと13 source holding"
     ],
@@ -63,7 +127,7 @@
       "archive/legacy-generation-*配下のworkflow、runtime、test、CI、hook、adapter、source実行",
       "旧blobのsemantic relationを自動採用、authority、requirement、implementation、oracle、fallbackへ昇格すること",
       "scaffold/外への候補書き込み",
-    "source_holding登録前のsemantic disposition、formal source_holding、requirement_candidate、successor、product owner、phase authorityの自動生成",
+      "source_holding登録前のsemantic disposition、formal source_holding、requirement_candidate、successor、product owner、phase authorityの自動生成",
       "未許可のGitHub、Issue、PR、CI、DB、外部API、deploymentへの作用"
     ]
   },
@@ -77,7 +141,13 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "validate.py（4 semantic cases、approved SHA、line anchors、13 holding scan）",
       "selfcheck.py（relation／authority／blob／holding／保存残差のnegative cases）",

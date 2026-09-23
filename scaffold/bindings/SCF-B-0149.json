@@ -8,24 +8,96 @@
   "state": "registered",
   "reason": "Issue #2100 requires the 768 research-record occurrences / 726 unique asset IDs to remain distinct from semantic-review depth and formal adoption. Existing record markers differ by bundle; this projection preserves those declared markers and duplicate accounting without adding a classifier or changing authority. formal_asset_classification_updated must be a JSON boolean when present; duplicate asset IDs count true or false only when every occurrence agrees, while missing or mixed values remain missing_or_mixed.",
   "upstream": [
-    {"path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl", "sha256": "0d14bd9c0ed1192f3b1fd7b573526118dcdb9ffcb58de8065f978b74b236363b", "note": "SCF-B-0145 existing main records; statically projected"},
-    {"path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl", "sha256": "ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76", "note": "SCF-B-0107 existing main records; duplicate occurrences preserved"},
-    {"path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl", "sha256": "a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b", "note": "SCF-B-0141 selected-span status and category records"},
-    {"path": "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl", "sha256": "237a9cf9bae1963205f58e7a925ded128aa265b0f5f5342a9b8ed57fd907d8a0", "note": "SCF-B-0147 existing main records"},
-    {"path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl", "sha256": "d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138", "note": "SCF-B-0126 existing main records"},
-    {"path": "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl", "sha256": "db407121029c9074e0679adf82e309caca9d7a33fabf7c6db23941c0b80e4251", "note": "SCF-B-0128 existing main records"},
-    {"path": "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl", "sha256": "3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829", "note": "SCF-B-0108 existing main records"},
-    {"path": "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl", "sha256": "488d795223c73386da579ea7018583f2276ea22dc333852fdd646f1a1bbacb99", "note": "SCF-B-0142 path/profile records; not_semantic_analysis marker remains explicit"},
-    {"path": "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl", "sha256": "ed5a673d065daf3c7254ea8812a4c3989b04dbb65855999c43e42139dc1b2104", "note": "SCF-B-0117 existing main records"},
-    {"path": "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl", "sha256": "c4b769a2f2a2ce6852390a6d400ce819546f0d55ba0e48587e050d8e0955b9ee", "note": "SCF-B-0133 existing main records"},
-    {"path": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl", "sha256": "c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204", "note": "SCF-B-0120 existing main records"},
-    {"path": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl", "sha256": "06f4f5c6f331afe7662847461a1165b5b3e6361c23d6c9106fce62952e60fe1f", "note": "SCF-B-0123 existing main records"},
-    {"path": "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl", "sha256": "bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad", "note": "SCF-B-0127 existing main records"},
-    {"path": "scaffold/legacy-test-design-worker-workflow-0148/classification-research.jsonl", "sha256": "dd2b9923b65fd39c3af0096cbc664676496c31fe40da43ffa7f416671dd4eeab", "note": "SCF-B-0148 existing main records"},
-    {"path": "scaffold/bindings/SCF-B-0141.json", "sha256": "e9b5be5dec1f671214b72ae09fc9d284439af0a21acfcd15e02259c4de294091", "note": "existing selected-span research contract"},
-    {"path": "scaffold/bindings/SCF-B-0142.json", "sha256": "4ac27fa3a4588dfc55269b77826560974071a5399b001c708a5a5a9c51ea1c92", "note": "existing path/profile research contract"},
-    {"path": "scaffold/legacy-config-product-classification-0141/README.md", "sha256": "953a5841e0e7284fc041a704b5e4ee387f91d0b620637b5408b50d85ec32cd09", "note": "SCF-B-0141 evidence-depth meaning and pending-review boundary"},
-    {"path": "scaffold/legacy-research-assets-product-classification-0142/README.md", "sha256": "d3c19ca0293dd4e13e5ddf47b1d084d77d37bf35e7bb3d3268b1587b68b5ad18", "note": "SCF-B-0142 mechanical profile and non-promotion boundary"}
+    {
+      "path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
+      "sha256": "0d14bd9c0ed1192f3b1fd7b573526118dcdb9ffcb58de8065f978b74b236363b",
+      "note": "SCF-B-0145 existing main records; statically projected"
+    },
+    {
+      "path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
+      "sha256": "ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76",
+      "note": "SCF-B-0107 existing main records; duplicate occurrences preserved"
+    },
+    {
+      "path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
+      "sha256": "a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
+      "note": "SCF-B-0141 selected-span status and category records"
+    },
+    {
+      "path": "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
+      "sha256": "237a9cf9bae1963205f58e7a925ded128aa265b0f5f5342a9b8ed57fd907d8a0",
+      "note": "SCF-B-0147 existing main records"
+    },
+    {
+      "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
+      "sha256": "d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138",
+      "note": "SCF-B-0126 existing main records"
+    },
+    {
+      "path": "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
+      "sha256": "db407121029c9074e0679adf82e309caca9d7a33fabf7c6db23941c0b80e4251",
+      "note": "SCF-B-0128 existing main records"
+    },
+    {
+      "path": "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl",
+      "sha256": "3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829",
+      "note": "SCF-B-0108 existing main records"
+    },
+    {
+      "path": "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl",
+      "sha256": "488d795223c73386da579ea7018583f2276ea22dc333852fdd646f1a1bbacb99",
+      "note": "SCF-B-0142 path/profile records; not_semantic_analysis marker remains explicit"
+    },
+    {
+      "path": "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl",
+      "sha256": "ed5a673d065daf3c7254ea8812a4c3989b04dbb65855999c43e42139dc1b2104",
+      "note": "SCF-B-0117 existing main records"
+    },
+    {
+      "path": "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
+      "sha256": "c4b769a2f2a2ce6852390a6d400ce819546f0d55ba0e48587e050d8e0955b9ee",
+      "note": "SCF-B-0133 existing main records"
+    },
+    {
+      "path": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+      "sha256": "c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204",
+      "note": "SCF-B-0120 existing main records"
+    },
+    {
+      "path": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+      "sha256": "06f4f5c6f331afe7662847461a1165b5b3e6361c23d6c9106fce62952e60fe1f",
+      "note": "SCF-B-0123 existing main records"
+    },
+    {
+      "path": "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl",
+      "sha256": "bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad",
+      "note": "SCF-B-0127 existing main records"
+    },
+    {
+      "path": "scaffold/legacy-test-design-worker-workflow-0148/classification-research.jsonl",
+      "sha256": "dd2b9923b65fd39c3af0096cbc664676496c31fe40da43ffa7f416671dd4eeab",
+      "note": "SCF-B-0148 existing main records"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0141.json",
+      "sha256": "88b8d84c8b877bcd4a430c13ee0e42031a6d061a861c5872975b189874df6608",
+      "note": "existing selected-span research contract [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=e9b5be5dec1f671214b72ae09fc9d284439af0a21acfcd15e02259c4de294091; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=6377482cfe298623839372ead83fc4aef33e699ea1105c74b7234ca68ff3fb73; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=d6bc9bdc7e7f1329877777e6c22d187f506283fcfd65963803635fdf72a0e426; 現receipt=1c9f95de16352c16b6319d1331a499c6969b2f58d339b52712294ea35813720a] [2026-09-24 semantic impact read-after: 依存Bindingの変更receiptを再帰的に照合。前receipt=1c9f95de16352c16b6319d1331a499c6969b2f58d339b52712294ea35813720a; 現receipt=88b8d84c8b877bcd4a430c13ee0e42031a6d061a861c5872975b189874df6608; このBindingの採否・authorityは変更しない。]"
+    },
+    {
+      "path": "scaffold/bindings/SCF-B-0142.json",
+      "sha256": "96e7f454df77abed9039310049c8b9f227ae57a7c2055ef2bb02e824ae40bad4",
+      "note": "existing path/profile research contract [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=4ac27fa3a4588dfc55269b77826560974071a5399b001c708a5a5a9c51ea1c92; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=c2949e006630a78ce08df95583ed7659a09563ceba7b0c63136ca9aa052d33cd; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=3f81a35c52d6e6eeb27dd19554cdc91a2594a973a2d6157fdbd4faebc3bce691; 現receipt=fc4a2389f3cda60de0545929d1de56834c1bbe23df4ef989b60ddcc30e9cece2] [2026-09-24 semantic impact read-after: 依存Bindingの変更receiptを再帰的に照合。前receipt=fc4a2389f3cda60de0545929d1de56834c1bbe23df4ef989b60ddcc30e9cece2; 現receipt=96e7f454df77abed9039310049c8b9f227ae57a7c2055ef2bb02e824ae40bad4; このBindingの採否・authorityは変更しない。]"
+    },
+    {
+      "path": "scaffold/legacy-config-product-classification-0141/README.md",
+      "sha256": "953a5841e0e7284fc041a704b5e4ee387f91d0b620637b5408b50d85ec32cd09",
+      "note": "SCF-B-0141 evidence-depth meaning and pending-review boundary"
+    },
+    {
+      "path": "scaffold/legacy-research-assets-product-classification-0142/README.md",
+      "sha256": "d3c19ca0293dd4e13e5ddf47b1d084d77d37bf35e7bb3d3268b1587b68b5ad18",
+      "note": "SCF-B-0142 mechanical profile and non-promotion boundary"
+    }
   ],
   "role": "legacy-asset-evidence-depth-projection-768-record-occurrences-0149",
   "obligations": [
@@ -73,7 +145,11 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "negative_case"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "negative_case"
+    ],
     "oracles": [
       "python3 -B scaffold/legacy-evidence-depth-projection-0149/project.py --check",
       "python3 -B scaffold/legacy-evidence-depth-projection-0149/project.py --selfcheck",

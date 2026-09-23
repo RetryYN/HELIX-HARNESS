@@ -1,9 +1,8 @@
 # HELIX-OSの要求・設計
 
-要求対象と責務は[2026-09-14の責務発言記録](../concept/product-boundary.md)を候補境界として参照する。
-恒久authorityは人間判断packetのexact SHA decisionへ束縛する。
+親は[HELIX Concept](../concept/helix-concept.md)である。[2026-09-14の責務発言記録](../concept/product-boundary.md)は旧発言の出典として保持する。旧L1の承認は2026-09-17の対象revisionに限り、現行Conceptとの意味差分、L2／L11の合意、L3の承認は別に扱う。
 
-HELIX-OSはHELIXプロジェクト群の管理・統制、Worker実行、学習、ログ、CI、継続・復旧を担う。
+HELIX-OSはHELIXプロジェクト群の管理・推進・検収、Worker割当、ログ・状態、CI・testの最適化、継続・復旧を担う。BRAINの稼働判断、LABOの効果・退行評価、3.0のIntelligenceによる知識・モデル改善をOS自身の同一責務にしない。
 その中核目的はHARNESSをHARNESS自身へ適用し、各projectの運用と観測を通じてHARNESSとHELIX全体を
 継続的に改善することである。今回の外部提供プロダクトはHARNESSであり、
 HELIX-OSを別の輸出プロダクトとして定義しない。
@@ -16,8 +15,8 @@ Web-OSから許可されたservice logを改善入力として受領するが、
 
 | 入口 | 内容と状態 |
 |---|---|
-| [L1企画候補](L1-planning/system-intent.md) | 管理・統制、Worker、CI、証拠、配布運転、改善価値。Concept v4.1承認待ち |
-| [L2統制・実行要求](L2-requirements/governance-requirements.md) | 対象別に整理した13要求とWorker・学習・ログ・CIの条件。draft、IR移管未完了 |
+| [L1企画候補](L1-planning/system-intent.md) | 管理・統制、Worker、CI、証拠、配布運転、改善価値。旧承認revisionは履歴。現行Conceptとの差分は判断候補 |
+| [L2統制・実行要求](L2-requirements/governance-requirements.md) | 対象別に整理した13要求とWorker・ログ・CIの条件。draft、IR移管未完了 |
 | [L11受入案](L11-acceptance/governance-acceptance.md) | 同じ13要求の利用シナリオ・反例。全件未実行 |
 | [移管元・対象別対応](../governance/audits/source-rebaseline/l2-source-register.md) | 旧混在要求の監査、13柱の帰属、未移管条件 |
 

@@ -33,7 +33,7 @@ POは次の選択肢を選んだ。
 | [`requirements.json`](../requirements-source/requirements-ir/requirements.json) | `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | 原文、revision、`HR-FR-HIL-03`への直接relation |
 | [`system_contracts.json`](../requirements-source/requirements-ir/system_contracts.json) | `2a7df673138568526e714342679ce2982238966b42f2d1967b2da92e9dbf02ab` | `HIL-BR-02`、`HIL-BR-17`、`HIL-FR-09`、`HIL-FR-30`を束ねる契約 |
 | [四製品routing候補](../legacy-ir-product-routing-bootstrap.jsonl) | `c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1` | BR-02はOS単体、ほか3件はHARNESS／OS分割候補 |
-| [製品責務境界](../../concept/product-boundary.md) | `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038` | OSは実行・管理・統制、HARNESSは工程・契約 |
+| [製品責務境界](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/concept/product-boundary.md) | `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038` | OSは実行・管理・統制、HARNESSは工程・契約 |
 
 ## 判断の限界と次の接続
 

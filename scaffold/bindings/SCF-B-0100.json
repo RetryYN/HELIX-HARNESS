@@ -8,22 +8,86 @@
   "state": "registered",
   "reason": "target routing queueの18件を削除・縮退せず、旧IR原文のexact path／Git blob／line／statement digest、queueのunresolved_target、routing bootstrapの153/153候補、product unit decomposition候補、四製品責務境界、旧asset 4,020件のsource／history／failure／consumer未完状態を一つのread-only研究束へ固定する。queueを変更せず、candidate product unit、connection、compositeを区別し、候補から正式owner、authority、successor、要求採否、phase、実装、consumer closureを生成しない。",
   "upstream": [
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83", "note": "上流再構築のread-only境界"},
-    {"path": "docs/governance/legacy-asset-reuse-control.md", "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582", "note": "旧assetの静的参照と非実行境界"},
-    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "四製品責務境界の候補根拠"},
-    {"path": "docs/governance/legacy-ir-target-routing-queue.jsonl", "sha256": "b543e5ae6009f1f5ae3d4617aa2bb5b809cc92ff83f8ce62cd6ae77e1ef2b2f3", "note": "18件のtarget_resolution_status原台帳。変更しない"},
-    {"path": "docs/governance/legacy-ir-product-routing-bootstrap.jsonl", "sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1", "note": "153/153四製品routing候補"},
-    {"path": "docs/governance/legacy-ir-product-routing-corrections.jsonl", "sha256": "d57dc947f4d2fca1470c22eb6d0b0fe874914ded28401fb7ecafeddfeab230df", "note": "未承認routing correctionの重複確認"},
-    {"path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl", "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3", "note": "153件のcandidate unit decomposition"},
-    {"path": "docs/governance/audits/source-rebaseline/legacy-ir-product-unit-decomposition-method-2026-09-20.md", "sha256": "4fdb396c3975b1d4e3b05253f4dbcb8921b96d4874a4e83600bbb94eeb35ba14", "note": "unit／connection／shared span規則"},
-    {"path": "docs/governance/audits/source-rebaseline/legacy-ir-product-unit-decomposition-status-2026-09-21.md", "sha256": "67ce37415b83d514c62c26eac3d46810c96613feb65bff8163e0122c7e46513a", "note": "全旧資産評価と個別L3調査の境界を確認。queue18・旧asset consumer未完の保持、reason・role・obligations・verification・replacementへの依拠は不変"},
-    {"path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl", "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65", "note": "unit別旧asset candidate poolと未完closure"},
-    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "旧asset 4,020件台帳"},
-    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "旧asset phase／product候補と未実行状態"},
-    {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "note": "旧asset判断履歴"},
-    {"path": "docs/governance/legacy-asset-copy-read-after.jsonl", "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f", "note": "旧asset copy read-after履歴"},
-    {"path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md", "sha256": "5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5", "note": "旧source／runtime／failure候補の非実行inventory"},
-    {"path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md", "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e", "note": "旧consumer relationとfailure観測候補"}
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a",
+      "note": "上流再構築のread-only境界 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a]"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "旧assetの静的参照と非実行境界"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+      "note": "四製品責務境界の候補根拠 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/governance/legacy-ir-target-routing-queue.jsonl",
+      "sha256": "b543e5ae6009f1f5ae3d4617aa2bb5b809cc92ff83f8ce62cd6ae77e1ef2b2f3",
+      "note": "18件のtarget_resolution_status原台帳。変更しない"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-routing-bootstrap.jsonl",
+      "sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1",
+      "note": "153/153四製品routing候補"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-routing-corrections.jsonl",
+      "sha256": "d57dc947f4d2fca1470c22eb6d0b0fe874914ded28401fb7ecafeddfeab230df",
+      "note": "未承認routing correctionの重複確認"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "note": "153件のcandidate unit decomposition"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ir-product-unit-decomposition-method-2026-09-20.md",
+      "sha256": "4fdb396c3975b1d4e3b05253f4dbcb8921b96d4874a4e83600bbb94eeb35ba14",
+      "note": "unit／connection／shared span規則"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ir-product-unit-decomposition-status-2026-09-21.md",
+      "sha256": "67ce37415b83d514c62c26eac3d46810c96613feb65bff8163e0122c7e46513a",
+      "note": "全旧資産評価と個別L3調査の境界を確認。queue18・旧asset consumer未完の保持、reason・role・obligations・verification・replacementへの依拠は不変"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "unit別旧asset candidate poolと未完closure"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "旧asset 4,020件台帳"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "旧asset phase／product候補と未実行状態"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "旧asset判断履歴"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "旧asset copy read-after履歴"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md",
+      "sha256": "5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5",
+      "note": "旧source／runtime／failure候補の非実行inventory"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
+      "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e",
+      "note": "旧consumer relationとfailure観測候補"
+    }
   ],
   "role": "queue18と先行153件候補、旧IR原文、製品境界、旧asset source／history／failure／consumerを静的に突合するresearch-only bridge",
   "obligations": [
@@ -79,7 +143,13 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["source_revision_stale", "schema_interface", "deterministic_behavior", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "source_revision_stale",
+      "schema_interface",
+      "deterministic_behavior",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "固定base HEADと入力source digest",
       "queue18 exact ID setとdecomposition/routing candidate一致",

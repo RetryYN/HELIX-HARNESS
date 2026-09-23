@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
-      "note": "PHCAP-08/09 static upstream revision"
+      "sha256": "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2",
+      "note": "PHCAP-08/09 static upstream revision [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b] [2026-09-24 read-after: PHCAP現行参照を単一Conceptへ付替え、履歴snapshotは固定保持。前receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b; 現receipt=2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2; authority・admissionは不変。]"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -55,8 +55,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "PHCAP-08/09 static upstream revision"
+      "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+      "note": "PHCAP-08/09 static upstream revision [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
@@ -100,8 +100,8 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83",
-      "note": "PHCAP-08/09 static upstream revision"
+      "sha256": "da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a",
+      "note": "PHCAP-08/09 static upstream revision [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a]"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/generate.py",

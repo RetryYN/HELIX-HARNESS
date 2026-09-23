@@ -13,6 +13,8 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 INV_PATH = HERE / "inventory.json"
 ORIGIN = "fbeee47920ed8b2992ae123b00c224ff88987c50"
+HISTORICAL_REF_COMMIT = "11a22679dc2bfce57d3294759531282445625001"
+CURRENT_CONCEPT = "docs/concept/helix-concept.md"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 PRODUCTS = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
 ASSET_IDS = [
@@ -21,7 +23,9 @@ ASSET_IDS = [
     "LEGACY-ASSET-583C7CADF804E9E19ED1", "LEGACY-ASSET-49526DFD38C34D9F7236",
     "LEGACY-ASSET-DD53551C74BB4939A325", "LEGACY-ASSET-2E08F9429CA4C061B9AB",
 ]
-CURRENT_REFS = {
+HISTORICAL_REFS = {
+    # These exact-revision research receipts are read from Git after the old
+    # versioned Concept file and the approved L1 bytes leave the working tree.
     "CUR-CONCEPT": ("HELIX", "docs/concept/helix-concept-v4.1.md", "181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad", 280, 25, 75, "ee6d3d950d21ffac1f3bcdbfa6e6acb1d9191ea6a83cbe9b6659d89f424f0828"),
     "CUR-BOUNDARY": ("HELIX", "docs/concept/product-boundary.md", "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", 106, 32, 70, "78fa21cc8b020a268fa50f47657373b463f72a96aa60daaaf2d63aecd2980491"),
     "CUR-DECISION": ("HELIX", "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md", "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2", 72, 21, 64, "7bb0eb2c5a937e3c7d976da5daf98f89f73eb5f304bb39105db51eefbe271817"),
@@ -31,7 +35,7 @@ CURRENT_REFS = {
     "CUR-WEBOS-L1": ("HELIX-Web-OS", "docs/helix-web-os/L1-planning/system-intent.md", "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c", 50, 12, 50, "d57646a08f42cb3096bcf7456498796ecaddc362acfb792269f673928c8d831f"),
 }
 EXPECTED_PHASE_REFS = [
-    "docs/concept/helix-concept-v4.1.md",
+    "docs/concept/helix-concept.md",
     "docs/concept/product-boundary.md",
     "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
     "docs/helix-harness/L1-planning/product-intent.md",
@@ -179,14 +183,14 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     fail(errors, base.get("origin_main_commit") == ORIGIN, "E_ORIGIN")
     fail(errors, base.get("branch") == "detached-origin/main", "E_BRANCH")
     phase = data.get("phase_record", {})
-    for key, expected in (("task_id", "PHCAP-01"), ("phase", "concept_l1"), ("current_status", "approved_current"), ("legacy_capability_status", "documented_and_governed"), ("transition_assessment", "rederived_current"), ("new_build_allowed", False), ("authority_effect", "inventory_and_work_projection_only")):
+    for key, expected in (("task_id", "PHCAP-01"), ("phase", "concept_l1"), ("current_status", "approved_historical_revision_current_l1_draft"), ("legacy_capability_status", "documented_and_governed"), ("transition_assessment", "rederived_current"), ("new_build_allowed", False), ("authority_effect", "inventory_and_work_projection_only")):
         fail(errors, phase.get(key) == expected, "E_PHASE_" + key.upper())
     fail(errors, phase.get("product_targets") == PRODUCTS, "E_PHASE_PRODUCTS")
     fail(errors, phase.get("current_refs") == EXPECTED_PHASE_REFS, "E_PHASE_REFS")
 
     prov = data.get("ledger_provenance", {})
     prov_expected = {
-        "phase_inventory": ("docs/governance/phase-capability-inventory.json", "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", 20),
+        "phase_inventory": ("docs/governance/phase-capability-inventory.json", "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2", 20),
         "asset_disposition": ("docs/governance/legacy-asset-disposition.jsonl", "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", 4020),
         "phase_product_classification": ("docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", 4020),
         "decisions": ("docs/governance/legacy-asset-decisions.jsonl", "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", 58),
@@ -226,26 +230,33 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
                 observed_records = len(json.loads(p.read_text(encoding="utf-8")).get("records", [])) if p.suffix == ".json" else sum(1 for line in p.read_text(encoding="utf-8").splitlines() if line.strip())
                 fail(errors, observed_records == records, "E_RECORDS_" + key)
     current = data.get("current_evidence", {})
-    fail(errors, current.get("approval_record_sha256") == CURRENT_REFS["CUR-DECISION"][2], "E_APPROVAL_DIGEST")
+    fail(errors, current.get("approval_record_sha256") == HISTORICAL_REFS["CUR-DECISION"][2], "E_APPROVAL_DIGEST")
     fail(errors, current.get("approval_status") == "approved_exact_revision", "E_APPROVAL_STATUS")
     for key in ("l2_l11_applied", "implementation_status", "degradation_status", "acceptance_status", "operation_status"):
         expected = {"l2_l11_applied": False, "implementation_status": "unknown", "degradation_status": "not_established", "acceptance_status": "unknown", "operation_status": "unknown"}[key]
         fail(errors, current.get(key) == expected, "E_CURRENT_" + key.upper())
     refs = current.get("refs", [])
-    fail(errors, [r.get("ref_id") for r in refs] == list(CURRENT_REFS), "E_CURRENT_REF_IDS")
+    fail(errors, [r.get("ref_id") for r in refs] == list(HISTORICAL_REFS), "E_HISTORICAL_REF_IDS")
     if check_files:
+        fail(errors, (ROOT / CURRENT_CONCEPT).is_file(), "E_LIVE_CONCEPT_MISSING")
         for ref in refs:
-            expected = CURRENT_REFS.get(ref.get("ref_id"))
-            fail(errors, expected is not None, "E_CURRENT_REF_UNKNOWN")
+            expected = HISTORICAL_REFS.get(ref.get("ref_id"))
+            fail(errors, expected is not None, "E_HISTORICAL_REF_UNKNOWN")
             if not expected:
                 continue
             product, path, sha, lines, start, end, span = expected
-            p = ROOT / path
-            fail(errors, (ref.get("product"), ref.get("path"), ref.get("sha256"), ref.get("line_count"), ref.get("line_start"), ref.get("line_end"), ref.get("span_sha256")) == (product, path, sha, lines, start, end, span), "E_CURRENT_REF_META_" + ref["ref_id"])
-            if p.is_file():
-                fail(errors, file_digest(p) == sha, "E_CURRENT_FILE_" + ref["ref_id"])
-                fail(errors, len(p.read_text(encoding="utf-8").splitlines()) == lines, "E_CURRENT_LINES_" + ref["ref_id"])
-                fail(errors, span_digest(p, start, end) == span, "E_CURRENT_SPAN_" + ref["ref_id"])
+            fail(errors, (ref.get("product"), ref.get("path"), ref.get("sha256"), ref.get("line_count"), ref.get("line_start"), ref.get("line_end"), ref.get("span_sha256")) == (product, path, sha, lines, start, end, span), "E_HISTORICAL_REF_META_" + ref["ref_id"])
+            # Historical exact bytes are evidence, not the current parent.
+            snapshot = subprocess.run(
+                ["git", "show", f"{HISTORICAL_REF_COMMIT}:{path}"],
+                cwd=ROOT, capture_output=True, check=False,
+            )
+            fail(errors, snapshot.returncode == 0, "E_HISTORICAL_REF_MISSING_" + ref["ref_id"])
+            if snapshot.returncode == 0:
+                source_lines = snapshot.stdout.decode("utf-8").splitlines()
+                fail(errors, digest(snapshot.stdout) == sha, "E_HISTORICAL_FILE_" + ref["ref_id"])
+                fail(errors, len(source_lines) == lines, "E_HISTORICAL_LINES_" + ref["ref_id"])
+                fail(errors, digest("\n".join(source_lines[start - 1:end]).encode()) == span, "E_HISTORICAL_SPAN_" + ref["ref_id"])
 
     products = data.get("products", [])
     fail(errors, [p.get("product") for p in products] == PRODUCTS, "E_PRODUCT_ORDER")
@@ -350,7 +361,7 @@ def main() -> int:
         print("FAIL PHCAP-01 static research validator")
         print(" ".join(errors))
         return 1
-    print("PASS PHCAP-01 static research validator: Concept/L1, four products, 8 legacy assets, 45 phase candidates")
+    print("PASS PHCAP-01 static research validator: historical four-target Concept/L1 receipts, 8 legacy assets, 45 phase candidates")
     return 0
 
 

@@ -13,7 +13,7 @@ authority_effect: effective_when_this_record_is_admitted_to_main
 
 ## 人間判断と対象
 
-POに、2026-09-24（Asia/Tokyo）のCodex作業sessionの質問票で、[5大目標本文](../../concept/helix-five-goals.md)へのリンクと
+POに、2026-09-24（Asia/Tokyo）のCodex作業sessionの質問票で、[5大目標本文](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/concept/helix-five-goals.md)へのリンクと
 SHA-256の短縮表示`cfade733…5de5`を示し、
 HELIX全体の到達目標として承認するかを確認した。質問では「これは4製品L1の変更・個別要求・実装を承認するものではありません」と明示した。
 POは「この本文を承認する」と回答した。
@@ -33,7 +33,7 @@ review_merge laneもPO本人へ同じ承認判断を直接確認し、「承認�
 
 ## 判断の範囲
 
-この承認は、5大目標をHELIX全体の到達方向として固定する。親[Concept v4.1](../../concept/helix-concept-v4.1.md)と
+この承認は、5大目標をHELIX全体の到達方向として固定する。親[Concept v4.1](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/concept/helix-concept-v4.1.md)と
 4対象L1の承認済みrevisionは変更しない。5大目標の承認だけで、監査上`partial`の4領域を既存L1に暗黙包含させない。
 製品別の追加責務、L1要求の本文・ID、L2／L11、旧要求の要否・successor、数値基準、設計、実装は別判断とする。
 七大原則の独立authorityも本decisionの対象外である。

@@ -8,23 +8,91 @@
   "state": "registered",
   "reason": "PHCAP-04は四製品のL2要求採否・IR admissionがdraft_containers、PHCAP-05は四製品のL11受入がdraftで全件未実行である。代表8旧assetのsource／decision／failure／consumer状態、保存source snapshotと旧design／code／test-designのimplementation差分、現行4製品のL2↔L11境界、candidate phase joinをdigest／exact spanで静的に保持する。source preservation decisionはtarget product採用を示さず、旧codeやtest-designは現行実装・受入を示さない。authority、owner、successor、採否、実装、acceptance、release、外部作用は生成しない。",
   "upstream": [
-    {"path": "scaffold/phcap04-05-requirement-acceptance-research/README.md", "sha256": "51a5b2c8d244c16c32d300ac3300e155e1a5436926775a0d391532f4185d76a1", "note": "PHCAP-04/05 status、旧asset、四製品境界、unknown boundary"},
-    {"path": "scaffold/phcap04-05-requirement-acceptance-research/inventory.json", "sha256": "2f9f832eca55b5a8f640f9df535087e9826cbaa744fb65e47b2ecde4b26d77fe", "note": "task、ledger snapshot、source span、decision、failure、consumer、phase join inventory"},
-    {"path": "scaffold/phcap04-05-requirement-acceptance-research/validate.py", "sha256": "eb2b3ef9b785adeeb77a3b9188e851891529ffbb1d098f6fecf0af9668191f98", "note": "four-product L2/L11、ledger consumer再導出、archive span、decision、unknown validator"},
-    {"path": "scaffold/phcap04-05-requirement-acceptance-research/selfcheck.py", "sha256": "f79ba9ba94fc037603d647a51c1ae4dd47d27eeb2c1f8007963404ff3d9039d0", "note": "48 authority／adoption／implementation／acceptance／failure／consumer negative cases"},
-    {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "note": "PHCAP-04/05 current／legacy phase status and build boundary"},
-    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "8 selected asset disposition／implementation／consumer state"},
-    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "8 selected phase／product candidate classifications"},
-    {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "note": "source snapshot preservation／correction history and no adoption decision"},
-    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "four product responsibility boundary"},
-    {"path": "docs/helix-harness/L2-requirements/product-requirements.md", "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77", "note": "HARNESS L2 draft and provider boundary"},
-    {"path": "docs/helix-os/L2-requirements/governance-requirements.md", "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be", "note": "OS L2 draft, source holding and governance boundary"},
-    {"path": "docs/helix-web/L2-requirements/product-requirements.md", "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0", "note": "Web L2 draft and individual adoption boundary"},
-    {"path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248", "note": "Web-OS L2 draft and service runtime boundary"},
-    {"path": "docs/helix-harness/L11-acceptance/product-acceptance.md", "sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b", "note": "HARNESS L11 draft and all-unexecuted acceptance boundary"},
-    {"path": "docs/helix-os/L11-acceptance/governance-acceptance.md", "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19", "note": "OS L11 draft and revision/decision acceptance boundary"},
-    {"path": "docs/helix-web/L11-acceptance/product-acceptance.md", "sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec", "note": "Web L11 draft and external-scope acceptance boundary"},
-    {"path": "docs/helix-web-os/L11-acceptance/service-acceptance.md", "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e", "note": "Web-OS L11 draft and deployment/rollback acceptance boundary"}
+    {
+      "path": "scaffold/phcap04-05-requirement-acceptance-research/README.md",
+      "sha256": "51a5b2c8d244c16c32d300ac3300e155e1a5436926775a0d391532f4185d76a1",
+      "note": "PHCAP-04/05 status、旧asset、四製品境界、unknown boundary"
+    },
+    {
+      "path": "scaffold/phcap04-05-requirement-acceptance-research/inventory.json",
+      "sha256": "2f9f832eca55b5a8f640f9df535087e9826cbaa744fb65e47b2ecde4b26d77fe",
+      "note": "task、ledger snapshot、source span、decision、failure、consumer、phase join inventory"
+    },
+    {
+      "path": "scaffold/phcap04-05-requirement-acceptance-research/validate.py",
+      "sha256": "eb2b3ef9b785adeeb77a3b9188e851891529ffbb1d098f6fecf0af9668191f98",
+      "note": "four-product L2/L11、ledger consumer再導出、archive span、decision、unknown validator"
+    },
+    {
+      "path": "scaffold/phcap04-05-requirement-acceptance-research/selfcheck.py",
+      "sha256": "f79ba9ba94fc037603d647a51c1ae4dd47d27eeb2c1f8007963404ff3d9039d0",
+      "note": "48 authority／adoption／implementation／acceptance／failure／consumer negative cases"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2",
+      "note": "PHCAP-04/05 current／legacy phase status and build boundary [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b] [2026-09-24 read-after: PHCAP現行参照を単一Conceptへ付替え、履歴snapshotは固定保持。前receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b; 現receipt=2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2; authority・admissionは不変。]"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "8 selected asset disposition／implementation／consumer state"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "8 selected phase／product candidate classifications"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "source snapshot preservation／correction history and no adoption decision"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+      "note": "four product responsibility boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77",
+      "note": "HARNESS L2 draft and provider boundary"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
+      "note": "OS L2 draft, source holding and governance boundary"
+    },
+    {
+      "path": "docs/helix-web/L2-requirements/product-requirements.md",
+      "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
+      "note": "Web L2 draft and individual adoption boundary"
+    },
+    {
+      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
+      "note": "Web-OS L2 draft and service runtime boundary"
+    },
+    {
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "11ff00b74f2b7e0286ed115ae35d62f34b9f65f72a19fb8b7265eda1b795e40b",
+      "note": "HARNESS L11 draft and all-unexecuted acceptance boundary"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19",
+      "note": "OS L11 draft and revision/decision acceptance boundary"
+    },
+    {
+      "path": "docs/helix-web/L11-acceptance/product-acceptance.md",
+      "sha256": "489d6aafc1016cfe05709cc66927c4423e6726c513f5badde2aafdb3debfa5ec",
+      "note": "Web L11 draft and external-scope acceptance boundary"
+    },
+    {
+      "path": "docs/helix-web-os/L11-acceptance/service-acceptance.md",
+      "sha256": "07d7c714b41571a47b2757643ca9ba04195b5b881e5df88dce1d804700590b6e",
+      "note": "Web-OS L11 draft and deployment/rollback acceptance boundary"
+    }
   ],
   "role": "PHCAP-04/05の四製品L2／L11境界、旧asset source／decision／failure／consumer residual、candidate phase joinをread-onlyで束ね、正式な要求採否・受入導出前のresearch premiseを保持する",
   "obligations": [
@@ -78,7 +146,13 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "PHCAP-04/05 validate.py（phase／asset ledger、source span、decision、failure、consumer、四製品L2/L11 static checks）",
       "selfcheck.py（authority、adoption、phase join、implementation、acceptance、failure、consumer、keyset、anchor、negative本文の48 negative cases）",

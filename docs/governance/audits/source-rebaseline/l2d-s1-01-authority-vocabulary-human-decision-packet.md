@@ -109,7 +109,7 @@ AVS-R-01から16までの20 atomをすべて計上した。別decision unitへ�
 
 | 旧拘束 | disposition案 | 理由 |
 |---|---|---|
-| 旧L1／L3／L10 identityをそのままcurrent canonicalへ昇格 | replace | 現行は承認済みConcept v4.1と4対象L1の下でL1-L12へ再配置する |
+| 旧L1／L3／L10 identityをそのままcurrent canonicalへ昇格 | replace | 現行の親は単一Concept。旧Concept v4.1と旧4対象L1の承認は2026-09-17 decisionのexact SHAに限り、現行L1本文は未承認候補としてL1-L12へ再配置する |
 | `PO判断`／`PO決定`／`PO指示`を包括的current identityにする | reject_current_output | 出典、対象、scope、revision、判断種別を失わせる |
 | generic `decision` fieldへ複数意味を格納する | reject_current_output | approval、selection、disposition、runtime judgmentを誤伝播する |
 | memory、Issue、GitHub actor、AI解釈をauthority正本にする | reject | 人間provenanceと版付き正本を偽造または陳腐化させる |

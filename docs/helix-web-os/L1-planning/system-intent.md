@@ -4,12 +4,14 @@ canonical_vmodel: L1-L12
 canonical_layer: L1
 canonical_pair: L12
 status: draft
-authority_status: awaiting_parent_approval
-parent_candidate: docs/concept/helix-concept-v4.1.md
+authority_status: draft_candidate
+parent_concept: docs/concept/helix-concept.md
 created: 2026-09-14
 ---
 
 # HELIX-Web-OS L1企画候補
+
+本書の親は[HELIX Concept](../../concept/helix-concept.md)である。2026-09-17のdecisionは旧本文のexact SHAに限る。現行本文は未承認の再配置候補であり、差分は[PO判断パッケージ](../../governance/crosswalks/concept-requirement-po-decision-packet.md)に記録する。L2合意や実装許可を生成しない。
 
 HELIX-Web-OSは、HELIX-Webの展開時にHELIX-OSの外へ構成し、利用者向けWebサービスを安全かつ継続的に
 運転する基盤である。HELIX-OSの内部統制stateとWebサービスのtenant／job／接続stateを分離する。
@@ -45,6 +47,6 @@ HELIX-OSへ渡し、改善proposalと採択後の対象別変更を受け取る�
 
 ## 採択条件
 
-Concept v4.1のexact revisionが人間承認され、本書の5要求がそのrevisionから導出されることを確認する。
+本書の旧承認revisionと現行Conceptの差分を照合し、本書の5要求の変更候補を対象revision付きで判断する。
 採択後にL2／L11、L3／L10、L12運用評価を同じrevision系列へ接続する。HELIX-OSの既存runtimeや
 HELIX-Web画面の存在を本systemの承認・実装・受入証拠にしない。

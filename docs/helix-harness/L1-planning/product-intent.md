@@ -6,16 +6,17 @@ canonical_pair: L12
 layer: L1
 kind: planning
 status: draft
-authority_status: awaiting_parent_approval
-parent_candidate: docs/concept/helix-concept-v4.1.md
+authority_status: draft_candidate
+parent_concept: docs/concept/helix-concept.md
 created: 2026-09-14
 updated: 2026-09-15
 ---
 
 # HARNESS L1企画候補
 
-本書はConcept v4.1候補と2026-09-14の製品責務決定から導いたHARNESSの対象別L1候補である。
-親Conceptが未承認のため、現行L1、L2合意、L3凍結、実装指示として使わない。
+本書の親は[HELIX Concept](../../concept/helix-concept.md)である。2026-09-17のdecisionは旧本文のexact SHAに限る。現行本文は未承認の再配置候補であり、差分は[PO判断パッケージ](../../governance/crosswalks/concept-requirement-po-decision-packet.md)に記録する。L2合意、L3承認、実装・実行権限は本書から生成しない。
+
+Conceptのサービス①〜⑦は各単独で成立・利用・リリースできる単位であり、入口・枠・部品・コアはそれらを支える。下表の従来L1 IDはサービス別に分割済みという意味ではない。個別サービスと接続の受入差分は要求対応表へ送る。
 
 ## 提供価値
 
@@ -53,12 +54,12 @@ HARNESSは、外部利用者が企画・要求・要件・設計・実装・検�
 
 ## 対象外
 
-Worker割当、CI運転、ログ・state保存、学習、プロジェクト群の統制、artifact配布運転はHELIX-OSが所有する。
+Worker割当とticket発行、CI・testの最適化と運転、ログ・stateの管理、プロジェクト群の統制、artifact配布運転はHELIX-OSが所有する。計測・改善効果と退行の独立評価はHELIX-LABO、知識・モデルの改善は3.0で加わるHELIX-Intelligenceが担う。
 HELIX-Web等の個別製品の利用者体験もHARNESS要求へ含めない。HARNESSは必要な工程・検証契約を定め、
 OSや個別製品が参照する版を持つ。
 
 ## 採択条件
 
-Concept v4.1のexact revisionが人間承認され、本書の9要求がそのrevisionから導出されることを確認する。
+本書の旧承認revisionと現行Conceptの差分を照合し、本書の9要求の変更候補を対象revision付きで判断する。
 旧L0-L14、旧9-mode、既存CI、旧DB／CLI／hook、旧HARNESS要求の実装済み宣言を承認根拠にしない。
 採択後にL2要求、L11受入、非UI適用性またはprototype、L12運用評価を同じrevisionへ接続する。

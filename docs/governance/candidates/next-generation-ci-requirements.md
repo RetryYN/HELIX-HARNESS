@@ -8,7 +8,7 @@ product_targets:
   - HELIX-HARNESS
   - HELIX-OS
 derived_from:
-  - docs/concept/helix-concept-v4.1.md
+  - docs/concept/helix-concept.md
   - docs/governance/candidates/ci-event-concurrency-generation-requests.md
   - docs/governance/candidates/ci-event-concurrency-generation-requirements.md
   - docs/governance/candidates/ci-event-concurrency-generation-acceptance.md

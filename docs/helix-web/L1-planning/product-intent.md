@@ -6,8 +6,8 @@ canonical_pair: L12
 layer: L1
 kind: planning
 status: draft
-authority_status: awaiting_parent_approval
-parent_candidate: docs/concept/helix-concept-v4.1.md
+authority_status: draft_candidate
+parent_concept: docs/concept/helix-concept.md
 source_vision: archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md
 source_vision_sha256: 1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74
 created: 2026-09-14
@@ -16,12 +16,11 @@ updated: 2026-09-14
 
 # HELIX-Web L1企画候補
 
-本書はConcept v4.1候補、製品責務決定、保存されたVision原文から導いたHELIX-Webの対象別L1候補である。
-親ConceptとWeb固有価値が未承認のため、現行L1、提供計画、実装指示として使わない。
+本書の親は[HELIX Concept](../../concept/helix-concept.md)である。保存されたVision原文と2026-09-17のL1承認revisionを保持する。現行本文は未承認の再配置候補であり、差分は[PO判断パッケージ](../../governance/crosswalks/concept-requirement-po-decision-packet.md)に記録する。差分からL2合意や実装指示を生成しない。
 
 ## 提供価値
 
-HELIX-Webは、利用者が許可した開発環境と能力へConnectorで接続し、長時間の開発作業、進行、成果、停止・再開を
+HELIX-Webは1.xで、HARNESSのサービス①〜⑦をリリース単位として顧客へ提供する。利用者が許可した開発環境と能力へConnectorで接続し、長時間の開発作業、進行、成果、停止・再開を
 ダッシュボードから確認・操作できるAI開発SaaSを目指す。利用者環境の資産と統制を尊重し、HELIX-OSの内部管理画面、
 HELIX-Web-OSの運転機構、HARNESSの工程定義をWeb固有の価値として重複実装しない。
 
@@ -50,7 +49,7 @@ V-modelと検証契約はHARNESS、開発projectの要求・Worker・CI・ログ
 
 ## 採択条件
 
-Concept v4.1とWeb固有価値のexact revisionを人間が採否し、利用者、利用場面、data・操作範囲、非対象を
+現行ConceptとのL1意味差分とWeb固有価値の対象revisionを人間が採否し、利用者、利用場面、data・操作範囲、非対象を
 確認する。採択後にL2要求、prototype、L11受入、L12運用評価を同じrevisionへ接続する。Visionの将来構想や既存実装を
 現在の提供scopeへ自動昇格させない。
 GitHub、旧CI、旧runtime、既存実装を要求意味・採否・合意のauthorityや新世代baselineにしない。

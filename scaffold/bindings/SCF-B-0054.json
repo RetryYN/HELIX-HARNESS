@@ -10,13 +10,13 @@
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83",
-      "note": "upstream authority／archive static-read boundary"
+      "sha256": "da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a",
+      "note": "upstream authority／archive static-read boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a]"
     },
     {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
-      "note": "PHCAP-15 current／legacy／transition snapshot"
+      "sha256": "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2",
+      "note": "PHCAP-15 current／legacy／transition snapshot [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b] [2026-09-24 read-after: PHCAP現行参照を単一Conceptへ付替え、履歴snapshotは固定保持。前receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b; 現receipt=2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2; authority・admissionは不変。]"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -50,28 +50,28 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "four product boundary and OS/Web-OS authority split candidate"
+      "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+      "note": "four product boundary and OS/Web-OS authority split candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
-      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
-      "note": "HARNESS boundary candidate"
+      "sha256": "ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96",
+      "note": "HARNESS boundary candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47; 現receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96]"
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
-      "note": "OS release／artifact／runtime authority boundary candidate"
+      "sha256": "ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc",
+      "note": "OS release／artifact／runtime authority boundary candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc]"
     },
     {
       "path": "docs/helix-web/L1-planning/product-intent.md",
-      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
-      "note": "Web user-facing boundary candidate"
+      "sha256": "5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23",
+      "note": "Web user-facing boundary candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271; 現receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23]"
     },
     {
       "path": "docs/helix-web-os/L1-planning/system-intent.md",
-      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
-      "note": "Web-OS service deployment/runtime boundary candidate"
+      "sha256": "971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c",
+      "note": "Web-OS service deployment/runtime boundary candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d; 現receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c]"
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
@@ -95,8 +95,8 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0037.json",
-      "sha256": "ffb2a40603e50a22379351d3cfd092d5da1f42e38cbb3f735244d1808b2efc09",
-      "note": "existing PHCAP-15 binding; overlap avoided by seven-asset implementation/failure/consumer slice"
+      "sha256": "cca1cb808269bdb1764353024c8f6c073a899f4bae4ba04e835c5c4024da06d1",
+      "note": "existing PHCAP-15 binding; overlap avoided by seven-asset implementation/failure/consumer slice [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=ffb2a40603e50a22379351d3cfd092d5da1f42e38cbb3f735244d1808b2efc09; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=d8088e7972e5450eba252e18e941aa661f00609530175d7134102d297b38d993; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=61338b7740101ec11623145709a02f1b318f33eabf73371b8fb27d084c0c1a91; 現receipt=50aa56244fbecdfac8792fab06d10dded79b083eed887acb2ac479925259bf1d] [2026-09-24 read-after: 参照先Bindingのread-after再帰更新。前receipt=50aa56244fbecdfac8792fab06d10dded79b083eed887acb2ac479925259bf1d; 現receipt=66fa66a66faf79be3f7ae34bef4b4907cba7008c1ba2ade5a16b7f38f042ca0f; authority・admissionは不変。] [2026-09-24 semantic impact read-after: 依存Bindingの変更receiptを再帰的に照合。前receipt=66fa66a66faf79be3f7ae34bef4b4907cba7008c1ba2ade5a16b7f38f042ca0f; 現receipt=cca1cb808269bdb1764353024c8f6c073a899f4bae4ba04e835c5c4024da06d1; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/phcap15-deploy-gap-research/README.md",

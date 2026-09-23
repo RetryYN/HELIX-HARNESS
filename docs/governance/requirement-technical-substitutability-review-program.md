@@ -79,7 +79,7 @@ authority_effect: none
 
 ## 現在の停止条件
 
-Concept v4.1と4対象L1は承認済みだが、対象別L2／L11は未採否である。意味機能と旧技術の候補比較は進めるが、
+旧Concept v4.1と旧4対象L1の承認は2026-09-17 decisionに記録されたexact SHAだけに有効である。現行Conceptを親とする4対象L1本文は未承認候補で、対象別L2／L11も未採否である。意味機能と旧技術の候補比較は進めるが、
 HELIX-DBを含む特定技術の採用・不採用やL3設計を決定しない。
 旧Requirement IR 153件のproduct routing候補を入力に、判断単位、比較軸、research／PoCへの接続、無損失条件を
 固定する。旧実装、旧DB、旧CI、runtimeは起動しない。
