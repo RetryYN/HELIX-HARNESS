@@ -26,7 +26,7 @@
 
 ## 検証
 
-独立source audit、generator、validator、35 negative cases、`py_compile`、`scaffold/tools/scfctl.py validate`、`git diff --check`を予定する。意味解釈の採否は人間判断待ちであり、このPR draftはレビュー依頼や採用を意味しない。
+全検証PASS: independent source auditは72/72 source span、34/34 adapter template、overlap 0。generatorは72 records・カテゴリ28/41/3を出力。validator PASS、ordered negative cases 35件すべて期待errorで拒否、`py_compile` PASS、`scaffold/tools/scfctl.py validate`は132 bindings/fail=0、`git diff --check` PASS。意味解釈の採否は人間判断待ちであり、このPR draftはレビュー依頼や採用を意味しない。
 
 ## 依存・停止条件
 
