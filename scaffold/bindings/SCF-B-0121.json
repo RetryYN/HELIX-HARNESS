@@ -6,12 +6,12 @@
   "product": "HELIX-Web",
   "owner_candidate": "outside67 Web／Web-OS L1 anchor semantic review（最終owner未解決）",
   "state": "registered",
-    "reason": "MPR-SH-OUTSIDE67-001の既存SCF-B-0096／0099でsource調査済みの4 path（PATH-007／009／010／012）について追加のL1接続をholding、pre-isolation、archiveのexact Git bytes／digestと現行四製品L1候補へ静的に照合し、Web L1 6＋Web-OS L1 5のrow-sized anchor候補およびREADME context 2件を保持するresearch-only Scaffold。現行L1本文のraw metadataはdraft／parent approval待ちだが承認decisionでeffective approved、研究candidate authorityはnoneに保持し、旧pathはpath-level contextであり、formal unit、phase、実装、縮退、failure、consumer、authorityへ昇格しない。既存SCF-B-0057／0062／0080〜0091に加え、SCF-B-0096／0099のselected path集合との重複を明示し、各source itemに先行Binding IDを保持する。重複Bindingの全体bytes digestは入力として固定せず、各Binding IDの実体とselected path集合をvalidatorで照合する。#1813は進捗参照のみとする。",
+  "reason": "MPR-SH-OUTSIDE67-001の既存SCF-B-0096／0099でsource調査済みの4 path（PATH-007／009／010／012）について追加のL1接続をholding、pre-isolation、archiveのexact Git bytes／digestと現行四製品L1候補へ静的に照合し、Web L1 6＋Web-OS L1 5のrow-sized anchor候補およびREADME context 2件を保持するresearch-only Scaffold。現行L1本文のraw metadataはdraft／parent approval待ちだが承認decisionでeffective approved、研究candidate authorityはnoneに保持し、旧pathはpath-level contextであり、formal unit、phase、実装、縮退、failure、consumer、authorityへ昇格しない。既存SCF-B-0057／0062／0080〜0091に加え、SCF-B-0096／0099のselected path集合との重複を明示し、各source itemに先行Binding IDを保持する。重複Bindingの全体bytes digestは入力として固定せず、各Binding IDの実体とselected path集合をvalidatorで照合する。#1813は進捗参照のみとする。",
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83",
-      "note": "fixed BASE static input; no old runtime execution"
+      "sha256": "bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8",
+      "note": "fixed BASE static input; no old runtime execution [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
@@ -25,18 +25,18 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "fixed BASE static input; no old runtime execution"
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "fixed BASE static input; no old runtime execution [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web/L1-planning/product-intent.md",
-      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
-      "note": "fixed BASE static input; no old runtime execution"
+      "sha256": "d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271",
+      "note": "fixed BASE static input; no old runtime execution [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web-os/L1-planning/system-intent.md",
-      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
-      "note": "fixed BASE static input; no old runtime execution"
+      "sha256": "42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d",
+      "note": "fixed BASE static input; no old runtime execution [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",

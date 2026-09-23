@@ -8,13 +8,41 @@
   "state": "active",
   "reason": "PR #1943・#1946・#1949・#1951で先に選定されたPREISO-REV-000001..000144を除外し、source holding末尾の000330..000333から、registry_source_digest-onlyの000145..000329を避けて、受入設計・trace・freeze・検査条件を含む4 path／28 hunkをread-only scaffold候補として保持する。意味同値、要求採否、authority、実装、consumer closure、受入は未確定である。",
   "upstream": [
-    {"path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl", "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180", "note": "RDP-001 333 source revision holding"},
-    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "selected asset disposition snapshot"},
-    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "selected phase/product snapshot"},
-    {"path": "docs/governance/requirement-atomization-review-contract.md", "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba", "note": "atomization boundary contract"},
-    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "candidate product boundary context"},
-    {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "note": "HARNESS L1 candidate context"},
-    {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "HELIX-OS L1 candidate context"}
+    {
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "note": "RDP-001 333 source revision holding"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "selected asset disposition snapshot"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "selected phase/product snapshot"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+      "note": "atomization boundary contract"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "candidate product boundary context [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47",
+      "note": "HARNESS L1 candidate context [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd",
+      "note": "HELIX-OS L1 candidate context [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。]"
+    }
   ],
   "role": "PREISO-REV-000330..000333の要件・検証含有hunkを、先行144 pathとの非重複、Git object provenance、compound hold、未処理denominator、negative boundary付きで後続の意味reviewへ引き渡す",
   "obligations": [
@@ -67,7 +95,13 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "scaffold/pre-isolation-requirement-next4/validate.py（holding、先行144 ID、Git object、全体／selected hunk、exact span／digest、metadata-only除外、asset／phase、atom hold）",
       "scaffold/pre-isolation-requirement-next4/selfcheck.py（baseline、hunk、prior overlap、metadata-only、atom、archive execution、closureの7否定変異）",

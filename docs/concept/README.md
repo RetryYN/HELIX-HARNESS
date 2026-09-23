@@ -18,5 +18,5 @@ Conceptは他の文書を参照しない。次の文書がConceptを親として
 
 ## 履歴
 
-版ごとのファイルは残さない。旧来の[v4.1](helix-concept-v4.1.md)と[v4.2](helix-concept-v4.2.md)は、下位文書の親を[HELIX Concept](helix-concept.md)へ付け替える改訂と同時に削除する。
+版ごとのファイルは残さない。旧来の版別ファイルは下位文書の親付替えと同時に削除済みで、過去の本文はgit履歴で辿る。親は[HELIX Concept](helix-concept.md)の1ファイルである。
 削除後の過去の本文はgitの履歴で辿り、承認記録は対象のcommitとSHA-256で指す。

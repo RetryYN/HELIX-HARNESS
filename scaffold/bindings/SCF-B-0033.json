@@ -8,17 +8,61 @@
   "state": "registered",
   "reason": "旧Universal Workflow AI判断エンジンsource blobはL3 requirementとして保持されているが、source file単位のholdingから要求atom、4製品境界、phase、legacy implementation／degraded／consumer／decision状態を独立reviewできる正式artifactは未成立である。候補spanとunknown境界をscaffoldへ固定する。",
   "upstream": [
-    {"path": "docs/governance/delegated-requirement-document-source-holding.jsonl", "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd", "note": "DOC-009 source holding／carry status／source digest"},
-    {"path": "docs/governance/delegated-requirement-document-reference-holding.jsonl", "sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7", "note": "DOC-009 authority／pair／manifest／upstream reference edges"},
-    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "LEGACY-ASSET-5EE032D657C221184B00 disposition／implementation unknown／consumer refs"},
-    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "LASPH-0491 phase empty／HARNESS candidate／unknown boundary"},
-    {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "note": "matching DOC-009 asset decision record is absent"},
-    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "4 approved product responsibility boundary"},
-    {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "note": "HARNESS V-model／workflow contract candidate boundary"},
-    {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "OS authority／execution／projection candidate boundary"},
-    {"path": "docs/helix-web/L1-planning/product-intent.md", "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756", "note": "Web direct target absence／non-duplication boundary"},
-    {"path": "docs/helix-web-os/L1-planning/system-intent.md", "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c", "note": "Web-OS service runtime direct target absence boundary"},
-    {"path": "scaffold/rdp001-delegated-doc009-atom/inventory.json", "sha256": "68de304dffc45729c919a98911ff2171ba668ce36ed47d8a9fb9395d1655f550", "note": "DOC-009 87-line exact span／atom candidate rebaselined to 2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c"}
+    {
+      "path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+      "note": "DOC-009 source holding／carry status／source digest"
+    },
+    {
+      "path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+      "sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+      "note": "DOC-009 authority／pair／manifest／upstream reference edges"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "LEGACY-ASSET-5EE032D657C221184B00 disposition／implementation unknown／consumer refs"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "LASPH-0491 phase empty／HARNESS candidate／unknown boundary"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "matching DOC-009 asset decision record is absent"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "4 approved product responsibility boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47",
+      "note": "HARNESS V-model／workflow contract candidate boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd",
+      "note": "OS authority／execution／projection candidate boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271",
+      "note": "Web direct target absence／non-duplication boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d",
+      "note": "Web-OS service runtime direct target absence boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "scaffold/rdp001-delegated-doc009-atom/inventory.json",
+      "sha256": "68de304dffc45729c919a98911ff2171ba668ce36ed47d8a9fb9395d1655f550",
+      "note": "DOC-009 87-line exact span／atom candidate rebaselined to 2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c"
+    }
   ],
   "role": "DELEGATED-DOC-009の旧L3 Universal Workflow AI判断エンジンsourceを全87行・51 exact span・51 semantic atom候補へ分解し、HARNESS／OS connection候補、4製品分母、L3とdownstream layer signal、legacy implementation／degraded／failure／consumer／decision unknownを同一scaffoldへ保持する",
   "obligations": [
@@ -72,7 +116,13 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "validate.py（archive bytes／SHA／OID、holding／asset／phase ledger、87 line coverage、51 exact span／atom、4 product denominator、lexical evidence）",
       "selfcheck.py（authority disguise、line loss、implementation promotion、Web／Web-OS target invention、unknown closure guards）",

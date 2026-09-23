@@ -10,7 +10,8 @@
   "upstream": [
     {
       "path": "docs/governance/candidates/scaffold-binding-requirements.md",
-      "sha256": "c7e47993c2ae0ba9524b55f7ba1041026712d5f6cf281cf10c7ee812cb8c26eb"
+      "sha256": "871c8c123934bd35fc6c5600400f587a9befc5824a3667975f852f583aa9fdbd",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=c7e47993c2ae0ba9524b55f7ba1041026712d5f6cf281cf10c7ee812cb8c26eb; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md",
@@ -22,7 +23,8 @@
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+      "sha256": "5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",

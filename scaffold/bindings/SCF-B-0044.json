@@ -50,8 +50,8 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83",
-      "note": "scaffold／authority／旧資産static-only境界"
+      "sha256": "bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8",
+      "note": "scaffold／authority／旧資産static-only境界 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。]"
     }
   ],
   "role": "outside67 global ordinal 49–67のpath-based product／phase候補とimplementation／degradation／semantic inclusion unknown、13 live holding exact relationを固定する研究用分類束",

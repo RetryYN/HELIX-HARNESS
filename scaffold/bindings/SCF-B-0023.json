@@ -8,12 +8,36 @@
   "state": "registered",
   "reason": "baseline→pre-isolationのGit diff 400 pathのうち、既存pathの333-record holding外にあるstatus Aの67 pathについて、archive/root、旧asset catalog、現行mainの保存状態を静的に記録する。正式保存先、authority、意味atom、製品責務、実装、完了は未確定のため、未使用registeredで保持する。",
   "upstream": [
-    {"path": "scaffold/pre-isolation-outside-holding-67/report.json", "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795", "note": "67 path audit report"},
-    {"path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl", "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180", "note": "333-record existing-path holding contract"},
-    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "legacy catalog lookup source"},
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83", "note": "new-generation authority and operation boundary"},
-    {"path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md", "sha256": "99d1e78e7722d5569d5615b8c2700452bedf7e76448e68f11b06acbde30efec7", "note": "pre-isolation delta audit contract"},
-    {"path": "docs/governance/management-provisional-requirement-registration.md", "sha256": "4641b2fa1edd4d22748b85598e7bde1561aa8225305a6e54d90595b9b4c28ab8", "note": "provisional registration boundary"}
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67/report.json",
+      "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795",
+      "note": "67 path audit report"
+    },
+    {
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "note": "333-record existing-path holding contract"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "legacy catalog lookup source"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8",
+      "note": "new-generation authority and operation boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md",
+      "sha256": "99d1e78e7722d5569d5615b8c2700452bedf7e76448e68f11b06acbde30efec7",
+      "note": "pre-isolation delta audit contract"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-registration.md",
+      "sha256": "4641b2fa1edd4d22748b85598e7bde1561aa8225305a6e54d90595b9b4c28ab8",
+      "note": "provisional registration boundary"
+    }
   ],
   "role": "RDP-001 holding外新規67 pathの保存先・authority gapをread-onlyで監査し、後続semantic reviewへ引き渡す",
   "obligations": [
@@ -65,7 +89,13 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "scaffold/pre-isolation-outside-holding-67/validate.py（67 status A、Git blob OID、archive/root・catalog、main状態、product／phase数）",
       "scaffold/pre-isolation-outside-holding-67/selfcheck.py（分母、Git blob、archive/root、main不在、分類、Binding state、authorityの7否定変異）",

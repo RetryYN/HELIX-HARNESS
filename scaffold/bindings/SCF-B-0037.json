@@ -50,8 +50,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "four product boundary concept"
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "four product boundary concept [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
@@ -70,8 +70,8 @@
     },
     {
       "path": "docs/helix-web/L1-planning/product-intent.md",
-      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
-      "note": "Web product and deployment runtime boundary"
+      "sha256": "d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271",
+      "note": "Web product and deployment runtime boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web/L2-requirements/product-requirements.md",
@@ -80,8 +80,8 @@
     },
     {
       "path": "docs/helix-web-os/L1-planning/system-intent.md",
-      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
-      "note": "Web-OS service deployment／monitoring／recovery candidate"
+      "sha256": "42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d",
+      "note": "Web-OS service deployment／monitoring／recovery candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",

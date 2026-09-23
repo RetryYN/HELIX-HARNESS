@@ -13,6 +13,8 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 INV_PATH = HERE / "inventory.json"
 ORIGIN = "fbeee47920ed8b2992ae123b00c224ff88987c50"
+HISTORICAL_REF_COMMIT = "11a22679dc2bfce57d3294759531282445625001"
+CURRENT_CONCEPT = "docs/concept/helix-concept.md"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 PRODUCTS = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
 ASSET_IDS = [
@@ -22,6 +24,8 @@ ASSET_IDS = [
     "LEGACY-ASSET-DD53551C74BB4939A325", "LEGACY-ASSET-2E08F9429CA4C061B9AB",
 ]
 CURRENT_REFS = {
+    # These exact-revision research receipts are read from Git after the old
+    # versioned Concept file and the approved L1 bytes leave the working tree.
     "CUR-CONCEPT": ("HELIX", "docs/concept/helix-concept-v4.1.md", "181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad", 280, 25, 75, "ee6d3d950d21ffac1f3bcdbfa6e6acb1d9191ea6a83cbe9b6659d89f424f0828"),
     "CUR-BOUNDARY": ("HELIX", "docs/concept/product-boundary.md", "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", 106, 32, 70, "78fa21cc8b020a268fa50f47657373b463f72a96aa60daaaf2d63aecd2980491"),
     "CUR-DECISION": ("HELIX", "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md", "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2", 72, 21, 64, "7bb0eb2c5a937e3c7d976da5daf98f89f73eb5f304bb39105db51eefbe271817"),
@@ -234,18 +238,25 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     refs = current.get("refs", [])
     fail(errors, [r.get("ref_id") for r in refs] == list(CURRENT_REFS), "E_CURRENT_REF_IDS")
     if check_files:
+        fail(errors, (ROOT / CURRENT_CONCEPT).is_file(), "E_LIVE_CONCEPT_MISSING")
         for ref in refs:
             expected = CURRENT_REFS.get(ref.get("ref_id"))
             fail(errors, expected is not None, "E_CURRENT_REF_UNKNOWN")
             if not expected:
                 continue
             product, path, sha, lines, start, end, span = expected
-            p = ROOT / path
             fail(errors, (ref.get("product"), ref.get("path"), ref.get("sha256"), ref.get("line_count"), ref.get("line_start"), ref.get("line_end"), ref.get("span_sha256")) == (product, path, sha, lines, start, end, span), "E_CURRENT_REF_META_" + ref["ref_id"])
-            if p.is_file():
-                fail(errors, file_digest(p) == sha, "E_CURRENT_FILE_" + ref["ref_id"])
-                fail(errors, len(p.read_text(encoding="utf-8").splitlines()) == lines, "E_CURRENT_LINES_" + ref["ref_id"])
-                fail(errors, span_digest(p, start, end) == span, "E_CURRENT_SPAN_" + ref["ref_id"])
+            # Historical exact bytes are evidence, not the current parent.
+            snapshot = subprocess.run(
+                ["git", "show", f"{HISTORICAL_REF_COMMIT}:{path}"],
+                cwd=ROOT, capture_output=True, check=False,
+            )
+            fail(errors, snapshot.returncode == 0, "E_HISTORICAL_REF_MISSING_" + ref["ref_id"])
+            if snapshot.returncode == 0:
+                source_lines = snapshot.stdout.decode("utf-8").splitlines()
+                fail(errors, digest(snapshot.stdout) == sha, "E_CURRENT_FILE_" + ref["ref_id"])
+                fail(errors, len(source_lines) == lines, "E_CURRENT_LINES_" + ref["ref_id"])
+                fail(errors, digest("\n".join(source_lines[start - 1:end]).encode()) == span, "E_CURRENT_SPAN_" + ref["ref_id"])
 
     products = data.get("products", [])
     fail(errors, [p.get("product") for p in products] == PRODUCTS, "E_PRODUCT_ORDER")

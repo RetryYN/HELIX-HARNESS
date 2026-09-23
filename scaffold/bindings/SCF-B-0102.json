@@ -61,9 +61,9 @@
   "updated": "2026-09-22",
   "upstream": [
     {
-      "note": "static input; digest and semantic role only; no execution or authority effect",
+      "note": "static input; digest and semantic role only; no execution or authority effect [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]",
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4"
     },
     {
       "note": "static input; digest and semantic role only; no execution or authority effect",
@@ -271,9 +271,9 @@
       "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
     },
     {
-      "note": "static input; digest and semantic role only; no execution or authority effect",
+      "note": "static input; digest and semantic role only; no execution or authority effect [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。]",
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83"
+      "sha256": "bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8"
     },
     {
       "note": "static input; digest and semantic role only; no execution or authority effect",

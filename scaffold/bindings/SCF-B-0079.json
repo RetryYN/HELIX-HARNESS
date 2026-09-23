@@ -10,13 +10,13 @@
   "upstream": [
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83",
-      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8",
+      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/candidate-source-target-inventory.md",
@@ -45,8 +45,8 @@
     },
     {
       "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
-      "sha256": "5a95be78b2341d3934e2b9c6cef66428387d7862c94b60e9145f27ca92d9ff85",
-      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072",
+      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5a95be78b2341d3934e2b9c6cef66428387d7862c94b60e9145f27ca92d9ff85; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0a00b2e120c71151d990af56224e1ad0b54b23b56522003500c70086861a2628; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",

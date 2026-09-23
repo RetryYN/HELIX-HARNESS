@@ -7,20 +7,19 @@ layer: L1
 kind: planning
 status: draft
 authority_status: awaiting_parent_approval
-parent_candidate: docs/concept/helix-concept-v4.1.md
+parent_concept: docs/concept/helix-concept.md
 created: 2026-09-14
 updated: 2026-09-14
 ---
 
 # HELIX-OS L1企画候補
 
-本書はConcept v4.1候補と2026-09-14の製品責務決定から導いたHELIX-OSの対象別L1候補である。
-親Conceptが未承認のため、現行L1、L2合意、L3凍結、実行権限として使わない。
+本書の親は[HELIX Concept](../../concept/helix-concept.md)である。旧承認revisionを保持し、現行Conceptとの差分は再配置候補として扱う。L2合意、L3承認、実装・実行権限は本書から生成しない。
 
 ## 提供価値
 
-HELIX-OSは、HARNESSを含むHELIXプロジェクト群のauthority、変更、Worker、状態、証拠、CI、配布運転を
-管理・統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWeb-OSから得た運用結果を
+HELIX-OSは、HARNESSを含むHELIXプロジェクト群のauthority、変更、状態、証拠、ticket発行、Workerへの割当、CI・testの最適化と配布運転を
+管理・推進・検収に分けて統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWeb-OSから得た運用結果を
 HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変わっても、承認済みの意味、未完義務、
 許可範囲、停止・復旧条件を失わず、対象ごとの開発を継続できるようにする。
 
@@ -58,12 +57,12 @@ HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変
 
 ## 管理対象と対象外
 
-管理対象にはHARNESS、HELIX-Web、HELIX-Web-OS、将来追加する個別製品・運転基盤を含む。OSは各対象の要求意味やHARNESSの工程規則を
+管理対象にはHARNESS、HELIX-Web、HELIX-Web-OS、将来追加する個別製品・運転基盤を含む。外部提供する製品属性はHARNESSとWebに限る。OSは各対象の要求意味やHARNESSの工程規則を
 別本文として所有せず、承認revisionを参照して開発・改善を実行・記録・制御する。HELIX-Web-OSの展開後service runtimeはOS外に置く。外部へ提供する製品はHARNESSであり、
 本企画はHELIX-OSの外販を目的にしない。
 
 ## 採択条件
 
-Concept v4.1のexact revisionが人間承認され、本書の12要求がそのrevisionから導出されることを確認する。
+本書の旧承認revisionと現行Conceptの差分を照合し、本書の12要求の変更候補を対象revision付きで判断する。
 Issue、PR、Projects、DB、memory、既存CIの状態から要求・承認・完了を生成しない。
 採択後にL2要求、L11受入、L12運用評価を同じrevisionへ接続し、操作authorityや実装方式はL3以降で導出する。

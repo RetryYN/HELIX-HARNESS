@@ -1,9 +1,8 @@
 # HARNESS・HELIX-OS・個別プロダクトの責務決定
 
-本書は2026-09-14から2026-09-15の本作業会話でPOが明示した要求対象と責務を、出典付きの人間発言記録として保持する。
-本書だけでは恒久authorityや承認を生成しない。効力は[人間判断packet](../governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md)に
-記載したexact SHA-256への人間decisionへ束縛する。判断までは旧文書の混在表現より優先する候補境界として使用し、
-個別L2要求案の一括承認、L3凍結、IR admission、実装・受入・公開の完了を記録しない。
+本書の親は[HELIX Concept](helix-concept.md)である。2026-09-14から2026-09-15のPO発言を出典付きで保持する。以下の発言表は当時の表現であり、現在の機構・版・製品属性はConceptに従う。本書から個別L2要求案の一括承認、L3承認、IR admission、実装・受入・公開の完了を生成しない。
+
+現行Conceptでは8機構と2共通部品を区別し、外部提供する製品属性はHARNESSとWebだけが持つ。1.0はHARNESS、OS、BRAIN、LABO、Security、CONNECT、Runner／Sandbox、1.xはWebとWeb-OS、3.0はIntelligenceが加わる。OSの管理・推進・検収は別責務であり、BRAINは稼働時の判断、Intelligenceは知識・モデルの改善、LABOは効果と退行の評価を担う。
 
 ## 明示された決定
 
@@ -34,11 +33,11 @@
 | 対象 | 所有する要求 | ローカル入口 |
 |---|---|---|
 | HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |
-| HELIX-OS | プロジェクト群の管理・統制、Worker、CI、ログ、学習、継続・復旧、HELIXの改善循環 | [HELIX-OS](../helix-os/README.md) |
+| HELIX-OS | プロジェクト群の管理、ticketを発行する推進、CI・testを最適化する検収、統合・更新・復旧 | [HELIX-OS](../helix-os/README.md) |
 | HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../helix-web/README.md) |
 | HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |
 
-要求対象の一覧はこの四つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。
+この表は当初の4対象の文書入口であり、機構や製品の全件表ではない。要求対象の一覧はこの四つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。
 HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則をOSが適用し、OSの運用から得た改善を
 HARNESS自身の要求・設計・実装・検証へ戻す。HELIX-OSはこの自己適用・改善loopを継続運転し、HARNESSを
 改善し続ける責務を持つ。管理対象と規則の参照関係を、同一の要求所有へ潰さない。
@@ -65,36 +64,35 @@ HELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する
 独立したauthority、state、credential、writerで運転する。
 
 両OSは改善loopで接続する。HELIX-Web-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで
-HELIX-OSへexportし、HELIX-OSがHARNESS自身の実践を含む他projectの証拠と突合して改善候補を重複排除・評価する。
+渡し、HELIX-LABOがHARNESS自身の実践を含む各対象の効果と退行を評価し、HELIX-OSが評価を改善候補として登録する。
 採択された候補だけをHARNESS、Web、Web-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、
 同意範囲外logの吸収や、logからの直接変更は行わない。
 
 ## 既存Conceptとの意味差分
 
 [Concept v4.0候補](../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4.0.md)の承認対象本文はbytesを保持するが、製品identityは
-本決定より前の区分を含む。その差分は[Concept v4.1候補](helix-concept-v4.1.md)へ投影済みである。
-v4.0の承認を流用せず、v4.1の人間承認後に次の境界を同じrevisionで固定する。
+本決定より前の区分を含む。その差分は[現行Concept](helix-concept.md)との照合対象である。v4.0の承認を流用せず、現在の境界と旧表現の差分を要求対応表に記録する。
 
 | v4候補の表現 | 最新Conceptへの投影 |
 |---|---|
 | `HELIX Harness`を`Assurance Kernel`とする | Assurance KernelはHARNESSの構成要素。HARNESS全体は外部提供する工程・契約・consumer packageを含む |
 | `HELIX Control Plane` | HELIX-OSの実行統制componentとして扱い、独立した要求対象にしない |
 | `HELIX DevOS` | 独立した提供製品identityにしない。配布物はHARNESS、配布運転はHELIX-OSへ分ける |
-| Control／Execution／Ledger／Adaptation Plane | HELIX-OSの管理・統制・Worker・ログ・学習・改善責務へ接続する |
+| Control／Execution／Ledger／Adaptation Plane | 管理・推進・検収はHELIX-OS、判断はBRAIN、計測・評価はLABO、知識・モデル改善は3.0のIntelligenceへ分けて接続する |
 | Change Contract Compiler／Assurance Kernel | HARNESSが提供する工程・契約・検証能力と、OSが行うcanonical transactionを分ける |
 
 旧L0 charterのP0–P9も意味を保持して対象別へ再配置する。V-model、工程、検証、外部利用条件はHARNESSへ、
-連続走行、orchestration、GitHub／CI運転、memory／状態、学習、外部実行統制はHELIX-OSへ置く。
+連続走行、orchestration、GitHub／CI運転、memory／状態、外部実行統制はOS・Security・Runner／Sandboxへ分け、評価はLABO、知識・モデル改善は3.0のIntelligenceへ置く。
 「harness memoryを根幹に自己保守する」という旧表現は、HARNESS製品がmemoryを必須内包する意味に使わず、
 HELIX-OSが要求正本・状態・証拠を分離して管理し改善する責務へ置き換える。
 
 この投影はConcept v4候補の承認対象を遡及改変せず、候補のcanonical promotion、L1再編、L2合意、L3凍結を
-完了させない。次revisionでは本表を親に、対象別L1／L2と対検証へ一方向に導出する。
+完了させない。現行Conceptを親に、対象別L1／L2と対検証へ一方向に導出する。
 
 ## 文書整備で守ること
 
 - 上位概念を本決定に対応づけ、L2要求とL11受入、L3要件とL10総合検証を対象別に接続する。現行L1–L12と正規pairは維持する。
-- 要求意味の正本は指定されたローカル文書・JSONと、その変更・合意revisionである。既存要求は保持が既定であり、保持・再配置、意味変更、retireの別を問わず、すべての要求PRを対象revision付きの人間判断へ送る。GitHubは作業管理の接続先であり、Issue closeから要求削除・充足を生成しない。
+- 要求意味の正本は指定されたローカル文書・JSONと、その変更・合意revisionである。既存要求は保持が既定であり、人が持つ上流意味の変更、またはauthority状態モデルが人間decisionを求める場合は、対象revision付きの人間判断へ送る。担当移動や技術変更のみは差分を記録して独立reviewへ送る。GitHubは作業管理の接続先であり、Issue closeから要求削除・充足を生成しない。
 - 旧Concept・旧物理path・旧名称を理由に、OSの内部運用をHARNESSの必須提供構成に戻さない。参照するHARNESS版と適用対象を記録する。
 - 候補承認、対象別L2合意、L3凍結、IR移管、実装、利用者受入は別状態として保持する。旧候補の承認を新しい具体化の承認へ流用しない。
 - remote branchへの同期、独立した上流意味review、人間の採否、PR／CIによる下流検証を別operationにする。旧CIを通すことを上流整理の成立条件にしない。

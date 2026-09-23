@@ -33,7 +33,7 @@ review_merge laneもPO本人へ同じ承認判断を直接確認し、「承認�
 
 ## 判断の範囲
 
-この承認は、5大目標をHELIX全体の到達方向として固定する。親[Concept v4.1](../../concept/helix-concept-v4.1.md)と
+この承認は、5大目標をHELIX全体の到達方向として固定する。親[Concept v4.1](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/concept/helix-concept-v4.1.md)と
 4対象L1の承認済みrevisionは変更しない。5大目標の承認だけで、監査上`partial`の4領域を既存L1に暗黙包含させない。
 製品別の追加責務、L1要求の本文・ID、L2／L11、旧要求の要否・successor、数値基準、設計、実装は別判断とする。
 七大原則の独立authorityも本decisionの対象外である。

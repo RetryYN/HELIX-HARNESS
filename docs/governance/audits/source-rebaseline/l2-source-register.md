@@ -93,9 +93,9 @@ mainへの収載だけで要求承認を判断せず、リポジトリ内の改�
 この基準からarchive隔離直前までに変更された333 pathは、[隔離前revision差分の保全監査](pre-isolation-revision-delta-audit-2026-09-16.md)と
 機械台帳へ両revisionのblob／digestを登録した。隔離直前snapshotだけで基準revisionを置換せず、意味同値は後続要求reviewまで未確認とする。
 
-- 上位概念は[Concept v4.1候補](../../../concept/helix-concept-v4.1.md)と
-  [承認準備監査](concept-v4.1-approval-readiness-audit.md)を確認する。
-  v4.0の候補承認をv4.1へ流用せず、旧v3.1を新要求の基準へ戻さない。
+- 上位概念は[現行HELIX Concept](../../../concept/helix-concept.md)を確認する。
+  [v4.1承認準備監査](concept-v4.1-approval-readiness-audit.md)は旧revisionの判断史として読む。
+  v4.0の候補承認を現行Conceptへ流用せず、旧v3.1を新要求の基準へ戻さない。
 - 旧世代で要件正本だった[requirements v1.3](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md)、L1-L12 directive、ADR-009／010はhistorical sourceとして読む。採用済み要求の意味は保持して対象別へ配置し、旧実装方式・owner・技術との衝突は別decisionとして扱う。
 - 旧Requirement IRは移管元として読み、後続の要求候補・追補との差を確認する。旧JSONを新世代canonicalとしてin-place更新しない。
 - 新しい要求の文書化、候補承認、canonicalへの昇格、runtimeへの適用は別に記録する。新しい候補を未確認のまま現行採用済みと表示しない。

@@ -8,7 +8,7 @@ product_targets:
   - HELIX-HARNESS
   - HELIX-OS
 derived_from:
-  - docs/concept/helix-concept-v4.1.md
+  - docs/concept/helix-concept.md
   - docs/governance/candidates/instruction-path-change-resilience-requests.md
   - docs/governance/candidates/instruction-path-change-resilience-requirements.md
   - docs/governance/candidates/instruction-path-change-resilience-acceptance.md

@@ -1,15 +1,14 @@
 # HELIX-Webの要求整理入口
 
-要求対象と責務は[2026-09-14の責務発言記録](../concept/product-boundary.md)を候補境界として参照する。
-恒久authorityは人間判断packetのexact SHA decisionへ束縛する。
+親は[HELIX Concept](../concept/helix-concept.md)である。[2026-09-14の責務発言記録](../concept/product-boundary.md)は旧発言の出典として保持する。旧L1の承認は2026-09-17の対象revisionに限り、現行Conceptとの意味差分、L2／L11の合意、L3の承認は別に扱う。
 
-HELIX-Webは、HELIX-OSが開発・改善projectとして管理する個別プロダクトである。展開後のservice runtimeは
+HELIX-Webは1.xで加わり、HARNESSのサービス①〜⑦を顧客へ提供する製品である。HELIX-OSが開発・改善projectとして管理する。展開後のservice runtimeは
 HELIX-OS外のHELIX-Web-OSが担う。HARNESSの外部提供要求、HELIX-OSの開発統制、Web固有の利用者要求、
 Web-OSのサービス運転要求を分離する。
 
 | 責務 | 要求の所属先 |
 |---|---|
-| Web固有の企画・提供価値 | [L1企画候補](L1-planning/product-intent.md)。Concept v4.1とWeb固有価値の承認待ち |
+| Web固有の企画・提供価値 | [L1企画候補](L1-planning/product-intent.md)。旧承認revisionは履歴。現行ConceptとWeb固有価値の差分は判断候補 |
 | Webの利用者体験・サービスとして提供する能力 | [L2要求案](L2-requirements/product-requirements.md)と[L11受入案](L11-acceptance/product-acceptance.md)。Vision由来9件、個別採択・受入未完了 |
 | 適用する開発工程・Vモデル・検証条件 | [HARNESS](../helix-harness/README.md)。Webが採用する版と能力を参照 |
 | Webの要求・進行・Worker・CI・開発ログ・改善還流の管理 | [HELIX-OS](../helix-os/L2-requirements/governance-requirements.md) |

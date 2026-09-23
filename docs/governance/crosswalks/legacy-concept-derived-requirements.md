@@ -18,13 +18,15 @@ target_owners:
 
 # Concept v4から導くHELIX L2要求
 
+親：[HELIX Concept](../../concept/helix-concept.md)。本書は旧HCV4-L2 6件の履歴的な移管候補を保持する。指定された4対象L2、HIL、DTK、L1-COVの現行Concept機構・版・製品属性への全件対応は[要求対応表](concept-mechanism-version-requirement-crosswalk.md)で扱う。本書の旧親候補・旧製品表現は当時の記録であり、現行authorityや四製品の確定を示さない。
+
 本書は総称HELIXのL2要求正本ではない。HCV4-L2-001..006を対象別L2へ分解するmigration crosswalkである。
 新世代の要求ownerはHARNESSとHELIX-OSであり、HELIX-Web固有要求はWeb側が所有する。
 対象別採否と合意が完了するまで出典atomを保持し、完了後は非実行archiveへ移す。
 
 本書は最新の上位概念から利用者要求を具体化した、対象別移管のための混在要求整理案である。
 最新のPO指示に従い、要求の所属先はHARNESS／HELIX-OS／個別プロダクトへ分離する。本書をそれらの共通要求正本として再固定しない。
-最新の親候補は[Concept v4.1](../../concept/helix-concept-v4.1.md)であり、出典要求は
+最新の親候補は[Concept v4.1](../../concept/helix-concept.md)であり、出典要求は
 [HCV4-BR-001..006](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-concept-v4-requests.md)。
 v4.0候補承認の対象revisionは[PLAN-L3-84](../../../archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L3-84-helix-concept-v4-upgrade.md)に記録されているが、
 製品境界を改訂したv4.1は人間承認待ちである。本書の具体化とL11条件もdraftであり、v4.0の候補承認を

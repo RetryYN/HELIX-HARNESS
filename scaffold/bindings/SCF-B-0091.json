@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "current product boundary candidate; no formal assignment"
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "current product boundary candidate; no formal assignment [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
@@ -40,23 +40,23 @@
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
-      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
-      "note": "current product boundary candidate; no formal assignment"
+      "sha256": "a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47",
+      "note": "current product boundary candidate; no formal assignment [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
-      "note": "current product boundary candidate; no formal assignment"
+      "sha256": "5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd",
+      "note": "current product boundary candidate; no formal assignment [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web-os/L1-planning/system-intent.md",
-      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
-      "note": "current product boundary candidate; no formal assignment"
+      "sha256": "42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d",
+      "note": "current product boundary candidate; no formal assignment [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web/L1-planning/product-intent.md",
-      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
-      "note": "current product boundary candidate; no formal assignment"
+      "sha256": "d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271",
+      "note": "current product boundary candidate; no formal assignment [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/bindings/SCF-B-0080.json",
@@ -75,8 +75,8 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0088.json",
-      "sha256": "4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3",
-      "note": "prior binding and static research provenance; no adoption or authority"
+      "sha256": "e540d14cf352bd253b9e02e40f4e24ae7b5a124f0815ba41590f057da6e34c0a",
+      "note": "prior binding and static research provenance; no adoption or authority [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a59c1d27d456c1a2fd07c63553b6c94fa13a8b8462722152ccafebeab90d49b8; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/inventory.json",

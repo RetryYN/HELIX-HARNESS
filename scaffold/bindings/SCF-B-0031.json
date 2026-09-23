@@ -40,8 +40,8 @@
     },
     {
       "path": "docs/governance/candidates/next-generation-ci-requirements.md",
-      "sha256": "5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba",
-      "note": "candidate CI scope, L3/L10 derivation and no-execution boundary"
+      "sha256": "0a79006c6e7ddf6ad7dcdb78115de1d416727fd215cee078527f441e0b83b312",
+      "note": "candidate CI scope, L3/L10 derivation and no-execution boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
@@ -70,13 +70,13 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "Web/Web-OS responsibility and authority boundary"
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "Web/Web-OS responsibility and authority boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83",
-      "note": "new generation authority/layer/old execution boundary"
+      "sha256": "bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8",
+      "note": "new generation authority/layer/old execution boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/phcap07-web-verification-l10/README.md",

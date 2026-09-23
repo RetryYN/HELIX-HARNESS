@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83",
-      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+      "sha256": "bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
@@ -60,8 +60,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/legacy-ai-consumer-relation-inventory.md",
@@ -85,8 +85,8 @@
     },
     {
       "path": "docs/governance/candidates/legacy-asset-retirement-requirements.md",
-      "sha256": "25fb1a2beea09e679bcad5c4459c5b7b3360549e2d325977f08c06097082cec3",
-      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+      "sha256": "fa6aab976bfe5ac1ac4fe0506dfcde1b20f1c28c3483fbb404d217021c5c3826",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=25fb1a2beea09e679bcad5c4459c5b7b3360549e2d325977f08c06097082cec3; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/rdp001-outside67-boundary-evidence-066/README.md",

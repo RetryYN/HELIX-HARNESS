@@ -6,23 +6,83 @@
   "product": "HELIX-OS",
   "owner_candidate": "PHCAP-01 Concept／L1企画の四製品責務・旧asset semantic review（正式owner未解決）",
   "state": "registered",
-  "reason": "PHCAP-01の現行Concept v4.1と4対象L1は承認recordのexact SHAで参照できるが、L2／L11採否、L3／L10、実装、受入、release、deploymentは成立していない。旧asset 45件のphase／product候補を再集計し、代表8件のarchive source／ledger／decision／failure／consumer状態と、四製品unit／connection候補を静的に束ねる。旧source preservation decisionはsource保持履歴でありtarget product adoptionではない。authority、owner、successor、縮退／未実装、runtime、外部作用は生成しない。",
+  "reason": "PHCAP-01の旧Concept v4.1と旧4対象L1の承認recordを履歴のexact SHAで参照し、現行Conceptはdocs/concept/helix-concept.mdへ付け替えたが、L2／L11採否、L3／L10、実装、受入、release、deploymentは成立していない。旧asset 45件のphase／product候補を再集計し、代表8件のarchive source／ledger／decision／failure／consumer状態と、四製品unit／connection候補を静的に束ねる。旧source preservation decisionはsource保持履歴でありtarget product adoptionではない。authority、owner、successor、縮退／未実装、runtime、外部作用は生成しない。 四対象unit／connectionは当時の調査scopeであり、現行Conceptの8機構＋2共通部品や製品属性の確定分類ではない。",
   "upstream": [
-    {"path": "scaffold/phcap01-concept-l1-research/README.md", "sha256": "c7ebf1c79e9c7148197191c0bc60385f4ef5f586f4fbd1fddfba526249431f56", "note": "PHCAP-01 static research scope and L2/L11 boundary"},
-    {"path": "scaffold/phcap01-concept-l1-research/inventory.json", "sha256": "fe2bb891ed79359f729b4dd4caf50bda6a2fb484817adfe8019108d7b76786ca", "note": "phase／四製品unit・connection／8 legacy asset／failure／consumer inventory"},
-    {"path": "scaffold/phcap01-concept-l1-research/validate.py", "sha256": "01ed82706038891ac2eed638ff554aad4c36e93953e16f496ee599c273511a35", "note": "current／archive／ledger／decision static validator"},
-    {"path": "scaffold/phcap01-concept-l1-research/selfcheck.py", "sha256": "7f96fd8da290e154135251f01e62aae6f972372c28247b775d1d8245aa90f8bd", "note": "baseline/no-op plus 43 expected-error negative cases"},
-    {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "note": "PHCAP-01 phase record and current evidence snapshot"},
-    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "selected asset disposition／implementation／consumer state"},
-    {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "45 PHCAP-01 phase／product candidate rows"},
-    {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "note": "append-only source snapshot preservation／correction history"},
-    {"path": "docs/concept/helix-concept-v4.1.md", "sha256": "181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad", "note": "current Concept exact approved bytes"},
-    {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "four product boundary and connection candidates"},
-    {"path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md", "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2", "note": "exact SHA approval and explicit non-admission boundary"},
-    {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "note": "HARNESS L1 candidate"},
-    {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "OS L1 candidate"},
-    {"path": "docs/helix-web/L1-planning/product-intent.md", "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756", "note": "Web L1 candidate"},
-    {"path": "docs/helix-web-os/L1-planning/system-intent.md", "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c", "note": "Web-OS L1 candidate"}
+    {
+      "path": "scaffold/phcap01-concept-l1-research/README.md",
+      "sha256": "c7ebf1c79e9c7148197191c0bc60385f4ef5f586f4fbd1fddfba526249431f56",
+      "note": "PHCAP-01 static research scope and L2/L11 boundary"
+    },
+    {
+      "path": "scaffold/phcap01-concept-l1-research/inventory.json",
+      "sha256": "fe2bb891ed79359f729b4dd4caf50bda6a2fb484817adfe8019108d7b76786ca",
+      "note": "phase／四製品unit・connection／8 legacy asset／failure／consumer inventory"
+    },
+    {
+      "path": "scaffold/phcap01-concept-l1-research/validate.py",
+      "sha256": "1976c377461526e7c919f89b6eea3996b5df8ca58d2fdb0a5df562e978761624",
+      "note": "current／archive／ledger／decision static validator [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=01ed82706038891ac2eed638ff554aad4c36e93953e16f496ee599c273511a35; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "scaffold/phcap01-concept-l1-research/selfcheck.py",
+      "sha256": "7f96fd8da290e154135251f01e62aae6f972372c28247b775d1d8245aa90f8bd",
+      "note": "baseline/no-op plus 43 expected-error negative cases"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "note": "PHCAP-01 phase record and current evidence snapshot"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "selected asset disposition／implementation／consumer state"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "45 PHCAP-01 phase／product candidate rows"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "append-only source snapshot preservation／correction history"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "2be6bc63af5ae2d191a8bd0ea1df0c45a497461724e868161bcea4dfd59df61a",
+      "note": "current Concept static read-after; historic exact approval remains in decision record [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=181b0c555f4e27f83a1f92d315aee0e66a9f3f645e3cebe0a1b8d487878efaad; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "four product boundary and connection candidates [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
+      "note": "exact SHA approval and explicit non-admission boundary"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47",
+      "note": "HARNESS L1 candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd",
+      "note": "OS L1 candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271",
+      "note": "Web L1 candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d",
+      "note": "Web-OS L1 candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。]"
+    }
   ],
   "role": "PHCAP-01のConcept／L1、四製品責務・接続候補、旧asset phase／product／実装・failure・consumer residualをread-only research premiseとして保持する",
   "obligations": [
@@ -76,7 +136,13 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "PHCAP-01 validate.py（current SHA／line span、archive source、phase／product／asset ledger、decision、failure、consumer static checks）",
       "selfcheck.py（baseline/no-op、authority、unit／connection、L2／L11、implementation、archive、decision、failure、consumer、aggregateの43 expected-error negative cases）",

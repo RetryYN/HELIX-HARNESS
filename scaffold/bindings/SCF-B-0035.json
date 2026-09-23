@@ -8,26 +8,106 @@
   "state": "registered",
   "reason": "outside-67 reportの四製品ディレクトリ配下pathから先頭15件を選び、pre-isolation／archive blobと13 live source holdingのexact path／blob／SHA関係を静的に照合する。15件すべて13 holdingへの完全一致がなく、新holding必要性は未解決候補として保持する。path由来product／phase、implementation unknown、authority、要求採否、successor、consumer closureは確定しない。",
   "upstream": [
-    {"path": "scaffold/pre-isolation-outside-holding-first15/inventory.json", "sha256": "8fdc22ce260ca23889f114ad85491d055cb656686fd52c829add05e84d9de12d", "note": "15 path、13 live holding exact relation、blob／SHA／current state"},
-    {"path": "scaffold/pre-isolation-outside-holding-first15/README.md", "sha256": "9fc83be825db547b30841eb232aec35dc51e48f48a77d8d642715bc8140f68aa", "note": "selection、13 holding不包含、unknown boundary"},
-    {"path": "scaffold/pre-isolation-outside-holding-67/report.json", "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795", "note": "outside-67 67 path分母と選定順序"},
-    {"path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl", "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b", "note": "32 registerからsupersedes終端13 live holdingsを再計算"},
-    {"path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl", "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180", "note": "333 existing-path holding、outside-67との境界"},
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83", "note": "authority／旧資産静的参照／scaffold境界"},
-    {"path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md", "sha256": "99d1e78e7722d5569d5615b8c2700452bedf7e76448e68f11b06acbde30efec7", "note": "333 existing-path holdingの監査契約"},
-    {"path": "docs/governance/management-provisional-requirement-registration.md", "sha256": "4641b2fa1edd4d22748b85598e7bde1561aa8225305a6e54d90595b9b4c28ab8", "note": "source_holding／requirement_candidate境界"},
-    {"path": "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl", "sha256": "ddb90daece98a4cef6033b5de7e27947bf2e23991358a8d9d1764cbe3bd2b786", "note": "MPR-SH-HEADING-002 live holding"},
-    {"path": "docs/governance/legacy-requirement-carry-forward.jsonl", "sha256": "51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0", "note": "MPR-SH-IR-003 live holding"},
-    {"path": "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl", "sha256": "eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed", "note": "MPR-SH-CONFIRMED-003 live holding"},
-    {"path": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl", "sha256": "a81d6b1f5acb116c76b0b87b41aa0d2c3b9bfa2ba4ac0be86dd2db052fdc1692", "note": "MPR-SH-SEMANTIC-LINE-003 live holding"},
-    {"path": "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl", "sha256": "1a0591e1da6f9579d970aedfccff90ac6a8e1aefbbe0f4047e3aeb950a8449bb", "note": "MPR-SH-SUPPLEMENTARY-003 live holding"},
-    {"path": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl", "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781", "note": "MPR-SH-CANDIDATE-003 live holding"},
-    {"path": "docs/governance/harness-workflow-source-clause-carry-forward.jsonl", "sha256": "64597ef4fa018e214ac8e233eafedbeae7bd2adf09bcfd30ce1a043067960643", "note": "MPR-SH-WORKFLOW-003 live holding"},
-    {"path": "docs/governance/scrum-reverse-source-line-carry-forward.jsonl", "sha256": "72428f6becffa5d931d2ea26f96408dec7e6e04a8b47869220a8c2f66070f1e9", "note": "MPR-SH-SCRUM-REVERSE-001 live holding"},
-    {"path": "docs/governance/delegated-requirement-document-source-holding.jsonl", "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd", "note": "MPR-SH-DELEGATED-DOC-003 live holding"},
-    {"path": "docs/governance/delegated-requirement-document-reference-holding.jsonl", "sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7", "note": "MPR-SH-DELEGATED-REF-001 live holding"},
-    {"path": "docs/governance/l1-goals-principles-source-atoms.jsonl", "sha256": "ca260101a7a82cd8710e60c96d68181a2b1bd0f55d6a00b88f5c6450cdbd494d", "note": "MPR-SH-PO-GOALS-PRINCIPLES-001 live holding"},
-    {"path": "docs/governance/legacy-rule-atom-inventory.jsonl", "sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784", "note": "MPR-SH-LEGACY-RULE-004 live holding"}
+    {
+      "path": "scaffold/pre-isolation-outside-holding-first15/inventory.json",
+      "sha256": "8fdc22ce260ca23889f114ad85491d055cb656686fd52c829add05e84d9de12d",
+      "note": "15 path、13 live holding exact relation、blob／SHA／current state"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-first15/README.md",
+      "sha256": "9fc83be825db547b30841eb232aec35dc51e48f48a77d8d642715bc8140f68aa",
+      "note": "selection、13 holding不包含、unknown boundary"
+    },
+    {
+      "path": "scaffold/pre-isolation-outside-holding-67/report.json",
+      "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795",
+      "note": "outside-67 67 path分母と選定順序"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
+      "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
+      "note": "32 registerからsupersedes終端13 live holdingsを再計算"
+    },
+    {
+      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+      "note": "333 existing-path holding、outside-67との境界"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8",
+      "note": "authority／旧資産静的参照／scaffold境界 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md",
+      "sha256": "99d1e78e7722d5569d5615b8c2700452bedf7e76448e68f11b06acbde30efec7",
+      "note": "333 existing-path holdingの監査契約"
+    },
+    {
+      "path": "docs/governance/management-provisional-requirement-registration.md",
+      "sha256": "4641b2fa1edd4d22748b85598e7bde1561aa8225305a6e54d90595b9b4c28ab8",
+      "note": "source_holding／requirement_candidate境界"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl",
+      "sha256": "ddb90daece98a4cef6033b5de7e27947bf2e23991358a8d9d1764cbe3bd2b786",
+      "note": "MPR-SH-HEADING-002 live holding"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-carry-forward.jsonl",
+      "sha256": "51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0",
+      "note": "MPR-SH-IR-003 live holding"
+    },
+    {
+      "path": "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+      "sha256": "eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed",
+      "note": "MPR-SH-CONFIRMED-003 live holding"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+      "sha256": "a81d6b1f5acb116c76b0b87b41aa0d2c3b9bfa2ba4ac0be86dd2db052fdc1692",
+      "note": "MPR-SH-SEMANTIC-LINE-003 live holding"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl",
+      "sha256": "1a0591e1da6f9579d970aedfccff90ac6a8e1aefbbe0f4047e3aeb950a8449bb",
+      "note": "MPR-SH-SUPPLEMENTARY-003 live holding"
+    },
+    {
+      "path": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781",
+      "note": "MPR-SH-CANDIDATE-003 live holding"
+    },
+    {
+      "path": "docs/governance/harness-workflow-source-clause-carry-forward.jsonl",
+      "sha256": "64597ef4fa018e214ac8e233eafedbeae7bd2adf09bcfd30ce1a043067960643",
+      "note": "MPR-SH-WORKFLOW-003 live holding"
+    },
+    {
+      "path": "docs/governance/scrum-reverse-source-line-carry-forward.jsonl",
+      "sha256": "72428f6becffa5d931d2ea26f96408dec7e6e04a8b47869220a8c2f66070f1e9",
+      "note": "MPR-SH-SCRUM-REVERSE-001 live holding"
+    },
+    {
+      "path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
+      "note": "MPR-SH-DELEGATED-DOC-003 live holding"
+    },
+    {
+      "path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+      "sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
+      "note": "MPR-SH-DELEGATED-REF-001 live holding"
+    },
+    {
+      "path": "docs/governance/l1-goals-principles-source-atoms.jsonl",
+      "sha256": "ca260101a7a82cd8710e60c96d68181a2b1bd0f55d6a00b88f5c6450cdbd494d",
+      "note": "MPR-SH-PO-GOALS-PRINCIPLES-001 live holding"
+    },
+    {
+      "path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+      "sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784",
+      "note": "MPR-SH-LEGACY-RULE-004 live holding"
+    }
   ],
   "role": "outside-67の四製品direct path先頭15件について、13 live source holdingとのexact inclusion relationと新holding必要性候補をread-onlyで固定する",
   "obligations": [
@@ -82,7 +162,13 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "validate.py（15 path、13 live holding、exact path／blob／SHA、source OID、current state）",
       "selfcheck.py（baseline、authority、holding inclusion、new holding、blob、product／phase／implementation、execution）",

@@ -15,18 +15,18 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "HARNESS／HELIX-OS等の責務境界候補"
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "HARNESS／HELIX-OS等の責務境界候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/README.md",
-      "sha256": "e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117",
-      "note": "HARNESSの現行入口と状態"
+      "sha256": "f70528c8fd054ea4f18634ad98bd93b0a390186d1c6cbc4e15d19ffa3639b2b5",
+      "note": "HARNESSの現行入口と状態 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
-      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
-      "note": "HARNESS L1候補の製品境界"
+      "sha256": "a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47",
+      "note": "HARNESS L1候補の製品境界 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/pre-isolation/README.md",

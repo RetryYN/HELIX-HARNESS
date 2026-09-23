@@ -55,8 +55,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "four product ownership and OS/Web-OS connection candidate"
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "four product ownership and OS/Web-OS connection candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
@@ -70,8 +70,8 @@
     },
     {
       "path": "docs/governance/candidates/next-generation-ci-requirements.md",
-      "sha256": "5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba",
-      "note": "new CI candidate responsibility, reconstruction and stop conditions"
+      "sha256": "0a79006c6e7ddf6ad7dcdb78115de1d416727fd215cee078527f441e0b83b312",
+      "note": "new CI candidate responsibility, reconstruction and stop conditions [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/decisions/capability-lease-bootstrap-approval-2026-09-20.md",

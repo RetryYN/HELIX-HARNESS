@@ -1,15 +1,14 @@
 # HARNESSの要求・設計
 
-要求対象と責務は[2026-09-14の責務発言記録](../concept/product-boundary.md)を候補境界として参照する。
-恒久authorityは人間判断packetのexact SHA decisionへ束縛する。
+親は[HELIX Concept](../concept/helix-concept.md)である。[2026-09-14の責務発言記録](../concept/product-boundary.md)は旧発言の出典として保持する。旧L1の承認は2026-09-17の対象revisionに限り、現行Conceptとの意味差分、L2／L11の合意、L3の承認は別に扱う。
 
 HARNESSは外部へ提供・配布するプロダクトであり、Vモデル等の工程、層とV-pair、要求エンジン、要求・設計・検証の関係、進行・完了条件を規定する。
-2026-09-14のPO指示に従い、管理・統制・Worker・学習・ログ・CIを担う
+Conceptに従い、管理・推進・検収、ticket、CI運転を担う
 [HELIX-OS](../helix-os/README.md)から要求対象を分離する。
 
 | 入口 | 内容と状態 |
 |---|---|
-| [L1企画候補](L1-planning/product-intent.md) | 外部提供価値、対象外、L2への導出。Concept v4.1承認待ち |
+| [L1企画候補](L1-planning/product-intent.md) | 外部提供価値、対象外、L2への導出。旧承認revisionは履歴。現行Conceptとの差分は判断候補 |
 | [L2利用要求](L2-requirements/product-requirements.md) | 対象別に整理した9要求と工程条件。draft、IR移管未完了 |
 | [L11受入案](L11-acceptance/product-acceptance.md) | 同じ9要求の利用シナリオ・反例。全件未実行 |
 | [移管元・対象別対応](../governance/audits/source-rebaseline/l2-source-register.md) | 旧混在要求の監査、13柱の帰属、未移管条件 |

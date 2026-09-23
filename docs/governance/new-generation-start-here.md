@@ -46,10 +46,9 @@ repository foundation、5大目標候補、七大原則候補の順に物理統�
 Concept／製品責務境界→5大目標→七大原則→対象別L1の読込順へ収束させる。5大目標と七大原則の内容判断は、
 各候補PRのmerge admissionと独立したまま扱う。repository foundationは構造整理の証拠だけで統合済みである。
 Conceptは[1ファイル](../concept/helix-concept.md)をその場で改訂する。版ごとのファイル、改訂ごとの承認記録、昇格手続きは置かない。
-改訂は人の指示をAIが反映し、変更の履歴はgitに残す。版ごとのファイルは残さない。v4.1／v4.2のファイルは、下位文書の親の付替えと同時に削除し、過去の本文はgitの履歴で辿る。
+改訂は人の指示をAIが反映し、変更の履歴はgitに残す。版ごとのファイルは残さない。v4.1／v4.2のファイルは下位文書の親付替えと同時に削除済みで、過去の本文はgitの履歴で辿る。
 Conceptの改訂に紐づく下位文書は見直し対象として示し、作業全体を止めない。v4.3への改訂（2026-09-24）の見直し対象は、
-4対象L1、5大目標、七大原則、製品責務境界である。これらはまだv4.1を親として記載しており、親の付替えと内容差分
-（BRAIN、LABO、Intelligence、Security、CONNECT、Runner／Sandboxの定義を含む）は各文書の改訂で扱う。
+4対象L1、5大目標、七大原則、製品責務境界である。これらの親は現行Conceptへ付け替えた。BRAIN、LABO、Intelligence、Security、CONNECT、Runner／Sandboxの責務差分は候補として記録し、対象別L2／L11の採否を生成しない。
 
 4対象L1のexact revisionは2026-09-17のdecision recordで承認済みである。
 対象本文内の`candidate`／`awaiting_parent_approval`は承認前snapshotのmetadataであり、現在状態はdecision recordを優先する。

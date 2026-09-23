@@ -10,38 +10,38 @@
   "upstream": [
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/README.md",
-      "sha256": "e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "f70528c8fd054ea4f18634ad98bd93b0a390186d1c6cbc4e15d19ffa3639b2b5",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-os/README.md",
-      "sha256": "aa6c9976bf564ef4c2ff0f8d7b07220108e7157f697b8d92e11c689b4060f773",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "6a19117ad1d2f1556d11214da277837fc73adb76e8854d76591468cac4f54f3f",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=aa6c9976bf564ef4c2ff0f8d7b07220108e7157f697b8d92e11c689b4060f773; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web-os/README.md",
-      "sha256": "f5aac7ab9bc83a8c7339a2190f1e39cbaf3f1271edffc80fbdc37e43a4598914",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "8a3f3ba3d8dcb985d536f9925814ffdd5a63d9b84ba12444ea9ad72825b3d3dc",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=f5aac7ab9bc83a8c7339a2190f1e39cbaf3f1271edffc80fbdc37e43a4598914; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web/README.md",
-      "sha256": "0d73011e6ccc387189645c2158d55e02f444e3e3cb583b0aea29e28ea86ac1e6",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "07a5db2ee00421e92338906715b6b103f587df6fbcf9101a59784cd23082b5fc",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0d73011e6ccc387189645c2158d55e02f444e3e3cb583b0aea29e28ea86ac1e6; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/crosswalks/legacy-concept-derived-requirements.md",
-      "sha256": "a65504da98057890ff55f598e8cae6f13cf823c84de9b8fae89f4940f895ab91",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "a2872bb85b81af2d0c3c18d8b92c60cf43f360508e0418185051e86f29df3a9e",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a65504da98057890ff55f598e8cae6f13cf823c84de9b8fae89f4940f895ab91; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
-      "sha256": "5a95be78b2341d3934e2b9c6cef66428387d7862c94b60e9145f27ca92d9ff85",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "a3b0fc1cb53ad88940e50b1e054263351b38706eba79624e0d5393f476def072",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5a95be78b2341d3934e2b9c6cef66428387d7862c94b60e9145f27ca92d9ff85; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0a00b2e120c71151d990af56224e1ad0b54b23b56522003500c70086861a2628; 旧意味の採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
