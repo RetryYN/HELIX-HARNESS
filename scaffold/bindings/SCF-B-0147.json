@@ -16,10 +16,9 @@
       "legacy asset classification follow-up"
     ],
     "dependencies": [
-      "origin/main BASE disposition and phase ledgers",
-      "fixed archive MANIFEST",
-      "PR #2094 HEAD a577a7cddd1405de27bf01d22b050eb2acaa9ba9 is integrated into BASE and counted once via main",
-      "open PR #2096 HEAD ab0a1faa4e2b310206b97a786c329334a2a0e151 candidate set; stop and rebaseline if this HEAD advances"
+      "fixed source BASE a577a7cddd1405de27bf01d22b050eb2acaa9ba9 for disposition and phase ledgers",
+      "fixed comparison main be9cf8cf99ee94a487e54d372d7a34e9266b1ee3 includes merged #2094 and #2096",
+      "fixed archive MANIFEST"
     ]
   },
   "created": "2026-09-23",
@@ -168,7 +167,7 @@
       "ledger byte/line-ending mutation"
     ],
     "oracles": [
-      "validator derives target family, source hashes, manifest, and main/#2096 overlaps from fixed Git objects; #2094 is integrated in main; artifact byte pins bind complete records/inventory/binding",
+      "validator derives target family, source hashes, manifest, and main overlap from fixed Git objects; merged #2094 and #2096 are counted through main once; artifact byte pins bind complete records/inventory/binding",
       "category/product-count invariant and source semantic anchor set are independently checked"
     ],
     "scope": [

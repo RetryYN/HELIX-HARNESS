@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = Path(__file__).resolve().parent
 BASE = "a577a7cddd1405de27bf01d22b050eb2acaa9ba9"
+MAIN = "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3"
 LEDGER = "docs/governance/legacy-asset-disposition.jsonl"
 PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
@@ -18,8 +19,8 @@ BINDING = "scaffold/bindings/SCF-B-0147.json"
 EXPECTED_INV_KEYS = {"schema_revision", "binding_id", "base_revision", "archive_population_count", "selection", "comparison_sets", "input_digests", "classification_counts", "implementation_status_counts", "degradation_status_counts", "formal_effect", "authority_boundary", "outputs", "output_sha256"}
 # Exact byte pins bind every nested record field, key set, value type, and line ending.
 PINNED_RECORDS_SHA256 = "sha256:e3092094de9aaee773a227cefc4756e8ec480073ecceb5990312bf972715e0cc"
-PINNED_INVENTORY_SHA256 = "sha256:4e16ae7df2894f5b3758d5d2941b01a344f13e5004067f724ddfd5f272b8f4b4"
-PINNED_BINDING_SHA256 = "sha256:35c32a270dcf29cb2cf71818b0f437e38e12fad3304427b372ae5ca3a3243beb"
+PINNED_INVENTORY_SHA256 = "sha256:996cccb672f4073192802b7b6878e8a6251aa2bc162ef979d11ca98662e2ddc0"
+PINNED_BINDING_SHA256 = "sha256:0341554639e6ca22d623f7190a6b22d805938631430d497fd831ae5981c4dfa3"
 
 def artifact_pin_errors(data: bytes, expected_sha256: str, code: str) -> list[str]:
     return [] if expected_sha256 and digest(data) == expected_sha256 else [code]
@@ -92,8 +93,7 @@ def audit_overlap() -> tuple[dict, dict[str, list[str]]]:
     target_sha = {"sha256:" + r["source_sha256"] for r in target_rows}
     target_triple = {(r["asset_id"], r["source_path"], "sha256:" + r["source_sha256"]) for r in target_rows}
     sets = [
-        ("main", BASE, None),
-        ("pr_2096", "ab0a1faa4e2b310206b97a786c329334a2a0e151", "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl"),
+        ("main", MAIN, None),
     ]
     summaries, errors = {}, {}
     for name, rev, path in sets:

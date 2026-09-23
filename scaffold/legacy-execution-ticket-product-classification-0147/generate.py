@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = Path(__file__).resolve().parent
 BASE = "a577a7cddd1405de27bf01d22b050eb2acaa9ba9"
+MAIN = "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3"
 ARCHIVE = "archive/legacy-generation-2026-09-14/root/"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
@@ -217,8 +218,7 @@ def main() -> None:
         "archive_population_count": 4020,
         "selection": {"rule": "fixed source ledger rows where source_path starts docs/governance/candidates/execution-ticket-; complete thematic family, no row truncation", "candidate_asset_count": 8, "target_ids": ids, "source_paths": [r["ledger"]["source_path"] for r in records], "source_sha256s": [r["ledger"]["source_sha256"] for r in records]},
         "comparison_sets": [
-            {"name": "main", **comparison_summary(BASE, None)},
-            {"name": "pr_2096", **comparison_summary("ab0a1faa4e2b310206b97a786c329334a2a0e151", "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl")},
+            {"name": "main", **comparison_summary(MAIN, None)},
         ],
         "input_digests": inputs,
         "classification_counts": {"multi_product_conflict": sum(r["classification"]["status"] == "multi_product_conflict" for r in records), "insufficient_basis": sum(r["classification"]["status"] == "insufficient_basis" for r in records)},
@@ -248,10 +248,10 @@ def main() -> None:
         "upstream": [{"path": x["path"], "sha256": x["sha256"].removeprefix("sha256:"), "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない"} for x in inputs],
         "role": "legacy asset product-boundary research",
         "obligations": ["台帳の固定ID/path/SHAをsource archiveとmanifestへ照合する", "候補文書の意味を現行4製品境界とL1へ照合する", "implementation/degradation/phase/consumer unknownと証拠を分離する", "候補集合との重複をID/path/SHA/tripleで確認する"],
-        "connections": {"boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority", "consumers": ["四製品責務境界reviewer", "legacy asset classification follow-up"], "dependencies": ["origin/main BASE disposition and phase ledgers", "fixed archive MANIFEST", "PR #2094 HEAD a577a7cddd1405de27bf01d22b050eb2acaa9ba9 is integrated into BASE and counted once via main", "open PR #2096 HEAD ab0a1faa4e2b310206b97a786c329334a2a0e151 candidate set; stop and rebaseline if this HEAD advances"]},
+        "connections": {"boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority", "consumers": ["四製品責務境界reviewer", "legacy asset classification follow-up"], "dependencies": ["fixed source BASE a577a7cddd1405de27bf01d22b050eb2acaa9ba9 for disposition and phase ledgers", "fixed comparison main be9cf8cf99ee94a487e54d372d7a34e9266b1ee3 includes merged #2094 and #2096", "fixed archive MANIFEST"]},
         "operations": {"allowed": ["read fixed Git objects statically", "write research-only scaffold", "run deterministic generator, static validator, negative selfcheck, scfctl static validation"], "forbidden": ["execute legacy archive source/runtime/test/hook/adapter/CI", "旧archiveは実行しない", "promote formal product/phase/implementation/consumer authority", "create successor or new capability", "apply LABO classification; Issue #2089 hold remains in force", "merge, close, deploy"]},
         "artifacts": artifacts,
-        "verification": {"evidence_kind": "scaffold", "scope": ["schema_interface", "source_revision_stale", "negative_case", "forbidden_write_scope"], "oracles": ["validator derives target family, source hashes, manifest, and main/#2096 overlaps from fixed Git objects; #2094 is integrated in main; artifact byte pins bind complete records/inventory/binding", "category/product-count invariant and source semantic anchor set are independently checked"], "negative_cases": ["asset omission or duplicate", "semantic anchor omission or mutation", "formal phase/implementation/authority promotion", "target overlap with fixed comparison sets", "null/type/key-set mutation", "ledger byte/line-ending mutation"]},
+        "verification": {"evidence_kind": "scaffold", "scope": ["schema_interface", "source_revision_stale", "negative_case", "forbidden_write_scope"], "oracles": ["validator derives target family, source hashes, manifest, and main overlap from fixed Git objects; merged #2094 and #2096 are counted through main once; artifact byte pins bind complete records/inventory/binding", "category/product-count invariant and source semantic anchor set are independently checked"], "negative_cases": ["asset omission or duplicate", "semantic anchor omission or mutation", "formal phase/implementation/authority promotion", "target overlap with fixed comparison sets", "null/type/key-set mutation", "ledger byte/line-ending mutation"]},
         "replacement": {"role_target": None, "formal_artifacts": [], "issue": 0, "status": "pending"},
         "created": "2026-09-23", "updated": "2026-09-23",
     }

@@ -19,18 +19,11 @@
   },
   "comparison_sets": [
     {
-      "distinct_ids": 609,
+      "distinct_ids": 666,
       "name": "main",
       "path": "all scaffold/*/classification-research.jsonl",
-      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
-      "rows": 651
-    },
-    {
-      "distinct_ids": 57,
-      "name": "pr_2096",
-      "path": "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl",
-      "revision": "ab0a1faa4e2b310206b97a786c329334a2a0e151",
-      "rows": 57
+      "revision": "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3",
+      "rows": 708
     }
   ],
   "degradation_status_counts": {
