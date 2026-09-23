@@ -10,7 +10,7 @@ current_evidence_revision: c51125b3af523d4efcc46a328f5bc948b9f82c79
 
 ## 結論
 
-要求を製品単位まで**候補routingする作業**は153件全件で終わっている。ただし、製品別の要求unitへの分割とsuccessor割当は0件であり、製品単位への分離完了とは扱えない。
+要求を製品単位まで**候補routingする作業**は153件全件で終わっている。後続の[製品unit分解状況](legacy-ir-product-unit-decomposition-status-2026-09-21.md)は217件の`product_unit`候補と1件の`cross_product_connection`候補を記録しているが、正式な対象別要求への採用・successor割当は0件であり、製品単位への分離完了とは扱えない。
 
 旧assetは4,020件のexact setをphase／製品候補台帳へ載せた。これは所在を失わず後続reviewへ渡すbootstrapであり、意味closure、consumer closure、実装成立、再利用許可を示さない。
 
@@ -67,10 +67,9 @@ consumer closureは4,020件すべてpendingである。`consumer_refs`が空の3
 次の作業が残るため、本棚卸しは完了ではない。
 
 1. 153要求の責務atom分割と`PHCAP-01..20`への再判定。
-2. `split_required` 65件とconnection 1件の製品別unit化。
-3. 全153件のsuccessor割当と個別の人間decision。
-4. 2,228 assetの製品候補に対する直接根拠の追加。
-5. 1,170 multi-phase assetの意味分割、1,087 weak candidateの確認、1,253 unresolved assetの調査。
-6. 全4,020 assetのconsumer closureと209件のartifact kind解決。
+2. 65件のunit境界とconnection 1件の採否、および全153件のsuccessor割当と個別の人間decision。
+3. 2,228 assetの製品候補に対する直接根拠の追加。
+4. 1,170 multi-phase assetの意味分割、1,087 weak candidateの確認、1,253 unresolved assetの調査。
+5. 全4,020 assetのconsumer closureと209件のartifact kind解決。
 
 これらが閉じるまでは、旧能力の有無、現行との差分、`new_build_allowed`の解除、旧assetの再利用可否を確定しない。
