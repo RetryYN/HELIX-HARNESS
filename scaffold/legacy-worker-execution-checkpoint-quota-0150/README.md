@@ -18,7 +18,7 @@ BASE `b1578f4fda5d5ecd01c9565ee81f4ddf0cebfe1a` の `legacy-asset-phase-product-
 
 このbundleはresearch-only Scaffoldである。archive source/runtime/test/CI/workflow/hook/adapterは実行しない。formal ledger、実装status、phase、requirements、successor、consumer closureを更新しない。
 
-検証手順は `python3 scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py` と `python3 scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py --selfcheck` に加え、`python3 scaffold/tools/scfctl.py validate`、`stale`、`residuals`、`git diff --check`。selfcheckは一時copyで4つのnegative caseを変異させ、validatorが拒否することだけを確認する。
+検証手順は `python3 scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py` と `python3 scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py --selfcheck` に加え、`python3 scaffold/tools/scfctl.py validate`、`stale`、`residuals`、`git diff --check`。selfcheckはBindingの4 negative caseとidentity型境界を一時copyで変異させ、それぞれ期待した理由でvalidatorが拒否することを確認する。
 
 ## main更新時の停止条件
 

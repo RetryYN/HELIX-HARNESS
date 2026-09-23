@@ -77,6 +77,12 @@ def main(bundle: Path = BUNDLE, binding_path: Path | None = None, repository: Pa
     check(all(len(residual[k])==156 for k in residual),"cohort minus 0148 is not 156 per identity axis")
     manifest_rows=selected["rows"]
     ledger=rows(bundle/"classification-research.jsonl")
+    identity_keys=("asset_id", "source_path", "source_sha256")
+    for label,items in (("selection",manifest_rows),("classification",ledger)):
+        for index,item in enumerate(items,1):
+            for key in identity_keys:
+                value=item.get(key) if key != "source_sha256" or label == "selection" else item.get("source_exact", {}).get("sha256")
+                check(type(value) is str and bool(value), f"{label} row {index} {key} must be a non-empty string")
     check(selected["base_revision"]==BASE and selected["cohort_count"]==208 and selected["remaining_count"]==156,"selection manifest BASE/count mismatch")
     check(len(manifest_rows)==13 and len(ledger)==13,"expected 13 manifest and ledger rows")
     check({r["asset_id"] for r in manifest_rows}==IDS and {r["asset_id"] for r in ledger}==IDS,"selected ID set changed")
@@ -176,6 +182,19 @@ def main(bundle: Path = BUNDLE, binding_path: Path | None = None, repository: Pa
         "classification_categories": {category:sum(row["classification"]["category"] == category for row in ledger) for category in ("direct_candidate_unresolved", "cross_product_split_candidate_unresolved") if any(row["classification"]["category"] == category for row in ledger)},
     }
     check(inventory["counts"] == counts, "inventory counts do not match classification records")
+    inventory_selection={
+        "cohort_count": len(cohort),
+        "excluded_scf_b_0148_count": len(prior_rows),
+        "residual_count": len(residual["asset_id"]),
+        "selected_count": len(manifest_rows),
+        "id_path_sha_disjoint_from_0148": all(
+            not (set(row[key] for row in manifest_rows) & prior_sets[key])
+            and set(row[key] for row in manifest_rows) <= residual[key]
+            for key in identity_keys
+        ),
+    }
+    check(inventory.get("base_revision") == BASE, "inventory base revision mismatch")
+    check(inventory.get("selection") == inventory_selection, "inventory selection counts/disjointness differ from measured values")
     check(len(binding["verification"]["negative_cases"]) == 4, "Binding negative case count changed")
     artifact_paths={x.removeprefix("scaffold/") for x in binding["artifacts"] if x.startswith("scaffold/")}
     actual={f"{BUNDLE.relative_to(repository / 'scaffold')}/{p.name}" for p in bundle.iterdir() if p.is_file()}
@@ -188,7 +207,7 @@ def main(bundle: Path = BUNDLE, binding_path: Path | None = None, repository: Pa
     print("SCF-B-0150 static validation passed: 208 cohort, 52 exclusion, 156 residual, 13 disjoint source/pair records; no execution/authority promotion.")
 
 def selfcheck():
-    def expect_rejection(name: str, mutate, update_bundle_digest: bool = True):
+    def expect_rejection(name: str, expected_message: str, mutate, update_bundle_digest: bool = True):
         with tempfile.TemporaryDirectory(prefix="scf-b-0150-selfcheck-") as temp:
             temp_root=Path(temp)
             bundle=temp_root/BUNDLE.name
@@ -205,14 +224,21 @@ def selfcheck():
                 binding_path.write_text(json.dumps(binding,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
             try:
                 main(bundle=bundle,binding_path=binding_path,repository=ROOT)
-            except (ValueError,KeyError,TypeError,subprocess.CalledProcessError,OSError):
+            except ValueError as exc:
+                check(expected_message in str(exc), f"selfcheck {name} rejected for unexpected reason: {exc}")
                 return
             raise ValueError(f"selfcheck mutation was accepted: {name}")
 
     def overlap(bundle: Path, _binding: Path):
         path=bundle/"selection-manifest.json"
         data=json.loads(path.read_text(encoding="utf-8"))
-        data["rows"][0]["asset_id"]="LEGACY-ASSET-OUTSIDE-COHORT"
+        data["rows"][0]["source_sha256"]="0"*64
+        path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+
+    def wrong_identity_type(bundle: Path, _binding: Path):
+        path=bundle/"selection-manifest.json"
+        data=json.loads(path.read_text(encoding="utf-8"))
+        data["rows"][0]["source_sha256"]=[]
         path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
     def source_digest_drift(bundle: Path, _binding: Path):
@@ -233,11 +259,12 @@ def selfcheck():
         target["sha256"]="0"*64
         binding_path.write_text(json.dumps(data,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
-    expect_rejection("selected item outside residual",overlap)
-    expect_rejection("source digest drift",source_digest_drift)
-    expect_rejection("implementation status promotion",implementation_promotion)
-    expect_rejection("stale Binding upstream",stale_binding_upstream,update_bundle_digest=False)
-    print("SCF-B-0150 selfcheck passed: all four temporary negative mutations were rejected.")
+    expect_rejection("selected item outside residual", "selected source_sha256 overlaps SCF-B-0148 or leaves cohort", overlap)
+    expect_rejection("identity field type", "selection row 1 source_sha256 must be a non-empty string", wrong_identity_type)
+    expect_rejection("source digest drift", "source digest mismatch", source_digest_drift)
+    expect_rejection("implementation status promotion", "implementation/execution/failure claim promoted", implementation_promotion)
+    expect_rejection("stale Binding upstream", "Binding upstream digest stale", stale_binding_upstream, update_bundle_digest=False)
+    print("SCF-B-0150 selfcheck passed: four Binding negative cases and the identity-type guard were rejected for expected reasons.")
 
 def rows_from_bytes(data: bytes):
     out=[]
@@ -251,7 +278,7 @@ def rows_from_bytes(data: bytes):
 if __name__=="__main__":
     try:
         parser=argparse.ArgumentParser()
-        parser.add_argument("--selfcheck",action="store_true",help="run four temporary negative validator checks")
+        parser.add_argument("--selfcheck",action="store_true",help="run temporary validator negative checks")
         args=parser.parse_args()
         main()
         if args.selfcheck:
