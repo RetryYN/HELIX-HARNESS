@@ -35,7 +35,7 @@
     },
     {
       "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
-      "sha256": "24ef4fbd9e798e43c5e454c23e2086dfc0b9d62de24bc3084bf9c58a3cc95616",
+      "sha256": "6df2173e1423a8ba1a6b8ad717009bbe55f0a52a911f0d2927319cc265428aea",
       "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
     },
     {

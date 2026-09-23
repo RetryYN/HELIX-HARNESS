@@ -40,7 +40,7 @@
     },
     {
       "path": "docs/governance/upstream-authority-register-2026-09-14.md",
-      "sha256": "273cb1a1741591845c58a4da9d556275cf83ec047e548b993360de955838509c",
+      "sha256": "18c970f7a0975a9095875dbd4406507f4dcfc82cbaf6bf89a7646f4f6d6da51d",
       "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
     },
     {
