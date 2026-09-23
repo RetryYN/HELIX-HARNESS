@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "cross-product legacy asset research projection (formal product owner not established)",
   "state": "registered",
-  "reason": "Issue #2100 requires the 768 research-record occurrences / 726 unique asset IDs to remain distinct from semantic-review depth and formal adoption. Existing record markers differ by bundle; this projection preserves those declared markers and duplicate accounting without adding a classifier or changing authority.",
+  "reason": "Issue #2100 requires the 768 research-record occurrences / 726 unique asset IDs to remain distinct from semantic-review depth and formal adoption. Existing record markers differ by bundle; this projection preserves those declared markers and duplicate accounting without adding a classifier or changing authority. formal_asset_classification_updated must be a JSON boolean when present; duplicate asset IDs count true or false only when every occurrence agrees, while missing or mixed values remain missing_or_mixed.",
   "upstream": [
     {"path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl", "sha256": "0d14bd9c0ed1192f3b1fd7b573526118dcdb9ffcb58de8065f978b74b236363b", "note": "SCF-B-0145 existing main records; statically projected"},
     {"path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl", "sha256": "ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76", "note": "SCF-B-0107 existing main records; duplicate occurrences preserved"},
@@ -32,7 +32,7 @@
     "Read the 14 fixed existing classification-research.jsonl inputs and preserve the 768 row / 726 unique ID denominator with 42 extra duplicate occurrences accounted for by recomputation",
     "Report existing per-bundle category and depth markers without treating identical category labels as equal semantic-review depth",
     "Keep SCF-B-0142's 35 direct_product_basis occurrences under nonempty all-true not_semantic_analysis markers separate from SCF-B-0141's 26 direct_product_basis selected-span candidates pending human review; report zero false marker occurrences",
-    "Report formal_asset_classification_updated only as an explicit record marker and preserve the 60 unique IDs with a missing or mixed marker",
+    "Report formal_asset_classification_updated only as an explicit boolean record marker, reject any present non-boolean value, and preserve the 60 unique IDs with a missing or mixed marker",
     "Do not change product target, requirement disposition, phase, implementation, failure/degradation, approval, consumer closure, or authority"
   ],
   "connections": {
@@ -76,6 +76,7 @@
     "scope": ["schema_interface", "deterministic_behavior", "negative_case"],
     "oracles": [
       "python3 -B scaffold/legacy-evidence-depth-projection-0149/project.py --check",
+      "python3 -B scaffold/legacy-evidence-depth-projection-0149/project.py --selfcheck",
       "python3 scaffold/tools/scfctl.py validate",
       "python3 scaffold/tools/scfctl.py stale",
       "python3 scaffold/tools/scfctl.py residuals",
@@ -84,6 +85,8 @@
     "negative_cases": [
       "Add a false not_semantic_analysis marker to an SCF-B-0142 direct record in memory; projection rejects mixed markers and reports zero false marker occurrences for source records",
       "Set a record's classification field to a non-object; projection returns a clear ValueError rather than an attribute error",
+      "Set formal_asset_classification_updated to numeric 1; projection rejects it instead of treating it as boolean true",
+      "Give a duplicate asset ID conflicting explicit booleans; aggregation classifies it as missing_or_mixed",
       "SCF-B-0141 selected-span pending-human-review status is not represented as formal adoption"
     ]
   },
