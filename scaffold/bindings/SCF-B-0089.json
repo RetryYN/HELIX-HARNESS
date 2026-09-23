@@ -8,7 +8,7 @@
   "state": "registered",
   "reason": "Wave46で199 unit／564 edgeまで確認された時点の残19 unitから、scope-cycle、refactor、obligation/oracleの境界を比較できる6 unitを選定した。13 role edge、19 semantic atom、6 composite unresolved、7 selected role asset、11 inspected asset、5 missing evidence receiptを固定し、candidate／consumed／examined_not_selected／unexaminedをrole別に保持する。NFR-23／24／26のHARNESS／OS候補だけを記録し、Web／Web-OS直接routing、formal owner、authority、phase admission、current implementation、degradation、consumer closure、acceptance、release、deploymentは生成しない。replacement.issue=0はDraft PR未割当を示すtracker sentinelである。",
   "upstream": [
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "16fbed4af36433a5297999228044cf3fa8eea0a0e7991500449b701b0cb19899", "note": "current governance entry; static boundary only"},
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "e4b0fdd97f83ef8831eec0d17e9df0b0e547a34672432bf410edab38d0037504", "note": "current governance entry; static boundary only"},
     {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "four-product boundary candidate; no routing admission"},
     {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "note": "HARNESS L1 boundary candidate"},
     {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "OS L1 boundary candidate"},

@@ -22,8 +22,8 @@
     {"path": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl", "sha256": "06f4f5c6f331afe7662847461a1165b5b3e6361c23d6c9106fce62952e60fe1f", "note": "SCF-B-0123 existing main records"},
     {"path": "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl", "sha256": "bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad", "note": "SCF-B-0127 existing main records"},
     {"path": "scaffold/legacy-test-design-worker-workflow-0148/classification-research.jsonl", "sha256": "dd2b9923b65fd39c3af0096cbc664676496c31fe40da43ffa7f416671dd4eeab", "note": "SCF-B-0148 existing main records"},
-    {"path": "scaffold/bindings/SCF-B-0141.json", "sha256": "cadad39b3209ca59bcb53c6f88510d126542e44a678444c3dcb3e6ac49e2cd4c", "note": "existing selected-span research contract"},
-    {"path": "scaffold/bindings/SCF-B-0142.json", "sha256": "aee11ed64506e9dbb41bc18081045ced3c49808de155b166124b2ac892d41f3d", "note": "existing path/profile research contract"},
+    {"path": "scaffold/bindings/SCF-B-0141.json", "sha256": "d8f2219721ecafca5178dd28d18ae39f20ab39b371cbc796b7092bd8c2aa98d8", "note": "existing selected-span research contract"},
+    {"path": "scaffold/bindings/SCF-B-0142.json", "sha256": "92dd2937a2737fdcd13aa268cb9d605a8555287ad69f7ecdc6d7dc03194f5d08", "note": "existing path/profile research contract"},
     {"path": "scaffold/legacy-config-product-classification-0141/README.md", "sha256": "953a5841e0e7284fc041a704b5e4ee387f91d0b620637b5408b50d85ec32cd09", "note": "SCF-B-0141 evidence-depth meaning and pending-review boundary"},
     {"path": "scaffold/legacy-research-assets-product-classification-0142/README.md", "sha256": "d3c19ca0293dd4e13e5ddf47b1d084d77d37bf35e7bb3d3268b1587b68b5ad18", "note": "SCF-B-0142 mechanical profile and non-promotion boundary"}
   ],

@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "16fbed4af36433a5297999228044cf3fa8eea0a0e7991500449b701b0cb19899",
+      "sha256": "e4b0fdd97f83ef8831eec0d17e9df0b0e547a34672432bf410edab38d0037504",
       "note": "current governance entry; static boundary only"
     },
     {
