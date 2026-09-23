@@ -9,7 +9,7 @@
     "phase_updated": false,
     "successor_assignment": null
   },
-  "base_revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+  "base_revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
   "derivation": {
     "archive_access": "fixed BASE Git objects only; no archive path execution",
     "generated_classification_read": false,
@@ -20,7 +20,7 @@
   "four_product_current_main_evidence": {
     "approval_decision": {
       "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "rows": {
         "HELIX-HARNESS": {
           "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
@@ -106,7 +106,7 @@
     },
     "product_boundary": {
       "path": "docs/concept/product-boundary.md",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "rows": {
         "HELIX-HARNESS": {
           "blob": "9c13c646ed9e1f5e62a038d1b796880661e62c90",
@@ -3004,7 +3004,7 @@
           "HELIX-OS",
           "HELIX-Web-OS"
         ],
-        "note": "bootstrap candidates name HELIX-OS and HELIX-Web-OS; the bundle path-group heuristic alone would place this smoke fixture in the OS candidate set",
+        "note": "bundle retains this as multi_product_conflict: the source describes weekday staging deployment, a smoke-suite gate, and on-call paging after repeated health-check failure without identifying HELIX-OS project/CI operation versus HELIX-Web-OS service deployment/monitoring; bootstrap independently lists both candidates, while the smoke path group suggests OS only; neither candidate is adopted as formal authority",
         "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/prompts/fixture3-notes.txt"
       }
     ],

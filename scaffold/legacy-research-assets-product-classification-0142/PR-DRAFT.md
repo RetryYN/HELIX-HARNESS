@@ -1,22 +1,11 @@
-# Draft PR: SCF-B-0142 research assets product classification
+# PR: 旧research asset 57件を四製品責務候補として仮登録する
 
-## 目的
+`docs/research/assets/**` 配下の未研究57件について、固定BASE `a577a7cddd1405de27bf01d22b050eb2acaa9ba9` のdisposition、phase bootstrap、archive source object、MANIFESTを照合し、研究候補を `SCF-B-0142` として仮登録する。対象ID／path集合は `inventory.json` に固定し、正式product、phase、implementation、successor authorityは付与しない。
 
-旧 `docs/research/assets/**` に残る57件を、現行main `7afee33ae892fe1a3cf1085fac4e02d923ece01d` から研究対象として固定する。Kimi review lane、S4 bench、smoke rerunにまたがる実験入力・出力・判定receiptを、source semantic span、四製品責務候補、phase候補、実装／縮退状態、failure／consumer closureに分離して記録する。
+分類はpath groupに基づく機械的な候補整理であり、個別sourceのsemantic spanを確定しない。source excerptは先頭8行の機械抽出と明記する。fixture3-notes原文が説明する平日のstaging deploy、smoke suite gate、health check連続失敗時のon-call通知は、HELIX-OSのproject/CI運用とHELIX-Web-OSのservice配備/監視のどちらか特定できない。4製品責務境界を比較し、bootstrapの両候補列挙とsmoke path groupのOS示唆を別証拠としてcounterevidenceに記録する。
 
-## 結果
+main 609件と、依頼時点の#2097 HEAD `d233e6e99f705439043a07f0a96bdd9e535a288a` の固定snapshot 8件を、asset ID／source path／source SHA-256／identity tripleで照合した。#2094 HEAD `862060c0` はmainへ統合済みのためmain corpusに一度だけ含む。対象57件との重複、#2097との重複はいずれも0件。投影unionは674 ID/path/identity records、669 distinct source SHA-256。
 
-- 対象57件。正確なID集合とsource path集合は `inventory.json` の `research_scope` に収録。
-- `direct_product_basis=36`、`multi_product_conflict=16`、`insufficient_basis=5`。
-- 50 wave入力を静的走査し、対象直接edgeは0件。
-- `independent-source-audit.py` は固定BASE dispositionから対象を再導出し、57 source全体（58,243 bytes／1,181 lines）をblob／disposition／MANIFESTのSHAで照合。phase、decision/read-after、failure/consumer、wave、四製品L1/approvalとの独立joinも記録。
-- current main 496件、#2090 `f075c91c...` 新規41件、#2094 `e5fc691c...` 新規72件とID／source path／source SHA／identity tripleを照合し、対象重複とPR新規間重複はすべて0件。今回を加えた投影unionは666 ID/path records。
-- `authority_effect=none`、`formal_asset_classification_updated=false`、`new_build_allowed=false`。
+`research-union-snapshot.json` は比較対象JSONLのGit blob・byte数・SHA-256・identity tupleを固定し、Git objectが利用可能な場合は実byteとの一致を検査する。比較対象が利用できない／異なる場合はsnapshot上の記録を根拠にstaleをfail-closeする。#2097の将来HEADには自動追随しない。
 
-## 検証
-
-`independent-source-audit.py`、`generate.py`、`validate.py`、`selfcheck.py`、`py_compile`、`scfctl validate/stale/residuals`、`git diff --check` を実行する。旧archive内の実行可能資産は実行しない。
-
-## 残る判断
-
-product owner／boundary受入れ、phase admission、successor選定、実装・未実装・縮退の確定、consumer closure、正式asset分類は未解決のまま人間判断へ残す。
+検証済み: independent source audit、deterministic generate、validator、38 negative cases、py_compile、`git diff --check`。`scfctl validate/stale/residuals` はa577へのbranch rebase後に実行する。旧archive runtime／test／CIは実行しない。

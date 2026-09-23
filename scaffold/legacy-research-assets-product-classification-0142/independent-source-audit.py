@@ -13,7 +13,7 @@ import subprocess
 from collections import Counter, defaultdict
 from pathlib import Path
 
-BASE = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
+BASE = "a577a7cddd1405de27bf01d22b050eb2acaa9ba9"
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / "scaffold/legacy-research-assets-product-classification-0142/independent-source-audit.json"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
@@ -62,7 +62,7 @@ PRODUCTS = {
 
 
 def run_git(*args: str) -> bytes:
-    return subprocess.check_output(["git", *args])
+    return subprocess.check_output(["git", *args], cwd=ROOT)
 
 
 def git_bytes(path: str) -> bytes:
@@ -308,7 +308,7 @@ def main() -> None:
             "source_path": record["source_path"],
             "candidate_products": record["phase"]["candidate_product_targets"],
             "candidate_phase_targets": record["phase"]["candidate_phase_targets"],
-            "note": "bootstrap candidates name HELIX-OS and HELIX-Web-OS; the bundle path-group heuristic alone would place this smoke fixture in the OS candidate set",
+            "note": "bundle retains this as multi_product_conflict: the source describes weekday staging deployment, a smoke-suite gate, and on-call paging after repeated health-check failure without identifying HELIX-OS project/CI operation versus HELIX-Web-OS service deployment/monitoring; bootstrap independently lists both candidates, while the smoke path group suggests OS only; neither candidate is adopted as formal authority",
         }
         for record in records
         if record["phase"]["candidate_product_targets"]

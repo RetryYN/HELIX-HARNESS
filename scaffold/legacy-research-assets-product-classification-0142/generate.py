@@ -10,9 +10,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-research-assets-product-classification-0142"
 BINDING = ROOT / "scaffold/bindings/SCF-B-0142.json"
-BASE_REVISION = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
-PR_2090 = "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e"
-PR_2094 = "e5fc691c33f182f036048904b699e448795c2e20"
+SNAPSHOT = BUNDLE / "research-union-snapshot.json"
+SNAPSHOT_SHA256 = "sha256:4ad0a0d393ed8e0d334354fe0449ad167a3762251f709e969e30e3e5fdaaece9"
+BASE_REVISION = "a577a7cddd1405de27bf01d22b050eb2acaa9ba9"
+PR_2097 = "d233e6e99f705439043a07f0a96bdd9e535a288a"
 BINDING_ID = "SCF-B-0142"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
@@ -58,18 +59,16 @@ WAVE_PATHS = tuple(
     else f"scaffold/legacy-semantic-review-wave{n}/legacy-requirement-direct-semantic-review-wave{n}.jsonl"
     for n in range(1, 51)
 )
-MAIN_RESEARCH_PATHS = tuple(
-    sorted(
-        p
-        for p in subprocess.check_output(
-            ["git", "ls-tree", "-r", "--name-only", BASE_REVISION], text=True
-        ).splitlines()
-        if p.startswith("scaffold/") and p.endswith("/classification-research.jsonl")
-    )
-)
+def git_names(revision: str) -> list[str]:
+    try:
+        return subprocess.check_output(["git", "ls-tree", "-r", "--name-only", revision], text=True, cwd=ROOT).splitlines()
+    except subprocess.CalledProcessError as exc:
+        raise AssertionError(f"E_INPUT_STALE: pinned revision unavailable: {revision}") from exc
+
+
+MAIN_RESEARCH_PATHS = tuple(sorted(p for p in git_names(BASE_REVISION) if p.startswith("scaffold/") and p.endswith("/classification-research.jsonl")))
 OPEN_RESEARCH = {
-    PR_2090: "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
-    PR_2094: "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
+    PR_2097: "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
 }
 CORE_INPUTS = (
     DISPOSITION,
@@ -101,11 +100,17 @@ def row_digest(value: object) -> str:
 
 
 def git_bytes(revision: str, path: str) -> bytes:
-    return subprocess.check_output(["git", "show", f"{revision}:{path}"])
+    try:
+        return subprocess.check_output(["git", "show", f"{revision}:{path}"], cwd=ROOT)
+    except subprocess.CalledProcessError as exc:
+        raise AssertionError(f"E_INPUT_STALE: pinned Git object unavailable: {revision}:{path}") from exc
 
 
 def git_blob(revision: str, path: str) -> str:
-    return subprocess.check_output(["git", "rev-parse", f"{revision}:{path}"], text=True).strip()
+    try:
+        return subprocess.check_output(["git", "rev-parse", f"{revision}:{path}"], text=True, cwd=ROOT).strip()
+    except subprocess.CalledProcessError as exc:
+        raise AssertionError(f"E_INPUT_STALE: pinned Git object unavailable: {revision}:{path}") from exc
 
 
 def json_rows(revision: str, path: str) -> list[tuple[int, dict]]:
@@ -142,9 +147,59 @@ def static_ref(revision: str, path: str) -> dict:
     return {"revision": revision, "path": path, "blob": git_blob(revision, path), "bytes": len(data), "sha256": tagged(data), "read_mode": "git_object_static_read_only"}
 
 
+def build_research_snapshot() -> dict:
+    entries = [(BASE_REVISION, path) for path in MAIN_RESEARCH_PATHS] + list(OPEN_RESEARCH.items())
+    prior = None
+    if SNAPSHOT.exists():
+        prior_bytes = SNAPSHOT.read_bytes()
+        if tagged(prior_bytes) != SNAPSHOT_SHA256:
+            raise AssertionError("E_INPUT_STALE: existing vendored research snapshot digest mismatch")
+        prior = json.loads(prior_bytes)
+    records = []
+    for revision, path in entries:
+        try:
+            data = git_bytes(revision, path)
+            blob = git_blob(revision, path)
+        except AssertionError as exc:
+            if not str(exc).startswith("E_INPUT_STALE:") or prior is None:
+                raise
+            old = next((row for row in prior.get("records", []) if row.get("revision") == revision and row.get("path") == path), None)
+            if old is None:
+                raise AssertionError(f"E_INPUT_STALE: no vendored snapshot for {revision}:{path}") from exc
+            records.append(old)
+            continue
+        rows = [json.loads(line) for line in data.decode().splitlines() if line.strip()]
+        identities = sorted([
+            row.get("asset_id", ""),
+            row.get("source_path") or (row.get("source_exact") or {}).get("source_path") or "",
+            ((row.get("source_exact") or {}).get("sha256") or row.get("source_sha256") or ""),
+        ] for row in rows)
+        if any(not all(item) for item in identities):
+            raise AssertionError(f"research identity incomplete in {revision}:{path}")
+        records.append({"revision": revision, "path": path, "blob": blob, "bytes": len(data), "sha256": tagged(data), "identities": identities})
+    return {"schema_revision": 1, "records": records}
+
+
+def snapshot_ref(revision: str, path: str) -> dict:
+    snapshot = json.loads(SNAPSHOT.read_text())
+    row = next((entry for entry in snapshot["records"] if entry["revision"] == revision and entry["path"] == path), None)
+    if row is None:
+        raise AssertionError(f"E_INPUT_STALE: no vendored research snapshot for {revision}:{path}")
+    try:
+        data = git_bytes(revision, path)
+        blob = git_blob(revision, path)
+    except AssertionError as exc:
+        if not str(exc).startswith("E_INPUT_STALE:"):
+            raise
+    else:
+        if len(data) != row["bytes"] or tagged(data) != row["sha256"] or blob != row["blob"]:
+            raise AssertionError(f"E_INPUT_STALE: pinned Git bytes differ from vendored snapshot {revision}:{path}")
+    return {"revision": revision, "path": path, "blob": row["blob"], "bytes": row["bytes"], "sha256": row["sha256"], "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available"}
+
+
 def archive_tree(path: str) -> tuple[str, str, str]:
     archive = ARCHIVE_PREFIX + path
-    rows = subprocess.check_output(["git", "ls-tree", BASE_REVISION, "--", archive], text=True).splitlines()
+    rows = subprocess.check_output(["git", "ls-tree", BASE_REVISION, "--", archive], text=True, cwd=ROOT).splitlines()
     if len(rows) != 1:
         raise AssertionError(f"archive path missing or ambiguous: {archive}")
     left, entry = rows[0].split("\t", 1)
@@ -175,7 +230,7 @@ def source_exact(asset: dict) -> dict:
         start, end = 1, min(8, len(lines))
         anchor_lines = lines[start - 1 : end]
         anchor = {
-            "status": "static_semantic_span",
+            "status": "mechanical_prefix_excerpt_not_semantic_span",
             "marker": anchor_lines[0][:240],
             "line_start": start,
             "line_end": end,
@@ -187,7 +242,7 @@ def source_exact(asset: dict) -> dict:
             unread.append([end + 1, len(lines)])
         coverage = {"source_line_count": len(lines), "anchor_line_count": end - start + 1, "coverage_ratio": round((end - start + 1) / len(lines), 6), "unread_line_ranges": unread}
     else:
-        anchor = {"status": "empty_source_no_semantic_span", "marker": None, "line_start": 0, "line_end": 0, "line_text": [], "line_text_sha256": tagged(b"")}
+        anchor = {"status": "empty_source_no_excerpt", "marker": None, "line_start": 0, "line_end": 0, "line_text": [], "line_text_sha256": tagged(b"")}
         coverage = {"source_line_count": 0, "anchor_line_count": 0, "coverage_ratio": 0.0, "unread_line_ranges": []}
     return {
         "source_path": path,
@@ -210,16 +265,18 @@ def source_exact(asset: dict) -> dict:
 
 def profile(path: str, line_count: int) -> tuple[str, list[str], str]:
     if line_count == 0:
-        return "insufficient_basis", [], "empty source artifact has no semantic span for a product claim"
+        return "insufficient_basis", [], "empty source artifact has no excerpt for a product claim"
+    if path.endswith("/fixture3-notes.txt"):
+        return "multi_product_conflict", ["HELIX-OS", "HELIX-Web-OS"], "source says the staging deploy runs on weekdays, requires a green smoke suite, and pages on-call after two health-check failures, but does not identify whether this is HELIX-OS project/CI operation or HELIX-Web-OS service deployment/monitoring; the four-product boundaries distinguish these responsibilities, while bootstrap independently lists both OS and Web-OS candidates and the smoke path group only suggests OS"
     if "/kimi-s4-bench-" in path:
-        return "multi_product_conflict", ["HELIX-HARNESS", "HELIX-OS"], "S4 bench evidence spans HARNESS verification contract and OS worker execution control"
-    return "direct_product_basis", ["HELIX-OS"], "review/smoke lane evidence concerns worker admission, provider activity, and runtime evidence under OS control"
+        return "multi_product_conflict", ["HELIX-HARNESS", "HELIX-OS"], "S4 bench evidence is a path-group candidate spanning HARNESS and OS; per-asset ownership remains unresolved"
+    return "direct_product_basis", ["HELIX-OS"], "review/smoke path group suggests OS; per-asset ownership remains unresolved"
 
 
 def input_digests() -> list[dict]:
     inputs = [(BASE_REVISION, path) for path in CORE_INPUTS]
-    inputs += [(BASE_REVISION, path) for path in MAIN_RESEARCH_PATHS]
-    inputs += list(OPEN_RESEARCH.items())
+    research_inputs = [(BASE_REVISION, path) for path in MAIN_RESEARCH_PATHS] + list(OPEN_RESEARCH.items())
+    inputs += research_inputs
     result = []
     seen = set()
     for revision, path in inputs:
@@ -227,17 +284,36 @@ def input_digests() -> list[dict]:
         if key in seen:
             continue
         seen.add(key)
-        data = git_bytes(revision, path)
-        result.append({"revision": revision, "path": path, "blob": git_blob(revision, path), "bytes": len(data), "sha256": tagged(data), "read_mode": "git_object_static_read_only"})
+        if (revision, path) in research_inputs:
+            result.append(snapshot_ref(revision, path))
+        else:
+            try:
+                data = git_bytes(revision, path)
+                result.append({"revision": revision, "path": path, "blob": git_blob(revision, path), "bytes": len(data), "sha256": tagged(data), "read_mode": "git_object_static_read_only"})
+            except AssertionError as exc:
+                if not str(exc).startswith("E_INPUT_STALE:"):
+                    raise
+                raise
     return result
 
 
 def research_sets() -> dict:
+    snapshot = json.loads(SNAPSHOT.read_text())
     def all_records(revision: str) -> list[dict]:
-        paths = [p for p in subprocess.check_output(["git", "ls-tree", "-r", "--name-only", revision], text=True).splitlines() if p.startswith("scaffold/") and p.endswith("/classification-research.jsonl")]
         records = []
-        for path in paths:
-            records.extend(json.loads(line) for line in git_bytes(revision, path).decode().splitlines() if line.strip())
+        refs = [entry for entry in snapshot["records"] if entry["revision"] == revision]
+        if not refs:
+            raise AssertionError(f"E_INPUT_STALE: no vendored research snapshot for {revision}")
+        for entry in refs:
+            try:
+                data = git_bytes(revision, entry["path"])
+                if len(data) != entry["bytes"] or tagged(data) != entry["sha256"] or git_blob(revision, entry["path"]) != entry["blob"]:
+                    raise AssertionError(f"pinned research bytes differ from snapshot: {revision}:{entry['path']}")
+                records.extend(json.loads(line) for line in data.decode().splitlines() if line.strip())
+            except AssertionError as exc:
+                if not str(exc).startswith("E_INPUT_STALE:"):
+                    raise
+                records.extend({"asset_id": item[0], "source_path": item[1], "source_sha256": item[2]} for item in entry["identities"])
         return records
 
     def identity(row: dict) -> tuple[str, str, str]:
@@ -259,13 +335,12 @@ def research_sets() -> dict:
         return result
 
     main = unique_by_id(all_records(BASE_REVISION))
-    p2090 = unique_by_id(all_records(PR_2090))
-    p2094 = unique_by_id(all_records(PR_2094))
+    p2097 = unique_by_id(all_records(PR_2097))
     main_ids = set(main)
     main_paths = {value[1] for value in main.values()}
     main_shas = {value[2] for value in main.values()}
     main_identities = set(main.values())
-    pr_values = {"pr2090": p2090, "pr2094": p2094}
+    pr_values = {"pr2097": p2097}
     new = {name: {aid: value for aid, value in values.items() if aid not in main_ids} for name, values in pr_values.items()}
     new_ids = {name: set(values) for name, values in new.items()}
     new_paths = {name: {value[1] for value in values.values()} for name, values in new.items()}
@@ -273,8 +348,7 @@ def research_sets() -> dict:
     new_identities = {name: set(values.values()) for name, values in new.items()}
     return {
         "main": {"record_count": len(main), "asset_count": len(main_ids), "source_count": len(main_paths), "sha256_count": len(main_shas), "ids": main_ids, "paths": main_paths, "sha256s": main_shas, "identities": main_identities},
-        "pr2090": {"ids": set(p2090), "paths": {value[1] for value in p2090.values()}, "sha256s": {value[2] for value in p2090.values()}, "identities": set(p2090.values())},
-        "pr2094": {"ids": set(p2094), "paths": {value[1] for value in p2094.values()}, "sha256s": {value[2] for value in p2094.values()}, "identities": set(p2094.values())},
+        "pr2097": {"ids": set(p2097), "paths": {value[1] for value in p2097.values()}, "sha256s": {value[2] for value in p2097.values()}, "identities": set(p2097.values())},
         "new": {name: {"ids": new_ids[name], "paths": new_paths[name], "sha256s": new_shas[name], "identities": new_identities[name], "records": new[name]} for name in new},
     }
 
@@ -309,7 +383,7 @@ def build_records() -> tuple[list[dict], list[dict], dict]:
         approval = {p: receipt(BASE_REVISION, APPROVAL, APPROVAL_MARKERS[p]) for p in PRODUCTS}
         product_basis = []
         for p in products:
-            product_basis.append({"product": p, "boundary": boundary[p], "l1": l1[p], "semantic_span": {"source_path": asset["source_path"], "line_start": exact["semantic_anchor"]["line_start"], "line_end": exact["semantic_anchor"]["line_end"]}})
+            product_basis.append({"product": p, "boundary": boundary[p], "l1": l1[p], "mechanical_excerpt": {"source_path": asset["source_path"], "line_start": exact["semantic_anchor"]["line_start"], "line_end": exact["semantic_anchor"]["line_end"], "not_semantic_analysis": True}})
         disposition = {"path": DISPOSITION, "line": disp_line, "row_sha256": row_digest(asset), "asset_id": asset["asset_id"], "source_path": asset["source_path"], "source_sha256": "sha256:" + asset["source_sha256"], "asset_class": asset.get("asset_class"), "disposition": asset.get("disposition"), "product_target": asset.get("product_target"), "implementation_status": asset.get("implementation_status"), "consumer_refs": sorted(asset.get("consumer_refs", [])), "decision_record_ref": asset.get("decision_record_ref"), "read_after_record_ref": asset.get("read_after_record_ref")}
         decisions_for_asset = [{"path": DECISIONS, "line": n, "row_sha256": row_digest(row), "decision_id": row.get("decision_id"), "disposition": row.get("disposition")} for n, row in decisions if row.get("asset_id") == asset["asset_id"]]
         read_after_for_asset = [{"path": READ_AFTER, "line": n, "row_sha256": row_digest(row), "result": row.get("result"), "digest_match": row.get("digest_match"), "consumer_match": row.get("consumer_match")} for n, row in read_after if row.get("asset_id") == asset["asset_id"]]
@@ -320,7 +394,7 @@ def build_records() -> tuple[list[dict], list[dict], dict]:
             "source_path": asset["source_path"],
             "source_exact": exact,
             "asset_ledger": {"disposition": disposition, "bootstrap": {"path": PHASE, "line": phase_line, "row_sha256": row_digest(phase), "artifact_evidence_kind": phase.get("artifact_evidence_kind"), "product_classification_status": phase.get("product_classification_status"), "candidate_product_targets": sorted(phase.get("candidate_product_targets", [])), "phase_classification_status": phase.get("phase_classification_status"), "candidate_phase_targets": sorted(phase.get("candidate_phase_targets", [])), "legacy_implementation_status": phase.get("legacy_implementation_status"), "implementation_evidence_state": phase.get("implementation_evidence_state"), "unresolved": sorted(phase.get("unresolved", []))}},
-            "classification": {"category": category, "candidate_products": products, "product_basis": product_basis, "counterevidence": [] if category == "direct_product_basis" else (["empty_source_no_semantic_span"] if category == "insufficient_basis" else ["HARNESS verification meaning and OS execution meaning remain distinct"]), "reason": reason},
+            "classification": {"category": category, "candidate_products": products, "product_basis": product_basis, "counterevidence": (["source-specific ambiguity: weekday staging deployment, smoke-suite gate, on-call paging after repeated health-check failure does not identify internal HELIX project/CI operation (HELIX-OS) versus Web service deployment/monitoring (HELIX-Web-OS); bootstrap independently lists both candidates; smoke path group suggests OS only; neither candidate is formally adopted"] if asset["source_path"].endswith("/fixture3-notes.txt") else ([] if category == "direct_product_basis" else (["empty_source_no_excerpt"] if category == "insufficient_basis" else ["HARNESS and OS meanings remain distinct; path group is not per-asset ownership proof"]))), "reason": reason},
             "boundary_evidence": {"product_boundary": {"path": BOUNDARY, "blob": git_blob(BASE_REVISION, BOUNDARY), "sha256": tagged(git_bytes(BASE_REVISION, BOUNDARY)), "read_mode": "git_object_static_read_only", "product_rows": boundary}, "l1": l1, "approval": {"path": APPROVAL, "blob": git_blob(BASE_REVISION, APPROVAL), "sha256": tagged(git_bytes(BASE_REVISION, APPROVAL)), "rows": approval}},
             "phase_evidence": {"candidate_phase_targets": sorted(phase.get("candidate_phase_targets", [])), "bootstrap_status": phase.get("phase_classification_status"), "formal_phase_admission": False, "phase_status": "research_candidate_unresolved" if phase.get("candidate_phase_targets") else "unresolved", "source": {"path": PHASE, "line": phase_line, "row_sha256": row_digest(phase)}},
             "implementation_evidence": {"status": "unknown", "unimplemented_status": "unknown", "degradation_status": "unknown", "implementation_evidence_state": "document_present", "legacy_execution_performed": False, "source_claims_are_not_execution_proof": True, "consumer_closure_status": "pending"},
@@ -337,17 +411,18 @@ def build_records() -> tuple[list[dict], list[dict], dict]:
 
 
 def write_outputs() -> None:
+    snapshot = build_research_snapshot()
+    SNAPSHOT.write_text(json.dumps(snapshot, ensure_ascii=False, sort_keys=True, indent=2) + "\n")
     records, wave_refs, summary = build_records()
     records.sort(key=lambda row: row["asset_id"])
     output = "".join(json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for row in records).encode()
     sets = research_sets()
     main = sets["main"]
-    p2090 = sets["pr2090"]
-    p2094 = sets["pr2094"]
+    p2097 = sets["pr2097"]
     target_ids, target_paths = summary["target_ids"], summary["target_paths"]
     target_sha256s = {record["source_exact"]["sha256"] for record in records}
     target_identities = {(record["asset_id"], record["source_path"], record["source_exact"]["sha256"]) for record in records}
-    pr_names = ("pr2090", "pr2094")
+    pr_names = ("pr2097",)
     new = sets["new"]
     new_union_ids = set().union(*(new[name]["ids"] for name in pr_names))
     new_union_paths = set().union(*(new[name]["paths"] for name in pr_names))
@@ -364,7 +439,7 @@ def write_outputs() -> None:
                 "identity_triples": len(left_assets["identities"] & right_assets["identities"]),
             }
     target_overlaps = {}
-    for name, current in (("current_main", main), ("pr2090", p2090), ("pr2094", p2094)):
+    for name, current in (("current_main", main), ("pr2097", p2097)):
         target_overlaps[name] = {
             "asset_ids": len(target_ids & current["ids"]),
             "source_paths": len(target_paths & current["paths"]),
@@ -389,7 +464,7 @@ def write_outputs() -> None:
     inventory = {
         "schema_revision": 1,
         "binding_id": BINDING_ID,
-        "artifacts": ["scaffold/bindings/SCF-B-0142.json", "scaffold/legacy-research-assets-product-classification-0142/README.md", "scaffold/legacy-research-assets-product-classification-0142/PR-DRAFT.md", "scaffold/legacy-research-assets-product-classification-0142/generate.py", "scaffold/legacy-research-assets-product-classification-0142/validate.py", "scaffold/legacy-research-assets-product-classification-0142/selfcheck.py", "scaffold/legacy-research-assets-product-classification-0142/independent-source-audit.py", audit_rel_path, "scaffold/legacy-research-assets-product-classification-0142/inventory.json", "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl"],
+        "artifacts": ["scaffold/bindings/SCF-B-0142.json", "scaffold/legacy-research-assets-product-classification-0142/README.md", "scaffold/legacy-research-assets-product-classification-0142/PR-DRAFT.md", "scaffold/legacy-research-assets-product-classification-0142/generate.py", "scaffold/legacy-research-assets-product-classification-0142/validate.py", "scaffold/legacy-research-assets-product-classification-0142/selfcheck.py", "scaffold/legacy-research-assets-product-classification-0142/independent-source-audit.py", audit_rel_path, "scaffold/legacy-research-assets-product-classification-0142/research-union-snapshot.json", "scaffold/legacy-research-assets-product-classification-0142/inventory.json", "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl"],
         "base_revision": BASE_REVISION,
         "base_source_mode": "all fixed inputs and archive evidence bytes from fixed BASE Git objects",
         "independent_source_audit": {"path": audit_rel_path, "sha256": tagged(audit_data), "record_count": 57, "scope_derivation": "fixed BASE disposition; generated classification, generator, and validator are not audit inputs"},
@@ -402,8 +477,7 @@ def write_outputs() -> None:
         "wave_evidence": {"scanned_input_count": len(wave_refs), "target_edge_count": sum(r["wave_evidence"]["edge_count"] for r in records), "direct_edge_status": "none", "input_paths": [r["path"] for r in wave_refs]},
         "research_union": {
             "current_main": {"revision": BASE_REVISION, "asset_count": len(main["ids"]), "source_count": len(main["paths"]), "source_sha256_count": len(main["sha256s"]), "target_overlap": target_overlaps["current_main"]},
-            "pr2090": {"revision": PR_2090, "new_asset_count": len(new["pr2090"]["ids"]), "new_source_count": len(new["pr2090"]["paths"]), "new_source_sha256_count": len(new["pr2090"]["sha256s"]), "target_overlap": target_overlaps["pr2090"]},
-            "pr2094": {"revision": PR_2094, "new_asset_count": len(new["pr2094"]["ids"]), "new_source_count": len(new["pr2094"]["paths"]), "new_source_sha256_count": len(new["pr2094"]["sha256s"]), "target_overlap": target_overlaps["pr2094"]},
+            "pr2097": {"revision": PR_2097, "new_asset_count": len(new["pr2097"]["ids"]), "new_source_count": len(new["pr2097"]["paths"]), "new_source_sha256_count": len(new["pr2097"]["sha256s"]), "target_overlap": target_overlaps["pr2097"]},
             "open_new_pairwise_overlap": pair_overlaps,
             "open_new_source_sha256_aliases": sha_aliases,
             "target_source_sha256_count": len(target_sha256s),
@@ -412,7 +486,7 @@ def write_outputs() -> None:
             "projected_union_identity_triple_count": len(main["identities"] | new_union_identities | target_identities),
             "projected_union_source_sha256_count": len(main["sha256s"] | new_union_sha256s | target_sha256s),
         },
-        "overlap_status": {"target_vs_main": target_overlaps["current_main"], "target_vs_pr2090": target_overlaps["pr2090"], "target_vs_pr2094": target_overlaps["pr2094"], "open_new_pairwise": pair_overlaps, "all_asset_id_path_sha_identity_counts_zero": all(not any(value.values()) for value in target_overlaps.values()) and all(not any(value.values()) for value in pair_overlaps.values())},
+        "overlap_status": {"target_vs_main": target_overlaps["current_main"], "target_vs_pr2097": target_overlaps["pr2097"], "open_new_pairwise": pair_overlaps, "all_asset_id_path_sha_identity_counts_zero": all(not any(value.values()) for value in target_overlaps.values()) and all(not any(value.values()) for value in pair_overlaps.values())},
         "authority_boundary": {"authority_effect": "none", "formal_asset_classification_updated": False, "formal_product_authority": None, "formal_implementation_status": "unknown", "phase_updated": False, "successor_assignment": None, "new_build_allowed": False, "read_mode": "static_git_object_only"},
         "input_digests": upstream,
         "binding_upstream_paths": binding_upstream,
@@ -429,14 +503,14 @@ def write_outputs() -> None:
         "product": "HELIX-OS",
         "owner_candidate": "四製品product-boundary研究（正式owner未解決）",
         "state": "registered",
-        "reason": "旧research asset 57件をGit object静的readでsource span、四製品L1/boundary、phase、実装状態、failure、consumerを分離研究する。正式分類、authority、successor、buildを生成しない。",
+        "reason": "旧research asset 57件をGit object静的readで機械抽出excerpt、四製品L1/boundary、phase、実装状態、failure、consumerを分離研究する。正式分類、authority、successor、buildを生成しない。",
         "upstream": binding_upstream,
         "role": "legacy research assets static product-boundary research",
         "obligations": ["固定BASE source blob／MANIFEST／ledger digestを照合する", "独立auditでsource／phase／decision／failure／consumer／waveと四製品L1をjoinする", "四製品候補とformal authorityを分離する", "implementation／phase／consumer closureを未確定として保持する", "mainとopen PRのresearch unionをID／source path／source SHA256で検査する"],
-        "connections": {"boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority", "consumers": ["四製品product-boundary reviewer", "phase and implementation evidence reviewer", "root next asset batch"], "dependencies": ["fixed BASE disposition and phase ledgers", "fixed BASE archive MANIFEST", "current main research union", "open PR #2090 and #2094 HEAD research files"]},
+        "connections": {"boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority", "consumers": ["四製品product-boundary reviewer", "phase and implementation evidence reviewer", "root next asset batch"], "dependencies": ["fixed BASE disposition and phase ledgers", "fixed BASE archive MANIFEST", "current main research union including merged #2090 and #2094", "fixed historical #2097 HEAD research snapshot"]},
         "operations": {"allowed": ["read fixed BASE and pinned PR Git objects statically", "write research scaffold and registered Binding", "run deterministic generator/validator/selfcheck/scfctl"], "forbidden": ["execute old-generation archive source/runtime/test/hook/adapter/CI", "旧archiveは実行しない", "promote formal product/phase/implementation/consumer authority", "merge/close/deploy"]},
         "artifacts": inventory["artifacts"],
-        "verification": {"evidence_kind": "scaffold", "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"], "oracles": ["validator independently derives the fixed BASE target set and does not import generator output as an oracle", "independent-source-audit.py independently joins all 57 source blobs, disposition, phase, decision/read-after, wave, failure/consumer, and four current-main L1 records", "validator compares source blob/type/mode/bytes/SHA/MANIFEST/ledger and four product boundary/L1 receipts", "validator checks current main 496 and open PR #2090 new 41, #2094 new 72 with target ID/path/SHA and pairwise new-union overlaps", "selfcheck executes exact negative cases and expected error codes", "scfctl validate/stale/residuals and git diff --check"], "negative_cases": ["target omission or duplicate", "source and anchor digest tamper", "phase or implementation promotion", "history/consumer and boundary tamper", "authority or overlap promotion", "input/binding/output/independent-audit digest tamper", "archive mode or MANIFEST mismatch", "malformed or duplicate-key JSON"]},
+        "verification": {"evidence_kind": "scaffold", "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"], "oracles": ["validator independently derives the fixed BASE target set and does not import generator output as an oracle", "independent-source-audit.py independently joins all 57 source blobs, disposition, phase, decision/read-after, wave, failure/consumer, and four current-main L1 records", "validator compares source blob/type/mode/bytes/SHA/MANIFEST/ledger and four product boundary/L1 receipts", "validator checks current main research union including merged #2090/#2094 and fixed historical #2097 HEAD snapshot with target ID/path/SHA and pairwise new-union overlaps", "selfcheck executes exact negative cases and expected error codes", "scfctl validate/stale/residuals and git diff --check"], "negative_cases": ["record/inventory/Binding exact shape and history/bootstrap/phase/human judgment tamper", "strict bool/int/float types; null/list/missing fail-close", "binding state/operations/replacement authority promotion", "declared target/wave count and real overlap flag tamper", "source and anchor digest tamper", "phase or implementation promotion", "input/output/audit digest tamper", "archive mode/MANIFEST and malformed/duplicate-key JSON"]},
         "replacement": {"role_target": None, "formal_artifacts": [], "issue": 0, "status": "pending"},
         "created": "2026-09-23",
         "updated": "2026-09-23",

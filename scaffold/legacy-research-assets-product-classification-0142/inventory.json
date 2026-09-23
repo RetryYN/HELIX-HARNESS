@@ -9,6 +9,7 @@
     "scaffold/legacy-research-assets-product-classification-0142/selfcheck.py",
     "scaffold/legacy-research-assets-product-classification-0142/independent-source-audit.py",
     "scaffold/legacy-research-assets-product-classification-0142/independent-source-audit.json",
+    "scaffold/legacy-research-assets-product-classification-0142/research-union-snapshot.json",
     "scaffold/legacy-research-assets-product-classification-0142/inventory.json",
     "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl"
   ],
@@ -22,7 +23,7 @@
     "read_mode": "static_git_object_only",
     "successor_assignment": null
   },
-  "base_revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+  "base_revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
   "base_source_mode": "all fixed inputs and archive evidence bytes from fixed BASE Git objects",
   "binding_id": "SCF-B-0142",
   "binding_upstream_paths": [
@@ -353,8 +354,18 @@
     },
     {
       "note": "固定Git objectの静的read-only根拠。静的read-only参照のみ。旧archiveは実行しない",
+      "path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
+      "sha256": "0d14bd9c0ed1192f3b1fd7b573526118dcdb9ffcb58de8065f978b74b236363b"
+    },
+    {
+      "note": "固定Git objectの静的read-only根拠。静的read-only参照のみ。旧archiveは実行しない",
       "path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
       "sha256": "ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76"
+    },
+    {
+      "note": "固定Git objectの静的read-only根拠。静的read-only参照のみ。旧archiveは実行しない",
+      "path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
+      "sha256": "a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b"
     },
     {
       "note": "固定Git objectの静的read-only根拠。静的read-only参照のみ。旧archiveは実行しない",
@@ -398,9 +409,9 @@
     }
   ],
   "classification_counts": {
-    "direct_product_basis": 36,
+    "direct_product_basis": 35,
     "insufficient_basis": 5,
-    "multi_product_conflict": 16
+    "multi_product_conflict": 17
   },
   "generator_contract": {
     "archive_regular_blob_required": true,
@@ -423,7 +434,7 @@
     "path": "scaffold/legacy-research-assets-product-classification-0142/independent-source-audit.json",
     "record_count": 57,
     "scope_derivation": "fixed BASE disposition; generated classification, generator, and validator are not audit inputs",
-    "sha256": "sha256:512e46ccc29f8ff3f13c283d0d8168756c5b6aa5e63f1a11c1d547617b108d5f"
+    "sha256": "sha256:cfdf27f4897210bd62946e64fcfa861f6fb01e5255f26911d7726f447a0775f4"
   },
   "input_digests": [
     {
@@ -431,7 +442,7 @@
       "bytes": 4857919,
       "path": "docs/governance/legacy-asset-disposition.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
     },
     {
@@ -439,7 +450,7 @@
       "bytes": 6311877,
       "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
     },
     {
@@ -447,7 +458,7 @@
       "bytes": 109547,
       "path": "docs/governance/legacy-asset-decisions.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
     },
     {
@@ -455,7 +466,7 @@
       "bytes": 29632,
       "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"
     },
     {
@@ -463,7 +474,7 @@
       "bytes": 13307,
       "path": "docs/concept/product-boundary.md",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
     },
     {
@@ -471,7 +482,7 @@
       "bytes": 4096,
       "path": "docs/helix-harness/L1-planning/product-intent.md",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
     },
     {
@@ -479,7 +490,7 @@
       "bytes": 4938,
       "path": "docs/helix-os/L1-planning/system-intent.md",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
     },
     {
@@ -487,7 +498,7 @@
       "bytes": 3559,
       "path": "docs/helix-web/L1-planning/product-intent.md",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756"
     },
     {
@@ -495,7 +506,7 @@
       "bytes": 3018,
       "path": "docs/helix-web-os/L1-planning/system-intent.md",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
     },
     {
@@ -503,7 +514,7 @@
       "bytes": 4479,
       "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
     },
     {
@@ -511,7 +522,7 @@
       "bytes": 7759,
       "path": "docs/governance/new-generation-start-here.md",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
     },
     {
@@ -519,7 +530,7 @@
       "bytes": 7991,
       "path": "docs/governance/legacy-asset-reuse-control.md",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
     },
     {
@@ -527,7 +538,7 @@
       "bytes": 6545,
       "path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5"
     },
     {
@@ -535,7 +546,7 @@
       "bytes": 5951,
       "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"
     },
     {
@@ -543,7 +554,7 @@
       "bytes": 478316,
       "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6"
     },
     {
@@ -551,7 +562,7 @@
       "bytes": 20904,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b"
     },
     {
@@ -559,7 +570,7 @@
       "bytes": 32211,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce"
     },
     {
@@ -567,7 +578,7 @@
       "bytes": 35219,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55"
     },
     {
@@ -575,7 +586,7 @@
       "bytes": 33848,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7"
     },
     {
@@ -583,7 +594,7 @@
       "bytes": 38724,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a"
     },
     {
@@ -591,7 +602,7 @@
       "bytes": 48334,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4"
     },
     {
@@ -599,7 +610,7 @@
       "bytes": 38977,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f"
     },
     {
@@ -607,7 +618,7 @@
       "bytes": 42401,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0"
     },
     {
@@ -615,7 +626,7 @@
       "bytes": 43249,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e"
     },
     {
@@ -623,7 +634,7 @@
       "bytes": 47456,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef"
     },
     {
@@ -631,7 +642,7 @@
       "bytes": 36787,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0"
     },
     {
@@ -639,7 +650,7 @@
       "bytes": 38598,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566"
     },
     {
@@ -647,7 +658,7 @@
       "bytes": 43388,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f"
     },
     {
@@ -655,7 +666,7 @@
       "bytes": 37074,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199"
     },
     {
@@ -663,7 +674,7 @@
       "bytes": 37546,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953"
     },
     {
@@ -671,7 +682,7 @@
       "bytes": 42337,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6"
     },
     {
@@ -679,7 +690,7 @@
       "bytes": 41267,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac"
     },
     {
@@ -687,7 +698,7 @@
       "bytes": 80309,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15"
     },
     {
@@ -695,7 +706,7 @@
       "bytes": 62299,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave19.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:93024399f21cf03c439a81935f473b07e57e0827efb39ce05c0be64a7432a258"
     },
     {
@@ -703,7 +714,7 @@
       "bytes": 78126,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave20.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:e7983f9a07bd4ca939450e034b24499daaeff889317e7789779d82a90adafe49"
     },
     {
@@ -711,7 +722,7 @@
       "bytes": 99977,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave21.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:8b726497d90cd4c430cafb5646765099af5898c1fd4200b693412b95ac1e0264"
     },
     {
@@ -719,7 +730,7 @@
       "bytes": 63604,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave22.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:f86ec2357fc2a79f18310a09bf8eee7cbabf5e620d86d671aec6f76987826dcc"
     },
     {
@@ -727,7 +738,7 @@
       "bytes": 43312,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423"
     },
     {
@@ -735,7 +746,7 @@
       "bytes": 42556,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave24.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:bda37af1258af965f5137d063ba134b3185eaec7f1d88ba03d64a0e94efcb455"
     },
     {
@@ -743,7 +754,7 @@
       "bytes": 41987,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave25.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:d30e7658f2d82448f56b85a516c416b1b1ddf4f14c82a592b71842d2e5f37bb3"
     },
     {
@@ -751,7 +762,7 @@
       "bytes": 49437,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave26.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:e196c2d6abae0db6f00faa0502356a7bdff6de234bfe5a504dfdd5e6bebb699b"
     },
     {
@@ -759,7 +770,7 @@
       "bytes": 73404,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6"
     },
     {
@@ -767,7 +778,7 @@
       "bytes": 108402,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40"
     },
     {
@@ -775,7 +786,7 @@
       "bytes": 107633,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29"
     },
     {
@@ -783,7 +794,7 @@
       "bytes": 76823,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave30.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:a7e3e9d86d91fbd783cc5581611dc7e7f9a7f199a03e9d312f01f24fd8c4613f"
     },
     {
@@ -791,7 +802,7 @@
       "bytes": 69557,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave31.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:51d54950943f7bc251a1bc22a103a2d3b81dc9190cdd778cce0178d857039383"
     },
     {
@@ -799,7 +810,7 @@
       "bytes": 145447,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave32.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:e9e51ed364e9f76cb02f7b66f364f87486ac95aaa43fd010645c789fcecd09fe"
     },
     {
@@ -807,7 +818,7 @@
       "bytes": 153339,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f"
     },
     {
@@ -815,7 +826,7 @@
       "bytes": 215239,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave34.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da"
     },
     {
@@ -823,7 +834,7 @@
       "bytes": 184459,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave35.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:02713e03967810fb7ba6faf6b7c9dd561c45fbd36c23972317d8603c1fde2b12"
     },
     {
@@ -831,7 +842,7 @@
       "bytes": 130645,
       "path": "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523"
     },
     {
@@ -839,7 +850,7 @@
       "bytes": 48233,
       "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a"
     },
     {
@@ -847,7 +858,7 @@
       "bytes": 46439,
       "path": "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8"
     },
     {
@@ -855,7 +866,7 @@
       "bytes": 84316,
       "path": "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:c94785daaef0f3a2546e3d7a906e606d499a81e180d65dcc2c5d7ffd04996c8d"
     },
     {
@@ -863,7 +874,7 @@
       "bytes": 59816,
       "path": "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:c98bf42916ef053050799e289bec8b28b7af3a0d62d2dc9e6adb30fdb606b3a8"
     },
     {
@@ -871,7 +882,7 @@
       "bytes": 55975,
       "path": "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:03222010e1e8f67e4846ce006adb604fc3742b88d2e39e6eab01123f288563c5"
     },
     {
@@ -879,7 +890,7 @@
       "bytes": 64863,
       "path": "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:95ff19ec877bb847510ee5f99565816e42bb59ffb60627145de03c2d24e56072"
     },
     {
@@ -887,7 +898,7 @@
       "bytes": 66938,
       "path": "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:293962d91807a1c7f4e553e57db1fa854f1a904f34c4a53eee86d6dbb1ae9982"
     },
     {
@@ -895,7 +906,7 @@
       "bytes": 164754,
       "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:2fd638f0dc975fc03790f03d34b579ba5513a1b8420d8c3b09c2c53b108a38f6"
     },
     {
@@ -903,7 +914,7 @@
       "bytes": 80687,
       "path": "scaffold/legacy-semantic-review-wave45/legacy-requirement-direct-semantic-review-wave45.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:aa5328123645c1b8dc90dc2f04ff3ac007dfbdeda599bd66ccb6ad14441cebc6"
     },
     {
@@ -911,7 +922,7 @@
       "bytes": 69076,
       "path": "scaffold/legacy-semantic-review-wave46/legacy-requirement-direct-semantic-review-wave46.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:ff965e2316e4af3fe3f1be85674e879ad9cb57d209f67abec32575af95ac975c"
     },
     {
@@ -919,7 +930,7 @@
       "bytes": 84971,
       "path": "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:853ec5f2b3784a5711d28c9a4246aff7f0b57bd438d5c84d02bb587d52554f2f"
     },
     {
@@ -927,7 +938,7 @@
       "bytes": 49159,
       "path": "scaffold/legacy-semantic-review-wave48/legacy-requirement-direct-semantic-review-wave48.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:5f318d3ba422359305392c305efc851630ca435374974494ccd7cf79e7d42fb0"
     },
     {
@@ -935,7 +946,7 @@
       "bytes": 57244,
       "path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:e1d924c576ac36a51750758ac429b3457f658a8b0f62e802fa2ce7372740c356"
     },
     {
@@ -943,122 +954,117 @@
       "bytes": 16257,
       "path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
       "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5"
+    },
+    {
+      "blob": "6ef250a1a70f03bbe73712f7014ab251b229f07a",
+      "bytes": 1915977,
+      "path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
+      "sha256": "sha256:0d14bd9c0ed1192f3b1fd7b573526118dcdb9ffcb58de8065f978b74b236363b"
     },
     {
       "blob": "4760a0719ca361e2df051980ee2502902d34f78c",
       "bytes": 2034109,
       "path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
-      "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76"
+    },
+    {
+      "blob": "e84f6179cf8fbe99b38b1788c83d3eaefe88ee29",
+      "bytes": 1185770,
+      "path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
+      "sha256": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b"
     },
     {
       "blob": "a1b568ec674d6bc284f7ebb1f3497e4d8059b8b6",
       "bytes": 988739,
       "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
-      "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138"
     },
     {
       "blob": "548fbeced70ad4fc4275f42868fd0c044e546d65",
       "bytes": 1381401,
       "path": "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
-      "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:db407121029c9074e0679adf82e309caca9d7a33fabf7c6db23941c0b80e4251"
     },
     {
       "blob": "a9acacc754518eb5c46105ca8d3bc781a4c1f53f",
       "bytes": 3173082,
       "path": "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl",
-      "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829"
     },
     {
       "blob": "0847f077797af0708b4f5ef1b7055291d06649ff",
       "bytes": 3023227,
       "path": "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl",
-      "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:ed5a673d065daf3c7254ea8812a4c3989b04dbb65855999c43e42139dc1b2104"
     },
     {
       "blob": "71eae8b08865520ed6eec362de8d9d77670c8728",
       "bytes": 1695783,
       "path": "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
-      "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:c4b769a2f2a2ce6852390a6d400ce819546f0d55ba0e48587e050d8e0955b9ee"
     },
     {
       "blob": "0fe0ea2ea108f217ca1b076195ef2c04bde5d9a2",
       "bytes": 1313490,
       "path": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
-      "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204"
     },
     {
       "blob": "e2f85c2becd63d8a6e5596a71bf5d968513e6850",
       "bytes": 2663419,
       "path": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
-      "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:06f4f5c6f331afe7662847461a1165b5b3e6361c23d6c9106fce62952e60fe1f"
     },
     {
       "blob": "f2987efe0d42b1570557ad1bceeae907792e71ac",
       "bytes": 405609,
       "path": "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl",
-      "read_mode": "git_object_static_read_only",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
       "sha256": "sha256:bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad"
     },
     {
-      "blob": "e84f6179cf8fbe99b38b1788c83d3eaefe88ee29",
-      "bytes": 1185770,
-      "path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
-      "read_mode": "git_object_static_read_only",
-      "revision": "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e",
-      "sha256": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b"
-    },
-    {
-      "blob": "6ef250a1a70f03bbe73712f7014ab251b229f07a",
-      "bytes": 1915977,
-      "path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
-      "read_mode": "git_object_static_read_only",
-      "revision": "e5fc691c33f182f036048904b699e448795c2e20",
-      "sha256": "sha256:0d14bd9c0ed1192f3b1fd7b573526118dcdb9ffcb58de8065f978b74b236363b"
+      "blob": "66f2c039382b5f3871166e24e64905edd888503f",
+      "bytes": 77318,
+      "path": "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
+      "read_mode": "vendored_snapshot_git_object_bytes_verified_when_available",
+      "revision": "d233e6e99f705439043a07f0a96bdd9e535a288a",
+      "sha256": "sha256:9aeec30cf9bd5b1a8fcc8f3e89c1fda9322ad88b46c423569ce538f60637a85f"
     }
   ],
-  "output_sha256": "sha256:7a77621fdb62318119eddd3ac8c0881f6df24ccaba117ff7529cf5d429d7f8e8",
+  "output_sha256": "sha256:488d795223c73386da579ea7018583f2276ea22dc333852fdd646f1a1bbacb99",
   "overlap_status": {
     "all_asset_id_path_sha_identity_counts_zero": true,
-    "open_new_pairwise": {
-      "pr2090_vs_pr2094": {
-        "asset_ids": 0,
-        "identity_triples": 0,
-        "source_paths": 0,
-        "source_sha256": 0
-      }
-    },
+    "open_new_pairwise": {},
     "target_vs_main": {
       "asset_ids": 0,
       "identity_triples": 0,
       "source_paths": 0,
       "source_sha256": 0
     },
-    "target_vs_pr2090": {
-      "asset_ids": 0,
-      "identity_triples": 0,
-      "source_paths": 0,
-      "source_sha256": 0
-    },
-    "target_vs_pr2094": {
+    "target_vs_pr2097": {
       "asset_ids": 0,
       "identity_triples": 0,
       "source_paths": 0,
@@ -1196,10 +1202,10 @@
   },
   "research_union": {
     "current_main": {
-      "asset_count": 496,
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
-      "source_count": 496,
-      "source_sha256_count": 496,
+      "asset_count": 609,
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
+      "source_count": 609,
+      "source_sha256_count": 608,
       "target_overlap": {
         "asset_ids": 0,
         "identity_triples": 0,
@@ -1207,33 +1213,13 @@
         "source_sha256": 0
       }
     },
-    "open_new_pairwise_overlap": {
-      "pr2090_vs_pr2094": {
-        "asset_ids": 0,
-        "identity_triples": 0,
-        "source_paths": 0,
-        "source_sha256": 0
-      }
-    },
-    "open_new_source_sha256_aliases": [
-      {
-        "asset_ids": [
-          "LEGACY-ASSET-75ABD2CB9DF5B322BB30",
-          "LEGACY-ASSET-F32A51AB0E49C380AD5E"
-        ],
-        "pr": "pr2094",
-        "sha256": "sha256:d37497c3278121598a663564ab38b53f658969717f78decb661ddd11c66551ea",
-        "source_paths": [
-          ".codex/config.toml",
-          "docs/templates/adapter/.codex/config.toml"
-        ]
-      }
-    ],
-    "pr2090": {
-      "new_asset_count": 41,
-      "new_source_count": 41,
-      "new_source_sha256_count": 41,
-      "revision": "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e",
+    "open_new_pairwise_overlap": {},
+    "open_new_source_sha256_aliases": [],
+    "pr2097": {
+      "new_asset_count": 8,
+      "new_source_count": 8,
+      "new_source_sha256_count": 8,
+      "revision": "d233e6e99f705439043a07f0a96bdd9e535a288a",
       "target_overlap": {
         "asset_ids": 0,
         "identity_triples": 0,
@@ -1241,22 +1227,10 @@
         "source_sha256": 0
       }
     },
-    "pr2094": {
-      "new_asset_count": 72,
-      "new_source_count": 72,
-      "new_source_sha256_count": 71,
-      "revision": "e5fc691c33f182f036048904b699e448795c2e20",
-      "target_overlap": {
-        "asset_ids": 0,
-        "identity_triples": 0,
-        "source_paths": 0,
-        "source_sha256": 0
-      }
-    },
-    "projected_union_count": 666,
-    "projected_union_identity_triple_count": 666,
-    "projected_union_source_count": 666,
-    "projected_union_source_sha256_count": 661,
+    "projected_union_count": 674,
+    "projected_union_identity_triple_count": 674,
+    "projected_union_source_count": 674,
+    "projected_union_source_sha256_count": 669,
     "target_source_sha256_count": 53
   },
   "schema_revision": 1,

@@ -8,6 +8,7 @@
     "scaffold/legacy-research-assets-product-classification-0142/selfcheck.py",
     "scaffold/legacy-research-assets-product-classification-0142/independent-source-audit.py",
     "scaffold/legacy-research-assets-product-classification-0142/independent-source-audit.json",
+    "scaffold/legacy-research-assets-product-classification-0142/research-union-snapshot.json",
     "scaffold/legacy-research-assets-product-classification-0142/inventory.json",
     "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl"
   ],
@@ -21,8 +22,8 @@
     "dependencies": [
       "fixed BASE disposition and phase ledgers",
       "fixed BASE archive MANIFEST",
-      "current main research union",
-      "open PR #2090 and #2094 HEAD research files"
+      "current main research union including merged #2090 and #2094",
+      "fixed historical #2097 HEAD research snapshot"
     ]
   },
   "created": "2026-09-23",
@@ -50,7 +51,7 @@
   },
   "owner_candidate": "四製品product-boundary研究（正式owner未解決）",
   "product": "HELIX-OS",
-  "reason": "旧research asset 57件をGit object静的readでsource span、四製品L1/boundary、phase、実装状態、failure、consumerを分離研究する。正式分類、authority、successor、buildを生成しない。",
+  "reason": "旧research asset 57件をGit object静的readで機械抽出excerpt、四製品L1/boundary、phase、実装状態、failure、consumerを分離研究する。正式分類、authority、successor、buildを生成しない。",
   "replacement": {
     "formal_artifacts": [],
     "issue": 0,
@@ -390,8 +391,18 @@
     },
     {
       "note": "固定Git objectの静的read-only根拠。静的read-only参照のみ。旧archiveは実行しない",
+      "path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
+      "sha256": "0d14bd9c0ed1192f3b1fd7b573526118dcdb9ffcb58de8065f978b74b236363b"
+    },
+    {
+      "note": "固定Git objectの静的read-only根拠。静的read-only参照のみ。旧archiveは実行しない",
       "path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
       "sha256": "ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76"
+    },
+    {
+      "note": "固定Git objectの静的read-only根拠。静的read-only参照のみ。旧archiveは実行しない",
+      "path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
+      "sha256": "a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b"
     },
     {
       "note": "固定Git objectの静的read-only根拠。静的read-only参照のみ。旧archiveは実行しない",
@@ -437,20 +448,20 @@
   "verification": {
     "evidence_kind": "scaffold",
     "negative_cases": [
-      "target omission or duplicate",
+      "record/inventory/Binding exact shape and history/bootstrap/phase/human judgment tamper",
+      "strict bool/int/float types; null/list/missing fail-close",
+      "binding state/operations/replacement authority promotion",
+      "declared target/wave count and real overlap flag tamper",
       "source and anchor digest tamper",
       "phase or implementation promotion",
-      "history/consumer and boundary tamper",
-      "authority or overlap promotion",
-      "input/binding/output/independent-audit digest tamper",
-      "archive mode or MANIFEST mismatch",
-      "malformed or duplicate-key JSON"
+      "input/output/audit digest tamper",
+      "archive mode/MANIFEST and malformed/duplicate-key JSON"
     ],
     "oracles": [
       "validator independently derives the fixed BASE target set and does not import generator output as an oracle",
       "independent-source-audit.py independently joins all 57 source blobs, disposition, phase, decision/read-after, wave, failure/consumer, and four current-main L1 records",
       "validator compares source blob/type/mode/bytes/SHA/MANIFEST/ledger and four product boundary/L1 receipts",
-      "validator checks current main 496 and open PR #2090 new 41, #2094 new 72 with target ID/path/SHA and pairwise new-union overlaps",
+      "validator checks current main research union including merged #2090/#2094 and fixed historical #2097 HEAD snapshot with target ID/path/SHA and pairwise new-union overlaps",
       "selfcheck executes exact negative cases and expected error codes",
       "scfctl validate/stale/residuals and git diff --check"
     ],
