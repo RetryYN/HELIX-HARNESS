@@ -12,8 +12,8 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 ## 読込順
 
 1. [Concept入口](../concept/README.md)
-2. [Concept本文](../concept/helix-concept-v4.1.md)と[製品責務境界](../concept/product-boundary.md)
-   - [Concept v4.1・4対象L1の承認decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)
+2. [Concept本文](../concept/helix-concept.md)と[製品責務境界](../concept/product-boundary.md)
+   - 4対象L1の承認は[2026-09-17 decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)に記録されている
 3. [HELIX自体の5大目標候補](../concept/helix-five-goals.md)
 4. [HELIXエージェントの七大原則候補](../concept/helix-principles.md)
 5. 対象製品のL1
@@ -45,10 +45,13 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 repository foundation、5大目標候補、七大原則候補の順に物理統合し、
 Concept／製品責務境界→5大目標→七大原則→対象別L1の読込順へ収束させる。5大目標と七大原則の内容判断は、
 各候補PRのmerge admissionと独立したまま扱う。repository foundationは構造整理の証拠だけで統合済みである。
-Concept v4.1候補は、5大目標をHELIX全体の到達価値、七大原則をエージェント行動規律として接続する。
-この接続から個別要求、workflow、技術選定、authorityを直接生成しない。
+Conceptは[1ファイル](../concept/helix-concept.md)をその場で改訂する。版ごとのファイル、改訂ごとの承認記録、昇格手続きは置かない。
+改訂は人の指示をAIが反映し、本文冒頭の改訂履歴へ記録する。v4.1／v4.2の本文は、承認記録が指す履歴として凍結する。
+Conceptの改訂に紐づく下位文書は見直し対象として示し、作業全体を止めない。v4.3への改訂（2026-09-24）の見直し対象は、
+4対象L1、5大目標、七大原則、製品責務境界である。これらはまだv4.1を親として記載しており、親の付替えと内容差分
+（BRAIN、LABO、Intelligence、Security、CONNECT、Runner／Sandboxの定義を含む）は各文書の改訂で扱う。
 
-Concept v4.1と4対象L1のexact revisionは2026-09-17のdecision recordで承認済みである。
+4対象L1のexact revisionは2026-09-17のdecision recordで承認済みである。
 対象本文内の`candidate`／`awaiting_parent_approval`は承認前snapshotのmetadataであり、現在状態はdecision recordを優先する。
 `L2D-S0-01 scaffold-binding`と`L2D-S0-02 wbs-ledger`の候補は2026-09-19の[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)で承認済みであり、
 候補本文内の`draft_candidate`／`awaiting_human_approval`も同じく承認前snapshotのmetadataとして、decision recordを優先する。

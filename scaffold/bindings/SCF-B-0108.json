@@ -336,7 +336,7 @@
     {
       "note": "fixed BASE Git object input; static read only; no authority promotion",
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "c985bafed3854e82cf4d6b761e52715aa634669f7c9515e94deb557d49edbcf1"
+      "sha256": "16fbed4af36433a5297999228044cf3fa8eea0a0e7991500449b701b0cb19899"
     }
   ],
   "role": "src/lint/ implementation_source 95件について旧source本文と四製品L1／boundary、Wave semantic link、旧history／failure／consumerを静的に突合し、14件の意味review済み候補と81件の未評価分母を再現可能に保持する",

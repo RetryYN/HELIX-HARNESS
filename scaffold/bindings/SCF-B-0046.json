@@ -8,7 +8,7 @@
   "state": "registered",
   "reason": "PHCAP-12/13の旧代表9asset、phase／product候補、現行review／merge contract ref、四製品unit／connection、failure／consumer残差をsource digestとexact spanで静的に束ねる。旧phaseのimplemented／test記述、SCF-B-0003、旧runtime／testは現行implementation、oracle、pass、authority、merge成立へ昇格させない。",
   "upstream": [
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "c985bafed3854e82cf4d6b761e52715aa634669f7c9515e94deb557d49edbcf1", "note": "authority／archive read-only boundary"},
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "16fbed4af36433a5297999228044cf3fa8eea0a0e7991500449b701b0cb19899", "note": "authority／archive read-only boundary"},
     {"path": "docs/governance/phase-capability-inventory.json", "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c", "note": "PHCAP-12/13 phase snapshots and new_build boundary"},
     {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "selected asset disposition／implementation／consumer state"},
     {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "selected phase／product candidate classification"},

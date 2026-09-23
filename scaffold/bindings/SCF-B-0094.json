@@ -8,7 +8,7 @@
   "state": "registered",
   "reason": "Wave48 merge後mainの残8 unitから、platform優先順位、OS adapter／cross-platform smoke、dependency／runtime再現性、Node/Bun cutoverを同じtechnical requirement系列で比較できるTR-04／05／06／11の6 unitを選定した。10 role edge、11 semantic atom、6 composite unresolved、4 selected role asset、8 inspected asset、8 missing evidence receiptを固定し、candidate／consumed／examined_not_selected／unexaminedをrole別に保持する。共有source spanはtyped relationとして残すが、Web／Web-OS直接routing、formal owner、authority、phase admission、current implementation、degradation、consumer closure、acceptance、release、deploymentは生成しない。Wave48 exact HEAD `3feadfbc3be690bed7cf7b98c41a4ab50d40a5c0` と最新main merge base `d340ea82723c01fece5610dceea8eff81e03b686` をrebaseline gateへ固定し、先行HEADまたはmain変更時は停止する。replacement.issue=0はDraft PR未割当を示すtracker sentinelである。",
   "upstream": [
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "c985bafed3854e82cf4d6b761e52715aa634669f7c9515e94deb557d49edbcf1", "note": "current governance entry; static boundary only"},
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "16fbed4af36433a5297999228044cf3fa8eea0a0e7991500449b701b0cb19899", "note": "current governance entry; static boundary only"},
     {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "four-product boundary candidate; no routing admission"},
     {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "note": "HARNESS L1 boundary candidate"},
     {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "OS L1 boundary candidate"},
