@@ -1,0 +1,101 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0149",
+  "kind": "scaffold",
+  "title": "14 legacy asset research bundles evidence-depth projection",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "cross-product legacy asset research projection (formal product owner not established)",
+  "state": "registered",
+  "reason": "Issue #2100 requires the 768 research-record occurrences / 726 unique asset IDs to remain distinct from semantic-review depth and formal adoption. Existing record markers differ by bundle; this projection preserves those declared markers and duplicate accounting without adding a classifier or changing authority.",
+  "upstream": [
+    {"path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl", "sha256": "0d14bd9c0ed1192f3b1fd7b573526118dcdb9ffcb58de8065f978b74b236363b", "note": "SCF-B-0145 existing main records; statically projected"},
+    {"path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl", "sha256": "ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76", "note": "SCF-B-0107 existing main records; duplicate occurrences preserved"},
+    {"path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl", "sha256": "a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b", "note": "SCF-B-0141 selected-span status and category records"},
+    {"path": "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl", "sha256": "237a9cf9bae1963205f58e7a925ded128aa265b0f5f5342a9b8ed57fd907d8a0", "note": "SCF-B-0147 existing main records"},
+    {"path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl", "sha256": "d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138", "note": "SCF-B-0126 existing main records"},
+    {"path": "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl", "sha256": "db407121029c9074e0679adf82e309caca9d7a33fabf7c6db23941c0b80e4251", "note": "SCF-B-0128 existing main records"},
+    {"path": "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl", "sha256": "3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829", "note": "SCF-B-0108 existing main records"},
+    {"path": "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl", "sha256": "488d795223c73386da579ea7018583f2276ea22dc333852fdd646f1a1bbacb99", "note": "SCF-B-0142 path/profile records; not_semantic_analysis marker remains explicit"},
+    {"path": "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl", "sha256": "ed5a673d065daf3c7254ea8812a4c3989b04dbb65855999c43e42139dc1b2104", "note": "SCF-B-0117 existing main records"},
+    {"path": "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl", "sha256": "c4b769a2f2a2ce6852390a6d400ce819546f0d55ba0e48587e050d8e0955b9ee", "note": "SCF-B-0133 existing main records"},
+    {"path": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl", "sha256": "c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204", "note": "SCF-B-0120 existing main records"},
+    {"path": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl", "sha256": "06f4f5c6f331afe7662847461a1165b5b3e6361c23d6c9106fce62952e60fe1f", "note": "SCF-B-0123 existing main records"},
+    {"path": "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl", "sha256": "bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad", "note": "SCF-B-0127 existing main records"},
+    {"path": "scaffold/legacy-test-design-worker-workflow-0148/classification-research.jsonl", "sha256": "dd2b9923b65fd39c3af0096cbc664676496c31fe40da43ffa7f416671dd4eeab", "note": "SCF-B-0148 existing main records"},
+    {"path": "scaffold/bindings/SCF-B-0141.json", "sha256": "ac678330071392aec40c81e309cc8b41c79a789d1f39aafff1c45208a4807aca", "note": "existing selected-span research contract"},
+    {"path": "scaffold/bindings/SCF-B-0142.json", "sha256": "ee0292e665d8bb064a4d2d4a47c99e91cae45c2d7aa295b97da2a0ce09aaaf8b", "note": "existing path/profile research contract"},
+    {"path": "scaffold/legacy-config-product-classification-0141/README.md", "sha256": "953a5841e0e7284fc041a704b5e4ee387f91d0b620637b5408b50d85ec32cd09", "note": "SCF-B-0141 evidence-depth meaning and pending-review boundary"},
+    {"path": "scaffold/legacy-research-assets-product-classification-0142/README.md", "sha256": "d3c19ca0293dd4e13e5ddf47b1d084d77d37bf35e7bb3d3268b1587b68b5ad18", "note": "SCF-B-0142 mechanical profile and non-promotion boundary"}
+  ],
+  "role": "legacy-asset-evidence-depth-projection-768-record-occurrences-0149",
+  "obligations": [
+    "Read the 14 fixed existing classification-research.jsonl inputs and preserve the 768 row / 726 unique ID denominator with 42 extra duplicate occurrences accounted for by recomputation",
+    "Report existing per-bundle category and depth markers without treating identical category labels as equal semantic-review depth",
+    "Keep SCF-B-0142's 35 direct_product_basis occurrences under not_semantic_analysis separate from SCF-B-0141's 26 direct_product_basis selected-span candidates pending human review",
+    "Report formal_asset_classification_updated only as an explicit record marker and preserve the 60 unique IDs with a missing or mixed marker",
+    "Do not change product target, requirement disposition, phase, implementation, failure/degradation, approval, consumer closure, or authority"
+  ],
+  "connections": {
+    "consumers": [
+      "legacy asset product disposition reviewer",
+      "future human product placement and evidence-depth decision input",
+      "evidence-depth projection tracking: Issue #2100 (projection only; no requirement or authority meaning)"
+    ],
+    "dependencies": [
+      "14 existing main research bundles pinned in upstream",
+      "SCF-B-0141 selected-span research contract",
+      "SCF-B-0142 mechanical profile research contract",
+      "legacy asset disposition ledger denominator: 4,020"
+    ],
+    "boundary": "research-only static evidence-depth projection; no semantic classification, formal owner, approval, adoption, implementation, degradation, requirement status, phase authority, or consumer closure effect"
+  },
+  "operations": {
+    "allowed": [
+      "read existing main classification-research.jsonl records",
+      "write this scaffold bundle and Binding on its research branch",
+      "run deterministic projection regeneration, exact comparison, negative check, and scfctl validate/stale/residuals",
+      "run git diff --check and create a local commit on this branch"
+    ],
+    "forbidden": [
+      "execute archive legacy source, runtime, test, CI, workflow, hook, or adapter",
+      "create a semantic classifier or promote mechanical classification to semantic review",
+      "change formal asset, requirement, product, phase, implementation, failure, degradation, consumer, approval, or authority ledgers",
+      "push or create a PR",
+      "merge or close an Issue or PR",
+      "publish, deploy, or release"
+    ]
+  },
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0149.json",
+    "scaffold/legacy-evidence-depth-projection-0149/README.md",
+    "scaffold/legacy-evidence-depth-projection-0149/project.py",
+    "scaffold/legacy-evidence-depth-projection-0149/projection.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "negative_case"],
+    "oracles": [
+      "python3 -B scaffold/legacy-evidence-depth-projection-0149/project.py --check",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "Mutate an SCF-B-0142 direct record's not_semantic_analysis marker to false in memory; projection invariants reject it and source files remain unchanged",
+      "SCF-B-0141 selected-span pending-human-review status is not represented as formal adoption"
+    ]
+  },
+  "replacement": {
+    "role_target": "future formal evidence-depth projection or disposition view",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-23",
+  "updated": "2026-09-23"
+}
