@@ -646,7 +646,7 @@
     },
     {
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/independent-source-audit.json",
-      "sha256": "d32bf05d145445456db156f516952ba90a53cb309e7211117343a1a7d6cffdc1"
+      "sha256": "6915776ebe79c6471f44724b91d0f328b43c2f4f26264ffd468cb4b7da094ce5"
     },
     {
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/semantic-profile.json",
@@ -658,7 +658,7 @@
     },
     {
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json",
-      "sha256": "7bc5ed2dc4307a01d7cd95fd0bdfa0716d1cbd37a99b34d782d62b62e4256069"
+      "sha256": "f4b5fd82731660bf9bb8885ff4b4451b32cf08319aa0f91b09b5e3970cbf268d"
     },
     {
       "path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",

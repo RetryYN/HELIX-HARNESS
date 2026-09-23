@@ -13,8 +13,8 @@ ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-ai-instruction-product-classification-0145"
 BINDING = ROOT / "scaffold/bindings/SCF-B-0145.json"
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
-MAIN = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
-PR2090 = "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e"
+MAIN = "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b"
+PR2090 = "4b6e1bbf122b03fd3531047290161aced34eefda"
 BINDING_ID = "SCF-B-0145"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 PROFILE_PATH = "scaffold/legacy-ai-instruction-product-classification-0145/semantic-profile.json"
@@ -61,7 +61,7 @@ MAIN_CLASSIFICATION_INPUTS = [
 MAIN_INVENTORY_INPUTS = [p.removesuffix("classification-research.jsonl") + "inventory.json" for p in MAIN_CLASSIFICATION_INPUTS]
 SNAPSHOTS = {
     "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-classification-research.jsonl": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
-    "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json": "sha256:7bc5ed2dc4307a01d7cd95fd0bdfa0716d1cbd37a99b34d782d62b62e4256069",
+    "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json": "sha256:f4b5fd82731660bf9bb8885ff4b4451b32cf08319aa0f91b09b5e3970cbf268d",
 }
 PINNED_SNAPSHOT_SOURCE_PATHS = {
     "pr-2090-classification-research.jsonl": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",

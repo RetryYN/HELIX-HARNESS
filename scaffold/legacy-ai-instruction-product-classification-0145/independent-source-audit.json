@@ -54,11 +54,12 @@
     "fixed_disposition_target_set_exact": true,
     "main496_pr2090_pairwise_deduplicated": true,
     "new_target_id_and_path_sha_overlap_zero": true,
+    "pr2092_scf_b_0144_adds_zero_main_ids_and_overlaps_zero_target_ids_or_path_sha": true,
     "profile_line_span_text_exact_for_all_72": true
   },
   "comparison_revisions": {
-    "main": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
-    "pr_2090": "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e"
+    "main": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+    "pr_2090": "4b6e1bbf122b03fd3531047290161aced34eefda"
   },
   "consumer_inventory": {
     "AICR_06_claimed_template_count": 34,
@@ -90,6 +91,16 @@
     "sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
   },
   "formal_asset_classification_updated": false,
+  "main_pr2092_scf_b_0144": {
+    "adds_assets_to_main_union": false,
+    "base_revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+    "main_id_union_added": 0,
+    "reconciliation_count": 36,
+    "reconciliation_ids_in_prior_main": 36,
+    "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+    "target_asset_id_overlap": 0,
+    "target_source_path_sha256_overlap": 0
+  },
   "new_build_allowed": false,
   "prior_pairwise_overlap": {
     "main/pr_2090": {

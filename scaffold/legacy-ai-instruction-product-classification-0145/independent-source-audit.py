@@ -19,8 +19,9 @@ ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-ai-instruction-product-classification-0145"
 REPORT = BUNDLE / "independent-source-audit.json"
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
-MAIN = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
-PR2090 = "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e"
+MAIN = "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b"
+PR2090 = "4b6e1bbf122b03fd3531047290161aced34eefda"
+PREVIOUS_MAIN = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
 ARCHIVE = "archive/legacy-generation-2026-09-14/root/"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
@@ -38,7 +39,10 @@ MAIN_LEDGER_PATHS = [
 ]
 PINNED_SNAPSHOTS = {
     "pr-2090-classification-research.jsonl": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
+    "pr-2090-inventory.json": "sha256:f4b5fd82731660bf9bb8885ff4b4451b32cf08319aa0f91b09b5e3970cbf268d",
 }
+MAIN_0144_INVENTORY = "scaffold/legacy-overlap-reconciliation-0144/inventory.json"
+MAIN_0144_LEDGER = "scaffold/legacy-overlap-reconciliation-0144/classification-reconciliation.jsonl"
 PINNED_SNAPSHOT_SOURCE_PATHS = {
     "pr-2090-classification-research.jsonl": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
     "pr-2090-inventory.json": "scaffold/legacy-config-product-classification-0141/inventory.json",
@@ -131,7 +135,7 @@ def run_audit(bundle: Path) -> dict:
     if sha(data) != PINNED_SNAPSHOTS[snap_name] or data != git(PR2090, PINNED_SNAPSHOT_SOURCE_PATHS[snap_name]):
         raise ValueError("PR #2090 classification snapshot digest drift")
     inv_data = (bundle / "upstream" / "pr-2090-inventory.json").read_bytes()
-    if (sha(inv_data) != "sha256:7bc5ed2dc4307a01d7cd95fd0bdfa0716d1cbd37a99b34d782d62b62e4256069" or
+    if (sha(inv_data) != PINNED_SNAPSHOTS["pr-2090-inventory.json"] or
             inv_data != git(PR2090, PINNED_SNAPSHOT_SOURCE_PATHS["pr-2090-inventory.json"])):
         raise ValueError("PR #2090 inventory snapshot digest drift")
     inventory = parse_json(inv_data, "pr-2090-inventory.json")
@@ -147,6 +151,20 @@ def run_audit(bundle: Path) -> dict:
     counts = {label: len(ids) for label, ids in prior_ids.items()}
     if counts != {"main": 496, "pr_2090": 41}:
         raise ValueError(f"prior set counts changed: {counts}")
+    previous_main_rows = [row for path in MAIN_LEDGER_PATHS for row in parse_jsonl(git(PREVIOUS_MAIN, path), path)]
+    previous_main_ids = {identity(row)[0] for row in previous_main_rows}
+    main_ids = {identity(row)[0] for row in main_rows}
+    main_0144_inventory = parse_json(git(MAIN, MAIN_0144_INVENTORY), MAIN_0144_INVENTORY)
+    main_0144_rows = parse_jsonl(git(MAIN, MAIN_0144_LEDGER), MAIN_0144_LEDGER)
+    main_0144_ids = {row["asset_id"] for row in main_0144_rows}
+    main_0144_paths = {(row["source_identity"]["source_path"], row["source_identity"]["source_sha256"]) for row in main_0144_rows}
+    target_ids = {row["asset_id"] for row in candidates if row["asset_id"] not in EXCLUSIONS}
+    target_paths = {(row["source_path"], row["source_sha256"]) for row in candidates if row["asset_id"] not in EXCLUSIONS}
+    if (main_0144_inventory.get("adds_assets_to_main_union") is not False or
+            main_0144_inventory.get("base_revision") != PREVIOUS_MAIN or len(main_0144_rows) != 36 or
+            main_0144_ids - previous_main_ids or main_ids != previous_main_ids or
+            main_0144_ids & target_ids or main_0144_paths & target_paths):
+        raise ValueError("#2092 SCF-B-0144 reconciliation scope or target overlap changed")
     labels = list(prior_rows)
     pairwise = {}
     for i, left in enumerate(labels):
@@ -272,6 +290,16 @@ def run_audit(bundle: Path) -> dict:
             "main_product_research_ids": counts["main"], "pr_2090_target_ids": counts["pr_2090"],
         },
         "prior_pairwise_overlap": pairwise,
+        "main_pr2092_scf_b_0144": {
+            "revision": MAIN,
+            "base_revision": main_0144_inventory["base_revision"],
+            "reconciliation_count": len(main_0144_rows),
+            "adds_assets_to_main_union": main_0144_inventory["adds_assets_to_main_union"],
+            "reconciliation_ids_in_prior_main": len(main_0144_ids & previous_main_ids),
+            "main_id_union_added": len(main_ids - previous_main_ids),
+            "target_asset_id_overlap": len(main_0144_ids & target_ids),
+            "target_source_path_sha256_overlap": len(main_0144_paths & target_paths),
+        },
         "target_overlap_with_main496_pr2090": {"asset_id": 0, "source_path_sha256": 0},
         "excluded_prior_overlap_rows": [{"asset_id": aid, "source_path": pair[0], "source_sha256": pair[1]} for aid, pair in sorted(EXCLUSIONS.items())],
         "adapter_template_set": {"archive_physical_count": len(template_paths), "target_count": len(target_templates), "exact_set_match": True, "paths": template_paths},
@@ -288,6 +316,7 @@ def run_audit(bundle: Path) -> dict:
             "profile_line_span_text_exact_for_all_72": True,
             "consumer_inventory_aicr06_34_paths_exact": True,
             "main496_pr2090_pairwise_deduplicated": True,
+            "pr2092_scf_b_0144_adds_zero_main_ids_and_overlaps_zero_target_ids_or_path_sha": True,
             "new_target_id_and_path_sha_overlap_zero": True,
         },
     }
