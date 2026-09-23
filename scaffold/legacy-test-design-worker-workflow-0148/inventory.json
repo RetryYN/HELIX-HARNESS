@@ -1,0 +1,846 @@
+{
+  "schema_revision": 1,
+  "binding_id": "SCF-B-0148",
+  "base_revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
+  "base_source_mode": "固定BASE Git objectからのbootstrap ledger・archive source/pair設計・現行L1/phase/consumer evidenceの静的読取り",
+  "scope": {
+    "selection_rule": "legacy-asset-phase-product-classification-bootstrap.jsonlでsource_pathがdocs/test-design/helix/配下、candidate_phase_targetsがPHCAP-07を含み、basenameにworkerまたはworkflowを含む行",
+    "selected_count": 52,
+    "unique_asset_id_count": 52,
+    "unique_path_count": 52,
+    "basename_groups": {
+      "worker": 27,
+      "workflow": 25
+    },
+    "source_declared_layer_counts": {
+      "L6": 2,
+      "L8": 37,
+      "L9": 12,
+      "L10": 1
+    },
+    "candidate_phase_distribution": {
+      "PHCAP-07": 52,
+      "PHCAP-10": 27,
+      "PHCAP-12": 3,
+      "PHCAP-03": 8,
+      "PHCAP-17": 1,
+      "PHCAP-20": 1
+    }
+  },
+  "fixed_inputs": [
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.md",
+      "sha256": "1fdbd85da6a987e945bfaeef97c18696819799fbdbaed09dd3eae410f295508d"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
+      "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"
+    }
+  ],
+  "parent_pairs": [
+    {
+      "path": "docs/design/helix/L6-function-design/worker-context-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-context-authority.md",
+      "blob": "1eee096d9cec6d9cc97ef86269b4aae7c71b5f99",
+      "bytes": 2950,
+      "sha256": "21406d2c7c72520f9928ce5e6ded143f8285c3975a3fb617293965661b01eff3",
+      "title": "worker context authority関数設計",
+      "declared_pair_artifact": "docs/test-design/helix/L6-worker-context-authority-unit-test-design.md",
+      "responsibility_owner": "worker-context-authority",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/worker-independent-review.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-independent-review.md",
+      "blob": "9c4ed22ff28fcb0e47c85f283e374e13dd2888da",
+      "bytes": 1880,
+      "sha256": "5f07d5ee970dfc0cbecec99234f465dd299b2baf33b32c3b1df7e01e15ee21dc",
+      "title": "worker independent review関数設計",
+      "declared_pair_artifact": "docs/test-design/helix/L6-worker-independent-review-unit-test-design.md",
+      "responsibility_owner": "worker-independent-review",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/worker-lifecycle-receipt.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-lifecycle-receipt.md",
+      "blob": "c74a4cf6d330072b177c2a64b15e9cf1c1074c13",
+      "bytes": 1902,
+      "sha256": "13668b1ea2a11eaa648a1093e5571a00707e2517ef997b5d3c7bfce4cee98005",
+      "title": "worker lifecycle receipt関数設計",
+      "declared_pair_artifact": "docs/test-design/helix/L6-worker-lifecycle-receipt-unit-test-design.md",
+      "responsibility_owner": "worker-output-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/cli-workflow-identity-projection.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/cli-workflow-identity-projection.md",
+      "blob": "0487cbbc84ed0a730b993896c1dbee6bfc2d66dd",
+      "bytes": 2841,
+      "sha256": "4efc1c6928b4d7d7ca252cb2f565404d8eac2690e977be9925cd55683b418d1c",
+      "title": "CLI typed workflow identity projection",
+      "declared_pair_artifact": "docs/test-design/helix/L8-cli-workflow-identity-projection-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/current-location-workflow-identity.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/current-location-workflow-identity.md",
+      "blob": "8e1c25e50791d04200a6eb49709d291b1d377adc",
+      "bytes": 1808,
+      "sha256": "012c4b01d350d4abc62256a060010ac0fcd5580bdee1cf9019e0c6c3b988a605",
+      "title": "current-location typed workflow identity境界",
+      "declared_pair_artifact": "docs/test-design/helix/L8-current-location-workflow-identity-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/github-workflow-identity-admission.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/github-workflow-identity-admission.md",
+      "blob": "d1ddd8d00da8b724e4dfa3fced2f06fffa4fa730",
+      "bytes": 4736,
+      "sha256": "260cf5dd8c01256fbeb16cb436f44503e49a9f7c8716abd6a6926687191ba5d7",
+      "title": "GitHub typed workflow identity admission機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-github-workflow-identity-admission-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/github-workflow-identity-contract.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/github-workflow-identity-contract.md",
+      "blob": "9bfa8e8b56c0345fbf5b18c950d22e3079476634",
+      "bytes": 3071,
+      "sha256": "cf46f99a4d5ace7ba11be2d168820b3026365dd3f61bcb68ae49867c5cf54806",
+      "title": "GitHub typed workflow identity contract機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-github-workflow-identity-contract-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/luna-worker-model-registry.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/luna-worker-model-registry.md",
+      "blob": "55bef3c6022981125ad0b582b4f79d5cd3989a09",
+      "bytes": 2525,
+      "sha256": "c283bb1dfdde8dfd98775dda374ea6aa38c9c440656e29a96fbd9f4cdd90e171",
+      "title": "Luna worker model registry機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-luna-worker-model-registry-unit-test-design.md",
+      "responsibility_owner": "codex-native-worker-model-registry",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/plan-registry-workflow-identity-projection.md",
+      "blob": "30695a75d59299d016dc5331fd7fee508c0121a9",
+      "bytes": 2289,
+      "sha256": "0564fb11e44437bdb647b9c1379926ab78d8bcda03ffe9bf30fd796792506c08",
+      "title": "PLAN registry typed workflow identity投影機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-plan-registry-workflow-identity-projection-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/workflow-classification-generated-catalog.md",
+      "blob": "bb17565d1bf4d680e05cb362e686ea22fe802dd5",
+      "bytes": 1679,
+      "sha256": "7e36113ac9ffab933596b10aa10fcb71294e28a6f80454122b0b013316931bde",
+      "title": "workflow分類generated catalog機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-classification-generated-catalog-runtime-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/typed-plan-workflow-identity.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/typed-plan-workflow-identity.md",
+      "blob": "4d07416c4b52cb2dc5f11c5f4e7d0c412611d521",
+      "bytes": 3257,
+      "sha256": "17e2a22a13de799fa78cd43ceb2984faea0e423c1b6a44abd966e29fa91cfbf5",
+      "title": "PLAN typed workflow identity機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-typed-plan-workflow-identity-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/universal-workflow-envelope.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/universal-workflow-envelope.md",
+      "blob": "258167ca7ae2fa94422af488c16bd59870f66062",
+      "bytes": 1101,
+      "sha256": "511192e4979ccf3ace9339471c25bc163ecee3784d3728abe6b8635f7942cf96",
+      "title": "Universal Workflow envelope 機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-universal-workflow-envelope-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "draft"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/visualization-typed-workflow-identity.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/visualization-typed-workflow-identity.md",
+      "blob": "a9c1c0bafe5c32e8df3173d89507c78a5063d77b",
+      "bytes": 2140,
+      "sha256": "eaca3fed007f94cfd93fcb83543ed5d8a48fc95969a31666746fb17cf36059f1",
+      "title": "visualization typed workflow identity projection",
+      "declared_pair_artifact": "docs/test-design/helix/L8-visualization-typed-workflow-identity.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/worker-blind-benchmark.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-blind-benchmark.md",
+      "blob": "2214b5a7f22653938d9cae8d4d8423d69d9f8b76",
+      "bytes": 12968,
+      "sha256": "232a97deb75f0745636dfc20ab0c6093115d3be231dc865659ac91e353e1219c",
+      "title": "worker blind benchmark詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-blind-benchmark-unit-test-design.md",
+      "responsibility_owner": "worker-blind-benchmark",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/worker-context-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-context-authority.md",
+      "blob": "437c4af6cfb52bfb6f28a805f5d51dbecca1fb0c",
+      "bytes": 13659,
+      "sha256": "8818e7af133f2feb2268c6f2c8b04e509735ff330ab8510c2361086a242e6f12",
+      "title": "worker context authority詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-context-authority-unit-test-design.md",
+      "responsibility_owner": "worker-context-authority",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/worker-descriptor-admission.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-descriptor-admission.md",
+      "blob": "a2bc27c01d87c224bcfb7489b379073b5ab0ce8d",
+      "bytes": 3919,
+      "sha256": "da94224a08b075f1a26dff6d715458eb010dc26bd31160235071547b07a0aa88",
+      "title": "worker descriptor admission関数設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-descriptor-admission-runtime-unit-test-design.md",
+      "responsibility_owner": "worker-descriptor-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/worker-descriptor-admission.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-descriptor-admission.md",
+      "blob": "1d443b64c0fe4c9239f8b2f687f1a3be9063998b",
+      "bytes": 14986,
+      "sha256": "e0f5c7bf4ade4605da4330ebd737860324b0d37dc2b85db979461d5a4deef749",
+      "title": "worker descriptor admission詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-descriptor-admission-unit-test-design.md",
+      "responsibility_owner": "worker-descriptor-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/worker-independent-review.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-independent-review.md",
+      "blob": "f7c0d37ccee5bf0b53d12469df95c119cb6b805e",
+      "bytes": 10654,
+      "sha256": "0447d1fbc82fb60577ae58eb939d710290fb7c2d22bdfbf1cd66c725cc734b76",
+      "title": "worker independent review詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-independent-review-unit-test-design.md",
+      "responsibility_owner": "worker-independent-review",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/worker-isolation-broker.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-isolation-broker.md",
+      "blob": "23313caca206d9499e73dfdec23118ec24a2c161",
+      "bytes": 2449,
+      "sha256": "797f7f4660a2bc523febd0cb1325f77b7f61eccb5751864e2c92fbb690a0e932",
+      "title": "worker isolation broker関数設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-isolation-broker-runtime-unit-test-design.md",
+      "responsibility_owner": "worker-isolation-broker",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/worker-isolation-broker.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-broker.md",
+      "blob": "685138e7f4862c491d5499b30c866312fa789a8a",
+      "bytes": 10377,
+      "sha256": "e270bff996249360fdeb29ee4f36e3bf9ab6e27e50a013451f6ece153a5d46d4",
+      "title": "worker isolation broker詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-isolation-broker-unit-test-design.md",
+      "responsibility_owner": "worker-isolation-broker",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/worker-isolation-policy.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-isolation-policy.md",
+      "blob": "d0e5811fc754184dc0db161948fbba3851e2e4ec",
+      "bytes": 7175,
+      "sha256": "152a7a5806001ae1b2e0215d7cd61db14b7c61cbc4b4b501524bda58622716cf",
+      "title": "worker isolation policy詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-isolation-policy-unit-test-design.md",
+      "responsibility_owner": "worker-isolation-policy",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/worker-lifecycle-receipt.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-lifecycle-receipt.md",
+      "blob": "bf635c18b61f0dbc7cd0076911ee4f1abdc25dd1",
+      "bytes": 6947,
+      "sha256": "275fe7149c80d6abbc85aa59b50bfc4c00e1f55bfd783b6cd092557cd8c21ccc",
+      "title": "worker lifecycle receipt詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-lifecycle-receipt-unit-test-design.md",
+      "responsibility_owner": "worker-output-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/worker-output-admission.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-output-admission.md",
+      "blob": "ef2a68e22d1bb87d5eca2b9a0b3716f0285853a0",
+      "bytes": 9052,
+      "sha256": "c6bdc58ce2df0317ce20f95b48d4eda043c385819faa4ec66019ce3a52f52cff",
+      "title": "worker output admission詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-output-admission-unit-test-design.md",
+      "responsibility_owner": "worker-output-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/worker-risk-admission.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-risk-admission.md",
+      "blob": "4865260e52dde4007ad096f13fd7ac5527b6f3de",
+      "bytes": 6720,
+      "sha256": "905bf9deb2538d8c7721a40ae01de4c7ab5b658878df8e4d74060bf7e61af68a",
+      "title": "worker risk admission詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-risk-admission-unit-test-design.md",
+      "responsibility_owner": "worker-risk-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/worker-wrapper-admission.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/worker-wrapper-admission.md",
+      "blob": "5bdea28428edc7e1af2408c45ea07b0df9b1b042",
+      "bytes": 3010,
+      "sha256": "59d21c7a9575fa77bcbf7843ef6534494708e4d4e449ac27aea0dfa9cc7c8e9b",
+      "title": "worker wrapper admission関数設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-wrapper-admission-runtime-unit-test-design.md",
+      "responsibility_owner": "worker-wrapper-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/worker-wrapper-admission.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/worker-wrapper-admission.md",
+      "blob": "212cf06ca7e32e7aabd1b7564be53565f9068d7f",
+      "bytes": 6399,
+      "sha256": "8e69402af66ce4d156562e76f7a68faa135d64ac718c8cc4595bec1d4a3785ad",
+      "title": "worker wrapper admission詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-worker-wrapper-admission-unit-test-design.md",
+      "responsibility_owner": "worker-wrapper-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/workflow-classification-drive-run-projection.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/workflow-classification-drive-run-projection.md",
+      "blob": "128240a162997bc98e7967dd5f5eecddc3603d20",
+      "bytes": 2660,
+      "sha256": "6edaa6548969f00e5fea9047c002c4b303b00214fcf1d67d4f35efbfab335a34",
+      "title": "typed workflow identity drive_runs投影機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-classification-drive-run-projection-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/workflow-classification-legacy-adapter.md",
+      "blob": "97dd8e502e7c72000938f89b2354faf68c90dee2",
+      "bytes": 1944,
+      "sha256": "c14a96c6b0317f01b2714411c8b3c55b877a6a57c18a4f2f5730cbcb5ff7bcb2",
+      "title": "workflow分類legacy input-only adapter機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-classification-legacy-adapter-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/workflow-classification-typed-routing.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/workflow-classification-typed-routing.md",
+      "blob": "641e86976032483aa49bd66c0caf304fbb1a752b",
+      "bytes": 1479,
+      "sha256": "a69afce16b2ba79f0eb65724cc14ed7d3e7cd666379a5d65a54420cec16e8717",
+      "title": "workflow分類typed routing機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-classification-typed-routing-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/workflow-execution-policy-projection.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/workflow-execution-policy-projection.md",
+      "blob": "81d82d007d3e19f6856cec36e875a1eebdc093ab",
+      "bytes": 1362,
+      "sha256": "bed7fc925c0db048621d45d5a5a7c3f19b92f871dc671b13897277b36a72ee0d",
+      "title": "workflow execution policy generated projection機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-execution-policy-projection-runtime-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/workflow-execution-policy-resolution.md",
+      "blob": "1d44ba7a4e8f7b099281abf7ff168cc30269fc39",
+      "bytes": 1405,
+      "sha256": "d1d0ee0ed2062ca3efac0bd9e9b72d65eacd48ffebf60ddca30cc74d7eaa791d",
+      "title": "workflow execution policy resolution機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-execution-policy-resolution-runtime-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/workflow-execution-routing-cli.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/workflow-execution-routing-cli.md",
+      "blob": "8b47403ca6e500eed7ae2c03e2f0153c93d8b2f6",
+      "bytes": 2003,
+      "sha256": "8ac5daeaf4710275d7249a4167adfeb77c90635f576c3a349f9505d57d3aea43",
+      "title": "workflow execution routing CLI機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-execution-routing-cli-runtime-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/workflow-execution-routing-consumer.md",
+      "blob": "48bf1ba4794023f332559e2462504f5881a6d896",
+      "bytes": 2491,
+      "sha256": "318d9cfe16db9488ce36e537319c1150f67b6345a48bd6dcafae09a9d1c6098c",
+      "title": "workflow execution routing consumer機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-execution-routing-consumer-runtime-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/workflow-guide-dynamic-injection.md",
+      "blob": "691cd3b191f20b5ada220f97207eac12f68cb259",
+      "bytes": 3026,
+      "sha256": "2e0d90c9a843bf0e2f79c95737da58094025db8eb70b71192105db039f3f398c",
+      "title": "typed workflow guide生成・bounded dynamic injection機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-guide-dynamic-injection-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/workflow-interview-unresolved.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/workflow-interview-unresolved.md",
+      "blob": "ef62d4f1e921b2fdf982802170ddecf22a46c034",
+      "bytes": 2186,
+      "sha256": "1701e5bd719ba508bd68134cea0a069b4165659dd6a8c5d3649a83b14aea4308",
+      "title": "Workflow interview／unresolved 詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-interview-unresolved-detail-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "draft"
+    },
+    {
+      "path": "docs/design/helix/L6-function-design/workflow-interview-unresolved.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/workflow-interview-unresolved.md",
+      "blob": "b225e2dcce13a3e027caa1ae58d9537994e10b63",
+      "bytes": 1159,
+      "sha256": "affe711fa8b65bc0b39b5a83112b2c328b2103383b931acdb59b599461fceec5",
+      "title": "Workflow interview／unresolved 機能設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-interview-unresolved-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "draft"
+    },
+    {
+      "path": "docs/design/helix/L5-detail/workflow-switch-route-allocation-schema.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/workflow-switch-route-allocation-schema.md",
+      "blob": "2e0555afec97802927eb3708321d443ede38f76a",
+      "bytes": 7483,
+      "sha256": "4b1788f093807b5ef01d842c8a5bd772d47a718fff385b2166f9de8aceb7ecdc",
+      "title": "workflow switching／routing／allocation typed decision schema 詳細設計",
+      "declared_pair_artifact": "docs/test-design/helix/L8-workflow-switch-route-allocation-schema-unit-test-design.md",
+      "responsibility_owner": null,
+      "status": "draft"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/worker-blind-benchmark.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-blind-benchmark.md",
+      "blob": "718f71bb0e58f2e15f54cdf9d56bd80e1638d712",
+      "bytes": 4338,
+      "sha256": "b22b0651a137901df3dee94a57d897cb4c5130205c2bab3f047b72f92f124bce",
+      "title": "worker blind benchmark基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-worker-blind-benchmark-system-test-design.md",
+      "responsibility_owner": "worker-blind-benchmark",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/worker-context-authority.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-context-authority.md",
+      "blob": "3d91c1ef66bb95e0e2771b080a3a2cf1d73a0e80",
+      "bytes": 5022,
+      "sha256": "aca532c939e34f2a4fb6b47f74254ff76a49dfaea1eeb56ff5edd7f3a181acec",
+      "title": "worker context authority基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-worker-context-authority-system-test-design.md",
+      "responsibility_owner": "worker-context-authority",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/worker-descriptor-admission.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-descriptor-admission.md",
+      "blob": "b5234e86c0a35f5e82a0be0d50ee0def2d9ff2f5",
+      "bytes": 6569,
+      "sha256": "add2c2dd82f5f49b36a989f28f70f5549f143c1da6082a7ca8c7980c83629926",
+      "title": "worker descriptor admission基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-worker-descriptor-admission-system-test-design.md",
+      "responsibility_owner": "worker-descriptor-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/worker-independent-review.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-independent-review.md",
+      "blob": "b45479349afd69a48b9b28139e107983e15ad585",
+      "bytes": 3115,
+      "sha256": "9fff293ed71c7a0be0e4dfcd7a5cca70eaacfdbf2cd553a605fd15510a3c99b3",
+      "title": "worker independent review基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-worker-independent-review-system-test-design.md",
+      "responsibility_owner": "worker-independent-review",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/worker-isolation-broker.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-broker.md",
+      "blob": "c2648e1f3bcc28d411b43c389bd4c52a2bc63528",
+      "bytes": 2828,
+      "sha256": "2ae62269bc67bd926c552fb1a418645a157feb0c701f3833494155cb3dabca26",
+      "title": "worker isolation broker基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-worker-isolation-broker-system-test-design.md",
+      "responsibility_owner": "worker-isolation-broker",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/worker-isolation-policy.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-isolation-policy.md",
+      "blob": "59154a4d4392a5b302ccb52c6b6355d88aee5194",
+      "bytes": 2863,
+      "sha256": "8ee84f79e82a3f814bef790f98d7ed3333348566f5ae036dd146a82436ae1552",
+      "title": "worker isolation policy基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-worker-isolation-policy-system-test-design.md",
+      "responsibility_owner": "worker-isolation-policy",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-lifecycle-receipt.md",
+      "blob": "3a94724a5507dcf25387a3147d1d69b4a1dd9a45",
+      "bytes": 2436,
+      "sha256": "d39b3cdc2e7d9f72ad03d0d3db5571a6b0de579fadf0b147b8a6d4f90dc2ed2c",
+      "title": "worker lifecycle receipt基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-worker-lifecycle-receipt-system-test-design.md",
+      "responsibility_owner": "worker-output-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/worker-output-admission.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-output-admission.md",
+      "blob": "e596ab435ac14b95e59f390e0323b4ff8692ba21",
+      "bytes": 2550,
+      "sha256": "b6cd838066b83907cbba6b060ca399fe705db7f6836ff1dc5dc825f6e02e1dba",
+      "title": "worker output admission基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-worker-output-admission-system-test-design.md",
+      "responsibility_owner": "worker-output-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/worker-risk-admission.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-risk-admission.md",
+      "blob": "de312cbbc891354af4936674a49bfa0d08216764",
+      "bytes": 3139,
+      "sha256": "2c7f21df3927123feaeee6ef6ade2b1360ea5e5d0b24e95c121ca7a443cc5fbb",
+      "title": "worker risk admission基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-worker-risk-admission-system-test-design.md",
+      "responsibility_owner": "worker-risk-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/worker-wrapper-admission.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/worker-wrapper-admission.md",
+      "blob": "ea20e13b9436345288b6d9fcf761c605ddcc1ba1",
+      "bytes": 8231,
+      "sha256": "4555959db65fe209bc8a480869c566d89a7366c4b5300ce6dd82b3154d46fdc5",
+      "title": "worker wrapper admission基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-worker-wrapper-admission-system-test-design.md",
+      "responsibility_owner": "worker-wrapper-admission",
+      "status": "confirmed"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/workflow-interview-unresolved.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/workflow-interview-unresolved.md",
+      "blob": "2bf809f0eb7aab61c81c2bc9ac4d761024cf3fc1",
+      "bytes": 2527,
+      "sha256": "58d7cb49ae3bafa49f512a8854b68ae5c3f46a91b2a0d1e5cd7582143bcab552",
+      "title": "Workflow interview／unresolved 基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-workflow-interview-unresolved-system-test-design.md",
+      "responsibility_owner": null,
+      "status": "draft"
+    },
+    {
+      "path": "docs/design/helix/L4-basic-design/workflow-switch-route-allocation-boundary.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/workflow-switch-route-allocation-boundary.md",
+      "blob": "c6a18de9dfb5ae16cee38600c399eeca00b81850",
+      "bytes": 6433,
+      "sha256": "1a843c1d72caeef0782b1263c0c79b2f75ad83e47f2fbf104819646b62deae67",
+      "title": "workflow switching／routing／allocation 基本設計",
+      "declared_pair_artifact": "docs/test-design/helix/L9-workflow-switch-route-allocation-system-test-design.md",
+      "responsibility_owner": null,
+      "status": "draft"
+    },
+    {
+      "path": "docs/design/helix/L3-requirements/github-plan-workflow-governance-requirements.md",
+      "archive_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-plan-workflow-governance-requirements.md",
+      "blob": "f8aab407d1940f5688c0788190b4ae677ea24b65",
+      "bytes": 4508,
+      "sha256": "3de67351ab91fb0626d3c9ad2974b12739f278343f061142f1a839b0a7c6a617",
+      "title": "GitHub PLAN workflow-model governance要件定義",
+      "declared_pair_artifact": "docs/test-design/helix/github-plan-workflow-governance-system-test-design.md",
+      "responsibility_owner": null,
+      "status": "draft"
+    }
+  ],
+  "cohort_denominator": {
+    "worker_workflow_parent_cohort": 208,
+    "reviewed_this_wave": 52,
+    "remaining_unreviewed": 156,
+    "relationship": "This fixed PHCAP-07 subset is 52 of the larger 208-asset worker/workflow review denominator; remainder is not selected into this bundle."
+  },
+  "existing_research_union": {
+    "main_base": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
+    "main_union_count": 609,
+    "disposition": "current-main research candidates only; 0148 target is disjoint; 609+52=661 candidate rows, not a completed disposition"
+  },
+  "open_pr_comparison": {
+    "basis": "static Git object reads at current main and last-observed exact open PR heads; #2094 is merged into main and excluded from open set",
+    "results": [
+      {
+        "pr": 2096,
+        "head": "ab0a1faa4e2b310206b97a786c329334a2a0e151",
+        "path": "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl",
+        "git_blob": "d4ceb0397d8bbfe237d279b07a3e265ab40c3b11",
+        "bytes": 854555,
+        "sha256": "7a77621fdb62318119eddd3ac8c0881f6df24ccaba117ff7529cf5d429d7f8e8",
+        "record_count": 57,
+        "unique_asset_ids": 57,
+        "overlap_id": 0,
+        "overlap_path": 0,
+        "overlap_sha256": 0
+      },
+      {
+        "pr": 2097,
+        "head": "d233e6e99f705439043a07f0a96bdd9e535a288a",
+        "path": "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
+        "git_blob": "66f2c039382b5f3871166e24e64905edd888503f",
+        "bytes": 77318,
+        "sha256": "9aeec30cf9bd5b1a8fcc8f3e89c1fda9322ad88b46c423569ce538f60637a85f",
+        "record_count": 8,
+        "unique_asset_ids": 8,
+        "overlap_id": 0,
+        "overlap_path": 0,
+        "overlap_sha256": 0
+      }
+    ],
+    "aggregate_open_pr_asset_id_overlap": 0,
+    "open_pr_rows_total": 65,
+    "main_plus_open_pr_comparison_population": 674,
+    "target_overlap": 0
+  },
+  "classification_counts": {
+    "direct_candidate_unresolved": 45,
+    "cross_product_split_candidate_unresolved": 5,
+    "insufficient_direct_basis": 2,
+    "formal_product_owner_accepted": 0,
+    "phase_admissions": 0,
+    "implementation_status_known_per_asset": 0,
+    "consumer_closure_complete": 0
+  },
+  "authority_boundary": {
+    "authority_effect": "none",
+    "formal_asset_classification_updated": false,
+    "formal_implementation_status": "unknown",
+    "formal_product_authority": null,
+    "phase_updated": false,
+    "successor_assignment": null,
+    "new_build_allowed": false,
+    "legacy_execution_performed": false
+  },
+  "classification_method": "Each asset is classified against its selected obligation/negative row and declared parent pair. HELIX-OS is a candidate only where source-specific worker authority/isolation/admission or concrete CLI/GitHub/PLAN/DB/registry/execution/routing control appears. HARNESS is a candidate only where normative workflow/interview/envelope semantics are anchored. Both appear only when the same source/pair supports both. Direct basis absent from selected span is insufficient; Web and Web-OS missing support is marked unassessed, not counterevidence.",
+  "evidence_limits": [
+    "The cited legacy test design status describes the document only.",
+    "Test design / oracle citations do not establish test implementation, test execution, pass, current baseline, or acceptance.",
+    "Per-asset implementation/shrinkage/failure/consumer closure remains unknown where exact source evidence was unavailable; phase-level status is contextual only.",
+    "No formal asset disposition, successor, owner, phase admission, requirement adoption, implementation, CI, or consumer closure is recorded."
+  ],
+  "artifacts": [
+    "scaffold/legacy-test-design-worker-workflow-0148/classification-research.jsonl",
+    "scaffold/legacy-test-design-worker-workflow-0148/inventory.json",
+    "scaffold/legacy-test-design-worker-workflow-0148/README.md",
+    "scaffold/legacy-test-design-worker-workflow-0148/PR-DRAFT.md",
+    "scaffold/bindings/SCF-B-0148.json"
+  ],
+  "candidate_product_counts": {
+    "HELIX-OS": 47,
+    "HELIX-HARNESS": 8,
+    "HELIX-Web": 0,
+    "HELIX-Web-OS": 0,
+    "count_is_nonexclusive": true
+  },
+  "web_product_assessment": "No direct support in selected spans; unassessed, not disproved.",
+  "selection_source_revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
+  "current_comparison_main_revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
+  "base_evolution": {
+    "selection_base": "8a9fdc973f3553bea78d022e8d73f109aca526da",
+    "current_main_rebaseline": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
+    "event": "PR #2094 merged into current main after initial inventory. The selected 52 assets and their source identity remain pinned to the initial selection base; overlap checks were rerun against current main. #2094 is not counted as open."
+  },
+  "main_union_components": {
+    "pre_2094_main_union": 537,
+    "merged_pr_2094_records": 72,
+    "current_main_union": 609
+  },
+  "current_main_comparison_inputs": {
+    "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
+    "unique_asset_ids": 609,
+    "research_rows": 651,
+    "asset_ledgers": [
+      {
+        "path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
+        "git_blob": "4760a0719ca361e2df051980ee2502902d34f78c",
+        "bytes": 2034109,
+        "sha256": "ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76",
+        "row_count": 64
+      },
+      {
+        "path": "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
+        "git_blob": "548fbeced70ad4fc4275f42868fd0c044e546d65",
+        "bytes": 1381401,
+        "sha256": "db407121029c9074e0679adf82e309caca9d7a33fabf7c6db23941c0b80e4251",
+        "row_count": 51
+      },
+      {
+        "path": "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl",
+        "git_blob": "a9acacc754518eb5c46105ca8d3bc781a4c1f53f",
+        "bytes": 3173082,
+        "sha256": "3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829",
+        "row_count": 95
+      },
+      {
+        "path": "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl",
+        "git_blob": "0847f077797af0708b4f5ef1b7055291d06649ff",
+        "bytes": 3023227,
+        "sha256": "ed5a673d065daf3c7254ea8812a4c3989b04dbb65855999c43e42139dc1b2104",
+        "row_count": 73
+      },
+      {
+        "path": "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
+        "git_blob": "71eae8b08865520ed6eec362de8d9d77670c8728",
+        "bytes": 1695783,
+        "sha256": "c4b769a2f2a2ce6852390a6d400ce819546f0d55ba0e48587e050d8e0955b9ee",
+        "row_count": 59
+      },
+      {
+        "path": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+        "git_blob": "0fe0ea2ea108f217ca1b076195ef2c04bde5d9a2",
+        "bytes": 1313490,
+        "sha256": "c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204",
+        "row_count": 31
+      },
+      {
+        "path": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+        "git_blob": "e2f85c2becd63d8a6e5596a71bf5d968513e6850",
+        "bytes": 2663419,
+        "sha256": "06f4f5c6f331afe7662847461a1165b5b3e6361c23d6c9106fce62952e60fe1f",
+        "row_count": 59
+      },
+      {
+        "path": "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl",
+        "git_blob": "f2987efe0d42b1570557ad1bceeae907792e71ac",
+        "bytes": 405609,
+        "sha256": "bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad",
+        "row_count": 39
+      },
+      {
+        "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
+        "git_blob": "a1b568ec674d6bc284f7ebb1f3497e4d8059b8b6",
+        "bytes": 988739,
+        "sha256": "d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138",
+        "row_count": 67
+      },
+      {
+        "path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
+        "git_blob": "e84f6179cf8fbe99b38b1788c83d3eaefe88ee29",
+        "bytes": 1185770,
+        "sha256": "a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
+        "row_count": 41
+      },
+      {
+        "path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
+        "git_blob": "6ef250a1a70f03bbe73712f7014ab251b229f07a",
+        "bytes": 1915977,
+        "sha256": "0d14bd9c0ed1192f3b1fd7b573526118dcdb9ffcb58de8065f978b74b236363b",
+        "row_count": 72
+      }
+    ],
+    "target_overlap_id": 0,
+    "target_overlap_source_path": 0,
+    "target_overlap_source_sha256": 0
+  },
+  "overlap_detail": {
+    "main_id_overlap": 0,
+    "main_source_path_overlap": 0,
+    "main_source_sha256_overlap": 0,
+    "open_pr_id_overlap": 0,
+    "open_pr_source_path_overlap": 0,
+    "open_pr_source_sha256_overlap": 0,
+    "basis": "asset_id, source_path, and source_sha256 compared independently against current main 609 and open PR #2096/#2097; all projections are disjoint"
+  },
+  "static_validator": {
+    "selection_manifest": "scaffold/legacy-test-design-worker-workflow-0148/selection-manifest.json",
+    "validator": "scaffold/legacy-test-design-worker-workflow-0148/validate.py",
+    "negative_selfcheck": "scaffold/legacy-test-design-worker-workflow-0148/selfcheck.py",
+    "checks": [
+      "fixed-base bootstrap selection",
+      "source IDs/paths/SHA-256 and source line spans",
+      "classification category and candidate products",
+      "candidate phases and phase admission boundary",
+      "authority boundary and test/consumer evidence boundary"
+    ],
+    "negative_cases": [
+      "omitted asset ID",
+      "changed candidate product",
+      "altered semantic span",
+      "phase admission",
+      "authority escalation"
+    ]
+  }
+}
