@@ -16,7 +16,7 @@
     {"path": "docs/governance/legacy-ir-product-routing-corrections.jsonl", "sha256": "d57dc947f4d2fca1470c22eb6d0b0fe874914ded28401fb7ecafeddfeab230df", "note": "未承認routing correctionの重複確認"},
     {"path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl", "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3", "note": "153件のcandidate unit decomposition"},
     {"path": "docs/governance/audits/source-rebaseline/legacy-ir-product-unit-decomposition-method-2026-09-20.md", "sha256": "4fdb396c3975b1d4e3b05253f4dbcb8921b96d4874a4e83600bbb94eeb35ba14", "note": "unit／connection／shared span規則"},
-    {"path": "docs/governance/audits/source-rebaseline/legacy-ir-product-unit-decomposition-status-2026-09-21.md", "sha256": "4b8315524ff8c9e3d1f7adf9d655f393964092e3bc50e820443ea940451b16af", "note": "decomposition候補の未完状態"},
+    {"path": "docs/governance/audits/source-rebaseline/legacy-ir-product-unit-decomposition-status-2026-09-21.md", "sha256": "67ce37415b83d514c62c26eac3d46810c96613feb65bff8163e0122c7e46513a", "note": "全旧資産評価と個別L3調査の境界を確認。queue18・旧asset consumer未完の保持、reason・role・obligations・verification・replacementへの依拠は不変"},
     {"path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl", "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65", "note": "unit別旧asset candidate poolと未完closure"},
     {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "旧asset 4,020件台帳"},
     {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "note": "旧asset phase／product候補と未実行状態"},
