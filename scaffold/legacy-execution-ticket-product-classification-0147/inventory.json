@@ -117,7 +117,7 @@
       "sha256": "sha256:600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
     }
   ],
-  "output_sha256": "sha256:e3092094de9aaee773a227cefc4756e8ec480073ecceb5990312bf972715e0cc",
+  "output_sha256": "sha256:237a9cf9bae1963205f58e7a925ded128aa265b0f5f5342a9b8ed57fd907d8a0",
   "outputs": [
     "scaffold/bindings/SCF-B-0147.json",
     "scaffold/legacy-execution-ticket-product-classification-0147/README.md",

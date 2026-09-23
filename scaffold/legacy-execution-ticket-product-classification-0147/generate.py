@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import subprocess
 from pathlib import Path
 
@@ -98,6 +99,48 @@ def comparison_summary(rev: str, path: str | None) -> dict:
     return {"revision": rev, "path": path or "all scaffold/*/classification-research.jsonl", "rows": len(rows), "distinct_ids": len(identities)}
 
 
+def direct_reference_kind(path: str) -> str:
+    if path.endswith("/phase-capability-inventory.json"):
+        return "phase_inventory_representative_candidate"
+    if path.endswith("/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"):
+        return "implementation_crosswalk_candidate"
+    if path.endswith("/pre-isolation-revision-delta-source-holding.jsonl"):
+        return "pre_isolation_source_holding"
+    if path.endswith("/source-audit.md"):
+        return "source_audit_reference"
+    if path.endswith("/legacy-rule-requirement-overlap-clusters.jsonl"):
+        return "overlap_cluster_candidate"
+    if path.endswith("/l2-source-register.md") or (path.startswith("docs/helix-") and ("/L2-" in path or "/L11-" in path)):
+        return "current_l2_l11_or_register_connection"
+    if path.endswith("/legacy-asset-disposition.jsonl"):
+        return "source_ledger_entry"
+    if path.endswith("/legacy-asset-phase-product-classification-bootstrap.jsonl"):
+        return "bootstrap_classification_record"
+    if path.startswith("docs/helix-"):
+        return "product_context_reference_only"
+    return "governance_reference_only"
+
+
+def scan_direct_refs(source_path: str) -> tuple[list[dict], dict]:
+    """Find exact candidate basenames in fixed-BASE docs; carry-forward has its own preservation receipt."""
+    basename = source_path.rsplit("/", 1)[-1]
+    pattern = re.compile(r"(?<![A-Za-z0-9_-])" + re.escape(basename) + r"(?![A-Za-z0-9_-])")
+    paths = subprocess.check_output(["git", "ls-tree", "-r", "--name-only", BASE, "docs"], cwd=ROOT, text=True).splitlines()
+    matches, carry_hits = [], []
+    for path in paths:
+        if not (path.startswith("docs/helix-") or path.startswith("docs/governance/")):
+            continue
+        data = git_bytes(BASE, path)
+        lines = data.decode("utf-8", errors="replace").splitlines()
+        hit_lines = [(n, text) for n, text in enumerate(lines, 1) if pattern.search(text)]
+        if path == "docs/governance/legacy-candidate-source-line-carry-forward.jsonl":
+            carry_hits.extend(n for n, _ in hit_lines)
+            continue
+        for line, text in hit_lines:
+            matches.append({"reference_kind": direct_reference_kind(path), "path": path, "line": line, "text": text, "sha256": "sha256:" + sha(data)})
+    return matches, {"path": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl", "matched_reference_line_count": len(carry_hits), "meaning": "source-line preservation evidence; not product-consumer closure"}
+
+
 def manifest_sha(source_path: str) -> str:
     matches = [ln.split()[0] for ln in lines_at(BASE, MANIFEST) if ln.endswith(" " + source_path)]
     if len(matches) != 1:
@@ -174,26 +217,17 @@ def main() -> None:
             "consumer_refs": [],
             "direct_refs": [],
             "consumer_closure_status": "pending",
-            "scope_limit": "direct-reference scan across docs/helix-*, docs/governance (including L2 source register and carry-forward); this is counterevidence, not consumer closure",
+            "scope_limit": "exact basename scan at fixed BASE across docs/helix-* and docs/governance; carry-forward occurrences are summarized separately as source-line preservation, and no reference type establishes consumer closure",
             "bootstrap_candidate_product_targets": sorted(phase["candidate_product_targets"]),
             "counterevidence": [],
         }
         if sorted(candidates) != history["bootstrap_candidate_product_targets"]:
             history["counterevidence"].append("bootstrap candidate targets differ from manual semantic-span classification; bootstrap is candidate evidence only")
-        direct_refs = {
-            "execution-ticket-requests.md": ["docs/governance/audits/source-rebaseline/l2-source-register.md", "docs/helix-os/L2-requirements/governance-requirements.md"],
-            "execution-ticket-validation.md": ["docs/governance/audits/source-rebaseline/l2-source-register.md", "docs/helix-os/L11-acceptance/governance-acceptance.md"],
-        }.get(basename, [])
-        for ref_path in direct_refs:
-            ref_text = git_bytes(BASE, ref_path).decode("utf-8", errors="replace")
-            term = source_path
-            for ref_line, text in enumerate(ref_text.splitlines(), 1):
-                if term in text:
-                    history["direct_refs"].append({"reference_kind": "current_l2_l11_or_register_connection", "path": ref_path, "line": ref_line, "text": text, "sha256": "sha256:" + sha(git_bytes(BASE, ref_path))})
+        history["direct_refs"], carry_ref_scan = scan_direct_refs(source_path)
         carry_lines = [json.loads(line) for line in git_bytes(BASE, "docs/governance/legacy-candidate-source-line-carry-forward.jsonl").decode().splitlines() if line.strip()]
         carry_matches = [r for r in carry_lines if r.get("source_path") == source_path]
-        history["carry_forward_preservation"] = {"path": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl", "sha256": "sha256:" + sha(git_bytes(BASE, "docs/governance/legacy-candidate-source-line-carry-forward.jsonl")), "matched_source_lines": len(carry_matches), "candidate_source_line_ids_sha256": "sha256:" + sha("\n".join(r["candidate_source_line_id"] for r in carry_matches).encode()), "meaning": "source-line preservation evidence; not product-consumer closure"}
-        if history["direct_refs"]:
+        history["carry_forward_preservation"] = {"path": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl", "sha256": "sha256:" + sha(git_bytes(BASE, "docs/governance/legacy-candidate-source-line-carry-forward.jsonl")), "matched_source_lines": len(carry_matches), "candidate_source_line_ids_sha256": "sha256:" + sha("\n".join(r["candidate_source_line_id"] for r in carry_matches).encode()), "scanned_basename_reference_lines": carry_ref_scan["matched_reference_line_count"], "meaning": "source-line preservation evidence; not product-consumer closure"}
+        if any(ref["reference_kind"] == "current_l2_l11_or_register_connection" for ref in history["direct_refs"]):
             history["counterevidence"].append("current L2/L11 or L2 source register directly connects this historical candidate; rationale cannot claim absence of product connection")
         records.append({
             "asset_id": asset["asset_id"],
@@ -248,10 +282,10 @@ def main() -> None:
         "upstream": [{"path": x["path"], "sha256": x["sha256"].removeprefix("sha256:"), "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない"} for x in inputs],
         "role": "legacy asset product-boundary research",
         "obligations": ["台帳の固定ID/path/SHAをsource archiveとmanifestへ照合する", "候補文書の意味を現行4製品境界とL1へ照合する", "implementation/degradation/phase/consumer unknownと証拠を分離する", "候補集合との重複をID/path/SHA/tripleで確認する"],
-        "connections": {"boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority", "consumers": ["四製品責務境界reviewer", "legacy asset classification follow-up"], "dependencies": ["fixed source BASE a577a7cddd1405de27bf01d22b050eb2acaa9ba9 for disposition and phase ledgers", "fixed comparison main be9cf8cf99ee94a487e54d372d7a34e9266b1ee3 includes merged #2094 and #2096", "fixed archive MANIFEST"]},
+        "connections": {"boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority", "consumers": ["四製品責務境界reviewer", "legacy asset classification follow-up"], "dependencies": ["fixed source BASE a577a7cddd1405de27bf01d22b050eb2acaa9ba9 for disposition and phase ledgers", "fixed comparison main be9cf8cf99ee94a487e54d372d7a34e9266b1ee3 includes merged #2094 and #2096", "fixed archive MANIFEST", "stop before use if current main differs from the pinned revision; recompare the full candidate set against the new main, and stop selection if source scope or any overlap changes"]},
         "operations": {"allowed": ["read fixed Git objects statically", "write research-only scaffold", "run deterministic generator, static validator, negative selfcheck, scfctl static validation"], "forbidden": ["execute legacy archive source/runtime/test/hook/adapter/CI", "旧archiveは実行しない", "promote formal product/phase/implementation/consumer authority", "create successor or new capability", "apply LABO classification; Issue #2089 hold remains in force", "merge, close, deploy"]},
         "artifacts": artifacts,
-        "verification": {"evidence_kind": "scaffold", "scope": ["schema_interface", "source_revision_stale", "negative_case", "forbidden_write_scope"], "oracles": ["validator derives target family, source hashes, manifest, and main overlap from fixed Git objects; merged #2094 and #2096 are counted through main once; artifact byte pins bind complete records/inventory/binding", "category/product-count invariant and source semantic anchor set are independently checked"], "negative_cases": ["asset omission or duplicate", "semantic anchor omission or mutation", "formal phase/implementation/authority promotion", "target overlap with fixed comparison sets", "null/type/key-set mutation", "ledger byte/line-ending mutation"]},
+        "verification": {"evidence_kind": "scaffold", "scope": ["schema_interface", "source_revision_stale", "negative_case", "forbidden_write_scope"], "oracles": ["validator rederives target family, archive anchors, document basename references, source hashes, manifest, and main overlap from fixed Git objects; merged #2094 and #2096 are counted through main once", "typed semantic closure checks every record, inventory, and Binding field before complete byte pins are checked"], "negative_cases": ["asset omission or duplicate", "semantic anchor omission or mutation", "formal phase/implementation/authority promotion", "direct reference omission, addition, or reclassification", "target overlap with fixed comparison sets", "record, inventory, or Binding nested type/key/value mutation", "ledger byte/line-ending mutation"]},
         "replacement": {"role_target": None, "formal_artifacts": [], "issue": 0, "status": "pending"},
         "created": "2026-09-23", "updated": "2026-09-23",
     }
