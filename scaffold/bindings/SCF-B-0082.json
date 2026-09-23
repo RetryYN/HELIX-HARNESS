@@ -15,7 +15,7 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "sha256": "ab00a056ed5d666ee04daed36b1d0bb7b05488f911b167f86d6aab2e644c7829",
       "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
     },
     {

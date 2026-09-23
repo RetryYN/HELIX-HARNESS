@@ -124,7 +124,7 @@ PR classが未選択または複数指定のPRはReadyにしない。
 - レビュー対応側は、PR classを問わず、merge admissionの直前に、PRのcontent HEADを変えずに、最新baseとのmerge結果（GitHubの`refs/pull/<番号>/merge`、またはローカルの試験merge）に対して`scfctl stale`が`stale=0`を返すことを確認し、結果をreview記録に残す。Scaffold Bindingの上流（`upstream[].path`）は文書・台帳を問わず`scaffold/`の外にあり、どのclassのPRでも変更されうる。PRのhead時点で一致していても、baseの進行や積んだPRのmergeで変わりうる。PR branchへbaseを取り込んでcontent HEADを変えると、exact HEADに束縛したreviewをやり直すことになるため、そうしない。`refs/pull/<番号>/merge`はGitHubが非同期に再計算するため最新baseより古いことがある。使う場合は、その第1親が再取得したbase HEADと、第2親がcontent HEADと一致することを確かめ、一致しなければローカルの試験mergeで実行する。`stale`が1件以上ならmergeせず作成側へ返す。
 - merge admission成立後のmerge、post-merge read-after、対応Issueのcloseはレビュー対応側が行う。merge後に不一致があればcloseせず、作成側へ返す。
 - review結果の投稿だけではmerge指示にならない。レビュー対応側がmerge責務を引き受け、対象PRと方式を確認して実行する。
-- 責務の割当はGitHub、CLI、API、IDE、Worker等の実行通路の許可を兼ねない。レビュー対応側は、当該通路と作用について明示許可を確認できない場合、mergeせず停止する。
+- 責務の割当はGitHub、CLI、API、IDE、Worker等の実行通路の許可を兼ねない。ただしユーザーがPRの作成・更新を指示した場合、そのPRに必要な`git push`と`gh`によるPR作成・編集・read-afterを含み、review依頼の指示は`gh`によるPRコメント投稿・read-afterまでを含む。reviewer本体の起動、merge、Issue closeはこの例外に含まない。レビュー対応側は、merge等の対象と通路について明示許可を確認できない場合、停止する。
 
 ### governance／operation_change PRのmerge admission
 
