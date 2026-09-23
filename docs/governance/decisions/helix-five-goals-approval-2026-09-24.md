@@ -13,11 +13,13 @@ authority_effect: effective_when_this_record_is_admitted_to_main
 
 ## 人間判断と対象
 
-POに、2026-09-24（Asia/Tokyo）のCodex作業sessionの質問票で、[5大目標本文](../../concept/helix-five-goals.md)のSHA-256
-`cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca`を示し、
+POに、2026-09-24（Asia/Tokyo）のCodex作業sessionの質問票で、[5大目標本文](../../concept/helix-five-goals.md)へのリンクと
+SHA-256の短縮表示`cfade733…5de5`を示し、
 HELIX全体の到達目標として承認するかを確認した。質問では「これは4製品L1の変更・個別要求・実装を承認するものではありません」と明示した。
 POは「この本文を承認する」と回答した。
 この回答は本文のexact bytesへの承認であり、PR mergeやreview結果から推定した承認ではない。
+質問時のmain `ab218b0ac3ddca85a6ceccb83dcd2515848d1dbf`にあるリンク先本文の完全なSHA-256を
+下表へ固定し、回答後も同じ本文bytesであることを照合した。
 
 | 対象 | 承認したSHA-256 | 結果 |
 |---|---|---|
