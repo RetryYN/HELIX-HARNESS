@@ -10,7 +10,7 @@
 
 ## 責務候補
 
-各assetごとに最初の実義務／反例行と親pairの内容を見て候補を分けた。45件は一製品の直接候補（HARNESS 3、OS 42）、5件はworkflow意味契約と実行／projection境界のsplit候補（HARNESS+OS）、2件は選択spanだけでは製品根拠が不足するため候補なしとした。OS候補は、Worker authority/isolation/admission等、またはCLI/GitHub/PLAN/DB/registry/execution/routingの具体的実行・統制spanがある場合に限定した。HARNESS候補はworkflow envelope/interviewの意味契約、またはsplit対象のnormative workflow semanticsにspanと親pairが直接触れる場合に限定した。どの候補も正式ownerとして採択していない。
+各assetごとに実義務／反例spanと親pairを対応させた。47件はHARNESS+OSの責務split候補、3件はHARNESS単独候補、2件は根拠不足として保留した（正式採択0）。製品境界の「HARNESSのartifact内容とconsumer利用条件はHARNESS、artifact生成/配布/promotion等の実行統制はOS」を適用し、test-design本文の検証義務・反例・証拠・利用条件をHARNESS-L1-004候補、選択spanと親pairが実際に指すWorker/CLI/GitHub/PLAN/registry等のtested runtime authority/behaviorをHELIX-OS候補に分けた。OS候補はasset固有のoracle対象がspanとpairで裏付く場合に限る。workflow/interview/envelope semanticsだけが直接支えられ、別のOS runtime targetがない文書はHARNESS単独、選択spanが直接根拠を示さない2件は保留とした。個々の根拠は各recordの `product_basis` と `responsibility_split` に残した。どの候補も正式ownerとして採択していない。
 
 HELIX-Web／HELIX-Web-OSを含む4製品を確認対象に置いた。52件の選択spanと親pairにはWeb利用者向けConnector SaaS体験や展開後のtenant/service運転を直接支える候補根拠が見つからなかったため、`not_assessed_no_direct_support_in_selected_span` とした。これは反証の発見や永久的な非適用判断ではなく、consumer closure等を含む未調査境界である。
 
@@ -36,4 +36,4 @@ archiveは固定BASEのGit objectを静的に読み取った。旧source、runti
 
 ## 確認範囲
 
-必要な静的確認は、対象集合・ID/path/SHA一意性、archive manifest/source digest、親pair path/blob/digest、4製品L1/product-boundary参照、phase候補参照、mainとopen PRの排他、Binding/ledger/参照の整合である。分類出力は固定manifestと固定BASE bootstrap/archive blobに対して `python3 scaffold/legacy-test-design-worker-workflow-0148/validate.py` で独立照合する。`python3 scaffold/legacy-test-design-worker-workflow-0148/selfcheck.py` はID欠落、製品候補改変、意味span改変、phase admission、authority昇格の5負例をvalidatorが拒否することを確認する。加えて `python3 scaffold/tools/scfctl.py validate`、`stale`、`residuals`、`git diff --check` を行う。旧assetのtestは起動しない。
+必要な静的確認は、対象集合・ID/path/SHA一意性、archive manifest/source digest、親pair path/blob/digest、4製品L1/product-boundary参照、phase候補参照、mainとopen PRの排他、Binding/ledger/参照の整合である。分類出力は固定manifestと固定BASE bootstrap/archive blobに対して `python3 scaffold/legacy-test-design-worker-workflow-0148/validate.py` で独立照合する。`python3 scaffold/legacy-test-design-worker-workflow-0148/selfcheck.py` はID欠落、余分なledger field、製品候補改変、意味span改変、phase admission、authority昇格、inventory authority field追加、Bindingへのdeploy許可追加の8負例をvalidatorが拒否することを確認する。加えて `python3 scaffold/tools/scfctl.py validate`、`stale`、`residuals`、`git diff --check` を行う。旧assetのtestは起動しない。

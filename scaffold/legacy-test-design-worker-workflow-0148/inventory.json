@@ -676,8 +676,8 @@
     "target_overlap": 0
   },
   "classification_counts": {
-    "direct_candidate_unresolved": 45,
-    "cross_product_split_candidate_unresolved": 5,
+    "direct_candidate_unresolved": 3,
+    "cross_product_split_candidate_unresolved": 47,
     "insufficient_direct_basis": 2,
     "formal_product_owner_accepted": 0,
     "phase_admissions": 0,
@@ -694,7 +694,7 @@
     "new_build_allowed": false,
     "legacy_execution_performed": false
   },
-  "classification_method": "Each asset is classified against its selected obligation/negative row and declared parent pair. HELIX-OS is a candidate only where source-specific worker authority/isolation/admission or concrete CLI/GitHub/PLAN/DB/registry/execution/routing control appears. HARNESS is a candidate only where normative workflow/interview/envelope semantics are anchored. Both appear only when the same source/pair supports both. Direct basis absent from selected span is insufficient; Web and Web-OS missing support is marked unassessed, not counterevidence.",
+  "classification_method": "Each asset is classified against its selected obligation/negative row and declared parent pair. For source-specific Worker/CLI/GitHub/PLAN/registry/execution runtime targets, HELIX-OS remains a candidate. Because these are test-design assets, their concrete verification obligations, counterexamples, evidence and consumer conditions are separately HELIX-HARNESS candidates under HARNESS-L1-004 and product-boundary.md; the tested runtime behavior is not assigned to HARNESS. Workflow/interview/envelope-only semantics can remain HARNESS-only when the span provides no distinct OS runtime target. Two spans remain insufficient. Web and Web-OS missing support is marked unassessed, not counterevidence; no candidate is adopted as formal owner.",
   "evidence_limits": [
     "The cited legacy test design status describes the document only.",
     "Test design / oracle citations do not establish test implementation, test execution, pass, current baseline, or acceptance.",
@@ -710,7 +710,7 @@
   ],
   "candidate_product_counts": {
     "HELIX-OS": 47,
-    "HELIX-HARNESS": 8,
+    "HELIX-HARNESS": 50,
     "HELIX-Web": 0,
     "HELIX-Web-OS": 0,
     "count_is_nonexclusive": true
@@ -833,14 +833,20 @@
       "source IDs/paths/SHA-256 and source line spans",
       "classification category and candidate products",
       "candidate phases and phase admission boundary",
-      "authority boundary and test/consumer evidence boundary"
+      "authority boundary and test/consumer evidence boundary",
+      "canonical full-record digest and ledger byte digest",
+      "exact manifest/inventory/Binding authority keysets and values",
+      "Binding upstream digest pins for ledger/manifest/inventory"
     ],
     "negative_cases": [
       "omitted asset ID",
+      "extra ledger field",
       "changed candidate product",
       "altered semantic span",
       "phase admission",
-      "authority escalation"
+      "authority escalation",
+      "inventory authority field addition",
+      "Binding deploy permission addition"
     ]
   }
 }

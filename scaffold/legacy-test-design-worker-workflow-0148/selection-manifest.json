@@ -16,8 +16,9 @@
         }
       ],
       "span_sha256": "1127149a359de81316045ec39a762874f447eaa2a762c9f637cfdd9ac93a821f",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -31,7 +32,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "b22060bb97cbcfdb4ff313e3f0d3fa8c6a2db84079b8a03e1ffaae8eef18d95b"
     },
     {
       "asset_id": "LEGACY-ASSET-F2F9BE2153AB71219677",
@@ -52,8 +54,9 @@
         }
       ],
       "span_sha256": "b105d4d4ee6dc32d5f7cffaad2c94fb62acf3dacd507976624764dd8f4e050a4",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -68,7 +71,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "6b962d5d174db92b04d9246710d0068bb2f7e6a62dbc1aebefecb2c0d6be0f00"
     },
     {
       "asset_id": "LEGACY-ASSET-CE3CED8CA91AF2CF794C",
@@ -81,8 +85,9 @@
         }
       ],
       "span_sha256": "2f09c16a11867eb9c26b84008aa6683649ff9eac880e6f6786a82cb1525bfe7c",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -96,7 +101,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "59d08c70c7e1a30808a521e72d7e0f336be39e9343f279132494a7fd4cca402f"
     },
     {
       "asset_id": "LEGACY-ASSET-C474CF4FD38CD64B235F",
@@ -109,8 +115,9 @@
         }
       ],
       "span_sha256": "4e321f6b1cabfe1e549618b1ecc10cb7df773a17b550d79f8c0b0012cb96f5d4",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -123,7 +130,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "4f6a15377c2be028984f2eedd253443ccedd36921d75c3650345ab7163cb45ee"
     },
     {
       "asset_id": "LEGACY-ASSET-A53A3523BF5A0AA9AECB",
@@ -148,7 +156,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "43b3dc994e2312f6bf271084cba9b3a073d0063ffcadc946c95cd1028baed1ef"
     },
     {
       "asset_id": "LEGACY-ASSET-02DE43305B52150F726F",
@@ -161,8 +170,9 @@
         }
       ],
       "span_sha256": "430fc104e39e2ea1a0b773796d6760f9d2a4de2d8ec6587ba3ef9edce8234d3c",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -175,7 +185,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "2d3b591ed85d877b3d2571d8a50f97a8c861e6da8849bc0a66d74a860ce356f0"
     },
     {
       "asset_id": "LEGACY-ASSET-33B35551CF585FE9A4E4",
@@ -188,8 +199,9 @@
         }
       ],
       "span_sha256": "5d8ee86f3347d15e916ceb6d3c865c2306def862d448868686ba8b8de878c104",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -202,7 +214,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "acaa384b913b56efbab4f87f8bd5a6be200f84896970fef110cbdb384b73d6ef"
     },
     {
       "asset_id": "LEGACY-ASSET-F812521B64E1F46C18F6",
@@ -215,8 +228,9 @@
         }
       ],
       "span_sha256": "2f081c1ad5423d3349cd2f8ff98d850b4bad86357af8b7eebfffcaa6e7c34cae",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -230,7 +244,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "4c517fb6314d8391649c12534c8db989a53906d5b2cb15eeabfedd7ecfab4acb"
     },
     {
       "asset_id": "LEGACY-ASSET-C54C4B4456EA94A325D7",
@@ -243,8 +258,9 @@
         }
       ],
       "span_sha256": "343b2469978a8ff2558e59f1eab2746d9ee402a4230805ce3f2b1fe1a05b1c08",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -257,7 +273,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "e0007ff34432f2ee864d79cebae224461466f8fcd8d8486648155553e16117b7"
     },
     {
       "asset_id": "LEGACY-ASSET-DAC26342ECC06D756F1D",
@@ -278,8 +295,9 @@
         }
       ],
       "span_sha256": "f29fba7093d9804d4dab2c0a4b6e9d491378aa96db275a1c33b953014cf26bef",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -293,7 +311,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "1f15849fe72a93eb25227b1f115b24739e7fadd92eaf7eb2e07a80fae05b9211"
     },
     {
       "asset_id": "LEGACY-ASSET-FA619AE43D6C2049E171",
@@ -306,8 +325,9 @@
         }
       ],
       "span_sha256": "d92ce95fec4f4ec38f424867307dcbb157b1fd6ddf9e5edfaca95070f35ca9fa",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -320,7 +340,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "169268eae8f90e8bb8a475fae5919fe06db63d23fad03b6d918fd00eb3fa3876"
     },
     {
       "asset_id": "LEGACY-ASSET-515414A1648217233CB3",
@@ -347,7 +368,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "91c3d12bcc98b4c93aaef004123dd2bdc54303de4656e08b27aa166cfe77301d"
     },
     {
       "asset_id": "LEGACY-ASSET-8FA07E8CFB7FE24D5AA3",
@@ -372,7 +394,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "28141213b4f141ecb1d45d1d0e01cb2958b6f7794eb1c9831c11b789fd7b8b2f"
     },
     {
       "asset_id": "LEGACY-ASSET-58599DCC48E23287F6E9",
@@ -385,8 +408,9 @@
         }
       ],
       "span_sha256": "e57dc3f342e4085d7bdd166e0c8aba94ae662fc0f0e8f3d21cc9a78c9074a4d0",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -400,7 +424,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "6a96cc9a660ac6638d08a2717aa456111ba89b896c321dbb4e3b1a87d348f520"
     },
     {
       "asset_id": "LEGACY-ASSET-E3E85FA9D476C1E23CF6",
@@ -413,8 +438,9 @@
         }
       ],
       "span_sha256": "febcded1a7e3d3331940d30cb1447f0e8c93783fd244610c9e2ed52fdc6ba740",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -428,7 +454,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "6a363f4baed5e54f4765430e624c81899c2a936eff8328c2163e6f4c57811b8e"
     },
     {
       "asset_id": "LEGACY-ASSET-F34892E108A2B264401F",
@@ -441,8 +468,9 @@
         }
       ],
       "span_sha256": "c2f931c1ce7aeb007ff9492f57fdc0742088626f017cf91808e4afe06c073a78",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -456,7 +484,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "ff05be397b3435a1619643fdc436f842478d4cb1b47d877af2e01c5c042001f5"
     },
     {
       "asset_id": "LEGACY-ASSET-E7467DDBCCFFC04BF58D",
@@ -469,8 +498,9 @@
         }
       ],
       "span_sha256": "a11fbc586d0393203e15008c102f641c0454bf3a98e6dbd3834053d6c6f01c2b",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -484,7 +514,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "06eef7309717a1857c965d6656eb00baa9d5728461b338817cf8f21b5fab6469"
     },
     {
       "asset_id": "LEGACY-ASSET-F2F85A5C93BCA08D69E3",
@@ -497,8 +528,9 @@
         }
       ],
       "span_sha256": "e3b0f0090e5f89befd38f9f35ac606bfad88f7ffa8490aaee8a896fe76f2aa58",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -513,7 +545,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "7d2e5d685bfede3a275ceb6687ea3fe9b4d83006614b8a3a6ba3c4095460652b"
     },
     {
       "asset_id": "LEGACY-ASSET-7CBAB839D15CB6E240E3",
@@ -534,8 +567,9 @@
         }
       ],
       "span_sha256": "01fd0dd6b766e0c98ebecc4adc32a3422a2e92eefed05f24107c8fe4bfe26f7e",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -549,7 +583,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "be99123adb52d6edbbece7f49de5f0ebf6ec90548c93dc665a4240047a0332e2"
     },
     {
       "asset_id": "LEGACY-ASSET-7EB315092F6A83BE8555",
@@ -562,8 +597,9 @@
         }
       ],
       "span_sha256": "c43b380897a2dcb10fdb94ab4ac48ede2f04427ef52a84ff986c43f6a9af9095",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -577,7 +613,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "8fc10b1426c6e0ef2803837035801c51ef2ac30a41ee17457f1f7eb9249c21d3"
     },
     {
       "asset_id": "LEGACY-ASSET-E9954F654E58B47A08B8",
@@ -590,8 +627,9 @@
         }
       ],
       "span_sha256": "351318f5c48f598520a02ef6bb2220ecd64a25b226df1c3d77457d2adf45fbc9",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -605,7 +643,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "555a2d97f6c42d975132010953640946468cae069050b54ee4b0dae36456f908"
     },
     {
       "asset_id": "LEGACY-ASSET-3FC0670DDBCD66EC46CA",
@@ -618,8 +657,9 @@
         }
       ],
       "span_sha256": "6042a45add8bbd51f7bd990bff8263395c16e5b2360229549811482c56b0cdd6",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -633,7 +673,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "1b728849eba8fb9d8f0872ff2ba90ad559c1a79083cf19abe08f8f4e12a1bf8f"
     },
     {
       "asset_id": "LEGACY-ASSET-3C532CBAD22A448326E8",
@@ -646,8 +687,9 @@
         }
       ],
       "span_sha256": "83dad64b58786ead5c93388f98fbe4891b7a7a1a2a6589af073a6f294f6ccd09",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -661,7 +703,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "ca1ebbbf1c74f5e86d3722e77d524baeb40d641f2a87653b8a0f66d9ab984b49"
     },
     {
       "asset_id": "LEGACY-ASSET-08983D7EFDA9E251E8BA",
@@ -674,8 +717,9 @@
         }
       ],
       "span_sha256": "d69a64f892dabdb33a36a2c731cf707f0293dd72c404f43e5628deaf9a3bbb88",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -689,7 +733,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "1a3b782f5ad0f111ca7143020c11851fb4ad8b4ae2c90fd01eebdc1d4ca0281f"
     },
     {
       "asset_id": "LEGACY-ASSET-3A215D3F4BED6C6C6CEC",
@@ -702,8 +747,9 @@
         }
       ],
       "span_sha256": "b3d3fce87957490acf191cb3e50e0f88675a97158348a5ca447309a0eb595b22",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -718,7 +764,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "1d0007f468eeda37ececb29d2ca1f5013d6f670280b77525966f390320248241"
     },
     {
       "asset_id": "LEGACY-ASSET-200E1D31A5AD9CC65A62",
@@ -731,8 +778,9 @@
         }
       ],
       "span_sha256": "d9678253357781b93ec77cbd805c28a361245467a99ef2cb920b94dd8237c1d3",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -746,7 +794,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "83e819e3658e92d6e166c8ed83d9c5920d1f5a35be9f7750d6fb3462437be0a0"
     },
     {
       "asset_id": "LEGACY-ASSET-A7F6C19BF3761E78604B",
@@ -759,8 +808,9 @@
         }
       ],
       "span_sha256": "7c2adccd4fd1464904ec9b543f4331fc91d4b2daaf504a7045ad885a0ce7b454",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -774,7 +824,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "c9753d7be6c7ac48b2499bb065f6a6ec444375bc957572f2ef1efe0b2136edaf"
     },
     {
       "asset_id": "LEGACY-ASSET-CBA44E8F88BD3CB47EEF",
@@ -787,8 +838,9 @@
         }
       ],
       "span_sha256": "7531723487bb5c272c36adf521855af5a7b55ea59254326fad6da127a7c98295",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -802,7 +854,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "81686b6e0f0883f2285a00a50e27fa8604f87da0fa416e02b4da1bd112b27bb4"
     },
     {
       "asset_id": "LEGACY-ASSET-B18C6D8265FA220A7AD1",
@@ -815,8 +868,9 @@
         }
       ],
       "span_sha256": "37474225800793563bbfa31eae9460bbca97d821dff57ad4f3cc7ebd88312fa1",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -830,7 +884,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "97a9d8ada354e7eac37bfbd11bc7d9efcb6efce0c8801eb35910ad9bdfd8b6fa"
     },
     {
       "asset_id": "LEGACY-ASSET-953C8B85C65FF732DE58",
@@ -851,8 +906,9 @@
         }
       ],
       "span_sha256": "3801baa6a9ab646a6459bf008acb00b28b8c4908edf086183a61dae78b0e7076",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -866,7 +922,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "5166fce83eaec73e792a6b6c71dcda405d7ec049bb43d3548c18c1682900c628"
     },
     {
       "asset_id": "LEGACY-ASSET-E27E955E6C27D45D6001",
@@ -895,7 +952,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "8a21f2bd5c93298a39c701d2e109b3ef62a22bd4f95bf1990e111ba5ed2567c3"
     },
     {
       "asset_id": "LEGACY-ASSET-BBE36AA18675BFB97020",
@@ -908,8 +966,9 @@
         }
       ],
       "span_sha256": "dc2b6d580784cde7694cacee6d1ba19d2b1b60abb47db9640cb49ee9c10bb41c",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -922,7 +981,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "7d152fba98dd4777938895c0567f5b60a114b143bc4f4eeb03ad0d6c4f6bb48f"
     },
     {
       "asset_id": "LEGACY-ASSET-6EE3CA9CEC7D4F2C328A",
@@ -935,8 +995,9 @@
         }
       ],
       "span_sha256": "96d87a37730441d2df7467382d287403dac561767b313c6a97ea5d8f4d1a9727",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -949,7 +1010,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "b7b8f7892bbc20072b3f008b5fb1eb038cdeb554a707f6c2ab1c76ad015ddbdc"
     },
     {
       "asset_id": "LEGACY-ASSET-1370C763E1F96E863F78",
@@ -962,8 +1024,9 @@
         }
       ],
       "span_sha256": "fbf4f4b96edc9ff12e3d29026959c33e27362e262c6968b4335de5c96f616afa",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -977,7 +1040,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "ab4da098002fdd789706806c3eccead8650a369d2437a5426d130ccac76cad25"
     },
     {
       "asset_id": "LEGACY-ASSET-708BD7C8FC6351073618",
@@ -990,8 +1054,9 @@
         }
       ],
       "span_sha256": "a3a5cc46cd07b9101bb0be2bc7144c4097daa3ceb72f6fa04b652eaabf41761a",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1005,7 +1070,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "7e3598daf76cefca3314f23eda86c9f32224b76f4b00872e154ea5289a051280"
     },
     {
       "asset_id": "LEGACY-ASSET-82A18DDB608242D16096",
@@ -1034,7 +1100,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "679931700f70be49a1be9f8efda02c2cb98544bca95c4d52e8b9c9b2e2ebeb6d"
     },
     {
       "asset_id": "LEGACY-ASSET-D3DFB17D21AC86B06975",
@@ -1069,7 +1136,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "e8815602ee468ca5e76e95a5e892282949a2aed84dd14b078e3a25ac641e27e1"
     },
     {
       "asset_id": "LEGACY-ASSET-6B99432BB5C9CB66EF77",
@@ -1096,7 +1164,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "ba148d5832f285bf6474bef59f9f1d609c7bc9012b971d0bd667913a3a1fd9a9"
     },
     {
       "asset_id": "LEGACY-ASSET-882F55E224FAD6C7704E",
@@ -1132,7 +1201,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "bae0ffb811251faffba37ba8e3ac33c2103f9d3e63945edacd391f3c98a950f2"
     },
     {
       "asset_id": "LEGACY-ASSET-6F5F69296B4AB47B96E5",
@@ -1145,8 +1215,9 @@
         }
       ],
       "span_sha256": "b01e389f76930ee0eae0a2dde5061eb911b018a0e470615e9308e2fadba2db73",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1160,7 +1231,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "a621effd55e8a7058d3cd89a2ab1e4ee0d5d943b2fabdbafec3d5dc7dcd46111"
     },
     {
       "asset_id": "LEGACY-ASSET-95D7453BBAF8E3E57391",
@@ -1173,8 +1245,9 @@
         }
       ],
       "span_sha256": "b3b75b71f45b2145ef59cadef7648a54f4aa1a2e03fb17f8c5df3769d2ecd9d0",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1188,7 +1261,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "8224fcdd0edb4cf79cb7ac46161a49c8279e82c91e2a9f9b5d5ec5bd603bdb69"
     },
     {
       "asset_id": "LEGACY-ASSET-479928B70EB20E16283F",
@@ -1201,8 +1275,9 @@
         }
       ],
       "span_sha256": "d0aca9b9fceeeecccce4dc8bc41ffe8e572f973009899160da7a0193f834510d",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1216,7 +1291,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "fe47cb0c06c08dcae09f43e46fd14903fcc9bf33b4d626a4874abb8cbef2e0f8"
     },
     {
       "asset_id": "LEGACY-ASSET-50A93B0E753DC3840E03",
@@ -1229,8 +1305,9 @@
         }
       ],
       "span_sha256": "8de0494956408549116076d0e43d6f84409e9ec9af659c20dafdebdab6ea1f35",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1245,7 +1322,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "68b81d64b64cdcedab035d06c8aa040e820ac558289dd6f72d45f6fafb27f374"
     },
     {
       "asset_id": "LEGACY-ASSET-9C50C115CC2C3B39E819",
@@ -1258,8 +1336,9 @@
         }
       ],
       "span_sha256": "f10fd3fa0e4f49593a3ad904a518d17dea5c0962925e7900c6b01a3ddc95d8e9",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1273,7 +1352,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "0d1c97b4eee1dc5ebe461e92fdc7e0f546a15d523a7bcc54a5461b23bbdc9103"
     },
     {
       "asset_id": "LEGACY-ASSET-C548E617A7EAC429E189",
@@ -1286,8 +1366,9 @@
         }
       ],
       "span_sha256": "70209fdb0b6f9c7708a22a47c04f3b2d0e31d0508888121f732180a287f10eb5",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1301,7 +1382,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "8a04f2b49bb820fb47505ddfdfea40ae4cb6d0d953d7ec0e383a0441008d184c"
     },
     {
       "asset_id": "LEGACY-ASSET-D7F3E06489D5EDB97CEC",
@@ -1314,8 +1396,9 @@
         }
       ],
       "span_sha256": "c4d1b2ede360f8e2f9fe3163f45842d5e468ded792af3762b0447d816da394d8",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1329,7 +1412,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "e8561b893abd55fb0e119e49ae671bbb38fee777225b4f671052d8a359b70833"
     },
     {
       "asset_id": "LEGACY-ASSET-E7EF44798D22F15799E8",
@@ -1342,8 +1426,9 @@
         }
       ],
       "span_sha256": "94955b4a0f8b6d9ef0f3be74c559121fdf882e493cc344cf06adebfb0d900dc8",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1357,7 +1442,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "581441e6de92dcdb5a9a124f9cb525b96edc0a5a7c35805b1a3e1a3416e0190c"
     },
     {
       "asset_id": "LEGACY-ASSET-93FF4EF968AC1DEDA1BE",
@@ -1370,8 +1456,9 @@
         }
       ],
       "span_sha256": "c7495becfe3e1f41fc373b989bdb7e5f84bb52213d682d2e4985b08d14de53a5",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1385,7 +1472,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "55545acb6292d42ffce8f4e564a9176cf8272f86e2d7242316240c367272308d"
     },
     {
       "asset_id": "LEGACY-ASSET-89D9F99550F056B7FEAF",
@@ -1398,8 +1486,9 @@
         }
       ],
       "span_sha256": "12127f43e24f9bc69240aebce70ed30a2ac61597a22dffbd7d4fc98373650f4b",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1413,7 +1502,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "4f3f71f79ee5da25ae660d7c6b6c85e62fb85e3313701d90dc50f038432a5b7d"
     },
     {
       "asset_id": "LEGACY-ASSET-8C2AA075BBDE8151E8EC",
@@ -1426,8 +1516,9 @@
         }
       ],
       "span_sha256": "641c0131f181645b3feb6812ffd3372d97359560b5368343e7349914b1a918fd",
-      "category": "direct_candidate_unresolved",
+      "category": "cross_product_split_candidate_unresolved",
       "candidate_products": [
+        "HELIX-HARNESS",
         "HELIX-OS"
       ],
       "candidate_phase_targets": [
@@ -1440,7 +1531,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "0a80610d5a0b6a04cba506e007138276071b736a83f533638862cec04b8fda39"
     },
     {
       "asset_id": "LEGACY-ASSET-27096F08437AE041EF52",
@@ -1476,7 +1568,8 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "0322c03f47717914d3ce32a70eda00453a2a43eea12332f38e96a1de8d50a217"
     },
     {
       "asset_id": "LEGACY-ASSET-D45AF20BFEAD202DD666",
@@ -1512,7 +1605,9 @@
         "phase_updated": false,
         "successor_assigned": false,
         "new_build_allowed": false
-      }
+      },
+      "record_sha256": "6d45c17f888b08d65d53ab188bd77f952ea2c962d09efa04dd0cc5f64c8cc8ab"
     }
-  ]
+  ],
+  "ledger_sha256": "123be19a7f30a5ec0af0a04f51095ed80e701e29cc5fbcc4ba7aa68a7d62a6ad"
 }
