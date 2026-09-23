@@ -20,8 +20,8 @@ BINDING_PATH = ROOT / "scaffold/bindings/SCF-B-0144.json"
 BASE_REVISION = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
 ARCHIVE_REVISION = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 INITIAL_TARGET_REVISION = "886c2436a71e079913c395693c2edd9ddce52113"
-PREVIOUS_TARGET_REVISION = "886c2436a71e079913c395693c2edd9ddce52113"
-TARGET_REVISION = "8c8cf851b47c88f6d814dc828a38743fc3cd45b3"
+PREVIOUS_TARGET_REVISION = "8c8cf851b47c88f6d814dc828a38743fc3cd45b3"
+TARGET_REVISION = "c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03"
 TARGET_BUNDLE = "scaffold/legacy-implementation-residual-0126"
 TARGET_GENERATOR = f"{TARGET_BUNDLE}/generate.py"
 TARGET_INVENTORY = f"{TARGET_BUNDLE}/inventory.json"
@@ -714,7 +714,7 @@ def build() -> None:
     inventory = {
         "schema_revision": 1,
         "binding_id": "SCF-B-0144",
-        "bundle_revision": "SCF-B-0144 generated revision 1",
+        "bundle_revision": "SCF-B-0144 generated revision 2",
         "base_revision": BASE_REVISION,
         "archive_revision": ARCHIVE_REVISION,
         "target_pr": 2078,
@@ -723,9 +723,10 @@ def build() -> None:
         "repin_stability_from_previous_head": repin,
         "target_head_pin_history": [
             {"head": INITIAL_TARGET_REVISION, "status": "initial_pin", "note": "first comparison pin requested before PR #2078 advanced"},
-            {"head": TARGET_REVISION, "status": "current_repin", "note": "PR #2078 advanced; overlap53/conflict36 IDs, source identities, and main candidate results were recomputed and remained unchanged"},
+            {"head": PREVIOUS_TARGET_REVISION, "status": "previous_repin", "note": "PR #2078 advanced from the initial pin; overlap53/conflict36 IDs and source identities were rechecked"},
+            {"head": TARGET_REVISION, "status": "current_repin", "note": "PR #2078 advanced from 8c8cf851; overlap53/conflict36 IDs, source identities, and candidate summaries were recomputed and remained unchanged; target inventory/generator pins were refreshed"},
         ],
-        "target_head_follow_policy": "When PR #2078 changes, first inspect the exact new HEAD and its rebase base; update TARGET_REVISION explicitly, re-run generator/validator/selfcheck, review all resulting set/evidence changes, and record a fresh pin. No floating branch ref is followed automatically.",
+        "target_head_follow_policy": "STOP the current baseline/review if PR #2078 advances beyond c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03. Do not present this packet as current until the exact new HEAD and rebase base are inspected, TARGET_REVISION is explicitly re-pinned, generator/validator/selfcheck are rerun, and all set/evidence changes are reviewed and recorded. No floating branch ref is followed automatically.",
         "subject_count": 36,
         "new_asset_research_count": 0,
         "adds_assets_to_main_union": False,
@@ -777,21 +778,21 @@ def build() -> None:
         "product": "HELIX-HARNESS",
         "owner_candidate": "四製品product-boundaryの候補結果差分照合（正式owner未解決）",
         "state": "registered",
-        "reason": "#2078現行固定HEAD 8c8cf851（初回pin 886c2436から再pin）で同一source path/SHAがmain research unionと異なる候補結果を持つ36件を、source span・意味解釈・候補製品/L1根拠・counterevidence・method/scope差とともに並べ、証拠付き差分理由候補を人間判断へ渡す。勝者・formal route・新規asset研究を生成しない。",
+        "reason": "#2078現行固定HEAD c55ffc91（初回pin 886c2436、前回pin 8c8cf851から更新）で同一source path/SHAがmain research unionと異なる候補結果を持つ36件を、source span・意味解釈・候補製品/L1根拠・counterevidence・method/scope差とともに並べ、証拠付き差分理由候補を人間判断へ渡す。勝者・formal route・新規asset研究を生成しない。",
         "upstream": binding_upstream(inputs),
         "role": "legacy-asset-overlap-reconciliation-human-review-0144-static",
         "obligations": [
             "#2078 overlap 53件のうちsame_source_different_candidate_result exact 36件のみをmain union429とasset ID/source path/SHAで照合し、新規研究件数へ加算しない",
             "両結果のsource span、interpretation、candidate product/L1 roots、counterevidence availability、method/scopeをside-by-sideで保持し、target-emitted evidenceとstatic reconstructionを区別する",
             "scope_difference/evidence_span_difference/interpretation_conflict/classification_rule_difference/unresolvedを証拠参照付きnon-exclusive reason candidateとして扱い、勝者や正式routeを作らない",
-            "#2078の初期HEAD 886c2436から更新後HEAD 8c8cf851へ再pin済み。今後の更新後も明示的re-pinと完全再検証を行い、自動追随しない",
+            "#2078の初期HEAD 886c2436、前回HEAD 8c8cf851から現HEAD c55ffc91へ明示re-pin済み。#2078がc55ffc91以降に進んだらこのbaseline/reviewを停止し、新HEAD/base確認後に完全再検証・差分reviewをする。自動追随しない",
             "旧archiveはGit blob静的readのみ。runtime/test/CI/hook/adapterを実行しない。LABO適用を含め4製品以外を扱わない",
             "phase candidate/implementation status/history/failure/consumerは候補分類から分離し、formal classification/phase/successor/closureを更新しない",
         ],
         "connections": {
             "boundary": "research-only; authority_effect=none; no formal route, classification update, phase admission, successor, implementation promotion, closure, or new build",
             "consumers": ["human judgment packet for #2078 overlap reconciliation"],
-            "dependencies": ["fixed main product-research union at b3a3c49", "#2078 target HEAD object 8c8cf851 (initial pin 886c2436 recorded in inventory history)", "four-product L1 and product-boundary", "fixed archive source blobs/MANIFEST"],
+            "dependencies": ["fixed main product-research union at b3a3c49", "#2078 exact target HEAD object c55ffc91 (previous pins 8c8cf851 and 886c2436 recorded in inventory history)", "four-product L1 and product-boundary", "fixed archive source blobs/MANIFEST"],
         },
         "operations": {
             "allowed": ["read pinned Git objects statically", "write scaffold comparison artifacts", "run generator/validator/selfcheck/scfctl"],

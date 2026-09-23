@@ -1,6 +1,6 @@
 # #2078 overlap 36件の候補差分照合
 
-このresearch-only bundleは、固定main `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204` のproduct-research union 429件と、PR #2078の現行固定HEAD `8c8cf851b47c88f6d814dc828a38743fc3cd45b3` を同一asset ID・source path・source SHAで照合します。最初はHEAD `886c2436a71e079913c395693c2edd9ddce52113` をpinしましたが、PR更新後にoverlap53/差異36のID集合、source identity、main候補結果が不変であることを再計算して8c8へre-pinしました。対象はoverlap 53件のうち `same_source_different_candidate_result` の36件だけです。新規asset研究数は0で、main unionの分母へ加えません。
+このresearch-only bundleは、固定main `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204` のproduct-research union 429件と、PR #2078の現行固定HEAD `c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03` を同一asset ID・source path・source SHAで照合します。初回HEAD `886c2436a71e079913c395693c2edd9ddce52113`、前回HEAD `8c8cf851b47c88f6d814dc828a38743fc3cd45b3` からの更新を確認し、overlap 53件・差異36件のID集合、source identity、候補結果が不変であることを再計算しました。target inventory/generatorの入力digestは現HEADへ更新しています。対象はoverlap 53件のうち `same_source_different_candidate_result` の36件だけです。新規asset研究数は0で、main unionの分母へ加えません。
 
 main側は既存bundleの候補分類、source semantic span、解釈、四製品boundary/L1、明示counterevidence、phase/history/failure/consumer/implementation statusを保持します。#2078側はoverlap結果に保存された候補分類と、同HEADのgenerator内に残るgeneric fallback profileを分けて示します。36件は#2078の最終 `classification-research.jsonl` から除外されています。そのためtarget側の1行source spanと四製品L1比較poolは、pinned generator helper/literalと固定archive bytesから再構成し、targetから実際に出力された証拠とは記載しません。
 
@@ -8,7 +8,7 @@ main側は既存bundleの候補分類、source semantic span、解釈、四製�
 
 ## HEAD追随
 
-targetはbranch名ではなくHEAD `8c8cf851…` のGit objectに固定しています。#2078が再度変更された場合は、新HEADとrebase baseを確認して `generate.py` と `validate.py` のpinを明示更新し、36件集合、source path/SHA、generator method、全evidence、Binding upstream、negative casesを再生成・再検証してください。自動的にbranch先端を追いません。
+targetはbranch名ではなくHEAD `c55ffc91…` のGit objectに固定しています。#2078がこのHEADから進んだ場合は、このbaseline/reviewを停止し、packetを現行証拠として扱わないでください。新HEADとrebase baseを確認した後、`generate.py` と `validate.py` のpinを明示更新し、36件集合、source path/SHA、generator method、全evidence、Binding upstream、negative casesを再生成・再検証してからreviewを再開します。自動的にbranch先端を追いません。
 
 ## 境界
 

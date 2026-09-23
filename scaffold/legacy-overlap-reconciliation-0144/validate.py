@@ -17,8 +17,8 @@ BINDING = ROOT / "scaffold/bindings/SCF-B-0144.json"
 BASE = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
 ARCHIVE_BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 INITIAL_TARGET = "886c2436a71e079913c395693c2edd9ddce52113"
-PREVIOUS_TARGET = "886c2436a71e079913c395693c2edd9ddce52113"
-TARGET = "8c8cf851b47c88f6d814dc828a38743fc3cd45b3"
+PREVIOUS_TARGET = "8c8cf851b47c88f6d814dc828a38743fc3cd45b3"
+TARGET = "c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03"
 TARGET_ROOT = "scaffold/legacy-implementation-residual-0126"
 TARGET_GEN = f"{TARGET_ROOT}/generate.py"
 TARGET_INV = f"{TARGET_ROOT}/inventory.json"
@@ -423,13 +423,14 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
     require(inv.get("base_revision") == BASE and inv.get("archive_revision") == ARCHIVE_BASE and inv.get("target_head_pin") == TARGET, "E_INVENTORY_PIN", "revision lock drift")
     require(inv.get("initial_target_head_pin") == INITIAL_TARGET and inv.get("target_head_pin_history") == [
         {"head": INITIAL_TARGET, "status": "initial_pin", "note": "first comparison pin requested before PR #2078 advanced"},
-        {"head": TARGET, "status": "current_repin", "note": "PR #2078 advanced; overlap53/conflict36 IDs, source identities, and main candidate results were recomputed and remained unchanged"},
-    ], "E_INVENTORY_PIN", "initial 886 pin/current 8c re-pin history drift")
+        {"head": PREVIOUS_TARGET, "status": "previous_repin", "note": "PR #2078 advanced from the initial pin; overlap53/conflict36 IDs and source identities were rechecked"},
+        {"head": TARGET, "status": "current_repin", "note": "PR #2078 advanced from 8c8cf851; overlap53/conflict36 IDs, source identities, and candidate summaries were recomputed and remained unchanged; target inventory/generator pins were refreshed"},
+    ], "E_INVENTORY_PIN", "target HEAD pin history drift")
     repin = calculate_repin_stability(target_inv)
     require(inv.get("repin_stability_from_previous_head") == repin and repin["history_only_previous_pin"] is True and repin["changed_overlap_row_count"] == 0, "E_REPIN_STABILITY", "previous/current #2078 pin comparison changed or missing")
     require(inv.get("subject_count") == 36 and inv.get("new_asset_research_count") == 0 and inv.get("adds_assets_to_main_union") is False, "E_INVENTORY_PIN", "new research denominator drift")
     require(inv.get("target_overlap_count") == 53 and inv.get("other_overlap_same_result_count") == 17 and inv.get("main_union_asset_count") == 429, "E_INVENTORY_PIN", "overlap denominator drift")
-    require(inv.get("target_head_follow_policy", "").startswith("When PR #2078 changes"), "E_INVENTORY_PIN", "explicit re-pin policy required")
+    require(inv.get("target_head_follow_policy", "").startswith(f"STOP the current baseline/review if PR #2078 advances beyond {TARGET}."), "E_INVENTORY_PIN", "explicit stop-and-rebaseline policy required")
     require(inv.get("difference_reason_vocabulary") == ["scope_difference", "evidence_span_difference", "interpretation_conflict", "classification_rule_difference", "unresolved"], "E_REASON_EVIDENCE", "reason vocabulary drift")
     require(inv.get("negative_cases") == EXPECTED_NEGATIVE_CASES, "E_NEGATIVE_CASES", "ordered expected negative case set drift")
     target_by_id = {x["asset_id"]: x for x in conflicts}

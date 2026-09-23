@@ -1,6 +1,6 @@
 # #2078 overlap差分の人間判断packet
 
-main `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204` と #2078 HEAD `8c8cf851b47c88f6d814dc828a38743fc3cd45b3` を固定。対象はoverlap 53件中candidate resultが異なる36件で、新規asset研究数は0。
+main `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204` と #2078 HEAD `c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03` を固定。対象はoverlap 53件中candidate resultが異なる36件で、新規asset研究数は0。
 各assetの両候補、根拠span、L1/boundary、counterevidence、phase/history/consumerは `classification-reconciliation.jsonl` に完全収録。
 #2078は36件を最終classification JSONLから除外しており、target側のspan/L1は同HEADのgenerator helper・literalから固定archive bytesに対して静的に再構成した。出力済みtarget evidenceとは表示上も分離した。
 差分理由は複数候補であり、勝者・正式route・phase・successor・実装成立・consumer closureは決めない。#2078 HEADが変わった場合は明示re-pinと再検証を行う。
