@@ -18,8 +18,8 @@ research-only Scaffold Binding `SCF-B-0144`、formal classification/route/phase/
 
 ## HEAD追随
 
-#2078 HEAD c55ffc91とmain HEAD 7afee33aを明示pinしました。どちらかが進んだ場合はbaseline/reviewを停止し、現行packetとして扱いません。新HEADとrebase baseを確認後、明示pin更新、generator・validator・selfcheck再実行、candidate union・36件・全evidenceの差分レビューを完了してからreviewを再開します。branch refを自動追随しません。
+#2078 HEAD c55ffc91とmain HEAD 7afee33aを明示pinしました。どちらかが進んだ場合はbaseline/reviewを停止し、現行packetとして扱いません。新HEADとrebase baseを確認後、明示pin更新、generator・validator・selfcheck再実行、candidate union・36件・全evidenceの差分レビューを完了してからreviewを再開します。branch refを自動追随しません。この停止境界は人手で適用し、validatorはremote branchを問い合わせずreview freshnessも判定しません。
 
 ## 検証
 
-`generate.py`、独立 `validate.py`、17件の順序固定negative selfcheck、`py_compile`、`scfctl validate`、`git diff --check`を実行します。レビュー依頼、merge、Issue closeはこのPRでは行いません。
+`generate.py`、独立 `validate.py`、31件の順序固定negative selfcheck、`py_compile`、`scfctl validate`、`git diff --check`を実行します。nested authority/unknown key、main manual review、source provenance、inventory IDs/pins、reason文言、厳密型、malformed container、rebaseline/binding pinの改変を拒否します。レビュー依頼、merge、Issue closeはこのPRでは行いません。

@@ -158,7 +158,21 @@
       "N14-scope-membership-evidence-tamper",
       "N15-json-nan",
       "N16-json-infinity",
-      "N17-json-negative-infinity"
+      "N17-json-negative-infinity",
+      "N18-nested-authority-promotion",
+      "N19-main-review-unbound",
+      "N20-source-provenance-forgery",
+      "N21-inventory-id-and-pin-forgery",
+      "N22-reason-wording-drift",
+      "N23-strict-json-types",
+      "N24-inventory-policy-drift",
+      "N25-repin-stability-drift",
+      "N26-main-union-drift",
+      "N27-main-rebaseline-drift",
+      "N28-binding-drift",
+      "N29-negative-case-contract-drift",
+      "N30-malformed-container-fails-closed",
+      "N31-nested-unknown-key"
     ],
     "oracles": [
       "validator independently reads the pinned #2078 inventory/generator, eight prior main classification inputs, and merged 67-row residual set without importing generate.py",

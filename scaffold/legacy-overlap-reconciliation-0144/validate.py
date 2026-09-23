@@ -73,6 +73,20 @@ EXPECTED_NEGATIVE_CASES = [
     "N15-json-nan",
     "N16-json-infinity",
     "N17-json-negative-infinity",
+    "N18-nested-authority-promotion",
+    "N19-main-review-unbound",
+    "N20-source-provenance-forgery",
+    "N21-inventory-id-and-pin-forgery",
+    "N22-reason-wording-drift",
+    "N23-strict-json-types",
+    "N24-inventory-policy-drift",
+    "N25-repin-stability-drift",
+    "N26-main-union-drift",
+    "N27-main-rebaseline-drift",
+    "N28-binding-drift",
+    "N29-negative-case-contract-drift",
+    "N30-malformed-container-fails-closed",
+    "N31-nested-unknown-key",
 ]
 
 
@@ -83,6 +97,63 @@ class CheckError(Exception):
 def require(ok: bool, code: str, detail: str) -> None:
     if not ok:
         raise CheckError(f"{code} {detail}")
+
+
+def exact(actual: object, expected: object, code: str, detail: str) -> None:
+    """Compare nested JSON without Python's bool/int/float equality aliases."""
+    if type(actual) is not type(expected):
+        raise CheckError(f"{code} {detail}: type {type(actual).__name__} != {type(expected).__name__}")
+    if isinstance(expected, dict):
+        if actual.keys() != expected.keys():
+            raise CheckError(f"{code} {detail}: key set differs")
+        for key in expected:
+            exact(actual[key], expected[key], code, f"{detail}.{key}")
+    elif isinstance(expected, list):
+        require(len(actual) == len(expected), code, f"{detail}: length differs")
+        for index, (got, want) in enumerate(zip(actual, expected)):
+            exact(got, want, code, f"{detail}[{index}]")
+    else:
+        require(actual == expected, code, f"{detail}: value differs")
+
+
+def expected_main_context(existing: dict) -> dict:
+    main = existing["row"]
+    spans = main["source_exact"]["semantic_anchors"]
+    review = main["manual_semantic_review"]
+    shrinkage = main.get("legacy_implementation_shrinkage_evidence") or {}
+    ledger = main.get("phase_ledger") or {}
+    history = main.get("legacy_history_failure_consumer") or {}
+    return {
+        "result": {
+            "category": main["classification_category"],
+            "candidate_products": main["candidate_products"],
+            "reason": main["classification_reason"],
+            "classification_state": main["classification_state"],
+        },
+        "source_spans": spans,
+        "product_boundary_evidence": main["boundary_evidence"],
+        "l1_evidence": main["l1_evidence"],
+        "counterevidence": review["boundary_counterevidence"],
+        "manual_semantic_review": review,
+        "method": {
+            "bundle": existing["bundle"], "row": existing["line"], "row_sha256": existing["row_sha256"],
+            "source_profile": main["source_profile"], "manual_review_status": review["status"],
+            "classification_schema": "classification_category + candidate_products + manual_semantic_review + source_exact.semantic_anchors",
+            "scope": "source-specific candidate is retained in the prior 429-record union; current main union is 496 after merging 67 disjoint #2078 residual records",
+        },
+        "phase_implementation_context": {
+            "phase_ledger": main["phase_ledger"],
+            "legacy_implementation_shrinkage_evidence": main["legacy_implementation_shrinkage_evidence"],
+            "legacy_history_failure_consumer": main["legacy_history_failure_consumer"],
+            "failure_consumer_static_refs": main["failure_consumer_static_refs"],
+            "legacy_implementation_status": shrinkage.get("implementation_status"),
+            "phase_candidate_targets": ledger.get("candidate_phase_targets", []),
+            "closure_status": history.get("state_boundary"),
+        },
+        "authority_effect": main["authority_effect"],
+        "formal_asset_classification_updated": main["formal_asset_classification_updated"],
+        "new_build_allowed": main["new_build_allowed"],
+    }
 
 
 def digest(data: bytes) -> str:
@@ -416,6 +487,23 @@ def expected_input_keys(ids: list[str]) -> set[tuple[str, str]]:
     return keys
 
 
+def expected_input_purposes(ids: list[str]) -> dict[tuple[str, str], tuple[str, bool]]:
+    purposes = {(BASE, path): ("main candidate-result union input", False) for path in MAIN_BUNDLES}
+    purposes.update({(TARGET, TARGET_GEN): ("#2078 target method/profile static source; inspected as text/AST only", False),
+                     (TARGET, TARGET_INV): ("#2078 overlap row/source identity/result pin", False),
+                     (TARGET, TARGET_ROWS): ("#2078 emitted-target exclusion proof", False),
+                     (TARGET, TARGET_BINDING): ("#2078 scaffold boundary/method provenance", False)})
+    docs = ((BOUNDARY, "four-product boundary roots"), (PHASE, "phase-candidate/source identity"),
+            (DISPOSITION, "legacy disposition and implementation status"), (DECISIONS, "legacy decision history"),
+            (READ_AFTER, "legacy read-after history"), (FAILURE, "static failure inventory"),
+            (CONSUMER, "static consumer inventory"))
+    purposes.update({(BASE, path): (purpose, False) for path, purpose in docs})
+    purposes.update({(BASE, path): ("approved four-product L1 evidence root", False) for path in L1_PATHS.values()})
+    purposes[(BASE, MANIFEST)] = ("archive MANIFEST digest cross-check; static archive reference", True)
+    purposes.update({(ARCHIVE_BASE, ARCHIVE_PREFIX + row_source_path(aid)): ("contested archive source bytes; static Git object read only", True) for aid in ids})
+    return purposes
+
+
 def calculate_repin_stability(current_inv: dict) -> dict:
     previous_inv = parse_json_bytes(git_bytes(PREVIOUS_TARGET, TARGET_INV), "E_JSON", TARGET_INV)
     def rows(inv):
@@ -457,12 +545,23 @@ def row_source_path(aid: str) -> str:
     return hits[0]["source_path"]
 
 
-def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
+def _validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
     records_path = bundle_dir / "classification-reconciliation.jsonl"
     inventory_path = bundle_dir / "inventory.json"
     records = [row for _, row in parse_jsonl_bytes(records_path.read_bytes(), str(records_path))]
     inv = parse_json_bytes(inventory_path.read_bytes(), "E_JSON", str(inventory_path))
     require(isinstance(inv, dict), "E_JSON", "inventory must be object")
+    inventory_keys = {
+        "schema_revision", "binding_id", "bundle_revision", "base_revision", "main_rebaseline", "current_main_union", "archive_revision",
+        "target_pr", "initial_target_head_pin", "target_head_pin", "repin_stability_from_previous_head", "target_head_pin_history",
+        "target_head_follow_policy", "subject_count", "new_asset_research_count", "adds_assets_to_main_union", "target_overlap_count",
+        "other_overlap_same_result_count", "conflict_status", "main_union_asset_count", "prior_main_candidate_union_asset_count",
+        "merged_2078_residual_asset_count", "exact_target_asset_ids", "category_counts_main_existing", "category_counts_target_2078",
+        "difference_reason_candidate_counts", "difference_reason_vocabulary", "semantic_interpretation_conflict_policy",
+        "semantic_interpretation_conflict_count", "candidate_reason_policy", "authority_boundary", "target_overlap_reconciliation_pin",
+        "input_digests", "binding_upstream_digests", "source_identity_checks", "negative_cases", "outputs", "inventory_sha256",
+    }
+    require(inv.keys() == inventory_keys, "E_INVENTORY_PIN", "inventory exact key set required")
     target_inv = parse_json_bytes(git_bytes(TARGET, TARGET_INV), "E_JSON", TARGET_INV)
     overlap_rows = target_inv.get("overlap_reconciliation", {}).get("entries", [])
     conflicts = [x for x in overlap_rows if x.get("overlap_status") == "same_source_different_candidate_result"]
@@ -473,17 +572,25 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
     expected_ids = sorted(x["asset_id"] for x in conflicts)
     ids = [r.get("asset_id") for r in records]
     require(len(records) == 36 and ids == sorted(ids) and ids == expected_ids and len(set(ids)) == 36, "E_TARGET_SET", "exact ordered 36 conflict IDs required")
+    exact(inv.get("exact_target_asset_ids"), expected_ids, "E_INVENTORY_PIN", "exact target asset IDs")
     require(inv.get("base_revision") == BASE and inv.get("archive_revision") == ARCHIVE_BASE and inv.get("target_head_pin") == TARGET, "E_INVENTORY_PIN", "revision lock drift")
-    require(inv.get("main_rebaseline") == expected_main_rebaseline(), "E_MAIN_REBASELINE", "main fixed-input blob comparison missing or stale")
-    require(inv.get("initial_target_head_pin") == INITIAL_TARGET and inv.get("target_head_pin_history") == [
+    exact(inv.get("main_rebaseline"), expected_main_rebaseline(), "E_MAIN_REBASELINE", "main fixed-input blob comparison")
+    exact(inv.get("initial_target_head_pin"), INITIAL_TARGET, "E_INVENTORY_PIN", "initial target pin")
+    exact(inv.get("target_head_pin_history"), [
         {"head": INITIAL_TARGET, "status": "initial_pin", "note": "first comparison pin requested before PR #2078 advanced"},
         {"head": PREVIOUS_TARGET, "status": "previous_repin", "note": "PR #2078 advanced from the initial pin; overlap53/conflict36 IDs and source identities were rechecked"},
         {"head": TARGET, "status": "current_repin", "note": "PR #2078 advanced from 8c8cf851; overlap53/conflict36 IDs, source identities, and candidate summaries were recomputed and remained unchanged; target inventory/generator pins were refreshed"},
-    ], "E_INVENTORY_PIN", "target HEAD pin history drift")
+    ], "E_INVENTORY_PIN", "target HEAD pin history")
     repin = calculate_repin_stability(target_inv)
-    require(inv.get("repin_stability_from_previous_head") == repin and repin["history_only_previous_pin"] is True and repin["changed_overlap_row_count"] == 0, "E_REPIN_STABILITY", "previous/current #2078 pin comparison changed or missing")
-    require(inv.get("subject_count") == 36 and inv.get("new_asset_research_count") == 0 and inv.get("adds_assets_to_main_union") is False, "E_INVENTORY_PIN", "new research denominator drift")
-    require(inv.get("target_overlap_count") == 53 and inv.get("other_overlap_same_result_count") == 17 and inv.get("main_union_asset_count") == 496 and inv.get("prior_main_candidate_union_asset_count") == 429 and inv.get("merged_2078_residual_asset_count") == 67, "E_INVENTORY_PIN", "current/prior union denominator drift")
+    exact(inv.get("repin_stability_from_previous_head"), repin, "E_REPIN_STABILITY", "previous/current #2078 pin comparison")
+    exact(repin["history_only_previous_pin"], True, "E_REPIN_STABILITY", "history-only previous pin")
+    exact(repin["changed_overlap_row_count"], 0, "E_REPIN_STABILITY", "unchanged overlap rows")
+    exact({key: inv.get(key) for key in ("subject_count", "new_asset_research_count", "adds_assets_to_main_union")}, {"subject_count": 36, "new_asset_research_count": 0, "adds_assets_to_main_union": False}, "E_INVENTORY_PIN", "new research denominator")
+    exact({key: inv.get(key) for key in ("target_overlap_count", "other_overlap_same_result_count", "main_union_asset_count", "prior_main_candidate_union_asset_count", "merged_2078_residual_asset_count")}, {"target_overlap_count": 53, "other_overlap_same_result_count": 17, "main_union_asset_count": 496, "prior_main_candidate_union_asset_count": 429, "merged_2078_residual_asset_count": 67}, "E_INVENTORY_PIN", "current/prior union denominator")
+    exact({key: inv.get(key) for key in ("schema_revision", "binding_id", "bundle_revision", "target_pr", "conflict_status")}, {"schema_revision": 1, "binding_id": "SCF-B-0144", "bundle_revision": "SCF-B-0144 generated revision 5", "target_pr": 2078, "conflict_status": "same_source_different_candidate_result"}, "E_INVENTORY_PIN", "inventory identity")
+    exact(inv.get("source_identity_checks"), {"exact_same_source_path_sha_for_all_36": True, "archive_blob_type_mode_and_manifest_checked": True, "all_archive_reads": "git_object_static_read_only", "archive_runtime_test_ci_hook_adapter_execution": False}, "E_INVENTORY_PIN", "source identity summary")
+    exact(inv.get("candidate_reason_policy"), "Reasons are evidence-backed non-exclusive candidates; no winner, owner, formal route, phase, successor, implementation status, or consumer closure is generated.", "E_INVENTORY_PIN", "candidate reason policy")
+    exact(inv.get("authority_boundary"), {"authority_effect": "none", "formal_asset_classification_updated": False, "formal_route_updated": False, "phase_admission_updated": False, "successor_assignment": None, "implementation_status_promoted": False, "consumer_closure_created": False, "new_build_allowed": False, "formal_update": "none", "research_only": True, "LABO": "excluded; Issue #2089 hold remains in force"}, "E_AUTHORITY", "inventory authority boundary")
     prior_main_by_id = main_row_map()
     current_union_ids = current_main_union_ids(prior_main_by_id)
     current_union_evidence = {
@@ -493,11 +600,13 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
         "merged_2078_residual_disjoint_from_prior_main": True,
         "current_main_union_count": len(current_union_ids),
     }
-    require(inv.get("current_main_union") == current_union_evidence, "E_MAIN_UNION", "current main union evidence is stale")
-    require(inv.get("target_head_follow_policy", "").startswith(f"STOP the current baseline/review if PR #2078 advances beyond {TARGET} or main advances beyond {BASE}."), "E_INVENTORY_PIN", "explicit target/main stop-and-rebaseline policy required")
-    require(inv.get("difference_reason_vocabulary") == ["scope_difference", "evidence_span_difference", "research_method_state_difference", "classification_rule_difference", "unresolved"], "E_REASON_EVIDENCE", "reason vocabulary drift")
-    require(inv.get("semantic_interpretation_conflict_count") == 0 and inv.get("semantic_interpretation_conflict_policy") == "A semantic interpretation conflict requires both sides to have independently researched source-specific evidence and to retain incompatible interpretations. The #2078 rows here are generic insufficient-basis fallbacks, so the 36 records contain zero such conflicts.", "E_REASON_EVIDENCE", "semantic interpretation conflict policy/count drift")
-    require(inv.get("negative_cases") == EXPECTED_NEGATIVE_CASES, "E_NEGATIVE_CASES", "ordered expected negative case set drift")
+    exact(inv.get("current_main_union"), current_union_evidence, "E_MAIN_UNION", "current main union evidence")
+    follow_policy = f"STOP the current baseline/review if PR #2078 advances beyond {TARGET} or main advances beyond {BASE}. Do not present this packet as current until the exact new HEADs and rebase base are inspected, pins are explicitly refreshed, generator/validator/selfcheck are rerun, and all set/evidence changes are reviewed and recorded. No floating branch ref is followed automatically. This stop rule is operator-enforced; the validator checks pinned objects and does not query remote branch HEADs or establish review freshness."
+    exact(inv.get("target_head_follow_policy"), follow_policy, "E_INVENTORY_PIN", "pinned follow policy")
+    exact(inv.get("difference_reason_vocabulary"), ["scope_difference", "evidence_span_difference", "research_method_state_difference", "classification_rule_difference", "unresolved"], "E_REASON_EVIDENCE", "reason vocabulary")
+    exact(inv.get("semantic_interpretation_conflict_count"), 0, "E_REASON_EVIDENCE", "semantic interpretation conflict count")
+    exact(inv.get("semantic_interpretation_conflict_policy"), "A semantic interpretation conflict requires both sides to have independently researched source-specific evidence and to retain incompatible interpretations. The #2078 rows here are generic insufficient-basis fallbacks, so the 36 records contain zero such conflicts.", "E_REASON_EVIDENCE", "semantic interpretation conflict policy")
+    exact(inv.get("negative_cases"), EXPECTED_NEGATIVE_CASES, "E_NEGATIVE_CASES", "ordered expected negative case set")
     target_by_id = {x["asset_id"]: x for x in conflicts}
     main_by_id = prior_main_by_id
     path_to_id, l1_map, boundary_ranges, l1_ranges = pinned_target_method()
@@ -506,12 +615,14 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
     target_category_counts = Counter()
     for row in records:
         aid = row["asset_id"]
+        require(row.keys() == {"asset_id", "source_identity", "main_existing_result", "target_2078_result", "difference_reason_candidates", "resolution", "authority_effect", "formal_asset_classification_updated", "formal_route_updated", "phase_admission_updated", "successor_assignment", "implementation_status_promoted", "consumer_closure_created", "new_build_allowed"}, "E_RECORD_SCHEMA", f"record exact key set {aid}")
         entry = target_by_id[aid]
         results = main_by_id.get(aid, [])
         require(len(results) == 1, "E_MAIN_RESULT", f"main row cardinality {aid}={len(results)}")
         main_record = results[0]["row"]
         require(path_to_id.get(entry["source_path"]) == aid, "E_TARGET_RESULT", f"target generic profile ID/path mismatch {aid}")
         source = row.get("source_identity", {})
+        require(type(source) is dict, "E_SOURCE_IDENTITY", f"source identity object required {aid}")
         require(source.get("source_path") == entry["source_path"] and source.get("source_sha256") == entry["source_sha256"], "E_SOURCE_IDENTITY", f"source path/SHA does not match overlap pin {aid}")
         archive_path = ARCHIVE_PREFIX + entry["source_path"]
         tree = tree_entry(ARCHIVE_BASE, archive_path)
@@ -520,6 +631,15 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
         require(sha == entry["source_sha256"], "E_SOURCE_IDENTITY", f"archive bytes SHA mismatch {aid}")
         require(tree["blob"] == source["archive_provenance"].get("blob") and tree["type"] == "blob" and tree["mode"] in {"100644", "100755"}, "E_SOURCE_IDENTITY", f"archive tree metadata mismatch {aid}")
         require(manifest_digest(ARCHIVE_BASE, entry["source_path"]) == sha, "E_SOURCE_IDENTITY", f"archive MANIFEST mismatch {aid}")
+        archive_expected = {
+            "archive_revision": ARCHIVE_BASE, "archive_path": archive_path, "path": archive_path,
+            "source_path": entry["source_path"], "blob": tree["blob"], "type": tree["type"], "mode": tree["mode"],
+            "bytes": len(data),
+            "line_count": len(data.decode("utf-8", errors="replace").splitlines()),
+            "sha256": sha, "manifest_path": MANIFEST, "manifest_sha256": sha, "manifest_match": True,
+            "read_mode": "git_object_static_read_only", "execution_performed": False,
+        }
+        exact(source.get("archive_provenance"), archive_expected, "E_SOURCE_IDENTITY", f"archive provenance {aid}")
         main_exact = main_record.get("source_exact", {})
         require(main_exact.get("source_path") == entry["source_path"] and main_exact.get("sha256") == sha and main_exact.get("blob") == tree["blob"], "E_SOURCE_IDENTITY", f"main side path/SHA/blob mismatch {aid}")
         target_source = [x for x in target_inv.get("archive_source_provenance", []) if x.get("asset_id") == aid]
@@ -527,29 +647,43 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
         tse = target_source[0]["source_exact"]
         require(target_source[0].get("source_path") == entry["source_path"] and tse.get("sha256") == sha and tse.get("blob") == tree["blob"], "E_SOURCE_IDENTITY", f"target side path/SHA/blob mismatch {aid}")
         target_exact = source.get("target_overlap_source_exact", {})
-        for key in ("archive_path", "blob", "bytes", "line_count", "ledger_source_sha256", "sha256", "mode", "type", "ledger_digest_match", "archive_manifest_sha256", "archive_manifest_match", "archive_manifest_resolution", "read_mode"):
-            require(target_exact.get(key) == tse.get(key), "E_SOURCE_IDENTITY", f"target overlap source metadata mismatch {aid}:{key}")
-        require(source.get("identity_checks") == {
+        target_exact_expected = {key: tse[key] for key in ("archive_path", "blob", "bytes", "line_count", "ledger_source_sha256", "sha256", "mode", "type", "ledger_digest_match", "archive_manifest_sha256", "archive_manifest_match", "archive_manifest_resolution", "read_mode")}
+        main_exact_expected = {key: main_exact.get(key) for key in ("archive_path", "blob", "bytes", "line_count", "ledger_source_sha256", "sha256", "read_mode")}
+        exact(target_exact, target_exact_expected, "E_SOURCE_IDENTITY", f"target source metadata {aid}")
+        exact(source.get("main_record_source_exact"), main_exact_expected, "E_SOURCE_IDENTITY", f"main source metadata {aid}")
+        identity_expected = {
             "main_and_target_source_path_equal": True,
             "main_and_target_source_sha256_equal": True,
             "archive_blob_sha_manifest_all_match": True,
-            "type_blob_regular_mode": True,
-        }, "E_SOURCE_IDENTITY", f"identity proof flags missing {aid}")
+            "type_blob_regular_mode": tree["type"] == "blob" and tree["mode"] in {"100644", "100755"},
+        }
+        exact(source.get("identity_checks"), identity_expected, "E_SOURCE_IDENTITY", f"identity proof flags {aid}")
+        exact(source, {
+            "source_path": entry["source_path"], "source_sha256": sha, "main_revision": BASE,
+            "target_revision": TARGET, "target_archive_revision": ARCHIVE_BASE,
+            "archive_provenance": archive_expected, "main_record_source_exact": main_exact_expected,
+            "target_overlap_source_exact": target_exact_expected, "identity_checks": identity_expected,
+        }, "E_SOURCE_IDENTITY", f"complete pinned source identity {aid}")
         target = row.get("target_2078_result", {})
+        require(type(target) is dict and target.keys() == {"classification_result", "source_spans", "product_boundary_and_l1", "counterevidence", "method", "phase_implementation_context", "history_failure_consumer_context", "human_judgment_remaining", "authority_effect", "formal_route_created", "new_build_allowed"}, "E_TARGET_RESULT", f"target result exact key set {aid}")
         target_result = target.get("classification_result", {})
         require(target_result.get("category") == entry["target_category"] and target_result.get("candidate_products") == entry["target_products"] == [], "E_TARGET_RESULT", f"target result mismatch {aid}")
         require(target_result.get("reason") == PROFILE_REASON and target_result.get("result_origin", "").startswith("#2078 generate.py literal profile"), "E_TARGET_RESULT", f"target fallback reason/provenance mismatch {aid}")
+        exact(target_result, {
+            "category": entry["target_category"], "candidate_products": entry["target_products"],
+            "reason": PROFILE_REASON,
+            "result_origin": "#2078 generate.py literal profile; overlap row is summarized in inventory and has no classification JSONL record",
+        }, "E_TARGET_RESULT", f"target classification record {aid}")
         tspan = target_span(data)
-        require(target.get("source_spans", {}).get("semantic_span") == tspan, "E_SOURCE_SPAN", f"reconstructed target span mismatch {aid}")
-        require(target.get("source_spans", {}).get("emission_status", "").startswith("reconstructed from pinned helper"), "E_SOURCE_SPAN", f"target span falsely represented as emitted {aid}")
+        exact(target.get("source_spans"), {"semantic_span": tspan, "emission_status": "reconstructed from pinned helper and fixed archive bytes; not emitted in #2078 overlap row"}, "E_SOURCE_SPAN", f"reconstructed target span {aid}")
         main_context = row.get("main_existing_result", {})
+        require(type(main_context) is dict, "E_MAIN_RESULT", f"main result object required {aid}")
+        exact(main_context, expected_main_context(results[0]), "E_MAIN_RESULT", f"complete main record binding {aid}")
         main_result = main_context.get("result", {})
         main_cat = main_record.get("classification_category")
         main_products = main_record.get("candidate_products", [])
         require(main_result.get("category") == main_cat and main_result.get("candidate_products") == main_products and main_result.get("reason") == main_record.get("classification_reason"), "E_MAIN_RESULT", f"main candidate result mismatch {aid}")
         require(same_candidate_invariant(main_cat, main_products) and same_candidate_invariant(target_result["category"], target_result["candidate_products"]), "E_MAIN_RESULT", f"category/product invariant {aid}")
-        if main_cat != "insufficient_basis" or main_products != []:
-            pass
         require(main_context.get("method", {}).get("bundle") == results[0]["bundle"] and main_context.get("method", {}).get("row") == results[0]["line"] and main_context.get("method", {}).get("row_sha256") == results[0]["row_sha256"], "E_MAIN_RESULT", f"main row provenance mismatch {aid}")
         require(main_context.get("source_spans") == main_exact.get("semantic_anchors"), "E_SOURCE_SPAN", f"main source spans changed {aid}")
         require(main_context.get("product_boundary_evidence") == main_record.get("boundary_evidence") and main_context.get("l1_evidence") == main_record.get("l1_evidence"), "E_PRODUCT_EVIDENCE", f"main boundary/L1 evidence changed {aid}")
@@ -558,20 +692,39 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
         for product in main_products:
             require(product in PRODUCTS and product in main_record.get("l1_evidence", {}), "E_PRODUCT_EVIDENCE", f"main candidate outside four products or L1 absent {aid}")
         expected_pool = expected_target_boundary(l1_map, boundary_ranges, l1_ranges)
-        require(target.get("product_boundary_and_l1") == expected_pool, "E_PRODUCT_EVIDENCE", f"target boundary/L1 pool changed {aid}")
-        counter = target.get("counterevidence", {})
-        require(counter.get("status") == "not_recorded_for_overlap_row" and "counterevidence_authored_by_target_overlap_result" not in counter, "E_PRODUCT_EVIDENCE", f"target counterevidence availability misrepresented {aid}")
-        require(counter.get("available_human_counterevidence") == expected_pool["four_product_l1_comparison_pool"], "E_PRODUCT_EVIDENCE", f"target L1 comparison pool changed {aid}")
-        require(target.get("method", {}).get("classification_rule") == "insufficient_basis; candidate_products=[]" and target.get("method", {}).get("selection", "").endswith("span length 1"), "E_TARGET_RESULT", f"target method drift {aid}")
-        require(target.get("method", {}).get("generator_source_sha256") == digest(git_bytes(TARGET, TARGET_GEN)) and target.get("method", {}).get("inventory_overlap_row_sha256") == digest(canonical(entry)), "E_TARGET_RESULT", f"target revision evidence pin mismatch {aid}")
-        require(target.get("phase_implementation_context") == phase_context(aid), "E_PHASE_STATE", f"target phase/implementation context mismatch {aid}")
-        require(target.get("history_failure_consumer_context") == target_history(aid), "E_PHASE_STATE", f"target history/failure/consumer context mismatch {aid}")
-        require(main_context.get("phase_implementation_context", {}).get("phase_ledger") == main_record.get("phase_ledger") and main_context.get("phase_implementation_context", {}).get("legacy_history_failure_consumer") == main_record.get("legacy_history_failure_consumer"), "E_PHASE_STATE", f"main phase/history evidence changed {aid}")
-        require(row.get("authority_effect") == "none" and row.get("formal_asset_classification_updated") is False and row.get("formal_route_updated") is False and row.get("phase_admission_updated") is False and row.get("successor_assignment") is None and row.get("implementation_status_promoted") is False and row.get("consumer_closure_created") is False and row.get("new_build_allowed") is False, "E_AUTHORITY", f"formal boundary changed {aid}")
-        resolution = row.get("resolution", {})
-        require(resolution.get("status") == "comparison_state_reconciled; main_candidate_disposition_unapproved" and resolution.get("comparison_treatment") == "research_method_state_difference" and resolution.get("semantic_conflict_decision_required") is False and resolution.get("main_candidate_disposition") == "unapproved; retain for the ordinary candidate disposition process; this comparison neither approves nor rejects it" and resolution.get("questions") == [] and resolution.get("winner_selected") is False and resolution.get("formal_route_created") is False, "E_AUTHORITY", f"comparison incorrectly requests a per-asset conflict decision or changes candidate disposition {aid}")
-        target_scope = target.get("method", {}).get("scope", {})
+        exact(target.get("product_boundary_and_l1"), expected_pool, "E_PRODUCT_EVIDENCE", f"target boundary/L1 pool {aid}")
         expected_scope = expected_target_scope(entry, aid, path_to_id, current_union_ids)
+        counter = target.get("counterevidence", {})
+        exact(counter, {"status": "not_recorded_for_overlap_row", "available_human_counterevidence": expected_pool["four_product_l1_comparison_pool"], "note": "All four L1 roots are a comparison pool only; no product candidate is inferred from them."}, "E_PRODUCT_EVIDENCE", f"target counterevidence {aid}")
+        expected_method = {
+            "profile_set": "UNRESEARCHED_PREFIX_ASSET_PATHS", "selection": "first non-empty unique source line via unique_anchor_marker; span length 1",
+            "classification_rule": "insufficient_basis; candidate_products=[]", "scope": expected_scope,
+            "source_exclusion": "#2078 final classification JSONL excludes all 53 overlap entries; target result is inventory summary plus generator profile.",
+            "generator_source_sha256": digest(git_bytes(TARGET, TARGET_GEN)), "inventory_overlap_row_sha256": digest(canonical(entry)),
+        }
+        exact(target.get("method"), expected_method, "E_TARGET_RESULT", f"target method {aid}")
+        require(target.get("method", {}).get("generator_source_sha256") == digest(git_bytes(TARGET, TARGET_GEN)) and target.get("method", {}).get("inventory_overlap_row_sha256") == digest(canonical(entry)), "E_TARGET_RESULT", f"target revision evidence pin mismatch {aid}")
+        exact(target.get("phase_implementation_context"), phase_context(aid), "E_PHASE_STATE", f"target phase/implementation context {aid}")
+        exact(target.get("history_failure_consumer_context"), target_history(aid), "E_PHASE_STATE", f"target history/failure/consumer context {aid}")
+        require(main_context.get("phase_implementation_context", {}).get("phase_ledger") == main_record.get("phase_ledger") and main_context.get("phase_implementation_context", {}).get("legacy_history_failure_consumer") == main_record.get("legacy_history_failure_consumer"), "E_PHASE_STATE", f"main phase/history evidence changed {aid}")
+        authority = {
+            "authority_effect": "none", "formal_asset_classification_updated": False, "formal_route_updated": False,
+            "phase_admission_updated": False, "successor_assignment": None, "implementation_status_promoted": False,
+            "consumer_closure_created": False, "new_build_allowed": False,
+        }
+        exact({key: row.get(key) for key in authority}, authority, "E_AUTHORITY", f"record authority {aid}")
+        exact({key: target.get(key) for key in ("authority_effect", "formal_route_created", "new_build_allowed")},
+              {"authority_effect": "none", "formal_route_created": False, "new_build_allowed": False},
+              "E_AUTHORITY", f"target nested authority values {aid}")
+        exact(target["human_judgment_remaining"], True, "E_AUTHORITY", f"human judgment remains required {aid}")
+        require(type(row.get("resolution")) is dict, "E_AUTHORITY", f"resolution object required {aid}")
+        exact(row["resolution"], {
+            "status": "comparison_state_reconciled; main_candidate_disposition_unapproved",
+            "comparison_treatment": "research_method_state_difference", "semantic_conflict_decision_required": False,
+            "main_candidate_disposition": "unapproved; retain for the ordinary candidate disposition process; this comparison neither approves nor rejects it",
+            "winner_selected": False, "formal_route_created": False, "questions": [],
+        }, "E_AUTHORITY", f"resolution exact values {aid}")
+        target_scope = target.get("method", {}).get("scope", {})
         require(target_scope == expected_scope, "E_REASON_EVIDENCE", f"scope membership evidence mismatch {aid}")
         actual_reasons = [x.get("type") for x in row.get("difference_reason_candidates", [])]
         expected_reasons = expected_reason_types(main_record, tspan, main_exact.get("semantic_anchors", []), expected_scope)
@@ -580,6 +733,18 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
         if "research_method_state_difference" in actual_reasons:
             require(main_record.get("manual_semantic_review", {}).get("status") and main_exact.get("semantic_anchors") and target_result.get("reason") == PROFILE_REASON and target.get("method", {}).get("classification_rule") == "insufficient_basis; candidate_products=[]", "E_REASON_EVIDENCE", f"research-state difference lacks independent main research and generic target fallback evidence {aid}")
         for reason in row["difference_reason_candidates"]:
+            require(type(reason) is dict, "E_REASON_EVIDENCE", f"reason object required {aid}")
+            expected_reason_values = {
+                "scope_difference": ("The #2078 UNRESEARCHED_PREFIX_ASSET_PATHS fallback reason asserts this asset ID was absent from prior research, while its overlap row and the retained source-specific result place it in the prior 429-ID union. The current main union is 496 after adding 67 disjoint residual assets; this is a research-scope difference for human review, not a semantic conflict.", ["target.scope.scope_membership_evidence", "target.overlap_result", "main.input_union"]),
+                "evidence_span_difference": ("The main result retains source-specific span(s); #2078's fallback chooses one unique non-empty line. Their line bounds or text digest differ.", ["main.source_spans", "target.reconstructed_source_span"]),
+                "research_method_state_difference": ("The main side has source-specific semantic review and spans, while #2078 supplies only a generic insufficient-basis fallback for an unresearched-prefix set. This records research, method, and state difference; it is not a semantic interpretation conflict because both sides did not independently research the source.", ["main.manual_semantic_review", "main.source_spans", "target.profile_reason", "target.method.classification_rule"]),
+                "classification_rule_difference": ("The main result has a direct or multi-product semantic review; the #2078 overlap candidate inherits the generic insufficient-basis rule for the unresearched-prefix set.", ["main.classification", "main.manual_semantic_review", "target.fallback_profile"]),
+                "unresolved": ("Static records do not establish a supported difference cause.", ["main", "target"]),
+            }
+            rtype = reason.get("type")
+            require(rtype in expected_reason_values, "E_REASON_EVIDENCE", f"unknown reason type {aid}")
+            basis, refs = expected_reason_values[rtype]
+            exact(reason, {"type": rtype, "evidence_refs": refs, "basis": basis}, "E_REASON_EVIDENCE", f"reason exact wording {aid}")
             require(reason.get("evidence_refs") and isinstance(reason.get("basis"), str) and reason["basis"], "E_REASON_EVIDENCE", f"unsubstantiated reason {aid}")
             if reason.get("type") == "research_method_state_difference":
                 require(reason.get("evidence_refs") == ["main.manual_semantic_review", "main.source_spans", "target.profile_reason", "target.method.classification_rule"], "E_REASON_EVIDENCE", f"research-state evidence references mismatch {aid}")
@@ -590,49 +755,58 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
         main_category_counts[main_cat] += 1
         target_category_counts[target_result["category"]] += 1
         actual_reason_counts.update(actual_reasons)
-    require(inv.get("category_counts_main_existing") == dict(sorted(main_category_counts.items())), "E_INVENTORY_PIN", "main category count drift")
-    require(inv.get("category_counts_target_2078") == dict(sorted(target_category_counts.items())), "E_INVENTORY_PIN", "target category count drift")
-    require(inv.get("difference_reason_candidate_counts") == dict(sorted(actual_reason_counts.items())), "E_INVENTORY_PIN", "reason count drift")
+    exact(inv.get("category_counts_main_existing"), dict(sorted(main_category_counts.items())), "E_INVENTORY_PIN", "main category counts")
+    exact(inv.get("category_counts_target_2078"), dict(sorted(target_category_counts.items())), "E_INVENTORY_PIN", "target category counts")
+    exact(inv.get("difference_reason_candidate_counts"), dict(sorted(actual_reason_counts.items())), "E_INVENTORY_PIN", "reason counts")
     require(actual_reason_counts["research_method_state_difference"] == 36 and actual_reason_counts["interpretation_conflict"] == 0, "E_REASON_EVIDENCE", "generic target fallback must yield 36 research-state differences and zero semantic interpretation conflicts")
     raw_records = records_path.read_bytes()
     require(inv.get("outputs", {}).get("records_sha256") == digest(raw_records) and inv.get("outputs", {}).get("records_bytes") == len(raw_records) and inv.get("outputs", {}).get("record_count") == len(records), "E_OUTPUT_DIGEST", "records output digest/size/count stale")
     expected_inv_hash = digest(canonical({k: v for k, v in inv.items() if k != "inventory_sha256"}))
-    require(inv.get("inventory_sha256") == expected_inv_hash, "E_OUTPUT_DIGEST", "inventory self digest stale")
+    exact(inv.get("inventory_sha256"), expected_inv_hash, "E_OUTPUT_DIGEST", "inventory self digest")
     expected_keys = expected_input_keys(expected_ids)
     input_rows = inv.get("input_digests", [])
+    require(type(input_rows) is list and all(type(x) is dict and x.keys() == {"archive_static_only", "blob", "bytes", "mode", "path", "purpose", "revision", "sha256", "type"} for x in input_rows), "E_INPUT_DIGEST", "input digest exact record schema")
     input_keys = [(x.get("revision"), x.get("path")) for x in input_rows]
     require(len(input_keys) == len(set(input_keys)) and set(input_keys) == expected_keys, "E_INPUT_DIGEST", "upstream exact path/revision set mismatch")
+    purposes = expected_input_purposes(expected_ids)
+    require(len(input_rows) == len(purposes), "E_INPUT_DIGEST", "upstream input count")
     for item in input_rows:
         path, rev = item["path"], item["revision"]
         current = git_bytes(rev, path)
         tree = tree_entry(rev, path)
+        require(type(item.get("archive_static_only")) is bool and type(item.get("bytes")) is int, "E_INPUT_DIGEST", f"input digest scalar types {rev}:{path}")
         require(item.get("sha256") == digest(current) and item.get("bytes") == len(current) and item.get("blob") == tree["blob"] and item.get("type") == tree["type"] and item.get("mode") == tree["mode"], "E_INPUT_DIGEST", f"upstream digest/tree mismatch {rev}:{path}")
+        exact((item.get("purpose"), item.get("archive_static_only")), purposes[(rev, path)], "E_INPUT_DIGEST", f"input purpose/archive policy {rev}:{path}")
     target_pins = inv.get("target_overlap_reconciliation_pin", {})
+    exact(target_pins, {"inventory_path": TARGET_INV, "inventory_sha256": digest(git_bytes(TARGET, TARGET_INV)), "overlap_rows_sha256": digest(canonical(conflicts)), "target_generator_path": TARGET_GEN, "target_generator_sha256": digest(git_bytes(TARGET, TARGET_GEN)), "target_records_path": TARGET_ROWS, "target_records_sha256": digest(git_bytes(TARGET, TARGET_ROWS)), "target_result_emission": "36 excluded overlap results are not JSONL records; candidate values are in inventory and target fallback literals in generator."}, "E_INVENTORY_PIN", "target reconciliation pins")
     require(target_pins.get("inventory_sha256") == digest(git_bytes(TARGET, TARGET_INV)) and target_pins.get("target_generator_sha256") == digest(git_bytes(TARGET, TARGET_GEN)) and target_pins.get("target_records_sha256") == digest(git_bytes(TARGET, TARGET_ROWS)), "E_TARGET_RESULT", "#2078 target object pin changed")
     require(target_pins.get("overlap_rows_sha256") == digest(canonical(conflicts)), "E_TARGET_RESULT", "#2078 overlap rows pin changed")
     # Binding upstreams must be local, non-archive inputs at the fixed main revision.
     binding = parse_json_bytes(BINDING.read_bytes(), "E_JSON", str(BINDING))
+    require(binding.keys() == {"artifacts", "connections", "created", "id", "kind", "obligations", "operations", "owner_candidate", "product", "reason", "replacement", "role", "schema_revision", "state", "title", "updated", "upstream", "verification"}, "E_BINDING", "binding exact key set")
     expected_artifacts = binding.get("artifacts", [])
-    require(str(BINDING.relative_to(ROOT)) in expected_artifacts and str(records_path.relative_to(ROOT)) in expected_artifacts and str(inventory_path.relative_to(ROOT)) in expected_artifacts, "E_BINDING", "artifact registration incomplete")
+    require(str(BINDING.relative_to(ROOT)) in expected_artifacts and str((BUNDLE / "classification-reconciliation.jsonl").relative_to(ROOT)) in expected_artifacts and str((BUNDLE / "inventory.json").relative_to(ROOT)) in expected_artifacts, "E_BINDING", "artifact registration incomplete")
     local_inputs = {x["path"]: x["sha256"].removeprefix("sha256:") for x in input_rows if x["revision"] == BASE and not x["archive_static_only"] and not x["path"].startswith("archive/")}
-    binding_inputs = {x.get("path"): x.get("sha256") for x in binding.get("upstream", [])}
-    require(binding_inputs == local_inputs, "E_BINDING", "binding upstream must exactly match fixed-main nonarchive input digests")
+    exact(inv.get("binding_upstream_digests"), [{"path": path, "sha256": local_inputs[path]} for path in sorted(local_inputs)], "E_BINDING", "inventory binding upstream digests")
+    upstream_rows = binding.get("upstream", [])
+    require(type(upstream_rows) is list and all(type(x) is dict and x.keys() == {"path", "sha256"} for x in upstream_rows), "E_BINDING", "binding upstream exact schema")
+    expected_binding_rows = [{"path": path, "sha256": local_inputs[path]} for path in sorted(local_inputs)]
+    exact(upstream_rows, expected_binding_rows, "E_BINDING", "binding upstream exact fixed-main inputs")
     require(binding.get("id") == "SCF-B-0144" and binding.get("kind") == "scaffold", "E_BINDING", "binding identity/kind")
     require(binding.get("replacement", {}).get("status") == "pending" and binding.get("replacement", {}).get("formal_artifacts") == [], "E_BINDING", "formal replacement present")
     require(any("LABO" in s for s in binding.get("operations", {}).get("forbidden", [])), "E_BINDING", "LABO exclusion absent")
-    require(binding.get("verification", {}).get("negative_cases") == inv.get("negative_cases"), "E_NEGATIVE_CASES", "binding/inventory negative case lists differ")
+    exact(binding.get("verification", {}).get("negative_cases"), inv.get("negative_cases"), "E_NEGATIVE_CASES", "binding/inventory negative case lists")
+    exact(inv.get("outputs"), {"records_sha256": digest(records_path.read_bytes()), "records_bytes": len(records_path.read_bytes()), "record_count": len(records)}, "E_OUTPUT_DIGEST", "outputs summary")
     return {"records": len(records), "main_categories": dict(main_category_counts), "target_categories": dict(target_category_counts), "reason_counts": dict(actual_reason_counts), "input_digests": len(input_rows)}
 
 
-def manifest_digest(revision: str, source_path: str) -> str:
-    found = []
-    for line in git_bytes(revision, MANIFEST).decode("utf-8", errors="replace").splitlines():
-        if line.endswith(" " + source_path):
-            sha, path = line.split(maxsplit=1)
-            if path == source_path:
-                found.append("sha256:" + sha)
-    require(len(found) == 1, "E_SOURCE_IDENTITY", f"manifest line count {source_path}")
-    return found[0]
+def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
+    try:
+        return _validate_bundle(bundle_dir)
+    except CheckError:
+        raise
+    except (AttributeError, IndexError, KeyError, TypeError, ValueError) as exc:
+        raise CheckError(f"E_RECORD_SCHEMA malformed nested record or inventory: {type(exc).__name__}") from exc
 
 
 def main() -> int:

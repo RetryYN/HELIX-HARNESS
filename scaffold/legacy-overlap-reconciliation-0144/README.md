@@ -8,7 +8,7 @@ main側は既存bundleの候補分類、source semantic span、解釈、四製�
 
 ## HEAD追随
 
-targetはbranch名ではなくHEAD `c55ffc91…` のGit objectに固定し、mainは `7afee33…` に固定しています。#2078またはmainがこのHEADから進んだ場合はbaseline/reviewを停止し、packetを現行証拠として扱いません。新HEADとrebase baseを確認した後、`generate.py` と `validate.py` のpinを明示更新し、候補unionの分母、36件集合、source path/SHA、全evidence、Binding upstream、negative casesを再生成・再検証してからreviewを再開します。自動追随しません。
+targetはbranch名ではなくHEAD `c55ffc91…` のGit objectに固定し、mainは `7afee33…` に固定しています。#2078またはmainがこのHEADから進んだ場合はbaseline/reviewを停止し、packetを現行証拠として扱いません。新HEADとrebase baseを確認した後、`generate.py` と `validate.py` のpinを明示更新し、候補unionの分母、36件集合、source path/SHA、全evidence、Binding upstream、negative casesを再生成・再検証してからreviewを再開します。自動追随しません。この停止境界は人手で適用し、validatorはremote branchを問い合わせずreview freshnessも判定しません。validatorは固定Git objectとbundle内容の整合だけを検査します。
 
 ## 境界
 
@@ -25,4 +25,4 @@ python3 scaffold/tools/scfctl.py validate
 git diff --check
 ```
 
-`human-judgment-packet.md`は対象一覧と判断境界を示す案内です。各assetの比較証拠は `classification-reconciliation.jsonl` が正本です。
+`human-judgment-packet.md`は対象一覧と判断境界を示す案内です。各assetの比較証拠は `classification-reconciliation.jsonl` が正本です。validatorはnested recordとinventoryを再導出期待値へkey/type/value厳密比較し、31件のnegative caseで境界を確認します。
