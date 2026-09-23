@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = Path(__file__).resolve().parent
-BASE = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
+BASE = "0871112f37d42fd0b01d3e5290632d2306463320"
 LEDGER = "docs/governance/legacy-asset-disposition.jsonl"
 PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
@@ -86,7 +86,7 @@ def audit_overlap() -> tuple[dict, dict[str, list[str]]]:
         ("main", BASE, None),
         ("pr_2090", "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e", "scaffold/legacy-config-product-classification-0141/classification-research.jsonl"),
         ("pr_2094", "e5fc691c33f182f036048904b699e448795c2e20", "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl"),
-        ("scf_b_0142", "6deb8a48ff1187be58e6aaa704401b80d1d6fbbd", "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl"),
+        ("pr_2096", "ab0a1faa4e2b310206b97a786c329334a2a0e151", "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl"),
     ]
     summaries, errors = {}, {}
     for name, rev, path in sets:

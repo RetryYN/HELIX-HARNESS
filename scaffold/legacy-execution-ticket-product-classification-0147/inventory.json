@@ -1,6 +1,6 @@
 {
   "archive_population_count": 4020,
-  "base_revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+  "base_revision": "0871112f37d42fd0b01d3e5290632d2306463320",
   "binding_id": "SCF-B-0147",
   "classification_counts": {
     "insufficient_basis": 3,
@@ -11,7 +11,7 @@
       "distinct_ids": 496,
       "name": "main",
       "path": "all scaffold/*/classification-research.jsonl",
-      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "revision": "0871112f37d42fd0b01d3e5290632d2306463320",
       "rows": 538
     },
     {
@@ -30,9 +30,9 @@
     },
     {
       "distinct_ids": 57,
-      "name": "scf_b_0142",
+      "name": "pr_2096",
       "path": "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl",
-      "revision": "6deb8a48ff1187be58e6aaa704401b80d1d6fbbd",
+      "revision": "ab0a1faa4e2b310206b97a786c329334a2a0e151",
       "rows": 57
     }
   ],
