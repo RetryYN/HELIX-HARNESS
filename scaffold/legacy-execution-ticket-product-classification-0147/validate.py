@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = Path(__file__).resolve().parent
-BASE = "0871112f37d42fd0b01d3e5290632d2306463320"
+BASE = "8a9fdc973f3553bea78d022e8d73f109aca526da"
 LEDGER = "docs/governance/legacy-asset-disposition.jsonl"
 PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
@@ -84,8 +84,7 @@ def audit_overlap() -> tuple[dict, dict[str, list[str]]]:
     target_triple = {(r["asset_id"], r["source_path"], "sha256:" + r["source_sha256"]) for r in target_rows}
     sets = [
         ("main", BASE, None),
-        ("pr_2090", "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e", "scaffold/legacy-config-product-classification-0141/classification-research.jsonl"),
-        ("pr_2094", "e5fc691c33f182f036048904b699e448795c2e20", "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl"),
+        ("pr_2094", "32e0f8a8469887ed6baa8294c4597d51614bcaeb", "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl"),
         ("pr_2096", "ab0a1faa4e2b310206b97a786c329334a2a0e151", "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl"),
     ]
     summaries, errors = {}, {}
