@@ -68,6 +68,7 @@ EXPECTED_NEGATIVE_CASES = (
     "inventory_category_count",
     "inventory_union_tamper",
     "inventory_overlap_tamper",
+    "inventory_conditional_overlap_claim_tamper",
     "inventory_authority_tamper",
     "inventory_output_tamper",
     "inventory_base_tamper",
@@ -243,10 +244,10 @@ def expected_source(asset: dict) -> dict:
     digest = tagged(data); ledger = "sha256:" + asset["source_sha256"]; manifest = manifest_sha(path)
     if digest != ledger: fail("E_SOURCE", f"ledger {path}")
     if digest != manifest: fail("E_ARCHIVE_STATIC", f"MANIFEST {path}")
-    anchor_lines = lines[start - 1:end]; text = "\n".join(anchor_lines); unread = []
-    if start > 1: unread.append([1, start - 1])
-    if end < len(lines): unread.append([end + 1, len(lines)])
-    return {"archive_path": archive, "source_path": path, "blob": oid, "archive_mode": mode, "archive_type": kind, "bytes": len(data), "line_count": len(lines), "sha256": digest, "ledger_source_sha256": ledger, "ledger_digest_match": True, "archive_manifest_sha256": manifest, "archive_manifest_match": True, "semantic_anchor": {"marker": anchor_lines[0][:240], "line_start": start, "line_end": end, "line_text": anchor_lines, "line_text_sha256": tagged(text.encode()), "interpretation": meaning, "products_considered": products}, "anchor_line_coverage": {"source_line_count": len(lines), "anchor_line_count": end - start + 1, "coverage_ratio": round((end - start + 1) / len(lines), 6), "unread_line_ranges": unread}, "read_mode": "git_object_static_read_only"}
+    anchor_lines = lines[start - 1:end]; text = "\n".join(anchor_lines); unanchored = []
+    if start > 1: unanchored.append([1, start - 1])
+    if end < len(lines): unanchored.append([end + 1, len(lines)])
+    return {"archive_path": archive, "source_path": path, "blob": oid, "archive_mode": mode, "archive_type": kind, "bytes": len(data), "line_count": len(lines), "sha256": digest, "ledger_source_sha256": ledger, "ledger_digest_match": True, "archive_manifest_sha256": manifest, "archive_manifest_match": True, "semantic_anchor": {"marker": anchor_lines[0][:240], "line_start": start, "line_end": end, "line_text": anchor_lines, "line_text_sha256": tagged(text.encode()), "interpretation": meaning, "products_considered": products}, "anchor_line_coverage": {"source_line_count": len(lines), "anchor_line_count": end - start + 1, "coverage_ratio": round((end - start + 1) / len(lines), 6), "unanchored_line_ranges": unanchored}, "read_mode": "git_object_static_read_only"}
 
 def expected_history(asset: dict, disp_line: int, disp: dict, decisions: list[tuple[int, dict]], read_after: list[tuple[int, dict]]) -> dict:
     compact = {"path": DISPOSITION, "line": disp_line, "row_sha256": row_digest(disp), "source_path": disp.get("source_path"), "source_sha256": disp.get("source_sha256"), "disposition": disp.get("disposition"), "asset_class": disp.get("asset_class"), "product_target": disp.get("product_target"), "implementation_status": disp.get("implementation_status"), "consumer_refs": sorted(disp.get("consumer_refs", [])), "decision_record_ref": disp.get("decision_record_ref"), "read_after_record_ref": disp.get("read_after_record_ref")}
@@ -291,7 +292,7 @@ def verify_inventory(inv: dict) -> None:
     if inv["bundle_revision"] != "SCF-B-0141-r2": fail("E_INVENTORY", "bundle revision")
     expected_scope = {"source_prefix": "config/", "asset_class": "Historical", "disposition": "unresolved", "artifact_evidence_kind": "configuration", "mode": "research_only", "products": list(PRODUCTS), "authoritative_prior_union": "origin/main current 429"}
     if inv["research_scope"] != expected_scope: fail("E_INVENTORY", "research scope")
-    expected_comp = {"source_blob_sha_line_anchor": True, "semantic_span_manual_pin": True, "anchor_coverage_and_unread_ranges": True, "phase_and_implementation_status": True, "missing_evidence_preserved": True, "failure_degradation": "global_static_inventory_and_asset_unknown", "consumer": "global_static_inventory_and_asset_pending", "wave_scan": True, "bootstrap_candidates_comparison_only": True}
+    expected_comp = {"source_blob_sha_line_anchor": True, "semantic_span_manual_pin": True, "anchor_coverage_and_unanchored_ranges": True, "phase_and_implementation_status": True, "missing_evidence_preserved": True, "failure_degradation": "global_static_inventory_and_asset_unknown", "consumer": "global_static_inventory_and_asset_pending", "wave_scan": True, "bootstrap_candidates_comparison_only": True}
     if inv["evidence_completeness"] != expected_comp: fail("E_INVENTORY", "evidence completeness")
     if inv["classification_rule"] != RULES: fail("E_INVENTORY", "classification rules")
     expected_artifacts = [f"scaffold/bindings/{BINDING_ID}.json", "scaffold/legacy-config-product-classification-0141/README.md", "scaffold/legacy-config-product-classification-0141/PR-DRAFT.md", "scaffold/legacy-config-product-classification-0141/generate.py", "scaffold/legacy-config-product-classification-0141/validate.py", "scaffold/legacy-config-product-classification-0141/selfcheck.py", "scaffold/legacy-config-product-classification-0141/inventory.json", "scaffold/legacy-config-product-classification-0141/classification-research.jsonl"]
@@ -371,14 +372,14 @@ def verify() -> None:
     main = prior_union(); target_set = set(expected_ids)
     if target_set & main: fail("E_OVERLAP", "target intersects authoritative current-main union")
     ru = inv["research_union"]
-    expected_ru = {"authoritative": {"basis": "origin/main current", "count": 429, "target_overlap": 0, "archive_population": 4020}, "conditional_projection": {"pre_2074_main_count": 399, "pr2074_increment_count": 31, "old_pr2078_count": 120, "old_union_count": 496, "after_config_count": 537, "status": "conditional_only_open_pr2078_old_head_5322_is_staleable", "old_pr2078_head": "5322a99b96f75e210c68aa56690f2da4fcb4415c"}, "target_overlap_authoritative_current_main": 0, "target_overlap_conditional_old_union": 0, "integration_order": "authoritative current main (429) -> config/41 (470); conditional historical projection old open-PR union (496) -> config/41 (537), all /4020"}
+    expected_ru = {"authoritative": {"basis": "origin/main current", "count": 429, "target_overlap": 0, "archive_population": 4020}, "conditional_projection": {"pre_2074_main_count": 399, "pr2074_increment_count": 31, "old_pr2078_count": 120, "old_union_count": 496, "after_config_count": 537, "status": "historical_snapshot_only_not_current_pr2078_head; overlap_unverified; post_merge_rebaseline_required", "old_pr2078_head": "5322a99b96f75e210c68aa56690f2da4fcb4415c"}, "target_overlap_authoritative_current_main": 0, "target_overlap_conditional_old_union": None, "integration_order": "authoritative current main (429) -> config/41 (470); historical #2078 snapshot (496) -> (537) is unverified against current HEAD and requires post-merge rebaseline"}
     if ru != expected_ru: fail("E_RESEARCH_UNION", "union declaration")
-    if inv["overlap_status"] != {"status": "pass", "research_scope": "config/**", "authoritative_union": "origin/main_current_429", "target_vs_authoritative_current_main": 0, "target_vs_conditional_old_union": 0, "union_exact": True, "open_pr2078_status": "conditional_staleable_not_authoritative"}: fail("E_OVERLAP", "overlap declaration")
-    if inv["denominator_role"] != {"archive_population": 4020, "authoritative_current_main": 429, "authoritative_after_config": 470, "conditional_old_open_pr_union": 496, "conditional_after_config": 537, "role": "research_candidate_evidence_only; no formal adoption or completion"}: fail("E_RESEARCH_UNION", "denominator role")
+    if inv["overlap_status"] != {"status": "authoritative_current_main_pass; historical_pr2078_overlap_unverified", "research_scope": "config/**", "authoritative_union": "origin/main_current_429", "target_vs_authoritative_current_main": 0, "target_vs_conditional_old_union": None, "union_exact": True, "open_pr2078_status": "historical_snapshot_not_current_head_or_authoritative"}: fail("E_OVERLAP", "overlap declaration")
+    if inv["denominator_role"] != {"archive_population": 4020, "authoritative_current_main": 429, "authoritative_after_config": 470, "conditional_old_open_pr_union": 496, "conditional_after_config": 537, "conditional_projection_status": "historical_old_pr2078_HEAD_5322_only; overlap_unverified; post_merge_rebaseline_required", "role": "research_candidate_evidence_only; conditional projection is historical and unverified, no formal adoption or completion"}: fail("E_RESEARCH_UNION", "denominator role")
     edges = target_edges = 0
     for path in WAVE_PATHS.values():
         for _, edge in base_jsonl(path): edges += 1; target_edges += edge.get("asset_id") in target_set
     if inv["wave_scan"] != {"files": 50, "edges": 598, "target_edges": 1, "target_linked_assets": 1} or edges != 598 or target_edges != 1: fail("E_EDGE_SET", f"wave={edges}/{target_edges}")
-    print("SCF-B-0141 validate PASS records=41 counts={'direct_product_basis': 26, 'multi_product_conflict': 9, 'insufficient_basis': 6} target_edges=1 authoritative_union=429 conditional_projection=496/537")
+    print("SCF-B-0141 validate PASS records=41 counts={'direct_product_basis': 26, 'multi_product_conflict': 9, 'insufficient_basis': 6} target_edges=1 authoritative_union=429 historical_pr2078_projection=unverified")
 
 if __name__ == "__main__": verify()

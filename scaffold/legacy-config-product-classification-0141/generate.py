@@ -100,6 +100,7 @@ EXPECTED_NEGATIVE_CASES = (
     "inventory_category_count",
     "inventory_union_tamper",
     "inventory_overlap_tamper",
+    "inventory_conditional_overlap_claim_tamper",
     "inventory_authority_tamper",
     "inventory_output_tamper",
     "inventory_base_tamper",
@@ -265,9 +266,9 @@ def source_exact(asset: dict, profile: tuple) -> dict:
         raise ValueError(f"archive digest mismatch {asset['source_path']}")
     anchor_lines = lines[start - 1:end]
     text = "\n".join(anchor_lines)
-    unread = []
-    if start > 1: unread.append([1, start - 1])
-    if end < len(lines): unread.append([end + 1, len(lines)])
+    unanchored = []
+    if start > 1: unanchored.append([1, start - 1])
+    if end < len(lines): unanchored.append([end + 1, len(lines)])
     return {
         "archive_path": archive_path, "source_path": asset["source_path"], "blob": oid,
         "archive_mode": mode, "archive_type": kind, "bytes": len(data), "line_count": len(lines), "sha256": digest,
@@ -278,7 +279,7 @@ def source_exact(asset: dict, profile: tuple) -> dict:
                              "interpretation": meaning, "products_considered": list(products)},
         "anchor_line_coverage": {"source_line_count": len(lines), "anchor_line_count": end - start + 1,
                                   "coverage_ratio": round((end - start + 1) / len(lines), 6),
-                                  "unread_line_ranges": unread},
+                                  "unanchored_line_ranges": unanchored},
         "read_mode": "git_object_static_read_only",
     }
 
@@ -355,12 +356,12 @@ def build() -> None:
         "base_source_mode": "all legacy source, fixed inputs, and archive evidence bytes from fixed BASE Git objects",
         "scope": "fixed BASE unresolved config/** exact 41 assets; current-main research union is authoritative and open-PR projections are conditional",
         "research_scope": {"source_prefix": "config/", "asset_class": "Historical", "disposition": "unresolved", "artifact_evidence_kind": "configuration", "mode": "research_only", "products": list(PRODUCTS), "authoritative_prior_union": "origin/main current 429"},
-        "evidence_completeness": {"source_blob_sha_line_anchor": True, "semantic_span_manual_pin": True, "anchor_coverage_and_unread_ranges": True, "phase_and_implementation_status": True, "missing_evidence_preserved": True, "failure_degradation": "global_static_inventory_and_asset_unknown", "consumer": "global_static_inventory_and_asset_pending", "wave_scan": True, "bootstrap_candidates_comparison_only": True},
+        "evidence_completeness": {"source_blob_sha_line_anchor": True, "semantic_span_manual_pin": True, "anchor_coverage_and_unanchored_ranges": True, "phase_and_implementation_status": True, "missing_evidence_preserved": True, "failure_degradation": "global_static_inventory_and_asset_unknown", "consumer": "global_static_inventory_and_asset_pending", "wave_scan": True, "bootstrap_candidates_comparison_only": True},
         "target_count": 41, "target_asset_ids": [r["asset_id"] for r in records], "target_source_paths": [r["source_path"] for r in records], "target_asset_ids_sha256": tagged(("\n".join(r["asset_id"] for r in records)).encode()), "target_artifact_evidence_kinds": {"configuration": 41}, "classification_counts": counts,
         "input_digests": input_digests, "binding_upstream_paths": [{"path": p, "sha256": tagged((git_bytes(p) if p in BASE_INPUTS else head_bytes(p)))} for p in NONARCHIVE_INPUTS + MAIN_RESEARCH_INPUTS], "output_sha256": tagged(out.read_bytes()),
-        "research_union": {"authoritative": {"basis": "origin/main current", "count": 429, "target_overlap": 0, "archive_population": 4020}, "conditional_projection": {"pre_2074_main_count": 399, "pr2074_increment_count": 31, "old_pr2078_count": 120, "old_union_count": 496, "after_config_count": 537, "status": "conditional_only_open_pr2078_old_head_5322_is_staleable", "old_pr2078_head": "5322a99b96f75e210c68aa56690f2da4fcb4415c"}, "target_overlap_authoritative_current_main": 0, "target_overlap_conditional_old_union": 0, "integration_order": "authoritative current main (429) -> config/41 (470); conditional historical projection old open-PR union (496) -> config/41 (537), all /4020"},
-        "overlap_status": {"status": "pass", "research_scope": "config/**", "authoritative_union": "origin/main_current_429", "target_vs_authoritative_current_main": 0, "target_vs_conditional_old_union": 0, "union_exact": True, "open_pr2078_status": "conditional_staleable_not_authoritative"},
-        "denominator_role": {"archive_population": 4020, "authoritative_current_main": 429, "authoritative_after_config": 470, "conditional_old_open_pr_union": 496, "conditional_after_config": 537, "role": "research_candidate_evidence_only; no formal adoption or completion"},
+        "research_union": {"authoritative": {"basis": "origin/main current", "count": 429, "target_overlap": 0, "archive_population": 4020}, "conditional_projection": {"pre_2074_main_count": 399, "pr2074_increment_count": 31, "old_pr2078_count": 120, "old_union_count": 496, "after_config_count": 537, "status": "historical_snapshot_only_not_current_pr2078_head; overlap_unverified; post_merge_rebaseline_required", "old_pr2078_head": "5322a99b96f75e210c68aa56690f2da4fcb4415c"}, "target_overlap_authoritative_current_main": 0, "target_overlap_conditional_old_union": None, "integration_order": "authoritative current main (429) -> config/41 (470); historical #2078 snapshot (496) -> (537) is unverified against current HEAD and requires post-merge rebaseline"},
+        "overlap_status": {"status": "authoritative_current_main_pass; historical_pr2078_overlap_unverified", "research_scope": "config/**", "authoritative_union": "origin/main_current_429", "target_vs_authoritative_current_main": 0, "target_vs_conditional_old_union": None, "union_exact": True, "open_pr2078_status": "historical_snapshot_not_current_head_or_authoritative"},
+        "denominator_role": {"archive_population": 4020, "authoritative_current_main": 429, "authoritative_after_config": 470, "conditional_old_open_pr_union": 496, "conditional_after_config": 537, "conditional_projection_status": "historical_old_pr2078_HEAD_5322_only; overlap_unverified; post_merge_rebaseline_required", "role": "research_candidate_evidence_only; conditional projection is historical and unverified, no formal adoption or completion"},
         "classification_rule": RULES, "authority_boundary": {"authority_effect": "none", "formal_product_authority": None, "formal_asset_classification_updated": False, "formal_implementation_status": "unknown", "phase_updated": False, "successor_assignment": None, "new_build_allowed": False, "read_mode": "static_git_object_only"},
         "old_archive_execution": {"source_read": "git show fixed BASE regular blobs only", "runtime": False, "test": False, "ci": False, "workflow": False, "hook": False, "adapter": False},
         "wave_scan": {"files": 50, "edges": 598, "target_edges": sum(len(v) for v in wave_by_asset.values()), "target_linked_assets": len(wave_by_asset)},

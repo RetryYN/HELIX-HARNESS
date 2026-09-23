@@ -333,10 +333,11 @@
     "authoritative_current_main": 429,
     "conditional_after_config": 537,
     "conditional_old_open_pr_union": 496,
-    "role": "research_candidate_evidence_only; no formal adoption or completion"
+    "conditional_projection_status": "historical_old_pr2078_HEAD_5322_only; overlap_unverified; post_merge_rebaseline_required",
+    "role": "research_candidate_evidence_only; conditional projection is historical and unverified, no formal adoption or completion"
   },
   "evidence_completeness": {
-    "anchor_coverage_and_unread_ranges": true,
+    "anchor_coverage_and_unanchored_ranges": true,
     "bootstrap_candidates_comparison_only": true,
     "consumer": "global_static_inventory_and_asset_pending",
     "failure_degradation": "global_static_inventory_and_asset_unknown",
@@ -818,6 +819,7 @@
     "inventory_category_count",
     "inventory_union_tamper",
     "inventory_overlap_tamper",
+    "inventory_conditional_overlap_claim_tamper",
     "inventory_authority_tamper",
     "inventory_output_tamper",
     "inventory_base_tamper",
@@ -841,14 +843,14 @@
     "test": false,
     "workflow": false
   },
-  "output_sha256": "sha256:88448924b72165336db9699c4b026172782949725d97c38601a403046b497b36",
+  "output_sha256": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
   "overlap_status": {
     "authoritative_union": "origin/main_current_429",
-    "open_pr2078_status": "conditional_staleable_not_authoritative",
+    "open_pr2078_status": "historical_snapshot_not_current_head_or_authoritative",
     "research_scope": "config/**",
-    "status": "pass",
+    "status": "authoritative_current_main_pass; historical_pr2078_overlap_unverified",
     "target_vs_authoritative_current_main": 0,
-    "target_vs_conditional_old_union": 0,
+    "target_vs_conditional_old_union": null,
     "union_exact": true
   },
   "research_scope": {
@@ -879,11 +881,11 @@
       "old_union_count": 496,
       "pr2074_increment_count": 31,
       "pre_2074_main_count": 399,
-      "status": "conditional_only_open_pr2078_old_head_5322_is_staleable"
+      "status": "historical_snapshot_only_not_current_pr2078_head; overlap_unverified; post_merge_rebaseline_required"
     },
-    "integration_order": "authoritative current main (429) -> config/41 (470); conditional historical projection old open-PR union (496) -> config/41 (537), all /4020",
+    "integration_order": "authoritative current main (429) -> config/41 (470); historical #2078 snapshot (496) -> (537) is unverified against current HEAD and requires post-merge rebaseline",
     "target_overlap_authoritative_current_main": 0,
-    "target_overlap_conditional_old_union": 0
+    "target_overlap_conditional_old_union": null
   },
   "schema_revision": 2,
   "scope": "fixed BASE unresolved config/** exact 41 assets; current-main research union is authoritative and open-PR projections are conditional",

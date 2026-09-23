@@ -305,9 +305,9 @@
   "obligations": [
     "固定BASEのlegacy dispositionからconfig/** exact 41 asset ID/pathを独立再導出し欠落・重複・余分を拒否する",
     "41件すべての固定BASE config本文を具体semantic spanとして手動pinし、意味・candidate product L1・counterevidence・bootstrap一致/不一致を保持する",
-    "各archive configuration sourceのGit ls-tree mode=100644/type=blob/path exact、blob/bytes/SHA、MANIFEST/ledger digest、semantic span、coverage/unread rangeを保持する",
+    "各archive configuration sourceのGit ls-tree mode=100644/type=blob/path exact、blob/bytes/SHA、MANIFEST/ledger digest、semantic span、1-based inclusiveで計算したanchor外の行範囲を保持し、全文読了を主張しない",
     "implementation status、未実装・不足証拠、degradation/failure、consumer、decision/read-after、Wave edgeを分類候補から分離する",
-    "current main research union 429をauthoritativeにtarget41との重複0で固定し、open PR #2078旧HEAD 5322の496/537はconditional projectionとして分離する",
+    "current main research union 429をauthoritativeにtarget41との重複0で固定し、open PR #2078旧HEAD 5322の496/537はoverlap未検証の歴史projectionとして分離し、merge後に再baselineする",
     "旧archive source/runtime/test/hook/adapter/CI/workflowは実行せず独立validator/selfcheck/scfctlを維持する",
     "Binding upstreamをmanifestを除く65 fixed nonarchive inputsとcurrent-main research inventory pathsへ完全閉包する"
   ],
