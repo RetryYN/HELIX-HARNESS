@@ -50,50 +50,67 @@ HELIXは、人が決めた価値と要求を起点に、AIが開発・検証・�
 
 HELIXは8つの機構と2つの共通部品から成る。**製品は機構の一部**であり、HARNESSとWebだけが製品の属性を持つ。
 
+### 開発の流れ
+
 ```mermaid
-flowchart TB
+flowchart LR
     Human["人<br/>価値・要求・承認"]
-
-    subgraph Core["HELIX本体"]
-        HARNESS["HELIX-HARNESS 《製品》<br/>開発工程・検証契約"]
-        BRAIN["HELIX-BRAIN<br/>理解・計画・予測・診断"]
-        OS["HELIX-OS<br/>統制・状態・割当・推進"]
-        SEC["HELIX-Security<br/>認可・制限"]
-        LABO["HELIX-LABO<br/>計測・評価"]
-        INT["HELIX-Intelligence<br/>知識・モデル改善"]
-    end
-
-    subgraph Parts["共通部品"]
-        CONNECT["HELIX-CONNECT<br/>接続・通信"]
-        RUNNER["Runner／Sandbox<br/>限定実行"]
-    end
-
-    subgraph WebSide["Web提供"]
-        WEB["HELIX-Web 《製品》<br/>顧客向け開発サービス"]
-        WEBOS["HELIX-Web-OS<br/>サービス運転"]
-    end
-
-    Targets["開発対象<br/>HELIX自身・複数の製品"]
-    Customer["顧客"]
+    HARNESS["HELIX-HARNESS 《製品》<br/>開発工程・検証契約"]
+    BRAIN["HELIX-BRAIN<br/>理解・計画・予測・診断"]
+    OS["HELIX-OS<br/>管理・推進・割当・確定"]
+    SEC["HELIX-Security<br/>認可・制限"]
+    RUNNER["Runner／Sandbox<br/>限定実行"]
+    CONNECT["HELIX-CONNECT<br/>接続・通信"]
+    Targets["開発対象<br/>HELIX自身・Webを含む各製品"]
 
     Human -->|要求・承認| OS
     HARNESS -->|工程・検証契約| BRAIN
-    BRAIN -->|計画案| OS
-    OS -->|割当| RUNNER
-    RUNNER -->|開発・改修| Targets
+    HARNESS -->|工程規則| OS
+    BRAIN -->|計画・診断・予測の案| OS
+    OS -->|割当・資源上限・停止条件| RUNNER
     SEC -.->|制限| OS
     SEC -.->|制限| RUNNER
-    SEC -.->|制限| WEBOS
-    Targets -->|実績| LABO
-    LABO -->|評価| BRAIN
-    LABO -->|評価| INT
-    INT -->|知識・モデル| BRAIN
+    RUNNER -->|開発・改修| CONNECT
+    CONNECT -->|受渡し| Targets
+    RUNNER -->|結果・差分| OS
+```
+
+### 改善とWeb提供
+
+```mermaid
+flowchart LR
+    Human["人<br/>採否の判断"]
+    Targets["開発対象<br/>HELIX自身・各製品"]
+    Customer["顧客"]
+    WEB["HELIX-Web 《製品》<br/>顧客向け開発サービス"]
+    WEBOS["HELIX-Web-OS<br/>サービス運転"]
+    CONNECT["HELIX-CONNECT<br/>接続・通信"]
+    RUNNER["Runner／Sandbox<br/>限定実行"]
+    LABO["HELIX-LABO<br/>計測・評価"]
+    INT["HELIX-Intelligence<br/>知識・モデル改善"]
+    BRAIN["HELIX-BRAIN<br/>判断"]
+    OS["HELIX-OS<br/>改善提案の登録"]
+    SEC["HELIX-Security<br/>認可・制限"]
+
     Customer --> WEB
     WEB --> WEBOS
-    WEBOS -->|許可済みデータ| LABO
-    WEBOS <-->|接続| CONNECT
-    CONNECT <-->|接続| OS
+    WEBOS <-->|顧客環境との接続| CONNECT
+    WEBOS -->|job| RUNNER
+    SEC -.->|制限| WEBOS
+    Targets -->|実績| LABO
+    WEBOS -->|許可済みの利用・運用データ| LABO
+    WEBOS -->|許可済みの学習入力| INT
+    WEBOS -->|改修の要望| OS
+    LABO -->|評価| BRAIN
+    LABO -->|評価| INT
+    LABO -->|評価| OS
+    INT -->|知識・モデル| BRAIN
+    INT -->|改善候補| OS
+    BRAIN -->|診断| OS
+    OS -->|改善提案| Human
 ```
+
+### 機構の役割
 
 | 機構 | 役割 | しないこと |
 |---|---|---|
