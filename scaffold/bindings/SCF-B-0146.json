@@ -1,0 +1,233 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0146",
+  "kind": "scaffold",
+  "title": "固定BASE evidence partition 218件の旧crosswalk／asset evidence静的再集計",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "cross-product legacy requirement evidence research（正式product owner未確定）",
+  "state": "registered",
+  "reason": "既存9 evidence partitionの218件を固定BASEのGit object bytesから静的に再集計し、unit／asset／semantic edgeの対応と直接証拠の有無を追跡する研究bundleが必要。candidateの存在やPASSから正式な実装・failure・縮退・未実装・受入・authorityを生成しない。",
+  "upstream": [
+    {
+      "path": "scaffold/fr-implementation-evidence-0109/evidence.jsonl",
+      "sha256": "a5d6442826859accdc6a001268413331667bdfd8074cf46e70bced986ef4c78f",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "scaffold/fr-implementation-evidence-0110/evidence.jsonl",
+      "sha256": "1c164f748c573cc83b5a14ee84027cd1751dc5bb5ca5b28dfb830e2ae8e659b4",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "scaffold/fr-implementation-evidence-0111/evidence.jsonl",
+      "sha256": "9b47f363afb3b98cefcf6666a2467e4bdf4bff663e2e48c60319f41b193357a9",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "scaffold/br-implementation-evidence-0102/evidence.jsonl",
+      "sha256": "1a81b23f3cc6e7b57448d73fc468dff95d3ec1ce84fb9e80ba5798b490ab0474",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "scaffold/br-implementation-evidence-0104/evidence.jsonl",
+      "sha256": "56ca74fb8746b550a8939280a9086b57ee118bbbd762bac7c481c51db51be904",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "scaffold/br-implementation-evidence-0106/evidence.jsonl",
+      "sha256": "dd24941d8070f35d6617be7ad17af0b7e7ca2f91528e14bc77c8cebff6e1392e",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "scaffold/nfr-implementation-evidence-0113/evidence.jsonl",
+      "sha256": "03470d2e3dad9fa0efe49e4fc1bd6db658e64dd8433b9018f978e955fb4abe7a",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "scaffold/nfr-implementation-evidence-0114/evidence.jsonl",
+      "sha256": "da7de0f66904bd02f1beb7055ad55693639c269992d262aec1b812c63badded9",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "scaffold/tr-implementation-evidence-0112/evidence.jsonl",
+      "sha256": "ebc930862742b49eea4042450eb048529259886ec16d3cca38fc0360120b5aa7",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "固定BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90から読む入力。現main上のdigestも一致。"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995",
+      "note": "新世代作業のauthority／層／停止境界"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "旧assetの参照・再利用・置換統制"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decision-log.md",
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "note": "旧判断史の意味参照"
+    },
+    {
+      "path": "scaffold/README.md",
+      "sha256": "be1e196dc5d65bfff642754e50fe604537e7085ca686675b609578a95c1dc1e6",
+      "note": "Scaffold Binding lifecycleと操作境界"
+    },
+    {
+      "path": "scaffold/schema/binding.schema.json",
+      "sha256": "43d1ba130c542e049762cc357d3afcc83aa9b88c88274cd2f1c933670d04bb98",
+      "note": "Binding schema"
+    },
+    {
+      "path": "scaffold/tools/scfctl.py",
+      "sha256": "6a0be284da79b090821bbcc7a0630498ff97020ac6d8b4f29cb1d23f93af119e",
+      "note": "実行するScaffold Binding checker"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+      "note": "focused-investigationは旧archive blobを静的read-only参照のみ。旧archiveを実行しない。"
+    },
+    {
+      "path": "scaffold/legacy-evidence-crosswalk-0146/focused-investigation.jsonl",
+      "sha256": "36ca9a4913e6352ba1c32596f8d1493f6d38ca7173ea6cde503fad51f17eefdf",
+      "note": "指定7要求IDの静的調査記録。canonical JSONL bytes pinned by validate.py."
+    }
+  ],
+  "role": "legacy-evidence-crosswalk-218-record-fixed-base-static-research-0146",
+  "obligations": [
+    "固定BASEの9 partition rowを217 product unitと1 connectionへ分離して再導出し、crosswalk/decomposition行のpath・line・digestを保つ",
+    "598 unique semantic review edge、355 unique old asset、598 asset referenceを内容と重複検査つきで保持する",
+    "全7 status fieldの218件分母とunknown/pending/not_assessed境界を保持する。直接証拠判定は入力partition上の宣言済みreceipt項目に限る",
+    "#2083/#2085のbundleを入力とoracleから除外し、#1813を進捗参照のみに保つ",
+    "355 assetのdisposition/history/decision/failure/consumer/read-afterを意味ごと照合し、7 source-snapshot preservation receiptをunit implementationやconsumer closureへ昇格させない",
+    "SCF-B-0134と別用途を区別し、source-transfer-manifestの8個の移管時destination digestを固定SHA-256値と照合し、historical commit到達可能性に依存しない",
+    "archive source/runtime/test/hook/adapter/CIを実行せず、generator/validator/selfcheck/scfctlで固定BASE静的検査を行う",
+    "指定7 requirement IDのacceptance／system-test設計、source・test definition静的存在、unit別のmissing atom evidenceをarchive manifest blob digest付きで記録し、historical receipt候補をunit binding不在なら昇格させない"
+  ],
+  "connections": {
+    "consumers": [
+      "legacy requirement/unit crosswalk reviewer",
+      "asset disposition/decision/failure/consumer ledger reviewer",
+      "future human unit-evidence and authority review",
+      "branch/worktree management tracking: Issue #2093 (bookkeeping only; no requirement meaning or Binding retirement authority)"
+    ],
+    "dependencies": [
+      "fixed BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90",
+      "9 existing FR/NFR/BR/TR evidence partitions",
+      "crosswalk and product-unit decomposition bootstrap",
+      "legacy asset disposition, decision and copy/read-after ledgers"
+    ],
+    "boundary": "research-only fixed-base static evidence mapping; no formal requirement, product owner, unit implementation, failure, degradation, non-implementation, acceptance, consumer closure, successor or authority effect"
+  },
+  "operations": {
+    "allowed": [
+      "read pinned Git object bytes statically",
+      "write this Scaffold bundle and Binding on its research branch",
+      "run deterministic generator/validator/selfcheck/scfctl validate/stale/residuals",
+      "run structural/digest checks and git diff --check",
+      "create a local commit on this branch"
+    ],
+    "forbidden": [
+      "execute archive legacy source/runtime/test/hook/adapter/CI",
+      "use #2083/#2085 as input or oracle",
+      "promote candidate/source presence to implementation, failure, degradation, non-implementation, acceptance, consumer closure, owner, phase or authority",
+      "modify formal crosswalk/decomposition/asset ledgers or unrelated worktrees",
+      "push or create PR",
+      "merge or close Issue/PR",
+      "publish/deploy/release",
+      "旧archiveは実行しない"
+    ]
+  },
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0146.json",
+    "scaffold/legacy-evidence-crosswalk-0146/README.md",
+    "scaffold/legacy-evidence-crosswalk-0146/PR-DRAFT.md",
+    "scaffold/legacy-evidence-crosswalk-0146/build.py",
+    "scaffold/legacy-evidence-crosswalk-0146/common.py",
+    "scaffold/legacy-evidence-crosswalk-0146/evidence.jsonl",
+    "scaffold/legacy-evidence-crosswalk-0146/inventory.json",
+    "scaffold/legacy-evidence-crosswalk-0146/selfcheck.py",
+    "scaffold/legacy-evidence-crosswalk-0146/source-transfer-manifest.json",
+    "scaffold/legacy-evidence-crosswalk-0146/validate.py",
+    "scaffold/legacy-evidence-crosswalk-0146/focused-investigation.jsonl"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "fixed BASE 94d99ebb4c55c2edb0575ac2dc100af0d5b93b90 Git object bytes and recorded input digests",
+      "nine partition row counts 29/27/37/7/23/19/31/29/16",
+      "217 product units plus 1 connection; 598 unique edge and 355 unique asset sets",
+      "all seven 218-row status partitions",
+      "移管時source-transfer-manifestのdestination SHA-256 8件をvalidator内固定値と照合する。793cf4859は履歴参照だけで、validator依存なし",
+      "asset disposition 355 entries, decision history and copy/read-after record mapping",
+      "explicit #2083/#2085 exclusion boundary",
+      "focused 7 records全15 fieldsを固定BASEのrequirements/L1/L9、9 partition、archive MANIFEST、disposition/decision/read-afterから型付き再導出し、参照blob digestをsnapshotと照合する",
+      "E_BASE_NOT_ANCESTORは実HEADと固定BASEの祖先関係に依存する状態エラーであり、selfcheckのfixture負例対象外"
+    ],
+    "negative_cases": [
+      "E_BUNDLE",
+      "E_BASE_COMMIT",
+      "E_INPUT_DIGEST",
+      "E_RECORD_SET",
+      "E_PRODUCT_DENOMINATOR",
+      "E_IRCONN_DENOMINATOR",
+      "E_EDGE_SET",
+      "E_EDGE_DUPLICATE",
+      "E_ASSET_SET",
+      "E_ASSET_DUPLICATE",
+      "E_STATUS_PARTITION",
+      "E_REQUIRED_EVIDENCE_SCHEMA",
+      "E_INVENTORY_DECLARATION",
+      "E_RECORD_RELATION",
+      "E_AUTHORITY_BOUNDARY",
+      "E_TOP_LEVEL_KEY",
+      "E_OUTPUT_DIGEST",
+      "E_TRANSFER_MANIFEST"
+    ]
+  },
+  "replacement": {
+    "role_target": "human-approved unit-level crosswalk and evidence records in formal product/acceptance artifacts after authority and consumer closure are established",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-23",
+  "updated": "2026-09-23"
+}
