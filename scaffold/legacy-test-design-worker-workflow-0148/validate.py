@@ -21,6 +21,8 @@ BASE = "8a9fdc973f3553bea78d022e8d73f109aca526da"
 MAIN = "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3"
 OPEN_2097 = "211712a0aba71ea7461f53e7f824879de5bcff48"
 BOOTSTRAP = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+PHASE_INVENTORY = "docs/governance/phase-capability-inventory.json"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
 ARCHIVE_MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
 ARCHIVE_ROOT = "archive/legacy-generation-2026-09-14/root/"
@@ -67,14 +69,14 @@ EXPECTED_INVENTORY_AUTHORITY = {
 # Fixed contract pins. These are intentionally code constants, not values accepted
 # from the mutable manifest or Binding. Refresh only when the curated bundle changes.
 PINNED_SHA256 = {
-    'ledger': '2d5f3c3592f754fbecc30d6b2efe93c28360af506814a4c5ed597d9ba5fa829d',
-    'manifest': '1f18e128a75a0394409d7870bde3ed665a870503f495e34524aff9e702eb12bd',
-    'inventory': 'dca24386088b8f44bb99d557c10ff3a20e1bfd34f14e887fd28537e2c9e7fa6b',
-    'README.md': 'fead3ae39e97a6b6c0da4735ef979539b18816b4e2996b157c54a676f6e5f66d',
-    'PR-DRAFT.md': '965657fb4ebcf86dc376a2e2e56982bca11311f97b0ce0fdefb6479cf7f073cd',
+    'ledger': 'db7ec0b6ac817c7b3eab491dd6234b74df293953cb4e2fce17d61452835cd630',
+    'manifest': '95ff1ee4a08003eb3b4130f631ae3405dbdfa770845935ea54069bcb4d3e6794',
+    'inventory': '91a5f9e275901cf605eeac47efb4a63eb3ce41673cf7dba19d10cacd20b94d03',
+    'README.md': '8669c205775861e1b796d3861d96f2596357737ca1de3e55697fe7078a5617a8',
+    'PR-DRAFT.md': '00288f7235bd1a12408e8acad86e1d7e76d0e831c64e4824912371a72c29acf5',
     'selfcheck.py': '1fdc714068629218e02aafacd1380586add1c2de6f4cb6bd50e2cf462de00084',
 }
-PINNED_BINDING_CORE_SHA256 = "4be392031fdaf0b98edc2c74743b92600eb914559d7c56bf2787623ac157c7c1"
+PINNED_BINDING_CORE_SHA256 = "a05a483b6a1be536284837660ac69f91576f04c1284c212b092b79f12ded3cdf"
 
 
 class ValidationError(ValueError):
@@ -473,7 +475,7 @@ def validate_main_union(inventory: dict, records: list[dict]) -> None:
     }
     if type(open_comparison) is not dict or not typed_equal(open_comparison.get("results"), [expected_open_result]):
         fail("E_UNION", "inventory open-PR receipt differs from exact pinned #2097 Git object")
-    expected_overlap = dict(overlap, basis="asset_id, source_path, and source_sha256 compared independently against current main 666 (includes merged #2094/#2096) and open PR #2097 exact head; all projections are disjoint")
+    expected_overlap = dict(overlap, basis="asset_id, source_path, and source_sha256 compared independently against fixed main snapshot 666 (includes merged #2094/#2096) and open PR #2097 exact HEAD snapshot; all projections are disjoint. Any later HEAD movement makes this receipt stale pending rebaseline.")
     if not typed_equal(inventory.get("overlap_detail"), expected_overlap):
         fail("E_UNION", "inventory overlap projections differ from independent set calculation")
     if open_comparison.get("open_pr_rows_total") != 8 or open_comparison.get("main_plus_open_pr_comparison_population") != 674 or open_comparison.get("target_overlap") != 0:
@@ -529,10 +531,56 @@ def validate_documents(ledger_bytes: bytes, manifest_bytes: bytes, inventory_byt
         fail("E_RECORD", "ledger IDs must be unique strings")
     if set(ids) != set(selected_by_id):
         fail("E_SELECTION", "ledger IDs differ from fixed-BASE selected IDs")
+    crosswalk_rows = strict_jsonl_bytes(git_bytes(BASE, CROSSWALK), f"{BASE}:{CROSSWALK}")
+    crosswalk_refs = {aid: {"candidate_asset_pool_unit_candidate_ids": [], "representative_legacy_asset_unit_candidate_ids": []} for aid in ids}
+    for xrow in crosswalk_rows:
+        unit_id = xrow.get("unit_candidate_id")
+        if type(unit_id) is not str:
+            fail("E_CROSSWALK", "crosswalk row lacks string unit_candidate_id")
+        pool = xrow.get("candidate_asset_pool")
+        if type(pool) is dict:
+            pool_ids = pool.get("phase_and_product_candidate_asset_ids", [])
+            if type(pool_ids) is not list or any(type(x) is not str for x in pool_ids):
+                fail("E_CROSSWALK", f"{unit_id}: candidate_asset_pool IDs are malformed")
+            for aid in ids:
+                if aid in pool_ids:
+                    crosswalk_refs[aid]["candidate_asset_pool_unit_candidate_ids"].append(unit_id)
+        representatives = xrow.get("representative_legacy_assets", [])
+        if type(representatives) is not list or any(type(x) is not dict for x in representatives):
+            fail("E_CROSSWALK", f"{unit_id}: representative_legacy_assets is malformed")
+        for ref in representatives:
+            aid = ref.get("asset_id")
+            if aid in crosswalk_refs:
+                crosswalk_refs[aid]["representative_legacy_asset_unit_candidate_ids"].append(unit_id)
+    phase_inventory = strict_json_bytes(git_bytes(BASE, PHASE_INVENTORY), f"{BASE}:{PHASE_INVENTORY}")
+    phase_representatives = set()
+    def collect_phase_representatives(value):
+        if type(value) is dict:
+            ref = value.get("asset_id")
+            if type(ref) is str and ref in crosswalk_refs:
+                phase_representatives.add(ref)
+            for child in value.values():
+                collect_phase_representatives(child)
+        elif type(value) is list:
+            for child in value:
+                collect_phase_representatives(child)
+    collect_phase_representatives(phase_inventory)
+    for aid in crosswalk_refs:
+        crosswalk_refs[aid]["candidate_asset_pool_unit_candidate_ids"].sort()
+        crosswalk_refs[aid]["representative_legacy_asset_unit_candidate_ids"].sort()
     archive_manifest = manifest_digests(git_bytes(BASE, ARCHIVE_MANIFEST))
     derived_pairs = {}
     for row in ledger:
         aid = row["asset_id"]
+        expected_crosswalk_evidence = {
+            "crosswalk_bootstrap_ref": CROSSWALK,
+            **crosswalk_refs[aid],
+            "phase_inventory_ref": PHASE_INVENTORY,
+            "phase_inventory_representative_asset": aid in phase_representatives,
+            "membership_semantics": "candidate_asset_pool is search-candidate-only; representative_legacy_assets and phase representative links are contextual references, not direct semantic or consumer links",
+        }
+        if not typed_equal(row.get("crosswalk_evidence"), expected_crosswalk_evidence):
+            fail("E_CROSSWALK", f"{aid}: recorded crosswalk/phase references differ from fixed-BASE sources")
         check_record_source(row, selected_by_id[aid], manifest_rows, archive_manifest)
         pair, pair_context = source_frontmatter_pair(row, archive_manifest)
         path = pair["path"]
@@ -579,6 +627,18 @@ def validate_documents(ledger_bytes: bytes, manifest_bytes: bytes, inventory_byt
         fail("E_INVENTORY", "inventory product candidate counts differ from record product_basis")
     if not typed_equal(inventory.get("artifacts"), list(ARTIFACTS)):
         fail("E_INVENTORY", "inventory artifact list is not the full registered Binding artifact set")
+    crosswalk_summary = {
+        "crosswalk_bootstrap_ref": CROSSWALK,
+        "crosswalk_row_count": len(crosswalk_rows),
+        "crosswalk_candidate_asset_pool_selected_asset_count": sum(bool(x["candidate_asset_pool_unit_candidate_ids"]) for x in crosswalk_refs.values()),
+        "selected_assets_in_representative_legacy_assets": sum(bool(x["representative_legacy_asset_unit_candidate_ids"]) for x in crosswalk_refs.values()),
+        "representative_asset_rows_for_selected_assets": sum(len(x["representative_legacy_asset_unit_candidate_ids"]) for x in crosswalk_refs.values()),
+        "phase_inventory_ref": PHASE_INVENTORY,
+        "selected_assets_in_phase_inventory_representative_assets": len(phase_representatives),
+        "membership_semantics": "candidate_asset_pool is search-candidate-only; representative and phase representative links are contextual references, not direct semantic or consumer links",
+    }
+    if not typed_equal(inventory.get("crosswalk_and_phase_references"), crosswalk_summary):
+        fail("E_INVENTORY", "crosswalk/phase reference summary differs from fixed-BASE source projections")
     if not typed_equal(binding.get("artifacts"), list(ARTIFACTS)):
         fail("E_BINDING", "Binding artifact list is not the full inventory/registered artifact set")
     if not typed_equal(binding.get("operations", {}).get("allowed"), [
@@ -631,6 +691,7 @@ BASE_INPUTS_FROM_INVENTORY = {
     'docs/helix-web-os/L1-planning/system-intent.md': '600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c',
     'docs/governance/phase-capability-inventory.md': '1fdbd85da6a987e945bfaeef97c18696819799fbdbaed09dd3eae410f295508d',
     'docs/governance/phase-capability-inventory.json': '9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c',
+    'docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl': '8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65',
     'docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md': '14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e',
 }
 

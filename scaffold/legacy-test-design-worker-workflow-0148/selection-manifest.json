@@ -4,7 +4,7 @@
   "base_revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
   "selection_rule": "bootstrap source_path under docs/test-design/helix/, candidate_phase_targets contains PHCAP-07, basename contains worker or workflow",
   "expected_selected_count": 52,
-  "ledger_sha256": "2d5f3c3592f754fbecc30d6b2efe93c28360af506814a4c5ed597d9ba5fa829d",
+  "ledger_sha256": "db7ec0b6ac817c7b3eab491dd6234b74df293953cb4e2fce17d61452835cd630",
   "rows": [
     {
       "asset_id": "LEGACY-ASSET-204D548E0374897FA283",
@@ -34,7 +34,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "e14813f6884d4d51286a77ca8c2b77cbfcd1effd04edae4637a03631942efd1e"
+      "record_sha256": "2b267296e26e4963d03cd766b8b78f066bdf1b8cec55646423ec8039bb8c66a1"
     },
     {
       "asset_id": "LEGACY-ASSET-F2F9BE2153AB71219677",
@@ -73,7 +73,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "8f61562eeb6a214c3569b212dbc1297ec89314050e3bee3f96233f9159717582"
+      "record_sha256": "7444e87701b56686c2047b108b03c51ca4867c31783c1ccaf249f44e427dbbde"
     },
     {
       "asset_id": "LEGACY-ASSET-CE3CED8CA91AF2CF794C",
@@ -103,7 +103,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "5e9cbb14bbbe125553ea3600b0c1dc2b115534fb858c2f825a709c7e12fa774c"
+      "record_sha256": "fa0caf5cbcf4424435de7ec341bf266bc9f0ea748d33719174338dd04a19134e"
     },
     {
       "asset_id": "LEGACY-ASSET-C474CF4FD38CD64B235F",
@@ -132,7 +132,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "dddc195d4aad2d0964c1756ad6891213ceb72a68768097c036cbde54862d2a4c"
+      "record_sha256": "53dcf4eebc24c72e96de80938e463fa94d67a74e069906dc5b864243cbc363d6"
     },
     {
       "asset_id": "LEGACY-ASSET-A53A3523BF5A0AA9AECB",
@@ -158,7 +158,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "351f4a7e90dae67cbd5f72c4c82871a993757907cc5f2a0b120dec623a1da9cc"
+      "record_sha256": "3ed361ee4d963777ae2c5f0545ab1f18b6f6118a9cb4b95e49ec411990b8fa39"
     },
     {
       "asset_id": "LEGACY-ASSET-02DE43305B52150F726F",
@@ -187,7 +187,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "7f11c3f2799ae50e3f5bb6acf691ffd0e72c171e3bc7a5b5e1306ebf2af2096a"
+      "record_sha256": "6f7f9011c6962331ecb37dd14df8ed910fb93c9b46c6af2ad6913517696a8ac0"
     },
     {
       "asset_id": "LEGACY-ASSET-33B35551CF585FE9A4E4",
@@ -216,7 +216,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "e8e59997db97acc68b4f4a6068423c35f3ed8da10bf75d739e7113929e6a507b"
+      "record_sha256": "6cee090ffb5aa9f5214ee3f10d4f12f13303223802e731c596d5fb1d4c49cf8a"
     },
     {
       "asset_id": "LEGACY-ASSET-F812521B64E1F46C18F6",
@@ -246,7 +246,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "ffe2100bfa8fd306d4eab8fd4f2da845eab23f20a0149419c4af4c7fd7bcd5b8"
+      "record_sha256": "62102762d9ba92c63a745dde403a1b062fad978ce59fc417c6f6c548af963f81"
     },
     {
       "asset_id": "LEGACY-ASSET-C54C4B4456EA94A325D7",
@@ -275,7 +275,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "b58fbb8e9c68d738fd05b36b114b50fdaf44f77b3e434ea6d13190731f0221b3"
+      "record_sha256": "c104af92bc2adc6a460a409f49494124850f0415c856ff4f49b5f9aa729f1915"
     },
     {
       "asset_id": "LEGACY-ASSET-DAC26342ECC06D756F1D",
@@ -313,7 +313,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "95757c0e2846cdfa876e6cb76bbf66ab91e5e2b8a3d7de5027659680b0f50f2f"
+      "record_sha256": "d3a99a84b7e19cf374184d473687dd02649568e33949f81433a6b60aecb1625c"
     },
     {
       "asset_id": "LEGACY-ASSET-FA619AE43D6C2049E171",
@@ -342,7 +342,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "407e265fbc70825c2b228df1f16e01b28032495a03551bf7b094bc4455a40af0"
+      "record_sha256": "d27426833465e50c8e4e69a62c22431d21d5dadd9b31cf3be63a954aa40b984d"
     },
     {
       "asset_id": "LEGACY-ASSET-515414A1648217233CB3",
@@ -370,7 +370,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "5f92f4d80f357338ceec4485f30e1a74deafebe79b0dba9da3f5c19356cf3d65"
+      "record_sha256": "a3f7cd6bd917cda5ae5d28d63fce7e4e86c3aaba1782078758bd72e130e53f4d"
     },
     {
       "asset_id": "LEGACY-ASSET-8FA07E8CFB7FE24D5AA3",
@@ -396,7 +396,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "4b99791f3d7a09f70019056224d11fcb262a78f50863de506098e15ef0afbce7"
+      "record_sha256": "47731522c5ea31ebcb1d5a009afdb82408ab402b2a4e5bbb19a77d6adba5fa95"
     },
     {
       "asset_id": "LEGACY-ASSET-58599DCC48E23287F6E9",
@@ -426,7 +426,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "6bb1daa68b5cbb6790cb9f07d4f53271e332ee7093f861f3f30e59e36e177da9"
+      "record_sha256": "65f56749675b3d42093438c3f4cdc9f0ed11da086ce4373be8bfa7d4b3b8e24f"
     },
     {
       "asset_id": "LEGACY-ASSET-E3E85FA9D476C1E23CF6",
@@ -456,7 +456,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "9c976bae37f9780792b01bb64abb63b033616efec9f92f89f04c715ec46b4406"
+      "record_sha256": "b51e4f9e997fef5415182fa210fa0ab48e67fe605df0a772f1d0362cdc188b15"
     },
     {
       "asset_id": "LEGACY-ASSET-F34892E108A2B264401F",
@@ -486,7 +486,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "ea37df7644e109cb702b83a8df92f537a90ef1f816b067dc15ede940954c6052"
+      "record_sha256": "ca2e44a1805a7844320ff53631a2347c03b9c896948ac8ef4e6bd1ed3e19a5f6"
     },
     {
       "asset_id": "LEGACY-ASSET-E7467DDBCCFFC04BF58D",
@@ -516,7 +516,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "fea4cf109df6b7117b5ce1c61a743bbf664540e448b089e6cebf5b3043c75e73"
+      "record_sha256": "2d2dd35b9c3af5a51cef47e053cc231a834982fc78d16e7049e04f988a0cb45d"
     },
     {
       "asset_id": "LEGACY-ASSET-F2F85A5C93BCA08D69E3",
@@ -547,7 +547,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "d6bf07127a09074e033908d5cd0e8bb7ba448385d09ad9ed34c388923025026e"
+      "record_sha256": "74dadc5a423cce52508a5fe351652581b15fb648b96679736a2835b059e653a9"
     },
     {
       "asset_id": "LEGACY-ASSET-7CBAB839D15CB6E240E3",
@@ -585,7 +585,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "7eeb544726212dc187e888e1657eaea95bbbf652e38fbe50c4304e090b570fd4"
+      "record_sha256": "91b6d4a08b5ec9598ff115ec2ebb4ce115af5a9872c89b6ff1fb30f1af91d456"
     },
     {
       "asset_id": "LEGACY-ASSET-7EB315092F6A83BE8555",
@@ -615,7 +615,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "cb48e22a21a4d9a98400e19951070e0c479ade948a02530989ae07afeb8fe763"
+      "record_sha256": "abaf5f30bf9a51b30deadd9a141b0f336ca960eb26073b1b931d169bf866dcda"
     },
     {
       "asset_id": "LEGACY-ASSET-E9954F654E58B47A08B8",
@@ -645,7 +645,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "f9f0717346004e5d80ddc788dbed0b84b67dff31ace98debe4848484c5e921e7"
+      "record_sha256": "71faa8e000e635552576baace9e2b72867d9f520eeaff888f9085718de58a44a"
     },
     {
       "asset_id": "LEGACY-ASSET-3FC0670DDBCD66EC46CA",
@@ -675,7 +675,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "7f46c6ac05dc596e4d4ac577606f13b9c5b29737343699340d35dd4f835c83c9"
+      "record_sha256": "1e386a6cf980999d24a0759fc7ac0642db3a3e175fea8183630aed1f862305e1"
     },
     {
       "asset_id": "LEGACY-ASSET-3C532CBAD22A448326E8",
@@ -705,7 +705,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "5ce03130ad0c0e431b68ad2ec8489b7db7d4d8959be7dde31936368468fc728e"
+      "record_sha256": "59ab7e312e75778da36e600604160779606231b85ef83881e312eda42945c9de"
     },
     {
       "asset_id": "LEGACY-ASSET-08983D7EFDA9E251E8BA",
@@ -735,7 +735,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "7a5cbb590a60750d891e2e15a1778525d6bc64fd681d615ac6f5a2730894ca5c"
+      "record_sha256": "44a94807733d79aad17c7ee4f6ba362a3433cac65f727be3b61c2dcc2e2b14e7"
     },
     {
       "asset_id": "LEGACY-ASSET-3A215D3F4BED6C6C6CEC",
@@ -766,7 +766,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "23c2bb1420b2fd714e6dca71827ff1f552aef38f8c35b82f6fa8f755dc43989c"
+      "record_sha256": "f628234a6222868109813cd903504f7b08c08d793a48decd27741268aba6ef71"
     },
     {
       "asset_id": "LEGACY-ASSET-200E1D31A5AD9CC65A62",
@@ -796,7 +796,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "ea4a6305d7a4f2325209ef675696129f78fb2952cfef5a8df05c09d8bbb60c53"
+      "record_sha256": "c93b71d60fb0658b1c88b085143235e7e435a43072db3264b563a064ddd26695"
     },
     {
       "asset_id": "LEGACY-ASSET-A7F6C19BF3761E78604B",
@@ -826,7 +826,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "f9bfd20c315ddb589d7e8a45dc4438ff9762c9a05013960a76264e122f27db8d"
+      "record_sha256": "b5ada15650cdb12b3cd8a768b41353fe1963ea1b0302f1e6ec3238a1e65ad01f"
     },
     {
       "asset_id": "LEGACY-ASSET-CBA44E8F88BD3CB47EEF",
@@ -856,7 +856,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "d3308f7dd678ceb3ad154bbb8b891e7f69e674354da58f81ca3aff8cba64d0bb"
+      "record_sha256": "b99224768778216a85ff4fdcc028e48be17dd00293a8438bb030aaea690a0e79"
     },
     {
       "asset_id": "LEGACY-ASSET-B18C6D8265FA220A7AD1",
@@ -886,7 +886,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "b3964b13fffaf47749ad00d1b4a7673c0d4a1c71a9aadbe114dc50eade6dd654"
+      "record_sha256": "c376372fa7dc0f18447c1afff77f6efeef6ed437cc1104e42863444f3e5d2e9e"
     },
     {
       "asset_id": "LEGACY-ASSET-953C8B85C65FF732DE58",
@@ -924,7 +924,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "9b7e5aa8379e5159ba603d3887f0c462de00847b328ce7a65da2ddce0e44a6a8"
+      "record_sha256": "d58be1f1770fb5335ea86ebf3c3caf5e591afe2073c590768803352bf1a40e90"
     },
     {
       "asset_id": "LEGACY-ASSET-E27E955E6C27D45D6001",
@@ -954,7 +954,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "e59273c1bf4716e2dc165f2309de982cd54f2cdb6fa6e4e475a4b54b843380da"
+      "record_sha256": "8688ff867447aac14e03591de2faeba761e331789156595aab2be70caf3c506c"
     },
     {
       "asset_id": "LEGACY-ASSET-BBE36AA18675BFB97020",
@@ -983,7 +983,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "3a803c4c0ae9657ea300a5eb26eaa3106feded1edafab297376fff7cf8fa6055"
+      "record_sha256": "bc87efb39c9bb2d0488143f4d013d939f14612abbc09369dd588d8931bbaa88a"
     },
     {
       "asset_id": "LEGACY-ASSET-6EE3CA9CEC7D4F2C328A",
@@ -1012,7 +1012,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "33cd3405556405b50dc863047f6a341508571c86e86981be56a3520501d9b0a2"
+      "record_sha256": "fbbb84ca5f32922af67d25673d8d3bb5c5cfd4f7a7b92c6a3ca205c6cebc2ec4"
     },
     {
       "asset_id": "LEGACY-ASSET-1370C763E1F96E863F78",
@@ -1042,7 +1042,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "5afaf6fc85abbca177e46f73fcb612485945507740fcd38b19ec839dfa37c025"
+      "record_sha256": "62021ce17e6d8221a5709746eabaaa88713b338e8e08fa691d1b6444f0b2c8cf"
     },
     {
       "asset_id": "LEGACY-ASSET-708BD7C8FC6351073618",
@@ -1072,7 +1072,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "e9c216dce101be9ac137ac67ff85c7d3d7f478eccc072fe1060dd32745f2577d"
+      "record_sha256": "e948d6841648aa83ac4457a72b588e444553b570d017305ee4e2bcde54b51300"
     },
     {
       "asset_id": "LEGACY-ASSET-82A18DDB608242D16096",
@@ -1102,7 +1102,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "4580c4e1abf21db6e726cf4014124f84c3a9cb4005947147e953207ca1211da2"
+      "record_sha256": "9dfc866b7719d17d8fb72cee9c9d89f978c0e6abc227d0031ed5e3ced3abfbbe"
     },
     {
       "asset_id": "LEGACY-ASSET-D3DFB17D21AC86B06975",
@@ -1138,7 +1138,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "c9432e14a53d50eb88de2bca3ff87a86dd773367aceb869415d78eac0566f263"
+      "record_sha256": "f0fd820e8d58ba4673356e3cc5c8ff068c35e943c2affdb40f7eb56bd1c80524"
     },
     {
       "asset_id": "LEGACY-ASSET-6B99432BB5C9CB66EF77",
@@ -1166,7 +1166,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "aec8c05ac03ae7cc6cea3eba24ebfdc8b509e6ec363e3f736d6b2262303aa963"
+      "record_sha256": "70bf0883066714cff74a014da82b8d0322dff935a1edb2f2e9961728725590f9"
     },
     {
       "asset_id": "LEGACY-ASSET-882F55E224FAD6C7704E",
@@ -1203,7 +1203,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "780fd914323225bbb5163319e5b92f8d6c0de65b5679a24d4d2cbe6ea6467295"
+      "record_sha256": "e9067fe74822d97fd9ef075865c4947dda091a30fce46fcca9e479a2a0438a46"
     },
     {
       "asset_id": "LEGACY-ASSET-6F5F69296B4AB47B96E5",
@@ -1233,7 +1233,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "510d4b11d7422ae3a3858176b3102cdeb0b434681c85b2cfbd0a589e7348cc97"
+      "record_sha256": "786817edd7846c945a00e1e7fa09e8972a6a8373cadabfb2d8c709830914ed3d"
     },
     {
       "asset_id": "LEGACY-ASSET-95D7453BBAF8E3E57391",
@@ -1263,7 +1263,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "61944d004bf51077093da0118b420d1fa13c29cfd332f8db8acf8a9ebf3fed5a"
+      "record_sha256": "35e582a459f4ea9574d33ac1a9ada0fb59d879e362c720a709ada31e9f9285a6"
     },
     {
       "asset_id": "LEGACY-ASSET-479928B70EB20E16283F",
@@ -1293,7 +1293,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "b153b268a2bbdc0d1a612daaf2fa9f50fd0f33426ee1d8d48d67ec0e4ee885a9"
+      "record_sha256": "2eb2bf4c71b2ffdec753cf34d87ec073446f867cc2258017ed8c584cde1539aa"
     },
     {
       "asset_id": "LEGACY-ASSET-50A93B0E753DC3840E03",
@@ -1324,7 +1324,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "5a5fe0413c2b70d1d78362a84cd27431302e969eeb4411d87db5e27d235bc70e"
+      "record_sha256": "775315ef6a790374aefb51c3cebec27d903319564bbc83eb2ed7ffd74f75f3b7"
     },
     {
       "asset_id": "LEGACY-ASSET-9C50C115CC2C3B39E819",
@@ -1354,7 +1354,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "4bf86b902bcef6900619ba5c16084e69f3d5a531616069c2383bab55054ba166"
+      "record_sha256": "ab46b10ef989b349cffacd338bb8d01c3a73fb45557becfaca1291ff9a50686d"
     },
     {
       "asset_id": "LEGACY-ASSET-C548E617A7EAC429E189",
@@ -1384,7 +1384,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "c993693b02deceac748ac5d590d95afb699889b560e9966f370cd928da972ad8"
+      "record_sha256": "a79ce751e1e538433ee175a8c8eaed5974f178831a9cf8ce90121a4c4bc13e97"
     },
     {
       "asset_id": "LEGACY-ASSET-D7F3E06489D5EDB97CEC",
@@ -1414,7 +1414,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "b6ad58ea20816082ef977797d1dbbb59a4655d03e1ad893e6196623df3a3970f"
+      "record_sha256": "c59e7f8e44821825f9084941a753014134ee93a3aa73cf0307d306b82ec5ff5d"
     },
     {
       "asset_id": "LEGACY-ASSET-E7EF44798D22F15799E8",
@@ -1444,7 +1444,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "da3c884d9e3df9e7d270ee8942954016ec1707610401af1b8f53393527bce6dd"
+      "record_sha256": "cd742871c4d062973ae4e05af5965bfa0457b5a30b6fee802266d7ff69bc5564"
     },
     {
       "asset_id": "LEGACY-ASSET-93FF4EF968AC1DEDA1BE",
@@ -1474,7 +1474,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "fe3fdc4e50158d491907df2cb1faf866880705a1613f2c2cd4f096ee31f1330a"
+      "record_sha256": "43208f69f6403e6bfac11d4ef970e2c818afe9000f33d3ce44b02b4692f595f7"
     },
     {
       "asset_id": "LEGACY-ASSET-89D9F99550F056B7FEAF",
@@ -1504,7 +1504,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "1a0ccb0c4d7066223f1b92d6126b2e2226903d54bb4aebb54a9dd6ac498a94ad"
+      "record_sha256": "663293b329c150f6f38ab921f7ce5b483d7a0a664ed74e897557b6e601724cca"
     },
     {
       "asset_id": "LEGACY-ASSET-8C2AA075BBDE8151E8EC",
@@ -1533,7 +1533,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "505e4575a0e66e766068d3fc2bc5bed9af3d6ff9866ca2c1d18cb718e6cc4726"
+      "record_sha256": "eafef1bc18c97ebf752f3731d3e5c6ff20cb3a3ef352ad2316d5a36a74afb65a"
     },
     {
       "asset_id": "LEGACY-ASSET-27096F08437AE041EF52",
@@ -1570,7 +1570,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "805ef6db1e5b944dbc63b9c35757407d832b9c18e6a6c21fc5695bd172594319"
+      "record_sha256": "78a8dc7bd971b8a59fefa870846ef3ea357338a971a191e1b121506794de5049"
     },
     {
       "asset_id": "LEGACY-ASSET-D45AF20BFEAD202DD666",
@@ -1607,7 +1607,7 @@
         "successor_assigned": false,
         "new_build_allowed": false
       },
-      "record_sha256": "c131f6f29f93b0722643e097a58c45cf99b093e5df02e5fed65839b650862dac"
+      "record_sha256": "aff84e108879995b0d160fb876a1a97d8443a8243dc8105a9a87c0ec21542084"
     }
   ]
 }

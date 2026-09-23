@@ -14,6 +14,8 @@
 
 HELIX-Web／HELIX-Web-OSを含む4製品を確認対象に置いた。52件の選択spanと親pairにはWeb利用者向けConnector SaaS体験や展開後のtenant/service運転を直接支える候補根拠が見つからなかったため、`not_assessed_no_direct_support_in_selected_span` とした。これは反証の発見や永久的な非適用判断ではなく、consumer closure等を含む未調査境界である。
 
+LABOはこの束の4製品スコープに含めておらず、候補・分母・不適用判定のいずれにも含めない。これはLABOへの恒久的な非適用判断ではない。固定BASEのcrosswalk bootstrapでは、選択52 asset中31件が少なくとも1つの `candidate_asset_pool` に出現し、同poolのunit候補参照は各recordに列挙した。`representative_legacy_assets` は1 assetを19 unit候補で参照し、`phase-capability-inventory.json` のrepresentativeも1 assetを参照する。これらは検索候補・文脈上の代表参照であり、直接意味リンク、実装、consumer関係を示さない。52件すべてがcrosswalk poolにあるとは主張しない。
+
 bootstrapの `candidate_product_targets` は全行で原文のまま保持する。bootstrapと今回候補の差分は各recordの `bootstrap_candidate_comparison` で全件列挙し、追加候補はproduct_basisのsource-specific reason／anchor／pair titleに、bootstrapから外す候補は選択span／pair digestに結び付いた限定counterevidenceに接続する。Web-OSの非適用・永久除外は判断しない。空またはHELIX-OS候補のassetも同じ条件でspanを確認し、直接根拠を得られない文書は `insufficient_direct_basis` として保留する。親pairの `responsibility_owner` や歴史的frontmatterも新世代ownerへ昇格させない。
 
 ## Phase、実装、failure、consumer
@@ -26,7 +28,9 @@ bootstrapは全52件を `test_design_present_unexecuted`、legacy implementation
 
 ## 重複と分母
 
-初回選択BASEは `8a9fdc973f3553bea78d022e8d73f109aca526da`。作業後に#2096もmainへmergeされたため、排他照合を現main `be9cf8cf99ee94a487e54d372d7a34e9266b1ee3` に更新した。現main `be9cf8cf99ee94a487e54d372d7a34e9266b1ee3` は#2094の72件と#2096の57件を含む666 unique asset ID（原ledger行708件）。#2097は提示されたopen HEAD `211712a0aba71ea7461f53e7f824879de5bcff48` の8件を静的Git objectとして比較した。main 666件、open #2097 8件、0148の52件についてasset ID・source path・source SHA-256の各射影を個別に比較し、target overlapはすべて0件。比較集合全726件は候補分類の比較分母であり、正式分類や完了を示さない。
+初回選択BASEは `8a9fdc973f3553bea78d022e8d73f109aca526da`。#2096 merge後の比較時点main snapshot `be9cf8cf99ee94a487e54d372d7a34e9266b1ee3` へ排他照合を更新した。この固定main snapshotは#2094の72件と#2096の57件を含む666 unique asset ID（原ledger行708件）。#2097は提示されたopen HEAD `211712a0aba71ea7461f53e7f824879de5bcff48` の8件を静的Git objectとして比較した。main 666件、open #2097 8件、0148の52件についてasset ID・source path・source SHA-256の各射影を個別に比較し、target overlapはすべて0件。比較集合全726件は候補分類の比較分母であり、正式分類や完了を示さない。
+
+mainと#2097のrevisionはこの検証時点の固定比較snapshotで、追随pinではない。比較前提となるmainまたは#2097のHEADが進んだと確認された場合、この結果をstaleとして扱い、union/overlapを再導出するまで新しい比較結果として利用・報告しない。validatorは記録されたexact Git objectを検証するもので、remote HEADの鮮度を自動取得・保証しない。
 
 より広いworker/workflow調査分母208件のうち、今回52件を記録し、残り156件を未調査として残す。208は本bundleの選択条件で抽出した全件数ではなく、初回cohortの進捗分母である。
 

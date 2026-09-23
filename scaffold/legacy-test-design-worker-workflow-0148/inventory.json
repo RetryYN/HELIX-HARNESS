@@ -73,6 +73,10 @@
       "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c"
     },
     {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
+    },
+    {
       "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
       "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"
     }
@@ -638,10 +642,10 @@
   "existing_research_union": {
     "main_base": "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3",
     "main_union_count": 666,
-    "disposition": "current main includes merged #2094 and #2096; 666+52=718 candidate rows, not a completed disposition"
+    "disposition": "fixed main snapshot includes merged #2094 and #2096; 666+52=718 candidate rows, not a completed disposition"
   },
   "open_pr_comparison": {
-    "basis": "static Git object reads at current main and last-observed exact open PR #2097 head; #2094 and #2096 are merged into main and excluded from open set",
+    "basis": "static Git object reads at fixed main comparison snapshot and exact open PR #2097 HEAD snapshot; #2094 and #2096 are merged into main and excluded from open set; any observed HEAD advance makes this receipt stale pending rebaseline",
     "results": [
       {
         "pr": 2097,
@@ -711,7 +715,7 @@
   "base_evolution": {
     "selection_base": "8a9fdc973f3553bea78d022e8d73f109aca526da",
     "current_main_rebaseline": "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3",
-    "event": "PR #2094 and PR #2096 are merged into current main. The selected 52 assets and their source identity remain pinned to the initial selection base; overlap checks were rerun against current main. #2096 is not counted as open."
+    "event": "PR #2094 and PR #2096 are merged into the pinned main comparison snapshot. Selected 52 assets and source identity remain pinned to initial selection base; overlap checks were rerun against that exact main snapshot. #2096 is not counted as open."
   },
   "main_union_components": {
     "pre_2094_main_union": 537,
@@ -811,7 +815,8 @@
     ],
     "target_overlap_id": 0,
     "target_overlap_source_path": 0,
-    "target_overlap_source_sha256": 0
+    "target_overlap_source_sha256": 0,
+    "disposition": "fixed main comparison snapshot includes merged #2094 and #2096; 666+52=718 candidate rows, not a completed disposition"
   },
   "overlap_detail": {
     "main_id_overlap": 0,
@@ -820,7 +825,7 @@
     "open_pr_id_overlap": 0,
     "open_pr_source_path_overlap": 0,
     "open_pr_source_sha256_overlap": 0,
-    "basis": "asset_id, source_path, and source_sha256 compared independently against current main 666 (includes merged #2094/#2096) and open PR #2097 exact head; all projections are disjoint"
+    "basis": "asset_id, source_path, and source_sha256 compared independently against fixed main snapshot 666 (includes merged #2094/#2096) and open PR #2097 exact HEAD snapshot; all projections are disjoint. Any later HEAD movement makes this receipt stale pending rebaseline."
   },
   "static_validator": {
     "selection_manifest": "scaffold/legacy-test-design-worker-workflow-0148/selection-manifest.json",
@@ -833,7 +838,8 @@
       "complete typed record pins plus category cardinality, product-basis/other-assessment disjointness, and full bootstrap delta accounting",
       "fixed main/open PR input receipts, independently recomputed ID/path/SHA union and overlap projections",
       "fixed inventory and Binding contract, complete artifact closure, authority and no-build boundaries",
-      "malformed/duplicate JSON and malformed JSONL fail closed with E_ codes"
+      "malformed/duplicate JSON and malformed JSONL fail closed with E_ codes",
+      "fixed-BASE crosswalk/phase representative references and source semantics; comparison pins are snapshots and require rebaseline after any observed HEAD movement"
     ],
     "negative_cases": [
       "digest-resynchronized product/category/parent-pair tampering",
@@ -845,5 +851,15 @@
       "Binding upstream omission/extra/stale digest",
       "malformed JSON, duplicate JSON keys, null/object/list type substitutions"
     ]
+  },
+  "crosswalk_and_phase_references": {
+    "crosswalk_bootstrap_ref": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "crosswalk_candidate_asset_pool_selected_asset_count": 31,
+    "selected_assets_in_representative_legacy_assets": 1,
+    "representative_asset_rows_for_selected_assets": 19,
+    "phase_inventory_ref": "docs/governance/phase-capability-inventory.json",
+    "selected_assets_in_phase_inventory_representative_assets": 1,
+    "membership_semantics": "candidate_asset_pool is search-candidate-only; representative and phase representative links are contextual references, not direct semantic or consumer links",
+    "crosswalk_row_count": 218
   }
 }
