@@ -1,0 +1,384 @@
+{
+  "authority_effect": "none",
+  "base": {
+    "branch": "main",
+    "commit": "94d99ebb4c55c2edb0575ac2dc100af0d5b93b90",
+    "input_mode": "git_object_bytes_at_fixed_base",
+    "repository": "HELIX-HARNESS",
+    "required_ancestor": "94d99ebb4c55c2edb0575ac2dc100af0d5b93b90"
+  },
+  "binding_id": "SCF-B-0146",
+  "bundle_kind": "research-only-static-crosswalk",
+  "counts": {
+    "asset_references": 598,
+    "connections": 1,
+    "product_units": 217,
+    "records": 218,
+    "semantic_review_edges": 598,
+    "status_fields": {
+      "acceptance": {
+        "unknown": 218
+      },
+      "consumer": {
+        "pending": 218
+      },
+      "current_implementation": {
+        "unknown": 218
+      },
+      "old_degradation": {
+        "unknown": 218
+      },
+      "old_failure": {
+        "unknown": 218
+      },
+      "old_implementation": {
+        "unknown": 218
+      },
+      "unimplemented": {
+        "not_assessed": 218
+      }
+    },
+    "unique_old_assets": 355,
+    "unique_semantic_review_edges": 598
+  },
+  "input_digests": [
+    {
+      "path": "scaffold/fr-implementation-evidence-0109/evidence.jsonl",
+      "sha256": "a5d6442826859accdc6a001268413331667bdfd8074cf46e70bced986ef4c78f"
+    },
+    {
+      "path": "scaffold/fr-implementation-evidence-0110/evidence.jsonl",
+      "sha256": "1c164f748c573cc83b5a14ee84027cd1751dc5bb5ca5b28dfb830e2ae8e659b4"
+    },
+    {
+      "path": "scaffold/fr-implementation-evidence-0111/evidence.jsonl",
+      "sha256": "9b47f363afb3b98cefcf6666a2467e4bdf4bff663e2e48c60319f41b193357a9"
+    },
+    {
+      "path": "scaffold/br-implementation-evidence-0102/evidence.jsonl",
+      "sha256": "1a81b23f3cc6e7b57448d73fc468dff95d3ec1ce84fb9e80ba5798b490ab0474"
+    },
+    {
+      "path": "scaffold/br-implementation-evidence-0104/evidence.jsonl",
+      "sha256": "56ca74fb8746b550a8939280a9086b57ee118bbbd762bac7c481c51db51be904"
+    },
+    {
+      "path": "scaffold/br-implementation-evidence-0106/evidence.jsonl",
+      "sha256": "dd24941d8070f35d6617be7ad17af0b7e7ca2f91528e14bc77c8cebff6e1392e"
+    },
+    {
+      "path": "scaffold/nfr-implementation-evidence-0113/evidence.jsonl",
+      "sha256": "03470d2e3dad9fa0efe49e4fc1bd6db658e64dd8433b9018f978e955fb4abe7a"
+    },
+    {
+      "path": "scaffold/nfr-implementation-evidence-0114/evidence.jsonl",
+      "sha256": "da7de0f66904bd02f1beb7055ad55693639c269992d262aec1b812c63badded9"
+    },
+    {
+      "path": "scaffold/tr-implementation-evidence-0112/evidence.jsonl",
+      "sha256": "ebc930862742b49eea4042450eb048529259886ec16d3cca38fc0360120b5aa7"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
+    },
+    {
+      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"
+    }
+  ],
+  "negative_case_codes": [
+    "E_BASE_NOT_ANCESTOR",
+    "E_BASE_COMMIT",
+    "E_INPUT_DIGEST",
+    "E_SOURCE_PARTITION_SET",
+    "E_RECORD_SET",
+    "E_PRODUCT_DENOMINATOR",
+    "E_IRCONN_DENOMINATOR",
+    "E_EDGE_SET",
+    "E_EDGE_DUPLICATE",
+    "E_ASSET_SET",
+    "E_ASSET_DUPLICATE",
+    "E_STATUS_PARTITION",
+    "E_REQUIRED_EVIDENCE_SCHEMA",
+    "E_INVENTORY_DECLARATION",
+    "E_RECORD_RELATION",
+    "E_AUTHORITY_BOUNDARY",
+    "E_TOP_LEVEL_KEY"
+  ],
+  "prohibited_inference": [
+    "source/design/requirement presence is not unit implementation",
+    "static coverage.failure is not a failure receipt",
+    "pending consumer references are not closure",
+    "current source candidate is not current implementation",
+    "missing evidence is not explicit non-implementation",
+    "connection record is not a product unit"
+  ],
+  "record_set_digest": "sha256:af7148b91fcdc8d09efc970fe40b8f946712222ca9a3a338f018468e343e1009",
+  "required_evidence_schema": {
+    "acceptance": {
+      "artifact_keys": [
+        "acceptance_id",
+        "criteria",
+        "verdict",
+        "evidence_refs",
+        "revision",
+        "acceptance_receipt_sha256"
+      ],
+      "expected_status": "unknown",
+      "human_decision_keys": [
+        "decision_id",
+        "authority",
+        "acceptance_verdict",
+        "decision_revision"
+      ],
+      "reason_code": "E_ACCEPTANCE_VERDICT_MISSING",
+      "relation_keys": [
+        "unit_candidate_id",
+        "requirement_atom_id",
+        "source_ref",
+        "edge_ref",
+        "consumer_ref"
+      ]
+    },
+    "consumer": {
+      "artifact_keys": [
+        "consumer_id",
+        "closure_receipt_sha256",
+        "decision_record_ref",
+        "read_after_record_ref",
+        "revision"
+      ],
+      "expected_status": "pending",
+      "human_decision_keys": [
+        "decision_id",
+        "authority",
+        "closure_verdict",
+        "decision_revision"
+      ],
+      "reason_code": "E_CONSUMER_CLOSURE_RELATION_MISSING",
+      "relation_keys": [
+        "unit_candidate_id",
+        "requirement_atom_id",
+        "asset_id",
+        "consumer_id",
+        "acceptance_ref"
+      ]
+    },
+    "current_implementation": {
+      "artifact_keys": [
+        "current_path",
+        "current_blob_sha256",
+        "source_anchor",
+        "execution_receipt_sha256",
+        "operation_result",
+        "revision"
+      ],
+      "expected_status": "unknown",
+      "human_decision_keys": [
+        "decision_id",
+        "authority",
+        "implementation_verdict",
+        "decision_revision"
+      ],
+      "reason_code": "E_CURRENT_IMPLEMENTATION_RECEIPT_MISSING",
+      "relation_keys": [
+        "unit_candidate_id",
+        "requirement_atom_id",
+        "current_source_ref",
+        "acceptance_ref"
+      ]
+    },
+    "old_degradation": {
+      "artifact_keys": [
+        "asset_id",
+        "source_anchor",
+        "before_state",
+        "after_state",
+        "trigger",
+        "observed_at",
+        "revision",
+        "degradation_receipt_sha256"
+      ],
+      "expected_status": "unknown",
+      "human_decision_keys": [
+        "decision_id",
+        "authority",
+        "classification",
+        "decision_revision"
+      ],
+      "reason_code": "E_OLD_DEGRADATION_OBSERVED_TRANSITION_MISSING",
+      "relation_keys": [
+        "unit_candidate_id",
+        "requirement_atom_id",
+        "semantic_edge_id",
+        "asset_id",
+        "affected_atom_ids"
+      ]
+    },
+    "old_failure": {
+      "artifact_keys": [
+        "asset_id",
+        "source_anchor",
+        "failure_code",
+        "status_or_exit",
+        "observed_at",
+        "revision",
+        "failure_receipt_sha256"
+      ],
+      "expected_status": "unknown",
+      "human_decision_keys": [
+        "decision_id",
+        "authority",
+        "failure_classification",
+        "decision_revision"
+      ],
+      "reason_code": "E_OLD_FAILURE_RECEIPT_MISSING",
+      "relation_keys": [
+        "unit_candidate_id",
+        "requirement_atom_id",
+        "semantic_edge_id",
+        "asset_id",
+        "acceptance_ref"
+      ]
+    },
+    "old_implementation": {
+      "artifact_keys": [
+        "asset_id",
+        "source_path",
+        "source_blob_sha256",
+        "source_anchor",
+        "execution_receipt_sha256",
+        "result",
+        "acceptance_verdict"
+      ],
+      "expected_status": "unknown",
+      "human_decision_keys": [
+        "decision_id",
+        "authority",
+        "verdict",
+        "decision_revision"
+      ],
+      "reason_code": "E_OLD_IMPLEMENTATION_DIRECT_RECEIPT_MISSING",
+      "relation_keys": [
+        "unit_candidate_id",
+        "requirement_atom_id",
+        "semantic_edge_id",
+        "asset_id",
+        "receipt_ref"
+      ]
+    },
+    "unimplemented": {
+      "artifact_keys": [
+        "non_implementation_decision_id",
+        "search_scope",
+        "search_scope_digest",
+        "negative_result",
+        "counterevidence_refs"
+      ],
+      "expected_status": "not_assessed",
+      "human_decision_keys": [
+        "decision_id",
+        "authority",
+        "disposition",
+        "decision_revision"
+      ],
+      "reason_code": "E_NONIMPLEMENTATION_DECISION_MISSING",
+      "relation_keys": [
+        "unit_candidate_id",
+        "requirement_atom_id",
+        "search_scope",
+        "counterevidence_ref"
+      ]
+    }
+  },
+  "schema": "legacy-evidence-crosswalk-0146/v1/inventory",
+  "scope": {
+    "canonical_relation_paths": [
+      "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "docs/governance/legacy-asset-disposition.jsonl",
+      "docs/governance/legacy-asset-decisions.jsonl",
+      "docs/governance/legacy-asset-copy-read-after.jsonl"
+    ],
+    "connection_ids": [
+      "IRCONN-HIL-BR-09-HARNESS-OS"
+    ],
+    "excluded_as_oracle": [
+      "scaffold/fr-os-first10-evidence-0129/evidence.jsonl",
+      "scaffold/fr-harness-first10-evidence-0132/evidence.jsonl"
+    ],
+    "source_partition_paths": [
+      "scaffold/fr-implementation-evidence-0109/evidence.jsonl",
+      "scaffold/fr-implementation-evidence-0110/evidence.jsonl",
+      "scaffold/fr-implementation-evidence-0111/evidence.jsonl",
+      "scaffold/br-implementation-evidence-0102/evidence.jsonl",
+      "scaffold/br-implementation-evidence-0104/evidence.jsonl",
+      "scaffold/br-implementation-evidence-0106/evidence.jsonl",
+      "scaffold/nfr-implementation-evidence-0113/evidence.jsonl",
+      "scaffold/nfr-implementation-evidence-0114/evidence.jsonl",
+      "scaffold/tr-implementation-evidence-0112/evidence.jsonl"
+    ],
+    "subject_kinds": {
+      "connection": 1,
+      "product_unit": 217
+    }
+  },
+  "status_expectations": {
+    "acceptance": {
+      "count": 218,
+      "direct_evidence_present": false,
+      "reason_code": "E_ACCEPTANCE_VERDICT_MISSING",
+      "status": "unknown"
+    },
+    "consumer": {
+      "count": 218,
+      "direct_evidence_present": false,
+      "reason_code": "E_CONSUMER_CLOSURE_RELATION_MISSING",
+      "status": "pending"
+    },
+    "current_implementation": {
+      "count": 218,
+      "direct_evidence_present": false,
+      "reason_code": "E_CURRENT_IMPLEMENTATION_RECEIPT_MISSING",
+      "status": "unknown"
+    },
+    "old_degradation": {
+      "count": 218,
+      "direct_evidence_present": false,
+      "reason_code": "E_OLD_DEGRADATION_OBSERVED_TRANSITION_MISSING",
+      "status": "unknown"
+    },
+    "old_failure": {
+      "count": 218,
+      "direct_evidence_present": false,
+      "reason_code": "E_OLD_FAILURE_RECEIPT_MISSING",
+      "status": "unknown"
+    },
+    "old_implementation": {
+      "count": 218,
+      "direct_evidence_present": false,
+      "reason_code": "E_OLD_IMPLEMENTATION_DIRECT_RECEIPT_MISSING",
+      "status": "unknown"
+    },
+    "unimplemented": {
+      "count": 218,
+      "direct_evidence_present": false,
+      "reason_code": "E_NONIMPLEMENTATION_DECISION_MISSING",
+      "status": "not_assessed"
+    }
+  },
+  "status_partition_digest": "sha256:fc660002a03640c5565a243afc2d9227ea4e85d45c7528556f1c89d943391af2"
+}

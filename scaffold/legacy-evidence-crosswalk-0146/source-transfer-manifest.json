@@ -1,0 +1,73 @@
+{
+  "schema": "scaffold-source-transfer-manifest/v1",
+  "source_worktree": "/home/tenni/.helix-worktrees/legacy-evidence-crosswalk-0134",
+  "source_branch": "research/legacy-evidence-crosswalk-0134",
+  "source_base": "94d99ebb4c55c2edb0575ac2dc100af0d5b93b90",
+  "destination_worktree": "/home/tenni/.helix-worktrees/legacy-evidence-crosswalk-0146",
+  "destination_branch": "research/legacy-evidence-crosswalk-0146",
+  "destination_base": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+  "identity_only_replacements": {
+    "SCF-B-0134": "SCF-B-0146",
+    "legacy-evidence-crosswalk-0134": "legacy-evidence-crosswalk-0146"
+  },
+  "source_files": {
+    "PR-DRAFT.md": {
+      "sha256": "a26f4c614197d714b4c498069d6793d0ef5a89c4fa08e40f8d144c020739a0c7",
+      "destination": "scaffold/legacy-evidence-crosswalk-0146/PR-DRAFT.md",
+      "identity_remapped_source_sha256": "73dafe93f5c4bafec342f2243d4d42a731ca349fbcd2f36d63d352e01aff2299",
+      "destination_sha256": "73dafe93f5c4bafec342f2243d4d42a731ca349fbcd2f36d63d352e01aff2299"
+    },
+    "README.md": {
+      "sha256": "8fce017f5e5b0a35a01c35cb9205792464fb979c2c671f110d834a10669355f6",
+      "destination": "scaffold/legacy-evidence-crosswalk-0146/README.md",
+      "identity_remapped_source_sha256": "e8d778ce21309e0dd1bd2dd53a0d742a2753a9f4290d74bd212559dd3e4cbff7",
+      "destination_sha256": "c86857d8752be83024a5eb4528d1862be8ad34c096ee6da179aaa0872a76d556"
+    },
+    "build.py": {
+      "sha256": "4cc11260f7eb6371768c5bfd5b603944ea8e0c08ba60325fc984547f4a435497",
+      "destination": "scaffold/legacy-evidence-crosswalk-0146/build.py",
+      "identity_remapped_source_sha256": "27be723e326c54a175bdac7ad175ae86b9e93f05ca13de033f6d4d793485338a",
+      "destination_sha256": "27be723e326c54a175bdac7ad175ae86b9e93f05ca13de033f6d4d793485338a"
+    },
+    "common.py": {
+      "sha256": "171bcbe928662fd9aae4665b525f03452e6408268db942e8a1812c3b696eecec",
+      "destination": "scaffold/legacy-evidence-crosswalk-0146/common.py",
+      "identity_remapped_source_sha256": "9d2c22a56e1ea8e941405b2eb8cb6275375a706a015415d74d7762b51699455c",
+      "destination_sha256": "9d2c22a56e1ea8e941405b2eb8cb6275375a706a015415d74d7762b51699455c"
+    },
+    "evidence.jsonl": {
+      "sha256": "283e5092b0370949abddac1aa3d96df21237344cb10940795d660a044785e7c6",
+      "destination": "scaffold/legacy-evidence-crosswalk-0146/evidence.jsonl",
+      "identity_remapped_source_sha256": "6d6d7b06126ea1e1ac21d1de52017c930a032699b13a1053ca8963dc73db19f2",
+      "destination_sha256": "6d6d7b06126ea1e1ac21d1de52017c930a032699b13a1053ca8963dc73db19f2"
+    },
+    "inventory.json": {
+      "sha256": "c73ccbcb11889106ad5f42b543119924689ef5adafdda94a47c0e1e62606c3a9",
+      "destination": "scaffold/legacy-evidence-crosswalk-0146/inventory.json",
+      "identity_remapped_source_sha256": "138bd736779bc7c261b89c02313f748fd9b8bf84a3b4812f13ce1b44a79cdf0b",
+      "destination_sha256": "138bd736779bc7c261b89c02313f748fd9b8bf84a3b4812f13ce1b44a79cdf0b"
+    },
+    "selfcheck.py": {
+      "sha256": "49390e02ab316a8602eb11b042ebe9b67a1cc9eea80d34575b282a24a3e50759",
+      "destination": "scaffold/legacy-evidence-crosswalk-0146/selfcheck.py",
+      "identity_remapped_source_sha256": "63bb1eed52c3fda110789bba1e7567da51bc7645857490b77b497716259300c7",
+      "destination_sha256": "63bb1eed52c3fda110789bba1e7567da51bc7645857490b77b497716259300c7"
+    },
+    "validate.py": {
+      "sha256": "c259a1eba61edb2233ab9f028198ecd8baa1b92bb136328fbf942fc0fd1987e8",
+      "destination": "scaffold/legacy-evidence-crosswalk-0146/validate.py",
+      "identity_remapped_source_sha256": "a794e4f2212679ba14ac7246b6ec2da214ac7981e7b60fa78735ddd0dbc9f0b3",
+      "destination_sha256": "a794e4f2212679ba14ac7246b6ec2da214ac7981e7b60fa78735ddd0dbc9f0b3"
+    }
+  },
+  "notes": [
+    "README.md receives an additional Japanese transfer/provenance section after the exact identity-only replacement.",
+    "All other transferred bytes are retained after only the two exact identity-token substitutions; evidence.jsonl and inventory.json are regenerated deterministically by build.py from the pinned Git objects at source_base.",
+    "SCF-B-0134 is already allocated on destination_base to a separate binding; SCF-B-0146 was verified unallocated there."
+  ],
+  "branch_management_issue": {
+    "number": 2093,
+    "purpose": "worktree/branch housekeeping tracking only",
+    "authority_effect": "none: does not determine requirement meaning, adoption, unit status, or Binding replacement/retirement"
+  }
+}
