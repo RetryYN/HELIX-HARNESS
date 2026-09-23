@@ -1,0 +1,4125 @@
+{
+  "overlap_exclusions": [
+    {
+      "asset_id": "LEGACY-ASSET-3AC78FD8A01E0F9811C5",
+      "reason": "exact duplicate with PR #2078 target; excluded from new asset research",
+      "source_path": ".claude/hooks/git-command-guard.ts",
+      "source_sha256": "94519967c5565bd024b3da03384f7a12d9622c16af0b0836e534d4ff0434853d"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A8DD18BCB237675730CD",
+      "reason": "exact duplicate with PR #2078 target; excluded from new asset research",
+      "source_path": ".claude/hooks/session-log.ts",
+      "source_sha256": "42434283c9fcb273d9064aea08eb35b56bb0f18ee2d89ce75c85005143e3bc8f"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DB4925588127A51391D7",
+      "reason": "exact duplicate with PR #2078 target; excluded from new asset research",
+      "source_path": ".claude/hooks/work-guard.ts",
+      "source_sha256": "c9aa80b399925bb258de728314dc43f531e0f219c771585d9f661cd0772a7009"
+    }
+  ],
+  "records": [
+    {
+      "asset_id": "LEGACY-ASSET-317AE893EF4ADD3AF492",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_runtime_policy",
+      "formal_asset_classification_updated": false,
+      "line_end": 103,
+      "line_start": 24,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Combines layer/workflow conditions with provider session, Worker, hook, and tool-call runtime boundaries.",
+      "source_path": ".claude/CLAUDE.md",
+      "source_sha256": "a8dd3ed8854e85ee4e749eb0e3e83195d076586611b697727099f946f42dfaa9"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A008AA10B15AC81A839D",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role advisor-fable defines this assignment's task scope and capabilities: 最上位アドバイザー (Fable)。TL advisor 相談後も疑問が残る技術判断、cross-runtime の判定対立、不可逆・高影響操作の事前妥当性、PO エスカレーション直前の最終確認を扱うセカンドオピニオン。advisory-only で実装しない。",
+      "source_path": ".claude/agents/advisor-fable.md",
+      "source_sha256": "396094f9cca931d720de1686c72e4365e760d02f07f29f76f9f366c0e9d55a9c"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EF44FCF2D722F986E609",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role be-api defines this assignment's task scope and capabilities: バックエンドAPI実装。RESTful/GraphQL設計・エンドポイント実装・バリデーション・エラーハンドリング。L4 BE実装時に使う。",
+      "source_path": ".claude/agents/be-api.md",
+      "source_sha256": "f4f9c9645c248a3e998ee5b92307ce0b04edc6421dc1eb4779820c867e489cbd"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D492D527A60A660722FF",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role be-logic defines this assignment's task scope and capabilities: ビジネスロジック実装。ドメインモデル・サービス層・ユースケース実装。レイヤードアーキテクチャでの設計・実装時に使う。",
+      "source_path": ".claude/agents/be-logic.md",
+      "source_sha256": "b1d9a75378b40fd6d7fea643654f1a9a8d04471824e08c27c07c3ead86f834a9"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C0A2150C92B282C9817C",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role code-reviewer defines this assignment's task scope and capabilities: Senior Staff Engineer 視点で 5軸レビューを実施。実装は行わず、Critical/Important/Minor で所見を整理し、ship skill の Phase B で統合されるレビュー結果を返す。",
+      "source_path": ".claude/agents/code-reviewer.md",
+      "source_sha256": "fe7dc9040cb1c89ca1440852542f2aba11ea13b0e961d562f027a716b0d0824a"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-959AA9A446E3F1F16B7A",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role db-schema defines this assignment's task scope and capabilities: DBスキーマ設計・マイグレーション。ER図・テーブル設計・インデックス・FK・マイグレーション手順。L3/L4 DB設計時に使う。",
+      "source_path": ".claude/agents/db-schema.md",
+      "source_sha256": "86b699829325d80489fdd369efd06d40907f23c5542a31ac6e29a23a9c64e41a"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-042D2B732DC68AA7EE9A",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role devops-deploy defines this assignment's task scope and capabilities: デプロイ・インフラ設計。Docker/CI-CD/環境分離/監視・アラート。L7 デプロイ・G7 安定性確認時に使う。",
+      "source_path": ".claude/agents/devops-deploy.md",
+      "source_sha256": "373422f0d55255110ce4f751f301b98a9f974c909039f5d35c5a3c4879e87ef1"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-52F12F8DB38C0379131D",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role fe-lead defines this assignment's task scope and capabilities: フロントエンド リード (Opus)。FE 設計・アーキテクチャ・コンポーネント分割・状態管理方針を主導し、fe-ui (Sonnet worker) へ実装を割り付けるオーケストレーション lead。UX/ユーザビリティ判断が要るときは advisor-fable に相談する (助言のみ)。",
+      "source_path": ".claude/agents/fe-lead.md",
+      "source_sha256": "9445bc82b51d009cbbf31978901a35ab683aef75603ff9f2a00b9439f601cf57"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3C88B0A89AD7A9BCFAEE",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role fe-ui defines this assignment's task scope and capabilities: フロントエンド UI 実装ワーカー (Sonnet 5)。fe-lead が決めた設計・分割に従ってコンポーネント/状態/スタイルを実装する worker。UX/ユーザビリティの疑問は自己判断せず fe-lead 経由で advisor-fable に相談する。",
+      "source_path": ".claude/agents/fe-ui.md",
+      "source_sha256": "78be74aac7bc3f006d500c77b38de500b24f31344d2b71640a8b315c96335590"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B27B643219475A1CB377",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pdm-innovation-manager defines this assignment's task scope and capabilities: technology / marketing innovation output を ranked product strategy option と L1-ready planning input へ統合する。",
+      "source_path": ".claude/agents/pdm-innovation-manager.md",
+      "source_sha256": "2111d1640930cb00ab8a947b05649ca394f00a6eab33ce755dbb2eaa9909b667"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3CDA8A39549F38BE7522",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pdm-marketing-innovation defines this assignment's task scope and capabilities: customer hypothesis、positioning option、market signal、validation plan を扱う product marketing innovation scout。",
+      "source_path": ".claude/agents/pdm-marketing-innovation.md",
+      "source_sha256": "d7a2c16610532c3d0fc69eeef4d8f8b37755de6d5e31b815e4e1afbf3aeadf2f"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-960EE6583585A6B8E7D8",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pdm-tech-innovation defines this assignment's task scope and capabilities: strategy options、engineering operating model、technical adoption hypothesis を扱う product technology innovation scout。",
+      "source_path": ".claude/agents/pdm-tech-innovation.md",
+      "source_sha256": "0ca51958ed8aaacf7c1d8ccdc237ee965f440deddf8952d5e16295ec017ce4de"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C5955EACA96AEECDF283",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-haiku defines this assignment's task scope and capabilities: docs、短い検証、typo、link、必要時の web-backed check を担当する軽量 PMO checker。",
+      "source_path": ".claude/agents/pmo-haiku.md",
+      "source_sha256": "f2ff69727766c91bf383f63e94eb50520018c4e21ad2ffcf6848854dda244987"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-08AC7BE12CA4A2C4C684",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-project-explorer defines this assignment's task scope and capabilities: implementation 前に code、docs、config、API、DB、design alignment を詳しく確認する project repository explorer。",
+      "source_path": ".claude/agents/pmo-project-explorer.md",
+      "source_sha256": "c79506f2efb1814b3ee18c8e116ac681cdb87685c64b566ba2b6479426f47559"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-628E406D23CC232AC97C",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-project-scout defines this assignment's task scope and capabilities: Project Repository Scout — 現在の project (cwd 配下) の code/docs/config を **軽量で目星付け** (初期 sweep + 候補列挙)。Haiku 4.5 low thinking、即応性最大。深掘りは pmo-project-explorer (Sonnet) にエスカレーション。",
+      "source_path": ".claude/agents/pmo-project-scout.md",
+      "source_sha256": "60563f09abd296731b0d8c1a6d6147e5d696bb548f5d3e5bdf69ed83ba05f910"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D5706A7A572B530C902C",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-sonnet defines this assignment's task scope and capabilities: PMO 状況把握・docs/PLAN/review 構造化チェック (read-only 中心、Sonnet medium thinking)。Opus の context 保護用 + 判断伴う read-only 委譲。長文 doc 解析や複数視点読みに使う。",
+      "source_path": ".claude/agents/pmo-sonnet.md",
+      "source_sha256": "f56d46dd46d69d5a8c1554b6636223e9281bb376f0f04520d206142bbca0c2e1"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-2C24EA7C61426F920167",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-tech-docs defines this assignment's task scope and capabilities: Tech Document Manager — 設計手法・アーキテクチャ・コーディング作法をテックブログ・公式 doc から精読、概念抽出、HELIX への適用案レポート。L1/L2/L3 設計判断の参考にする。",
+      "source_path": ".claude/agents/pmo-tech-docs.md",
+      "source_sha256": "8cc5a9641b2867007c609863ba1b2aa2e2dc3008209ac536c0ed223afd2418d5"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CF0FC2E6C25BCBA8FDB5",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-tech-fork defines this assignment's task scope and capabilities: Tech Fork Manager — OSS/plugin/library を GitHub から探索、license/stars/maintenance/活発度を評価、HELIX への転用可能性レポート。BE/FE/CLI/DB ライブラリ選定の前段で使う。",
+      "source_path": ".claude/agents/pmo-tech-fork.md",
+      "source_sha256": "5703cca432a17c2b0e4c8ff356dbe46b1de155f11895d191194b39079dcdb233"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-90C4C8A080949088E480",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-tech-news defines this assignment's task scope and capabilities: Tech News Advisor — AI / Dev tools / security / cloud の最新動向を体系的に sweep、週次 watch 想定。Sonnet medium thinking で深さを確保、tl;dr + 影響分析 + HELIX 反映案を返す。",
+      "source_path": ".claude/agents/pmo-tech-news.md",
+      "source_sha256": "d080c6f88e51d4d4c86d8edc6d1f387deb7e65d2b6cc57070343421b6de95148"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D8C440D7C454254BF3C7",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role qa-test defines this assignment's task scope and capabilities: QAテスト設計・実行。テスト戦略・カバレッジ・E2E・パフォーマンス・セキュリティテスト。L6検証・G4/G6ゲート時に使う。",
+      "source_path": ".claude/agents/qa-test.md",
+      "source_sha256": "f03e7296497fa5f7be0247923f0aee4408924bd0aca39c7c65fd02d75daa5f4f"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B0BBA6BC8EEF832B1D73",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role refactor-scout defines this assignment's task scope and capabilities: behavior-invariant refactor opportunity を検出し、triage と PLAN/verification suggestion を返す Refactor Scout。advisory only で code change は実装しない。",
+      "source_path": ".claude/agents/refactor-scout.md",
+      "source_sha256": "f12c30d26c49aaf64688d803064ff38c8d721390e4730992e3044e04fda41098"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-45405D360662F07F483D",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role security-audit defines this assignment's task scope and capabilities: セキュリティ監査。OWASP Top 10・認証認可・入力バリデーション・秘密情報管理・依存脆弱性。G2/G4/G6/G7セキュリティゲート時に使う。",
+      "source_path": ".claude/agents/security-audit.md",
+      "source_sha256": "fdedf0641aaf0a6a8439ef72128fcbd0a036d51095156283f06b4a1a134c2d3d"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-AB114FA2D296D24360F7",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command build.md defines this operation's purpose and required workflow: frozen spec/test design に基づき HELIX quality gate 付きで実装する",
+      "source_path": ".claude/commands/build.md",
+      "source_sha256": "2d93563ce5b57240d8e9ba6765cd37ff848393b8caa2f0c6f4eedc4d5bafd29d"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6503E03D359C41E4990E",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command code-simplify.md defines this operation's purpose and required workflow: regression fence の下で behavior-invariant refactor / simplification を行う",
+      "source_path": ".claude/commands/code-simplify.md",
+      "source_sha256": "57d310e4325cd4f53787d45a14c37951edf055843f17c592f186b4f322939f94"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-29EE21B05F794AF00F70",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command sdd-plan.md defines this operation's purpose and required workflow: 作業を machine-checkable な PLAN step に分解する（requirement 単位、parallel/serial marker 付き）",
+      "source_path": ".claude/commands/sdd-plan.md",
+      "source_sha256": "5321d5050343caec497261edad55a38efc81b5ac6aaa39691f2470dc4fb24934"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4B91838FD19E097E703C",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command sdd-review.md defines this operation's purpose and required workflow: five-axis code review — correctness, readability, architecture, security, performance",
+      "source_path": ".claude/commands/sdd-review.md",
+      "source_sha256": "9e4b84abfa92ee6dec4708e508c4c2cb80491f4559619bb67370061852cd62c3"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3C12246291CC5C047D27",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command ship.md defines this operation's purpose and required workflow: 出荷前 fan-out — code-reviewer / security-audit / qa-test を並列実行し、rollback plan 付きで go/no-go を統合判断する",
+      "source_path": ".claude/commands/ship.md",
+      "source_sha256": "b34e278ff5c9c8030a788dbb089f71b7ce455888cb1153ea10bd780308bba221"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4D962668332D8432348C",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command spec.md defines this operation's purpose and required workflow: 実装前に spec-first design を作成する（spec → test design → impl）",
+      "source_path": ".claude/commands/spec.md",
+      "source_sha256": "3cf2dba23a5aa7a9f8f6afd350ad5d107373d6c289637e15356e99c1c50b198b"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CD87ED196EBA462DAC81",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "native_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command test.md defines this operation's purpose and required workflow: HELIX TDD discipline に従い test-first（Red → Green → Refactor）で進める",
+      "source_path": ".claude/commands/test.md",
+      "source_sha256": "daa1aa84d78ac497edf267714239aaf24b68d895d5fed17bfc45b3b1438170d6"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E2613D679D1889C98E6A",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "runtime_adapter",
+      "formal_asset_classification_updated": false,
+      "line_end": 90,
+      "line_start": 44,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Connects a provider configuration or hook lifecycle event to a local guard/session command; this is runtime integration evidence.",
+      "source_path": ".claude/hooks/agent-guard.ts",
+      "source_sha256": "16f5b92bfc00095c17ae5fed84fb095bc428f3565bade37b8446a32a762ef544"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F27AC6F39D89FE021C56",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "runtime_adapter",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Connects a provider configuration or hook lifecycle event to a local guard/session command; this is runtime integration evidence.",
+      "source_path": ".claude/settings.json",
+      "source_sha256": "df8a6f6d51152446708f93558917c1d760a1d9f5639c31d5474a350d1e697ef1"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F32A51AB0E49C380AD5E",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "runtime_adapter",
+      "formal_asset_classification_updated": false,
+      "line_end": 2,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Connects a provider configuration or hook lifecycle event to a local guard/session command; this is runtime integration evidence.",
+      "source_path": ".codex/config.toml",
+      "source_sha256": "d37497c3278121598a663564ab38b53f658969717f78decb661ddd11c66551ea"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-82C735C2C8B1F488B042",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "runtime_adapter",
+      "formal_asset_classification_updated": false,
+      "line_end": 15,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Connects a provider configuration or hook lifecycle event to a local guard/session command; this is runtime integration evidence.",
+      "source_path": ".codex/hooks.json",
+      "source_sha256": "d6b06f897239552bca70eb0bb8395013e2c1b0df487ed30d1255f657b35f6c97"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EAEFA15F29155A7FED3E",
+      "authority_effect": "none",
+      "candidate_products": [],
+      "category": "insufficient_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "product": "HELIX-OS",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        }
+      ],
+      "family": "external_cursor",
+      "formal_asset_classification_updated": false,
+      "line_end": 6,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [],
+      "semantic_interpretation": "Pins a Node-based Cursor Cloud Agent image and labels the repository environment.",
+      "source_path": ".cursor/Dockerfile",
+      "source_sha256": "8f43d586b85d1a6de62df65435bab492b6073063824b103f286d4cf5fcf2e8ba"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E1FFD6D714C0489804C8",
+      "authority_effect": "none",
+      "candidate_products": [],
+      "category": "insufficient_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "product": "HELIX-OS",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        }
+      ],
+      "family": "external_cursor",
+      "formal_asset_classification_updated": false,
+      "line_end": 8,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [],
+      "semantic_interpretation": "Selects the repository Dockerfile and install phase for a Cursor-managed environment.",
+      "source_path": ".cursor/environment.json",
+      "source_sha256": "384874f904e4984fba93d5d38295ab56f8866f2adb43a8d9085d6d924aebf23a"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F2299ED3D6065E7EBCE8",
+      "authority_effect": "none",
+      "candidate_products": [],
+      "category": "insufficient_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "product": "HELIX-OS",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "A Cursor Cloud Agent toolchain/configuration is identified, but this source does not establish a requirement owned by this product boundary."
+        }
+      ],
+      "family": "external_cursor",
+      "formal_asset_classification_updated": false,
+      "line_end": 28,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [],
+      "semantic_interpretation": "Defines dependency installation and repository checks for the Cursor Cloud Agent build phase.",
+      "source_path": ".cursor/install.sh",
+      "source_sha256": "fac1c25d76931adc5da33a79ad246bac0fd3ec2f7ddcf422c533a67da6c35601"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A54FF182C7E8ACF56ACF",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "root_project_instructions",
+      "formal_asset_classification_updated": false,
+      "line_end": 210,
+      "line_start": 154,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Combines V-model/process and quality rules with session, delegation, tool/runtime and consumer-package operation.",
+      "source_path": "AGENTS.md",
+      "source_sha256": "fafe73efa4b34864c3b5e6a60775a21007d9c6bf358e710edaa5d2bce50ea2bf"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6EBDB617A8104A7756D0",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "root_project_instructions",
+      "formal_asset_classification_updated": false,
+      "line_end": 96,
+      "line_start": 49,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Combines V-model/process and quality rules with session, delegation, tool/runtime and consumer-package operation.",
+      "source_path": "CLAUDE.md",
+      "source_sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E71F42F5DE9DA9821B4F",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "consumer_instructions",
+      "formal_asset_classification_updated": false,
+      "line_end": 12,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Defines managed consumer instructions for local HELIX status, decision/review packets, diagnostics, delegation, and extension boundaries.",
+      "source_path": "docs/templates/adapter/.claude/CLAUDE.md",
+      "source_sha256": "ac8e68d9ab30d1c686246b0fab67f32fb68362d9be44409d844ddccf33e2b7df"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-BF3F2845B871CC28EE8E",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role be-api defines this assignment's task scope and capabilities: Backend API の route / contract / integration を確認するレビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/be-api.md",
+      "source_sha256": "ae35b8444f4b57cbd45b08b1ca0cf5a65c30ee040710121256c81dc91ebf6654"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-79D9DE33393844B64CBA",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role be-logic defines this assignment's task scope and capabilities: Backend domain logic の invariant / boundary / TDD 適合を確認するレビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/be-logic.md",
+      "source_sha256": "d7a5e934e4c0f45ce00aa89290bfa60cd54f3c693cfc0e734fe7c1de6f021fa2"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-77C5072A712C997C1632",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role code-reviewer defines this assignment's task scope and capabilities: 正しさ、security、保守性を確認する read-only senior engineering レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/code-reviewer.md",
+      "source_sha256": "8ba1420363535e865f46ca5ef7a7672380c9049eafbb50b3a623032fa8d051f1"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C09C70F83238044137EC",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role db-schema defines this assignment's task scope and capabilities: Database schema の migration / index / data contract を確認するレビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/db-schema.md",
+      "source_sha256": "cf8fbf2f017eea3abe219e41e60f4ded472fb293cca072f4047c9a5e97bbf0f0"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FC1E6AE8D3FD1352413B",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role devops-deploy defines this assignment's task scope and capabilities: CI、deployment、rollback、release readiness を確認するレビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/devops-deploy.md",
+      "source_sha256": "84ccb29b3cf7081b0fa2ff4d99542a3211147a8a8f17ba1e035eadea4a9b38eb"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6A4067C6B9C81297AFCB",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role helix-tl defines this assignment's task scope and capabilities: HELIX workflow、gate、test、release readiness を確認する TL レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/helix-tl.md",
+      "source_sha256": "a43a63521be6ba8bb7406a43afe8a8ebe7155663f8f63c61e4004aa849b006de"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EBDC0C1A39C3D5926D3E",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pdm-innovation-manager defines this assignment's task scope and capabilities: 機会、scope、portfolio fit を確認する product management レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/pdm-innovation-manager.md",
+      "source_sha256": "bbf690e2798b719b66462ab0a61d1b54a5d418701e84410a0612229e7fbc980e"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FB6A0B76D3CD56074ADE",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pdm-marketing-innovation defines this assignment's task scope and capabilities: 市場性、user value、product framing、adoption を確認するレビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/pdm-marketing-innovation.md",
+      "source_sha256": "d91273df0de8fa1c9e6f7c3eb16f370719a5081a305eade7f85cd796e91e4e74"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3BF5CA56F34BEDE0ACFF",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pdm-tech-innovation defines this assignment's task scope and capabilities: 実現可能性、platform leverage、risk を確認する technical product レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/pdm-tech-innovation.md",
+      "source_sha256": "abab67ceed34b56f57bed90c564ea7c9b42ccfa0aa7b607ccfba4be49e17d274"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CD28D3B88EF7AE220E86",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-haiku defines this assignment's task scope and capabilities: 簡潔な status、blocker、next action を確認する lightweight PMO レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/pmo-haiku.md",
+      "source_sha256": "74dadab53becd07ef21b8604a46e4afc4cd162f80ad7f5ffd814d9376e792790"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A0A8C9A33993400A3586",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-project-explorer defines this assignment's task scope and capabilities: goal、制約、evidence gap を確認する project discovery レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/pmo-project-explorer.md",
+      "source_sha256": "abf21979b4a1fc43d6b4616fba939de343bf9043e2f210c7e9b924ce69c3e662"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E6DE0C94D2721F3336D1",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-project-scout defines this assignment's task scope and capabilities: backlog、ownership、workflow routing を確認する project triage レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/pmo-project-scout.md",
+      "source_sha256": "f48a18fdb20dace6fd66ec35055b1bc2dff7fce20f7251b557b816810d32c4ec"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E3393F4B4B899656F290",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-sonnet defines this assignment's task scope and capabilities: PLAN 構造、handover 品質、文書間整合を確認する PMO レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/pmo-sonnet.md",
+      "source_sha256": "8cdb6f6a549d92c02f1dea9b0a70d13b7b37364414a750f876275ddd860ef98f"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-8662446392ED825D202C",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-tech-docs defines this assignment's task scope and capabilities: ADR、process、governance 品質を確認する technical documentation レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/pmo-tech-docs.md",
+      "source_sha256": "d3ac46f871ade8f824859d0d4c5e0edb9e2f4bb21089165e4b9b8b9d72724595"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DC446E336548FC278FE3",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-tech-fork defines this assignment's task scope and capabilities: fork、extraction、distribution の clean-room 境界を確認するレビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/pmo-tech-fork.md",
+      "source_sha256": "01e983a9c11577ab696022b5d9cead0aef3a3b16467a640047b68b6a60a658d1"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-897C071E5D73B4852FF7",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role pmo-tech-news defines this assignment's task scope and capabilities: 外部 signal と日付付き source check を確認する technical research レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/pmo-tech-news.md",
+      "source_sha256": "668f478c96155ad285d4cfc4fa97c818f685ce2fa28c4a65e07ec2460ec379d2"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-56B2CE5EA4D17613FF18",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role qa-test defines this assignment's task scope and capabilities: test strategy、oracle 強度、regression scope を確認する quality レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/qa-test.md",
+      "source_sha256": "fe3840bd296c4c6f13c796efea6cbf1d799e383a212ef63e34749d07a9e56c13"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D009FDF19BF6F8D0287F",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role refactor-scout defines this assignment's task scope and capabilities: 複雑度、重複、低 risk extraction 候補を確認する refactoring レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/refactor-scout.md",
+      "source_sha256": "81e29173c2920d1a9361965b0c87e625b0f2dec2c0039308a2cae42582d5e8bb"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-50E8D61117FBA7EBB846",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_agent",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Agent role security-audit defines this assignment's task scope and capabilities: auth、secret、PII、threat model concern を確認する security レビュアー。",
+      "source_path": "docs/templates/adapter/.claude/agents/security-audit.md",
+      "source_sha256": "e5bf83f30b698f6c30b09e7865f6064969387df33f699e8fc4e00eae98f47283"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DE244805EF9212813167",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 10,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command build.md defines this operation's purpose and required workflow: freeze 済み HELIX spec / test design に沿って実装する。",
+      "source_path": "docs/templates/adapter/.claude/commands/build.md",
+      "source_sha256": "4f1594d90cd4d7c89caa03fa950f06f2a03742ed3bcc5fd43650077c50308b0c"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-62311FF06B7E0172BA9E",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 10,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command code-simplify.md defines this operation's purpose and required workflow: 選択した code に対する最小で安全な単純化を特定する。",
+      "source_path": "docs/templates/adapter/.claude/commands/code-simplify.md",
+      "source_sha256": "941ebe0478b464925d7179ea505a4f3638bddf81f38168fc4124bca4f36675bd"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FB9C89ECA5B6D55D08A2",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 5,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command helix-status.md defines this operation's purpose and required workflow: HELIX status / completion packet / doctor 出力を確認する。",
+      "source_path": "docs/templates/adapter/.claude/commands/helix-status.md",
+      "source_sha256": "1b2d02dbfac0dc0891821ae1120e5c4858ab5bbb2e23cdade2bfc3e8ca86ded8"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C5A77E4622B69731CEFB",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 8,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command helix-test.md defines this operation's purpose and required workflow: 現在の変更に対して HELIX verification を実行する。",
+      "source_path": "docs/templates/adapter/.claude/commands/helix-test.md",
+      "source_sha256": "a52f5fe4a73eca7a12dfdccd7b2731afeef1c15017f7fcb154bbe8fa86020331"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FB86E7C129D51D1EE2AB",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 10,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command sdd-plan.md defines this operation's purpose and required workflow: 実装前に HELIX の spec-driven planning document を作成する。",
+      "source_path": "docs/templates/adapter/.claude/commands/sdd-plan.md",
+      "source_sha256": "88dfbc31715277c756ca460db916d71774e9b083b24c9dd03d39445f77fe347c"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-026DF368AC696ACD655A",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 10,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command sdd-review.md defines this operation's purpose and required workflow: HELIX trace / gate 要求に照らして spec / design をレビューする。",
+      "source_path": "docs/templates/adapter/.claude/commands/sdd-review.md",
+      "source_sha256": "e104ee330bb5f42ff24063b7bb6f51480f4e359dd336773548ee1aa8fb5a7dfd"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CD0054A2400B8727B6B3",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 10,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command ship.md defines this operation's purpose and required workflow: release evidence、rollback note、最終検証を準備する。",
+      "source_path": "docs/templates/adapter/.claude/commands/ship.md",
+      "source_sha256": "4ea510b0bc31f5b2694181f5b078c5ae00a81eec0fb0d690369be6f594c00113"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5E976A3CC5694A6CE93E",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 10,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command spec.md defines this operation's purpose and required workflow: 実装前に spec-first design を作成する。",
+      "source_path": "docs/templates/adapter/.claude/commands/spec.md",
+      "source_sha256": "90bbc4ef0aaaa7c45c07eb0935090a14b1528ee72a8d6cd148ac0421f09a5ce2"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-23381CE46D8BF86D7EC5",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "adapter_command",
+      "formal_asset_classification_updated": false,
+      "line_end": 10,
+      "line_start": 2,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Command test.md defines this operation's purpose and required workflow: 現在の変更に対して targeted HELIX verification を実行する。",
+      "source_path": "docs/templates/adapter/.claude/commands/test.md",
+      "source_sha256": "f184aee8b93485a7339f6561f7311c7506b4104e7c32fa273a56dfef75f6fc3f"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-06496313FD2B704A2C41",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "runtime_adapter",
+      "formal_asset_classification_updated": false,
+      "line_end": 14,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Connects a provider configuration or hook lifecycle event to a local guard/session command; this is runtime integration evidence.",
+      "source_path": "docs/templates/adapter/.claude/settings.json",
+      "source_sha256": "585b5163aa350e47547fa7778838204c1b261a4131597ccf8ac9c1578013ea0d"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-75ABD2CB9DF5B322BB30",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "runtime_adapter",
+      "formal_asset_classification_updated": false,
+      "line_end": 2,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Connects a provider configuration or hook lifecycle event to a local guard/session command; this is runtime integration evidence.",
+      "source_path": "docs/templates/adapter/.codex/config.toml",
+      "source_sha256": "d37497c3278121598a663564ab38b53f658969717f78decb661ddd11c66551ea"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5F1E5C73706ECA35DF51",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-OS"
+      ],
+      "category": "direct_product_basis",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "product": "HELIX-HARNESS",
+          "rationale": "The source provides provider/runtime configuration or Worker invocation; it does not itself define V-model semantics, requirement acceptance, or verification contract."
+        },
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "runtime_adapter",
+      "formal_asset_classification_updated": false,
+      "line_end": 15,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Connects a provider configuration or hook lifecycle event to a local guard/session command; this is runtime integration evidence.",
+      "source_path": "docs/templates/adapter/.codex/hooks.json",
+      "source_sha256": "ef0d8bce2177a7fff50878600d11b4944c28c43583ea21b30bde31fbf7e80ce8"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-921B160212214AFAFE5A",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "consumer_instructions",
+      "formal_asset_classification_updated": false,
+      "line_end": 19,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Defines managed consumer instructions for local HELIX status, decision/review packets, diagnostics, delegation, and extension boundaries.",
+      "source_path": "docs/templates/adapter/AGENTS.md",
+      "source_sha256": "7bb741a0131f874bb3036f967c33067e080b081173183c474840f5ac9730e99b"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E5C8949A86D3882ABBFA",
+      "authority_effect": "none",
+      "candidate_products": [
+        "HELIX-HARNESS",
+        "HELIX-OS"
+      ],
+      "category": "multi_product_conflict",
+      "classification_rule": "manual_semantic_span_compared_to_four_product_l1_and_boundary",
+      "counterevidence": [
+        {
+          "l1_path": "docs/helix-web/L1-planning/product-intent.md",
+          "product": "HELIX-Web",
+          "rationale": "The source does not describe an end-user dashboard, connector selection, long-running job interaction, or consent surface from the Web L1."
+        },
+        {
+          "l1_path": "docs/helix-web-os/L1-planning/system-intent.md",
+          "product": "HELIX-Web-OS",
+          "rationale": "The source does not describe tenant, connector/job service state, deployment, monitoring, or recovery for a deployed Web service."
+        }
+      ],
+      "family": "consumer_instructions",
+      "formal_asset_classification_updated": false,
+      "line_end": 19,
+      "line_start": 1,
+      "new_build_allowed": false,
+      "product_basis": [
+        {
+          "l1_path": "docs/helix-harness/L1-planning/product-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              35
+            ],
+            [
+              54,
+              58
+            ]
+          ],
+          "product": "HELIX-HARNESS",
+          "rationale": "The source span expresses workflow, role acceptance, verification, or consumer-use conditions that align with HARNESS process and evidence contracts."
+        },
+        {
+          "l1_path": "docs/helix-os/L1-planning/system-intent.md",
+          "l1_ranges": [
+            [
+              22,
+              40
+            ],
+            [
+              59,
+              63
+            ]
+          ],
+          "product": "HELIX-OS",
+          "rationale": "The source span configures or assigns AI Worker, local command, session, hook, state, or adapter execution responsibilities that align with HELIX-OS control."
+        }
+      ],
+      "semantic_interpretation": "Defines managed consumer instructions for local HELIX status, decision/review packets, diagnostics, delegation, and extension boundaries.",
+      "source_path": "docs/templates/adapter/CLAUDE.md",
+      "source_sha256": "6298a437f645b90cbc6721c08b218a1cfda07cb654946d03d342746e418246af"
+    }
+  ],
+  "review_note": "Archive bytes were read as static Git objects only. The profile is research evidence, not product authority, phase admission, successor, implementation proof, consumer closure, or reuse approval.",
+  "schema_revision": 1,
+  "scope": {
+    "candidate_count_before_overlap_exclusion": 75,
+    "fixed_base_revision": "5562f04da0f3205f9aa58205ec0d478419fc4f2e",
+    "included_unresolved_prefixes": [
+      ".claude/",
+      ".codex/",
+      ".cursor/",
+      "docs/templates/adapter/"
+    ],
+    "included_unresolved_root_paths": [
+      "AGENTS.md",
+      "CLAUDE.md"
+    ],
+    "target_count": 72
+  }
+}

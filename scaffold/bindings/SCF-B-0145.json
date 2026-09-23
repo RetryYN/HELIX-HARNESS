@@ -1,0 +1,846 @@
+{
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0145.json",
+    "scaffold/legacy-ai-instruction-product-classification-0145/README.md",
+    "scaffold/legacy-ai-instruction-product-classification-0145/PR-DRAFT.md",
+    "scaffold/legacy-ai-instruction-product-classification-0145/generate.py",
+    "scaffold/legacy-ai-instruction-product-classification-0145/independent-source-audit.py",
+    "scaffold/legacy-ai-instruction-product-classification-0145/independent-source-audit.json",
+    "scaffold/legacy-ai-instruction-product-classification-0145/validate.py",
+    "scaffold/legacy-ai-instruction-product-classification-0145/selfcheck.py",
+    "scaffold/legacy-ai-instruction-product-classification-0145/inventory.json",
+    "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl"
+  ],
+  "connections": {
+    "boundary": "candidate research evidence only; no formal product, phase, successor, implementation or new-build authority",
+    "consumers": [
+      "parent product-classification research ledger",
+      "人間のproduct-boundary判断packet（未接続・採否待ち）"
+    ],
+    "dependencies": [
+      "fixed BASE disposition/phase/decision/read-after",
+      "four current product L1 and product-boundary",
+      "main 429 + Draft PR #2078 67 + Draft PR #2090 41 pinned research inputs",
+      "AICR-01..10 and failure/consumer relation inventories"
+    ]
+  },
+  "created": "2026-09-23",
+  "id": "SCF-B-0145",
+  "kind": "scaffold",
+  "obligations": [
+    "固定BASEのunresolved AI instruction/adapter/consumer-template候補75件を導出し、PR重複3件を除いた72件をID/path/SHAで固定する",
+    "各旧sourceのGit blob/type/mode/SHA/MANIFESTと手動spanの原文を保ち、source/path identityと意味解釈を混同しない",
+    "4製品L1・product-boundary候補、反証、判断史、failure、consumer、phase/implementation evidenceを別々に記録する",
+    "main、PR #2078、PR #2090および新targetのasset ID/source path-SHA重複をゼロに保つ",
+    "candidate classification、phase candidate、implementation evidenceからformal owner/phase/successor/実装成立を生成しない",
+    "旧archive source/runtime/test/hook/adapter/CIを実行せず、独立source audit・validator・negative selfcheckを維持する"
+  ],
+  "operations": {
+    "allowed": [
+      "read fixed BASE and archive Git objects statically",
+      "write this research-only scaffold bundle and Binding",
+      "run the new generator, validator, independent static source audit and selfcheck"
+    ],
+    "forbidden": [
+      "execute old-generation archive source/runtime/test/hook/adapter/CI",
+      "promote candidate to formal owner/phase/successor/implementation",
+      "modify formal classification ledgers or phase bootstrap",
+      "merge/close/deploy"
+    ]
+  },
+  "owner_candidate": "四製品 product-boundary 研究（正式owner未解決）",
+  "product": "HELIX-OS",
+  "reason": "旧AI指示、provider adapter、consumer templateの意味を固定BASEから静的に調べるresearch-only Scaffold Binding。product欄は登録先であり、単一ownerやauthorityを意味しない。",
+  "replacement": {
+    "formal_artifacts": [],
+    "issue": 0,
+    "role_target": null,
+    "status": "pending"
+  },
+  "role": "legacy-ai-instruction-product-boundary-research-0145-static",
+  "schema_revision": 1,
+  "state": "registered",
+  "title": "固定BASE AI指示・adapter/consumer template 72件の四製品責務候補研究",
+  "updated": "2026-09-23",
+  "upstream": [
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/CLAUDE.md",
+      "sha256": "a8dd3ed8854e85ee4e749eb0e3e83195d076586611b697727099f946f42dfaa9"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/advisor-fable.md",
+      "sha256": "396094f9cca931d720de1686c72e4365e760d02f07f29f76f9f366c0e9d55a9c"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/be-api.md",
+      "sha256": "f4f9c9645c248a3e998ee5b92307ce0b04edc6421dc1eb4779820c867e489cbd"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/be-logic.md",
+      "sha256": "b1d9a75378b40fd6d7fea643654f1a9a8d04471824e08c27c07c3ead86f834a9"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/code-reviewer.md",
+      "sha256": "fe7dc9040cb1c89ca1440852542f2aba11ea13b0e961d562f027a716b0d0824a"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/db-schema.md",
+      "sha256": "86b699829325d80489fdd369efd06d40907f23c5542a31ac6e29a23a9c64e41a"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/devops-deploy.md",
+      "sha256": "373422f0d55255110ce4f751f301b98a9f974c909039f5d35c5a3c4879e87ef1"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/fe-lead.md",
+      "sha256": "9445bc82b51d009cbbf31978901a35ab683aef75603ff9f2a00b9439f601cf57"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/fe-ui.md",
+      "sha256": "78be74aac7bc3f006d500c77b38de500b24f31344d2b71640a8b315c96335590"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/pdm-innovation-manager.md",
+      "sha256": "2111d1640930cb00ab8a947b05649ca394f00a6eab33ce755dbb2eaa9909b667"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/pdm-marketing-innovation.md",
+      "sha256": "d7a2c16610532c3d0fc69eeef4d8f8b37755de6d5e31b815e4e1afbf3aeadf2f"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/pdm-tech-innovation.md",
+      "sha256": "0ca51958ed8aaacf7c1d8ccdc237ee965f440deddf8952d5e16295ec017ce4de"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/pmo-haiku.md",
+      "sha256": "f2ff69727766c91bf383f63e94eb50520018c4e21ad2ffcf6848854dda244987"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/pmo-project-explorer.md",
+      "sha256": "c79506f2efb1814b3ee18c8e116ac681cdb87685c64b566ba2b6479426f47559"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/pmo-project-scout.md",
+      "sha256": "60563f09abd296731b0d8c1a6d6147e5d696bb548f5d3e5bdf69ed83ba05f910"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/pmo-sonnet.md",
+      "sha256": "f56d46dd46d69d5a8c1554b6636223e9281bb376f0f04520d206142bbca0c2e1"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/pmo-tech-docs.md",
+      "sha256": "8cc5a9641b2867007c609863ba1b2aa2e2dc3008209ac536c0ed223afd2418d5"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/pmo-tech-fork.md",
+      "sha256": "5703cca432a17c2b0e4c8ff356dbe46b1de155f11895d191194b39079dcdb233"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/pmo-tech-news.md",
+      "sha256": "d080c6f88e51d4d4c86d8edc6d1f387deb7e65d2b6cc57070343421b6de95148"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/qa-test.md",
+      "sha256": "f03e7296497fa5f7be0247923f0aee4408924bd0aca39c7c65fd02d75daa5f4f"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/refactor-scout.md",
+      "sha256": "f12c30d26c49aaf64688d803064ff38c8d721390e4730992e3044e04fda41098"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/agents/security-audit.md",
+      "sha256": "fdedf0641aaf0a6a8439ef72128fcbd0a036d51095156283f06b4a1a134c2d3d"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/commands/build.md",
+      "sha256": "2d93563ce5b57240d8e9ba6765cd37ff848393b8caa2f0c6f4eedc4d5bafd29d"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/commands/code-simplify.md",
+      "sha256": "57d310e4325cd4f53787d45a14c37951edf055843f17c592f186b4f322939f94"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/commands/sdd-plan.md",
+      "sha256": "5321d5050343caec497261edad55a38efc81b5ac6aaa39691f2470dc4fb24934"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/commands/sdd-review.md",
+      "sha256": "9e4b84abfa92ee6dec4708e508c4c2cb80491f4559619bb67370061852cd62c3"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/commands/ship.md",
+      "sha256": "b34e278ff5c9c8030a788dbb089f71b7ce455888cb1153ea10bd780308bba221"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/commands/spec.md",
+      "sha256": "3cf2dba23a5aa7a9f8f6afd350ad5d107373d6c289637e15356e99c1c50b198b"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/commands/test.md",
+      "sha256": "daa1aa84d78ac497edf267714239aaf24b68d895d5fed17bfc45b3b1438170d6"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/hooks/agent-guard.ts",
+      "sha256": "16f5b92bfc00095c17ae5fed84fb095bc428f3565bade37b8446a32a762ef544"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.claude/settings.json",
+      "sha256": "df8a6f6d51152446708f93558917c1d760a1d9f5639c31d5474a350d1e697ef1"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.codex/config.toml",
+      "sha256": "d37497c3278121598a663564ab38b53f658969717f78decb661ddd11c66551ea"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.codex/hooks.json",
+      "sha256": "d6b06f897239552bca70eb0bb8395013e2c1b0df487ed30d1255f657b35f6c97"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.cursor/Dockerfile",
+      "sha256": "8f43d586b85d1a6de62df65435bab492b6073063824b103f286d4cf5fcf2e8ba"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.cursor/environment.json",
+      "sha256": "384874f904e4984fba93d5d38295ab56f8866f2adb43a8d9085d6d924aebf23a"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/.cursor/install.sh",
+      "sha256": "fac1c25d76931adc5da33a79ad246bac0fd3ec2f7ddcf422c533a67da6c35601"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/AGENTS.md",
+      "sha256": "fafe73efa4b34864c3b5e6a60775a21007d9c6bf358e710edaa5d2bce50ea2bf"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/CLAUDE.md",
+      "sha256": "ac8e68d9ab30d1c686246b0fab67f32fb68362d9be44409d844ddccf33e2b7df"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/be-api.md",
+      "sha256": "ae35b8444f4b57cbd45b08b1ca0cf5a65c30ee040710121256c81dc91ebf6654"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/be-logic.md",
+      "sha256": "d7a5e934e4c0f45ce00aa89290bfa60cd54f3c693cfc0e734fe7c1de6f021fa2"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/code-reviewer.md",
+      "sha256": "8ba1420363535e865f46ca5ef7a7672380c9049eafbb50b3a623032fa8d051f1"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/db-schema.md",
+      "sha256": "cf8fbf2f017eea3abe219e41e60f4ded472fb293cca072f4047c9a5e97bbf0f0"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/devops-deploy.md",
+      "sha256": "84ccb29b3cf7081b0fa2ff4d99542a3211147a8a8f17ba1e035eadea4a9b38eb"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/helix-tl.md",
+      "sha256": "a43a63521be6ba8bb7406a43afe8a8ebe7155663f8f63c61e4004aa849b006de"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/pdm-innovation-manager.md",
+      "sha256": "bbf690e2798b719b66462ab0a61d1b54a5d418701e84410a0612229e7fbc980e"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/pdm-marketing-innovation.md",
+      "sha256": "d91273df0de8fa1c9e6f7c3eb16f370719a5081a305eade7f85cd796e91e4e74"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/pdm-tech-innovation.md",
+      "sha256": "abab67ceed34b56f57bed90c564ea7c9b42ccfa0aa7b607ccfba4be49e17d274"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/pmo-haiku.md",
+      "sha256": "74dadab53becd07ef21b8604a46e4afc4cd162f80ad7f5ffd814d9376e792790"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/pmo-project-explorer.md",
+      "sha256": "abf21979b4a1fc43d6b4616fba939de343bf9043e2f210c7e9b924ce69c3e662"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/pmo-project-scout.md",
+      "sha256": "f48a18fdb20dace6fd66ec35055b1bc2dff7fce20f7251b557b816810d32c4ec"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/pmo-sonnet.md",
+      "sha256": "8cdb6f6a549d92c02f1dea9b0a70d13b7b37364414a750f876275ddd860ef98f"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/pmo-tech-docs.md",
+      "sha256": "d3ac46f871ade8f824859d0d4c5e0edb9e2f4bb21089165e4b9b8b9d72724595"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/pmo-tech-fork.md",
+      "sha256": "01e983a9c11577ab696022b5d9cead0aef3a3b16467a640047b68b6a60a658d1"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/pmo-tech-news.md",
+      "sha256": "668f478c96155ad285d4cfc4fa97c818f685ce2fa28c4a65e07ec2460ec379d2"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/qa-test.md",
+      "sha256": "fe3840bd296c4c6f13c796efea6cbf1d799e383a212ef63e34749d07a9e56c13"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/refactor-scout.md",
+      "sha256": "81e29173c2920d1a9361965b0c87e625b0f2dec2c0039308a2cae42582d5e8bb"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/agents/security-audit.md",
+      "sha256": "e5bf83f30b698f6c30b09e7865f6064969387df33f699e8fc4e00eae98f47283"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/commands/build.md",
+      "sha256": "4f1594d90cd4d7c89caa03fa950f06f2a03742ed3bcc5fd43650077c50308b0c"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/commands/code-simplify.md",
+      "sha256": "941ebe0478b464925d7179ea505a4f3638bddf81f38168fc4124bca4f36675bd"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/commands/helix-status.md",
+      "sha256": "1b2d02dbfac0dc0891821ae1120e5c4858ab5bbb2e23cdade2bfc3e8ca86ded8"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/commands/helix-test.md",
+      "sha256": "a52f5fe4a73eca7a12dfdccd7b2731afeef1c15017f7fcb154bbe8fa86020331"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/commands/sdd-plan.md",
+      "sha256": "88dfbc31715277c756ca460db916d71774e9b083b24c9dd03d39445f77fe347c"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/commands/sdd-review.md",
+      "sha256": "e104ee330bb5f42ff24063b7bb6f51480f4e359dd336773548ee1aa8fb5a7dfd"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/commands/ship.md",
+      "sha256": "4ea510b0bc31f5b2694181f5b078c5ae00a81eec0fb0d690369be6f594c00113"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/commands/spec.md",
+      "sha256": "90bbc4ef0aaaa7c45c07eb0935090a14b1528ee72a8d6cd148ac0421f09a5ce2"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/commands/test.md",
+      "sha256": "f184aee8b93485a7339f6561f7311c7506b4104e7c32fa273a56dfef75f6fc3f"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.claude/settings.json",
+      "sha256": "585b5163aa350e47547fa7778838204c1b261a4131597ccf8ac9c1578013ea0d"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.codex/config.toml",
+      "sha256": "d37497c3278121598a663564ab38b53f658969717f78decb661ddd11c66551ea"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/.codex/hooks.json",
+      "sha256": "ef0d8bce2177a7fff50878600d11b4944c28c43583ea21b30bde31fbf7e80ce8"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/AGENTS.md",
+      "sha256": "7bb741a0131f874bb3036f967c33067e080b081173183c474840f5ac9730e99b"
+    },
+    {
+      "note": "静的read-only参照のみ。旧archiveは実行しない。",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/adapter/CLAUDE.md",
+      "sha256": "6298a437f645b90cbc6721c08b218a1cfda07cb654946d03d342746e418246af"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md",
+      "sha256": "4a2e2f4799a7c0981330d608b5a4b3dc883150bcc9e22090be72bb2d8e5c230b"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ai-consumer-relation-inventory.md",
+      "sha256": "a0bd3266b2f272d1d50e3df2ad905f9ad9298798dcea89c88b6276dc094d7abe"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ai-read-entry-disposition.md",
+      "sha256": "f87964bbd07a967d97f976d580bb5256d93954a7f9f6cd4e02def30d4ae96b07"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md",
+      "sha256": "5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
+      "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-phase-product-classification-method-2026-09-20.md",
+      "sha256": "151b7bab746a855c7c5f16426e7a68aebc960a83e96150e9e2d8cd721caa466e"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl",
+      "sha256": "5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl",
+      "sha256": "f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl",
+      "sha256": "66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl",
+      "sha256": "1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl",
+      "sha256": "f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl",
+      "sha256": "361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl",
+      "sha256": "fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl",
+      "sha256": "dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl",
+      "sha256": "85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl",
+      "sha256": "50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave19.jsonl",
+      "sha256": "93024399f21cf03c439a81935f473b07e57e0827efb39ce05c0be64a7432a258"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl",
+      "sha256": "762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave20.jsonl",
+      "sha256": "e7983f9a07bd4ca939450e034b24499daaeff889317e7789779d82a90adafe49"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave21.jsonl",
+      "sha256": "8b726497d90cd4c430cafb5646765099af5898c1fd4200b693412b95ac1e0264"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave22.jsonl",
+      "sha256": "f86ec2357fc2a79f18310a09bf8eee7cbabf5e620d86d671aec6f76987826dcc"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonl",
+      "sha256": "b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave24.jsonl",
+      "sha256": "bda37af1258af965f5137d063ba134b3185eaec7f1d88ba03d64a0e94efcb455"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave25.jsonl",
+      "sha256": "d30e7658f2d82448f56b85a516c416b1b1ddf4f14c82a592b71842d2e5f37bb3"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave26.jsonl",
+      "sha256": "e196c2d6abae0db6f00faa0502356a7bdff6de234bfe5a504dfdd5e6bebb699b"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonl",
+      "sha256": "9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl",
+      "sha256": "1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl",
+      "sha256": "d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl",
+      "sha256": "ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave30.jsonl",
+      "sha256": "a7e3e9d86d91fbd783cc5581611dc7e7f9a7f199a03e9d312f01f24fd8c4613f"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave31.jsonl",
+      "sha256": "51d54950943f7bc251a1bc22a103a2d3b81dc9190cdd778cce0178d857039383"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave32.jsonl",
+      "sha256": "e9e51ed364e9f76cb02f7b66f364f87486ac95aaa43fd010645c789fcecd09fe"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonl",
+      "sha256": "701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave34.jsonl",
+      "sha256": "4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave35.jsonl",
+      "sha256": "02713e03967810fb7ba6faf6b7c9dd561c45fbd36c23972317d8603c1fde2b12"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
+      "sha256": "fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl",
+      "sha256": "299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl",
+      "sha256": "888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl",
+      "sha256": "eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl",
+      "sha256": "610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl",
+      "sha256": "82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl",
+      "sha256": "da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756"
+    },
+    {
+      "path": "scaffold/legacy-ai-instruction-product-classification-0145/independent-source-audit.json",
+      "sha256": "5c348dcec304981a6759f45fcf07ab9e4440af77cc29b45ffed31fe9bf38b599"
+    },
+    {
+      "path": "scaffold/legacy-ai-instruction-product-classification-0145/semantic-profile.json",
+      "sha256": "8ebc36cc50029bcdc17e2828798ff1b29a20f90d55c1ca77fdbdfdf050aa2f2f"
+    },
+    {
+      "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2078-classification-research.jsonl",
+      "sha256": "d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138"
+    },
+    {
+      "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2078-inventory.json",
+      "sha256": "fdfcc7b3f7b7b9c704bf2a63cc5fb7a91b8567e42d708554a49f7f82ba90c860"
+    },
+    {
+      "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-classification-research.jsonl",
+      "sha256": "88448924b72165336db9699c4b026172782949725d97c38601a403046b497b36"
+    },
+    {
+      "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json",
+      "sha256": "e30823f82fc0202f2f9ad0b9eb90a95b42c963758cd3df8596e10789f59a6b72"
+    },
+    {
+      "path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
+      "sha256": "ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76"
+    },
+    {
+      "path": "scaffold/legacy-asset-product-classification-0107/inventory.json",
+      "sha256": "0bbcd6433312154f131d9d4ff71e47886ae352aba87f96f62cb97715117f6393"
+    },
+    {
+      "path": "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
+      "sha256": "db407121029c9074e0679adf82e309caca9d7a33fabf7c6db23941c0b80e4251"
+    },
+    {
+      "path": "scaffold/legacy-lint-candidate-product-classification-0128/inventory.json",
+      "sha256": "be2d6f05f4748183c88eef767814fcb275d025d2cf7d1257a7ca7ea086cbb485"
+    },
+    {
+      "path": "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl",
+      "sha256": "3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829"
+    },
+    {
+      "path": "scaffold/legacy-lint-product-classification-0108/inventory.json",
+      "sha256": "66f46326fa5344921365252bbec17058b3dddb97733674373758215d1e76a267"
+    },
+    {
+      "path": "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl",
+      "sha256": "ed5a673d065daf3c7254ea8812a4c3989b04dbb65855999c43e42139dc1b2104"
+    },
+    {
+      "path": "scaffold/legacy-runtime-product-classification-0117/inventory.json",
+      "sha256": "6451b00b8ba68fdfa7960a3593c73d168f1d9be64d64d7275b0c5e12fe22f496"
+    },
+    {
+      "path": "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
+      "sha256": "c4b769a2f2a2ce6852390a6d400ce819546f0d55ba0e48587e050d8e0955b9ee"
+    },
+    {
+      "path": "scaffold/legacy-runtime-residual-product-classification-0133/inventory.json",
+      "sha256": "f08c7cddc980144ae8bd9551ecb857b05509b00c0314f1b2b188ff60f419f644"
+    },
+    {
+      "path": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
+      "sha256": "c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204"
+    },
+    {
+      "path": "scaffold/legacy-schema-product-classification-0120/inventory.json",
+      "sha256": "aede25f1bf82e42d999fc5f64db1d25854bc7495e414134ffb3104b2af2eb091"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl",
+      "sha256": "25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
+      "sha256": "df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.jsonl",
+      "sha256": "c94785daaef0f3a2546e3d7a906e606d499a81e180d65dcc2c5d7ffd04996c8d"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
+      "sha256": "c98bf42916ef053050799e289bec8b28b7af3a0d62d2dc9e6adb30fdb606b3a8"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.jsonl",
+      "sha256": "03222010e1e8f67e4846ce006adb604fc3742b88d2e39e6eab01123f288563c5"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.jsonl",
+      "sha256": "95ff19ec877bb847510ee5f99565816e42bb59ffb60627145de03c2d24e56072"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.jsonl",
+      "sha256": "293962d91807a1c7f4e553e57db1fa854f1a904f34c4a53eee86d6dbb1ae9982"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
+      "sha256": "2fd638f0dc975fc03790f03d34b579ba5513a1b8420d8c3b09c2c53b108a38f6"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave45/legacy-requirement-direct-semantic-review-wave45.jsonl",
+      "sha256": "aa5328123645c1b8dc90dc2f04ff3ac007dfbdeda599bd66ccb6ad14441cebc6"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave46/legacy-requirement-direct-semantic-review-wave46.jsonl",
+      "sha256": "ff965e2316e4af3fe3f1be85674e879ad9cb57d209f67abec32575af95ac975c"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl",
+      "sha256": "853ec5f2b3784a5711d28c9a4246aff7f0b57bd438d5c84d02bb587d52554f2f"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave48/legacy-requirement-direct-semantic-review-wave48.jsonl",
+      "sha256": "5f318d3ba422359305392c305efc851630ca435374974494ccd7cf79e7d42fb0"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
+      "sha256": "e1d924c576ac36a51750758ac429b3457f658a8b0f62e802fa2ce7372740c356"
+    },
+    {
+      "path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
+      "sha256": "8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5"
+    },
+    {
+      "path": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
+      "sha256": "06f4f5c6f331afe7662847461a1165b5b3e6361c23d6c9106fce62952e60fe1f"
+    },
+    {
+      "path": "scaffold/legacy-source-product-classification-0123/inventory.json",
+      "sha256": "e5ed5144572a60919d4b929395bca50077825cb0f3c66a200ae8dd66871122c4"
+    },
+    {
+      "path": "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl",
+      "sha256": "bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad"
+    },
+    {
+      "path": "scaffold/legacy-state-db-product-classification-0127/inventory.json",
+      "sha256": "8c3b31bb74e5b947224c61b5ad4cb1a2578fbebaf65a06c0374105f8123d3c5d"
+    }
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "negative_cases": [
+      "target_omission",
+      "target_duplicate",
+      "target_extra",
+      "overlap_injection",
+      "source_identity_tamper",
+      "source_blob_tamper",
+      "source_anchor_tamper",
+      "source_coverage_tamper",
+      "manual_category_tamper",
+      "manual_product_tamper",
+      "manual_product_basis_tamper",
+      "manual_counterevidence_tamper",
+      "phase_candidate_tamper",
+      "implementation_status_tamper",
+      "history_failure_tamper",
+      "consumer_closure_tamper",
+      "wave44_edge_tamper",
+      "authority_promotion",
+      "new_build_promotion",
+      "inventory_target_tamper",
+      "inventory_category_count",
+      "inventory_overlap_tamper",
+      "inventory_input_tamper",
+      "profile_pin_tamper",
+      "snapshot_2078_tamper",
+      "snapshot_2090_tamper",
+      "binding_omission",
+      "binding_extra",
+      "binding_stale",
+      "malformed_json",
+      "duplicate_json_key",
+      "archive_symlink_mode",
+      "archive_nonregular_type",
+      "archive_path_mismatch",
+      "manifest_mismatch"
+    ],
+    "oracles": [
+      "fixed BASE disposition yields 75 in-scope rows, exact 3 prior duplicates are excluded, and the resulting target set is 72",
+      "independent source audit rechecks all 72 original Git objects, archive manifest entries, and line-span strings without importing generator or validator",
+      "main/#2078/#2090 and new target ID/path-SHA overlaps are recomputed as zero",
+      "validator checks every bound digest, exact record/inventory/Binding contract and research-only authority boundary",
+      "semantic interpretation remains a human candidate judgment and is not a validation oracle"
+    ],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ]
+  }
+}
