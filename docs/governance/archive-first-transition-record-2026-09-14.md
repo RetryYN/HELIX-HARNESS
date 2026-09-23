@@ -65,7 +65,7 @@ merge条件として使用しない。Dependabot Updatesも同じく外部projec
 
 ## 未成立事項
 
-- archive資産4020件のsemantic atom採否、対象別L2への意味移管、replacement完成。
+- RDPが扱う生存中source holdingのsemantic atom化・採否・対象別移管、および要求再構成で選定した旧資産の個別採否・必要な置換。資産明細台帳の全4020行はカタログ完全性を示し、全資産の意味移管完了を要求しない。
 - Concept v4.1、対象別L1、L2／L11の人間承認。
 - L3以降、新世代AI manifest／生成器、新世代CI、runtimeの設計・実装。
 - CodeQLの新世代再構成、Dependabot、GitHub App、その他外部security projectionの設計変更。

@@ -15,6 +15,11 @@ byte copyで現行化しない。archive manifestの全4020件を母集団とし
 manifest entryは必ず資産明細台帳の個別行を持ち、初期dispositionを`unresolved`とする。台帳未記載は母集団からの除外では
 なく、閉包違反として処理を停止する。
 
+この全件対応はarchiveカタログの完全性であり、要求の意味判定やRDPの入力母集団ではない。要求の再構成では、対象となる
+旧source・crosswalk・参照先を`asset_id`または`source_path`で必要に応じて照会し、関連する資産を見落とさずに静的確認する。
+関連資産の未確認・未分類は`unresolved`として扱う。要求判断の前提として、全4,020件を意味・製品・consumer・実装の観点で
+事前分類する必要はない。個別資産の再利用を検討するときは、選択した資産について本書と判断ログ契約に従い採否を決める。
+
 全entryは[資産明細台帳](legacy-asset-disposition.jsonl)にも1件1行で展開する。`asset_id`はsource pathのSHA-256先頭20桁から
 決定的に生成し、path変更と採否変更を同じ操作にしない。初期値は`revision=1`、`asset_class=Historical`、
 `product_target=unresolved`、`disposition=unresolved`である。明細台帳は機械照会用であり、AIの全文startup readにしない。
@@ -74,16 +79,24 @@ manifestのentryではなく、Git履歴上もarchiveから作成されたこと
 登録しない。これは「隔離対象外の現行fileとarchive内の写しが同内容」という観測だけであり、license変更や将来契約の
 承認を生成しない。
 
-## 要求欠落を防ぐ閉包
+## 資産カタログの完全性
 
-要求を保持しているかの判定は、現行L2件数ではなく次の閉包で行う。
+archive manifest全4,020件が資産明細台帳の個別行とdispositionへ対応することを、資産カタログの完全性として維持する。
+未判定行を含むこの対応関係は、個別資産の意味・製品・consumer・実装分析が全件完了したことを意味しない。また、要求移管の
+完了条件やRDPの要求分母ではない。
 
-1. manifest全4020件が資産台帳のdispositionへ対応する。
-2. Concept、要求、候補、IR、設計、test、runtimeに含まれるbehavior atomが、対象別L2／L11、明示的不採用判断、
-   または`unresolved`へ一度だけ接続される。
-3. `semantic_rederive`は親要求、pair、replacement、consumer切替を持つ。
-4. `verbatim_reuse`は本書の必須記録とcopy後read-afterを持つ。
-5. `retire`／`reject`は失われる利用者価値とconsumerがない根拠を持つ。
+## 要求sourceの閉包と個別資産判断
 
-現在は主要要求源の分類と対象別L2への接続が進んでいるが、全4020件のatom閉包は未完である。したがって、要求原文は
-失われていないが、要求移管完了はまだ主張しない。
+要求を保持しているかは、現行L2件数ではなく、[要否・再配置review program](requirement-disposition-review-program.md)が定める
+生存中のsource holdingと、そこから展開する要求atomの閉包で判定する。archive内資産の全件semantic atom化を先行条件にしない。
+要求の再構成で参照すべき旧source・crosswalk・consumer関係が判明した場合は、上記のとおり台帳から該当資産を照会して読む。
+該当sourceの未確認・未分類は`unresolved`として保持し、既知の関連sourceを参照しないまま要求意味を確定しない。
+
+この要求source閉包とは別に、個別資産を再利用する判断では次を満たす。
+
+1. `semantic_rederive`は親要求、pair、replacement、consumer切替を持つ。
+2. `verbatim_reuse`は本書の必須記録とcopy後read-afterを持つ。
+3. `retire`／`reject`は失われる利用者価値とconsumerがない根拠を持つ。
+
+現在は主要要求源の分類と対象別L2への接続が進んでいるが、RDPの生存中source holding全体のatom閉包は未完である。
+したがって、要求原文は失われていないが、要求移管完了はまだ主張しない。
