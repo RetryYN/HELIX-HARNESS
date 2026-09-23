@@ -245,6 +245,20 @@ class Validator:
     def error(self, code: str, detail: str = "") -> None:
         self.errors.append(code + ((":" + detail) if detail else ""))
 
+    @staticmethod
+    def same_typed(actual: Any, expected: Any) -> bool:
+        if type(actual) is not type(expected):
+            return False
+        if isinstance(expected, dict):
+            return actual.keys() == expected.keys() and all(
+                Validator.same_typed(actual[key], value) for key, value in expected.items()
+            )
+        if isinstance(expected, list):
+            return len(actual) == len(expected) and all(
+                Validator.same_typed(got, want) for got, want in zip(actual, expected)
+            )
+        return actual == expected
+
     def load(self) -> tuple[dict[str, Any], list[dict[str, Any]]] | None:
         try:
             inventory = json.loads((self.bundle / "inventory.json").read_text(encoding="utf-8"))
@@ -265,7 +279,7 @@ class Validator:
             self.error("E_SOURCE_INPUT_DIGEST", repr(exc)); return self.finish()
         if inventory.get("schema") != SCHEMA: self.error("E_SCHEMA", "inventory schema")
         if inventory.get("binding_id") != BINDING_ID: self.error("E_BINDING", "inventory binding")
-        if inventory.get("base") != expected_inv["base"]: self.error("E_BASE_COMMIT", "base declaration")
+        if not self.same_typed(inventory.get("base"), expected_inv["base"]): self.error("E_BASE_COMMIT", "base declaration")
         ancestor = inventory.get("base", {}).get("required_ancestor")
         if not isinstance(ancestor, str) or subprocess.run(["git", "merge-base", "--is-ancestor", ancestor, "HEAD"], cwd=self.root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode != 0: self.error("E_BASE_NOT_ANCESTOR", str(ancestor))
         tax_decl = inventory.get("taxonomy_snapshot", {})
@@ -275,8 +289,8 @@ class Validator:
         else:
             if subprocess.run(["git", "rev-parse", f"{TAXONOMY_COMMIT}:{TAXONOMY_PATH}"], cwd=self.root, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True).stdout.strip() != TAXONOMY_BLOB_OID: self.error("E_TAXONOMY_BLOB", "taxonomy source blob")
             if subprocess.run(["git", "rev-parse", f"{TAXONOMY_COMMIT}:{TAXONOMY_INVENTORY_PATH}"], cwd=self.root, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True).stdout.strip() != TAXONOMY_INVENTORY_BLOB_OID: self.error("E_TAXONOMY_BLOB", "taxonomy inventory blob")
-        if inventory.get("taxonomy_snapshot") != expected_inv["taxonomy_snapshot"]: self.error("E_TAXONOMY_COVERAGE", "taxonomy snapshot")
-        if inventory.get("input_snapshot") != expected_inv["input_snapshot"]: self.error("E_SOURCE_INPUT_DIGEST", "input snapshot declaration")
+        if not self.same_typed(inventory.get("taxonomy_snapshot"), expected_inv["taxonomy_snapshot"]): self.error("E_TAXONOMY_COVERAGE", "taxonomy snapshot")
+        if not self.same_typed(inventory.get("input_snapshot"), expected_inv["input_snapshot"]): self.error("E_SOURCE_INPUT_DIGEST", "input snapshot declaration")
         for item in inventory.get("input_snapshot", []):
             path = item.get("path") if isinstance(item, dict) else None
             try:
@@ -290,10 +304,10 @@ class Validator:
         except OSError: self.error("E_TAXONOMY_COVERAGE", "snapshot artifact missing")
         if set(inventory) != set(expected_inv): self.error("E_SCHEMA", "inventory top-level keys")
         for key in ("status", "authority_effect", "new_build", "base", "taxonomy_snapshot", "scope", "reason_classes", "phase_placement_decision_evidence", "post_placement_acceptance_closure_evidence", "input_snapshot", "oracle_dependencies", "analysis_path", "unit_ids", "negative_case_codes", "authority_boundary"):
-            if inventory.get(key) != expected_inv.get(key):
+            if not self.same_typed(inventory.get(key), expected_inv.get(key)):
                 code = "E_INVENTORY_DECLARATION" if key in {"scope", "reason_classes", "unit_ids", "analysis_path"} else "E_PLACEMENT_OR_CLOSURE_EVIDENCE" if key in {"phase_placement_decision_evidence", "post_placement_acceptance_closure_evidence"} else "E_AUTHORITY_BOUNDARY" if key in {"status", "authority_effect", "new_build", "oracle_dependencies", "authority_boundary"} else "E_TAXONOMY_COVERAGE" if key == "taxonomy_snapshot" else "E_SOURCE_INPUT_DIGEST" if key == "input_snapshot" else "E_SCHEMA"
                 self.error(code, key)
-        if inventory.get("negative_case_codes") != NEGATIVE_CASE_CODES: self.error("E_SCHEMA", "negative_case_codes")
+        if not self.same_typed(inventory.get("negative_case_codes"), NEGATIVE_CASE_CODES): self.error("E_SCHEMA", "negative_case_codes")
         if inventory.get("unit_ids") != TARGET_UNIT_IDS or len(actual) != 30 or [row.get("unit_candidate_id") for row in actual] != TARGET_UNIT_IDS or len({row.get("unit_candidate_id") for row in actual}) != 30: self.error("E_TARGET_SET", "unit set/order")
         expected_tax = {row["unit_candidate_id"]: row for row in rows}
         expected_edges_by_unit = edges_by_unit
@@ -318,18 +332,18 @@ class Validator:
         if actual.get("schema") != SCHEMA + "/unit": self.error("E_SCHEMA", unit)
         if actual.get("requirement_id") != source.get("requirement_id") or actual.get("crosswalk_id") != source.get("crosswalk_id") or actual.get("product_scope_candidate") != source.get("product_scope_candidate"): self.error("E_SOURCE_ANCHOR", unit + " binding")
         expected_anchor = expected_source_anchor(source, ir)
-        if actual.get("source_anchor") != expected_anchor: self.error("E_SOURCE_ANCHOR", unit)
+        if not self.same_typed(actual.get("source_anchor"), expected_anchor): self.error("E_SOURCE_ANCHOR", unit)
         tax = source["taxonomy"]
         expected_tax = {"status": tax["status"], "matrix_rule_id": tax["matrix_rule_id"], "candidate_statement": tax["candidate_statement"], "judgment_waiting": tax["judgment_waiting"], "authority_phase_status": tax["authority_phase_status"], "formal_phase_candidate": tax["formal_phase_candidate"], "direct_phase_candidate_count": tax["direct_phase_candidate_count"], "authority_boundary": source["authority_boundary"]}
-        if actual.get("taxonomy") != expected_tax:
+        if not self.same_typed(actual.get("taxonomy"), expected_tax):
             if actual.get("taxonomy", {}).get("status") != tax["status"]: self.error("E_TAXONOMY_STATUS", unit)
             if actual.get("taxonomy", {}).get("matrix_rule_id") != tax["matrix_rule_id"]: self.error("E_MATRIX_RULE", unit)
             if actual.get("taxonomy", {}).get("authority_boundary") != source["authority_boundary"]: self.error("E_TAXONOMY_COVERAGE", unit)
             self.error("E_TAXONOMY_COVERAGE", unit + " full taxonomy value")
-        if actual.get("candidate_phase_targets") != source["phase_context"]["observed_asset_candidate_phases"]: self.error("E_TAXONOMY_COVERAGE", unit + " candidates")
+        if not self.same_typed(actual.get("candidate_phase_targets"), source["phase_context"]["observed_asset_candidate_phases"]): self.error("E_TAXONOMY_COVERAGE", unit + " candidates")
         expected_ids = source["wave_review"]["edge_refs"]
         if set(actual.get("wave_edge_ids", [])) != set(expected_ids) or len(actual.get("wave_edge_ids", [])) != len(expected_ids): self.error("E_WAVE_EDGE_COVERAGE", unit)
-        if actual.get("wave_edges") != [edge_summary(edge) for edge in expected_edges]: self.error("E_WAVE_EDGE_COVERAGE", unit + " details")
+        if not self.same_typed(actual.get("wave_edges"), [edge_summary(edge) for edge in expected_edges]): self.error("E_WAVE_EDGE_COVERAGE", unit + " details")
         expected_assets = sorted({edge["asset_id"] for edge in expected_edges})
         if actual.get("legacy_asset_ids") != expected_assets: self.error("E_ASSET_EVIDENCE", unit)
         reason = REASON_BY_UNIT[unit]
@@ -345,8 +359,8 @@ class Validator:
         if not isinstance(actual.get("required_human_decision"), list) or len(actual["required_human_decision"]) < 1 or not all(isinstance(x, str) and x for x in actual["required_human_decision"]): self.error("E_ANALYSIS_EVIDENCE", unit + " human")
         if not isinstance(actual.get("required_consumer_evidence"), list) or len(actual["required_consumer_evidence"]) < 1 or not all(isinstance(x, str) and x for x in actual["required_consumer_evidence"]): self.error("E_CONSUMER_EVIDENCE", unit)
         if actual.get("product_review", {}).get("authority_product") is not None or actual.get("product_review", {}).get("status") != "candidate_scope_only": self.error("E_PRODUCT_AUTHORITY_SEPARATION", unit)
-        if actual.get("phase_result") != {"direct_phase_evidence_count": 0, "formal_phase_candidate": None, "phase_non_applicability": {"status": "not_proven", "excluded_phase_ids": [], "pending_phase_ids": PHCAP_IDS}}: self.error("E_PHASE_AUTHORITY_SEPARATION", unit)
-        if actual.get("authority_boundary") != {"formal_crosswalk_modified": False, "formal_phase_authority_modified": False, "formal_product_authority_modified": False, "implementation_claim_generated": False, "unimplemented_claim_generated": False, "degradation_claim_generated": False, "failure_receipt_generated": False, "consumer_closure_generated": False, "successor_assigned": False, "old_archive_executed": False}: self.error("E_AUTHORITY_BOUNDARY", unit)
+        if not self.same_typed(actual.get("phase_result"), {"direct_phase_evidence_count": 0, "formal_phase_candidate": None, "phase_non_applicability": {"status": "not_proven", "excluded_phase_ids": [], "pending_phase_ids": PHCAP_IDS}}): self.error("E_PHASE_AUTHORITY_SEPARATION", unit)
+        if not self.same_typed(actual.get("authority_boundary"), {"formal_crosswalk_modified": False, "formal_phase_authority_modified": False, "formal_product_authority_modified": False, "implementation_claim_generated": False, "unimplemented_claim_generated": False, "degradation_claim_generated": False, "failure_receipt_generated": False, "consumer_closure_generated": False, "successor_assigned": False, "old_archive_executed": False}): self.error("E_AUTHORITY_BOUNDARY", unit)
         if actual.get("static_only") is not True: self.error("E_AUTHORITY_BOUNDARY", unit + " static")
 
     def finish(self) -> int:

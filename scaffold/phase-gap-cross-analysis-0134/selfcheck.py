@@ -35,7 +35,7 @@ def run_case(name: str, expected: str, mutate) -> None:
         checker = validate.Validator(validate.ROOT, bundle)
         with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
             result = checker.validate()
-        if result == 0 or not any(error.startswith(expected + ":") for error in checker.errors):
+        if result == 0 or not checker.errors or not checker.errors[0].startswith(expected + ":"):
             raise AssertionError(f"{name}: expected {expected}, result={result}, errors={checker.errors}")
     print(f"PASS {name} -> {expected}")
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
         ("schema", "E_SCHEMA", lambda inv, rows: inv.__setitem__("unknown", True)),
         ("binding", "E_BINDING", lambda inv, rows: inv.__setitem__("binding_id", "SCF-B-9999")),
         ("base commit", "E_BASE_COMMIT", lambda inv, rows: inv["base"].__setitem__("commit", "0" * 40)),
-        ("base ancestor", "E_BASE_NOT_ANCESTOR", lambda inv, rows: inv["base"].__setitem__("required_ancestor", "not-a-commit")),
+        ("base ancestor", "E_BASE_COMMIT", lambda inv, rows: inv["base"].__setitem__("required_ancestor", "not-a-commit")),
         ("taxonomy non-ancestor", "E_TAXONOMY_NOT_ANCESTOR", lambda inv, rows: inv["taxonomy_snapshot"].__setitem__("commit", "not-a-commit")),
         ("taxonomy blob", "E_TAXONOMY_BLOB", lambda inv, rows: inv["taxonomy_snapshot"].__setitem__("blob_oid", "0" * 40)),
         ("input digest", "E_SOURCE_INPUT_DIGEST", lambda inv, rows: inv["input_snapshot"][0].__setitem__("sha256", "0" * 64)),
@@ -112,17 +112,19 @@ if __name__ == "__main__":
         ("inventory schema", "E_SCHEMA", lambda inv, rows: inventory_schema(inv)),
         ("inventory declaration", "E_INVENTORY_DECLARATION", lambda inv, rows: inv["scope"].__setitem__("wave_scan_row_count", 0)),
         ("reason class", "E_REASON_CLASS", lambda inv, rows: rows[0].__setitem__("reason_class", "CROSS_PHASE_UNRESOLVED")),
-        ("reason description", "E_ANALYSIS_EVIDENCE", lambda inv, rows: rows[0].__setitem__("reason_description", "tampered")),
+        ("reason description", "E_REASON_CLASS", lambda inv, rows: rows[0].__setitem__("reason_description", "tampered")),
         ("source evidence remainder", "E_ANALYSIS_EVIDENCE", lambda inv, rows: rows[0]["required_source_evidence"].__setitem__(1, "tampered")),
         ("human decision text", "E_ANALYSIS_EVIDENCE", lambda inv, rows: rows[0]["required_human_decision"].__setitem__(0, "tampered")),
         ("consumer evidence text", "E_ANALYSIS_EVIDENCE", lambda inv, rows: rows[0]["required_consumer_evidence"].__setitem__(0, "tampered")),
-        ("next action text", "E_ANALYSIS_EVIDENCE", lambda inv, rows: rows[0].__setitem__("next_action", "tampered")),
+        ("next action text", "E_REASON_CLASS", lambda inv, rows: rows[0].__setitem__("next_action", "tampered")),
         ("product candidate scope", "E_ANALYSIS_EVIDENCE", lambda inv, rows: rows[0]["product_review"]["candidate_products"].append("HELIX-Web")),
         ("source evidence", "E_ANALYSIS_EVIDENCE", lambda inv, rows: rows[0].__setitem__("required_source_evidence", ["tampered"])),
-        ("consumer evidence", "E_CONSUMER_EVIDENCE", lambda inv, rows: rows[0].__setitem__("required_consumer_evidence", [])),
+        ("consumer evidence", "E_ANALYSIS_EVIDENCE", lambda inv, rows: rows[0].__setitem__("required_consumer_evidence", [])),
         ("phase authority", "E_PHASE_AUTHORITY_SEPARATION", lambda inv, rows: rows[0]["phase_result"].__setitem__("direct_phase_evidence_count", 1)),
-        ("product authority", "E_PRODUCT_AUTHORITY_SEPARATION", lambda inv, rows: rows[0]["product_review"].__setitem__("authority_product", "HELIX-OS")),
+        ("product authority", "E_ANALYSIS_EVIDENCE", lambda inv, rows: rows[0]["product_review"].__setitem__("authority_product", "HELIX-OS")),
         ("authority boundary", "E_AUTHORITY_BOUNDARY", lambda inv, rows: rows[0]["authority_boundary"].__setitem__("formal_phase_authority_modified", True)),
+        ("inventory bool type", "E_AUTHORITY_BOUNDARY", lambda inv, rows: inv.__setitem__("new_build", 0)),
+        ("source line type", "E_SOURCE_ANCHOR", lambda inv, rows: rows[0]["source_anchor"].__setitem__("line_start", float(rows[0]["source_anchor"]["line_start"]))),
         ("phase placement evidence", "E_PLACEMENT_OR_CLOSURE_EVIDENCE", lambda inv, rows: inv["phase_placement_decision_evidence"].pop()),
         ("post-placement closure evidence", "E_PLACEMENT_OR_CLOSURE_EVIDENCE", lambda inv, rows: inv["post_placement_acceptance_closure_evidence"].pop()),
     ]
