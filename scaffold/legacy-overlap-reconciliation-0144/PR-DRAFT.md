@@ -1,8 +1,8 @@
-# #2078 overlap 36件を候補差分の人間判断packetへ
+# #2078 overlap 36件のresearch/method/state差分を照合
 
 ## 目的
 
-PR #2078のoverlap 53件から、同一source path/SHAなのにmain research unionとcandidate resultが異なる36件を切り出し、両候補の静的根拠を比較可能にします。勝者や正式routeを自動選択せず、36件の新規asset研究にも数えません。
+PR #2078のoverlap 53件から、同一source path/SHAなのに候補結果が異なる36件の静的根拠を比較します。36件はsemantic conflict decisionでも新規asset研究でもありません。旧main候補の通常採否は未承認のまま保持し、この比較で採択・却下しません。
 
 ## 根拠と差分
 
@@ -10,7 +10,7 @@ PR #2078のoverlap 53件から、同一source path/SHAなのにmain research uni
 - 36件すべてsource path/SHA、archive blob、regular mode/type、bytes SHA、MANIFEST digestが一致します。
 - main候補はdirect 24件とmulti-product conflict 12件、#2078候補はinsufficient 36件です。source-specific main spanとtarget fallbackの一意1行spanは36件すべて異なります。
 - #2078はoverlap行を最終classification JSONLから除外しています。target spanおよび四製品L1比較poolはtarget generatorのhelper/literalから固定archive bytesへ静的再構成し、出力済み証拠とは分離して示します。mainには36件すべて明示counterevidenceがあり、target overlap行にはtarget固有counterevidenceは記録されていません。
-- 36件はmain側にsource-specificなsemantic researchがあり、#2078側はgeneric insufficient-basis fallbackです。差分理由をscope/span/research-method-state/classification-ruleとして保持し、semantic interpretation conflictは両側が独立にsource-specific researchを行い解釈が両立しない場合に限ります。今回該当するsemantic conflictは0件です。全件の人間判断は引き続き未了です。
+- 36件は旧main側にsource-specificなsemantic researchがあり、#2078側はgeneric insufficient-basis fallbackです。差分理由をscope/span/research-method-state/classification-ruleとして保持し、semantic interpretation conflictは両側が独立にsource-specific researchを行い解釈が両立しない場合に限ります。今回該当するsemantic conflictは0件です。36件個別のconflict judgmentは求めず、旧main候補の通常採否は未承認のまま別の通常手続へ保持します。
 
 ## 境界
 

@@ -4,7 +4,7 @@
 
 main側は既存bundleの候補分類、source semantic span、解釈、四製品boundary/L1、明示counterevidence、phase/history/failure/consumer/implementation statusを保持します。#2078側はoverlap結果に保存された候補分類と、同HEADのgenerator内に残るgeneric fallback profileを分けて示します。36件は#2078の最終 `classification-research.jsonl` から除外されています。そのためtarget側の1行source spanと四製品L1比較poolは、pinned generator helper/literalと固定archive bytesから再構成し、targetから実際に出力された証拠とは記載しません。
 
-現在の固定結果は、main候補が `direct_product_basis` 24件（HELIX-HARNESS 12、HELIX-OS 12）と `multi_product_conflict` 12件（HARNESS/OS 11、HARNESS/Web 1）、#2078候補が `insufficient_basis` 36件です。36件はmain側にsource-specificな調査・spanがある一方、#2078側はgeneric fallbackであり、差分は `research_method_state_difference` として扱います。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合に限ります。今回その条件を満たす件数は0です。ほかに `scope_difference`、`evidence_span_difference`、`classification_rule_difference` の証拠付き候補を保持し、原source事実とauthority境界を維持します。
+現在の固定結果は、旧main候補が `direct_product_basis` 24件（HELIX-HARNESS 12、HELIX-OS 12）と `multi_product_conflict` 12件（HARNESS/OS 11、HARNESS/Web 1）、#2078候補が `insufficient_basis` 36件です。36件は旧main側にsource-specificな調査・spanがある一方、#2078側はgeneric fallbackであり、差分は `research_method_state_difference` として扱います。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合に限ります。今回その条件を満たす件数は0のため、この比較は36件個別のconflict judgmentを求めません。旧main候補の通常採否は未承認のまま、通常の採否手続へ保持します。ほかに `scope_difference`、`evidence_span_difference`、`classification_rule_difference` の証拠付き候補を保持し、原source事実とauthority境界を維持します。
 
 ## HEAD追随
 

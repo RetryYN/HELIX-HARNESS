@@ -652,14 +652,13 @@ def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to
         "target_2078_result": target_context,
         "difference_reason_candidates": differences,
         "resolution": {
-            "status": "unresolved_human_judgment_required",
+            "status": "comparison_state_reconciled; main_candidate_disposition_unapproved",
+            "comparison_treatment": "research_method_state_difference",
+            "semantic_conflict_decision_required": False,
+            "main_candidate_disposition": "unapproved; retain for the ordinary candidate disposition process; this comparison neither approves nor rejects it",
             "winner_selected": False,
             "formal_route_created": False,
-            "questions": [
-                "どのsource spanが当該候補の意味境界としてレビュー対象になるか。",
-                "既存main側のproduct/L1根拠と明示counterevidenceを、#2078のgeneric insufficient-basis profileとどう照合するか。",
-                "phase候補・implementation status・旧consumer closureを別々に判断するために不足している証拠は何か。",
-            ],
+            "questions": [],
         },
         **AUTHORITY,
     }
@@ -840,13 +839,13 @@ def build() -> None:
         "schema_revision": 1,
         "id": "SCF-B-0144",
         "kind": "scaffold",
-        "title": "#2078 overlap 36件の四製品candidate差分・人間判断packet",
+        "title": "#2078 overlap 36件のresearch/method/state comparison",
         "product": "HELIX-HARNESS",
         "owner_candidate": "四製品product-boundaryの候補結果差分照合（正式owner未解決）",
         "state": "registered",
         "reason": "main 7afee33aの旧429件source-specific候補と#2078固定HEAD c55ffc91の候補を照合し、同一source path/SHAの36件について候補値、source span、L1根拠、counterevidence、research/method/stateとscope差を記録する。現main unionは429+67=496件であり、比較対象429件と分けて示す。#2078側はgeneric fallbackのためsemantic interpretation conflictには数えない。勝者・formal route・新規asset研究を生成しない。",
         "upstream": binding_upstream(inputs),
-        "role": "legacy-asset-overlap-reconciliation-human-review-0144-static",
+        "role": "legacy-asset-overlap-reconciliation-research-state-0144-static",
         "obligations": [
             "#2078 overlap 53件のうちsame_source_different_candidate_result exact 36件のみを旧main source-specific候補union429と固定c55候補で照合する。現main union496は旧429+追加67件として別記し、36件を新規研究へ加算しない",
             "両結果のsource span、interpretation、candidate product/L1 roots、counterevidence availability、method/scopeをside-by-sideで保持し、target-emitted evidenceとstatic reconstructionを区別する",
@@ -857,7 +856,7 @@ def build() -> None:
         ],
         "connections": {
             "boundary": "research-only; authority_effect=none; no formal route, classification update, phase admission, successor, implementation promotion, closure, or new build",
-            "consumers": ["human judgment packet for #2078 overlap reconciliation"],
+            "consumers": ["comparison evidence; existing main candidate dispositions remain unapproved for their ordinary disposition process"],
             "dependencies": ["main candidate comparison union 429 at 7afee33a plus current union 496 after merging the exact 67 #2078 residual rows", "#2078 exact target HEAD object c55ffc91, verified byte-identical to merged main objects", "four-product L1 and product-boundary", "fixed archive source blobs/MANIFEST"],
         },
         "operations": {
@@ -908,22 +907,22 @@ def build() -> None:
 
 def render_packet(rows: list[dict]) -> None:
     lines = [
-        "# #2078 overlap差分の人間判断packet",
+        "# #2078 overlap差分のresearch-state comparison packet",
         "",
         f"main `{BASE_REVISION}` とimmutable #2078 HEAD `{TARGET_REVISION}` を固定。overlap 53件中36件の候補差分を比較し、新規asset研究数は0。",
         f"旧main `{PREVIOUS_BASE_REVISION}` から新mainへの固定入力20 path（四製品L1・旧main分類8 JSONLを含む）のblob/modeはすべて不変。mainへ追加された#2078の8 Scaffold filesはc55固定objectと一致。旧candidate union429に#2078の新規67件を足した現main unionは496。36件の比較候補は旧429対c55 fallbackとして保持。",
         "各assetの両候補、根拠span、L1/boundary、counterevidence、phase/history/consumerは `classification-reconciliation.jsonl` に完全収録。",
         "#2078は36件を最終classification JSONLから除外しており、target側のspan/L1は同HEADのgenerator helper・literalから固定archive bytesに対して静的に再構成した。出力済みtarget evidenceとは表示上も分離した。",
-        "36件は旧mainの429 candidate recordsにsource-specific research/spanがある一方、#2078側はgeneric insufficient-basis fallbackのため、research/method/state差として記録した。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合だけを指す。今回その件数は0。現main unionは旧429件と追加67件の計496件だが、比較対象は旧429件対固定c55候補のままである。勝者・正式route・phase・successor・実装成立・consumer closureは決めない。#2078またはmainが固定HEADから進んだ場合は再baselineする。",
+        "36件は旧mainの429 candidate recordsにsource-specific research/spanがある一方、#2078側はgeneric insufficient-basis fallbackのため、research/method/state差として記録した。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合だけを指す。今回その件数は0で、この比較から36件のconflict judgmentは求めない。旧main候補の通常採否は未承認のまま別途保持する。現main unionは429+67=496件だが、候補比較は旧429件対固定c55候補のままである。勝者・正式route・phase・successor・実装成立・consumer closureは決めない。#2078またはmainが固定HEADから進んだ場合は再baselineする。",
         "",
-        "| Asset ID | source path | JSONL row | main候補 | #2078候補 | 差分理由候補 | 状態 |",
+        "| Asset ID | source path | JSONL row | main候補 | #2078候補 | 差分理由候補 | 処置 |",
         "|---|---|---:|---|---|---|---|",
     ]
     for record_no, row in enumerate(rows, 1):
         main = row["main_existing_result"]["result"]
         target = row["target_2078_result"]["classification_result"]
         reasons = ", ".join(x["type"] for x in row["difference_reason_candidates"])
-        lines.append(f"| `{row['asset_id']}` | `{row['source_identity']['source_path']}` | {record_no} | `{main['category']}` {main.get('candidate_products', [])} | `{target['category']}` {target['candidate_products']} | {reasons} | 人間判断待ち |")
+        lines.append(f"| `{row['asset_id']}` | `{row['source_identity']['source_path']}` | {record_no} | `{main['category']}` {main.get('candidate_products', [])} | `{target['category']}` {target['candidate_products']} | {reasons} | 調査状態差。旧main候補の通常採否は未承認 |")
     lines += [
         "",
         "レビュー時はsource spanの差と、candidate/L1 evidenceの差を分けて確認する。target-side counterevidenceはoverlap行に保存されていないため、添付の4製品L1は照合用poolとして扱う。phase候補、implementation status、歴史的consumer/failureはcandidate owner判断から独立している。",
