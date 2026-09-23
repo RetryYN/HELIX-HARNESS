@@ -115,8 +115,8 @@
     },
     {
       "path": "scaffold/legacy-evidence-crosswalk-0146/focused-investigation.jsonl",
-      "sha256": "8a0688139a99b214721b878cc9c050d56311cca12ec95049aaa93f0c682748c1",
-      "note": "指定7要求IDの静的調査記録。"
+      "sha256": "36ca9a4913e6352ba1c32596f8d1493f6d38ca7173ea6cde503fad51f17eefdf",
+      "note": "指定7要求IDの静的調査記録。canonical JSONL bytes pinned by validate.py."
     }
   ],
   "role": "legacy-evidence-crosswalk-218-record-fixed-base-static-research-0146",
@@ -126,7 +126,7 @@
     "全7 status fieldの218件分母とunknown/pending/not_assessed境界を保持する。直接証拠判定は入力partition上の宣言済みreceipt項目に限る",
     "#2083/#2085のbundleを入力とoracleから除外し、#1813を進捗参照のみに保つ",
     "355 assetのdisposition/history/decision/failure/consumer/read-afterを意味ごと照合し、7 source-snapshot preservation receiptをunit implementationやconsumer closureへ昇格させない",
-    "SCF-B-0134と別用途を区別し、source-transfer-manifestの移管時snapshot digestをcommit 793cf4859のGit treeに対して検査する",
+    "SCF-B-0134と別用途を区別し、source-transfer-manifestの8個の移管時destination digestを固定SHA-256値と照合し、historical commit到達可能性に依存しない",
     "archive source/runtime/test/hook/adapter/CIを実行せず、generator/validator/selfcheck/scfctlで固定BASE静的検査を行う",
     "指定7 requirement IDのacceptance／system-test設計、source・test definition静的存在、unit別のmissing atom evidenceをarchive manifest blob digest付きで記録し、historical receipt候補をunit binding不在なら昇格させない"
   ],
@@ -191,14 +191,14 @@
       "nine partition row counts 29/27/37/7/23/19/31/29/16",
       "217 product units plus 1 connection; 598 unique edge and 355 unique asset sets",
       "all seven 218-row status partitions",
-      "移管時source-transfer-manifestのsource identity fieldsを記録し、destination digestだけはcommit 793cf4859のhistorical treeに対して照合する",
+      "移管時source-transfer-manifestのdestination SHA-256 8件をvalidator内固定値と照合する。793cf4859は履歴参照だけで、validator依存なし",
       "asset disposition 355 entries, decision history and copy/read-after record mapping",
       "explicit #2083/#2085 exclusion boundary",
-      "focused 7 records全15 fieldsを固定BASEのrequirements/L1/L9、9 partition、archive MANIFEST、disposition/decision/read-afterから型付き再導出し、参照blob digestをsnapshotと照合する"
+      "focused 7 records全15 fieldsを固定BASEのrequirements/L1/L9、9 partition、archive MANIFEST、disposition/decision/read-afterから型付き再導出し、参照blob digestをsnapshotと照合する",
+      "E_BASE_NOT_ANCESTORは実HEADと固定BASEの祖先関係に依存する状態エラーであり、selfcheckのfixture負例対象外"
     ],
     "negative_cases": [
       "E_BUNDLE",
-      "E_BASE_NOT_ANCESTOR",
       "E_BASE_COMMIT",
       "E_INPUT_DIGEST",
       "E_RECORD_SET",

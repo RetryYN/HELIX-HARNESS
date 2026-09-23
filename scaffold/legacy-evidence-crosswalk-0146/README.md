@@ -40,7 +40,7 @@ archive内の3件の`vitest-targeted.json`を確認したが、対象source base
 - `common.py`: 固定BASE読込、record集合、edge／asset集合、status境界の共通処理。
 - `build.py`: 固定BASEからbundleを再生成するgenerator。
 - `validate.py`: `common.py`の固定BASE再導出関数を共有し、分母、集合、digest、schema、authority境界をfail-close検査するvalidator。builderと共通なのは218-row導出処理だけである。focused 7行はBASEのrequirements／L1／L9 blob、9 partition、manifest、asset disposition／decision／read-afterから別経路で全15 fieldを再構成して型付き比較し、選択したarchive artifactのsnapshot bytesもmanifest digestと照合する。
-- `selfcheck.py`: 33件の改竄負例を最初に返すerror code付きで検査する。
+- `selfcheck.py`: 40件の改竄負例で最初のerror codeを検査し、宣言された負例codeのfirst-error経路も確認する。`E_BASE_NOT_ANCESTOR`だけは実Git履歴に依存する状態検査のためfixture負例から除外する。
 - `PR-DRAFT.md`: Draft PR本文。
 - `../bindings/SCF-B-0146.json`: bundle全成果物と入力責務を登録するBinding。
 
@@ -68,7 +68,7 @@ git diff --check
 
 この束は `/home/tenni/.helix-worktrees/legacy-evidence-crosswalk-0134` の未追跡8ファイルから移管した。元のSHA-256、source/destination branch、固定BASE、許可したidentity-only置換を `source-transfer-manifest.json` に記録する。`SCF-B-0134` は移管先BASEで別用途に割当済みのため、この束だけを `SCF-B-0146` へ変更した。bundle名も新しいBinding IDと一致させた。218 record／598 edge／355 assetの意味・値と除外境界はID変更の対象ではない。
 
-`source-transfer-manifest.json` の `destination_base` は移管時点の `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204` を保持する。manifestの `destination_sha256` は移管時snapshot commit `793cf4859` の値であり、後続編集・rebase後のHEADを表さない。validatorはそのcommit内の8 destination blobとmanifest digestを照合する。固定BASEと移管元snapshotは後続のbranch変更で書き換えない。
+`source-transfer-manifest.json` の `destination_base` は移管時点の `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204` を保持する。manifestの `destination_sha256` は移管時snapshot commit `793cf4859` で記録した8 blobの歴史値であり、後続編集・rebase後のHEADを表さない。validatorはそのcommitを読み込まず、8個の固定SHA-256値とmanifestのdestination path／digestを照合する。`793cf4859` は移管履歴の記録で、検証時に到達可能である必要はない。
 
 #2083／#2085の20-unit bundleは入力partition、crosswalk、validator oracleのいずれにも含めない。#1813は進捗参照だけであり、要求承認やunit evidenceを生成しない。旧asset dispositionでは対象355 asset中348件がunresolved／historical／implementation unknown、残る7件だけが `source_snapshot_preservation` としてsource snapshotのread-only保存を示す。対応するdecision 14行（7件のrev2記録と7件のrev3 human-confirmation待ち訂正）とcopy/read-after 7行は、その物理保存のdigest／consumer対応を裏付ける。それらはunit implementation証明やconsumer closureではない。入力partitionには実装・縮退・failure・non-implementationをunitへ直接結合する明示receiptがなく、全218件でold implementation／old degradation／old failure／current implementation／acceptanceは `unknown`、consumerは `pending`、unimplementedは `not_assessed` を保つ。
 

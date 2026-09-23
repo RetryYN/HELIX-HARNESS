@@ -310,7 +310,7 @@ def main():
         encoding="utf-8",
     )
     (BUNDLE / "focused-investigation.jsonl").write_text(
-        "".join(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n" for record in focused_projection(records)),
+        "".join(json.dumps(record, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for record in focused_projection(records)),
         encoding="utf-8",
     )
     (BUNDLE / "inventory.json").write_text(

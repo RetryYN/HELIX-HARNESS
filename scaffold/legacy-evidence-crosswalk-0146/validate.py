@@ -40,7 +40,17 @@ FOCUSED_REQUIREMENT_IDS = (
 )
 FOCUSED_ARCHIVE = "archive/legacy-generation-2026-09-14"
 EVIDENCE_BYTES_SHA256 = "6d6d7b06126ea1e1ac21d1de52017c930a032699b13a1053ca8963dc73db19f2"
-TRANSFER_COMMIT = "793cf4859acbcec746dcefa21b2bae9df96bf4a8"
+FOCUSED_BYTES_SHA256 = "36ca9a4913e6352ba1c32596f8d1493f6d38ca7173ea6cde503fad51f17eefdf"
+TRANSFER_DESTINATION_SHA256 = {
+    "PR-DRAFT.md": "73dafe93f5c4bafec342f2243d4d42a731ca349fbcd2f36d63d352e01aff2299",
+    "README.md": "c86857d8752be83024a5eb4528d1862be8ad34c096ee6da179aaa0872a76d556",
+    "build.py": "27be723e326c54a175bdac7ad175ae86b9e93f05ca13de033f6d4d793485338a",
+    "common.py": "9d2c22a56e1ea8e941405b2eb8cb6275375a706a015415d74d7762b51699455c",
+    "evidence.jsonl": "6d6d7b06126ea1e1ac21d1de52017c930a032699b13a1053ca8963dc73db19f2",
+    "inventory.json": "138bd736779bc7c261b89c02313f748fd9b8bf84a3b4812f13ce1b44a79cdf0b",
+    "selfcheck.py": "63bb1eed52c3fda110789bba1e7567da51bc7645857490b77b497716259300c7",
+    "validate.py": "a794e4f2212679ba14ac7246b6ec2da214ac7981e7b60fa78735ddd0dbc9f0b3",
+}
 
 
 def same_typed(left, right):
@@ -64,26 +74,28 @@ def git_show(commit: str, path: str) -> bytes:
 
 
 def transfer_manifest_errors(bundle: Path = BUNDLE):
-    """移管時点のmanifest claimを、その時点のGit treeに対して検査する。"""
+    """移管記録のdestination digestを、到達可能性に依存せず固定値と照合する。"""
     try:
         manifest = read_json(bundle / "source-transfer-manifest.json")
-        historical = json.loads(git_show(TRANSFER_COMMIT, f"{BUNDLE_REL}/source-transfer-manifest.json"))
-        manifest_core = {key: value for key, value in manifest.items() if key != "notes"}
-        historical_core = {key: value for key, value in historical.items() if key != "notes"}
         expected_notes = [
             "README.md receives an additional Japanese transfer/provenance section after the exact identity-only replacement.",
-            "destination_sha256 values describe the transfer-time tree at commit 793cf4859; later branch edits are not covered by those historical digests. evidence.jsonl and inventory.json were regenerated deterministically from pinned Git objects at source_base.",
+            "destination_sha256 values record the transfer-time bytes observed at commit 793cf4859; validator checks these values against pinned SHA-256 constants and does not read or depend on that commit. Later branch edits and rebases are not covered by these historical digests. evidence.jsonl and inventory.json were regenerated deterministically from pinned Git objects at source_base.",
             "SCF-B-0134 is already allocated on destination_base to a separate binding; SCF-B-0146 was verified unallocated there.",
         ]
-        if not same_typed(manifest_core, historical_core) or not same_typed(manifest.get("notes"), expected_notes):
-            return ["E_TRANSFER_MANIFEST: manifestが移管時snapshotから変更されている"]
-        for entry in manifest["source_files"].values():
-            path = entry["destination"]
-            actual = hashlib.sha256(git_show(TRANSFER_COMMIT, path)).hexdigest()
-            if actual != entry["destination_sha256"]:
-                return [f"E_TRANSFER_MANIFEST: {path}の移管時snapshot digestが不一致"]
+        if (not isinstance(manifest, dict)
+                or not same_typed(manifest.get("notes"), expected_notes)
+                or not isinstance(manifest.get("source_files"), dict)
+                or set(manifest["source_files"]) != set(TRANSFER_DESTINATION_SHA256)):
+            return ["E_TRANSFER_MANIFEST: 移管manifestのnotes/source_filesが固定記録と一致しない"]
+        for name, digest in TRANSFER_DESTINATION_SHA256.items():
+            entry = manifest["source_files"].get(name)
+            expected_path = f"{BUNDLE_REL}/{name}"
+            if (not isinstance(entry, dict)
+                    or not same_typed(entry.get("destination"), expected_path)
+                    or not same_typed(entry.get("destination_sha256"), digest)):
+                return [f"E_TRANSFER_MANIFEST: {name}の移管時destination digest/pathが固定値と不一致"]
     except Exception as exc:
-        return [f"E_TRANSFER_MANIFEST: 移管時snapshotを検査できない: {exc}"]
+        return [f"E_TRANSFER_MANIFEST: 移管manifestを検査できない: {exc}"]
     return []
 
 
@@ -105,18 +117,31 @@ def read_records(path: Path):
     return rows
 
 
-def focused_investigation_errors(bundle: Path, expected_records):
+def focused_investigation_errors(bundle: Path, expected_records, expected_bytes_sha256=None):
     """固定7 ID／10 unit閉包とBinding digest/status境界を検査する。"""
     try:
         focus_path = bundle / "focused-investigation.jsonl"
         focus_bytes = focus_path.read_bytes()
-        rows = [json.loads(x) for x in focus_bytes.decode("utf-8").splitlines() if x.strip()]
+        pinned_digest = expected_bytes_sha256 or FOCUSED_BYTES_SHA256
+        if hashlib.sha256(focus_bytes).hexdigest() != pinned_digest:
+            return ["E_OUTPUT_DIGEST: focused-investigation.jsonlのbyte digestが固定値と不一致"]
+        rows = []
+        for line_no, raw_line in enumerate(focus_bytes.splitlines(keepends=True), 1):
+            if not raw_line.strip():
+                continue
+            row = json.loads(raw_line.decode("utf-8"))
+            canonical = (json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n").encode("utf-8")
+            if raw_line != canonical:
+                return [f"E_OUTPUT_DIGEST: focused-investigation.jsonl line {line_no}がcanonical JSONLではない"]
+            rows.append(row)
         manifest = git_show(BASE_COMMIT, f"{FOCUSED_ARCHIVE}/MANIFEST.sha256")
         binding = read_json(ROOT / "scaffold/bindings/SCF-B-0146.json")
         pins = {x["path"]: x["sha256"] for x in binding["upstream"]}
     except Exception as exc:
         return [f"E_RECORD_SET: focused evidenceまたはarchive pinを読めない: {exc}"]
     ids = [x.get("requirement_id") if isinstance(x, dict) else None for x in rows]
+    if any(not isinstance(value, str) for value in ids):
+        return ["E_RECORD_SET: focused requirement_idは文字列でなければならない"]
     if len(ids) != 7 or set(ids) != set(FOCUSED_REQUIREMENT_IDS) or len(set(ids)) != 7:
         return ["E_RECORD_SET: focused evidenceの固定7 IDに欠落・重複・余分がある"]
     expected = {rid: [x for x in expected_records if x["subject"].get("source_requirement_id") == rid]
@@ -473,13 +498,17 @@ def validate(bundle: Path):
             errors.append(f"E_RECORD_RELATION: {unit_id}のsource/crosswalk/decomposition結合")
         got_edges = got.get("coverage", {}).get("edge_ids")
         want_edges = want["coverage"]["edge_ids"]
-        if not isinstance(got_edges, list) or len(got_edges) != len(set(got_edges)):
+        if not isinstance(got_edges, list) or any(not isinstance(value, str) for value in got_edges):
+            errors.append(f"E_EDGE_SET: {unit_id}のedge idは文字列配列でなければならない")
+        elif len(got_edges) != len(set(got_edges)):
             errors.append(f"E_EDGE_DUPLICATE: {unit_id}")
         if got_edges != want_edges:
             errors.append(f"E_EDGE_SET: {unit_id}")
         got_assets = got.get("coverage", {}).get("asset_ids")
         want_assets = want["coverage"]["asset_ids"]
-        if not isinstance(got_assets, list) or len(got_assets) != len(set(got_assets)):
+        if not isinstance(got_assets, list) or any(not isinstance(value, str) for value in got_assets):
+            errors.append(f"E_ASSET_SET: {unit_id}のasset idは文字列配列でなければならない")
+        elif len(got_assets) != len(set(got_assets)):
             errors.append(f"E_ASSET_DUPLICATE: {unit_id}")
         if got_assets != want_assets:
             errors.append(f"E_ASSET_SET: {unit_id}")
@@ -492,13 +521,13 @@ def validate(bundle: Path):
             errors.append(f"E_ASSET_SET: {unit_id}のasset count")
         if not same_typed(got.get("raw_observations"), want["raw_observations"]):
             errors.append(f"E_RECORD_RELATION: {unit_id}のraw observation")
-        if not same_typed(got.get("status_partition"), want["status_partition"]):
-            errors.append(f"E_STATUS_PARTITION: {unit_id}")
         for field in FIELD_SPECS:
             got_field = got.get("status_partition", {}).get(field, {})
             want_field = want["status_partition"][field]
             if not isinstance(got_field, dict) or not same_typed(got_field.get("required_evidence_schema"), want_field["required_evidence_schema"]):
                 errors.append(f"E_REQUIRED_EVIDENCE_SCHEMA: {unit_id}.{field}")
+        if not same_typed(got.get("status_partition"), want["status_partition"]):
+            errors.append(f"E_STATUS_PARTITION: {unit_id}")
         if not same_typed(got.get("unresolved"), want["unresolved"]):
             errors.append(f"E_STATUS_PARTITION: {unit_id}.unresolved")
         if not same_typed(got.get("ledger_asset_ids_checked"), want["ledger_asset_ids_checked"]):

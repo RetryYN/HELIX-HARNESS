@@ -20,9 +20,9 @@
 
 ## validator／負例
 
-`validate.py`は`build.py`をimportせず固定BASEから再導出します。BASE祖先性、canonical input digest、source record集合、217／1分母、598 edge集合、355 asset集合、per-record重複、7 status、required evidence schema、authority noneをfail-closeで検査します。focused-investigationは固定7要求ID／10 unit候補の全内容を旧原文・asset ledger・固定archive snapshotから再導出して型付き比較し、参照blobをarchive manifestへ照合します。source-transfer manifestは転送時commitの歴史的snapshotとして検査し、現在の成果物digestとは混同しません。
+`validate.py`は`build.py`をimportせず固定BASEから再導出します。BASE祖先性、canonical input digest、source record集合、217／1分母、598 edge集合、355 asset集合、per-record重複、7 status、required evidence schema、authority noneをfail-closeで検査します。focused-investigationは固定7要求ID／10 unit候補の全内容を旧原文・asset ledger・固定archive snapshotから再導出して型付き比較し、参照blobをarchive manifestへ照合します。転送manifestは8個の転送時SHA-256定数と照合し、historical commit objectの到達可能性には依存しません。focused JSONLもcanonical bytesと固定digestを検査します。
 
-`selfcheck.py`は次の33改竄を期待error code付きで棄却します。
+`selfcheck.py`は次の40改竄を期待error code付きで棄却します。
 
 - record、edge、assetの欠落と重複
 - status partitionとrequired evidence schemaの改竄
@@ -31,7 +31,8 @@
 - input digest、source partition宣言、BASE commitの改竄
 - unimplemented statusの昇格
 - focused investigationのunit欠落・重複、要求本文・受入atom・旧asset候補・L9行・statusの改竄
-- transfer manifestの転送時commitとの不一致、成果物のbyte変更・並べ替え
+- transfer manifestの固定destination digestとの不一致、成果物のbyte変更・並べ替え
+- focused JSONLのCRLF／並べ替え／duplicate key、focused requirement IDおよびrecord IDの不正型
 
 ## 検証結果
 
@@ -39,7 +40,7 @@
 
 - `build.py`: PASS（218 record／217 product unit／1 connection／598 edge／355 unique asset）
 - `validate.py`: PASS
-- `selfcheck.py`: PASS（33 negative cases）
+- `selfcheck.py`: PASS（40 negative cases）。宣言されたnegative codeはすべてfirst-errorで確認し、`E_BASE_NOT_ANCESTOR`のみ実Git履歴に依存するためselfcheck fixture対象外。
 - `py_compile`: PASS
 - `scfctl validate`: PASS（138 bindings、fail 0）
 - `scfctl stale`／`residuals`: PASS（0／0）
