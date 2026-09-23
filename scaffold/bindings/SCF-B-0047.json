@@ -15,13 +15,13 @@
     },
     {
       "path": "scaffold/phcap01-concept-l1-research/inventory.json",
-      "sha256": "2d0f70729551217fd79dbc759192d479df10aff69bdb24abcf977356342f3380",
-      "note": "phase／四製品unit・connection／8 legacy asset／failure／consumer inventory [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=fe2bb891ed79359f729b4dd4caf50bda6a2fb484817adfe8019108d7b76786ca; 現receipt=2d0f70729551217fd79dbc759192d479df10aff69bdb24abcf977356342f3380]"
+      "sha256": "d074dde348c0dae85b1faac8df4528652985f3c05a3e91021d1db1e8e70780f9",
+      "note": "phase／四製品unit・connection／8 legacy asset／failure／consumer inventory [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=fe2bb891ed79359f729b4dd4caf50bda6a2fb484817adfe8019108d7b76786ca; 現receipt=2d0f70729551217fd79dbc759192d479df10aff69bdb24abcf977356342f3380] [2026-09-24 read-after: PHCAP現行参照を単一Conceptへ付替え、履歴snapshotは固定保持。前receipt=2d0f70729551217fd79dbc759192d479df10aff69bdb24abcf977356342f3380; 現receipt=d074dde348c0dae85b1faac8df4528652985f3c05a3e91021d1db1e8e70780f9; authority・admissionは不変。]"
     },
     {
       "path": "scaffold/phcap01-concept-l1-research/validate.py",
-      "sha256": "815bdd29d5831b29c7ef75a064a38090000719123429da9c451ec4a09f340328",
-      "note": "current／archive／ledger／decision static validator [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=01ed82706038891ac2eed638ff554aad4c36e93953e16f496ee599c273511a35; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=1976c377461526e7c919f89b6eea3996b5df8ca58d2fdb0a5df562e978761624; 現receipt=1d655817ab9aaac2df6ad54e4cd6c78b2c2b5b2a925ebe6798ee5ad149024798] [2026-09-24 historical four-target output wording read-after; old=1d655817ab9aaac2df6ad54e4cd6c78b2c2b5b2a925ebe6798ee5ad149024798; new=1f7204137b6cc4e95815a1724898a53373c1ee0728dcf85bcb511e2d52c9ecc4] [2026-09-24 historical receipt terminology read-after: 1f7204137b6cc4e95815a1724898a53373c1ee0728dcf85bcb511e2d52c9ecc4 -> 815bdd29d5831b29c7ef75a064a38090000719123429da9c451ec4a09f340328; validation semantics preserved]"
+      "sha256": "b926f6f0c8cd292fd4c389c3fee51ec8ee5671f67d78f5f34c5e880858378c92",
+      "note": "current／archive／ledger／decision static validator [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=01ed82706038891ac2eed638ff554aad4c36e93953e16f496ee599c273511a35; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=1976c377461526e7c919f89b6eea3996b5df8ca58d2fdb0a5df562e978761624; 現receipt=1d655817ab9aaac2df6ad54e4cd6c78b2c2b5b2a925ebe6798ee5ad149024798] [2026-09-24 historical four-target output wording read-after; old=1d655817ab9aaac2df6ad54e4cd6c78b2c2b5b2a925ebe6798ee5ad149024798; new=1f7204137b6cc4e95815a1724898a53373c1ee0728dcf85bcb511e2d52c9ecc4] [2026-09-24 historical receipt terminology read-after: 1f7204137b6cc4e95815a1724898a53373c1ee0728dcf85bcb511e2d52c9ecc4 -> 815bdd29d5831b29c7ef75a064a38090000719123429da9c451ec4a09f340328; validation semantics preserved] [2026-09-24 read-after: PHCAP現行参照を単一Conceptへ付替え、履歴snapshotは固定保持。前receipt=815bdd29d5831b29c7ef75a064a38090000719123429da9c451ec4a09f340328; 現receipt=b926f6f0c8cd292fd4c389c3fee51ec8ee5671f67d78f5f34c5e880858378c92; authority・admissionは不変。]"
     },
     {
       "path": "scaffold/phcap01-concept-l1-research/selfcheck.py",
@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b",
-      "note": "PHCAP-01 phase record and current evidence snapshot [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b]"
+      "sha256": "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2",
+      "note": "PHCAP-01 phase record and current evidence snapshot [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b] [2026-09-24 read-after: PHCAP現行参照を単一Conceptへ付替え、履歴snapshotは固定保持。前receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b; 現receipt=2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2; authority・admissionは不変。]"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",

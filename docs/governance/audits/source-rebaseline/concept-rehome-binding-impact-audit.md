@@ -13,7 +13,9 @@ authority_effect: none
 特にSCF-B-0032/0036/0148/0150は旧4対象L1の承認と現行未承認L1をreason/obligations/dependenciesで分離した。SCF-B-0047はPHCAP-01の旧承認と現行L1候補を分離した。その他のBindingもupstream noteに差分分類と前後SHAを記録した。
 
 PHCAP-01 validatorの出力を「歴史的な四対象receipt」と明示した後、SCF-B-0047の追加read-afterを行った。`scaffold/phcap01-concept-l1-research/validate.py` のreceiptは `1d655817ab9a` → `1f7204137b6c`。固定履歴の対象pathと承認SHAは変更していない。SCF-B-0148/0150の現行owner候補にはSecurityとRunner／Sandboxへの分離を追記し、旧OS cohortは履歴の調査scopeとして保持した。
-続けてvalidatorの`HISTORICAL_REFS`とエラー名、selfcheckの期待名を履歴receiptに合わせた。SCF-B-0047でvalidator `1f7204137b6c` → `815bdd29d583`、selfcheck `7f96fd8da290` → `82c2d9b12ece`をread-afterした。下表は最初の影響照合時点のreceiptであり、これらの追加更新はこの段落が最終receiptである。
+続けてvalidatorの`HISTORICAL_REFS`とエラー名、selfcheckの期待名を履歴receiptに合わせた。SCF-B-0047でvalidator `1f7204137b6c` → `815bdd29d583`、selfcheck `7f96fd8da290` → `82c2d9b12ece`をread-afterした。下表は最初の影響照合時点のreceiptであり、各Bindingのupstream noteに現receiptを保持する。
+
+最終の参照切れ確認で、`phase-capability-inventory.json`のPHCAP-01 `current.refs`とScaffold `phase_record.current_refs`に残っていた削除済みv4.1 pathを現行Conceptへ付け替えた。`current_evidence_snapshot`とScaffold `current_evidence.refs`の旧pathはcommitとSHAで固定した履歴証拠として保持した。phase inventoryの現receiptは`2ffa411459f5`。影響した51 Bindingの参照receiptと、そのうち2件のBinding間参照をread-afterし、各upstream noteに前後SHAとauthority不変を記録した。PHCAP validatorの`EXPECTED_PHASE_REFS`も現行Conceptに合わせ、履歴検証の`HISTORICAL_REFS`は維持した。
 
 | Binding | 影響した上流pathと前→現SHA |
 |---|---|

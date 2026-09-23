@@ -84,7 +84,7 @@
           "HELIX-Web-OS"
         ],
         "refs": [
-          "docs/concept/helix-concept-v4.1.md",
+          "docs/concept/helix-concept.md",
           "docs/concept/product-boundary.md",
           "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
           "docs/helix-harness/L1-planning/product-intent.md",

@@ -35,7 +35,7 @@ HISTORICAL_REFS = {
     "CUR-WEBOS-L1": ("HELIX-Web-OS", "docs/helix-web-os/L1-planning/system-intent.md", "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c", 50, 12, 50, "d57646a08f42cb3096bcf7456498796ecaddc362acfb792269f673928c8d831f"),
 }
 EXPECTED_PHASE_REFS = [
-    "docs/concept/helix-concept-v4.1.md",
+    "docs/concept/helix-concept.md",
     "docs/concept/product-boundary.md",
     "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
     "docs/helix-harness/L1-planning/product-intent.md",
@@ -190,7 +190,7 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
 
     prov = data.get("ledger_provenance", {})
     prov_expected = {
-        "phase_inventory": ("docs/governance/phase-capability-inventory.json", "382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b", 20),
+        "phase_inventory": ("docs/governance/phase-capability-inventory.json", "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2", 20),
         "asset_disposition": ("docs/governance/legacy-asset-disposition.jsonl", "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", 4020),
         "phase_product_classification": ("docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", 4020),
         "decisions": ("docs/governance/legacy-asset-decisions.jsonl", "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", 58),

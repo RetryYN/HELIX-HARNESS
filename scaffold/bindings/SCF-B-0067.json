@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b",
-      "note": "PHCAP-15 phase record and draft/new-build boundary [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b]"
+      "sha256": "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2",
+      "note": "PHCAP-15 phase record and draft/new-build boundary [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b] [2026-09-24 read-after: PHCAP現行参照を単一Conceptへ付替え、履歴snapshotは固定保持。前receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b; 現receipt=2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2; authority・admissionは不変。]"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -80,8 +80,8 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0065.json",
-      "sha256": "35b1dc84c229beaa7a30444cf7dea6548affb7a004730b10fe665f7806a8adb5",
-      "note": "第六束SCF-B-0065 merged prior bundle [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=c991e10a95a17ab47aaff7b443406a165945f125f171f13c90fa2d2b8c137f84; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=3270bfd4e4275741c87f6893452712206d16a6841f683b7f4d736cf3a64e1685; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=22fd119b4cb1117b84b12619e44c34af771ff573e9c852e77844228282b1515f; 現receipt=35b1dc84c229beaa7a30444cf7dea6548affb7a004730b10fe665f7806a8adb5]"
+      "sha256": "c4beba14b5f59aed66554fdb9c53c404ded37a66e308da194bcea1c0e039048a",
+      "note": "第六束SCF-B-0065 merged prior bundle [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=c991e10a95a17ab47aaff7b443406a165945f125f171f13c90fa2d2b8c137f84; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=3270bfd4e4275741c87f6893452712206d16a6841f683b7f4d736cf3a64e1685; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=22fd119b4cb1117b84b12619e44c34af771ff573e9c852e77844228282b1515f; 現receipt=35b1dc84c229beaa7a30444cf7dea6548affb7a004730b10fe665f7806a8adb5] [2026-09-24 read-after: 参照先Bindingのread-after再帰更新。前receipt=35b1dc84c229beaa7a30444cf7dea6548affb7a004730b10fe665f7806a8adb5; 現receipt=c4beba14b5f59aed66554fdb9c53c404ded37a66e308da194bcea1c0e039048a; authority・admissionは不変。]"
     }
   ],
   "role": "PHCAP-15 Deploy最終候補8 sampleの8旧assetについて、旧asset source／decision／failure／consumer evidence、旧phase／product候補、旧／現行implementationとdegradation unknownをread-onlyで保持し、既レビュー6束＋SCF-B-0065との非重複とpool coverageを検証する",
