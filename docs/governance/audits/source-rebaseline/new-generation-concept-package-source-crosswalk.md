@@ -49,6 +49,27 @@ CI・Worker実行を行わない。
 必要な構成概念は、Concept v4.1と対象別L1／L2の承認後に新しいidentity・schema・L3／L10として導出する。
 旧「CIとCursorの先行投入」は棄却済みであり、既存進行として維持しない。
 
+## 機構再編（Concept v4.3）の旧資産照合
+
+確認日: 2026-09-24。Concept v4.3（8機構＋2共通部品への再編）の作成時に、[資産明細台帳](../../legacy-asset-disposition.jsonl)の`source_path`から、
+Vision、infinity-loop要求、Worker blind benchmark、product data connector、security capability broker、isolated worktree sandbox runnerを検索した。
+対応sourceと、[Worker capacity](new-generation-worker-capacity-source-crosswalk.md)、[Security](new-generation-security-engagement-source-crosswalk.md)、
+本書の判断史・failure・consumer記録を照合した。`consumer_refs=[]`は、consumerが存在しないことの証明ではない。
+
+| 旧asset ID・source | 保持する意味と観測したfailure／consumer | 再編での扱い |
+|---|---|---|
+| `LEGACY-ASSET-DD53551C74BB4939A325` Vision v0.1（SHA-256 `1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74`） | 所有者による継続改修、開発と成長の分離、複数事業への能力投入、モデル改善と動的判断、Webの開発提供、許可された実績の還流。台帳のdispositionは`unresolved`、consumer_refsは空 | 長期構想の意味入力。旧実現形や承認を継承しない。§5.4のIntelligenceをBRAIN／Intelligenceへ分けること、§6のConnectorをCONNECT共通部品にすること、§2の全体統制を分散authorityにすること、§4の節目とHARNESS Version 1の展開前提は、変更・具体化した差分として扱う |
+| `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` infinity-loop L1要求 | 自走・計測・Worker・接続の要求source。台帳は`source_snapshot_preservation`、consumerはcarry-forward ledgerとatomization review | 原文atomを無損失で保持し、対象別L1／L2の採否へ送る |
+| `LEGACY-ASSET-09F4CAA4129F5DF63C5E` Worker blind benchmark L4設計 | 独立評価と、provenance不足時の失敗条件。smokeの成功はadmissionを示さない。台帳は`unresolved`、consumer_refsは空 | LABO／OS境界の参考。旧benchmarkを新しいoracleへ流用しない |
+| `LEGACY-ASSET-C3DE79BA9451172F3E43` product data connector L5設計 | read-only、lineage、schema・鮮度・driftのfailureを確認。台帳は`unresolved`、consumer_refsは空 | CONNECTとWebデータ利用条件の参考。旧接続・DB方式を採用しない |
+| `LEGACY-ASSET-B62E49D2E156232B8C63` security capability broker L3要求 | typed認可、scope drift時のfail-close、旧broker greenの限界を確認。台帳は`unresolved`、consumer_refsは空 | Securityの操作点制限の参考。旧brokerを現行の認可にしない |
+| `LEGACY-ASSET-42DBFF81CAA08B82AF11` isolated worktree sandbox runner計画 | dirty baselineと隔離失敗の条件を確認。台帳は`unresolved`、consumer_refsは空 | Runner／Sandboxの停止・隔離条件の参考。旧planやruntimeを実行しない |
+
+これらは代表pathの照会であり、BRAIN、LABO、Intelligence、Security、CONNECT、Runner／Sandboxの全資産・consumerを閉じた調査ではない。
+対応する機構の定義と要求で、原source、判断史、failure、consumer、全候補asset IDを確定し、
+[旧資産の完全一致再利用統制](../../legacy-asset-reuse-control.md)に従って再利用・意味の再導出・置換を個別に判断する。
+Concept本文は旧実装のownerや合格証拠を採用しない。
+
 ## 出典保全とauthority
 
 受領原文は`docs/archive/intake/2026-09-06-concept-vision/`にhistorical sourceとして保持する。原文内の過去発言、
@@ -56,6 +77,8 @@ CI・Worker実行を行わない。
 意味authorityや原文保全の唯一の所在にしない。欠落した別ZIP、JSON、DECISIONS、調査書の内容を推測で補完しない。
 
 ## 次工程
+
+（2026-09-14時点の記述。Conceptはその後1ファイルのHELIX Conceptへ移行し、機構再編（2026-09-24）を経ている。現在の次工程は[新世代作業入口](../../new-generation-start-here.md)に従う。）
 
 Concept v4.1承認後、HARNESS、HELIX-OS、HELIX-Webその他の個別製品L1へ意味候補を分配し、対象別L2／L11で
 個別採否する。正式な提供構成と版管理は、その新しい上流からL3／L10へ降ろし直す。要求整理が閉じるまで

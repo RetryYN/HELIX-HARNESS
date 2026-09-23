@@ -1,47 +1,22 @@
-# HELIX新世代 Concept入口
+# HELIX Concept入口
 
-## 現在の方針
+[HELIX Concept](helix-concept.md)が、HELIXがどんなシステムで、どんな構想を持ち、どんな機構で成り立つかを定める唯一の現行本文である。
+版ごとに別ファイルを作らず、同じファイルをその場で改訂する。改訂は人の指示をAIが反映する。変更の履歴はgitに残る。
+Conceptを改訂したら、紐づく下位文書を見直し対象として示す。見直しを理由に作業全体を止めない。
 
-HELIXは一つの製品ではなく、複数の製品と統制機構を接続する全体構想である。
+## Conceptに紐づく下位文書
 
-| 対象 | 役割 |
+Conceptは他の文書を参照しない。次の文書がConceptを親として参照する。
+
+| 文書 | 役割 |
 |---|---|
-| HELIX-HARNESS | 外部へ提供する製品。V-model、層、pair、要求形成、設計、検証、差戻し、完了条件を持つ |
-| HELIX-OS | 内部の管理・統制・自動走行・継続改善機構。HARNESS自身を含むHELIXプロジェクト群を管理し、HARNESS改善を中核責務として実行する |
-| HELIX-Web | HARNESS Version 1完成後に提供するConnector型Web製品。ダッシュボードで開発進行・成果・証拠を利用者へ示す |
-| HELIX-Web-OS | HELIX-OS外でWeb service runtimeを運転する。許可された観測をHELIX-OSへ返し、改善loopで接続する |
+| [HELIX自体の5大目標](helix-five-goals.md) | Conceptの5大目標の由来と詳細 |
+| [HELIXエージェントの七大原則](helix-principles.md) | エージェントの行動規律。Conceptの9原則（構造原則）とは別 |
+| [製品責務境界](product-boundary.md) | PO原文と機構・製品の責務境界の根拠 |
+| 各機構・製品の定義（`docs/helix-*/L1-planning/`） | 機構・製品ごとの定義 |
+| [HELIXの構造仮説](helix-structure-tvo-po-statements-2026-09-18.md) | 構成システム群の仮説と検証状態 |
 
-[Concept本文](helix-concept-v4.1.md)と[製品責務境界](product-boundary.md)が、この意味を詳細化し、5大目標と七大原則を
-製品責務、authority、構造原則、上流順序へ接続する。
-[HELIX自体の5大目標候補](helix-five-goals.md)はHELIX全体が実現する価値を示し、個別要求と実装方式は固定しない。
-[HELIXエージェントの七大原則候補](helix-principles.md)は、その価値へ進むエージェントの共通行動基準を示す。
-両候補ともConceptに従属する。Concept v4.1と4対象L1の承認は
-[2026-09-17 decision record](../governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)に、
-各対象fileのSHA-256を分けて記録する。PRのmergeだけではauthorityにならない。
-Concept／製品責務境界→5大目標→七大原則→対象別L1の順に読む。
+## 履歴
 
-## HELIXの構造仮説
-
-[HELIXの構造仮説（システム群）](helix-structure-tvo-po-statements-2026-09-18.md)は、HELIXを構成するシステム群の仮説と、確かめたこと・まだ確かめられていないことを持つ。
-authorityを持たず、承認済みConcept v4.1と4対象L1を上書きしない。旧要求と現行要求へ層とシステムのラベルを付ける分類軸として使う。構造の根拠は発言ではなく検証で示す。
-
-## 既に示された方向
-
-1. GitHubは要求意味の正本ではなく、共有・作業・review・証拠のprojectionである。
-2. 旧世代は元構造を保った非実行archiveへ隔離し、新世代のbaseline、oracle、fallbackにしない。
-3. 新世代はConceptから対象別L1、L2／L11、L3／L10、下流pairへ順に降ろす。
-4. 旧CIを使わず、承認済み上流から新世代CIを設計する。
-5. AI向け文書も承認済み上流から生成し、HARNESS工程、OS実行context、個別製品要求を混在させない。
-6. HARNESS Version 1は複数の異なる実プロダクト開発とHELIX自身への適用で検証する。
-7. HELIX-Webの展開はHARNESS Version 1完成を前提とする。
-8. repository整理と運用上流はfoundation PRで確立し、個別要求は一要求identityずつ別PRで詰める。
-
-## 承認後も成立していないもの
-
-- 対象別L2要求・prototype／非UI条件の個別採否と合意。
-- L3以降、新世代CI、AI manifest／生成器、runtime、release、deployment。
-- archive sourceの意味移管完了と物理削除。
-
-文書に余計な意味や欠落がなければ、人間の判断は「この方向で進める」で足りる。修正する場合は、上表または8項目の
-どこが違うかだけを示す。内部では[判断packet](../governance/audits/source-rebaseline/concept-v4.1-human-decision-packet.md)が
-対象revisionとSHA-256を保持する。
+版ごとのファイルは残さない。旧来の[v4.1](helix-concept-v4.1.md)と[v4.2](helix-concept-v4.2.md)は、下位文書の親を[HELIX Concept](helix-concept.md)へ付け替える改訂と同時に削除する。
+削除後の過去の本文はgitの履歴で辿り、承認記録は対象のcommitとSHA-256で指す。

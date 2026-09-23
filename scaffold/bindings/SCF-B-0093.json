@@ -8,7 +8,7 @@
   "state": "registered",
   "reason": "Wave47と#2040 merge後mainの残13 unitから、Layer Ledgerのatomic obligation／pair edge、意味変更のCanonical条件、contract/template coverageを同じ意味境界で比較できるNFR-29／32／33の5 unitを選定した。8 role edge、14 semantic atom、5 composite unresolved、3 selected role asset、7 inspected asset、7 missing evidence receiptを固定し、candidate／consumed／examined_not_selected／unexaminedをrole別に保持する。Web／Web-OS直接routing、formal owner、authority、phase admission、current implementation、degradation、consumer closure、acceptance、release、deploymentは生成しない。Wave47 exact HEAD `d5dff5ef176e144c4a45b39a4e18a7e427c4ad17` とmain merge base `a8f1ab1c7dce529cfb5293e1ddf4a23140877f22` をrebaseline gateへ固定し、先行HEAD変更時は停止する。replacement.issue=0はDraft PR未割当を示すtracker sentinelである。",
   "upstream": [
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "c985bafed3854e82cf4d6b761e52715aa634669f7c9515e94deb557d49edbcf1", "note": "current governance entry; static boundary only"},
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83", "note": "current governance entry; static boundary only"},
     {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "four-product boundary candidate; no routing admission"},
     {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "note": "HARNESS L1 boundary candidate"},
     {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "OS L1 boundary candidate"},

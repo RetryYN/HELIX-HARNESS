@@ -15,7 +15,7 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "c985bafed3854e82cf4d6b761e52715aa634669f7c9515e94deb557d49edbcf1",
+      "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83",
       "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
     },
     {
@@ -35,7 +35,7 @@
     },
     {
       "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
-      "sha256": "24ef4fbd9e798e43c5e454c23e2086dfc0b9d62de24bc3084bf9c58a3cc95616",
+      "sha256": "edb840143453e3f5d1855b0e284456614b80550bd059e3c5cd80755de86e3d60",
       "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
     },
     {
