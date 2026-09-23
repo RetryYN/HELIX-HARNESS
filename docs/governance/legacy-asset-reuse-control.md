@@ -15,10 +15,15 @@ byte copyで現行化しない。archive manifestの全4020件を母集団とし
 manifest entryは必ず資産明細台帳の個別行を持ち、初期dispositionを`unresolved`とする。台帳未記載は母集団からの除外では
 なく、閉包違反として処理を停止する。
 
-この全件対応はarchiveカタログの完全性であり、要求の意味判定やRDPの入力母集団ではない。要求の再構成では、対象となる
-旧source・crosswalk・参照先を`asset_id`または`source_path`で必要に応じて照会し、関連する資産を見落とさずに静的確認する。
-関連資産の未確認・未分類は`unresolved`として扱う。要求判断の前提として、全4,020件を意味・製品・consumer・実装の観点で
-事前分類する必要はない。個別資産の再利用を検討するときは、選択した資産について本書と判断ログ契約に従い採否を決める。
+この全件対応はarchiveカタログの完全性であり、要求の意味判定やRDPの入力母集団ではない。要求の要否・製品scopeを決める段階では、
+RDPの生存中source holdingと意味relation closureを同programに従って読み、要求atomを保全する。このsource読込は要求判断の根拠を
+欠落させないためのもので、資産の再利用・破棄・置換を決める判断ではない。要求判断の前提として、全4,020件を意味・製品・consumer・
+実装の観点で事前分類する必要はない。
+
+要求の要否と製品scopeを定めた後、L3要求定義でscopeに関係する旧資産を台帳から照会し、再利用・破棄・置換等の個別判断を行う。
+設計・実装へ進む前に、選択した資産のsource、判断史、failure、consumerを読み、本書と[判断ログ契約](legacy-asset-decision-log.md)
+に従って採否と必要な差分を記録する。関連資産の未確認・未分類は`unresolved`として保持し、scope内の資産を見落としたまま判断を
+確定しない。
 
 全entryは[資産明細台帳](legacy-asset-disposition.jsonl)にも1件1行で展開する。`asset_id`はsource pathのSHA-256先頭20桁から
 決定的に生成し、path変更と採否変更を同じ操作にしない。初期値は`revision=1`、`asset_class=Historical`、
@@ -85,18 +90,20 @@ archive manifest全4,020件が資産明細台帳の個別行とdispositionへ対
 未判定行を含むこの対応関係は、個別資産の意味・製品・consumer・実装分析が全件完了したことを意味しない。また、要求移管の
 完了条件やRDPの要求分母ではない。
 
-## 要求sourceの閉包と個別資産判断
+## 要求sourceの閉包と個別資産判断の順序
 
 要求を保持しているかは、現行L2件数ではなく、[要否・再配置review program](requirement-disposition-review-program.md)が定める
-生存中のsource holdingと、そこから展開する要求atomの閉包で判定する。archive内資産の全件semantic atom化を先行条件にしない。
-要求の再構成で参照すべき旧source・crosswalk・consumer関係が判明した場合は、上記のとおり台帳から該当資産を照会して読む。
-該当sourceの未確認・未分類は`unresolved`として保持し、既知の関連sourceを参照しないまま要求意味を確定しない。
+生存中source holdingを読み、そこから展開する要求atomの閉包で判定する。RDP source holdingの読込・atom保全は、要求の要否や製品scopeを
+決める前に行う。archive内資産の全件semantic atom化を要求判断の先行条件にしない。
 
-この要求source閉包とは別に、個別資産を再利用する判断では次を満たす。
+要求の要否と製品scopeを定めた後、L3要求定義で関係する旧資産を選び、再利用・破棄・置換等を個別に判断する。この段階で選択した
+資産のsource、判断史、failure、consumerを設計・実装前に確認する。要求sourceの読込・要求採否と、選択資産のreuse dispositionを
+同一判断へまとめない。個別資産判断では次を満たす。
 
 1. `semantic_rederive`は親要求、pair、replacement、consumer切替を持つ。
 2. `verbatim_reuse`は本書の必須記録とcopy後read-afterを持つ。
 3. `retire`／`reject`は失われる利用者価値とconsumerがない根拠を持つ。
 
 現在は主要要求源の分類と対象別L2への接続が進んでいるが、RDPの生存中source holding全体のatom閉包は未完である。
-したがって、要求原文は失われていないが、要求移管完了はまだ主張しない。
+したがって、要求原文は失われていないが、要求移管完了はまだ主張しない。L3で選択された資産の個別reuse dispositionは、
+要求の要否・製品scope決定後の作業として扱う。
