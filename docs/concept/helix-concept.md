@@ -87,13 +87,17 @@ flowchart LR
     OS -->|証拠| VER
 ```
 
-### 改善とWeb提供
+### 提供と改善
+
+HARNESSは配布packageとして外部の利用者へ、開発能力はWebを通じて顧客へ提供する。どちらの利用結果も、許可された範囲で改善へ戻す。
 
 ```mermaid
 flowchart LR
     REQ2["企画・要求<br/>（HARNESS工程の上流）"]
     Human["人<br/>採否の判断"]
     Targets["開発対象<br/>HELIX自身・各製品"]
+    PKG["HELIX-HARNESS 提供package 《製品》<br/>工程・検証契約・要求エンジン・Design Template"]
+    ExtUser["外部の利用者<br/>自分のプロジェクト"]
     Customer["顧客"]
     WEB["HELIX-Web 《製品》<br/>顧客向け開発サービス"]
     WEBOS["HELIX-Web-OS<br/>サービス運転"]
@@ -102,9 +106,12 @@ flowchart LR
     LABO["HELIX-LABO<br/>計測・評価"]
     INT["HELIX-Intelligence<br/>知識・モデル改善"]
     BRAIN["HELIX-BRAIN<br/>判断"]
-    OS["HELIX-OS<br/>改善提案の登録"]
+    OS["HELIX-OS<br/>配布運転・改善提案の登録"]
     SEC["HELIX-Security<br/>認可・制限"]
 
+    OS -->|生成・配布・更新・切戻し| PKG
+    PKG --> ExtUser
+    ExtUser -->|許可された利用結果| LABO
     Customer --> WEB
     WEB --> WEBOS
     WEBOS <-->|顧客環境との接続| CONNECT
