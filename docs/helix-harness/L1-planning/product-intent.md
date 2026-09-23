@@ -6,7 +6,7 @@ canonical_pair: L12
 layer: L1
 kind: planning
 status: draft
-authority_status: awaiting_parent_approval
+authority_status: draft_candidate
 parent_concept: docs/concept/helix-concept.md
 created: 2026-09-14
 updated: 2026-09-15
@@ -14,7 +14,7 @@ updated: 2026-09-15
 
 # HARNESS L1企画候補
 
-本書の親は[HELIX Concept](../../concept/helix-concept.md)である。旧承認revisionを保持し、現行Conceptとの差分は再配置候補として扱う。L2合意、L3承認、実装・実行権限は本書から生成しない。
+本書の親は[HELIX Concept](../../concept/helix-concept.md)である。2026-09-17のdecisionは旧本文のexact SHAに限る。現行本文は未承認の再配置候補であり、差分は[PO判断パッケージ](../../governance/crosswalks/concept-requirement-po-decision-packet.md)に記録する。L2合意、L3承認、実装・実行権限は本書から生成しない。
 
 Conceptのサービス①〜⑦は各単独で成立・利用・リリースできる単位であり、入口・枠・部品・コアはそれらを支える。下表の従来L1 IDはサービス別に分割済みという意味ではない。個別サービスと接続の受入差分は要求対応表へ送る。
 

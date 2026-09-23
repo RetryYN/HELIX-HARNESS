@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8",
-      "note": "authority／旧資産静的参照／scaffold境界 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a",
+      "note": "authority／旧資産静的参照／scaffold境界 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md",

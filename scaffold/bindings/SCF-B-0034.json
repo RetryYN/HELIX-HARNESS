@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
-      "note": "PHCAP-02/03 current／legacy phase snapshot"
+      "sha256": "382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b",
+      "note": "PHCAP-02/03 current／legacy phase snapshot [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b]"
     },
     {
       "path": "docs/governance/legacy-ir-product-routing-bootstrap.jsonl",
@@ -75,8 +75,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
-      "note": "四製品の責務境界候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd",
+      "note": "四製品の責務境界候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd]"
     }
   ],
   "role": "PHCAP-02/03の要求登録・分類、四製品routing、phase join、旧実装／failure／consumer evidenceの欠落をresearch premiseとして保持する",

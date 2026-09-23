@@ -6,7 +6,7 @@ canonical_pair: L12
 layer: L1
 kind: planning
 status: draft
-authority_status: awaiting_parent_approval
+authority_status: draft_candidate
 parent_concept: docs/concept/helix-concept.md
 created: 2026-09-14
 updated: 2026-09-14
@@ -14,7 +14,7 @@ updated: 2026-09-14
 
 # HELIX-OS L1企画候補
 
-本書の親は[HELIX Concept](../../concept/helix-concept.md)である。旧承認revisionを保持し、現行Conceptとの差分は再配置候補として扱う。L2合意、L3承認、実装・実行権限は本書から生成しない。
+本書の親は[HELIX Concept](../../concept/helix-concept.md)である。2026-09-17のdecisionは旧本文のexact SHAに限る。現行本文は未承認の再配置候補であり、差分は[PO判断パッケージ](../../governance/crosswalks/concept-requirement-po-decision-packet.md)に記録する。L2合意、L3承認、実装・実行権限は本書から生成しない。
 
 ## 提供価値
 
@@ -30,7 +30,7 @@ HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変
 | HELIXOS-L1-003 | 人間は、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開できる | HELIXOS-L2-004／009 |
 | HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |
 | HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |
-| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗・学習を評価し、HELIX-OSに採択済み改善の実行・再検証・効果確認を継続させられる | HELIXOS-L2-005 |
+| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗をLABOの独立評価へ渡し、HELIX-OSに採択済み改善の登録・実行・再検証を継続させられる | HELIXOS-L2-005 |
 | HELIXOS-L1-007 | 人間は、HARNESS package運転と個別製品のrelease準備・artifact受渡し・observationを対象revisionと許可へ束縛して統制し、展開先runtimeのdeployment authorityを分離できる | HELIXOS-L2-002／006／007 |
 | HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |
 | HELIXOS-L1-009 | 人間は、管理・推進・検収の責務を分け、許可範囲内の直接調整を保ったまま仕事を統制できる | HELIXOS-L2-010 |
@@ -39,6 +39,7 @@ HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変
 | HELIXOS-L1-012 | 人間は、一つの仕事を要求から運用まで診断し、管理機構自身を含む是正と効果確認へ閉じられる | HELIXOS-L2-013 |
 
 上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。
+現行の`HELIXOS-L2-005`と同じL2文書内の学習に関する記述は、旧OS集中責務を含む未承認の候補である。LABOの独立評価、OSの登録・実行、後続版のIntelligenceによる知識・モデル改善への分離は[要求対応表](../../governance/crosswalks/concept-mechanism-version-requirement-crosswalk.md)で照合中とし、旧L2本文のまま現行のOS単独責務とは判定しない。
 
 ## L0 charterからの投影
 
@@ -58,7 +59,7 @@ HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変
 ## 管理対象と対象外
 
 管理対象にはHARNESS、HELIX-Web、HELIX-Web-OS、将来追加する個別製品・運転基盤を含む。外部提供する製品属性はHARNESSとWebに限る。OSは各対象の要求意味やHARNESSの工程規則を
-別本文として所有せず、承認revisionを参照して開発・改善を実行・記録・制御する。HELIX-Web-OSの展開後service runtimeはOS外に置く。外部へ提供する製品はHARNESSであり、
+別本文として所有せず、承認revisionを参照して開発・改善を実行・記録・制御する。HELIX-Web-OSの展開後service runtimeはOS外に置く。HARNESSは外部へ提供する製品の一つであり、
 本企画はHELIX-OSの外販を目的にしない。
 
 ## 採択条件

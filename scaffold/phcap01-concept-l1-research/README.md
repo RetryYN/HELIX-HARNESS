@@ -2,7 +2,7 @@
 
 本Scaffoldは、現行`origin/main`のPHCAP-01（Concept／L1企画）について、四製品の責務・接続候補、旧assetのphase／product候補、実装・縮退・未実装を断定できない範囲を、read-onlyの証拠として保持する。対象はHELIX-HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSである。
 
-現行Concept v4.1と4対象L1は、`concept-v4.1-and-four-l1-approval-2026-09-17.md`のexact SHA承認記録によって「承認済みrevision」として参照する。ただし各L1文書のfrontmatterが`draft`／`awaiting_parent_approval`であること、承認記録がL2／L11採否、L3／L10、実装、受入、release、deploymentを成立させないことを同時に記録する。したがって本ScaffoldはL2／L11適用、正式runtime、authority、owner、successorを生成しない。
+Concept v4.1と4対象L1の**旧exact SHA**は、`concept-v4.1-and-four-l1-approval-2026-09-17.md`の承認記録に対する履歴証拠である。`inventory.json`の`CUR-*`参照は当時のsource snapshotを固定commitから検査するもので、同名の現行L1本文の承認状態ではない。Concept親へ付け替えた現行L1本文は未承認候補であり、`phase_record.current_status`もその区別を示す。承認記録はL2／L11採否、L3／L10、実装、受入、release、deploymentを成立させない。本Scaffoldは正式runtime、authority、owner、successorを生成しない。
 
 旧assetはarchiveのbytes、manifest SHA、静的な行範囲だけを参照する。旧workflow、runtime、test、CI、hook、adapter、sourceは実行せず、旧記述を現行のimplementation、degraded、unimplemented、failure、consumer closureへ読み替えない。phase inventoryのPHCAP-01候補45件は、29件の`multi_phase_candidate`と16件の`unresolved_with_candidate`、product候補26件の`candidate_needs_semantic_review`と19件の`unresolved`として再集計した。
 

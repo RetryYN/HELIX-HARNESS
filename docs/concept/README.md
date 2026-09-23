@@ -13,6 +13,7 @@ Conceptは他の文書を参照しない。次の文書がConceptを親として
 | [HELIX自体の5大目標](helix-five-goals.md) | Conceptの5大目標の由来と詳細 |
 | [HELIXエージェントの七大原則](helix-principles.md) | エージェントの行動規律。Conceptの9原則（構造原則）とは別 |
 | [製品責務境界](product-boundary.md) | PO原文と機構・製品の責務境界の根拠 |
+| [要求対応表](../governance/crosswalks/concept-mechanism-version-requirement-crosswalk.md)・[PO判断パッケージ](../governance/crosswalks/concept-requirement-po-decision-packet.md) | 既存要求の再配置候補と未承認の上流差分 |
 | 各機構・製品の定義（`docs/helix-*/L1-planning/`） | 機構・製品ごとの定義 |
 | [HELIXの構造仮説](helix-structure-tvo-po-statements-2026-09-18.md) | 構成システム群の仮説と検証状態 |
 

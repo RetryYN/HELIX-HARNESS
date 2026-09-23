@@ -13,7 +13,7 @@ authority_effect: effective_when_this_record_is_admitted_to_main
 
 ## 人間判断と対象
 
-POに、2026-09-24（Asia/Tokyo）のCodex作業sessionの質問票で、[5大目標本文](../../concept/helix-five-goals.md)へのリンクと
+POに、2026-09-24（Asia/Tokyo）のCodex作業sessionの質問票で、[5大目標本文](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/concept/helix-five-goals.md)へのリンクと
 SHA-256の短縮表示`cfade733…5de5`を示し、
 HELIX全体の到達目標として承認するかを確認した。質問では「これは4製品L1の変更・個別要求・実装を承認するものではありません」と明示した。
 POは「この本文を承認する」と回答した。

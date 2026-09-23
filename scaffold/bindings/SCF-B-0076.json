@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd]"
     },
     {
       "path": "docs/helix-harness/README.md",
@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/governance/crosswalks/legacy-concept-derived-requirements.md",
-      "sha256": "a2872bb85b81af2d0c3c18d8b92c60cf43f360508e0418185051e86f29df3a9e",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a65504da98057890ff55f598e8cae6f13cf823c84de9b8fae89f4940f895ab91; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "cda2de763e2e05f629727e09672cd66de6693a78e0c07e5acd4932d8f315f6b9",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a65504da98057890ff55f598e8cae6f13cf823c84de9b8fae89f4940f895ab91; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=a2872bb85b81af2d0c3c18d8b92c60cf43f360508e0418185051e86f29df3a9e; 現receipt=cda2de763e2e05f629727e09672cd66de6693a78e0c07e5acd4932d8f315f6b9]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",

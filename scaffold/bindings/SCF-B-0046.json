@@ -10,13 +10,13 @@
   "upstream": [
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8",
-      "note": "authority／archive read-only boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a",
+      "note": "authority／archive read-only boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a]"
     },
     {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
-      "note": "PHCAP-12/13 phase snapshots and new_build boundary"
+      "sha256": "382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b",
+      "note": "PHCAP-12/13 phase snapshots and new_build boundary [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b]"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
-      "note": "four product unit／connection boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd",
+      "note": "four product unit／connection boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd]"
     },
     {
       "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
@@ -95,8 +95,8 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0003.json",
-      "sha256": "7ac4a9694b536beb33648abd50d187eb814459eaf189e6540b1ae63e1237b9ae",
-      "note": "existing GUI notification scaffold context only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=d5b2339d891f8a41957965466ed604123b99f046f314b81eaab742ae7d86dd01; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "511bfe44980e81dc3761f38e749f0e2f24b3270a737fba3b2513124150cdd764",
+      "note": "existing GUI notification scaffold context only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=d5b2339d891f8a41957965466ed604123b99f046f314b81eaab742ae7d86dd01; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=7ac4a9694b536beb33648abd50d187eb814459eaf189e6540b1ae63e1237b9ae; 現receipt=511bfe44980e81dc3761f38e749f0e2f24b3270a737fba3b2513124150cdd764]"
     },
     {
       "path": "scaffold/phcap12-13-review/README.md",

@@ -26,7 +26,7 @@ system invariantは[HELIX Concept](helix-concept.md)に置き、本書はその�
 行動基準を示す。どちらもConceptに従属し、目標または原則だけから要求、責務、workflow、実装を直接生成しない。
 統合後の読込順はConcept／製品責務境界→5大目標→七大原則→対象別L1とする。
 
-本書は現行Conceptの子であり、それ自体から別のauthorityを生成しない。旧候補の承認履歴はdecision recordで追う。PRの作成・review・merge、Issueの状態、CI結果から
+本書は現行Conceptの子であり、それ自体から別のauthorityを生成しない。七大原則の独立authorityは未承認で、Conceptへの入力接続だけに旧decisionがある。PRの作成・review・merge、Issueの状態、CI結果から
 承認を生成しない。承認後も、対象作業では承認済みConcept、企画、要求、設計、権限、停止条件を先に適用する。
 HARNESSが対象作業に適用するProduction、Discovery／PoC、Research、UI prototype等のrouteとroute内順序を所有し、
 七大原則は独自の固定workflowを作らず、そのroute内の判断規律として働く。

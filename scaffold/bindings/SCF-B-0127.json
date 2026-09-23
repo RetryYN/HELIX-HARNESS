@@ -29,28 +29,28 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
-      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd]"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
-      "sha256": "a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47",
-      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47; 現receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96]"
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd",
-      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc]"
     },
     {
       "path": "docs/helix-web/L1-planning/product-intent.md",
-      "sha256": "d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271",
-      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271; 現receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23]"
     },
     {
       "path": "docs/helix-web-os/L1-planning/system-intent.md",
-      "sha256": "42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d",
-      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d; 現receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md",

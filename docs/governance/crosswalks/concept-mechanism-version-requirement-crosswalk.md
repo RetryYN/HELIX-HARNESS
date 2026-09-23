@@ -9,10 +9,10 @@
 ## 判定と出所
 
 - 維持：意味・制約・受入をそのまま使う。改変：意味を保ち、担当・分割・接続・具体化を変える。不採用候補：旧実現方式を持ち込まず、目的は消さない。追加：分離構成に必要な接続・運用・受入を補う。いずれも本表の候補であり、原authorityや採否を変更しない。
-- JSONLの`original_text`は原文、`original_constraint`は原表の確認結果・制約またはIR acceptance IDである。`semantic_digest`はIRについてsourceのdigestを転記し、現行Markdownについては**原表の要求文UTF-8 bytesのSHA-256**を算出した暫定追跡値である。原文と完全な文書revisionは`source_location`と`source_revision`で辿る。
+- JSONLの`original_text`は原文、`original_constraint`は原表の確認結果・制約またはIR acceptance IDである。`semantic_digest`はIRについてsourceのdigestを転記した。現行L2・DTKの51行は要求文UTF-8 bytes、L1-COVの4行と1.0土台の7行は原表の1行全体のUTF-8 bytesをSHA-256で算出した暫定追跡値である。各行の`digest_method`に対象を記録し、原文と文書revisionは`source_location`と`source_revision`で辿る。
 - IRは[carry-forward台帳](../legacy-requirement-carry-forward.jsonl)の原ID・revision・原文・digest・source pointerを転記し、`target_assessment`を責務候補として扱った。既存のroutingはsuccessor確定ではない。現行4対象L2とL11はすべてdraft、DTKはdraft candidate、L1-COVは監査work unitであり要求IDではない。
 - 製品属性は機構別に`mechanism_product_attributes`へ記録する。HARNESSとWebのみ`製品`、OS・Web-OS・BRAIN・LABO・Intelligence・Securityは`非製品`、CONNECTとRunner／Sandboxは`共通部品`である。HARNESS内のサービス①〜⑦／入口／枠／部品／コアは独立した`harness_placement`へ記録し、製品属性と混ぜない。複数機構の行は単一ownerの意味ではない。
-- `version_target`はConceptの導入版と照らした**印**であり、採択済みrelease scopeではない。`version_1_0_foundation_candidate`は関連する可能性の印で、土台7項目の全条件被覆を意味しない。HARNESS内区分を特定できない旧IRは未特定に保持した。検索範囲と未特定理由は各行に記録した。
+- `version_target`はConceptの導入版と照らした**印**であり、採択済みrelease scopeではない。`version_1_0_foundation_candidate=true`は下表の仮ID 7行だけに付け、既存要求の部分候補と全条件被覆を区別する。HARNESS内区分を特定できない行は未特定に保持し、検索範囲と結果を各行に記録した。
 - 原要求が複数機構へ跨る行は、単体と接続の両方を後続要求で立てて合成被覆を検証する。`mechanism_candidate`の配列は複数責務の候補であり、単一の混在ownerを作らない。原IDを消さず、意味変更と担当移動を独立列にした。
 
 ## 旧HELIX照合
@@ -37,7 +37,7 @@
 |---|---|---|
 | ログと証拠 | HELIXOS-L2-007、HILのログ・証拠行 | 能力・モデル版とepisodeの全機構共通形 → 仮ID-BASE-01 |
 | データの利用区分 | HELIXWEBOS-L2-006、HILのdata scope行 | 出典・権利・機密・学習用／評価用の区分 → 仮ID-BASE-02 |
-| 計測 | HELIXOS-L2-005、L1-COV-G5 | 品質・費用・時間・再作業・失敗の構成版別計測 → 仮ID-BASE-03 |
+| 計測 | HELIXOS-L2-005、L1-COV-G5-WORKER-OPTIMIZATION | 品質・費用・時間・再作業・失敗の構成版別計測 → 仮ID-BASE-03 |
 | 接続契約と版 | HELIXWEBOS-L2-002、HELIXWEB-L2-007 | 能力名・相関ID・期限・冪等キー・結果状態の全機構契約 → 仮ID-BASE-04 |
 | 隔離の単位 | HELIXWEBOS-L2-001、HILの隔離行 | 1.0の全記録・権限・資源へのproject／tenant／環境付与 → 仮ID-BASE-05 |
 | 構成版の固定と切戻し | HELIXOS-L2-006、HELIXWEBOS-L2-002 | 実行job単位の能力・モデル・構成固定と段階適用 → 仮ID-BASE-06 |

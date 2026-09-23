@@ -23,8 +23,8 @@
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd",
-      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc]"
     },
     {
       "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",

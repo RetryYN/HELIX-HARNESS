@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
-      "note": "PHCAP-17候補scope、current evidence products、代表legacy asset"
+      "sha256": "382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b",
+      "note": "PHCAP-17候補scope、current evidence products、代表legacy asset [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b]"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -40,13 +40,13 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
-      "note": "HARNESS／OS／Web-OSの製品境界候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd",
+      "note": "HARNESS／OS／Web-OSの製品境界候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd]"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
-      "sha256": "a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47",
-      "note": "HARNESS L1候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96",
+      "note": "HARNESS L1候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47; 現receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96]"
     },
     {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
@@ -60,8 +60,8 @@
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd",
-      "note": "OS L1候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc",
+      "note": "OS L1候補 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc]"
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",

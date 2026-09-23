@@ -33,6 +33,7 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 12. [Repository foundation readiness](repository-foundation-readiness.md)
     - [新世代作業基盤への集約 operation contract](new-generation-workbase-consolidation.md)
 13. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)、[現在の管理状況](requirement-carry-forward-status.md)、[153要求の再配置wave](legacy-ir-rehome-wave-register.md)
+    - [Concept機構・版・製品属性の要求対応表](crosswalks/concept-mechanism-version-requirement-crosswalk.md)と[PO判断パッケージ](crosswalks/concept-requirement-po-decision-packet.md)は未承認の再配置候補であり、現行L1差分と旧要求の意味を別に確認する
     - 全要求の要否・再配置を扱う場合は、[要否・再配置review program](requirement-disposition-review-program.md)を親作業とし、[責務・機能重複review](requirement-overlap-review-program.md)、[技術代替可能性review](requirement-technical-substitutability-review-program.md)、個別要求の人間decision・要求PRを分ける
     - IDのない段落条件を扱う場合は、[semantic line全量保全inventory](legacy-requirement-semantic-line-inventory.md)と[atom化review contract](requirement-atomization-review-contract.md)を追加で読む
     - 旧candidate系列を扱う場合は、[旧candidate source全量inventory](legacy-candidate-source-inventory.md)から原文行へ戻る
@@ -50,8 +51,8 @@ Conceptは[1ファイル](../concept/helix-concept.md)をその場で改訂す�
 Conceptの改訂に紐づく下位文書は見直し対象として示し、作業全体を止めない。v4.3への改訂（2026-09-24）の見直し対象は、
 4対象L1、5大目標、七大原則、製品責務境界である。これらの親は現行Conceptへ付け替えた。BRAIN、LABO、Intelligence、Security、CONNECT、Runner／Sandboxの責務差分は候補として記録し、対象別L2／L11の採否を生成しない。
 
-4対象L1のexact revisionは2026-09-17のdecision recordで承認済みである。
-対象本文内の`candidate`／`awaiting_parent_approval`は承認前snapshotのmetadataであり、現在状態はdecision recordを優先する。
+4対象L1の**旧exact revision**は2026-09-17のdecision recordで承認済みである。Conceptへ親を付け替えた現行L1本文は旧SHAから変わっており、[PO判断パッケージ](crosswalks/concept-requirement-po-decision-packet.md)の対象revision判断までは`draft_candidate`である。旧承認を現行bytesへ継承しない。
+5大目標も旧本文SHAに限って承認済みであり、現行本文の位置づけと機構別責務表は未承認差分である。
 `L2D-S0-01 scaffold-binding`と`L2D-S0-02 wbs-ledger`の候補は2026-09-19の[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)で承認済みであり、
 候補本文内の`draft_candidate`／`awaiting_human_approval`も同じく承認前snapshotのmetadataとして、decision recordを優先する。
 対象別L2／L11はdraft・未採否であり、まだcanonicalではない。
@@ -62,7 +63,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 ## 現在許可される作業
 
 - 旧sourceのinventory、意味分類、対象別crosswalk、archive隔離。
-- 承認済みConcept／対象別L1を親とするL2／L11候補の起草、静的なID・参照・責務整合確認、個別採否準備。
+- 現行Conceptと旧承認L1 revisionを照合するL2／L11候補の起草、静的なID・参照・責務整合確認、個別採否準備。現行L1差分を承認済み入力として使わない。
 - exact revisionのremote sync、Draft PRによる共有、現行の独立review通路での意味review。通常のGitHub作業では作成側が明示依頼を待たずpush・Draft PR作成・指摘修正を進め、review側がexact HEADのfindingを記録した後、作成側が修正後HEADのreview結果を確認してReady化する。
 - 現行merge admissionが成立したPRを、作成側とは独立したreview側が`gh pr merge --merge`で明示mergeし、read-afterすること。新世代CIがない間は旧CIを代用しない。
 - `scaffold/`名前空間での仮組み。仮の物は必ずScaffold Bindingへ登録し、`python3 scaffold/tools/scfctl.py validate`に合格させる（[scaffold/README.md](../../scaffold/README.md)）。仮組みは正式な設計・実装・CIではなく、その動作や検査の合格から採否・承認・完了を生成しない。

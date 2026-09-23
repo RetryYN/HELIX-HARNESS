@@ -26,7 +26,7 @@
 | 「意味割合の多い部分をPython化する方針で旧実装から引き込む。」 | 旧実装のsemantic-dominant behaviorをPython coreへ再導出し、外部作用は新世代architectureで技術選定する |
 | 「要求側にPoCや画面プロトの接続があったと思うがこれらはそもそもチケットで切れる必要がある」 | PoC、UI prototype、Featureを要求へ接続する別ticketとして発行する |
 | 「管理層が推進側へ工程を渡して推進機構がチケットを切る。」「HARNESSがtag語彙とworkflow生成規則を所有ここが違う。推進側が生成する。」「HARNESSには明確に順序がある」 | HARNESSはnormative workflow vocabulary、その意味、trigger、適用条件、route内順序、join、停止・差戻し・完了条件を所有する。管理が目的・要求・制約・許可・予算・期限・HARNESS版を推進へ渡し、推進機構はoperational tag、HARNESS語彙へのversioned mapping、composition、workflow instance生成規則を所有してticket graphとworkflow instanceを生成する。HARNESSは個別ticket・workflow instanceを生成せず、管理は生成物を登録・統制し、検収が独立確認する |
-| 「旧要求はそのまま使いたい」「要求にはほぼHELIXの全体要求が入っている」 | 旧sourceでのauthority状態と要求意味を保持し、新世代target authorityへの配置・分割・言換えは全requirement PRで人間が確認する |
+| 「旧要求はそのまま使いたい」「要求にはほぼHELIXの全体要求が入っている」 | 旧sourceでのauthority状態と要求意味を保持する。当時の「全requirement PRで人間が確認する」は履歴上の解釈であり、現行の人間decisionは上流意味の変更と[authority状態モデル](../governance/authority-state-model.md)が要求する対象revisionの採否・変更・retireに限る。担当移動と技術変更だけの差分は記録して独立reviewへ送る |
 
 ## 対象別の正規入口
 
@@ -51,7 +51,7 @@ HARNESS自身の要求・設計・実装・検証へ戻す。HELIX-OSはこの�
 |---|---|---|
 | HELIX | プロジェクト群と、その改善を継続する全体構想 | 人間の意図から検証済み変更へ閉じ、運用結果を次の要求へ戻す |
 | HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |
-| HELIX-OS | HELIXプロジェクト群の内部管理・統制機構 | authority管理、Worker、実行制御、CI、ログ、状態、学習、改善、配布運転 |
+| HELIX-OS | HELIXプロジェクト群の内部管理・推進・検収機構 | authority・state管理、ticket発行とWorker割当、CI・test最適化、改善候補登録、配布運転。独立評価はLABO、知識・モデル改善は3.0のIntelligenceへ接続する |
 | HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとしてWeb利用者へダッシュボード、操作、進行表示、サービス体験を提供する |
 | HELIX-Web-OS | HELIX-OS外のWebサービス運転基盤 | tenant、Connector、job、service state、evidence projection、配備・監視・復旧 |
 

@@ -4,9 +4,9 @@
   "kind": "scaffold",
   "title": "旧Worker実行・隔離・checkpoint・quota test design 13件の責務・phase静的分類候補",
   "product": "HELIX-OS",
-  "owner_candidate": "HELIX-OSのWorker・state統制候補（正式owner未決）",
+  "owner_candidate": "旧OS cohortの歴史的調査scope。現行候補はOSの管理・推進・検収、Securityの許可・隔離、Runner／Sandboxの実行へ単体と接続を分離（正式owner未決）",
   "state": "registered",
-  "reason": "固定BASE main bootstrapのPHCAP-07 cohort 208件を再導出し、SCF-B-0148の52件とのID/path/SHA交差を除いた残156件から、Worker実行・隔離・checkpoint・quota関連の13候補を静的に整理する。承認済み4対象L1へ責務候補を接続しつつ、正式分類・phase admission・実装・test実行・採否・consumer closureには作用しない。",
+  "reason": "固定BASE main bootstrapのPHCAP-07 cohort 208件を再導出し、SCF-B-0148の52件とのID/path/SHA交差を除いた残156件から、Worker実行・隔離・checkpoint・quota関連の13候補を静的に整理する。旧承認4対象L1の固定BASEと現行未承認L1候補を区別して責務候補を接続しつつ、正式分類・phase admission・実装・test実行・採否・consumer closureには作用しない。 現行ConceptではWorker実行と隔離をOS単独へ帰属させず、Security／Runner／Sandboxとの単体・接続候補へ分ける。",
   "upstream": [
     {
       "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4",
-      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd",
+      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd]"
     },
     {
       "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
@@ -60,33 +60,33 @@
     },
     {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
-      "note": "fixed-base static evidence input"
+      "sha256": "382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b",
+      "note": "fixed-base static evidence input [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b]"
     },
     {
       "path": "docs/governance/phase-capability-inventory.md",
-      "sha256": "1fdbd85da6a987e945bfaeef97c18696819799fbdbaed09dd3eae410f295508d",
-      "note": "fixed-base static evidence input"
+      "sha256": "e2183eb66fca4102ab09a3f8bda78c508f67b142ba72093dd1795a1ec3741857",
+      "note": "fixed-base static evidence input [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=1fdbd85da6a987e945bfaeef97c18696819799fbdbaed09dd3eae410f295508d; 現receipt=e2183eb66fca4102ab09a3f8bda78c508f67b142ba72093dd1795a1ec3741857]"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
-      "sha256": "a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47",
-      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96",
+      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47; 現receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96]"
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd",
-      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc",
+      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc]"
     },
     {
       "path": "docs/helix-web/L1-planning/product-intent.md",
-      "sha256": "d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271",
-      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23",
+      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271; 現receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23]"
     },
     {
       "path": "docs/helix-web-os/L1-planning/system-intent.md",
-      "sha256": "42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d",
-      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c",
+      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d; 現receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c]"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/selection-manifest.json",
@@ -133,7 +133,7 @@
   "obligations": [
     "固定BASE bootstrapからPHCAP-07 cohort 208件を再導出し、SCF-B-0148の52件をID/path/SHAそれぞれで除き残156件を照合する。指定13件の三軸重複が0であることを確認する。",
     "13件すべてのarchive source blob/SHA/MANIFESTと宣言されたparent_pair/pair_group blob/title/statusを固定BASEから静的確認する。旧archiveを実行しない。",
-    "Concept v4.1・承認decision record・4対象L1のexact SHAに対してcandidate product boundaryを記録する。product owner/採否/authorityを生成しない。",
+    "旧Concept v4.1・承認decision record・旧4対象L1の固定BASE exact SHAと、現行Concept・未承認L1を別revisionとして記録し、機構と製品属性のcandidate boundaryを再照合する。product owner/採否/authorityを生成しない。",
     "bootstrapにあるPHCAP-02/07/10/17/20等の複数phase候補を落とさず保持し、phase-level status/degradationとasset単位implementation status unknownを分離する。",
     "旧test design内の予定oracle・negative case・test citation、観測failure、implementation、formal consumerを別々に記録し、不明値はunknown/pendingに保つ。",
     "legacy asset decision logとcopy read-afterの対象13行が0であり、asset disposition unresolved、implementation unknownであることを示す。"
@@ -144,10 +144,10 @@
       "後続の旧asset/source atom consumer closure調査（未完）"
     ],
     "dependencies": [
-      "Concept v4.1と4対象L1の2026-09-17 exact-revision approval record",
+      "2026-09-17の旧Concept v4.1・旧4対象L1 exact-revision approval record、および現行Concept・未承認L1候補の別revision",
       "固定BASE b1578f4fda5d5ecd01c9565ee81f4ddf0cebfe1aのbootstrap・archive MANIFEST・SCF-B-0148 exclusion selection"
     ],
-    "boundary": "research-only。candidate evidenceのみ。formal owner/product classification、phase admission、要求採否、実装/test pass、successor、failure observation、consumer closure、CIを生成しない。main HEADが進んだ後は最新main向け根拠として利用せず、PR前に全入力・重複・Bindingを再導出する。"
+    "boundary": "research-only。candidate evidenceのみ。formal owner/product classification、phase admission、要求採否、実装/test pass、successor、failure observation、consumer closure、CIを生成しない。main HEADが進んだ後は最新main向け根拠として利用せず、PR前に全入力・重複・Bindingを再導出する。 現行のOS／Security／Runner責務は別revisionの候補であり、この旧cohort研究から承認・admissionを導かない。"
   },
   "operations": {
     "allowed": [

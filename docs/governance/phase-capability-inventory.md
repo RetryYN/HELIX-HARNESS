@@ -12,6 +12,8 @@ projection_receipt: `docs/governance/audits/source-rebaseline/github-phase-capab
 
 本台帳の製品分類は要求採否、successor確定、設計freeze、実装許可を生成しない。[premise packet](audits/source-rebaseline/phase-capability-inventory-premise-packet-2026-09-20.md)が一つの判断論点、証拠時点、known／assumption／unknown／conflict／stale、限界、反例、再調査条件を固定する。各taskはGitHub Issueへ作業projectionし、代表assetから全consumer closureへ調査を広げる。
 
+旧Conceptと4対象L1の承認は旧exact SHAに限る。現行L1本文はConcept親付替え後の未承認候補であり、PHCAP-01の状態を区別している。旧ref pathは記録時点の固定commitの履歴参照である。
+
 ## 判定規則
 
 - `product_targets`は調査すべき候補scopeである。`current.evidence_products`だけがcurrent refで直接裏付けた製品であり、候補scopeに含むだけではその製品の要求・設計・実装は成立しない。
@@ -34,7 +36,7 @@ source／inventory／静的evidence／negative caseを保持するBinding登録�
 
 | Task | フェーズ | 候補scope製品 | 現行証拠製品 | 現行 | 旧HELIX到達 | 移行状態 |
 |---|---|---|---|---|---|---|
-| `PHCAP-01` | Concept／L1企画 | HELIX-HARNESS<br>HELIX-OS<br>HELIX-Web<br>HELIX-Web-OS | HELIX-HARNESS<br>HELIX-OS<br>HELIX-Web<br>HELIX-Web-OS | `approved_current` | `documented_and_governed` / L0, L1 | `rederived_current` |
+| `PHCAP-01` | Concept／L1企画 | HELIX-HARNESS<br>HELIX-OS<br>HELIX-Web<br>HELIX-Web-OS | HELIX-HARNESS<br>HELIX-OS<br>HELIX-Web<br>HELIX-Web-OS | `approved_historical_revision_current_l1_draft` | `documented_and_governed` / L0, L1 | `rederived_current` |
 | `PHCAP-02` | 要求収集・原登録 | HELIX-OS | HELIX-OS | `candidate_with_partial_current_registry` | `implemented_with_tests` / L6, L7 implementation/test | `degraded_to_candidate_and_static_registry` |
 | `PHCAP-03` | 要求分類 | HELIX-HARNESS<br>HELIX-OS | HELIX-HARNESS<br>HELIX-OS | `candidate` | `implemented_partial` / L4, L5, L6, L7 implementation | `degraded_to_candidate` |
 | `PHCAP-04` | 要求採否／L2 | HELIX-HARNESS<br>HELIX-OS<br>HELIX-Web<br>HELIX-Web-OS | HELIX-HARNESS<br>HELIX-OS<br>HELIX-Web<br>HELIX-Web-OS | `draft_containers` | `documented_with_runtime_support` / L1, L3 | `degraded_to_unapproved_routing_containers` |

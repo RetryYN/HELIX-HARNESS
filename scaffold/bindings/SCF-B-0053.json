@@ -60,8 +60,8 @@
     },
     {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
-      "note": "PHCAP phase inventory source revision"
+      "sha256": "382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b",
+      "note": "PHCAP phase inventory source revision [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b]"
     }
   ],
   "role": "PHCAP-15/17の候補pool membershipを要求unit逐語source contractと旧source scope／connection／exceptionへ静的照合し、direct semantic linkの肯定／否定／unknownと旧asset残差を束ねる",

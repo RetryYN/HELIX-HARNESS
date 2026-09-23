@@ -4,14 +4,14 @@ canonical_vmodel: L1-L12
 canonical_layer: L1
 canonical_pair: L12
 status: draft
-authority_status: awaiting_parent_approval
+authority_status: draft_candidate
 parent_concept: docs/concept/helix-concept.md
 created: 2026-09-14
 ---
 
 # HELIX-Web-OS L1企画候補
 
-本書の親は[HELIX Concept](../../concept/helix-concept.md)である。旧承認revisionと現行Conceptとの差分は再配置候補であり、L2合意や実装許可を生成しない。
+本書の親は[HELIX Concept](../../concept/helix-concept.md)である。2026-09-17のdecisionは旧本文のexact SHAに限る。現行本文は未承認の再配置候補であり、差分は[PO判断パッケージ](../../governance/crosswalks/concept-requirement-po-decision-packet.md)に記録する。L2合意や実装許可を生成しない。
 
 HELIX-Web-OSは、HELIX-Webの展開時にHELIX-OSの外へ構成し、利用者向けWebサービスを安全かつ継続的に
 運転する基盤である。HELIX-OSの内部統制stateとWebサービスのtenant／job／接続stateを分離する。

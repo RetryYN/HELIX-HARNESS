@@ -16,6 +16,7 @@
   "status_vocabulary": {
     "current_status": [
       "approved_current",
+      "approved_historical_revision_current_l1_draft",
       "approved_requirement_not_applied",
       "candidate",
       "candidate_only",
@@ -75,7 +76,7 @@
         "HELIX-Web-OS"
       ],
       "current": {
-        "status": "approved_current",
+        "status": "approved_historical_revision_current_l1_draft",
         "evidence_products": [
           "HELIX-HARNESS",
           "HELIX-OS",

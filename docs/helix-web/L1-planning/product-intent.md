@@ -6,7 +6,7 @@ canonical_pair: L12
 layer: L1
 kind: planning
 status: draft
-authority_status: awaiting_parent_approval
+authority_status: draft_candidate
 parent_concept: docs/concept/helix-concept.md
 source_vision: archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md
 source_vision_sha256: 1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74
@@ -16,7 +16,7 @@ updated: 2026-09-14
 
 # HELIX-Web L1企画候補
 
-本書の親は[HELIX Concept](../../concept/helix-concept.md)である。保存されたVision原文と2026-09-17のL1承認revisionを保持し、現行Conceptとの差分は再配置候補として扱う。差分からL2合意や実装指示を生成しない。
+本書の親は[HELIX Concept](../../concept/helix-concept.md)である。保存されたVision原文と2026-09-17のL1承認revisionを保持する。現行本文は未承認の再配置候補であり、差分は[PO判断パッケージ](../../governance/crosswalks/concept-requirement-po-decision-packet.md)に記録する。差分からL2合意や実装指示を生成しない。
 
 ## 提供価値
 
