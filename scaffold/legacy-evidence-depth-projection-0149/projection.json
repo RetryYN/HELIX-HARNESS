@@ -1,0 +1,352 @@
+{
+  "schema": "helix-legacy-evidence-depth-projection-v1",
+  "base_revision": "69e3c6b20541721161cab9d69f3aaf834e89d511",
+  "scope": "14 existing classification-research.jsonl bundles only; research projection",
+  "denominator": {
+    "record_rows": 768,
+    "unique_asset_ids": 726,
+    "duplicate_asset_ids": 42,
+    "extra_duplicate_occurrences": 42,
+    "legacy_asset_ledger_total": 4020,
+    "unique_id_coverage_percent": 18.06
+  },
+  "depth_projection": {
+    "source_snapshot": {
+      "record_rows_with_source_exact_object": 768,
+      "meaning": "source receipt presence only; not full-source semantic review"
+    },
+    "mechanical_profile_excerpt": {
+      "0142_records_with_nonempty_all_true_markers": 52,
+      "0142_false_marker_occurrences": 0,
+      "0142_direct_product_basis_occurrences": 35,
+      "0142_direct_occurrences_with_mechanical_marker": 35,
+      "meaning": "profile/path-group first pass; marker explicitly denies semantic analysis"
+    },
+    "selected_span_candidate": {
+      "0141_records_with_pinned_semantic_span_status": 41,
+      "0141_direct_product_basis_occurrences": 26,
+      "meaning": "selected source spans and candidate mapping; status still pending human review"
+    },
+    "responsibility_comparison_material": {
+      "0141_records_with_pinned_span_and_product_basis": 35,
+      "0142_records_with_boundary_evidence_object": 57,
+      "meaning": "comparison material is present in records; its presence alone does not establish semantic review, owner, or adoption"
+    },
+    "declared_direct_product_basis_record_occurrences_across_bundles": 387,
+    "formal_classification_update": {
+      "unique_ids_explicit_true": 0,
+      "unique_ids_explicit_false": 666,
+      "unique_ids_missing_or_mixed": 60,
+      "meaning": "recorded value only; not an approval/adoption receipt or formal adoption rate"
+    }
+  },
+  "bundles": [
+    {
+      "bundle": "legacy-ai-instruction-product-classification-0145",
+      "binding_id": "SCF-B-0145",
+      "record_rows": 72,
+      "unique_asset_ids": 72,
+      "extra_duplicate_occurrences_after_first_bundle": 0,
+      "source_exact_records": 72,
+      "boundary_comparison_material_records": 72,
+      "declared_category_occurrences": {
+        "direct_product_basis": 28,
+        "insufficient_basis": 3,
+        "multi_product_conflict": 41
+      },
+      "semantic_status_occurrences": {},
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 72
+      }
+    },
+    {
+      "bundle": "legacy-asset-product-classification-0107",
+      "binding_id": "SCF-B-0107",
+      "record_rows": 64,
+      "unique_asset_ids": 64,
+      "extra_duplicate_occurrences_after_first_bundle": 0,
+      "source_exact_records": 64,
+      "boundary_comparison_material_records": 64,
+      "declared_category_occurrences": {
+        "direct_product_basis": 56,
+        "insufficient_basis": 3,
+        "multi_product_conflict": 5
+      },
+      "semantic_status_occurrences": {},
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 64
+      }
+    },
+    {
+      "bundle": "legacy-config-product-classification-0141",
+      "binding_id": "SCF-B-0141",
+      "record_rows": 41,
+      "unique_asset_ids": 41,
+      "extra_duplicate_occurrences_after_first_bundle": 0,
+      "source_exact_records": 41,
+      "boundary_comparison_material_records": 41,
+      "declared_category_occurrences": {
+        "direct_product_basis": 26,
+        "insufficient_basis": 6,
+        "multi_product_conflict": 9
+      },
+      "semantic_status_occurrences": {
+        "manual_semantic_span_pinned_pending_human_review": 41
+      },
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 41
+      }
+    },
+    {
+      "bundle": "legacy-execution-ticket-product-classification-0147",
+      "binding_id": "SCF-B-0147",
+      "record_rows": 8,
+      "unique_asset_ids": 8,
+      "extra_duplicate_occurrences_after_first_bundle": 0,
+      "source_exact_records": 8,
+      "boundary_comparison_material_records": 0,
+      "declared_category_occurrences": {
+        "<missing>": 8
+      },
+      "semantic_status_occurrences": {},
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "<missing>": 8
+      }
+    },
+    {
+      "bundle": "legacy-implementation-residual-0126",
+      "binding_id": "SCF-B-0126",
+      "record_rows": 67,
+      "unique_asset_ids": 67,
+      "extra_duplicate_occurrences_after_first_bundle": 0,
+      "source_exact_records": 67,
+      "boundary_comparison_material_records": 67,
+      "declared_category_occurrences": {
+        "direct_product_basis": 30,
+        "insufficient_basis": 14,
+        "multi_product_conflict": 23
+      },
+      "semantic_status_occurrences": {
+        "reviewed_candidate": 30,
+        "reviewed_conflict": 23,
+        "reviewed_insufficient_basis": 14
+      },
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 67
+      }
+    },
+    {
+      "bundle": "legacy-lint-candidate-product-classification-0128",
+      "binding_id": "SCF-B-0128",
+      "record_rows": 51,
+      "unique_asset_ids": 51,
+      "extra_duplicate_occurrences_after_first_bundle": 0,
+      "source_exact_records": 51,
+      "boundary_comparison_material_records": 51,
+      "declared_category_occurrences": {
+        "direct_product_basis": 38,
+        "insufficient_basis": 5,
+        "multi_product_conflict": 8
+      },
+      "semantic_status_occurrences": {
+        "research_candidate_not_formal": 51
+      },
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 51
+      }
+    },
+    {
+      "bundle": "legacy-lint-product-classification-0108",
+      "binding_id": "SCF-B-0108",
+      "record_rows": 95,
+      "unique_asset_ids": 95,
+      "extra_duplicate_occurrences_after_first_bundle": 14,
+      "source_exact_records": 95,
+      "boundary_comparison_material_records": 95,
+      "declared_category_occurrences": {
+        "direct_product_basis": 14,
+        "insufficient_basis": 81
+      },
+      "semantic_status_occurrences": {},
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 95
+      }
+    },
+    {
+      "bundle": "legacy-research-assets-product-classification-0142",
+      "binding_id": "SCF-B-0142",
+      "record_rows": 57,
+      "unique_asset_ids": 57,
+      "extra_duplicate_occurrences_after_first_bundle": 0,
+      "source_exact_records": 57,
+      "boundary_comparison_material_records": 57,
+      "declared_category_occurrences": {
+        "direct_product_basis": 35,
+        "insufficient_basis": 5,
+        "multi_product_conflict": 17
+      },
+      "semantic_status_occurrences": {},
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 52,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 57
+      }
+    },
+    {
+      "bundle": "legacy-runtime-product-classification-0117",
+      "binding_id": "SCF-B-0117",
+      "record_rows": 73,
+      "unique_asset_ids": 73,
+      "extra_duplicate_occurrences_after_first_bundle": 16,
+      "source_exact_records": 73,
+      "boundary_comparison_material_records": 73,
+      "declared_category_occurrences": {
+        "direct_product_basis": 54,
+        "insufficient_basis": 11,
+        "multi_product_conflict": 8
+      },
+      "semantic_status_occurrences": {},
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 73
+      }
+    },
+    {
+      "bundle": "legacy-runtime-residual-product-classification-0133",
+      "binding_id": "SCF-B-0133",
+      "record_rows": 59,
+      "unique_asset_ids": 59,
+      "extra_duplicate_occurrences_after_first_bundle": 0,
+      "source_exact_records": 59,
+      "boundary_comparison_material_records": 59,
+      "declared_category_occurrences": {
+        "direct_product_basis": 31,
+        "insufficient_basis": 4,
+        "multi_product_conflict": 24
+      },
+      "semantic_status_occurrences": {
+        "research_candidate_not_formal": 59
+      },
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 59
+      }
+    },
+    {
+      "bundle": "legacy-schema-product-classification-0120",
+      "binding_id": "SCF-B-0120",
+      "record_rows": 31,
+      "unique_asset_ids": 31,
+      "extra_duplicate_occurrences_after_first_bundle": 1,
+      "source_exact_records": 31,
+      "boundary_comparison_material_records": 31,
+      "declared_category_occurrences": {
+        "direct_product_basis": 17,
+        "insufficient_basis": 4,
+        "multi_product_conflict": 10
+      },
+      "semantic_status_occurrences": {},
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 31
+      }
+    },
+    {
+      "bundle": "legacy-source-product-classification-0123",
+      "binding_id": "SCF-B-0123",
+      "record_rows": 59,
+      "unique_asset_ids": 59,
+      "extra_duplicate_occurrences_after_first_bundle": 11,
+      "source_exact_records": 59,
+      "boundary_comparison_material_records": 59,
+      "declared_category_occurrences": {
+        "direct_product_basis": 30,
+        "insufficient_basis": 14,
+        "multi_product_conflict": 15
+      },
+      "semantic_status_occurrences": {},
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 59
+      }
+    },
+    {
+      "bundle": "legacy-state-db-product-classification-0127",
+      "binding_id": "SCF-B-0127",
+      "record_rows": 39,
+      "unique_asset_ids": 39,
+      "extra_duplicate_occurrences_after_first_bundle": 0,
+      "source_exact_records": 39,
+      "boundary_comparison_material_records": 39,
+      "declared_category_occurrences": {
+        "direct_product_basis": 28,
+        "insufficient_basis": 1,
+        "multi_product_conflict": 10
+      },
+      "semantic_status_occurrences": {
+        "research_candidate_not_formal": 39
+      },
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "False": 39
+      }
+    },
+    {
+      "bundle": "legacy-test-design-worker-workflow-0148",
+      "binding_id": "SCF-B-0148",
+      "record_rows": 52,
+      "unique_asset_ids": 52,
+      "extra_duplicate_occurrences_after_first_bundle": 0,
+      "source_exact_records": 52,
+      "boundary_comparison_material_records": 0,
+      "declared_category_occurrences": {
+        "cross_product_split_candidate_unresolved": 47,
+        "direct_candidate_unresolved": 3,
+        "insufficient_direct_basis": 2
+      },
+      "semantic_status_occurrences": {},
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
+      "formal_asset_classification_updated_occurrences": {
+        "<missing>": 52
+      }
+    }
+  ],
+  "duplicate_accounting": {
+    "asset_ids_with_multiple_bundle_occurrences": 42,
+    "extra_duplicate_occurrences": 42,
+    "extra_duplicate_occurrences_by_bundle_after_first_bundle": {
+      "legacy-lint-product-classification-0108": 14,
+      "legacy-runtime-product-classification-0117": 16,
+      "legacy-schema-product-classification-0120": 1,
+      "legacy-source-product-classification-0123": 11
+    },
+    "occurrence_rows_retained_in_source_bundles": 768,
+    "reconstruction": "project.py recomputes overlap from all 14 pinned inputs; duplicate IDs are omitted from this compact projection"
+  },
+  "authority_boundary": [
+    "A category label is not normalized across bundles into a semantic-review result.",
+    "The 0142 mechanical marker never counts as semantic review or formal product ownership.",
+    "Selected-span status pending human review is not approval or formal adoption.",
+    "This projection does not change disposition, product target, phase, requirement status, implementation, or authority."
+  ]
+}
