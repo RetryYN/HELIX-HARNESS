@@ -65,6 +65,20 @@ round 2（HEAD `f391da6b677c65fcd999fd627e28d8c5176aa3d3`）はMinor 1、Info 1�
 `HIL-TR-04`はLinux／macOS／Windowsの横断platform制約であり、HARNESS／OSの二unitへ確定分割できない可能性がある。
 他4件も既存routingの製品候補と分割結果に差があり、人間判断なしにroutingを変更しない。
 
+### 現在の判断に必要な範囲（2026-09-24の再整理）
+
+HARNESSは外部提供製品、HELIX-OSは内部の管理・実行機構として読む。以下は既存候補の論点を絞ったもので、routing台帳の値、要求採否、successorを変更しない。
+
+| 原要求 | 今回の整理 | 残る判断 |
+|---|---|---|
+| `HIL-FR-11` | HARNESSの工程契約を主とする候補 | 既存routingとの差を対象revisionで反映する判断 |
+| `HIL-FR-16` | OSの旧資産採否・authority記録を主とする候補 | 既存routingとの差を対象revisionで反映する判断 |
+| `HIL-FR-01` | HARNESSの工程・完了契約とOSのevent・receipt運転が混在 | 責務の分割境界 |
+| `HIL-FR-15` | HARNESSのZIPから契約への意味変換とOSのdigest・登録が混在 | 責務の分割境界 |
+| `HIL-TR-04` | 横断platform制約 | HARNESS／OS以外も対象に含むか |
+
+この3件の境界が確定するまで、候補targetを確定値として扱わない。残りの旧資産4,020件を先回りして調べることは、これらの責務判断の前提にしない。
+
 ## 旧実装・縮退・phaseとの接続
 
 本台帳の直接phase候補は、要求本文がphase機構そのものを要求する場合だけ付与した。一般的な`event`、`state`、
@@ -78,6 +92,10 @@ unresolved 1,253である。consumer closureは4,020件すべてpendingであり
 Phase Capability Inventoryは20フェーズの現行状態、旧到達層、縮退、代表assetを持つが、全assetの意味closureを
 示さない。本unit台帳、4,020 asset候補台帳、Phase Capability Inventoryの三つを照合して初めて、各要求について
 旧能力、現行との差分、本当に不足する能力を調査できる。
+
+30 unitの「直接phase未解決」は、30件にphaseを必ず割り当てる義務を意味しない。原文がphase機構を直接要求する場合だけ候補化する本台帳の規則では、27 unitは「直接phase要求なし・詳細配置はL3で確認」と整理できる。残る明示的な境界保留は`HIL-BR-14`のOS unit（source/ref inventory）、`HIL-BR-24`のOS unit（requirement ledger/projection）、`HIL-FR-18`のOS unit（prototype artifact管理/ticket生成）の3件である。この再整理は台帳の`unresolved`値やphase採否を変更しない。
+
+要求unitごとの旧実装・現行実装は、[実装証拠crosswalk](legacy-requirement-implementation-crosswalk-status-2026-09-21.md)のとおり218件とも未判定である。これは218件の未実装を確認したという意味ではない。縮退の分類はunit-phase linkの現行能力差分であり、個々の旧要求が実装済みだったことの証拠へ昇格させない。関係する旧資産のreuse判断は、要求scope確定後のL3で選んだ範囲に限定する。
 
 ## 検証と停止条件
 
