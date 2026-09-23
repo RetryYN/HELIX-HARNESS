@@ -30,7 +30,7 @@ v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pend
 |---|---:|---|
 | 旧Requirement IRの製品候補 | 153 / 153（100%） | 87件が単一製品、65件が分割、1件が製品間接続の候補 |
 | confirmed文書の原文IDの製品候補 | 175 / 175（100%） | 139件が単一製品、36件がHARNESS／OS分割の候補 |
-| 旧IR補助system contractの製品候補 | 24 / 24（100%） | HARNESS／OS接続候補16件、OS単体候補7件、HARNESS単体候補1件 |
+| 旧IR補助system contractの製品候補 | 24 / 24（100%） | HARNESS／OS接続候補19件、OS単体候補4件、HARNESS単体候補1件 |
 | 旧IRから分解した要求unitの直接工程候補 | 188 / 218（86.2%） | 残る30件は直接PHCAP機構の根拠を原文から特定できず未解決 |
 | 要求unit単位の旧実装・縮退判定 | 0 / 218（0%） | 全件の直接asset意味linkとconsumer closureが未確認 |
 
