@@ -40,7 +40,7 @@
 - `validate.py`: PASS
 - `selfcheck.py`: PASS（18 negative cases）
 - `py_compile`: PASS
-- `scfctl validate`: PASS（132 bindings、fail 0）
+- `scfctl validate`: PASS（137 bindings、fail 0）
 - `scfctl stale`／`residuals`: PASS（0／0）
 - `git diff --check`: PASS
 
