@@ -111,43 +111,51 @@ premiseが承認済みConcept／Vision／L1と`conflict`または`stale`にな�
 
 ## review、判断、merge admission
 
-すべてのPRは対象HEADを固定してreviewする。作成側と意味判断側を分け、許可されたGitHub Claude通路を用いる。
-reviewはfindingであり、人間判断を代替しない。旧CI、旧test、旧runtime、ローカルClaude CLIをfallbackにしない。
+すべてのPRは対象HEADを固定してreviewする。作成側と意味判断側を分け、利用可能な新世代の独立review通路を用いる。
+reviewはfindingであり、要求・Concept等の人間判断を代替しない。旧CI、旧test、旧runtime、ローカルClaude CLIをfallbackにしない。
 PR classが未選択または複数指定のPRはReadyにしない。
+
+### 旧HELIXのGitHub自走運用から保持する契約
+
+旧sourceは`archive/legacy-generation-2026-09-14/root/CLAUDE.md`（`LEGACY-ASSET-6EBDB617A8104A7756D0`、
+SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）の「GitHub 自走運用」と、
+同階層の`AGENTS.md`（`LEGACY-ASSET-A54FF182C7E8ACF56ACF`、
+SHA-256 `fafe73efa4b34864c3b5e6a60775a21007d9c6bf358e710edaa5d2bce50ea2bf`）である。
+両assetは台帳上`unresolved`でconsumer_refsも未確定の旧AI instructionであり、本文を現行instructionへ完全一致copyしない。
+旧sourceの作成側／review側の分離、push→Draft PR→独立review→明示merge、blockerの一括返却と修正後HEADの再判定を意味再導出する。
+新世代CI、`harness-check`、PLANの`review_evidence`、DB追従、旧`helix` CLIは現行の合格条件やfallbackにしない。
+Concept・要求の人間判断、Scaffold Bindingのstale確認、現行PR class条件は維持する。
+旧sourceでの失敗・consumerの個別閉包は未確認であり、旧runtimeの稼働実績を新世代の運転証拠にしない。
+[Capability Lease承認record](decisions/capability-lease-bootstrap-approval-2026-09-20.md)は後続のmerge executorと実行環境許可を
+別途承認しているが、lease実装・有効化はそのrecordだけでは成立しない。本再導出案の直接`gh pr merge --merge`と
+leaseの二重境界は両立しないため、双方を同時に現行運用として扱わない。後続lease導入時にはこの差分の採否を
+別revisionで判断し、承認済みrecordを黙って削除・失効させない。
 
 ### 作成側とレビュー対応側の責務
 
-- `レビュー対応側`は、PR作成・修正側から独立して割り当てられ、対象PRのreview応答を受け取り、merge／Issue close通路を明示許可された人またはruntimeである。review findingを投稿した主体、`@claude`へのmention、ローカルClaude session、reviewer名だけからこのidentityや通路許可を推定しない。
-- PR作成・修正側は、対象差分の作成、証拠提示、review依頼、finding対応、再review依頼までを担う。
-- PR作成・修正側は、自分のPRをReady化、merge、auto-merge予約、対応Issueのcloseまで進めない。
+- `レビュー対応側`はPR作成・修正側と異なるcontextのruntimeとし、対象PRのexact HEADをread-onlyで独立reviewしてfindingをPR commentへ記録し、merge admissionを判定する。作成側の差分編集・push・Ready化はしない。review findingの投稿者名、`@claude` mention、ローカルClaude sessionだけで独立性やreview成立を推定しない。
+- PR作成・修正側は、対象差分の作成、静的証拠提示、push、Draft PR作成、review依頼、finding対応、再review依頼までを明示依頼を待たずに担う。blockerは同じHEADについて一括で返し、修正後HEADは新しい独立blockerの実証がなければ一巡だけ再判定する。review側が修正後HEADの結果を記録し、未解消blockerが0件であることを作成側が確認したらReady化する。
+- PR作成・修正側は、自分のPRをmerge、auto-merge予約、対応Issueのcloseまで進めない。Ready化は独立review結果の確認後に限る。
 - レビュー対応側は、依頼と応答が同じexact base／content HEAD pairへ束縛され、必要なfinding対応が反映されたことを確認する。
 - レビュー対応側は、PR classを問わず、merge admissionの直前に、PRのcontent HEADを変えずに、最新baseとのmerge結果（GitHubの`refs/pull/<番号>/merge`、またはローカルの試験merge）に対して`scfctl stale`が`stale=0`を返すことを確認し、結果をreview記録に残す。Scaffold Bindingの上流（`upstream[].path`）は文書・台帳を問わず`scaffold/`の外にあり、どのclassのPRでも変更されうる。PRのhead時点で一致していても、baseの進行や積んだPRのmergeで変わりうる。PR branchへbaseを取り込んでcontent HEADを変えると、exact HEADに束縛したreviewをやり直すことになるため、そうしない。`refs/pull/<番号>/merge`はGitHubが非同期に再計算するため最新baseより古いことがある。使う場合は、その第1親が再取得したbase HEADと、第2親がcontent HEADと一致することを確かめ、一致しなければローカルの試験mergeで実行する。`stale`が1件以上ならmergeせず作成側へ返す。
-- merge admission成立後のmerge、post-merge read-after、対応Issueのcloseはレビュー対応側が行う。merge後に不一致があればcloseせず、作成側へ返す。
-- review結果の投稿だけではmerge指示にならない。レビュー対応側がmerge責務を引き受け、対象PRと方式を確認して実行する。
-- 責務の割当はGitHub、CLI、API、IDE、Worker等の実行通路の許可を兼ねない。レビュー対応側は、当該通路と作用について明示許可を確認できない場合、mergeせず停止する。
+- merge admission成立後、レビュー対応側が人間の追加approveを待たず`gh pr merge --merge`で明示mergeし、post-merge read-afterを行う。GitHub native auto-mergeは使わない。対応Issueのcloseは要求・ticketの完了条件を別に確認し、mergeだけから完了へ進めない。merge後に不一致があればcloseせず、作成側へ返す。
+- review結果の投稿だけではmerge admissionは成立しない。レビュー対応側が対象PR、review済みHEAD、必要な人間decision、Scaffold Binding、merge方式を再照合する。
 
 ### governance／operation_change PRのmerge admission
 
 個別のmerge admissionが定義されていないgovernance／`operation_change` PRは、少なくとも次をすべて満たす。
 
-1. review request、最後に有効なdelivery receipt、review responseが同じrequest identityとexact base／content full SHAを示し、payload digestが一致する。誤ったreceiptは削除せず、`correction_of`付きの後続receiptで訂正する。
-2. current content HEADに未解消のBlocker／Major／Minorが0件である。
+1. review requestと独立review responseが同じPRのexact base／content full SHAを示し、応答が現行HEADに対するものである。配送commentの存在やmentionだけでreview成立としない。
+2. current content HEADに未解消のblockerが0件である。同じ責務・既存scopeで安全に閉じるfindingは本PRで修正し、独立責務・別設計・lifecycle・性能改善は別episodeへ分ける。
 3. merge直前にbase HEAD、content HEAD、main HEAD、merge可能性、merge方式を再取得し、review済みpairから変化していない。
-4. レビュー対応側に対象PRのmerge、post-merge read-after、対応Issue closeを行う通路が明示許可されている。
+4. 作成側とは独立したレビュー対応側が`gh pr merge --merge`で明示mergeし、post-merge read-afterを行う。人間の追加approveをmergeの前提にしない。
 5. merge commit方式で統合し、第1親、第2親、content HEADの祖先性をread-afterする。期待と一致しない場合はIssueをcloseせず作成側へ返す。
 
-review依頼もGitHubへの一方向projectionとして扱う。送信前にreview request identity、対象PR、target full SHA、完全な
-依頼本文、payload SHA-256を固定し、送信後にcomment ID、remote本文、remote本文SHA-256、target full SHAをread-afterする。
-remote本文がpayloadと一致しない、`@claude`本文がなくlocal file pathまたは`@file`文字列だけが投稿された、対象HEADが
-currentでない場合は配送失敗またはstaleとして、review待ちへ進めない。comment作成成功、mention、reaction、workflow起動は
-review receiptではない。review結果は、応答本文が対象exact HEADを示し、依頼後のcommentとして取得できた場合だけ受理する。
-
-read-after成立後、同じPR threadへ依頼commentとは別の`review_request_delivery_receipt` commentをappendする。このcommentを
-PR branch外の配送記録とし、`review_request_id`、対象PR、target full SHA、送信前payload SHA-256、依頼comment ID、取得した
-remote本文SHA-256、read-after時点を記録する。payload SHA-256は送信する依頼本文byteに対して計算し、receipt comment自身を
-含めない。依頼commentのremote本文byteと送信前payload byteが一致し、両SHA-256も一致した場合だけ`delivery_result: delivered`
-とする。訂正は旧receiptを消さず、新しいreceipt identityと`correction_of`で追記する。merge admission判定時はGitHub APIから
-依頼comment、delivery receipt、review応答を再取得し、三者のrequest identityとtarget base／content full SHAが一致することを確認する。
+review依頼は対象PRとexact base／content HEADを示すcommentで行い、投稿後にremote本文と対象HEADを読み直す。
+local file pathや`@file`文字列だけが投稿された場合や対象HEADが変わった場合は再依頼する。
+comment作成成功、mention、reaction、workflow起動だけをreview receiptにしない。review応答が対象HEADと所見を示すことを
+確認し、修正でHEADが変わった場合は新しいrevisionとして再reviewする。別の`review_request_delivery_receipt` commentは
+merge admissionの必須条件にしない。
 
 ### PR #1797 `repository_foundation`
 

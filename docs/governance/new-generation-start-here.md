@@ -61,15 +61,15 @@ Concept v4.1と4対象L1のexact revisionは2026-09-17のdecision recordで承�
 
 - 旧sourceのinventory、意味分類、対象別crosswalk、archive隔離。
 - 承認済みConcept／対象別L1を親とするL2／L11候補の起草、静的なID・参照・責務整合確認、個別採否準備。
-- exact revisionのremote syncと、明示的に許可されたGitHub review通路での意味review。
-- GitHub PRを共有・review surfaceとして使うこと。
+- exact revisionのremote sync、Draft PRによる共有、現行の独立review通路での意味review。通常のGitHub作業では作成側が明示依頼を待たずpush・Draft PR作成・指摘修正を進め、review側がexact HEADのfindingを記録した後、作成側が修正後HEADのreview結果を確認してReady化する。
+- 現行merge admissionが成立したPRを、作成側とは独立したreview側が`gh pr merge --merge`で明示mergeし、read-afterすること。新世代CIがない間は旧CIを代用しない。
 - `scaffold/`名前空間での仮組み。仮の物は必ずScaffold Bindingへ登録し、`python3 scaffold/tools/scfctl.py validate`に合格させる（[scaffold/README.md](../../scaffold/README.md)）。仮組みは正式な設計・実装・CIではなく、その動作や検査の合格から採否・承認・完了を生成しない。
 
 ## 現在停止する作業
 
 - L3以降の正式な設計・実装、新世代CIの実装・起動、release、deployment。`scaffold/`外に仮の物を置くこと。Scaffold Bindingに登録しない仮の物を置くこと。
 - 旧CI、旧runtime、旧hook、旧test、旧AI promptの実行またはfallback。
-- reviewer名だけを根拠にしたCLI、API、IDE、Worker、GitHub Appの起動。
+- 旧CLI・旧hook・旧runtime・旧CIへのfallback。reviewer名だけから旧実行通路を起動すること。GitHub native auto-mergeと、作成側による自己merge。
 - PR、Issue、CI、DB、memory、会話からの要求採否・人間承認・受入の生成。
 
 ## GitHubの位置づけ
