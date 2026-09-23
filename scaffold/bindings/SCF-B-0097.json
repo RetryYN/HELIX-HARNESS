@@ -8,7 +8,7 @@
   "state": "registered",
   "reason": "#2044/#2045 merge後の最新main c52f2709から旧IR残2 unitを選定した。NFR-20は新規未使用design candidate 1件を選定し、NFR-22は同じphase/product poolのdesign候補を全てconsumedとしてexamined-not-selectedに記録する。3 role edge、3 semantic atom、2 composite unresolved、1 selected role asset、5 inspected asset、3 missing evidence receiptを固定し、candidate／consumed／examined_not_selected／unexaminedをrole別に保持する。formal owner、authority、phase admission、current implementation、degradation、formal successor、consumer closure、acceptance、release、deploymentは生成しない。Wave49 reviewed exact HEAD 36795d575とmain merge base c52f2709をrebaseline gateへ固定し、先行HEADまたはmain変更時は停止する。replacement.issue=0はDraft PR未割当を示すtracker sentinelである。",
   "upstream": [
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "e4b0fdd97f83ef8831eec0d17e9df0b0e547a34672432bf410edab38d0037504", "note": "current governance entry; static boundary only"},
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83", "note": "current governance entry; static boundary only"},
     {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "four-product boundary candidate; no routing admission"},
     {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "OS L1 boundary candidate"},
     {"path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl", "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3", "note": "source unit spans and candidate products"},

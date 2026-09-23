@@ -35,12 +35,12 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "e4b0fdd97f83ef8831eec0d17e9df0b0e547a34672432bf410edab38d0037504",
+      "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83",
       "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
     },
     {
       "path": "docs/governance/upstream-authority-register-2026-09-14.md",
-      "sha256": "18c970f7a0975a9095875dbd4406507f4dcfc82cbaf6bf89a7646f4f6d6da51d",
+      "sha256": "93c4fd45868646f207c8f625f1c76d931a2a2411dbf9b4952ea5112d17ef5add",
       "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
     },
     {

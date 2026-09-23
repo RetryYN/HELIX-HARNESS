@@ -13,7 +13,7 @@
     {"path": "scaffold/pre-isolation-outside-holding-67/report.json", "sha256": "4544a56b8eb2e50f6720c019e73ad0575796a300b97db15bf246e5cbe442e795", "note": "outside-67 67 path分母と選定順序"},
     {"path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl", "sha256": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b", "note": "32 registerからsupersedes終端13 live holdingsを再計算"},
     {"path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl", "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180", "note": "333 existing-path holding、outside-67との境界"},
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "e4b0fdd97f83ef8831eec0d17e9df0b0e547a34672432bf410edab38d0037504", "note": "authority／旧資産静的参照／scaffold境界"},
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83", "note": "authority／旧資産静的参照／scaffold境界"},
     {"path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md", "sha256": "99d1e78e7722d5569d5615b8c2700452bedf7e76448e68f11b06acbde30efec7", "note": "333 existing-path holdingの監査契約"},
     {"path": "docs/governance/management-provisional-requirement-registration.md", "sha256": "4641b2fa1edd4d22748b85598e7bde1561aa8225305a6e54d90595b9b4c28ab8", "note": "source_holding／requirement_candidate境界"},
     {"path": "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl", "sha256": "ddb90daece98a4cef6033b5de7e27947bf2e23991358a8d9d1764cbe3bd2b786", "note": "MPR-SH-HEADING-002 live holding"},
