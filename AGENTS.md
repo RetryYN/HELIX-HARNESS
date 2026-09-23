@@ -5,17 +5,36 @@
 作業前に[新世代作業入口](docs/governance/new-generation-start-here.md)を読み、対象機構・共通部品と製品属性、authority状態、
 現在の層、許可された操作、停止条件を確認する。
 
+## 再構築の原則
+
+本repositoryは旧HELIXの再構築であり、新構築ではない。旧HELIXの「inventory-first」規則
+（既存を見ずにtop-downで起こさず、対象に旧HELIXを必ず含める。旧`CLAUDE.md`「旧 HELIX ソースリポジトリ」）を引き継ぐ。
+
+- 規則、運用、工程、役割分担、承認手続き、要求、設計、仕組みを追加・変更・提案するときは、先に旧HELIX
+  （`archive/legacy-generation-2026-09-14/`と[資産明細台帳](docs/governance/legacy-asset-disposition.jsonl)）の対応箇所を読み、それを起点にする。
+  旧source、判断史、failure、consumerを確認し、参照したasset IDまたはpath・行を記録する。
+- 旧HELIXに根拠のない規則、制約、許可・承認手続き、代替機構を推測で新設しない。
+  同じ役割の仕組みがある場合は、[旧資産の完全一致再利用統制](docs/governance/legacy-asset-reuse-control.md)に従い、
+  完全一致再利用、意味の再導出、置換のいずれかを明示する。
+- 旧HELIXと異なる内容にするときは、旧source、保持する点、変更する点、変更理由を記録する。旧資産の不在、未完成、旧runtimeの存在だけを変更理由にしない。
+  人の判断が要るのは、人が持つ上流の意味を変える場合と、[上流authority状態モデル](docs/governance/authority-state-model.md)が対象revisionの人間decision（対象revisionの承認、旧要求の意味変更・retire等）を求める場合に限る。
+  人が持つ上流は、旧HELIXの自律境界（旧`CLAUDE.md`「自律境界」：人は企画・要求・デザインモックを持ち、要件は承認のみ、要件の起草以下はAIが自走）を現行の層に対応させたもので、Concept、企画（L1）、要求とprototype／非UIの合意（L2）、要件の承認（L3）である。旧世代の層番号（L0企画・L1要求・L2デザインモック）をそのまま現行の層番号に当てない。
+  それ以外の差分は、記録したうえでAIが進め、独立reviewで確かめる。差分の記録を理由に、新しい承認手続きを作らない。
+- 対応する旧記述が見つからない場合は、検索範囲と結果を記録し、新規案であることを明示して人に提示する。
+- 報告、review、指摘でも、旧HELIXとの対応を確認せずに現行の規則文言だけを根拠にしない。現行文言が旧HELIXと
+  食い違い、差分の記録がない場合は、その食い違いを指摘する。
+- Concept、企画、要求、要件、設計、規則、運用、台帳のように、現在の意味を持ち更新され続ける文書は、同じファイルを更新する。版ごとの別ファイル、`_vN`などの版付きの名前、日付付きの複製を作らない。
+  旧HELIXでもL0 charterと`docs/design/helix/L0〜L14`の設計文書は同じファイルを更新し、駆動モデルのVERSION_UPは将来版へ回す項目に`version_target`の印を付けて保全し、ADD_FEATUREは既存の層の文書へ差分を追補していた。版は項目に付ける印で表し、過去の本文はgitで辿る。
+  判断記録（decision record）、監査・照合の証拠、source snapshot、append-onlyの判断ログは、その時点の記録として別に作り、書き換えない。これらは本項目の対象外であり、日付や対象revisionを名前に含めてよい。過去の本文を指すときは、対象のcommitと本文のSHA-256を使う。
+- 参照は読むことに限る。旧workflow、CLI、hook、adapter、source、test、CI、設定を実行せず、
+  旧testや旧CIの合格を新世代の合格証拠やfallbackにしない。現行pathへ判断なしにcopyしない。
+
 ## 現在の境界
 
 - 日本語で報告し、人間向け文書は日本語で書く。
 - 製品は機構の一部である。HELIX-HARNESSとHELIX-Webは機構のうち外部提供する製品という属性も持ち、HELIX-OSとHELIX-Web-OSは製品ではない機構である。機構数や要求対象数を製品数と言い換えず、役割とauthority状態を対象ごとに示す。
 - Concept → 対象別L1 → L2／L11 → L3／L10 → 下流pairの順を飛ばさない。
 - GitHub、Issue、PR、CI、DB、memory、会話から要求意味・承認・完了を生成しない。
-- `archive/legacy-generation-2026-09-14/`内の旧workflow、CLI、hook、adapter、source、test、設定を実行しない。
-- 旧資産は意味、判断史、failure、consumerを調べるreferenceとしてだけ読み、新世代のbaseline、oracle、fallbackにしない。
-- HELIXの機能を最適化、拡張、再編するときは、設計・実装の前に旧HELIXの対応資産を資産明細台帳から特定し、対応するsource、判断史、failure、consumerを必ず読む。調査したasset ID、保持する契約、変更が必要な差分を記録する。
-- 旧HELIXに同じ役割の仕組みがある場合、独自の代替機構を新規開発しない。[旧資産の完全一致再利用統制](docs/governance/legacy-asset-reuse-control.md)に従い、完全一致再利用、意味の再導出、置換のいずれかを明示し、承認された差分だけを現行構造へ反映する。対応資産が無いと判断する場合も、検索範囲と結果を記録してから新規案へ進む。
-- この参照義務は旧資産の実行、現行pathへの無判断なcopy、旧CI・旧testをoracleとして使うことを許可しない。
 - 新世代CIは未構築である。旧CIを動かさない。
 - 通常のGitHub作業は明示依頼を待たず、作成側がcommit・push・Draft PR作成・指摘修正を進め、修正後HEADの独立review結果を確認してReady化する。新世代CIは未構築のため旧CIを代用せず、静的検証と独立reviewを記録する。旧HELIXのGitHub自走運用の保持点と変更点は[GitHub上流運用モデル](docs/governance/github-upstream-operating-model.md)に記録する。
 - 作成側は自分のPRをmergeしない。独立したreview側はexact HEADを読み、findingをPR commentへ記録する。未解消のblockerと現行merge admissionを確認した後、人間の追加approveなしで`gh pr merge --merge`により明示mergeし、read-afterする。GitHub native auto-mergeは使わない。reviewer名だけから旧CLI・旧hook・旧runtimeを起動せず、利用可能な新世代のreview通路を使う。

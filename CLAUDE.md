@@ -3,15 +3,14 @@
 @AGENTS.md
 
 本repositoryの現行contextは[新世代作業入口](docs/governance/new-generation-start-here.md)から取得する。
-旧世代のClaude設定、role、command、hook、runtime方針は
+本repositoryは旧HELIXの再構築であり、新構築ではない。旧世代のClaude設定、role、command、hook、runtime方針は
 `archive/legacy-generation-2026-09-14/root/.claude/`および同階層の旧`CLAUDE.md`に隔離されている。
-これらをsession instruction、review通路、実行fallbackとして使用しない。
-
-HELIXの機能を最適化、拡張、再編するときは、独自実装を起点にしない。先に旧資産明細台帳で対応資産を特定し、
-旧HELIXのsource、判断史、failure、consumerを読み、保持する契約と現行で変更する差分を記録する。同じ役割の仕組みが
-存在する場合は、[旧資産の完全一致再利用統制](docs/governance/legacy-asset-reuse-control.md)に従って再利用または意味の再導出を行い、
-承認された差分だけを実装する。対応資産が見つからない場合も検索範囲と結果を残してから新規案へ進む。
-この参照義務はarchive内資産の実行、無判断なcopy、旧CI・旧testのoracle化を許可しない。
+これらは実行せず、実行fallbackにもしないが、規則、運用、工程、役割分担、承認手続き、要求、設計を決めるときは
+必ず先に読み、起点にする。旧HELIXに根拠のない規則や手続きを推測で新設しない。旧HELIXと異なる内容にする場合は、
+旧source、保持点、変更点、理由を記録する。人の判断は、人が持つ上流（Concept、企画、要求とprototypeの合意、要件の承認）の意味を変える場合と、
+上流authority状態モデルが対象revisionの人間decisionを求める場合に限る。
+更新され続ける正本の文書は同じファイルを更新し、版ごとの別ファイルを作らない。判断記録や監査証拠は別に残す。
+詳細は[AGENTS.md](AGENTS.md)「再構築の原則」に従う。
 
 現在は上流再構築中であり、新世代CIとAI context生成器は未構築である。Conceptから対象別layerへ順に降ろし、
 GitHubは共有・review・証拠projectionとして扱う。通常のGitHub作業では作成側がpushとDraft PR作成、独立review結果の確認後にReady化し、
