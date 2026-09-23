@@ -1,0 +1,166 @@
+{
+  "archive_population_count": 4020,
+  "authority_boundary": {
+    "LABO": "excluded; Issue #2089 hold remains in force",
+    "authority_effect": "none",
+    "formal_asset_classification_updated": false,
+    "formal_consumer_closure": false,
+    "formal_implementation_status": "unknown",
+    "formal_owner_decided": false,
+    "formal_phase_admission": false,
+    "formal_product_authority": null,
+    "new_build_allowed": false
+  },
+  "base_revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
+  "binding_id": "SCF-B-0147",
+  "classification_counts": {
+    "insufficient_basis": 2,
+    "multi_product_conflict": 6
+  },
+  "comparison_sets": [
+    {
+      "distinct_ids": 666,
+      "name": "main",
+      "path": "all scaffold/*/classification-research.jsonl",
+      "revision": "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3",
+      "rows": 708
+    }
+  ],
+  "degradation_status_counts": {
+    "unknown": 8
+  },
+  "formal_effect": {
+    "authority_effect": "none",
+    "formal_asset_classification_updated": false,
+    "formal_phase_admission": false,
+    "formal_product_authority": null,
+    "new_build_allowed": false
+  },
+  "implementation_status_counts": {
+    "unknown": 8
+  },
+  "input_digests": [
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "sha256:cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "sha256:9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md",
+      "sha256": "sha256:5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
+      "sha256": "sha256:14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "sha256": "sha256:5a95be78b2341d3934e2b9c6cef66428387d7862c94b60e9145f27ca92d9ff85"
+    },
+    {
+      "path": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "sha256:a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "sha256:78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "sha256:db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "sha256:6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "sha256:50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "sha256:a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "sha256:0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "sha256:26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "sha256:600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
+    }
+  ],
+  "output_sha256": "sha256:237a9cf9bae1963205f58e7a925ded128aa265b0f5f5342a9b8ed57fd907d8a0",
+  "outputs": [
+    "scaffold/bindings/SCF-B-0147.json",
+    "scaffold/legacy-execution-ticket-product-classification-0147/README.md",
+    "scaffold/legacy-execution-ticket-product-classification-0147/PR-DRAFT.md",
+    "scaffold/legacy-execution-ticket-product-classification-0147/generate.py",
+    "scaffold/legacy-execution-ticket-product-classification-0147/inventory.json",
+    "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
+    "scaffold/legacy-execution-ticket-product-classification-0147/validate.py",
+    "scaffold/legacy-execution-ticket-product-classification-0147/selfcheck.py"
+  ],
+  "schema_revision": 1,
+  "selection": {
+    "candidate_asset_count": 8,
+    "rule": "fixed source ledger rows where source_path starts docs/governance/candidates/execution-ticket-; complete thematic family, no row truncation",
+    "source_paths": [
+      "docs/governance/candidates/execution-ticket-acceptance.md",
+      "docs/governance/candidates/execution-ticket-intake.md",
+      "docs/governance/candidates/execution-ticket-recognition.md",
+      "docs/governance/candidates/execution-ticket-requests.md",
+      "docs/governance/candidates/execution-ticket-requirements.md",
+      "docs/governance/candidates/execution-ticket-trace.md",
+      "docs/governance/candidates/execution-ticket-validation.md",
+      "docs/governance/candidates/execution-ticket-vision.md"
+    ],
+    "source_sha256s": [
+      "sha256:fbfcdfa15fbcd207df3443f0268d37f98cbc050423d596d38e2ed68e6bf0302d",
+      "sha256:951c8a89cbb839f3cbe70f04c436751db81c474303ebdcc97cf066cd7155836c",
+      "sha256:77515e07604b3b6dc15125d3fdcbc164a6d180522b16f889a1e4f52d174904ca",
+      "sha256:b9ffa16c10602ccef0fbf6f9124bd67d67c0e672f3c8208c94eea97fc36f259c",
+      "sha256:f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "sha256:9a87b920115723f19e245a0c1ff11023c948fdf209dacf005acd620d67e76a0d",
+      "sha256:fea63c221b36d5e81a58fa206ff6ed8969227aa9a720af622463f369850a9fa1",
+      "sha256:720abc2c59c61c06482bfd34e6d9b0c8e7d59d7ce564c591d839189776dfccab"
+    ],
+    "target_ids": [
+      "LEGACY-ASSET-BE8B151A0094B754FF20",
+      "LEGACY-ASSET-E365F83763C0FB340328",
+      "LEGACY-ASSET-AF22C9A05FE4E28F4E91",
+      "LEGACY-ASSET-48383451734A0832AF87",
+      "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "LEGACY-ASSET-5F709CA13975179DB7CD",
+      "LEGACY-ASSET-0AA076D5CAF7C591F23D",
+      "LEGACY-ASSET-9D7EB95274484717CC7B"
+    ]
+  }
+}

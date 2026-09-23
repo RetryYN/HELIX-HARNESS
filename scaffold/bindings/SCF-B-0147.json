@@ -1,0 +1,182 @@
+{
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0147.json",
+    "scaffold/legacy-execution-ticket-product-classification-0147/README.md",
+    "scaffold/legacy-execution-ticket-product-classification-0147/PR-DRAFT.md",
+    "scaffold/legacy-execution-ticket-product-classification-0147/generate.py",
+    "scaffold/legacy-execution-ticket-product-classification-0147/inventory.json",
+    "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
+    "scaffold/legacy-execution-ticket-product-classification-0147/validate.py",
+    "scaffold/legacy-execution-ticket-product-classification-0147/selfcheck.py"
+  ],
+  "connections": {
+    "boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority",
+    "consumers": [
+      "四製品責務境界reviewer",
+      "legacy asset classification follow-up"
+    ],
+    "dependencies": [
+      "fixed source BASE a577a7cddd1405de27bf01d22b050eb2acaa9ba9 for disposition and phase ledgers",
+      "fixed comparison main be9cf8cf99ee94a487e54d372d7a34e9266b1ee3 includes merged #2094 and #2096",
+      "fixed archive MANIFEST",
+      "stop before use if current main differs from the pinned revision; recompare the full candidate set against the new main, and stop selection if source scope or any overlap changes"
+    ]
+  },
+  "created": "2026-09-23",
+  "id": "SCF-B-0147",
+  "kind": "scaffold",
+  "obligations": [
+    "台帳の固定ID/path/SHAをsource archiveとmanifestへ照合する",
+    "候補文書の意味を現行4製品境界とL1へ照合する",
+    "implementation/degradation/phase/consumer unknownと証拠を分離する",
+    "候補集合との重複をID/path/SHA/tripleで確認する"
+  ],
+  "operations": {
+    "allowed": [
+      "read fixed Git objects statically",
+      "write research-only scaffold",
+      "run deterministic generator, static validator, negative selfcheck, scfctl static validation"
+    ],
+    "forbidden": [
+      "execute legacy archive source/runtime/test/hook/adapter/CI",
+      "旧archiveは実行しない",
+      "promote formal product/phase/implementation/consumer authority",
+      "create successor or new capability",
+      "apply LABO classification; Issue #2089 hold remains in force",
+      "merge, close, deploy"
+    ]
+  },
+  "owner_candidate": "四製品product-boundary研究（正式owner未解決）",
+  "product": "HELIX-OS",
+  "reason": "固定BASEの旧候補文書8件を静的に読み、現行4製品境界への候補・衝突・不足根拠とphase／実装／縮退／consumerの未確定を分離記録する。正式採否やauthorityは生成しない。",
+  "replacement": {
+    "formal_artifacts": [],
+    "issue": 0,
+    "role_target": null,
+    "status": "pending"
+  },
+  "role": "legacy asset product-boundary research",
+  "schema_revision": 1,
+  "state": "registered",
+  "title": "Execution Ticket候補8資産の四製品責務境界研究",
+  "updated": "2026-09-23",
+  "upstream": [
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md",
+      "sha256": "5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
+      "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "sha256": "5a95be78b2341d3934e2b9c6cef66428387d7862c94b60e9145f27ca92d9ff85"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "6bccf1003ad3200a56740322db2589340f675a73a5b64d4444de793aed35f995"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
+    }
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "negative_cases": [
+      "asset omission or duplicate",
+      "semantic anchor omission or mutation",
+      "formal phase/implementation/authority promotion",
+      "direct reference omission, addition, or reclassification",
+      "target overlap with fixed comparison sets",
+      "record, inventory, or Binding nested type/key/value mutation",
+      "ledger byte/line-ending mutation"
+    ],
+    "oracles": [
+      "validator rederives target family, archive anchors, document basename references, source hashes, manifest, and main overlap from fixed Git objects; merged #2094 and #2096 are counted through main once",
+      "typed semantic closure checks every record, inventory, and Binding field before complete byte pins are checked"
+    ],
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ]
+  }
+}
