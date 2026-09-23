@@ -22,4 +22,4 @@ python3 scaffold/legacy-test-design-worker-workflow-0148/selfcheck.py
 git diff --check
 ```
 
-merge、push、Issue close、旧test/runtime/CI実行はこの候補に含めない。
+merge、post-merge read-after、Issue close、旧test/runtime/CI実行はこの候補に含めない。
