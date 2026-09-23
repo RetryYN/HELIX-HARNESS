@@ -18,8 +18,8 @@
     "dependencies": [
       "origin/main BASE disposition and phase ledgers",
       "fixed archive MANIFEST",
-      "open PR #2090 HEAD f075c91c03e8ebff5e9c30c8a6974a6e9389b40e candidate set",
-      "open PR #2094 HEAD e5fc691c33f182f036048904b699e448795c2e20 candidate set",
+      "PR #2090 HEAD 4b6e1bbf122b03fd3531047290161aced34eefda is integrated into BASE and counted once via main",
+      "open PR #2094 HEAD 32e0f8a8469887ed6baa8294c4597d51614bcaeb candidate set",
       "open PR #2096 HEAD ab0a1faa4e2b310206b97a786c329334a2a0e151 candidate set"
     ]
   },
