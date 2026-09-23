@@ -91,6 +91,7 @@ metadata集計とoutput digestを確認する。この合格は意味review、�
 2. routing訂正候補5件と全unit境界に対する対象revision付き人間decision。
 3. 全153件のsuccessor ID、保持atom、未被覆atom、L11の割当。
 4. 30 unitの直接phase未解決と、候補188 unitのphase採否。
-5. 旧asset 4,020件の意味review、製品直接根拠、consumer closure。
 
-これらが閉じるまで、`new_build_allowed`の解除、旧asset再利用、正式設計・実装、phase完了、Issue closeを生成しない。
+旧asset 4,020件の意味review、製品直接根拠、consumer closureは全旧資産評価として別に未完了である。個別要求のscope確定後、L3で選んだ関係資産だけを必要な根拠まで調べ、全件調査を個別unitの開始前提にしない（[旧資産の判断時期に関するPO決定](../../decisions/legacy-asset-review-timing-2026-09-23.md)）。
+
+上記の要求分離条件が閉じるまで、製品別unit・phase完了・Issue closeを生成しない。[Phase Capability Inventory](../../phase-capability-inventory.json)の`new_build_allowed:false`と[新世代作業入口](../../new-generation-start-here.md)の正式設計・実装停止は変更しない。

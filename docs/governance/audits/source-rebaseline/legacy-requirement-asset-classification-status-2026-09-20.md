@@ -73,4 +73,4 @@ consumer closureは4,020件すべてpendingである。`consumer_refs`が空の3
 5. 1,170 multi-phase assetの意味分割、1,087 weak candidateの確認、1,253 unresolved assetの調査。
 6. 全4,020 assetのconsumer closureと209件のartifact kind解決。
 
-これらが閉じるまでは、旧能力の有無、現行との差分、`new_build_allowed`の解除、旧assetの再利用可否を確定しない。
+これらは全旧資産の棚卸しを完了と主張できない条件であり、個別要求の要否・製品scope判断を一律に止めない。旧能力全体と全資産の再利用可否は未確定のまま保持し、scope確定後にL3で選んだ関係資産だけを個別に調べる（[旧資産の判断時期に関するPO決定](../../decisions/legacy-asset-review-timing-2026-09-23.md)）。[Phase Capability Inventory](../../phase-capability-inventory.json)の`new_build_allowed:false`と[新世代作業入口](../../new-generation-start-here.md)の正式設計・実装停止は変更しない。
