@@ -4,9 +4,9 @@
 
 分類結果は `direct_product_basis=26`、`multi_product_conflict=9`、`insufficient_basis=6`。directは具体spanから一製品L1、conflictは二製品以上、insufficientは対応責務証拠なしを意味する。これは研究候補であり、formal product authority、L2/L11、successor、new_build_allowed、正式asset classificationを変更しない。
 
-分母は区別して記録する。archive populationは4,020件。既存研究の現在 `origin/main` unionは429件で、今回41件との重複は0。このcurrent-main 429がauthoritativeであり、今回の候補分母は `429 + 41 = 470 / 4,020` になる。496件、今回41件を加えた537件は、main前399件、#2074の31件、旧#2078 HEAD `5322a99b96f75e210c68aa56690f2da4fcb4415c` の120件から記録した歴史的projectionである。このHEADは現在の#2078 HEADを表さず、validatorは旧集合とのoverlapを未検証として扱う。現在のopen-PR unionやauthoritative分母として使わず、merge後にmainを再baselineして再計算する。
+分母は区別して記録する。archive populationは4,020件。origin/mainの8研究inventory union 429件と、統合済み #2078 のSCF-B-0126新規67 recordsは重複せず、現在のauthoritative main研究unionは496件である。今回41件との重複は0で、候補分母は `496 + 41 = 537 / 4,020` となる。validatorは8 inventoryとSCF-B-0126研究ledgerのblob/bytes/SHA/count/ID digestを固定し、exact unionとtarget排他を検証する。
 
-Binding upstreamはMANIFESTを除く固定BASE nonarchive入力65件と、current-main union算出に読む8つのmain inventoryを含む73件へ完全閉包する。validatorはcurrent-main各inventoryのblob/bytes/SHA/count/ID digest、authoritative current-mainとのtarget overlap、exact 41 set、category evidence invariants、nested duplicate key、Wave 1/37/50を含む入力freshness、archive symlink/nonregular/path/digest mismatch、Binding omission/extra/staleをfail-closeで検査する。旧#2078 HEAD projectionとそのoverlapは未検証値として明示する。selfcheckは45件の負例を実行する。
+Binding upstreamはMANIFESTを除く固定BASE nonarchive入力65件と、8つのmain inventoryおよび統合済みSCF-B-0126の67-record ledgerを含む74件へ完全閉包する。validatorはcurrent-main各inventoryと#2078 ledgerのblob/bytes/SHA/count/ID digest、authoritative current-mainとのtarget overlap、exact 41 set、category evidence invariants、nested duplicate key、Wave 1/37/50を含む入力freshness、archive symlink/nonregular/path/digest mismatch、Binding omission/extra/staleをfail-closeで検査する。selfcheckは45件の負例を実行する。
 
 検証コマンド:
 

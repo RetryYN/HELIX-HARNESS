@@ -299,6 +299,10 @@
     {
       "path": "scaffold/legacy-runtime-residual-product-classification-0133/inventory.json",
       "sha256": "f08c7cddc980144ae8bd9551ecb857b05509b00c0314f1b2b188ff60f419f644"
+    },
+    {
+      "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
+      "sha256": "d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138"
     }
   ],
   "role": "legacy-config-product-boundary-research-0141-static",
@@ -307,9 +311,9 @@
     "41件すべての固定BASE config本文を具体semantic spanとして手動pinし、意味・candidate product L1・counterevidence・bootstrap一致/不一致を保持する",
     "各archive configuration sourceのGit ls-tree mode=100644/type=blob/path exact、blob/bytes/SHA、MANIFEST/ledger digest、semantic span、1-based inclusiveで計算したanchor外の行範囲を保持し、全文読了を主張しない",
     "implementation status、未実装・不足証拠、degradation/failure、consumer、decision/read-after、Wave edgeを分類候補から分離する",
-    "current main research union 429をauthoritativeにtarget41との重複0で固定し、open PR #2078旧HEAD 5322の496/537はoverlap未検証の歴史projectionとして分離し、merge後に再baselineする",
+    "origin/main 7afee33aeの8 inventory union 429と、統合済み#2078 SCF-B-0126の新規67 recordsをasset IDで結合してcurrent research union 496を再導出し、config target41との重複0・統合後537を固定する",
     "旧archive source/runtime/test/hook/adapter/CI/workflowは実行せず独立validator/selfcheck/scfctlを維持する",
-    "Binding upstreamをmanifestを除く65 fixed nonarchive inputsとcurrent-main research inventory pathsへ完全閉包する"
+    "Binding upstreamをmanifestを除く65 fixed nonarchive inputsと、8 current-main research inventoriesおよび統合済みSCF-B-0126の67-record ledgerへ完全閉包する"
   ],
   "connections": {
     "consumers": [
@@ -320,8 +324,7 @@
       "fixed BASE phase/disposition/decision/read-after snapshots",
       "approved four-product L1 and product-boundary",
       "Wave1-50 static snapshots",
-      "current-main 429 inventory snapshots (authoritative)",
-      "open PR #2078 old-head 496/537 (conditional projection only)"
+      "origin/main 7afee33ae: eight research inventories union 429 plus merged SCF-B-0126 67-record ledger (authoritative union 496)"
     ],
     "boundary": "research evidence only; no formal product, phase, implementation, successor, or authority"
   },
@@ -359,7 +362,7 @@
     ],
     "oracles": [
       "validator independently derives config/** exact41 and all manual semantic profiles without importing generator",
-      "current-main inventory pins enforce authoritative 429 union and target zero overlap; old PR projection is non-authoritative",
+      "current-main pins enforce authoritative 496 union from eight inventories and merged SCF-B-0126 records, with exact target zero overlap",
       "strict JSON duplicate-key and input freshness guards including Wave1/37/50 and main inventory inputs",
       "archive ls-tree regular blob/path, MANIFEST, ledger, semantic coverage, and static read guards",
       "selfcheck covers category/evidence invariants, generator profile drift, Binding closure, archive mode/mismatch, source/phase/consumer failures"

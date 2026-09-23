@@ -8,11 +8,9 @@
 
 分母の扱いは次の通りです。
 
-- 現在の `origin/main` 既存研究union: 429 / archive population 4,020。今回41件との重複は0で、authoritativeです。
-- 496 / 4,020と、そこへ41件を加えた537 / 4,020は、main前399件、#2074の31件、旧#2078 HEAD `5322a99b96f75e210c68aa56690f2da4fcb4415c` の120件から記録した歴史的projectionです。この旧HEADは現在の#2078 HEADを表さず、validatorは旧集合とのoverlapを未検証として保持します。これらの数値を現在のopen-PR unionやauthoritative分母として扱わず、merge後にmainを再baselineして再計算します。
-- authoritativeな統合候補分母は `429 + 41 = 470 / 4,020` です。いずれも正式採否や完了を意味しません。
+- `origin/main` の8研究inventory union 429件と、統合済み #2078 の SCF-B-0126 新規67 recordsをasset IDで結合して再導出します。67件は8 inventory unionとの重複がなく、現在のmain研究unionは496件です。今回のconfig 41件はその496件との重複が0で、統合候補分母は `496 + 41 = 537 / 4,020` です。validatorは8 inventoryと[SCF-B-0126の研究record ledger](../legacy-implementation-residual-0126/classification-research.jsonl)のrevision/blob/bytes/SHA/ID集合を固定し、41件の排他を照合します。いずれの数値も正式採否や完了を意味しません。
 
-Binding upstreamはMANIFESTを除くfixed BASE nonarchive入力65件と、current-main union算出に読む8つのmain inventory（計73件）へ完全閉包します。inventoryと独立validatorは、authoritative current-main unionとのoverlap、対象集合、nested duplicate key、入力 omission/extra/stale、archive regular-blob guard、MANIFEST/ledger mismatch、category evidence invariants、Binding closure、authority境界をfail-closeで検査します。旧#2078 HEADに基づくprojectionは未検証の歴史値として明示し、merge後に再baselineします。旧archiveはGit object/static readだけに限定し、source/runtime/test/CI/workflow/hook/adapterを実行しません。
+Binding upstreamはMANIFESTを除くfixed BASE nonarchive入力65件と、8つのmain inventoryおよび統合済みSCF-B-0126の67-record ledger（計74件）へ完全閉包します。inventoryと独立validatorは、authoritative current-main unionとのoverlap、対象集合、nested duplicate key、入力 omission/extra/stale、archive regular-blob guard、MANIFEST/ledger mismatch、category evidence invariants、Binding closure、authority境界をfail-closeで検査します。旧archiveはGit object/static readだけに限定し、source/runtime/test/CI/workflow/hook/adapterを実行しません。
 
 ## 検証
 

@@ -31,7 +31,9 @@ REUSE = "docs/governance/legacy-asset-reuse-control.md"
 START = "docs/governance/new-generation-start-here.md"
 WAVE_PATHS = {n: (f"docs/governance/legacy-requirement-direct-semantic-review-wave{n}.jsonl" if n <= 36 else f"scaffold/legacy-semantic-review-wave{n}/legacy-requirement-direct-semantic-review-wave{n}.jsonl") for n in range(1, 51)}
 PRODUCTS = tuple(L1)
-MAIN_RESEARCH_INPUTS = ["scaffold/legacy-asset-product-classification-0107/inventory.json", "scaffold/legacy-lint-product-classification-0108/inventory.json", "scaffold/legacy-runtime-product-classification-0117/inventory.json", "scaffold/legacy-schema-product-classification-0120/inventory.json", "scaffold/legacy-source-product-classification-0123/inventory.json", "scaffold/legacy-state-db-product-classification-0127/inventory.json", "scaffold/legacy-lint-candidate-product-classification-0128/inventory.json", "scaffold/legacy-runtime-residual-product-classification-0133/inventory.json"]
+MAIN_RESEARCH_RECORDS = "scaffold/legacy-implementation-residual-0126/classification-research.jsonl"
+MAIN_RESEARCH_RECORD_PIN = ("a1b568ec674d6bc284f7ebb1f3497e4d8059b8b6", 988739, "sha256:d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138", 67, "sha256:6c03d924c3e357ad0ef8a82b7537117b07ba70e2014cc0a72b24421f3816581e")
+MAIN_RESEARCH_INPUTS = ["scaffold/legacy-asset-product-classification-0107/inventory.json", "scaffold/legacy-lint-product-classification-0108/inventory.json", "scaffold/legacy-runtime-product-classification-0117/inventory.json", "scaffold/legacy-schema-product-classification-0120/inventory.json", "scaffold/legacy-source-product-classification-0123/inventory.json", "scaffold/legacy-state-db-product-classification-0127/inventory.json", "scaffold/legacy-lint-candidate-product-classification-0128/inventory.json", "scaffold/legacy-runtime-residual-product-classification-0133/inventory.json", MAIN_RESEARCH_RECORDS]
 BASE_INPUTS = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE, CONSUMER, DECISION_RECORD, DECISION_PACKET, REUSE, START, MANIFEST, *WAVE_PATHS.values()]
 NONARCHIVE_INPUTS = [p for p in BASE_INPUTS if not p.startswith("archive/")]
 ALL_HEAD_INPUTS = NONARCHIVE_INPUTS + MAIN_RESEARCH_INPUTS
@@ -68,7 +70,7 @@ EXPECTED_NEGATIVE_CASES = (
     "inventory_category_count",
     "inventory_union_tamper",
     "inventory_overlap_tamper",
-    "inventory_conditional_overlap_claim_tamper",
+    "inventory_authoritative_union_count_tamper",
     "inventory_authority_tamper",
     "inventory_output_tamper",
     "inventory_base_tamper",
@@ -278,19 +280,28 @@ def prior_union() -> set[str]:
         obj = local_json(ROOT / path); ids = ids_from_inventory(obj)
         if len(ids) != count or id_digest(ids) != idsha: fail("E_RESEARCH_INPUT", f"main target set stale {path}")
         sets.append(ids)
+    path = MAIN_RESEARCH_RECORDS
+    blob, size, digest, count, idsha = MAIN_RESEARCH_RECORD_PIN
+    data = head_bytes(path)
+    if len(data) != size or tagged(data) != digest or head_blob(path) != blob: fail("E_RESEARCH_INPUT", f"main record snapshot stale {path}")
+    rows = local_jsonl(ROOT / path)
+    ids = [row.get("asset_id") for row in rows]
+    paths = [row.get("source_path") for row in rows]
+    if len(rows) != count or len(set(ids)) != count or len(set(paths)) != count or id_digest(set(ids)) != idsha: fail("E_RESEARCH_INPUT", f"main record target set stale {path}")
+    sets.append(set(ids))
     pre = set().union(*(s for p, s in zip(MAIN_PINS, sets) if "0120" not in p))
     if len(pre) != 399: fail("E_RESEARCH_UNION", f"pre-2074-main={len(pre)}")
     main = set().union(*sets)
-    if len(main) != 429: fail("E_RESEARCH_UNION", f"current-main={len(main)}")
+    if len(main) != 496: fail("E_RESEARCH_UNION", f"current-main={len(main)}")
     return main
 
 def verify_inventory(inv: dict) -> None:
     if set(inv) != EXPECTED_INV_KEYS: fail("E_INVENTORY_SCHEMA", "top-level keys")
     if inv["schema_revision"] != 2 or inv["binding_id"] != BINDING_ID or inv["base_revision"] != BASE_REVISION: fail("E_BASE_PIN", "binding/base")
     if inv["base_source_mode"] != "all legacy source, fixed inputs, and archive evidence bytes from fixed BASE Git objects": fail("E_BASE_SOURCE", "source mode")
-    if inv["scope"] != "fixed BASE unresolved config/** exact 41 assets; current-main research union is authoritative and open-PR projections are conditional": fail("E_INVENTORY", "scope")
+    if inv["scope"] != "fixed BASE unresolved config/** exact 41 assets; the integrated origin/main research union is authoritative": fail("E_INVENTORY", "scope")
     if inv["bundle_revision"] != "SCF-B-0141-r2": fail("E_INVENTORY", "bundle revision")
-    expected_scope = {"source_prefix": "config/", "asset_class": "Historical", "disposition": "unresolved", "artifact_evidence_kind": "configuration", "mode": "research_only", "products": list(PRODUCTS), "authoritative_prior_union": "origin/main current 429"}
+    expected_scope = {"source_prefix": "config/", "asset_class": "Historical", "disposition": "unresolved", "artifact_evidence_kind": "configuration", "mode": "research_only", "products": list(PRODUCTS), "authoritative_prior_union": "origin/main current 496"}
     if inv["research_scope"] != expected_scope: fail("E_INVENTORY", "research scope")
     expected_comp = {"source_blob_sha_line_anchor": True, "semantic_span_manual_pin": True, "anchor_coverage_and_unanchored_ranges": True, "phase_and_implementation_status": True, "missing_evidence_preserved": True, "failure_degradation": "global_static_inventory_and_asset_unknown", "consumer": "global_static_inventory_and_asset_pending", "wave_scan": True, "bootstrap_candidates_comparison_only": True}
     if inv["evidence_completeness"] != expected_comp: fail("E_INVENTORY", "evidence completeness")
@@ -372,14 +383,14 @@ def verify() -> None:
     main = prior_union(); target_set = set(expected_ids)
     if target_set & main: fail("E_OVERLAP", "target intersects authoritative current-main union")
     ru = inv["research_union"]
-    expected_ru = {"authoritative": {"basis": "origin/main current", "count": 429, "target_overlap": 0, "archive_population": 4020}, "conditional_projection": {"pre_2074_main_count": 399, "pr2074_increment_count": 31, "old_pr2078_count": 120, "old_union_count": 496, "after_config_count": 537, "status": "historical_snapshot_only_not_current_pr2078_head; overlap_unverified; post_merge_rebaseline_required", "old_pr2078_head": "5322a99b96f75e210c68aa56690f2da4fcb4415c"}, "target_overlap_authoritative_current_main": 0, "target_overlap_conditional_old_union": None, "integration_order": "authoritative current main (429) -> config/41 (470); historical #2078 snapshot (496) -> (537) is unverified against current HEAD and requires post-merge rebaseline"}
+    expected_ru = {"authoritative": {"basis": "origin/main 7afee33ae current", "count": 496, "target_overlap": 0, "archive_population": 4020}, "target_overlap_authoritative_current_main": 0, "integration_order": "authoritative current main (496) -> config/41 (537)"}
     if ru != expected_ru: fail("E_RESEARCH_UNION", "union declaration")
-    if inv["overlap_status"] != {"status": "authoritative_current_main_pass; historical_pr2078_overlap_unverified", "research_scope": "config/**", "authoritative_union": "origin/main_current_429", "target_vs_authoritative_current_main": 0, "target_vs_conditional_old_union": None, "union_exact": True, "open_pr2078_status": "historical_snapshot_not_current_head_or_authoritative"}: fail("E_OVERLAP", "overlap declaration")
-    if inv["denominator_role"] != {"archive_population": 4020, "authoritative_current_main": 429, "authoritative_after_config": 470, "conditional_old_open_pr_union": 496, "conditional_after_config": 537, "conditional_projection_status": "historical_old_pr2078_HEAD_5322_only; overlap_unverified; post_merge_rebaseline_required", "role": "research_candidate_evidence_only; conditional projection is historical and unverified, no formal adoption or completion"}: fail("E_RESEARCH_UNION", "denominator role")
+    if inv["overlap_status"] != {"status": "authoritative_current_main_pass", "research_scope": "config/**", "authoritative_union": "origin/main_7afee33ae_496", "target_vs_authoritative_current_main": 0, "union_exact": True}: fail("E_OVERLAP", "overlap declaration")
+    if inv["denominator_role"] != {"archive_population": 4020, "authoritative_current_main": 496, "authoritative_after_config": 537, "role": "research_candidate_evidence_only; no formal adoption or completion"}: fail("E_RESEARCH_UNION", "denominator role")
     edges = target_edges = 0
     for path in WAVE_PATHS.values():
         for _, edge in base_jsonl(path): edges += 1; target_edges += edge.get("asset_id") in target_set
     if inv["wave_scan"] != {"files": 50, "edges": 598, "target_edges": 1, "target_linked_assets": 1} or edges != 598 or target_edges != 1: fail("E_EDGE_SET", f"wave={edges}/{target_edges}")
-    print("SCF-B-0141 validate PASS records=41 counts={'direct_product_basis': 26, 'multi_product_conflict': 9, 'insufficient_basis': 6} target_edges=1 authoritative_union=429 historical_pr2078_projection=unverified")
+    print("SCF-B-0141 validate PASS records=41 counts={'direct_product_basis': 26, 'multi_product_conflict': 9, 'insufficient_basis': 6} target_edges=1 authoritative_union=496 config_overlap=0 after_config=537")
 
 if __name__ == "__main__": verify()

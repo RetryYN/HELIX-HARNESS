@@ -314,6 +314,10 @@
     {
       "path": "scaffold/legacy-runtime-residual-product-classification-0133/inventory.json",
       "sha256": "sha256:f08c7cddc980144ae8bd9551ecb857b05509b00c0314f1b2b188ff60f419f644"
+    },
+    {
+      "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
+      "sha256": "sha256:d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138"
     }
   ],
   "bundle_revision": "SCF-B-0141-r2",
@@ -329,12 +333,9 @@
   },
   "denominator_role": {
     "archive_population": 4020,
-    "authoritative_after_config": 470,
-    "authoritative_current_main": 429,
-    "conditional_after_config": 537,
-    "conditional_old_open_pr_union": 496,
-    "conditional_projection_status": "historical_old_pr2078_HEAD_5322_only; overlap_unverified; post_merge_rebaseline_required",
-    "role": "research_candidate_evidence_only; conditional projection is historical and unverified, no formal adoption or completion"
+    "authoritative_after_config": 537,
+    "authoritative_current_main": 496,
+    "role": "research_candidate_evidence_only; no formal adoption or completion"
   },
   "evidence_completeness": {
     "anchor_coverage_and_unanchored_ranges": true,
@@ -785,6 +786,12 @@
       "bytes": 59563,
       "path": "scaffold/legacy-runtime-residual-product-classification-0133/inventory.json",
       "sha256": "sha256:f08c7cddc980144ae8bd9551ecb857b05509b00c0314f1b2b188ff60f419f644"
+    },
+    {
+      "blob": "a1b568ec674d6bc284f7ebb1f3497e4d8059b8b6",
+      "bytes": 988739,
+      "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
+      "sha256": "sha256:d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138"
     }
   ],
   "negative_cases": [
@@ -819,7 +826,7 @@
     "inventory_category_count",
     "inventory_union_tamper",
     "inventory_overlap_tamper",
-    "inventory_conditional_overlap_claim_tamper",
+    "inventory_authoritative_union_count_tamper",
     "inventory_authority_tamper",
     "inventory_output_tamper",
     "inventory_base_tamper",
@@ -845,18 +852,16 @@
   },
   "output_sha256": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
   "overlap_status": {
-    "authoritative_union": "origin/main_current_429",
-    "open_pr2078_status": "historical_snapshot_not_current_head_or_authoritative",
+    "authoritative_union": "origin/main_7afee33ae_496",
     "research_scope": "config/**",
-    "status": "authoritative_current_main_pass; historical_pr2078_overlap_unverified",
+    "status": "authoritative_current_main_pass",
     "target_vs_authoritative_current_main": 0,
-    "target_vs_conditional_old_union": null,
     "union_exact": true
   },
   "research_scope": {
     "artifact_evidence_kind": "configuration",
     "asset_class": "Historical",
-    "authoritative_prior_union": "origin/main current 429",
+    "authoritative_prior_union": "origin/main current 496",
     "disposition": "unresolved",
     "mode": "research_only",
     "products": [
@@ -870,25 +875,15 @@
   "research_union": {
     "authoritative": {
       "archive_population": 4020,
-      "basis": "origin/main current",
-      "count": 429,
+      "basis": "origin/main 7afee33ae current",
+      "count": 496,
       "target_overlap": 0
     },
-    "conditional_projection": {
-      "after_config_count": 537,
-      "old_pr2078_count": 120,
-      "old_pr2078_head": "5322a99b96f75e210c68aa56690f2da4fcb4415c",
-      "old_union_count": 496,
-      "pr2074_increment_count": 31,
-      "pre_2074_main_count": 399,
-      "status": "historical_snapshot_only_not_current_pr2078_head; overlap_unverified; post_merge_rebaseline_required"
-    },
-    "integration_order": "authoritative current main (429) -> config/41 (470); historical #2078 snapshot (496) -> (537) is unverified against current HEAD and requires post-merge rebaseline",
-    "target_overlap_authoritative_current_main": 0,
-    "target_overlap_conditional_old_union": null
+    "integration_order": "authoritative current main (496) -> config/41 (537)",
+    "target_overlap_authoritative_current_main": 0
   },
   "schema_revision": 2,
-  "scope": "fixed BASE unresolved config/** exact 41 assets; current-main research union is authoritative and open-PR projections are conditional",
+  "scope": "fixed BASE unresolved config/** exact 41 assets; the integrated origin/main research union is authoritative",
   "target_artifact_evidence_kinds": {
     "configuration": 41
   },
