@@ -75,7 +75,7 @@ def tagged(data: bytes) -> str:
 
 
 def canonical(value: object) -> bytes:
-    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
 
 
 def strict_pairs(pairs: list[tuple[str, object]]) -> dict:
@@ -85,6 +85,10 @@ def strict_pairs(pairs: list[tuple[str, object]]) -> dict:
             raise ValueError(f"duplicate JSON key: {key}")
         out[key] = value
     return out
+
+
+def reject_json_constant(value: str):
+    raise ValueError(f"non-standard JSON constant: {value}")
 
 
 @lru_cache(maxsize=None)
@@ -110,7 +114,7 @@ def git_tree(revision: str, path: str) -> dict[str, str]:
 
 def strict_json(data: bytes, path: str) -> object:
     try:
-        return json.loads(data.decode("utf-8"), object_pairs_hook=strict_pairs)
+        return json.loads(data.decode("utf-8"), object_pairs_hook=strict_pairs, parse_constant=reject_json_constant)
     except (UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
         raise AssertionError(f"E_JSON {path}: {exc}") from exc
 
@@ -125,7 +129,7 @@ def strict_jsonl(data: bytes, path: str) -> list[tuple[int, dict]]:
         if not line.strip():
             continue
         try:
-            row = json.loads(line, object_pairs_hook=strict_pairs)
+            row = json.loads(line, object_pairs_hook=strict_pairs, parse_constant=reject_json_constant)
         except (json.JSONDecodeError, TypeError, ValueError) as exc:
             raise AssertionError(f"E_JSON {path}:{line_no}: {exc}") from exc
         if not isinstance(row, dict):
@@ -435,11 +439,18 @@ def repin_stability(current_inventory: dict) -> dict:
 
 def candidate_reason_candidates(main: dict, target_span: dict, main_spans: list, target_scope: dict) -> list[dict]:
     results = []
-    if target_scope["target_overlap_scope"] != target_scope["main_union_scope"]:
+    membership = target_scope["scope_membership_evidence"]
+    if (
+        target_scope["target_overlap_scope"] == "existing_main_product_research_union"
+        and membership["target_overlap_status"] == OVERLAP_STATUS
+        and membership["fallback_profile_contains_asset_id"] is True
+        and membership["fallback_profile_reason_claims_asset_absent"] is True
+        and membership["main_union_contains_asset_id"] is True
+    ):
         results.append({
             "type": "scope_difference",
-            "evidence_refs": ["target.scope", "target.overlap_result", "main.input_union"],
-            "basis": "The #2078 fallback profile says the asset ID was absent from an earlier research ID set, while its pinned overlap row confirms presence in the main 429-union. The two scopes/denominators may explain why evidence was not carried forward.",
+            "evidence_refs": ["target.scope.scope_membership_evidence", "target.overlap_result", "main.input_union"],
+            "basis": "The #2078 UNRESEARCHED_PREFIX_ASSET_PATHS fallback reason asserts this asset ID was absent from prior research, while the pinned overlap row places it in the existing main union of 429 IDs. This membership conflict is for human review and does not select a result.",
         })
     if not main_spans or any((s.get("line_start"), s.get("line_end"), s.get("line_text_sha256")) != (target_span.get("line_start"), target_span.get("line_end"), tagged("\n".join(target_span.get("line_text", [])).encode("utf-8"))) for s in main_spans):
         results.append({
@@ -494,6 +505,13 @@ def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to
         "target_overlap_scope": entry.get("research_scope"),
         "target_generator_scope": "new_residual_after_main_product_union; overlap candidates are excluded from emitted 67-record target JSONL",
         "target_fallback_profile_scope": "UNRESEARCHED_PREFIX_ASSET_PATHS (53 static ID/path literals); generic rationale refers to absent prior research IDs",
+        "scope_membership_evidence": {
+            "fallback_profile_contains_asset_id": path_to_id.get(source_path) == asset_id,
+            "fallback_profile_reason_claims_asset_absent": "absent from the prior research asset-ID set" in PROFILE_REASON,
+            "main_union_contains_asset_id": main.get("asset_id") == asset_id,
+            "main_union_asset_count": 429,
+            "target_overlap_status": entry.get("overlap_status"),
+        },
     }
     phase = target_phase_inputs(asset_id)
     target_context = {
@@ -745,7 +763,8 @@ def build() -> None:
             "N04-main-result-mutation", "N05-target-result-mutation", "N06-source-sha-alias",
             "N07-source-span-tamper", "N08-l1-evidence-tamper", "N09-reason-evidence-tamper",
             "N10-formal-authority-promotion", "N11-phase-status-promotion", "N12-upstream-digest-stale",
-            "N13-output-digest-stale",
+            "N13-output-digest-stale", "N14-scope-membership-evidence-tamper",
+            "N15-json-nan", "N16-json-infinity", "N17-json-negative-infinity",
         ],
         "outputs": {"records_sha256": tagged(output), "records_bytes": len(output), "record_count": len(out_rows)},
     }
@@ -758,7 +777,7 @@ def build() -> None:
         "product": "HELIX-HARNESS",
         "owner_candidate": "四製品product-boundaryの候補結果差分照合（正式owner未解決）",
         "state": "registered",
-        "reason": "#2078 HEAD 886c2436で同一source path/SHAがmain research unionと異なる候補結果を持つ36件を、source span・意味解釈・候補製品/L1根拠・counterevidence・method/scope差とともに並べ、証拠付き差分理由候補を人間判断へ渡す。勝者・formal route・新規asset研究を生成しない。",
+        "reason": "#2078現行固定HEAD 8c8cf851（初回pin 886c2436から再pin）で同一source path/SHAがmain research unionと異なる候補結果を持つ36件を、source span・意味解釈・候補製品/L1根拠・counterevidence・method/scope差とともに並べ、証拠付き差分理由候補を人間判断へ渡す。勝者・formal route・新規asset研究を生成しない。",
         "upstream": binding_upstream(inputs),
         "role": "legacy-asset-overlap-reconciliation-human-review-0144-static",
         "obligations": [
@@ -802,7 +821,8 @@ def build() -> None:
                 "N04-main-result-mutation", "N05-target-result-mutation", "N06-source-sha-alias",
                 "N07-source-span-tamper", "N08-l1-evidence-tamper", "N09-reason-evidence-tamper",
                 "N10-formal-authority-promotion", "N11-phase-status-promotion", "N12-upstream-digest-stale",
-                "N13-output-digest-stale",
+                "N13-output-digest-stale", "N14-scope-membership-evidence-tamper",
+                "N15-json-nan", "N16-json-infinity", "N17-json-negative-infinity",
             ],
         },
         "replacement": {"formal_artifacts": [], "issue": 2078, "role_target": None, "status": "pending"},

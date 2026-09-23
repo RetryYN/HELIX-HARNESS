@@ -49,7 +49,7 @@
   },
   "owner_candidate": "四製品product-boundaryの候補結果差分照合（正式owner未解決）",
   "product": "HELIX-HARNESS",
-  "reason": "#2078 HEAD 886c2436で同一source path/SHAがmain research unionと異なる候補結果を持つ36件を、source span・意味解釈・候補製品/L1根拠・counterevidence・method/scope差とともに並べ、証拠付き差分理由候補を人間判断へ渡す。勝者・formal route・新規asset研究を生成しない。",
+  "reason": "#2078現行固定HEAD 8c8cf851（初回pin 886c2436から再pin）で同一source path/SHAがmain research unionと異なる候補結果を持つ36件を、source span・意味解釈・候補製品/L1根拠・counterevidence・method/scope差とともに並べ、証拠付き差分理由候補を人間判断へ渡す。勝者・formal route・新規asset研究を生成しない。",
   "replacement": {
     "formal_artifacts": [],
     "issue": 2078,
@@ -154,7 +154,11 @@
       "N10-formal-authority-promotion",
       "N11-phase-status-promotion",
       "N12-upstream-digest-stale",
-      "N13-output-digest-stale"
+      "N13-output-digest-stale",
+      "N14-scope-membership-evidence-tamper",
+      "N15-json-nan",
+      "N16-json-infinity",
+      "N17-json-negative-infinity"
     ],
     "oracles": [
       "validator independently reads the pinned #2078 inventory/generator and eight main classification inputs without importing generate.py",

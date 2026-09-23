@@ -27,6 +27,16 @@ def run_case(case_id: str) -> str:
         rows = read_rows(BUNDLE / "classification-reconciliation.jsonl")
         if case_id == "N01-json-duplicate-key":
             (temp_bundle / "classification-reconciliation.jsonl").write_text('{"asset_id":"a","asset_id":"b"}\n', encoding="utf-8")
+        elif case_id == "N14-scope-membership-evidence-tamper":
+            changed = copy.deepcopy(rows)
+            changed[0]["target_2078_result"]["method"]["scope"]["scope_membership_evidence"]["main_union_contains_asset_id"] = False
+            write_rows(temp_bundle / "classification-reconciliation.jsonl", changed)
+        elif case_id == "N15-json-nan":
+            (temp_bundle / "classification-reconciliation.jsonl").write_text('{"asset_id":"a","value":NaN}\n', encoding="utf-8")
+        elif case_id == "N16-json-infinity":
+            (temp_bundle / "classification-reconciliation.jsonl").write_text('{"asset_id":"a","value":Infinity}\n', encoding="utf-8")
+        elif case_id == "N17-json-negative-infinity":
+            (temp_bundle / "classification-reconciliation.jsonl").write_text('{"asset_id":"a","value":-Infinity}\n', encoding="utf-8")
         else:
             changed = copy.deepcopy(rows)
             if case_id == "N02-target-set-omission":
@@ -56,7 +66,7 @@ def run_case(case_id: str) -> str:
             else:
                 raise AssertionError(f"unexpected negative case {case_id}")
             write_rows(temp_bundle / "classification-reconciliation.jsonl", changed)
-        if case_id != "N01-json-duplicate-key":
+        if case_id not in {"N01-json-duplicate-key", "N15-json-nan", "N16-json-infinity", "N17-json-negative-infinity"}:
             unsigned = {key: value for key, value in inventory.items() if key != "inventory_sha256"}
             canonical = json.dumps(unsigned, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
             inventory["inventory_sha256"] = "sha256:" + hashlib.sha256(canonical).hexdigest()
@@ -86,6 +96,10 @@ def main() -> None:
         "N11-phase-status-promotion": "E_PHASE_STATE",
         "N12-upstream-digest-stale": "E_INPUT_DIGEST",
         "N13-output-digest-stale": "E_OUTPUT_DIGEST",
+        "N14-scope-membership-evidence-tamper": "E_REASON_EVIDENCE",
+        "N15-json-nan": "E_JSON",
+        "N16-json-infinity": "E_JSON",
+        "N17-json-negative-infinity": "E_JSON",
     }
     executed = []
     codes = []

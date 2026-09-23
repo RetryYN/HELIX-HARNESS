@@ -22,4 +22,4 @@ research-only Scaffold Binding `SCF-B-0144`、formal classification/route/phase/
 
 ## 検証
 
-`generate.py`、独立 `validate.py`、13件の順序固定negative selfcheck、`py_compile`、`scfctl validate`、`git diff --check`を実行します。レビュー依頼、merge、Issue closeはこのPRでは行いません。
+`generate.py`、独立 `validate.py`、17件の順序固定negative selfcheck、`py_compile`、`scfctl validate`、`git diff --check`を実行します。レビュー依頼、merge、Issue closeはこのPRでは行いません。

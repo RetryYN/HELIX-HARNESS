@@ -68,6 +68,10 @@ EXPECTED_NEGATIVE_CASES = [
     "N11-phase-status-promotion",
     "N12-upstream-digest-stale",
     "N13-output-digest-stale",
+    "N14-scope-membership-evidence-tamper",
+    "N15-json-nan",
+    "N16-json-infinity",
+    "N17-json-negative-infinity",
 ]
 
 
@@ -85,7 +89,7 @@ def digest(data: bytes) -> str:
 
 
 def canonical(value: object) -> bytes:
-    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False).encode()
 
 
 def pairs_no_duplicate(pairs: list[tuple[str, object]]) -> dict:
@@ -95,6 +99,10 @@ def pairs_no_duplicate(pairs: list[tuple[str, object]]) -> dict:
             raise ValueError(f"duplicate JSON key {key}")
         out[key] = value
     return out
+
+
+def reject_json_constant(value: str):
+    raise ValueError(f"non-standard JSON constant: {value}")
 
 
 @lru_cache(maxsize=None)
@@ -118,7 +126,7 @@ def tree_entry(revision: str, path: str) -> dict:
 
 def parse_json_bytes(raw: bytes, code: str, label: str):
     try:
-        return json.loads(raw.decode("utf-8"), object_pairs_hook=pairs_no_duplicate)
+        return json.loads(raw.decode("utf-8"), object_pairs_hook=pairs_no_duplicate, parse_constant=reject_json_constant)
     except (UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
         raise CheckError(f"{code} {label}: {exc}") from exc
 
@@ -133,7 +141,7 @@ def parse_jsonl_bytes(raw: bytes, label: str) -> list[tuple[int, dict]]:
         if not line.strip():
             continue
         try:
-            row = json.loads(line, object_pairs_hook=pairs_no_duplicate)
+            row = json.loads(line, object_pairs_hook=pairs_no_duplicate, parse_constant=reject_json_constant)
         except (json.JSONDecodeError, TypeError, ValueError) as exc:
             raise CheckError(f"E_JSON {label}:{number}: {exc}") from exc
         require(isinstance(row, dict), "E_JSON", f"{label}:{number} must be object")
@@ -305,9 +313,38 @@ def same_candidate_invariant(category: str, products: list) -> bool:
     return False
 
 
-def expected_reason_types(main: dict, target_span_value: dict, main_spans: list) -> list[str]:
+def expected_scope_membership(entry: dict, asset_id: str, path_to_id: dict[str, str], main_by_id: dict[str, list[dict]]) -> dict:
+    return {
+        "fallback_profile_contains_asset_id": path_to_id.get(entry.get("source_path")) == asset_id,
+        "fallback_profile_reason_claims_asset_absent": "absent from the prior research asset-ID set" in PROFILE_REASON,
+        "main_union_contains_asset_id": asset_id in main_by_id,
+        "main_union_asset_count": len(main_by_id),
+        "target_overlap_status": entry.get("overlap_status"),
+    }
+
+
+def expected_target_scope(entry: dict, asset_id: str, path_to_id: dict[str, str], main_by_id: dict[str, list[dict]]) -> dict:
+    return {
+        "main_union_scope": "existing_main_product_research_union (429 asset-ID union at pinned main revision)",
+        "target_overlap_scope": entry.get("research_scope"),
+        "target_generator_scope": "new_residual_after_main_product_union; overlap candidates are excluded from emitted 67-record target JSONL",
+        "target_fallback_profile_scope": "UNRESEARCHED_PREFIX_ASSET_PATHS (53 static ID/path literals); generic rationale refers to absent prior research IDs",
+        "scope_membership_evidence": expected_scope_membership(entry, asset_id, path_to_id, main_by_id),
+    }
+
+
+def expected_reason_types(main: dict, target_span_value: dict, main_spans: list, scope: dict) -> list[str]:
     # Exact candidate signals are repeated independently from generate.py.
-    types = ["scope_difference"]  # target fallback set intersects the main union at this exact ID.
+    membership = scope["scope_membership_evidence"]
+    types = []
+    if (
+        scope["target_overlap_scope"] == "existing_main_product_research_union"
+        and membership["target_overlap_status"] == "same_source_different_candidate_result"
+        and membership["fallback_profile_contains_asset_id"] is True
+        and membership["fallback_profile_reason_claims_asset_absent"] is True
+        and membership["main_union_contains_asset_id"] is True
+    ):
+        types.append("scope_difference")
     line_text_sha = digest("\n".join(target_span_value["line_text"]).encode("utf-8"))
     if not main_spans or any((x.get("line_start"), x.get("line_end"), x.get("line_text_sha256")) != (target_span_value["line_start"], target_span_value["line_end"], line_text_sha) for x in main_spans):
         types.append("evidence_span_difference")
@@ -467,13 +504,17 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
         require(row.get("authority_effect") == "none" and row.get("formal_asset_classification_updated") is False and row.get("formal_route_updated") is False and row.get("phase_admission_updated") is False and row.get("successor_assignment") is None and row.get("implementation_status_promoted") is False and row.get("consumer_closure_created") is False and row.get("new_build_allowed") is False, "E_AUTHORITY", f"formal boundary changed {aid}")
         resolution = row.get("resolution", {})
         require(resolution.get("status") == "unresolved_human_judgment_required" and resolution.get("winner_selected") is False and resolution.get("formal_route_created") is False, "E_AUTHORITY", f"winner or formal route generated {aid}")
+        target_scope = target.get("method", {}).get("scope", {})
+        expected_scope = expected_target_scope(entry, aid, path_to_id, main_by_id)
+        require(target_scope == expected_scope, "E_REASON_EVIDENCE", f"scope membership evidence mismatch {aid}")
         actual_reasons = [x.get("type") for x in row.get("difference_reason_candidates", [])]
-        expected_reasons = expected_reason_types(main_record, tspan, main_exact.get("semantic_anchors", []))
+        expected_reasons = expected_reason_types(main_record, tspan, main_exact.get("semantic_anchors", []), expected_scope)
         require(actual_reasons == expected_reasons and all(x in inv["difference_reason_vocabulary"] for x in actual_reasons), "E_REASON_EVIDENCE", f"reason candidate set mismatch {aid}")
         for reason in row["difference_reason_candidates"]:
             require(reason.get("evidence_refs") and isinstance(reason.get("basis"), str) and reason["basis"], "E_REASON_EVIDENCE", f"unsubstantiated reason {aid}")
-        scope = target.get("method", {}).get("scope", {})
-        require(scope.get("target_fallback_profile_scope", "").startswith("UNRESEARCHED_PREFIX_ASSET_PATHS") and scope.get("target_overlap_scope") == entry.get("research_scope") and scope.get("main_union_scope", "").startswith("existing_main_product_research_union"), "E_REASON_EVIDENCE", f"scope evidence drift {aid}")
+            if reason.get("type") == "scope_difference":
+                require(reason.get("evidence_refs") == ["target.scope.scope_membership_evidence", "target.overlap_result", "main.input_union"], "E_REASON_EVIDENCE", f"scope evidence references mismatch {aid}")
+                require(reason.get("basis") == "The #2078 UNRESEARCHED_PREFIX_ASSET_PATHS fallback reason asserts this asset ID was absent from prior research, while the pinned overlap row places it in the existing main union of 429 IDs. This membership conflict is for human review and does not select a result.", "E_REASON_EVIDENCE", f"scope evidence basis mismatch {aid}")
         main_category_counts[main_cat] += 1
         target_category_counts[target_result["category"]] += 1
         actual_reason_counts.update(actual_reasons)
