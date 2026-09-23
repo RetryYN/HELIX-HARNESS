@@ -110,22 +110,22 @@
     },
     {
       "path": "scaffold/legacy-worker-execution-checkpoint-quota-0150/inventory.json",
-      "sha256": "00f3107189882670c625fd0ceb223ef76d6b66efcb410017c06871cd39c90bf1",
+      "sha256": "fcbaea30bcb77800be0fd9365129f2fca99ba235abfcb13913c41bb8d20cb686",
       "note": "SCF-B-0150 research artifact digest"
     },
     {
       "path": "scaffold/legacy-worker-execution-checkpoint-quota-0150/README.md",
-      "sha256": "aa0181f0b402ecf7d78a21a27865caaf8ec64073565ea193b1438ab2a43f123a",
+      "sha256": "0098ef7e892eed033f710ca6d45ea88190df7ff8a724acac733003fcf590505c",
       "note": "SCF-B-0150 research artifact digest"
     },
     {
       "path": "scaffold/legacy-worker-execution-checkpoint-quota-0150/PR-DRAFT.md",
-      "sha256": "9752a590c127f1e6a057166df1aee2a6bf248961f6cd4f486c90f65f2cba0090",
+      "sha256": "8f1f5448c3295238ee5578418a1c7d66a7b48e5bcca9f5ce2547810d1a4840a7",
       "note": "SCF-B-0150 research artifact digest"
     },
     {
       "path": "scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py",
-      "sha256": "7eabf5e05182f8daec363d65bd2abca6f535a90c37884c043379b6f348816ca9",
+      "sha256": "7d3070032319c17e7c710bc78d3e97c2b9544c474f665b6a926b9272c71b31a3",
       "note": "SCF-B-0150 research artifact digest"
     }
   ],
@@ -145,7 +145,7 @@
     ],
     "dependencies": [
       "Concept v4.1と4対象L1の2026-09-17 exact-revision approval record",
-      "固定BASE 69e3c6b20541721161cab9d69f3aaf834e89d511のbootstrap・archive MANIFEST・SCF-B-0148 exclusion selection"
+      "固定BASE b1578f4fda5d5ecd01c9565ee81f4ddf0cebfe1aのbootstrap・archive MANIFEST・SCF-B-0148 exclusion selection"
     ],
     "boundary": "research-only。candidate evidenceのみ。formal owner/product classification、phase admission、要求採否、実装/test pass、successor、failure observation、consumer closure、CIを生成しない。main HEADが進んだ後は最新main向け根拠として利用せず、PR前に全入力・重複・Bindingを再導出する。"
   },
@@ -153,8 +153,9 @@
     "allowed": [
       "固定BASEのcurrent bootstrap/ledger/decision/source Git blobを静的に読む",
       "scaffold/配下にclassification research、selection、inventory、README、draft summary、静的validatorを置く",
-      "scfctl validate/stale/residualsとbundleのread-only static validatorを実行する",
-      "git diff --checkを実行する"
+      "scfctl validate/stale/residualsをread-onlyで実行する",
+      "git diff --checkを実行する",
+      "SCF-B-0150静的validatorと4件のtemporary negative selfcheckを実行する"
     ],
     "forbidden": [
       "旧archiveは実行しない",
@@ -183,14 +184,14 @@
       "forbidden_write_scope"
     ],
     "oracles": [
-      "bundle validateはBASE HEAD、208/52/156 cohort算術、ID/path/SHA三軸排他、13の選択集合、archive MANIFEST/source/pair digest、phase candidates、unresolved/unknown/pending境界、Binding upstream/artifact digestsを固定BASEから確認する。",
       "13 source test-design files and declared parent pairs are read as static Git blobs only; validator does not invoke them.",
-      "scfctl validate checks repository Scaffold Binding schema and conflict boundaries; stale/residuals are read-only outputs and not adoption evidence."
+      "scfctl validate checks repository Scaffold Binding schema and conflict boundaries; stale/residuals are read-only outputs and not adoption evidence.",
+      "bundle validatorは選択集合、source/pair、分類/authority候補状態、原phase assessment、source span/anchor、Binding upstream/artifact closure、inventory集計を固定BASEと照合する。--selfcheckはBinding negative_casesの4種を一時改変し、各々の拒否を確認する。"
     ],
     "negative_cases": [
       "selected asset/path/SHAがSCF-B-0148または208 cohort外なら拒否",
       "sourceまたはparent pair digest/MANIFESTが変われば拒否",
-      "unknown implementation、not-run、consumer pending、no-authority境界の昇格を拒否",
+      "unknown implementation、not-run、observed failure unknown、consumer pending、no-authority境界の昇格を拒否",
       "fixed BASE HEADまたはBinding upstream digestが変われば停止"
     ]
   },

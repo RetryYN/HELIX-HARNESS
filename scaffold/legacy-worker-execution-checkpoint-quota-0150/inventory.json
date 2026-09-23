@@ -4,10 +4,10 @@
   "base_revision": "b1578f4fda5d5ecd01c9565ee81f4ddf0cebfe1a",
   "selection": {
     "cohort_count": 208,
-    "excluded_SCf_B_0148_count": 52,
     "residual_count": 156,
     "selected_count": 13,
-    "id_path_sha_disjoint_from_0148": true
+    "id_path_sha_disjoint_from_0148": true,
+    "excluded_scf_b_0148_count": 52
   },
   "counts": {
     "product_candidate_mentions": {
@@ -15,11 +15,11 @@
       "HELIX-HARNESS": 2
     },
     "phase_candidate_mentions": {
+      "PHCAP-02": 2,
       "PHCAP-07": 13,
       "PHCAP-10": 7,
-      "PHCAP-02": 2,
-      "PHCAP-20": 4,
-      "PHCAP-17": 1
+      "PHCAP-17": 1,
+      "PHCAP-20": 4
     },
     "classification_categories": {
       "direct_candidate_unresolved": 11,

@@ -4,4 +4,4 @@ SCF-B-0150として、旧test-design worker execution/isolation/checkpoint/quota
 
 候補製品・phase、親pair、test design内の予定failure/citation、asset decision/consumerのunknownを区別した。正式な実装・test実行・観測failure・consumer closure・authority昇格を主張しない。
 
-確認: `python3 scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py`; `python3 scaffold/tools/scfctl.py validate`; `python3 scaffold/tools/scfctl.py stale`; `python3 scaffold/tools/scfctl.py residuals`; `git diff --check`.
+確認: `python3 scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py`; `python3 scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py --selfcheck`; `python3 scaffold/tools/scfctl.py validate`; `python3 scaffold/tools/scfctl.py stale`; `python3 scaffold/tools/scfctl.py residuals`; `git diff --check`.
