@@ -16,7 +16,8 @@
       "meaning": "source receipt presence only; not full-source semantic review"
     },
     "mechanical_profile_excerpt": {
-      "0142_records_marked_not_semantic_analysis": 52,
+      "0142_records_with_nonempty_all_true_markers": 52,
+      "0142_false_marker_occurrences": 0,
       "0142_direct_product_basis_occurrences": 35,
       "0142_direct_occurrences_with_mechanical_marker": 35,
       "meaning": "profile/path-group first pass; marker explicitly denies semantic analysis"
@@ -54,7 +55,8 @@
         "multi_product_conflict": 41
       },
       "semantic_status_occurrences": {},
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 72
       }
@@ -73,7 +75,8 @@
         "multi_product_conflict": 5
       },
       "semantic_status_occurrences": {},
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 64
       }
@@ -94,7 +97,8 @@
       "semantic_status_occurrences": {
         "manual_semantic_span_pinned_pending_human_review": 41
       },
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 41
       }
@@ -111,7 +115,8 @@
         "<missing>": 8
       },
       "semantic_status_occurrences": {},
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "<missing>": 8
       }
@@ -134,7 +139,8 @@
         "reviewed_conflict": 23,
         "reviewed_insufficient_basis": 14
       },
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 67
       }
@@ -155,7 +161,8 @@
       "semantic_status_occurrences": {
         "research_candidate_not_formal": 51
       },
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 51
       }
@@ -173,7 +180,8 @@
         "insufficient_basis": 81
       },
       "semantic_status_occurrences": {},
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 95
       }
@@ -192,7 +200,8 @@
         "multi_product_conflict": 17
       },
       "semantic_status_occurrences": {},
-      "mechanical_not_semantic_analysis_true_occurrences": 52,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 52,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 57
       }
@@ -211,7 +220,8 @@
         "multi_product_conflict": 8
       },
       "semantic_status_occurrences": {},
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 73
       }
@@ -232,7 +242,8 @@
       "semantic_status_occurrences": {
         "research_candidate_not_formal": 59
       },
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 59
       }
@@ -251,7 +262,8 @@
         "multi_product_conflict": 10
       },
       "semantic_status_occurrences": {},
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 31
       }
@@ -270,7 +282,8 @@
         "multi_product_conflict": 15
       },
       "semantic_status_occurrences": {},
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 59
       }
@@ -291,7 +304,8 @@
       "semantic_status_occurrences": {
         "research_candidate_not_formal": 39
       },
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "False": 39
       }
@@ -310,7 +324,8 @@
         "insufficient_direct_basis": 2
       },
       "semantic_status_occurrences": {},
-      "mechanical_not_semantic_analysis_true_occurrences": 0,
+      "records_with_only_true_mechanical_not_semantic_analysis_markers": 0,
+      "mechanical_not_semantic_analysis_false_marker_occurrences": 0,
       "formal_asset_classification_updated_occurrences": {
         "<missing>": 52
       }

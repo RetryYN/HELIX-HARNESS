@@ -31,7 +31,7 @@
   "obligations": [
     "Read the 14 fixed existing classification-research.jsonl inputs and preserve the 768 row / 726 unique ID denominator with 42 extra duplicate occurrences accounted for by recomputation",
     "Report existing per-bundle category and depth markers without treating identical category labels as equal semantic-review depth",
-    "Keep SCF-B-0142's 35 direct_product_basis occurrences under not_semantic_analysis separate from SCF-B-0141's 26 direct_product_basis selected-span candidates pending human review",
+    "Keep SCF-B-0142's 35 direct_product_basis occurrences under nonempty all-true not_semantic_analysis markers separate from SCF-B-0141's 26 direct_product_basis selected-span candidates pending human review; report zero false marker occurrences",
     "Report formal_asset_classification_updated only as an explicit record marker and preserve the 60 unique IDs with a missing or mixed marker",
     "Do not change product target, requirement disposition, phase, implementation, failure/degradation, approval, consumer closure, or authority"
   ],
@@ -82,7 +82,8 @@
       "git diff --check"
     ],
     "negative_cases": [
-      "Mutate an SCF-B-0142 direct record's not_semantic_analysis marker to false in memory; projection invariants reject it and source files remain unchanged",
+      "Add a false not_semantic_analysis marker to an SCF-B-0142 direct record in memory; projection rejects mixed markers and reports zero false marker occurrences for source records",
+      "Set a record's classification field to a non-object; projection returns a clear ValueError rather than an attribute error",
       "SCF-B-0141 selected-span pending-human-review status is not represented as formal adoption"
     ]
   },

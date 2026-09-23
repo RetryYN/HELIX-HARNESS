@@ -75,6 +75,12 @@ def mechanical_flags(record: dict) -> list[bool]:
 def validate_rows(rows: list[dict]) -> None:
     if len({r["bundle"] for r in rows}) != 14:
         raise ValueError("対象bundle数が14ではありません")
+    for row in rows:
+        record = row["record"]
+        if "classification" in record and not isinstance(record["classification"], dict):
+            raise ValueError(
+                f"{row['bundle']}:{row['line']}: classificationはobjectである必要があります"
+            )
     ids = [r["record"]["asset_id"] for r in rows]
     occurrences = Counter(ids)
     if len(rows) != 768 or len(occurrences) != 726:
@@ -89,12 +95,17 @@ def validate_rows(rows: list[dict]) -> None:
         by_bundle[row["bundle"]].append(row["record"])
     research = by_bundle["legacy-research-assets-product-classification-0142"]
     direct_0142 = [r for r in research if category(r) == "direct_product_basis"]
-    marked_0142 = [r for r in research if True in mechanical_flags(r)]
-    if len(research) != 57 or len(direct_0142) != 35 or len(marked_0142) != 52:
+    flags_0142 = [mechanical_flags(r) for r in research]
+    marked_0142 = [flags for flags in flags_0142 if flags and all(flag is True for flag in flags)]
+    false_markers_0142 = sum(flag is False for flags in flags_0142 for flag in flags)
+    if (len(research) != 57 or len(direct_0142) != 35 or len(marked_0142) != 52
+            or false_markers_0142 != 0):
         raise ValueError("SCF-B-0142の件数またはmechanical markerが変化しました")
-    if sum(category(r) == "direct_product_basis" and True in mechanical_flags(r)
+    if sum(category(r) == "direct_product_basis"
+           and (flags := mechanical_flags(r))
+           and all(flag is True for flag in flags)
            for r in research) != 35:
-        raise ValueError("SCF-B-0142 direct 35件のmechanical markerが一致しません")
+        raise ValueError("SCF-B-0142 direct 35件のmechanical markerがtrue-onlyではありません")
 
     config = by_bundle["legacy-config-product-classification-0141"]
     direct_0141 = [r for r in config if category(r) == "direct_product_basis"]
@@ -140,7 +151,13 @@ def project(rows: list[dict]) -> dict:
         source_exact = sum(isinstance(r["record"].get("source_exact"), dict) for r in occurrences)
         boundary_material = sum(isinstance(r["record"].get("boundary_evidence"), dict)
                                for r in occurrences)
-        mechanical_true = sum(True in mechanical_flags(r["record"]) for r in occurrences)
+        mechanical_true = sum(
+            bool(flags := mechanical_flags(r["record"])) and all(flag is True for flag in flags)
+            for r in occurrences
+        )
+        mechanical_false = sum(
+            flag is False for r in occurrences for flag in mechanical_flags(r["record"])
+        )
         bundle_summaries.append({
             "bundle": bundle,
             "binding_id": binding_id,
@@ -151,7 +168,8 @@ def project(rows: list[dict]) -> dict:
             "boundary_comparison_material_records": boundary_material,
             "declared_category_occurrences": dict(sorted(categories.items())),
             "semantic_status_occurrences": dict(sorted(semantic_status.items())),
-            "mechanical_not_semantic_analysis_true_occurrences": mechanical_true,
+            "records_with_only_true_mechanical_not_semantic_analysis_markers": mechanical_true,
+            "mechanical_not_semantic_analysis_false_marker_occurrences": mechanical_false,
             "formal_asset_classification_updated_occurrences": dict(sorted(formal.items())),
         })
 
@@ -193,9 +211,15 @@ def project(rows: list[dict]) -> dict:
                 "meaning": "source receipt presence only; not full-source semantic review",
             },
             "mechanical_profile_excerpt": {
-                "0142_records_marked_not_semantic_analysis": sum(
-                    True in mechanical_flags(r["record"])
+                "0142_records_with_nonempty_all_true_markers": sum(
+                    bool(flags := mechanical_flags(r["record"]))
+                    and all(flag is True for flag in flags)
                     for r in by_bundle["legacy-research-assets-product-classification-0142"]
+                ),
+                "0142_false_marker_occurrences": sum(
+                    flag is False
+                    for r in by_bundle["legacy-research-assets-product-classification-0142"]
+                    for flag in mechanical_flags(r["record"])
                 ),
                 "0142_direct_product_basis_occurrences": sum(
                     category(r["record"]) == "direct_product_basis"
@@ -203,7 +227,8 @@ def project(rows: list[dict]) -> dict:
                 ),
                 "0142_direct_occurrences_with_mechanical_marker": sum(
                     category(r["record"]) == "direct_product_basis"
-                    and True in mechanical_flags(r["record"])
+                    and bool(flags := mechanical_flags(r["record"]))
+                    and all(flag is True for flag in flags)
                     for r in by_bundle["legacy-research-assets-product-classification-0142"]
                 ),
                 "meaning": "profile/path-group first pass; marker explicitly denies semantic analysis",
@@ -292,13 +317,26 @@ def main() -> int:
                 if r["bundle"] == "legacy-research-assets-product-classification-0142"
                 and category(r["record"]) == "direct_product_basis"
             )
-            target["classification"]["product_basis"][0]["mechanical_excerpt"]["not_semantic_analysis"] = False
+            false_basis = copy.deepcopy(target["classification"]["product_basis"][0])
+            false_basis["mechanical_excerpt"]["not_semantic_analysis"] = False
+            target["classification"]["product_basis"].append(false_basis)
             try:
                 project(changed)
-            except (KeyError, TypeError, ValueError):
-                print("negative check: pass (0142 mechanical marker mutation rejected)")
+            except ValueError:
+                print("negative check: pass (mixed 0142 mechanical markers rejected)")
             else:
-                raise ValueError("0142の機械分類marker改変を拒否できませんでした")
+                raise ValueError("0142のmixed mechanical markerを拒否できませんでした")
+
+            malformed = copy.deepcopy(rows)
+            malformed[0]["record"]["classification"] = []
+            try:
+                validate_rows(malformed)
+            except ValueError as exc:
+                if "classificationはobject" not in str(exc):
+                    raise
+                print("negative check: pass (non-object classification rejected as ValueError)")
+            else:
+                raise ValueError("non-object classificationを拒否できませんでした")
     except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
         print(f"evidence-depth projection: FAIL: {exc}", file=sys.stderr)
         return 1
