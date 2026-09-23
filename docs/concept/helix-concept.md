@@ -135,23 +135,31 @@ flowchart LR
     end
 
     BRAIN["HELIX-BRAIN<br/>計画・予測・診断"]
-    OS["HELIX-OS<br/>推進・割当・確定・証拠"]
+    subgraph OSG["HELIX-OS"]
+        MGMT["管理<br/>登録・版・証拠・接続状況"]
+        PROM["推進<br/>チケット発行"]
+        ACC["検収<br/>CI・テストの最適化"]
+    end
+    LANES["実行者<br/>エージェントレーン・HELIXサブエージェント"]
     SEC["HELIX-Security<br/>認可・制限"]
     RUNNER["Runner／Sandbox<br/>限定実行"]
-    CONNECT["HELIX-CONNECT<br/>接続・通信"]
+    CONNECT["HELIX-CONNECT<br/>外部サービスとの接続"]
     Targets["開発対象<br/>HELIX自身・Webを含む各製品"]
 
     Human -->|Concept・企画・要求| REQ
     Human -.->|承認| APP
     APP -->|承認済み要件と工程契約| BRAIN
-    BRAIN -->|作業計画の案| OS
-    OS -->|割当・資源上限・停止条件| RUNNER
-    SEC -.->|制限| OS
+    BRAIN -->|作業計画の案| PROM
+    MGMT -->|接続状況| PROM
+    PROM -->|チケット| LANES
+    LANES -->|限定実行| RUNNER
+    RUNNER -->|開発・改修| Targets
+    RUNNER -->|結果・差分| ACC
+    ACC -->|CI・テストの結果| VER
+    ACC -->|結果| MGMT
+    SEC -.->|制限| PROM
     SEC -.->|制限| RUNNER
-    RUNNER <-->|受渡し| CONNECT
-    CONNECT <--> Targets
-    RUNNER -->|結果・差分| OS
-    OS -->|証拠| VER
+    CONNECT <-->|外部のイベント・通信| MGMT
 ```
 
 ### 提供と改善
@@ -205,7 +213,7 @@ flowchart LR
 | 機構 | 役割 | しないこと |
 |---|---|---|
 | HELIX-HARNESS 《製品》 | V-model、要求形成・設計・検証・受入の契約、外部へ提供する開発基盤 | 作業の割当、実行状態の管理 |
-| HELIX-OS | HELIX自身と各製品の要求・承認・予算・状態の管理、割当、統合、更新、復旧、推進 | 工程の意味の別定義、BRAIN案の無条件実行 |
+| HELIX-OS | 管理（HELIX自身と各製品の要求・承認・予算・状態・証拠の登録と版の管理）、推進（接続状況から安全な順序を決めてチケットを発行し、エージェントレーンとHELIXサブエージェントへ割り当てる）、検収（チケットから必要なCIとテストを割り出して最適化する）、統合、更新、復旧 | 工程の意味の別定義、BRAIN案の無条件実行 |
 | HELIX-BRAIN | 稼働中の理解、計画、予測、診断、レビュー、配置案 | 要求・承認・権限の生成、OS状態の直接更新 |
 | HELIX-LABO | 実験、比較、改善効果・退行の計測 | 自己評価だけでの採用確定 |
 | HELIX-Intelligence | 経験・知識・判断方法・モデルの改善 | 検証なしでの稼働モデル差し替え |
@@ -218,6 +226,7 @@ flowchart LR
 - **BRAINは考え、Intelligenceは育てる。** 稼働時の判断はBRAIN、その判断能力を育てるのはIntelligenceである。
 - **決めるのはOS。** BRAINは案を出す。OS内の推進機構はoperational tag、HARNESS語彙へのversioned mapping、composition、workflow instanceの生成規則を所有し、案の適格性を確認してticket graphとworkflow instanceを生成する。OSの管理が登録・統制して状態遷移を確定し、検収はHARNESSの契約への充足を独立して確認する。
 - **管理・推進・検収を、同じ自己承認主体にまとめない。**
+- **チケットは、管理・推進・検収をつなぐ単位である。** 管理が接続状況を持ち、推進がチケットを発行し、実行者が作業し、検収が必要な検証を決め、管理が結果を記録する。
 - 開発の層は、Concept → 企画（L1）→ 要求（L2）→ 要件（L3）→ 設計（L4〜L6）→ 実装 → 検証（L7〜L10）→ 利用者受入（L11）→ 運用評価（L12）の順に進み、`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7`で対にする。
 
 ### HELIX-HARNESS
