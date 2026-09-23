@@ -264,7 +264,8 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
     pass_pattern = re.compile(r"^\s*(?:Test Files|Tests)\s+(\d+)\s+passed(?:\s+\(\d+\))?\s*$", re.IGNORECASE)
     failed_count_pattern = re.compile(r"(?<!\d)(\d+)\s+failed\b", re.IGNORECASE)
     exit_marker_pattern = re.compile(r"\b(?P<marker>vitest\s+exit|exit(?:\s+code)?|exited\s+with\s+code)\b", re.IGNORECASE)
-    strict_exit_value_pattern = re.compile(r"-?\d+")
+    strict_exit_value_pattern = re.compile(r"-?[0-9]+")
+    exit_timestamp_suffix_pattern = re.compile(r"(-?[0-9]+)\s+at\s+[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z")
     zero_failure_line = re.compile(r"^\s*0\s+(?:errors?|fail(?:ed|ure)s?)\s*$", re.IGNORECASE)
     passed = [line.strip() for line in lines if pass_pattern.search(line)]
     passed_counts = [int(match.group(1)) for line in lines if (match := pass_pattern.search(line))]
@@ -272,21 +273,36 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
     for line in lines:
         matches = list(exit_marker_pattern.finditer(line))
         for index, marker_match in enumerate(matches):
-            end = matches[index + 1].start() if index + 1 < len(matches) else len(line)
+            has_next_marker = index + 1 < len(matches)
+            end = matches[index + 1].start() if has_next_marker else len(line)
             tail = line[marker_match.end():end]
-            value_match = re.match(r"\s*(?:[=:]\s*)?(?P<value>[^\s;,|]*)", tail)
-            value = value_match.group("value") if value_match else ""
+            value_match = re.match(r"\s*(?:[=:]\s*)?(?P<value>.*)", tail)
+            value = value_match.group("value").strip() if value_match else ""
+            boundary_ok = not has_next_marker or bool(
+                tail and (tail[-1].isspace() or tail.rstrip().endswith((",", ";", "|")))
+            )
+            parse_value = value
+            if has_next_marker and parse_value.endswith((",", ";", "|")):
+                parse_value = parse_value[:-1].rstrip()
+                value = parse_value
             observation = {
                 "line": line.strip(),
                 "marker": marker_match.group("marker"),
                 "value": value,
             }
-            if strict_exit_value_pattern.fullmatch(value):
-                observation.update({"status": "parsed", "code": int(value)})
+            decimal_match = strict_exit_value_pattern.fullmatch(parse_value)
+            timestamp_match = exit_timestamp_suffix_pattern.fullmatch(parse_value)
+            if boundary_ok and (decimal_match or timestamp_match):
+                code = int(decimal_match.group(0) if decimal_match else timestamp_match.group(1))
+                observation.update({"status": "parsed", "code": code})
             else:
                 observation.update({
                     "status": "unparseable",
-                    "reason": "exit value is not a strict signed decimal integer",
+                    "reason": (
+                        "exit markers are not separated by a recognized boundary"
+                        if not boundary_ok
+                        else "exit value region is not a strict signed decimal integer"
+                    ),
                 })
             exit_marker_observations.append(observation)
     exits = list(dict.fromkeys(

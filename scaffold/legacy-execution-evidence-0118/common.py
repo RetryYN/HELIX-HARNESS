@@ -26,7 +26,9 @@ REQUIRED_TEST_COUNTS = (
 )
 PASS_RE = re.compile(r"^\s*(?:Test Files|Tests)\s+(\d+)\s+passed(?:\s+\(\d+\))?\s*$", re.IGNORECASE)
 EXIT_MARKER_RE = re.compile(r"\b(?P<marker>vitest\s+exit|exit(?:\s+code)?|exited\s+with\s+code)\b", re.IGNORECASE)
-STRICT_EXIT_VALUE_RE = re.compile(r"-?\d+")
+STRICT_EXIT_VALUE_RE = re.compile(r"-?[0-9]+")
+# Existing receipt lines attach this timestamp annotation after the decimal code.
+EXIT_TIMESTAMP_SUFFIX_RE = re.compile(r"(-?[0-9]+)\s+at\s+[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z")
 # A marker must stand on its own.  Path separators, dots, and hyphens bind
 # adjacent words into a path or compound identifier and must not create a
 # failure marker (for example, src/error-handling.test.ts or fail-safe).
@@ -62,21 +64,36 @@ def _exit_marker_observations(line: str) -> list[dict]:
     matches = list(EXIT_MARKER_RE.finditer(line))
     observations = []
     for index, marker_match in enumerate(matches):
-        end = matches[index + 1].start() if index + 1 < len(matches) else len(line)
+        has_next_marker = index + 1 < len(matches)
+        end = matches[index + 1].start() if has_next_marker else len(line)
         tail = line[marker_match.end():end]
-        value_match = re.match(r"\s*(?:[=:]\s*)?(?P<value>[^\s;,|]*)", tail)
-        value = value_match.group("value") if value_match else ""
+        value_match = re.match(r"\s*(?:[=:]\s*)?(?P<value>.*)", tail)
+        value = value_match.group("value").strip() if value_match else ""
+        boundary_ok = not has_next_marker or bool(
+            tail and (tail[-1].isspace() or tail.rstrip().endswith((",", ";", "|")))
+        )
+        parse_value = value
+        if has_next_marker and parse_value.endswith((",", ";", "|")):
+            parse_value = parse_value[:-1].rstrip()
+            value = parse_value
         observation = {
             "line": line.strip(),
             "marker": marker_match.group("marker"),
             "value": value,
         }
-        if STRICT_EXIT_VALUE_RE.fullmatch(value):
-            observation.update({"status": "parsed", "code": int(value)})
+        decimal_match = STRICT_EXIT_VALUE_RE.fullmatch(parse_value)
+        timestamp_match = EXIT_TIMESTAMP_SUFFIX_RE.fullmatch(parse_value)
+        if boundary_ok and (decimal_match or timestamp_match):
+            code = int(decimal_match.group(0) if decimal_match else timestamp_match.group(1))
+            observation.update({"status": "parsed", "code": code})
         else:
             observation.update({
                 "status": "unparseable",
-                "reason": "exit value is not a strict signed decimal integer",
+                "reason": (
+                    "exit markers are not separated by a recognized boundary"
+                    if not boundary_ok
+                    else "exit value region is not a strict signed decimal integer"
+                ),
             })
         observations.append(observation)
     return observations

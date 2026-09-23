@@ -238,6 +238,62 @@ def observation_cases() -> None:
         "not_observed_in_asset",
         [("vitest exit", "0", "parsed", 0), ("exit code", "N/A", "unparseable", None)],
     )
+    expect_observation(
+        "O36 text comma token after one exit marker",
+        b"Tests 1 passed\nexit=0,0x1\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("exit", "0,0x1", "unparseable", None)],
+    )
+    expect_observation(
+        "O37 text pipe token after one exit marker",
+        b"Tests 1 passed\nexit=0|N/A\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("exit", "0|N/A", "unparseable", None)],
+    )
+    expect_observation(
+        "O38 text semicolon token after one exit marker",
+        b"Tests 1 passed\nexit=0; N/A\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("exit", "0; N/A", "unparseable", None)],
+    )
+    expect_observation(
+        "O39 text comma-separated valid exit markers",
+        b"Tests 3 passed\nexit=0, exit code=2\n",
+        None,
+        "contradictory pass summary and nonzero exit code prevent a pass verdict",
+        "observed_asset_level",
+        [("exit", "0", "parsed", 0), ("exit code", "2", "parsed", 2)],
+    )
+    expect_observation(
+        "O40 text pipe-separated valid zero exit markers",
+        b"Tests 1 passed\nexit=0| exit code=0\n",
+        "pass_observed",
+        "text pass summary has no failure marker or nonzero exit, and remains asset-level only",
+        "not_observed_in_asset",
+        [("exit", "0", "parsed", 0), ("exit code", "0", "parsed", 0)],
+    )
+    expect_observation(
+        "O41 text recognized timestamp after decimal exit",
+        b"Tests 1 passed (1)\nvitest exit=0 at 2026-09-06T19:42:32Z\n",
+        "pass_observed",
+        "text pass summary has no failure marker or nonzero exit, and remains asset-level only",
+        "not_observed_in_asset",
+        [("vitest exit", "0 at 2026-09-06T19:42:32Z", "parsed", 0)],
+    )
+    expect_observation(
+        "O42 text exit markers with an unrecognized boundary",
+        b"Tests 1 passed\nexit=0/exit code=0\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("exit", "0/", "unparseable", None), ("exit code", "0", "parsed", 0)],
+    )
 
 
 
