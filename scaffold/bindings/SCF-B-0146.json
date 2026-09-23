@@ -112,6 +112,11 @@
       "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
       "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
       "note": "focused-investigationは旧archive blobを静的read-only参照のみ。旧archiveを実行しない。"
+    },
+    {
+      "path": "scaffold/legacy-evidence-crosswalk-0146/focused-investigation.jsonl",
+      "sha256": "ff056947b055e042b95d89d830b686103d70f1566bbf3339c2b7751445e8b9d7",
+      "note": "指定7要求IDの静的調査記録。"
     }
   ],
   "role": "legacy-evidence-crosswalk-218-record-fixed-base-static-research-0146",
@@ -188,7 +193,8 @@
       "all seven 218-row status partitions",
       "source-transfer-manifest original file SHA-256 values and exact allowed identity-token remap",
       "asset disposition 355 entries, decision history and copy/read-after record mapping",
-      "explicit #2083/#2085 exclusion boundary"
+      "explicit #2083/#2085 exclusion boundary",
+      "focused-investigationの固定7 requirement ID／10 unit候補閉包、Binding artifact／archive MANIFEST digest、status非昇格"
     ],
     "negative_cases": [
       "E_BASE_NOT_ANCESTOR",

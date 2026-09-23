@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from collections import Counter
@@ -32,6 +33,11 @@ EXPECTED_TOP_KEYS = {
     "raw_observations", "status_partition", "unresolved", "prohibited_inference",
     "ledger_asset_ids_checked",
 }
+FOCUSED_REQUIREMENT_IDS = (
+    "HIL-BR-02", "HIL-BR-06", "HIL-BR-16", "HIL-BR-20",
+    "HIL-FR-01", "HIL-FR-12", "HIL-FR-23",
+)
+FOCUSED_ARCHIVE = "archive/legacy-generation-2026-09-14"
 
 
 def read_json(path: Path):
@@ -50,6 +56,43 @@ def read_records(path: Path):
             except Exception as exc:
                 raise ValueError(f"evidence line {line_no}: JSONを読めない: {exc}") from exc
     return rows
+
+
+def focused_investigation_errors(bundle: Path, expected_records):
+    """固定7 ID／10 unit閉包とBinding digest/status境界を検査する。"""
+    try:
+        focus_path = bundle / "focused-investigation.jsonl"
+        focus_bytes = focus_path.read_bytes()
+        rows = [json.loads(x) for x in focus_bytes.decode("utf-8").splitlines() if x.strip()]
+        manifest = (ROOT / f"{FOCUSED_ARCHIVE}/MANIFEST.sha256").read_bytes()
+        binding = read_json(ROOT / "scaffold/bindings/SCF-B-0146.json")
+        pins = {x["path"]: x["sha256"] for x in binding["upstream"]}
+    except Exception as exc:
+        return [f"E_RECORD_SET: focused evidenceまたはarchive pinを読めない: {exc}"]
+    ids = [x.get("requirement_id") if isinstance(x, dict) else None for x in rows]
+    if len(ids) != 7 or set(ids) != set(FOCUSED_REQUIREMENT_IDS) or len(set(ids)) != 7:
+        return ["E_RECORD_SET: focused evidenceの固定7 IDに欠落・重複・余分がある"]
+    expected = {rid: [x for x in expected_records if x["subject"].get("source_requirement_id") == rid]
+                for rid in FOCUSED_REQUIREMENT_IDS}
+    if sum(map(len, expected.values())) != 10:
+        return ["E_RECORD_RELATION: fixed BASE上のunit候補数が10ではない"]
+    errors = []
+    focus_rel = "scaffold/legacy-evidence-crosswalk-0146/focused-investigation.jsonl"
+    if focus_rel not in binding["artifacts"] or hashlib.sha256(focus_bytes).hexdigest() != pins.get(focus_rel):
+        errors.append("E_INPUT_DIGEST: focused evidenceがBinding artifact digestと不一致")
+    if hashlib.sha256(manifest).hexdigest() != pins.get(f"{FOCUSED_ARCHIVE}/MANIFEST.sha256"):
+        errors.append("E_INPUT_DIGEST: archive manifestがBinding pinと不一致")
+    for row in rows:
+        rid = row["requirement_id"]; units = expected[rid]
+        unit_ids = [x["subject"]["unit_candidate_id"] for x in units]
+        missing = row.get("missing_evidence_by_unit", [])
+        missing_ids = [x.get("unit_candidate_id") for x in missing if isinstance(x, dict)] if isinstance(missing, list) else []
+        if row.get("unit_candidate_ids") != unit_ids or missing_ids != unit_ids or len(set(missing_ids)) != len(unit_ids):
+            errors.append(f"E_RECORD_RELATION: {rid}のunit候補に欠落・重複がある")
+        if (row.get("historical_run_receipt_candidates") != [] or any(key in row for key in ("unit_status", "implementation_status", "acceptance_status", "failure_status"))
+                or row.get("status_effect") != "none; existing SCF-B-0146 status_partition remains authoritative for this research bundle and unchanged"):
+            errors.append(f"E_AUTHORITY_BOUNDARY: {rid}でstatusまたはreceipt候補を昇格")
+    return errors
 
 
 def expected_inventory(records):
@@ -186,6 +229,7 @@ def validate(bundle: Path):
             errors.append(f"E_STATUS_PARTITION: {unit_id}.unresolved")
         if got.get("ledger_asset_ids_checked") != want["ledger_asset_ids_checked"]:
             errors.append(f"E_RECORD_RELATION: {unit_id}.ledger assets")
+    errors.extend(focused_investigation_errors(bundle, expected_records))
     if len([e for e in errors if e.startswith("E_")]) > 0:
         return errors
     expected_counts = counts(expected_records)

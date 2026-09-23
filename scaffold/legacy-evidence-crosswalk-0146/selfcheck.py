@@ -27,14 +27,21 @@ def save_bundle(tmp: Path, inventory, records):
     (tmp / "evidence.jsonl").write_text("".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in records), encoding="utf-8")
 
 
-def run_case(name, expected_code, mutate):
+def run_case(name, expected_code, mutate, focused=False):
     with tempfile.TemporaryDirectory(prefix="legacy-evidence-crosswalk-0146-") as td:
         tmp = Path(td)
         shutil.copy2(BUNDLE / "inventory.json", tmp / "inventory.json")
         shutil.copy2(BUNDLE / "evidence.jsonl", tmp / "evidence.jsonl")
-        inventory, records = load_bundle(tmp)
-        mutate(inventory, records)
-        save_bundle(tmp, inventory, records)
+        shutil.copy2(BUNDLE / "focused-investigation.jsonl", tmp / "focused-investigation.jsonl")
+        if focused:
+            rows = [json.loads(line) for line in (tmp / "focused-investigation.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+            mutate(rows)
+            (tmp / "focused-investigation.jsonl").write_text(
+                "".join(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n" for row in rows), encoding="utf-8")
+        else:
+            inventory, records = load_bundle(tmp)
+            mutate(inventory, records)
+            save_bundle(tmp, inventory, records)
         result = subprocess.run(
             [sys.executable, str(VALIDATE), "--bundle", str(tmp)],
             text=True,
@@ -72,7 +79,13 @@ def main():
     ]
     for name, code, mutate in cases:
         run_case(name, code, mutate)
-    print(f"PASS selfcheck: {len(cases)} negative cases")
+    focused_cases = [
+        ("focused_record_missing", "E_RECORD_SET", lambda rows: rows.pop()),
+        ("focused_record_duplicate", "E_RECORD_SET", lambda rows: rows.append(copy.deepcopy(rows[0]))),
+    ]
+    for name, code, mutate in focused_cases:
+        run_case(name, code, mutate, focused=True)
+    print(f"PASS selfcheck: {len(cases) + len(focused_cases)} negative cases")
     return 0
 
 

@@ -40,7 +40,7 @@ archive内の3件の`vitest-targeted.json`を確認したが、対象source base
 - `common.py`: 固定BASE読込、record集合、edge／asset集合、status境界の共通処理。
 - `build.py`: 固定BASEからbundleを再生成するgenerator。
 - `validate.py`: generatorをimportせず固定BASEから期待値を再導出し、分母、集合、digest、schema、authority境界をfail-close検査するvalidator。
-- `selfcheck.py`: 16件の改竄負例を期待error code付きで検査する。
+- `selfcheck.py`: 18件の改竄負例を期待error code付きで検査する。
 - `PR-DRAFT.md`: Draft PR本文。
 - `../bindings/SCF-B-0146.json`: bundle全成果物と入力責務を登録するBinding。
 
