@@ -24,4 +24,4 @@ python3 scaffold/tools/scfctl.py validate
 git diff --check
 ```
 
-validator/selfcheckは新世代research bundleだけを検査します。旧archiveは`git show` / `git ls-tree`による静的readのみです。#2078/#2090の既存Draft PRと別のPRはこのbundleから作成せず、現行PR群の依存・レビュー状態が解消した後に再判断します。
+validator/selfcheckは新世代research bundleだけを検査します。旧archiveは`git show` / `git ls-tree`による静的readのみです。この束はDraft PRとして提示し、既存PRの依存とHEAD再照合を明記します。review依頼、merge、closeは行いません。

@@ -28,6 +28,10 @@
 
 独立source audit、generator、validator、35 negative cases、`py_compile`、`scaffold/tools/scfctl.py validate`、`git diff --check`を予定する。意味解釈の採否は人間判断待ちであり、このPR draftはレビュー依頼や採用を意味しない。
 
-## 依存・作成状態
+## 依存・停止条件
 
-比較対象pin: main `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204`、PR #2078 `8c8cf851b47c88f6d814dc828a38743fc3cd45b3`、PR #2090 `ef3e1de17f8cd3818d38d5ff9ca512d2eb62f9ac`。現在4件の関連Draft PRが進行中のため、この変更のPRは未作成。依存関係と既存レビュー結果を確認後に作成可否を判断する。
+比較対象pin: main `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204`、PR #2078 `8c8cf851b47c88f6d814dc828a38743fc3cd45b3`、PR #2090 `ef3e1de17f8cd3818d38d5ff9ca512d2eb62f9ac`。#2078は67件source set、#2090は41件config setの重複排除とsnapshot digestの直接依存です。#2092は#2078とmainのoverlap reconciliationを扱うため、最終target/exclusion集合を確定する前提です。#2091はSCF-B-0118 validator修正であり、この72件source集合の直接依存ではありません。
+
+現在のmain確定数は429/4020であり、この72件はmainの確定数に加算しません。429 + #2078の67 + #2090の41 + この候補72 = 609は、未統合Draft PRを含む条件付きprojectionにすぎません。#2092のreconciliation後に重複集合とprojectionを再計算します。
+
+#2078/#2090/#2092の統合後、mainと両PRの実HEADを再取得してbaseと排他集合を照合します。候補72件のID/source path-SHAに差分またはoverlapが出た場合は、このPRのreviewに進まず、profile、inventory、Binding、source audit、validatorを再生成・再検証します。PR作成側ではreview依頼、merge、Issue closeを行いません。
