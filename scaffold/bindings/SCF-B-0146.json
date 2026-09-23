@@ -107,6 +107,11 @@
       "path": "scaffold/tools/scfctl.py",
       "sha256": "6a0be284da79b090821bbcc7a0630498ff97020ac6d8b4f29cb1d23f93af119e",
       "note": "実行するScaffold Binding checker"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+      "note": "focused-investigationは旧archive blobを静的read-only参照のみ。旧archiveを実行しない。"
     }
   ],
   "role": "legacy-evidence-crosswalk-218-record-fixed-base-static-research-0146",
@@ -117,7 +122,8 @@
     "#2083/#2085のbundleを入力とoracleから除外し、#1813を進捗参照のみに保つ",
     "355 assetのdisposition/history/decision/failure/consumer/read-afterを意味ごと照合し、7 source-snapshot preservation receiptをunit implementationやconsumer closureへ昇格させない",
     "SCF-B-0134と別用途を区別し、source-transfer-manifestの原本hashとidentity-only remapにより移管来歴を保つ",
-    "archive source/runtime/test/hook/adapter/CIを実行せず、generator/validator/selfcheck/scfctlで固定BASE静的検査を行う"
+    "archive source/runtime/test/hook/adapter/CIを実行せず、generator/validator/selfcheck/scfctlで固定BASE静的検査を行う",
+    "指定7 requirement IDのacceptance／system-test設計、source・test definition静的存在、unit別のmissing atom evidenceをarchive manifest blob digest付きで記録し、historical receipt候補をunit binding不在なら昇格させない"
   ],
   "connections": {
     "consumers": [
@@ -149,7 +155,8 @@
       "modify formal crosswalk/decomposition/asset ledgers or unrelated worktrees",
       "push or create PR",
       "merge or close Issue/PR",
-      "publish/deploy/release"
+      "publish/deploy/release",
+      "旧archiveは実行しない"
     ]
   },
   "artifacts": [
@@ -162,7 +169,8 @@
     "scaffold/legacy-evidence-crosswalk-0146/inventory.json",
     "scaffold/legacy-evidence-crosswalk-0146/selfcheck.py",
     "scaffold/legacy-evidence-crosswalk-0146/source-transfer-manifest.json",
-    "scaffold/legacy-evidence-crosswalk-0146/validate.py"
+    "scaffold/legacy-evidence-crosswalk-0146/validate.py",
+    "scaffold/legacy-evidence-crosswalk-0146/focused-investigation.jsonl"
   ],
   "verification": {
     "evidence_kind": "scaffold",

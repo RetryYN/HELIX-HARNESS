@@ -22,9 +22,20 @@
 
 old implementationには固定revision source blob、実行／test／acceptance receipt、unit atomへの完全結合が必要である。degradationにはbefore／after、trigger、対象atom、revision付きtransition receipt、failureにはfailure codeとstatus／exit付きreceiptが必要である。consumerにはconsumer identity、closure/read-after、unit／requirement結合が必要である。current implementationとacceptanceには現行artifactと明示verdictが必要である。unimplementedにはunitを指定した明示的non-implementation decisionが必要で、receipt不在だけでは断定しない。
 
+## 指定7要求IDのunit evidence調査
+
+`focused-investigation.jsonl`は、要求ID `HIL-BR-02`／`HIL-BR-06`／`HIL-BR-16`／`HIL-BR-20`／`HIL-FR-01`／`HIL-FR-12`／`HIL-FR-23`を対象に、旧requirements atom、0146の製品別unit候補、旧source／design／test-design asset、同名test定義候補をarchive manifestのblob digest付きで並べる。7要求IDはcrosswalk上10製品unit候補へ展開される。
+
+7件ともL9 system-test設計行があり、HST-HIL-001／002／003／004／006／010／022に「設計済み／未実装」と記録されている。これはtest設計内の記述であり、実行receipt、受入、旧unitの実装状態を示さない。10個の同名test definition候補はarchive内に存在するが、ここでは実行していない。FR-23は対象assetがdesign／test-designで、unitに結び付いた同名test definition候補を確認できなかった。
+
+archive内の3件の`vitest-targeted.json`を確認したが、対象source basenameと一致するtest result名も、unit／要求atom bindingも確認できなかった。そのためunitへ結合するhistorical run receipt candidateは0件とし、別目的のreceiptを代用しない。各unitには未充足の受入verdict＋atom/evidence relation＋revision、failure code/status/exit＋receipt＋edge relation、consumer identity/closure/read-after＋unit relation、decision ID/authority/verdict/revisionを別々に記録する。BR-06-OS／BR-20-OSが参照する一資産は`source_snapshot_preservation`のdecisionとread-after `pass`を持つが、これは要求sourceの同一digest保全とasset consumer記録であり、unit decision／unit受入／unit consumer closureではない。
+
+この追加調査は `evidence.jsonl` の7状態を変更せず、`unknown`／`pending`／`not_assessed` 境界、formal acceptance、authorityにも影響しない。
+
 ## 成果物
 
 - `inventory.json`: 固定BASE、入力digest、217 product unit／1 connection、598 edge／355 asset、7 status分母、解除証拠schema、負例コード。
+- `focused-investigation.jsonl`: 指定7要求IDの10 unit候補、旧source/test定義／system-test設計、receipt候補不成立の調査範囲、atom単位で欠ける受入／failure／consumer／decision証拠。
 - `evidence.jsonl`: 218 recordの独立再導出結果。
 - `common.py`: 固定BASE読込、record集合、edge／asset集合、status境界の共通処理。
 - `build.py`: 固定BASEからbundleを再生成するgenerator。
