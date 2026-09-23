@@ -6,7 +6,7 @@
   "product": "HELIX-OS",
   "owner_candidate": "四製品product-boundary研究（正式owner未解決）",
   "state": "registered",
-  "reason": "固定BASEのlegacy dispositionからconfig/** exact 41 assetを抽出し、全41件を旧config本文の手動semantic spanで四製品L1へ研究分類する。bootstrap候補は比較材料のみ。source/blob/SHA、regular blob mode、MANIFEST/ledger照合、configuration実装状態、phase候補、failure/degradation、consumer、Wave edgeを静的に研究する。product欄はScaffold登録先であり、単一ownerや正式authorityを表さない。",
+  "reason": "固定BASEのlegacy dispositionからconfig/** exact 41 assetを抽出し、全41件を旧config本文の手動semantic spanで旧固定BASEの4対象L1へ履歴研究分類し、現行Conceptの機構・版・製品属性へは未承認候補として別照合する。bootstrap候補は比較材料のみ。source/blob/SHA、regular blob mode、MANIFEST/ledger照合、configuration実装状態、phase候補、failure/degradation、consumer、Wave edgeを静的に研究する。product欄はScaffold登録先であり、単一ownerや正式authorityを表さない。",
   "upstream": [
     {
       "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
@@ -26,8 +26,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd",
-      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd]"
+      "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
@@ -328,7 +328,7 @@
     ],
     "dependencies": [
       "fixed BASE phase/disposition/decision/read-after snapshots",
-      "approved four-product L1 and product-boundary",
+      "旧固定BASEの承認4対象L1・product-boundary exact SHA。現行Concept子文書とL1は未承認の別revision",
       "Wave1-50 static snapshots",
       "origin/main 7afee33ae: eight research inventories union 429 plus merged SCF-B-0126 67-record ledger (authoritative union 496)"
     ],

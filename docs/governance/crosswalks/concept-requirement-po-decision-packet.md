@@ -51,6 +51,14 @@
 - 選択肢：A 現行候補の責務表を対象revisionで採る→各L1とL2/L11の未被覆を別判断へ。B 旧表の未決ownerを残して再編集→具体化前に責務候補を比較。C 保留→旧承認本文だけを履歴authorityとして保持。
 - 推奨：B。旧表の3未決点を保持し、Conceptが確定する責務だけを新表へ入れてから対象revisionを審査する。
 
+### 製品責務境界（product-boundary.md）
+
+- 原文・revision：[旧承認本文](https://github.com/RetryYN/HELIX-HARNESS/blob/11a22679dc2bfce57d3294759531282445625001/docs/concept/product-boundary.md)、SHA-256 `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038`。旧OS行は「authority管理、Worker、実行制御、CI、ログ、状態、学習、改善、配布運転」。旧PO対応表は要求PRを人間が確認する読み方を含む。
+- 提案・差分：現行候補はOSを管理・推進・検収に分け、ticket発行とCI・test最適化、LABOの独立評価、3.0 Intelligenceの知識・モデル改善へ責務を分離する。PO判断条件は上流意味変更とauthority-state-modelの人間decisionに限り、担当移動・技術変更はAI作業へ送る。
+- 理由・影響：旧承認のOS一括学習・Worker責務と人間確認の範囲が変わる。`hil-br-02-product-scope-2026-09-23.md`が引用した旧SHAは現行本文を承認せず、旧OS routingを現行機構へ自動継承できない。
+- 選択肢：A 現行責務表とPO境界を対象revisionで採る→OS／LABO／Intelligenceの単体・接続L2/L11を旧ID付きで照合。B 旧OS一括責務を維持→Conceptの機構と3.0版境界とのconflictを保持し、当該下流を確定しない。C 保留→旧承認SHAだけを履歴authorityとして保持する。
+- 推奨：Aを審査候補とし、旧OSの「学習」と「Worker」に含まれた原要求・受入を各機構へ無損失に割り当てられるか確認する。
+
 ## 判断項目
 
 ### HARNESS-L2-001
@@ -59,10 +67,10 @@
 - 原文：企画・要求・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる
 - 原制約・authority：L2要求とL11受入、L3要件とL10総合検証を混同せず、各層の成果と対が分かる（`draft`）。
 - L11対応：docs/helix-harness/L11-acceptance/product-acceptance.md:21：L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる
-- 提案：原文「企画・要求・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 枠）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「企画・要求・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 枠）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-harness/L11-acceptance/product-acceptance.md:21：L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-harness/L11-acceptance/product-acceptance.md:21：L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できるを同revisionの対条件として具体化。B 「企画・要求・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `枠`、版 `1.0`、判定候補 `維持`。
 
 ### HARNESS-L2-002
@@ -71,10 +79,10 @@
 - 原文：対象プロダクトに適した開発styleと工程の進め方を選べる
 - 原制約・authority：Full V／Production Scrum／Hybridを区別し、Discovery／PoCを別軸で扱う（`draft`）。
 - L11対応：docs/helix-harness/L11-acceptance/product-acceptance.md:22：異なる開発styleの工程を確認し、Discovery／PoCをScrumへ混入させない
-- 提案：原文「対象プロダクトに適した開発styleと工程の進め方を選べる」と原制約を保ち、HELIX-HARNESS（HARNESS内 枠）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「対象プロダクトに適した開発styleと工程の進め方を選べる」と原制約を保ち、HELIX-HARNESS（HARNESS内 枠）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-harness/L11-acceptance/product-acceptance.md:22：異なる開発styleの工程を確認し、Discovery／PoCをScrumへ混入させない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-harness/L11-acceptance/product-acceptance.md:22：異なる開発styleの工程を確認し、Discovery／PoCをScrumへ混入させないを同revisionの対条件として具体化。B 「対象プロダクトに適した開発styleと工程の進め方を選べる」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `枠`、版 `1.0`、判定候補 `維持`。
 
 ### HARNESS-L2-003
@@ -83,10 +91,10 @@
 - 原文：工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる
 - 原制約・authority：必要な合意、対成果物、検証、未解決事項が明示され、実行成功だけで工程完了にならない（`draft`）。
 - L11対応：docs/helix-harness/L11-acceptance/product-acceptance.md:23：凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない
-- 提案：原文「工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 枠）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 枠）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-harness/L11-acceptance/product-acceptance.md:23：凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-harness/L11-acceptance/product-acceptance.md:23：凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しないを同revisionの対条件として具体化。B 「工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `枠`、版 `1.0`、判定候補 `維持`。
 
 ### HARNESS-L2-004
@@ -95,10 +103,10 @@
 - 原文：要求から設計・テストへ対応を定義し、変更時の再検証範囲を決められる
 - 原制約・authority：上下流traceとV-pairの欠落を識別し、変更した要求が検証から落ちない（`draft`）。
 - L11対応：docs/helix-harness/L11-acceptance/product-acceptance.md:24：要求変更から影響設計・テストへ辿り、変更した条件の検証漏れを識別できる
-- 提案：原文「要求から設計・テストへ対応を定義し、変更時の再検証範囲を決められる」と原制約を保ち、HELIX-HARNESS（HARNESS内 コア）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「要求から設計・テストへ対応を定義し、変更時の再検証範囲を決められる」と原制約を保ち、HELIX-HARNESS（HARNESS内 コア）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-harness/L11-acceptance/product-acceptance.md:24：要求変更から影響設計・テストへ辿り、変更した条件の検証漏れを識別できる。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-harness/L11-acceptance/product-acceptance.md:24：要求変更から影響設計・テストへ辿り、変更した条件の検証漏れを識別できるを同revisionの対条件として具体化。B 「要求から設計・テストへ対応を定義し、変更時の再検証範囲を決められる」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `コア`、版 `1.0`、判定候補 `維持`。
 
 ### HARNESS-L2-005
@@ -107,10 +115,10 @@
 - 原文：言語・tool・実装方式が異なっても、layer・pair・変更種別・riskに応じた検証義務と証拠条件を適用できる
 - 原制約・authority：特定CIやWorkerに依存せず、対象revision、oracle、expected failure、証拠、有効期限、差戻し先を説明できる（`draft`）。
 - L11対応：docs/helix-harness/L11-acceptance/product-acceptance.md:25：異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない
-- 提案：原文「言語・tool・実装方式が異なっても、layer・pair・変更種別・riskに応じた検証義務と証拠条件を適用できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 コア）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「言語・tool・実装方式が異なっても、layer・pair・変更種別・riskに応じた検証義務と証拠条件を適用できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 コア）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-harness/L11-acceptance/product-acceptance.md:25：異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-harness/L11-acceptance/product-acceptance.md:25：異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしないを同revisionの対条件として具体化。B 「言語・tool・実装方式が異なっても、layer・pair・変更種別・riskに応じた検証義務と証拠条件を適用できる」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `コア`、版 `1.0`、判定候補 `維持`。
 
 ### HARNESS-L2-006
@@ -119,10 +127,10 @@
 - 原文：外部利用者が、提供範囲・版・必要依存・導入条件を確認してHARNESSを利用できる
 - 原制約・authority：HELIX内部の管理対象や運用記録を持たなくても、明示された構成で提供機能を利用できる（`draft`）。
 - L11対応：docs/helix-harness/L11-acceptance/product-acceptance.md:26：提供版・機能・依存・導入条件を確認し、HELIX内部の運用状態を持たない利用環境で対象機能を利用できる
-- 提案：原文「外部利用者が、提供範囲・版・必要依存・導入条件を確認してHARNESSを利用できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 コア）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「外部利用者が、提供範囲・版・必要依存・導入条件を確認してHARNESSを利用できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 コア）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-harness/L11-acceptance/product-acceptance.md:26：提供版・機能・依存・導入条件を確認し、HELIX内部の運用状態を持たない利用環境で対象機能を利用できる。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-harness/L11-acceptance/product-acceptance.md:26：提供版・機能・依存・導入条件を確認し、HELIX内部の運用状態を持たない利用環境で対象機能を利用できるを同revisionの対条件として具体化。B 「外部利用者が、提供範囲・版・必要依存・導入条件を確認してHARNESSを利用できる」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `コア`、版 `1.0`、判定候補 `維持`。
 
 ### HARNESS-L2-007
@@ -131,10 +139,10 @@
 - 原文：検証フェーズで複数のプロダクトを開発し、HELIX自身のプロジェクトにも適用した結果を含めて、HELIX-HARNESS製品群Version 1の完成を確認できる
 - 原制約・authority：性質の異なる対象で要求から受入・運用評価までの成立証拠を確認し、HELIX-Web等の展開前提を判定できる。Web自体の完成をVersion 1へ含めない（`draft`）。
 - L11対応：docs/helix-harness/L11-acceptance/product-acceptance.md:27：検証対象として選定した複数プロダクトとHELIX自身のプロジェクトについて、要求revision、適用構成、成果、L11受入、L12運用評価へ辿る。単一demo、HARNESS単体test、文書整合だけならVersion 1未完成とし、HELIX-Webの完成有無を判定へ混入させない
-- 提案：原文「検証フェーズで複数のプロダクトを開発し、HELIX自身のプロジェクトにも適用した結果を含めて、HELIX-HARNESS製品群Version 1の完成を確認できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 サービス①〜⑦（構成体））の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「検証フェーズで複数のプロダクトを開発し、HELIX自身のプロジェクトにも適用した結果を含めて、HELIX-HARNESS製品群Version 1の完成を確認できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 サービス①〜⑦（構成体））の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-harness/L11-acceptance/product-acceptance.md:27：検証対象として選定した複数プロダクトとHELIX自身のプロジェクトについて、要求revision、適用構成、成果、L11受入、L12運用評価へ辿る。単一demo、HARNESS単体test、文書整合だけならVersion 1未完成とし、HELIX-Webの完成有無を判定へ混入させない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-harness/L11-acceptance/product-acceptance.md:27：検証対象として選定した複数プロダクトとHELIX自身のプロジェクトについて、要求revision、適用構成、成果、L11受入、L12運用評価へ辿る。単一demo、HARNESS単体test、文書整合だけならVersion 1未完成とし、HELIX-Webの完成有無を判定へ混入させないを同revisionの対条件として具体化。B 「検証フェーズで複数のプロダクトを開発し、HELIX自身のプロジェクトにも適用した結果を含めて、HELIX-HARNESS製品群Version 1の完成を確認できる」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `サービス①〜⑦（構成体）`、版 `1.0`、判定候補 `維持`。
 
 ### HARNESS-L2-008
@@ -143,10 +151,10 @@
 - 原文：Concept／企画L1、利用者指示と根拠から要求候補を形成し、単体・接続・構成体の対象粒度を分け、要求化漏れ・企画外追加・矛盾・重複・過剰解釈・対象違い・scope／non-goal逸脱・変更影響を提示して、人間の訂正と合意により要求へ収束できる
 - 原制約・authority：意味密度の高い処理をPython coreとして複数製品へ適用でき、機能A、A→Bの接続、A–Cから成るシステムAの要求と成立を混同せず、出力を承認済み要求や操作権限へ自動昇格させない（`draft`）。
 - L11対応：docs/helix-harness/L11-acceptance/product-acceptance.md:28：指示と要求候補を意味単位で比較し、欠落・意味追加・対象違い・未確定事項を確認できる。Python coreの出力、ログ、Issue、PR、CIだけでは要求合意や操作許可を成立させない
-- 提案：原文「Concept／企画L1、利用者指示と根拠から要求候補を形成し、単体・接続・構成体の対象粒度を分け、要求化漏れ・企画外追加・矛盾・重複・過剰解釈・対象違い・scope／non-goal逸脱・変更影響を提示して、人間の訂正と合意により要求へ収束できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 部品：要求エンジン）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「Concept／企画L1、利用者指示と根拠から要求候補を形成し、単体・接続・構成体の対象粒度を分け、要求化漏れ・企画外追加・矛盾・重複・過剰解釈・対象違い・scope／non-goal逸脱・変更影響を提示して、人間の訂正と合意により要求へ収束できる」と原制約を保ち、HELIX-HARNESS（HARNESS内 部品：要求エンジン）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-harness/L11-acceptance/product-acceptance.md:28：指示と要求候補を意味単位で比較し、欠落・意味追加・対象違い・未確定事項を確認できる。Python coreの出力、ログ、Issue、PR、CIだけでは要求合意や操作許可を成立させない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-harness/L11-acceptance/product-acceptance.md:28：指示と要求候補を意味単位で比較し、欠落・意味追加・対象違い・未確定事項を確認できる。Python coreの出力、ログ、Issue、PR、CIだけでは要求合意や操作許可を成立させないを同revisionの対条件として具体化。B 「Concept／企画L1、利用者指示と根拠から要求候補を形成し、単体・接続・構成体の対象粒度を分け、要求化漏れ・企画外追加・矛盾・重複・過剰解釈・対象違い・scope／non-goal逸脱・変更影響を提示して、人間の訂正と合意により要求へ収束できる」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `部品：要求エンジン`、版 `1.0`、判定候補 `維持`。
 
 ### HARNESS-L2-009
@@ -155,10 +163,10 @@
 - 原文：要求kind、対象、構成、risk、domainに合うversioned Design Templateから必要な設計義務を導き、templateが必要とする要求入力の不足を質問・要求候補として上流へ戻せる
 - 原制約・authority：初期seedを参照して設計の恣意性を抑え、templateから要求意味を自動決定せず、unit・connection・composite固有の設計と検証へ接続できる（`draft`）。
 - L11対応：docs/helix-harness/L11-acceptance/product-acceptance.md:29：unit、connection、compositeの各要求に適用するtemplateと設計義務を確認し、必要input欠落を上流質問へ戻せる。template適用や文書生成だけでは要求合意・設計完成・検証成功を成立させない
-- 提案：原文「要求kind、対象、構成、risk、domainに合うversioned Design Templateから必要な設計義務を導き、templateが必要とする要求入力の不足を質問・要求候補として上流へ戻せる」と原制約を保ち、HELIX-HARNESS（HARNESS内 部品：Design Template）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「要求kind、対象、構成、risk、domainに合うversioned Design Templateから必要な設計義務を導き、templateが必要とする要求入力の不足を質問・要求候補として上流へ戻せる」と原制約を保ち、HELIX-HARNESS（HARNESS内 部品：Design Template）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-harness/L11-acceptance/product-acceptance.md:29：unit、connection、compositeの各要求に適用するtemplateと設計義務を確認し、必要input欠落を上流質問へ戻せる。template適用や文書生成だけでは要求合意・設計完成・検証成功を成立させない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-harness/L11-acceptance/product-acceptance.md:29：unit、connection、compositeの各要求に適用するtemplateと設計義務を確認し、必要input欠落を上流質問へ戻せる。template適用や文書生成だけでは要求合意・設計完成・検証成功を成立させないを同revisionの対条件として具体化。B 「要求kind、対象、構成、risk、domainに合うversioned Design Templateから必要な設計義務を導き、templateが必要とする要求入力の不足を質問・要求候補として上流へ戻せる」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `部品：Design Template`、版 `1.0`、判定候補 `維持`。
 
 ### HELIXOS-L2-001
@@ -167,10 +175,10 @@
 - 原文：プロジェクトごとの企画・要求正本・採否・合意revisionと担当責務を確認できる
 - 原制約・authority：GitHubの状態から要求を推定せず、何に対する要求かと判断の出所が分かる（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:21：各要求の対象プロダクト・正本・合意revisionへ辿る。Issue closeを要求の削除・受入として表示しない
-- 提案：原文「プロジェクトごとの企画・要求正本・採否・合意revisionと担当責務を確認できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「プロジェクトごとの企画・要求正本・採否・合意revisionと担当責務を確認できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:21：各要求の対象プロダクト・正本・合意revisionへ辿る。Issue closeを要求の削除・受入として表示しない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:21：各要求の対象プロダクト・正本・合意revisionへ辿る。Issue closeを要求の削除・受入として表示しないを同revisionの対条件として具体化。B 「プロジェクトごとの企画・要求正本・採否・合意revisionと担当責務を確認できる」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### HELIXOS-L2-002
@@ -179,10 +187,10 @@
 - 原文：プロジェクト群の要求から作業・実装・検証・提供・運用まで追跡し、欠落と競合を把握できる
 - 原制約・authority：未接続・未合意・未実装・未検証を区別し、部分成功で全体完了にならない（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:22：異なるプロジェクトの欠落・競合・未検証を個別に把握し、一方の成功で他方の未完を相殺しない
-- 提案：原文「プロジェクト群の要求から作業・実装・検証・提供・運用まで追跡し、欠落と競合を把握できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「プロジェクト群の要求から作業・実装・検証・提供・運用まで追跡し、欠落と競合を把握できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:22：異なるプロジェクトの欠落・競合・未検証を個別に把握し、一方の成功で他方の未完を相殺しない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:22：異なるプロジェクトの欠落・競合・未検証を個別に把握し、一方の成功で他方の未完を相殺しないを同revisionの対条件として具体化。B 「プロジェクト群の要求から作業・実装・検証・提供・運用まで追跡し、欠落と競合を把握できる」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### HELIXOS-L2-003
@@ -191,10 +199,10 @@
 - 原文：共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる
 - 原制約・authority：あるプロダクトの方式変更が他プロダクトや共通統制を暗黙に変えない（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:23：開発方式の変更で影響する範囲だけを再評価し、共通統制の無断変更を拒否する
-- 提案：原文「共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:23：開発方式の変更で影響する範囲だけを再評価し、共通統制の無断変更を拒否する。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:23：開発方式の変更で影響する範囲だけを再評価し、共通統制の無断変更を拒否するを同revisionの対条件として具体化。B 「共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### HELIXOS-L2-004
@@ -203,7 +211,7 @@
 - 原文：Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる
 - 原制約・authority：実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:24：割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否する
-- 提案：原文「Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる」と原制約を保ち、HELIX-OS／HELIX-BRAIN／Runner／Sandbox／HELIX-Security（HARNESS内 非該当）の1.0候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更は未決定。
+- 提案：原文「Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる」と原制約を保ち、HELIX-OS／HELIX-BRAIN／Runner／Sandbox／HELIX-Security（HARNESS内 非該当）の1.0候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。現行Conceptとの責務分割・L11の対応を対象revisionで確認。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:24：割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否する。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:24：割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否するを同revisionの対条件として具体化。B 「Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる」の意味を変更→変更前後、影響するHELIX-OS／HELIX-BRAIN／Runner／Sandbox／HELIX-SecurityとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
 - 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
@@ -215,7 +223,7 @@
 - 原文：HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して対象要求へ還流し、採択後の変更・再検証・効果確認まで継続できる
 - 原制約・authority：HARNESS自身と各productの改善を同じ機構で追跡し、経験を正本へ勝手に昇格させず、訂正・棄却・保留・失効と影響範囲を確認できる（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:25：HARNESS自身への適用と各productの観測から改善候補・採否・変更・再検証・効果確認を追跡し、未承認経験の規則化、HARNESS改善責務の欠落、棄却理由の消失を拒否する
-- 提案：原文「HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して対象要求へ還流し、採択後の変更・再検証・効果確認まで継続できる」と原制約を保ち、HELIX-OS／HELIX-LABO（HARNESS内 非該当）の1.0候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更は未決定。
+- 提案：原文「HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して対象要求へ還流し、採択後の変更・再検証・効果確認まで継続できる」と原制約を保ち、HELIX-OS／HELIX-LABO（HARNESS内 非該当）の1.0候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。現行Conceptとの責務分割・L11の対応を対象revisionで確認。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:25：HARNESS自身への適用と各productの観測から改善候補・採否・変更・再検証・効果確認を追跡し、未承認経験の規則化、HARNESS改善責務の欠落、棄却理由の消失を拒否する。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:25：HARNESS自身への適用と各productの観測から改善候補・採否・変更・再検証・効果確認を追跡し、未承認経験の規則化、HARNESS改善責務の欠落、棄却理由の消失を拒否するを同revisionの対条件として具体化。B 「HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して対象要求へ還流し、採択後の変更・再検証・効果確認まで継続できる」の意味を変更→変更前後、影響するHELIX-OS／HELIX-LABOとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
 - 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
@@ -227,10 +235,10 @@
 - 原文：HARNESSの提供版を新規・既存プロジェクトへ導入し、更新・復旧できる
 - 原制約・authority：source・要求revision・artifactが辿れ、既存成果を壊さず導入できる（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:26：fresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失や別artifactへの切替を拒否する
-- 提案：原文「HARNESSの提供版を新規・既存プロジェクトへ導入し、更新・復旧できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「HARNESSの提供版を新規・既存プロジェクトへ導入し、更新・復旧できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:26：fresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失や別artifactへの切替を拒否する。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:26：fresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失や別artifactへの切替を拒否するを同revisionの対条件として具体化。B 「HARNESSの提供版を新規・既存プロジェクトへ導入し、更新・復旧できる」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### HELIXOS-L2-007
@@ -239,10 +247,10 @@
 - 原文：Worker・判断・操作・検証のログと証拠を保存し、対象プロジェクトと要求revisionから参照できる
 - 原制約・authority：欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:27：Worker・判断・検証ログを要求revisionから辿り、欠落・重複・staleを成功証拠として使わない
-- 提案：原文「Worker・判断・操作・検証のログと証拠を保存し、対象プロジェクトと要求revisionから参照できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「Worker・判断・操作・検証のログと証拠を保存し、対象プロジェクトと要求revisionから参照できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:27：Worker・判断・検証ログを要求revisionから辿り、欠落・重複・staleを成功証拠として使わない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:27：Worker・判断・検証ログを要求revisionから辿り、欠落・重複・staleを成功証拠として使わないを同revisionの対条件として具体化。B 「Worker・判断・操作・検証のログと証拠を保存し、対象プロジェクトと要求revisionから参照できる」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### HELIXOS-L2-008
@@ -251,7 +259,7 @@
 - 原文：承認済み上流revisionとHARNESSの検証契約から責務に合うCI profileを組み立て、隔離して実行・監視・回収・再開できる
 - 原制約・authority：上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:28：承認上流から生成したCI profileの起動・失敗・修復・再実行を追跡し、旧CI成功で新世代の未実行・中断・staleやreview欠落を相殺しない
-- 提案：原文「承認済み上流revisionとHARNESSの検証契約から責務に合うCI profileを組み立て、隔離して実行・監視・回収・再開できる」と原制約を保ち、HELIX-OS／Runner／Sandbox（HARNESS内 非該当）の1.0候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更は未決定。
+- 提案：原文「承認済み上流revisionとHARNESSの検証契約から責務に合うCI profileを組み立て、隔離して実行・監視・回収・再開できる」と原制約を保ち、HELIX-OS／Runner／Sandbox（HARNESS内 非該当）の1.0候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。現行Conceptとの責務分割・L11の対応を対象revisionで確認。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:28：承認上流から生成したCI profileの起動・失敗・修復・再実行を追跡し、旧CI成功で新世代の未実行・中断・staleやreview欠落を相殺しない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:28：承認上流から生成したCI profileの起動・失敗・修復・再実行を追跡し、旧CI成功で新世代の未実行・中断・staleやreview欠落を相殺しないを同revisionの対条件として具体化。B 「承認済み上流revisionとHARNESSの検証契約から責務に合うCI profileを組み立て、隔離して実行・監視・回収・再開できる」の意味を変更→変更前後、影響するHELIX-OS／Runner／SandboxとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
 - 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
@@ -263,10 +271,10 @@
 - 原文：中断・担当交代・障害後に、許可範囲内で継続・復旧できる
 - 原制約・authority：累積予算・期限・未完義務を保持し、二重実行や範囲外操作を防ぐ（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:29：中断・担当交代後も制約と未完義務を引き継ぎ、二重実行・予算リセット・無許可復旧を拒否する
-- 提案：原文「中断・担当交代・障害後に、許可範囲内で継続・復旧できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「中断・担当交代・障害後に、許可範囲内で継続・復旧できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:29：中断・担当交代後も制約と未完義務を引き継ぎ、二重実行・予算リセット・無許可復旧を拒否する。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:29：中断・担当交代後も制約と未完義務を引き継ぎ、二重実行・予算リセット・無許可復旧を拒否するを同revisionの対条件として具体化。B 「中断・担当交代・障害後に、許可範囲内で継続・復旧できる」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### HELIXOS-L2-010
@@ -275,10 +283,10 @@
 - 原文：管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる
 - 原制約・authority：管理は目的・要求・制約・優先度・依存・資源・停止を推進へ渡す。推進はHARNESSのnormative工程語彙・順序を参照し、operational tag、mapping、composition、workflow instance生成規則を所有してticketと成果を生成する。管理は登録・統制し、検収はHARNESS contractへの収束を判断する。許可内の直接通信を保ち、固定モデル数や全通信の中央中継を要求しない（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:30：管理・推進・検収が同じticketと因果IDで直接調整し、scope・優先度・共有資源・要求意味の変更だけを正しい判断先へ返す。役割を固定モデル数や中央中継へ変換しない
-- 提案：原文「管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:30：管理・推進・検収が同じticketと因果IDで直接調整し、scope・優先度・共有資源・要求意味の変更だけを正しい判断先へ返す。役割を固定モデル数や中央中継へ変換しない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:30：管理・推進・検収が同じticketと因果IDで直接調整し、scope・優先度・共有資源・要求意味の変更だけを正しい判断先へ返す。役割を固定モデル数や中央中継へ変換しないを同revisionの対条件として具体化。B 「管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### HELIXOS-L2-011
@@ -287,10 +295,10 @@
 - 原文：ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる
 - 原制約・authority：HARNESSの検証義務を追加・削除せず、実際の統合候補で具体化する。必要CI欠落、影響不明、契約解釈不明、stale結果を拒否し、review、内容検証、merge admission、release、運用評価を分けて収束させる（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:31：HARNESS契約で同じ検証義務を与え、A→Bの依存を実際のbase+A+Bで具体化する。base更新・候補増減・順序変更で再計画し、OSによるoracle削除・追加、必要CI欠落、影響証明不能、契約解釈不明、別HEADの成功ではmerge可能としない
-- 提案：原文「ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:31：HARNESS契約で同じ検証義務を与え、A→Bの依存を実際のbase+A+Bで具体化する。base更新・候補増減・順序変更で再計画し、OSによるoracle削除・追加、必要CI欠落、影響証明不能、契約解釈不明、別HEADの成功ではmerge可能としない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:31：HARNESS契約で同じ検証義務を与え、A→Bの依存を実際のbase+A+Bで具体化する。base更新・候補増減・順序変更で再計画し、OSによるoracle削除・追加、必要CI欠落、影響証明不能、契約解釈不明、別HEADの成功ではmerge可能としないを同revisionの対条件として具体化。B 「ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### HELIXOS-L2-012
@@ -299,10 +307,10 @@
 - 原文：内部system情報と外部技術情報を、出典・revision・時点・取得範囲・欠落・適用条件付きで調査できる
 - 原制約・authority：内部事例を先に照合し、不足分だけを未信頼外部情報として取得する。秘密を送信せず、取得文の命令やpatchを実行せず、closed／mergedだけで解決済みにしない（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:32：内部情報の欠落と外部情報の相違を保持し、秘密送信、取得命令実行、外部patch自動採用、closed／mergedだけの解決認定を拒否する
-- 提案：原文「内部system情報と外部技術情報を、出典・revision・時点・取得範囲・欠落・適用条件付きで調査できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「内部system情報と外部技術情報を、出典・revision・時点・取得範囲・欠落・適用条件付きで調査できる」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:32：内部情報の欠落と外部情報の相違を保持し、秘密送信、取得命令実行、外部patch自動採用、closed／mergedだけの解決認定を拒否する。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:32：内部情報の欠落と外部情報の相違を保持し、秘密送信、取得命令実行、外部patch自動採用、closed／mergedだけの解決認定を拒否するを同revisionの対条件として具体化。B 「内部system情報と外部技術情報を、出典・revision・時点・取得範囲・欠落・適用条件付きで調査できる」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### HELIXOS-L2-013
@@ -311,7 +319,7 @@
 - 原文：管理・推進・検収・Worker・crawler・CIを同じ仕事へ関連付け、要求からの欠落と失敗からの原因候補を双方向に診断して是正効果まで追跡できる
 - 原制約・authority：観測事実・AI仮説・承認・表示、未着手・観測停止・正常を区別する。管理自身も是正対象とし、自動writeせず、修正後の症状と退行を再観測する（`draft`）。
 - L11対応：docs/helix-os/L11-acceptance/governance-acceptance.md:33：同じ仕事について上流からの欠落と失敗からの原因候補を突合し、管理自身を含む是正ticket、再検証、再観測へ辿る。未着手や観測停止を正常と表示しない
-- 提案：原文「管理・推進・検収・Worker・crawler・CIを同じ仕事へ関連付け、要求からの欠落と失敗からの原因候補を双方向に診断して是正効果まで追跡できる」と原制約を保ち、HELIX-OS／HELIX-LABO（HARNESS内 非該当）の1.0候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更は未決定。
+- 提案：原文「管理・推進・検収・Worker・crawler・CIを同じ仕事へ関連付け、要求からの欠落と失敗からの原因候補を双方向に診断して是正効果まで追跡できる」と原制約を保ち、HELIX-OS／HELIX-LABO（HARNESS内 非該当）の1.0候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。現行Conceptとの責務分割・L11の対応を対象revisionで確認。 対応受入 docs/helix-os/L11-acceptance/governance-acceptance.md:33：同じ仕事について上流からの欠落と失敗からの原因候補を突合し、管理自身を含む是正ticket、再検証、再観測へ辿る。未着手や観測停止を正常と表示しない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-os/L11-acceptance/governance-acceptance.md:33：同じ仕事について上流からの欠落と失敗からの原因候補を突合し、管理自身を含む是正ticket、再検証、再観測へ辿る。未着手や観測停止を正常と表示しないを同revisionの対条件として具体化。B 「管理・推進・検収・Worker・crawler・CIを同じ仕事へ関連付け、要求からの欠落と失敗からの原因候補を双方向に診断して是正効果まで追跡できる」の意味を変更→変更前後、影響するHELIX-OS／HELIX-LABOとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
 - 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
@@ -323,10 +331,10 @@
 - 原文：利用者がWebから自分の許可された開発環境を選び、対象プロジェクトの操作と進行をダッシュボードで確認できる。全コード・計算資源をSaaSへ移すことを必須にしない
 - 原制約・authority：利用者がWebから自分の許可された開発環境を選び、対象プロジェクトの操作と進行をダッシュボードで確認できる。全コード・計算資源をSaaSへ移すことを必須にしない（`draft`）。
 - L11対応：docs/helix-web/L11-acceptance/product-acceptance.md:20：選択した環境と別環境を区別し、対象不明・未接続を操作成功と表示しない。対象projectの進行・状態・成果をダッシュボードで辿れる
-- 提案：原文「利用者がWebから自分の許可された開発環境を選び、対象プロジェクトの操作と進行をダッシュボードで確認できる。全コード・計算資源をSaaSへ移すことを必須にしない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「利用者がWebから自分の許可された開発環境を選び、対象プロジェクトの操作と進行をダッシュボードで確認できる。全コード・計算資源をSaaSへ移すことを必須にしない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-web/L11-acceptance/product-acceptance.md:20：選択した環境と別環境を区別し、対象不明・未接続を操作成功と表示しない。対象projectの進行・状態・成果をダッシュボードで辿れる。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web/L11-acceptance/product-acceptance.md:20：選択した環境と別環境を区別し、対象不明・未接続を操作成功と表示しない。対象projectの進行・状態・成果をダッシュボードで辿れるを同revisionの対条件として具体化。B 「利用者がWebから自分の許可された開発環境を選び、対象プロジェクトの操作と進行をダッシュボードで確認できる。全コード・計算資源をSaaSへ移すことを必須にしない」の意味を変更→変更前後、影響するHELIX-WebとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-Web`、属性 `HELIX-Web:製品`、HARNESS内 `非該当`、版 `1.x`、判定候補 `維持`。
 
 ### HELIXWEB-L2-002
@@ -335,7 +343,7 @@
 - 原文：必要な開発能力の提供版を選び、Connectorへの導入・互換性・更新・撤去と結果を確認できる。Connectorに開発engineを重複実装しない
 - 原制約・authority：必要な開発能力の提供版を選び、Connectorへの導入・互換性・更新・撤去と結果を確認できる。Connectorに開発engineを重複実装しない（`draft`）。
 - L11対応：docs/helix-web/L11-acceptance/product-acceptance.md:21：選択構成・依存・版と導入結果を照合し、未適格な構成や更新失敗を利用可能と表示しない
-- 提案：原文「必要な開発能力の提供版を選び、Connectorへの導入・互換性・更新・撤去と結果を確認できる。Connectorに開発engineを重複実装しない」と原制約を保ち、HELIX-Web／HELIX-CONNECT（HARNESS内 非該当）の1.x候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更は未決定。
+- 提案：原文「必要な開発能力の提供版を選び、Connectorへの導入・互換性・更新・撤去と結果を確認できる。Connectorに開発engineを重複実装しない」と原制約を保ち、HELIX-Web／HELIX-CONNECT（HARNESS内 非該当）の1.x候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。現行Conceptとの責務分割・L11の対応を対象revisionで確認。 対応受入 docs/helix-web/L11-acceptance/product-acceptance.md:21：選択構成・依存・版と導入結果を照合し、未適格な構成や更新失敗を利用可能と表示しない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web/L11-acceptance/product-acceptance.md:21：選択構成・依存・版と導入結果を照合し、未適格な構成や更新失敗を利用可能と表示しないを同revisionの対条件として具体化。B 「必要な開発能力の提供版を選び、Connectorへの導入・互換性・更新・撤去と結果を確認できる。Connectorに開発engineを重複実装しない」の意味を変更→変更前後、影響するHELIX-Web／HELIX-CONNECTとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
 - 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
@@ -347,10 +355,10 @@
 - 原文：長時間jobの実行・切断・取消・再開・終端と証拠を確認できる。結果不明の副作用を無条件に再実行しない
 - 原制約・authority：長時間jobの実行・切断・取消・再開・終端と証拠を確認できる。結果不明の副作用を無条件に再実行しない（`draft`）。
 - L11対応：docs/helix-web/L11-acceptance/product-acceptance.md:22：切断中・取消待ち・結果不明を成功と区別し、復帰後に同じjobと結果へ辿る。二重実行を拒否する
-- 提案：原文「長時間jobの実行・切断・取消・再開・終端と証拠を確認できる。結果不明の副作用を無条件に再実行しない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「長時間jobの実行・切断・取消・再開・終端と証拠を確認できる。結果不明の副作用を無条件に再実行しない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-web/L11-acceptance/product-acceptance.md:22：切断中・取消待ち・結果不明を成功と区別し、復帰後に同じjobと結果へ辿る。二重実行を拒否する。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web/L11-acceptance/product-acceptance.md:22：切断中・取消待ち・結果不明を成功と区別し、復帰後に同じjobと結果へ辿る。二重実行を拒否するを同revisionの対条件として具体化。B 「長時間jobの実行・切断・取消・再開・終端と証拠を確認できる。結果不明の副作用を無条件に再実行しない」の意味を変更→変更前後、影響するHELIX-WebとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-Web`、属性 `HELIX-Web:製品`、HARNESS内 `非該当`、版 `1.x`、判定候補 `維持`。
 
 ### HELIXWEB-L2-004
@@ -359,10 +367,10 @@
 - 原文：対応するprovider経路と利用条件、利用者環境から返送する情報の範囲を確認できる。未確認のログイン再利用や経路を対応済みと表示しない
 - 原制約・authority：対応するprovider経路と利用条件、利用者環境から返送する情報の範囲を確認できる。未確認のログイン再利用や経路を対応済みと表示しない（`draft`）。
 - L11対応：docs/helix-web/L11-acceptance/product-acceptance.md:23：未対応経路・返送対象外の情報を与え、対応済み表示や無断転送が起きない。実方式の採用前に根拠と適用範囲を確認する
-- 提案：原文「対応するprovider経路と利用条件、利用者環境から返送する情報の範囲を確認できる。未確認のログイン再利用や経路を対応済みと表示しない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「対応するprovider経路と利用条件、利用者環境から返送する情報の範囲を確認できる。未確認のログイン再利用や経路を対応済みと表示しない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-web/L11-acceptance/product-acceptance.md:23：未対応経路・返送対象外の情報を与え、対応済み表示や無断転送が起きない。実方式の採用前に根拠と適用範囲を確認する。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web/L11-acceptance/product-acceptance.md:23：未対応経路・返送対象外の情報を与え、対応済み表示や無断転送が起きない。実方式の採用前に根拠と適用範囲を確認するを同revisionの対条件として具体化。B 「対応するprovider経路と利用条件、利用者環境から返送する情報の範囲を確認できる。未確認のログイン再利用や経路を対応済みと表示しない」の意味を変更→変更前後、影響するHELIX-WebとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-Web`、属性 `HELIX-Web:製品`、HARNESS内 `非該当`、版 `1.x`、判定候補 `維持`。
 
 ### HELIXWEB-L2-005
@@ -371,10 +379,10 @@
 - 原文：何を変更し、何を許可し、何を受け入れるかを自分で判断し、検収済み範囲の保守・改修を行える。残る専門判断を確認できる
 - 原制約・authority：何を変更し、何を許可し、何を受け入れるかを自分で判断し、検収済み範囲の保守・改修を行える。残る専門判断を確認できる（`draft`）。
 - L11対応：docs/helix-web/L11-acceptance/product-acceptance.md:24：診断・更新・復旧と案内付き改修を操作別に評価し、要求差分・影響・プレビュー・回復結果へ辿る。一操作の成功を全改修対応と表示しない
-- 提案：原文「何を変更し、何を許可し、何を受け入れるかを自分で判断し、検収済み範囲の保守・改修を行える。残る専門判断を確認できる」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「何を変更し、何を許可し、何を受け入れるかを自分で判断し、検収済み範囲の保守・改修を行える。残る専門判断を確認できる」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-web/L11-acceptance/product-acceptance.md:24：診断・更新・復旧と案内付き改修を操作別に評価し、要求差分・影響・プレビュー・回復結果へ辿る。一操作の成功を全改修対応と表示しない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web/L11-acceptance/product-acceptance.md:24：診断・更新・復旧と案内付き改修を操作別に評価し、要求差分・影響・プレビュー・回復結果へ辿る。一操作の成功を全改修対応と表示しないを同revisionの対条件として具体化。B 「何を変更し、何を許可し、何を受け入れるかを自分で判断し、検収済み範囲の保守・改修を行える。残る専門判断を確認できる」の意味を変更→変更前後、影響するHELIX-WebとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-Web`、属性 `HELIX-Web:製品`、HARNESS内 `非該当`、版 `1.x`、判定候補 `維持`。
 
 ### HELIXWEB-L2-006
@@ -395,10 +403,10 @@
 - 原文：Webが採用する開発能力・Connector・モデル・接続契約の構成版を確認できる。Webの変更で無関係なHARNESSやモデルを一斉更新しない
 - 原制約・authority：Webが採用する開発能力・Connector・モデル・接続契約の構成版を確認できる。Webの変更で無関係なHARNESSやモデルを一斉更新しない（`draft`）。
 - L11対応：docs/helix-web/L11-acceptance/product-acceptance.md:26：Web版と構成版が異なるケースで実構成へ辿り、同一版番号だけを互換性・接続成功の証拠にしない
-- 提案：原文「Webが採用する開発能力・Connector・モデル・接続契約の構成版を確認できる。Webの変更で無関係なHARNESSやモデルを一斉更新しない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「Webが採用する開発能力・Connector・モデル・接続契約の構成版を確認できる。Webの変更で無関係なHARNESSやモデルを一斉更新しない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-web/L11-acceptance/product-acceptance.md:26：Web版と構成版が異なるケースで実構成へ辿り、同一版番号だけを互換性・接続成功の証拠にしない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web/L11-acceptance/product-acceptance.md:26：Web版と構成版が異なるケースで実構成へ辿り、同一版番号だけを互換性・接続成功の証拠にしないを同revisionの対条件として具体化。B 「Webが採用する開発能力・Connector・モデル・接続契約の構成版を確認できる。Webの変更で無関係なHARNESSやモデルを一斉更新しない」の意味を変更→変更前後、影響するHELIX-WebとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-Web`、属性 `HELIX-Web:製品`、HARNESS内 `非該当`、版 `1.x`、判定候補 `維持`。
 
 ### HELIXWEB-L2-008
@@ -407,10 +415,10 @@
 - 原文：Web-OSのservice log・telemetry・利用結果をどの目的・範囲でHELIX-OSの改善へ渡すかを確認できる。サービス利用をログexportや横断学習への包括同意とみなさない
 - 原制約・authority：Web-OSのservice log・telemetry・利用結果をどの目的・範囲でHELIX-OSの改善へ渡すかを確認できる。サービス利用をログexportや横断学習への包括同意とみなさない（`draft`）。
 - L11対応：docs/helix-web/L11-acceptance/product-acceptance.md:27：project内利用、Web-OSからHELIX-OSへの運用log export、事業改善、横断知識化、モデル学習を区別し、範囲外の共有を拒否する。改善候補の採否をWeb固有の要求変更と混同しない
-- 提案：原文「Web-OSのservice log・telemetry・利用結果をどの目的・範囲でHELIX-OSの改善へ渡すかを確認できる。サービス利用をログexportや横断学習への包括同意とみなさない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「Web-OSのservice log・telemetry・利用結果をどの目的・範囲でHELIX-OSの改善へ渡すかを確認できる。サービス利用をログexportや横断学習への包括同意とみなさない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-web/L11-acceptance/product-acceptance.md:27：project内利用、Web-OSからHELIX-OSへの運用log export、事業改善、横断知識化、モデル学習を区別し、範囲外の共有を拒否する。改善候補の採否をWeb固有の要求変更と混同しない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web/L11-acceptance/product-acceptance.md:27：project内利用、Web-OSからHELIX-OSへの運用log export、事業改善、横断知識化、モデル学習を区別し、範囲外の共有を拒否する。改善候補の採否をWeb固有の要求変更と混同しないを同revisionの対条件として具体化。B 「Web-OSのservice log・telemetry・利用結果をどの目的・範囲でHELIX-OSの改善へ渡すかを確認できる。サービス利用をログexportや横断学習への包括同意とみなさない」の意味を変更→変更前後、影響するHELIX-WebとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-Web`、属性 `HELIX-Web:製品`、HARNESS内 `非該当`、版 `1.x`、判定候補 `維持`。
 
 ### HELIXWEB-L2-009
@@ -419,10 +427,10 @@
 - 原文：複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成証拠を確認した後にHELIX-Webを展開できる。Webの完成をVersion 1へ算入せず、HARNESS未完成のまま展開しない
 - 原制約・authority：複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成証拠を確認した後にHELIX-Webを展開できる。Webの完成をVersion 1へ算入せず、HARNESS未完成のまま展開しない（`draft`）。
 - L11対応：docs/helix-web/L11-acceptance/product-acceptance.md:28：複数プロダクトの開発検証またはHELIX自身への適用証拠を欠くHARNESS Version 1ではWeb展開を拒否する。全証拠が揃えば展開可能と判定し、それをWeb完成・公開済みと読み替えない
-- 提案：原文「複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成証拠を確認した後にHELIX-Webを展開できる。Webの完成をVersion 1へ算入せず、HARNESS未完成のまま展開しない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成証拠を確認した後にHELIX-Webを展開できる。Webの完成をVersion 1へ算入せず、HARNESS未完成のまま展開しない」と原制約を保ち、HELIX-Web（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-web/L11-acceptance/product-acceptance.md:28：複数プロダクトの開発検証またはHELIX自身への適用証拠を欠くHARNESS Version 1ではWeb展開を拒否する。全証拠が揃えば展開可能と判定し、それをWeb完成・公開済みと読み替えない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web/L11-acceptance/product-acceptance.md:28：複数プロダクトの開発検証またはHELIX自身への適用証拠を欠くHARNESS Version 1ではWeb展開を拒否する。全証拠が揃えば展開可能と判定し、それをWeb完成・公開済みと読み替えないを同revisionの対条件として具体化。B 「複数プロダクトの開発検証とHELIX自身への適用を含む、HELIX-HARNESS製品群Version 1の完成証拠を確認した後にHELIX-Webを展開できる。Webの完成をVersion 1へ算入せず、HARNESS未完成のまま展開しない」の意味を変更→変更前後、影響するHELIX-WebとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-Web`、属性 `HELIX-Web:製品`、HARNESS内 `非該当`、版 `1.x`、判定候補 `維持`。
 
 ### HELIXWEBOS-L2-001
@@ -431,10 +439,10 @@
 - 原文：tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる
 - 原制約・authority：一利用者の資格・job・data・結果が別scopeへ流れず、HELIX-OS内部stateをservice authorityとして共有しない（`draft`）。
 - L11対応：docs/helix-web-os/L11-acceptance/service-acceptance.md:17：異なるtenant・利用者・projectへ同じ識別子やdataを与え、scope越境とHELIX-OS内部stateのservice利用を拒否する
-- 提案：原文「tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる」と原制約を保ち、HELIX-Web-OS（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる」と原制約を保ち、HELIX-Web-OS（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-web-os/L11-acceptance/service-acceptance.md:17：異なるtenant・利用者・projectへ同じ識別子やdataを与え、scope越境とHELIX-OS内部stateのservice利用を拒否する。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web-os/L11-acceptance/service-acceptance.md:17：異なるtenant・利用者・projectへ同じ識別子やdataを与え、scope越境とHELIX-OS内部stateのservice利用を拒否するを同revisionの対条件として具体化。B 「tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる」の意味を変更→変更前後、影響するHELIX-Web-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-Web-OS`、属性 `HELIX-Web-OS:非製品`、HARNESS内 `非該当`、版 `1.x`、判定候補 `維持`。
 
 ### HELIXWEBOS-L2-002
@@ -443,7 +451,7 @@
 - 原文：適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる
 - 原制約・authority：Connectorに開発engineを重複実装せず、不適格版や更新失敗を利用可能と表示しない（`draft`）。
 - L11対応：docs/helix-web-os/L11-acceptance/service-acceptance.md:18：Web・Connector・HARNESS能力の版を不一致にし、不適格構成の起動、暗黙更新、engine重複を拒否する
-- 提案：原文「適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる」と原制約を保ち、HELIX-Web-OS／HELIX-CONNECT（HARNESS内 非該当）の1.x候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更は未決定。
+- 提案：原文「適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる」と原制約を保ち、HELIX-Web-OS／HELIX-CONNECT（HARNESS内 非該当）の1.x候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。現行Conceptとの責務分割・L11の対応を対象revisionで確認。 対応受入 docs/helix-web-os/L11-acceptance/service-acceptance.md:18：Web・Connector・HARNESS能力の版を不一致にし、不適格構成の起動、暗黙更新、engine重複を拒否する。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web-os/L11-acceptance/service-acceptance.md:18：Web・Connector・HARNESS能力の版を不一致にし、不適格構成の起動、暗黙更新、engine重複を拒否するを同revisionの対条件として具体化。B 「適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる」の意味を変更→変更前後、影響するHELIX-Web-OS／HELIX-CONNECTとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
 - 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
@@ -455,10 +463,10 @@
 - 原文：長時間jobの受付、配信、進行、切断、取消、再開、終端、結果不明を同じjob identityで管理できる
 - 原制約・authority：再送・障害・再接続で副作用を二重実行せず、期限・予算・許可・未完義務を失わない（`draft`）。
 - L11対応：docs/helix-web-os/L11-acceptance/service-acceptance.md:19：切断、再送、取消競合、timeout、結果不明、再起動を与え、二重副作用なしで同じjobと未完義務へ戻る
-- 提案：原文「長時間jobの受付、配信、進行、切断、取消、再開、終端、結果不明を同じjob identityで管理できる」と原制約を保ち、HELIX-Web-OS（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「長時間jobの受付、配信、進行、切断、取消、再開、終端、結果不明を同じjob identityで管理できる」と原制約を保ち、HELIX-Web-OS（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-web-os/L11-acceptance/service-acceptance.md:19：切断、再送、取消競合、timeout、結果不明、再起動を与え、二重副作用なしで同じjobと未完義務へ戻る。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web-os/L11-acceptance/service-acceptance.md:19：切断、再送、取消競合、timeout、結果不明、再起動を与え、二重副作用なしで同じjobと未完義務へ戻るを同revisionの対条件として具体化。B 「長時間jobの受付、配信、進行、切断、取消、再開、終端、結果不明を同じjob identityで管理できる」の意味を変更→変更前後、影響するHELIX-Web-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-Web-OS`、属性 `HELIX-Web-OS:非製品`、HARNESS内 `非該当`、版 `1.x`、判定候補 `維持`。
 
 ### HELIXWEBOS-L2-004
@@ -467,7 +475,7 @@
 - 原文：認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる
 - 原制約・authority：未確認経路、期限切れ権限、秘密送信、範囲外data返送を拒否し、サービス利用を横断学習同意へ変換しない（`draft`）。
 - L11対応：docs/helix-web-os/L11-acceptance/service-acceptance.md:20：wrong target、期限切れ、revoke、範囲外network／data、secret混入を与え、接続・返送・学習利用を拒否する
-- 提案：原文「認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる」と原制約を保ち、HELIX-Web-OS／HELIX-Security／HELIX-CONNECT（HARNESS内 非該当）の1.x候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更は未決定。
+- 提案：原文「認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる」と原制約を保ち、HELIX-Web-OS／HELIX-Security／HELIX-CONNECT（HARNESS内 非該当）の1.x候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。現行Conceptとの責務分割・L11の対応を対象revisionで確認。 対応受入 docs/helix-web-os/L11-acceptance/service-acceptance.md:20：wrong target、期限切れ、revoke、範囲外network／data、secret混入を与え、接続・返送・学習利用を拒否する。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web-os/L11-acceptance/service-acceptance.md:20：wrong target、期限切れ、revoke、範囲外network／data、secret混入を与え、接続・返送・学習利用を拒否するを同revisionの対条件として具体化。B 「認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる」の意味を変更→変更前後、影響するHELIX-Web-OS／HELIX-Security／HELIX-CONNECTとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
 - 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
@@ -479,10 +487,10 @@
 - 原文：jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる
 - 原制約・authority：projection欠落・遅延・stale・conflict・結果不明を成功表示せず、画面表示を実行事実や受入の正本にしない（`draft`）。
 - L11対応：docs/helix-web-os/L11-acceptance/service-acceptance.md:21：event欠落、projection遅延、stale revision、conflictを与え、ダッシュボードが成功・受入済みへ補完しない
-- 提案：原文「jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる」と原制約を保ち、HELIX-Web-OS（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更は未決定。
+- 提案：原文「jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる」と原制約を保ち、HELIX-Web-OS（HARNESS内 非該当）の1.x候補へ置く。既存L2の対象を維持し、Conceptの属性・導入版を明示する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。対象L2／L11はdraft。対象revisionの合意未了。 対応受入 docs/helix-web-os/L11-acceptance/service-acceptance.md:21：event欠落、projection遅延、stale revision、conflictを与え、ダッシュボードが成功・受入済みへ補完しない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web-os/L11-acceptance/service-acceptance.md:21：event欠落、projection遅延、stale revision、conflictを与え、ダッシュボードが成功・受入済みへ補完しないを同revisionの対条件として具体化。B 「jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる」の意味を変更→変更前後、影響するHELIX-Web-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-Web-OS`、属性 `HELIX-Web-OS:非製品`、HARNESS内 `非該当`、版 `1.x`、判定候補 `維持`。
 
 ### HELIXWEBOS-L2-006
@@ -491,7 +499,7 @@
 - 原文：service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる
 - 原制約・authority：exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない（`draft`）。
 - L11対応：docs/helix-web-os/L11-acceptance/service-acceptance.md:22：deployment、monitoring、rollback、restore、恒久修復、利用者受入を個別に失敗させ、一つの成功で残りを完了にしない。許可logだけがscope・目的・同意・revision付きでHELIX-OSへ届き、credential、tenant原data、同意範囲外logを拒否する。改善proposalが各対象要求を直接変更しない
-- 提案：原文「service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる」と原制約を保ち、HELIX-Web-OS／HELIX-LABO／HELIX-OS（HARNESS内 非該当）の1.x候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更は未決定。
+- 提案：原文「service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる」と原制約を保ち、HELIX-Web-OS／HELIX-LABO／HELIX-OS（HARNESS内 非該当）の1.x候補へ置く。現行Conceptの責務へ分割・接続する候補。意味変更の有無は別列で扱う。
 - 理由：source authority draft。現行Conceptとの責務分割・L11の対応を対象revisionで確認。 対応受入 docs/helix-web-os/L11-acceptance/service-acceptance.md:22：deployment、monitoring、rollback、restore、恒久修復、利用者受入を個別に失敗させ、一つの成功で残りを完了にしない。許可logだけがscope・目的・同意・revision付きでHELIX-OSへ届き、credential、tenant原data、同意範囲外logを拒否する。改善proposalが各対象要求を直接変更しない。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→docs/helix-web-os/L11-acceptance/service-acceptance.md:22：deployment、monitoring、rollback、restore、恒久修復、利用者受入を個別に失敗させ、一つの成功で残りを完了にしない。許可logだけがscope・目的・同意・revision付きでHELIX-OSへ届き、credential、tenant原data、同意範囲外logを拒否する。改善proposalが各対象要求を直接変更しないを同revisionの対条件として具体化。B 「service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる」の意味を変更→変更前後、影響するHELIX-Web-OS／HELIX-LABO／HELIX-OSとL11をdecisionへ明記。C 保留→原状態 draftを維持し、対象L2/L11の承認を生成しない。
 - 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
@@ -503,35 +511,11 @@
 - 原文：Claude CodeはCodex完了時にraw実行ログ、PR、test/CI、監査所見を圧縮し、永続知識だけをharness memoryへ昇格する。進捗はDB continuationへ残しmemoryへ混載しない。
 - 原制約・authority：IRのacceptance_ids=HAC-HIL-07a,HAC-HIL-07b,HAC-HIL-07c（`specified_frozen`）。
 - L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「OS・意味変更要」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理／HELIX-LABO:独立計測・比較・退行評価／HELIX-Intelligence:3.0の知識・モデル改善。 意味差分は別途対象revisionで判断する。
-- 理由：対象revisionのPO判断待ち：HELIXOS-L2-005／007。永続知識をmemoryへ昇格する旧条件はHMCの有期限通知境界と衝突 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-03 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:55；既存対象照合 docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md:12（HELIXOS-L2-005／007。永続知識をmemoryへ昇格する旧条件はHMCの有期限通知境界と衝突）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-OS／HELIX-LABO／HELIX-Intelligenceの接続受入へ残す。B 衝突する条件を変更→「対象revisionのPO判断待ち：HELIXOS-L2-005／007。永続知識をmemoryへ昇格する旧条件はHMCの有期限通知境界と衝突」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
+- 提案：完了時のraw log・PR・CI・監査所見はOSのepisode証拠として保持し、memoryには有期限の通知・再検索キーだけを置く。永続知識の選別・改善は3.0 Intelligenceの別要求候補とする。
+- 理由：旧原文は完了時に「永続知識だけをharness memoryへ昇格」と固定する。現行HMCの通知境界と3.0の知識改善を採ると、昇格先と時点が変わる。
+- 選択肢と影響：A 旧memory永続昇格を維持→HMCの有期限通知境界とのconflictを残す。B memoryを通知・検索キーに限り、永続知識選別を3.0へ送る→旧昇格条件の意味変更を対象revisionで承認し、証拠保全L11と知識改善L11を分ける。C 保留→旧IRの昇格を現行完了条件にしない。
+- 推奨：B。raw証拠の保持先と通知失効後の再検索をL11で確認する。
 - 対応印：機構 `HELIX-OS／HELIX-LABO／HELIX-Intelligence`、属性 `HELIX-OS:非製品、HELIX-LABO:非製品、HELIX-Intelligence:非製品`、HARNESS内 `非該当`、版 `1.0記録土台／3.0候補（知識・モデル改善）`、判定候補 `未特定`。
-
-### HIL-BR-07
-
-- 原要求ID・原文位置・revision：`HIL-BR-07`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-07 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:59`、`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
-- 原文：user directiveとIssueは分類前にdurable intake receiptを持ち、AIが不要判断だけでreject/drop/close/cancelできない。AIの非actionable dispositionは非終端で、cancel/supersedeはPOだけが行える。closure receiptが無いcloseは拒否または再openする。
-- 原制約・authority：IRのacceptance_ids=HAC-HIL-05a,HAC-HIL-05b,HAC-HIL-05c（`specified_frozen`）。
-- L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「OS・採用差分照合要」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理。 意味差分は別途対象revisionで判断する。
-- 理由：対象revisionのPO判断待ち：HELIXOS-L2-001／007。入力保存と終端権限をAVS／RFAのscopeと照合し、要求の採否とIssue状態を分ける 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-07 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:59；既存対象照合 docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md:16（HELIXOS-L2-001／007。入力保存と終端権限をAVS／RFAのscopeと照合し、要求の採否とIssue状態を分ける）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-OSの接続受入へ残す。B 衝突する条件を変更→「対象revisionのPO判断待ち：HELIXOS-L2-001／007。入力保存と終端権限をAVS／RFAのscopeと照合し、要求の採否とIssue状態を分ける」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
-- 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0候補（旧IRの現行採択・完成条件ではない）`、判定候補 `未特定`。
-
-### HIL-BR-15
-
-- 原要求ID・原文位置・revision：`HIL-BR-15`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-15 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:67`、`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
-- 原文：将来のproduct-data sourceをversioned connectorで取り込み、由来・鮮度・schema・authorityを保持した正規projectionとして設計判断、coverage、impact、Issue routing、docgen/detectorへ供給する。
-- 原制約・authority：IRのacceptance_ids=HAC-HIL-11a,HAC-HIL-11b,HAC-HIL-11c（`specified_frozen`）。
-- L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文のconnector登録・契約版・provenanceの受け口を1.0土台へ置き、外部開発データの実取込・案件への推薦は2.0候補として分ける。
-- 理由：Conceptの1.0接続土台と2.0推薦の到達範囲が異なる。原IDの単体・接続条件を別版へ追跡する必要がある。
-- 選択肢と影響：A 1.0接続土台と2.0実取込に分ける→原文の全atomを両版とL11で追跡。B 一括で1.0に置く→Conceptの完成条件を変更する判断が必要。C 保留→旧原文・revisionを保持。
-- 推奨：A。1.0では実データ取込の成功を受入条件にしない。
-- 対応印：機構 `HELIX-OS／HELIX-BRAIN／HELIX-CONNECT`、属性 `HELIX-OS:非製品、HELIX-BRAIN:非製品、HELIX-CONNECT:共通部品`、HARNESS内 `非該当`、版 `1.0接続土台／2.0候補（外部データ実取込）`、判定候補 `改変`。
 
 ### HIL-BR-16
 
@@ -539,23 +523,11 @@
 - 原文：検証をslice統合前のimpact CI、candidate固定後のfull CI、GitHub PR上の外部CIの3段に固定し、各段のSHA/treeと直前段からのlineageがgreenでなければ次段へ進めない。style内統合によるSHA変更はpredecessor bindingで追跡する。
 - 原制約・authority：IRのacceptance_ids=HAC-HIL-06a,HAC-HIL-06b,HAC-HIL-06c（`specified_frozen`）。
 - L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「HARNESS／OS」から、現Conceptの候補へ分ける：HELIX-HARNESS:枠の要求・設計・検証契約／HELIX-OS:登録・推進・検収と状態/証拠の管理。 意味差分は別途対象revisionで判断する。
-- 理由：旧三段CI固定の採否は未特定。ConceptはCI・test最適化を定めるが段数を指定しない。 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-16 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:68；既存対象照合 docs/governance/audits/source-rebaseline/infinity-business-target-crosswalk.md:25（検証順序・lineage条件はHARNESS-L2-005、CI実行はHELIXOS-L2-008。三段固定の適用範囲を照合する）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-HARNESS／HELIX-OSの接続受入へ残す。B 衝突する条件を変更→「旧三段CI固定の採否は未特定。ConceptはCI・test最適化を定めるが段数を指定しない。」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
-- 対応印：機構 `HELIX-HARNESS／HELIX-OS`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品`、HARNESS内 `枠`、版 `1.0候補（CIの存在のみ。旧三段固定は未採否）`、判定候補 `未特定`。
-
-### HIL-BR-19
-
-- 原要求ID・原文位置・revision：`HIL-BR-19`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-19 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:71`、`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
-- 原文：Bun撤去はNodeでも一部動く状態ではなく、activeな開発・実行・検証・配布surfaceがBunなしで再現可能となった時点だけを完了とする。
-- 原制約・authority：IRのacceptance_ids=HAC-HIL-13a,HAC-HIL-13b,HAC-HIL-13c（`specified_frozen`）。
-- L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：旧実現方式を持ち込まず、原文の目的・制約のうち技術に依存しない条件を保持する候補。対象機構はHELIX-OS、導入版は未特定。
-- 理由：Conceptは原文の固定runtime／言語／DB／IPC／platformを指定していない。方式を要求の意味として採るかが旧指定revisionとの意味差分になる。旧実現方式の採用は未決。原目的・制約のうち方式に依存しない意味を保持する候補。
-- 選択肢と影響：A 旧方式を維持→Bun撤去はNodeでも一部動く状態ではなく、activeな開発・実行・検証・配布surfaceがBunなしで再現可能となった時点だけを完了とする。を現行下流の拘束条件として採る。B 方式を外し目的・失敗境界を保持→変更前後の意味atomと影響consumerをdecisionへ記録。C 保留→旧指定をsourceとして保全し、現行実装への転用を止める。
-- 推奨：Bを審査候補とする。旧方式を外す前に、原文の制約・受入とconsumerの未被覆0を確認する。
-- 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `未特定（旧実現方式の採否・適用版はConcept未記載）`、判定候補 `不採用候補`。
+- 提案：検証段階ごとにSHA/tree・前段receipt・必須checkを結ぶ意味を保持し、三段の固定数とGitHub外部CIの必須化を構成候補へ下ろす。
+- 理由：旧原文は三段と順序を固定する。ConceptはCI・testの選定と最適化をOS検収に置くが段数を定めない。
+- 選択肢と影響：A 旧三段固定を維持→1.0の全作業で外部CIまで必須。B 段数・段名を対象riskと検証契約に委ねる→旧固定段数の意味変更を対象revisionで承認し、lineageと欠落検出をL11に残す。C 保留→旧三段を現行1.0の完了条件にしない。
+- 推奨：B。lineage不一致を拒否する負例を維持する。
+- 対応印：機構 `HELIX-HARNESS／HELIX-OS`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品`、HARNESS内 `枠`、版 `1.0候補（CI証拠lineage。旧三段固定の採否はPO未決）`、判定候補 `未特定`。
 
 ### HIL-FR-01
 
@@ -563,10 +535,10 @@
 - 原文：`InfinityLoopEvent`を受理し、`intake→reverse→redesign?→pair-freeze→implementation→local-prejoin-ci→forward-join→internal-postjoin-ci→github-pr→external-ci→audit→merge/issue`を状態遷移する。各段は入力commit/tree digestと前段receiptへbindする。 | append-only event、現在state、parent/cause ID
 - 原制約・authority：IRのacceptance_ids=HAC-HIL-02a,HAC-HIL-02b,HAC-HIL-02c（`specified_frozen`）。
 - L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「OS・意味変更要」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理。 意味差分は別途対象revisionで判断する。
-- 理由：対象revisionのPO判断待ち：旧一律reverse遷移を現行の条件付き適用と照合。段階receiptはOS 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-01 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:91；既存対象照合 docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:10（旧一律reverse遷移を現行の条件付き適用と照合。段階receiptはOS）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-OSの接続受入へ残す。B 衝突する条件を変更→「対象revisionのPO判断待ち：旧一律reverse遷移を現行の条件付き適用と照合。段階receiptはOS」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
+- 提案：event受理から検収までの状態・証拠を保持し、Reverse段階は適用条件が成立した仕事だけに要求する候補へ分ける。
+- 理由：旧event列はintake後のreverseを一律遷移とする。現行の条件付きReverseでは適用範囲が変わる。
+- 選択肢と影響：A 全eventにReverseを維持→条件付き適用とのconflictを残す。B Reverse適用条件と非適用receiptを明示→旧一律遷移の意味変更を対象revisionで承認し、適用時のR0–R4受入を保持。C 保留→旧event列で実行完了を判定しない。
+- 推奨：B。条件外の仕事と適用後のstage欠落を別の負例にする。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0候補（旧IRの現行採択・完成条件ではない）`、判定候補 `未特定`。
 
 ### HIL-FR-04
@@ -575,10 +547,10 @@
 - 原文：Universal Reverse Gateは全IssueのR0–R4を順序実行し、各phaseのobligation集合、input/output digest、stage固有schema、source coverage、R4 routing、双方向参照を検査する。R1を含むphase skipは認めず、該当契約なしも探索証拠付き結論として記録する。 | pass/fail receipt＋不足/空洞化code
 - 原制約・authority：IRのacceptance_ids=HAC-HIL-04a,HAC-HIL-04b,HAC-HIL-04c（`specified_frozen`）。
 - L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「OS・意味変更要」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理。 意味差分は別途対象revisionで判断する。
-- 理由：対象revisionのPO判断待ち：全Issue R0–R4必須はBR-04と矛盾。Reverse適用時の証拠条件と分離 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-04 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:94；既存対象照合 docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:13（全Issue R0–R4必須はBR-04と矛盾。Reverse適用時の証拠条件と分離）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-OSの接続受入へ残す。B 衝突する条件を変更→「対象revisionのPO判断待ち：全Issue R0–R4必須はBR-04と矛盾。Reverse適用時の証拠条件と分離」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
+- 提案：Reverse適用時のR0–R4順序、obligation、digest、coverageを保持し、全Issue一律のGate条件を条件付き適用へ変更する候補。
+- 理由：旧原文の「全Issue」は現行の条件付きReverseと衝突する。stage証拠は保持できるが必須母集団が変わる。
+- 選択肢と影響：A 全Issue一律を維持→現行BR-04とのconflictを残す。B 適用条件をL2で定め、該当IssueのR0–R4を必須にする→母集団変更を対象revisionで承認し、非適用receiptをL11へ追加。C 保留→全Issueの完了判定に使わない。
+- 推奨：B。budget不足時に義務を消さない条件も残す。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `未特定（全IssueのReverse必須化はBR-04の条件付き適用と衝突）`、判定候補 `未特定`。
 
 ### HIL-FR-10
@@ -587,10 +559,10 @@
 - 原文：Memory CompactorはIssue admission時の問題・判断要約とCodex completion時の永続知識を別event種別で圧縮し、promote/supersede/no-promotionを記録する。進捗/raw logはmemoryへ複製しない。 | issue-summary、compressed memoryまたはno-promotion receipt
 - 原制約・authority：IRのacceptance_ids=HAC-HIL-07a,HAC-HIL-07b,HAC-HIL-07c（`specified_frozen`）。
 - L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「OS・意味変更要」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理／HELIX-LABO:独立計測・比較・退行評価／HELIX-Intelligence:3.0の知識・モデル改善。 意味差分は別途対象revisionで判断する。
-- 理由：対象revisionのPO判断待ち：永続知識をmemoryへ昇格する旧条件はHMCの通知限定と衝突 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-10 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:100；既存対象照合 docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:19（永続知識をmemoryへ昇格する旧条件はHMCの通知限定と衝突）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-OS／HELIX-LABO／HELIX-Intelligenceの接続受入へ残す。B 衝突する条件を変更→「対象revisionのPO判断待ち：永続知識をmemoryへ昇格する旧条件はHMCの通知限定と衝突」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
+- 提案：問題・判断要約と完了時の知見候補を別eventとして記録し、memoryには有期限通知だけを置く。永続知識の選別は3.0へ分ける。
+- 理由：旧Memory Compactorはpromote/supersede/no-promotionで永続知識をmemoryに昇格する。現行HMC通知境界ではpromote先と失効条件が変わる。
+- 選択肢と影響：A 旧memory昇格を維持→HMCとのconflictを残す。B memoryは通知、知識改善は3.0 Intelligenceへ分ける→旧promote条件の意味変更を承認し、要約・失効・知識選別のL11を別にする。C 保留→旧Compactorを現行memory完成条件へ使わない。
+- 推奨：B。原記録と要約の出所を追跡できる負例を残す。
 - 対応印：機構 `HELIX-OS／HELIX-LABO／HELIX-Intelligence`、属性 `HELIX-OS:非製品、HELIX-LABO:非製品、HELIX-Intelligence:非製品`、HARNESS内 `非該当`、版 `1.0記録土台／3.0候補（知識・モデル改善）`、判定候補 `未特定`。
 
 ### HIL-FR-19
@@ -599,11 +571,11 @@
 - 原文：画面対象のWalkthrough Loopはprototype版、ユーザー観測、発見要求deltaまたは`no_delta`、L1反映先、再作成判断を記録し、boundedに反復する。 | walkthrough receipt、requirements delta、iteration checkpoint
 - 原制約・authority：IRのacceptance_ids=HAC-HIL-15a,HAC-HIL-15b,HAC-HIL-15c（`specified_frozen`）。
 - L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「HARNESS／OS・意味変更要」から、現Conceptの候補へ分ける：HELIX-HARNESS:サービス①の要求・設計・検証契約／HELIX-OS:登録・推進・検収と状態/証拠の管理。 意味差分は別途対象revisionで判断する。
-- 理由：対象revisionのPO判断待ち：L1反映先の旧記述をL2要求へ是正し、企画影響時だけL1にも戻す 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-19 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:109；既存対象照合 docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:28（L1反映先の旧記述をL2要求へ是正し、企画影響時だけL1にも戻す）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-HARNESS／HELIX-OSの接続受入へ残す。B 衝突する条件を変更→「対象revisionのPO判断待ち：L1反映先の旧記述をL2要求へ是正し、企画影響時だけL1にも戻す」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
-- 対応印：機構 `HELIX-HARNESS／HELIX-OS`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品`、HARNESS内 `サービス①`、版 `1.0候補（旧IRの現行採択・完成条件ではない）`、判定候補 `未特定`。
+- 提案：Walkthroughのprototype版、観測、delta/no_delta、再作成判断を保持し、発見した要求差分の一次反映先をL2、企画価値の差分だけL1へ還流する候補。
+- 理由：旧原文は要求deltaのL1反映先を固定する。現行層ではL1は企画、L2が要求とprototype合意を持つため、要求差分の意味の置き場所が変わる。
+- 選択肢と影響：A 全deltaをL1へ反映→企画と要求の混在を残す。B 要求deltaはL2、企画差分はL1へ分ける→旧反映先の意味変更を対象revisionで承認し、prototype合意のL11へ接続。C 保留→旧L1反映を現行承認扱いにしない。
+- 推奨：B。no_deltaでも観測と再作成判断を残す。
+- 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `サービス①`、版 `1.0候補（旧IRの現行採択・完成条件ではない）`、判定候補 `未特定`。
 
 ### HIL-FR-20
 
@@ -611,35 +583,11 @@
 - 原文：Screen Gateは画面対象ならartifact、walkthrough、要求反映、prototype agreementを検査し、画面非対象ならskip receiptのscope/digest/再entry条件を検査する。いずれも無い場合はL1 freezeとL3開始をfail-closeする。 | G2判定、agreementまたはskip receipt、不足code
 - 原制約・authority：IRのacceptance_ids=HAC-HIL-15a,HAC-HIL-15b,HAC-HIL-15c（`specified_frozen`）。
 - L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「HARNESS／OS・意味変更要」から、現Conceptの候補へ分ける：HELIX-HARNESS:サービス①の要求・設計・検証契約／HELIX-OS:登録・推進・検収と状態/証拠の管理。 意味差分は別途対象revisionで判断する。
-- 理由：対象revisionのPO判断待ち：L1 freeze／L3開始の旧境界をL2合意・L3凍結条件と照合 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-20 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:110；既存対象照合 docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:29（L1 freeze／L3開始の旧境界をL2合意・L3凍結条件と照合）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-HARNESS／HELIX-OSの接続受入へ残す。B 衝突する条件を変更→「対象revisionのPO判断待ち：L1 freeze／L3開始の旧境界をL2合意・L3凍結条件と照合」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
+- 提案：画面対象のprototype合意と非画面対象のskip receiptを保持し、L2合意後にL3へ進む境界に置く。
+- 理由：旧Screen GateはL1 freezeからL3開始を判定する。現行L1企画とL2要求/prototypeの境界を飛ばす。
+- 選択肢と影響：A 旧L1 freeze境界を維持→L2合意を飛ばすconflictを残す。B L2/prototype合意をGate条件にする→旧境界の意味変更を対象revisionで承認し、画面/非画面のL11を分ける。C 保留→旧GateからL3開始を認めない。
+- 推奨：B。非画面skipもscope・digest・再entry条件を要求する。
 - 対応印：機構 `HELIX-HARNESS／HELIX-OS`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品`、HARNESS内 `サービス①`、版 `1.0候補（旧IRの現行採択・完成条件ではない）`、判定候補 `未特定`。
-
-### HIL-FR-23
-
-- 原要求ID・原文位置・revision：`HIL-FR-23`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-23 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:113`、`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
-- 原文：Product Data Connector Registryはsource種別、connector/schema version、credential reference、classification、read/write方針、sync方式、owner、enabled stateを保持する。credential値は保存しない。 | connector contract、digest、enable/disable receipt
-- 原制約・authority：IRのacceptance_ids=HAC-HIL-11a,HAC-HIL-11b,HAC-HIL-11c（`specified_frozen`）。
-- L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文のconnector登録・契約版・provenanceの受け口を1.0土台へ置き、外部開発データの実取込・案件への推薦は2.0候補として分ける。
-- 理由：Conceptの1.0接続土台と2.0推薦の到達範囲が異なる。原IDの単体・接続条件を別版へ追跡する必要がある。
-- 選択肢と影響：A 1.0接続土台と2.0実取込に分ける→原文の全atomを両版とL11で追跡。B 一括で1.0に置く→Conceptの完成条件を変更する判断が必要。C 保留→旧原文・revisionを保持。
-- 推奨：A。1.0では実データ取込の成功を受入条件にしない。
-- 対応印：機構 `HELIX-OS／HELIX-Security／HELIX-CONNECT`、属性 `HELIX-OS:非製品、HELIX-Security:非製品、HELIX-CONNECT:共通部品`、HARNESS内 `非該当`、版 `1.0接続土台／2.0候補（外部データ実取込）`、判定候補 `改変`。
-
-### HIL-FR-24
-
-- 原要求ID・原文位置・revision：`HIL-FR-24`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-24 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:114`、`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
-- 原文：Product Data Ingestionはfull/incremental snapshotを冪等取得し、source record→canonical entity→requirement/design/Issue mapping、provenance、freshness、tombstone、schema driftをread projectionへ投影する。 | snapshot、watermark、mapping edge、stale/drift finding
-- 原制約・authority：IRのacceptance_ids=HAC-HIL-11a,HAC-HIL-11b,HAC-HIL-11c（`specified_frozen`）。
-- L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文のfull/incremental snapshotと正規projectionは2.0の単体候補とし、1.0にはCONNECTの契約版・記録受け口だけを置く。OSの登録、BRAINの根拠付き推薦、Securityのデータ制限を接続する。
-- 理由：旧IRは取込を一体で記すが、Conceptの外部開発データ実利用は2.0。1.0の接続土台との版境界を混ぜると1.0完成条件を前倒しする。
-- 選択肢と影響：A 2.0単体取込と1.0接続受け口へ分けて原意味を維持→両版のL11を別に起草。B 旧取込を1.0へ含める→Conceptの版境界の意味変更が必要。C 保留→旧原文を保全し1.0完成判定には使わない。
-- 推奨：A。BR-15／FR-23の接続と2.0取込の負例を同時に確認する。
-- 対応印：機構 `HELIX-OS／HELIX-BRAIN／HELIX-Security／HELIX-CONNECT`、属性 `HELIX-OS:非製品、HELIX-BRAIN:非製品、HELIX-Security:非製品、HELIX-CONNECT:共通部品`、HARNESS内 `非該当`、版 `2.0候補（外部データ実取込。1.0は接続・記録土台のみ）`、判定候補 `改変`。
 
 ### HIL-FR-28
 
@@ -647,47 +595,11 @@
 - 原文：Three-stage CI Orchestratorは各段の必須check、対象SHA/tree digest、結果、artifactを記録し、`local_prejoin→internal_postjoin→github_external`の単調遷移を強制する。 | stage receipt、SHA binding、next-stage可否
 - 原制約・authority：IRのacceptance_ids=HAC-HIL-06a,HAC-HIL-06b,HAC-HIL-06c（`specified_frozen`）。
 - L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「OS」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理。 意味差分は別途対象revisionで判断する。
-- 理由：旧三段CI固定の採否は未特定。ConceptはCI・test最適化を定めるが段数を指定しない。 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-28 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:118；既存対象照合 docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:37（CI段階の実行・receipt・lineage。三段固定の適用範囲を照合）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-OSの接続受入へ残す。B 衝突する条件を変更→「旧三段CI固定の採否は未特定。ConceptはCI・test最適化を定めるが段数を指定しない。」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
-- 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0候補（CIの存在のみ。旧三段固定は未採否）`、判定候補 `未特定`。
-
-### HIL-FR-30
-
-- 原要求ID・原文位置・revision：`HIL-FR-30`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-30 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:120`、`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
-- 原文：Finding Dispositionはcurrent contract違反、correctness/security/data loss、必須oracle/main/evidenceへの影響と責務境界を評価し、同じ責務・既存scope内で安全かつ局所的に閉じるfindingを`current_pr_fix`、独立責務・別設計・lifecycle・性能改善を`successor_issue`へ分類する。Finding Promotion Pipelineは`successor_issue`だけから重複判定、Issue contract、Universal Reverse、memory issue-summary、Codex queue itemを同一causality IDで原子的に生成する。`current_pr_fix`はwriterへ一括返却し、途中欠落はreadyにしない。 | typed disposition、writer return、Issue/Reverse/memory/queue join
-- 原制約・authority：IRのacceptance_ids=HAC-HIL-03a,HAC-HIL-03b,HAC-HIL-03c（`specified_frozen`）。
-- L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「OS・意味変更要」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理。 意味差分は別途対象revisionで判断する。
-- 理由：対象revisionのPO判断待ち：finding処理と後続作業の原子生成。Universal Reverseとmemory要約の意味を最新候補と照合 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-30 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:120；既存対象照合 docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:39（finding処理と後続作業の原子生成。Universal Reverseとmemory要約の意味を最新候補と照合）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-OSの接続受入へ残す。B 衝突する条件を変更→「対象revisionのPO判断待ち：finding処理と後続作業の原子生成。Universal Reverseとmemory要約の意味を最新候補と照合」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
-- 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0候補（旧IRの現行採択・完成条件ではない）`、判定候補 `未特定`。
-
-### HIL-FR-33
-
-- 原要求ID・原文位置・revision：`HIL-FR-33`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-33 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:123`、`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
-- 原文：Bun Dependency Coverage Gateはactive source/import/command/script/test/package/lockfile/CI/hook/template/setup/distributionからBun依存を抽出する。historical/archiveだけを理由付きallowlist可能とする。 | classified dependency ledger、active Bun count
-- 原制約・authority：IRのacceptance_ids=HAC-HIL-13a,HAC-HIL-13b,HAC-HIL-13c（`specified_frozen`）。
-- L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：旧実現方式を持ち込まず、原文の目的・制約のうち技術に依存しない条件を保持する候補。対象機構はHELIX-OS、導入版は未特定。
-- 理由：Conceptは原文の固定runtime／言語／DB／IPC／platformを指定していない。方式を要求の意味として採るかが旧指定revisionとの意味差分になる。旧実現方式の採用は未決。原目的・制約のうち方式に依存しない意味を保持する候補。
-- 選択肢と影響：A 旧方式を維持→Bun Dependency Coverage Gateはactive source/import/command/script/test/package/lockfile/CI/hook/template/setup/distributionからBun依存を抽出する。historical/archiveだけを理由付きallowlist可能とする。 | classified dependency ledger、active Bun countを現行下流の拘束条件として採る。B 方式を外し目的・失敗境界を保持→変更前後の意味atomと影響consumerをdecisionへ記録。C 保留→旧指定をsourceとして保全し、現行実装への転用を止める。
-- 推奨：Bを審査候補とする。旧方式を外す前に、原文の制約・受入とconsumerの未被覆0を確認する。
-- 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `未特定（旧実現方式の採否・適用版はConcept未記載）`、判定候補 `不採用候補`。
-
-### HIL-FR-34
-
-- 原要求ID・原文位置・revision：`HIL-FR-34`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-34 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:124`、`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
-- 原文：OS Contract Runnerは同一fixtureでpath separator/case/space/Unicode/permission/symlink/signal/process group/file lock/SQLite/executable discoveryをLinux/macOS/Windows adapterへ適用する。 | OS contract result、adapter violation
-- 原制約・authority：IRのacceptance_ids=HAC-HIL-14a,HAC-HIL-14b,HAC-HIL-14c（`specified_frozen`）。
-- L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「HELIX実装／OS」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理／Runner／Sandbox:限定実行・停止・結果回収。 意味差分は別途対象revisionで判断する。
-- 理由：旧技術・platform条件の採否と原受入の保持範囲は未特定。Conceptは実装方式や適用版を指定しない。 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-34 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:124；既存対象照合 docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:43（HELIX platform adapterの契約試験）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-OS／Runner／Sandboxの接続受入へ残す。B 衝突する条件を変更→「旧技術・platform条件の採否と原受入の保持範囲は未特定。Conceptは実装方式や適用版を指定しない。」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
-- 対応印：機構 `HELIX-OS／Runner／Sandbox`、属性 `HELIX-OS:非製品、Runner／Sandbox:共通部品`、HARNESS内 `非該当`、版 `未特定（旧実現方式の採否・適用版はConcept未記載）`、判定候補 `未特定`。
+- 提案：各CI段の必須check、対象SHA/tree、artifact、前段lineageを保持し、local/internal/GitHubの三段固定を検証契約の候補へ下ろす。
+- 理由：旧Orchestratorは三段を順番固定する。ConceptのOS検収は検証集合の選定・最適化を担うが三段固定は規定しない。
+- 選択肢と影響：A 三段固定を維持→全仕事の外部CI必須化を明記。B 段数を検証契約に従わせる→旧順序固定の意味変更を承認し、SHA/treeとlineage検査を各段のL11に残す。C 保留→旧三段を1.0完成条件にしない。
+- 推奨：B。NFR-15のreceipt chainを落とさない。
+- 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0候補（CI証拠lineage。旧三段固定の採否はPO未決）`、判定候補 `未特定`。
 
 ### HIL-NFR-03
 
@@ -695,47 +607,11 @@
 - 原文：全IssueのReverse処理量を省略しない。`none/not-required/exempt`とphase skipを禁止し、budget到達は未完obligationを免除せずcheckpoint＋未完了状態へ遷移する。
 - 原制約・authority：IRのacceptance_ids=HAC-HIL-04a,HAC-HIL-04b,HAC-HIL-04c（`specified_frozen`）。
 - L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「意味変更要：全Issue Reverse必須はBR-04の条件付き適用と矛盾。予算到達時の未完義務保持はOS」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理。 追加照合：HELIX-HARNESSの単体責務とOS側の接続責務を分ける。 意味差分は別途対象revisionで判断する。
-- 理由：対象revisionのPO判断待ち：旧要求の「全IssueでReverse省略を禁止」とConcept下の条件付きReverse適用が衝突する。必須適用範囲の変更は旧意味を変える。 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-03 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:183；既存対象照合 docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md:12（）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-HARNESS／HELIX-OSの接続受入へ残す。B 衝突する条件を変更→「対象revisionのPO判断待ち：旧要求の「全IssueでReverse省略を禁止」とConcept下の条件付きReverse適用が衝突する。必須適用範囲の変更は旧意味を変える。」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
+- 提案：Reverse適用時の省略禁止と、budget到達時も未完義務を保持してcheckpointへ遷移する意味を残す。
+- 理由：旧原文は全IssueのReverse省略とexemptを禁止する。条件付き適用を認めると必須母集団が変わる。
+- 選択肢と影響：A 全Issue必須を維持→現行BR-04とのconflictを残す。B 適用条件に該当するIssueだけ省略禁止とする→旧全Issue条件の意味変更を承認し、非適用receiptとcheckpointのL11を追加。C 保留→旧一律Gateで完了を宣言しない。
+- 推奨：B。適用後にbudgetを理由とする免除を許さない。
 - 対応印：機構 `HELIX-HARNESS／HELIX-OS`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品`、HARNESS内 `枠`、版 `未特定（全IssueのReverse必須化はBR-04の条件付き適用と衝突）`、判定候補 `未特定`。
-
-### HIL-NFR-09
-
-- 原要求ID・原文位置・revision：`HIL-NFR-09`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-09 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:189`、`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
-- 原文：Linux primaryで全core gateを実行し、macOS/Windows差異はadapter contract testで検出する。OS別logic forkを作らない。
-- 原制約・authority：IRのacceptance_ids=HAC-HIL-14a,HAC-HIL-14b,HAC-HIL-14c（`specified_frozen`）。
-- L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「実装制約：Linux基準とOS adapter。consumerのOS一律指定へ転用しない」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理。 意味差分は別途対象revisionで判断する。
-- 理由：旧技術・platform条件の採否と原受入の保持範囲は未特定。Conceptは実装方式や適用版を指定しない。 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-09 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:189；既存対象照合 docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md:18（）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-OSの接続受入へ残す。B 衝突する条件を変更→「旧技術・platform条件の採否と原受入の保持範囲は未特定。Conceptは実装方式や適用版を指定しない。」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
-- 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `未特定（旧実現方式の採否・適用版はConcept未記載）`、判定候補 `未特定`。
-
-### HIL-NFR-14
-
-- 原要求ID・原文位置・revision：`HIL-NFR-14`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-14 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:194`、`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
-- 原文：IPCは不正JSON、schema不一致、oversize、sequence欠落、worker crash、timeout、cancel、backpressure、親process消失をfail-closeし、partial resultを正本へ昇格しない。
-- 原制約・authority：IRのacceptance_ids=HAC-HIL-12a,HAC-HIL-12b,HAC-HIL-12c（`specified_frozen`）。
-- L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「実装制約／OS：IPC障害時のfail-closeと部分結果非昇格」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理／Runner／Sandbox:限定実行・停止・結果回収。 意味差分は別途対象revisionで判断する。
-- 理由：旧技術・platform条件の採否と原受入の保持範囲は未特定。Conceptは実装方式や適用版を指定しない。 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-14 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:194；既存対象照合 docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md:23（）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-OS／Runner／Sandboxの接続受入へ残す。B 衝突する条件を変更→「旧技術・platform条件の採否と原受入の保持範囲は未特定。Conceptは実装方式や適用版を指定しない。」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
-- 対応印：機構 `HELIX-OS／Runner／Sandbox`、属性 `HELIX-OS:非製品、Runner／Sandbox:共通部品`、HARNESS内 `非該当`、版 `未特定（旧実現方式の採否・適用版はConcept未記載）`、判定候補 `未特定`。
-
-### HIL-NFR-19
-
-- 原要求ID・原文位置・revision：`HIL-NFR-19`、`archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-19 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:199`、`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
-- 原文：Linuxをcore completion platformとし、macOS portable suiteとWindows compatibility smokeの未実施は明示する。Windows wrapper成功をLinux互換証拠にしない。
-- 原制約・authority：IRのacceptance_ids=HAC-HIL-14a,HAC-HIL-14b,HAC-HIL-14c（`specified_frozen`）。
-- L11対応：未特定（現行4対象L11を原ID検索、直接対応なし）
-- 提案：原文の目的を保ち、旧対象照合「実装制約：platform別の検証証拠。wrapper成功を別OS成功にしない」から、現Conceptの候補へ分ける：HELIX-OS:登録・推進・検収と状態/証拠の管理。 意味差分は別途対象revisionで判断する。
-- 理由：旧技術・platform条件の採否と原受入の保持範囲は未特定。Conceptは実装方式や適用版を指定しない。 原IR archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-19 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:199；既存対象照合 docs/governance/audits/source-rebaseline/infinity-quality-constraint-crosswalk.md:28（）；Concept 機構表:205-216、1.0/後続版:38-53、HARNESS区分:225-253
-- 選択肢と影響：A 原文の該当条件も維持→HELIX-OSの接続受入へ残す。B 衝突する条件を変更→「旧技術・platform条件の採否と原受入の保持範囲は未特定。Conceptは実装方式や適用版を指定しない。」の変更前後・影響L2/L11をdecisionへ束縛。C 保留→原IDと旧authorityを保持し、衝突条件を現行L2へ採用しない。
-- 推奨：Bを比較候補とする。旧照合の衝突条件を個別に示してから原意味atomの残存先を確認する。
-- 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `未特定（旧実現方式の採否・適用版はConcept未記載）`、判定候補 `未特定`。
 
 ### DTK-HARNESS-001
 
@@ -746,7 +622,7 @@
 - 提案：原文「要求候補または合意要求から推進がtyped ticketを生成するときに、解消すべき不確実性、次の成果、ticket identityを区別するcontractを定める」と原制約を保ち、HELIX-HARNESS（HARNESS内 部品：要求エンジン／枠）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「要求候補または合意要求から推進がtyped ticketを生成するときに、解消すべき不確実性、次の成果、ticket identityを区別するcontractを定める」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `部品：要求エンジン／枠`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-HARNESS-002
@@ -758,7 +634,7 @@
 - 提案：原文「`poc` ticketは技術・成立性仮説、対象要求、timebox、許可scope、入力、判定基準、expected evidence、終了条件、backflow先を持つ」と原制約を保ち、HELIX-HARNESS（HARNESS内 部品：要求エンジン／枠）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「`poc` ticketは技術・成立性仮説、対象要求、timebox、許可scope、入力、判定基準、expected evidence、終了条件、backflow先を持つ」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `部品：要求エンジン／枠`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-HARNESS-003
@@ -770,7 +646,7 @@
 - 提案：原文「`ui_prototype` ticketは対象要求・actor・task・surface、prototype revision、確認する操作・状態・failure、利用者反応、合意／未解決、backflow先を持つ」と原制約を保ち、HELIX-HARNESS（HARNESS内 部品：要求エンジン／枠）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「`ui_prototype` ticketは対象要求・actor・task・surface、prototype revision、確認する操作・状態・failure、利用者反応、合意／未解決、backflow先を持つ」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `部品：要求エンジン／枠`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-HARNESS-004
@@ -782,7 +658,7 @@
 - 提案：原文「`feature` ticketは採用済み親要求、対象kind、設計義務、pair、acceptance、scope、依存、許可、停止、証拠を持つ」と原制約を保ち、HELIX-HARNESS（HARNESS内 部品：要求エンジン／枠）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「`feature` ticketは採用済み親要求、対象kind、設計義務、pair、acceptance、scope、依存、許可、停止、証拠を持つ」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `部品：要求エンジン／枠`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-HARNESS-005
@@ -794,7 +670,7 @@
 - 提案：原文「ticket結果を要求エンジンへ戻し、要求候補の訂正・採否、追加質問、設計template再選定、stale範囲を提示する」と原制約を保ち、HELIX-HARNESS（HARNESS内 部品：要求エンジン／枠）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「ticket結果を要求エンジンへ戻し、要求候補の訂正・採否、追加質問、設計template再選定、stale範囲を提示する」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `部品：要求エンジン／枠`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-HARNESS-006
@@ -806,7 +682,7 @@
 - 提案：原文「技術選定は承認済み要求と新世代architecture責務から導き、PoCで適合性、risk、運用、移行、rollbackを比較する」と原制約を保ち、HELIX-HARNESS（HARNESS内 部品：要求エンジン／枠）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「技術選定は承認済み要求と新世代architecture責務から導き、PoCで適合性、risk、運用、移行、rollbackを比較する」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `部品：要求エンジン／枠`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-HARNESS-007
@@ -818,7 +694,7 @@
 - 提案：原文「推進側が生成するworkflowを検証できるよう、対象要求とHARNESS版に必要なlayer／pair、成果物、oracle、human gate、停止・差戻し・backflowの充足contractを提供する」と原制約を保ち、HELIX-HARNESS（HARNESS内 部品：要求エンジン／枠）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「推進側が生成するworkflowを検証できるよう、対象要求とHARNESS版に必要なlayer／pair、成果物、oracle、human gate、停止・差戻し・backflowの充足contractを提供する」の意味を変更→変更前後、影響するHELIX-HARNESSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-HARNESS`、属性 `HELIX-HARNESS:製品`、HARNESS内 `部品：要求エンジン／枠`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-OS-001
@@ -830,7 +706,7 @@
 - 提案：原文「管理は目的、親要求revision、優先度、制約、許可、予算、期限、適用HARNESS版を推進へ渡し、推進が生成したlocal ticketとworkflowを登録・統制する」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「管理は目的、親要求revision、優先度、制約、許可、予算、期限、適用HARNESS版を推進へ渡し、推進が生成したlocal ticketとworkflowを登録・統制する」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-OS-002
@@ -842,7 +718,7 @@
 - 提案：原文「local ticketをGitHub Issue等へprojectionし、remote番号・状態・commentを原ticketへ関連付ける」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「local ticketをGitHub Issue等へprojectionし、remote番号・状態・commentを原ticketへ関連付ける」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-OS-003
@@ -854,7 +730,7 @@
 - 提案：原文「PoC／prototype／featureの実行・成果・反応・finding・期限切れ・取消を別stateで管理し、正しい要求・template・設計へbackflowする」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「PoC／prototype／featureの実行・成果・反応・finding・期限切れ・取消を別stateで管理し、正しい要求・template・設計へbackflowする」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-OS-004
@@ -866,7 +742,7 @@
 - 提案：原文「architectureで分けたsemantic／transactional責務ごとに技術候補、評価条件、PoC結果、採否、失効を管理する」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「architectureで分けたsemantic／transactional責務ごとに技術候補、評価条件、PoC結果、採否、失効を管理する」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-OS-005
@@ -878,7 +754,7 @@
 - 提案：原文「推進は管理から受けた目的・要求・制約とHARNESS contractを解釈し、triggerに合うHARNESS routeを選び、operational tag、versioned mapping、composition、workflow instance生成規則でPoC／UI prototype／Feature ticketとworkflowを生成する」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「推進は管理から受けた目的・要求・制約とHARNESS contractを解釈し、triggerに合うHARNESS routeを選び、operational tag、versioned mapping、composition、workflow instance生成規則でPoC／UI prototype／Feature ticketとworkflowを生成する」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-OS-006
@@ -890,7 +766,7 @@
 - 提案：原文「operational tag、HARNESS normative vocabularyへのmapping、composition、workflow instance生成規則を推進がversion管理し、開発style、work kind、変更種別、risk、surfaceを必要に応じて合成する」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「operational tag、HARNESS normative vocabularyへのmapping、composition、workflow instance生成規則を推進がversion管理し、開発style、work kind、変更種別、risk、surfaceを必要に応じて合成する」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### DTK-OS-007
@@ -902,12 +778,12 @@
 - 提案：原文「検収は推進が生成したticket graphとworkflowを承認済みHARNESS contract、親要求、依存、許可に照らして独立確認し、不足を推進または上流へ戻す」と原制約を保ち、HELIX-OS（HARNESS内 非該当）の1.0候補へ置く。HARNESSはticket契約、OS推進はticket生成、OS管理は登録、OS検収は独立確認へ分ける候補。
 - 理由：source authority draft_candidate。candidateの採否とL11対受入が未決。 対応受入 未特定（4対象L11をDTK ID検索、直接対応なし）。
 - 選択肢と影響：A 原文と制約を保持してこの機構・版で対象revisionを合意→未特定（4対象L11をDTK ID検索、直接対応なし）を同revisionの対条件として具体化。B 「検収は推進が生成したticket graphとworkflowを承認済みHARNESS contract、親要求、依存、許可に照らして独立確認し、不足を推進または上流へ戻す」の意味を変更→変更前後、影響するHELIX-OSとL11をdecisionへ明記。C 保留→原状態 draft_candidateを維持し、対象L2/L11の承認を生成しない。
-- 推奨：Aを審査候補とする。原文の制約と受入を分割後の各接続に残す。
+- 推奨：Aを審査候補とする。単体の原制約とL11受入を同revisionで確認する。
 - 対応印：機構 `HELIX-OS`、属性 `HELIX-OS:非製品`、HARNESS内 `非該当`、版 `1.0`、判定候補 `維持`。
 
 ### L1-COV-G1-SYSTEM-DRIVEN-AUTONOMY
 
-- 原要求ID・原文位置・revision：`L1-COV-G1-SYSTEM-DRIVEN-AUTONOMY`、`docs/governance/audits/source-rebaseline/l1-goals-principles-coverage-audit.md:52`、`git-blob:f6cfbb9ebe8a570e1c20c558c74f1664b84d183c`。
+- 原要求ID・原文位置・revision：`L1-COV-G1-SYSTEM-DRIVEN-AUTONOMY`、`docs/governance/audits/source-rebaseline/l1-goals-principles-coverage-audit.md:52`、`git-blob:9d9c17b4884375f5bfee04c2988c8d42aa4caf6d`。
 - 原文：| `L1-COV-G1-SYSTEM-DRIVEN-AUTONOMY` | 承認済み上流から進行、停止、差戻し、再開、完了を判断できる工程・検証契約 | system stateとwork graphから次のactionable workを導き、Workerへ割り当て、要求・承認・権限を自己生成せず継続する管理・推進・検収 | 製品固有の目的、制約、許可、停止条件、利用者判断を提供する責務 |
 - 原制約・authority：監査work unitであり要求ID・採択済みscopeではない（`coverage_audit_only`）。
 - L11対応：未特定（監査work unitに直接L11 IDなし）
@@ -919,7 +795,7 @@
 
 ### L1-COV-G3-SIMULATION
 
-- 原要求ID・原文位置・revision：`L1-COV-G3-SIMULATION`、`docs/governance/audits/source-rebaseline/l1-goals-principles-coverage-audit.md:53`、`git-blob:f6cfbb9ebe8a570e1c20c558c74f1664b84d183c`。
+- 原要求ID・原文位置・revision：`L1-COV-G3-SIMULATION`、`docs/governance/audits/source-rebaseline/l1-goals-principles-coverage-audit.md:53`、`git-blob:9d9c17b4884375f5bfee04c2988c8d42aa4caf6d`。
 - 原文：| `L1-COV-G3-SIMULATION` | simulation入力・relation・不確実性・反証・検証義務の開発契約 | simulationの実行、revision付き記録、実測差、再計画、改善候補化 | 製品固有の価値、制約、運用条件を入力として提供する責務 |
 - 原制約・authority：監査work unitであり要求ID・採択済みscopeではない（`coverage_audit_only`）。
 - L11対応：未特定（監査work unitに直接L11 IDなし）
@@ -931,7 +807,7 @@
 
 ### L1-COV-G4-NONENGINEER
 
-- 原要求ID・原文位置・revision：`L1-COV-G4-NONENGINEER`、`docs/governance/audits/source-rebaseline/l1-goals-principles-coverage-audit.md:54`、`git-blob:f6cfbb9ebe8a570e1c20c558c74f1664b84d183c`。
+- 原要求ID・原文位置・revision：`L1-COV-G4-NONENGINEER`、`docs/governance/audits/source-rebaseline/l1-goals-principles-coverage-audit.md:54`、`git-blob:9d9c17b4884375f5bfee04c2988c8d42aa4caf6d`。
 - 原文：| `L1-COV-G4-NONENGINEER` | 非エンジニアが目的、判断事項、進行条件、品質、未決、riskを理解できる開発契約 | CI・bot・Workerによる自動実行、差戻し、証拠化、停止・再開の統制 | HELIX-WebはVersion 1後にdashboard操作体験を提供する。HARNESS Version 1の成立を代替しない |
 - 原制約・authority：監査work unitであり要求ID・採択済みscopeではない（`coverage_audit_only`）。
 - L11対応：未特定（監査work unitに直接L11 IDなし）
@@ -943,7 +819,7 @@
 
 ### L1-COV-G5-WORKER-OPTIMIZATION
 
-- 原要求ID・原文位置・revision：`L1-COV-G5-WORKER-OPTIMIZATION`、`docs/governance/audits/source-rebaseline/l1-goals-principles-coverage-audit.md:55`、`git-blob:f6cfbb9ebe8a570e1c20c558c74f1664b84d183c`。
+- 原要求ID・原文位置・revision：`L1-COV-G5-WORKER-OPTIMIZATION`、`docs/governance/audits/source-rebaseline/l1-goals-principles-coverage-audit.md:55`、`git-blob:9d9c17b4884375f5bfee04c2988c8d42aa4caf6d`。
 - 原文：| `L1-COV-G5-WORKER-OPTIMIZATION` | 作業分類、能力契約、検証義務、escalation条件 | Worker実測、費用、capacity、assignment、再配置、独立検証 | 製品固有のrisk、data、作用、品質、期限、費用制約を提供する責務 |
 - 原制約・authority：監査work unitであり要求ID・採択済みscopeではない（`coverage_audit_only`）。
 - L11対応：未特定（監査work unitに直接L11 IDなし）
@@ -962,7 +838,7 @@
 - 提案：Conceptの1.0土台を7機構・共通部品の単体記録と接続受入へ分け、仮IDの追加候補として起草する。OSはepisode・evidenceの管理、HARNESSは証拠契約、各機構は自責務のeventを記録する。
 - 理由：既存L2/HILには部分候補があるが、Conceptの「すべての機構」等の全条件とL11合成被覆が未証明。後続版の能力は1.0の完成条件へ入れない。
 - 選択肢と影響：A 不足分を追加→1.0単体・接続L2/L11を仮IDで起草し、採番は別判断。B 既存要求で全条件を被覆→対応する原ID/L11の全atomを提示して追加を避ける。C 保留→未被覆疑義を維持し1.0完成を宣言しない。
-- 推奨：Aを審査候補とする。既存行に全条件被覆がある場合はBへ切り替える。
+- 推奨：A。能力・モデル版と相関IDを欠くepisodeを拒否するL11を先に起草する。
 - 対応印：機構 `HELIX-HARNESS／HELIX-OS／HELIX-BRAIN／HELIX-LABO／HELIX-Security／HELIX-CONNECT／Runner／Sandbox`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品、HELIX-BRAIN:非製品、HELIX-LABO:非製品、HELIX-Security:非製品、HELIX-CONNECT:共通部品、Runner／Sandbox:共通部品`、HARNESS内 `枠（全サービスに適用する共通契約の候補。サービス別受入は未決）`、版 `1.0土台`、判定候補 `追加`。
 
 ### 仮ID-BASE-02
@@ -974,7 +850,7 @@
 - 提案：Conceptの1.0土台を7機構・共通部品の単体記録と接続受入へ分け、仮IDの追加候補として起草する。Securityは利用区分と保護、各機構は自らの記録へ区分を付ける。
 - 理由：既存L2/HILには部分候補があるが、Conceptの「すべての機構」等の全条件とL11合成被覆が未証明。後続版の能力は1.0の完成条件へ入れない。
 - 選択肢と影響：A 不足分を追加→1.0単体・接続L2/L11を仮IDで起草し、採番は別判断。B 既存要求で全条件を被覆→対応する原ID/L11の全atomを提示して追加を避ける。C 保留→未被覆疑義を維持し1.0完成を宣言しない。
-- 推奨：Aを審査候補とする。既存行に全条件被覆がある場合はBへ切り替える。
+- 推奨：A。出典・権利・機密・学習用/評価用の欠落と誤混用を拒否するL11を起草する。
 - 対応印：機構 `HELIX-HARNESS／HELIX-OS／HELIX-BRAIN／HELIX-LABO／HELIX-Security／HELIX-CONNECT／Runner／Sandbox`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品、HELIX-BRAIN:非製品、HELIX-LABO:非製品、HELIX-Security:非製品、HELIX-CONNECT:共通部品、Runner／Sandbox:共通部品`、HARNESS内 `枠（全サービスに適用する共通契約の候補。サービス別受入は未決）`、版 `1.0土台`、判定候補 `追加`。
 
 ### 仮ID-BASE-03
@@ -986,7 +862,7 @@
 - 提案：Conceptの1.0土台を7機構・共通部品の単体記録と接続受入へ分け、仮IDの追加候補として起草する。LABOは独立計測・比較、OSは実行証拠、BRAINは配置案、HARNESSは検証契約を持つ。
 - 理由：既存L2/HILには部分候補があるが、Conceptの「すべての機構」等の全条件とL11合成被覆が未証明。後続版の能力は1.0の完成条件へ入れない。
 - 選択肢と影響：A 不足分を追加→1.0単体・接続L2/L11を仮IDで起草し、採番は別判断。B 既存要求で全条件を被覆→対応する原ID/L11の全atomを提示して追加を避ける。C 保留→未被覆疑義を維持し1.0完成を宣言しない。
-- 推奨：Aを審査候補とする。既存行に全条件被覆がある場合はBへ切り替える。
+- 推奨：A。品質・費用・時間・再作業・失敗を構成版別に比較でき、計測欠落を検出するL11を起草する。
 - 対応印：機構 `HELIX-HARNESS／HELIX-OS／HELIX-BRAIN／HELIX-LABO／HELIX-Security／HELIX-CONNECT／Runner／Sandbox`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品、HELIX-BRAIN:非製品、HELIX-LABO:非製品、HELIX-Security:非製品、HELIX-CONNECT:共通部品、Runner／Sandbox:共通部品`、HARNESS内 `枠（全サービスに適用する共通契約の候補。サービス別受入は未決）`、版 `1.0土台`、判定候補 `追加`。
 
 ### 仮ID-BASE-04
@@ -998,7 +874,7 @@
 - 提案：Conceptの1.0土台を7機構・共通部品の単体記録と接続受入へ分け、仮IDの追加候補として起草する。CONNECTは接続契約、各機構は入出力に契約版・相関ID・結果状態を実装する。
 - 理由：既存L2/HILには部分候補があるが、Conceptの「すべての機構」等の全条件とL11合成被覆が未証明。後続版の能力は1.0の完成条件へ入れない。
 - 選択肢と影響：A 不足分を追加→1.0単体・接続L2/L11を仮IDで起草し、採番は別判断。B 既存要求で全条件を被覆→対応する原ID/L11の全atomを提示して追加を避ける。C 保留→未被覆疑義を維持し1.0完成を宣言しない。
-- 推奨：Aを審査候補とする。既存行に全条件被覆がある場合はBへ切り替える。
+- 推奨：A。能力名・相関ID・期限・冪等キー・結果状態の不整合を拒否する接続L11を起草する。
 - 対応印：機構 `HELIX-HARNESS／HELIX-OS／HELIX-BRAIN／HELIX-LABO／HELIX-Security／HELIX-CONNECT／Runner／Sandbox`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品、HELIX-BRAIN:非製品、HELIX-LABO:非製品、HELIX-Security:非製品、HELIX-CONNECT:共通部品、Runner／Sandbox:共通部品`、HARNESS内 `枠（全サービスに適用する共通契約の候補。サービス別受入は未決）`、版 `1.0土台`、判定候補 `追加`。
 
 ### 仮ID-BASE-05
@@ -1010,7 +886,7 @@
 - 提案：Conceptの1.0土台を7機構・共通部品の単体記録と接続受入へ分け、仮IDの追加候補として起草する。Securityは隔離方針、Runner／Sandboxは実行隔離、各機構は記録・権限・資源にscopeを付ける。
 - 理由：既存L2/HILには部分候補があるが、Conceptの「すべての機構」等の全条件とL11合成被覆が未証明。後続版の能力は1.0の完成条件へ入れない。
 - 選択肢と影響：A 不足分を追加→1.0単体・接続L2/L11を仮IDで起草し、採番は別判断。B 既存要求で全条件を被覆→対応する原ID/L11の全atomを提示して追加を避ける。C 保留→未被覆疑義を維持し1.0完成を宣言しない。
-- 推奨：Aを審査候補とする。既存行に全条件被覆がある場合はBへ切り替える。
+- 推奨：A。project/tenant/環境を跨ぐ記録・権限・データ・資源の混線を拒否するL11を起草する。
 - 対応印：機構 `HELIX-HARNESS／HELIX-OS／HELIX-BRAIN／HELIX-LABO／HELIX-Security／HELIX-CONNECT／Runner／Sandbox`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品、HELIX-BRAIN:非製品、HELIX-LABO:非製品、HELIX-Security:非製品、HELIX-CONNECT:共通部品、Runner／Sandbox:共通部品`、HARNESS内 `枠（全サービスに適用する共通契約の候補。サービス別受入は未決）`、版 `1.0土台`、判定候補 `追加`。
 
 ### 仮ID-BASE-06
@@ -1022,7 +898,7 @@
 - 提案：Conceptの1.0土台を7機構・共通部品の単体記録と接続受入へ分け、仮IDの追加候補として起草する。OSはjob・構成版の登録と切戻し、Runner／Sandboxは固定版実行、各機構は自分の能力版を宣言する。
 - 理由：既存L2/HILには部分候補があるが、Conceptの「すべての機構」等の全条件とL11合成被覆が未証明。後続版の能力は1.0の完成条件へ入れない。
 - 選択肢と影響：A 不足分を追加→1.0単体・接続L2/L11を仮IDで起草し、採番は別判断。B 既存要求で全条件を被覆→対応する原ID/L11の全atomを提示して追加を避ける。C 保留→未被覆疑義を維持し1.0完成を宣言しない。
-- 推奨：Aを審査候補とする。既存行に全条件被覆がある場合はBへ切り替える。
+- 推奨：A。jobの能力・モデル・構成版固定と切戻し後の再現性をL11へ分ける。
 - 対応印：機構 `HELIX-HARNESS／HELIX-OS／HELIX-BRAIN／HELIX-LABO／HELIX-Security／HELIX-CONNECT／Runner／Sandbox`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品、HELIX-BRAIN:非製品、HELIX-LABO:非製品、HELIX-Security:非製品、HELIX-CONNECT:共通部品、Runner／Sandbox:共通部品`、HARNESS内 `枠（全サービスに適用する共通契約の候補。サービス別受入は未決）`、版 `1.0土台`、判定候補 `追加`。
 
 ### 仮ID-BASE-07
@@ -1034,7 +910,7 @@
 - 提案：Conceptの1.0土台を7機構・共通部品の単体記録と接続受入へ分け、仮IDの追加候補として起草する。CONNECTは後発機構の接続口、LABOは評価入力、各機構は将来の学習用・評価用記録を残す。
 - 理由：既存L2/HILには部分候補があるが、Conceptの「すべての機構」等の全条件とL11合成被覆が未証明。後続版の能力は1.0の完成条件へ入れない。
 - 選択肢と影響：A 不足分を追加→1.0単体・接続L2/L11を仮IDで起草し、採番は別判断。B 既存要求で全条件を被覆→対応する原ID/L11の全atomを提示して追加を避ける。C 保留→未被覆疑義を維持し1.0完成を宣言しない。
-- 推奨：Aを審査候補とする。既存行に全条件被覆がある場合はBへ切り替える。
+- 推奨：A。後発機構が接続前の評価・学習入力を読める1.0の記録契約をL11へ起草する。
 - 対応印：機構 `HELIX-HARNESS／HELIX-OS／HELIX-BRAIN／HELIX-LABO／HELIX-Security／HELIX-CONNECT／Runner／Sandbox`、属性 `HELIX-HARNESS:製品、HELIX-OS:非製品、HELIX-BRAIN:非製品、HELIX-LABO:非製品、HELIX-Security:非製品、HELIX-CONNECT:共通部品、Runner／Sandbox:共通部品`、HARNESS内 `枠（全サービスに適用する共通契約の候補。サービス別受入は未決）`、版 `1.0土台`、判定候補 `追加`。
 
 ## AIが進める項目（担当移動・技術変更・未特定の調査）
@@ -1044,19 +920,22 @@
 | 原ID | 原文位置・revision | 機構／HARNESS内区分／導入版の候補 | 次のAI作業・未特定結果 |
 |---|---|---|---|
 | HIL-BR-01 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-01 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:53`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS／HELIX-BRAIN、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-BR-02 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-02 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:54`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-BR-02 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-02 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:54`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-CONNECT、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-04 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-04 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:56`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-05 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-05 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:57`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-06 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-06 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:58`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-BR-07 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-07 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:59`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原記録・終端権限・単体/接続L11と旧consumerの被覆をAIが照合し、上流意味差分が判明した場合だけPOへ戻す。 |
 | HIL-BR-08 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-08 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:60`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-09 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-09 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:61`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
 | HIL-BR-10 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-10 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:62`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-11 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-11 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:63`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-LABO／HELIX-Intelligence、非該当、`1.0記録・評価受け口／3.0候補（知識・モデル改善）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。1.0記録土台と3.0知識・モデル改善を同一完成条件にしない。 |
-| HIL-BR-12 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-12 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:64`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-BR-12 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-12 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:64`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-CONNECT、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-13 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-13 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:65`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、入口、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-14 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-14 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:66`・`IR-revision:2; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-BR-15 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-15 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:67`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-BRAIN／HELIX-CONNECT、非該当、`1.0接続土台／2.0候補（外部データ実取込）` | 1.0接続受け口と2.0実取込・推薦のL11合成被覆は未証明。版割当はAIがConceptと原制約で照合し、上流意味を変える場合だけPOへ戻す。 |
 | HIL-BR-17 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-17 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:69`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-18 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-18 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:70`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
+| HIL-BR-19 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-19 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:71`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
 | HIL-BR-20 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-20 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:72`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-21 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-21 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:73`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、サービス⑤、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
 | HIL-BR-22 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-22 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:74`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
@@ -1066,44 +945,49 @@
 | HIL-BR-26 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-26 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:78`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
 | HIL-BR-27 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-27 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:79`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-28 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-28 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:80`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-BR-29 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-29 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:81`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-BR-29 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-29 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:81`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（pack運用・gap/効果評価のみ。知識・判断方法・モデル改善は3.0接続）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-30 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-30 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:82`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
 | HIL-BR-31 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-31 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:83`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-LABO、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-32 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-32 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:84`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-BR-33 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-BR-33 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:85`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、サービス⑥、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-02 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-02 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:92`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-02 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-02 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:92`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-CONNECT、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-03 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-03 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:93`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-05 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-05 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:95`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-06 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-06 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:96`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-07 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-07 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:97`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-08 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-08 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:98`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-09 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-09 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:99`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-11 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-11 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:101`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
-| HIL-FR-12 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-12 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:102`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-11 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-11 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:101`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
+| HIL-FR-12 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-12 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:102`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、部品（Agent Registry）、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-13 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-13 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:103`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-14 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-14 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:104`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-LABO／HELIX-Intelligence、非該当、`1.0記録・評価受け口／3.0候補（知識・モデル改善）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。1.0記録土台と3.0知識・モデル改善を同一完成条件にしない。 |
 | HIL-FR-15 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-15 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:105`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-16 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-16 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:106`・`IR-revision:2; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-17 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-17 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:107`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、入口、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-18 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-18 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:108`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、サービス①、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-18 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-18 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:108`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、サービス①、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-21 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-21 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:111`・`IR-revision:2; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-22 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-22 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:112`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-23 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-23 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:113`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security／HELIX-CONNECT、非該当、`1.0接続土台／2.0候補（外部データ実取込）` | 1.0接続受け口と2.0実取込・推薦のL11合成被覆は未証明。版割当はAIがConceptと原制約で照合し、上流意味を変える場合だけPOへ戻す。 |
+| HIL-FR-24 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-24 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:114`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-BRAIN／HELIX-Security／HELIX-CONNECT、非該当、`2.0候補（外部データ実取込。1.0は接続・記録土台のみ）` | 1.0接続受け口と2.0実取込・推薦のL11合成被覆は未証明。版割当はAIがConceptと原制約で照合し、上流意味を変える場合だけPOへ戻す。 |
 | HIL-FR-25 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-25 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:115`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-26 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-26 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:116`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-27 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-27 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:117`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`未特定（旧実現方式の採否・適用版はConcept未記載）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。Conceptに旧技術の採用版がなく、導入版未特定。 |
 | HIL-FR-29 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-29 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:119`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-30 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-30 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:120`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原記録・終端権限・単体/接続L11と旧consumerの被覆をAIが照合し、上流意味差分が判明した場合だけPOへ戻す。 |
 | HIL-FR-31 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-31 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:121`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-32 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-32 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:122`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-35 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-35 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:125`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、入口、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-33 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-33 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:123`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-FR-34 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-34 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:124`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-FR-35 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-35 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:125`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、入口、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-36 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-36 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:126`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-37 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-37 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:127`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-38 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-38 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:128`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-39 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-39 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:129`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、サービス⑤、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-40 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-40 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:130`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-41 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-41 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:131`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-37 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-37 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:127`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-38 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-38 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:128`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-39 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-39 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:129`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、サービス⑤、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-40 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-40 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:130`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-41 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-41 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:131`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、部品（Design Template）、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-42 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-42 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:132`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-43 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-43 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:133`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-44 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-44 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:134`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-44 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-44 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:134`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（pack運用・gap/効果評価のみ。知識・判断方法・モデル改善は3.0接続）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-45 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-45 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:135`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-46 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-46 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:136`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-47 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-47 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:137`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
@@ -1113,69 +997,72 @@
 | HIL-FR-51 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-51 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:141`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-52 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-52 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:142`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
 | HIL-FR-53 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-53 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:143`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-54 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-54 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-55 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-55 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-54 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-54 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:144`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-55 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-55 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:145`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-56 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-56 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:146`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-57 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-57 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:147`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-58 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-58 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:148`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-LABO、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-58 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-58 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:148`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-LABO、非該当、`1.0候補（pack運用・gap/効果評価のみ。知識・判断方法・モデル改善は3.0接続）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-59 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-59 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:149`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-60 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-60 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:150`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-61 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-61 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:151`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-LABO、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-62 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-62 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:152`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-LABO、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-63 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-63 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:153`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-BRAIN、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-64 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-64 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:154`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-65 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-65 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:155`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-65 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-65 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:155`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-66 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-66 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:156`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-FR-67 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-67 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:157`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-FR-67 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-67 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:157`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-68 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-68 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:158`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security／HELIX-CONNECT／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-FR-69 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-69 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:159`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-LABO／HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-01 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-01 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:181`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-02 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-02 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:182`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-04 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-04 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:184`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-05 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-05 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:185`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-06 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-06 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:186`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS／HELIX-Security、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-07 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-07 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:187`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-05 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-05 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:185`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-Security、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-06 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-06 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:186`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-Security、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-07 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-07 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:187`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-08 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-08 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:188`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-10 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-10 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:190`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
-| HIL-NFR-11 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-11 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:191`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、サービス①、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-09 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-09 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:189`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-NFR-10 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-10 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:190`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
+| HIL-NFR-11 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-11 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:191`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、サービス①、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-12 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-12 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:192`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-13 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-13 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:193`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-15 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-15 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:195`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、サービス⑥、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-13 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-13 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:193`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、コア（source変換・detectorの決定性契約）、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-14 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-14 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:194`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-NFR-15 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-15 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:195`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、サービス⑥、`1.0候補（CI証拠lineage。旧三段固定の採否はPO未決）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-16 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-16 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:196`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-17 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-17 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:197`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-18 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-18 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:198`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-20 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-20 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:200`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、入口、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-19 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-19 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:199`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-NFR-20 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-20 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:200`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、入口、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-21 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-21 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:201`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
 | HIL-NFR-22 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-22 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:202`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-23 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-23 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:203`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、枠、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-24 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-24 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:204`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、サービス⑤、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-25 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-25 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:205`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-26 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-26 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:206`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-24 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-24 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:204`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、サービス⑤、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-25 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-25 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:205`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、部品（設計契約。DDD規律の適用範囲は未決）、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-26 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-26 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:206`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-27 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-27 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:207`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-28 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-28 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:208`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-29 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-29 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:209`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-30 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-30 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:210`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 原文の目的・制約・旧authorityを保持したまま、単体/接続受入と旧consumerをAIが照合する。意味差分が判明した場合に対象revisionをPOへ戻す。 |
 | HIL-NFR-31 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-31 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:211`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-32 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-32 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:212`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、コア、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-33 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-33 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:213`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-33 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-33 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:213`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-34 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-34 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:214`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-HARNESS／HELIX-OS、部品、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-35 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-35 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:215`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-LABO、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-36 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-36 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:216`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-BRAIN、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-37 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-37 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:217`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-38 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-38 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:218`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-NFR-39 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-39 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:219`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
+| HIL-NFR-39 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-39 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:219`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-Security／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
 | HIL-NFR-40 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-40 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:220`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`1.0候補（旧IRの現行採択・完成条件ではない）` | 具体的な候補を得たが、successor・L11合成被覆・適用版の承認は未了。 |
-| HIL-TR-01 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-01 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:165`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`未特定（技術方式はL3以下で検討。機能版は接続する上流要求に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約の消失を避けて、対応する上流要求とL11、旧consumerをAIが照合する。上流意味の変更が必要ならPO項目へ戻す。 |
-| HIL-TR-02 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-02 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:166`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-CONNECT、非該当、`未特定（技術方式はL3以下で検討。機能版は接続する上流要求に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約の消失を避けて、対応する上流要求とL11、旧consumerをAIが照合する。上流意味の変更が必要ならPO項目へ戻す。 |
-| HIL-TR-03 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-03 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:167`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は接続する上流要求に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約の消失を避けて、対応する上流要求とL11、旧consumerをAIが照合する。上流意味の変更が必要ならPO項目へ戻す。 |
-| HIL-TR-04 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-04 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:168`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`未特定（技術方式はL3以下で検討。機能版は接続する上流要求に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約の消失を避けて、対応する上流要求とL11、旧consumerをAIが照合する。上流意味の変更が必要ならPO項目へ戻す。 |
-| HIL-TR-05 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-05 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:169`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は接続する上流要求に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約の消失を避けて、対応する上流要求とL11、旧consumerをAIが照合する。上流意味の変更が必要ならPO項目へ戻す。 |
-| HIL-TR-06 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-06 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:170`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security、非該当、`未特定（技術方式はL3以下で検討。機能版は接続する上流要求に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約の消失を避けて、対応する上流要求とL11、旧consumerをAIが照合する。上流意味の変更が必要ならPO項目へ戻す。 |
-| HIL-TR-07 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-07 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:171`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`未特定（技術方式はL3以下で検討。機能版は接続する上流要求に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約の消失を避けて、対応する上流要求とL11、旧consumerをAIが照合する。上流意味の変更が必要ならPO項目へ戻す。 |
-| HIL-TR-08 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-08 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:172`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は接続する上流要求に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約の消失を避けて、対応する上流要求とL11、旧consumerをAIが照合する。上流意味の変更が必要ならPO項目へ戻す。 |
-| HIL-TR-09 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-09 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:173`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は接続する上流要求に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約の消失を避けて、対応する上流要求とL11、旧consumerをAIが照合する。上流意味の変更が必要ならPO項目へ戻す。 |
-| HIL-TR-10 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-10 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:174`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`未特定（技術方式はL3以下で検討。機能版は接続する上流要求に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約の消失を避けて、対応する上流要求とL11、旧consumerをAIが照合する。上流意味の変更が必要ならPO項目へ戻す。 |
-| HIL-TR-11 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-11 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:175`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`未特定（技術方式はL3以下で検討。機能版は接続する上流要求に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約の消失を避けて、対応する上流要求とL11、旧consumerをAIが照合する。上流意味の変更が必要ならPO項目へ戻す。 |
+| HIL-TR-01 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-01 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:165`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-TR-02 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-02 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:166`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-CONNECT、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-TR-03 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-03 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:167`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-TR-04 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-04 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:168`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-TR-05 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-05 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:169`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-TR-06 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-06 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:170`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／HELIX-Security、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-TR-07 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-07 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:171`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-TR-08 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-08 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:172`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-TR-09 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-09 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:173`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS／Runner／Sandbox、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-TR-10 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-10 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:174`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
+| HIL-TR-11 | `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-TR-11 ; migration:docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:175`・`IR-revision:1; file-sha256:80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688` | HELIX-OS、非該当、`未特定（技術方式はL3以下で検討。機能版は上流要求の導入版に従う）` | 旧固定方式の現行採用と導入版は未特定。原目的・制約・受入の対応をAIが旧consumerと照合し、上流意味の変更が必要な場合だけPOへ戻す。 |
 
 ## 今回指定された系列以外の残母集団
 

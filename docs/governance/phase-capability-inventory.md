@@ -71,7 +71,7 @@ source／inventory／静的evidence／negative caseを保持するBinding登録�
 ## 初期集計
 
 - フェーズ: 20
-- 現行で承認済みの対象別上流: Concept／四製品L1
+- 対象別上流: 現行Conceptを基準とする。4対象L1の旧revisionのみ承認済みであり、現行L1本文はConcept整合の未承認候補
 - 現行で正式L3／L10まで成立したフェーズ: 0
 - Binding登録済みoperating Scaffoldが運用中: Review convergenceの`SCF-B-0003`。個別Bindingのscope内で保持され、運用・handoff・検査合格は新しいcapability実装の許可や完了を示さない
 - 旧実装・test sourceまで代表証拠を確認: 要求登録、Worker、Review、Refactor、Memoryほか。test designだけのphaseは実行済みと扱わない

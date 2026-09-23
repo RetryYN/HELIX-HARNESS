@@ -17,7 +17,7 @@
     ],
     "dependencies": [
       "fixed BASE phase/disposition/decision/read-after snapshots",
-      "approved four-product L1 and product-boundary",
+      "旧固定BASEの承認4対象L1・product-boundary exact SHA。現行Concept子文書とL1は未承認の別revision",
       "Wave1-50 static semantic link snapshots",
       "main241/open196 fixed prior research ID pins"
     ]
@@ -48,7 +48,7 @@
   },
   "owner_candidate": "四製品product-boundary研究（正式owner未解決）",
   "product": "HELIX-OS",
-  "reason": "固定BASEのcandidate_needs_semantic_review implementation_source src/runtime 59資産を、旧source具体span、承認済みL1、product-boundary、decision意味、旧判断史・failure・consumer・read-afterで静的照合する。product欄はScaffold登録先であり単一ownerを表さない。",
+  "reason": "固定BASEのcandidate_needs_semantic_review implementation_source src/runtime 59資産を、旧source具体span、旧固定BASEで承認済みのL1と現行未承認L1候補、product-boundary、decision意味、旧判断史・failure・consumer・read-afterで静的照合する。product欄はScaffold登録先であり単一ownerを表さない。",
   "replacement": {
     "formal_artifacts": [],
     "issue": 0,
@@ -87,8 +87,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd",
-      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd]"
+      "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+      "note": " [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",

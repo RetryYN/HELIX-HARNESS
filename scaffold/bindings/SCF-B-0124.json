@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd",
-      "note": "fixed BASE static input; old source and archive reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd]"
+      "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+      "note": "fixed BASE static input; old source and archive reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web/L1-planning/product-intent.md",
@@ -110,8 +110,8 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0088.json",
-      "sha256": "9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6",
-      "note": "fixed BASE static input; old source and archive reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a59c1d27d456c1a2fd07c63553b6c94fa13a8b8462722152ccafebeab90d49b8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=e540d14cf352bd253b9e02e40f4e24ae7b5a124f0815ba41590f057da6e34c0a; 現receipt=9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6]"
+      "sha256": "63ee6eed80cd758b4946987a33562cc8841afd850cd02f9dca93adc08886526a",
+      "note": "fixed BASE static input; old source and archive reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a59c1d27d456c1a2fd07c63553b6c94fa13a8b8462722152ccafebeab90d49b8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=e540d14cf352bd253b9e02e40f4e24ae7b5a124f0815ba41590f057da6e34c0a; 現receipt=9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6] [2026-09-24 semantic impact read-after: 依存Bindingの変更receiptを再帰的に照合。前receipt=9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6; 現receipt=63ee6eed80cd758b4946987a33562cc8841afd850cd02f9dca93adc08886526a; このBindingの採否・authorityは変更しない。]"
     }
   ],
   "role": "Vision 35 candidate atomと代表legacy asset 12件のsource／history／failure／consumerを照合し、phase／asset unknown boundaryを保持するresearch-only Scaffold",

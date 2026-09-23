@@ -14,6 +14,7 @@
 - 製品属性は機構別に`mechanism_product_attributes`へ記録する。HARNESSとWebのみ`製品`、OS・Web-OS・BRAIN・LABO・Intelligence・Securityは`非製品`、CONNECTとRunner／Sandboxは`共通部品`である。HARNESS内のサービス①〜⑦／入口／枠／部品／コアは独立した`harness_placement`へ記録し、製品属性と混ぜない。複数機構の行は単一ownerの意味ではない。
 - `version_target`はConceptの導入版と照らした**印**であり、採択済みrelease scopeではない。`version_1_0_foundation_candidate=true`は下表の仮ID 7行だけに付け、既存要求の部分候補と全条件被覆を区別する。HARNESS内区分を特定できない行は未特定に保持し、検索範囲と結果を各行に記録した。
 - 原要求が複数機構へ跨る行は、単体と接続の両方を後続要求で立てて合成被覆を検証する。`mechanism_candidate`の配列は複数責務の候補であり、単一の混在ownerを作らない。原IDを消さず、意味変更と担当移動を独立列にした。
+- HILは旧routingをそのまま現行ownerへ昇格しない。HARNESSの契約だけを定める行にOSを機械的に加えず、OSへ渡す証拠や登録は`connection_target`に置く。GitHub event intakeはCONNECTとOSを分け、三段CIの旧固定方式は1.0の証拠lineage候補と別にPO未決として残す。pack運用・gap評価と3.0 Intelligenceの学習も版を分ける。
 
 ## 旧HELIX照合
 
@@ -49,4 +50,4 @@
 
 BRAINは稼働時の理解・計画・予測・診断、Intelligenceは3.0から知識・モデルを改善する。LABOは1.0から効果・退行を独立評価し、学習処理は担わない。OSの管理は登録と状態、推進はticket graphとworkflow、検収はCI・testの選定と独立確認を担う。Web-OSは1.xから顧客tenant・job・service運転を担い、OSの内部stateを共有しない。HARNESSは7サービスと入口・枠・部品・コアの工程・検証契約を持ち、OS内部DB・Worker pool・学習履歴を利用者の必須構成にしない。
 
-**人間判断に渡す項目**は[判断パッケージ](concept-requirement-po-decision-packet.md)に、担当移動・技術変更のみの作業は同書のAI作業一覧に分離した。
+**人間判断に渡す項目**は[判断パッケージ](concept-requirement-po-decision-packet.md)に、担当移動・技術変更・意味を変えない版配置だけの作業は同書のAI作業一覧に分離した。現時点の内訳はPO判断71行、AI作業144行である。上流の4対象L1、5大目標、product-boundaryの現行未承認差分は同パッケージの別節に置く。

@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/concept/product-boundary.md",
-      "sha256": "5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd",
-      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd]"
+      "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+      "note": "fixed-base static evidence input [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: Concept子文書の現行機構/製品属性候補を参照。旧四対象表は履歴scopeであり現行の製品分類ではない。 前receipt=77b6692edb4bb2593b5f7175a43f18c3360dd7f3a012a6cc43c90176bf7cffc4; 現receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd] [2026-09-24 semantic impact read-after: 旧product-boundary承認は旧SHAのみ。現行OS／LABO／Intelligence責務とPO境界は未承認候補。前receipt=5bddfce9da0636427fd981154041b8683552dc6f43f5e1336041fd399d8e9abd; 現receipt=9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
@@ -65,8 +65,8 @@
     },
     {
       "path": "docs/governance/phase-capability-inventory.md",
-      "sha256": "e2183eb66fca4102ab09a3f8bda78c508f67b142ba72093dd1795a1ec3741857",
-      "note": "fixed-base static evidence input [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=1fdbd85da6a987e945bfaeef97c18696819799fbdbaed09dd3eae410f295508d; 現receipt=e2183eb66fca4102ab09a3f8bda78c508f67b142ba72093dd1795a1ec3741857]"
+      "sha256": "2a49a7eb85b4a7397c325b84cf38984603a37014a415c4921363592208aa05dc",
+      "note": "fixed-base static evidence input [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=1fdbd85da6a987e945bfaeef97c18696819799fbdbaed09dd3eae410f295508d; 現receipt=e2183eb66fca4102ab09a3f8bda78c508f67b142ba72093dd1795a1ec3741857] [2026-09-24 semantic impact read-after: PHCAP旧承認revisionと現行未承認L1候補を分離。前receipt=e2183eb66fca4102ab09a3f8bda78c508f67b142ba72093dd1795a1ec3741857; 現receipt=2a49a7eb85b4a7397c325b84cf38984603a37014a415c4921363592208aa05dc; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
@@ -133,7 +133,7 @@
   "obligations": [
     "固定BASE bootstrapからPHCAP-07 cohort 208件を再導出し、SCF-B-0148の52件をID/path/SHAそれぞれで除き残156件を照合する。指定13件の三軸重複が0であることを確認する。",
     "13件すべてのarchive source blob/SHA/MANIFESTと宣言されたparent_pair/pair_group blob/title/statusを固定BASEから静的確認する。旧archiveを実行しない。",
-    "旧Concept v4.1・承認decision record・旧4対象L1の固定BASE exact SHAと、現行Concept・未承認L1を別revisionとして記録し、機構と製品属性のcandidate boundaryを再照合する。product owner/採否/authorityを生成しない。",
+    "旧Concept v4.1・承認decision record・旧4対象L1の固定BASE exact SHAと、現行Concept・未承認L1を別revisionとして記録し、機構と製品属性のcandidate boundaryの再照合を未完の後続調査として記録する。product owner/採否/authorityを生成しない。",
     "bootstrapにあるPHCAP-02/07/10/17/20等の複数phase候補を落とさず保持し、phase-level status/degradationとasset単位implementation status unknownを分離する。",
     "旧test design内の予定oracle・negative case・test citation、観測failure、implementation、formal consumerを別々に記録し、不明値はunknown/pendingに保つ。",
     "legacy asset decision logとcopy read-afterの対象13行が0であり、asset disposition unresolved、implementation unknownであることを示す。"

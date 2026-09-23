@@ -2,6 +2,8 @@
 
 本書の親は[HELIX Concept](helix-concept.md)である。2026-09-14から2026-09-15のPO発言を出典付きで保持する。以下の発言表は当時の表現であり、現在の機構・版・製品属性はConceptに従う。本書から個別L2要求案の一括承認、L3承認、IR admission、実装・受入・公開の完了を生成しない。
 
+2026-09-17の承認は旧本文SHA-256 `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038`に限る。現行本文のOS／LABO／Intelligenceの責務表とPO判断条件は未承認の差分候補であり、[PO判断パッケージ](../governance/crosswalks/concept-requirement-po-decision-packet.md)で旧revisionと比較する。
+
 現行Conceptでは8機構と2共通部品を区別し、外部提供する製品属性はHARNESSとWebだけが持つ。1.0はHARNESS、OS、BRAIN、LABO、Security、CONNECT、Runner／Sandbox、1.xはWebとWeb-OS、3.0はIntelligenceが加わる。OSの管理・推進・検収は別責務であり、BRAINは稼働時の判断、Intelligenceは知識・モデルの改善、LABOは効果と退行の評価を担う。
 
 ## 明示された決定
