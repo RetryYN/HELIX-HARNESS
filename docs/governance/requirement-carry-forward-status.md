@@ -1,7 +1,7 @@
 # 旧要求carry-forward管理状況
 
 status: active_management_view
-as_of: 2026-09-15
+as_of: source-specific（旧routing queueは2026-09-15、四製品routing候補は2026-09-17）
 authority: machine ledgers linked below
 
 要求意味の元状態、対象別文書の承認状態、再配置状態、管理層仮登録状態、GitHubを含む作業状態は[上流authority状態モデル](authority-state-model.md)の五軸で分ける。
@@ -24,18 +24,37 @@ v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pend
 333 pathは要求数でも`preserved_pending_rehome`状態の件数でもなく、監査基準commitとarchive隔離直前commitでblobが異なるsource revision集合である。
 両revisionの意味同値は未確認であり、[機械台帳](pre-isolation-revision-delta-source-holding.jsonl)から前revisionを落とさない。
 
-## IR 153件の対象routing候補
+## IR 153件のrouting候補
 
-| routing状態 | 件数 |
+### 現行のproduct responsibility候補
+
+2026-09-17監査時点の[四製品routing bootstrap台帳](legacy-ir-product-routing-bootstrap.jsonl)は、全153件を
+四製品について評価した候補projectionである。
+
+| routing候補 | 件数 |
+|---|---:|
+| 単一製品候補（HELIX-OS 67、HELIX-HARNESS 20） | 87 |
+| HELIX-HARNESS／HELIX-OS分割候補 | 65 |
+| 製品間connection候補 | 1 |
+| 候補targetあり | 153 |
+
+このrouting候補は要求採否・successor割当・意味変更・承認を成立させない。台帳上、全153件は
+`authority_effect: none`、`meaning_change_applied: false`、`successor_assignment_status: unassigned`である。
+
+### 旧crosswalk queueの履歴値
+
+次の値は[旧対象routing queue](legacy-ir-target-routing-queue.jsonl)が保持するcrosswalk由来のrouting snapshotであり、
+現行の四製品routing候補ではない。
+
+| 旧queueのrouting値 | 件数 |
 |---|---:|
 | HELIX-OS候補 | 84 |
 | HELIX-HARNESS／HELIX-OS分割候補 | 51 |
 | 対象未解決 | 18 |
 | 上記のうち意味変更・照合を人間へ提示する候補 | 23 |
 
-[対象routing queue](legacy-ir-target-routing-queue.jsonl)は既存crosswalkの記述をfield分離したものであり、
-successor割当、意味変更、承認を成立させない。23件は`meaning_change_applied: false`、全153件は
-`successor_assignment_status: unassigned`のまま保持する。
+旧queueは既存crosswalkの記述をfield分離したものであり、現行bootstrap台帳への置換やsuccessor割当、意味変更、
+承認を成立させない。23件は`meaning_change_applied: false`、全153件は`successor_assignment_status: unassigned`のまま保持する。
 対象未解決18件は、[判断packet](legacy-ir-unresolved-routing-decision-packet.md)でruntime・技術制約の層別17件と
 Domain Object規律の適用範囲1件へ整理した。これは判断内容を明確にするものであり、配置や意味変更を確定しない。
 [再配置wave台帳](legacy-ir-rehome-wave-register.md)は153件を業務価値→機能→非機能→技術制約の順に11 partitionへ分ける。
