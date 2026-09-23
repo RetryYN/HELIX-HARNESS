@@ -1,0 +1,3340 @@
+{
+  "audit_kind": "independent_static_source_and_registry_join",
+  "authority_boundary": {
+    "authority_effect": "none",
+    "formal_asset_classification_updated": false,
+    "formal_implementation_status": "unknown",
+    "formal_product_authority": null,
+    "new_build_allowed": false,
+    "phase_updated": false,
+    "successor_assignment": null
+  },
+  "base_revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+  "derivation": {
+    "archive_access": "fixed BASE Git objects only; no archive path execution",
+    "generated_classification_read": false,
+    "generator_or_validator_imported": false,
+    "source_sha_rule": "Git object bytes = disposition source_sha256 = MANIFEST.sha256 entry",
+    "target_scope_source": "docs/governance/legacy-asset-disposition.jsonl"
+  },
+  "four_product_current_main_evidence": {
+    "approval_decision": {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "rows": {
+        "HELIX-HARNESS": {
+          "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
+          "line": 26,
+          "line_text": "| `HDEC-HARNESS-L1-01` | `docs/helix-harness/L1-planning/product-intent.md` | `a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04` | approve |",
+          "line_text_sha256": "sha256:1278923ff961462927bdb71ff3f1393fb08e2bec0626e5321016ddb7e2c65a83",
+          "marker": "| `HDEC-HARNESS-L1-01` |",
+          "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+          "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+        },
+        "HELIX-OS": {
+          "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
+          "line": 27,
+          "line_text": "| `HDEC-HELIXOS-L1-01` | `docs/helix-os/L1-planning/system-intent.md` | `0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8` | approve |",
+          "line_text_sha256": "sha256:a8c06b9b9e6626380f161dfe1c51a7236061b8676142fe47977eb4c92be33273",
+          "marker": "| `HDEC-HELIXOS-L1-01` |",
+          "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+          "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+        },
+        "HELIX-Web": {
+          "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
+          "line": 28,
+          "line_text": "| `HDEC-HELIXWEB-L1-01` | `docs/helix-web/L1-planning/product-intent.md` | `26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756` | approve |",
+          "line_text_sha256": "sha256:0f1346ec47ee862126bdee38cdae075015e7b644612059e32e6806cadc4bef6e",
+          "marker": "| `HDEC-HELIXWEB-L1-01` |",
+          "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+          "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+        },
+        "HELIX-Web-OS": {
+          "blob": "4f0381aff30ccba5b53ec46eb322bd513b649115",
+          "line": 29,
+          "line_text": "| `HDEC-HELIXWEBOS-L1-01` | `docs/helix-web-os/L1-planning/system-intent.md` | `600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c` | approve |",
+          "line_text_sha256": "sha256:1a61a964a4c5761e2a95b908e9a990481bfe5f0b14d85e8bf6d415ce0eef85a5",
+          "marker": "| `HDEC-HELIXWEBOS-L1-01` |",
+          "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+          "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+        }
+      },
+      "scope_limit": "Approval records bind exact L1 document bytes; they do not admit lower layers, assign these 57 assets, or authorize implementation.",
+      "sha256": "sha256:b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2"
+    },
+    "l1_documents": {
+      "HELIX-HARNESS": {
+        "blob": "d45a13e9b4aa376177a3e144d58d908d1ddda178",
+        "line": 31,
+        "line_text": "| HARNESS-L1-004 | 利用者は、対象revisionとriskに合う検証義務、反例、証拠、差戻し条件を定義できる | HARNESS-L2-004／005 |",
+        "line_text_sha256": "sha256:ad4b058249e8ce1789bbf0f3dcc9a4e04a61c998a9bc7148d26efc79c6964a13",
+        "marker": "| HARNESS-L1-004 |",
+        "path": "docs/helix-harness/L1-planning/product-intent.md",
+        "product": "HELIX-HARNESS",
+        "sha256": "sha256:a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04"
+      },
+      "HELIX-OS": {
+        "blob": "7566e26f3ee5fda862b788c7e5e07ba89955dc5d",
+        "line": 31,
+        "line_text": "| HELIXOS-L1-003 | 人間は、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開できる | HELIXOS-L2-004／009 |",
+        "line_text_sha256": "sha256:fa176a30ebad077e2dc6119e122a1294fca05aa6dd022a397ffb6e5329b7b0fa",
+        "marker": "| HELIXOS-L1-003 |",
+        "path": "docs/helix-os/L1-planning/system-intent.md",
+        "product": "HELIX-OS",
+        "sha256": "sha256:0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8"
+      },
+      "HELIX-Web": {
+        "blob": "1799da6ab34c9d3f41316ac650becb146d5c625f",
+        "line": 30,
+        "line_text": "| HELIXWEB-L1-001 | 利用者は、許可した環境・project・能力へ接続し、対象と作用範囲を確認できる | HELIXWEB-L2-001／002／004 |",
+        "line_text_sha256": "sha256:caaae0b903b0bd5afde1d04ec4465a5e86f252be000f9195f0ebf20dddab5959",
+        "marker": "| HELIXWEB-L1-001 |",
+        "path": "docs/helix-web/L1-planning/product-intent.md",
+        "product": "HELIX-Web",
+        "sha256": "sha256:26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756"
+      },
+      "HELIX-Web-OS": {
+        "blob": "40268a3ed70d64d710d7ed86f52257c653a20c5b",
+        "line": 20,
+        "line_text": "| HELIXWEBOS-L1-002 | サービス運用者は、Connectorと長時間jobを安全に配信・追跡・停止・再開・回復できる | HELIXWEBOS-L2-002／003 |",
+        "line_text_sha256": "sha256:13427ebbdac9e17bb7fc31264be3996c95cc743a27ccf6b08b287836a7962ae6",
+        "marker": "| HELIXWEBOS-L1-002 |",
+        "path": "docs/helix-web-os/L1-planning/system-intent.md",
+        "product": "HELIX-Web-OS",
+        "sha256": "sha256:600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
+      }
+    },
+    "product_boundary": {
+      "path": "docs/concept/product-boundary.md",
+      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "rows": {
+        "HELIX-HARNESS": {
+          "blob": "9c13c646ed9e1f5e62a038d1b796880661e62c90",
+          "line": 36,
+          "line_text": "| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |",
+          "line_text_sha256": "sha256:0e1a4b4dcdf514fe2128560dc24513ff6ae9f9b5cb920de47f7f6522ba0483c8",
+          "marker": "| HARNESS |",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+        },
+        "HELIX-OS": {
+          "blob": "9c13c646ed9e1f5e62a038d1b796880661e62c90",
+          "line": 37,
+          "line_text": "| HELIX-OS | プロジェクト群の管理・統制、Worker、CI、ログ、学習、継続・復旧、HELIXの改善循環 | [HELIX-OS](../helix-os/README.md) |",
+          "line_text_sha256": "sha256:a9cf85378e64d610801fac7540bc3e7fac5e4c584b764d72257381456e024ab1",
+          "marker": "| HELIX-OS |",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+        },
+        "HELIX-Web": {
+          "blob": "9c13c646ed9e1f5e62a038d1b796880661e62c90",
+          "line": 38,
+          "line_text": "| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../helix-web/README.md) |",
+          "line_text_sha256": "sha256:f3ff67c99fcdac2106c74654a23f1fa7ceb5e921d8420f2e6d0bbfce05e18afb",
+          "marker": "| HELIX-Web |",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+        },
+        "HELIX-Web-OS": {
+          "blob": "9c13c646ed9e1f5e62a038d1b796880661e62c90",
+          "line": 39,
+          "line_text": "| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |",
+          "line_text_sha256": "sha256:0854b1ecad21bbb637bb0cea90c1d19ff8641bd6f4402dd40695dc2e99a6351e",
+          "marker": "| HELIX-Web-OS |",
+          "path": "docs/concept/product-boundary.md",
+          "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+        }
+      },
+      "sha256": "sha256:097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038"
+    }
+  },
+  "records": [
+    {
+      "artifact_role": "historical_run_summary",
+      "asset_id": "LEGACY-ASSET-0732DCE953E37E88D9A8",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2339,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2339,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/summary.json",
+        "blob": "4e61696363ba97efe2844c5436c4159e6479d514",
+        "bytes": 3348,
+        "ledger_sha256": "sha256:52e9958f3faf0a19ab1149ea88da408d6c9d1542305db86d4b73e93f0036d348",
+        "line_count": 85,
+        "manifest_sha256": "sha256:52e9958f3faf0a19ab1149ea88da408d6c9d1542305db86d4b73e93f0036d348",
+        "mode": "100644",
+        "sha256": "sha256:52e9958f3faf0a19ab1149ea88da408d6c9d1542305db86d4b73e93f0036d348",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/summary.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stderr_capture",
+      "asset_id": "LEGACY-ASSET-08B37D233C27C3424191",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2356,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2356,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/task2-bugfix.stderr.txt",
+        "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "bytes": 0,
+        "ledger_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "line_count": 0,
+        "manifest_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "100644",
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/task2-bugfix.stderr.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_mutation_case",
+      "asset_id": "LEGACY-ASSET-094E6DBD00A9F7E61C37",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2324,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2324,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-08/reuse_stale_receipt.mutation.json",
+        "blob": "abfc6c281f9530250ce62d4d35a6eec12ab65709",
+        "bytes": 155,
+        "ledger_sha256": "sha256:0aeb9ce565a6d4f6339ee87734c79c17dc5311e38537c4b4d6240a90f4017949",
+        "line_count": 1,
+        "manifest_sha256": "sha256:0aeb9ce565a6d4f6339ee87734c79c17dc5311e38537c4b4d6240a90f4017949",
+        "mode": "100644",
+        "sha256": "sha256:0aeb9ce565a6d4f6339ee87734c79c17dc5311e38537c4b4d6240a90f4017949",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-08/reuse_stale_receipt.mutation.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_receipt_case",
+      "asset_id": "LEGACY-ASSET-0B9A918E04066B5BCBB7",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2337,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2337,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/schema_drift.evidence.json",
+        "blob": "9ac7773909f39d1d6820c70ee95e26afb1756f42",
+        "bytes": 233,
+        "ledger_sha256": "sha256:d5bb1b9d6b2268b43ee1d9499334dc9dc05b699c6da8b4baa6ccc684f61d2969",
+        "line_count": 1,
+        "manifest_sha256": "sha256:d5bb1b9d6b2268b43ee1d9499334dc9dc05b699c6da8b4baa6ccc684f61d2969",
+        "mode": "100644",
+        "sha256": "sha256:d5bb1b9d6b2268b43ee1d9499334dc9dc05b699c6da8b4baa6ccc684f61d2969",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/schema_drift.evidence.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stdout_capture",
+      "asset_id": "LEGACY-ASSET-0D264DDF088517815B2D",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2368,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2368,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture1b-echo-stream-json.stdout.txt",
+        "blob": "a9d76adb194f9910aeb8e0408b5c68568ef624c2",
+        "bytes": 319,
+        "ledger_sha256": "sha256:50b800b5e7d9d5822960587820739ee0e84df9f81b0ba643a7b2e9565867d3a7",
+        "line_count": 2,
+        "manifest_sha256": "sha256:50b800b5e7d9d5822960587820739ee0e84df9f81b0ba643a7b2e9565867d3a7",
+        "mode": "100644",
+        "sha256": "sha256:50b800b5e7d9d5822960587820739ee0e84df9f81b0ba643a7b2e9565867d3a7",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture1b-echo-stream-json.stdout.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stderr_capture",
+      "asset_id": "LEGACY-ASSET-0E2738A58915FD0643B2",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2373,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2373,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture4-acp.stderr.txt",
+        "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "bytes": 0,
+        "ledger_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "line_count": 0,
+        "manifest_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "100644",
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture4-acp.stderr.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "benchmark_prompt_or_fixture",
+      "asset_id": "LEGACY-ASSET-10AF3C4E1C47EC82FBCA",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2362,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2362,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/prompts/fixture2-codegen.txt",
+        "blob": "9b5376b4c27d251d012bb4f8bcac56249f25c7f3",
+        "bytes": 436,
+        "ledger_sha256": "sha256:8cfdfd419da2e301a00ced20a17a243b42b140c1892035de37d24bbb1723c811",
+        "line_count": 1,
+        "manifest_sha256": "sha256:8cfdfd419da2e301a00ced20a17a243b42b140c1892035de37d24bbb1723c811",
+        "mode": "100644",
+        "sha256": "sha256:8cfdfd419da2e301a00ced20a17a243b42b140c1892035de37d24bbb1723c811",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/prompts/fixture2-codegen.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stdout_capture",
+      "asset_id": "LEGACY-ASSET-14B57577A6C55E223A5B",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2360,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2360,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/task3-tests-mutation.stdout.txt",
+        "blob": "28a8fe00aee9da61c1d1d2fea21f6752d610b795",
+        "bytes": 1787,
+        "ledger_sha256": "sha256:58f3ae97289bf82a750b9c8c8943f8b4612127df7356af94294b6e89f55672b5",
+        "line_count": 2,
+        "manifest_sha256": "sha256:58f3ae97289bf82a750b9c8c8943f8b4612127df7356af94294b6e89f55672b5",
+        "mode": "100644",
+        "sha256": "sha256:58f3ae97289bf82a750b9c8c8943f8b4612127df7356af94294b6e89f55672b5",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/task3-tests-mutation.stdout.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_mutation_case",
+      "asset_id": "LEGACY-ASSET-180D194C5B4F35CE4DD0",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2336,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2336,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/reuse_stale_receipt.mutation.json",
+        "blob": "c0c4f379dea8888eab929afa44cbea0a60732755",
+        "bytes": 155,
+        "ledger_sha256": "sha256:ddb53ca0eed2e7294079c8240084952ab81103d928f4130ddeb0528b6eeb3cf4",
+        "line_count": 1,
+        "manifest_sha256": "sha256:ddb53ca0eed2e7294079c8240084952ab81103d928f4130ddeb0528b6eeb3cf4",
+        "mode": "100644",
+        "sha256": "sha256:ddb53ca0eed2e7294079c8240084952ab81103d928f4130ddeb0528b6eeb3cf4",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/reuse_stale_receipt.mutation.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stderr_capture",
+      "asset_id": "LEGACY-ASSET-1F8AF158763D30596034",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2354,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2354,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/task1b-codegen-skill.stderr.txt",
+        "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "bytes": 0,
+        "ledger_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "line_count": 0,
+        "manifest_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "100644",
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/task1b-codegen-skill.stderr.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_run_summary",
+      "asset_id": "LEGACY-ASSET-2666C75B8B01CDB21C40",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2351,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2351,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/summary.json",
+        "blob": "760d40456c7c1ce8fa9470534b416720bff8e9ff",
+        "bytes": 2992,
+        "ledger_sha256": "sha256:3c411e72b1cddc870a749c2c812a803789ff34792360264d16d15e6477492e3e",
+        "line_count": 85,
+        "manifest_sha256": "sha256:3c411e72b1cddc870a749c2c812a803789ff34792360264d16d15e6477492e3e",
+        "mode": "100644",
+        "sha256": "sha256:3c411e72b1cddc870a749c2c812a803789ff34792360264d16d15e6477492e3e",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/summary.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "generated_candidate_source_as_text",
+      "asset_id": "LEGACY-ASSET-2BBE1A7975744F5C7EF2",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2349,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2349,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/blind-judge/task2-candidate-2.ts.txt",
+        "blob": "cefcfd03a68997eaae32e79af8094223d7f47b75",
+        "bytes": 726,
+        "ledger_sha256": "sha256:04b2aa05e6069361ad3604e5aece45f738baca4f3d93195d60067c733974f7b0",
+        "line_count": 17,
+        "manifest_sha256": "sha256:04b2aa05e6069361ad3604e5aece45f738baca4f3d93195d60067c733974f7b0",
+        "mode": "100644",
+        "sha256": "sha256:04b2aa05e6069361ad3604e5aece45f738baca4f3d93195d60067c733974f7b0",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/blind-judge/task2-candidate-2.ts.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stdout_capture",
+      "asset_id": "LEGACY-ASSET-2F6DF3EB36992412A64D",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2374,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2374,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture4-acp.stdout.txt",
+        "blob": "3460350d77948848a9d0636a1b4d02a20400b756",
+        "bytes": 611,
+        "ledger_sha256": "sha256:52ed338a33cd0f096828587077aefd8a9af8b323537421199a5541ccfa57bcd2",
+        "line_count": 1,
+        "manifest_sha256": "sha256:52ed338a33cd0f096828587077aefd8a9af8b323537421199a5541ccfa57bcd2",
+        "mode": "100644",
+        "sha256": "sha256:52ed338a33cd0f096828587077aefd8a9af8b323537421199a5541ccfa57bcd2",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture4-acp.stdout.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stderr_capture",
+      "asset_id": "LEGACY-ASSET-300D93D3F6128DE5C79F",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2366,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2366,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture1-echo.stderr.txt",
+        "blob": "c834e13bba3577d414b9b558a9148de77a678d48",
+        "bytes": 224,
+        "ledger_sha256": "sha256:0d4c646321c909a03c4a5a1d99e1553de01bdf0b669e79b44fe60877085d0d5e",
+        "line_count": 3,
+        "manifest_sha256": "sha256:0d4c646321c909a03c4a5a1d99e1553de01bdf0b669e79b44fe60877085d0d5e",
+        "mode": "100644",
+        "sha256": "sha256:0d4c646321c909a03c4a5a1d99e1553de01bdf0b669e79b44fe60877085d0d5e",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture1-echo.stderr.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_runner_source_read_only",
+      "asset_id": "LEGACY-ASSET-3700DEFDB9D492AF9A69",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2345,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2345,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/bench/run-s4-bench.ts",
+        "blob": "303411dc4c894a8eec37a6d4270a3cb686084fa4",
+        "bytes": 13869,
+        "ledger_sha256": "sha256:b36e5e14428d16a8e40768f97c8ddb67c40b010b326a3b0edad9f567957f8fbc",
+        "line_count": 345,
+        "manifest_sha256": "sha256:b36e5e14428d16a8e40768f97c8ddb67c40b010b326a3b0edad9f567957f8fbc",
+        "mode": "100644",
+        "sha256": "sha256:b36e5e14428d16a8e40768f97c8ddb67c40b010b326a3b0edad9f567957f8fbc",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/bench/run-s4-bench.ts",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stderr_capture",
+      "asset_id": "LEGACY-ASSET-3739DCED68EAC8BD9D5B",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2352,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2352,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/task1a-codegen-plain.stderr.txt",
+        "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "bytes": 0,
+        "ledger_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "line_count": 0,
+        "manifest_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "100644",
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/task1a-codegen-plain.stderr.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_receipt_case",
+      "asset_id": "LEGACY-ASSET-39C8ECFF4B7866B3B5A4",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2331,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2331,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/clean_approve.evidence.json",
+        "blob": "9ff6a9213e465e41e1d7ccdc39bb4af4572b8208",
+        "bytes": 525,
+        "ledger_sha256": "sha256:f9d48ada8825e7d87a097b3fa0ee310b41776e411c7b462e7b5c9553766acd1c",
+        "line_count": 1,
+        "manifest_sha256": "sha256:f9d48ada8825e7d87a097b3fa0ee310b41776e411c7b462e7b5c9553766acd1c",
+        "mode": "100644",
+        "sha256": "sha256:f9d48ada8825e7d87a097b3fa0ee310b41776e411c7b462e7b5c9553766acd1c",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/clean_approve.evidence.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_mutation_case",
+      "asset_id": "LEGACY-ASSET-40EB3188E977A40E39A8",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2323,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2323,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-08/remove_head_binding.mutation.json",
+        "blob": "a0b8453a493ef8309836de30d1f2126ecad5fe5e",
+        "bytes": 155,
+        "ledger_sha256": "sha256:697afd0540e10d7090d61c5d47e5603ba9d1331191042e99b8ebd67a7820fa67",
+        "line_count": 1,
+        "manifest_sha256": "sha256:697afd0540e10d7090d61c5d47e5603ba9d1331191042e99b8ebd67a7820fa67",
+        "mode": "100644",
+        "sha256": "sha256:697afd0540e10d7090d61c5d47e5603ba9d1331191042e99b8ebd67a7820fa67",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-08/remove_head_binding.mutation.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stdout_capture",
+      "asset_id": "LEGACY-ASSET-423B77F7B3408E9BC8EF",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2355,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2355,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/task1b-codegen-skill.stdout.txt",
+        "blob": "da19461940a3dca4510b27192e75283b0cc47ed1",
+        "bytes": 1564,
+        "ledger_sha256": "sha256:a3025097a92dfd1f7e6618154f183d77ac18c7a12db87234d997e63a684fe231",
+        "line_count": 2,
+        "manifest_sha256": "sha256:a3025097a92dfd1f7e6618154f183d77ac18c7a12db87234d997e63a684fe231",
+        "mode": "100644",
+        "sha256": "sha256:a3025097a92dfd1f7e6618154f183d77ac18c7a12db87234d997e63a684fe231",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/task1b-codegen-skill.stdout.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stdout_capture",
+      "asset_id": "LEGACY-ASSET-44F052B6EF779A7E063B",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2367,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2367,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture1-echo.stdout.txt",
+        "blob": "f3830ec7e78cefb79f2dd3b1e71134fc096b31bf",
+        "bytes": 32,
+        "ledger_sha256": "sha256:20e92d6dbebeb16b6bbcb0ba6e834cefd9e3c52431e2c3eb3ca36ae149c4b2a6",
+        "line_count": 2,
+        "manifest_sha256": "sha256:20e92d6dbebeb16b6bbcb0ba6e834cefd9e3c52431e2c3eb3ca36ae149c4b2a6",
+        "mode": "100644",
+        "sha256": "sha256:20e92d6dbebeb16b6bbcb0ba6e834cefd9e3c52431e2c3eb3ca36ae149c4b2a6",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture1-echo.stdout.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_receipt_case",
+      "asset_id": "LEGACY-ASSET-4DE54BA9B4A66A74517C",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2325,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2325,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-08/schema_drift.evidence.json",
+        "blob": "a7b24d70a1c7b6fa2aa1c02498963372571926f0",
+        "bytes": 233,
+        "ledger_sha256": "sha256:8f7493b2ab06d2ce693f7962fe4258709d0710274a6477834681bf095cbdfd68",
+        "line_count": 1,
+        "manifest_sha256": "sha256:8f7493b2ab06d2ce693f7962fe4258709d0710274a6477834681bf095cbdfd68",
+        "mode": "100644",
+        "sha256": "sha256:8f7493b2ab06d2ce693f7962fe4258709d0710274a6477834681bf095cbdfd68",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-08/schema_drift.evidence.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_mutation_case",
+      "asset_id": "LEGACY-ASSET-51972D0CCA68CE75DE27",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2319,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2319,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-08/allow_high_risk.mutation.json",
+        "blob": "044ec921433580682b0cf555b97e2dc64a24c0a5",
+        "bytes": 155,
+        "ledger_sha256": "sha256:9ffd6a4b1aaa6402502e9e975902b84f96431039abac2a60e2e3863a7399d5d7",
+        "line_count": 1,
+        "manifest_sha256": "sha256:9ffd6a4b1aaa6402502e9e975902b84f96431039abac2a60e2e3863a7399d5d7",
+        "mode": "100644",
+        "sha256": "sha256:9ffd6a4b1aaa6402502e9e975902b84f96431039abac2a60e2e3863a7399d5d7",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-08/allow_high_risk.mutation.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "benchmark_prompt_or_fixture",
+      "asset_id": "LEGACY-ASSET-526BB8B43C17C691AC4B",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2341,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2341,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/bench/prompts/task1-codegen-plain.txt",
+        "blob": "6f648c4dffa4770179d0e0616ac27d0825136b31",
+        "bytes": 758,
+        "ledger_sha256": "sha256:74beaf85765d12e9cc8a2f7be50fec1544e559c1a1958124a1416f3549b01276",
+        "line_count": 10,
+        "manifest_sha256": "sha256:74beaf85765d12e9cc8a2f7be50fec1544e559c1a1958124a1416f3549b01276",
+        "mode": "100644",
+        "sha256": "sha256:74beaf85765d12e9cc8a2f7be50fec1544e559c1a1958124a1416f3549b01276",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/bench/prompts/task1-codegen-plain.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "benchmark_prompt_or_fixture",
+      "asset_id": "LEGACY-ASSET-538750BF9730DA616CC7",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2342,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2342,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/bench/prompts/task1-codegen-skill.txt",
+        "blob": "a741d0f97014a091fb0257d771e63283c1553f1c",
+        "bytes": 1222,
+        "ledger_sha256": "sha256:8886a84a691bba36051f90a40508f54c59c0bea73a4287bef631671fb74ed3fc",
+        "line_count": 20,
+        "manifest_sha256": "sha256:8886a84a691bba36051f90a40508f54c59c0bea73a4287bef631671fb74ed3fc",
+        "mode": "100644",
+        "sha256": "sha256:8886a84a691bba36051f90a40508f54c59c0bea73a4287bef631671fb74ed3fc",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/bench/prompts/task1-codegen-skill.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "generated_candidate_source_as_text",
+      "asset_id": "LEGACY-ASSET-54217F650D886D7E0F1E",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2347,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2347,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/blind-judge/task1-candidate-2.ts.txt",
+        "blob": "65ac86905f44331d032d44954c1b8332bc66771d",
+        "bytes": 507,
+        "ledger_sha256": "sha256:e15165051287c54c016260fc2d5e50c637f2d3b3d41e660ea4850263b408e0be",
+        "line_count": 15,
+        "manifest_sha256": "sha256:e15165051287c54c016260fc2d5e50c637f2d3b3d41e660ea4850263b408e0be",
+        "mode": "100644",
+        "sha256": "sha256:e15165051287c54c016260fc2d5e50c637f2d3b3d41e660ea4850263b408e0be",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/blind-judge/task1-candidate-2.ts.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_mutation_case",
+      "asset_id": "LEGACY-ASSET-58AF1468D77F17DA03BA",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2330,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2330,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/allow_tool_activity.mutation.json",
+        "blob": "71a541356db01ee0213410360c77b81b3f2a81dd",
+        "bytes": 160,
+        "ledger_sha256": "sha256:d6142569f8c0c25b61c9484362fd4441302fd81cc86702e591d9e78599c42899",
+        "line_count": 1,
+        "manifest_sha256": "sha256:d6142569f8c0c25b61c9484362fd4441302fd81cc86702e591d9e78599c42899",
+        "mode": "100644",
+        "sha256": "sha256:d6142569f8c0c25b61c9484362fd4441302fd81cc86702e591d9e78599c42899",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/allow_tool_activity.mutation.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stderr_capture",
+      "asset_id": "LEGACY-ASSET-6564289807E91B2862BF",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2371,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2371,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture3-scope.stderr.txt",
+        "blob": "3eacdf951d7a9bc8d12ec84388fb7ad3cb019c75",
+        "bytes": 208,
+        "ledger_sha256": "sha256:bbc0a39dedd909bff1690024dc00ed1ddcf33762ff1cfed5ce45bf2e03fd10ed",
+        "line_count": 3,
+        "manifest_sha256": "sha256:bbc0a39dedd909bff1690024dc00ed1ddcf33762ff1cfed5ce45bf2e03fd10ed",
+        "mode": "100644",
+        "sha256": "sha256:bbc0a39dedd909bff1690024dc00ed1ddcf33762ff1cfed5ce45bf2e03fd10ed",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture3-scope.stderr.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "benchmark_prompt_or_fixture",
+      "asset_id": "LEGACY-ASSET-6BE00770D3BC4AF89074",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2344,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2344,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/bench/prompts/task3-tests.txt",
+        "blob": "18cf9f4aca511d814a301d2217606fe70a952215",
+        "bytes": 1157,
+        "ledger_sha256": "sha256:0d41946ffa448147835d155d51b6e3511b1e2e13b89978343ca17fa2be417d09",
+        "line_count": 18,
+        "manifest_sha256": "sha256:0d41946ffa448147835d155d51b6e3511b1e2e13b89978343ca17fa2be417d09",
+        "mode": "100644",
+        "sha256": "sha256:0d41946ffa448147835d155d51b6e3511b1e2e13b89978343ca17fa2be417d09",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/bench/prompts/task3-tests.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_mutation_case",
+      "asset_id": "LEGACY-ASSET-77A2205BD38453059B73",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2335,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2335,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/remove_head_binding.mutation.json",
+        "blob": "bc7bd5167c9883f0997369eb0e92a4293ef79e39",
+        "bytes": 155,
+        "ledger_sha256": "sha256:65e5715113b973a274ea3a02145605bd18b1966f128cd4425ef201923b9d12f9",
+        "line_count": 1,
+        "manifest_sha256": "sha256:65e5715113b973a274ea3a02145605bd18b1966f128cd4425ef201923b9d12f9",
+        "mode": "100644",
+        "sha256": "sha256:65e5715113b973a274ea3a02145605bd18b1966f128cd4425ef201923b9d12f9",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/remove_head_binding.mutation.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stdout_capture",
+      "asset_id": "LEGACY-ASSET-785520B31E764C5B96C6",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2357,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2357,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/task2-bugfix.stdout.txt",
+        "blob": "a4b608652a665450bd55f1736e258fe307f35973",
+        "bytes": 946,
+        "ledger_sha256": "sha256:ebb2a384e052f756a4f07d6543bc1013bc26218c516e5b8fc366699bf1e7af61",
+        "line_count": 2,
+        "manifest_sha256": "sha256:ebb2a384e052f756a4f07d6543bc1013bc26218c516e5b8fc366699bf1e7af61",
+        "mode": "100644",
+        "sha256": "sha256:ebb2a384e052f756a4f07d6543bc1013bc26218c516e5b8fc366699bf1e7af61",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/task2-bugfix.stdout.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stderr_capture",
+      "asset_id": "LEGACY-ASSET-79AA85DCFAEBA5D59D40",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2359,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2359,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/task3-tests-mutation.stderr.txt",
+        "blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "bytes": 0,
+        "ledger_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "line_count": 0,
+        "manifest_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "mode": "100644",
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/task3-tests-mutation.stderr.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_receipt_case",
+      "asset_id": "LEGACY-ASSET-7BDAF1CD76B1AD941AB0",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2334,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2334,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/quota_switch.evidence.json",
+        "blob": "9817adf0cd581312ee2cb8769f481b7af69b9e64",
+        "bytes": 257,
+        "ledger_sha256": "sha256:e913a5c4f24bc725ec883a7619fe2a243f8fcd49ff05138250502e933c88316f",
+        "line_count": 1,
+        "manifest_sha256": "sha256:e913a5c4f24bc725ec883a7619fe2a243f8fcd49ff05138250502e933c88316f",
+        "mode": "100644",
+        "sha256": "sha256:e913a5c4f24bc725ec883a7619fe2a243f8fcd49ff05138250502e933c88316f",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/quota_switch.evidence.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_runner_source_read_only",
+      "asset_id": "LEGACY-ASSET-7E580C99393CC4AF9178",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2365,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2365,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/run-kimi-smoke.ts",
+        "blob": "1afff3085cb9fc4234999eff378de6997fdf286d",
+        "bytes": 9600,
+        "ledger_sha256": "sha256:877b57ee932377f6e9ddcef318b7778a0c555f9b6cfcade1a7b5218a86384ca2",
+        "line_count": 285,
+        "manifest_sha256": "sha256:877b57ee932377f6e9ddcef318b7778a0c555f9b6cfcade1a7b5218a86384ca2",
+        "mode": "100644",
+        "sha256": "sha256:877b57ee932377f6e9ddcef318b7778a0c555f9b6cfcade1a7b5218a86384ca2",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/run-kimi-smoke.ts",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_run_summary",
+      "asset_id": "LEGACY-ASSET-82B08A0B93E6238ADB8A",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2327,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2327,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-08/summary.json",
+        "blob": "050e8263c00182d07a62b38b77a9b5b1b62b8ba4",
+        "bytes": 2664,
+        "ledger_sha256": "sha256:0298016d6d38ef9734ddc4f37124c3463e13265d5830f2c3b1bb47ae2e0df95f",
+        "line_count": 72,
+        "manifest_sha256": "sha256:0298016d6d38ef9734ddc4f37124c3463e13265d5830f2c3b1bb47ae2e0df95f",
+        "mode": "100644",
+        "sha256": "sha256:0298016d6d38ef9734ddc4f37124c3463e13265d5830f2c3b1bb47ae2e0df95f",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-08/summary.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_mutation_case",
+      "asset_id": "LEGACY-ASSET-840D4EF8A25D0993D11D",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2332,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2332,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/closure_member_drift.mutation.json",
+        "blob": "7c790336e00af456fb1b0c65f6d09e4d72214741",
+        "bytes": 441,
+        "ledger_sha256": "sha256:a6bc1d15cb4a14251a35eb076ffbf0d0b69e77f32f0e9171e2c72302b6cde1a4",
+        "line_count": 1,
+        "manifest_sha256": "sha256:a6bc1d15cb4a14251a35eb076ffbf0d0b69e77f32f0e9171e2c72302b6cde1a4",
+        "mode": "100644",
+        "sha256": "sha256:a6bc1d15cb4a14251a35eb076ffbf0d0b69e77f32f0e9171e2c72302b6cde1a4",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/closure_member_drift.mutation.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stdout_capture",
+      "asset_id": "LEGACY-ASSET-849AC92A32C213516090",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2370,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2370,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture2-codegen.stdout.txt",
+        "blob": "83c21d6cbf3249cde0018e0248267a30e81ec7c9",
+        "bytes": 266,
+        "ledger_sha256": "sha256:201c7671c75df0e9d7a94f2fa122bdeaaf29262c9c3d5e39e8e2699a4a4cb06e",
+        "line_count": 9,
+        "manifest_sha256": "sha256:201c7671c75df0e9d7a94f2fa122bdeaaf29262c9c3d5e39e8e2699a4a4cb06e",
+        "mode": "100644",
+        "sha256": "sha256:201c7671c75df0e9d7a94f2fa122bdeaaf29262c9c3d5e39e8e2699a4a4cb06e",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture2-codegen.stdout.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stderr_capture",
+      "asset_id": "LEGACY-ASSET-85DDC5D4E6F0490EC325",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2369,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2369,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture2-codegen.stderr.txt",
+        "blob": "f2262af4aff0b55b395b452c635c1a18938e8a8b",
+        "bytes": 114,
+        "ledger_sha256": "sha256:2a7de6b140fd0e9c39eebaa3802ff526f3381a6c1ad85be346bdd394c88862df",
+        "line_count": 3,
+        "manifest_sha256": "sha256:2a7de6b140fd0e9c39eebaa3802ff526f3381a6c1ad85be346bdd394c88862df",
+        "mode": "100644",
+        "sha256": "sha256:2a7de6b140fd0e9c39eebaa3802ff526f3381a6c1ad85be346bdd394c88862df",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture2-codegen.stderr.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_mutation_case",
+      "asset_id": "LEGACY-ASSET-89E46EB60A497D41144E",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2329,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2329,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/allow_high_risk.mutation.json",
+        "blob": "22762fc1bba56db9fd4fc7d32ff0fba6b134c05e",
+        "bytes": 155,
+        "ledger_sha256": "sha256:0158bd39fbda4bdeff5db77d29d774ceab8a57a176d3f4eefdc120664e1d1173",
+        "line_count": 1,
+        "manifest_sha256": "sha256:0158bd39fbda4bdeff5db77d29d774ceab8a57a176d3f4eefdc120664e1d1173",
+        "mode": "100644",
+        "sha256": "sha256:0158bd39fbda4bdeff5db77d29d774ceab8a57a176d3f4eefdc120664e1d1173",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/allow_high_risk.mutation.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_mutation_case",
+      "asset_id": "LEGACY-ASSET-A5B5A7A46CADC2F4372D",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2333,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2333,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/closure_member_removed.mutation.json",
+        "blob": "a725835097eac0ceb761d9d22d6c036c4b4a6dce",
+        "bytes": 443,
+        "ledger_sha256": "sha256:724b8134c07be42dd518b3bbce46d23f4095c02e7cd1775e4e207c611f055179",
+        "line_count": 1,
+        "manifest_sha256": "sha256:724b8134c07be42dd518b3bbce46d23f4095c02e7cd1775e4e207c611f055179",
+        "mode": "100644",
+        "sha256": "sha256:724b8134c07be42dd518b3bbce46d23f4095c02e7cd1775e4e207c611f055179",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/closure_member_removed.mutation.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "generated_candidate_source_as_text",
+      "asset_id": "LEGACY-ASSET-A63CA8B8EB378EAC0FCF",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2348,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2348,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/blind-judge/task2-candidate-1.ts.txt",
+        "blob": "2fdf2d46e3d393ddb9d7daf737c503c88e0ab0ac",
+        "bytes": 616,
+        "ledger_sha256": "sha256:7f42abe067c4f2c11f7273fa2b82706b274e0537ddafce421608cb6869b62eba",
+        "line_count": 13,
+        "manifest_sha256": "sha256:7f42abe067c4f2c11f7273fa2b82706b274e0537ddafce421608cb6869b62eba",
+        "mode": "100644",
+        "sha256": "sha256:7f42abe067c4f2c11f7273fa2b82706b274e0537ddafce421608cb6869b62eba",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/blind-judge/task2-candidate-1.ts.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_receipt_case",
+      "asset_id": "LEGACY-ASSET-AB252DDA3190347F8EB8",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2340,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2340,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/tool_request.evidence.json",
+        "blob": "a5eba954732ca99a03acd24d11bb4cf7c2096639",
+        "bytes": 173,
+        "ledger_sha256": "sha256:b684fd230cdadedb2e5394812ccd21ab2ab6ae36bf5ca9a7aca03c12eeaf7ade",
+        "line_count": 1,
+        "manifest_sha256": "sha256:b684fd230cdadedb2e5394812ccd21ab2ab6ae36bf5ca9a7aca03c12eeaf7ade",
+        "mode": "100644",
+        "sha256": "sha256:b684fd230cdadedb2e5394812ccd21ab2ab6ae36bf5ca9a7aca03c12eeaf7ade",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/tool_request.evidence.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "generated_source_or_test_as_text",
+      "asset_id": "LEGACY-ASSET-AE1804C1916C0F64860B",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2358,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2358,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/task3-proposed-tests.ts.txt",
+        "blob": "516166e0d927db0c88a72483be7712bbb766b1cb",
+        "bytes": 1404,
+        "ledger_sha256": "sha256:d2514756c414897ea7f0166f8bd503897c1ffa2a521cebdaf13c19d02b2f4d58",
+        "line_count": 50,
+        "manifest_sha256": "sha256:d2514756c414897ea7f0166f8bd503897c1ffa2a521cebdaf13c19d02b2f4d58",
+        "mode": "100644",
+        "sha256": "sha256:d2514756c414897ea7f0166f8bd503897c1ffa2a521cebdaf13c19d02b2f4d58",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/task3-proposed-tests.ts.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_receipt_case",
+      "asset_id": "LEGACY-ASSET-BEB57828AD5159037D37",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2321,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2321,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-08/clean_approve.evidence.json",
+        "blob": "c3fa4ddce6dfe387c6939f891229dbf9842cd971",
+        "bytes": 525,
+        "ledger_sha256": "sha256:e94f60e8df8deb7e2da7c08e535d5d247ab7bebdfb842518b97374e190032c38",
+        "line_count": 1,
+        "manifest_sha256": "sha256:e94f60e8df8deb7e2da7c08e535d5d247ab7bebdfb842518b97374e190032c38",
+        "mode": "100644",
+        "sha256": "sha256:e94f60e8df8deb7e2da7c08e535d5d247ab7bebdfb842518b97374e190032c38",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-08/clean_approve.evidence.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_receipt_case",
+      "asset_id": "LEGACY-ASSET-CC28C6262D43190456AD",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2338,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2338,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-09/seeded_blocker.evidence.json",
+        "blob": "b0396f11c4ee091e94850914f13933a2cb82eef5",
+        "bytes": 524,
+        "ledger_sha256": "sha256:386a6a56e75fe900251f78efcf0c6a400f24804e4c0b2de7495398a6ea214d48",
+        "line_count": 1,
+        "manifest_sha256": "sha256:386a6a56e75fe900251f78efcf0c6a400f24804e4c0b2de7495398a6ea214d48",
+        "mode": "100644",
+        "sha256": "sha256:386a6a56e75fe900251f78efcf0c6a400f24804e4c0b2de7495398a6ea214d48",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-09/seeded_blocker.evidence.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "benchmark_prompt_or_fixture",
+      "asset_id": "LEGACY-ASSET-D36F29524FE65A6256D6",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2343,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2343,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/bench/prompts/task2-bugfix.txt",
+        "blob": "97595f635503646c75058f3d07d1c34ea83251c9",
+        "bytes": 1454,
+        "ledger_sha256": "sha256:957cd91f8d25dfc1a51852b2cff763c30690b47f7ed4814d5a3bc193ccb44641",
+        "line_count": 25,
+        "manifest_sha256": "sha256:957cd91f8d25dfc1a51852b2cff763c30690b47f7ed4814d5a3bc193ccb44641",
+        "mode": "100644",
+        "sha256": "sha256:957cd91f8d25dfc1a51852b2cff763c30690b47f7ed4814d5a3bc193ccb44641",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/bench/prompts/task2-bugfix.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_blind_judge_verdict",
+      "asset_id": "LEGACY-ASSET-D477DA30AD303D8B81A2",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2350,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2350,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/blind-judge/verdict.json",
+        "blob": "5389fe113b212949a78983748d0faf03cff6073b",
+        "bytes": 1333,
+        "ledger_sha256": "sha256:d36f4e11f96d32c7431df24d997a365f2973cbe7ee5ab024be4611b279c76dd3",
+        "line_count": 7,
+        "manifest_sha256": "sha256:d36f4e11f96d32c7431df24d997a365f2973cbe7ee5ab024be4611b279c76dd3",
+        "mode": "100644",
+        "sha256": "sha256:d36f4e11f96d32c7431df24d997a365f2973cbe7ee5ab024be4611b279c76dd3",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/blind-judge/verdict.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "generated_candidate_source_as_text",
+      "asset_id": "LEGACY-ASSET-D64CC5819D65102E450D",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2346,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2346,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/blind-judge/task1-candidate-1.ts.txt",
+        "blob": "f11d468fa9e5f59ef969121d70408a954091c65d",
+        "bytes": 549,
+        "ledger_sha256": "sha256:ad6ab8a4c939a26da2bd13211ebc96691c0982810e510fb49658b08567420b82",
+        "line_count": 17,
+        "manifest_sha256": "sha256:ad6ab8a4c939a26da2bd13211ebc96691c0982810e510fb49658b08567420b82",
+        "mode": "100644",
+        "sha256": "sha256:ad6ab8a4c939a26da2bd13211ebc96691c0982810e510fb49658b08567420b82",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/blind-judge/task1-candidate-1.ts.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "benchmark_prompt_or_fixture",
+      "asset_id": "LEGACY-ASSET-D812F09B7CCA43D18361",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2364,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2364,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/prompts/fixture3-scope.txt",
+        "blob": "32eb72df320ef46d5fd0d45aa38f845b4e232786",
+        "bytes": 263,
+        "ledger_sha256": "sha256:fc46a7e88b15050e3811c2320c5aca1813879cadcc69534d5322b2acba74ee27",
+        "line_count": 1,
+        "manifest_sha256": "sha256:fc46a7e88b15050e3811c2320c5aca1813879cadcc69534d5322b2acba74ee27",
+        "mode": "100644",
+        "sha256": "sha256:fc46a7e88b15050e3811c2320c5aca1813879cadcc69534d5322b2acba74ee27",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/prompts/fixture3-scope.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_receipt_case",
+      "asset_id": "LEGACY-ASSET-DA8D9C6A67268A60C2FB",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2328,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2328,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-08/tool_request.evidence.json",
+        "blob": "1306b0556903ba5635178d1a206eea56d9437ab3",
+        "bytes": 173,
+        "ledger_sha256": "sha256:3645fb5847da6a88250d0b3aef426772cabb85369c7e7d0266f155b6c2ede634",
+        "line_count": 1,
+        "manifest_sha256": "sha256:3645fb5847da6a88250d0b3aef426772cabb85369c7e7d0266f155b6c2ede634",
+        "mode": "100644",
+        "sha256": "sha256:3645fb5847da6a88250d0b3aef426772cabb85369c7e7d0266f155b6c2ede634",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-08/tool_request.evidence.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stdout_capture",
+      "asset_id": "LEGACY-ASSET-DAEA7852A89C32A8F4D1",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2353,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2353,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-s4-bench-2026-08-08/task1a-codegen-plain.stdout.txt",
+        "blob": "9be7f93262187f6200ed985e580fddd03aca72c7",
+        "bytes": 883,
+        "ledger_sha256": "sha256:1be2c62149c4a112b3127bdbf21985395ed648fa99cabf9eeb6596392bd625ad",
+        "line_count": 2,
+        "manifest_sha256": "sha256:1be2c62149c4a112b3127bdbf21985395ed648fa99cabf9eeb6596392bd625ad",
+        "mode": "100644",
+        "sha256": "sha256:1be2c62149c4a112b3127bdbf21985395ed648fa99cabf9eeb6596392bd625ad",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-s4-bench",
+      "source_path": "docs/research/assets/kimi-s4-bench-2026-08-08/task1a-codegen-plain.stdout.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_run_summary",
+      "asset_id": "LEGACY-ASSET-DB14DCAC581A9CE64832",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2375,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2375,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/summary.json",
+        "blob": "3fc0f9dcda94d8f373fc154124f085260d37c449",
+        "bytes": 2312,
+        "ledger_sha256": "sha256:92d111f06bc4cae3c09a6fac98b3c670c17d5bea271f2312e75b2f2b5f72fdba",
+        "line_count": 58,
+        "manifest_sha256": "sha256:92d111f06bc4cae3c09a6fac98b3c670c17d5bea271f2312e75b2f2b5f72fdba",
+        "mode": "100644",
+        "sha256": "sha256:92d111f06bc4cae3c09a6fac98b3c670c17d5bea271f2312e75b2f2b5f72fdba",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/summary.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_receipt_case",
+      "asset_id": "LEGACY-ASSET-E2C787E31EB26CBE3A97",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2322,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2322,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-08/quota_switch.evidence.json",
+        "blob": "80ae177b1b9b1086347379d07c84b81dfe6f2126",
+        "bytes": 257,
+        "ledger_sha256": "sha256:919978eb41084a99932643d2f46a1efa0ae41399f29dfce43e22d0ffb278de1b",
+        "line_count": 1,
+        "manifest_sha256": "sha256:919978eb41084a99932643d2f46a1efa0ae41399f29dfce43e22d0ffb278de1b",
+        "mode": "100644",
+        "sha256": "sha256:919978eb41084a99932643d2f46a1efa0ae41399f29dfce43e22d0ffb278de1b",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-08/quota_switch.evidence.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_mutation_case",
+      "asset_id": "LEGACY-ASSET-E40946789647A0313EA8",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2320,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2320,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-08/allow_tool_activity.mutation.json",
+        "blob": "cd4b940faef0d984f1330e16f4db5954820d2921",
+        "bytes": 160,
+        "ledger_sha256": "sha256:79a2c8732b56008b93dd72d42d92da749f889d37988064d47085a4f749c0978e",
+        "line_count": 1,
+        "manifest_sha256": "sha256:79a2c8732b56008b93dd72d42d92da749f889d37988064d47085a4f749c0978e",
+        "mode": "100644",
+        "sha256": "sha256:79a2c8732b56008b93dd72d42d92da749f889d37988064d47085a4f749c0978e",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-08/allow_tool_activity.mutation.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "historical_stdout_capture",
+      "asset_id": "LEGACY-ASSET-EC6EDB16BA1E2E5732E6",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2372,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2372,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture3-scope.stdout.txt",
+        "blob": "973e77feb986263c32dbe4b4d3680f7b86d2ea1b",
+        "bytes": 208,
+        "ledger_sha256": "sha256:c62fee7c36307001d1ae39dc4be0bfc3978df30e6266395f0256f3ac5c744ab8",
+        "line_count": 2,
+        "manifest_sha256": "sha256:c62fee7c36307001d1ae39dc4be0bfc3978df30e6266395f0256f3ac5c744ab8",
+        "mode": "100644",
+        "sha256": "sha256:c62fee7c36307001d1ae39dc4be0bfc3978df30e6266395f0256f3ac5c744ab8",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/fixture3-scope.stdout.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "benchmark_prompt_or_fixture",
+      "asset_id": "LEGACY-ASSET-F3000D26921558AA2E0C",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2363,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-15"
+        ],
+        "candidate_product_targets": [
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "implementation_evidence_state": "document_present",
+        "line": 2363,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_requires_semantic_review",
+          "requires_unit_connection_composite_split"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/prompts/fixture3-notes.txt",
+        "blob": "7dc84c3037ef9b0bf5d255eba6b11745b6735466",
+        "bytes": 179,
+        "ledger_sha256": "sha256:e98a6635b08c44dbfcfbe4e7b34868de17d06301dd483e8edf0862e322d2918a",
+        "line_count": 3,
+        "manifest_sha256": "sha256:e98a6635b08c44dbfcfbe4e7b34868de17d06301dd483e8edf0862e322d2918a",
+        "mode": "100644",
+        "sha256": "sha256:e98a6635b08c44dbfcfbe4e7b34868de17d06301dd483e8edf0862e322d2918a",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/prompts/fixture3-notes.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "review_receipt_case",
+      "asset_id": "LEGACY-ASSET-F50915B39BDB5486D226",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2326,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [
+          "PHCAP-12"
+        ],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2326,
+        "status": "unresolved_with_candidate",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "phase_candidate_requires_semantic_review",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-review-lane-admission-2026-08-08/seeded_blocker.evidence.json",
+        "blob": "ad73333d5de0d92a65f42ab8b448006c5b27352f",
+        "bytes": 524,
+        "ledger_sha256": "sha256:e7b8a052a1618cb90b7c0c66240bd99e1985f6806b7118baea80a09d9bc32ec6",
+        "line_count": 1,
+        "manifest_sha256": "sha256:e7b8a052a1618cb90b7c0c66240bd99e1985f6806b7118baea80a09d9bc32ec6",
+        "mode": "100644",
+        "sha256": "sha256:e7b8a052a1618cb90b7c0c66240bd99e1985f6806b7118baea80a09d9bc32ec6",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-review-lane-admission",
+      "source_path": "docs/research/assets/kimi-review-lane-admission-2026-08-08/seeded_blocker.evidence.json",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    },
+    {
+      "artifact_role": "benchmark_prompt_or_fixture",
+      "asset_id": "LEGACY-ASSET-F874D13F09CE1DD01B4A",
+      "asset_specific_decision_rows": [],
+      "asset_specific_read_after_rows": [],
+      "consumer_inventory_id_or_path_hit": false,
+      "disposition": {
+        "asset_class": "Historical",
+        "consumer_refs": [],
+        "decision_record_ref": null,
+        "disposition": "unresolved",
+        "implementation_status": "unknown",
+        "product_target": "unresolved",
+        "read_after_record_ref": null
+      },
+      "disposition_line": 2361,
+      "failure_inventory_id_or_path_hit": false,
+      "phase": {
+        "candidate_phase_targets": [],
+        "candidate_product_targets": [],
+        "implementation_evidence_state": "document_present",
+        "line": 2361,
+        "status": "unresolved",
+        "unresolved": [
+          "artifact_kind_unresolved",
+          "capability_phase_evidence_insufficient",
+          "consumer_closure_pending",
+          "legacy_implementation_status_unknown",
+          "product_candidate_not_established"
+        ]
+      },
+      "source": {
+        "all_three_sha_match": true,
+        "archive_path": "archive/legacy-generation-2026-09-14/root/docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/prompts/fixture1-echo.txt",
+        "blob": "c6c79847c73318920c4098c47f202855e237bb00",
+        "bytes": 134,
+        "ledger_sha256": "sha256:1263a30183725e8dd3e91ad33ae76b3c1240a0e20c531b24c8b59e7cc700fd17",
+        "line_count": 1,
+        "manifest_sha256": "sha256:1263a30183725e8dd3e91ad33ae76b3c1240a0e20c531b24c8b59e7cc700fd17",
+        "mode": "100644",
+        "sha256": "sha256:1263a30183725e8dd3e91ad33ae76b3c1240a0e20c531b24c8b59e7cc700fd17",
+        "static_read_only": true,
+        "type": "blob"
+      },
+      "source_group": "kimi-smoke-rerun",
+      "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/prompts/fixture1-echo.txt",
+      "wave_id_hits": [],
+      "wave_path_hits": []
+    }
+  ],
+  "registry_join": {
+    "all_consumer_refs_empty": true,
+    "all_disposition_rows_formally_unresolved": true,
+    "candidate_product_anomalies": [
+      {
+        "asset_id": "LEGACY-ASSET-F3000D26921558AA2E0C",
+        "candidate_phase_targets": [
+          "PHCAP-15"
+        ],
+        "candidate_products": [
+          "HELIX-OS",
+          "HELIX-Web-OS"
+        ],
+        "note": "bootstrap candidates name HELIX-OS and HELIX-Web-OS; the bundle path-group heuristic alone would place this smoke fixture in the OS candidate set",
+        "source_path": "docs/research/assets/kimi-smoke-rerun-2026-08-08/bench/prompts/fixture3-notes.txt"
+      }
+    ],
+    "consumer_inventory": {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-consumer-relation-inventory.md",
+      "sha256": "sha256:14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e",
+      "target_id_hits": 0,
+      "target_path_hits": 0
+    },
+    "failure_inventory": {
+      "path": "docs/governance/audits/source-rebaseline/legacy-ci-ai-runtime-source-inventory.md",
+      "sha256": "sha256:5fea24eafdac2893520af6cbc18c600a9ef0d6c145a342692a045a40105c99f5",
+      "target_id_hits": 0,
+      "target_path_hits": 0
+    },
+    "interpretation": "No asset-specific decision, read-after, failure, or consumer closure was found. Absence of direct references does not establish absence of indirect consumers; closure remains pending.",
+    "phase_candidate_counts": {
+      "PHCAP-12": 22,
+      "PHCAP-15": 1,
+      "without_candidate_phase": 34
+    },
+    "phase_status_counts": {
+      "unresolved": 34,
+      "unresolved_with_candidate": 23
+    },
+    "target_id_wave_hits": 0,
+    "target_path_wave_hits": 0,
+    "target_specific_decision_rows": 0,
+    "target_specific_read_after_rows": 0,
+    "wave_inputs_scanned": 50
+  },
+  "schema_revision": 1,
+  "scope": {
+    "asset_ids_sha256": "sha256:3d4e2b88c8fcae9d34af4066e10c5b6d582bce341a82e670a0e39722e36dd6ce",
+    "prefix": "docs/research/assets/",
+    "record_count": 57,
+    "source_paths_sha256": "sha256:ac4f4fa456acb15e489898905c1cb4e6cf17b6c3772541de1b7aa309d0ac94c9",
+    "unique_asset_ids": 57,
+    "unique_source_paths": 57
+  },
+  "source_totals": {
+    "artifact_role_counts": {
+      "benchmark_prompt_or_fixture": 8,
+      "generated_candidate_source_as_text": 4,
+      "generated_source_or_test_as_text": 1,
+      "historical_blind_judge_verdict": 1,
+      "historical_run_summary": 4,
+      "historical_runner_source_read_only": 2,
+      "historical_stderr_capture": 8,
+      "historical_stdout_capture": 9,
+      "review_mutation_case": 10,
+      "review_receipt_case": 10
+    },
+    "bytes": 58243,
+    "empty_source_asset_ids": [
+      "LEGACY-ASSET-08B37D233C27C3424191",
+      "LEGACY-ASSET-0E2738A58915FD0643B2",
+      "LEGACY-ASSET-1F8AF158763D30596034",
+      "LEGACY-ASSET-3739DCED68EAC8BD9D5B",
+      "LEGACY-ASSET-79AA85DCFAEBA5D59D40"
+    ],
+    "empty_source_count": 5,
+    "empty_source_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "group_counts": {
+      "kimi-review-lane-admission": 22,
+      "kimi-s4-bench": 20,
+      "kimi-smoke-rerun": 15
+    },
+    "lines": 1181,
+    "same_source_sha_occurrences": {
+      "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": 5
+    }
+  },
+  "static_content_review": {
+    "category_limit": "The path-group counts support research-candidate grouping only. They do not establish per-asset product ownership, phase admission, implementation, acceptance, or successor.",
+    "historical_claim_limit": "CLI outputs and summaries remain historical source content; this audit performed no old-runtime, test, CI, workflow, hook, adapter, or runner execution.",
+    "kimi_review_lane_admission": "Two dated lanes contain approve/quota-switch/schema-drift/seeded-blocker/tool-request receipts and mutation cases for high-risk/tool activity/head binding/stale receipt/closure drift. These are historical evidence fixtures, not current runtime or acceptance proof.",
+    "kimi_s4_bench": "Prompt inputs, runner source, generated code/test candidates, blind-judge verdict, summaries, and captured outputs; four stderr captures are empty. The runner source can invoke an external model and execute generated code, and was read as text only.",
+    "kimi_smoke_rerun": "Prompt fixtures, runner source, historical echo/codegen/scope/ACP CLI output and summary; one stderr capture is empty. The runner source was read as text only."
+  },
+  "wave_inputs": [
+    {
+      "blob": "78dc47ccf12c093684e958804c8ab9b5268d8d72",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave1.jsonl",
+      "sha256": "sha256:5015df1d876b5c9d65466f32921048d0c022cc49b393c094a7c50cf73b68e01b"
+    },
+    {
+      "blob": "178edfe2cd96b4d3c55e4bb70dabcc0abaaafbfe",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave2.jsonl",
+      "sha256": "sha256:762e8c367ed4877a4b085306a1dc19dc2e5e2d378f849e2395f421e3500836ce"
+    },
+    {
+      "blob": "450c26e6e7c82105c8514f16c32e9d4c96ed197f",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave3.jsonl",
+      "sha256": "sha256:ddbdd05731bf90e09bcb1381cd2ab08e24e319761dfd35fe37331fd0d4009d55"
+    },
+    {
+      "blob": "7e4e41f11ff3b6936a571da29500d9aeb0bf4357",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave4.jsonl",
+      "sha256": "sha256:299774676903d7d0e0882c4b55c09fc38b3ed09d00b2ec15ee9a6747bfdbd1a7"
+    },
+    {
+      "blob": "32546a347b191200c9e666ad351f777d2fba45a7",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave5.jsonl",
+      "sha256": "sha256:888642b8cb9c0cfdd0d46716342d821376d44ccecdd2e0d981c0b9268ebf4e0a"
+    },
+    {
+      "blob": "35edc3ca413196b4020e34665a3e9889c06de768",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave6.jsonl",
+      "sha256": "sha256:eacc4044f5dca42550bd9e582ea072071a55fe691f8664979c9a2b6ed5ee49c4"
+    },
+    {
+      "blob": "6a743c7d5751c690fab5c13412bd0e27eb9af4f1",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave7.jsonl",
+      "sha256": "sha256:610558b0ab3b15d689a4f38e7114bc1fe5a0566ae05f3400922d778c403f2e4f"
+    },
+    {
+      "blob": "af6a38235d072b7bcd2dd0caafe0ba97186c4cdf",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave8.jsonl",
+      "sha256": "sha256:82e5a6ee9a816b53646ff875f8a03d900550e17251d37fa44d74d6aa11280ee0"
+    },
+    {
+      "blob": "6ea3f9b564f53022de441fa46fd6381caae0df49",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl",
+      "sha256": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e"
+    },
+    {
+      "blob": "d5757b69aef21716c33e3babed85adeec8aeaf3e",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave10.jsonl",
+      "sha256": "sha256:f25da99da491fadd2cb5fe062e5307dbb4434f09cf2948ba240b862ae90a85ef"
+    },
+    {
+      "blob": "1adb65bc2c7fa7a9e4a674997e17d9ddfe1b8cf2",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave11.jsonl",
+      "sha256": "sha256:66d6f3cbdcf0d90411bbcb9fc7a145eeb6e1357c43ddf46df1dfe3969d6d89c0"
+    },
+    {
+      "blob": "80816ad890c14eadcfb9dbdbff5fd2518bad437a",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave12.jsonl",
+      "sha256": "sha256:1cbd82a98b5b37c469d0ef6567175d3f8fdaf7b6032aa3187c62d101cb5e1566"
+    },
+    {
+      "blob": "ea06f4827b9daf95ad9035ab7dc93806eca1b893",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave13.jsonl",
+      "sha256": "sha256:f49a3dfc9e12ca4b8a98bbd661b64d0d5719612dcda0f3e30590cea2c3281f9f"
+    },
+    {
+      "blob": "81823365d88719d60734b01480bd1f592704d27b",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave14.jsonl",
+      "sha256": "sha256:361dbf9ec560d77bd7e029d2e6da40933d5c19764e78d6535a11283217d94199"
+    },
+    {
+      "blob": "91ec566994ade7c7228a73090a1d1dabddc3e8c9",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave15.jsonl",
+      "sha256": "sha256:fdf03b91f03f664a83ada3acf57b951becc5a137178755ef2a3c047db262c953"
+    },
+    {
+      "blob": "c214accd8bf7c049f42b98d5bcbd3f3036e8e3d1",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave16.jsonl",
+      "sha256": "sha256:dccec0a2a8f3f6f64bbd3cee2f43680d8bfc3447e2ad392c2f690625322288f6"
+    },
+    {
+      "blob": "c623f3426ef1030453d812a91b24ce3dfbb8dd17",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave17.jsonl",
+      "sha256": "sha256:85a32507150f1a1658aff45c5e2d3a2213f3b229ccf10fedffce5ef0c02bafac"
+    },
+    {
+      "blob": "686a4a61f86f0dc0137448c148a9e23a21bf72d3",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave18.jsonl",
+      "sha256": "sha256:50496db9dcf84961def9ccb440aba18daed008d6c92ab8a0984f092bb0476c15"
+    },
+    {
+      "blob": "cd48a9be78f469000832fcdb3afe190132c8f603",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave19.jsonl",
+      "sha256": "sha256:93024399f21cf03c439a81935f473b07e57e0827efb39ce05c0be64a7432a258"
+    },
+    {
+      "blob": "0b4a189114f0f187ba1f685516e6760572dd935a",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave20.jsonl",
+      "sha256": "sha256:e7983f9a07bd4ca939450e034b24499daaeff889317e7789779d82a90adafe49"
+    },
+    {
+      "blob": "da58f53b6e9d15a56a96b2256c9defbbc6516183",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave21.jsonl",
+      "sha256": "sha256:8b726497d90cd4c430cafb5646765099af5898c1fd4200b693412b95ac1e0264"
+    },
+    {
+      "blob": "a16978acb5edd3d9febc24cb83d7e7a2d73fa946",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave22.jsonl",
+      "sha256": "sha256:f86ec2357fc2a79f18310a09bf8eee7cbabf5e620d86d671aec6f76987826dcc"
+    },
+    {
+      "blob": "1b7e8226b40ba516beb26460d671519f4c01f768",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonl",
+      "sha256": "sha256:b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423"
+    },
+    {
+      "blob": "adec8c103587b640293dc884f43197e6e52cfdf8",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave24.jsonl",
+      "sha256": "sha256:bda37af1258af965f5137d063ba134b3185eaec7f1d88ba03d64a0e94efcb455"
+    },
+    {
+      "blob": "760f51df7a862b5502f3115a6f6532a2981e820a",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave25.jsonl",
+      "sha256": "sha256:d30e7658f2d82448f56b85a516c416b1b1ddf4f14c82a592b71842d2e5f37bb3"
+    },
+    {
+      "blob": "27823cfa7116d9af1d4a6856bf78129c38f8cc85",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave26.jsonl",
+      "sha256": "sha256:e196c2d6abae0db6f00faa0502356a7bdff6de234bfe5a504dfdd5e6bebb699b"
+    },
+    {
+      "blob": "64a6690504bb73191896cfa2a4fe7aeb18757eca",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonl",
+      "sha256": "sha256:9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6"
+    },
+    {
+      "blob": "ec4d8015260817adcd22e5769e405501a35cb8d4",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl",
+      "sha256": "sha256:1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40"
+    },
+    {
+      "blob": "7f74d2ee5ca93f00617ba4e791a1c479ce2717e1",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave29.jsonl",
+      "sha256": "sha256:d316257dfddd9c5acdaa06d337cf3e4a2c65784afd93390d8f513efefdee9f29"
+    },
+    {
+      "blob": "639b0948ab9d5610c31fdbd12a9416ec9a0692da",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave30.jsonl",
+      "sha256": "sha256:a7e3e9d86d91fbd783cc5581611dc7e7f9a7f199a03e9d312f01f24fd8c4613f"
+    },
+    {
+      "blob": "50580ee453433f49a582216dc67d9eedddad969f",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave31.jsonl",
+      "sha256": "sha256:51d54950943f7bc251a1bc22a103a2d3b81dc9190cdd778cce0178d857039383"
+    },
+    {
+      "blob": "42893b7cafa8a4fb4e185d9677e80bde86cd1e53",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave32.jsonl",
+      "sha256": "sha256:e9e51ed364e9f76cb02f7b66f364f87486ac95aaa43fd010645c789fcecd09fe"
+    },
+    {
+      "blob": "40dc848f39f96a3a7228aadd1c96f34b49ad216a",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonl",
+      "sha256": "sha256:701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f"
+    },
+    {
+      "blob": "9eac87525345c169224c56c0267315df078d01f4",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave34.jsonl",
+      "sha256": "sha256:4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da"
+    },
+    {
+      "blob": "05ed3f9be9f48e6fc2d5470de3478f911aded947",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave35.jsonl",
+      "sha256": "sha256:02713e03967810fb7ba6faf6b7c9dd561c45fbd36c23972317d8603c1fde2b12"
+    },
+    {
+      "blob": "4a553567c8ce88c5ead9b14913b373e3ff4e3afc",
+      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
+      "sha256": "sha256:fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523"
+    },
+    {
+      "blob": "fcb5e148f7c0dc12b59d06e1280eb26957aaa6e4",
+      "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl",
+      "sha256": "sha256:25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a"
+    },
+    {
+      "blob": "8550cf3e8221331c0c586a0613917826732e12e9",
+      "path": "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl",
+      "sha256": "sha256:df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8"
+    },
+    {
+      "blob": "d673ab07ddeebaa8c593922086834feb688342e3",
+      "path": "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.jsonl",
+      "sha256": "sha256:c94785daaef0f3a2546e3d7a906e606d499a81e180d65dcc2c5d7ffd04996c8d"
+    },
+    {
+      "blob": "dc6cc8c933de3ff736d0549ed860873df210ffda",
+      "path": "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",
+      "sha256": "sha256:c98bf42916ef053050799e289bec8b28b7af3a0d62d2dc9e6adb30fdb606b3a8"
+    },
+    {
+      "blob": "4f3bcdc07c6333fbe1e178e75e0ae3f3b9b5d31e",
+      "path": "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.jsonl",
+      "sha256": "sha256:03222010e1e8f67e4846ce006adb604fc3742b88d2e39e6eab01123f288563c5"
+    },
+    {
+      "blob": "47d5d9a6319828ca040ab8cb9fa3a421356d9a91",
+      "path": "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.jsonl",
+      "sha256": "sha256:95ff19ec877bb847510ee5f99565816e42bb59ffb60627145de03c2d24e56072"
+    },
+    {
+      "blob": "08d54a03591e7971da579c088b864d5d6ac4daca",
+      "path": "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.jsonl",
+      "sha256": "sha256:293962d91807a1c7f4e553e57db1fa854f1a904f34c4a53eee86d6dbb1ae9982"
+    },
+    {
+      "blob": "b2b0bb9f2311100171e5fee75f0437e6ef2b9662",
+      "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.jsonl",
+      "sha256": "sha256:2fd638f0dc975fc03790f03d34b579ba5513a1b8420d8c3b09c2c53b108a38f6"
+    },
+    {
+      "blob": "a11497ef4f03b7ece64cea54de9e61ac23518013",
+      "path": "scaffold/legacy-semantic-review-wave45/legacy-requirement-direct-semantic-review-wave45.jsonl",
+      "sha256": "sha256:aa5328123645c1b8dc90dc2f04ff3ac007dfbdeda599bd66ccb6ad14441cebc6"
+    },
+    {
+      "blob": "bd4833ea7271a589e2a8adfc2ed06b806b273738",
+      "path": "scaffold/legacy-semantic-review-wave46/legacy-requirement-direct-semantic-review-wave46.jsonl",
+      "sha256": "sha256:ff965e2316e4af3fe3f1be85674e879ad9cb57d209f67abec32575af95ac975c"
+    },
+    {
+      "blob": "60ecfb4d31ad5fcf2f073d27d7d6d390c194120a",
+      "path": "scaffold/legacy-semantic-review-wave47/legacy-requirement-direct-semantic-review-wave47.jsonl",
+      "sha256": "sha256:853ec5f2b3784a5711d28c9a4246aff7f0b57bd438d5c84d02bb587d52554f2f"
+    },
+    {
+      "blob": "0da930f12db4600cc183df2e2aaeb26e7fe3c92f",
+      "path": "scaffold/legacy-semantic-review-wave48/legacy-requirement-direct-semantic-review-wave48.jsonl",
+      "sha256": "sha256:5f318d3ba422359305392c305efc851630ca435374974494ccd7cf79e7d42fb0"
+    },
+    {
+      "blob": "11e81064c8745f09f274d4b3930405ab176c84b1",
+      "path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.jsonl",
+      "sha256": "sha256:e1d924c576ac36a51750758ac429b3457f658a8b0f62e802fa2ce7372740c356"
+    },
+    {
+      "blob": "12f13df720962f356ea250ce62b43b5c1d3ed92e",
+      "path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.jsonl",
+      "sha256": "sha256:8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5"
+    }
+  ]
+}
