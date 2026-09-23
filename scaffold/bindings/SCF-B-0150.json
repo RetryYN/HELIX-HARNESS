@@ -1,0 +1,206 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0150",
+  "kind": "scaffold",
+  "title": "旧Worker実行・隔離・checkpoint・quota test design 13件の責務・phase静的分類候補",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OSのWorker・state統制候補（正式owner未決）",
+  "state": "registered",
+  "reason": "固定BASE main bootstrapのPHCAP-07 cohort 208件を再導出し、SCF-B-0148の52件とのID/path/SHA交差を除いた残156件から、Worker実行・隔離・checkpoint・quota関連の13候補を静的に整理する。承認済み4対象L1へ責務候補を接続しつつ、正式分類・phase admission・実装・test実行・採否・consumer closureには作用しない。",
+  "upstream": [
+    {
+      "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+      "note": "静的read-only参照のみ。archive sourceは実行しない。"
+    },
+    {
+      "path": "docs/concept/product-boundary.md",
+      "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
+      "sha256": "b512098481cb282d066b37383cfcd932ef137e86e604a46f965fc605d52698f2",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decisions.jsonl",
+      "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/governance/legacy-asset-copy-read-after.jsonl",
+      "sha256": "9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/governance/legacy-asset-decision-log.md",
+      "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.json",
+      "sha256": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/governance/phase-capability-inventory.md",
+      "sha256": "1fdbd85da6a987e945bfaeef97c18696819799fbdbaed09dd3eae410f295508d",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/helix-web/L1-planning/product-intent.md",
+      "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "sha256": "600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "scaffold/legacy-test-design-worker-workflow-0148/selection-manifest.json",
+      "sha256": "70b9333a1456ba9a69388d340af6c7bccf2ca2e058c7b604f913ad961fa90cf7",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "scaffold/legacy-test-design-worker-workflow-0148/classification-research.jsonl",
+      "sha256": "dd2b9923b65fd39c3af0096cbc664676496c31fe40da43ffa7f416671dd4eeab",
+      "note": "fixed-base static evidence input"
+    },
+    {
+      "path": "scaffold/legacy-worker-execution-checkpoint-quota-0150/selection-manifest.json",
+      "sha256": "727e8d6eafd344a6aa2c955098549c92ae2eefc168bbd26ce61d64fe95d62b53",
+      "note": "SCF-B-0150 research artifact digest"
+    },
+    {
+      "path": "scaffold/legacy-worker-execution-checkpoint-quota-0150/classification-research.jsonl",
+      "sha256": "babc89ca85707796f7c17a2295cb81d4127bc9b3b2b183c481ee1f98f6388a7d",
+      "note": "SCF-B-0150 research artifact digest"
+    },
+    {
+      "path": "scaffold/legacy-worker-execution-checkpoint-quota-0150/inventory.json",
+      "sha256": "fcbaea30bcb77800be0fd9365129f2fca99ba235abfcb13913c41bb8d20cb686",
+      "note": "SCF-B-0150 research artifact digest"
+    },
+    {
+      "path": "scaffold/legacy-worker-execution-checkpoint-quota-0150/README.md",
+      "sha256": "8645620deada6fed043610939584a81b9d72057f5f7da6a936812128acba7a1d",
+      "note": "SCF-B-0150 research artifact digest"
+    },
+    {
+      "path": "scaffold/legacy-worker-execution-checkpoint-quota-0150/PR-DRAFT.md",
+      "sha256": "8f1f5448c3295238ee5578418a1c7d66a7b48e5bcca9f5ce2547810d1a4840a7",
+      "note": "SCF-B-0150 research artifact digest"
+    },
+    {
+      "path": "scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py",
+      "sha256": "fa481fc27ad0330ab801536a4aac9a50846c79b8b16626244e2a46a7bf7e8894",
+      "note": "SCF-B-0150 research artifact digest"
+    }
+  ],
+  "role": "legacy-worker-execution-checkpoint-quota-phase-product-classification-0150-static",
+  "obligations": [
+    "固定BASE bootstrapからPHCAP-07 cohort 208件を再導出し、SCF-B-0148の52件をID/path/SHAそれぞれで除き残156件を照合する。指定13件の三軸重複が0であることを確認する。",
+    "13件すべてのarchive source blob/SHA/MANIFESTと宣言されたparent_pair/pair_group blob/title/statusを固定BASEから静的確認する。旧archiveを実行しない。",
+    "Concept v4.1・承認decision record・4対象L1のexact SHAに対してcandidate product boundaryを記録する。product owner/採否/authorityを生成しない。",
+    "bootstrapにあるPHCAP-02/07/10/17/20等の複数phase候補を落とさず保持し、phase-level status/degradationとasset単位implementation status unknownを分離する。",
+    "旧test design内の予定oracle・negative case・test citation、観測failure、implementation、formal consumerを別々に記録し、不明値はunknown/pendingに保つ。",
+    "legacy asset decision logとcopy read-afterの対象13行が0であり、asset disposition unresolved、implementation unknownであることを示す。"
+  ],
+  "connections": {
+    "consumers": [
+      "人間による13件の製品・phase候補分類review",
+      "後続の旧asset/source atom consumer closure調査（未完）"
+    ],
+    "dependencies": [
+      "Concept v4.1と4対象L1の2026-09-17 exact-revision approval record",
+      "固定BASE b1578f4fda5d5ecd01c9565ee81f4ddf0cebfe1aのbootstrap・archive MANIFEST・SCF-B-0148 exclusion selection"
+    ],
+    "boundary": "research-only。candidate evidenceのみ。formal owner/product classification、phase admission、要求採否、実装/test pass、successor、failure observation、consumer closure、CIを生成しない。main HEADが進んだ後は最新main向け根拠として利用せず、PR前に全入力・重複・Bindingを再導出する。"
+  },
+  "operations": {
+    "allowed": [
+      "固定BASEのcurrent bootstrap/ledger/decision/source Git blobを静的に読む",
+      "scaffold/配下にclassification research、selection、inventory、README、draft summary、静的validatorを置く",
+      "scfctl validate/stale/residualsをread-onlyで実行する",
+      "git diff --checkを実行する",
+      "SCF-B-0150静的validatorと4件のtemporary negative selfcheckを実行する"
+    ],
+    "forbidden": [
+      "旧archiveは実行しない",
+      "旧archive source/runtime/test/CI/workflow/hook/adapterの実行",
+      "旧CI/test/runtimeをoracleまたは完了根拠にする",
+      "formal asset/phase/requirement/consumer/implementation ledgerを書き換える",
+      "test design/status/citationからpass・failure observation・implementation・採択を推論する",
+      "push、PR、merge、close、deployment、release"
+    ]
+  },
+  "artifacts": [
+    "scaffold/bindings/SCF-B-0150.json",
+    "scaffold/legacy-worker-execution-checkpoint-quota-0150/selection-manifest.json",
+    "scaffold/legacy-worker-execution-checkpoint-quota-0150/classification-research.jsonl",
+    "scaffold/legacy-worker-execution-checkpoint-quota-0150/inventory.json",
+    "scaffold/legacy-worker-execution-checkpoint-quota-0150/README.md",
+    "scaffold/legacy-worker-execution-checkpoint-quota-0150/PR-DRAFT.md",
+    "scaffold/legacy-worker-execution-checkpoint-quota-0150/validate.py"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "13 source test-design files and declared parent pairs are read as static Git blobs only; validator does not invoke them.",
+      "scfctl validate checks repository Scaffold Binding schema and conflict boundaries; stale/residuals are read-only outputs and not adoption evidence.",
+      "bundle validatorは選択集合、source/pair、分類/authority候補状態、原phase assessment、source span/anchor、Binding upstream/artifact closure、inventory集計およびselection分母を固定BASEと照合する。--selfcheckはBinding negative_casesの4種を一時改変し、期待した拒否理由を照合する。"
+    ],
+    "negative_cases": [
+      "selected asset/path/SHAがSCF-B-0148または208 cohort外なら拒否",
+      "sourceまたはparent pair digest/MANIFESTが変われば拒否",
+      "unknown implementation、not-run、observed failure unknown、consumer pending、no-authority境界の昇格を拒否",
+      "fixed BASE HEADまたはBinding upstream digestが変われば停止"
+    ]
+  },
+  "replacement": {
+    "role_target": null,
+    "formal_artifacts": [],
+    "issue": 0,
+    "status": "pending"
+  },
+  "created": "2026-09-23",
+  "updated": "2026-09-23"
+}

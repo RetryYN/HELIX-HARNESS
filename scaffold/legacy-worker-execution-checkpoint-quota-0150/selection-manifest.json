@@ -1,0 +1,186 @@
+{
+  "schema_revision": 1,
+  "binding_id": "SCF-B-0150",
+  "base_revision": "b1578f4fda5d5ecd01c9565ee81f4ddf0cebfe1a",
+  "cohort_rule": "docs/test-design/helix/ under current main bootstrap with candidate_phase_targets containing PHCAP-07",
+  "cohort_count": 208,
+  "excluded_binding": "SCF-B-0148",
+  "excluded_binding_selection": "scaffold/legacy-test-design-worker-workflow-0148/selection-manifest.json (52 rows)",
+  "remaining_count": 156,
+  "target_count": 13,
+  "selection_basis": "previous read-only worker_next_batch ID set; rederived at this BASE, then required membership in cohort minus SCF-B-0148 ID/path/SHA sets",
+  "rows": [
+    {
+      "asset_id": "LEGACY-ASSET-2775B41748BECEC8ABC0",
+      "source_path": "docs/test-design/helix/L8-cursor-cloud-environment-admission-unit-test-design.md",
+      "source_sha256": "5f331442493270a6acb6c54bc7c9099f757b67fdd8938b46646417c0df1fc70e",
+      "bootstrap_classification_id": "LASPH-2634",
+      "candidate_phase_targets": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L6-function-design/cursor-cloud-environment-admission.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DB5E523E2E6BB1E1149B",
+      "source_path": "docs/test-design/helix/L8-specialist-agent-registry-unit-test-design.md",
+      "source_sha256": "14f5b87e0f8b6bd19c5ed57d99016ca666945700c3bae2e13c3a3d7b21d9b700",
+      "bootstrap_classification_id": "LASPH-2728",
+      "candidate_phase_targets": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L6-function-design/specialist-agent-registry.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-DE20B8D1BDFA39227A54",
+      "source_path": "docs/test-design/helix/L8-resident-lane-assignment-unit-test-design.md",
+      "source_sha256": "0310631a0811fda91aa8ceca125e00cf886806910c8c7609f415479545b6275a",
+      "bootstrap_classification_id": "LASPH-2714",
+      "candidate_phase_targets": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L5-detail/resident-lane-assignment-contract.md",
+        "docs/design/helix/L6-function-design/resident-lane-assignment-kernel.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-01003E42593729E3E6D8",
+      "source_path": "docs/test-design/helix/L9-resident-lane-assignment-boundary-integration-test-design.md",
+      "source_sha256": "30ac38fd6642711ba2c292988398f2691591cfed2d4fc8203d7394c878672e43",
+      "bootstrap_classification_id": "LASPH-2783",
+      "candidate_phase_targets": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L4-basic-design/resident-lane-assignment-boundary.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9459010325E74BAD09B9",
+      "source_path": "docs/test-design/helix/L9-document-agent-metadata-integration.md",
+      "source_sha256": "a74eeab9706fdcfb03f646a888b131b8ff6ded21a1fbc9d398f2e400b0b3c829",
+      "bootstrap_classification_id": "LASPH-2774",
+      "candidate_phase_targets": [
+        "PHCAP-07",
+        "PHCAP-10"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L4-basic-design/document-agent-metadata.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-375B92E7A4237AF0131E",
+      "source_path": "docs/test-design/helix/L8-event-projection-checkpoint-replay-unit-test-design.md",
+      "source_sha256": "1d4b387791d6b5b2757dd54b63d8dea77be93f888ed3a26bc6f5b4f08af7f78f",
+      "bootstrap_classification_id": "LASPH-2659",
+      "candidate_phase_targets": [
+        "PHCAP-02",
+        "PHCAP-07",
+        "PHCAP-10"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L5-detail/event-projection-checkpoint-replay.md",
+        "docs/design/helix/L6-function-design/event-projection-checkpoint-replay.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-389DDC5EE6D65B05E79D",
+      "source_path": "docs/test-design/helix/L9-event-projection-checkpoint-replay-system-test-design.md",
+      "source_sha256": "54840f531082dd5f566a1d44522ec34526f21cb5c9cf02f3a8cb7d9104e07caf",
+      "bootstrap_classification_id": "LASPH-2776",
+      "candidate_phase_targets": [
+        "PHCAP-02",
+        "PHCAP-07",
+        "PHCAP-10"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L4-basic-design/event-projection-checkpoint-replay.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5D9269CEBC9A5DC4EA62",
+      "source_path": "docs/test-design/helix/L8-slot-scheduler-quota-handover-unit-test-design.md",
+      "source_sha256": "e5f32e54224b6d152e05c45929c732431e9e87fea11b833782525150bbc566cb",
+      "bootstrap_classification_id": "LASPH-2726",
+      "candidate_phase_targets": [
+        "PHCAP-07",
+        "PHCAP-20"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L5-detail/slot-scheduler-quota-handover.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-91565A0959C724742995",
+      "source_path": "docs/test-design/helix/L9-slot-scheduler-quota-handover-system-test-design.md",
+      "source_sha256": "6e49a7c01b5aa0048f4881cc83d7c2b230bd250611b4d96472116f72c34555ad",
+      "bootstrap_classification_id": "LASPH-2784",
+      "candidate_phase_targets": [
+        "PHCAP-07",
+        "PHCAP-20"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L4-basic-design/slot-scheduler-quota-handover.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C7C6CA2B0355D032265F",
+      "source_path": "docs/test-design/helix/L9-cursor-cloud-independent-execution-boundary.md",
+      "source_sha256": "5edf0a361d6d1a85ea40ebae5ea55e56a106bff708c2630778a50b0928f3e119",
+      "bootstrap_classification_id": "LASPH-2771",
+      "candidate_phase_targets": [
+        "PHCAP-07",
+        "PHCAP-20"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L4-basic-design/cursor-cloud-independent-execution-boundary.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-068F64AE240FD3F5ACA9",
+      "source_path": "docs/test-design/helix/L8-luna-native-spawn-admission-unit-test-design.md",
+      "source_sha256": "e41121b609774072e66e26a84f93fd5f16c3155e84d4dc03358530511c52ca11",
+      "bootstrap_classification_id": "LASPH-2683",
+      "candidate_phase_targets": [
+        "PHCAP-07"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L6-function-design/luna-native-spawn-admission.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-C7E8D003CE5DA97ABA51",
+      "source_path": "docs/test-design/helix/L8-kimi-runtime-boundary-unit-test-design.md",
+      "source_sha256": "b61722c0758dca578ff17f6ec498cd668eb352c8f2220af7a1ce048f6f1e45dc",
+      "bootstrap_classification_id": "LASPH-2678",
+      "candidate_phase_targets": [
+        "PHCAP-07"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L6-function-design/kimi-runtime-boundary.md"
+      ]
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3EC6A1FBC5A147CFF72B",
+      "source_path": "docs/test-design/helix/L8-claude-native-memory-isolation-unit-test-design.md",
+      "source_sha256": "34d4cc5e5e6ec4bb060cfd8a1fe173fe2518acf5b385c106b4905d0b53abfbd6",
+      "bootstrap_classification_id": "LASPH-2625",
+      "candidate_phase_targets": [
+        "PHCAP-07",
+        "PHCAP-17",
+        "PHCAP-20"
+      ],
+      "pair_paths": [
+        "docs/design/helix/L6-function-design/claude-native-memory-isolation.md"
+      ]
+    }
+  ]
+}
