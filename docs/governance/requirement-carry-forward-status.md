@@ -30,12 +30,13 @@ v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pend
 |---|---:|---|
 | 旧Requirement IRの製品候補 | 153 / 153（100%） | 87件が単一製品、65件が分割、1件が製品間接続の候補 |
 | confirmed文書の原文IDの製品候補 | 175 / 175（100%） | 139件が単一製品、36件がHARNESS／OS分割の候補 |
+| 旧IR補助system contractの製品候補 | 24 / 24（100%） | HARNESS／OS接続候補16件、OS単体候補7件、HARNESS単体候補1件 |
 | 旧IRから分解した要求unitの直接工程候補 | 188 / 218（86.2%） | 残る30件は直接PHCAP機構の根拠を原文から特定できず未解決 |
 | 要求unit単位の旧実装・縮退判定 | 0 / 218（0%） | 全件の直接asset意味linkとconsumer closureが未確認 |
 
 工程候補が未解決の30 unitは、[既存の研究分類](../../scaffold/phase-status-taxonomy-0105/README.md)で横断条件らしさのレビュー保留20件、追加sourceまたは人間判断待ち10件に分けている。両方とも正式工程は未確定であり、工程非適用も立証していない。
 
-IR 153件とconfirmed原文ID 175件には部分的な意味重複があり、328件の独立要求として合算しない。製品候補は[IR台帳](legacy-ir-product-routing-bootstrap.jsonl)と[confirmed原文ID台帳](legacy-confirmed-identity-product-routing-candidates.jsonl)、工程・実装状態は[218 unitのcrosswalk](legacy-requirement-implementation-crosswalk-bootstrap.jsonl)に記録する。工程候補の188件も正式な工程採否ではない。旧phase能力の`degraded_*`／`not_reimplemented_formally`は要求unit固有の縮退・未実装を証明しない。
+IR 153件とconfirmed原文ID 175件には部分的な意味重複があり、328件の独立要求として合算しない。system contract 24件も複数要求を束ねる補助sourceであり、要求件数へ加算しない。製品候補は[IR台帳](legacy-ir-product-routing-bootstrap.jsonl)、[confirmed原文ID台帳](legacy-confirmed-identity-product-routing-candidates.jsonl)、[system contract候補台帳](legacy-system-contract-product-routing-candidates.jsonl)に記録する。system contractの元台帳は`relation_status: unmapped`のままで、候補分類は採否、接続成立、successor割当を意味しない。工程・実装状態は[218 unitのcrosswalk](legacy-requirement-implementation-crosswalk-bootstrap.jsonl)に記録する。工程候補の188件も正式な工程採否ではない。旧phase能力の`degraded_*`／`not_reimplemented_formally`は要求unit固有の縮退・未実装を証明しない。
 
 旧資産4,020件は所在と静的種別を[候補台帳](legacy-asset-phase-product-classification-bootstrap.jsonl)に保全済みで、全件の再利用適性や要求単位の実装成立は未判定である。POの[判断時期の決定](decisions/legacy-asset-review-timing-2026-09-23.md)に従い、先に要求の要否と製品scopeを決め、L3要件定義で選んだ関係資産だけを必要な根拠まで調べる。未選定資産の全件調査は要求判断の前提にしない。
 
