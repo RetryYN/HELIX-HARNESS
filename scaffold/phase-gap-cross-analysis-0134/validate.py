@@ -54,7 +54,7 @@ UNRESOLVED = set(TARGET_UNIT_IDS) - SOURCE - PHCAP_BOUNDARY_UNITS - COMPETITION
 REASON_BY_UNIT = {**{x: "SOURCE_AUTHORITY_CUSTODY_GAP" for x in SOURCE}, **{x: "PHCAP_BOUNDARY_GAP" for x in PHCAP_BOUNDARY_UNITS}, **{x: "CROSS_PHASE_COMPETITION" for x in COMPETITION}, **{x: "CROSS_PHASE_UNRESOLVED" for x in UNRESOLVED}}
 CLASS_DEFS = {
     "SOURCE_AUTHORITY_CUSTODY_GAP": ("原文のsource custody／要求定義authorityが閉じず、phase責務の主語をcurrent contractへ接続できない", "RDP source atomization、current contract、authority receipt、product／unit boundary decisionを揃える"),
-    "PHCAP_BOUNDARY_GAP": ("prototype／re-entry／ingestion等のphase境界が競合し、PHCAP直接責務を原文だけで決められない", "候補phaseと全競合PHCAPのcurrent boundary contract、phase reviewer判断、consumer closureを揃える"),
+    "PHCAP_BOUNDARY_GAP": ("prototype／re-entry／ingestion等のphase境界が競合し、PHCAP直接責務を原文だけで決められない", "候補phaseと全競合PHCAPのcurrent boundary contractを比較し、product／phase authorityのhuman decisionを得る"),
     "CROSS_PHASE_COMPETITION": ("横断制約だがPHCAP-01〜15の具体能力との意味接続候補があり、phase非適用を導けない", "shared capability／connection／phaseを全PHCAP境界で比較し、product／phase authorityをhuman decisionする"),
     "CROSS_PHASE_UNRESOLVED": ("横断制約として読めるが、PHCAP-16〜20を含む全20境界の除外も直接責務も未立証", "全PHCAP-01〜20の直接責務・除外sourceを確認し、phase非適用を保留したままhuman reviewへ送る"),
 }
@@ -104,14 +104,14 @@ ANALYSIS_TEXT_KEYS = (
 ANALYSIS_TEXT_DIGESTS = {
     "IRUNIT-HIL-BR-14-HELIX-OS": "sha256:7f8aba5409c1cf060c7c291dcd5bc607ca8d3be3a414b01f1846f38db6425a86",
     "IRUNIT-HIL-BR-24-HELIX-OS": "sha256:12fca713b4c73aac20d4e7ffc0a73f14884169fc2b4d4f3495f789080232cf59",
-    "IRUNIT-HIL-FR-17-HELIX-OS": "sha256:fbe380156e72565329cea425a52f420969f3993b7447eb40e2212d9c7fdc128e",
-    "IRUNIT-HIL-FR-18-HELIX-OS": "sha256:cf7f4a2e82bdeec3afe1d2e5c85c7d4f7808fed0116a0887c8f0359abed577f3",
-    "IRUNIT-HIL-FR-19-HELIX-HARNESS": "sha256:0ebce1aa5a1e76c0180c325a3c7dc0898c3a7ae947527fdc935388a95766be41",
-    "IRUNIT-HIL-FR-20-HELIX-OS": "sha256:f52c567b5f1d979871ebe506fcd512a8b260847869c5719444c069cca15e5b42",
+    "IRUNIT-HIL-FR-17-HELIX-OS": "sha256:3d0dcbcd6c02c59a91dbd411ed977d6ba23a3d4c6f3aab48214f173d5621c2cf",
+    "IRUNIT-HIL-FR-18-HELIX-OS": "sha256:410e2b68507757f601a28f7f39de2b23cfda53ca1a622577336dcc2997f11e58",
+    "IRUNIT-HIL-FR-19-HELIX-HARNESS": "sha256:518a575d66eb2eff1f95dd1199a914a2b0256cd57c1d8984c94cbc68bf07b312",
+    "IRUNIT-HIL-FR-20-HELIX-OS": "sha256:32deb23ff93a8a511c7fe88e1f0ae5cd95043181c0b7585e9fc8c0591eb6b2af",
     "IRUNIT-HIL-FR-21-HELIX-OS": "sha256:25401df99cec03bc07168b8afe280418147c9c08120a36b6f65271b8c6506446",
     "IRUNIT-HIL-FR-23-HELIX-OS": "sha256:fd0079996f876a29d998db32663a99063da5815d4dc2f47b073db253d27318e7",
-    "IRUNIT-HIL-FR-24-HELIX-OS": "sha256:9e0e20dd92b717e68af6ead4e77c8faa0b2752f759028eff132d0c372ae1b2cb",
-    "IRUNIT-HIL-FR-31-HELIX-OS": "sha256:e33e64006d374273fed21a848a8d4cef49cc5cb289c885613da317aaa015dc6f",
+    "IRUNIT-HIL-FR-24-HELIX-OS": "sha256:44aa02527a2f08386af85c672e1150b2a461a382efcb3f070e143c9aee936922",
+    "IRUNIT-HIL-FR-31-HELIX-OS": "sha256:4528bb2d71b5fcd09e2437f9e1ca65cf0175657904f609ca65ee496c2aa0a1a4",
     "IRUNIT-HIL-FR-33-HELIX-HARNESS": "sha256:501fa5d8be455fed353286563a88a6834b709f3bfd3fa56415edab66a8dc20fb",
     "IRUNIT-HIL-FR-33-HELIX-OS": "sha256:42b6eac0cdac40474b4d4e50a7f9ec8517e037aaa5ba45b44ed38154ff1648ec",
     "IRUNIT-HIL-FR-46-HELIX-OS": "sha256:8b18b092c959f368d70aec382501cf2d499304b86983dfb5a844d695eb132570",
@@ -125,21 +125,23 @@ ANALYSIS_TEXT_DIGESTS = {
     "IRUNIT-HIL-NFR-11-HELIX-OS": "sha256:d6e1ac5dc523b6f8922209ab6d55bd5737555926e8fad830c4a1aa69c838a261",
     "IRUNIT-HIL-NFR-12-HELIX-OS": "sha256:cd1c109f19d73d98c2f79ece92577f53985ae40e05ff84804a1abb5c0e8ccd62",
     "IRUNIT-HIL-NFR-23-HELIX-OS": "sha256:36dbe384f67427720d3718baef94afe9656ebd2bfc59943d16f14f697644a6fb",
-    "IRUNIT-HIL-NFR-30-HELIX-OS": "sha256:7085ac9a7bccabb8d4f5f64ac540de5a4e0f30549449d0ee821efe331ba7e96d",
+    "IRUNIT-HIL-NFR-30-HELIX-OS": "sha256:8999e0ae50a7c98f15674e151b706506622771b00848ba905bc9c89a27c2477b",
     "IRUNIT-HIL-NFR-31-HELIX-OS": "sha256:f2ca05e94a52356d18e8ccb2a8f997f7391070b135044e89a992f747e8315e3d",
     "IRUNIT-HIL-NFR-32-HELIX-OS": "sha256:f00ddbc17a9bb972ec11d110d5ba010be3b2f93de6be733275f5736e91b6a889",
     "IRUNIT-HIL-TR-04-HELIX-HARNESS": "sha256:9a4c306e83abbe69130b13812336d2c13d797463058fc34254667d4075898832",
     "IRUNIT-HIL-TR-04-HELIX-OS": "sha256:f479932bc66312ce7a57375c376966fa83a2e9cc3cb9ce7250679103e36404a4",
-    "IRUNIT-HIL-TR-07-HELIX-OS": "sha256:5d5b795c3f1be5a2db738f2297cf480924ace91bf7f4d03f0cbcc9dd643107be",
+    "IRUNIT-HIL-TR-07-HELIX-OS": "sha256:cf2973a4051b67f72fd25b83760c725fc87c0f4ef651389992cd923a6b63a05a",
     "IRUNIT-HIL-TR-08-HELIX-HARNESS": "sha256:0e4732be2ad2c7f55ef7069b55fd01c08d99e3f983a5d6d9e262bf672fab3a65",
 }
-MINIMUM_CONDITIONS = [
-    "current source contractが責務主語、対象product、input/output、acceptance、failure/recovery、revision/digestを固定する",
-    "PHCAP-01〜20の競合境界を直接照合し、candidate／connection／shared capability／非適用の理由を原文anchorで分離する",
-    "product ownerとphase authority reviewerがunit／connection／composite、target product、L2/L11 successorを明示決定する",
-    "名前付きcurrent consumerのreceipt/read-after、failure/recovery、stale/re-entry、rollback/retention境界でclosureする",
+PHASE_PLACEMENT_DECISION_EVIDENCE = [
+    "current authoritative sourceのcustodyとatomic source contractを確認し、責務主語およびunitのinput/outputを特定する",
+    "原文anchorを使ってPHCAP-01〜20のcurrent boundary contractを比較し、candidate／connection／shared capability／非適用の根拠を分ける",
+    "product ownerとphase authority reviewerがunit／connection／composite、target product、phase配置または非適用、L2/L11 successorをhuman decisionする",
 ]
-NEGATIVE_CASE_CODES = ["E_BUNDLE", "E_SCHEMA", "E_BINDING", "E_BASE_COMMIT", "E_BASE_NOT_ANCESTOR", "E_TAXONOMY_NOT_ANCESTOR", "E_TAXONOMY_BLOB", "E_SOURCE_INPUT_DIGEST", "E_SOURCE_ANCHOR", "E_TARGET_SET", "E_WAVE_EDGE_COVERAGE", "E_ASSET_EVIDENCE", "E_TAXONOMY_COVERAGE", "E_TAXONOMY_STATUS", "E_MATRIX_RULE", "E_INVENTORY_DECLARATION", "E_REASON_CLASS", "E_ANALYSIS_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION", "E_AUTHORITY_BOUNDARY", "E_MINIMUM_CONDITIONS"]
+POST_PLACEMENT_ACCEPTANCE_CLOSURE_EVIDENCE = [
+    "配置判断後に、名前付きcurrent consumerのreceipt/read-afterとfailure/recovery、stale/re-entry、rollback/retentionの証拠でimplementation／acceptance／consumer closureする。これはphase配置判断の代用ではなく、phase／product authorityを昇格させない",
+]
+NEGATIVE_CASE_CODES = ["E_BUNDLE", "E_SCHEMA", "E_BINDING", "E_BASE_COMMIT", "E_BASE_NOT_ANCESTOR", "E_TAXONOMY_NOT_ANCESTOR", "E_TAXONOMY_BLOB", "E_SOURCE_INPUT_DIGEST", "E_SOURCE_ANCHOR", "E_TARGET_SET", "E_WAVE_EDGE_COVERAGE", "E_ASSET_EVIDENCE", "E_TAXONOMY_COVERAGE", "E_TAXONOMY_STATUS", "E_MATRIX_RULE", "E_INVENTORY_DECLARATION", "E_REASON_CLASS", "E_ANALYSIS_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_PHASE_AUTHORITY_SEPARATION", "E_PRODUCT_AUTHORITY_SEPARATION", "E_AUTHORITY_BOUNDARY", "E_PLACEMENT_OR_CLOSURE_EVIDENCE"]
 
 
 def git(*args: str, text: bool = False) -> bytes | str:
@@ -225,7 +227,9 @@ def expected_inventory(rows: list[dict[str, Any]], edges: list[dict[str, Any]]) 
         "base": {"repository": "HELIX-HARNESS", "commit": BASE, "branch": "main", "required_ancestor": BASE},
         "taxonomy_snapshot": {"commit": TAXONOMY_COMMIT, "path": TAXONOMY_PATH, "sha256": TAXONOMY_SHA256, "blob_oid": TAXONOMY_BLOB_OID, "inventory_path": TAXONOMY_INVENTORY_PATH, "inventory_sha256": TAXONOMY_INVENTORY_SHA256, "inventory_blob_oid": TAXONOMY_INVENTORY_BLOB_OID, "snapshot_artifact": TAXONOMY_SNAPSHOT},
         "scope": {"unit_count": 30, "target_unit_ids": TARGET_UNIT_IDS, "product_counts": {"HELIX-OS": 24, "HELIX-HARNESS": 6}, "taxonomy_status_counts": status_counts, "matrix_rule_counts": rule_counts, "wave_scan_file_count": 50, "wave_scan_row_count": sum(len(base_jsonl(path)) for path in WAVE_PATHS), "semantic_review_edge_count": len(edges), "unique_old_asset_count": len({edge["asset_id"] for edge in edges}), "direct_phase_evidence_count": 0, "formal_phase_candidate_count": 0, "phase_nonapplicability_proven": 0, "excluded_phase_count": 0, "pending_all_20_count": 30, "full_phcap_boundary_review": {"phase_ids": PHCAP_IDS, "status": "pending_all_20", "non_applicability_proven": False}},
-        "reason_classes": reason_classes, "formal_judgment_minimum_conditions": MINIMUM_CONDITIONS,
+        "reason_classes": reason_classes,
+        "phase_placement_decision_evidence": PHASE_PLACEMENT_DECISION_EVIDENCE,
+        "post_placement_acceptance_closure_evidence": POST_PLACEMENT_ACCEPTANCE_CLOSURE_EVIDENCE,
         "input_snapshot": [{"path": path, "sha256": sha(base_bytes(path), False), "source": "fixed_BASE"} for path in BASE_INPUT_PATHS],
         "oracle_dependencies": [], "analysis_path": "analysis.jsonl", "unit_ids": TARGET_UNIT_IDS, "negative_case_codes": NEGATIVE_CASE_CODES,
         "authority_boundary": {"formal_crosswalk_modified": False, "formal_phase_authority_modified": False, "formal_product_authority_modified": False, "implementation_claim_generated": False, "unimplemented_claim_generated": False, "degradation_claim_generated": False, "failure_receipt_generated": False, "consumer_closure_generated": False, "successor_assigned": False, "old_archive_executed": False},
@@ -240,6 +244,20 @@ class Validator:
 
     def error(self, code: str, detail: str = "") -> None:
         self.errors.append(code + ((":" + detail) if detail else ""))
+
+    @staticmethod
+    def same_typed(actual: Any, expected: Any) -> bool:
+        if type(actual) is not type(expected):
+            return False
+        if isinstance(expected, dict):
+            return actual.keys() == expected.keys() and all(
+                Validator.same_typed(actual[key], value) for key, value in expected.items()
+            )
+        if isinstance(expected, list):
+            return len(actual) == len(expected) and all(
+                Validator.same_typed(got, want) for got, want in zip(actual, expected)
+            )
+        return actual == expected
 
     def load(self) -> tuple[dict[str, Any], list[dict[str, Any]]] | None:
         try:
@@ -261,7 +279,7 @@ class Validator:
             self.error("E_SOURCE_INPUT_DIGEST", repr(exc)); return self.finish()
         if inventory.get("schema") != SCHEMA: self.error("E_SCHEMA", "inventory schema")
         if inventory.get("binding_id") != BINDING_ID: self.error("E_BINDING", "inventory binding")
-        if inventory.get("base") != expected_inv["base"]: self.error("E_BASE_COMMIT", "base declaration")
+        if not self.same_typed(inventory.get("base"), expected_inv["base"]): self.error("E_BASE_COMMIT", "base declaration")
         ancestor = inventory.get("base", {}).get("required_ancestor")
         if not isinstance(ancestor, str) or subprocess.run(["git", "merge-base", "--is-ancestor", ancestor, "HEAD"], cwd=self.root, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode != 0: self.error("E_BASE_NOT_ANCESTOR", str(ancestor))
         tax_decl = inventory.get("taxonomy_snapshot", {})
@@ -271,8 +289,8 @@ class Validator:
         else:
             if subprocess.run(["git", "rev-parse", f"{TAXONOMY_COMMIT}:{TAXONOMY_PATH}"], cwd=self.root, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True).stdout.strip() != TAXONOMY_BLOB_OID: self.error("E_TAXONOMY_BLOB", "taxonomy source blob")
             if subprocess.run(["git", "rev-parse", f"{TAXONOMY_COMMIT}:{TAXONOMY_INVENTORY_PATH}"], cwd=self.root, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True).stdout.strip() != TAXONOMY_INVENTORY_BLOB_OID: self.error("E_TAXONOMY_BLOB", "taxonomy inventory blob")
-        if inventory.get("taxonomy_snapshot") != expected_inv["taxonomy_snapshot"]: self.error("E_TAXONOMY_COVERAGE", "taxonomy snapshot")
-        if inventory.get("input_snapshot") != expected_inv["input_snapshot"]: self.error("E_SOURCE_INPUT_DIGEST", "input snapshot declaration")
+        if not self.same_typed(inventory.get("taxonomy_snapshot"), expected_inv["taxonomy_snapshot"]): self.error("E_TAXONOMY_COVERAGE", "taxonomy snapshot")
+        if not self.same_typed(inventory.get("input_snapshot"), expected_inv["input_snapshot"]): self.error("E_SOURCE_INPUT_DIGEST", "input snapshot declaration")
         for item in inventory.get("input_snapshot", []):
             path = item.get("path") if isinstance(item, dict) else None
             try:
@@ -285,11 +303,11 @@ class Validator:
             if sha((self.bundle / "phase-status-taxonomy-0105.units.jsonl").read_bytes(), False) != TAXONOMY_SHA256: self.error("E_TAXONOMY_COVERAGE", "snapshot artifact")
         except OSError: self.error("E_TAXONOMY_COVERAGE", "snapshot artifact missing")
         if set(inventory) != set(expected_inv): self.error("E_SCHEMA", "inventory top-level keys")
-        for key in ("status", "authority_effect", "new_build", "base", "taxonomy_snapshot", "scope", "reason_classes", "formal_judgment_minimum_conditions", "input_snapshot", "oracle_dependencies", "analysis_path", "unit_ids", "negative_case_codes", "authority_boundary"):
-            if inventory.get(key) != expected_inv.get(key):
-                code = "E_INVENTORY_DECLARATION" if key in {"scope", "reason_classes", "unit_ids", "analysis_path"} else "E_MINIMUM_CONDITIONS" if key == "formal_judgment_minimum_conditions" else "E_AUTHORITY_BOUNDARY" if key in {"status", "authority_effect", "new_build", "oracle_dependencies", "authority_boundary"} else "E_TAXONOMY_COVERAGE" if key == "taxonomy_snapshot" else "E_SOURCE_INPUT_DIGEST" if key == "input_snapshot" else "E_SCHEMA"
+        for key in ("status", "authority_effect", "new_build", "base", "taxonomy_snapshot", "scope", "reason_classes", "phase_placement_decision_evidence", "post_placement_acceptance_closure_evidence", "input_snapshot", "oracle_dependencies", "analysis_path", "unit_ids", "negative_case_codes", "authority_boundary"):
+            if not self.same_typed(inventory.get(key), expected_inv.get(key)):
+                code = "E_INVENTORY_DECLARATION" if key in {"scope", "reason_classes", "unit_ids", "analysis_path"} else "E_PLACEMENT_OR_CLOSURE_EVIDENCE" if key in {"phase_placement_decision_evidence", "post_placement_acceptance_closure_evidence"} else "E_AUTHORITY_BOUNDARY" if key in {"status", "authority_effect", "new_build", "oracle_dependencies", "authority_boundary"} else "E_TAXONOMY_COVERAGE" if key == "taxonomy_snapshot" else "E_SOURCE_INPUT_DIGEST" if key == "input_snapshot" else "E_SCHEMA"
                 self.error(code, key)
-        if inventory.get("negative_case_codes") != NEGATIVE_CASE_CODES: self.error("E_SCHEMA", "negative_case_codes")
+        if not self.same_typed(inventory.get("negative_case_codes"), NEGATIVE_CASE_CODES): self.error("E_SCHEMA", "negative_case_codes")
         if inventory.get("unit_ids") != TARGET_UNIT_IDS or len(actual) != 30 or [row.get("unit_candidate_id") for row in actual] != TARGET_UNIT_IDS or len({row.get("unit_candidate_id") for row in actual}) != 30: self.error("E_TARGET_SET", "unit set/order")
         expected_tax = {row["unit_candidate_id"]: row for row in rows}
         expected_edges_by_unit = edges_by_unit
@@ -314,18 +332,18 @@ class Validator:
         if actual.get("schema") != SCHEMA + "/unit": self.error("E_SCHEMA", unit)
         if actual.get("requirement_id") != source.get("requirement_id") or actual.get("crosswalk_id") != source.get("crosswalk_id") or actual.get("product_scope_candidate") != source.get("product_scope_candidate"): self.error("E_SOURCE_ANCHOR", unit + " binding")
         expected_anchor = expected_source_anchor(source, ir)
-        if actual.get("source_anchor") != expected_anchor: self.error("E_SOURCE_ANCHOR", unit)
+        if not self.same_typed(actual.get("source_anchor"), expected_anchor): self.error("E_SOURCE_ANCHOR", unit)
         tax = source["taxonomy"]
         expected_tax = {"status": tax["status"], "matrix_rule_id": tax["matrix_rule_id"], "candidate_statement": tax["candidate_statement"], "judgment_waiting": tax["judgment_waiting"], "authority_phase_status": tax["authority_phase_status"], "formal_phase_candidate": tax["formal_phase_candidate"], "direct_phase_candidate_count": tax["direct_phase_candidate_count"], "authority_boundary": source["authority_boundary"]}
-        if actual.get("taxonomy") != expected_tax:
+        if not self.same_typed(actual.get("taxonomy"), expected_tax):
             if actual.get("taxonomy", {}).get("status") != tax["status"]: self.error("E_TAXONOMY_STATUS", unit)
             if actual.get("taxonomy", {}).get("matrix_rule_id") != tax["matrix_rule_id"]: self.error("E_MATRIX_RULE", unit)
             if actual.get("taxonomy", {}).get("authority_boundary") != source["authority_boundary"]: self.error("E_TAXONOMY_COVERAGE", unit)
             self.error("E_TAXONOMY_COVERAGE", unit + " full taxonomy value")
-        if actual.get("candidate_phase_targets") != source["phase_context"]["observed_asset_candidate_phases"]: self.error("E_TAXONOMY_COVERAGE", unit + " candidates")
+        if not self.same_typed(actual.get("candidate_phase_targets"), source["phase_context"]["observed_asset_candidate_phases"]): self.error("E_TAXONOMY_COVERAGE", unit + " candidates")
         expected_ids = source["wave_review"]["edge_refs"]
         if set(actual.get("wave_edge_ids", [])) != set(expected_ids) or len(actual.get("wave_edge_ids", [])) != len(expected_ids): self.error("E_WAVE_EDGE_COVERAGE", unit)
-        if actual.get("wave_edges") != [edge_summary(edge) for edge in expected_edges]: self.error("E_WAVE_EDGE_COVERAGE", unit + " details")
+        if not self.same_typed(actual.get("wave_edges"), [edge_summary(edge) for edge in expected_edges]): self.error("E_WAVE_EDGE_COVERAGE", unit + " details")
         expected_assets = sorted({edge["asset_id"] for edge in expected_edges})
         if actual.get("legacy_asset_ids") != expected_assets: self.error("E_ASSET_EVIDENCE", unit)
         reason = REASON_BY_UNIT[unit]
@@ -341,8 +359,8 @@ class Validator:
         if not isinstance(actual.get("required_human_decision"), list) or len(actual["required_human_decision"]) < 1 or not all(isinstance(x, str) and x for x in actual["required_human_decision"]): self.error("E_ANALYSIS_EVIDENCE", unit + " human")
         if not isinstance(actual.get("required_consumer_evidence"), list) or len(actual["required_consumer_evidence"]) < 1 or not all(isinstance(x, str) and x for x in actual["required_consumer_evidence"]): self.error("E_CONSUMER_EVIDENCE", unit)
         if actual.get("product_review", {}).get("authority_product") is not None or actual.get("product_review", {}).get("status") != "candidate_scope_only": self.error("E_PRODUCT_AUTHORITY_SEPARATION", unit)
-        if actual.get("phase_result") != {"direct_phase_evidence_count": 0, "formal_phase_candidate": None, "phase_non_applicability": {"status": "not_proven", "excluded_phase_ids": [], "pending_phase_ids": PHCAP_IDS}}: self.error("E_PHASE_AUTHORITY_SEPARATION", unit)
-        if actual.get("authority_boundary") != {"formal_crosswalk_modified": False, "formal_phase_authority_modified": False, "formal_product_authority_modified": False, "implementation_claim_generated": False, "unimplemented_claim_generated": False, "degradation_claim_generated": False, "failure_receipt_generated": False, "consumer_closure_generated": False, "successor_assigned": False, "old_archive_executed": False}: self.error("E_AUTHORITY_BOUNDARY", unit)
+        if not self.same_typed(actual.get("phase_result"), {"direct_phase_evidence_count": 0, "formal_phase_candidate": None, "phase_non_applicability": {"status": "not_proven", "excluded_phase_ids": [], "pending_phase_ids": PHCAP_IDS}}): self.error("E_PHASE_AUTHORITY_SEPARATION", unit)
+        if not self.same_typed(actual.get("authority_boundary"), {"formal_crosswalk_modified": False, "formal_phase_authority_modified": False, "formal_product_authority_modified": False, "implementation_claim_generated": False, "unimplemented_claim_generated": False, "degradation_claim_generated": False, "failure_receipt_generated": False, "consumer_closure_generated": False, "successor_assigned": False, "old_archive_executed": False}): self.error("E_AUTHORITY_BOUNDARY", unit)
         if actual.get("static_only") is not True: self.error("E_AUTHORITY_BOUNDARY", unit + " static")
 
     def finish(self) -> int:
