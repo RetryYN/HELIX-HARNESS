@@ -25,7 +25,19 @@ REQUIRED_TEST_COUNTS = (
     "numTodoTests",
 )
 PASS_RE = re.compile(r"^\s*(?:Test Files|Tests)\s+(\d+)\s+passed(?:\s+\(\d+\))?\s*$", re.IGNORECASE)
-EXIT_RE = re.compile(r"\b(?:vitest\s+exit|exit\s+code|exited\s+with\s+code)\s*(?:=|:)?\s*(-?\d+)(?!\w)", re.IGNORECASE)
+EXIT_MARKER_RE = re.compile(
+    r"(?:(?<![\w./-])(?P<marker>vitest\s+exit|exited\s+with\s+(?:code|status)|"
+    r"exit(?:\s+code|_code)?|return_?code|rc)(?=\s*(?:[=:]|[+-]?[0-9]|N/A|N-A|$))|"
+    r"(?<=\d)(?P<adjacent_marker>vitest\s+exit|exited\s+with\s+(?:code|status)|"
+    r"exit(?:\s+code|_code)?|return_?code|rc)(?=\s*(?:[=:]|[+-]?[0-9]|N/A|N-A|$))|"
+    r"(?<=/)(?P<slash_marker>vitest\s+exit|exited\s+with\s+(?:code|status)|"
+    r"exit(?:\s+code|_code)?|return_?code|rc)(?=\s*(?:[=:]|[+-]?[0-9]|N/A|N-A)))",
+    re.IGNORECASE,
+)
+STRICT_EXIT_VALUE_RE = re.compile(r"-?[0-9]+")
+LEADING_SIGNED_DECIMAL_RE = re.compile(r"^([+-]?[0-9]+)")
+# Existing receipt lines attach this timestamp annotation after the decimal code.
+EXIT_TIMESTAMP_SUFFIX_RE = re.compile(r"(-?[0-9]+)\s+at\s+[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z")
 # A marker must stand on its own.  Path separators, dots, and hyphens bind
 # adjacent words into a path or compound identifier and must not create a
 # failure marker (for example, src/error-handling.test.ts or fail-safe).
@@ -55,6 +67,51 @@ def _failure(status: str, markers: list[str]) -> dict:
         ),
         "unit_level_verdict": None,
     }
+
+
+def _exit_marker_observations(line: str) -> list[dict]:
+    matches = list(EXIT_MARKER_RE.finditer(line))
+    observations = []
+    for index, marker_match in enumerate(matches):
+        has_next_marker = index + 1 < len(matches)
+        end = matches[index + 1].start() if has_next_marker else len(line)
+        tail = line[marker_match.end():end]
+        value_match = re.match(r"\s*(?:[=:]\s*)?(?P<value>.*)", tail)
+        value = value_match.group("value").strip() if value_match else ""
+        boundary_ok = not has_next_marker or bool(
+            tail and (tail[-1].isspace() or tail.rstrip().endswith((",", ";", "|")))
+        )
+        parse_value = value
+        if has_next_marker and parse_value.endswith((",", ";", "|")):
+            parse_value = parse_value[:-1].rstrip()
+            value = parse_value
+        marker_name = marker_match.group("marker") or marker_match.group("adjacent_marker") or marker_match.group("slash_marker")
+        marker_boundary_ok = marker_match.group("adjacent_marker") is None and marker_match.group("slash_marker") is None
+        observation = {
+            "line": line.strip(),
+            "marker": marker_name,
+            "value": value,
+        }
+        leading_match = LEADING_SIGNED_DECIMAL_RE.match(parse_value)
+        decimal_match = STRICT_EXIT_VALUE_RE.fullmatch(parse_value)
+        timestamp_match = EXIT_TIMESTAMP_SUFFIX_RE.fullmatch(parse_value)
+        if marker_boundary_ok and boundary_ok and (decimal_match or timestamp_match):
+            code = int(decimal_match.group(0) if decimal_match else timestamp_match.group(1))
+            observation.update({"status": "parsed", "code": code})
+        else:
+            if leading_match:
+                observation["leading_decimal_candidate"] = leading_match.group(1)
+                observation["leading_decimal_nonzero"] = int(leading_match.group(1)) != 0
+            observation.update({
+                "status": "unparseable",
+                "reason": (
+                    "exit markers are not separated by a recognized boundary"
+                    if not marker_boundary_ok or not boundary_ok
+                    else "exit value region is not a strict signed decimal integer"
+                ),
+            })
+        observations.append(observation)
+    return observations
 
 
 def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, dict]:
@@ -138,11 +195,22 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
 
     passed = [line.strip() for line in lines if PASS_RE.search(line)]
     passed_counts = [int(match.group(1)) for line in lines if (match := PASS_RE.search(line))]
-    exit_matches = [line.strip() for line in lines if EXIT_RE.search(line)]
-    exit_observations = [
-        {"line": line.strip(), "code": int(match.group(1))}
+    exit_marker_observations = [
+        observation
         for line in lines
-        for match in EXIT_RE.finditer(line)
+        for observation in _exit_marker_observations(line)
+    ]
+    exit_matches = list(dict.fromkeys(
+        observation["line"] for observation in exit_marker_observations
+    ))
+    exit_observations = [
+        {"line": observation["line"], "code": observation["code"]}
+        for observation in exit_marker_observations
+        if observation["status"] == "parsed"
+    ]
+    unparseable_exit_observations = [
+        observation for observation in exit_marker_observations
+        if observation["status"] == "unparseable"
     ]
     failed_counts = [int(match.group(1)) for line in lines if (match := FAILED_COUNT_RE.search(line)) and int(match.group(1)) > 0]
     failures = []
@@ -160,6 +228,8 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
             "failed_counts": failed_counts,
             "exit_lines": exit_matches,
             "exit_observations": exit_observations,
+            "exit_marker_observations": exit_marker_observations,
+            "unparseable_exit_observations": unparseable_exit_observations,
         },
         "unit_level_verdict": None,
     }
@@ -172,9 +242,14 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
     for line in nonzero:
         if line not in failure_markers:
             failure_markers.append(line)
+    for observation in unparseable_exit_observations:
+        if observation.get("leading_decimal_nonzero") and observation["line"] not in failure_markers:
+            failure_markers.append(observation["line"])
     failure = _failure("observed_asset_level" if failure_markers else "not_observed_in_asset", failure_markers)
     positive_pass = any(count > 0 for count in passed_counts)
-    if failures and nonzero:
+    if unparseable_exit_observations:
+        reason = "unparseable exit marker prevents a pass verdict"
+    elif failures and nonzero:
         reason = "contradictory failure marker and nonzero exit code prevent a pass verdict"
     elif failures and positive_pass:
         reason = "contradictory pass summary and failure marker prevent a pass verdict"
@@ -190,7 +265,7 @@ def source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, dict, di
         reason = "text pass summary has no failure marker or nonzero exit, and remains asset-level only"
     else:
         reason = "no positive test pass summary is present"
-    if failures or nonzero:
+    if failures or nonzero or unparseable_exit_observations:
         result = {
             "status": "asset_level_test_result_only",
             "verdict": None,

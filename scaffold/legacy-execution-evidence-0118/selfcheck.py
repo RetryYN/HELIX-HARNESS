@@ -106,7 +106,16 @@ def load_module(path: Path, name: str):
     return module
 
 
-def expect_observation(label: str, data: bytes, verdict, reason: str, failure_status: str) -> None:
+def expect_observation(
+    label: str,
+    data: bytes,
+    verdict,
+    reason: str,
+    failure_status: str,
+    expected_exit_markers: list[tuple[str, str, str, int | None]] | None = None,
+    expected_leading_decimal_candidates: list[str | None] | None = None,
+    expected_failure_lines: list[str] | None = None,
+) -> None:
     global OBSERVATION_CASES_RUN
     validator = load_module(VALIDATOR, f"scf_b_0118_oracle_{label}")
     common = load_module(BUNDLE / "common.py", f"scf_b_0118_common_{label}")
@@ -117,6 +126,30 @@ def expect_observation(label: str, data: bytes, verdict, reason: str, failure_st
         execution, failure, result = observed
         if execution["unit_level_verdict"] is not None or result["verdict"] != verdict or result["reason"] != reason or failure["status"] != failure_status:
             raise AssertionError(f"{label}/{source}: unexpected observation {observed!r}")
+        if expected_failure_lines is not None and failure["marker_lines"] != expected_failure_lines:
+            raise AssertionError(f"{label}/{source}: failure marker lines drifted: {failure['marker_lines']!r}")
+        if expected_exit_markers is not None:
+            actual_exit_markers = [
+                (item["marker"], item["value"], item["status"], item.get("code"))
+                for item in execution["fields"].get("exit_marker_observations", [])
+            ]
+            if actual_exit_markers != expected_exit_markers:
+                raise AssertionError(f"{label}/{source}: unexpected exit marker observations {actual_exit_markers!r}")
+            expected_unparseable = [item for item in expected_exit_markers if item[2] == "unparseable"]
+            actual_unparseable = [
+                (item["marker"], item["value"], item["status"], item.get("code"))
+                for item in execution["fields"].get("unparseable_exit_observations", [])
+            ]
+            if actual_unparseable != expected_unparseable:
+                raise AssertionError(f"{label}/{source}: unparseable exit markers were not retained separately: {actual_unparseable!r}")
+            expected_codes = [item[3] for item in expected_exit_markers if item[2] == "parsed"]
+            actual_codes = [item["code"] for item in execution["fields"].get("exit_observations", [])]
+            if actual_codes != expected_codes:
+                raise AssertionError(f"{label}/{source}: parsed exit observations drifted: {actual_codes!r}")
+            if expected_leading_decimal_candidates is not None:
+                actual_candidates = [item.get("leading_decimal_candidate") for item in execution["fields"].get("exit_marker_observations", [])]
+                if actual_candidates != expected_leading_decimal_candidates:
+                    raise AssertionError(f"{label}/{source}: leading decimal candidates drifted: {actual_candidates!r}")
     if oracle != generated:
         raise AssertionError(f"{label}: two implementations of the same observation specification diverged")
     OBSERVATION_CASES_RUN += 1
@@ -150,7 +183,7 @@ def observation_cases() -> None:
     expect_observation("O12 text zero failed is not failure", b"Tests 1 passed (1)\n0 failed\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
     expect_observation("O13 text pass missing exit", b"Tests 1 passed (1)\n", None, "text pass summary has no explicit exit code 0; result is unknown", "not_observed_in_asset")
     expect_observation("O14 text negative exit", b"Tests 1 passed (1)\nexited with code -1\n", None, "contradictory pass summary and nonzero exit code prevent a pass verdict", "observed_asset_level")
-    expect_observation("O15 text hexadecimal exit is not parsed", b"Tests 1 passed (1)\nvitest exit=0x1\n", None, "text pass summary has no explicit exit code 0; result is unknown", "not_observed_in_asset")
+    expect_observation("O15 text hexadecimal exit is retained as unparseable", b"Tests 1 passed (1)\nvitest exit=0x1\n", None, "unparseable exit marker prevents a pass verdict", "not_observed_in_asset", [("vitest exit", "0x1", "unparseable", None)])
     expect_observation("O16 text Exit code zero", b"Tests 1 passed (1)\nExit code: 0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
     expect_observation("O17 text exited with code zero", b"Tests 1 passed (1)\nexited with code 0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
     expect_observation("O18 text zero errors", b"Tests 1 passed (1)\n0 errors\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
@@ -164,8 +197,181 @@ def observation_cases() -> None:
     expect_observation("O26 text npm ERR marker", b"npm ERR! code 1\n", None, "explicit failure/error text prevents a pass verdict", "observed_asset_level")
     expect_observation("O27 text path error word with pass and exit zero", b"Tests 1 passed (1)\nsrc/error-handling.test.ts\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
     expect_observation("O28 text hyphen compound words with pass and exit zero", b"Tests 1 passed (1)\nerror-handling fail-safe failed-check fatal-error segmentation-fault npm-ERR!\nvitest exit=0\n", "pass_observed", "text pass summary has no failure marker or nonzero exit, and remains asset-level only", "not_observed_in_asset")
-    expect_observation("O29 text mixed exit codes on one line", b"Tests 3 passed\nvitest exit=0; vitest exit=2\n", None, "contradictory pass summary and nonzero exit code prevent a pass verdict", "observed_asset_level")
+    expect_observation(
+        "O29 text mixed exit codes on one line",
+        b"Tests 3 passed\nvitest exit=0; vitest exit=2\n",
+        None,
+        "contradictory pass summary and nonzero exit code prevent a pass verdict",
+        "observed_asset_level",
+        [("vitest exit", "0", "parsed", 0), ("vitest exit", "2", "parsed", 2)],
+    )
     expect_observation("O30 json consistent todo counts", summary(suite_total=2, suite_passed=1, suite_todo=1, total=2, passed=1, pending=0, todo=1), "pass_with_pending", "explicit pending or todo count prevents a complete pass verdict", "not_observed_in_asset")
+    expect_observation(
+        "O31 text same-line decimal zero plus malformed hex exit",
+        b"Tests 3 passed\nvitest exit=0; vitest exit=0x1\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("vitest exit", "0", "parsed", 0), ("vitest exit", "0x1", "unparseable", None)],
+    )
+    expect_observation(
+        "O32 text standalone malformed hex exit",
+        b"Tests 1 passed (1)\nvitest exit=0x1\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("vitest exit", "0x1", "unparseable", None)],
+    )
+    expect_observation(
+        "O33 text exit N/A",
+        b"Tests 1 passed (1)\nexit=N/A\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("exit", "N/A", "unparseable", None)],
+    )
+    expect_observation(
+        "O34 text empty exit value",
+        b"Tests 1 passed (1)\nexit=\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("exit", "", "unparseable", None)],
+    )
+    expect_observation(
+        "O35 text valid marker plus partially invalid multiple markers",
+        b"Tests 2 passed\nvitest exit=0; exit code=N/A\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("vitest exit", "0", "parsed", 0), ("exit code", "N/A", "unparseable", None)],
+    )
+    expect_observation(
+        "O36 text comma token after one exit marker",
+        b"Tests 1 passed\nexit=0,0x1\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("exit", "0,0x1", "unparseable", None)],
+    )
+    expect_observation(
+        "O37 text pipe token after one exit marker",
+        b"Tests 1 passed\nexit=0|N/A\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("exit", "0|N/A", "unparseable", None)],
+    )
+    expect_observation(
+        "O38 text semicolon token after one exit marker",
+        b"Tests 1 passed\nexit=0; N/A\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("exit", "0; N/A", "unparseable", None)],
+    )
+    expect_observation(
+        "O39 text comma-separated valid exit markers",
+        b"Tests 3 passed\nexit=0, exit code=2\n",
+        None,
+        "contradictory pass summary and nonzero exit code prevent a pass verdict",
+        "observed_asset_level",
+        [("exit", "0", "parsed", 0), ("exit code", "2", "parsed", 2)],
+    )
+    expect_observation(
+        "O40 text pipe-separated valid zero exit markers",
+        b"Tests 1 passed\nexit=0| exit code=0\n",
+        "pass_observed",
+        "text pass summary has no failure marker or nonzero exit, and remains asset-level only",
+        "not_observed_in_asset",
+        [("exit", "0", "parsed", 0), ("exit code", "0", "parsed", 0)],
+    )
+    expect_observation(
+        "O41 text recognized timestamp after decimal exit",
+        b"Tests 1 passed (1)\nvitest exit=0 at 2026-09-06T19:42:32Z\n",
+        "pass_observed",
+        "text pass summary has no failure marker or nonzero exit, and remains asset-level only",
+        "not_observed_in_asset",
+        [("vitest exit", "0 at 2026-09-06T19:42:32Z", "parsed", 0)],
+    )
+    expect_observation(
+        "O42 text exit markers with an unrecognized boundary",
+        b"Tests 1 passed\nexit=0/exit code=0\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "not_observed_in_asset",
+        [("exit", "0/", "unparseable", None), ("exit code", "0", "unparseable", None)],
+    )
+    expect_observation(
+        "O43 text process-finished nonzero marker with punctuation",
+        b"Test Files 1 passed (1)\nProcess finished with exit code 1.\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "observed_asset_level",
+        [("exit code", "1.", "unparseable", None)],
+        ["1"],
+        ["Process finished with exit code 1."],
+    )
+    expect_observation(
+        "O44 text semicolon-suffixed nonzero exit code",
+        b"Test Files 1 passed (1)\nexit code 1;\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "observed_asset_level",
+        [("exit code", "1;", "unparseable", None)],
+        ["1"],
+        ["exit code 1;"],
+    )
+    expect_observation(
+        "O45 text mixed vitest and exit_code markers",
+        b"Tests 1 passed (1)\nvitest exit=0\nexit_code=1\n",
+        None,
+        "contradictory pass summary and nonzero exit code prevent a pass verdict",
+        "observed_asset_level",
+        [("vitest exit", "0", "parsed", 0), ("exit_code", "1", "parsed", 1)],
+    )
+    expect_observation(
+        "O46 text rc alias blocks mixed zero exit",
+        b"Tests 1 passed (1)\nvitest exit=0\nrc=1\n",
+        None,
+        "contradictory pass summary and nonzero exit code prevent a pass verdict",
+        "observed_asset_level",
+        [("vitest exit", "0", "parsed", 0), ("rc", "1", "parsed", 1)],
+    )
+    expect_observation(
+        "O47 text returncode aliases block mixed zero exit",
+        b"Tests 1 passed (1)\nvitest exit=0\nreturncode=1\nreturn_code=1\n",
+        None,
+        "contradictory pass summary and nonzero exit code prevent a pass verdict",
+        "observed_asset_level",
+        [("vitest exit", "0", "parsed", 0), ("returncode", "1", "parsed", 1), ("return_code", "1", "parsed", 1)],
+    )
+    expect_observation(
+        "O48 text exited with status alias blocks mixed zero exit",
+        b"Tests 1 passed (1)\nvitest exit=0\nProcess exited with status 1\n",
+        None,
+        "contradictory pass summary and nonzero exit code prevent a pass verdict",
+        "observed_asset_level",
+        [("vitest exit", "0", "parsed", 0), ("exited with status", "1", "parsed", 1)],
+    )
+    expect_observation(
+        "O49 text digit-adjacent exit marker is unparseable and failure-observed",
+        b"Tests 1 passed (1)\n0exit code 1\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "observed_asset_level",
+        [("exit code", "1", "unparseable", None)],
+        ["1"],
+        ["0exit code 1"],
+    )
+    expect_observation(
+        "O50 text path aliases do not create exit markers",
+        b"Tests 1 passed (1)\nsrc/exit_code.test.ts src/rc.test.ts src/returncode.test.ts\nsrc/exit_code\nsrc/rc\nsrc/returncode\nvitest exit=0\n",
+        "pass_observed",
+        "text pass summary has no failure marker or nonzero exit, and remains asset-level only",
+        "not_observed_in_asset",
+        [("vitest exit", "0", "parsed", 0)],
+    )
 
 
 
@@ -210,6 +416,10 @@ def main() -> int:
     expect("N30 bundle kind tamper", lambda inv, rows: inv.update(bundle_kind="fabricated_bundle_kind"), "E_SCHEMA")
     expect("N31 expected asset count tamper", lambda inv, rows: inv.update(expected_asset_count=27), "E_SCOPE")
     expect("N32 inventory top-level key tamper", lambda inv, rows: inv.update(fabricated_field=True), "E_SCHEMA")
+    expect("N33 bool schema revision is not integer revision 1", lambda inv, rows: inv.update(schema_revision=True), "E_SCHEMA")
+    expect("N34 float expected asset count is not integer 28", lambda inv, rows: inv.update(expected_asset_count=28.0), "E_SCOPE")
+    expect("N35 bool ledger revision is not integer revision", lambda inv, rows: rows[0]["ledger_record"].update(revision=True), "E_LEDGER_RECORD")
+    expect("N36 float wave edge count is not integer zero", lambda inv, rows: rows[0]["counter_evidence"][0].update(wave_edge_count=0.0), "E_HISTORY_OR_COUNTER")
     print(f"PASS SCF-B-0118 selfcheck: {NEGATIVE_CASES_RUN} negative cases plus {OBSERVATION_CASES_RUN} observation-state cases")
     return 0
 
