@@ -1,10 +1,10 @@
 # #2078 overlap差分の人間判断packet
 
-main `2c94d171e9b1f2cb28aaceedf591129fb8e4db2e` と #2078 HEAD `c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03` を固定。対象はoverlap 53件中candidate resultが異なる36件で、新規asset研究数は0。
-旧main `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204` から新mainへの固定入力20 path（四製品L1・main分類8 JSONLを含む）のblob/modeはすべて不変。mainのScaffold新規追加はなく、変更は既存SCF-B-0118の8ファイルのみ。
+main `7afee33ae892fe1a3cf1085fac4e02d923ece01d` とimmutable #2078 HEAD `c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03` を固定。overlap 53件中36件の候補差分を比較し、新規asset研究数は0。
+旧main `2c94d171e9b1f2cb28aaceedf591129fb8e4db2e` から新mainへの固定入力20 path（四製品L1・旧main分類8 JSONLを含む）のblob/modeはすべて不変。mainへ追加された#2078の8 Scaffold filesはc55固定objectと一致。旧candidate union429に#2078の新規67件を足した現main unionは496。36件の比較候補は旧429対c55 fallbackとして保持。
 各assetの両候補、根拠span、L1/boundary、counterevidence、phase/history/consumerは `classification-reconciliation.jsonl` に完全収録。
 #2078は36件を最終classification JSONLから除外しており、target側のspan/L1は同HEADのgenerator helper・literalから固定archive bytesに対して静的に再構成した。出力済みtarget evidenceとは表示上も分離した。
-36件はmain側にsource-specific research/spanがある一方、#2078側はgeneric insufficient-basis fallbackのため、research/method/state差として記録した。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合だけを指す。今回その件数は0。勝者・正式route・phase・successor・実装成立・consumer closureは決めない。#2078 HEADが変わった場合は明示re-pinと再検証を行う。
+36件は旧mainの429 candidate recordsにsource-specific research/spanがある一方、#2078側はgeneric insufficient-basis fallbackのため、research/method/state差として記録した。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合だけを指す。今回その件数は0。現main unionは旧429件と追加67件の計496件だが、比較対象は旧429件対固定c55候補のままである。勝者・正式route・phase・successor・実装成立・consumer closureは決めない。#2078またはmainが固定HEADから進んだ場合は再baselineする。
 
 | Asset ID | source path | JSONL row | main候補 | #2078候補 | 差分理由候補 | 状態 |
 |---|---|---:|---|---|---|---|

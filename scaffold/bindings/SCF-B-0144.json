@@ -16,8 +16,8 @@
       "human judgment packet for #2078 overlap reconciliation"
     ],
     "dependencies": [
-      "fixed main product-research union at 2c94d171 (rebaselined from b3a3c49 with 20 fixed input blobs unchanged)",
-      "#2078 exact target HEAD object c55ffc91 (previous pins 8c8cf851 and 886c2436 recorded in inventory history)",
+      "main candidate comparison union 429 at 7afee33a plus current union 496 after merging the exact 67 #2078 residual rows",
+      "#2078 exact target HEAD object c55ffc91, verified byte-identical to merged main objects",
       "four-product L1 and product-boundary",
       "fixed archive source blobs/MANIFEST"
     ]
@@ -26,10 +26,10 @@
   "id": "SCF-B-0144",
   "kind": "scaffold",
   "obligations": [
-    "#2078 overlap 53件のうちsame_source_different_candidate_result exact 36件のみをmain union429とasset ID/source path/SHAで照合し、新規研究件数へ加算しない",
+    "#2078 overlap 53件のうちsame_source_different_candidate_result exact 36件のみを旧main source-specific候補union429と固定c55候補で照合する。現main union496は旧429+追加67件として別記し、36件を新規研究へ加算しない",
     "両結果のsource span、interpretation、candidate product/L1 roots、counterevidence availability、method/scopeをside-by-sideで保持し、target-emitted evidenceとstatic reconstructionを区別する",
     "scope_difference/evidence_span_difference/research_method_state_difference/classification_rule_difference/unresolvedを証拠参照付きnon-exclusive reason candidateとして扱う。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合だけとする。勝者や正式routeを作らない",
-    "main b3a3c49bから2c94d171への再baselineでは四製品L1・分類8 JSONLを含む固定入力20 pathのblob/modeが不変で、main Scaffoldの新規追加はない。#2078は初期HEAD 886c2436、前回HEAD 8c8cf851から現HEAD c55ffc91へ明示re-pin済み。#2078またはmainが進んだら停止し、新HEAD/base確認後に完全再検証・差分reviewをする。自動追随しない",
+    "main 2c94d171から7afee33aへの再baselineでは四製品L1・分類8 JSONLを含む固定入力20 pathのblob/modeが不変。mainへ追加された#2078の8 Scaffold filesはすべてc55固定objectと一致し、旧429件に67件を加えた現union496件を確認した。#2078は初期HEAD 886c2436、前回HEAD 8c8cf851から現HEAD c55ffc91へ明示pin済み。#2078またはmainが進んだら停止し、新HEAD/base確認後に完全再検証・差分reviewをする。自動追随しない",
     "旧archiveはGit blob静的readのみ。runtime/test/CI/hook/adapterを実行しない。LABO適用を含め4製品以外を扱わない",
     "phase candidate/implementation status/history/failure/consumerは候補分類から分離し、formal classification/phase/successor/closureを更新しない"
   ],
@@ -49,7 +49,7 @@
   },
   "owner_candidate": "四製品product-boundaryの候補結果差分照合（正式owner未解決）",
   "product": "HELIX-HARNESS",
-  "reason": "main 2c94d171と#2078固定HEAD c55ffc91を照合し、同一source path/SHAの36件について候補値、source span、L1根拠、counterevidence、research/method/stateとscope差を記録する。#2078側はgeneric fallbackのためsemantic interpretation conflictには数えない。勝者・formal route・新規asset研究を生成しない。",
+  "reason": "main 7afee33aの旧429件source-specific候補と#2078固定HEAD c55ffc91の候補を照合し、同一source path/SHAの36件について候補値、source span、L1根拠、counterevidence、research/method/stateとscope差を記録する。現main unionは429+67=496件であり、比較対象429件と分けて示す。#2078側はgeneric fallbackのためsemantic interpretation conflictには数えない。勝者・formal route・新規asset研究を生成しない。",
   "replacement": {
     "formal_artifacts": [],
     "issue": 2078,
@@ -161,8 +161,8 @@
       "N17-json-negative-infinity"
     ],
     "oracles": [
-      "validator independently reads the pinned #2078 inventory/generator and eight main classification inputs without importing generate.py",
-      "validator checks exactly 36 conflict IDs, all 53 overlap rows, main union429, same path/SHA, archive blob/type/mode/MANIFEST, spans, candidate/L1/counterevidence and method/scope pins",
+      "validator independently reads the pinned #2078 inventory/generator, eight prior main classification inputs, and merged 67-row residual set without importing generate.py",
+      "validator checks exactly 36 conflict IDs, all 53 overlap rows, prior candidate union429 and current main union496, same path/SHA, archive blob/type/mode/MANIFEST, spans, candidate/L1/counterevidence and method/scope pins",
       "strict JSON parsing, all input Git-object SHA pins, authority invariants, exact negative-case execution and deterministic output digests"
     ],
     "scope": [

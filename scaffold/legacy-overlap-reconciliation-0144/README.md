@@ -1,6 +1,6 @@
 # #2078 overlap 36件の候補差分照合
 
-このresearch-only bundleは、固定main `2c94d171e9b1f2cb28aaceedf591129fb8e4db2e` のproduct-research union 429件と、PR #2078の固定HEAD `c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03` を同一asset ID・source path・source SHAで照合します。旧main `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204` と新main間で、四製品L1、8分類JSONLを含む固定入力20 pathのblob/modeがすべて不変であることを記録しました。mainのScaffold差分は既存SCF-B-0118の8ファイルのみで、新規追加はありません。#2078初回HEAD `886c2436a71e079913c395693c2edd9ddce52113`、前回HEAD `8c8cf851b47c88f6d814dc828a38743fc3cd45b3` からの更新後もoverlap 53件・差異36件のID集合、source identity、候補結果は不変です。対象はoverlap 53件のうち `same_source_different_candidate_result` の36件だけです。新規asset研究数は0で、main unionの分母へ加えません。
+このresearch-only bundleは、main `7afee33ae892fe1a3cf1085fac4e02d923ece01d` に残る旧429件のsource-specific候補と、PR #2078の固定HEAD `c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03` の候補を同一asset ID・source path・source SHAで照合します。現main unionは旧429件に#2078の新規67件を加えた496件です。旧main `2c94d171e9b1f2cb28aaceedf591129fb8e4db2e` から現mainへの再baselineでは、四製品L1、旧分類8 JSONLを含む固定入力20 pathのblob/modeがすべて不変でした。mainへ追加された#2078の8 Scaffold filesはc55固定objectとblob/mode一致し、67 IDは旧429 IDと重複しません。overlap 53件・候補差異36件の集合、36件の旧main候補、source identityはそのまま保持します。36件を新規asset研究数や36件のsemantic conflict decisionとして数えません。
 
 main側は既存bundleの候補分類、source semantic span、解釈、四製品boundary/L1、明示counterevidence、phase/history/failure/consumer/implementation statusを保持します。#2078側はoverlap結果に保存された候補分類と、同HEADのgenerator内に残るgeneric fallback profileを分けて示します。36件は#2078の最終 `classification-research.jsonl` から除外されています。そのためtarget側の1行source spanと四製品L1比較poolは、pinned generator helper/literalと固定archive bytesから再構成し、targetから実際に出力された証拠とは記載しません。
 
@@ -8,7 +8,7 @@ main側は既存bundleの候補分類、source semantic span、解釈、四製�
 
 ## HEAD追随
 
-targetはbranch名ではなくHEAD `c55ffc91…` のGit objectに固定しています。#2078がこのHEADから進んだ場合は、このbaseline/reviewを停止し、packetを現行証拠として扱わないでください。新HEADとrebase baseを確認した後、`generate.py` と `validate.py` のpinを明示更新し、36件集合、source path/SHA、generator method、全evidence、Binding upstream、negative casesを再生成・再検証してからreviewを再開します。自動的にbranch先端を追いません。
+targetはbranch名ではなくHEAD `c55ffc91…` のGit objectに固定し、mainは `7afee33…` に固定しています。#2078またはmainがこのHEADから進んだ場合はbaseline/reviewを停止し、packetを現行証拠として扱いません。新HEADとrebase baseを確認した後、`generate.py` と `validate.py` のpinを明示更新し、候補unionの分母、36件集合、source path/SHA、全evidence、Binding upstream、negative casesを再生成・再検証してからreviewを再開します。自動追随しません。
 
 ## 境界
 

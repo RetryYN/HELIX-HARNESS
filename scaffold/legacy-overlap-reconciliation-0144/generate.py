@@ -17,8 +17,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-overlap-reconciliation-0144"
 BINDING_PATH = ROOT / "scaffold/bindings/SCF-B-0144.json"
-PREVIOUS_BASE_REVISION = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
-BASE_REVISION = "2c94d171e9b1f2cb28aaceedf591129fb8e4db2e"
+PREVIOUS_BASE_REVISION = "2c94d171e9b1f2cb28aaceedf591129fb8e4db2e"
+BASE_REVISION = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
 ARCHIVE_REVISION = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 INITIAL_TARGET_REVISION = "886c2436a71e079913c395693c2edd9ddce52113"
 PREVIOUS_TARGET_REVISION = "8c8cf851b47c88f6d814dc828a38743fc3cd45b3"
@@ -313,7 +313,7 @@ def main_records() -> tuple[dict[str, list[dict]], dict[str, tuple[int, dict]]]:
                 raise AssertionError(f"E_MAIN_RECORD {bundle}:{line} missing asset_id")
             by_id.setdefault(asset_id, []).append({"bundle": bundle, "line": line, "row": row, "row_sha256": row_digest(row)})
     if len(by_id) != 429:
-        raise AssertionError(f"E_MAIN_RESULT fixed main union expected 429 IDs got {len(by_id)}")
+        raise AssertionError(f"E_MAIN_RESULT prior main candidate union expected 429 IDs got {len(by_id)}")
     for asset_id, results in by_id.items():
         identity = {
             (r["row"].get("source_exact", {}).get("source_path"), r["row"].get("source_exact", {}).get("sha256"))
@@ -337,6 +337,24 @@ def main_records() -> tuple[dict[str, list[dict]], dict[str, tuple[int, dict]]]:
             if isinstance(asset_id, str):
                 sources.setdefault(asset_id, (line, row))
     return by_id, sources
+
+
+def current_main_union_evidence(prior_main_by_id: dict[str, list[dict]]) -> dict:
+    target_rows = strict_jsonl(git_bytes(BASE_REVISION, TARGET_RECORDS), TARGET_RECORDS)
+    target_ids = [row["asset_id"] for _, row in target_rows]
+    if len(target_ids) != 67 or len(set(target_ids)) != 67 or set(target_ids) & set(prior_main_by_id):
+        raise AssertionError("E_MAIN_UNION current main must be 429 prior IDs plus 67 disjoint #2078 residual IDs")
+    merged_tree = git_tree(BASE_REVISION, TARGET_RECORDS)
+    pinned_tree = git_tree(TARGET_REVISION, TARGET_RECORDS)
+    if merged_tree["blob"] != pinned_tree["blob"] or merged_tree["mode"] != pinned_tree["mode"]:
+        raise AssertionError("E_MAIN_UNION merged #2078 residual records differ from immutable c55 pin")
+    return {
+        "prior_main_candidate_union_count": len(prior_main_by_id),
+        "merged_2078_residual_count": len(target_ids),
+        "merged_2078_residual_ids_sha256": tagged(canonical(sorted(target_ids))),
+        "merged_2078_residual_disjoint_from_prior_main": True,
+        "current_main_union_count": len(set(prior_main_by_id) | set(target_ids)),
+    }
 
 
 def target_phase_inputs(asset_id: str) -> dict:
@@ -451,7 +469,7 @@ def candidate_reason_candidates(main: dict, target_span: dict, main_spans: list,
         results.append({
             "type": "scope_difference",
             "evidence_refs": ["target.scope.scope_membership_evidence", "target.overlap_result", "main.input_union"],
-            "basis": "The #2078 UNRESEARCHED_PREFIX_ASSET_PATHS fallback reason asserts this asset ID was absent from prior research, while the pinned overlap row places it in the existing main union of 429 IDs. This membership conflict is for human review and does not select a result.",
+            "basis": "The #2078 UNRESEARCHED_PREFIX_ASSET_PATHS fallback reason asserts this asset ID was absent from prior research, while its overlap row and the retained source-specific result place it in the prior 429-ID union. The current main union is 496 after adding 67 disjoint residual assets; this is a research-scope difference for human review, not a semantic conflict.",
         })
     if not main_spans or any((s.get("line_start"), s.get("line_end"), s.get("line_text_sha256")) != (target_span.get("line_start"), target_span.get("line_end"), tagged("\n".join(target_span.get("line_text", [])).encode("utf-8"))) for s in main_spans):
         results.append({
@@ -507,7 +525,7 @@ def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to
     target_l1_pool = target_boundary_pool(l1, boundary_ranges, l1_ranges)
     main_spans = main_exact.get("semantic_anchors", [])
     target_scope = {
-        "main_union_scope": "existing_main_product_research_union (429 asset-ID union at pinned main revision)",
+        "main_union_scope": "current_main_product_research_union (496 IDs = prior candidate union 429 + merged #2078 residual 67; comparison uses the prior source-specific candidate records)",
         "target_overlap_scope": entry.get("research_scope"),
         "target_generator_scope": "new_residual_after_main_product_union; overlap candidates are excluded from emitted 67-record target JSONL",
         "target_fallback_profile_scope": "UNRESEARCHED_PREFIX_ASSET_PATHS (53 static ID/path literals); generic rationale refers to absent prior research IDs",
@@ -515,7 +533,9 @@ def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to
             "fallback_profile_contains_asset_id": path_to_id.get(source_path) == asset_id,
             "fallback_profile_reason_claims_asset_absent": "absent from the prior research asset-ID set" in PROFILE_REASON,
             "main_union_contains_asset_id": main.get("asset_id") == asset_id,
-            "main_union_asset_count": 429,
+            "main_union_asset_count": 496,
+            "prior_main_candidate_union_asset_count": 429,
+            "merged_2078_residual_asset_count": 67,
             "target_overlap_status": entry.get("overlap_status"),
         },
     }
@@ -572,7 +592,7 @@ def make_record(entry: dict, main_results: list[dict], target_inv: dict, path_to
             "source_profile": main.get("source_profile"),
             "manual_review_status": main.get("manual_semantic_review", {}).get("status"),
             "classification_schema": "classification_category + candidate_products + manual_semantic_review + source_exact.semantic_anchors",
-            "scope": "included in fixed main 429 product-research union; per-record historical scope is the cited source bundle",
+            "scope": "source-specific candidate is retained in the prior 429-record union; current main union is 496 after merging 67 disjoint #2078 residual records",
         },
         "phase_implementation_context": {
             "phase_ledger": main.get("phase_ledger"),
@@ -679,7 +699,7 @@ def collect_inputs(target_inv: dict, entries: list[dict]) -> list[dict]:
     return sorted(unique.values(), key=lambda x: (x["revision"], x["path"]))
 
 
-def main_rebaseline() -> dict:
+def main_rebaseline(prior_main_by_id: dict[str, list[dict]]) -> dict:
     paths = sorted(set((*MAIN_BUNDLES, BOUNDARY, PHASE, DISPOSITION, DECISIONS, READ_AFTER, MANIFEST, FAILURE_SOURCE, CONSUMER_SOURCE, *L1_PATHS.values())))
     comparisons = []
     for path in paths:
@@ -690,6 +710,17 @@ def main_rebaseline() -> dict:
         comparisons.append({"path": path, "blob": current["blob"], "mode": current["mode"]})
     changed_scaffold = subprocess.check_output(["git", "diff", "--name-only", PREVIOUS_BASE_REVISION, BASE_REVISION, "--", "scaffold"], cwd=ROOT, text=True).splitlines()
     added_scaffold = subprocess.check_output(["git", "diff", "--name-only", "--diff-filter=A", PREVIOUS_BASE_REVISION, BASE_REVISION, "--", "scaffold"], cwd=ROOT, text=True).splitlines()
+    expected_added = sorted([TARGET_BINDING, f"{TARGET_BUNDLE}/PR-DRAFT.md", f"{TARGET_BUNDLE}/README.md", TARGET_RECORDS, TARGET_GENERATOR, TARGET_INVENTORY, f"{TARGET_BUNDLE}/selfcheck.py", f"{TARGET_BUNDLE}/validate.py"])
+    prior_scaffold_changes = [path for path in changed_scaffold if path not in added_scaffold]
+    if added_scaffold != expected_added or prior_scaffold_changes:
+        raise AssertionError("E_MAIN_REBASELINE unexpected Scaffold delta while merging #2078")
+    merged_2078_objects = []
+    for path in (TARGET_BINDING, f"{TARGET_BUNDLE}/PR-DRAFT.md", f"{TARGET_BUNDLE}/README.md", TARGET_RECORDS, TARGET_GENERATOR, TARGET_INVENTORY, f"{TARGET_BUNDLE}/selfcheck.py", f"{TARGET_BUNDLE}/validate.py"):
+        current = git_tree(BASE_REVISION, path)
+        pinned = git_tree(TARGET_REVISION, path)
+        if current["blob"] != pinned["blob"] or current["mode"] != pinned["mode"]:
+            raise AssertionError(f"E_MAIN_REBASELINE merged #2078 object differs from immutable c55 pin: {path}")
+        merged_2078_objects.append({"path": path, "blob": current["blob"], "mode": current["mode"]})
     return {
         "previous_main_revision": PREVIOUS_BASE_REVISION,
         "current_main_revision": BASE_REVISION,
@@ -697,6 +728,8 @@ def main_rebaseline() -> dict:
         "unchanged_fixed_inputs": comparisons,
         "new_scaffold_paths": added_scaffold,
         "other_scaffold_changes": changed_scaffold,
+        "merged_2078_objects": merged_2078_objects,
+        "current_main_union": current_main_union_evidence(prior_main_by_id),
     }
 
 
@@ -741,9 +774,10 @@ def build() -> None:
     inventory = {
         "schema_revision": 1,
         "binding_id": "SCF-B-0144",
-        "bundle_revision": "SCF-B-0144 generated revision 3",
+        "bundle_revision": "SCF-B-0144 generated revision 4",
         "base_revision": BASE_REVISION,
-        "main_rebaseline": main_rebaseline(),
+        "main_rebaseline": main_rebaseline(main_by_id),
+        "current_main_union": current_main_union_evidence(main_by_id),
         "archive_revision": ARCHIVE_REVISION,
         "target_pr": 2078,
         "initial_target_head_pin": INITIAL_TARGET_REVISION,
@@ -754,14 +788,16 @@ def build() -> None:
             {"head": PREVIOUS_TARGET_REVISION, "status": "previous_repin", "note": "PR #2078 advanced from the initial pin; overlap53/conflict36 IDs and source identities were rechecked"},
             {"head": TARGET_REVISION, "status": "current_repin", "note": "PR #2078 advanced from 8c8cf851; overlap53/conflict36 IDs, source identities, and candidate summaries were recomputed and remained unchanged; target inventory/generator pins were refreshed"},
         ],
-        "target_head_follow_policy": "STOP the current baseline/review if PR #2078 advances beyond c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03. Do not present this packet as current until the exact new HEAD and rebase base are inspected, TARGET_REVISION is explicitly re-pinned, generator/validator/selfcheck are rerun, and all set/evidence changes are reviewed and recorded. No floating branch ref is followed automatically.",
+        "target_head_follow_policy": "STOP the current baseline/review if PR #2078 advances beyond c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03 or main advances beyond 7afee33ae892fe1a3cf1085fac4e02d923ece01d. Do not present this packet as current until the exact new HEADs and rebase base are inspected, pins are explicitly refreshed, generator/validator/selfcheck are rerun, and all set/evidence changes are reviewed and recorded. No floating branch ref is followed automatically.",
         "subject_count": 36,
         "new_asset_research_count": 0,
         "adds_assets_to_main_union": False,
         "target_overlap_count": 53,
         "other_overlap_same_result_count": 17,
         "conflict_status": OVERLAP_STATUS,
-        "main_union_asset_count": 429,
+        "main_union_asset_count": 496,
+        "prior_main_candidate_union_asset_count": 429,
+        "merged_2078_residual_asset_count": 67,
         "exact_target_asset_ids": ids,
         "category_counts_main_existing": dict(sorted(main_counts.items())),
         "category_counts_target_2078": dict(sorted(target_counts.items())),
@@ -808,21 +844,21 @@ def build() -> None:
         "product": "HELIX-HARNESS",
         "owner_candidate": "四製品product-boundaryの候補結果差分照合（正式owner未解決）",
         "state": "registered",
-        "reason": "main 2c94d171と#2078固定HEAD c55ffc91を照合し、同一source path/SHAの36件について候補値、source span、L1根拠、counterevidence、research/method/stateとscope差を記録する。#2078側はgeneric fallbackのためsemantic interpretation conflictには数えない。勝者・formal route・新規asset研究を生成しない。",
+        "reason": "main 7afee33aの旧429件source-specific候補と#2078固定HEAD c55ffc91の候補を照合し、同一source path/SHAの36件について候補値、source span、L1根拠、counterevidence、research/method/stateとscope差を記録する。現main unionは429+67=496件であり、比較対象429件と分けて示す。#2078側はgeneric fallbackのためsemantic interpretation conflictには数えない。勝者・formal route・新規asset研究を生成しない。",
         "upstream": binding_upstream(inputs),
         "role": "legacy-asset-overlap-reconciliation-human-review-0144-static",
         "obligations": [
-            "#2078 overlap 53件のうちsame_source_different_candidate_result exact 36件のみをmain union429とasset ID/source path/SHAで照合し、新規研究件数へ加算しない",
+            "#2078 overlap 53件のうちsame_source_different_candidate_result exact 36件のみを旧main source-specific候補union429と固定c55候補で照合する。現main union496は旧429+追加67件として別記し、36件を新規研究へ加算しない",
             "両結果のsource span、interpretation、candidate product/L1 roots、counterevidence availability、method/scopeをside-by-sideで保持し、target-emitted evidenceとstatic reconstructionを区別する",
             "scope_difference/evidence_span_difference/research_method_state_difference/classification_rule_difference/unresolvedを証拠参照付きnon-exclusive reason candidateとして扱う。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合だけとする。勝者や正式routeを作らない",
-            "main b3a3c49bから2c94d171への再baselineでは四製品L1・分類8 JSONLを含む固定入力20 pathのblob/modeが不変で、main Scaffoldの新規追加はない。#2078は初期HEAD 886c2436、前回HEAD 8c8cf851から現HEAD c55ffc91へ明示re-pin済み。#2078またはmainが進んだら停止し、新HEAD/base確認後に完全再検証・差分reviewをする。自動追随しない",
+            "main 2c94d171から7afee33aへの再baselineでは四製品L1・分類8 JSONLを含む固定入力20 pathのblob/modeが不変。mainへ追加された#2078の8 Scaffold filesはすべてc55固定objectと一致し、旧429件に67件を加えた現union496件を確認した。#2078は初期HEAD 886c2436、前回HEAD 8c8cf851から現HEAD c55ffc91へ明示pin済み。#2078またはmainが進んだら停止し、新HEAD/base確認後に完全再検証・差分reviewをする。自動追随しない",
             "旧archiveはGit blob静的readのみ。runtime/test/CI/hook/adapterを実行しない。LABO適用を含め4製品以外を扱わない",
             "phase candidate/implementation status/history/failure/consumerは候補分類から分離し、formal classification/phase/successor/closureを更新しない",
         ],
         "connections": {
             "boundary": "research-only; authority_effect=none; no formal route, classification update, phase admission, successor, implementation promotion, closure, or new build",
             "consumers": ["human judgment packet for #2078 overlap reconciliation"],
-            "dependencies": ["fixed main product-research union at 2c94d171 (rebaselined from b3a3c49 with 20 fixed input blobs unchanged)", "#2078 exact target HEAD object c55ffc91 (previous pins 8c8cf851 and 886c2436 recorded in inventory history)", "four-product L1 and product-boundary", "fixed archive source blobs/MANIFEST"],
+            "dependencies": ["main candidate comparison union 429 at 7afee33a plus current union 496 after merging the exact 67 #2078 residual rows", "#2078 exact target HEAD object c55ffc91, verified byte-identical to merged main objects", "four-product L1 and product-boundary", "fixed archive source blobs/MANIFEST"],
         },
         "operations": {
             "allowed": ["read pinned Git objects statically", "write scaffold comparison artifacts", "run generator/validator/selfcheck/scfctl"],
@@ -843,8 +879,8 @@ def build() -> None:
             "evidence_kind": "scaffold",
             "scope": ["source_revision_stale", "deterministic_behavior", "negative_case", "forbidden_write_scope"],
             "oracles": [
-                "validator independently reads the pinned #2078 inventory/generator and eight main classification inputs without importing generate.py",
-                "validator checks exactly 36 conflict IDs, all 53 overlap rows, main union429, same path/SHA, archive blob/type/mode/MANIFEST, spans, candidate/L1/counterevidence and method/scope pins",
+                "validator independently reads the pinned #2078 inventory/generator, eight prior main classification inputs, and merged 67-row residual set without importing generate.py",
+                "validator checks exactly 36 conflict IDs, all 53 overlap rows, prior candidate union429 and current main union496, same path/SHA, archive blob/type/mode/MANIFEST, spans, candidate/L1/counterevidence and method/scope pins",
                 "strict JSON parsing, all input Git-object SHA pins, authority invariants, exact negative-case execution and deterministic output digests",
             ],
             "negative_cases": [
@@ -874,11 +910,11 @@ def render_packet(rows: list[dict]) -> None:
     lines = [
         "# #2078 overlap差分の人間判断packet",
         "",
-        f"main `{BASE_REVISION}` と #2078 HEAD `{TARGET_REVISION}` を固定。対象はoverlap 53件中candidate resultが異なる36件で、新規asset研究数は0。",
-        f"旧main `{PREVIOUS_BASE_REVISION}` から新mainへの固定入力20 path（四製品L1・main分類8 JSONLを含む）のblob/modeはすべて不変。mainのScaffold新規追加はなく、変更は既存SCF-B-0118の8ファイルのみ。",
+        f"main `{BASE_REVISION}` とimmutable #2078 HEAD `{TARGET_REVISION}` を固定。overlap 53件中36件の候補差分を比較し、新規asset研究数は0。",
+        f"旧main `{PREVIOUS_BASE_REVISION}` から新mainへの固定入力20 path（四製品L1・旧main分類8 JSONLを含む）のblob/modeはすべて不変。mainへ追加された#2078の8 Scaffold filesはc55固定objectと一致。旧candidate union429に#2078の新規67件を足した現main unionは496。36件の比較候補は旧429対c55 fallbackとして保持。",
         "各assetの両候補、根拠span、L1/boundary、counterevidence、phase/history/consumerは `classification-reconciliation.jsonl` に完全収録。",
         "#2078は36件を最終classification JSONLから除外しており、target側のspan/L1は同HEADのgenerator helper・literalから固定archive bytesに対して静的に再構成した。出力済みtarget evidenceとは表示上も分離した。",
-        "36件はmain側にsource-specific research/spanがある一方、#2078側はgeneric insufficient-basis fallbackのため、research/method/state差として記録した。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合だけを指す。今回その件数は0。勝者・正式route・phase・successor・実装成立・consumer closureは決めない。#2078 HEADが変わった場合は明示re-pinと再検証を行う。",
+        "36件は旧mainの429 candidate recordsにsource-specific research/spanがある一方、#2078側はgeneric insufficient-basis fallbackのため、research/method/state差として記録した。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合だけを指す。今回その件数は0。現main unionは旧429件と追加67件の計496件だが、比較対象は旧429件対固定c55候補のままである。勝者・正式route・phase・successor・実装成立・consumer closureは決めない。#2078またはmainが固定HEADから進んだ場合は再baselineする。",
         "",
         "| Asset ID | source path | JSONL row | main候補 | #2078候補 | 差分理由候補 | 状態 |",
         "|---|---|---:|---|---|---|---|",

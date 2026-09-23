@@ -14,8 +14,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-overlap-reconciliation-0144"
 BINDING = ROOT / "scaffold/bindings/SCF-B-0144.json"
-PREVIOUS_BASE = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
-BASE = "2c94d171e9b1f2cb28aaceedf591129fb8e4db2e"
+PREVIOUS_BASE = "2c94d171e9b1f2cb28aaceedf591129fb8e4db2e"
+BASE = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
 ARCHIVE_BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 INITIAL_TARGET = "886c2436a71e079913c395693c2edd9ddce52113"
 PREVIOUS_TARGET = "8c8cf851b47c88f6d814dc828a38743fc3cd45b3"
@@ -261,6 +261,15 @@ def main_row_map() -> dict[str, list[dict]]:
     return by_id
 
 
+def current_main_union_ids(prior_main_by_id: dict[str, list[dict]]) -> set[str]:
+    current_rows = parse_jsonl_bytes(git_bytes(BASE, TARGET_ROWS), TARGET_ROWS)
+    pinned_rows = parse_jsonl_bytes(git_bytes(TARGET, TARGET_ROWS), TARGET_ROWS)
+    require(current_rows == pinned_rows, "E_MAIN_UNION", "merged #2078 residual records differ from immutable c55 candidate")
+    target_ids = [row.get("asset_id") for _, row in current_rows]
+    require(len(target_ids) == 67 and len(set(target_ids)) == 67 and not (set(target_ids) & set(prior_main_by_id)), "E_MAIN_UNION", "current main union must be prior 429 plus 67 disjoint #2078 residual IDs")
+    return set(prior_main_by_id) | set(target_ids)
+
+
 def phase_context(aid: str) -> dict:
     phase_rows = {row.get("asset_id"): (line, row) for line, row in parse_jsonl_bytes(git_bytes(ARCHIVE_BASE, PHASE), PHASE)}
     dispositions = {row.get("asset_id"): (line, row) for line, row in parse_jsonl_bytes(git_bytes(ARCHIVE_BASE, DISPOSITION), DISPOSITION)}
@@ -314,23 +323,25 @@ def same_candidate_invariant(category: str, products: list) -> bool:
     return False
 
 
-def expected_scope_membership(entry: dict, asset_id: str, path_to_id: dict[str, str], main_by_id: dict[str, list[dict]]) -> dict:
+def expected_scope_membership(entry: dict, asset_id: str, path_to_id: dict[str, str], main_union_ids: set[str]) -> dict:
     return {
         "fallback_profile_contains_asset_id": path_to_id.get(entry.get("source_path")) == asset_id,
         "fallback_profile_reason_claims_asset_absent": "absent from the prior research asset-ID set" in PROFILE_REASON,
-        "main_union_contains_asset_id": asset_id in main_by_id,
-        "main_union_asset_count": len(main_by_id),
+        "main_union_contains_asset_id": asset_id in main_union_ids,
+        "main_union_asset_count": len(main_union_ids),
+        "prior_main_candidate_union_asset_count": 429,
+        "merged_2078_residual_asset_count": 67,
         "target_overlap_status": entry.get("overlap_status"),
     }
 
 
-def expected_target_scope(entry: dict, asset_id: str, path_to_id: dict[str, str], main_by_id: dict[str, list[dict]]) -> dict:
+def expected_target_scope(entry: dict, asset_id: str, path_to_id: dict[str, str], main_union_ids: set[str]) -> dict:
     return {
-        "main_union_scope": "existing_main_product_research_union (429 asset-ID union at pinned main revision)",
+        "main_union_scope": "current_main_product_research_union (496 IDs = prior candidate union 429 + merged #2078 residual 67; comparison uses the prior source-specific candidate records)",
         "target_overlap_scope": entry.get("research_scope"),
         "target_generator_scope": "new_residual_after_main_product_union; overlap candidates are excluded from emitted 67-record target JSONL",
         "target_fallback_profile_scope": "UNRESEARCHED_PREFIX_ASSET_PATHS (53 static ID/path literals); generic rationale refers to absent prior research IDs",
-        "scope_membership_evidence": expected_scope_membership(entry, asset_id, path_to_id, main_by_id),
+        "scope_membership_evidence": expected_scope_membership(entry, asset_id, path_to_id, main_union_ids),
     }
 
 
@@ -366,6 +377,25 @@ def expected_main_rebaseline() -> dict:
         comparisons.append({"path": path, "blob": current["blob"], "mode": current["mode"]})
     changed_scaffold = subprocess.check_output(["git", "diff", "--name-only", PREVIOUS_BASE, BASE, "--", "scaffold"], cwd=ROOT, text=True).splitlines()
     added_scaffold = subprocess.check_output(["git", "diff", "--name-only", "--diff-filter=A", PREVIOUS_BASE, BASE, "--", "scaffold"], cwd=ROOT, text=True).splitlines()
+    prior_main_by_id = main_row_map()
+    merged_2078_objects = []
+    for path in (TARGET_BINDING, f"{TARGET_ROOT}/PR-DRAFT.md", f"{TARGET_ROOT}/README.md", TARGET_ROWS, TARGET_GEN, TARGET_INV, f"{TARGET_ROOT}/selfcheck.py", f"{TARGET_ROOT}/validate.py"):
+        current = tree_entry(BASE, path)
+        pinned = tree_entry(TARGET, path)
+        require(current["blob"] == pinned["blob"] and current["mode"] == pinned["mode"], "E_MAIN_REBASELINE", f"merged #2078 object differs from immutable c55 pin: {path}")
+        merged_2078_objects.append({"path": path, "blob": current["blob"], "mode": current["mode"]})
+    current_ids = current_main_union_ids(prior_main_by_id)
+    target_ids = current_ids - set(prior_main_by_id)
+    union_evidence = {
+        "prior_main_candidate_union_count": len(prior_main_by_id),
+        "merged_2078_residual_count": len(target_ids),
+        "merged_2078_residual_ids_sha256": digest(canonical(sorted(target_ids))),
+        "merged_2078_residual_disjoint_from_prior_main": True,
+        "current_main_union_count": len(current_ids),
+    }
+    require(added_scaffold == sorted([TARGET_BINDING, f"{TARGET_ROOT}/PR-DRAFT.md", f"{TARGET_ROOT}/README.md", TARGET_ROWS, TARGET_GEN, TARGET_INV, f"{TARGET_ROOT}/selfcheck.py", f"{TARGET_ROOT}/validate.py"]), "E_MAIN_REBASELINE", "unexpected Scaffold additions in main rebaseline")
+    prior_scaffold_changes = [path for path in changed_scaffold if path not in added_scaffold]
+    require(not prior_scaffold_changes, "E_MAIN_REBASELINE", "unexpected existing Scaffold changes in main rebaseline")
     return {
         "previous_main_revision": PREVIOUS_BASE,
         "current_main_revision": BASE,
@@ -373,6 +403,8 @@ def expected_main_rebaseline() -> dict:
         "unchanged_fixed_inputs": comparisons,
         "new_scaffold_paths": added_scaffold,
         "other_scaffold_changes": changed_scaffold,
+        "merged_2078_objects": merged_2078_objects,
+        "current_main_union": union_evidence,
     }
 
 
@@ -451,13 +483,23 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
     repin = calculate_repin_stability(target_inv)
     require(inv.get("repin_stability_from_previous_head") == repin and repin["history_only_previous_pin"] is True and repin["changed_overlap_row_count"] == 0, "E_REPIN_STABILITY", "previous/current #2078 pin comparison changed or missing")
     require(inv.get("subject_count") == 36 and inv.get("new_asset_research_count") == 0 and inv.get("adds_assets_to_main_union") is False, "E_INVENTORY_PIN", "new research denominator drift")
-    require(inv.get("target_overlap_count") == 53 and inv.get("other_overlap_same_result_count") == 17 and inv.get("main_union_asset_count") == 429, "E_INVENTORY_PIN", "overlap denominator drift")
-    require(inv.get("target_head_follow_policy", "").startswith(f"STOP the current baseline/review if PR #2078 advances beyond {TARGET}."), "E_INVENTORY_PIN", "explicit stop-and-rebaseline policy required")
+    require(inv.get("target_overlap_count") == 53 and inv.get("other_overlap_same_result_count") == 17 and inv.get("main_union_asset_count") == 496 and inv.get("prior_main_candidate_union_asset_count") == 429 and inv.get("merged_2078_residual_asset_count") == 67, "E_INVENTORY_PIN", "current/prior union denominator drift")
+    prior_main_by_id = main_row_map()
+    current_union_ids = current_main_union_ids(prior_main_by_id)
+    current_union_evidence = {
+        "prior_main_candidate_union_count": len(prior_main_by_id),
+        "merged_2078_residual_count": len(current_union_ids - set(prior_main_by_id)),
+        "merged_2078_residual_ids_sha256": digest(canonical(sorted(current_union_ids - set(prior_main_by_id)))),
+        "merged_2078_residual_disjoint_from_prior_main": True,
+        "current_main_union_count": len(current_union_ids),
+    }
+    require(inv.get("current_main_union") == current_union_evidence, "E_MAIN_UNION", "current main union evidence is stale")
+    require(inv.get("target_head_follow_policy", "").startswith(f"STOP the current baseline/review if PR #2078 advances beyond {TARGET} or main advances beyond {BASE}."), "E_INVENTORY_PIN", "explicit target/main stop-and-rebaseline policy required")
     require(inv.get("difference_reason_vocabulary") == ["scope_difference", "evidence_span_difference", "research_method_state_difference", "classification_rule_difference", "unresolved"], "E_REASON_EVIDENCE", "reason vocabulary drift")
     require(inv.get("semantic_interpretation_conflict_count") == 0 and inv.get("semantic_interpretation_conflict_policy") == "A semantic interpretation conflict requires both sides to have independently researched source-specific evidence and to retain incompatible interpretations. The #2078 rows here are generic insufficient-basis fallbacks, so the 36 records contain zero such conflicts.", "E_REASON_EVIDENCE", "semantic interpretation conflict policy/count drift")
     require(inv.get("negative_cases") == EXPECTED_NEGATIVE_CASES, "E_NEGATIVE_CASES", "ordered expected negative case set drift")
     target_by_id = {x["asset_id"]: x for x in conflicts}
-    main_by_id = main_row_map()
+    main_by_id = prior_main_by_id
     path_to_id, l1_map, boundary_ranges, l1_ranges = pinned_target_method()
     actual_reason_counts = Counter()
     main_category_counts = Counter()
@@ -529,7 +571,7 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
         resolution = row.get("resolution", {})
         require(resolution.get("status") == "unresolved_human_judgment_required" and resolution.get("winner_selected") is False and resolution.get("formal_route_created") is False, "E_AUTHORITY", f"winner or formal route generated {aid}")
         target_scope = target.get("method", {}).get("scope", {})
-        expected_scope = expected_target_scope(entry, aid, path_to_id, main_by_id)
+        expected_scope = expected_target_scope(entry, aid, path_to_id, current_union_ids)
         require(target_scope == expected_scope, "E_REASON_EVIDENCE", f"scope membership evidence mismatch {aid}")
         actual_reasons = [x.get("type") for x in row.get("difference_reason_candidates", [])]
         expected_reasons = expected_reason_types(main_record, tspan, main_exact.get("semantic_anchors", []), expected_scope)
@@ -544,7 +586,7 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
                 require(reason.get("basis") == "The main side has source-specific semantic review and spans, while #2078 supplies only a generic insufficient-basis fallback for an unresearched-prefix set. This records research, method, and state difference; it is not a semantic interpretation conflict because both sides did not independently research the source.", "E_REASON_EVIDENCE", f"research-state basis mismatch {aid}")
             if reason.get("type") == "scope_difference":
                 require(reason.get("evidence_refs") == ["target.scope.scope_membership_evidence", "target.overlap_result", "main.input_union"], "E_REASON_EVIDENCE", f"scope evidence references mismatch {aid}")
-                require(reason.get("basis") == "The #2078 UNRESEARCHED_PREFIX_ASSET_PATHS fallback reason asserts this asset ID was absent from prior research, while the pinned overlap row places it in the existing main union of 429 IDs. This membership conflict is for human review and does not select a result.", "E_REASON_EVIDENCE", f"scope evidence basis mismatch {aid}")
+                require(reason.get("basis") == "The #2078 UNRESEARCHED_PREFIX_ASSET_PATHS fallback reason asserts this asset ID was absent from prior research, while its overlap row and the retained source-specific result place it in the prior 429-ID union. The current main union is 496 after adding 67 disjoint residual assets; this is a research-scope difference for human review, not a semantic conflict.", "E_REASON_EVIDENCE", f"scope evidence basis mismatch {aid}")
         main_category_counts[main_cat] += 1
         target_category_counts[target_result["category"]] += 1
         actual_reason_counts.update(actual_reasons)
