@@ -45,8 +45,8 @@ delta["classification"]["bootstrap_candidate_comparison"]["removed_with_bounded_
 expect_code("bootstrap removal without counterevidence", "E_COUNTEREVIDENCE", lambda: v.validate_classification(delta, selected[delta["asset_id"]]))
 
 added = copy.deepcopy(rows[0])
-added["classification"]["candidate_products"].append("HELIX-Web")
-expect_code("added candidate without basis", "E_CLASSIFICATION", lambda: v.validate_classification(added, selected[added["asset_id"]]))
+added["classification"]["bootstrap_candidate_comparison"]["added_from_source_specific_product_basis"][0]["product"] = "HELIX-Web"
+expect_code("added candidate without matching product_basis reference", "E_BOOTSTRAP", lambda: v.validate_classification(added, selected[added["asset_id"]]))
 
 wrong_category = copy.deepcopy(rows[0])
 wrong_category["classification"]["category"] = "direct_candidate_unresolved"
@@ -59,6 +59,42 @@ expect_code("resynchronized main union assertion", "E_UNION", lambda: v.validate
 expect_code("duplicate JSON key", "E_JSON", lambda: v.strict_json_bytes(b'{"authority": false, "authority": true}', "duplicate-key-case"))
 expect_code("JSONL scalar", "E_TYPE", lambda: v.strict_jsonl_bytes(b'null\n', "scalar-case"))
 expect_code("blank JSONL line", "E_JSON", lambda: v.strict_jsonl_bytes(b'{}\n\n', "blank-line-case"))
+
+manifest = json.loads(v.MANIFEST.read_text(encoding="utf-8"))
+manifest_rows = {row["asset_id"]: row for row in manifest["rows"]}
+archive_manifest = v.manifest_digests(v.git_bytes(v.BASE, v.ARCHIVE_MANIFEST))
+phase_admission = copy.deepcopy(rows[0])
+phase_admission["phase"]["candidate_phase_evidence"]["phase_admission"] = "admitted"
+expect_code("phase admission guard", "E_PHASE", lambda: v.check_record_source(phase_admission, selected[phase_admission["asset_id"]], manifest_rows, archive_manifest))
+
+authority_promotion = copy.deepcopy(rows[0])
+authority_promotion["authority_boundary"]["authority_effect"] = "formal"
+expect_code("authority promotion guard", "E_AUTHORITY", lambda: v.check_record_source(authority_promotion, selected[authority_promotion["asset_id"]], manifest_rows, archive_manifest))
+
+null_phase = copy.deepcopy(rows[0])
+null_phase["phase"] = None
+expect_code("null phase object", "E_TYPE", lambda: v.check_record_source(null_phase, selected[null_phase["asset_id"]], manifest_rows, archive_manifest))
+
+null_implementation = copy.deepcopy(rows[0])
+null_implementation["implementation_and_degradation"] = None
+expect_code("null implementation section", "E_TYPE", lambda: v.check_record_source(null_implementation, selected[null_implementation["asset_id"]], manifest_rows, archive_manifest))
+
+list_consumer = copy.deepcopy(rows[0])
+list_consumer["failure_and_consumer"] = []
+expect_code("list-shaped failure/consumer section", "E_TYPE", lambda: v.check_record_source(list_consumer, selected[list_consumer["asset_id"]], manifest_rows, archive_manifest))
+
+binding = json.loads(v.BINDING.read_text(encoding="utf-8"))
+binding["verification"]["oracles"] = []
+expect_code(
+    "Binding oracle mutation",
+    "E_BINDING",
+    lambda: v.validate_documents(v.LEDGER.read_bytes(), v.MANIFEST.read_bytes(), v.INVENTORY.read_bytes(), (json.dumps(binding, ensure_ascii=False, indent=2) + "\n").encode("utf-8")),
+)
+
+row24 = next(row for row in rows if row["asset_id"] == "LEGACY-ASSET-3A215D3F4BED6C6C6CEC")
+counter_reason = row24["classification"]["direct_counterevidence"][0]["reason"]
+if "非適用は判断していない。 この記録" in counter_reason or counter_reason.count("限定的な反証") != 1 or counter_reason.count("判断しない") != 1:
+    raise SystemExit("row 24 counterevidence repeats its bounded reason")
 
 # Reproduce the review's attack: alter a category, rewrite the record digest,
 # manifest ledger digest, and Binding upstream digests together. Code pins must
@@ -100,4 +136,4 @@ with tempfile.TemporaryDirectory(prefix="scf-b-0148-selfcheck-") as tmp:
     if not errors or not errors[0].startswith("E_PIN:"):
         raise SystemExit(f"digest-resynchronized classification attack did not fail on fixed contract pin: {errors}")
 
-print("SCF-B-0148 negative self-check passed: 9 semantic/type guards plus digest-resynchronized ledger/manifest/Binding attack rejected")
+print("SCF-B-0148 negative self-check passed: 14 executed guard cases plus row-24 reason uniqueness and digest-resynchronized ledger/manifest/Binding attack rejection")

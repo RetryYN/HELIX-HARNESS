@@ -640,29 +640,15 @@
     "relationship": "This fixed PHCAP-07 subset is 52 of the larger 208-asset worker/workflow review denominator; remainder is not selected into this bundle."
   },
   "existing_research_union": {
-    "main_base": "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3",
-    "main_union_count": 666,
-    "disposition": "fixed main snapshot includes merged #2094 and #2096; 666+52=718 candidate rows, not a completed disposition"
+    "main_base": "bae18e16cb6823ee4234b5a4d0b29aa580d88f2c",
+    "main_union_count": 674,
+    "disposition": "fixed main snapshot includes merged #2094, #2096, and #2097; 674+52=726 candidate records/assets in the comparison population, not a completed disposition"
   },
   "open_pr_comparison": {
-    "basis": "static Git object reads at fixed main comparison snapshot and exact open PR #2097 HEAD snapshot; #2094 and #2096 are merged into main and excluded from open set; any observed HEAD advance makes this receipt stale pending rebaseline",
-    "results": [
-      {
-        "pr": 2097,
-        "head": "211712a0aba71ea7461f53e7f824879de5bcff48",
-        "path": "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
-        "git_blob": "3d52660d587557176b4e4847ff65cd0db14ba379",
-        "bytes": 85176,
-        "sha256": "e3092094de9aaee773a227cefc4756e8ec480073ecceb5990312bf972715e0cc",
-        "record_count": 8,
-        "unique_asset_ids": 8,
-        "overlap_id": 0,
-        "overlap_path": 0,
-        "overlap_sha256": 0
-      }
-    ],
+    "basis": "no open PR comparison is separate: PR #2097 HEAD cff4e3d6 is merged into fixed main snapshot bae18e16; count it once in main",
+    "results": [],
     "aggregate_open_pr_asset_id_overlap": 0,
-    "open_pr_rows_total": 8,
+    "open_pr_rows_total": 0,
     "main_plus_open_pr_comparison_population": 674,
     "target_overlap": 0
   },
@@ -711,22 +697,23 @@
   },
   "web_product_assessment": "No direct support in selected spans; unassessed, not disproved.",
   "selection_source_revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
-  "current_comparison_main_revision": "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3",
+  "current_comparison_main_revision": "bae18e16cb6823ee4234b5a4d0b29aa580d88f2c",
   "base_evolution": {
     "selection_base": "8a9fdc973f3553bea78d022e8d73f109aca526da",
-    "current_main_rebaseline": "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3",
-    "event": "PR #2094 and PR #2096 are merged into the pinned main comparison snapshot. Selected 52 assets and source identity remain pinned to initial selection base; overlap checks were rerun against that exact main snapshot. #2096 is not counted as open."
+    "current_main_rebaseline": "bae18e16cb6823ee4234b5a4d0b29aa580d88f2c",
+    "event": "PR #2094, #2096, and #2097 are merged into the pinned main comparison snapshot. Selected 52 assets and source identity remain pinned to initial selection base; overlap checks were rerun against that exact main snapshot. #2097 is counted once in main and not as an open PR."
   },
   "main_union_components": {
     "pre_2094_main_union": 537,
     "merged_pr_2094_records": 72,
     "merged_pr_2096_records": 57,
-    "current_main_union": 666
+    "merged_pr_2097_records": 8,
+    "current_main_union": 674
   },
   "current_main_comparison_inputs": {
-    "revision": "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3",
-    "unique_asset_ids": 666,
-    "research_rows": 708,
+    "revision": "bae18e16cb6823ee4234b5a4d0b29aa580d88f2c",
+    "unique_asset_ids": 674,
+    "research_rows": 716,
     "asset_ledgers": [
       {
         "path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
@@ -748,6 +735,13 @@
         "bytes": 1185770,
         "sha256": "a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
         "row_count": 41
+      },
+      {
+        "path": "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
+        "git_blob": "ece36c006766ae2b7c39ec3a94a70a3ecfc3979e",
+        "bytes": 1892926,
+        "sha256": "237a9cf9bae1963205f58e7a925ded128aa265b0f5f5342a9b8ed57fd907d8a0",
+        "row_count": 8
       },
       {
         "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
@@ -812,11 +806,7 @@
         "sha256": "bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad",
         "row_count": 39
       }
-    ],
-    "target_overlap_id": 0,
-    "target_overlap_source_path": 0,
-    "target_overlap_source_sha256": 0,
-    "disposition": "fixed main comparison snapshot includes merged #2094 and #2096; 666+52=718 candidate rows, not a completed disposition"
+    ]
   },
   "overlap_detail": {
     "main_id_overlap": 0,
@@ -825,7 +815,7 @@
     "open_pr_id_overlap": 0,
     "open_pr_source_path_overlap": 0,
     "open_pr_source_sha256_overlap": 0,
-    "basis": "asset_id, source_path, and source_sha256 compared independently against fixed main snapshot 666 (includes merged #2094/#2096) and open PR #2097 exact HEAD snapshot; all projections are disjoint. Any later HEAD movement makes this receipt stale pending rebaseline."
+    "basis": "asset_id, source_path, and source_sha256 compared independently against fixed main snapshot 674 (includes merged #2094/#2096/#2097); all target projections are disjoint. Any later main HEAD movement makes this receipt stale pending rebaseline."
   },
   "static_validator": {
     "selection_manifest": "scaffold/legacy-test-design-worker-workflow-0148/selection-manifest.json",
@@ -835,21 +825,22 @@
       "fixed-BASE bootstrap selection and source identity",
       "regular archive Git blobs, SHA-256, byte count, mode/type, archive MANIFEST and source spans",
       "source-frontmatter parent pair path plus independent BASE pair blob/title/owner/status derivation",
-      "complete typed record pins plus category cardinality, product-basis/other-assessment disjointness, and full bootstrap delta accounting",
-      "fixed main/open PR input receipts, independently recomputed ID/path/SHA union and overlap projections",
-      "fixed inventory and Binding contract, complete artifact closure, authority and no-build boundaries",
-      "malformed/duplicate JSON and malformed JSONL fail closed with E_ codes",
-      "fixed-BASE crosswalk/phase representative references and source semantics; comparison pins are snapshots and require rebaseline after any observed HEAD movement"
+      "fixed code-pinned record/inventory content plus explicit classification cardinality, product-basis/other-assessment disjointness, exact span anchors, parent-pair title, and bootstrap delta guards; not a full nested semantic schema validator",
+      "fixed main receipts including merged #2097 exactly once; independently recomputed ID/path/SHA union and target-overlap projections",
+      "fixed inventory and Binding contract, complete artifact/upstream closure, authority and no-build boundaries",
+      "malformed/duplicate JSON and malformed JSONL fail closed with E_ codes"
     ],
     "negative_cases": [
-      "digest-resynchronized product/category/parent-pair tampering",
-      "bootstrap candidate removal without span-bound counterevidence",
-      "added candidate without matching product-basis rationale",
-      "product_basis/other_product_assessments overlap",
-      "manifest duplicate/omission and wrong typed cardinality",
-      "inventory union/count resynchronization",
-      "Binding upstream omission/extra/stale digest",
-      "malformed JSON, duplicate JSON keys, null/object/list type substitutions"
+      "product/candidate overlap rejected by explicit classification guard",
+      "bootstrap candidate removal without bounded counterevidence rejected by explicit delta guard",
+      "added candidate without matching product_basis reference rejected by explicit delta guard",
+      "category/cardinality mismatch rejected by explicit category guard",
+      "main union count tampering rejected by explicit union guard",
+      "duplicate JSON key, scalar JSONL and blank JSONL row rejected",
+      "phase admission and authority-boundary promotion rejected by explicit source-record guards",
+      "null phase, null implementation section, and list-shaped failure/consumer section rejected by type guards",
+      "Binding verification oracle mutation rejected with E_BINDING",
+      "digest-resynchronized data-only classification attack rejected by fixed code pins"
     ]
   },
   "crosswalk_and_phase_references": {

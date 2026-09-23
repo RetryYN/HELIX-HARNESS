@@ -18,8 +18,7 @@ MANIFEST = BUNDLE / "selection-manifest.json"
 INVENTORY = BUNDLE / "inventory.json"
 BINDING = ROOT / "scaffold/bindings/SCF-B-0148.json"
 BASE = "8a9fdc973f3553bea78d022e8d73f109aca526da"
-MAIN = "be9cf8cf99ee94a487e54d372d7a34e9266b1ee3"
-OPEN_2097 = "211712a0aba71ea7461f53e7f824879de5bcff48"
+MAIN = "bae18e16cb6823ee4234b5a4d0b29aa580d88f2c"
 BOOTSTRAP = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 CROSSWALK = "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 PHASE_INVENTORY = "docs/governance/phase-capability-inventory.json"
@@ -41,8 +40,8 @@ MAIN_LEDGER_PATHS = (
     "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
     "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
     "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl",
+    "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
 )
-OPEN_2097_LEDGER = "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl"
 ARTIFACTS = (
     "scaffold/bindings/SCF-B-0148.json",
     "scaffold/legacy-test-design-worker-workflow-0148/classification-research.jsonl",
@@ -69,14 +68,14 @@ EXPECTED_INVENTORY_AUTHORITY = {
 # Fixed contract pins. These are intentionally code constants, not values accepted
 # from the mutable manifest or Binding. Refresh only when the curated bundle changes.
 PINNED_SHA256 = {
-    'ledger': 'db7ec0b6ac817c7b3eab491dd6234b74df293953cb4e2fce17d61452835cd630',
-    'manifest': '95ff1ee4a08003eb3b4130f631ae3405dbdfa770845935ea54069bcb4d3e6794',
-    'inventory': '91a5f9e275901cf605eeac47efb4a63eb3ce41673cf7dba19d10cacd20b94d03',
-    'README.md': '8669c205775861e1b796d3861d96f2596357737ca1de3e55697fe7078a5617a8',
-    'PR-DRAFT.md': '00288f7235bd1a12408e8acad86e1d7e76d0e831c64e4824912371a72c29acf5',
-    'selfcheck.py': '1fdc714068629218e02aafacd1380586add1c2de6f4cb6bd50e2cf462de00084',
+    'ledger': 'dd2b9923b65fd39c3af0096cbc664676496c31fe40da43ffa7f416671dd4eeab',
+    'manifest': '70b9333a1456ba9a69388d340af6c7bccf2ca2e058c7b604f913ad961fa90cf7',
+    'inventory': '0a713e16523bf71704d4782241e15498f9a4e7bfb6e4986d8b74c848411bcb59',
+    'README.md': '373d85a2738f72e2e3fbb685785fe57439f2c3f744512b146df058806762c134',
+    'PR-DRAFT.md': 'bdb24b0f3ce12ec4f1e015b353d09fd7f1fc2babb7383f0a89aaada1c8e01d71',
+    'selfcheck.py': 'eb517ff13e0c9cd6bd168bab46d7d933bd3f52c54e3966f1497f4bc55d79e652',
 }
-PINNED_BINDING_CORE_SHA256 = "a05a483b6a1be536284837660ac69f91576f04c1284c212b092b79f12ded3cdf"
+PINNED_BINDING_CORE_SHA256 = "d334e2eb563235ac3f2399a2827f96fa71078a017676dcda6791fb01a715734b"
 
 
 class ValidationError(ValueError):
@@ -284,6 +283,19 @@ def validate_classification(row: dict, bootstrap: dict) -> None:
     expected_retained = [p for p in PRODUCTS if p in set(bootstrap_products) & set(products)]
     expected_added = [p for p in PRODUCTS if p in set(products) - set(bootstrap_products)]
     expected_removed = [p for p in PRODUCTS if p in set(bootstrap_products) - set(products)]
+    span = row.get("source_span")
+    pair = row.get("parent_pair")
+    if type(span) is not dict or type(span.get("lines")) is not list or type(pair) is not dict:
+        fail("E_TYPE", f"{aid}: product evidence requires typed source span and parent pair")
+    span_text = "\n".join(item.get("text", "") for item in span["lines"] if type(item) is dict)
+    for product, proof in basis.items():
+        if (type(proof) is not dict or set(proof) != {"status", "l1_refs", "source_specific_reason", "anchor_text", "parent_pair_title"}
+                or proof.get("status") != "direct_candidate" or type(proof.get("l1_refs")) is not list
+                or not proof["l1_refs"] or type(proof.get("source_specific_reason")) is not str
+                or not proof["source_specific_reason"].strip() or type(proof.get("anchor_text")) is not str
+                or not proof["anchor_text"].strip() or proof["anchor_text"] not in span_text
+                or proof.get("parent_pair_title") != pair.get("title")):
+            fail("E_BOOTSTRAP", f"{aid}: {product} product_basis evidence lacks an exact span anchor or matching parent-pair title")
     if comparison.get("bootstrap_targets_preserved") != bootstrap_products or comparison.get("retained_targets") != expected_retained:
         fail("E_BOOTSTRAP", f"{aid}: bootstrap target preservation/intersection differs")
     added = comparison.get("added_from_source_specific_product_basis")
@@ -291,26 +303,14 @@ def validate_classification(row: dict, bootstrap: dict) -> None:
         fail("E_BOOTSTRAP", f"{aid}: all added candidate products need a source-specific evidence row")
     for item in added:
         product = item["product"]
-        expected_basis = basis[product]
-        expected_fields = {
-            "product": product, "status": "candidate_supported_by_reviewed_span_and_parent_pair",
-            "source_specific_reason": expected_basis.get("source_specific_reason"),
-            "anchor_text": expected_basis.get("anchor_text"),
-            "parent_pair_title": expected_basis.get("parent_pair_title"),
-        }
-        if not typed_equal(item, expected_fields) or any(type(item.get(k)) is not str or not item[k].strip() for k in (
-            "source_specific_reason", "anchor_text", "parent_pair_title"
-        )):
-            fail("E_BOOTSTRAP", f"{aid}: added product {product} lacks matching source-specific evidence")
+        expected_fields = {"product": product, "status": "candidate_supported_by_reviewed_span_and_parent_pair", "product_basis_ref": product}
+        if not typed_equal(item, expected_fields):
+            fail("E_BOOTSTRAP", f"{aid}: added product {product} must reference its source-specific product_basis evidence")
     if [x.get("product") for x in counterevidence if type(x) is dict] != expected_removed or len(counterevidence) != len(expected_removed):
         fail("E_COUNTEREVIDENCE", f"{aid}: every removed bootstrap candidate needs bounded counterevidence")
     removed = comparison.get("removed_with_bounded_counterevidence")
     if type(removed) is not list or len(removed) != len(counterevidence):
         fail("E_COUNTEREVIDENCE", f"{aid}: bootstrap removal summary is missing or malformed")
-    span = row.get("source_span")
-    pair = row.get("parent_pair")
-    if type(span) is not dict or type(pair) is not dict:
-        fail("E_TYPE", f"{aid}: source span and parent pair must be objects")
     for item, summary in zip(counterevidence, removed, strict=True):
         required = {
             "product", "status", "reason", "source_span_sha256", "parent_pair_sha256",
@@ -382,13 +382,21 @@ def check_record_source(row: dict, selected: dict, manifest_rows: dict, archive_
         fail("E_SOURCE_SPAN", f"{aid}: span text/hash differs from the fixed BASE or pinned manifest")
     if record.get("category") != row["classification"].get("category") or record.get("candidate_products") != row["classification"].get("candidate_products"):
         fail("E_MANIFEST", f"{aid}: manifest classification differs from complete record")
-    if record.get("candidate_phase_targets") != selected.get("candidate_phase_targets") or row.get("phase", {}).get("candidate_phase_targets") != selected.get("candidate_phase_targets"):
+    phase = row.get("phase")
+    implementation = row.get("implementation_and_degradation")
+    failure_consumer = row.get("failure_and_consumer")
+    if type(phase) is not dict or type(implementation) is not dict or type(failure_consumer) is not dict:
+        fail("E_TYPE", f"{aid}: phase, implementation/degradation and failure/consumer sections must be objects")
+    phase_evidence = phase.get("candidate_phase_evidence")
+    if type(phase_evidence) is not dict:
+        fail("E_TYPE", f"{aid}: candidate phase evidence must be an object")
+    if record.get("candidate_phase_targets") != selected.get("candidate_phase_targets") or phase.get("candidate_phase_targets") != selected.get("candidate_phase_targets"):
         fail("E_PHASE", f"{aid}: phase candidates differ from the fixed bootstrap")
     if not typed_equal(row.get("authority_boundary"), EXPECTED_AUTHORITY) or not typed_equal(record.get("authority_boundary"), EXPECTED_AUTHORITY):
         fail("E_AUTHORITY", f"{aid}: record or manifest crossed the no-effect boundary")
-    if row.get("phase", {}).get("candidate_phase_evidence", {}).get("phase_admission") != "not_admitted":
+    if phase_evidence.get("phase_admission") != "not_admitted":
         fail("E_PHASE", f"{aid}: phase admission must remain not_admitted")
-    if row.get("implementation_and_degradation", {}).get("test_execution_status") != "not_run" or row.get("failure_and_consumer", {}).get("consumer_closure_status") != "pending":
+    if implementation.get("test_execution_status") != "not_run" or failure_consumer.get("consumer_closure_status") != "pending":
         fail("E_AUTHORITY", f"{aid}: test/consumer closure boundary changed")
     validate_classification(row, selected)
     if canonical_sha(row) != record.get("record_sha256"):
@@ -434,58 +442,49 @@ def validate_main_union(inventory: dict, records: list[dict]) -> None:
             fail("E_UNION", f"main comparison input is not a regular blob: {path}")
         receipts.append({"path": path, "git_blob": blob, "bytes": len(data), "sha256": sha256(data), "row_count": len(rows)})
         main_rows.extend(rows)
-    open_data = git_bytes(OPEN_2097, OPEN_2097_LEDGER)
-    open_rows = strict_jsonl_bytes(open_data, f"{OPEN_2097}:{OPEN_2097_LEDGER}")
-    _, _, open_blob = git_tree(OPEN_2097, OPEN_2097_LEDGER)
     target_ids, target_paths, target_shas = set(), set(), set()
     for row in records:
         aid, path, digest = source_identity(row)
         target_ids.add(aid); target_paths.add(path); target_shas.add(digest)
     main_identities = [source_identity(row) for row in main_rows]
-    open_identities = [source_identity(row) for row in open_rows]
     main_ids = {item[0] for item in main_identities}; main_paths = {item[1] for item in main_identities}; main_shas = {item[2] for item in main_identities}
-    open_ids = {item[0] for item in open_identities}; open_paths = {item[1] for item in open_identities}; open_shas = {item[2] for item in open_identities}
-    for label, identities in (("main", main_identities), ("open #2097", open_identities)):
-        by_id = {}
-        for aid, path, digest in identities:
-            if aid in by_id and by_id[aid] != (path, digest):
-                fail("E_UNION", f"{label} has conflicting source identity for {aid}")
-            by_id[aid] = (path, digest)
+    by_id = {}
+    for aid, path, digest in main_identities:
+        if aid in by_id and by_id[aid] != (path, digest):
+            fail("E_UNION", f"main has conflicting source identity for {aid}")
+        by_id[aid] = (path, digest)
     overlap = {
         "main_id_overlap": len(main_ids & target_ids),
         "main_source_path_overlap": len(main_paths & target_paths),
         "main_source_sha256_overlap": len(main_shas & target_shas),
-        "open_pr_id_overlap": len(open_ids & target_ids),
-        "open_pr_source_path_overlap": len(open_paths & target_paths),
-        "open_pr_source_sha256_overlap": len(open_shas & target_shas),
+        "open_pr_id_overlap": 0,
+        "open_pr_source_path_overlap": 0,
+        "open_pr_source_sha256_overlap": 0,
     }
-    if len(main_ids) != 666 or len(main_rows) != 708 or len(open_ids) != 8 or len(open_rows) != 8:
-        fail("E_UNION", f"fixed comparison cardinality changed: main rows/IDs={len(main_rows)}/{len(main_ids)}, #2097={len(open_rows)}/{len(open_ids)}")
+    if len(main_ids) != 674 or len(main_rows) != 716:
+        fail("E_UNION", f"fixed comparison cardinality changed: main rows/IDs={len(main_rows)}/{len(main_ids)}")
     if any(overlap.values()):
         fail("E_UNION", f"0148 overlaps a comparison set: {overlap}")
     inputs = inventory.get("current_main_comparison_inputs")
-    if type(inputs) is not dict or inputs.get("revision") != MAIN or inputs.get("unique_asset_ids") != 666 or inputs.get("research_rows") != 708 or not typed_equal(inputs.get("asset_ledgers"), receipts):
+    if type(inputs) is not dict or inputs.get("revision") != MAIN or inputs.get("unique_asset_ids") != 674 or inputs.get("research_rows") != 716 or not typed_equal(inputs.get("asset_ledgers"), receipts):
         fail("E_UNION", "inventory main receipt does not match independently read fixed-main ledgers")
     open_comparison = inventory.get("open_pr_comparison")
-    expected_open_result = {
-        "pr": 2097, "head": OPEN_2097, "path": OPEN_2097_LEDGER, "git_blob": open_blob,
-        "bytes": len(open_data), "sha256": sha256(open_data), "record_count": len(open_rows),
-        "unique_asset_ids": len(open_ids), "overlap_id": overlap["open_pr_id_overlap"],
-        "overlap_path": overlap["open_pr_source_path_overlap"], "overlap_sha256": overlap["open_pr_source_sha256_overlap"],
+    expected_open_comparison = {
+        "basis": "no open PR comparison is separate: PR #2097 HEAD cff4e3d6 is merged into fixed main snapshot bae18e16; count it once in main",
+        "results": [], "aggregate_open_pr_asset_id_overlap": 0, "open_pr_rows_total": 0,
+        "main_plus_open_pr_comparison_population": 674, "target_overlap": 0,
     }
-    if type(open_comparison) is not dict or not typed_equal(open_comparison.get("results"), [expected_open_result]):
-        fail("E_UNION", "inventory open-PR receipt differs from exact pinned #2097 Git object")
-    expected_overlap = dict(overlap, basis="asset_id, source_path, and source_sha256 compared independently against fixed main snapshot 666 (includes merged #2094/#2096) and open PR #2097 exact HEAD snapshot; all projections are disjoint. Any later HEAD movement makes this receipt stale pending rebaseline.")
+    if not typed_equal(open_comparison, expected_open_comparison):
+        fail("E_UNION", "inventory must exclude merged #2097 from the open-PR set")
+    expected_overlap = dict(overlap, basis="asset_id, source_path, and source_sha256 compared independently against fixed main snapshot 674 (includes merged #2094/#2096/#2097); all target projections are disjoint. Any later main HEAD movement makes this receipt stale pending rebaseline.")
     if not typed_equal(inventory.get("overlap_detail"), expected_overlap):
         fail("E_UNION", "inventory overlap projections differ from independent set calculation")
-    if open_comparison.get("open_pr_rows_total") != 8 or open_comparison.get("main_plus_open_pr_comparison_population") != 674 or open_comparison.get("target_overlap") != 0:
-        fail("E_UNION", "inventory comparison union cardinality is incorrect")
-    expected_components = {"pre_2094_main_union": 537, "merged_pr_2094_records": 72, "merged_pr_2096_records": 57, "current_main_union": 666}
+    expected_components = {"pre_2094_main_union": 537, "merged_pr_2094_records": 72, "merged_pr_2096_records": 57, "merged_pr_2097_records": 8, "current_main_union": 674}
     if not typed_equal(inventory.get("main_union_components"), expected_components):
         fail("E_UNION", "inventory merged-main component arithmetic differs from exact comparison rows")
     existing = inventory.get("existing_research_union")
-    if type(existing) is not dict or existing.get("main_base") != MAIN or existing.get("main_union_count") != 666 or "666+52=718" not in existing.get("disposition", ""):
-        fail("E_UNION", "inventory current-main union does not preserve the 666+52 candidate population")
+    if type(existing) is not dict or existing.get("main_base") != MAIN or existing.get("main_union_count") != 674 or "674+52=726" not in existing.get("disposition", ""):
+        fail("E_UNION", "inventory fixed-main union does not preserve the 674+52 candidate population")
 
 
 def validate_documents(ledger_bytes: bytes, manifest_bytes: bytes, inventory_bytes: bytes, binding_bytes: bytes) -> None:
@@ -639,12 +638,15 @@ def validate_documents(ledger_bytes: bytes, manifest_bytes: bytes, inventory_byt
     }
     if not typed_equal(inventory.get("crosswalk_and_phase_references"), crosswalk_summary):
         fail("E_INVENTORY", "crosswalk/phase reference summary differs from fixed-BASE source projections")
+    operations = binding.get("operations")
+    if type(operations) is not dict:
+        fail("E_TYPE", "Binding operations must be an object")
     if not typed_equal(binding.get("artifacts"), list(ARTIFACTS)):
         fail("E_BINDING", "Binding artifact list is not the full inventory/registered artifact set")
-    if not typed_equal(binding.get("operations", {}).get("allowed"), [
+    if not typed_equal(operations.get("allowed"), [
         "read pinned Git/archive blobs statically", "write classification ledger, inventory, README, and draft summary in scaffold namespace",
         "run scfctl and diff check", "run the pinned static validator and its negative self-check",
-    ]) or not typed_equal(binding.get("operations", {}).get("forbidden"), [
+    ]) or not typed_equal(operations.get("forbidden"), [
         "execute archive source/runtime/test/CI/workflow/hook/adapter", "update formal disposition or phase ledger",
         "infer test PASS/implementation from test design or citation", "promote product/phase/successor/implementation/consumer status",
         "merge/close/push/deploy", "旧archiveは実行しない",
@@ -654,7 +656,9 @@ def validate_documents(ledger_bytes: bytes, manifest_bytes: bytes, inventory_byt
     binding_core.pop("upstream", None)
     if canonical_sha(binding_core) != PINNED_BINDING_CORE_SHA256:
         fail("E_BINDING", "Binding non-upstream contract differs from code-pinned scaffold boundary")
-    expected_upstream_paths = set(BASE_INPUTS_FROM_INVENTORY) | {ARCHIVE_MANIFEST, *OUTPUT_UPSTREAM, "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl"}
+    expected_upstream_paths = set(BASE_INPUTS_FROM_INVENTORY) | {ARCHIVE_MANIFEST, *OUTPUT_UPSTREAM,
+        "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl",
+        "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl"}
     upstream = binding.get("upstream")
     if type(upstream) is not list or any(type(row) is not dict for row in upstream):
         fail("E_TYPE", "Binding upstream must be an array of objects")
@@ -667,6 +671,8 @@ def validate_documents(ledger_bytes: bytes, manifest_bytes: bytes, inventory_byt
         expected_digests[path] = sha256((ROOT / path).read_bytes())
     main_0142 = "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl"
     expected_digests[main_0142] = sha256(git_bytes(MAIN, main_0142))
+    main_0147 = "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl"
+    expected_digests[main_0147] = sha256(git_bytes(MAIN, main_0147))
     for row in upstream:
         path = row.get("path")
         if set(row) != {"path", "sha256", "note"} or type(row.get("sha256")) is not str or row["sha256"] != expected_digests[path]:
@@ -702,7 +708,7 @@ def validate(ledger_path: Path = LEDGER, manifest_path: Path = MANIFEST, invento
         return []
     except ValidationError as exc:
         return [str(exc)]
-    except (OSError, KeyError, TypeError, ValueError, IndexError, subprocess.SubprocessError) as exc:
+    except (OSError, KeyError, TypeError, ValueError, IndexError, AttributeError, OverflowError, RecursionError, subprocess.SubprocessError) as exc:
         return [f"E_INPUT: malformed or unavailable input: {type(exc).__name__}: {exc}"]
 
 
@@ -718,7 +724,7 @@ def main() -> int:
         print("SCF-B-0148 static validation failed:")
         print("\n".join(f"- {error}" for error in errors))
         return 1
-    print("SCF-B-0148 static validation passed: 52 fixed-BASE records, archive MANIFEST/blob/parent-pair derivation, bounded bootstrap deltas, 666 main + 8 open #2097 + 52 target with zero ID/path/SHA overlap")
+    print("SCF-B-0148 static validation passed: 52 fixed-BASE records, archive MANIFEST/blob/parent-pair derivation, bounded bootstrap deltas, 674 fixed-main IDs (merged #2097 counted once) + 52 target with zero ID/path/SHA overlap")
     return 0
 
 

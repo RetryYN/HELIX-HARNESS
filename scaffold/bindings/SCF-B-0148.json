@@ -79,43 +79,48 @@
       "note": "fixed-base source or static research evidence"
     },
     {
+      "path": "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl",
+      "sha256": "237a9cf9bae1963205f58e7a925ded128aa265b0f5f5342a9b8ed57fd907d8a0",
+      "note": "merged #2097 main comparison ledger; included exactly once in fixed main union"
+    },
+    {
       "path": "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl",
       "sha256": "488d795223c73386da579ea7018583f2276ea22dc333852fdd646f1a1bbacb99",
       "note": "merged #2096 main comparison ledger; static Git object read only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/PR-DRAFT.md",
-      "sha256": "00288f7235bd1a12408e8acad86e1d7e76d0e831c64e4824912371a72c29acf5",
+      "sha256": "bdb24b0f3ce12ec4f1e015b353d09fd7f1fc2babb7383f0a89aaada1c8e01d71",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/README.md",
-      "sha256": "8669c205775861e1b796d3861d96f2596357737ca1de3e55697fe7078a5617a8",
+      "sha256": "373d85a2738f72e2e3fbb685785fe57439f2c3f744512b146df058806762c134",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/classification-research.jsonl",
-      "sha256": "db7ec0b6ac817c7b3eab491dd6234b74df293953cb4e2fce17d61452835cd630",
+      "sha256": "dd2b9923b65fd39c3af0096cbc664676496c31fe40da43ffa7f416671dd4eeab",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/inventory.json",
-      "sha256": "91a5f9e275901cf605eeac47efb4a63eb3ce41673cf7dba19d10cacd20b94d03",
+      "sha256": "0a713e16523bf71704d4782241e15498f9a4e7bfb6e4986d8b74c848411bcb59",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/selection-manifest.json",
-      "sha256": "95ff1ee4a08003eb3b4130f631ae3405dbdfa770845935ea54069bcb4d3e6794",
+      "sha256": "70b9333a1456ba9a69388d340af6c7bccf2ca2e058c7b604f913ad961fa90cf7",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/selfcheck.py",
-      "sha256": "1fdc714068629218e02aafacd1380586add1c2de6f4cb6bd50e2cf462de00084",
+      "sha256": "eb517ff13e0c9cd6bd168bab46d7d933bd3f52c54e3966f1497f4bc55d79e652",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     },
     {
       "path": "scaffold/legacy-test-design-worker-workflow-0148/validate.py",
-      "sha256": "c39329b427ebf5f53a0aa68ac67b5e5f124fca1ae1ea863c88bde9bad582ea98",
+      "sha256": "5e95339a9f37e226d883fcd859342bf1c03b2b2bc47ec5298e253de01de77a9e",
       "note": "SCF-B-0148 research artifact; static candidate work only"
     }
   ],
@@ -127,10 +132,11 @@
     "product_basisとother_product_assessmentsの交差を禁止し、direct/split/insufficient categoryの件数を候補数から再計算する",
     "PHCAP-07及び元bootstrapの複数phase候補を保持し、phase admission/owner/successorを生成しない",
     "test-design status、oracle citation、phase-wide degradation、observed failure、implementation、consumerを混ぜずunknown/pendingを保持する",
-    "fixed comparison snapshot main be9cf8c exact BASE 666件とopen #2097 HEAD 211712a0 exact 8件に対するID/path/SHA重複0を独立再計算する",
+    "fixed comparison snapshot main bae18e16 exact BASE 674件（#2097の8件をmerge済みmainに一度だけ計上）とのID/path/SHA重複0を独立再計算する",
     "旧archive source/runtime/test/CI/workflow/hook/adapterを実行しない。正式asset/phase ledgerを更新しない",
     "crosswalk candidate_asset_pool/representative references and phase inventory representative references are recomputed from fixed BASE; reference semantics are contextual/search-only, not direct links",
-    "main or open #2097 HEAD movement makes the fixed comparison receipt stale; stop using/reporting it until exact comparison sets are rederived; validator does not auto-fetch remote freshness"
+    "fixed main HEAD movement makes the comparison receipt stale; stop using/reporting it until the union is rederived; validator does not auto-fetch remote freshness",
+    "added candidate evidence must link to product_basis whose exact anchor is present in the selected source span and whose parent-pair title matches the rederived pair"
   ],
   "connections": {
     "consumers": [
@@ -141,8 +147,8 @@
       "fixed research BASE 8a9fdc973f3553bea78d022e8d73f109aca526da",
       "approved Concept v4.1 and four-product L1/product-boundary revision evidence",
       "phase-capability-inventory contextual evidence",
-      "fixed main comparison snapshot 666 candidate records at be9cf8cf99ee94a487e54d372d7a34e9266b1ee3, including merged PR #2096",
-      "open PR #2097 exact comparison snapshot 211712a0aba71ea7461f53e7f824879de5bcff48"
+      "fixed main comparison snapshot 674 candidate records at bae18e16cb6823ee4234b5a4d0b29aa580d88f2c, including merged PRs #2094, #2096, and #2097 (counted once)",
+      "PR #2097 merged HEAD cff4e3d6 is represented once in main comparison ledger union; no separate open-PR set"
     ],
     "boundary": "research-only; authority_effect=none; no formal owner, asset classification, phase admission, implementation, test pass, successor, CI, requirement adoption, or consumer closure"
   },
@@ -183,25 +189,27 @@
     "oracles": [
       "fixed BASE bootstrap independently selects exactly 52 unique asset IDs/paths and source SHA values",
       "archive source and every linked parent-pair are independently read as regular fixed-BASE Git blobs and checked against archive MANIFEST, byte count, SHA, and frontmatter relation",
-      "complete typed records match fixed code-pinned canonical contract digests; category cardinality, product_basis, other assessments, phase and authority invariants are checked independently",
-      "bootstrap candidate targets are retained per row; every added target has source-specific product-basis evidence and every removed target has span/pair-bound bounded counterevidence",
-      "inventory category/product counts and parent-pair set are recomputed from records; inventory bytes are code-pinned",
-      "fixed main snapshot 666 and open #2097 exact HEAD snapshot 8 row sets are read from exact pinned Git revisions; ID, path, and SHA intersections with target 52 are recomputed independently and equal zero",
-      "Binding artifact/upstream path closure is exact; BASE-input digests, target file digests, and no-effect operation boundary are checked",
+      "complete ledger, inventory and Binding content is protected by fixed code pins; this is not a full independent semantic schema for every nested field",
+      "explicit semantic guards check category/cardinality, product_basis versus other assessments, bootstrap deltas, exact source-span anchors and parent-pair titles; authority and phase checks cover exact candidate targets, not_admitted, no-effect boundary, test not-run, and consumer pending",
+      "each added bootstrap candidate references source-specific product_basis evidence; its anchor must occur in this record selected span and its pair title must match the derived historical pair",
+      "inventory category/product counts and parent-pair set are recomputed from records; remaining inventory and Binding fields rely on fixed code pins plus selected explicit checks",
+      "fixed main 674-row-set is read from exact main bae18e16, including merged #2097 exactly once; ID, path and SHA intersections with target 52 are recomputed independently and equal zero",
+      "Binding artifact/upstream path closure is exact; BASE-input digests, target file digests, no-effect boundary, allowed and forbidden operations are checked",
       "test-design citations and designed failures remain distinct from execution, observed failure, implementation, and consumer closure",
       "crosswalk bootstrap candidate-pool, representative-asset, and phase inventory reference projections are checked against fixed BASE; search/context references do not establish direct semantics or consumers",
-      "comparison revision pins are snapshots, not auto-following refs; any observed main/#2097 HEAD movement requires stop and full rebaseline before reuse"
+      "main revision pins are snapshots, not auto-following refs; observed main HEAD movement requires stop and full rebaseline before reuse; validator does not fetch remote freshness"
     ],
     "negative_cases": [
-      "digest-resynchronized product/category/parent-pair tampering",
-      "bootstrap candidate omission without bounded counterevidence",
-      "added candidate without matching product_basis evidence",
-      "product_basis/other_product_assessments overlap",
-      "phase admission or authority promotion",
-      "duplicate/omitted manifest row and wrong typed cardinality",
-      "inventory count/union resynchronization",
-      "Binding artifact/upstream omission, extra, or stale digest",
-      "malformed JSON, duplicate JSON keys, null/list/object type substitution"
+      "product/candidate overlap rejected by explicit classification guard",
+      "bootstrap candidate removal without bounded counterevidence rejected by explicit delta guard",
+      "added candidate without matching product_basis reference rejected by explicit delta guard",
+      "category/cardinality mismatch rejected by explicit category guard",
+      "main union count tampering rejected by explicit union guard",
+      "duplicate JSON key, scalar JSONL and blank JSONL row rejected",
+      "phase admission and authority-boundary promotion rejected by explicit source-record guards",
+      "null phase, null implementation section, and list-shaped failure/consumer section rejected by type guards",
+      "Binding verification oracle mutation rejected with E_BINDING",
+      "digest-resynchronized data-only classification attack rejected by fixed code pins"
     ]
   },
   "replacement": {

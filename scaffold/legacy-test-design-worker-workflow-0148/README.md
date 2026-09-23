@@ -28,9 +28,9 @@ bootstrapは全52件を `test_design_present_unexecuted`、legacy implementation
 
 ## 重複と分母
 
-初回選択BASEは `8a9fdc973f3553bea78d022e8d73f109aca526da`。#2096 merge後の比較時点main snapshot `be9cf8cf99ee94a487e54d372d7a34e9266b1ee3` へ排他照合を更新した。この固定main snapshotは#2094の72件と#2096の57件を含む666 unique asset ID（原ledger行708件）。#2097は提示されたopen HEAD `211712a0aba71ea7461f53e7f824879de5bcff48` の8件を静的Git objectとして比較した。main 666件、open #2097 8件、0148の52件についてasset ID・source path・source SHA-256の各射影を個別に比較し、target overlapはすべて0件。比較集合全726件は候補分類の比較分母であり、正式分類や完了を示さない。
+初回選択BASEは `8a9fdc973f3553bea78d022e8d73f109aca526da`。比較時点main snapshot `bae18e16cb6823ee4234b5a4d0b29aa580d88f2c` は#2094の72件、#2096の57件、merge済み#2097の8件を含む716 research rows／674 unique asset IDである。#2097の8件はmain ledger unionに一度だけ含め、open PR比較として加算しない。固定main 674件と0148の52件についてasset ID・source path・source SHA-256の各射影を個別に比較し、target overlapはすべて0件。比較集合全726件は候補分類の比較分母であり、正式分類や完了を示さない。
 
-mainと#2097のrevisionはこの検証時点の固定比較snapshotで、追随pinではない。比較前提となるmainまたは#2097のHEADが進んだと確認された場合、この結果をstaleとして扱い、union/overlapを再導出するまで新しい比較結果として利用・報告しない。validatorは記録されたexact Git objectを検証するもので、remote HEADの鮮度を自動取得・保証しない。
+main revisionはこの検証時点の固定比較snapshotで、追随pinではない。main HEADが進んだと確認された場合、この結果をstaleとして扱い、merge済みPRを二重計上せずunion/overlapを再導出するまで新しい比較結果として利用・報告しない。validatorは記録されたexact Git objectを検証するもので、remote HEADの鮮度を自動取得・保証しない。
 
 より広いworker/workflow調査分母208件のうち、今回52件を記録し、残り156件を未調査として残す。208は本bundleの選択条件で抽出した全件数ではなく、初回cohortの進捗分母である。
 
@@ -40,4 +40,4 @@ archiveは固定BASEのGit objectを静的に読み取った。旧source、runti
 
 ## 確認範囲
 
-必要な静的確認は、対象集合・ID/path/SHA一意性、archive manifest/source digest、親pair path/blob/digest、4製品L1/product-boundary参照、phase候補参照、mainとopen PRの排他、Binding/ledger/参照の整合である。分類record全体は固定validator内のbyte/canonical digest契約に照合する。候補の意味を機械生成・採択したとは主張しない。validatorは固定BASEのbootstrap、archive Git blob／MANIFEST、test-designから宣言された親pairとそのGit blobをledgerから独立に再導出して照合し、各recordの完全一致、型・cardinality、product_basisとother assessmentの非重複、bootstrap候補との差を検査する。比較集合はmainの各pinned ledgerとopen #2097 exact HEADから実際にunionを計算する。 `python3 scaffold/legacy-test-design-worker-workflow-0148/validate.py` で検査する。`python3 scaffold/legacy-test-design-worker-workflow-0148/selfcheck.py` はledger／manifest／Binding digestを同時に再同期した分類改変、bootstrap差分の除去、basis/assessment overlap、main unionの再同期、重複JSON key、malformed inputを含む負例が固定contractまたは個別guardで拒否されることを確認する。加えて `python3 scaffold/tools/scfctl.py validate`、`stale`、`residuals`、`git diff --check` を行う。旧assetのtestは起動しない。
+必要な静的確認は、対象集合・ID/path/SHA一意性、archive manifest/source digest、親pair path/blob/digest、4製品L1/product-boundary参照、phase候補参照、固定mainとの重複、Binding/ledger/参照の整合である。分類record全体は固定validator内のbyte/canonical digest pinで保護する。これは残余fieldの完全な独立意味schema検査を意味しない。validatorは固定BASEのbootstrap、archive Git blob／MANIFEST、test-designから宣言された親pairとそのGit blobを再導出し、候補製品のcardinality、product_basisとother assessmentの非重複、basis anchorの選択span内存在と親pair title、bootstrap差分を個別に検査する。phaseは候補targetとnot_admitted、authorityはno-effect boundary、test未実行とconsumer pendingを個別に検査し、その他のrecord／inventory／Binding detailはfixed code pinに依存する。比較集合はmainの各pinned ledgerからunionを実計算し、#2097の8件はmerge済みmainに一度だけ含める。 `python3 scaffold/legacy-test-design-worker-workflow-0148/validate.py` で検査する。`python3 scaffold/legacy-test-design-worker-workflow-0148/selfcheck.py` は実装済みの個別guard（カテゴリ／cardinality、bootstrap削除、追加候補、phase／authority、E_BINDING、union、JSON形式）とdigest-resync attackの固定pin拒否をそれぞれ実行する。加えて `python3 scaffold/tools/scfctl.py validate`、`stale`、`residuals`、`git diff --check` を行う。旧assetのtestは起動しない。
