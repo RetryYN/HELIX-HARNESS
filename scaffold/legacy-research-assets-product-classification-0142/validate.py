@@ -51,7 +51,7 @@ def git_names(revision: str) -> list[str]:
 MAIN_RESEARCH_PATHS = tuple(sorted(p for p in git_names(BASE_REVISION) if p.startswith("scaffold/") and p.endswith("/classification-research.jsonl")))
 OPEN_RESEARCH = {PR_2097: "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl"}
 CORE_INPUTS = (DISPOSITION, PHASE, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), APPROVAL, "docs/governance/new-generation-start-here.md", "docs/governance/legacy-asset-reuse-control.md", FAILURE, CONSUMER, MANIFEST, *WAVE_PATHS)
-EXPECTED_NEGATIVE_CASES = ("target_omission", "target_duplicate", "source_sha_tamper", "source_anchor_tamper", "empty_source_reclassified", "phase_admission", "implementation_promotion", "history_digest_tamper", "boundary_digest_tamper", "wave_edge_injection", "authority_promotion", "overlap_flag_tamper", "input_omission", "input_stale", "binding_omission", "output_digest_tamper", "independent_audit_digest_tamper", "archive_symlink_mode", "archive_manifest_mismatch", "malformed_json", "duplicate_json_key", "history_disposition_promotion", "bootstrap_candidate_tamper", "phase_status_promotion", "human_judgment_clearance", "record_extra_key", "record_null_classification", "record_list_phase", "record_missing_ledger", "strict_bool_integer", "strict_integer_float", "inventory_target_count_tamper", "inventory_wave_count_tamper", "inventory_bool_integer", "binding_state_promotion", "binding_forbidden_clearance", "binding_replacement_promotion", "research_union_tamper")
+EXPECTED_NEGATIVE_CASES = ("target_omission", "target_duplicate", "source_sha_tamper", "source_anchor_tamper", "empty_source_reclassified", "phase_admission", "implementation_promotion", "history_digest_tamper", "boundary_digest_tamper", "wave_edge_injection", "authority_promotion", "overlap_flag_tamper", "input_omission", "input_stale", "input_snapshot_digest_tamper", "binding_omission", "output_digest_tamper", "independent_audit_digest_tamper", "independent_audit_schema_revision_type", "independent_audit_static_content_review_tamper", "audit_record_asset_id_list", "audit_l1_documents_null", "audit_boundary_rows_list", "record_schema_revision_type", "record_product_basis_null", "record_product_basis_item_null", "record_failure_consumer_static_null", "record_boundary_product_rows_list", "record_boundary_l1_null", "record_approval_rows_null", "base_pin_tamper", "archive_symlink_mode", "archive_manifest_mismatch", "malformed_json", "duplicate_json_key", "history_disposition_promotion", "bootstrap_candidate_tamper", "phase_status_promotion", "human_judgment_clearance", "record_extra_key", "record_null_classification", "record_list_phase", "record_missing_ledger", "strict_bool_integer", "strict_integer_float", "inventory_target_count_tamper", "inventory_wave_count_tamper", "inventory_bool_integer", "binding_state_promotion", "binding_forbidden_clearance", "binding_replacement_promotion", "research_union_tamper")
 
 
 def fail(code: str, message: str) -> None:
@@ -425,6 +425,22 @@ def verify() -> None:
     require_object(audit.get("four_product_current_main_evidence"), ("product_boundary", "approval_decision", "l1_documents"), "E_INDEPENDENT_AUDIT", "audit.four_product_current_main_evidence")
     require_object(audit["four_product_current_main_evidence"].get("product_boundary"), ("revision", "path", "sha256", "rows"), "E_INDEPENDENT_AUDIT", "audit.product_boundary")
     require_object(audit["four_product_current_main_evidence"].get("approval_decision"), ("revision", "path", "sha256", "rows", "scope_limit"), "E_INDEPENDENT_AUDIT", "audit.approval_decision")
+    audit_products = audit["four_product_current_main_evidence"]
+    for label, row_map in (("audit.product_boundary.rows", audit_products["product_boundary"].get("rows")), ("audit.approval_decision.rows", audit_products["approval_decision"].get("rows")), ("audit.l1_documents", audit_products.get("l1_documents"))):
+        if not isinstance(row_map, dict) or set(row_map) != set(PRODUCTS):
+            fail("E_INDEPENDENT_AUDIT", f"{label}: exact four-product object required")
+        for product, row in row_map.items():
+            if not isinstance(row, dict):
+                fail("E_INDEPENDENT_AUDIT", f"{label}.{product}: object required")
+    expected_static_content_review = {
+        "kimi_review_lane_admission": "Two dated lanes contain approve/quota-switch/schema-drift/seeded-blocker/tool-request receipts and mutation cases for high-risk/tool activity/head binding/stale receipt/closure drift. These are historical evidence fixtures, not current runtime or acceptance proof.",
+        "kimi_s4_bench": "Prompt inputs, runner source, generated code/test candidates, blind-judge verdict, summaries, and captured outputs; four stderr captures are empty. The runner source can invoke an external model and execute generated code, and was read as text only.",
+        "kimi_smoke_rerun": "Prompt fixtures, runner source, historical echo/codegen/scope/ACP CLI output and summary; one stderr capture is empty. The runner source was read as text only.",
+        "category_limit": "The path-group counts support research-candidate grouping only. They do not establish per-asset product ownership, phase admission, implementation, acceptance, or successor.",
+        "historical_claim_limit": "CLI outputs and summaries remain historical source content; this audit performed no old-runtime, test, CI, workflow, hook, adapter, or runner execution.",
+    }
+    if not same_typed_value(audit.get("schema_revision"), 1) or not same_typed_value(audit.get("static_content_review"), expected_static_content_review):
+        fail("E_INDEPENDENT_AUDIT", "audit schema revision or static content review")
     if not same_typed_value(audit.get("derivation"), {"target_scope_source": DISPOSITION, "generated_classification_read": False, "generator_or_validator_imported": False, "archive_access": "fixed BASE Git objects only; no archive path execution", "source_sha_rule": "Git object bytes = disposition source_sha256 = MANIFEST.sha256 entry"}):
         fail("E_INDEPENDENT_AUDIT", "audit derivation")
     if not same_typed_value(audit.get("authority_boundary"), {"authority_effect": "none", "formal_asset_classification_updated": False, "formal_product_authority": None, "formal_implementation_status": "unknown", "phase_updated": False, "successor_assignment": None, "new_build_allowed": False}):
@@ -436,6 +452,8 @@ def verify() -> None:
     audit_rows = audit.get("records", [])
     if not isinstance(audit_rows, list) or any(not isinstance(row, dict) for row in audit_rows):
         fail("E_INDEPENDENT_AUDIT", "audit records must be an object array")
+    if any(not isinstance(row.get("asset_id"), str) for row in audit_rows) or len({row["asset_id"] for row in audit_rows}) != len(audit_rows):
+        fail("E_INDEPENDENT_AUDIT", "audit record asset_id values must be unique strings")
     audit_by_id = {row.get("asset_id"): row for row in audit_rows}
     if (
         audit.get("base_revision") != BASE_REVISION
@@ -549,8 +567,18 @@ def verify() -> None:
         require_object(record.get("wave_evidence"), ("edge_count", "matching_inputs", "scanned_input_count", "status"), "E_RECORD", "wave_evidence")
         asset_id = record.get("asset_id")
         asset = targets.get(asset_id)
-        if asset is None or record.get("binding_id") != BINDING_ID or record.get("schema_revision") != 1:
+        if asset is None or record.get("binding_id") != BINDING_ID:
             fail("E_TARGET_SET", str(asset_id))
+        if not same_typed_value(record.get("schema_revision"), 1):
+            fail("E_RECORD", f"schema_revision {asset_id}")
+        classification = record["classification"]
+        if (not isinstance(classification.get("category"), str)
+                or not isinstance(classification.get("candidate_products"), list)
+                or any(not isinstance(product, str) for product in classification["candidate_products"])
+                or not isinstance(classification.get("product_basis"), list)
+                or any(not isinstance(link, dict) for link in classification["product_basis"])
+                or not isinstance(classification.get("counterevidence"), list)):
+            fail("E_RECORD", f"classification container types {asset_id}")
         verify_source(record, asset)
         category = record["classification"]["category"]
         expected_categories[category] += 1
@@ -569,6 +597,13 @@ def verify() -> None:
         require_object(boundary, ("product_boundary", "l1", "approval"), "E_BOUNDARY_ANCHOR", f"boundary {asset_id}")
         require_object(boundary.get("product_boundary"), ("path", "blob", "sha256", "read_mode", "product_rows"), "E_BOUNDARY_ANCHOR", f"product boundary {asset_id}")
         require_object(boundary.get("approval"), ("path", "blob", "sha256", "rows"), "E_BOUNDARY_ANCHOR", f"approval boundary {asset_id}")
+        if (not isinstance(boundary["product_boundary"].get("product_rows"), dict)
+                or set(boundary["product_boundary"]["product_rows"]) != set(PRODUCTS)
+                or not isinstance(boundary.get("l1"), dict)
+                or set(boundary["l1"]) != set(PRODUCTS)
+                or not isinstance(boundary["approval"].get("rows"), dict)
+                or set(boundary["approval"]["rows"]) != set(PRODUCTS)):
+            fail("E_BOUNDARY_ANCHOR", f"boundary product row containers {asset_id}")
         if boundary.get("product_boundary", {}).get("path") != BOUNDARY or boundary.get("product_boundary", {}).get("blob") != git_blob(BASE_REVISION, BOUNDARY) or boundary.get("product_boundary", {}).get("sha256") != tagged(git_bytes(BASE_REVISION, BOUNDARY)) or boundary.get("product_boundary", {}).get("read_mode") != "git_object_static_read_only":
             fail("E_BOUNDARY_ANCHOR", asset_id)
         for p in PRODUCTS:
@@ -602,6 +637,10 @@ def verify() -> None:
             fail("E_WAVE", asset_id)
         expected_failure = static_ref(BASE_REVISION, FAILURE); expected_consumer = static_ref(BASE_REVISION, CONSUMER)
         history = record.get("legacy_history_failure_consumer", {})
+        static_failure_consumer = history.get("failure_consumer_static")
+        if not isinstance(static_failure_consumer, dict):
+            fail("E_RECORD", f"failure_consumer_static must be an object {asset_id}")
+        require_object(static_failure_consumer, ("failure", "consumer"), "E_RECORD", f"failure_consumer_static {asset_id}")
         if history.get("failure_consumer_static", {}).get("failure") != expected_failure or history.get("failure_consumer_static", {}).get("consumer") != expected_consumer or history.get("consumer_closure_status") != "asset-level consumer closure pending":
             fail("E_HISTORY_CONSUMER", asset_id)
         expected_decisions = [{"path": DECISIONS, "line": n, "row_sha256": row_digest(row), "decision_id": row.get("decision_id"), "disposition": row.get("disposition")} for n, row in decisions if row.get("asset_id") == asset_id]
@@ -715,11 +754,11 @@ def verify() -> None:
         "schema_revision": 1, "id": BINDING_ID, "kind": "scaffold", "title": "固定BASE docs/research/assets/** 57件の四製品責務候補研究", "product": "HELIX-OS", "owner_candidate": "四製品product-boundary研究（正式owner未解決）", "state": "registered",
         "reason": "旧research asset 57件をGit object静的readで機械抽出excerpt、四製品L1/boundary、phase、実装状態、failure、consumerを分離研究する。正式分類、authority、successor、buildを生成しない。",
         "upstream": expected_binding_upstream, "role": "legacy research assets static product-boundary research",
-        "obligations": ["固定BASE source blob／MANIFEST／ledger digestを照合する", "独立auditでsource／phase／decision／failure／consumer／waveと四製品L1をjoinする", "四製品候補とformal authorityを分離する", "implementation／phase／consumer closureを未確定として保持する", "mainとopen PRのresearch unionをID／source path／source SHA256で検査する"],
+        "obligations": ["固定BASE source blob／MANIFEST／ledger digestを照合する", "独立auditでsource／phase／decision／failure／consumer／waveと四製品L1をjoinする", "四製品候補とformal authorityを分離する", "implementation／phase／consumer closureを未確定として保持する", "current mainと固定#2097 historical HEAD比較点のresearch unionをID／source path／source SHA256で検査する"],
         "connections": {"boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority", "consumers": ["四製品product-boundary reviewer", "phase and implementation evidence reviewer", "root next asset batch"], "dependencies": ["fixed BASE disposition and phase ledgers", "fixed BASE archive MANIFEST", "current main research union including merged #2090 and #2094", "fixed historical #2097 HEAD research snapshot"]},
         "operations": {"allowed": ["read fixed BASE and pinned PR Git objects statically", "write research scaffold and registered Binding", "run deterministic generator/validator/selfcheck/scfctl"], "forbidden": ["execute old-generation archive source/runtime/test/hook/adapter/CI", "旧archiveは実行しない", "promote formal product/phase/implementation/consumer authority", "merge/close/deploy"]},
         "artifacts": expected_inventory_values["artifacts"],
-        "verification": {"evidence_kind": "scaffold", "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"], "oracles": ["validator independently derives the fixed BASE target set and does not import generator output as an oracle", "independent-source-audit.py independently joins all 57 source blobs, disposition, phase, decision/read-after, wave, failure/consumer, and four current-main L1 records", "validator compares source blob/type/mode/bytes/SHA/MANIFEST/ledger and four product boundary/L1 receipts", "validator checks current main research union including merged #2090/#2094 and fixed historical #2097 HEAD snapshot with target ID/path/SHA and pairwise new-union overlaps", "selfcheck executes exact negative cases and expected error codes", "scfctl validate/stale/residuals and git diff --check"], "negative_cases": ["record/inventory/Binding exact shape and history/bootstrap/phase/human judgment tamper", "strict bool/int/float types; null/list/missing fail-close", "binding state/operations/replacement authority promotion", "declared target/wave count and real overlap flag tamper", "source and anchor digest tamper", "phase or implementation promotion", "input/output/audit digest tamper", "archive mode/MANIFEST and malformed/duplicate-key JSON"]},
+        "verification": {"evidence_kind": "scaffold", "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"], "oracles": ["validator independently derives the fixed BASE target set and does not import generator output as an oracle", "independent-source-audit.py independently joins all 57 source blobs, disposition, phase, decision/read-after, wave, failure/consumer, and four current-main L1 records", "validator compares source blob/type/mode/bytes/SHA/MANIFEST/ledger and four product boundary/L1 receipts", "validator checks current main research union including merged #2090/#2094 and fixed historical #2097 HEAD snapshot with target ID/path/SHA and pairwise new-union overlaps", "selfcheck executes exact negative cases and expected error codes", "scfctl validate/stale/residuals and git diff --check"], "negative_cases": ["record/inventory/Binding exact shape and history/bootstrap/phase/human judgment tamper", "strict bool/int/float types; null/list/missing fail-close, including schema_revision", "container null/list/scalar fail-close for records and audit evidence", "binding state/operations/replacement authority promotion", "declared target/wave count and real overlap flag tamper", "source and anchor digest tamper", "phase or implementation promotion", "E_BASE_PIN, E_INPUT_STALE, input/output/audit digest mismatch", "archive mode/MANIFEST and malformed/duplicate-key JSON"]},
         "replacement": {"role_target": None, "formal_artifacts": [], "issue": 0, "status": "pending"}, "created": "2026-09-23", "updated": "2026-09-23",
     }
     if not same_typed_value(binding, expected_binding):

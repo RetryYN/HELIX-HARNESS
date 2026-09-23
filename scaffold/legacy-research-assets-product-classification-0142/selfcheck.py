@@ -45,12 +45,15 @@ def setup_copy():
 
 def trial(name, mutate, expected):
     root, target = setup_copy()
-    old = (validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.AUDIT)
+    old = (validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.AUDIT, validator.SNAPSHOT)
     validator.BUNDLE = target
     validator.LEDGER = target / "classification-research.jsonl"
     validator.INVENTORY = target / "inventory.json"
     validator.BINDING = root / "scaffold/bindings/SCF-B-0142.json"
     validator.AUDIT = target / "independent-source-audit.json"
+    validator.SNAPSHOT = target / "research-union-snapshot.json"
+    validator.research_sets.cache_clear()
+    validator.expected_inputs.cache_clear()
     try:
         mutate(target)
         validator.verify()
@@ -61,18 +64,23 @@ def trial(name, mutate, expected):
     else:
         raise AssertionError(f"{name}: mutation unexpectedly passed")
     finally:
-        validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.AUDIT = old
+        validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.AUDIT, validator.SNAPSHOT = old
+        validator.research_sets.cache_clear()
+        validator.expected_inputs.cache_clear()
         shutil.rmtree(root, ignore_errors=True)
 
 
 def direct_trial(name, mutate, expected):
     root, target = setup_copy()
-    old = (validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.AUDIT, validator.archive_tree, validator.manifest_sha)
+    old = (validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.AUDIT, validator.SNAPSHOT, validator.archive_tree, validator.manifest_sha)
     validator.BUNDLE = target
     validator.LEDGER = target / "classification-research.jsonl"
     validator.INVENTORY = target / "inventory.json"
     validator.BINDING = root / "scaffold/bindings/SCF-B-0142.json"
     validator.AUDIT = target / "independent-source-audit.json"
+    validator.SNAPSHOT = target / "research-union-snapshot.json"
+    validator.research_sets.cache_clear()
+    validator.expected_inputs.cache_clear()
     try:
         mutate()
         validator.verify()
@@ -83,7 +91,9 @@ def direct_trial(name, mutate, expected):
     else:
         raise AssertionError(f"{name}: mutation unexpectedly passed")
     finally:
-        validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.AUDIT, validator.archive_tree, validator.manifest_sha = old
+        validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.AUDIT, validator.SNAPSHOT, validator.archive_tree, validator.manifest_sha = old
+        validator.research_sets.cache_clear()
+        validator.expected_inputs.cache_clear()
         shutil.rmtree(root, ignore_errors=True)
 
 
@@ -114,6 +124,15 @@ def binding(fn):
     return mutate
 
 
+def audit(fn):
+    def mutate(target):
+        path = target / "independent-source-audit.json"
+        value = load_json(path)
+        fn(value)
+        dump_json(path, value)
+    return mutate
+
+
 trial("target_omission", records(lambda value: value.pop()), "E_TARGET_SET")
 trial("target_duplicate", records(lambda value: value.__setitem__(1, copy.deepcopy(value[0]))), "E_TARGET_SET")
 trial("source_sha_tamper", records(lambda value: value[0]["source_exact"].__setitem__("sha256", "sha256:" + "0" * 64)), "E_SOURCE")
@@ -128,9 +147,15 @@ trial("authority_promotion", records(lambda value: value[0].__setitem__("authori
 trial("overlap_flag_tamper", inventory(lambda value: value["overlap_status"].__setitem__("all_asset_id_path_sha_identity_counts_zero", False)), "E_OVERLAP")
 trial("input_omission", inventory(lambda value: value["input_digests"].pop()), "E_INPUT_DIGEST")
 trial("input_stale", inventory(lambda value: value["input_digests"][0].__setitem__("sha256", "sha256:" + "0" * 64)), "E_INPUT_DIGEST")
+trial("input_snapshot_digest_tamper", lambda target: (target.joinpath("research-union-snapshot.json").write_bytes((target / "research-union-snapshot.json").read_bytes() + b" ")), "E_INPUT_STALE")
 trial("binding_omission", binding(lambda value: value["upstream"].pop()), "E_BINDING_CLOSURE")
 trial("output_digest_tamper", inventory(lambda value: value.__setitem__("output_sha256", "sha256:" + "0" * 64)), "E_OUTPUT_DIGEST")
-trial("independent_audit_digest_tamper", lambda target: (target / "independent-source-audit.json").write_text("{}\n"), "E_INDEPENDENT_AUDIT")
+trial("independent_audit_digest_tamper", lambda target: (target.joinpath("independent-source-audit.json").write_bytes((target / "independent-source-audit.json").read_bytes() + b" ")), "E_INDEPENDENT_AUDIT")
+trial("independent_audit_schema_revision_type", audit(lambda value: value.__setitem__("schema_revision", True)), "E_INDEPENDENT_AUDIT")
+trial("independent_audit_static_content_review_tamper", audit(lambda value: value["static_content_review"].__setitem__("category_limit", "path groups establish product ownership")), "E_INDEPENDENT_AUDIT")
+trial("audit_record_asset_id_list", audit(lambda value: value["records"][0].__setitem__("asset_id", ["bad"])), "E_INDEPENDENT_AUDIT")
+trial("audit_l1_documents_null", audit(lambda value: value["four_product_current_main_evidence"].__setitem__("l1_documents", None)), "E_INDEPENDENT_AUDIT")
+trial("audit_boundary_rows_list", audit(lambda value: value["four_product_current_main_evidence"]["product_boundary"].__setitem__("rows", [])), "E_INDEPENDENT_AUDIT")
 direct_trial("archive_symlink_mode", lambda: setattr(validator, "archive_tree", lambda path: ("120000", "blob", "0" * 40)), "E_ARCHIVE_STATIC")
 direct_trial("archive_manifest_mismatch", lambda: setattr(validator, "manifest_sha", lambda path: "sha256:" + "0" * 64), "E_INDEPENDENT_AUDIT")
 trial("malformed_json", lambda target: (target / "classification-research.jsonl").write_text("{\n"), "E_JSON")
@@ -143,16 +168,24 @@ trial("record_extra_key", records(lambda value: value[0].__setitem__("formal_pro
 trial("record_null_classification", records(lambda value: value[0].__setitem__("classification", None)), "E_RECORD")
 trial("record_list_phase", records(lambda value: value[0].__setitem__("phase_evidence", [])), "E_RECORD")
 trial("record_missing_ledger", records(lambda value: value[0].pop("asset_ledger")), "E_RECORD")
+trial("record_schema_revision_type", records(lambda value: value[0].__setitem__("schema_revision", 1.0)), "E_RECORD")
+trial("record_product_basis_null", records(lambda value: value[0]["classification"].__setitem__("product_basis", None)), "E_RECORD")
+trial("record_product_basis_item_null", records(lambda value: value[0]["classification"]["product_basis"].append(None)), "E_RECORD")
+trial("record_failure_consumer_static_null", records(lambda value: value[0]["legacy_history_failure_consumer"].__setitem__("failure_consumer_static", None)), "E_RECORD")
+trial("record_boundary_product_rows_list", records(lambda value: value[0]["boundary_evidence"]["product_boundary"].__setitem__("product_rows", [])), "E_BOUNDARY_ANCHOR")
+trial("record_boundary_l1_null", records(lambda value: value[0]["boundary_evidence"].__setitem__("l1", None)), "E_BOUNDARY_ANCHOR")
+trial("record_approval_rows_null", records(lambda value: value[0]["boundary_evidence"]["approval"].__setitem__("rows", None)), "E_BOUNDARY_ANCHOR")
 trial("strict_bool_integer", records(lambda value: value[0]["source_exact"].__setitem__("bytes", False)), "E_SOURCE")
 trial("strict_integer_float", inventory(lambda value: value["classification_counts"].__setitem__("direct_product_basis", 35.0)), "E_CATEGORY_PARTITION")
 trial("inventory_target_count_tamper", inventory(lambda value: value["research_scope"].__setitem__("target_id_count", 58)), "E_TARGET_SET")
 trial("inventory_wave_count_tamper", inventory(lambda value: value["wave_evidence"].__setitem__("target_edge_count", 9)), "E_INVENTORY")
 trial("inventory_bool_integer", inventory(lambda value: value["authority_boundary"].__setitem__("phase_updated", 0)), "E_INVENTORY")
+trial("base_pin_tamper", inventory(lambda value: value.__setitem__("base_revision", "0" * 40)), "E_BASE_PIN")
 trial("binding_state_promotion", binding(lambda value: value.__setitem__("state", "formal")), "E_BINDING_CLOSURE")
 trial("binding_forbidden_clearance", binding(lambda value: value["operations"].__setitem__("forbidden", [])), "E_BINDING_CLOSURE")
 trial("binding_replacement_promotion", binding(lambda value: value["replacement"].__setitem__("status", "retired")), "E_BINDING_CLOSURE")
 trial("research_union_tamper", inventory(lambda value: value["research_union"].__setitem__("projected_union_count", 999)), "E_RESEARCH_UNION")
 
-if tuple(EXECUTED_CASES) != tuple(validator.EXPECTED_NEGATIVE_CASES):
-    raise AssertionError(f"negative case order/set mismatch: executed={EXECUTED_CASES} expected={validator.EXPECTED_NEGATIVE_CASES}")
+if len(EXECUTED_CASES) != len(validator.EXPECTED_NEGATIVE_CASES) or set(EXECUTED_CASES) != set(validator.EXPECTED_NEGATIVE_CASES):
+    raise AssertionError(f"negative case set mismatch: executed={EXECUTED_CASES} expected={validator.EXPECTED_NEGATIVE_CASES}")
 print(f"SCF-B-0142 selfcheck PASS negative_cases={len(EXECUTED_CASES)}")

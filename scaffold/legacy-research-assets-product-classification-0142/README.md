@@ -12,7 +12,7 @@ dispositionは57件すべて `unresolved`、product targetも `unresolved`、imp
 
 `research-union-snapshot.json` はmainと固定比較HEAD上の全 `classification-research.jsonl` についてrevision、path、Git blob、byte数、SHA-256、identity tupleをvendored snapshotとして固定します。Git objectが利用できるときはsnapshotと実byte/blobを比較し、一致しなければstaleとして停止します。Git objectが利用できないときはdigestで固定したidentity tupleへfail-closeで切り替えます。無効・欠落・不一致はtracebackでなく `E_INPUT_STALE` になります。
 
-`generate.py` は固定BASEと固定比較点から `classification-research.jsonl`、`inventory.json`、Binding、snapshotを生成します。`validate.py` はrecord／inventory／Binding全体のkeysetと型込み期待値比較、bootstrapとの候補整合、source／archive／MANIFEST／ledger digest、四製品boundary/L1、phase、implementation、history/failure/consumer、wave edge、main／#2097 union overlap、input digest、audit digestをfail-closeで検査します。`selfcheck.py` は38件の負例をvalidatorへ実際に通します。
+`generate.py` は固定BASEと固定比較点から `classification-research.jsonl`、`inventory.json`、Binding、snapshotを生成します。`validate.py` はrecord／inventory／Binding全体のkeysetと型込み期待値比較、bootstrapとの候補整合、source／archive／MANIFEST／ledger digest、四製品boundary/L1、phase、implementation、history/failure/consumer、wave edge、main／固定#2097比較点のunion overlap、input digest、audit digestをfail-closeで検査します。auditのschema revision・static content reviewも期待値と型込みで照合し、崩れたnull/list/scalar containerは対応するfail-close codeで拒否します。`selfcheck.py` は52件の負例をvalidatorへ実際に通し、`E_BASE_PIN`、vendored snapshot由来の`E_INPUT_STALE`、構造を維持したaudit digest mismatchも確認します。
 
 ## 検証
 
