@@ -37,7 +37,7 @@
     "asset-level execution／failure／result observationとunit／requirement／acceptance binding欠落を別fieldで保持する",
     "candidate poolをdirect semantic linkへ昇格せず、旧実装・縮退・未実装・current実装・acceptanceはunknownを維持する",
     "固定BASE入力digest、BASE祖先性、ledger nested record、架空unit link／acceptance verdict、status promotionをvalidator／selfcheckでfail-closeする",
-    "text receiptの終了コードらしいmarkerを全出現検出し、各markerの値領域全体を符号付き十進整数としてstrict parseする。次の認識済みmarkerが続く場合に限り、直前の`,`／`;`／`|`をmarker間区切りとして除く。余剰tokenは無視しない。既存ISO timestamp annotationを除き、parse不能／ambiguous markerはfailure markerと分けてexecution_observation.fields.unparseable_exit_observationsとreasonへ保持し、verdictをunknownにする。複数のvalid exit codeは全件保持し、1件でもnonzeroならverdictを出さない。JSONのsuite/test todo countは未完了としてpass_with_pendingへ含める",
+    "text receiptでvitest exit、exit／exit code／exit_code、exited with code／exited with status、returncode／return_code、rcのmarker語彙を検出し、各値領域を符号付き十進整数としてstrict parseする。次の認識済みmarkerが続く場合だけ直前の`,`／`;`／`|`をmarker間区切りとして除く。余剰tokenは無視しない。既存ISO timestamp annotationは維持する。digit-adjacentやslash境界などparse不能／ambiguous markerはunparseable observationとreasonに残し、verdictをunknownにする。parse不能値に先頭nonzero decimalがあれば曖昧なasset-level failure observationへ記録する。正常な複数exit codeは全件保持し、1件でもnonzeroならverdictを出さない。unit-level verdict／authorityへ昇格しない。JSON todo countは未完了としてpass_with_pendingへ含める",
     "旧世代runtime／test／CI／workflow／hook／adapter／sourceを実行しない"
   ],
   "operations": {
@@ -418,11 +418,12 @@
       "ledger regex exact 28 asset set in fixed-base order",
       "218 units／153 source IDs／598 Wave edges／355 Wave assets／4020 ledger rows",
       "source archive Git object blob／bytes／SHA／anchor rederivation",
-      "common.py and validator implement the same explicit source-observation specification; equality detects drift and does not claim semantic independence",
+      "common.py and validator implement the same explicit source-observation specification independently; equality detects drift and does not claim semantic independence",
+      "validator recursive exact-type comparison for inventory and evidence values; bool/int and float/int equality coercion is rejected",
       "generated-output equality against validator expected records",
       "candidate pool versus direct crosswalk link separation",
-      "selfcheck case manifest: 42 observation cases O01–O42 and 32 negative cases N01–N32; labels and expected error codes are listed below",
-      "observation cases: O01 json success0 fail2; O02 json contradictory success/failure; O03 json missing test counts; O04 json missing suite counts; O05 json inconsistent suite counts; O06 json zero total; O07 json pending; O08 text zero passed failed2; O09 text contradictory pass/failure; O10 text pass exit2; O11 text normal pass; O12 text zero failed is not failure; O13 text pass missing exit; O14 text negative exit; O15 text hexadecimal exit retained as unparseable; O16 text Exit code zero; O17 text exited with code zero; O18 text zero errors; O19 text error word boundary; O20 text prose is not a summary; O21 identity only; O22 text bare FAIL marker; O23 text bare failed marker; O24 text segmentation fault marker; O25 text mixed FAIL and zero errors; O26 text npm ERR marker; O27 text path error word with pass and exit zero; O28 text hyphen compound words with pass and exit zero; O29 text same-line mixed exit=0 and exit=2 preserves both codes and rejects pass; O30 json consistent suite/test todo counts produce pass_with_pending; O31 same-line valid zero plus malformed hex exit remains unknown; O32 standalone malformed hex exit remains unknown; O33 exit=N/A remains unknown; O34 empty exit remains unknown; O35 partially invalid multiple exit markers remain unknown and separately recorded; O36 comma extra token after single exit marker remains unknown; O37 pipe N/A after single exit marker remains unknown; O38 semicolon N/A after single exit marker remains unknown; O39 comma-delimited valid markers are independently parsed; O40 pipe-delimited valid markers are independently parsed; O41 valid timestamp annotation after decimal exit remains parsed; O42 marker with unrecognized / boundary keeps the first value unparseable",
+      "selfcheck case manifest: 50 observation cases O01–O50 and 36 negative cases N01–N36; labels and expected error codes are listed below",
+      "observation cases: O01 json success0 fail2; O02 json contradictory success/failure; O03 json missing test counts; O04 json missing suite counts; O05 json inconsistent suite counts; O06 json zero total; O07 json pending; O08 text zero passed failed2; O09 text contradictory pass/failure; O10 text pass exit2; O11 text normal pass; O12 text zero failed is not failure; O13 text pass missing exit; O14 text negative exit; O15 text hexadecimal exit retained as unparseable; O16 text Exit code zero; O17 text exited with code zero; O18 text zero errors; O19 text error word boundary; O20 text prose is not a summary; O21 identity only; O22 text bare FAIL marker; O23 text bare failed marker; O24 text segmentation fault marker; O25 text mixed FAIL and zero errors; O26 text npm ERR marker; O27 text path error word with pass and exit zero; O28 text hyphen compound words with pass and exit zero; O29 text same-line mixed exit=0 and exit=2 preserves both codes and rejects pass; O30 json consistent todo counts produce pass_with_pending; O31 same-line valid zero plus malformed hex exit remains unknown; O32 standalone malformed hex exit remains unknown; O33 exit=N/A remains unknown; O34 empty exit remains unknown; O35 partially invalid multiple exit markers remain unknown and separately recorded; O36 comma extra token after single exit marker remains unknown; O37 pipe N/A after single exit marker remains unknown; O38 semicolon N/A after single exit marker remains unknown; O39 comma-delimited valid markers are independently parsed; O40 pipe-delimited valid markers are independently parsed; O41 valid timestamp annotation after decimal exit remains parsed; O42 marker with unrecognized / boundary keeps markers unparseable; O43 process-finished exit code 1. records nonzero prefix despite punctuation and no verdict; O44 semicolon-suffixed exit code 1. records nonzero prefix and no verdict; O45 exit_code=1 blocks a pass with vitest exit=0; O46 rc=1 blocks a pass with vitest exit=0; O47 returncode=1／return_code=1 block a pass with vitest exit=0; O48 exited with status 1 blocks a pass with vitest exit=0; O49 digit-adjacent 0exit code 1 is unparseable and failure-observed; O50 path aliases exit_code／rc／returncode do not create markers, including at the final path component",
       "validator／selfcheck／scfctl／git diff --check"
     ],
     "negative_cases": [
@@ -457,7 +458,11 @@
       "N29 unexpected history binding → E_HISTORY_BINDING",
       "N30 bundle kind tamper → E_SCHEMA",
       "N31 expected asset count tamper → E_SCOPE",
-      "N32 inventory top-level key tamper → E_SCHEMA"
+      "N32 inventory top-level key tamper → E_SCHEMA",
+      "N33 bool schema revision is not integer revision 1 → E_SCHEMA",
+      "N34 float expected asset count is not integer 28 → E_SCOPE",
+      "N35 bool ledger revision is not integer revision → E_LEDGER_RECORD",
+      "N36 float wave edge count is not integer zero → E_HISTORY_OR_COUNTER"
     ]
   }
 }

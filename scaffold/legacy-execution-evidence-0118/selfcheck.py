@@ -113,6 +113,8 @@ def expect_observation(
     reason: str,
     failure_status: str,
     expected_exit_markers: list[tuple[str, str, str, int | None]] | None = None,
+    expected_leading_decimal_candidates: list[str | None] | None = None,
+    expected_failure_lines: list[str] | None = None,
 ) -> None:
     global OBSERVATION_CASES_RUN
     validator = load_module(VALIDATOR, f"scf_b_0118_oracle_{label}")
@@ -124,6 +126,8 @@ def expect_observation(
         execution, failure, result = observed
         if execution["unit_level_verdict"] is not None or result["verdict"] != verdict or result["reason"] != reason or failure["status"] != failure_status:
             raise AssertionError(f"{label}/{source}: unexpected observation {observed!r}")
+        if expected_failure_lines is not None and failure["marker_lines"] != expected_failure_lines:
+            raise AssertionError(f"{label}/{source}: failure marker lines drifted: {failure['marker_lines']!r}")
         if expected_exit_markers is not None:
             actual_exit_markers = [
                 (item["marker"], item["value"], item["status"], item.get("code"))
@@ -142,6 +146,10 @@ def expect_observation(
             actual_codes = [item["code"] for item in execution["fields"].get("exit_observations", [])]
             if actual_codes != expected_codes:
                 raise AssertionError(f"{label}/{source}: parsed exit observations drifted: {actual_codes!r}")
+            if expected_leading_decimal_candidates is not None:
+                actual_candidates = [item.get("leading_decimal_candidate") for item in execution["fields"].get("exit_marker_observations", [])]
+                if actual_candidates != expected_leading_decimal_candidates:
+                    raise AssertionError(f"{label}/{source}: leading decimal candidates drifted: {actual_candidates!r}")
     if oracle != generated:
         raise AssertionError(f"{label}: two implementations of the same observation specification diverged")
     OBSERVATION_CASES_RUN += 1
@@ -292,7 +300,77 @@ def observation_cases() -> None:
         None,
         "unparseable exit marker prevents a pass verdict",
         "not_observed_in_asset",
-        [("exit", "0/", "unparseable", None), ("exit code", "0", "parsed", 0)],
+        [("exit", "0/", "unparseable", None), ("exit code", "0", "unparseable", None)],
+    )
+    expect_observation(
+        "O43 text process-finished nonzero marker with punctuation",
+        b"Test Files 1 passed (1)\nProcess finished with exit code 1.\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "observed_asset_level",
+        [("exit code", "1.", "unparseable", None)],
+        ["1"],
+        ["Process finished with exit code 1."],
+    )
+    expect_observation(
+        "O44 text semicolon-suffixed nonzero exit code",
+        b"Test Files 1 passed (1)\nexit code 1;\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "observed_asset_level",
+        [("exit code", "1;", "unparseable", None)],
+        ["1"],
+        ["exit code 1;"],
+    )
+    expect_observation(
+        "O45 text mixed vitest and exit_code markers",
+        b"Tests 1 passed (1)\nvitest exit=0\nexit_code=1\n",
+        None,
+        "contradictory pass summary and nonzero exit code prevent a pass verdict",
+        "observed_asset_level",
+        [("vitest exit", "0", "parsed", 0), ("exit_code", "1", "parsed", 1)],
+    )
+    expect_observation(
+        "O46 text rc alias blocks mixed zero exit",
+        b"Tests 1 passed (1)\nvitest exit=0\nrc=1\n",
+        None,
+        "contradictory pass summary and nonzero exit code prevent a pass verdict",
+        "observed_asset_level",
+        [("vitest exit", "0", "parsed", 0), ("rc", "1", "parsed", 1)],
+    )
+    expect_observation(
+        "O47 text returncode aliases block mixed zero exit",
+        b"Tests 1 passed (1)\nvitest exit=0\nreturncode=1\nreturn_code=1\n",
+        None,
+        "contradictory pass summary and nonzero exit code prevent a pass verdict",
+        "observed_asset_level",
+        [("vitest exit", "0", "parsed", 0), ("returncode", "1", "parsed", 1), ("return_code", "1", "parsed", 1)],
+    )
+    expect_observation(
+        "O48 text exited with status alias blocks mixed zero exit",
+        b"Tests 1 passed (1)\nvitest exit=0\nProcess exited with status 1\n",
+        None,
+        "contradictory pass summary and nonzero exit code prevent a pass verdict",
+        "observed_asset_level",
+        [("vitest exit", "0", "parsed", 0), ("exited with status", "1", "parsed", 1)],
+    )
+    expect_observation(
+        "O49 text digit-adjacent exit marker is unparseable and failure-observed",
+        b"Tests 1 passed (1)\n0exit code 1\n",
+        None,
+        "unparseable exit marker prevents a pass verdict",
+        "observed_asset_level",
+        [("exit code", "1", "unparseable", None)],
+        ["1"],
+        ["0exit code 1"],
+    )
+    expect_observation(
+        "O50 text path aliases do not create exit markers",
+        b"Tests 1 passed (1)\nsrc/exit_code.test.ts src/rc.test.ts src/returncode.test.ts\nsrc/exit_code\nsrc/rc\nsrc/returncode\nvitest exit=0\n",
+        "pass_observed",
+        "text pass summary has no failure marker or nonzero exit, and remains asset-level only",
+        "not_observed_in_asset",
+        [("vitest exit", "0", "parsed", 0)],
     )
 
 
@@ -338,6 +416,10 @@ def main() -> int:
     expect("N30 bundle kind tamper", lambda inv, rows: inv.update(bundle_kind="fabricated_bundle_kind"), "E_SCHEMA")
     expect("N31 expected asset count tamper", lambda inv, rows: inv.update(expected_asset_count=27), "E_SCOPE")
     expect("N32 inventory top-level key tamper", lambda inv, rows: inv.update(fabricated_field=True), "E_SCHEMA")
+    expect("N33 bool schema revision is not integer revision 1", lambda inv, rows: inv.update(schema_revision=True), "E_SCHEMA")
+    expect("N34 float expected asset count is not integer 28", lambda inv, rows: inv.update(expected_asset_count=28.0), "E_SCOPE")
+    expect("N35 bool ledger revision is not integer revision", lambda inv, rows: rows[0]["ledger_record"].update(revision=True), "E_LEDGER_RECORD")
+    expect("N36 float wave edge count is not integer zero", lambda inv, rows: rows[0]["counter_evidence"][0].update(wave_edge_count=0.0), "E_HISTORY_OR_COUNTER")
     print(f"PASS SCF-B-0118 selfcheck: {NEGATIVE_CASES_RUN} negative cases plus {OBSERVATION_CASES_RUN} observation-state cases")
     return 0
 

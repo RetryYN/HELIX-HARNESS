@@ -108,6 +108,17 @@ def tagged(data: bytes) -> str:
     return "sha256:" + sha(data)
 
 
+def exact_equal(actual: object, expected: object) -> bool:
+    """Compare JSON-shaped values without Python's bool/int or int/float equality."""
+    if type(actual) is not type(expected):
+        return False
+    if isinstance(expected, dict):
+        return actual.keys() == expected.keys() and all(exact_equal(actual[key], value) for key, value in expected.items())
+    if isinstance(expected, list):
+        return len(actual) == len(expected) and all(exact_equal(a, b) for a, b in zip(actual, expected))
+    return actual == expected
+
+
 def canonical(value: object) -> str:
     return tagged(json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode())
 
@@ -263,8 +274,17 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
 
     pass_pattern = re.compile(r"^\s*(?:Test Files|Tests)\s+(\d+)\s+passed(?:\s+\(\d+\))?\s*$", re.IGNORECASE)
     failed_count_pattern = re.compile(r"(?<!\d)(\d+)\s+failed\b", re.IGNORECASE)
-    exit_marker_pattern = re.compile(r"\b(?P<marker>vitest\s+exit|exit(?:\s+code)?|exited\s+with\s+code)\b", re.IGNORECASE)
+    exit_marker_pattern = re.compile(
+        r"(?:(?<![\w./-])(?P<marker>vitest\s+exit|exited\s+with\s+(?:code|status)|"
+        r"exit(?:\s+code|_code)?|return_?code|rc)(?=\s*(?:[=:]|[+-]?[0-9]|N/A|N-A|$))|"
+        r"(?<=\d)(?P<adjacent_marker>vitest\s+exit|exited\s+with\s+(?:code|status)|"
+        r"exit(?:\s+code|_code)?|return_?code|rc)(?=\s*(?:[=:]|[+-]?[0-9]|N/A|N-A|$))|"
+        r"(?<=/)(?P<slash_marker>vitest\s+exit|exited\s+with\s+(?:code|status)|"
+        r"exit(?:\s+code|_code)?|return_?code|rc)(?=\s*(?:[=:]|[+-]?[0-9]|N/A|N-A)))",
+        re.IGNORECASE,
+    )
     strict_exit_value_pattern = re.compile(r"-?[0-9]+")
+    leading_signed_decimal_pattern = re.compile(r"^([+-]?[0-9]+)")
     exit_timestamp_suffix_pattern = re.compile(r"(-?[0-9]+)\s+at\s+[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z")
     zero_failure_line = re.compile(r"^\s*0\s+(?:errors?|fail(?:ed|ure)s?)\s*$", re.IGNORECASE)
     passed = [line.strip() for line in lines if pass_pattern.search(line)]
@@ -285,22 +305,28 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
             if has_next_marker and parse_value.endswith((",", ";", "|")):
                 parse_value = parse_value[:-1].rstrip()
                 value = parse_value
+            marker_name = marker_match.group("marker") or marker_match.group("adjacent_marker") or marker_match.group("slash_marker")
+            marker_boundary_ok = marker_match.group("adjacent_marker") is None and marker_match.group("slash_marker") is None
             observation = {
                 "line": line.strip(),
-                "marker": marker_match.group("marker"),
+                "marker": marker_name,
                 "value": value,
             }
+            leading_match = leading_signed_decimal_pattern.match(parse_value)
             decimal_match = strict_exit_value_pattern.fullmatch(parse_value)
             timestamp_match = exit_timestamp_suffix_pattern.fullmatch(parse_value)
-            if boundary_ok and (decimal_match or timestamp_match):
+            if marker_boundary_ok and boundary_ok and (decimal_match or timestamp_match):
                 code = int(decimal_match.group(0) if decimal_match else timestamp_match.group(1))
                 observation.update({"status": "parsed", "code": code})
             else:
+                if leading_match:
+                    observation["leading_decimal_candidate"] = leading_match.group(1)
+                    observation["leading_decimal_nonzero"] = int(leading_match.group(1)) != 0
                 observation.update({
                     "status": "unparseable",
                     "reason": (
                         "exit markers are not separated by a recognized boundary"
-                        if not boundary_ok
+                        if not marker_boundary_ok or not boundary_ok
                         else "exit value region is not a strict signed decimal integer"
                     ),
                 })
@@ -383,6 +409,9 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
     for line in nonzero:
         if line not in failure_markers:
             failure_markers.append(line)
+    for observation in unparseable_exit_observations:
+        if observation.get("leading_decimal_nonzero") and observation["line"] not in failure_markers:
+            failure_markers.append(observation["line"])
     return execution, failure(failure_markers), result
 
 def verify_base() -> None:
@@ -395,13 +424,13 @@ def verify_inventory(inventory: dict, evidence_path: Path) -> tuple[list[dict], 
     expected_paths = [*WAVE_PATHS.values(), *GLOBAL_INPUTS]
     if set(inventory) != INVENTORY_TOP_LEVEL_KEYS:
         fail("E_SCHEMA", "inventory top-level key set drift")
-    if inventory.get("schema_revision") != 1 or inventory.get("binding_id") != "SCF-B-0118":
+    if not exact_equal(inventory.get("schema_revision"), 1) or not exact_equal(inventory.get("binding_id"), "SCF-B-0118"):
         fail("E_SCHEMA", "inventory schema or binding id mismatch")
     if inventory.get("bundle_kind") != EXPECTED_BUNDLE_KIND:
         fail("E_SCHEMA", "inventory bundle_kind drift")
-    if inventory.get("expected_asset_count") != EXPECTED_ASSET_COUNT:
+    if not exact_equal(inventory.get("expected_asset_count"), EXPECTED_ASSET_COUNT):
         fail("E_SCOPE", "inventory expected_asset_count drift")
-    if inventory.get("base_revision") != BASE_REVISION or inventory.get("base_source_mode") != "all input and archive evidence bytes from fixed BASE Git objects":
+    if not exact_equal(inventory.get("base_revision"), BASE_REVISION) or not exact_equal(inventory.get("base_source_mode"), "all input and archive evidence bytes from fixed BASE Git objects"):
         fail("E_BASE_PIN", "inventory BASE pin/source mode drift")
     expected_authority = {
         "authority_effect": "none",
@@ -412,7 +441,7 @@ def verify_inventory(inventory: dict, evidence_path: Path) -> tuple[list[dict], 
         "new_build_allowed": False,
         "status_rule": "unknown_when_direct_unit_evidence_is_missing",
     }
-    if inventory.get("authority_boundary") != expected_authority:
+    if not exact_equal(inventory.get("authority_boundary"), expected_authority):
         fail("E_AUTHORITY_BOUNDARY", "authority boundary or promotion rule drift")
     actual_inputs = inventory.get("input_digests")
     if not isinstance(actual_inputs, list) or [x.get("path") for x in actual_inputs] != expected_paths or len({x.get("path") for x in actual_inputs}) != len(expected_paths):
@@ -420,7 +449,7 @@ def verify_inventory(inventory: dict, evidence_path: Path) -> tuple[list[dict], 
     for item, path in zip(actual_inputs, expected_paths):
         data = git_bytes(path)
         expected = {"path": path, "blob": git_blob(path), "bytes": len(data), "sha256": tagged(data)}
-        if item != expected:
+        if not exact_equal(item, expected):
             fail("E_INPUT_DIGEST", f"input digest mismatch {path}")
     if not evidence_path.exists() or inventory.get("output_sha256") != tagged(evidence_path.read_bytes()):
         fail("E_OUTPUT_DIGEST", "evidence output digest mismatch")
@@ -452,7 +481,7 @@ def verify_inventory(inventory: dict, evidence_path: Path) -> tuple[list[dict], 
         "legacy_asset_ledger_rows": len(disposition_rows),
         "selected_assets": len(selected),
     }
-    if inventory.get("scope") != {
+    if not exact_equal(inventory.get("scope"), {
         "product_units": 218,
         "source_ids": 153,
         "wave_files": 50,
@@ -460,9 +489,9 @@ def verify_inventory(inventory: dict, evidence_path: Path) -> tuple[list[dict], 
         "wave_unique_assets": 355,
         "legacy_asset_ledger_rows": 4020,
         "selected_assets": 28,
-    }:
+    }):
         fail("E_SCOPE", "218 unit / 153 source / 598 edge / 4020 asset scope declaration drift")
-    if inventory.get("scope") != expected_scope:
+    if not exact_equal(inventory.get("scope"), expected_scope):
         fail("E_SCOPE", f"scope does not match fixed-base decomposition/Wave/ledger derivation: {expected_scope}")
     if len(selected_ids & {row["asset_id"] for _, _, _, row in wave_rows}) != 0:
         fail("E_EXPLORATION", "a selected asset unexpectedly occurs in Wave edges")
@@ -476,7 +505,7 @@ def verify_inventory(inventory: dict, evidence_path: Path) -> tuple[list[dict], 
         "fallback": "first non-empty line, or line 1 for an empty object",
         "line_digest": "sha256 of the exact decoded line without a newline",
     }
-    if inventory.get("anchor_rule") != expected_anchor_rule:
+    if not exact_equal(inventory.get("anchor_rule"), expected_anchor_rule):
         fail("E_EXPLORATION", "source anchor rule drift")
     selection = inventory.get("selection")
     expected_selection = {
@@ -496,10 +525,10 @@ def verify_inventory(inventory: dict, evidence_path: Path) -> tuple[list[dict], 
             "examples": ["tests/*.test.ts", ".helix/evidence/review-1600/head.txt", ".helix/evidence/review-1600/biome.log", ".helix/evidence/review-1600/tsc.log"],
         },
     }
-    if selection != expected_selection:
+    if not exact_equal(selection, expected_selection):
         fail("E_EXPLORATION", "selection/search rule or exact asset set drift")
     exploration = inventory.get("exploration")
-    if exploration != {
+    if not exact_equal(exploration, {
         "search_scope": [
             "all 218 product units from fixed-base decomposition",
             "all 598 Wave1-50 semantic edges and 355 unique Wave assets",
@@ -515,7 +544,7 @@ def verify_inventory(inventory: dict, evidence_path: Path) -> tuple[list[dict], 
             "candidate_pool_membership_is_binding": False,
         },
         "prohibition": "do not promote a test pass, lint/fatal line, or receipt identity to unit implementation, degradation, unimplementation, or acceptance",
-    }:
+    }):
         fail("E_EXPLORATION", "exploration scope/counter-evidence declaration drift")
     return selected, disposition_rows, {}, {}
 
@@ -601,9 +630,9 @@ def validate(bundle: Path) -> None:
         aid = want["asset_id"]
         if set(got) != TOP_LEVEL_KEYS:
             fail("E_SCHEMA", f"top-level evidence key set drift at {aid}")
-        if got["ledger_record"] != want["ledger_record"]:
+        if not exact_equal(got["ledger_record"], want["ledger_record"]):
             fail("E_LEDGER_RECORD", f"full fixed-base ledger record mismatch at {aid}")
-        if got["source_exact"] != want["source_exact"]:
+        if not exact_equal(got["source_exact"], want["source_exact"]):
             fail("E_SOURCE_EVIDENCE", f"source blob/SHA/anchor mismatch at {aid}")
         binding_codes = {
             "product_unit_binding": "E_UNIT_BINDING",
@@ -611,15 +640,15 @@ def validate(bundle: Path) -> None:
             "acceptance_binding": "E_ACCEPTANCE_BINDING",
         }
         for field in ("product_unit_binding", "requirement_binding", "acceptance_binding"):
-            if got[field] != want[field]:
+            if not exact_equal(got[field], want[field]):
                 fail(binding_codes[field], f"fabricated or altered {field} at {aid}")
-        if got["execution_observation"] != want["execution_observation"] or got["failure_observation"] != want["failure_observation"] or got["result_observation"] != want["result_observation"]:
+        if not exact_equal(got["execution_observation"], want["execution_observation"]) or not exact_equal(got["failure_observation"], want["failure_observation"]) or not exact_equal(got["result_observation"], want["result_observation"]):
             fail("E_OBSERVATION", f"execution/failure/result observation mismatch at {aid}")
-        if got["legacy_status"] != want["legacy_status"] or got["implementation"] != want["implementation"] or got["degradation"] != want["degradation"] or got["current_implementation"] != want["current_implementation"]:
+        if not exact_equal(got["legacy_status"], want["legacy_status"]) or not exact_equal(got["implementation"], want["implementation"]) or not exact_equal(got["degradation"], want["degradation"]) or not exact_equal(got["current_implementation"], want["current_implementation"]):
             fail("E_STATUS_PROMOTION", f"implementation/degradation/current status promotion at {aid}")
-        if got["legacy_history_binding"] != want["legacy_history_binding"] or got["counter_evidence"] != want["counter_evidence"] or got["unresolved"] != want["unresolved"]:
+        if not exact_equal(got["legacy_history_binding"], want["legacy_history_binding"]) or not exact_equal(got["counter_evidence"], want["counter_evidence"]) or not exact_equal(got["unresolved"], want["unresolved"]):
             fail("E_HISTORY_OR_COUNTER", f"history/counter/unresolved mismatch at {aid}")
-        if got["authority_effect"] != "none" or got["asset_role"] != "execution_result_or_receipt_candidate":
+        if not exact_equal(got["authority_effect"], "none") or not exact_equal(got["asset_role"], "execution_result_or_receipt_candidate"):
             fail("E_AUTHORITY_BOUNDARY", f"authority or role promotion at {aid}")
     print(f"PASS SCF-B-0118: {len(actual)} asset-level receipt records; unit/requirement/acceptance bindings remain absent")
 
