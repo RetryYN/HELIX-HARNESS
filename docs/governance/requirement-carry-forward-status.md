@@ -24,6 +24,21 @@ v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pend
 333 pathは要求数でも`preserved_pending_rehome`状態の件数でもなく、監査基準commitとarchive隔離直前commitでblobが異なるsource revision集合である。
 両revisionの意味同値は未確認であり、[機械台帳](pre-isolation-revision-delta-source-holding.jsonl)から前revisionを落とさない。
 
+## 製品・工程・旧実装の判断入口（2026-09-24時点）
+
+| 対象 | 現在値 | この値が示す範囲 |
+|---|---:|---|
+| 旧Requirement IRの製品候補 | 153 / 153（100%） | 87件が単一製品、65件が分割、1件が製品間接続の候補 |
+| confirmed文書の原文IDの製品候補 | 175 / 175（100%） | 139件が単一製品、36件がHARNESS／OS分割の候補 |
+| 旧IRから分解した要求unitの直接工程候補 | 188 / 218（86.2%） | 残る30件は直接PHCAP機構の根拠を原文から特定できず未解決 |
+| 要求unit単位の旧実装・縮退判定 | 0 / 218（0%） | 全件の直接asset意味linkとconsumer closureが未確認 |
+
+IR 153件とconfirmed原文ID 175件には部分的な意味重複があり、328件の独立要求として合算しない。製品候補は[IR台帳](legacy-ir-product-routing-bootstrap.jsonl)と[confirmed原文ID台帳](legacy-confirmed-identity-product-routing-candidates.jsonl)、工程・実装状態は[218 unitのcrosswalk](legacy-requirement-implementation-crosswalk-bootstrap.jsonl)に記録する。工程候補の188件も正式な工程採否ではない。旧phase能力の`degraded_*`／`not_reimplemented_formally`は要求unit固有の縮退・未実装を証明しない。
+
+旧資産4,020件は所在と静的種別を[候補台帳](legacy-asset-phase-product-classification-bootstrap.jsonl)に保全済みで、全件の再利用適性や要求単位の実装成立は未判定である。POの[判断時期の決定](decisions/legacy-asset-review-timing-2026-09-23.md)に従い、先に要求の要否と製品scopeを決め、L3要件定義で選んだ関係資産だけを必要な根拠まで調べる。未選定資産の全件調査は要求判断の前提にしない。
+
+製品候補分類だけでPOのscope判断は成立しない。個別identityでは、原文・revision・今回の判断に影響するrelationを揃えた時点でPOへ送る。[個別要求判断の調査停止境界](decisions/rdp-identity-evidence-boundary-2026-09-23.md)は全14 source holdingの未処理を個別判断の一律停止条件にしない。既に判断された[HIL-BR-02の製品scope](decisions/hil-br-02-product-scope-2026-09-23.md)はこの入口の一例であり、要求採否・successor割当・実装承認を意味しない。
+
 ## IR 153件のrouting候補
 
 ### 現行のproduct responsibility候補
