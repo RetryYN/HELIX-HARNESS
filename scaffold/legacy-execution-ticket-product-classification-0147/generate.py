@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = Path(__file__).resolve().parent
-BASE = "8a9fdc973f3553bea78d022e8d73f109aca526da"
+BASE = "a577a7cddd1405de27bf01d22b050eb2acaa9ba9"
 ARCHIVE = "archive/legacy-generation-2026-09-14/root/"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
@@ -50,7 +50,7 @@ PRODUCT_CLASS = {
     "execution-ticket-requirements.md": ("multi_product_conflict", ["HELIX-HARNESS", "HELIX-OS"], "HXT実行TicketとHXB測定、Assignment、event/read model、dispatch禁止を併記し、現行HARNESSとOSの複数境界にまたがる。"),
     "execution-ticket-trace.md": ("insufficient_basis", [], "HXT/HXB IDを他文書へ束縛する索引であり、owner割当の独立した根拠を示さない。"),
     "execution-ticket-validation.md": ("multi_product_conflict", ["HELIX-HARNESS", "HELIX-OS"], "HXT利用要求は実行・追跡・既存Benchへの接続を含む。文書はHARNESSとOSの責務分担を決めていない。"),
-    "execution-ticket-vision.md": ("insufficient_basis", ["HELIX-HARNESS", "HELIX-OS"], "「HELIX本体」と測定接続の候補はHARNESS/OS両境界に接し、どちらが製品ownerか特定しない。Web等を除外する記述はWeb-OSの責務分類も決めない。"),
+    "execution-ticket-vision.md": ("multi_product_conflict", ["HELIX-HARNESS", "HELIX-OS"], "「HELIX本体」の実行契約と測定接続を一体に掲げ、HARNESSのV-model実行契約とOSの計測・Worker運用の両境界に接する。単一製品ownerを特定できないため、研究上の複数製品衝突として記録する。"),
 }
 
 
@@ -171,15 +171,35 @@ def main() -> None:
             "failure_inventory": {"path": FAILURE, "sha256": "sha256:" + sha(failure_text.encode()), "asset_id_or_path_match": any(term in failure_text for term in identity_terms), "match_status": "no_asset_specific_failure_evidence_located"},
             "consumer_inventory": {"path": CONSUMER, "sha256": "sha256:" + sha(consumer_text.encode()), "asset_id_or_path_match": any(term in consumer_text for term in identity_terms), "match_status": "no_asset_specific_consumer_closure_located"},
             "consumer_refs": [],
+            "direct_refs": [],
             "consumer_closure_status": "pending",
-            "scope_limit": "exact asset ID/path lookup only; indirect consumer closure is not established",
+            "scope_limit": "direct-reference scan across docs/helix-*, docs/governance (including L2 source register and carry-forward); this is counterevidence, not consumer closure",
+            "bootstrap_candidate_product_targets": sorted(phase["candidate_product_targets"]),
+            "counterevidence": [],
         }
+        if sorted(candidates) != history["bootstrap_candidate_product_targets"]:
+            history["counterevidence"].append("bootstrap candidate targets differ from manual semantic-span classification; bootstrap is candidate evidence only")
+        direct_refs = {
+            "execution-ticket-requests.md": ["docs/governance/audits/source-rebaseline/l2-source-register.md", "docs/helix-os/L2-requirements/governance-requirements.md"],
+            "execution-ticket-validation.md": ["docs/governance/audits/source-rebaseline/l2-source-register.md", "docs/helix-os/L11-acceptance/governance-acceptance.md"],
+        }.get(basename, [])
+        for ref_path in direct_refs:
+            ref_text = git_bytes(BASE, ref_path).decode("utf-8", errors="replace")
+            term = source_path
+            for ref_line, text in enumerate(ref_text.splitlines(), 1):
+                if term in text:
+                    history["direct_refs"].append({"reference_kind": "current_l2_l11_or_register_connection", "path": ref_path, "line": ref_line, "text": text, "sha256": "sha256:" + sha(git_bytes(BASE, ref_path))})
+        carry_lines = [json.loads(line) for line in git_bytes(BASE, "docs/governance/legacy-candidate-source-line-carry-forward.jsonl").decode().splitlines() if line.strip()]
+        carry_matches = [r for r in carry_lines if r.get("source_path") == source_path]
+        history["carry_forward_preservation"] = {"path": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl", "sha256": "sha256:" + sha(git_bytes(BASE, "docs/governance/legacy-candidate-source-line-carry-forward.jsonl")), "matched_source_lines": len(carry_matches), "candidate_source_line_ids_sha256": "sha256:" + sha("\n".join(r["candidate_source_line_id"] for r in carry_matches).encode()), "meaning": "source-line preservation evidence; not product-consumer closure"}
+        if history["direct_refs"]:
+            history["counterevidence"].append("current L2/L11 or L2 source register directly connects this historical candidate; rationale cannot claim absence of product connection")
         records.append({
             "asset_id": asset["asset_id"],
             "ledger": {"path": DISPOSITION, "line": ledger_line, "row_sha256": "sha256:" + sha(json.dumps(asset, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()), "source_path": source_path, "source_sha256": "sha256:" + asset["source_sha256"], "disposition": asset["disposition"], "product_target": asset["product_target"], "implementation_status": asset["implementation_status"]},
             "source_exact": exact,
             "classification": {"status": product_class, "candidate_products": candidates, "rationale": rationale, "formal_owner": None, "formal_classification_updated": False, "boundary_evidence": boundary, "l1_evidence": l1, "approval_evidence": approval},
-            "phase": {"bootstrap_path": PHASE, "bootstrap_line": phase_line, "bootstrap_row_sha256": "sha256:" + sha(json.dumps(phase, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()), "phase_classification_status": phase["phase_classification_status"], "candidate_phase_targets": phase["candidate_phase_targets"], "formal_phase_admission": False, "phase_updated": False},
+            "phase": {"bootstrap_path": PHASE, "bootstrap_line": phase_line, "bootstrap_row_sha256": "sha256:" + sha(json.dumps(phase, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()), "phase_classification_status": phase["phase_classification_status"], "candidate_phase_targets": phase["candidate_phase_targets"], "bootstrap_candidate_product_targets": sorted(phase["candidate_product_targets"]), "formal_phase_admission": False, "phase_updated": False},
             "implementation_degradation": {"implementation_status": "unknown", "bootstrap_implementation_evidence_state": phase["implementation_evidence_state"], "historical_execution_performed": False, "source_text_claims_unimplemented_or_unexecuted": basename in ("execution-ticket-acceptance.md", "execution-ticket-intake.md", "execution-ticket-requirements.md", "execution-ticket-trace.md"), "degradation_status": "unknown", "asset_specific_failure_status": "not_established", "source_document_presence": "evidenced", "limits": "historical claim or document presence does not prove implementation, non-implementation, operation, or degradation"},
             "history_failure_consumer": history,
             "authority_boundary": {"authority_effect": "none", "formal_product_authority": None, "new_build_allowed": False, "successor_assignment": None, "legacy_execution_performed": False},
@@ -188,7 +208,7 @@ def main() -> None:
     if len(ids) != len(set(ids)):
         raise SystemExit("duplicate target asset IDs")
     (BUNDLE / "classification-research.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for r in records), encoding="utf-8")
-    input_paths = [DISPOSITION, PHASE, DECISIONS, READ_AFTER, BOUNDARY, APPROVAL, FAILURE, CONSUMER, MANIFEST, "docs/governance/new-generation-start-here.md", "docs/governance/legacy-asset-reuse-control.md", *[x[0] for x in L1.values()]]
+    input_paths = [DISPOSITION, PHASE, DECISIONS, READ_AFTER, BOUNDARY, APPROVAL, FAILURE, CONSUMER, "docs/governance/audits/source-rebaseline/l2-source-register.md", "docs/governance/legacy-candidate-source-line-carry-forward.jsonl", "docs/helix-os/L2-requirements/governance-requirements.md", "docs/helix-os/L11-acceptance/governance-acceptance.md", MANIFEST, "docs/governance/new-generation-start-here.md", "docs/governance/legacy-asset-reuse-control.md", *[x[0] for x in L1.values()]]
     inputs = [{"path": p, "sha256": "sha256:" + sha(git_bytes(BASE, p))} for p in input_paths]
     inv = {
         "schema_revision": 1,
@@ -198,7 +218,6 @@ def main() -> None:
         "selection": {"rule": "fixed source ledger rows where source_path starts docs/governance/candidates/execution-ticket-; complete thematic family, no row truncation", "candidate_asset_count": 8, "target_ids": ids, "source_paths": [r["ledger"]["source_path"] for r in records], "source_sha256s": [r["ledger"]["source_sha256"] for r in records]},
         "comparison_sets": [
             {"name": "main", **comparison_summary(BASE, None)},
-            {"name": "pr_2094", **comparison_summary("32e0f8a8469887ed6baa8294c4597d51614bcaeb", "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl")},
             {"name": "pr_2096", **comparison_summary("ab0a1faa4e2b310206b97a786c329334a2a0e151", "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl")},
         ],
         "input_digests": inputs,
@@ -206,8 +225,10 @@ def main() -> None:
         "implementation_status_counts": {"unknown": len(records)},
         "degradation_status_counts": {"unknown": len(records)},
         "formal_effect": {"formal_asset_classification_updated": False, "formal_phase_admission": False, "formal_product_authority": None, "new_build_allowed": False, "authority_effect": "none"},
+        "authority_boundary": {"authority_effect": "none", "formal_asset_classification_updated": False, "formal_phase_admission": False, "formal_product_authority": None, "formal_owner_decided": False, "formal_implementation_status": "unknown", "formal_consumer_closure": False, "new_build_allowed": False, "LABO": "excluded; Issue #2089 hold remains in force"},
         "outputs": ["scaffold/bindings/SCF-B-0147.json", "scaffold/legacy-execution-ticket-product-classification-0147/README.md", "scaffold/legacy-execution-ticket-product-classification-0147/PR-DRAFT.md", "scaffold/legacy-execution-ticket-product-classification-0147/generate.py", "scaffold/legacy-execution-ticket-product-classification-0147/inventory.json", "scaffold/legacy-execution-ticket-product-classification-0147/classification-research.jsonl", "scaffold/legacy-execution-ticket-product-classification-0147/validate.py", "scaffold/legacy-execution-ticket-product-classification-0147/selfcheck.py"],
     }
+    inv["output_sha256"] = "sha256:" + sha((BUNDLE / "classification-research.jsonl").read_bytes())
     (BUNDLE / "inventory.json").write_text(json.dumps(inv, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
     artifacts = [
         "scaffold/bindings/SCF-B-0147.json",
@@ -227,10 +248,10 @@ def main() -> None:
         "upstream": [{"path": x["path"], "sha256": x["sha256"].removeprefix("sha256:"), "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない"} for x in inputs],
         "role": "legacy asset product-boundary research",
         "obligations": ["台帳の固定ID/path/SHAをsource archiveとmanifestへ照合する", "候補文書の意味を現行4製品境界とL1へ照合する", "implementation/degradation/phase/consumer unknownと証拠を分離する", "候補集合との重複をID/path/SHA/tripleで確認する"],
-        "connections": {"boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority", "consumers": ["四製品責務境界reviewer", "legacy asset classification follow-up"], "dependencies": ["origin/main BASE disposition and phase ledgers", "fixed archive MANIFEST", "PR #2090 HEAD 4b6e1bbf122b03fd3531047290161aced34eefda is integrated into BASE and counted once via main", "open PR #2094 HEAD 32e0f8a8469887ed6baa8294c4597d51614bcaeb candidate set", "open PR #2096 HEAD ab0a1faa4e2b310206b97a786c329334a2a0e151 candidate set"]},
-        "operations": {"allowed": ["read fixed Git objects statically", "write research-only scaffold", "run deterministic generator, independent provenance validator, negative selfcheck, scfctl static validation"], "forbidden": ["execute legacy archive source/runtime/test/hook/adapter/CI", "旧archiveは実行しない", "promote formal product/phase/implementation/consumer authority", "create successor or new capability", "merge, close, deploy"]},
+        "connections": {"boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority", "consumers": ["四製品責務境界reviewer", "legacy asset classification follow-up"], "dependencies": ["origin/main BASE disposition and phase ledgers", "fixed archive MANIFEST", "PR #2094 HEAD a577a7cddd1405de27bf01d22b050eb2acaa9ba9 is integrated into BASE and counted once via main", "open PR #2096 HEAD ab0a1faa4e2b310206b97a786c329334a2a0e151 candidate set; stop and rebaseline if this HEAD advances"]},
+        "operations": {"allowed": ["read fixed Git objects statically", "write research-only scaffold", "run deterministic generator, static validator, negative selfcheck, scfctl static validation"], "forbidden": ["execute legacy archive source/runtime/test/hook/adapter/CI", "旧archiveは実行しない", "promote formal product/phase/implementation/consumer authority", "create successor or new capability", "apply LABO classification; Issue #2089 hold remains in force", "merge, close, deploy"]},
         "artifacts": artifacts,
-        "verification": {"evidence_kind": "scaffold", "scope": ["schema_interface", "source_revision_stale", "negative_case", "forbidden_write_scope"], "oracles": ["validator independently derives target family, source hashes, manifest, and main/PR #2090/#2094/#2096 overlaps from pinned Git objects", "validator checks archive anchors, four product boundary/L1/approval receipts, and non-promotion fields"], "negative_cases": ["asset omission or duplicate", "source anchor mutation", "formal phase/implementation/authority promotion", "target overlap with fixed comparison sets"]},
+        "verification": {"evidence_kind": "scaffold", "scope": ["schema_interface", "source_revision_stale", "negative_case", "forbidden_write_scope"], "oracles": ["validator derives target family, source hashes, manifest, and main/#2096 overlaps from fixed Git objects; #2094 is integrated in main; artifact byte pins bind complete records/inventory/binding", "category/product-count invariant and source semantic anchor set are independently checked"], "negative_cases": ["asset omission or duplicate", "semantic anchor omission or mutation", "formal phase/implementation/authority promotion", "target overlap with fixed comparison sets", "null/type/key-set mutation", "ledger byte/line-ending mutation"]},
         "replacement": {"role_target": None, "formal_artifacts": [], "issue": 0, "status": "pending"},
         "created": "2026-09-23", "updated": "2026-09-23",
     }

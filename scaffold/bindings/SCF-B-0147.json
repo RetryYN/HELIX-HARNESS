@@ -18,9 +18,8 @@
     "dependencies": [
       "origin/main BASE disposition and phase ledgers",
       "fixed archive MANIFEST",
-      "PR #2090 HEAD 4b6e1bbf122b03fd3531047290161aced34eefda is integrated into BASE and counted once via main",
-      "open PR #2094 HEAD 32e0f8a8469887ed6baa8294c4597d51614bcaeb candidate set",
-      "open PR #2096 HEAD ab0a1faa4e2b310206b97a786c329334a2a0e151 candidate set"
+      "PR #2094 HEAD a577a7cddd1405de27bf01d22b050eb2acaa9ba9 is integrated into BASE and counted once via main",
+      "open PR #2096 HEAD ab0a1faa4e2b310206b97a786c329334a2a0e151 candidate set; stop and rebaseline if this HEAD advances"
     ]
   },
   "created": "2026-09-23",
@@ -36,13 +35,14 @@
     "allowed": [
       "read fixed Git objects statically",
       "write research-only scaffold",
-      "run deterministic generator, independent provenance validator, negative selfcheck, scfctl static validation"
+      "run deterministic generator, static validator, negative selfcheck, scfctl static validation"
     ],
     "forbidden": [
       "execute legacy archive source/runtime/test/hook/adapter/CI",
       "旧archiveは実行しない",
       "promote formal product/phase/implementation/consumer authority",
       "create successor or new capability",
+      "apply LABO classification; Issue #2089 hold remains in force",
       "merge, close, deploy"
     ]
   },
@@ -103,6 +103,26 @@
     },
     {
       "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "sha256": "5a95be78b2341d3934e2b9c6cef66428387d7862c94b60e9145f27ca92d9ff85"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19"
+    },
+    {
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない",
       "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
       "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6"
     },
@@ -141,13 +161,15 @@
     "evidence_kind": "scaffold",
     "negative_cases": [
       "asset omission or duplicate",
-      "source anchor mutation",
+      "semantic anchor omission or mutation",
       "formal phase/implementation/authority promotion",
-      "target overlap with fixed comparison sets"
+      "target overlap with fixed comparison sets",
+      "null/type/key-set mutation",
+      "ledger byte/line-ending mutation"
     ],
     "oracles": [
-      "validator independently derives target family, source hashes, manifest, and main/PR #2090/#2094/#2096 overlaps from pinned Git objects",
-      "validator checks archive anchors, four product boundary/L1/approval receipts, and non-promotion fields"
+      "validator derives target family, source hashes, manifest, and main/#2096 overlaps from fixed Git objects; #2094 is integrated in main; artifact byte pins bind complete records/inventory/binding",
+      "category/product-count invariant and source semantic anchor set are independently checked"
     ],
     "scope": [
       "schema_interface",

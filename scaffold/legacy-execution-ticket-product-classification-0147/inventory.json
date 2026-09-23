@@ -1,25 +1,29 @@
 {
   "archive_population_count": 4020,
-  "base_revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
+  "authority_boundary": {
+    "LABO": "excluded; Issue #2089 hold remains in force",
+    "authority_effect": "none",
+    "formal_asset_classification_updated": false,
+    "formal_consumer_closure": false,
+    "formal_implementation_status": "unknown",
+    "formal_owner_decided": false,
+    "formal_phase_admission": false,
+    "formal_product_authority": null,
+    "new_build_allowed": false
+  },
+  "base_revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
   "binding_id": "SCF-B-0147",
   "classification_counts": {
-    "insufficient_basis": 3,
-    "multi_product_conflict": 5
+    "insufficient_basis": 2,
+    "multi_product_conflict": 6
   },
   "comparison_sets": [
     {
-      "distinct_ids": 537,
+      "distinct_ids": 609,
       "name": "main",
       "path": "all scaffold/*/classification-research.jsonl",
-      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
-      "rows": 579
-    },
-    {
-      "distinct_ids": 72,
-      "name": "pr_2094",
-      "path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
-      "revision": "32e0f8a8469887ed6baa8294c4597d51614bcaeb",
-      "rows": 72
+      "revision": "a577a7cddd1405de27bf01d22b050eb2acaa9ba9",
+      "rows": 651
     },
     {
       "distinct_ids": 57,
@@ -76,6 +80,22 @@
       "sha256": "sha256:14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"
     },
     {
+      "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
+      "sha256": "sha256:5a95be78b2341d3934e2b9c6cef66428387d7862c94b60e9145f27ca92d9ff85"
+    },
+    {
+      "path": "docs/governance/legacy-candidate-source-line-carry-forward.jsonl",
+      "sha256": "sha256:a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "sha256:78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "sha256": "sha256:db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19"
+    },
+    {
       "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
       "sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6"
     },
@@ -104,6 +124,7 @@
       "sha256": "sha256:600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c"
     }
   ],
+  "output_sha256": "sha256:e3092094de9aaee773a227cefc4756e8ec480073ecceb5990312bf972715e0cc",
   "outputs": [
     "scaffold/bindings/SCF-B-0147.json",
     "scaffold/legacy-execution-ticket-product-classification-0147/README.md",

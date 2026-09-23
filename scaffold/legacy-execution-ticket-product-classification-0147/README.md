@@ -1,16 +1,14 @@
 # SCF-B-0147 — Execution Ticket候補8資産の四製品責務境界研究
 
-固定BASE `8a9fdc973f3553bea78d022e8d73f109aca526da`（作業時のcurrent main）の資産台帳から、`docs/governance/candidates/execution-ticket-*` に属する全8件を選んだresearch-only Scaffoldです。8件はvision、recognition、requests、requirements、acceptance、trace、validation、intakeからなる同一候補系列です。別テーマを混ぜず、この系列全体を扱います。
+固定BASE `a577a7cddd1405de27bf01d22b050eb2acaa9ba9` の資産台帳から、`docs/governance/candidates/execution-ticket-*` の8資産を対象にします。#2094はこのBASEへ統合済みでmain集合に一度だけ含め、比較対象から除きました。open PR #2096はHEAD `ab0a1faa4e2b310206b97a786c329334a2a0e151` に固定しています。このHEADが進んだ場合は作業を停止し、新HEADとmainを再確認してから再集計します。固定比較集合はmain 651行／609 distinct ID、#2096 57行／57 distinct IDで、対象とのID・path・source SHA・triple重複はありません。
 
-選定対象は固定BASE、open PR #2094 HEAD `32e0f8a8469887ed6baa8294c4597d51614bcaeb`、open PR #2096 HEAD `ab0a1faa4e2b310206b97a786c329334a2a0e151`の分類集合と照合しました。PR #2090 HEAD `4b6e1bbf122b03fd3531047290161aced34eefda`はBASEへ統合済みのため、main集合に一度だけ含め、独立したopen PR集合として重ねて数えていません。`validate.py` は対象集合を固定BASE台帳から独立に再導出し、各比較集合に対するasset ID、source path、source SHA-256、(ID,path,SHA)の重なりを個別照合します。選定8件との重なりは全キーで0件です。集合の行数とdistinct ID数は`inventory.json`に固定しています。
+分類はHARNESS/OSの `multi_product_conflict` が6件、`insufficient_basis` が2件です。visionは実行契約と測定接続を併記し、HARNESSのV-model実行契約とOSの計測・Worker運用の両境界に接するため、複数製品衝突候補としました。これは正式owner決定ではありません。分類とbootstrap候補が異なる6件（recognition、requests、requirements、validation、vision、intake）は各recordにbootstrap候補と差分counterevidenceを保持します。
 
-比較起点BASE `0871112f37d42fd0b01d3e5290632d2306463320`から7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b（#2092反映後）までは、mainの分類集合が538行／496 distinct IDのままで、#2092による追加は0件でした。その後、#2090統合で41分類資産が加わり、現BASEは579行／537 distinct IDです。対象8件のID、source path、source SHA-256は両方のmain revisionで不変で、disposition／phase台帳、境界、承認decision、L1、failure／consumer inventory、archive manifestの固定根拠bytesも現BASEまで変わっていません。比較対象は各PRの指定HEADに固定し、編集中worktreeは読みません。
+consumer調査は失敗・consumer inventoryだけで閉じず、`docs/helix-*`、L2 source register、carry-forwardを照合しました。requestsはL2 source registerとHELIX-OS L2要求、validationは同registerとHELIX-OS L11受入に直接接続する記録があります。carry-forwardはsource行保全の証拠として記録し、製品consumerやclosureとは扱いません。consumer closureは全件pendingのままです。
 
-旧文書のsource anchor、archive blob/mode、manifest digest、disposition行、phase bootstrap行、四製品の現行boundary/L1/approval行を固定Git objectから記録します。結果はHARNESS/OSの責務境界にまたがる衝突候補5件、意味的なproduct ownerの基礎が不足する3件です。HARNESS候補はV-model・要求・検証、OS候補はWorker・計測・継続運用の現行境界との比較から置いた研究候補にとどまります。HELIX-WebとHELIX-Web-OSへの正式割当はありません。
+旧archiveは固定Git objectから静的に読み、旧source、test、CI、runtime、hook、adapterは実行しません。LABOはIssue #2089のholdに従って対象外です。分類・phase・実装・consumer・successor・build authorityを更新せず、research-only Scaffoldとして扱います。
 
-実装状態は全件 `unknown`、縮退状態は全件 `unknown`、正式phase admissionは全件未実施、consumer closureは全件pendingです。旧phase bootstrapのcandidate targetと文書存在はphase完了・稼働の証拠ではありません。候補本文中の未実装／未実行表示も、当該archive sourceの外にある現行実装の不存在を証明しません。失敗・consumer inventoryのasset-specific evidenceは確認できず、間接consumerが無いとは結論しません。
-
-旧archiveはGit objectとして読み取り、旧source、test、CI、runtime、hook、adapterは実行していません。正式な資産分類、要求採否、製品owner、phase、実装、縮退、consumer、successor、build authorityを更新しません。
+検証は固定Git objectからの再導出、意味anchorと分類不変条件、全record/inventory/Binding byte pin、ledger byte digest、独立した1変異1ケースのselfcheck、`scfctl validate`で行います。検証合格は正式採否や完了を生成しません。
 
 ```sh
 python3 -B scaffold/legacy-execution-ticket-product-classification-0147/generate.py
