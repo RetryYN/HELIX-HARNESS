@@ -12,11 +12,9 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 ## 読込順
 
 1. [Concept入口](../concept/README.md)
-2. [Concept本文 v4.2](../concept/helix-concept-v4.2.md)と[製品責務境界](../concept/product-boundary.md)
-   - [Concept v4.2の承認decision record](decisions/concept-v4.2-goal-owners-approval-2026-09-24.md)
+2. [Concept本文](../concept/helix-concept-v4.1.md)と[製品責務境界](../concept/product-boundary.md)
    - [Concept v4.1・4対象L1の承認decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)
-3. [HELIX自体の承認済み5大目標](../concept/helix-five-goals.md)
-   - [5大目標の承認decision record](decisions/helix-five-goals-approval-2026-09-24.md)
+3. [HELIX自体の5大目標候補](../concept/helix-five-goals.md)
 4. [HELIXエージェントの七大原則候補](../concept/helix-principles.md)
 5. 対象製品のL1
    - [HELIX-HARNESS](../helix-harness/L1-planning/product-intent.md)
@@ -51,8 +49,6 @@ Concept v4.1候補は、5大目標をHELIX全体の到達価値、七大原則�
 この接続から個別要求、workflow、技術選定、authorityを直接生成しない。
 
 Concept v4.1と4対象L1のexact revisionは2026-09-17のdecision recordで承認済みである。
-Concept v4.2のexact revisionは2026-09-24の[decision record](decisions/concept-v4.2-goal-owners-approval-2026-09-24.md)で承認済みであり、
-このrecordのmain統合後に現行Conceptとなる。4対象L1は既存の承認revisionのままで、4領域の不足はL1改訂候補として扱う。
 対象本文内の`candidate`／`awaiting_parent_approval`は承認前snapshotのmetadataであり、現在状態はdecision recordを優先する。
 `L2D-S0-01 scaffold-binding`と`L2D-S0-02 wbs-ledger`の候補は2026-09-19の[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)で承認済みであり、
 候補本文内の`draft_candidate`／`awaiting_human_approval`も同じく承認前snapshotのmetadataとして、decision recordを優先する。
