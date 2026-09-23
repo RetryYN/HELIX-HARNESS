@@ -34,4 +34,4 @@
 
 保存済みmain比較revisionでの確定数は496/4020です。#2090とこの候補72件はいずれも未統合Draftで、496 + 41 + 72 = 609は条件付きprojectionです。静的照合では各隣接集合および合計集合のID・source path/SHA重複は0です。固定revisionの再検証PASSは保存済み証拠の再現性であり、最新のmainまたは#2090 HEADを示しません。
 
-#2094を提出しreviewを依頼する前に、#2090の意図するexact HEADとmainを人手で再照合します。いずれかが進んでいたら、固定証拠のPASSを現行性の根拠にせず提出を止め、新しい依存revisionでoverlap/source digestを再baselineしたうえでprofile、inventory、Binding、source audit、validatorを更新・再検証します。これは保存済みrevisionの再現性検査とは別の提出時停止条件であり、validatorはlive remote HEADを照会しません。PR作成側ではreview依頼、merge、Issue closeを行いません。
+#2094を提出しreviewを依頼する前に、#2090の意図するexact HEADとmainを人手で再照合します。いずれかが進んでいたら、固定証拠のPASSを現行性の根拠にせず提出を止め、新しい依存revisionでoverlap/source digestを再baselineしたうえでprofile、inventory、Binding、source audit、validatorを更新・再検証します。これは保存済みrevisionの再現性検査とは別の提出時停止条件であり、validatorはlive remote HEADを照会しません。PR作成側はreview依頼と指摘対応までを担い、merge・post-merge read-after・Issue closeはレビュー対応側が行います。
