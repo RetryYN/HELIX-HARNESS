@@ -19,9 +19,8 @@ ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-ai-instruction-product-classification-0145"
 REPORT = BUNDLE / "independent-source-audit.json"
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
-MAIN = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
-PR2078 = "8c8cf851b47c88f6d814dc828a38743fc3cd45b3"
-PR2090 = "ef3e1de17f8cd3818d38d5ff9ca512d2eb62f9ac"
+MAIN = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
+PR2090 = "1da9a32b9149805f87878dd688047a0a1c9ebed3"
 ARCHIVE = "archive/legacy-generation-2026-09-14/root/"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
@@ -35,10 +34,10 @@ MAIN_LEDGER_PATHS = [
     "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl",
     "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
     "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
+    "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
 ]
 PINNED_SNAPSHOTS = {
-    "pr-2078-classification-research.jsonl": "sha256:d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138",
-    "pr-2090-classification-research.jsonl": "sha256:88448924b72165336db9699c4b026172782949725d97c38601a403046b497b36",
+    "pr-2090-classification-research.jsonl": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
 }
 EXCLUSIONS = {
     "LEGACY-ASSET-3AC78FD8A01E0F9811C5": (".claude/hooks/git-command-guard.ts", "94519967c5565bd024b3da03384f7a12d9622c16af0b0836e534d4ff0434853d"),
@@ -123,28 +122,25 @@ def run_audit(bundle: Path) -> dict:
         raise ValueError(f"fixed source scope count is {len(candidates)}, expected 75 before overlap exclusions")
 
     main_rows = [row for path in MAIN_LEDGER_PATHS for row in parse_jsonl(git(MAIN, path), path)]
-    pr_rows = {}
-    for pr, snap_name, expected_head, expected_digest, inv_name, inv_digest in (
-        ("2078", "pr-2078-classification-research.jsonl", PR2078, PINNED_SNAPSHOTS["pr-2078-classification-research.jsonl"],
-         "pr-2078-inventory.json", "sha256:fdfcc7b3f7b7b9c704bf2a63cc5fb7a91b8567e42d708554a49f7f82ba90c860"),
-        ("2090", "pr-2090-classification-research.jsonl", PR2090, PINNED_SNAPSHOTS["pr-2090-classification-research.jsonl"],
-         "pr-2090-inventory.json", "sha256:e30823f82fc0202f2f9ad0b9eb90a95b42c963758cd3df8596e10789f59a6b72"),
-    ):
-        data = (bundle / "upstream" / snap_name).read_bytes()
-        if sha(data) != expected_digest:
-            raise ValueError(f"PR #{pr} classification snapshot digest drift")
-        inv_data = (bundle / "upstream" / inv_name).read_bytes()
-        if sha(inv_data) != inv_digest:
-            raise ValueError(f"PR #{pr} inventory snapshot digest drift")
-        pr_rows[pr] = parse_jsonl(data, snap_name)
+    snap_name = "pr-2090-classification-research.jsonl"
+    data = (bundle / "upstream" / snap_name).read_bytes()
+    if sha(data) != PINNED_SNAPSHOTS[snap_name]:
+        raise ValueError("PR #2090 classification snapshot digest drift")
+    inv_data = (bundle / "upstream" / "pr-2090-inventory.json").read_bytes()
+    if sha(inv_data) != "sha256:546f173d5ca60e9ba54c3c262d9517cde9a63e4798fef45dfee8a91f883d9a2d":
+        raise ValueError("PR #2090 inventory snapshot digest drift")
+    inventory = parse_json(inv_data, "pr-2090-inventory.json")
+    if inventory.get("research_union", {}).get("authoritative", {}).get("count") != 496:
+        raise ValueError("PR #2090 snapshot is not based on main496")
+    pr2090_rows = parse_jsonl(data, snap_name)
 
-    prior_rows = {"main": main_rows, "pr_2078": pr_rows["2078"], "pr_2090": pr_rows["2090"]}
+    prior_rows = {"main": main_rows, "pr_2090": pr2090_rows}
     prior_ids, prior_paths = {}, {}
     for label, rows in prior_rows.items():
         prior_ids[label] = {identity(row)[0] for row in rows}
         prior_paths[label] = {(identity(row)[1], identity(row)[2]) for row in rows}
     counts = {label: len(ids) for label, ids in prior_ids.items()}
-    if counts != {"main": 429, "pr_2078": 67, "pr_2090": 41}:
+    if counts != {"main": 496, "pr_2090": 41}:
         raise ValueError(f"prior set counts changed: {counts}")
     labels = list(prior_rows)
     pairwise = {}
@@ -164,7 +160,7 @@ def run_audit(bundle: Path) -> dict:
     duplicate_ids = candidate_ids & all_prior_ids
     duplicate_pairs = candidate_pairs & all_prior_paths
     if duplicate_ids != set(EXCLUSIONS) or duplicate_pairs != set(EXCLUSIONS.values()):
-        raise ValueError("candidate/prior overlap differs from exact 3-row #2078 exclusion set")
+        raise ValueError("candidate/prior overlap differs from exact 3-row integrated #2078 exclusion set")
     target_rows = [row for row in candidates if row["asset_id"] not in duplicate_ids]
     target_ids = {row["asset_id"] for row in target_rows}
     target_pairs = {(row["source_path"], row["source_sha256"]) for row in target_rows}
@@ -256,7 +252,7 @@ def run_audit(bundle: Path) -> dict:
         "schema_revision": 1,
         "audit_kind": "independent_static_source_identity_and_span_reconciliation",
         "fixed_base_revision": BASE,
-        "comparison_revisions": {"main": MAIN, "pr_2078": PR2078, "pr_2090": PR2090},
+        "comparison_revisions": {"main": MAIN, "pr_2090": PR2090},
         "profile_sha256": sha(profile_bytes),
         "fixed_disposition": {"path": DISPOSITION, "blob": tree(BASE, DISPOSITION)[2], "sha256": sha(git(BASE, DISPOSITION))},
         "consumer_inventory": {"path": CONSUMER_INVENTORY, "blob": tree(BASE, CONSUMER_INVENTORY)[2], "sha256": sha(consumer_data), "AICR_06_claimed_template_count": 34},
@@ -264,10 +260,10 @@ def run_audit(bundle: Path) -> dict:
             "unresolved_candidates_before_overlap": len(candidates),
             "exact_prior_overlap_exclusions": len(duplicate_ids),
             "target_denominator": len(target_rows),
-            "main_product_research_ids": counts["main"], "pr_2078_target_ids": counts["pr_2078"], "pr_2090_target_ids": counts["pr_2090"],
+            "main_product_research_ids": counts["main"], "pr_2090_target_ids": counts["pr_2090"],
         },
         "prior_pairwise_overlap": pairwise,
-        "target_overlap_with_main_pr2078_pr2090": {"asset_id": 0, "source_path_sha256": 0},
+        "target_overlap_with_main496_pr2090": {"asset_id": 0, "source_path_sha256": 0},
         "excluded_prior_overlap_rows": [{"asset_id": aid, "source_path": pair[0], "source_sha256": pair[1]} for aid, pair in sorted(EXCLUSIONS.items())],
         "adapter_template_set": {"archive_physical_count": len(template_paths), "target_count": len(target_templates), "exact_set_match": True, "paths": template_paths},
         "category_candidate_counts": dict(sorted(category_counts.items())),
@@ -282,7 +278,7 @@ def run_audit(bundle: Path) -> dict:
             "archive_blob_mode_type_sha_and_manifest_exact_for_all_72": True,
             "profile_line_span_text_exact_for_all_72": True,
             "consumer_inventory_aicr06_34_paths_exact": True,
-            "main_pr2078_pr2090_pairwise_deduplicated": True,
+            "main496_pr2090_pairwise_deduplicated": True,
             "new_target_id_and_path_sha_overlap_zero": True,
         },
     }

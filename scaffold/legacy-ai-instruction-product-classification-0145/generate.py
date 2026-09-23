@@ -13,14 +13,13 @@ ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-ai-instruction-product-classification-0145"
 BINDING = ROOT / "scaffold/bindings/SCF-B-0145.json"
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
-MAIN = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
-PR2078 = "8c8cf851b47c88f6d814dc828a38743fc3cd45b3"
-PR2090 = "ef3e1de17f8cd3818d38d5ff9ca512d2eb62f9ac"
+MAIN = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
+PR2090 = "1da9a32b9149805f87878dd688047a0a1c9ebed3"
 BINDING_ID = "SCF-B-0145"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 PROFILE_PATH = "scaffold/legacy-ai-instruction-product-classification-0145/semantic-profile.json"
 AUDIT_REPORT_PATH = "scaffold/legacy-ai-instruction-product-classification-0145/independent-source-audit.json"
-PROFILE_SHA256 = "sha256:8ebc36cc50029bcdc17e2828798ff1b29a20f90d55c1ca77fdbdfdf050aa2f2f"
+PROFILE_SHA256 = "sha256:4f72ea9f16fbbf544a579182750511b8e0b01a17b6f6aa521ad388d7e7cb1aea"
 
 PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
@@ -57,13 +56,12 @@ MAIN_CLASSIFICATION_INPUTS = [
     "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl",
     "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
     "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
+    "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
 ]
 MAIN_INVENTORY_INPUTS = [p.removesuffix("classification-research.jsonl") + "inventory.json" for p in MAIN_CLASSIFICATION_INPUTS]
 SNAPSHOTS = {
-    "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2078-classification-research.jsonl": "sha256:d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138",
-    "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2078-inventory.json": "sha256:fdfcc7b3f7b7b9c704bf2a63cc5fb7a91b8567e42d708554a49f7f82ba90c860",
-    "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-classification-research.jsonl": "sha256:88448924b72165336db9699c4b026172782949725d97c38601a403046b497b36",
-    "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json": "sha256:e30823f82fc0202f2f9ad0b9eb90a95b42c963758cd3df8596e10789f59a6b72",
+    "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-classification-research.jsonl": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
+    "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json": "sha256:546f173d5ca60e9ba54c3c262d9517cde9a63e4798fef45dfee8a91f883d9a2d",
 }
 BASE_INPUTS = [
     PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(),
@@ -86,7 +84,7 @@ EXPECTED_NEGATIVE_CASES = (
     "history_failure_tamper", "consumer_closure_tamper", "wave44_edge_tamper",
     "authority_promotion", "new_build_promotion", "inventory_target_tamper",
     "inventory_category_count", "inventory_overlap_tamper", "inventory_input_tamper",
-    "profile_pin_tamper", "snapshot_2078_tamper", "snapshot_2090_tamper",
+    "profile_pin_tamper", "snapshot_2090_inventory_tamper", "snapshot_2090_tamper",
     "binding_omission", "binding_extra", "binding_stale", "malformed_json",
     "duplicate_json_key", "archive_symlink_mode", "archive_nonregular_type",
     "archive_path_mismatch", "manifest_mismatch",
@@ -248,11 +246,10 @@ def pinned_pr_rows(label: str) -> list[dict]:
     return parse_jsonl(data, path)
 
 
-def prior_unions() -> tuple[list[dict], list[dict], list[dict]]:
+def prior_unions() -> tuple[list[dict], list[dict]]:
     main = [row for path in MAIN_CLASSIFICATION_INPUTS for row in parse_jsonl(git_bytes(MAIN, path), path)]
-    pr2078 = pinned_pr_rows("2078")
     pr2090 = pinned_pr_rows("2090")
-    return main, pr2078, pr2090
+    return main, pr2090
 
 
 def target_rows(profile: dict, prior: tuple[list[dict], list[dict], list[dict]]) -> tuple[list[dict], dict, dict]:
@@ -277,7 +274,7 @@ def target_rows(profile: dict, prior: tuple[list[dict], list[dict], list[dict]])
     if duplicate_pairs != set(expected_exclusions.values()):
         fail("E_OVERLAP", "source path/SHA overlap does not match explicit exclusion list")
     if expected_exclusions != EXPECTED_EXCLUSIONS:
-        fail("E_OVERLAP", "overlap exclusions differ from fixed PR #2078 evidence")
+        fail("E_OVERLAP", "overlap exclusions differ from #2078 records integrated into current main")
     target = [row for row in candidates if row["asset_id"] not in duplicate_ids]
     if len(target) != 72:
         fail("E_TARGET_SET", f"target count {len(target)}")
@@ -296,13 +293,13 @@ def target_rows(profile: dict, prior: tuple[list[dict], list[dict], list[dict]])
         "target_count": len(target),
     }
     prior_sets = {}
-    for label, group in zip(("main", "pr_2078", "pr_2090"), prior, strict=True):
+    for label, group in zip(("main", "pr_2090"), prior, strict=True):
         prior_sets[label] = {
             "count": len({source_identity(row)[0] for row in group}),
             "ids": {source_identity(row)[0] for row in group},
             "path_sha": {(source_identity(row)[1], source_identity(row)[2]) for row in group},
         }
-    expected_prior_counts = {"main": 429, "pr_2078": 67, "pr_2090": 41}
+    expected_prior_counts = {"main": 496, "pr_2090": 41}
     for label, expected_count in expected_prior_counts.items():
         if len(prior_sets[label]["ids"]) != expected_count:
             fail("E_RESEARCH_INPUT", f"{label} target count {len(prior_sets[label]['ids'])}; expected {expected_count}")
@@ -627,8 +624,8 @@ def build() -> None:
     category_counts = Counter(row["classification"]["category"] for row in ledger_rows)
     status_counts = Counter(row["phase_evidence"]["phase_classification_status"] for row in ledger_rows)
     implementation_counts = Counter(row["implementation_evidence"]["legacy_implementation_status"] for row in ledger_rows)
-    all_prior_ids = set().union(*(prior_sets[label]["ids"] for label in ("main", "pr_2078", "pr_2090")))
-    all_prior_paths = set().union(*(prior_sets[label]["path_sha"] for label in ("main", "pr_2078", "pr_2090")))
+    all_prior_ids = set().union(*(prior_sets[label]["ids"] for label in ("main", "pr_2090")))
+    all_prior_paths = set().union(*(prior_sets[label]["path_sha"] for label in ("main", "pr_2090")))
     target_ids = {row["asset_id"] for row in assets}
     target_paths = {(row["source_path"], row["source_sha256"]) for row in assets}
     research_inputs = [
@@ -664,13 +661,13 @@ def build() -> None:
             "固定BASEのunresolved AI instruction/adapter/consumer-template候補75件を導出し、PR重複3件を除いた72件をID/path/SHAで固定する",
             "各旧sourceのGit blob/type/mode/SHA/MANIFESTと手動spanの原文を保ち、source/path identityと意味解釈を混同しない",
             "4製品L1・product-boundary候補、反証、判断史、failure、consumer、phase/implementation evidenceを別々に記録する",
-            "main、PR #2078、PR #2090および新targetのasset ID/source path-SHA重複をゼロに保つ",
+            "current main (496)、PR #2090 (41)、新targetのasset ID/source path-SHA重複をゼロに保つ。#2078はcurrent mainに統合済み",
             "candidate classification、phase candidate、implementation evidenceからformal owner/phase/successor/実装成立を生成しない",
             "旧archive source/runtime/test/hook/adapter/CIを実行せず、独立source audit・validator・negative selfcheckを維持する",
         ],
         "connections": {
             "consumers": ["parent product-classification research ledger", "人間のproduct-boundary判断packet（未接続・採否待ち）"],
-            "dependencies": ["fixed BASE disposition/phase/decision/read-after", "four current product L1 and product-boundary", "main 429 + Draft PR #2078 67 + Draft PR #2090 41 pinned research inputs", "AICR-01..10 and failure/consumer relation inventories"],
+            "dependencies": ["fixed BASE disposition/phase/decision/read-after", "four current product L1 and product-boundary", "main 496 + Draft PR #2090 41 pinned research inputs; #2078's 67 are integrated into main", "AICR-01..10 and failure/consumer relation inventories"],
             "boundary": "candidate research evidence only; no formal product, phase, successor, implementation or new-build authority",
         },
         "operations": {
@@ -695,7 +692,7 @@ def build() -> None:
             "oracles": [
                 "fixed BASE disposition yields 75 in-scope rows, exact 3 prior duplicates are excluded, and the resulting target set is 72",
                 "independent source audit rechecks all 72 original Git objects, archive manifest entries, and line-span strings without importing generator or validator",
-                "main/#2078/#2090 and new target ID/path-SHA overlaps are recomputed as zero",
+                "main496/#2090config41 and new target ID/path-SHA overlaps are recomputed as zero; #2078 is included in main496",
                 "validator checks every bound digest, exact record/inventory/Binding contract and research-only authority boundary",
                 "semantic interpretation remains a human candidate judgment and is not a validation oracle",
             ],
@@ -722,27 +719,23 @@ def build() -> None:
         },
         "comparison_heads": {
             "main": {"revision": MAIN, "research_union_count": len(prior_sets["main"]["ids"])},
-            "pr_2078": {"revision": PR2078, "target_count": len(prior_sets["pr_2078"]["ids"]), "snapshot_prefix": "upstream/pr-2078-"},
             "pr_2090": {"revision": PR2090, "target_count": len(prior_sets["pr_2090"]["ids"]), "snapshot_prefix": "upstream/pr-2090-"},
         },
         "overlap_status": {
             "main_target_id_overlap": len(target_ids & prior_sets["main"]["ids"]),
             "main_path_sha_overlap": len(target_paths & prior_sets["main"]["path_sha"]),
-            "pr_2078_target_id_overlap": len(target_ids & prior_sets["pr_2078"]["ids"]),
-            "pr_2078_path_sha_overlap": len(target_paths & prior_sets["pr_2078"]["path_sha"]),
             "pr_2090_target_id_overlap": len(target_ids & prior_sets["pr_2090"]["ids"]),
             "pr_2090_path_sha_overlap": len(target_paths & prior_sets["pr_2090"]["path_sha"]),
             "combined_prior_id_overlap": len(target_ids & all_prior_ids),
             "combined_prior_path_sha_overlap": len(target_paths & all_prior_paths),
-            "excluded_pr_2078_ids": selection["excluded_asset_ids"],
+            "excluded_integrated_2078_ids": selection["excluded_asset_ids"],
             "all_zero_required": True,
         },
         "research_union_projection": {
-            "current_main_authoritative_research_union": 429,
-            "draft_pr_2078_target": 67,
+            "current_main_authoritative_research_union": 496,
             "draft_pr_2090_target": 41,
             "new_target": len(assets),
-            "deduplicated_candidate_projection": 429 + 67 + 41 + len(assets),
+            "deduplicated_candidate_projection": 496 + 41 + len(assets),
             "archive_population": len(strict_base_rows(DISPOSITION)),
             "authority_status": "conditional_unmerged_draft_union_only",
         },

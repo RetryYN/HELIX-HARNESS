@@ -119,7 +119,7 @@ def _validate(bundle: Path, binding_path: Path) -> None:
         error("E_RESEARCH_INPUT", str(exc))
     actual_identity = [g.source_identity(row) for row in actual_ledger]
     if any(aid in prior_ids or (path, sha) in prior_path_sha for aid, path, sha in actual_identity):
-        error("E_OVERLAP", "classification row overlaps main/#2078/#2090 by asset ID or source path/SHA")
+        error("E_OVERLAP", "classification row overlaps main496/#2090-config41 by asset ID or source path/SHA")
 
     # Rebuild into a disposable copy. This recomputes every target, archive blob/type/mode,
     # MANIFEST receipt, upstream input digest, semantic rule and Binding edge from pinned inputs.

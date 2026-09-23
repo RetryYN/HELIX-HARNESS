@@ -88,8 +88,8 @@ def mutate(case: str, bundle: Path, binding_path: Path) -> None:
     elif case == "profile_pin_tamper":
         path = bundle / "semantic-profile.json"
         path.write_bytes(path.read_bytes() + b" ")
-    elif case == "snapshot_2078_tamper":
-        path = bundle / "upstream/pr-2078-classification-research.jsonl"
+    elif case == "snapshot_2090_inventory_tamper":
+        path = bundle / "upstream/pr-2090-inventory.json"
         path.write_bytes(path.read_bytes() + b" ")
     elif case == "snapshot_2090_tamper":
         path = bundle / "upstream/pr-2090-classification-research.jsonl"
@@ -159,7 +159,7 @@ def main() -> int:
                 "new_build_promotion": "E_NEW_BUILD", "inventory_target_tamper": "E_INVENTORY_TARGET",
                 "inventory_category_count": "E_INVENTORY_CATEGORY", "inventory_overlap_tamper": "E_OVERLAP",
                 "inventory_input_tamper": "E_INVENTORY_INPUT", "profile_pin_tamper": "E_PROFILE_PIN",
-                "snapshot_2078_tamper": "E_RESEARCH_INPUT", "snapshot_2090_tamper": "E_RESEARCH_INPUT",
+                "snapshot_2090_inventory_tamper": "E_RESEARCH_INPUT", "snapshot_2090_tamper": "E_RESEARCH_INPUT",
                 "binding_omission": "E_BINDING_OMISSION", "binding_extra": "E_BINDING_EXTRA",
                 "binding_stale": "E_BINDING_STALE", "malformed_json": "E_JSON",
                 "duplicate_json_key": "E_JSON", "archive_symlink_mode": "E_ARCHIVE_MODE",

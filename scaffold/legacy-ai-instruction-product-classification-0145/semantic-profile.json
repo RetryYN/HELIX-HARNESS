@@ -2,19 +2,19 @@
   "overlap_exclusions": [
     {
       "asset_id": "LEGACY-ASSET-3AC78FD8A01E0F9811C5",
-      "reason": "exact duplicate with PR #2078 target; excluded from new asset research",
+      "reason": "exact duplicate with #2078 target integrated into current main; excluded from new asset research",
       "source_path": ".claude/hooks/git-command-guard.ts",
       "source_sha256": "94519967c5565bd024b3da03384f7a12d9622c16af0b0836e534d4ff0434853d"
     },
     {
       "asset_id": "LEGACY-ASSET-A8DD18BCB237675730CD",
-      "reason": "exact duplicate with PR #2078 target; excluded from new asset research",
+      "reason": "exact duplicate with #2078 target integrated into current main; excluded from new asset research",
       "source_path": ".claude/hooks/session-log.ts",
       "source_sha256": "42434283c9fcb273d9064aea08eb35b56bb0f18ee2d89ce75c85005143e3bc8f"
     },
     {
       "asset_id": "LEGACY-ASSET-DB4925588127A51391D7",
-      "reason": "exact duplicate with PR #2078 target; excluded from new asset research",
+      "reason": "exact duplicate with #2078 target integrated into current main; excluded from new asset research",
       "source_path": ".claude/hooks/work-guard.ts",
       "source_sha256": "c9aa80b399925bb258de728314dc43f531e0f219c771585d9f661cd0772a7009"
     }

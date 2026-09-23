@@ -52,14 +52,13 @@
     "archive_blob_mode_type_sha_and_manifest_exact_for_all_72": true,
     "consumer_inventory_aicr06_34_paths_exact": true,
     "fixed_disposition_target_set_exact": true,
-    "main_pr2078_pr2090_pairwise_deduplicated": true,
+    "main496_pr2090_pairwise_deduplicated": true,
     "new_target_id_and_path_sha_overlap_zero": true,
     "profile_line_span_text_exact_for_all_72": true
   },
   "comparison_revisions": {
-    "main": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
-    "pr_2078": "8c8cf851b47c88f6d814dc828a38743fc3cd45b3",
-    "pr_2090": "ef3e1de17f8cd3818d38d5ff9ca512d2eb62f9ac"
+    "main": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+    "pr_2090": "1da9a32b9149805f87878dd688047a0a1c9ebed3"
   },
   "consumer_inventory": {
     "AICR_06_claimed_template_count": 34,
@@ -93,25 +92,16 @@
   "formal_asset_classification_updated": false,
   "new_build_allowed": false,
   "prior_pairwise_overlap": {
-    "main/pr_2078": {
-      "asset_id_overlap": 0,
-      "source_path_sha256_overlap": 0
-    },
     "main/pr_2090": {
-      "asset_id_overlap": 0,
-      "source_path_sha256_overlap": 0
-    },
-    "pr_2078/pr_2090": {
       "asset_id_overlap": 0,
       "source_path_sha256_overlap": 0
     }
   },
-  "profile_sha256": "sha256:8ebc36cc50029bcdc17e2828798ff1b29a20f90d55c1ca77fdbdfdf050aa2f2f",
+  "profile_sha256": "sha256:4f72ea9f16fbbf544a579182750511b8e0b01a17b6f6aa521ad388d7e7cb1aea",
   "schema_revision": 1,
   "selection_counts": {
     "exact_prior_overlap_exclusions": 3,
-    "main_product_research_ids": 429,
-    "pr_2078_target_ids": 67,
+    "main_product_research_ids": 496,
     "pr_2090_target_ids": 41,
     "target_denominator": 72,
     "unresolved_candidates_before_overlap": 75
@@ -1234,7 +1224,7 @@
       "span_text_sha256": "sha256:c670d7926c110c0683a0883580bdea5e0c23224ed6fa9cc011af014c138b3326"
     }
   ],
-  "target_overlap_with_main_pr2078_pr2090": {
+  "target_overlap_with_main496_pr2090": {
     "asset_id": 0,
     "source_path_sha256": 0
   }

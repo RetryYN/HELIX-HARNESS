@@ -20,7 +20,7 @@
     "dependencies": [
       "fixed BASE disposition/phase/decision/read-after",
       "four current product L1 and product-boundary",
-      "main 429 + Draft PR #2078 67 + Draft PR #2090 41 pinned research inputs",
+      "main 496 + Draft PR #2090 41 pinned research inputs; #2078's 67 are integrated into main",
       "AICR-01..10 and failure/consumer relation inventories"
     ]
   },
@@ -31,7 +31,7 @@
     "固定BASEのunresolved AI instruction/adapter/consumer-template候補75件を導出し、PR重複3件を除いた72件をID/path/SHAで固定する",
     "各旧sourceのGit blob/type/mode/SHA/MANIFESTと手動spanの原文を保ち、source/path identityと意味解釈を混同しない",
     "4製品L1・product-boundary候補、反証、判断史、failure、consumer、phase/implementation evidenceを別々に記録する",
-    "main、PR #2078、PR #2090および新targetのasset ID/source path-SHA重複をゼロに保つ",
+    "current main (496)、PR #2090 (41)、新targetのasset ID/source path-SHA重複をゼロに保つ。#2078はcurrent mainに統合済み",
     "candidate classification、phase candidate、implementation evidenceからformal owner/phase/successor/実装成立を生成しない",
     "旧archive source/runtime/test/hook/adapter/CIを実行せず、独立source audit・validator・negative selfcheckを維持する"
   ],
@@ -646,27 +646,19 @@
     },
     {
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/independent-source-audit.json",
-      "sha256": "5c348dcec304981a6759f45fcf07ab9e4440af77cc29b45ffed31fe9bf38b599"
+      "sha256": "792461d6f3bfa590e996a0cea73952d653ce73db62053a03a5299dfd4bf8b2dc"
     },
     {
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/semantic-profile.json",
-      "sha256": "8ebc36cc50029bcdc17e2828798ff1b29a20f90d55c1ca77fdbdfdf050aa2f2f"
-    },
-    {
-      "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2078-classification-research.jsonl",
-      "sha256": "d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138"
-    },
-    {
-      "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2078-inventory.json",
-      "sha256": "fdfcc7b3f7b7b9c704bf2a63cc5fb7a91b8567e42d708554a49f7f82ba90c860"
+      "sha256": "4f72ea9f16fbbf544a579182750511b8e0b01a17b6f6aa521ad388d7e7cb1aea"
     },
     {
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-classification-research.jsonl",
-      "sha256": "88448924b72165336db9699c4b026172782949725d97c38601a403046b497b36"
+      "sha256": "a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b"
     },
     {
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json",
-      "sha256": "e30823f82fc0202f2f9ad0b9eb90a95b42c963758cd3df8596e10789f59a6b72"
+      "sha256": "546f173d5ca60e9ba54c3c262d9517cde9a63e4798fef45dfee8a91f883d9a2d"
     },
     {
       "path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
@@ -675,6 +667,14 @@
     {
       "path": "scaffold/legacy-asset-product-classification-0107/inventory.json",
       "sha256": "0bbcd6433312154f131d9d4ff71e47886ae352aba87f96f62cb97715117f6393"
+    },
+    {
+      "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
+      "sha256": "d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138"
+    },
+    {
+      "path": "scaffold/legacy-implementation-residual-0126/inventory.json",
+      "sha256": "685b2ddbc6f60e9e01baefb2d42fad77d5a41c419544953d06d1773582d68d7e"
     },
     {
       "path": "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
@@ -816,7 +816,7 @@
       "inventory_overlap_tamper",
       "inventory_input_tamper",
       "profile_pin_tamper",
-      "snapshot_2078_tamper",
+      "snapshot_2090_inventory_tamper",
       "snapshot_2090_tamper",
       "binding_omission",
       "binding_extra",
@@ -831,7 +831,7 @@
     "oracles": [
       "fixed BASE disposition yields 75 in-scope rows, exact 3 prior duplicates are excluded, and the resulting target set is 72",
       "independent source audit rechecks all 72 original Git objects, archive manifest entries, and line-span strings without importing generator or validator",
-      "main/#2078/#2090 and new target ID/path-SHA overlaps are recomputed as zero",
+      "main496/#2090config41 and new target ID/path-SHA overlaps are recomputed as zero; #2078 is included in main496",
       "validator checks every bound digest, exact record/inventory/Binding contract and research-only authority boundary",
       "semantic interpretation remains a human candidate judgment and is not a validation oracle"
     ],
