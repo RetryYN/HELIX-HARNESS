@@ -68,6 +68,8 @@ git diff --check
 
 この束は `/home/tenni/.helix-worktrees/legacy-evidence-crosswalk-0134` の未追跡8ファイルから移管した。元のSHA-256、source/destination branch、固定BASE、許可したidentity-only置換を `source-transfer-manifest.json` に記録する。`SCF-B-0134` は移管先BASEで別用途に割当済みのため、この束だけを `SCF-B-0146` へ変更した。bundle名も新しいBinding IDと一致させた。218 record／598 edge／355 assetの意味・値と除外境界はID変更の対象ではない。
 
+`source-transfer-manifest.json` の `destination_base` は移管時点の `b3a3c49b34bfaa1cca5861075d1de18c0e5e7204` を保持する。現在の作業ブランチは `be9cf8cf99ee94a487e54d372d7a34e9266b1ee3` へrebase済みで、固定BASE／移管元snapshotは変えていない。旧crosswalk入力のうち、このrebase範囲で変更されたpathはなく、従って上流pinと派生recordは更新していない。
+
 #2083／#2085の20-unit bundleは入力partition、crosswalk、validator oracleのいずれにも含めない。#1813は進捗参照だけであり、要求承認やunit evidenceを生成しない。旧asset dispositionでは対象355 asset中348件がunresolved／historical／implementation unknown、残る7件だけが `source_snapshot_preservation` としてsource snapshotのread-only保存を示す。対応するdecision 14行（7件のrev2記録と7件のrev3 human-confirmation待ち訂正）とcopy/read-after 7行は、その物理保存のdigest／consumer対応を裏付ける。それらはunit implementation証明やconsumer closureではない。入力partitionには実装・縮退・failure・non-implementationをunitへ直接結合する明示receiptがなく、全218件でold implementation／old degradation／old failure／current implementation／acceptanceは `unknown`、consumerは `pending`、unimplementedは `not_assessed` を保つ。
 
 source partition 9束は計218 row（29, 27, 37, 7, 23, 19, 31, 29, 16）。598 semantic review edgeと355 unique old assetは静的な対応・検討候補の集合であり、実装完了、障害、未実装、受入、authorityを意味しない。
