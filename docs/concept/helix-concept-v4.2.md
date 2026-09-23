@@ -61,8 +61,8 @@ v4.1の接続記述だけでは、[L1被覆監査](../governance/audits/source-r
 |---|---|---|---|
 | 自走 | 承認済み上流から進行・停止・差戻し・再開・検証・完了を判断する工程契約 | system stateとwork graphから次の作業・依存・検証を導出し、許可内で割当・継続する。要求・承認・権限を自己生成しない | 各製品が目的・制約・許可・停止条件を持つ。Web-OSのservice runtimeはOSへ吸収しない |
 | 全体simulation | 要求・domain・責務・依存・interface・state・failure・V-pair・検証・運用条件を入力にし、前提・revision・不確実性・反証・再検証を持つsimulation契約 | 承認済み契約でsimulationを実行・記録し、予測と実測の差を再計画候補へ戻す | 製品固有の価値・制約と、許可された運用観測を入力として提供する。入力の所有権は移さない |
-| 非エンジニア利用 | 実装詳細を操作しない利用者が目的・進行条件・品質・未決・riskを理解し、必要な判断を行える開発契約 | CI・bot・Workerによる自動検査、証拠化、差戻し、停止・再開を統制する | HELIX-Webのdashboard体験はHARNESS Version 1後の個別製品責務であり、HARNESSの利用価値を代替しない |
-| Worker最適配置 | 作業分類、必要能力、検証義務、上位能力へのescalation条件 | Workerの品質・費用・時間・再作業・失敗実測を対象revisionへ結び、割当・再配置と独立検証を統制する | 各製品がrisk・data・作用・品質・期限・費用制約を指定する。model名や価格だけを要求authorityにしない |
+| 非エンジニア利用 | 実装詳細を操作しない利用者が目的・進行条件・品質・未決・riskを理解し、必要な判断を行える開発契約 | CI・bot・Workerによる自動検査、証拠化、差戻し、停止・再開を統制する | HELIX-Webのdashboard体験はHARNESS Version 1後の個別製品責務であり、HARNESSの利用価値を代替しない。Web-OSに非エンジニア向け入口を置くかとその運転範囲はWeb／Web-OSのL1で判断し、service runtimeをOSへ移さない |
+| Worker最適配置 | 作業分類、必要能力、検証義務、上位能力へのescalation条件 | Workerの品質・費用・時間・再作業・失敗実測を対象revisionへ結び、割当・再配置と独立検証を統制する | 各製品がrisk・data・作用・品質・期限・費用制約を指定する。Web-OSのservice運転でWorkerを使うか、使う場合の配置・検証契約はWeb-OS L1で判断し、OSの割当authorityを暗黙継承させない。model名や価格だけを要求authorityにしない |
 
 学習・改善の第2目標はv4.1の接続を保持する。学習結果による本番採用と要求変更は対象上流の人間判断を経る。
 上表の分担は本Concept revisionの人間判断を経て初めて上流境界となり、その後に対象別L1へ
@@ -117,7 +117,8 @@ GitHubは作業、協調、CI、review、統合証拠のsurfaceである。Issue
 8. **Controlled Adaptation**: learning、audit、environment reconciliation、synthesisは候補を上流へ戻し、authorityを直接変更しない。
 9. **Composable Release**: 検証済みの機能単位から利用目的に合う提供構成とHARNESS artifactへ適格性を保って合成し、releaseとdeploymentを分ける。
 
-v4.1はProduct Separationの追加だけではなく、製品境界に合わせて既存原則の意味も改訂する。
+v4.1はProduct Separationの追加だけではなく、製品境界に合わせて既存原則の意味も改訂した。
+次の表はv4.0からv4.1への改訂履歴であり、本v4.2候補では9原則の本文と意味を変更しない。
 
 | v4.0原則 | v4.1での扱い | 改訂理由 |
 |---|---|---|
@@ -288,11 +289,10 @@ adapter、AI instruction／prompt、実行設定、旧test／fixture／oracle、
 
 ## 昇格条件
 
-1. 本候補の製品identityと責務境界を人間が承認する。
-2. L0 charterと対象別L1へ差分を投影する。
-3. HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSのL2／L11へ親子関係を接続する。
-4. 対象別L3／L10、Requirement IR、下流impactを確定する。
-5. v3.1／v4.0のsupersede、compatibility、archive、rollbackを記録する。
-6. canonicalization transactionとmain read-afterを行う。
+1. 本候補の5大目標の製品責務差分とexact revisionを人間が承認する。
+2. 承認済み4対象L1の親Concept revisionをv4.1からv4.2へ付け替える影響と、既存L1で不足する価値を確認する。L1本文の変更・採否は別の人間判断とする。
+3. 対象別L2／L11のdraftが参照する親revisionと下流影響を確認し、L1承認前にL2／L11を正式適用しない。
+4. v4.1からv4.2へのsupersede、compatibility、archive、v4.1へのrollback条件を記録する。
+5. 承認・適用後のcanonicalization transactionとmain read-afterを行う。
 
-本候補はU1の起草成果であり、上記承認・接続・正本化・runtime移行を完了させない。
+本候補はv4.1からのConcept改訂案であり、上記承認・L1への適用・下流接続・runtime移行を完了させない。
