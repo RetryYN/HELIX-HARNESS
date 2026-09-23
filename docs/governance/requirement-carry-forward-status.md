@@ -37,6 +37,8 @@ IR 153件とconfirmed原文ID 175件には部分的な意味重複があり、32
 
 旧資産4,020件は所在と静的種別を[候補台帳](legacy-asset-phase-product-classification-bootstrap.jsonl)に保全済みで、全件の再利用適性や要求単位の実装成立は未判定である。POの[判断時期の決定](decisions/legacy-asset-review-timing-2026-09-23.md)に従い、先に要求の要否と製品scopeを決め、L3要件定義で選んだ関係資産だけを必要な根拠まで調べる。未選定資産の全件調査は要求判断の前提にしない。
 
+[フェーズ能力台帳](phase-capability-inventory.md)の初期分類では、20フェーズの移行状態は現行へ再導出1件、旧能力比で縮退17件、正式には未再実装1件、意味的等価性が未解決1件である。20件とも`new_build_allowed: false`。これは代表assetによるフェーズ能力の分類であり、上表の218要求unitそれぞれの未実装・縮退判定や、旧testの合格を示さない。
+
 製品候補分類だけでPOのscope判断は成立しない。個別identityでは、原文・revision・今回の判断に影響するrelationを揃えた時点でPOへ送る。[個別要求判断の調査停止境界](decisions/rdp-identity-evidence-boundary-2026-09-23.md)は全14 source holdingの未処理を個別判断の一律停止条件にしない。既に判断された[HIL-BR-02の製品scope](decisions/hil-br-02-product-scope-2026-09-23.md)はこの入口の一例であり、要求採否・successor割当・実装承認を意味しない。
 
 ## IR 153件のrouting候補
