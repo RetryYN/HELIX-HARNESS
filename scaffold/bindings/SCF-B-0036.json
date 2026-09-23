@@ -19,7 +19,7 @@
     {"path": "docs/concept/product-boundary.md", "sha256": "097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038", "note": "四製品の責務ownerとruntime境界"},
     {"path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl", "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180", "note": "333 existing-path holdingの保存契約"},
     {"path": "docs/governance/requirement-disposition-review-program.md", "sha256": "9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59", "note": "新しいsourceはsemantic disposition前にsource_holdingへ追加する契約（30-31行）"},
-    {"path": "docs/governance/new-generation-start-here.md", "sha256": "ab00a056ed5d666ee04daed36b1d0bb7b05488f911b167f86d6aab2e644c7829", "note": "authority、旧資産静的参照、scaffold境界"},
+    {"path": "docs/governance/new-generation-start-here.md", "sha256": "405ddb96ecec2103a2db33943ac427092bb15661e35f85fc0cb65c1dd7dcc5da", "note": "authority、旧資産静的参照、scaffold境界"},
     {"path": "docs/helix-harness/L1-planning/product-intent.md", "sha256": "a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04", "note": "承認済みHARNESS L1本文"},
     {"path": "docs/helix-os/L1-planning/system-intent.md", "sha256": "0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8", "note": "承認済みHELIX-OS L1本文"},
     {"path": "docs/helix-web/L1-planning/product-intent.md", "sha256": "26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756", "note": "承認済みHELIX-Web L1本文"},

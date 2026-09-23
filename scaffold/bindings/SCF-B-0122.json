@@ -385,7 +385,7 @@
     {
       "note": "fixed BASE Git object input; static read only; no authority promotion or legacy execution",
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "ab00a056ed5d666ee04daed36b1d0bb7b05488f911b167f86d6aab2e644c7829"
+      "sha256": "405ddb96ecec2103a2db33943ac427092bb15661e35f85fc0cb65c1dd7dcc5da"
     },
     {
       "note": "fixed BASE Git object input; static read only; no authority promotion or legacy execution",

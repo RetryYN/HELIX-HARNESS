@@ -14,5 +14,6 @@ HELIXの機能を最適化、拡張、再編するときは、独自実装を起
 この参照義務はarchive内資産の実行、無判断なcopy、旧CI・旧testのoracle化を許可しない。
 
 現在は上流再構築中であり、新世代CIとAI context生成器は未構築である。Conceptから対象別layerへ順に降ろし、
-GitHubは共有・review・証拠projectionとして扱う。reviewer指定だけではCLI、API、IDE、Worker、GitHub Appの起動を許可しない。
-PRの作成・更新とreview依頼コメントに必要な`git push`／`gh`操作は、ユーザーの当該指示に含める（[AGENTS.md](AGENTS.md)）。
+GitHubは共有・review・証拠projectionとして扱う。通常のGitHub作業では作成側がpushとDraft PR作成、
+独立review側がexact HEADのreview・明示merge・read-afterを担う（[AGENTS.md](AGENTS.md)、
+[GitHub上流運用モデル](docs/governance/github-upstream-operating-model.md)）。旧CLI・旧hook・旧runtimeは起動しない。
