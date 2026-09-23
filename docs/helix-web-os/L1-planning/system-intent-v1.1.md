@@ -52,9 +52,10 @@ HELIX-OSへ渡し、改善proposalと採択後の対象別変更を受け取る�
 
 非エンジニア向けの利用者入口はHELIX-Webが所有し、Web-OSは承認済み範囲のjob state・証拠を
 正しいrevisionでWebへ渡す運転責務に限る。これをHARNESSの開発契約やOSの内部UIへ移さない。
-Web-OSのservice jobでWorkerを使うか、その配置・検証契約は現時点で未決である。
-OSの開発project向けWorker割当をWeb-OSのservice authorityへ暗黙継承させず、Webサービスの採用scopeを
-L2で決める際に、使う場合と使わない場合を対象別に判断する。未決は使用許可にも不採用決定にもならない。
+Web-OSのservice jobでWorkerを使うか、その配置・検証契約は現時点で未決のL1判断事項である。
+service jobの種別、risk、data、作用を明らかにして、使う場合と使わない場合をWeb-OS L1で判断する。
+その判断が成立するまで、関連するL2要求へ降ろさない。OSの開発project向けWorker割当をWeb-OSの
+service authorityへ暗黙継承させない。未決は使用許可にも不採用決定にもならない。
 
 ## 採択条件
 
