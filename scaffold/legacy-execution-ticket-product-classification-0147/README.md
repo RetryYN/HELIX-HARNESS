@@ -1,6 +1,6 @@
 # SCF-B-0147 — Execution Ticket候補8資産の四製品責務境界研究
 
-固定BASE `8a9fdc973f3553bea78d022e8d73f109aca526da`（作業時のcurrent main）の資産台帳から、`docs/governance/candidates/execution-ticket-*` に属する全8件を選んだresearch-only Scaffoldです。8件はvision、recognition、requests、requirements、acceptance、trace、validation、intakeからなる同一候補系列です。別テーマまで広げると意味単位が崩れるため、50件上限より小さい系列全体を扱います。
+固定BASE `8a9fdc973f3553bea78d022e8d73f109aca526da`（作業時のcurrent main）の資産台帳から、`docs/governance/candidates/execution-ticket-*` に属する全8件を選んだresearch-only Scaffoldです。8件はvision、recognition、requests、requirements、acceptance、trace、validation、intakeからなる同一候補系列です。別テーマを混ぜず、この系列全体を扱います。
 
 選定対象は固定BASE、open PR #2094 HEAD `32e0f8a8469887ed6baa8294c4597d51614bcaeb`、open PR #2096 HEAD `ab0a1faa4e2b310206b97a786c329334a2a0e151`の分類集合と照合しました。PR #2090 HEAD `4b6e1bbf122b03fd3531047290161aced34eefda`はBASEへ統合済みのため、main集合に一度だけ含め、独立したopen PR集合として重ねて数えていません。`validate.py` は対象集合を固定BASE台帳から独立に再導出し、各比較集合に対するasset ID、source path、source SHA-256、(ID,path,SHA)の重なりを個別照合します。選定8件との重なりは全キーで0件です。集合の行数とdistinct ID数は`inventory.json`に固定しています。
 
