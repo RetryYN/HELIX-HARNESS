@@ -17,7 +17,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-overlap-reconciliation-0144"
 BINDING_PATH = ROOT / "scaffold/bindings/SCF-B-0144.json"
-BASE_REVISION = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
+PREVIOUS_BASE_REVISION = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
+BASE_REVISION = "2c94d171e9b1f2cb28aaceedf591129fb8e4db2e"
 ARCHIVE_REVISION = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 INITIAL_TARGET_REVISION = "886c2436a71e079913c395693c2edd9ddce52113"
 PREVIOUS_TARGET_REVISION = "8c8cf851b47c88f6d814dc828a38743fc3cd45b3"
@@ -458,11 +459,16 @@ def candidate_reason_candidates(main: dict, target_span: dict, main_spans: list,
             "evidence_refs": ["main.source_spans", "target.reconstructed_source_span"],
             "basis": "The main result retains source-specific span(s); #2078's fallback chooses one unique non-empty line. Their line bounds or text digest differ.",
         })
-    if main.get("classification_reason") and target_span.get("interpretation") != main.get("classification_reason"):
+    if (
+        main.get("manual_semantic_review", {}).get("status")
+        and main_spans
+        and target_span.get("interpretation") == PROFILE_REASON
+        and main.get("classification_reason")
+    ):
         results.append({
-            "type": "interpretation_conflict",
-            "evidence_refs": ["main.classification_reason", "target.profile_reason"],
-            "basis": "The main result states a source-specific product interpretation, while the target fallback records no direct product evidence and keeps an insufficient-basis result. This is a candidate conflict for human assessment, not a winner selection.",
+            "type": "research_method_state_difference",
+            "evidence_refs": ["main.manual_semantic_review", "main.source_spans", "target.profile_reason", "target.method.classification_rule"],
+            "basis": "The main side has source-specific semantic review and spans, while #2078 supplies only a generic insufficient-basis fallback for an unresearched-prefix set. This records research, method, and state difference; it is not a semantic interpretation conflict because both sides did not independently research the source.",
         })
     if main.get("classification_category") != "insufficient_basis" or main.get("candidate_products") != []:
         results.append({
@@ -673,6 +679,27 @@ def collect_inputs(target_inv: dict, entries: list[dict]) -> list[dict]:
     return sorted(unique.values(), key=lambda x: (x["revision"], x["path"]))
 
 
+def main_rebaseline() -> dict:
+    paths = sorted(set((*MAIN_BUNDLES, BOUNDARY, PHASE, DISPOSITION, DECISIONS, READ_AFTER, MANIFEST, FAILURE_SOURCE, CONSUMER_SOURCE, *L1_PATHS.values())))
+    comparisons = []
+    for path in paths:
+        previous = git_tree(PREVIOUS_BASE_REVISION, path)
+        current = git_tree(BASE_REVISION, path)
+        if previous["blob"] != current["blob"] or previous["mode"] != current["mode"]:
+            raise AssertionError(f"E_MAIN_REBASELINE fixed input changed: {path}")
+        comparisons.append({"path": path, "blob": current["blob"], "mode": current["mode"]})
+    changed_scaffold = subprocess.check_output(["git", "diff", "--name-only", PREVIOUS_BASE_REVISION, BASE_REVISION, "--", "scaffold"], cwd=ROOT, text=True).splitlines()
+    added_scaffold = subprocess.check_output(["git", "diff", "--name-only", "--diff-filter=A", PREVIOUS_BASE_REVISION, BASE_REVISION, "--", "scaffold"], cwd=ROOT, text=True).splitlines()
+    return {
+        "previous_main_revision": PREVIOUS_BASE_REVISION,
+        "current_main_revision": BASE_REVISION,
+        "unchanged_fixed_input_count": len(comparisons),
+        "unchanged_fixed_inputs": comparisons,
+        "new_scaffold_paths": added_scaffold,
+        "other_scaffold_changes": changed_scaffold,
+    }
+
+
 def binding_upstream(inputs: list[dict]) -> list[dict]:
     # Open-PR objects are pinned and checked by the generator/validator through git show;
     # Binding upstream paths must exist in the fixed main checkout for scfctl validation.
@@ -714,8 +741,9 @@ def build() -> None:
     inventory = {
         "schema_revision": 1,
         "binding_id": "SCF-B-0144",
-        "bundle_revision": "SCF-B-0144 generated revision 2",
+        "bundle_revision": "SCF-B-0144 generated revision 3",
         "base_revision": BASE_REVISION,
+        "main_rebaseline": main_rebaseline(),
         "archive_revision": ARCHIVE_REVISION,
         "target_pr": 2078,
         "initial_target_head_pin": INITIAL_TARGET_REVISION,
@@ -738,7 +766,9 @@ def build() -> None:
         "category_counts_main_existing": dict(sorted(main_counts.items())),
         "category_counts_target_2078": dict(sorted(target_counts.items())),
         "difference_reason_candidate_counts": dict(sorted(counts.items())),
-        "difference_reason_vocabulary": ["scope_difference", "evidence_span_difference", "interpretation_conflict", "classification_rule_difference", "unresolved"],
+        "difference_reason_vocabulary": ["scope_difference", "evidence_span_difference", "research_method_state_difference", "classification_rule_difference", "unresolved"],
+        "semantic_interpretation_conflict_policy": "A semantic interpretation conflict requires both sides to have independently researched source-specific evidence and to retain incompatible interpretations. The #2078 rows here are generic insufficient-basis fallbacks, so the 36 records contain zero such conflicts.",
+        "semantic_interpretation_conflict_count": 0,
         "candidate_reason_policy": "Reasons are evidence-backed non-exclusive candidates; no winner, owner, formal route, phase, successor, implementation status, or consumer closure is generated.",
         "authority_boundary": {**AUTHORITY, "formal_update": "none", "research_only": True, "LABO": "excluded; Issue #2089 hold remains in force"},
         "target_overlap_reconciliation_pin": {
@@ -778,21 +808,21 @@ def build() -> None:
         "product": "HELIX-HARNESS",
         "owner_candidate": "四製品product-boundaryの候補結果差分照合（正式owner未解決）",
         "state": "registered",
-        "reason": "#2078現行固定HEAD c55ffc91（初回pin 886c2436、前回pin 8c8cf851から更新）で同一source path/SHAがmain research unionと異なる候補結果を持つ36件を、source span・意味解釈・候補製品/L1根拠・counterevidence・method/scope差とともに並べ、証拠付き差分理由候補を人間判断へ渡す。勝者・formal route・新規asset研究を生成しない。",
+        "reason": "main 2c94d171と#2078固定HEAD c55ffc91を照合し、同一source path/SHAの36件について候補値、source span、L1根拠、counterevidence、research/method/stateとscope差を記録する。#2078側はgeneric fallbackのためsemantic interpretation conflictには数えない。勝者・formal route・新規asset研究を生成しない。",
         "upstream": binding_upstream(inputs),
         "role": "legacy-asset-overlap-reconciliation-human-review-0144-static",
         "obligations": [
             "#2078 overlap 53件のうちsame_source_different_candidate_result exact 36件のみをmain union429とasset ID/source path/SHAで照合し、新規研究件数へ加算しない",
             "両結果のsource span、interpretation、candidate product/L1 roots、counterevidence availability、method/scopeをside-by-sideで保持し、target-emitted evidenceとstatic reconstructionを区別する",
-            "scope_difference/evidence_span_difference/interpretation_conflict/classification_rule_difference/unresolvedを証拠参照付きnon-exclusive reason candidateとして扱い、勝者や正式routeを作らない",
-            "#2078の初期HEAD 886c2436、前回HEAD 8c8cf851から現HEAD c55ffc91へ明示re-pin済み。#2078がc55ffc91以降に進んだらこのbaseline/reviewを停止し、新HEAD/base確認後に完全再検証・差分reviewをする。自動追随しない",
+            "scope_difference/evidence_span_difference/research_method_state_difference/classification_rule_difference/unresolvedを証拠参照付きnon-exclusive reason candidateとして扱う。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合だけとする。勝者や正式routeを作らない",
+            "main b3a3c49bから2c94d171への再baselineでは四製品L1・分類8 JSONLを含む固定入力20 pathのblob/modeが不変で、main Scaffoldの新規追加はない。#2078は初期HEAD 886c2436、前回HEAD 8c8cf851から現HEAD c55ffc91へ明示re-pin済み。#2078またはmainが進んだら停止し、新HEAD/base確認後に完全再検証・差分reviewをする。自動追随しない",
             "旧archiveはGit blob静的readのみ。runtime/test/CI/hook/adapterを実行しない。LABO適用を含め4製品以外を扱わない",
             "phase candidate/implementation status/history/failure/consumerは候補分類から分離し、formal classification/phase/successor/closureを更新しない",
         ],
         "connections": {
             "boundary": "research-only; authority_effect=none; no formal route, classification update, phase admission, successor, implementation promotion, closure, or new build",
             "consumers": ["human judgment packet for #2078 overlap reconciliation"],
-            "dependencies": ["fixed main product-research union at b3a3c49", "#2078 exact target HEAD object c55ffc91 (previous pins 8c8cf851 and 886c2436 recorded in inventory history)", "four-product L1 and product-boundary", "fixed archive source blobs/MANIFEST"],
+            "dependencies": ["fixed main product-research union at 2c94d171 (rebaselined from b3a3c49 with 20 fixed input blobs unchanged)", "#2078 exact target HEAD object c55ffc91 (previous pins 8c8cf851 and 886c2436 recorded in inventory history)", "four-product L1 and product-boundary", "fixed archive source blobs/MANIFEST"],
         },
         "operations": {
             "allowed": ["read pinned Git objects statically", "write scaffold comparison artifacts", "run generator/validator/selfcheck/scfctl"],
@@ -845,9 +875,10 @@ def render_packet(rows: list[dict]) -> None:
         "# #2078 overlap差分の人間判断packet",
         "",
         f"main `{BASE_REVISION}` と #2078 HEAD `{TARGET_REVISION}` を固定。対象はoverlap 53件中candidate resultが異なる36件で、新規asset研究数は0。",
+        f"旧main `{PREVIOUS_BASE_REVISION}` から新mainへの固定入力20 path（四製品L1・main分類8 JSONLを含む）のblob/modeはすべて不変。mainのScaffold新規追加はなく、変更は既存SCF-B-0118の8ファイルのみ。",
         "各assetの両候補、根拠span、L1/boundary、counterevidence、phase/history/consumerは `classification-reconciliation.jsonl` に完全収録。",
         "#2078は36件を最終classification JSONLから除外しており、target側のspan/L1は同HEADのgenerator helper・literalから固定archive bytesに対して静的に再構成した。出力済みtarget evidenceとは表示上も分離した。",
-        "差分理由は複数候補であり、勝者・正式route・phase・successor・実装成立・consumer closureは決めない。#2078 HEADが変わった場合は明示re-pinと再検証を行う。",
+        "36件はmain側にsource-specific research/spanがある一方、#2078側はgeneric insufficient-basis fallbackのため、research/method/state差として記録した。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合だけを指す。今回その件数は0。勝者・正式route・phase・successor・実装成立・consumer closureは決めない。#2078 HEADが変わった場合は明示re-pinと再検証を行う。",
         "",
         "| Asset ID | source path | JSONL row | main候補 | #2078候補 | 差分理由候補 | 状態 |",
         "|---|---|---:|---|---|---|---|",

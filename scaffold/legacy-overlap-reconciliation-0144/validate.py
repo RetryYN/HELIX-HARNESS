@@ -14,7 +14,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-overlap-reconciliation-0144"
 BINDING = ROOT / "scaffold/bindings/SCF-B-0144.json"
-BASE = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
+PREVIOUS_BASE = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
+BASE = "2c94d171e9b1f2cb28aaceedf591129fb8e4db2e"
 ARCHIVE_BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 INITIAL_TARGET = "886c2436a71e079913c395693c2edd9ddce52113"
 PREVIOUS_TARGET = "8c8cf851b47c88f6d814dc828a38743fc3cd45b3"
@@ -348,11 +349,31 @@ def expected_reason_types(main: dict, target_span_value: dict, main_spans: list,
     line_text_sha = digest("\n".join(target_span_value["line_text"]).encode("utf-8"))
     if not main_spans or any((x.get("line_start"), x.get("line_end"), x.get("line_text_sha256")) != (target_span_value["line_start"], target_span_value["line_end"], line_text_sha) for x in main_spans):
         types.append("evidence_span_difference")
-    if main.get("classification_reason") and main["classification_reason"] != PROFILE_REASON:
-        types.append("interpretation_conflict")
+    if main.get("manual_semantic_review", {}).get("status") and main_spans and target_span_value.get("interpretation") == PROFILE_REASON and main.get("classification_reason"):
+        types.append("research_method_state_difference")
     if main.get("classification_category") != "insufficient_basis" or main.get("candidate_products") != []:
         types.append("classification_rule_difference")
     return types or ["unresolved"]
+
+
+def expected_main_rebaseline() -> dict:
+    paths = sorted(set((*MAIN_BUNDLES, BOUNDARY, PHASE, DISPOSITION, DECISIONS, READ_AFTER, MANIFEST, FAILURE, CONSUMER, *L1_PATHS.values())))
+    comparisons = []
+    for path in paths:
+        previous = tree_entry(PREVIOUS_BASE, path)
+        current = tree_entry(BASE, path)
+        require(previous["blob"] == current["blob"] and previous["mode"] == current["mode"], "E_MAIN_REBASELINE", f"fixed input changed between main revisions: {path}")
+        comparisons.append({"path": path, "blob": current["blob"], "mode": current["mode"]})
+    changed_scaffold = subprocess.check_output(["git", "diff", "--name-only", PREVIOUS_BASE, BASE, "--", "scaffold"], cwd=ROOT, text=True).splitlines()
+    added_scaffold = subprocess.check_output(["git", "diff", "--name-only", "--diff-filter=A", PREVIOUS_BASE, BASE, "--", "scaffold"], cwd=ROOT, text=True).splitlines()
+    return {
+        "previous_main_revision": PREVIOUS_BASE,
+        "current_main_revision": BASE,
+        "unchanged_fixed_input_count": len(comparisons),
+        "unchanged_fixed_inputs": comparisons,
+        "new_scaffold_paths": added_scaffold,
+        "other_scaffold_changes": changed_scaffold,
+    }
 
 
 def expected_input_keys(ids: list[str]) -> set[tuple[str, str]]:
@@ -421,6 +442,7 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
     ids = [r.get("asset_id") for r in records]
     require(len(records) == 36 and ids == sorted(ids) and ids == expected_ids and len(set(ids)) == 36, "E_TARGET_SET", "exact ordered 36 conflict IDs required")
     require(inv.get("base_revision") == BASE and inv.get("archive_revision") == ARCHIVE_BASE and inv.get("target_head_pin") == TARGET, "E_INVENTORY_PIN", "revision lock drift")
+    require(inv.get("main_rebaseline") == expected_main_rebaseline(), "E_MAIN_REBASELINE", "main fixed-input blob comparison missing or stale")
     require(inv.get("initial_target_head_pin") == INITIAL_TARGET and inv.get("target_head_pin_history") == [
         {"head": INITIAL_TARGET, "status": "initial_pin", "note": "first comparison pin requested before PR #2078 advanced"},
         {"head": PREVIOUS_TARGET, "status": "previous_repin", "note": "PR #2078 advanced from the initial pin; overlap53/conflict36 IDs and source identities were rechecked"},
@@ -431,7 +453,8 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
     require(inv.get("subject_count") == 36 and inv.get("new_asset_research_count") == 0 and inv.get("adds_assets_to_main_union") is False, "E_INVENTORY_PIN", "new research denominator drift")
     require(inv.get("target_overlap_count") == 53 and inv.get("other_overlap_same_result_count") == 17 and inv.get("main_union_asset_count") == 429, "E_INVENTORY_PIN", "overlap denominator drift")
     require(inv.get("target_head_follow_policy", "").startswith(f"STOP the current baseline/review if PR #2078 advances beyond {TARGET}."), "E_INVENTORY_PIN", "explicit stop-and-rebaseline policy required")
-    require(inv.get("difference_reason_vocabulary") == ["scope_difference", "evidence_span_difference", "interpretation_conflict", "classification_rule_difference", "unresolved"], "E_REASON_EVIDENCE", "reason vocabulary drift")
+    require(inv.get("difference_reason_vocabulary") == ["scope_difference", "evidence_span_difference", "research_method_state_difference", "classification_rule_difference", "unresolved"], "E_REASON_EVIDENCE", "reason vocabulary drift")
+    require(inv.get("semantic_interpretation_conflict_count") == 0 and inv.get("semantic_interpretation_conflict_policy") == "A semantic interpretation conflict requires both sides to have independently researched source-specific evidence and to retain incompatible interpretations. The #2078 rows here are generic insufficient-basis fallbacks, so the 36 records contain zero such conflicts.", "E_REASON_EVIDENCE", "semantic interpretation conflict policy/count drift")
     require(inv.get("negative_cases") == EXPECTED_NEGATIVE_CASES, "E_NEGATIVE_CASES", "ordered expected negative case set drift")
     target_by_id = {x["asset_id"]: x for x in conflicts}
     main_by_id = main_row_map()
@@ -511,8 +534,14 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
         actual_reasons = [x.get("type") for x in row.get("difference_reason_candidates", [])]
         expected_reasons = expected_reason_types(main_record, tspan, main_exact.get("semantic_anchors", []), expected_scope)
         require(actual_reasons == expected_reasons and all(x in inv["difference_reason_vocabulary"] for x in actual_reasons), "E_REASON_EVIDENCE", f"reason candidate set mismatch {aid}")
+        require("interpretation_conflict" not in actual_reasons, "E_REASON_EVIDENCE", f"fallback treated as independent semantic interpretation {aid}")
+        if "research_method_state_difference" in actual_reasons:
+            require(main_record.get("manual_semantic_review", {}).get("status") and main_exact.get("semantic_anchors") and target_result.get("reason") == PROFILE_REASON and target.get("method", {}).get("classification_rule") == "insufficient_basis; candidate_products=[]", "E_REASON_EVIDENCE", f"research-state difference lacks independent main research and generic target fallback evidence {aid}")
         for reason in row["difference_reason_candidates"]:
             require(reason.get("evidence_refs") and isinstance(reason.get("basis"), str) and reason["basis"], "E_REASON_EVIDENCE", f"unsubstantiated reason {aid}")
+            if reason.get("type") == "research_method_state_difference":
+                require(reason.get("evidence_refs") == ["main.manual_semantic_review", "main.source_spans", "target.profile_reason", "target.method.classification_rule"], "E_REASON_EVIDENCE", f"research-state evidence references mismatch {aid}")
+                require(reason.get("basis") == "The main side has source-specific semantic review and spans, while #2078 supplies only a generic insufficient-basis fallback for an unresearched-prefix set. This records research, method, and state difference; it is not a semantic interpretation conflict because both sides did not independently research the source.", "E_REASON_EVIDENCE", f"research-state basis mismatch {aid}")
             if reason.get("type") == "scope_difference":
                 require(reason.get("evidence_refs") == ["target.scope.scope_membership_evidence", "target.overlap_result", "main.input_union"], "E_REASON_EVIDENCE", f"scope evidence references mismatch {aid}")
                 require(reason.get("basis") == "The #2078 UNRESEARCHED_PREFIX_ASSET_PATHS fallback reason asserts this asset ID was absent from prior research, while the pinned overlap row places it in the existing main union of 429 IDs. This membership conflict is for human review and does not select a result.", "E_REASON_EVIDENCE", f"scope evidence basis mismatch {aid}")
@@ -522,6 +551,7 @@ def validate_bundle(bundle_dir: Path = BUNDLE) -> dict:
     require(inv.get("category_counts_main_existing") == dict(sorted(main_category_counts.items())), "E_INVENTORY_PIN", "main category count drift")
     require(inv.get("category_counts_target_2078") == dict(sorted(target_category_counts.items())), "E_INVENTORY_PIN", "target category count drift")
     require(inv.get("difference_reason_candidate_counts") == dict(sorted(actual_reason_counts.items())), "E_INVENTORY_PIN", "reason count drift")
+    require(actual_reason_counts["research_method_state_difference"] == 36 and actual_reason_counts["interpretation_conflict"] == 0, "E_REASON_EVIDENCE", "generic target fallback must yield 36 research-state differences and zero semantic interpretation conflicts")
     raw_records = records_path.read_bytes()
     require(inv.get("outputs", {}).get("records_sha256") == digest(raw_records) and inv.get("outputs", {}).get("records_bytes") == len(raw_records) and inv.get("outputs", {}).get("record_count") == len(records), "E_OUTPUT_DIGEST", "records output digest/size/count stale")
     expected_inv_hash = digest(canonical({k: v for k, v in inv.items() if k != "inventory_sha256"}))

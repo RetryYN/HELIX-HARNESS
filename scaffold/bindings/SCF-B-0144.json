@@ -16,7 +16,7 @@
       "human judgment packet for #2078 overlap reconciliation"
     ],
     "dependencies": [
-      "fixed main product-research union at b3a3c49",
+      "fixed main product-research union at 2c94d171 (rebaselined from b3a3c49 with 20 fixed input blobs unchanged)",
       "#2078 exact target HEAD object c55ffc91 (previous pins 8c8cf851 and 886c2436 recorded in inventory history)",
       "four-product L1 and product-boundary",
       "fixed archive source blobs/MANIFEST"
@@ -28,8 +28,8 @@
   "obligations": [
     "#2078 overlap 53件のうちsame_source_different_candidate_result exact 36件のみをmain union429とasset ID/source path/SHAで照合し、新規研究件数へ加算しない",
     "両結果のsource span、interpretation、candidate product/L1 roots、counterevidence availability、method/scopeをside-by-sideで保持し、target-emitted evidenceとstatic reconstructionを区別する",
-    "scope_difference/evidence_span_difference/interpretation_conflict/classification_rule_difference/unresolvedを証拠参照付きnon-exclusive reason candidateとして扱い、勝者や正式routeを作らない",
-    "#2078の初期HEAD 886c2436、前回HEAD 8c8cf851から現HEAD c55ffc91へ明示re-pin済み。#2078がc55ffc91以降に進んだらこのbaseline/reviewを停止し、新HEAD/base確認後に完全再検証・差分reviewをする。自動追随しない",
+    "scope_difference/evidence_span_difference/research_method_state_difference/classification_rule_difference/unresolvedを証拠参照付きnon-exclusive reason candidateとして扱う。semantic interpretation conflictは両側が独立にsource-specific researchを行い、解釈が両立しない場合だけとする。勝者や正式routeを作らない",
+    "main b3a3c49bから2c94d171への再baselineでは四製品L1・分類8 JSONLを含む固定入力20 pathのblob/modeが不変で、main Scaffoldの新規追加はない。#2078は初期HEAD 886c2436、前回HEAD 8c8cf851から現HEAD c55ffc91へ明示re-pin済み。#2078またはmainが進んだら停止し、新HEAD/base確認後に完全再検証・差分reviewをする。自動追随しない",
     "旧archiveはGit blob静的readのみ。runtime/test/CI/hook/adapterを実行しない。LABO適用を含め4製品以外を扱わない",
     "phase candidate/implementation status/history/failure/consumerは候補分類から分離し、formal classification/phase/successor/closureを更新しない"
   ],
@@ -49,7 +49,7 @@
   },
   "owner_candidate": "四製品product-boundaryの候補結果差分照合（正式owner未解決）",
   "product": "HELIX-HARNESS",
-  "reason": "#2078現行固定HEAD c55ffc91（初回pin 886c2436、前回pin 8c8cf851から更新）で同一source path/SHAがmain research unionと異なる候補結果を持つ36件を、source span・意味解釈・候補製品/L1根拠・counterevidence・method/scope差とともに並べ、証拠付き差分理由候補を人間判断へ渡す。勝者・formal route・新規asset研究を生成しない。",
+  "reason": "main 2c94d171と#2078固定HEAD c55ffc91を照合し、同一source path/SHAの36件について候補値、source span、L1根拠、counterevidence、research/method/stateとscope差を記録する。#2078側はgeneric fallbackのためsemantic interpretation conflictには数えない。勝者・formal route・新規asset研究を生成しない。",
   "replacement": {
     "formal_artifacts": [],
     "issue": 2078,
