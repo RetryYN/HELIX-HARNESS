@@ -424,6 +424,6 @@ Vision §5.4の名称と本候補のBRAIN／Intelligence分離、§6のConnector
 3. 現行4対象L1の親revisionと内容差分、追加4機構のL1新設要否、共通2部品の要求の置き方を対象別に確認し、L1本文を別に人間判断へ戻す。
 4. 旧要求を原文・revision・digest付きで無損失に対応付け、維持・改変・不採用候補・追加を個別採否する。既存L2／L11 draftは親revisionと影響を確認するまで正式適用しない。
 5. [product-boundary.md](product-boundary.md)に残るOSの「学習、改善」およびWebの「ダッシュボード」と、本候補で分離した生成・評価・製品体験の関係を別revisionで判断する。旧文書のauthorityを本候補で暗黙上書きしない。
-5. Concept適用時は入口・台帳・参照digest・依存Bindingを更新し、main統合後にexact本文とdecisionをread-afterする。実装・CI・Web公開の許可は別に扱う。
+6. Concept適用時は入口・台帳・参照digest・依存Bindingを更新し、main統合後にexact本文とdecisionをread-afterする。実装・CI・Web公開の許可は別に扱う。
 
 本候補の作成は、Concept承認、現行適用、対象別要求の採否、runtime移行を完了させない。
