@@ -20,7 +20,7 @@ BUNDLE = ROOT / "scaffold/legacy-ai-instruction-product-classification-0145"
 REPORT = BUNDLE / "independent-source-audit.json"
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 MAIN = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
-PR2090 = "1da9a32b9149805f87878dd688047a0a1c9ebed3"
+PR2090 = "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e"
 ARCHIVE = "archive/legacy-generation-2026-09-14/root/"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
@@ -38,6 +38,10 @@ MAIN_LEDGER_PATHS = [
 ]
 PINNED_SNAPSHOTS = {
     "pr-2090-classification-research.jsonl": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
+}
+PINNED_SNAPSHOT_SOURCE_PATHS = {
+    "pr-2090-classification-research.jsonl": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
+    "pr-2090-inventory.json": "scaffold/legacy-config-product-classification-0141/inventory.json",
 }
 EXCLUSIONS = {
     "LEGACY-ASSET-3AC78FD8A01E0F9811C5": (".claude/hooks/git-command-guard.ts", "94519967c5565bd024b3da03384f7a12d9622c16af0b0836e534d4ff0434853d"),
@@ -124,10 +128,11 @@ def run_audit(bundle: Path) -> dict:
     main_rows = [row for path in MAIN_LEDGER_PATHS for row in parse_jsonl(git(MAIN, path), path)]
     snap_name = "pr-2090-classification-research.jsonl"
     data = (bundle / "upstream" / snap_name).read_bytes()
-    if sha(data) != PINNED_SNAPSHOTS[snap_name]:
+    if sha(data) != PINNED_SNAPSHOTS[snap_name] or data != git(PR2090, PINNED_SNAPSHOT_SOURCE_PATHS[snap_name]):
         raise ValueError("PR #2090 classification snapshot digest drift")
     inv_data = (bundle / "upstream" / "pr-2090-inventory.json").read_bytes()
-    if sha(inv_data) != "sha256:546f173d5ca60e9ba54c3c262d9517cde9a63e4798fef45dfee8a91f883d9a2d":
+    if (sha(inv_data) != "sha256:7bc5ed2dc4307a01d7cd95fd0bdfa0716d1cbd37a99b34d782d62b62e4256069" or
+            inv_data != git(PR2090, PINNED_SNAPSHOT_SOURCE_PATHS["pr-2090-inventory.json"])):
         raise ValueError("PR #2090 inventory snapshot digest drift")
     inventory = parse_json(inv_data, "pr-2090-inventory.json")
     if inventory.get("research_union", {}).get("authoritative", {}).get("count") != 496:
@@ -183,6 +188,10 @@ def run_audit(bundle: Path) -> dict:
         path = source["source_path"]
         manual = profile_rows[path]
         ledger = ledger_by_id[source["asset_id"]]
+        if (manual.get("authority_effect") != "none" or
+                type(manual.get("formal_asset_classification_updated")) is not bool or manual["formal_asset_classification_updated"] is not False or
+                type(manual.get("new_build_allowed")) is not bool or manual["new_build_allowed"] is not False):
+            raise ValueError(f"profile authority boundary is not research-only for {path}")
         if (manual["asset_id"], manual["source_sha256"]) != (source["asset_id"], source["source_sha256"]):
             raise ValueError(f"profile identity differs from fixed disposition for {path}")
         archive_path = ARCHIVE + path

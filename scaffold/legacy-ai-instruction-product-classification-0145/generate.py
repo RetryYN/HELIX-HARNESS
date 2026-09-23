@@ -14,7 +14,7 @@ BUNDLE = ROOT / "scaffold/legacy-ai-instruction-product-classification-0145"
 BINDING = ROOT / "scaffold/bindings/SCF-B-0145.json"
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 MAIN = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
-PR2090 = "1da9a32b9149805f87878dd688047a0a1c9ebed3"
+PR2090 = "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e"
 BINDING_ID = "SCF-B-0145"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 PROFILE_PATH = "scaffold/legacy-ai-instruction-product-classification-0145/semantic-profile.json"
@@ -61,7 +61,11 @@ MAIN_CLASSIFICATION_INPUTS = [
 MAIN_INVENTORY_INPUTS = [p.removesuffix("classification-research.jsonl") + "inventory.json" for p in MAIN_CLASSIFICATION_INPUTS]
 SNAPSHOTS = {
     "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-classification-research.jsonl": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b",
-    "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json": "sha256:546f173d5ca60e9ba54c3c262d9517cde9a63e4798fef45dfee8a91f883d9a2d",
+    "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json": "sha256:7bc5ed2dc4307a01d7cd95fd0bdfa0716d1cbd37a99b34d782d62b62e4256069",
+}
+PINNED_SNAPSHOT_SOURCE_PATHS = {
+    "pr-2090-classification-research.jsonl": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
+    "pr-2090-inventory.json": "scaffold/legacy-config-product-classification-0141/inventory.json",
 }
 BASE_INPUTS = [
     PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(),
@@ -87,7 +91,11 @@ EXPECTED_NEGATIVE_CASES = (
     "profile_pin_tamper", "snapshot_2090_inventory_tamper", "snapshot_2090_tamper",
     "binding_omission", "binding_extra", "binding_stale", "malformed_json",
     "duplicate_json_key", "archive_symlink_mode", "archive_nonregular_type",
-    "archive_path_mismatch", "manifest_mismatch",
+    "archive_path_mismatch", "manifest_mismatch", "typed_bool_alias",
+    "typed_number_alias", "record_null_object", "inventory_null_scope",
+    "output_byte_tamper", "record_extra_key", "inventory_extra_key",
+    "binding_metadata_tamper", "negative_case_order_tamper", "audit_report_tamper",
+    "profile_authority_tamper", "fixed_input_head_drift",
 )
 RULES = {
     "direct_product_basis": "manual semantic span supports exactly one current four-product L1 candidate; research only",
@@ -123,7 +131,7 @@ def strict_json(data: bytes, label: str):
 @lru_cache(maxsize=None)
 def git_bytes(revision: str, path: str) -> bytes:
     try:
-        return subprocess.check_output(["git", "show", f"{revision}:{path}"])
+        return subprocess.check_output(["git", "show", f"{revision}:{path}"], cwd=ROOT)
     except subprocess.CalledProcessError:
         fail("E_BASE_SOURCE", f"{revision}:{path}")
 
@@ -131,7 +139,7 @@ def git_bytes(revision: str, path: str) -> bytes:
 @lru_cache(maxsize=None)
 def git_tree(revision: str, path: str) -> tuple[str, str, str]:
     try:
-        rows = subprocess.check_output(["git", "ls-tree", revision, "--", path], text=True).splitlines()
+        rows = subprocess.check_output(["git", "ls-tree", revision, "--", path], text=True, cwd=ROOT).splitlines()
     except subprocess.CalledProcessError:
         fail("E_ARCHIVE_STATIC", path)
     if len(rows) != 1:
@@ -190,6 +198,10 @@ def profile_data() -> dict:
         products = row.get("candidate_products")
         basis = row.get("product_basis")
         counters = row.get("counterevidence")
+        if (row.get("authority_effect") != "none" or
+                type(row.get("formal_asset_classification_updated")) is not bool or row["formal_asset_classification_updated"] is not False or
+                type(row.get("new_build_allowed")) is not bool or row["new_build_allowed"] is not False):
+            fail("E_PROFILE_AUTHORITY", f"profile authority boundary for {row.get('source_path')}")
         if category not in RULES or type(products) is not list or type(basis) is not list or type(counters) is not list:
             fail("E_CATEGORY", f"invalid category/product evidence for {row.get('source_path')}")
         if len(set(products)) != len(products) or any(product not in PRODUCTS for product in products):
@@ -217,11 +229,16 @@ def profile_data() -> dict:
 
 def upstream_path_bytes(path: str) -> bytes:
     if path.startswith("scaffold/legacy-ai-instruction-product-classification-0145/upstream/"):
-        local = BUNDLE / "upstream" / Path(path).name
+        name = Path(path).name
+        local = BUNDLE / "upstream" / name
         try:
-            return local.read_bytes()
+            data = local.read_bytes()
         except OSError:
             fail("E_RESEARCH_INPUT", path)
+        source_path = PINNED_SNAPSHOT_SOURCE_PATHS.get(name)
+        if source_path is None or data != git_bytes(PR2090, source_path):
+            fail("E_RESEARCH_INPUT", f"snapshot differs from pinned Git object: {path}")
+        return data
     return git_bytes("HEAD", path)
 
 
@@ -238,17 +255,22 @@ def strict_base_rows(path: str) -> list[dict]:
     return parse_jsonl(git_bytes(BASE, path), f"{BASE}:{path}")
 
 
-def pinned_pr_rows(label: str) -> list[dict]:
+def pinned_pr_rows(label: str, bundle: Path | None = None) -> list[dict]:
     path = f"scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-{label}-classification-research.jsonl"
-    data = (BUNDLE / f"upstream/pr-{label}-classification-research.jsonl").read_bytes()
+    bundle = bundle or BUNDLE
+    name = f"pr-{label}-classification-research.jsonl"
+    data = (bundle / "upstream" / name).read_bytes()
     if tagged(data) != SNAPSHOTS[path]:
         fail("E_RESEARCH_INPUT", f"stale pinned PR #{label} snapshot")
+    source_path = PINNED_SNAPSHOT_SOURCE_PATHS.get(name)
+    if source_path is None or data != git_bytes(PR2090, source_path):
+        fail("E_RESEARCH_INPUT", f"PR #{label} snapshot differs from pinned Git object")
     return parse_jsonl(data, path)
 
 
-def prior_unions() -> tuple[list[dict], list[dict]]:
+def prior_unions(bundle: Path | None = None) -> tuple[list[dict], list[dict]]:
     main = [row for path in MAIN_CLASSIFICATION_INPUTS for row in parse_jsonl(git_bytes(MAIN, path), path)]
-    pr2090 = pinned_pr_rows("2090")
+    pr2090 = pinned_pr_rows("2090", bundle)
     return main, pr2090
 
 
@@ -658,16 +680,16 @@ def build() -> None:
             for path, digest in sorted(binding_inputs.items())
         ],
         "obligations": [
-            "固定BASEのunresolved AI instruction/adapter/consumer-template候補75件を導出し、PR重複3件を除いた72件をID/path/SHAで固定する",
+            "固定BASEのunresolved AI instruction/adapter/consumer-template候補75件を導出し、pinned mainに既に統合された#2078の3件重複を除いた72件をID/path/SHAで固定する",
             "各旧sourceのGit blob/type/mode/SHA/MANIFESTと手動spanの原文を保ち、source/path identityと意味解釈を混同しない",
             "4製品L1・product-boundary候補、反証、判断史、failure、consumer、phase/implementation evidenceを別々に記録する",
-            "current main (496)、PR #2090 (41)、新targetのasset ID/source path-SHA重複をゼロに保つ。#2078はcurrent mainに統合済み",
+            "pinned comparison main (496, #2078統合済み)、PR #2090 snapshot (41)、新targetのasset ID/source path-SHA重複をゼロに保つ。#2078を独立した依存入力として数えない",
             "candidate classification、phase candidate、implementation evidenceからformal owner/phase/successor/実装成立を生成しない",
-            "旧archive source/runtime/test/hook/adapter/CIを実行せず、独立source audit・validator・negative selfcheckを維持する",
+            "旧archive source/runtime/test/hook/adapter/CIを実行せず、validatorはgenerator再生成一致、independent-source-audit.pyは非依存のsource/span照合として役割を分ける",
         ],
         "connections": {
             "consumers": ["parent product-classification research ledger", "人間のproduct-boundary判断packet（未接続・採否待ち）"],
-            "dependencies": ["fixed BASE disposition/phase/decision/read-after", "four current product L1 and product-boundary", "main 496 + Draft PR #2090 41 pinned research inputs; #2078's 67 are integrated into main", "AICR-01..10 and failure/consumer relation inventories"],
+            "dependencies": ["fixed BASE disposition/phase/decision/read-after", "four current product L1 and product-boundary", "pinned comparison main 496 + Draft PR #2090 Git-object snapshot 41; #2078's 67 are integrated into main and not an independent dependency", "AICR-01..10 and failure/consumer relation inventories"],
             "boundary": "candidate research evidence only; no formal product, phase, successor, implementation or new-build authority",
         },
         "operations": {

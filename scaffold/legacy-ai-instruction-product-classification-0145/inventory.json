@@ -22,7 +22,7 @@
       "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
     },
     "pr_2090": {
-      "revision": "1da9a32b9149805f87878dd688047a0a1c9ebed3",
+      "revision": "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e",
       "snapshot_prefix": "upstream/pr-2090-",
       "target_count": 41
     }
@@ -652,10 +652,10 @@
       "sha256": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b"
     },
     {
-      "bytes": 43773,
+      "bytes": 44405,
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json",
       "revision": "pinned-open-pr-snapshot",
-      "sha256": "sha256:546f173d5ca60e9ba54c3c262d9517cde9a63e4798fef45dfee8a91f883d9a2d"
+      "sha256": "sha256:7bc5ed2dc4307a01d7cd95fd0bdfa0716d1cbd37a99b34d782d62b62e4256069"
     },
     {
       "bytes": 171459,
@@ -667,7 +667,7 @@
       "bytes": 50227,
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/independent-source-audit.json",
       "revision": "manual-static-audit-input",
-      "sha256": "sha256:792461d6f3bfa590e996a0cea73952d653ce73db62053a03a5299dfd4bf8b2dc"
+      "sha256": "sha256:d32bf05d145445456db156f516952ba90a53cb309e7211117343a1a7d6cffdc1"
     }
   ],
   "legacy_implementation_status_counts": {
@@ -708,7 +708,19 @@
     "archive_symlink_mode",
     "archive_nonregular_type",
     "archive_path_mismatch",
-    "manifest_mismatch"
+    "manifest_mismatch",
+    "typed_bool_alias",
+    "typed_number_alias",
+    "record_null_object",
+    "inventory_null_scope",
+    "output_byte_tamper",
+    "record_extra_key",
+    "inventory_extra_key",
+    "binding_metadata_tamper",
+    "negative_case_order_tamper",
+    "audit_report_tamper",
+    "profile_authority_tamper",
+    "fixed_input_head_drift"
   ],
   "output_sha256": "sha256:0d14bd9c0ed1192f3b1fd7b573526118dcdb9ffcb58de8065f978b74b236363b",
   "overlap_status": {

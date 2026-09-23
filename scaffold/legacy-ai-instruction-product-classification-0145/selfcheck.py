@@ -115,13 +115,52 @@ def mutate(case: str, bundle: Path, binding_path: Path) -> None:
         row["source_exact"]["archive_path"] += ".changed"
     elif case == "manifest_mismatch":
         row["source_exact"]["archive_manifest_sha256"] = "sha256:" + "0" * 64
+    elif case == "typed_bool_alias":
+        row["source_exact"]["archive_manifest_match"] = 1
+    elif case == "typed_number_alias":
+        inventory["research_scope"]["target_count"] = float(inventory["research_scope"]["target_count"])
+    elif case == "record_null_object":
+        row["source_exact"] = None
+    elif case == "inventory_null_scope":
+        inventory["research_scope"] = None
+    elif case == "output_byte_tamper":
+        lines = ledger_path.read_bytes().splitlines(keepends=True)
+        ledger_path.write_bytes(b"".join(reversed(lines)))
+        return
+    elif case == "record_extra_key":
+        row["unexpected_review_key"] = "not allowed"
+    elif case == "inventory_extra_key":
+        inventory["unexpected_review_key"] = "not allowed"
+    elif case == "binding_metadata_tamper":
+        binding["reason"] += " changed"
+    elif case == "negative_case_order_tamper":
+        inventory["negative_cases_expected_order"].reverse()
+    elif case == "audit_report_tamper":
+        audit_report = bundle / "independent-source-audit.json"
+        audit_report.write_bytes(audit_report.read_bytes() + b" ")
+        digest = g.tagged(audit_report.read_bytes())
+        for item in inventory["input_digests"]:
+            if item["path"] == g.AUDIT_REPORT_PATH:
+                item["sha256"] = digest
+                item["bytes"] = audit_report.stat().st_size
+        for item in binding["upstream"]:
+            if item["path"] == g.AUDIT_REPORT_PATH:
+                item["sha256"] = digest.removeprefix("sha256:")
+    elif case == "profile_authority_tamper":
+        profile_path = bundle / "semantic-profile.json"
+        profile = parse_json(profile_path)
+        profile["records"][0]["authority_effect"] = "formal"
+        write_json(profile_path, profile)
+    elif case == "fixed_input_head_drift":
+        return
     else:
         raise AssertionError(f"no mutation implemented for {case}")
 
-    ledger_path.write_text("".join(json.dumps(item, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for item in ledger), encoding="utf-8")
-    if case.startswith("inventory_"):
-        write_json(inventory_path, inventory)
-    if case.startswith("binding_"):
+    ledger_bytes = "".join(json.dumps(item, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for item in ledger).encode("utf-8")
+    ledger_path.write_bytes(ledger_bytes)
+    inventory["output_sha256"] = g.tagged(ledger_bytes)
+    write_json(inventory_path, inventory)
+    if case.startswith("binding_") or case in {"binding_metadata_tamper", "audit_report_tamper"}:
         write_json(binding_path, binding)
 
 
@@ -142,7 +181,21 @@ def main() -> int:
             case_binding = temp / "SCF-B-0145.json"
             shutil.copy2(binding, case_binding)
             mutate(case, case_bundle, case_binding)
-            ok, code = v.validate(case_bundle, case_binding)
+            original_profile_pin = g.PROFILE_SHA256
+            if case == "profile_authority_tamper":
+                g.PROFILE_SHA256 = g.tagged((case_bundle / "semantic-profile.json").read_bytes())
+            original_git_bytes = g.git_bytes
+            if case == "fixed_input_head_drift":
+                def drifted_git_bytes(revision: str, path: str) -> bytes:
+                    if revision == "HEAD" and path == g.PHASE:
+                        return b"drifted fixed-base input\n"
+                    return original_git_bytes(revision, path)
+                g.git_bytes = drifted_git_bytes
+            try:
+                ok, code = v.validate(case_bundle, case_binding)
+            finally:
+                g.PROFILE_SHA256 = original_profile_pin
+                g.git_bytes = original_git_bytes
             if ok:
                 print(f"SCF-B-0145 selfcheck FAIL {case}: mutation passed")
                 return 1
@@ -165,6 +218,12 @@ def main() -> int:
                 "duplicate_json_key": "E_JSON", "archive_symlink_mode": "E_ARCHIVE_MODE",
                 "archive_nonregular_type": "E_ARCHIVE_TYPE", "archive_path_mismatch": "E_ARCHIVE_PATH",
                 "manifest_mismatch": "E_ARCHIVE_MANIFEST",
+                "typed_bool_alias": "E_ARCHIVE_MANIFEST", "typed_number_alias": "E_INVENTORY_TARGET",
+                "record_null_object": "E_RECORD", "inventory_null_scope": "E_INVENTORY",
+                "output_byte_tamper": "E_OUTPUT_DIGEST", "record_extra_key": "E_RECORD",
+                "inventory_extra_key": "E_INVENTORY", "binding_metadata_tamper": "E_BINDING",
+                "negative_case_order_tamper": "E_NEGATIVE_CASES", "audit_report_tamper": "E_AUDIT_REPORT",
+                "profile_authority_tamper": "E_PROFILE_AUTHORITY", "fixed_input_head_drift": "E_INPUT_DRIFT",
             }[case]
             if code != expected_code:
                 print(f"SCF-B-0145 selfcheck FAIL {case}: got={code} expected={expected_code}")
