@@ -77,7 +77,7 @@ OSの証拠提供から利用者入口の所有を推定しない。
 
 ## 採択条件
 
-Concept v4.2のexact本文承認を入力とし、本書16件のうち既存12件の意味保持と追加4件の製品責務を
+Concept v4.2のexact本文承認を入力とし、本書16件のうち既存12件の意味保持と追加4件の内部機構責務を
 人間がこの本文revisionで別途承認する。Concept v4.2の現行適用は別のcanonicalization記録まで保留する。
 Issue、PR、Projects、DB、memory、既存CIの状態から要求・承認・完了を生成しない。
 採択後にL2要求、L11受入、L12運用評価を同じrevisionへ接続し、操作authorityや実装方式はL3以降で導出する。
