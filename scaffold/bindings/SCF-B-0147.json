@@ -16,11 +16,11 @@
       "legacy asset classification follow-up"
     ],
     "dependencies": [
-      "fixed BASE disposition and phase ledgers",
+      "origin/main BASE disposition and phase ledgers",
       "fixed archive MANIFEST",
-      "open PR #2078/#2090/#2094 candidate sets",
-      "PR #2092 reconciliation set",
-      "SCF-B-0142 research set"
+      "open PR #2090 HEAD f075c91c03e8ebff5e9c30c8a6974a6e9389b40e candidate set",
+      "open PR #2094 HEAD e5fc691c33f182f036048904b699e448795c2e20 candidate set",
+      "saved SCF-B-0142 revision 6deb8a48ff1187be58e6aaa704401b80d1d6fbbd research set"
     ]
   },
   "created": "2026-09-23",

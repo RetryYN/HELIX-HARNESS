@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = Path(__file__).resolve().parent
-BASE = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
+BASE = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
 LEDGER = "docs/governance/legacy-asset-disposition.jsonl"
 PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
@@ -31,6 +31,16 @@ EXPECTED = {
     "execution-ticket-trace.md": ("insufficient_basis", []),
     "execution-ticket-validation.md": ("multi_product_conflict", ["HELIX-HARNESS", "HELIX-OS"]),
     "execution-ticket-vision.md": ("insufficient_basis", ["HELIX-HARNESS", "HELIX-OS"]),
+}
+SOURCE_UNIMPLEMENTED_CLAIM = {
+    "execution-ticket-acceptance.md": True,
+    "execution-ticket-intake.md": True,
+    "execution-ticket-recognition.md": False,
+    "execution-ticket-requests.md": False,
+    "execution-ticket-requirements.md": True,
+    "execution-ticket-trace.md": True,
+    "execution-ticket-validation.md": False,
+    "execution-ticket-vision.md": False,
 }
 
 
@@ -74,10 +84,8 @@ def audit_overlap() -> tuple[dict, dict[str, list[str]]]:
     target_triple = {(r["asset_id"], r["source_path"], "sha256:" + r["source_sha256"]) for r in target_rows}
     sets = [
         ("main", BASE, None),
-        ("pr_2078", "c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03", "scaffold/legacy-implementation-residual-0126/classification-research.jsonl"),
-        ("pr_2090", "2c84761d73e46349874978810b886c611e4b009d", "scaffold/legacy-config-product-classification-0141/classification-research.jsonl"),
-        ("pr_2094", "115b49bc165dc9419e71c3f8e846565c973999fd", "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl"),
-        ("pr_2092_reconciliation", "ac8aa82c3ba9463d24810a9eac8be1302544b760", "scaffold/legacy-overlap-reconciliation-0144/classification-reconciliation.jsonl"),
+        ("pr_2090", "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e", "scaffold/legacy-config-product-classification-0141/classification-research.jsonl"),
+        ("pr_2094", "e5fc691c33f182f036048904b699e448795c2e20", "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl"),
         ("scf_b_0142", "6deb8a48ff1187be58e6aaa704401b80d1d6fbbd", "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl"),
     ]
     summaries, errors = {}, {}
@@ -97,6 +105,7 @@ def audit_overlap() -> tuple[dict, dict[str, list[str]]]:
 
 def validate_records(records: list[dict], inventory: dict) -> list[str]:
     errors: list[str] = []
+    if inventory.get("base_revision") != BASE: errors.append("E_BASE_REVISION")
     targets = [(n, r) for n, r in gjsonl(BASE, LEDGER) if r["source_path"].startswith("docs/governance/candidates/execution-ticket-")]
     expected_ids = [r["asset_id"] for _, r in targets]
     ids = [r.get("asset_id") for r in records]
@@ -135,7 +144,7 @@ def validate_records(records: list[dict], inventory: dict) -> list[str]:
         ph = row.get("phase", {})
         if ph.get("bootstrap_line") != p_line or ph.get("phase_classification_status") != phase["phase_classification_status"] or ph.get("candidate_phase_targets") != phase["candidate_phase_targets"] or ph.get("formal_phase_admission") is not False or ph.get("phase_updated") is not False: errors.append("E_PHASE:" + aid)
         impl = row.get("implementation_degradation", {})
-        if impl.get("implementation_status") != "unknown" or impl.get("degradation_status") != "unknown" or impl.get("historical_execution_performed") is not False: errors.append("E_IMPLEMENTATION:" + aid)
+        if impl.get("implementation_status") != "unknown" or impl.get("degradation_status") != "unknown" or impl.get("historical_execution_performed") is not False or impl.get("source_text_claims_unimplemented_or_unexecuted") is not SOURCE_UNIMPLEMENTED_CLAIM[basename]: errors.append("E_IMPLEMENTATION:" + aid)
         hist = row.get("history_failure_consumer", {})
         identity_terms = (aid, path)
         decision_match = any(term in gshow(BASE, "docs/governance/legacy-asset-decisions.jsonl").decode() for term in identity_terms)

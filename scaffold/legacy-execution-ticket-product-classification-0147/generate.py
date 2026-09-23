@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = Path(__file__).resolve().parent
-BASE = "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204"
+BASE = "7afee33ae892fe1a3cf1085fac4e02d923ece01d"
 ARCHIVE = "archive/legacy-generation-2026-09-14/root/"
 MANIFEST = "archive/legacy-generation-2026-09-14/MANIFEST.sha256"
 DISPOSITION = "docs/governance/legacy-asset-disposition.jsonl"
@@ -169,7 +169,7 @@ def main() -> None:
             "source_exact": exact,
             "classification": {"status": product_class, "candidate_products": candidates, "rationale": rationale, "formal_owner": None, "formal_classification_updated": False, "boundary_evidence": boundary, "l1_evidence": l1, "approval_evidence": approval},
             "phase": {"bootstrap_path": PHASE, "bootstrap_line": phase_line, "bootstrap_row_sha256": "sha256:" + sha(json.dumps(phase, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()), "phase_classification_status": phase["phase_classification_status"], "candidate_phase_targets": phase["candidate_phase_targets"], "formal_phase_admission": False, "phase_updated": False},
-            "implementation_degradation": {"implementation_status": "unknown", "bootstrap_implementation_evidence_state": phase["implementation_evidence_state"], "historical_execution_performed": False, "source_text_claims_unimplemented_or_unexecuted": basename in ("execution-ticket-acceptance.md", "execution-ticket-trace.md"), "degradation_status": "unknown", "asset_specific_failure_status": "not_established", "source_document_presence": "evidenced", "limits": "historical claim or document presence does not prove implementation, non-implementation, operation, or degradation"},
+            "implementation_degradation": {"implementation_status": "unknown", "bootstrap_implementation_evidence_state": phase["implementation_evidence_state"], "historical_execution_performed": False, "source_text_claims_unimplemented_or_unexecuted": basename in ("execution-ticket-acceptance.md", "execution-ticket-intake.md", "execution-ticket-requirements.md", "execution-ticket-trace.md"), "degradation_status": "unknown", "asset_specific_failure_status": "not_established", "source_document_presence": "evidenced", "limits": "historical claim or document presence does not prove implementation, non-implementation, operation, or degradation"},
             "history_failure_consumer": history,
             "authority_boundary": {"authority_effect": "none", "formal_product_authority": None, "new_build_allowed": False, "successor_assignment": None, "legacy_execution_performed": False},
         })
@@ -186,11 +186,9 @@ def main() -> None:
         "archive_population_count": 4020,
         "selection": {"rule": "fixed source ledger rows where source_path starts docs/governance/candidates/execution-ticket-; complete thematic family, no row truncation", "candidate_asset_count": 8, "target_ids": ids, "source_paths": [r["ledger"]["source_path"] for r in records], "source_sha256s": [r["ledger"]["source_sha256"] for r in records]},
         "comparison_sets": [
-            {"name": "main", "revision": BASE, "path": "all scaffold/*/classification-research.jsonl", "rows": 471, "distinct_ids": 429},
-            {"name": "pr_2078", "revision": "c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03", "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl", "rows": 67, "distinct_ids": 67},
-            {"name": "pr_2090", "revision": "2c84761d73e46349874978810b886c611e4b009d", "path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl", "rows": 41, "distinct_ids": 41},
-            {"name": "pr_2094", "revision": "115b49bc165dc9419e71c3f8e846565c973999fd", "path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl", "rows": 72, "distinct_ids": 72},
-            {"name": "pr_2092_reconciliation", "revision": "ac8aa82c3ba9463d24810a9eac8be1302544b760", "path": "scaffold/legacy-overlap-reconciliation-0144/classification-reconciliation.jsonl", "rows": 36, "distinct_ids": 36, "new_classifications": 0},
+            {"name": "main", "revision": BASE, "path": "all scaffold/*/classification-research.jsonl", "rows": 538, "distinct_ids": 496},
+            {"name": "pr_2090", "revision": "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e", "path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl", "rows": 41, "distinct_ids": 41},
+            {"name": "pr_2094", "revision": "e5fc691c33f182f036048904b699e448795c2e20", "path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl", "rows": 72, "distinct_ids": 72},
             {"name": "scf_b_0142", "revision": "6deb8a48ff1187be58e6aaa704401b80d1d6fbbd", "path": "scaffold/legacy-research-assets-product-classification-0142/classification-research.jsonl", "rows": 57, "distinct_ids": 57},
         ],
         "input_digests": inputs,
@@ -219,7 +217,7 @@ def main() -> None:
         "upstream": [{"path": x["path"], "sha256": x["sha256"].removeprefix("sha256:"), "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない"} for x in inputs],
         "role": "legacy asset product-boundary research",
         "obligations": ["台帳の固定ID/path/SHAをsource archiveとmanifestへ照合する", "候補文書の意味を現行4製品境界とL1へ照合する", "implementation/degradation/phase/consumer unknownと証拠を分離する", "候補集合との重複をID/path/SHA/tripleで確認する"],
-        "connections": {"boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority", "consumers": ["四製品責務境界reviewer", "legacy asset classification follow-up"], "dependencies": ["fixed BASE disposition and phase ledgers", "fixed archive MANIFEST", "open PR #2078/#2090/#2094 candidate sets", "PR #2092 reconciliation set", "SCF-B-0142 research set"]},
+        "connections": {"boundary": "research evidence only; no formal product, phase, implementation, successor, consumer, runtime, merge, or close authority", "consumers": ["四製品責務境界reviewer", "legacy asset classification follow-up"], "dependencies": ["origin/main BASE disposition and phase ledgers", "fixed archive MANIFEST", "open PR #2090 HEAD f075c91c03e8ebff5e9c30c8a6974a6e9389b40e candidate set", "open PR #2094 HEAD e5fc691c33f182f036048904b699e448795c2e20 candidate set", "saved SCF-B-0142 revision 6deb8a48ff1187be58e6aaa704401b80d1d6fbbd research set"]},
         "operations": {"allowed": ["read fixed Git objects statically", "write research-only scaffold", "run deterministic generator, independent provenance validator, negative selfcheck, scfctl static validation"], "forbidden": ["execute legacy archive source/runtime/test/hook/adapter/CI", "旧archiveは実行しない", "promote formal product/phase/implementation/consumer authority", "create successor or new capability", "merge, close, deploy"]},
         "artifacts": artifacts,
         "verification": {"evidence_kind": "scaffold", "scope": ["schema_interface", "source_revision_stale", "negative_case", "forbidden_write_scope"], "oracles": ["validator independently derives target family, source hashes, manifest, and main/PR/0142 overlaps from pinned Git objects", "validator checks archive anchors, four product boundary/L1/approval receipts, and non-promotion fields"], "negative_cases": ["asset omission or duplicate", "source anchor mutation", "formal phase/implementation/authority promotion", "target overlap with fixed comparison sets"]},

@@ -1,6 +1,6 @@
 {
   "archive_population_count": 4020,
-  "base_revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
+  "base_revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
   "binding_id": "SCF-B-0147",
   "classification_counts": {
     "insufficient_basis": 3,
@@ -8,40 +8,25 @@
   },
   "comparison_sets": [
     {
-      "distinct_ids": 429,
+      "distinct_ids": 496,
       "name": "main",
       "path": "all scaffold/*/classification-research.jsonl",
-      "revision": "b3a3c49b34bfaa1cca5861075d1de18c0e5e7204",
-      "rows": 471
-    },
-    {
-      "distinct_ids": 67,
-      "name": "pr_2078",
-      "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
-      "revision": "c55ffc91b08aabb0a0216168b3cf2b1e5fe6bf03",
-      "rows": 67
+      "revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
+      "rows": 538
     },
     {
       "distinct_ids": 41,
       "name": "pr_2090",
       "path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
-      "revision": "2c84761d73e46349874978810b886c611e4b009d",
+      "revision": "f075c91c03e8ebff5e9c30c8a6974a6e9389b40e",
       "rows": 41
     },
     {
       "distinct_ids": 72,
       "name": "pr_2094",
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/classification-research.jsonl",
-      "revision": "115b49bc165dc9419e71c3f8e846565c973999fd",
+      "revision": "e5fc691c33f182f036048904b699e448795c2e20",
       "rows": 72
-    },
-    {
-      "distinct_ids": 36,
-      "name": "pr_2092_reconciliation",
-      "new_classifications": 0,
-      "path": "scaffold/legacy-overlap-reconciliation-0144/classification-reconciliation.jsonl",
-      "revision": "ac8aa82c3ba9463d24810a9eac8be1302544b760",
-      "rows": 36
     },
     {
       "distinct_ids": 57,
