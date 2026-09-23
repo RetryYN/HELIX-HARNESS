@@ -91,7 +91,7 @@
     "dependencies": [
       "SCF-B-0084 prior atom Scaffold",
       "SCF-B-0080 Vision span source",
-      "current four-product boundary candidates"
+      "旧4対象boundaryの履歴receiptと現行Conceptの機構/製品属性候補"
     ],
     "boundary": "成果物はscaffold/配下のbounded research candidate。9候補（3 atoms + 6 composites）はsource-bound research recordであり、正式要求、owner、authority、phase、implementation、degradation、failure／consumer closureではない。"
   },

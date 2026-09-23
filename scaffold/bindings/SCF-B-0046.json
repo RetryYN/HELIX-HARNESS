@@ -40,8 +40,8 @@
     },
     {
       "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
-      "sha256": "0e8894cb12e0188b079e6fc0c251c3867f88d561dfc2a595070bb90facd7cb09",
-      "note": "OS review handoff candidate"
+      "sha256": "b5d3cb951bdad297bebcca9a3aa90931c22e2d96d1f63e3003566324d0c7c9f2",
+      "note": "OS review handoff candidate [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=0e8894cb12e0188b079e6fc0c251c3867f88d561dfc2a595070bb90facd7cb09; 現receipt=b5d3cb951bdad297bebcca9a3aa90931c22e2d96d1f63e3003566324d0c7c9f2; 採否・authorityは不変。]"
     },
     {
       "path": "docs/governance/github-upstream-operating-model.md",
@@ -95,8 +95,8 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0003.json",
-      "sha256": "511bfe44980e81dc3761f38e749f0e2f24b3270a737fba3b2513124150cdd764",
-      "note": "existing GUI notification scaffold context only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=d5b2339d891f8a41957965466ed604123b99f046f314b81eaab742ae7d86dd01; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=7ac4a9694b536beb33648abd50d187eb814459eaf189e6540b1ae63e1237b9ae; 現receipt=511bfe44980e81dc3761f38e749f0e2f24b3270a737fba3b2513124150cdd764]"
+      "sha256": "68c1bf40a09c14764e45fcb4e5f9b2515b967d8d5d93cc4b9941dabf38280ff5",
+      "note": "existing GUI notification scaffold context only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=d5b2339d891f8a41957965466ed604123b99f046f314b81eaab742ae7d86dd01; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=7ac4a9694b536beb33648abd50d187eb814459eaf189e6540b1ae63e1237b9ae; 現receipt=511bfe44980e81dc3761f38e749f0e2f24b3270a737fba3b2513124150cdd764] [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=511bfe44980e81dc3761f38e749f0e2f24b3270a737fba3b2513124150cdd764; 現receipt=68c1bf40a09c14764e45fcb4e5f9b2515b967d8d5d93cc4b9941dabf38280ff5; 採否・authorityは不変。]"
     },
     {
       "path": "scaffold/phcap12-13-review/README.md",

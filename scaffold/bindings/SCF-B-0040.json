@@ -75,8 +75,8 @@
     },
     {
       "path": "docs/governance/requirement-disposition-review-program.md",
-      "sha256": "9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59",
-      "note": "current 14 source-holding disposition input boundary"
+      "sha256": "36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb",
+      "note": "current 14 source-holding disposition input boundary [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59; 現receipt=36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb; 採否・authorityは不変。]"
     },
     {
       "path": "docs/governance/phase-capability-inventory.json",

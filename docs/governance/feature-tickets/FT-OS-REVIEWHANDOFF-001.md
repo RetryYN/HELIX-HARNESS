@@ -25,15 +25,15 @@ scaffold_binding: SCF-B-0003
 ## 目的と親
 
 同じVS CodeのClaude Code拡張とCodex拡張の既存セッション間で、実行レーンとレビュー／マージレーンの依頼・指摘返却を通知する。両者が同じ版の規則とreview対象を参照する。
-親はConcept v4.1とHELIXOS-L1-002／003／004／008／009。
-exact revisionは[調査記録](../audits/source-rebaseline/rule-review-handoff-investigation-2026-09-20.md)と
-[承認record](../decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)へ束縛する。
+現行の親は[HELIX Concept](../../concept/helix-concept.md)である。HELIXOS-L1-002／003／004／008／009への接続は未承認候補として扱う。
+旧Concept v4.1と旧HELIX-OS L1のexact承認revisionは[調査記録](../audits/source-rebaseline/rule-review-handoff-investigation-2026-09-20.md)と
+[承認record](../decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)へ履歴として束縛する。
 接続候補はHELIXOS-L2-003／004／007／010と対応L11であり、このticketから採否・正式実装許可を生成しない。
 
 ## 正式Featureのscopeと停止条件
 
 このticketは正式な共通規則参照・通知経路の要求候補を整理する。`proposed_upstream_waiting`のため、正式な設計・実装・runtime起動は開始しない。
-parent_requirementsは未承認L2候補への接続であり、承認済み親Concept／L1からの具体化を待つ。GitHub番号は親要求identityではない。
+parent_requirementsは未承認L2候補への接続であり、現行Conceptを親に、旧承認L1と現行未承認L1差分のPO判断を待つ。GitHub番号は親要求identityではない。
 仮組みSCF-B-0003は別identityであり、本ticketを起動許可に使わない。
 既存GUIへ接続する操作scope・原文・実装判断は[別記録](../audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md)、仮組み契約は[README](../../../scaffold/review-handoff/README.md)へ分離する。
 

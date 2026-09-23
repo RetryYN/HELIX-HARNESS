@@ -265,18 +265,18 @@
     },
     {
       "path": "docs/governance/requirement-disposition-review-program.md",
-      "sha256": "9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59",
-      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+      "sha256": "36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59; 現receipt=36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb; 採否・authorityは不変。]"
     },
     {
       "path": "docs/governance/requirement-overlap-review-program.md",
-      "sha256": "8e8c3ef18ab263420bd6f01277dc20b7519b77c9c4f50051331de68aaf380380",
-      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+      "sha256": "101248967764f0b23bc2da8cb5bbfffa973b4918f96ff4c968de3caf4de18584",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=8e8c3ef18ab263420bd6f01277dc20b7519b77c9c4f50051331de68aaf380380; 現receipt=101248967764f0b23bc2da8cb5bbfffa973b4918f96ff4c968de3caf4de18584; 採否・authorityは不変。]"
     },
     {
       "path": "docs/governance/requirement-technical-substitutability-review-program.md",
-      "sha256": "a116a505a52cc835a63448c81f9fc479f79110ebc48adb467548efdcfca22593",
-      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし"
+      "sha256": "734a78b31ffc251637d35c90fc0eeefa7bf0b4a27766fae5850e91ae4442fb77",
+      "note": "固定BASE bytes。静的研究入力のみ。authority effectなし [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=a116a505a52cc835a63448c81f9fc479f79110ebc48adb467548efdcfca22593; 現receipt=734a78b31ffc251637d35c90fc0eeefa7bf0b4a27766fae5850e91ae4442fb77; 採否・authorityは不変。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/l2d-s1-01-input-holding-screen.jsonl",

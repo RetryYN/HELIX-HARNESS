@@ -91,7 +91,7 @@ GitHub Issueは本programの進行と未決論点を共有するprojectionに限
 
 ## 現在の停止条件
 
-Concept v4.1と4対象L1は2026-09-17のdecision recordで承認済みである。現在は旧要求を全件保持したまま、
+旧Concept v4.1と旧4対象L1の承認は2026-09-17 decision recordのexact SHAだけに有効である。現行Conceptを親とする4対象L1本文は未承認候補である。現在は旧要求を全件保持したまま、
 管理分類登録の第1層で旧Requirement IR 153件すべての対象製品候補を登録し、独立reviewとmain read-afterを完了した。
 完了証拠と次の入口は[製品責務分類第1層の完了とL2採否入口](audits/source-rebaseline/product-routing-completion-and-l2-entry-2026-09-17.md)に固定した。
 `L2D-S1-01 authority-vocabulary`は[人間判断packet v2](audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md)に、

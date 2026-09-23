@@ -561,9 +561,9 @@ leaseを止めない。activity APIの一時的な取得失敗（通信・rate l
    手段が失われた場合、削除不能の実測で`deleted`が出た場合（`review_source_unsafe`）、または実測の修理では直らない原因で
    `deletion_probe_stale`が続く場合の再bootstrap（上記。leaseを止めてから、人間判断者loginのissue commentを出所とし、非常用commandの再bootstrap modeで行う）
    だけである。
-4. `operation_change`の必須入力「HELIX-OS要求」: 本Scaffoldの`operation_change` PRについては、承認済みHELIX-OS L1の
+4. `operation_change`の必須入力「HELIX-OS要求」: 本Scaffoldの`operation_change` PRについては、2026-09-17 decisionで承認された旧exact SHAのHELIX-OS L1に限って
    `HELIXOS-L1-003`（許可・予算・依存・独立検証の範囲でWorkerへ委譲する）と`HELIXOS-L1-004`（CI・review・証拠収集の統制）、
-   および本decisionで満たす。承認済みのHELIX-OS L2要求はまだない。
+   および本decisionで満たす。現行HELIX-OS L1本文は未承認候補であり、この旧承認を継承しない。承認済みのHELIX-OS L2要求はまだない。
 5. 同モデル「作成側とレビュー対応側の責務」の「merge admission成立後のmerge、post-merge read-after、対応Issueのcloseはレビュー対応側が行う」:
    lease対象PRでは、mergeとpost-merge read-afterをexecutorが行い、対応Issueのcloseは従来どおりclose通路を明示許可された主体が行う。
 6. AGENTS.md 16行（GitHub等の各通路は明示許可が必要）: review依頼・delivery receipt・応答commentの投稿は、対象PRへの

@@ -358,7 +358,7 @@
       "legacy asset disposition and phase/product classification ledgers",
       "Wave1–50 semantic review ledgers",
       "PHCAP capability inventory and PHCAP-20 research premise",
-      "current four-product boundary and four L1 documents"
+      "旧4対象boundary/L1の履歴receiptと現行Concept/未承認L1候補"
     ],
     "boundary": "成果物はscaffold/配下のresearch candidate。phase／product authority、formal requirement、successor、implementation、degradation、failure／consumer closure、L2／L11採否を生成しない。"
   },

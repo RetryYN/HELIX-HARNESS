@@ -8,14 +8,46 @@
   "state": "active",
   "reason": "RUL-OSP-04 の primary 25 atom と secondary relation 22 atom は旧規則台帳に存在するが、S1-01 の screen／cross-link 集計、source exact span、legacy asset 状態、product／authority／consumer 候補が同一 review 単位に束ねられていない。要求採否・successor・現行 authority を生成せず、47 atom の source closure を scaffold に固定する。",
   "upstream": [
-    {"path": "docs/governance/legacy-rule-atom-inventory.jsonl", "sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784", "note": "旧規則 atom 台帳。RUL-OSP-04 primary 25／secondary relation 22 の入力"},
-    {"path": "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-rule-atom-accounting.jsonl", "sha256": "ea5979396cfd0fa81678f9938a72edc84aa8320d467fe2ef252d016794bd05e7", "note": "S1-01 accounting。RUL-OSP-04 screened 10/25、secondary link count 5"},
-    {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "note": "対応する旧資産 26 source file の Historical／unresolved 状態"},
-    {"path": "docs/governance/candidates/legacy-rule-derived-requirements.md", "sha256": "386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa", "note": "RUL-OSP-04 要求候補本文と25／22表示"},
-    {"path": "docs/governance/requirement-disposition-review-program.md", "sha256": "9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59", "note": "RDP-001 の atom／candidate／authority停止条件"},
-    {"path": "docs/governance/requirement-atomization-review-contract.md", "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba", "note": "原文・line span・digest・未解決を保持する atom review contract"},
-    {"path": "docs/governance/legacy-asset-reuse-control.md", "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582", "note": "旧資産は reference only、実行・無判断 copy・oracle 化を禁止"},
-    {"path": "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md", "sha256": "f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46", "note": "S1-01 の10/25、screen 限界、per-atom unassessed 境界"}
+    {
+      "path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+      "sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784",
+      "note": "旧規則 atom 台帳。RUL-OSP-04 primary 25／secondary relation 22 の入力"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-rule-atom-accounting.jsonl",
+      "sha256": "ea5979396cfd0fa81678f9938a72edc84aa8320d467fe2ef252d016794bd05e7",
+      "note": "S1-01 accounting。RUL-OSP-04 screened 10/25、secondary link count 5"
+    },
+    {
+      "path": "docs/governance/legacy-asset-disposition.jsonl",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
+      "note": "対応する旧資産 26 source file の Historical／unresolved 状態"
+    },
+    {
+      "path": "docs/governance/candidates/legacy-rule-derived-requirements.md",
+      "sha256": "386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa",
+      "note": "RUL-OSP-04 要求候補本文と25／22表示"
+    },
+    {
+      "path": "docs/governance/requirement-disposition-review-program.md",
+      "sha256": "36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb",
+      "note": "RDP-001 の atom／candidate／authority停止条件 [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59; 現receipt=36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb; 採否・authorityは不変。]"
+    },
+    {
+      "path": "docs/governance/requirement-atomization-review-contract.md",
+      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+      "note": "原文・line span・digest・未解決を保持する atom review contract"
+    },
+    {
+      "path": "docs/governance/legacy-asset-reuse-control.md",
+      "sha256": "50209331b605762822cc2a2611f7663533c00039a114a31690ce8e3dc902f582",
+      "note": "旧資産は reference only、実行・無判断 copy・oracle 化を禁止"
+    },
+    {
+      "path": "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-vocabulary-human-decision-packet-v2.md",
+      "sha256": "f2c2db07995b10ee8a384fdafc8c54b2e2bb9d4a5fc64d8057f28a8daa569c46",
+      "note": "S1-01 の10/25、screen 限界、per-atom unassessed 境界"
+    }
   ],
   "role": "RUL-OSP-04 の primary／secondary relation atom と旧 source exact span、legacy asset、product／authority／consumer候補を一つの scaffold research candidate として保持する",
   "obligations": [
@@ -65,7 +97,13 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
     "oracles": [
       "scaffold/rdp001-rul-osp-04/validate.py（台帳／S1-01 accounting／legacy asset／archive source の件数・digest・relation closure）",
       "scaffold/rdp001-rul-osp-04/selfcheck.py（relation swap、source span drift、asset digest drift、5/22 merge、authority claim、atom loss）",

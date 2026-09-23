@@ -28,7 +28,8 @@
     },
     {
       "path": "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md",
-      "sha256": "0e8894cb12e0188b079e6fc0c251c3867f88d561dfc2a595070bb90facd7cb09"
+      "sha256": "b5d3cb951bdad297bebcca9a3aa90931c22e2d96d1f63e3003566324d0c7c9f2",
+      "note": "[2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=0e8894cb12e0188b079e6fc0c251c3867f88d561dfc2a595070bb90facd7cb09; 現receipt=b5d3cb951bdad297bebcca9a3aa90931c22e2d96d1f63e3003566324d0c7c9f2; 採否・authorityは不変。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/gui-handoff-operation-scope-2026-09-20.md",

@@ -75,8 +75,8 @@
     },
     {
       "path": "scaffold/bindings/SCF-B-0088.json",
-      "sha256": "63ee6eed80cd758b4946987a33562cc8841afd850cd02f9dca93adc08886526a",
-      "note": "prior binding and static research provenance; no adoption or authority [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a59c1d27d456c1a2fd07c63553b6c94fa13a8b8462722152ccafebeab90d49b8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=e540d14cf352bd253b9e02e40f4e24ae7b5a124f0815ba41590f057da6e34c0a; 現receipt=9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6] [2026-09-24 semantic impact read-after: 依存Bindingの変更receiptを再帰的に照合。前receipt=9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6; 現receipt=63ee6eed80cd758b4946987a33562cc8841afd850cd02f9dca93adc08886526a; このBindingの採否・authorityは変更しない。]"
+      "sha256": "d9616065ffb81c7506d96ed54ca240339fff7b8203b28f83de38788d8a9f785b",
+      "note": "prior binding and static research provenance; no adoption or authority [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a59c1d27d456c1a2fd07c63553b6c94fa13a8b8462722152ccafebeab90d49b8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=e540d14cf352bd253b9e02e40f4e24ae7b5a124f0815ba41590f057da6e34c0a; 現receipt=9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6] [2026-09-24 semantic impact read-after: 依存Bindingの変更receiptを再帰的に照合。前receipt=9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6; 現receipt=63ee6eed80cd758b4946987a33562cc8841afd850cd02f9dca93adc08886526a; このBindingの採否・authorityは変更しない。] [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=63ee6eed80cd758b4946987a33562cc8841afd850cd02f9dca93adc08886526a; 現receipt=d9616065ffb81c7506d96ed54ca240339fff7b8203b28f83de38788d8a9f785b; 採否・authorityは不変。]"
     },
     {
       "path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/inventory.json",
@@ -183,7 +183,7 @@
       "SCF-B-0081 semantic atom Scaffold",
       "SCF-B-0084 semantic atom Scaffold",
       "SCF-B-0088 semantic atom Scaffold",
-      "current four-product boundary documents",
+      "旧4対象boundaryの履歴receiptと現行Concept子文書（未承認候補）",
       "PHCAP and implementation crosswalk static inventories"
     ],
     "boundary": "成果物はscaffold/配下のbounded research record。29 parent span、35 candidate、49 candidate product edge、154 matrix edgeは正式要求、owner、authority、phase、implementation、degradation、failure／consumer closureではない。"

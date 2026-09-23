@@ -255,8 +255,8 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
             if snapshot.returncode == 0:
                 source_lines = snapshot.stdout.decode("utf-8").splitlines()
                 fail(errors, digest(snapshot.stdout) == sha, "E_HISTORICAL_FILE_" + ref["ref_id"])
-                fail(errors, len(source_lines) == lines, "E_CURRENT_LINES_" + ref["ref_id"])
-                fail(errors, digest("\n".join(source_lines[start - 1:end]).encode()) == span, "E_CURRENT_SPAN_" + ref["ref_id"])
+                fail(errors, len(source_lines) == lines, "E_HISTORICAL_LINES_" + ref["ref_id"])
+                fail(errors, digest("\n".join(source_lines[start - 1:end]).encode()) == span, "E_HISTORICAL_SPAN_" + ref["ref_id"])
 
     products = data.get("products", [])
     fail(errors, [p.get("product") for p in products] == PRODUCTS, "E_PRODUCT_ORDER")
