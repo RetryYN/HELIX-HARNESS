@@ -8,4 +8,4 @@ main 609件と、依頼時点の#2097 HEAD `d233e6e99f705439043a07f0a96bdd9e535a
 
 `research-union-snapshot.json` は比較対象JSONLのGit blob・byte数・SHA-256・identity tupleを固定し、Git objectが利用可能な場合は実byteとの一致を検査する。比較対象が利用できない／異なる場合はsnapshot上の記録を根拠にstaleをfail-closeする。#2097の将来HEADには自動追随しない。
 
-検証済み: independent source audit、deterministic generate、validator、38 negative cases、py_compile、`scfctl validate`（136 bindings、fail=0）、`stale=0`、`residuals=0`、`git diff --check`。旧archive runtime／test／CIは実行しない。
+検証済み: independent source audit、deterministic generate、validator、52 negative cases、py_compile、`scfctl validate`（136 bindings、fail=0）、`stale=0`、`residuals=0`、`git diff --check`。旧archive runtime／test／CIは実行しない。
