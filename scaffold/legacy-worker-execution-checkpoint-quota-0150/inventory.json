@@ -1,0 +1,47 @@
+{
+  "schema_revision": 1,
+  "bundle_id": "LEGACY-WORKER-EXECUTION-CHECKPOINT-QUOTA-0150",
+  "base_revision": "b1578f4fda5d5ecd01c9565ee81f4ddf0cebfe1a",
+  "selection": {
+    "cohort_count": 208,
+    "excluded_SCf_B_0148_count": 52,
+    "residual_count": 156,
+    "selected_count": 13,
+    "id_path_sha_disjoint_from_0148": true
+  },
+  "counts": {
+    "product_candidate_mentions": {
+      "HELIX-OS": 13,
+      "HELIX-HARNESS": 2
+    },
+    "phase_candidate_mentions": {
+      "PHCAP-07": 13,
+      "PHCAP-10": 7,
+      "PHCAP-02": 2,
+      "PHCAP-20": 4,
+      "PHCAP-17": 1
+    },
+    "classification_categories": {
+      "direct_candidate_unresolved": 11,
+      "cross_product_split_candidate_unresolved": 2
+    }
+  },
+  "authority": {
+    "authority_effect": "none",
+    "formal_asset_classification_updated": false,
+    "formal_implementation_status": "unknown",
+    "formal_product_authority": null,
+    "phase_updated": false,
+    "successor_assignment": null,
+    "consumer_closure_status": "pending",
+    "new_build_allowed": false,
+    "legacy_execution_performed": false
+  },
+  "limits": [
+    "candidate status only; no product owner or phase admission",
+    "source frontmatter status, test design, test citation, and designed failure are not implementation/test execution/failure evidence",
+    "legacy disposition is unresolved; no asset-specific decision or copy read-after recorded",
+    "bootstrap search membership is not direct semantic link or consumer evidence",
+    "phase-wide degradation/status does not transfer to the individual source asset"
+  ]
+}
