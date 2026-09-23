@@ -115,6 +115,25 @@ EXPECTED_NEGATIVE_CASES = (
     "archive_path_mismatch",
     "manifest_mismatch",
     "generator_manual_pin_drift",
+    "record_wave_edge_count_bool",
+    "record_archive_manifest_match_int",
+    "inventory_target_count_float",
+    "inventory_authority_new_build_int",
+    "source_exact_null",
+    "semantic_anchor_null",
+    "wave_semantic_links_null",
+    "inventory_input_null",
+    "inventory_top_level_nonobject",
+    "binding_top_level_nonobject",
+    "binding_upstream_null",
+    "target_scope_requires_declared_axes",
+    "inventory_artifact_kind_tamper",
+    "inventory_denominator_role_tamper",
+    "inventory_wave_scan_tamper",
+    "record_extra_key",
+    "archive_execution_tamper",
+    "main_union_pin_stale",
+    "base_not_ancestor",
 )
 
 # These are reviewer-pinned semantic spans from every fixed BASE config body.
@@ -325,11 +344,23 @@ def make_record(asset: dict, phase: dict, dispositions: dict[str, tuple[int, dic
     }
 
 
+def in_research_scope(disposition: dict, phase: dict) -> bool:
+    return (
+        isinstance(disposition, dict)
+        and isinstance(phase, dict)
+        and isinstance(disposition.get("source_path"), str)
+        and disposition["source_path"].startswith("config/")
+        and disposition.get("asset_class") == "Historical"
+        and disposition.get("disposition") == "unresolved"
+        and phase.get("artifact_evidence_kind") == "configuration"
+    )
+
+
 def build() -> None:
     phase_rows = jsonl(PHASE); disp_rows = jsonl(DISPOSITION)
     phase_by_path = {r.get("source_path"): (n, r) for n, r in phase_rows}
     disp_by_id = {r.get("asset_id"): (n, r) for n, r in disp_rows}
-    targets = [r for _, r in disp_rows if r.get("source_path", "").startswith("config/")]
+    targets = [r for _, r in disp_rows if in_research_scope(r, phase_by_path.get(r.get("source_path"), (0, {}))[1])]
     if len(targets) != 41 or set(a["source_path"] for a in targets) != set(PROFILE_DATA):
         raise AssertionError("config/** exact 41 profile set required")
     target_ids = {r["asset_id"] for r in targets}; wave_by_asset = {}
@@ -352,13 +383,17 @@ def build() -> None:
     for path in MAIN_RESEARCH_INPUTS:
         data = head_bytes(path); input_digests.append({"path": path, "blob": head_blob(path), "bytes": len(data), "sha256": tagged(data)})
     counts = {k: sum(r["classification"]["category"] == k for r in records) for k in RULES}
+    target_artifact_evidence_kinds = {}
+    for asset in targets:
+        kind = phase_by_path[asset["source_path"]][1].get("artifact_evidence_kind")
+        target_artifact_evidence_kinds[kind] = target_artifact_evidence_kinds.get(kind, 0) + 1
     inv = {
         "schema_revision": 2, "binding_id": BINDING_ID, "bundle_revision": "SCF-B-0141-r2", "base_revision": BASE_REVISION,
         "base_source_mode": "all legacy source, fixed inputs, and archive evidence bytes from fixed BASE Git objects",
         "scope": "fixed BASE unresolved config/** exact 41 assets; the integrated origin/main research union is authoritative",
         "research_scope": {"source_prefix": "config/", "asset_class": "Historical", "disposition": "unresolved", "artifact_evidence_kind": "configuration", "mode": "research_only", "products": list(PRODUCTS), "authoritative_prior_union": "origin/main current 496"},
         "evidence_completeness": {"source_blob_sha_line_anchor": True, "semantic_span_manual_pin": True, "anchor_coverage_and_unanchored_ranges": True, "phase_and_implementation_status": True, "missing_evidence_preserved": True, "failure_degradation": "global_static_inventory_and_asset_unknown", "consumer": "global_static_inventory_and_asset_pending", "wave_scan": True, "bootstrap_candidates_comparison_only": True},
-        "target_count": 41, "target_asset_ids": [r["asset_id"] for r in records], "target_source_paths": [r["source_path"] for r in records], "target_asset_ids_sha256": tagged(("\n".join(r["asset_id"] for r in records)).encode()), "target_artifact_evidence_kinds": {"configuration": 41}, "classification_counts": counts,
+        "target_count": 41, "target_asset_ids": [r["asset_id"] for r in records], "target_source_paths": [r["source_path"] for r in records], "target_asset_ids_sha256": tagged(("\n".join(r["asset_id"] for r in records)).encode()), "target_artifact_evidence_kinds": dict(sorted(target_artifact_evidence_kinds.items())), "classification_counts": counts,
         "input_digests": input_digests, "binding_upstream_paths": [{"path": p, "sha256": tagged((git_bytes(p) if p in BASE_INPUTS else head_bytes(p)))} for p in NONARCHIVE_INPUTS + MAIN_RESEARCH_INPUTS], "output_sha256": tagged(out.read_bytes()),
         "research_union": {"authoritative": {"basis": "origin/main 7afee33ae current", "count": 496, "target_overlap": 0, "archive_population": 4020}, "target_overlap_authoritative_current_main": 0, "integration_order": "authoritative current main (496) -> config/41 (537)"},
         "overlap_status": {"status": "authoritative_current_main_pass", "research_scope": "config/**", "authoritative_union": "origin/main_7afee33ae_496", "target_vs_authoritative_current_main": 0, "union_exact": True},

@@ -365,7 +365,7 @@
       "current-main pins enforce authoritative 496 union from eight inventories and merged SCF-B-0126 records, with exact target zero overlap",
       "strict JSON duplicate-key and input freshness guards including Wave1/37/50 and main inventory inputs",
       "archive ls-tree regular blob/path, MANIFEST, ledger, semantic coverage, and static read guards",
-      "selfcheck covers category/evidence invariants, generator profile drift, Binding closure, archive mode/mismatch, source/phase/consumer failures"
+      "selfcheck covers 64 ordered negatives for category/evidence invariants, exact JSON types, null/nonobject fail-close, scope selection axes, reachable guards, generator profile drift, Binding closure, and archive mode/mismatch"
     ],
     "negative_cases": [
       "target omission/duplicate/extra",
@@ -379,7 +379,11 @@
       "nested duplicate JSON keys",
       "authoritative union/overlap/denominator tamper",
       "authority/base/output tamper",
-      "Binding upstream closure omission/extra/stale"
+      "Binding upstream closure omission/extra/stale",
+      "bool/int/float JSON value substitution",
+      "null/nonobject source, anchor, Wave, inventory, and Binding schema entries",
+      "config target must satisfy path, asset_class, disposition, and artifact evidence kind",
+      "reachable category, denominator, Wave, archive execution, and main-union pin guards"
     ]
   },
   "replacement": {

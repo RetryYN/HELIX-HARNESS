@@ -6,7 +6,7 @@
 
 分母は区別して記録する。archive populationは4,020件。origin/mainの8研究inventory union 429件と、統合済み #2078 のSCF-B-0126新規67 recordsは重複せず、現在のauthoritative main研究unionは496件である。今回41件との重複は0で、候補分母は `496 + 41 = 537 / 4,020` となる。validatorは8 inventoryとSCF-B-0126研究ledgerのblob/bytes/SHA/count/ID digestを固定し、exact unionとtarget排他を検証する。
 
-Binding upstreamはMANIFESTを除く固定BASE nonarchive入力65件と、8つのmain inventoryおよび統合済みSCF-B-0126の67-record ledgerを含む74件へ完全閉包する。validatorはcurrent-main各inventoryと#2078 ledgerのblob/bytes/SHA/count/ID digest、authoritative current-mainとのtarget overlap、exact 41 set、category evidence invariants、nested duplicate key、Wave 1/37/50を含む入力freshness、archive symlink/nonregular/path/digest mismatch、Binding omission/extra/staleをfail-closeで検査する。selfcheckは45件の負例を実行する。
+Binding upstreamはMANIFESTを除く固定BASE nonarchive入力65件と、8つのmain inventoryおよび統合済みSCF-B-0126の67-record ledgerを含む74件へ完全閉包する。validatorはcurrent-main各inventoryと#2078 ledgerのblob/bytes/SHA/count/ID digest、authoritative current-mainとのtarget overlap、`config/` prefix・Historical・unresolved・configurationの4条件から導くexact 41 set、category evidence invariants、nested duplicate key、Wave 1/37/50を含む入力freshness、archive symlink/nonregular/path/digest mismatch、Binding omission/extra/staleをfail-closeで検査する。JSON値は型を含めて比較し、null・非objectをE_コードで拒否する。selfcheckは64件の負例を実行する。
 
 検証コマンド:
 

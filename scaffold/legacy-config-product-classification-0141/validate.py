@@ -84,6 +84,25 @@ EXPECTED_NEGATIVE_CASES = (
     "archive_path_mismatch",
     "manifest_mismatch",
     "generator_manual_pin_drift",
+    "record_wave_edge_count_bool",
+    "record_archive_manifest_match_int",
+    "inventory_target_count_float",
+    "inventory_authority_new_build_int",
+    "source_exact_null",
+    "semantic_anchor_null",
+    "wave_semantic_links_null",
+    "inventory_input_null",
+    "inventory_top_level_nonobject",
+    "binding_top_level_nonobject",
+    "binding_upstream_null",
+    "target_scope_requires_declared_axes",
+    "inventory_artifact_kind_tamper",
+    "inventory_denominator_role_tamper",
+    "inventory_wave_scan_tamper",
+    "record_extra_key",
+    "archive_execution_tamper",
+    "main_union_pin_stale",
+    "base_not_ancestor",
 )
 HUMAN_JUDGMENT = ["product_owner_and_boundary_decision", "configuration_semantic_anchor_acceptance", "phase_candidate_admission_and_successor_assignment", "legacy_implementation_degradation_failure_and_consumer_closure", "formal_asset_classification_update"]
 RULES = {"direct_product_basis": "manual semantic span maps to exactly one four-product L1 boundary; this is a research candidate and not formal ownership", "multi_product_conflict": "manual semantic span maps to two or more four-product L1 boundaries; retain the conflict without choosing an owner", "insufficient_basis": "manual semantic span has no product responsibility mapping; retain the insufficiency without inferring ownership"}
@@ -158,6 +177,22 @@ def tagged(data: bytes) -> str: return "sha256:" + hashlib.sha256(data).hexdiges
 def canonical(v: object) -> bytes: return json.dumps(v, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()
 def row_digest(v: object) -> str: return tagged(canonical(v))
 
+def same_typed_value(actual, expected) -> bool:
+    """Compare JSON values without Python's bool/int/float equality aliasing."""
+    if type(expected) is bool:
+        return type(actual) is bool and actual is expected
+    if type(expected) in (int, float):
+        return type(actual) is type(expected) and actual == expected
+    if type(expected) is dict:
+        return type(actual) is dict and actual.keys() == expected.keys() and all(
+            same_typed_value(actual[key], value) for key, value in expected.items()
+        )
+    if type(expected) is list:
+        return type(actual) is list and len(actual) == len(expected) and all(
+            same_typed_value(left, right) for left, right in zip(actual, expected)
+        )
+    return type(actual) is type(expected) and actual == expected
+
 def strict_pairs(pairs: list[tuple[str, object]]) -> dict:
     out = {}
     for key, value in pairs:
@@ -165,9 +200,11 @@ def strict_pairs(pairs: list[tuple[str, object]]) -> dict:
         out[key] = value
     return out
 
-def local_json(path: Path):
-    try: return json.loads(path.read_text(), object_pairs_hook=strict_pairs)
+def local_json(path: Path, error_code: str = "E_INVENTORY_SCHEMA"):
+    try: value = json.loads(path.read_text(), object_pairs_hook=strict_pairs)
     except (OSError, json.JSONDecodeError, ValueError) as exc: fail("E_JSON", f"{path}: {exc}")
+    if not isinstance(value, dict): fail(error_code, f"{path}: object required")
+    return value
 
 def local_jsonl(path: Path) -> list[dict]:
     out = []
@@ -258,7 +295,7 @@ def expected_history(asset: dict, disp_line: int, disp: dict, decisions: list[tu
 def expected_targets():
     phases = base_jsonl(PHASE); phase_by_path = {r.get("source_path"): (n, r) for n, r in phases}
     disp_rows = base_jsonl(DISPOSITION); disp_by_id = {r["asset_id"]: (n, r) for n, r in disp_rows}
-    targets = [r for _, r in disp_rows if r.get("source_path", "").startswith("config/")]
+    targets = [r for _, r in disp_rows if in_research_scope(r, phase_by_path.get(r.get("source_path"), (0, {}))[1])]
     if len(targets) != 41 or len({r["asset_id"] for r in targets}) != 41 or len({r["source_path"] for r in targets}) != 41 or set(r["source_path"] for r in targets) != set(PROFILE_DATA): fail("E_TARGET_SET", "config disposition exact 41 set")
     for asset in targets:
         if asset["source_path"] not in phase_by_path or phase_by_path[asset["source_path"]][1].get("asset_id") != asset["asset_id"]: fail("E_TARGET_SET", f"phase mismatch {asset['source_path']}")
@@ -271,6 +308,17 @@ def ids_from_inventory(obj: dict) -> set[str]:
     return set(ids) if isinstance(ids, list) else set()
 
 def id_digest(ids: set[str]) -> str: return tagged(("\n".join(sorted(ids))).encode())
+
+def in_research_scope(disposition: dict, phase: dict) -> bool:
+    return (
+        isinstance(disposition, dict)
+        and isinstance(phase, dict)
+        and isinstance(disposition.get("source_path"), str)
+        and disposition["source_path"].startswith("config/")
+        and disposition.get("asset_class") == "Historical"
+        and disposition.get("disposition") == "unresolved"
+        and phase.get("artifact_evidence_kind") == "configuration"
+    )
 
 def prior_union() -> set[str]:
     sets = []
@@ -297,39 +345,41 @@ def prior_union() -> set[str]:
 
 def verify_inventory(inv: dict) -> None:
     if set(inv) != EXPECTED_INV_KEYS: fail("E_INVENTORY_SCHEMA", "top-level keys")
-    if inv["schema_revision"] != 2 or inv["binding_id"] != BINDING_ID or inv["base_revision"] != BASE_REVISION: fail("E_BASE_PIN", "binding/base")
+    if not same_typed_value(inv["schema_revision"], 2) or inv["binding_id"] != BINDING_ID or inv["base_revision"] != BASE_REVISION: fail("E_BASE_PIN", "binding/base")
     if inv["base_source_mode"] != "all legacy source, fixed inputs, and archive evidence bytes from fixed BASE Git objects": fail("E_BASE_SOURCE", "source mode")
     if inv["scope"] != "fixed BASE unresolved config/** exact 41 assets; the integrated origin/main research union is authoritative": fail("E_INVENTORY", "scope")
     if inv["bundle_revision"] != "SCF-B-0141-r2": fail("E_INVENTORY", "bundle revision")
     expected_scope = {"source_prefix": "config/", "asset_class": "Historical", "disposition": "unresolved", "artifact_evidence_kind": "configuration", "mode": "research_only", "products": list(PRODUCTS), "authoritative_prior_union": "origin/main current 496"}
-    if inv["research_scope"] != expected_scope: fail("E_INVENTORY", "research scope")
+    if not same_typed_value(inv["research_scope"], expected_scope): fail("E_INVENTORY", "research scope")
     expected_comp = {"source_blob_sha_line_anchor": True, "semantic_span_manual_pin": True, "anchor_coverage_and_unanchored_ranges": True, "phase_and_implementation_status": True, "missing_evidence_preserved": True, "failure_degradation": "global_static_inventory_and_asset_unknown", "consumer": "global_static_inventory_and_asset_pending", "wave_scan": True, "bootstrap_candidates_comparison_only": True}
-    if inv["evidence_completeness"] != expected_comp: fail("E_INVENTORY", "evidence completeness")
-    if inv["classification_rule"] != RULES: fail("E_INVENTORY", "classification rules")
+    if not same_typed_value(inv["evidence_completeness"], expected_comp): fail("E_INVENTORY", "evidence completeness")
+    if not same_typed_value(inv["classification_rule"], RULES): fail("E_INVENTORY", "classification rules")
     expected_artifacts = [f"scaffold/bindings/{BINDING_ID}.json", "scaffold/legacy-config-product-classification-0141/README.md", "scaffold/legacy-config-product-classification-0141/PR-DRAFT.md", "scaffold/legacy-config-product-classification-0141/generate.py", "scaffold/legacy-config-product-classification-0141/validate.py", "scaffold/legacy-config-product-classification-0141/selfcheck.py", "scaffold/legacy-config-product-classification-0141/inventory.json", "scaffold/legacy-config-product-classification-0141/classification-research.jsonl"]
-    if inv["artifacts"] != expected_artifacts: fail("E_INVENTORY", "artifacts")
-    if inv["authority_boundary"] != {"authority_effect": "none", "formal_product_authority": None, "formal_asset_classification_updated": False, "formal_implementation_status": "unknown", "phase_updated": False, "successor_assignment": None, "new_build_allowed": False, "read_mode": "static_git_object_only"}: fail("E_AUTHORITY", "authority boundary")
-    if inv["old_archive_execution"] != {"source_read": "git show fixed BASE regular blobs only", "runtime": False, "test": False, "ci": False, "workflow": False, "hook": False, "adapter": False}: fail("E_ARCHIVE_EXECUTION", "archive execution declaration")
-    if inv["negative_cases"] != list(EXPECTED_NEGATIVE_CASES): fail("E_NEGATIVE_CASES", "ordered exact negative case IDs")
+    if not same_typed_value(inv["artifacts"], expected_artifacts): fail("E_INVENTORY", "artifacts")
+    if not same_typed_value(inv["authority_boundary"], {"authority_effect": "none", "formal_product_authority": None, "formal_asset_classification_updated": False, "formal_implementation_status": "unknown", "phase_updated": False, "successor_assignment": None, "new_build_allowed": False, "read_mode": "static_git_object_only"}): fail("E_AUTHORITY", "authority boundary")
+    if not same_typed_value(inv["old_archive_execution"], {"source_read": "git show fixed BASE regular blobs only", "runtime": False, "test": False, "ci": False, "workflow": False, "hook": False, "adapter": False}): fail("E_ARCHIVE_EXECUTION", "archive execution declaration")
+    if not same_typed_value(inv["negative_cases"], list(EXPECTED_NEGATIVE_CASES)): fail("E_NEGATIVE_CASES", "ordered exact negative case IDs")
 
 def verify_inputs(inv: dict) -> None:
     got = inv.get("input_digests")
-    if not isinstance(got, list) or [x.get("path") for x in got] != ALL_HEAD_INPUTS or len({x.get("path") for x in got}) != len(got) or any(set(x) != EXPECTED_INPUT_KEYS for x in got): fail("E_INPUT_DIGEST", "input path/key set")
+    if not isinstance(got, list) or any(not isinstance(x, dict) for x in got): fail("E_INVENTORY_SCHEMA", "input digest records must be objects")
+    if [x.get("path") for x in got] != ALL_HEAD_INPUTS or len({x.get("path") for x in got}) != len(got) or any(set(x) != EXPECTED_INPUT_KEYS for x in got): fail("E_INPUT_DIGEST", "input path/key set")
     for item in got:
         path = item["path"]; data = head_bytes(path) if path in MAIN_RESEARCH_INPUTS else git_bytes(path); blob = head_blob(path) if path in MAIN_RESEARCH_INPUTS else git_blob(path)
-        if item != {"path": path, "blob": blob, "bytes": len(data), "sha256": tagged(data)}: fail("E_INPUT_DIGEST", path)
+        if not same_typed_value(item, {"path": path, "blob": blob, "bytes": len(data), "sha256": tagged(data)}): fail("E_INPUT_DIGEST", path)
 
 def verify_binding_closure(inv: dict) -> None:
-    binding = local_json(BINDING)
+    binding = local_json(BINDING, "E_BINDING_CLOSURE")
     if binding.get("id") != BINDING_ID or binding.get("kind") != "scaffold": fail("E_BINDING_CLOSURE", "binding identity")
     upstream = binding.get("upstream")
     expected_paths = NONARCHIVE_INPUTS + MAIN_RESEARCH_INPUTS
-    if not isinstance(upstream, list) or [x.get("path") for x in upstream] != expected_paths or len({x.get("path") for x in upstream}) != len(upstream): fail("E_BINDING_CLOSURE", "omission/extra/duplicate upstream")
+    if not isinstance(upstream, list) or any(not isinstance(x, dict) for x in upstream): fail("E_BINDING_CLOSURE", "upstream records must be objects")
+    if [x.get("path") for x in upstream] != expected_paths or len({x.get("path") for x in upstream}) != len(upstream): fail("E_BINDING_CLOSURE", "omission/extra/duplicate upstream")
     inv_upstream = inv.get("binding_upstream_paths")
-    if not isinstance(inv_upstream, list) or [x.get("path") for x in inv_upstream] != expected_paths: fail("E_BINDING_CLOSURE", "inventory upstream closure")
+    if not isinstance(inv_upstream, list) or any(not isinstance(x, dict) for x in inv_upstream) or [x.get("path") for x in inv_upstream] != expected_paths: fail("E_BINDING_CLOSURE", "inventory upstream closure")
     for item, inv_item in zip(upstream, inv_upstream):
         path = item["path"]; data = head_bytes(path) if path in MAIN_RESEARCH_INPUTS else git_bytes(path); raw = hashlib.sha256(data).hexdigest()
-        if set(item) != {"path", "sha256"} or item["sha256"] != raw or inv_item != {"path": path, "sha256": "sha256:" + raw}: fail("E_BINDING_CLOSURE", path)
+        if set(item) != {"path", "sha256"} or item["sha256"] != raw or not same_typed_value(inv_item, {"path": path, "sha256": "sha256:" + raw}): fail("E_BINDING_CLOSURE", path)
 
 def expected_product_basis(products: list[str], meaning: str, counter: list[str]) -> dict:
     l1 = l1_expected(); boundary = boundary_expected()
@@ -346,25 +396,27 @@ def expected_wave_links(asset_id: str) -> list[dict]:
 def verify_record(row: dict, asset: dict, phase: dict, disp_line: int, disp: dict, decisions: list[tuple[int, dict]], read_after: list[tuple[int, dict]]) -> None:
     aid = asset["asset_id"]
     if set(row) != RECORD_KEYS or row["asset_id"] != aid or row["source_path"] != asset["source_path"]: fail("E_RECORD_SCHEMA", aid)
+    if not isinstance(row.get("source_exact"), dict) or not isinstance(row["source_exact"].get("semantic_anchor"), dict): fail("E_RECORD_SCHEMA", f"source_exact/semantic_anchor {aid}")
+    if not isinstance(row.get("wave_semantic_links"), list) or any(not isinstance(edge, dict) for edge in row["wave_semantic_links"]): fail("E_RECORD_SCHEMA", f"wave_semantic_links {aid}")
     profile = PROFILE_DATA[asset["source_path"]]; category, products, start, end, meaning, counter = profile
     source = expected_source(asset)
-    if set(row["source_exact"]) != SOURCE_KEYS or set(row["source_exact"]["semantic_anchor"]) != ANCHOR_KEYS or row["source_exact"] != source: fail("E_SOURCE", aid)
+    if set(row["source_exact"]) != SOURCE_KEYS or set(row["source_exact"]["semantic_anchor"]) != ANCHOR_KEYS or not same_typed_value(row["source_exact"], source): fail("E_SOURCE", aid)
     if source["semantic_anchor"]["line_start"] != start or source["semantic_anchor"]["line_end"] != end or not source["semantic_anchor"]["line_text"] or (end > start and source["semantic_anchor"]["marker"] == source["semantic_anchor"]["line_text"][0][:240] and source["semantic_anchor"]["marker"] == "{"): fail("E_SOURCE", f"nonsemantic anchor {aid}")
     phase_line = phase.pop("_line"); phase_expected = {"path": PHASE, "line": phase_line, "row_sha256": row_digest(phase), "artifact_evidence_kind": phase.get("artifact_evidence_kind"), "candidate_phase_targets": phase.get("candidate_phase_targets") or [], "candidate_product_targets": phase.get("candidate_product_targets") or [], "phase_classification_status": phase.get("phase_classification_status"), "product_classification_status": phase.get("product_classification_status"), "implementation_evidence_state": phase.get("implementation_evidence_state"), "legacy_implementation_status": phase.get("legacy_implementation_status"), "legacy_execution_performed": phase.get("legacy_execution_performed"), "consumer_closure_status": phase.get("consumer_closure_status"), "unresolved": phase.get("unresolved") or []}; phase["_line"] = phase_line
-    if row["phase_evidence"] != phase_expected or set(row["phase_evidence"]) != PHASE_KEYS: fail("E_PHASE", aid)
+    if not same_typed_value(row["phase_evidence"], phase_expected) or set(row["phase_evidence"]) != PHASE_KEYS: fail("E_PHASE", aid)
     disp_expected = {"path": DISPOSITION, "line": disp_line, "row_sha256": row_digest(disp), "source_path": disp.get("source_path"), "source_sha256": disp.get("source_sha256"), "disposition": disp.get("disposition"), "asset_class": disp.get("asset_class"), "product_target": disp.get("product_target"), "implementation_status": disp.get("implementation_status"), "consumer_refs": sorted(disp.get("consumer_refs", [])), "decision_record_ref": disp.get("decision_record_ref"), "read_after_record_ref": disp.get("read_after_record_ref")}
-    if row["legacy_asset_evidence"] != disp_expected or set(row["legacy_asset_evidence"]) != DISP_KEYS: fail("E_LEDGER", aid)
+    if not isinstance(row.get("legacy_asset_evidence"), dict) or not same_typed_value(row["legacy_asset_evidence"], disp_expected) or set(row["legacy_asset_evidence"]) != DISP_KEYS: fail("E_LEDGER", aid)
     bootstrap = sorted(set(phase.get("candidate_product_targets") or [])); alignment = "match" if bootstrap == sorted(products) else "diverges_to_manual_semantic_span" if bootstrap and products else "diverges_to_insufficient_manual_span" if bootstrap and not products else "manual_span_found_without_bootstrap_candidate" if products else "both_insufficient"
     expected_class = {"category": category, "candidate_products": products, "semantic_status": "manual_semantic_span_pinned_pending_human_review", "meaning": meaning, "bootstrap_candidate_products": bootstrap, "bootstrap_alignment": alignment, "product_basis": expected_product_basis(products, meaning, counter), "counterevidence": counter, "reason": RULES[category]}
-    if row["classification"] != expected_class: fail("E_CLASSIFICATION", aid)
+    if not same_typed_value(row["classification"], expected_class): fail("E_CLASSIFICATION", aid)
     if category == "direct_product_basis" and len(products) != 1 or category == "multi_product_conflict" and len(products) < 2 or category == "insufficient_basis" and products: fail("E_CATEGORY_PARTITION", aid)
-    if row["boundary_evidence"] != {"product_boundary": boundary_expected(), "l1": l1_expected()}: fail("E_BOUNDARY_ANCHOR", aid)
-    if row["legacy_history_failure_consumer"] != expected_history(asset, disp_line, disp, decisions, read_after): fail("E_HISTORY_CONSUMER", aid)
+    if not same_typed_value(row["boundary_evidence"], {"product_boundary": boundary_expected(), "l1": l1_expected()}): fail("E_BOUNDARY_ANCHOR", aid)
+    if not same_typed_value(row["legacy_history_failure_consumer"], expected_history(asset, disp_line, disp, decisions, read_after)): fail("E_HISTORY_CONSUMER", aid)
     implementation = {"artifact_evidence_kind": "configuration", "status": "unknown", "presence": "configuration_present_unexecuted", "unimplemented_evidence": phase.get("unresolved") or ["legacy_implementation_status_unknown"], "legacy_execution_performed": False}
-    if row["implementation_evidence"] != implementation: fail("E_IMPLEMENTATION", aid)
+    if not same_typed_value(row["implementation_evidence"], implementation): fail("E_IMPLEMENTATION", aid)
     wave_links = expected_wave_links(aid)
-    if any(set(edge) != EDGE_KEYS for edge in row["wave_semantic_links"]) or row["wave_semantic_links"] != wave_links or row["wave_edge_count"] != len(wave_links): fail("E_EDGE_SET", aid)
-    if row["human_judgment_remaining"] != HUMAN_JUDGMENT or row["authority_effect"] != "none" or row["formal_asset_classification_updated"] is not False or row["new_build_allowed"] is not False: fail("E_AUTHORITY", aid)
+    if any(set(edge) != EDGE_KEYS for edge in row["wave_semantic_links"]) or not same_typed_value(row["wave_semantic_links"], wave_links) or not same_typed_value(row["wave_edge_count"], len(wave_links)): fail("E_EDGE_SET", aid)
+    if not same_typed_value(row["human_judgment_remaining"], HUMAN_JUDGMENT) or row["authority_effect"] != "none" or row["formal_asset_classification_updated"] is not False or row["new_build_allowed"] is not False: fail("E_AUTHORITY", aid)
 
 def verify() -> None:
     try: subprocess.check_call(["git", "merge-base", "--is-ancestor", BASE_REVISION, "HEAD"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -372,25 +424,26 @@ def verify() -> None:
     inv = local_json(INVENTORY); verify_inventory(inv); verify_inputs(inv); verify_binding_closure(inv)
     targets, phase_by_path, disp_by_id, decisions, read_after = expected_targets(); rows = local_jsonl(LEDGER); expected_ids = [a["asset_id"] for a in targets]; expected_paths = [a["source_path"] for a in targets]
     if len(rows) != 41 or [r.get("asset_id") for r in rows] != expected_ids or [r.get("source_path") for r in rows] != expected_paths or len({r.get("asset_id") for r in rows}) != 41: fail("E_TARGET_SET", "records exact set/order")
-    if inv["target_count"] != 41 or inv["target_asset_ids"] != expected_ids or inv["target_source_paths"] != expected_paths or inv["target_asset_ids_sha256"] != tagged(("\n".join(expected_ids)).encode()): fail("E_TARGET_SET", "inventory exact set")
-    if inv["target_artifact_evidence_kinds"] != {"configuration": 41}: fail("E_CATEGORY_PARTITION", "artifact kind count")
+    if not same_typed_value(inv["target_count"], 41) or inv["target_asset_ids"] != expected_ids or inv["target_source_paths"] != expected_paths or inv["target_asset_ids_sha256"] != tagged(("\n".join(expected_ids)).encode()): fail("E_TARGET_SET", "inventory exact set")
+    target_kinds = Counter(phase_by_path[asset["source_path"]][1].get("artifact_evidence_kind") for asset in targets)
+    if not same_typed_value(inv["target_artifact_evidence_kinds"], dict(sorted(target_kinds.items()))): fail("E_CATEGORY_PARTITION", "artifact kind count")
     for row, asset in zip(rows, targets):
         phase_line, phase = phase_by_path[asset["source_path"]]; phase_copy = dict(phase); phase_copy["_line"] = phase_line
         verify_record(row, asset, phase_copy, disp_by_id[asset["asset_id"]][0], disp_by_id[asset["asset_id"]][1], decisions, read_after)
     counts = Counter(r["classification"]["category"] for r in rows)
-    if dict(counts) != {"direct_product_basis": 26, "multi_product_conflict": 9, "insufficient_basis": 6} or inv["classification_counts"] != dict(counts): fail("E_CATEGORY_PARTITION", f"counts={dict(counts)}")
+    if dict(counts) != {"direct_product_basis": 26, "multi_product_conflict": 9, "insufficient_basis": 6} or not same_typed_value(inv["classification_counts"], dict(counts)): fail("E_CATEGORY_PARTITION", f"counts={dict(counts)}")
     if inv["output_sha256"] != tagged(LEDGER.read_bytes()): fail("E_OUTPUT_DIGEST", "ledger digest")
     main = prior_union(); target_set = set(expected_ids)
     if target_set & main: fail("E_OVERLAP", "target intersects authoritative current-main union")
     ru = inv["research_union"]
     expected_ru = {"authoritative": {"basis": "origin/main 7afee33ae current", "count": 496, "target_overlap": 0, "archive_population": 4020}, "target_overlap_authoritative_current_main": 0, "integration_order": "authoritative current main (496) -> config/41 (537)"}
-    if ru != expected_ru: fail("E_RESEARCH_UNION", "union declaration")
-    if inv["overlap_status"] != {"status": "authoritative_current_main_pass", "research_scope": "config/**", "authoritative_union": "origin/main_7afee33ae_496", "target_vs_authoritative_current_main": 0, "union_exact": True}: fail("E_OVERLAP", "overlap declaration")
-    if inv["denominator_role"] != {"archive_population": 4020, "authoritative_current_main": 496, "authoritative_after_config": 537, "role": "research_candidate_evidence_only; no formal adoption or completion"}: fail("E_RESEARCH_UNION", "denominator role")
+    if not same_typed_value(ru, expected_ru): fail("E_RESEARCH_UNION", "union declaration")
+    if not same_typed_value(inv["overlap_status"], {"status": "authoritative_current_main_pass", "research_scope": "config/**", "authoritative_union": "origin/main_7afee33ae_496", "target_vs_authoritative_current_main": 0, "union_exact": True}): fail("E_OVERLAP", "overlap declaration")
+    if not same_typed_value(inv["denominator_role"], {"archive_population": 4020, "authoritative_current_main": 496, "authoritative_after_config": 537, "role": "research_candidate_evidence_only; no formal adoption or completion"}): fail("E_RESEARCH_UNION", "denominator role")
     edges = target_edges = 0
     for path in WAVE_PATHS.values():
         for _, edge in base_jsonl(path): edges += 1; target_edges += edge.get("asset_id") in target_set
-    if inv["wave_scan"] != {"files": 50, "edges": 598, "target_edges": 1, "target_linked_assets": 1} or edges != 598 or target_edges != 1: fail("E_EDGE_SET", f"wave={edges}/{target_edges}")
+    if not same_typed_value(inv["wave_scan"], {"files": 50, "edges": 598, "target_edges": 1, "target_linked_assets": 1}) or edges != 598 or target_edges != 1: fail("E_EDGE_SET", f"wave={edges}/{target_edges}")
     print("SCF-B-0141 validate PASS records=41 counts={'direct_product_basis': 26, 'multi_product_conflict': 9, 'insufficient_basis': 6} target_edges=1 authoritative_union=496 config_overlap=0 after_config=537")
 
 if __name__ == "__main__": verify()

@@ -64,7 +64,7 @@ def trial(name, mutate, expected):
 
 def direct_trial(name, mutate, expected):
     root, target = setup_copy()
-    old = (validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.archive_tree, validator.manifest_sha)
+    old = (validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.archive_tree, validator.manifest_sha, validator.BASE_REVISION, validator.MAIN_PINS.copy())
     validator.BUNDLE = target; validator.LEDGER = target / "classification-research.jsonl"; validator.INVENTORY = target / "inventory.json"; validator.BINDING = root / "scaffold/bindings/SCF-B-0141.json"
     try:
         mutate()
@@ -76,7 +76,7 @@ def direct_trial(name, mutate, expected):
     else:
         raise AssertionError(f"{name}: mutation unexpectedly passed")
     finally:
-        validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.archive_tree, validator.manifest_sha = old
+        validator.BUNDLE, validator.LEDGER, validator.INVENTORY, validator.BINDING, validator.archive_tree, validator.manifest_sha, validator.BASE_REVISION, validator.MAIN_PINS = old
         shutil.rmtree(root, ignore_errors=True)
 
 
@@ -154,6 +154,50 @@ def generator_pin_tamper(target):
     subprocess.check_call(["python3", str(path)], cwd=Path.cwd(), stdout=subprocess.DEVNULL)
 
 trial("generator_manual_pin_drift", generator_pin_tamper, "E_SOURCE")
+
+trial("record_wave_edge_count_bool", records(lambda rows: rows[30].__setitem__("wave_edge_count", True)), "E_EDGE_SET")
+trial("record_archive_manifest_match_int", records(lambda rows: rows[0]["source_exact"].__setitem__("archive_manifest_match", 1)), "E_SOURCE")
+trial("inventory_target_count_float", inventory(lambda value: value.__setitem__("target_count", 41.0)), "E_TARGET_SET")
+trial("inventory_authority_new_build_int", inventory(lambda value: value["authority_boundary"].__setitem__("new_build_allowed", 0)), "E_AUTHORITY")
+
+trial("source_exact_null", records(lambda rows: rows[0].__setitem__("source_exact", None)), "E_RECORD_SCHEMA")
+trial("semantic_anchor_null", records(lambda rows: rows[0]["source_exact"].__setitem__("semantic_anchor", None)), "E_RECORD_SCHEMA")
+trial("wave_semantic_links_null", records(lambda rows: rows[0].__setitem__("wave_semantic_links", None)), "E_RECORD_SCHEMA")
+trial("inventory_input_null", inventory(lambda value: value["input_digests"].__setitem__(0, None)), "E_INVENTORY_SCHEMA")
+trial("inventory_top_level_nonobject", lambda target: (target / "inventory.json").write_text("[]\n"), "E_INVENTORY_SCHEMA")
+trial("binding_top_level_nonobject", lambda target: (target.parent / "bindings" / "SCF-B-0141.json").write_text("[]\n"), "E_BINDING_CLOSURE")
+trial("binding_upstream_null", binding(lambda value: value["upstream"].__setitem__(0, None)), "E_BINDING_CLOSURE")
+
+def scope_selection_negative():
+    targets, phase_by_path, _, _, _ = validator.expected_targets()
+    disposition = targets[0]
+    phase = phase_by_path[disposition["source_path"]][1]
+    if not validator.in_research_scope(disposition, phase):
+        raise AssertionError("valid config scope was not selected")
+    mutations = [
+        ("asset_class", "Current"),
+        ("disposition", "preserved"),
+    ]
+    for key, value in mutations:
+        changed = dict(disposition); changed[key] = value
+        if validator.in_research_scope(changed, phase):
+            raise AssertionError(f"scope accepted {key}={value}")
+    if validator.in_research_scope(disposition, {**phase, "artifact_evidence_kind": "implementation_source"}):
+        raise AssertionError("scope accepted a non-configuration artifact kind")
+    if validator.in_research_scope({**disposition, "source_path": "elsewhere/config.json"}, phase):
+        raise AssertionError("scope accepted a non-config path")
+    EXECUTED_CASES.append("target_scope_requires_declared_axes")
+
+scope_selection_negative()
+
+trial("inventory_artifact_kind_tamper", inventory(lambda value: value.__setitem__("target_artifact_evidence_kinds", {"implementation_source": 41})), "E_CATEGORY_PARTITION")
+trial("inventory_denominator_role_tamper", inventory(lambda value: value["denominator_role"].__setitem__("authoritative_after_config", 536)), "E_RESEARCH_UNION")
+trial("inventory_wave_scan_tamper", inventory(lambda value: value["wave_scan"].__setitem__("edges", 597)), "E_EDGE_SET")
+trial("record_extra_key", records(lambda rows: rows[0].__setitem__("unvalidated_extra", True)), "E_RECORD_SCHEMA")
+trial("archive_execution_tamper", inventory(lambda value: value["old_archive_execution"].__setitem__("runtime", True)), "E_ARCHIVE_EXECUTION")
+
+direct_trial("main_union_pin_stale", lambda: validator.MAIN_PINS.__setitem__(next(iter(validator.MAIN_PINS)), ("0" * 40, *next(iter(validator.MAIN_PINS.values()))[1:])), "E_RESEARCH_INPUT")
+direct_trial("base_not_ancestor", lambda: setattr(validator, "BASE_REVISION", "0" * 40), "E_BASE_NOT_ANCESTOR")
 
 if len(EXECUTED_CASES) != len(set(EXECUTED_CASES)):
     raise AssertionError(f"duplicate executed negative case IDs: {EXECUTED_CASES}")
