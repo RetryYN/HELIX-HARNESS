@@ -12,7 +12,7 @@
 
 Binding upstreamはMANIFESTを除くfixed BASE nonarchive入力65件と、8つのmain inventoryおよび統合済みSCF-B-0126の67-record ledger（計74件）へ完全閉包します。inventoryと独立validatorは、authoritative current-main unionとのoverlap、対象集合、nested duplicate key、入力 omission/extra/stale、archive regular-blob guard、MANIFEST/ledger mismatch、category evidence invariants、Binding closure、authority境界をfail-closeで検査します。旧archiveはGit object/static readだけに限定し、source/runtime/test/CI/workflow/hook/adapterを実行しません。
 
-対象抽出は`config/` prefixに加え、dispositionの`Historical`／`unresolved`とphaseの`configuration`を照合します。validatorはJSON値を型込みで比較し、null・非objectと到達可能な分母／phase／Wave guardの代表負例を含む64件をselfcheckします。
+対象抽出は`config/` prefixに加え、dispositionの`Historical`／`unresolved`とphaseの`configuration`を照合します。validatorはJSON値を型込みで比較し、null・非objectと到達可能な分母／phase／Wave guardの代表負例を含む67件をselfcheckします。
 
 ## 検証
 

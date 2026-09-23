@@ -103,6 +103,9 @@ EXPECTED_NEGATIVE_CASES = (
     "archive_execution_tamper",
     "main_union_pin_stale",
     "base_not_ancestor",
+    "inventory_scope_tamper",
+    "ledger_disposition_tamper",
+    "inventory_negative_cases_truncate",
 )
 HUMAN_JUDGMENT = ["product_owner_and_boundary_decision", "configuration_semantic_anchor_acceptance", "phase_candidate_admission_and_successor_assignment", "legacy_implementation_degradation_failure_and_consumer_closure", "formal_asset_classification_update"]
 RULES = {"direct_product_basis": "manual semantic span maps to exactly one four-product L1 boundary; this is a research candidate and not formal ownership", "multi_product_conflict": "manual semantic span maps to two or more four-product L1 boundaries; retain the conflict without choosing an owner", "insufficient_basis": "manual semantic span has no product responsibility mapping; retain the insufficiency without inferring ownership"}

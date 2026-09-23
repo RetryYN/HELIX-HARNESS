@@ -198,6 +198,9 @@ trial("archive_execution_tamper", inventory(lambda value: value["old_archive_exe
 
 direct_trial("main_union_pin_stale", lambda: validator.MAIN_PINS.__setitem__(next(iter(validator.MAIN_PINS)), ("0" * 40, *next(iter(validator.MAIN_PINS.values()))[1:])), "E_RESEARCH_INPUT")
 direct_trial("base_not_ancestor", lambda: setattr(validator, "BASE_REVISION", "0" * 40), "E_BASE_NOT_ANCESTOR")
+trial("inventory_scope_tamper", inventory(lambda value: value.__setitem__("scope", "broadened scope")), "E_INVENTORY")
+trial("ledger_disposition_tamper", records(lambda rows: rows[0]["legacy_asset_evidence"].__setitem__("disposition", "preserved")), "E_LEDGER")
+trial("inventory_negative_cases_truncate", inventory(lambda value: value["negative_cases"].pop()), "E_NEGATIVE_CASES")
 
 if len(EXECUTED_CASES) != len(set(EXECUTED_CASES)):
     raise AssertionError(f"duplicate executed negative case IDs: {EXECUTED_CASES}")

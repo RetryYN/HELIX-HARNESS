@@ -134,6 +134,9 @@ EXPECTED_NEGATIVE_CASES = (
     "archive_execution_tamper",
     "main_union_pin_stale",
     "base_not_ancestor",
+    "inventory_scope_tamper",
+    "ledger_disposition_tamper",
+    "inventory_negative_cases_truncate",
 )
 
 # These are reviewer-pinned semantic spans from every fixed BASE config body.
