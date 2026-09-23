@@ -65,10 +65,14 @@ merge条件として使用しない。Dependabot Updatesも同じく外部projec
 
 ## 未成立事項
 
-- RDPが扱う生存中source holdingの読込・semantic atom化・要求採否・対象別移管。その後、L3要求定義でscopeに関係する旧資産を選び、source・判断史・failure・consumerを確認して個別採否・必要な置換を行う。資産明細台帳の全4020行はカタログ完全性を示し、全資産の意味移管完了を要求しない。
+- archive資産4020件のsemantic atom採否、対象別L2への意味移管、replacement完成。
 - Concept v4.1、対象別L1、L2／L11の人間承認。
 - L3以降、新世代AI manifest／生成器、新世代CI、runtimeの設計・実装。
 - CodeQLの新世代再構成、Dependabot、GitHub App、その他外部security projectionの設計変更。
 - archive内資産の物理削除。
 
 本隔離は旧世代を実行不能なrepository位置へ移した証拠であり、新世代の完成、旧意味の棄却、consumer切替完了を示さない。
+
+## 2026-09-23の旧資産判断時期に関する追記
+
+上記「未成立事項」は隔離時点の記録として保持する。現在の旧資産reuse dispositionの順序は、[2026-09-23 PO decision record](decisions/legacy-asset-review-timing-2026-09-23.md)に従う。RDPの生存中source holdingの読込と要求閉包は要求disposition前に維持し、要求と製品scopeの確定後、L3要求定義で選択された資産を既存の再利用統制に従って個別に判断する。全4,020件のカタログ対応は保持し、全件の意味移管完了を要求しない。
