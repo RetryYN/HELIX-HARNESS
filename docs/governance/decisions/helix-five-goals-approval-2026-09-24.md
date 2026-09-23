@@ -13,9 +13,10 @@ authority_effect: effective_when_this_record_is_admitted_to_main
 
 ## 人間判断と対象
 
-POに、[5大目標本文](../../concept/helix-five-goals.md)のSHA-256
+POに、2026-09-24（Asia/Tokyo）のCodex作業sessionの質問票で、[5大目標本文](../../concept/helix-five-goals.md)のSHA-256
 `cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca`を示し、
-HELIX全体の到達目標として承認するかを確認した。POは「この本文を承認する」と回答した。
+HELIX全体の到達目標として承認するかを確認した。質問では「これは4製品L1の変更・個別要求・実装を承認するものではありません」と明示した。
+POは「この本文を承認する」と回答した。
 この回答は本文のexact bytesへの承認であり、PR mergeやreview結果から推定した承認ではない。
 
 | 対象 | 承認したSHA-256 | 結果 |
@@ -33,8 +34,10 @@ HELIX全体の到達目標として承認するかを確認した。POは「こ�
 製品別の追加責務、L1要求の本文・ID、L2／L11、旧要求の要否・successor、数値基準、設計、実装は別判断とする。
 七大原則の独立authorityも本decisionの対象外である。
 
-次の対象別要求候補は、[L1被覆監査](../audits/source-rebaseline/l1-goals-principles-coverage-audit.md)が示す
-既存被覆と不足を比較し、Concept→対象別L1の順序で提示する。旧要求sourceの意味を落とさず、
+次に、承認対象本文が定めるとおり、5大目標の差分を取り込んだConcept revisionを別の人間判断へ戻す。
+既存Concept v4.1の接続記述だけで、その改訂と責務owner判断が完了したとはみなさない。
+そのConcept revisionの承認後に、[L1被覆監査](../audits/source-rebaseline/l1-goals-principles-coverage-audit.md)が示す
+既存被覆と不足を比較し、対象別L1要求候補へ分解する。旧要求sourceの意味を落とさず、
 人間が対象revision付きで採否するまで現行L1を変更しない。
 
 ## revision変更時の扱い
