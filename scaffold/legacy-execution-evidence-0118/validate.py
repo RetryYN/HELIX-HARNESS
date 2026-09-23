@@ -263,15 +263,43 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
 
     pass_pattern = re.compile(r"^\s*(?:Test Files|Tests)\s+(\d+)\s+passed(?:\s+\(\d+\))?\s*$", re.IGNORECASE)
     failed_count_pattern = re.compile(r"(?<!\d)(\d+)\s+failed\b", re.IGNORECASE)
-    exit_pattern = re.compile(r"\b(?:vitest\s+exit|exit\s+code|exited\s+with\s+code)\s*(?:=|:)?\s*(-?\d+)(?!\w)", re.IGNORECASE)
+    exit_marker_pattern = re.compile(r"\b(?P<marker>vitest\s+exit|exit(?:\s+code)?|exited\s+with\s+code)\b", re.IGNORECASE)
+    strict_exit_value_pattern = re.compile(r"-?\d+")
     zero_failure_line = re.compile(r"^\s*0\s+(?:errors?|fail(?:ed|ure)s?)\s*$", re.IGNORECASE)
     passed = [line.strip() for line in lines if pass_pattern.search(line)]
     passed_counts = [int(match.group(1)) for line in lines if (match := pass_pattern.search(line))]
-    exits = [line.strip() for line in lines if exit_pattern.search(line)]
+    exit_marker_observations = []
+    for line in lines:
+        matches = list(exit_marker_pattern.finditer(line))
+        for index, marker_match in enumerate(matches):
+            end = matches[index + 1].start() if index + 1 < len(matches) else len(line)
+            tail = line[marker_match.end():end]
+            value_match = re.match(r"\s*(?:[=:]\s*)?(?P<value>[^\s;,|]*)", tail)
+            value = value_match.group("value") if value_match else ""
+            observation = {
+                "line": line.strip(),
+                "marker": marker_match.group("marker"),
+                "value": value,
+            }
+            if strict_exit_value_pattern.fullmatch(value):
+                observation.update({"status": "parsed", "code": int(value)})
+            else:
+                observation.update({
+                    "status": "unparseable",
+                    "reason": "exit value is not a strict signed decimal integer",
+                })
+            exit_marker_observations.append(observation)
+    exits = list(dict.fromkeys(
+        observation["line"] for observation in exit_marker_observations
+    ))
     exit_observations = [
-        {"line": line.strip(), "code": int(match.group(1))}
-        for line in lines
-        for match in exit_pattern.finditer(line)
+        {"line": observation["line"], "code": observation["code"]}
+        for observation in exit_marker_observations
+        if observation["status"] == "parsed"
+    ]
+    unparseable_exit_observations = [
+        observation for observation in exit_marker_observations
+        if observation["status"] == "unparseable"
     ]
     failed_counts = [int(match.group(1)) for line in lines if (match := failed_count_pattern.search(line)) and int(match.group(1)) > 0]
     failed = []
@@ -290,6 +318,8 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
             "failed_counts": failed_counts,
             "exit_lines": exits,
             "exit_observations": exit_observations,
+            "exit_marker_observations": exit_marker_observations,
+            "unparseable_exit_observations": unparseable_exit_observations,
         },
         "unit_level_verdict": None,
     }
@@ -299,7 +329,9 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
         if observation["code"] != 0:
             nonzero.append(observation["line"])
     explicit_zero = any(observation["code"] == 0 for observation in exit_observations)
-    if failed and nonzero:
+    if unparseable_exit_observations:
+        reason = "unparseable exit marker prevents a pass verdict"
+    elif failed and nonzero:
         reason = "contradictory failure marker and nonzero exit code prevent a pass verdict"
     elif failed and positive_pass:
         reason = "contradictory pass summary and failure marker prevent a pass verdict"
@@ -315,7 +347,7 @@ def oracle_source_observation(data: bytes, anchors: list[dict]) -> tuple[dict, d
         reason = "text pass summary has no failure marker or nonzero exit, and remains asset-level only"
     else:
         reason = "no positive test pass summary is present"
-    if failed or nonzero:
+    if failed or nonzero or unparseable_exit_observations:
         result = {
             "status": "asset_level_test_result_only", "verdict": None,
             "reason": reason, "anchor_lines": anchor_lines,

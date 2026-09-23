@@ -37,7 +37,7 @@
     "asset-level execution／failure／result observationとunit／requirement／acceptance binding欠落を別fieldで保持する",
     "candidate poolをdirect semantic linkへ昇格せず、旧実装・縮退・未実装・current実装・acceptanceはunknownを維持する",
     "固定BASE入力digest、BASE祖先性、ledger nested record、架空unit link／acceptance verdict、status promotionをvalidator／selfcheckでfail-closeする",
-    "text receiptの同一行に複数あるexit codeをfinditerで全件execution_observation.fields.exit_observationsへ保持し、1件でもnonzeroならverdictを出さない。JSONのsuite/test todo countは未完了としてpass_with_pendingへ含める",
+    "text receiptの終了コードらしいmarkerを全出現検出し、各値全体を符号付き十進整数としてstrict parseする。parse不能／ambiguous markerはfailure markerと分けてexecution_observation.fields.unparseable_exit_observationsとreasonへ保持し、verdictをunknownにする。複数のvalid exit codeは全件保持し、1件でもnonzeroならverdictを出さない。JSONのsuite/test todo countは未完了としてpass_with_pendingへ含める",
     "旧世代runtime／test／CI／workflow／hook／adapter／sourceを実行しない"
   ],
   "operations": {
@@ -421,8 +421,8 @@
       "common.py and validator implement the same explicit source-observation specification; equality detects drift and does not claim semantic independence",
       "generated-output equality against validator expected records",
       "candidate pool versus direct crosswalk link separation",
-      "selfcheck case manifest: 30 observation cases O01–O30 and 32 negative cases N01–N32; labels and expected error codes are listed below",
-      "observation cases: O01 json success0 fail2; O02 json contradictory success/failure; O03 json missing test counts; O04 json missing suite counts; O05 json inconsistent suite counts; O06 json zero total; O07 json pending; O08 text zero passed failed2; O09 text contradictory pass/failure; O10 text pass exit2; O11 text normal pass; O12 text zero failed is not failure; O13 text pass missing exit; O14 text negative exit; O15 text hexadecimal exit is not parsed; O16 text Exit code zero; O17 text exited with code zero; O18 text zero errors; O19 text error word boundary; O20 text prose is not a summary; O21 identity only; O22 text bare FAIL marker; O23 text bare failed marker; O24 text segmentation fault marker; O25 text mixed FAIL and zero errors; O26 text npm ERR marker; O27 text path error word with pass and exit zero; O28 text hyphen compound words with pass and exit zero; O29 text same-line mixed exit=0 and exit=2 preserves both codes and rejects pass; O30 json consistent suite/test todo counts produce pass_with_pending",
+      "selfcheck case manifest: 35 observation cases O01–O35 and 32 negative cases N01–N32; labels and expected error codes are listed below",
+      "observation cases: O01 json success0 fail2; O02 json contradictory success/failure; O03 json missing test counts; O04 json missing suite counts; O05 json inconsistent suite counts; O06 json zero total; O07 json pending; O08 text zero passed failed2; O09 text contradictory pass/failure; O10 text pass exit2; O11 text normal pass; O12 text zero failed is not failure; O13 text pass missing exit; O14 text negative exit; O15 text hexadecimal exit retained as unparseable; O16 text Exit code zero; O17 text exited with code zero; O18 text zero errors; O19 text error word boundary; O20 text prose is not a summary; O21 identity only; O22 text bare FAIL marker; O23 text bare failed marker; O24 text segmentation fault marker; O25 text mixed FAIL and zero errors; O26 text npm ERR marker; O27 text path error word with pass and exit zero; O28 text hyphen compound words with pass and exit zero; O29 text same-line mixed exit=0 and exit=2 preserves both codes and rejects pass; O30 json consistent suite/test todo counts produce pass_with_pending; O31 same-line valid zero plus malformed hex exit remains unknown; O32 standalone malformed hex exit remains unknown; O33 exit=N/A remains unknown; O34 empty exit remains unknown; O35 partially invalid multiple exit markers remain unknown and separately recorded",
       "validator／selfcheck／scfctl／git diff --check"
     ],
     "negative_cases": [
