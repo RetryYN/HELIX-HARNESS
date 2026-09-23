@@ -22,4 +22,4 @@ research-only Scaffold Binding `SCF-B-0144`、formal classification/route/phase/
 
 ## 検証
 
-`generate.py`、独立 `validate.py`、31件の順序固定negative selfcheck、`py_compile`、`scfctl validate`、`git diff --check`を実行します。nested authority/unknown key、main manual review、source provenance、inventory IDs/pins、reason文言、厳密型、malformed container、rebaseline/binding pinの改変を拒否します。レビュー依頼、merge、Issue closeはこのPRでは行いません。
+`generate.py`、独立 `validate.py`、34件の順序固定negative selfcheck、`py_compile`、`scfctl validate`、`git diff --check`を実行します。record直下unknown key、target source span/product evidence、nested authority/unknown key、main manual review、source provenance、inventory IDs/pins、reason文言、厳密型、malformed container、rebaseline/binding pinの改変を拒否します。レビュー依頼、merge、Issue closeはこのPRでは行いません。

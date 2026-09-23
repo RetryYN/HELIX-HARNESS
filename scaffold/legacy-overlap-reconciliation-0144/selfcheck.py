@@ -93,6 +93,12 @@ def run_case(case_id: str) -> str:
                 changed[0]["resolution"] = None
             elif case_id == "N31-nested-unknown-key":
                 changed[0]["target_2078_result"]["method"]["unknown_authority"] = "approved"
+            elif case_id == "N32-record-unknown-key":
+                changed[0]["unexpected_record_key"] = "rejected"
+            elif case_id == "N33-target-source-span-tamper":
+                changed[0]["target_2078_result"]["source_spans"]["semantic_span"]["line_start"] += 1
+            elif case_id == "N34-target-product-evidence-unknown-key":
+                changed[0]["target_2078_result"]["product_boundary_and_l1"]["unexpected_evidence_key"] = "rejected"
             else:
                 raise AssertionError(f"unexpected negative case {case_id}")
             write_rows(temp_bundle / "classification-reconciliation.jsonl", changed)
@@ -144,6 +150,9 @@ def main() -> None:
         "N29-negative-case-contract-drift": "E_NEGATIVE_CASES",
         "N30-malformed-container-fails-closed": "E_AUTHORITY",
         "N31-nested-unknown-key": "E_TARGET_RESULT",
+        "N32-record-unknown-key": "E_RECORD_SCHEMA",
+        "N33-target-source-span-tamper": "E_SOURCE_SPAN",
+        "N34-target-product-evidence-unknown-key": "E_PRODUCT_EVIDENCE",
     }
     executed = []
     codes = []

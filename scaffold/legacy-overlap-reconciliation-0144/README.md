@@ -25,4 +25,4 @@ python3 scaffold/tools/scfctl.py validate
 git diff --check
 ```
 
-`human-judgment-packet.md`は対象一覧と判断境界を示す案内です。各assetの比較証拠は `classification-reconciliation.jsonl` が正本です。validatorはnested recordとinventoryを再導出期待値へkey/type/value厳密比較し、31件のnegative caseで境界を確認します。
+`human-judgment-packet.md`は対象一覧と判断境界を示す案内です。各assetの比較証拠は `classification-reconciliation.jsonl` が正本です。validatorはnested recordとinventoryを再導出期待値へkey/type/value厳密比較し、34件のnegative caseで境界を確認します。

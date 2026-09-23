@@ -838,6 +838,7 @@ def build() -> None:
             "N29-negative-case-contract-drift",
             "N30-malformed-container-fails-closed",
             "N31-nested-unknown-key",
+            "N32-record-unknown-key", "N33-target-source-span-tamper", "N34-target-product-evidence-unknown-key",
         ],
         "outputs": {"records_sha256": tagged(output), "records_bytes": len(output), "record_count": len(out_rows)},
     }
@@ -903,6 +904,7 @@ def build() -> None:
                 "N29-negative-case-contract-drift",
                 "N30-malformed-container-fails-closed",
                 "N31-nested-unknown-key",
+                "N32-record-unknown-key", "N33-target-source-span-tamper", "N34-target-product-evidence-unknown-key",
             ],
         },
         "replacement": {"formal_artifacts": [], "issue": 2078, "role_target": None, "status": "pending"},
