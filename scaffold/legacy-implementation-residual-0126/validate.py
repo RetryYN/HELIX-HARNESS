@@ -209,6 +209,15 @@ EXPECTED_NEGATIVE_CASES = [
     'input_digest_blob_tamper',
     'input_digest_bytes_tamper',
     'input_digest_sha_tamper',
+    'base_not_ancestor',
+    'base_source_unavailable',
+    'product_research_input_unavailable',
+    'record_wave_edge_count_bool',
+    'inventory_target_wave_edges_bool',
+    'ledger_nonobject_json',
+    'nested_nonobject_json',
+    'archive_manifest_translation_bytes_tamper',
+    'archive_manifest_translation_sha_tamper',
 ]
 EXPECTED_INVENTORY_KEYS = {
     "schema_revision",
@@ -237,10 +246,41 @@ EXPECTED_INVENTORY_KEYS = {
     "product_research_union",
     "archive_source_provenance",
 }
+EXPECTED_INVENTORY_FIELD_TYPES = {
+    "schema_revision": int, "binding_id": str, "base_revision": str, "base_source_mode": str,
+    "scope": str, "existing_research_union": dict, "wave_source_paths": dict, "counts": dict,
+    "phase_candidate_distribution": dict, "expected_sets": dict, "input_digests": list,
+    "old_asset_source_mode": str, "formal_update": dict, "classification_rule": dict,
+    "authority_boundary": dict, "history_failure_consumer": dict, "edge_contract": dict,
+    "artifacts": list, "negative_cases": list, "output_sha256": str,
+    "archive_manifest_resolution": dict, "binding_upstream": dict,
+    "overlap_reconciliation": dict, "product_research_union": dict, "archive_source_provenance": list,
+}
 EXPECTED_INPUT_DIGEST_KEYS = {"path", "blob", "bytes", "sha256"}
 EXPECTED_RECORD_KEYS = {"asset_id", "source_path", "source_exact", "phase_evidence", "legacy_asset_evidence", "classification", "boundary_evidence", "legacy_history_failure_consumer", "legacy_implementation_shrinkage_evidence", "wave_semantic_links", "wave_edge_count", "human_judgment_remaining", "authority_effect", "formal_asset_classification_updated", "new_build_allowed", "anchor_line_coverage", "research_scope", "evidence_completeness", "overlap_status", "bundle_revision", "denominator_role"}
+EXPECTED_RECORD_FIELD_TYPES = {
+    "asset_id": str, "source_path": str, "source_exact": dict, "phase_evidence": dict,
+    "legacy_asset_evidence": dict, "classification": dict, "boundary_evidence": dict,
+    "legacy_history_failure_consumer": dict, "legacy_implementation_shrinkage_evidence": dict,
+    "wave_semantic_links": list, "wave_edge_count": int, "human_judgment_remaining": list,
+    "authority_effect": str, "formal_asset_classification_updated": bool, "new_build_allowed": bool,
+    "anchor_line_coverage": dict, "research_scope": str, "evidence_completeness": str,
+    "overlap_status": str, "bundle_revision": str, "denominator_role": str,
+}
 EXPECTED_SOURCE_KEYS = {"archive_path", "source_path", "blob", "bytes", "line_count", "sha256", "ledger_source_sha256", "ledger_digest_match", "archive_manifest_sha256", "archive_manifest_match", "archive_manifest_resolution", "semantic_anchor", "read_mode", "mode", "type"}
+EXPECTED_SOURCE_FIELD_TYPES = {
+    "archive_path": str, "source_path": str, "mode": str, "type": str, "blob": str,
+    "bytes": int, "line_count": int, "sha256": str, "ledger_source_sha256": str,
+    "ledger_digest_match": bool, "archive_manifest_sha256": str, "archive_manifest_match": bool,
+    "archive_manifest_resolution": dict, "semantic_anchor": dict, "read_mode": str,
+}
 EXPECTED_CLASSIFICATION_KEYS = {"category", "candidate_products", "semantic_status", "reason"}
+if set(EXPECTED_INVENTORY_FIELD_TYPES) != EXPECTED_INVENTORY_KEYS:
+    raise AssertionError("inventory exact-type schema must cover every declared key")
+if set(EXPECTED_RECORD_FIELD_TYPES) != EXPECTED_RECORD_KEYS:
+    raise AssertionError("record exact-type schema must cover every declared key")
+if set(EXPECTED_SOURCE_FIELD_TYPES) != EXPECTED_SOURCE_KEYS:
+    raise AssertionError("source_exact exact-type schema must cover every declared key")
 EXPECTED_PROFILES = {'.claude/hooks/git-command-guard.ts': {'category': 'insufficient_basis',
                                         'length': 12,
                                         'marker': 'PreToolUse(Bash / exec_command) hook',
@@ -647,6 +687,27 @@ def fail(code: str, message: str) -> None:
     raise AssertionError(f"{code}: {message}")
 
 
+def same_typed_value(actual, expected) -> bool:
+    """Compare JSON values without Python's bool/int equality aliasing."""
+    if type(expected) is bool:
+        return type(actual) is bool and actual is expected
+    if type(expected) is int:
+        return type(actual) is int and actual == expected
+    if type(expected) is dict:
+        return (
+            type(actual) is dict
+            and actual.keys() == expected.keys()
+            and all(same_typed_value(actual[key], value) for key, value in expected.items())
+        )
+    if type(expected) is list:
+        return (
+            type(actual) is list
+            and len(actual) == len(expected)
+            and all(same_typed_value(left, right) for left, right in zip(actual, expected))
+        )
+    return type(actual) is type(expected) and actual == expected
+
+
 def strict_pairs(pairs: list[tuple[str, object]]) -> dict:
     result = {}
     for key, value in pairs:
@@ -668,6 +729,26 @@ def strict_json(text: str, label: str, require_object: bool = True) -> object:
 
 def tagged(data: bytes) -> str:
     return "sha256:" + hashlib.sha256(data).hexdigest()
+
+
+def expected_line_ending_translation(source_path: str, data: bytes, manifest_digest: str) -> dict | None:
+    if source_path != "scripts/helix.ps1":
+        return None
+    if b"\r\n" in data:
+        fail("E_ARCHIVE_MANIFEST", source_path)
+    translated = data.replace(b"\n", b"\r\n")
+    translated_digest = tagged(translated)
+    if translated_digest != manifest_digest:
+        fail("E_ARCHIVE_MANIFEST", f"LF-to-CRLF diagnostic does not reproduce MANIFEST: {source_path}")
+    return {
+        "status": "line_ending_translation_explains_manifest_digest",
+        "translation_rule": "replace each LF byte (0x0A) with CRLF bytes (0x0D 0x0A); preserve all other bytes",
+        "archive_bytes": len(data),
+        "archive_sha256": tagged(data),
+        "translated_bytes": len(translated),
+        "translated_sha256": translated_digest,
+        "interpretation": "static digest diagnostic only; the physical Git archive blob remains different and no semantic equivalence, reuse, or formal admission follows",
+    }
 
 
 def git_bytes(path: str, base: str = BASE_REVISION) -> bytes:
@@ -942,7 +1023,7 @@ def expected_source_exact(asset: dict, spec: dict) -> dict:
     archive_digest = tagged(data)
     manifest_digest = manifest_sha256(path)
     manifest_match = archive_digest == manifest_digest
-    manifest_resolution = {"status": "matched"} if manifest_match else {"status": "pending_human_source_resolution", "formal_admission": "stopped", "reuse_decision": "stopped", "reason": "archive bytes and manifest entry differ; static evidence is retained"}
+    manifest_resolution = {"status": "matched"} if manifest_match else {"status": "pending_human_source_resolution", "formal_admission": "stopped", "reuse_decision": "stopped", "reason": "archive bytes and manifest entry differ; static evidence is retained", "line_ending_translation": expected_line_ending_translation(path, data, manifest_digest)}
     return {"archive_path": archive, "source_path": path, "mode": tree["mode"], "type": tree["type"], "blob": git_blob(archive), "bytes": len(data), "line_count": len(lines), "sha256": archive_digest, "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": archive_digest == "sha256:" + ledger_sha, "archive_manifest_sha256": manifest_digest, "archive_manifest_match": manifest_match, "archive_manifest_resolution": manifest_resolution, "semantic_anchor": anchor, "read_mode": "git_object_static_read_only"}
 
 
@@ -1045,6 +1126,10 @@ def check_source(record: dict, expected: dict, asset: dict) -> None:
     exact = record.get("source_exact")
     if not isinstance(exact, dict): fail("E_SOURCE_ANCHOR", path)
     if set(exact) != EXPECTED_SOURCE_KEYS: fail("E_SOURCE_ANCHOR", path)
+    for field, expected_type in EXPECTED_SOURCE_FIELD_TYPES.items():
+        if type(exact.get(field)) is not expected_type:
+            code = "E_ARCHIVE_MANIFEST" if field in {"archive_manifest_sha256", "archive_manifest_match", "archive_manifest_resolution"} else "E_SOURCE_ANCHOR"
+            fail(code, f"{path}: source_exact.{field} must be {expected_type.__name__}")
     archive = ARCHIVE_PREFIX + path
     if exact.get("archive_path") != archive or exact.get("source_path") != path: fail("E_SOURCE_TREE", path)
     tree = git_tree_entry(archive)
@@ -1138,8 +1223,10 @@ def check() -> None:
             fail("E_RECORD_SCHEMA", "record must be an object")
         if set(row) != EXPECTED_RECORD_KEYS:
             fail("E_RECORD_SCHEMA", str(row.get("asset_id", "")))
-        if not isinstance(row.get("asset_id"), str) or not isinstance(row.get("source_path"), str):
-            fail("E_RECORD_SCHEMA", str(row.get("asset_id", "")))
+        for field, expected_type in EXPECTED_RECORD_FIELD_TYPES.items():
+            if type(row.get(field)) is not expected_type:
+                code = "E_WAVE_EDGE_SET" if field == "wave_edge_count" else "E_RECORD_SCHEMA"
+                fail(code, f"{row.get('asset_id', '')}: {field} must be {expected_type.__name__}")
     binding = strict_json(BINDING_FILE.read_text(), str(BINDING_FILE))
     if not isinstance(binding, dict):
         fail("E_JSON", f"{BINDING_FILE}: top-level JSON object required")
@@ -1161,36 +1248,39 @@ def check() -> None:
         source_key = (row.get("source_path"), exact_source.get("sha256"))
         prior_asset = source_aliases.setdefault(source_key, row.get("asset_id"))
         if prior_asset != row.get("asset_id"): fail("E_SOURCE_ALIAS", f"{source_key}: {prior_asset}/{row.get('asset_id')}")
-    if set(inv.get("expected_sets", {}).get("target_asset_ids", [])) != set(targets) or inv.get("expected_sets", {}).get("target_asset_count") != 67: fail("E_INVENTORY_DECLARATION", "target set")
+    if set(inv.get("expected_sets", {}).get("target_asset_ids", [])) != set(targets) or not same_typed_value(inv.get("expected_sets", {}).get("target_asset_count"), 67): fail("E_INVENTORY_DECLARATION", "target set")
     if set(inv) != EXPECTED_INVENTORY_KEYS: fail("E_INVENTORY_DECLARATION", "inventory schema keys")
-    if inv.get("schema_revision") != 1: fail("E_INVENTORY_DECLARATION", "schema revision")
-    if inv.get("expected_sets") != {
+    for field, expected_type in EXPECTED_INVENTORY_FIELD_TYPES.items():
+        if type(inv.get(field)) is not expected_type:
+            fail("E_INVENTORY_DECLARATION", f"{field} must be {expected_type.__name__}")
+    if not same_typed_value(inv.get("schema_revision"), 1): fail("E_INVENTORY_DECLARATION", "schema revision")
+    if not same_typed_value(inv.get("expected_sets"), {
         "target_asset_count": 67,
         "target_asset_ids": targets,
         "target_asset_ids_sha256": tagged("\n".join(targets).encode()),
         "source_paths": [phase[a][1]["source_path"] for a in targets],
-    }: fail("E_INVENTORY_DECLARATION", "target/source path sets")
+    }): fail("E_INVENTORY_DECLARATION", "target/source path sets")
     if inv.get("base_revision") != BASE_REVISION or inv.get("base_source_mode") != "all input and archive evidence bytes from fixed BASE Git objects": fail("E_BASE_PIN", "inventory")
     if len(EXPECTED_NEGATIVE_CASES) != len(set(EXPECTED_NEGATIVE_CASES)): fail("E_INVENTORY_DECLARATION", "validator negative case IDs are duplicated")
-    if inv.get("scope") != EXPECTED_SCOPE or inv.get("artifacts") != EXPECTED_ARTIFACTS_ORDERED or inv.get("negative_cases") != EXPECTED_NEGATIVE_CASES: fail("E_INVENTORY_DECLARATION", "scope/artifacts/negative cases")
-    if inv.get("classification_rule") != EXPECTED_RULES: fail("E_INVENTORY_DECLARATION", "classification rule")
-    if inv.get("authority_boundary") != {"authority_effect": "none", "classification_state": "research_proposal_pending_human_product_review", "formal_asset_classification_updated": False, "new_build_allowed": False}: fail("E_INVENTORY_DECLARATION", "authority boundary")
+    if not same_typed_value(inv.get("scope"), EXPECTED_SCOPE) or not same_typed_value(inv.get("artifacts"), EXPECTED_ARTIFACTS_ORDERED) or not same_typed_value(inv.get("negative_cases"), EXPECTED_NEGATIVE_CASES): fail("E_INVENTORY_DECLARATION", "scope/artifacts/negative cases")
+    if not same_typed_value(inv.get("classification_rule"), EXPECTED_RULES): fail("E_INVENTORY_DECLARATION", "classification rule")
+    if not same_typed_value(inv.get("authority_boundary"), {"authority_effect": "none", "classification_state": "research_proposal_pending_human_product_review", "formal_asset_classification_updated": False, "new_build_allowed": False}): fail("E_INVENTORY_DECLARATION", "authority boundary")
     if inv.get("binding_id") != BINDING_ID: fail("E_INVENTORY_DECLARATION", "binding id")
-    if inv.get("formal_update") != {
+    if not same_typed_value(inv.get("formal_update"), {
         "formal_asset_classification_updated": False,
         "phase_ledger_updated": False,
         "product_route_updated": False,
         "successor_updated": False,
         "new_build_allowed": False,
         "authority_effect": "none",
-    }: fail("E_AUTHORITY_PROMOTION", "formal update")
-    if inv.get("counts", {}).get("target_wave_edges") != 0 or inv.get("counts", {}).get("wave_files") != 50 or inv.get("counts", {}).get("wave_edges_scanned") != 598 or inv.get("counts", {}).get("wave_unique_assets_scanned") != 355: fail("E_WAVE_EDGE_SET", "wave denominator")
-    if inv.get("wave_source_paths") != {str(n): path for n, path in WAVE_PATHS.items()}: fail("E_WAVE_EDGE_SET", "wave input paths")
+    }): fail("E_AUTHORITY_PROMOTION", "formal update")
+    if not same_typed_value(inv.get("counts", {}).get("target_wave_edges"), 0) or not same_typed_value(inv.get("counts", {}).get("wave_files"), 50) or not same_typed_value(inv.get("counts", {}).get("wave_edges_scanned"), 598) or not same_typed_value(inv.get("counts", {}).get("wave_unique_assets_scanned"), 355): fail("E_WAVE_EDGE_SET", "wave denominator")
+    if not same_typed_value(inv.get("wave_source_paths"), {str(n): path for n, path in WAVE_PATHS.items()}): fail("E_WAVE_EDGE_SET", "wave input paths")
     prefix_ids_for_union = {a for a, (_, row) in phase.items() if row.get("product_classification_status") == "unresolved" and any(row.get("source_path", "").startswith(prefix) for prefix in EXISTING_RESEARCH_PREFIXES)}
-    if inv.get("existing_research_union") != expected_union_declaration(existing, prefix_ids_for_union): fail("E_INVENTORY_DECLARATION", "research union")
+    if not same_typed_value(inv.get("existing_research_union"), expected_union_declaration(existing, prefix_ids_for_union)): fail("E_INVENTORY_DECLARATION", "research union")
     if inv.get("old_asset_source_mode") != "archive bytes are read through git show BASE:<archive-path>; never executed": fail("E_INVENTORY_DECLARATION", "source mode")
-    if inv.get("existing_research_union", {}).get("existing_union_count") != 280 or inv.get("existing_research_union", {}).get("pre_target_residual_unresolved_count") != 1512 or inv.get("existing_research_union", {}).get("new_target_count") != 67 or inv.get("existing_research_union", {}).get("post_batch_remaining_unresolved_count") != 1445: fail("E_INVENTORY_DECLARATION", "denominator counts")
-    if inv.get("product_research_union") != {
+    if not same_typed_value(inv.get("existing_research_union", {}).get("existing_union_count"), 280) or not same_typed_value(inv.get("existing_research_union", {}).get("pre_target_residual_unresolved_count"), 1512) or not same_typed_value(inv.get("existing_research_union", {}).get("new_target_count"), 67) or not same_typed_value(inv.get("existing_research_union", {}).get("post_batch_remaining_unresolved_count"), 1445): fail("E_INVENTORY_DECLARATION", "denominator counts")
+    if not same_typed_value(inv.get("product_research_union"), {
         "bundle_revision": PRODUCT_RESEARCH_COMMIT,
         "bundle_paths": list(PRODUCT_RESEARCH_BUNDLES),
         "union_count": 429,
@@ -1198,10 +1288,10 @@ def check() -> None:
         "union_asset_ids_sha256": tagged("\n".join(sorted(product_union)).encode()),
         "bundle_input_count": 8,
         "bundle_inputs": [{"path": pth, "blob": git_blob_at(pth, PRODUCT_RESEARCH_COMMIT), "bytes": len(git_bytes_at(pth, PRODUCT_RESEARCH_COMMIT)), "sha256": tagged(git_bytes_at(pth, PRODUCT_RESEARCH_COMMIT))} for pth in PRODUCT_RESEARCH_BUNDLES],
-    }: fail("E_PRODUCT_RESEARCH_UNION", "union declaration")
-    if inv.get("overlap_reconciliation") != expected_overlap: fail("E_OVERLAP_RECONCILIATION", "overlap metadata")
+    }): fail("E_PRODUCT_RESEARCH_UNION", "union declaration")
+    if not same_typed_value(inv.get("overlap_reconciliation"), expected_overlap): fail("E_OVERLAP_RECONCILIATION", "overlap metadata")
     expected_archive_provenance = expected_archive_source_provenance(initial_targets, disp)
-    if inv.get("archive_source_provenance") != expected_archive_provenance: fail("E_ARCHIVE_PROVENANCE", "initial target archive provenance")
+    if not same_typed_value(inv.get("archive_source_provenance"), expected_archive_provenance): fail("E_ARCHIVE_PROVENANCE", "initial target archive provenance")
     categories = Counter()
     expected_paths = set(EXPECTED_PROFILES)
     if not {phase[a][1]["source_path"] for a in targets} <= expected_paths: fail("E_REVIEW_PIN", "profile target paths")
@@ -1223,10 +1313,10 @@ def check() -> None:
         pe = row.get("phase_evidence", {})
         pline, prow = phase[aid]
         for k, v in {"path": PHASE, "line": pline, "row_sha256": row_digest(prow), "product_classification_status": "unresolved", "artifact_evidence_kind": "implementation_source", "source_path": path, "source_sha256": prow.get("source_sha256"), "candidate_phase_targets": prow.get("candidate_phase_targets") or []}.items():
-            if pe.get(k) != v: fail("E_PHASE_STATUS", aid)
+            if not same_typed_value(pe.get(k), v): fail("E_PHASE_STATUS", aid)
         le = row.get("legacy_asset_evidence", {})
         dline, drow = disp[aid]
-        if le != expected_legacy_asset_evidence(drow, dline): fail("E_OLD_LEDGER_RECORD", aid)
+        if not same_typed_value(le, expected_legacy_asset_evidence(drow, dline)): fail("E_OLD_LEDGER_RECORD", aid)
         cls = row.get("classification", {})
         if set(cls) != EXPECTED_CLASSIFICATION_KEYS: fail("E_RECORD_SCHEMA", aid)
         check_category_invariant(cls, aid)
@@ -1234,14 +1324,14 @@ def check() -> None:
         if cls.get("semantic_status") != {"direct_product_basis": "reviewed_candidate", "multi_product_conflict": "reviewed_conflict", "insufficient_basis": "reviewed_insufficient_basis"}[expected["category"]]: fail("E_CLASSIFICATION", aid)
         if cls.get("reason") != expected["reason"] + " Candidate only; formal product authority remains unresolved.": fail("E_CLASSIFICATION", aid)
         categories[expected["category"]] += 1
-        if row.get("wave_semantic_links") != [] or row.get("wave_edge_count") != 0: fail("E_WAVE_EDGE_SET", aid)
+        if not same_typed_value(row.get("wave_semantic_links"), []) or not same_typed_value(row.get("wave_edge_count"), 0): fail("E_WAVE_EDGE_SET", aid)
         shrink = row.get("legacy_implementation_shrinkage_evidence", {})
         expected_shrink = {"artifact_evidence_kind": "implementation_source", "implementation_evidence_state": phase[aid][1].get("implementation_evidence_state"), "legacy_implementation_status": phase[aid][1].get("legacy_implementation_status"), "disposition_implementation_status": drow.get("implementation_status"), "legacy_execution_performed": phase[aid][1].get("legacy_execution_performed"), "interpretation": "implementation source presence is historical static evidence; unknown status and pending consumer closure are preserved"}
-        if shrink != expected_shrink: fail("E_IMPLEMENTATION_EVIDENCE", aid)
+        if not same_typed_value(shrink, expected_shrink): fail("E_IMPLEMENTATION_EVIDENCE", aid)
         if row.get("authority_effect") != "none" or row.get("formal_asset_classification_updated") is not False or row.get("new_build_allowed") is not False: fail("E_AUTHORITY_PROMOTION", aid)
-        if row.get("human_judgment_remaining") != EXPECTED_HUMAN: fail("E_HUMAN_JUDGMENT", aid)
+        if not same_typed_value(row.get("human_judgment_remaining"), EXPECTED_HUMAN): fail("E_HUMAN_JUDGMENT", aid)
         h = row.get("legacy_history_failure_consumer", {})
-        if h != expected_history_failure_consumer(drow, dline, decisions, read_afters): fail("E_HISTORY", aid)
+        if not same_typed_value(h, expected_history_failure_consumer(drow, dline, decisions, read_afters)): fail("E_HISTORY", aid)
         bnd = row.get("boundary_evidence", {})
         pb = bnd.get("product_boundary", {})
         bd = git_bytes(BOUNDARY)
@@ -1257,14 +1347,14 @@ def check() -> None:
         # Full independent reconstruction closes the prior subset-comparison gap:
         # every nested key/value is derived from fixed BASE bytes and compared.
         expected_full = expected_record(aid, phase, disp, decisions, read_afters)
-        if row != expected_full:
-            if row.get("phase_evidence") != expected_full["phase_evidence"]: fail("E_PHASE_STATUS", aid)
-            if row.get("source_exact") != expected_full["source_exact"]: fail("E_SOURCE_ANCHOR", aid)
-            if row.get("classification") != expected_full["classification"]: fail("E_CLASSIFICATION", aid)
-            if row.get("boundary_evidence") != expected_full["boundary_evidence"]: fail("E_BOUNDARY_ANCHOR", aid)
-            if row.get("legacy_history_failure_consumer") != expected_full["legacy_history_failure_consumer"]: fail("E_HISTORY", aid)
-            if row.get("legacy_implementation_shrinkage_evidence") != expected_full["legacy_implementation_shrinkage_evidence"]: fail("E_IMPLEMENTATION_EVIDENCE", aid)
-            if row.get("anchor_line_coverage") != expected_full["anchor_line_coverage"]: fail("E_ANCHOR_COVERAGE", aid)
+        if not same_typed_value(row, expected_full):
+            if not same_typed_value(row.get("phase_evidence"), expected_full["phase_evidence"]): fail("E_PHASE_STATUS", aid)
+            if not same_typed_value(row.get("source_exact"), expected_full["source_exact"]): fail("E_SOURCE_ANCHOR", aid)
+            if not same_typed_value(row.get("classification"), expected_full["classification"]): fail("E_CLASSIFICATION", aid)
+            if not same_typed_value(row.get("boundary_evidence"), expected_full["boundary_evidence"]): fail("E_BOUNDARY_ANCHOR", aid)
+            if not same_typed_value(row.get("legacy_history_failure_consumer"), expected_full["legacy_history_failure_consumer"]): fail("E_HISTORY", aid)
+            if not same_typed_value(row.get("legacy_implementation_shrinkage_evidence"), expected_full["legacy_implementation_shrinkage_evidence"]): fail("E_IMPLEMENTATION_EVIDENCE", aid)
+            if not same_typed_value(row.get("anchor_line_coverage"), expected_full["anchor_line_coverage"]): fail("E_ANCHOR_COVERAGE", aid)
             fail("E_RECORD_SCHEMA", aid)
     expected_counts = {
         "wave_files": 50,
@@ -1275,26 +1365,31 @@ def check() -> None:
         "categories": dict(sorted(categories.items())),
         "target_asset_artifact_evidence_kinds": {"implementation_source": 67},
     }
-    if inv.get("counts") != expected_counts: fail("E_INVENTORY_DECLARATION", "counts")
+    if not same_typed_value(inv.get("counts"), expected_counts): fail("E_INVENTORY_DECLARATION", "counts")
     phase_distribution = Counter("|".join(phase[a][1].get("candidate_phase_targets") or []) for a in targets)
-    if inv.get("phase_candidate_distribution") != dict(sorted(phase_distribution.items())): fail("E_INVENTORY_DECLARATION", "phase distribution")
-    if inv.get("edge_contract") != {"target_wave_edges": 0, "duplicate_edges_forbidden": True, "missing_edges_forbidden": True}: fail("E_INVENTORY_DECLARATION", "edge contract")
-    if inv.get("history_failure_consumer") != {"disposition_rows": 67, "decision_rows_for_targets": 0, "read_after_rows_for_targets": 0, "failure_consumer_refs_are_static_global_inventory": True}: fail("E_INVENTORY_DECLARATION", "history/failure/consumer declaration")
+    if not same_typed_value(inv.get("phase_candidate_distribution"), dict(sorted(phase_distribution.items()))): fail("E_INVENTORY_DECLARATION", "phase distribution")
+    if not same_typed_value(inv.get("edge_contract"), {"target_wave_edges": 0, "duplicate_edges_forbidden": True, "missing_edges_forbidden": True}): fail("E_INVENTORY_DECLARATION", "edge contract")
+    if not same_typed_value(inv.get("history_failure_consumer"), {"disposition_rows": 67, "decision_rows_for_targets": 0, "read_after_rows_for_targets": 0, "failure_consumer_refs_are_static_global_inventory": True}): fail("E_INVENTORY_DECLARATION", "history/failure/consumer declaration")
+    mismatch_path = "scripts/helix.ps1"
+    mismatch_archive = git_bytes(ARCHIVE_PREFIX + mismatch_path)
+    mismatch_manifest_digest = manifest_sha256(mismatch_path)
     expected_manifest_resolution = {
         "status": "pending_human_source_resolution",
         "formal_admission": "stopped",
         "reuse_decision": "stopped",
         "mismatches": [{
-            "source_path": "scripts/helix.ps1",
-            "archive_sha256": "sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b",
-            "manifest_sha256": "sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7",
+            "source_path": mismatch_path,
+            "archive_bytes": len(mismatch_archive),
+            "archive_sha256": tagged(mismatch_archive),
+            "manifest_sha256": mismatch_manifest_digest,
             "manifest_path": MANIFEST,
-            "reason": "archive bytes and manifest entry differ; static evidence is retained, but formal admission and legacy reuse remain stopped pending human/source resolution",
+            "line_ending_translation": expected_line_ending_translation(mismatch_path, mismatch_archive, mismatch_manifest_digest),
+            "reason": "archive bytes and manifest entry differ; LF-to-CRLF translation reproduces the manifest digest as a static diagnostic only; formal admission and legacy reuse remain stopped pending human/source resolution",
         }],
     }
-    if inv.get("archive_manifest_resolution") != expected_manifest_resolution: fail("E_ARCHIVE_MANIFEST", "resolution declaration")
+    if not same_typed_value(inv.get("archive_manifest_resolution"), expected_manifest_resolution): fail("E_ARCHIVE_MANIFEST", "resolution declaration")
     expected_binding = expected_binding_upstream()
-    if inv.get("binding_upstream") != {
+    if not same_typed_value(inv.get("binding_upstream"), {
         "policy": "all nonarchive input_digests and product research bundle inputs are Binding upstream; archive static references remain in inventory/records because SCF-OS-003 forbids archive upstream paths",
         "nonarchive_input_count": 63,
         "product_bundle_input_count": 8,
@@ -1302,8 +1397,8 @@ def check() -> None:
         "archive_input_count": 121,
         "archive_upstream_count": 0,
         "archive_nonexecution_boundary": "archive source/runtime/test/CI is read through fixed BASE Git objects only and never executed",
-    }: fail("E_BINDING_UPSTREAM", "binding upstream policy")
-    if binding.get("id") != BINDING_ID or binding.get("upstream") != expected_binding: fail("E_BINDING_UPSTREAM", "path/raw SHA closure")
+    }): fail("E_BINDING_UPSTREAM", "binding upstream policy")
+    if binding.get("id") != BINDING_ID or not same_typed_value(binding.get("upstream"), expected_binding): fail("E_BINDING_UPSTREAM", "path/raw SHA closure")
     global_inputs = [PHASE, DISPOSITION, DECISIONS, READ_AFTER, BOUNDARY, *L1.values(), FAILURE_SOURCE, CONSUMER_SOURCE, "docs/governance/legacy-asset-reuse-control.md", "docs/governance/new-generation-start-here.md", MANIFEST]
     expected_input_paths = [*WAVE_PATHS.values(), *global_inputs, *[ARCHIVE_PREFIX + phase[a][1]["source_path"] for a in sorted(initial_targets)]]
     paths = [x.get("path") for x in inv.get("input_digests", [])]
@@ -1311,7 +1406,7 @@ def check() -> None:
     for item in inv["input_digests"]:
         if set(item) != EXPECTED_INPUT_DIGEST_KEYS: fail("E_INPUT_DIGEST", "input digest schema")
         b = git_bytes(item["path"])
-        if item.get("blob") != git_blob(item["path"]) or item.get("bytes") != len(b) or item.get("sha256") != tagged(b): fail("E_INPUT_DIGEST", item.get("path", ""))
+        if item.get("blob") != git_blob(item["path"]) or not same_typed_value(item.get("bytes"), len(b)) or item.get("sha256") != tagged(b): fail("E_INPUT_DIGEST", item.get("path", ""))
     if inv.get("output_sha256") != tagged(LEDGER.read_bytes()): fail("E_OUTPUT_DIGEST", "ledger")
     print(f"SCF-B-0126 validate: PASS records=67 categories={dict(sorted(categories.items()))} target_wave_edges=0 product_union=429 unresolved_existing_union=280 pre_target_residual=1512 new_target=67 post_batch_remaining=1445 overlap=53")
 

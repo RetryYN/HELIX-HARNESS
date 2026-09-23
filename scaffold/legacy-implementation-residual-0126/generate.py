@@ -221,6 +221,26 @@ def tagged(data: bytes) -> str:
     return "sha256:" + hashlib.sha256(data).hexdigest()
 
 
+def line_ending_translation(source_path: str, data: bytes, manifest_digest: str) -> dict | None:
+    if source_path != "scripts/helix.ps1":
+        return None
+    if b"\r\n" in data:
+        raise AssertionError("scripts/helix.ps1 BASE object is expected to contain LF-only line endings")
+    translated = data.replace(b"\n", b"\r\n")
+    translated_digest = tagged(translated)
+    if translated_digest != manifest_digest:
+        raise AssertionError("scripts/helix.ps1 LF-to-CRLF diagnostic no longer reproduces MANIFEST digest")
+    return {
+        "status": "line_ending_translation_explains_manifest_digest",
+        "translation_rule": "replace each LF byte (0x0A) with CRLF bytes (0x0D 0x0A); preserve all other bytes",
+        "archive_bytes": len(data),
+        "archive_sha256": tagged(data),
+        "translated_bytes": len(translated),
+        "translated_sha256": translated_digest,
+        "interpretation": "static digest diagnostic only; the physical Git archive blob remains different and no semantic equivalence, reuse, or formal admission follows",
+    }
+
+
 def git_bytes(path: str, base: str = BASE_REVISION) -> bytes:
     return subprocess.check_output(["git", "show", f"{base}:{path}"])
 
@@ -396,7 +416,7 @@ def static_source(asset: dict, spec: dict) -> dict:
     archive_digest = tagged(data)
     manifest_digest = manifest_sha256(asset["source_path"])
     manifest_match = archive_digest == manifest_digest
-    manifest_resolution = {"status": "matched"} if manifest_match else {"status": "pending_human_source_resolution", "formal_admission": "stopped", "reuse_decision": "stopped", "reason": "archive bytes and manifest entry differ; static evidence is retained"}
+    manifest_resolution = {"status": "matched"} if manifest_match else {"status": "pending_human_source_resolution", "formal_admission": "stopped", "reuse_decision": "stopped", "reason": "archive bytes and manifest entry differ; static evidence is retained", "line_ending_translation": line_ending_translation(asset["source_path"], data, manifest_digest)}
     return {"archive_path": archive_path, "source_path": asset["source_path"], "mode": tree["mode"], "type": tree["type"], "blob": git_blob(archive_path), "bytes": len(data), "line_count": len(data.decode(errors="replace").splitlines()), "sha256": archive_digest, "ledger_source_sha256": "sha256:" + ledger_sha, "ledger_digest_match": ledger_match, "archive_manifest_sha256": manifest_digest, "archive_manifest_match": manifest_match, "archive_manifest_resolution": manifest_resolution, "semantic_anchor": a, "read_mode": "git_object_static_read_only"}
 
 
@@ -558,10 +578,12 @@ def build() -> None:
             "reuse_decision": "stopped",
             "mismatches": [{
                 "source_path": "scripts/helix.ps1",
+                "archive_bytes": 363,
                 "archive_sha256": "sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b",
                 "manifest_sha256": "sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7",
                 "manifest_path": MANIFEST,
-                "reason": "archive bytes and manifest entry differ; static evidence is retained, but formal admission and legacy reuse remain stopped pending human/source resolution",
+                "line_ending_translation": line_ending_translation("scripts/helix.ps1", git_bytes(ARCHIVE_PREFIX + "scripts/helix.ps1"), "sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7"),
+                "reason": "archive bytes and manifest entry differ; LF-to-CRLF translation reproduces the manifest digest as a static diagnostic only; formal admission and legacy reuse remain stopped pending human/source resolution",
             }],
         },
         "binding_upstream": {
@@ -652,6 +674,15 @@ def build() -> None:
             'input_digest_blob_tamper',
             'input_digest_bytes_tamper',
             'input_digest_sha_tamper',
+            'base_not_ancestor',
+            'base_source_unavailable',
+            'product_research_input_unavailable',
+            'record_wave_edge_count_bool',
+            'inventory_target_wave_edges_bool',
+            'ledger_nonobject_json',
+            'nested_nonobject_json',
+            'archive_manifest_translation_bytes_tamper',
+            'archive_manifest_translation_sha_tamper',
         ],
     }
     inventory["output_sha256"] = tagged(ledger.read_bytes())

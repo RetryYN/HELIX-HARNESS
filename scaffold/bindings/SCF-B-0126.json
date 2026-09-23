@@ -35,10 +35,10 @@
     "旧decision/read-after/failure/consumerを静的partitionで保持しconsumer closureを生成しない",
     "旧asset status・history・consumer blockと全nested record/inventoryを固定BASE由来の期待値と厳密一致させる",
     "authority none・formal分類/route/phase/successor/new build falseを固定する",
-    "旧archive source/runtime/test/CIを実行せず独立validatorと76 negative selfcheckを維持する",
-    "strict JSON parserでledger record/nested object/inventoryのduplicate key、malformed JSON、nonobjectをE_JSONとして拒否する76 negative selfcheckを維持する",
+    "旧archive source/runtime/test/CIを実行せず独立validatorと85 negative selfcheckを維持する",
+    "strict JSON parserでledger record/nested object/inventoryのduplicate key、malformed JSON、ledger row/inventoryのnonobjectを拒否し、nested nonobjectもrecord schema errorとして拒否する85 negative selfcheckを維持する",
     "inventory 184 input_digestの全63非archive入力と最新main product bundle 8入力をBinding upstreamへ登録し、path/raw SHA256をvalidatorで完全照合する。archive静的121入力はSCF-OS-003のためupstreamへ入れず、inventory/recordで固定し非実行境界を明示する",
-    "scripts/helix.ps1のarchive bytes sha256 2b86bf...とMANIFEST entry 9e5b68...の不一致を明示し、formal admission/reuseを停止してhuman/source resolution pendingを保持する",
+    "scripts/helix.ps1のphysical archive Git blob（363 bytes、sha256 2b86bf...）とMANIFEST（375-byte CRLF変換時sha256 9e5b68...）の不一致を維持し、LF→CRLF静的diagnosticを両provenanceへ記録する。これはbyte同一性・意味同値・reuseを示さず、formal admission/reuse停止とhuman/source resolution pendingを保持する",
     "anchor_line_coverageの直接改竄を専用errorで拒否しBinding宣言・inventory・recordと同期する",
     "product union429件とunresolved交差280件をbundle revision/blob/bytes/SHAで固定し、unresolved denominatorへphase外149件を混入させない",
     "recordのresearch_scope/evidence_completeness/overlap_status/bundle_revision/denominator_roleとoverlap reconciliation 53件を全値比較する。statusはsame_source_same_candidate_resultまたはsame_source_different_candidate_resultとし、method identityは主張しない",
@@ -46,7 +46,7 @@
     "Wave1-50全50入力をvalidatorが再集計し、edge598・unique asset355を固定値だけでなく実体集合から検証する",
     "scripts/helix.ps1 manifest mismatch改竄とtarget間source path/SHA aliasを専用negative caseで拒否する",
     "初期120件（新規67件＋重複53件）の全archive sourceについて、archive_source_provenanceへasset ID/source path、固定BASE git-treeのexact path/type=blob/mode=100644|100755、blob/bytes/SHA、ledger digest、個別MANIFEST digest/match/resolution、read modeを保存し、validatorで全値を独立照合する。既知のscripts/helix.ps1 MANIFEST不一致は停止境界として保持する",
-    "validatorのEXPECTED_NEGATIVE_CASES、inventoryのnegative_cases、selfcheckの実行収集を順序付き完全一致・重複なしで照合し、負例76件・実測distinct error codes 28件を固定する"
+    "validatorのEXPECTED_NEGATIVE_CASES、inventoryのnegative_cases、selfcheckの実行収集を順序付き完全一致・重複なしで照合し、負例85件・実測distinct error codes 31件を固定する。record全体とinventory各宣言をnested JSON型まで比較し、整数はtype(x) is int、booleanはtype(x) is boolでbool/int混同を拒否する"
   ],
   "operations": {
     "allowed": [
@@ -372,7 +372,11 @@
       "authority/formal_update/new_build promotion",
       "inventory schema/source paths/top-level key/scope/union/denominator/output digest",
       "input digest missing/duplicate/schema tamper and fixed BASE pin",
-      "strict JSON duplicate-key/malformed/nonobject ledger, nested, inventory rejection",
+      "strict JSON duplicate-key/malformed/nonobject ledger row, nested object, and inventory rejection",
+      "nested nonobject record container type rejection before field access",
+      "BASE ancestry/source and fixed product-research input acquisition failures plus missing product identity row fail closed with their declared error codes",
+      "record and inventory nested scalar comparisons preserve JSON types; integer fields require type(x) is int and boolean fields require type(x) is bool, including zero-valued edge counts and all provenance/authority flags",
+      "scripts/helix.ps1 LF-to-CRLF diagnostic pins archive/translated bytes and SHA while retaining physical mismatch and stopped admission/reuse; tampered translated byte count or digest is rejected",
       "human judgment/review pin/ledger digest mismatch/archive manifest mismatch/target source alias resolution",
       "generator PROFILE category/products mutation and regeneration",
       "initial120 archive provenance mode/type/path/ledger/SHA/manifest tamper, including overlap53 references"
@@ -383,7 +387,7 @@
       "validator checks 67 records, 30 direct, 23 conflict, 14 insufficient; initial 120、overlap53、処理前残余1512、新規target67、処理後残数1445を別々に固定し、candidate result比較はmethod identityを主張しない",
       "validator compares full nested record/inventory equality including anchor_line_coverage, archive manifest resolution, and authority boundary",
       "validator checks all 63 nonarchive inventory inputs plus 8 product bundle inputs are Binding upstream with exact path/raw SHA and rejects stale/mutated Wave upstream",
-      "selfcheck executes 76 negative cases with expected error codes (28 distinct codes), including denominator pre/postとlabel改竄、strict JSON、archive manifest resolution cases",
+      "selfcheck executes 85 negative cases with expected error codes (31 distinct codes), including BASE/product input fail-close cases, bool/int scalar rejection, nonobject nested JSON, denominator pre/postとlabel改竄、strict JSON, and archive manifest resolution",
       "validator compares source_exact git-tree path/type/mode and full Wave1-50 edge/asset recomputation",
       "selfcheck covers symlink/tree/nonregular/path source guards, manifest mismatch tamper, and same source path/SHA alias",
       "validator independently compares all 120 archive_source_provenance entries, including fixed BASE tree path/type/mode, blob/bytes/SHA, ledger digest, individual MANIFEST match/resolution, and overlap53 references",

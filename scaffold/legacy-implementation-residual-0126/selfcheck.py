@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import importlib.util
 import json
+import subprocess
 import tempfile
 from pathlib import Path
 
@@ -78,6 +79,44 @@ def run_raw_case(name: str, code: str, ledger_text: str | None = None, inventory
                 raise AssertionError(f"{name}: validator unexpectedly passed")
         finally:
             validator.BUNDLE, validator.LEDGER, validator.INVENTORY = old
+
+
+def expect_failure(name: str, code: str, invoke) -> None:
+    try:
+        invoke()
+    except AssertionError as exc:
+        actual = str(exc).split(":", 1)[0]
+        if actual != code:
+            raise AssertionError(f"{name}: expected {code}, got {actual}: {exc}")
+    else:
+        raise AssertionError(f"{name}: validator unexpectedly passed")
+
+
+def run_fail_closed_case(name: str, code: str, checks) -> None:
+    EXECUTED_CASES.append(name)
+    EXECUTED_CODES.append(code)
+    for check in checks:
+        check()
+
+
+def expect_subprocess_failure(name: str, code: str, method: str, command_matches, invoke) -> None:
+    target = validator.subprocess
+    original = getattr(target, method)
+    observed = []
+
+    def injected(command, *args, **kwargs):
+        if command_matches(command):
+            observed.append(command)
+            raise subprocess.CalledProcessError(128, command)
+        return original(command, *args, **kwargs)
+
+    setattr(target, method, injected)
+    try:
+        expect_failure(name, code, invoke)
+    finally:
+        setattr(target, method, original)
+    if len(observed) != 1:
+        raise AssertionError(f"{name}: expected one injected {method} failure, saw {len(observed)}")
 
 
 def run_binding_case(name: str, code: str, mutate):
@@ -180,6 +219,10 @@ def inventory_binding_upstream(inv): inv["binding_upstream"]["total_nonarchive_u
 def input_digest_blob(inv): inv["input_digests"][0]["blob"] = "0" * 40
 def input_digest_bytes(inv): inv["input_digests"][0]["bytes"] += 1
 def input_digest_sha(inv): inv["input_digests"][0]["sha256"] = "sha256:" + "0" * 64
+def record_wave_edge_count_bool(rows): rows[0]["wave_edge_count"] = False
+def inventory_target_wave_edges_bool(inv): inv["counts"]["target_wave_edges"] = False
+def archive_manifest_translation_bytes(inv): inv["archive_manifest_resolution"]["mismatches"][0]["line_ending_translation"]["translated_bytes"] += 1
+def archive_manifest_translation_sha(inv): inv["archive_manifest_resolution"]["mismatches"][0]["line_ending_translation"]["translated_sha256"] = "sha256:" + "0" * 64
 def inventory_top_level_extra(inv): inv["undeclared"] = True
 def inventory_top_level_missing(inv): inv.pop("scope")
 
@@ -288,7 +331,7 @@ run_generator_case("generator_profile_products_tamper", "E_CLASSIFICATION", "pro
 
 base_lines = [json.dumps(r, ensure_ascii=False, sort_keys=True, separators=(",", ":")) for r in BASE_LEDGER]
 duplicate_record = base_lines[0][:-1] + ',"asset_id":"DUPLICATE"}'
-duplicate_nested = base_lines[0].replace('"authority_effect":"none"', '"authority_effect":"none","authority_effect":"none"', 1)
+duplicate_nested = base_lines[0].replace('"classification":{', '"classification":{"category":"duplicate","category":"duplicate",', 1)
 duplicate_inventory = json.dumps(BASE_INV, ensure_ascii=False, sort_keys=True, separators=(",", ":"))[:-1] + ',"schema_revision":1}'
 run_raw_case("ledger_duplicate_key_json", "E_JSON", ledger_text="\n".join([duplicate_record, *base_lines[1:]]) + "\n")
 run_raw_case("nested_duplicate_key_json", "E_JSON", ledger_text="\n".join([duplicate_nested, *base_lines[1:]]) + "\n")
@@ -323,6 +366,93 @@ run_case("inventory_binding_upstream_tamper", "E_BINDING_UPSTREAM", None, invent
 run_case("input_digest_blob_tamper", "E_INPUT_DIGEST", None, input_digest_blob)
 run_case("input_digest_bytes_tamper", "E_INPUT_DIGEST", None, input_digest_bytes)
 run_case("input_digest_sha_tamper", "E_INPUT_DIGEST", None, input_digest_sha)
+
+def base_not_ancestor_probe():
+    command = ["git", "merge-base", "--is-ancestor", validator.BASE_REVISION, "HEAD"]
+    expect_subprocess_failure(
+        "base_not_ancestor/merge_base_failure",
+        "E_BASE_NOT_ANCESTOR",
+        "check_call",
+        lambda actual: actual == command,
+        validator.check,
+    )
+
+
+def base_source_probes():
+    path = validator.BOUNDARY
+    show = ["git", "show", f"{validator.BASE_REVISION}:{path}"]
+    rev_parse = ["git", "rev-parse", f"{validator.BASE_REVISION}:{path}"]
+    expect_subprocess_failure(
+        "base_source_unavailable/git_show_failure",
+        "E_BASE_SOURCE",
+        "check_output",
+        lambda actual: actual == show,
+        lambda: validator.git_bytes(path),
+    )
+    expect_subprocess_failure(
+        "base_source_unavailable/git_rev_parse_failure",
+        "E_BASE_SOURCE",
+        "check_output",
+        lambda actual: actual == rev_parse,
+        lambda: validator.git_blob(path),
+    )
+
+
+def product_research_input_probes():
+    revision = validator.PRODUCT_RESEARCH_COMMIT
+    path = validator.PRODUCT_RESEARCH_BUNDLES[0]
+    show = ["git", "show", f"{revision}:{path}"]
+    rev_parse = ["git", "rev-parse", f"{revision}:{path}"]
+    expect_subprocess_failure(
+        "product_research_input_unavailable/git_show_failure",
+        "E_PRODUCT_RESEARCH_INPUT",
+        "check_output",
+        lambda actual: actual == show,
+        lambda: validator.git_bytes_at(path, revision),
+    )
+    expect_subprocess_failure(
+        "product_research_input_unavailable/git_rev_parse_failure",
+        "E_PRODUCT_RESEARCH_INPUT",
+        "check_output",
+        lambda actual: actual == rev_parse,
+        lambda: validator.git_blob_at(path, revision),
+    )
+
+    original = validator.read_product_jsonl
+    observed = []
+
+    def missing_identity_row(bundle):
+        observed.append(bundle)
+        return [(1, {})]
+
+    validator.read_product_jsonl = missing_identity_row
+    try:
+        expect_failure(
+            "product_research_input_unavailable/missing_identity_row",
+            "E_PRODUCT_RESEARCH_INPUT",
+            validator.product_research_union,
+        )
+    finally:
+        validator.read_product_jsonl = original
+    if observed != [path]:
+        raise AssertionError(f"product_research_input_unavailable: expected one identity row probe for {path}, got {observed}")
+
+
+run_fail_closed_case("base_not_ancestor", "E_BASE_NOT_ANCESTOR", [base_not_ancestor_probe])
+run_fail_closed_case("base_source_unavailable", "E_BASE_SOURCE", [base_source_probes])
+run_fail_closed_case("product_research_input_unavailable", "E_PRODUCT_RESEARCH_INPUT", [product_research_input_probes])
+run_case("record_wave_edge_count_bool", "E_WAVE_EDGE_SET", record_wave_edge_count_bool, None)
+run_case("inventory_target_wave_edges_bool", "E_WAVE_EDGE_SET", None, inventory_target_wave_edges_bool)
+run_raw_case("ledger_nonobject_json", "E_JSON", ledger_text="null\n")
+nested_nonobject_rows = copy.deepcopy(BASE_LEDGER)
+nested_nonobject_rows[0]["classification"] = None
+run_raw_case(
+    "nested_nonobject_json",
+    "E_RECORD_SCHEMA",
+    ledger_text="".join(json.dumps(r, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n" for r in nested_nonobject_rows),
+)
+run_case("archive_manifest_translation_bytes_tamper", "E_ARCHIVE_MANIFEST", None, archive_manifest_translation_bytes)
+run_case("archive_manifest_translation_sha_tamper", "E_ARCHIVE_MANIFEST", None, archive_manifest_translation_sha)
 if EXECUTED_CASES != validator.EXPECTED_NEGATIVE_CASES:
     raise AssertionError(f"negative case sequence mismatch: expected {validator.EXPECTED_NEGATIVE_CASES}, got {EXECUTED_CASES}")
 if len(EXECUTED_CASES) != len(set(EXECUTED_CASES)):

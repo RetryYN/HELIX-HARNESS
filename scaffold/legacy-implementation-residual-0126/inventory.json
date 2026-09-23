@@ -3,10 +3,20 @@
     "formal_admission": "stopped",
     "mismatches": [
       {
+        "archive_bytes": 363,
         "archive_sha256": "sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b",
+        "line_ending_translation": {
+          "archive_bytes": 363,
+          "archive_sha256": "sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b",
+          "interpretation": "static digest diagnostic only; the physical Git archive blob remains different and no semantic equivalence, reuse, or formal admission follows",
+          "status": "line_ending_translation_explains_manifest_digest",
+          "translated_bytes": 375,
+          "translated_sha256": "sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7",
+          "translation_rule": "replace each LF byte (0x0A) with CRLF bytes (0x0D 0x0A); preserve all other bytes"
+        },
         "manifest_path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
         "manifest_sha256": "sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7",
-        "reason": "archive bytes and manifest entry differ; static evidence is retained, but formal admission and legacy reuse remain stopped pending human/source resolution",
+        "reason": "archive bytes and manifest entry differ; LF-to-CRLF translation reproduces the manifest digest as a static diagnostic only; formal admission and legacy reuse remain stopped pending human/source resolution",
         "source_path": "scripts/helix.ps1"
       }
     ],
@@ -1142,6 +1152,15 @@
         "archive_manifest_match": false,
         "archive_manifest_resolution": {
           "formal_admission": "stopped",
+          "line_ending_translation": {
+            "archive_bytes": 363,
+            "archive_sha256": "sha256:2b86bf027686c55db9ab6e8828361db69b9e7ccbf51111c438d90ee1ed21908b",
+            "interpretation": "static digest diagnostic only; the physical Git archive blob remains different and no semantic equivalence, reuse, or formal admission follows",
+            "status": "line_ending_translation_explains_manifest_digest",
+            "translated_bytes": 375,
+            "translated_sha256": "sha256:9e5b68aefd8920fc248fc16d0c90305d0327c39362ae3e82621cbc1b53060bd7",
+            "translation_rule": "replace each LF byte (0x0A) with CRLF bytes (0x0D 0x0A); preserve all other bytes"
+          },
           "reason": "archive bytes and manifest entry differ; static evidence is retained",
           "reuse_decision": "stopped",
           "status": "pending_human_source_resolution"
@@ -4086,10 +4105,19 @@
     "inventory_binding_upstream_tamper",
     "input_digest_blob_tamper",
     "input_digest_bytes_tamper",
-    "input_digest_sha_tamper"
+    "input_digest_sha_tamper",
+    "base_not_ancestor",
+    "base_source_unavailable",
+    "product_research_input_unavailable",
+    "record_wave_edge_count_bool",
+    "inventory_target_wave_edges_bool",
+    "ledger_nonobject_json",
+    "nested_nonobject_json",
+    "archive_manifest_translation_bytes_tamper",
+    "archive_manifest_translation_sha_tamper"
   ],
   "old_asset_source_mode": "archive bytes are read through git show BASE:<archive-path>; never executed",
-  "output_sha256": "sha256:2ff1671f4aa1764a90b3a817c6d4e1539b8a8ac49f463bb48640191044efc40c",
+  "output_sha256": "sha256:d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138",
   "overlap_reconciliation": {
     "bundle_paths": [
       "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
