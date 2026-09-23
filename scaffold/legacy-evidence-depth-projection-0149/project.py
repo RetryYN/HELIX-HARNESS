@@ -81,6 +81,11 @@ def validate_rows(rows: list[dict]) -> None:
             raise ValueError(
                 f"{row['bundle']}:{row['line']}: classificationはobjectである必要があります"
             )
+        if ("formal_asset_classification_updated" in record
+                and type(record["formal_asset_classification_updated"]) is not bool):
+            raise ValueError(
+                f"{row['bundle']}:{row['line']}: formal_asset_classification_updatedはbooleanである必要があります"
+            )
     ids = [r["record"]["asset_id"] for r in rows]
     occurrences = Counter(ids)
     if len(rows) != 768 or len(occurrences) != 726:
@@ -179,12 +184,13 @@ def project(rows: list[dict]) -> dict:
     formal_by_id = Counter()
     for refs in by_id.values():
         # Count a positive only when an existing record explicitly says true.
-        # Missing fields remain visible; duplicate records are not selected as winners.
-        values = {r["record"].get("formal_asset_classification_updated", "<missing>")
-                  for r in refs}
-        if True in values:
+        # A duplicate ID is positive/negative only when every occurrence agrees;
+        # missing fields or conflicting duplicates remain visible as missing/mixed.
+        values = [r["record"].get("formal_asset_classification_updated", "<missing>")
+                  for r in refs]
+        if all(value is True for value in values):
             formal_by_id["true"] += 1
-        elif values == {False}:
+        elif all(value is False for value in values):
             formal_by_id["false"] += 1
         else:
             formal_by_id["missing_or_mixed"] += 1
@@ -337,6 +343,47 @@ def main() -> int:
                 print("negative check: pass (non-object classification rejected as ValueError)")
             else:
                 raise ValueError("non-object classificationを拒否できませんでした")
+
+            malformed_marker = copy.deepcopy(rows)
+            marked = next(
+                r["record"] for r in malformed_marker
+                if "formal_asset_classification_updated" in r["record"]
+            )
+            marked["formal_asset_classification_updated"] = 1
+            try:
+                validate_rows(malformed_marker)
+            except ValueError as exc:
+                if "formal_asset_classification_updatedはboolean" not in str(exc):
+                    raise
+                print("negative check: pass (numeric formal update marker rejected)")
+            else:
+                raise ValueError("numeric formal update markerを拒否できませんでした")
+
+            duplicate_counts = Counter(r["record"]["asset_id"] for r in rows)
+            duplicate_id = next(asset_id for asset_id, count in duplicate_counts.items() if count > 1)
+            conflicting_duplicates = copy.deepcopy(rows)
+            duplicate_refs = [r["record"] for r in conflicting_duplicates
+                              if r["record"]["asset_id"] == duplicate_id]
+            original_values = [record.get("formal_asset_classification_updated", "<missing>")
+                               for record in duplicate_refs]
+            if all(value is True for value in original_values):
+                original_state = "true"
+            elif all(value is False for value in original_values):
+                original_state = "false"
+            else:
+                original_state = "missing_or_mixed"
+            for record in duplicate_refs:
+                record["formal_asset_classification_updated"] = True
+            duplicate_refs[-1]["formal_asset_classification_updated"] = False
+            mixed_result = project(conflicting_duplicates)
+            mixed_counts = mixed_result["depth_projection"]["formal_classification_update"]
+            baseline_counts = result["depth_projection"]["formal_classification_update"]
+            expected_missing = baseline_counts["unique_ids_missing_or_mixed"]
+            if original_state != "missing_or_mixed":
+                expected_missing += 1
+            if mixed_counts["unique_ids_missing_or_mixed"] != expected_missing:
+                raise ValueError("conflicting duplicate markerをmissing_or_mixedに分類できませんでした")
+            print("negative check: pass (conflicting duplicate markers remain missing_or_mixed)")
     except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
         print(f"evidence-depth projection: FAIL: {exc}", file=sys.stderr)
         return 1
