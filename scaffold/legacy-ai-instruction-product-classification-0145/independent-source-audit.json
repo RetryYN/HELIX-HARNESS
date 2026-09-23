@@ -52,14 +52,14 @@
     "archive_blob_mode_type_sha_and_manifest_exact_for_all_72": true,
     "consumer_inventory_aicr06_34_paths_exact": true,
     "fixed_disposition_target_set_exact": true,
-    "main496_pr2090_pairwise_deduplicated": true,
+    "main537_includes_historical_pr2090_once": true,
     "new_target_id_and_path_sha_overlap_zero": true,
     "pr2092_scf_b_0144_adds_zero_main_ids_and_overlaps_zero_target_ids_or_path_sha": true,
     "profile_line_span_text_exact_for_all_72": true
   },
   "comparison_revisions": {
-    "main": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
-    "pr_2090": "4b6e1bbf122b03fd3531047290161aced34eefda"
+    "main": "8a9fdc973f3553bea78d022e8d73f109aca526da",
+    "pr_2090_historical_evidence": "4b6e1bbf122b03fd3531047290161aced34eefda"
   },
   "consumer_inventory": {
     "AICR_06_claimed_template_count": 34,
@@ -91,29 +91,34 @@
     "sha256": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
   },
   "formal_asset_classification_updated": false,
+  "historical_pr_2090_in_main": {
+    "counted_as_separate_union": false,
+    "historical_revision": "4b6e1bbf122b03fd3531047290161aced34eefda",
+    "ledger_bytes_equal_to_main": true,
+    "main_asset_id_overlap": 41,
+    "main_source_path_sha256_overlap": 41,
+    "record_count": 41,
+    "target_asset_id_overlap": 0,
+    "target_source_path_sha256_overlap": 0
+  },
   "main_pr2092_scf_b_0144": {
     "adds_assets_to_main_union": false,
     "base_revision": "7afee33ae892fe1a3cf1085fac4e02d923ece01d",
-    "main_id_union_added": 0,
+    "main_id_union_added_from_2090": 41,
     "reconciliation_count": 36,
     "reconciliation_ids_in_prior_main": 36,
-    "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+    "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
     "target_asset_id_overlap": 0,
     "target_source_path_sha256_overlap": 0
   },
   "new_build_allowed": false,
-  "prior_pairwise_overlap": {
-    "main/pr_2090": {
-      "asset_id_overlap": 0,
-      "source_path_sha256_overlap": 0
-    }
-  },
+  "prior_pairwise_overlap": {},
   "profile_sha256": "sha256:4f72ea9f16fbbf544a579182750511b8e0b01a17b6f6aa521ad388d7e7cb1aea",
   "schema_revision": 1,
   "selection_counts": {
     "exact_prior_overlap_exclusions": 3,
-    "main_product_research_ids": 496,
-    "pr_2090_target_ids": 41,
+    "historical_pr_2090_target_ids_in_main": 41,
+    "main_product_research_ids": 537,
     "target_denominator": 72,
     "unresolved_candidates_before_overlap": 75
   },
@@ -1235,7 +1240,7 @@
       "span_text_sha256": "sha256:c670d7926c110c0683a0883580bdea5e0c23224ed6fa9cc011af014c138b3326"
     }
   ],
-  "target_overlap_with_main496_pr2090": {
+  "target_overlap_with_main537": {
     "asset_id": 0,
     "source_path_sha256": 0
   }

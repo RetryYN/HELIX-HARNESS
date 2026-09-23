@@ -13,8 +13,9 @@ ROOT = Path(__file__).resolve().parents[2]
 BUNDLE = ROOT / "scaffold/legacy-ai-instruction-product-classification-0145"
 BINDING = ROOT / "scaffold/bindings/SCF-B-0145.json"
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
-MAIN = "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b"
-PR2090 = "4b6e1bbf122b03fd3531047290161aced34eefda"
+MAIN = "8a9fdc973f3553bea78d022e8d73f109aca526da"
+HISTORICAL_PR2090 = "4b6e1bbf122b03fd3531047290161aced34eefda"
+PREVIOUS_MAIN = "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b"
 BINDING_ID = "SCF-B-0145"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 PROFILE_PATH = "scaffold/legacy-ai-instruction-product-classification-0145/semantic-profile.json"
@@ -57,6 +58,7 @@ MAIN_CLASSIFICATION_INPUTS = [
     "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
     "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
     "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
+    "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
 ]
 MAIN_INVENTORY_INPUTS = [p.removesuffix("classification-research.jsonl") + "inventory.json" for p in MAIN_CLASSIFICATION_INPUTS]
 SNAPSHOTS = {
@@ -236,7 +238,7 @@ def upstream_path_bytes(path: str) -> bytes:
         except OSError:
             fail("E_RESEARCH_INPUT", path)
         source_path = PINNED_SNAPSHOT_SOURCE_PATHS.get(name)
-        if source_path is None or data != git_bytes(PR2090, source_path):
+        if source_path is None or data != git_bytes(HISTORICAL_PR2090, source_path):
             fail("E_RESEARCH_INPUT", f"snapshot differs from pinned Git object: {path}")
         return data
     return git_bytes("HEAD", path)
@@ -255,23 +257,31 @@ def strict_base_rows(path: str) -> list[dict]:
     return parse_jsonl(git_bytes(BASE, path), f"{BASE}:{path}")
 
 
-def pinned_pr_rows(label: str, bundle: Path | None = None) -> list[dict]:
-    path = f"scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-{label}-classification-research.jsonl"
+def historical_pr2090_rows(bundle: Path | None = None) -> list[dict]:
+    path = "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-classification-research.jsonl"
     bundle = bundle or BUNDLE
-    name = f"pr-{label}-classification-research.jsonl"
+    name = "pr-2090-classification-research.jsonl"
     data = (bundle / "upstream" / name).read_bytes()
     if tagged(data) != SNAPSHOTS[path]:
-        fail("E_RESEARCH_INPUT", f"stale pinned PR #{label} snapshot")
+        fail("E_RESEARCH_INPUT", "stale historical PR #2090 snapshot")
     source_path = PINNED_SNAPSHOT_SOURCE_PATHS.get(name)
-    if source_path is None or data != git_bytes(PR2090, source_path):
-        fail("E_RESEARCH_INPUT", f"PR #{label} snapshot differs from pinned Git object")
+    if source_path is None or data != git_bytes(HISTORICAL_PR2090, source_path):
+        fail("E_RESEARCH_INPUT", "historical PR #2090 snapshot differs from pinned Git object")
+    if data != git_bytes(MAIN, source_path):
+        fail("E_RESEARCH_INPUT", "historical PR #2090 ledger differs from merged main ledger")
     return parse_jsonl(data, path)
 
 
-def prior_unions(bundle: Path | None = None) -> tuple[list[dict], list[dict]]:
+def prior_unions(bundle: Path | None = None) -> tuple[list[dict]]:
     main = [row for path in MAIN_CLASSIFICATION_INPUTS for row in parse_jsonl(git_bytes(MAIN, path), path)]
-    pr2090 = pinned_pr_rows("2090", bundle)
-    return main, pr2090
+    history = historical_pr2090_rows(bundle)
+    main_ids = {source_identity(row)[0] for row in main}
+    main_path_sha = {(source_identity(row)[1], source_identity(row)[2]) for row in main}
+    history_ids = {source_identity(row)[0] for row in history}
+    history_path_sha = {(source_identity(row)[1], source_identity(row)[2]) for row in history}
+    if (len(history_ids) != 41 or history_ids - main_ids or history_path_sha - main_path_sha):
+        fail("E_RESEARCH_INPUT", "historical #2090 41-asset set is not included in merged main")
+    return (main,)
 
 
 def target_rows(profile: dict, prior: tuple[list[dict], list[dict], list[dict]]) -> tuple[list[dict], dict, dict]:
@@ -315,13 +325,13 @@ def target_rows(profile: dict, prior: tuple[list[dict], list[dict], list[dict]])
         "target_count": len(target),
     }
     prior_sets = {}
-    for label, group in zip(("main", "pr_2090"), prior, strict=True):
+    for label, group in zip(("main",), prior, strict=True):
         prior_sets[label] = {
             "count": len({source_identity(row)[0] for row in group}),
             "ids": {source_identity(row)[0] for row in group},
             "path_sha": {(source_identity(row)[1], source_identity(row)[2]) for row in group},
         }
-    expected_prior_counts = {"main": 496, "pr_2090": 41}
+    expected_prior_counts = {"main": 537}
     for label, expected_count in expected_prior_counts.items():
         if len(prior_sets[label]["ids"]) != expected_count:
             fail("E_RESEARCH_INPUT", f"{label} target count {len(prior_sets[label]['ids'])}; expected {expected_count}")
@@ -613,7 +623,7 @@ def input_digest(path: str, revision: str) -> dict:
         expected = SNAPSHOTS[path]
         if tagged(data) != expected:
             fail("E_RESEARCH_INPUT", f"snapshot digest {path}")
-        return {"path": path, "revision": "pinned-open-pr-snapshot", "sha256": tagged(data), "bytes": len(data)}
+        return {"path": path, "revision": "historical-pr-2090-snapshot", "sha256": tagged(data), "bytes": len(data)}
     if path in {PROFILE_PATH, AUDIT_REPORT_PATH}:
         local = BUNDLE / Path(path).name
         try:
@@ -646,8 +656,8 @@ def build() -> None:
     category_counts = Counter(row["classification"]["category"] for row in ledger_rows)
     status_counts = Counter(row["phase_evidence"]["phase_classification_status"] for row in ledger_rows)
     implementation_counts = Counter(row["implementation_evidence"]["legacy_implementation_status"] for row in ledger_rows)
-    all_prior_ids = set().union(*(prior_sets[label]["ids"] for label in ("main", "pr_2090")))
-    all_prior_paths = set().union(*(prior_sets[label]["path_sha"] for label in ("main", "pr_2090")))
+    all_prior_ids = set().union(*(prior_sets[label]["ids"] for label in ("main",)))
+    all_prior_paths = set().union(*(prior_sets[label]["path_sha"] for label in ("main",)))
     target_ids = {row["asset_id"] for row in assets}
     target_paths = {(row["source_path"], row["source_sha256"]) for row in assets}
     research_inputs = [
@@ -683,13 +693,13 @@ def build() -> None:
             "固定BASEのunresolved AI instruction/adapter/consumer-template候補75件を導出し、pinned mainに既に統合された#2078の3件重複を除いた72件をID/path/SHAで固定する",
             "各旧sourceのGit blob/type/mode/SHA/MANIFESTと手動spanの原文を保ち、source/path identityと意味解釈を混同しない",
             "4製品L1・product-boundary候補、反証、判断史、failure、consumer、phase/implementation evidenceを別々に記録する",
-            "pinned comparison main (496, #2078統合済み)、PR #2090 snapshot (41)、新targetのasset ID/source path-SHA重複をゼロに保つ。#2078を独立した依存入力として数えない",
+            "pinned comparison main (537; #2078と#2090を統合済み)と新targetのasset ID/source path-SHA重複をゼロに保つ。#2090の41件snapshotはmain内ledgerとbyte一致する履歴証拠であり、別集合として重複計上しない",
             "candidate classification、phase candidate、implementation evidenceからformal owner/phase/successor/実装成立を生成しない",
             "旧archive source/runtime/test/hook/adapter/CIを実行せず、validatorはgenerator再生成一致、independent-source-audit.pyは非依存のsource/span照合として役割を分ける",
         ],
         "connections": {
             "consumers": ["parent product-classification research ledger", "人間のproduct-boundary判断packet（未接続・採否待ち）"],
-            "dependencies": ["fixed BASE disposition/phase/decision/read-after", "four current product L1 and product-boundary", "pinned comparison main 496 + Draft PR #2090 Git-object snapshot 41; #2078's 67 are integrated into main and not an independent dependency", "AICR-01..10 and failure/consumer relation inventories"],
+            "dependencies": ["fixed BASE disposition/phase/decision/read-after", "four current product L1 and product-boundary", "pinned main research union 537 including #2078 and merged #2090; retained #2090 41-row snapshot is historical byte-identity evidence only", "AICR-01..10 and failure/consumer relation inventories"],
             "boundary": "candidate research evidence only; no formal product, phase, successor, implementation or new-build authority",
         },
         "operations": {
@@ -714,7 +724,7 @@ def build() -> None:
             "oracles": [
                 "fixed BASE disposition yields 75 in-scope rows, exact 3 prior duplicates are excluded, and the resulting target set is 72",
                 "independent source audit rechecks all 72 original Git objects, archive manifest entries, and line-span strings without importing generator or validator",
-                "main496/#2090config41 and new target ID/path-SHA overlaps are recomputed as zero; #2078 is included in main496",
+                "main537 (including the byte-identical merged #2090 41-row ledger) and new target ID/path-SHA overlaps are recomputed as zero; #2078 is included in main",
                 "validator checks every bound digest, exact record/inventory/Binding contract and research-only authority boundary",
                 "semantic interpretation remains a human candidate judgment and is not a validation oracle",
             ],
@@ -741,23 +751,20 @@ def build() -> None:
         },
         "comparison_heads": {
             "main": {"revision": MAIN, "research_union_count": len(prior_sets["main"]["ids"])},
-            "pr_2090": {"revision": PR2090, "target_count": len(prior_sets["pr_2090"]["ids"]), "snapshot_prefix": "upstream/pr-2090-"},
+            "pr_2090_historical_snapshot": {"revision": HISTORICAL_PR2090, "target_count": 41, "included_in_main": True, "snapshot_prefix": "upstream/pr-2090-"},
         },
         "overlap_status": {
             "main_target_id_overlap": len(target_ids & prior_sets["main"]["ids"]),
             "main_path_sha_overlap": len(target_paths & prior_sets["main"]["path_sha"]),
-            "pr_2090_target_id_overlap": len(target_ids & prior_sets["pr_2090"]["ids"]),
-            "pr_2090_path_sha_overlap": len(target_paths & prior_sets["pr_2090"]["path_sha"]),
             "combined_prior_id_overlap": len(target_ids & all_prior_ids),
             "combined_prior_path_sha_overlap": len(target_paths & all_prior_paths),
             "excluded_integrated_2078_ids": selection["excluded_asset_ids"],
             "all_zero_required": True,
         },
         "research_union_projection": {
-            "current_main_authoritative_research_union": 496,
-            "draft_pr_2090_target": 41,
+            "current_main_authoritative_research_union": 537,
             "new_target": len(assets),
-            "deduplicated_candidate_projection": 496 + 41 + len(assets),
+            "deduplicated_candidate_projection": 537 + len(assets),
             "archive_population": len(strict_base_rows(DISPOSITION)),
             "authority_status": "conditional_unmerged_draft_union_only",
         },

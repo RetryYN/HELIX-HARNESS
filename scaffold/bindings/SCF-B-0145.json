@@ -20,7 +20,7 @@
     "dependencies": [
       "fixed BASE disposition/phase/decision/read-after",
       "four current product L1 and product-boundary",
-      "pinned comparison main 496 + Draft PR #2090 Git-object snapshot 41; #2078's 67 are integrated into main and not an independent dependency",
+      "pinned main research union 537 including #2078 and merged #2090; retained #2090 41-row snapshot is historical byte-identity evidence only",
       "AICR-01..10 and failure/consumer relation inventories"
     ]
   },
@@ -31,7 +31,7 @@
     "固定BASEのunresolved AI instruction/adapter/consumer-template候補75件を導出し、pinned mainに既に統合された#2078の3件重複を除いた72件をID/path/SHAで固定する",
     "各旧sourceのGit blob/type/mode/SHA/MANIFESTと手動spanの原文を保ち、source/path identityと意味解釈を混同しない",
     "4製品L1・product-boundary候補、反証、判断史、failure、consumer、phase/implementation evidenceを別々に記録する",
-    "pinned comparison main (496, #2078統合済み)、PR #2090 snapshot (41)、新targetのasset ID/source path-SHA重複をゼロに保つ。#2078を独立した依存入力として数えない",
+    "pinned comparison main (537; #2078と#2090を統合済み)と新targetのasset ID/source path-SHA重複をゼロに保つ。#2090の41件snapshotはmain内ledgerとbyte一致する履歴証拠であり、別集合として重複計上しない",
     "candidate classification、phase candidate、implementation evidenceからformal owner/phase/successor/実装成立を生成しない",
     "旧archive source/runtime/test/hook/adapter/CIを実行せず、validatorはgenerator再生成一致、independent-source-audit.pyは非依存のsource/span照合として役割を分ける"
   ],
@@ -646,7 +646,7 @@
     },
     {
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/independent-source-audit.json",
-      "sha256": "6915776ebe79c6471f44724b91d0f328b43c2f4f26264ffd468cb4b7da094ce5"
+      "sha256": "45ca1e335c4c22824b2cd73786fcdad22f19ad1c7308f0f673acc737f50fe40e"
     },
     {
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/semantic-profile.json",
@@ -667,6 +667,14 @@
     {
       "path": "scaffold/legacy-asset-product-classification-0107/inventory.json",
       "sha256": "0bbcd6433312154f131d9d4ff71e47886ae352aba87f96f62cb97715117f6393"
+    },
+    {
+      "path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
+      "sha256": "a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b"
+    },
+    {
+      "path": "scaffold/legacy-config-product-classification-0141/inventory.json",
+      "sha256": "f4b5fd82731660bf9bb8885ff4b4451b32cf08319aa0f91b09b5e3970cbf268d"
     },
     {
       "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
@@ -843,7 +851,7 @@
     "oracles": [
       "fixed BASE disposition yields 75 in-scope rows, exact 3 prior duplicates are excluded, and the resulting target set is 72",
       "independent source audit rechecks all 72 original Git objects, archive manifest entries, and line-span strings without importing generator or validator",
-      "main496/#2090config41 and new target ID/path-SHA overlaps are recomputed as zero; #2078 is included in main496",
+      "main537 (including the byte-identical merged #2090 41-row ledger) and new target ID/path-SHA overlaps are recomputed as zero; #2078 is included in main",
       "validator checks every bound digest, exact record/inventory/Binding contract and research-only authority boundary",
       "semantic interpretation remains a human candidate judgment and is not a validation oracle"
     ],

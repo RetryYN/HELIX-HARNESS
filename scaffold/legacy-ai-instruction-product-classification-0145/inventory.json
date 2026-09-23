@@ -18,10 +18,11 @@
   },
   "comparison_heads": {
     "main": {
-      "research_union_count": 496,
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b"
+      "research_union_count": 537,
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da"
     },
-    "pr_2090": {
+    "pr_2090_historical_snapshot": {
+      "included_in_main": true,
       "revision": "4b6e1bbf122b03fd3531047290161aced34eefda",
       "snapshot_prefix": "upstream/pr-2090-",
       "target_count": 41
@@ -523,138 +524,152 @@
       "blob": "4760a0719ca361e2df051980ee2502902d34f78c",
       "bytes": 2034109,
       "path": "scaffold/legacy-asset-product-classification-0107/classification-research.jsonl",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:ec04576a62a7804ebc32dc605d96b6aa52efeefb9126e051e5e7869d39cbbb76"
     },
     {
       "blob": "a9acacc754518eb5c46105ca8d3bc781a4c1f53f",
       "bytes": 3173082,
       "path": "scaffold/legacy-lint-product-classification-0108/classification-research.jsonl",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:3d85910299f0da3204da43d09d115e5e5972ca04d63382d887c1abb987102829"
     },
     {
       "blob": "0847f077797af0708b4f5ef1b7055291d06649ff",
       "bytes": 3023227,
       "path": "scaffold/legacy-runtime-product-classification-0117/classification-research.jsonl",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:ed5a673d065daf3c7254ea8812a4c3989b04dbb65855999c43e42139dc1b2104"
     },
     {
       "blob": "0fe0ea2ea108f217ca1b076195ef2c04bde5d9a2",
       "bytes": 1313490,
       "path": "scaffold/legacy-schema-product-classification-0120/classification-research.jsonl",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:c4a1674d4e8bb5adae0ebbbc3b27bf2c01363ef14afe2adeff681ae5b3180204"
     },
     {
       "blob": "e2f85c2becd63d8a6e5596a71bf5d968513e6850",
       "bytes": 2663419,
       "path": "scaffold/legacy-source-product-classification-0123/classification-research.jsonl",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:06f4f5c6f331afe7662847461a1165b5b3e6361c23d6c9106fce62952e60fe1f"
     },
     {
       "blob": "f2987efe0d42b1570557ad1bceeae907792e71ac",
       "bytes": 405609,
       "path": "scaffold/legacy-state-db-product-classification-0127/classification-research.jsonl",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:bc6adb5b4fa561fe6fe9b383f33876f2f5eb478245ace01baa6dbd68064e9fad"
     },
     {
       "blob": "548fbeced70ad4fc4275f42868fd0c044e546d65",
       "bytes": 1381401,
       "path": "scaffold/legacy-lint-candidate-product-classification-0128/classification-research.jsonl",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:db407121029c9074e0679adf82e309caca9d7a33fabf7c6db23941c0b80e4251"
     },
     {
       "blob": "71eae8b08865520ed6eec362de8d9d77670c8728",
       "bytes": 1695783,
       "path": "scaffold/legacy-runtime-residual-product-classification-0133/classification-research.jsonl",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:c4b769a2f2a2ce6852390a6d400ce819546f0d55ba0e48587e050d8e0955b9ee"
     },
     {
       "blob": "a1b568ec674d6bc284f7ebb1f3497e4d8059b8b6",
       "bytes": 988739,
       "path": "scaffold/legacy-implementation-residual-0126/classification-research.jsonl",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:d7c78523574ed41daa21f7bca6b58d5f7ed1009a47b877d9d8ac78c9b8a75138"
+    },
+    {
+      "blob": "e84f6179cf8fbe99b38b1788c83d3eaefe88ee29",
+      "bytes": 1185770,
+      "path": "scaffold/legacy-config-product-classification-0141/classification-research.jsonl",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
+      "sha256": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b"
     },
     {
       "blob": "b5201e8aadc71e94cf0a44f94d825582a729a673",
       "bytes": 29120,
       "path": "scaffold/legacy-asset-product-classification-0107/inventory.json",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:0bbcd6433312154f131d9d4ff71e47886ae352aba87f96f62cb97715117f6393"
     },
     {
       "blob": "a97ebd5190bef017b94499e75caf5a95dae162d8",
       "bytes": 62315,
       "path": "scaffold/legacy-lint-product-classification-0108/inventory.json",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:66f46326fa5344921365252bbec17058b3dddb97733674373758215d1e76a267"
     },
     {
       "blob": "0003d5aa7bc4a3defc43b4b51c280941c206f1e4",
       "bytes": 59214,
       "path": "scaffold/legacy-runtime-product-classification-0117/inventory.json",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:6451b00b8ba68fdfa7960a3593c73d168f1d9be64d64d7275b0c5e12fe22f496"
     },
     {
       "blob": "1a10ea894aef325a1c98bd4cebb0c6830d1c82f6",
       "bytes": 42544,
       "path": "scaffold/legacy-schema-product-classification-0120/inventory.json",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:aede25f1bf82e42d999fc5f64db1d25854bc7495e414134ffb3104b2af2eb091"
     },
     {
       "blob": "05e3c21381b22f84cacd35424fce4c88518a2107",
       "bytes": 57071,
       "path": "scaffold/legacy-source-product-classification-0123/inventory.json",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:e5ed5144572a60919d4b929395bca50077825cb0f3c66a200ae8dd66871122c4"
     },
     {
       "blob": "f7a3d594669a515da6793d75ed804fa91bcb8638",
       "bytes": 36622,
       "path": "scaffold/legacy-state-db-product-classification-0127/inventory.json",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:8c3b31bb74e5b947224c61b5ad4cb1a2578fbebaf65a06c0374105f8123d3c5d"
     },
     {
       "blob": "2ed160fdb92bcc9428e80fa526fafb8def663998",
       "bytes": 43118,
       "path": "scaffold/legacy-lint-candidate-product-classification-0128/inventory.json",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:be2d6f05f4748183c88eef767814fcb275d025d2cf7d1257a7ca7ea086cbb485"
     },
     {
       "blob": "eed51a0e0a92599ea2e4da159be40ac324e7fa1c",
       "bytes": 59563,
       "path": "scaffold/legacy-runtime-residual-product-classification-0133/inventory.json",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:f08c7cddc980144ae8bd9551ecb857b05509b00c0314f1b2b188ff60f419f644"
     },
     {
       "blob": "32d6bce8c7942252bb43004a29a3c581ecc1cb52",
       "bytes": 260509,
       "path": "scaffold/legacy-implementation-residual-0126/inventory.json",
-      "revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
       "sha256": "sha256:685b2ddbc6f60e9e01baefb2d42fad77d5a41c419544953d06d1773582d68d7e"
+    },
+    {
+      "blob": "657eb893ab82d8237c96c27bce9f60a7ebcdc58d",
+      "bytes": 44509,
+      "path": "scaffold/legacy-config-product-classification-0141/inventory.json",
+      "revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
+      "sha256": "sha256:f4b5fd82731660bf9bb8885ff4b4451b32cf08319aa0f91b09b5e3970cbf268d"
     },
     {
       "bytes": 1185770,
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-classification-research.jsonl",
-      "revision": "pinned-open-pr-snapshot",
+      "revision": "historical-pr-2090-snapshot",
       "sha256": "sha256:a92c3731a91f0417ccbdf28fa80913d3ec694d185ddb1ac391e58b907a9f056b"
     },
     {
       "bytes": 44509,
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/upstream/pr-2090-inventory.json",
-      "revision": "pinned-open-pr-snapshot",
+      "revision": "historical-pr-2090-snapshot",
       "sha256": "sha256:f4b5fd82731660bf9bb8885ff4b4451b32cf08319aa0f91b09b5e3970cbf268d"
     },
     {
@@ -664,10 +679,10 @@
       "sha256": "sha256:4f72ea9f16fbbf544a579182750511b8e0b01a17b6f6aa521ad388d7e7cb1aea"
     },
     {
-      "bytes": 50701,
+      "bytes": 51016,
       "path": "scaffold/legacy-ai-instruction-product-classification-0145/independent-source-audit.json",
       "revision": "manual-static-audit-input",
-      "sha256": "sha256:6915776ebe79c6471f44724b91d0f328b43c2f4f26264ffd468cb4b7da094ce5"
+      "sha256": "sha256:45ca1e335c4c22824b2cd73786fcdad22f19ad1c7308f0f673acc737f50fe40e"
     }
   ],
   "legacy_implementation_status_counts": {
@@ -733,9 +748,7 @@
       "LEGACY-ASSET-DB4925588127A51391D7"
     ],
     "main_path_sha_overlap": 0,
-    "main_target_id_overlap": 0,
-    "pr_2090_path_sha_overlap": 0,
-    "pr_2090_target_id_overlap": 0
+    "main_target_id_overlap": 0
   },
   "phase_status_counts": {
     "classified_candidate": 4,
@@ -745,7 +758,7 @@
   },
   "profile_sha256": "sha256:4f72ea9f16fbbf544a579182750511b8e0b01a17b6f6aa521ad388d7e7cb1aea",
   "research_scope": {
-    "current_main_revision": "7bed4fcd1f50721592b0ce25a8c5d4ee71220b0b",
+    "current_main_revision": "8a9fdc973f3553bea78d022e8d73f109aca526da",
     "fixed_base_revision": "5562f04da0f3205f9aa58205ec0d478419fc4f2e",
     "included_unresolved_prefixes": [
       ".claude/",
@@ -1137,9 +1150,8 @@
   "research_union_projection": {
     "archive_population": 4020,
     "authority_status": "conditional_unmerged_draft_union_only",
-    "current_main_authoritative_research_union": 496,
+    "current_main_authoritative_research_union": 537,
     "deduplicated_candidate_projection": 609,
-    "draft_pr_2090_target": 41,
     "new_target": 72
   },
   "schema_revision": 1,
