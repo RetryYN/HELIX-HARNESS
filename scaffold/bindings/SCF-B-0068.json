@@ -55,7 +55,7 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "405ddb96ecec2103a2db33943ac427092bb15661e35f85fc0cb65c1dd7dcc5da",
+      "sha256": "c985bafed3854e82cf4d6b761e52715aa634669f7c9515e94deb557d49edbcf1",
       "note": "current static governance or product-boundary input; no authority or implementation inference"
     },
     {

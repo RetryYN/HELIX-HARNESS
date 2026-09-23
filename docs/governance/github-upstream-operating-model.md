@@ -134,8 +134,8 @@ leaseの二重境界は両立しないため、双方を同時に現行運用と
 ### 作成側とレビュー対応側の責務
 
 - `レビュー対応側`はPR作成・修正側と異なるcontextのruntimeとし、対象PRのexact HEADをread-onlyで独立reviewしてfindingをPR commentへ記録し、merge admissionを判定する。作成側の差分編集・push・Ready化はしない。review findingの投稿者名、`@claude` mention、ローカルClaude sessionだけで独立性やreview成立を推定しない。
-- PR作成・修正側は、対象差分の作成、静的証拠提示、push、Draft PR作成、review依頼、finding対応、再review依頼までを明示依頼を待たずに担う。blockerは同じHEADについて一括で返し、修正後HEADは新しい独立blockerの実証がなければ一巡だけ再判定する。
-- PR作成・修正側は、自分のPRをReady化、merge、auto-merge予約、対応Issueのcloseまで進めない。
+- PR作成・修正側は、対象差分の作成、静的証拠提示、push、Draft PR作成、review依頼、finding対応、再review依頼までを明示依頼を待たずに担う。blockerは同じHEADについて一括で返し、修正後HEADは新しい独立blockerの実証がなければ一巡だけ再判定する。review側が修正後HEADの結果を記録し、未解消blockerが0件であることを作成側が確認したらReady化する。
+- PR作成・修正側は、自分のPRをmerge、auto-merge予約、対応Issueのcloseまで進めない。Ready化は独立review結果の確認後に限る。
 - レビュー対応側は、依頼と応答が同じexact base／content HEAD pairへ束縛され、必要なfinding対応が反映されたことを確認する。
 - レビュー対応側は、PR classを問わず、merge admissionの直前に、PRのcontent HEADを変えずに、最新baseとのmerge結果（GitHubの`refs/pull/<番号>/merge`、またはローカルの試験merge）に対して`scfctl stale`が`stale=0`を返すことを確認し、結果をreview記録に残す。Scaffold Bindingの上流（`upstream[].path`）は文書・台帳を問わず`scaffold/`の外にあり、どのclassのPRでも変更されうる。PRのhead時点で一致していても、baseの進行や積んだPRのmergeで変わりうる。PR branchへbaseを取り込んでcontent HEADを変えると、exact HEADに束縛したreviewをやり直すことになるため、そうしない。`refs/pull/<番号>/merge`はGitHubが非同期に再計算するため最新baseより古いことがある。使う場合は、その第1親が再取得したbase HEADと、第2親がcontent HEADと一致することを確かめ、一致しなければローカルの試験mergeで実行する。`stale`が1件以上ならmergeせず作成側へ返す。
 - merge admission成立後、レビュー対応側が人間の追加approveを待たず`gh pr merge --merge`で明示mergeし、post-merge read-afterを行う。GitHub native auto-mergeは使わない。対応Issueのcloseは要求・ticketの完了条件を別に確認し、mergeだけから完了へ進めない。merge後に不一致があればcloseせず、作成側へ返す。

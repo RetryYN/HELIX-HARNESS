@@ -273,7 +273,7 @@
     {
       "note": "static input; digest and semantic role only; no execution or authority effect",
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "405ddb96ecec2103a2db33943ac427092bb15661e35f85fc0cb65c1dd7dcc5da"
+      "sha256": "c985bafed3854e82cf4d6b761e52715aa634669f7c9515e94deb557d49edbcf1"
     },
     {
       "note": "static input; digest and semantic role only; no execution or authority effect",
@@ -373,7 +373,7 @@
     {
       "note": "static input; digest and semantic role only; no execution or authority effect",
       "path": "scaffold/review-handoff/README.md",
-      "sha256": "83e0ba10077c82df2a3d5dc5261bf643190d8f3e0a7a8c400eacf2a094c2e397"
+      "sha256": "d51a89cb42cc3622efc047ca3f235bad13518128579b7a3fcf246614823fd152"
     }
   ],
   "verification": {

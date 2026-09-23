@@ -15,7 +15,7 @@ HERE = Path(__file__).resolve().parent
 POLICY_SOURCE = HERE / "claude-current-loader.md"
 POLICY_START = "<!-- HELIX:current-loader:start -->"
 POLICY_END = "<!-- HELIX:current-loader:end -->"
-POLICY_SHA256 = "cf2c9b0d0806684bb760d25ddb611ffe814845849f64ab93b53b8154306e9d49"
+POLICY_SHA256 = "93970e59dd97b61d4fd782872d9d7efe8eaf1841a0e167a833aba1cf71200359"
 FORBIDDEN_POLICY_TEXT = ("許可している", "承認済み", "権限を与える", "authorized", "#1888")
 
 

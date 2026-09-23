@@ -18,7 +18,7 @@
     },
     {
       "path": "docs/governance/github-upstream-operating-model.md",
-      "sha256": "36bfc76555bd93da31666d655f8aed0886c741786f76befbdb0feb6e038aaae9"
+      "sha256": "04afc7d37611322d8a30b6ea2f746f8697c4bb5cc0a6ea40fec56c1c31fbc3d0"
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
@@ -34,7 +34,7 @@
     },
     {
       "path": "scaffold/external-references/SCF-B-0003.json",
-      "sha256": "b51259a1cde05fa30132b554b2855a29c9c39c542f96934fc1f83bd63e412888",
+      "sha256": "b5dc23584f09497d70440a5a0e23cde12341e10c27caf7073b304f044e177e03",
       "note": "外部consumer参照の保持・撤去契約。退役後も保持する"
     }
   ],
