@@ -78,6 +78,8 @@ Concept本文は旧実装のownerや合格証拠を採用しない。
 
 ## 次工程
 
+（2026-09-14時点の記述。Conceptはその後1ファイルのHELIX Conceptへ移行し、機構再編（2026-09-24）を経ている。現在の次工程は[新世代作業入口](../../new-generation-start-here.md)に従う。）
+
 Concept v4.1承認後、HARNESS、HELIX-OS、HELIX-Webその他の個別製品L1へ意味候補を分配し、対象別L2／L11で
 個別採否する。正式な提供構成と版管理は、その新しい上流からL3／L10へ降ろし直す。要求整理が閉じるまで
 既存CI、旧RLS／FRS、旧Package／Module、旧配布経路を実行しない。
