@@ -75,7 +75,7 @@ REASON_CLASS_DEFS = {
     },
     "PHCAP_BOUNDARY_GAP": {
         "description": "prototype／re-entry／ingestion等のphase境界が競合し、PHCAP直接責務を原文だけで決められない",
-        "next_action": "候補phaseと全競合PHCAPのcurrent boundary contract、phase reviewer判断、consumer closureを揃える",
+        "next_action": "候補phaseと全競合PHCAPのcurrent boundary contractを比較し、product／phase authorityのhuman decisionを得る",
     },
     "CROSS_PHASE_COMPETITION": {
         "description": "横断制約だがPHCAP-01〜15の具体能力との意味接続候補があり、phase非適用を導けない",
@@ -87,11 +87,13 @@ REASON_CLASS_DEFS = {
     },
 }
 
-MINIMUM_CONDITIONS = [
-    "current source contractが責務主語、対象product、input/output、acceptance、failure/recovery、revision/digestを固定する",
-    "PHCAP-01〜20の競合境界を直接照合し、candidate／connection／shared capability／非適用の理由を原文anchorで分離する",
-    "product ownerとphase authority reviewerがunit／connection／composite、target product、L2/L11 successorを明示決定する",
-    "名前付きcurrent consumerのreceipt/read-after、failure/recovery、stale/re-entry、rollback/retention境界でclosureする",
+PHASE_PLACEMENT_DECISION_EVIDENCE = [
+    "current authoritative sourceのcustodyとatomic source contractを確認し、責務主語およびunitのinput/outputを特定する",
+    "原文anchorを使ってPHCAP-01〜20のcurrent boundary contractを比較し、candidate／connection／shared capability／非適用の根拠を分ける",
+    "product ownerとphase authority reviewerがunit／connection／composite、target product、phase配置または非適用、L2/L11 successorをhuman decisionする",
+]
+POST_PLACEMENT_ACCEPTANCE_CLOSURE_EVIDENCE = [
+    "配置判断後に、名前付きcurrent consumerのreceipt/read-afterとfailure/recovery、stale/re-entry、rollback/retentionの証拠でimplementation／acceptance／consumer closureする。これはphase配置判断の代用ではなく、phase／product authorityを昇格させない",
 ]
 
 # Each entry is deliberately independent of #2082/#2084. The source anchor,
@@ -135,7 +137,7 @@ NEGATIVE_CASE_CODES = [
     "E_TARGET_SET", "E_WAVE_EDGE_COVERAGE", "E_ASSET_EVIDENCE", "E_TAXONOMY_COVERAGE",
     "E_TAXONOMY_STATUS", "E_MATRIX_RULE", "E_INVENTORY_DECLARATION", "E_REASON_CLASS",
     "E_ANALYSIS_EVIDENCE", "E_CONSUMER_EVIDENCE", "E_PHASE_AUTHORITY_SEPARATION",
-    "E_PRODUCT_AUTHORITY_SEPARATION", "E_AUTHORITY_BOUNDARY", "E_MINIMUM_CONDITIONS",
+    "E_PRODUCT_AUTHORITY_SEPARATION", "E_AUTHORITY_BOUNDARY", "E_PLACEMENT_OR_CLOSURE_EVIDENCE",
 ]
 
 
@@ -320,7 +322,8 @@ def build_bundle() -> tuple[dict[str, Any], list[dict[str, Any]]]:
             "full_phcap_boundary_review": {"phase_ids": PHCAP_IDS, "status": "pending_all_20", "non_applicability_proven": False},
         },
         "reason_classes": plans_inventory(),
-        "formal_judgment_minimum_conditions": MINIMUM_CONDITIONS,
+        "phase_placement_decision_evidence": PHASE_PLACEMENT_DECISION_EVIDENCE,
+        "post_placement_acceptance_closure_evidence": POST_PLACEMENT_ACCEPTANCE_CLOSURE_EVIDENCE,
         "input_snapshot": [{"path": path, "sha256": digest(base_bytes(path), prefix=False), "source": "fixed_BASE"} for path in BASE_INPUT_PATHS],
         "oracle_dependencies": [],
         "analysis_path": "analysis.jsonl",

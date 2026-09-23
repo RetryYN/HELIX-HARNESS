@@ -123,7 +123,8 @@ if __name__ == "__main__":
         ("phase authority", "E_PHASE_AUTHORITY_SEPARATION", lambda inv, rows: rows[0]["phase_result"].__setitem__("direct_phase_evidence_count", 1)),
         ("product authority", "E_PRODUCT_AUTHORITY_SEPARATION", lambda inv, rows: rows[0]["product_review"].__setitem__("authority_product", "HELIX-OS")),
         ("authority boundary", "E_AUTHORITY_BOUNDARY", lambda inv, rows: rows[0]["authority_boundary"].__setitem__("formal_phase_authority_modified", True)),
-        ("minimum conditions", "E_MINIMUM_CONDITIONS", lambda inv, rows: inv["formal_judgment_minimum_conditions"].pop()),
+        ("phase placement evidence", "E_PLACEMENT_OR_CLOSURE_EVIDENCE", lambda inv, rows: inv["phase_placement_decision_evidence"].pop()),
+        ("post-placement closure evidence", "E_PLACEMENT_OR_CLOSURE_EVIDENCE", lambda inv, rows: inv["post_placement_acceptance_closure_evidence"].pop()),
     ]
     for name, expected, mutate in cases:
         run_case(name, expected, mutate)

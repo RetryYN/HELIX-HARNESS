@@ -56,7 +56,7 @@ prototype、re-entry、ingestion、canonicalization、L4 write authorityなど�
 - `IRUNIT-HIL-NFR-30-HELIX-OS`
 - `IRUNIT-HIL-TR-07-HELIX-OS`
 
-次に必要なのは候補phaseと競合PHCAPのcurrent boundary contract、phase reviewer判断、consumer closureである。
+配置判断に必要なのは、候補phaseと競合PHCAPのcurrent boundary contractの比較、およびproduct／phase authorityのhuman decisionである。実装・consumer closureの証拠は配置判断後に別途揃える。
 
 ### `CROSS_PHASE_COMPETITION`（10）
 
@@ -92,14 +92,17 @@ prototype、re-entry、ingestion、canonicalization、L4 write authorityなど�
 
 次に必要なのはPHCAP-01..20の直接責務・除外sourceの確認であり、phase非適用は保留したままhuman reviewへ送る。
 
-## 正式phase判断の最低条件
+## 配置判断と後続closureの証拠
 
-1. current source contractが責務主語、対象product、input/output、acceptance、failure/recovery、revision/digestを固定する。
-2. PHCAP-01..20の競合境界を直接照合し、candidate、connection、shared capability、非適用の理由を原文anchorで分離する。
-3. product ownerとphase authority reviewerがunit/connection/composite、target product、L2/L11 successorを明示決定する。
-4. 名前付きcurrent consumerのreceipt/read-after、failure/recovery、stale/re-entry、rollback/retention境界でclosureする。
+phase配置・routingの人間判断に必要な証拠は、次の3点である。
 
-これらが揃うまで、taxonomyのunresolved statusとauthority noneを保持する。
+1. current authoritative sourceのcustodyとatomic source contractを確認し、責務主語およびunitのinput/outputを特定する。
+2. 原文anchorを使ってPHCAP-01..20のcurrent boundary contractを比較し、candidate、connection、shared capability、非適用の根拠を分ける。
+3. product ownerとphase authority reviewerがunit/connection/composite、target product、phase配置または非適用、L2/L11 successorをhuman decisionする。
+
+実装・acceptance・consumer closureは配置判断後の別の証拠群である。名前付きcurrent consumerのreceipt/read-afterと、failure/recovery、stale/re-entry、rollback/retentionの証拠を揃え、選択された配置に対する後続の実装・受入を閉じる。これらはphase配置判断の代用ではなく、phaseやproduct authorityを昇格させない。
+
+配置判断も後続closureも未完了のため、taxonomyのunresolved statusとauthority noneを保持する。
 
 ## 検証と成果物
 
@@ -114,6 +117,6 @@ python3 scaffold/tools/scfctl.py residuals
 git diff --check
 ```
 
-独立validatorは`generate.py`をimportせず、固定BASEとtaxonomy commit/blob/digest、30 ID/status/rule/anchor、66 edge、38 asset、phase/product authority境界を再導出する。taxonomy全値と30行の分析テキストは独立期待値digestで固定し、selfcheckは42 negative casesで各改変の期待error codeを照合する。共通scfctlは旧archiveを固定root内の通常ファイルに限るupstream static evidenceとして、正規の`静的read-only参照のみ` note、明示的な旧archive非実行句、digest一致、resolve後のroot containment、symlink（root内へ解決するものを含む）、directory／non-regular file、backslash／Windows-absolute pathを69 casesで検査する。symlink fixtureは解決先bytes、directory／FIFO fixtureは決定的なobject-kind digestを宣言値と照合し、case44〜46は`symlink`／`non_regular`の拒否分岐到達を直接検査するため、該当returnを削除するとdigest一致後にselftestが失敗する。否定noteのfixtureは`非静的read-only参照のみ`を使い、正規句のsubstring通過を許さない。scfctlと共有evidence/caseの変更はSCF-B-0001所有の共通検証依存としてBinding artifactsに含めず、0134の成果物・入力digest・負例集合・authority noneだけをこのBindingに固定する。
+独立validatorは`generate.py`をimportせず、固定BASEとtaxonomy commit/blob/digest、30 ID/status/rule/anchor、66 edge、38 asset、phase/product authority境界を再導出する。taxonomy全値と30行の分析テキストは独立期待値digestで固定し、selfcheckは43 negative casesで各改変の期待error codeを照合する。共通scfctlは旧archiveを固定root内の通常ファイルに限るupstream static evidenceとして、正規の`静的read-only参照のみ` note、明示的な旧archive非実行句、digest一致、resolve後のroot containment、symlink（root内へ解決するものを含む）、directory／non-regular file、backslash／Windows-absolute pathを69 casesで検査する。symlink fixtureは解決先bytes、directory／FIFO fixtureは決定的なobject-kind digestを宣言値と照合し、case44〜46は`symlink`／`non_regular`の拒否分岐到達を直接検査するため、該当returnを削除するとdigest一致後にselftestが失敗する。否定noteのfixtureは`非静的read-only参照のみ`を使い、正規句のsubstring通過を許さない。scfctlと共有evidence/caseの変更はSCF-B-0001所有の共通検証依存としてBinding artifactsに含めず、0134の成果物・入力digest・負例集合・authority noneだけをこのBindingに固定する。
 
 成果物は `inventory.json`（集計・全入力digest）、`analysis.jsonl`（unit別anchor・Wave edge・asset・不足証拠・判断待ち）、taxonomy保存snapshot、generator、validator、selfcheck、README、PR-DRAFT、Bindingである。
