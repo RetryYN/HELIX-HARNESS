@@ -52,33 +52,46 @@ HELIXは8つの機構と2つの共通部品から成る。**製品は機構の�
 
 ### 開発の流れ
 
+人は要求を工程の起点へ入れ、要件を承認する。承認後の設計から検証までは、AIが工程に沿って自走する。
+
 ```mermaid
 flowchart LR
-    Human["人<br/>価値・要求・承認"]
-    HARNESS["HELIX-HARNESS 《製品》<br/>開発工程・検証契約"]
-    BRAIN["HELIX-BRAIN<br/>理解・計画・予測・診断"]
-    OS["HELIX-OS<br/>管理・推進・割当・確定"]
+    Human["人"]
+
+    subgraph PROC["HELIX-HARNESS 《製品》 開発工程"]
+        REQ["企画・要求<br/>L1・L2"]
+        APP{"要件と承認<br/>L3"}
+        DES["設計<br/>L4〜L6"]
+        IMP["実装"]
+        VER["検証・受入・運用評価<br/>L7〜L12"]
+        REQ --> APP --> DES --> IMP --> VER
+    end
+
+    BRAIN["HELIX-BRAIN<br/>計画・予測・診断"]
+    OS["HELIX-OS<br/>推進・割当・確定・証拠"]
     SEC["HELIX-Security<br/>認可・制限"]
     RUNNER["Runner／Sandbox<br/>限定実行"]
     CONNECT["HELIX-CONNECT<br/>接続・通信"]
     Targets["開発対象<br/>HELIX自身・Webを含む各製品"]
 
-    Human -->|要求・承認| OS
-    HARNESS -->|工程・検証契約| BRAIN
-    HARNESS -->|工程規則| OS
-    BRAIN -->|計画・診断・予測の案| OS
+    Human -->|Concept・企画・要求| REQ
+    Human -.->|承認| APP
+    APP -->|承認済み要件と工程契約| BRAIN
+    BRAIN -->|作業計画の案| OS
     OS -->|割当・資源上限・停止条件| RUNNER
     SEC -.->|制限| OS
     SEC -.->|制限| RUNNER
-    RUNNER -->|開発・改修| CONNECT
-    CONNECT -->|受渡し| Targets
+    RUNNER <-->|受渡し| CONNECT
+    CONNECT <--> Targets
     RUNNER -->|結果・差分| OS
+    OS -->|証拠| VER
 ```
 
 ### 改善とWeb提供
 
 ```mermaid
 flowchart LR
+    REQ2["企画・要求<br/>（HARNESS工程の上流）"]
     Human["人<br/>採否の判断"]
     Targets["開発対象<br/>HELIX自身・各製品"]
     Customer["顧客"]
@@ -107,7 +120,8 @@ flowchart LR
     INT -->|知識・モデル| BRAIN
     INT -->|改善候補| OS
     BRAIN -->|診断| OS
-    OS -->|改善提案| Human
+    OS -->|改善提案| REQ2
+    Human -.->|採否| REQ2
 ```
 
 ### 機構の役割
@@ -128,7 +142,7 @@ flowchart LR
 - **BRAINは考え、Intelligenceは育てる。** 稼働時の判断はBRAIN、その判断能力を育てるのはIntelligenceである。
 - **決めるのはOS。** BRAINは案を出し、OS内の推進機構が作業を生成し、OSの管理が確定する。検収は独立して行う。
 - **管理・推進・検収を、同じ自己承認主体にまとめない。**
-- 開発の層は、Concept → 要求（L1）→ 要件（L2）→ 設計 → 実装 → 検証 → 受入・運用評価の順に降り、`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7`で対にする。
+- 開発の層は、Concept → 企画（L1）→ 要求（L2）→ 要件（L3）→ 設計（L4〜L6）→ 実装 → 検証（L7〜L10）→ 利用者受入（L11）→ 運用評価（L12）の順に進み、`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7`で対にする。
 
 ## 4. 原則
 
