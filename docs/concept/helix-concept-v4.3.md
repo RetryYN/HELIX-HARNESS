@@ -5,10 +5,14 @@ status: draft_candidate
 authority_status: awaiting_human_approval
 derived_from:
   - docs/concept/helix-concept-v4.2.md
+  - docs/concept/product-boundary.md
 candidate_inputs:
   - HELIX_機構再編_要求対応指示書.md
   - archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md
 source_concept_sha256: b395a54c42782d93651f2a5660736b0330f013ccfd10af925c61c53ec355eebf
+source_product_boundary_sha256: 097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038
+source_five_goals_sha256: cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca
+source_goals_decision: docs/governance/decisions/helix-five-goals-approval-2026-09-24.md
 source_reorganization_sha256: d2994a9c2a26786dd18635591f04d316e5c0bf45bbde5c118915bbc485363f44
 source_vision_sha256: 1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74
 source_vision_asset_id: LEGACY-ASSET-DD53551C74BB4939A325
@@ -25,7 +29,9 @@ behavior_contract_id: HELIX-CONCEPT-V4.3
 [機構再編・要求対応指示書](../../HELIX_機構再編_要求対応指示書.md)と保存された
 [Vision v0.1](../../archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)を照合した後継候補である。
 現行authorityはv4.1、v4.2は本文承認済みでcanonicalization未実施、本v4.3は未承認である。
-指示書の「8機構＋2共通部品」は構成対象の数え方であり、8製品を意味しない。
+指示書の構成は8機構＋2共通部品である。8機構のうちHARNESSとWebは外部提供する製品という属性も持つ。
+製品は機構の一部であり、機構の数を製品数へ読み替えない。指示書は利用者が指定した入力資料として
+リポジトリ直下の原位置を保持し、pathやdigestを移動で変えない。
 本書は旧要求の新配置への採否、L1／L2／L11、技術、実装、Web公開を承認しない。
 
 ## 一文定義
@@ -38,7 +44,8 @@ HELIXは、人間が定めたConcept・企画・要求を起点に、HARNESSの�
 人は価値、製品境界、要求、体験、L3要件承認、不可逆作用の許可を所有する。
 HELIXは、承認された範囲を責務単位へ分解し、開発・保守改修・検証・統合・運用・改善候補化を継続する。
 中心価値は、ソフトウェアの所有者が自分のシステムを育て続けられることにある（Vision §1・§7、U17）。
-HELIX-HARNESSは外部へ提供する製品、HELIX-Webは顧客向け開発サービス製品であり、OS群などの機構と同じ製品identityへ畳み込まない。
+HELIX-HARNESSとHELIX-Webは機構であり、それぞれ外部へ提供する開発基盤製品、顧客向け開発サービス製品という属性も持つ。
+HELIX-OSなどの製品属性を持たない機構まで、同じ製品identityへ畳み込まない。
 会話、Issue、PR、CIの状態を要求の意味や承認の代替にしない。
 
 ## 5大目標と七大原則の接続
@@ -66,12 +73,26 @@ v4.1の接続記述だけでは、[L1被覆監査](../governance/audits/source-r
 |---|---|---|---|
 | 自走 | 承認済み上流から進行・停止・差戻し・再開・検証・完了を判断する工程契約 | BRAINが作業グラフと次行動を提案し、OSが前提revision・許可・予算・証拠を確認して状態遷移と割当を行う。Runnerが限定実行する | 各製品が目的・制約・許可・停止条件を持つ。Web-OSのservice runtimeはOSへ吸収しない |
 | 全体simulation | 要求・domain・責務・依存・interface・state・failure・V-pair・検証・運用条件を入力にし、前提・revision・不確実性・反証・再検証を持つsimulation契約 | BRAINが予測・影響候補を作り、LABOが実測とのずれを評価し、OSが対象revisionと証拠を管理する | 製品固有の価値・制約と、許可された運用観測を入力として提供する。入力の所有権は移さない |
-| 非エンジニア利用 | 利用者が目的・進行条件・品質・未決・riskを理解し、必要な判断を行える開発契約 | OSがCI・bot・Workerの検査・差戻し・停止・再開を統制し、BRAINの説明や提案を承認と混同しない | Webは仕様整理から開発・検証・保守改修・成果受入までのサービス体験を所有する。Web-OSはそのservice runtimeを運転する |
-| Worker最適配置 | 作業分類、必要能力、検証義務、上位能力へのescalation条件 | LABOが実測を比較し、BRAINが役割・モデル・effort案を返し、OSがscope・lease・予算・独立検証を確認して割当を確定する | 各製品がrisk・data・作用・品質・期限・費用制約を指定する。Web-OS固有のWorker利用条件はWeb-OS L1で判断する |
+| 非エンジニア利用 | 利用者が目的・進行条件・品質・未決・riskを理解し、必要な判断を行える開発契約 | OSがCI・bot・Workerの検査・差戻し・停止・再開を統制し、BRAINの説明や提案を承認と混同しない | Webは仕様整理から開発・検証・保守改修・成果受入までのサービス体験を所有する。HELIX-Webのdashboard体験はHARNESSの利用価値を代替しない。Web-OSの利用者入口はWeb／Web-OS L1で判断する |
+| Worker最適配置 | 作業分類、必要能力、検証義務、上位能力へのescalation条件 | LABOが実測を比較し、BRAINが役割・モデル・effort案を返し、OSがscope・lease・予算・独立検証を確認して割当を確定する | 各製品がrisk・data・作用・品質・期限・費用制約を指定する。Web-OS固有のWorker利用条件はWeb-OS L1で判断し、OSの割当authorityを暗黙継承させない |
 
 学習・改善の第2目標はv4.1の接続を保持する。学習結果による本番採用と要求変更は対象上流の人間判断を経る。
 上表の分担は本Concept revisionの人間判断を経て初めて上流境界となり、その後に対象別L1へ
 不足価値を個別に分解する。現行L1の`partial`を本表だけで`covered`へ変えない。
+
+### v4.2からの責務差分候補
+
+v4.2の本文承認は本候補へ継承しない。下表は承認済みの目標と制約を保ちながら提案する担当差分であり、
+担当の移動・分割自体も人間の新たな判断を要する。OSの統制・確定権限は移さない。
+
+| v4.2の対象文・意味 | 従来の担当 | v4.3の提案担当 | 差分種別・影響 |
+|---|---|---|---|
+| 目標差分「自走」：OSが状態・作業グラフから次行動を導出 | OS | BRAINが根拠付き次行動・作業グラフ案を提出し、OSが適格性・状態遷移・割当を確定 | 提案生成の担当移動候補。実行とauthorityはOSに残すが、推論機構の分離は新判断を要する |
+| 目標差分「全体simulation」：OSが前提・revisionを保持して予測と実測差を管理 | OS | BRAINが予測候補、LABOが実測との差、OSがrevision・証拠を管理 | 予測・評価の担当分割候補。入力契約と反証義務は保持し、対象L1の要求ownerを再確認する |
+| 目標差分「Worker最適配置」：OSが品質・費用・時間等を用いて割当 | OS | LABOが比較実測、BRAINが配置案、OSがprovider capability・scope・lease・予算・独立検証を確認して割当 | 測定・提案の担当分割候補。割当authorityはOSに残し、Web-OSへの暗黙継承を禁じる |
+| v4.1原則表「Controlled Adaptation」：改善候補の生成はOS | OS | BRAINの診断案、LABOの測定、Intelligenceの知識・モデル候補をOSが出典別に登録し上流へ返す | 候補生成ownerの意味変更候補。原則本文は同じでも適用意味が変わるため、v4.1／v4.2の承認を流用しない |
+| v4.2「推進機構」：operational tag、versioned mapping、composition、workflow instance生成規則を所有し生成 | OS内の推進機構 | OS内の推進機構が同じ四つを所有し、ticket graph・workflow instanceを生成。BRAINは入力案を提出 | owner維持。管理による登録・統制と検収による独立確認も維持する |
+| 9原則のv4.2注記「本文と意味を変更しない」 | v4.2の承認本文 | 原則本文は保持し、Product Separation・Controlled Adaptationの適用先と担当解釈の変更を本表で明示 | 本文維持、適用意味の変更候補。v4.3のexact revisionで人間判断を要する |
 
 七大原則は、HARNESSが対象作業へ適用するProduction、Research、Discovery／PoC、UI prototype等のrouteと
 route内順序を置き換えない。各routeの判断点でresearch、変更単位、domain、上流還流、最小実装、責務・依存分離、
@@ -84,22 +105,23 @@ route内順序を置き換えない。各routeの判断点でresearch、変更�
 
 ## 製品・機構・共通部品
 
-HELIXはプロジェクト群と全体構想であり、以下の10対象を同一の製品identityにしない。
+HELIXはプロジェクト群と全体構想であり、8機構と2共通部品から成る。HARNESSとWebは機構の一部であり、製品属性も持つ。
+以下の10対象を同一の製品identityにしない。
 Vision §2の全体統制は単一の万能書込主体を意味せず、開発と成長の責務を分ける。
 この表はConcept上の責務境界候補であり、要求の新配置や対象別L1の承認を生成しない。
 
-| 対象 | 区分 | 主な責務 | 責務の境界 |
-|---|---|---|---|
-| HELIX-HARNESS | 外部提供製品 | V-model、要求形成・設計・検証・受入契約、提供package | 個別作業の割当、OS状態、顧客service運転を所有しない |
-| HELIX-OS | 内部管理・統制機構 | HELIX自身と複数製品のauthority・予算・作業状態・割当・統合・更新・復旧 | HARNESS工程意味を別定義せず、BRAIN案を無条件実行しない |
-| HELIX-BRAIN | 稼働時の判断機構 | 理解、計画、予測、診断、意味review、配置案、再計画 | 要求・承認・権限を生成せず、OS状態を直接更新しない |
-| HELIX-LABO | 独立計測・評価機構 | 実験、比較、改善効果・退行、Worker・モデル実測 | 自己評価だけで改善候補の採用を確定しない |
-| HELIX-Intelligence | 知識・モデル改善機構 | 経験・判断方法・dataset・モデル候補の改善 | 稼働時の計画確定やモデルの無検証適用をしない |
-| HELIX-Security | 安全・認可機構 | 操作・情報利用・資格情報・隔離の制限と失効条件 | 製品要求、開発計画、権限を自己拡張しない |
-| HELIX-Web | 顧客向け製品 | 仕様整理、開発・検証・保守改修、操作、成果確認・受入のサービス体験 | 内部OS管理画面や開発engineを別実装しない |
-| HELIX-Web-OS | Web運転機構 | tenant・顧客project・job・service state・配備・監視・復旧 | 内部OSのstate・鍵・権限を暗黙共有しない |
-| HELIX-CONNECT | 共通部品 | 接続登録、契約版照合、通信、再送、追跡 | 業務判断、要求承認、計画を所有しない |
-| Runner／Sandbox | 共通部品 | 限定された実行・停止・隔離・結果回収 | 作業採否、割当、自己承認を所有しない |
+| 対象 | 構成区分 | 製品属性 | 主な責務 | 責務の境界 |
+|---|---|---|---|---|
+| HELIX-HARNESS | 機構 | 外部提供製品 | V-model、要求形成・設計・検証・受入契約、提供package | 個別作業の割当、OS状態、顧客service運転を所有しない |
+| HELIX-OS | 機構 | なし | HELIX自身と複数製品のauthority・予算・作業状態・割当・統合・更新・復旧 | HARNESS工程意味を別定義せず、BRAIN案を無条件実行しない |
+| HELIX-BRAIN | 機構 | なし | 理解、計画、予測、診断、意味review、配置案、再計画 | 要求・承認・権限を生成せず、OS状態を直接更新しない |
+| HELIX-LABO | 機構 | なし | 実験、比較、改善効果・退行、Worker・モデル実測 | 自己評価だけで改善候補の採用を確定しない |
+| HELIX-Intelligence | 機構 | なし | 経験・判断方法・dataset・モデル候補の改善 | 稼働時の計画確定やモデルの無検証適用をしない |
+| HELIX-Security | 機構 | なし | 操作・情報利用・資格情報・隔離の制限と失効条件 | 製品要求、開発計画、権限を自己拡張しない |
+| HELIX-Web | 機構 | 顧客向け製品 | 仕様整理、開発・検証・保守改修、操作、成果確認・受入のサービス体験 | 内部OS管理画面や開発engineを別実装しない |
+| HELIX-Web-OS | 機構 | なし | tenant・顧客project・job・service state・配備・監視・復旧 | 内部OSのstate・鍵・権限を暗黙共有しない |
+| HELIX-CONNECT | 共通部品 | なし | 接続登録、契約版照合、通信、再送、追跡 | 業務判断、要求承認、計画を所有しない |
+| Runner／Sandbox | 共通部品 | なし | 限定された実行・停止・隔離・結果回収 | 作業採否、割当、自己承認を所有しない |
 
 HARNESSはOS内部のAssurance Kernelだけではなく、外部利用者へ提供する開発基盤全体である。
 Assurance KernelはHARNESSの構成要素とする。旧Control Plane、Execution、Ledger、Adaptationの名称や実装ownerを
@@ -154,7 +176,8 @@ GitHubは作業、協調、CI、review、統合証拠のsurfaceである。Issue
 
 v4.1はProduct Separationの追加だけではなく、製品境界に合わせて既存原則の意味も改訂した。
 次の表はv4.0からv4.1への改訂履歴であり、本v4.3候補では9原則の本文を変更しない。
-Product Separationは製品と機構を同一種別とする意味ではなく、責務・authority・接続を対象ごとに分ける。
+Product Separationは製品属性のある機構とない機構を別の構成種別にする意味ではない。
+機構ごとの責務・authorityと、製品属性に固有の利用価値・要求ownerを分ける。
 
 | v4.0原則 | v4.1での扱い | 改訂理由 |
 |---|---|---|
@@ -212,9 +235,10 @@ Python semantic coreへ再導出する。認可、lease、DB／Git／GitHub comm
 駆動モデルは固定modeの実行器ではなく、local ticketへ付けるversioned tag集合として表す。OSの管理は目的、
 親要求、制約、許可、予算、期限、HARNESS版をBRAINの判断入力へ渡す。HARNESSはnormative workflow vocabulary、各語彙の意味、
 trigger、適用条件、route内順序、join、停止・差戻し・完了条件を所有する。BRAINはその契約と対象状態から作業分解・
-tag・ticket graph・workflow instanceの案を作る。operational tagの登録、HARNESS語彙へのversioned mappingの適格性、
-workflow instanceの確定と状態遷移はOSが統制する。HARNESSは個別ticketを生成せず、BRAINも工程意味の別定義や
-自己承認を行わない。検収はHARNESS contractへの充足を独立確認する。GitHub labelはtagのprojectionに限定する。
+tag・ticket graph・workflow instanceの案を作る。OS内の推進機構はoperational tag、HARNESS語彙へのversioned mapping、
+composition、workflow instance生成規則を所有し、BRAIN案を適格性確認した上でticket graphとworkflow instanceを生成する。
+OSの管理は生成物を登録・統制して状態遷移を確定し、検収はHARNESS contractへの充足を独立確認する。
+HARNESSは個別ticketを生成せず、BRAINも工程意味の別定義や自己承認を行わない。GitHub labelはtagのprojectionに限定する。
 
 ## Version 1とHELIX-Web展開境界
 
@@ -242,7 +266,7 @@ HELIX-OSはHARNESS、自身、他の機構・共通部品、複数製品を開�
 - 対象別authority、revision、関係、変更影響、未解決状態の管理。
 - Concept／企画L1、要求エンジン入力、L2候補、訂正・採否、採用要求の系譜と齟齬を登録し、要求化漏れ、企画外追加、対象違い、scope逸脱を管理する。
 - Design Templateの版、選定、適用、義務、backflow、利用結果と改善候補を管理する。
-- BRAINの案に対するrevision、許可、scope、予算、必要証拠の確認と、Worker assignment、branch、lease、停止・復旧の統制。
+- BRAINの案に対するrevision、許可、scope、予算、必要証拠、provider capabilityの確認と、Worker assignment、branch、lease、停止・復旧の統制。
 - event、log、evidence、review、CI、HARNESS package運転、個別製品のrelease準備・artifact受渡し、observationの実行と保存。
 - requirement／design／verification／runtime projectionの整合と再構築。
 - BRAINの診断案、LABOの測定、Intelligenceの学習候補、外部変化を出典別に登録し、対象上流へ改善proposalを戻す。
@@ -330,8 +354,29 @@ adapter、AI instruction／prompt、実行設定、旧test／fixture／oracle、
 未解決資産はarchive内で上流再導出待ちとする。新世代要求oracle、consumer切替、rollback、read-afterは、旧capabilityの
 最終退役または物理削除の条件とし、archive-first隔離の前提にはしない。旧資産との実行parityを要求しない。
 
-本候補で直接読んだ旧資産は資産台帳の`LEGACY-ASSET-DD53551C74BB4939A325`（Vision v0.1、SHA-256
-`1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74`）である。
+本候補では[資産明細台帳](../governance/legacy-asset-disposition.jsonl)の`source_path`から、Vision、
+infinity-loop要求、Worker blind benchmark、product data connector、security capability broker、isolated worktree sandbox runnerを検索し、
+対応sourceと[Worker capacity](../governance/audits/source-rebaseline/new-generation-worker-capacity-source-crosswalk.md)、
+[Security](../governance/audits/source-rebaseline/new-generation-security-engagement-source-crosswalk.md)、
+[Concept package](../governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md)の判断史・failure・consumer記録を照合した。
+代表資産の確認範囲と、現時点で保持する意味は次のとおりである。`consumer_refs=[]`はconsumer不存在の証明ではない。
+
+| 旧asset ID・source | 保持する意味と観測したfailure／consumer | 本候補での扱い |
+|---|---|---|
+| `LEGACY-ASSET-DD53551C74BB4939A325` Vision v0.1 | 所有者の継続改修、開発と成長の分離、複数事業投入。台帳のdispositionは`unresolved`、consumer_refsは空 | 長期構想の意味入力。旧実現形や承認を継承しない |
+| `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` infinity-loop L1要求 | 自走・計測・Worker・接続の要求source。台帳は`source_snapshot_preservation`、consumerはcarry-forward ledgerとatomization review | 原文atomを無損失保持し、対象別L1／L2の採否へ送る |
+| `LEGACY-ASSET-09F4CAA4129F5DF63C5E` Worker blind benchmark L4設計 | 独立評価とprovenance不足時の失敗条件。smokeの成功はadmissionを示さない。台帳は`unresolved`、consumer_refsは空 | LABO／OS境界の参考。旧benchmarkを新oracleへ流用しない |
+| `LEGACY-ASSET-C3DE79BA9451172F3E43` product data connector L5設計 | read-only、lineage、schema・鮮度・drift failureを確認。台帳は`unresolved`、consumer_refsは空 | CONNECTとWebデータ利用条件の参考。旧接続・DB方式を採用しない |
+| `LEGACY-ASSET-B62E49D2E156232B8C63` security capability broker L3要求 | typed認可、scope drift時のfail-close、旧broker greenの限界を確認。台帳は`unresolved`、consumer_refsは空 | Securityの操作点制限の参考。旧brokerを現行認可にしない |
+| `LEGACY-ASSET-42DBFF81CAA08B82AF11` isolated worktree sandbox runner計画 | dirty baselineと隔離失敗条件を確認。台帳は`unresolved`、consumer_refsは空 | Runner／Sandboxの停止・隔離条件の参考。旧planやruntimeを実行しない |
+
+これらは代表pathの照会であり、BRAIN／LABO／Intelligence／Security／CONNECT／Runnerの全資産・consumerを閉じた調査ではない。
+対応機構のL1／L2で原source、判断史、failure、consumerと全候補asset IDを確定し、
+[旧資産の完全一致再利用統制](../governance/legacy-asset-reuse-control.md)に従い再利用・意味再導出・置換を個別判断する。
+本Conceptでは旧実装のownerや合格証拠を採用せず、指示書第2・第5段階へ詳細採否を残す。
+
+Visionのasset IDは`LEGACY-ASSET-DD53551C74BB4939A325`、SHA-256は
+`1725bee697999140ac0f7d0926b4a4cf5636a2f7e3d5a554822c722c3effcd74`である。
 保持する意味は、所有者による継続改修、開発と成長の分離、複数事業への能力投入、モデル改善と動的判断、Webの開発提供、
 許可された実績の還流である。Vision自身は長期構想かつhistorical sourceで、台帳上のdisposition・consumer・rightsは未解決である。
 本候補は意味の再導出案であり、Vision本文の完全一致再利用や旧実装採用の判断ではない。
@@ -342,7 +387,7 @@ Vision §5.4の名称と本候補のBRAIN／Intelligence分離、§6のConnector
 ## System invariant
 
 1. canonical authorityより先にruntime behaviorをcurrent化しない。
-2. 製品、機構、共通部品の要求とauthorityを同じownerへ畳み込まない。
+2. 機構ごとの要求・authorityと、HARNESS・Webが持つ製品属性に固有の利用価値を混同しない。共通部品の責務も独立したownerへ置く。
 3. Issue、PR、CI、DB、memory、sessionから要求の意味や人間approvalを生成しない。
 4. L2を飛ばしてL1からL3へ要求を接続しない。
 5. unknownをnone、unchanged、healthy、greenへ変換しない。
@@ -366,7 +411,7 @@ Vision §5.4の名称と本候補のBRAIN／Intelligence分離、§6のConnector
 - HELIX-OSを外部提供するHARNESS製品として扱うこと。
 - HARNESSをOS内部のgate実装だけへ縮退させること。
 - HELIX-WebをOSの管理画面へ還元すること。
-- 指示書の8機構を8製品、またはすべての機構をHARNESS製品の必須同梱物として扱うこと。
+- 8機構のすべてを製品として扱うこと、HARNESS・Webの製品属性を機構から切り離すこと、またはすべての機構をHARNESS製品の必須同梱物として扱うこと。
 - HELIX-FACTORYを本候補だけで独立機構や全事業共通DBとして固定すること。
 - GitHubを要求意味・採否・合意・受入の正本にすること。
 - 既存資産を古さ、path、Issue状態、未参照だけで一括削除すること。
@@ -378,6 +423,7 @@ Vision §5.4の名称と本候補のBRAIN／Intelligence分離、§6のConnector
 2. 現行v4.1と本文承認済みv4.2の関係を保ち、v4.3へのsupersede・互換・保存・rollback条件を別の適用記録で決める。v4.2本文の承認を本候補へ自動継承しない。
 3. 現行4対象L1の親revisionと内容差分、追加4機構のL1新設要否、共通2部品の要求の置き方を対象別に確認し、L1本文を別に人間判断へ戻す。
 4. 旧要求を原文・revision・digest付きで無損失に対応付け、維持・改変・不採用候補・追加を個別採否する。既存L2／L11 draftは親revisionと影響を確認するまで正式適用しない。
+5. [product-boundary.md](product-boundary.md)に残るOSの「学習、改善」およびWebの「ダッシュボード」と、本候補で分離した生成・評価・製品体験の関係を別revisionで判断する。旧文書のauthorityを本候補で暗黙上書きしない。
 5. Concept適用時は入口・台帳・参照digest・依存Bindingを更新し、main統合後にexact本文とdecisionをread-afterする。実装・CI・Web公開の許可は別に扱う。
 
 本候補の作成は、Concept承認、現行適用、対象別要求の採否、runtime移行を完了させない。
