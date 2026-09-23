@@ -1,8 +1,8 @@
-# 既存218 evidence partitionを固定BASEから独立再集計する研究束（SCF-B-0146）
+# 既存218 evidence partitionを固定BASEから再集計する研究束（SCF-B-0146）
 
 ## 概要
 
-既存9 evidence partitionを固定BASE `94d99ebb4c55c2edb0575ac2dc100af0d5b93b90` のGit object bytesから独立再導出し、218 recordの状態境界を研究正本として固定します。217 product unitと1 connection (`IRCONN-HIL-BR-09-HARNESS-OS`) を分離し、598 semantic review edgeと355 unique old assetを記録します。
+既存9 evidence partitionを固定BASE `94d99ebb4c55c2edb0575ac2dc100af0d5b93b90` のGit object bytesから再導出し、218 recordの状態境界を研究候補として記録します。217 product unitと1 connection (`IRCONN-HIL-BR-09-HARNESS-OS`) を分離し、598 semantic review edgeと355 unique old assetを記録します。builderとvalidatorは共通導出関数を使用します。
 
 既存の#2083／#2085 20 unit bundleは入力oracleにしていません。source partition、crosswalk、decomposition、旧asset ledgerからunit／edge／asset集合と7 status fieldを再計算しています。
 

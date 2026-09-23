@@ -100,10 +100,12 @@
     }
   ],
   "negative_case_codes": [
+    "E_BUNDLE",
     "E_BASE_NOT_ANCESTOR",
     "E_BASE_COMMIT",
     "E_INPUT_DIGEST",
-    "E_SOURCE_PARTITION_SET",
+    "E_OUTPUT_DIGEST",
+    "E_TRANSFER_MANIFEST",
     "E_RECORD_SET",
     "E_PRODUCT_DENOMINATOR",
     "E_IRCONN_DENOMINATOR",

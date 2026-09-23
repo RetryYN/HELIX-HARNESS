@@ -62,7 +62,7 @@
   },
   "notes": [
     "README.md receives an additional Japanese transfer/provenance section after the exact identity-only replacement.",
-    "All other transferred bytes are retained after only the two exact identity-token substitutions; evidence.jsonl and inventory.json are regenerated deterministically by build.py from the pinned Git objects at source_base.",
+    "destination_sha256 values describe the transfer-time tree at commit 793cf4859; later branch edits are not covered by those historical digests. evidence.jsonl and inventory.json were regenerated deterministically from pinned Git objects at source_base.",
     "SCF-B-0134 is already allocated on destination_base to a separate binding; SCF-B-0146 was verified unallocated there."
   ],
   "branch_management_issue": {

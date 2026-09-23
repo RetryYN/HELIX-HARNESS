@@ -115,7 +115,7 @@
     },
     {
       "path": "scaffold/legacy-evidence-crosswalk-0146/focused-investigation.jsonl",
-      "sha256": "ff056947b055e042b95d89d830b686103d70f1566bbf3339c2b7751445e8b9d7",
+      "sha256": "8a0688139a99b214721b878cc9c050d56311cca12ec95049aaa93f0c682748c1",
       "note": "指定7要求IDの静的調査記録。"
     }
   ],
@@ -123,10 +123,10 @@
   "obligations": [
     "固定BASEの9 partition rowを217 product unitと1 connectionへ分離して再導出し、crosswalk/decomposition行のpath・line・digestを保つ",
     "598 unique semantic review edge、355 unique old asset、598 asset referenceを内容と重複検査つきで保持する",
-    "全7 status fieldの218件分母とunknown/pending/not_assessed境界を直接unit receiptの有無から独立に検査する",
+    "全7 status fieldの218件分母とunknown/pending/not_assessed境界を保持する。直接証拠判定は入力partition上の宣言済みreceipt項目に限る",
     "#2083/#2085のbundleを入力とoracleから除外し、#1813を進捗参照のみに保つ",
     "355 assetのdisposition/history/decision/failure/consumer/read-afterを意味ごと照合し、7 source-snapshot preservation receiptをunit implementationやconsumer closureへ昇格させない",
-    "SCF-B-0134と別用途を区別し、source-transfer-manifestの原本hashとidentity-only remapにより移管来歴を保つ",
+    "SCF-B-0134と別用途を区別し、source-transfer-manifestの移管時snapshot digestをcommit 793cf4859のGit treeに対して検査する",
     "archive source/runtime/test/hook/adapter/CIを実行せず、generator/validator/selfcheck/scfctlで固定BASE静的検査を行う",
     "指定7 requirement IDのacceptance／system-test設計、source・test definition静的存在、unit別のmissing atom evidenceをarchive manifest blob digest付きで記録し、historical receipt候補をunit binding不在なら昇格させない"
   ],
@@ -150,7 +150,7 @@
       "read pinned Git object bytes statically",
       "write this Scaffold bundle and Binding on its research branch",
       "run deterministic generator/validator/selfcheck/scfctl validate/stale/residuals",
-      "run independent structural/digest checks and git diff --check",
+      "run structural/digest checks and git diff --check",
       "create a local commit on this branch"
     ],
     "forbidden": [
@@ -191,16 +191,16 @@
       "nine partition row counts 29/27/37/7/23/19/31/29/16",
       "217 product units plus 1 connection; 598 unique edge and 355 unique asset sets",
       "all seven 218-row status partitions",
-      "source-transfer-manifest original file SHA-256 values and exact allowed identity-token remap",
+      "移管時source-transfer-manifestのsource identity fieldsを記録し、destination digestだけはcommit 793cf4859のhistorical treeに対して照合する",
       "asset disposition 355 entries, decision history and copy/read-after record mapping",
       "explicit #2083/#2085 exclusion boundary",
-      "focused-investigationの固定7 requirement ID／10 unit候補閉包、Binding artifact／archive MANIFEST digest、status非昇格"
+      "focused 7 records全15 fieldsを固定BASEのrequirements/L1/L9、9 partition、archive MANIFEST、disposition/decision/read-afterから型付き再導出し、参照blob digestをsnapshotと照合する"
     ],
     "negative_cases": [
+      "E_BUNDLE",
       "E_BASE_NOT_ANCESTOR",
       "E_BASE_COMMIT",
       "E_INPUT_DIGEST",
-      "E_SOURCE_PARTITION_SET",
       "E_RECORD_SET",
       "E_PRODUCT_DENOMINATOR",
       "E_IRCONN_DENOMINATOR",
@@ -213,7 +213,9 @@
       "E_INVENTORY_DECLARATION",
       "E_RECORD_RELATION",
       "E_AUTHORITY_BOUNDARY",
-      "E_TOP_LEVEL_KEY"
+      "E_TOP_LEVEL_KEY",
+      "E_OUTPUT_DIGEST",
+      "E_TRANSFER_MANIFEST"
     ]
   },
   "replacement": {
