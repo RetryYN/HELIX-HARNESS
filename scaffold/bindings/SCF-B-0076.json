@@ -15,13 +15,13 @@
     },
     {
       "path": "docs/helix-harness/README.md",
-      "sha256": "f70528c8fd054ea4f18634ad98bd93b0a390186d1c6cbc4e15d19ffa3639b2b5",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "c1de59e410896a5f34a03d147a65f360af7b2d5f22ddd573dd9f539142db2e30",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117; 旧意味の採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で候補の入口行を追加。本bindingは移した項目（HELIXOS-L1-011／012、HELIXOS-L2-005の改善研究、HELIXOS-L2-012／013、限定修復、監査AAFD、学習RCLS）に依存しないことをbinding全体で確認した。前receipt=f70528c8fd054ea4f18634ad98bd93b0a390186d1c6cbc4e15d19ffa3639b2b5; 現receipt=c1de59e410896a5f34a03d147a65f360af7b2d5f22ddd573dd9f539142db2e30; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-os/README.md",
-      "sha256": "6a19117ad1d2f1556d11214da277837fc73adb76e8854d76591468cac4f54f3f",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=aa6c9976bf564ef4c2ff0f8d7b07220108e7157f697b8d92e11c689b4060f773; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "ea9d4b2a108c709691831bd8f131c2588d72e913315ab66f3d33a46ead6013ea",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=aa6c9976bf564ef4c2ff0f8d7b07220108e7157f697b8d92e11c689b4060f773; 旧意味の採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で候補の入口行と、L2の2件の移管を追記。本bindingは移した項目（HELIXOS-L1-011／012、HELIXOS-L2-005の改善研究、HELIXOS-L2-012／013、限定修復、監査AAFD、学習RCLS）に依存しないことをbinding全体で確認した。前receipt=6a19117ad1d2f1556d11214da277837fc73adb76e8854d76591468cac4f54f3f; 現receipt=ea9d4b2a108c709691831bd8f131c2588d72e913315ab66f3d33a46ead6013ea; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web-os/README.md",
@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/governance/crosswalks/legacy-concept-derived-requirements.md",
-      "sha256": "cda2de763e2e05f629727e09672cd66de6693a78e0c07e5acd4932d8f315f6b9",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a65504da98057890ff55f598e8cae6f13cf823c84de9b8fae89f4940f895ab91; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=a2872bb85b81af2d0c3c18d8b92c60cf43f360508e0418185051e86f29df3a9e; 現receipt=cda2de763e2e05f629727e09672cd66de6693a78e0c07e5acd4932d8f315f6b9]"
+      "sha256": "a5bde333d3eea07fe6303dea6a072ee7520e5c3183ccd658c8961d427cd3ec25",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a65504da98057890ff55f598e8cae6f13cf823c84de9b8fae89f4940f895ab91; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=a2872bb85b81af2d0c3c18d8b92c60cf43f360508e0418185051e86f29df3a9e; 現receipt=cda2de763e2e05f629727e09672cd66de6693a78e0c07e5acd4932d8f315f6b9] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で、AAFD・RCLS・PPSの移管先の行に、AAFDをIntelligence、RCLSをLABOへ移しPPSをOSに残した旨の1文を追記。本bindingはAAFD・RCLS・PPSの記述に依存しないことをbinding全体で確認した。前receipt=cda2de763e2e05f629727e09672cd66de6693a78e0c07e5acd4932d8f315f6b9; 現receipt=a5bde333d3eea07fe6303dea6a072ee7520e5c3183ccd658c8961d427cd3ec25; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",

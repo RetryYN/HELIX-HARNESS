@@ -3,16 +3,18 @@ title: "HARNESS設計template system要求候補"
 status: draft_candidate
 authority_status: awaiting_human_approval
 created: 2026-09-15
-updated: 2026-09-15
+updated: 2026-09-25
 product_owner: HELIX-HARNESS
 operational_owner: HELIX-OS
 derived_from:
-  - docs/governance/candidates/requirement-engine-python-core-requirements.md
+  - docs/helix-harness/candidates/requirement-engine-python-core-requirements.md
   - archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md
   - archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md
 ---
 
 # HARNESS設計template system要求候補
+
+2026-09-25のPO判断により、`docs/governance/candidates/`からHELIX-BRAINの候補置き場へ移した（[判断記録](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。本文は移す前のままであり、「HARNESSがtemplateを提供し、HELIX-OSが登録・改善を管理する」という記述と、BRAIN・ヘリックスコア・OSの分担との整合は、後続のPO最適ドラフトで詰める。IDの接頭辞（DST-HARNESS、DST-OS）も追跡のため変えない。
 
 ## 目的とauthority順序
 
@@ -58,6 +60,6 @@ source inventoryへ入れ、意味atomごとに採択する。最小seedは少�
 
 templateの存在は要求充足、設計完成、検証成功を証明しない。旧Design Template JSON、旧#290、旧test、旧CIの成功は
 behavior sourceであり、新世代seedの承認や完成証拠にしない。
-[意味密度による抽出方針](semantic-density-python-extraction-policy.md)に従い、applicability、設計義務、required input不足、
+[意味密度による抽出方針](../../helix-harness/candidates/semantic-density-python-extraction-policy.md)に従い、applicability、設計義務、required input不足、
 backflow、semantic impactはPython core候補、registry commit・版適用・外部作用はtransactional boundary候補として分離し、
 後者の実装技術は新世代architectureからL3以降で選定する。

@@ -358,9 +358,9 @@
       "sha256": "0ee14027def5d74f510b19e030c35f6cc6ec1c88d68c314799f47e777bd2e758"
     },
     {
-      "note": "static input; fixed BASE digest and semantic role only; no execution or authority effect [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc]",
+      "note": "static input; fixed BASE digest and semantic role only; no execution or authority effect [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断でHELIXOS-L1-011（技術調査）とL1-012（横断診断）をHELIX-LABOの候補への案内行に変更。本bindingは移した項目（HELIXOS-L1-011／012、HELIXOS-L2-005の改善研究、HELIXOS-L2-012／013、限定修復、監査AAFD、学習RCLS）に依存しないことをbinding全体で確認した。前receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc; 現receipt=2d2b337d2bd343f803f79e88f8adb0d3f5737b7691e1d8bbe1314227056ba9d6; このBindingの採否・authorityは変更しない。]",
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc"
+      "sha256": "2d2b337d2bd343f803f79e88f8adb0d3f5737b7691e1d8bbe1314227056ba9d6"
     },
     {
       "note": "static input; fixed BASE digest and semantic role only; no execution or authority effect [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271; 現receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 要求層から外し、Visionレベルの材料へ再分類（本文冒頭の注記、status: vision_material）。本文の要求・受入記述はVision材料として読む。前receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23; 現receipt=d5b665017dec1c2f5c71e7006511a11ea81fa0e9aece028c1b9a691588f4fe54; このBindingの採否・authorityは変更しない。]",
@@ -388,9 +388,9 @@
       "sha256": "9ffeeaad81fb3f34daa419b9748e7cdc19a3ec0fb9d6f8591989f8cc59b931d1"
     },
     {
-      "note": "static input; fixed BASE digest and semantic role only; no execution or authority effect",
+      "note": "static input; fixed BASE digest and semantic role only; no execution or authority effect [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関する研究inventoryの現行参照を、移した候補の新しいpathと変わったOS文書の行・固定文へ付け直した（Codex review P2対応。固定文が変わらない参照は行位置とSHAだけ、変わった参照は同じ範囲の現行文へ更新）。validatorはmainと比べて新しい失敗なし。本bindingの役割・義務・接続先・置換先は変わらない。前receipt=316f49667a9b4abf06e1a5d973615efdb2402d07ed4062bea5763a5aba4c39b5; 現receipt=15cab0b35f0f0f14971613641bb7dc2f29ec556127663503a71146a5f1349c9d; このBindingの採否・authorityは変更しない。]",
       "path": "scaffold/phcap20-memory-research/inventory.json",
-      "sha256": "316f49667a9b4abf06e1a5d973615efdb2402d07ed4062bea5763a5aba4c39b5"
+      "sha256": "15cab0b35f0f0f14971613641bb7dc2f29ec556127663503a71146a5f1349c9d"
     }
   ],
   "verification": {

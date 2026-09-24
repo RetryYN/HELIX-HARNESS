@@ -39,9 +39,9 @@
       "note": "PHCAP-06 static upstream/source revision; read-only"
     },
     {
-      "path": "docs/governance/candidates/design-template-system-requirements.md",
-      "sha256": "761465218e29b0b3f4c07021262ee2c263d731943babb9583f12ad685ca45e92",
-      "note": "PHCAP-06 static upstream/source revision; read-only"
+      "path": "docs/helix-brain/candidates/design-template-system-requirements.md",
+      "sha256": "bac718478daf07b0eade81967b3d98fc1ce35076310fd2216f56dc9ff01544c8",
+      "note": "PHCAP-06 static upstream/source revision; read-only [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で、docs/governance/candidates/design-template-system-requirements.md（前receipt=761465218e29b0b3f4c07021262ee2c263d731943babb9583f12ad685ca45e92）をdocs/helix-brain/candidates/design-template-system-requirements.mdへ移した。本bindingは移した先の本文を上流として読む。要求の行と受入候補の行の文言は変えていない。現receipt=bac718478daf07b0eade81967b3d98fc1ce35076310fd2216f56dc9ff01544c8; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/feature-tickets/FT-HARNESS-DESIGNTPL-001.md",
@@ -60,8 +60,8 @@
     },
     {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "sha256": "d02c70de36d370b09fe403f5ebf0fb921ef19da04fe11ec55b0ac84ffb2bbd7a",
-      "note": "PHCAP-06 static upstream/source revision; read-only [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HARNESS-L2-001..009の文言変更（L2.5、リリースカンバン、導出、動的CI、サービス単位、1.0土台、要求エンジン1次／2次形成、Backflow）とticket導出コア節への置換。前receipt=a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77; 現receipt=c775ba4988003d373cbede7a8bb177aaea3b4a59772397e6f2384878f2517f31; このBindingの採否・authorityは変更しない。] [2026-09-25 PR #2128 review修正read-after: Codex review指摘への修正で、L2.5の適用をPrototype（画面の有無）とPoC（成立性不明）で別判定にする工程規則1行だけを変更。binding全体のticket・L2.5への依存を再確認し、role・obligations・verificationへの影響なし。前receipt=c775ba4988003d373cbede7a8bb177aaea3b4a59772397e6f2384878f2517f31; 現receipt=d02c70de36d370b09fe403f5ebf0fb921ef19da04fe11ec55b0ac84ffb2bbd7a; このBindingの採否・authorityは変更しない。]"
+      "sha256": "1c5866127960956c7943218aa8571c8eb743fc98b28b7137c1816974f2b7aec4",
+      "note": "PHCAP-06 static upstream/source revision; read-only [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HARNESS-L2-001..009の文言変更（L2.5、リリースカンバン、導出、動的CI、サービス単位、1.0土台、要求エンジン1次／2次形成、Backflow）とticket導出コア節への置換。前receipt=a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77; 現receipt=c775ba4988003d373cbede7a8bb177aaea3b4a59772397e6f2384878f2517f31; このBindingの採否・authorityは変更しない。] [2026-09-25 PR #2128 review修正read-after: Codex review指摘への修正で、L2.5の適用をPrototype（画面の有無）とPoC（成立性不明）で別判定にする工程規則1行だけを変更。binding全体のticket・L2.5への依存を再確認し、role・obligations・verificationへの影響なし。前receipt=c775ba4988003d373cbede7a8bb177aaea3b4a59772397e6f2384878f2517f31; 現receipt=d02c70de36d370b09fe403f5ebf0fb921ef19da04fe11ec55b0ac84ffb2bbd7a; このBindingの採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で限定修復の実行統制の所有を移管先の案内に改め、候補へのリンクを新しい場所へ変更。本bindingは移した項目（HELIXOS-L1-011／012、HELIXOS-L2-005の改善研究、HELIXOS-L2-012／013、限定修復、監査AAFD、学習RCLS）に依存しないことをbinding全体で確認した。前receipt=d02c70de36d370b09fe403f5ebf0fb921ef19da04fe11ec55b0ac84ffb2bbd7a; 現receipt=1c5866127960956c7943218aa8571c8eb743fc98b28b7137c1816974f2b7aec4; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
@@ -70,18 +70,18 @@
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc",
-      "note": "PHCAP-06 static upstream/source revision; read-only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc]"
+      "sha256": "2d2b337d2bd343f803f79e88f8adb0d3f5737b7691e1d8bbe1314227056ba9d6",
+      "note": "PHCAP-06 static upstream/source revision; read-only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断でHELIXOS-L1-011（技術調査）とL1-012（横断診断）をHELIX-LABOの候補への案内行に変更。本bindingは移した項目（HELIXOS-L1-011／012、HELIXOS-L2-005の改善研究、HELIXOS-L2-012／013、限定修復、監査AAFD、学習RCLS）に依存しないことをbinding全体で確認した。前receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc; 現receipt=2d2b337d2bd343f803f79e88f8adb0d3f5737b7691e1d8bbe1314227056ba9d6; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "8e950ed6531709bddeece56c71ec12b6911935c61ee4306288136a712d5c13a5",
-      "note": "PHCAP-06 static upstream/source revision; read-only [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HELIXOS-L2-002／004／005／006／007／008／010／011／012／013とHMC-BR-003／006の文言変更、ticket節の追加、旧ticket候補文書への参照を退役扱いへ変更。前receipt=78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be; 現receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; このBindingの採否・authorityは変更しない。] [2026-09-25 PR #2128 review修正read-after: Codex review指摘への修正で、ticket表のPoC行（画面の有無に関係なく成立性不明で発行）とReverse行（Scrum Reverseのcheckpointから計画的にも発行）だけを変更。binding全体のticket・L2.5への依存を再確認し、role・obligations・verificationへの影響なし。前receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; 現receipt=8e950ed6531709bddeece56c71ec12b6911935c61ee4306288136a712d5c13a5; このBindingの採否・authorityは変更しない。]"
+      "sha256": "152fd45e3ac29867ef1b2c604f8400fcd8a6e965078a7cd663183a1177e113fe",
+      "note": "PHCAP-06 static upstream/source revision; read-only [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HELIXOS-L2-002／004／005／006／007／008／010／011／012／013とHMC-BR-003／006の文言変更、ticket節の追加、旧ticket候補文書への参照を退役扱いへ変更。前receipt=78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be; 現receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; このBindingの採否・authorityは変更しない。] [2026-09-25 PR #2128 review修正read-after: Codex review指摘への修正で、ticket表のPoC行（画面の有無に関係なく成立性不明で発行）とReverse行（Scrum Reverseのcheckpointから計画的にも発行）だけを変更。binding全体のticket・L2.5への依存を再確認し、role・obligations・verificationへの影響なし。前receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; 現receipt=8e950ed6531709bddeece56c71ec12b6911935c61ee4306288136a712d5c13a5; このBindingの採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断でHELIXOS-L2-005を改善候補の登録と振り分けに限定し、L2-012・L2-013を案内行に、限定修復の節と監査（AAFD）・学習（RCLS）をLABO・Intelligenceの候補へ移し、候補へのリンクを新しい場所へ変更。本bindingは移した項目（HELIXOS-L1-011／012、HELIXOS-L2-005の改善研究、HELIXOS-L2-012／013、限定修復、監査AAFD、学習RCLS）に依存しないことをbinding全体で確認した。前receipt=8e950ed6531709bddeece56c71ec12b6911935c61ee4306288136a712d5c13a5; 現receipt=152fd45e3ac29867ef1b2c604f8400fcd8a6e965078a7cd663183a1177e113fe; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "sha256": "0ccc748b3e8e09ab92bc17380a19d4053f338050d4f2497e14d8a9efa6b634ad",
-      "note": "PHCAP-06 static upstream/source revision; read-only [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HMC-BR-003／006の受入文言をPO判断に合わせて変更。前receipt=db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19; 現receipt=0ccc748b3e8e09ab92bc17380a19d4053f338050d4f2497e14d8a9efa6b634ad; このBindingの採否・authorityは変更しない。]"
+      "sha256": "c467403b2e4c7b53f1e492427c1b10d962b20c2f89b3e815a9fafc1765d14a1d",
+      "note": "PHCAP-06 static upstream/source revision; read-only [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HMC-BR-003／006の受入文言をPO判断に合わせて変更。前receipt=db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19; 現receipt=0ccc748b3e8e09ab92bc17380a19d4053f338050d4f2497e14d8a9efa6b634ad; このBindingの採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断でHELIXOS-L2-012・013の受入行を案内行に、限定修復と監査・学習の受入条件をLABO・Intelligenceの候補へ移した。本bindingは移した項目（HELIXOS-L1-011／012、HELIXOS-L2-005の改善研究、HELIXOS-L2-012／013、限定修復、監査AAFD、学習RCLS）に依存しないことをbinding全体で確認した。前receipt=0ccc748b3e8e09ab92bc17380a19d4053f338050d4f2497e14d8a9efa6b634ad; 現receipt=c467403b2e4c7b53f1e492427c1b10d962b20c2f89b3e815a9fafc1765d14a1d; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web/L1-planning/product-intent.md",
@@ -120,13 +120,13 @@
     },
     {
       "path": "scaffold/phcap06-design-research/inventory.json",
-      "sha256": "132d27ccb26c8cca9ff492472edc6f2b9da9a8d248152c553dd6efe4b2b597ea",
-      "note": "PHCAP-06 candidate artifact"
+      "sha256": "420265b4c10527ff062ef9124e24bcc9aca89d4d1884cf2ea9a384c8e0768840",
+      "note": "PHCAP-06 candidate artifact [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関する研究inventoryの現行参照を、移した候補の新しいpathと変わったOS文書の行・固定文へ付け直した（Codex review P2対応。固定文が変わらない参照は行位置とSHAだけ、変わった参照は同じ範囲の現行文へ更新）。validatorはmainと比べて新しい失敗なし。本bindingの役割・義務・接続先・置換先は変わらない。前receipt=132d27ccb26c8cca9ff492472edc6f2b9da9a8d248152c553dd6efe4b2b597ea; 現receipt=420265b4c10527ff062ef9124e24bcc9aca89d4d1884cf2ea9a384c8e0768840; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/phcap06-design-research/validate.py",
-      "sha256": "4e65eb1af6853b8768db5333b1fff4cae0a83e64d87c679b3190fee9bbf640c0",
-      "note": "PHCAP-06 candidate artifact"
+      "sha256": "0a025de5420b33be38cd9a914d550c26ce070cb4dfd5f5082ad8a417c5062fda",
+      "note": "PHCAP-06 candidate artifact [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関する研究inventoryの現行参照を、移した候補の新しいpathと変わったOS文書の行・固定文へ付け直した（Codex review P2対応。固定文が変わらない参照は行位置とSHAだけ、変わった参照は同じ範囲の現行文へ更新）。validatorはmainと比べて新しい失敗なし。本bindingの役割・義務・接続先・置換先は変わらない。前receipt=4e65eb1af6853b8768db5333b1fff4cae0a83e64d87c679b3190fee9bbf640c0; 現receipt=0a025de5420b33be38cd9a914d550c26ce070cb4dfd5f5082ad8a417c5062fda; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/phcap06-design-research/selfcheck.py",
