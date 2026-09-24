@@ -110,8 +110,8 @@
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/generate.py",
-      "sha256": "100150fec22171813491c037566dfd33b83c3cf80112cd6b1e462c1fdfaf9b89",
-      "note": "PHCAP-08/09 static upstream revision"
+      "sha256": "c35fb21d25f983568e7676ae3a50cf44b482ad7eb83ef67184a03738e67fdfbf",
+      "note": "PHCAP-08/09 static upstream revision [2026-09-25 exact rebind: PHCAP-08/09のgenerate.pyでBOUNDARY-UNIT-CONNECTION spanを現行source位置12–29から13–30へ移し、generator出力inventoryとvalidate.pyのcode-pinned位置を同じ13–30へ揃えた。WBS語彙／ticket候補のidentity、製品unit、Web/Web-OSのdirect evidence不在、WBS／ticket authority falseは変更していない。role=PHCAP-08/09のWBS名監査とticket path catalog、obligations=source filename一致0・ticket 9件・7 legacy assetを維持。verification=validator/selfcheckの静的oracleとnegative cases、replacement=pendingのまま。digest 100150fec22171813491c037566dfd33b83c3cf80112cd6b1e462c1fdfaf9b89→c35fb21d25f983568e7676ae3a50cf44b482ad7eb83ef67184a03738e67fdfbf.]"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/README.md",
@@ -120,13 +120,13 @@
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/inventory.json",
-      "sha256": "25714caff197c948fa40f959dc78d32d236fa8502b6bf41c863ad836f052346f",
-      "note": "PHCAP-08/09 static upstream revision [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関する研究inventoryの現行参照を、移した候補の新しいpathと変わったOS文書の行・固定文へ付け直した（Codex review P2対応。固定文が変わらない参照は行位置とSHAだけ、変わった参照は同じ範囲の現行文へ更新）。validatorはmainと比べて新しい失敗なし。本bindingの役割・義務・接続先・置換先は変わらない。前receipt=8cb288e167e248f17a811b760b03f02277531d46d6676487b2a7102fb63127fc; 現receipt=8a7b049adc53a7207deb17cf58a64880630957b3d0b6b37a4a4a07059379d02f; このBindingの採否・authorityは変更しない。] [2026-09-25 full-binding read-after/rebind: scaffold/phcap08-09-wbs-ticket-static/inventory.json 8a7b049adc53a7207deb17cf58a64880630957b3d0b6b37a4a4a07059379d02f→25714caff197c948fa40f959dc78d32d236fa8502b6bf41c863ad836f052346f. このbindingのrole・obligations・connections・operations・artifacts・verification／negative cases・replacementと他upstream依存を全体確認。変更は記録対象sourceの現行bytes参照更新のみで、authority・role・scope・admissionは不変。Web/Web-OS ref本文はvision_materialへ変化。draft/freeze-blockingの解釈は意味不一致として一覧対象。]"
+      "sha256": "49613de3daefd5d75237d5fff1d1a6dd9c4b4a93fcb0f67acc571b1be630c1a8",
+      "note": "PHCAP-08/09 static upstream revision [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関する研究inventoryの現行参照を、移した候補の新しいpathと変わったOS文書の行・固定文へ付け直した（Codex review P2対応。固定文が変わらない参照は行位置とSHAだけ、変わった参照は同じ範囲の現行文へ更新）。validatorはmainと比べて新しい失敗なし。本bindingの役割・義務・接続先・置換先は変わらない。前receipt=8cb288e167e248f17a811b760b03f02277531d46d6676487b2a7102fb63127fc; 現receipt=8a7b049adc53a7207deb17cf58a64880630957b3d0b6b37a4a4a07059379d02f; このBindingの採否・authorityは変更しない。] [2026-09-25 full-binding read-after/rebind: scaffold/phcap08-09-wbs-ticket-static/inventory.json 8a7b049adc53a7207deb17cf58a64880630957b3d0b6b37a4a4a07059379d02f→25714caff197c948fa40f959dc78d32d236fa8502b6bf41c863ad836f052346f. このBindingは『PHCAP-08/09 WBS・Ticket生成の四製品境界と旧資産静的証拠』であり、role=PHCAP-08/09のWBS名監査、ticket path catalog、旧asset source/phase/product/failure/consumer候補、四製品境界をread-only research premiseとして保持する。確認したobligations=PHCAP-08台帳source_path／archive filenameのWBS同名一致0と全archive 4,020件の本文語彙45を同一視せず、近似候補をsemantic equivalence unresolvedで保持する; PHCAP-09 ticket path 9件をsource hash／line count／ledger／phase stateで固定し、代表3件だけexact source spanを展開する。inventory参照 scaffold/phcap08-09-wbs-ticket-static/inventory.json を25714caff197c948fa40f959dc78d32d236fa8502b6bf41c863ad836f052346fから49613de3daefd5d75237d5fff1d1a6dd9c4b4a93fcb0f67acc571b1be630c1a8へ更新した。generatorとinventoryの同節spanを現行sourceに一致させた。Web／Web-OS L2/L11はVision材料で、draft/freeze-blocking前提は意味不一致として保持。 verification scope=schema_interface／deterministic_behavior／source_revision_stale／negative_case／forbidden_write_scope、replacement status=pending／target=正式PHCAP-08/09 WBS／Ticket contract、four-product routing、phase／consumer／failure crosswalk（承認後に導出）を保持し、本文改訂が触れる意味差分は意味不一致記録に残す。Web/Web-OS ref本文はvision_materialへ変化。draft/freeze-blockingの解釈は意味不一致として一覧対象。]"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/validate.py",
-      "sha256": "988ed810c348ca5447f5df24c26f762c33622b98ecde5eb7f6aa40e2532041e5",
-      "note": "PHCAP-08/09 static upstream revision"
+      "sha256": "785c5a5151be8f7f9b1372a9a3a25d18646cc9d8144c79cee43d696a0bf86132",
+      "note": "PHCAP-08/09 static upstream revision [2026-09-25 exact rebind: PHCAP-08/09のvalidate.pyでBOUNDARY-UNIT-CONNECTION spanを現行source位置12–29から13–30へ移し、generator出力inventoryとvalidate.pyのcode-pinned位置を同じ13–30へ揃えた。WBS語彙／ticket候補のidentity、製品unit、Web/Web-OSのdirect evidence不在、WBS／ticket authority falseは変更していない。role=PHCAP-08/09のWBS名監査とticket path catalog、obligations=source filename一致0・ticket 9件・7 legacy assetを維持。verification=validator/selfcheckの静的oracleとnegative cases、replacement=pendingのまま。digest 988ed810c348ca5447f5df24c26f762c33622b98ecde5eb7f6aa40e2532041e5→785c5a5151be8f7f9b1372a9a3a25d18646cc9d8144c79cee43d696a0bf86132.]"
     },
     {
       "path": "scaffold/phcap08-09-wbs-ticket-static/selfcheck.py",

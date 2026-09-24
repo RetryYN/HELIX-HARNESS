@@ -26,7 +26,7 @@ scope: Codex目標1、`8e37e3c94`で失敗していた`scaffold/**/validate.py`
 | `pre-isolation-outside-l1-semantic` | この候補は`CURRENT_HEAD=3df81ad`のHARNESS/OS/Web/Web-OS L1を「承認済み」と扱い、Web/Web-OSを含む4件の`exact`/`partial` relation、行anchor、2026-09-17 decision SHAを固定する。現行Web/Web-OS L1はVision材料へ再分類され要求根拠ではない。HARNESS/OS L1も親Conceptと内容が更新され、OS要求L1-011/012はLABOへ移管された。validatorはrelation数、CURRENT SHA、generator SHA、inventory SHAを独立固定している。 | historical captureを維持する。旧relationを現行承認L1のrelationと読み替えず、現行revisionに対する別のsemantic comparisonが必要な不一致として残す。 |
 | `pre-isolation-outside-holding-67-migration` | 固定capture SHA `9face795…f0c`の`phase-capability-inventory.json`は、現行`2ffa4114…f6c2`と異なる。差分はPHCAP-01の`approved_current`から`approved_historical_revision_current_l1_draft`へのauthority状態変更と、parent path `helix-concept-v4.1.md`から`helix-concept.md`への変更である。READMEはこのphase inventoryをhistorical Wave verifier固定入力として保持する契約を記録する。 | capture値を現行SHAへ書き換えない。過去captureと現在revisionの明示的な二時点関係を再baselineする対象として残す。 |
 | `rdp001-delegated-doc001-atom-030` | `docs/concept/helix-concept-v4.1.md`は現行pathに存在せず、4製品L1の固定digestもstaleである。 | authority evidence pathとrevisionの再導出が必要なため、条件を保留。 |
-| `phcap15-17-orphan-asset-links` | product-boundaryではOSの管理・統制を管理・推進・検収へ分け、LABO評価とIntelligence改善を追加した。crosswalk-statusでは全量crosswalk／全asset評価を一律の開始前提とする記述を、選択unitに必要な関係assetだけをL3で調べる判断時期へ変更した。両方とも六旧assetのroute／coverage解釈へ影響する。 | product attributionとunreferenced-asset意味を再照合するまで入力digest・意味条件を変更しない。 |
+| `phcap15-17-orphan-asset-links` | pinned provenanceはphase inventory `9face795…`、product-boundary `097f273…`、crosswalk-status `f1431d…`。現行はphase inventory `2ffa411…`（PHCAP-15 `draft_requirement`／Web-OS含有、PHCAP-17 `thin_candidate`）、product-boundary `9268e357…`（OSの管理・推進・検収、LABO評価、Intelligence改善）、crosswalk-statusは現行改訂である。phase inventory・境界・crosswalkの三つともdigest mismatch。 | 固定snapshotと現行判断の同一性を推測せず、検査条件を変更しない。phase/product attribution、unreferenced-assetの意味と判断時期を再導出するまで不一致として残す。 |
 | `rdp001-outside67-followup-069` | validatorがcounterpartに固定するPATH-052/056の`docs/governance/candidates/{ai-readable-authority-requirements,next-generation-ci-requirements}.md`は、現行repoに存在しない。`rg --files docs`で同basenameを検索するとHARNESS配下とOS配下に各2件ある。現行要件対応表は候補の所属先と所有責務を分離しており、旧単一候補pathとどの現行文書が同一identityか、固定pathだけからは特定できない。 | 旧pathをどちらかの同名候補へ推測で付け替えない。候補不在とidentity未確定を意味不一致として残す。 |
 | `rdp001-web-webos-vision-coverage-0091` | coverage検査のproduct-boundary inputは、旧4対象/旧責務表から8機構・2共通部品、HARNESS/Webの外部提供属性、OS・LABO・Intelligenceの分担を含む現行Concept接続へ変わった。旧coverage countは現行のVision素材と製品境界の集合を数えた値ではない。 | 旧coverage countをcurrent判定へ使わず、現行入力で再導出する対象として残す。 |
 | `rdp001-outside67-web-webos-l1-anchor-0121` | 固定した旧4対象境界のdigestが現行`product-boundary.md`と一致しない。現行境界は対象の列挙だけでなく、OSの管理・推進・検収、LABO評価、Intelligence改善、HARNESS/Webの製品属性を分けるため、旧L1 anchorのowner／責務を現行boundaryへ機械的に移せない。 | 固定L1 anchorの意味を再導出するまでdigest条件を維持する。 |
@@ -46,10 +46,60 @@ scope: Codex目標1、`8e37e3c94`で失敗していた`scaffold/**/validate.py`
 
 PHCAP-16/19/20の一部current refsは再固定後のvalidatorがgreenだが、これは参照整合のみを示す。Web/Web-OSのL2/L11を要求根拠またはdraftとする他のcandidate記述が見つかった場合は、9/24判断との意味照合を別に行う。
 
+## 独立review #5820610471への対応
+
+対象はbase `1f330f245ff7034dcc606a56c96f6c11ee012a8b`に対する92個のcurrent source refs（`current_refs`と`current_evidence.refs`）。比較はinventory配列ごとに`ref_id`を対応させ、各base `exact_text`の現行source内出現数、current spanのline slicing結果、line SHA、source SHAを照合した。修正前HEADでは92件中87件の`exact_text`フィールドが置換されていた。その87件中35件は旧固定本文が現行sourceに残り、52件は旧固定本文が消失していた。35件はbaseの固定文へ戻し、5件の本文不変・source SHA変更も合わせ、現行sourceに残る計40件を正しいspanへ再固定した。52件は現行後継または意味不一致として下表へ個別記録。修正後、旧本文が現行sourceに残るのに別節へ固定された件数は0件。
+
+旧本文が消失した52件は、同じ現行source内にある現行参照（`exact_text`）を後継候補として照合した。次表の「同節後継」はanchorが指す責務節を保った参照・文言更新、「意味不一致」はPO判断または責務移管で旧sourceの前提と現在の意味が異なり、検査条件を変えないまま残すものを示す。IDはbase inventoryの配列単位で列挙する。
+
+| inventory / ref IDs | 現行の後継・差分 | disposition |
+|---|---|---|
+| `phcap04-05`: `CUR-OS-L2` | HELIX-OS L2候補のfront matterと要求本文が現行のPO判断・candidate配置に合わせて更新された。 | 同節後継。本文SHAとline SHAを現行spanへ固定。 |
+| `phcap04-05`: `CUR-WEB-L2`, `CUR-WEBOS-L2`, `CUR-WEB-L11`, `CUR-WEBOS-L11` | 各文書の冒頭に9/24 PO判断による`vision_material`注記が追加され、要求・受入のauthority前提が変わった。 | 意味不一致。旧draft要求前提は保持し、現行Vision材料へは意味昇格させない。 |
+| `phcap06`: `CUR-06-HARNESS-L1`, `CUR-06-HARNESS-L2`, `CUR-06-OS-L1` | HARNESS L1は親Concept参照とVersion 1土台を反映。HARNESS L2はticket／工程・要求条件の現行候補へ更新。OS L1は管理・推進・検収の分担と9/25移管を反映。 | 同節後継。ただしOS L1-011/012とLABO移管は下段の意味不一致表にも計上。 |
+| `phcap06`: `CUR-06-WEB-L1`, `CUR-06-WEB-L11`, `CUR-06-WEBOS-L1`, `CUR-06-WEBOS-L2`, `CUR-06-WEBOS-L11` | L1/L2/L11本文冒頭がPO判断でVision材料へ再分類された。 | 意味不一致。旧要求・受入前提を維持。 |
+| `phcap07`: `CUR-BOUNDARY` | product-boundaryの同じ対象責務表を現行見出し・行境界で再固定した。旧本文の意味は変わらない。 | 同節後継。 |
+| `phcap08-09`: `BOUNDARY-IDENTITY-LOOP` | product-boundaryの同じ対象別入口・identity節を現行行境界で再固定した。 | 同節後継。 |
+| `phcap08-09`: `OS-L2` | HELIX-OS要求候補は現行PO判断・candidate配置に合わせて更新された。 | 同節後継。 |
+| `phcap08-09`: `WEB-L2`, `WEBOS-L2`, `WEB-L11`, `WEBOS-L11` | 9/24判断でL2/L11を要求層から外し、文書冒頭にVision材料と記録された。 | 意味不一致。 |
+| `phcap10-11`: `CUR-BOUNDARY-FOUR`, `CUR-BOUNDARY-OWNERSHIP` | product-boundaryの対象表・所有境界は現行の8機構・共通部品、外部提供属性、各機構責務に更新された。 | 同節後継。ただしscopeの旧4対象固定は現行構成を意味しない。 |
+| `phcap10-11`: `CUR-OS-L2-WORKER-CI` | HELIX-OS L2-004等の責務・配置記述は、9/25のOS推進／LABO評価／Intelligence改善の分担と現行候補へ更新された。 | 意味不一致。旧Worker/CI固定責務の検査条件は変更しない。 |
+| `phcap12-13`: `BOUNDARY-UNIT-CONNECTION` | product-boundaryの同じPO由来要求境界・接続節を、現行表見出しを含むspanへ再固定した。 | 同節後継。 |
+| `phcap12-13`: `OS-REVIEW-HANDOFF`, `GITHUB-UPSTREAM-MODEL` | review handoff／upstream operationの節は現行の独立review通路・作成側／review側契約に更新された。 | 同節後継。旧文言をreview条件の根拠として扱わない。 |
+| `phcap12-13`: `OS-L2`, `WEB-L2`, `WEBOS-L2`, `WEB-L11`, `WEBOS-L11` | 現行要求文書・Vision分類により旧固定本文は置換された。Web/Web-OSは9/24判断で要求層から外れた。 | OSは同節後継。Web/Web-OSは意味不一致。 |
+| `phcap14`: `CUR-OS-L2-14` | OS L2 Worker・運用要求行が現行candidate本文に更新された。 | 同節後継。 |
+| `phcap14`: `CUR-WEB-L1-14` | HELIX-Webの利用者価値・1.x提供範囲が、HARNESS Version 1後のサービス提供単位を示す現行候補へ更新された。 | 意味不一致。旧dashboard中心scopeを現行決定として扱わない。 |
+| `phcap14`: `CUR-WEB-L11-14`, `CUR-WEBOS-L1-14`, `CUR-WEBOS-L11-14` | L1/L11冒頭のVision材料注記で要求／受入authorityが変わった。 | 意味不一致。 |
+| `phcap16`: `CUR-PRODUCT-BOUNDARY` | product-boundaryの同じOS/Web責務節を現行段落境界で再固定した。 | 同節後継。 |
+| `phcap17`: `CUR-HARNESS-L1-01` | HARNESS L1は現行Concept親と承認revisionへの案内を含む後継文面へ更新された。 | 同節後継。 |
+| `phcap17`: `CUR-OS-L1-01` | OS L1のauthority・推進・検収・LABO/Intelligence分担が9/25判断で更新された。 | 意味不一致。 |
+| `phcap17`: `CUR-BOUNDARY-01`, `CUR-BOUNDARY-02` | product-boundaryの同じ対象表・ownership表が現行責務分担へ更新された。 | 同節後継。 |
+| `phcap19`: `CUR-OS-L1` | OS L1-011/012はLABO候補への案内へ変わり、OSの学習責務が現行分担へ更新された。 | 意味不一致。 |
+| `phcap19`: `CUR-HARNESS-L1`, `CUR-HARNESS-L2`, `CUR-WEB-L1` | HARNESS L1は1.0土台の追記、HARNESS L2はcandidate path再配置、Web L1は1.x提供範囲を反映した後継文面。 | HARNESSは同節後継。Webは意味不一致。 |
+| `phcap19`: `CUR-BOUNDARY` | product-boundaryの同じ対象別要求表を現行行境界で再固定した。 | 同節後継。 |
+| `phcap20`: `CUR-OS-L1` | OS L1-011/012のLABO移管とOSの現在責務を反映。 | 意味不一致。 |
+| `phcap20`: `CUR-OS-L2-MEMORY` | 同じ有期限通知・memory節は残るが、PO判断でmemoryはCodex/Claude連携に限定し、規則・知識保持をLABO／Intelligenceへ分けた。 | 意味不一致。節をNIO節へ取り違えず、旧memory責務条件を保持。 |
+| `phcap20`: `CUR-BOUNDARY` | product-boundaryの同じ対象別要求表を現行行境界で再固定した。 | 同節後継。 |
+| `phcap20`: `CUR-HARNESS-L1`, `CUR-HARNESS-L2`, `CUR-WEB-L1` | HARNESS L1追記、HARNESS L2 candidate path移動、Web L1の1.x範囲を反映。 | HARNESSは同節後継。Webは意味不一致。 |
+
+この52件の内訳は、表のref ID単位で「同節後継」24件、「意味不一致」28件。後者は上のvalidator意味不一致一覧にも含め、参照状態と検査結果を混同しない。
+
+### 所見番号ごとの処置
+
+| Claude所見 | 処置・検証 |
+|---|---|
+| Blocker 1: exact_textの誤span | 修正前HEADの92 refをbase inventoryと配列・ID単位で比較。87 text field置換中、旧本文残存35、消失52。現存40件（35件復元+本文不変でSHAのみ異なる5件）を同一本文の現行spanへ修正し、誤位置0をline slicingで確認。消失52件は上表にID単位で後継／意味不一致を記録。 |
+| Major 1: PHCAP責務・authority差 | `phcap04-05` Web/Web-OS L2/L11、`phcap06` Web/Web-OS L1/L2/L11とOS L1、`phcap12-13` Web/Web-OS L2/L11、`phcap14` Web L1・Web-OS L1/L11、`phcap17` OS L1、`phcap19/20` OS L1を上の意味不一致表へ明記。Vision材料・LABO移管を条件変更でgreenにしない。 |
+| Major 2: PATH-038 hash主張 | `content_hash_matches_archive=false`へ訂正し、current `c897…` / 9884 bytes と archive `24ef…` / 5659 bytes のdriftを明記。validator条件を変更せず、対象検査は`E_COUNTERPART:OUTSIDE67-PATH-038`でfail。 |
+| Major 3: binding rebind note | 28 upstream noteを27 binding（SCF-B-0014/0016/0020/0025/0028/0030/0031/0034/0039/0040/0041/0042/0046/0101/0105/0109–0116/0119/0130/0131/0134）で個別に更新。各noteに当該bindingのrole、対象obligations、verification scope、replacement target/status、変化したinventory/sourceと意味影響を記録。特にB-0020はmemory節の責務変更とOS L1 LABO移管、B-0039/0041はWeb/Web-OS Vision材料分類、B-0041はgenerator・validator・inventoryのline 13–30同期を明記。 |
+| Minor 1: PHCAP02/03 historical capture | validatorのcurrent phase dataは現行 `2ffa…` をpinし、outside67 migration READMEがhistorical capture `9face…` を保持する契約は変更しない。別々の時点・契約として照合。 |
+| Minor 2: 不一致の重複計上 | 現在のbaseline 47件は18 green／29 fail。PATH-038のfalse/drift修正で、従来greenと数えていた1件を検査条件不一致としてfailへ戻した。意味不一致一覧の各行とvalidator exitは一対一ではなく、少なくとも5件はgreen参照修復と重複するため、一覧行数をbaseline fail数に加算しない。 |
+| Minor 3: `base.worktree`履歴値 | `scaffold/phcap02-03-registration-classification-audit/inventory.json`は`/home/tenni/.helix-worktrees/outside67-migration`へ復元済み。 |
+
 ## 最終照合と検証結果
 
-`8e37e3c94`時点で失敗していた47 validatorを、現在の修復結果・意味不一致記録へ照合した。19件は参照修復後にgreen、28件は検査条件を維持した意味不一致として残る。28件の内訳は、mainへmerge済みの#2134記録6件、#2135記録8件、本記録の意味不一致表14件。各groupは本記録の表とPR #2134/#2135を参照する。
+`8e37e3c94`時点で失敗していた47 validatorを、現在の修復結果・意味不一致記録へ照合した。18件は参照修復後にgreen、29件は検査条件を維持した意味不一致として残る。内訳はmainへmerge済みの#2134記録6件、#2135記録8件、および本記録で更新したPHCAP/RDP意味差（PATH-038の事実訂正を含む）。複数の現行参照が同じ意味差を共有するため、validator数と意味差記録の行数は別に数える。
 
-DOC-002-048の参照修復を含む最終作業treeで `scaffold/**/validate.py` 全137件を実行し、92 pass／45 failを確認した。failのうち28件が上記47 baseline対象に残る意味不一致、残る17件はbaseline対象外である（`legacy-implementation-residual-0126`、`legacy-overlap-reconciliation-0144`、`legacy-test-design-worker-workflow-0148`、`legacy-semantic-review-wave37`〜`wave50`）。よって全137件のpass数と、baseline 47件の処置数は別の分母として報告する。
+DOC-002-048の参照修復を含む現在の作業treeで `scaffold/**/validate.py` 全137件を並列実行し、91 pass／46 failを確認した。failのうち29件が上記47 baseline対象に残る意味不一致、残る17件はbaseline対象外である（`legacy-implementation-residual-0126`、`legacy-overlap-reconciliation-0144`、`legacy-test-design-worker-workflow-0148`、`legacy-semantic-review-wave37`〜`wave50`）。よって全137件のpass数と、baseline 47件の処置数は別の分母として報告する。
 
 `scfctl stale`は0件、`scfctl validate`は142 bindings pass、`scfctl residuals`は0、`scfctl selftest`は69 cases pass。`git diff --check`もpassした。旧archive内runtime・test・CI・hook・adapterは実行していない。

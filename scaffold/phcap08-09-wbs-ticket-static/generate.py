@@ -278,7 +278,7 @@ archive_hidden_component_file_count = sum(
 )
 
 current_refs = [
-    current_ref("BOUNDARY-UNIT-CONNECTION", "docs/concept/product-boundary.md", "ALL", "boundary_current_ref", "Concept", 12, 29, "four-product unit/connection responsibility statements"),
+    current_ref("BOUNDARY-UNIT-CONNECTION", "docs/concept/product-boundary.md", "ALL", "boundary_current_ref", "Concept", 13, 30, "four-product unit/connection responsibility statements"),
     current_ref("BOUNDARY-IDENTITY-LOOP", "docs/concept/product-boundary.md", "ALL", "boundary_current_ref", "Concept", 32, 44, "four product entrances and unit/connection separation"),
     current_ref("HARNESS-L2", "docs/helix-harness/L2-requirements/product-requirements.md", "HELIX-HARNESS", "direct_current_ref", "L2", 1, 36, "HARNESS normative V-model and OS separation candidate"),
     current_ref("OS-L2", "docs/helix-os/L2-requirements/governance-requirements.md", "HELIX-OS", "direct_current_ref", "L2", 1, 35, "OS management/trace and no-implementation candidate"),

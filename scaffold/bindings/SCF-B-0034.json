@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "scaffold/phcap02-03-registration-classification-audit/inventory.json",
-      "sha256": "574206b608e0e103c12eb213c5d6e07220b1b1d8b6a4be635bcb3ee51963ae09",
-      "note": "PHCAP-02/03 phase／product／legacy evidence gap inventory [2026-09-25 full-binding read-after/rebind: scaffold/phcap02-03-registration-classification-audit/inventory.json 44b91a48b911d3d5d0fc6c845d87c06388582adcf5d8eaef3b288951672eaebb→574206b608e0e103c12eb213c5d6e07220b1b1d8b6a4be635bcb3ee51963ae09. このbindingのrole・obligations・connections・operations・artifacts・verification／negative cases・replacementと他upstream依存を全体確認。変更は記録対象sourceの現行bytes参照更新のみで、authority・role・scope・admissionは不変。 ]"
+      "sha256": "44b91a48b911d3d5d0fc6c845d87c06388582adcf5d8eaef3b288951672eaebb",
+      "note": "PHCAP-02/03 phase／product／legacy evidence gap inventory [2026-09-25 full-binding read-after/rebind: scaffold/phcap02-03-registration-classification-audit/inventory.json 44b91a48b911d3d5d0fc6c845d87c06388582adcf5d8eaef3b288951672eaebb→574206b608e0e103c12eb213c5d6e07220b1b1d8b6a4be635bcb3ee51963ae09. このBindingは『PHCAP-02/03 要求登録・分類 四製品／phase／旧実装 evidence gap候補』であり、role=PHCAP-02/03の要求登録・分類、四製品routing、phase join、旧実装／failure／consumer evidenceの欠落をresearch premiseとして保持する。確認したobligations=PHCAP-02/03 current evidence productsを固定し、四製品routing候補をphase authorityへ昇格させない; 32 source_holding、0 requirement_candidate、153 four-product evaluations、phase field不在を同じrevisionで照合する。inventory参照 scaffold/phcap02-03-registration-classification-audit/inventory.json を574206b608e0e103c12eb213c5d6e07220b1b1d8b6a4be635bcb3ee51963ae09から44b91a48b911d3d5d0fc6c845d87c06388582adcf5d8eaef3b288951672eaebbへ更新した。PHCAP-02/03のcurrent evidence products・四製品routing候補は同じinventoryで保持。base.worktreeは外部migration pathへ復元済みで、phase authority／ownerは生成しない。 verification scope=schema_interface／deterministic_behavior／source_revision_stale／negative_case／forbidden_write_scope、replacement status=pending／target=PHCAP-02/03の正式な四製品product／phase／implementation evidence登録とL2/L11下流導出（承認後）を保持し、本文改訂が触れる意味差分は意味不一致記録に残す。 ]"
     },
     {
       "path": "scaffold/phcap02-03-registration-classification-audit/README.md",
