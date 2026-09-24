@@ -9,11 +9,6 @@
   "reason": "2026-09-25 PO判断を入力に、旧HELIXがコアのベースとしていたハイブリッド設計ドキュメントから設計パターン・設計ユニット・パーツ候補、profile、要求入力候補、依存、導出物、旧採用マトリクスとの確認可能な対応、未決事項を調査記録する。候補の採否・要求・設計・権利・authorityは生成しない。",
   "upstream": [
     {
-      "path": "scaffold/design-pattern-inventory-20260925/README.md",
-      "sha256": "baa69faad38d84974a997e2f0818ddb27e10b18d3f4f6137578b62121897c992",
-      "note": "設計パターン候補調査。archiveはread-only閲覧。候補に採否・authority効果なし"
-    },
-    {
       "path": "docs/concept/helix-concept.md",
       "sha256": "5ec3bf383948a3758d0ed29dfbba5ca93df39f363e75e5f542d443166c9c2eae",
       "note": "BRAIN・製品コア・設計パターンに関する現行Concept入力"
