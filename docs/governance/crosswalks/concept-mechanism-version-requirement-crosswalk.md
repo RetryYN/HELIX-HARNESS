@@ -9,7 +9,7 @@
 ## 判定と出所
 
 - 維持：意味・制約・受入をそのまま使う。改変：意味を保ち、担当・分割・接続・具体化を変える。不採用候補：旧実現方式を持ち込まず、目的は消さない。追加：分離構成に必要な接続・運用・受入を補う。いずれも本表の候補であり、原authorityや採否を変更しない。
-- JSONLの`original_text`は原文、`original_constraint`は原表の確認結果・制約またはIR acceptance IDである。`semantic_digest`はIRについてsourceのdigestを転記した。現行L2・DTKの51行は要求文UTF-8 bytes、L1-COVの4行と1.0土台の7行は原表の1行全体のUTF-8 bytesをSHA-256で算出した暫定追跡値である。各行の`digest_method`に対象を記録し、原文と文書revisionは`source_location`と`source_revision`で辿る。
+- JSONLの`original_text`は原文、`original_constraint`は原表の確認結果・制約またはIR acceptance IDである。`semantic_digest`はIRについてsourceのdigestを転記した。現行L2・DTKの51行は要求文UTF-8 bytes、L1-COVの4行と1.0土台の7行は原表の1行全体のUTF-8 bytesをSHA-256で算出した暫定追跡値である。各行の`digest_method`に対象を記録し、原文と文書revisionは`source_location`と`source_revision`で辿る。 PO判断後の現行L2 37行は、`current_source_revision`と`current_source_line_sha256`で現在の定義表行全体（改行を除く）のSHA-256を束縛する。`source_revision`・`semantic_digest`は履歴値として保持し、分類を変更した行は`previous_classification`に前revisionの値を残す。
 - IRは[carry-forward台帳](../legacy-requirement-carry-forward.jsonl)の原ID・revision・原文・digest・source pointerを転記し、`target_assessment`を責務候補として扱った。既存のroutingはsuccessor確定ではない。HARNESS・OSのL2候補22件はdraft、DTKはdraft candidate、L1-COVは監査work unitであり要求IDではない。Web・Web-OSの旧L2候補15件は、2026-09-24のPO判断によりVision材料へ分類され、要求・要件として数えない。
 - 製品属性は機構別に`mechanism_product_attributes`へ記録する。HARNESSとWebのみ`製品`、OS・Web-OS・BRAIN・LABO・Intelligence・Securityは`非製品`、CONNECTとRunner／Sandboxは`共通部品`である。HARNESS内のサービス①〜⑦／入口／枠／部品／コアは独立した`harness_placement`へ記録し、製品属性と混ぜない。複数機構の行は単一ownerの意味ではない。
 - `version_target`はConceptの導入版と照らした**印**であり、採択済みrelease scopeではない。`version_1_0_foundation_candidate=true`は下表の仮ID 7行だけに付け、既存要求の部分候補と全条件被覆を区別する。HARNESS内区分を特定できない行は未特定に保持し、検索範囲と結果を各行に記録した。
