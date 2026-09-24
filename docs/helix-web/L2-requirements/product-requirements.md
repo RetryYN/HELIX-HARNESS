@@ -5,13 +5,15 @@ canonical_layer: L2
 canonical_pair: L11
 layer: L2
 kind: design
-status: draft
+status: vision_material
 freeze_blocking: true
 pair_artifact: docs/helix-web/L11-acceptance/product-acceptance.md
 parent_l1_candidate: docs/helix-web/L1-planning/product-intent.md
 ---
 
 # HELIX-WebのVision由来利用要求案
+
+> **Visionレベルの材料（要求層ではない）**：2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、本書はL1／L2／L11の要求層から外し、Visionレベルの材料として扱う。本書はAIがVision v0.1を拡大解釈して起こしたもので、POが要求として出したものではない。PO：「Visionレベルの話でこれから要求に起こすべき内容であり、いま要求に入ってるのがおかしい」。要求は今後POの指示から起こす。本書の記述を要求・受入・設計・実装の根拠にしない。
 
 HELIX-WebはHELIX-OSが開発・改善projectとして管理し、HELIX-Web-OSが展開後のservice runtimeを担う個別プロダクトである。本書は保存された
 [Vision原文](../../../archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の§6／7／10／11／13／14から、

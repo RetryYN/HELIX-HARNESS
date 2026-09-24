@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "scaffold/bindings/SCF-B-0080.json",
-      "sha256": "3d0f61775d0095774a6057c381f581576fca420e43c7e511c94cad761681a6e2",
-      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+      "sha256": "9879445d4327f2feae5606d65250a05c388200ffabf67177921950386b6e7e31",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure [2026-09-24 PO判断read-after: 参照先bindingへPO判断による前提変化の注記とupstream digest更新を追加しただけで、参照先のrole・obligations・replacementは不変。前receipt=3d0f61775d0095774a6057c381f581576fca420e43c7e511c94cad761681a6e2; 現receipt=9879445d4327f2feae5606d65250a05c388200ffabf67177921950386b6e7e31; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/rdp001-web-webos-vision-source-0080/inventory.json",
@@ -30,13 +30,13 @@
     },
     {
       "path": "docs/helix-web/L2-requirements/product-requirements.md",
-      "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
-      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+      "sha256": "f42d457373e6cc5b7d113f5628455c6abdec237c304abe97fe03842c64867b43",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 要求層から外し、Visionレベルの材料へ再分類（本文冒頭の注記、status: vision_material）。本文の要求・受入記述はVision材料として読む。前receipt=e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0; 現receipt=f42d457373e6cc5b7d113f5628455c6abdec237c304abe97fe03842c64867b43; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
-      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
-      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+      "sha256": "84238131eeb2a60ae0be9c2aff2cb49cb03c7fc09485eb45341f3971dfb98210",
+      "note": "static source or parent Scaffold evidence; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 要求層から外し、Visionレベルの材料へ再分類（本文冒頭の注記、status: vision_material）。本文の要求・受入記述はVision材料として読む。前receipt=632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248; 現receipt=84238131eeb2a60ae0be9c2aff2cb49cb03c7fc09485eb45341f3971dfb98210; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
@@ -84,7 +84,8 @@
     "dependencies": [
       "SCF-B-0080 parent source relation Scaffold",
       "old Vision static Git object",
-      "legacy asset ledgers"
+      "legacy asset ledgers",
+      "2026-09-24 PO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）による前提の変化：HELIX-Web／HELIX-Web-OSのL1・L2・L11はVisionレベルの材料であり要求候補ではない（Conceptの製品属性としてのWeb 1.xは残る）"
     ],
     "boundary": "成果物はscaffold/配下のbounded research candidate。16候補と7 composite_unresolvedはsource-bound research recordであり、正式要求、owner、authority、adoption、implementation、degradation、failure／consumer closureではない。"
   },

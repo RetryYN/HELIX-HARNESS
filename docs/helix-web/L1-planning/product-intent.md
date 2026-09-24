@@ -5,7 +5,7 @@ canonical_layer: L1
 canonical_pair: L12
 layer: L1
 kind: planning
-status: draft
+status: vision_material
 authority_status: draft_candidate
 parent_concept: docs/concept/helix-concept.md
 source_vision: archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md
@@ -15,6 +15,8 @@ updated: 2026-09-14
 ---
 
 # HELIX-Web L1企画候補
+
+> **Visionレベルの材料（要求層ではない）**：2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、本書はL1／L2／L11の要求層から外し、Visionレベルの材料として扱う。本書はAIがVision v0.1を拡大解釈して起こしたもので、POが要求として出したものではない。PO：「Visionレベルの話でこれから要求に起こすべき内容であり、いま要求に入ってるのがおかしい」。要求は今後POの指示から起こす。本書の記述を要求・受入・設計・実装の根拠にしない。
 
 本書の親は[HELIX Concept](../../concept/helix-concept.md)である。保存されたVision原文と2026-09-17のL1承認revisionを保持する。現行本文は未承認の再配置候補であり、差分は[PO判断パッケージ](../../governance/crosswalks/concept-requirement-po-decision-packet.md)に記録する。差分からL2合意や実装指示を生成しない。
 

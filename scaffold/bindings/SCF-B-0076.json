@@ -25,13 +25,13 @@
     },
     {
       "path": "docs/helix-web-os/README.md",
-      "sha256": "8a3f3ba3d8dcb985d536f9925814ffdd5a63d9b84ba12444ea9ad72825b3d3dc",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=f5aac7ab9bc83a8c7339a2190f1e39cbaf3f1271edffc80fbdc37e43a4598914; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "817015b237dd28585d6bf319f4bfe742f9df2cd0aea53c4bb9c4eee1925622b9",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=f5aac7ab9bc83a8c7339a2190f1e39cbaf3f1271edffc80fbdc37e43a4598914; 旧意味の採否・authorityは変更しない。] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: Vision材料への再分類の注記を追加。前receipt=8a3f3ba3d8dcb985d536f9925814ffdd5a63d9b84ba12444ea9ad72825b3d3dc; 現receipt=817015b237dd28585d6bf319f4bfe742f9df2cd0aea53c4bb9c4eee1925622b9; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web/README.md",
-      "sha256": "07a5db2ee00421e92338906715b6b103f587df6fbcf9101a59784cd23082b5fc",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0d73011e6ccc387189645c2158d55e02f444e3e3cb583b0aea29e28ea86ac1e6; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "1502cb3a97b7db7eabe07d47c36741e8c92ac595bfebfcfcdca1c31bc9d32bcd",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0d73011e6ccc387189645c2158d55e02f444e3e3cb583b0aea29e28ea86ac1e6; 旧意味の採否・authorityは変更しない。] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: Vision材料への再分類の注記を追加。前receipt=07a5db2ee00421e92338906715b6b103f587df6fbcf9101a59784cd23082b5fc; 現receipt=1502cb3a97b7db7eabe07d47c36741e8c92ac595bfebfcfcdca1c31bc9d32bcd; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/crosswalks/legacy-concept-derived-requirements.md",
@@ -115,7 +115,8 @@
       "current product entry READMEs",
       "current shared L2 crosswalk",
       "legacy static ledger set",
-      "Python standard library／git object read-only"
+      "Python standard library／git object read-only",
+      "2026-09-24 PO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）による前提の変化：HELIX-Web／HELIX-Web-OSのL1・L2・L11はVisionレベルの材料であり要求候補ではない（Conceptの製品属性としてのWeb 1.xは残る）"
     ],
     "boundary": "成果物はscaffold/配下のresearch candidate。37/67会計は候補研究用で、正式holding admission、requirement identity、phase、四製品owner、implementation、degradation、acceptance、release、deploymentを確定しない。"
   },

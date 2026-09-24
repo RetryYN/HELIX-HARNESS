@@ -19,7 +19,7 @@ authority_effect_before_approval: none
 
 本書の親は[HELIX Concept](helix-concept.md)である。5大目標はConceptの同名節に含まれる意味を展開する子文書であり、独立した親authorityや新しい承認経路を作らない。各目標から対象別要求・受入へ降ろす際は、Conceptの機構、導入版、製品属性を保持する。旧候補の状態と承認履歴はdecision recordで追う。
 
-2026-09-24の承認decisionは旧本文のSHA-256 `cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca`に限る。現行本文の位置づけと責務表は未承認の差分候補であり、[PO判断パッケージ](../governance/crosswalks/concept-requirement-po-decision-packet.md)に変更前後を記録する。
+2026-09-24の承認decisionは旧本文のSHA-256 `cfade733b9023bcc3329916206a911794e13f2b4f4f1e198d6c57618049771ca`に限る。同日のPO判断（[decision record](../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）で、本文SHA `e9668e77…2f29`の内容を採用し、関与表を参照用に縮約するよう指示された。5大目標は、AIが方針をぶらさないための規則系の文書である。縮約後の本文は、PO最適ドラフトPRで対象revisionを確認する。
 
 5大目標はHELIXの到達方向・価値を示す。別PR #1826の「HELIXエージェントの七大原則」は、その方向へ進む際の
 エージェントの行動基準を示す。どちらもConceptに従属し、目標または原則だけから要求、責務、workflow、実装を
@@ -61,18 +61,17 @@ riskを確認して必要な判断を行えることを目指す。速度のた�
 担当可能な範囲で最大限の成果を出し、必要な判断・統合・独立検証だけを適切な能力へrouteする。最適性は固定provider名や
 自己申告で決めず、対象revisionに対する品質、費用、時間、再作業、失敗の計測で継続的に見直す。
 
-## Conceptの機構・版への接続
+## 関与する機構（参照用）
 
-| 目標 | 1.0の責務 | 後続版の拡張 |
+| 目標 | 1.0で主に関与する機構 | 後続版で加わるもの |
 |---|---|---|
-| 1 自走 | HARNESSの工程契約、BRAINの計画案、OSの管理・推進・検収、SecurityとRunner／Sandboxの限定実行 | 1.xのWeb・Web-OSは顧客提供とservice運転を追加する |
-| 2 改善 | LABOが計測・効果・退行を評価し、OSが改善候補を上流へ登録する | 2.0はBRAINの根拠付き推薦とLABOの推薦評価、3.0はIntelligenceの知識・モデル改善 |
-| 3 予測 | BRAINが前提と不確実性を示した予測を行い、LABOが実測と照合する。HARNESSは検証契約を持つ | 4.0は調整済みモデルを用いたBRAINの動的フロー構成 |
-| 4 非エンジニア | HARNESSのサービス①〜⑦と入口・枠・部品・コアを、OSのCI・botによる検査・差戻し・証拠化と接続する | 1.xのWebが顧客の操作入口を、Web-OSがservice運転を担う |
-| 5 Worker配置 | HARNESSの検証義務、BRAINの配置案、OS推進の割当、OS検収の独立確認、LABOの実測評価を分ける | 後続版の推薦・モデル改善は前の版の完成条件にしない |
+| 1 自走 | HARNESS、BRAIN、OS、Security、Runner／Sandbox | ― |
+| 2 改善 | LABO、OS | 2.0 BRAINの推薦、3.0 Intelligence |
+| 3 予測 | BRAIN、LABO、HARNESS | 4.0 BRAINの動的フロー構成 |
+| 4 非エンジニア | HARNESS、OS | ― |
+| 5 Worker配置 | HARNESS、BRAIN、OS、LABO | ― |
 
-この表は現行Conceptとの責務対応候補であり、既存L1・L2・L11の意味変更や承認を確定しない。
-旧本文にあったsimulation入力の所有者、Web-OSのWorker実行境界、Webでの利用者同意と確認は、この表から採否や担当確定を導かない。各旧記述と現行Conceptとの差分を[PO判断パッケージ](../governance/crosswalks/concept-requirement-po-decision-packet.md)に残す。
+この表は参照用である。表から要求、責務の確定、採否を生成しない。
 
 ## 達成の考え方
 

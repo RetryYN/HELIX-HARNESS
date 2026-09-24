@@ -40,8 +40,8 @@
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
-      "sha256": "ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96",
-      "note": "current product boundary candidate; no formal assignment [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47; 現receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96]"
+      "sha256": "0ee14027def5d74f510b19e030c35f6cc6ec1c88d68c314799f47e777bd2e758",
+      "note": "current product boundary candidate; no formal assignment [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47; 現receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 本文ece3e268の内容をPOが採用し、1.0土台7項目の追記を指示。追記後revisionは未確認。前receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96; 現receipt=0ee14027def5d74f510b19e030c35f6cc6ec1c88d68c314799f47e777bd2e758; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
@@ -50,33 +50,33 @@
     },
     {
       "path": "docs/helix-web-os/L1-planning/system-intent.md",
-      "sha256": "971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c",
-      "note": "current product boundary candidate; no formal assignment [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d; 現receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c]"
+      "sha256": "31aa8e4fbd260c2ac980300db201a84918b094695e3d24559e50edcb86873249",
+      "note": "current product boundary candidate; no formal assignment [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d; 現receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 要求層から外し、Visionレベルの材料へ再分類（本文冒頭の注記、status: vision_material）。本文の要求・受入記述はVision材料として読む。前receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c; 現receipt=31aa8e4fbd260c2ac980300db201a84918b094695e3d24559e50edcb86873249; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web/L1-planning/product-intent.md",
-      "sha256": "5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23",
-      "note": "current product boundary candidate; no formal assignment [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271; 現receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23]"
+      "sha256": "d5b665017dec1c2f5c71e7006511a11ea81fa0e9aece028c1b9a691588f4fe54",
+      "note": "current product boundary candidate; no formal assignment [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271; 現receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 要求層から外し、Visionレベルの材料へ再分類（本文冒頭の注記、status: vision_material）。本文の要求・受入記述はVision材料として読む。前receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23; 現receipt=d5b665017dec1c2f5c71e7006511a11ea81fa0e9aece028c1b9a691588f4fe54; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/bindings/SCF-B-0080.json",
-      "sha256": "3d0f61775d0095774a6057c381f581576fca420e43c7e511c94cad761681a6e2",
-      "note": "prior binding and static research provenance; no adoption or authority"
+      "sha256": "9879445d4327f2feae5606d65250a05c388200ffabf67177921950386b6e7e31",
+      "note": "prior binding and static research provenance; no adoption or authority [2026-09-24 PO判断read-after: 参照先bindingへPO判断による前提変化の注記とupstream digest更新を追加しただけで、参照先のrole・obligations・replacementは不変。前receipt=3d0f61775d0095774a6057c381f581576fca420e43c7e511c94cad761681a6e2; 現receipt=9879445d4327f2feae5606d65250a05c388200ffabf67177921950386b6e7e31; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/bindings/SCF-B-0081.json",
-      "sha256": "5ac1b306f661909e633ab3a4c97de74808acd776652b24c077ba7ce9ec5b758c",
-      "note": "prior binding and static research provenance; no adoption or authority"
+      "sha256": "b8c0d2cf240fa31b58cdeaa5eff2a3ed9fb50cb3b2629a153d09c0cad4215eaf",
+      "note": "prior binding and static research provenance; no adoption or authority [2026-09-24 PO判断read-after: 参照先bindingへPO判断による前提変化の注記とupstream digest更新を追加しただけで、参照先のrole・obligations・replacementは不変。前receipt=5ac1b306f661909e633ab3a4c97de74808acd776652b24c077ba7ce9ec5b758c; 現receipt=b8c0d2cf240fa31b58cdeaa5eff2a3ed9fb50cb3b2629a153d09c0cad4215eaf; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/bindings/SCF-B-0084.json",
-      "sha256": "2156e887025045d5c03303d0bc9006f8f7e678dff5c7ff7b49b2d81f9360571c",
-      "note": "prior binding and static research provenance; no adoption or authority"
+      "sha256": "42d7ec9cefb2ea00ad01bfce538ba7dec2315396c0be3455c7fa55ef72b6038b",
+      "note": "prior binding and static research provenance; no adoption or authority [2026-09-24 PO判断read-after: 参照先bindingへPO判断による前提変化の注記とupstream digest更新を追加しただけで、参照先のrole・obligations・replacementは不変。前receipt=2156e887025045d5c03303d0bc9006f8f7e678dff5c7ff7b49b2d81f9360571c; 現receipt=42d7ec9cefb2ea00ad01bfce538ba7dec2315396c0be3455c7fa55ef72b6038b; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/bindings/SCF-B-0088.json",
-      "sha256": "d9616065ffb81c7506d96ed54ca240339fff7b8203b28f83de38788d8a9f785b",
-      "note": "prior binding and static research provenance; no adoption or authority [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a59c1d27d456c1a2fd07c63553b6c94fa13a8b8462722152ccafebeab90d49b8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=e540d14cf352bd253b9e02e40f4e24ae7b5a124f0815ba41590f057da6e34c0a; 現receipt=9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6] [2026-09-24 semantic impact read-after: 依存Bindingの変更receiptを再帰的に照合。前receipt=9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6; 現receipt=63ee6eed80cd758b4946987a33562cc8841afd850cd02f9dca93adc08886526a; このBindingの採否・authorityは変更しない。] [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=63ee6eed80cd758b4946987a33562cc8841afd850cd02f9dca93adc08886526a; 現receipt=d9616065ffb81c7506d96ed54ca240339fff7b8203b28f83de38788d8a9f785b; 採否・authorityは不変。]"
+      "sha256": "549fa0443695370fdedda9600bbae9d9780d7522e545796ae8bc0010e0f29f97",
+      "note": "prior binding and static research provenance; no adoption or authority [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=4b7d490c20c009bc1cc902c79417751e72e5cf8005ba89a008481bec7c79a3f3; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a59c1d27d456c1a2fd07c63553b6c94fa13a8b8462722152ccafebeab90d49b8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=e540d14cf352bd253b9e02e40f4e24ae7b5a124f0815ba41590f057da6e34c0a; 現receipt=9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6] [2026-09-24 semantic impact read-after: 依存Bindingの変更receiptを再帰的に照合。前receipt=9a6bda7325a551511f768388e26fe889824763987c8f65b0648b86ded225eef6; 現receipt=63ee6eed80cd758b4946987a33562cc8841afd850cd02f9dca93adc08886526a; このBindingの採否・authorityは変更しない。] [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=63ee6eed80cd758b4946987a33562cc8841afd850cd02f9dca93adc08886526a; 現receipt=d9616065ffb81c7506d96ed54ca240339fff7b8203b28f83de38788d8a9f785b; 採否・authorityは不変。] [2026-09-24 PO判断read-after: 参照先bindingへPO判断による前提変化の注記とupstream digest更新を追加しただけで、参照先のrole・obligations・replacementは不変。前receipt=d9616065ffb81c7506d96ed54ca240339fff7b8203b28f83de38788d8a9f785b; 現receipt=549fa0443695370fdedda9600bbae9d9780d7522e545796ae8bc0010e0f29f97; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/inventory.json",
@@ -184,7 +184,8 @@
       "SCF-B-0084 semantic atom Scaffold",
       "SCF-B-0088 semantic atom Scaffold",
       "旧4対象boundaryの履歴receiptと現行Concept子文書（未承認候補）",
-      "PHCAP and implementation crosswalk static inventories"
+      "PHCAP and implementation crosswalk static inventories",
+      "2026-09-24 PO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）による前提の変化：HELIX-Web／HELIX-Web-OSのL1・L2・L11はVisionレベルの材料であり要求候補ではない（Conceptの製品属性としてのWeb 1.xは残る） ／ 現行HELIX-OS L1（SHA ffbafa47…）と製品責務境界（SHA 9268e357…）はPO採用。HARNESS L1と5大目標は内容採用・追記／縮約後revision未確認。これより前の「現行L1は未承認」の記述はこの状態で読み替える"
     ],
     "boundary": "成果物はscaffold/配下のbounded research record。29 parent span、35 candidate、49 candidate product edge、154 matrix edgeは正式要求、owner、authority、phase、implementation、degradation、failure／consumer closureではない。"
   },

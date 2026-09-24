@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "scaffold/bindings/SCF-B-0081.json",
-      "sha256": "5ac1b306f661909e633ab3a4c97de74808acd776652b24c077ba7ce9ec5b758c",
-      "note": "parent Scaffold binding; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure"
+      "sha256": "b8c0d2cf240fa31b58cdeaa5eff2a3ed9fb50cb3b2629a153d09c0cad4215eaf",
+      "note": "parent Scaffold binding; no semantic adoption, authority, implementation, degradation, failure closure, or consumer closure [2026-09-24 PO判断read-after: 参照先bindingへPO判断による前提変化の注記とupstream digest更新を追加しただけで、参照先のrole・obligations・replacementは不変。前receipt=5ac1b306f661909e633ab3a4c97de74808acd776652b24c077ba7ce9ec5b758c; 現receipt=b8c0d2cf240fa31b58cdeaa5eff2a3ed9fb50cb3b2629a153d09c0cad4215eaf; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/rdp001-web-webos-vision-semantic-atoms-0081/inventory.json",
@@ -30,13 +30,13 @@
     },
     {
       "path": "docs/helix-web/L2-requirements/product-requirements.md",
-      "sha256": "e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0",
-      "note": "static current L2 context; no direct requirement mapping generated"
+      "sha256": "f42d457373e6cc5b7d113f5628455c6abdec237c304abe97fe03842c64867b43",
+      "note": "static current L2 context; no direct requirement mapping generated [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 要求層から外し、Visionレベルの材料へ再分類（本文冒頭の注記、status: vision_material）。本文の要求・受入記述はVision材料として読む。前receipt=e04cc88ac0b95870805ac9d8b6ffbc69b87b7b5917ded285305cee9c068ba2c0; 現receipt=f42d457373e6cc5b7d113f5628455c6abdec237c304abe97fe03842c64867b43; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
-      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
-      "note": "static current L2 context; no direct requirement mapping generated"
+      "sha256": "84238131eeb2a60ae0be9c2aff2cb49cb03c7fc09485eb45341f3971dfb98210",
+      "note": "static current L2 context; no direct requirement mapping generated [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 要求層から外し、Visionレベルの材料へ再分類（本文冒頭の注記、status: vision_material）。本文の要求・受入記述はVision材料として読む。前receipt=632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248; 現receipt=84238131eeb2a60ae0be9c2aff2cb49cb03c7fc09485eb45341f3971dfb98210; このBindingの採否・authorityは変更しない。]"
     }
   ],
   "role": "SCF-B-0081未処理Vision spanからsource-bound Web／Web-OS semantic atom候補とcomposite_unresolvedを保持する",
@@ -59,7 +59,8 @@
     "dependencies": [
       "SCF-B-0081 prior atom Scaffold",
       "SCF-B-0080 Vision span source",
-      "old Vision static Git object"
+      "old Vision static Git object",
+      "2026-09-24 PO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）による前提の変化：HELIX-Web／HELIX-Web-OSのL1・L2・L11はVisionレベルの材料であり要求候補ではない（Conceptの製品属性としてのWeb 1.xは残る）"
     ],
     "boundary": "成果物はscaffold/配下のbounded research candidate。10候補（7 atoms + 3 composites）はsource-bound research recordであり、正式要求、owner、authority、adoption、implementation、degradation、failure／consumer closureではない。新規legacy semantic linkは生成しない。"
   },
