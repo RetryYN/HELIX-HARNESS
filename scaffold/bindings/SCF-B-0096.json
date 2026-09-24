@@ -55,13 +55,13 @@
     },
     {
       "path": "scaffold/rdp001-outside67-product-entry-followup-076/selected-source-items.jsonl",
-      "sha256": "37d71f827772a8175970b0dada15a3692bf9e567d94953e4c697709a2dfdfa7e",
-      "note": "static source/governance or merged lineage; no authority promotion"
+      "sha256": "341b3f5fbfe2a062b761bb3a9c30f7d8656fe14e5588d42d1ef5dbc3c1a6f2f8",
+      "note": "static source/governance or merged lineage; no authority promotion [2026-09-25 full-binding read-after/rebind: scaffold/rdp001-outside67-product-entry-followup-076/selected-source-items.jsonl 37d71f827772a8175970b0dada15a3692bf9e567d94953e4c697709a2dfdfa7e→341b3f5fbfe2a062b761bb3a9c30f7d8656fe14e5588d42d1ef5dbc3c1a6f2f8, scaffold/rdp001-outside67-boundary-followup-073/selected-source-items.jsonl cd29ab5ac7be11ccb9a1f8d46ec071b6773476747c5b0019704670f7bd64278c→cdfcaaa30d25ba61d7a97ddfb49aef3a4d1c01902a28afddd8e35976bc722654. role・obligations・connections・operations・artifacts・verification／negative cases・replacementと全upstreamを確認。更新はpath / exact current counterpart digestとbytesのprovenanceで、counterpart関係・意味・authorityは変更しない。]"
     },
     {
       "path": "scaffold/rdp001-outside67-boundary-followup-073/selected-source-items.jsonl",
-      "sha256": "cd29ab5ac7be11ccb9a1f8d46ec071b6773476747c5b0019704670f7bd64278c",
-      "note": "static source/governance or merged lineage; no authority promotion"
+      "sha256": "cdfcaaa30d25ba61d7a97ddfb49aef3a4d1c01902a28afddd8e35976bc722654",
+      "note": "static source/governance or merged lineage; no authority promotion [2026-09-25 full-binding read-after/rebind: scaffold/rdp001-outside67-product-entry-followup-076/selected-source-items.jsonl 37d71f827772a8175970b0dada15a3692bf9e567d94953e4c697709a2dfdfa7e→341b3f5fbfe2a062b761bb3a9c30f7d8656fe14e5588d42d1ef5dbc3c1a6f2f8, scaffold/rdp001-outside67-boundary-followup-073/selected-source-items.jsonl cd29ab5ac7be11ccb9a1f8d46ec071b6773476747c5b0019704670f7bd64278c→cdfcaaa30d25ba61d7a97ddfb49aef3a4d1c01902a28afddd8e35976bc722654. role・obligations・connections・operations・artifacts・verification／negative cases・replacementと全upstreamを確認。更新はpath / exact current counterpart digestとbytesのprovenanceで、counterpart関係・意味・authorityは変更しない。]"
     },
     {
       "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/selected-source-items.jsonl",
@@ -220,5 +220,5 @@
     "confirmation_digest": null
   },
   "created": "2026-09-22",
-  "updated": "2026-09-22"
+  "updated": "2026-09-25"
 }

@@ -27,7 +27,7 @@ BRANCH = "research/phcap02-03-audit"
 PRODUCTS = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
 PHASE_IDS = ["PHCAP-02", "PHCAP-03"]
 EXPECTED_DIGESTS = {
-    "phase": "9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c",
+    "phase": "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2",
     "routing": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1",
     "register": "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b",
     "assets": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",

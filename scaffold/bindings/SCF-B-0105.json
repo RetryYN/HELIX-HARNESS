@@ -45,8 +45,8 @@
     },
     {
       "path": "scaffold/phcap20-memory-research/inventory.json",
-      "sha256": "15cab0b35f0f0f14971613641bb7dc2f29ec556127663503a71146a5f1349c9d",
-      "note": "static input; taxonomy research only; no authority effect [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関する研究inventoryの現行参照を、移した候補の新しいpathと変わったOS文書の行・固定文へ付け直した（Codex review P2対応。固定文が変わらない参照は行位置とSHAだけ、変わった参照は同じ範囲の現行文へ更新）。validatorはmainと比べて新しい失敗なし。本bindingの役割・義務・接続先・置換先は変わらない。前receipt=316f49667a9b4abf06e1a5d973615efdb2402d07ed4062bea5763a5aba4c39b5; 現receipt=15cab0b35f0f0f14971613641bb7dc2f29ec556127663503a71146a5f1349c9d; このBindingの採否・authorityは変更しない。]"
+      "sha256": "bae26d3aaf210c12e095b08ef5f0923cddffe0a95340e7b2b629f180387c1aaa",
+      "note": "static input; taxonomy research only; no authority effect [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関する研究inventoryの現行参照を、移した候補の新しいpathと変わったOS文書の行・固定文へ付け直した（Codex review P2対応。固定文が変わらない参照は行位置とSHAだけ、変わった参照は同じ範囲の現行文へ更新）。validatorはmainと比べて新しい失敗なし。本bindingの役割・義務・接続先・置換先は変わらない。前receipt=316f49667a9b4abf06e1a5d973615efdb2402d07ed4062bea5763a5aba4c39b5; 現receipt=15cab0b35f0f0f14971613641bb7dc2f29ec556127663503a71146a5f1349c9d; このBindingの採否・authorityは変更しない。] [2026-09-25 full-binding read-after/rebind: scaffold/phcap20-memory-research/inventory.json 15cab0b35f0f0f14971613641bb7dc2f29ec556127663503a71146a5f1349c9d→bae26d3aaf210c12e095b08ef5f0923cddffe0a95340e7b2b629f180387c1aaa. このbindingのrole・obligations・connections・operations・artifacts・verification／negative cases・replacementと他upstream依存を全体確認。変更は記録対象sourceの現行bytes参照更新のみで、authority・role・scope・admissionは不変。 ]"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
@@ -466,5 +466,5 @@
     "confirmation_digest": null
   },
   "created": "2026-09-22",
-  "updated": "2026-09-22"
+  "updated": "2026-09-25"
 }

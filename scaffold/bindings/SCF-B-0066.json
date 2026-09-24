@@ -115,8 +115,8 @@
     },
     {
       "path": "scaffold/rdp001-outside67-boundary-evidence-066/selected-source-items.jsonl",
-      "sha256": "f42a11de29a075a84c151afe9d30934e669cfcc556aa87536cca26718ed0ecc2",
-      "note": "current authority/static input or candidate research artifact; no formal requirement adoption"
+      "sha256": "a4446463ac238b1e87f18bb3840edaa50adddef2fb8ee1b32558fff2e9edd0a2",
+      "note": "current authority/static input or candidate research artifact; no formal requirement adoption [2026-09-25 full-binding read-after/rebind: scaffold/rdp001-outside67-boundary-evidence-066/selected-source-items.jsonl f42a11de29a075a84c151afe9d30934e669cfcc556aa87536cca26718ed0ecc2→a4446463ac238b1e87f18bb3840edaa50adddef2fb8ee1b32558fff2e9edd0a2. role・obligations・connections・operations・artifacts・verification／negative cases・replacementと全upstreamを確認。更新はpath / exact current counterpart digestとbytesのprovenanceで、counterpart関係・意味・authorityは変更しない。]"
     },
     {
       "path": "scaffold/rdp001-outside67-boundary-evidence-066/product-units.jsonl",
@@ -301,5 +301,5 @@
     "confirmation_digest": null
   },
   "created": "2026-09-22",
-  "updated": "2026-09-22"
+  "updated": "2026-09-25"
 }
