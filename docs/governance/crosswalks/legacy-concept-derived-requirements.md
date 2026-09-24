@@ -149,6 +149,7 @@ AVS6件・RFA3件・DGH3件の判断記録・反復管理は[HELIX-OS L2](../../
 
 AAFD4件・RCLS6件・PPS4件の具体条件は[HELIX-OS L2](../../helix-os/L2-requirements/governance-requirements.md)の
 「監査・学習・成果の出所に関する候補条件」へ移管した。候補の採用状態、出典、非対象も移管先で保持する。
+その後、2026-09-25のPO判断（[判断記録](../decisions/mechanism-placement-po-decisions-2026-09-25.md)）で、AAFDは[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、RCLSは[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移し、PPSはHELIX-OS L2の「成果の出所に関する候補条件」に残した。
 
 ## 合意・適用性・受入の状態
 

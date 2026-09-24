@@ -61,7 +61,7 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 
 ## Design Templateと要求backflow
 
-[設計template system要求候補](../../governance/candidates/design-template-system-requirements.md)をHARNESS-L2-009の
+[設計template system要求候補](../../helix-brain/candidates/design-template-system-requirements.md)をHARNESS-L2-009の
 適用待ち具体化として保持する。Forwardでは合意要求から適用templateと設計義務を導く。Backflowではtemplate必須inputの
 欠落を質問、矛盾、derived requirement candidate、N/A判断候補としてHARNESS-L2-008へ返す。template本文、生成文書、
 旧schemaから要求意味・人間合意を生成しない。初期seedはarchiveと実例から意味を個別採否し、適用範囲と限界を持たせる。
@@ -113,7 +113,7 @@ HARNESSの規則が定める「未充足なら進行不可」を、OSがWorker�
 
 ## 新世代CIへ渡す検証契約
 
-[新世代CI要求候補](../../governance/candidates/next-generation-ci-requirements.md)の
+[新世代CI要求候補](../candidates/next-generation-ci-requirements.md)の
 NCI-HARNESS-001..004をHARNESS-L2-004／005の適用待ち具体化として保持する。HARNESSはCI workflowを所有せず、
 layer、V-pair、artifact class、変更種別、riskから検証義務を定義する。profile生成・runner・queue・cache・retry・
 provider接続・run監視はHELIX-OSの責務である。
@@ -160,7 +160,7 @@ HELIX内部のWorker割当、学習履歴、CI運転、プロジェクト群の�
 
 ## 要求形成・合意・反復の工程条件
 
-[要求エンジンPythonコア要求候補](../../governance/candidates/requirement-engine-python-core-requirements.md)を
+[要求エンジンPythonコア要求候補](../candidates/requirement-engine-python-core-requirements.md)を
 HARNESS-L2-008の適用待ち具体化として保持する。要求意味の抽出、構造化、質問、semantic diff、trace、影響候補は
 HARNESSが所有する。HELIX-OSは入力・出力・訂正・採否・改善eventを登録、実行、監視するが、要求意味を複製しない。
 Python coreはDB、Git、GitHub、repository、credentialへ直接writeしない。HARNESSは外部consumerも使える出力schema、
@@ -205,7 +205,7 @@ HARNESS-L2-004の無損失変更contractは、入力source atom集合を当該�
 [新世代対応表](../../governance/audits/source-rebaseline/new-generation-bounded-repair-source-crosswalk.md)で再採否する。
 HARNESS-L2-005では、自動・手動を問わず修復後に必要な要求revision、oracle、expected failure、独立検証、
 consumer受入、差戻し条件を維持する。必須test削除、閾値緩和、scope拡張、意味digestの無審査更新でgreen化しない。
-修復器の登録や旧CI自己修復成功は検証義務・操作許可を代替しない。修復の実行統制はHELIX-OSが所有する。
+修復器の登録や旧CI自己修復成功は検証義務・操作許可を代替しない。修復の検出から実行までは、2026-09-25 PO判断により[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ移した。
 
 ## 構造改善に適用する変更条件
 
@@ -242,7 +242,7 @@ HARNESS-L2-003／004／005では、対象製品が承認した保護対象、dat
 
 ## AIへ渡す工程契約
 
-[AI可読上流文書の要求候補](../../governance/candidates/ai-readable-authority-requirements.md)の
+[AI可読上流文書の要求候補](../candidates/ai-readable-authority-requirements.md)の
 AIDOC-HARNESS-001..003をHARNESS-L2-001／003／005の適用待ち具体化として保持する。AIは対象HARNESS版、layer、
 V-pair、artifact、required oracle、差戻し・完了条件を承認済みsourceから取得し、生成要約から該当する正本revisionへ
 逆参照できなければならない。未承認、stale、compatibility、historical、unknownをcurrent契約と区別する。

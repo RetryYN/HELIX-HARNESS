@@ -3,6 +3,7 @@ title: "要求からの作業分解（WBS）台帳の管理層要求候補"
 status: draft_candidate
 authority_status: awaiting_human_approval
 authority_effect: none
+updated: 2026-09-25
 created: 2026-09-18
 product_targets:
   - HELIX-OS
@@ -20,18 +21,20 @@ related_projection:
 
 # 要求からの作業分解（WBS）台帳の管理層要求候補
 
+2026-09-25のPO判断により、`docs/governance/candidates/`からHELIX-OSの候補置き場へ移した（[判断記録](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。
+
 ## これは何か
 
 要求が採否されたあと、それを「誰が、どの順で、何を検証して、いくらの予算で」進めるかへ落とす構造をWBS（作業分解構造）と呼ぶ。
 本書は、そのWBSを**HELIX-OSの管理層が所有する台帳**として扱うための要求候補である。
 管理層は台帳の登録・整合・統制を持ち、要求からの分解と開発方式の選定は推進が、分解結果の独立確認は検収が持つ。
-この分担は既存候補[要求からの開発ticket導出](development-ticket-derivation-requirements.md)（`DTK-OS-001`「管理が作業分解や駆動tagを先決めせず、登録を要求採用・実行許可・完了にしない」、`DTK-OS-005`、`DTK-OS-007`）と同じである。
+この分担は既存候補[要求からの開発ticket導出](../../governance/candidates/development-ticket-derivation-requirements.md)（`DTK-OS-001`「管理が作業分解や駆動tagを先決めせず、登録を要求採用・実行許可・完了にしない」、`DTK-OS-005`、`DTK-OS-007`）と同じである。
 
 本書は要求整理だけを行う。WBSエンジンの実装、schema、DB、GitHub連携を実装・起動しない。
 
 ## なぜ要るか
 
-- 要求は既に手で扱える量を超えている。対象別L2要求案37件（HARNESS 9、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6。[上流authority register](../upstream-authority-register-2026-09-14.md)）、旧要求153件の再配置、旧ルール群由来の要求候補57本、その他の候補群がある。採否後に人が作業へ割る運転は続かない。
+- 要求は既に手で扱える量を超えている。対象別L2要求案37件（HARNESS 9、HELIX-OS 13、HELIX-Web 9、HELIX-Web-OS 6。[上流authority register](../../governance/upstream-authority-register-2026-09-14.md)）、旧要求153件の再配置、旧ルール群由来の要求候補57本、その他の候補群がある。採否後に人が作業へ割る運転は続かない。
 - 旧HELIXでは、要求から作業へ落とす規則が大量にあった。旧ルール群のうち`RUL-TKT-01`（作業identityの一意性、既存の延長優先）に55件、`RUL-TKT-02`（作業graph・依存・並列直列・scope・予算・contextの境界を先に確定）に132件、`RUL-TKT-03`（差戻し・持ち越し・後続分離の記録）に77件、`RUL-OSP-06`（複数agentの実行計画の検証）に72件の規則atomが対応づいている。規則はあったが、それを担う台帳とエンジンは旧runtimeと一緒に退役し、新世代に無い。
 - 台帳が無いまま自走すると、AIが会話ごとに作業を切り直し、同じ作業が別identityで重複し、予算と依存が追えなくなるおそれがある。`RUL-TKT-01`（重複を作らず既存の延長を優先し、置き換えは後継と訂正として記録する）に55件の規則atomがあることは、旧HELIXでその問題に繰り返し対処していたことを示す。
 
@@ -61,14 +64,15 @@ related_projection:
 |---|---|---|
 | WBS-OS-007 | 推進は、採否済み要求・制約・HARNESS契約から作業graphを生成し、変更の種類（新規、追加、修正、refactor、retrofit、reverse、PoC、research）と開発styleに応じたHARNESS routeを作業ごとに選ぶ（`DTK-OS-005`、`RUL-FRM-03`） | 管理が分解を先取りしない。routeの選定理由が作業に残る |
 | WBS-OS-008 | 検収は、生成された作業graphを承認済みHARNESS契約・親要求・依存・許可・予算に照らして独立確認し、不合格の作業を推進へ戻す（`DTK-OS-007`、`RUL-OSP-06`） | 推進の自己申告やIssue作成だけで台帳へ入らない |
-| WBS-HARNESS-001 | 作業単位が持つべき形（依存、並列・直列、scope、予算上限、期限、V-pair＝対応する検証、受入条件、変更の種類、工程順序、停止・差戻し条件）を規範として定め、OSはそれを台帳のschemaへ写す | HARNESSは台帳を運転せず、OSは規範を改変しない。規範に無い形の作業単位は台帳に入らない |
+
+HARNESSに対する要求（WBS-HARNESS-001）は、2026-09-25のPO判断（候補を機構ごとに分ける）により[HARNESS側の候補](../../helix-harness/candidates/wbs-ledger-requirements.md)へ分けた。
 
 ## 本線との関係
 
 - 既存L2との接続候補：`HELIXOS-L2-001`（要求正本・採否revisionと担当責務）、`HELIXOS-L2-010`（管理・推進・検収の編成）、`HELIXOS-L2-011`（統合順序・検証実行計画の導出と再計画）、`HELIXOS-L2-013`（同じ仕事への関連付けと診断）。HARNESS側は`HARNESS-L2-001`／`002`／`003`。
 - 既存候補との関係：`DTK-OS-001`〜`007`と`partial_overlap`。DTKはticketの種類（poc／ui_prototype／feature）と生成規則を扱い、本書は台帳の所有と統制を扱う。統合するかは採否時に判断する。
 - 旧ルール群との関係：`RUL-TKT-01`／`02`／`03`、`RUL-OSP-06`に主として対応づいた規則atom計336件（副を含めると686件）が入力である。
-- 採否順序：[対象別L2 source採否順序](../audits/source-rebaseline/l2-source-adoption-sequence.md)に独立の判断単位`L2D-S0-02 wbs-ledger`として置く。`L2D-S2-02 execution-ticket`（Worker assignment、scope、budget、evidence、replay）は関連系列であり、同じ判断単位にはしない。
+- 採否順序：[対象別L2 source採否順序](../../governance/audits/source-rebaseline/l2-source-adoption-sequence.md)に独立の判断単位`L2D-S0-02 wbs-ledger`として置く。`L2D-S2-02 execution-ticket`（Worker assignment、scope、budget、evidence、replay）は関連系列であり、同じ判断単位にはしない。
 
 ## 最初のパイロット
 
@@ -87,7 +91,7 @@ related_projection:
 本候補はこの接続を要求にしない。接続先が採否されたあとに、別の要求候補として扱う。
 
 - 取り込み：Tech Web Crawler（`HELIXOS-L2-012`）が外部の分解事例を「観測事実、出典、版、license、適用条件」付きで返す。リサーチの規範（`RUL-RSH-01`）に従い、成熟度・依存risk・licenseを確かめてから採否する。observationをauthorityへ昇格しない。
-- 蓄積：[HARNESS設計template system要求候補](design-template-system-requirements.md)（未承認）の一種として、作業分解のtemplateを版・適用履歴・利用結果付きで持つ（版の管理は`RUL-OSI-02`）。利用結果と指摘から改善候補へ戻す還流は`RUL-OSI-01`が回す。
+- 蓄積：[HARNESS設計template system要求候補](../../helix-brain/candidates/design-template-system-requirements.md)（未承認）の一種として、作業分解のtemplateを版・適用履歴・利用結果付きで持つ（版の管理は`RUL-OSI-02`）。利用結果と指摘から改善候補へ戻す還流は`RUL-OSI-01`が回す。
 - 利用：推進が作業graphを生成するとき（`WBS-OS-007`）に、変更の種類とproductに合うtemplateを候補として提示する。
 - 境界：licenseと出典が無い外部パターンを取り込まない。学習結果から要求・設計・作業を自動採用しない。
 
@@ -114,4 +118,3 @@ related_projection:
 - 管理が作業graphを直接書き込もうとし、拒否する（推進の生成と検収の確認を経ない）。（WBS-OS-007／008）
 - 検収の確認を経ない作業graphを台帳へ入れようとし、拒否する。（WBS-OS-008）
 - 集計結果（予算超過、stale件数）から要求の優先度や意味を自動で書き換えようとし、拒否する。（WBS-OS-006）
-- HARNESSの規範に無い形の作業単位を登録しようとし、拒否する。OSが規範の項目を改変しようとし、拒否する。（WBS-HARNESS-001）

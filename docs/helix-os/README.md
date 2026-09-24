@@ -16,8 +16,9 @@ Web-OSから許可されたservice logを改善入力として受領するが、
 | 入口 | 内容と状態 |
 |---|---|
 | [L1企画候補](L1-planning/system-intent.md) | 管理・統制、Worker、CI、証拠、配布運転、改善価値。旧承認revisionは履歴。現行Conceptとの差分は判断候補 |
-| [L2統制・実行要求](L2-requirements/governance-requirements.md) | 対象別に整理した13要求とWorker・ログ・CIの条件。draft、IR移管未完了 |
+| [L2統制・実行要求](L2-requirements/governance-requirements.md) | 対象別に整理した13要求とWorker・ログ・CIの条件。うち技術調査と横断診断の2件は、2026-09-25のPO判断でHELIX-LABOの候補へ移し、IDだけを案内として残す。draft、IR移管未完了 |
 | [L11受入案](L11-acceptance/governance-acceptance.md) | 同じ13要求の利用シナリオ・反例。全件未実行 |
+| 要求候補（`candidates/`） | [AI可読上流文書](candidates/ai-readable-authority-requirements.md)、[新世代CI](candidates/next-generation-ci-requirements.md)、[WBS台帳](candidates/wbs-ledger-requirements.md)、[要求エンジンの登録・改善](candidates/requirement-engine-python-core-requirements.md)。未承認の候補 |
 | [移管元・対象別対応](../governance/audits/source-rebaseline/l2-source-register.md) | 旧混在要求の監査、13柱の帰属、未移管条件 |
 
 HARNESS版、対象プロジェクト、要求revision、作業scopeと証拠を対応づける。

@@ -24,14 +24,24 @@
       "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
     },
     {
-      "path": "docs/governance/candidates/ai-readable-authority-requirements.md",
-      "sha256": "4121203ec2fc7d746a138a90f5523fa71cfe3a36e63849e13d668c7c94155f6f",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5b81d1498af275eba03ea20bbe8893a1d4180078af7da3cf1800a559b907dcc9; 旧意味の採否・authorityは変更しない。]"
+      "path": "docs/helix-os/candidates/ai-readable-authority-requirements.md",
+      "sha256": "6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5b81d1498af275eba03ea20bbe8893a1d4180078af7da3cf1800a559b907dcc9; 旧意味の採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で、docs/governance/candidates/ai-readable-authority-requirements.md（前receipt=4121203ec2fc7d746a138a90f5523fa71cfe3a36e63849e13d668c7c94155f6f）をdocs/helix-os/candidates/ai-readable-authority-requirements.mdへ移した。本bindingは移した先の本文を上流として読む。要求の行と受入候補の行の文言は変えていない。現receipt=6d17987a08d618c94bffed8993fda0e383d69324280d77473e5baf8419b9148f; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "docs/governance/candidates/next-generation-ci-requirements.md",
-      "sha256": "0a79006c6e7ddf6ad7dcdb78115de1d416727fd215cee078527f441e0b83b312",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba; 旧意味の採否・authorityは変更しない。]"
+      "path": "docs/helix-harness/candidates/ai-readable-authority-requirements.md",
+      "sha256": "56d7adeff625d7d104c68c94dee8dc825f70a35cdd9d95cafc3a6ca61024e771",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5b81d1498af275eba03ea20bbe8893a1d4180078af7da3cf1800a559b907dcc9; 旧意味の採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で、docs/governance/candidates/ai-readable-authority-requirements.md（前receipt=4121203ec2fc7d746a138a90f5523fa71cfe3a36e63849e13d668c7c94155f6f）をdocs/helix-harness/candidates/ai-readable-authority-requirements.mdへ機構ごとに分けた。本bindingは分けた先の本文を上流として読む。要求の行と受入候補の行の文言は変えていない。現receipt=56d7adeff625d7d104c68c94dee8dc825f70a35cdd9d95cafc3a6ca61024e771; このBindingの採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba; 旧意味の採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で、docs/governance/candidates/next-generation-ci-requirements.md（前receipt=0a79006c6e7ddf6ad7dcdb78115de1d416727fd215cee078527f441e0b83b312）をdocs/helix-os/candidates/next-generation-ci-requirements.mdへ移した。本bindingは移した先の本文を上流として読む。要求の行と受入候補の行の文言は変えていない。現receipt=4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d; このBindingの採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-harness/candidates/next-generation-ci-requirements.md",
+      "sha256": "565a2107e1e31cdfd2d6c53cdb1385be151a99c35f1d3a228b09d1ee4533f9cb",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba; 旧意味の採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で、docs/governance/candidates/next-generation-ci-requirements.md（前receipt=0a79006c6e7ddf6ad7dcdb78115de1d416727fd215cee078527f441e0b83b312）をdocs/helix-harness/candidates/next-generation-ci-requirements.mdへ機構ごとに分けた。本bindingは分けた先の本文を上流として読む。要求の行と受入候補の行の文言は変えていない。現receipt=565a2107e1e31cdfd2d6c53cdb1385be151a99c35f1d3a228b09d1ee4533f9cb; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/concept/product-boundary.md",
@@ -45,8 +55,8 @@
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc]"
+      "sha256": "2d2b337d2bd343f803f79e88f8adb0d3f5737b7691e1d8bbe1314227056ba9d6",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0f7f30d9d6984578f09c31ed1ef4e826d7c360bf752297982bde5201e7e99ca8; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=5ab307aea9884564f42b08d63715789c092bbbc891822c67d9c356fdea8d68dd; 現receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断でHELIXOS-L1-011（技術調査）とL1-012（横断診断）をHELIX-LABOの候補への案内行に変更。本bindingは移した項目（HELIXOS-L1-011／012、HELIXOS-L2-005の改善研究、HELIXOS-L2-012／013、限定修復、監査AAFD、学習RCLS）に依存しないことをbinding全体で確認した。前receipt=ffbafa47e5b218c4ddfdd170e4ba7c12cd6cdfe518fbdcce5ccbbee7e0b151bc; 現receipt=2d2b337d2bd343f803f79e88f8adb0d3f5737b7691e1d8bbe1314227056ba9d6; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web/L1-planning/product-intent.md",

@@ -39,9 +39,14 @@
       "note": "PHCAP-07 Web/Web-OS current direct-ref gap and unknown rule"
     },
     {
-      "path": "docs/governance/candidates/next-generation-ci-requirements.md",
-      "sha256": "0a79006c6e7ddf6ad7dcdb78115de1d416727fd215cee078527f441e0b83b312",
-      "note": "candidate CI scope, L3/L10 derivation and no-execution boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba; 旧意味の採否・authorityは変更しない。]"
+      "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+      "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+      "note": "candidate CI scope, L3/L10 derivation and no-execution boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba; 旧意味の採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で、docs/governance/candidates/next-generation-ci-requirements.md（前receipt=0a79006c6e7ddf6ad7dcdb78115de1d416727fd215cee078527f441e0b83b312）をdocs/helix-os/candidates/next-generation-ci-requirements.mdへ移した。本bindingは移した先の本文を上流として読む。要求の行と受入候補の行の文言は変えていない。現receipt=4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d; このBindingの採否・authorityは変更しない。]"
+    },
+    {
+      "path": "docs/helix-harness/candidates/next-generation-ci-requirements.md",
+      "sha256": "565a2107e1e31cdfd2d6c53cdb1385be151a99c35f1d3a228b09d1ee4533f9cb",
+      "note": "candidate CI scope, L3/L10 derivation and no-execution boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=5a7b65a6275615a945425e7b8af040c1d061b430e7297f328362575f972a63ba; 旧意味の採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で、docs/governance/candidates/next-generation-ci-requirements.md（前receipt=0a79006c6e7ddf6ad7dcdb78115de1d416727fd215cee078527f441e0b83b312）をdocs/helix-harness/candidates/next-generation-ci-requirements.mdへ機構ごとに分けた。本bindingは分けた先の本文を上流として読む。要求の行と受入候補の行の文言は変えていない。現receipt=565a2107e1e31cdfd2d6c53cdb1385be151a99c35f1d3a228b09d1ee4533f9cb; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",

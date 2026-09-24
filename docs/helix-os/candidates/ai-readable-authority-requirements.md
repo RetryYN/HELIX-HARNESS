@@ -3,7 +3,7 @@ title: "AI可読上流文書の要求候補"
 status: draft_candidate
 authority_status: awaiting_human_approval
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-25
 product_targets:
   - HELIX-HARNESS
   - HELIX-OS
@@ -18,6 +18,8 @@ derived_from:
 ---
 
 # AI可読上流文書の要求候補
+
+2026-09-25のPO判断により、`docs/governance/candidates/`からHELIX-OSの候補置き場へ移した（[判断記録](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。
 
 ## 目的
 
@@ -36,11 +38,7 @@ AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済
 
 ## HARNESSに対する要求
 
-| ID | 要求 | 確認する結果 |
-|---|---|---|
-| AIDOC-HARNESS-001 | AIが適用する工程契約を、対象HARNESS版、layer、pair、artifact、required oracleから取得できる | runtimeやproviderが変わっても工程意味が変わらない |
-| AIDOC-HARNESS-002 | AI向け要約から承認済み正本と該当節へ逆参照でき、生成要約をauthorityにしない | 要約欠落・陳腐化を原文revisionで検出できる |
-| AIDOC-HARNESS-003 | 未承認、stale、compatibility、historical、unknownを明示し、実行可能なcurrent契約と区別する | 古い文書が検索で見つかっただけでは適用されない |
+HARNESSに対する要求（AIDOC-HARNESS-001〜003）は、[ai-readable-authority-requirements.md](../../helix-harness/candidates/ai-readable-authority-requirements.md)へ分けた（2026-09-25 PO判断）。
 
 ## HELIX-OSに対する要求
 
@@ -92,5 +90,5 @@ AIが会話、GitHub、memory、旧実装から要求を推測せず、承認済
 - reviewerだけを指定してreview routeを省略した場合は`review_waiting`で停止する。一つのrouteを許可しても別routeを起動せず、無出力やtimeoutから無許可fallbackしない。
 
 本候補はAI文書の内容と生成・適用責務を上流で分けるための入力であり、現行runtimeへの適用を認可しない。
-[既存CI・AI候補との対応](../audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md)は、旧候補の承認を流用せず、
+[既存CI・AI候補との対応](../../governance/audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md)は、旧候補の承認を流用せず、
 新世代へ再採否するsemantic atomを記録する。

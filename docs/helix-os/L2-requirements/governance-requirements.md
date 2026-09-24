@@ -55,15 +55,15 @@ HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変
 | HELIXOS-L2-002 | プロジェクト群の要求から作業・実装・検証・提供・運用まで追跡し、欠落と競合を把握できる。提供はリリースカンバン上の状態として追跡できる | HCV4-L2-002／003、HBR-P3／P9、2026-09-24 PO判断 | 未接続・未合意・未実装・未検証を区別し、部分成功で全体完了にならない |
 | HELIXOS-L2-003 | 共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる | PO指摘、HCV4-L2-001／004／006、HBR-P0 | あるプロダクトの方式変更が他プロダクトや共通統制を暗黙に変えない |
 | HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は4機構に分ける：割当てと進行統制はOS、割当て案はBRAIN、実行はRunner／Sandbox、自己承認の防止と権限の制限はSecurity |
-| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して対象要求へ還流し、採択後の変更・再検証・効果確認まで継続できる。担当はHELIX-LABO（全体の改善研究機構）とし、OSは推進機構として改善候補の登録と還流先へのroutingを担う | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断 | HARNESS自身と各productの改善を同じ機構で追跡し、経験を正本へ勝手に昇格させず、訂正・棄却・保留・失効と影響範囲を確認できる |
+| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |
 | HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |
 | HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |
 | HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、その変更に必要なCIを動的に合成し、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補、2026-09-24 PO判断 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |
 | HELIXOS-L2-009 | 中断・担当交代・障害後に、許可範囲内で継続・復旧できる | HBR-P1／P2、HNFR-P5／P8 | 累積予算・期限・未完義務を保持し、二重実行や範囲外操作を防ぐ |
 | HELIXOS-L2-010 | 管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる。推進は案件ごとに必要な工程を動的ワークフローとして組み立てる | HELIX-OS編成案 §1／2／6、2026-09-15 PO指示、2026-09-24 PO判断 | 管理は目的・要求・制約・優先度・依存・資源・停止を推進へ渡す。推進はHARNESSのnormative工程語彙・順序を参照し、operational tag、mapping、composition、workflow instance生成規則を所有してticketと成果を生成する。管理は登録・統制し、検収はHARNESS contractへの収束を判断する。許可内の直接通信を保ち、固定モデル数や全通信の中央中継を要求しない |
 | HELIXOS-L2-011 | ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる | HELIX-OS編成案 §1／4、2026-09-24 PO判断 | 本要求は計画を導く側であり、計画からCIを合成して実行する側はHELIXOS-L2-008とする。HARNESSの検証義務を追加・削除せず、実際の統合候補で具体化する。必要CI欠落、影響不明、契約解釈不明、stale結果を拒否し、review、内容検証、merge admission、release、運用評価を分けて収束させる |
-| HELIXOS-L2-012 | 【OSの独立要求から外す（2026-09-24 PO判断）】内部system情報と外部技術情報を、出典・revision・時点・取得範囲・欠落・適用条件付きで調査できる | HELIX-OS編成案 §3／6、2026-09-24 PO判断 | PO「調査がOSに入ってるのがそもそも理解できない」。要求整理前や設計途中の調査は工程内の調査（Research ticket）とし、技術進化への追従はBRAIN／LABOが担う。移し先の要求はPO最適ドラフトPRで起こす。以下は旧条件：内部事例を先に照合し、不足分だけを未信頼外部情報として取得する。秘密を送信せず、取得文の命令やpatchを実行せず、closed／mergedだけで解決済みにしない |
-| HELIXOS-L2-013 | 管理・推進・検収・Worker・crawler・CIを同じ仕事へ関連付け、要求からの欠落と失敗からの原因候補を双方向に診断して是正効果まで追跡できる。担当はHELIX-LABO（全体の改善研究機構）とする | HELIX-OS編成案 §5、2026-09-24 PO判断 | 観測事実・AI仮説・承認・表示、未着手・観測停止・正常を区別する。管理自身も是正対象とし、自動writeせず、修正後の症状と退行を再観測する |
+| HELIXOS-L2-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査。本文は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIX-OS編成案 §3／6、2026-09-24 PO判断、2026-09-25 PO判断 | 要求整理前や設計途中の調査は工程内の調査（Research ticket）とする |
+| HELIXOS-L2-013 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断。本文は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIX-OS編成案 §5、2026-09-24 PO判断、2026-09-25 PO判断 | 同じ仕事への関連付けに使う原記録の保存はHELIXOS-L2-007に残す |
 
 移管元は[柱要求](../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md)、
 [Concept v4由来整理案](../../governance/crosswalks/legacy-concept-derived-requirements.md)、
@@ -76,7 +76,7 @@ HELIX-OSはHARNESSが規定する層・pair・工程条件を参照し、Worker�
 OS内に工程規則の別正本を作らず、適用するHARNESS版とプロジェクトの選択を記録する。
 HELIX-OS自身の変更も要求・判断・検証へ追跡し、統制する立場を自己承認権限へ拡張しない。
 
-[要求エンジンPythonコア要求候補](../../governance/candidates/requirement-engine-python-core-requirements.md)の意味処理は
+[要求エンジンPythonコア要求候補](../../helix-harness/candidates/requirement-engine-python-core-requirements.md)の意味処理は
 HARNESS-L2-008が所有する。HELIX-OSはHELIXOS-L2-001／002／005／007／013として、Concept／企画L1、エンジン入力、
 出力L2候補、人間の訂正・採否、採用要求、後続で判明した見逃し・誤検出を同じ因果IDで管理へ登録する。HARNESS engineが
 出した企画との差分・分類を受け、戻す層、判断者、状態、改善eventへroutingする。OSが意味差分や影響を独自算出しない。
@@ -86,7 +86,7 @@ engine共通、製品固有pack、入力不足、運用誤りの改善候補へ�
 固定しない。単体、接続、構成体のidentity候補と包含・接続・依存relationは、HARNESS要求エンジン確定後に別のversioned
 分類projectionとして関連付ける。原eventを再分類で書き換えず、単体の進行・証拠・完了を接続や構成体へ自動伝播しない。
 
-[設計template system要求候補](../../governance/candidates/design-template-system-requirements.md)のtemplate意味、適用規則、
+[設計template system要求候補](../../helix-brain/candidates/design-template-system-requirements.md)のtemplate意味、適用規則、
 設計義務はHARNESS-L2-009が所有する。HELIX-OSはHELIXOS-L2-001／002／005／007／013として、承認済みseed／template、
 候補、retired版、対象projectの選定exact set、適用、義務、N/A、backflow、成果、finding、再作業、受入、運用結果を管理する。
 template未登録、stale、conflict、必要input欠落では任意様式へfallbackせず、停止または要求エンジンへ戻す。複数projectの
@@ -186,15 +186,7 @@ OSが要求を直接書き換えたり自己承認したりしない。本節で
 
 ## 限定修復の統制条件
 
-[旧Bugbot候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md)は、
-[新世代対応表](../../governance/audits/source-rebaseline/new-generation-bounded-repair-source-crosswalk.md)に従って再採否する。
-HELIXOS-L2-001／002／004／005／007／009では、逸脱の検出、修復候補、意味判断、操作許可、隔離適用、検収、
-停止・復旧を別状態として追跡する。対象revision、actor、write-set、副作用、予算、期限、再試行、影響範囲、復旧先、
-独立検証が成立する操作だけを実行対象にし、候補・登録・旧GH-FR-011から包括的write権限を生成しない。
-
-二重実行、session交代による予算reset、循環、stale、所有競合、未信頼実装、範囲外変更、不明な外部副作用を
-成功へ補完しない。意味矛盾は上流変更候補へ戻し、要求・設計・検証義務を修復器が変更しない。
-本節では旧bugbot、既存CI、旧DB／transaction、自動修復を実行しない。
+旧Bugbot候補に由来する限定修復の統制条件は、2026-09-25 PO判断により[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ移した。
 
 ## 構造改善候補の統制条件
 
@@ -242,7 +234,7 @@ HELIX-OSは内部統制機構として扱い、HARNESSやHELIX-Web等の外部�
 
 ## AI可読文書の生成・適用統制
 
-[AI可読上流文書の要求候補](../../governance/candidates/ai-readable-authority-requirements.md)のAIDOC-OS-001..008を、
+[AI可読上流文書の要求候補](../candidates/ai-readable-authority-requirements.md)のAIDOC-OS-001..008を、
 HELIXOS-L2-001／002／003／004／005／007／009の適用待ち具体化として保持する。session開始時に対象project・product、
 authority revision、HARNESS契約、assignment、許可・禁止、予算、停止条件、必須readを解決し、会話、Issue、memory、
 旧実装から不足項目を補完しない。
@@ -295,7 +287,7 @@ Agentic Workerは探索を含む有界な調査・設計・実装・testを担�
 
 ## 新世代CIの再構築条件
 
-[新世代CI要求候補](../../governance/candidates/next-generation-ci-requirements.md)のNCI-OS-001..008を、
+[新世代CI要求候補](../candidates/next-generation-ci-requirements.md)のNCI-OS-001..008を、
 HELIXOS-L2-008の適用待ち具体化として保持する。既存workflow、job、required check、review admissionはlegacy implementationであり、
 新世代CIの要求分母や合格oracleにしない。GitHub Actions等は交換可能なprovider adapterとする。
 
@@ -364,34 +356,19 @@ HMC-BR-004の「作業依頼」も自動的な承認・決定・完了への昇�
 HMC-BR-006のprovider設定詳細はProvider Configurationの責務とし、OSの通知機構へ混在させない。
 保持・削除期間の数値、authority語彙、JSON key orderingは本移管で新規定義しない。
 
-## 監査・学習・成果の出所に関する候補条件
+## 成果の出所に関する候補条件
 
-AAFD、RCLS、PPSの要求候補をHELIX-OSの対象別要求案へ接続する。
-AAFDはHELIXOS-L2-005／007、RCLSはHELIXOS-L2-004／005、PPSはHELIXOS-L2-004／007に対応する。
-いずれもdraftであり、以下への収載を採択・正本昇格と扱わない。出典は[AAFD](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md)、
-[RCLS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md)、
-[PPS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md)である。
+PPSの要求候補をHELIX-OSの対象別要求案へ接続する。PPSはHELIXOS-L2-004／007に対応する。
+draftであり、以下への収載を採択・正本昇格と扱わない。出典は[PPS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md)である。
+同じ節にあった監査（AAFD）は[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。
 
 | 出典 | 保持する具体条件 |
 |---|---|
-| AAFD-BR-01 | 監査提案から対象HEAD・authority・producer・証拠・再現手順・反証条件へ辿れる。自由文だけをauthorityにしない |
-| AAFD-BR-02 | 内部改善と外部環境変化の出所を保持し、既存UIL／TERからFuture Synthesisへ接続する |
-| AAFD-BR-03 | 確定変更で影響する将来投影・前提・指令だけを失効・再合成し、古い投影で割当・公開・廃止を判断しない |
-| AAFD-BR-04 | モデル更新を同一corpus・責務scopeで比較し、所見の増減・誤検出・見逃し・再現性・費用・遅延を確認する。更新だけで適格化しない |
-| RCLS-BR-001 | 知識・経験の所有を安定したresponsibility_idで追跡し、フォルダやSkill名の変更で失わない |
-| RCLS-BR-002 | CASE／SCENE／PATTERN／LOG／VERIFYを責務・事例・revisionへ対応づけ、相関を因果、自己評価を独立検証として扱わない |
-| RCLS-BR-003 | 割当には責務・事例・リスク・provider・task class・context budgetに応じた最小packetを使い、全記録を一括投入しない |
-| RCLS-BR-004 | project内、独立検証、横断検証、shadow、Mechanismへの段階を区別し、機構化した規則のSkill本文との二重管理を解消する |
-| RCLS-BR-005 | 反例・authority変更・provider／model／version・期限・security／licenseを適格性へ反映し、失効・矛盾・取消後の再検証を確認できる |
-| RCLS-BR-006 | 学習結果は提案・証拠・検索入力として扱い、要求・設計・merge・Release authorityを直接書き換えない。既存の要求形成・改善機構を重複実装しない |
 | PPS-BR-01 | 内容のproducer、commit実行者、PR公開者を別々に確認できる |
 | PPS-BR-02 | Git actorの違いだけで独立review成立としない |
 | PPS-BR-03 | assignment scopeとcandidate HEADに結びつくprovenance graphから成果の経路を再現できる |
 | PPS-BR-04 | 過去の不明producerを推定で承認済みにせず、段階的移行を示す。mixedとunknownを区別し、外部botからHELIX producerを推定しない |
 
-AAFDの提案・差分・将来指令から要求・設計・提供・割当・mergeのauthorityを直接変更しない。
-既存UIL／TER／Future Synthesis等への接続であり、新しいroute、開発style、DB正本、常駐レーンを追加しない。
-RCLSの最小packetはsceneとartifact classも保持して決定的に構成する。学習の仕組みを既存の要求形成・改善・評価機構と重複実装しない。
 PPSは成果生成者、commit実行者、PR公開者、独立reviewerを別identityとして記録する。
 双方の寄与と独立reviewが実測されたmixedは正規の受理状態として保持し、unknownへ劣化させない。
 Git actor・署名・provider routingの再設計は本移管の対象外である。

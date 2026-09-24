@@ -35,8 +35,8 @@ HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変
 | HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |
 | HELIXOS-L1-009 | 人間は、管理・推進・検収の責務を分け、許可範囲内の直接調整を保ったまま仕事を統制できる | HELIXOS-L2-010 |
 | HELIXOS-L1-010 | 人間は、変更と依存に合う統合順序・統合単位・検証集合を確認し、結果に応じて収束計画を更新できる | HELIXOS-L2-011 |
-| HELIXOS-L1-011 | 人間は、内部状態と外部技術情報を出典・revision・適用条件付きで調査し、安全に採否できる | HELIXOS-L2-012 |
-| HELIXOS-L1-012 | 人間は、一つの仕事を要求から運用まで診断し、管理機構自身を含む是正と効果確認へ閉じられる | HELIXOS-L2-013 |
+| HELIXOS-L1-011 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査。元の文言「人間は、内部状態と外部技術情報を出典・revision・適用条件付きで調査し、安全に採否できる」は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIXOS-L2-012 |
+| HELIXOS-L1-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断。元の文言「人間は、一つの仕事を要求から運用まで診断し、管理機構自身を含む是正と効果確認へ閉じられる」は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIXOS-L2-013 |
 
 上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。
 現行の`HELIXOS-L2-005`と同じL2文書内の学習に関する記述は、旧OS集中責務を含む未承認の候補である。LABOの独立評価、OSの登録・実行、後続版のIntelligenceによる知識・モデル改善への分離は[要求対応表](../../governance/crosswalks/concept-mechanism-version-requirement-crosswalk.md)で照合中とし、旧L2本文のまま現行のOS単独責務とは判定しない。

@@ -2,12 +2,15 @@
 title: "意味密度による旧実装Python core抽出方針"
 status: draft_candidate
 authority_status: awaiting_human_approval
+updated: 2026-09-25
 created: 2026-09-15
 product_owner: HELIX-HARNESS
 execution_boundary_owner: HELIX-OS
 ---
 
 # 意味密度による旧実装Python core抽出方針
+
+2026-09-25のPO判断により、`docs/governance/candidates/`からHELIX-HARNESSの候補置き場へ移した（[判断記録](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。
 
 ## 方針
 

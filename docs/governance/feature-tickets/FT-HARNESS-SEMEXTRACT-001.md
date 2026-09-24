@@ -14,7 +14,7 @@ github_projection:
 parent_requirements:
   - HARNESS-L2-008
   - HARNESS-L2-009
-policy_source: docs/governance/candidates/semantic-density-python-extraction-policy.md
+policy_source: docs/helix-harness/candidates/semantic-density-python-extraction-policy.md
 depends_on: []
 delivery_sequence_predecessor:
   - FT-OS-REQREG-001

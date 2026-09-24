@@ -29,8 +29,8 @@ Issue close、PR merge、旧owner・技術との衝突、37件のrouting contain
 | HELIXOS-L2-009 | 中断・担当交代後も制約と未完義務を引き継ぎ、二重実行・予算リセット・無許可復旧を拒否する |
 | HELIXOS-L2-010 | 管理・推進・検収が同じticketと因果IDで直接調整し、scope・優先度・共有資源・要求意味の変更だけを正しい判断先へ返す。役割を固定モデル数や中央中継へ変換しない |
 | HELIXOS-L2-011 | HARNESS契約で同じ検証義務を与え、A→Bの依存を実際のbase+A+Bで具体化する。base更新・候補増減・順序変更で再計画し、OSによるoracle削除・追加、必要CI欠落、影響証明不能、契約解釈不明、別HEADの成功ではmerge可能としない |
-| HELIXOS-L2-012 | 内部情報の欠落と外部情報の相違を保持し、秘密送信、取得命令実行、外部patch自動採用、closed／mergedだけの解決認定を拒否する |
-| HELIXOS-L2-013 | 同じ仕事について上流からの欠落と失敗からの原因候補を突合し、管理自身を含む是正ticket、再検証、再観測へ辿る。未着手や観測停止を正常と表示しない |
+| HELIXOS-L2-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した |
+| HELIXOS-L2-013 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した |
 
 ## 実行・記録の反例
 
@@ -88,11 +88,7 @@ Issue close、PR merge、旧owner・技術との衝突、37件のrouting contain
 - 管理projectionのmissing、unknown、stale、conflict、再構築失敗を個別に与え、Project／Issue／DB／dashboardの一つが正常でも完了へ補完しない。
 - 旧7 operation、旧layer、DB rebuild成功、roadmap表示を与えても、新世代の管理状態集合や利用者受入の成立根拠にしない。
 
-限定修復の条件は新世代で採用するrevision確定後に評価する。全件未実行。
-
-- HELIXOS-L2-001／004／007／009：候補、登録、許可、適用、検収を別々に確認し、旧GH-FR-011、修復器登録、他修復の成功からwrite権限を生成しない。
-- write-set逸脱、stale、所有競合、予算超過、循環、二重実行、不明副作用を個別に与え、停止・保全・上流返却を確認する。
-- 旧bugbot、既存CI、旧DB／transaction、main read-afterを与えても、新世代限定修復の実行・受入証拠にしない。
+限定修復の受入条件は、2026-09-25 PO判断により[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ移した。
 
 構造改善条件は新世代L1／L2の採用revision確定後に評価する。全件未実行。
 
@@ -177,15 +173,11 @@ HELIXOS-L2-001／004／005／007／009のHMC-BR-001..006由来条件を検証す
 - HMC-BR-004：作業依頼・質問・仮説・叱責も入力し、依頼の存在だけで承認や完了を生成しない。
 - HMC-BR-005：消費、期限切れ、訂正を個別に再現し、無効な通知は履歴として参照できても現行指示として再使用できない。
 
-## 監査・学習・成果の出所に関する候補の受入条件
+## 成果の出所に関する候補の受入条件
 
-AAFD4件・RCLS6件・PPS4件は採用revision確定後、HELIXOS-L2-004／005／007で次を確認する。全件未実行。
+PPS4件は採用revision確定後、HELIXOS-L2-004／007で次を確認する。全件未実行。
+監査（AAFD）の受入条件は[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。
 
-- 監査提案からHEAD・根拠・出所・再現・反証へ辿り、内部改善と外部変化を区別できる。変更時に影響する将来投影だけが再評価される。
-- 同じcorpusでモデル変更前後の所見・誤検出・見逃し・費用・遅延を比較でき、モデル更新だけでは適格にならない。
-- 責務名や保存場所の変更後も経験の所有を追跡できる。事例・推論・検証を区別し、自己評価を独立検証として表示しない。
-- 割当packetの選択根拠と予算を確認し、全Skill・memory・logの一括投入を認めない。昇格段階と失効・取消後の再検証を識別できる。
-- 学習提案だけで要求・設計・merge・Releaseが変更されない。機構化後の規則がSkill本文と二重に判定を支配しない。
 - producer、commit実行者、PR公開者を個別に表示し、HEADとassignmentから経路を再現できる。actor差だけの独立review、過去の不明producerの推定承認を拒否する。
 - mixedとunknown、外部botとHELIX producerを区別し、既存記録に無かった証拠を移行処理で生成しない。
 

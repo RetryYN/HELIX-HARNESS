@@ -3,7 +3,7 @@ title: "新世代CIの上流要求候補"
 status: draft_candidate
 authority_status: awaiting_human_approval
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-25
 product_targets:
   - HELIX-HARNESS
   - HELIX-OS
@@ -15,6 +15,8 @@ derived_from:
 ---
 
 # 新世代CIの上流要求候補
+
+2026-09-25のPO判断により、`docs/governance/candidates/`からHELIX-OSの候補置き場へ移した（[判断記録](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。
 
 ## 目的
 
@@ -33,12 +35,7 @@ derived_from:
 
 ## HARNESSに対する要求
 
-| ID | 要求 | 確認する結果 |
-|---|---|---|
-| NCI-HARNESS-001 | layer、V-pair、artifact class、変更種別、riskから必要な検証義務を決められる | 同じ変更でも上流意味review、設計検証、実装test、利用者受入、運用評価が混在しない |
-| NCI-HARNESS-002 | 各検証義務が対象revision、入力、oracle、expected failure、証拠形式、有効期限、差戻し先を持つ | command成功やjob greenだけでは義務充足にならない |
-| NCI-HARNESS-003 | required、conditional、informational、not-applicableを理由付きで区別し、unknownをskipへ変換しない | profile縮小時も必要検査が消えず、非適用条件を再評価できる |
-| NCI-HARNESS-004 | 上流変更からstale化する下流と再検証範囲を導出できる | 旧authorityに対するgreenや無関係なfull runで新revisionの欠落を相殺しない |
+HARNESSに対する要求（NCI-HARNESS-001〜004）は、[next-generation-ci-requirements.md](../../helix-harness/candidates/next-generation-ci-requirements.md)へ分けた（2026-09-25 PO判断）。
 
 ## HELIX-OSに対する要求
 
@@ -94,7 +91,7 @@ reviewer identity、対象revision、source set、観点、finding、判定時�
 - pipeline failureから正しい上流または下流の差戻し先を識別し、Concept変更を実装修正へ誤配送しない。
 - 旧workflowを削除してもrequired context、schedule、template、admission consumer、復元経路のいずれかが残れば、旧CI退役を成立させない。
 
-本候補は[上流再整備と既存資産統制方針](../upstream-rebaseline-and-asset-governance-policy-2026-09-14.md)の
+本候補は[上流再整備と既存資産統制方針](../../governance/upstream-rebaseline-and-asset-governance-policy-2026-09-14.md)の
 `upstream meaning review`とU6 cutoverの間を、要求から再導出するための入力である。
-[既存CI・AI候補との対応](../audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md)は、旧候補から採る意味と
+[既存CI・AI候補との対応](../../governance/audits/source-rebaseline/new-generation-ci-ai-source-crosswalk.md)は、旧候補から採る意味と
 持ち込まない実装前提を記録する。
