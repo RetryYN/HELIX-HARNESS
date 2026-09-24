@@ -6,7 +6,7 @@ current_base: `d4e8ebb47abea5dc21397a9997df1f3421833f50`（PR #2131統合後）
 
 ## 対象と結果
 
-以下の6件は両baseで同じ検査失敗を示す。`validate.py`は現行のScaffold Binding upstreamと、研究時の固定BASEから作ったinventoryを同一の現行責務境界として照合する。固定入力に含む製品境界、HARNESS／OS／Web／Web-OSのL1、作業入口の6 pathは、Bindingでは現行bytes、inventoryでは旧bytesを指す。単なる行位置・SHAのずれとして旧分類候補を現行判断へ付け替えると、研究時の意味判定を現行の承認済み判定と取り違える。
+以下の6件は両baseで同じ検査失敗を示す。`validate.py`は現行のScaffold Binding upstreamと、研究時の固定BASEから作ったinventoryを同一の現行責務境界として照合する。固定入力に含む製品境界、HARNESS／OS／Web／Web-OSのL1、作業入口の6 pathは、Bindingでは現行bytes、inventoryでは旧bytesを指す。`SCF-B-0141`の製品境界upstream noteに記録された2026-09-24のConcept親付替え後の静的read-afterでBindingを現行bytesへ付け直した一方、固定BASEから生成したinventoryは旧receiptのまま保持した。単なる行位置・SHAのずれとして旧分類候補を現行判断へ付け替えると、研究時の意味判定を現行の承認済み判定と取り違える。
 
 | Binding | 研究束 | 現行の最初の失敗 |
 |---|---|---|
