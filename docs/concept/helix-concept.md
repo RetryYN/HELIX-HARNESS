@@ -170,7 +170,7 @@ flowchart LR
     CONNECT["HELIX-CONNECT<br/>接続・通信"]
     RUNNER["Runner／Sandbox<br/>限定実行"]
     LABO["HELIX-LABO<br/>計測・評価"]
-    INT["HELIX-Intelligence<br/>ローカルLLMで判断補助"]
+    INT["HELIX-Intelligence<br/>HELIXを最も知る部位・全体監査"]
     BRAIN["HELIX-BRAIN<br/>全体の汎用構造"]
     OS["HELIX-OS<br/>配布運転・改善提案の登録"]
     SEC["HELIX-Security<br/>認可・制限"]
@@ -207,14 +207,14 @@ flowchart LR
 | HELIX-OS | 製品ごとの固有性を持ち、工程管理と推進を担う。管理（HELIX自身と各製品の要求・承認・予算・状態・証拠の登録と版の管理）、推進（接続状況から安全な順序を決めてチケットを発行し、エージェントレーンとHELIXサブエージェントへ割り当てる）、検収（チケットから必要なCIとテストを割り出して最適化する）、統合、更新、復旧 | 工程の意味の別定義、BRAIN案の無条件実行 |
 | HELIX-BRAIN | 製品単位ではなく、HELIX全体に共通する汎用性を持つ。設計テンプレ等を学習し、意味から構造（設計パターン、設計ユニット・パーツ）を取り出す。各製品のヘリックスコアとコネクタで接続し、コアのパターンからパーツを増やす。稼働中の理解、計画、予測、診断、レビュー、配置案 | 製品固有の意味・設計の保持、要求・承認・権限の生成、OS状態の直接更新 |
 | HELIX-LABO | 実験、比較、改善効果・退行の計測 | 自己評価だけでの採用確定 |
-| HELIX-Intelligence | ローカルLLMを使った判断の補助 | 検証なしでの稼働モデル差し替え |
+| HELIX-Intelligence | HELIXについて最も知っている部位。ローカルLLMに判断を依頼する。バグbot、ヘルプbot、クローラーを発行し、HELIX全体の監査に寄せる | 検証なしでの稼働モデル差し替え |
 | HELIX-Security | 認可、情報保護、資格情報、隔離、失効 | 自身の権限の拡張 |
 | HELIX-Web 《製品》 | HARNESSのサービス①〜⑦をリリース単位として顧客へ提供し、顧客が欲しい成果物を選んで受け取る窓口 | 開発エンジンの別実装 |
 | HELIX-Web-OS | 顧客のtenant・job・サービス状態・配備・監視・復旧 | 内部OSの状態・鍵・権限の共有 |
 | HELIX-CONNECT（共通部品） | 接続登録、契約版の照合、通信、再送、追跡 | 業務判断、承認 |
 | Runner／Sandbox（共通部品） | 限定された実行、停止、隔離、結果回収 | 作業の採否、自己承認 |
 
-- **BRAINは全体、OSは製品ごと。** HELIX全体に共通する汎用の構造（設計パターン、設計ユニット・パーツ）はBRAINが持ち、製品ごとの工程管理と推進はOSが担う。IntelligenceはローカルLLMを使って判断を補助する。
+- **BRAINは全体、OSは製品ごと。** HELIX全体に共通する汎用の構造（設計パターン、設計ユニット・パーツ）はBRAINが持ち、製品ごとの工程管理と推進はOSが担う。IntelligenceはHELIXについて最も知っている部位として、ローカルLLMへの判断依頼と、バグbot・ヘルプbot・クローラーの発行を担い、HELIX全体の監査に寄せる。
 - **決めるのはOS。** BRAINは案を出す。OS内の推進機構はoperational tag、HARNESS語彙へのversioned mapping、composition、workflow instanceの生成規則を所有し、案の適格性を確認してticket graphとworkflow instanceを生成する。OSの管理が登録・統制して状態遷移を確定し、検収はHARNESSの契約への充足を独立して確認する。
 - **管理・推進・検収を、同じ自己承認主体にまとめない。**
 - **チケットは、管理・推進・検収をつなぐ単位である。** 管理が接続状況を持ち、推進がチケットを発行し、実行者が作業し、検収が必要な検証を決め、管理が結果を記録する。
