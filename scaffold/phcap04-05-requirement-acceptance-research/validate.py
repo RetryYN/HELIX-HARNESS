@@ -43,12 +43,12 @@ EXPECTED_UNIT_IDS = [
 EXPECTED_REF_SHAPES = {
     "CUR-HARNESS-L2": ("HELIX-HARNESS", "L2_current_ref", "docs/helix-harness/L2-requirements/product-requirements.md", 1, 35),
     "CUR-OS-L2": ("HELIX-OS", "L2_current_ref", "docs/helix-os/L2-requirements/governance-requirements.md", 1, 34),
-    "CUR-WEB-L2": ("HELIX-Web", "L2_current_ref", "docs/helix-web/L2-requirements/product-requirements.md", 1, 23),
-    "CUR-WEBOS-L2": ("HELIX-Web-OS", "L2_current_ref", "docs/helix-web-os/L2-requirements/service-governance-requirements.md", 1, 36),
+    "CUR-WEB-L2": ("HELIX-Web", "L2_current_ref", "docs/helix-web/L2-requirements/product-requirements.md", 1, 25),
+    "CUR-WEBOS-L2": ("HELIX-Web-OS", "L2_current_ref", "docs/helix-web-os/L2-requirements/service-governance-requirements.md", 1, 38),
     "CUR-HARNESS-L11": ("HELIX-HARNESS", "L11_current_ref", "docs/helix-harness/L11-acceptance/product-acceptance.md", 1, 36),
     "CUR-OS-L11": ("HELIX-OS", "L11_current_ref", "docs/helix-os/L11-acceptance/governance-acceptance.md", 1, 33),
-    "CUR-WEB-L11": ("HELIX-Web", "L11_current_ref", "docs/helix-web/L11-acceptance/product-acceptance.md", 1, 31),
-    "CUR-WEBOS-L11": ("HELIX-Web-OS", "L11_current_ref", "docs/helix-web-os/L11-acceptance/service-acceptance.md", 1, 24),
+    "CUR-WEB-L11": ("HELIX-Web", "L11_current_ref", "docs/helix-web/L11-acceptance/product-acceptance.md", 1, 33),
+    "CUR-WEBOS-L11": ("HELIX-Web-OS", "L11_current_ref", "docs/helix-web-os/L11-acceptance/service-acceptance.md", 1, 26),
 }
 EXPECTED_GAPS = [
     "PHCAP-04 current L2 containers remain draft and individual adoption/IR admission is not established",
