@@ -120,13 +120,13 @@
     },
     {
       "path": "scaffold/phcap06-design-research/inventory.json",
-      "sha256": "132d27ccb26c8cca9ff492472edc6f2b9da9a8d248152c553dd6efe4b2b597ea",
-      "note": "PHCAP-06 candidate artifact"
+      "sha256": "420265b4c10527ff062ef9124e24bcc9aca89d4d1884cf2ea9a384c8e0768840",
+      "note": "PHCAP-06 candidate artifact [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関する研究inventoryの現行参照を、移した候補の新しいpathと変わったOS文書の行・固定文へ付け直した（Codex review P2対応。固定文が変わらない参照は行位置とSHAだけ、変わった参照は同じ範囲の現行文へ更新）。validatorはmainと比べて新しい失敗なし。本bindingの役割・義務・接続先・置換先は変わらない。前receipt=132d27ccb26c8cca9ff492472edc6f2b9da9a8d248152c553dd6efe4b2b597ea; 現receipt=420265b4c10527ff062ef9124e24bcc9aca89d4d1884cf2ea9a384c8e0768840; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/phcap06-design-research/validate.py",
-      "sha256": "4e65eb1af6853b8768db5333b1fff4cae0a83e64d87c679b3190fee9bbf640c0",
-      "note": "PHCAP-06 candidate artifact"
+      "sha256": "0a025de5420b33be38cd9a914d550c26ce070cb4dfd5f5082ad8a417c5062fda",
+      "note": "PHCAP-06 candidate artifact [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関する研究inventoryの現行参照を、移した候補の新しいpathと変わったOS文書の行・固定文へ付け直した（Codex review P2対応。固定文が変わらない参照は行位置とSHAだけ、変わった参照は同じ範囲の現行文へ更新）。validatorはmainと比べて新しい失敗なし。本bindingの役割・義務・接続先・置換先は変わらない。前receipt=4e65eb1af6853b8768db5333b1fff4cae0a83e64d87c679b3190fee9bbf640c0; 現receipt=0a025de5420b33be38cd9a914d550c26ce070cb4dfd5f5082ad8a417c5062fda; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/phcap06-design-research/selfcheck.py",

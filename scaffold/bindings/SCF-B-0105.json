@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6",
-      "note": "static input; taxonomy research only; no authority effect [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: L1・製品責務境界・5大目標・Web／Web-OSの状態記述をPO判断に合わせて更新。前receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a; 現receipt=79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6; このBindingの採否・authorityは変更しない。]"
+      "sha256": "003855331a67fd99db43034fad90f3a6163db7582c0bbd5a18bbd98e094b311d",
+      "note": "static input; taxonomy research only; no authority effect [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: L1・製品責務境界・5大目標・Web／Web-OSの状態記述をPO判断に合わせて更新。前receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a; 現receipt=79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6; このBindingの採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関するCodex review P2対応で、作業入口のHELIX-OS L1の行に、9/24に採用されたSHA `ffbafa47…`の本文からL1-011・L1-012を案内行へ変えたこと、変更後の本文はPO最適ドラフトPRで確認することを追記した。本bindingにある「HELIX-OS L1（SHA ffbafa47…）はPO採用」の記述はSHAを指定した事実であり、変更後も正しい。それ以外にHELIX-OS L1の採用状態に依存しないことをbinding全体で確認した。前receipt=79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6; 現receipt=003855331a67fd99db43034fad90f3a6163db7582c0bbd5a18bbd98e094b311d; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-reuse-control.md",
@@ -45,8 +45,8 @@
     },
     {
       "path": "scaffold/phcap20-memory-research/inventory.json",
-      "sha256": "316f49667a9b4abf06e1a5d973615efdb2402d07ed4062bea5763a5aba4c39b5",
-      "note": "static input; taxonomy research only; no authority effect"
+      "sha256": "15cab0b35f0f0f14971613641bb7dc2f29ec556127663503a71146a5f1349c9d",
+      "note": "static input; taxonomy research only; no authority effect [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関する研究inventoryの現行参照を、移した候補の新しいpathと変わったOS文書の行・固定文へ付け直した（Codex review P2対応。固定文が変わらない参照は行位置とSHAだけ、変わった参照は同じ範囲の現行文へ更新）。validatorはmainと比べて新しい失敗なし。本bindingの役割・義務・接続先・置換先は変わらない。前receipt=316f49667a9b4abf06e1a5d973615efdb2402d07ed4062bea5763a5aba4c39b5; 現receipt=15cab0b35f0f0f14971613641bb7dc2f29ec556127663503a71146a5f1349c9d; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",

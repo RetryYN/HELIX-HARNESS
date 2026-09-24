@@ -80,7 +80,7 @@ def validate(inv):
     fail(errors, gap.get("missing_status") == "unknown", "E_UNKNOWN_STATUS")
     fail(errors, gap.get("prohibited_inference") == "HELIX-Web/Web-OS direct PHCAP-06 ref absence is not an implementation absence claim", "E_NEGATIVE_BOUNDARY")
     fail(errors, gap.get("direct_current_evidence_refs") == [
-        "docs/governance/candidates/design-template-system-requirements.md",
+        "docs/helix-brain/candidates/design-template-system-requirements.md",
         "docs/governance/feature-tickets/FT-HARNESS-DESIGNTPL-001.md",
         "docs/governance/feature-tickets/FT-OS-DESIGNTPL-001.md",
     ], "E_DIRECT_REFS")

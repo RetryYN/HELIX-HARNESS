@@ -53,7 +53,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 
 4対象L1の**旧exact revision**は2026-09-17のdecision recordで承認済みである。旧承認を現行bytesへ継承しない。
 [2026-09-24のPO判断](decisions/concept-requirement-po-decisions-2026-09-24.md)で、次のように扱いを決めた。
-- HELIX-OS L1：現行本文SHA `ffbafa47…51bc`をPOが採用した。
+- HELIX-OS L1：本文SHA `ffbafa47…51bc`をPOが採用した。2026-09-25のPO判断（[判断記録](decisions/mechanism-placement-po-decisions-2026-09-25.md)）でL1-011・L1-012をHELIX-LABOの候補への案内行に変えた。変更後の本文は、PO最適ドラフトPRで対象revisionを確認する。
 - 製品責務境界：現行本文SHA `9268e357…ac0a`をPOが採用した。
 - HARNESS L1と5大目標：内容をPOが採用した。HARNESS L1は1.0土台の追記、5大目標は関与表の縮約を指示された。追記・縮約後の本文は、PO最適ドラフトPRで対象revisionを確認する。
 - HELIX-WebとHELIX-Web-OS：L1・L2・L11を要求層から外し、Visionレベルの材料へ分類し直した。

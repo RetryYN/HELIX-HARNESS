@@ -110,8 +110,8 @@
     },
     {
       "path": "scaffold/phcap19-learning-research/inventory.json",
-      "sha256": "3a1b5efca44939780aa81d90557d1f079a857a094b28dc726a025f96f06bddf4",
-      "note": "5 asset、21 source span、13 atom、4製品候補、OS direct evidenceと3製品unknown"
+      "sha256": "f24bbd277833b8626f71d067258f22ff0e6b2b6e8feea450d252577627f2567f",
+      "note": "5 asset、21 source span、13 atom、4製品候補、OS direct evidenceと3製品unknown [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdに関する研究inventoryの現行参照を、移した候補の新しいpathと変わったOS文書の行・固定文へ付け直した（Codex review P2対応。固定文が変わらない参照は行位置とSHAだけ、変わった参照は同じ範囲の現行文へ更新）。validatorはmainと比べて新しい失敗なし。本bindingの役割・義務・接続先・置換先は変わらない。前receipt=3a1b5efca44939780aa81d90557d1f079a857a094b28dc726a025f96f06bddf4; 現receipt=f24bbd277833b8626f71d067258f22ff0e6b2b6e8feea450d252577627f2567f; このBindingの採否・authorityは変更しない。]"
     }
   ],
   "role": "PHCAP-19の旧learning／改善capabilityと現行HELIX-OS／HELIX-HARNESS／HELIX-Web／HELIX-Web-OS境界を、direct evidenceの有無・unknown・矛盾を保ったresearch premiseとして固定する",
