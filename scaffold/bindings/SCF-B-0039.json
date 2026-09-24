@@ -55,13 +55,13 @@
     },
     {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "sha256": "c775ba4988003d373cbede7a8bb177aaea3b4a59772397e6f2384878f2517f31",
-      "note": "HARNESS L2 draft and provider boundary [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HARNESS-L2-001..009の文言変更（L2.5、リリースカンバン、導出、動的CI、サービス単位、1.0土台、要求エンジン1次／2次形成、Backflow）とticket導出コア節への置換。前receipt=a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77; 現receipt=c775ba4988003d373cbede7a8bb177aaea3b4a59772397e6f2384878f2517f31; このBindingの採否・authorityは変更しない。]"
+      "sha256": "d02c70de36d370b09fe403f5ebf0fb921ef19da04fe11ec55b0ac84ffb2bbd7a",
+      "note": "HARNESS L2 draft and provider boundary [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HARNESS-L2-001..009の文言変更（L2.5、リリースカンバン、導出、動的CI、サービス単位、1.0土台、要求エンジン1次／2次形成、Backflow）とticket導出コア節への置換。前receipt=a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77; 現receipt=c775ba4988003d373cbede7a8bb177aaea3b4a59772397e6f2384878f2517f31; このBindingの採否・authorityは変更しない。] [2026-09-25 PR #2128 review修正read-after: Codex review指摘への修正で、L2.5の適用をPrototype（画面の有無）とPoC（成立性不明）で別判定にする工程規則1行だけを変更。binding全体のticket・L2.5への依存を再確認し、role・obligations・verificationへの影響なし。前receipt=c775ba4988003d373cbede7a8bb177aaea3b4a59772397e6f2384878f2517f31; 現receipt=d02c70de36d370b09fe403f5ebf0fb921ef19da04fe11ec55b0ac84ffb2bbd7a; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d",
-      "note": "OS L2 draft, source holding and governance boundary [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HELIXOS-L2-002／004／005／006／007／008／010／011／012／013とHMC-BR-003／006の文言変更、ticket節の追加、旧ticket候補文書への参照を退役扱いへ変更。前receipt=78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be; 現receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; このBindingの採否・authorityは変更しない。]"
+      "sha256": "8e950ed6531709bddeece56c71ec12b6911935c61ee4306288136a712d5c13a5",
+      "note": "OS L2 draft, source holding and governance boundary [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HELIXOS-L2-002／004／005／006／007／008／010／011／012／013とHMC-BR-003／006の文言変更、ticket節の追加、旧ticket候補文書への参照を退役扱いへ変更。前receipt=78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be; 現receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; このBindingの採否・authorityは変更しない。] [2026-09-25 PR #2128 review修正read-after: Codex review指摘への修正で、ticket表のPoC行（画面の有無に関係なく成立性不明で発行）とReverse行（Scrum Reverseのcheckpointから計画的にも発行）だけを変更。binding全体のticket・L2.5への依存を再確認し、role・obligations・verificationへの影響なし。前receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; 現receipt=8e950ed6531709bddeece56c71ec12b6911935c61ee4306288136a712d5c13a5; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web/L2-requirements/product-requirements.md",

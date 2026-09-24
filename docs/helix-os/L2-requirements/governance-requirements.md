@@ -126,11 +126,11 @@ Forwardは本流である。開発方式がVモデル・Scrum・Hybridのどれ�
 | Forward 中 | 接続（機能と機能のつなぎ）を、開発方式の規定路線で作る | 計画 | Forward 大 |
 | Forward 小 | 単体の機能を、開発方式の規定路線で作る | 計画 | Forward 中／大 |
 | Discovery | 開発の途中で検証が必要になったとき、または範囲が分からないときに確かめる | 突発 | 発行元のticket |
-| PoC | 技術的に成り立つかを確かめる。本番実装にはしない | 計画（L2.5） | Backflow→要求エンジンの2次形成→DECIDE |
+| PoC | 技術的に成り立つかを確かめる。画面の有無に関係なく、成立性が不明なときに発行する。本番実装にはしない | 計画（L2.5） | Backflow→要求エンジンの2次形成→DECIDE |
 | Prototype | 画面の操作と使う人の反応を確かめる。画面のない対象では発行しない | 計画（L2.5） | Backflow→要求エンジンの2次形成→DECIDE |
 | DECIDE | 裁定。要求の確認や技術の選定をPR化して決める | 計画 | 採用→Forward、不採用→記録して終了、方針変更→次の計画 |
 | Backflow | 下流の結果（PoC・Prototypeの結果、要求の入力不足、下流で分かったこと）を要求へ戻す | PoC・Prototypeの後は計画、それ以外は突発 | 要求エンジン（L2） |
-| Reverse | 実装の事実から設計へ戻す。Scrum Reverseを含む | 突発 | Forwardの該当層 |
+| Reverse | 実装の事実から設計へ戻す。Scrum Reverseを含む | 突発（設計と実装のずれ、同種finding再発、性能退行、障害等）と計画（Scrum Reverseのcheckpoint：sprint review前、release candidate合流前、public contract・DB schema・主要dependency・NFR budgetの変更時。旧`helix-harness-requirements_v1.3.md:94-102`） | Forwardの該当層 |
 | Recovery | AIの逸脱・暴走・context切れから正常な地点へ戻す | 突発 | 中断していた工程 |
 | Incident | 本番障害に緊急対応する | 突発 | 運用評価（L12）。恒久対策はReverse経由 |
 | Refactor | 振る舞いを変えずにコードの構造を直す | 計画（範囲を入れれば事象からも発行可） | Forward 小 |

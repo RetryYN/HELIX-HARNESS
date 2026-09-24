@@ -113,9 +113,9 @@
       "sha256": "a5f6cebe42b019a4f0511a54f7409493bc007d6395ec449cb0af8e2fa792d781"
     },
     {
-      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HELIXOS-L2-002／004／005／006／007／008／010／011／012／013とHMC-BR-003／006の文言変更、ticket節の追加、旧ticket候補文書への参照を退役扱いへ変更。前receipt=78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be; 現receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; このBindingの採否・authorityは変更しない。]",
+      "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HELIXOS-L2-002／004／005／006／007／008／010／011／012／013とHMC-BR-003／006の文言変更、ticket節の追加、旧ticket候補文書への参照を退役扱いへ変更。前receipt=78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be; 現receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; このBindingの採否・authorityは変更しない。] [2026-09-25 PR #2128 review修正read-after: Codex review指摘への修正で、ticket表のPoC行（画面の有無に関係なく成立性不明で発行）とReverse行（Scrum Reverseのcheckpointから計画的にも発行）だけを変更。binding全体のticket・L2.5への依存を再確認し、role・obligations・verificationへの影響なし。前receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; 現receipt=8e950ed6531709bddeece56c71ec12b6911935c61ee4306288136a712d5c13a5; このBindingの採否・authorityは変更しない。]",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d"
+      "sha256": "8e950ed6531709bddeece56c71ec12b6911935c61ee4306288136a712d5c13a5"
     },
     {
       "note": "固定BASE Git objectの静的read-only参照のみ。旧archiveは実行しない [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HMC-BR-003／006の受入文言をPO判断に合わせて変更。前receipt=db691bb55ab1079eeee70bc7cf86c61f197bf13d95455b9ad375f60fe3356a19; 現receipt=0ccc748b3e8e09ab92bc17380a19d4053f338050d4f2497e14d8a9efa6b634ad; このBindingの採否・authorityは変更しない。]",
