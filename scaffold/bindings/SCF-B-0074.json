@@ -15,13 +15,13 @@
     },
     {
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "sha256": "a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "c775ba4988003d373cbede7a8bb177aaea3b4a59772397e6f2384878f2517f31",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HARNESS-L2-001..009の文言変更（L2.5、リリースカンバン、導出、動的CI、サービス単位、1.0土台、要求エンジン1次／2次形成、Backflow）とticket導出コア節への置換。前receipt=a844c18a1c9e963093b8808bca1c70c7dce2ebd7bf1b1f00ca468a4a82700c77; 現receipt=c775ba4988003d373cbede7a8bb177aaea3b4a59772397e6f2384878f2517f31; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HELIXOS-L2-002／004／005／006／007／008／010／011／012／013とHMC-BR-003／006の文言変更、ticket節の追加、旧ticket候補文書への参照を退役扱いへ変更。前receipt=78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be; 現receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/l2-source-register.md",
@@ -40,8 +40,8 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a",
-      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a]"
+      "sha256": "79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6",
+      "note": "static source or authority input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: L1・製品責務境界・5大目標・Web／Web-OSの状態記述をPO判断に合わせて更新。前receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a; 現receipt=79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
@@ -113,7 +113,8 @@
       "current L2 source register",
       "current upstream asset-governance policy",
       "legacy static ledger set",
-      "Python standard library／git object read-only"
+      "Python standard library／git object read-only",
+      "2026-09-24 PO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）による前提の変化：現行HELIX-OS L1（SHA ffbafa47…）と製品責務境界（SHA 9268e357…）はPO採用。HARNESS L1と5大目標は内容採用・追記／縮約後revision未確認。これより前の「現行L1は未承認」の記述はこの状態で読み替える ／ HARNESS／HELIX-OSのL2・L11はPO判断で文言変更済みのdraft。採否は後続のPO最適ドラフトPRで詰める"
     ],
     "boundary": "成果物はscaffold/配下のresearch candidate。32/67会計は候補研究用で、正式holding admission、requirement identity、phase、四製品owner、implementation、degradation、acceptance、release、deploymentを確定しない。"
   },

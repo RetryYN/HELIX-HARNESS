@@ -5,12 +5,14 @@ canonical_layer: L11
 canonical_pair: L2
 layer: L11
 kind: test_design
-status: draft
+status: vision_material
 freeze_blocking: true
 pair_artifact: docs/helix-web/L2-requirements/product-requirements.md
 ---
 
 # HELIX-Web利用要求の受入案
+
+> **Visionレベルの材料（要求層ではない）**：2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、本書はL1／L2／L11の要求層から外し、Visionレベルの材料として扱う。本書はAIがVision v0.1を拡大解釈して起こしたもので、POが要求として出したものではない。PO：「Visionレベルの話でこれから要求に起こすべき内容であり、いま要求に入ってるのがおかしい」。要求は今後POの指示から起こす。本書の記述を要求・受入・設計・実装の根拠にしない。
 
 全件未実行。対象要求の採用revision、プロト合意、対象構成、操作、期待結果・実結果と証拠を揃えて評価する。
 将来構想は段階別に採択し、初期サービスの受入へ一律追加しない。

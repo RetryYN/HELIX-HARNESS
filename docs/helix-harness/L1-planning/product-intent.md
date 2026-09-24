@@ -14,7 +14,7 @@ updated: 2026-09-15
 
 # HARNESS L1企画候補
 
-本書の親は[HELIX Concept](../../concept/helix-concept.md)である。2026-09-17のdecisionは旧本文のexact SHAに限る。現行本文は未承認の再配置候補であり、差分は[PO判断パッケージ](../../governance/crosswalks/concept-requirement-po-decision-packet.md)に記録する。L2合意、L3承認、実装・実行権限は本書から生成しない。
+本書の親は[HELIX Concept](../../concept/helix-concept.md)である。2026-09-17のdecisionは旧本文のexact SHAに限る。2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）で、本文SHA `ece3e268…4e96`の内容を採用し、1.0土台の追記を指示された。追記後の本文はPO最適ドラフトPRで対象revisionを確認する。L2合意、L3承認、実装・実行権限は本書から生成しない。
 
 Conceptのサービス①〜⑦は各単独で成立・利用・リリースできる単位であり、入口・枠・部品・コアはそれらを支える。下表の従来L1 IDはサービス別に分割済みという意味ではない。個別サービスと接続の受入差分は要求対応表へ送る。
 
@@ -23,6 +23,8 @@ Conceptのサービス①〜⑦は各単独で成立・利用・リリースで�
 HARNESSは、外部利用者が企画・要求・要件・設計・実装・検証・運用評価を一貫したV-model契約として
 扱える開発基盤を提供する。変更の種類や実装技術が違っても、何を満たせば次へ進めるか、何を検証し、
 どの結果を利用者が受け入れるかを追跡できるようにする。
+
+1.0で、Conceptの1.0土台7項目（ログと証拠、データの利用区分、計測、接続契約と版、隔離の単位、構成版の固定と切戻し、後から加わる機構の受け口）を入れる。HARNESSの工程・検証契約は、この土台が全機構で共通に成り立つことを前提にする。
 
 | ID | L1企画要求 | L2接続予定 |
 |---|---|---|

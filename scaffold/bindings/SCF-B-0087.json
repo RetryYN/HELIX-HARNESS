@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a",
-      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a]"
+      "sha256": "79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6",
+      "note": "static source or Scaffold input; no semantic adoption, implementation, degradation, failure, consumer, or decision closure [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: L1・製品責務境界・5大目標・Web／Web-OSの状態記述をPO判断に合わせて更新。前receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a; 現receipt=79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-reuse-control.md",
@@ -45,13 +45,13 @@
     },
     {
       "path": "docs/helix-web/README.md",
-      "sha256": "07a5db2ee00421e92338906715b6b103f587df6fbcf9101a59784cd23082b5fc",
-      "note": "current product boundary reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0d73011e6ccc387189645c2158d55e02f444e3e3cb583b0aea29e28ea86ac1e6; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "1502cb3a97b7db7eabe07d47c36741e8c92ac595bfebfcfcdca1c31bc9d32bcd",
+      "note": "current product boundary reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=0d73011e6ccc387189645c2158d55e02f444e3e3cb583b0aea29e28ea86ac1e6; 旧意味の採否・authorityは変更しない。] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: Vision材料への再分類の注記を追加。前receipt=07a5db2ee00421e92338906715b6b103f587df6fbcf9101a59784cd23082b5fc; 現receipt=1502cb3a97b7db7eabe07d47c36741e8c92ac595bfebfcfcdca1c31bc9d32bcd; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web-os/README.md",
-      "sha256": "8a3f3ba3d8dcb985d536f9925814ffdd5a63d9b84ba12444ea9ad72825b3d3dc",
-      "note": "current product boundary reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=f5aac7ab9bc83a8c7339a2190f1e39cbaf3f1271edffc80fbdc37e43a4598914; 旧意味の採否・authorityは変更しない。]"
+      "sha256": "817015b237dd28585d6bf319f4bfe742f9df2cd0aea53c4bb9c4eee1925622b9",
+      "note": "current product boundary reference only [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=f5aac7ab9bc83a8c7339a2190f1e39cbaf3f1271edffc80fbdc37e43a4598914; 旧意味の採否・authorityは変更しない。] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: Vision材料への再分類の注記を追加。前receipt=8a3f3ba3d8dcb985d536f9925814ffdd5a63d9b84ba12444ea9ad72825b3d3dc; 現receipt=817015b237dd28585d6bf319f4bfe742f9df2cd0aea53c4bb9c4eee1925622b9; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/concept-v4.1-claude-review-96171b9ba.md",
@@ -104,7 +104,8 @@
       "current product entry READMEs",
       "current shared L2 crosswalk",
       "legacy static ledger set",
-      "Python standard library／git object read-only"
+      "Python standard library／git object read-only",
+      "2026-09-24 PO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）による前提の変化：HELIX-Web／HELIX-Web-OSのL1・L2・L11はVisionレベルの材料であり要求候補ではない（Conceptの製品属性としてのWeb 1.xは残る） ／ 現行HELIX-OS L1（SHA ffbafa47…）と製品責務境界（SHA 9268e357…）はPO採用。HARNESS L1と5大目標は内容採用・追記／縮約後revision未確認。これより前の「現行L1は未承認」の記述はこの状態で読み替える"
     ],
     "boundary": "成果物はscaffold/配下のresearch candidate。57/67会計は候補研究用で、正式holding admission、requirement identity、phase、四製品owner、implementation、degradation、acceptance、release、deploymentを確定しない。"
   },

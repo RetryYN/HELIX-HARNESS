@@ -40,8 +40,8 @@
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",
-      "sha256": "ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96",
-      "note": "HARNESS boundary candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47; 現receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96]"
+      "sha256": "0ee14027def5d74f510b19e030c35f6cc6ec1c88d68c314799f47e777bd2e758",
+      "note": "HARNESS boundary candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=a49da594e9593557eb42cbfe54edc7e9751ce40fea95d1fe9367f5780184ee04; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=a5543f7ba81504b6708d1932b23ff8ea4c6f51017a0f6a442e2b5cbbdeb1eb47; 現receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 本文ece3e268の内容をPOが採用し、1.0土台7項目の追記を指示。追記後revisionは未確認。前receipt=ece3e268756a55469defa39bba42df9c93a2d331e5034874f54dd9e7bda94e96; 現receipt=0ee14027def5d74f510b19e030c35f6cc6ec1c88d68c314799f47e777bd2e758; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
@@ -50,13 +50,13 @@
     },
     {
       "path": "docs/helix-web/L1-planning/product-intent.md",
-      "sha256": "5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23",
-      "note": "Web boundary candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271; 現receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23]"
+      "sha256": "d5b665017dec1c2f5c71e7006511a11ea81fa0e9aece028c1b9a691588f4fe54",
+      "note": "Web boundary candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=26815032e130d63fa3cef273847c029cbfc959a4d1a7c74e648a7044fc6d9756; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=d4ea6cf63357bc1df1576713579d988fc54f7c3fbecd7647d027f0bcd5ea2271; 現receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 要求層から外し、Visionレベルの材料へ再分類（本文冒頭の注記、status: vision_material）。本文の要求・受入記述はVision材料として読む。前receipt=5bf45a2257c376fe95fbc7762f4e7d1c5bdfd21ed93dee9bb5b54b55c0029c23; 現receipt=d5b665017dec1c2f5c71e7006511a11ea81fa0e9aece028c1b9a691588f4fe54; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web-os/L1-planning/system-intent.md",
-      "sha256": "971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c",
-      "note": "Web-OS boundary candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d; 現receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c]"
+      "sha256": "31aa8e4fbd260c2ac980300db201a84918b094695e3d24559e50edcb86873249",
+      "note": "Web-OS boundary candidate [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=600caa1388278abe43c06f01c53f565146c2f2ddd2165f6a8c9e63cbb174a34c; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行L1は未承認のConcept整合候補。旧承認はdecision recordの旧SHAにのみ有効。 前receipt=42f5fff6a65bd5e4e275838e4a92d7397a93083f22c8d683296a30e352a10f8d; 現receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 要求層から外し、Visionレベルの材料へ再分類（本文冒頭の注記、status: vision_material）。本文の要求・受入記述はVision材料として読む。前receipt=971bfc40448a4fefdff7fd433efd8a72ae44d346dcb613983416c88fade3b20c; 現receipt=31aa8e4fbd260c2ac980300db201a84918b094695e3d24559e50edcb86873249; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/phcap15-deploy-sixth12-research/README.md",
@@ -101,7 +101,8 @@
       "Python標準library",
       "phase／asset／disposition／decision／copy-read-after ledger read-only照合",
       "現行四製品boundary文書",
-      "sixth12 validator／selfcheck"
+      "sixth12 validator／selfcheck",
+      "2026-09-24 PO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）による前提の変化：HELIX-Web／HELIX-Web-OSのL1・L2・L11はVisionレベルの材料であり要求候補ではない（Conceptの製品属性としてのWeb 1.xは残る） ／ 現行HELIX-OS L1（SHA ffbafa47…）と製品責務境界（SHA 9268e357…）はPO採用。HARNESS L1と5大目標は内容採用・追記／縮約後revision未確認。これより前の「現行L1は未承認」の記述はこの状態で読み替える"
     ],
     "boundary": "候補inventory、README、validator、selfcheckをscaffold/に保持する。旧資産は意味と状態の静的referenceとして読み、authority、owner、phase admission、implementation、degradation、failure、consumer、acceptance、release、deploymentを確定しない。既レビュー6束とはasset集合を共有しない。"
   },

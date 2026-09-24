@@ -2,6 +2,8 @@
 
 親：[HELIX Concept](../../concept/helix-concept.md)。本書は採否を**求める候補一覧**であり、採否・承認・Issue close・successor採番を記録しない。原文と全列は[要求対応表](concept-mechanism-version-requirement-crosswalk.jsonl)に保持する。原文は各項目に短縮せず示す。Conceptの現行ファイルを基準にする。
 
+> **判断結果**：本書（SHA-256 `35e9cfe2…f284`）の項目への2026-09-24のPOの回答は、[decision record](../decisions/concept-requirement-po-decisions-2026-09-24.md)に記録した。本書は判断を求めた時点の候補一覧として残し、判断結果で書き換えない。
+
 ## PO判断に載せる条件
 
 人が持つConcept・L1・L2／prototype合意・L3承認の意味が変わる項目、または[authority状態モデル](../authority-state-model.md)が対象revisionの人間decisionを求める項目だけを判断対象とする。旧sourceの未承認、conflict、未特定、旧HELIXの対応記述が見つからない箇所も残す。旧sourceでのconfirmed／specified/frozenは新配置の承認ではない。担当移動や技術選定だけは後段のAI作業一覧に置く。

@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a",
-      "note": "authority／旧資産静的参照／scaffold境界 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a]"
+      "sha256": "79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6",
+      "note": "authority／旧資産静的参照／scaffold境界 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: L1・製品責務境界・5大目標・Web／Web-OSの状態記述をPO判断に合わせて更新。前receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a; 現receipt=79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md",
@@ -130,7 +130,8 @@
       "outside-67 report",
       "management provisional register",
       "13 live source holdingのread-only scan",
-      "固定Git objectのread-only照合"
+      "固定Git objectのread-only照合",
+      "2026-09-24 PO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）による前提の変化：現行HELIX-OS L1（SHA ffbafa47…）と製品責務境界（SHA 9268e357…）はPO採用。HARNESS L1と5大目標は内容採用・追記／縮約後revision未確認。これより前の「現行L1は未承認」の記述はこの状態で読み替える"
     ],
     "boundary": "candidate inventory、generator、README、validator、selfcheckをscaffold/に置く。旧資産とholdingは静的に読む。正式holding、要求identity、product owner、phase authority、implementation、consumer closure、acceptance、release、外部作用は確定しない。"
   },

@@ -3,12 +3,14 @@ title: "HELIX-Web-OSサービス運転受入案"
 canonical_vmodel: L1-L12
 canonical_layer: L11
 canonical_pair: L2
-status: draft
+status: vision_material
 freeze_blocking: true
 pair_artifact: docs/helix-web-os/L2-requirements/service-governance-requirements.md
 ---
 
 # HELIX-Web-OSサービス運転受入案
+
+> **Visionレベルの材料（要求層ではない）**：2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、本書はL1／L2／L11の要求層から外し、Visionレベルの材料として扱う。本書はAIがVision v0.1を拡大解釈して起こしたもので、POが要求として出したものではない。PO：「Visionレベルの話でこれから要求に起こすべき内容であり、いま要求に入ってるのがおかしい」。要求は今後POの指示から起こす。本書の記述を要求・受入・設計・実装の根拠にしない。
 
 全件未実行。HARNESS Version 1完成とHELIX-Web／Web-OS要求の合意後に、採択した展開環境で評価する。
 

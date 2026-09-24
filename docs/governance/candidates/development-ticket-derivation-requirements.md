@@ -1,13 +1,15 @@
 ---
 title: "要求からの開発ticket導出要求候補"
-status: draft_candidate
-authority_status: awaiting_human_approval
+status: retired_by_po_decision
+authority_status: retired
 created: 2026-09-15
 product_owner: HELIX-HARNESS
 operational_owner: HELIX-OS
 ---
 
 # 要求からの開発ticket導出要求候補
+
+> **退役（2026-09-24 PO判断）**：POは本書を「いらない」と判断した（[decision record](../decisions/concept-requirement-po-decisions-2026-09-24.md)）。本書はticketをPoC・UI prototype・Featureの3種類とし、ticketへ書き込む項目として書かれている。POが合意したticketの考え方（OSの推進が導いて発行する作業単位、Forward 3種類＋それ以外16種類、計画から発行しトラブル系は範囲から発行、検収がticketからCIを導く、Issueは映し）と前提が合わない。ticketの要求は[HELIX-OS L2のticket節](../../helix-os/L2-requirements/governance-requirements.md#ticket)から書き直す。本書は記録としてだけ残し、要求・設計・実装の根拠にしない。
 
 ## 目的
 

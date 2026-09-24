@@ -30,8 +30,8 @@
     },
     {
       "path": "docs/governance/new-generation-start-here.md",
-      "sha256": "da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a",
-      "note": "authority, layer and archive read-only boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a]"
+      "sha256": "79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6",
+      "note": "authority, layer and archive read-only boundary [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=52cdee66984dfcfb3dadfd01fbf4a2cbd6507920152bccd108fee95a697aef83; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 作業入口の現行authority説明を参照。旧承認SHAから現行文書の承認を導かない。 前receipt=bc1895efd1eb98f1a104df724b4eaf01918db964100544755eb8b56d560ca5b8; 現receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a] [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: L1・製品責務境界・5大目標・Web／Web-OSの状態記述をPO判断に合わせて更新。前receipt=da96d50691491e4933dd66961fbf8c2e0e47fb8a1028b506e02ad0d3b69ed86a; 現receipt=79a98030f742c3c104758c6cff9e0929cd7d77395b2df7f9678cb6b73002b0c6; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/concept/product-boundary.md",
@@ -40,13 +40,13 @@
     },
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be",
-      "note": "OS operations governance and Web-OS evidence boundary"
+      "sha256": "0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d",
+      "note": "OS operations governance and Web-OS evidence boundary [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: HELIXOS-L2-002／004／005／006／007／008／010／011／012／013とHMC-BR-003／006の文言変更、ticket節の追加、旧ticket候補文書への参照を退役扱いへ変更。前receipt=78467562f0eb6270bf552a5c10880e83e3a237d3d24eae281d658e6b454909be; 現receipt=0b3adf110c424b0b33aa0500c51457cb76e561ce93e14654b74fc35089f2958d; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
-      "sha256": "632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248",
-      "note": "Web-OS service operations and bounded export"
+      "sha256": "84238131eeb2a60ae0be9c2aff2cb49cb03c7fc09485eb45341f3971dfb98210",
+      "note": "Web-OS service operations and bounded export [2026-09-24 PO判断read-after（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）: 要求層から外し、Visionレベルの材料へ再分類（本文冒頭の注記、status: vision_material）。本文の要求・受入記述はVision材料として読む。前receipt=632c5b732346d10dbb113c89c9025ab0e6750635d90b2638892f71ed9a0ab248; 現receipt=84238131eeb2a60ae0be9c2aff2cb49cb03c7fc09485eb45341f3971dfb98210; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md",
@@ -97,7 +97,8 @@
       "phase/product/disposition/decision ledger read-only照合",
       "old source exact span read-only照合",
       "HELIX-OS L2、HELIX-Web-OS L2、product boundary、operational crosswalk",
-      "scaffold candidate validator/selfcheck"
+      "scaffold candidate validator/selfcheck",
+      "2026-09-24 PO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）による前提の変化：HELIX-Web／HELIX-Web-OSのL1・L2・L11はVisionレベルの材料であり要求候補ではない（Conceptの製品属性としてのWeb 1.xは残る） ／ 現行HELIX-OS L1（SHA ffbafa47…）と製品責務境界（SHA 9268e357…）はPO採用。HARNESS L1と5大目標は内容採用・追記／縮約後revision未確認。これより前の「現行L1は未承認」の記述はこの状態で読み替える ／ HARNESS／HELIX-OSのL2・L11はPO判断で文言変更済みのdraft。採否は後続のPO最適ドラフトPRで詰める"
     ],
     "boundary": "成果物はscaffold/配下。archive sourceは静的referenceのみで、旧runtime/test/CI/hookは実行しない。current implementation、authority、要求採否、owner、successor、acceptance、release、consumer closureは生成しない。HELIX-OSとHELIX-Web-OSのevent store、credential、tenant state、writer、release authorityを共有しない。"
   },
