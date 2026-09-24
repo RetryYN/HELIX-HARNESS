@@ -1,0 +1,107 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0151",
+  "kind": "scaffold",
+  "title": "HELIX設計パターン候補調査（採否なし）",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX全体の設計パターン調査（formal owner未確定）",
+  "state": "registered",
+  "reason": "2026-09-25 PO判断を入力に、旧HELIXがコアのベースとしていたハイブリッド設計ドキュメントから設計パターン・設計ユニット・パーツ候補、profile、要求入力候補、依存、導出物、旧採用マトリクスとの確認可能な対応、未決事項を調査記録する。候補の採否・要求・設計・権利・authorityは生成しない。",
+  "upstream": [
+    {
+      "path": "scaffold/design-pattern-inventory-20260925/README.md",
+      "sha256": "baa69faad38d84974a997e2f0818ddb27e10b18d3f4f6137578b62121897c992",
+      "note": "設計パターン候補調査。archiveはread-only閲覧。候補に採否・authority効果なし"
+    },
+    {
+      "path": "docs/concept/helix-concept.md",
+      "sha256": "5ec3bf383948a3758d0ed29dfbba5ca93df39f363e75e5f542d443166c9c2eae",
+      "note": "BRAIN・製品コア・設計パターンに関する現行Concept入力"
+    },
+    {
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657",
+      "note": "PO判断と未確定事項。PO判断の追加・変更なし"
+    },
+    {
+      "path": "archive/reference-sources/README.md",
+      "sha256": "f84432f477fa9daebc87345fd5fe43ae65c0c3533c6bc25a31a52d9a5a5589ba",
+      "note": "ZIP同定、2版差分、read-only境界"
+    }
+  ],
+  "role": "設計テンプレ由来の設計パターン・設計ユニット・パーツと導出物の調査候補一覧",
+  "obligations": [
+    "参照した設計項目・template・profile・ツール名を調査資料に明示する",
+    "候補ごとに要求段階の入力テーマと他候補への依存テーマを記録する",
+    "工程表、遷移図、依存図、影響範囲、実装優先順位の材料を整理する",
+    "旧採用マトリクスHVM-ADOPT／COMP／REJECTとの確認可能な対応を記録し、21件の未特定を明示する",
+    "未決の責務、PO意図、採否に関する質問案を未決のまま記録する",
+    "候補から要求、承認、採否、実装、完了、権利判断を生成しない",
+    "ZIP内のsource、tool、script、hook、CI、testを実行せず、テンプレートを現行pathへcopyしない"
+  ],
+  "connections": {
+    "consumers": [
+      "後続のHELIX-BRAIN／ヘリックスコア責務整理",
+      "PO最適ドラフトの設計パターン質問準備"
+    ],
+    "dependencies": [
+      "archive/reference-sources/ハイブリッド設計ドキュメントv1-fixed.zip（read-only参照）",
+      "docs/concept/helix-concept.md",
+      "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "旧HELIX採用マトリクスとDesign Template JSON authority（READMEに参照位置記録）"
+    ],
+    "boundary": "scaffold/配下の調査記録とbindingのみ。採否・要求・設計・権利・承認・完了を確定しない。旧ZIPを実行・copyしない。"
+  },
+  "operations": {
+    "allowed": [
+      "read-only source inspection",
+      "write this scaffold inventory and binding",
+      "python3 scaffold/tools/scfctl.py stale|validate|residuals|selftest",
+      "git diff --check"
+    ],
+    "forbidden": [
+      "execute tools, scripts, hooks, CI, tests, or runtime from archive or ZIP",
+      "copy ZIP templates into current paths",
+      "decide adoption, rejection, approval, requirement meaning, rights, or completion",
+      "write outside scaffold/"
+    ]
+  },
+  "artifacts": [
+    "scaffold/design-pattern-inventory-20260925/README.md",
+    "scaffold/bindings/SCF-B-0151.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "manual static cross-reference review of current Concept, PO decision, source README, ZIP text, and archived adoption/design documents",
+      "python3 scaffold/tools/scfctl.py stale",
+      "python3 scaffold/tools/scfctl.py validate",
+      "python3 scaffold/tools/scfctl.py residuals",
+      "python3 scaffold/tools/scfctl.py selftest",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "ZIP or archived source tool execution is prohibited",
+      "the 21 adopted-item names are absent from the referenced matrix; no item-level list is fabricated",
+      "candidate/profile mapping cannot be read as adoption or requirement"
+    ]
+  },
+  "replacement": {
+    "role_target": "future HELIX design-pattern inventory or equivalent formal artifact, if separately derived and authorized",
+    "formal_artifacts": [],
+    "issue": 1866,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-09-25",
+  "updated": "2026-09-25"
+}
