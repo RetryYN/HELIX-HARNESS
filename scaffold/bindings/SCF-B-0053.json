@@ -15,8 +15,8 @@
     },
     {
       "path": "scaffold/phcap15-17-membership-edges/inventory.json",
-      "sha256": "2f5ae0c6c05f73c3fe50f4259f4e15091748916bf144932e704b7c243b63fda3",
-      "note": "二asset、69 membership、anchor、failure／consumer／decision残差"
+      "sha256": "8f02340959147ed26fd513dec42a7e680f344d8e5e527ede02782851fa623ca2",
+      "note": "二asset、69 membership、anchor、failure／consumer／decision残差 [2026-09-25 full-binding read-after/rebind: phase inventory records PHCAP-15/17 compared with 8e37e3c94 and current are identical; this exact provenance field changed only. role/obligations/connections/operations/artifacts/verification/replacement and all other upstream dependencies reviewed; authority and membership classification unchanged. previous=2f5ae0c6c05f73c3fe50f4259f4e15091748916bf144932e704b7c243b63fda3; current=8f02340959147ed26fd513dec42a7e680f344d8e5e527ede02782851fa623ca2]"
     },
     {
       "path": "scaffold/phcap15-17-membership-edges/validate.py",
@@ -151,5 +151,5 @@
     "confirmation_digest": null
   },
   "created": "2026-09-22",
-  "updated": "2026-09-22"
+  "updated": "2026-09-25"
 }

@@ -220,11 +220,11 @@
     },
     {
       "archive_counterpart": {
-        "bytes": 5659,
-        "content_hash_matches_archive": true,
+        "bytes": 9884,
+        "content_hash_matches_archive": false,
         "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
-        "relation": "current_counterpart_path_relocation_content_hash_equal_archive_observed",
-        "sha256": "24ef4fbd9e798e43c5e454c23e2086dfc0b9d62de24bc3084bf9c58a3cc95616"
+        "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+        "sha256": "c8977e9dd1f5ea2389355f22356661d808f0cb0424aca69229214a4d908b15dd"
       },
       "archive_revision": {
         "blob_oid": "234fb89421c49a70797ec177d4deb3d7c5a51854",

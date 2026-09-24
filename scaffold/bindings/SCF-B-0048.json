@@ -80,8 +80,8 @@
     },
     {
       "path": "scaffold/rdp001-delegated-doc002-semantic-atom-048/inventory.json",
-      "sha256": "db8c7a6e0be32903b95e192b706681b2d66442b2710aa8185029bfb9abcc3159",
-      "note": "DOC-002 candidate artifact"
+      "sha256": "9056f522435cc10c7912f03381ecfc2e4c16d868766e6d526058427ac330c545",
+      "note": "DOC-002 candidate artifact [2026-09-25 exact rebind: inventory SHA 9056f522435cc10c7912f03381ecfc2e4c16d868766e6d526058427ac330c545 updates only existing_candidate_connection.binding_sha256 from 1e84892de8b1c88891484e4a3974e92cb644742ffdc487d8ecf81fbe3c3f2335 to e6efecbdfcaf2379ad0808ae0519fa443ce334b3d05a355c7ed21676955ce1f9, matching SCF-B-0010. The atom/source spans, authority, complementary_candidate_scopes relationship, obligations, and replacement scope are unchanged; this binding remains a DOC-002 semantic atom candidate.]"
     },
     {
       "path": "scaffold/rdp001-delegated-doc002-semantic-atom-048/validate.py",
@@ -96,7 +96,7 @@
     {
       "path": "scaffold/bindings/SCF-B-0010.json",
       "sha256": "e6efecbdfcaf2379ad0808ae0519fa443ce334b3d05a355c7ed21676955ce1f9",
-      "note": "既存DOC-002/013/004/029 pair candidateとのconnection／重複範囲 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=1e84892de8b1c88891484e4a3974e92cb644742ffdc487d8ecf81fbe3c3f2335; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=8a35dc962faa96c652be6e7ac80bd7536604ccf0dce46fc3218c4a4cdef29af3; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=9e1a7169d894a511ac6ba2479549a5d49278491373aff0b255af1adc86475054; 現receipt=1c90ca83742e4b0be4dd3dfb6981e85725d53663f0bdab813943cfad9ca40cb2] [2026-09-24 semantic impact read-after: 依存Bindingの変更receiptを再帰的に照合。前receipt=1c90ca83742e4b0be4dd3dfb6981e85725d53663f0bdab813943cfad9ca40cb2; 現receipt=d8b043650c4b848f15045fc64140b498cffa989e5a2b77b0e1c9c22082aa6430; このBindingの採否・authorityは変更しない。] [2026-09-24 PO判断read-after: 参照先bindingへPO判断による前提変化の注記とupstream digest更新を追加しただけで、参照先のrole・obligations・replacementは不変。前receipt=d8b043650c4b848f15045fc64140b498cffa989e5a2b77b0e1c9c22082aa6430; 現receipt=69253c3028ea00ddb9fa3a48ff0c7a98c3d1d11886ad75c56d5138cdd9b5f3d1; このBindingの採否・authorityは変更しない。] [2026-09-25 read-after: 上流binding SCF-B-0010は、docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断に伴うreceipt更新とnote追記だけを受けた。役割・義務・接続先・置換先は変わらないことを確認した。前receipt=69253c3028ea00ddb9fa3a48ff0c7a98c3d1d11886ad75c56d5138cdd9b5f3d1; 現receipt=e6efecbdfcaf2379ad0808ae0519fa443ce334b3d05a355c7ed21676955ce1f9; このBindingの採否・authorityは変更しない。]"
+      "note": "既存DOC-002/013/004/029 pair candidateとのconnection／重複範囲 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=1e84892de8b1c88891484e4a3974e92cb644742ffdc487d8ecf81fbe3c3f2335; 旧意味の採否・authorityは変更しない。] [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=8a35dc962faa96c652be6e7ac80bd7536604ccf0dce46fc3218c4a4cdef29af3; 旧意味の採否・authorityは変更しない。] [2026-09-24 exact read-after: 現行文書の参照receiptを更新。履歴の固定BASE/authority/採否を変更しない。 前receipt=9e1a7169d894a511ac6ba2479549a5d49278491373aff0b255af1adc86475054; 現receipt=1c90ca83742e4b0be4dd3dfb6981e85725d53663f0bdab813943cfad9ca40cb2] [2026-09-24 semantic impact read-after: 依存Bindingの変更receiptを再帰的に照合。前receipt=1c90ca83742e4b0be4dd3dfb6981e85725d53663f0bdab813943cfad9ca40cb2; 現receipt=d8b043650c4b848f15045fc64140b498cffa989e5a2b77b0e1c9c22082aa6430; このBindingの採否・authorityは変更しない。] [2026-09-24 PO判断read-after: 参照先bindingへPO判断による前提変化の注記とupstream digest更新を追加しただけで、参照先のrole・obligations・replacementは不変。前receipt=d8b043650c4b848f15045fc64140b498cffa989e5a2b77b0e1c9c22082aa6430; 現receipt=69253c3028ea00ddb9fa3a48ff0c7a98c3d1d11886ad75c56d5138cdd9b5f3d1; このBindingの採否・authorityは変更しない。] [2026-09-25 read-after: 上流binding SCF-B-0010は、docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断に伴うreceipt更新とnote追記だけを受けた。役割・義務・接続先・置換先は変わらないことを確認した。前receipt=69253c3028ea00ddb9fa3a48ff0c7a98c3d1d11886ad75c56d5138cdd9b5f3d1; 現receipt=e6efecbdfcaf2379ad0808ae0519fa443ce334b3d05a355c7ed21676955ce1f9; このBindingの採否・authorityは変更しない。] [2026-09-25 rebind: SCF-B-0010全体を確認し、PO判断注記によるupstream SHA更新のみをconnection参照へ反映。role・obligations・connections・operations・artifacts・verification・replacement・authorityは不変。前receipt=1e84892de8b1c88891484e4a3974e92cb644742ffdc487d8ecf81fbe3c3f2335; 現receipt=e6efecbdfcaf2379ad0808ae0519fa443ce334b3d05a355c7ed21676955ce1f9; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/delegated-doc-002-013-004-029/README.md",
@@ -206,5 +206,5 @@
     "confirmation_digest": null
   },
   "created": "2026-09-22",
-  "updated": "2026-09-22"
+  "updated": "2026-09-25"
 }

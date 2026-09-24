@@ -43,18 +43,18 @@ SPAN_SPECS = {
 }
 
 CURRENT_REFS = [
-    ("BOUNDARY-UNIT-CONNECTION", "docs/concept/product-boundary.md", "ALL", "boundary_current_ref", "Concept", 12, 44, "four-product unit and connection boundary"),
+    ("BOUNDARY-UNIT-CONNECTION", "docs/concept/product-boundary.md", "ALL", "boundary_current_ref", "Concept", 12, 45, "four-product unit and connection boundary"),
     ("OS-REVIEW-HANDOFF", "docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md", "HELIX-OS", "direct_current_ref", "Feature candidate", 1, 64, "review handoff candidate and authority boundary"),
-    ("GITHUB-UPSTREAM-MODEL", "docs/governance/github-upstream-operating-model.md", "HELIX-OS", "direct_current_ref", "Governance", 112, 169, "review and merge admission operating candidate"),
+    ("GITHUB-UPSTREAM-MODEL", "docs/governance/github-upstream-operating-model.md", "HELIX-OS", "direct_current_ref", "Governance", 112, 177, "review and merge admission operating candidate"),
     ("MERGE-REHOST-ASSESSMENT", "docs/governance/audits/source-rebaseline/legacy-reviewed-merge-rehost-assessment-2026-09-20.md", "HELIX-OS", "direct_current_ref", "Audit", 1, 82, "legacy reviewed merge rehost assessment boundary"),
     ("HARNESS-L2", "docs/helix-harness/L2-requirements/product-requirements.md", "HELIX-HARNESS", "direct_current_ref", "L2", 1, 45, "HARNESS V-model and review contract candidate"),
     ("OS-L2", "docs/helix-os/L2-requirements/governance-requirements.md", "HELIX-OS", "direct_current_ref", "L2", 1, 45, "OS progression and evidence governance candidate"),
-    ("WEB-L2", "docs/helix-web/L2-requirements/product-requirements.md", "HELIX-Web", "adjacent_current_ref", "L2", 1, 45, "Web user-facing product boundary candidate"),
-    ("WEBOS-L2", "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "HELIX-Web-OS", "adjacent_current_ref", "L2", 1, 38, "Web-OS service boundary candidate"),
+    ("WEB-L2", "docs/helix-web/L2-requirements/product-requirements.md", "HELIX-Web", "adjacent_current_ref", "L2", 1, 47, "Web user-facing product boundary candidate"),
+    ("WEBOS-L2", "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "HELIX-Web-OS", "adjacent_current_ref", "L2", 1, 40, "Web-OS service boundary candidate"),
     ("HARNESS-L11", "docs/helix-harness/L11-acceptance/product-acceptance.md", "HELIX-HARNESS", "direct_current_ref", "L11", 1, 45, "HARNESS acceptance remains draft/unexecuted"),
     ("OS-L11", "docs/helix-os/L11-acceptance/governance-acceptance.md", "HELIX-OS", "direct_current_ref", "L11", 1, 45, "OS acceptance remains draft/unexecuted"),
-    ("WEB-L11", "docs/helix-web/L11-acceptance/product-acceptance.md", "HELIX-Web", "adjacent_current_ref", "L11", 1, 31, "Web acceptance remains draft/unexecuted"),
-    ("WEBOS-L11", "docs/helix-web-os/L11-acceptance/service-acceptance.md", "HELIX-Web-OS", "adjacent_current_ref", "L11", 1, 24, "Web-OS acceptance remains draft/unexecuted"),
+    ("WEB-L11", "docs/helix-web/L11-acceptance/product-acceptance.md", "HELIX-Web", "adjacent_current_ref", "L11", 1, 33, "Web acceptance remains draft/unexecuted"),
+    ("WEBOS-L11", "docs/helix-web-os/L11-acceptance/service-acceptance.md", "HELIX-Web-OS", "adjacent_current_ref", "L11", 1, 26, "Web-OS acceptance remains draft/unexecuted"),
 ]
 
 

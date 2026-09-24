@@ -34,11 +34,11 @@
       "sha256": "99c1802d24313552b8755ca2843d3970cbf51d0bd8f1a79f58d8d1919e20e1f2"
     },
     "OUTSIDE67-PATH-038": {
-      "bytes": 5659,
-      "content_hash_matches_archive": true,
+      "bytes": 9884,
+      "content_hash_matches_archive": false,
       "path": "docs/governance/audits/source-rebaseline/new-generation-concept-package-source-crosswalk.md",
-      "relation": "current_counterpart_path_relocation_content_hash_equal_archive_observed",
-      "sha256": "24ef4fbd9e798e43c5e454c23e2086dfc0b9d62de24bc3084bf9c58a3cc95616"
+      "relation": "current_counterpart_path_relocation_and_content_drift_observed",
+      "sha256": "c8977e9dd1f5ea2389355f22356661d808f0cb0424aca69229214a4d908b15dd"
     },
     "OUTSIDE67-PATH-062": {
       "bytes": 9565,
@@ -188,7 +188,7 @@
   ],
   "notes": [
     "pre-isolation/archive source revisions are held separately; current counterparts are path/content observations only",
-    "038 has equal pre/archive and current counterpart bytes; 016/020/023/062 have archive revision/content drift; 062 current path is unchanged; no observed difference is semantic authority",
+    "038 has equal pre/archive bytes, but the current relocated counterpart has content drift; 016/020/023/062 also have archive revision/content drift; 062 current path is unchanged; no observed difference is semantic authority",
     "research accounting is 47/67 path_revision_pair candidates and is not a formal requirement or product-owner denominator"
   ],
   "selected_ids": [
@@ -204,13 +204,12 @@
     "OUTSIDE67-PATH-023",
     "OUTSIDE67-PATH-038"
   ],
-  "current_counterpart_hash_equal_archive_ids": [
-    "OUTSIDE67-PATH-038"
-  ],
+  "current_counterpart_hash_equal_archive_ids": [],
   "current_counterpart_content_drift_ids": [
     "OUTSIDE67-PATH-016",
     "OUTSIDE67-PATH-020",
     "OUTSIDE67-PATH-023",
+    "OUTSIDE67-PATH-038",
     "OUTSIDE67-PATH-062"
   ]
 }
