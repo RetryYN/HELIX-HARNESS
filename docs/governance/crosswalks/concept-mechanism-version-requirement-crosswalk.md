@@ -21,6 +21,7 @@
 - 2026-09-24の[Concept・要求対応判断](../decisions/concept-requirement-po-decisions-2026-09-24.md)により、HELIX-WebとHELIX-Web-OSの旧L1・L2は要求層から外れ、Vision材料となった。crosswalk JSONLでは原文・過去の原文digestを保ち、`current_placement`・`disposition_candidate`・`source_authority_state`で現在の位置を示す。要求化する範囲や導入版は未確定である。
 - 2026-09-25の[BRAIN・ヘリックスコア判断](../decisions/brain-helix-core-po-intent-2026-09-25.md)では、BRAINを汎用パターン、HARNESSのヘリックスコアを製品固有の意味・設計として接続する方向が記録された。HARNESS-L2-008／009の配列・配置候補はこの判断に合わせたが、要求文の整合、connectorの担当、BRAIN稼働中の役割は未決のままにした。
 - 2026-09-25の[機構配置判断](../decisions/mechanism-placement-po-decisions-2026-09-25.md)により、HELIXOS-L2-005はOSの登録・振分けとLABOの評価・研究へ分担し、HELIXOS-L2-012／013は元IDの案内行をOSに残してLABO候補へ移管した。crosswalkの`previous_source_location`から移管前を、`source_location`から現在の候補本文を辿れる。LABO L1がないため候補状態を維持する。
+- 現行L2分類台帳でHELIXOS-L2-012／013に使う`labo_technical_research`と`labo_cross_diagnostic`は、[分類語彙表](../legacy-ir-structure-classification.md)にないLABO用の暫定値である。LABO向けの確定分類語彙がまだ無いため、行の`layer_primary_provisional`と注記で暫定と理由を示す。
 
 旧HELIXとの対応は、[pillar requirements](../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md#L54-L57)のHBR-P4／P7／P8、[modes README](../../../archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md#L29-L47)、[旧inventory-firstと自律境界](../../../archive/legacy-generation-2026-09-14/root/CLAUDE.md#L72-L85)、および[完全一致再利用統制](../legacy-asset-reuse-control.md)を照合した。旧配置を現行担当へ自動昇格せず、旧原文とauthorityはGit履歴・snapshotの記録を保持する。旧runtime・tool・test・CIは実行していない。
 
