@@ -67,4 +67,4 @@
 
 未確定の点は、BRAINの稼働中の役割、機構間接続の担当、LABOの技術調査とIntelligenceのcrawler発行の関係、Intelligenceの導入版、HELIXが保持する「原本」と利用者の「正本」の意味対応、HARNESS・BRAIN・OS間の要求文整合である。これらは3つのdecision recordに記録されたとおりPO最適ドラフトで確認する。
 
-**人間判断に渡す項目**は[判断パッケージ](concept-requirement-po-decision-packet.md)に、担当移動・技術変更・意味を変えない版配置だけの作業は同書のAI作業一覧に分離した。現時点の内訳はPO判断71行、AI作業144行である。上流の4対象L1、5大目標、product-boundaryの現行未承認差分は同パッケージの別節に置く。
+**人間判断に渡す項目**は[判断パッケージ](concept-requirement-po-decision-packet.md)に、担当移動・技術変更・意味を変えない版配置だけの作業は同書のAI作業一覧に分離した。2026-09-24の判断パッケージに記録された当時の内訳はPO判断71行、AI作業144行である。これは今回のVision分類反映後の台帳から再集計した値ではない。上流の4対象L1、5大目標、product-boundaryの現行未承認差分は同パッケージの別節に置く。
