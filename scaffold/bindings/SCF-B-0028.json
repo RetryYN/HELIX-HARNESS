@@ -60,7 +60,7 @@
     },
     {
       "path": "scaffold/phcap16-operations-monitoring/inventory.json",
-      "sha256": "f40f44bf4b418870cc18761d86c3e23cbe3184c77acc892bd609a263b3febea4",
+      "sha256": "9c977c422f487c76e65c8e98186af330841fa3cb13e4e041898175e17047df6e",
       "note": "five assets, exact anchors, two units, fifteen candidate edges [2026-09-25 full-binding read-after/rebind: scaffold/phcap16-operations-monitoring/inventory.json 7f511a1ebcd673badf0d3461bfc57a9e7c6d5aa40f431157415a75e3031f4c09→50ced668aaa7c7873d109bc42848ede3fbc28a939962aab1be4cefb0c55c47f9. このBindingは『PHCAP-16 Operations／Monitoring research premise candidate』であり、role=PHCAP-16 operations/monitoringの旧asset到達層、product unit split、current direct ref、failure/consumer/decision residualを、実装・authority・採否へ昇格させないresearch premise candidateとして保持する。確認したobligations=PHCAP-16のselected legacy asset 5件をsource path/hash、exact line anchor、L3/L6/L7/L10 reach、asset-level implementation unknown、execution falseで保持する; phase inventoryのimplemented_partial_with_testsとselected assetのunknown/unexecutedを別事実として保持し、current implementation/passを推定しない。inventory参照 scaffold/phcap16-operations-monitoring/inventory.json を50ced668aaa7c7873d109bc42848ede3fbc28a939962aab1be4cefb0c55c47f9からf40f44bf4b418870cc18761d86c3e23cbe3184c77acc892bd609a263b3febea4へ更新した。運用monitoringのdirect current refsとunknownを保持。OSの管理／推進／検収、LABO評価、Web-OS runtime境界を区別し、自動修復authorityを加えない。 verification scope=schema_interface／deterministic_behavior／source_revision_stale／negative_case／forbidden_write_scope、replacement status=pending／target=正式なPHCAP-16 product-specific operations/monitoring L2／L3／L10／L11／L12 crosswalk、運用evidence、consumer closure、OS↔Web-OS接続契約（承認後に導出）を保持し、本文改訂が触れる意味差分は意味不一致記録に残す。 ]"
     },
     {
