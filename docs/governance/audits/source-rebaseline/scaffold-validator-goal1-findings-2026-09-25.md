@@ -29,14 +29,27 @@ scope: Codex目標1、`8e37e3c94`で失敗していた`scaffold/**/validate.py`
 | `phcap15-17-orphan-asset-links` | product-boundaryではOSの管理・統制を管理・推進・検収へ分け、LABO評価とIntelligence改善を追加した。crosswalk-statusでは全量crosswalk／全asset評価を一律の開始前提とする記述を、選択unitに必要な関係assetだけをL3で調べる判断時期へ変更した。両方とも六旧assetのroute／coverage解釈へ影響する。 | product attributionとunreferenced-asset意味を再照合するまで入力digest・意味条件を変更しない。 |
 | `rdp001-outside67-followup-069` | validatorがcounterpartに固定するPATH-052/056の`docs/governance/candidates/{ai-readable-authority-requirements,next-generation-ci-requirements}.md`は、現行repoに存在しない。`rg --files docs`で同basenameを検索するとHARNESS配下とOS配下に各2件ある。現行要件対応表は候補の所属先と所有責務を分離しており、旧単一候補pathとどの現行文書が同一identityか、固定pathだけからは特定できない。 | 旧pathをどちらかの同名候補へ推測で付け替えない。候補不在とidentity未確定を意味不一致として残す。 |
 | `rdp001-web-webos-vision-coverage-0091` | coverage検査のproduct-boundary inputは、旧4対象/旧責務表から8機構・2共通部品、HARNESS/Webの外部提供属性、OS・LABO・Intelligenceの分担を含む現行Concept接続へ変わった。旧coverage countは現行のVision素材と製品境界の集合を数えた値ではない。 | 旧coverage countをcurrent判定へ使わず、現行入力で再導出する対象として残す。 |
+| `rdp001-outside67-web-webos-l1-anchor-0121` | 固定した旧4対象境界のdigestが現行`product-boundary.md`と一致しない。現行境界は対象の列挙だけでなく、OSの管理・推進・検収、LABO評価、Intelligence改善、HARNESS/Webの製品属性を分けるため、旧L1 anchorのowner／責務を現行boundaryへ機械的に移せない。 | 固定L1 anchorの意味を再導出するまでdigest条件を維持する。 |
+| `rdp001-web-webos-vision-asset-semantic-0124` | 旧#2073のWeb L1 6件・Web-OS L1 5件anchorと、Vision 35候補・legacy asset 12件のrelationを固定する。9/24 PO判断でWeb／Web-OSのL1/L2/L11はVision材料に再分類され、要求根拠ではない。固定anchorからの現行asset semantic relationをそのまま要求接続とみなせない。 | 現行Vision素材のrelationを再導出する対象として残す。 |
+| `rdp001-web-webos-vision-semantic-atoms-0088` | `SCF-B-0080`は9/24 PO判断でWeb／Web-OS L2のstatusを`vision_material`とし、本文のsource digestとnoteを変更した（commit `a0e56c4cd52301d3e569c7b815d6a9e461fb1f53`）。0088は9 spanの旧Vision atom候補で、そのlineage digestがこの意味変更を含むB0080を固定する。 | lineage digestを単純更新して現行要求候補と扱わず、Vision素材としてrelationの再評価が必要な不一致に残す。 |
+| `rdp001-web-webos-vision-source-0080` | 0080は現行Web L2 9件・Web-OS L2 6件のsource relationを要求候補として調べる。PO判断により該当L2は要求層から外れ`vision_material`となった。検査のcurrent-source前提が現行authority状態と異なる。 | 要求sourceとしてのcurrent relationを再baselineするまで条件を維持する。 |
 
 ## 修復した参照
 
 - PHCAP 02/03、04/05、06、07、08/09、10/11、12/13、14、16、17、19、20は、同一範囲の現行source本文・行・digestへ再照合した。PHCAP-08/09はREADME記載のgeneratorから再生成した。PHCAP-12/13のSCF-B-0003 context digestも現行binding bytesに再照合した。
 - PHCAP-15/17 membership edge検査はPHCAP-15/17 phase recordが`8e37e3c94`と現行で一致することを確認し、phase inventory provenance digestだけを更新した。
+- `rdp001-delegated-doc002-semantic-atom-048`は、既存SCF-B-0010全体を確認し役割・義務・接続・操作・成果物・検証・置換先が不変と確かめたうえで、PO判断注記に伴うB0010 SHA参照のみをinventoryとSCF-B-0048へnote付きで再束縛した。validatorとselfcheckはgreen。
 - RDP-001 outside67 boundary evidence/followup 066、073、074、083、076は、記録済みcounterpart pathの現行bytes digestとlengthを再取得した。counterpartの関係・意味は変更していない。
 - 上記に伴うSCF Bindingは全依存を再確認し、変更sourceのdigestをnote付きでrebindした。検査条件、authority、scope、admissionは変えていない。
 
 ## 追加の不一致
 
 PHCAP-16/19/20の一部current refsは再固定後のvalidatorがgreenだが、これは参照整合のみを示す。Web/Web-OSのL2/L11を要求根拠またはdraftとする他のcandidate記述が見つかった場合は、9/24判断との意味照合を別に行う。
+
+## 最終照合と検証結果
+
+`8e37e3c94`時点で失敗していた47 validatorを、現在の修復結果・意味不一致記録へ照合した。19件は参照修復後にgreen、28件は検査条件を維持した意味不一致として残る。28件の内訳は、mainへmerge済みの#2134記録6件、#2135記録8件、本記録の意味不一致表14件。各groupは本記録の表とPR #2134/#2135を参照する。
+
+DOC-002-048の参照修復を含む最終作業treeで `scaffold/**/validate.py` 全137件を実行し、92 pass／45 failを確認した。failのうち28件が上記47 baseline対象に残る意味不一致、残る17件はbaseline対象外である（`legacy-implementation-residual-0126`、`legacy-overlap-reconciliation-0144`、`legacy-test-design-worker-workflow-0148`、`legacy-semantic-review-wave37`〜`wave50`）。よって全137件のpass数と、baseline 47件の処置数は別の分母として報告する。
+
+`scfctl stale`は0件、`scfctl validate`は142 bindings pass、`scfctl residuals`は0、`scfctl selftest`は69 cases pass。`git diff --check`もpassした。旧archive内runtime・test・CI・hook・adapterは実行していない。
