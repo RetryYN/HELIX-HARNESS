@@ -38,6 +38,20 @@ IntelligenceのL1ができた後に要求として採否する。本書から要
 成功へ補完しない。意味矛盾は上流変更候補へ戻し、要求・設計・検証義務を修復器が変更しない。
 本節では旧bugbot、既存CI、旧DB／transaction、自動修復を実行しない。
 
+### 他の機構との接点
+
+POは、限定修復の検出から修復の実行までを、まとめてIntelligenceへ移すと判断した（2026-09-25）。修復の実行統制はIntelligenceに置く。
+上に並べた状態のうち、次の3つは、[Concept](../../concept/helix-concept.md)の機構表で別の機構が担う責務に当たる。本候補はそれらを持たず、接続する。
+
+| 状態 | 担う機構 | Conceptの根拠 |
+|---|---|---|
+| 操作許可 | HELIX-Security | 認可、情報保護、資格情報、隔離、失効 |
+| 隔離適用 | HELIX-Security（隔離の単位）とHELIX-Runner／Sandbox（実行） | Securityの隔離、Runner／Sandboxの実行 |
+| 検収 | HELIX-OSの検収 | ticketから必要なCIとテストを割り出す |
+| 意味判断 | 上流の要求・設計（本候補の「意味矛盾は上流変更候補へ戻す」） | 要求の意味は上流が持つ |
+
+接点の詳細（修復のticketの種類、検収への受け渡し）は、IntelligenceのL1ができた後に詰める。
+
 ## 全体監査に関する候補条件（AAFD）
 
 出典は[AAFD](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requests.md)である。

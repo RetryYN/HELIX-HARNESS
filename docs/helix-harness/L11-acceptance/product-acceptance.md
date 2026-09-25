@@ -18,30 +18,39 @@ pair_artifact: docs/helix-harness/L2-requirements/product-requirements.md
 
 | 親要求 | 利用者が確認する結果と反例 |
 |---|---|
-| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる |
-| HARNESS-L2-002 | 異なる開発styleの工程を確認し、Discovery／PoCをScrumへ混入させない |
-| HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない |
-| HARNESS-L2-004 | 要求変更から影響設計・テストへ辿り、変更した条件の検証漏れを識別できる |
-| HARNESS-L2-005 | 異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |
-| HARNESS-L2-006 | 提供版・機能・依存・導入条件を確認し、HELIX内部の運用状態を持たない利用環境で対象機能を利用できる |
-| HARNESS-L2-007 | 検証対象として選定した複数プロダクトとHELIX自身のプロジェクトについて、要求revision、適用構成、成果、L11受入、L12運用評価へ辿る。単一demo、HARNESS単体test、文書整合だけならVersion 1未完成とし、HELIX-Webの完成有無を判定へ混入させない |
-| HARNESS-L2-008 | 指示と要求候補を意味単位で比較し、欠落・意味追加・対象違い・未確定事項を確認できる。Python coreの出力、ログ、Issue、PR、CIだけでは要求合意や操作許可を成立させない |
-| HARNESS-L2-009 | unit、connection、compositeの各要求に適用するtemplateと設計義務を確認し、必要input欠落を上流質問へ戻せる。template適用や文書生成だけでは要求合意・設計完成・検証成功を成立させない |
+| HARNESS-L2-001 | L1–L12の成果と対を確認し、L2／L11とL3／L10の混同、片側欠落を識別できる。L2.5（Prototype・PoC）の結果を要求の合意と取り違えず、L2.5を飛ばした対象でも非適用の判定と理由が残る |
+| HARNESS-L2-002 | 異なる開発方式の工程を確認し、開発方式とticketの種類（駆動）を混同しない。Discovery・PoCを開発方式のphaseへ混入させない。リリースカンバンで立てたリリース単位の順序と優先に沿って、各リリース単位を選んだ開発方式で進められ、提供の単位ごとにリリースカンバン上の状態を確認できる |
+| HARNESS-L2-003 | 凍結・差戻し・再開・完了の条件を確認し、未合意・未検証で進行可能と判定しない。画面または技術的な成立性に不確定要素がある対象は、L2.5で確かめて合意するまで要件へ進めない |
+| HARNESS-L2-004 | 要求変更から影響する設計・テストと再検証の範囲が導出され、変更した条件の検証漏れを識別できる |
+| HARNESS-L2-005 | 変更の内容・layer・pair・変更種別・riskから必要な検証が導出され、固定の段数ではなくその検証に合うCIが組み立てられる。異なる言語・CI実装でも同じ検証契約を評価でき、特定Worker、旧job集合、CI greenを検証義務の代替にしない |
+| HARNESS-L2-006 | サービス①〜⑦の単位で、提供版・依存・導入条件とリリースカンバン上の状態を確認し、選んだサービスだけをHELIX内部の運用状態を持たない利用環境で導入・利用できる |
+| HARNESS-L2-007 | 検証対象として選定した複数プロダクトとHELIX自身のプロジェクトについて、要求revision、適用構成、成果、L11受入、L12運用評価へ辿る。サービス①〜⑦のすべてがそれぞれ単独で成り立ち、つなげて開発全体に使えることと、Conceptの1.0土台7項目（ログと証拠、データの利用区分、計測、接続契約と版、隔離の単位、構成版の固定と切戻し、後から加わる機構の受け口）が全機構で共通に成立していることを確認する。単一demo、HARNESS単体test、文書整合、土台の一部だけならVersion 1未完成とし、HELIX-Webの完成有無を判定へ混入させない |
+| HARNESS-L2-008 | 設計パターンの選択に必要な質問が要求エンジンから出され、1次要求の形成と、L2.5の結果をBackflowで戻した2次形成を区別して確認できる。指示と要求候補を意味単位で比較し、欠落・意味追加・対象違い・未確定事項を確認できる。Python coreの出力、ログ、Issue、PR、CIだけでは要求合意や操作許可を成立させない |
+| HARNESS-L2-009 | unit、connection、compositeの各要求に適用するtemplateと設計義務を確認し、必要input欠落をBackflow ticketで上流へ戻せる。template適用や文書生成だけでは要求合意・設計完成・検証成功を成立させない |
 
 ## 工程条件の確認シナリオ
 
 - HARNESS-L2-001：旧L0–L14 pathを持つ成果でも現行6 pairを確認でき、L2の対をL10とする入力を拒否する。
-- HARNESS-L2-002：3 styleそれぞれでL1–L3の共通条件とslice開始位置を確認する。Discovery／PoCのS4未判断をproductionへ持ち込まない。
-- HARNESS-L2-002：style未選択、複数選択、適用条件不成立をfail-closeし、Discovery trigger不成立ではS0–S4を無条件起動しない。
-- HARNESS-L2-002／003：Discovery trigger成立時はS0–S4とS4人間判断を要求し、S4未判断のままL3へ合流しない。Research trigger成立時はresearch memoとADRをL4参照点へ合流し、L3要求合意の前段へ固定しない。成立性実験が必要ならDiscovery／PoCへ切り替える。
-- HARNESS-L2-002／003：Production ScrumまたはV設計＋Scrum実装Hybridのcheckpoint trigger成立時にSR0–SR4を要求し、SR4 receipt欠落をrelease-readyにしない。findingの修正routeが0件または複数なら拒否する。
+- HARNESS-L2-002：4つの方式のどれでもL1–L3を共通に進め、要件の承認を経ることを確認する。L4以降は、Vモデルはslice化せず、スクラムはL3後に最小の製品へslice化し、ハイブリッドはユニット拡張単位で作って最後に結合し、リリースカンバンはv1・v2・v3とリリース段階を切って進むことを確認する。DECIDEで採用されていないDiscovery・PoCの結果をproductionへ持ち込まない。
+- HARNESS-L2-002：開発方式の未選択と適用条件不成立をfail-closeし、起動条件が成立しないのにDiscovery・PoCを発行しない。複数の方式を合成した対象で、L1–L3、要件の承認、V字の対、品質条件のどれかが落ちる組み合わせを不成立とする。スクラムで要件の承認前に市場投入する入力、利用の記録から分かった改善をBackflowを経ずに要求へ取り込む入力を拒否する。
+- HARNESS-L2-002：リリースカンバンを含む対象で、リリース段階（v1、v2、v3等）ごとの順序と優先の根拠、各段階が最終的なプロダクトゴールのどこに当たるかを確認する。根拠のない段階の着手、段階とプロダクトゴールの対応がない入力を不成立とする。
+- HARNESS-L2-002／003：要求の段階で技術的な成立性が不明ならL2.5のPoCが、要求・成功条件・範囲が分からない、または開発の途中で検証が必要ならDiscoveryが発行されることを確認する。PoCの結果は、Backflowと要求の2次形成を経て、DECIDEの採用・不採用・方針変更のいずれかが出るまで要求の合意やL3へ合流しない。Discoveryの結果は発行元のticketへ戻り、要求の意味を変える結果だけがBackflow・2次形成・DECIDEを経る。検証の成功だけで採用と判定する入力、要求の意味を変えるDiscoveryの結果を発行元のticketだけで取り込む入力、要求の意味に関わる裁定を人の判断なしに成立させる入力を拒否する。
+- HARNESS-L2-002／003：Researchの起動条件が成立したとき、Researchは参考ソースを依頼元へ返すだけで、選定はDECIDEの記録から技術の選定ならL4へ、要求への影響なら要求へ接続されることを確認する。Researchの成果物だけで選定が決まったと判定する入力、Researchに決定を含めた入力を拒否する。成立性の実験が必要なら、要求の段階ならL2.5のPoC、開発の途中ならDiscoveryが発行される。
+- HARNESS-L2-002／003：スクラムで進める部分（リリースカンバンのリリース単位やハイブリッドのユニットにスクラムを合成した場合を含む）のcheckpoint trigger成立時にSR0–SR4を要求し、SR4 receipt欠落をrelease-readyにしない。findingの修正routeが0件または複数なら拒否する。
 - HARNESS-L2-002／003：v1.3 L104-106に従い、`ProvisionalVProjection`をcanonical traceの根拠へ使う入力、SR4 receiptなしの`CanonicalVPublication`、4 entityを単一進捗値へ縮退する入力を拒否する。Design Refactorでobservable behavior／public surface／DB semantics／要求を変える入力はRedesign／Retrofitへrerouteし、送り先が0件なら拒否する。Performance Refactorはbaseline／budget／workload／profile／統計条件／回帰oracleを先に固定し、測定不能な高速化を拒否する。
-- HARNESS-L2-003：プロト合意欠落と非UI記録欠落を別々に投入し、L2要求を飛ばしてL3凍結可能にならないことを確認する。
+- HARNESS-L2-003：Prototypeは画面の有無で、PoCは画面の有無に関係なく技術的な成立性が不明かどうかで、別々に判定されることを確認する。画面のない対象で成立性が不明な場合にPoCを省く入力、片方だけの非適用からL2.5全体を飛ばす入力を拒否する。
+- HARNESS-L2-003：Prototypeの合意欠落、PoCの結果の未還流、非適用の記録（理由・判定者・HEAD・要求への影響・再評価条件）の欠落を別々に投入し、L2要求を飛ばしてL3凍結可能にならないことを確認する。
 - HARNESS-L2-003：実装済み・総合検証済み・利用者受入済み・運用評価済みを区別し、一つの状態から残りを推定しない。
 - HARNESS-L2-004：要求変更に対して影響する設計・V-pairが示され、無関係な要求を再承認対象へ巻き込まず、必要な検証を落とさない。
 - HARNESS-L2-004：入力source atom集合の各atomが、当該要求への保持、別の生存中仮登録への保持、対象revision付き人間decisionのいずれか一つへ割り当てられる。未計上、根拠のない重複、digest違い、仮登録先の失効があれば`no_loss`を発行しない。
 - HARNESS-L2-005：別revisionの証拠やCI成功のみを提示しても利用者受入成立と判定しない。実行基盤を変えても必要な証拠条件を維持する。
 - HARNESS-L2-005：required oracleを欠くprofile、unknownをN/Aへ変えたprofile、expected failureと差戻し先を持たないprofileを不成立とする。providerを交換してもrequirement・pair・oracle・evidence identityが維持されることを確認する。
+- HARNESS-L2-005：変更の内容・layer・pair・変更種別・riskが異なる変更を与え、それぞれに必要な検証だけが導出され、CIがその検証から組み立てられることを確認する。固定の段数をすべて回す構成、導出された検証を省いた構成、導出の根拠を説明できない構成を不成立とする。
+- HARNESS-L2-002／006：提供の単位ごとのリリースカンバン上の状態を確認し、状態の欠落、状態と提供版の食い違い、Issue・PR・CIの状態だけからの状態推定を拒否する。
+- HARNESS-L2-006：サービス①〜⑦のうち1つだけを選んで導入し、そのサービスの提供版・依存・導入条件だけで利用できることを確認する。選ばなかったサービスや統合版を暗黙に要求する場合は不成立とする。
+- HARNESS-L2-007：1.0土台7項目のそれぞれについて、全機構で共通の形で成立している証拠を確認する。一つの機構だけ、または一部の項目だけの成立をVersion 1完成と判定しない。サービス①〜⑦のすべてについて、単独で成り立つこと（単体）と、つなげて開発全体に使えること（接続・構成体）を確認する。一部のサービスだけの成立、または統合版だけの成立をVersion 1完成と判定しない（2026-09-25 PO判断）。
+- HARNESS-L2-008：設計パターンの選択に必要な入力が欠けた指示を与え、要求エンジンが質問を出すことを確認する。L2.5の結果をBackflowで戻した2次形成の結果を、1次形成の結果や合意済み要求と取り違えない。
+- HARNESS-L2-009：templateの必須inputの欠落が、Backflow ticketとして上流へ戻されることを確認する。ticketにならない口頭の差戻しや、AIの補完で欠落を埋めた入力を不成立とする。
 
 本書はHARNESSの利用者による工程規則の確認である。OS側のWorker・CI・ログ保存の実機能検証とは分ける。
 
@@ -104,7 +113,7 @@ AVS／RFA／DGH由来の条件は採用revision確定後に検証する。全件
 - HARNESS-L2-009：同じunit要求へunit／connection／composite templateを順に与え、unitに非適用なtemplateを理由付きで区別する。接続要求へunit templateだけを適用しても設計義務を満たしたとしない。
 - HARNESS-L2-009：templateの必須inputを一つ欠かし、AI補完ではなく質問・要求候補・N/A判断候補へbackflowする。未承認候補、stale版、別product版、該当なしで任意templateへfallbackしない。
 - HARNESS-L2-002／003／008／009：同じ親要求と管理制約から推進方式を変えてticket graphを生成し、いずれもHARNESSが要求するlayer／pair、成果物、oracle、human gate、停止・差戻し・backflowを満たすことを確認する。HARNESSが駆動tagや個別workflowを生成する実装は不成立とする。
-- HARNESS-L2-002／003：PoC、UI prototype、Feature ticketを別identityで確認し、PoC成功、prototype表示、Issue closeから要求合意・恒久技術採用・Feature完了を生成しない。
+- HARNESS-L2-002／003：PoC、Prototype、Forward（小）のticketを別identityで確認し、PoC成功、Prototype表示、Issue closeから要求合意・恒久技術採用・Forwardの完了を生成しない。
 
 管理変更入口の条件は新世代で採用するrevision確定後に評価する。全件未実行。
 
