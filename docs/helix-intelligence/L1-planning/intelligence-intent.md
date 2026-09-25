@@ -53,10 +53,10 @@ INTELLIGENCEは、要求、設計、状態、知識、権限の正本になら�
 | HELIXINTELLIGENCE-L1-011 | 人間は、モデルとproviderを一つの固定の能力として扱わず、領域と能力ごとに適性を評価できる。同じcorpus・同じ責務の範囲で、所見、誤検出、見逃し、再現性、遅延、費用を比べ、モデルの更新だけで上位と判定しない | INTELLIGENCE-L1-011 | 1.0 | 単体 |
 | HELIXINTELLIGENCE-L1-012 | 人間は、「判断できない」を正常な結果として受け取れる。known、probable、uncertain、unknown、contradictory等を区別し、不足する情報に対して追加の証拠、Discovery、テスト、Review、人の判断等の必要条件を示す。unknownを安全・成功・問題なしへ変えない | INTELLIGENCE-L1-012 | 1.0 | 単体 |
 | HELIXINTELLIGENCE-L1-013 | 人間は、重要な判断の候補について、入力のrevision、当てはめた規則、参照したBRAINの知識、観測、前提、model／provider／版、推論の結果、不確実性、退けた代替へ辿り、なぜその候補になったかを検証できる。同じ判断の完全な再生成までは求めない | INTELLIGENCE-L1-013 | 1.0 | 単体 |
-| HELIXINTELLIGENCE-L1-014 | 人間は、繰り返し起き、対象・入力・判定の条件・停止の条件を限定できる判断について、専門のBot（Bugbot、Helpbot、Crawlerを含む）を発行できる。BotはINTELLIGENCEとは別のidentityを持ち、目的、範囲、入力、出力、許す操作、停止の条件、版を持つ。Botの追加を新しいauthorityの追加にしない。Botごとの詳細な責務はL2以降で定める | INTELLIGENCE-L1-014 | 1.0 | 単体 |
+| HELIXINTELLIGENCE-L1-014 | 人間は、繰り返し起き、対象・入力・判定の条件・停止の条件を限定できる判断について、専門のBot（Bugbot、Helpbot、Crawlerを含む）を発行できる。Botは、特定の目的に使うWorkerとして実行し（2026-09-26 PO判断、PR #2149）、INTELLIGENCEとは別のidentityを持ち、目的、範囲、入力、出力、許す操作、停止の条件、版を持つ。Botの追加を新しいauthorityの追加にしない。Botごとの詳細な責務はL2以降で定める | INTELLIGENCE-L1-014 | 1.0 | 単体 |
 | HELIXINTELLIGENCE-L1-015 | 人間は、CIや実行で繰り返し現れる失敗について、失敗のパターン、再現性、機械で検出できるか、誤検出、範囲、修復できるかを確かめ、機械で扱えるものからBugbotの候補へ昇格できる。一度だけの失敗から恒久のBotを作らない | INTELLIGENCE-L1-015 | 1.0（ログがたまり機械で判定できるようになった時点で発行する。2026-09-25のPO判断） | 単体 |
 | HELIXINTELLIGENCE-L1-016 | 人間は、限定された問題について、検出、診断、修復の候補、限定した修復までをINTELLIGENCEに任せられる。修復の対象は、対象revision、actor、write-set、副作用、予算、期限、再試行、影響の範囲、復旧点を持つ。要求・設計・検証義務を修復器が変えず、意味の変更が必要なら上流へ戻す | INTELLIGENCE-L1-016 | 1.0 | 単体 |
-| HELIXINTELLIGENCE-L1-017 | 人間は、限定修復をINTELLIGENCEが担っても、操作の許可（SECURITY）、隔離した実行（Runner／Sandbox）、修復後の検証義務（HARNESS）、検収（OS）が代わられないことを確かめられる。修復の案を作れることから包括的なwrite権限を生成しない | INTELLIGENCE-L1-017 | 1.0 | 接続（SECURITY、Runner／Sandbox、HARNESS、OS） |
+| HELIXINTELLIGENCE-L1-017 | 人間は、限定修復をINTELLIGENCEが担っても、操作の許可（SECURITY）、隔離した実行（Worker）、修復後の検証義務（HARNESS）、検収（OS）が代わられないことを確かめられる。修復の案を作れることから包括的なwrite権限を生成しない | INTELLIGENCE-L1-017 | 1.0 | 接続（SECURITY、Worker、HARNESS、OS） |
 | HELIXINTELLIGENCE-L1-018 | 人間は、INTELLIGENCEが現在と次に何をするかを扱い、LABOが過去に何が起き何が効いたかを扱うことを区別できる。INTELLIGENCEは長期の改善の効果を自己評価して採択せず、結果をLABOへ渡し、LABOの評価を判断の材料として受け取る | INTELLIGENCE-L1-018 | 1.0 | 接続（LABO） |
 | HELIXINTELLIGENCE-L1-019 | 人間は、BRAINが示す選択肢と、INTELLIGENCEが今回の状態で選ぶ適用の候補とを区別できる。INTELLIGENCEの判断の結果をBRAINの汎用の知識へ直接書き込まず、汎用化はLABO等の評価の経路を通す | INTELLIGENCE-L1-019 | 1.0 | 接続（BRAIN、LABO） |
 | HELIXINTELLIGENCE-L1-020 | 人間は、INTELLIGENCEが製品固有の要求・設計・意味を理解の材料として使っても、要求、設計のauthority、受入、製品固有の意味を直接変えないことを確かめられる。食い違い・不足・改善の候補には、適切なBackflowの先を示す | INTELLIGENCE-L1-020 | 1.0 | 単体 |
@@ -80,7 +80,7 @@ INTELLIGENCEは、要求、設計、状態、知識、権限の正本になら�
 | LABO → INTELLIGENCE | 過去の評価の結果、成功・失敗・反例、Workerとmodelの実績 |
 | INTELLIGENCE → OS | 計画、配置、診断、修復等の実行の候補。登録・ticket化・進行はOSが担う |
 | INTELLIGENCE ↔ SECURITY | 必要な操作に対する許可と制約の確認 |
-| INTELLIGENCE → Runner／Sandbox | 許可済みの限定した実行だけ |
+| INTELLIGENCE → OS → Worker | 実作業が要るときは、OSの割当てでWorkerが許可済みの範囲だけ実行する。INTELLIGENCE自身をWorkerとして扱わない（2026-09-26 PO判断、PR #2149） |
 | INTELLIGENCE → LABO | 判断、予測、配置、修復の結果（評価の対象） |
 | LABO → INTELLIGENCE（3.0） | 評価済みのepisode、学習の材料、反例、評価のset |
 | INTELLIGENCE → LABO（3.0） | モデルの結果、予測、判断、失敗（効果と退行の評価の対象） |
@@ -93,7 +93,7 @@ INTELLIGENCEは、要求、設計、状態、知識、権限の正本になら�
 |---|---|
 | 自動の開発計画 | BRAIN、HELIX-HARNESS-CORE、INTELLIGENCE、OS |
 | 最適なWorkerの配置 | LABO、INTELLIGENCE、OS |
-| 限定の自動修復 | INTELLIGENCE、SECURITY、Runner／Sandbox、HARNESS、OS |
+| 限定の自動修復 | INTELLIGENCE、SECURITY、Worker、HARNESS、OS |
 | 継続的な自己改善 | LABO、BRAIN、INTELLIGENCE、OS、HARNESS |
 | 将来の動的な開発フロー（Conceptの4.0） | BRAIN、HELIX-HARNESS-CORE、INTELLIGENCE、OS（POの回答「INTELLIGENCEも加える」） |
 

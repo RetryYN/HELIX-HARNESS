@@ -47,6 +47,15 @@ AIの整理：
   - LABOによる独立した効果の評価
 - どれもConceptの1.0の土台（データの利用区分、構成版の固定と切戻し）と3.0の行に合う。
 
+
+## Workerへの統一の反映（2026-09-26）
+
+同じsessionで、POは、作業の実行主体をWorkerへ統一し、HELIXサブエージェント、エージェントレーン、Runner、Sandboxを独立した上位の概念として廃止する要求を示し、「今全部に反映する」を選んだ（[判断記録](worker-execution-model-po-decisions-2026-09-26.md)、PR #2149）。
+
+AIの整理：
+- 本PRの企画（L1）案の「Runner／Sandbox」を、Worker（実行）とSECURITY（制約とauthority）に置き換える。原文の保存は書き換えない。
+- 限定の自動修復の実行はWorkerが担い、INTELLIGENCE自身をWorkerとして扱わない。Botは特定の目的に使うWorkerとして実行する（Workerの原文のRETIRE-WORKER-015、016）。
+
 ## 反映先
 
 - [HELIX-INTELLIGENCEのL1企画案](../../helix-intelligence/L1-planning/intelligence-intent.md)を新しく作る。
