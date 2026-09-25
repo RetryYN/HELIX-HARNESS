@@ -8,7 +8,7 @@ kind: design
 status: draft
 freeze_blocking: true
 created: 2026-09-14
-updated: 2026-09-15
+updated: 2026-09-25
 pair_artifact: docs/helix-os/L11-acceptance/governance-acceptance.md
 parent_l1_candidate: docs/helix-os/L1-planning/system-intent.md
 ---
@@ -86,11 +86,12 @@ engine共通、製品固有pack、入力不足、運用誤りの改善候補へ�
 固定しない。単体、接続、構成体のidentity候補と包含・接続・依存relationは、HARNESS要求エンジン確定後に別のversioned
 分類projectionとして関連付ける。原eventを再分類で書き換えず、単体の進行・証拠・完了を接続や構成体へ自動伝播しない。
 
-[設計template system要求候補](../../helix-brain/candidates/design-template-system-requirements.md)のtemplate意味、適用規則、
-設計義務はHARNESS-L2-009が所有する。HELIX-OSはHELIXOS-L2-001／002／005／007／013として、承認済みseed／template、
-候補、retired版、対象projectの選定exact set、適用、義務、N/A、backflow、成果、finding、再作業、受入、運用結果を管理する。
+[設計template system要求候補](../../helix-brain/candidates/design-template-system-requirements.md)の汎用のtemplate・設計パターンと
+その版・seedはHELIX-BRAINが持ち、製品の要求への適用規則と設計義務はHARNESS-L2-009（ヘリックスコア）が持つ。
+HELIX-OSはHELIXOS-L2-001／002／005／007／013として、対象projectが使ったtemplateのexact setと版、適用、義務、N/A、
+backflow、成果、finding、再作業、受入、運用結果を各製品の記録として登録する。
 template未登録、stale、conflict、必要input欠落では任意様式へfallbackせず、停止または要求エンジンへ戻す。複数projectの
-結果から改善候補を作るが、利用回数やAI自己評価でtemplateを変更・昇格しない。
+結果から改善候補を登録して振り分けるが、効果と退行の評価はHELIX-LABOが担い、利用回数やAI自己評価でtemplateを変更・昇格しない。
 
 ticketの要求は、次の「ticket」節に置く。旧「要求からの開発ticket導出要求候補」は2026-09-24のPO判断で退役した。
 

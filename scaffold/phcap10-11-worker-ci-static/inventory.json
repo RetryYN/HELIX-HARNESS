@@ -632,7 +632,7 @@
       {
         "ref_id": "CUR-HARNESS-L2-CI",
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-        "sha256": "1c5866127960956c7943218aa8571c8eb743fc98b28b7137c1816974f2b7aec4",
+        "sha256": "22588c716d8ad39c9d2136514419f479ab458828d51da57d5d16cf1989a5b2bf",
         "line_start": 28,
         "line_end": 33,
         "line_sha256": "44a76803b343b2736d6eb0ee6d19bd64d1adc7b3b2940c8c97a17be4fd7df8e0",
@@ -643,7 +643,7 @@
       {
         "ref_id": "CUR-OS-L2-WORKER-CI",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "152fd45e3ac29867ef1b2c604f8400fcd8a6e965078a7cd663183a1177e113fe",
+        "sha256": "7b88998453d1932aeb0528b26a6a951c229ef101c96c59e554aee45a282833fd",
         "line_start": 57,
         "line_end": 61,
         "line_sha256": "a7f82bb28e403ced64b0174acccd6151a41b9263e1667485e1145acbf7f1d156",

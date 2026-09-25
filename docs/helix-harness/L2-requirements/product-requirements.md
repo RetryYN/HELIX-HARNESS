@@ -8,7 +8,7 @@ kind: design
 status: draft
 freeze_blocking: true
 created: 2026-09-14
-updated: 2026-09-15
+updated: 2026-09-25
 pair_artifact: docs/helix-harness/L11-acceptance/product-acceptance.md
 parent_l1_candidate: docs/helix-harness/L1-planning/product-intent.md
 ---
@@ -61,8 +61,9 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 
 ## Design Templateと要求backflow
 
-[設計template system要求候補](../../helix-brain/candidates/design-template-system-requirements.md)をHARNESS-L2-009の
-適用待ち具体化として保持する。Forwardでは合意要求から適用templateと設計義務を導く。Backflowではtemplate必須inputの
+[設計template system要求候補](../../helix-brain/candidates/design-template-system-requirements.md)のうち、製品の要求へtemplateを適用して
+設計義務を導く部分（DST-HARNESS-001／003／004／006／007）をHARNESS-L2-009の適用待ち具体化として保持する。
+汎用のtemplate・設計パターン・設計ユニット・パーツとその版・seedはHELIX-BRAINが持ち、ヘリックスコアはBRAINとコネクタで接続する（Concept）。Forwardでは合意要求から適用templateと設計義務を導く。Backflowではtemplate必須inputの
 欠落を質問、矛盾、derived requirement candidate、N/A判断候補としてHARNESS-L2-008へ返す。template本文、生成文書、
 旧schemaから要求意味・人間合意を生成しない。初期seedはarchiveと実例から意味を個別採否し、適用範囲と限界を持たせる。
 
@@ -94,13 +95,13 @@ successor割当や移管完了を生成しない。
 
 | 親要求 | 具体条件 |
 |---|---|
-| HARNESS-L2-002／003 | 2026-09-24のPO判断により、DiscoveryとPoCは別のticketに分け、旧S4 decideはDECIDE ticketへ独立させる。Researchは参考ソースを集めるだけで決定に関わらない。Scrumは開発方式であり駆動ではない。以下の旧条件にあるDiscovery／PoC、S4、Research・ADRの記述は、[OSのticket節](../../helix-os/L2-requirements/governance-requirements.md#ticket)と照合してPO最適ドラフトPRで書き直す |
+| HARNESS-L2-002／003 | 2026-09-24のPO判断により、DiscoveryとPoCは別のticketに分け、旧S4 decideはDECIDE ticketへ独立させる。Researchは参考ソースを集めるだけで決定に関わらない。Scrumは開発方式であり駆動ではない。ticketの種類・発行・合流先は[OSのticket節](../../helix-os/L2-requirements/governance-requirements.md#ticket)に置き、以下の行は旧条件の保持点を残してticketの形へ書き直したものである |
 | HARNESS-L2-001 | 正規pairはL1↔L12、L2↔L11、L3↔L10、L4↔L9、L5↔L8、L6↔L7。L0 charterは層外の上位根拠とし、旧物理pathの層番号を現行pairへ混入させない |
 | HARNESS-L2-002 | requirements v1.3 §4に従い、全production styleでL1–L3と人間の要件承認を必要とし、L3凍結時にstyleを合意する。Production ScrumはL3後、HybridはL5後にslice化し、Full Vはslice化しない。style選択で品質条件を省略しない |
-| HARNESS-L2-002 | `HR-FR-HYB-003`／`FR-L1-15`／`HIL-BR-28`に従い、Discovery／PoCは仮説・実現性を検証する別軸とする。S4判断前にproduction成果へ昇格せず、Scrumのphaseとして扱わない |
+| HARNESS-L2-002 | `HR-FR-HYB-003`／`FR-L1-15`／`HIL-BR-28`に従い、DiscoveryとPoCは仮説・実現性を検証する、開発方式とは別のticketとする。Scrum等の開発方式のphaseとして扱わず、DECIDEの裁定前にproduction成果へ昇格させない |
 | HARNESS-L2-002 | requirements v1.3 §4（`docs/governance/requirements-source/helix-requirements_v1.3.md:73-75,83-85`）に従い、開発styleはFull V／Production Scrum／V設計＋Scrum実装Hybridの三つから適用可能な一つだけを選ぶ。未選択、複数選択、適用条件不成立はfail-closeする |
-| HARNESS-L2-002／003 | `HR-FR-HYB-003`／`FR-L1-15`／`HIL-BR-28`と起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:631`に従い、`requirement_undefined`、`feasibility_unknown`、`success_condition_unclear`、`design_uncertain`ではcase-driven Discovery／PoCを`S0 hypothesis → S1 experiment plan → S2 poc → S3 verify → S4 decide`で進める。S4は人間判断とし、採択結果だけをL3機能要件へ合流する |
-| HARNESS-L2-002／003 | `FR-L1-27`と起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:632`に従い、`tech_decision_required`、`option_comparison_needed`、`adr_required`ではResearchを起動し、research memoとADRをADR参照点／L4基本設計（旧business requirements L123）へ合流する。成立性実験が必要になればDiscovery／PoCへ切り替える |
+| HARNESS-L2-002／003 | `HR-FR-HYB-003`／`FR-L1-15`／`HIL-BR-28`と起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:631`の起動条件を保つ。技術的な成立性が不明なとき（`feasibility_unknown`）はPoCを、要求・成功条件・範囲が分からないとき、または開発の途中で検証が必要になったとき（`requirement_undefined`、`success_condition_unclear`、`design_uncertain`）はDiscoveryを発行する。Discoveryは旧`S0 hypothesis → S1 experiment plan → S3 verify`の進め方を中に持ち、成立性の実験が要ればPoCを発行する。旧`S4 decide`はDECIDEで行い、結果を採用・不採用・方針変更のいずれかにする（旧`decision_outcome`のconfirmed／rejected／pivot）。検証の成功だけで採用にしない。要求の意味に関わる裁定は、旧S4と同じく人の判断とし、採用した結果だけを要求の2次形成を経てL3へ合流する |
+| HARNESS-L2-002／003 | `FR-L1-27`と起動source `docs/governance/requirements-source/helix-requirements_v1.3.md:632`の起動条件を保つ。`tech_decision_required`、`option_comparison_needed`、`adr_required`ではResearchを発行し、Researchは判断基準・候補・比較のための参考ソースを集めて依頼元へ返す。選定はDECIDEで行い、その記録（旧ADR）を、技術の選定ならL4基本設計の判断材料へ、要求に影響するなら要求へ接続する。Researchの成果物だけで選定を決まったものとしない。成立性の実験が必要になればPoCを発行する |
 | HARNESS-L2-002／003 | requirements v1.3 §4.1（L94、L96-106）／§4.2（L112-119、L138-139）に従い、Production ScrumまたはV設計＋Scrum実装Hybridの各sliceでcheckpoint triggerに該当した場合は`SR0 evidence capture → SR1 observed contract → SR2 V-layer mapping → SR3 design/refactor proposal → SR4 pair freeze and Forward reentry`を実行する。v1.3 L104-106にある4 entity、SR4 publish条件、provisional非canonicalをHARNESS条件とし、SR4 receiptなしにrelease-readyへ進めず、findingをRedesign／Design Refactor／Performance Refactor／Retrofitのexactly oneへ送る。Design Refactorでobservable behavior／public surface／DB semantics／要求に差分があれば、`HIL-BR-21`／`HIL-FR-39`／`HIL-FR-50`に従いRedesign／Retrofitへrerouteする。v1.3 L107-108が参照するentity要件と宣言oracle、およびentity要件が指すconfirmed親文書は[300行全量台帳](../../governance/scrum-reverse-source-line-inventory.md)で保持する。親文書と対になるconfirmed受入文書は[file-blob holding](../../governance/delegated-requirement-document-source-inventory.md)で保持し、後続要求PRでatom化するまでcurrent authorityへ昇格させない |
 | HARNESS-L2-003 | `HIL-BR-13`とScreen Applicability条件に従い、L2.5の適用はPrototypeとPoCで別に判定する。Prototypeは画面の有無で、PoCは画面の有無に関係なく技術的な成立性が不明かどうかで判定する（2026-09-24 PO「画面がなくてもPoCは必要な場合があるだろ」）。適用したものの結果はL2.5で要求へ還流し、合意をL3凍結前に確認する。両方とも非適用のときだけL2.5を飛ばし、L2要求は省略せず、非適用・理由・判定者・HEAD・要求への影響・再評価条件を記録する |
 | HARNESS-L2-003 | `HIL-BR-13`は「UI prototypeを独立phaseにしない」としていたが、2026-09-24のPO判断でL2.5の位置を取る。L2.5では`L2要求 ↔ Prototype`を反復して操作・状態・failureを確認し、結果はBackflowで要求へ戻し、DECIDEの裁定なしにL3をfreezeしない。保持する点は要求とprototypeの反復と合意前freeze禁止、変更点はL2.5という位置とticket化、理由はPOの指示「画面は要求とPoCして不確定要素を減らしてから要件定義に入る」である |

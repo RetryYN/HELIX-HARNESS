@@ -352,12 +352,12 @@
       {
         "ref_id": "CUR-OS-L2-OPS",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "152fd45e3ac29867ef1b2c604f8400fcd8a6e965078a7cd663183a1177e113fe",
+        "sha256": "7b88998453d1932aeb0528b26a6a951c229ef101c96c59e554aee45a282833fd",
         "product": "HELIX-OS",
         "classification": "direct_current_ref",
         "anchor_id": "CUR-OS-L2-OPS",
-        "line_start": 299,
-        "line_end": 315,
+        "line_start": 300,
+        "line_end": 316,
         "exact_text": "## 運用品質の管理・統制条件\n\n[旧NIO候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md)は、\n[新世代対応表](../../governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md)に従って\n再採否する。旧Issue番号をownerにせず、既存measurement、event、logging、alert、incident、lifecycle、Requirement Re-entry\nengineの再利用を新世代要件にしない。\n\nHELIXOS-L2-002／005／007では、管理対象の要求revisionからrelease準備・artifact受渡しと、展開先runtimeが所有する\n配備・設定・計測・log・通知・incident・backup・restore・rollback・maintenance・decommission・費用の適用状態と証拠へ\n辿り、欠測・stale・collector停止をhealthyへ変換しない。OSは証拠と進行を統制するが、展開先runtimeの実行authorityを\n吸収しない。\n運用観測からの差分は改善候補として出典とscopeを保持し、人間の採否や対象製品の要求を直接書き換えない。\n\nHELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作・中断・再開を追跡し、対象、actor、権限、予算、\n影響範囲、復旧先、独立検証が成立する範囲だけを実行対象にする。NIO候補は操作認可や自動修復権限を付与しない。\n具体SLO、RTO／RPO、保持期間、対象環境は個別製品・releaseの承認済み要求を参照する。本節では旧機構、CI、\n故障注入、production操作、自動修復を実行しない。",
         "meaning": "OS operations governance and explicit no-execution boundary",
         "line_sha256": "c524242ad7d3e0d2bee5d8885819413b287bac097e438b119d4ff6ef438ddec4"
@@ -365,12 +365,12 @@
       {
         "ref_id": "CUR-OS-L2-BOUNDARY",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "152fd45e3ac29867ef1b2c604f8400fcd8a6e965078a7cd663183a1177e113fe",
+        "sha256": "7b88998453d1932aeb0528b26a6a951c229ef101c96c59e554aee45a282833fd",
         "product": "HELIX-OS",
         "classification": "direct_current_ref",
         "anchor_id": "CUR-OS-L2-BOUNDARY",
-        "line_start": 317,
-        "line_end": 329,
+        "line_start": 318,
+        "line_end": 330,
         "exact_text": "## 管理対象としてのHELIX-WebとHELIX-Web-OS\n\n2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」と「展開時はHELIX-OSの外にHELIX-Web-OSを作る」を、\nHELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-Web-OSは\nそれぞれ要求正本・合意revision・進行状態を持ち、OSが開発・改善projectとして横断管理する。\nWeb固有の利用者体験やサービス要求は[HELIX-Web側](../../helix-web/README.md)へ置く。\n展開後のtenant、Connector job、service state、credential、配備・監視・復旧は\n[HELIX-Web-OS側](../../helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。\nHELIX-Web-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・\n時点・欠測付きで受領する。HELIXOS-L2-005／007／013により他projectの証拠と突合し、改善候補、採否、対象別変更、\n再検証、再観測へ接続する。credential、tenant原data、範囲外logを吸収せず、受領logから要求を直接変更しない。\nWebで適用するHARNESS版と採用能力を追跡し、Webの変更だけを理由にHARNESSの共通規則や他プロダクトの要求を変更しない。\nWebでの実践証拠をHELIX改善へ戻す際は、出典・利用可能範囲・採否・変更対象・検証結果を保持する。",
         "meaning": "OS/Web-OS management and permitted evidence export boundary",
         "line_sha256": "698f8ad2bc6e50e9b56860a6448add7a49a702dc9c31b71b0f8c301b85e0108b"
