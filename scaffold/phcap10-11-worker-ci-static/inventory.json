@@ -632,22 +632,22 @@
       {
         "ref_id": "CUR-HARNESS-L2-CI",
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-        "sha256": "e53133088b8d528a242db7748f0052600938a004053ee4758c141251cc294a43",
+        "sha256": "ff29f36ea35a80b53a771b3bb6fe918f6c5e14bcb8494bbdad02bf6fe2782421",
         "line_start": 28,
         "line_end": 33,
-        "line_sha256": "44a76803b343b2736d6eb0ee6d19bd64d1adc7b3b2940c8c97a17be4fd7df8e0",
-        "exact_text": "HARNESSはVモデル等の開発工程を規定する提供プロダクトである。Worker実行、CI運転、ログ保存、学習、\nプロジェクト群の管理・統制はHELIX-OS側に置く。\n\n外部利用者へ提供する範囲はHARNESSである。提供物の仕様・版・導入条件を明示し、HELIX内部の\nプロジェクト群、Worker割当、学習記録、ログ、CI運用をそのまま利用者の必須構成にしない。\n提供範囲と依存条件は明示して管理し、内部運用が存在することだけを暗黙の外部依存にしない。",
+        "line_sha256": "b83e70d6ac499ac27e10db3ea0a6a9353942d1bf2e022b29f97c588887153238",
+        "exact_text": "HARNESSはVモデル等の開発工程を規定する提供プロダクトである。Worker実行、CI運転、ログ保存、\nプロジェクト群の管理・統制はHELIX-OS側に置く。学習（RCLS）と改善の評価はHELIX-LABO側に置く（[2026-09-25 PO判断](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。\n\n外部利用者へ提供する範囲はHARNESSである。提供物の仕様・版・導入条件を明示し、HELIX内部の\nプロジェクト群、Worker割当、学習記録、ログ、CI運用をそのまま利用者の必須構成にしない。\n提供範囲と依存条件は明示して管理し、内部運用が存在することだけを暗黙の外部依存にしない。",
         "classification": "direct_current_ref",
         "meaning": "HARNESS excludes Worker and CI operation"
       },
       {
         "ref_id": "CUR-OS-L2-WORKER-CI",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "f5fe3a526a186a7b32c08dd4defa64ab3a0d4a013322058414474c96e5346c9f",
+        "sha256": "f8b6b43d9a789d6faae2526d39d56c129c23a86efa70fd6a5f22d9078969d1c5",
         "line_start": 57,
         "line_end": 61,
-        "line_sha256": "0cc0aa67917119a0515a22a59d70b3c30018a76fdc94a9b84094f336b79deb0d",
-        "exact_text": "| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は4機構に分ける：割当てと進行統制はOS、割当て案はINTELLIGENCE（2026-09-25 PO判断「稼働はインテリジェンス」。2026-09-24判断ではBRAIN）、実行はWorker（2026-09-26 PO判断。旧Runner／Sandboxの実行の能力はWorkerへ移し、実行の制約はSECURITYが定めてWorkerの実行環境が強制する）、自己承認の防止と権限の制限はSECURITY |\n| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |\n| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |\n| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、その変更に必要なCIを動的に合成し、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補、2026-09-24 PO判断 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |",
+        "line_sha256": "50c94686e87d272445714c70edfab14f78fed0bcc0227ca94f9d63a30427ab9c",
+        "exact_text": "| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は3つの機構と、作業の主体であるWorker（機構ではない）に分ける：割当てと進行統制はOS、割当て案はINTELLIGENCE（2026-09-25 PO判断「稼働はインテリジェンス」。2026-09-24判断ではBRAIN）、実行はWorker（2026-09-26 PO判断。旧Runner／Sandboxの実行の能力はWorkerへ移し、実行の制約はSECURITYが定めてWorkerの実行環境が強制する）、自己承認の防止と権限の制限はSECURITY |\n| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |\n| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |\n| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、検収がその変更に必要なCIを動的に合成し（CIの規則はHARNESS、組み立てと運転はOS）、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補、2026-09-24 PO判断 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |",
         "classification": "direct_current_ref",
         "meaning": "OS Worker and CI governance candidate"
       },
@@ -687,11 +687,11 @@
       {
         "ref_id": "CUR-WEB-L2-BOUNDARY",
         "path": "docs/helix-web/L2-requirements/product-requirements.md",
-        "sha256": "f42d457373e6cc5b7d113f5628455c6abdec237c304abe97fe03842c64867b43",
+        "sha256": "e6f21d6429c920e94a87fbc84bce63302a5e94966a57749dfcc60e32c11bd66d",
         "line_start": 48,
         "line_end": 61,
-        "line_sha256": "f37b1519ecaf5508e68ea3bedd1bd233bad7b84530588069aacb775d5732e4cf",
-        "exact_text": "## 要求対象と未決定の境界\n\nHARNESSは利用する開発能力・工程条件を提供する。HELIX-OSはWebプロジェクトの要求・進行・Worker・CI・学習・ログを管理し、\nHELIX-Web-OSは展開後のtenant・Connector job・service state・配備・監視・復旧を担う。\n本書はWebの利用者向け操作・表示・サービス体験を所有し、OS内部管理UIの要求をWebの製品要求として一括転用しない。\n\nprovider認証方式、MCP等の通信方式、対応環境、料金、具体モデル、性能・可用性の数値は未決定である。\n本書はそれらの変更や外部接続実行を認可しない。原文のPC／WSL／VPSは構想上の選択肢であり、WSL必須とはしない。\nHDA、動的計画、System Compiler、差分再生成は別段階の構想であり、初期Connectorへ一律に必須化しない。\n後二者の詳細仕様・納品契約は原文§5・O10から別途具体化が必要であり、本書の9件で全Visionを網羅したとは扱わない。\n\nプロトでは対象環境・選択能力・操作・状態・結果を確認する。画面数やレイアウトは未確定である。\n要求合意と操作の許可、提供済みと利用成功、運用健全性と改善効果を別状態として扱う。\nGitHubは作業記録の接続先であり、要求の意味・採否をIssueの状態から生成しない。",
+        "line_sha256": "f4ecafcc9b8e0971fe5fe5706dd7718a36d078a135261e0619709ade35018b23",
+        "exact_text": "## 要求対象と未決定の境界\n\nHARNESSは利用する開発能力・工程条件を提供する。HELIX-OSはWebプロジェクトの要求・進行・Worker・CI・ログを管理し、学習（RCLS）と改善の評価はHELIX-LABOが担い（2026-09-25 PO判断）、\nHELIX-Web-OSは展開後のtenant・Connector job・service state・配備・監視・復旧を担う。\n本書はWebの利用者向け操作・表示・サービス体験を所有し、OS内部管理UIの要求をWebの製品要求として一括転用しない。\n\nprovider認証方式、MCP等の通信方式、対応環境、料金、具体モデル、性能・可用性の数値は未決定である。\n本書はそれらの変更や外部接続実行を認可しない。原文のPC／WSL／VPSは構想上の選択肢であり、WSL必須とはしない。\nHDA、動的計画、System Compiler、差分再生成は別段階の構想であり、初期Connectorへ一律に必須化しない。\n後二者の詳細仕様・納品契約は原文§5・O10から別途具体化が必要であり、本書の9件で全Visionを網羅したとは扱わない。\n\nプロトでは対象環境・選択能力・操作・状態・結果を確認する。画面数やレイアウトは未確定である。\n要求合意と操作の許可、提供済みと利用成功、運用健全性と改善効果を別状態として扱う。\nGitHubは作業記録の接続先であり、要求の意味・採否をIssueの状態から生成しない。",
         "classification": "adjacent_boundary_ref",
         "meaning": "Web owns user-facing product boundary; CI/Worker remain elsewhere"
       },

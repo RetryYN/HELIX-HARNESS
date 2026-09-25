@@ -53,7 +53,7 @@ INTELLIGENCEは、要求、設計、状態、知識、権限の正本になら�
 | HELIXINTELLIGENCE-L1-011 | 人間は、モデルとproviderを一つの固定の能力として扱わず、領域と能力ごとに適性を評価できる。同じcorpus・同じ責務の範囲で、所見、誤検出、見逃し、再現性、遅延、費用を比べ、モデルの更新だけで上位と判定しない | INTELLIGENCE-L1-011 | 1.0 | 単体 |
 | HELIXINTELLIGENCE-L1-012 | 人間は、「判断できない」を正常な結果として受け取れる。known、probable、uncertain、unknown、contradictory等を区別し、不足する情報に対して追加の証拠、Discovery、テスト、Review、人の判断等の必要条件を示す。unknownを安全・成功・問題なしへ変えない | INTELLIGENCE-L1-012 | 1.0 | 単体 |
 | HELIXINTELLIGENCE-L1-013 | 人間は、重要な判断の候補について、入力のrevision、当てはめた規則、参照したBRAINの知識、観測、前提、model／provider／版、推論の結果、不確実性、退けた代替へ辿り、なぜその候補になったかを検証できる。同じ判断の完全な再生成までは求めない | INTELLIGENCE-L1-013 | 1.0 | 単体 |
-| HELIXINTELLIGENCE-L1-014 | 人間は、繰り返し起き、対象・入力・判定の条件・停止の条件を限定できる判断について、専門のBot（Bugbot、Helpbot、Crawlerを含む）を発行できる。Botは、特定の目的に使うWorkerとして実行し（2026-09-26 PO判断、PR #2149）、INTELLIGENCEとは別のidentityを持ち、目的、範囲、入力、出力、許す操作、停止の条件、版を持つ。Botの追加を新しいauthorityの追加にしない。Botごとの詳細な責務はL2以降で定める | INTELLIGENCE-L1-014 | 1.0 | 単体 |
+| HELIXINTELLIGENCE-L1-014 | 人間は、繰り返し起き、対象・入力・判定の条件・停止の条件を限定できる判断について、専門のBot（Bugbot、Helpbot、Crawlerを含む）を発行できる。Botは、特定の目的に使うWorkerとして実行し（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149）、INTELLIGENCEとは別のidentityを持ち、目的、範囲、入力、出力、許す操作、停止の条件、版を持つ。Botの追加を新しいauthorityの追加にしない。Botごとの詳細な責務はL2以降で定める | INTELLIGENCE-L1-014 | 1.0 | 単体 |
 | HELIXINTELLIGENCE-L1-015 | 人間は、CIや実行で繰り返し現れる失敗について、失敗のパターン、再現性、機械で検出できるか、誤検出、範囲、修復できるかを確かめ、機械で扱えるものからBugbotの候補へ昇格できる。一度だけの失敗から恒久のBotを作らない | INTELLIGENCE-L1-015 | 1.0（ログがたまり機械で判定できるようになった時点で発行する。2026-09-25のPO判断） | 単体 |
 | HELIXINTELLIGENCE-L1-016 | 人間は、限定された問題について、検出、診断、修復の候補、限定した修復までをINTELLIGENCEに任せられる。修復の対象は、対象revision、actor、write-set、副作用、予算、期限、再試行、影響の範囲、復旧点を持つ。要求・設計・検証義務を修復器が変えず、意味の変更が必要なら上流へ戻す | INTELLIGENCE-L1-016 | 1.0 | 単体 |
 | HELIXINTELLIGENCE-L1-017 | 人間は、限定修復をINTELLIGENCEが担っても、操作の許可（SECURITY）、隔離した実行（Worker）、修復後の検証義務（HARNESS）、検収（OS）が代わられないことを確かめられる。修復の案を作れることから包括的なwrite権限を生成しない | INTELLIGENCE-L1-017 | 1.0 | 接続（SECURITY、Worker、HARNESS、OS） |
@@ -80,7 +80,7 @@ INTELLIGENCEは、要求、設計、状態、知識、権限の正本になら�
 | LABO → INTELLIGENCE | 過去の評価の結果、成功・失敗・反例、Workerとmodelの実績 |
 | INTELLIGENCE → OS | 計画、配置、診断、修復等の実行の候補。登録・ticket化・進行はOSが担う |
 | INTELLIGENCE ↔ SECURITY | 必要な操作に対する許可と制約の確認 |
-| INTELLIGENCE → OS → Worker | 実作業が要るときは、OSがticketをレーンへ割り当て、レーンの主が呼び出したWorkerが許可済みの範囲だけ実行する。INTELLIGENCE自身をWorkerとして扱わない（2026-09-26 PO判断、PR #2149） |
+| INTELLIGENCE → OS → Worker | 実作業が要るときは、OSがticketをレーンへ割り当て、レーンの主が呼び出したWorkerが許可済みの範囲だけ実行する。INTELLIGENCE自身をWorkerとして扱わない（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149） |
 | INTELLIGENCE → LABO | 判断、予測、配置、修復の結果（評価の対象） |
 | LABO → INTELLIGENCE（3.0） | 評価済みのepisode、学習の材料、反例、評価のset |
 | INTELLIGENCE → LABO（3.0） | モデルの結果、予測、判断、失敗（効果と退行の評価の対象） |
