@@ -42,7 +42,7 @@ HELIXは、本体の能力、Webでの提供、利用者の自立の3つの軸�
 
 | 版 | HELIX本体でやること | Web提供でやること | 利用者ができるようになること | 加わる機構 | 到達の確かめ方 |
 |---|---|---|---|---|---|
-| 1.0 | HARNESS Version 1の完成。要求から設計・実装・検証・統合・リリース・運用・保守まで通し、変更を適切な地点へ戻せる。HELIX自身の改善も同じ経路で行う | Web展開を始めるための開発基盤と提供package | 定型保守を開くための基礎 | HARNESS、OS、BRAIN、LABO、INTELLIGENCE、SECURITY、Runner／Sandbox、CONNECT | 性質の異なる複数の製品とHELIX自身で、要求から受入・運用評価まで成立する。部品の存在や文書だけで完成としない |
+| 1.0 | HARNESS Version 1の完成。要求から設計・実装・検証・統合・リリース・運用・保守まで通し、変更を適切な地点へ戻せる。HELIX自身の改善も同じ経路で行う | Web展開を始めるための開発基盤と提供package | 定型保守を開くための基礎 | HARNESS、OS、BRAIN、LABO、INTELLIGENCE、SECURITY、CONNECT | 性質の異なる複数の製品とHELIX自身で、要求から受入・運用評価まで成立する。部品の存在や文書だけで完成としない |
 | 1.x | 実案件でpackageと並行開発を磨く | Webコネクタ型AI開発SaaS。利用者のPC・WSL・VPS・リポジトリをWebから操作する | 限定された更新・診断・復旧 | Web、Web-OS | 利用者環境で接続・job・切断・取消・再開が成立する。開発engineをWeb用に別実装しない |
 | 2.0 | LABOが外の情報を分解し、使える構造をBRAINへ入れる。取り込んだ構造から、今の案件へ根拠付きで推薦する。外の情報は、OSS、設計資料、論文、Issue、PR等である（下の注記） | 技術・設計・改修の根拠付き推薦を提供する | 影響と選択肢を見て変更を判断する | なし（LABOを外の情報の分解と推薦の効果の評価へ、BRAINを取り込んだ構造の蓄積へ拡張） | 推薦から出典・版・根拠へ戻れる。適用不能や保留も返せる。外部の成功を自分の環境の成功にすり替えない |
 | 3.0 | HELIXの開発データで、ローカルLLMを学習・チューニング・評価する | HELIX-Web 3：HDA。調整済みモデルを分散サーバーから呼び出して開発を補助する | 専門AIと保守・改修を進める | なし（INTELLIGENCEをローカルモデルの学習へ拡張） | どのデータと設定から生まれたモデルかを追える。学習前と比べ、弱点・適用範囲・撤回先を持つ |
@@ -62,7 +62,7 @@ flowchart LR
         I1["HELIX-INTELLIGENCE<br/>既存の外部モデルで稼働中の判断"]
         L1["HELIX-LABO<br/>計測・改善の効果と退行の評価"]
         S1["HELIX-SECURITY"]
-        R1["Runner／Sandbox"]
+        R1["Worker<br/>作業の実行"]
         C1["HELIX-CONNECT"]
     end
     subgraph V1x["1.x Web提供の開始"]
@@ -108,7 +108,7 @@ LABOも1.0からあり、HELIX自身や製品の改善が効いたか、退行�
 
 ## 3. どんな機構で成り立つか
 
-HELIXは、全版を通じて8つの機構と2つの共通部品から成る。機構は版ごとに加わる。**製品は機構の一部**であり、HARNESSとWebだけが製品の属性を持つ。
+HELIXは、全版を通じて8つの機構と1つの共通部品から成る。作業を実行するのはWorkerであり、機構や共通部品とは別に置く（下の「作業を実行するのはWorker」）。機構は版ごとに加わる。**製品は機構の一部**であり、HARNESSとWebだけが製品の属性を持つ。
 以下の図と表は、すべての機構がそろった姿を示す。
 機構を分けるのは、成長の循環を切らずに各機構を交換・更新できるようにするためである。機構や文書の数を増やすことは目的にしない。
 全体の統制は、すべての書き込みを一か所に集める万能の中枢ではない。各機構が自分のデータと責務を持つ。
@@ -136,9 +136,8 @@ flowchart LR
         PROM["推進<br/>チケット発行"]
         ACC["検収<br/>CI・テストの最適化"]
     end
-    LANES["実行者<br/>エージェントレーン・HELIXサブエージェント"]
+    WORKER["Worker<br/>作業の実行・必要に応じたSubagentの編成"]
     SEC["HELIX-SECURITY<br/>認可・制限"]
-    RUNNER["Runner／Sandbox<br/>限定実行"]
     CONNECT["HELIX-CONNECT<br/>内部と外部の構造の接続"]
     Targets["開発対象<br/>HELIX自身・Webを含む各製品"]
 
@@ -147,14 +146,13 @@ flowchart LR
     APP -->|承認済み要件と工程契約| INTF
     INTF -->|作業計画の案| PROM
     MGMT -->|接続状況| PROM
-    PROM -->|チケット| LANES
-    LANES -->|限定実行| RUNNER
-    RUNNER -->|開発・改修| Targets
-    RUNNER -->|結果・差分| ACC
+    PROM -->|チケット| WORKER
+    WORKER -->|開発・改修| Targets
+    WORKER -->|結果・差分| ACC
     ACC -->|CI・テストの結果| VER
     ACC -->|結果| MGMT
     SEC -.->|制限| PROM
-    SEC -.->|制限| RUNNER
+    SEC -.->|実行の制約| WORKER
     CONNECT <-->|外部のイベント・通信| MGMT
 ```
 
@@ -174,7 +172,7 @@ flowchart LR
     WEBOS["HELIX-Web-OS<br/>サービス運転"]
     WEBCONN["Webコネクタ<br/>利用者への接続"]
     CONNECT["HELIX-CONNECT<br/>接続・通信"]
-    RUNNER["Runner／Sandbox<br/>限定実行"]
+    WORKER["Worker<br/>作業の実行"]
     LABO["HELIX-LABO<br/>計測・評価"]
     INT["HELIX-INTELLIGENCE<br/>HELIXを最も知る部位・全体監査"]
     BRAIN["HELIX-BRAIN<br/>全体の汎用構造"]
@@ -187,7 +185,7 @@ flowchart LR
     Customer --> WEB
     WEB --> WEBOS
     WEBOS <-->|顧客環境との接続| WEBCONN
-    WEBOS -->|job| RUNNER
+    WEBOS -->|job| WORKER
     SEC -.->|制限| WEBOS
     Targets -->|実績| LABO
     WEBOS -->|許可済みの利用・運用データ| LABO
@@ -198,8 +196,8 @@ flowchart LR
     LABO -->|評価| OS
     INT -->|知識・モデル| BRAIN
     INT -->|改善候補| OS
-    INT -->|学習job| RUNNER
-    LABO -->|評価job| RUNNER
+    INT -->|学習job| WORKER
+    LABO -->|評価job| WORKER
     INT -->|診断| OS
     OS -->|改善提案| REQ2
     Human -.->|採否| REQ2
@@ -210,20 +208,23 @@ flowchart LR
 | 機構 | 役割 | しないこと |
 |---|---|---|
 | HELIX-HARNESS 《製品》 | V-model、要求形成・設計・検証・受入の契約、外部へ提供する開発基盤 | 作業の割当、実行状態の管理 |
-| HELIX-OS | 製品ごとの固有性を持ち、工程管理と推進を担う。管理（HELIX自身と各製品の要求・承認・予算・状態・証拠の登録と版の管理）、推進（接続状況から安全な順序を決めてチケットを発行し、エージェントレーンとHELIXサブエージェントへ割り当てる）、検収（チケットから必要なCIとテストを割り出して最適化する）、統合、更新、復旧 | 工程の意味の別定義、INTELLIGENCEの案の無条件実行 |
+| HELIX-OS | 製品ごとの固有性を持ち、工程管理と推進を担う。管理（HELIX自身と各製品の要求・承認・予算・状態・証拠の登録と版の管理）、推進（接続状況から安全な順序を決めてチケットを発行し、Workerへ割り当てる）、検収（チケットから必要なCIとテストを割り出して最適化する）、統合、更新、復旧 | 工程の意味の別定義、INTELLIGENCEの案の無条件実行 |
 | HELIX-BRAIN | 製品単位ではなく、HELIX全体に共通する汎用性を持つ。汎用の構造（設計パターン、設計ユニット・パーツ）を持ち、意味から構造を取り出す。BRAINの「学習」は、LABOが複数の製品やepisodeから確かめた汎用の構造の候補を蓄えることである。モデルの学習・チューニング・評価は、3.0以降にINTELLIGENCEがLABOの材料を使って行う（2026-09-26、[LABOの判断記録](../governance/decisions/labo-core-engine-po-decisions-2026-09-26.md)）。各製品のHELIX-HARNESS-COREとコネクタで接続し、コアのパターンからパーツを増やす | 製品固有の意味・設計の保持、要求・承認・権限の生成、OS状態の直接更新 |
 | HELIX-LABO | 実験、比較、改善効果・退行の計測 | 自己評価だけでの採用確定 |
 | HELIX-INTELLIGENCE | HELIXについて最も知っている部位。稼働中の理解、計画、予測、診断、レビュー、配置案を、1.0から既存の外部モデルで行い、後の版でローカルLLMに判断を依頼する。バグbot、ヘルプbot、クローラーを発行し、HELIX全体の監査に寄せる。バグbotは、CIでよく失敗する種類のログがたまり、機械で判定できるようになったものから発行する | 検証なしでの稼働モデル差し替え |
-| HELIX-SECURITY | 認可、情報保護、資格情報、隔離、失効 | 自身の権限の拡張 |
+| HELIX-SECURITY | 認可、情報保護、資格情報、隔離、失効、Workerの実行の制約とauthority | 自身の権限の拡張 |
 | HELIX-Web 《製品》 | HARNESSのサービス①〜⑦をリリース単位として顧客へ提供し、顧客が欲しい成果物を選んで受け取る窓口 | 開発エンジンの別実装 |
 | HELIX-Web-OS | 顧客のtenant・job・サービス状態・配備・監視・復旧 | 内部OSの状態・鍵・権限の共有 |
 | HELIX-CONNECT（共通部品） | HELIXの内部と外部の構造をつなぐ。内部の機構どうしの接続（HELIX-HARNESS-COREとBRAIN、BRAINとINTELLIGENCE等）と、外部との接続を担う。接続登録、契約版の照合、通信、再送、追跡。利用者に提供する接続は、別のWebコネクタとする | 業務判断、承認 |
-| Runner／Sandbox（共通部品） | 限定された実行、停止、隔離、結果回収 | 作業の採否、自己承認 |
 
 - **BRAINは全体、OSは製品ごと。** HELIX全体に共通する汎用の構造（設計パターン、設計ユニット・パーツ）はBRAINが持ち、製品ごとの工程管理と推進はOSが担う。INTELLIGENCEはHELIXについて最も知っている部位として、稼働中の判断と、バグbot・ヘルプbot・クローラーの発行を担い、HELIX全体の監査に寄せる。
 - **決めるのはOS。** INTELLIGENCEは案を出す。OS内の推進機構はoperational tag、HARNESS語彙へのversioned mapping、composition、workflow instanceの生成規則を所有し、案の適格性を確認してticket graphとworkflow instanceを生成する。OSの管理が登録・統制して状態遷移を確定し、検収はHARNESSの契約への充足を独立して確認する。
 - **管理・推進・検収を、同じ自己承認主体にまとめない。**
-- **チケットは、管理・推進・検収をつなぐ単位である。** 管理が接続状況を持ち、推進がチケットを発行し、実行者が作業し、検収が必要な検証を決め、管理が結果を記録する。
+- **作業を実行するのはWorker。** Workerは作業を実行する唯一の主体であり、一つの実行の枠（レーン）でもある。HELIXサブエージェント、エージェントレーン、Runner、Sandboxを、Workerと並ぶ別の主体や共通部品として置かない（2026-09-26、[判断記録](../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)）。
+  - 割当てと進行はOS、実行の制約とauthorityはSECURITY、Workerが動く実際の資源は実行基盤が持つ。Workerは、割り当てられた作業を、与えられたauthorityと制約の中で実行し、開始、停止、timeout、結果・差分・証拠の回収まで担う。実行の制約は、Workerの実行環境が強制する。
+  - Workerは、providerが対応する場合、中でSubagentを編成してよい。Subagentは親のWorkerの範囲・authority・予算を超えない。同じWorkerの中のSubagentによるreviewは自己検査であり、独立した検証には別のWorkerを割り当てる。
+  - バグbot等のbotは、特定の目的に使うWorkerとして実行する。
+- **チケットは、管理・推進・検収をつなぐ単位である。** 管理が接続状況を持ち、推進がチケットを発行し、Workerが作業し、検収が必要な検証を決め、管理が結果を記録する。
 - 開発の層は、Concept → 企画（L1）→ 要求（L2）→ 要件（L3）→ 設計（L4〜L6）→ 実装 → 検証（L7〜L10）→ 利用者受入（L11）→ 運用評価（L12）の順に進み、`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7`で対にする。
 
 ### HELIX-HARNESS

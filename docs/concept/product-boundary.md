@@ -4,7 +4,7 @@
 
 2026-09-17の承認は旧本文SHA-256 `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038`に限る。現行本文のOS／LABO／INTELLIGENCEの責務表とPO判断条件は未承認の差分候補であり、[PO判断パッケージ](../governance/crosswalks/concept-requirement-po-decision-packet.md)で旧revisionと比較する。
 
-現行Conceptでは8機構と2共通部品を区別し、外部提供する製品属性はHARNESSとWebだけが持つ。1.0はHARNESS、OS、BRAIN、LABO、INTELLIGENCE、SECURITY、CONNECT、Runner／Sandbox、1.xはWebとWeb-OSが加わる。OSの管理・推進・検収は別責務であり、BRAINはHELIX全体の汎用の構造、INTELLIGENCEは稼働時の判断と知識・モデルの改善、LABOは効果と退行の評価を担う（[2026-09-25 PO判断](../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)）。
+現行Conceptでは8機構と1共通部品を区別し、外部提供する製品属性はHARNESSとWebだけが持つ。1.0はHARNESS、OS、BRAIN、LABO、INTELLIGENCE、SECURITY、CONNECT、1.xはWebとWeb-OSが加わる。作業を実行するのはWorkerであり、機構や共通部品とは別に置く（[2026-09-26 PO判断](../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)）。OSの管理・推進・検収は別責務であり、BRAINはHELIX全体の汎用の構造、INTELLIGENCEは稼働時の判断と知識・モデルの改善、LABOは効果と退行の評価を担う（[2026-09-25 PO判断](../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)）。
 
 ## 明示された決定
 
@@ -84,7 +84,7 @@ HELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する
 | Change Contract Compiler／Assurance Kernel | HARNESSが提供する工程・契約・検証能力と、OSが行うcanonical transactionを分ける |
 
 旧L0 charterのP0–P9も意味を保持して対象別へ再配置する。V-model、工程、検証、外部利用条件はHARNESSへ、
-連続走行、orchestration、GitHub／CI運転、memory／状態、外部実行統制はOS・SECURITY・Runner／Sandboxへ分け、評価はLABO、判断と知識・モデル改善はINTELLIGENCEへ置く。
+連続走行、orchestration、GitHub／CI運転、memory／状態、外部実行統制はOS・SECURITY・Workerへ分け、評価はLABO、判断と知識・モデル改善はINTELLIGENCEへ置く。
 「harness memoryを根幹に自己保守する」という旧表現は、HARNESS製品がmemoryを必須内包する意味に使わず、
 HELIX-OSが要求正本・状態・証拠を分離して管理し改善する責務へ置き換える。
 
