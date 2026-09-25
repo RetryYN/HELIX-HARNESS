@@ -883,7 +883,7 @@
     {
       "ref_id": "CUR-OS-L2-14",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "152fd45e3ac29867ef1b2c604f8400fcd8a6e965078a7cd663183a1177e113fe",
+      "sha256": "bee075bc45a09f00e8dbb369d7c67f74f3774c4a66c50745a315f28e0301d13a",
       "start_line": 57,
       "end_line": 64,
       "line_sha256": "6aff78e86e3342f027958e9d192f252646ff6af65e8fd28b3243266f563f60d4",
@@ -896,7 +896,7 @@
     {
       "ref_id": "CUR-OS-RELEASE-14",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "152fd45e3ac29867ef1b2c604f8400fcd8a6e965078a7cd663183a1177e113fe",
+      "sha256": "bee075bc45a09f00e8dbb369d7c67f74f3774c4a66c50745a315f28e0301d13a",
       "start_line": 306,
       "end_line": 314,
       "line_sha256": "cf0d89c80ee21ec88237a60a89e8888a261eeaaa6abc10f86dddf27138d9d2d5",

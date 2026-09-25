@@ -101,46 +101,46 @@ route、account／credential、network、費用、read／write範囲、期限が
 
 ## ticket
 
-2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）による。本節は要求案であり、PO最適ドラフトPRで要求IDを付けて詰める。
+2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）による。本節は要求IDと親要求・L11の接続を付けた未採否の要求案である。
 
-ticketは、HELIX-OSの推進が発行する作業の単位である。旧HELIXではPLANに責務が集中していた。ticketはその責務を薄くし、作業ticketとして発行する。
+`HELIXOS-L2-014` ticketは、HELIX-OSの推進が発行する作業の単位である。旧HELIXではPLANに責務が集中していた。ticketはその責務を薄くし、作業ticketとして発行する。
 PO「駆動モデルに即したチケットが発行される仕組みで、フォワードは大、中、小のようにしたら複数人が作業してもできる。トラブルや局所的なものが発生したらリカバリーやインシデント、PoCみたいなのができて、それがイシューやPRに登録される仕組み」。
 
-- 駆動モデルはticketの種類で置き換える。各ticketは、駆動モデルに由来する進め方を、動的ワークフローとして中に持つ。
-- Scrum等は開発方式（枠）であり、ticketの種類ではない。
-- HARNESSは導出のためのコア（HELIX-JSONの定義とPythonの意味導出コア）を持つ。BRAINはそこから判断し、推進はticketを導いて発行する。
-- ticketは、種類、対象（単体／接続／構成体）、親の要求と版、変更の範囲を持つ。検収は、そこから必要な検証を導き、CIを動的に組み立てる。
-- ticketが正で、GitHub IssueとPRは映しである。Issueのcloseやmergeで、ticketは完了にならない。
-- ticketは計画から導いて発行する。トラブル系は、範囲と起きたことを入れると、種類・対象・親の要求が導かれて発行される。範囲が分からないときは、先にDiscoveryで明らかにする。
-- 突発的に発生するものと、計画的に発行できるものを分ける。
+- `HELIXOS-L2-015` 駆動モデルはticketの種類で置き換える。`HELIXOS-L2-016` 各ticketは、駆動モデルに由来する進め方を、動的ワークフローとして中に持つ。
+- `HELIXOS-L2-017` Scrum等は開発方式（枠）であり、ticketの種類ではない。
+- `HELIXOS-L2-018` HARNESSは導出のためのコア（HELIX-JSONの定義とPythonの意味導出コア）を持つ。`HELIXOS-L2-019` BRAINはそこから判断し、`HELIXOS-L2-100` 推進はticketを導いて発行する。
+- `HELIXOS-L2-020` ticketは、種類、対象（単体／接続／構成体）、親の要求と版、変更の範囲を持つ。`HELIXOS-L2-021` 検収は、そこから必要な検証を導き、CIを動的に組み立てる。
+- `HELIXOS-L2-022` ticketが正で、GitHub IssueとPRは映しである。`HELIXOS-L2-023` Issueのcloseやmergeで、ticketは完了にならない。
+- `HELIXOS-L2-024` ticketは計画から導いて発行する。`HELIXOS-L2-025` トラブル系は、範囲と起きたことを入れると、種類・対象・親の要求が導かれて発行される。`HELIXOS-L2-026` 範囲が分からないときは、先にDiscoveryで明らかにする。
+- `HELIXOS-L2-027` 突発的に発生するものと、計画的に発行できるものを分ける。
 
 ### ticketの種類
 
 旧HELIXの確定版（`archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md:29-47`）を起点に、PO判断を加えた。
 
-Forwardは本流である。開発方式がVモデル・Scrum・Hybridのどれであっても、その方式の規定の路線を走るticketをForwardとする。ほかのticketは、最後にForwardへ合流する。
+`HELIXOS-L2-028` Forwardは本流である。`HELIXOS-L2-029` 開発方式がVモデル・Scrum・Hybridのどれであっても、その方式の規定の路線を走るticketをForwardとする。`HELIXOS-L2-030` ほかのticketは、最後にForwardへ合流する。
 
 | 種類 | 何のticketか | 発行 | 合流先 |
 |---|---|---|---|
-| Forward 大 | 構成体（システム全体）を、開発方式の規定路線で要求から受入まで通す | 計画 | 本流 |
-| Forward 中 | 接続（機能と機能のつなぎ）を、開発方式の規定路線で作る | 計画 | Forward 大 |
-| Forward 小 | 単体の機能を、開発方式の規定路線で作る | 計画 | Forward 中／大 |
-| Discovery | 開発の途中で検証が必要になったとき、または範囲が分からないときに確かめる | 突発 | 発行元のticket |
-| PoC | 技術的に成り立つかを確かめる。画面の有無に関係なく、成立性が不明なときに発行する。本番実装にはしない | 計画（L2.5） | Backflow→要求エンジンの2次形成→DECIDE |
-| Prototype | 画面の操作と使う人の反応を確かめる。画面のない対象では発行しない | 計画（L2.5） | Backflow→要求エンジンの2次形成→DECIDE |
-| DECIDE | 裁定。要求の確認や技術の選定をPR化して決める | 計画 | 採用→Forward、不採用→記録して終了、方針変更→次の計画 |
-| Backflow | 下流の結果（PoC・Prototypeの結果、要求の入力不足、下流で分かったこと）を要求へ戻す | PoC・Prototypeの後は計画、それ以外は突発 | 要求エンジン（L2） |
-| Reverse | 実装の事実から設計へ戻す。Scrum Reverseを含む | 突発（設計と実装のずれ、同種finding再発、性能退行、障害等）と計画（Scrum Reverseのcheckpoint：sprint review前、release candidate合流前、public contract・DB schema・主要dependency・NFR budgetの変更時。旧`helix-harness-requirements_v1.3.md:94-102`） | Forwardの該当層 |
-| Recovery | AIの逸脱・暴走・context切れから正常な地点へ戻す | 突発 | 中断していた工程 |
-| Incident | 本番障害に緊急対応する | 突発 | 運用評価（L12）。恒久対策はReverse経由 |
-| Refactor | 振る舞いを変えずにコードの構造を直す | 計画（範囲を入れれば事象からも発行可） | Forward 小 |
-| Design-refactor | 外部の振る舞いを保って設計の構造を直す | 計画（範囲を入れれば事象からも発行可） | Forward |
-| Performance-refactor | 設計を保って性能を上げる。測れない高速化は不可 | 計画（範囲を入れれば事象からも発行可） | Forward |
-| Redesign | 外部の約束・要求・受入条件を変えて設計をやり直す | 計画 | Forward（要求が変わるときはDECIDEを経る） |
-| Retrofit | 依存・基盤・構成の更新に合わせて段階的に移行する | 計画（範囲を入れれば事象からも発行可） | Forwardの該当層 |
-| Research | 選定や比較のための参考ソースを集める。決定には関わらない | 計画 | 依頼元 |
-| Add-feature | 既存のものに機能を差分で追加する | 計画 | Forwardの該当層 |
-| Version-up | 後の版へ回した項目を保全し、時期が来たら取り込む | 計画 | 取り込み時にDECIDE→Add-feature |
+| Forward 大 | `HELIXOS-L2-031` 構成体（システム全体）を、開発方式の規定路線で要求から受入まで通す | `HELIXOS-L2-032` 計画 | `HELIXOS-L2-033` 本流 |
+| Forward 中 | `HELIXOS-L2-034` 接続（機能と機能のつなぎ）を、開発方式の規定路線で作る | `HELIXOS-L2-035` 計画 | `HELIXOS-L2-036` Forward 大 |
+| Forward 小 | `HELIXOS-L2-037` 単体の機能を、開発方式の規定路線で作る | `HELIXOS-L2-038` 計画 | `HELIXOS-L2-039` Forward 中／大 |
+| Discovery | `HELIXOS-L2-040` 開発の途中で検証が必要になったとき、または範囲が分からないときに確かめる | `HELIXOS-L2-041` 突発 | `HELIXOS-L2-042` 発行元のticket |
+| PoC | `HELIXOS-L2-043` 技術的に成り立つかを確かめる。<br>`HELIXOS-L2-044` 画面の有無に関係なく、成立性が不明なときに発行する。<br>`HELIXOS-L2-045` 本番実装にはしない。 | `HELIXOS-L2-046` 計画（L2.5） | `HELIXOS-L2-047` Backflow→要求エンジンの2次形成→DECIDE |
+| Prototype | `HELIXOS-L2-048` 画面の操作と使う人の反応を確かめる。<br>`HELIXOS-L2-049` 画面のない対象では発行しない。 | `HELIXOS-L2-050` 計画（L2.5） | `HELIXOS-L2-051` Backflow→要求エンジンの2次形成→DECIDE |
+| DECIDE | `HELIXOS-L2-052` 裁定。<br>`HELIXOS-L2-053` 要求の確認や技術の選定をPR化して決める。 | `HELIXOS-L2-054` 計画 | `HELIXOS-L2-055` 採用→Forward<br>`HELIXOS-L2-056` 不採用→記録して終了<br>`HELIXOS-L2-057` 方針変更→次の計画 |
+| Backflow | `HELIXOS-L2-058` 下流の結果（PoC・Prototypeの結果、要求の入力不足、下流で分かったこと）を要求へ戻す | `HELIXOS-L2-059` PoC・Prototypeの後は計画<br>`HELIXOS-L2-060` それ以外は突発 | `HELIXOS-L2-061` 要求エンジン（L2） |
+| Reverse | `HELIXOS-L2-062` 実装の事実から設計へ戻す。<br>`HELIXOS-L2-063` Scrum Reverseを含む。 | `HELIXOS-L2-064` 突発（設計と実装のずれ、同種finding再発、性能退行、障害等）<br>`HELIXOS-L2-065` 計画（Scrum Reverseのcheckpoint：sprint review前、release candidate合流前、public contract・DB schema・主要dependency・NFR budgetの変更時。旧`helix-harness-requirements_v1.3.md:94-102`） | `HELIXOS-L2-066` Forwardの該当層 |
+| Recovery | `HELIXOS-L2-067` AIの逸脱・暴走・context切れから正常な地点へ戻す | `HELIXOS-L2-068` 突発 | `HELIXOS-L2-069` 中断していた工程 |
+| Incident | `HELIXOS-L2-070` 本番障害に緊急対応する | `HELIXOS-L2-071` 突発 | `HELIXOS-L2-072` 運用評価（L12）<br>`HELIXOS-L2-073` 恒久対策はReverse経由 |
+| Refactor | `HELIXOS-L2-074` 振る舞いを変えずにコードの構造を直す | `HELIXOS-L2-075` 計画（範囲を入れれば事象からも発行可） | `HELIXOS-L2-076` Forward 小 |
+| Design-refactor | `HELIXOS-L2-077` 外部の振る舞いを保って設計の構造を直す | `HELIXOS-L2-078` 計画（範囲を入れれば事象からも発行可） | `HELIXOS-L2-079` Forward |
+| Performance-refactor | `HELIXOS-L2-080` 設計を保って性能を上げる。<br>`HELIXOS-L2-081` 測れない高速化は不可。 | `HELIXOS-L2-082` 計画（範囲を入れれば事象からも発行可） | `HELIXOS-L2-083` Forward |
+| Redesign | `HELIXOS-L2-084` 外部の約束・要求・受入条件を変えて設計をやり直す | `HELIXOS-L2-085` 計画 | `HELIXOS-L2-086` Forward（要求が変わるときはDECIDEを経る） |
+| Retrofit | `HELIXOS-L2-087` 依存・基盤・構成の更新に合わせて段階的に移行する | `HELIXOS-L2-088` 計画（範囲を入れれば事象からも発行可） | `HELIXOS-L2-089` Forwardの該当層 |
+| Research | `HELIXOS-L2-090` 選定や比較のための参考ソースを集める。<br>`HELIXOS-L2-091` 決定には関わらない。 | `HELIXOS-L2-092` 計画 | `HELIXOS-L2-093` 依頼元 |
+| Add-feature | `HELIXOS-L2-094` 既存のものに機能を差分で追加する | `HELIXOS-L2-095` 計画 | `HELIXOS-L2-096` Forwardの該当層 |
+| Version-up | `HELIXOS-L2-097` 後の版へ回した項目を保全し、時期が来たら取り込む | `HELIXOS-L2-098` 計画 | `HELIXOS-L2-099` 取り込み時にDECIDE→Add-feature |
 
 旧定義との違いは次の4点である。
 - DiscoveryとPoCは、旧HELIXでは1つだった（PoCはS2）。PO判断で分けた。

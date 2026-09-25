@@ -68,11 +68,11 @@ HARNESSはVモデル等の開発工程を規定する提供プロダクトであ
 
 ## ticket導出のためのコア
 
-2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、ticketはHELIX-OSの推進が導いて発行する作業の単位とする。
+2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、`HARNESS-L2-010` ticketはHELIX-OSの推進が導いて発行する作業の単位とする。
 ticketの定義・種類・発行方式は[HELIX-OS L2のticket節](../../helix-os/L2-requirements/governance-requirements.md#ticket)に置く。
-HARNESSは、OSとBRAINがticketを導くためのコアを持つ。コアは、工程の語彙・順序・停止・差戻し・完了条件と、落としてはならない工程義務（必要な層と対、成果物、oracle、人の判断が要る場所、戻し先）を、HELIX-JSONの定義と、JSONどうしの意味をつなぐPythonの意味導出コアとして提供する。
-BRAINはコアから判断し、OSはticketとその中の動的ワークフローを導いて発行し、検収はticketから必要な検証を導く。HARNESS自身はticketを発行しない。
-開発方式が変わっても、コアの工程義務を落とさない。具体条件は本書の工程規則表と[GitHub上流運用モデルの条件付き工程contract](../../governance/github-upstream-operating-model.md#harnessの条件付き工程contract)に従う。
+`HARNESS-L2-011` HARNESSは、OSとBRAINがticketを導くためのコアを持つ。`HARNESS-L2-012` コアは、工程の語彙・順序・停止・差戻し・完了条件と、落としてはならない工程義務（必要な層と対、成果物、oracle、人の判断が要る場所、戻し先）を、HELIX-JSONの定義と、JSONどうしの意味をつなぐPythonの意味導出コアとして提供する。
+`HARNESS-L2-013` BRAINはコアから判断し、`HARNESS-L2-016` OSはticketとその中の動的ワークフローを導いて発行し、`HARNESS-L2-017` 検収はticketから必要な検証を導く。`HARNESS-L2-014` HARNESS自身はticketを発行しない。
+`HARNESS-L2-015` 開発方式が変わっても、コアの工程義務を落とさない。具体条件は本書の工程規則表と[GitHub上流運用モデルの条件付き工程contract](../../governance/github-upstream-operating-model.md#harnessの条件付き工程contract)に従う。
 旧「要求からの開発ticket導出要求候補」はPO判断で退役した。
 
 移管元の本文は[柱要求](../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md)、
