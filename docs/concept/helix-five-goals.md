@@ -65,11 +65,11 @@ riskを確認して必要な判断を行えることを目指す。速度のた�
 
 | 目標 | 1.0で主に関与する機構 | 後続版で加わるもの |
 |---|---|---|
-| 1 自走 | HARNESS、BRAIN、OS、Security、Runner／Sandbox | ― |
-| 2 改善 | LABO、OS | 2.0 BRAINの推薦、3.0 Intelligence |
-| 3 予測 | BRAIN、LABO、HARNESS | 4.0 BRAINの動的フロー構成 |
+| 1 自走 | HARNESS、Intelligence、OS、Security、Runner／Sandbox | ― |
+| 2 改善 | LABO、OS、BRAIN | 2.0 LABOの分解とBRAINへの取り込み、3.0 Intelligenceのローカルモデル学習 |
+| 3 予測 | Intelligence、LABO、HARNESS | 4.0 BRAIN・ヘリックスコア・OSの複合処理による動的フロー構成 |
 | 4 非エンジニア | HARNESS、OS | ― |
-| 5 Worker配置 | HARNESS、BRAIN、OS、LABO | ― |
+| 5 Worker配置 | HARNESS、Intelligence、OS、LABO | ― |
 
 この表は参照用である。表から要求、責務の確定、採否を生成しない。
 
