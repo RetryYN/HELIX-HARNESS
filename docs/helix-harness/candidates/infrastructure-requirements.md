@@ -21,7 +21,7 @@ IDは原文のもの（HARNESS-INFRA-001〜020）をそのまま使う。
 
 | 持ち手 | 持つもの |
 |---|---|
-| HELIX-BRAIN | Infrastructureの汎用の設計知識（[BRAINのInfrastructure領域の要求候補](../../helix-brain/candidates/infrastructure-domain-requirements.md)、PR #2145） |
+| HELIX-BRAIN | Infrastructureの汎用の設計知識（BRAINのInfrastructure領域の要求候補（未mergeのPR #2145の`docs/helix-brain/candidates/infrastructure-domain-requirements.md`）） |
 | HELIX-HARNESS | 何を要求・設計・検証すべきか |
 | 各製品のHELIX-HARNESS-CORE | その製品のInfrastructureの要求と設計 |
 | 実際に稼働しているInfrastructure（Runtime） | 実際の状態と実行 |
