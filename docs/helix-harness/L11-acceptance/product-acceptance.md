@@ -47,6 +47,7 @@ pair_artifact: docs/helix-harness/L2-requirements/product-requirements.md
 - HARNESS-L2-005：required oracleを欠くprofile、unknownをN/Aへ変えたprofile、expected failureと差戻し先を持たないprofileを不成立とする。providerを交換してもrequirement・pair・oracle・evidence identityが維持されることを確認する。
 - HARNESS-L2-005：変更の内容・layer・pair・変更種別・riskが異なる変更を与え、それぞれに必要な検証だけが導出され、CIがその検証から組み立てられることを確認する。固定の段数をすべて回す構成、導出された検証を省いた構成、導出の根拠を説明できない構成を不成立とする。
 - HARNESS-L2-005：Forward 小・中・大のticketを与え、PRの前に回すCIが、原子CI、境界の証明（触ったコネクタの契約を含む）、システムの証明と、ticketとの関係から導かれることを確認する。危険度の高い変更（認証、DBのmigration、security、release）は、小さな変更でも上の証明を早めに求めることを確認する。
+- HARNESS-L2-005：Forward 小のscopeの中の変更でも、密結合によって別の接続・構成体の振る舞いに影響する変更を与え、影響する接続・構成体の検査がそのPRで広げられ、成立するまで合流が止まり、結合の解消はDesign-refactorとして別に発行されることを確認する。Design-refactorの発行と、省いた検査の後続ticketへの持ち越しだけで合流させる構成を不成立とする。
 - HARNESS-L2-005：ticketの範囲の外を変更した変更を与え、mainへの合流が止まることを確認する。省いた検査の記録を欠く構成、合流先のticketで回収されない検査を残したままRelease Portを通す構成を不成立とする。
 - HARNESS-L2-003：原子CIに合格した成果物をProvisionalとし、システムの成立、利用者の受入、Releaseの成立を主張しないことを確認する。局所のRefactorでpublic contract・要求・architectureの意味・stateの意味を変えた変更を与え、Backflowへ送られることを確認する。
 - HARNESS-L2-003／004：右側の照合で、振る舞い・契約・要求を保てるずれはRefactorされ、詳細の契約・境界・要求・製品の価値のずれは、それぞれL5・L4・L3／L2・L1へBackflowされることを確認する。右側で左側の設計や要求を黙って書き換えた構成を不成立とする。
