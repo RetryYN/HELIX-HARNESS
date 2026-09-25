@@ -80,7 +80,7 @@ INTELLIGENCEは、要求、設計、状態、知識、権限の正本になら�
 | LABO → INTELLIGENCE | 過去の評価の結果、成功・失敗・反例、Workerとmodelの実績 |
 | INTELLIGENCE → OS | 計画、配置、診断、修復等の実行の候補。登録・ticket化・進行はOSが担う |
 | INTELLIGENCE ↔ SECURITY | 必要な操作に対する許可と制約の確認 |
-| INTELLIGENCE → OS → Worker | 実作業が要るときは、OSの割当てでWorkerが許可済みの範囲だけ実行する。INTELLIGENCE自身をWorkerとして扱わない（2026-09-26 PO判断、PR #2149） |
+| INTELLIGENCE → OS → Worker | 実作業が要るときは、OSがticketをレーンへ割り当て、レーンの主が呼び出したWorkerが許可済みの範囲だけ実行する。INTELLIGENCE自身をWorkerとして扱わない（2026-09-26 PO判断、PR #2149） |
 | INTELLIGENCE → LABO | 判断、予測、配置、修復の結果（評価の対象） |
 | LABO → INTELLIGENCE（3.0） | 評価済みのepisode、学習の材料、反例、評価のset |
 | INTELLIGENCE → LABO（3.0） | モデルの結果、予測、判断、失敗（効果と退行の評価の対象） |
