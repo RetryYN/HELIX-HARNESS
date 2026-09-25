@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/helix-harness/README.md",
-      "sha256": "c1de59e410896a5f34a03d147a65f360af7b2d5f22ddd573dd9f539142db2e30",
-      "note": "HARNESSの現行入口と状態 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117; 旧意味の採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で候補の入口行を追加。本bindingは移した項目（HELIXOS-L1-011／012、HELIXOS-L2-005の改善研究、HELIXOS-L2-012／013、限定修復、監査AAFD、学習RCLS）に依存しないことをbinding全体で確認した。前receipt=f70528c8fd054ea4f18634ad98bd93b0a390186d1c6cbc4e15d19ffa3639b2b5; 現receipt=c1de59e410896a5f34a03d147a65f360af7b2d5f22ddd573dd9f539142db2e30; このBindingの採否・authorityは変更しない。]"
+      "sha256": "bbfbc47740731ee83bfaad007a02e0125e7616b7d21a7174a9a19a78055bf797",
+      "note": "HARNESSの現行入口と状態 [2026-09-24 Concept親付替え後の静的read-after。旧receipt sha256=e097f6df2afac9112094f887c93824d1e34aa1ab672627fb05501617d2a26117; 旧意味の採否・authorityは変更しない。] [2026-09-25 read-after: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.mdのPO判断で候補の入口行を追加。本bindingは移した項目（HELIXOS-L1-011／012、HELIXOS-L2-005の改善研究、HELIXOS-L2-012／013、限定修復、監査AAFD、学習RCLS）に依存しないことをbinding全体で確認した。前receipt=f70528c8fd054ea4f18634ad98bd93b0a390186d1c6cbc4e15d19ffa3639b2b5; 現receipt=c1de59e410896a5f34a03d147a65f360af7b2d5f22ddd573dd9f539142db2e30; このBindingの採否・authorityは変更しない。] [2026-09-26 HARNESSのInfrastructure要求候補の追加 read-after: docs/helix-harness/README.mdは、入口表の要求候補（candidates/）の行へInfrastructure要求候補（candidates/infrastructure-requirements.md、未承認の候補）へのリンクが1つ追加されただけで、表の他の行・行数・HARNESSの入口と状態の記述は不変。本bindingのrole・obligations・connections・replacement・artifactは、HARNESSの要求候補の件数・一覧・Infrastructure候補の内容のいずれにも依存しないことをbinding全体で確認した。前receipt=c1de59e410896a5f34a03d147a65f360af7b2d5f22ddd573dd9f539142db2e30; 現receipt=bbfbc47740731ee83bfaad007a02e0125e7616b7d21a7174a9a19a78055bf797; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-harness/L1-planning/product-intent.md",

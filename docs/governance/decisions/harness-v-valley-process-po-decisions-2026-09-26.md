@@ -91,6 +91,20 @@ AIの整理：
   - 固有の義務が残っていないと契約で示せれば、上の合格を機械的に導いてよい。
 
 
+## Infrastructureの要求候補
+
+続けて、POは「HELIX-HARNESS Infrastructure要求候補」の本文を示した。1回目の貼り付けは途中で切れていたため、AIが残りを求め、POが全文を貼り直した。原文は[source snapshot](../../helix-harness/sources/infrastructure-requirements-po-original-2026-09-26.md)に保存した。
+
+AIの整理：
+- 原文は、新しい独立したHARNESSを作らず、既存のHARNESS-L2-003／004／005／006／008／009を具体にするものである。
+- HARNESSのL2は仮決めであるため、[HARNESSのInfrastructureの要求候補](../../helix-harness/candidates/infrastructure-requirements.md)として置き、具体にする既存の要求を各行に書いた。L2の本文へ入れるかは、POが仮決めのL2の最終確認のときに決める。
+- 本PRの構成的保証と差分証明（004、018）、ticketで決めるCI（017）、成果物の状態の段階（012）と合う。
+- 旧NIO候補と、現行HARNESS L2の「運用品質を落とさない工程条件」を起点にした。
+- BRAINのInfrastructure領域の要求候補（PR #2145）と対になる。「Infrastructure Runtime」をどの機構が持つかは、両方で未確定として残した。
+
+## 反映先
+
 - HARNESSの要求（L2）と受入（L11）：原文の工程と上の整理を反映する。2026-09-25の判断記録で仮決めとしたL2・L11の最終確認は、本記録を反映した後のrevisionで行う。
-- HELIX-OSの要求（L2）：OSの検収がticketからCIのprofileを組み立てる運転と、構造の成立を上へ伝えない運用の条件を反映する。
+- HELIX-OSの要求（L2）：OSの検収がticketからCIのprofileを組み立てる運転と、構成的保証と差分証明の運用の条件を反映する。
+- HARNESSの要求候補：Infrastructureの要求候補を新しく作る。
 - 名前の表記：2026-09-26のPO指示（[LABOの判断記録](labo-core-engine-po-decisions-2026-09-26.md)、PR #2143）に従い、HARNESSとOSのL2・L11の表記（HELIX-HARNESS-CORE、INTELLIGENCE、SECURITY、Decide）を同じPRで改める。
