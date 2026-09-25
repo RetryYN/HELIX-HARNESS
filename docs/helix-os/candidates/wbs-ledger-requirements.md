@@ -23,6 +23,10 @@ related_projection:
 
 2026-09-25のPO判断により、`docs/governance/candidates/`からHELIX-OSの候補置き場へ移した（[判断記録](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。
 
+本書が参照する「要求からの開発ticket導出要求候補」（`DTK-*`）は、[2026-09-24のPO判断](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)で退役した。
+本書の`DTK-*`への言及は、承認時の本文を追跡するため文言を変えずに残すが、現行の参照先ではない。ticketの定義・種類・発行は[OS L2のticket節](../L2-requirements/governance-requirements.md#ticket)に従う。
+たとえば、本書にあるticketの種類「poc／ui_prototype／feature」は、ticket節のPoC、Prototype、Forward（小）に当たる。
+
 ## これは何か
 
 要求が採否されたあと、それを「誰が、どの順で、何を検証して、いくらの予算で」進めるかへ落とす構造をWBS（作業分解構造）と呼ぶ。
