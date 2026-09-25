@@ -50,8 +50,8 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.meta.json",
-      "sha256": "6e38f8169c4a7fda0cac19a679acd9c164dc5f036376b001339bd2e9c0957d36",
-      "note": "Wave37 prior meta and cumulative denominator"
+      "sha256": "7f542d5811491ee2d00f9d6d8e6fb94ebd3b0fc90be70f02369279a2678e4379",
+      "note": "Wave37 prior meta and cumulative denominator [2026-09-25 Goal5 static rebind: wave37 generator refreshed input/prior-meta digests after per-unit source review; ledger JSONL and candidate/hold fields are unchanged; authority_effect=none; previous=6e38f8169c4a7fda0cac19a679acd9c164dc5f036376b001339bd2e9c0957d36; current=7f542d5811491ee2d00f9d6d8e6fb94ebd3b0fc90be70f02369279a2678e4379]"
     },
     {
       "path": "docs/concept/product-boundary.md",
@@ -105,8 +105,8 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.meta.json",
-      "sha256": "0600255c3bd0486041f006d2dd8b7a959bd86ca7e6e12519d8c9ef7d68db3527",
-      "note": "generated schema10 meta"
+      "sha256": "f44d9b68f862565713a5dc2c532f6a00d7af3339bf5f2134bc666e3175148dd2",
+      "note": "generated schema10 meta [2026-09-25 Goal5 static rebind: wave38 generator refreshed input/prior-meta digests after per-unit source review; ledger JSONL and candidate/hold fields are unchanged; authority_effect=none; previous=0600255c3bd0486041f006d2dd8b7a959bd86ca7e6e12519d8c9ef7d68db3527; current=f44d9b68f862565713a5dc2c532f6a00d7af3339bf5f2134bc666e3175148dd2]"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave38/generate.py",

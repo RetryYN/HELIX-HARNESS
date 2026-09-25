@@ -100,8 +100,8 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.meta.json",
-      "sha256": "8b8185804e4aeb1bb7c482f625863d763c188ddcfbe38051f5575c5784d1b9b3",
-      "note": "Wave39 static Scaffold artifact; no formal requirement or implementation authority"
+      "sha256": "dab39a96b836c80701216fa98dffde0298b2a4137462a6bd85fbffffb7d5583f",
+      "note": "Wave39 static Scaffold artifact; no formal requirement or implementation authority [2026-09-25 Goal5 static rebind: wave39 generator refreshed input/prior-meta digests after per-unit source review; ledger JSONL and candidate/hold fields are unchanged; authority_effect=none; previous=8b8185804e4aeb1bb7c482f625863d763c188ddcfbe38051f5575c5784d1b9b3; current=dab39a96b836c80701216fa98dffde0298b2a4137462a6bd85fbffffb7d5583f]"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave39/plan.json",
