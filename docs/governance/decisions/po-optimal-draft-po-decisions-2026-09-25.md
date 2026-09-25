@@ -42,7 +42,7 @@ POは、リリースカンバンについて次のように答えた。
 AIの整理：リリースカンバンは、リリース単位の順序と優先を決める。各リリース単位の中は、Vモデル・スクラム・ハイブリッドのどれかで作る。両方を同時に使う。
 旧HELIXの「開発方式は適用できる1つだけを選ぶ」は、Vモデル・スクラム・ハイブリッドの間の選択として保ち、リリースカンバンはその選択と組み合わせる。
 
-ほかの変更について、POは指摘しなかった。リリースカンバンの修正を反映した後のrevisionは、PR #2140で改めて確認する。
+ほかの変更について、POは指摘しなかった。リリースカンバンの修正を反映した後のrevisionは、PR #2140で改めて確認するとした。その回答は、下の「修正後の要求（L2）と受入（L11）の確認」に記録した。
 
 ## 開発方式の定義
 
@@ -137,6 +137,25 @@ AIの整理：システムコンパイラ化は、Conceptの版の5.0（System C
 AIの整理：すべてをシステムで実現できるとは考えない。完全なシステムに近づける過程で、運用のルールが生まれる。
 要求を考えるときは、システムで吸収できるものと、吸収できずに運用のルールとして残るものを分ける。
 [2026-09-24の判断](concept-requirement-po-decisions-2026-09-24.md)の「規則は仕組みで吸収する」（HMC-BR-003）は、吸収できるものについての方針として保ち、吸収できないものを運用のルールとして明示する。
+
+## 修正後の要求（L2）と受入（L11）の確認
+
+2026-09-26、AIは、PR #2140のHEAD `f4997bf9cd3693979c0e3f4db6c369606997ed0d`時点の4文書を示し、この内容で確定してよいかを聞いた。SHA-256は本文全体のもの。
+
+| 文書 | revision（SHA-256） |
+|---|---|
+| `docs/helix-harness/L2-requirements/product-requirements.md` | `0cc36087bd7fa9fc3bfad6cdad936214cf5aba265ed040eccf7046447c2294ce` |
+| `docs/helix-harness/L11-acceptance/product-acceptance.md` | `79e763bf71c713ddf2f437dda26918369062510e672a65d1176b48bf572bb520` |
+| `docs/helix-os/L2-requirements/governance-requirements.md` | `4fc48eb7be33cbf93dbdb12151eaf5710d26dab1aa7c41300eee226b4b10fe73` |
+| `docs/helix-os/L11-acceptance/governance-acceptance.md` | `bc3be21d82158075cebdf8ba55f225b55b019b05e0fcb48d0d33f5d9163117e1` |
+
+POは「このあとに確認するPRにする。仮決め」と答えた。
+
+AIの整理：
+- 上の4文書のrevisionは、仮決めとしてmainへ入れる。確定ではない。
+- 最終の確認は、この後のPRで行う。
+- この後のPRでは、2026-09-26に決まった名前の表記（HELIX-HARNESS-CORE、INTELLIGENCE、SECURITY、Decide）もL2・L11へ反映する。確認は、それを反映した後のrevisionで行う。
+- 仮決めのrevisionから、要求（L2）の合意、要件（L3）の承認、下流の実装の許可を生成しない。
 
 ## 検討中の点
 
