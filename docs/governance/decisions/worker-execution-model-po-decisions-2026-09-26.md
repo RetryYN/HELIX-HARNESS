@@ -95,7 +95,7 @@ AIの整理：
 
 移行の分類で、次の項目の移管先が決まらなかった。原文のとおり、削除しない。
 - Runtime Infrastructureへ移す能力（実際の資源、隔離の方式等）：移管先のHELIX-INFRASTRUCTUREはアイデアの段階にある（PR #2148）。Conceptでは「実行基盤」と書き、旧資産は今の場所に残す。
-- 旧OS Contract Runner（旧HIL-FR-34。`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:124`）：名前のOSはHELIX-OSではなくoperating systemであり、同じfixtureでLinux、macOS、Windowsの互換（path、権限、signal、file lock等）を確かめる検査の実行である。原文のRETIRE-RUNNER-001により、検査の実行（起動、停止、timeout、結果の回収、実行の証拠）はWorkerが担う。検査の契約の意味は、HARNESSの検証の契約に置く（Conceptの機構の表のHELIX-HARNESS「検証・受入の契約」）。これはPOの定義から導ける。
+- 旧OS Contract Runner（旧HIL-FR-34。`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:124`）：名前のOSはHELIX-OSではなくoperating systemであり、同じfixtureでLinux、macOS、Windowsの互換（path、権限、signal、file lock等）を確かめる検査の実行である。原文のRETIRE-RUNNER-001により、検査の実行（起動、停止、timeout、結果の回収、実行の証拠）はWorkerが担う。検査の契約の意味は、HARNESSの検証の契約に置く（Conceptの機構の表のHELIX-HARNESS「検証・受入の契約」）。これはPOの定義から導ける。[Concept機構の対応表](../crosswalks/concept-mechanism-version-requirement-crosswalk.md)のjsonlでは、HIL-FR-34、HIL-NFR-09／19、HIL-TR-04／05の5行の候補をWorkerとHELIX-HARNESSにし、HIL-FR-34の保持する意味を原文の目的（同じfixtureでのOSごとの互換の検査）に戻した（独立reviewのR2149-02）。
 - 旧資産の個票：[分類監査](../audits/worker-execution-model-migration-2026-09-26.md)は、代表の資産と群の規則で分類し、全数の件数を固定した。続けて、該当する2,169ファイルを1行ずつ分類した[ファイルごとの台帳](../audits/worker-execution-model-migration-files-2026-09-26.md)を残した。retireと未定は0件であり、POの判断と食い違う117件はreplaceとして今の場所に残す。
 
 ## 移行の条件
