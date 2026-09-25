@@ -21,7 +21,7 @@ Issue close、PR merge、旧owner・技術との衝突、37件のrouting contain
 | HELIXOS-L2-001 | 各要求の対象プロダクト・正本・合意revisionへ辿る。Issue closeを要求の削除・受入として表示しない |
 | HELIXOS-L2-002 | 異なるプロジェクトの欠落・競合・未検証を個別に把握し、一方の成功で他方の未完を相殺しない。提供をリリースカンバン上の状態として追跡し、状態の欠落やIssue・PRの状態だけからの推定を拒否する |
 | HELIXOS-L2-003 | 開発方式の変更で影響する範囲だけを再評価し、共通統制の無断変更を拒否する |
-| HELIXOS-L2-004 | 割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否する。割当てと進行統制はOS、割当て案はIntelligence、実行はRunner／Sandbox、自己承認の防止と権限の制限はSecurityが担い、一つの機構が割当て案・実行・承認をまとめて持つ構成を拒否する |
+| HELIXOS-L2-004 | 割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否する。割当てと進行統制はOS、割当て案はINTELLIGENCE、実行はRunner／Sandbox、自己承認の防止と権限の制限はSECURITYが担い、一つの機構が割当て案・実行・承認をまとめて持つ構成を拒否する |
 | HELIXOS-L2-005 | HARNESS自身への適用と各productの観測から改善候補を出典と適用範囲付きで登録し、還流先へ振り分けて採否・変更・再検証まで追跡する。未承認経験の規則化、HARNESS改善責務の欠落、棄却理由の消失、還流先の欠落を拒否する。改善の効果と退行の評価はHELIX-LABOの候補で確認し、OSの登録件数やログ量を改善達成としない |
 | HELIXOS-L2-006 | サービス①〜⑦の単位で、リリースカンバン上の状態を見てfresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失、別artifactへの切替、選んでいないサービスの同時導入を拒否する |
 | HELIXOS-L2-007 | Worker・判断・操作・検証のログを、Conceptの1.0土台（ログと証拠）の共通形式で要求revisionから辿り、欠落・重複・staleを成功証拠として使わない。共通形式の欠けた記録を、他の機構の記録と結べない不完全な記録として識別する |
@@ -88,7 +88,7 @@ Issue close、PR merge、旧owner・技術との衝突、37件のrouting contain
 - 管理projectionのmissing、unknown、stale、conflict、再構築失敗を個別に与え、Project／Issue／DB／dashboardの一つが正常でも完了へ補完しない。
 - 旧7 operation、旧layer、DB rebuild成功、roadmap表示を与えても、新世代の管理状態集合や利用者受入の成立根拠にしない。
 
-限定修復の受入条件は、2026-09-25 PO判断により[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ移した。
+限定修復の受入条件は、2026-09-25 PO判断により[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ移した。
 
 構造改善条件は新世代L1／L2の採用revision確定後に評価する。全件未実行。
 
@@ -169,14 +169,14 @@ HELIXOS-L2-001／004／005／007／009のHMC-BR-001..006由来条件を検証す
 - 移管後も原文provenanceと訂正履歴を参照できる。記録件数が減ったことだけで移管・受入成功にしない。
 
 - HMC-BR-001：assignment、review依頼、handover、heartbeat、確認待ちをそれぞれ異なるruntimeへ渡し、期限と参照先を確認する。
-- HMC-BR-003：規則は仕組みで吸収され、知識は1.0〜2.xではHELIX-LABO、3.0からはHELIX-Intelligenceの正本を参照し（2026-09-24 PO判断）、通知の消費で要求・設計・受入・運用規則・ユーザー嗜好が失われたり上書きされたりしない。
+- HMC-BR-003：規則は仕組みで吸収され、知識は1.0〜2.xではHELIX-LABO、3.0からはHELIX-INTELLIGENCEの正本を参照し（2026-09-24 PO判断）、通知の消費で要求・設計・受入・運用規則・ユーザー嗜好が失われたり上書きされたりしない。
 - HMC-BR-004：作業依頼・質問・仮説・叱責も入力し、依頼の存在だけで承認や完了を生成しない。
 - HMC-BR-005：消費、期限切れ、訂正を個別に再現し、無効な通知は履歴として参照できても現行指示として再使用できない。
 
 ## 成果の出所に関する候補の受入条件
 
 PPS4件は採用revision確定後、HELIXOS-L2-004／007で次を確認する。全件未実行。
-監査（AAFD）の受入条件は[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。
+監査（AAFD）の受入条件は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。
 
 - producer、commit実行者、PR公開者を個別に表示し、HEADとassignmentから経路を再現できる。actor差だけの独立review、過去の不明producerの推定承認を拒否する。
 - mixedとunknown、外部botとHELIX producerを区別し、既存記録に無かった証拠を移行処理で生成しない。
