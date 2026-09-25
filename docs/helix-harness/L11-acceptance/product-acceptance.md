@@ -33,8 +33,8 @@ pair_artifact: docs/helix-harness/L2-requirements/product-requirements.md
 - HARNESS-L2-001：旧L0–L14 pathを持つ成果でも現行6 pairを確認でき、L2の対をL10とする入力を拒否する。
 - HARNESS-L2-002：3つの開発方式それぞれでL1–L3の共通条件とslice開始位置を確認する。DECIDEで採用されていないDiscovery・PoCの結果をproductionへ持ち込まない。
 - HARNESS-L2-002：開発方式の未選択、複数選択、適用条件不成立をfail-closeし、起動条件が成立しないのにDiscovery・PoCを発行しない。
-- HARNESS-L2-002／003：技術的な成立性が不明ならPoC、要求・成功条件・範囲が分からない、または開発の途中で検証が必要ならDiscoveryが発行されることを確認する。検証の成功だけで採用とせず、DECIDEの採用・不採用・方針変更のいずれかがないまま要求の2次形成やL3へ合流しない。要求の意味に関わる裁定を、人の判断なしに成立させない。
-- HARNESS-L2-002／003：Researchの起動条件が成立したとき、Researchは参考ソースを依頼元へ返すだけで、選定はDECIDEの記録から技術の選定ならL4へ、要求への影響なら要求へ接続されることを確認する。Researchの成果物だけで選定が決まったと判定する入力、Researchに決定を含めた入力を拒否する。成立性の実験が必要ならPoCが発行される。
+- HARNESS-L2-002／003：要求の段階で技術的な成立性が不明ならL2.5のPoCが、要求・成功条件・範囲が分からない、または開発の途中で検証が必要ならDiscoveryが発行されることを確認する。PoCの結果は、Backflowと要求の2次形成を経て、DECIDEの採用・不採用・方針変更のいずれかが出るまで要求の合意やL3へ合流しない。Discoveryの結果は発行元のticketへ戻り、要求の意味を変える結果だけがBackflow・2次形成・DECIDEを経る。検証の成功だけで採用と判定する入力、要求の意味を変えるDiscoveryの結果を発行元のticketだけで取り込む入力、要求の意味に関わる裁定を人の判断なしに成立させる入力を拒否する。
+- HARNESS-L2-002／003：Researchの起動条件が成立したとき、Researchは参考ソースを依頼元へ返すだけで、選定はDECIDEの記録から技術の選定ならL4へ、要求への影響なら要求へ接続されることを確認する。Researchの成果物だけで選定が決まったと判定する入力、Researchに決定を含めた入力を拒否する。成立性の実験が必要なら、要求の段階ならL2.5のPoC、開発の途中ならDiscoveryが発行される。
 - HARNESS-L2-002／003：Production ScrumまたはV設計＋Scrum実装Hybridのcheckpoint trigger成立時にSR0–SR4を要求し、SR4 receipt欠落をrelease-readyにしない。findingの修正routeが0件または複数なら拒否する。
 - HARNESS-L2-002／003：v1.3 L104-106に従い、`ProvisionalVProjection`をcanonical traceの根拠へ使う入力、SR4 receiptなしの`CanonicalVPublication`、4 entityを単一進捗値へ縮退する入力を拒否する。Design Refactorでobservable behavior／public surface／DB semantics／要求を変える入力はRedesign／Retrofitへrerouteし、送り先が0件なら拒否する。Performance Refactorはbaseline／budget／workload／profile／統計条件／回帰oracleを先に固定し、測定不能な高速化を拒否する。
 - HARNESS-L2-003：Prototypeは画面の有無で、PoCは画面の有無に関係なく技術的な成立性が不明かどうかで、別々に判定されることを確認する。画面のない対象で成立性が不明な場合にPoCを省く入力、片方だけの非適用からL2.5全体を飛ばす入力を拒否する。
