@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/concept/helix-concept.md",
-      "sha256": "5ec3bf383948a3758d0ed29dfbba5ca93df39f363e75e5f542d443166c9c2eae",
-      "note": "BRAIN・製品コア・設計パターンに関する現行Concept入力"
+      "sha256": "9b18539e3de03d47a7537327aeaba53036c29d103510c6a5a9602278a83f0076",
+      "note": "BRAIN・製品コア・設計パターンに関する現行Concept入力 [2026-09-25 Concept改訂（開発方式の定義・product-boundary修正） read-after: 2026-09-25 PO判断（PR #2140のdocs/governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md）でIntelligenceを1.0から稼働中の判断を担う機構へ、BRAINをHELIX全体の汎用の構造へ改め、HELIX-CONNECTを内部と外部の構造の接続（機構どうしの接続を含む）と定義し、Webコネクタ、版ごとの加わる機構、Version 1の範囲を変更した。さらに「枠：開発方式」行にPOの定義（Vモデル／スクラム／ハイブリッド／リリースカンバンの4方式、製品特性に合わせた合成、L3までは一律共通）を入れた。成果物README:140–141の質問2（コネクタ）・質問3（BRAINの稼働中の役割）は、2026-09-25のPO判断（PR #2140のdocs/governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md）で回答済み（HELIX-CONNECTは内部と外部の構造をつなぎ機構どうしの接続も担う。稼働中の判断はIntelligenceが担う）。成果物は質問を出した時点の研究記録として保ち、本文は書き換えない。binding全体の役割・義務・接続（設計パターン候補の調査記録、質問案を採否なしで記録する義務、BRAIN／ヘリックスコア責務整理とPO質問準備への接続）は、回答が出たことで変わらないことを確認した。BRAINが設計パターン・設計ユニット・パーツの汎用構造を持つ記述は不変。本bindingはIntelligenceの稼働判断、HELIX-CONNECTの定義、開発方式の定義の記述（質問2・3の回答部分を除く）に依存しないことをbinding全体で確認した。前receipt=5ec3bf383948a3758d0ed29dfbba5ca93df39f363e75e5f542d443166c9c2eae; 現receipt=9b18539e3de03d47a7537327aeaba53036c29d103510c6a5a9602278a83f0076; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
