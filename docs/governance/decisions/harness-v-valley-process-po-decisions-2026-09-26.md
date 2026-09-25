@@ -59,8 +59,25 @@ AIの整理（POの「いいアイディアがあればそれを採用する」�
   - 夜間の補完をやめる。
   - 理由は、POの「既存の方式はちょっと推進が遅いから」と、危険度の高い変更の原因が密結合だったことである。
 
-## 反映先
+## 構造の成立を上へ伝えない条件
+
+POは「こいつもアイディアで」と述べ、「HELIX 構造保証非伝播 要求差分案」の本文を示した。原文は[source snapshot](../../helix-harness/sources/structural-non-propagation-po-original-2026-09-26.md)に保存した。
+
+AIの整理：
+- 原文は、単体・接続・構成体の分類とForward 小・中・大を新しく作らない。既存のHARNESS-L2-004／005／008／009とOSのticketの意味を強める。
+- 新しく加わるのは次の4つである。
+  - 下の構造の成立から上の構造の成立を推定しない。
+  - 分解しても上の構造に固有の義務を消さない。
+  - 変更の影響はrelationを通じて伝える。
+  - 構造の分類の誤りはBackflowで直す。
+- 旧HELIXとの対応
+  - 旧AAFD（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md:20-25,42`）は、影響を受けた集合だけを古い扱いにし、影響を受けない投影を作り直さず、unknownを0・unchanged・observedへ変えることを拒否していた。
+  - 保持する点は、影響の集合を正確に保ち、unknownを補完しないことである。
+  - 変わる点は、これを要求・設計・検証の単体・接続・構成体のrelationへ当てることである。
+- 前の節の「省いた検査は合流先のticketで回収する」と合う。下の証明は上の証明の入力として使えるが、上の証明を省いたことにはならない。
+- 影響の状態（Affected、Unaffected、Unknown）は、名前の表記のPO指示に従い、1文字目を大文字にする。
+
 
 - HARNESSの要求（L2）と受入（L11）：原文の工程と上の整理を反映する。2026-09-25の判断記録で仮決めとしたL2・L11の最終確認は、本記録を反映した後のrevisionで行う。
-- HELIX-OSの要求（L2）：OSの検収がticketからCIのprofileを組み立てる運転を反映する。
+- HELIX-OSの要求（L2）：OSの検収がticketからCIのprofileを組み立てる運転と、構造の成立を上へ伝えない運用の条件を反映する。
 - 名前の表記：2026-09-26のPO指示（[LABOの判断記録](labo-core-engine-po-decisions-2026-09-26.md)、PR #2143）に従い、HARNESSとOSのL2・L11の表記（HELIX-HARNESS-CORE、INTELLIGENCE、SECURITY、Decide）を同じPRで改める。

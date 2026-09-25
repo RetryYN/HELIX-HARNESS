@@ -883,7 +883,7 @@
     {
       "ref_id": "CUR-OS-L2-14",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "36b5d055a36a73931c71475ececf583e38f6c7c0c65a694bea52a5ae9fb3ef1c",
+      "sha256": "782de1d834e75704dc86e1f462cf65cbad67fdddd09cbd91395b05b3d9cab7c4",
       "start_line": 57,
       "end_line": 64,
       "line_sha256": "fce01c00e2668553318e0f837d273beaac57a981bec8e87bf24f28e7e078faa6",
@@ -896,9 +896,9 @@
     {
       "ref_id": "CUR-OS-RELEASE-14",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "36b5d055a36a73931c71475ececf583e38f6c7c0c65a694bea52a5ae9fb3ef1c",
-      "start_line": 308,
-      "end_line": 316,
+      "sha256": "782de1d834e75704dc86e1f462cf65cbad67fdddd09cbd91395b05b3d9cab7c4",
+      "start_line": 309,
+      "end_line": 317,
       "line_sha256": "cf0d89c80ee21ec88237a60a89e8888a261eeaaa6abc10f86dddf27138d9d2d5",
       "exact_text": "HELIXOS-L2-002／005／007では、管理対象の要求revisionからrelease準備・artifact受渡しと、展開先runtimeが所有する\n配備・設定・計測・log・通知・incident・backup・restore・rollback・maintenance・decommission・費用の適用状態と証拠へ\n辿り、欠測・stale・collector停止をhealthyへ変換しない。OSは証拠と進行を統制するが、展開先runtimeの実行authorityを\n吸収しない。\n運用観測からの差分は改善候補として出典とscopeを保持し、人間の採否や対象製品の要求を直接書き換えない。\n\nHELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作・中断・再開を追跡し、対象、actor、権限、予算、\n影響範囲、復旧先、独立検証が成立する範囲だけを実行対象にする。NIO候補は操作認可や自動修復権限を付与しない。\n具体SLO、RTO／RPO、保持期間、対象環境は個別製品・releaseの承認済み要求を参照する。本節では旧機構、CI、\n",
       "product": "HELIX-OS",
