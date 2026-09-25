@@ -106,11 +106,11 @@ IDは原文のHRI-L1-001〜040と同じ番号で対応する。種類の列は�
 |---|---|---|---|
 | HELIX-HARNESS-CORE → HELIX-INFRASTRUCTURE | 接続 | HELIX-HARNESS-CORE、HELIX-INFRASTRUCTURE | 承認された設計を受け取り、配備の目標を導く。実際の状態から設計を書き換えない |
 | HELIX-OS ↔ HELIX-INFRASTRUCTURE | 接続 | HELIX-OS、HELIX-INFRASTRUCTURE | OSは、何を変えるか、どのticketで進めるか、誰が行うか、どの証拠を登録するか、いつ止めて再開するか（作業と変更の状態）を持つ。HELIX-INFRASTRUCTUREは、どの資源が在るか、どの構成か、どの版か、今どういう状態か、どこに置かれているか（実行環境の資源の状態）を持つ。同じ状態を二重に正本にしない |
-| HELIX-INFRASTRUCTURE → SECURITY → Worker | 構成体 | HELIX-INFRASTRUCTURE、SECURITY、Worker | HELIX-INFRASTRUCTUREが操作を求め（例：server AへJobを配備したい）、SECURITYが対象、project、操作、revision、期限を限って許可し、OSが割り当てたWorkerがその範囲だけ実行する。HELIX-INFRASTRUCTUREは自分の権限を広げない |
+| HELIX-INFRASTRUCTURE → SECURITY → Worker | 構成体 | HELIX-INFRASTRUCTURE、SECURITY、Worker | HELIX-INFRASTRUCTUREが操作を求め（例：server AへJobを配備したい）、SECURITYが対象、project、操作、revision、期限を限って許可し、OSがticketを割り当てたレーンの主が呼び出したWorkerが、その範囲だけ実行する。HELIX-INFRASTRUCTUREは自分の権限を広げない |
 | Worker → HELIX-INFRASTRUCTURE | 接続 | Worker、HELIX-INFRASTRUCTURE | Workerは作業の主体であり、計算機そのものではない。HELIX-INFRASTRUCTUREは、Workerが動く実際の資源（計算機、CPU、memory、GPU、storage、network、processやcontainerの実行環境）とその容量・状態を持ち、隔離はその資源で使える方式で当てる。Workerは必要に応じて別の資源へ移れ、資源が変わってもticket、要求、Workerの責務を失わない。Workerの作業の責務やticketの状態をHELIX-INFRASTRUCTUREへ移さない（2026-09-26 PO判断、PR #2149） |
 | HELIX-INFRASTRUCTURE → LABO | 接続 | HELIX-INFRASTRUCTURE、LABO | 生のmetric、出来事、failure、復旧、費用、容量を渡す。構成が良かったかはLABOが過去の実績として評価する。HELIX-INFRASTRUCTUREが成功の実績から設計のPatternをBRAINへ直接昇格させない |
 | INTELLIGENCE → HELIX-INFRASTRUCTURE | 接続 | INTELLIGENCE、HELIX-INFRASTRUCTURE | 資源とWorkerの配置、容量の不足、failureの診断、増減、復旧の候補を判断の候補として受け取る。候補をそのままauthorityとして実行しない |
-| HELIX-BRAIN → HELIX-HARNESS-CORE | 接続 | HELIX-BRAIN、HELIX-HARNESS-CORE | 汎用の設計知識は、HELIX-HARNESS-COREの設計を経てHELIX-INFRASTRUCTUREへ届く（[BRAINのInfrastructure領域の要求候補](../../helix-brain/candidates/infrastructure-domain-requirements.md)、PR #2145） |
+| HELIX-BRAIN → HELIX-HARNESS-CORE | 接続 | HELIX-BRAIN、HELIX-HARNESS-CORE | 汎用の設計知識は、HELIX-HARNESS-COREの設計を経てHELIX-INFRASTRUCTUREへ届く（BRAINのInfrastructure領域の要求候補（未mergeのPR #2145の`docs/helix-brain/candidates/infrastructure-domain-requirements.md`） |
 
 ## 旧HELIXとの対応
 
