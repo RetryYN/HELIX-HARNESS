@@ -49,7 +49,7 @@ Concept／製品責務境界→5大目標→七大原則→対象別L1の読込�
 Conceptは[1ファイル](../concept/helix-concept.md)をその場で改訂する。版ごとのファイル、改訂ごとの承認記録、昇格手続きは置かない。
 改訂は人の指示をAIが反映し、変更の履歴はgitに残す。版ごとのファイルは残さない。v4.1／v4.2のファイルは下位文書の親付替えと同時に削除済みで、過去の本文はgitの履歴で辿る。
 Conceptの改訂に紐づく下位文書は見直し対象として示し、作業全体を止めない。v4.3への改訂（2026-09-24）の見直し対象は、
-4対象L1、5大目標、七大原則、製品責務境界である。これらの親は現行Conceptへ付け替えた。BRAIN、LABO、Intelligence、Security、CONNECT、Runner／Sandboxの責務差分は候補として記録し、対象別L2／L11の採否を生成しない。
+4対象L1、5大目標、七大原則、製品責務境界である。これらの親は現行Conceptへ付け替えた。BRAIN、LABO、INTELLIGENCE、SECURITY、CONNECT、Runner／Sandboxの責務差分は候補として記録し、対象別L2／L11の採否を生成しない。
 
 4対象L1の**旧exact revision**は2026-09-17のdecision recordで承認済みである。旧承認を現行bytesへ継承しない。
 [2026-09-24のPO判断](decisions/concept-requirement-po-decisions-2026-09-24.md)で、次のように扱いを決めた。
@@ -57,6 +57,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 - 製品責務境界：現行本文SHA `9268e357…ac0a`をPOが採用した。
 - HARNESS L1と5大目標：内容をPOが採用した。HARNESS L1は1.0土台の追記、5大目標は関与表の縮約を指示された。追記・縮約後の本文は、PO最適ドラフトPRで対象revisionを確認する。
 - HELIX-WebとHELIX-Web-OS：L1・L2・L11を要求層から外し、Visionレベルの材料へ分類し直した。
+- HELIX-LABO：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/labo-core-engine-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。
 `L2D-S0-01 scaffold-binding`と`L2D-S0-02 wbs-ledger`の候補は2026-09-19の[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)で承認済みであり、
 候補本文内の`draft_candidate`／`awaiting_human_approval`も同じく承認前snapshotのmetadataとして、decision recordを優先する。
 対象別L2／L11はdraft・未採否であり、まだcanonicalではない。

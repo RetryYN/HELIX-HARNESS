@@ -2,7 +2,7 @@
 
 親は[HELIX Concept](../concept/helix-concept.md)である。[2026-09-14の責務発言記録](../concept/product-boundary.md)は旧発言の出典として保持する。旧L1の承認は2026-09-17の対象revisionに限り、現行Conceptとの意味差分、L2／L11の合意、L3の承認は別に扱う。
 
-HELIX-OSはHELIXプロジェクト群の管理・推進・検収、Worker割当、ログ・状態、CI・testの最適化、継続・復旧を担う。BRAINの稼働判断、LABOの効果・退行評価、3.0のIntelligenceによる知識・モデル改善をOS自身の同一責務にしない。
+HELIX-OSはHELIXプロジェクト群の管理・推進・検収、Worker割当、ログ・状態、CI・testの最適化、継続・復旧を担う。INTELLIGENCEの稼働判断と知識・モデル改善、LABOの効果・退行評価をOS自身の同一責務にしない。
 その中核目的はHARNESSをHARNESS自身へ適用し、各projectの運用と観測を通じてHARNESSとHELIX全体を
 継続的に改善することである。今回の外部提供プロダクトはHARNESSであり、
 HELIX-OSを別の輸出プロダクトとして定義しない。

@@ -2,9 +2,9 @@
 
 本書の親は[HELIX Concept](helix-concept.md)である。2026-09-14から2026-09-15のPO発言を出典付きで保持する。以下の発言表は当時の表現であり、現在の機構・版・製品属性はConceptに従う。本書から個別L2要求案の一括承認、L3承認、IR admission、実装・受入・公開の完了を生成しない。
 
-2026-09-17の承認は旧本文SHA-256 `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038`に限る。現行本文のOS／LABO／Intelligenceの責務表とPO判断条件は未承認の差分候補であり、[PO判断パッケージ](../governance/crosswalks/concept-requirement-po-decision-packet.md)で旧revisionと比較する。
+2026-09-17の承認は旧本文SHA-256 `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038`に限る。現行本文のOS／LABO／INTELLIGENCEの責務表とPO判断条件は未承認の差分候補であり、[PO判断パッケージ](../governance/crosswalks/concept-requirement-po-decision-packet.md)で旧revisionと比較する。
 
-現行Conceptでは8機構と2共通部品を区別し、外部提供する製品属性はHARNESSとWebだけが持つ。1.0はHARNESS、OS、BRAIN、LABO、Security、CONNECT、Runner／Sandbox、1.xはWebとWeb-OS、3.0はIntelligenceが加わる。OSの管理・推進・検収は別責務であり、BRAINは稼働時の判断、Intelligenceは知識・モデルの改善、LABOは効果と退行の評価を担う。
+現行Conceptでは8機構と2共通部品を区別し、外部提供する製品属性はHARNESSとWebだけが持つ。1.0はHARNESS、OS、BRAIN、LABO、INTELLIGENCE、SECURITY、CONNECT、Runner／Sandbox、1.xはWebとWeb-OSが加わる。OSの管理・推進・検収は別責務であり、BRAINはHELIX全体の汎用の構造、INTELLIGENCEは稼働時の判断と知識・モデルの改善、LABOは効果と退行の評価を担う（[2026-09-25 PO判断](../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)）。
 
 ## 明示された決定
 
@@ -53,7 +53,7 @@ HARNESS自身の要求・設計・実装・検証へ戻す。HELIX-OSはこの�
 |---|---|---|
 | HELIX | プロジェクト群と、その改善を継続する全体構想 | 人間の意図から検証済み変更へ閉じ、運用結果を次の要求へ戻す |
 | HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |
-| HELIX-OS | HELIXプロジェクト群の内部管理・推進・検収機構 | authority・state管理、ticket発行とWorker割当、CI・test最適化、改善候補登録、配布運転。独立評価はLABO、知識・モデル改善は3.0のIntelligenceへ接続する |
+| HELIX-OS | HELIXプロジェクト群の内部管理・推進・検収機構 | authority・state管理、ticket発行とWorker割当、CI・test最適化、改善候補登録、配布運転。独立評価はLABO、稼働中の判断と知識・モデル改善はINTELLIGENCEへ接続する |
 | HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとしてWeb利用者へダッシュボード、操作、進行表示、サービス体験を提供する |
 | HELIX-Web-OS | HELIX-OS外のWebサービス運転基盤 | tenant、Connector、job、service state、evidence projection、配備・監視・復旧 |
 
@@ -80,11 +80,11 @@ HELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する
 | `HELIX Harness`を`Assurance Kernel`とする | Assurance KernelはHARNESSの構成要素。HARNESS全体は外部提供する工程・契約・consumer packageを含む |
 | `HELIX Control Plane` | HELIX-OSの実行統制componentとして扱い、独立した要求対象にしない |
 | `HELIX DevOS` | 独立した提供製品identityにしない。配布物はHARNESS、配布運転はHELIX-OSへ分ける |
-| Control／Execution／Ledger／Adaptation Plane | 管理・推進・検収はHELIX-OS、判断はBRAIN、計測・評価はLABO、知識・モデル改善は3.0のIntelligenceへ分けて接続する |
+| Control／Execution／Ledger／Adaptation Plane | 管理・推進・検収はHELIX-OS、判断と知識・モデル改善はINTELLIGENCE、計測・評価はLABOへ分けて接続する |
 | Change Contract Compiler／Assurance Kernel | HARNESSが提供する工程・契約・検証能力と、OSが行うcanonical transactionを分ける |
 
 旧L0 charterのP0–P9も意味を保持して対象別へ再配置する。V-model、工程、検証、外部利用条件はHARNESSへ、
-連続走行、orchestration、GitHub／CI運転、memory／状態、外部実行統制はOS・Security・Runner／Sandboxへ分け、評価はLABO、知識・モデル改善は3.0のIntelligenceへ置く。
+連続走行、orchestration、GitHub／CI運転、memory／状態、外部実行統制はOS・SECURITY・Runner／Sandboxへ分け、評価はLABO、判断と知識・モデル改善はINTELLIGENCEへ置く。
 「harness memoryを根幹に自己保守する」という旧表現は、HARNESS製品がmemoryを必須内包する意味に使わず、
 HELIX-OSが要求正本・状態・証拠を分離して管理し改善する責務へ置き換える。
 

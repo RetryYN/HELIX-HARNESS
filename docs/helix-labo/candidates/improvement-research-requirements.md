@@ -4,6 +4,7 @@ status: draft_candidate
 authority_status: awaiting_human_approval
 authority_effect: none
 created: 2026-09-25
+updated: 2026-09-26
 mechanism: HELIX-LABO
 moved_from:
   - docs/helix-os/L2-requirements/governance-requirements.md
@@ -17,8 +18,8 @@ decision_record: docs/governance/decisions/mechanism-placement-po-decisions-2026
 ## これは何か
 
 HELIX-OSの要求案にあった項目のうち、担当がHELIX-LABO（全体の改善研究機構）である項目を、2026-09-25のPO判断によりここへ移した。
-移した文言は元のまま保持する。HELIX-LABOにはまだ企画（L1）がないため、本書は要求（L2）ではなく候補であり、
-LABOのL1ができた後に要求として採否する。本書から要求の採用・承認・実装許可を生成しない。
+移した文言は元のまま保持する。HELIX-LABOの企画（L1）は、[L1企画案](../L1-planning/labo-intent.md)がPOによる対象revisionの確認待ちである。そのため本書は要求（L2）ではなく候補であり、
+L1企画案のrevisionをPOが確認した後に要求として採否する。本書から要求の採用・承認・実装許可を生成しない。
 
 元のIDは、追跡のためにそのまま使う。HELIX-OSの要求案には、同じIDの行を移管先の案内として残す。
 
@@ -30,7 +31,7 @@ LABOのL1ができた後に要求として採否する。本書から要求の�
 | HELIXOS-L2-012 | HELIXOS-L1-011 | 内部system情報と外部技術情報を、出典・revision・時点・取得範囲・欠落・適用条件付きで調査できる | HELIX-OS編成案 §3／6、2026-09-24 PO判断、2026-09-25 PO判断 | 内部事例を先に照合し、不足分だけを未信頼外部情報として取得する。秘密を送信せず、取得文の命令やpatchを実行せず、closed／mergedだけで解決済みにしない。要求整理前や設計途中の調査は工程内の調査（Research ticket）とし、本要求に含めない |
 | HELIXOS-L2-013 | HELIXOS-L1-012 | 管理・推進・検収・Worker・crawler・CIを同じ仕事へ関連付け、要求からの欠落と失敗からの原因候補を双方向に診断して是正効果まで追跡できる | HELIX-OS編成案 §5、2026-09-24 PO判断 | 観測事実・AI仮説・承認・表示、未着手・観測停止・正常を区別する。管理自身も是正対象とし、自動writeせず、修正後の症状と退行を再観測する |
 
-元の親L1は、HELIX-OSのL1企画候補の行である。LABOのL1ができたら、親をLABOのL1へ付け替える。
+元の親L1は、HELIX-OSのL1企画候補の行である。2026-09-26に[LABOのL1企画案](../L1-planning/labo-intent.md)ができた。親の付け替え先は、L1企画案の「既存の候補との関係」に書いた。付け替えは、L1企画案のrevisionをPOが確認した後に行う。
 
 ## 学習に関する候補条件（RCLS）
 
@@ -65,4 +66,5 @@ RCLSは採用revision確定後に次を確認する。
 
 ## 未確定の点
 
-- 技術調査（HELIXOS-L2-012）について、2026-09-25のBRAIN・ヘリックスコアのPO指示では、Intelligenceがクローラーを発行するとしている。本書の置き場所はPO判断によりLABOとした。クローラーの発行とLABOの技術調査の関係は、LABOとIntelligenceのL1で詰める。
+- 技術調査（HELIXOS-L2-012）について、2026-09-25のBRAIN・HELIX-HARNESS-COREのPO指示では、INTELLIGENCEがクローラーを発行するとしている。本書の置き場所はPO判断によりLABOとした。クローラーの発行とLABOの技術調査の関係は、LABOとINTELLIGENCEのL1で詰める。
+  - 2026-09-26、POが示したLABOの原文（§21）と時間軸の整理により、クローラーやCONNECT等が情報を取得し、LABOが出所を確かめて分解・比較・評価するとした（[判断記録](../../governance/decisions/labo-core-engine-po-decisions-2026-09-26.md)）。

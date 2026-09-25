@@ -16,7 +16,7 @@
 | HELIX-Web-OS | HELIX-OS外でWeb service runtimeを運転 | [企画](helix-web-os/L1-planning/system-intent.md) | [要求](helix-web-os/L2-requirements/service-governance-requirements.md) | [受入](helix-web-os/L11-acceptance/service-acceptance.md) |
 
 `governance/`はauthority台帳、変更方針、再構築の進め方に関する候補、intake、旧sourceとのcrosswalkを保持する。
-機構の要求候補は、担当する機構のフォルダの`candidates/`に置く（2026-09-25のPO判断）。L1がまだない機構（[HELIX-BRAIN](helix-brain/README.md)、[HELIX-LABO](helix-labo/README.md)、[HELIX-Intelligence](helix-intelligence/README.md)）は、候補だけを持つ。
+機構の要求候補は、担当する機構のフォルダの`candidates/`に置く（2026-09-25のPO判断）。L1がまだない機構（[HELIX-BRAIN](helix-brain/README.md)、[HELIX-INTELLIGENCE](helix-intelligence/README.md)）は、候補だけを持つ。[HELIX-LABO](helix-labo/README.md)は、2026-09-26にPOの原文をもとにしたL1企画案を持つ（POが対象revisionを確認する）。
 `governance/audits/source-rebaseline/`は新世代上流を決めるための監査証拠であり、製品要求のownerではない。
 
 旧世代はrepository rootの`archive/legacy-generation-2026-09-14/root/`に元構造のまま凍結している。

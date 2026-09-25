@@ -56,7 +56,7 @@ HARNESSは、外部利用者が企画・要求・要件・設計・実装・検�
 
 ## 対象外
 
-Worker割当とticket発行、CI・testの最適化と運転、ログ・stateの管理、プロジェクト群の統制、artifact配布運転はHELIX-OSが所有する。計測・改善効果と退行の独立評価はHELIX-LABO、知識・モデルの改善は3.0で加わるHELIX-Intelligenceが担う。
+Worker割当とticket発行、CI・testの最適化と運転、ログ・stateの管理、プロジェクト群の統制、artifact配布運転はHELIX-OSが所有する。計測・改善効果と退行の独立評価はHELIX-LABO、知識・モデルの改善は3.0で加わるHELIX-INTELLIGENCEが担う。
 HELIX-Web等の個別製品の利用者体験もHARNESS要求へ含めない。HARNESSは必要な工程・検証契約を定め、
 OSや個別製品が参照する版を持つ。
 
