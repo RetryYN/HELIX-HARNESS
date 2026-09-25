@@ -32,7 +32,7 @@ AIが、どこまで今反映するか（今全部に反映する、アイデア
 AIの整理：
 - Conceptの機構の表から「Runner／Sandbox（共通部品）」の行を除き、Workerの行は加えない。Workerは、図と説明の段落で示す。
 - Conceptの機構と共通部品の数は、8つの機構と1つの共通部品（HELIX-CONNECT）になる。
-- 原文の実際の資源の持ち手「HELIX Runtime Infrastructure」は、新しいコア機構HELIX-INFRASTRUCTUREの案として、POが全体を見てから扱いを決めるアイデアの段階にある（未mergeのPR #2148の判断記録HDEC-INFRASTRUCTURE-L1-IDEA-2026-09-26）。そのため、Conceptでは「実行基盤」と書き、機構の名前は入れない。
+- 原文の実際の資源の持ち手「HELIX Runtime Infrastructure」は、新しいコア機構HELIX-INFRASTRUCTUREの案として、POが全体を見てから扱いを決めるアイデアの段階にある（[判断記録](infrastructure-l1-idea-po-decisions-2026-09-26.md)、PR #2148）。そのため、Conceptでは「実行基盤」と書き、機構の名前は入れない。
 
 ## 旧HELIXとの対応
 
