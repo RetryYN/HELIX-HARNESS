@@ -98,6 +98,18 @@ AIの整理：
 - 略して書くときも同じ表記にする（例：INTELLIGENCE、SECURITY）。
 - 書き換える範囲と時期は、上のHELIX-HARNESS-COREと同じとする。
 
+さらに、POは次のように述べた。
+
+- 「チケットのディサイドも小文字な。大文字にするのはコアシステムの名称で。そのほかは1文字目大文字ほか小文字。細かいのはよしなに。」
+
+AIの整理：
+- すべて大文字で書くのは、コアシステム（上の機構と部位）の名前に限る。
+- それ以外の名前は、1文字目だけを大文字にし、残りを小文字にする。チケットのDECIDEはDecideと書く。ほかのチケット（Forward、Backflow、Discovery、Research等）は、今の表記がこの形である。
+- 細かい扱いは、POの「よしなに」によりAIが次のように揃える。
+  - PoC、CI、PR、L2.5のように略語として定着している語は、今の表記を保つ。
+  - 要求や候補のID（HELIXOS-L2-005、RCLS-BR-001等）と、図の中だけで使う識別子は、名前ではないため変えない。
+- 書き換える範囲と時期は、上のHELIX-HARNESS-COREと同じとする。
+
 ## 原文で答えが出た未決の点
 
 PR #2140の[統合要求案パッケージ](../crosswalks/po-optimal-draft-packet.md)が残していた次の点は、POの原文で答えが出た。
@@ -112,5 +124,5 @@ PR #2140の[統合要求案パッケージ](../crosswalks/po-optimal-draft-packe
 
 - [HELIX-LABOのL1企画案](../../helix-labo/L1-planning/labo-intent.md)を新しく作る。
 - [LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)の親を、L1企画案の要求へ付け替える案を書く。
-- 更新され続ける文書の「ヘリックスコア」をHELIX-HARNESS-COREへ、IntelligenceとSecurityの表記を大文字へ書き換える。
+- 更新され続ける文書の「ヘリックスコア」をHELIX-HARNESS-COREへ、IntelligenceとSecurityの表記を大文字へ、チケットのDECIDEをDecideへ書き換える。
 - 統合要求案パッケージの未決の点、Conceptの2.0の「何を外の情報とするかは未確定」、BRAINの「学習」の未確定の注記は、PR #2140と#2142のmerge後に、本記録に合わせて更新する。
