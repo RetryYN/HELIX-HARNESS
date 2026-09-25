@@ -2,20 +2,20 @@
 
 status: `research_premise_candidate`
 authority_effect: none
-scope: Goal 1の意味不一致 validator 29件
-comparison_base: `e57b2523b89dd29e6879c71e05ce49e86f1c07c0`
+scope: Goal 1の29件とGoal 5の意味・契約不一致3件、計32 validator
+comparison_base: Goal 1 / Goal 5 baseline `e57b2523b89dd29e6879c71e05ce49e86f1c07c0`; Goal 5 merge main `092de3d4114b6310c7904c5b8556ad649c0e0421`
 
 ## 対象と共通の確認
 
-Goal 1の監査記録、旧分類6件の監査（[PR #2134](legacy-classification-validator-mismatch-2026-09-25.md)）、PHCAP-15の8件の監査（[PR #2135](phcap15-deploy-validator-mismatch-2026-09-25.md)）、#2136のreviewを読んだ。最新main `e57b2523b89dd29e6879c71e05ce49e86f1c07c0` の137個のvalidator baselineを実測し、Goal 5担当が記録した各stdout/stderr/exitから29対象と失敗理由を照合した。29個の対象別validator、失敗要約、提案、根拠は同階層のJSONLに記録する。ここに載せる29件はGoal 1で意味不一致として残った対象と完全一致する。
+Goal 1の監査記録、旧分類6件の監査（[PR #2134](legacy-classification-validator-mismatch-2026-09-25.md)）、PHCAP-15の8件の監査（[PR #2135](phcap15-deploy-validator-mismatch-2026-09-25.md)）、#2136のreviewを読んだ。Goal 1ではmain `e57b2523b89dd29e6879c71e05ce49e86f1c07c0`の137 validator baselineから29件を扱った。Goal 5の監査は同じbaselineから17件を対象にし、wave37–50の14件は意味条件確認後に合格、0126・0144・0148は意味・契約不一致として失敗を維持した。Goal 5 PR #2138はmain `092de3d4114b6310c7904c5b8556ad649c0e0421`へmerge済みで、reviewed HEAD `c547ff71`のtree一致をread-after確認した。したがって本記録はGoal 1の29件とGoal 5で残った3件を合算した32件を扱い、各validatorのbaseline結果・source・根拠・処置をJSONLに記録する。
 
-現行文書検索は`docs/concept/`、`docs/governance/candidates/`、`docs/governance/crosswalks/`、`docs/helix-harness/`、`docs/helix-os/`、`docs/helix-web/`、`docs/helix-web-os/`、`docs/helix-brain/`、`docs/helix-labo/`、`docs/helix-intelligence/`を対象に、各bundle名の完全一致を調べた。29件すべて完全一致はなかった。したがって以下は「現在の要求がこの研究束を使っている」とは主張しない。同じ主題を扱う現在の文書、識別子・asset IDの検索hit、Scaffold Bindingの明示的なupstream consumerを別に記録する。台帳内の同一ID出現は出典identityでありconsumerではない。Binding consumerは`scaffold/bindings/*.json`全件の`upstream[].path`を研究束artifact pathと照合して抽出し、ownerと下流参照を分けた。
+現行文書検索は`docs/concept/`、`docs/governance/candidates/`、`docs/governance/crosswalks/`、`docs/governance/decisions/`、`docs/helix-harness/`、`docs/helix-os/`、`docs/helix-web/`、`docs/helix-web-os/`、`docs/helix-brain/`、`docs/helix-labo/`、`docs/helix-intelligence/`を対象に、各bundle名の完全一致を調べた。32件すべて完全一致はなかった。Goal5追加3件についてasset IDと旧source pathも同じcanonical文書群で検索し、明示参照は見つからなかった。したがって以下は「現在の要求がこの研究束を使っている」とは主張しない。同じ主題を扱う現在の文書、識別子・asset IDの検索hit、Scaffold Bindingの明示的なupstream consumerを別に記録する。台帳内の同一ID出現は出典identityでありconsumerではない。Binding consumerは`scaffold/bindings/*.json`全件の`upstream[].path`を研究束artifact pathと照合して抽出し、ownerと下流参照を分けた。
 
 
 
 ## 新しい意味での検査案
 
-各行の「始末案」を実際の検査条件へ移す場合の入出力・relation・不変条件・拒否する誤昇格は、JSONLの`rederived_check`へvalidator別に記録した。既存PO判断と現行方針を反映し、旧要求trace、配備source mapping、4件のVision候補研究は`導き直し`、現行要求のL1 anchor検査1件は`履歴保持・検査退役候補`とした。全entryの根拠を`disposition_basis`へ記録した。共通の具体像は次のとおり。
+各行の「始末案」を実際の検査条件へ移す場合の入出力・relation・不変条件・拒否する誤昇格は、JSONLの`rederived_check`へvalidator別に記録した。既存PO判断と現行方針を反映し、現在は`導き直し`31件、`履歴保持・検査退役候補`1件、新しいPO質問0件。全entryの根拠を`disposition_basis`へ記録した。共通の具体像は次のとおり。
 
 - delegated-doc系は旧requirement/acceptance sourceのrevision・atom・edgeと現行Concept、対象別L1、機構別L2 candidateを照合し、各edgeのsource identityを保つ。旧承認状態やedgeから現行要求を自動継承しない。
 - legacy分類系はarchive asset span→当時の四製品分類→現行機構/candidate relationをasset単位で追い、現行のsource spanとauthority stateを要件とする。旧分類からowner・承認・実装対象を決めない。
@@ -24,17 +24,17 @@ Goal 1の監査記録、旧分類6件の監査（[PR #2134](legacy-classificatio
 - OUTSIDE67-069はPATH-052/056から分割後の機構別candidate pathを別identityとして照合する。旧単一pathからownerや候補同一性を推定しない。083はarchive/current bytes identityと意味relationを独立検査する。
 - Web/Web-OS Vision起源4件はsource lineage・候補atom/composite・Vision coverage・candidate-only asset relationをVision研究として導き直し、要求へ接続しない。残る旧L1 anchor 1件は履歴記録を保ち、現在の要求anchor検査を退役候補としている。
 
-再導出案・退役候補案は調査の提案であり、PO判断や実行ではない。全29件について、導き直しまたは履歴保持・検査退役候補を選んだ理由と、将来の退役候補時におけるowner/downstream影響をJSONLの`retirement_assessment`へ記録した。現在の正式な置換artifactが成立していないため、`scfctl check-replacement`や`retire`を実行したり、退役可能と結論したりしていない。現行契約では、役割・義務・接続・consumer・oracle・negative caseの全移管が合格し、その記録のread-after digestが一致して初めて退役できる（[scaffold/README.md](../../../../scaffold/README.md):50-68）。
+再導出案・退役候補案は調査の提案であり、PO判断や実行ではない。全32件について、導き直しまたは履歴保持・検査退役候補を選んだ理由と、将来の退役候補時におけるowner/downstream影響をJSONLの`retirement_assessment`へ記録した。現在の正式な置換artifactが成立していないため、`scfctl check-replacement`や`retire`を実行したり、退役可能と結論したりしていない。現行契約では、役割・義務・接続・consumer・oracle・negative caseの全移管が合格し、その記録のread-after digestが一致して初めて退役できる（[scaffold/README.md](../../../../scaffold/README.md):50-68）。
 
 ## 検査退役候補と未実行の境界
 
 退役候補は`rdp001-outside67-web-webos-l1-anchor-0121`の1件である。このvalidatorの役割は旧L1 anchorを現行L1要求へ結ぶことだが、9/24判断でWeb/Web-OS L1/L2はVision材料となり、要求は将来PO指示から起こす。下流Binding consumerは検出されていない。そこで4 path snapshotと11 anchor recordはsource provenanceとして保持し、現在の要求anchor検査は退役候補とする。owner SCF-B-0121の義務・oracle・negative caseを移す正式artifactと確認記録はまだなく、退役はしていない。
 
-残る28件は導き直しを提案する。特に0080のlineage、0088の候補atom/composite、0091のVision候補coverage、0124のcandidate-only asset relationは現在要求への接続を使わず研究役割を維持する。0080には下流Binding 0081/0084/0088/0091/0124があるため、記録とsource lineageを残し、Vision資料を対象とする検査へ導き直す。どのentryもvalidator、inventory、Bindingは変更していない。退役候補1件を含め、`scfctl check-replacement`、`retire`は未実行。将来退役を実行する場合は、役割・義務・接続・consumer・oracle・negative caseをBinding全体で移し、合格後read-after digestが一致する必要がある（[scaffold/README.md](../../../../scaffold/README.md):50-68）。entry別のowner/downstreamと手順はJSONLの`retirement_assessment`に記録する。
+残る31件は導き直しを提案する。特に0080のlineage、0088の候補atom/composite、0091のVision候補coverage、0124のcandidate-only asset relationは現在要求への接続を使わず研究役割を維持する。0080には下流Binding 0081/0084/0088/0091/0124があるため、記録とsource lineageを残し、Vision資料を対象とする検査へ導き直す。どのentryもvalidator、inventory、Bindingは変更していない。退役候補1件を含め、`scfctl check-replacement`、`retire`は未実行。将来退役を実行する場合は、役割・義務・接続・consumer・oracle・negative caseをBinding全体で移し、合格後read-after digestが一致する必要がある（[scaffold/README.md](../../../../scaffold/README.md):50-68）。entry別のowner/downstreamと手順はJSONLの`retirement_assessment`に記録する。
 
 ## 各validatorの調査案
 
-下表は検査ごとに、固定した意味、現在との食い違い、残る調査価値、Binding consumer、提案を記す。Binding IDは登録Bindingの`upstream`から当該研究束のパスを参照しているもの。既存PO判断を適用した根拠と、研究検査の処置理由はJSONLの`disposition_basis`へvalidatorごとに記録した。新しいPO質問は置いていない。退役を選ばない理由も各行にある。
+下表は検査ごとに、固定した意味、現在との食い違い、残る調査価値、Binding consumer、提案を記す。Goal 1由来29件に続くGoal 5の追加3件は末尾にまとめた。Binding IDは登録Bindingの`upstream`から当該研究束のパスを参照しているもの。既存PO判断を適用した根拠と、研究検査の処置理由はJSONLの`disposition_basis`へvalidatorごとに記録した。新しいPO質問は置いていない。退役を選ばない理由も各行にある。
 
 | Validator | 固定していた意味・失敗 | 現在も役立つ点と明示consumer | 始末案 |
 |---|---|---|---|
@@ -66,15 +66,29 @@ Goal 1の監査記録、旧分類6件の監査（[PR #2134](legacy-classificatio
 | `rdp001-web-webos-vision-asset-semantic-0124` | 旧Vision 35候補×代表旧asset 12件のsemantic connection候補。current product-boundary digestが不一致。 | Vision sourceとlegacy assetのcandidate-only対応関係を保存する。owner `SCF-B-0124`; downstream consumerなし. | **導き直し**。35 Vision candidate×12旧assetをcandidate-only evidence relationとして再検査し、digest/所属から意味linkを作らない。 |
 | `rdp001-web-webos-vision-coverage-0091` | 29 parent span / 35 candidate recordのcoverage、旧product-boundary入力、154 connection matrix。current product-boundary digest mismatch。 | Vision source coverage・未接続行のhistoryとして使える。owner `SCF-B-0091`; downstream consumerなし. | **導き直し**。29 span/35 candidateのmatrixをVision候補coverageとして保ち、phase/asset unknownを維持する。要求coverageにはしない。 |
 | `rdp001-web-webos-vision-semantic-atoms-0088` | Web/Web-OSの旧Vision 9 spanをatomized/composite候補化。parent `SCF-B-0080` lineage digestが違う。 | 9 Vision spanのsource lineageと、未分解複合行の保全に有用。owner `SCF-B-0088`; downstream consumers `SCF-B-0091`, `SCF-B-0124`. | **導き直し**。9 spanのatom/composite候補とparent lineageをVision研究として維持し、複合行を要求やownerに分割しない。 |
-| `rdp001-web-webos-vision-source-0080` | 旧Vision 29 spanを現行Web L2 9件/Web-OS L2 6件へのrequirement source relation候補として固定。現行source status/relationが一致せず`E_CURRENT_SOURCE`。 | 旧Visionから現行文書への起源追跡。owner `SCF-B-0080`; downstream consumers `SCF-B-0081`, `SCF-B-0084`, `SCF-B-0088`, `SCF-B-0091`, `SCF-B-0124`. | **導き直し**。旧Vision 29 spanのsource lineageを現行Vision資料へつなぎ直し、4下流研究束の候補入力を保つ。requirements linkは作らない。 |
+| `rdp001-web-webos-vision-source-0080` | 旧Vision 29 spanを現行Web L2 9件/Web-OS L2 6件へのrequirement source relation候補として固定。現行source status/relationが一致せず`E_CURRENT_SOURCE`。 | 旧Visionから現行文書への起源追跡。owner `SCF-B-0080`; downstream consumers `SCF-B-0081`, `SCF-B-0084`, `SCF-B-0088`, `SCF-B-0091`, `SCF-B-0124`. | **導き直し**。旧Vision 29 spanのsource lineageを現行Vision資料へつなぎ直し、5下流研究束の候補入力を保つ。requirements linkは作らない。 |
+| `legacy-implementation-residual-0126` | 固定BASEの四製品research union・overlapを入力に67件のimplementation_source残余を候補分類。Bindingの旧source closureが現行boundary/L1 revisionと合わず`E_BINDING_UPSTREAM`。 | 例: `LEGACY-ASSET-005BBC344AC83176CAE6`のsource span `screen-applicability-store.ts:247-264`。owner `SCF-B-0126`; downstream consumers `SCF-B-0141`, `SCF-B-0142`, `SCF-B-0145`, `SCF-B-0149`. | **導き直し**。旧union/overlap/new67の分母とsource identityを歴史として保持し、現行機構/candidate relationを別revisionでasset別に調べる。formal owner・admissionは作らない。 |
+| `legacy-overlap-reconciliation-0144` | 固定main 429件と#2078 fixed HEADの36件比較。upstream row schemaは`path/sha256`のみを許し現行note付き契約と違う。背景には旧四製品比較範囲・LABO除外がある。 | `LEGACY-ASSET-08F8688895B787BD3D5C` / `src/cli/commands/rename.ts:14-113`はsource-specific resultとgeneric fallbackのmethod差の例。owner `SCF-B-0144`; downstream Binding consumerなし。 | **導き直し**。36件のsource identityと両側の研究方法差を維持し、semantic conflictは双方に独立したsource-specific interpretationがある場合だけ検査する。 |
+| `legacy-test-design-worker-workflow-0148` | fixed BASEからPHCAP-07 worker/workflow test-design 52件の候補分類。non-upstream Binding core (`d334e2eb…`対`11fee501…`)が異なり`E_BINDING`。 | `LEGACY-ASSET-CDB0C680878837FF2E36`と`LEGACY-ASSET-6F5F69296B4AB47B96E5`のarchive spanを個別記録。PHCAP-07はcurrent inventoryでcandidate_only。owner `SCF-B-0148`; downstream consumers `SCF-B-0149`, `SCF-B-0150`. | **導き直し**。test-designの検証義務とworker/runtimeの実行責務を別relationとして現行境界へ照合。phase/owner admissionは生成しない。 |
+
+
+## Goal 5から加えた3件
+
+Goal 5の監査は、137 validatorの修復後も意味・契約不一致を解消できない3件を失敗のまま保持した。結果manifestの該当行は0126が22行、0144が28行、0148が51行で、いずれもbefore/afterがfailである。Goal 5判断記録（[findings](scaffold-validator-goal5-findings-2026-09-25.md):18-20）を読み、旧source identity、旧4対象L1 exact-SHA approval（[9/17 decision](../../decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md):21-32）、current PO decision、Binding ownerと直接downstream pathを個別照合した。
+
+- **0126**：失敗条件は固定BASE `5562f04…`と8 research bundleのexact upstream closure。例としてasset `LEGACY-ASSET-005BBC344AC83176CAE6`は旧`src/design/screen-applicability-store.ts:247-264`を指し、HARNESS capability evidenceとWeb presentation applicabilityの候補衝突を記録する。現行product-boundaryは製品属性と機構責務を分ける。owner `SCF-B-0126`のclassification research JSONLは0141/0142/0145/0149が参照し、0145はinventoryも参照する。旧67件と重複53の再現可能なsource調査を残すため、current relationのasset別再導出を提案する。
+- **0144**：失敗条件はstrict upstream row schemaと意味範囲の双方。36件はold main source-specific candidateと#2078 fallbackのmethod/state差であり、監査自身がsemantic conflict 0件とする。例のasset `LEGACY-ASSET-08F8688895B787BD3D5C`は旧`src/cli/commands/rename.ts:14-113`を参照する。SCF-B-0144のdownstream Binding upstreamは検出0だが、human candidate reviewの比較証拠という役割が残る。source/method identityとcurrent authority revisionを分けて再導出する。
+- **0148**：固定BASEは`8a9fdc9…`。52件はPHCAP-07を含むbootstrap選択で、47件のHARNESS+OS split、3件HARNESS、2件根拠不足はいずれも候補でありformal owner/admissionは0。例の旧sourceはasset `LEGACY-ASSET-CDB0C680878837FF2E36`のUniversal Workflow test-design `:18-23`と、`LEGACY-ASSET-6F5F69296B4AB47B96E5`のworker benchmark test-design `:22-25`。現在のPHCAP-07もinventory `:439-457`で`candidate_only`。owner `SCF-B-0148`の研究JSONLは0149/0150、selection manifestは0150が参照する。test artifactの検証責務とruntimeの実行責務を分けて調べる。
+
+3件とも退役候補にはせず、`rederive`とした。旧比較を履歴として正確に保つ研究問いが残り、0144を除く2件は下流Bindingもsourceを消費している。将来この調査束の代替を提案する場合は、owner/downstream全体の役割・義務・接続・consumer・oracle・negative case移管を検証する。今回その操作はしていない。
 
 ## 判断の根拠
 
-2026-09-24のPO判断はWeb/Web-OSのL1/L2/L11を要求層から外してVision材料とする（[decision record](../../decisions/concept-requirement-po-decisions-2026-09-24.md):37-47）。9/25判断はOS候補のLABO/Intelligence移管と機構別candidate配置を選び、移管後候補は移す前のdraft stateを維持する（[decision record](../../decisions/mechanism-placement-po-decisions-2026-09-25.md):20-36,49-68）。それらの判断は、これら29研究束を退役させる決定ではない。
+2026-09-24のPO判断はWeb/Web-OSのL1/L2/L11を要求層から外してVision材料とする（[decision record](../../decisions/concept-requirement-po-decisions-2026-09-24.md):37-47）。9/25判断はOS候補のLABO/Intelligence移管と機構別candidate配置を選び、移管後候補は移す前のdraft stateを維持する（[decision record](../../decisions/mechanism-placement-po-decisions-2026-09-25.md):20-36,49-68）。それらの判断は、これら32研究束を退役させる決定ではない。
 
 旧HELIXの対応前例は、[旧L12 hybrid recognition candidate inventory](../../../../archive/legacy-generation-2026-09-14/root/docs/governance/l12-hybrid-recognition-candidate-inventory-2026-07-19.md):244,257。researchを`historical/context`に置き、採択する行だけをcurrent authorityへ再記述し、旧authority前提のopen itemを再routeし、完了履歴はhistoricalに保つ。台帳[LEGACY-ASSET-2BF51AD4471985920B94](../../legacy-asset-disposition.jsonl):985は`Historical`/`historical`、disposition `unresolved`である。これは扱いの前例であって、現行の退役規則やPO判断を新設する根拠ではない。
 
-旧資産の個別調査sourceとconsumerは、旧分類・PHCAPの各Goal1監査に記したasset/pathを起点にする。旧archive本文は読むだけとし、source、runtime、test、CI、hook、adapterは実行していない。Goal 6はvalidator条件、inventory、bindingを変更せず、現在の始末案を比較する調査記録である。
+旧資産の個別調査sourceとconsumerは、旧分類・PHCAPの各Goal1監査、およびGoal 5 findingsと各旧source asset行を起点にする。旧archive本文は読むだけとし、source、runtime、test、CI、hook、adapterは実行していない。Goal 6はvalidator条件、inventory、bindingを変更せず、現在の始末案を比較する調査記録である。
 
 ## 適用した既存PO判断と方針
 
@@ -84,7 +98,7 @@ Goal 1の監査記録、旧分類6件の監査（[PR #2134](legacy-classificatio
 
 ### 外部監査の記述の確認
 
-前回reviewが引用した「判断に使う研究束だけを現行要求へ対応させればよい」という外部監査の方針は、このrepository内で根拠を確認できなかった。`docs/`内のMarkdown・JSON・JSONLで「外部監査」「external audit」「判断に使う研究束だけ」を検索した。外部監査roundや評価に関する別件の記録は見つかったが、この方針を述べる権威ある記録は確認できない。したがって、この引用を本記録の判断根拠にしていない。対象term・scope・別件hit例はJSONL各行の`external_audit_claim_check`に記録した。
+前回reviewが引用した「判断に使う研究束だけを現行要求へ対応させればよい」という外部監査の方針は、このrepository内で根拠を確認できなかった。`docs/`内のMarkdown・JSON・JSONLで「外部監査」「external audit」「判断に使う研究束だけ」を検索した。外部監査roundや評価に関する別件の記録は見つかったが、この方針を述べる権威ある記録は確認できない。したがって、この引用を本記録の判断根拠にしていない。対象term・scope・別件hit例はGoal 1由来29行の`external_audit_claim_check`に記録し、Goal 5追加3行にはこのreviewer attributionを適用していない。
 
 
 この記録から退役実行、validator・inventory・Binding変更は行わない。退役候補のvalidatorは0121だけで、現時点では未実行である。各提案を実施するPRでは、最新base・正式consumer・Scaffold Binding全体・置換記録を再確認する。
