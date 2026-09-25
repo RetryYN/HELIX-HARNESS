@@ -18,8 +18,8 @@ decision_record: docs/governance/decisions/mechanism-placement-po-decisions-2026
 ## これは何か
 
 HELIX-OSの要求案にあった項目のうち、担当がHELIX-LABO（全体の改善研究機構）である項目を、2026-09-25のPO判断によりここへ移した。
-移した文言は元のまま保持する。HELIX-LABOにはまだ企画（L1）がないため、本書は要求（L2）ではなく候補であり、
-LABOのL1ができた後に要求として採否する。本書から要求の採用・承認・実装許可を生成しない。
+移した文言は元のまま保持する。HELIX-LABOの企画（L1）は、[L1企画案](../L1-planning/labo-intent.md)がPOによる対象revisionの確認待ちである。そのため本書は要求（L2）ではなく候補であり、
+L1企画案のrevisionをPOが確認した後に要求として採否する。本書から要求の採用・承認・実装許可を生成しない。
 
 元のIDは、追跡のためにそのまま使う。HELIX-OSの要求案には、同じIDの行を移管先の案内として残す。
 
