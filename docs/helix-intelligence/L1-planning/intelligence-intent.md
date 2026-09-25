@@ -60,7 +60,12 @@ INTELLIGENCEは、要求、設計、状態、知識、権限の正本になら�
 | HELIXINTELLIGENCE-L1-018 | 人間は、INTELLIGENCEが現在と次に何をするかを扱い、LABOが過去に何が起き何が効いたかを扱うことを区別できる。INTELLIGENCEは長期の改善の効果を自己評価して採択せず、結果をLABOへ渡し、LABOの評価を判断の材料として受け取る | INTELLIGENCE-L1-018 | 1.0 | 接続（LABO） |
 | HELIXINTELLIGENCE-L1-019 | 人間は、BRAINが示す選択肢と、INTELLIGENCEが今回の状態で選ぶ適用の候補とを区別できる。INTELLIGENCEの判断の結果をBRAINの汎用の知識へ直接書き込まず、汎用化はLABO等の評価の経路を通す | INTELLIGENCE-L1-019 | 1.0 | 接続（BRAIN、LABO） |
 | HELIXINTELLIGENCE-L1-020 | 人間は、INTELLIGENCEが製品固有の要求・設計・意味を理解の材料として使っても、要求、設計のauthority、受入、製品固有の意味を直接変えないことを確かめられる。食い違い・不足・改善の候補には、適切なBackflowの先を示す | INTELLIGENCE-L1-020 | 1.0 | 単体 |
-| HELIXINTELLIGENCE-L1-021 | 人間は、LABOが評価した事例と反例を使い、領域専用・能力専用のモデル、小型のローカルモデル、routing、診断、reviewerのモデル等を学習・調整・評価できる。学習しただけで今のモデルと交換せず、比較を経て適格としたものだけを使う | 3.0への拡張 | 3.0 | 構成体（LABO、INTELLIGENCE） |
+| HELIXINTELLIGENCE-L1-021 | 人間は、LABOが渡す評価済みの事例・反例・学習の材料を使い、判断の領域または能力に特化したローカルLLM（要求の理解、設計のReview、実装の診断、CIの失敗の診断、統合のReview、Workerの配置、Model Router、監査、限定修復等）を学習・チューニングできる。一つの万能のモデルへの統合を必須とせず、領域や能力ごとの小型のモデルを持つ構成を許す | INTELLIGENCE-L1-021（追加の原文） | 3.0 | 単体（材料はLABOからの接続） |
+| HELIXINTELLIGENCE-L1-022 | 人間は、LABOから渡されたデータの利用区分（training、validation、evaluation、holdout、prohibited）を保ち、混同しないことを確かめられる。評価用に隔離した事例を学習へ混ぜず、学習データへの適合だけでモデルの改善を判定しない | INTELLIGENCE-L1-022 | 3.0 | 単体 |
+| HELIXINTELLIGENCE-L1-023 | 人間は、モデルの候補について、base model、版、学習データのrevision、チューニングの方法、構成、領域、能力、学習の環境、評価のcorpus、分かっている限界、戻し先を辿れる。どの材料と設定から生まれたか分からない候補を稼働のモデルへ昇格させない | INTELLIGENCE-L1-023 | 3.0 | 単体 |
+| HELIXINTELLIGENCE-L1-024 | 人間は、モデルの候補を、同じ責務の範囲と比べられるcorpusで今のモデルと比べられる。成功、所見、誤検出、見逃し、再現性、遅延、費用、資源の消費、失敗のパターンを比べ、新しい・大きい・学習済みであることだけを改善の根拠にしない | INTELLIGENCE-L1-024 | 3.0 | 単体 |
+| HELIXINTELLIGENCE-L1-025 | 人間は、モデルごとに領域×能力の適格な範囲を持たせられる。一つのモデルの性能の向上からINTELLIGENCE全体を置き換えず、適格と確かめていない領域へ能力を外挿しない | INTELLIGENCE-L1-025 | 3.0 | 単体 |
+| HELIXINTELLIGENCE-L1-026 | 人間は、モデルの候補または採用したモデルの実績をLABOへ返し、品質、誤検知、見逃し、再作業、時間、費用、人の介入、運用の負荷、退行について、過去の方式との差をLABOに独立して評価させられる。INTELLIGENCEの中のモデルの評価だけで、恒久の改善を確定しない | INTELLIGENCE-L1-026 | 3.0 | 接続（LABO） |
 
 1.0では、既存の外部モデルを使って上の判断の能力を成り立たせる（[Concept](../../concept/helix-concept.md)）。
 
@@ -77,6 +82,8 @@ INTELLIGENCEは、要求、設計、状態、知識、権限の正本になら�
 | INTELLIGENCE ↔ SECURITY | 必要な操作に対する許可と制約の確認 |
 | INTELLIGENCE → Runner／Sandbox | 許可済みの限定した実行だけ |
 | INTELLIGENCE → LABO | 判断、予測、配置、修復の結果（評価の対象） |
+| LABO → INTELLIGENCE（3.0） | 評価済みのepisode、学習の材料、反例、評価のset |
+| INTELLIGENCE → LABO（3.0） | モデルの結果、予測、判断、失敗（効果と退行の評価の対象） |
 
 ## 複数の機構で成り立つもの（構成体の要求）
 
@@ -101,6 +108,7 @@ INTELLIGENCEは、要求、設計、状態、知識、権限の正本になら�
 | HELIXINTELLIGENCE-L1-015〜017 | 旧Bugbot・限定修復の候補（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md`、INTELLIGENCEの候補の「限定修復の条件」） | 対象revision・actor・write-set・副作用・予算等を持つ操作だけを修復し、包括的なwrite権限を生成しない。意味の矛盾は上流へ戻す | 修復の候補を、繰り返す失敗から機械で扱えるものだけをBugbotの候補へ昇格させる形にする |
 | HELIXINTELLIGENCE-L1-010 | 旧3L-BR-010（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md:15`） | 作成・検収・統合の能力を別々に扱う | provider名で固定したlaneから、作業と実績に基づく配置の候補へ変える。実際の割当はOSに残す |
 | HELIXINTELLIGENCE-L1-004、012 | RCLS-BR-002（相関を因果、自己評価を独立検証として扱わない。[LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)）、HARNESS-L2-005（unknownをskipへ変換しない） | 推論と事実を分け、unknownを補完しない | 不確実性の区別を、判断の結果の正常な値として持つ |
+| HELIXINTELLIGENCE-L1-022〜025 | Conceptの1.0の土台「データの利用区分」（学習用と評価用を分けられるようにする）と「構成版の固定と切戻し」（3.0以降のモデルの差し替え）、3.0の行（どのデータと設定から生まれたモデルかを追え、学習前と比べ、弱点・適用範囲・撤回先を持つ）、AAFD-BR-04（同じcorpus・責務の範囲での比較） | 利用区分の分離、由来の追跡、比較、戻し先 | 利用区分をtraining・validation・evaluation・holdout・prohibitedに分け、モデルごとに領域×能力の適格な範囲を持たせる |
 | HELIXINTELLIGENCE-L1-001〜003 | 対応なし | — | 領域×能力の組み合わせと、現在の状況のモデルは、新しい案である。`archive/`を「Situation Model」「Domain × Capability」「判断領域」で探し、該当する記述は見つからなかった |
 
 ## 既存の候補との関係

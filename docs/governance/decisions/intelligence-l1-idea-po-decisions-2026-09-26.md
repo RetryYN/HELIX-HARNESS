@@ -32,6 +32,21 @@ AIの整理：
 - INTELLIGENCEが計画の候補を出し、OSがそれを進める。これは原文のINTELLIGENCE-L1-005（計画の候補、ticketはOS）と合う。
 - 2026-09-25の回答は、2.0と4.0をINTELLIGENCEへ移すかという問いへの答えだった。4.0をINTELLIGENCEだけの仕事にしないという意味は、この回答でも保たれる。
 
+## 3.0のローカル学習の追加
+
+続けて、POはINTELLIGENCE-L1-021〜026の本文を示した（[source snapshot](../../helix-intelligence/sources/intelligence-l1-local-learning-po-original-2026-09-26.md)）。
+
+AIの整理：
+- AIは、はじめの原文の「3.0への拡張」を、L1企画案で1つの要求（HELIXINTELLIGENCE-L1-021）にまとめていた。これを、POが示した021〜026に置き換える。
+- 6つの要求は、次のとおりである。
+  - 領域・能力に特化したモデルの学習
+  - 学習用と評価用のデータの分離
+  - モデルの由来の追跡
+  - 今のモデルとの比較
+  - 適格な範囲の限定
+  - LABOによる独立した効果の評価
+- どれもConceptの1.0の土台（データの利用区分、構成版の固定と切戻し）と3.0の行に合う。
+
 ## 反映先
 
 - [HELIX-INTELLIGENCEのL1企画案](../../helix-intelligence/L1-planning/intelligence-intent.md)を新しく作る。
