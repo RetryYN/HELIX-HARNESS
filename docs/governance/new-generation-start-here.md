@@ -58,6 +58,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 - HARNESS L1と5大目標：内容をPOが採用した。HARNESS L1は1.0土台の追記、5大目標は関与表の縮約を指示された。追記・縮約後の本文は、PO最適ドラフトPRで対象revisionを確認する。
 - HELIX-WebとHELIX-Web-OS：L1・L2・L11を要求層から外し、Visionレベルの材料へ分類し直した。
 - HELIX-LABO：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/labo-core-engine-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。
+- HELIX-BRAIN：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/brain-l1-idea-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。
 `L2D-S0-01 scaffold-binding`と`L2D-S0-02 wbs-ledger`の候補は2026-09-19の[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)で承認済みであり、
 候補本文内の`draft_candidate`／`awaiting_human_approval`も同じく承認前snapshotのmetadataとして、decision recordを優先する。
 対象別L2／L11はdraft・未採否であり、まだcanonicalではない。
