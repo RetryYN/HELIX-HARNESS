@@ -54,6 +54,15 @@ AIの整理：
 - HELIX-Webのserviceの側の実行環境（tenantの実行環境、顧客のjob、顧客の資格情報等）は、原文のHRI-L1-035により、HELIXの本体のInfrastructureへ暗黙に共有しない。Conceptでは、顧客のtenant・job・配備・監視・復旧はHELIX-Web-OSの行にある。
 - 両候補の未確定の点を、この内容に改める。HELIX-INFRASTRUCTURE自体がアイデアの段階であることも添える。
 
+
+## Workerへの統一の反映（2026-09-26）
+
+同じsessionで、POは、作業の実行主体をWorkerへ統一し、HELIXサブエージェント、エージェントレーン、Runner、Sandboxを独立した上位の概念として廃止する要求を示し、「今全部に反映する」を選んだ（[判断記録](worker-execution-model-po-decisions-2026-09-26.md)、PR #2149）。
+
+AIの整理：
+- 本PRの企画（L1）案の「Runner／Sandbox」を、Worker（実行）とSECURITY（制約とauthority）に置き換える。原文の保存は書き換えない。
+- 原文のHRI-L1-039の「Runner / Sandbox等の限定実行経路」はWorkerの実行に、Workerが動く実際の資源はHELIX-INFRASTRUCTUREの側に置く（Workerの原文のRETIRE-SANDBOX-003）。
+
 ## 反映先
 
 - [HELIX-INFRASTRUCTUREのL1企画案](../../helix-infrastructure/L1-planning/infrastructure-intent.md)とREADMEを新しく作る（`docs/helix-infrastructure/`）。
