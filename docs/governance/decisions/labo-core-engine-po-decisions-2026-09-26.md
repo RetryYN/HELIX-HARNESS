@@ -36,23 +36,23 @@ AIが[Concept](../../concept/helix-concept.md)を確かめた結果：
 - Conceptは、1.0の土台で「すべての機構が共通の形で記録し、相関IDで結ぶ」「後から加わる機構が使う評価用の計測・学習用の記録も1.0から記録しておく」としている。
 - 原文の観測の集積は、各機構の記録を各機構に残したまま集めるものであり、この土台と合う。
 - HELIX-OSの管理（証拠と状態の登録と版の管理）、改善候補の登録と振り分けは、原文でもOSに残る。
-- Intelligenceの全体監査・診断とは、次の節の時間軸で分かれる。
+- INTELLIGENCEの全体監査・診断とは、次の節の時間軸で分かれる。
 - 他の機構の責務と重なるものは見つからなかった。
 
 AIの整理：Conceptは、LABOを大まかに定義している。原文はその範囲を具体にしたもので、他の機構の責務と重ならない。Conceptの機構の行は改めない。POの「これでいく」により、原文をLABOの企画（L1）の土台とする。
 
-## LABOとIntelligenceの時間軸
+## LABOとINTELLIGENCEの時間軸
 
 POは次のように述べた。
 
 - 「あとラボは過去の振り返り、Intelligenceは現状の把握と未来へ行動で見ている時間軸が違くないか？」
 
 AIの整理：
-- LABOは過去（何が起き、なぜ起き、何を変えたらどうなったか）を見る。Intelligenceは現在の把握と未来への行動（稼働中の理解・計画・予測・診断・レビュー・配置案）を見る。
+- LABOは過去（何が起き、なぜ起き、何を変えたらどうなったか）を見る。INTELLIGENCEは現在の把握と未来への行動（稼働中の理解・計画・予測・診断・レビュー・配置案）を見る。
 - 重なって見える診断、外の情報、botは、この時間軸で分かれる。
-  - 終わった仕事の原因の振り返りはLABO、稼働中の診断はIntelligenceが担う。
-  - 情報を取りに行くクローラーの発行はIntelligence、取得した情報の評価はLABOが担う。
-  - botを動かすのはIntelligence、botの当たり外れの評価はLABOが担う。
+  - 終わった仕事の原因の振り返りはLABO、稼働中の診断はINTELLIGENCEが担う。
+  - 情報を取りに行くクローラーの発行はINTELLIGENCE、取得した情報の評価はLABOが担う。
+  - botを動かすのはINTELLIGENCE、botの当たり外れの評価はLABOが担う。
 - 整理の結果は[LABOのL1企画案](../../helix-labo/L1-planning/labo-intent.md)の「見ている時間軸」に書いた。
 
 ## エンジンどうしの接続
@@ -69,18 +69,34 @@ AIの整理：
 - 接続の一覧は、要求（L2）で決める。
 - 整理の結果は、LABOのL1企画案の「エンジンと接続」に書いた。
 
-## HELIX-HARNESS-Coreの名称
+## HELIX-HARNESS-COREの名称
 
 POは次のように述べた。
 
 - 「あと、ヘリックスコアはカタカナ表記ではなく、HELIX-HARNESS-Coreが正式名称な。」
 
 AIの整理：
-- 「ヘリックスコア」と書いてきた部位の正式名称は、HELIX-HARNESS-Coreである。意味は変えず、名称だけを改める。
-- 現在の意味を持ち更新され続ける文書（Concept、企画、要求、候補、案内）は、HELIX-HARNESS-Coreへ書き換える。
+- 「ヘリックスコア」と書いてきた部位の正式名称は、HELIX-HARNESS-COREである。意味は変えず、名称だけを改める。
+- 現在の意味を持ち更新され続ける文書（Concept、企画、要求、候補、案内）は、HELIX-HARNESS-COREへ書き換える。
 - 判断記録、監査の記録、source snapshotは、その時点の記録として書き換えない。POの発言の引用もそのまま残す。
-- 原文§19の「Product Helix Core」は、各製品のHELIX-HARNESS-Coreと読む。
+- 原文§19の「Product Helix Core」は、各製品のHELIX-HARNESS-COREと読む。
 - 書き換えは、PR #2140と#2142のmerge後に本PRで行う。
+
+続けて、POは次のように述べた。
+
+- 「基本原則大文字、小文字は同系統のものと合わせること。」
+
+AIが今の機構名に当てはめて聞いたところ、POは次を選んだ。
+
+- HELIX-IntelligenceとHELIX-Securityは「大文字にする」。
+- HELIX-HARNESS-Coreの「Core」は「HELIX-HARNESS-CORE」。
+
+AIの整理：
+- 機構と部位の名前は、大文字を基本とする。小文字を混ぜる名前は、同じ系統の名前と表記を合わせる。
+- 名前は次のとおりとする。HELIX-HARNESS、HELIX-HARNESS-CORE、HELIX-OS、HELIX-BRAIN、HELIX-LABO、HELIX-INTELLIGENCE、HELIX-SECURITY、HELIX-CONNECT。
+- HELIX-WebとHELIX-Web-OSは、同じ系統（Web）で揃っているため、今の表記を保つ。
+- 略して書くときも同じ表記にする（例：INTELLIGENCE、SECURITY）。
+- 書き換える範囲と時期は、上のHELIX-HARNESS-COREと同じとする。
 
 ## 原文で答えが出た未決の点
 
@@ -89,12 +105,12 @@ PR #2140の[統合要求案パッケージ](../crosswalks/po-optimal-draft-packe
 | 未決の点 | 原文の答え |
 |---|---|
 | 2.0でLABOが分解する外の情報 | OSS、設計資料、論文、Issue、PR等（§21） |
-| LABOの技術調査とIntelligenceのクローラーの関係 | クローラーやCONNECT等が取得し、LABOが出所を確かめ、分解・比較・実験して、汎用の構造の候補をBRAINへ入れる（§21）。時間軸の整理とも合う |
-| BRAINの「学習」は構造の蓄積か、モデルの調整か | BRAINは汎用の構造を持ち、LABOが複数の製品やepisodeから確かめた構造の候補を受け取る（§15）。モデルの学習・チューニング・評価は、3.0以降にIntelligenceがLABOの材料を使って行う（§16） |
+| LABOの技術調査とINTELLIGENCEのクローラーの関係 | クローラーやCONNECT等が取得し、LABOが出所を確かめ、分解・比較・実験して、汎用の構造の候補をBRAINへ入れる（§21）。時間軸の整理とも合う |
+| BRAINの「学習」は構造の蓄積か、モデルの調整か | BRAINは汎用の構造を持ち、LABOが複数の製品やepisodeから確かめた構造の候補を受け取る（§15）。モデルの学習・チューニング・評価は、3.0以降にINTELLIGENCEがLABOの材料を使って行う（§16） |
 
 ## 反映先
 
 - [HELIX-LABOのL1企画案](../../helix-labo/L1-planning/labo-intent.md)を新しく作る。
 - [LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)の親を、L1企画案の要求へ付け替える案を書く。
-- 更新され続ける文書の「ヘリックスコア」を、HELIX-HARNESS-Coreへ書き換える。
+- 更新され続ける文書の「ヘリックスコア」をHELIX-HARNESS-COREへ、IntelligenceとSecurityの表記を大文字へ書き換える。
 - 統合要求案パッケージの未決の点、Conceptの2.0の「何を外の情報とするかは未確定」、BRAINの「学習」の未確定の注記は、PR #2140と#2142のmerge後に、本記録に合わせて更新する。
