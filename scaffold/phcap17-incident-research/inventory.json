@@ -635,8 +635,8 @@
     },
     {
       "ref_id": "CUR-WEBOS-01",
-      "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
-      "sha256": "84238131eeb2a60ae0be9c2aff2cb49cb03c7fc09485eb45341f3971dfb98210",
+      "path": "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+      "sha256": "b9a6a0d3c9293dda2cd45da688e17dbb7199e286190a42216e7c1393107cce27",
       "start_line": 35,
       "end_line": 40,
       "line_sha256": "346254b4c8a2314ae4466d19f6af558588f2a9948d6fa7ed274e5df4633ce83d",
@@ -701,7 +701,7 @@
     {
       "ref_id": "CUR-OS-L2-01",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "14637c74a8f794c5374859fb88ec3e7c73734ed85f80005aa78bd4c73df3c50f",
+      "sha256": "7ef9c74133f1b82f783fcce025e186a2d648374a308cd4b5275eeedc580bd156",
       "start_line": 320,
       "end_line": 334,
       "line_sha256": "e76eb258e1ae144e60fd946d66788c94525882818d3d29b86afe2fdc4be7c9bb",
@@ -727,11 +727,11 @@
     {
       "ref_id": "CUR-BOUNDARY-01",
       "path": "docs/concept/product-boundary.md",
-      "sha256": "0d9180309f216ee0125acfc0afabe6a1c55f02074d62b67f284709ea6b29d9d2",
+      "sha256": "1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15",
       "start_line": 33,
       "end_line": 40,
-      "line_sha256": "1c07fedd00455255f02ac81e109469a182ad7bac5374d2f732e4bea7bb7dc278",
-      "exact_text": "## 対象別の正規入口\n\n| 対象 | 所有する要求 | ローカル入口 |\n|---|---|---|\n| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |\n| HELIX-OS | プロジェクト群の管理、ticketを発行する推進、CI・testを最適化する検収、統合・更新・復旧 | [HELIX-OS](../helix-os/README.md) |\n| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../helix-web/README.md) |\n| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |\n",
+      "line_sha256": "fde217b02399014d7780926c63d2023af3740e7f329f99d3912a925ca86c94f4",
+      "exact_text": "## 対象別の正規入口\n\n| 対象 | 所有する要求 | ローカル入口 |\n|---|---|---|\n| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |\n| HELIX-OS | プロジェクト群の管理、ticketを発行する推進、CI・testを最適化する検収、統合・更新・復旧 | [HELIX-OS](../helix-os/README.md) |\n| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../../helix-web/docs/helix-web/README.md) |\n| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../../helix-web/docs/helix-web-os/README.md) |\n",
       "product": "HELIX-HARNESS/HELIX-OS/HELIX-Web-OS",
       "layer": "Concept boundary",
       "classification": "direct_boundary_current_ref",
@@ -740,7 +740,7 @@
     {
       "ref_id": "CUR-BOUNDARY-02",
       "path": "docs/concept/product-boundary.md",
-      "sha256": "0d9180309f216ee0125acfc0afabe6a1c55f02074d62b67f284709ea6b29d9d2",
+      "sha256": "1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15",
       "start_line": 55,
       "end_line": 71,
       "line_sha256": "27c42517f7daa75b0fc5e2af4d9169c6b127a02a5595f8da9d6cda4657ad5997",

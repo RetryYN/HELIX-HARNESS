@@ -7,16 +7,16 @@ layer: L2
 kind: design
 status: vision_material
 freeze_blocking: true
-pair_artifact: docs/helix-web/L11-acceptance/product-acceptance.md
-parent_l1_candidate: docs/helix-web/L1-planning/product-intent.md
+pair_artifact: helix-web/docs/helix-web/L11-acceptance/product-acceptance.md
+parent_l1_candidate: helix-web/docs/helix-web/L1-planning/product-intent.md
 ---
 
 # HELIX-WebのVision由来利用要求案
 
-> **Visionレベルの材料（要求層ではない）**：2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、本書はL1／L2／L11の要求層から外し、Visionレベルの材料として扱う。本書はAIがVision v0.1を拡大解釈して起こしたもので、POが要求として出したものではない。PO：「Visionレベルの話でこれから要求に起こすべき内容であり、いま要求に入ってるのがおかしい」。要求は今後POの指示から起こす。本書の記述を要求・受入・設計・実装の根拠にしない。
+> **Visionレベルの材料（要求層ではない）**：2026-09-24のPO判断（[decision record](../../../../docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、本書はL1／L2／L11の要求層から外し、Visionレベルの材料として扱う。本書はAIがVision v0.1を拡大解釈して起こしたもので、POが要求として出したものではない。PO：「Visionレベルの話でこれから要求に起こすべき内容であり、いま要求に入ってるのがおかしい」。要求は今後POの指示から起こす。本書の記述を要求・受入・設計・実装の根拠にしない。
 
 HELIX-WebはHELIX-OSが開発・改善projectとして管理し、HELIX-Web-OSが展開後のservice runtimeを担う個別プロダクトである。本書は保存された
-[Vision原文](../../../archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の§6／7／10／11／13／14から、
+[Vision原文](../../../../archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/vision/HELIX_VISION_v0.1.md)の§6／7／10／11／13／14から、
 Webの利用者に対する要求を具体化した案である。最新PO指示の管理関係と原文の将来構想を区別する。
 以下の9件の個別採択・L2合意・L3凍結・IR admission・提供時期は未確定。HELIX-Web自体はHARNESS Version 1の
 完成条件へ追加しない。一方、HELIX-Webの展開はHARNESS製品群Version 1の完成を必須前提とする。

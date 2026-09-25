@@ -249,7 +249,7 @@
   "current_tree_revision": "f369e2fd400a02104a67645dca681721989d63be",
   "inputs": {
     "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
-    "docs/concept/product-boundary.md": "sha256:0d9180309f216ee0125acfc0afabe6a1c55f02074d62b67f284709ea6b29d9d2",
+    "docs/concept/product-boundary.md": "sha256:1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15",
     "docs/governance/legacy-asset-copy-read-after.jsonl": "sha256:9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
     "docs/governance/legacy-asset-decisions.jsonl": "sha256:cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
     "docs/governance/legacy-asset-disposition.jsonl": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -329,13 +329,13 @@
     "docs/governance/legacy-requirement-direct-semantic-review-wave9.jsonl": "sha256:da504dc15d37c59ee0bd8d0101baecb3181517c71be229d0218c7fa03b4c4a8e",
     "docs/governance/legacy-requirement-direct-semantic-review-wave9.meta.json": "sha256:a1791b6b5198d62d793d0a14b216141e57c49da643f6cbebc14a1397b7bdf504",
     "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "sha256:8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
-    "docs/governance/phase-capability-inventory.json": "sha256:2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2",
+    "docs/governance/phase-capability-inventory.json": "sha256:16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4",
     "docs/helix-harness/L1-planning/product-intent.md": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
     "docs/helix-os/L1-planning/system-intent.md": "sha256:44bc2b951a76da9e8cdedf0dd27807d1d4ea644bfac1311a22dcc2e9efdd74be",
-    "docs/helix-web-os/L1-planning/system-intent.md": "sha256:31aa8e4fbd260c2ac980300db201a84918b094695e3d24559e50edcb86873249",
-    "docs/helix-web/L1-planning/product-intent.md": "sha256:d5b665017dec1c2f5c71e7006511a11ea81fa0e9aece028c1b9a691588f4fe54",
+    "helix-web/docs/helix-web-os/L1-planning/system-intent.md": "sha256:19a399519538917b0a2a3cd201ebb222981ad245e98a02eafed3ff19111d339b",
+    "helix-web/docs/helix-web/L1-planning/product-intent.md": "sha256:b22d2da8cea573871499f25795ea7cebfb05c66722677577c7c192fc6724ff4f",
     "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl": "sha256:25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a",
-    "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.meta.json": "sha256:c112a86ea0dbc46e05dc2338a1e2fa08d9cbc15a464db18bc753b6c1ca820c09"
+    "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.meta.json": "sha256:139bc778c41818c126db9a79150ebf4666974324b932019c2e6e94e480ceb350"
   },
   "legacy_execution_performed": false,
   "main_merge_parents": [
@@ -367,7 +367,7 @@
     "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
     "docs/governance/legacy-ir-document-source-relation.jsonl": "sha256:f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f",
     "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
-    "docs/governance/phase-capability-inventory.json": "sha256:2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2"
+    "docs/governance/phase-capability-inventory.json": "sha256:16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
   },
   "prior_review_batches": [
     {
@@ -553,7 +553,7 @@
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE37-2026-09-22",
       "ledger_sha256": "sha256:25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a",
-      "meta_sha256": "sha256:c112a86ea0dbc46e05dc2338a1e2fa08d9cbc15a464db18bc753b6c1ca820c09"
+      "meta_sha256": "sha256:139bc778c41818c126db9a79150ebf4666974324b932019c2e6e94e480ceb350"
     }
   ],
   "record_count": 9,

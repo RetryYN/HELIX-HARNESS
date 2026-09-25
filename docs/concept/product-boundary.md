@@ -36,8 +36,8 @@
 |---|---|---|
 | HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |
 | HELIX-OS | プロジェクト群の管理、ticketを発行する推進、CI・testを最適化する検収、統合・更新・復旧 | [HELIX-OS](../helix-os/README.md) |
-| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../helix-web/README.md) |
-| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |
+| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../../helix-web/docs/helix-web/README.md) |
+| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../../helix-web/docs/helix-web-os/README.md) |
 
 この表は当初の4対象の文書入口であり、機構や製品の全件表ではない。要求対象の一覧はこの四つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。
 HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則をOSが適用し、OSの運用から得た改善を

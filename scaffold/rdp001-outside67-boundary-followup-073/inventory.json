@@ -240,7 +240,7 @@
     {
       "source_item_id": "OUTSIDE67-PATH-007",
       "source_path": "docs/design/helix-web-os/L1-planning/system-intent.md",
-      "current_counterpart_path": "docs/helix-web-os/L1-planning/system-intent.md",
+      "current_counterpart_path": "helix-web/docs/helix-web-os/L1-planning/system-intent.md",
       "candidate_product": "shared-cross-product",
       "candidate_phase": "upstream-governance-or-crosswalk",
       "product_candidates": [
@@ -269,7 +269,7 @@
     {
       "source_item_id": "OUTSIDE67-PATH-010",
       "source_path": "docs/design/helix-web/L1-planning/product-intent.md",
-      "current_counterpart_path": "docs/helix-web/L1-planning/product-intent.md",
+      "current_counterpart_path": "helix-web/docs/helix-web/L1-planning/product-intent.md",
       "candidate_product": "shared-cross-product",
       "candidate_phase": "upstream-governance-or-crosswalk",
       "product_candidates": [

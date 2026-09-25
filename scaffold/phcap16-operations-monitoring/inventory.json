@@ -26,7 +26,7 @@
     "phase": "operations_monitoring",
     "title": "運用・監視",
     "inventory_path": "docs/governance/phase-capability-inventory.json",
-    "inventory_sha256": "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2",
+    "inventory_sha256": "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4",
     "phase_record_snapshot": {
       "task_id": "PHCAP-16",
       "phase": "operations_monitoring",
@@ -43,7 +43,7 @@
         ],
         "refs": [
           "docs/helix-os/L2-requirements/governance-requirements.md",
-          "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+          "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
           "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md"
         ]
       },
@@ -352,7 +352,7 @@
       {
         "ref_id": "CUR-OS-L2-OPS",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "14637c74a8f794c5374859fb88ec3e7c73734ed85f80005aa78bd4c73df3c50f",
+        "sha256": "7ef9c74133f1b82f783fcce025e186a2d648374a308cd4b5275eeedc580bd156",
         "product": "HELIX-OS",
         "classification": "direct_current_ref",
         "anchor_id": "CUR-OS-L2-OPS",
@@ -365,20 +365,20 @@
       {
         "ref_id": "CUR-OS-L2-BOUNDARY",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "14637c74a8f794c5374859fb88ec3e7c73734ed85f80005aa78bd4c73df3c50f",
+        "sha256": "7ef9c74133f1b82f783fcce025e186a2d648374a308cd4b5275eeedc580bd156",
         "product": "HELIX-OS",
         "classification": "direct_current_ref",
         "anchor_id": "CUR-OS-L2-BOUNDARY",
         "line_start": 336,
         "line_end": 348,
-        "exact_text": "## 管理対象としてのHELIX-WebとHELIX-Web-OS\n\n2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」と「展開時はHELIX-OSの外にHELIX-Web-OSを作る」を、\nHELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-Web-OSは\nそれぞれ要求正本・合意revision・進行状態を持ち、OSが開発・改善projectとして横断管理する。\nWeb固有の利用者体験やサービス要求は[HELIX-Web側](../../helix-web/README.md)へ置く。\n展開後のtenant、Connector job、service state、credential、配備・監視・復旧は\n[HELIX-Web-OS側](../../helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。\nHELIX-Web-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・\n時点・欠測付きで受領する。HELIXOS-L2-005／007／013により他projectの証拠と突合し、改善候補、採否、対象別変更、\n再検証、再観測へ接続する。credential、tenant原data、範囲外logを吸収せず、受領logから要求を直接変更しない。\nWebで適用するHARNESS版と採用能力を追跡し、Webの変更だけを理由にHARNESSの共通規則や他プロダクトの要求を変更しない。\nWebでの実践証拠をHELIX改善へ戻す際は、出典・利用可能範囲・採否・変更対象・検証結果を保持する。",
+        "exact_text": "## 管理対象としてのHELIX-WebとHELIX-Web-OS\n\n2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」と「展開時はHELIX-OSの外にHELIX-Web-OSを作る」を、\nHELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-Web-OSは\nそれぞれ要求正本・合意revision・進行状態を持ち、OSが開発・改善projectとして横断管理する。\nWeb固有の利用者体験やサービス要求は[HELIX-Web側](../../../helix-web/docs/helix-web/README.md)へ置く。\n展開後のtenant、Connector job、service state、credential、配備・監視・復旧は\n[HELIX-Web-OS側](../../../helix-web/docs/helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。\nHELIX-Web-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・\n時点・欠測付きで受領する。HELIXOS-L2-005／007／013により他projectの証拠と突合し、改善候補、採否、対象別変更、\n再検証、再観測へ接続する。credential、tenant原data、範囲外logを吸収せず、受領logから要求を直接変更しない。\nWebで適用するHARNESS版と採用能力を追跡し、Webの変更だけを理由にHARNESSの共通規則や他プロダクトの要求を変更しない。\nWebでの実践証拠をHELIX改善へ戻す際は、出典・利用可能範囲・採否・変更対象・検証結果を保持する。",
         "meaning": "OS/Web-OS management and permitted evidence export boundary",
-        "line_sha256": "698f8ad2bc6e50e9b56860a6448add7a49a702dc9c31b71b0f8c301b85e0108b"
+        "line_sha256": "fe01ca10d02de5d87fa05fad32931d3753cb2a2295c8e0e13fb8453d0e16357b"
       },
       {
         "ref_id": "CUR-WEBOS-L2-SERVICE",
-        "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
-        "sha256": "84238131eeb2a60ae0be9c2aff2cb49cb03c7fc09485eb45341f3971dfb98210",
+        "path": "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+        "sha256": "b9a6a0d3c9293dda2cd45da688e17dbb7199e286190a42216e7c1393107cce27",
         "product": "HELIX-Web-OS",
         "classification": "direct_current_ref",
         "anchor_id": "CUR-WEBOS-L2-SERVICE",
@@ -430,7 +430,7 @@
       {
         "ref_id": "CUR-PRODUCT-BOUNDARY",
         "path": "docs/concept/product-boundary.md",
-        "sha256": "0d9180309f216ee0125acfc0afabe6a1c55f02074d62b67f284709ea6b29d9d2",
+        "sha256": "1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15",
         "product": "HELIX-OS",
         "classification": "boundary_current_ref",
         "anchor_id": "CUR-PRODUCT-BOUNDARY",

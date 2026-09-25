@@ -72,7 +72,7 @@
     {
       "candidate_phase": "L1-L2-entry",
       "candidate_product": "HELIX-Web-OS",
-      "current_counterpart_path": "docs/helix-web-os/README.md",
+      "current_counterpart_path": "helix-web/docs/helix-web-os/README.md",
       "current_counterpart_relation": "current_counterpart_path_relocation_and_archive_revision_same_content_drift_observed",
       "phase_status": "unknown_path_based_candidate_only",
       "product_candidates": [
@@ -101,7 +101,7 @@
     {
       "candidate_phase": "L1-L2-entry",
       "candidate_product": "HELIX-Web",
-      "current_counterpart_path": "docs/helix-web/README.md",
+      "current_counterpart_path": "helix-web/docs/helix-web/README.md",
       "current_counterpart_relation": "current_counterpart_path_relocation_and_content_drift_observed",
       "phase_status": "unknown_path_based_candidate_only",
       "product_candidates": [

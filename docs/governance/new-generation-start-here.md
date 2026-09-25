@@ -19,8 +19,8 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service r
 5. 対象機構のL1
    - [HELIX-HARNESS](../helix-harness/L1-planning/product-intent.md)
    - [HELIX-OS](../helix-os/L1-planning/system-intent.md)
-   - [HELIX-Web](../helix-web/L1-planning/product-intent.md)
-   - [HELIX-Web-OS](../helix-web-os/L1-planning/system-intent.md)（WebとWeb-OSは2026-09-24のPO判断でVisionレベルの材料へ分類し直した）
+   - [HELIX-Web](../../helix-web/docs/helix-web/L1-planning/product-intent.md)
+   - [HELIX-Web-OS](../../helix-web/docs/helix-web-os/L1-planning/system-intent.md)（WebとWeb-OSは2026-09-24のPO判断でVisionレベルの材料へ分類し直した。2026-09-26のPO判断で、両者の文書はHELIX本体の`docs/`からrepository直下の`helix-web/`へ移した：[判断記録](decisions/helix-web-relocation-po-decisions-2026-09-26.md)）
    - L1企画案（対象revisionはPOが確認する）：[HELIX-BRAIN](../helix-brain/L1-planning/brain-intent.md)、[HELIX-LABO](../helix-labo/L1-planning/labo-intent.md)、[HELIX-INTELLIGENCE](../helix-intelligence/L1-planning/intelligence-intent.md)、[HELIX-SECURITY](../helix-security/L1-planning/security-intent.md)、[HELIX-INFRASTRUCTURE](../helix-infrastructure/L1-planning/infrastructure-intent.md)
    - [5大目標・七大原則のL1被覆監査](audits/source-rebaseline/l1-goals-principles-coverage-audit.md)
    - [5大目標・七大原則のPO原文source atom inventory](l1-goals-principles-source-inventory.md)

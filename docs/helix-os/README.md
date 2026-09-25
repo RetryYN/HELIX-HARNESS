@@ -9,7 +9,7 @@ HELIX-OSを別の輸出プロダクトとして定義しない。
 [HARNESS](../helix-harness/README.md)が規定する工程と検証条件を参照して、作業を実行し進行を制御する。
 工程規則の本文をOS側の別正本として複製しない。
 
-管理対象にはHARNESS自身、[HELIX-Web](../helix-web/README.md)、[HELIX-Web-OS](../helix-web-os/README.md)を含む。
+管理対象にはHARNESS自身、[HELIX-Web](../../helix-web/docs/helix-web/README.md)、[HELIX-Web-OS](../../helix-web/docs/helix-web-os/README.md)を含む。
 Webの利用者向け要求とWeb-OSのservice運転要求は各対象が所有し、OSはその開発・改善を統制する。
 Web-OSから許可されたservice logを改善入力として受領するが、管理対象のruntime stateをOS機能として吸収しない。
 
