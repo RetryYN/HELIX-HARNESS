@@ -29,7 +29,7 @@ SECURITY自身は実行の主体にならない。役割を次のように分け
 | 機構 | 担うもの |
 |---|---|
 | HELIX-SECURITY | 方針、authority、信頼の境界 |
-| Runner／Sandbox | 物理的な適用 |
+| Worker | 制約の強制（Workerの実行環境が強制する（2026-09-26 PO判断、PR #2149）） |
 | HELIX-OS | 運転と進行 |
 | HELIX-INTELLIGENCE | 判断と検出 |
 | HELIX-HARNESS | 必要なsecurityの検証 |
@@ -49,9 +49,9 @@ SECURITYは、HARNESSの工程の意味、製品固有の要求、開発計画�
 | HELIXSECURITY-L1-004 | 人間は、AGENTS.md、CLAUDE.md、Agentの定義、Hook、Skill、MCPの設定、実行環境の設定、Sandboxの方針、system instruction、モデルの設定を、project identity、root、HEADとrevision、設定・Hook・方針のdigest、owner、範囲へ結びつけられる。別のproject、古い版、知らないHookや設定を黙って採用しない | §5 | 1.0 | 単体 |
 | HELIXSECURITY-L1-005 | 人間は、資格情報、token、API key、secretを、通常のAIのcontextや成果物へ直接出さないことを確かめられる。生のsecretをAIへ渡さず、操作・対象・期限へ結びつけた範囲付きの資格情報を使い、資格情報の置き場をWorkerへ直接見せず、repositoryへの混入を防ぎ、外部へ送る前にsecretを検査し、失効をすぐに反映する | §6 | 1.0 | 単体 |
 | HELIXSECURITY-L1-006 | 人間は、外部への通信を既定で拒否し、必要な送信先だけを明示して許可できる。送信先、protocol、endpoint、dataの機密区分、送った量、目的、許可、期限を管理し、vendor側のprivacyの設定だけをsecurityの保証として信用しない。HELIX側でnetworkの許可一覧、pathの絞り込み、送信量の計測、dataの最小化を強制できる | §7 | 1.0 | 単体 |
-| HELIXSECURITY-L1-007 | 人間は、AI Worker、CLI、Agent、Toolを、許可した隔離の実行環境でだけ動かせる。書き込めるpathの限定、networkの制限、資格情報の遮断、環境変数の最小化、timeout、資源の上限、fileの差分の検査、巻き戻し、結果の回収を最低の条件とする。制約はSECURITYが決め、Runner／Sandboxが物理的に適用する | §8 | 1.0 | 接続（Runner／Sandbox） |
+| HELIXSECURITY-L1-007 | 人間は、AI Worker、CLI、Agent、Toolを、許可した隔離の実行環境でだけ動かせる。書き込めるpathの限定、networkの制限、資格情報の遮断、環境変数の最小化、timeout、資源の上限、fileの差分の検査、巻き戻し、結果の回収を最低の条件とする。制約とauthorityはSECURITYが決め、Workerの実行環境がその制約を強制する。Workerは制約を自分で広げない（2026-09-26 PO判断、PR #2149） | §8 | 1.0 | 接続（Worker） |
 | HELIXSECURITY-L1-008 | 人間は、操作（読む、書く、実行、network、install、削除、merge、release、deploy、資格情報の使用、securityの変更）ごとにauthorityを分けられる。「このAgentを使える」から包括的な書込みやdeployの権限を生成せず、影響の大きい操作には、actor、対象、操作、revision、環境、範囲、期限を結びつけた個別のauthorityを求める | §9 | 1.0 | 単体 |
-| HELIXSECURITY-L1-009 | 人間は、authorityの失効、範囲の逸脱、不明な外部の副作用、資格情報の漏洩、異常な通信、実行環境の逸脱を検出したときに、失効と隔離を、OS（新しい割当ての停止）、Runner（実行の停止）、CONNECT（通信の停止）、資格情報（使用の停止）、成果物（accessの停止）へ伝えられる。不明な状態を成功として続けない | §10 | 1.0 | 構成体（SECURITY、OS、Runner／Sandbox、CONNECT） |
+| HELIXSECURITY-L1-009 | 人間は、authorityの失効、範囲の逸脱、不明な外部の副作用、資格情報の漏洩、異常な通信、実行環境の逸脱を検出したときに、失効と隔離を、OS（新しい割当ての停止）、Workerの実行（実行の停止と、途中の成果物の隔離）、CONNECT（通信の停止）、資格情報（使用の停止）、成果物（accessの停止）へ伝えられる。不明な状態を成功として続けない | §10 | 1.0 | 構成体（SECURITY、OS、Worker、CONNECT） |
 | HELIXSECURITY-L1-010 | 人間は、source、依存、package、plugin、MCP、Skill、Agentの定義、Hook、実行環境の設定、Sandboxの方針、モデルとその重み、promptとsystem instruction、Connector、基盤の設定の更新について、出所、digest、依存・権限・network・資格情報・Hookと設定の差分、新しい実行物、既知のfinding、巻き戻しの可否を確かめてから受け入れられる。新しい版であることだけを更新の理由にしない | §11 | 1.0 | 単体 |
 | HELIXSECURITY-L1-011 | 人間は、fileの差分だけでなく、更新による能力の変化（例：読むだけから、書く・shell・networkへ）を検出し、版の差分から能力の差分、securityへの影響を導ける。モデル、Agent、MCP、plugin等にも当てる | §12 | 1.0 | 単体 |
 | HELIXSECURITY-L1-012 | 人間は、HELIXへ取り込む外部の実行資産（package、container image、GitHub repository、MCP server、plugin、Skill、Agent package、モデル、binary）について、出所、作成者、版、digest、依存、権限、networkの振る舞い、既知のrisk、更新の差分、巻き戻しを辿れる。知らない供給元や実行能力を暗黙に信頼済みへ昇格させない | §13 | 1.0 | 単体 |
@@ -73,8 +73,8 @@ SECURITYは、HARNESSの工程の意味、製品固有の要求、開発計画�
 | 流れ | 種類 | 機構 |
 |---|---|---|
 | 外部のdata → CONNECT → SECURITYの境界 → LABO／INTELLIGENCE | 接続 | CONNECT、SECURITY、LABO、INTELLIGENCE |
-| INTELLIGENCEの操作の依頼 → SECURITY（許可・拒否・制約） → OS（許可された作業） → Runner／Sandbox | 構成体 | INTELLIGENCE、SECURITY、OS、Runner／Sandbox |
-| 更新の候補 → SECURITYの受け入れ → Runner／Sandbox → HARNESSの検証 → OSの昇格 | 構成体 | SECURITY、Runner／Sandbox、HARNESS、OS |
+| INTELLIGENCEの操作の依頼 → SECURITY（許可・拒否・制約） → OS（許可された作業） → Worker | 構成体 | INTELLIGENCE、SECURITY、OS、Worker |
+| 更新の候補 → SECURITYの受け入れ → Worker → HARNESSの検証 → OSの昇格 | 構成体 | SECURITY、Worker、HARNESS、OS |
 | Webの利用者 → HELIX-Web → HELIX-Web-OS → SECURITYの資産の境界 → HELIXの内部 | 構成体（1.x） | HELIX-Web、HELIX-Web-OS、SECURITY |
 
 ## 旧HELIXとの対応
@@ -83,7 +83,7 @@ SECURITYは、HARNESSの工程の意味、製品固有の要求、開発計画�
 
 | 本書 | 旧HELIX・現行の上位 | 保持する点 | 変わる点 |
 |---|---|---|---|
-| HELIXSECURITY-L1-008、009 | 旧SEA候補（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md`）。現行ではHELIX-OSの要求案の「Security engagementの統制条件」とHARNESSの要求案の「Security要求に適用する工程条件」が再採否待ちとして持つ | target、operation、environment、network／dataの範囲、期限へ操作のauthorityを結びつけ、authorizationの不在、範囲の逸脱、失効、古い状態、unknownで操作を止める | 対象を、security engagementから、HELIXのすべての操作へ広げる。方針とauthorityはSECURITY、停止の適用はOS・Runner・CONNECTへ分ける |
+| HELIXSECURITY-L1-008、009 | 旧SEA候補（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md`）。現行ではHELIX-OSの要求案の「Security engagementの統制条件」とHARNESSの要求案の「Security要求に適用する工程条件」が再採否待ちとして持つ | target、operation、environment、network／dataの範囲、期限へ操作のauthorityを結びつけ、authorizationの不在、範囲の逸脱、失効、古い状態、unknownで操作を止める | 対象を、security engagementから、HELIXのすべての操作へ広げる。方針とauthorityはSECURITY、停止の適用はOS・Workerの実行・CONNECTへ分ける |
 | HELIXSECURITY-L1-005 | 旧securityのmodule（secretに似たtokenのpatternを単一の正本にする。`archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md:63`）、[Capability Lease bootstrapの判断記録](../../governance/decisions/capability-lease-bootstrap-approval-2026-09-20.md) | secretの判定を一つの正本に置く。資格情報を範囲と期限で貸す | secretの境界を、AIのcontext、成果物、外部への送信まで広げる |
 | HELIXSECURITY-L1-003 | Conceptの1.0の土台「隔離の単位」（project、tenant、環境を、すべての記録、権限、data、資源に最初から付ける） | 隔離の単位 | 割当て（worktree）を単位に加え、他のprojectへの暗黙のfallbackを禁じる |
 | HELIXSECURITY-L1-010、011、013 | Conceptの1.0の土台「構成版の固定と切戻し」 | 構成の版の固定と巻き戻し | 更新の受け入れで、能力の差分とsecurityへの影響を確かめる |

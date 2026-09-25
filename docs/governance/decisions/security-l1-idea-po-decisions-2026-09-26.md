@@ -29,6 +29,15 @@ POは、HELIX-SECURITY Core／L1要求アイデアの本文を示し、「アイ
 - 現行のHARNESSの要求案の「具体的な特権操作・credential管理はHELIX-OSが統制する」は、Conceptの機構の表（HELIX-SECURITYに資格情報）と本書に食い違う。上位のConceptに合わせ、資格情報の方針とauthorityはSECURITY、OSはそれに従う運転とする。HARNESSの要求案の文言は、後続のPRで改める。
 - HELIX-SECURITYの新しいフォルダ（`docs/helix-security/`）を作る。
 
+
+## Workerへの統一の反映（2026-09-26）
+
+同じsessionで、POは、作業の実行主体をWorkerへ統一し、HELIXサブエージェント、エージェントレーン、Runner、Sandboxを独立した上位の概念として廃止する要求を示し、「今全部に反映する」を選んだ（[判断記録](worker-execution-model-po-decisions-2026-09-26.md)、PR #2149）。
+
+AIの整理：
+- 本PRの企画（L1）案の「Runner／Sandbox」を、Worker（実行）とSECURITY（制約とauthority）に置き換える。原文の保存は書き換えない。
+- 制約とauthorityはSECURITYが決め、Workerの実行環境が強制する。失効の伝達先の「Runner」は「Workerの実行」にする（Workerの原文のRETIRE-SANDBOX-002、RETIRE-WORKER-012）。「Sandboxの方針」のように、隔離の技術そのものを指す語は残す（Workerの原文§7）。
+
 ## 反映先
 
 - [HELIX-SECURITYのL1企画案](../../helix-security/L1-planning/security-intent.md)を新しく作る。
