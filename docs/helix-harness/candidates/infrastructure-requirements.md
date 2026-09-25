@@ -70,5 +70,5 @@ HARNESSは、serverの作成、networkの変更、databaseの操作、scaling、
 
 ## 未確定の点
 
-- 原文の「Infrastructure Runtime」をどの機構が持つかは、まだ決まっていない（[BRAINのInfrastructure領域の要求候補](../../helix-brain/candidates/infrastructure-domain-requirements.md)の未確定の点と同じ）。HARNESSが持たないことは原文で確定している。
+- 原文の「Infrastructure Runtime」のうち、HELIX自身の実際の実行環境は、2026-09-26のPOの回答で新しいコア機構のHELIX-INFRASTRUCTUREが持つことにした（[判断記録](../../governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md)、PR #2148）。HELIX-INFRASTRUCTURE自体は、POが全体を見てから扱いを決めるアイデアの段階である。HELIX-Webのserviceの側の実行環境は、HELIXの本体のInfrastructureへ暗黙に共有しない。HARNESSが持たないことは原文で確定している。
 - 本書を要求（L2）の本文へ入れるか、候補のまま残すかは、POが仮決めのL2の最終確認のときに決める。
