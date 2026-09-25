@@ -28,7 +28,7 @@
     "existing_candidate_connection": {
       "binding_id": "SCF-B-0010",
       "binding_path": "scaffold/bindings/SCF-B-0010.json",
-      "binding_sha256": "34f007a01dc76051f8021dda5101107b80af8685bee83e3afd1a422fea75dbd6",
+      "binding_sha256": "7e6b0b09e292bae3fafea441154ed312ea79488a8756798ae1e3713cf9e26525",
       "candidate_path": "scaffold/delegated-doc-002-013-004-029",
       "candidate_inventory_sha256": "ea335ccb0fe508139376682d8129adf1c633c27e81d95d5ee5ebb02dc192c36e",
       "relationship": "complementary_candidate_scopes",
