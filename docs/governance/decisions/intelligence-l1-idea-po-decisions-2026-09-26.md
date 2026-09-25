@@ -50,7 +50,7 @@ AIの整理：
 
 ## Workerへの統一の反映（2026-09-26）
 
-同じsessionで、POは、作業の実行主体をWorkerへ統一し、HELIXサブエージェント、エージェントレーン、Runner、Sandboxを独立した上位の概念として廃止する要求を示し、「今全部に反映する」を選んだ（[判断記録](worker-execution-model-po-decisions-2026-09-26.md)、PR #2149）。
+同じsessionで、POは、作業の実行主体をWorkerへ統一し、HELIXサブエージェント、エージェントレーン、Runner、Sandboxを独立した上位の概念として廃止する要求を示し、「今全部に反映する」を選んだ（未mergeのPR #2149の判断記録HDEC-WORKER-EXECUTION-MODEL-2026-09-26）。
 
 AIの整理：
 - 本PRの企画（L1）案の「Runner／Sandbox」を、Worker（実行）とSECURITY（制約とauthority）に置き換える。原文の保存は書き換えない。
