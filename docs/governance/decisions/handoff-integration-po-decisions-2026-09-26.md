@@ -63,6 +63,14 @@ AIは、LABOの評価の渡し方と、改善ループの主語を2問で聞い�
 
 > 周辺機構をPMOと考えればつじつまが合うだろ。
 
+### 7. Web-OSのjobの扱い
+
+AIの問い：「Web提供側（Web-OS）の仕事（job）を、内部のOSのチケットとして回しますか？ Conceptでは、Web-OSは内部のOSと状態・鍵・権限を共有しないと決めています。OSの要求にも「Web提供側の仕事を内部のOSの状態に入れない」とあります。そのため、図の矢印をOS経由に直すと食い違います。INTELLIGENCEとLABOの仕事は、すでにOS経由に直しました。」
+
+POの回答：
+
+> まだ要求にすら落としてないって言ってんだろ。
+
 ## 最新のOSの前提の出典
 
 回答5で、POはAIのOSの前提が古いと指摘した。AIは、次のPOの原文を読み直した。
@@ -125,5 +133,5 @@ HELIX-OSのL1は、[2026-09-24のPO判断](concept-requirement-po-decisions-2026
 
 ## 直さなかった点
 
-- Web-OSのjob：POは「OS経由に直す」を選んだが、Conceptの機構の表はHELIX-Web-OSの「しないこと」を「内部OSの状態・鍵・権限の共有」とし、OSの要求案も展開後のConnector job・service stateをHELIX-OSの内部のstate・writer・authorityへ収容しないとする（2026-09-14のPO指示「展開時はHELIX-OSの外にHELIX-Web-OSを作る」）。顧客のjobを内部OSのticketとレーンに通すと、この境界と食い違う。WebとWeb-OSは2026-09-24のPO判断でVisionレベルの材料へ分類し直されている。このため、「提供と改善」の図のWeb-OS→Workerの矢印とticketの種類には手を入れず、扱いをPOの判断事項として残す。
+- Web-OSのjob：POは「OS経由に直す」を選んだが、Conceptの機構の表はHELIX-Web-OSの「しないこと」を「内部OSの状態・鍵・権限の共有」とし、OSの要求案も展開後のConnector job・service stateをHELIX-OSの内部のstate・writer・authorityへ収容しないとする（2026-09-14のPO指示「展開時はHELIX-OSの外にHELIX-Web-OSを作る」）。顧客のjobを内部OSのticketとレーンに通すと、この境界と食い違う。WebとWeb-OSは2026-09-24のPO判断でVisionレベルの材料へ分類し直されている。このため、「提供と改善」の図のWeb-OS→Workerの矢印とticketの種類には手を入れない。POは、Web-OSはまだ要求に落としていないと答えた（回答7）。Web-OSのjobの扱いは本記録の対象外とし、Web-OSを要求に落とすときに扱う。
 - BRAINへの昇格の採否：AIの整理で「人の採否」と書く案があったが、旧HELIX（旧RCLS-BR-004：project内の知識を独立検証、横断検証、shadowを経て仕組みへ昇格する）は昇格に人の承認を求めておらず、AGENTS.mdは人の判断を人が持つ上流の意味を変える場合に限る。このため、BRAINのL1には「OSが登録・振り分け、BRAINの変更の手続きの中で独立した検証を経て採否する」と書き、人の判断は人が持つ上流の意味に関わる場合に限った。
