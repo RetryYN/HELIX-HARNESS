@@ -632,7 +632,7 @@
       {
         "ref_id": "CUR-HARNESS-L2-CI",
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-        "sha256": "0cc36087bd7fa9fc3bfad6cdad936214cf5aba265ed040eccf7046447c2294ce",
+        "sha256": "e53133088b8d528a242db7748f0052600938a004053ee4758c141251cc294a43",
         "line_start": 28,
         "line_end": 33,
         "line_sha256": "44a76803b343b2736d6eb0ee6d19bd64d1adc7b3b2940c8c97a17be4fd7df8e0",
@@ -643,11 +643,11 @@
       {
         "ref_id": "CUR-OS-L2-WORKER-CI",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "47b5c10f4d77af982c6969f01b4808d553b2a3cb406a953420e939253bfed05a",
+        "sha256": "f5fe3a526a186a7b32c08dd4defa64ab3a0d4a013322058414474c96e5346c9f",
         "line_start": 57,
         "line_end": 61,
-        "line_sha256": "725612f74ecb6a0aae958ad9602652bc2873c9c558ff6c27b3bcefdf655bc0cc",
-        "exact_text": "| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は4機構に分ける：割当てと進行統制はOS、割当て案はIntelligence（2026-09-25 PO判断「稼働はインテリジェンス」。2026-09-24判断ではBRAIN）、実行はWorker（2026-09-26 PO判断。旧Runner／Sandboxの実行の能力はWorkerへ移し、実行の制約はSecurityが定めてWorkerの実行環境が強制する）、自己承認の防止と権限の制限はSecurity |\n| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |\n| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |\n| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、その変更に必要なCIを動的に合成し、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補、2026-09-24 PO判断 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |",
+        "line_sha256": "0cc0aa67917119a0515a22a59d70b3c30018a76fdc94a9b84094f336b79deb0d",
+        "exact_text": "| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は4機構に分ける：割当てと進行統制はOS、割当て案はINTELLIGENCE（2026-09-25 PO判断「稼働はインテリジェンス」。2026-09-24判断ではBRAIN）、実行はWorker（2026-09-26 PO判断。旧Runner／Sandboxの実行の能力はWorkerへ移し、実行の制約はSECURITYが定めてWorkerの実行環境が強制する）、自己承認の防止と権限の制限はSECURITY |\n| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |\n| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |\n| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、その変更に必要なCIを動的に合成し、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補、2026-09-24 PO判断 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |",
         "classification": "direct_current_ref",
         "meaning": "OS Worker and CI governance candidate"
       },

@@ -8,7 +8,7 @@ kind: design
 status: draft
 freeze_blocking: true
 created: 2026-09-14
-updated: 2026-09-25
+updated: 2026-09-26
 pair_artifact: docs/helix-os/L11-acceptance/governance-acceptance.md
 parent_l1_candidate: docs/helix-os/L1-planning/system-intent.md
 ---
@@ -54,7 +54,7 @@ HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変
 | HELIXOS-L2-001 | プロジェクトごとの企画・要求正本・採否・合意revisionと担当責務を確認できる | HCV4-L2-001／002、HBR-P9 | GitHubの状態から要求を推定せず、何に対する要求かと判断の出所が分かる |
 | HELIXOS-L2-002 | プロジェクト群の要求から作業・実装・検証・提供・運用まで追跡し、欠落と競合を把握できる。提供はリリースカンバン上の状態として追跡できる | HCV4-L2-002／003、HBR-P3／P9、2026-09-24 PO判断 | 未接続・未合意・未実装・未検証を区別し、部分成功で全体完了にならない |
 | HELIXOS-L2-003 | 共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる | PO指摘、HCV4-L2-001／004／006、HBR-P0 | あるプロダクトの方式変更が他プロダクトや共通統制を暗黙に変えない |
-| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は4機構に分ける：割当てと進行統制はOS、割当て案はIntelligence（2026-09-25 PO判断「稼働はインテリジェンス」。2026-09-24判断ではBRAIN）、実行はWorker（2026-09-26 PO判断。旧Runner／Sandboxの実行の能力はWorkerへ移し、実行の制約はSecurityが定めてWorkerの実行環境が強制する）、自己承認の防止と権限の制限はSecurity |
+| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は4機構に分ける：割当てと進行統制はOS、割当て案はINTELLIGENCE（2026-09-25 PO判断「稼働はインテリジェンス」。2026-09-24判断ではBRAIN）、実行はWorker（2026-09-26 PO判断。旧Runner／Sandboxの実行の能力はWorkerへ移し、実行の制約はSECURITYが定めてWorkerの実行環境が強制する）、自己承認の防止と権限の制限はSECURITY |
 | HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |
 | HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |
 | HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |
@@ -87,7 +87,7 @@ engine共通、製品固有pack、入力不足、運用誤りの改善候補へ�
 分類projectionとして関連付ける。原eventを再分類で書き換えず、単体の進行・証拠・完了を接続や構成体へ自動伝播しない。
 
 [設計template system要求候補](../../helix-brain/candidates/design-template-system-requirements.md)の汎用のtemplate・設計パターンと
-その版・seedはHELIX-BRAINが持ち、製品の要求への適用規則と設計義務はHARNESS-L2-009（ヘリックスコア）が持つ。
+その版・seedはHELIX-BRAINが持ち、製品の要求への適用規則と設計義務はHARNESS-L2-009（HELIX-HARNESS-CORE）が持つ。
 HELIX-OSはHELIXOS-L2-001／002／005／007／013として、対象projectが使ったtemplateのexact setと版、適用、義務、N/A、
 backflow、成果、finding、再作業、受入、運用結果を各製品の記録として登録する。
 template未登録、stale、conflict、必要input欠落では任意様式へfallbackせず、停止または要求エンジンへ戻す。複数projectの
@@ -109,8 +109,10 @@ PO「駆動モデルに即したチケットが発行される仕組みで、フ
 
 - 駆動モデルはticketの種類で置き換える。各ticketは、駆動モデルに由来する進め方を、動的ワークフローとして中に持つ。
 - Scrum等は開発方式（枠）であり、ticketの種類ではない。
-- HARNESSは導出のためのコア（HELIX-JSONの定義とPythonの意味導出コア）を持つ。BRAINはそこから判断し、推進はticketを導いて発行する。
+- HARNESSは導出のためのコア（HELIX-JSONの定義とPythonの意味導出コア）を持つ。INTELLIGENCEはそれを材料に稼働中の判断（計画・配置の候補）を行い（2026-09-25 PO判断「稼働はインテリジェンス」。BRAINは汎用の設計知識を渡す）、推進はticketを導いて発行する。
 - ticketは、種類、対象（単体／接続／構成体）、親の要求と版、変更の範囲を持つ。検収は、そこから必要な検証を導き、CIを動的に組み立てる。
+  - 2026-09-26のPO判断（[判断記録](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)）により、検収は、HARNESSの検証義務に従い、PRの前に回すCIをticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）から組み立てる。変更がticketの範囲を超えていれば止める。省いた検査を記録し、合流先のticketで回収されたかを確かめる。検収はoracleを勝手に削除・追加しない。
+  - 同じ判断記録により、OSはForward 小・中・大の定義を変えずに、要求identityごとの進行と成立の状態を別に持つ。Forward 小・中の完了は上のticketの証拠として集め、上のticketの完了は、HARNESSが導いた上の固有の義務との差分が満たされたことを確かめてから記録する。下のticketの完了だけで上のticketの完了を生成しない。relationから変更の影響を導いて再検証の候補へつなぎ、影響の状態（Affected、Unaffected、Unknown）を成立の状態と混同しない。HARNESSが導いた上の検証義務を下のCIの合格で省かない。Backflowで構造を分類し直した後は、新しい要求revisionから必要なticket、設計義務、検証義務を導き直す。OSはHARNESSの構造の意味を定義し直さない。
 - ticketが正で、GitHub IssueとPRは映しである。Issueのcloseやmergeで、ticketは完了にならない。
 - ticketは計画から導いて発行する。トラブル系は、範囲と起きたことを入れると、種類・対象・親の要求が導かれて発行される。範囲が分からないときは、先にDiscoveryで明らかにする。
 - 突発的に発生するものと、計画的に発行できるものを分ける。
@@ -127,9 +129,9 @@ Forwardは本流である。開発方式がVモデル・Scrum・Hybridのどれ�
 | Forward 中 | 接続（機能と機能のつなぎ）を、開発方式の規定路線で作る | 計画 | Forward 大 |
 | Forward 小 | 単体の機能を、開発方式の規定路線で作る | 計画 | Forward 中／大 |
 | Discovery | 開発の途中で検証が必要になったとき、または範囲が分からないときに確かめる | 突発 | 発行元のticket |
-| PoC | 技術的に成り立つかを確かめる。画面の有無に関係なく、成立性が不明なときに発行する。本番実装にはしない | 計画（L2.5） | Backflow→要求エンジンの2次形成→DECIDE |
-| Prototype | 画面の操作と使う人の反応を確かめる。画面のない対象では発行しない | 計画（L2.5） | Backflow→要求エンジンの2次形成→DECIDE |
-| DECIDE | 裁定。要求の確認や技術の選定をPR化して決める | 計画 | 採用→Forward、不採用→記録して終了、方針変更→次の計画 |
+| PoC | 技術的に成り立つかを確かめる。画面の有無に関係なく、成立性が不明なときに発行する。本番実装にはしない | 計画（L2.5） | Backflow→要求エンジンの2次形成→Decide |
+| Prototype | 画面の操作と使う人の反応を確かめる。画面のない対象では発行しない | 計画（L2.5） | Backflow→要求エンジンの2次形成→Decide |
+| Decide | 裁定。要求の確認や技術の選定をPR化して決める | 計画 | 採用→Forward、不採用→記録して終了、方針変更→次の計画 |
 | Backflow | 下流の結果（PoC・Prototypeの結果、要求の入力不足、下流で分かったこと）を要求へ戻す | PoC・Prototypeの後は計画、それ以外は突発 | 要求エンジン（L2） |
 | Reverse | 実装の事実から設計へ戻す。Scrum Reverseを含む | 突発（設計と実装のずれ、同種finding再発、性能退行、障害等）と計画（Scrum Reverseのcheckpoint：sprint review前、release candidate合流前、public contract・DB schema・主要dependency・NFR budgetの変更時。旧`helix-harness-requirements_v1.3.md:94-102`） | Forwardの該当層 |
 | Recovery | AIの逸脱・暴走・context切れから正常な地点へ戻す | 突発 | 中断していた工程 |
@@ -137,15 +139,15 @@ Forwardは本流である。開発方式がVモデル・Scrum・Hybridのどれ�
 | Refactor | 振る舞いを変えずにコードの構造を直す | 計画（範囲を入れれば事象からも発行可） | Forward 小 |
 | Design-refactor | 外部の振る舞いを保って設計の構造を直す | 計画（範囲を入れれば事象からも発行可） | Forward |
 | Performance-refactor | 設計を保って性能を上げる。測れない高速化は不可 | 計画（範囲を入れれば事象からも発行可） | Forward |
-| Redesign | 外部の約束・要求・受入条件を変えて設計をやり直す | 計画 | Forward（要求が変わるときはDECIDEを経る） |
+| Redesign | 外部の約束・要求・受入条件を変えて設計をやり直す | 計画 | Forward（要求が変わるときはDecideを経る） |
 | Retrofit | 依存・基盤・構成の更新に合わせて段階的に移行する | 計画（範囲を入れれば事象からも発行可） | Forwardの該当層 |
 | Research | 選定や比較のための参考ソースを集める。決定には関わらない | 計画 | 依頼元 |
 | Add-feature | 既存のものに機能を差分で追加する | 計画 | Forwardの該当層 |
-| Version-up | 後の版へ回した項目を保全し、時期が来たら取り込む | 計画 | 取り込み時にDECIDE→Add-feature |
+| Version-up | 後の版へ回した項目を保全し、時期が来たら取り込む | 計画 | 取り込み時にDecide→Add-feature |
 
 旧定義との違いは次の4点である。
 - DiscoveryとPoCは、旧HELIXでは1つだった（PoCはS2）。PO判断で分けた。
-- 旧S4 decideはDiscovery専用だった。DECIDEとして独立させた。
+- 旧S4 decideはDiscovery専用だった。Decideとして独立させた。
 - 旧Researchは決定（ADR）まで含んでいた。PO判断で決定を外した。
 - Redesign・Design-refactor・Performance-refactorは、旧HELIXに手順書がない。旧要件の記述だけを起点にした。
 
@@ -187,7 +189,7 @@ OSが要求を直接書き換えたり自己承認したりしない。本節で
 
 ## 限定修復の統制条件
 
-旧Bugbot候補に由来する限定修復の統制条件は、2026-09-25 PO判断により[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ移した。
+旧Bugbot候補に由来する限定修復の統制条件は、2026-09-25 PO判断により[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ移した。
 
 ## 構造改善候補の統制条件
 
@@ -341,7 +343,7 @@ HMC候補は人間承認記録済み・独立検収／正本化待ちと宣言�
 |---|---|---|
 | HMC-BR-001 | HELIXOS-L2-004／009 | runtimeを跨いでassignment、review依頼、handover、heartbeat、確認待ちを有期限な通知として受け渡せる |
 | HMC-BR-002 | HELIXOS-L2-001／009 | 通知から各対象の正本を再取得でき、stale pointerやHEAD不一致を把握できる。要求の意味は要求文書・指定JSONへ、実行状態はその状態authorityへ戻る。Issue本文を要求正本として再取得しない |
-| HMC-BR-003 | HELIXOS-L2-001／005 | 要求・設計・受入・運用規則・ユーザー嗜好をmemoryの正本へ移さない。規則にあたる内容は仕組みで吸収する。知識は1.0〜2.xではHELIX-LABOが評価して保持し、3.0からはHELIX-Intelligenceが改善に使う。参照先を確認できる（2026-09-24 PO判断で旧「Learning／Skill authority」を置換） |
+| HMC-BR-003 | HELIXOS-L2-001／005 | 要求・設計・受入・運用規則・ユーザー嗜好をmemoryの正本へ移さない。規則にあたる内容は仕組みで吸収する。知識は1.0〜2.xではHELIX-LABOが評価して保持し、3.0からはHELIX-INTELLIGENCEが改善に使う。参照先を確認できる（2026-09-24 PO判断で旧「Learning／Skill authority」を置換） |
 | HMC-BR-004 | HELIXOS-L2-001／007 | 通知中の相談・質問・仮説・叱責・AI解釈から承認・決定・完了を生成しない |
 | HMC-BR-005 | HELIXOS-L2-004／009 | 重複配送・再送・消費・期限切れ・訂正・crash後再開を追跡できる。無効記録は監査履歴として参照できてもcurrent guidanceへ再表示されない |
 | HMC-BR-006 | HELIXOS-L2-004／009 | すべてのproviderの標準memory（provider native memory）を使わない。session history・user設定も共有通知やauthorityへ暗黙混入しない（2026-09-24 PO判断で「混入しない」から「使わない」へ強化） |
@@ -361,7 +363,7 @@ HMC-BR-006のprovider設定詳細はProvider Configurationの責務とし、OS�
 
 PPSの要求候補をHELIX-OSの対象別要求案へ接続する。PPSはHELIXOS-L2-004／007に対応する。
 draftであり、以下への収載を採択・正本昇格と扱わない。出典は[PPS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md)である。
-同じ節にあった監査（AAFD）は[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。
+同じ節にあった監査（AAFD）は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。
 
 | 出典 | 保持する具体条件 |
 |---|---|
