@@ -17,7 +17,7 @@ updated: 2026-09-26
 # HELIX-BRAIN L1企画案
 
 本書の親は[HELIX Concept](../../concept/helix-concept.md)である。本文は、POが2026-09-26に示した[HELIX-BRAIN L1要求アイデアの原文](../sources/brain-l1-idea-po-original-2026-09-26.md)を、企画（L1）の形に整理したものである。
-整理にはPOの回答（ビジュアルデザインを1.0から扱う、ビジュアルデザインHARNESSと連携する）を含める（[判断記録](../../governance/decisions/brain-l1-idea-po-decisions-2026-09-26.md)）。
+整理にはPOの回答（ビジュアルデザインを1.0から扱う、Visual design HARNESSと連携する）を含める（[判断記録](../../governance/decisions/brain-l1-idea-po-decisions-2026-09-26.md)）。
 本書の整理が原文を超えず欠かしていないかは、POが対象revisionで確認する。本書から、要求（L2）の合意、要件（L3）の承認、実装・実行の許可を生成しない。
 
 ## 提供価値
@@ -68,7 +68,7 @@ HELIX-BRAINは、ソフトウェア開発に必要な再利用できる設計知
 | BRAIN → HELIX-HARNESS-CORE | 要求・設計の対象に使えるPattern・Unit・Part | 1.0 |
 | BRAIN ↔ INTELLIGENCE | BRAINの構造の知識を判断の材料として渡し、INTELLIGENCEが案件の状態への適用の候補を考える | 1.0 |
 | BRAIN → HARNESS | Patternが求める設計のinputと論点を、HARNESSの設計義務（HARNESS-L2-009）へつなぐ | 1.0 |
-| BRAIN ↔ ビジュアルデザインHARNESS | ビジュアルデザインHARNESSは、設計ではなくビジュアルデザイン（画面の見た目と体験）の生成と評価を担うHELIX-HARNESSの中の仕組みである。BRAINからは、ビジュアルデザインとUXのPattern・Unit・Part、適用の条件、反例を渡す。ビジュアルデザインHARNESSでの利用の結果と評価は、LABOを経てBRAINへ戻し、ビジュアルデザインHARNESSから直接汎用の知識へ昇格させない（POの回答「Designハーネスと連携する方向性で」「ここでいうDesignハーネスは設計じゃなくてビジュアルデザインのデザインな。」） | 1.0 |
+| BRAIN ↔ Visual design HARNESS | Visual design HARNESSは、設計ではなくビジュアルデザイン（画面の見た目と体験）の生成と評価を担うHELIX-HARNESSの中の仕組みである。BRAINからは、ビジュアルデザインとUXのPattern・Unit・Part、適用の条件、反例を渡す。Visual design HARNESSでの利用の結果と評価は、LABOを経てBRAINへ戻し、Visual design HARNESSから直接汎用の知識へ昇格させない（POの回答「Designハーネスと連携する方向性で」「ここでいうDesignハーネスは設計じゃなくてビジュアルデザインのデザインな。」） | 1.0 |
 | 外の情報 → LABO → BRAIN | 外の情報をLABOで分解・比較・評価し、再利用の構造の候補としてBRAINへ入れる。外で成功したPatternをそのまま入れない | 2.0 |
 
 1.0では、自前の内部の実績と初期のseedから設計知識の体系を成り立たせる。
@@ -83,7 +83,7 @@ HELIX-BRAINは、ソフトウェア開発に必要な再利用できる設計知
 | HELIXBRAIN-L1-002 | [2026-09-25のBRAIN・ヘリックスコアのPO指示](../../governance/decisions/brain-helix-core-po-intent-2026-09-25.md)（設計パターンの導出、設計ユニット・パーツ） | 設計パターンと設計ユニット・パーツの考え方 | 領域→Pattern→Design Unit→Partの階層として定める |
 | HELIXBRAIN-L1-003、007、010 | DST-HARNESS-002（templateのapplicability、必須input、relation、negative oracle）、DST-HARNESS-005（出典・採否・適用範囲・限界・negative caseを持つseed）（[BRAINの候補](../candidates/design-template-system-requirements.md)） | 適用の条件、使えない場合、出典と限界を持つ | templateから、領域ごとのPattern・Unit・Partへ広げる。失敗の知識を構造として持つ |
 | HELIXBRAIN-L1-008 | DST-OS-001（承認済み、seed、候補、retiredの区別と、projectが使ったexact setと版） | 状態の区別と、使った版の追跡 | 汎用の構造の版と状態はBRAIN、projectで使った版と状態の登録はHELIX-OSに分ける（候補の「現行Conceptに照らした担当」と同じ） |
-| BRAIN ↔ ビジュアルデザインHARNESS | 旧v1.3の「ビジュアルDesign HARNESSはUI/UXの生成・評価を担う」（`docs/governance/requirements-source/helix-requirements_v1.3.md:67`）、§4.5 AI Vision Design HARNESSエンジン（同:265-275） | ビジュアルデザインHARNESSが画面・体験の生成と評価を担う | ビジュアルデザインのうち、製品をまたぐ再利用の構造をBRAINへ、製品固有のscreen・flow・design token・Visual Identityを各製品のHELIX-HARNESS-COREへ分ける。旧§4.9の統合Design HARNESS（同:379-393）はSystem Design（設計）まで含めていたが、ビジュアルデザインHARNESSはビジュアルデザインに限る |
+| BRAIN ↔ Visual design HARNESS | 旧v1.3の「ビジュアルDesign HARNESSはUI/UXの生成・評価を担う」（`docs/governance/requirements-source/helix-requirements_v1.3.md:67`）、§4.5 AI Vision Design HARNESSエンジン（同:265-275） | Visual design HARNESSが画面・体験の生成と評価を担う | ビジュアルデザインのうち、製品をまたぐ再利用の構造をBRAINへ、製品固有のscreen・flow・design token・Visual Identityを各製品のHELIX-HARNESS-COREへ分ける。旧§4.9の統合Design HARNESS（同:379-393）はSystem Design（設計）まで含めていたが、Visual design HARNESSはビジュアルデザインに限る |
 | HELIXBRAIN-L1-004、009 | 対応なし | — | 複数の正解を併存させることと、Unitを組み合わせた構成の候補は、新しい案である。`archive/`を「alternative_to」「composition candidate」「複数の正解」で探し、BRAINの知識に当たる記述は見つからなかった |
 
 ## 既存の候補との関係
