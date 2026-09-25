@@ -610,7 +610,7 @@
       {
         "ref_id": "CUR-BOUNDARY-FOUR",
         "path": "docs/concept/product-boundary.md",
-        "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+        "sha256": "f8de668e2b523ead41a066d5261c6855dff61a1efc1e0b509a3a94ba95b1f4f1",
         "line_start": 33,
         "line_end": 40,
         "line_sha256": "63eaa45e73c16fc9167051c0ff8232452a9bb77e54602444bd31c080dd89977b",
@@ -621,18 +621,18 @@
       {
         "ref_id": "CUR-BOUNDARY-OWNERSHIP",
         "path": "docs/concept/product-boundary.md",
-        "sha256": "9268e35757c9a78baa47122917215b30ece1905d2b3f384c89fbfd4eb2b3ac0a",
+        "sha256": "f8de668e2b523ead41a066d5261c6855dff61a1efc1e0b509a3a94ba95b1f4f1",
         "line_start": 55,
         "line_end": 71,
-        "line_sha256": "188d567926544d252d8509f0b1436691e330a55ac867b66c44cff4230cbbd451",
-        "exact_text": "| HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |\n| HELIX-OS | HELIXプロジェクト群の内部管理・推進・検収機構 | authority・state管理、ticket発行とWorker割当、CI・test最適化、改善候補登録、配布運転。独立評価はLABO、知識・モデル改善は3.0のIntelligenceへ接続する |\n| HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとしてWeb利用者へダッシュボード、操作、進行表示、サービス体験を提供する |\n| HELIX-Web-OS | HELIX-OS外のWebサービス運転基盤 | tenant、Connector、job、service state、evidence projection、配備・監視・復旧 |\n\nHARNESSをHELIX-OSの内部Kernelだけに縮退させない。HELIX-OSはHARNESSを利用・管理するが、\nHARNESSの工程意味を所有する別正本を作らない。HARNESSのartifact内容とconsumer利用条件はHARNESS、\nartifactの生成、配布、promotion、rollback、監視の実行統制はHELIX-OSが担う。\n\nHELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWeb-OSの\n要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、Web-OSは展開後の利用者向けserviceを\n独立したauthority、state、credential、writerで運転する。\n\n両OSは改善loopで接続する。HELIX-Web-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで\n渡し、HELIX-LABOがHARNESS自身の実践を含む各対象の効果と退行を評価し、HELIX-OSが評価を改善候補として登録する。\n採択された候補だけをHARNESS、Web、Web-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、\n同意範囲外logの吸収や、logからの直接変更は行わない。",
+        "line_sha256": "fa08fcc68c8de80f204f2ba5a8a89293179996416dd2a4922b3412c428e32014",
+        "exact_text": "| HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |\n| HELIX-OS | HELIXプロジェクト群の内部管理・推進・検収機構 | authority・state管理、ticket発行とWorker割当、CI・test最適化、改善候補登録、配布運転。独立評価はLABO、稼働中の判断と知識・モデル改善はINTELLIGENCEへ接続する |\n| HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとしてWeb利用者へダッシュボード、操作、進行表示、サービス体験を提供する |\n| HELIX-Web-OS | HELIX-OS外のWebサービス運転基盤 | tenant、Connector、job、service state、evidence projection、配備・監視・復旧 |\n\nHARNESSをHELIX-OSの内部Kernelだけに縮退させない。HELIX-OSはHARNESSを利用・管理するが、\nHARNESSの工程意味を所有する別正本を作らない。HARNESSのartifact内容とconsumer利用条件はHARNESS、\nartifactの生成、配布、promotion、rollback、監視の実行統制はHELIX-OSが担う。\n\nHELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWeb-OSの\n要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、Web-OSは展開後の利用者向けserviceを\n独立したauthority、state、credential、writerで運転する。\n\n両OSは改善loopで接続する。HELIX-Web-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで\n渡し、HELIX-LABOがHARNESS自身の実践を含む各対象の効果と退行を評価し、HELIX-OSが評価を改善候補として登録する。\n採択された候補だけをHARNESS、Web、Web-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、\n同意範囲外logの吸収や、logからの直接変更は行わない。",
         "classification": "boundary_candidate",
         "meaning": "four product responsibility and OS/Web-OS connection"
       },
       {
         "ref_id": "CUR-HARNESS-L2-CI",
         "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-        "sha256": "1c5866127960956c7943218aa8571c8eb743fc98b28b7137c1816974f2b7aec4",
+        "sha256": "0cc36087bd7fa9fc3bfad6cdad936214cf5aba265ed040eccf7046447c2294ce",
         "line_start": 28,
         "line_end": 33,
         "line_sha256": "44a76803b343b2736d6eb0ee6d19bd64d1adc7b3b2940c8c97a17be4fd7df8e0",
@@ -643,11 +643,11 @@
       {
         "ref_id": "CUR-OS-L2-WORKER-CI",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "152fd45e3ac29867ef1b2c604f8400fcd8a6e965078a7cd663183a1177e113fe",
+        "sha256": "4fc48eb7be33cbf93dbdb12151eaf5710d26dab1aa7c41300eee226b4b10fe73",
         "line_start": 57,
         "line_end": 61,
-        "line_sha256": "a7f82bb28e403ced64b0174acccd6151a41b9263e1667485e1145acbf7f1d156",
-        "exact_text": "| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は4機構に分ける：割当てと進行統制はOS、割当て案はBRAIN、実行はRunner／Sandbox、自己承認の防止と権限の制限はSecurity |\n| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |\n| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |\n| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、その変更に必要なCIを動的に合成し、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補、2026-09-24 PO判断 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |",
+        "line_sha256": "b24c54da42aca2df6f6c54faae452de3e50536a6a59d34e7516892b9b3b25529",
+        "exact_text": "| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は4機構に分ける：割当てと進行統制はOS、割当て案はIntelligence（2026-09-25 PO判断「稼働はインテリジェンス」。2026-09-24判断ではBRAIN）、実行はRunner／Sandbox、自己承認の防止と権限の制限はSecurity |\n| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |\n| HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |\n| HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |\n| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、その変更に必要なCIを動的に合成し、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補、2026-09-24 PO判断 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |",
         "classification": "direct_current_ref",
         "meaning": "OS Worker and CI governance candidate"
       },
