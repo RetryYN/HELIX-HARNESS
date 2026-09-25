@@ -39,7 +39,7 @@ HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変
 | HELIXOS-L1-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断。元の文言「人間は、一つの仕事を要求から運用まで診断し、管理機構自身を含む是正と効果確認へ閉じられる」は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIXOS-L2-013 |
 
 上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。
-現行の`HELIXOS-L2-005`と同じL2文書内の学習に関する記述は、旧OS集中責務を含む未承認の候補である。LABOの独立評価、OSの登録・実行、後続版のIntelligenceによる知識・モデル改善への分離は[要求対応表](../../governance/crosswalks/concept-mechanism-version-requirement-crosswalk.md)で照合中とし、旧L2本文のまま現行のOS単独責務とは判定しない。
+現行の`HELIXOS-L2-005`と同じL2文書内の学習に関する記述は、旧OS集中責務を含む未承認の候補である。LABOの独立評価、OSの登録・実行、後続版のINTELLIGENCEによる知識・モデル改善への分離は[要求対応表](../../governance/crosswalks/concept-mechanism-version-requirement-crosswalk.md)で照合中とし、旧L2本文のまま現行のOS単独責務とは判定しない。
 
 ## L0 charterからの投影
 
