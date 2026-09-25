@@ -66,5 +66,5 @@ RCLSは採用revision確定後に次を確認する。
 
 ## 未確定の点
 
-- 技術調査（HELIXOS-L2-012）について、2026-09-25のBRAIN・ヘリックスコアのPO指示では、Intelligenceがクローラーを発行するとしている。本書の置き場所はPO判断によりLABOとした。クローラーの発行とLABOの技術調査の関係は、LABOとIntelligenceのL1で詰める。
+- 技術調査（HELIXOS-L2-012）について、2026-09-25のBRAIN・HELIX-HARNESS-COREのPO指示では、INTELLIGENCEがクローラーを発行するとしている。本書の置き場所はPO判断によりLABOとした。クローラーの発行とLABOの技術調査の関係は、LABOとINTELLIGENCEのL1で詰める。
   - 2026-09-26、POが示したLABOの原文（§21）と時間軸の整理により、クローラーやCONNECT等が情報を取得し、LABOが出所を確かめて分解・比較・評価するとした（[判断記録](../../governance/decisions/labo-core-engine-po-decisions-2026-09-26.md)）。

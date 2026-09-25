@@ -49,7 +49,7 @@ Concept／製品責務境界→5大目標→七大原則→対象別L1の読込�
 Conceptは[1ファイル](../concept/helix-concept.md)をその場で改訂する。版ごとのファイル、改訂ごとの承認記録、昇格手続きは置かない。
 改訂は人の指示をAIが反映し、変更の履歴はgitに残す。版ごとのファイルは残さない。v4.1／v4.2のファイルは下位文書の親付替えと同時に削除済みで、過去の本文はgitの履歴で辿る。
 Conceptの改訂に紐づく下位文書は見直し対象として示し、作業全体を止めない。v4.3への改訂（2026-09-24）の見直し対象は、
-4対象L1、5大目標、七大原則、製品責務境界である。これらの親は現行Conceptへ付け替えた。BRAIN、LABO、Intelligence、Security、CONNECT、Runner／Sandboxの責務差分は候補として記録し、対象別L2／L11の採否を生成しない。
+4対象L1、5大目標、七大原則、製品責務境界である。これらの親は現行Conceptへ付け替えた。BRAIN、LABO、INTELLIGENCE、SECURITY、CONNECT、Runner／Sandboxの責務差分は候補として記録し、対象別L2／L11の採否を生成しない。
 
 4対象L1の**旧exact revision**は2026-09-17のdecision recordで承認済みである。旧承認を現行bytesへ継承しない。
 [2026-09-24のPO判断](decisions/concept-requirement-po-decisions-2026-09-24.md)で、次のように扱いを決めた。
