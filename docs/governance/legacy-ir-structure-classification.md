@@ -43,7 +43,7 @@ source_count: 153
 | `core` | コア |  |
 | `ticket` | チケット・駆動モデル |  |
 | `os_management` | OS：管理（土台） |  |
-| `os_promotion` | OS：推進（チケット発行・レーン・サブエージェント） |  |
+| `os_promotion` | OS：推進（チケット発行・レーン・Worker） |  |
 | `os_acceptance` | OS：検収（CI・テスト最適化・ベンチ） |  |
 | `os_improvement` | OS：改善loop（学習・判断pack・memory） | 仮置き |
 | `part_research_workflow` | 部品：リサーチWorkflow（第2波・第3波で使用） | 仮置き |
@@ -69,7 +69,7 @@ source_count: 153
 | コア | 18 | 19 |
 | チケット・駆動モデル | 9 | 13 |
 | OS：管理（土台） | 16 | 38 |
-| OS：推進（チケット発行・レーン・サブエージェント） | 27 | 8 |
+| OS：推進（チケット発行・レーン・Worker） | 27 | 8 |
 | OS：検収（CI・テスト最適化・ベンチ） | 15 | 11 |
 | OS：改善loop（学習・判断pack・memory）（仮置き） | 9 | 1 |
 | **計** | **153** | |
@@ -117,23 +117,23 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 旧システム | 区分 | 主の層 |
 |---|---|---|---|
-| `HIL-BR-01` | Infinity Loop（自動走行と監査の交互接続） | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
+| `HIL-BR-01` | Infinity Loop（自動走行と監査の交互接続） | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・Worker） |
 | `HIL-BR-02` | PR hook intake | 要求に技術の決定が混在 | OS：検収（CI・テスト最適化・ベンチ） |
 | `HIL-BR-03` | Memory Compactor | 要求に技術の決定が混在 | OS：改善loop（学習・判断pack・memory） |
-| `HIL-BR-09` | Agent Registry／Muster | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
+| `HIL-BR-09` | Agent Registry／Muster | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・Worker） |
 | `HIL-BR-10` | 因果chain | 要求に技術の決定が混在 | OS：管理（土台） |
 | `HIL-BR-12` | Intake正規化 | 要求に技術の決定が混在 | チケット・駆動モデル |
 | `HIL-BR-14` | Source Capability Coverage Gate | 要求に技術の決定が混在 | 入口：フルリバース |
 | `HIL-BR-16` | Three-stage CI Orchestrator | 要求に技術の決定が混在 | 枠：開発方式・接続・Gate |
 | `HIL-BR-17` | Finding Disposition | 要求に技術の決定が混在 | チケット・駆動モデル |
 | `HIL-BR-19` | Bun Dependency Coverage Gate | 要求に技術の決定が混在 | コア |
-| `HIL-BR-32` | Worker Sandbox Contract | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
-| `HIL-FR-01` | InfinityLoopEvent | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
+| `HIL-BR-32` | Worker Sandbox Contract | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・Worker） |
+| `HIL-FR-01` | InfinityLoopEvent | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・Worker） |
 | `HIL-FR-02` | PR hook intake | 要求に技術の決定が混在 | OS：検収（CI・テスト最適化・ベンチ） |
-| `HIL-FR-08` | Codex実行器 | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
+| `HIL-FR-08` | Codex実行器 | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・Worker） |
 | `HIL-FR-09` | Claude監査器 | 要求に技術の決定が混在 | OS：検収（CI・テスト最適化・ベンチ） |
 | `HIL-FR-10` | Memory Compactor | 要求に技術の決定が混在 | OS：改善loop（学習・判断pack・memory） |
-| `HIL-FR-12` | Agent Sync/Guard | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
+| `HIL-FR-12` | Agent Sync/Guard | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・Worker） |
 | `HIL-FR-15` | Hybrid docgen ingestion | 要求に技術の決定が混在 | 入口：フルリバース |
 | `HIL-FR-16` | Asset Inventory | 要求に技術の決定が混在 | 入口：フルリバース |
 | `HIL-FR-21` | Source Snapshot Manifest | 要求に技術の決定が混在 | 入口：フルリバース |
@@ -144,13 +144,13 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | `HIL-FR-33` | Bun Dependency Coverage Gate | 要求に技術の決定が混在 | コア |
 | `HIL-FR-34` | OS Contract Runner | 要求に技術の決定が混在 | コア |
 | `HIL-FR-52` | Atomic Canonicalization Transaction | 要求に技術の決定が混在 | OS：管理（土台） |
-| `HIL-FR-63` | Effort Router | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
-| `HIL-FR-65` | Delegation Environment Hygiene | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
+| `HIL-FR-63` | Effort Router | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・Worker） |
+| `HIL-FR-65` | Delegation Environment Hygiene | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・Worker） |
 | `HIL-FR-66` | Proposal Revalidation Gate | 要求に技術の決定が混在 | OS：検収（CI・テスト最適化・ベンチ） |
-| `HIL-FR-68` | Delegation Wire Protocol | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
+| `HIL-FR-68` | Delegation Wire Protocol | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・Worker） |
 | `HIL-FR-69` | Delegation Audit Evidence | 要求に技術の決定が混在 | OS：管理（土台） |
 | `HIL-NFR-01` | PR hook intake | 要求に技術の決定が混在 | OS：管理（土台） |
-| `HIL-NFR-02` | Agent Registry／Muster | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・サブエージェント） |
+| `HIL-NFR-02` | Agent Registry／Muster | 要求に技術の決定が混在 | OS：推進（チケット発行・レーン・Worker） |
 | `HIL-NFR-09` | OS Contract Runner | 要求に技術の決定が混在 | コア |
 | `HIL-NFR-14` | Node/Python Supervisor | 要求に技術の決定が混在 | コア |
 | `HIL-NFR-19` | OS Contract Runner | 要求に技術の決定が混在 | コア |
@@ -438,7 +438,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-27` | 機能 | OS：推進（チケット発行・レーン・サブエージェント） | 品質の保証 | 要求に技術の決定が混在 | OS | Node/Python Supervisorはworker起動、protocol handshake、request相関、progress、result、error、timeout、cancel、process終了を管理し、失効runのlate resultをcommitしない。 ｜ run lease、protocol digest、terminal receipt、fenced result |
+| `HIL-FR-27` | 機能 | OS：推進（チケット発行・レーン・Worker） | 品質の保証 | 要求に技術の決定が混在 | OS | Node/Python Supervisorはworker起動、protocol handshake、request相関、progress、result、error、timeout、cancel、process終了を管理し、失効runのlate resultをcommitしない。 ｜ run lease、protocol digest、terminal receipt、fenced result |
 | `HIL-NFR-14` | 品質の制約 | — | 品質の保証 | 要求に技術の決定が混在 | OS | IPCは不正JSON、schema不一致、oversize、sequence欠落、worker crash、timeout、cancel、backpressure、親process消失をfail-closeし、partial resultを正本へ昇格しない。 |
 
 **OS Contract Runner**
@@ -530,8 +530,8 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-17` | 業務の目的 | OS：検収（CI・テスト最適化・ベンチ）、OS：推進（チケット発行・レーン・サブエージェント） | 品質の保証 | 要求に技術の決定が混在 | HARNESS／OS | Claude監査findingをcurrent contract影響と責務境界で機械的にdispositionする。同じ責務・既存scope内で安全かつ局所的に閉じるfindingは`current_pr_fix`としてwriterへ返し、独立責務・別設計・lifecycle・性能改善だけを`successor_issue`としてIssue、Universal Reverse、memory要約、Codex ready queueへ同一causality chainで接続する。AIの自由判断だけによるfinding破棄と、後続Issueのcurrent PRへの再流入を認めない。 |
-| `HIL-FR-30` | 機能 | OS：検収（CI・テスト最適化・ベンチ）、OS：推進（チケット発行・レーン・サブエージェント） | 品質の保証 | 要求に技術の決定が混在 | HARNESS／OS | Finding Dispositionはcurrent contract違反、correctness/security/data loss、必須oracle/main/evidenceへの影響と責務境界を評価し、同じ責務・既存scope内で安全かつ局所的に閉じるfindingを`current_pr_fix`、独立責務・別設計・lifecycle・性能改善を`successor_issue`へ分類する。Finding Promotion Pipelineは`successor_issue`だけから重複判定、Issue contract、Universal Reverse、memory issue-summary、Codex queue itemを同一causality IDで原子的に生成する。`current_pr_fix`はwriterへ一括返却し、途中欠落はreadyにしない。 ｜ typed disposition、writer return、Issue/Reverse/memory/queue join |
+| `HIL-BR-17` | 業務の目的 | OS：検収（CI・テスト最適化・ベンチ）、OS：推進（チケット発行・レーン・Worker） | 品質の保証 | 要求に技術の決定が混在 | HARNESS／OS | Claude監査findingをcurrent contract影響と責務境界で機械的にdispositionする。同じ責務・既存scope内で安全かつ局所的に閉じるfindingは`current_pr_fix`としてwriterへ返し、独立責務・別設計・lifecycle・性能改善だけを`successor_issue`としてIssue、Universal Reverse、memory要約、Codex ready queueへ同一causality chainで接続する。AIの自由判断だけによるfinding破棄と、後続Issueのcurrent PRへの再流入を認めない。 |
+| `HIL-FR-30` | 機能 | OS：検収（CI・テスト最適化・ベンチ）、OS：推進（チケット発行・レーン・Worker） | 品質の保証 | 要求に技術の決定が混在 | HARNESS／OS | Finding Dispositionはcurrent contract違反、correctness/security/data loss、必須oracle/main/evidenceへの影響と責務境界を評価し、同じ責務・既存scope内で安全かつ局所的に閉じるfindingを`current_pr_fix`、独立責務・別設計・lifecycle・性能改善を`successor_issue`へ分類する。Finding Promotion Pipelineは`successor_issue`だけから重複判定、Issue contract、Universal Reverse、memory issue-summary、Codex queue itemを同一causality IDで原子的に生成する。`current_pr_fix`はwriterへ一括返却し、途中欠落はreadyにしない。 ｜ typed disposition、writer return、Issue/Reverse/memory/queue join |
 
 **Upstream Redesign Re-entry**
 
@@ -603,7 +603,7 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 |---|---|---|---|---|---|---|
 | `HIL-NFR-01` | 品質の制約 | — | 品質の保証 | 要求に技術の決定が混在 | OS | 同一GitHub delivery、Issue contract、job、PR headに対する副作用は冪等で、重複Issue/実装/memory昇格を作らない。 |
 
-### OS：推進（チケット発行・レーン・サブエージェント）（主 27件）
+### OS：推進（チケット発行・レーン・Worker）（主 27件）
 
 **Infinity Loop（自動走行と監査の交互接続）**
 
@@ -728,8 +728,8 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-BR-31` | 業務の目的 | OS：推進（チケット発行・レーン・サブエージェント） | 省力化とコスト削減 | 要求 | OS | 第三者workerを価格や公称性能だけで採用せず、機械判定可能なacceptance bench、blind judgeを含むfull bench、HELIX実task scorecardで品質・安全・実効costを比較し、採用、用途限定、quarantine、retireを証拠付きで決定する。 |
-| `HIL-FR-61` | 機能 | OS：推進（チケット発行・レーン・サブエージェント） | 省力化とコスト削減 | 要求 | OS | Worker Acceptance Benchは候補runtimeごとに短い機械判定smokeとblind judgeを含むfull benchを分離実行し、correctness、mutation kill、instruction/scope following、skill A/B、品質、簡潔性、security、第二diffによる拡張性を同一fixtureとversioned rubricで採点する。 ｜ bench manifest、machine score、blind-judge score、fixture/rubric digest、admission decision |
+| `HIL-BR-31` | 業務の目的 | OS：推進（チケット発行・レーン・Worker） | 省力化とコスト削減 | 要求 | OS | 第三者workerを価格や公称性能だけで採用せず、機械判定可能なacceptance bench、blind judgeを含むfull bench、HELIX実task scorecardで品質・安全・実効costを比較し、採用、用途限定、quarantine、retireを証拠付きで決定する。 |
+| `HIL-FR-61` | 機能 | OS：推進（チケット発行・レーン・Worker） | 省力化とコスト削減 | 要求 | OS | Worker Acceptance Benchは候補runtimeごとに短い機械判定smokeとblind judgeを含むfull benchを分離実行し、correctness、mutation kill、instruction/scope following、skill A/B、品質、簡潔性、security、第二diffによる拡張性を同一fixtureとversioned rubricで採点する。 ｜ bench manifest、machine score、blind-judge score、fixture/rubric digest、admission decision |
 | `HIL-NFR-35` | 品質の制約 | — | 品質の保証 | 要求 | OS | worker評価は候補runtime名をblind化し、fixture、rubric、judge version、sample、再試行を固定して再現可能にする。smoke合格だけでfull admissionせず、security failure、scope逸脱、検証不能な出力を平均点で相殺しない。 |
 
 **Claude監査器**
@@ -756,13 +756,13 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-62` | 機能 | OS：推進（チケット発行・レーン・サブエージェント） | 省力化とコスト削減 | 要求 | OS | Task Performance ScorecardはHELIX実taskごとに`first_pass`、`retry_count`、`proposal_diff_size`、`lint_violation_count`、品質judge、実効costを記録する。実効costはAPI相当単価とretryを含め、用途別の採用、限定、quarantine、retire判断へ接続する。 ｜ real-task scorecard、effective-cost breakdown、用途別decision、trend/failure finding |
+| `HIL-FR-62` | 機能 | OS：推進（チケット発行・レーン・Worker） | 省力化とコスト削減 | 要求 | OS | Task Performance ScorecardはHELIX実taskごとに`first_pass`、`retry_count`、`proposal_diff_size`、`lint_violation_count`、品質judge、実効costを記録する。実効costはAPI相当単価とretryを含め、用途別の採用、限定、quarantine、retire判断へ接続する。 ｜ real-task scorecard、effective-cost breakdown、用途別decision、trend/failure finding |
 
 **Proposal Revalidation Gate**
 
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
-| `HIL-FR-66` | 機能 | OS：推進（チケット発行・レーン・サブエージェント） | 安全と権限 | 要求に技術の決定が混在 | OS | Proposal Revalidation Gateは全第三者worker出力（ファイル成果物含む）をNodeがschema/digest/authority policyで再検証し、出力中のcommand/SQL/absolute path/codeを実行しない。検証levelはstrict既定の段階制とし、委譲完了時のFS差分検査で許可path外書込と指示外install/network取得/テスト実行痕跡をrejectする。 ｜ revalidation receipt、FS diff finding、reject decision |
+| `HIL-FR-66` | 機能 | OS：推進（チケット発行・レーン・Worker） | 安全と権限 | 要求に技術の決定が混在 | OS | Proposal Revalidation Gateは全第三者worker出力（ファイル成果物含む）をNodeがschema/digest/authority policyで再検証し、出力中のcommand/SQL/absolute path/codeを実行しない。検証levelはstrict既定の段階制とし、委譲完了時のFS差分検査で許可path外書込と指示外install/network取得/テスト実行痕跡をrejectする。 ｜ revalidation receipt、FS diff finding、reject decision |
 
 ### OS：改善loop（学習・判断pack・memory）（仮置き）（主 9件）
 
@@ -798,4 +798,4 @@ main上の[製品責務分類台帳](legacy-ir-product-routing-bootstrap.jsonl)�
 | 旧要求 | 縦の位置 | 副の層 | 狙い | 区分 | 製品（現在→訂正案） | 原文 |
 |---|---|---|---|---|---|---|
 | `HIL-FR-58` | 機能 | — | 省力化とコスト削減 | 要求 | OS | Judgment Pack Improvement Loopはfinding、review reversal、retry、escaped defect、skill efficacyから不足観点を候補化し、with/without shadow比較、false-positive/negative、別runtime review、rollbackを経たversionだけをactive化する。判断結果そのものを自己教師として無監査昇格しない。 ｜ candidate pack、shadow scorecard、independent review、promotion/rollback receipt |
-| `HIL-NFR-34` | 品質の制約 | OS：推進（チケット発行・レーン・サブエージェント） | 安全と権限 | 要求 | OS | 自動生成したjudgment packと専門agentは提案時点で権威を持たず、生成元snapshotとdigestへbindする。scope/requirement/template/skill/model catalog/allowlistの変更でstale化し、未監査pack、未許可tool、自己検証、無上限subagent生成、工程外のcompletion authorityをfail-closeする。 |
+| `HIL-NFR-34` | 品質の制約 | OS：推進（チケット発行・レーン・Worker） | 安全と権限 | 要求 | OS | 自動生成したjudgment packと専門agentは提案時点で権威を持たず、生成元snapshotとdigestへbindする。scope/requirement/template/skill/model catalog/allowlistの変更でstale化し、未監査pack、未許可tool、自己検証、無上限subagent生成、工程外のcompletion authorityをfail-closeする。 |

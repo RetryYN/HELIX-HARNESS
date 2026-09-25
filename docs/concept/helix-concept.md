@@ -108,7 +108,7 @@ LABOも1.0からあり、HELIX自身や製品の改善が効いたか、退行�
 
 ## 3. どんな機構で成り立つか
 
-HELIXは、全版を通じて8つの機構と1つの共通部品から成る。作業を実行するのはWorkerであり、機構や共通部品とは別に置く（下の「作業を実行するのはWorker」）。機構は版ごとに加わる。**製品は機構の一部**であり、HARNESSとWebだけが製品の属性を持つ。
+HELIXは、全版を通じて8つの機構と1つの共通部品から成る。役割を割り当てるレーンと、作業を実行するWorkerは、機構や共通部品とは別に置く（下の「作業を実行するのはWorker」）。機構は版ごとに加わる。**製品は機構の一部**であり、HARNESSとWebだけが製品の属性を持つ。
 以下の図と表は、すべての機構がそろった姿を示す。
 機構を分けるのは、成長の循環を切らずに各機構を交換・更新できるようにするためである。機構や文書の数を増やすことは目的にしない。
 全体の統制は、すべての書き込みを一か所に集める万能の中枢ではない。各機構が自分のデータと責務を持つ。
@@ -136,7 +136,8 @@ flowchart LR
         PROM["推進<br/>チケット発行"]
         ACC["検収<br/>CI・テストの最適化"]
     end
-    WORKER["Worker<br/>作業の実行・必要に応じたSubagentの編成"]
+    LANES["レーン<br/>推進・review等の役割の割当て先"]
+    WORKER["Worker<br/>レーンの主がSubagentとして呼び出すモデル"]
     SEC["HELIX-SECURITY<br/>認可・制限"]
     CONNECT["HELIX-CONNECT<br/>内部と外部の構造の接続"]
     Targets["開発対象<br/>HELIX自身・Webを含む各製品"]
@@ -146,7 +147,8 @@ flowchart LR
     APP -->|承認済み要件と工程契約| INTF
     INTF -->|作業計画の案| PROM
     MGMT -->|接続状況| PROM
-    PROM -->|チケット| WORKER
+    PROM -->|チケット| LANES
+    LANES -->|Subagentとして呼び出し| WORKER
     WORKER -->|開発・改修| Targets
     WORKER -->|結果・差分| ACC
     ACC -->|CI・テストの結果| VER
@@ -208,7 +210,7 @@ flowchart LR
 | 機構 | 役割 | しないこと |
 |---|---|---|
 | HELIX-HARNESS 《製品》 | V-model、要求形成・設計・検証・受入の契約、外部へ提供する開発基盤 | 作業の割当、実行状態の管理 |
-| HELIX-OS | 製品ごとの固有性を持ち、工程管理と推進を担う。管理（HELIX自身と各製品の要求・承認・予算・状態・証拠の登録と版の管理）、推進（接続状況から安全な順序を決めてチケットを発行し、Workerへ割り当てる）、検収（チケットから必要なCIとテストを割り出して最適化する）、統合、更新、復旧 | 工程の意味の別定義、INTELLIGENCEの案の無条件実行 |
+| HELIX-OS | 製品ごとの固有性を持ち、工程管理と推進を担う。管理（HELIX自身と各製品の要求・承認・予算・状態・証拠の登録と版の管理）、推進（接続状況から安全な順序を決めてチケットを発行し、レーンへ割り当てる。チケットは必要なWorkerを指定する）、検収（チケットから必要なCIとテストを割り出して最適化する）、統合、更新、復旧 | 工程の意味の別定義、INTELLIGENCEの案の無条件実行 |
 | HELIX-BRAIN | 製品単位ではなく、HELIX全体に共通する汎用性を持つ。汎用の構造（設計パターン、設計ユニット・パーツ）を持ち、意味から構造を取り出す。BRAINの「学習」は、LABOが複数の製品やepisodeから確かめた汎用の構造の候補を蓄えることである。モデルの学習・チューニング・評価は、3.0以降にINTELLIGENCEがLABOの材料を使って行う（2026-09-26、[LABOの判断記録](../governance/decisions/labo-core-engine-po-decisions-2026-09-26.md)）。各製品のHELIX-HARNESS-COREとコネクタで接続し、コアのパターンからパーツを増やす | 製品固有の意味・設計の保持、要求・承認・権限の生成、OS状態の直接更新 |
 | HELIX-LABO | 実験、比較、改善効果・退行の計測 | 自己評価だけでの採用確定 |
 | HELIX-INTELLIGENCE | HELIXについて最も知っている部位。稼働中の理解、計画、予測、診断、レビュー、配置案を、1.0から既存の外部モデルで行い、後の版でローカルLLMに判断を依頼する。バグbot、ヘルプbot、クローラーを発行し、HELIX全体の監査に寄せる。バグbotは、CIでよく失敗する種類のログがたまり、機械で判定できるようになったものから発行する | 検証なしでの稼働モデル差し替え |
@@ -220,11 +222,12 @@ flowchart LR
 - **BRAINは全体、OSは製品ごと。** HELIX全体に共通する汎用の構造（設計パターン、設計ユニット・パーツ）はBRAINが持ち、製品ごとの工程管理と推進はOSが担う。INTELLIGENCEはHELIXについて最も知っている部位として、稼働中の判断と、バグbot・ヘルプbot・クローラーの発行を担い、HELIX全体の監査に寄せる。
 - **決めるのはOS。** INTELLIGENCEは案を出す。OS内の推進機構はoperational tag、HARNESS語彙へのversioned mapping、composition、workflow instanceの生成規則を所有し、案の適格性を確認してticket graphとworkflow instanceを生成する。OSの管理が登録・統制して状態遷移を確定し、検収はHARNESSの契約への充足を独立して確認する。
 - **管理・推進・検収を、同じ自己承認主体にまとめない。**
-- **作業を実行するのはWorker。** Workerは作業を実行する唯一の主体であり、一つの実行の枠（レーン）でもある。HELIXサブエージェント、エージェントレーン、Runner、Sandboxを、Workerと並ぶ別の主体や共通部品として置かない（2026-09-26、[判断記録](../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)）。
-  - 割当てと進行はOS、実行の制約とauthorityはSECURITY、Workerが動く実際の資源は実行基盤が持つ。Workerは、割り当てられた作業を、与えられたauthorityと制約の中で実行し、開始、停止、timeout、結果・差分・証拠の回収まで担う。実行の制約は、Workerの実行環境が強制する。
-  - Workerは、providerが対応する場合、中でSubagentを編成してよい。Subagentは親のWorkerの範囲・authority・予算を超えない。同じWorkerの中のSubagentによるreviewは自己検査であり、独立した検証には別のWorkerを割り当てる。
+- **作業を実行するのはWorker。** 推進やreview等の役割は、レーンへ割り当てる。レーンは、例えばCodexのレーンに推進、Claudeのレーンにreviewを割り当てる、という役割の割当て先である。Workerは、レーンの主がSubagentとして呼び出して作業させるモデルである（例：GUIのレーンの主がOpusなら、Subagentとして呼び出したSonnetがWorker）。HELIXサブエージェント、Runner、Sandboxを、Workerと別の主体や共通部品として置かない（2026-09-26、[判断記録](../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)）。
+  - ticketが指定するWorkerは、LABOがHELIX-BenchでWorkerの作業履歴を集計し、どのモデルクラスなら対応できる水準かを導いたものである。
+  - Workerの共通の実行契約（assignment、実行の状態、capability、結果と証拠、Subagentとしての利用の観測、再割当て・再試行・失効との接続）はOSが持つ。割当てと進行はOS、実行の制約とauthorityはSECURITY、Workerが動く実際の資源は実行基盤が持つ。Workerは、割り当てられた作業を、与えられたauthorityと制約の中で実行し、開始、停止、timeout、結果・差分・証拠の回収まで担う。実行の制約は、Workerの実行環境が強制する。Workerの範囲は、呼び出したレーンの範囲・authority・予算を超えない。
+  - 作成したWorker自身またはそのSubagentによるreviewは、独立reviewに数えない。独立reviewは、作成側とは別のreviewerのidentity・context・authority・review routeで行い、作成側の結論を引き継がずに証拠を確かめる。providerが同じか別かでは独立性を決めない。
   - バグbot等のbotは、特定の目的に使うWorkerとして実行する。
-- **チケットは、管理・推進・検収をつなぐ単位である。** 管理が接続状況を持ち、推進がチケットを発行し、Workerが作業し、検収が必要な検証を決め、管理が結果を記録する。
+- **チケットは、管理・推進・検収をつなぐ単位である。** 管理が接続状況を持ち、推進がチケットを発行し、レーンが呼び出したWorkerが作業し、検収が必要な検証を決め、管理が結果を記録する。
 - 開発の層は、Concept → 企画（L1）→ 要求（L2）→ 要件（L3）→ 設計（L4〜L6）→ 実装 → 検証（L7〜L10）→ 利用者受入（L11）→ 運用評価（L12）の順に進み、`L1↔L12`、`L2↔L11`、`L3↔L10`、`L4↔L9`、`L5↔L8`、`L6↔L7`で対にする。
 
 ### HELIX-HARNESS
