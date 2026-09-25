@@ -105,8 +105,8 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.meta.json",
-      "sha256": "6e38f8169c4a7fda0cac19a679acd9c164dc5f036376b001339bd2e9c0957d36",
-      "note": "generated schema10 meta"
+      "sha256": "7f542d5811491ee2d00f9d6d8e6fb94ebd3b0fc90be70f02369279a2678e4379",
+      "note": "generated schema10 meta [2026-09-25 Goal5 static rebind: wave37 generator refreshed input/prior-meta digests after per-unit source review; ledger JSONL and candidate/hold fields are unchanged; authority_effect=none; previous=6e38f8169c4a7fda0cac19a679acd9c164dc5f036376b001339bd2e9c0957d36; current=7f542d5811491ee2d00f9d6d8e6fb94ebd3b0fc90be70f02369279a2678e4379]"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave37/generate.py",

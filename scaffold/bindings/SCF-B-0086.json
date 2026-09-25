@@ -120,8 +120,8 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave44/legacy-requirement-direct-semantic-review-wave44.meta.json",
-      "sha256": "e145b8eb1eb7d32b6aecfc7fcf159a69a881b6d5907350571067b479fb96adc6",
-      "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "3d1f701544e6d7ba22e8e69233014c1774a25657ada2c4bb7c45096edf4f7d20",
+      "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure [2026-09-25 Goal5 static rebind: wave44 generator refreshed input/prior-meta digests after per-unit source review; ledger JSONL and candidate/hold fields are unchanged; authority_effect=none; previous=e145b8eb1eb7d32b6aecfc7fcf159a69a881b6d5907350571067b479fb96adc6; current=3d1f701544e6d7ba22e8e69233014c1774a25657ada2c4bb7c45096edf4f7d20]"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave45/README.md",
@@ -160,8 +160,8 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave45/legacy-requirement-direct-semantic-review-wave45.meta.json",
-      "sha256": "1b97993eb71233c66721aa2bb818d6a606864c6c479483ab9240e576ec6f0a59",
-      "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure"
+      "sha256": "0eca98408654a85aaf3f8716d7078c7ead35f0a6e7e8311c9c6ba5b354fde34f",
+      "note": "static source or Scaffold artifact; no current authority, implementation, degradation, failure, consumer, or decision closure [2026-09-25 Goal5 static rebind: wave45 generator refreshed input/prior-meta digests after per-unit source review; ledger JSONL and candidate/hold fields are unchanged; authority_effect=none; previous=1b97993eb71233c66721aa2bb818d6a606864c6c479483ab9240e576ec6f0a59; current=0eca98408654a85aaf3f8716d7078c7ead35f0a6e7e8311c9c6ba5b354fde34f]"
     }
   ],
   "role": "Wave46のHARNESS／OS候補6 unitについて、requirements／design／implementation_sourceのcandidate edge、独立pool照合、missing evidence、旧asset status unknownを保持する静的Scaffold",

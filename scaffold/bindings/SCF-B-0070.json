@@ -115,8 +115,8 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.meta.json",
-      "sha256": "dcb11e2de949d11892d55c2c2d7bcb599948221482262066c150ad3898ae4ada",
-      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
+      "sha256": "14d233c47027efa74f188aaa37ed267fe14c91b9eae03697f82e437c464efce6",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority [2026-09-25 Goal5 static rebind: wave40 generator refreshed input/prior-meta digests after per-unit source review; ledger JSONL and candidate/hold fields are unchanged; authority_effect=none; previous=dcb11e2de949d11892d55c2c2d7bcb599948221482262066c150ad3898ae4ada; current=14d233c47027efa74f188aaa37ed267fe14c91b9eae03697f82e437c464efce6]"
     }
   ],
   "role": "Wave40のrequirements／design／implementation_source 11 edgeと8 source atom候補を、FR33／NFR05 missing evidence、製品境界・phase未確定、旧asset status unknownを含む静的Scaffoldとしてroot reviewへ渡す",

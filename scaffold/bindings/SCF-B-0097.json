@@ -70,8 +70,8 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave49/legacy-requirement-direct-semantic-review-wave49.meta.json",
-      "sha256": "ba315824038686077b64561a03c670335726a6a6dea3b88cdc75d36ff954a30c",
-      "note": "prior Wave49 receipts and cumulative counts"
+      "sha256": "1936ae4abcc3e1643f6a15503725d2ce731af194f450e2c1736c5ae0266a0a16",
+      "note": "prior Wave49 receipts and cumulative counts [2026-09-25 Goal5 static rebind: wave49 generator refreshed input/prior-meta digests after per-unit source review; ledger JSONL and candidate/hold fields are unchanged; authority_effect=none; previous=ba315824038686077b64561a03c670335726a6a6dea3b88cdc75d36ff954a30c; current=1936ae4abcc3e1643f6a15503725d2ce731af194f450e2c1736c5ae0266a0a16]"
     },
     {
       "path": "scaffold/legacy-semantic-review-wave50/README.md",
@@ -110,8 +110,8 @@
     },
     {
       "path": "scaffold/legacy-semantic-review-wave50/legacy-requirement-direct-semantic-review-wave50.meta.json",
-      "sha256": "e62712988c2c006a0fb31c7231d83b9cba25882d533404e02b6ee0d659971016",
-      "note": "Wave50 receipts and cumulative counts"
+      "sha256": "36ffccf576c08cd7e9871371ad489b23a566a9a9a474d9003f7a9319bba2b76a",
+      "note": "Wave50 receipts and cumulative counts [2026-09-25 Goal5 static rebind: wave50 generator refreshed input/prior-meta digests after per-unit source review; ledger JSONL and candidate/hold fields are unchanged; authority_effect=none; previous=e62712988c2c006a0fb31c7231d83b9cba25882d533404e02b6ee0d659971016; current=36ffccf576c08cd7e9871371ad489b23a566a9a9a474d9003f7a9319bba2b76a]"
     }
   ],
   "role": "Wave50の旧IR残2 source unitについて、exact anchor、role candidate pool、phase／product候補境界、implementation／degradation statusをresearch premiseとして保持する静的Scaffold",
