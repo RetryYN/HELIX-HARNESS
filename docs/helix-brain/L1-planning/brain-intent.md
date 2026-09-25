@@ -95,3 +95,4 @@ HELIX-BRAINは、ソフトウェア開発に必要な再利用できる設計知
 | DST-HARNESS-002（templateの意味契約と版） | HELIXBRAIN-L1-003、005、008 |
 | DST-HARNESS-005（seed） | HELIXBRAIN-L1-007、010 |
 | DST-OS-001（汎用のtemplateの版と状態の部分） | HELIXBRAIN-L1-008 |
+| [Infrastructure領域の要求候補](../candidates/infrastructure-domain-requirements.md)（HELIXBRAIN-L2-INFRA-001〜017） | 各候補の行に書いた（HELIXBRAIN-L1-001〜005、007、008、010、011） |

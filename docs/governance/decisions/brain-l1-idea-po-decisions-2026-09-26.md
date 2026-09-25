@@ -69,7 +69,18 @@ AIの整理：
 - 仕組み、領域、部品の名前には、単語ごとに頭を大文字にする段を加える。
 - 原文の領域名（Visual Design、Software Architecture等）は、この線引きにそのまま合う。
 
+## Infrastructure領域の要求候補
+
+続けて、POは「HELIX-BRAIN Infrastructure Domain 要求候補」の本文を示し、「アイディアで」と述べた（[source snapshot](../../helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md)）。
+
+AIの整理：
+- 原文はL2の水準の要求で、IDもHELIXBRAIN-L2-INFRA-001〜017とされている。BRAINのL1企画案はPOの確認待ちのため、要求（L2）ではなく[BRAINの候補](../../helix-brain/candidates/infrastructure-domain-requirements.md)として置き、各項目の親にするL1を書いた。
+- Infrastructureは、L1企画案で1.0から扱う初期の領域の一つである。
+- 旧NIO候補（インフラ・運用品質）を起点にした。工程の条件はHARNESSに残し、BRAINは再利用のPatternと、Patternが求めるinputを持つ。
+- 原文の「Infrastructure Runtime」をどの機構が持つかは未確定として残した。BRAINが持たないことは原文で確定している。
+
 ## 反映先
 
 - [HELIX-BRAINのL1企画案](../../helix-brain/L1-planning/brain-intent.md)を新しく作る。
+- [Infrastructure領域の要求候補](../../helix-brain/candidates/infrastructure-domain-requirements.md)を新しく作る。
 - [BRAINの候補](../../helix-brain/candidates/design-template-system-requirements.md)のうちBRAINが持つ項目（DST-HARNESS-002、005、DST-OS-001の汎用templateの版と状態）の親を、L1企画案の要求へ付け替える案を書く。
