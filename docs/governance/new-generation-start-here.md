@@ -54,7 +54,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 
 4対象L1の**旧exact revision**は2026-09-17のdecision recordで承認済みである。旧承認を現行bytesへ継承しない。
 [2026-09-24のPO判断](decisions/concept-requirement-po-decisions-2026-09-24.md)で、次のように扱いを決めた。
-- HELIX-OS L1：本文SHA `ffbafa47…51bc`をPOが採用した。2026-09-25のPO判断（[判断記録](decisions/mechanism-placement-po-decisions-2026-09-25.md)）でL1-011・L1-012をHELIX-LABOの候補への案内行に変えた。変更後の本文は、PO最適ドラフトPRで対象revisionを確認する。
+- HELIX-OS L1：本文SHA `ffbafa47…51bc`をPOが採用した。2026-09-25のPO判断（[判断記録](decisions/mechanism-placement-po-decisions-2026-09-25.md)）でL1-011・L1-012をHELIX-LABOの候補への案内行に変えた。2026-09-26のPO判断（[判断記録](decisions/handoff-integration-po-decisions-2026-09-26.md)）で提供価値とL1-006をOS＝PMの整理に合わせた。変更後の本文は、PO最適ドラフトPRで対象revisionを確認する。
 - 製品責務境界：現行本文SHA `9268e357…ac0a`をPOが採用した。
 - HARNESS L1と5大目標：内容をPOが採用した。HARNESS L1は1.0土台の追記、5大目標は関与表の縮約を指示された。追記・縮約後の本文は、PO最適ドラフトPRで対象revisionを確認する。
 - HELIX-WebとHELIX-Web-OS：L1・L2・L11を要求層から外し、Visionレベルの材料へ分類し直した。
@@ -62,7 +62,8 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 - HELIX-BRAIN：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/brain-l1-idea-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。
 - HELIX-INTELLIGENCE：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/intelligence-l1-idea-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。Conceptの4.0を、BRAIN・HELIX-HARNESS-CORE・INTELLIGENCE・OSの複合処理にした。
 - HELIX-SECURITY：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/security-l1-idea-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。
-- 作業の実行主体：2026-09-26のPO判断で、Workerへ統一した。レーンは推進やreview等の役割の割当て先、Workerはレーンの主がSubagentとして呼び出して作業させるモデルである。HELIXサブエージェント、Runner、Sandboxを別の主体や共通部品として置かず、Workerの共通の実行契約はHELIX-OSが持つ（[判断記録](decisions/worker-execution-model-po-decisions-2026-09-26.md)）。上の「Runner／Sandbox」は、v4.3への改訂の時点の記述である。
+- 作業の実行主体：2026-09-26のPO判断で、Workerへ統一した。レーンは作成やreview等の役割の割当て先、Workerはレーンの主がSubagentとして呼び出して作業させるモデルである。HELIXサブエージェント、Runner、Sandboxを別の主体や共通部品として置かず、Workerの共通の実行契約はHELIX-OSが持つ（[判断記録](decisions/worker-execution-model-po-decisions-2026-09-26.md)）。上の「Runner／Sandbox」は、v4.3への改訂の時点の記述である。
+- 機構の関係：2026-09-26のPO判断で、OSはPMに近く、周辺の機構（INTELLIGENCE、LABO、HARNESS、BRAIN、SECURITY、実行基盤）はPMOにあたると整理した。レーンの役割は「作成」と呼び、「推進」はOSのチケット発行の機能名だけに使う。ticketが指定するWorkerは、LABOの水準→INTELLIGENCEの配置の案→OSの推進の指定の三段で決める。この判断で、HELIX-OS L1の提供価値とL1-006、製品責務境界、5大目標も改めた（[判断記録](decisions/handoff-integration-po-decisions-2026-09-26.md)）。
 `L2D-S0-01 scaffold-binding`と`L2D-S0-02 wbs-ledger`の候補は2026-09-19の[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)で承認済みであり、
 候補本文内の`draft_candidate`／`awaiting_human_approval`も同じく承認前snapshotのmetadataとして、decision recordを優先する。
 対象別L2／L11はdraft・未採否であり、まだcanonicalではない。

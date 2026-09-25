@@ -561,7 +561,7 @@
         "meaning": "independent Web-OS authority and permitted evidence connection",
         "ref_id": "CUR-BOUNDARY",
         "path": "docs/concept/product-boundary.md",
-        "file_sha256": "077907763209117f84c0d2a63f61d29ab83cf0b25eef194a02acae08107f709c",
+        "file_sha256": "0d9180309f216ee0125acfc0afabe6a1c55f02074d62b67f284709ea6b29d9d2",
         "product": "HELIX-Web/HELIX-Web-OS",
         "classification": "boundary_adjacent_ref",
         "line_sha256": "fd5f4c46f27b123cde76b24bdd4d22c06b726bb11ccec82c0da75d032b5a6e09"

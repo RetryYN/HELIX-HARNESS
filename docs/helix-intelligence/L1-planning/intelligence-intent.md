@@ -49,7 +49,7 @@ INTELLIGENCEは、要求、設計、状態、知識、権限の正本になら�
 | HELIXINTELLIGENCE-L1-007 | 人間は、発生中の異常・失敗・停滞について、症状から原因の候補、証拠、切り分けを経た診断の案を得られる。一つの相関だけで原因を確定せず、必要な追加の観測と検査を示す。終わった仕事を長く比べて何が改善したかを評価するのはLABOとする | INTELLIGENCE-L1-007 | 1.0 | 単体 |
 | HELIXINTELLIGENCE-L1-008 | 人間は、要求の整合、設計、実装、テスト、CI、統合、releaseの準備、運用の変更、HELIX自身を対象にReviewでき、結果をfinding、重さ、範囲、証拠、再現、反例、推奨する経路に分けられる。Reviewの結果だけでmerge、要求の変更、release、受入を成立させない | INTELLIGENCE-L1-008 | 1.0 | 単体 |
 | HELIXINTELLIGENCE-L1-009 | 人間は、HELIX全体について、authorityの食い違い、設計と稼働の食い違い、古い前提、証拠の欠落、無効な投影、責務の漏れ、支えのない振る舞い、繰り返す失敗、機構の境界の違反等を監査でき、結果をHEAD、authority、作成者、証拠、再現、反証へ辿れる。自由文の指摘だけでauthorityを変えない | INTELLIGENCE-L1-009 | 1.0 | 単体 |
-| HELIXINTELLIGENCE-L1-010 | 人間は、作業の内容と実績から、Workerの配置の候補を得られる。判断の軸は、作業の種類、領域、複雑さ、必要なcontextとtool、成功と失敗の履歴、手戻り、遅延、費用、信頼性とする。価格、モデル名、ベンチマークだけで配置を決めず、実際の割当と進行はOSが行う | INTELLIGENCE-L1-010 | 1.0 | 単体（OSへは接続） |
+| HELIXINTELLIGENCE-L1-010 | 人間は、作業の内容と実績から、Workerの配置の候補を得られる。判断の軸は、作業の種類、領域、複雑さ、必要なcontextとtool、成功と失敗の履歴、手戻り、遅延、費用、信頼性とする。価格、モデル名、ベンチマークだけで配置を決めず、実際の割当と進行はOSが行う。LABOがHELIX-Benchで出した「どのモデルクラスなら対応できるか」の水準を材料に、ticketごとの配置の案を作り、OSの推進へ渡す。評価していないモデルは「未評価」の印のまま扱う（[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)） | INTELLIGENCE-L1-010 | 1.0 | 単体（OSへは接続） |
 | HELIXINTELLIGENCE-L1-011 | 人間は、モデルとproviderを一つの固定の能力として扱わず、領域と能力ごとに適性を評価できる。同じcorpus・同じ責務の範囲で、所見、誤検出、見逃し、再現性、遅延、費用を比べ、モデルの更新だけで上位と判定しない | INTELLIGENCE-L1-011 | 1.0 | 単体 |
 | HELIXINTELLIGENCE-L1-012 | 人間は、「判断できない」を正常な結果として受け取れる。known、probable、uncertain、unknown、contradictory等を区別し、不足する情報に対して追加の証拠、Discovery、テスト、Review、人の判断等の必要条件を示す。unknownを安全・成功・問題なしへ変えない | INTELLIGENCE-L1-012 | 1.0 | 単体 |
 | HELIXINTELLIGENCE-L1-013 | 人間は、重要な判断の候補について、入力のrevision、当てはめた規則、参照したBRAINの知識、観測、前提、model／provider／版、推論の結果、不確実性、退けた代替へ辿り、なぜその候補になったかを検証できる。同じ判断の完全な再生成までは求めない | INTELLIGENCE-L1-013 | 1.0 | 単体 |
@@ -77,8 +77,8 @@ INTELLIGENCEは、要求、設計、状態、知識、権限の正本になら�
 |---|---|
 | BRAIN → INTELLIGENCE | 汎用のPattern、Unit、Part、適用の条件、反例（判断の材料） |
 | HELIX-HARNESS-CORE／HARNESS → INTELLIGENCE | 製品固有の要求、設計、工程の契約、検証義務 |
-| LABO → INTELLIGENCE | 過去の評価の結果、成功・失敗・反例、Workerとmodelの実績 |
-| INTELLIGENCE → OS | 計画、配置、診断、修復等の実行の候補。登録・ticket化・進行はOSが担う |
+| LABO → INTELLIGENCE | 過去の評価の結果、成功・失敗・反例、Workerとmodelの実績（HELIX-Benchで出したモデルクラスの水準と未評価の印を含む） |
+| INTELLIGENCE → OS | 計画、配置、診断、修復、学習等の実行の候補。登録・ticket化・進行はOSが担う。OSはPMにあたり、INTELLIGENCEはPMOとして案を出す（[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)） |
 | INTELLIGENCE ↔ SECURITY | 必要な操作に対する許可と制約の確認 |
 | INTELLIGENCE → OS → Worker | 実作業が要るときは、OSがticketをレーンへ割り当て、レーンの主が呼び出したWorkerが許可済みの範囲だけ実行する。INTELLIGENCE自身をWorkerとして扱わない（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149） |
 | INTELLIGENCE → LABO | 判断、予測、配置、修復の結果（評価の対象） |

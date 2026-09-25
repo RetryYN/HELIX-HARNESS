@@ -39,7 +39,8 @@ authority_effect_before_approval: none
 ### 2. 開発するほど賢くなる自己知能型改善システム
 
 開発中の判断、差戻し、失敗、review、検証、品質、費用、運用結果を出典とscope付きで蓄積し、要求、Design Template、
-HARNESS、Worker運用、CI、製品を改善する候補へ変換する。HELIX-OSが改善loopを継続運転し、学習結果はauthorityを
+HARNESS、Worker運用、CI、製品を改善する候補へ変換する。HELIX-LABOが実績を評価して改善を提案し、HELIX-OSがその提案を
+登録・振り分け・ticket化して改善loopを回す（OSはPM、周辺の機構はPMOにあたる。[2026-09-26 PO判断](../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。学習結果はauthorityを
 直接書き換えず、人間の採否と上流変更を経て次の開発へ反映する。
 
 ### 3. 設計から全体をシミュレーションする予測型システム

@@ -21,13 +21,13 @@ Issue close、PR merge、旧owner・技術との衝突、37件のrouting contain
 | HELIXOS-L2-001 | 各要求の対象プロダクト・正本・合意revisionへ辿る。Issue closeを要求の削除・受入として表示しない |
 | HELIXOS-L2-002 | 異なるプロジェクトの欠落・競合・未検証を個別に把握し、一方の成功で他方の未完を相殺しない。提供をリリースカンバン上の状態として追跡し、状態の欠落やIssue・PRの状態だけからの推定を拒否する |
 | HELIXOS-L2-003 | 開発方式の変更で影響する範囲だけを再評価し、共通統制の無断変更を拒否する |
-| HELIXOS-L2-004 | 割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否する。割当てと進行統制はOS、割当て案はINTELLIGENCE、実行はWorker、自己承認の防止と権限の制限はSECURITYが担い、一つの機構が割当て案・実行・承認をまとめて持つ構成を拒否する。Workerの実行の結果から、Worker、provider、model、ticket、要求のrevision、authority、制約、成果物、実行の証拠、ticketが指定したモデルクラスとWorkerを呼び出したレーンまで辿れ、失効で実行が止まり途中の成果物が隔離され、作業の終了後に一時の資格情報や環境が次のassignmentへ残らないことを確かめる。作成したWorker自身またはそのSubagentのreviewが、独立reviewとして数えられないことを確かめる |
-| HELIXOS-L2-005 | HARNESS自身への適用と各productの観測から改善候補を出典と適用範囲付きで登録し、還流先へ振り分けて採否・変更・再検証まで追跡する。未承認経験の規則化、HARNESS改善責務の欠落、棄却理由の消失、還流先の欠落を拒否する。改善の効果と退行の評価はHELIX-LABOの候補で確認し、OSの登録件数やログ量を改善達成としない |
+| HELIXOS-L2-004 | 割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否する。割当てと進行統制はOS、割当て案はINTELLIGENCE、実行はWorker、自己承認の防止と権限の制限はSECURITYが担い、一つの機構が割当て案・実行・承認をまとめて持つ構成を拒否する。Workerの実行の結果から、Worker、provider、model、ticket、要求のrevision、authority、制約、成果物、実行の証拠、ticketが指定したモデルクラスとWorkerを呼び出したレーンまで辿れ、失効で実行が止まり途中の成果物が隔離され、作業の終了後に一時の資格情報や環境が次のassignmentへ残らないことを確かめる。作成したWorker自身またはそのSubagentのreviewが、独立reviewとして数えられないことを確かめる。ticketが指定したモデルクラスが、LABOがHELIX-Benchで出した水準を材料にINTELLIGENCEが作った配置の案を、OSの推進が確かめて指定したものであることを辿れ、評価していないモデルに「未評価」の印が付くことを確かめる。Benchの水準やINTELLIGENCEの案だけで割当てが決まる構成、印のない未評価のモデルを評価済みとして扱う構成を拒否する |
+| HELIXOS-L2-005 | HARNESS自身への適用と各productの観測から改善候補を出典と適用範囲付きで登録し、還流先へ振り分けて採否・変更・再検証まで追跡する。未承認経験の規則化、HARNESS改善責務の欠落、棄却理由の消失、還流先の欠落を拒否する。改善の効果と退行の評価はHELIX-LABOの候補で確認し、OSの登録件数やログ量を改善達成としない。観測と作業の結果がLABOへ渡り、LABOが返した改善の提案が登録・振り分けされてticketへ辿れることを確かめ、LABOの提案がOSのauthorityを直接書き換える構成を拒否する |
 | HELIXOS-L2-006 | サービス①〜⑦の単位で、リリースカンバン上の状態を見てfresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失、別artifactへの切替、選んでいないサービスの同時導入を拒否する |
 | HELIXOS-L2-007 | Worker・判断・操作・検証のログを、Conceptの1.0土台（ログと証拠）の共通形式で要求revisionから辿り、欠落・重複・staleを成功証拠として使わない。共通形式の欠けた記録を、他の機構の記録と結べない不完全な記録として識別する |
 | HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、その変更に必要なCIが動的に合成されることを確認する。合成したCIの起動・失敗・修復・再実行を追跡し、固定段数のCIをすべて回す構成、導出された検証の欠落、旧CI成功で新世代の未実行・中断・staleやreview欠落を相殺する構成を拒否する |
 | HELIXOS-L2-009 | 中断・担当交代後も制約と未完義務を引き継ぎ、二重実行・予算リセット・無許可復旧を拒否する |
-| HELIXOS-L2-010 | 管理・推進・検収が同じticketと因果IDで直接調整し、scope・優先度・共有資源・要求意味の変更だけを正しい判断先へ返す。推進が案件ごとに必要な工程を動的ワークフローとして組み立て、固定の工程列を全案件へ当てはめない。役割を固定モデル数や中央中継へ変換しない |
+| HELIXOS-L2-010 | 管理・推進・検収が同じticketと因果IDで直接調整し、scope・優先度・共有資源・要求意味の変更だけを正しい判断先へ返す。推進が案件ごとに必要な工程を動的ワークフローとして組み立て、固定の工程列を全案件へ当てはめない。1.0では、組み立てがHARNESSの定めた工程の部品の規則どおりの組合せと途中結果での差し戻しに収まることを確かめ、部品にない工程を推進が独自に作る構成を拒否する。INTELLIGENCEの計画・配置の案を、適格性を確かめずにそのままticketにする構成を拒否する。役割を固定モデル数や中央中継へ変換しない |
 | HELIXOS-L2-011 | HARNESS契約で同じ検証義務を与え、A→Bの依存を実際のbase+A+Bで具体化する。base更新・候補増減・順序変更で再計画し、OSによるoracle削除・追加、必要CI欠落、影響証明不能、契約解釈不明、別HEADの成功ではmerge可能としない。計画を導く側（本要求）とCIを合成して実行する側（HELIXOS-L2-008）が別の要求として境目を持ち、計画側がCIを実行する、または実行側が計画を変える構成を拒否する |
 | HELIXOS-L2-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した |
 | HELIXOS-L2-013 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した |
@@ -45,6 +45,9 @@ Issue close、PR merge、旧owner・技術との衝突、37件のrouting contain
 - HELIXOS-L2-001／002／005／007／013：要求kindとriskを変えてtemplate候補、選定版、設計義務、N/A、backflow、消込を追跡する。template欠落、stale、conflict、必要input欠落では自由形式へfallbackせず、旧template利用実績や文書生成から適用・完成を生成しない。
 - HELIXOS-L2-001／002／004／007／010：管理が同じ目的・親要求・制約を推進へ渡し、推進が異なる開発style、work kind、変更種別、risk、surface tagとticket graphを生成する。同じ入力・規則なら同じworkflow digestを得て、検収がHARNESS義務の欠落を拒否する。管理によるtag先決め、tag欠落・競合・unknownのready化、GitHub labelだけによるactive workflow変更を認めない。
 - HELIXOS-L2-007：未ack finding、未反映memory、重複配送、期限切れ通知を投入し、内容消失・二重利用・古い指示の再提示を拒否する。
+- HELIXOS-L2-004／010：独立reviewのfindingを、今のPRで直すものと次のticketにするものに振り分けたことを確かめる。振り分けの欠落、AIの自由な判断だけによるfindingの破棄、次のticketにしたfindingの今のPRへの再流入を拒否する（旧HIL-BR-17、HIL-FR-30）。
+- HELIXOS-L2-002／010：PoC、Prototype、Decide、Backflowのticketが、登録済みの要求またはBackflowを出どころにOSの推進から発行されたことを辿れる。INTELLIGENCEの案だけから発行されたticketを拒否する。
+- HELIXOS-L2-004／009：SECURITYがauthorityを失効させたとき、新しい割当てが止まり、実行中の割当ても止まることを確かめる。
 - HELIXOS-L2-008：上流意味review、下流verification、merge admission、releaseを別pipeline classとして生成する。Concept候補のremote syncで旧CI／merge pipelineが起動する構成を拒否する。
 - HELIXOS-L2-008：失敗後の修正と再実行を追跡する。新HEADへ旧CI／review結果を付けた場合、旧workflowを新世代profileとして扱った場合、required oracleを省略した場合は進行可能と表示しない。
 - HELIXOS-L2-008：旧CIを起動せず、新世代だけを承認要求由来のoracleで評価する。旧CIとのdual-green、job一致、結果parityを新世代の受入条件にしない。

@@ -41,9 +41,9 @@ HELIX-BRAINは、ソフトウェア開発に必要な再利用できる設計知
 | HELIXBRAIN-L1-004 | 人間は、同じ問題に成り立つ複数のPatternを、適用の条件、長所、短所、制約、失敗、費用で比べられる。BRAINは一つを絶対の正解として上書きしない | BRAIN-L1-004 | 1.0 | 単体 |
 | HELIXBRAIN-L1-005 | 人間は、領域をまたぐ設計の関係（requires、depends_on、compatible_with、conflicts_with、affects、alternative_to、composed_of等）を、Pattern・Unit・Partの間で辿れる | BRAIN-L1-005 | 1.0 | 単体 |
 | HELIXBRAIN-L1-006 | 人間は、ビジュアルデザインを装飾の情報ではなく再利用できる設計知識として持てる（情報設計、視覚の階層、layout、grid、余白と密度、文字組、navigation、部品の構成、form、feedback、空・読込中・errorの状態、responsive、dashboard、内容の階層、accessibility等）。製品固有のVisual Identity（例：黒背景と青のアクセント）は各製品のHELIX-HARNESS-COREに置く | BRAIN-L1-006、PO回答（1.0から扱う） | 1.0 | 単体 |
-| HELIXBRAIN-L1-007 | 人間は、Pattern・Unit・Partの出所、由来、根拠、採用の理由、評価した範囲、反例、限界を辿れる。AIが生成したことだけで汎用の知識へ昇格させない | BRAIN-L1-007 | 1.0 | 単体 |
+| HELIXBRAIN-L1-007 | 人間は、Pattern・Unit・Partの出所、由来、根拠、採用の理由、評価した範囲、反例、限界を辿れる。AIが生成したことだけで汎用の知識へ昇格させない。昇格は、LABOの評価を経た提案としてOSが登録・振り分け、BRAINの変更の手続きの中で独立した検証を経て採否する（旧RCLS-BR-004の段階。人の判断は、人が持つ上流の意味に関わる場合に限る。[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)） | BRAIN-L1-007 | 1.0 | 単体 |
 | HELIXBRAIN-L1-008 | 人間は、再利用できる構造ごとのidentityと版を持ち、current、superseded、deprecated、experimental、retired等を区別できる。旧いPatternを黙って新しいものへ置き換えない。どの製品のHELIX-HARNESS-COREがどの版を参照したかを辿れる。実際のprojectで使った版と状態の管理はHELIX-OSに委ねる | BRAIN-L1-008 | 1.0 | 単体 |
-| HELIXBRAIN-L1-009 | 人間は、既存のPatternのUnitを組み合わせ、新しい関係を足した構成の候補を表せる。構成の候補を、すぐに確立したPatternへ昇格させず、LABO等の評価の経路を通す | BRAIN-L1-009 | 1.0 | 単体（評価はLABOとの接続） |
+| HELIXBRAIN-L1-009 | 人間は、既存のPatternのUnitを組み合わせ、新しい関係を足した構成の候補を表せる。構成の候補を、すぐに確立したPatternへ昇格させず、LABO等の評価の経路を通す。昇格の登録と振り分けはOSが行う（HELIXBRAIN-L1-007と同じ経路） | BRAIN-L1-009 | 1.0 | 単体（評価はLABOとの接続） |
 | HELIXBRAIN-L1-010 | 人間は、成功した構造だけでなく、Anti-Pattern、失敗のPattern、成り立たない組み合わせ、条件に依存する失敗、退行の事例を構造として持ち、「この条件では何を使ってはいけないか」を返せる | BRAIN-L1-010 | 1.0 | 単体 |
 | HELIXBRAIN-L1-011 | 人間は、BRAINへ入る構造が特定の製品の意味から切り離されていることを確かめられる。製品固有の名称、要求、画面、業務のルール、利用者の判断を、汎用の知識へそのまま昇格させない | BRAIN-L1-011 | 1.0 | 単体 |
 | HELIXBRAIN-L1-012 | 人間は、BRAINが返すもの（候補のPattern、必要なinput、関係、代替、制約、根拠）と、製品固有の採用の判断とを区別できる。採用の判断はHELIX-HARNESS-CORE、INTELLIGENCE、人の判断等の接続先で行い、責務を混同しない | BRAIN-L1-012 | 1.0 | 単体 |
@@ -84,6 +84,7 @@ HELIX-BRAINは、ソフトウェア開発に必要な再利用できる設計知
 | HELIXBRAIN-L1-003、007、010 | DST-HARNESS-002（templateのapplicability、必須input、relation、negative oracle）、DST-HARNESS-005（出典・採否・適用範囲・限界・negative caseを持つseed）（[BRAINの候補](../candidates/design-template-system-requirements.md)） | 適用の条件、使えない場合、出典と限界を持つ | templateから、領域ごとのPattern・Unit・Partへ広げる。失敗の知識を構造として持つ |
 | HELIXBRAIN-L1-008 | DST-OS-001（承認済み、seed、候補、retiredの区別と、projectが使ったexact setと版） | 状態の区別と、使った版の追跡 | 汎用の構造の版と状態はBRAIN、projectで使った版と状態の登録はHELIX-OSに分ける（候補の「現行Conceptに照らした担当」と同じ） |
 | BRAIN ↔ Visual Design HARNESS | 旧v1.3の「ビジュアルDesign HARNESSはUI/UXの生成・評価を担う」（`docs/governance/requirements-source/helix-requirements_v1.3.md:67`）、§4.5 AI Vision Design HARNESSエンジン（同:265-275） | Visual Design HARNESSが画面・体験の生成と評価を担う | ビジュアルデザインのうち、製品をまたぐ再利用の構造をBRAINへ、製品固有のscreen・flow・design token・Visual Identityを各製品のHELIX-HARNESS-COREへ分ける。旧§4.9の統合Design HARNESS（同:379-393）はSystem Design（設計）まで含めていたが、Visual Design HARNESSはビジュアルデザインに限る |
+| HELIXBRAIN-L1-007、009（昇格の経路） | 旧RCLS-BR-004（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md:37-39`：project内の知識を独立検証、横断検証、shadowを経たものだけ仕組みへ昇格する）、旧RCLS-BR-006（同`:45-47`：学習は提案であり、既存のauthorityを直接変えない） | 段階を踏んだ独立の検証を経て昇格し、提案で既存のauthorityを変えない | 提案の登録と振り分けをOSが行う（OSはPM、LABOはPMO。2026-09-26のPO判断） |
 | HELIXBRAIN-L1-004、009 | 対応なし | — | 複数の正解を併存させることと、Unitを組み合わせた構成の候補は、新しい案である。`archive/`を「alternative_to」「composition candidate」「複数の正解」で探し、BRAINの知識に当たる記述は見つからなかった |
 
 ## 既存の候補との関係
