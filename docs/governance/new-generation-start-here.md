@@ -61,6 +61,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 - HELIX-BRAIN：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/brain-l1-idea-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。
 - HELIX-INTELLIGENCE：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/intelligence-l1-idea-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。Conceptの4.0を、BRAIN・HELIX-HARNESS-CORE・INTELLIGENCE・OSの複合処理にした。
 - HELIX-SECURITY：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/security-l1-idea-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。
+- 作業の実行主体：2026-09-26のPO判断で、Workerへ統一した。レーンは推進やreview等の役割の割当て先、Workerはレーンの主がSubagentとして呼び出して作業させるモデルである。HELIXサブエージェント、Runner、Sandboxを別の主体や共通部品として置かず、Workerの共通の実行契約はHELIX-OSが持つ（[判断記録](decisions/worker-execution-model-po-decisions-2026-09-26.md)）。上の「Runner／Sandbox」は、v4.3への改訂の時点の記述である。
 `L2D-S0-01 scaffold-binding`と`L2D-S0-02 wbs-ledger`の候補は2026-09-19の[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)で承認済みであり、
 候補本文内の`draft_candidate`／`awaiting_human_approval`も同じく承認前snapshotのmetadataとして、decision recordを優先する。
 対象別L2／L11はdraft・未採否であり、まだcanonicalではない。

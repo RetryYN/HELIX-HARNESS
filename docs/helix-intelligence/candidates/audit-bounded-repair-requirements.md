@@ -46,7 +46,7 @@ POは、限定修復の検出から修復の実行までを、まとめてINTELL
 | 状態 | 担う機構 | Conceptの根拠 |
 |---|---|---|
 | 操作許可 | HELIX-SECURITY | 認可、情報保護、資格情報、隔離、失効 |
-| 隔離適用 | HELIX-SECURITY（隔離の単位）とHELIX-Runner／Sandbox（実行） | SECURITYの隔離、Runner／Sandboxの実行 |
+| 隔離適用 | HELIX-SECURITY（隔離の単位、実行の制約）とWorkerの実行環境（制約の強制） | SECURITYの隔離とWorkerの実行の制約、作業を実行するのはWorker（2026-09-26 PO判断） |
 | 検収 | HELIX-OSの検収 | ticketから必要なCIとテストを割り出す |
 | 意味判断 | 上流の要求・設計（本候補の「意味矛盾は上流変更候補へ戻す」） | 要求の意味は上流が持つ |
 

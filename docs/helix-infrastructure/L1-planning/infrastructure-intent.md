@@ -110,7 +110,7 @@ IDは原文のHRI-L1-001〜040と同じ番号で対応する。種類の列は�
 | Worker → HELIX-INFRASTRUCTURE | 接続 | Worker、HELIX-INFRASTRUCTURE | Workerは作業の主体であり、計算機そのものではない。HELIX-INFRASTRUCTUREは、Workerが動く実際の資源（計算機、CPU、memory、GPU、storage、network、processやcontainerの実行環境）とその容量・状態を持ち、隔離はその資源で使える方式で当てる。Workerは必要に応じて別の資源へ移れ、資源が変わってもticket、要求、Workerの責務を失わない。Workerの作業の責務やticketの状態をHELIX-INFRASTRUCTUREへ移さない（2026-09-26 PO判断、PR #2149） |
 | HELIX-INFRASTRUCTURE → LABO | 接続 | HELIX-INFRASTRUCTURE、LABO | 生のmetric、出来事、failure、復旧、費用、容量を渡す。構成が良かったかはLABOが過去の実績として評価する。HELIX-INFRASTRUCTUREが成功の実績から設計のPatternをBRAINへ直接昇格させない |
 | INTELLIGENCE → HELIX-INFRASTRUCTURE | 接続 | INTELLIGENCE、HELIX-INFRASTRUCTURE | 資源とWorkerの配置、容量の不足、failureの診断、増減、復旧の候補を判断の候補として受け取る。候補をそのままauthorityとして実行しない |
-| HELIX-BRAIN → HELIX-HARNESS-CORE | 接続 | HELIX-BRAIN、HELIX-HARNESS-CORE | 汎用の設計知識は、HELIX-HARNESS-COREの設計を経てHELIX-INFRASTRUCTUREへ届く（BRAINのInfrastructure領域の要求候補（未mergeのPR #2145の`docs/helix-brain/candidates/infrastructure-domain-requirements.md`） |
+| HELIX-BRAIN → HELIX-HARNESS-CORE | 接続 | HELIX-BRAIN、HELIX-HARNESS-CORE | 汎用の設計知識は、HELIX-HARNESS-COREの設計を経てHELIX-INFRASTRUCTUREへ届く（[BRAINのInfrastructure領域の要求候補](../../helix-brain/candidates/infrastructure-domain-requirements.md)（PR #2145） |
 
 ## 旧HELIXとの対応
 

@@ -25,7 +25,7 @@ IDは原文のもの（HELIXBRAIN-L2-INFRA-001〜017）をそのまま使う。
 | 各製品のHELIX-HARNESS-CORE | その製品で採用したInfrastructureの設計 |
 | 実際に稼働しているInfrastructure（Runtime） | 実際のserver、network、database、資源の状態、配備・backup・restore・scalingの実行 |
 
-BRAINは、AWS、GCP、VPS等の実環境の状態、資格情報、provider account、Infrastructureの操作権限を持たない。これらはRuntime、OS、SECURITY、Runner／Sandbox等の責務に分ける。
+BRAINは、AWS、GCP、VPS等の実環境の状態、資格情報、provider account、Infrastructureの操作権限を持たない。これらはRuntime、OS、SECURITY、Worker等の責務に分ける（旧Runner／Sandboxの実行の能力は、2026-09-26のPO判断でWorkerへ統一した。[判断記録](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)）。
 
 ## 要求候補
 
@@ -75,4 +75,4 @@ Infrastructureは、BRAINのL1企画案で1.0から扱う初期の領域の一�
 
 ## 未確定の点
 
-- 原文の「Infrastructure Runtime」（実際に稼働しているInfrastructure）のうち、HELIX自身の実際の実行環境は、2026-09-26のPOの回答で新しいコア機構のHELIX-INFRASTRUCTUREが持つことにした（未mergeのPR #2148の判断記録HDEC-INFRASTRUCTURE-L1-IDEA-2026-09-26。PR #2148の統合後に同記録へ付け替える）。HELIX-INFRASTRUCTURE自体は、POが全体を見てから扱いを決めるアイデアの段階である。利用者の環境の運転はHELIX-Web-OS（Visionの材料）が近く、HELIXの本体のInfrastructureへ暗黙に共有しない。原文の「BRAINが持たないもの」はRuntime、OS、SECURITY、Runner等へ分けるとしており、BRAINが持たないことは確定している。
+- 原文の「Infrastructure Runtime」（実際に稼働しているInfrastructure）のうち、HELIX自身の実際の実行環境は、2026-09-26のPOの回答で新しいコア機構のHELIX-INFRASTRUCTUREが持つことにした（[判断記録](../../governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md)、PR #2148）。HELIX-INFRASTRUCTURE自体は、POが全体を見てから扱いを決めるアイデアの段階である。利用者の環境の運転はHELIX-Web-OS（Visionの材料）が近く、HELIXの本体のInfrastructureへ暗黙に共有しない。原文の「BRAINが持たないもの」はRuntime、OS、SECURITY、Runner等へ分けるとしており、BRAINが持たないことは確定している。
