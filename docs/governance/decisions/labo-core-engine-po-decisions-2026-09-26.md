@@ -69,6 +69,19 @@ AIの整理：
 - 接続の一覧は、要求（L2）で決める。
 - 整理の結果は、LABOのL1企画案の「エンジンと接続」に書いた。
 
+## HELIX-HARNESS-Coreの名称
+
+POは次のように述べた。
+
+- 「あと、ヘリックスコアはカタカナ表記ではなく、HELIX-HARNESS-Coreが正式名称な。」
+
+AIの整理：
+- 「ヘリックスコア」と書いてきた部位の正式名称は、HELIX-HARNESS-Coreである。意味は変えず、名称だけを改める。
+- 現在の意味を持ち更新され続ける文書（Concept、企画、要求、候補、案内）は、HELIX-HARNESS-Coreへ書き換える。
+- 判断記録、監査の記録、source snapshotは、その時点の記録として書き換えない。POの発言の引用もそのまま残す。
+- 原文§19の「Product Helix Core」は、各製品のHELIX-HARNESS-Coreと読む。
+- 書き換えは、PR #2140と#2142のmerge後に本PRで行う。
+
 ## 原文で答えが出た未決の点
 
 PR #2140の[統合要求案パッケージ](../crosswalks/po-optimal-draft-packet.md)が残していた次の点は、POの原文で答えが出た。
@@ -83,4 +96,5 @@ PR #2140の[統合要求案パッケージ](../crosswalks/po-optimal-draft-packe
 
 - [HELIX-LABOのL1企画案](../../helix-labo/L1-planning/labo-intent.md)を新しく作る。
 - [LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)の親を、L1企画案の要求へ付け替える案を書く。
+- 更新され続ける文書の「ヘリックスコア」を、HELIX-HARNESS-Coreへ書き換える。
 - 統合要求案パッケージの未決の点、Conceptの2.0の「何を外の情報とするかは未確定」、BRAINの「学習」の未確定の注記は、PR #2140と#2142のmerge後に、本記録に合わせて更新する。
