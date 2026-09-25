@@ -1364,11 +1364,11 @@
     {
       "ref_id": "CUR-06-HARNESS-CANDIDATE",
       "path": "docs/helix-brain/candidates/design-template-system-requirements.md",
-      "sha256": "ca3edb637e450939e2ce61327df2f143f5b11a1fb17c7c3f24087812e3df5c0f",
+      "sha256": "113cb18db8fd99a05842b0c78539af06156c984a7821cb4710b3f458a1a78013",
       "start_line": 18,
       "end_line": 50,
-      "line_sha256": "975849ce966c9ada3f9dc8d1404d74d99d2ca2cbd5350a8f9aff98425d986389",
-      "exact_text": "# HARNESS設計template system要求候補\n\n2026-09-25のPO判断により、`docs/governance/candidates/`からHELIX-BRAINの候補置き場へ移した（[判断記録](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。\n要求の行の文言とIDの接頭辞（DST-HARNESS、DST-OS）は、追跡のため移す前のまま保つ。移す前のfront matterは`product_owner: HELIX-HARNESS`、`operational_owner: HELIX-OS`だった。\n本文にある「HARNESSがtemplateを提供し、HELIX-OSが登録・改善を管理する」という分担は、次の「現行Conceptに照らした担当」で読み替える。\n\n## 現行Conceptに照らした担当\n\n[Concept](../../concept/helix-concept.md)の機構表と[2026-09-25のPO指示](../../governance/decisions/brain-helix-core-po-intent-2026-09-25.md)に従う。\nBRAINは製品単位ではなくHELIX全体に共通する汎用の構造（設計パターン、設計ユニット・パーツ）を持ち、製品固有の意味・設計は持たない。\nヘリックスコア（HARNESSのコア）は製品固有の意味と設計を持ち、BRAINとコネクタで接続する。OSの管理は登録と版の管理、LABOは改善効果・退行の評価を担う。\n\n| 候補 | 担当 | 根拠 |\n|---|---|---|\n| DST-HARNESS-002、DST-HARNESS-005 | HELIX-BRAIN | templateの意味契約と版、seedは、製品をまたぐ汎用の構造である |\n| DST-HARNESS-001、003、004、006、007 | HELIX-HARNESS（ヘリックスコア。HARNESS-L2-009） | 製品の要求へtemplateを適用し、設計義務の導出、上流へのBackflow、適用判定、変更影響を製品固有の意味として扱う |\n| DST-OS-001 | 汎用のtemplateの版と状態はHELIX-BRAIN、対象projectが使ったexact setと版の登録はHELIX-OS | OSの管理は各製品の状態と証拠の登録を担う |\n| DST-OS-003 | HELIX-OS | 適用・義務・N/A・backflow・成果・結果を、各製品の記録として同じ因果関係で登録する |\n| DST-OS-004 | 改善候補の登録と振り分けはHELIX-OS（HELIXOS-L2-005）、効果と退行の評価はHELIX-LABO、評価を経たパーツの追加はHELIX-BRAIN | Conceptでは、コアのパターンからBRAINがパーツを増やし、LABOがその評価をBRAINへ返す |\n| DST-OS-005 | 停止とBackflowの条件はヘリックスコア、その適用はHELIX-OS | HARNESSが「満たさなければ進めない」を定め、OSがWorker停止・記録へ適用する（HARNESS L2の工程規則と同じ分け方） |\n| DST-OS-002 | 接続の要求として扱う | 要求からtemplateの候補を選ぶ処理は、要求エンジン（ヘリックスコア）、BRAINのパターン、稼働中の判断（Intelligence。2026-09-25 PO判断「稼働はインテリジェンス」）がつながって走る。POの指示「連続で処理が走るケースを全て個別に割り当てたら無理がある」に従い、機構ごとの単体に割り振らない（[判断記録](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)） |\n\nこの担当は候補の配置の読み替えであり、要求の採用・承認ではない。BRAINの企画（L1）ができた後に要求として採否する。\n\n## 目的とauthority順序\n\n初期開発で参照できる設計知識がなく、AIごとに設計論点と成果物が変わる状態を防ぐ。HARNESSは要求kind、対象責務、\nsystem構成、risk、domainに応じたversioned Design Templateと設計義務を提供する。HELIX-OSはtemplateの登録、選定、適用、\n利用結果、改善候補を管理し、HELIX自身と複数productの経験からtemplateを継続改善する。\n\n要求の意味authorityはConcept、企画、利用者指示、人間合意にある。Design Templateは要求を設計都合で生成しない。\nForwardでは要求から必要な設計義務を導き、Backflowでは設計に必要な入力の欠落を質問・要求候補として上流へ戻す。\nBackflow候補も要求エンジンと人間の採否を経る。\n",
+      "line_sha256": "4212e99aee453f04c5124ea565b980c5a6ace78995e106bcf5db0f7ba8397bce",
+      "exact_text": "# HARNESS設計template system要求候補\n\n2026-09-25のPO判断により、`docs/governance/candidates/`からHELIX-BRAINの候補置き場へ移した（[判断記録](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。\n要求の行の文言とIDの接頭辞（DST-HARNESS、DST-OS）は、追跡のため移す前のまま保つ。移す前のfront matterは`product_owner: HELIX-HARNESS`、`operational_owner: HELIX-OS`だった。\n本文にある「HARNESSがtemplateを提供し、HELIX-OSが登録・改善を管理する」という分担は、次の「現行Conceptに照らした担当」で読み替える。\n\n## 現行Conceptに照らした担当\n\n[Concept](../../concept/helix-concept.md)の機構表と[2026-09-25のPO指示](../../governance/decisions/brain-helix-core-po-intent-2026-09-25.md)に従う。\nBRAINは製品単位ではなくHELIX全体に共通する汎用の構造（設計パターン、設計ユニット・パーツ）を持ち、製品固有の意味・設計は持たない。\nHELIX-HARNESS-CORE（HARNESSのコア）は製品固有の意味と設計を持ち、BRAINとコネクタで接続する。OSの管理は登録と版の管理、LABOは改善効果・退行の評価を担う。\n\n| 候補 | 担当 | 根拠 |\n|---|---|---|\n| DST-HARNESS-002、DST-HARNESS-005 | HELIX-BRAIN | templateの意味契約と版、seedは、製品をまたぐ汎用の構造である |\n| DST-HARNESS-001、003、004、006、007 | HELIX-HARNESS（HELIX-HARNESS-CORE。HARNESS-L2-009） | 製品の要求へtemplateを適用し、設計義務の導出、上流へのBackflow、適用判定、変更影響を製品固有の意味として扱う |\n| DST-OS-001 | 汎用のtemplateの版と状態はHELIX-BRAIN、対象projectが使ったexact setと版の登録はHELIX-OS | OSの管理は各製品の状態と証拠の登録を担う |\n| DST-OS-003 | HELIX-OS | 適用・義務・N/A・backflow・成果・結果を、各製品の記録として同じ因果関係で登録する |\n| DST-OS-004 | 改善候補の登録と振り分けはHELIX-OS（HELIXOS-L2-005）、効果と退行の評価はHELIX-LABO、評価を経たパーツの追加はHELIX-BRAIN | Conceptでは、コアのパターンからBRAINがパーツを増やし、LABOがその評価をBRAINへ返す |\n| DST-OS-005 | 停止とBackflowの条件はHELIX-HARNESS-CORE、その適用はHELIX-OS | HARNESSが「満たさなければ進めない」を定め、OSがWorker停止・記録へ適用する（HARNESS L2の工程規則と同じ分け方） |\n| DST-OS-002 | 接続の要求として扱う | 要求からtemplateの候補を選ぶ処理は、要求エンジン（HELIX-HARNESS-CORE）、BRAINのパターン、稼働中の判断（INTELLIGENCE。2026-09-25 PO判断「稼働はインテリジェンス」）がつながって走る。POの指示「連続で処理が走るケースを全て個別に割り当てたら無理がある」に従い、機構ごとの単体に割り振らない（[判断記録](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)） |\n\nこの担当は候補の配置の読み替えであり、要求の採用・承認ではない。BRAINの企画（L1）ができた後に要求として採否する。\n\n## 目的とauthority順序\n\n初期開発で参照できる設計知識がなく、AIごとに設計論点と成果物が変わる状態を防ぐ。HARNESSは要求kind、対象責務、\nsystem構成、risk、domainに応じたversioned Design Templateと設計義務を提供する。HELIX-OSはtemplateの登録、選定、適用、\n利用結果、改善候補を管理し、HELIX自身と複数productの経験からtemplateを継続改善する。\n\n要求の意味authorityはConcept、企画、利用者指示、人間合意にある。Design Templateは要求を設計都合で生成しない。\nForwardでは要求から必要な設計義務を導き、Backflowでは設計に必要な入力の欠落を質問・要求候補として上流へ戻す。\nBackflow候補も要求エンジンと人間の採否を経る。\n",
       "product": "HELIX-HARNESS",
       "layer": "candidate",
       "classification": "direct_current_candidate",
@@ -1377,7 +1377,7 @@
     {
       "ref_id": "CUR-06-OS-CANDIDATE",
       "path": "docs/helix-brain/candidates/design-template-system-requirements.md",
-      "sha256": "ca3edb637e450939e2ce61327df2f143f5b11a1fb17c7c3f24087812e3df5c0f",
+      "sha256": "113cb18db8fd99a05842b0c78539af06156c984a7821cb4710b3f458a1a78013",
       "start_line": 64,
       "end_line": 72,
       "line_sha256": "a882a065ffde3ab3b63fd2c24953609f133d05fee2d369b5855a7d3cf34de85a",
@@ -1416,7 +1416,7 @@
     {
       "ref_id": "CUR-06-HARNESS-L1",
       "path": "docs/helix-harness/L1-planning/product-intent.md",
-      "sha256": "0ee14027def5d74f510b19e030c35f6cc6ec1c88d68c314799f47e777bd2e758",
+      "sha256": "e9b3755f303bef4366812ad23f82d5706cf0d0a17d9344614695719bc4c3bffd",
       "start_line": 15,
       "end_line": 18,
       "line_sha256": "bfcb0cac97af8a45a3b5ac9d888f6990ac01f7a25c70e28092e63d05bb7607ce",
@@ -1455,7 +1455,7 @@
     {
       "ref_id": "CUR-06-OS-L1",
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "2d2b337d2bd343f803f79e88f8adb0d3f5737b7691e1d8bbe1314227056ba9d6",
+      "sha256": "281cc18b3edcd611c0f638cf9a8d777c40e992fd37501c35646026fa5b5056d4",
       "start_line": 15,
       "end_line": 35,
       "line_sha256": "3ec2398b86ec3ad4778a23764b126fe124971aae81b5f8b74d5182479e022523",

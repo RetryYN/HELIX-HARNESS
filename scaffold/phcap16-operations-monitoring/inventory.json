@@ -430,7 +430,7 @@
       {
         "ref_id": "CUR-PRODUCT-BOUNDARY",
         "path": "docs/concept/product-boundary.md",
-        "sha256": "f57ce8f45a585bb47ea4342245f3176e013916c8377e2da8f39247d6804ff7d6",
+        "sha256": "f8de668e2b523ead41a066d5261c6855dff61a1efc1e0b509a3a94ba95b1f4f1",
         "product": "HELIX-OS",
         "classification": "boundary_current_ref",
         "anchor_id": "CUR-PRODUCT-BOUNDARY",

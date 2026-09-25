@@ -76,7 +76,7 @@
   "current_tree_revision": "562e176c36844474b63424ec06beefe2f7722d18",
   "inputs": {
     "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
-    "docs/concept/product-boundary.md": "sha256:f57ce8f45a585bb47ea4342245f3176e013916c8377e2da8f39247d6804ff7d6",
+    "docs/concept/product-boundary.md": "sha256:f8de668e2b523ead41a066d5261c6855dff61a1efc1e0b509a3a94ba95b1f4f1",
     "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
     "docs/governance/legacy-ir-document-source-relation.jsonl": "sha256:f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f",
     "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
@@ -154,8 +154,8 @@
     "docs/governance/legacy-requirement-direct-semantic-review-wave9.meta.json": "sha256:a1791b6b5198d62d793d0a14b216141e57c49da643f6cbebc14a1397b7bdf504",
     "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "sha256:8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
     "docs/governance/phase-capability-inventory.json": "sha256:2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2",
-    "docs/helix-harness/L1-planning/product-intent.md": "sha256:0ee14027def5d74f510b19e030c35f6cc6ec1c88d68c314799f47e777bd2e758",
-    "docs/helix-os/L1-planning/system-intent.md": "sha256:2d2b337d2bd343f803f79e88f8adb0d3f5737b7691e1d8bbe1314227056ba9d6",
+    "docs/helix-harness/L1-planning/product-intent.md": "sha256:e9b3755f303bef4366812ad23f82d5706cf0d0a17d9344614695719bc4c3bffd",
+    "docs/helix-os/L1-planning/system-intent.md": "sha256:281cc18b3edcd611c0f638cf9a8d777c40e992fd37501c35646026fa5b5056d4",
     "docs/helix-web-os/L1-planning/system-intent.md": "sha256:31aa8e4fbd260c2ac980300db201a84918b094695e3d24559e50edcb86873249",
     "docs/helix-web/L1-planning/product-intent.md": "sha256:d5b665017dec1c2f5c71e7006511a11ea81fa0e9aece028c1b9a691588f4fe54"
   },
