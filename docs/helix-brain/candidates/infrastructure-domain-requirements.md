@@ -75,4 +75,4 @@ Infrastructureは、BRAINのL1企画案で1.0から扱う初期の領域の一�
 
 ## 未確定の点
 
-- 原文の「Infrastructure Runtime」（実際に稼働しているInfrastructure）をどの機構が持つかは、まだ決まっていない。HELIX自身の運転はHELIX-OSとRunner／Sandbox、利用者の環境の運転はHELIX-Web-OS（Visionの材料）が近い。原文の「BRAINが持たないもの」はRuntime、OS、SECURITY、Runner等へ分けるとしており、BRAINが持たないことは確定している。
+- 原文の「Infrastructure Runtime」（実際に稼働しているInfrastructure）のうち、HELIX自身の実際の実行環境は、2026-09-26のPOの回答で新しいコア機構のHELIX-INFRASTRUCTUREが持つことにした（[判断記録](../../governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md)、PR #2148）。HELIX-INFRASTRUCTURE自体は、POが全体を見てから扱いを決めるアイデアの段階である。利用者の環境の運転はHELIX-Web-OS（Visionの材料）が近く、HELIXの本体のInfrastructureへ暗黙に共有しない。原文の「BRAINが持たないもの」はRuntime、OS、SECURITY、Runner等へ分けるとしており、BRAINが持たないことは確定している。
