@@ -1,5 +1,5 @@
 ---
-title: "HELIX-Web-OSサービス運転要求案"
+title: "HELIX-WEB-OSサービス運転要求案"
 canonical_vmodel: L1-L12
 canonical_layer: L2
 canonical_pair: L11
@@ -10,7 +10,7 @@ parent_l1_candidate: helix-web/docs/helix-web-os/L1-planning/system-intent.md
 created: 2026-09-14
 ---
 
-# HELIX-Web-OSサービス運転要求案
+# HELIX-WEB-OSサービス運転要求案
 
 > **Visionレベルの材料（要求層ではない）**：2026-09-24のPO判断（[decision record](../../../../docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、本書はL1／L2／L11の要求層から外し、Visionレベルの材料として扱う。本書はAIがVision v0.1を拡大解釈して起こしたもので、POが要求として出したものではない。PO：「Visionレベルの話でこれから要求に起こすべき内容であり、いま要求に入ってるのがおかしい」。要求は今後POの指示から起こす。本書の記述を要求・受入・設計・実装の根拠にしない。
 
@@ -25,7 +25,7 @@ created: 2026-09-14
 | HELIXWEBOS-L2-005 | HELIXWEBOS-L1-004 |
 | HELIXWEBOS-L2-006 | HELIXWEBOS-L1-005 |
 
-| ID | HELIX-Web-OSに対する要求 | 確認する結果 |
+| ID | HELIX-WEB-OSに対する要求 | 確認する結果 |
 |---|---|---|
 | HELIXWEBOS-L2-001 | tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる | 一利用者の資格・job・data・結果が別scopeへ流れず、HELIX-OS内部stateをservice authorityとして共有しない |
 | HELIXWEBOS-L2-002 | 適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる | Connectorに開発engineを重複実装せず、不適格版や更新失敗を利用可能と表示しない |
@@ -34,7 +34,7 @@ created: 2026-09-14
 | HELIXWEBOS-L2-005 | jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる | projection欠落・遅延・stale・conflict・結果不明を成功表示せず、画面表示を実行事実や受入の正本にしない |
 | HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |
 
-HELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-Web-OSは展開後のservice runtimeを所有する。
-両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWeb-OSが
+HELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-WEB-OSは展開後のservice runtimeを所有する。
+両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWEB-OSが
 運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、
 artifact、receipt、telemetry export、改善proposalとして行う。

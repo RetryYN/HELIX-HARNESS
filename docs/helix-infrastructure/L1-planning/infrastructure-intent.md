@@ -129,7 +129,7 @@ IDは原文のHRI-L1-001〜040と同じ番号で対応する。種類の列は�
 | 014、033、034 | 旧NIO-L3-03、09（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:9,15`） | 観測の証拠に時刻、新しさ、収集の健全性を持たせ、収集の停止・欠測・古い状態を健全に変えない | 未観測と古い状態を、健全・不健全・不明と並ぶ状態にする |
 | 017、018 | 旧NIO-L3-06（同:12） | backupとrestoreは実行できる手順で確かめ、名前や文書があることを成功の証拠にしない | 同じ |
 | 039 | 旧ConceptのRunner／Sandbox（共通部品。限定された実行、停止、隔離、結果の回収）。2026-09-26のPO判断でWorkerへ統一した（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149） | 実際の操作を限定された実行経路に置く | 実行はWorkerが担い、Infrastructureの操作へ当てる |
-| 035 | 現行のConceptのHELIX-Web-OS（内部OSの状態・鍵・権限を共有しない） | HELIXの内部とWebのserviceの側を分ける | Infrastructureの資源へ当てる |
+| 035 | 現行のConceptのHELIX-WEB-OS（内部OSの状態・鍵・権限を共有しない） | HELIXの内部とWebのserviceの側を分ける | Infrastructureの資源へ当てる |
 | 008 | 旧HIL-TR-01、02（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:165-166`） | 管理の部分（control plane）と処理の部分（data／detection plane）を分け、版付きの契約でつなぐ | 旧は実行の言語と実行環境で分けていた。本書は資源の消費で分け、実行の負荷で管理・停止・復旧の能力を失わないことを目的にする |
 | 012 | 旧インフラ・運用品質の要求導出の原文（`archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md:128`） | 故障の単位（failure domain）を設計で定め、複数のregionや特定のcloudを無条件に求めない | 旧は製品の基本設計（L4）の義務だった。本書はHELIX自身の資源を故障の単位として扱い、影響の範囲を辿る |
 | 037 | 旧OPS-R-12（`product-lifecycle-operations-requirements.md:169-171`） | HELIX自身も通常の利用者として、配備から観測、incident、修正、再配備までを同じ経路で通し、HELIX自身のための例外の契約を作らない | 稼働している世代と候補の世代を分け、候補の世代の自己承認で稼働している世代を壊さない |

@@ -32,7 +32,7 @@
 ## 現在の境界
 
 - 日本語で報告し、人間向け文書は日本語で書く。
-- 製品は機構の一部である。HELIX-HARNESSとHELIX-Webは機構のうち外部提供する製品という属性も持ち、HELIX-OSとHELIX-Web-OSは製品ではない機構である。機構数や要求対象数を製品数と言い換えず、役割とauthority状態を対象ごとに示す。
+- 製品は機構の一部である。HELIX-HARNESSとHELIX-Web（WEB-HARNESSの7製品等をまとめた製品群）は機構のうち外部提供する製品という属性も持ち、HELIX-OSとHELIX-WEB-OSは製品ではない機構である。機構数や要求対象数を製品数と言い換えず、役割とauthority状態を対象ごとに示す。
 - Concept → 対象別L1 → L2／L11 → L3／L10 → 下流pairの順を飛ばさない。
 - GitHub、Issue、PR、CI、DB、memory、会話から要求意味・承認・完了を生成しない。
 - 新世代CIは未構築である。旧CIを動かさない。

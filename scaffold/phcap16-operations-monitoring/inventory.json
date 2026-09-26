@@ -352,7 +352,7 @@
       {
         "ref_id": "CUR-OS-L2-OPS",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "7ef9c74133f1b82f783fcce025e186a2d648374a308cd4b5275eeedc580bd156",
+        "sha256": "efffb6e6cf6eaefe612248558ca0a91bcfd70d3447dd5c947336e648699765e1",
         "product": "HELIX-OS",
         "classification": "direct_current_ref",
         "anchor_id": "CUR-OS-L2-OPS",
@@ -365,28 +365,28 @@
       {
         "ref_id": "CUR-OS-L2-BOUNDARY",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "7ef9c74133f1b82f783fcce025e186a2d648374a308cd4b5275eeedc580bd156",
+        "sha256": "efffb6e6cf6eaefe612248558ca0a91bcfd70d3447dd5c947336e648699765e1",
         "product": "HELIX-OS",
         "classification": "direct_current_ref",
         "anchor_id": "CUR-OS-L2-BOUNDARY",
         "line_start": 336,
         "line_end": 348,
-        "exact_text": "## 管理対象としてのHELIX-WebとHELIX-Web-OS\n\n2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」と「展開時はHELIX-OSの外にHELIX-Web-OSを作る」を、\nHELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-Web-OSは\nそれぞれ要求正本・合意revision・進行状態を持ち、OSが開発・改善projectとして横断管理する。\nWeb固有の利用者体験やサービス要求は[HELIX-Web側](../../../helix-web/docs/helix-web/README.md)へ置く。\n展開後のtenant、Connector job、service state、credential、配備・監視・復旧は\n[HELIX-Web-OS側](../../../helix-web/docs/helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。\nHELIX-Web-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・\n時点・欠測付きで受領する。HELIXOS-L2-005／007／013により他projectの証拠と突合し、改善候補、採否、対象別変更、\n再検証、再観測へ接続する。credential、tenant原data、範囲外logを吸収せず、受領logから要求を直接変更しない。\nWebで適用するHARNESS版と採用能力を追跡し、Webの変更だけを理由にHARNESSの共通規則や他プロダクトの要求を変更しない。\nWebでの実践証拠をHELIX改善へ戻す際は、出典・利用可能範囲・採否・変更対象・検証結果を保持する。",
+        "exact_text": "## 管理対象としてのHELIX-WebとHELIX-WEB-OS\n\n2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」と「展開時はHELIX-OSの外にHELIX-Web-OSを作る」を、\nHELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-WEB-OSは\nそれぞれ要求正本・合意revision・進行状態を持ち、OSが開発・改善projectとして横断管理する。\nWeb固有の利用者体験やサービス要求は[HELIX-Web側](../../../helix-web/docs/helix-web/README.md)へ置く。\n展開後のtenant、Connector job、service state、credential、配備・監視・復旧は\n[HELIX-WEB-OS側](../../../helix-web/docs/helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。\nHELIX-WEB-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・\n時点・欠測付きで受領する。HELIXOS-L2-005／007／013により他projectの証拠と突合し、改善候補、採否、対象別変更、\n再検証、再観測へ接続する。credential、tenant原data、範囲外logを吸収せず、受領logから要求を直接変更しない。\nWebで適用するHARNESS版と採用能力を追跡し、Webの変更だけを理由にHARNESSの共通規則や他プロダクトの要求を変更しない。\nWebでの実践証拠をHELIX改善へ戻す際は、出典・利用可能範囲・採否・変更対象・検証結果を保持する。",
         "meaning": "OS/Web-OS management and permitted evidence export boundary",
-        "line_sha256": "fe01ca10d02de5d87fa05fad32931d3753cb2a2295c8e0e13fb8453d0e16357b"
+        "line_sha256": "024391338dfcdcff960854e23b6e20252cae813cfe3a3f301587a50057446762"
       },
       {
         "ref_id": "CUR-WEBOS-L2-SERVICE",
         "path": "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
-        "sha256": "b9a6a0d3c9293dda2cd45da688e17dbb7199e286190a42216e7c1393107cce27",
+        "sha256": "07d91c27b469db6b7467aef40b38c96e19f6e7eecd5f9be77fd22b0b28e1fd35",
         "product": "HELIX-Web-OS",
         "classification": "direct_current_ref",
         "anchor_id": "CUR-WEBOS-L2-SERVICE",
         "line_start": 28,
         "line_end": 40,
-        "exact_text": "| ID | HELIX-Web-OSに対する要求 | 確認する結果 |\n|---|---|---|\n| HELIXWEBOS-L2-001 | tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる | 一利用者の資格・job・data・結果が別scopeへ流れず、HELIX-OS内部stateをservice authorityとして共有しない |\n| HELIXWEBOS-L2-002 | 適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる | Connectorに開発engineを重複実装せず、不適格版や更新失敗を利用可能と表示しない |\n| HELIXWEBOS-L2-003 | 長時間jobの受付、配信、進行、切断、取消、再開、終端、結果不明を同じjob identityで管理できる | 再送・障害・再接続で副作用を二重実行せず、期限・予算・許可・未完義務を失わない |\n| HELIXWEBOS-L2-004 | 認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる | 未確認経路、期限切れ権限、秘密送信、範囲外data返送を拒否し、サービス利用を横断学習同意へ変換しない |\n| HELIXWEBOS-L2-005 | jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる | projection欠落・遅延・stale・conflict・結果不明を成功表示せず、画面表示を実行事実や受入の正本にしない |\n| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-Web-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWeb-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、\nartifact、receipt、telemetry export、改善proposalとして行う。",
+        "exact_text": "| ID | HELIX-WEB-OSに対する要求 | 確認する結果 |\n|---|---|---|\n| HELIXWEBOS-L2-001 | tenant・利用者・project・environmentごとにauthority、resource、state、evidenceを隔離できる | 一利用者の資格・job・data・結果が別scopeへ流れず、HELIX-OS内部stateをservice authorityとして共有しない |\n| HELIXWEBOS-L2-002 | 適格なHARNESS能力をConnectorへ導入・更新・撤去し、Web版・Connector版・能力版・接続契約を追跡できる | Connectorに開発engineを重複実装せず、不適格版や更新失敗を利用可能と表示しない |\n| HELIXWEBOS-L2-003 | 長時間jobの受付、配信、進行、切断、取消、再開、終端、結果不明を同じjob identityで管理できる | 再送・障害・再接続で副作用を二重実行せず、期限・予算・許可・未完義務を失わない |\n| HELIXWEBOS-L2-004 | 認証、provider経路、credential利用、network／data scope、利用者環境から返送する情報を操作ごとに制御できる | 未確認経路、期限切れ権限、秘密送信、範囲外data返送を拒否し、サービス利用を横断学習同意へ変換しない |\n| HELIXWEBOS-L2-005 | jobの原eventと証拠から、HELIX-Webのダッシュボードへ進行・状態・成果・停止・再開をrevision付きで投影できる | projection欠落・遅延・stale・conflict・結果不明を成功表示せず、画面表示を実行事実や受入の正本にしない |\n| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-WEB-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWEB-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、\nartifact、receipt、telemetry export、改善proposalとして行う。",
         "meaning": "Web-OS service runtime operations and export contract",
-        "line_sha256": "141e38fdbaa798f3bc25ca701baa0dfdfbaf6405954759c4fb8dace9ea5cdcdd"
+        "line_sha256": "243944a13bb1719c9f86eb013a66ddb23526f3c72222b588c4d1da6fa28f95bd"
       },
       {
         "ref_id": "CUR-CROSSWALK-L1-L3",
@@ -430,15 +430,15 @@
       {
         "ref_id": "CUR-PRODUCT-BOUNDARY",
         "path": "docs/concept/product-boundary.md",
-        "sha256": "1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15",
+        "sha256": "ed5e94818d6da3d51493abbfc5524df2538d012f0b8eaf924f645d09ef09eefe",
         "product": "HELIX-OS",
         "classification": "boundary_current_ref",
         "anchor_id": "CUR-PRODUCT-BOUNDARY",
         "line_start": 64,
         "line_end": 71,
-        "exact_text": "HELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWeb-OSの\n要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、Web-OSは展開後の利用者向けserviceを\n独立したauthority、state、credential、writerで運転する。\n\n両OSは改善loopで接続する。HELIX-Web-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで\n渡し、HELIX-LABOがHARNESS自身の実践を含む各対象の効果と退行を評価し、HELIX-OSが評価を改善候補として登録する。\n採択された候補だけをHARNESS、Web、Web-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、\n同意範囲外logの吸収や、logからの直接変更は行わない。",
+        "exact_text": "HELIX-OSによる「管理」は、HELIX-WEB-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWEB-OSの\n要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、WEB-OSは展開後の利用者向けserviceを\n独立したauthority、state、credential、writerで運転する。\n\n両OSは改善loopで接続する。HELIX-WEB-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで\n渡し、HELIX-LABOがHARNESS自身の実践を含む各対象の効果と退行を評価し、HELIX-OSが評価を改善候補として登録する。\n採択された候補だけをHARNESS、Web、WEB-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、\n同意範囲外logの吸収や、logからの直接変更は行わない。",
         "meaning": "OS/Web-OS independent authority and permitted improvement connection",
-        "line_sha256": "fd5f4c46f27b123cde76b24bdd4d22c06b726bb11ccec82c0da75d032b5a6e09"
+        "line_sha256": "fc0bdf9d51d83dbf8dcbfc75b04551cad0538f409462a703e5ecbd1945c51068"
       }
     ],
     "interpretation": "Current refs establish source candidates and boundaries only. They do not establish L3/L10/L11 implementation, operation, pass, approval, owner or product adoption."

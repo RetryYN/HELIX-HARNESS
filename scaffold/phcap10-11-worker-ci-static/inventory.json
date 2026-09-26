@@ -610,22 +610,22 @@
       {
         "ref_id": "CUR-BOUNDARY-FOUR",
         "path": "docs/concept/product-boundary.md",
-        "sha256": "1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15",
+        "sha256": "ed5e94818d6da3d51493abbfc5524df2538d012f0b8eaf924f645d09ef09eefe",
         "line_start": 33,
         "line_end": 40,
-        "line_sha256": "abff814eb6f9414e2437c6cadfba280be832d8f854e8770d5b76ffcd7d7cc900",
-        "exact_text": "## 対象別の正規入口\n\n| 対象 | 所有する要求 | ローカル入口 |\n|---|---|---|\n| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |\n| HELIX-OS | プロジェクト群の管理、ticketを発行する推進、CI・testを最適化する検収、統合・更新・復旧 | [HELIX-OS](../helix-os/README.md) |\n| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../../helix-web/docs/helix-web/README.md) |\n| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../../helix-web/docs/helix-web-os/README.md) |",
+        "line_sha256": "4b985d3f85575d69b7bdf6a7720c455636ace3dfd75946dcb6878e04e7348b4d",
+        "exact_text": "## 対象別の正規入口\n\n| 対象 | 所有する要求 | ローカル入口 |\n|---|---|---|\n| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |\n| HELIX-OS | プロジェクト群の管理、ticketを発行する推進、CI・testを最適化する検収、統合・更新・復旧 | [HELIX-OS](../helix-os/README.md) |\n| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../../helix-web/docs/helix-web/README.md) |\n| HELIX-WEB-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-WEB-OS](../../helix-web/docs/helix-web-os/README.md) |",
         "classification": "boundary_candidate",
         "meaning": "four product entry points"
       },
       {
         "ref_id": "CUR-BOUNDARY-OWNERSHIP",
         "path": "docs/concept/product-boundary.md",
-        "sha256": "1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15",
+        "sha256": "ed5e94818d6da3d51493abbfc5524df2538d012f0b8eaf924f645d09ef09eefe",
         "line_start": 55,
         "line_end": 71,
-        "line_sha256": "fa08fcc68c8de80f204f2ba5a8a89293179996416dd2a4922b3412c428e32014",
-        "exact_text": "| HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |\n| HELIX-OS | HELIXプロジェクト群の内部管理・推進・検収機構 | authority・state管理、ticket発行とWorker割当、CI・test最適化、改善候補登録、配布運転。独立評価はLABO、稼働中の判断と知識・モデル改善はINTELLIGENCEへ接続する |\n| HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとしてWeb利用者へダッシュボード、操作、進行表示、サービス体験を提供する |\n| HELIX-Web-OS | HELIX-OS外のWebサービス運転基盤 | tenant、Connector、job、service state、evidence projection、配備・監視・復旧 |\n\nHARNESSをHELIX-OSの内部Kernelだけに縮退させない。HELIX-OSはHARNESSを利用・管理するが、\nHARNESSの工程意味を所有する別正本を作らない。HARNESSのartifact内容とconsumer利用条件はHARNESS、\nartifactの生成、配布、promotion、rollback、監視の実行統制はHELIX-OSが担う。\n\nHELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWeb-OSの\n要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、Web-OSは展開後の利用者向けserviceを\n独立したauthority、state、credential、writerで運転する。\n\n両OSは改善loopで接続する。HELIX-Web-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで\n渡し、HELIX-LABOがHARNESS自身の実践を含む各対象の効果と退行を評価し、HELIX-OSが評価を改善候補として登録する。\n採択された候補だけをHARNESS、Web、Web-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、\n同意範囲外logの吸収や、logからの直接変更は行わない。",
+        "line_sha256": "051a87a529ab90cbe35d96808aa0c3204b61a07c473cbd12572fd89737bfc099",
+        "exact_text": "| HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |\n| HELIX-OS | HELIXプロジェクト群の内部管理・推進・検収機構 | authority・state管理、ticket発行とWorker割当、CI・test最適化、改善候補登録、配布運転。独立評価はLABO、稼働中の判断と知識・モデル改善はINTELLIGENCEへ接続する |\n| HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとしてWeb利用者へダッシュボード、操作、進行表示、サービス体験を提供する |\n| HELIX-WEB-OS | HELIX-OS外のWebサービス運転基盤 | tenant、Connector、job、service state、evidence projection、配備・監視・復旧 |\n\nHARNESSをHELIX-OSの内部Kernelだけに縮退させない。HELIX-OSはHARNESSを利用・管理するが、\nHARNESSの工程意味を所有する別正本を作らない。HARNESSのartifact内容とconsumer利用条件はHARNESS、\nartifactの生成、配布、promotion、rollback、監視の実行統制はHELIX-OSが担う。\n\nHELIX-OSによる「管理」は、HELIX-WEB-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWEB-OSの\n要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、WEB-OSは展開後の利用者向けserviceを\n独立したauthority、state、credential、writerで運転する。\n\n両OSは改善loopで接続する。HELIX-WEB-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで\n渡し、HELIX-LABOがHARNESS自身の実践を含む各対象の効果と退行を評価し、HELIX-OSが評価を改善候補として登録する。\n採択された候補だけをHARNESS、Web、WEB-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、\n同意範囲外logの吸収や、logからの直接変更は行わない。",
         "classification": "boundary_candidate",
         "meaning": "four product responsibility and OS/Web-OS connection"
       },
@@ -643,7 +643,7 @@
       {
         "ref_id": "CUR-OS-L2-WORKER-CI",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "7ef9c74133f1b82f783fcce025e186a2d648374a308cd4b5275eeedc580bd156",
+        "sha256": "efffb6e6cf6eaefe612248558ca0a91bcfd70d3447dd5c947336e648699765e1",
         "line_start": 57,
         "line_end": 61,
         "line_sha256": "13b8ed92c354f97babca39063363561736e965bd1931262ee9c892e5b6ade1ec",
@@ -687,22 +687,22 @@
       {
         "ref_id": "CUR-WEB-L2-BOUNDARY",
         "path": "helix-web/docs/helix-web/L2-requirements/product-requirements.md",
-        "sha256": "32cc382a9d19ca6818ceb12e3be657fb64e848a804790d2e2d34d10209bbca63",
+        "sha256": "f5f69a92eb3c9e23f1c1d13995aa9ad708d1e55b26764a38582760335838fc1a",
         "line_start": 48,
         "line_end": 61,
-        "line_sha256": "f4ecafcc9b8e0971fe5fe5706dd7718a36d078a135261e0619709ade35018b23",
-        "exact_text": "## 要求対象と未決定の境界\n\nHARNESSは利用する開発能力・工程条件を提供する。HELIX-OSはWebプロジェクトの要求・進行・Worker・CI・ログを管理し、学習（RCLS）と改善の評価はHELIX-LABOが担い（2026-09-25 PO判断）、\nHELIX-Web-OSは展開後のtenant・Connector job・service state・配備・監視・復旧を担う。\n本書はWebの利用者向け操作・表示・サービス体験を所有し、OS内部管理UIの要求をWebの製品要求として一括転用しない。\n\nprovider認証方式、MCP等の通信方式、対応環境、料金、具体モデル、性能・可用性の数値は未決定である。\n本書はそれらの変更や外部接続実行を認可しない。原文のPC／WSL／VPSは構想上の選択肢であり、WSL必須とはしない。\nHDA、動的計画、System Compiler、差分再生成は別段階の構想であり、初期Connectorへ一律に必須化しない。\n後二者の詳細仕様・納品契約は原文§5・O10から別途具体化が必要であり、本書の9件で全Visionを網羅したとは扱わない。\n\nプロトでは対象環境・選択能力・操作・状態・結果を確認する。画面数やレイアウトは未確定である。\n要求合意と操作の許可、提供済みと利用成功、運用健全性と改善効果を別状態として扱う。\nGitHubは作業記録の接続先であり、要求の意味・採否をIssueの状態から生成しない。",
+        "line_sha256": "a85834a0b05ff9c5212c4c11674006b7be0d83c70081ae0af46506ba75439134",
+        "exact_text": "## 要求対象と未決定の境界\n\nHARNESSは利用する開発能力・工程条件を提供する。HELIX-OSはWebプロジェクトの要求・進行・Worker・CI・ログを管理し、学習（RCLS）と改善の評価はHELIX-LABOが担い（2026-09-25 PO判断）、\nHELIX-WEB-OSは展開後のtenant・Connector job・service state・配備・監視・復旧を担う。\n本書はWebの利用者向け操作・表示・サービス体験を所有し、OS内部管理UIの要求をWebの製品要求として一括転用しない。\n\nprovider認証方式、MCP等の通信方式、対応環境、料金、具体モデル、性能・可用性の数値は未決定である。\n本書はそれらの変更や外部接続実行を認可しない。原文のPC／WSL／VPSは構想上の選択肢であり、WSL必須とはしない。\nHDA、動的計画、System Compiler、差分再生成は別段階の構想であり、初期Connectorへ一律に必須化しない。\n後二者の詳細仕様・納品契約は原文§5・O10から別途具体化が必要であり、本書の9件で全Visionを網羅したとは扱わない。\n\nプロトでは対象環境・選択能力・操作・状態・結果を確認する。画面数やレイアウトは未確定である。\n要求合意と操作の許可、提供済みと利用成功、運用健全性と改善効果を別状態として扱う。\nGitHubは作業記録の接続先であり、要求の意味・採否をIssueの状態から生成しない。",
         "classification": "adjacent_boundary_ref",
         "meaning": "Web owns user-facing product boundary; CI/Worker remain elsewhere"
       },
       {
         "ref_id": "CUR-WEBOS-L2-BOUNDARY",
         "path": "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
-        "sha256": "b9a6a0d3c9293dda2cd45da688e17dbb7199e286190a42216e7c1393107cce27",
+        "sha256": "07d91c27b469db6b7467aef40b38c96e19f6e7eecd5f9be77fd22b0b28e1fd35",
         "line_start": 35,
         "line_end": 40,
-        "line_sha256": "9329190769887485fef6b9bba87b956959403df5be319f1ed8a1c9b92e30a58a",
-        "exact_text": "| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-Web-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWeb-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、\nartifact、receipt、telemetry export、改善proposalとして行う。",
+        "line_sha256": "6b1040d0a894a1a5efee7d2e43174adcee5d2e49525698ec5ee77177e2f623fe",
+        "exact_text": "| HELIXWEBOS-L2-006 | service release、deployment、monitoring、incident、backup、restore、rollback、maintenanceを対象版と証拠へ束縛し、許可されたservice log・telemetry・利用結果をHELIX-OSの改善入口へ渡せる | exportごとに出典、tenant／data scope、目的、同意、revision、時点、欠測、保持条件を示す。配備成功、復旧成功、恒久修復、Web利用者受入を分け、運用結果からHARNESS・Web・OS要求を直接変更しない |\n\nHELIX-OSは本systemを管理対象projectとして開発・改善する。HELIX-WEB-OSは展開後のservice runtimeを所有する。\n両者のevent store、credential、tenant state、writer、release authorityを暗黙共有しない。service logはWEB-OSが\n運転記録として保持し、許可・最小化したexportだけをHELIX-OSが改善入力として受領する。連携はversioned contract、\nartifact、receipt、telemetry export、改善proposalとして行う。",
         "classification": "adjacent_boundary_ref",
         "meaning": "Web-OS service runtime and bounded OS export"
       }
