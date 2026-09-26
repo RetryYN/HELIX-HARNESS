@@ -450,3 +450,15 @@ HELIXINTELLIGENCE-L1-001–020は1.0要求、HELIXINTELLIGENCE-L1-021–026は3.
 4. Web/WEB-OS source connectionは採択済みsource contractがある場合のみ。Webの未採択候補や後続versionをINTELLIGENCE 1.0の必須依存としない。
 
 旧source SHAは[資産台帳](../../governance/legacy-asset-disposition.jsonl)とarchive bytesで照合した。旧runtime・CLI・test・hookは実行していない。
+
+### HELIXINTELLIGENCE-L2-066 — 配置案の人代行入力・受領契約（接続候補、1.0）
+
+- **PO起点**：[補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第1点、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)。
+- **親L1**：自機構primary parentはHELIXINTELLIGENCE-L1-010。接続contextはHELIXOS-L1-003、HELIXOS-L1-009。各L1は候補状態であり、本節は確認・採択を生成しない。
+- **関係**：HELIXINTELLIGENCE-L2-010に定めた配置候補のinput/output契約を参照し、そのINTELLIGENCE実装を呼べない初回経路でも人が同じ候補schemaを供給できる接続条件を定める。L2-010の契約本文は適用するが、INTELLIGENCE runtimeの存在・実行結果を依存にしない。新しい配置機構を作らず、OSのassignment判断・LABOの水準評価を引き受けない。
+- **入力**：OS ticket/task identity、task type/domain/complexity/context/tool requirement、選択可能Workerのcapability/version、利用するLABO evidenceまたは未評価状態とそのrevision/scope、適用するL2-010および共通pack契約version。
+- **提供**：人が記入した配置候補をL2-010の同じproposal schemaでINTELLIGENCE/OS境界へ渡し、機械生成候補との状態差を明示する受領材料。
+- **保証**：代行案はproposal状態で、推奨Workerと根拠、未評価/unknown、除外理由、入力source・revision、task/scope、契約version、作成actor/時点、OS受領actor/時点を含むreceiptに束縛する。入力・版・scopeのいずれかが不一致または欠落ならOSはassignment材料として受領しない。人代行案は評価実績やINTELLIGENCE出力を捏造せず、配置決定・実行許可・権限を与えない。
+- **単独成立の依存**：HELIXINTELLIGENCE-L2-010のproposal contract/schema（実装実行依存ではない）、LABO-L2-054／055の選択scopeまたは明示的な未評価状態、OS ticketと受領記録、HARNESS-L2-010／011の該当契約version。
+- **失敗時の戻し先／未完義務**：task属性/OS ticket不足はOS、Bench evidence/version/scope不足はLABO、proposal schema/contract不明はINTELLIGENCEへ戻し、未完・未評価状態を保持する。
+- **束ねる既存条件**：INTELLIGENCE-L2-010の根拠付きtask別配置候補、L2-061のLABO evidence→配置案→OS assignment三段、L2-013の理由追跡。人代行時も同じ境界を保ち、INTELLIGENCEの出力を偽装しない。

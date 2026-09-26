@@ -134,3 +134,21 @@ parent_l1_candidate: docs/helix-labo/L1-planning/labo-intent.md
 - HELIXLABO-L2-WEB-001..014：candidate文書に保持されたepisode、比較条件、品質を落とさない性能差評価、観測/実験区別、総時間・費用と救援、first/final acceptと遅延障害窓、日次集計/late correction、公開統計のdenominator/caveat/uncertainty、残差、INTELLIGENCEへの水準、顧客秘密、Feedback再観測、実験資源分離をそれぞれ候補のまま確認する。原案中の14個別受入条件を短縮・採択扱いしない。
 
 人判断が必要な内容はL2候補の保留欄を参照する。候補文書・PR・本受入案からL1確認、要求採択、設計承認、実行許可を生成しない。
+
+### HELIXLABO-L2-056 初回Worker結果のBench観測取込
+
+- **PO起点**：[補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第1点、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)。
+- **入力**：OS ticket/assignment/attempt、task/Worker/契約revision、要求revision/scope、結果状態、verification、人確認、data-use classification、source receipt。
+- **正常例**：許可済みscopeで初回Worker resultを受領し、結果状態とprovenanceを保って「観測済み・未評価」の履歴に追加する。成功・失敗・拒否・unknownを別状態で集計し、055が評価範囲・比較根拠・反例を確認できる。
+- **未評価維持条件**：単発の成功、異なるtask class、適用範囲外、比較条件の不一致、古い/不明な契約やsource、欠落したverification/receipt、または不足した反例は評価済み水準を生成せず、未評価/評価不能に留める。
+- **評価済みへ移る条件**：該当task/model classとscopeに対し、採用する評価oracle/基準のrevision、判定条件、比較条件、結果・失敗/反例・unknownを含む根拠が特定され、そのoracleを対象の実績へ適用した結果・評価者・時点・判定receiptをLABOが確認し、判定可能な場合に限り、その範囲に評価済み水準を付す。oracleの存在や判定可能性の説明だけでは評価済みにしない。oracle/基準または適用範囲・判定根拠が提示されない場合は評価済みにせず未評価を維持する。数値閾値や必要サンプル数は根拠なく新設しない。
+- **反例**：初回成功をqualifiedへ変える、unknownを成功へ集約する、履歴からWorkerを割り当てる、scoreでscope/authorityを変更する、異なるticket/Worker revisionを同じ実績として結合する。
+- **失敗時・未完義務**：source/assignment/許可不足は該当OS/SECURITYへ戻し、矛盾/重複/staleは原記録を保持して訂正・再照合を求める。取込の成功は評価の成功を意味しない。
+
+### HELIXLABO-L2-057 初回実行結果のBench受領接続
+
+- **PO起点**：[補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第1点、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)。
+- **入力・版**：OS018/019/023の実行後assignment・attempt・result receiptと、LABO028/056の受領契約revisionを同一scopeに束縛する。OS027は使ったrun構成のprovenance参照に記録できるが、接続の開始依存にしない。
+- **成功条件**：OS-L2-018/019/023の出力を受け、成功/失敗/拒否/中断/unknown、ticket/task/Worker identity、要求と契約revision、scope、verification状態、人確認、未完義務が送信と受領で一致する。HELIXOS-L2-027は利用構成参照として記録し、接続依存にはしない。採択済みCONNECT契約または明示的な人手receiptがschema/版/scopeを照合し、acknowledgment・trace・重複抑止・stale停止・同一ID再送を示す。LABOは受領receiptを返し、後続の履歴化先を示す。二重配送は同じsource identityとして検出できる。
+- **反例**：受領時にscope・result state・revisionを書き換える、配送成功を評価済みとする、LABOがassignmentを行う、欠落receiptを成功配送とみなす、stale payloadを現行履歴へ混ぜる。
+- **失敗時・未完義務**：送信・受領receipt不一致は接続未成立としてOS/LABOへ戻す。再送は同じsource identityを保持し、重複を新規実績にしない。CONNECT契約も同義務を果たす人手receiptも不在/unknownなら受領成功を主張しない。

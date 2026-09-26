@@ -219,3 +219,69 @@ HARNESS共通pack候補（G1〜G7 identityとは別枠）は`HARNESS-L2-010/011/
 ## 状態・境界
 
 本監査は旧FRSを読み起点とした範囲導出判断材料であり、旧runtimeの実行・資産copyはしていない。本監査から要求の採択やruntime操作を生成していない。候補の未採択状態、実行可能性、受入証拠不足を保ったまま残し、具体的な段階構成の採用・実装・受入・外部作用を決めない。
+
+---
+
+## G9追補監査：履歴ゼロからの初回実行
+
+### 対象、根拠revision、旧source
+
+この追補は、上記G8監査の過去本文を変更せず、[PO原文source snapshot](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)第1項と[判断記録](../decisions/body-reinforcement-po-decisions-2026-09-27.md)（確認基準 `main: 4f10e1e22`）に従い、履歴ゼロから初回の仕事を許可・実行し、結果をBench観測へ渡す条件をG8の未解決事項1・2に照らして再評価する。ここでいう「閉じる」はL2/L11の文書条件と責務の接続を満たす意味に限り、候補要求の採択、上流authority、実pack版、実行実績または受入証拠の成立を意味しない。
+
+| 旧資産 | source / 行 | source SHA-256 | 起点として保持する意味 |
+|---|---|---|---|
+| `LEGACY-ASSET-50CA1C554747F12266D3` | `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md:663-666` (`RLO-FR-040`) | `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd` | reasoning effortはtask class別のHELIX-Bench evidenceから導出し、未評価は`provider_default_unbenchmarked`と明示する。scoreだけでscope、branch、assignment、merge authorityを変更しない。 |
+| `LEGACY-ASSET-437A6A68F9A9E0AE1B9E` | `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md:38-43` (`RLO-AC-030`) | `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707` | Bench evidenceがないtask classで`provider_default_unbenchmarked`を記録しauthority不変を確認する。effort推測およびscore単独のscope/branch/assignment/merge authority変更を拒否する。 |
+
+旧sourceの保持点は「性能未評価」という状態を隠さないこと、scoreをassignment等のauthorityにしないこと、Benchを根拠・状態の材料に限ること。変更点は、未評価のまま一律に保留するだけでなく、既存のSECURITY/authorityが許可する範囲で初回履歴を作る経路、条件付きの安全境界、OSの割当責務、LABOへの観測返却を現行責務へ接続すること。変更理由はPOが明示した「性能評価がない」と「実行を許可できない」の分離であり、旧sourceの不在や実装状態ではない。RLO-FR-040とAC-030は未評価状態とscoreの非authority性を示すだけで、誰がどの条件で最初のassignmentを許可し、実行し、結果をBenchへ渡せるかは閉じない。したがってRLO-FR-040だけでは初回割当・実行は閉じない。旧runtime、固定provider配車、旧CLI/hook/CI/testは参照・実行・再利用していない。
+
+旧資産明細台帳の上記asset IDはsource path/SHAと一致する（`docs/governance/legacy-asset-disposition.jsonl`）。対応する旧受入はsource対応の確認にだけ用い、archive内testやruntimeの実行結果を現行の証拠にしていない。
+
+### 現行Concept/L1の責務との対応
+
+基準は`main: 4f10e1e22`のConceptおよび対象別L1/L2/L11。以下の現行L1は記載上の役割を示すが、すべての現行L1本文は`draft_candidate`であり、旧exact revisionの承認を現在bytesへ継承しない。
+
+| 対象 | 現行の企画上の対応 | G9で接続する既存責務 | 状態上の制限 |
+|---|---|---|---|
+| Concept | 人が価値・要求・要件承認・不可逆操作の許可を持ち、HELIXは承認範囲で実行する。低コストWorkerも品質・費用・手戻りの実測で配置する | 人の意味判断・実行許可と、実績に基づく配置を分ける | ConceptはG9の特定仕事や低risk判定を自動許可しない |
+| HELIX-OS L1-003 | 許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開する | ticket、assignment、予算、scope、停止/再開とOSの割当authority | 現行L1は確認待ち。低risk適格性や対象操作のauthorityが特定されなければ実行不可 |
+| HELIX-LABO L1-001/011 | 許可された観測を成功・失敗・拒否・停止・不明・未観測に分けて集める。Worker履歴を作業種別ごとに評価し、未評価と評価済みを分けてINTELLIGENCEへ渡す | 初回Worker結果をobservationとして残し、task class別Bench評価と同scopeの受渡しにつなぐ | LABOは割当・許可を決めず、単一の成功を未知job全般の適性へ一般化しない |
+| HELIX-INTELLIGENCE L1-010 | task属性と成功/失敗/手戻り/遅延/費用/信頼性の実績から配置案を作り、LABO水準を材料とする。OSが割当・進行する | Bench入力または明示的な人の代行入力からtask別配置案を作り、OSへ返す | INTELLIGENCE案はassignment authorityではなく、根拠不足なら案を保留する |
+
+概念と企画の射程には、実績から評価材料と配置案を得て、許可範囲でOSがWorkerを割り当てる循環がある。G9の低risk初回経路はこの既存射程に沿うため、別機構や上位企画を新設する根拠はない。ただし低riskの出所をOSやLABOの自己判定にしてはならず、対象操作・データ・環境に対する既存SECURITY制約とauthorityから判定する。現行OS/LABO/INTELLIGENCE L1本文の採択revisionが未確認であることは、下流の候補文書が閉じても解消しない。
+
+### G8の不足1・2とG9で閉じる文書条件
+
+G8の不足1は、OS018がLABO水準・INT配置案を必須入力とし、その材料を作る許可済み履歴が初回には存在しないこと、および人が配置判断を代行する場合の固定契約がないこと。G8の不足2は、LABO055に必要な許可済みobservation/Worker履歴、同scopeでLABO054からINTへ渡す入力・版・receiptが示されていないことだった。G9は不足を次の文書条件で分解する。
+
+| G8不足 | G9の追補候補で閉じた文書条件 | 追補後も未確認のauthority/実体/実績 |
+|---|---|---|
+| 1. 未評価のため配置案を保留し続け、初回実行に必要な実績を作れない | OS018側に「performance評価の有無」と「実行を許すauthority」を別入力として持たせる。低riskは既存SECURITYと対象authorityのadmitted revisionで判定し、適用対象・許可操作・環境・データ区分がunknown/conflict/staleなら進めない。既存許可内に限る初回assignmentへWorker identity、限定scope、累積budget/期限/retry上限、human confirmation点、HARNESS検証義務と停止/復旧条件を束縛する。INTELLIGENCEは入力がない間は未評価と表示し、人が既存の権限範囲で配置案を代行する場合は同じ入力契約を満たす代行packetを作り、OSがその案を受領して割当を別に判断する | 対象taskのauthority、SECURITYの採択revision/具体判定、候補L1/L2/L11の採択、許可Workerと実行version、HARNESS oracle/version、INFRA環境とresource、実行可能なbudget、実assignment/receiptはunknown。文書上の適格条件から実行許可は発生しない |
+| 1. Worker履歴がないためLABO055/INT010へ材料が戻らない | 初回resultをOS018/019/023のassignment・記録・handoffに束縛し、LABO057経由でLABO028へ受け入れ、LABO056/055で観測・評価し、既存LABO054で同scopeの水準をINT010へ渡す。INT010の配置案またはINT066の人代行案をOSが別proposal receiptとして受け取る辺を追える | observationのdata-use許可、実Worker作業history、Bench評価結果、選択したCONNECT契約または同一義務を満たす人receiptの実証、OSが受け取った証拠とそれを使うassignmentはunknown |
+| 2. Benchに渡るobservationの出所とscope/未評価状態が固定されない | LABO001/028の既存責務を使い、許可されたWorker observationとassignment/resultを同じticket/task classへ結ぶ。LABO056は観測済み/評価済みを分け、LABO055は対象task/model class・scope・比較条件・根拠・反例・未評価範囲を扱い、LABO054は同scopeの水準・状態をINTへ渡す。LABO057は採択済みCONNECT契約または同一のsource identity/revision/schema-version/scope、acknowledgment、trace、重複抑止、stale停止、再送/未完保持を満たす明示的人receiptのどちらかで受領を結ぶ | 許可済みsource revision、data-use decision、選択した送達方式とruntime receipt、評価oracleの実行、観測母数/代表性はunknown。送達/入力元が未成立なら未受領/未観測のままである |
+| 2. 初回結果が評価済み水準になる境界がない | L11は正常例に加えて、低risk条件なしの拒否、未評価のまま高risk/別scopeへ広げる拒否、初回成功を評価済みと表示する拒否、失敗/中断のobservation保持、代行packetのversion/scope欠落、stale receipt、resultをINTへ別scopeで渡す拒否を確かめる。初回成功はその一例のobservationであり、明示されたBench判定条件・評価範囲が満たされるまで未評価/標本不足を維持する。どのscopeが評価済みへ変わるか、反例・失敗の扱い、再評価条件をLABO受入で明記し、その結果だけから配置/権限を自動変更しない | 受入oracleの採択、必要な標本・判定基準、実Bench run/result receipt、独立review、target task classに対する再現性はunknown。固定の標本数や数値thresholdはPO/既存受入に根拠がないため創作しない |
+
+G9の既存候補はOS `HELIXOS-L2-018/026`、LABO `HELIXLABO-L2-055/054`、INTELLIGENCE `HELIXINTELLIGENCE-L2-010`。追補候補はOS `HELIXOS-L2-027`（governance requirements/acceptanceの同ID節）、LABO `HELIXLABO-L2-056/057`（labo requirements/acceptanceの同ID節）、INTELLIGENCE `HELIXINTELLIGENCE-L2-066`（intelligence requirements/acceptanceの同ID節）である。既存のLABO001/028、055/054とINT010の各L11同ID条件を合わせて照合した。LABO057の受領は採択済みCONNECT契約または同じidentity/version/scope・acknowledgment・trace・重複抑止・stale停止・再送義務を持つ明示的人receiptのいずれかで満たす。OS027はOS018/019/023のrun結果を使い、LABO057は027を必須依存にせずprovenance参照に限るため、`027→057→027`の循環は候補文書で解消されている。OS026は導出能力のままで027の実行時依存ではない。どちらの送達分岐も採択版・実receiptは未確認である。候補文書・L11の存在や相互整合は採択、実行、受入証拠ではない。
+
+G9が扱う入力元は初回Workerのassignment/attempt/resultに限る。LABO057でOS result receiptをLABO028へ接続し、LABO056/055の観測・水準生成へ渡し、既存LABO054で同scopeの水準・未評価状態をINTへ戻し、INT010の配置案またはINT066代行案をOSが受け取る経路を文書上でたどる。これは全sourceの恒常依存を宣言するものではない。G10の課題である「常時必須／操作時必須／選択した入力元に応じて必須／参照資料のみ」の4分類を、全機構のpack依存に適用する作業は未完である。G9のWorker入力以外のsourceが初回経路に必要かは、そのtaskで選択したscopeと操作に応じて再照合する。選択した入力/送達receiptが欠けた場合は未観測/未受領とし、依存条件を削除してBench評価済みにしない。
+
+### 初回経路と未評価状態
+
+文書候補が示す経路は、SECURITY/authorityによる対象scopeの許可確認→OS027の限定assignment・Worker実行・人確認/HARNESS検証→OS018/019/023のresult/evidence/handoff→LABO057の契約receiptまたは同一義務を満たす人receipt→LABO028/056/055のobservationとBench評価→LABO054で同scopeの状態をINT010へ受渡し→INT010の配置案またはINT066の人代行案をOSが別proposal receiptとして受領、である。初回resultは観測履歴であり、Benchの明示評価条件を満たすまでは未評価を維持する。authority・安全条件・必要な入力版のunknown/stale、許可不足、範囲不一致、検証欠落は該当ownerへ戻し、成功だけを残して評価済みにしない。
+
+### G9追補の結論と停止境界
+
+現在の追加候補の文書条件としては、G8不足1のうち「未評価状態で許可範囲内の初回assignment/attemptを開始するOS経路」と「INT案を人が代行する際の入力・version・scope・receipt契約」がOS027/L11とINT066/L11で対応づけられている。不足2のうち「OS resultをLABOへ受領する境界」はLABO057/L11、「初回観測を評価前履歴として取り込み、評価済みへ変わる条件/未評価維持条件」はLABO056/L11に置かれ、既存LABO055/054とINT010の受入へ接続されている。よって文書上の責務・正常例・反例・戻し先は追加された候補により条件付きで閉じる。どちらのLABO057送達分岐についてもsource/data-use許可、採択版、実receiptは未確認である。これはG8監査対象の候補文書が備える条件の修正であり、過去の監査本文が当初から閉じていたという遡及解釈ではない。
+
+次の状態は閉じていない：HELIX-OS/LABO/INTELLIGENCEの現L1 exact revisionに対するPO確認、L2/L11候補の採否、対象ticket/requestのauthorityとSECURITYの低risk判定、許可されたdata-useとworker/runtime/pack/connector/HARNESS/INFRAの実版・互換性、低risk実行と受領のevidence、Benchの判定条件が採択された状態での実結果、独立reviewと受入。したがって本監査から実装・ticket発行・assignment・Worker実行・risk許可・Bench採点・配置変更・段階成立を認めない。実行・受入証拠が来ても、その範囲を超える要求authorityを生成しない。L1親が現行で確認済みでないことがG9対象の上位意味を変える必要へ発展した場合は、下流追補で代用せず、その親authorityの判断へ戻す。
+
+### 追補の読取基準
+
+| 文書 | 確認基準 / SHA-256 | 今回見た役割 |
+|---|---|---|
+| `docs/concept/helix-concept.md` | `main: 4f10e1e22` / `06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78` | 人/AI authority、五大目標、実績基準のWorker配置 |
+| `docs/helix-os/L1-planning/system-intent.md` | `main: 4f10e1e22` / `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e` | L1-003の許可・予算・依存下のWorker委譲。現行本文はdraft_candidate |
+| `docs/helix-labo/L1-planning/labo-intent.md` | `main: 4f10e1e22` / `78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc` | L1-001観測、L1-011 Bench水準・未評価とINT接続。現行本文はdraft_candidate |
+| `docs/helix-intelligence/L1-planning/intelligence-intent.md` | `main: 4f10e1e22` / `8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8` | L1-010配置案とOS割当分離。現行本文はdraft_candidate |
+| PO原文source snapshot / 判断記録 | `cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78` / `83718e990c64dbae5481cf8b5a58cd1ea498804c284ace255afa55008067bab3` | G9第1点の原文と候補起草の保持/変更理由 |
+| G8本文（追補前） | `main: 4f10e1e22` / `731a818ef0b935deea7a764f1de8e709175445d0c77267254081f7eda93e22a4` | 元本文を保持したままこのG9追補を追加 |
