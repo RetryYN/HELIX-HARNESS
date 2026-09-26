@@ -93,7 +93,7 @@ BRAINも1.0からあり、HELIX全体の汎用の構造（設計パターン、�
 HELIXの機能は、個々の機構に割り振るのではなく、各機構が連動することで生まれるように作る。その到達点が5.0のSystem Compilerである。
 2.0の「外の情報」は、OSS、設計資料、論文、Issue、PR等である。INTELLIGENCEのクローラーやCONNECT等が取得し、LABOが出所を確かめて分解・比較・実験し、汎用の構造の候補としてBRAINへ入れる。外で成功した方式をそのままBRAINへ入れない（2026-09-26、[LABOの判断記録](../governance/decisions/labo-core-engine-po-decisions-2026-09-26.md)）。
 LABOも1.0からあり、HELIX自身や製品の改善が効いたか、退行していないかを独立して評価する。2.0では推薦の効果の評価へ広がる。
-HELIX-INFRASTRUCTUREも1.0からあり、HELIX自身の実行環境の資源、構成、版、状態、配置を持つ。1.0では、POの原文が「1.0で最低限成立させる範囲」とした18項目（資源のidentity、構成、環境、設計した目標と実際の状態の分離、ずれ、計算・network・保存先、モデルとWorkerの実行環境、容量、観測、incidentの状態、backupとrestore、巻き戻し、配備の版、SECURITY・OSとの接続、Workerによる実行、HELIX自身から独立した起動と復旧、作り直せること）を成り立たせる。高度な自動の増減、複数のcloud、完全に自動の切替え等は、必要性と実績に応じて1.0より後の版へ広げる（2026-09-26、[Concept配置の判断記録](../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）。
+HELIX-INFRASTRUCTUREも1.0からあり、HELIX自身の実行環境の資源、構成、版、状態、配置を持つ。1.0では、POの原文が「1.0で最低限成立させる範囲」とした18項目（資源のidentity、構成、環境、設計した目標と実際の状態の分離、ずれ、計算・network・保存先、モデルとWorkerの実行環境、容量、観測、incidentの状態、backupとrestore、巻き戻し、配備の版、SECURITY・OSとの接続、Workerによる実行、HELIX自身から独立した起動と復旧、作り直せること）を成り立たせる。1.0のHELIX-INFRASTRUCTUREは、この18項目の範囲に限る。18項目に当たらない要求と、高度な自動の増減、複数のcloud、完全に自動の切替え等は、1.0より後の版（版は未定）へ回し、必要性と実績に応じて広げる（2026-09-26、[Concept配置の判断記録](../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）。
 
 ### 1.0から入れる土台
 

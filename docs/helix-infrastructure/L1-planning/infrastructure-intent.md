@@ -17,7 +17,7 @@ updated: 2026-09-26
 # HELIX-INFRASTRUCTURE L1企画案
 
 本書の親は[HELIX Concept](../../concept/helix-concept.md)である。本文は、POが2026-09-26に示した[HELIX Runtime Infrastructure L1要求候補の原文](../sources/runtime-infrastructure-l1-po-original-2026-09-26.md)を、企画（L1）の形に整理したものである（[判断記録](../../governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md)）。
-POの回答により、HELIX-INFRASTRUCTUREは新しいコア機構である。2026-09-26のPOの回答で、HELIX-INFRASTRUCTUREをConceptの機構の表に加え（「9つの機構と1つの共通部品」）、1.0は原文の18項目、高度なAutoscaling・Multi-cloud・完全自動のFailover等は後の版とした（[Concept配置の判断記録](../../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）。本書は、Conceptに加えた機構の企画案（L1、PO確認待ち）である。対象revisionと、18項目に名前がない要求の版の案は、POが確認する。本書から、要求（L2）の合意、要件（L3）の承認、実装・実行の許可を生成しない。
+POの回答により、HELIX-INFRASTRUCTUREは新しいコア機構である。2026-09-26のPOの回答で、HELIX-INFRASTRUCTUREをConceptの機構の表に加え（「9つの機構と1つの共通部品」）、1.0は原文の18項目に当たる要求だけとし、18項目に当たらない要求と、高度なAutoscaling・Multi-cloud・完全自動のFailover等は1.0より後（版は未定）とした（[Concept配置の判断記録](../../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）。本書は、Conceptに加えた機構の企画案（L1）である。本書の対象revisionは、POが確認する。本書から、要求（L2）の合意、要件（L3）の承認、実装・実行の許可を生成しない。
 
 ## 提供価値
 
@@ -51,7 +51,7 @@ HELIX-INFRASTRUCTURE   配備の目標と、実際の実行環境
 ## 企画要求
 
 IDは原文のHRI-L1-001〜040と同じ番号で対応する。種類の列は、要求の粒度の分け方（2026-09-25のPO指示）による。
-「原文の1.0最低範囲」の列は、原文の「1.0で最低限成立させる範囲」の18項目のうち、その要求が当たる項目の番号である。版の列は、その要求を入れる版の印（`version_target`）である。18項目に当たる要求は、POの回答（「1.0は18項目、残りは後の版」）により1.0とした。18項目に名前がない要求は、AIが版の案を付け、「案、PO確認待ち」と書いた（下の「18項目に名前がない要求の版の案」）。
+「原文の1.0最低範囲」の列は、原文の「1.0で最低限成立させる範囲」の18項目のうち、その要求が当たる項目の番号である。版の列は、その要求を入れる版の印（`version_target`）である。18項目に当たる要求は、POの回答（「1.0は18項目、残りは後の版」）により1.0とした。18項目に当たらない要求は、POの回答2により1.0より後（版は未定）とする。
 
 | ID | L1企画要求 | 原文 | 原文の1.0最低範囲 | 版 | 種類 |
 |---|---|---|---|---|---|
@@ -62,14 +62,14 @@ IDは原文のHRI-L1-001〜040と同じ番号で対応する。種類の列は�
 | HELIXINFRASTRUCTURE-L1-005 | 人間は、手元の計算機、VPS、専用server、cloudの仮想機械、containerの実行環境、GPUのnode、Workerのnodeを共通のモデルで扱い、providerや物理的な場所に関係なく、CPU、memory、GPUとVRAM、storage、実行環境、容量、健全性、可用性を確かめられる | HRI-L1-005 | 6 | 1.0 | 単体 |
 | HELIXINFRASTRUCTURE-L1-006 | 人間は、HELIXの内部と外部への通信の経路を、送信元、送信先、protocol、endpoint、向き、目的、securityの境界、依存とともに把握できる。HELIX-CONNECTの論理の接続と、Infrastructureの物理・実行の通信経路を区別する | HRI-L1-006 | 2、6 | 1.0 | 単体 |
 | HELIXINFRASTRUCTURE-L1-007 | 人間は、HELIXが使う永続と一時の状態（運用のdatabase、証拠と成果物の保存先、queue、cache、logとmetricの保存先、モデルの保存先）を区別し、それぞれにowner、耐久性、backupの要否、保持、環境、機密区分、復旧の要件を持たせられる | HRI-L1-007 | 6 | 1.0 | 単体 |
-| HELIXINFRASTRUCTURE-L1-008 | 人間は、HELIXの管理と判断の部分（OS、SECURITY、調整）と、資源を大量に使う実行の部分（Worker、CI、モデル）を分けられる。Workerの暴走、CIの負荷、モデルの実行の負荷で、HELIXの管理・停止・復旧の能力を失わない構成を取れる | HRI-L1-008 | — | 1.0（案、PO確認待ち） | 単体 |
+| HELIXINFRASTRUCTURE-L1-008 | 人間は、HELIXの管理と判断の部分（OS、SECURITY、調整）と、資源を大量に使う実行の部分（Worker、CI、モデル）を分けられる。Workerの暴走、CIの負荷、モデルの実行の負荷で、HELIXの管理・停止・復旧の能力を失わない構成を取れる | HRI-L1-008 | — | 1.0より後（版は未定） | 単体 |
 | HELIXINFRASTRUCTURE-L1-009 | 人間は、LLMの実行環境（外部のモデルAPI、ローカルLLM、GPU server、分散したモデルserver、調整済みモデルの実行環境）をInfrastructureの資源として扱い、モデル、版、server、GPUとmemoryの必要量、同時実行、遅延、容量、健全性、endpointへ辿れる。モデルの知能の評価はINTELLIGENCEとLABOに分ける | HRI-L1-009 | 7 | 1.0 | 単体（評価はINTELLIGENCE、LABOとの接続） |
 | HELIXINFRASTRUCTURE-L1-010 | 人間は、各資源の容量、使用率、queue、同時実行、飽和、拒否、backpressureを観測でき、資源の枯渇を突然の異常としてだけでなく、予定された状態として制御できる | HRI-L1-010 | 8 | 1.0 | 単体 |
 | HELIXINFRASTRUCTURE-L1-011 | 人間は、新しいJob、Worker、モデル、CI等を起動する前に、必要な資源を使えるかを確かめられる。容量が足りないときは、待たせる、遅らせる、費用の低い実行環境や別のnodeへ回す、拒否する、人へ上げる等へつなげ、過負荷の状態で際限なくJobを足さない | HRI-L1-011 | 8 | 1.0 | 単体（回し先の判断はINTELLIGENCE、OSとの接続） |
-| HELIXINFRASTRUCTURE-L1-012 | 人間は、資源を一覧ではなく故障の単位（手元の計算機、VPS、GPUのnode、network、provider、database、storage）として扱い、一つの故障がどこまで影響するかを辿れる | HRI-L1-012 | — | 1.0（案、PO確認待ち） | 単体 |
-| HELIXINFRASTRUCTURE-L1-013 | 人間は、HELIX自身について、ある資源を失うとHELIXの何が止まるかを把握できる。冗長を必須とはせず、受け入れる単一障害点について、影響、復旧、理由を明示する | HRI-L1-013 | — | 1.0（案、PO確認待ち） | 単体 |
+| HELIXINFRASTRUCTURE-L1-012 | 人間は、資源を一覧ではなく故障の単位（手元の計算機、VPS、GPUのnode、network、provider、database、storage）として扱い、一つの故障がどこまで影響するかを辿れる | HRI-L1-012 | — | 1.0より後（版は未定） | 単体 |
+| HELIXINFRASTRUCTURE-L1-013 | 人間は、HELIX自身について、ある資源を失うとHELIXの何が止まるかを把握できる。冗長を必須とはせず、受け入れる単一障害点について、影響、復旧、理由を明示する | HRI-L1-013 | — | 1.0より後（版は未定） | 単体 |
 | HELIXINFRASTRUCTURE-L1-014 | 人間は、HELIX自身のInfrastructureについて、健全性、metric、log、資源の使用、依存の状態、queueの状態、error、遅延、配備のrevision、復旧の状態を観測できる。観測できないことを健全に変えない | HRI-L1-014 | 9 | 1.0 | 単体 |
-| HELIXINFRASTRUCTURE-L1-015 | 人間は、実行環境の出来事をHELIX全体の相関IDへつなぎ、要求、ticket、Worker、資源、failure、復旧を一つのepisodeとして追える。LABOへ渡す観測の材料を失わない | HRI-L1-015 | — | 1.0（案、PO確認待ち） | 接続（OS、LABO） |
+| HELIXINFRASTRUCTURE-L1-015 | 人間は、実行環境の出来事をHELIX全体の相関IDへつなぎ、要求、ticket、Worker、資源、failure、復旧を一つのepisodeとして追える。LABOへ渡す観測の材料を失わない | HRI-L1-015 | — | 1.0より後（版は未定） | 接続（OS、LABO） |
 | HELIXINFRASTRUCTURE-L1-016 | 人間は、HELIXのInfrastructureの上で、劣化、利用不能、容量の枯渇、依存の失敗、data・networkの利用不能、securityによる隔離、不明を、通常の状態と区別できる。incidentの意味と重さは承認済みの要求を参照し、HELIX-INFRASTRUCTURE自身が定めない | HRI-L1-016 | 10 | 1.0 | 単体 |
 | HELIXINFRASTRUCTURE-L1-017 | 人間は、HELIX自身の重要な状態について、backupの対象、元のrevision、時刻、完全さ、場所、完全性、期限を確かめられる。backupの設定があることをbackupの成功としない | HRI-L1-017 | 11 | 1.0 | 単体 |
 | HELIXINFRASTRUCTURE-L1-018 | 人間は、backupがあることとrestoreできることを別の状態として扱い、実際に、戻し、完全性、依存の再接続、起動、検証まで確かめられる | HRI-L1-018 | 11 | 1.0 | 単体 |
@@ -77,61 +77,36 @@ IDは原文のHRI-L1-001〜040と同じ番号で対応する。種類の列は�
 | HELIXINFRASTRUCTURE-L1-020 | 人間は、HELIX全体が止まっても、HELIX自身を使わなければ復旧できない循環した依存を避けられる。最低限の起動、復旧、点検、巻き戻しの能力は、止まったHELIXの本体から独立して使える（例：HELIX-OSが止まったときに、HELIX-OSに「OSを直して」とは頼めない） | HRI-L1-020 | 17 | 1.0 | 単体 |
 | HELIXINFRASTRUCTURE-L1-021 | 人間は、通常の管理の部分が使えないときに、実行環境の点検、健全性の確認、serviceの停止、巻き戻し、復旧の起動を行える限定された経路（通常の経路の外にある復旧の経路）を持てる。通常の運用の万能な裏口にはせず、SECURITYの別のauthorityを求める | HRI-L1-021 | 17 | 1.0 | 接続（SECURITY） |
 | HELIXINFRASTRUCTURE-L1-022 | 人間は、何が、どこで、いつから、どの版・設定・成果物・依存で動いているかを確かめられる。同じ「HELIX」という名前でも、異なる実行環境のrevisionを区別する | HRI-L1-022 | 13 | 1.0 | 単体 |
-| HELIXINFRASTRUCTURE-L1-023 | 人間は、HELIX自身のInfrastructureの変更を一括の更新だけにせず、必要に応じて、候補、隔離またはshadow、部分の適用、検証済み、昇格と段階を踏んで適用できる。SECURITYの更新の受け入れを通らない変更を自動で昇格させない | HRI-L1-023 | — | 1.0（案、PO確認待ち。自動の昇格は含めない） | 接続（SECURITY） |
-| HELIXINFRASTRUCTURE-L1-024 | 人間は、変更の前に、影響する資源、機構、依存するJob、環境、data、巻き戻し先を確かめられる。Infrastructureの変更で、HELIX全体を無条件に止めない | HRI-L1-024 | — | 1.0（案、PO確認待ち） | 単体 |
-| HELIXINFRASTRUCTURE-L1-025 | 人間は、HELIXの実行環境をAWS、GCP、Azure、VPSの事業者、手元の計算機、特定のGPUのprovider等へ恒久に固定せず、providerに固有の実装と、HELIXが必要とする能力を分けられる | HRI-L1-025 | — | 1.0（案、PO確認待ち。providerの実際の交換の運用は1.0より後） | 単体 |
-| HELIXINFRASTRUCTURE-L1-026 | 人間は、単一のcloudを前提にせず、手元の計算機（管理と開発）、VPS（常時稼働のWorker、CI）、GPU server（ローカルLLM）、cloud（任意のservice）を混ぜた実行環境を扱える。配置の判断は、INTELLIGENCEとOSとの接続で行う | HRI-L1-026 | — | 1.0（案、PO確認待ち。複数のcloudを同時に使うMulti-cloudは1.0より後、版は未定） | 単体（配置の判断はINTELLIGENCE、OSとの接続） |
-| HELIXINFRASTRUCTURE-L1-027 | 人間は、状態、Worker、モデル、成果物等がどこに在るかを確かめられる。場所の分からない資源を、安全に使える対象とみなさない | HRI-L1-027 | — | 1.0（案、PO確認待ち） | 単体 |
+| HELIXINFRASTRUCTURE-L1-023 | 人間は、HELIX自身のInfrastructureの変更を一括の更新だけにせず、必要に応じて、候補、隔離またはshadow、部分の適用、検証済み、昇格と段階を踏んで適用できる。SECURITYの更新の受け入れを通らない変更を自動で昇格させない | HRI-L1-023 | — | 1.0より後（版は未定） | 接続（SECURITY） |
+| HELIXINFRASTRUCTURE-L1-024 | 人間は、変更の前に、影響する資源、機構、依存するJob、環境、data、巻き戻し先を確かめられる。Infrastructureの変更で、HELIX全体を無条件に止めない | HRI-L1-024 | — | 1.0より後（版は未定） | 単体 |
+| HELIXINFRASTRUCTURE-L1-025 | 人間は、HELIXの実行環境をAWS、GCP、Azure、VPSの事業者、手元の計算機、特定のGPUのprovider等へ恒久に固定せず、providerに固有の実装と、HELIXが必要とする能力を分けられる | HRI-L1-025 | — | 1.0より後（版は未定） | 単体 |
+| HELIXINFRASTRUCTURE-L1-026 | 人間は、単一のcloudを前提にせず、手元の計算機（管理と開発）、VPS（常時稼働のWorker、CI）、GPU server（ローカルLLM）、cloud（任意のservice）を混ぜた実行環境を扱える。配置の判断は、INTELLIGENCEとOSとの接続で行う | HRI-L1-026 | — | 1.0より後（版は未定） | 単体（配置の判断はINTELLIGENCE、OSとの接続） |
+| HELIXINFRASTRUCTURE-L1-027 | 人間は、状態、Worker、モデル、成果物等がどこに在るかを確かめられる。場所の分からない資源を、安全に使える対象とみなさない | HRI-L1-027 | — | 1.0より後（版は未定） | 単体 |
 | HELIXINFRASTRUCTURE-L1-028 | 人間は、HELIX-INFRASTRUCTUREがSECURITYから、networkの制約、資格情報の制約、環境とprojectの隔離、操作のauthority、更新の受け入れ、外部への送信の方針を受け取ることを確かめられる。HELIX-INFRASTRUCTURE自身がsecurityの方針を作らない | HRI-L1-028 | 14 | 1.0 | 接続（SECURITY） |
 | HELIXINFRASTRUCTURE-L1-029 | 人間は、実行環境の資源が資格情報そのものを通常の状態として保存しないことを確かめられる。資格情報はSECURITYの管理の境界から必要な範囲で受け取り、backupやsnapshotへsecretを無条件に含めない | HRI-L1-029 | 14 | 1.0 | 接続（SECURITY） |
-| HELIXINFRASTRUCTURE-L1-030 | 人間は、HELIX自身の計算、GPU、storage、network、外部のservice、モデルのAPI、常時稼働の資源等の費用を、資源やworkloadへ関連づけられる。費用の採否や予算の決定はHELIX-INFRASTRUCTUREが行わない | HRI-L1-030 | — | 1.0（案、PO確認待ち） | 単体 |
-| HELIXINFRASTRUCTURE-L1-031 | 人間は、資源について、計画、用意、設定、有効化、観測、更新、劣化、復旧、退役、廃棄を区別できる。作れることだけでInfrastructureの管理が成り立つとしない | HRI-L1-031 | — | 1.0（案、PO確認待ち） | 単体 |
-| HELIXINFRASTRUCTURE-L1-032 | 人間は、不要になった資源を「使っていない」だけで放置せず、廃棄のときに、依存、data、資格情報、network、費用、backup、代わりを確かめられる | HRI-L1-032 | — | 1.0（案、PO確認待ち） | 単体 |
-| HELIXINFRASTRUCTURE-L1-033 | 人間は、観測した実際の状態に、観測した時刻、source、新しさ、収集した主体、確からしさまたは不明を持たせられる。古い観測の結果を現在の状態として使わない | HRI-L1-033 | — | 1.0（案、PO確認待ち） | 単体 |
-| HELIXINFRASTRUCTURE-L1-034 | 人間は、健全、不健全、不明、未観測、古い状態を区別できる。確認できない資源を健全として補わない | HRI-L1-034 | — | 1.0（案、PO確認待ち） | 単体 |
-| HELIXINFRASTRUCTURE-L1-035 | 人間は、将来のWebの展開で、HELIXの内部のInfrastructureと、HELIX-Webのserviceの側のInfrastructureを分けられる。tenantの実行環境、顧客のjob、顧客の資格情報、serviceの状態、配備を、HELIXの本体のInfrastructureへ暗黙に共有しない | HRI-L1-035 | — | 1.x（案、PO確認待ち。分けるための隔離の単位は1.0） | 単体 |
-| HELIXINFRASTRUCTURE-L1-036 | 人間は、HELIX-HARNESS-CORE、BRAIN、INTELLIGENCE、LABO等の内部の資産を、実行環境の配置によって不用意に外へ公開しないことを確かめられる。SECURITYの資産の境界に従い、内部のみ、service内部、外部、制限等の配置の条件を当てられる | HRI-L1-036 | — | 1.x（案、PO確認待ち。配置の区分の土台は1.0） | 接続（SECURITY） |
-| HELIXINFRASTRUCTURE-L1-037 | 人間は、HELIXがHELIX自身のInfrastructureを変えるときに、稼働している世代と候補の世代を分けられる。候補の世代が自分の成功を自分で承認して、稼働している世代を先に壊さず、適格な前の世代へ戻れる状態を保つ | HRI-L1-037 | — | 1.0（案、PO確認待ち） | 構成体（HELIX-INFRASTRUCTURE、OS、SECURITY、Worker） |
+| HELIXINFRASTRUCTURE-L1-030 | 人間は、HELIX自身の計算、GPU、storage、network、外部のservice、モデルのAPI、常時稼働の資源等の費用を、資源やworkloadへ関連づけられる。費用の採否や予算の決定はHELIX-INFRASTRUCTUREが行わない | HRI-L1-030 | — | 1.0より後（版は未定） | 単体 |
+| HELIXINFRASTRUCTURE-L1-031 | 人間は、資源について、計画、用意、設定、有効化、観測、更新、劣化、復旧、退役、廃棄を区別できる。作れることだけでInfrastructureの管理が成り立つとしない | HRI-L1-031 | — | 1.0より後（版は未定） | 単体 |
+| HELIXINFRASTRUCTURE-L1-032 | 人間は、不要になった資源を「使っていない」だけで放置せず、廃棄のときに、依存、data、資格情報、network、費用、backup、代わりを確かめられる | HRI-L1-032 | — | 1.0より後（版は未定） | 単体 |
+| HELIXINFRASTRUCTURE-L1-033 | 人間は、観測した実際の状態に、観測した時刻、source、新しさ、収集した主体、確からしさまたは不明を持たせられる。古い観測の結果を現在の状態として使わない | HRI-L1-033 | — | 1.0より後（版は未定） | 単体 |
+| HELIXINFRASTRUCTURE-L1-034 | 人間は、健全、不健全、不明、未観測、古い状態を区別できる。確認できない資源を健全として補わない | HRI-L1-034 | — | 1.0より後（版は未定） | 単体 |
+| HELIXINFRASTRUCTURE-L1-035 | 人間は、将来のWebの展開で、HELIXの内部のInfrastructureと、HELIX-Webのserviceの側のInfrastructureを分けられる。tenantの実行環境、顧客のjob、顧客の資格情報、serviceの状態、配備を、HELIXの本体のInfrastructureへ暗黙に共有しない | HRI-L1-035 | — | 1.0より後（版は未定） | 単体 |
+| HELIXINFRASTRUCTURE-L1-036 | 人間は、HELIX-HARNESS-CORE、BRAIN、INTELLIGENCE、LABO等の内部の資産を、実行環境の配置によって不用意に外へ公開しないことを確かめられる。SECURITYの資産の境界に従い、内部のみ、service内部、外部、制限等の配置の条件を当てられる | HRI-L1-036 | — | 1.0より後（版は未定） | 接続（SECURITY） |
+| HELIXINFRASTRUCTURE-L1-037 | 人間は、HELIXがHELIX自身のInfrastructureを変えるときに、稼働している世代と候補の世代を分けられる。候補の世代が自分の成功を自分で承認して、稼働している世代を先に壊さず、適格な前の世代へ戻れる状態を保つ | HRI-L1-037 | — | 1.0より後（版は未定） | 構成体（HELIX-INFRASTRUCTURE、OS、SECURITY、Worker） |
 | HELIXINFRASTRUCTURE-L1-038 | 人間は、Infrastructureの状態が失われても、承認された設計、設定、成果物、依存、dataのbackup、版、配備の証拠から、必要な実行環境を作り直せる。特定の一台の計算機の中だけに、復旧できない知識を持たない | HRI-L1-038 | 18 | 1.0 | 単体 |
 | HELIXINFRASTRUCTURE-L1-039 | 人間は、HELIXがInfrastructureを実際に操作するとき（用意、設定、配備、停止、増減、restore、削除）、SECURITYのauthorityと制約を受けたWorkerの実行を通すことを確かめられる。HELIX-INFRASTRUCTURE自身が際限のないshellの主体にならない | HRI-L1-039 | 16 | 1.0 | 接続（SECURITY、Worker） |
-| HELIXINFRASTRUCTURE-L1-040 | 人間は、Infrastructureの操作を、Terraform／OpenTofu、Ansible、cloudのAPI、providerのCLI、ローカルのscript、containerの実行環境等で実装でき、特定のToolをHELIXのInfrastructureの意味の正本にしない | HRI-L1-040 | — | 1.0（案、PO確認待ち） | 単体 |
+| HELIXINFRASTRUCTURE-L1-040 | 人間は、Infrastructureの操作を、Terraform／OpenTofu、Ansible、cloudのAPI、providerのCLI、ローカルのscript、containerの実行環境等で実装でき、特定のToolをHELIXのInfrastructureの意味の正本にしない | HRI-L1-040 | — | 1.0より後（版は未定） | 単体 |
 
 原文の1.0最低範囲のうち、15（OSとの接続）は、下の「接続の要求と構成体の要求として外へ出すもの」のOSとの接続に当たり、1.0とする。
 
 ### 後の版へ回すもの
 
-原文は「高度なAutoscaling、Multi-cloud、完全自動Failover等は、必要性と実績から後の版へ拡張できる」としている。原文に具体の版番号がないため、版は「1.0より後（版は未定）」とする（旧HELIXのVERSION_UPが将来版へ保全する項目に`version_target: future`の印を付けたことに対応する）。上の表の要求は、これらを1.0の完成条件に持ち込まない。
+原文は「高度なAutoscaling、Multi-cloud、完全自動Failover等は、必要性と実績から後の版へ拡張できる」としている。原文に具体の版番号がないため、版は「1.0より後（版は未定）」とする（旧HELIXのVERSION_UPが将来版へ保全する項目に`version_target: future`の印を付けたことに対応する）。上の表の要求は、これらを1.0の完成条件に持ち込まない。「1.0で入れておくもの」の列には、18項目に当たる1.0の要求だけを挙げる。
 
 | 後の版へ回すもの | 版 | 1.0で入れておくもの |
 |---|---|---|
 | 高度なAutoscaling（容量に応じた資源の自動の増減） | 1.0より後（版は未定） | 容量と飽和の観測、資源の受け入れの判断（010、011） |
-| Multi-cloud（複数のcloudを同時に使う構成） | 1.0より後（版は未定） | providerに固有の実装と必要な能力の分離（025、040）、手元の計算機・VPS・GPU server等を混ぜる扱い（026） |
-| 完全自動のFailover | 1.0より後（版は未定） | 故障の単位と単一障害点の把握（012、013）、巻き戻し、backupとrestore、HELIX自身から独立した起動と復旧（017〜021） |
-
-### 18項目に名前がない要求の版の案
-
-次の要求は、原文の18項目に名前が出てこない。AIが版の案を付けた。版はPOの確認待ちである。[判断記録](../../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)にも同じ一覧を置いた。
-
-| ID | 内容 | 版の案 | 案の理由 |
-|---|---|---|---|
-| 008 | 管理の部分と実行の部分の分離 | 1.0 | 18項目の17（HELIX自身から独立した起動と復旧）は、実行の負荷で管理・停止・復旧の能力を失わないことを前提にする |
-| 012 | 故障の単位 | 1.0 | 18項目の2（構成）の上で影響の範囲を辿ることに限る。冗長や自動の切替えは求めない（完全自動のFailoverは後の版） |
-| 013 | 単一障害点の把握 | 1.0 | 冗長を必須にせず、受け入れる単一障害点の影響・復旧・理由を書くことに限る。17（独立した起動と復旧）の設計の入力になる |
-| 015 | 実行環境の出来事を共通のepisodeへつなぐ | 1.0 | Conceptの1.0の土台「ログと証拠」（相関IDで一つの開発の経過として辿る）と「後から加わる機構の受け口」（LABOへ渡す計測を1.0から記録する） |
-| 023 | 更新の段階の適用 | 1.0（自動の昇格は含めない） | Conceptの成長の循環1（稼働版で候補版を作り、独立評価の後に段階的に適用する）と、1.0の土台「構成版の固定と切戻し」（候補版の段階適用と切戻し） |
-| 024 | 変更の影響の範囲の限定 | 1.0 | HELIX自身の改善を1.0から同じ経路で行う（Conceptの1.0の行）。変更の前に影響と巻き戻し先を確かめることは、18項目の12（巻き戻し）と対になる |
-| 025 | providerの交換を可能にすること | 1.0（実際の交換の運用は1.0より後） | 1.0では、providerに固有の実装と必要な能力を分けておく（旧OPS-R-04 provider中立）。実際に別のproviderへ移す運用は、Multi-cloudと同じく後の版 |
-| 026 | 手元の計算機・VPS・cloudの混在 | 1.0（Multi-cloudは1.0より後、版は未定） | 18項目の6（計算・network・保存先）と7（モデルとWorkerの実行環境）が、手元の計算機、VPS、GPU serverにまたがる。複数のcloudを同時に使う構成は原文どおり後の版 |
-| 027 | 資源の場所の明示 | 1.0 | 18項目の1（資源のidentity）と2（構成）で、場所の分からない資源を安全とみなさないために要る |
-| 030 | 費用の観測 | 1.0 | Conceptの1.0の土台「計測」（費用を作業と構成の版ごとに測り、1.0のWorker配置に使う）。費用の採否や予算の決定はしない |
-| 031 | 資源の作成から廃棄までの区別 | 1.0 | 原文の「要求の核」がLifecycleを追跡するとしている。18項目の1（資源のidentity）と2（構成）の状態として区別する |
-| 032 | 廃棄を正式な状態として扱う | 1.0 | 使わない資源に資格情報、network、費用が残ると、18項目の14（SECURITYとの接続）の制約が崩れる |
-| 033 | 観測の新しさ | 1.0 | 18項目の9（観測）で、古い観測を現在の状態として使わないために要る（旧NIO-L3-09は観測の証拠と一緒に扱っていた） |
-| 034 | 不明を第一級の状態として扱う | 1.0 | 18項目の9（観測）と10（incidentの状態）で、確認できない資源を健全として補わないために要る |
-| 035 | HELIX本体とHELIX-Webの側のInfrastructureの分離 | 1.x（分けるための隔離の単位は1.0） | 原文は「将来のWebの展開で」としている。Webの提供は1.xから。Conceptの1.0の土台「隔離の単位」（資源にproject、tenant、環境を最初から付ける）は1.0 |
-| 036 | 内部の資産を実行環境の配置で外へ出さない | 1.x（配置の区分の土台は1.0） | HELIX-SECURITYのL1企画案の資産の保護（HELIXSECURITY-L1-015、016）の版に合わせた |
-| 037 | HELIX自身の稼働している世代と候補の世代の分離 | 1.0 | Conceptの成長の循環1（HELIXでHELIX自身を改修し、問題があれば稼働版へ戻す）と1.0の行（HELIX自身の改善も同じ経路で行う） |
-| 040 | IaCや特定のToolを意味の正本にしない | 1.0 | 025と同じく、1.0から特定の実装へ固定しないための分け方 |
+| Multi-cloud（複数のcloudを同時に使う構成） | 1.0より後（版は未定） | 計算の資源を、providerや物理的な場所に関係なく共通のモデルで扱うこと（005） |
+| 完全自動のFailover | 1.0より後（版は未定） | backupとrestore、巻き戻し、HELIX自身から独立した起動と復旧（017〜021） |
 
 ## 接続の要求と構成体の要求として外へ出すもの
 
@@ -173,5 +148,5 @@ IDは原文のHRI-L1-001〜040と同じ番号で対応する。種類の列は�
 ## 未確定の点
 
 - 2026-09-26のPOの回答で、Conceptの機構の表にHELIX-INFRASTRUCTUREの行を加え、1.0の機構に並べた（[Concept配置の判断記録](../../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）。
-- 本書の対象revisionと、上の「18項目に名前がない要求の版の案」は、POが確認する。
+- 本書の対象revisionは、POが確認する。
 - 後の版へ回すもの（高度なAutoscaling、Multi-cloud、完全自動のFailover等）の具体の版は、原文にないため未定である。
