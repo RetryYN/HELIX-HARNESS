@@ -21,7 +21,7 @@ sources:
 
 本書は[HELIX-CONNECT要求候補](../L2-requirements/connect-requirements.md)と対になるL11候補である。すべて未実行・未採択であり、文書・ID登録・review・mergeから要求合意、要件承認、実装・運用許可を生成しない。受入は対象要求revisionと同じ接続集合・端点・契約revision・構成体を使い、結果と証拠を照合して判断する。
 
-接続単体（unit）と構成体（composite）の結果を別に記録する。単体の受入から構成体の受入を推定しない。`version_target`は目標能力版で、実版ではない。HELIX-CONNECTは業務判断や承認をしない。
+単体能力（unit）、片側交換の接続（connection）、複数接続の構成体（composite）の結果を別に記録する。単体の受入から構成体の受入を推定しない。`version_target`は目標能力版で、実版ではない。HELIX-CONNECTは業務判断や承認をしない。
 
 各接続の能力名、契約/成果物/依存revision、互換範囲、対象scope、correlation ID、期限、冪等キー、result stateを、受入入力と証拠に記録する。HARNESS-L2-010/011の共通入出力・依存・検証・更新/切戻し/未完義務引継ぎを適用する。SECURITYの許可やdata-use区分は識別子と結果を照合するだけで、CONNECTの受入が許可を発行・拡張しない。
 
@@ -34,7 +34,7 @@ sources:
 | HELIXCONNECT-L11-003 | HELIXCONNECT-L2-003 | unit | 送受信が正しい接続identity・operation・契約revisionに束縛され、契約外入力を成功扱いしない |
 | HELIXCONNECT-L11-004 | HELIXCONNECT-L2-004 | unit | 同一内容の再送は二重効果を生まず、異digest衝突・上限超過・再送不能結果は停止する |
 | HELIXCONNECT-L11-005 | HELIXCONNECT-L2-005 | unit | 送受信・再送・stale・部分失敗を接続単位に順序追跡できる |
-| HELIXCONNECT-L11-006 | HELIXCONNECT-L2-006 | composite | 片側交換後、固定側を変更せず互換なら通信し、非互換/unknown/staleならfail-closeする |
+| HELIXCONNECT-L11-006 | HELIXCONNECT-L2-006 | connection | 片側交換後、固定側を変更せず互換なら通信し、非互換/unknown/staleならfail-closeする |
 | HELIXCONNECT-L11-007 | HELIXCONNECT-L2-007 | composite | 複数の接続辺とoperation lineageを終端まで追跡し、途中失敗時に全体成功を報告しない |
 
 ## 単体接続の確認
@@ -59,11 +59,13 @@ sources:
 
 送信受付後に受信確認が失敗するケース、再送途中で接続がstaleになるケース、期限切れ、取消、許可失効を作る。証拠に、接続identity、能力名、operation/correlation/idempotency identity、target scope、使用revision、期限、互換照合結果、各attemptの識別子・順序・結果、停止理由、成功を観測した端点を含むことを確認する。ACKなし・取消・期限切れ・許可失効をunknown/unfinishedとして保持し、業務完了へ丸めない。途中まで成功した状態をend-to-end成功へ丸めず、raw業務payload、secret、credential値を追跡証拠へ複製しない。
 
-## 構成体の確認
+## 接続の確認
 
 ### HELIXCONNECT-L11-006 片側交換
 
 二機構の一接続を用意する。4ケース（送信側機構本体のみ、送信側adapter/transportのみ、受信側機構本体のみ、受信側adapter/transportのみを交換）を独立に行い、交換しない側の機構・契約revisionを固定する。交換revisionが互換範囲内なら、stale再照合後に固定側を改変せず同一契約上の通信が成立することを確認する。未完operation/ACK/attempt/期限/未完義務が交換後のhandoffに保持され、旧revisionと新revisionを混ぜず、再照合と再開条件の成立前にretryされないことを確認する。交換前後のrevision・照合・送受信が一続きの証拠から辿れることを確認する。続いて各交換側について非互換revision、未登録revision、意味契約変更、stale照合結果を与え、各ケースで通信が0件となり、固定側を更新したことにして成功を偽装しないことを確認する。互換範囲外を交換可能と扱わない。
+
+## 構成体の確認
 
 ### HELIXCONNECT-L11-007 複数機構の構成体
 
