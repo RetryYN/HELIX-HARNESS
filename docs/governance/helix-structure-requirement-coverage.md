@@ -36,7 +36,7 @@ authority_effect: none
 | コア | 18／19 | 7／6 | 0／3 | 現行L2では副の所属だけ。専用の要求がない |
 | チケット・駆動モデル | 9／13 | 10／9 | 0／4 | 現行L2では副の所属だけ。専用の要求がない |
 | OS：管理（土台） | 16／38 | 35／16 | 6／3 |  |
-| OS：推進（チケット発行・レーン・サブエージェント） | 27／8 | 36／7 | 2／2 | 旧要求が厚く、現行L2が薄い |
+| OS：推進（チケット発行・レーン・Worker） | 27／8 | 36／7 | 2／2 | 旧要求が厚く、現行L2が薄い |
 | OS：検収（CI・テスト最適化・ベンチ） | 15／11 | 27／26 | 2／4 | 旧要求が厚く、現行L2が薄い |
 | OS：改善loop（学習・判断pack・memory）（仮置き） | 9／1 | 17／6 | 1／3 | 旧要求が厚く、現行L2が薄い |
 | HELIX-Web：窓口・ダッシュボード（仮置き） | 0／0 | 17／4 | 9／1 |  |
@@ -48,7 +48,7 @@ authority_effect: none
 - サービス④開発は、旧IRに0件、旧identityに2件（TDD強制、DDD／TDD厳格化）、現行L2に専用の要求がない。新規の要求形成が必要である。
 - サービス⑥リリースと⑦運用保守は、旧要求が合計でも数件しかない。現行L2ではHARNESSの提供条件（`HARNESS-L2-006`／`007`）、OSの導入・更新（`HELIXOS-L2-006`）、Web-OSのservice運転（`HELIXWEBOS-L2-006`）に分かれており、HARNESSのサービスとしてのリリース／運用保守は要求になっていない。
 - ダッシュボード（旧identityのPM／HM／GDの15画面とBR-06、UX-02）は、旧IR 153件には無く、旧identityにだけある。現行ではHELIX-WebのL2が受け皿である。社内向けの可視化とユーザー向けの窓口を同じ棚に置くかはPOの判断事項である。
-- OSの推進（レーン、サブエージェント）は旧要求が最も厚い（旧IR 27件、旧identity 36件）が、現行L2は`HELIXOS-L2-004`と`009`の2件である。
+- OSの推進（レーンとWorker。旧要求のサブエージェントはWorkerに当たる）は旧要求が最も厚い（旧IR 27件、旧identity 36件）が、現行L2は`HELIXOS-L2-004`と`009`の2件である。
 - 入口のフルリバースは旧要求が16件あるが、現行L2に専用の要求がない。
 - チケット・駆動モデルは旧要求が19件あるが、現行L2では副の所属だけである。
 - 部品のリサーチWorkflowは、旧identityの`FR-L1-27`と`HBR-P8`、現行の`HELIXOS-L2-012`が素材である。
@@ -187,13 +187,13 @@ authority_effect: none
 | `HBR-P7` | OS：改善loop（学習・判断pack・memory） | 品質の保証 | 要求に技術の決定が混在 | ｜ **HBR-P7** ｜ **責務別の記録と共有可能な継続情報** — harness/projectのscopeを分離し、Claude/Codexから同じ正本revisionへ戻れるbounded recallを提供する。要件v1.3 HR-FR-HYB-005に従い、active memoryの内容を責務正本へ反映してからbody-free receiptへretireし、期限切れ・消費済み指示を再提示しない。要求の意味は指定文書・JSON、継続状態はDB projectionで確認する。provider delegation evidenceは委譲証拠でありprogress/continuation正本ではない ｜ FR-L1-19/36/38/46/47（learning/skill・model 評価 projection/roster/skill — memory は impl detail 止まり） ｜ 2 層 memory **architecture FR・cross-agent 共有 access・Glossary SSoT 無し** → architecture は **PLAN-L7-175/176 で充足済**、残=**Glossary SSoT 連結 / Codex SessionStart surface と Claude surface の同一 bounded recall 検証** ｜ |
 | `HBR-P9` | コア | 品質の保証 | 要求に技術の決定が混在 | ｜ **HBR-P9** ｜ **HELIX DB 収束（trace/drift/coverage/contract）** — 成果物を台帳に収束し整合を機械追跡、**DB 未収束＝未完了**、影響範囲分析の資産保全 backbone ｜ FR-L1-03/04/06/07/18/20/33/35/40/49/51（trace/registry/hook/doctor/observability/inventory/readiness/drive-state/drift/progress-color） ｜ **「DB 未収束＝未完了」enforcement gate 無し**（green-command-digest が部分代替）。**cross-artifact relation graph FR・contract ledger 無し** ｜ |
 | `HNFR-P8` | — | 安全と権限 | 要求 | ｜ **HNFR-P8** ｜ **外部連携セキュリティ（厳格・hard 制約）** — 外部連携は secret 漏洩防止/信頼境界/サンドボックス下でのみ。**不可逆操作の escalation 境界**＝本番/認証認可/決済/PII/secret/license/schema migration/破壊的データ/外部 API・infra 変更のみ人間へ戻す ｜ FR-L1-09（agent guard）/ FR-L1-05 / SECRET_PATTERN ｜ **sandbox/trust-boundary の機能要件化・escalation 境界の FR 化が無し**（CLAUDE.md 安全境界に prose で在るが FR 未昇格） ｜ |
-| `BBG-BR01` | OS：推進（チケット発行・レーン・サブエージェント） | 省力化とコスト削減 | 要求 | BBG-BR01: HELIXを使う開発者・workerが、意味入力に集中でき、同じPLAN/PR定型欄や派生物を |
+| `BBG-BR01` | OS：推進（チケット発行・レーン・Worker） | 省力化とコスト削減 | 要求 | BBG-BR01: HELIXを使う開発者・workerが、意味入力に集中でき、同じPLAN/PR定型欄や派生物を |
 | `CN-3` | — | 品質の保証 | 要求 | ｜ CN-3 ｜ 新定義は要件正本（requirements v1.3 系列）へ載せてから runtime を移行する ｜ CLAUDE.md 本線 ｜ |
 | `CN-4` | サービス⑥ リリース | 安全と権限 | 要求 | ｜ CN-4 ｜ release / tag / cutover / 自動 routing 有効化は action-binding approval 境界を維持 ｜ GitHub 自走運用ルール ｜ |
 | `CN-5` | — | 安全と権限 | 要求 | ｜ CN-5 ｜ secret / credential / PII を assignment・event・evidence に書かない ｜ 安全境界 ｜ |
 | `3L-BR-006` | — | 安全と権限 | 要求 | ### 3L-BR-006 HELIX規則を三層で強制する |
 
-### OS：推進（チケット発行・レーン・サブエージェント）（主 36件）
+### OS：推進（チケット発行・レーン・Worker）（主 36件）
 
 | ID | 副の層 | 狙い | 区分 | 原文 |
 |---|---|---|---|---|
@@ -258,13 +258,13 @@ authority_effect: none
 | `BR-7` | — | 省力化とコスト削減 | 要求 | ### BR-7: HELIX ベンチによる worker 適性評価（新規、PO 決定 2026-08-20） |
 | `BR-9` | — | 省力化とコスト削減 | 要求 | ### BR-9: 検収内修復による収束速度の改善（追加要求、PO決定 2026-09-13） |
 | `BR-10` | OS：管理（土台） | 省力化とコスト削減 | 要求 | ### BR-10: 成功証拠の工程間継承（追加要求、PO決定 2026-09-13） |
-| `SR-6` | OS：推進（チケット発行・レーン・サブエージェント） | 安全と権限 | 要求 | ｜ SR-6 ｜ blind review dispatch と元 worker 差戻し循環 ｜ BR-3, BR-5 ｜ RLO-FR-014〜018 ｜ |
+| `SR-6` | OS：推進（チケット発行・レーン・Worker） | 安全と権限 | 要求 | ｜ SR-6 ｜ blind review dispatch と元 worker 差戻し循環 ｜ BR-3, BR-5 ｜ RLO-FR-014〜018 ｜ |
 | `SR-7` | OS：管理（土台） | 品質の保証 | 要求に技術の決定が混在 | ｜ SR-7 ｜ merge admission（exact HEAD＋CI generation＋receipt＋DB convergenceの統合判定） ｜ BR-3 ｜ RLO-FR-019〜020 ｜ |
 | `SR-11` | — | 省力化とコスト削減 | 要求 | ｜ SR-11 ｜ HELIX ベンチ実行・適性記録（モデル世代単位、FE/BE 実装適性を分離計測、設計適性を含む） ｜ BR-7 ｜ RLO-NFR-005, RLO-FR-031〜032 ｜ |
 | `CN-6` | — | 安全と権限 | 要求に技術の決定が混在 | ｜ CN-6 ｜ main 直接 push 禁止・PR 経由・required check `harness-check` を変更しない ｜ branch protection ｜ |
 | `3L-BR-004` | — | 安全と権限 | 要求に技術の決定が混在 | ### 3L-BR-004 Claudeの独立検収を維持する |
 | `3L-BR-007` | — | 品質の保証 | 要求に技術の決定が混在 | ### 3L-BR-007 GitHub監査をHELIX capabilityとして所有する |
-| `3L-BR-008` | OS：推進（チケット発行・レーン・サブエージェント） | 品質の保証 | 要求 | ### 3L-BR-008 モデル能力をrevision単位で段階認定する |
+| `3L-BR-008` | OS：推進（チケット発行・レーン・Worker） | 品質の保証 | 要求 | ### 3L-BR-008 モデル能力をrevision単位で段階認定する |
 
 ### OS：改善loop（学習・判断pack・memory）（仮置き）（主 17件）
 
@@ -276,17 +276,17 @@ authority_effect: none
 | `D-03` | 枠：開発方式・接続・Gate | 品質の保証 | 要求に技術の決定が混在 | ｜ **D-03** ｜ V-model 順序遵守違反 ｜ 前工程未完了で後工程着手した検知件数 ｜ 0 件 ｜ `helix doctor` / `helix plan lint` ｜ |
 | `D-04` | OS：検収（CI・テスト最適化・ベンチ） | 品質の保証 | 要求に技術の決定が混在 | ｜ **D-04** ｜ 回帰検出率 ｜ テストで検出した回帰件数 / 回帰発生総件数 × 100 ｜ ≥ 80 % ｜ CI gate / `helix trace` ｜ |
 | `D-05` | 枠：開発方式・接続・Gate | 品質の保証 | 要求に技術の決定が混在 | ｜ **D-05** ｜ 4 artifact trace 整合率 ｜ trace 整合 PLAN 件数 / 全 PLAN 件数 × 100 ｜ ≥ 95 % ｜ `helix trace check` / `.helix/artifact/trace/` ｜ |
-| `D-06` | OS：推進（チケット発行・レーン・サブエージェント） | 安全と権限 | 要求に技術の決定が混在 | ｜ **D-06** ｜ agent guard bypass 件数 ｜ `HELIX_ALLOW_RAW_AGENT=1` 実行件数 (audit 記録) ｜ 0 件 目標 (PO 承認時のみ許容) ｜ `.helix/audit/` / agent-guard log ｜ |
-| `D-07` | OS：推進（チケット発行・レーン・サブエージェント） | 省力化とコスト削減 | 要求に技術の決定が混在 | ｜ **D-07** ｜ AI 委譲時間率 ｜ AI 委譲タスク工数 / 総開発工数 × 100 ｜ ≥ 70 % ｜ PLAN `drive:` 集計 / `helix status` ｜ |
+| `D-06` | OS：推進（チケット発行・レーン・Worker） | 安全と権限 | 要求に技術の決定が混在 | ｜ **D-06** ｜ agent guard bypass 件数 ｜ `HELIX_ALLOW_RAW_AGENT=1` 実行件数 (audit 記録) ｜ 0 件 目標 (PO 承認時のみ許容) ｜ `.helix/audit/` / agent-guard log ｜ |
+| `D-07` | OS：推進（チケット発行・レーン・Worker） | 省力化とコスト削減 | 要求に技術の決定が混在 | ｜ **D-07** ｜ AI 委譲時間率 ｜ AI 委譲タスク工数 / 総開発工数 × 100 ｜ ≥ 70 % ｜ PLAN `drive:` 集計 / `helix status` ｜ |
 | `D-08` | OS：検収（CI・テスト最適化・ベンチ） | 品質の保証 | 要求に技術の決定が混在 | ｜ **D-08** ｜ gate override 件数/sprint ｜ PO による gate fail-close 例外行使件数 ｜ ≤ 2 件/sprint ｜ `.helix/audit/` / gate override log ｜ |
-| `D-09` | OS：推進（チケット発行・レーン・サブエージェント） | 品質の保証 | 要求に技術の決定が混在 | ｜ **D-09** ｜ continuation 再開成功率 ｜ next authority 実行成功件数 / continuation event 総件数 × 100 ｜ ≥ 95 % ｜ `harness.db` continuation projection / `helix status` ｜ |
+| `D-09` | OS：推進（チケット発行・レーン・Worker） | 品質の保証 | 要求に技術の決定が混在 | ｜ **D-09** ｜ continuation 再開成功率 ｜ next authority 実行成功件数 / continuation event 総件数 × 100 ｜ ≥ 95 % ｜ `harness.db` continuation projection / `helix status` ｜ |
 | `FR-L1-19` | — | 省力化とコスト削減 | 要求 | ｜ **FR-L1-19** ｜ Learning Engine (成功実行 recipe 蓄積・頻出トラブル予防ルール化・スキル推薦改善・L 単位注入更新) ｜ learning-engine ｜ feedback_hook 5 軸 / skill 発火ログ / recovery-log / interrupt 履歴 / detector 結果 ｜ recipe (pattern_key 付き)、予防ルール、推薦精度改善。※ extended: スキル破棄・改修自動化を含む。skill_rating 閾値以下を廃止候補としてフラグ、削除は人間確認必須 (F6=a、CLAUDE.md destructive 禁止事項)。ログ型失敗/成功蓄積 (event-sourced recipe log) を recipe store 実装方式として明記。※ extended (A-54 audit 軸1 C-02): 「失敗を仕組みに変換」原則 (L0 §1.4) に基づき GitHub PR / GHA / job summary から失敗 event を pull し、失敗種別の集計・同種反復検出・再発防止 PLAN 自動提案へ接続する (本人/AI roster 共有 audit。failure_log local とは分離 L0 §8.5、escalation L0-L3 §8.3 の入力経路) ｜ P1 ｜ HM-08 / GD-01 ｜ |
 | `FR-L1-20` | OS：管理（土台） | 品質の保証 | 要求 | ｜ **FR-L1-20** ｜ 観測・計測層 (5 hook で AI 実行を全量ログ化、発火 / トラブル / 精度 / 予算のメトリクス集約) ｜ observability-metrics ｜ AI 実行イベント全種 ｜ invocation_log / action_logs / gate_runs / accuracy_score / budget_events、dashboard メトリクス。※ extended: スキル使用パラメータ + モデルパラメータ + トラブル計測 + トークン/利用コスト の 4 軸を計測対象に追加 (L3 で AC 詳細化、F7=b に従い L1 はスコープ宣言のみ) ｜ P1 ｜ HM-05 / HM-08 ｜ |
 | `FR-L1-34` | — | 省力化とコスト削減 | 要求に技術の決定が混在 | ｜ **FR-L1-34** ｜ スキル・コマンド穴の優先順位管理 (vmodel-semantics 注入セット定義 / helix recover / helix route / retrofit skill 等) ｜ integration-map ｜ 穴リスト、設計確定済み仕様 ｜ 優先順位付き実装タスクリスト ｜ P2 ｜ HM-02 ｜ |
 | `FR-L1-36` | — | 省力化とコスト削減 | 要求に技術の決定が混在 | ｜ **FR-L1-36** ｜ スキル評価システム (per-skill rating / adoption / success / unused flag を skill_invocations + plan_registry から projection) ｜ BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) ｜ skill_invocations.accepted=1 件、plan_registry.status、asOf timestamp ｜ skill_evaluations projection (skill_rating 0.0-1.0、adoption_count、success_count、unused_flag)。cold-start = 0 行。unused = 30 日以内発火なし。削除は人手のみ ｜ P2 ｜ HM-05 ｜ |
 | `FR-L1-43` | サービス① 画面プロト／PoC | 品質の保証 | 要求に技術の決定が混在 | ｜ **FR-L1-43** ｜ PoC サクセス計測 (confirmed / rejected / pivot 件数から成功率を projection) ｜ BR-21 / PLAN-L7-53 (2026-06-15 P2 carry から昇格) ｜ plan_registry (kind=poc, decision_outcome∈{confirmed,rejected,pivot}) ｜ poc_evaluations projection (poc_success_rate 0.0-1.0、confirmed_count、rejected_count、pivot_count、total_count)。cold-start = 0 行。決定未記録 PoC は分母除外 ｜ P2 ｜ HM-08 ｜ |
 | `HBR-P4` | サービス⑦ 運用保守 | 省力化とコスト削減 | 要求 | ｜ **HBR-P4** ｜ **自動保守システム** — drift/劣化/不整合を自動検出→**自動修復**、detection-routing 循環、学習ループ（recipe 蓄積/予防 gate 昇格）。根幹=P7 メモリ ｜ FR-L1-08/11/18/19/33/34/36/38/43/49（検出・学習・inventory・評価・drift-lint） ｜ **検出は厚いが「自動修復」FR 無し**。**learning→promote-to-gate/detector 専用 FR 無し**。劣化(flake/perf)検出未被覆 ｜ |
-| `S-BR-001` | OS：推進（チケット発行・レーン・サブエージェント） | 省力化とコスト削減 | 要求 | ## S-BR-001 利用者価値 |
+| `S-BR-001` | OS：推進（チケット発行・レーン・Worker） | 省力化とコスト削減 | 要求 | ## S-BR-001 利用者価値 |
 
 ### HELIX-Web：窓口・ダッシュボード（仮置き）（主 17件）
 
@@ -356,10 +356,10 @@ authority_effect: none
 | `HELIXOS-L2-002` | コア | ｜ HELIXOS-L2-002 ｜ プロジェクト群の要求から作業・実装・検証・提供・運用まで追跡し、欠落と競合を把握できる ｜ HCV4-L2-002／003、HBR-P3／P9 ｜ 未接続・未合意・未実装・未検証を区別し、部分成功で全体完了にならない ｜ |
 | `HELIXOS-L2-003` | 枠：開発方式・接続・Gate | ｜ HELIXOS-L2-003 ｜ 共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる ｜ PO指摘、HCV4-L2-001／004／006、HBR-P0 ｜ あるプロダクトの方式変更が他プロダクトや共通統制を暗黙に変えない ｜ |
 | `HELIXOS-L2-007` | OS：検収（CI・テスト最適化・ベンチ） | ｜ HELIXOS-L2-007 ｜ Worker・判断・操作・検証のログと証拠を保存し、対象プロジェクトと要求revisionから参照できる ｜ HBR-P7／P9、v1.3 HR-FR-HYB-006 ｜ 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない ｜ |
-| `HELIXOS-L2-010` | OS：推進（チケット発行・レーン・サブエージェント）、OS：検収（CI・テスト最適化・ベンチ）、チケット・駆動モデル | ｜ HELIXOS-L2-010 ｜ 管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる ｜ HELIX-OS編成案 §1／2／6、2026-09-15 PO指示 ｜ 管理は目的・要求・制約・優先度・依存・資源・停止を推進へ渡す。推進はHARNESSのnormative工程語彙・順序を参照し、operational tag、mapping、composition、workflow instance生成規則を所有してticketと成果を生成する。管理は登録・統制し、検収はHARNESS contractへの収束を判断する。許可内の直接通信を保ち、固定モデル数や全通信の中央中継を要求しない ｜ |
+| `HELIXOS-L2-010` | OS：推進（チケット発行・レーン・Worker）、OS：検収（CI・テスト最適化・ベンチ）、チケット・駆動モデル | ｜ HELIXOS-L2-010 ｜ 管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる ｜ HELIX-OS編成案 §1／2／6、2026-09-15 PO指示 ｜ 管理は目的・要求・制約・優先度・依存・資源・停止を推進へ渡す。推進はHARNESSのnormative工程語彙・順序を参照し、operational tag、mapping、composition、workflow instance生成規則を所有してticketと成果を生成する。管理は登録・統制し、検収はHARNESS contractへの収束を判断する。許可内の直接通信を保ち、固定モデル数や全通信の中央中継を要求しない ｜ |
 | `HELIXOS-L2-013` | OS：検収（CI・テスト最適化・ベンチ）、OS：改善loop（学習・判断pack・memory） | ｜ HELIXOS-L2-013 ｜ 管理・推進・検収・Worker・crawler・CIを同じ仕事へ関連付け、要求からの欠落と失敗からの原因候補を双方向に診断して是正効果まで追跡できる ｜ HELIX-OS編成案 §5 ｜ 観測事実・AI仮説・承認・表示、未着手・観測停止・正常を区別する。管理自身も是正対象とし、自動writeせず、修正後の症状と退行を再観測する ｜ |
 
-### OS：推進（チケット発行・レーン・サブエージェント）（主 2件）
+### OS：推進（チケット発行・レーン・Worker）（主 2件）
 
 | ID | 副の層 | 原文 |
 |---|---|---|
@@ -371,7 +371,7 @@ authority_effect: none
 | ID | 副の層 | 原文 |
 |---|---|---|
 | `HELIXOS-L2-008` | — | ｜ HELIXOS-L2-008 ｜ 承認済み上流revisionとHARNESSの検証契約から責務に合うCI profileを組み立て、隔離して実行・監視・回収・再開できる ｜ HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補 ｜ 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない ｜ |
-| `HELIXOS-L2-011` | OS：推進（チケット発行・レーン・サブエージェント）、チケット・駆動モデル | ｜ HELIXOS-L2-011 ｜ ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる ｜ HELIX-OS編成案 §1／4 ｜ HARNESSの検証義務を追加・削除せず、実際の統合候補で具体化する。必要CI欠落、影響不明、契約解釈不明、stale結果を拒否し、review、内容検証、merge admission、release、運用評価を分けて収束させる ｜ |
+| `HELIXOS-L2-011` | OS：推進（チケット発行・レーン・Worker）、チケット・駆動モデル | ｜ HELIXOS-L2-011 ｜ ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる ｜ HELIX-OS編成案 §1／4 ｜ HARNESSの検証義務を追加・削除せず、実際の統合候補で具体化する。必要CI欠落、影響不明、契約解釈不明、stale結果を拒否し、review、内容検証、merge admission、release、運用評価を分けて収束させる ｜ |
 
 ### OS：改善loop（学習・判断pack・memory）（仮置き）（主 1件）
 

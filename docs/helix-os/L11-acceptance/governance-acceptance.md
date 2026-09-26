@@ -19,16 +19,16 @@ Issue close、PR merge、旧owner・技術との衝突、37件のrouting contain
 | 親要求 | 利用者が確認する結果と反例 |
 |---|---|
 | HELIXOS-L2-001 | 各要求の対象プロダクト・正本・合意revisionへ辿る。Issue closeを要求の削除・受入として表示しない |
-| HELIXOS-L2-002 | 異なるプロジェクトの欠落・競合・未検証を個別に把握し、一方の成功で他方の未完を相殺しない |
+| HELIXOS-L2-002 | 異なるプロジェクトの欠落・競合・未検証を個別に把握し、一方の成功で他方の未完を相殺しない。提供をリリースカンバン上の状態として追跡し、状態の欠落やIssue・PRの状態だけからの推定を拒否する |
 | HELIXOS-L2-003 | 開発方式の変更で影響する範囲だけを再評価し、共通統制の無断変更を拒否する |
-| HELIXOS-L2-004 | 割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否する |
-| HELIXOS-L2-005 | HARNESS自身への適用と各productの観測から改善候補・採否・変更・再検証・効果確認を追跡し、未承認経験の規則化、HARNESS改善責務の欠落、棄却理由の消失を拒否する |
-| HELIXOS-L2-006 | fresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失や別artifactへの切替を拒否する |
-| HELIXOS-L2-007 | Worker・判断・検証ログを要求revisionから辿り、欠落・重複・staleを成功証拠として使わない |
-| HELIXOS-L2-008 | 承認上流から生成したCI profileの起動・失敗・修復・再実行を追跡し、旧CI成功で新世代の未実行・中断・staleやreview欠落を相殺しない |
+| HELIXOS-L2-004 | 割当・依存・予算・review待ちを確認し、担当交代による二重作業と自己承認を拒否する。割当てと進行統制はOS、割当て案はINTELLIGENCE、実行はWorker、自己承認の防止と権限の制限はSECURITYが担い、一つの機構が割当て案・実行・承認をまとめて持つ構成を拒否する。Workerの実行の結果から、Worker、provider、model、ticket、要求のrevision、authority、制約、成果物、実行の証拠、ticketが指定したモデルクラスとWorkerを呼び出したレーンまで辿れ、失効で実行が止まり途中の成果物が隔離され、作業の終了後に一時の資格情報や環境が次のassignmentへ残らないことを確かめる。作成したWorker自身またはそのSubagentのreviewが、独立reviewとして数えられないことを確かめる。ticketが指定したモデルクラスが、LABOがHELIX-Benchで出した水準を材料にINTELLIGENCEが作った配置の案を、OSの推進が確かめて指定したものであることを辿れ、評価していないモデルに「未評価」の印が付くことを確かめる。Benchの水準やINTELLIGENCEの案だけで割当てが決まる構成、印のない未評価のモデルを評価済みとして扱う構成を拒否する |
+| HELIXOS-L2-005 | HARNESS自身への適用と各productの観測から改善候補を出典と適用範囲付きで登録し、還流先へ振り分けて採否・変更・再検証まで追跡する。未承認経験の規則化、HARNESS改善責務の欠落、棄却理由の消失、還流先の欠落を拒否する。改善の効果と退行の評価はHELIX-LABOの候補で確認し、OSの登録件数やログ量を改善達成としない。観測と作業の結果がLABOへ渡り、LABOが返した改善の提案が登録・振り分けされてticketへ辿れることを確かめ、LABOの提案がOSのauthorityを直接書き換える構成を拒否する |
+| HELIXOS-L2-006 | サービス①〜⑦の単位で、リリースカンバン上の状態を見てfresh／既存repoへ提供版を導入・更新・復旧し、無断の成果消失、別artifactへの切替、選んでいないサービスの同時導入を拒否する |
+| HELIXOS-L2-007 | Worker・判断・操作・検証のログを、Conceptの1.0土台（ログと証拠）の共通形式で要求revisionから辿り、欠落・重複・staleを成功証拠として使わない。共通形式の欠けた記録を、他の機構の記録と結べない不完全な記録として識別する |
+| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、その変更に必要なCIが動的に合成されることを確認する。合成したCIの起動・失敗・修復・再実行を追跡し、固定段数のCIをすべて回す構成、導出された検証の欠落、旧CI成功で新世代の未実行・中断・staleやreview欠落を相殺する構成を拒否する |
 | HELIXOS-L2-009 | 中断・担当交代後も制約と未完義務を引き継ぎ、二重実行・予算リセット・無許可復旧を拒否する |
-| HELIXOS-L2-010 | 管理・推進・検収が同じticketと因果IDで直接調整し、scope・優先度・共有資源・要求意味の変更だけを正しい判断先へ返す。役割を固定モデル数や中央中継へ変換しない |
-| HELIXOS-L2-011 | HARNESS契約で同じ検証義務を与え、A→Bの依存を実際のbase+A+Bで具体化する。base更新・候補増減・順序変更で再計画し、OSによるoracle削除・追加、必要CI欠落、影響証明不能、契約解釈不明、別HEADの成功ではmerge可能としない |
+| HELIXOS-L2-010 | 管理・推進・検収が同じticketと因果IDで直接調整し、scope・優先度・共有資源・要求意味の変更だけを正しい判断先へ返す。推進が案件ごとに必要な工程を動的ワークフローとして組み立て、固定の工程列を全案件へ当てはめない。1.0では、組み立てがHARNESSの定めた工程の部品の規則どおりの組合せと途中結果での差し戻しに収まることを確かめ、部品にない工程を推進が独自に作る構成を拒否する。INTELLIGENCEの計画・配置の案を、適格性を確かめずにそのままticketにする構成を拒否する。役割を固定モデル数や中央中継へ変換しない |
+| HELIXOS-L2-011 | HARNESS契約で同じ検証義務を与え、A→Bの依存を実際のbase+A+Bで具体化する。base更新・候補増減・順序変更で再計画し、OSによるoracle削除・追加、必要CI欠落、影響証明不能、契約解釈不明、別HEADの成功ではmerge可能としない。計画を導く側（本要求）とCIを合成して実行する側（HELIXOS-L2-008）が別の要求として境目を持ち、計画側がCIを実行する、または実行側が計画を変える構成を拒否する |
 | HELIXOS-L2-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した |
 | HELIXOS-L2-013 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した |
 
@@ -45,6 +45,9 @@ Issue close、PR merge、旧owner・技術との衝突、37件のrouting contain
 - HELIXOS-L2-001／002／005／007／013：要求kindとriskを変えてtemplate候補、選定版、設計義務、N/A、backflow、消込を追跡する。template欠落、stale、conflict、必要input欠落では自由形式へfallbackせず、旧template利用実績や文書生成から適用・完成を生成しない。
 - HELIXOS-L2-001／002／004／007／010：管理が同じ目的・親要求・制約を推進へ渡し、推進が異なる開発style、work kind、変更種別、risk、surface tagとticket graphを生成する。同じ入力・規則なら同じworkflow digestを得て、検収がHARNESS義務の欠落を拒否する。管理によるtag先決め、tag欠落・競合・unknownのready化、GitHub labelだけによるactive workflow変更を認めない。
 - HELIXOS-L2-007：未ack finding、未反映memory、重複配送、期限切れ通知を投入し、内容消失・二重利用・古い指示の再提示を拒否する。
+- HELIXOS-L2-004／010：独立reviewのfindingを、今のPRで直すものと次のticketにするものに振り分けたことを確かめる。振り分けの欠落、AIの自由な判断だけによるfindingの破棄、次のticketにしたfindingの今のPRへの再流入を拒否する（旧HIL-BR-17、HIL-FR-30）。
+- HELIXOS-L2-002／010：PoC、Prototype、Decide、Backflowのticketが、登録済みの要求またはBackflowを出どころにOSの推進から発行されたことを辿れる。INTELLIGENCEの案だけから発行されたticketを拒否する。
+- HELIXOS-L2-004／009：SECURITYがauthorityを失効させたとき、新しい割当てが止まり、実行中の割当ても止まることを確かめる。
 - HELIXOS-L2-008：上流意味review、下流verification、merge admission、releaseを別pipeline classとして生成する。Concept候補のremote syncで旧CI／merge pipelineが起動する構成を拒否する。
 - HELIXOS-L2-008：失敗後の修正と再実行を追跡する。新HEADへ旧CI／review結果を付けた場合、旧workflowを新世代profileとして扱った場合、required oracleを省略した場合は進行可能と表示しない。
 - HELIXOS-L2-008：旧CIを起動せず、新世代だけを承認要求由来のoracleで評価する。旧CIとのdual-green、job一致、結果parityを新世代の受入条件にしない。
@@ -88,7 +91,7 @@ Issue close、PR merge、旧owner・技術との衝突、37件のrouting contain
 - 管理projectionのmissing、unknown、stale、conflict、再構築失敗を個別に与え、Project／Issue／DB／dashboardの一つが正常でも完了へ補完しない。
 - 旧7 operation、旧layer、DB rebuild成功、roadmap表示を与えても、新世代の管理状態集合や利用者受入の成立根拠にしない。
 
-限定修復の受入条件は、2026-09-25 PO判断により[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ移した。
+限定修復の受入条件は、2026-09-25 PO判断により[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ移した。
 
 構造改善条件は新世代L1／L2の採用revision確定後に評価する。全件未実行。
 
@@ -144,15 +147,15 @@ HELIXOS-L2-005では、採用した改善を要求・設計・検証・再観測
 候補件数やログ件数の増加だけをHELIX改善の成功と表示しない。
 HARNESSの外部提供完了とHELIX-OSの内部改善状況を別に確認し、一方の成功で他方を完了扱いにしない。
 
-## HARNESS、HELIX-Web、HELIX-Web-OSを管理するシナリオ
+## HARNESS、HELIX-Web、HELIX-WEB-OSを管理するシナリオ
 
 未実行。HELIXOS-L2-001／002／003／005の対象間の分離を次で確認する。
 
-- HARNESS、HELIX-Web、HELIX-Web-OSに異なる要求revision・進行状態を与え、それぞれのローカル正本へ辿れること。Web／Web-OS要求をOSやHARNESSの要求として誤表示しないこと。
+- HARNESS、HELIX-Web、HELIX-WEB-OSに異なる要求revision・進行状態を与え、それぞれのローカル正本へ辿れること。Web／WEB-OS要求をOSやHARNESSの要求として誤表示しないこと。
 - Webが採用するHARNESS版と能力を特定し、Web固有要求の変更で他プロダクトの要求・承認・工程規則が暗黙に変わらないこと。
-- HELIX-OS内部stateとHELIX-Web-OSのtenant／job／credential／service stateを食い違わせ、どちらか一方を他方のauthorityとして補完しないこと。
-- Web-OSの許可logと範囲外logを混在させ、前者だけを出典・scope・目的・同意・revision付きでHELIX-OSの改善入力へ取り込むこと。credentialとtenant原dataを拒否し、欠測を正常化しないこと。
-- Web-OS log由来の改善候補をHARNESS、Web、Web-OSのどこへ戻すか区別し、HARNESS自身への影響があればHARNESS要求・設計・検証へ接続すること。一製品の観測から全対象を無条件に変更しないこと。
+- HELIX-OS内部stateとHELIX-WEB-OSのtenant／job／credential／service stateを食い違わせ、どちらか一方を他方のauthorityとして補完しないこと。
+- WEB-OSの許可logと範囲外logを混在させ、前者だけを出典・scope・目的・同意・revision付きでHELIX-OSの改善入力へ取り込むこと。credentialとtenant原dataを拒否し、欠測を正常化しないこと。
+- WEB-OS log由来の改善候補をHARNESS、Web、WEB-OSのどこへ戻すか区別し、HARNESS自身への影響があればHARNESS要求・設計・検証へ接続すること。一製品の観測から全対象を無条件に変更しないこと。
 - Webの検証が未完のとき、HARNESSの提供完了やCI成功でWebを完了扱いにしないこと。
 - Webの実践証拠からOSが改善候補を管理し、採否・変更対象・再検証へ辿れること。証拠の利用可能範囲を越えて共有せず、候補を自動で要求正本へ昇格させないこと。
 
@@ -169,14 +172,14 @@ HELIXOS-L2-001／004／005／007／009のHMC-BR-001..006由来条件を検証す
 - 移管後も原文provenanceと訂正履歴を参照できる。記録件数が減ったことだけで移管・受入成功にしない。
 
 - HMC-BR-001：assignment、review依頼、handover、heartbeat、確認待ちをそれぞれ異なるruntimeへ渡し、期限と参照先を確認する。
-- HMC-BR-003：規則は仕組みで吸収され、知識は1.0〜2.xではHELIX-LABO、3.0からはHELIX-Intelligenceの正本を参照し（2026-09-24 PO判断）、通知の消費で要求・設計・受入・運用規則・ユーザー嗜好が失われたり上書きされたりしない。
+- HMC-BR-003：規則は仕組みで吸収され、知識は1.0〜2.xではHELIX-LABO、3.0からはHELIX-INTELLIGENCEの正本を参照し（2026-09-24 PO判断）、通知の消費で要求・設計・受入・運用規則・ユーザー嗜好が失われたり上書きされたりしない。
 - HMC-BR-004：作業依頼・質問・仮説・叱責も入力し、依頼の存在だけで承認や完了を生成しない。
 - HMC-BR-005：消費、期限切れ、訂正を個別に再現し、無効な通知は履歴として参照できても現行指示として再使用できない。
 
 ## 成果の出所に関する候補の受入条件
 
 PPS4件は採用revision確定後、HELIXOS-L2-004／007で次を確認する。全件未実行。
-監査（AAFD）の受入条件は[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。
+監査（AAFD）の受入条件は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）の受入条件は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。
 
 - producer、commit実行者、PR公開者を個別に表示し、HEADとassignmentから経路を再現できる。actor差だけの独立review、過去の不明producerの推定承認を拒否する。
 - mixedとunknown、外部botとHELIX producerを区別し、既存記録に無かった証拠を移行処理で生成しない。
@@ -265,96 +268,42 @@ HELIXOS-L2-004／005／007／009について、次の利用条件を確認する
 
 改善効果が観測できなかった場合も結果を保持し、比較成立と性能改善実証を別に評価する。
 非UIでもL2要求と受入を省略せず、必要な適用性記録を残す。
-## ticket条件の受入
 
-以下は対象L2候補と対になる未実行の受入案である。要求採用・受入済みを意味しない。
+## ticket詳細要求の受入
 
-| 条件ID | 親L2要求 | 成功条件 | 反例（不合格） |
+対のL2の詳細IDに対応する未実行の受入案。採否・実装許可・受入済みを生成しない。種類の行は目的・発行・合流先を一組で確かめ、接続の行は端から端まで確かめる。各行でL2のシステム／運用の分担も確認し、入力・判断の不足をシステムで補完した場合は不成立とする。
+
+| 詳細ID | 親主要求 | 成功条件 | 反例（不合格） |
 |---|---|---|---|
-| HELIXOS-L2-014 | HELIXOS-L2-010 | 「ticketは、HELIX-OSの推進が発行する作業の単位である。」を満たす結果を確認できる | 推進以外を発行者にする |
-| HELIXOS-L2-015 | HELIXOS-L2-010 | 「駆動モデルはticketの種類で置き換える。」を満たす結果を確認できる | 駆動モデルを別のticket種として残す |
-| HELIXOS-L2-016 | HELIXOS-L2-010 | 「各ticketは、駆動モデルに由来する進め方を、動的ワークフローとして中に持つ。」を満たす結果を確認できる | ticket内の進め方を失う |
-| HELIXOS-L2-017 | HELIXOS-L2-010 | 「Scrum等は開発方式（枠）であり、ticketの種類ではない。」を満たす結果を確認できる | Scrumをticket種類へ追加する |
-| HELIXOS-L2-018 | HELIXOS-L2-010 | 「HARNESSは導出のためのコア（HELIX-JSONの定義とPythonの意味導出コア）を持つ。」を満たす結果を確認できる | OSがHARNESSのコアを所有する |
-| HELIXOS-L2-019 | HELIXOS-L2-010 | 「BRAINはそこから判断する」を満たす結果を確認できる | BRAINの判断をticket発行と同一視する |
-| HELIXOS-L2-020 | HELIXOS-L2-010 | 「ticketは、種類、対象（単体／接続／構成体）、親の要求と版、変更の範囲を持つ。」を満たす結果を確認できる | 種類・対象・親要求版・変更範囲のいずれかを欠く |
-| HELIXOS-L2-021 | HELIXOS-L2-011 | 「検収は、そこから必要な検証を導き、CIを動的に組み立てる。」を満たす結果を確認できる | ticketと無関係な固定CIだけで検収する |
-| HELIXOS-L2-022 | HELIXOS-L2-002 | 「ticketが正で、GitHub IssueとPRは映しである。」を満たす結果を確認できる | IssueやPRをticket正本にする |
-| HELIXOS-L2-023 | HELIXOS-L2-002 | 「Issueのcloseやmergeで、ticketは完了にならない。」を満たす結果を確認できる | Issue closeまたはPR mergeだけでticket完了にする |
-| HELIXOS-L2-024 | HELIXOS-L2-010 | 「ticketは計画から導いて発行する。」を満たす結果を確認できる | 計画根拠のない計画ticketを発行する |
-| HELIXOS-L2-025 | HELIXOS-L2-010 | 「トラブル系は、範囲と起きたことを入れると、種類・対象・親の要求が導かれて発行される。」を満たす結果を確認できる | 範囲か事象を欠くまま種類・対象・親を推測する |
-| HELIXOS-L2-026 | HELIXOS-L2-010 | 「範囲が分からないときは、先にDiscoveryで明らかにする。」を満たす結果を確認できる | 範囲不明のまま別ticketを確定する |
-| HELIXOS-L2-027 | HELIXOS-L2-010 | 「突発的に発生するものと、計画的に発行できるものを分ける。」を満たす結果を確認できる | 突発と計画を同じ発行区分にする |
-| HELIXOS-L2-028 | HELIXOS-L2-010 | 「Forwardは本流である。」を満たす結果を確認できる | Forward以外を本流と表示する |
-| HELIXOS-L2-029 | HELIXOS-L2-010 | 「開発方式がVモデル・Scrum・Hybridのどれであっても、その方式の規定の路線を走るticketをForwardとする。」を満たす結果を確認できる | ScrumまたはHybridをForwardから除く |
-| HELIXOS-L2-030 | HELIXOS-L2-010 | 「ほかのticketは、最後にForwardへ合流する。」を満たす結果を確認できる | 非Forwardの結果を合流なしで本流の完了にする |
-| HELIXOS-L2-031 | HELIXOS-L2-010 | 「Forward 大／内容：構成体（システム全体）を、開発方式の規定路線で要求から受入まで通す」を満たす結果を確認できる | Forward 大の内容を「構成体（システム全体）を、開発方式の規定路線で要求から受入まで通す」以外にする |
-| HELIXOS-L2-032 | HELIXOS-L2-010 | 「Forward 大／発行：計画」を満たす結果を確認できる | Forward 大の発行を「計画」以外にする |
-| HELIXOS-L2-033 | HELIXOS-L2-010 | 「Forward 大／合流先：本流」を満たす結果を確認できる | Forward 大の合流先を「本流」以外にする |
-| HELIXOS-L2-034 | HELIXOS-L2-010 | 「Forward 中／内容：接続（機能と機能のつなぎ）を、開発方式の規定路線で作る」を満たす結果を確認できる | Forward 中の内容を「接続（機能と機能のつなぎ）を、開発方式の規定路線で作る」以外にする |
-| HELIXOS-L2-035 | HELIXOS-L2-010 | 「Forward 中／発行：計画」を満たす結果を確認できる | Forward 中の発行を「計画」以外にする |
-| HELIXOS-L2-036 | HELIXOS-L2-010 | 「Forward 中／合流先：Forward 大」を満たす結果を確認できる | Forward 中の合流先を「Forward 大」以外にする |
-| HELIXOS-L2-037 | HELIXOS-L2-010 | 「Forward 小／内容：単体の機能を、開発方式の規定路線で作る」を満たす結果を確認できる | Forward 小の内容を「単体の機能を、開発方式の規定路線で作る」以外にする |
-| HELIXOS-L2-038 | HELIXOS-L2-010 | 「Forward 小／発行：計画」を満たす結果を確認できる | Forward 小の発行を「計画」以外にする |
-| HELIXOS-L2-039 | HELIXOS-L2-010 | 「Forward 小／合流先：Forward 中／大」を満たす結果を確認できる | Forward 小の合流先を「Forward 中／大」以外にする |
-| HELIXOS-L2-040 | HELIXOS-L2-010 | 「Discovery／内容：開発の途中で検証が必要になったとき、または範囲が分からないときに確かめる」を満たす結果を確認できる | DiscoveryとPoCを同じticket identityにする |
-| HELIXOS-L2-041 | HELIXOS-L2-010 | 「Discovery／発行：突発」を満たす結果を確認できる | DiscoveryとPoCを同じticket identityにする |
-| HELIXOS-L2-042 | HELIXOS-L2-010 | 「Discovery／合流先：発行元のticket」を満たす結果を確認できる | DiscoveryとPoCを同じticket identityにする |
-| HELIXOS-L2-043 | HELIXOS-L2-010 | 「PoC／内容：技術的に成り立つかを確かめる。」を満たす結果を確認できる | PoCを画面の有無で省略する、Discoveryと同じticket identityにする |
-| HELIXOS-L2-044 | HELIXOS-L2-010 | 「PoC／内容：画面の有無に関係なく、成立性が不明なときに発行する。」を満たす結果を確認できる | PoCを画面の有無で省略する、Discoveryと同じticket identityにする |
-| HELIXOS-L2-045 | HELIXOS-L2-010 | 「PoC／内容：本番実装にはしない。」を満たす結果を確認できる | PoCを画面の有無で省略する、Discoveryと同じticket identityにする |
-| HELIXOS-L2-046 | HELIXOS-L2-010 | 「PoC／発行：計画（L2.5）」を満たす結果を確認できる | PoCを画面の有無で省略する、Discoveryと同じticket identityにする |
-| HELIXOS-L2-047 | HELIXOS-L2-010 | 「PoC／合流先：Backflow→要求エンジンの2次形成→DECIDE」を満たす結果を確認できる | PoCを画面の有無で省略する、Discoveryと同じticket identityにする |
-| HELIXOS-L2-048 | HELIXOS-L2-010 | 「Prototype／内容：画面の操作と使う人の反応を確かめる。」を満たす結果を確認できる | Prototypeの内容を「画面の操作と使う人の反応を確かめる。」以外にする |
-| HELIXOS-L2-049 | HELIXOS-L2-010 | 「Prototype／内容：画面のない対象では発行しない。」を満たす結果を確認できる | Prototypeの内容を「画面のない対象では発行しない。」以外にする |
-| HELIXOS-L2-050 | HELIXOS-L2-010 | 「Prototype／発行：計画（L2.5）」を満たす結果を確認できる | Prototypeの発行を「計画（L2.5）」以外にする |
-| HELIXOS-L2-051 | HELIXOS-L2-010 | 「Prototype／合流先：Backflow→要求エンジンの2次形成→DECIDE」を満たす結果を確認できる | Prototypeの合流先を「Backflow→要求エンジンの2次形成→DECIDE」以外にする |
-| HELIXOS-L2-052 | HELIXOS-L2-010 | 「DECIDE／内容：裁定。」を満たす結果を確認できる | DECIDEをDiscoveryのS4専用に戻す |
-| HELIXOS-L2-053 | HELIXOS-L2-010 | 「DECIDE／内容：要求の確認や技術の選定をPR化して決める。」を満たす結果を確認できる | DECIDEをDiscoveryのS4専用に戻す |
-| HELIXOS-L2-054 | HELIXOS-L2-010 | 「DECIDE／発行：計画」を満たす結果を確認できる | DECIDEをDiscoveryのS4専用に戻す |
-| HELIXOS-L2-055 | HELIXOS-L2-010 | 「DECIDE／合流先：採用→Forward」を満たす結果を確認できる | DECIDEをDiscoveryのS4専用に戻す |
-| HELIXOS-L2-056 | HELIXOS-L2-010 | 「DECIDE／合流先：不採用→記録して終了」を満たす結果を確認できる | DECIDEをDiscoveryのS4専用に戻す |
-| HELIXOS-L2-057 | HELIXOS-L2-010 | 「DECIDE／合流先：方針変更→次の計画」を満たす結果を確認できる | DECIDEをDiscoveryのS4専用に戻す |
-| HELIXOS-L2-058 | HELIXOS-L2-010 | 「Backflow／内容：下流の結果（PoC・Prototypeの結果、要求の入力不足、下流で分かったこと）を要求へ戻す」を満たす結果を確認できる | Backflowの内容を「下流の結果（PoC・Prototypeの結果、要求の入力不足、下流で分かったこと）を要求へ戻す」以外にする |
-| HELIXOS-L2-059 | HELIXOS-L2-010 | 「Backflow／発行：PoC・Prototypeの後は計画」を満たす結果を確認できる | Backflowの発行を「PoC・Prototypeの後は計画」以外にする |
-| HELIXOS-L2-060 | HELIXOS-L2-010 | 「Backflow／発行：それ以外は突発」を満たす結果を確認できる | Backflowの発行を「それ以外は突発」以外にする |
-| HELIXOS-L2-061 | HELIXOS-L2-010 | 「Backflow／合流先：要求エンジン（L2）」を満たす結果を確認できる | Backflowの合流先を「要求エンジン（L2）」以外にする |
-| HELIXOS-L2-062 | HELIXOS-L2-010 | 「Reverse／内容：実装の事実から設計へ戻す。」を満たす結果を確認できる | Reverseの内容を「実装の事実から設計へ戻す。」以外にする |
-| HELIXOS-L2-063 | HELIXOS-L2-010 | 「Reverse／内容：Scrum Reverseを含む。」を満たす結果を確認できる | Reverseの内容を「Scrum Reverseを含む。」以外にする |
-| HELIXOS-L2-064 | HELIXOS-L2-010 | 「Reverse／発行：突発（設計と実装のずれ、同種finding再発、性能退行、障害等）」を満たす結果を確認できる | Reverseの発行を「突発（設計と実装のずれ、同種finding再発、性能退行、障害等）」以外にする |
-| HELIXOS-L2-065 | HELIXOS-L2-010 | 「Reverse／発行：計画（Scrum Reverseのcheckpoint：sprint review前、release candidate合流前、public contract・DB schema・主要dependency・NFR budgetの変更時。旧`helix-harness-requirements_v1.3.md:94-102`）」を満たす結果を確認できる | Reverseの発行を「計画（Scrum Reverseのcheckpoint：sprint review前、release candidate合流前、public contract・DB schema・主要dependency・NFR budgetの変更時。旧`helix-harness-requirements_v1.3.md:94-102`）」以外にする |
-| HELIXOS-L2-066 | HELIXOS-L2-010 | 「Reverse／合流先：Forwardの該当層」を満たす結果を確認できる | Reverseの合流先を「Forwardの該当層」以外にする |
-| HELIXOS-L2-067 | HELIXOS-L2-009 | 「Recovery／内容：AIの逸脱・暴走・context切れから正常な地点へ戻す」を満たす結果を確認できる | Recoveryの内容を「AIの逸脱・暴走・context切れから正常な地点へ戻す」以外にする |
-| HELIXOS-L2-068 | HELIXOS-L2-009 | 「Recovery／発行：突発」を満たす結果を確認できる | Recoveryの発行を「突発」以外にする |
-| HELIXOS-L2-069 | HELIXOS-L2-009 | 「Recovery／合流先：中断していた工程」を満たす結果を確認できる | Recoveryの合流先を「中断していた工程」以外にする |
-| HELIXOS-L2-070 | HELIXOS-L2-010 | 「Incident／内容：本番障害に緊急対応する」を満たす結果を確認できる | Incidentの内容を「本番障害に緊急対応する」以外にする |
-| HELIXOS-L2-071 | HELIXOS-L2-010 | 「Incident／発行：突発」を満たす結果を確認できる | Incidentの発行を「突発」以外にする |
-| HELIXOS-L2-072 | HELIXOS-L2-010 | 「Incident／合流先：運用評価（L12）」を満たす結果を確認できる | Incidentの合流先を「運用評価（L12）」以外にする |
-| HELIXOS-L2-073 | HELIXOS-L2-010 | 「Incident／合流先：恒久対策はReverse経由」を満たす結果を確認できる | Incidentの合流先を「恒久対策はReverse経由」以外にする |
-| HELIXOS-L2-074 | HELIXOS-L2-010 | 「Refactor／内容：振る舞いを変えずにコードの構造を直す」を満たす結果を確認できる | Refactorの内容を「振る舞いを変えずにコードの構造を直す」以外にする |
-| HELIXOS-L2-075 | HELIXOS-L2-010 | 「Refactor／発行：計画（範囲を入れれば事象からも発行可）」を満たす結果を確認できる | Refactorの発行を「計画（範囲を入れれば事象からも発行可）」以外にする |
-| HELIXOS-L2-076 | HELIXOS-L2-010 | 「Refactor／合流先：Forward 小」を満たす結果を確認できる | Refactorの合流先を「Forward 小」以外にする |
-| HELIXOS-L2-077 | HELIXOS-L2-010 | 「Design-refactor／内容：外部の振る舞いを保って設計の構造を直す」を満たす結果を確認できる | Design-refactorの内容を「外部の振る舞いを保って設計の構造を直す」以外にする |
-| HELIXOS-L2-078 | HELIXOS-L2-010 | 「Design-refactor／発行：計画（範囲を入れれば事象からも発行可）」を満たす結果を確認できる | Design-refactorの発行を「計画（範囲を入れれば事象からも発行可）」以外にする |
-| HELIXOS-L2-079 | HELIXOS-L2-010 | 「Design-refactor／合流先：Forward」を満たす結果を確認できる | Design-refactorの合流先を「Forward」以外にする |
-| HELIXOS-L2-080 | HELIXOS-L2-010 | 「Performance-refactor／内容：設計を保って性能を上げる。」を満たす結果を確認できる | Performance-refactorの内容を「設計を保って性能を上げる。」以外にする |
-| HELIXOS-L2-081 | HELIXOS-L2-010 | 「Performance-refactor／内容：測れない高速化は不可。」を満たす結果を確認できる | Performance-refactorの内容を「測れない高速化は不可。」以外にする |
-| HELIXOS-L2-082 | HELIXOS-L2-010 | 「Performance-refactor／発行：計画（範囲を入れれば事象からも発行可）」を満たす結果を確認できる | Performance-refactorの発行を「計画（範囲を入れれば事象からも発行可）」以外にする |
-| HELIXOS-L2-083 | HELIXOS-L2-010 | 「Performance-refactor／合流先：Forward」を満たす結果を確認できる | Performance-refactorの合流先を「Forward」以外にする |
-| HELIXOS-L2-084 | HELIXOS-L2-010 | 「Redesign／内容：外部の約束・要求・受入条件を変えて設計をやり直す」を満たす結果を確認できる | Redesignの内容を「外部の約束・要求・受入条件を変えて設計をやり直す」以外にする |
-| HELIXOS-L2-085 | HELIXOS-L2-010 | 「Redesign／発行：計画」を満たす結果を確認できる | Redesignの発行を「計画」以外にする |
-| HELIXOS-L2-086 | HELIXOS-L2-010 | 「Redesign／合流先：Forward（要求が変わるときはDECIDEを経る）」を満たす結果を確認できる | Redesignの合流先を「Forward（要求が変わるときはDECIDEを経る）」以外にする |
-| HELIXOS-L2-087 | HELIXOS-L2-010 | 「Retrofit／内容：依存・基盤・構成の更新に合わせて段階的に移行する」を満たす結果を確認できる | Retrofitの内容を「依存・基盤・構成の更新に合わせて段階的に移行する」以外にする |
-| HELIXOS-L2-088 | HELIXOS-L2-010 | 「Retrofit／発行：計画（範囲を入れれば事象からも発行可）」を満たす結果を確認できる | Retrofitの発行を「計画（範囲を入れれば事象からも発行可）」以外にする |
-| HELIXOS-L2-089 | HELIXOS-L2-010 | 「Retrofit／合流先：Forwardの該当層」を満たす結果を確認できる | Retrofitの合流先を「Forwardの該当層」以外にする |
-| HELIXOS-L2-090 | HELIXOS-L2-010 | 「Research／内容：選定や比較のための参考ソースを集める。」を満たす結果を確認できる | ResearchにADRや決定を含める |
-| HELIXOS-L2-091 | HELIXOS-L2-010 | 「Research／内容：決定には関わらない。」を満たす結果を確認できる | ResearchにADRや決定を含める |
-| HELIXOS-L2-092 | HELIXOS-L2-010 | 「Research／発行：計画」を満たす結果を確認できる | ResearchにADRや決定を含める |
-| HELIXOS-L2-093 | HELIXOS-L2-010 | 「Research／合流先：依頼元」を満たす結果を確認できる | ResearchにADRや決定を含める |
-| HELIXOS-L2-094 | HELIXOS-L2-010 | 「Add-feature／内容：既存のものに機能を差分で追加する」を満たす結果を確認できる | Add-featureの内容を「既存のものに機能を差分で追加する」以外にする |
-| HELIXOS-L2-095 | HELIXOS-L2-010 | 「Add-feature／発行：計画」を満たす結果を確認できる | Add-featureの発行を「計画」以外にする |
-| HELIXOS-L2-096 | HELIXOS-L2-010 | 「Add-feature／合流先：Forwardの該当層」を満たす結果を確認できる | Add-featureの合流先を「Forwardの該当層」以外にする |
-| HELIXOS-L2-097 | HELIXOS-L2-010 | 「Version-up／内容：後の版へ回した項目を保全し、時期が来たら取り込む」を満たす結果を確認できる | Version-upの内容を「後の版へ回した項目を保全し、時期が来たら取り込む」以外にする |
-| HELIXOS-L2-098 | HELIXOS-L2-010 | 「Version-up／発行：計画」を満たす結果を確認できる | Version-upの発行を「計画」以外にする |
-| HELIXOS-L2-099 | HELIXOS-L2-010 | 「Version-up／合流先：取り込み時にDECIDE→Add-feature」を満たす結果を確認できる | Version-upの合流先を「取り込み時にDECIDE→Add-feature」以外にする |
-| HELIXOS-L2-100 | HELIXOS-L2-010 | 推進がBRAINの判断を受け、ticketを導いて発行した結果を確認できる | BRAINの判断だけでticketを発行済みにする |
+| HXT-TYPE-01 | HELIXOS-L2-010 | 「Forward 大」について、目的「構成体（システム全体）を、開発方式の規定路線で要求から受入まで通す」、発行「計画」、合流先「本流」を同じticketで確認できる。 | 単体CIだけで構成体の受入を成立させる |
+| HXT-TYPE-02 | HELIXOS-L2-010 | 「Forward 中」について、目的「接続（機能と機能のつなぎ）を、開発方式の規定路線で作る」、発行「計画」、合流先「Forward 大」を同じticketで確認できる。 | 接続を作らず単体の完了だけでForward 大へ合流する |
+| HXT-TYPE-03 | HELIXOS-L2-010 | 「Forward 小」について、目的「単体の機能を、開発方式の規定路線で作る」、発行「計画」、合流先「Forward 中／大」を同じticketで確認できる。 | 単体の範囲を越えた実差分を小のまま通す |
+| HXT-TYPE-04 | HELIXOS-L2-010 | 「Discovery」について、目的「開発の途中で検証が必要になったとき、または範囲が分からないときに確かめる」、発行「突発」、合流先「発行元のticket」を同じticketで確認できる。 | 範囲不明を解消しないまま発行元を完了にする |
+| HXT-TYPE-05 | HELIXOS-L2-010 | 「PoC」について、目的「技術的に成り立つかを確かめる。画面の有無に関係なく、成立性が不明なときに発行する。本番実装にはしない」、発行「計画（L2.5）」、合流先「Backflow→要求エンジンの2次形成→Decide」を同じticketで確認できる。 | 画面がないことだけでPoCを省略する／本番実装へ流用する |
+| HXT-TYPE-06 | HELIXOS-L2-010 | 「Prototype」について、目的「画面の操作と使う人の反応を確かめる。画面のない対象では発行しない」、発行「計画（L2.5）」、合流先「Backflow→要求エンジンの2次形成→Decide」を同じticketで確認できる。 | 画面なしの対象にPrototypeを必須発行する |
+| HXT-TYPE-07 | HELIXOS-L2-010 | 「Decide」について、目的「裁定。要求の確認や技術の選定をPR化して決める」、発行「計画」、合流先「採用→Forward、不採用→記録して終了、方針変更→次の計画」を同じticketで確認できる。 | 不採用なのにForwardへ進める |
+| HXT-TYPE-08 | HELIXOS-L2-010 | 「Backflow」について、目的「下流の結果（PoC・Prototypeの結果、要求の入力不足、下流で分かったこと）を要求へ戻す」、発行「PoC・Prototypeの後は計画、それ以外は突発」、合流先「要求エンジン（L2）」を同じticketで確認できる。 | Backflowを経ずに下流が要求を書き換える |
+| HXT-TYPE-09 | HELIXOS-L2-010 | 「Reverse」について、目的「実装の事実から設計へ戻す。Scrum Reverseを含む」、発行「突発（設計と実装のずれ、同種finding再発、性能退行、障害等）と計画（Scrum Reverseのcheckpoint：sprint review前、release candidate合流前、public contract・DB schema・主要dependency・NFR budgetの変更時。旧`helix-harness-requirements_v1.3.md:94-102`）」、合流先「Forwardの該当層」を同じticketで確認できる。 | 必須checkpointを計画・実行せずにrelease-readyにする |
+| HXT-TYPE-10 | HELIXOS-L2-009／HELIXOS-L2-010 | 「Recovery」について、目的「AIの逸脱・暴走・context切れから正常な地点へ戻す」、発行「突発」、合流先「中断していた工程」を同じticketで確認できる。 | 復旧で累積予算・未完義務や許可境界を失う |
+| HXT-TYPE-11 | HELIXOS-L2-010 | 「Incident」について、目的「本番障害に緊急対応する」、発行「突発」、合流先「運用評価（L12）。恒久対策はReverse経由」を同じticketで確認できる。 | 緊急対応だけで恒久対策を完了にする |
+| HXT-TYPE-12 | HELIXOS-L2-010 | 「Refactor」について、目的「振る舞いを変えずにコードの構造を直す」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forward 小」を同じticketで確認できる。 | 振る舞いを変える修正をRefactorで閉じる |
+| HXT-TYPE-13 | HELIXOS-L2-010 | 「Design-refactor」について、目的「外部の振る舞いを保って設計の構造を直す」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forward」を同じticketで確認できる。 | 外部契約の変更をDesign-refactorで閉じる |
+| HXT-TYPE-14 | HELIXOS-L2-010 | 「Performance-refactor」について、目的「設計を保って性能を上げる。測れない高速化は不可」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forward」を同じticketで確認できる。 | 性能を測定せず高速化を完了にする |
+| HXT-TYPE-15 | HELIXOS-L2-010 | 「Redesign」について、目的「外部の約束・要求・受入条件を変えて設計をやり直す」、発行「計画」、合流先「Forward（要求が変わるときはDecideを経る）」を同じticketで確認できる。 | 要求が変わるのにDecideを経ずForwardへ合流する |
+| HXT-TYPE-16 | HELIXOS-L2-010 | 「Retrofit」について、目的「依存・基盤・構成の更新に合わせて段階的に移行する」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forwardの該当層」を同じticketで確認できる。 | 段階移行の対象層へ戻らず全体を完了にする |
+| HXT-TYPE-17 | HELIXOS-L2-010 | 「Research」について、目的「選定や比較のための参考ソースを集める。決定には関わらない」、発行「計画」、合流先「依頼元」を同じticketで確認できる。 | Researchで採否を決める |
+| HXT-TYPE-18 | HELIXOS-L2-010 | 「Add-feature」について、目的「既存のものに機能を差分で追加する」、発行「計画」、合流先「Forwardの該当層」を同じticketで確認できる。 | 既存層の差分へ接続しない機能追加を完了にする |
+| HXT-TYPE-19 | HELIXOS-L2-010 | 「Version-up」について、目的「後の版へ回した項目を保全し、時期が来たら取り込む」、発行「計画」、合流先「取り込み時にDecide→Add-feature」を同じticketで確認できる。 | 将来項目を消す／DecideなしにAdd-featureへ取り込む |
+| HXT-TYPE-20 | HELIXOS-L2-010／HELIXOS-L2-005 | 「Experiment（案）」について、目的「LABOの比較実験。改善の候補を今の方式と比べるために、追加の実行が要るときだけ発行する。評価対象のticketとは別のticketにし、本線と別の予算と列で動かす」、発行「計画（LABOの比較実験の依頼をOSが登録）」、合流先「LABOの評価（結果はFeedbackとしてOSへ戻る）」を同じticketで確認できる。 | 観測だけでticketを増やす／評価作業の完了で対象ticketを閉じる |
+| HXT-TYPE-21 | HELIXOS-L2-010／HELIXOS-L2-005 | 「Training（案、3.0）」について、目的「INTELLIGENCEのローカルLLMの学習・チューニング。LABOが利用区分を付けた材料だけを使う」、発行「計画（INTELLIGENCEの学習の案をOSが登録）」、合流先「LABOの評価→Decide」を同じticketで確認できる。 | 利用区分のない材料を学習に使う／3.0の案から今の実行許可を作る |
+| HXT-FLOW-01 | HELIXOS-L2-010／HELIXOS-L2-002 | PoCとPrototypeの適用結果から、戻した要求revision・裁定・再合流先へ辿れる。 | 技術成立や画面試作だけでL3を凍結する／裁定なしに合流する。 |
+| HXT-FLOW-02 | HELIXOS-L2-010／HELIXOS-L2-005 | Incidentの結果と、恒久対策のReverse・再合流先を区別して辿れる。 | 緊急対応の成功を恒久対策の成立に流用する。 |
+| HXT-FLOW-03 | HELIXOS-L2-010 | 保全した項目から裁定と取り込み先へ辿れる。 | 保全した項目を消す／裁定と追加差分を切り離す。 |
+| HXT-FLOW-04 | HELIXOS-L2-010 | Discoveryの出典、明らかにした範囲、発行元への戻しを確認できる。 | 発行元との接続を失う／DiscoveryをPoCと同一にする。 |
+| HXT-FLOW-05 | HELIXOS-L2-010／HELIXOS-L2-011／HELIXOS-L2-008 | 下位の証拠、上位固有の義務、省略検査の回収を区別でき、構造を分類し直した後は新revisionに結び直される。 | 下位CI合格だけで上位完了／省略検査未回収／Unknownの影響を成立済みとして扱う。 |
+| HXT-FLOW-06 | HELIXOS-L2-002／HELIXOS-L2-005／HELIXOS-L2-007 | 元の完了と追補評価、因果の証拠、改善候補の還流先を別に辿れる。 | 元の完了記録を書き換える／path一致だけで帰属させる。 |
+| HXT-FLOW-07 | HELIXOS-L2-010／HELIXOS-L2-002 | findingと振り分け理由、返却先又は次ticketを同じ因果で追跡できる。 | finding破棄／次ticketのfindingを今のPRへ戻す／返却先欠落。 |
+| HXT-FLOW-08 | HELIXOS-L2-010／HELIXOS-L2-005 | 評価対象、実験作業、結果とFeedbackの戻し先を混同せず辿れる。 | 実験の完了で対象ticketを閉じる／本線の予算・列へ混載する。 |
+| HXT-FLOW-09 | HELIXOS-L2-010／HELIXOS-L2-005 | 3.0の版の印と案の状態を保って、材料の区分から評価・裁定まで辿れる。 | 案の登録を学習実行許可・採用・完了にする。 |
+| HXT-SYS-01 | HELIXOS-L2-010／HELIXOS-L2-011／HELIXOS-L2-008／HELIXOS-L2-002 | 同じticketの親要求revisionから、HARNESS版、計画・配置の案、OSの適格性確認・発行、検収の計画・結果と投影まで追跡できる。 | BRAINに稼働判断を戻す／INTELLIGENCE・HARNESSがticket発行／PR mergeで完了／1.0で部品外の流れを生成する。 |
+| HXT-USE-01 | HELIXOS-L2-004／HELIXOS-L2-010 | CrawlerとBugbotが既存の種類・割当てへ接続し、WEB-OSのjobは内部OSの種類へ追加されず未決の扱いが明示される。 | botごとに種類を増やす／WEB-OSの未定のjobを内部OSで正式化する。 |

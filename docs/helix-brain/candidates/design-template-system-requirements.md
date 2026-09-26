@@ -4,8 +4,11 @@ status: draft_candidate
 authority_status: awaiting_human_approval
 created: 2026-09-15
 updated: 2026-09-25
-product_owner: HELIX-HARNESS
-operational_owner: HELIX-OS
+mechanism: HELIX-BRAIN
+related_mechanisms:
+  - HELIX-HARNESS（HELIX-HARNESS-CORE）
+  - HELIX-OS
+  - HELIX-LABO
 derived_from:
   - docs/helix-harness/candidates/requirement-engine-python-core-requirements.md
   - archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md
@@ -14,7 +17,27 @@ derived_from:
 
 # HARNESS設計template system要求候補
 
-2026-09-25のPO判断により、`docs/governance/candidates/`からHELIX-BRAINの候補置き場へ移した（[判断記録](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。本文は移す前のままであり、「HARNESSがtemplateを提供し、HELIX-OSが登録・改善を管理する」という記述と、BRAIN・ヘリックスコア・OSの分担との整合は、後続のPO最適ドラフトで詰める。IDの接頭辞（DST-HARNESS、DST-OS）も追跡のため変えない。
+2026-09-25のPO判断により、`docs/governance/candidates/`からHELIX-BRAINの候補置き場へ移した（[判断記録](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)）。
+要求の行の文言とIDの接頭辞（DST-HARNESS、DST-OS）は、追跡のため移す前のまま保つ。移す前のfront matterは`product_owner: HELIX-HARNESS`、`operational_owner: HELIX-OS`だった。
+本文にある「HARNESSがtemplateを提供し、HELIX-OSが登録・改善を管理する」という分担は、次の「現行Conceptに照らした担当」で読み替える。
+
+## 現行Conceptに照らした担当
+
+[Concept](../../concept/helix-concept.md)の機構表と[2026-09-25のPO指示](../../governance/decisions/brain-helix-core-po-intent-2026-09-25.md)に従う。
+BRAINは製品単位ではなくHELIX全体に共通する汎用の構造（設計パターン、設計ユニット・パーツ）を持ち、製品固有の意味・設計は持たない。
+HELIX-HARNESS-CORE（HARNESSのコア）は製品固有の意味と設計を持ち、BRAINとコネクタで接続する。OSの管理は登録と版の管理、LABOは改善効果・退行の評価を担う。
+
+| 候補 | 担当 | 根拠 |
+|---|---|---|
+| DST-HARNESS-002、DST-HARNESS-005 | HELIX-BRAIN | templateの意味契約と版、seedは、製品をまたぐ汎用の構造である |
+| DST-HARNESS-001、003、004、006、007 | HELIX-HARNESS（HELIX-HARNESS-CORE。HARNESS-L2-009） | 製品の要求へtemplateを適用し、設計義務の導出、上流へのBackflow、適用判定、変更影響を製品固有の意味として扱う |
+| DST-OS-001 | 汎用のtemplateの版と状態はHELIX-BRAIN、対象projectが使ったexact setと版の登録はHELIX-OS | OSの管理は各製品の状態と証拠の登録を担う |
+| DST-OS-003 | HELIX-OS | 適用・義務・N/A・backflow・成果・結果を、各製品の記録として同じ因果関係で登録する |
+| DST-OS-004 | 改善候補の登録と振り分けはHELIX-OS（HELIXOS-L2-005）、効果と退行の評価はHELIX-LABO、評価を経たパーツの追加はHELIX-BRAIN | Conceptでは、コアのパターンからBRAINがパーツを増やし、LABOがその評価をBRAINへ返す |
+| DST-OS-005 | 停止とBackflowの条件はHELIX-HARNESS-CORE、その適用はHELIX-OS | HARNESSが「満たさなければ進めない」を定め、OSがWorker停止・記録へ適用する（HARNESS L2の工程規則と同じ分け方） |
+| DST-OS-002 | 接続の要求として扱う | 要求からtemplateの候補を選ぶ処理は、要求エンジン（HELIX-HARNESS-CORE）、BRAINのパターン、稼働中の判断（INTELLIGENCE。2026-09-25 PO判断「稼働はインテリジェンス」）がつながって走る。POの指示「連続で処理が走るケースを全て個別に割り当てたら無理がある」に従い、機構ごとの単体に割り振らない（[判断記録](../../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)） |
+
+この担当は候補の配置の読み替えであり、要求の採用・承認ではない。BRAINの企画（L1）ができた後に要求として採否する。
 
 ## 目的とauthority順序
 

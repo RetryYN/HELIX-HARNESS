@@ -8,7 +8,7 @@ kind: design
 status: draft
 freeze_blocking: true
 created: 2026-09-14
-updated: 2026-09-15
+updated: 2026-09-26
 pair_artifact: docs/helix-os/L11-acceptance/governance-acceptance.md
 parent_l1_candidate: docs/helix-os/L1-planning/system-intent.md
 ---
@@ -25,7 +25,7 @@ OSは原要求からsuccessorへのtraceと未被覆atomを管理し、意味変
 旧source集合を管理層の`registered_source_holding`へ先に仮登録する。要求PRのmerge前に、要求候補revision、対象product、入力source atom完全集合、HARNESS無損失被覆receipt、今回保持するatom、別の生存中仮登録へ残すatom、人間decision対象atomを`registered_proposal`へ仮登録する。未計上atom、stale、digest不一致、wrong product、仮登録欠落が一件でもあればmerge可能状態にしない。いずれの仮登録も要求採用や実装許可ではない。
 
 HELIX-OSの目的は、HARNESSを含むHELIXプロジェクト群を管理・統制し、HARNESSを自身へ適用してHARNESSそのものを
-改善し続けることにある。各product、HELIX自身、Web-OSからの許可された運用結果も同じ改善機構へ接続する。
+改善し続けることにある。各product、HELIX自身、WEB-OSからの許可された運用結果も同じ改善機構へ接続する。
 外部へ輸出するプロダクトはHARNESSであり、本要求でHELIX-OSの外販・配布を目的化しない。
 HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変更→検証→再観測まで追跡する。
 候補の生成件数やログの蓄積だけで改善達成とせず、採用した変更の効果と退行を確認する。
@@ -54,14 +54,14 @@ HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変
 | HELIXOS-L2-001 | プロジェクトごとの企画・要求正本・採否・合意revisionと担当責務を確認できる | HCV4-L2-001／002、HBR-P9 | GitHubの状態から要求を推定せず、何に対する要求かと判断の出所が分かる |
 | HELIXOS-L2-002 | プロジェクト群の要求から作業・実装・検証・提供・運用まで追跡し、欠落と競合を把握できる。提供はリリースカンバン上の状態として追跡できる | HCV4-L2-002／003、HBR-P3／P9、2026-09-24 PO判断 | 未接続・未合意・未実装・未検証を区別し、部分成功で全体完了にならない |
 | HELIXOS-L2-003 | 共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる | PO指摘、HCV4-L2-001／004／006、HBR-P0 | あるプロダクトの方式変更が他プロダクトや共通統制を暗黙に変えない |
-| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は4機構に分ける：割当てと進行統制はOS、割当て案はBRAIN、実行はRunner／Sandbox、自己承認の防止と権限の制限はSecurity |
-| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |
+| HELIXOS-L2-004 | Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる | 常駐レーン・三社レーン要求、HBR-P1／P2、2026-09-24 PO判断 | 実行担当の交代で責務・未完義務・累積制約が失われず、自己承認や二重割当を防ぐ。担当は3つの機構と、作業の主体であるWorker（機構ではない）に分ける：割当てと進行統制はOS、割当て案はINTELLIGENCE（2026-09-25 PO判断「稼働はインテリジェンス」。2026-09-24判断ではBRAIN。案の材料は、LABOがHELIX-Benchで出したモデルクラスの水準。[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）、実行はWorker（2026-09-26 PO判断。旧Runner／Sandboxの実行の能力はWorkerへ移し、実行の制約はSECURITYが定めてWorkerの実行環境が強制する）、自己承認の防止と権限の制限はSECURITY |
+| HELIXOS-L2-005 | HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。観測と作業の結果はLABOへ渡し、LABOが返す改善の提案（Feedback）を登録し、還流先へ振り分け、採否の後にticketにして回す（OSはPMにあたり、LABOはPMOとして評価と提案を出す。[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断） | HBR-P4／P7／P8、HCV4-L2-006、2026-09-24 PO判断、2026-09-25 PO判断 | 改善候補を出典と適用範囲付きで登録し、経験を正本へ勝手に昇格させず、還流先の欠落を検出できる |
 | HELIXOS-L2-006 | HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる | HBR-P6、柱要求§2.7、v1.3 HR-FR-HYB-008、2026-09-24 PO判断 | source・要求revision・artifactが辿れ、既存成果を壊さず導入できる |
 | HELIXOS-L2-007 | Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる | HBR-P7／P9、v1.3 HR-FR-HYB-006、2026-09-24 PO判断 | 欠落・重複・古い証拠を識別し、ログの存在だけで承認・完了にしない |
-| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、その変更に必要なCIを動的に合成し、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補、2026-09-24 PO判断 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |
+| HELIXOS-L2-008 | HARNESSのコアとticketから導いた検証義務と統合計画に従い、検収がその変更に必要なCIを動的に合成し（CIの規則はHARNESS、組み立てと運転はOS）、隔離して実行・監視・回収・再開できる | HBR-P6、v1.3 HR-FR-HYB-010、新世代CI要求候補、2026-09-24 PO判断 | 上流意味reviewと下流CIを分け、未実行・失敗・中断・staleを区別し、旧CI greenで新世代未実行やreview・承認を代替しない |
 | HELIXOS-L2-009 | 中断・担当交代・障害後に、許可範囲内で継続・復旧できる | HBR-P1／P2、HNFR-P5／P8 | 累積予算・期限・未完義務を保持し、二重実行や範囲外操作を防ぐ |
-| HELIXOS-L2-010 | 管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる。推進は案件ごとに必要な工程を動的ワークフローとして組み立てる | HELIX-OS編成案 §1／2／6、2026-09-15 PO指示、2026-09-24 PO判断 | 管理は目的・要求・制約・優先度・依存・資源・停止を推進へ渡す。推進はHARNESSのnormative工程語彙・順序を参照し、operational tag、mapping、composition、workflow instance生成規則を所有してticketと成果を生成する。管理は登録・統制し、検収はHARNESS contractへの収束を判断する。許可内の直接通信を保ち、固定モデル数や全通信の中央中継を要求しない |
-| HELIXOS-L2-011 | ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる | HELIX-OS編成案 §1／4、2026-09-24 PO判断 | 本要求は計画を導く側であり、計画からCIを合成して実行する側はHELIXOS-L2-008とする。HARNESSの検証義務を追加・削除せず、実際の統合候補で具体化する。必要CI欠落、影響不明、契約解釈不明、stale結果を拒否し、review、内容検証、merge admission、release、運用評価を分けて収束させる |
+| HELIXOS-L2-010 | 管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる。推進は案件ごとに必要な工程を動的ワークフローとして組み立てる。1.0の組み立ては、HARNESSが定めた工程の部品を規則どおりに組み合わせ、途中結果で差し戻すことに限る。部品にない流れまでINTELLIGENCEの判断で組み立てて再計画するのは、Conceptの4.0である | HELIX-OS編成案 §1／2／6、2026-09-15 PO指示、2026-09-24 PO判断、[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md) | 管理はコアの接続状況（trace、依存、stale）を登録し、目的・要求・制約・許可・優先度・依存・資源・予算・期限・停止・HARNESS版と接続状況を推進へ渡す。推進はHARNESSのnormative工程語彙・順序を参照し、operational tag、mapping、composition、workflow instance生成規則を所有してticketと成果を生成する。管理は登録・統制し、検収はHARNESS contractへの収束を判断する。推進は、INTELLIGENCEの計画・配置の案を受け、承認済みの要求、HARNESSの工程契約、許可、予算、依存、LABOが出した水準に照らして適格性を確かめてから採り、案を無条件に実行しない。許可内の直接通信を保ち、固定モデル数や全通信の中央中継を要求しない |
+| HELIXOS-L2-011 | ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる。1.0の再計画は、HARNESSの工程の部品と検証義務の範囲での組み直しとする | HELIX-OS編成案 §1／4、2026-09-24 PO判断 | 本要求は計画を導く側であり、計画からCIを合成して実行する側はHELIXOS-L2-008とする。HARNESSの検証義務を追加・削除せず、実際の統合候補で具体化する。必要CI欠落、影響不明、契約解釈不明、stale結果を拒否し、review、内容検証、merge admission、release、運用評価を分けて収束させる |
 | HELIXOS-L2-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査。本文は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIX-OS編成案 §3／6、2026-09-24 PO判断、2026-09-25 PO判断 | 要求整理前や設計途中の調査は工程内の調査（Research ticket）とする |
 | HELIXOS-L2-013 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断。本文は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIX-OS編成案 §5、2026-09-24 PO判断、2026-09-25 PO判断 | 同じ仕事への関連付けに使う原記録の保存はHELIXOS-L2-007に残す |
 
@@ -86,67 +86,86 @@ engine共通、製品固有pack、入力不足、運用誤りの改善候補へ�
 固定しない。単体、接続、構成体のidentity候補と包含・接続・依存relationは、HARNESS要求エンジン確定後に別のversioned
 分類projectionとして関連付ける。原eventを再分類で書き換えず、単体の進行・証拠・完了を接続や構成体へ自動伝播しない。
 
-[設計template system要求候補](../../helix-brain/candidates/design-template-system-requirements.md)のtemplate意味、適用規則、
-設計義務はHARNESS-L2-009が所有する。HELIX-OSはHELIXOS-L2-001／002／005／007／013として、承認済みseed／template、
-候補、retired版、対象projectの選定exact set、適用、義務、N/A、backflow、成果、finding、再作業、受入、運用結果を管理する。
+[設計template system要求候補](../../helix-brain/candidates/design-template-system-requirements.md)の汎用のtemplate・設計パターンと
+その版・seedはHELIX-BRAINが持ち、製品の要求への適用規則と設計義務はHARNESS-L2-009（HELIX-HARNESS-CORE）が持つ。
+HELIX-OSはHELIXOS-L2-001／002／005／007／013として、対象projectが使ったtemplateのexact setと版、適用、義務、N/A、
+backflow、成果、finding、再作業、受入、運用結果を各製品の記録として登録する。
 template未登録、stale、conflict、必要input欠落では任意様式へfallbackせず、停止または要求エンジンへ戻す。複数projectの
-結果から改善候補を作るが、利用回数やAI自己評価でtemplateを変更・昇格しない。
+結果から改善候補を登録して振り分けるが、効果と退行の評価はHELIX-LABOが担い、利用回数やAI自己評価でtemplateを変更・昇格しない。
 
 ticketの要求は、次の「ticket」節に置く。旧「要求からの開発ticket導出要求候補」は2026-09-24のPO判断で退役した。
 
 HELIXOS-L2-004／007では、reviewer identity、review対象、review route、実行権限を別に扱う。provider名や
-「reviewを通す」という依頼だけから、GitHub、ローカルCLI、API、IDE、HARNESS Worker等の任意通路を選ばない。
+「reviewを通す」という依頼だけから、GitHub、ローカルCLI、API、IDE、Subagentの呼び出し等の任意通路を選ばない。
 route、account／credential、network、費用、read／write範囲、期限が許可されていない場合は`review_waiting`で停止し、
 別通路の過去許可、timeout、無出力をfallback認可へ変換しない。無許可で開始した実行は停止し、結果をreview証拠へ採用しない。
 
 ## ticket
 
-2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）による。本節は要求IDと親要求・L11の接続を付けた未採否の要求案である。
+2026-09-24のPO判断（[decision record](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）による。本節は未採否の要求案であり、詳細ID・親要求・対L11の接続は末尾の「ticket要求の詳細IDと分担」に示す。
 
-`HELIXOS-L2-014` ticketは、HELIX-OSの推進が発行する作業の単位である。旧HELIXではPLANに責務が集中していた。ticketはその責務を薄くし、作業ticketとして発行する。
+ticketは、HELIX-OSの推進が発行する作業の単位である。旧HELIXではPLANに責務が集中していた。ticketはその責務を薄くし、作業ticketとして発行する。
 PO「駆動モデルに即したチケットが発行される仕組みで、フォワードは大、中、小のようにしたら複数人が作業してもできる。トラブルや局所的なものが発生したらリカバリーやインシデント、PoCみたいなのができて、それがイシューやPRに登録される仕組み」。
 
-- `HELIXOS-L2-015` 駆動モデルはticketの種類で置き換える。`HELIXOS-L2-016` 各ticketは、駆動モデルに由来する進め方を、動的ワークフローとして中に持つ。
-- `HELIXOS-L2-017` Scrum等は開発方式（枠）であり、ticketの種類ではない。
-- `HELIXOS-L2-018` HARNESSは導出のためのコア（HELIX-JSONの定義とPythonの意味導出コア）を持つ。`HELIXOS-L2-019` BRAINはそこから判断し、`HELIXOS-L2-100` 推進はticketを導いて発行する。
-- `HELIXOS-L2-020` ticketは、種類、対象（単体／接続／構成体）、親の要求と版、変更の範囲を持つ。`HELIXOS-L2-021` 検収は、そこから必要な検証を導き、CIを動的に組み立てる。
-- `HELIXOS-L2-022` ticketが正で、GitHub IssueとPRは映しである。`HELIXOS-L2-023` Issueのcloseやmergeで、ticketは完了にならない。
-- `HELIXOS-L2-024` ticketは計画から導いて発行する。`HELIXOS-L2-025` トラブル系は、範囲と起きたことを入れると、種類・対象・親の要求が導かれて発行される。`HELIXOS-L2-026` 範囲が分からないときは、先にDiscoveryで明らかにする。
-- `HELIXOS-L2-027` 突発的に発生するものと、計画的に発行できるものを分ける。
+- 駆動モデルはticketの種類で置き換える。各ticketは、駆動モデルに由来する進め方を、動的ワークフローとして中に持つ。
+- Scrum等は開発方式（枠）であり、ticketの種類ではない。
+- HARNESSは導出のためのコア（HELIX-JSONの定義とPythonの意味導出コア）を持つ。INTELLIGENCEはそれを材料に稼働中の判断（計画・配置の候補）を行い（2026-09-25 PO判断「稼働はインテリジェンス」。BRAINは汎用の設計知識を渡す）、推進はticketを導いて発行する。
+- ticketは、種類、対象（単体／接続／構成体）、親の要求と版、変更の範囲を持つ。検収は、そこから必要な検証を導き、CIを動的に組み立てる。
+  - 2026-09-26のPO判断（[判断記録](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)）により、検収は、HARNESSの検証義務に従い、PRの前に回すCIをticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）から組み立てる。変更がticketの範囲を超えていれば止める。省いた検査を記録し、合流先のticketで回収されたかを確かめる。検収はoracleを勝手に削除・追加しない。
+  - 同じ判断記録により、OSはForward 小・中・大の定義を変えずに、要求identityごとの進行と成立の状態を別に持つ。Forward 小・中の完了は上のticketの証拠として集め、上のticketの完了は、HARNESSが導いた上の固有の義務との差分が満たされたことを確かめてから記録する。下のticketの完了だけで上のticketの完了を生成しない。relationから変更の影響を導いて再検証の候補へつなぎ、影響の状態（Affected、Unaffected、Unknown）を成立の状態と混同しない。HARNESSが導いた上の検証義務を下のCIの合格で省かない。Backflowで構造を分類し直した後は、新しい要求revisionから必要なticket、設計義務、検証義務を導き直す。OSはHARNESSの構造の意味を定義し直さない。
+- ticketが正で、GitHub IssueとPRは映しである。Issueのcloseやmergeで、ticketは完了にならない。
+- 2026-09-26のPO判断（[判断記録](../../governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md)）により、検査をすり抜けて後で見つかった失敗は、閉じたticketへ証拠付きのrelationで接続し、HELIX-LABOの振り返りへ渡す。元の完了の記録は書き換えず、追補の評価を別に記録する。時間的な近さや同じpathだけで原因のticketを断定しない。LABOが返した原子CIやコネクタの契約の評価は、HELIXOS-L2-005の改善候補として登録し、還流先へ振り分ける。旧HXB-FR-007（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:319`）の、閉じたTicketに後日見つかった不具合を証拠付きrelationで接続し、元のclosureを保存して追補assessmentを新発行する条件を保つ。変える点は、振り返りと評価の担い手をLABOとしたことである（HARNESS-L2-005の同じ判断の受け側）。
+- ticketは計画から導いて発行する。トラブル系は、範囲と起きたことを入れると、種類・対象・親の要求が導かれて発行される。範囲が分からないときは、先にDiscoveryで明らかにする。
+- 突発的に発生するものと、計画的に発行できるものを分ける。
+- [2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)により、OSはPMにあたり、ticketの発行・割当て・進行を決める。周辺の機構はPMOにあたり、案・標準・評価・制約を出すが、ticketを発行しない。L2.5より前の上流段階のticket（PoC、Prototype、Decide、Backflow）も、OSの推進が登録済みの要求とBackflowから発行する。INTELLIGENCEはこれらの案を出せるが、案だけからticketを発行しない。旧HIL-BR-13（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:65`）と旧Requirement Re-entry（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:242`）の、上流の段階の作業を登録された要求と戻しから始める点を保つ。変える点は、発行の主体をOSの推進と明示したことである。
+- 独立reviewのfindingは、OSの推進が受け、今のPRで直すもの（同じ責務・既存のscopeの中で安全かつ局所的に閉じるもの）と、次のticketにするもの（独立した責務、別の設計、lifecycle、性能改善）に振り分ける。今のPRで直すものは作成のレーンへまとめて返し、次のticketにするものは同じ因果IDで新しいticketとして発行する。AIの自由な判断だけでfindingを捨てず、次のticketにしたfindingを今のPRへ戻さない。旧HIL-BR-17（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:69`）と旧HIL-FR-30（同`:120`）の振り分けの規則、writerへの返却、破棄と再流入の禁止を保つ。変える点は、振り分けの受け手をOSの推進とし、`successor_issue`をIssueではなく次のticketとしたことである（ticketが正、Issueは映し）。
 
 ### ticketの種類
 
 旧HELIXの確定版（`archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md:29-47`）を起点に、PO判断を加えた。
 
-`HELIXOS-L2-028` Forwardは本流である。`HELIXOS-L2-029` 開発方式がVモデル・Scrum・Hybridのどれであっても、その方式の規定の路線を走るticketをForwardとする。`HELIXOS-L2-030` ほかのticketは、最後にForwardへ合流する。
+Forwardは本流である。開発方式がVモデル・Scrum・Hybridのどれであっても、その方式の規定の路線を走るticketをForwardとする。ほかのticketは、最後にForwardへ合流する。
 
 | 種類 | 何のticketか | 発行 | 合流先 |
 |---|---|---|---|
-| Forward 大 | `HELIXOS-L2-031` 構成体（システム全体）を、開発方式の規定路線で要求から受入まで通す | `HELIXOS-L2-032` 計画 | `HELIXOS-L2-033` 本流 |
-| Forward 中 | `HELIXOS-L2-034` 接続（機能と機能のつなぎ）を、開発方式の規定路線で作る | `HELIXOS-L2-035` 計画 | `HELIXOS-L2-036` Forward 大 |
-| Forward 小 | `HELIXOS-L2-037` 単体の機能を、開発方式の規定路線で作る | `HELIXOS-L2-038` 計画 | `HELIXOS-L2-039` Forward 中／大 |
-| Discovery | `HELIXOS-L2-040` 開発の途中で検証が必要になったとき、または範囲が分からないときに確かめる | `HELIXOS-L2-041` 突発 | `HELIXOS-L2-042` 発行元のticket |
-| PoC | `HELIXOS-L2-043` 技術的に成り立つかを確かめる。<br>`HELIXOS-L2-044` 画面の有無に関係なく、成立性が不明なときに発行する。<br>`HELIXOS-L2-045` 本番実装にはしない。 | `HELIXOS-L2-046` 計画（L2.5） | `HELIXOS-L2-047` Backflow→要求エンジンの2次形成→DECIDE |
-| Prototype | `HELIXOS-L2-048` 画面の操作と使う人の反応を確かめる。<br>`HELIXOS-L2-049` 画面のない対象では発行しない。 | `HELIXOS-L2-050` 計画（L2.5） | `HELIXOS-L2-051` Backflow→要求エンジンの2次形成→DECIDE |
-| DECIDE | `HELIXOS-L2-052` 裁定。<br>`HELIXOS-L2-053` 要求の確認や技術の選定をPR化して決める。 | `HELIXOS-L2-054` 計画 | `HELIXOS-L2-055` 採用→Forward<br>`HELIXOS-L2-056` 不採用→記録して終了<br>`HELIXOS-L2-057` 方針変更→次の計画 |
-| Backflow | `HELIXOS-L2-058` 下流の結果（PoC・Prototypeの結果、要求の入力不足、下流で分かったこと）を要求へ戻す | `HELIXOS-L2-059` PoC・Prototypeの後は計画<br>`HELIXOS-L2-060` それ以外は突発 | `HELIXOS-L2-061` 要求エンジン（L2） |
-| Reverse | `HELIXOS-L2-062` 実装の事実から設計へ戻す。<br>`HELIXOS-L2-063` Scrum Reverseを含む。 | `HELIXOS-L2-064` 突発（設計と実装のずれ、同種finding再発、性能退行、障害等）<br>`HELIXOS-L2-065` 計画（Scrum Reverseのcheckpoint：sprint review前、release candidate合流前、public contract・DB schema・主要dependency・NFR budgetの変更時。旧`helix-harness-requirements_v1.3.md:94-102`） | `HELIXOS-L2-066` Forwardの該当層 |
-| Recovery | `HELIXOS-L2-067` AIの逸脱・暴走・context切れから正常な地点へ戻す | `HELIXOS-L2-068` 突発 | `HELIXOS-L2-069` 中断していた工程 |
-| Incident | `HELIXOS-L2-070` 本番障害に緊急対応する | `HELIXOS-L2-071` 突発 | `HELIXOS-L2-072` 運用評価（L12）<br>`HELIXOS-L2-073` 恒久対策はReverse経由 |
-| Refactor | `HELIXOS-L2-074` 振る舞いを変えずにコードの構造を直す | `HELIXOS-L2-075` 計画（範囲を入れれば事象からも発行可） | `HELIXOS-L2-076` Forward 小 |
-| Design-refactor | `HELIXOS-L2-077` 外部の振る舞いを保って設計の構造を直す | `HELIXOS-L2-078` 計画（範囲を入れれば事象からも発行可） | `HELIXOS-L2-079` Forward |
-| Performance-refactor | `HELIXOS-L2-080` 設計を保って性能を上げる。<br>`HELIXOS-L2-081` 測れない高速化は不可。 | `HELIXOS-L2-082` 計画（範囲を入れれば事象からも発行可） | `HELIXOS-L2-083` Forward |
-| Redesign | `HELIXOS-L2-084` 外部の約束・要求・受入条件を変えて設計をやり直す | `HELIXOS-L2-085` 計画 | `HELIXOS-L2-086` Forward（要求が変わるときはDECIDEを経る） |
-| Retrofit | `HELIXOS-L2-087` 依存・基盤・構成の更新に合わせて段階的に移行する | `HELIXOS-L2-088` 計画（範囲を入れれば事象からも発行可） | `HELIXOS-L2-089` Forwardの該当層 |
-| Research | `HELIXOS-L2-090` 選定や比較のための参考ソースを集める。<br>`HELIXOS-L2-091` 決定には関わらない。 | `HELIXOS-L2-092` 計画 | `HELIXOS-L2-093` 依頼元 |
-| Add-feature | `HELIXOS-L2-094` 既存のものに機能を差分で追加する | `HELIXOS-L2-095` 計画 | `HELIXOS-L2-096` Forwardの該当層 |
-| Version-up | `HELIXOS-L2-097` 後の版へ回した項目を保全し、時期が来たら取り込む | `HELIXOS-L2-098` 計画 | `HELIXOS-L2-099` 取り込み時にDECIDE→Add-feature |
+| Forward 大 | 構成体（システム全体）を、開発方式の規定路線で要求から受入まで通す | 計画 | 本流 |
+| Forward 中 | 接続（機能と機能のつなぎ）を、開発方式の規定路線で作る | 計画 | Forward 大 |
+| Forward 小 | 単体の機能を、開発方式の規定路線で作る | 計画 | Forward 中／大 |
+| Discovery | 開発の途中で検証が必要になったとき、または範囲が分からないときに確かめる | 突発 | 発行元のticket |
+| PoC | 技術的に成り立つかを確かめる。画面の有無に関係なく、成立性が不明なときに発行する。本番実装にはしない | 計画（L2.5） | Backflow→要求エンジンの2次形成→Decide |
+| Prototype | 画面の操作と使う人の反応を確かめる。画面のない対象では発行しない | 計画（L2.5） | Backflow→要求エンジンの2次形成→Decide |
+| Decide | 裁定。要求の確認や技術の選定をPR化して決める | 計画 | 採用→Forward、不採用→記録して終了、方針変更→次の計画 |
+| Backflow | 下流の結果（PoC・Prototypeの結果、要求の入力不足、下流で分かったこと）を要求へ戻す | PoC・Prototypeの後は計画、それ以外は突発 | 要求エンジン（L2） |
+| Reverse | 実装の事実から設計へ戻す。Scrum Reverseを含む | 突発（設計と実装のずれ、同種finding再発、性能退行、障害等）と計画（Scrum Reverseのcheckpoint：sprint review前、release candidate合流前、public contract・DB schema・主要dependency・NFR budgetの変更時。旧`helix-harness-requirements_v1.3.md:94-102`） | Forwardの該当層 |
+| Recovery | AIの逸脱・暴走・context切れから正常な地点へ戻す | 突発 | 中断していた工程 |
+| Incident | 本番障害に緊急対応する | 突発 | 運用評価（L12）。恒久対策はReverse経由 |
+| Refactor | 振る舞いを変えずにコードの構造を直す | 計画（範囲を入れれば事象からも発行可） | Forward 小 |
+| Design-refactor | 外部の振る舞いを保って設計の構造を直す | 計画（範囲を入れれば事象からも発行可） | Forward |
+| Performance-refactor | 設計を保って性能を上げる。測れない高速化は不可 | 計画（範囲を入れれば事象からも発行可） | Forward |
+| Redesign | 外部の約束・要求・受入条件を変えて設計をやり直す | 計画 | Forward（要求が変わるときはDecideを経る） |
+| Retrofit | 依存・基盤・構成の更新に合わせて段階的に移行する | 計画（範囲を入れれば事象からも発行可） | Forwardの該当層 |
+| Research | 選定や比較のための参考ソースを集める。決定には関わらない | 計画 | 依頼元 |
+| Add-feature | 既存のものに機能を差分で追加する | 計画 | Forwardの該当層 |
+| Version-up | 後の版へ回した項目を保全し、時期が来たら取り込む | 計画 | 取り込み時にDecide→Add-feature |
+| Experiment（案） | LABOの比較実験。改善の候補を今の方式と比べるために、追加の実行が要るときだけ発行する。評価対象のticketとは別のticketにし、本線と別の予算と列で動かす | 計画（LABOの比較実験の依頼をOSが登録） | LABOの評価（結果はFeedbackとしてOSへ戻る） |
+| Training（案、3.0） | INTELLIGENCEのローカルLLMの学習・チューニング。LABOが利用区分を付けた材料だけを使う | 計画（INTELLIGENCEの学習の案をOSが登録） | LABOの評価→Decide |
+
+周辺の機構の作業とticketの種類の対応は、次のとおりである（[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)。L2は仮決め）。
+- LABOの比較実験：Experimentとする。旧Execution Ticket候補（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:157-163`）の、ExperimentDefinitionを実行前に固定し、新しい実行が要るときだけ作業ticketを作り、評価作業のticketと評価対象のticketを混同せず、評価作業の完了で対象のticketを閉じない点と、同`:343`の本線と実験の予算・列を分ける点を保つ。通常の開発の観測だけで足りる評価（HELIX-BenchによるWorkerの水準の集計を含む）では、ticketを発行しない。種類の名前を明示したのは新しい案である。
+- INTELLIGENCEの学習：Trainingとする。旧HELIXにモデルの学習を作業ticketとする記述はなく（旧`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md:164`はweightsのfine-tuningを要求しないとしていた）、新しい案である。3.0の版の印を付ける。
+- INTELLIGENCEのbot：botは特定の目的に使うWorkerとして、既存の種類のticketの割当てで動かし、新しい種類を足さない。Crawlerの情報収集はResearch、Bugbotの限定修復は発生元のticketの中の割当て（下の「Worker・学習・ログ・CIの具体条件」のPatch Bot Workerの条件）とする。
+- Web提供側（HELIX-WEB-OS）のjob：WEB-OSの展開後のjobは内部OSのstate・writer・authorityへ収容しない（下の「管理対象としてのHELIX-WebとHELIX-WEB-OS」）ため、本表に種類を足さない。WEB-OSはまだ要求に落としていないため（[2026-09-26のPO回答](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）、扱いはWEB-OSを要求に落とすときに決める。
 
 旧定義との違いは次の4点である。
 - DiscoveryとPoCは、旧HELIXでは1つだった（PoCはS2）。PO判断で分けた。
-- 旧S4 decideはDiscovery専用だった。DECIDEとして独立させた。
+- 旧S4 decideはDiscovery専用だった。Decideとして独立させた。
 - 旧Researchは決定（ADR）まで含んでいた。PO判断で決定を外した。
 - Redesign・Design-refactor・Performance-refactorは、旧HELIXに手順書がない。旧要件の記述だけを起点にした。
+
+BackflowとForward 大・中・小の旧HELIXとの対応は次のとおりである。
+- Backflowは、旧HIL-FR-31 Upstream Redesign Re-entry（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:121`：影響した層がL1ならL1/L12の対を、L2ならL2/L11の対と画面の適用判定・prototypeの合意をstaleにし、再承認の前の実装claimとForward合流を拒否する）と、旧Requirement Re-entry（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:242`：retryの上限超過等で、理由に応じてRecovery、Reverse、Requirement Re-entry、Human Requiredへ戻す）に当たる。保つ点は、下流で分かったことを上流へ戻し、合意が戻る前にForwardへ合流させないことである。変える点は、名前をBackflowとし、ticketの種類の一つとして要求エンジン（L2）へ戻す形にしたことである（2026-09-24 PO判断）。
+- 旧HIL-BR-13（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:65`：画面のある対象はprototype→walkthrough→要求back-propagation→合意の後に要件を凍結し、画面のない対象は証拠付きのskip receiptでだけ通す）は、Prototype→Backflow→要求エンジンの2次形成→Decideの流れに当たる。保つ点は、画面のある対象で合意の前に要件を凍結しないこと、飛ばす場合に証拠を残すことである。変える点は、PoCを画面の有無と別に判定することである（HARNESS-L2-003）。
+- Forward 大・中・小は、旧HELIXでは一つのForward（`archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md:33`の`FULL_L1_L12_V`）であり、大きさの区分はなかった。旧HIL-FR-31のForward合流は、ほかのticketが最後にForwardへ合流する点として保つ。構成体・接続・単体に分けたのは2026-09-24のPO判断による。
 
 ## 旧資産の退役・archive統制
 
@@ -186,7 +205,7 @@ OSが要求を直接書き換えたり自己承認したりしない。本節で
 
 ## 限定修復の統制条件
 
-旧Bugbot候補に由来する限定修復の統制条件は、2026-09-25 PO判断により[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ移した。
+旧Bugbot候補に由来する限定修復の統制条件は、2026-09-25 PO判断により[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ移した。
 
 ## 構造改善候補の統制条件
 
@@ -271,8 +290,8 @@ INV-068／070／071／072は対象製品・data・権利・評価要求が成立
 
 | 親要求 | 保持する条件 | 出典 |
 |---|---|---|
-| HELIXOS-L2-004 | Workerの目的・成果形式・許可範囲・予算・期限を割当に結び、実行・停止・成果回収を追跡する。作成側と検証側を区別し、独立検証不成立を明示する。CLI／IDE／hosted surfaceの差でguardの適用有無を隠さない | HBR-P2、柱要求§2.6 |
-| HELIXOS-L2-005 | 検出から改善候補・採否・再検証へ接続する。学習の発火・利用・効果・誤推薦・古い版を計測し、知見の登録だけを有効性の証拠にしない。経験からHARNESS工程規則を直接書き換えない | HBR-P4／P8、v1.3 HR-FR-HYB-007 |
+| HELIXOS-L2-004 | Workerの目的・成果形式・許可範囲・予算・期限を割当に結び、実行・停止・成果回収を追跡する。作成側と検証側を区別し、独立検証不成立を明示する。作成したWorker自身またはそのSubagentによるreviewを独立reviewに数えない。CLI／IDE／hosted surfaceの差でguardの適用有無を隠さない | HBR-P2、柱要求§2.6 |
+| HELIXOS-L2-005 | 検出から改善候補・採否・再検証へ接続する。学習の発火・利用・効果・誤推薦・古い版を計測し、知見の登録だけを有効性の証拠にしない。記録と改善候補の登録はOS、効果の評価と学習（RCLS）はHELIX-LABOが担う（2026-09-25 PO判断。学習の分離は[OS L1](../L1-planning/system-intent.md)のとおり照合中）。経験からHARNESS工程規則を直接書き換えない | HBR-P4／P8、v1.3 HR-FR-HYB-007 |
 | HELIXOS-L2-007 | 作業・判断・検証の原証拠と出典を保持する。feedbackはintake・classify・ack・pending・resolutionを区別し、未ack findingを消さない。memoryの内容を責務正本へ反映してからretireし、古い指示を再提示しない | HBR-P7／P9、v1.3 HR-FR-HYB-005／006 |
 | HELIXOS-L2-008 | 承認済み上流revision、HARNESS版、対象product、変更集合からCI profileを生成し、結果を要求・pair・oracle・HEAD・環境・runner・実行世代へ結ぶ。上流意味review、下流verification、merge、releaseを別pipeline classにする。失敗種別と差戻し先を保持し、検査を弱めてgreenにしない | HBR-P6、v1.3 HR-FR-HYB-010／§6、新世代CI要求候補 |
 | HELIXOS-L2-009 | eventをdurableに記録して冪等に投影し、成功後だけcheckpointを公開する。session交代で予算・期限・失敗回数・未完義務を初期化せず、同一作業の二重claimや副作用を防ぐ | HBR-P1、HNFR-P5、柱要求§2.7 |
@@ -314,20 +333,20 @@ HELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作
 具体SLO、RTO／RPO、保持期間、対象環境は個別製品・releaseの承認済み要求を参照する。本節では旧機構、CI、
 故障注入、production操作、自動修復を実行しない。
 
-## 管理対象としてのHELIX-WebとHELIX-Web-OS
+## 管理対象としてのHELIX-WebとHELIX-WEB-OS
 
 2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」と「展開時はHELIX-OSの外にHELIX-Web-OSを作る」を、
-HELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-Web-OSは
+HELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-WEB-OSは
 それぞれ要求正本・合意revision・進行状態を持ち、OSが開発・改善projectとして横断管理する。
-Web固有の利用者体験やサービス要求は[HELIX-Web側](../../helix-web/README.md)へ置く。
+Web固有の利用者体験やサービス要求は[HELIX-Web側](../../../helix-web/docs/helix-web/README.md)へ置く。
 展開後のtenant、Connector job、service state、credential、配備・監視・復旧は
-[HELIX-Web-OS側](../../helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。
-HELIX-Web-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・
+[HELIX-WEB-OS側](../../../helix-web/docs/helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。
+HELIX-WEB-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・
 時点・欠測付きで受領する。HELIXOS-L2-005／007／013により他projectの証拠と突合し、改善候補、採否、対象別変更、
 再検証、再観測へ接続する。credential、tenant原data、範囲外logを吸収せず、受領logから要求を直接変更しない。
 Webで適用するHARNESS版と採用能力を追跡し、Webの変更だけを理由にHARNESSの共通規則や他プロダクトの要求を変更しない。
 Webでの実践証拠をHELIX改善へ戻す際は、出典・利用可能範囲・採否・変更対象・検証結果を保持する。
-管理対象への位置づけは、Web／Web-OSの全機能の採択、開発完了、公開時期の確定を意味しない。
+管理対象への位置づけは、Web／WEB-OSの全機能の採択、開発完了、公開時期の確定を意味しない。
 
 ## 有期限通知とmemoryの責務
 
@@ -340,7 +359,7 @@ HMC候補は人間承認記録済み・独立検収／正本化待ちと宣言�
 |---|---|---|
 | HMC-BR-001 | HELIXOS-L2-004／009 | runtimeを跨いでassignment、review依頼、handover、heartbeat、確認待ちを有期限な通知として受け渡せる |
 | HMC-BR-002 | HELIXOS-L2-001／009 | 通知から各対象の正本を再取得でき、stale pointerやHEAD不一致を把握できる。要求の意味は要求文書・指定JSONへ、実行状態はその状態authorityへ戻る。Issue本文を要求正本として再取得しない |
-| HMC-BR-003 | HELIXOS-L2-001／005 | 要求・設計・受入・運用規則・ユーザー嗜好をmemoryの正本へ移さない。規則にあたる内容は仕組みで吸収する。知識は1.0〜2.xではHELIX-LABOが評価して保持し、3.0からはHELIX-Intelligenceが改善に使う。参照先を確認できる（2026-09-24 PO判断で旧「Learning／Skill authority」を置換） |
+| HMC-BR-003 | HELIXOS-L2-001／005 | 要求・設計・受入・運用規則・ユーザー嗜好をmemoryの正本へ移さない。規則にあたる内容は仕組みで吸収する。知識は1.0〜2.xではHELIX-LABOが評価して保持し、3.0からはHELIX-INTELLIGENCEが改善に使う。参照先を確認できる（2026-09-24 PO判断で旧「Learning／Skill authority」を置換） |
 | HMC-BR-004 | HELIXOS-L2-001／007 | 通知中の相談・質問・仮説・叱責・AI解釈から承認・決定・完了を生成しない |
 | HMC-BR-005 | HELIXOS-L2-004／009 | 重複配送・再送・消費・期限切れ・訂正・crash後再開を追跡できる。無効記録は監査履歴として参照できてもcurrent guidanceへ再表示されない |
 | HMC-BR-006 | HELIXOS-L2-004／009 | すべてのproviderの標準memory（provider native memory）を使わない。session history・user設定も共有通知やauthorityへ暗黙混入しない（2026-09-24 PO判断で「混入しない」から「使わない」へ強化） |
@@ -360,7 +379,7 @@ HMC-BR-006のprovider設定詳細はProvider Configurationの責務とし、OS�
 
 PPSの要求候補をHELIX-OSの対象別要求案へ接続する。PPSはHELIXOS-L2-004／007に対応する。
 draftであり、以下への収載を採択・正本昇格と扱わない。出典は[PPS](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/producer-provenance-separation-requests.md)である。
-同じ節にあった監査（AAFD）は[HELIX-Intelligenceの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。
+同じ節にあった監査（AAFD）は[HELIX-INTELLIGENCEの候補](../../helix-intelligence/candidates/audit-bounded-repair-requirements.md)へ、学習（RCLS）は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ、2026-09-25 PO判断により移した。
 
 | 出典 | 保持する具体条件 |
 |---|---|
@@ -516,6 +535,22 @@ HR-FR-HIL-19から具体化する。原文は[JSON正本](../../../archive/legac
 
 [既存L2候補](../../../archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requests.md)の7要求をOSの対象別要求へ接続する。
 候補はproposed_pending_l3_confirmationであり、既存の対文書を移動・再承認したことにはしない。
+Workerの共通の実行契約はHELIX-OSが持つ（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)）。Workerは独立した機構ではなく、作業を実行する主体である。作成やreview等の役割はレーンへ割り当て、Workerはレーンの主がSubagentとして呼び出して作業させるモデルである（例：GUIのレーンの主がOpusなら、Subagentとして呼び出したSonnetがWorker）。
+ticketは必要なWorkerを指定する。指定は三段で決める（[2026-09-26 PO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。LABOがHELIX-BenchでWorkerの作業履歴を集計し、どのモデルクラスなら対応できるかの水準を出す。INTELLIGENCEがその水準を材料に、ticketごとの配置の案を作る。OSの推進がその案を確かめて指定し、割り当てる。評価していないモデルには「未評価」の印を付け、評価済みと混同しない。Benchの水準やINTELLIGENCEの案だけで、scope、branch、assignment、merge authorityを変えない（旧HXB-FR-015 `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:349-351`、旧RLO-FR-040 `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md:663-666`の`provider_default_unbenchmarked`）。
+HELIXOS-L2-004の配下で、次を扱う。
+
+- Workerへのassignment：ticket、指定したモデルクラス、呼び出したレーン、要求のrevision、project、環境、役割、予算、期限を結びつける。SECURITYがauthorityを失効させたときは、新しい割当てを止め、実行中の割当ても止める（上の「Security engagementの統制条件」のrevoke時の停止）。
+- 実行の状態：割り当て、受け入れ、実行中、完了と、停止・取り消し・失敗・authorityの失効を区別する。具体の状態名は下流の設計で決め、OSの作業の進行の状態と混同しない。
+- capability：Workerごとに使える能力（coding、shell、test、review、research等）と、provider、model、実行環境、役割、設定を記録する。Workerのidentityをmodel名と同じものとせず、modelの変更だけでWorkerのidentityや責務を暗黙に変えない。
+- 結果と証拠：Workerのidentity、provider、model、役割、ticket、要求のrevision、project、環境、実行環境、authority、制約、開始と終了の時刻、結果、成果物、実行の証拠を辿れる。
+- Subagentとしての呼び出しの観測：どのレーンの主が、何の目的で、どのauthorityの下でWorkerを呼び出したか、消費した資源、関与した成果を、必要な範囲で辿れる。providerの内部の推論そのものは求めない。Workerの範囲は、呼び出したレーンの範囲・authority・予算以下とする。
+- handover、retry、revokeとの接続：再割当てや再試行で責務と未完の義務を失わず、SECURITYからの失効で実行を止めて途中の成果物を隔離する。作業の終了時に、process、一時の資格情報、環境、一時file、lock、networkのsession、資源の予約を次のassignmentへ暗黙に引き継がない。
+
+authority・権限の制約・隔離の条件はSECURITY、CPU・GPU・host等の実際の資源は実行基盤、Workerの配置の案はINTELLIGENCEが持ち、OSはこれらを重複して定義しない。
+
+独立reviewは、作成側とは別のreviewerのidentity・context・authority・review routeで行い、作成側の結論を引き継がず、独立して証拠を確かめられることを条件にする。provider・modelは記録するが、同じproviderだから独立でない、別のproviderだから独立であるとはしない。reviewの依頼は、通知の経路で別のreviewerへ渡す。
+レーンとWorkerは別の概念である。レーンは役割（例：Codexのレーンに作成、Claudeのレーンにreview）の割当て先であり、provider名や固定のレーン数を恒久の要件にしない。
+
 HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具体化する。
 
 | 出典 | OSが保持する利用条件 |
@@ -524,10 +559,51 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 | HXT-RQ-02 | 通常開発の成功・失敗・拒否・中断・待ちを継続観測し、成功例だけを集計しない |
 | HXT-RQ-03 | 同じモデル・同じ仕事に対するHELIXの効果を、固定条件と公平な採点で検証できる |
 | HXT-RQ-04 | 追加実験は限定的に行い、開発レーン・review capacity・費用を圧迫しない |
-| HXT-RQ-05 | 劣化・適性・費用の実測を既存の能力評価・配車・Requirement Re-entryへ還流する |
+| HXT-RQ-05 | 劣化・適性・費用の実測を既存の能力評価・配車・Requirement Re-entry（現行のBackflow）へ還流する |
 | HXT-RQ-06 | 旧実装から安全に移行し、既存benchmarkと開発を新Ticket完成待ちで循環停止させない |
 | HXT-RQ-07 | 人間は意味・予算・危険操作の境界を決め、依存・優先度・WIPによる実行順はHELIXが決める |
 
 通常の仕事から観測receiptまでの到達、欠損検出、replay一致、固定条件比較、予算強制、既存ownerへの還流を確認する。
 計測コードやdashboardの存在だけを成功とせず、改善なし・劣化・判定不能も正当な測定結果として保持する。
-既存Benchを新Ticket完成待ちにせず、切替scopeを限定する。HARNESSは検証条件を定め、OSは試行・観測・評価・還流を運用する。
+既存Benchを新Ticket完成待ちにせず、切替scopeを限定する。HARNESSは検証条件を定め、OSは試行・観測の記録と還流先への振り分けを運用し、HELIX-Benchでの評価はHELIX-LABOが担う（[2026-09-25 PO判断](../../governance/decisions/mechanism-placement-po-decisions-2026-09-25.md)、[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)）。
+
+## ticket要求の詳細IDと分担
+
+本節は既存本文の条件群を追跡するための未採否の整理案である。本文の意味・ticket種類・発行・合流先を追加・削除しない。詳細IDは主要求の連番と分け、既存のHXT-RQと衝突しない接頭辞を使う。単体は一つの機構で閉じる要求、接続は連続する処理、構成体は複数機構にまたがる全体である。ticketの対象の粒度（Forward 大・中・小）とは別であり、種類の定義一組を単体として扱う。
+
+「システム」は要求としてシステムへ吸収する部分、「運用」は既存本文・旧source・PO判断にある入力や判断を補う部分を示す。運用の新しい承認手順・周期は作らない。実装済み・受入済みを表さない。各IDの成功条件・反例は対のL11、出典と旧ID対応は[再整理監査](../../governance/audits/source-rebaseline/ticket-id-redo-audit-2026-09-26.md)に置く。
+
+| 詳細ID | 粒度 | 親主要求 | 対象とする既存の条件群 | システムへ吸収する部分 | 運用で補う部分 |
+|---|---|---|---|---|---|
+| HXT-TYPE-01 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Forward 大」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Forward 大」を、表の目的・発行区分・合流先を一組として扱う。 | 構成体の要求と受入の範囲・開発方式を既存の判断主体が定める。 |
+| HXT-TYPE-02 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Forward 中」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Forward 中」を、表の目的・発行区分・合流先を一組として扱う。 | 接続する機能と境界を要求・設計で定める。 |
+| HXT-TYPE-03 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Forward 小」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Forward 小」を、表の目的・発行区分・合流先を一組として扱う。 | 単体の責務と範囲を要求・設計で定める。 |
+| HXT-TYPE-04 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Discovery」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Discovery」を、表の目的・発行区分・合流先を一組として扱う。 | 不確かな事象と調査結果を入力する。根拠不足を解決済みにしない。 |
+| HXT-TYPE-05 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「PoC」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「PoC」を、表の目的・発行区分・合流先を一組として扱う。 | 技術的成立性の不明点・結果を確かめ、要求へ戻す。 |
+| HXT-TYPE-06 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Prototype」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Prototype」を、表の目的・発行区分・合流先を一組として扱う。 | 画面の操作と使う人の反応を確認し、合意を記録する。 |
+| HXT-TYPE-07 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Decide」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Decide」を、表の目的・発行区分・合流先を一組として扱う。 | 既存のauthority境界に従う判断主体が裁定する。PR化だけを採用判断にしない。 |
+| HXT-TYPE-08 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Backflow」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Backflow」を、表の目的・発行区分・合流先を一組として扱う。 | 入力不足や下流の発見と、必要な上流判断を入力する。 |
+| HXT-TYPE-09 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Reverse」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Reverse」を、表の目的・発行区分・合流先を一組として扱う。 | Scrum部分のcheckpointを計画し、sprint review前・release candidate合流前・public contract／DB schema／主要dependency／NFR budget変更時という既存条件を当てる。日付や周期を新設しない。 |
+| HXT-TYPE-10 | 単体 | HELIXOS-L2-009／HELIXOS-L2-010 | 「ticketの種類」の「Recovery」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Recovery」を、表の目的・発行区分・合流先を一組として扱う。 | 逸脱・context切れと復旧地点を確認する。許可範囲を越える復旧を自動許可しない。 |
+| HXT-TYPE-11 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Incident」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Incident」を、表の目的・発行区分・合流先を一組として扱う。 | 本番で起きた障害・対応結果・恒久対策の根拠を記録する。 |
+| HXT-TYPE-12 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Refactor」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Refactor」を、表の目的・発行区分・合流先を一組として扱う。 | 範囲と振る舞い保存の根拠を入力する。 |
+| HXT-TYPE-13 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Design-refactor」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Design-refactor」を、表の目的・発行区分・合流先を一組として扱う。 | 設計構造の変更範囲と外部の振る舞いを保つ根拠を入力する。 |
+| HXT-TYPE-14 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Performance-refactor」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Performance-refactor」を、表の目的・発行区分・合流先を一組として扱う。 | 測定条件・測定結果を確認する。測れない高速化を成立させない。 |
+| HXT-TYPE-15 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Redesign」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Redesign」を、表の目的・発行区分・合流先を一組として扱う。 | 外部の約束・要求・受入条件の変更を既存の判断主体へ戻す。 |
+| HXT-TYPE-16 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Retrofit」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Retrofit」を、表の目的・発行区分・合流先を一組として扱う。 | 移行範囲と段階・結果を確認する。 |
+| HXT-TYPE-17 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Research」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Research」を、表の目的・発行区分・合流先を一組として扱う。 | 参考ソースと出典を確かめ、裁定はResearchに含めない。 |
+| HXT-TYPE-18 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Add-feature」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Add-feature」を、表の目的・発行区分・合流先を一組として扱う。 | 既存の層へ追補する機能差分を定める。 |
+| HXT-TYPE-19 | 単体 | HELIXOS-L2-010 | 「ticketの種類」の「Version-up」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Version-up」を、表の目的・発行区分・合流先を一組として扱う。 | 後の版へ回す項目と取り込む時期を計画する。 |
+| HXT-TYPE-20 | 単体 | HELIXOS-L2-010／HELIXOS-L2-005 | 「ticketの種類」の「Experiment（案）」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Experiment（案）」を、表の目的・発行区分・合流先を一組として扱う。 | LABOが比較条件と追加実行の要否を評価する。観測だけで足りる場合は新ticketを求めない。 |
+| HXT-TYPE-21 | 単体 | HELIXOS-L2-010／HELIXOS-L2-005 | 「ticketの種類」の「Training（案、3.0）」行全体（何のticketか・発行・合流先を一組とする）。 | OSは「Training（案、3.0）」を、表の目的・発行区分・合流先を一組として扱う。 | LABOの材料の利用区分と評価、既存の判断主体の裁定を使う。3.0の案を現行の実行許可にしない。 |
+| HXT-FLOW-01 | 接続 | HELIXOS-L2-010／HELIXOS-L2-002 | PoC／Prototype→Backflow→要求エンジンの2次形成→Decide→Forward。 | 適用を別判定し、結果を要求へ還流して裁定へつなぐ。採用時だけForwardへ進め、不採用・方針変更の分岐は種類表を保つ。 | 人が持つ要求・画面の合意と裁定を入力する。 |
+| HXT-FLOW-02 | 接続 | HELIXOS-L2-010／HELIXOS-L2-005 | Incident→運用評価（L12）、恒久対策→Reverse→Forwardの該当層。 | 緊急対応、運用評価、恒久対策の戻し先を接続する。 | 障害事実と恒久対策の根拠を入力し、影響した要求・設計を確認する。 |
+| HXT-FLOW-03 | 接続 | HELIXOS-L2-010 | Version-up→Decide→Add-feature→Forwardの該当層。 | 後の版の項目を保全し、取り込み時の裁定と追加差分へ接続する。 | 取り込み時期・裁定・既存層の差分を判断する。 |
+| HXT-FLOW-04 | 接続 | HELIXOS-L2-010 | 範囲不明・途中の検証必要→Discovery→発行元のticket。 | 範囲が不明ならDiscoveryへ接続し、結果を発行元へ戻す。 | 未知の事象・検証結果と範囲を確かめる。 |
+| HXT-FLOW-05 | 接続 | HELIXOS-L2-010／HELIXOS-L2-011／HELIXOS-L2-008 | Forward 小・中・大の合流、検収によるCI導出と省略検査の回収。 | HARNESSの義務に従い、PR前の範囲をticket・V字の対・コネクタ・変更種類から組み立て、範囲超過で止める。省いた検査を記録して合流先で回収する。要求identityごとの進行・成立を分け、上位固有の義務との差分を満たしてから上位完了を記録する。Affected／Unaffected／Unknownと成立を混同せず、Backflowで分類を変えたら新revisionからticket・設計義務・検証義務を導き直す。 | 変更範囲・接続・統合先と根拠を確認する。Unknownを根拠なしにUnaffectedへ補完しない。 |
+| HXT-FLOW-06 | 接続 | HELIXOS-L2-002／HELIXOS-L2-005／HELIXOS-L2-007 | 閉じたticketの後日失敗→証拠付きrelation→LABO振り返り→OS改善候補の登録・還流。 | 元のclosureを保存し追補評価を接続する。LABOが返す原子CI・コネクタ契約の評価を改善候補として登録して振り分ける。 | 因果の証拠を調べ、LABOが評価する。時間的な近さや同じpathだけで原因を断定しない。 |
+| HXT-FLOW-07 | 接続 | HELIXOS-L2-010／HELIXOS-L2-002 | 独立reviewのfinding→推進の振り分け→今のPRの作成レーン又は同じ因果IDの次ticket。 | 同じ責務・既存scope内で安全かつ局所的に閉じるものを一括返却し、独立責務・別設計・lifecycle・性能改善は次ticketにする。 | 独立reviewが根拠を出し、責務・scopeの判断材料を確かめる。AIの自由判断だけでfindingを捨てない。 |
+| HXT-FLOW-08 | 接続 | HELIXOS-L2-010／HELIXOS-L2-005 | LABOの比較実験依頼→OSのExperiment登録・実行→LABO評価→Feedback→OS。 | 追加実行だけを別ticket・別予算・別列で運転し、評価対象と評価作業を分離する。観測だけで足りる評価には発行しない。 | LABOが比較条件を固定し評価する。予算等の人の境界を入力する。 |
+| HXT-FLOW-09 | 接続 | HELIXOS-L2-010／HELIXOS-L2-005 | INTELLIGENCEのTraining案→OS登録→LABO評価→Decide（3.0の案）。 | 利用区分付き材料の学習の案と登録、評価、裁定の接続を保つ。 | LABOが材料の利用区分・評価を担い、既存の判断主体が裁定する。 |
+| HXT-SYS-01 | 構成体 | HELIXOS-L2-010／HELIXOS-L2-011／HELIXOS-L2-008／HELIXOS-L2-002 | HARNESSのコア→INTELLIGENCEの計画・配置案→OSの推進によるticket・動的ワークフローの導出と発行→検収の検証計画・CI組み立て。ticket節の共通条件全体。 | OSは計画又は事象から種類・対象・親要求と版・変更範囲を保って発行する。上流段階も登録済み要求とBackflowから発行する。周辺機構は発行せず、BRAINは汎用の設計知識を渡す。案は無条件に実行しない。開発方式をticket種類とせず、進め方をticket内に持つ。ticketを正、Issue／PRを映しとし、closeやmergeだけで完了にしない。1.0は定義済み部品の規則による組合せ・差戻しに限り、部品外の流れの生成は4.0とする。 | 人は既存のauthority境界に従って意味・予算・危険操作の境界を決める。運用は計画・事象・判断の根拠を入力する。システムへ吸収する条件と運用で補う判断を混同せず、未決は判断済みに補完しない。 |
+| HXT-USE-01 | 単体 | HELIXOS-L2-004／HELIXOS-L2-010 | 「周辺の機構の作業とticketの種類の対応」のbotとWeb提供側jobの境界。 | CrawlerはResearch、Bugbotは発生元ticket内の割当てとし、新しい種類を足さない。WEB-OSの展開後jobを内部OSのstate・writer・authorityへ収容しない。 | Bugbotは既存の限定修復条件に従う。WEB-OSのjobの扱いはWEB-OSを要求へ落とすときに決め、内部OSが推測で種類を作らない。 |

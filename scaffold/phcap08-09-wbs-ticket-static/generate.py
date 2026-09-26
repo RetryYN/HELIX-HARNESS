@@ -282,12 +282,12 @@ current_refs = [
     current_ref("BOUNDARY-IDENTITY-LOOP", "docs/concept/product-boundary.md", "ALL", "boundary_current_ref", "Concept", 33, 45, "four product entrances and unit/connection separation"),
     current_ref("HARNESS-L2", "docs/helix-harness/L2-requirements/product-requirements.md", "HELIX-HARNESS", "direct_current_ref", "L2", 1, 36, "HARNESS normative V-model and OS separation candidate"),
     current_ref("OS-L2", "docs/helix-os/L2-requirements/governance-requirements.md", "HELIX-OS", "direct_current_ref", "L2", 1, 35, "OS management/trace and no-implementation candidate"),
-    current_ref("WEB-L2", "docs/helix-web/L2-requirements/product-requirements.md", "HELIX-Web", "adjacent_current_ref", "L2", 1, 33, "Web user-facing product boundary candidate"),
-    current_ref("WEBOS-L2", "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "HELIX-Web-OS", "adjacent_current_ref", "L2", 1, 36, "Web-OS service runtime boundary candidate"),
+    current_ref("WEB-L2", "helix-web/docs/helix-web/L2-requirements/product-requirements.md", "HELIX-Web", "adjacent_current_ref", "L2", 1, 33, "Web user-facing product boundary candidate"),
+    current_ref("WEBOS-L2", "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md", "HELIX-Web-OS", "adjacent_current_ref", "L2", 1, 36, "Web-OS service runtime boundary candidate"),
     current_ref("HARNESS-L11", "docs/helix-harness/L11-acceptance/product-acceptance.md", "HELIX-HARNESS", "direct_current_ref", "L11", 1, 38, "HARNESS acceptance remains draft/unexecuted"),
     current_ref("OS-L11", "docs/helix-os/L11-acceptance/governance-acceptance.md", "HELIX-OS", "direct_current_ref", "L11", 1, 42, "OS acceptance remains draft/unexecuted"),
-    current_ref("WEB-L11", "docs/helix-web/L11-acceptance/product-acceptance.md", "HELIX-Web", "adjacent_current_ref", "L11", 1, 33, "Web acceptance remains draft/unexecuted"),
-    current_ref("WEBOS-L11", "docs/helix-web-os/L11-acceptance/service-acceptance.md", "HELIX-Web-OS", "adjacent_current_ref", "L11", 1, 26, "Web-OS acceptance remains draft/unexecuted"),
+    current_ref("WEB-L11", "helix-web/docs/helix-web/L11-acceptance/product-acceptance.md", "HELIX-Web", "adjacent_current_ref", "L11", 1, 33, "Web acceptance remains draft/unexecuted"),
+    current_ref("WEBOS-L11", "helix-web/docs/helix-web-os/L11-acceptance/service-acceptance.md", "HELIX-Web-OS", "adjacent_current_ref", "L11", 1, 26, "Web-OS acceptance remains draft/unexecuted"),
 ]
 
 # Keep phase inventory records as snapshots; validator compares them byte-for-byte as JSON values.

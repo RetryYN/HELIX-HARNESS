@@ -39,7 +39,8 @@ authority_effect_before_approval: none
 ### 2. 開発するほど賢くなる自己知能型改善システム
 
 開発中の判断、差戻し、失敗、review、検証、品質、費用、運用結果を出典とscope付きで蓄積し、要求、Design Template、
-HARNESS、Worker運用、CI、製品を改善する候補へ変換する。HELIX-OSが改善loopを継続運転し、学習結果はauthorityを
+HARNESS、Worker運用、CI、製品を改善する候補へ変換する。HELIX-LABOが実績を評価して改善を提案し、HELIX-OSがその提案を
+登録・振り分け・ticket化して改善loopを回す（OSはPM、周辺の機構はPMOにあたる。[2026-09-26 PO判断](../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。学習結果はauthorityを
 直接書き換えず、人間の採否と上流変更を経て次の開発へ反映する。
 
 ### 3. 設計から全体をシミュレーションする予測型システム
@@ -65,11 +66,11 @@ riskを確認して必要な判断を行えることを目指す。速度のた�
 
 | 目標 | 1.0で主に関与する機構 | 後続版で加わるもの |
 |---|---|---|
-| 1 自走 | HARNESS、BRAIN、OS、Security、Runner／Sandbox | ― |
-| 2 改善 | LABO、OS | 2.0 BRAINの推薦、3.0 Intelligence |
-| 3 予測 | BRAIN、LABO、HARNESS | 4.0 BRAINの動的フロー構成 |
+| 1 自走 | HARNESS、INTELLIGENCE、OS、SECURITY、Worker（作業の実行。機構ではない） | ― |
+| 2 改善 | LABO、OS、BRAIN | 2.0 LABOの分解とBRAINへの取り込み、3.0 INTELLIGENCEのローカルモデル学習 |
+| 3 予測 | INTELLIGENCE、LABO、HARNESS | 4.0 BRAIN・HELIX-HARNESS-CORE・OSの複合処理による動的フロー構成 |
 | 4 非エンジニア | HARNESS、OS | ― |
-| 5 Worker配置 | HARNESS、BRAIN、OS、LABO | ― |
+| 5 Worker配置 | HARNESS、INTELLIGENCE、OS、LABO | ― |
 
 この表は参照用である。表から要求、責務の確定、採否を生成しない。
 

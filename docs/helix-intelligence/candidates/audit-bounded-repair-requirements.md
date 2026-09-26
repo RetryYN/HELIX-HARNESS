@@ -1,17 +1,17 @@
 ---
-title: "HELIX-Intelligenceの全体監査・限定修復の要求候補"
+title: "HELIX-INTELLIGENCEの全体監査・限定修復の要求候補"
 status: draft_candidate
 authority_status: awaiting_human_approval
 authority_effect: none
 created: 2026-09-25
-mechanism: HELIX-Intelligence
+mechanism: HELIX-INTELLIGENCE
 moved_from:
   - docs/helix-os/L2-requirements/governance-requirements.md
   - docs/helix-os/L11-acceptance/governance-acceptance.md
 decision_record: docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md
 ---
 
-# HELIX-Intelligenceの全体監査・限定修復の要求候補
+# HELIX-INTELLIGENCEの全体監査・限定修復の要求候補
 
 ## これは何か
 
@@ -20,10 +20,10 @@ HELIX-OSの要求案にあった次の2つを、2026-09-25のPO判断により�
 - 旧Bugbot候補に由来する限定修復の節。検出から修復の実行までを、まとめて移した。
 - 監査・学習・成果の出所の節のうち、監査（AAFD）の部分。
 
-移した文言は元のまま保持する。HELIX-Intelligenceにはまだ企画（L1）がないため、本書は要求（L2）ではなく候補であり、
-IntelligenceのL1ができた後に要求として採否する。本書から要求の採用・承認・実装許可を生成しない。
+移した文言は元のまま保持する。HELIX-INTELLIGENCEにはまだ企画（L1）がないため、本書は要求（L2）ではなく候補であり、
+INTELLIGENCEのL1ができた後に要求として採否する。本書から要求の採用・承認・実装許可を生成しない。
 
-[Concept](../../concept/helix-concept.md)では、IntelligenceはHELIXについて最も知っている部位であり、バグbot・ヘルプbot・クローラーを発行してHELIX全体の監査に寄せる。
+[Concept](../../concept/helix-concept.md)では、INTELLIGENCEはHELIXについて最も知っている部位であり、バグbot・ヘルプbot・クローラーを発行してHELIX全体の監査に寄せる。
 バグbotは、CIでよく失敗する種類のログがたまり、機械で判定できるようになったものから発行する（[2026-09-25 PO指示](../../governance/decisions/brain-helix-core-po-intent-2026-09-25.md)）。
 
 ## 限定修復の条件
@@ -37,6 +37,20 @@ IntelligenceのL1ができた後に要求として採否する。本書から要
 二重実行、session交代による予算reset、循環、stale、所有競合、未信頼実装、範囲外変更、不明な外部副作用を
 成功へ補完しない。意味矛盾は上流変更候補へ戻し、要求・設計・検証義務を修復器が変更しない。
 本節では旧bugbot、既存CI、旧DB／transaction、自動修復を実行しない。
+
+### 他の機構との接点
+
+POは、限定修復の検出から修復の実行までを、まとめてINTELLIGENCEへ移すと判断した（2026-09-25）。修復の実行統制はINTELLIGENCEに置く。
+上に並べた状態のうち、次の3つは、[Concept](../../concept/helix-concept.md)の機構表で別の機構が担う責務に当たる。本候補はそれらを持たず、接続する。
+
+| 状態 | 担う機構 | Conceptの根拠 |
+|---|---|---|
+| 操作許可 | HELIX-SECURITY | 認可、情報保護、資格情報、隔離、失効 |
+| 隔離適用 | HELIX-SECURITY（隔離の単位、実行の制約）とWorkerの実行環境（制約の強制） | SECURITYの隔離とWorkerの実行の制約、作業を実行するのはWorker（2026-09-26 PO判断） |
+| 検収 | HELIX-OSの検収 | ticketから必要なCIとテストを割り出す |
+| 意味判断 | 上流の要求・設計（本候補の「意味矛盾は上流変更候補へ戻す」） | 要求の意味は上流が持つ |
+
+接点の詳細（修復のticketの種類、検収への受け渡し）は、INTELLIGENCEのL1ができた後に詰める。
 
 ## 全体監査に関する候補条件（AAFD）
 

@@ -2,16 +2,16 @@
 
 親は[HELIX Concept](../concept/helix-concept.md)である。[2026-09-14の責務発言記録](../concept/product-boundary.md)は旧発言の出典として保持する。旧L1の承認は2026-09-17の対象revisionに限り、現行Conceptとの意味差分、L2／L11の合意、L3の承認は別に扱う。
 
-HELIX-OSはHELIXプロジェクト群の管理・推進・検収、Worker割当、ログ・状態、CI・testの最適化、継続・復旧を担う。BRAINの稼働判断、LABOの効果・退行評価、3.0のIntelligenceによる知識・モデル改善をOS自身の同一責務にしない。
+HELIX-OSはHELIXプロジェクト群の管理・推進・検収、Worker割当、ログ・状態、CI・testの最適化、継続・復旧を担う。INTELLIGENCEの稼働判断と知識・モデル改善、LABOの効果・退行評価をOS自身の同一責務にしない。
 その中核目的はHARNESSをHARNESS自身へ適用し、各projectの運用と観測を通じてHARNESSとHELIX全体を
 継続的に改善することである。今回の外部提供プロダクトはHARNESSであり、
 HELIX-OSを別の輸出プロダクトとして定義しない。
 [HARNESS](../helix-harness/README.md)が規定する工程と検証条件を参照して、作業を実行し進行を制御する。
 工程規則の本文をOS側の別正本として複製しない。
 
-管理対象にはHARNESS自身、[HELIX-Web](../helix-web/README.md)、[HELIX-Web-OS](../helix-web-os/README.md)を含む。
-Webの利用者向け要求とWeb-OSのservice運転要求は各対象が所有し、OSはその開発・改善を統制する。
-Web-OSから許可されたservice logを改善入力として受領するが、管理対象のruntime stateをOS機能として吸収しない。
+管理対象にはHARNESS自身、[HELIX-Web](../../helix-web/docs/helix-web/README.md)、[HELIX-WEB-OS](../../helix-web/docs/helix-web-os/README.md)を含む。
+Webの利用者向け要求とWEB-OSのservice運転要求は各対象が所有し、OSはその開発・改善を統制する。
+WEB-OSから許可されたservice logを改善入力として受領するが、管理対象のruntime stateをOS機能として吸収しない。
 
 | 入口 | 内容と状態 |
 |---|---|

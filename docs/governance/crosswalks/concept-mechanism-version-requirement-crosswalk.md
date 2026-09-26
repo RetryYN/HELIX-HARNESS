@@ -10,18 +10,19 @@
 
 - 維持：意味・制約・受入をそのまま使う。改変：意味を保ち、担当・分割・接続・具体化を変える。不採用候補：旧実現方式を持ち込まず、目的は消さない。追加：分離構成に必要な接続・運用・受入を補う。いずれも本表の候補であり、原authorityや採否を変更しない。
 - JSONLの`original_text`は原文、`original_constraint`は原表の確認結果・制約またはIR acceptance IDである。`semantic_digest`はIRについてsourceのdigestを転記した。現行L2・DTKの51行は要求文UTF-8 bytes、L1-COVの4行と1.0土台の7行は原表の1行全体のUTF-8 bytesをSHA-256で算出した暫定追跡値である。各行の`digest_method`に対象を記録し、原文と文書revisionは`source_location`と`source_revision`で辿る。 PO判断後の現行L2 37行は、`current_source_revision`と`current_source_line_sha256`で現在の定義表行全体（改行を除く）のSHA-256を束縛する。`source_revision`・`semantic_digest`は履歴値として保持し、分類を変更した行は`previous_classification`に前revisionの値を残す。
-- IRは[carry-forward台帳](../legacy-requirement-carry-forward.jsonl)の原ID・revision・原文・digest・source pointerを転記し、`target_assessment`を責務候補として扱った。既存のroutingはsuccessor確定ではない。HARNESS・OSのL2候補22件はdraft、DTKはdraft candidate、L1-COVは監査work unitであり要求IDではない。Web・Web-OSの旧L2候補15件は、2026-09-24のPO判断によりVision材料へ分類され、要求・要件として数えない。
-- 製品属性は機構別に`mechanism_product_attributes`へ記録する。HARNESSとWebのみ`製品`、OS・Web-OS・BRAIN・LABO・Intelligence・Securityは`非製品`、CONNECTとRunner／Sandboxは`共通部品`である。HARNESS内のサービス①〜⑦／入口／枠／部品／コアは独立した`harness_placement`へ記録し、製品属性と混ぜない。複数機構の行は単一ownerの意味ではない。
+- IRは[carry-forward台帳](../legacy-requirement-carry-forward.jsonl)の原ID・revision・原文・digest・source pointerを転記し、`target_assessment`を責務候補として扱った。既存のroutingはsuccessor確定ではない。HARNESS・OSのL2候補22件はdraft、DTKはdraft candidate、L1-COVは監査work unitであり要求IDではない。Web・WEB-OSの旧L2候補15件は、2026-09-24のPO判断によりVision材料へ分類され、要求・要件として数えない。
+- 製品属性は機構別に`mechanism_product_attributes`へ記録する。HARNESSとWebのみ`製品`、OS・WEB-OS・BRAIN・LABO・Intelligence・Securityは`非製品`、CONNECTは`共通部品`である。旧Runner／Sandbox（共通部品）は、2026-09-26のPO判断でWorkerへ統一した。Workerは機構でも共通部品でもない（レーンの主がSubagentとして呼び出して作業させるモデル）ため、`mechanism_candidate`では作業の実行の担い手として`Worker`と書き、`mechanism_product_attributes`の`Worker`には、機構・共通部品ではないことを書く。`original_text`は原文として書き換えない。旧OS Contract Runner（HIL-FR-34、HIL-NFR-09／19、HIL-TR-04／05）は、検査の実行をWorker、検査の契約の意味をHELIX-HARNESSとして両方を候補にする（[判断記録](../decisions/worker-execution-model-po-decisions-2026-09-26.md)）。HARNESS内のサービス①〜⑦／入口／枠／部品／コアは独立した`harness_placement`へ記録し、製品属性と混ぜない。複数機構の行は単一ownerの意味ではない。
 - `version_target`はConceptの導入版と照らした**印**であり、採択済みrelease scopeではない。`version_1_0_foundation_candidate=true`は下表の仮ID 7行だけに付け、既存要求の部分候補と全条件被覆を区別する。HARNESS内区分を特定できない行は未特定に保持し、検索範囲と結果を各行に記録した。
 - 原要求が複数機構へ跨る行は、単体と接続の両方を後続要求で立てて合成被覆を検証する。`mechanism_candidate`の配列は複数責務の候補であり、単一の混在ownerを作らない。原IDを消さず、意味変更と担当移動を独立列にした。
 - HILは旧routingをそのまま現行ownerへ昇格しない。HARNESSの契約だけを定める行にOSを機械的に加えず、OSへ渡す証拠や登録は`connection_target`に置く。GitHub event intakeはCONNECTとOSを分け、三段CIの旧固定方式は1.0の証拠lineage候補と別にPO未決として残す。pack運用・gap評価と3.0 Intelligenceの学習も版を分ける。
 
 ## 2026-09-24／25のPO判断反映
 
-- 2026-09-24の[Concept・要求対応判断](../decisions/concept-requirement-po-decisions-2026-09-24.md)により、HELIX-WebとHELIX-Web-OSの旧L1・L2は要求層から外れ、Vision材料となった。crosswalk JSONLでは原文・過去の原文digestを保ち、`current_placement`・`disposition_candidate`・`source_authority_state`で現在の位置を示す。要求化する範囲や導入版は未確定である。
+- 2026-09-24の[Concept・要求対応判断](../decisions/concept-requirement-po-decisions-2026-09-24.md)により、HELIX-WebとHELIX-WEB-OSの旧L1・L2は要求層から外れ、Vision材料となった。crosswalk JSONLでは原文・過去の原文digestを保ち、`current_placement`・`disposition_candidate`・`source_authority_state`で現在の位置を示す。要求化する範囲や導入版は未確定である。
 - 2026-09-25の[BRAIN・ヘリックスコア判断](../decisions/brain-helix-core-po-intent-2026-09-25.md)では、BRAINを汎用パターン、HARNESSのヘリックスコアを製品固有の意味・設計として接続する方向が記録された。HARNESS-L2-008／009の配列・配置候補はこの判断に合わせたが、要求文の整合、connectorの担当、BRAIN稼働中の役割は未決のままにした。
 - 2026-09-25の[機構配置判断](../decisions/mechanism-placement-po-decisions-2026-09-25.md)により、HELIXOS-L2-005はOSの登録・振分けとLABOの評価・研究へ分担し、HELIXOS-L2-012／013は元IDの案内行をOSに残してLABO候補へ移管した。crosswalkの`previous_source_location`から移管前を、`source_location`から現在の候補本文を辿れる。LABO L1がないため候補状態を維持する。
 - 現行L2分類台帳でHELIXOS-L2-012／013に使う`labo_technical_research`と`labo_cross_diagnostic`は、[分類語彙表](../legacy-ir-structure-classification.md)にないLABO用の暫定値である。LABO向けの確定分類語彙がまだ無いため、行の`layer_primary_provisional`と注記で暫定と理由を示す。
+- 2026-09-26にPOが示した「HELIX-Web製品群 要求原案」により、HELIX-Webは製品の総称になった（[判断記録](../decisions/helix-web-product-group-po-decisions-2026-09-26.md)）。原案の要求（`HELIXWEB-L2-010`以降、`HELIXWEBOS-L2-007`以降、WEB-HARNESSの7製品・CORE・CONNECTOR、LABOの`HELIXLABO-L2-WEB-`）は要求候補・未採択であり、本表の行に加えない。本表のWeb・WEB-OSの15行（001〜009、001〜006）の意味と所属は変えない。`mechanism_product_attributes`の`HELIX-Web-OS`等の名前は、機械参照のkeyとして今の表記を保つ。
 
 旧HELIXとの対応は、[pillar requirements](../../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md#L54-L57)のHBR-P4／P7／P8、[modes README](../../../archive/legacy-generation-2026-09-14/root/docs/process/modes/README.md#L29-L47)、[旧inventory-firstと自律境界](../../../archive/legacy-generation-2026-09-14/root/CLAUDE.md#L72-L85)、および[完全一致再利用統制](../legacy-asset-reuse-control.md)を照合した。旧配置を現行担当へ自動昇格せず、旧原文とauthorityはGit履歴・snapshotの記録を保持する。旧runtime・tool・test・CIは実行していない。
 
@@ -34,7 +35,7 @@
 | 集合 | 行数 | 原authority | 現在の扱い |
 |---|---:|---|---|
 | HARNESS・OS L2 | 22 | draft | Conceptとの差分と各L11を候補として照合 |
-| Web・Web-OSの旧L2 | 15 | Vision材料 | PO判断により要求層から除外。ファイル移動はせず、将来の要求化と担当機構は未確定 |
+| Web・WEB-OSの旧L2 | 15 | Vision材料 | PO判断により要求層から除外。ファイル移動はせず、将来の要求化と担当機構は未確定 |
 | HIL IR | 153 | specified/frozen（旧source） | 原意味を保持し、routingを候補化。successor確定0 |
 | DTK | 14 | draft candidate | HARNESS工程契約とOS管理・推進・検収の接続候補 |
 | L1-COV | 4 | coverage audit only | 監査work unit。正式要求IDとしない |
@@ -64,7 +65,7 @@
 - **HELIX-BRAIN**はHELIX全体に共通する汎用性を持ち、設計テンプレ等から意味に基づく構造・設計パターンを取り出す。**HARNESSのヘリックスコア**は製品固有の意味と設計を持ち、HELIX-JSONとPythonの意味導出コアを持つ。両者は接続する方針だが、接続を担う機構とBRAINの稼働中の役割は未確定である。
 - **HELIX-Intelligence**は監査、ローカルLLMへの判断依頼、botやcrawlerの発行を担う方向で記録された。BRAINとIntelligenceの接続口を1.0から用意する指示はある一方、各機能の導入版と稼働開始条件は未確定である。
 - **HELIX-LABO**は全体の改善研究機構として、OSから移した技術調査、横断診断、改善の評価・研究を候補として保持する。LABOのL1がないため、これらは要求ではなく候補である。
-- **Web・Web-OS**の旧L1・L2・L11はVision材料として扱う。既存ファイルを移動せず、要求化の内容、機構分担、導入版は確定しない。
+- **Web・WEB-OS**の旧L1・L2・L11はVision材料として扱う。既存ファイルを移動せず、要求化の内容、機構分担、導入版は確定しない。
 
 未確定の点は、BRAINの稼働中の役割、機構間接続の担当、LABOの技術調査とIntelligenceのcrawler発行の関係、Intelligenceの導入版、HELIXが保持する「原本」と利用者の「正本」の意味対応、HARNESS・BRAIN・OS間の要求文整合である。これらは3つのdecision recordに記録されたとおりPO最適ドラフトで確認する。
 

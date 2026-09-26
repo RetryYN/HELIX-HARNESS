@@ -89,8 +89,8 @@
           "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md",
           "docs/helix-harness/L1-planning/product-intent.md",
           "docs/helix-os/L1-planning/system-intent.md",
-          "docs/helix-web/L1-planning/product-intent.md",
-          "docs/helix-web-os/L1-planning/system-intent.md"
+          "helix-web/docs/helix-web/L1-planning/product-intent.md",
+          "helix-web/docs/helix-web-os/L1-planning/system-intent.md"
         ]
       },
       "scaffold": [],
@@ -258,8 +258,8 @@
         "refs": [
           "docs/helix-harness/L2-requirements/product-requirements.md",
           "docs/helix-os/L2-requirements/governance-requirements.md",
-          "docs/helix-web/L2-requirements/product-requirements.md",
-          "docs/helix-web-os/L2-requirements/service-governance-requirements.md"
+          "helix-web/docs/helix-web/L2-requirements/product-requirements.md",
+          "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md"
         ]
       },
       "scaffold": [],
@@ -326,8 +326,8 @@
         "refs": [
           "docs/helix-harness/L11-acceptance/product-acceptance.md",
           "docs/helix-os/L11-acceptance/governance-acceptance.md",
-          "docs/helix-web/L11-acceptance/product-acceptance.md",
-          "docs/helix-web-os/L11-acceptance/service-acceptance.md"
+          "helix-web/docs/helix-web/L11-acceptance/product-acceptance.md",
+          "helix-web/docs/helix-web-os/L11-acceptance/service-acceptance.md"
         ]
       },
       "scaffold": [],
@@ -950,7 +950,7 @@
           "HELIX-Web-OS"
         ],
         "refs": [
-          "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+          "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
           "docs/helix-os/L2-requirements/governance-requirements.md"
         ]
       },
@@ -1003,7 +1003,7 @@
         ],
         "refs": [
           "docs/helix-os/L2-requirements/governance-requirements.md",
-          "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+          "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
           "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md"
         ]
       },
@@ -1069,7 +1069,7 @@
         ],
         "refs": [
           "docs/governance/audits/source-rebaseline/new-generation-operational-quality-source-crosswalk.md",
-          "docs/helix-web-os/L2-requirements/service-governance-requirements.md"
+          "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md"
         ]
       },
       "scaffold": [],
