@@ -49,12 +49,12 @@ CURRENT_REFS = [
     ("MERGE-REHOST-ASSESSMENT", "docs/governance/audits/source-rebaseline/legacy-reviewed-merge-rehost-assessment-2026-09-20.md", "HELIX-OS", "direct_current_ref", "Audit", 1, 82, "legacy reviewed merge rehost assessment boundary"),
     ("HARNESS-L2", "docs/helix-harness/L2-requirements/product-requirements.md", "HELIX-HARNESS", "direct_current_ref", "L2", 1, 45, "HARNESS V-model and review contract candidate"),
     ("OS-L2", "docs/helix-os/L2-requirements/governance-requirements.md", "HELIX-OS", "direct_current_ref", "L2", 1, 45, "OS progression and evidence governance candidate"),
-    ("WEB-L2", "docs/helix-web/L2-requirements/product-requirements.md", "HELIX-Web", "adjacent_current_ref", "L2", 1, 47, "Web user-facing product boundary candidate"),
-    ("WEBOS-L2", "docs/helix-web-os/L2-requirements/service-governance-requirements.md", "HELIX-Web-OS", "adjacent_current_ref", "L2", 1, 40, "Web-OS service boundary candidate"),
+    ("WEB-L2", "helix-web/docs/helix-web/L2-requirements/product-requirements.md", "HELIX-Web", "adjacent_current_ref", "L2", 1, 47, "Web user-facing product boundary candidate"),
+    ("WEBOS-L2", "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md", "HELIX-Web-OS", "adjacent_current_ref", "L2", 1, 40, "Web-OS service boundary candidate"),
     ("HARNESS-L11", "docs/helix-harness/L11-acceptance/product-acceptance.md", "HELIX-HARNESS", "direct_current_ref", "L11", 1, 45, "HARNESS acceptance remains draft/unexecuted"),
     ("OS-L11", "docs/helix-os/L11-acceptance/governance-acceptance.md", "HELIX-OS", "direct_current_ref", "L11", 1, 45, "OS acceptance remains draft/unexecuted"),
-    ("WEB-L11", "docs/helix-web/L11-acceptance/product-acceptance.md", "HELIX-Web", "adjacent_current_ref", "L11", 1, 33, "Web acceptance remains draft/unexecuted"),
-    ("WEBOS-L11", "docs/helix-web-os/L11-acceptance/service-acceptance.md", "HELIX-Web-OS", "adjacent_current_ref", "L11", 1, 26, "Web-OS acceptance remains draft/unexecuted"),
+    ("WEB-L11", "helix-web/docs/helix-web/L11-acceptance/product-acceptance.md", "HELIX-Web", "adjacent_current_ref", "L11", 1, 33, "Web acceptance remains draft/unexecuted"),
+    ("WEBOS-L11", "helix-web/docs/helix-web-os/L11-acceptance/service-acceptance.md", "HELIX-Web-OS", "adjacent_current_ref", "L11", 1, 26, "Web-OS acceptance remains draft/unexecuted"),
 ]
 
 
