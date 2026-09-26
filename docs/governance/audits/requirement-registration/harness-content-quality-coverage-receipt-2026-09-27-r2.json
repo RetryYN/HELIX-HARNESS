@@ -1,0 +1,293 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-CONTENT-QUALITY-2026-09-27-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "Existing L2 identity section, trailing blank lines stripped, followed by one LF. L2 semantic digest remains unchanged; L11 append and full file are bound separately below.",
+  "correction_reason": "R2170-01: G12全体の原文・旧資産を独立小見出しへ分離する表記修正。L2本文・受入条件・atom帰属は不変。L11全文/追補のSHAを訂正し、前receiptを歴史証拠として保持する。",
+  "candidate_semantics_unchanged": true,
+  "acceptance_binding": {
+    "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+    "sha256": "sha256:c2a9ed6da0c89e0394654e95f7a4faf0eed80f2aee9bd41997d23d05707d17d6",
+    "base_commit": "ab8ec8aef3981456457e7b4f6e43b940ebfa5ae4",
+    "base_file_sha256": "sha256:f345ab30f994830944c055351302151c71be48123e917202b89f68b14476be48",
+    "append_sha256": "sha256:642d0ddc9a2d0396cd85424b8d8096eeba77bdcfcb9e4863a57384f3dd688e2e",
+    "append_start_byte": 49826
+  },
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-014",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        379,
+        386
+      ],
+      "candidate_semantic_digest": "sha256:eca6896fa86d4a929ac767cdeb81453c733f42db0d772b416bef5d97a5937dc9",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "acceptance_binding": {
+        "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "sha256:c2a9ed6da0c89e0394654e95f7a4faf0eed80f2aee9bd41997d23d05707d17d6",
+        "base_commit": "ab8ec8aef3981456457e7b4f6e43b940ebfa5ae4",
+        "base_file_sha256": "sha256:f345ab30f994830944c055351302151c71be48123e917202b89f68b14476be48",
+        "append_sha256": "sha256:642d0ddc9a2d0396cd85424b8d8096eeba77bdcfcb9e4863a57384f3dd688e2e",
+        "append_start_byte": 49826
+      },
+      "previous_registration_id": "MPR-RC-HARNESS-L2-014-002"
+    },
+    {
+      "requirement_identity": "HARNESS-L2-015",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        387,
+        394
+      ],
+      "candidate_semantic_digest": "sha256:d528e724da205072383a97c4dadf6ece9fb95f2ff2152eb5a5d1bd416029f601",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "acceptance_binding": {
+        "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "sha256:c2a9ed6da0c89e0394654e95f7a4faf0eed80f2aee9bd41997d23d05707d17d6",
+        "base_commit": "ab8ec8aef3981456457e7b4f6e43b940ebfa5ae4",
+        "base_file_sha256": "sha256:f345ab30f994830944c055351302151c71be48123e917202b89f68b14476be48",
+        "append_sha256": "sha256:642d0ddc9a2d0396cd85424b8d8096eeba77bdcfcb9e4863a57384f3dd688e2e",
+        "append_start_byte": 49826
+      },
+      "previous_registration_id": "MPR-RC-HARNESS-L2-015-002"
+    },
+    {
+      "requirement_identity": "HARNESS-L2-016",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        395,
+        402
+      ],
+      "candidate_semantic_digest": "sha256:3abd8cdd1df5335a87848fcd7c232708dfd6611a5c0e78083962c33e41990e26",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "acceptance_binding": {
+        "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "sha256:c2a9ed6da0c89e0394654e95f7a4faf0eed80f2aee9bd41997d23d05707d17d6",
+        "base_commit": "ab8ec8aef3981456457e7b4f6e43b940ebfa5ae4",
+        "base_file_sha256": "sha256:f345ab30f994830944c055351302151c71be48123e917202b89f68b14476be48",
+        "append_sha256": "sha256:642d0ddc9a2d0396cd85424b8d8096eeba77bdcfcb9e4863a57384f3dd688e2e",
+        "append_start_byte": 49826
+      },
+      "previous_registration_id": "MPR-RC-HARNESS-L2-016-002"
+    },
+    {
+      "requirement_identity": "HARNESS-L2-022",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        447,
+        462
+      ],
+      "candidate_semantic_digest": "sha256:88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
+      "source_atom_set_digest": "sha256:5c987aff04852b8ed45fc3d5996b863162dba9ec1c6bf83aec16a36c45ae0591",
+      "source_atom_count": 2,
+      "source_collection_scope": "旧FRS v0.2候補（MPR-SH-CANDIDATE-003が保持する行atom）のうち、本候補が入力にしたFRS-BR見出し・本文行。空行は含めない",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-002133",
+          "source_line": 64,
+          "source_line_sha256": "sha256:607d431b2befd8e567ddfcba91949c8c6005f0d25d2e2c5e49c9f9910715579d",
+          "disposition": "carried",
+          "shared_use": "HARNESS-L2-010・021・022で同じatomを使う（010はリリース単位への収載、021は構成体、022は検証段階の組合せ）"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002135",
+          "source_line": 67,
+          "source_line_sha256": "sha256:29b1489c1719c040cd601e32ef5bd7e1b2a410749143e8db5110a985b328a33c",
+          "disposition": "carried",
+          "relation": "部分的に保持：「検収済みの組合せの統合・更新・rollback・L12運用検証を個別の成功とは別に確認する」意味を保持する。「Lite／Full」の構成名は本候補で採らず、原文はMPR-SH-CANDIDATE-003に残る（2026-09-27にPOが段階リリース（v0.x、v1.0を本体）を後続の候補として取り込む方向を示したため、名前の扱いはその候補で扱う）",
+          "shared_use": "HARNESS-L2-010・021・022で同じatomを使う"
+        }
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "acceptance_binding": {
+        "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "sha256": "sha256:c2a9ed6da0c89e0394654e95f7a4faf0eed80f2aee9bd41997d23d05707d17d6",
+        "base_commit": "ab8ec8aef3981456457e7b4f6e43b940ebfa5ae4",
+        "base_file_sha256": "sha256:f345ab30f994830944c055351302151c71be48123e917202b89f68b14476be48",
+        "append_sha256": "sha256:642d0ddc9a2d0396cd85424b8d8096eeba77bdcfcb9e4863a57384f3dd688e2e",
+        "append_start_byte": 49826
+      },
+      "previous_registration_id": "MPR-RC-HARNESS-L2-022-002"
+    }
+  ],
+  "prior_receipts": [
+    {
+      "path": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+      "sha256": "sha256:1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b",
+      "relation": "Existing atom identity/disposition and pre-isolation provenance retained unchanged; this append changes acceptance evidence only."
+    },
+    {
+      "path": "docs/governance/audits/requirement-registration/harness-content-quality-coverage-receipt-2026-09-27.json",
+      "sha256": "sha256:d48be3d62dd8552241721fbe0a23066bd711d8851b652e7f27be6252ba6561c1",
+      "relation": "Superseded current L11 binding after R2170-01 formatting correction; historical receipt remains unchanged."
+    }
+  ],
+  "po_source": {
+    "path": "docs/helix-os/sources/body-reinforcement-po-original-2026-09-27.md",
+    "commit": "ab8ec8aef3981456457e7b4f6e43b940ebfa5ae4",
+    "sha256": "sha256:cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78",
+    "attribution": "Lines 1–5 are Claude handoff framing; PO speech starts at line 7.",
+    "lines": [
+      {
+        "source_line": 1,
+        "source_text": "# PO原文：本体要求の補強5点（2026-09-27、確認基準 main 4f10e1e22）"
+      },
+      {
+        "source_line": 3,
+        "source_text": "以下はPOの会話入力を編集せずに写したもの。Codexは最初のPRでこれを`docs/helix-os/sources/`等のsource snapshotへ原文のまま保存し、判断記録を付ける。本ファイル自体は作業依頼の写しであり、要求意味・承認を生成しない。"
+      },
+      {
+        "source_line": 5,
+        "source_text": "---"
+      },
+      {
+        "source_line": 7,
+        "source_text": "**あります。いまの本体は、責務分離・停止条件・証拠の保持に比べて、「最初の仕事をどう成立させるか」「どの水準なら役に立ったと判定するか」が弱いです。** 機構を追加するより、次の5点を既存の要求・受入へ補強したいです。"
+      },
+      {
+        "source_line": 9,
+        "source_text": "確認基準は **`main: 4f10e1e`、#2166統合後**です。"
+      },
+      {
+        "source_line": 11,
+        "source_text": "### 1．履歴ゼロから最初の仕事を始める条件"
+      },
+      {
+        "source_line": 13,
+        "source_text": "OS-018はBenchの水準とINTELLIGENCEの配置案に依存し、そのBenchはWorkerの作業履歴を必要とします。G8も、初回に使う履歴や、人が代行する場合の契約が未提示だと認めています。**「未評価なら保留」はあるが、未評価状態から実績を作り始める条件が閉じていません。** "
+      },
+      {
+        "source_line": 15,
+        "source_text": "ここは、**「性能評価がない」と「実行を許可できない」を分ける**必要があります。評価がなくても、許可された低リスクの仕事を、限定したWorker・予算・人の確認・検証条件で実施できる経路を定義する。その結果をBenchへ渡す。未評価を評価済みへ偽装するのではありません。"
+      },
+      {
+        "source_line": 17,
+        "source_text": "旧RLO-FR-040にも、effort未評価時を明示する条件はあります。ただし、それだけで初回の割当・実行まで解決するものではないので、現行の責務に沿った接続が必要です。"
+      },
+      {
+        "source_line": 19,
+        "source_text": "**ここは最初の段階構築に直結する、優先度の高い不足です。**"
+      },
+      {
+        "source_line": 21,
+        "source_text": "### 2．「対応できる依存」と「その利用で必須の依存」の区別"
+      },
+      {
+        "source_line": 23,
+        "source_text": "具体例はLABO-001です。単独成立の依存に、入力元別接続 **021〜030**が並んでいます。一方、G8の限定構成ではWorker入力028等を選んでいます。**全入力元に対応できることと、毎回すべての入力元が存在しなければ使えないことが、本文上で明確に分かれていません。** "
+      },
+      {
+        "source_line": 25,
+        "source_text": "このままだと、小さなパックを使うために別機構一式まで必要になる読み方ができます。"
+      },
+      {
+        "source_line": 27,
+        "source_text": "補強するのは、**各パックについて、常時必須・特定操作時のみ必須・選択した入力元に応じて必須・参照資料のみ、を区別すること**です。Workerの観測だけを扱う構成なら、その接続と安全条件で成立を確認し、未接続の入力元は未観測として保持する。"
+      },
+      {
+        "source_line": 29,
+        "source_text": "安全依存を削る話ではありません。**本当に必要な依存を残しながら、無関係な完成待ちを要求から除く**作業です。"
+      },
+      {
+        "source_line": 31,
+        "source_text": "### 3．要求形成を「いつ、何をもって収束させるか」"
+      },
+      {
+        "source_line": 33,
+        "source_text": "現行HARNESS-008／013は、質問、欠落・矛盾の提示、一次・二次形成、承認待ちの出力まで規定しています。しかし、**次に聞くべき質問の選び方と、十分に整理できたことの具体的な判定が、主要求と受入ではまだ粗い**です。 "
+      },
+      {
+        "source_line": 35,
+        "source_text": "旧RDJ-FR-003／007には、質問の優先づけ、重複質問の抑制、要求形成の収束条件がありました。現行の要求エンジン候補にも質問量・訂正率の再測定は残っています。**材料がないのではなく、今回の単独サービスの受入まで結び切れていない**ところです。 "
+      },
+      {
+        "source_line": 37,
+        "source_text": "補強したいのは、**既回答を聞き直さない、影響の大きい不足から質問する、新しい根拠がないのに合意済み事項を再開しない、残る必須判断が何かを示して収束を判定する**条件です。"
+      },
+      {
+        "source_line": 39,
+        "source_text": "旧版の固定回数や手続きを丸ごと戻す必要はありません。ここが弱いと、「要求形成を支援するシステム」が、質問と再確認を増やすだけになり得ます。"
+      },
+      {
+        "source_line": 41,
+        "source_text": "### 4．設計・予測・レビューの「内容の良さ」を判定する受入"
+      },
+      {
+        "source_line": 43,
+        "source_text": "例えばINTELLIGENCEのL11では、計画に必要な項目があること、予測に前提・不確実性が付くこと、レビュー結果に根拠や戻し先があることを確認します。これは必要ですが、**形式の整った計画・予測・指摘を出せることと、それが実際に正しく有用なことは別**です。"
+      },
+      {
+        "source_line": 45,
+        "source_text": "HARNESSにも「ミスなく作られたコード」「境界を保ったきれいなコード」という成果表現がありますが、開発単体の出力はProvisionalです。**目標表現と、その単位で保証する品質範囲をもう少し正確に接続したい**です。"
+      },
+      {
+        "source_line": 47,
+        "source_text": "補強するのは、各能力について、**対象を限定した正常例・誤りを含む例・未見例に対し、どんな結果なら正しくできたと言えるか**です。設計なら必要な制約の充足と変更影響、レビューなら既知の欠陥の検出と不要な指摘、予測なら実績との差を確認する。"
+      },
+      {
+        "source_line": 49,
+        "source_text": "「根拠を付けた」「候補を出した」だけでは合格せず、かといって全領域で万能を要求しない。**対応範囲内で達成する結果を、機能パックごとに明確にする**ことが必要です。"
+      },
+      {
+        "source_line": 51,
+        "source_text": "### 5．「性能差を吸収した」「低コストで良くなった」の判定基準"
+      },
+      {
+        "source_line": 53,
+        "source_text": "ここは**計測項目が欠けているわけではありません。** 五大目標には、品質・費用・時間・再作業を使った最適配置があり、INTELLIGENCEの受入にも同条件比較があります。ただし、目標文書は「低コスト」「最高」「最適」の数値基準を未決としており、**比較結果から何を選ぶかという優先関係がまだ弱い**です。 "
+      },
+      {
+        "source_line": 55,
+        "source_text": "例えば、安いWorkerでも受入まで到達したが、上位モデルの救援と人間の修正で総費用が増えた場合。それは品質差を補えた実績ではあっても、低コスト化の成功とは限りません。"
+      },
+      {
+        "source_line": 57,
+        "source_text": "補強したいのは、**必要品質を満たすことを前提に、総費用・完了時間・人間介入のどれを優先し、どの悪化を許容するかを作業範囲ごとに持つこと**です。effortもその条件で選び、HELIXなし／旧版／新版などの比較から効果を確認する。"
+      },
+      {
+        "source_line": 59,
+        "source_text": "これは公開ランキングの要求ではなく、**本体自身が「この改善・配置を採る価値がある」と判断するための要求**です。根拠なしに一律の数値を置く必要はありません。"
+      },
+      {
+        "source_line": 61,
+        "source_text": "---"
+      },
+      {
+        "source_line": 63,
+        "source_text": "**優先順位は、まず①初回実行と②依存の条件化。その次に③要求形成の収束、構築する能力ごとに④成果品質と⑤効果判定です。**"
+      },
+      {
+        "source_line": 65,
+        "source_text": "前回挙げたCONNECTの一覧矛盾は局所的な修正ですが、こちらは**HELIXが実際に使えるか、使うほど良くなるかを左右する要求の弱さ**です。"
+      },
+      {
+        "source_line": 67,
+        "source_text": "**全体をやり直す必要はありません。「止める・記録する」に加えて、「必要条件が揃えば進む・仕事を終える・改善を評価できる」を、既存L2／L11に揃えるのが次の補強です。**"
+      }
+    ]
+  },
+  "previous_acceptance_binding": {
+    "source_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+    "sha256": "sha256:af15ca1c13bef6b75f6b4a45782f890c22cf8275fc725e45b35deb99532f139e",
+    "base_commit": "ab8ec8aef3981456457e7b4f6e43b940ebfa5ae4",
+    "base_file_sha256": "sha256:f345ab30f994830944c055351302151c71be48123e917202b89f68b14476be48",
+    "append_sha256": "sha256:fd780bf36a7d1f3c2f4d453d21e9d7ff718f29ad9d9388a2bda1e14c7b5621f6",
+    "append_start_byte": 49826
+  }
+}

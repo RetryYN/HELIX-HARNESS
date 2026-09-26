@@ -258,3 +258,58 @@ FRSと提供構成追補の採用revision確定後に評価する。全件未実
 - **計測の接続**：[engine候補の補助計測](../candidates/requirement-engine-python-core-requirements.md)に従い、同じfixtureと未見fixtureで質問量・訂正率・必須条件の見逃しを再測定できること。件数を減らすために必要な質問を落とした例や、訂正未観測を0とした例を改善として通さない。本受入は未実行の候補であり、実測値やengine完成を主張しない。
 
 - **正常例・適用対象の合意未了**：prototype／非UI合意が該当し未了の入力でも、要求候補・根拠・未決判断packetを返し、合意待ちを明示する。合意未了だけで候補形成を拒まない。既存合意済み記録の紛失は別の形成資料不足とし、どちらも合意・freezeを捏造しない。
+
+## 成果の内容品質に関する受入追補候補（G12）
+
+本節は既存L2 identityのL11追補候補である。L2本文の意味・採否・owner・版範囲を変更せず、試験を実施済みとも扱わない。
+
+### 共通受入の前提
+
+各行の試験は固定したrequirement/design/contract/test-oracle revision、対象成果物revision、依存版、scope、実測結果で内容判定する。正常例に加え既知の誤り/反例と未公開だが同scopeの例を入れる。template/trace/test/evidence fieldの存在だけでは結果合格としない。oracle・判定基準・scopeが未提示なら「未評価/Provisional」を維持する。数値thresholdはL1/POで根拠がないため追加しない。成功は限定scopeに対するoracle結果であり、全欠陥不存在・あらゆる利用環境・万能品質を保証しない。
+
+### 既存L11表の追補文
+
+既存の「リリース単位の要求とパック境界の受入」へ本節を追補する。primaryは表に記したL2/L11 identityであり、親full IDが主たるL1責務。context parentは評価材料/接続範囲であり、所有責務を移さない。
+
+#### HARNESS-L2-014（③設計）— `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`, `HARNESS-L1-001` / version_target 1.0
+
+**正常**: ひとつの指定design unitで、承認済みrequirementsの明示制約（例: tenant境界維持、指定API契約、禁止side effect）をtemplateに基づいて設計へ反映する。oracleは各制約と設計要素の対応だけでなく、設計結果がfixture上で制約を満たすことを確認する。変更fixtureでは影響を受ける要求、隣接境界、対の検証設計を事前oracleに照合する。
+
+**誤りを含む例**: seeded designがtenant境界を越える、許可されないside effectを含む、または一つの変更が影響する必要検証を落とした場合は不合格。template項目やtraceが全て埋まっていても、実制約違反・変更影響の見落としを合格にしない。
+
+**未見例**: 作成側に伏せた別requirement combination/変更位置で、同じ適用範囲の制約充足と影響集合をoracleに照合する。scope外・oracle未提示は未評価。templateが要求の意味を決めたり、下位designを束ねただけで構成体design義務を満たしたりしない。1.0範囲の限定design fixtureの結果であり、全設計の正しさを保証しない。
+
+#### HARNESS-L2-015（④開発）— `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-001`, `HARNESS-L1-004` / version_target 1.0
+
+**正常**: 凍結済みdesign/contractと限定された実装scopeに対し、事前固定したbehavioral oracle/testで要求結果を得る。seeded正常caseの結果・artifact revision・対応する検証記録を照合し、当該開発単体の成果状態はProvisionalであることを確認する。
+
+**誤りを含む例**: requirement違反、public contract変更、known seeded bug、または正常fixture退行があるコードを与える。原子CIがgreenでも内容oracleに反するなら品質受入失敗とする。設計/テストとのtraceや省略検査の記録の存在は必要だが、実結果を代替しない。④単体の出力をIntegrated/Verified/Accepted/Release eligibleへ進めない。
+
+**未見例**: 未公開の同scope input/edge caseを既存のfrozen oracleに対して動かし、実結果が期待behaviorと合うか確認する。oracleがない入力、対象外のdomainやpropertyはunknown/未評価のままにする。合格はこのartifact revision・contract・実行範囲に限り、「ミスなく作られたコード」を欠陥不存在の一般保証として読まない。HARNESS-L2-022で後段を別途検証する。
+
+#### HARNESS-L2-016（⑤Refactor）— `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-003` / version_target 1.0
+
+**正常**: paired design/contract、要求と既存oracleを固定したrefactor前後で、指定scopeのobserved behavior、public contract、要求を比較し、同じ結果になることを確認する。Performance RefactorはL2記載どおりbaseline/budget/workload/profile/statistical condition/regression oracleを測定前に固定し、profile対象改善と全regression oracle結果を実測比較する。
+
+**誤りを含む例**: seeded boundary/API/behavior regression、要求意味変更、またはperformance budget違反を入れ、差分・oracleから検出され不合格となること。測定不能な「速くなった」、構造が短くなった、または局所benchmark改善だけで他oracle regressionを無視する結果は合格でない。
+
+**未見例**: 未公開の同scope call sequenceまたはinputをrefactor前後に与え、固定oracleで互換性を確認する。性能値は同じ環境/workload/profileに対応する値として報告する。scope外 behaviorや比較不能環境は未評価。要求・契約・境界の意味を変える必要があれば上流へBackflowし、右側で黙って変更しない。「境界を保ったきれいなコード」はこの限定比較を指し、全コードの保守性/性能を保証しない。
+
+#### HARNESS-L2-022（コア検証と受入契約）— `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004` / version_target 1.0
+
+**正常**: 対象artifact revisionに対しL8/L9 oracleでIntegrated、L10 system oracleでVerified、L11の上記能力別内容oracleと、当該revision/scopeに対する利用者受入およびその記録をそろえてAcceptedへ各証拠を段階的に照合する。oracle成功だけから利用者受入記録を生成しない。設計・実装・refactorの各受入結果に対して、そのscope内で何を確認したかを引き継ぐ。外部artifactも同じrevision/paired design/requirements/oracle/result/evidence条件で段階ごとに評価する。
+
+**誤りを含む例**: 下位stage passだけでsystem固有義務の差分を確認せずVerified、L10 passだけでAccepted、またはtrace/evidenceの存在だけで品質をAcceptedとしたら不合格。L11内容oracleが成功しても利用者受入記録が欠ける/対象revisionが違う例はAcceptedにしない。L11内容oracleが失敗すれば、Provisional/Verified等、実際に満たした段階に留める。意味変更の必要なfailureはコードで合わせず、HARNESS-L2-003/004のBackflow先へ戻す。
+
+**未見例**: 未公開の同scope artifactまたは外部持込み成果物で、同じstage contractとoracleを適用し、結果内容・証拠・revision対応が一致するか確認する。oracle不在/失効/適用scope不一致は上位stateを生成せず未評価として残す。CI green、artifact存在、下位単体合格は上位受入の代替でない。受入契約は判定の段階と証拠を持ち、HARNESS/INTELLIGENCEがOSのticket運転・検収を担うことはない。
+
+### 原文と旧資産
+
+[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)第4項、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)を起点とする。旧VDH-FR-004〜013 / AC-004〜013の設計義務・対の検証・変更影響、旧UWJ-FR-002〜014 / AC-002〜014の判断・配分のproposal境界と品質計測、旧Bench R-03〜08 / AC-003〜014のtask/oracle/条件を固定した結果比較を読み、正常・誤り・未見の限定fixtureで内容を判定する受入へ再導出する。旧schema・runner・閾値・runtimeは移植/実行しない。
+
+- `LEGACY-ASSET-335176749F6322C3CD8D`：`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md:42–51`、SHA-256 `7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d`。
+- `LEGACY-ASSET-879D95C07B789C9502CF`：`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md:20–29`、SHA-256 `6b72ed546c07349dfd5b59e78f15ddfbb353ea0b232b7c8b5de8d1cae7854191`。
+- `LEGACY-ASSET-5EE032D657C221184B00`：`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md:46–58`、SHA-256 `e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b`。
+- `LEGACY-ASSET-6FFD7F4E58066D08B053`：`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md:18–30`、SHA-256 `1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3`。
+- `LEGACY-ASSET-28FB139B26CD61CC51EE`：`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:76–147`、SHA-256 `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`。
+- `LEGACY-ASSET-A952A3A175EB82A4781B`：`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:30–41`、SHA-256 `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185`。

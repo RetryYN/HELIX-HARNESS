@@ -21,7 +21,7 @@
     "holding_record_count": 67,
     "current_live_source_holding_count": 14,
     "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
-    "management_register_sha256": "3259324d8209f4d63a59b2f44d4007745c58aee093eb45fedeeba6769ba75075",
+    "management_register_sha256": "569a83aec5107c1ca1d001037ff5b580bd78944057a9632b3426aec609a47936",
     "selected_source_document_count": 2,
     "selected_path_revision_pair_count": 2,
     "unexplored_path_revision_pair_count": 65,
