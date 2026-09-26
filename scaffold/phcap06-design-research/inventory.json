@@ -1442,7 +1442,7 @@
     {
       "ref_id": "CUR-06-HARNESS-L11",
       "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
-      "sha256": "c2a9ed6da0c89e0394654e95f7a4faf0eed80f2aee9bd41997d23d05707d17d6",
+      "sha256": "68c62b74dab3c994e7decf721e68d804499abe40c2247b0b77904d2d590e51d2",
       "start_line": 13,
       "end_line": 30,
       "line_sha256": "c4ac4b7db0b8279f01f4ea8e7925127114a0696d4bdaf6e0de3b171e4d93606b",

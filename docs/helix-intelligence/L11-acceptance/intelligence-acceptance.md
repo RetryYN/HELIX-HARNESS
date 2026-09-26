@@ -187,3 +187,13 @@ L2-017は接続横断境界であり本追補の17件ではない。L2-030–045
 - `LEGACY-ASSET-6FFD7F4E58066D08B053`：`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md:18–30`、SHA-256 `1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3`。
 - `LEGACY-ASSET-28FB139B26CD61CC51EE`：`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:76–147`、SHA-256 `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`。
 - `LEGACY-ASSET-A952A3A175EB82A4781B`：`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:30–41`、SHA-256 `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185`。
+
+## 効果判定の優先関係に関する受入追補候補（G13）
+
+[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。
+
+| 対応要求 | 合格条件 | 反例 |
+|---|---|---|
+| `HELIXINTELLIGENCE-L2-010` L11補強（単体、parent `HELIXINTELLIGENCE-L1-010`; input-contract context candidate `HELIXINTELLIGENCE-L2-067`） | 既存L2-010のplacement proposalが、入力契約候補L2-067で定めるscope/revision有効なquality gate・priority/toleranceと、既存L2-034経由のLABO比較材料を使い、Worker/effort候補の理由・除外・不確実性・未評価を示す。proposalはOS assignment/進行へ別handoffする。 | 価格/model/benchmark単独で決める／必要品質未達・unknown・未評価を隠す／既決decisionが適用境界内なのに毎run確認を求める／proposalが割当・実行許可になる／human interventionを除いた費用を総費用として扱う。 |
+| `HELIXINTELLIGENCE-L2-011` L11補強（単体、parent `HELIXINTELLIGENCE-L1-011`） | 同一corpus/responsibility scope、quality oracle、run version/protocolを揃え、findings/FP/miss/reproducibility/latency/costとrescue/rework/human interventionを別々に比較する。baseline/current/candidate/hybridは実験条件、HELIXなし/旧/新はcohortとして別軸に保持する。priority/toleranceのない指標に勝敗を付けず、必要scopeの結果に限定する。 | model更新名や価格だけで上位認定／同条件でない結果を順位化／救援・人修正を除外／欠測費用をゼロとする／比較結果から自動差替えする。 |
+| `HELIXINTELLIGENCE-L2-067` L11受入補強（単体候補、primary parent `HELIXINTELLIGENCE-L1-010`, comparison context `HELIXINTELLIGENCE-L1-011`） | scope/revision有効な決定・quality oracleと、HELIXINTELLIGENCE-L2-034経由で受けた比較材料が、既存L2-010 placement proposalの根拠・適用範囲・未評価状態を保ったまま使われる。LABO035→INT034の送受契約版・互換範囲・scopeが一致し、LABO052で同一結果の受領receiptを追跡できる正常例を確認する。不一致・欠落例は未受領/未評価のままsourceへ返す。決定が未決/失効/範囲外なら提案を確定せずownerへ戻す。 | 決定値が異なるscopeに適用される／L2-034のsource/scope/revisionが失われる／LABO035とINT034の契約版・互換範囲不一致や未受領receiptを選択根拠にする／入力契約候補が新engine、assignmentまたはworker/model切替になる。 |

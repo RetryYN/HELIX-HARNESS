@@ -160,3 +160,17 @@ parent_l1_candidate: docs/helix-labo/L1-planning/labo-intent.md
 - **反例**：未選択sourceの完成待ちで、必要条件を満たすWorker入力を拒む。選択済みsourceが欠けたため未選択へ改変する。安全依存を参照のみと分類する。未選択を観測済みへ変える。Web未採択を理由に全LABO 1.0を不成立にする。個別呼出しの成功を1.0全source対応済みとする。
 - **版・変更**：sourceの追加/削除、操作、scope、契約版が変わった場合に依存分類と閉包を再照合する。前回の選択やreceiptを無条件に継承しない。
 - **不足・戻し先**：選択条件が不明なら要求された呼出しscopeのownerへ、入力契約・版は各sourceとLABOへ、許可/classificationはSECURITYへ戻す。未観測・未完義務を消さず、既存001の出力保証を保つ。
+
+## 効果判定の優先関係に関する受入追補候補（G13）
+
+[LABOの比較評価候補](../../helix-labo/L2-requirements/labo-requirements.md) HELIXLABO-L2-059および[INTELLIGENCEの配置入力契約候補](../../helix-intelligence/L2-requirements/intelligence-requirements.md) HELIXINTELLIGENCE-L2-067との責務境界を保持する。対象scopeに有効な品質・優先・許容悪化の判断は再利用し、未決・失効・適用境界外のみ判断ownerへ戻す。本追補は未実行の受入候補であり、実測改善や要求採択を生成しない。
+
+| 対応要求 | 合格条件 | 反例 |
+|---|---|---|
+| `HELIXLABO-L2-059`（単体候補、parent `HELIXLABO-L1-005` primary / `HELIXLABO-L1-011` context） | scope/revisionに適用可能なquality oracleと既決priority/tolerance（適用可能な判断のrunごとの再確認なし）、同一task snapshot/scorer/protocol/hardware条件、現行実験のOS割当Worker receipt（歴史runは当時の実行者・authority・receipt）を与える。decisionが未決/失効/適用境界外ならownerへ戻す。実験条件baseline/current/candidate/hybridとHELIXなし/旧版/新版cohortを別軸で記録し、比較する組合せを明示する。品質gateを先に個別判定し、retry・上位Worker救援・rework・CI・review・人修正込みの費用、所要時間、人介入を分ける。欠測通貨・非貨幣化人時間・比較不能cohortは明示する。 | 劣化品質を価格/速度で相殺／初回candidate単価だけで安価認定／上位救援・人修正・retryを除外／未承認換算率で人時間を0円化／受入成果なしを効率成功扱い／実験条件とcohortを混ぜる／scope・oracle・protocol・hardware・run version違いを混ぜる／歴史結果をcurrent性能へ転用／LABOがWorkerを割当・起動する。 |
+
+**読み合わせの具体例**
+1. **適切な有効成功**：same-scope taskで3 cohort（HELIXなし/新版HELIX/historical旧版HELIX）を同じ可視oracle・比較可能run conditionに結び、実験条件baseline/current/candidate/hybridは別fieldとして各cohort runへ対応づけ、quality gateは三者の各結果を個別判定する。old cohortは既存read-only証拠だけ。新構成workerが安価でも救援とhuman fix込みで総費用が増えたこと、完了時間、介入量を分けて示す。scope/revisionに有効な既決の「品質gate後の優先と許容悪化」があれば再確認を求めずそれを適用する。未決・失効・適用境界外の変更時のみ該当owner判断へ戻す。人時間rateが未決なら介入時間は報告し、monetary totalは未完成と表示する。
+2. **不適切な成功主張**：candidate単価が低く、accepted changeが0、上位Worker救援と人修正が多数なのに、それらを除外し「low cost / better performance」とする。反例。品質gate未達を時間短縮で埋めるのも拒否する。
+3. **比較不能／未評価**：旧版の適用scopeや結果receiptが見つからない、またはcurrentとtask/oracle/scorer/protocol/hardwareが異なる。旧runtimeを起動せず、歴史結果はcurrent evidenceへ転用しない。別cohort/未測定と記録し、3-way効果評価は未完のまま。
+4. **effort/配置境界**：同じtask classの複数effort resultとLABO evidenceが揃い、scope別の選好からINTELLIGENCEが推奨候補を示す。未評価effort/Workerは未評価のまま。OSがassignmentを別判断する。INT/LABOのproposalやscoreだけからworker/run/authorityを生成しない。

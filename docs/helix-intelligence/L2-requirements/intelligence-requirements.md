@@ -462,3 +462,28 @@ HELIXINTELLIGENCE-L1-001–020は1.0要求、HELIXINTELLIGENCE-L1-021–026は3.
 - **単独成立の依存**：HELIXINTELLIGENCE-L2-010のproposal contract/schema（実装実行依存ではない）、LABO-L2-054／055の選択scopeまたは明示的な未評価状態、OS ticketと受領記録、HARNESS-L2-010／011の該当契約version。
 - **失敗時の戻し先／未完義務**：task属性/OS ticket不足はOS、Bench evidence/version/scope不足はLABO、proposal schema/contract不明はINTELLIGENCEへ戻し、未完・未評価状態を保持する。
 - **束ねる既存条件**：INTELLIGENCE-L2-010の根拠付きtask別配置候補、L2-061のLABO evidence→配置案→OS assignment三段、L2-013の理由追跡。人代行時も同じ境界を保ち、INTELLIGENCEの出力を偽装しない。
+
+### HELIXINTELLIGENCE-L2-067 — 既存Worker配置proposalの入力契約補強（単体候補、1.0）
+
+status: draft_candidate; authority_status: not_adopted; kind: unit; version_target: 1.0. このidentityは新しい配置engine、ranker、worker routerを作らない。既存 `HELIXINTELLIGENCE-L2-010` のticket別配置proposalが、作業scopeに適用可能な既決の品質gate・優先関係と、比較結果を正しい範囲で利用できるよう入力契約を補強する候補である。
+
+- **親・owner**：primary parent `HELIXINTELLIGENCE-L1-010`。比較evidenceのcontext `HELIXINTELLIGENCE-L1-011`。L2-010が配置proposal、L2-011がmodel/provider比較、LABOが過去結果の独立評価、OSがticket/assignment/進行を所有する。
+- **既存候補との関係**：L2-010を置換せず、その入力契約と提案理由を補う。L2-011の比較ロジックを複製せず、L2-034で受けたLABO結果の範囲付き参照を使う。新しいdecision engine、score、恒久ranking、model/effort auto-switchは導入しない。
+- **入力**：既存L2-010のticket/task identity、domain/type/complexity/context/tool requirementsと、次のscope-bound材料を受け取る。
+  1. Human/PO ownerが既に決めたdecision recordのidentity/revision/state/evidence/owner/effective period、対象task/work scope、quality gate/oracle revision、費用・完了時間・human interventionのpriority orderまたはpartial order、許容悪化とhard prohibition。L2-067は優先値を発明・補完しない。有効decisionはその適用scope/revision内で再利用し、runごとの再確認を求めない。未決、失効、矛盾、適用境界を越える変更時だけ該当ownerへ戻す。
+  2. 既存INT `HELIXINTELLIGENCE-L2-034` 経由のLABO scope-bound evaluation/comparison evidence。評価結果にはsource/target revision、task/scope、quality oracle、attempts、effort/Worker/model version、failure/retry/rescue/rework、人修正・review、結果receipt、cohortと比較条件、cost/price provenance、duration/介入実測、欠測/未評価状態を対応づける。L2-034の現在契約は「LABOの過去evaluation、success/failure/counterexample、Worker/model実績、Bench水準、未評価印」をscope付き判断材料として受け取るため、一般評価結果の既存受渡し先として利用できる。本追補ではLABO-L2-059が出す各比較フィールドを、既存LABO-L2-035からINTELLIGENCE-L2-034で受ける評価packetの入力条件として明示する。送受両側の契約版・scope・互換範囲と同一結果receiptを照合できる場合だけ利用し、不一致・欠落は未受領/未評価のまま送信元へ戻す。priority decisionは当該判断ownerの入力であり、LABOが決定した値へ読み替えない。具体wire schemaはこの要求候補で固定せず、接続の既存責務とidentityを保つ。
+  3. Bench作業種別/model classの水準が必要な場合は既存 `HELIXLABO-L2-055` の水準を使い、Bench専用受渡しは既存 `HELIXLABO-L2-054` に限る。L2-054はLABO-L2-059の一般効果評価packetを運ぶ汎用connectorではない。L2-059の比較・救援・費用評価のINT受渡しは既存LABO-L2-035/052とINTELLIGENCE-L2-034の評価材料経路を使う。
+- **提供するもの**：既存L2-010 proposalの中で、同じtask/scopeの候補Worker/model classおよびeffort条件、採用候補と除外理由、使用したquality gate/decision record/LABO receipt、cost/time/intervention evidence、未評価・比較不能・適用外を示す。これは配置・effortに関する判断候補であり、OS assignment、実行許可、実run、evaluation acceptanceではない。
+- **比較条件**：`baseline/current/candidate/hybrid` は既存LABO-L2-006のexperiment-condition軸として保持し、`HELIXなし/historical旧HELIX/新版HELIX` は比較cohort軸として別々に識別する。L2-010のproposalには根拠に使ったcohort、条件、task/oracle/protocol/revisionを結びつけ、異なるcohort/条件の成績を混ぜない。`no-Harness` は他のHELIX支援構成を持ちうるため、HELIXなしと同一視しない。
+- **品質先行・限界**：quality gate/hard constraintはcost/time/intervention preferenceより先に判定し、未達品質を安さ・速さで相殺しない。有効priorityがない比較指標は未選好の測定値として示し、勝者を決めない。missing price、人時間の未貨幣化、欠落/不適用cohort、unknown effortはunknownのまま示し、未評価をqualifiedへ変えない。人時間をapproved換算率なしに0円とせず、総費用完全性を主張しない。
+- **依存と版**：`HELIXINTELLIGENCE-L2-010` proposal contract、必要なmodel/provider比較結果を持つ `HELIXINTELLIGENCE-L2-011`、既存 `HELIXINTELLIGENCE-L2-034` LABO評価材料受入、送信側のLABO-L2-035/052 evaluation contract、必要時のみLABO-L2-054 Bench handoff、HARNESS-L2-010/011共通pack contract。decision・quality oracle・evaluation・source/target・artifact・task・run/cohort/experiment conditionの各revision/versionをreceiptに残す。
+- **失敗時の戻し先**：task/scope/assignment/result receipt欠落はOS/source ownerへ、oracle/quality gate不明はHARNESS/requirement ownerへ、LABO実績・比較scope・価格根拠・receipt不足はLABOへ、priority/tolerance未決・失効・適用境界外・矛盾はdecisionを持つownerへ戻す。proposalを確定扱いにしない。
+- **保証しないこと**：任意domainへの普遍適性、最適Worker、model/providerの永続優位、cost/time/human interventionの一律順位、適用範囲外への一般化、配置・assignment・run起動・model差替え・authority変更。
+
+**L2-011への対応**
+
+L2-011は既存の同一corpus/responsibility scope比較を所有したままにする。G13のL11判定では、既に比較可能なreceipt/evidenceがある場合にfailure/rescue/retry/rework、総費用内訳、完了時間、人介入量を分解して照合する。本候補を適用する比較入力は、同じcorpus・responsibility scope・実行版についてfailure/rescue/retry/rework、費用内訳、完了時間、人介入量を結果receiptに結び付ける。未測定項目はunknownとして別掲し、記録がない値を0としない。新engineやL2-067へ比較責務を移さず、優先値の決定・変更はdecision ownerに残す。LABO-L2-059は受け取った有効値を比較結果の評価へ適用して報告し、L2-067/L2-010は同じ値を配置proposalの比較へ再利用する。
+
+**対の受入への接続**：既存034/035の契約版・scope・互換条件が一致するLABO059 packetを与えたとき、LABO-L2-052が同一revision・scopeで追跡する結果/受領receiptと、入力された有効decisionに沿うproposalを返す。scope違い、欠落receipt、互換外のpacketは選択根拠に使わずLABO/sourceへ戻す。成功した単体比較を送達成功・割当許可へ読み替えない。
+
+**原文・旧資産と差分**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)第5項を、HELIXINTELLIGENCE-L1-010の配置案とL1-011の同条件比較へ具体化する。旧RLO-FR-040 / AC-030のtask-class別effort、未評価の明示、scoreでauthorityを変えない意味を保持する（`LEGACY-ASSET-50CA1C554747F12266D3`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md:663-666`、SHA-256 `17bc83614d7f5f75b61831eb447a23ee706cb8a6d9e54477736e553ff956dcfd`、ACは `LEGACY-ASSET-437A6A68F9A9E0AE1B9E`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/resident-lane-orchestration-acceptance.md:43`、SHA-256 `63ac3d0fbc36f014977998f9073846bfc01e5d352e07c1e10d408f0eab0ad707`）。比較条件・費用の旧Bench sourceは[LABO059の起点記録](../../helix-labo/L2-requirements/labo-requirements.md)のasset/path/行/SHAを参照。差分は、価格やeffort単独で選ばず、scopeに有効な品質・優先・許容悪化と救援等込みの結果を既存proposalへ入力すること。旧runtimeや固定provider、全域順位は継承しない。
