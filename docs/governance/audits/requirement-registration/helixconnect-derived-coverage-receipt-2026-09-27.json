@@ -1,0 +1,1180 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXCONNECT-DERIVED-2026-09-27",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "PO原文・Concept・現行各機構L2の接続条件からCONNECTの共通候補を導出する。元の業務要求は元機構に同一bytesで保持する。旧sourceは意味比較として参照し、旧atomの移管・採択・retireは行わないため入力旧atom集合は空集合。空集合のno_lossを原文意味の網羅被覆と呼ばない。原文・現行条件の所在は親被覆と接続棚卸しへ束縛する。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXCONNECT-L2-001",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXCONNECT-L1-001"
+      ],
+      "candidate_semantic_digest": "sha256:895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO原文・Concept・現行各機構L2の接続条件からCONNECTの共通候補を導出する。元の業務要求は元機構に同一bytesで保持する。旧sourceは意味比較として参照し、旧atomの移管・採択・retireは行わないため入力旧atom集合は空集合。空集合のno_lossを原文意味の網羅被覆と呼ばない。原文・現行条件の所在は親被覆と接続棚卸しへ束縛する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-connect/L1-planning/connect-intent.md#helixconnect-l1-001",
+        "docs/governance/audits/g7-connect-source-connection-inventory.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HELIXCONNECT-L2-002",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXCONNECT-L1-001"
+      ],
+      "candidate_semantic_digest": "sha256:ee3f897b1280a33412ab6cc34f1df9a507a68317b0a053fae2beea8b36e51be5",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO原文・Concept・現行各機構L2の接続条件からCONNECTの共通候補を導出する。元の業務要求は元機構に同一bytesで保持する。旧sourceは意味比較として参照し、旧atomの移管・採択・retireは行わないため入力旧atom集合は空集合。空集合のno_lossを原文意味の網羅被覆と呼ばない。原文・現行条件の所在は親被覆と接続棚卸しへ束縛する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-connect/L1-planning/connect-intent.md#helixconnect-l1-001",
+        "docs/governance/audits/g7-connect-source-connection-inventory.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HELIXCONNECT-L2-003",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXCONNECT-L1-001"
+      ],
+      "candidate_semantic_digest": "sha256:6eea10829958fee5807147b6a7cdd9d4e889f72fbf5b6cef24ab925e9b85bf42",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO原文・Concept・現行各機構L2の接続条件からCONNECTの共通候補を導出する。元の業務要求は元機構に同一bytesで保持する。旧sourceは意味比較として参照し、旧atomの移管・採択・retireは行わないため入力旧atom集合は空集合。空集合のno_lossを原文意味の網羅被覆と呼ばない。原文・現行条件の所在は親被覆と接続棚卸しへ束縛する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-connect/L1-planning/connect-intent.md#helixconnect-l1-001",
+        "docs/governance/audits/g7-connect-source-connection-inventory.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HELIXCONNECT-L2-004",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXCONNECT-L1-001"
+      ],
+      "candidate_semantic_digest": "sha256:2a62ae83a10c379554ce2ac586edeb887256ee8742f7c8b5c53f0c6250dc41ef",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO原文・Concept・現行各機構L2の接続条件からCONNECTの共通候補を導出する。元の業務要求は元機構に同一bytesで保持する。旧sourceは意味比較として参照し、旧atomの移管・採択・retireは行わないため入力旧atom集合は空集合。空集合のno_lossを原文意味の網羅被覆と呼ばない。原文・現行条件の所在は親被覆と接続棚卸しへ束縛する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-connect/L1-planning/connect-intent.md#helixconnect-l1-001",
+        "docs/governance/audits/g7-connect-source-connection-inventory.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HELIXCONNECT-L2-005",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXCONNECT-L1-001"
+      ],
+      "candidate_semantic_digest": "sha256:d2e2a658c6055384b4946a6aff9840ec3a1d719f9cc6863d8fc260ff0e3af871",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO原文・Concept・現行各機構L2の接続条件からCONNECTの共通候補を導出する。元の業務要求は元機構に同一bytesで保持する。旧sourceは意味比較として参照し、旧atomの移管・採択・retireは行わないため入力旧atom集合は空集合。空集合のno_lossを原文意味の網羅被覆と呼ばない。原文・現行条件の所在は親被覆と接続棚卸しへ束縛する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-connect/L1-planning/connect-intent.md#helixconnect-l1-001",
+        "docs/governance/audits/g7-connect-source-connection-inventory.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HELIXCONNECT-L2-006",
+      "requirement_kind": "composite",
+      "parent_l1_ids": [
+        "HELIXCONNECT-L1-001"
+      ],
+      "candidate_semantic_digest": "sha256:c61a18cd43ad5c1f31113723d56a8c65e6e5d3837126d8fbbfc635bc68438517",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO原文・Concept・現行各機構L2の接続条件からCONNECTの共通候補を導出する。元の業務要求は元機構に同一bytesで保持する。旧sourceは意味比較として参照し、旧atomの移管・採択・retireは行わないため入力旧atom集合は空集合。空集合のno_lossを原文意味の網羅被覆と呼ばない。原文・現行条件の所在は親被覆と接続棚卸しへ束縛する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-connect/L1-planning/connect-intent.md#helixconnect-l1-001",
+        "docs/governance/audits/g7-connect-source-connection-inventory.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HELIXCONNECT-L2-007",
+      "requirement_kind": "composite",
+      "parent_l1_ids": [
+        "HELIXCONNECT-L1-001"
+      ],
+      "candidate_semantic_digest": "sha256:44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO原文・Concept・現行各機構L2の接続条件からCONNECTの共通候補を導出する。元の業務要求は元機構に同一bytesで保持する。旧sourceは意味比較として参照し、旧atomの移管・採択・retireは行わないため入力旧atom集合は空集合。空集合のno_lossを原文意味の網羅被覆と呼ばない。原文・現行条件の所在は親被覆と接続棚卸しへ束縛する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-connect/L1-planning/connect-intent.md#helixconnect-l1-001",
+        "docs/governance/audits/g7-connect-source-connection-inventory.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ],
+  "parent_source_conditions": {
+    "coverage_scope": "新規PO原文・L1候補・判断記録の全非空行と、ConceptのCONNECT行及び共通土台の関連行の保存。現行各機構の接続条件の意味対応は接続棚卸しを参照。旧atom移管ではない。",
+    "sources": [
+      {
+        "source_path": "docs/helix-connect/sources/connect-l1-po-original-2026-09-27.md",
+        "source_sha256": "sha256:a9737c48618f048103879ef1602b82b9800c8b25df884a5d04562a07fcffec1a",
+        "lines": [
+          {
+            "source_line": 1,
+            "source_text": "# HELIX-CONNECT L1企画原文（PO提示、2026-09-27）",
+            "source_line_sha256": "sha256:04b1867f84ccf1541044af6073093530672ba1c743f793c5ac43179c4142c89f",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 3,
+            "source_text": "出所：2026-09-27のHELIX-CONNECT第2弾（G7）起草依頼に含まれたPO原文。",
+            "source_line_sha256": "sha256:1ca009187a3b73e01bda0fdeca2de7030cf05f8ca6a23650dd093b518b2df575",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 5,
+            "source_text": "> CONNECT各機能の接続部分を疎結合に保ち、各機構への変更耐性を強化する機構。以上。ぐらいしかないが？段階リリースは機能として成立する部分を決めてだからほかの要求から導出する仕組みだろ。どう考えても両方そうだろ。",
+            "source_line_sha256": "sha256:2fc073840f90ea75e7f241bf9863670cc3a5c640af3a843502a92fb742d2d30d",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 7,
+            "source_text": "本書は原文を編集せず保存する。引用符は入力側の区切り記号であり、引用符自体は発言本文に含まれない。",
+            "source_line_sha256": "sha256:c621c95e164a5c3063c21166a292a45a3c46932e934bb4bc31c17707b7d497e8",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          }
+        ]
+      },
+      {
+        "source_path": "docs/helix-connect/L1-planning/connect-intent.md",
+        "source_sha256": "sha256:9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70",
+        "lines": [
+          {
+            "source_line": 1,
+            "source_text": "---",
+            "source_line_sha256": "sha256:cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 2,
+            "source_text": "title: \"HELIX-CONNECT L1企画案\"",
+            "source_line_sha256": "sha256:5220489a9a7382693a3599dda94dc63ad26ebed340213b5e5136ec47595d8f9f",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 3,
+            "source_text": "canonical_vmodel: L1-L12",
+            "source_line_sha256": "sha256:86045d2ba6240bed3d6c167138fb1cc85dec937677b4ce704b80073bd5e5e58e",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 4,
+            "source_text": "canonical_layer: L1",
+            "source_line_sha256": "sha256:bf78c5504cd357a1d289d0b7994ac567d91624ad7b454717b1a9a1ae7714dbc0",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 5,
+            "source_text": "canonical_pair: L12",
+            "source_line_sha256": "sha256:a8856af36dd17b9bd5ecbc728fab2e035a62c25cc99ccf4c95c5987c91b74d43",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 6,
+            "source_text": "layer: L1",
+            "source_line_sha256": "sha256:0e163f873e8c5fda1b70def9a3dec8c84c02bb320da9bf39c07f1058c140a8a8",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 7,
+            "source_text": "kind: planning",
+            "source_line_sha256": "sha256:5eddde60d60bdfeb200b2e72a810130b794673a8fe114670490b567e2f8307f1",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 8,
+            "source_text": "status: draft",
+            "source_line_sha256": "sha256:3b39a78cfdcbcecb0f5a95cf4f0c5ea5af8691b36af0faa3be13cb47ceefbce1",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 9,
+            "source_text": "authority_status: draft_candidate",
+            "source_line_sha256": "sha256:cb08695166e3ae5ac3abf6e8003bceabcb37ea0b81408ed3e9d749956077b443",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 10,
+            "source_text": "parent_concept: docs/concept/helix-concept.md",
+            "source_line_sha256": "sha256:c8ae5264a92358f9f471d4aef438eb2ab73efe0664ccbb911713918182b213a3",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 11,
+            "source_text": "source: docs/helix-connect/sources/connect-l1-po-original-2026-09-27.md",
+            "source_line_sha256": "sha256:6caed2740fe6e132e32f1ddf1cc30147af87c6860369db96f7b64a711e3afc3a",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 12,
+            "source_text": "decision_record: docs/governance/decisions/connect-l1-po-decisions-2026-09-27.md",
+            "source_line_sha256": "sha256:4547607381cfba041182fd23ef0965044bf4818b3447ddd0e72ace1f868ee3cd",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 13,
+            "source_text": "created: 2026-09-27",
+            "source_line_sha256": "sha256:38ae7b4747d51baa6be14ba4540ef37c75302a8d86247ae88a8a18f2054b8545",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 14,
+            "source_text": "updated: 2026-09-27",
+            "source_line_sha256": "sha256:c6ef7d6c5528d45ab0c784960fd5b14b40de5b8b4fcc04754abb51b2927c150e",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 15,
+            "source_text": "---",
+            "source_line_sha256": "sha256:cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 17,
+            "source_text": "# HELIX-CONNECT L1企画案",
+            "source_line_sha256": "sha256:1b4d86f68286eaabb6fef4f199e35673d9c4ae7493b9f1aa7e52362ad5bf8a85",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 19,
+            "source_text": "本書は[HELIX Concept](../../concept/helix-concept.md)を親とし、POが2026-09-27に示した[企画原文](../sources/connect-l1-po-original-2026-09-27.md)を起点にしたL1候補である。PO原文は「接続部分を疎結合に保ち、各機構への変更耐性を強化する」ことをHELIX-CONNECTの目的とする。原文から目的範囲を拡げない。",
+            "source_line_sha256": "sha256:78717e3c4036643cc1a0a92dcfa2eda59433296eb6b8f78f3b1c449ddf6bd8c6",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 21,
+            "source_text": "本書は`draft_candidate`であり、この対象revisionの企画意味をPOが確認する。文書の存在、ID登録、L2/L11候補、review、mergeから要求合意、L3要件承認、実装または運用許可を生成しない。",
+            "source_line_sha256": "sha256:967f1ae01f164c3e9db0943713f10ebdb84d3efa69f1b6517673795035a3e101",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 23,
+            "source_text": "## 提供価値",
+            "source_line_sha256": "sha256:275260a69e738e28036ecc9b00cfd42cbca4d1223ff5dcd20eaceeb33c7c85c5",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 25,
+            "source_text": "HELIX-CONNECTは、HELIX内の機構どうし、および内部と外部の構造をつなぐ共通部品である。接続部分を各接続先の機構から疎結合に保ち、それぞれの機構が変わったときに他の接続先へ広がる変更を抑え、接続単位で影響を確かめられるようにする。",
+            "source_line_sha256": "sha256:482a15acbfe85c03773664bd7f47b1bf7c8943e55406cfd0ae124c3d41b11fe0",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 27,
+            "source_text": "HELIX-CONNECTの対象範囲はConcept記載の接続登録、契約版照合、通信、再送、追跡である。要求では、各接続の単体成立と複数機構をつなぐ構成体の成立を分けて具体化する。単体接続の成立を構成体全体の成立へ読み替えない。",
+            "source_line_sha256": "sha256:8050a9db030ba1d2375a9570d5e81438fd6b05f1e77a53f8913ad12d42b180fc",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 29,
+            "source_text": "業務上の意味、処理内容の判断、要求採否、業務承認は接続先の権限主体に残る。HELIX-CONNECTは判断または承認を行わない。利用者へ接続を提供するHELIX-WEB-CONNECTORはHELIX-Webの接続製品であり、本機構の所属・要求に含めない。",
+            "source_line_sha256": "sha256:ce659c4d4ddd28151e5047fa6fde076d6b625b987bce03bb9c3e5387a98edd2a",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 31,
+            "source_text": "## 企画要求",
+            "source_line_sha256": "sha256:e7f413094180c24ac20bb9ac5479b42d91d1915b3c9a0cc054545c07fc56df23",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 33,
+            "source_text": "| ID | L1企画要求 | 原文 | 種類 |",
+            "source_line_sha256": "sha256:854cfd9352734472a0df232e18a491064e5f93af7630ed5858b6a30e0837cf51",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 34,
+            "source_text": "|---|---|---|---|",
+            "source_line_sha256": "sha256:4da1ec6f47782090102dc16bda978efb5655fbf2ddce0f84ecf1faf79a930f2d",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 35,
+            "source_text": "| HELIXCONNECT-L1-001 | 接続ごとの構造を接続先の機構から疎結合に保ち、接続先の機構への変更が他の接続先へ不必要に波及しないようにして、各接続の変更影響を確かめられる | PO原文「CONNECT各機能の接続部分を疎結合に保ち、各機構への変更耐性を強化する機構。」 | 単体・構成体に適用 |",
+            "source_line_sha256": "sha256:4191f0b353bc44886d6b5d82746a5c08af404a2b1fa424168dd443688437a82f",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 37,
+            "source_text": "## 版の扱い",
+            "source_line_sha256": "sha256:1eb638fae2c5b7aa5e0b418c8cd911bbf15c6937dea58c6cb7c95bf249502ae6",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 39,
+            "source_text": "PO原文のとおり、段階リリースの境界をHELIX-CONNECT固有の機能として新設しない。各段階で機能として成立する範囲は、要求の単体・接続・構成体ごとに定める機能から導出する。ここではリリース段階、リリース順序、版ごとの機能一覧を決めない。",
+            "source_line_sha256": "sha256:defe785d5e586e01d9ca850f08e94ee4bdccc00aa246f68f81b945b3d35d1603",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 41,
+            "source_text": "## Conceptおよび旧HELIXとの対応",
+            "source_line_sha256": "sha256:4d0b36e98453125642df9dafb88cdfe54316ca9b4dc5150ee8f9d1e311b10479",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 43,
+            "source_text": "| 本書 | 起点 | 保持する点 | 変更・導出する点 |",
+            "source_line_sha256": "sha256:856810a5f3683f112258da890b473ee3d62f6b601e9861c83cbe1177e1c485f6",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 44,
+            "source_text": "|---|---|---|---|",
+            "source_line_sha256": "sha256:4da1ec6f47782090102dc16bda978efb5655fbf2ddce0f84ecf1faf79a930f2d",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 45,
+            "source_text": "| HELIXCONNECT-L1-001 | 現行ConceptのHELIX-CONNECT行（接続登録、契約版照合、通信、再送、追跡。業務判断・承認をしない） | HELIX内外の構造を接続し、接続機構として振る舞う。WEB-CONNECTORと分離する | POの目的を、接続部分の疎結合と接続先機構への変更耐性に明示する。要素間契約、stale検出、片側交換時の確認方法はL2/L11候補で具体化する。Conceptの責務を越えて業務判断・承認を追加しない |",
+            "source_line_sha256": "sha256:92e4427e9f42e31b234faf4188f6db79f93c4da96f7f069b36bc4b1cc6d652a9",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 46,
+            "source_text": "| 契約照合・通信・再送・追跡の候補 | 旧product data connector設計（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md:33-57, 86-109`、asset `LEGACY-ASSET-C3DE79BA9451172F3E43`、SHA-256 `2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04`）およびL6関数設計（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/product-data-connector.md:27-57`、asset `LEGACY-ASSET-DD66C1B6B7BE234B37E6`、SHA-256 `48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42`） | versioned contract、互換確認、接続境界とauthority分離、idempotent retry、状態遷移とlineageを分離して扱う設計上の知見 | 旧資産は特定のproduct data ingestionであり、HELIX-CONNECTの内部・外部接続一般と同じ役割ではないため完全一致再利用しない。接続登録・契約照合・再送追跡という意味に限って再導出する。旧runtime、実装、試験、CIは実行・移植しない |",
+            "source_line_sha256": "sha256:ba4a5aba1163866e6625bee36df796839c3e980c26dc80303f746a9796065e68",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 47,
+            "source_text": "| adapter境界とfailure history | 旧ADR-003（`archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md:8-24, 26-45`、asset `LEGACY-ASSET-BD13CC67526B48D461F9`、SHA-256 `ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37`）。旧consumer `docs/design/harness/L4-basic-design/external-if.md`、`docs/design/harness/L5-detailed-design/if-detail.md`の説明を含む | 外部固有境界をadapterに隔離し、接続元の契約に束縛する。failure A-71は、設計の境界が未固定だとAPI-key認証前提が下位設計へ漏れるconsumer failureを記録する | CLI起動方式、providerの認証方式、API key禁止の旧前提はCONNECT一般の新規契約へ転用しない。CONNECT要求は接続先が所有する意味契約と交換可能性に焦点を当てる。consumer全件照合は別の接続棚卸しに残す |",
+            "source_line_sha256": "sha256:31f7e9b7704c5f4352864fa7762a4a17aaa2e23a4352c25cbc3500b5e6574a83",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 49,
+            "source_text": "旧product data connectorとADR-003のasset ID・source path・行・digestを照合し、旧L5/L6の契約・再送・接続境界、ADR-003のfailure historyとconsumer boundaryを読んだ。これは意味の再導出であり、旧機構の採用やHELIX-CONNECT全体の網羅調査を意味しない。",
+            "source_line_sha256": "sha256:92c9551e7cd54b8e8446c4be9dd62772a15f26f847097418e91f5e293a96a172",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 51,
+            "source_text": "## L2/L11への受渡し",
+            "source_line_sha256": "sha256:f9cf558b4fee0c5bee90b8233ebd858f9fb5874c0963bc3c2d53cc2b474adc1c",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 53,
+            "source_text": "要求候補では少なくとも、接続登録、接続ごとの契約版照合とstale再検証、契約に束縛した通信、重複効果を避ける再送と試行追跡、片側交換後の互換確認を扱う。受入候補では、これらを単体接続でそれぞれ確認し、複数機構を連ねた構成体で再確認する。段階リリースはこれら機能要求から成立部分を導き、CONNECT独自の段階管理要求にしない。",
+            "source_line_sha256": "sha256:40ce5620dc09d32134540932c3a073e3367c7ffc930333b22fed99fd9479e19c",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          }
+        ]
+      },
+      {
+        "source_path": "docs/governance/decisions/connect-l1-po-decisions-2026-09-27.md",
+        "source_sha256": "sha256:fb54e7cc6d1c47381cc396820ab92c2d8806306f28055ac4144e1e02684fa930",
+        "lines": [
+          {
+            "source_line": 1,
+            "source_text": "---",
+            "source_line_sha256": "sha256:cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 2,
+            "source_text": "title: \"HELIX-CONNECT L1原文の記録と候補範囲（2026-09-27）\"",
+            "source_line_sha256": "sha256:44712f7e4125c1c6536446679d069f8a7b36e94f34340f65b07b0a29120813e8",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 3,
+            "source_text": "decision_record_id: HDEC-CONNECT-L1-PO-2026-09-27",
+            "source_line_sha256": "sha256:ca7dd0738472ecfa44ab5547c7b09e1535bd0abe312a8b503b867018c94707f8",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 4,
+            "source_text": "decision_status: recorded",
+            "source_line_sha256": "sha256:79924b986fa4517d5216385f4a044391c1117437d848f9101548e12b763d26be",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 5,
+            "source_text": "decider_role: PO",
+            "source_line_sha256": "sha256:9cf23eb202d8d4d9f04465f4df11b0fd31b24cbd4e9cd7bc1d612ae330638653",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 6,
+            "source_text": "decided_at: 2026-09-27",
+            "source_line_sha256": "sha256:40c913b7e7db2cdc1d61c0b9c207bcbd06a94b2cb57bbc874c58797d452adaa2",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 7,
+            "source_text": "recorded_at: 2026-09-27",
+            "source_line_sha256": "sha256:ebcb7e595f1ce590a02071a47e89342d1a1b490fe5831cf840e212116759e5e3",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 8,
+            "source_text": "source: docs/helix-connect/sources/connect-l1-po-original-2026-09-27.md",
+            "source_line_sha256": "sha256:6caed2740fe6e132e32f1ddf1cc30147af87c6860369db96f7b64a711e3afc3a",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 9,
+            "source_text": "authority_effect: none",
+            "source_line_sha256": "sha256:b0951242c28b7af06f4f5791ecf2b2761919b6adc9646472c5089319eb973e23",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 10,
+            "source_text": "---",
+            "source_line_sha256": "sha256:cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 12,
+            "source_text": "# HELIX-CONNECT L1原文の記録と候補範囲（2026-09-27）",
+            "source_line_sha256": "sha256:9752736a56632ecec0c7970da8bcf2e394b1e77982e6a3d0eb392ff6877b6f96",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 14,
+            "source_text": "## 記録対象",
+            "source_line_sha256": "sha256:e0984d989f90394b38d22c9221e9253da2c7e84c6ec052bdf04467be99f4b4d5",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 16,
+            "source_text": "2026-09-27、第2弾G7としてHELIX-CONNECTの企画候補を作る際にPOが示した原文を、[原文source](../../helix-connect/sources/connect-l1-po-original-2026-09-27.md)に完全一致で保存した。本記録は原文の転記と候補起草の範囲を記録し、対象revisionの採用・承認を記録しない。",
+            "source_line_sha256": "sha256:fe9232b89759b9b722643acc7cca32e51520e48edf606028b84572e1f687b218",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 18,
+            "source_text": "## 原文",
+            "source_line_sha256": "sha256:5b7ed881d8e1dd8ccb4d966f8a86973b87b66eedd8dc6e5dd46996eb0cd378f1",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 20,
+            "source_text": "> CONNECT各機能の接続部分を疎結合に保ち、各機構への変更耐性を強化する機構。以上。ぐらいしかないが？段階リリースは機能として成立する部分を決めてだからほかの要求から導出する仕組みだろ。どう考えても両方そうだろ。",
+            "source_line_sha256": "sha256:2fc073840f90ea75e7f241bf9863670cc3a5c640af3a843502a92fb742d2d30d",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 22,
+            "source_text": "## 候補起草における読解",
+            "source_line_sha256": "sha256:fa7b7a95a19ee03c8d4363c68c90f5594ef5631bcad07c402b3b99ff52fa5cd0",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 24,
+            "source_text": "- HELIX-CONNECTの企画目的は、接続部分を疎結合にして、各機構への変更耐性を強化することとする。L1候補でこれを別の目的へ拡張しない。",
+            "source_line_sha256": "sha256:0fe109c9d614b6b41de4c2019136d8b2016c8aa2124d0b99a8f98bbfd9629b1b",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 25,
+            "source_text": "- 段階リリースはHELIX-CONNECT独自の新機能として追加しない。段階ごとの成立範囲は、個々の要求の機能として成立する部分から導出する。",
+            "source_line_sha256": "sha256:b20078ed84de9aef243b546b4d7ed3efd2d1e5ebf5d9ee199c507dec5a830592",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 26,
+            "source_text": "- Conceptに既記載のHELIX-CONNECTの役割（内部機構間および内部と外部の構造をつなぐ、接続登録、契約版照合、通信、再送、追跡、業務判断・承認をしない）を企画・要求の境界とする。利用者向け接続製品HELIX-WEB-CONNECTORとは分離する。",
+            "source_line_sha256": "sha256:1b1905c798cbe59406dd702991c5c07a02b8ac7da42e13dab4f3ba2ff9bb2bce",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 27,
+            "source_text": "- 接続単体と複数機構にまたがる構成体の成立を別に扱う。単体接続の確認から構成体の成立を推定しない。",
+            "source_line_sha256": "sha256:b29fdf3aee17f0a9273b45dcb5551d4edac73d1ab31ea85a7f01af1e43a60b8f",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          },
+          {
+            "source_line": 29,
+            "source_text": "上記は原文と現行Conceptに基づく起草上の整理であり、L1本文の対象revisionはPO確認待ちである。要求案の追加・詳細化も未採択であり、本記録または候補文書から要求合意、L3要件承認、実装・運用許可を生成しない。",
+            "source_line_sha256": "sha256:bf2d715f89809dd17edd38cac1ab367e7603b6c6226227d2b7580c1c1198492e",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "CONNECTの共通目的・境界の参照。PO原文中の段階リリース導出の文はG8でHELIX-OSへ接続し、CONNECT自身の段階管理責務にしない。行単位保存は意味被覆判定を代替しない。"
+          }
+        ]
+      },
+      {
+        "source_path": "docs/concept/helix-concept.md",
+        "source_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+        "lines": [
+          {
+            "source_line": 104,
+            "source_text": "| ログと証拠 | すべての機構が共通の形で記録する。誰が・何を・どの要求と構成の版で・どの能力とモデルの版を使い・どうなったかを、相関IDで結ぶ。要求、判断、変更、検証、手戻り、結果を一つの開発の経過（episode）として辿れるようにする | 1.0の計測と復旧、2.0の推薦の実績、3.0の学習データ、4.0の判断根拠 |",
+            "source_line_sha256": "sha256:ef3b3d827c3fc8751ad065bf73dddc1edfbdefedc548161e8624b4b9639c68ce",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "現行Conceptの共通境界とCONNECT責務。各機構の業務意味の所有を移さない。"
+          },
+          {
+            "source_line": 107,
+            "source_text": "| 接続契約と版 | 機構どうし、外部とのやりとりに、能力名、契約版、対象範囲、相関ID、期限、冪等キー、結果状態を持たせる。未対応の版を黙って読み替えない | 機構の追加と交換、1.xのConnector、2.0の外部データ |",
+            "source_line_sha256": "sha256:d7e77a8de5717eda18a7756c8f13d82e26329442335fe2bc95267dad743ab6c5",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "現行Conceptの共通境界とCONNECT責務。各機構の業務意味の所有を移さない。"
+          },
+          {
+            "source_line": 108,
+            "source_text": "| 隔離の単位 | project、tenant、環境を、すべての記録、権限、データ、資源に最初から付ける | 1.xのWeb提供、複数製品の並行開発 |",
+            "source_line_sha256": "sha256:8f190ff95433866e3597ef3f0f9f90edd0efc8b8c9ecf0e0ca296966796cbd2c",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "現行Conceptの共通境界とCONNECT責務。各機構の業務意味の所有を移さない。"
+          },
+          {
+            "source_line": 109,
+            "source_text": "| 構成版の固定と切戻し | 実行中のjobが使っている能力、モデル、構成の版を固定して記録し、候補版の段階適用と切戻しをできるようにする | HELIXの自己更新、3.0以降のモデル差し替え |",
+            "source_line_sha256": "sha256:37aa6c7ecc58e256bbac76d96906a721f72d41039e1523e6dbecfa91427bdbe7",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "現行Conceptの共通境界とCONNECT責務。各機構の業務意味の所有を移さない。"
+          },
+          {
+            "source_line": 227,
+            "source_text": "| HELIX-CONNECT（共通部品） | HELIXの内部と外部の構造をつなぐ。内部の機構どうしの接続（HELIX-HARNESS-COREとBRAIN、BRAINとINTELLIGENCE等）と、外部との接続を担う。接続登録、契約版の照合、通信、再送、追跡。利用者に提供する接続は、HELIX-Webの接続製品HELIX-WEB-CONNECTORとし、所属と要求を分ける | 業務判断、承認 |",
+            "source_line_sha256": "sha256:d59405f4eb34cef2d3d27318da5cd8690f8419297a49913c7b4c07ea0061e9ee",
+            "target_requirement_ids": [
+              "HELIXCONNECT-L2-001",
+              "HELIXCONNECT-L2-002",
+              "HELIXCONNECT-L2-003",
+              "HELIXCONNECT-L2-004",
+              "HELIXCONNECT-L2-005",
+              "HELIXCONNECT-L2-006",
+              "HELIXCONNECT-L2-007"
+            ],
+            "relation": "現行Conceptの共通境界とCONNECT責務。各機構の業務意味の所有を移さない。"
+          }
+        ]
+      }
+    ],
+    "connection_inventory_ref": "docs/governance/audits/g7-connect-source-connection-inventory.md"
+  },
+  "connection_inventory_evidence": [
+    {
+      "path": "docs/governance/audits/g7-connect-source-connection-inventory.md",
+      "sha256": "93cf9b3989b2c7b812eb0301bc5b674c75c78a12646e2e47dfdb3dc255885943"
+    },
+    {
+      "path": "docs/governance/audits/g7-connect-source-identity-inventory.json",
+      "sha256": "38807fd9facc78c0c7ea33c3ff41e1cf54f9ec1649aef63a493298c5d509775a"
+    }
+  ]
+}

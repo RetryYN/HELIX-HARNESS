@@ -1,0 +1,39 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXCONNECT-DERIVED-2026-09-27-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "PO原文・Concept・現行各機構L2の接続条件からCONNECTの共通候補を導出する。元の業務要求は元機構に同一bytesで保持する。旧sourceは意味比較として参照し、旧atomの移管・採択・retireは行わないため入力旧atom集合は空集合。空集合のno_lossを原文意味の網羅被覆と呼ばない。原文・現行条件の所在は親被覆と接続棚卸しへ束縛する。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXCONNECT-L2-006",
+      "requirement_kind": "connection",
+      "parent_l1_ids": [
+        "HELIXCONNECT-L1-001"
+      ],
+      "candidate_semantic_digest": "sha256:876d54895668800e8a3f1866523fb65fb68bb7c13bad936396ecf43ecff30db7",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO原文・Concept・現行各機構L2の接続条件からCONNECTの共通候補を導出する。元の業務要求は元機構に同一bytesで保持する。旧sourceは意味比較として参照し、旧atomの移管・採択・retireは行わないため入力旧atom集合は空集合。空集合のno_lossを原文意味の網羅被覆と呼ばない。原文・現行条件の所在は親被覆と接続棚卸しへ束縛する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-connect/L1-planning/connect-intent.md#helixconnect-l1-001",
+        "docs/governance/audits/g7-connect-source-connection-inventory.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ],
+  "superseded_receipt_ref": "docs/governance/audits/requirement-registration/helixconnect-derived-coverage-receipt-2026-09-27.json",
+  "correction_reason": "R2165-02: HELIXCONNECT-L2-006の種別をconnectionへ訂正。親原文の被覆は初回receiptに保持し、採否は生成しない。",
+  "connection_inventory_evidence": [
+    {
+      "path": "docs/governance/audits/g7-connect-source-connection-inventory.md",
+      "sha256": "4b658e589135f49ec250d3d4a76d71d97999743824f6c77ed1e300ea69021a17"
+    },
+    {
+      "path": "docs/governance/audits/g7-connect-source-identity-inventory.json",
+      "sha256": "38807fd9facc78c0c7ea33c3ff41e1cf54f9ec1649aef63a493298c5d509775a"
+    }
+  ]
+}
