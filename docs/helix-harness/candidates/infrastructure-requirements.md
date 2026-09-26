@@ -24,7 +24,7 @@ IDは原文のもの（HARNESS-INFRA-001〜020）をそのまま使う。
 | HELIX-BRAIN | Infrastructureの汎用の設計知識（[BRAINのInfrastructure領域の要求候補](../../helix-brain/candidates/infrastructure-domain-requirements.md)、PR #2145） |
 | HELIX-HARNESS | 何を要求・設計・検証すべきか |
 | 各製品のHELIX-HARNESS-CORE | その製品のInfrastructureの要求と設計 |
-| 実際に稼働しているInfrastructure（Runtime） | 実際の状態と実行 |
+| 実際に稼働しているInfrastructure（Runtime） | 実際の状態と実行（注：HELIX自身のものはHELIX-INFRASTRUCTUREが持ち、対象製品のものは対象製品の側が持つ。[Concept配置の判断記録](../../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)） |
 
 HARNESSは、serverの作成、networkの変更、databaseの操作、scaling、配備、backup、restore、監視、incidentへの対応を直接行わない。それらが何を満たし、何を証明しなければならないかを定める。BRAINのPatternの一覧を複製しない。
 
@@ -70,5 +70,5 @@ HARNESSは、serverの作成、networkの変更、databaseの操作、scaling、
 
 ## 未確定の点
 
-- 原文の「Infrastructure Runtime」のうち、HELIX自身の実際の実行環境は、2026-09-26のPOの回答で新しいコア機構のHELIX-INFRASTRUCTUREが持つことにした（[判断記録](../../governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md)、PR #2148）。HELIX-INFRASTRUCTURE自体は、POが全体を見てから扱いを決めるアイデアの段階である。HELIX-Webのserviceの側の実行環境は、HELIXの本体のInfrastructureへ暗黙に共有しない。HARNESSが持たないことは原文で確定している。
+- 原文の「Infrastructure Runtime」のうち、HELIX自身の実際の実行環境は、2026-09-26のPOの回答で新しいコア機構のHELIX-INFRASTRUCTUREが持つことにした（[判断記録](../../governance/decisions/infrastructure-l1-idea-po-decisions-2026-09-26.md)、PR #2148）。HELIX-INFRASTRUCTUREは、2026-09-26のPOの回答でConceptの機構の表に加えた（[Concept配置の判断記録](../../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）。HELIX-Webのserviceの側の実行環境は、HELIXの本体のInfrastructureへ暗黙に共有しない。HARNESSが持たないことは原文で確定している。
 - 本書を要求（L2）の本文へ入れるか、候補のまま残すかは、POが仮決めのL2の最終確認のときに決める。
