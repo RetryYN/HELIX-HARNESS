@@ -631,3 +631,173 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **所有の分担**：OSは段階リリースの構成管理・生成・検証・配布・切戻しの運転と証拠を持つ。パックの境界と検証・受入の契約はHARNESS（HARNESS-L2-010／011／022）、実行環境の構成の識別と巻き戻しはHELIX-INFRASTRUCTURE（1.0の範囲のHELIXINFRASTRUCTURE-L1-017〜020／022）が持つ。対象製品のリリース（HARNESSのサービス⑥）と、HELIX自身の段階リリースを混同しない。
 - **後の版の能力を前提にしない**：各段階は、その時点で成立している能力だけで組む。まだ成立していない能力（1.0の範囲のものを含む）は、その段階の「できないこと」として明記し、必要なら人の分担で補う。Infrastructureの変更を候補・隔離・部分の適用・昇格と段階を踏んで適用する能力（HELIXINFRASTRUCTURE-L1-023、1.0より後、版は未定）は後の拡張であり、その完成を段階リリースの成立の前提にしない。本要求から023の前倒しを導かない。
 - **旧HELIXとの関係**：FRS-BR-008（正式配布の前から、必要な検証を保って内部で使う）とFRS-BR-009（安全依存閉包、検収済みの組合せを個別の成功とは別に確かめる）を起点にする。本書「提供・再編要求の具体化」でのFRS-BR-008の不採用は旧CIの先行利用に限り、本要求は旧CIを使わない。Lite／Fullの名前は採らない。対応表は判断記録の「旧HELIXとの対応」に置く。
+
+
+## HELIX-OS機能単位の要求候補（G1・未採択）
+
+以下は既存HELIXOS-L2-001〜014を削除・置換せず、ConceptとHELIX-OS L1の現行責務に機能単位で接続する追補候補である。既存本文・表・例外・非機能条件・数値・未決事項はそれぞれの元のIDと位置に残り、この追補は要約で置き換えない。既存条件を束ねる対応表は参照indexであり、source atomの移管、縮退、retire、採択を行わない。HELIX-OSは製品ではなく、HELIX自身と対象project群を管理・推進・検収する機構である。
+
+この起草の親入力はdraft base `719e05d579584ac961256bdb8b11f8fc7b643a14`の[Concept](../../concept/helix-concept.md)（SHA-256 `06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78`）と[HELIX-OS L1企画候補](../L1-planning/system-intent.md)（SHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`）である。両親の現行本文はcandidate revisionであり、本節から採択・実装許可を生成しない。候補ID自体が各要求identityであり、パックを別要求IDや物理packageとするものではない。個別に交換・更新できる将来のパック実体は、各要求候補の境界に従って別の機能identityを持ち、少なくとも契約version、成果物version、依存identity/version、検証範囲、適用対象・収載/除外、互換範囲、更新/復旧先を相互参照可能にする。`version_target`は到達目標であり、契約版・成果物版の値や採択状態を表さない。identity/version/依存/検証範囲が不明または互換性不明の間は交換・更新を完了扱いにしない。契約・成果物・依存versionが変わった場合は影響する接続をstale化し、該当範囲を再検証する。交換途中の部分成功、未完義務、復旧先は引き継ぎ、個別パックの成功を接続・構成体へ自動伝播しない（HARNESS-L2-010／011の機能単位・接続・構成体の境界に接続）。
+
+### HELIXOS-L2-015 管理・authority記録（単体候補）
+
+- **親L1**：HELIXOS-L1-001／008。
+- **入力**：対象とsourceのidentity・revision・digest、actor・時点、正本、判断record、意味未分類の原event、および訂正・競合・staleの事実。
+- **提供**：対象別Concept・L1・要求・採否・合意revision・責務と出所を登録し、正本とIssue/PR等のprojectionを分けて参照する管理記録。
+- **保証**：authorityの出所・対象revision・差分・訂正履歴を辿れ、原eventは後から分類しても不変。管理record、PR、Issue、CI、memoryから要求意味・人間decision・実装許可を生成しない。
+- **単独成立の依存**：対象別の正本とauthority記録形式、Concept 1.0の共通ログ・証拠形式。version_targetは1.0の土台。
+- **失敗時の戻し先／未完義務**：対象不明、revision不一致、digest欠落、authority conflictは管理record上で未解決に保ち、出所となる正本・判断主体へ返す。未解決状態と訂正前eventを次の処理へ引き継ぐ。
+- **束ねる既存条件**：HELIXOS-L2-001／003／007のうち正本・判断source・対象revision・責務、共通統制とproduct方式の分離に関する条件。既存L2のそれ以外の条件も元の箇所に存続する。
+
+### HELIXOS-L2-016 Portfolio trace・状態（単体候補）
+
+- **親L1**：HELIXOS-L1-002／007／008。
+- **入力**：対象要求と版、HARNESS契約版、unit/connection/composite identityと関係、依存・owner・実差分・検証・提供・運用記録。
+- **提供**：対象ごとの要求から作業・実装・検証・提供・運用までの状態とtrace。欠落・競合・staleを正本revisionへ関連づける。
+- **保証**：未接続、未合意、未実装、未検証、未提供、unknown、staleを区別し、下位の成功から接続・構成体・別projectの完了を推定しない。提供状態をrelease kanban上で追跡する。
+- **単独成立の依存**：L2-015、対象ごとのHARNESS/製品正本、関係するconnectionと検証・evidence記録。version_target: 1.0の対象機構に適用。
+- **失敗時の戻し先／未完義務**：owner・依存・実差分・検証先が不明ならunknown/conflictのまま対象要求または関係するsourceへ返す。未解決edgeとstale理由を保持し、再評価するまで下流完了に進めない。
+- **束ねる既存条件**：HELIXOS-L2-002／006／007／008／011／014から、portfolio trace、提供kanban、依存・impact・検証計画・段階リリース状態に関する条件。L2-014自体は独立した既存構成体要求として残る。
+
+### HELIXOS-L2-017 推進・ticket/workflow（単体候補）
+
+- **親L1**：HELIXOS-L1-009／010。
+- **入力**：管理が登録した目的・要求・制約・許可・優先度・依存・資源・予算・期限・停止条件・HARNESS版・接続状況、INTELLIGENCEの計画案、HARNESSの工程契約。
+- **提供**：対象・kind・親revision・scope・依存・受入義務・戻し先を結ぶticket graphと、適格性確認後のworkflow instance。
+- **保証**：推進はOSが担い、INTELLIGENCE案を無条件に採らず、HARNESSの工程語彙・順序・義務をOS内で再定義しない。1.0ではHARNESS定義済み工程部品の規則的な組合せと途中結果による差戻しを行う。部品にない流れまで組み立てる能力は`version_target: 4.0`として保持し、1.0の成立条件にしない。
+- **単独成立の依存**：L2-015／016、HARNESS工程契約、SECURITYのauthority制約、INTELLIGENCEの案とLABOの水準が提供される場合の評価材料。version_target: 1.0。
+- **失敗時の戻し先／未完義務**：入力不足・unknown・conflict・未解決依存・scope逸脱はticketを実行可能にせず、未解決の要求・許可・依存へ返す。再開時に元の要求revision、停止理由、未完義務、予算/期限制約を維持する。
+- **束ねる既存条件**：HELIXOS-L2-003／010／011、現行のticket意味・workflow・handoffを記すHXT-TYPE-01〜21／HXT-FLOW-01〜09／HXT-SYS-01、およびHELIXOS-L2-008／010／011の部品workflow・検収・統合計画条件。Execution Ticket旧候補の条件は旧source basisとして確認し、存在しない現行IDを作らない。旧mode名や一本道workflowを追加しない。
+
+### HELIXOS-L2-018 Worker割当・実行統制（単体候補）
+
+- **親L1**：HELIXOS-L1-003。
+- **入力**：L2-017のticket revision/digest、配置案、LABO/HELIX-Benchのモデルクラス水準、SECURITY制約、INFRASTRUCTUREの資源状態、レーンとWorkerの実行結果。
+- **提供**：assignmentとattemptの追跡、許可範囲内の割当・進行・停止・成果回収、および担当交代時のhandoff。
+- **保証**：ticket・要求revision・authority・Worker・呼出しレーン・scope・予算・期限・成果・証拠を辿る。assignmentは実行の制約/認可や実資源の正本を代行しない。作成Workerが自分の成果を承認または独立review済みに扱わない。provider名のみで独立性を判定しない。
+- **単独成立の依存**：L2-017、SECURITYの権限・制約、INFRASTRUCTUREの資源、LABOの水準とINTELLIGENCEの配置案。version_target: 1.0。
+- **失敗時の戻し先／未完義務**：権限・lease・capability・期限・予算・head等の不一致は実行を停止し、停止理由を記録して管理/推進へ返す。交代・失効後も累積制約と未完義務を引き継ぎ、二重作業を防ぐ。
+- **束ねる既存条件**：HELIXOS-L2-004／009、ticket詳細のassignment/attempt/recovery、resident-laneとthree-lane由来の委譲・handoff・自己承認防止条件。固定provider数や旧Runner/Sandbox主体を導入しない。
+
+### HELIXOS-L2-019 Evidence・continuity（単体候補）
+
+- **親L1**：HELIXOS-L1-002／003／004／008。
+- **入力**：共通形式のevent、source/revision、相関ID、actor、data-use class、実行・検証結果、訂正、checkpoint、未完義務。
+- **提供**：episode内の要求・判断・変更・実行・検証・手戻り・運用結果の原記録、参照、再構築用projectionと再開情報。
+- **保証**：欠落、重複、stale、拒否、未実行を成功証拠から分け、provenanceと訂正履歴を保つ。担当/session/runtimeが変わっても期限、budget、失敗回数、未完義務とscopeを失わない。provider memoryをcontinuityの正本にしない。
+- **単独成立の依存**：L2-015／018、Concept 1.0の共通ログ・証拠、利用区分、機構間接続契約。version_target: 1.0の土台。
+- **失敗時の戻し先／未完義務**：書込・projection・replayに失敗した記録は成功checkpointとして公開せず、失敗位置から再構築する。欠落証拠を発生元の機構へ戻し、再開時も失敗と未完義務を保持する。
+- **束ねる既存条件**：HELIXOS-L2-001／002／004／005／007／009、およびHBR-P7/P9由来のprovenance、event、projection整合、bounded continuity条件。
+
+### HELIXOS-L2-020 検収・CI運転（単体候補）
+
+- **親L1**：HELIXOS-L1-004。
+- **入力**：ticket graph、承認済み要求/pair/oracle、HARNESS版と検証義務、実差分/base、runner/環境、必要なconnection/evidence。
+- **提供**：ticket/変更に必要なCI profileの組立、隔離実行、結果の回収・監視・再開。
+- **保証**：HARNESSが検証義務を定め、OS検収が実行を組み立て運転する。success/fail/denied/skipped/interrupted/staleを区別し、上流意味review・利用者受入・merge・releaseをCI結果へ統合しない。oracleをOS判断で追加・削除しない。
+- **単独成立の依存**：L2-016／017／019、HARNESS検証契約、SECURITY制約、INFRASTRUCTURE実行資源。version_target: 1.0。新世代CI未構築のため、旧CIを実行・代用しない。
+- **失敗時の戻し先／未完義務**：検証不足・oracle欠落・環境違いは未完としてHARNESS契約またはticketへ返す。中断・失敗では同じHEAD/義務/許可境界に束縛した未完状態を引き継ぐ。
+- **束ねる既存条件**：HELIXOS-L2-002／007／008／011、HBR-P3/P6およびHR-FR-HYB-010由来の動的検証・隔離・証拠・計画/実行責務分離。
+
+### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）
+
+- **親L1**：HELIXOS-L1-005／007。
+- **入力**：選択するHARNESS構成版のexact component set/source/artifact、要求revision、対象project、許可scope、互換性・適格性・運用証拠。
+- **提供**：HARNESS構成版を対象projectへ配布・更新・復旧し、candidate/active構成版、対象、artifact、操作状態、復旧先を追跡するOSの配布運転。
+- **保証**：bundleへの収載・除外を明示し、別artifactへの切替や既存成果の無断消失を拒否する。対象projectのサービス提供版の配布・更新は、HELIX自身（全機構のパック）の段階的な稼働構成・切戻しを定めるHELIXOS-L2-014と別identity・別判定である。021はHARNESS構成版をprojectへ導入する能力に限られ、HELIX全体のstage releaseをサービスの選択配布へ読み替えない。選択対象と必要な安全依存だけを配布でき、他の全製品の完成待ちを前提にしない。未決の後続能力は`version_target`を保ち、1.0の依存にしない。
+- **単独成立の依存**：L2-015／016／019／020、HARNESSの該当サービス契約・artifact、SECURITYの操作authority、INFRASTRUCTURE資源。個別project配布の構成版scopeは選択対象と必要依存に限る。HELIX自身のstage releaseはL2-014を構成体identityとして参照し、1.0全体判定はL2-025で別評価する。
+- **失敗時の戻し先／未完義務**：適格性・互換性・source digest・権限不明なら導入を止め、管理/提供元へ返す。更新失敗では直前qualified版または明示replacementの復旧先、途中成果と未完義務を保持する。tag/publication/cutoverを無許可で行わない。
+- **束ねる既存条件**：HELIXOS-L2-002／006のHARNESS構成版の対象project配布、更新・復旧条件。HELIXOS-L2-014のHELIX自身の段階リリースは別構成体identityであり、021の意味へ統合しない。FRS-BR-001〜007/009の機能単位・明示収載・成熟度・impact・再現性・rollback・安全閉包条件を参照する。旧Slice/Module/Bundle名、channel、固定構成数を正本化しない。
+
+### HELIXOS-L2-022 改善候補登録・還流（単体候補）
+
+- **親L1**：HELIXOS-L1-006。
+- **入力**：対象/要求revision、source event、適用範囲、HELIX-LABOの独立評価・提案・比較実験依頼、判断状態、還流先候補。
+- **提供**：観測→候補→既存判断主体の採否→ticket→変更・検証→再観測への登録・振分け・trace。
+- **保証**：OSは候補を記録しticket化を進行するが、改善の効果・退行を評価するownerはLABOであり、LABOの提案から要求・設計・authorityを直接変更しない。知識取込やローカルLLM学習など後続版の機能を1.0に持ち込まない。
+- **単独成立の依存**：L2-015／016／019、LABO評価契約、対象正本、判断主体とticket契約。改善循環の記録は1.0土台。
+- **失敗時の戻し先／未完義務**：評価・適用範囲・判断先・還流先が不明なら候補を未解決のまま保持し、評価または人間decisionの該当主体へ返す。棄却理由・再評価条件・未完の再検証義務を失わない。
+- **束ねる既存条件**：HELIXOS-L2-005／007およびHBR-P4/P7/P8由来の観測・feedback・根拠・再検証。L2-012/013の移管済み研究・横断診断ownerをOSへ戻さない。
+
+### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）
+
+- **親L1**：HELIXOS-L1-001／002／003／004／009／010。
+- **入力**：L2-015/016のauthority・接続状況、L2-017のticket、L2-018のassignment/attempt、L2-020の検証義務と結果、L2-019のevidence。
+- **提供**：管理から推進、Worker、検収、管理への一連のhandoffを、対象revision/digest・因果ID・scope・未完義務・停止理由・証拠に束縛する。
+- **保証**：各単体、接続固有条件、構成体条件を別に確認する。単体成立からhandoffまたは次段受入・ticket完了を自動生成しない。管理/推進/検収/Workerの責務は交差してもauthorityを混同しない。
+- **単独成立の依存**：L2-015〜020の各必要unitとversioned interface、SECURITY/INFRASTRUCTUREとの対応する境界。version_target: 1.0。
+- **失敗時の戻し先／未完義務**：handoffのrevision/digest/authority/証拠不一致は接続を未成立として保持し、発生側の正本または管理へ返す。受信側が未完義務を受理した証拠が揃うまで元ticketを完了にしない。
+- **束ねる既存条件**：HELIXOS-L2-001〜004／007〜011、現行のticket詳細ID HXT-TYPE-01〜21／HXT-FLOW-01〜09／HXT-SYS-01／HXT-USE-01が示すticket graph・種類・flow・構成体・周辺job境界。
+
+### HELIXOS-L2-024 HARNESS提供・運用→LABO→OSの受渡し（接続候補）
+
+- **親L1**：HELIXOS-L1-005／006／007。
+- **入力**：L2-021の提供版・対象・許可scope、利用/運用実績、L2-019の共通evidence/data-use classification、LABO評価とFeedback。
+- **提供**：対象別成果をLABO評価へ渡し、その結果をOSの改善候補・判断先・採択後ticket・検証・再観測へ戻す接続。
+- **保証**：顧客/Web tenant・権限・dataと本体OS authorityを分離し、許可された範囲を越えて記録を共有しない。提供完了、運用記録、LABO評価、要求採否、改善効果を別状態にする。
+- **単独成立の依存**：L2-019／021／022、版付きLABO接続、SECURITYのdata-use/操作境界。version_target: 1.0で後続の観測受け口を用意するが、後の版の学習・推薦自体は依存にしない。
+- **失敗時の戻し先／未完義務**：利用許可・data class・対象revision・評価範囲の不一致は送信/候補採用を止め、権限ownerまたはLABOへ返す。未評価、未判断、再検証待ちを引き継ぐ。
+- **束ねる既存条件**：HELIXOS-L2-005／006／007／014、Conceptの成長循環および1.0ログ/data-use土台。
+
+### HELIXOS-L2-025 HELIX-OS統合運転（構成体候補）
+
+- **親L1**：HELIXOS-L1-001〜010。L1-011/012の移管済み研究・横断診断をOS機能として含めない。
+- **入力**：採用済み対象revision、選択されたHARNESS構成版、L2-015〜024の各identity/revision/state/evidence、既存人間判断と停止条件。
+- **提供**：HELIX自身と性質の異なる複数projectについて、要求形成・authorityからticket、Worker、検収、提供/運用、LABO評価、OS還流までを説明・統制する構成体の状態。
+- **保証**：単体・connection・compositeは別identity。1.0全体の確認ではHARNESSの7製品それぞれの単体成立、選択構成のconnection、構成体固有の端から端の受入を個別に確認する。各種未完・unknown・stale・未許可・人判断待ちを隠さず、2.0/3.0/4.0/5.0の能力を1.0条件の前提にしない。
+- **単独成立の依存**：L2-015〜024の該当revision、Conceptと対象別L1/L2、HARNESS/周辺機構の必要な接続契約、許可された資源。version_target: 1.0の全体到達確認に限る。個別の初期配布や単体成立は全7製品の完成待ちを要さない。
+- **失敗時の戻し先／未完義務**：端から端のtraceやconnectionが欠ける場合、欠けたsource/unit/connectionへ返し、未完の受入義務を保持する。構成体の状態をunit単独成功で上書きしない。
+- **束ねる既存条件**：HELIXOS-L2-001〜011／014のうち統合固有条件。HELIXOS-L2-012/013は対象外でありLABO移管状態を維持する。
+
+### 既存ID対応index
+
+| 既存要求 | 新候補の参照先 | 追跡する原条件 |
+|---|---|---|
+| HELIXOS-L2-001 | 015／016／019／023／025 | 正本・判断出所・revision・trace |
+| HELIXOS-L2-002 | 016／019／021／023／024／025 | 要求から運用までの欠落/stale/競合、release kanban状態 |
+| HELIXOS-L2-003 | 015／017／023 | 共通統制とproduct方式の分離、変更影響の伝播 |
+| HELIXOS-L2-004 | 018／019／023 | Worker割当・実行・回収、scope/予算/依存/review制約 |
+| HELIXOS-L2-005 | 022／024／025 | 観測、LABO評価、Feedback、採否後ticketと再検証 |
+| HELIXOS-L2-006 | 021／024／025 | 7製品の提供・更新・復旧、および許可された受渡し |
+| HELIXOS-L2-007 | 015／016／019／023／024 | 共通証拠、provenance、相関ID、data-use、欠落/stale |
+| HELIXOS-L2-008 | 016／020／023／025 | HARNESS検証義務、CI組立・隔離実行・再開、review/受入分離 |
+| HELIXOS-L2-009 | 018／019／023／025 | 中断・交代時の制約/budget/期限/未完義務、二重実行防止 |
+| HELIXOS-L2-010 | 017／018／020／023／025 | 管理・推進・検収・Workerの責務分担、ticket workflow |
+| HELIXOS-L2-011 | 016／017／020／023／025 | 統合順・単位・検証計画、実候補/base更新の再計画 |
+| HELIXOS-L2-012 | 対象外。LABOの研究候補を参照 | 技術調査のownerをOSへ戻さず、HELIX-LABOへの移管状態を保つ |
+| HELIXOS-L2-013 | 対象外。LABOの横断診断候補を参照 | 効果・横断診断のownerをOSへ戻さず、LABOおよびINTELLIGENCE/SECURITY等との責務境界を保つ |
+| HELIXOS-L2-014 | 016／024／025。021は対象project配布との接続だけを参照 | HELIX自身（全機構パック）の段階稼働構成と候補/稼働版・切戻し。021のHARNESS構成版配布とidentity/判定を分ける |
+
+このindexは既存条件の参照であり、既存本文の置換・圧縮ではない。要求IDの意味を変える、削減・分割・統合・retireする人間判断はここから生成しない。
+
+### 旧source basisと現行L2保持箇所の根拠確認
+
+旧sourceは現行L2の要求意味を保持している根拠の確認に用いる。次表は旧atomを新候補へ割り当てるcrosswalkではなく、新候補が既存L2の保持箇所を参照する際の根拠確認である。現行保持箇所は既存のHELIXOS-L2-001〜014の節・条件を示す。015〜025への新旧atom割当て、旧source atomの完全集合、意味変更・retireはここから主張しない。source atomの完全な無損失traceは別途のcarry-forward receiptで管理する。旧実装・workflow・CLI・DB・test・受入結果は移行せず、合格証拠にもしない。asset ID、archive path、source SHA-256は資産台帳と照合して記録する。
+
+| 旧asset ID・source | SHA-256 | 旧sourceで確認した主題 | 現行L2に既にある保持箇所と変更境界 |
+|---|---|---|---|
+| `LEGACY-ASSET-18F7940E7994634D39A1` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | `7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc` | L46-67のHBR-P0/P1/P2/P3/P4/P6/P7/P8/P9にある逸脱・工程復帰、合意範囲継続、Worker、検証、改善、配布、記録、外部境界、traceの主題。 | 既存L2-001〜014のauthority・共通統制・Worker・改善還流・提供・証拠・検収・復旧・workflow・統合計画の条件を確認する根拠。旧自動修復・外部検索・memory・CI/gated-push実装は現行保持箇所とせず、旧sourceの方式を現行条件へ割り当てない。 |
+| `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` | L38-47、L49-79のHIL-BR-01〜28にある画面適用、workflow/ticket、trace、source/authority/scopeの主題。 | 既存L2-001／002／003／004／007／009／010／011／014のauthority・trace・scope・handoff・recovery・段階構成条件を確認する根拠。旧Issue/harness.db/Claude hook/固定agent構成は保持箇所としない。 |
+| `LEGACY-ASSET-3A15E5645D2D2A59DFF5` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md` | `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b` | L18-185、L186-289、L376-508の旧ticket input/identity/dependency/admission/assignment/attempt/retry/review/evidence/lifecycle/projection/replay/security/release/management条件。 | 現行の保持箇所として、既存L2-004／007／008／009／010／011／014と、HXT-RQ／HXT-TYPE／HXT-FLOW／HXT-SYS／HXT-USEの現行本文を確認する根拠。旧候補IDを現行IDと同一視せず、旧runtime実装・DBを移さない。Worker/SECURITY/INFRASTRUCTURE/LABOの現行責務境界は現行L2本文による。 |
+| `LEGACY-ASSET-201EED9C5D6D2FF4D41B` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md` | `bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20` | L21-67のFRS-BR-001〜009にある機能単位の独立確認、明示収載/除外、成熟度、impact、再現配布/rollback、安全依存、構成体の独立受入。 | 既存L2-002／006／008／011／014のportfolio trace、対象projectへの提供/復旧、検収、統合計画、HELIX段階構成条件を確認する根拠。旧Slice/Module/Bundle名・channel・個数を保持条件へしない。 |
+| `LEGACY-ASSET-B75E46DBE77592351574` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md` | `eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17` | L31-219のFRS-FR-001〜006/R-01〜24にあるidentity/lifecycle、ownership、admission/recovery、impact/CI、manifest/replay、要求coverageの主題。 | 既存L2-002／006／008／011／014のtrace・HARNESS構成版の配布/更新/復旧・検収・統合計画・HELIX段階構成条件を確認する根拠。旧Module/Bundle構成やchannelを現行の要求identityにしない。 |
+| `LEGACY-ASSET-2B0DE689AA572DE66181` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md` | `0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe` | L1/L2のresident execution/lane/assignment/queue/continuity候補。 | 既存L2-004／007／009／010のWorker実行、記録、continuity、handoff条件を確認する根拠。旧常駐/provider固有方式は保持条件としない。 |
+| `LEGACY-ASSET-A6926200F28B26300432` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md` | `e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765` | L1/L2の複数laneによる作成/review/承認分離候補。 | 既存L2-004／007／009／010のlane/Worker区別、独立review、authority、handoff条件を確認する根拠。旧provider数や3社固定を現行条件としない。 |
+
+この根拠確認表は既存L2保持箇所の説明であり、旧atomから新候補への割当て、receiptの代替、要求意味の新規移管ではない。
+
+保持位置はbase `719e05d579584ac961256bdb8b11f8fc7b643a14` の本書で次の行に固定する。今回もこれらの行は同一bytesで残る。
+
+| 根拠source | 現行で保持する行・節 |
+|---|---|
+| pillar-requirements | 54〜62行（001〜009）、286〜305行（Worker・学習・ログ・CIの具体条件） |
+| infinity-loop-platform-requirements | 103〜168行（ticketと上流作業・finding還流）、425〜457行（要求形成・人間反応） |
+| execution-ticket-requirements | 534〜609行（Execution Ticket、HXT-RQ-01〜07、HXT-TYPE-01〜21、HXT-FLOW-01〜09、HXT-SYS-01、HXT-USE-01） |
+| functional-release-slice-requests / requirements | 459〜493行（提供・再編の具体条件と保持/不採用範囲）、611〜633行（HELIX自身の段階リリースの別identity） |
+| resident-lane-orchestration / three-lane-cloud-governance | 57・62行（004/009）、219〜229行（Worker capacity）、293・298行（Worker/記録）、396〜423行（継続と再構成）、534〜609行（割当てと試行・handoff） |
+
+### 人の判断が残る点
+
+- 親Concept/L1の現行本文は未承認candidate revisionであり、そのexact revisionを採るかはこの候補から決めない。
+- L2-015〜025と既存L2-001〜014の対応・束ねは、原要求意味の削減・縮退・retireやtarget adoptionを承認しない。source atomの意味変更・retire等が必要なものは対応する人間decisionへ残す。
+- Conceptの版境界1.0/1.x/2.0/3.0/4.0/5.0を改訂しない。後続版能力を前版の成立条件にしない。個別配布は選択された適格サービスと必要安全依存を対象にし、7製品全体の完成判定と混ぜない。

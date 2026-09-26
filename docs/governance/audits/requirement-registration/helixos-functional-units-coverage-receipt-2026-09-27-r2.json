@@ -1,0 +1,78 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-FUNCTIONAL-UNITS-2026-09-27-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "G1：既存HELIXOS-L2-001〜014の条件を元の本文に残し、機能単位・接続・構成体に対する追加の利用要求へ束ね直す。元の全段落・表・例外・数値・非機能条件を要約で置換せず、current_condition_refsの元本文全体を継承する。旧sourceの新規移管・採否を行わない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-017",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXOS-L1-009",
+        "HELIXOS-L1-010"
+      ],
+      "candidate_semantic_digest": "sha256:d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "既存の現行L2条件を元の節に保持したまま機能単位へ束ね直す候補。旧source atomの新規移管を主張しない。旧原文との対応は候補節に保持し、既存条件の変更・採否・retireは行わない。空集合のdigestは空bytesのSHA-256。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-003",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-010",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-011"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HELIXOS-L2-021",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXOS-L1-005",
+        "HELIXOS-L1-007"
+      ],
+      "candidate_semantic_digest": "sha256:0656171a926f67d47263a53cdd012b64112c6143399ab5cb4ac35d00e804dc81",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "既存の現行L2条件を元の節に保持したまま機能単位へ束ね直す候補。旧source atomの新規移管を主張しない。旧原文との対応は候補節に保持し、既存条件の変更・採否・retireは行わない。空集合のdigestは空bytesのSHA-256。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-002",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-006"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HELIXOS-L2-023",
+      "requirement_kind": "connection",
+      "parent_l1_ids": [
+        "HELIXOS-L1-001",
+        "HELIXOS-L1-002",
+        "HELIXOS-L1-003",
+        "HELIXOS-L1-004",
+        "HELIXOS-L1-009",
+        "HELIXOS-L1-010"
+      ],
+      "candidate_semantic_digest": "sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "既存の現行L2条件を元の節に保持したまま機能単位へ束ね直す候補。旧source atomの新規移管を主張しない。旧原文との対応は候補節に保持し、既存条件の変更・採否・retireは行わない。空集合のdigestは空bytesのSHA-256。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-001",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-002",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-003",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-004",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-007",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-008",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-009",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-010",
+        "docs/helix-os/L2-requirements/governance-requirements.md#HELIXOS-L2-011"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}
