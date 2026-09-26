@@ -546,7 +546,7 @@ HELIXOS-L2-004の配下で、次を扱う。
 - Subagentとしての呼び出しの観測：どのレーンの主が、何の目的で、どのauthorityの下でWorkerを呼び出したか、消費した資源、関与した成果を、必要な範囲で辿れる。providerの内部の推論そのものは求めない。Workerの範囲は、呼び出したレーンの範囲・authority・予算以下とする。
 - handover、retry、revokeとの接続：再割当てや再試行で責務と未完の義務を失わず、SECURITYからの失効で実行を止めて途中の成果物を隔離する。作業の終了時に、process、一時の資格情報、環境、一時file、lock、networkのsession、資源の予約を次のassignmentへ暗黙に引き継がない。
 
-authority・権限の制約・隔離の条件はSECURITY、CPU・GPU・host等の実際の資源は実行基盤、Workerの配置の案はINTELLIGENCEが持ち、OSはこれらを重複して定義しない。
+authority・権限の制約・隔離の条件はSECURITY、CPU・GPU・host等の実際の資源とその状態はHELIX-INFRASTRUCTURE（[2026-09-26 PO判断](../../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）、Workerの配置の案はINTELLIGENCEが持ち、OSはこれらを重複して定義しない。OSが持つのは作業と変更の状態（Work／Change State）であり、HELIX-INFRASTRUCTUREの実行環境の資源の状態（Runtime Resource State）を二重に正本にしない。
 
 独立reviewは、作成側とは別のreviewerのidentity・context・authority・review routeで行い、作成側の結論を引き継がず、独立して証拠を確かめられることを条件にする。provider・modelは記録するが、同じproviderだから独立でない、別のproviderだから独立であるとはしない。reviewの依頼は、通知の経路で別のreviewerへ渡す。
 レーンとWorkerは別の概念である。レーンは役割（例：Codexのレーンに作成、Claudeのレーンにreview）の割当て先であり、provider名や固定のレーン数を恒久の要件にしない。

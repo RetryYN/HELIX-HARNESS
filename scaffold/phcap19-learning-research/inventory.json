@@ -810,11 +810,11 @@
     {
       "ref_id": "CUR-OS-L1",
       "path": "docs/helix-os/L1-planning/system-intent.md",
-      "sha256": "ca945c327ed3a12a04c4d5b6a09f3052c46a5d6f82743bc5b490f38f7cac7b99",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
       "start_line": 21,
       "end_line": 44,
-      "line_sha256": "e3f8beead86ac4caf34ebf675b30edaad85ad3a690479ec64f2db54a12711127",
-      "exact_text": "HELIX-OSは、PMに近い機構として、HARNESSを含むHELIXプロジェクト群のauthority、変更、状態、証拠、工程管理、ticket発行、Workerへの割当、進行、CI・testの最適化と配布運転を\n管理・推進・検収に分けて統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWEB-OSから得た運用結果はLABOの評価へ渡し、\nLABOが返す改善の提案を登録・振り分け、採否の後にticketにしてHARNESS自身および各対象の改善へ回す。担当やsessionが変わっても、承認済みの意味、未完義務、\n許可範囲、停止・復旧条件を失わず、対象ごとの開発を継続できるようにする。\n周辺の機構はPMOにあたり、INTELLIGENCEは計画と配置の案、LABOは実績の評価と改善の提案、HARNESSは工程の標準と検証義務、BRAINは設計知識、SECURITYは制約とauthority、実行基盤は資源を出す。\nOSはそれらを材料に決めるが、案を無条件に実行せず、周辺の機構もOSの決定を直接書き換えない（[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HELIXOS-L1-001 | 人間は、対象ごとのConcept・要求・採否・合意revisionと判断の出所を管理できる | HELIXOS-L2-001／003 |\n| HELIXOS-L1-002 | 人間は、複数プロジェクトの要求から作業・検証・提供・運用までの欠落、競合、staleを把握できる | HELIXOS-L2-002／007 |\n| HELIXOS-L1-003 | 人間は、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開できる | HELIXOS-L2-004／009 |\n| HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |\n| HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |\n| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗をLABOの独立評価へ渡し、LABOが返す改善の提案をHELIX-OSに登録・振り分けさせ、採択済み改善をticketにして実行・再検証まで回させられる | HELIXOS-L2-005 |\n| HELIXOS-L1-007 | 人間は、HARNESS package運転と個別製品のrelease準備・artifact受渡し・observationを対象revisionと許可へ束縛して統制し、展開先runtimeのdeployment authorityを分離できる | HELIXOS-L2-002／006／007 |\n| HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |\n| HELIXOS-L1-009 | 人間は、管理・推進・検収の責務を分け、許可範囲内の直接調整を保ったまま仕事を統制できる | HELIXOS-L2-010 |\n| HELIXOS-L1-010 | 人間は、変更と依存に合う統合順序・統合単位・検証集合を確認し、結果に応じて収束計画を更新できる | HELIXOS-L2-011 |\n| HELIXOS-L1-011 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査。元の文言「人間は、内部状態と外部技術情報を出典・revision・適用条件付きで調査し、安全に採否できる」は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIXOS-L2-012 |\n| HELIXOS-L1-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断。元の文言「人間は、一つの仕事を要求から運用まで診断し、管理機構自身を含む是正と効果確認へ閉じられる」は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIXOS-L2-013 |\n\n上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。\n現行の`HELIXOS-L2-005`と同じL2文書内の学習に関する記述は、旧OS集中責務を含む未承認の候補である。LABOの独立評価、OSの登録・実行、後続版のINTELLIGENCEによる知識・モデル改善への分離は[要求対応表](../../governance/crosswalks/concept-mechanism-version-requirement-crosswalk.md)で照合中とし、旧L2本文のまま現行のOS単独責務とは判定しない。\n",
+      "line_sha256": "3225ffbeebbb8fe8698d32712befc10fd02c471e7c40a82214a1585f6702afb5",
+      "exact_text": "HELIX-OSは、PMに近い機構として、HARNESSを含むHELIXプロジェクト群のauthority、変更、状態、証拠、工程管理、ticket発行、Workerへの割当、進行、CI・testの最適化と配布運転を\n管理・推進・検収に分けて統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWEB-OSから得た運用結果はLABOの評価へ渡し、\nLABOが返す改善の提案を登録・振り分け、採否の後にticketにしてHARNESS自身および各対象の改善へ回す。担当やsessionが変わっても、承認済みの意味、未完義務、\n許可範囲、停止・復旧条件を失わず、対象ごとの開発を継続できるようにする。\n周辺の機構はPMOにあたり、INTELLIGENCEは計画と配置の案、LABOは実績の評価と改善の提案、HARNESSは工程の標準と検証義務、BRAINは設計知識、SECURITYは制約とauthority、HELIX-INFRASTRUCTUREは資源を出す。\nOSはそれらを材料に決めるが、案を無条件に実行せず、周辺の機構もOSの決定を直接書き換えない（[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)。資源の持ち手の名前は、同日にHELIX-INFRASTRUCTUREを機構に加えた[PO判断](../../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)による）。\n\n| ID | L1企画要求 | L2接続予定 |\n|---|---|---|\n| HELIXOS-L1-001 | 人間は、対象ごとのConcept・要求・採否・合意revisionと判断の出所を管理できる | HELIXOS-L2-001／003 |\n| HELIXOS-L1-002 | 人間は、複数プロジェクトの要求から作業・検証・提供・運用までの欠落、競合、staleを把握できる | HELIXOS-L2-002／007 |\n| HELIXOS-L1-003 | 人間は、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開できる | HELIXOS-L2-004／009 |\n| HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |\n| HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |\n| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗をLABOの独立評価へ渡し、LABOが返す改善の提案をHELIX-OSに登録・振り分けさせ、採択済み改善をticketにして実行・再検証まで回させられる | HELIXOS-L2-005 |\n| HELIXOS-L1-007 | 人間は、HARNESS package運転と個別製品のrelease準備・artifact受渡し・observationを対象revisionと許可へ束縛して統制し、展開先runtimeのdeployment authorityを分離できる | HELIXOS-L2-002／006／007 |\n| HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |\n| HELIXOS-L1-009 | 人間は、管理・推進・検収の責務を分け、許可範囲内の直接調整を保ったまま仕事を統制できる | HELIXOS-L2-010 |\n| HELIXOS-L1-010 | 人間は、変更と依存に合う統合順序・統合単位・検証集合を確認し、結果に応じて収束計画を更新できる | HELIXOS-L2-011 |\n| HELIXOS-L1-011 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査。元の文言「人間は、内部状態と外部技術情報を出典・revision・適用条件付きで調査し、安全に採否できる」は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIXOS-L2-012 |\n| HELIXOS-L1-012 | 【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断。元の文言「人間は、一つの仕事を要求から運用まで診断し、管理機構自身を含む是正と効果確認へ閉じられる」は[HELIX-LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)へ移した | HELIXOS-L2-013 |\n\n上表は接続予定である。L2側にも親L1 IDと親revisionを記載して初めて導出関係が成立する。\n現行の`HELIXOS-L2-005`と同じL2文書内の学習に関する記述は、旧OS集中責務を含む未承認の候補である。LABOの独立評価、OSの登録・実行、後続版のINTELLIGENCEによる知識・モデル改善への分離は[要求対応表](../../governance/crosswalks/concept-mechanism-version-requirement-crosswalk.md)で照合中とし、旧L2本文のまま現行のOS単独責務とは判定しない。\n",
       "product": "HELIX-OS",
       "layer": "L1",
       "classification": "boundary_candidate",
@@ -823,7 +823,7 @@
     {
       "ref_id": "CUR-OS-L2",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "efffb6e6cf6eaefe612248558ca0a91bcfd70d3447dd5c947336e648699765e1",
+      "sha256": "f2183e99b05ab3d431c1746ce1a465bf723aa6edb3211451b7013a990c49d912",
       "start_line": 325,
       "end_line": 334,
       "line_sha256": "777c20a4f6fd2447397696229579f5f73910f8a74820511a14ecceef628750cf",
@@ -836,7 +836,7 @@
     {
       "ref_id": "CUR-OS-L2-WEB",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "efffb6e6cf6eaefe612248558ca0a91bcfd70d3447dd5c947336e648699765e1",
+      "sha256": "f2183e99b05ab3d431c1746ce1a465bf723aa6edb3211451b7013a990c49d912",
       "start_line": 338,
       "end_line": 348,
       "line_sha256": "12434cb8968fbcdfcad46cdc3cf0df21bf6e0ac20d914c79646934ffb24cfa35",
@@ -992,7 +992,7 @@
     {
       "ref_id": "CUR-BOUNDARY",
       "path": "docs/concept/product-boundary.md",
-      "sha256": "ed5e94818d6da3d51493abbfc5524df2538d012f0b8eaf924f645d09ef09eefe",
+      "sha256": "21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
       "start_line": 34,
       "end_line": 71,
       "line_sha256": "a6f463606b51c0911ef198b26b1ce5ab8ae3aaf443b8cf1171950eb3f40bb756",

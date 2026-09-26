@@ -76,7 +76,7 @@
   "current_tree_revision": "562e176c36844474b63424ec06beefe2f7722d18",
   "inputs": {
     "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
-    "docs/concept/product-boundary.md": "sha256:ed5e94818d6da3d51493abbfc5524df2538d012f0b8eaf924f645d09ef09eefe",
+    "docs/concept/product-boundary.md": "sha256:21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
     "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "sha256:2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
     "docs/governance/legacy-ir-document-source-relation.jsonl": "sha256:f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f",
     "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "sha256:360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
@@ -155,7 +155,7 @@
     "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "sha256:8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
     "docs/governance/phase-capability-inventory.json": "sha256:16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4",
     "docs/helix-harness/L1-planning/product-intent.md": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
-    "docs/helix-os/L1-planning/system-intent.md": "sha256:ca945c327ed3a12a04c4d5b6a09f3052c46a5d6f82743bc5b490f38f7cac7b99",
+    "docs/helix-os/L1-planning/system-intent.md": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
     "helix-web/docs/helix-web-os/L1-planning/system-intent.md": "sha256:f702ed0044b284d8c9b560c63f611ae54912141f91ff85f8b39bdd0d63512ef1",
     "helix-web/docs/helix-web/L1-planning/product-intent.md": "sha256:29fe8cbd1a61896852bab6aa636f2bc1d2386b57e69fab1249678fd64a9d3ee6"
   },
