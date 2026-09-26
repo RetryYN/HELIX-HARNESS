@@ -9,9 +9,9 @@
   "reason": "RUL-OSP-04 の primary 25 atom と secondary relation 22 atom は旧規則台帳に存在するが、S1-01 の screen／cross-link 集計、source exact span、legacy asset 状態、product／authority／consumer 候補が同一 review 単位に束ねられていない。要求採否・successor・現行 authority を生成せず、47 atom の source closure を scaffold に固定する。",
   "upstream": [
     {
-      "path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+      "path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
       "sha256": "97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784",
-      "note": "旧規則 atom 台帳。RUL-OSP-04 primary 25／secondary relation 22 の入力"
+      "note": "旧規則 atom 台帳。RUL-OSP-04 primary 25／secondary relation 22 の入力 [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-rule-atom-inventory.jsonlから新path=docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784; 現receipt=97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-rule-atom-accounting.jsonl",
@@ -25,18 +25,18 @@
     },
     {
       "path": "docs/governance/candidates/legacy-rule-derived-requirements.md",
-      "sha256": "386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa",
-      "note": "RUL-OSP-04 要求候補本文と25／22表示"
+      "sha256": "f647bbbcbe21ef775186760086decac511c6a7845f7575952eb7eb551dd55101",
+      "note": "RUL-OSP-04 要求候補本文と25／22表示 [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/candidates/legacy-rule-derived-requirements.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa; 現receipt=f647bbbcbe21ef775186760086decac511c6a7845f7575952eb7eb551dd55101; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/requirement-disposition-review-program.md",
-      "sha256": "36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb",
-      "note": "RDP-001 の atom／candidate／authority停止条件 [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59; 現receipt=36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb; 採否・authorityは不変。]"
+      "sha256": "161abbca4589d350df9e68f6bc48e455b51f5bd21692d34eaab7d01907376b4b",
+      "note": "RDP-001 の atom／candidate／authority停止条件 [2026-09-24 修正後read-after: 親参照・現行未承認状態・履歴エラー名の明確化。前receipt=9a341973f3f66fcd8223a354f69553c7f9b096526d2652de906777884675ad59; 現receipt=36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb; 採否・authorityは不変。] [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/requirement-disposition-review-program.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=36dcda1a281cf0b0ac87b78365748e18eac1cded51e429eca1285292bcb03dbb; 現receipt=161abbca4589d350df9e68f6bc48e455b51f5bd21692d34eaab7d01907376b4b; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/requirement-atomization-review-contract.md",
-      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
-      "note": "原文・line span・digest・未解決を保持する atom review contract"
+      "sha256": "0a27dd165b0b447f89b0d9d1de029a0b7bfefbca0d23655e0f4e1828144f05e8",
+      "note": "原文・line span・digest・未解決を保持する atom review contract [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/requirement-atomization-review-contract.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba; 現receipt=0a27dd165b0b447f89b0d9d1de029a0b7bfefbca0d23655e0f4e1828144f05e8; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-reuse-control.md",
@@ -67,7 +67,7 @@
     ],
     "dependencies": [
       "Python標準library",
-      "docs/governance/legacy-rule-atom-inventory.jsonl",
+      "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
       "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-rule-atom-accounting.jsonl",
       "docs/governance/legacy-asset-disposition.jsonl",
       "archive source の read-only exact span"

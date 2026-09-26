@@ -9,14 +9,14 @@
   "reason": "旧委任文書のfile-blob holdingと参照edge holdingを、要求採用・意味同値・責務配置へ昇格させず、14 coverage spanと59 semantic atom、旧asset状態をレビュー可能な仮束へ固定する。normative V-model／要求・検証contractはHARNESS候補、GitHub／CI／state／closure運転はOS候補として分離し、最終ownerを未決のまま保持する。",
   "upstream": [
     {
-      "path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "path": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
       "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
-      "note": "DELEGATED-DOC-003/028を含む114 file-blob source holding"
+      "note": "DELEGATED-DOC-003/028を含む114 file-blob source holding [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/delegated-requirement-document-source-holding.jsonlから新path=docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd; 現receipt=23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+      "path": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
       "sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
-      "note": "DELEGATED-REF-0303/0759/0760を含むreference edge holding"
+      "note": "DELEGATED-REF-0303/0759/0760を含むreference edge holding [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/delegated-requirement-document-reference-holding.jsonlから新path=docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7; 現receipt=627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -24,14 +24,14 @@
       "note": "対応旧資産のHistorical／unresolved、implementation、consumer欄"
     },
     {
-      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "path": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
       "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
-      "note": "旧phase／product候補、実行未実施、consumer closure状態"
+      "note": "旧phase／product候補、実行未実施、consumer closure状態 [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonlから新path=docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; 現receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/requirement-atomization-review-contract.md",
-      "sha256": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
-      "note": "source line保全、candidate kind、owner、禁止遷移、coverage契約"
+      "sha256": "0a27dd165b0b447f89b0d9d1de029a0b7bfefbca0d23655e0f4e1828144f05e8",
+      "note": "source line保全、candidate kind、owner、禁止遷移、coverage契約 [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/requirement-atomization-review-contract.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba; 現receipt=0a27dd165b0b447f89b0d9d1de029a0b7bfefbca0d23655e0f4e1828144f05e8; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-reuse-control.md",

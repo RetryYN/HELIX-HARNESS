@@ -11,10 +11,10 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 INV = os.path.join(HERE, "inventory.json")
-SOURCE = "docs/governance/delegated-requirement-document-source-holding.jsonl"
-REF = "docs/governance/delegated-requirement-document-reference-holding.jsonl"
+SOURCE = "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl"
+REF = "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl"
 ASSET = "docs/governance/legacy-asset-disposition.jsonl"
-PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+PHASE = "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
 EXPECTED_BASE = "ec80948df480d144022ff5e510ff94f0839f8a7a"
 EXPECTED_DOCS = {"DELEGATED-DOC-005", "DELEGATED-DOC-014", "DELEGATED-DOC-011", "DELEGATED-DOC-018"}
 EXPECTED_EDGES = {"DELEGATED-REF-0305", "DELEGATED-REF-0763", "DELEGATED-REF-0373", "DELEGATED-REF-0783"}

@@ -31,7 +31,7 @@ product_targets:
 | 再点検で追加（E／F／G系列） | 未読の残り、標本で漏れが見つかった系統、二巡目（atomを得たfileのうち530件） | 1032 |
 | 計 | 533 file | 7622 |
 
-対象file全632件（`.helix/`は定義file 2件だけを対象に含めた。test、plans、design、要求文書は除外）の内訳は次のとおりである。[出どころfile一覧](../legacy-rule-atom-source-files.jsonl)は対象file全件を`status`（`atoms`／`no_rule_declared`／`no_declaration`）と`second_pass`（二巡目を読ませたか）付きで持ち、この表はそこから機械集計している。
+対象file全632件（`.helix/`は定義file 2件だけを対象に含めた。test、plans、design、要求文書は除外）の内訳は次のとおりである。[出どころfile一覧](../legacy-migration/rule-atom/legacy-rule-atom-source-files.jsonl)は対象file全件を`status`（`atoms`／`no_rule_declared`／`no_declaration`）と`second_pass`（二巡目を読ませたか）付きで持ち、この表はそこから機械集計している。
 
 | fileの状態 | 件数 |
 |---|---:|
@@ -46,7 +46,7 @@ product_targets:
 1. 抽出：GPT-6 Astra（codex CLI、read-only）が対象を分割して全文を読み、「〜しなければならない／してはならない／〜を拒否する」という規則1つを1 atomとして、出どころのpathと行範囲付きで出力した。読み切れなかったfileは再分割して読ませた。その後、Astraの指摘で抽出漏れが見つかったため、対象file全件を「抽出済みatomに無い規則だけを出す」二巡目にかけ、さらにatomを足した（二巡目の18分割はGPT-6 Astra、残り31分割はClaude Opusが読んだ）。二巡目のatomは出典pathの実在と行範囲を機械で検証してから取り込んだ。この検証には当初、出典pathの正規化に不具合（先頭の`.`を削り`.github/`・`.claude/`配下を実在しないと誤判定）があり、Astraが読んだ分割の56件を誤って除外していた。前revisionの「出典が実在しないatomは捨てた」はこの誤判定によるもので、本revisionで検証を直して復元した（台帳の`extraction_note`）。二巡目の追加分は独立reviewで無作為10件（seed 20260918）を原文照合し、全件一致した。
 2. 検証：全atomの出どころについて、pathの実在と行範囲がfileの行数に収まることを機械で確かめた（欠落0、逸脱0、IDの重複0）。AI向けの指示の系統から無作為に8件を取り、原文と突き合わせて一致を確かめた。
 3. 対応づけ：要求の枠を起草し、Astraが各atomを主の要求1つと副の要求最大2つへ対応づけた。どの枠にも入らないatomは無理に入れず「不足」として出させ、そこから要求を11本追加した。対応づけ後に手で直したもの（残った22件、reviewで見つかった置き違い、「other」とされた7件、fail-open挙動2件）は台帳の`mapped_by: claude_review`で引ける（35件）。再点検で追加したatomの対応づけはClaude Opusが行った（`mapped_by: claude-opus`）。
-4. 出どころの固定：atomが参照する全fileのSHA-256を[出どころfile一覧](../legacy-rule-atom-source-files.jsonl)に記録した。同一覧の`atoms`は、そのfileを出典に持つ相異なるatomの数である（1 atomが複数fileを出典に持つため、合計は台帳の母数より大きい）。全atomは[規則atom台帳](../legacy-rule-atom-inventory.jsonl)にある。
+4. 出どころの固定：atomが参照する全fileのSHA-256を[出どころfile一覧](../legacy-migration/rule-atom/legacy-rule-atom-source-files.jsonl)に記録した。同一覧の`atoms`は、そのfileを出典に持つ相異なるatomの数である（1 atomが複数fileを出典に持つため、合計は台帳の母数より大きい）。全atomは[規則atom台帳](../legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl)にある。
 5. 再判定：「旧実装に固有」とした140件を、旧名称と保持すべき意味を分けて読み直し、一般化すれば要求に寄与するものは要求へ戻した（残り34件は個別の除外理由を台帳の`legacy_only_reason`に持つ）。安全に関する69件は、義務・判定基準の定義（HARNESS、`RUL-FRM-09`）と適用・実行（OS、`RUL-OSA-07`）へ分けた。
 
 ## 確かめたことと、まだ確かめられていないこと

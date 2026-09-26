@@ -9,14 +9,14 @@
   "reason": "旧Universal Workflow AI判断エンジンsource blobはL3 requirementとして保持されているが、source file単位のholdingから要求atom、4製品境界、phase、legacy implementation／degraded／consumer／decision状態を独立reviewできる正式artifactは未成立である。候補spanとunknown境界をscaffoldへ固定する。",
   "upstream": [
     {
-      "path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "path": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
       "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
-      "note": "DOC-009 source holding／carry status／source digest"
+      "note": "DOC-009 source holding／carry status／source digest [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/delegated-requirement-document-source-holding.jsonlから新path=docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd; 現receipt=23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+      "path": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
       "sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
-      "note": "DOC-009 authority／pair／manifest／upstream reference edges"
+      "note": "DOC-009 authority／pair／manifest／upstream reference edges [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/delegated-requirement-document-reference-holding.jsonlから新path=docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7; 現receipt=627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -24,9 +24,9 @@
       "note": "LEGACY-ASSET-5EE032D657C221184B00 disposition／implementation unknown／consumer refs"
     },
     {
-      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "path": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
       "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
-      "note": "LASPH-0491 phase empty／HARNESS candidate／unknown boundary"
+      "note": "LASPH-0491 phase empty／HARNESS candidate／unknown boundary [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonlから新path=docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; 現receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-decisions.jsonl",
@@ -60,8 +60,8 @@
     },
     {
       "path": "scaffold/rdp001-delegated-doc009-atom/inventory.json",
-      "sha256": "68de304dffc45729c919a98911ff2171ba668ce36ed47d8a9fb9395d1655f550",
-      "note": "DOC-009 87-line exact span／atom candidate rebaselined to 2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c"
+      "sha256": "ceba8c87b752c4e51859ea01e60b54ed87ea12817d742648497d6bb25cc36ab9",
+      "note": "DOC-009 87-line exact span／atom candidate rebaselined to 2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: rdp001-delegated-doc009-atomの研究用pin（inventory.json）は、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳を指すpin・provenanceのpath field（台帳本文は不変のためSHAは不変）と、リンク先だけが変わった現行文書のSHA・行SHAだけを更新した（validatorの条件・意味fieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=68de304dffc45729c919a98911ff2171ba668ce36ed47d8a9fb9395d1655f550; 現receipt=ceba8c87b752c4e51859ea01e60b54ed87ea12817d742648497d6bb25cc36ab9; このBindingの採否・authorityは変更しない。]"
     }
   ],
   "role": "DELEGATED-DOC-009の旧L3 Universal Workflow AI判断エンジンsourceを全87行・51 exact span・51 semantic atom候補へ分解し、HARNESS／OS connection候補、4製品分母、L3とdownstream layer signal、legacy implementation／degraded／failure／consumer／decision unknownを同一scaffoldへ保持する",

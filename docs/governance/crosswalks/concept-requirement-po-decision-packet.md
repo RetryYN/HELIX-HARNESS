@@ -1074,7 +1074,7 @@
 
 ## 今回指定された系列以外の残母集団
 
-今回の215行はユーザー指定の4対象L2・HIL・DTK・L1-COVと1.0土台7項目である。別管理のconfirmed文書identity 175件、IR補助134件、v1.3の521非空行、旧candidate 92文書4,755行、atom化待ち2,058行／721 unit、補助source 655 itemは[carry-forward状況](../requirement-carry-forward-status.md)と[semantic line inventory](../legacy-requirement-semantic-line-inventory.md)に原状態で残す。これらを215行へ合算・採否・retire済みと扱わず、次のsource atom照合queueとして保持する。
+今回の215行はユーザー指定の4対象L2・HIL・DTK・L1-COVと1.0土台7項目である。別管理のconfirmed文書identity 175件、IR補助134件、v1.3の521非空行、旧candidate 92文書4,755行、atom化待ち2,058行／721 unit、補助source 655 itemは[carry-forward状況](../requirement-carry-forward-status.md)と[semantic line inventory](../legacy-migration/requirement/legacy-requirement-semantic-line-inventory.md)に原状態で残す。これらを215行へ合算・採否・retire済みと扱わず、次のsource atom照合queueとして保持する。
 
 同じ`docs/governance/candidates/`のdraft candidate要求系列には`AIDOC-*`、`DST-*`、`LAR-*`、`NCI-*`、`REQENG-*`、`SCF-*`、`WBS-*`、`HXT-RQ`と各`*-BR`群もある。これらは今回指定された原要求ID系列に含まれないため215行の分母へ加えていない。親をConceptへ付け替えた候補文書も含めて未採否のまま別queueで原文・revisionを保持し、未掲載を不要・移管済みとは読まない。
 

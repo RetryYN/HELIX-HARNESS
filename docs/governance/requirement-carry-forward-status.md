@@ -22,7 +22,7 @@ authority: machine ledgers linked below
 v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pending_rehome`列へ混在させない。
 旧candidate 92文書の4,755行も`historical_candidate`／`draft_candidate`／`preserved_pending_atomization`であり、sourceで採用済みだった要求や棄却済み実現方式へ混在させない。
 333 pathは要求数でも`preserved_pending_rehome`状態の件数でもなく、監査基準commitとarchive隔離直前commitでblobが異なるsource revision集合である。
-両revisionの意味同値は未確認であり、[機械台帳](pre-isolation-revision-delta-source-holding.jsonl)から前revisionを落とさない。
+両revisionの意味同値は未確認であり、[機械台帳](legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl)から前revisionを落とさない。
 
 ## 製品・工程・旧実装の判断入口（2026-09-24時点）
 
@@ -37,9 +37,9 @@ v1.3の521行は`preserved_pending_atomization`であり、表の`preserved_pend
 
 工程候補が未解決の30 unitは、[既存の研究分類](../../scaffold/phase-status-taxonomy-0105/README.md)で横断条件らしさのレビュー保留20件、追加sourceまたは人間判断待ち10件に分けている。両方とも正式工程は未確定であり、工程非適用も立証していない。
 
-IR 153件とconfirmed原文ID 175件には部分的な意味重複があり、328件の独立要求として合算しない。system contract 24件とrefinement contract 14件も補助sourceであり、要求件数へ加算しない。製品候補は[IR台帳](legacy-ir-product-routing-bootstrap.jsonl)、[confirmed原文ID台帳](legacy-confirmed-identity-product-routing-candidates.jsonl)、[system contract候補台帳](legacy-system-contract-product-routing-candidates.jsonl)、[refinement contract候補台帳](legacy-refinement-product-routing-candidates.jsonl)に記録する。両contractの元台帳は`relation_status: unmapped`のままで、候補分類は採否、接続成立、successor割当を意味しない。受入72件とsystem test24件は各親system contractへ3件・1件ずつ結び付くため、親の製品候補を参照できるが、個別の製品ownerや実行済み状態を推定しない。工程・実装状態は[218 unitのcrosswalk](legacy-requirement-implementation-crosswalk-bootstrap.jsonl)に記録する。工程候補の188件も正式な工程採否ではない。旧phase能力の`degraded_*`／`not_reimplemented_formally`は要求unit固有の縮退・未実装を証明しない。
+IR 153件とconfirmed原文ID 175件には部分的な意味重複があり、328件の独立要求として合算しない。system contract 24件とrefinement contract 14件も補助sourceであり、要求件数へ加算しない。製品候補は[IR台帳](legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl)、[confirmed原文ID台帳](legacy-migration/identity/legacy-confirmed-identity-product-routing-candidates.jsonl)、[system contract候補台帳](legacy-migration/requirement/legacy-system-contract-product-routing-candidates.jsonl)、[refinement contract候補台帳](legacy-migration/requirement/legacy-refinement-product-routing-candidates.jsonl)に記録する。両contractの元台帳は`relation_status: unmapped`のままで、候補分類は採否、接続成立、successor割当を意味しない。受入72件とsystem test24件は各親system contractへ3件・1件ずつ結び付くため、親の製品候補を参照できるが、個別の製品ownerや実行済み状態を推定しない。工程・実装状態は[218 unitのcrosswalk](legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl)に記録する。工程候補の188件も正式な工程採否ではない。旧phase能力の`degraded_*`／`not_reimplemented_formally`は要求unit固有の縮退・未実装を証明しない。
 
-旧資産4,020件は所在と静的種別を[候補台帳](legacy-asset-phase-product-classification-bootstrap.jsonl)に保全済みで、全件の再利用適性や要求単位の実装成立は未判定である。POの[判断時期の決定](decisions/legacy-asset-review-timing-2026-09-23.md)に従い、先に要求の要否と製品scopeを決め、L3要件定義で選んだ関係資産だけを必要な根拠まで調べる。未選定資産の全件調査は要求判断の前提にしない。
+旧資産4,020件は所在と静的種別を[候補台帳](legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl)に保全済みで、全件の再利用適性や要求単位の実装成立は未判定である。POの[判断時期の決定](decisions/legacy-asset-review-timing-2026-09-23.md)に従い、先に要求の要否と製品scopeを決め、L3要件定義で選んだ関係資産だけを必要な根拠まで調べる。未選定資産の全件調査は要求判断の前提にしない。
 
 [フェーズ能力台帳](phase-capability-inventory.md)の初期分類では、20フェーズの移行状態は現行へ再導出1件、旧能力比で縮退17件、正式には未再実装1件、意味的等価性が未解決1件である。20件とも`new_build_allowed: false`。これは代表assetによるフェーズ能力の分類であり、上表の218要求unitそれぞれの未実装・縮退判定や、旧testの合格を示さない。
 
@@ -49,7 +49,7 @@ IR 153件とconfirmed原文ID 175件には部分的な意味重複があり、32
 
 ### 現行のproduct responsibility候補
 
-2026-09-17監査時点の[四製品routing bootstrap台帳](legacy-ir-product-routing-bootstrap.jsonl)は、全153件を
+2026-09-17監査時点の[四製品routing bootstrap台帳](legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl)は、全153件を
 四製品について評価した候補projectionである。
 
 | routing候補 | 件数 |
@@ -64,7 +64,7 @@ IR 153件とconfirmed原文ID 175件には部分的な意味重複があり、32
 
 ### 旧crosswalk queueの履歴値
 
-次の値は[旧対象routing queue](legacy-ir-target-routing-queue.jsonl)が保持するcrosswalk由来のrouting snapshotであり、
+次の値は[旧対象routing queue](legacy-migration/ir/legacy-ir-target-routing-queue.jsonl)が保持するcrosswalk由来のrouting snapshotであり、
 現行の四製品routing候補ではない。
 
 | 旧queueのrouting値 | 件数 |
@@ -76,15 +76,15 @@ IR 153件とconfirmed原文ID 175件には部分的な意味重複があり、32
 
 旧queueは既存crosswalkの記述をfield分離したものであり、現行bootstrap台帳への置換やsuccessor割当、意味変更、
 承認を成立させない。23件は`meaning_change_applied: false`、全153件は`successor_assignment_status: unassigned`のまま保持する。
-対象未解決18件は、[判断packet](legacy-ir-unresolved-routing-decision-packet.md)でruntime・技術制約の層別17件と
+対象未解決18件は、[判断packet](legacy-migration/ir/legacy-ir-unresolved-routing-decision-packet.md)でruntime・技術制約の層別17件と
 Domain Object規律の適用範囲1件へ整理した。これは判断内容を明確にするものであり、配置や意味変更を確定しない。
-[再配置wave台帳](legacy-ir-rehome-wave-register.md)は153件を業務価値→機能→非機能→技術制約の順に11 partitionへ分ける。
+[再配置wave台帳](legacy-migration/ir/legacy-ir-rehome-wave-register.md)は153件を業務価値→機能→非機能→技術制約の順に11 partitionへ分ける。
 partitionは要求identityごとの後続PRを並べるqueue単位であり、successorや承認状態ではない。
-W1は[業務価値要求33件の原文付きqueue](legacy-ir-w1-business-rehome-queue.md)へ展開済みで、
+W1は[業務価値要求33件の原文付きqueue](legacy-migration/ir/legacy-ir-w1-business-rehome-queue.md)へ展開済みで、
 OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断候補8（適用0）である。
-[W1人間判断候補の意味分解](legacy-ir-w1-human-decision-candidates.md)は、この8件について保持する意味、責務上の整理箇所、後続PRで示す判断を分けている。削除・縮退・統合・降格は提案していない。
-[W2機能要求69件のqueue](legacy-ir-w2-functional-rehome-queue.md)は、HELIX-OS候補43件、HARNESS／OS分割候補23件、対象未解決3件を原文・digest付きで展開している。意味変更・照合候補8件は未適用、successorは全件未割当である。
-[W3非機能要求40件](legacy-ir-w3-nonfunctional-rehome-queue.md)と[W4技術制約11件](legacy-ir-w4-technical-constraint-rehome-queue.md)も原文・digest付きで展開済みである。W3はOS候補22、HARNESS／OS分割14、対象未解決4、判断候補5、W4はOS候補1、対象未解決10、判断候補2で、意味変更適用・successor割当はいずれも0件である。[W2〜W4人間判断候補の意味分解](legacy-ir-w2-w4-human-decision-candidates.md)は、この15件の原文と整理論点を提示する。W1の8件と合わせた23件すべてについて、削除・縮退・統合・降格を行わず、人間判断もまだ要求していない。
+[W1人間判断候補の意味分解](legacy-migration/ir/legacy-ir-w1-human-decision-candidates.md)は、この8件について保持する意味、責務上の整理箇所、後続PRで示す判断を分けている。削除・縮退・統合・降格は提案していない。
+[W2機能要求69件のqueue](legacy-migration/ir/legacy-ir-w2-functional-rehome-queue.md)は、HELIX-OS候補43件、HARNESS／OS分割候補23件、対象未解決3件を原文・digest付きで展開している。意味変更・照合候補8件は未適用、successorは全件未割当である。
+[W3非機能要求40件](legacy-migration/ir/legacy-ir-w3-nonfunctional-rehome-queue.md)と[W4技術制約11件](legacy-migration/ir/legacy-ir-w4-technical-constraint-rehome-queue.md)も原文・digest付きで展開済みである。W3はOS候補22、HARNESS／OS分割14、対象未解決4、判断候補5、W4はOS候補1、対象未解決10、判断候補2で、意味変更適用・successor割当はいずれも0件である。[W2〜W4人間判断候補の意味分解](legacy-migration/ir/legacy-ir-w2-w4-human-decision-candidates.md)は、この15件の原文と整理論点を提示する。W1の8件と合わせた23件すべてについて、削除・縮退・統合・降格を行わず、人間判断もまだ要求していない。
 
 ## revision別statusの保持
 
@@ -94,16 +94,16 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 
 ## 機械台帳
 
-- [HARNESS工程source clause carry-forward](harness-workflow-source-clause-carry-forward.jsonl) — 非網羅追加索引source 108件、target draft 108件、successor 0件、decision 0件。本索引に無いことは非継承を意味しない
-- [IR要求carry-forward](legacy-requirement-carry-forward.jsonl) — `51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0`
-- [confirmed文書identity carry-forward](legacy-confirmed-requirement-identity-carry-forward.jsonl) — `eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed`
-- [IR↔文書relation](legacy-ir-document-source-relation.jsonl) — `f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f`
-- [要求文書carry-forward](legacy-requirement-document-carry-forward.jsonl) — `bb4d12f3cfc9c1daefa064ede8bcc21943dd10df05098f423158fb5a08512490`
-- [旧v1.3委任文書・意味relation closureのfile-blob holding](delegated-requirement-document-source-holding.jsonl) — `23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd`。114 file blob＋行保持3文書でclosure 117文書、atom化0、successor 0、decision 0
-- [委任文書の参照候補holding](delegated-requirement-document-reference-holding.jsonl) — `627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7`。frontmatter・本文参照788 edge、参照先241文書、分類待ちtarget 124文書、decision 0
-- [Scrum Reverse source line台帳](scrum-reverse-source-line-carry-forward.jsonl) — `72428f6becffa5d931d2ea26f96408dec7e6e04a8b47869220a8c2f66070f1e9`。closure内3文書のうちfile blob台帳へ重複登録しない3文書を、原文300行と行digestで保持
-- [archive隔離前revision差分](pre-isolation-revision-delta-source-holding.jsonl) — `d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180`
-- [IR対象routing queue](legacy-ir-target-routing-queue.jsonl) — 対象revisionのGit blobで固定する
+- [HARNESS工程source clause carry-forward](legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl) — 非網羅追加索引source 108件、target draft 108件、successor 0件、decision 0件。本索引に無いことは非継承を意味しない
+- [IR要求carry-forward](legacy-migration/requirement/legacy-requirement-carry-forward.jsonl) — `51ae96d3fd27cc4aaa6e445c27ff0c6f175199cae09efe4e1566b73c1e8019b0`
+- [confirmed文書identity carry-forward](legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl) — `eadb6052cdc64c344e63bef4ed8c88f69b06fc6127f71f6d57b059f7cfbd18ed`
+- [IR↔文書relation](legacy-migration/ir/legacy-ir-document-source-relation.jsonl) — `f7e713248c84ea53d50c96583f41fc827e0acf48ee98e13bc3967e78df12588f`
+- [要求文書carry-forward](legacy-migration/requirement/legacy-requirement-document-carry-forward.jsonl) — `bb4d12f3cfc9c1daefa064ede8bcc21943dd10df05098f423158fb5a08512490`
+- [旧v1.3委任文書・意味relation closureのfile-blob holding](legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl) — `23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd`。114 file blob＋行保持3文書でclosure 117文書、atom化0、successor 0、decision 0
+- [委任文書の参照候補holding](legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl) — `627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7`。frontmatter・本文参照788 edge、参照先241文書、分類待ちtarget 124文書、decision 0
+- [Scrum Reverse source line台帳](legacy-migration/delegated-document/scrum-reverse-source-line-carry-forward.jsonl) — `72428f6becffa5d931d2ea26f96408dec7e6e04a8b47869220a8c2f66070f1e9`。closure内3文書のうちfile blob台帳へ重複登録しない3文書を、原文300行と行digestで保持
+- [archive隔離前revision差分](legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl) — `d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180`
+- [IR対象routing queue](legacy-migration/ir/legacy-ir-target-routing-queue.jsonl) — 対象revisionのGit blobで固定する
 
 ## 判定規則
 
@@ -115,12 +115,12 @@ OS候補18、HARNESS／OS分割候補14、対象未解決1、意味変更判断�
 
 ## 未完了
 
-- [semantic line全量保全inventory](legacy-requirement-semantic-line-inventory.md)に登録した未分類2,058行・[721 review unit](legacy-requirement-atomization-review-queue.jsonl)の要求atom化。source spanの全量登録と無損失な処理分割は完了したが、要求／制約／受入／根拠／例／navigationの分類とatom境界は未確定。
+- [semantic line全量保全inventory](legacy-migration/requirement/legacy-requirement-semantic-line-inventory.md)に登録した未分類2,058行・[721 review unit](legacy-migration/requirement/legacy-requirement-atomization-review-queue.jsonl)の要求atom化。source spanの全量登録と無損失な処理分割は完了したが、要求／制約／受入／根拠／例／navigationの分類とatom境界は未確定。
 - `screen-mock-boundary.md`の監査基準`confirmed` revisionはfile blobのみ保持され、semantic line台帳とqueueには未登録である。隔離直前`draft` revisionだけで被覆済みにせず、基準revisionも行atom化して両revisionを照合する。
-- [file-blob保全inventory](delegated-requirement-document-source-inventory.md)の意味relation closure 117文書を、対象文書ごとの要求整理PRで無損失atom化して管理層へ再登録する。file blobを一要求atomとして扱わない。
-- [参照候補holding](delegated-requirement-document-reference-inventory.md)の分類待ちtarget 124文書を、要求意味、工程履歴、process、migration provenance、supporting sourceへ確認する。分類前に参照edgeまたはtarget blobを除外しない。
+- [file-blob保全inventory](legacy-migration/delegated-document/delegated-requirement-document-source-inventory.md)の意味relation closure 117文書を、対象文書ごとの要求整理PRで無損失atom化して管理層へ再登録する。file blobを一要求atomとして扱わない。
+- [参照候補holding](legacy-migration/delegated-document/delegated-requirement-document-reference-inventory.md)の分類待ちtarget 124文書を、要求意味、工程履歴、process、migration provenance、supporting sourceへ確認する。分類前に参照edgeまたはtarget blobを除外しない。
 - 153 IRと175 source-qualified identityの意味重複候補の比較。
-- [補助source 655 item](legacy-requirement-supplementary-source-inventory.md)と153 IR／175 identity／対象別L2・L11のrelation mapping。
-- [旧candidate 92文書・4,755行](legacy-candidate-source-inventory.md)のatom化と、要求意味／受入／根拠／旧実現方式の分類。
+- [補助source 655 item](legacy-migration/requirement/legacy-requirement-supplementary-source-inventory.md)と153 IR／175 identity／対象別L2・L11のrelation mapping。
+- [旧candidate 92文書・4,755行](legacy-migration/candidate/legacy-candidate-source-inventory.md)のatom化と、要求意味／受入／根拠／旧実現方式の分類。
 - 各原要求のHARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OSへのsuccessor割当。
 - successorとL11受入の被覆確認、人間による意味変更・縮退候補の判断。

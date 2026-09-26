@@ -35,9 +35,9 @@
     "docs/governance/legacy-asset-decisions.jsonl",
     "docs/governance/legacy-asset-copy-read-after.jsonl",
     "docs/governance/legacy-asset-decision-log.md",
-    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
-    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
-    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+    "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
   ],
   "files": {
     "docs/governance/legacy-asset-disposition.jsonl": {
@@ -56,15 +56,15 @@
       "sha256": "748d14fe46da14ef33618e83672be18f290345f5f7f80c38eb3f1094cfe6f91b",
       "bytes": 5000
     },
-    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": {
+    "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl": {
       "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
       "bytes": 6311877
     },
-    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": {
+    "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": {
       "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
       "bytes": 7938664
     },
-    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": {
+    "docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl": {
       "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
       "bytes": 602042
     }

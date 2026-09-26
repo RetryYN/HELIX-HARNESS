@@ -248,7 +248,7 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     req(sum(1 for e in edges if e.get("product") is None) == 1, "E_EDGE_UNRESOLVED_PRODUCT")
 
     disposition = {x.get("asset_id"): x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-disposition.jsonl")}
-    catalog = {x.get("asset_id"): x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")}
+    catalog = {x.get("asset_id"): x for x in read_jsonl(ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl")}
     decision_rows = read_jsonl(ROOT / "docs/governance/legacy-asset-decisions.jsonl")
     decision_counts = {
         aid: sum(1 for row in decision_rows if row.get("asset_id") == aid)

@@ -15,6 +15,34 @@ import sys
 from functools import lru_cache
 from pathlib import Path
 
+# 2026-09-26のPO判断で、旧HELIXからの移行台帳をdocs/governance/legacy-migration/へ移した
+# （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
+# 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
+RELOCATED_PATHS = {
+    "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
+    "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
+    "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
+    "docs/governance/legacy-candidate-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+    "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-structural-heading-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl",
+    "docs/governance/legacy-rule-atom-inventory.jsonl": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "docs/governance/pre-isolation-revision-delta-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
+    "docs/governance/scrum-reverse-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/delegated-document/scrum-reverse-source-line-carry-forward.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -146,7 +174,7 @@ def live_holdings(register: list[dict]) -> tuple[list[dict], dict[str, list[dict
     holdings = []
     records: dict[str, list[dict]] = {}
     for row in live:
-        path = ROOT / row["source_atom_set_ref"]
+        path = relocated(ROOT / row["source_atom_set_ref"])
         source_rows = load_jsonl(path)
         records[row["registration_id"]] = source_rows
         holdings.append({
@@ -282,7 +310,7 @@ def validate(inv: dict, source_items: list[dict], proposed: dict) -> list[str]:
     for row in register:
         if row.get("registration_id") not in live_ids:
             continue
-        source_path = ROOT / row.get("source_atom_set_ref", "")
+        source_path = relocated(ROOT / row.get("source_atom_set_ref", ""))
         if not source_path.is_file():
             errors.append(f"E_REGISTER_SOURCE_MISSING:{row.get('registration_id')}")
             continue
@@ -303,7 +331,7 @@ def validate(inv: dict, source_items: list[dict], proposed: dict) -> list[str]:
     source_bytes = canonical_source_lines(source_items)
     fail(errors, sha(source_bytes) == inv.get("proposal_source_set_sha256"), "E_SOURCE_SET_DIGEST")
     fail(errors, sha(ITEMS.read_bytes()) == inv.get("proposal_source_set_sha256"), "E_SOURCE_FILE_DIGEST")
-    formal_source = ROOT / FORMAL_SOURCE_PATH
+    formal_source = relocated(ROOT / FORMAL_SOURCE_PATH)
     formal_coverage = ROOT / FORMAL_COVERAGE_PATH
     formal_source_bytes = formal_source.read_bytes() if formal_source.is_file() else b""
     formal_coverage_text = formal_coverage.read_text(encoding="utf-8") if formal_coverage.is_file() else ""

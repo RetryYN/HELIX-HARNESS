@@ -15,9 +15,9 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 REPORT_PATH = HERE / "report.json"
 BINDING_PATH = ROOT / "scaffold/bindings/SCF-B-0029.json"
-HOLDING_PATH = ROOT / "docs/governance/delegated-requirement-document-source-holding.jsonl"
-INVENTORY_PATH = ROOT / "docs/governance/delegated-requirement-document-source-inventory.md"
-REFERENCE_PATH = ROOT / "docs/governance/delegated-requirement-document-reference-inventory.md"
+HOLDING_PATH = ROOT / "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl"
+INVENTORY_PATH = ROOT / "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-inventory.md"
+REFERENCE_PATH = ROOT / "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-inventory.md"
 DISPOSITION_PATH = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 DECISIONS_PATH = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 REGISTER_PATH = ROOT / "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
@@ -274,7 +274,7 @@ def validate(report: dict | None = None) -> list[str]:
     expect(errors, binding.get("state") == "registered", "binding state不一致")
     expect(errors, binding.get("role") == "RDP-001 DELEGATED-DOC-003 未処理先頭8文書のfile blob静的監査", "binding role不一致")
     upstream = {x.get("path"): x.get("sha256") for x in binding.get("upstream", [])}
-    for path in ("scaffold/rdp001-delegated-doc003-unprocessed8/report.json", "docs/governance/delegated-requirement-document-source-holding.jsonl", "docs/governance/delegated-requirement-document-source-inventory.md", "docs/governance/delegated-requirement-document-reference-inventory.md", "docs/governance/legacy-asset-disposition.jsonl", "docs/governance/legacy-asset-decisions.jsonl", "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl", "docs/governance/audits/source-rebaseline/l2d-s1-01-input-holding-screen.jsonl"):
+    for path in ("scaffold/rdp001-delegated-doc003-unprocessed8/report.json", "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl", "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-inventory.md", "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-inventory.md", "docs/governance/legacy-asset-disposition.jsonl", "docs/governance/legacy-asset-decisions.jsonl", "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl", "docs/governance/audits/source-rebaseline/l2d-s1-01-input-holding-screen.jsonl"):
         expect(errors, upstream.get(path) == sha(ROOT / path), f"binding upstream digest不一致: {path}")
     for path in ("scaffold/rdp001-delegated-doc003-unprocessed8/report.json", "scaffold/rdp001-delegated-doc003-unprocessed8/README.md", "scaffold/rdp001-delegated-doc003-unprocessed8/validate.py", "scaffold/rdp001-delegated-doc003-unprocessed8/selfcheck.py", "scaffold/bindings/SCF-B-0029.json"):
         expect(errors, (ROOT / path).is_file(), f"binding artifact不在: {path}")

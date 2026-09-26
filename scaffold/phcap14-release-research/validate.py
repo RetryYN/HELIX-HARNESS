@@ -9,7 +9,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 INV = HERE / "inventory.json"
 LEDGER = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
-PHASE = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+PHASE = ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DECISIONS = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 ARCHIVE_PREFIX = "archive/legacy-generation-2026-09-14/root/"
 

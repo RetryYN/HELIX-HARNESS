@@ -12,10 +12,10 @@ HERE = Path(__file__).resolve().parent
 ARCHIVE = ROOT / "archive/legacy-generation-2026-09-14/root"
 LEDGER = HERE / "legacy-requirement-direct-semantic-review-wave37.jsonl"
 META = HERE / "legacy-requirement-direct-semantic-review-wave37.meta.json"
-CATALOG_PATH = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
-CROSSWALK_PATH = ROOT / "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
-DECOMPOSITION_PATH = ROOT / "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
-RELATION_PATH = ROOT / "docs/governance/legacy-ir-document-source-relation.jsonl"
+CATALOG_PATH = ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
+CROSSWALK_PATH = ROOT / "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+DECOMPOSITION_PATH = ROOT / "docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+RELATION_PATH = ROOT / "docs/governance/legacy-migration/ir/legacy-ir-document-source-relation.jsonl"
 REQ_IR = ARCHIVE / "requirements-ir/requirements.json"
 BATCH = "LEGACY-SEMANTIC-WAVE37-2026-09-22"
 BASE = "562e176c36844474b63424ec06beefe2f7722d18"
@@ -167,7 +167,7 @@ def verify_role(row: dict) -> None:
 def prior_edges_and_assets() -> tuple[set[tuple[str, str]], set[str], set[str]]:
     edges, assets, units = set(), set(), set()
     for wave in range(1, 37):
-        for row in read_jsonl(ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.jsonl"):
+        for row in read_jsonl(ROOT / f"docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave{wave}.jsonl"):
             role = row.get("role_kind", row.get("artifact_evidence_kind"))
             edge = (row["unit_candidate_id"], row["asset_id"])
             edges.add(edge)
@@ -209,8 +209,8 @@ def verify() -> None:
         require(target.is_file() and file_digest(target) == value, f"input digest {path}")
     prior_batches = []
     for wave in range(1, 37):
-        ledger = ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.jsonl"
-        meta_path = ROOT / f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.meta.json"
+        ledger = ROOT / f"docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave{wave}.jsonl"
+        meta_path = ROOT / f"docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave{wave}.meta.json"
         prior_batches.append({"batch_id": json.loads(meta_path.read_text())["batch_id"], "ledger_sha256": file_digest(ledger), "meta_sha256": file_digest(meta_path)})
     require(meta["prior_review_batches"] == prior_batches, "prior lineage")
 

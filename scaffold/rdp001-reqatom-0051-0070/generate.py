@@ -10,8 +10,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-QUEUE = ROOT / "docs/governance/legacy-requirement-atomization-review-queue.jsonl"
-LEDGER = ROOT / "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl"
+QUEUE = ROOT / "docs/governance/legacy-migration/requirement/legacy-requirement-atomization-review-queue.jsonl"
+LEDGER = ROOT / "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl"
 ASSETS = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 DECISIONS = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 COPY_READ_AFTER = ROOT / "docs/governance/legacy-asset-copy-read-after.jsonl"

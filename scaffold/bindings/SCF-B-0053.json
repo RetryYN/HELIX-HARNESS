@@ -15,13 +15,13 @@
     },
     {
       "path": "scaffold/phcap15-17-membership-edges/inventory.json",
-      "sha256": "6d2a210c65f3342394f15cd1ca764479900fd748d9ee3db48ba9ff608784c478",
-      "note": "二asset、69 membership、anchor、failure／consumer／decision残差 [2026-09-25 full-binding read-after/rebind: phase inventory records PHCAP-15/17 compared with 8e37e3c94 and current are identical; this exact provenance field changed only. role/obligations/connections/operations/artifacts/verification/replacement and all other upstream dependencies reviewed; authority and membership classification unchanged. previous=2f5ae0c6c05f73c3fe50f4259f4e15091748916bf144932e704b7c243b63fda3; current=8f02340959147ed26fd513dec42a7e680f344d8e5e527ede02782851fa623ca2] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断） read-after: phcap15-17-membership-edgesのpinは、HELIX-Web・HELIX-Web-OSの文書をHELIX本体のdocs/からrepository直下のhelix-web/（helix-web/docs/helix-web/、helix-web/docs/helix-web-os/）へ移した（2026-09-26のPO判断、docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md）のに合わせ、移動した文書のpath・SHA、本文の変わらない範囲の行番号とSHA、リンク先またはfront matterの対の文書・親L1のpathだけが変わった行を含むpinのexact_textと行SHA、Phase Capability InventoryのSHAとphase snapshotのpathだけを更新した（validatorのコード・条件・意味fieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web・HELIX-Web-OSの文書のpath（旧docs/helix-web/・docs/helix-web-os/）、それらへのリンクの表記、Phase Capability Inventoryのrefsのpathの表記に依存しないことをbinding全体で確認した。前receipt=8f02340959147ed26fd513dec42a7e680f344d8e5e527ede02782851fa623ca2; 現receipt=6d2a210c65f3342394f15cd1ca764479900fd748d9ee3db48ba9ff608784c478; このBindingの採否・authorityは変更しない。]"
+      "sha256": "f5d71fc7c8971b9099081ab20e6067b7964bbe3f17b7ae89037905f2252fe3f3",
+      "note": "二asset、69 membership、anchor、failure／consumer／decision残差 [2026-09-25 full-binding read-after/rebind: phase inventory records PHCAP-15/17 compared with 8e37e3c94 and current are identical; this exact provenance field changed only. role/obligations/connections/operations/artifacts/verification/replacement and all other upstream dependencies reviewed; authority and membership classification unchanged. previous=2f5ae0c6c05f73c3fe50f4259f4e15091748916bf144932e704b7c243b63fda3; current=8f02340959147ed26fd513dec42a7e680f344d8e5e527ede02782851fa623ca2] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断） read-after: phcap15-17-membership-edgesのpinは、HELIX-Web・HELIX-Web-OSの文書をHELIX本体のdocs/からrepository直下のhelix-web/（helix-web/docs/helix-web/、helix-web/docs/helix-web-os/）へ移した（2026-09-26のPO判断、docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md）のに合わせ、移動した文書のpath・SHA、本文の変わらない範囲の行番号とSHA、リンク先またはfront matterの対の文書・親L1のpathだけが変わった行を含むpinのexact_textと行SHA、Phase Capability InventoryのSHAとphase snapshotのpathだけを更新した（validatorのコード・条件・意味fieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web・HELIX-Web-OSの文書のpath（旧docs/helix-web/・docs/helix-web-os/）、それらへのリンクの表記、Phase Capability Inventoryのrefsのpathの表記に依存しないことをbinding全体で確認した。前receipt=8f02340959147ed26fd513dec42a7e680f344d8e5e527ede02782851fa623ca2; 現receipt=6d2a210c65f3342394f15cd1ca764479900fd748d9ee3db48ba9ff608784c478; このBindingの採否・authorityは変更しない。] [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap15-17-membership-edgesの研究用pin（inventory.json）は、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳を指すpin・provenanceのpath field（台帳本文は不変のためSHAは不変）と、リンク先だけが変わった現行文書のSHA・行SHAだけを更新した（validatorの条件・意味fieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=6d2a210c65f3342394f15cd1ca764479900fd748d9ee3db48ba9ff608784c478; 現receipt=f5d71fc7c8971b9099081ab20e6067b7964bbe3f17b7ae89037905f2252fe3f3; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/phcap15-17-membership-edges/validate.py",
-      "sha256": "2747879c46068963f6131abdbbde54666319a7773936fc8294885b1d65cbb348",
-      "note": "candidate pool再導出、逐語span／ID exact guard、asset ledger、anchor、unknown validator"
+      "sha256": "0dd371e106da1579d735f73310de605c647707aa1f0d1dcbe0d6bce663384693",
+      "note": "candidate pool再導出、逐語span／ID exact guard、asset ledger、anchor、unknown validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap15-17-membership-edges/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=2747879c46068963f6131abdbbde54666319a7773936fc8294885b1d65cbb348; 現receipt=0dd371e106da1579d735f73310de605c647707aa1f0d1dcbe0d6bce663384693; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/phcap15-17-membership-edges/selfcheck.py",
@@ -29,14 +29,14 @@
       "note": "authority、実装、consumer、decision、source、分類、禁止推論、nested keyset、anchor meaning、membership contract／reason改変を拒否する27負例"
     },
     {
-      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
       "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
-      "note": "218 requirement-unit crosswalkと候補asset pool、逐語source contract"
+      "note": "218 requirement-unit crosswalkと候補asset pool、逐語source contract [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonlから新path=docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65; 現receipt=8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.meta.json",
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.meta.json",
       "sha256": "a67f248c3dacf4c15af121ec8db1ba14ff8f8711b68cb9b688c20b6eb383df85",
-      "note": "crosswalk revision／method static metadata"
+      "note": "crosswalk revision／method static metadata [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.meta.jsonから新path=docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.meta.jsonへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=a67f248c3dacf4c15af121ec8db1ba14ff8f8711b68cb9b688c20b6eb383df85; 現receipt=a67f248c3dacf4c15af121ec8db1ba14ff8f8711b68cb9b688c20b6eb383df85; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -44,9 +44,9 @@
       "note": "selected asset Historical／unresolved／implementation／consumer／decision state"
     },
     {
-      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "path": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
       "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
-      "note": "二assetのcandidate phase／product分類"
+      "note": "二assetのcandidate phase／product分類 [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonlから新path=docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; 現receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-decisions.jsonl",

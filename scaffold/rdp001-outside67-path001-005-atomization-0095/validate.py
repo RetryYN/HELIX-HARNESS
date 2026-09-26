@@ -133,7 +133,7 @@ def validate(root: Path = ROOT, out: Path = HERE) -> list[str]:
     fail(inv.get("alignment_policy") != "equal-only pre anchors; replace/insert pre anchors are null with explicit status", "E_INVENTORY_ALIGNMENT_POLICY")
     fail(plan.get("classification_policy") != CLASSIFICATION_POLICY or inv.get("classification_policy") != CLASSIFICATION_POLICY, "E_CLASSIFICATION_POLICY")
     fail(subprocess.run(["git", "-C", str(root), "merge-base", "--is-ancestor", BASE, "HEAD"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode != 0, "E_BASE_NOT_ANCESTOR")
-    holding = jsonl(root / "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl")
+    holding = jsonl(root / "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl")
     holds = {row["source_item_id"]: row for row in holding}
     fail(len(holding) != 67 or len(holds) != 67 or set(TARGETS) - set(holds), "E_HOLDING_DENOM")
     fail(scan.get("selected_ids") != TARGETS or scan.get("holding_denominator") != 67 or scan.get("static_only") is not True or scan.get("old_runtime_test_ci_execution") is not False, "E_SCAN_BOUNDARY")

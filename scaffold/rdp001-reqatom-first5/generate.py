@@ -10,8 +10,8 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
-QUEUE = ROOT / "docs/governance/legacy-requirement-atomization-review-queue.jsonl"
-LEDGER = ROOT / "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl"
+QUEUE = ROOT / "docs/governance/legacy-migration/requirement/legacy-requirement-atomization-review-queue.jsonl"
+LEDGER = ROOT / "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl"
 SOURCE = ROOT / "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md"
 ARCHIVE_SOURCE = ROOT / "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/business-requirements.md"
 ASSETS = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
@@ -485,9 +485,9 @@ def build() -> None:
         "proposal_status": "needs_independent_review",
         "source_commit": "4a195555fed7f5e67e7839be232570972dc6e2ae",
         "inputs": {
-            "queue_path": "docs/governance/legacy-requirement-atomization-review-queue.jsonl",
+            "queue_path": "docs/governance/legacy-migration/requirement/legacy-requirement-atomization-review-queue.jsonl",
             "queue_sha256": file_digest(QUEUE),
-            "semantic_line_ledger_path": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+            "semantic_line_ledger_path": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
             "semantic_line_ledger_sha256": file_digest(LEDGER),
             "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
             "source_sha256": file_digest(SOURCE),

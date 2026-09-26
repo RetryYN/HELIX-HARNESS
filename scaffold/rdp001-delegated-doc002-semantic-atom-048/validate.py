@@ -176,10 +176,10 @@ def check(candidate: dict | None = None, binding: dict | None = None) -> list[st
         inv_path = ROOT / connection["candidate_path"] / "inventory.json"
         req(connection.get("candidate_inventory_sha256") == digest(inv_path.read_bytes()), "E_B0010_CANDIDATE_SHA")
 
-    rows = load_jsonl(ROOT / "docs/governance/delegated-requirement-document-source-holding.jsonl")
-    refs = load_jsonl(ROOT / "docs/governance/delegated-requirement-document-reference-holding.jsonl")
+    rows = load_jsonl(ROOT / "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl")
+    refs = load_jsonl(ROOT / "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl")
     assets = load_jsonl(ROOT / "docs/governance/legacy-asset-disposition.jsonl")
-    phases = load_jsonl(ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")
+    phases = load_jsonl(ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl")
     decisions = load_jsonl(ROOT / "docs/governance/legacy-asset-decisions.jsonl")
     read_afters = load_jsonl(ROOT / "docs/governance/legacy-asset-copy-read-after.jsonl")
     req(len(rows) == 114 and len(refs) == 788, "E_HOLDING_DENOM")

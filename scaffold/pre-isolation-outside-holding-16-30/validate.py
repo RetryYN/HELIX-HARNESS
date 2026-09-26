@@ -12,6 +12,34 @@ import subprocess
 import sys
 from pathlib import Path
 
+# 2026-09-26のPO判断で、旧HELIXからの移行台帳をdocs/governance/legacy-migration/へ移した
+# （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
+# 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
+RELOCATED_PATHS = {
+    "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
+    "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
+    "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
+    "docs/governance/legacy-candidate-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+    "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-structural-heading-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl",
+    "docs/governance/legacy-rule-atom-inventory.jsonl": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "docs/governance/pre-isolation-revision-delta-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
+    "docs/governance/scrum-reverse-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/delegated-document/scrum-reverse-source-line-carry-forward.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -33,7 +61,7 @@ BASE_ANCHOR_INVENTORY_BLOB_OID = "7f40386d59c42cc49fcac86b326c85a34bdd4fbe"
 # The historical-register correction is an uncommitted candidate layered on
 # the reviewed PR tip. Pin the candidate bytes explicitly while retaining the
 # immutable base object checks above.
-EXPECTED_GENERATOR_SHA256 = "e701be0fa9c9bdf378f6a0d7347f105ddb03c3e1b2e1cca8a9c90de53cb2f01a"
+EXPECTED_GENERATOR_SHA256 = "46e5d019640a6bef5c1cc6da700b2d8e1fbee554725d3ec60c50340ca26d7d4b"
 EXPECTED_INVENTORY_SHA256 = "ab01a1e6d3bda955b40cf434d9c5d213c291b9800cb393c4e52fa6b25acb71f0"
 
 REPORT_PATH = "scaffold/pre-isolation-outside-holding-67/report.json"
@@ -141,7 +169,7 @@ def independent_live_holdings() -> tuple[list[dict], dict[str, list[dict]]]:
     holdings: list[dict] = []
     holding_rows: dict[str, list[dict]] = {}
     for row in live_rows:
-        source_path = ROOT / row["source_atom_set_ref"]
+        source_path = relocated(ROOT / row["source_atom_set_ref"])
         records = load_jsonl(source_path)
         holding = {
             "registration_id": row["registration_id"],
@@ -192,7 +220,7 @@ def independent_git_holding_scan(inv: dict) -> list[str]:
     errors: list[str] = []
     try:
         report = json.loads((ROOT / REPORT_PATH).read_text(encoding="utf-8"))
-        source_rows = load_jsonl(ROOT / SOURCE_SET_PATH)
+        source_rows = load_jsonl(relocated(ROOT / SOURCE_SET_PATH))
         holdings, holding_rows = independent_live_holdings()
         rows = inv.get("rows", [])
         expected_report = report["rows"][15:30]
@@ -245,8 +273,8 @@ def validate(inv: dict) -> list[str]:
     fail(errors, scope.get("source_set_sha256") == generator.SOURCE_SET_SHA256, "E_SOURCE_SET_SHA")
     fail(errors, scope.get("management_register_sha256") == generator.REGISTER_SHA256, "E_REGISTER_SHA")
     fail(errors, scope.get("pre_isolation_holding_sha256") == generator.HOLDING_SHA256, "E_HOLDING_SHA")
-    fail(errors, (ROOT / generator.SOURCE_SET_PATH).is_file(), "E_SOURCE_SET_MISSING")
-    fail(errors, (ROOT / generator.HOLDING_PATH).is_file(), "E_HOLDING_MISSING")
+    fail(errors, relocated(ROOT / generator.SOURCE_SET_PATH).is_file(), "E_SOURCE_SET_MISSING")
+    fail(errors, relocated(ROOT / generator.HOLDING_PATH).is_file(), "E_HOLDING_MISSING")
     try:
         fail(errors, subprocess.run(["git", "merge-base", "--is-ancestor", generator.CURRENT_CAPTURE, "HEAD"], cwd=ROOT).returncode == 0, "E_CAPTURE_NOT_ANCESTOR")
     except OSError as exc:

@@ -118,7 +118,7 @@
         }
       }
     },
-    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": {
+    "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl": {
       "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
       "bytes": 6311877,
       "line_count": 4020,
@@ -147,7 +147,7 @@
         }
       }
     },
-    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": {
+    "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": {
       "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
       "bytes": 7938664,
       "line_count": 218,
@@ -176,7 +176,7 @@
         }
       }
     },
-    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": {
+    "docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl": {
       "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3",
       "bytes": 602042,
       "line_count": 153,

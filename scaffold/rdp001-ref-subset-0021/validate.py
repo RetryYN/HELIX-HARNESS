@@ -13,12 +13,12 @@ from typing import Any
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 INV = os.path.join(HERE, "inventory.json")
-REF = "docs/governance/delegated-requirement-document-reference-holding.jsonl"
-SOURCE = "docs/governance/delegated-requirement-document-source-holding.jsonl"
+REF = "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl"
+SOURCE = "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl"
 ASSET = "docs/governance/legacy-asset-disposition.jsonl"
-PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+PHASE = "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DECISION = "docs/governance/legacy-asset-decisions.jsonl"
-FAILURE = "docs/governance/legacy-rule-atom-inventory.jsonl"
+FAILURE = "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl"
 EXPECTED_BASE = "c354b7d9177ad3ea92dec30c66c36e6ce2d66ae3"
 EXPECTED_EDGES = {
     "DELEGATED-REF-0001", "DELEGATED-REF-0016", "DELEGATED-REF-0027", "DELEGATED-REF-0041",

@@ -2,7 +2,7 @@
 
 status: decision_not_requested_yet
 scope: HIL-BR-03／07／09／18／21／23／26／30
-authority: [旧要求carry-forward台帳](legacy-requirement-carry-forward.jsonl)
+authority: [旧要求carry-forward台帳](../requirement/legacy-requirement-carry-forward.jsonl)
 queue: [W1業務価値要求queue](legacy-ir-w1-business-rehome-queue.md)
 
 ## この文書が行わないこと

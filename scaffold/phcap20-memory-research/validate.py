@@ -3,7 +3,7 @@
 import hashlib,json,re,sys
 from pathlib import Path
 HERE=Path(__file__).resolve().parent; ROOT=HERE.parents[1]; INV=HERE/'inventory.json'
-ASSET=ROOT/'docs/governance/legacy-asset-disposition.jsonl'; PHASE=ROOT/'docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'; DEC=ROOT/'docs/governance/legacy-asset-decisions.jsonl'
+ASSET=ROOT/'docs/governance/legacy-asset-disposition.jsonl'; PHASE=ROOT/'docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl'; DEC=ROOT/'docs/governance/legacy-asset-decisions.jsonl'
 PREFIX='archive/legacy-generation-2026-09-14/root/'
 def dig(b): return hashlib.sha256(b).hexdigest()
 def jsonl(p): return [json.loads(x) for x in p.read_text(encoding='utf-8').splitlines() if x.strip()]

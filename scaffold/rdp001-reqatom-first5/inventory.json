@@ -5,9 +5,9 @@
   "proposal_status": "needs_independent_review",
   "source_commit": "4a195555fed7f5e67e7839be232570972dc6e2ae",
   "inputs": {
-    "queue_path": "docs/governance/legacy-requirement-atomization-review-queue.jsonl",
+    "queue_path": "docs/governance/legacy-migration/requirement/legacy-requirement-atomization-review-queue.jsonl",
     "queue_sha256": "5e85e9ca4eb8b08dd7908bf63ff994d2b6cd88e430fd3c7e0a15160d17a12a07",
-    "semantic_line_ledger_path": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+    "semantic_line_ledger_path": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
     "semantic_line_ledger_sha256": "a81d6b1f5acb116c76b0b87b41aa0d2c3b9bfa2ba4ac0be86dd2db052fdc1692",
     "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/business-requirements.md",
     "source_sha256": "09ad9a27afe25bd730f57319865d1f342e6b31729da2dd27f22ecd6cb753ac61",

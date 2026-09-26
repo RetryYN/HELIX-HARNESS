@@ -7,7 +7,7 @@ source_count: 153
 
 ## この文書で行うこと
 
-[HELIXの構造仮説（システム群）](../concept/helix-structure-tvo-po-statements-2026-09-18.md)の区分に従い、旧Requirement IR 153件へ「どの層の、どのシステムの要求か」のラベルを付ける。要求本文、意味、採否、successorは変更しない。機械台帳は[legacy-ir-structure-classification.jsonl](legacy-ir-structure-classification.jsonl)、製品振り分けの訂正案は[legacy-ir-product-routing-corrections.jsonl](legacy-ir-product-routing-corrections.jsonl)である。
+[HELIXの構造仮説（システム群）](../../../concept/helix-structure-tvo-po-statements-2026-09-18.md)の区分に従い、旧Requirement IR 153件へ「どの層の、どのシステムの要求か」のラベルを付ける。要求本文、意味、採否、successorは変更しない。機械台帳は[legacy-ir-structure-classification.jsonl](legacy-ir-structure-classification.jsonl)、製品振り分けの訂正案は[legacy-ir-product-routing-corrections.jsonl](legacy-ir-product-routing-corrections.jsonl)である。
 
 分類の軸は次の6つである。
 
@@ -24,7 +24,7 @@ source_count: 153
 
 ## 層の語彙（機械用codeと名称）
 
-3つの分類台帳（第1波〜第3波）の`layer_primary`／`layer_secondary`は、次のcodeだけを使う。定義は[HELIXの構造仮説（システム群）](../concept/helix-structure-tvo-po-statements-2026-09-18.md)に従う。
+3つの分類台帳（第1波〜第3波）の`layer_primary`／`layer_secondary`は、次のcodeだけを使う。定義は[HELIXの構造仮説（システム群）](../../../concept/helix-structure-tvo-po-statements-2026-09-18.md)に従う。
 
 | code | 名称 | 仮置き |
 |---|---|---|

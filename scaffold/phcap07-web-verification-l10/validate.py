@@ -120,7 +120,7 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
 
     assets = data.get("legacy_phase_assessment", {}).get("assets", [])
     req([a.get("asset_id") for a in assets] == ASSET_IDS, "E_ASSET_ORDER")
-    catalog = {x.get("asset_id"): x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")}
+    catalog = {x.get("asset_id"): x for x in read_jsonl(ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl")}
     disposition = {x.get("asset_id"): x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-disposition.jsonl")}
     snaps = {x.get("asset_id"): x for x in data.get("legacy_phase_assessment", {}).get("ledger_snapshots", [])}
     seen_spans: set[str] = set()

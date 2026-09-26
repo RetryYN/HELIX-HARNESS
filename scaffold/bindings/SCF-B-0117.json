@@ -9,8 +9,8 @@
   "reason": "固定BASEからproduct_classification_status=unresolved、source_path=src/runtime/配下の73旧assetを全件再導出する。旧source本文を静的に読んだ全73件を、具体span・四製品L1・product-boundary反証・history/failure/consumer境界付きのcandidate researchとして保持する。direct_product_basis 54件、multi_product_conflict 8件、insufficient_basis 11件を正式分類へ昇格せず、authority、formal routing、successor、implementation成立、consumer closure、new buildを生成しない。",
   "upstream": [
     {
-      "note": "fixed BASE Git object input; static read only; no authority promotion",
-      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "note": "fixed BASE Git object input; static read only; no authority promotion [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonlから新path=docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; 現receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
       "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
     },
     {
@@ -19,13 +19,13 @@
       "sha256": "ed5e94818d6da3d51493abbfc5524df2538d012f0b8eaf924f645d09ef09eefe"
     },
     {
-      "note": "fixed BASE Git object input; static read only; no authority promotion",
-      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "note": "fixed BASE Git object input; static read only; no authority promotion [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonlから新path=docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3; 現receipt=360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
       "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
     },
     {
-      "note": "fixed BASE Git object input; static read only; no authority promotion",
-      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "note": "fixed BASE Git object input; static read only; no authority promotion [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonlから新path=docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65; 現receipt=8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
       "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
     }
   ],

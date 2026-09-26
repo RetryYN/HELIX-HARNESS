@@ -104,7 +104,7 @@ source-qualified identityまたは無損失に分解したatomを入力にする
 6. L10でengine版変更、schema変更、分類競合、wrong product、原event欠落、重複、部分投影を検証する。
 7. L3で選定したtransactional boundaryで検証してprojectionをcommitし、原eventと分類結果をread-afterする。
 
-bootstrapでは[旧IR product routing候補](../legacy-ir-product-routing-bootstrap.jsonl)をrepo-owned projectionとして
+bootstrapでは[旧IR product routing候補](../legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl)をrepo-owned projectionとして
 使用する。これはruntime schemaではなく、旧crosswalk seedと四製品再評価の進行を分けて保持する台帳である。
 W1業務価値33件、W2機能69件、W3非機能40件、W4技術制約11件の全153件を四製品で個別評価済みの候補として
 保持する。旧seedは出典として残し、現在分類または人間承認へ昇格しない。

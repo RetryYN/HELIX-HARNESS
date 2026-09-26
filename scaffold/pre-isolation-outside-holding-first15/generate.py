@@ -9,6 +9,34 @@ import subprocess
 from collections import Counter
 from pathlib import Path
 
+# 2026-09-26のPO判断で、旧HELIXからの移行台帳をdocs/governance/legacy-migration/へ移した
+# （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
+# 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
+RELOCATED_PATHS = {
+    "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
+    "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
+    "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
+    "docs/governance/legacy-candidate-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+    "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-structural-heading-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl",
+    "docs/governance/legacy-rule-atom-inventory.jsonl": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "docs/governance/pre-isolation-revision-delta-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
+    "docs/governance/scrum-reverse-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/delegated-document/scrum-reverse-source-line-carry-forward.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -62,7 +90,7 @@ def live_holdings(register: list[dict]) -> list[dict]:
     live = [row for row in register if row.get("registration_id") not in superseded]
     holdings = []
     for row in live:
-        source_path = ROOT / row["source_atom_set_ref"]
+        source_path = relocated(ROOT / row["source_atom_set_ref"])
         records = load_jsonl(source_path)
         holdings.append(
             {
@@ -83,7 +111,7 @@ def build() -> dict:
     report = json.loads(report_path.read_text(encoding="utf-8"))
     register = load_jsonl(ROOT / REGISTER_PATH)
     holdings = live_holdings(register)
-    holding_rows = {item["registration_id"]: load_jsonl(ROOT / item["source_atom_set_ref"]) for item in holdings}
+    holding_rows = {item["registration_id"]: load_jsonl(relocated(ROOT / item["source_atom_set_ref"])) for item in holdings}
     selected = [row for row in report["rows"] if row.get("product_scope") in PRODUCTS][:15]
     if len(selected) != 15:
         raise ValueError(f"expected 15 direct product paths, found {len(selected)}")

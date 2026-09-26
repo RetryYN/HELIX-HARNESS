@@ -9,6 +9,22 @@ import subprocess
 import sys
 from pathlib import Path
 
+# 2026-09-26のPO判断で、旧HELIXからの移行台帳をdocs/governance/legacy-migration/へ移した
+# （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
+# 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
+RELOCATED_PATHS = {
+    "docs/governance/legacy-requirement-direct-semantic-review-wave": "docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 
 BASE = "5562f04da0f3205f9aa58205ec0d478419fc4f2e"
 UNITS = [
@@ -171,7 +187,7 @@ class Validator:
         expected_by_unit: dict[str, list[dict]] = {unit: [] for unit in UNITS}
         for wave in range(1, 51):
             path = wave_path(self.root, wave)
-            if not path.is_file():
+            if not relocated(path).is_file():
                 self.error("E_WAVE_SCAN", f"Wave{wave}のreview JSONLが見つからない")
                 continue
             rows = base_jsonl(self.root, path)

@@ -157,13 +157,13 @@
     ]
   },
   "ledger_provenance": {
-    "source_holding": "docs/governance/delegated-requirement-document-source-holding.jsonl",
-    "reference_holding": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+    "source_holding": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
+    "reference_holding": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
     "asset_disposition": "docs/governance/legacy-asset-disposition.jsonl",
-    "phase_product": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "phase_product": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
     "decision_log": "docs/governance/legacy-asset-decisions.jsonl",
     "decision_contract": "docs/governance/legacy-asset-decision-log.md",
-    "failure_rule_inventory": "docs/governance/legacy-rule-atom-inventory.jsonl",
+    "failure_rule_inventory": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
     "atomization_contract": "docs/governance/requirement-atomization-review-contract.md"
   },
   "selected_reference_edges": [
@@ -1845,7 +1845,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -1986,7 +1986,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2127,7 +2127,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2267,7 +2267,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2405,7 +2405,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2545,7 +2545,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2597,7 +2597,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2647,7 +2647,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2698,7 +2698,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2753,7 +2753,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2802,7 +2802,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2851,7 +2851,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2907,7 +2907,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -2952,7 +2952,7 @@
         "product_candidate_requires_semantic_review"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -3001,7 +3001,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -3046,7 +3046,7 @@
         "product_candidate_requires_semantic_review"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -3099,7 +3099,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -3155,7 +3155,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -3206,7 +3206,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"
@@ -3348,7 +3348,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [
           {
@@ -4132,7 +4132,7 @@
         "product_candidate_requires_semantic_review"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [
           {
@@ -4230,7 +4230,7 @@
         "requires_unit_connection_composite_split"
       ],
       "failure_evidence": {
-        "ledger_path": "docs/governance/legacy-rule-atom-inventory.jsonl",
+        "ledger_path": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
         "join_key": "sources[].path",
         "matched_records": [],
         "status": "no_source_path_match_unresolved"

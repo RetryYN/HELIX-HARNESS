@@ -12,18 +12,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MANIFEST = ROOT / "scaffold/pre-isolation-research-next60/rdp001-preiso-research-next60.json"
 DEFAULT_INVENTORY = ROOT / "scaffold/pre-isolation-research-next60/rdp001-preiso-research-next60-semantic-diff-inventory.json"
-HOLDING_REL = "docs/governance/pre-isolation-revision-delta-source-holding.jsonl"
+HOLDING_REL = "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl"
 ASSET_REL = "docs/governance/legacy-asset-disposition.jsonl"
-PHASE_REL = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+PHASE_REL = "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
 BASELINE = "6fabd12512a3659fff4a956692cdd61faeeb16ce"
 PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 CANDIDATE_BASE = "59d344ea0cd8c26aed55bad0c674119e9be821ae"
 INPUT_DIGESTS = {
-    "docs/governance/pre-isolation-revision-delta-source-holding.jsonl": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+    "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
     "docs/governance/legacy-asset-disposition.jsonl": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
-    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
-    "docs/governance/requirement-atomization-review-contract.md": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+    "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "docs/governance/requirement-atomization-review-contract.md": "0a27dd165b0b447f89b0d9d1de029a0b7bfefbca0d23655e0f4e1828144f05e8",
 }
 NUMBERS = list(range(85, 145))
 EXPECTED_IDS = [f"PREISO-REV-{n:06d}" for n in NUMBERS]

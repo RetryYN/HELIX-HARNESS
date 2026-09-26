@@ -59,7 +59,7 @@ retireを同じ処理にしない。
 
 1. PR #1797でrepository foundation、旧source snapshot、holding、上流運用を固定する。
 2. [bootstrap register](management-provisional-requirement-registration.md#bootstrap境界)で要求PRの仮登録を受ける。自動登録入口の実装完了を前提にしない。
-3. 各holdingを別queueとして扱う。IRは[IR再配置wave](legacy-ir-rehome-wave-register.md)に従い、業務価値、機能、非機能、技術制約の順で一つずつreviewする。semantic lineは既存A1／A2 queueを使い、file blob／path集合は対象文書と意味relation closureを先にatom化する。参照候補holdingは参照元・target・分類を保ったまま、要求意味を持つかを別に判断する。残るholdingの順序とrelationは、そのholdingを扱う要求整理PRで明示する。
+3. 各holdingを別queueとして扱う。IRは[IR再配置wave](legacy-migration/ir/legacy-ir-rehome-wave-register.md)に従い、業務価値、機能、非機能、技術制約の順で一つずつreviewする。semantic lineは既存A1／A2 queueを使い、file blob／path集合は対象文書と意味relation closureを先にatom化する。参照候補holdingは参照元・target・分類を保ったまま、要求意味を持つかを別に判断する。残るholdingの順序とrelationは、そのholdingを扱う要求整理PRで明示する。
 4. 対象productと`unit`／`connection`／`composite`を分け、責務重複や意味類似はrelation候補として示す。
    重複候補は[責務・機能重複review program](requirement-overlap-review-program.md)で比較し、原identityと固有atomを残す。
    旧技術の拘束は[技術代替可能性review program](requirement-technical-substitutability-review-program.md)で、意味機能と実現方式を分けて比較する。

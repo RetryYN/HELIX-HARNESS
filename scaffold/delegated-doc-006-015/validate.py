@@ -7,10 +7,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CANDIDATE = ROOT / 'scaffold/delegated-doc-006-015/inventory.json'
 FIXED_SOURCE_COMMIT = '17ce6830d2d4c684c96d55705cdc65790a4fdaa4'
-SOURCE_LEDGER = ROOT / 'docs/governance/delegated-requirement-document-source-holding.jsonl'
-REFERENCE_LEDGER = ROOT / 'docs/governance/delegated-requirement-document-reference-holding.jsonl'
+SOURCE_LEDGER = ROOT / 'docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl'
+REFERENCE_LEDGER = ROOT / 'docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl'
 ASSET_LEDGER = ROOT / 'docs/governance/legacy-asset-disposition.jsonl'
-PHASE_LEDGER = ROOT / 'docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'
+PHASE_LEDGER = ROOT / 'docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl'
 EXPECTED_SOURCE_IDS = {'DELEGATED-DOC-006', 'DELEGATED-DOC-015'}
 EXPECTED_SOURCE_PATHS = {
     'DELEGATED-DOC-006': 'docs/design/helix/L3-requirements/github-security-admission-requirements.md',

@@ -9,9 +9,9 @@
   "reason": "archive隔離前に変更された6 source pathについて、監査基準revisionと隔離直前revisionの両方を保持し、workflow分類／execution policyのregistryとgenerated catalogの参照digestを同じreview単位で確認する必要がある。sourceの意味同値、要求採否、current authority、実装、受入は未決であり、正式なL3実装を開始しないためscaffoldとして登録する。",
   "upstream": [
     {
-      "path": "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "path": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
       "sha256": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
-      "note": "PREISO-REV-000001/000002/000015/000016/000026/000060の基準・隔離直前revision台帳"
+      "note": "PREISO-REV-000001/000002/000015/000016/000026/000060の基準・隔離直前revision台帳 [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/pre-isolation-revision-delta-source-holding.jsonlから新path=docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180; 現receipt=d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/concept/product-boundary.md",
@@ -86,7 +86,7 @@
     "dependencies": [
       "Python標準library",
       "既知commit／pathに限定したread-only Git object database",
-      "docs/governance/pre-isolation-revision-delta-source-holding.jsonl",
+      "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
       "HARNESS製品境界の現行候補文書",
       "2026-09-24 PO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md）による前提の変化：現行HELIX-OS L1（SHA ffbafa47…）と製品責務境界（SHA 9268e357…）はPO採用。HARNESS L1と5大目標は内容採用・追記／縮約後revision未確認。これより前の「現行L1は未承認」の記述はこの状態で読み替える"
     ],

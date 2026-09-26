@@ -50,7 +50,7 @@
   "ledger_provenance": {
     "phase_inventory": {"path": "docs/governance/phase-capability-inventory.json", "sha256": "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4", "records": 20},
     "asset_disposition": {"path": "docs/governance/legacy-asset-disposition.jsonl", "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", "records": 4020},
-    "phase_product_classification": {"path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "records": 4020},
+    "phase_product_classification": {"path": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl", "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", "records": 4020},
     "decisions": {"path": "docs/governance/legacy-asset-decisions.jsonl", "sha256": "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", "records": 58}
   },
   "current_evidence": {
