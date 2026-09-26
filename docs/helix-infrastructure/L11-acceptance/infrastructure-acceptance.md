@@ -33,6 +33,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-004`、`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-022`。
+
 - **受入手順**：HELIX-OS/BRAIN/LABO/INTELLIGENCE/SECURITY/CONNECT、Worker/Model Runtime、database/queue/artifact/evidence/log/metric storeのfixtureをenvironment別に置き、identity/role/location/version/dependency/lifecycle/network path/state-storage classを収集する。source/destination/protocol/endpoint/direction/purpose/security boundary/dependencyを持つnetwork path、persistent/temporary storageのowner/durability/backup/retention/confidentiality/recovery属性、logical HELIX-CONNECTとphysical pathを照合する。
 - **成功条件**：各観測は対象environmentとsource/revisionに結びつき、environment間のresourceが混同されない。未観測の項目はunknownとして残る。Model/Worker runtime inventoryは参照できるが、その能力評価、ticket状態、security policyをInfrastructure所有値として出さない。
 - **反例・失敗条件**：stagingのresourceをproductionの存在証拠として扱う、logical connectorをphysical routeと同一扱いする、欠けたversion/dependencyを推定で埋める、またはresource stateをsecurity authorityの代用にした場合は不合格。
@@ -40,6 +42,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 - **対応する1.0 minimum**：1 Resource identity、2 Topology、3 Environment、6 Compute/Network/Storage、7 Model/Worker Runtime、13 Deployment versionのruntime側。
 
 ### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・Drift
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`。
 
 - **受入手順**：approved configuration/design revisionとdeployment targetを入力し、同じ対象の一致状態、missing resource、unexpected resource、version/config/network/permission/capacity差異、unknown dependency、stale observationを含むactual fixturesを比較する。
 - **成功条件**：design, target, actual, drift resultが相互参照できる別stateとして記録される。差異の種類とsourceが示され、観測値から設計や要求を変更しない。
@@ -49,6 +53,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model資源と容量
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`。
+
 - **受入手順**：CPU/RAM/GPU/VRAM/storage/network/runtime/model requirementを持つresource snapshotと、十分、境界不明、容量不足、古いobservationの起動要求を使う。capacity/utilization/queue/concurrency/saturation/rejection/backpressureの各入力がどの対象版に属するか確認する。
 - **成功条件**：資源と容量情報がsource/revision付きで参照できる。既知の不足はcapacity unavailableとしてOS/INTELLIGENCEへ返され、queue/delay、代替候補、人へのescalation、reject等の判断経路へ渡せる。Infrastructure自身は配置や費用の選択を承認しない。
 - **反例・失敗条件**：未知・古いcapacityを受入可とする、無制限にJobを追加する、またはInfrastructureが承認なしにnode移動/cost選択を実行する場合は不合格。
@@ -56,6 +62,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 - **対応する1.0 minimum**：6 Compute/Network/Storage、7 Model/Worker Runtimeのresource側、8 Capacity。
 
 ### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとIncident State
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-016`。
 
 - **受入手順**：health/metric/log/resource/dependency/queue/error/latency/deployment/recovery observationを入力し、正常、劣化、利用不能、容量枯渇、依存失敗、data/network unavailable、security isolation、collector欠測の各ケースを区別する。
 - **成功条件**：記録は対象revision/sourceへ結びつき、観測不能をhealthyとしない。incident meaning/severityは承認済み要求に従い、定義元が追える。
@@ -65,6 +73,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-005 Backup・Restore・Rollback
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-017`、`HELIXINFRASTRUCTURE-L1-018`、`HELIXINFRASTRUCTURE-L1-019`。
+
 - **受入手順**：成功/不完全backup、対象外revision、integrity不一致、互換restore、dependency reconnect失敗、rollback target不明のfixturesを用い、backup状態、実restore、verification、rollback適格性を別々に評価する。
 - **成功条件**：backupの存在のみではrestore可能と判定されず、実restoreでintegrity、dependency reconnection、startup、verification evidenceが揃う。rollback targetはartifact/config/dependency/data compatibilityとprocedureへ結びつく。
 - **反例・失敗条件**：backup jobが成功しただけでrestore pass、rollback実行だけでincident closure、未確認互換targetを適格とする場合は不合格。
@@ -73,6 +83,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-006 HELIX独立Bootstrap・Recovery Path
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-020`、`HELIXINFRASTRUCTURE-L1-021`。
+
 - **受入手順**：HELIX-OSまたは通常control planeを利用できない故障fixtureで、限定bootstrap/health check/service stop/rollback/recoveryを実行できる設計境界を確認する。試験主体・credential値はSECURITY authority管理下のfixtureを使う。
 - **成功条件**：recovery pathは対象のHELIX control planeから独立し、対象・操作が限定され、別SECURITY authorityが照合できる。記録は最終適格revisionと残作業を示す。
 - **反例・失敗条件**：復旧処理が停止中HELIX-OSへ修復を依頼する、通常権限を流用する、credential/policy不明のまま操作する、又は完全自動failoverを1.0の合格条件にする場合は不合格。
@@ -80,6 +92,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 - **対応する1.0 minimum**：17 Bootstrap/Out-of-Band Recovery。
 
 ### HELIXINFRASTRUCTURE-L2-007 Runtime Rebuildability
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-038`。
 
 - **受入手順**：必要環境を消失したfixtureからapproved design、config、artifact、dependency、data backup、version、deployment evidenceを使って隔離環境へ再構築し、再接続・起動・検証を行う。
 - **成功条件**：必要な環境を再現でき、入力artifact/revisionから結果まで追跡可能である。machine内だけの情報やbackup記録の存在を再構築成功に代えない。
@@ -91,6 +105,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-008 HARNESS-CORE設計からDeployment Targetへの接続
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-002`。
+
 - **受入手順**：CORE approved design revisionからInfrastructure deployment targetを導き、target/actual/driftを照合する。別revision、scope不一致、未承認designも入力する。
 - **成功条件**：targetはCOREのdesign identity/revision/scopeと結びつき、COREが設計意味を所有し、Infrastructureがruntime target/actualを所有する。変更提案はdesign変更や実行と別である。
 - **反例・失敗条件**：Infrastructureが設計値を書き換える、actualを承認designにする、またはCORE revision mismatchでもtargetを確定する場合は不合格。
@@ -98,6 +114,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 - **最低範囲対応**：4 Design/Deployment Target/Actual separation。
 
 ### HELIXINFRASTRUCTURE-L2-009 OS Runtime Resource StateとWork/Change Stateの接続
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`、`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-022`、`HELIXOS-L1-005`、`HELIXOS-L1-007`、`HELIXOS-L1-008`。
 
 - **受入手順**：通常のOS work/changeとInfrastructure resource-stateを結ぶ接続を、stage release未使用のcaseと、HELIXOS-L2-014のstage packへ収載するcaseに分ける。双方でticket/change/actor/evidence/stop-resumeとresource/runtime revision/deployment/recovery stateの相互参照を確認し、部分更新・rollback・未完操作も試す。
 - **成功条件**：通常接続はOS Work/Change interfaceとInfrastructure resource-state contractだけで独立して成立する。stage packへ収載する場合はOS stage release ID、Infrastructure pack/contract/artifact/dependency version、runtime revisionを別identityのまま同一stageの構成証拠で対応させ、必要なInfrastructure依存と更新・rollback evidenceを持つ。OSはwork/changeを、Infrastructureはresource/runtimeを正本とする。
@@ -109,6 +127,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-010 SECURITY authority・Worker操作の構成体
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-039`。
+
 - **受入手順**：SECURITY authority scope内の許可操作、範囲外対象、期限切れauthority、credential不足、revision不一致、部分操作を使う。OS assignment/ticket、Worker result、Infrastructure before/after state evidenceを関連付ける。
 - **成功条件**：Worker操作はSECURITYが認めたtarget/action/scope/expiry内に限られ、結果と実状態が別evidenceとして結びつく。credential値は通常resource stateへ漏らさず、停止時には実状態・未完操作・rollback義務を引き継ぐ。
 - **反例・失敗条件**：INFRASTRUCTURE自身がpolicy/authorityを発行する、範囲外操作が実行される、Workerの成功返答だけで実状態変更を受入れる、又は部分実行を成功として閉じる場合は不合格。
@@ -118,6 +138,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 ## 1.0構成体受入候補
 
 ### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-001`、`HELIXINFRASTRUCTURE-L1-002`、`HELIXINFRASTRUCTURE-L1-003`、`HELIXINFRASTRUCTURE-L1-004`、`HELIXINFRASTRUCTURE-L1-005`、`HELIXINFRASTRUCTURE-L1-006`、`HELIXINFRASTRUCTURE-L1-007`、`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`、`HELIXINFRASTRUCTURE-L1-014`、`HELIXINFRASTRUCTURE-L1-016`、`HELIXINFRASTRUCTURE-L1-017`、`HELIXINFRASTRUCTURE-L1-018`、`HELIXINFRASTRUCTURE-L1-019`、`HELIXINFRASTRUCTURE-L1-020`、`HELIXINFRASTRUCTURE-L1-021`、`HELIXINFRASTRUCTURE-L1-022`、`HELIXINFRASTRUCTURE-L1-028`、`HELIXINFRASTRUCTURE-L1-029`、`HELIXINFRASTRUCTURE-L1-038`、`HELIXINFRASTRUCTURE-L1-039`。
 
 - **受入手順**：対象範囲と除外範囲を固定し、L2-001〜010および025の採択済み要求と必要契約を同一構成manifestへpinする。最低18項目それぞれにtest input、expected outcome、observed evidence、結果を記録し、正常構成と失敗/rollback構成を端から端まで評価する。通常のInfrastructure構成体受入と、HELIXOS-L2-014のstageへ収載する場合のstage integration evidenceを区別する。
 - **成功条件**：1〜18の各minimum itemに対応する証拠があり、単体機能、CORE/OS/SECURITY/Worker接続、構成体の成立が別に判定される。Backup/Restore/Rollbackと独立Bootstrap/Recovery、Rebuildabilityの復旧端まで確認される。未完義務は次のowner/ticket/recovery pathに残り、稼働中構成と適格rollback先が特定できる。stageへ収載する場合は、そのstage identityとの対応も確認するが、HELIXOS-L2-014自体を通常のInfrastructure構成体受入の前提にはしない。
@@ -146,12 +168,16 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-012 Control ResourceとExecution Resourceの隔離
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-008`。
+
 - **入力・手順**：OS/SECURITY control resourceとWorker/CI/Model execution resourceを分けた設計を与え、Worker負荷急増、CI saturation、Model GPU/memory飽和の下で管理・停止・復旧経路を評価する。
 - **成功条件**：対象のcontrol pathが識別でき、execution負荷時にも合意済みの管理/停止/復旧操作が届く。境界、evidence、契約versionが揃う。
 - **反例**：負荷時にOS/SECURITY制御も停止する、隔離の閾値・方式をこの受入で独自に決める、未知の経路を利用可能として判定する。
 - **失敗戻し先**：CORE design/SECURITY policy ownerへ戻し、未検証負荷・未完操作を記録する。
 
 ### HELIXINFRASTRUCTURE-L2-013 Failure DomainとSPOF影響
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-012`、`HELIXINFRASTRUCTURE-L1-013`。
 
 - **入力・手順**：local machine、VPS、GPU node、network、provider、database、storageを別々にfailure注入し、依存先と復旧経路を照合する。冗長化しないSPOFには影響・復旧・受容理由を入力する。
 - **成功条件**：故障ごとに停止範囲、影響する機構/job/data、適格な復旧先、未復旧義務が示される。受容SPOFの根拠を辿れる。
@@ -160,12 +186,16 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-014 OS・LABO Episode Correlation
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-015`。
+
 - **入力・手順**：要求revision、OS ticket/change、Worker execution、Infrastructure resource/deployment/failure/recovery event、生のmetric・費用・容量と、許可/拒否されたLABO data-use scopeを持つepisodeを与える。
 - **成功条件**：各eventはsource/revision/correlation IDで相互参照でき、許可された範囲のみLABOへ渡る。時系列上同じepisodeでも因果関係は別の証拠で評価され、拒否・欠測はそのまま見える。構成の良否はLABOが実績として評価し、INFRASTRUCTUREはPatternをBRAINへ直接昇格させない。
 - **反例**：correlation IDだけから原因を確定する、拒否またはdata-use不明のeventを送る、HELIXOS stage release identityをInfrastructure runtime revisionとして使う。
 - **失敗戻し先**：OS/Infrastructure/LABOの発生元ownerへ戻し、未送信eventと未完の因果調査を保持する。
 
 ### HELIXINFRASTRUCTURE-L2-015 Infrastructure Change Impactと段階適用
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-023`、`HELIXINFRASTRUCTURE-L1-024`。
 
 - **入力・手順**：Infrastructure change candidateを用意し、影響資源・機構・依存job・environment・data・rollback targetを特定する。candidate/isolation-or-shadow/partial/verified/promoted各状態、SECURITY update acceptanceの有無、部分失敗を試す。
 - **成功条件**：impact setとscopeを事前提示し、SECURITY受入後に限って許可された次状態へ進む。各段階のartifact/contract/dependency version、verification evidence、rollback targetを結び、部分成功を分離する。
@@ -174,12 +204,16 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-016 Provider PortabilityとHybrid Placement
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-025`、`HELIXINFRASTRUCTURE-L1-026`。
+
 - **入力・手順**：provider-neutral capability contractに対し、local management/development machine、常時稼働VPS Worker/CI、GPU server上のlocal LLM、cloud serviceの候補を個別・混在で評価する。INTELLIGENCE proposalとOS decisionを別入力にする。
 - **成功条件**：各targetのcapability、provider-specific adapter、制約・差分を説明でき、placement決定はOS/INTELLIGENCEへ残る。互換性は実証されたcapability contractの範囲に限る。
 - **反例**：単一cloudを要求する、provider名だけで同等性を認定する、INFRASTRUCTURE自身がplacement/costを決定する。
 - **失敗戻し先**：capability/adapter ownerへ返し、未評価providerと配置候補を保持する。
 
 ### HELIXINFRASTRUCTURE-L2-017 Resource Location ProofとTool-Neutral Operation
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-027`、`HELIXINFRASTRUCTURE-L1-040`。
 
 - **入力・手順**：Worker/model/state/artifactの所在が既知、移動済み、欠落、競合するcaseを用いる。Terraform/OpenTofu、Ansible、cloud API/provider CLI、local script、container等のoperation resultsを同一契約へ写像する。
 - **成功条件**：location evidenceは対象identity/source/revisionと結び、unknown locationを使用許可にしない。異なるtoolの実装結果もHELIX capability/evidence contractで検証でき、tool stateを要求の意味正本にしない。
@@ -188,12 +222,16 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-018 Cost AttributionとResource Lifecycle/Decommission
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-030`、`HELIXINFRASTRUCTURE-L1-031`、`HELIXINFRASTRUCTURE-L1-032`。
+
 - **入力・手順**：計算/GPU/storage/network/external service/model API/always-on resourceのcost sourceをresource/workloadへ関連付ける。plan/provision/configure/enable/observe/update/degrade/recover/retire/disposeの全stateと、廃棄対象のdependency/data/credential/network/cost/backup/replacementを与える。
 - **成功条件**：費用をsource-qualifiedに参照し、判断/予算は別ownerに残る。lifecycle stateの遷移と各decommission checkの結果が追跡でき、不明項目は未完として残る。
 - **反例**：resourceを作成しただけでlifecycle完了、使っていないresourceを放置して廃棄済みとする、backup/credential/dependency/cost確認抜けを閉じる、Infrastructureが予算採否を決める。
 - **失敗戻し先**：cost/resource/SECURITY/data ownerへ戻し、残存費用・data・credential・代替先の未完義務を保持する。
 
 ### HELIXINFRASTRUCTURE-L2-019 Observation Freshness・Collection Confidence
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-033`、`HELIXINFRASTRUCTURE-L1-034`。
 
 - **入力・手順**：source、observed_at、freshness、collector identity、confidenceまたはunknownを持つ現在・期限切れ・未収集・collector失敗のobservationを与える。
 - **成功条件**：healthy/unhealthy/unknown/unobserved/staleを区別し、適用するfreshness ruleとversionを辿れる。1.0最低条件である「観測できないことを健全に変えない」を保持する。
@@ -202,12 +240,16 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-020 Web Runtime SeparationとAsset Placement Classification
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-035`、`HELIXINFRASTRUCTURE-L1-036`。
+
 - **入力・手順**：本体とWebのtenant/runtime、customer job、credential、service state、deploymentを別scopeに置く。またCORE/BRAIN/INTELLIGENCE/LABO assetにSECURITYのinternal-only/service-internal/external/restricted分類を与え、実際の配置先と照合する。
 - **成功条件**：owner/scope境界が保たれ、Web customer stateが本体runtime stateへ混入しない。資産配置はSECURITY分類と一致し、出所と配置evidenceを辿れる。
 - **反例**：tenant/job/credential/service/deploymentを内部stateへ暗黙統合する、INFRASTRUCTUREがclassificationを作る、restricted/internal assetを許可されない外部serviceへ配置する。
 - **失敗戻し先**：WEB-OS/SECURITY ownerへ戻し、cross-scope送信/配置を止めて未解決資産を保つ。
 
 ### HELIXINFRASTRUCTURE-L2-021 Running/Candidate Generation Separation
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-037`。
 
 - **入力・手順**：running generationとcandidate generationを分離し、candidateによるself-approval、independent review/verification、SECURITY acceptance、前世代rollbackの各caseを試す。
 - **成功条件**：candidateとrunning identityが別で、candidate自身による承認を拒み、独立した検証とauthorityの後だけ昇格できる。更新中も適格な前世代・復旧経路が残る。
@@ -216,6 +258,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-022 Capacity-Driven Autoscaling
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-010`、`HELIXINFRASTRUCTURE-L1-011`。
+
 - **入力・手順**：将来版で採択されたcapacity/scale policy、threshold、resource/workload identity、utilization/queue/saturation、SECURITY authority、OS change ticketを固定してscale-up/downを試す。
 - **成功条件**：承認済み条件の範囲だけでresourceを増減し、before/after state、理由、依存version、operation/evidenceを追える。非実行caseは1.0のcapacity signalからOS/INTELLIGENCEへのdecision handoffに留まる。
 - **反例**：version_targetのみで自動scaleを許可する、threshold/quota不明のまま実行する、Infraが予算・配置案を採否する、自動scale不在を1.0 blockerにする。
@@ -223,12 +267,16 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-023 Multi-cloud Runtime Composition
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-025`、`HELIXINFRASTRUCTURE-L1-026`。
+
 - **入力・手順**：将来版で採択されたcapability/security/data contractsを固定し、複数cloud resourceを一つのruntime compositionへ接続する。各provider adapter、placement decision、移行・復旧先を別々に記録する。
 - **成功条件**：複数providerの実際のcapability・互換性が契約/evidenceで確認され、配置判断はOS/INTELLIGENCEから渡されたscope内に限る。cloudを併用しない1.0構成はこの候補の未実装を理由に失格にしない。
 - **反例**：provider名だけで互換とみなす、data/security scopeが異なる環境を同じものとする、未評価providerへ自動配置する。
 - **失敗戻し先**：adapter/capability/security ownerへ戻し、稼働中構成と適格な切戻し先を保持する。
 
 ### HELIXINFRASTRUCTURE-L2-024 Fully Automatic Failover
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-019`、`HELIXINFRASTRUCTURE-L1-020`、`HELIXINFRASTRUCTURE-L1-021`。
 
 - **入力・手順**：将来版で採択されたfailure policy/threshold、failure target、independent recovery path、data/artifact/dependency compatibility、SECURITY authority、OS incident/change identityを固定し、failureを注入して自動切替を評価する。
 - **成功条件**：承認されたfailure条件で適格targetへ切替え、data consistency、startup、dependency reconnection、verification、rollback/recovery evidenceを記録する。1.0は手動decisionを含むbackup/restore/rollbackと独立recovery基盤に留まる。
@@ -239,6 +287,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 
 ### HELIXINFRASTRUCTURE-L2-025 Workerと実行資源の接続
 
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-009`、`HELIXINFRASTRUCTURE-L1-039`。
+
 - **入力・手順**：同じWorkerとticketを、異なる実資源へ対応づけるcase、資源不足、隔離不能、作業参照の欠落caseを用意する。
 - **成功条件**：CPU/memory/GPU/storage/networkとprocess/containerの資源・状態がWorkerと区別される。必要時の移動後もticket、要求、作業責務、未完義務が同じ作業へ辿れ、資源で利用できる隔離がSECURITY条件に対応する。
 - **反例**：計算機変更をWorkerの責務消失とする、INFRASTRUCTUREへticket状態を移管する、隔離不能でも成立扱いする、自動配置最適化を本受入の必須条件にする。
@@ -247,6 +297,8 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 ## 判断候補の接続受入（version_target: 1.0より後、版は未定）
 
 ### HELIXINFRASTRUCTURE-L2-026 INTELLIGENCEの資源判断候補との接続
+
+- **親L1の受入対応**：`HELIXINFRASTRUCTURE-L1-026`。
 
 - **入力・手順**：配置、容量不足、failure診断、増減、復旧の各候補を対象resource/revisionと根拠付きで渡す。古い観測、未確認診断、authorityのない候補も扱う。
 - **成功条件**：候補と観測の出所・状態が別に保たれ、候補から無条件に操作を実行しない。OS/SECURITY/Workerの各責務へ必要な根拠と未完義務を渡せる。
@@ -258,3 +310,7 @@ parent_l1_candidate: docs/helix-infrastructure/L1-planning/infrastructure-intent
 旧source asset IDs, paths, line/SHA, 保持/変更理由は対となるL2の「旧HELIX source basisと再導出」に記録した。L2と本書は同じ親入力revision・POの18 minimum mapping・後続version境界を共有する。旧sourceは追跡証拠であり、旧L3候補やruntimeの合格基準を新世代へ移すものではない。
 
 受入入力の明示前に、数値capacity、recovery time、retention、cost、provider固有閾値を追加しない。親L1対象revisionと本文採否はPO判断として残る。採否時にはL2/L11の対応revisionをそろえ、要求意味・版境界が変われば影響する受入例と反例を同時に更新する。
+
+## 親L1からの受入参照
+
+L2の「L1全40件からL2・L11への個別対応」の全40行を受入索引とし、上記の同ID節で検証する。L1-010/011の容量は003、L1-018/019のrestore/rollbackは005、L1-020/021の独立復旧は006で1.0受入を行う。022/024は後続版の拡張を受け入れ、これらの1.0義務を代替しない。
