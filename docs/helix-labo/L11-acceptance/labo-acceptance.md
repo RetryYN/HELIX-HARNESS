@@ -152,3 +152,11 @@ parent_l1_candidate: docs/helix-labo/L1-planning/labo-intent.md
 - **成功条件**：OS-L2-018/019/023の出力を受け、成功/失敗/拒否/中断/unknown、ticket/task/Worker identity、要求と契約revision、scope、verification状態、人確認、未完義務が送信と受領で一致する。HELIXOS-L2-027は利用構成参照として記録し、接続依存にはしない。採択済みCONNECT契約または明示的な人手receiptがschema/版/scopeを照合し、acknowledgment・trace・重複抑止・stale停止・同一ID再送を示す。LABOは受領receiptを返し、後続の履歴化先を示す。二重配送は同じsource identityとして検出できる。
 - **反例**：受領時にscope・result state・revisionを書き換える、配送成功を評価済みとする、LABOがassignmentを行う、欠落receiptを成功配送とみなす、stale payloadを現行履歴へ混ぜる。
 - **失敗時・未完義務**：送信・受領receipt不一致は接続未成立としてOS/LABOへ戻す。再送は同じsource identityを保持し、重複を新規実績にしない。CONNECT契約も同義務を果たす人手receiptも不在/unknownなら受領成功を主張しない。
+
+### HELIXLABO-L2-058 観測集積の入力元ごとの依存条件
+
+- **正常例**：選択入力がWorker観測だけの呼出しで、001/028のprovenance・版・scope・許可・状態区分・受領契約と安全依存が揃う。他の未選択入力は未観測を表示したまま、Worker観測を取り込める。全入力元対応の完成を主張しない。
+- **複数入力例**：WorkerとOSの観測を選択した場合は、両方のsource別接続と安全依存を要求する。片方のreceiptが欠落した結果を完全な集積成功にしない。
+- **反例**：未選択sourceの完成待ちで、必要条件を満たすWorker入力を拒む。選択済みsourceが欠けたため未選択へ改変する。安全依存を参照のみと分類する。未選択を観測済みへ変える。Web未採択を理由に全LABO 1.0を不成立にする。個別呼出しの成功を1.0全source対応済みとする。
+- **版・変更**：sourceの追加/削除、操作、scope、契約版が変わった場合に依存分類と閉包を再照合する。前回の選択やreceiptを無条件に継承しない。
+- **不足・戻し先**：選択条件が不明なら要求された呼出しscopeのownerへ、入力契約・版は各sourceとLABOへ、許可/classificationはSECURITYへ戻す。未観測・未完義務を消さず、既存001の出力保証を保つ。

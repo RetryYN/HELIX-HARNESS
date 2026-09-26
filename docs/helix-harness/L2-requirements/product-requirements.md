@@ -459,3 +459,39 @@ AVS／RFA／DGH／FRSの既存L3候補とID範囲は[OS側の接続表](../../he
 - **外部の成果の持ち込み**：HELIXの外で結合・検証・受入を行った成果物は、対象revision、照合した対、oracle、結果、証拠の識別がこの契約の条件を満たすとき、その状態として⑥へ持ち込める。条件を満たさない部分は満たした段階までの状態とし、成果物の存在だけで上の状態にしない。
 - **単独で成り立つための依存**：コアの追跡と対の設計を使う。④を必須にしない。成果物は④の出力でも、HARNESS-L2-019で持ち込んだものでもよい。
 - 束ねる既存の条件：HARNESS-L2-003（成果物の状態、L10とL11の区別）、HARNESS-L2-003／004（Scoped Reverse、右側のRefactor、戻し先）、HARNESS-L2-005（構成的保証と差分証明）、FRS-BR-009。
+
+### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）
+
+**親L1**：HARNESS-L1-005、HARNESS-L1-008。HARNESS-L1-005を利用境界のprimary parentとし、HARNESS-L1-008を要求入力・依存不足を明示するcontext parentとする。両者の現行本文は対象revision確認待ちのcandidateであり、この候補は確認済み扱いにしない。
+
+**既存契約**：HARNESS-L2-010、HARNESS-L2-011。候補はこの二つを置換せず、全リリース単位から利用する共通依存宣言を追補する。
+
+各pack identityは、依存の宣言に加えて、その依存がどの利用条件で必要になるかを、次の4区分のいずれかとして記録する。区分と条件はpack revisionに束縛し、同一の要求入力から同じ有効依存閉包を再現できる。
+
+1. **常時必須**：当該packのあらゆる許可された利用に必要。利用ごとにidentity、契約版、状態、証拠を照合する。
+2. **特定操作時のみ必須**：packが宣言した特定操作を行うとき必要。操作名・適用条件を前もって示す。条件成立時は必須として閉じ、missing/unknown/staleならその操作を保留する。条件不成立ならその操作を含まない当該利用に限って閉包外とできる。
+3. **選択した入力元に応じて必須**：利用者が明示選択したsource/providerを読むとき必要。source identity、契約版、scopeを選択とともに束縛する。選択されたsourceの依存はすべて閉じる。未選択sourceは「未観測」と記録し、存在・不在・適格性・成功を推測しない。選択sourceの失敗から別sourceへの暗黙fallbackをしない。
+4. **参照資料のみ**：背景説明・用語解説など、そのpackの実行条件・成果・authorityを左右しない資料。利用時の実行依存閉包には入れない。実行条件、source authority、検証oracle、安全制約として効く文書は参照資料へ分類して義務を消さない。
+
+**受け取るもの**：pack IDとsource revision、HARNESS-L2-010/011のcontract revision、利用要求のoperation、対象/scope、明示選択した入力元identity、必要な権限・隔離・data-use分類、候補依存のidentity/owner/契約version/互換範囲と、その適用条件。
+
+**提供するもの**：各依存の4区分・条件・版・ownerを示す依存宣言と、その利用要求に対する有効依存閉包（必要、条件不成立で対象外、未選択かつ未観測、参照のみ、unknown/stale/保留を区別）。利用に使った依存の版・scope・判定根拠をHARNESS-L2-011の相関ID付き結果/証拠へ結び付ける。
+
+**保留と戻し先**：packの依存identity・区分・条件・版rangeが欠落/曖昧なら、pack契約ownerへ戻しHARNESS-L2-010の契約改訂候補にする。呼出し固有のoperation/source/scope/権限/receiptの不足や版不一致は、呼出しownerへ戻しHARNESS-L2-011の入力修正または再実行候補にする。authority、安全条件、または親の要求scopeが不明・矛盾している場合は、そのauthority ownerまたはHARNESS-L1-005/HARNESS-L1-008の意味を持つPOへ戻して明示的な根拠を得る。修正・根拠が揃うまで該当操作を保留し、別source・手作業・参照資料へ迂回しない。
+
+**保証すること**：
+
+- 一つのpackが全対応sourceを持てることは、どの利用でも全sourceが必須であることを意味しない。逆に、個々のsourceや操作を選択した利用では、その選択を成立させる該当依存を省略できない。
+- 適用条件の真偽を要求入力と宣言から決定できる。条件の欠落、曖昧さ、矛盾、stale、互換range不明は、当該条件を非適用または参照のみと推定せずunknown/保留にする。
+- **安全依存をoptional化しない**。認可、authority、隔離、排他、credential/data-use、監査証拠、停止/復旧などの安全条件は、操作または選択sourceの条件に応じて現れる場合も、該当条件下では必須依存である。その適用条件自体がunknownなら保留し、閉包から落とさない。
+- 代行者が人でも依存宣言・必要な権限・隔離・版照合・検証・記録の義務は同じ。人の実施はdependencyを削除せず、同じ契約の成果とsource/actor/revision/scope/受領/検証receiptを供給する。契約にない人の判断や口頭受領はclosure evidenceにならない。
+- 依存区分はtarget packの機能・owner・上位要求・版成熟度を変更しない。後続版の依存を1.0に強制せず、また1.0で必要な安全依存を後続版扱いにして削らない。今回選択しなかった能力も、1.0全体に属する完成義務を削除・延期したことにはしない。
+
+**単独で成り立つための依存**：HARNESS-L2-010（pack identity/契約/依存宣言）、HARNESS-L2-011（利用ごとの入力scope・版・権限・状態/証拠）と、分類対象の依存宣言・利用入力。分類結果がmissing/unknownであることも出力でき、対象依存の実装がすべて存在することを分類能力自身の成立条件にしない。利用実行には、その結果が求める有効な依存を別途充足する。依存閉包の結果そのものが、未採択候補や利用対象機能の成立・実装許可にはならない。
+
+**旧FRSとの関係**：FRS-BR-004/005/009、FRS-R-12/13/14/23、FRS-AC-012/013/014/025の保持点（影響追跡、安全閉包、unknown/stale fail-close、局所単位の再現/rollback）を現行pack契約へ再導出する。変更点は旧Slice/Module/Bundleの宣言構造を移さず、既存HARNESS-L2-010/011へ利用条件を4区分で明記すること。変更理由は、対応可能な接続の一覧と一利用に必要な依存を読み分けられるようにし、選択した構成を安全閉包の根拠付きで成立させるためである。
+
+**束ねる既存条件**：HARNESS-L2-010の明示的依存・版・scope・所有・収載/除外、HARNESS-L2-011の版照合・明示権限・隔離・相関証拠・失敗/再開。新しいmechanism、dependency registry、runtime、approval、依存ownerは作らない。
+
+
+- **原文・照合証拠**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)第2点、[起点判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)、[全機構の依存監査](../../governance/audits/g10-pack-dependency-audit.md)。旧FRSのasset ID・path・行・SHAと原条件は監査に保持する。
