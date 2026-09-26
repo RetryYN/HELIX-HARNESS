@@ -59,14 +59,20 @@ POの文と指示はそのまま扱い、AIの整理と区別する。本記録�
 旧FRSの「関数・フォルダ」への言及はない。POの「関数やフォルダごとではなく」は、旧FRSの「単一または密結合したbehavior contract」を単位とする考え方と同じ向きである。
 Web側から呼べる条件（決定4）に対応する旧記述は、旧FRSと現行Conceptの「1.0から入れる土台」（接続契約と版、隔離の単位、構成版の固定と切戻し、ログと証拠）である。画面・作業環境から切り離すという言い方そのものは旧FRSにない。POの判断による追加として扱う。
 
+### 検証と受入の段階の割当て
+
+Conceptのサービス①〜⑦の表は、ProvisionalからAcceptedまでの結合・システム検証・受入（L8〜L11）を、どのサービスの成果物にも挙げていない。一方で、Conceptは「コア（HELIX-HARNESS-CORE）」に「テスト、CIの仕組み。すべてのリリース単位を横断して成立させる」を置いている。そこで、この段階の検証と受入の契約をコアの単体（HARNESS-L2-022）に割り当てた。④の出力はProvisionalまでとし、⑥はHARNESS-L2-022の条件を満たした成果物を受け取る。これはConceptの既存の記述に基づく割当てであり、Conceptと既存のHARNESS-L2-003の成果物の状態・戻し先は変えない。テストとCIの運転はHELIX-OSの推進と検収（Concept「個別のticketの発行、Workerの実行、検収は、OSの推進と検収が担う」）、または利用者のCIが担い、HARNESSは契約を持つ。
+
+保持する点は、Vの谷のPO判断（[2026-09-26](harness-v-valley-process-po-decisions-2026-09-26.md)）の段階ごとの証明と戻し先、および旧FRS-BR-009の「単体と組合せの証明を分ける」ことである。この割当ては独立review（PR #2157のR2157-01）の指摘を受けて加えた。
+
 ## 反映
 
-- [HARNESS L2](../../helix-harness/L2-requirements/product-requirements.md)の末尾に「リリース単位の要求とパック境界」の節を追加し、HARNESS-L2-010〜021を候補として置く。既存の要求本文と行位置は変えない。
+- [HARNESS L2](../../helix-harness/L2-requirements/product-requirements.md)の末尾に「リリース単位の要求とパック境界」の節を追加し、HARNESS-L2-010〜022を候補として置く。既存の要求本文と行位置は変えない。
 - [HARNESS L11](../../helix-harness/L11-acceptance/product-acceptance.md)の末尾に対の受入を置く。
 - Webの原案（`helix-web/docs/`の`candidates/`）は変えない。
 - HELIX-OS、BRAIN、LABO、INTELLIGENCE、SECURITY、INFRASTRUCTURE、CONNECTの機能単位の要求とパック境界は、後続のPRで機構ごとに扱う。
 
 ## 人の判断が残る点
 
-- HARNESS L1の対象revision確認（2026-09-24から継続）。今回の候補はL1の本文を変えず、既存のHARNESS-L1-005／007／008を親とする。
-- 候補HARNESS-L2-010〜021の採否。本記録と候補本文の存在から採択・実装許可を生成しない。
+- HARNESS L1の対象revision確認（2026-09-24から継続）。今回の候補はL1の本文を変えず、既存のHARNESS-L1-001／003／004／005／006／007／008／009を親とする。各サービスの親はL2の親表に示す。
+- 候補HARNESS-L2-010〜022の採否。各候補の採否は、IDごとに別に追える。本記録と候補本文の存在から採択・実装許可を生成しない。
