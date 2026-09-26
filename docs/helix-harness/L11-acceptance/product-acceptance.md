@@ -231,3 +231,30 @@ FRSと提供構成追補の採用revision確定後に評価する。全件未実
 - **反例：過剰依存**。LABO 001を利用する全caseでsource接続021–030の十件すべてを常時必須とし、Worker observation一本の限定利用まで別source一式完成待ちにする。
 - **反例：過少依存**。Worker source 028を選んだのに028の契約/版/受領を外す、またはSECURITY/data-use/authority条件を「選択されていない」扱いにする。該当security applicabilityを判断できないまま実行可能扱いする。
 - **反例：誤分類・隠れfallback**。sourceが未選択なのに利用可能または未利用成功と報告する、選択sourceがstaleのとき別sourceへ黙って切り替える、条件unknownを参照のみへ落とす、必須の人確認/検証を手作業という理由で消す。
+
+### HARNESS-L2-024 要求形成の質問優先と収束の受入
+
+
+| 対応要求 | 利用入力・合格結果 | 反例（不合格） |
+|---|---|---|
+| HARNESS-L2-024 | 同一engine/pack/target revision・scopeの指示、既回答、要求candidateと不足一覧を与える。高影響の未決事項が、影響・不確実性・下流変更cost・人間専決度とともに優先提示され、回答済み質問は重複せず、未回答項目は同じopen itemで追跡される。actor/task、正常/取消/failure/timeout/recovery、P0/P1、contradiction/defer owner/re-entry、implicit matrix、利用可能なiteration history、該当時prototype agreementを各statusと根拠で示す。必須情報unknown等の形成不備と、形成情報が揃った後の人間確認・合意待ちを別状態として示し、同一入力revisionで同じ候補・質問順序・理由・状態を再現する。 | 高影響unknownより低影響表現を先に問う／同じscope・回答済み質問を言い換えて再質問／新根拠なしで合意回答を再開／根拠なく人間専決値を補完／正常系だけでfailure/cancel/timeout/recovery、actor、surface、matrixを省く／矛盾/deferにowner・re-entryなし／N/A理由なし／利用可能な履歴やprototype agreementを無視／score、質問数、訂正率、iteration数だけで形成不備または人間合意を閉じる／timeoutを成功扱い／OS登録、engine candidate、Issue/PR、沈黙から採択・操作権限を作る。 |
+
+**具体的な正常例・反例**
+
+- **正常例・優先順位と重複**：同じtarget revision/scopeの既回答「対象actorはproject owner」を履歴に持ち、未回答の質問として「data retentionのowner」と「表示ラベル」を持つ。後者より先に、authority/data-useに影響する前者を根拠付きで示す。既回答actorを聞き直さず、owner未決を残す場合は担当・決定選択肢・影響候補を提示する。
+- **正常例・同順位**：影響要素が同順位の二つの未回答質問を与え、pack revisionで固定したtie-break規則の期待結果どおり一意に選択する。同じ入力の再評価で順序が変わる、規則欠落を暗黙に補う、同順位の片方を消す場合は不合格。
+- **正常例・合意再開**：agreement後に新しいL1 revisionまたはsource findingが到着し、特定のactor/scope条件を変える。engineは新根拠revision・旧新差分・影響identityを示し、affected decisionだけをownerへ戻す。関係ない合意はそのまま維持する。
+- **正常例・形成資料準備、合意待ち**：必須behavior fieldsとfailure/surface/matrixが解決または理由付き非適用で、残るsecurity/法務の決定について原文・選択肢・推奨・影響と判断ownerを提示する。必要情報が揃い、decision packetが確認可能なため人の確認待ちへ進めるが、必須情報unknownによる形成不備とは区別し、当該判断・人の要求合意・L3承認はpendingのまま。
+- **正常例・補助計測**：同一fixtureと未見fixtureで質問量・訂正率をengine候補のloopに沿って記録し、scope・対象・engine/pack revision・分母/測定方法・失敗内容を添える。現時点で根拠のない数値thresholdを設定せず、未決の必須判断は引き続きopenとして出す。
+- **反例・必須の取りこぼし**：actor/taskやcancel/failure/timeout/recoveryを空欄にし、正常系が説明できることだけで収束させる。implicit matrix上のpermission/privacy項目やP0/P1 surfaceを無言で省略する。
+- **反例・重複と再開**：同じrevision/scopeの回答済み質問を別表現で再送する。理由のない回答矛盾を無視・自動解消し、新根拠なしに合意を再開し、無関係な要求やすべてのagreementをstaleにする。
+- **反例・スコア/回数による偽収束**：fixture scoreが高い、iterationが2回に達した/達していない、質問がN回、訂正率が低い、timeoutした、という理由だけで形成不備を消す、または人の合意を成立させる。
+- **反例・人間判断の代行**：金額/権限/法務等の値をモデルが推定し、提案を合意済み要求・承認・実行可能へ変える。相談、Issue、PR、CI、沈黙をapprovalに使う。
+- **反例・scope/data stale**：対象L1/source revisionが変化したのに旧回答やprototype agreementをcurrentとして流用する。変更影響がunknownなのに未影響へ変換する。
+- **正常例・timeout**：応答期限に達したらactor/scope/target revision/最後のevent/open question/owner/re-entry conditionを保持して保留にする。再開時は新しい回答等を追記して差分を再評価し、途中で回答・合意・採択を生成しない。
+
+
+- **初回形成**：既回答がまだない初回入力は明示的な空履歴として扱い、履歴が2回未満という理由で質問形成を拒否しない。既にある回答記録の紛失や対象revisionの不明は別の不足として示す。
+- **計測の接続**：[engine候補の補助計測](../candidates/requirement-engine-python-core-requirements.md)に従い、同じfixtureと未見fixtureで質問量・訂正率・必須条件の見逃しを再測定できること。件数を減らすために必要な質問を落とした例や、訂正未観測を0とした例を改善として通さない。本受入は未実行の候補であり、実測値やengine完成を主張しない。
+
+- **正常例・適用対象の合意未了**：prototype／非UI合意が該当し未了の入力でも、要求候補・根拠・未決判断packetを返し、合意待ちを明示する。合意未了だけで候補形成を拒まない。既存合意済み記録の紛失は別の形成資料不足とし、どちらも合意・freezeを捏造しない。

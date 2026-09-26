@@ -495,3 +495,29 @@ AVS／RFA／DGH／FRSの既存L3候補とID範囲は[OS側の接続表](../../he
 
 
 - **原文・照合証拠**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)第2点、[起点判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)、[全機構の依存監査](../../governance/audits/g10-pack-dependency-audit.md)。旧FRSのasset ID・path・行・SHAと原条件は監査に保持する。
+
+### HARNESS-L2-024 — 要求形成の質問優先と収束根拠
+
+**親L1**：primaryはHARNESS-L1-008（要求形成の収束）。HARNESS-L1-006は形成・合意・freeze等の状態分離を保持するcontext parent。HARNESS-L1-005／007／001は単独service・Version 1・V-modelのcontext。現行親はdraft_candidateで、対象revisionの確認・採択を生成しない。`version_target: 1.0`。
+
+**kind / boundary**：単体（HARNESS要求形成engineの利用条件）。既存HARNESS-L2-008の意味処理能力を追補し、HARNESS-L2-013の② serviceで単独利用できる補強。HARNESS-L2-008/013を置換せず、OS側に別engine・question service・approval ledgerを作らない。
+
+**入力**：engine／product pack revision、対象ConceptとL1 revision、利用者の指示・参照根拠のidentity/revision/scope、現在とprior candidate、既回答・訂正・defer・agreementの記録とactor/owner、利用可能な過去iteration履歴と差分（履歴の固定件数を必須としない）、候補間の矛盾・重複、actor/task、正常/取消/failure/timeout/recovery、P0/P1 surface、implicit requirement matrix、prototype/非UIの適用性と、該当時には現行HARNESS-L2-008の工程で得た合意・根拠（非適用時には理由と再評価条件）、各不足の不確実性・影響・下流変更cost・人間専決区分。
+
+**出力**：version/scope/sourceに結び付いた構造化要求候補と意味差分、質問・既存open questionの継続状態、優先理由と影響範囲、矛盾・欠落・未確定事項、deferのowner/re-entry条件、適用対象と非適用根拠、残る必須人間判断（原文、決める選択肢、推奨案、影響候補）、収束判定と不足理由を返す。候補は人間の訂正・合意・採否待ちであり、approved requirement、L3承認、操作許可へ昇格しない。
+
+**収束契約**：
+
+1. 同一対象revision・scope・既回答を照合して質問履歴を再利用する。回答済み質問を同じ意味で聞き直さない。既に開いて未回答の質問は新規重複で再発行せず同じopen item、owner、状態を提示する。再質問が必要なら回答された事実を消さず、変わった根拠・revision・scopeと意味差分を明示する。
+2. 未解決質問候補の順序は旧RDJ-FR-003の影響度×不確実性×下流変更cost×人間専決度の各要素に対応する入力根拠を示し、影響の大きい不足・未決事項から先に提示する。数値weight、閾値、固定質問数を根拠なく新設せず、同順位なら、packのversioned inputとして固定したtie-break規則と根拠を適用し、同じ候補・既回答・入力revisionから次の質問と順序を一意に再現する。規則が未定義または同じ入力から複数の選択が残る場合は選択未確定を示し、pack契約ownerへ不足を戻す。実装方式や根拠のない数値weightをこの候補で固定しない。risk/authority等の人間専決値はエンジンが補完せず、原文・選択肢・推奨・影響候補を持つ判断待ちへ送る。
+3. 合意済みの回答・要求を再開する場合は、新しいsource/revision、矛盾を示すfinding、影響するscopeと差分を特定する。エンジンは再開を自動確定せず、影響を受ける項目だけを対象ownerへ理由付きで照会する。新しい根拠がない同じscopeでの再確認は拒否する。
+4. 収束判定は、actor/task、正常・取消・failure・timeout・recovery、P0/P1 surface、矛盾/deferとowner/re-entry、暗黙matrixの必須領域、利用可能なiteration履歴と差分根拠、prototype/非UI適用性について現行HARNESS-L2-008の工程で得た合意・根拠（該当時）を確認する。旧条件の「直近2 iteration」を最低件数にせず、過去履歴がない/少ないこと自体を必須事項unknownと同一視しない。各要求領域を解決済み／明示保留／非適用（理由・判断者・対象revision・再評価条件）／必須事項unknownで区別する。必須事項unknown、未ownerの必須事項、未説明の矛盾、P0/P1の未分類欠落は形成資料の不足として提示し、PO確認待ちそのものとは区別する。必要な形成情報と根拠・残存判断一覧が揃った場合は「人の確認・合意待ちの候補」として提示できるが、これは合意・freeze・採択完了ではない。人の合意状態は別個に確認し、engineが収束判定から生成しない。prototype／非UI合意が該当して未了でも、要求候補・根拠・未決判断packetを形成して当該合意待ちの状態で提示できる。既存合意がある前提の記録欠落は形成資料不足として区別し、合意前のfreeze・下流承認を生成しない。
+5. score、fixture score、質問回数、訂正率、反復iteration数、無変更iteration、timeoutを単独の収束判定にしない。固定iteration上限は設けない。timeout時は進行停止・状態保持・actor/scope/最後の確定revision/open item/再入条件を返し、回答や合意を捏造せず、再開条件が揃うまで待つ。
+
+**保証と既存engine対応**：HARNESS-L2-008とREQENG-HARNESS-001/002/003/004の既存抽出・意味差分・質問・影響処理へ、revision/scope単位の既回答照合、質問順序の説明、合意再開根拠、必須条件の収束判定を補う。REQENG-HARNESS-005/006の製品pack分離と決定論を保持し、REQENG-HARNESS-007およびHARNESS-L2-013の提案・人承認境界を保持する。OSは人の反応/採否eventを登録・監視する既存責務に留まり、要求の意味を重複所有しない。prototype/PoC結果からHARNESS-L2-008へ戻る現行Backflow、単体/connection/compositeのidentity、failure/timeout、trace、owner/re-entryも落とさない。
+
+**単独成立依存と戻し先**：HARNESS-L2-008（要求候補・意味質問）とHARNESS-L2-013（②単独service）およびその候補revision付きHARNESS-L1親。初回で既回答がないことは明示的な空の履歴として区別する。存在するはずの回答・合意の記録、対象revisionのL1、根拠scope、actor/ownerまたは適用matrixがmissing/unknown/staleなら影響する質問の確定・収束を保留し、HARNESS要求ownerへ不足を戻す。上流の目的・scope・人が決める値が不明ならHARNESS-L1-008または意味を持つPOへ戻す。操作・記録・採否の実行はOS側既存consumerへ戻し、HARNESSに登録/承認権限を追加しない。
+
+**旧RDJとの関係**：RDJ-FR-003/007とRDJ-AC-003/007の意味を保持し、RDJ-FR-002のevent履歴・決定論replay、FR-004のsuccess/cancel/failure/timeout/recovery、FR-006の暗黙matrixと人間decision、AC-006の自動accept拒否を関連条件として結ぶ。変更点は固定反復回数・旧手続きを新設せず、利用可能な履歴と変更根拠を照合し履歴件数を成立条件にせず、現行HARNESS engine候補のquestion-volume/correction-rateを同じ／未見fixtureで補助計測すること。質問/訂正measurementの改善値だけでは必須要件未決を閉じない。
+
+**原文と旧資産**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)第3項を起点とする。旧RDJ-FR-003/007は `LEGACY-ASSET-E78B8D68CC327AA00991`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md:48,52`、SHA-256 `361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61`。対のAC003/007は `LEGACY-ASSET-AD746F4F3487103519F9`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md:22,26`、SHA-256 `3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e`。旧FR007の固定「直近2 iteration」は原条件として記録するが、PO指示に従い現行の最低回数にしない。履歴・差分・必須条件の照合という意味を再導出する。`LEGACY-ASSET-4A7A45BC495D1B2677A2`、`archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json:1-2828`、SHA-256 `6230d6c0ae341ea45eba1e9bf1d40389363b9f1f12c158e5b5c15799122e1443`には該当RDJ契約がなく、他機能の契約を代替根拠にしない。旧runtime・schema実装は移植/実行しない。
