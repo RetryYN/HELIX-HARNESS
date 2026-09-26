@@ -100,3 +100,10 @@ L1被覆判定や候補文書の説明から12要求を生成しない。各reco
 `parent_concept_revision`／`parent_planning_revision`は、未採択候補を起草する場合にも実際に読んだ親のpath・commit・本文digestと候補状態を記録する。表の「承認済み親revision」は承認済みの入力を記録する場合の状態であり、候補親を承認済みと偽って書かない。[作業入口](new-generation-start-here.md)が許す候補起草と、承認済み要求からのticket化を分ける。親の候補状態、要求の採否待ち、必要な人間decisionはそのまま保持する。
 
 この追補は既存の仮登録の対象表記を現在の機構と候補状態へ合わせる。旧`archive/legacy-generation-2026-09-14/root/CLAUDE.md`の「自律境界」（82〜85行）の、人が上流の意味を持ちAIが起草する分担を保持する。旧世代の層番号・DB・runtimeは継承せず、現行の層とrepo-owned registerへ記録する。承認前の登録から採択・下流許可を作らない境界、被覆・生存参照・訂正revisionの条件は変えない。
+
+
+## HELIX-CONNECTの候補起草に伴う対象追加（2026-09-27）
+
+G7ではPO原文と現行Conceptの共通部品の行を親に、HELIX-CONNECTのL1企画候補とL2／L11候補を起こす。上の「共通部品CONNECTは対象別L1がまだない」は追補時点の説明として保持し、今回の候補起草後は`product_target: HELIX-CONNECT`を記録できる。本fieldから外販製品属性を生成しない。対象別L1のrevision確認はPOに残し、候補親のpath・本文digest・候補状態を明示する。仮登録からL1の確認、要求の採択、実装許可を生成しない。
+
+原文と判断記録の参照は今回のCONNECT候補に置く。この追補は既存の候補親の記録方法をCONNECTにも適用するものであり、被覆・生存参照・訂正revision・独立reviewの条件を変更しない。旧`archive/legacy-generation-2026-09-14/root/CLAUDE.md`82〜85行の「人が上流を持ち、AIが起草する」分担を保持し、旧層番号とruntimeを継承しない。
