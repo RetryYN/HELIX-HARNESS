@@ -215,3 +215,19 @@ FRSと提供構成追補の採用revision確定後に評価する。全件未実
 | HARNESS-L2-020 | 枠に並べた隣り合う単位で、出力と入力の契約を版とともに照合し、意味の差をBackflowで最上流の層へ戻し、省いた検査・未解決・unknown・人の判断待ちが次の単位へ引き継がれて合流先で回収される。前の単位を使わず外部の成果を持ち込んでも同じ照合を通る | 版の合わない受渡しを読み替える／④のProvisionalを⑥へ直接渡す／下流で上流の意味を書き換える／引き継いだ未完の義務を完了にする／単体の合格だけで接続の合格とする |
 | HARNESS-L2-021 | 一つの対象で要求から検証と受入（HARNESS-L2-022）を経て運用保守まで通し、L12の観測と実績の評価から要求へ戻る経路まで辿れる。端から端のtrace、横断する非機能、統合した版の更新・rollback、L12の運用検証が、個別の単位の成功とは別に確かめられる | 単位ごとの合格を集めただけで構成体の合格とする／構成体に固有の義務を確かめない／HARNESSが改善を自分で実行する、または評価の結果を要求へ戻す受け口がない |
 | HARNESS-L2-022 | コアの検証と受入の契約だけを④なしで使い、持ち込んだProvisionalの成果物が、L8・L9のScoped Reverseと結合の証明でIntegrated、L10のシステムの証明でVerified、L11の受入でAcceptedへ、段階ごとの証拠とともに進む。振る舞い・契約・要求を保てる不一致は右側でRefactorされ、同じ段階の検証をやり直す。意味の変更が必要な不一致は、意味が変わる左側の層へBackflowで戻る。L11の意味の差は、コードで合わせずに要求へ戻る。HELIX-OSなしで、利用者のCIと受入の手段へ契約を渡して同じ判定ができる。外部で検証・受入を行った成果物は、条件を満たした段階までの状態で⑥へ渡る | 段階を飛ばして状態を進める／単体・結合の証明だけでVerifiedとする／L10の合格でAcceptedとする／意味の変更が必要な不一致を右側のコード修正で合わせる／意味を保てる不一致まで一律に左側へ戻す／見つけた検証層だけで戻し先を決める／L11の意味の差をコードの修正で合わせる／HELIX-OSの検収がないと使えない／外部の成果物を存在だけでVerified・Acceptedとする／この段階をサービス①〜⑦のどれかに所有させる |
+
+### HARNESS-L2-023 利用条件別の依存宣言の受入
+
+| 対応L2 | 成功条件 | 反例（不合格） |
+|---|---|---|
+| HARNESS-L2-023 | `version_target: 1.0`のpack contract revisionに依存identity、owner、dependency contract version/range、4区分、条件式、対象operation/source selectionを固定する。ある入力条件を与えると、常時必須＋成立した操作条件＋選択したsource条件の依存だけが有効closureとなり、条件不成立の依存、未選択/未観測source、参照のみの資料、unknown/staleを別状態で表示する。出力を同一入力・revisionで再評価したときclosureと理由が一致する。該当時の全安全依存は閉じ、必要identity/版/authority/evidenceのいずれかが不明なら該当操作を保留し、上記のowner/POへ戻す。 | 全source対応表を全呼出しの必須依存と読む／逆に依存リストを単なる対応可能一覧とみなし必須を落とす／unknown条件をfalse・参照のみ・未選択へ暗黙変換／stale/未対応契約版を黙読替え／安全依存をoptional化／一source失敗から無断fallback／未選択sourceを「未使用成功」「利用可能」と表示／人の代行で権限・version・scope・検証・receiptを省略／単体packのgreenから上位構成を成立扱いする |
+
+**正常例と反例**
+
+- **正常例：選択入力元に応じて必須**。HELIXLABO-L2-001の入力元一覧を「毎回すべて接続必須」とは解釈せず、Worker観測を一件集積する利用でWorker入力sourceのHELIXLABO-L2-028を選ぶ。028のsource identity/契約版/scopeと、その操作に適用されるsecurity/data-use条件をclosureに含める。021–027と029–030はこのrunでは「未選択・未観測」と明示し、LABO 001が全source入力に対応することや他sourceの成功・不在を推測しない。後で別sourceを選ぶ場合は、そのsource固有依存を別の利用入力として閉じる。
+- **正常例：特定操作時のみ必須**。packが事前宣言したoperation-specific dependencyについて、当該呼出しで操作条件がfalseならその操作依存をclosureへ含めず理由を記録する。同じpackにおいて条件がtrueになる操作ではその依存を必須として追加し、版がunknownなら当該操作だけ保留する。packの別操作や対応能力全体の完成を根拠なく保留条件にしない。
+- **正常例：常時必須と参照のみ**。常時必須のversioned contractは全利用で照合する。説明用資料は参照のみと記録する。authority sourceやrequired oracleを「参考資料」に分類しようとした入力は、その意味上の要件に基づいて拒否する。
+- **正常例：人が実作業を代行**。同じoperation/source selection、scope、依存版、authority・隔離範囲で実施し、actor、入力/出力revision、検証結果、受領receiptを残す。該当安全依存は全て成立したままになる。必要条件の証拠を代行者の主張だけで省略しない。
+- **反例：過剰依存**。LABO 001を利用する全caseでsource接続021–030の十件すべてを常時必須とし、Worker observation一本の限定利用まで別source一式完成待ちにする。
+- **反例：過少依存**。Worker source 028を選んだのに028の契約/版/受領を外す、またはSECURITY/data-use/authority条件を「選択されていない」扱いにする。該当security applicabilityを判断できないまま実行可能扱いする。
+- **反例：誤分類・隠れfallback**。sourceが未選択なのに利用可能または未利用成功と報告する、選択sourceがstaleのとき別sourceへ黙って切り替える、条件unknownを参照のみへ落とす、必須の人確認/検証を手作業という理由で消す。
