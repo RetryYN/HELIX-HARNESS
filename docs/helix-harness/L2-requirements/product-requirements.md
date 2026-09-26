@@ -462,7 +462,7 @@ AVS／RFA／DGH／FRSの既存L3候補とID範囲は[OS側の接続表](../../he
 
 ### HARNESS-L2-023 利用条件別の依存宣言（単体追補候補、1.0）
 
-**親L1**：HARNESS-L1-005、HARNESS-L1-008。HARNESS-L1-005を利用境界のprimary parentとし、HARNESS-L1-008を要求入力・依存不足を明示するcontext parentとする。両者の現行本文は対象revision確認待ちのcandidateであり、この候補は確認済み扱いにしない。
+**親L1**：HARNESS-L1-005。外部利用者がHELIX内部管理へ暗黙依存せず、明示された版・構成・条件で利用できるという企画を、利用条件ごとの依存宣言へ具体化する。現行親本文の対象revision確認はPOに残し、この候補から確認済み扱いにしない。
 
 **既存契約**：HARNESS-L2-010、HARNESS-L2-011。候補はこの二つを置換せず、全リリース単位から利用する共通依存宣言を追補する。
 
@@ -477,7 +477,7 @@ AVS／RFA／DGH／FRSの既存L3候補とID範囲は[OS側の接続表](../../he
 
 **提供するもの**：各依存の4区分・条件・版・ownerを示す依存宣言と、その利用要求に対する有効依存閉包（必要、条件不成立で対象外、未選択かつ未観測、参照のみ、unknown/stale/保留を区別）。利用に使った依存の版・scope・判定根拠をHARNESS-L2-011の相関ID付き結果/証拠へ結び付ける。
 
-**保留と戻し先**：packの依存identity・区分・条件・版rangeが欠落/曖昧なら、pack契約ownerへ戻しHARNESS-L2-010の契約改訂候補にする。呼出し固有のoperation/source/scope/権限/receiptの不足や版不一致は、呼出しownerへ戻しHARNESS-L2-011の入力修正または再実行候補にする。authority、安全条件、または親の要求scopeが不明・矛盾している場合は、そのauthority ownerまたはHARNESS-L1-005/HARNESS-L1-008の意味を持つPOへ戻して明示的な根拠を得る。修正・根拠が揃うまで該当操作を保留し、別source・手作業・参照資料へ迂回しない。
+**保留と戻し先**：packの依存identity・区分・条件・版rangeが欠落/曖昧なら、pack契約ownerへ戻しHARNESS-L2-010の契約改訂候補にする。呼出し固有のoperation/source/scope/権限/receiptの不足や版不一致は、呼出しownerへ戻しHARNESS-L2-011の入力修正または再実行候補にする。authority、安全条件、または親の要求scopeが不明・矛盾している場合は、そのauthority ownerまたはHARNESS-L1-005の利用境界の意味を持つPOへ戻して明示的な根拠を得る。修正・根拠が揃うまで該当操作を保留し、別source・手作業・参照資料へ迂回しない。
 
 **保証すること**：
 
