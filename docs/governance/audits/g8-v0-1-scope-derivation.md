@@ -135,20 +135,17 @@ HARNESS共通pack候補（G1〜G7 identityとは別枠）は`HARNESS-L2-010/011/
 | SECURITY-L2-023 | admission→Worker→HARNESS verification→OS stage promotionの分離receiptがない | security単体/CI結果から段階昇格を安全に判定できない |
 | SECURITY-L2-028 | SECURITY descriptorとupdate artifactのidentity/version/digest/compatibility束縛がない | stage内のSECURITY pack版をHARNESS共通契約と一致させられない |
 | SECURITY-L2-001 | untrusted requirement/input sourceのidentity・revision・authorityを保持できない | 入力の信頼境界が欠ける |
-| SECURITY-L2-002 | 今回Workerが読む文書中の命令様dataをtool args/operationから隔離する条件がない | 固定した文書差分仕事を安全に遂行できない |
 | SECURITY-L2-003/004 | project/environment/assignment隔離、exact config/HEADのintegrity確認が欠ける | 対象scopeと実行構成を確定できない |
 | SECURITY-L2-005/006 | credential利用境界とegress destination/data class/purpose/authority照合が欠ける | secretなし・許可先限定の条件を示せない |
 | SECURITY-L2-007/008 | Workerへ制約を適用・観測する経路、operation単位のauthorityが欠ける | 人/Workerどちらの実行も許可・制約を証明できない |
 | SECURITY-L2-009 | revoke/unknown等の停止・quarantine伝播が欠ける | 安全停止時に割当・実行・CONNECTを一貫して止められない |
 | SECURITY-L2-015/016 | asset identityとexposure classification基盤が欠ける | source/artifactのowner・revision・利用区分/unknownを記録できない |
-| SECURITY-L2-010/011/012/013/023/028 | 更新candidateのsecurity admission、capability差分、provenance、artifact integrity、段階別昇格receipt、共通pack descriptorへのidentity/version/digest束縛が欠ける | SECURITY packを同じartifactのまま段階構成に更新・検証・昇格できない。HARNESS/OSの並行receiptだけでも不足 |
 | INFRASTRUCTURE-L2-001 | resource/topology/environment identityとapproved Harness Core design参照が欠ける | 適用環境、依存資源、stage再構築入力が確定しない |
-| INFRASTRUCTURE-L2-004 | runtime observation/incident stateと欠測・unknownの保持が欠ける | SECURITY009の観測起点と異常/停止判定を閉じられない |
+| INFRASTRUCTURE-L2-004 | runtime observation/incident stateと欠測・unknownの保持が欠ける | SECURITY009の異常観測・revoke/quarantine triggerとrecipient receiptの安全判断を閉じられない |
 | INFRASTRUCTURE-L2-002/003 | desired/actual/drift、容量・実行資源の観測が欠ける | Worker/検証の実行可能性を判定できない |
 | INFRASTRUCTURE-L2-005 | 実restore・rollback適格性が欠ける | 前の適格状態へ戻せる根拠がない |
 | INFRASTRUCTURE-L2-006 | HELIX control planeと独立したbootstrap/recoveryが欠ける | HELIX停止時の自己非依存復旧が証明できない |
 | INFRASTRUCTURE-L2-007 | 独立環境でのruntime rebuildabilityが欠ける | 同じ選択構成を再現・検証できない |
-| INFRASTRUCTURE-L2-004 | runtime observation/incident stateがなく、欠測/unknownを保持できない | SECURITY009のrevoke/quarantine triggerとrecipient receiptの安全判断が欠ける |
 | LABO-L2-001/028 | 許可されたobservation、Worker結果とticket/assignment同一性保持が欠ける | LABO055の水準入力に追跡可能な根拠がない |
 | LABO-L2-055 | Worker historyから作業種別/model class別の水準・評価範囲・未評価状態が欠ける | INT010へ根拠ある配置材料を渡せない |
 | LABO-L2-054 | Bench水準/根拠/scope/未評価状態のLABO→INT handoffが欠ける | INT010の入力を専用edgeで追跡できない |
