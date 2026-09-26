@@ -1,0 +1,353 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-L2-010-022-2026-09-27",
+  "authority_effect": "none",
+  "candidate_digest_rule": "docs/helix-harness/L2-requirements/product-requirements.mdの「### HARNESS-L2-NNN 」見出し行から、次の「#」で始まる行の直前までをUTF-8で取り、末尾の空行を除いて改行1つで終える。そのSHA-256を\"sha256:\"付きで記す",
+  "source_holding": "MPR-SH-CANDIDATE-003（docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl）",
+  "source_file": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+  "source_file_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+  "pre_isolation_check": "入力atomのsource_path（docs/governance/candidates/functional-release-slice-requests.md）はMPR-SH-PREISOLATION-002の333件に含まれない（merge admission条件6・7は該当なし）",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-010",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        340,
+        351
+      ],
+      "candidate_semantic_digest": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+      "source_atom_set_digest": "sha256:8e3ff6df1f967029ff8ff4839a468b6f724bbcd6d6cd93a0bf05c82c3bd5cfd5",
+      "source_atom_count": 15,
+      "source_collection_scope": "旧FRS v0.2候補（MPR-SH-CANDIDATE-003が保持する行atom）のうち、本候補が入力にしたFRS-BR見出し・本文行。空行は含めない",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-002108",
+          "source_line": 23,
+          "source_line_sha256": "sha256:5624191d9c5318f5e6acc0d5b03112b0dceb5b69e7e87eb2abd5512a73c4846c",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002109",
+          "source_line": 25,
+          "source_line_sha256": "sha256:5c2a8fe78dc6356333c2b0e206655b75d87c80f93d25f76fc96170f34c312047",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002110",
+          "source_line": 26,
+          "source_line_sha256": "sha256:70317c3e7e7de2caaed8db0c66f5066caadfab473777e6fb3a16a9bee0f2bca2",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002111",
+          "source_line": 28,
+          "source_line_sha256": "sha256:2418fc24e54631cb4ffa39200f74b43da4965fac5bb48f349a86cc61323665b6",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002112",
+          "source_line": 30,
+          "source_line_sha256": "sha256:6818dd5f34f3715cd977714dd62c9535cc601a90925d293e3d916f0d68bebd62",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002113",
+          "source_line": 31,
+          "source_line_sha256": "sha256:fe73f86621e97c065ec0a4a5d30b825592cf6a8e4db04fd9258707e861c3e78d",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002114",
+          "source_line": 33,
+          "source_line_sha256": "sha256:05303983a9d681f17bc5cde516302d040336a3fda866a985c625acb4651f97aa",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002115",
+          "source_line": 35,
+          "source_line_sha256": "sha256:18e912cf5d735ca1da8584787de8dfc894ea226d8e0e32f87cbdcbb1a7f319af",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002116",
+          "source_line": 36,
+          "source_line_sha256": "sha256:623e237c35bf937cf600c277eecd6bcb63a44289833319d41c60a0d421a09d7f",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002120",
+          "source_line": 43,
+          "source_line_sha256": "sha256:6f613c30decf4fae9d787ca8484c25132e36bcf42e02aff4fe666552c9ffbb25",
+          "disposition": "carried",
+          "shared_use": "HARNESS-L2-010と017で同じatomを使う（010はパックの再現・戻し、017は対象製品のリリースの再現・戻し）。単純な重複計上ではない"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002121",
+          "source_line": 45,
+          "source_line_sha256": "sha256:a44a6dd1d78f4a21c83dca59bbe9b765d920608e8f4e61d86552f65f59bec892",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002122",
+          "source_line": 46,
+          "source_line_sha256": "sha256:3a45b0df2c0be050b30556fe6b443dba9cc39e749ed11fc0c833622a51b895f8",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002133",
+          "source_line": 64,
+          "source_line_sha256": "sha256:607d431b2befd8e567ddfcba91949c8c6005f0d25d2e2c5e49c9f9910715579d",
+          "disposition": "carried",
+          "shared_use": "HARNESS-L2-010・021・022で同じatomを使う（010はリリース単位への収載、021は構成体、022は検証段階の組合せ）"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002134",
+          "source_line": 66,
+          "source_line_sha256": "sha256:711a35fddd4526cf7e12b3eb980ec1af9481fe5fc790f20ba15b7fe31a815214",
+          "disposition": "preserved_pending"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002135",
+          "source_line": 67,
+          "source_line_sha256": "sha256:29b1489c1719c040cd601e32ef5bd7e1b2a410749143e8db5110a985b328a33c",
+          "disposition": "carried",
+          "relation": "部分的に保持：「検収済みの組合せの統合・更新・rollback・L12運用検証を個別の成功とは別に確認する」意味を保持する。「Lite／Full」の構成名は本候補で採らず、原文はMPR-SH-CANDIDATE-003に残る（2026-09-27にPOが段階リリース（v0.x、v1.0を本体）を後続の候補として取り込む方向を示したため、名前の扱いはその候補で扱う）",
+          "shared_use": "HARNESS-L2-010・021・022で同じatomを使う"
+        }
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-011",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        352,
+        362
+      ],
+      "candidate_semantic_digest": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-012",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        363,
+        370
+      ],
+      "candidate_semantic_digest": "sha256:ebdb183eee98909a5777eaf4602423bd43698669013b2d1538de8f29626728b2",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-013",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        371,
+        378
+      ],
+      "candidate_semantic_digest": "sha256:11dccf3f73803f4cd0950c51328c755b5492cdaa720ce86c0cd9aefcd2e11f49",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-014",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        379,
+        386
+      ],
+      "candidate_semantic_digest": "sha256:eca6896fa86d4a929ac767cdeb81453c733f42db0d772b416bef5d97a5937dc9",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-015",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        387,
+        394
+      ],
+      "candidate_semantic_digest": "sha256:d528e724da205072383a97c4dadf6ece9fb95f2ff2152eb5a5d1bd416029f601",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-016",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        395,
+        402
+      ],
+      "candidate_semantic_digest": "sha256:3abd8cdd1df5335a87848fcd7c232708dfd6611a5c0e78083962c33e41990e26",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-017",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        403,
+        410
+      ],
+      "candidate_semantic_digest": "sha256:623b91b59a5cf09055e8604c3c84aebfe9428b86f950a0bcb2a9c1605d710d17",
+      "source_atom_set_digest": "sha256:142c78be807d0fb3e294a2dda54362f99d609f46e5c205f77f1159fddcfdc292",
+      "source_atom_count": 3,
+      "source_collection_scope": "旧FRS v0.2候補（MPR-SH-CANDIDATE-003が保持する行atom）のうち、本候補が入力にしたFRS-BR見出し・本文行。空行は含めない",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-002120",
+          "source_line": 43,
+          "source_line_sha256": "sha256:6f613c30decf4fae9d787ca8484c25132e36bcf42e02aff4fe666552c9ffbb25",
+          "disposition": "carried",
+          "shared_use": "HARNESS-L2-010と017で同じatomを使う（010はパックの再現・戻し、017は対象製品のリリースの再現・戻し）。単純な重複計上ではない"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002121",
+          "source_line": 45,
+          "source_line_sha256": "sha256:a44a6dd1d78f4a21c83dca59bbe9b765d920608e8f4e61d86552f65f59bec892",
+          "disposition": "carried"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002122",
+          "source_line": 46,
+          "source_line_sha256": "sha256:3a45b0df2c0be050b30556fe6b443dba9cc39e749ed11fc0c833622a51b895f8",
+          "disposition": "carried"
+        }
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-018",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        411,
+        418
+      ],
+      "candidate_semantic_digest": "sha256:3497158cd4b39bb9059c20f9cfe2c0a647181e3dd566ff0d247ad5f4d5fc4671",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-019",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        419,
+        426
+      ],
+      "candidate_semantic_digest": "sha256:7bd3d180259af1febe50e013eea5aa5609d5af3c28ce89191c4670f3e8c88000",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-020",
+      "requirement_kind": "connection",
+      "candidate_lines": [
+        427,
+        437
+      ],
+      "candidate_semantic_digest": "sha256:d68ecbe2512b45f6f4c09cf395bd05b164a8243997f954e5459d42b29c69de7d",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "旧source atomを入力にしていない。本候補は、既存のHARNESS L2本文（元の節に残る）、Concept、2026-09-26のPO判断（HDEC-CORE-FIRST-PACK-2026-09-26）を束ね直したもので、旧atomの移管を主張しない。空集合のdigestは空文字列のSHA-256",
+      "atoms": [],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-021",
+      "requirement_kind": "composite",
+      "candidate_lines": [
+        438,
+        446
+      ],
+      "candidate_semantic_digest": "sha256:c036a0a10beeb7c93587e3e71897c750c56c55a51df3850a1bb5ffb58dc446dc",
+      "source_atom_set_digest": "sha256:5c987aff04852b8ed45fc3d5996b863162dba9ec1c6bf83aec16a36c45ae0591",
+      "source_atom_count": 2,
+      "source_collection_scope": "旧FRS v0.2候補（MPR-SH-CANDIDATE-003が保持する行atom）のうち、本候補が入力にしたFRS-BR見出し・本文行。空行は含めない",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-002133",
+          "source_line": 64,
+          "source_line_sha256": "sha256:607d431b2befd8e567ddfcba91949c8c6005f0d25d2e2c5e49c9f9910715579d",
+          "disposition": "carried",
+          "shared_use": "HARNESS-L2-010・021・022で同じatomを使う（010はリリース単位への収載、021は構成体、022は検証段階の組合せ）"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002135",
+          "source_line": 67,
+          "source_line_sha256": "sha256:29b1489c1719c040cd601e32ef5bd7e1b2a410749143e8db5110a985b328a33c",
+          "disposition": "carried",
+          "relation": "部分的に保持：「検収済みの組合せの統合・更新・rollback・L12運用検証を個別の成功とは別に確認する」意味を保持する。「Lite／Full」の構成名は本候補で採らず、原文はMPR-SH-CANDIDATE-003に残る（2026-09-27にPOが段階リリース（v0.x、v1.0を本体）を後続の候補として取り込む方向を示したため、名前の扱いはその候補で扱う）",
+          "shared_use": "HARNESS-L2-010・021・022で同じatomを使う"
+        }
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-022",
+      "requirement_kind": "unit",
+      "candidate_lines": [
+        447,
+        462
+      ],
+      "candidate_semantic_digest": "sha256:88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
+      "source_atom_set_digest": "sha256:5c987aff04852b8ed45fc3d5996b863162dba9ec1c6bf83aec16a36c45ae0591",
+      "source_atom_count": 2,
+      "source_collection_scope": "旧FRS v0.2候補（MPR-SH-CANDIDATE-003が保持する行atom）のうち、本候補が入力にしたFRS-BR見出し・本文行。空行は含めない",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-002133",
+          "source_line": 64,
+          "source_line_sha256": "sha256:607d431b2befd8e567ddfcba91949c8c6005f0d25d2e2c5e49c9f9910715579d",
+          "disposition": "carried",
+          "shared_use": "HARNESS-L2-010・021・022で同じatomを使う（010はリリース単位への収載、021は構成体、022は検証段階の組合せ）"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002135",
+          "source_line": 67,
+          "source_line_sha256": "sha256:29b1489c1719c040cd601e32ef5bd7e1b2a410749143e8db5110a985b328a33c",
+          "disposition": "carried",
+          "relation": "部分的に保持：「検収済みの組合せの統合・更新・rollback・L12運用検証を個別の成功とは別に確認する」意味を保持する。「Lite／Full」の構成名は本候補で採らず、原文はMPR-SH-CANDIDATE-003に残る（2026-09-27にPOが段階リリース（v0.x、v1.0を本体）を後続の候補として取り込む方向を示したため、名前の扱いはその候補で扱う）",
+          "shared_use": "HARNESS-L2-010・021・022で同じatomを使う"
+        }
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}

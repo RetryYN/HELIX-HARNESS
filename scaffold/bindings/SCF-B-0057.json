@@ -15,8 +15,8 @@
     },
     {
       "path": "docs/governance/management-provisional-requirement-register.jsonl",
-      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
-      "note": "14 live source holding read-after"
+      "sha256": "b0f89b99452c14d0c1bc91cc43937fcf4dfcf993c421413221d4a197479758c7",
+      "note": "14 live source holding read-after [2026-09-27 PR #2157 merge admission A2157-01 read-after: docs/governance/management-provisional-requirement-register.jsonlは、管理層の要求仮登録契約に従いHARNESS-L2-010〜022のrequirement_candidate 13件（MPR-RC-HARNESS-L2-0NN-001）をregisterへappendし、被覆receiptを加えた変更、およびregisterの現在SHAをpinする研究用scaffoldの付け直しに合わせて更新した。既存register行は変えていない。本bindingのrole・obligations・connections・replacement・artifactは追記に依存しない。採否・authorityを変更しない。]"
     },
     {
       "path": "docs/concept/product-boundary.md",
@@ -45,8 +45,8 @@
     },
     {
       "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/inventory.json",
-      "sha256": "5fe766e4cb3a68ab78e9a4eda429fa36d91f3e68cbb1a0aa7a161da4976c0d2c",
-      "note": "fixed F/Q/P inventory records, base ancestor gate record"
+      "sha256": "5a89dd18fc16a7650d274cfdf47a8bb87f7729397eb92eb2c712e39e1c88d2d3",
+      "note": "fixed F/Q/P inventory records, base ancestor gate record [2026-09-27 PR #2157 merge admission A2157-01 read-after: scaffold/rdp001-outside67-web-webos-l2-gap-057/inventory.jsonは、管理層の要求仮登録契約に従いHARNESS-L2-010〜022のrequirement_candidate 13件（MPR-RC-HARNESS-L2-0NN-001）をregisterへappendし、被覆receiptを加えた変更、およびregisterの現在SHAをpinする研究用scaffoldの付け直しに合わせて更新した。既存register行は変えていない。本bindingのrole・obligations・connections・replacement・artifactは追記に依存しない。採否・authorityを変更しない。]"
     },
     {
       "path": "scaffold/rdp001-outside67-web-webos-l2-gap-057/semantic-atoms.jsonl",
