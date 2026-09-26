@@ -2,7 +2,7 @@
 
 status: queued_after_repository_foundation
 parent: [IR再配置wave台帳](legacy-ir-rehome-wave-register.md)
-authority: [旧要求carry-forward台帳](legacy-requirement-carry-forward.jsonl)
+authority: [旧要求carry-forward台帳](../requirement/legacy-requirement-carry-forward.jsonl)
 
 ## 使い方
 

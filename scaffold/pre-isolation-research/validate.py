@@ -12,9 +12,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MANIFEST = ROOT / "scaffold/pre-isolation-research/rdp001-preiso-research-20path.json"
 DEFAULT_INVENTORY = ROOT / "scaffold/pre-isolation-research/rdp001-preiso-research-semantic-diff-inventory.json"
-HOLDING_REL = "docs/governance/pre-isolation-revision-delta-source-holding.jsonl"
+HOLDING_REL = "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl"
 ASSET_REL = "docs/governance/legacy-asset-disposition.jsonl"
-PHASE_REL = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+PHASE_REL = "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
 BASELINE = "6fabd12512a3659fff4a956692cdd61faeeb16ce"
 PRE_ISOLATION = "2d4991042be55268bac30a8bbcdac45b3865030a"
 ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"

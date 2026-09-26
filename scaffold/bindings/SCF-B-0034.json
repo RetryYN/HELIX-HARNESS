@@ -24,9 +24,9 @@
       "note": "PHCAP-02/03 current／legacy phase snapshot [2026-09-24 exact read-after: PHCAP-01は旧承認revisionと現行未承認L1を分離。phase/asset候補の正式admissionは未成立。 前receipt=9face795f98c660bec02d46106f08a25ba189633f6b555b563a0c7951e173f0c; 現receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b] [2026-09-24 read-after: PHCAP現行参照を単一Conceptへ付替え、履歴snapshotは固定保持。前receipt=382bcff5a5fdbe496ecc67eb68185926b61f13024465968c1d1cc6ea092ed91b; 現receipt=2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2; authority・admissionは不変。] [2026-09-26 HELIX-Web・HELIX-Web-OSの文書の置き場所の移動（PO判断） read-after: Phase Capability Inventoryは、HELIX-Web・HELIX-Web-OSの文書をHELIX本体のdocs/からrepository直下のhelix-web/（helix-web/docs/helix-web/、helix-web/docs/helix-web-os/）へ移した（2026-09-26のPO判断、docs/governance/decisions/helix-web-relocation-po-decisions-2026-09-26.md）のに合わせ、records[].current.refsのWeb・Web-OS文書のpath 9件だけを新しいpathへ改めた（current_evidence_snapshotと他のfieldは不変）。本bindingのrole・obligations・connections・replacement・artifactは、HELIX-Web・HELIX-Web-OSの文書のpath（旧docs/helix-web/・docs/helix-web-os/）、それらへのリンクの表記、Phase Capability Inventoryのrefsのpathの表記に依存しないことをbinding全体で確認した。前receipt=2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2; 現receipt=16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4; このBindingの採否・authorityは変更しない。]"
     },
     {
-      "path": "docs/governance/legacy-ir-product-routing-bootstrap.jsonl",
+      "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
       "sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1",
-      "note": "153 source requirementの四製品 routing候補"
+      "note": "153 source requirementの四製品 routing候補 [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-ir-product-routing-bootstrap.jsonlから新path=docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1; 現receipt=c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl",
@@ -39,9 +39,9 @@
       "note": "selected旧asset disposition／implementation／consumer"
     },
     {
-      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "path": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
       "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
-      "note": "phase／product candidate aggregate"
+      "note": "phase／product candidate aggregate [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonlから新path=docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; 現receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-decisions.jsonl",
@@ -60,8 +60,8 @@
     },
     {
       "path": "docs/governance/feature-tickets/FT-OS-REQCLASS-001.md",
-      "sha256": "643fa2db22a38723dab5577ed0976b337fce71952fab4a5ede7f560d06865b5f",
-      "note": "OS four product classification boundary"
+      "sha256": "f07ca6f4eae45e1a59ad7fa4631a48d73cc958027174a35494b836ba0a124a44",
+      "note": "OS four product classification boundary [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/feature-tickets/FT-OS-REQCLASS-001.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=643fa2db22a38723dab5577ed0976b337fce71952fab4a5ede7f560d06865b5f; 現receipt=f07ca6f4eae45e1a59ad7fa4631a48d73cc958027174a35494b836ba0a124a44; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/feature-tickets/FT-HARNESS-REQENG-001.md",

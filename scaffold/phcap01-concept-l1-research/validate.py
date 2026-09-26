@@ -198,7 +198,7 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     prov_expected = {
         "phase_inventory": ("docs/governance/phase-capability-inventory.json", "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4", 20),
         "asset_disposition": ("docs/governance/legacy-asset-disposition.jsonl", "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c", 4020),
-        "phase_product_classification": ("docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", 4020),
+        "phase_product_classification": ("docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl", "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f", 4020),
         "decisions": ("docs/governance/legacy-asset-decisions.jsonl", "cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f", 58),
     }
     fail(errors, set(prov) == set(prov_expected), "E_PROVENANCE_KEYS")
@@ -296,7 +296,7 @@ def validate(data: dict, check_files: bool = True) -> list[str]:
     fail(errors, [a.get("asset_id") for a in selected] == ASSET_IDS, "E_ASSET_ORDER")
     if check_files:
         disp = {x["asset_id"]: x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-disposition.jsonl")}
-        cls = {x["asset_id"]: x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")}
+        cls = {x["asset_id"]: x for x in read_jsonl(ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl")}
         decisions = read_jsonl(ROOT / "docs/governance/legacy-asset-decisions.jsonl")
         selected_decisions = [x for x in decisions if x.get("asset_id") in ASSET_IDS]
         fail(errors, len(selected_decisions) == 2 and {x.get("decision_id") for x in selected_decisions} == {"REQ-SNAPSHOT-18F7940E7994634D39A1", "REQ-SNAPSHOT-CORRECTION-18F7940E7994634D39A1"}, "E_DECISION_MATCHES")

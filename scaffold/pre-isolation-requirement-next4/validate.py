@@ -33,10 +33,10 @@ EXPECTED_ASSETS = {
     EXPECTED_PATHS[SELECTED_IDS[3]]: "LEGACY-ASSET-330DCC777CF2F7C5331E",
 }
 INPUT_DIGESTS = {
-    "docs/governance/pre-isolation-revision-delta-source-holding.jsonl": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
+    "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl": "d61a36db8e053d9006d11a09d1c60fd86413f32daa4a766aaeae2bc849130180",
     "docs/governance/legacy-asset-disposition.jsonl": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
-    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
-    "docs/governance/requirement-atomization-review-contract.md": "adf39ac913498acd6370788e9e510b29cb0b88fa165bfa497ac489956e76c9ba",
+    "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
+    "docs/governance/requirement-atomization-review-contract.md": "0a27dd165b0b447f89b0d9d1de029a0b7bfefbca0d23655e0f4e1828144f05e8",
 }
 NEGATIVE_IDS = {
     "REQNEXT4-NEG-BASELINE-PROVENANCE", "REQNEXT4-NEG-HUNK-COVERAGE", "REQNEXT4-NEG-PRIOR-OVERLAP", "REQNEXT4-NEG-PRIOR-LINEAGE",
@@ -150,9 +150,9 @@ def git_blob_oid(value: bytes) -> str:
 
 def validate(manifest: dict, inventory: dict) -> list[str]:
     errors: list[str] = []
-    holding = read_jsonl(ROOT / "docs/governance/pre-isolation-revision-delta-source-holding.jsonl", errors)
+    holding = read_jsonl(ROOT / "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl", errors)
     assets = read_jsonl(ROOT / "docs/governance/legacy-asset-disposition.jsonl", errors)
-    phases = read_jsonl(ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl", errors)
+    phases = read_jsonl(ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl", errors)
     holding_by_id = {r.get("source_revision_item_id"): r for r in holding}
     assets_by_path = {r.get("source_path"): r for r in assets}
     phase_by_asset = {r.get("asset_id"): r for r in phases}

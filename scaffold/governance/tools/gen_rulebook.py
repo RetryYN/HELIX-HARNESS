@@ -3,7 +3,7 @@
 
 入力（正本。ここでは読むだけ）:
   docs/governance/candidates/legacy-rule-derived-requirements.md   要求候補の本文
-  docs/governance/legacy-rule-atom-inventory.jsonl                  規則atom台帳
+  docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl                  規則atom台帳
 出力（scaffold/governance/ 配下だけ）:
   rules/<要求ID>.md  要求1本につき1 file。主として対応づいた全atomと、副として対応づいたatomのIDを持つ
   rules/LEGACY-ONLY.md  旧実装に固有とした規則（除外理由付き）
@@ -17,7 +17,7 @@ GOV = os.path.dirname(HERE)
 ROOT = os.environ.get("GOVCHECK_ROOT") or os.path.dirname(os.path.dirname(GOV))
 GOV = os.path.join(ROOT, "scaffold", "governance")
 CAND = "docs/governance/candidates/legacy-rule-derived-requirements.md"
-INV = "docs/governance/legacy-rule-atom-inventory.jsonl"
+INV = "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl"
 ATOMS_TOTAL = 7622   # 台帳の母数。変わったら正本側の判断として本値と binding を更新する
 REQ_TOTAL = 57
 GROUP_ISSUE = {"枠": 1858, "サービス④開発": 1854, "フルリバース": 1852, "サービス⑥リリース": 1856,

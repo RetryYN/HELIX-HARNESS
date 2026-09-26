@@ -8,6 +8,21 @@ import json
 import subprocess
 from pathlib import Path
 
+# 2026-09-26のPO判断で、旧HELIXからの移行台帳をdocs/governance/legacy-migration/へ移した
+# （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
+# 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
+RELOCATED_PATHS = {
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -38,7 +53,7 @@ def live(rows: list[dict]) -> list[dict]:
 def build() -> dict:
     current = load(CURRENT_REGISTER)
     historical = load(HISTORICAL_REGISTER)
-    source = load(SOURCE_SET)
+    source = load(relocated(SOURCE_SET))
     proposal = json.loads(PROPOSAL.read_text(encoding="utf-8"))
     read_after = json.loads(READ_AFTER.read_text(encoding="utf-8"))
     current_live = live(current)
@@ -112,7 +127,7 @@ def build() -> dict:
             "live_holding_count": len(current_live),
             "appended_registration_id": proposal["registration_id"],
             "source_set_path": str(SOURCE_SET.relative_to(ROOT)),
-            "source_set_sha256": sha(SOURCE_SET.read_bytes()),
+            "source_set_sha256": sha(relocated(SOURCE_SET).read_bytes()),
             "source_item_count": len(source),
             "append_only_prefix_preserved": CURRENT_REGISTER.read_bytes().startswith(HISTORICAL_REGISTER.read_bytes()),
         },
@@ -152,7 +167,7 @@ def build() -> dict:
         },
         "source_set": {
             "path": str(SOURCE_SET.relative_to(ROOT)),
-            "sha256": sha(SOURCE_SET.read_bytes()),
+            "sha256": sha(relocated(SOURCE_SET).read_bytes()),
             "count": len(source),
             "unit": "path_revision_pair",
             "requirement_atoms": False,

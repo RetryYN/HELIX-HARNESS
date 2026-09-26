@@ -13,6 +13,21 @@ import subprocess
 from collections import defaultdict
 from pathlib import Path
 
+# 2026-09-26のPO判断で、旧HELIXからの移行台帳をdocs/governance/legacy-migration/へ移した
+# （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
+# 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
+RELOCATED_PATHS = {
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 BASE = "16f694ae07cdb2d56e15045054c147c7a15d3275"
@@ -111,7 +126,7 @@ def write_jsonl(path: Path, rows):
 
 
 def holding_rows():
-    by = {row["source_item_id"]: row for row in read_jsonl(HOLDING)}
+    by = {row["source_item_id"]: row for row in read_jsonl(relocated(HOLDING))}
     return {sid: by[sid] for sid in PATHS}
 
 
@@ -343,7 +358,7 @@ def main():
         all_counts[row["category"]] += 1
         per_path.setdefault(row["source_item_id"], defaultdict(int))[row["category"]] += 1
     per_path = {k: dict(v) for k, v in per_path.items()}
-    hold_sha = sha(HOLDING.read_bytes())
+    hold_sha = sha(relocated(HOLDING).read_bytes())
     reg_sha = sha(REGISTER.read_bytes())
     inv = {
         "schema": "rdp001-outside67-path006-010-atomization/v1",

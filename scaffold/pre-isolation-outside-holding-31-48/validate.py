@@ -9,6 +9,34 @@ import subprocess
 import sys
 from pathlib import Path
 
+# 2026-09-26のPO判断で、旧HELIXからの移行台帳をdocs/governance/legacy-migration/へ移した
+# （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
+# 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
+RELOCATED_PATHS = {
+    "docs/governance/delegated-requirement-document-reference-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
+    "docs/governance/delegated-requirement-document-source-holding.jsonl": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
+    "docs/governance/harness-workflow-source-clause-carry-forward.jsonl": "docs/governance/legacy-migration/harness-workflow/harness-workflow-source-clause-carry-forward.jsonl",
+    "docs/governance/legacy-candidate-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl",
+    "docs/governance/legacy-confirmed-requirement-identity-carry-forward.jsonl": "docs/governance/legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-structural-heading-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-structural-heading-carry-forward.jsonl",
+    "docs/governance/legacy-requirement-supplementary-source-carry-forward.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-supplementary-source-carry-forward.jsonl",
+    "docs/governance/legacy-rule-atom-inventory.jsonl": "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl",
+    "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "docs/governance/pre-isolation-revision-delta-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
+    "docs/governance/scrum-reverse-source-line-carry-forward.jsonl": "docs/governance/legacy-migration/delegated-document/scrum-reverse-source-line-carry-forward.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
@@ -112,7 +140,7 @@ def live_holdings(register: list[dict]) -> list[dict]:
     for row in register:
         if row.get("registration_id") in superseded:
             continue
-        source_path = ROOT / row["source_atom_set_ref"]
+        source_path = relocated(ROOT / row["source_atom_set_ref"])
         result.append(
             {
                 "registration_id": row["registration_id"],
@@ -151,9 +179,9 @@ def validate(inv: dict) -> list[str]:
     errors: list[str] = []
     check_keyset(errors, inv, KEYSETS["root"], "E_KEYSET:root")
     report_file = ROOT / REPORT_PATH
-    source_file = ROOT / SOURCE_SET_PATH
+    source_file = relocated(ROOT / SOURCE_SET_PATH)
     register_file = ROOT / REGISTER_PATH
-    holding_file = ROOT / HOLDING_PATH
+    holding_file = relocated(ROOT / HOLDING_PATH)
     fail(errors, inv.get("schema") == SCHEMA, "E_SCHEMA")
     fail(errors, inv.get("candidate_id") == "RDP-001-PREISO-OUTSIDE-HOLDING-31-48-0043", "E_CANDIDATE")
     fail(errors, inv.get("status") == "findings_only", "E_STATUS")
@@ -209,7 +237,7 @@ def validate(inv: dict) -> list[str]:
     fail(errors, [row.get("global_ordinal") for row in rows] == list(range(31, 49)), "E_ROW_ORDINALS")
     fail(errors, [row.get("source_item_id") for row in rows] == [f"OUTSIDE67-PATH-{i:03d}" for i in range(31, 49)], "E_SOURCE_IDS")
 
-    holding_records = {holding["registration_id"]: load_jsonl(ROOT / holding["source_atom_set_ref"]) for holding in holdings}
+    holding_records = {holding["registration_id"]: load_jsonl(relocated(ROOT / holding["source_atom_set_ref"])) for holding in holdings}
     expected_same = expected_different = 0
     for offset, row in enumerate(rows):
         ordinal = offset + 31

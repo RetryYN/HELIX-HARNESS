@@ -33,11 +33,11 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品の総称（製
 11. [管理層の要求仮登録契約](management-provisional-requirement-registration.md)
 12. [Repository foundation readiness](repository-foundation-readiness.md)
     - [新世代作業基盤への集約 operation contract](new-generation-workbase-consolidation.md)
-13. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)、[現在の管理状況](requirement-carry-forward-status.md)、[153要求の再配置wave](legacy-ir-rehome-wave-register.md)
+13. [旧要求の無損失carry-forward方針](legacy-requirement-carry-forward-policy.md)、[現在の管理状況](requirement-carry-forward-status.md)、[153要求の再配置wave](legacy-migration/ir/legacy-ir-rehome-wave-register.md)（2026-09-26のPO判断で、旧HELIXからの移行作業の台帳・待ち行列・wave記録は`governance/`直下から[`legacy-migration/`](legacy-migration/README.md)の種類別フォルダへ移した：[判断記録](decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md)）
     - [Concept機構・版・製品属性の要求対応表](crosswalks/concept-mechanism-version-requirement-crosswalk.md)と[PO判断パッケージ](crosswalks/concept-requirement-po-decision-packet.md)は未承認の再配置候補であり、現行L1差分と旧要求の意味を別に確認する
     - 全要求の要否・再配置を扱う場合は、[要否・再配置review program](requirement-disposition-review-program.md)を親作業とし、[責務・機能重複review](requirement-overlap-review-program.md)、[技術代替可能性review](requirement-technical-substitutability-review-program.md)、個別要求の人間decision・要求PRを分ける
-    - IDのない段落条件を扱う場合は、[semantic line全量保全inventory](legacy-requirement-semantic-line-inventory.md)と[atom化review contract](requirement-atomization-review-contract.md)を追加で読む
-    - 旧candidate系列を扱う場合は、[旧candidate source全量inventory](legacy-candidate-source-inventory.md)から原文行へ戻る
+    - IDのない段落条件を扱う場合は、[semantic line全量保全inventory](legacy-migration/requirement/legacy-requirement-semantic-line-inventory.md)と[atom化review contract](requirement-atomization-review-contract.md)を追加で読む
+    - 旧candidate系列を扱う場合は、[旧candidate source全量inventory](legacy-migration/candidate/legacy-candidate-source-inventory.md)から原文行へ戻る
 14. [旧世代archive-first隔離記録](archive-first-transition-record-2026-09-14.md)
 15. [旧資産の完全一致再利用統制](legacy-asset-reuse-control.md)
 16. 必要な場合だけ、[旧資産4,020件の明細台帳](legacy-asset-disposition.jsonl)を`asset_id`または`source_path`で照会し、

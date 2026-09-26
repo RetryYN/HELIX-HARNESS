@@ -65,15 +65,15 @@
     }
   },
   "ledger_provenance": {
-    "source_holding_path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+    "source_holding_path": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
     "source_holding_sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
     "source_holding_total": 114,
-    "reference_holding_path": "docs/governance/delegated-requirement-document-reference-holding.jsonl",
+    "reference_holding_path": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl",
     "reference_holding_sha256": "627a764420d54dd13df0b340605c25b9f977d36a31954ead35a94cccba0e54f7",
     "reference_holding_total": 788,
     "asset_disposition_path": "docs/governance/legacy-asset-disposition.jsonl",
     "asset_disposition_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
-    "phase_product_path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "phase_product_path": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
     "phase_product_sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
     "fixed_source_revision": "17ce6830d2d4c684c96d55705cdc65790a4fdaa4",
     "atomization_contract_path": "docs/governance/requirement-atomization-review-contract.md",

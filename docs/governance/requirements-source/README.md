@@ -10,16 +10,16 @@ policy: [旧要求の無損失carry-forward方針](../legacy-requirement-carry-f
 - `MANIFEST.sha256`: 現行保持copyのdigest
 - `legacy-documents/`: 旧HARNESS要求5文書、旧画面要求7文書、旧HELIX要求9文書、画面境界1文書を元相対path付きで保持
 - `LEGACY-DOCUMENTS.sha256`: 上記22文書のdigest
-- `../legacy-requirement-carry-forward.jsonl`: 153要求の原文・digest・配置状態
-- `../legacy-requirement-document-carry-forward.jsonl`: 22要求文書のarchive隔離直前source path、保持path、digest、そのrevisionのauthority状態を変えない規則。監査基準revisionの状態は333 path台帳で別保持
-- `../legacy-confirmed-requirement-identity-carry-forward.jsonl`: confirmed文書で明示宣言された175 identityのsource行、行digest、再配置状態
-- `../legacy-ir-document-source-relation.jsonl`: Requirement IR 153件と保持済み人間向け要求表の原文一致relation
-- `../legacy-requirement-semantic-line-carry-forward.jsonl`: 22文書の非空semantic line 2,386件を原文・行番号・digest付きで保持し、明示IDへ接続できない2,058件をatom化待ちにする台帳
-- `../delegated-requirement-document-source-holding.jsonl`: v1.3の直接委任22文書から意味frontmatter relationを再帰的に辿ったclosure 117文書のうち、Scrum Reverse行台帳3文書を除く114文書をarchive原文blob・SHA-256付きで保持する台帳。後続要求PRでのatom化待ち
-- `../delegated-requirement-document-reference-holding.jsonl`: 上記117文書のfrontmatter・本文参照788 edgeを、参照元行とtarget blob digest付きで保持する分類待ち台帳
-- `../legacy-requirement-semantic-line-inventory.md`: semantic line台帳の範囲、数え方、後続atom化規律
-- `../legacy-requirement-atomization-review-queue.jsonl`: 未分類2,058行をsource・heading・連続範囲ごとの721 review unitへ無損失に分けた処理queue
-- `../pre-isolation-revision-delta-source-holding.jsonl`: 監査基準からarchive隔離直前までに変わった333 pathの旧revisionをcommit・blob・SHA-256付きで保持する台帳
+- `../legacy-migration/requirement/legacy-requirement-carry-forward.jsonl`: 153要求の原文・digest・配置状態
+- `../legacy-migration/requirement/legacy-requirement-document-carry-forward.jsonl`: 22要求文書のarchive隔離直前source path、保持path、digest、そのrevisionのauthority状態を変えない規則。監査基準revisionの状態は333 path台帳で別保持
+- `../legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl`: confirmed文書で明示宣言された175 identityのsource行、行digest、再配置状態
+- `../legacy-migration/ir/legacy-ir-document-source-relation.jsonl`: Requirement IR 153件と保持済み人間向け要求表の原文一致relation
+- `../legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl`: 22文書の非空semantic line 2,386件を原文・行番号・digest付きで保持し、明示IDへ接続できない2,058件をatom化待ちにする台帳
+- `../legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl`: v1.3の直接委任22文書から意味frontmatter relationを再帰的に辿ったclosure 117文書のうち、Scrum Reverse行台帳3文書を除く114文書をarchive原文blob・SHA-256付きで保持する台帳。後続要求PRでのatom化待ち
+- `../legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl`: 上記117文書のfrontmatter・本文参照788 edgeを、参照元行とtarget blob digest付きで保持する分類待ち台帳
+- `../legacy-migration/requirement/legacy-requirement-semantic-line-inventory.md`: semantic line台帳の範囲、数え方、後続atom化規律
+- `../legacy-migration/requirement/legacy-requirement-atomization-review-queue.jsonl`: 未分類2,058行をsource・heading・連続範囲ごとの721 review unitへ無損失に分けた処理queue
+- `../legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl`: 監査基準からarchive隔離直前までに変わった333 pathの旧revisionをcommit・blob・SHA-256付きで保持する台帳
 
 archiveは隔離直前treeの同一byte snapshotである。監査基準revisionと隔離直前revisionが異なる333 pathは、
 [revision差分保全監査](../audits/source-rebaseline/pre-isolation-revision-delta-audit-2026-09-16.md)に従い両方を生存中sourceとして扱う。
@@ -42,7 +42,7 @@ statusを変えず保存する。
 同名IDが別文書にある場合はsource pathをnamespaceとして衝突を残す。これは自動統合・重複削除を行わないためである。
 監査基準revisionの`screen-mock-boundary.md`は333 path台帳の両revision比較対象であり、この175件だけを分母にして
 基準revisionの要求意味を処理済みにしない。
-明示IDを持たない段落条件と技術要求節は、[semantic line台帳](../legacy-requirement-semantic-line-carry-forward.jsonl)へsource span単位で全量登録した。2,386行のうち328行は既存の175 identityまたは153 IRへ接続し、残る2,058行は要求かどうかを先に切らず`preserved_pending_atomization`として保持する。これは2,058要求の確定ではなく、atom化・分類前に原文を落とさないための過包含queueである。
+明示IDを持たない段落条件と技術要求節は、[semantic line台帳](../legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl)へsource span単位で全量登録した。2,386行のうち328行は既存の175 identityまたは153 IRへ接続し、残る2,058行は要求かどうかを先に切らず`preserved_pending_atomization`として保持する。これは2,058要求の確定ではなく、atom化・分類前に原文を落とさないための過包含queueである。
 
 Requirement IR 153件は、全件が保持済み`infinity-loop-platform-requirements.md`の宣言行を指している。
 153/153件についてIDとstatementがIRと人間向け文書で一致することを確認し、relation台帳へ双方のpointerと

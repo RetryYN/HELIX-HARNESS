@@ -12,10 +12,10 @@ HERE = Path(__file__).resolve().parent
 ARCHIVE = ROOT / "archive/legacy-generation-2026-09-14/root"
 LEDGER = HERE / "legacy-requirement-direct-semantic-review-wave38.jsonl"
 META = HERE / "legacy-requirement-direct-semantic-review-wave38.meta.json"
-CATALOG_PATH = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
-CROSSWALK_PATH = ROOT / "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
-DECOMPOSITION_PATH = ROOT / "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
-RELATION_PATH = ROOT / "docs/governance/legacy-ir-document-source-relation.jsonl"
+CATALOG_PATH = ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
+CROSSWALK_PATH = ROOT / "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+DECOMPOSITION_PATH = ROOT / "docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl"
+RELATION_PATH = ROOT / "docs/governance/legacy-migration/ir/legacy-ir-document-source-relation.jsonl"
 DISPOSITION_PATH = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 DECISION_PATH = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 READ_AFTER_PATH = ROOT / "docs/governance/legacy-asset-copy-read-after.jsonl"
@@ -103,7 +103,7 @@ def prior_artifact(wave: int, suffix: str) -> tuple[str, Path]:
     if wave == 37:
         rel = f"scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.{suffix}"
     else:
-        rel = f"docs/governance/legacy-requirement-direct-semantic-review-wave{wave}.{suffix}"
+        rel = f"docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave{wave}.{suffix}"
     return rel, ROOT / rel
 
 

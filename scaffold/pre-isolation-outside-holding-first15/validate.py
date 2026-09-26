@@ -59,10 +59,10 @@ def validate(inv: dict) -> list[str]:
     fail(errors, scope.get("approved_products") == ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"], "E_PRODUCTS")
     fail(errors, scope.get("holding_register_sha256") == EXPECTED_REGISTER_SHA, "E_REGISTER_SHA")
     fail(errors, scope.get("outside_report_sha256") == EXPECTED_REPORT_SHA, "E_REPORT_SHA")
-    fail(errors, (ROOT / "docs/governance/pre-isolation-revision-delta-source-holding.jsonl").is_file(), "E_HOLDING_MISSING")
-    if (ROOT / "docs/governance/pre-isolation-revision-delta-source-holding.jsonl").is_file():
+    fail(errors, (ROOT / "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl").is_file(), "E_HOLDING_MISSING")
+    if (ROOT / "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl").is_file():
         import hashlib
-        fail(errors, hashlib.sha256((ROOT / "docs/governance/pre-isolation-revision-delta-source-holding.jsonl").read_bytes()).hexdigest() == EXPECTED_HOLDING_SHA, "E_HOLDING_SHA")
+        fail(errors, hashlib.sha256((ROOT / "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl").read_bytes()).hexdigest() == EXPECTED_HOLDING_SHA, "E_HOLDING_SHA")
 
     holdings = inv.get("live_holdings", [])
     fail(errors, len(holdings) == 13, "E_LIVE_HOLDINGS")

@@ -247,7 +247,7 @@ def make_ref(ref_id: str, path: str, start: int, end: int, classification: str, 
 
 def main() -> None:
     disposition_rows = {x["asset_id"]: x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-disposition.jsonl")}
-    catalog_rows = {x["asset_id"]: x for x in read_jsonl(ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl")}
+    catalog_rows = {x["asset_id"]: x for x in read_jsonl(ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl")}
     decision_rows = read_jsonl(ROOT / "docs/governance/legacy-asset-decisions.jsonl")
     assets = [build_asset(item, disposition_rows[item["asset_id"]], catalog_rows[item["asset_id"]]) for item in ASSETS]
     decision_counts = {

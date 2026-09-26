@@ -5,7 +5,7 @@ scope: 旧要求文書22件
 authority: [要求文書carry-forward台帳](legacy-requirement-document-carry-forward.jsonl)
 machine_ledger: [semantic line台帳](legacy-requirement-semantic-line-carry-forward.jsonl)
 review_queue: [atom化review queue](legacy-requirement-atomization-review-queue.jsonl)
-processing_contract: [atom化review contract](requirement-atomization-review-contract.md)
+processing_contract: [atom化review contract](../../requirement-atomization-review-contract.md)
 
 ## 目的
 
@@ -40,7 +40,7 @@ processing_contract: [atom化review contract](requirement-atomization-review-con
 `screen-mock-boundary.md`の本台帳とqueueは、archive隔離直前revision
 `1cccd0fe7ec19a1a70cec89737ea5932ed365604db7eb6e10865ea71e5d90e83`（source status `draft`）だけを行抽出した。
 監査基準revision `e094bc7eae5ad08f19060ec3a7523d69678aff94a8990d3cbb72eca517ff582c`（source status `confirmed`）の行は
-本台帳にもqueueにも未登録であり、[revision差分台帳](pre-isolation-revision-delta-source-holding.jsonl)のfile blob保持だけである。
+本台帳にもqueueにも未登録であり、[revision差分台帳](../pre-isolation/pre-isolation-revision-delta-source-holding.jsonl)のfile blob保持だけである。
 後続atom化は、基準revisionの行atomを別台帳へ仮登録してから両revisionを入力し、意味同値を人間が判断するまで一方を他方で
 被覆済みにしてはならない。
 
@@ -65,7 +65,7 @@ processing_contract: [atom化review contract](requirement-atomization-review-con
 5. prose、根拠、例、navigationへ分類しても削除しない。分類revisionと根拠を残す。
 6. 意味変更、縮退、統合、retireは対象revision付きの人間decisionなしに適用しない。
 7. GitHub Issue、PR、CI、実装の状態から分類や要求採否を逆算しない。
-8. AIによる具体的なproposalは[atom化review contract](requirement-atomization-review-contract.md)のline coverage、出力schema、禁止遷移に従う。
+8. AIによる具体的なproposalは[atom化review contract](../../requirement-atomization-review-contract.md)のline coverage、出力schema、禁止遷移に従う。
 
 ## review queueの成立条件
 

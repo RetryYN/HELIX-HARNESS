@@ -277,7 +277,7 @@
       "OUTSIDE67-PATH-060"
     ],
     "historical_capture_commit": "3df81ad27157c471e004083783f37a5860eaa2ee",
-    "holding_path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "holding_path": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
     "holding_path_revision_pair_denominator": 67,
     "holding_record_count": 67,
     "holding_registration_id": "MPR-SH-OUTSIDE67-001",

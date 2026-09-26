@@ -3,7 +3,7 @@
 import hashlib,json,re,sys
 from pathlib import Path
 HERE=Path(__file__).resolve().parent; ROOT=HERE.parents[1]; INV=HERE/'inventory.json'
-ASSET=ROOT/'docs/governance/legacy-asset-disposition.jsonl'; PHASE=ROOT/'docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl'; DEC=ROOT/'docs/governance/legacy-asset-decisions.jsonl'
+ASSET=ROOT/'docs/governance/legacy-asset-disposition.jsonl'; PHASE=ROOT/'docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl'; DEC=ROOT/'docs/governance/legacy-asset-decisions.jsonl'
 PREFIX='archive/legacy-generation-2026-09-14/root/'
 EXPECTED_CONTRADICTION_RESOLUTIONS={
  'CONTR-01':'preserved as historical evidence vs ledger state; no execution/pass/current implementation claim',

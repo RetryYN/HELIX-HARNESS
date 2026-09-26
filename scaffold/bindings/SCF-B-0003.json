@@ -19,7 +19,8 @@
     },
     {
       "path": "docs/governance/github-upstream-operating-model.md",
-      "sha256": "04afc7d37611322d8a30b6ea2f746f8697c4bb5cc0a6ea40fec56c1c31fbc3d0"
+      "sha256": "de666b39bc7a24301cbe5584cef4a3d9a4f91a41c01308056b61b1b9bd2662e1",
+      "note": "[2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/github-upstream-operating-model.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=04afc7d37611322d8a30b6ea2f746f8697c4bb5cc0a6ea40fec56c1c31fbc3d0; 現receipt=de666b39bc7a24301cbe5584cef4a3d9a4f91a41c01308056b61b1b9bd2662e1; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",

@@ -5,10 +5,10 @@ import hashlib, json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
 INV = os.path.join(HERE, "inventory.json")
-SOURCE = "docs/governance/delegated-requirement-document-source-holding.jsonl"
-REF = "docs/governance/delegated-requirement-document-reference-holding.jsonl"
+SOURCE = "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl"
+REF = "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl"
 ASSET = "docs/governance/legacy-asset-disposition.jsonl"
-PHASE = "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+PHASE = "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
 EXPECTED_DOCS = {"DELEGATED-DOC-002", "DELEGATED-DOC-013", "DELEGATED-DOC-004", "DELEGATED-DOC-029"}
 EXPECTED_EDGES = {"DELEGATED-REF-0301", "DELEGATED-REF-0302", "DELEGATED-REF-0422", "DELEGATED-REF-0423", "DELEGATED-REF-0757", "DELEGATED-REF-0758", "DELEGATED-REF-0304", "DELEGATED-REF-0419", "DELEGATED-REF-0761", "DELEGATED-REF-0762"}
 PRIOR_DOCS = {"DELEGATED-DOC-003", "DELEGATED-DOC-028", "DELEGATED-DOC-008", "DELEGATED-DOC-017", "DELEGATED-DOC-006", "DELEGATED-DOC-015"}

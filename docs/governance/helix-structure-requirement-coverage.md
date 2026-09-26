@@ -10,8 +10,8 @@ authority_effect: none
 
 | 波 | 母集団 | 件数 | 機械台帳 |
 |---|---|---:|---|
-| 第1波 | 旧Requirement IR | 153 | [legacy-ir-structure-classification.jsonl](legacy-ir-structure-classification.jsonl)。一覧は[別文書](legacy-ir-structure-classification.md) |
-| 第2波 | 旧confirmed identity | 175 | [legacy-confirmed-identity-structure-classification.jsonl](legacy-confirmed-identity-structure-classification.jsonl) |
+| 第1波 | 旧Requirement IR | 153 | [legacy-ir-structure-classification.jsonl](legacy-migration/ir/legacy-ir-structure-classification.jsonl)。一覧は[別文書](legacy-migration/ir/legacy-ir-structure-classification.md) |
+| 第2波 | 旧confirmed identity | 175 | [legacy-confirmed-identity-structure-classification.jsonl](legacy-migration/identity/legacy-confirmed-identity-structure-classification.jsonl) |
 | 第3波 | 現行L2（4製品、draft・未採否） | 37 | [current-l2-structure-classification.jsonl](current-l2-structure-classification.jsonl) |
 
 第2波は、層（主・副）、狙い、要求か決定かの軸を付けた。第3波は、層（主・副）だけを付けた。現行L2は1つのIDの下に補足本文（工程規則表や節）を持つため、副の所属は補足本文の内容も含めて付けた。製品の振り分けは第1波にしか存在しないため、第2波には付けていない。v1.3本体の節（§4.5、§4.9等）のうちconfirmed identityに入っていない本文は、本書の対象外である。

@@ -2,8 +2,8 @@
 
 status: active_foundation_rule
 effective_instruction: 2026-09-15 PO「旧要求はそのまま使いたい」
-machine_ledger: `legacy-requirement-carry-forward.jsonl`
-document_ledger: `legacy-requirement-document-carry-forward.jsonl`
+machine_ledger: `legacy-migration/requirement/legacy-requirement-carry-forward.jsonl`
+document_ledger: `legacy-migration/requirement/legacy-requirement-document-carry-forward.jsonl`
 
 ## 方針
 
@@ -50,7 +50,7 @@ document_ledger: `legacy-requirement-document-carry-forward.jsonl`
 
 旧要求を扱う各`requirement` PRは次を満たす。
 
-1. `legacy-requirement-carry-forward.jsonl`の原要求ID、原文、digestを参照する。
+1. `legacy-migration/requirement/legacy-requirement-carry-forward.jsonl`の原要求ID、原文、digestを参照する。
 2. successor要求IDと対象productを記録する。
 3. 元要求の意味atomとsuccessorの被覆を示す。
 4. 未被覆atomを削除せず`pending`として残す。
@@ -76,14 +76,14 @@ sourceで採用済みだった要求を、新世代targetが未承認である�
 後者へ変更しない。保持・再配置、意味変更、retireを別decision種別として、すべての要求PRを対象revision付きの人間decisionへ送る。
 
 confirmed文書で明示宣言された要求、価値、KPI、画面、制約のidentityは
-`legacy-confirmed-requirement-identity-carry-forward.jsonl`へsource-qualified IDとして保持する。同名IDをAIが
+`legacy-migration/identity/legacy-confirmed-requirement-identity-carry-forward.jsonl`へsource-qualified IDとして保持する。同名IDをAIが
 同一要求へ統合せず、重複候補として人間判断へ提示する。明示IDのない段落条件は文書保持だけで移管完了にせず、
 原文atom台帳へ追加されるまで未完とする。
 
-Requirement IRと人間向け要求文書の関係は`legacy-ir-document-source-relation.jsonl`で管理する。
+Requirement IRと人間向け要求文書の関係は`legacy-migration/ir/legacy-ir-document-source-relation.jsonl`で管理する。
 双方のID・statementが一致しない場合は、片側を正しいものとして上書きせずconflictとして停止する。
 対象別successorへの再配置後も、原IR、原文書、successorの三者traceを残す。
 
 既存crosswalkの`target_assessment`は、対象product候補、意味変更判断、実装方式の論点が混在するため、
-`legacy-ir-target-routing-queue.jsonl`で別fieldへ分ける。対象候補の記録だけでsuccessorを割り当てず、
+`legacy-migration/ir/legacy-ir-target-routing-queue.jsonl`で別fieldへ分ける。対象候補の記録だけでsuccessorを割り当てず、
 `意味変更要`等の旧表現だけで意味を変更しない。判断対象は原要求ID・原文・変更案・影響を人間へ提示する。

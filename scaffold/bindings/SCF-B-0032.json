@@ -14,9 +14,9 @@
       "note": "merge済みPR #1964とWave24を含むorigin/main exact HEAD 2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c のDOC-001選定、126行訂正、旧blob digest、語彙出現数"
     },
     {
-      "path": "docs/governance/delegated-requirement-document-source-holding.jsonl",
+      "path": "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl",
       "sha256": "23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd",
-      "note": "MPR-SH-DELEGATED-DOC-003、DOC-001 file blob holding"
+      "note": "MPR-SH-DELEGATED-DOC-003、DOC-001 file blob holding [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/delegated-requirement-document-source-holding.jsonlから新path=docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd; 現receipt=23d1df9c24b579c78c5836390d4c62c345e483eca42a9452742fad28d1e787fd; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
@@ -24,9 +24,9 @@
       "note": "LEGACY-ASSET-335176749F6322C3CD8DのHistorical／unresolved／implementation unknown"
     },
     {
-      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "path": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
       "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f",
-      "note": "LASPH-0439のphase/product候補と未解決条件"
+      "note": "LASPH-0439のphase/product候補と未解決条件 [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonlから新path=docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; 現receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "docs/concept/product-boundary.md",

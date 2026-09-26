@@ -44,9 +44,9 @@ EXPECTED_MEMBERSHIP_CLASSIFICATION_REASONS = {
     "LEGACY-ASSET-189702B332643A3BFDAF": "Candidate phase/product membership and lexical overlap do not establish a direct semantic edge; all 68 rows retain unknown pending direct semantic review.",
     "LEGACY-ASSET-4618C7243C283228809A": "The runbook candidate pool has no exact requirement ID or source span match to HIL-NFR-17. Absence is insufficient for negative; the unit remains unknown.",
 }
-CROSSWALK_PATH = ROOT / "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
+CROSSWALK_PATH = ROOT / "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
 DISPOSITION_PATH = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
-CLASSIFICATION_PATH = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+CLASSIFICATION_PATH = ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DECISIONS_PATH = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 
 

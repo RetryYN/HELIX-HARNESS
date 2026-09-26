@@ -1,8 +1,8 @@
 # 旧要求atom化 review contract
 
 status: proposed_processing_contract
-input_lines: [semantic line台帳](legacy-requirement-semantic-line-carry-forward.jsonl)
-input_queue: [atom化review queue](legacy-requirement-atomization-review-queue.jsonl)
+input_lines: [semantic line台帳](legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl)
+input_queue: [atom化review queue](legacy-migration/requirement/legacy-requirement-atomization-review-queue.jsonl)
 authority_model: [上流authority状態モデル](authority-state-model.md)
 
 ## 目的

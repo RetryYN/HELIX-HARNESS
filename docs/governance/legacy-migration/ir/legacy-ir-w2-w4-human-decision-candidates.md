@@ -2,7 +2,7 @@
 
 status: decision_not_requested_yet
 scope: W2 8件／W3 5件／W4 2件
-authority: [旧要求carry-forward台帳](legacy-requirement-carry-forward.jsonl)
+authority: [旧要求carry-forward台帳](../requirement/legacy-requirement-carry-forward.jsonl)
 routing: [IR対象routing queue](legacy-ir-target-routing-queue.jsonl)
 
 ## この文書が行わないこと

@@ -13,6 +13,24 @@ import re
 import subprocess
 from pathlib import Path
 
+# 2026-09-26のPO判断で、旧HELIXからの移行台帳をdocs/governance/legacy-migration/へ移した
+# （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
+# 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
+RELOCATED_PATHS = {
+    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl": "docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "docs/governance/legacy-requirement-direct-semantic-review-wave": "docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 CROSSWALK = ROOT / "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl"
@@ -347,7 +365,7 @@ def make_bundle() -> None:
         {
             "path": str(path.relative_to(ROOT)),
             "kind": kind,
-            "sha256": digest_bytes(path.read_bytes()),
+            "sha256": digest_bytes(relocated(path).read_bytes()),
         }
         for path, kind in source_inputs
     ]

@@ -14,7 +14,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 ARCHIVE_ROOT = ROOT / "archive" / "legacy-generation-2026-09-14" / "root"
-INVENTORY = ROOT / "docs/governance/legacy-rule-atom-inventory.jsonl"
+INVENTORY = ROOT / "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl"
 ACCOUNTING = ROOT / "docs/governance/audits/source-rebaseline/l2d-s1-01-authority-rule-atom-accounting.jsonl"
 ASSETS = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
 MANIFEST = HERE / "manifest.json"

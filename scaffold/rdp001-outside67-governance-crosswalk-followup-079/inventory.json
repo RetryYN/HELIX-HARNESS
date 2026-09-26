@@ -436,7 +436,7 @@
     "read_only": true,
     "static_only": true,
     "holding_registration_id": "MPR-SH-OUTSIDE67-001",
-    "holding_path": "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl",
+    "holding_path": "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl",
     "holding_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
     "holding_path_revision_pair_denominator": 67,
     "holding_record_count": 67,

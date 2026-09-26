@@ -5,9 +5,9 @@
   "proposal_status": "needs_independent_review",
   "source_commit": "685c69c3c174ac6121812dade30ed75e510986e6",
   "inputs": {
-    "queue_path": "docs/governance/legacy-requirement-atomization-review-queue.jsonl",
+    "queue_path": "docs/governance/legacy-migration/requirement/legacy-requirement-atomization-review-queue.jsonl",
     "queue_sha256": "5e85e9ca4eb8b08dd7908bf63ff994d2b6cd88e430fd3c7e0a15160d17a12a07",
-    "semantic_line_ledger_path": "docs/governance/legacy-requirement-semantic-line-carry-forward.jsonl",
+    "semantic_line_ledger_path": "docs/governance/legacy-migration/requirement/legacy-requirement-semantic-line-carry-forward.jsonl",
     "semantic_line_ledger_sha256": "a81d6b1f5acb116c76b0b87b41aa0d2c3b9bfa2ba4ac0be86dd2db052fdc1692",
     "atomization_plan_path": "scaffold/rdp001-reqatom-0031-0050/atomization_plan.json",
     "atomization_plan_sha256": "cb938601050e4dee96e6d82d5b9e52b55fd9a977e05416acc80a0c9ac1b6ba13",

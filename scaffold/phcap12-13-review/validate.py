@@ -324,7 +324,7 @@ def validate(data: dict, check_binding: bool = True) -> list[str]:
 
     phase_inv_path = ROOT / "docs/governance/phase-capability-inventory.json"
     disp_path = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
-    phase_path = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+    phase_path = ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
     decision_path = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
     provenance = data.get("ledger_provenance", {})
     source_paths = {

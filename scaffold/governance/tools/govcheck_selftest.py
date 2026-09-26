@@ -6,7 +6,7 @@ import json, os, shutil, subprocess, sys, tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 CAND = "docs/governance/candidates/legacy-rule-derived-requirements.md"
-INV = "docs/governance/legacy-rule-atom-inventory.jsonl"
+INV = "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl"
 
 
 def fresh():
@@ -14,7 +14,8 @@ def fresh():
     for rel in ("scaffold/governance", "scaffold/bindings"):
         shutil.copytree(os.path.join(ROOT, rel), os.path.join(d, rel))
     os.makedirs(os.path.join(d, "docs/governance/candidates"))
-    for rel in (CAND, INV, "docs/governance/legacy-rule-atom-source-files.jsonl"):
+    os.makedirs(os.path.join(d, os.path.dirname(INV)))  # 2026-09-26 移行台帳のlegacy-migration/への移動に伴う写し先の作成
+    for rel in (CAND, INV, "docs/governance/legacy-migration/rule-atom/legacy-rule-atom-source-files.jsonl"):
         shutil.copy(os.path.join(ROOT, rel), os.path.join(d, rel))
     return d
 

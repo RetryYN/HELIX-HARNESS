@@ -28,16 +28,16 @@ WORKTREE_PROVENANCE = "/home/tenni/HELIX-HARNESS-outside-next5"
 BASE_DRIFT_REASON = "SCF-B-0085 was merged by #2034, advancing origin/main from c5ed4587 to 3cdde5d; this bundle was materialized from the resulting latest main."
 UNEXPLORED_SCOPE = "all outside67 path_revision_pair not in the existing 52 or this five-source research set; candidate accounting remains scaffold evidence until any later holding admission"
 BATCH_WIDTH_POLICY = "width 5 is the observed verification width for this bundle; no safe batch upper bound is asserted; a later batch requires independent source-chain review from then-current origin/main"
-HOLDING = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+HOLDING = "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl"
 REGISTER = "docs/governance/management-provisional-requirement-register.jsonl"
 LEDGERS = [
     "docs/governance/legacy-asset-disposition.jsonl",
     "docs/governance/legacy-asset-decisions.jsonl",
     "docs/governance/legacy-asset-copy-read-after.jsonl",
     "docs/governance/legacy-asset-decision-log.md",
-    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
-    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
-    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+    "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
 ]
 SOURCE = {
     "OUTSIDE67-PATH-017": "docs/governance/audits/l2-requirements/concept-v4.1-claude-review-96171b9ba.md",

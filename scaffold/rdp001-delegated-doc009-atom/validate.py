@@ -14,11 +14,11 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 INVENTORY = HERE / "inventory.json"
-SOURCE_LEDGER = ROOT / "docs/governance/delegated-requirement-document-source-holding.jsonl"
+SOURCE_LEDGER = ROOT / "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-source-holding.jsonl"
 ASSET_LEDGER = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
-PHASE_LEDGER = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+PHASE_LEDGER = ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DECISIONS_LEDGER = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
-REFERENCE_LEDGER = ROOT / "docs/governance/delegated-requirement-document-reference-holding.jsonl"
+REFERENCE_LEDGER = ROOT / "docs/governance/legacy-migration/delegated-document/delegated-requirement-document-reference-holding.jsonl"
 ARCHIVE_COMMIT = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 REPORT_COMMIT = "fa8f5426882ee56a56e28975746e2db590cd515f"
 LATEST_MAIN = "2fa9aca42ff3ffdd5dea9b2186c49ee50db7dc2c"

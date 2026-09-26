@@ -9,6 +9,23 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+# 2026-09-26のPO判断で、旧HELIXからの移行台帳をdocs/governance/legacy-migration/へ移した
+# （docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）。
+# 固定commitのgit objectと記録済みのpathは旧pathのまま扱い、現行ファイルを読む箇所だけこの対応表で移動先へ引き直す。
+RELOCATED_PATHS = {
+    "docs/governance/pre-isolation-revision-delta-source-holding.jsonl": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
+    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
+}
+
+
+def relocated(path):
+    text = str(path)
+    for old, new in RELOCATED_PATHS.items():
+        if old in text:
+            return type(path)(text.replace(old, new, 1))
+    return path
+
+
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 REPORT_PATH = HERE / "report.json"
@@ -159,8 +176,8 @@ def validate(report: dict | None = None) -> list[str]:
     if report is None:
         report = read_json(REPORT_PATH, errors)
     binding = read_json(BINDING_PATH, errors)
-    holding = read_jsonl(ROOT / HOLDING_PATH, errors)
-    catalog = read_jsonl(ROOT / CATALOG_PATH, errors)
+    holding = read_jsonl(relocated(ROOT / HOLDING_PATH), errors)
+    catalog = read_jsonl(relocated(ROOT / CATALOG_PATH), errors)
     holding_paths = {record.get("source_path") for record in holding}
     catalog_counts = Counter(record.get("source_path") for record in catalog)
 

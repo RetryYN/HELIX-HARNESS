@@ -15,11 +15,11 @@
   },
   "provenance": {
     "crosswalk": {
-      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
       "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
     },
     "crosswalk_meta": {
-      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.meta.json",
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.meta.json",
       "sha256": "a67f248c3dacf4c15af121ec8db1ba14ff8f8711b68cb9b688c20b6eb383df85"
     },
     "asset_disposition": {
@@ -27,7 +27,7 @@
       "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
     },
     "asset_phase_product": {
-      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "path": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
       "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
     },
     "asset_decisions": {

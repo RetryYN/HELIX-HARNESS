@@ -3,8 +3,8 @@ status: scaffold
 authority_effect: none
 generated_by: scaffold/governance/tools/gen_rulebook.py
 source_candidate: docs/governance/candidates/legacy-rule-derived-requirements.md
-source_candidate_sha256: 386e4083f1a47c2d09ea75ea774772421a44b6f5dd9eaa331d6ea773cd683ffa
-source_inventory: docs/governance/legacy-rule-atom-inventory.jsonl
+source_candidate_sha256: f647bbbcbe21ef775186760086decac511c6a7845f7575952eb7eb551dd55101
+source_inventory: docs/governance/legacy-migration/rule-atom/legacy-rule-atom-inventory.jsonl
 source_inventory_sha256: 97a9e0a4cfd5999f5178ec13f758ef71c334191aac51ed43c3bb9570bd762784
 rule_id: RUL-COR-06
 group: コア

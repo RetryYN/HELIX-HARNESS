@@ -77,23 +77,23 @@
   "updated": "2026-09-22",
   "upstream": [
     {
-      "note": "seven PO-pending corrections; unchanged",
-      "path": "docs/governance/legacy-ir-product-routing-corrections.jsonl",
+      "note": "seven PO-pending corrections; unchanged [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-ir-product-routing-corrections.jsonlから新path=docs/governance/legacy-migration/ir/legacy-ir-product-routing-corrections.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=d57dc947f4d2fca1470c22eb6d0b0fe874914ded28401fb7ecafeddfeab230df; 現receipt=d57dc947f4d2fca1470c22eb6d0b0fe874914ded28401fb7ecafeddfeab230df; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-corrections.jsonl",
       "sha256": "d57dc947f4d2fca1470c22eb6d0b0fe874914ded28401fb7ecafeddfeab230df"
     },
     {
-      "note": "153 routing candidates; unchanged",
-      "path": "docs/governance/legacy-ir-product-routing-bootstrap.jsonl",
+      "note": "153 routing candidates; unchanged [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-ir-product-routing-bootstrap.jsonlから新path=docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1; 現receipt=c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/ir/legacy-ir-product-routing-bootstrap.jsonl",
       "sha256": "c35934693b273e6cfd03e509886dc22bd1367e78ae1aa4568563a7da252c41e1"
     },
     {
-      "note": "218 candidate units; unchanged",
-      "path": "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+      "note": "218 candidate units; unchanged [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonlから新path=docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3; 現receipt=360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
       "sha256": "360836fb7563ac298d19f3d14167f5abedb1887b837cf575a31dbeacb67ae4b3"
     },
     {
-      "note": "unit-to-asset candidate crosswalk; unchanged",
-      "path": "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+      "note": "unit-to-asset candidate crosswalk; unchanged [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonlから新path=docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65; 現receipt=8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
       "sha256": "8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65"
     },
     {
@@ -127,8 +127,8 @@
       "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
     },
     {
-      "note": "phase/product candidate ledger; static only",
-      "path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+      "note": "phase/product candidate ledger; static only [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonlから新path=docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; 現receipt=2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
       "sha256": "2188f236cb7ed316772ee1fcf413f3b098f702cb4c9d9b3dad09a72db7468c1f"
     },
     {
@@ -152,33 +152,33 @@
       "sha256": "14aad7ae9bd0f4482e1855c756c89a8dcf4e19da16d4bc71e8b03894e288fa1e"
     },
     {
-      "note": "Wave semantic review rows; static candidate review only",
-      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonl",
+      "note": "Wave semantic review rows; static candidate review only [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-direct-semantic-review-wave23.jsonlから新path=docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave23.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423; 現receipt=b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave23.jsonl",
       "sha256": "b90b024e36eda050bdd40cf20fb8b95651c3fb60b2be3cb2efc0c9daf836a423"
     },
     {
-      "note": "Wave semantic review rows; static candidate review only",
-      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonl",
+      "note": "Wave semantic review rows; static candidate review only [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-direct-semantic-review-wave27.jsonlから新path=docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave27.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6; 現receipt=9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave27.jsonl",
       "sha256": "9bc898eed1374d0c5c9f4fc89e382773fbb73a0fb2e6410f71e64b84fbb655f6"
     },
     {
-      "note": "Wave semantic review rows; static candidate review only",
-      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonl",
+      "note": "Wave semantic review rows; static candidate review only [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-direct-semantic-review-wave28.jsonlから新path=docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave28.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40; 現receipt=1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave28.jsonl",
       "sha256": "1f3e6a846363f501b28223d7a92417f7350c538431011d319488c25605bf8a40"
     },
     {
-      "note": "Wave semantic review rows; static candidate review only",
-      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonl",
+      "note": "Wave semantic review rows; static candidate review only [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-direct-semantic-review-wave33.jsonlから新path=docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave33.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f; 現receipt=701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave33.jsonl",
       "sha256": "701bcf9bbf951658c64842743b9643fdbe7b8443a62fa570c12c50c09dca079f"
     },
     {
-      "note": "Wave semantic review rows; static candidate review only",
-      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave34.jsonl",
+      "note": "Wave semantic review rows; static candidate review only [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-direct-semantic-review-wave34.jsonlから新path=docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave34.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da; 現receipt=4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave34.jsonl",
       "sha256": "4e0a3ee553204550e6fead2437a2fe983c93cee0d861c026974ac77589ac45da"
     },
     {
-      "note": "Wave semantic review rows; static candidate review only",
-      "path": "docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonl",
+      "note": "Wave semantic review rows; static candidate review only [2026-09-26 旧HELIXからの移行台帳のdocs/governance/legacy-migration/への移動（PO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md） read-after: 上流pathを旧path=docs/governance/legacy-requirement-direct-semantic-review-wave36.jsonlから新path=docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave36.jsonlへ更新した（POの指示で、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した）。本文は不変（同一bytes）。本bindingのrole・obligations・connections・replacement・artifactは、移行台帳の置き場所と相対リンクの表記に依存しないことをbinding全体で確認した。前receipt=fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523; 現receipt=fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523; このBindingの採否・authorityは変更しない。]",
+      "path": "docs/governance/legacy-migration/semantic-review/legacy-requirement-direct-semantic-review-wave36.jsonl",
       "sha256": "fc0f12cf07718e3f8c8a2f7c97b834cc826c6664d2dfb3b5bf4e4f234acb7523"
     },
     {

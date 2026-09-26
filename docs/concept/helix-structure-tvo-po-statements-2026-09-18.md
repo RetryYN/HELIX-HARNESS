@@ -13,7 +13,7 @@ authority_effect: none
 本書の構造をConceptまたはL1へ反映する場合は、`concept_revision`または`planning_revision`として別に扱う。
 
 用途は、旧要求と現行要求へ「どのシステムの要求か」のラベルを付ける分類軸である。
-最初の適用は[旧Requirement IR 153件の分類](../governance/legacy-ir-structure-classification.md)、
+最初の適用は[旧Requirement IR 153件の分類](../governance/legacy-migration/ir/legacy-ir-structure-classification.md)、
 旧confirmed identity 175件と現行L2への適用とカバレッジは[要求のカバレッジ](../governance/helix-structure-requirement-coverage.md)である。
 
 ## 構造図
@@ -116,7 +116,7 @@ T、V、Oは下の図の形を説明する言葉である。分類軸はT、V、
   指摘と対応の原文は[#1851のreview記録](https://github.com/RetryYN/HELIX-HARNESS/pull/1851#issuecomment-5718875312)と
   [再review記録](https://github.com/RetryYN/HELIX-HARNESS/pull/1851#issuecomment-5718935356)にある。
 - 「HARNESSは規範、OSは登録・版・運転」という分け方は、製品区分の訂正案7件
-  （[訂正台帳](../governance/legacy-ir-product-routing-corrections.jsonl)）と`L2D-S1-01`の分割案の両方で使われている。
+  （[訂正台帳](../governance/legacy-migration/ir/legacy-ir-product-routing-corrections.jsonl)）と`L2D-S1-01`の分割案の両方で使われている。
 
 まだ確かめられていないこと。
 

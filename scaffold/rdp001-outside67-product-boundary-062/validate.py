@@ -8,16 +8,16 @@ PR_EXCLUDED = {"OUTSIDE67-PATH-001", "OUTSIDE67-PATH-008", "OUTSIDE67-PATH-010",
 EXPECTED_PRE = "2d4991042be55268bac30a8bbcdac45b3865030a"
 EXPECTED_ARCHIVE = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 EXPECTED_BASE = "294bfd90bf58390798733a1437f1c91b8dc7fce8"
-HOLDING_REL = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+HOLDING_REL = "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl"
 REGISTER_REL = "docs/governance/management-provisional-requirement-register.jsonl"
 LEDGER_RELS = [
     "docs/governance/legacy-asset-disposition.jsonl",
     "docs/governance/legacy-asset-decisions.jsonl",
     "docs/governance/legacy-asset-copy-read-after.jsonl",
     "docs/governance/legacy-asset-decision-log.md",
-    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
-    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
-    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+    "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
 ]
 
 INVENTORY_KEYS={
