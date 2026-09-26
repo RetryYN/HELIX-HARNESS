@@ -305,5 +305,5 @@ HELIXOS-L2-004／005／007／009について、次の利用条件を確認する
 | HXT-FLOW-07 | HELIXOS-L2-010／HELIXOS-L2-002 | findingと振り分け理由、返却先又は次ticketを同じ因果で追跡できる。 | finding破棄／次ticketのfindingを今のPRへ戻す／返却先欠落。 |
 | HXT-FLOW-08 | HELIXOS-L2-010／HELIXOS-L2-005 | 評価対象、実験作業、結果とFeedbackの戻し先を混同せず辿れる。 | 実験の完了で対象ticketを閉じる／本線の予算・列へ混載する。 |
 | HXT-FLOW-09 | HELIXOS-L2-010／HELIXOS-L2-005 | 3.0の版の印と案の状態を保って、材料の区分から評価・裁定まで辿れる。 | 案の登録を学習実行許可・採用・完了にする。 |
-| HXT-SYS-01 | HELIXOS-L2-010／HELIXOS-L2-011／HELIXOS-L2-008／HELIXOS-L2-002 | 同じticketの親要求revisionから、HARNESS版、計画・配置の案、OSの適格性確認・発行、検収の計画・結果と投影まで追跡できる。 | BRAINに稼働判断を戻す／INTELLIGENCE・HARNESSがticket発行／PR mergeで完了／1.0で部品外の流れを生成する。 |
+| HXT-SYS-01 | HELIXOS-L2-010／HELIXOS-L2-011／HELIXOS-L2-008／HELIXOS-L2-002 | 同じticketの親要求revisionから、HARNESS版、計画・配置の案、OSの適格性確認・発行、検収の計画・結果と投影まで追跡できる。 | BRAINに稼働判断を戻す／INTELLIGENCE・HARNESSがticket発行／PR mergeで完了／1.0で部品外の流れを生成する／開発方式をticketの種類にする／突発と計画を分けない。 |
 | HXT-USE-01 | HELIXOS-L2-004／HELIXOS-L2-010 | CrawlerとBugbotが既存の種類・割当てへ接続し、WEB-OSのjobは内部OSの種類へ追加されず未決の扱いが明示される。 | botごとに種類を増やす／WEB-OSの未定のjobを内部OSで正式化する。 |

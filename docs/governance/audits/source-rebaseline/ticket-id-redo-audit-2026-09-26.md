@@ -284,3 +284,37 @@ HARNESS準備記録の旧71行はHXT-CORE-02、72行はOSへの参照、73行は
 | `docs/helix-os/L11-acceptance/governance-acceptance.md` | `03101e583622e448df2bcee812a4b1ed7098eeeb39326b959c9953e37729edd2` |
 | `docs/helix-harness/L2-requirements/product-requirements.md` | `840236515f2dd34d32db7c0974a811fc4d6399b0b8ef863b9f666f7a08badf30` |
 | `docs/helix-harness/L11-acceptance/product-acceptance.md` | `24e8ae1adf67f025091abb61361bce5b26aec1c7af8f770dd8538910fa3fd7ba` |
+
+## 独立再review後の訂正・追補（R2141-01〜07）
+
+対象は独立review済みHEAD `6e18904e9d31e06729c5d92827723067019878c3` に対する[Claudeの所見](https://github.com/RetryYN/HELIX-HARNESS/pull/2141#issuecomment-5842004224)。上の監査・SHA・検証結果は同HEAD時点の記録として保ち、以下を追補する。
+
+| 指摘 | 対応 |
+|---|---|
+| R2141-01 | PR区分を `requirement` へ訂正する。複数identityを一緒に扱う根拠は[9/24 PO判断](../../decisions/concept-requirement-po-decisions-2026-09-24.md)23–25行の、前段階処理の後に全要求をPO最適ドラフトPRで詰めるという指示。本PRはそのticket部分の一体の整理であり、34件を別identityとして確定・採択するものではない。 |
+| R2141-02 | L2両文書の接続を「機構どうし、またはticket種類どうしをつなぐ連続処理」と明示した。[9/25 PO判断](../../decisions/po-optimal-draft-po-decisions-2026-09-25.md)115–119行は機構間を対象とするが、前回Major 1に従いticket種類間の一連の処理も本整理の接続に含める。単体は種類一組の定義、接続はその種類をまたぐ受け渡しとして区別するためであり、POの一般定義を変更するものではない。 |
+| R2141-03 | 旧監査19行の相対リンクはOS L2からの逐語引用のため、監査の配置から解決するとリンク先がずれている。旧監査はbytesを保持する。参照先は[9/24 PO判断](../../decisions/concept-requirement-po-decisions-2026-09-24.md)である。 |
+| R2141-04 | SCF-B-0024 upstream[13]とSCF-B-0095 upstream[25]の同一の「PR #2141再整理」追記を各1回にした。既存の別noteは保持した。 |
+| R2141-05 | PHCAP-10/11の `base.worktree=/tmp/helix-redo-2141` は、このinventoryを実際に再生成した場所の由来metadataとして残す。generatorは実行場所を記録するため、mainの過去の生成場所に戻すと今回の生成場所を偽る。永続的な参照先・依存先としては使わず、ディレクトリ消失後もrepository rootで `python3 -B scaffold/phcap10-11-worker-ci-static/generate.py` により再生成できる。別worktreeでの再生成はこのmetadataの値だけが変わり得る。 |
+| R2141-06 | 上の旧source表に記したexecution-ticket-requirements:349–351の「Benchから直接配車しない」の保持先は、main既存のOS L2のWorker節とhandoff判断の三段指定であり、今回の詳細IDの対象外である。下の訂正表で旧source表の行範囲を補い、HXT-FLOW-05の根拠と揃える。 |
+| R2141-07 | HXT-SYS-01のL11反例に「開発方式をticketの種類にする」「突発と計画を分けない」を追加した。SYS-01はticket節の共通の全体条件もまとめており、OS内部の条件も含む。 |
+
+### 旧source表の行範囲と保持先の訂正
+
+| 旧source | 正しい対象行 | 対応先 |
+|---|---|---|
+| `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | 65、68、69、118、120–121 | 65・121は要求還流、69・120はfinding振り分け。68・118の旧CI固定3段はHXT-FLOW-05の比較元で、9/26 V谷判断に従ってticketとの関係からのCI導出へ変えた。上の旧source表には68・118の記載が欠けていた。 |
+| `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md` | 349–351 | 詳細ID外のmain既存のOS L2 Worker節・HELIXOS-L2-004／010と[handoff判断](../../decisions/handoff-integration-po-decisions-2026-09-26.md)のLABO水準→INTELLIGENCE案→OS指定。旧表の「保持」は文書全体の保持点であり、詳細IDへの新規収載ではない。 |
+
+HXT-CORE-01の親をHARNESS-L2-003にも広げる所見については、今回は工程契約の保持（002）と意味導出コア（008）の既存の親を維持する。003の個別工程の適用条件を新たに整理する変更は行っていない。
+
+### 再review指摘修正後の検証
+
+34件のIDと親要求のL2／L11一致、接続定義、SYS-01反例、重複noteの解消、旧監査のbytes保持を確認した。研究用validatorは137件中105 pass／32 failで、6e18904e9と同じ集合。scfctlはstale=0、bindings=142 fail=0、residuals=0、cases=69 fail=0。git diff --check合格。参照本文・行範囲・意味fieldは不変で、文書SHAとcurrent counterpartのbytes、および依存bindingのreceiptを追随させた。
+
+| 修正後の文書 | SHA-256 |
+|---|---|
+| `docs/helix-os/L2-requirements/governance-requirements.md` | `6532c37f816be7f8461e58f4ea0fdb470c5878fef3abf78916d7be4212145daf` |
+| `docs/helix-os/L11-acceptance/governance-acceptance.md` | `adf377262c49facf5ba4897cbbe975c68834c71eeb71a00ec3a9ab197eb63004` |
+| `docs/helix-harness/L2-requirements/product-requirements.md` | `3ef1c98a739d0ea1b887a8f151dc24f2132426764fae4267195e91238471faf9` |
+| `docs/helix-harness/L11-acceptance/product-acceptance.md` | `24e8ae1adf67f025091abb61361bce5b26aec1c7af8f770dd8538910fa3fd7ba` |

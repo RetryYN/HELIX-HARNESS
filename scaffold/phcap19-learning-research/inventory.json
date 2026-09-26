@@ -823,7 +823,7 @@
     {
       "ref_id": "CUR-OS-L2",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "5044b69109e5d6412cd49f9b0fef327ccc4d8bdabec3d27d0ac60c02364bd442",
+      "sha256": "6532c37f816be7f8461e58f4ea0fdb470c5878fef3abf78916d7be4212145daf",
       "start_line": 325,
       "end_line": 334,
       "line_sha256": "777c20a4f6fd2447397696229579f5f73910f8a74820511a14ecceef628750cf",
@@ -836,7 +836,7 @@
     {
       "ref_id": "CUR-OS-L2-WEB",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "5044b69109e5d6412cd49f9b0fef327ccc4d8bdabec3d27d0ac60c02364bd442",
+      "sha256": "6532c37f816be7f8461e58f4ea0fdb470c5878fef3abf78916d7be4212145daf",
       "start_line": 338,
       "end_line": 348,
       "line_sha256": "12434cb8968fbcdfcad46cdc3cf0df21bf6e0ac20d914c79646934ffb24cfa35",
@@ -849,7 +849,7 @@
     {
       "ref_id": "CUR-OS-L11",
       "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
-      "sha256": "03101e583622e448df2bcee812a4b1ed7098eeeb39326b959c9953e37729edd2",
+      "sha256": "adf377262c49facf5ba4897cbbe975c68834c71eeb71a00ec3a9ab197eb63004",
       "start_line": 139,
       "end_line": 148,
       "line_sha256": "cb58b0bdc8a0c331c7fa2cd355a681405914258575bc8d7c0b1d004fb23afa8e",
@@ -875,7 +875,7 @@
     {
       "ref_id": "CUR-HARNESS-L2",
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "sha256": "840236515f2dd34d32db7c0974a811fc4d6399b0b8ef863b9f666f7a08badf30",
+      "sha256": "3ef1c98a739d0ea1b887a8f151dc24f2132426764fae4267195e91238471faf9",
       "start_line": 173,
       "end_line": 181,
       "line_sha256": "95d80044ac11bbb401f2009b470421ae435024124c43ea72434bc0981e184d4b",
@@ -888,7 +888,7 @@
     {
       "ref_id": "CUR-HARNESS-L2-B",
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "sha256": "840236515f2dd34d32db7c0974a811fc4d6399b0b8ef863b9f666f7a08badf30",
+      "sha256": "3ef1c98a739d0ea1b887a8f151dc24f2132426764fae4267195e91238471faf9",
       "start_line": 200,
       "end_line": 212,
       "line_sha256": "a9876a901b20f8d69bfd82a133a40bbbd62428686a30592bff4a91c8c84ad594",
