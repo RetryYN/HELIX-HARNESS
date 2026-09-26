@@ -176,7 +176,10 @@ HELIXINTELLIGENCE-L1-001–020は1.0（既存外部modelでの判断、model/pro
 指定17 identityの全件は上表に1回ずつ出現する（003,004,005,006,007,008,009,010,011,012,013,014,015,016,018,019,020）。L2-002のDomain×Capabilityは全domainへ全capabilityを強制しない。能力が構成済みのdomain/scopeにのみ該当行を適用し、未構成は欠落能力と見なさない。Understandは003/004/013/018/019/020、Planは005、Predictは006/011、Diagnoseは007/015/016、Review/auditは008/009/011、Recommendは010/014/019/020とする。横断情報（012 uncertainty、013 provenance、018 time boundary）は各能力行を置換しない。能力間の説明・handoffがfixture scope内にある場合だけ関連行を組み合わせ、全域包括保証を導かない。
 
 L2-017は接続横断境界であり本追補の17件ではない。L2-030–045のconnectorおよびL2-060–065構成体も本案では変更せず個別の接続/構成体受入に残す。L2-021–026の3.0 learning、L2-064の4.0 workflowを1.0 oracleの依存にしない。品質oracleが未定義、対象fixtureを作れない、期待判定の人選択が未了の場合は、L11をpassにせず、scope/fixture/未決値を記録して該当ownerへ戻す。
-**原文と旧資産**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)第4項、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)を起点とする。旧VDH-FR-004〜013 / AC-004〜013の設計義務・対の検証・変更影響、旧UWJ-FR-002〜014 / AC-002〜014の判断・配分のproposal境界と品質計測、旧Bench R-03〜08 / AC-003〜014のtask/oracle/条件を固定した結果比較を読み、正常・誤り・未見の限定fixtureで内容を判定する受入へ再導出する。旧schema・runner・閾値・runtimeは移植/実行しない。
+
+### 原文と旧資産
+
+[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)第4項、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)を起点とする。旧VDH-FR-004〜013 / AC-004〜013の設計義務・対の検証・変更影響、旧UWJ-FR-002〜014 / AC-002〜014の判断・配分のproposal境界と品質計測、旧Bench R-03〜08 / AC-003〜014のtask/oracle/条件を固定した結果比較を読み、正常・誤り・未見の限定fixtureで内容を判定する受入へ再導出する。旧schema・runner・閾値・runtimeは移植/実行しない。
 
 - `LEGACY-ASSET-335176749F6322C3CD8D`：`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md:42–51`、SHA-256 `7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d`。
 - `LEGACY-ASSET-879D95C07B789C9502CF`：`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md:20–29`、SHA-256 `6b72ed546c07349dfd5b59e78f15ddfbb353ea0b232b7c8b5de8d1cae7854191`。
