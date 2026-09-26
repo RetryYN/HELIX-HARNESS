@@ -43,7 +43,7 @@ POの文と指示はそのまま扱い、AIの整理と区別する。本記録�
 
 - Conceptは「版は能力進化の節目であり、公開ソフトウェアの版番号ではない」（`docs/concept/helix-concept.md`の版の表の前）とする。本判断のv0.x・v1.0は、HELIX自身の段階リリースの識別子として扱い、外部公開の版番号にはしない（決定7）。v1.0は1.0の到達判定を通った構成を指す。これによりConceptの版の意味は変えない。Conceptの文言をv0.x・v1.0に合わせて書き換えるかは、本PRでは扱わない。
 - Conceptの原則「検証済みの単位で出す」（検証済みの機能から提供構成を組み、releaseとdeploymentを分ける）と、「配布物の生成・配布・切戻しはOSが運転する」に従い、要求の本体をHELIX-OSのL2に置く。
-- パックの境界と検証の契約は[HARNESS L2](../../helix-harness/L2-requirements/product-requirements.md)のHARNESS-L2-010／011／022（2026-09-26のPO判断、PR #2157）、実行環境の構成の識別・巻き戻し・自己依存のない復旧・段階的な適用は[INFRASTRUCTURE L1](../../helix-infrastructure/L1-planning/infrastructure-intent.md)のHELIXINFRASTRUCTURE-L1-019／020／022／023が持つ。本要求はこれらを使い、所有を移さない。
+- パックの境界と検証の契約は[HARNESS L2](../../helix-harness/L2-requirements/product-requirements.md)のHARNESS-L2-010／011／022（2026-09-26のPO判断、PR #2157）、実行環境のbackup・restore・構成の識別・巻き戻し・自己依存のない復旧は[INFRASTRUCTURE L1](../../helix-infrastructure/L1-planning/infrastructure-intent.md)の1.0の範囲のHELIXINFRASTRUCTURE-L1-017〜020／022が持つ。本要求はこれらのうち、その段階で成立しているものだけを使い、所有を移さない。成立していない能力は、その段階の「できないこと」として明記する（決定6）。Infrastructureの変更を段階を踏んで適用するHELIXINFRASTRUCTURE-L1-023は「1.0より後（版は未定）」であり（[Concept配置の判断記録](infrastructure-concept-placement-po-decisions-2026-09-26.md)）、段階リリースの成立の前提にしない。HELIXの段階リリースとInfrastructure変更の段階的な適用は、名前が似ていても別の能力であり、本判断から023の前倒しを導かない。これは、全機構の完成を待たないという決定と、旧FRS-BR-009の「無関係な基盤完成を待たず」に従う。この整理は独立review（PR #2158のR2158-01）の指摘を受けて加えた。
 - HARNESSのサービス⑥（対象製品のリリースの仕組み）と、HELIX自身の段階リリースは別である。Conceptの「配布する道具、道具で作る製品、学習済みモデルは別の成果物とする」を保つ。
 - 決定10の「自己依存を取り除く」は、HARNESS-L2-010の「宣言のない依存を実行時に暗黙に使わない」とHELIXINFRASTRUCTURE-L1-020の「HELIX自身を使わなければ復旧できない循環した依存を避ける」を、HELIX自身の段階リリースに当てはめたものとして書く。
 
