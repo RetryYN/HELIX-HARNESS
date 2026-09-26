@@ -32,7 +32,7 @@
     ],
     "title": "Worker execution and CI/Test",
     "inventory_path": "docs/governance/phase-capability-inventory.json",
-    "inventory_sha256": "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2",
+    "inventory_sha256": "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4",
     "phase_record_snapshots": [
       {
         "task_id": "PHCAP-10",
@@ -610,18 +610,18 @@
       {
         "ref_id": "CUR-BOUNDARY-FOUR",
         "path": "docs/concept/product-boundary.md",
-        "sha256": "0d9180309f216ee0125acfc0afabe6a1c55f02074d62b67f284709ea6b29d9d2",
+        "sha256": "1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15",
         "line_start": 33,
         "line_end": 40,
-        "line_sha256": "63eaa45e73c16fc9167051c0ff8232452a9bb77e54602444bd31c080dd89977b",
-        "exact_text": "## 対象別の正規入口\n\n| 対象 | 所有する要求 | ローカル入口 |\n|---|---|---|\n| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |\n| HELIX-OS | プロジェクト群の管理、ticketを発行する推進、CI・testを最適化する検収、統合・更新・復旧 | [HELIX-OS](../helix-os/README.md) |\n| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../helix-web/README.md) |\n| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |",
+        "line_sha256": "abff814eb6f9414e2437c6cadfba280be832d8f854e8770d5b76ffcd7d7cc900",
+        "exact_text": "## 対象別の正規入口\n\n| 対象 | 所有する要求 | ローカル入口 |\n|---|---|---|\n| HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |\n| HELIX-OS | プロジェクト群の管理、ticketを発行する推進、CI・testを最適化する検収、統合・更新・復旧 | [HELIX-OS](../helix-os/README.md) |\n| HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../../helix-web/docs/helix-web/README.md) |\n| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../../helix-web/docs/helix-web-os/README.md) |",
         "classification": "boundary_candidate",
         "meaning": "four product entry points"
       },
       {
         "ref_id": "CUR-BOUNDARY-OWNERSHIP",
         "path": "docs/concept/product-boundary.md",
-        "sha256": "0d9180309f216ee0125acfc0afabe6a1c55f02074d62b67f284709ea6b29d9d2",
+        "sha256": "1c9c832356ec8de2b29493abb941af6a413b785ffdceacc96e08fb1102c26f15",
         "line_start": 55,
         "line_end": 71,
         "line_sha256": "fa08fcc68c8de80f204f2ba5a8a89293179996416dd2a4922b3412c428e32014",
@@ -643,7 +643,7 @@
       {
         "ref_id": "CUR-OS-L2-WORKER-CI",
         "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-        "sha256": "14637c74a8f794c5374859fb88ec3e7c73734ed85f80005aa78bd4c73df3c50f",
+        "sha256": "7ef9c74133f1b82f783fcce025e186a2d648374a308cd4b5275eeedc580bd156",
         "line_start": 57,
         "line_end": 61,
         "line_sha256": "13b8ed92c354f97babca39063363561736e965bd1931262ee9c892e5b6ade1ec",
@@ -686,8 +686,8 @@
       },
       {
         "ref_id": "CUR-WEB-L2-BOUNDARY",
-        "path": "docs/helix-web/L2-requirements/product-requirements.md",
-        "sha256": "e6f21d6429c920e94a87fbc84bce63302a5e94966a57749dfcc60e32c11bd66d",
+        "path": "helix-web/docs/helix-web/L2-requirements/product-requirements.md",
+        "sha256": "32cc382a9d19ca6818ceb12e3be657fb64e848a804790d2e2d34d10209bbca63",
         "line_start": 48,
         "line_end": 61,
         "line_sha256": "f4ecafcc9b8e0971fe5fe5706dd7718a36d078a135261e0619709ade35018b23",
@@ -697,8 +697,8 @@
       },
       {
         "ref_id": "CUR-WEBOS-L2-BOUNDARY",
-        "path": "docs/helix-web-os/L2-requirements/service-governance-requirements.md",
-        "sha256": "84238131eeb2a60ae0be9c2aff2cb49cb03c7fc09485eb45341f3971dfb98210",
+        "path": "helix-web/docs/helix-web-os/L2-requirements/service-governance-requirements.md",
+        "sha256": "b9a6a0d3c9293dda2cd45da688e17dbb7199e286190a42216e7c1393107cce27",
         "line_start": 35,
         "line_end": 40,
         "line_sha256": "9329190769887485fef6b9bba87b956959403df5be319f1ed8a1c9b92e30a58a",

@@ -338,9 +338,9 @@ HELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作
 2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」と「展開時はHELIX-OSの外にHELIX-Web-OSを作る」を、
 HELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-Web-OSは
 それぞれ要求正本・合意revision・進行状態を持ち、OSが開発・改善projectとして横断管理する。
-Web固有の利用者体験やサービス要求は[HELIX-Web側](../../helix-web/README.md)へ置く。
+Web固有の利用者体験やサービス要求は[HELIX-Web側](../../../helix-web/docs/helix-web/README.md)へ置く。
 展開後のtenant、Connector job、service state、credential、配備・監視・復旧は
-[HELIX-Web-OS側](../../helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。
+[HELIX-Web-OS側](../../../helix-web/docs/helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。
 HELIX-Web-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・
 時点・欠測付きで受領する。HELIXOS-L2-005／007／013により他projectの証拠と突合し、改善候補、採否、対象別変更、
 再検証、再観測へ接続する。credential、tenant原data、範囲外logを吸収せず、受領logから要求を直接変更しない。

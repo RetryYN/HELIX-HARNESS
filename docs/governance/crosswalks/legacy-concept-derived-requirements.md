@@ -48,7 +48,7 @@ v4.0候補承認の対象revisionは[PLAN-L3-84](../../../archive/legacy-generat
 | HCV4-L2-005 | HARNESS-L2-006：提供機能・構成版・依存・外部利用の成立条件 | HELIXOS-L2-006：管理対象への導入・更新・復旧の実行と結果管理 | split_pending_approval |
 | HCV4-L2-006 | HARNESS-L2-003／HARNESS-L2-004：要求変更時の再合意・差戻し・再検証条件 | HELIXOS-L2-005：観測・改善候補・採否・変更・効果確認の循環 | split_pending_approval |
 
-[HELIX-Web](../../helix-web/README.md)固有の利用者要求はWeb側へ置く。上記6要求をWeb機能の網羅分母にせず、
+[HELIX-Web](../../../helix-web/docs/helix-web/README.md)固有の利用者要求はWeb側へ置く。上記6要求をWeb機能の網羅分母にせず、
 OSがWebを管理するという関係と、Webが利用者に提供する機能を分ける。
 
 ## 利用者要求と利用場面

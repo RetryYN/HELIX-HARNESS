@@ -40,7 +40,7 @@
     },
     "phase_inventory": {
       "path": "docs/governance/phase-capability-inventory.json",
-      "sha256": "2ffa411459f555e5c3ddc164d4933ebd24444c97ffeb63e8a76dd9ea9ee5f6c2"
+      "sha256": "16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4"
     }
   },
   "scope": {
