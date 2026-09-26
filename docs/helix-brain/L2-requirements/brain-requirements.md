@@ -34,6 +34,8 @@ sources:
 
 ## 候補一覧
 
+番号について：一般系列のHELIXBRAIN-L2-013〜017は未使用の欠番で、予約・要求の省略・延期を表さない。起草時にInfrastructureを既存の別系列HELIXBRAIN-L2-INFRA-001〜017へ分け、接続以降の一般系列018〜028を保持したためである。INFRA系列と一般系列は別identityであり、欠番から新たな要求を生成しない。
+
 | 要求ID | 種類 | 親L1 | 対象能力 | version_target |
 |---|---|---|---|---|
 | HELIXBRAIN-L2-001 | unit | L1-001 | 領域の識別・追加・分割・統合・退役 | 1.0 |
@@ -81,7 +83,7 @@ sources:
 
 ### HELIXBRAIN-L2-001 領域の識別と進化
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-001`。
+- **親L1**：`HELIXBRAIN-L1-001`。
 
 - **受け取るもの**：設計知識の領域定義と追加・分割・統合・退役案。製品名や個別project名を領域にしない。
 - **提供するもの**：領域identity、意味、状態、Patternとの関係を識別できる分類構造。
@@ -92,7 +94,7 @@ sources:
 
 ### HELIXBRAIN-L2-002 構造階層
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-002`。
+- **親L1**：`HELIXBRAIN-L1-002`。
 
 - **受け取るもの**：Domain、Pattern、Design Unit、Partのidentityと包含・構成relation。
 - **提供するもの**：`Domain → Pattern → Design Unit → Part`以上の構造を辿れる再利用知識。
@@ -103,7 +105,7 @@ sources:
 
 ### HELIXBRAIN-L2-003 Patternの成立条件
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-003`。
+- **親L1**：`HELIXBRAIN-L1-003`。
 
 - **受け取るもの**：Pattern候補とsource、対象問題、前提、利用時に必要なinput。
 - **提供するもの**：問題、前提、applicability、required input、constraint、trade-off、negative case、failure mode、compatible / incompatible pattern、evidence、maturityを持つPattern descriptor。
@@ -114,7 +116,7 @@ sources:
 
 ### HELIXBRAIN-L2-004 複数Patternの比較
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-004`。
+- **親L1**：`HELIXBRAIN-L1-004`。
 
 - **受け取るもの**：同じ問題に対する複数の成立可能なPatternと各適用条件。
 - **提供するもの**：長所、短所、constraint、failure、cost、適用条件を並べて比較できる候補集合。
@@ -125,7 +127,7 @@ sources:
 
 ### HELIXBRAIN-L2-005 構造間relation
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-005`。
+- **親L1**：`HELIXBRAIN-L1-005`。
 
 - **受け取るもの**：Pattern、Unit、Partと、領域内外の意味relation。
 - **提供するもの**：requires、depends_on、compatible_with、conflicts_with、affects、alternative_to、composed_of等を参照可能なrelation graph。
@@ -136,7 +138,7 @@ sources:
 
 ### HELIXBRAIN-L2-006 Visual DesignとUXの再利用知識
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-006`。
+- **親L1**：`HELIXBRAIN-L1-006`。
 
 - **受け取るもの**：画面の見た目・体験に関する製品横断のPattern、Unit、Partと適用条件。
 - **提供するもの**：Information Architecture、Visual Hierarchy、Layout、Grid、Spacing / Density、Typography、Navigation、Component Composition、Form、Feedback、Empty / Loading / Error State、Responsive Design、Dashboard、Content Hierarchy、Accessibility等の構造化知識。
@@ -147,7 +149,7 @@ sources:
 
 ### HELIXBRAIN-L2-007 出所・根拠・知識promotion
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-007`。
+- **親L1**：`HELIXBRAIN-L1-007`。
 
 - **受け取るもの**：Pattern / Unit / Part候補、source、provenance、evidence、adopted reason、evaluated scope、counterexample、limitation。
 - **提供するもの**：由来と評価範囲から採用状態まで追跡できる知識記録。
@@ -158,7 +160,7 @@ sources:
 
 ### HELIXBRAIN-L2-008 identity・版・状態
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-008`。
+- **親L1**：`HELIXBRAIN-L1-008`。
 
 - **受け取るもの**：再利用構造の機能identity、版、状態、supersession relationとProduct Core利用参照。
 - **提供するもの**：current、superseded、deprecated、experimental、retired等を区別し、どの製品COREがどの構造版を参照したか辿れる識別情報。
@@ -169,7 +171,7 @@ sources:
 
 ### HELIXBRAIN-L2-009 構成Pattern候補
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-009`。
+- **親L1**：`HELIXBRAIN-L1-009`。
 
 - **受け取るもの**：既存PatternのUnitとrelation、新しいrelation案、sourceと評価範囲。
 - **提供するもの**：既存部品を組み合わせたCandidate Patternと構成根拠。
@@ -180,7 +182,7 @@ sources:
 
 ### HELIXBRAIN-L2-010 Anti-Pattern・失敗知識
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-010`。
+- **親L1**：`HELIXBRAIN-L1-010`。
 
 - **受け取るもの**：Anti-Pattern、Failure Pattern、Invalid Combination、Context-dependent Failure、Regression caseとそのsource/evidence。
 - **提供するもの**：条件付きで使ってはいけない構造、失敗条件、関係する代替候補を返すknowledge entry。
@@ -191,7 +193,7 @@ sources:
 
 ### HELIXBRAIN-L2-011 製品固有意味との分離
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-011`。
+- **親L1**：`HELIXBRAIN-L1-011`。
 
 - **受け取るもの**：製品CORE由来候補と製品固有名、要求、画面、業務規則、利用者判断のsource context。
 - **提供するもの**：製品横断に再利用可能な構造候補と、汎用化できない要素の未分離状態。
@@ -202,7 +204,7 @@ sources:
 
 ### HELIXBRAIN-L2-012 提供候補と採用authorityの分離
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-012`。
+- **親L1**：`HELIXBRAIN-L1-012`。
 
 - **受け取るもの**：利用要求または問い合わせのdesign contextと必要な知識領域。
 - **提供するもの**：Pattern候補、required input、relation、alternative、constraint、evidenceと各版。
@@ -217,7 +219,7 @@ sources:
 
 ### HELIXBRAIN-L2-INFRA-001 Infrastructure DomainとSubdomain
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-001`。
+- **親L1**：`HELIXBRAIN-L1-001`。
 - **受け取るもの**：Infrastructure設計知識の領域・下位領域案。
 - **提供するもの**：Compute、Network、Storage、Database Infrastructure、Cache、Queue / Messaging、Load Balancing、Service Discovery、Deployment、Scaling、Availability、Reliability、Backup / Restore、Disaster Recovery、Observability、Capacity、Cost Architecture、Infrastructure Security、Environment、Runtime / Execution Platformを扱えるDomain構造。
 - **保証すること**：Subdomain一覧を固定しない。追加・分割・統合・退役ができ、実環境や製品固有provider accountをDomainにしない。
@@ -227,7 +229,7 @@ sources:
 
 ### HELIXBRAIN-L2-INFRA-002 Infrastructure Pattern階層
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-002`。
+- **親L1**：`HELIXBRAIN-L1-002`。
 - **受け取るもの**：InfrastructureのDomain、Pattern、Design Unit、Part候補。
 - **提供するもの**：一般のBRAIN階層に従うInfrastructure Pattern構造。
 - **保証すること**：Availability→Active/Passive→Primary/Standby/Health Detection/Failover、Deployment→Blue-Green→Active/Candidate/Traffic Switch/Rollbackの例を表現し、cloud provider固有設定だけをPatternと扱わない。
@@ -237,7 +239,7 @@ sources:
 
 ### HELIXBRAIN-L2-INFRA-003 Infrastructure Pattern成立条件
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-003`。
+- **親L1**：`HELIXBRAIN-L1-003`。
 - **受け取るもの**：Infrastructure Patternと設計コンテキスト。
 - **提供するもの**：problem、workload assumptions、expected load、availability condition、consistency requirement、latency requirement、capacity condition、scaling condition、failure assumptions、recovery condition、data durability、network requirement、security constraint、operational complexity、cost characteristic、required observability、applicability、negative case、trade-off、evidenceを持つdescriptor。
 - **保証すること**：「一般的」だけを適用根拠にしない。input/conditionの欠落はunknownのまま示す。
@@ -247,7 +249,7 @@ sources:
 
 ### HELIXBRAIN-L2-INFRA-004 非機能要求からPatternとinputへの関係
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-005`。
+- **親L1**：`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-005`。
 - **受け取るもの**：Availability、Performance、Capacity、Reliability、Recoverability、Security、Privacy、Observability、Maintainability、Costの要求特性。
 - **提供するもの**：特性→関連Infrastructure Pattern→必要Design Inputをたどれる意味relation。
 - **保証すること**：BRAIN自身は要求値を決めない。入力がなければそれを要求・設計側へ返す。
@@ -257,7 +259,7 @@ sources:
 
 ### HELIXBRAIN-L2-INFRA-005 Failure構造
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-010`。
+- **親L1**：`HELIXBRAIN-L1-010`。
 - **受け取るもの**：正常構成とFailure Pattern候補。
 - **提供するもの**：Single Point of Failure、Network Partition、Dependency Failure、Storage Exhaustion、Queue Saturation、Connection Exhaustion、Resource Starvation、Cascading Failure、Region / Zone Failure、Deployment Failure、Backup Failure、Restore Failure、Configuration Driftと、expected failure、detection、impact、containment、recovery、residual risk。
 - **保証すること**：failure構造を正常構成と同じ知識モデルで保持し、想定・影響・復旧・残余riskを欠いたものを完成扱いしない。
@@ -267,7 +269,7 @@ sources:
 
 ### HELIXBRAIN-L2-INFRA-006 Recovery Pattern
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-002`、`HELIXBRAIN-L1-010`。
+- **親L1**：`HELIXBRAIN-L1-002`、`HELIXBRAIN-L1-010`。
 - **受け取るもの**：failure conditionと復旧候補。
 - **提供するもの**：Retry、Timeout、Circuit Breaker、Failover、Graceful Degradation、Rollback、Restore、Rebuild、Reconciliation、Disaster Recovery Pattern。
 - **保証すること**：「落ちない構成」だけで成立とせず、障害後に戻す設計を持つ。実行成功をBRAINの知識のみから推定しない。
@@ -279,7 +281,7 @@ sources:
 Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立をRecovery Pattern単体の前提にはしない。RecoveryとBackupの知識間の参照を、互いの完成待ちにしない。
 ### HELIXBRAIN-L2-INFRA-007 Deployment Pattern
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-004`。
+- **親L1**：`HELIXBRAIN-L1-004`。
 - **受け取るもの**：提供・更新条件とDeployment候補。
 - **提供するもの**：Rolling Deployment、Blue-Green、Canary、Immutable Deployment、In-place Update、Staged Rollout Pattern。
 - **保証すること**：blast radius、rollback characteristics、required duplication、availability impact、migration constraint、observability requirementを比較し、BRAIN自身はrelease/deploymentを進行しない。
@@ -289,7 +291,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-INFRA-008 Scaling・Capacity Pattern
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-003`。
+- **親L1**：`HELIXBRAIN-L1-003`。
 - **受け取るもの**：WorkloadとResource制約。
 - **提供するもの**：Vertical Scaling、Horizontal Scaling、Queue-based Load Leveling、Sharding、Read Replica、Cache、Worker Pool、Backpressureの候補と、trigger、bottleneck、limit、statefulness、synchronization cost、expected saturation behavior。
 - **保証すること**：特定の負荷閾値や規模を創作せず、欠けたworkloadを明示する。
@@ -299,7 +301,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-INFRA-009 Observability知識
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-003`。
+- **親L1**：`HELIXBRAIN-L1-003`。
 - **受け取るもの**：Infrastructure Patternと成立を検証する観測ニーズ。
 - **提供するもの**：Metrics、Logs、Traces、Health、Dependency status、Capacity、Saturation、Error、Latency、Deployment state、Recovery stateの観測点と意味。
 - **保証すること**：構成を作っただけで成立としない。BRAINには設計上の観測定義を置き、実際のlogs/metricsを保存しない。
@@ -309,7 +311,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-INFRA-010 Backup・Restore・Recoverability
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-010`。
+- **親L1**：`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-010`。
 - **受け取るもの**：Backup/Restore設計候補、保持・複製・復旧条件。
 - **提供するもの**：backup strategy、retention pattern、replication、restore pattern、recovery validationを相互relationで結ぶ設計知識。
 - **保証すること**：BackupとRestoreを分離して成立扱いせず、Backup + Restore verification + required recovery conditionsをRecoverability Evidence Candidateとして区別する。実際のRTO/RPO値は製品要求が所有する。
@@ -319,7 +321,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-INFRA-011 Cost characteristic
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-004`。
+- **親L1**：`HELIXBRAIN-L1-004`。
 - **受け取るもの**：Infrastructure Patternの費用特性と比較条件。
 - **提供するもの**：fixed / variable cost tendency、idle resource cost、scaling cost、redundancy cost、storage cost、network cost、operational costのtrade-off情報。
 - **保証すること**：具体価格を恒久知識とせず、provider・時点依存の数値と構造上のcost characteristicを区別する。
@@ -329,7 +331,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-INFRA-012 Provider抽象と実装例
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-005`、`HELIXBRAIN-L1-011`。
+- **親L1**：`HELIXBRAIN-L1-005`、`HELIXBRAIN-L1-011`。
 - **受け取るもの**：provider非依存Patternとprovider別実装知識。
 - **提供するもの**：Object Storage等の抽象PatternとS3、GCS、Azure Blob、MinIO等のimplementation例をimplements、compatible_with、constraint_of等で接続する知識。
 - **保証すること**：汎用PatternをAWS等の一providerへ固定しない。provider固有の事実は根拠と版を伴う実装知識に留める。
@@ -339,7 +341,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-INFRA-013 実行基盤の共通resource抽象
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-002`。
+- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-002`。
 - **受け取るもの**：Local machine、VPS、Dedicated server、Cloud、GPU node、Distributed worker node等の設計知識候補。
 - **提供するもの**：Resource / Capability modelに結び付くprovider・環境非依存の知識構造。
 - **保証すること**：Cloudのみを前提にせず、特定providerやcomputer構成をBRAINの前提にしない。対象資源の実状態・credential・操作権限を所有しない。
@@ -349,7 +351,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-INFRA-014 Infrastructure topology graph
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-005`。
+- **親L1**：`HELIXBRAIN-L1-005`。
 - **受け取るもの**：複数Infrastructure componentと構成・通信関係。
 - **提供するもの**：Web→Load Balancer→Application→Database→Backup、Application→Queue→Worker等のtopologyとdepends_on、communicates_with、replicated_by、backed_up_by、monitored_by、failover_to、secured_by、deployed_on、scales_with relation。
 - **保証すること**：component一覧だけで構成済みとせず、relationの端点・意味を保持する。
@@ -359,7 +361,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-INFRA-015 Domain横断relation
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-005`。
+- **親L1**：`HELIXBRAIN-L1-005`。
 - **受け取るもの**：InfrastructureとAPI、Data、Security、Visual / UX等の他DomainのPattern候補。
 - **提供するもの**：affects、constrains、may affect等の横断relation。
 - **保証すること**：API→Network→Latency / Availability、Data→Storage / Database→Backup / Recovery、SecurityがNetwork / Runtime / Credentialを制約、Visual / UXがFrontend Delivery / CDN / Performanceに影響し得る例を表現する。因果や制約を無根拠に断定しない。
@@ -369,7 +371,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-INFRA-016 Infrastructure Anti-Pattern
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-010`。
+- **親L1**：`HELIXBRAIN-L1-010`。
 - **受け取るもの**：Infrastructure特有の反例・失敗構造。
 - **提供するもの**：Single Point of Failure、Shared mutable production state、Unbounded Retry、Unbounded Queue、Missing Timeout、Backup Without Restore Test、Monitoring Without Action、Manual-only Recovery、Hidden Dependency、Undocumented Egress、Unbounded Resource GrowthのAnti-Patternと、成立条件、failure manifestation、detection clue、safer alternatives。
 - **保証すること**：例示を保持し、条件を外して全状況の禁止事項へ一般化しない。
@@ -379,7 +381,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-INFRA-017 Pattern maturity
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-008`。
+- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-008`。
 - **受け取るもの**：Patternの利用実績、failure、反例、LABO評価。
 - **提供するもの**：experimental、observed、validated、mature、deprecated、retired等の成熟度と根拠relation。
 - **保証すること**：内部Productで一度成功しただけでuniversal Patternへ昇格しない。maturity状態とBRAIN version、projectでの利用版を分ける。
@@ -391,7 +393,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-018 製品Coreからの再利用候補入力（connection）
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-011`。
+- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-011`。
 - **受け取るもの**：製品のHELIX-HARNESS-COREから、原本を解体して抽出した汎用Pattern/Unit/Part候補、source/provenance、revision、製品固有情報との関係。利用者が作ったraw original自体は入力にしない。
 - **提供するもの**：製品固有の意味を汎用知識と混同せず、候補状態でBRAIN intakeへ渡したconnection receipt。
 - **保証すること**：個別製品名、要求、画面、業務規則、利用者判断や原本そのものを汎用Patternとして確定・保存しない。HELIX側で原本からPatternだけを取り込んだ後に原本を破棄するというConcept上の扱いを保ち、本要求は原本の保持期限・破棄証拠等の内部要件を追加しない。candidate intakeはPattern成立・成熟・採用を意味しない。
@@ -401,7 +403,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-019 BRAIN知識候補の製品Coreへの提供（connection）
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-004`、`HELIXBRAIN-L1-012`。
+- **親L1**：`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-004`、`HELIXBRAIN-L1-012`。
 - **受け取るもの**：製品Coreの対象課題、必要inputと制約、参照可能なBRAIN knowledge identity/version。
 - **提供するもの**：候補Pattern、Design Unit、Part、必要input、適用条件、代替、relation、trade-off、反例、根拠、maturityとexact version。
 - **保証すること**：候補の存在やmaturityを今回案件への採用判断に変換しない。複数成立するPatternを消さず比較可能にし、今回の選択は製品Core等の接続先が行う。
@@ -411,7 +413,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-020 LABO評価結果の知識候補への接続（connection）
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-010`。
+- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-010`。
 - **受け取るもの**：LABOが評価対象・評価scope・方法・evidence・結果・反例を紐付けた構造候補。
 - **提供するもの**：評価結果を保持したBRAIN候補入力と、対象のsource/version/evaluation identityを結ぶreceipt。
 - **保証すること**：単一実績、AI生成、評価resultのみで確立Patternとしない。candidateの評価scopeと限界を保ち、OSの登録・振分けとBRAIN内独立検証の後まで採否・成熟状態を先取りしない。
@@ -421,7 +423,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-021 BRAINとINTELLIGENCEの知識・判断材料接続（connection）
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-004`、`HELIXBRAIN-L1-012`。
+- **親L1**：`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-004`、`HELIXBRAIN-L1-012`。
 - **受け取るもの**：INTELLIGENCEからの対象課題、案件状態に関するqueryと必要scope。
 - **提供するもの**：BRAINの知識identity/version、候補、必要input、条件、alternative、制約、反例、根拠を含む判断材料。
 - **保証すること**：BRAINはruntime案件の結論・選択を確定せず、INTELLIGENCEはBRAIN knowledgeを暗黙に改変・昇格しない。推薦材料と稼働中判断を区別する。
@@ -431,7 +433,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-022 BRAINのrequired inputからHARNESS設計義務への接続（connection）
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-005`、`HELIXBRAIN-L1-012`。
+- **親L1**：`HELIXBRAIN-L1-003`、`HELIXBRAIN-L1-005`、`HELIXBRAIN-L1-012`。
 - **受け取るもの**：BRAIN Patternが要求する設計input、前提、constraint、関連Patternと根拠。
 - **提供するもの**：HARNESS-L2-009へ対応付けられた設計input、Pattern/Unit/Partとdependency relation、元knowledge identity/versionへのtrace。接続先が工程表・遷移図・実装優先順位を導くための構造材料。
 - **保証すること**：Patternのrequired inputとdependencyを設計義務へ落とさず渡すが、BRAINが製品固有の要求値や設計選択、工程表、遷移図、実装優先順位を単独で決めない。HARNESS-CORE/HARNESSは自らの要求・設計契約に従って導出・管理する。
@@ -441,7 +443,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-023 BRAINとVisual Design HARNESSの知識接続（connection）
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-006`、`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`。
+- **親L1**：`HELIXBRAIN-L1-006`、`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`。
 - **受け取るもの**：Visual Design HARNESSの課題とscreen/flowの製品scope、およびLABOを経た利用結果・評価候補。
 - **提供するもの**：Visual Design/UXの再利用Pattern・Unit・Part、適用条件、反例、必要input。Visual Design HARNESSからは利用・評価結果をLABO経由で候補として戻す。
 - **保証すること**：BRAINは製品固有Visual Identity, screen, flow, design tokenを所有せず、Visual Design HARNESSから直接BRAINの汎用知識へ昇格させない。
@@ -451,7 +453,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-024 Infrastructure設計知識と実績のCORE/LABO経由分離（composite）
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-008`、`HELIXBRAIN-L1-010`。
+- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-008`、`HELIXBRAIN-L1-010`。
 - **受け取るもの**：BRAIN→製品COREの設計知識契約（L2-019/022）、Runtime owner→LABO→BRAINの実績評価契約（L2-020）、および各ownerの境界receipt。Runtime実データそのものをBRAINが直接受け取らない。
 - **提供するもの**：設計知識はL2-019/022に従い製品HELIX-HARNESS-CORE/HARNESSへ渡し、実績はRuntime owner→LABO評価→L2-020の候補接続としてのみBRAINへ戻す分離したflow contract。
 - **保証すること**：BRAINとInfrastructure Runtime間に直接のread/write/learning connectionを作らない。BRAINは実server/network/database状態、provider account、credential、操作権限、実log/metricsを保存・所有しない。Runtimeの実状態はHELIX自身ならHELIX-INFRASTRUCTURE、対象製品なら当該Runtime ownerに残る。製品で採用した設計はCOREを通り、実績はLABO評価を通る。
@@ -461,7 +463,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-025 内部知識候補の独立検証・採否（composite）
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-008`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-011`。
+- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-008`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-011`。
 - **受け取るもの**：製品Core由来または構成候補、source/provenance、LABOの評価結果、OSの登録・振分け状態、BRAINの変更candidateと独立検証結果。
 - **提供するもの**：提案・評価・登録・独立検証・採否状態を分離したBRAIN knowledge revisionと、未完義務・finding・反例のowner付きreceipt。
 - **保証すること**：AI生成、単一実績、LABO評価、OS ticket、文書存在のいずれだけでも汎用知識へ昇格させない。L1-007が定めるLABO評価→OS登録/振分け→BRAIN変更手続き内の独立検証→採否の順序と責務を保持する。製品固有意味を汎用化しない。意味を変えない技術差分に新たな人間approvalを足さない。
@@ -471,7 +473,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-026 外部情報のLABO経由候補入力（connection）
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-010`。
+- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-010`。
 - **受け取るもの**：OSS、設計資料、論文、Issue、PR等の外部source identity/version、CONNECT等が取得したuntrusted data、LABOの分解・比較・評価結果。
 - **提供するもの**：外部sourceと評価scopeを保持した、BRAINへ渡すknowledge candidate。
 - **保証すること**：外部での成功例をBRAINの適用済み成功として扱わず、出所を確認しLABOで分解・比較・実験した候補だけを接続する。対象となる外部情報classは上流が挙げた例を保持しつつ、列挙を全種の確定範囲としない。
@@ -481,7 +483,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-027 外部知識候補の分解・評価・取込み（composite）
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-010`、`HELIXBRAIN-L1-011`。
+- **親L1**：`HELIXBRAIN-L1-007`、`HELIXBRAIN-L1-009`、`HELIXBRAIN-L1-010`、`HELIXBRAIN-L1-011`。
 - **受け取るもの**：L2-026経由の外部source候補、LABOの分解・比較・評価結果、OSの登録/振分け状態、BRAIN内変更candidateと独立検証結果。
 - **提供するもの**：外部由来を保持したknowledge candidateまたはaccepted revisionと、採否状態・根拠・適用条件・反例・未完義務のtrace。
 - **保証すること**：外部の成功を自環境での成功へ置き換えない。source確認、LABOの分解・比較・実験と評価、OS登録、BRAIN内の独立検証、採否を各ownerの契約どおり分離し、どの段階の結果も後段の成功と同一視しない。1.0内部seedの成立を外部情報能力に依存させない。
@@ -491,7 +493,7 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 
 ### HELIXBRAIN-L2-028 BRAIN知識pack descriptorの版・互換適用（unit）
 
-- **親L1**：`HELIXBRAIN-L1-001`、`HELIXBRAIN-L1-008`。
+- **親L1**：`HELIXBRAIN-L1-008`。
 - **受け取るもの**：HARNESS-L2-010/011に従うBRAIN capability descriptor（identity/kind、contract version、artifact version、dependency identity/version、compatibility range、verification scope）と、BRAIN knowledge revision identity/version/state。
 - **提供するもの**：要求元に対し、exact knowledge revision/versionとdescriptor互換性を照合した適用可能/不適用/unknown response。
 - **保証すること**：BRAINのknowledge identity/version/state（L2-008）と共通pack identity/contract/artifact/dependencyの各versionを混同しない。required versionが宣言compatibility range内である場合のみ参照を許し、`version_target`を実版とみなさない。HARNESS-L2-010/011の共通交換、更新、rollback、未完義務のlifecycleを再定義しない。
