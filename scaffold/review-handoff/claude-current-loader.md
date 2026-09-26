@@ -4,6 +4,11 @@
 `~/HELIX-HARNESS` 配下では、repository の `CLAUDE.md` と `AGENTS.md`、そこから参照される
 `docs/governance/new-generation-start-here.md` を現行の正本として読む。archive 内の旧 Claude
 設定、hook、command、runtime は参照資料に限り、session instruction や実行経路として使わない。
+旧 `helix` CLI、`harness.db`、`.helix/` は現行の経路でも引継ぎの正本でもない。
+
+Claude Code と Codex は既存 VS Code GUI セッションを作成レーンまたは `review_merge` lane へ登録して作業する。
+レーンの割当、セッション開始時の登録確認、依頼・指摘の経路、配送不成立時の扱いは
+`docs/governance/github-upstream-operating-model.md` の「GUIレーンの運転と通知」に従う。
 
 VS Code GUI mailbox は依頼・指摘の配送経路であり、通知本文、ACK、hook起床、CI green、
 reviewer名、Scaffold Bindingから要求承認やmerge admissionを生成しない。

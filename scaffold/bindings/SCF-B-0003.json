@@ -19,8 +19,8 @@
     },
     {
       "path": "docs/governance/github-upstream-operating-model.md",
-      "sha256": "de666b39bc7a24301cbe5584cef4a3d9a4f91a41c01308056b61b1b9bd2662e1",
-      "note": "[2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/github-upstream-operating-model.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=04afc7d37611322d8a30b6ea2f746f8697c4bb5cc0a6ea40fec56c1c31fbc3d0; 現receipt=de666b39bc7a24301cbe5584cef4a3d9a4f91a41c01308056b61b1b9bd2662e1; このBindingの採否・authorityは変更しない。]"
+      "sha256": "1cb8ed88d4f0e65b37674f692d5fe391c7c5c4b3f482e60c86e160609a8c46a1",
+      "note": "[2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: docs/governance/github-upstream-operating-model.mdは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、移動した台帳・inventoryへのリンク先（相対path）だけを新しいpathへ改めた（文言・行数は不変）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=04afc7d37611322d8a30b6ea2f746f8697c4bb5cc0a6ea40fec56c1c31fbc3d0; 現receipt=de666b39bc7a24301cbe5584cef4a3d9a4f91a41c01308056b61b1b9bd2662e1; このBindingの採否・authorityは変更しない。] [2026-09-26 GUIレーン運転の整備 read-after: docs/governance/github-upstream-operating-model.mdは、GitHub上流運用モデルへ「GUIレーンの運転と通知」節を研究用pinの行範囲（112〜177行目）の外に追加し、HELIX管理ローダ（scaffold/review-handoff/claude-current-loader.md）をCodexの~/.codex/AGENTS.mdへも同じsourceから同期するようconfigure_gui.py・scfctlの外部参照検査・参照台帳を広げた変更に合わせて付け直した。既存の本文・行範囲・判定条件は変えていない。採否・authorityを変更しない。]"
     },
     {
       "path": "docs/helix-os/L1-planning/system-intent.md",
@@ -38,8 +38,8 @@
     },
     {
       "path": "scaffold/external-references/SCF-B-0003.json",
-      "sha256": "b5dc23584f09497d70440a5a0e23cde12341e10c27caf7073b304f044e177e03",
-      "note": "外部consumer参照の保持・撤去契約。退役後も保持する"
+      "sha256": "a60a770e3fcaaa134709319ebbc64cf74f7add4f8cb475fedbb64f78f5b68711",
+      "note": "外部consumer参照の保持・撤去契約。退役後も保持する [2026-09-26 GUIレーン運転の整備 read-after: scaffold/external-references/SCF-B-0003.jsonは、GitHub上流運用モデルへ「GUIレーンの運転と通知」節を研究用pinの行範囲（112〜177行目）の外に追加し、HELIX管理ローダ（scaffold/review-handoff/claude-current-loader.md）をCodexの~/.codex/AGENTS.mdへも同じsourceから同期するようconfigure_gui.py・scfctlの外部参照検査・参照台帳を広げた変更に合わせて付け直した。既存の本文・行範囲・判定条件は変えていない。採否・authorityを変更しない。]"
     }
   ],
   "role": "共通規則・対象revisionを固定した通知を既存VS Code GUIの両レーンへ届け、明示ACKと応答対応を確認する",
@@ -51,7 +51,7 @@
     "未ACK時の明示retry、watcher世代、応答の逆方向配送を扱う",
     "通知から要求採否・承認・review完了・merge許可を生成しない",
     "設定撤去と両GUIのlive ACK未確認を追跡する",
-    "ClaudeのHELIX参照先・操作通路照合手順の管理blockをconsumer所有本文と分離して同期・撤去する。個別許可は同期しない"
+    "Claude／CodexのHELIX参照先・操作通路照合手順・GUIレーン運転の参照先を示す管理blockを、両runtimeのconsumer所有本文と分離して同じsourceから同期・撤去する。個別許可は同期しない"
   ],
   "connections": {
     "consumers": [
@@ -66,7 +66,7 @@
       "同じVS CodeのClaude Code／Codex拡張のnative hook",
       "Linux file lockと共有のscaffold通知箱"
     ],
-    "boundary": "script・instruction source・通知stateはscaffold内。configure_guiだけが利用者のClaude settings、Codex hooks、Claude instructionの固定marker区間へ本仮設参照を追加・同期・撤去する。trust、権限、marker外本文を変更しない"
+    "boundary": "script・instruction source・通知stateはscaffold内。configure_guiだけが利用者のClaude settings、Codex hooks、Claude instruction（~/.claude/CLAUDE.md）とCodex instruction（~/.codex/AGENTS.md）の固定marker区間へ本仮設参照を追加・同期・撤去する。trust、権限、marker外本文を変更しない"
   },
   "operations": {
     "allowed": [
@@ -78,12 +78,12 @@
       "python3 -B scaffold/review-handoff/gui_selftest.py",
       "configure_gui.py --audit（外部所有hookの残留検査）",
       "configure_gui.py --rearm --apply（Claude所有ConfigChange metadataによる既存GUI待受回復）",
-      "configure_gui.py --apply／--remove --apply（Claude instructionのHELIX marker区間の同期／撤去）"
+      "configure_gui.py --apply／--remove --apply（Claude／Codex instructionのHELIX marker区間の同期／撤去）"
     ],
     "forbidden": [
       "archive/legacy-generation-*の読込・実行",
       "新しいprovider CLI／API／Workerの起動、非公開GUI IPC、GitHub review起動、merge、Issue close",
-      "AGENTS本文・Claude instructionのmarker外本文・承認文書・DB・hook trust・権限の書換",
+      "repositoryのAGENTS本文・Claude／Codex instructionのmarker外本文・承認文書・DB・hook trust・権限の書換",
       "要求採否・承認・工程完了の生成"
     ]
   },
@@ -107,7 +107,7 @@
       "scaffold/review-handoff/gui_selftest.py",
       "両既存GUIの受信ACK（未確認なら完了にしない）",
       "scfctl residualsのexternal-hooks参照台帳検査",
-      "HELIX管理Claude instructionの同期・drift・重複marker・撤去試験"
+      "HELIX管理Claude／Codex instructionの同期・drift・重複marker・撤去試験"
     ],
     "negative_cases": [
       "payload改変",
@@ -132,7 +132,7 @@
       "別checkoutからのhook撤去",
       "退役後の外部参照台帳欠落",
       "期限切れ重複sendのqueued誤表示",
-      "Claude instructionの不整合／重複marker",
+      "Claude／Codex instructionの不整合／重複marker",
       "HELIX instruction sourceとconsumer managed blockのdrift",
       "marker外の利用者instruction上書き"
     ]

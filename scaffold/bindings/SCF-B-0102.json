@@ -372,9 +372,9 @@
       "sha256": "8d3ac2916bee1764af2599cd138e090e2e6a6beccc21927397f7806c50164df5"
     },
     {
-      "note": "static input; digest and semantic role only; no execution or authority effect",
+      "note": "static input; digest and semantic role only; no execution or authority effect [2026-09-26 GUIレーン運転の整備 read-after: scaffold/review-handoff/README.mdは、GitHub上流運用モデルへ「GUIレーンの運転と通知」節を研究用pinの行範囲（112〜177行目）の外に追加し、HELIX管理ローダ（scaffold/review-handoff/claude-current-loader.md）をCodexの~/.codex/AGENTS.mdへも同じsourceから同期するようconfigure_gui.py・scfctlの外部参照検査・参照台帳を広げた変更に合わせて付け直した。既存の本文・行範囲・判定条件は変えていない。採否・authorityを変更しない。]",
       "path": "scaffold/review-handoff/README.md",
-      "sha256": "d51a89cb42cc3622efc047ca3f235bad13518128579b7a3fcf246614823fd152"
+      "sha256": "3daedd9eb63d8a9ac45477475b6c40883cf3c010d9fbf174d87050b096e4d3b5"
     }
   ],
   "verification": {

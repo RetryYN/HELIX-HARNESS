@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""GUI通知hookとHELIX所有Claude instructionをconsumerへ接続／撤去する。"""
+"""GUI通知hookとHELIX所有instruction（Claude／Codex）をconsumerへ接続／撤去する。"""
 import argparse
 import copy
 import hashlib
@@ -15,7 +15,9 @@ HERE = Path(__file__).resolve().parent
 POLICY_SOURCE = HERE / "claude-current-loader.md"
 POLICY_START = "<!-- HELIX:current-loader:start -->"
 POLICY_END = "<!-- HELIX:current-loader:end -->"
-POLICY_SHA256 = "93970e59dd97b61d4fd782872d9d7efe8eaf1841a0e167a833aba1cf71200359"
+POLICY_SHA256 = "4ecd663cb7adb722acc694dc22d352d682edfcdd2855a23a41de47ad8513c138"
+# 同じHELIX管理区間を両runtimeの利用者instructionへ同期する。marker外の利用者本文は保持する。
+POLICY_PATHS = {"claude": "~/.claude/CLAUDE.md", "codex": "~/.codex/AGENTS.md"}
 FORBIDDEN_POLICY_TEXT = ("許可している", "承認済み", "権限を与える", "authorized", "#1888")
 
 
@@ -69,7 +71,7 @@ def update_policy(existing, remove=False, source=None):
         raise ValueError("HELIX policy sourceに操作許可の成立宣言を含めない")
     starts, ends = existing.count(POLICY_START), existing.count(POLICY_END)
     if starts != ends or starts > 1:
-        raise ValueError("Claude instructionのHELIX markerが不正")
+        raise ValueError("instructionのHELIX markerが不正")
     if starts:
         begin = existing.index(POLICY_START)
         finish = existing.index(POLICY_END, begin) + len(POLICY_END)
@@ -86,7 +88,7 @@ def update_policy(existing, remove=False, source=None):
     if remove:
         return existing
     if existing and not existing.endswith(("\n", "\r")):
-        raise ValueError("Claude instructionは改行終端が必要。markerを本文行へ連結しない")
+        raise ValueError("instructionは改行終端が必要。markerを本文行へ連結しない")
     ending = "\r\n" if existing.endswith("\r\n") else "\r" if existing.endswith("\r") else "\n"
     return existing + source + ending
 
@@ -186,11 +188,14 @@ def main():
     if args.audit and args.apply:
         parser.error("auditとapplyは同時指定不可")
     residual_count = 0
-    policy_path = Path.home() / ".claude/CLAUDE.md"
-    policy_before = policy_path.read_bytes() if policy_path.exists() else None
-    policy_text = policy_before.decode() if policy_before is not None else ""
-    # instruction marker異常時にhookだけを先に変更しないよう、全書込より前に検証する。
-    policy_after = None if (args.audit or args.rearm) else update_policy(policy_text, args.remove).encode()
+    policies = []
+    for runtime, relative in POLICY_PATHS.items():
+        policy_path = Path.home() / relative[2:]
+        policy_before = policy_path.read_bytes() if policy_path.exists() else None
+        policy_text = policy_before.decode() if policy_before is not None else ""
+        # instruction marker異常時にhookだけを先に変更しないよう、全書込より前に検証する。
+        policy_after = None if (args.audit or args.rearm) else update_policy(policy_text, args.remove).encode()
+        policies.append((runtime, relative, policy_path, policy_before, policy_text, policy_after))
     paths = {"claude": Path.home() / ".claude/settings.json", "codex": Path.home() / ".codex/hooks.json"}
     changes = []
     read_after = []
@@ -213,18 +218,18 @@ def main():
         changes.append((path, before, encoded))
         read_after.append((runtime, path, after))
 
-    if args.audit:
-        starts, ends = policy_text.count(POLICY_START), policy_text.count(POLICY_END)
-        count = starts if starts == ends else max(starts, ends, 1)
-        residual_count += count
-        print("claude_policy: managed_block_residuals=" + str(count))
-    elif not args.rearm:
-        if not args.apply:
-            print(json.dumps(dict(runtime="claude", action="remove" if args.remove else "sync",
-                                  instruction_source=str(POLICY_SOURCE), target="~/.claude/CLAUDE.md"),
-                             ensure_ascii=False, indent=2))
-        else:
-            if policy_before is not None or policy_after:
+    for runtime, relative, policy_path, policy_before, policy_text, policy_after in policies:
+        if args.audit:
+            starts, ends = policy_text.count(POLICY_START), policy_text.count(POLICY_END)
+            count = starts if starts == ends else max(starts, ends, 1)
+            residual_count += count
+            print(runtime + "_policy: managed_block_residuals=" + str(count))
+        elif not args.rearm:
+            if not args.apply:
+                print(json.dumps(dict(runtime=runtime, action="remove" if args.remove else "sync",
+                                      instruction_source=str(POLICY_SOURCE), target=relative),
+                                 ensure_ascii=False, indent=2))
+            elif policy_before is not None or policy_after:
                 changes.append((policy_path, policy_before, policy_after))
 
     if args.apply:
@@ -233,9 +238,11 @@ def main():
             assert json.loads(path.read_bytes()) == after
             assert count_owned(after) == (0 if args.remove else (3 if runtime == "claude" else 2))
             print(runtime + ": hook設定read-after一致。GUI側のtrust／読込／受信ACKは別確認")
-        if not args.rearm and (policy_before is not None or policy_after):
-            assert policy_path.read_bytes() == policy_after
-            print("claude: HELIX managed instruction read-after一致")
+        if not args.rearm:
+            for runtime, relative, policy_path, policy_before, policy_text, policy_after in policies:
+                if policy_before is not None or policy_after:
+                    assert policy_path.read_bytes() == policy_after
+                    print(runtime + ": HELIX managed instruction read-after一致")
 
     if args.audit and residual_count:
         raise SystemExit(1)

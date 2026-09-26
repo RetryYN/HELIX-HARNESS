@@ -519,7 +519,7 @@ def external_hook_residuals(binding, home=None, manifest_path=None):
             if any(term in source for term in INSTRUCTION_FORBIDDEN_TEXT):
                 errors.append("外部instruction sourceに操作許可の成立宣言が含まれる")
             for relative in spec.get("instruction_paths", []):
-                if relative != "~/.claude/CLAUDE.md":
+                if relative not in ("~/.claude/CLAUDE.md", "~/.codex/AGENTS.md"):
                     raise ValueError("参照台帳instruction対象外")
                 path = os.path.join(home or os.path.expanduser("~"), relative[2:])
                 if not os.path.exists(path):
