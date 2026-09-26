@@ -42,7 +42,7 @@ HELIXは、本体の能力、Webでの提供、利用者の自立の3つの軸�
 
 | 版 | HELIX本体でやること | Web提供でやること | 利用者ができるようになること | 加わる機構 | 到達の確かめ方 |
 |---|---|---|---|---|---|
-| 1.0 | HARNESS Version 1の完成。要求から設計・実装・検証・統合・リリース・運用・保守まで通し、変更を適切な地点へ戻せる。HELIX自身の改善も同じ経路で行う | Web展開を始めるための開発基盤と提供package | 定型保守を開くための基礎 | HARNESS、OS、BRAIN、LABO、INTELLIGENCE、SECURITY、CONNECT | 性質の異なる複数の製品とHELIX自身で、要求から受入・運用評価まで成立する。部品の存在や文書だけで完成としない |
+| 1.0 | HARNESS Version 1の完成。要求から設計・実装・検証・統合・リリース・運用・保守まで通し、変更を適切な地点へ戻せる。HELIX自身の改善も同じ経路で行う | Web展開を始めるための開発基盤と提供package | 定型保守を開くための基礎 | HARNESS、OS、BRAIN、LABO、INTELLIGENCE、SECURITY、INFRASTRUCTURE、CONNECT | 性質の異なる複数の製品とHELIX自身で、要求から受入・運用評価まで成立する。部品の存在や文書だけで完成としない |
 | 1.x | 実案件でpackageと並行開発を磨く | Webコネクタ型AI開発SaaS。利用者のPC・WSL・VPS・リポジトリをWebから操作する | 限定された更新・診断・復旧 | HELIX-Web（製品群）、HELIX-WEB-OS | 利用者環境で接続・job・切断・取消・再開が成立する。開発engineをWeb用に別実装しない |
 | 2.0 | LABOが外の情報を分解し、使える構造をBRAINへ入れる。取り込んだ構造から、今の案件へ根拠付きで推薦する。外の情報は、OSS、設計資料、論文、Issue、PR等である（下の注記） | 技術・設計・改修の根拠付き推薦を提供する | 影響と選択肢を見て変更を判断する | なし（LABOを外の情報の分解と推薦の効果の評価へ、BRAINを取り込んだ構造の蓄積へ拡張） | 推薦から出典・版・根拠へ戻れる。適用不能や保留も返せる。外部の成功を自分の環境の成功にすり替えない |
 | 3.0 | HELIXの開発データで、ローカルLLMを学習・チューニング・評価する | HELIX-Web 3：HDA。調整済みモデルを分散サーバーから呼び出して開発を補助する | 専門AIと保守・改修を進める | なし（INTELLIGENCEをローカルモデルの学習へ拡張） | どのデータと設定から生まれたモデルかを追える。学習前と比べ、弱点・適用範囲・撤回先を持つ |
@@ -62,6 +62,7 @@ flowchart LR
         I1["HELIX-INTELLIGENCE<br/>既存の外部モデルで稼働中の判断"]
         L1["HELIX-LABO<br/>計測・改善の効果と退行の評価"]
         S1["HELIX-SECURITY"]
+        IN1["HELIX-INFRASTRUCTURE<br/>HELIX自身の実行環境の資源と状態"]
         R1["Worker<br/>作業の実行"]
         C1["HELIX-CONNECT"]
     end
@@ -92,6 +93,7 @@ BRAINも1.0からあり、HELIX全体の汎用の構造（設計パターン、�
 HELIXの機能は、個々の機構に割り振るのではなく、各機構が連動することで生まれるように作る。その到達点が5.0のSystem Compilerである。
 2.0の「外の情報」は、OSS、設計資料、論文、Issue、PR等である。INTELLIGENCEのクローラーやCONNECT等が取得し、LABOが出所を確かめて分解・比較・実験し、汎用の構造の候補としてBRAINへ入れる。外で成功した方式をそのままBRAINへ入れない（2026-09-26、[LABOの判断記録](../governance/decisions/labo-core-engine-po-decisions-2026-09-26.md)）。
 LABOも1.0からあり、HELIX自身や製品の改善が効いたか、退行していないかを独立して評価する。2.0では推薦の効果の評価へ広がる。
+HELIX-INFRASTRUCTUREも1.0からあり、HELIX自身の実行環境の資源、構成、版、状態、配置を持つ。1.0では、POの原文が「1.0で最低限成立させる範囲」とした18項目（資源のidentity、構成、環境、設計した目標と実際の状態の分離、ずれ、計算・network・保存先、モデルとWorkerの実行環境、容量、観測、incidentの状態、backupとrestore、巻き戻し、配備の版、SECURITY・OSとの接続、Workerによる実行、HELIX自身から独立した起動と復旧、作り直せること）を成り立たせる。1.0のHELIX-INFRASTRUCTUREは、この18項目の範囲に限る。18項目に当たらない要求と、高度な自動の増減、複数のcloud、完全に自動の切替え等は、1.0より後の版（版は未定）へ回し、必要性と実績に応じて広げる（2026-09-26、[Concept配置の判断記録](../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）。
 
 ### 1.0から入れる土台
 
@@ -109,7 +111,7 @@ LABOも1.0からあり、HELIX自身や製品の改善が効いたか、退行�
 
 ## 3. どんな機構で成り立つか
 
-HELIXは、全版を通じて8つの機構と1つの共通部品から成る。役割を割り当てるレーンと、作業を実行するWorkerは、機構や共通部品とは別に置く（下の「作業を実行するのはWorker」）。機構は版ごとに加わる。**製品は機構の一部**であり、HARNESSとWebだけが製品の属性を持つ。HELIX-Webは製品の総称であり、機構としては1つに数える。その中の製品の数え方は下の「HELIX-Web」に示す。
+HELIXは、全版を通じて9つの機構と1つの共通部品から成る。役割を割り当てるレーンと、作業を実行するWorkerは、機構や共通部品とは別に置く（下の「作業を実行するのはWorker」）。機構は版ごとに加わる。**製品は機構の一部**であり、HARNESSとWebだけが製品の属性を持つ。HELIX-Webは製品の総称であり、機構としては1つに数える。その中の製品の数え方は下の「HELIX-Web」に示す。
 以下の図と表は、すべての機構がそろった姿を示す。
 機構を分けるのは、成長の循環を切らずに各機構を交換・更新できるようにするためである。機構や文書の数を増やすことは目的にしない。
 全体の統制は、すべての書き込みを一か所に集める万能の中枢ではない。各機構が自分のデータと責務を持つ。
@@ -140,6 +142,7 @@ flowchart LR
     LANES["レーン<br/>作成・review等の役割の割当て先"]
     WORKER["Worker<br/>レーンの主がSubagentとして呼び出すモデル"]
     SEC["HELIX-SECURITY<br/>認可・制限"]
+    INFRA["HELIX-INFRASTRUCTURE<br/>実行環境の資源と状態"]
     CONNECT["HELIX-CONNECT<br/>内部と外部の構造の接続"]
     Targets["開発対象<br/>HELIX自身・Webを含む各製品"]
 
@@ -156,6 +159,7 @@ flowchart LR
     ACC -->|結果| MGMT
     SEC -.->|制限| PROM
     SEC -.->|実行の制約| WORKER
+    INFRA -.->|実行の資源| WORKER
     CONNECT <-->|外部のイベント・通信| MGMT
 ```
 
@@ -217,6 +221,7 @@ INTELLIGENCEの学習jobとLABOの比較実験も、OSの推進がticketとし�
 | HELIX-LABO | 実験、比較、改善効果・退行の計測。HELIX-BenchでWorkerの作業履歴を集計し、どのモデルクラスなら対応できるかの水準を出す | 自己評価だけでの採用確定、Workerの割当ての決定 |
 | HELIX-INTELLIGENCE | HELIXについて最も知っている部位。稼働中の理解、計画、予測、診断、レビュー、配置案を、1.0から既存の外部モデルで行い、後の版でローカルLLMに判断を依頼する。バグbot、ヘルプbot、クローラーを発行し、HELIX全体の監査に寄せる。バグbotは、CIでよく失敗する種類のログがたまり、機械で判定できるようになったものから発行する | 検証なしでの稼働モデル差し替え |
 | HELIX-SECURITY | 認可、情報保護、資格情報、隔離、失効、Workerの実行の制約とauthority | 自身の権限の拡張 |
+| HELIX-INFRASTRUCTURE | HELIX自身の各機構、Worker、モデルの実行環境、dataの保存先、コネクタ等が動く実際の資源と、その構成（Topology）、版、状態、配置。承認された設計から導いた配備の目標と、観測した実際の状態を分けて持つ（Runtime Resource State）。容量、failure、観測、backup・restore、巻き戻し、HELIX自身から独立した起動と復旧を扱う | 作業と変更の状態の正本（Work／Change State。OSが持つ）、権限の制約（SECURITY）、設計知識（BRAIN）、Infrastructureの要求と設計（HELIX-HARNESS-CORE）を持つこと。同じ状態をOSと二重に正本にしない。自身の権限の拡張。HELIX-WEB-OSの側（顧客のtenant、job、資格情報、配備）の実行環境を本体の資源へ暗黙に共有すること |
 | HELIX-Web 《製品群》 | Web提供系の製品の総称。HELIX-WEB-HARNESSの7製品（サービス①〜⑦）を顧客へ提供し、顧客が欲しい成果物の製品を選んで受け取る窓口。共通機構のHELIX-WEB-HARNESS-CORE、接続製品のHELIX-WEB-CONNECTORを含む（下の「HELIX-Web」） | 開発エンジンの別実装 |
 | HELIX-WEB-OS | Web提供系の運転機構。顧客のtenant・案件・工程・job・権限・提供版・サービス状態・配備・監視・復旧 | 内部OSの状態・鍵・権限の共有 |
 | HELIX-CONNECT（共通部品） | HELIXの内部と外部の構造をつなぐ。内部の機構どうしの接続（HELIX-HARNESS-COREとBRAIN、BRAINとINTELLIGENCE等）と、外部との接続を担う。接続登録、契約版の照合、通信、再送、追跡。利用者に提供する接続は、HELIX-Webの接続製品HELIX-WEB-CONNECTORとし、所属と要求を分ける | 業務判断、承認 |
@@ -226,7 +231,7 @@ INTELLIGENCEの学習jobとLABOの比較実験も、OSの推進がticketとし�
 - **管理・推進・検収を、同じ自己承認主体にまとめない。**
 - **作業を実行するのはWorker。** 作成やreview等の役割は、レーンへ割り当てる。レーンは、例えばCodexのレーンに作成、Claudeのレーンにreviewを割り当てる、という役割の割当て先である。「推進」は、OSのチケット発行の機能名だけに使う（2026-09-26、[統合確認の判断記録](../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。Workerは、レーンの主がSubagentとして呼び出して作業させるモデルである（例：GUIのレーンの主がOpusなら、Subagentとして呼び出したSonnetがWorker）。HELIXサブエージェント、Runner、Sandboxを、Workerと別の主体や共通部品として置かない（2026-09-26、[判断記録](../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)）。
   - ticketが指定するWorkerは、三段で決める。LABOがHELIX-BenchでWorkerの作業履歴を集計し、どのモデルクラスなら対応できるかの水準を出す。INTELLIGENCEがその水準を材料に、ticketごとの配置の案を作る。OSの推進がその案を確かめて指定し、割り当てる。評価していないモデルには「未評価」の印を付ける（2026-09-26、[統合確認の判断記録](../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。
-  - Workerの共通の実行契約（assignment、実行の状態、capability、結果と証拠、Subagentとしての利用の観測、再割当て・再試行・失効との接続）はOSが持つ。割当てと進行はOS、実行の制約とauthorityはSECURITY、Workerが動く実際の資源は実行基盤が持つ。Workerは、割り当てられた作業を、与えられたauthorityと制約の中で実行し、開始、停止、timeout、結果・差分・証拠の回収まで担う。実行の制約は、Workerの実行環境が強制する。Workerの範囲は、呼び出したレーンの範囲・authority・予算を超えない。
+  - Workerの共通の実行契約（assignment、実行の状態、capability、結果と証拠、Subagentとしての利用の観測、再割当て・再試行・失効との接続）はOSが持つ。割当てと進行はOS、実行の制約とauthorityはSECURITY、Workerが動く実際の資源はHELIX-INFRASTRUCTUREが持つ。Workerは、割り当てられた作業を、与えられたauthorityと制約の中で実行し、開始、停止、timeout、結果・差分・証拠の回収まで担う。実行の制約は、Workerの実行環境が強制する。Workerの範囲は、呼び出したレーンの範囲・authority・予算を超えない。
   - 作成したWorker自身またはそのSubagentによるreviewは、独立reviewに数えない。独立reviewは、作成側とは別のreviewerのidentity・context・authority・review routeで行い、作成側の結論を引き継がずに証拠を確かめる。providerが同じか別かでは独立性を決めない。
   - バグbot等のbotは、特定の目的に使うWorkerとして実行する。
 - **チケットは、管理・推進・検収をつなぐ単位である。** 管理が接続状況を持ち、推進がチケットを発行し、レーンが呼び出したWorkerが作業し、検収が必要な検証を決め、管理が結果を記録する。
@@ -287,7 +292,7 @@ HELIX-Webは、Web提供系の製品の総称である（2026-09-26のPO原案�
 - HELIX-WEB-HARNESS-COREとHELIX-WEB-OSを、WEB-HARNESSの8番目・9番目の製品として数えない。共通の実装を使うことと、製品・案件・状態・権限の所属を同じにすることを分ける。
 - HELIX-WEB-CONNECTORは顧客向けの接続であり、内部の機構どうしをつなぐHELIX-CONNECTとは所属も要求も別である。
 - Web提供系の運転は、HELIX-Webの外の機構HELIX-WEB-OSが担う。HELIX-WEB-OSは製品ではなく、本体のHELIX-OSと状態・権限を共有しない。
-- 機構の数は、HELIX-Web（製品群）とHELIX-WEB-OSをそれぞれ1つと数える。上の8つの機構と1つの共通部品の数は変わらない。
+- 機構の数は、HELIX-Web（製品群）とHELIX-WEB-OSをそれぞれ1つと数える。上の9つの機構と1つの共通部品の数は変わらない。
 - Web由来の実績の集計と評価は、HELIX本体のLABOに内蔵するHELIX-Benchが担う。Web専用の評価の機構を別に置かない。
 - 各対象の要求は、2026-09-26のPO原案を要求候補（未採択）として、repository直下の`helix-web/`の対象ごとの`candidates/`に置く。
 
@@ -302,7 +307,7 @@ HELIX-Webは、Web提供系の製品の総称である（2026-09-26のPO原案�
 7. **再構築できる** — 意味の正本、実行事実、表示、作業文脈を分けて保つ。
 8. **学びは候補として戻す** — 学習や監査の結果は上流への提案とし、正本を直接書き換えない。
 9. **検証済みの単位で出す** — 検証済みの機能から提供構成を組み、releaseとdeploymentを分ける。
-10. **OSはPM、周辺機構はPMO** — OSはPMに近く、ticket、工程管理、割当て、進行を決めて回す。周辺の機構はPMOにあたり、INTELLIGENCEは計画と配置の案、LABOは実績の評価と改善の提案、HARNESSは工程の標準と検証義務、BRAINは設計知識、SECURITYは制約とauthority、実行基盤は資源を出す。PMOはOSの決定を直接書き換えず、OSもPMOの案を無条件に実行しない（2026-09-26のPOの発言「工程管理もな。OSはPMに近い。」「周辺機構をPMOと考えればつじつまが合うだろ。」、[統合確認の判断記録](../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。
+10. **OSはPM、周辺機構はPMO** — OSはPMに近く、ticket、工程管理、割当て、進行を決めて回す。周辺の機構はPMOにあたり、INTELLIGENCEは計画と配置の案、LABOは実績の評価と改善の提案、HARNESSは工程の標準と検証義務、BRAINは設計知識、SECURITYは制約とauthority、INFRASTRUCTUREは資源を出す。PMOはOSの決定を直接書き換えず、OSもPMOの案を無条件に実行しない（2026-09-26のPOの発言「工程管理もな。OSはPMに近い。」「周辺機構をPMOと考えればつじつまが合うだろ。」、[統合確認の判断記録](../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。INFRASTRUCTUREを資源を出すPMOとして並べたのは、2026-09-26にHELIX-INFRASTRUCTUREを機構の表に加えたPOの判断による（[Concept配置の判断記録](../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）。
 
 守ること:
 

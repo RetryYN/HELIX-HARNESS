@@ -665,7 +665,7 @@
   "current_tree_revision": "ac33378e7846b6effc61110ed62971159e535ff5",
   "inputs": {
     "archive/legacy-generation-2026-09-14/MANIFEST.sha256": "sha256:10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
-    "docs/concept/product-boundary.md": "sha256:ed5e94818d6da3d51493abbfc5524df2538d012f0b8eaf924f645d09ef09eefe",
+    "docs/concept/product-boundary.md": "sha256:21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f",
     "docs/governance/legacy-asset-copy-read-after.jsonl": "sha256:9e0083db5d3e44438579a4adf8544e89419b7235fd7b18c8b1e8ab92cefa203f",
     "docs/governance/legacy-asset-decisions.jsonl": "sha256:cbf7c18fbf0faea7745677091d440e40ba48345740a786404258e705a3cbd59f",
     "docs/governance/legacy-asset-disposition.jsonl": "sha256:cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c",
@@ -748,23 +748,23 @@
     "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl": "sha256:8610eb2e29d6b23905dba191c0781c4c6e3c22efe591ec6076b95bac8533af65",
     "docs/governance/phase-capability-inventory.json": "sha256:16deda553e0d5c1d0b8b037c68301bc4f80967305d64b7e4b99f3178b040bfe4",
     "docs/helix-harness/L1-planning/product-intent.md": "sha256:238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
-    "docs/helix-os/L1-planning/system-intent.md": "sha256:ca945c327ed3a12a04c4d5b6a09f3052c46a5d6f82743bc5b490f38f7cac7b99",
+    "docs/helix-os/L1-planning/system-intent.md": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
     "helix-web/docs/helix-web-os/L1-planning/system-intent.md": "sha256:f702ed0044b284d8c9b560c63f611ae54912141f91ff85f8b39bdd0d63512ef1",
     "helix-web/docs/helix-web/L1-planning/product-intent.md": "sha256:29fe8cbd1a61896852bab6aa636f2bc1d2386b57e69fab1249678fd64a9d3ee6",
     "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.jsonl": "sha256:25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a",
-    "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.meta.json": "sha256:fcd2f1edff73b83c0d35453d438f1a49acf7142fff45b3fea3d9be2777e50b0f",
+    "scaffold/legacy-semantic-review-wave37/legacy-requirement-direct-semantic-review-wave37.meta.json": "sha256:4ae1cce32b2dab51d00421c12e548885ba4a36f24e9a39c4a2412c71528df79a",
     "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.jsonl": "sha256:df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8",
-    "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.meta.json": "sha256:ff441f387de6730afc82e84ad7dffa10864470b81dcc402bcd02e99c48c705b3",
+    "scaffold/legacy-semantic-review-wave38/legacy-requirement-direct-semantic-review-wave38.meta.json": "sha256:416cc1fc3f629ea839d99f89d2fda82b84b409f48a5b0589db47c435dd350b20",
     "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.jsonl": "sha256:c94785daaef0f3a2546e3d7a906e606d499a81e180d65dcc2c5d7ffd04996c8d",
-    "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.meta.json": "sha256:1a01dfbaa0a18652a0bdd20a670e397d9eaaedefaec6ab4ee2d993e003ce2627",
+    "scaffold/legacy-semantic-review-wave39/legacy-requirement-direct-semantic-review-wave39.meta.json": "sha256:b1a9b8be14bc9a1e20725cf48136a0b4e76c46d3d71539d6328d9871d97071c9",
     "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl": "sha256:c98bf42916ef053050799e289bec8b28b7af3a0d62d2dc9e6adb30fdb606b3a8",
-    "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.meta.json": "sha256:dcd5cc0099bc5cf56d3fa7774eadaa906bf36d6895761e72858d5230fe3287cf",
+    "scaffold/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.meta.json": "sha256:7dfd992098ab7993484f05ba1d795f5563455b4acc47a121c609c740bd15ee38",
     "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.jsonl": "sha256:03222010e1e8f67e4846ce006adb604fc3742b88d2e39e6eab01123f288563c5",
-    "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.meta.json": "sha256:11dedb18270b5cebe9569091e8740da1fc57e04cf6ef9c5a4d5cac172a40211d",
+    "scaffold/legacy-semantic-review-wave41/legacy-requirement-direct-semantic-review-wave41.meta.json": "sha256:2633771e26e56da925167b7992968edd54484aaa43672936b4dc39d04ae0aac0",
     "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.jsonl": "sha256:95ff19ec877bb847510ee5f99565816e42bb59ffb60627145de03c2d24e56072",
-    "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.meta.json": "sha256:22fe1c1323848c5aa747756670efb8f2881d3af0c0caea745bf5096e8ef6013a",
+    "scaffold/legacy-semantic-review-wave42/legacy-requirement-direct-semantic-review-wave42.meta.json": "sha256:2dd8ffd8204d5605e4ca10e605d9e25775a0c6efeb0efb4c83b9422c2e4c8fa8",
     "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.jsonl": "sha256:293962d91807a1c7f4e553e57db1fa854f1a904f34c4a53eee86d6dbb1ae9982",
-    "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.meta.json": "sha256:37873bb10a94e0d4eb38df30990fa28b8d32d0e6b09feb2e84383637fa6c87d7"
+    "scaffold/legacy-semantic-review-wave43/legacy-requirement-direct-semantic-review-wave43.meta.json": "sha256:c8f7abd12415e48fc48d30aa6123f99acec62c69e7af47509969abfea278ab0d"
   },
   "inspected_legacy_asset_count": 23,
   "inspected_legacy_asset_ids": [
@@ -1376,37 +1376,37 @@
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE37-2026-09-22",
       "ledger_sha256": "sha256:25174a26478b4a5e37a3236615e3a79a7a351385ab2df17de06f976307f08b3a",
-      "meta_sha256": "sha256:fcd2f1edff73b83c0d35453d438f1a49acf7142fff45b3fea3d9be2777e50b0f"
+      "meta_sha256": "sha256:4ae1cce32b2dab51d00421c12e548885ba4a36f24e9a39c4a2412c71528df79a"
     },
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE38-2026-09-22",
       "ledger_sha256": "sha256:df3ad2e422efacbda7bea1a08602346145f8ab3fe02ec7c5783d3b204c71c3b8",
-      "meta_sha256": "sha256:ff441f387de6730afc82e84ad7dffa10864470b81dcc402bcd02e99c48c705b3"
+      "meta_sha256": "sha256:416cc1fc3f629ea839d99f89d2fda82b84b409f48a5b0589db47c435dd350b20"
     },
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE39-2026-09-22",
       "ledger_sha256": "sha256:c94785daaef0f3a2546e3d7a906e606d499a81e180d65dcc2c5d7ffd04996c8d",
-      "meta_sha256": "sha256:1a01dfbaa0a18652a0bdd20a670e397d9eaaedefaec6ab4ee2d993e003ce2627"
+      "meta_sha256": "sha256:b1a9b8be14bc9a1e20725cf48136a0b4e76c46d3d71539d6328d9871d97071c9"
     },
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE40-2026-09-22",
       "ledger_sha256": "sha256:c98bf42916ef053050799e289bec8b28b7af3a0d62d2dc9e6adb30fdb606b3a8",
-      "meta_sha256": "sha256:dcd5cc0099bc5cf56d3fa7774eadaa906bf36d6895761e72858d5230fe3287cf"
+      "meta_sha256": "sha256:7dfd992098ab7993484f05ba1d795f5563455b4acc47a121c609c740bd15ee38"
     },
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE41-2026-09-22",
       "ledger_sha256": "sha256:03222010e1e8f67e4846ce006adb604fc3742b88d2e39e6eab01123f288563c5",
-      "meta_sha256": "sha256:11dedb18270b5cebe9569091e8740da1fc57e04cf6ef9c5a4d5cac172a40211d"
+      "meta_sha256": "sha256:2633771e26e56da925167b7992968edd54484aaa43672936b4dc39d04ae0aac0"
     },
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE42-2026-09-22",
       "ledger_sha256": "sha256:95ff19ec877bb847510ee5f99565816e42bb59ffb60627145de03c2d24e56072",
-      "meta_sha256": "sha256:22fe1c1323848c5aa747756670efb8f2881d3af0c0caea745bf5096e8ef6013a"
+      "meta_sha256": "sha256:2dd8ffd8204d5605e4ca10e605d9e25775a0c6efeb0efb4c83b9422c2e4c8fa8"
     },
     {
       "batch_id": "LEGACY-SEMANTIC-WAVE43-2026-09-22",
       "ledger_sha256": "sha256:293962d91807a1c7f4e553e57db1fa854f1a904f34c4a53eee86d6dbb1ae9982",
-      "meta_sha256": "sha256:37873bb10a94e0d4eb38df30990fa28b8d32d0e6b09feb2e84383637fa6c87d7"
+      "meta_sha256": "sha256:c8f7abd12415e48fc48d30aa6123f99acec62c69e7af47509969abfea278ab0d"
     }
   ],
   "record_count": 29,
