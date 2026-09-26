@@ -1,0 +1,567 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-STAGE-SCOPE-DERIVATION-2026-09-27-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "HELIXOS-L2-014及び現行G1〜G7候補の機能境界・依存から段階リリース範囲を導出する規則の候補。既存要求本文はprefix不変で保持。旧FRSは比較sourceで旧atom移管を主張せず、入力旧atom集合は空集合。no_lossはこの空集合についてであり、旧要求全量や候補全量の意味被覆証明ではない。親と現行条件への具体対応は導出監査と親source保存へ記録する。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-026",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXOS-L1-002",
+        "HELIXOS-L1-005",
+        "HELIXOS-L1-007",
+        "HELIXOS-L1-008"
+      ],
+      "candidate_semantic_digest": "sha256:e52cc56d219b6aa77e037985b55ff5b21aff2be2a6f5ea497f84cffb3f679374",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "HELIXOS-L2-014及び現行G1〜G7候補の機能境界・依存から段階リリース範囲を導出する規則の候補。既存要求本文はprefix不変で保持。旧FRSは比較sourceで旧atom移管を主張せず、入力旧atom集合は空集合。no_lossはこの空集合についてであり、旧要求全量や候補全量の意味被覆証明ではない。親と現行条件への具体対応は導出監査と親source保存へ記録する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-os/L1-planning/system-intent.md#HELIXOS-L1-002",
+        "docs/helix-os/L1-planning/system-intent.md#HELIXOS-L1-005",
+        "docs/helix-os/L1-planning/system-intent.md#HELIXOS-L1-007",
+        "docs/helix-os/L1-planning/system-intent.md#HELIXOS-L1-008",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014-helix自身の段階リリース",
+        "docs/helix-harness/L2-requirements/product-requirements.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ],
+  "parent_source_conditions": {
+    "coverage_scope": "選択した親・PO原文と014/010/011/022の全非空行の保存。意味被覆は026/L11および監査の具体条件対応で確認し、行保存だけから主張しない。",
+    "sources": [
+      {
+        "source_path": "docs/helix-connect/sources/connect-l1-po-original-2026-09-27.md",
+        "source_commit": "b9fcc765377efb3fbbb5f7cc564fb39731d68149",
+        "source_sha256": "sha256:a9737c48618f048103879ef1602b82b9800c8b25df884a5d04562a07fcffec1a",
+        "lines": [
+          {
+            "source_line": 1,
+            "source_text": "# HELIX-CONNECT L1企画原文（PO提示、2026-09-27）",
+            "source_line_sha256": "sha256:04b1867f84ccf1541044af6073093530672ba1c743f793c5ac43179c4142c89f",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "PO原文を保存。段階導出部分を026へ、CONNECT部分をG7へ分離し、原文の意味を相互に移管しない。"
+          },
+          {
+            "source_line": 3,
+            "source_text": "出所：2026-09-27のHELIX-CONNECT第2弾（G7）起草依頼に含まれたPO原文。",
+            "source_line_sha256": "sha256:1ca009187a3b73e01bda0fdeca2de7030cf05f8ca6a23650dd093b518b2df575",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "PO原文を保存。段階導出部分を026へ、CONNECT部分をG7へ分離し、原文の意味を相互に移管しない。"
+          },
+          {
+            "source_line": 5,
+            "source_text": "> CONNECT各機能の接続部分を疎結合に保ち、各機構への変更耐性を強化する機構。以上。ぐらいしかないが？段階リリースは機能として成立する部分を決めてだからほかの要求から導出する仕組みだろ。どう考えても両方そうだろ。",
+            "source_line_sha256": "sha256:2fc073840f90ea75e7f241bf9863670cc3a5c640af3a843502a92fb742d2d30d",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "PO原文を保存。段階導出部分を026へ、CONNECT部分をG7へ分離し、原文の意味を相互に移管しない。"
+          },
+          {
+            "source_line": 7,
+            "source_text": "本書は原文を編集せず保存する。引用符は入力側の区切り記号であり、引用符自体は発言本文に含まれない。",
+            "source_line_sha256": "sha256:c621c95e164a5c3063c21166a292a45a3c46932e934bb4bc31c17707b7d497e8",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "PO原文を保存。段階導出部分を026へ、CONNECT部分をG7へ分離し、原文の意味を相互に移管しない。"
+          }
+        ]
+      },
+      {
+        "source_path": "docs/helix-os/L1-planning/system-intent.md",
+        "source_commit": "b9fcc765377efb3fbbb5f7cc564fb39731d68149",
+        "source_sha256": "sha256:2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+        "lines": [
+          {
+            "source_line": 31,
+            "source_text": "| HELIXOS-L1-002 | 人間は、複数プロジェクトの要求から作業・検証・提供・運用までの欠落、競合、staleを把握できる | HELIXOS-L2-002／007 |",
+            "source_line_sha256": "sha256:f96050ced10f10df0113f6376fc48979c5909c86858821a7f77999b81fe2e58d",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "候補親の追跡・構成運転・revision束縛・projection整合。対象revision確認はPOに残る。"
+          },
+          {
+            "source_line": 34,
+            "source_text": "| HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |",
+            "source_line_sha256": "sha256:3fc24061295785ac71a6ea67f0144323643de4c82fa993c515bfef4778c7ac62",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "候補親の追跡・構成運転・revision束縛・projection整合。対象revision確認はPOに残る。"
+          },
+          {
+            "source_line": 36,
+            "source_text": "| HELIXOS-L1-007 | 人間は、HARNESS package運転と個別製品のrelease準備・artifact受渡し・observationを対象revisionと許可へ束縛して統制し、展開先runtimeのdeployment authorityを分離できる | HELIXOS-L2-002／006／007 |",
+            "source_line_sha256": "sha256:f3f04b13d8fb8bb0a81f261a595acda56f1252d003d36a4e11cb9d648af6871b",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "候補親の追跡・構成運転・revision束縛・projection整合。対象revision確認はPOに残る。"
+          },
+          {
+            "source_line": 37,
+            "source_text": "| HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |",
+            "source_line_sha256": "sha256:8731377d93dd6ad5a637c9182d758a856f5d8f339b85c2a7198d89efb0e747a9",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "候補親の追跡・構成運転・revision束縛・projection整合。対象revision確認はPOに残る。"
+          }
+        ]
+      },
+      {
+        "source_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "source_commit": "b9fcc765377efb3fbbb5f7cc564fb39731d68149",
+        "source_sha256": "sha256:1c4d13fff300869fe66556c418be17247a41c6aa454a6da30cb64a2091e7ffd3",
+        "lines": [
+          {
+            "source_line": 619,
+            "source_text": "### HELIXOS-L2-014 HELIX自身の段階リリース",
+            "source_line_sha256": "sha256:b0d81c3f944c9f945227a02ae3292b9a6935199493f08f0468bdd0d516a95a9d",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 621,
+            "source_text": "人間は、HELIXを1.0の構築過程から、検証済みのパックを必要な依存とともに組み合わせた段階的な稼働構成（段階リリース）としてリリースし、各段階の能力・構成・証拠を保存・再現できる。前の段階を使いながら次の段階を構築・検証し、案件の状態を保って更新・復旧できる。段階リリースの成立と、1.0の到達判定は別に判定する。",
+            "source_line_sha256": "sha256:1c25a0ad5f8532969f5feb5509dc9c48617c97891a9c006b730e5363b79fdf69",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 623,
+            "source_text": "- **呼び方**：段階リリースはv0.1、v0.2…のように識別し、1.0の到達判定を通った構成をv1.0（本体）とする。これはHELIX自身の段階リリースの識別子であり、外部公開の版番号ではない。外部公開やWeb提供は、段階リリースとは別に判断する。",
+            "source_line_sha256": "sha256:9e63330b5429ce747fb943d4e3985c14efd0f8cee6f95da89b8c4f7c38d3162c",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 624,
+            "source_text": "- **同じパックから組む**：段階リリースを別系統の簡易実装にしない。[HARNESS-L2-010](../../helix-harness/L2-requirements/product-requirements.md#harness-l2-010-パックの境界)のパックから組む小さな稼働構成とし、次の段階ではパックを追加・更新する。各パックに必要な安全の依存を含めて組み、無関係な機構の完成を待たない。必要な安全の条件が欠ける段階はリリースしない。",
+            "source_line_sha256": "sha256:5517bd5a02f728a939ee892120313e29b05219269f8ff8faccf3b0d0f83f1b3d",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 625,
+            "source_text": "- **狭くても一周する**：各段階は、対応する範囲を限ってでも、要求の確認→作業→検証→結果の記録まで仕事が一周して終わる構成とする。全部の機能を薄く並べることを段階の成立としない。自動化していない工程を人が担う場合は、その分担を明記する。",
+            "source_line_sha256": "sha256:596849f53332441a810a6b54fa6c4c8fd152cfb0511e6c5506f262d272cb620c",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 626,
+            "source_text": "- **一組として保存するもの**：使うパックと依存の版、必要な設定・data形式、対応環境、できること・できないこと、その範囲の受入の証拠、更新・切戻しの条件を一組にする。ソースのtagだけを段階リリースとしない。",
+            "source_line_sha256": "sha256:3e2c2dd6100bad55cfaaa4a3b32f276d68ee93128be8bfd8076fadfdcc6b926f",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 627,
+            "source_text": "- **混ぜないもの**：案件の実data、秘密情報、資格情報を段階リリースへ含めない。これらのbackupと移行は別に扱う（HELIXINFRASTRUCTURE-L1-017〜019、資格情報の方針はHELIX-SECURITY）。",
+            "source_line_sha256": "sha256:a5c54b65e59f962b82bed9455645c08c56a0049fea364ea262d79fc4b2299c0a",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 628,
+            "source_text": "- **前の段階で次を作る**：安定した段階リリースで次の段階を開発し、新しい構成を検証してから乗り換える。新しい段階に問題があれば前の段階へ戻せ、前の到達点を失わない。乗り換えと戻しで、案件の状態と記録を引き継ぐ。",
+            "source_line_sha256": "sha256:5021582e33cd874b5756701d34b71b8fd10731271657a81fe706310f212cf01c",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 629,
+            "source_text": "- **自己依存を持たない**：各段階は、開発中のHELIX自身（未リリースの作業tree、次の段階、稼働中の別の段階）に依存せずに起動・更新・復旧できる（HELIXINFRASTRUCTURE-L1-020）。宣言のない依存を使わない（HARNESS-L2-010）。段階を細かく切ることで、隠れた自己依存を見つけて取り除く。",
+            "source_line_sha256": "sha256:fb5a234138a4b10e763d2f7548885b682456741bdcf13031dd01366ec725ed31",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 630,
+            "source_text": "- **判定を分ける**：段階リリースの成立は、その段階で宣言した範囲の受入・統合・更新・切戻し・運用の検証で、個別のパックの成功とは別に判定する。1.0の到達判定は、Conceptの1.0の完成条件で別に判定する。段階リリースが出たことを理由に、最終の要求や、その段階で必要な品質条件を減らさない。減らすのは各段階の提供範囲だけである。",
+            "source_line_sha256": "sha256:2b5c5ab540989cee95c61d16728f78e5340fef8e8d623e374c49a3784e365e2e",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 631,
+            "source_text": "- **所有の分担**：OSは段階リリースの構成管理・生成・検証・配布・切戻しの運転と証拠を持つ。パックの境界と検証・受入の契約はHARNESS（HARNESS-L2-010／011／022）、実行環境の構成の識別と巻き戻しはHELIX-INFRASTRUCTURE（1.0の範囲のHELIXINFRASTRUCTURE-L1-017〜020／022）が持つ。対象製品のリリース（HARNESSのサービス⑥）と、HELIX自身の段階リリースを混同しない。",
+            "source_line_sha256": "sha256:ed9eb5879670a95bafb1590f861ef7d49e34424f24f1b06d1a47a8c8e3012b72",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 632,
+            "source_text": "- **後の版の能力を前提にしない**：各段階は、その時点で成立している能力だけで組む。まだ成立していない能力（1.0の範囲のものを含む）は、その段階の「できないこと」として明記し、必要なら人の分担で補う。Infrastructureの変更を候補・隔離・部分の適用・昇格と段階を踏んで適用する能力（HELIXINFRASTRUCTURE-L1-023、1.0より後、版は未定）は後の拡張であり、その完成を段階リリースの成立の前提にしない。本要求から023の前倒しを導かない。",
+            "source_line_sha256": "sha256:0f29946d9670a11d669877ab7a8a0a29974fd8f34b5770c80b41624137edb147",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          },
+          {
+            "source_line": 633,
+            "source_text": "- **旧HELIXとの関係**：FRS-BR-008（正式配布の前から、必要な検証を保って内部で使う）とFRS-BR-009（安全依存閉包、検収済みの組合せを個別の成功とは別に確かめる）を起点にする。本書「提供・再編要求の具体化」でのFRS-BR-008の不採用は旧CIの先行利用に限り、本要求は旧CIを使わない。Lite／Fullの名前は採らない。対応表は判断記録の「旧HELIXとの対応」に置く。",
+            "source_line_sha256": "sha256:8fccc4402844639a27a052007447c6d879831a06b479e6c03a278fcfe40f74b4",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "014の全条件を保持する導出。原節のbytesを不変にし、026/L11と導出監査で接続する。"
+          }
+        ]
+      },
+      {
+        "source_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "source_commit": "b9fcc765377efb3fbbb5f7cc564fb39731d68149",
+        "source_sha256": "sha256:a19c526832ee2d08544346dc386a6364e6ee3a0dae01ae6fb382a9190ae9121c",
+        "lines": [
+          {
+            "source_line": 340,
+            "source_text": "### HARNESS-L2-010 パックの境界",
+            "source_line_sha256": "sha256:c26fcccc527f7e5d037dfb4bd7b54cc263458ddc4571d4f9781519aa11708732",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 342,
+            "source_text": "利用者は、HARNESSの能力を、入力・出力・必要な依存・検証範囲・版が明確で、交換・更新できる能力のまとまり（パック）として識別し、検証済みのパックを組み合わせてリリース単位を成立させられる。",
+            "source_line_sha256": "sha256:1e1d91d06982746570933fdbce56c7398bbe0e993cbf6060c78c295a286d15d8",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 344,
+            "source_text": "- パックは関数やフォルダの単位ではない。一つのbehavior contract、または分けると意味を失う密結合したcontractのまとまりとする。",
+            "source_line_sha256": "sha256:9af41634b9393391de366f964db4fa4c31a277d36672a2bed0fe73b01f51e192",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 345,
+            "source_text": "- 各パックは、入力の契約、出力の契約、必要な依存（他のパック、部品、コア、外部の実行接続）、検証範囲（単体として証明する義務とoracle）、版を宣言する。宣言のない依存を実行時に暗黙に使わない。",
+            "source_line_sha256": "sha256:f7d24580c3cdbce752a134560b2999b5d1ea7a64847ad7f76d2cd94d87d8130e",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 346,
+            "source_text": "- パックは所属するリリース単位（サービス①〜⑦）、部品、コアのいずれかに所有される。一つのパックを二つのリリース単位が所有しない。複数のリリース単位から使う能力は部品またはコアに置く（Conceptの「サービスを支えるもの」）。",
+            "source_line_sha256": "sha256:7c5439b91c09df9979ad82dbb69a8c19feef7e462326d69fb8ec78b11620d5c8",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 347,
+            "source_text": "- リリース単位へ収めるパックと収めないパックを明示する。未検証・未適格のパックを暗黙に収めない。パックの版と成熟度、リリース単位の版、統合した製品の版を別に持ち、パックの昇格だけで上位を昇格させない。上位の未完の部分で、適格なパックを隠さない。",
+            "source_line_sha256": "sha256:a2ed3875033517218bf0562db1cf623afe970ad9a62d4ba2e77c85edfd3a107d",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 348,
+            "source_text": "- 同じ入力と版から同じパックの成果物を再現でき、失敗時は直前の適格な版または明示した置換えへ戻せる。",
+            "source_line_sha256": "sha256:606b383385dcd113d2418609eb61ad523c42c17ef1090053f699b5e31b86868c",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 349,
+            "source_text": "- 全部を一つの巨大なパックへ戻さない。パックが大きくなり交換・更新できなくなったら、Design-refactorで分ける（HARNESS-L2-005の密結合の扱い）。",
+            "source_line_sha256": "sha256:c89cb9d433a334c36403a67e6e4e5be01980e0fc6912c04bffe9c12373552096",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 350,
+            "source_text": "- 束ねる既存の条件：「提供構成と再現性の条件」のFRS-BR-001／002／003／005／009、HARNESS-L2-008の単体・接続・構成体の区別。",
+            "source_line_sha256": "sha256:d3709cc83137b8dde95ad41f535aaf28a46dba333344afa4d2e6bfb3eab0b6d2",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 352,
+            "source_text": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
+            "source_line_sha256": "sha256:4addf240cc33f97bd955fd7e8dde7174eb7187ba94debbd08cb3de32aaa67839",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 354,
+            "source_text": "利用者は、各パックを、特定の画面や作業環境に依存しない呼出しで使える。これは、後でHELIX-Web等の別の利用者側から使えなくなる作り方を避けるための条件であり、Webの要求・設計を本要求から導かない。",
+            "source_line_sha256": "sha256:db678126fe803aebc883ea4d7102df5fdde49bfcecaf5b6dde5d2b56f1a15803",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 356,
+            "source_text": "- **入出力**：特定の画面、特定のGUI、特定のローカルpath、特定のAI provider、特定のCI製品を前提にせず、宣言した入出力の契約で呼べる。画面は入出力を使う側に置く。",
+            "source_line_sha256": "sha256:37b4de16f50e7f7f492cd328589fa6a7e04c52f8d53395f908bd6b52f5c863b6",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 357,
+            "source_text": "- **版・依存**：呼出しは、能力名、契約の版、必要な依存の版を持つ。未対応の版を黙って読み替えない（Conceptの1.0土台「接続契約と版」）。",
+            "source_line_sha256": "sha256:fdd68c68c119458ce997b6c37e2356c64ad98f094c1bf283568754cc90349e6d",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 358,
+            "source_text": "- **権限の受渡し**：パックは、呼出し元が渡した権限と隔離の単位（project、tenant、環境）の範囲で動く。パックを使うことを、HELIX本体の稼働DB、鍵、内部統制を呼出し元と共有することにしない。権限の方針とauthorityはHELIX-SECURITYが持つ。",
+            "source_line_sha256": "sha256:03b521cdd57dbe54e5a18a9920c50dc5a493d453c6f283908e7566afdc8aa0fe",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 359,
+            "source_text": "- **進行・結果・証拠**：進行の状態、結果の状態、証拠を、相関IDとともに呼出し元へ返す（Conceptの1.0土台「ログと証拠」）。結果の保存と表示は呼出し元が行う。",
+            "source_line_sha256": "sha256:57dbec99c91291cc23c632268cdca189e622d3cec0d8346093db0d6af5298088",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 360,
+            "source_text": "- **停止・再開**：途中で止められ、冪等キーと記録した途中の状態から再開でき、期限切れを成功にしない（Conceptの1.0土台「接続契約と版」「構成版の固定と切戻し」）。",
+            "source_line_sha256": "sha256:aafcb5b5921a039ba0da0516e7672b77fd374ab18478f2d6d008288d56f2e947",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 361,
+            "source_text": "- 束ねる既存の条件：Conceptの1.0土台7項目、HARNESS-L2-006の「HELIX内部の管理対象や運用記録を持たなくても、明示された構成で提供機能を利用できる」。",
+            "source_line_sha256": "sha256:da5a733ac3db73859e92fc7e56ad49149ad39a338c269168c830547b9cd013dd",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 447,
+            "source_text": "### HARNESS-L2-022 検証と受入の契約（コアの単体）",
+            "source_line_sha256": "sha256:a521fcf29a72b4c42f32bfacae614f40411cc982f20f8dec1906db8420580473",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 449,
+            "source_text": "利用者は、成果物をProvisionalからIntegrated、Verified、Acceptedへ進める検証と受入を、コア（HELIX-HARNESS-CORE）が提供する契約のパックとして使える。Conceptは、コアに「テスト、CIの仕組み。すべてのリリース単位を横断して成立させる」を置いている。また、複数のリリース単位から使う能力は部品またはコアに置く（HARNESS-L2-010）。このため、この段階をサービス①〜⑦のどれにも所有させず、コアに置く。HARNESS-L2-003の成果物の状態、段階ごとの証明、戻し先は変えない。",
+            "source_line_sha256": "sha256:7b4546ae5417e2dd12121a6504512b572905869c8b227ce64f83ac0a8407e1c2",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 451,
+            "source_text": "- **受け取るもの**：Provisionalの成果物、対の設計（L5詳細設計、L4基本設計）、L3要件、L2要求とL11受入の条件、対の検証の設計（L8、L9、L10）。",
+            "source_line_sha256": "sha256:3f0b8e9de5388fc492dc3e747f9d1a74f954d7648cb6de0e6b0a87d590b5ee73",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 452,
+            "source_text": "- **提供するもの**：段階ごとの検証の契約と状態の遷移。",
+            "source_line_sha256": "sha256:75934e9178503b1ab4b6507b58ec8072ce3d373d3668f0d269d32ad654248c64",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 453,
+            "source_text": "  - Provisional→Integrated：L8でL5と、L9でL4と照合するScoped Reverse、境界の照合・Refactor・結合の証明。",
+            "source_line_sha256": "sha256:04757673ae7c4eada85d46f4e2ceff8115c79ce4ca0161a617c5de84b398cf28",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 454,
+            "source_text": "  - Integrated→Verified：L10でL3要件と照合するシステムの証明。下の証明とシステムに固有の義務との差分の確認。",
+            "source_line_sha256": "sha256:3eba0212f4a1cff2197ed7f54f24db7716a1ceaba9d3384ab946a7bb136084f4",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 455,
+            "source_text": "  - Verified→Accepted：L11の受入の条件（成功条件と反例）による利用者受入と、その記録。",
+            "source_line_sha256": "sha256:47c041695a7d893667a82ac65b22d15dafe16c8ded6fd7bfe1cbd9922f7598ad",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 456,
+            "source_text": "- **保証すること**：各段階を別の状態とする。単体と結合の証明はシステムの証明の証拠として積み上げるが、システムに固有の義務との差分を確かめずにVerifiedとしない。L10の合格でL11を合格にしない。",
+            "source_line_sha256": "sha256:4c88fcbf3e3b0029d7ee8ff5acfebe944618a0121f59e65610bcccdc4694f67d",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 457,
+            "source_text": "- **不一致の扱い**：振る舞い・契約・要求を保てる不一致は、右側でRefactorし、同じ段階の検証をやり直す。意味の変更が必要な不一致は、見つけた検証層で戻し先を固定せず、HARNESS-L2-003／004の規則に従って意味が変わる左側の層へBackflowする（詳細の契約はL5、architectureや境界はL4、要求や受入はL3／L2、製品の価値はL1）。右側が左側のauthorityを黙って書き換えない。L11で意味の差が見つかれば、コードを直接直して合わせず、Backflowで要求へ戻す（HARNESS-L2-003）。",
+            "source_line_sha256": "sha256:7662bb647e0c77922b8b7a312b0008f9a891e05f230e96a01f3a2f94566b3691",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 458,
+            "source_text": "- **実行側との境界**：HARNESSは契約（何を、どの対と照合し、何を証拠とし、どこへ戻すか）を持つ。テストとCIの運転、ticketの発行、検収は、HELIXの管理下ではHELIX-OSの推進と検収が担う。利用者の環境では、利用者のCIと受入の手段へ契約を渡す。HELIX-OSを必須の依存にしない。",
+            "source_line_sha256": "sha256:9cf4a344bebccf3585a41eac84de6d25974b5cac51b703e062a9953917ff1384",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 459,
+            "source_text": "- **外部の成果の持ち込み**：HELIXの外で結合・検証・受入を行った成果物は、対象revision、照合した対、oracle、結果、証拠の識別がこの契約の条件を満たすとき、その状態として⑥へ持ち込める。条件を満たさない部分は満たした段階までの状態とし、成果物の存在だけで上の状態にしない。",
+            "source_line_sha256": "sha256:e446da4147f921a383db063b595c5f53b0e305fb60cd70db4a7bfa9ad299cf69",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 460,
+            "source_text": "- **単独で成り立つための依存**：コアの追跡と対の設計を使う。④を必須にしない。成果物は④の出力でも、HARNESS-L2-019で持ち込んだものでもよい。",
+            "source_line_sha256": "sha256:fec83425d5ca164ea2df6d1cab9acb3b88ace1cb9e65a5ab221d5476a10c7cca",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          },
+          {
+            "source_line": 461,
+            "source_text": "- 束ねる既存の条件：HARNESS-L2-003（成果物の状態、L10とL11の区別）、HARNESS-L2-003／004（Scoped Reverse、右側のRefactor、戻し先）、HARNESS-L2-005（構成的保証と差分証明）、FRS-BR-009。",
+            "source_line_sha256": "sha256:e42255f451c48cc5c033457c07ab522367a425104a4fe5b08347ddd1e31c97c8",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "pack境界・呼出し・検証契約を段階導出の制約として参照。既存要求の所有やoracleを移さない。"
+          }
+        ]
+      },
+      {
+        "source_path": "docs/concept/helix-concept.md",
+        "source_commit": "b9fcc765377efb3fbbb5f7cc564fb39731d68149",
+        "source_sha256": "sha256:06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78",
+        "lines": [
+          {
+            "source_line": 28,
+            "source_text": "1. HELIXでHELIX自身を開発・改修する。稼働版で候補版を作り、独立評価の後に段階的に適用し、問題があれば稼働版へ戻す。",
+            "source_line_sha256": "sha256:b918bee06aa10494aeeb1aa9cc3920556f764c39d07d7a7f62aa688ce94b79c7",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "自己改善・INFRA1.0最低範囲・構成固定と切戻しを保持。段階範囲から最終目標を削減しない。"
+          },
+          {
+            "source_line": 96,
+            "source_text": "HELIX-INFRASTRUCTUREも1.0からあり、HELIX自身の実行環境の資源、構成、版、状態、配置を持つ。1.0では、POの原文が「1.0で最低限成立させる範囲」とした18項目（資源のidentity、構成、環境、設計した目標と実際の状態の分離、ずれ、計算・network・保存先、モデルとWorkerの実行環境、容量、観測、incidentの状態、backupとrestore、巻き戻し、配備の版、SECURITY・OSとの接続、Workerによる実行、HELIX自身から独立した起動と復旧、作り直せること）を成り立たせる。1.0のHELIX-INFRASTRUCTUREは、この18項目の範囲に限る。18項目に当たらない要求と、高度な自動の増減、複数のcloud、完全に自動の切替え等は、1.0より後の版（版は未定）へ回し、必要性と実績に応じて広げる（2026-09-26、[Concept配置の判断記録](../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)）。",
+            "source_line_sha256": "sha256:11b23d31b0eb18d88e1ca732f4485cefbd50c66a0b3a8cd4c70c9b47ed65317a",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "自己改善・INFRA1.0最低範囲・構成固定と切戻しを保持。段階範囲から最終目標を削減しない。"
+          },
+          {
+            "source_line": 109,
+            "source_text": "| 構成版の固定と切戻し | 実行中のjobが使っている能力、モデル、構成の版を固定して記録し、候補版の段階適用と切戻しをできるようにする | HELIXの自己更新、3.0以降のモデル差し替え |",
+            "source_line_sha256": "sha256:37aa6c7ecc58e256bbac76d96906a721f72d41039e1523e6dbecfa91427bdbe7",
+            "target_requirement_ids": [
+              "HELIXOS-L2-026"
+            ],
+            "relation": "自己改善・INFRA1.0最低範囲・構成固定と切戻しを保持。段階範囲から最終目標を削減しない。"
+          }
+        ]
+      }
+    ]
+  },
+  "derivation_evidence": {
+    "path": "docs/governance/audits/g8-v0-1-scope-derivation.md",
+    "sha256": "sha256:5b8890540abee8b033830c0cfece3489c442553623672dfe689e35fc4c31b313",
+    "authority_effect": "none"
+  },
+  "superseded_receipt_ref": "docs/governance/audits/requirement-registration/helixos-stage-scope-derivation-coverage-receipt-2026-09-27.json",
+  "correction_reason": "R2166-01: 既知の必須SECURITY依存をv0.1候補へ収載して再導出。026本文と親source/旧atom集合は不変。訂正対象は導出監査のevidence metadataであり、候補意味変更や採択を生成しない。"
+}
