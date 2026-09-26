@@ -26,13 +26,13 @@ python3 -B scaffold/review-handoff/configure_gui.py
 python3 -B scaffold/review-handoff/configure_gui.py --apply
 ```
 
-previewは追加するhookとClaude instruction同期対象を表示する。applyは利用者の`.claude/settings.json`と`.codex/hooks.json`へ本仮設のSessionStart／Stopと、Claude側のConfigChange回復hookを追加する。計5 command。
-同時に[HELIX管理Claudeローダ](claude-current-loader.md)を`~/.claude/CLAUDE.md`のmarker区間へ同期する。marker外の利用者本文と、無関係な設定を保持し、書込後に再読する。**hook trust、権限、model、provider、marker外のinstructionは変更しない。**
-3つのconsumer fileは書込前に全内容を検証し、途中失敗時は変更済みfileを元bytesへ戻す。rollback中に別更新を検出した場合は上書きせずエラーにする。
+previewは追加するhookと、Claude／Codex instructionの同期対象を表示する。applyは利用者の`.claude/settings.json`と`.codex/hooks.json`へ本仮設のSessionStart／Stopと、Claude側のConfigChange回復hookを追加する。計5 command。
+同時に[HELIX管理ローダ](claude-current-loader.md)を`~/.claude/CLAUDE.md`と`~/.codex/AGENTS.md`のmarker区間へ同期する。marker外の利用者本文と、無関係な設定を保持し、書込後に再読する。**hook trust、権限、model、provider、marker外のinstructionは変更しない。**
+4つのconsumer fileは書込前に全内容を検証し、途中失敗時は変更済みfileを元bytesへ戻す。rollback中に別更新を検出した場合は上書きせずエラーにする。
 これによりHELIXの参照先とreview／merge時の照合手順を同じsourceから再現できる。sourceは旧設定のcopyではなく、現行のauthority境界を記述した仮設projectionである。個別PRの操作はrepositoryの現行project rulesとmerge admissionで判断し、通知や本ローダから要求承認・Issue closeを生成しない。
 sourceはrevision digestで固定し、個別許可の成立宣言を含む変更を同期前と`residuals`で拒否する。source改訂時はコードと外部参照台帳のdigestも同じreview対象にする。
 Codex拡張のHooks画面で新hookを信頼し、必要なら同じsessionを再開する。Claude側もhookを読み込む。
-SessionStart／Stopで観測したsessionは`status`に現れるが、自動で作業レーンにはしない。
+SessionStart／Stopで観測したsessionは`status`に現れるが、自動で作業レーンにはしない。レーンの割当と運転の決まりは[GitHub上流運用モデル](../../docs/governance/github-upstream-operating-model.md)の「GUIレーンの運転と通知」に従う。
 
 ```sh
 python3 -B scaffold/review-handoff/gui_mailbox.py status
@@ -81,7 +81,7 @@ retry時は同じ宛先sessionを維持する。新claim nonceが発行され、
 `packet.py`は規則・context・decision・候補参照を種別とfile bytes SHA-256で列挙し、依頼・応答のrevisionとdigestを照合する。
 候補参照を指示に昇格せず、一覧だけで必読資料の全量被覆・実読を主張しない。payload digestはcanonical JSON用でGitHub配送byte digestとは別。
 `gui_mailbox.py`は通知箱だけを書く。GitHub最新SHAは自動取得しないため、send／review時に各GUIが照合する。
-`configure_gui.py`だけが利用者hook設定とClaude instructionのHELIX marker区間を追加・同期・撤去する。script本体、instruction source、通知stateはscaffold内。
+`configure_gui.py`だけが利用者hook設定と両runtimeのinstructionのHELIX marker区間を追加・同期・撤去する。script本体、instruction source、通知stateはscaffold内。
 
 ```sh
 python3 -B scaffold/review-handoff/selftest.py
@@ -108,7 +108,7 @@ Bindingのexternal consumer参照台帳を通じ、scfctl residualsでも退役�
 ## 別checkout・参照先消失時の撤去
 
 どのcheckoutからでも `configure_gui.py --remove --apply` → `--audit` を実行できる。hookの所有判定はcheckoutの絶対pathに依存せず、script末尾と `hook --runtime claude|codex` で照合し、instructionは固定markerで照合する。
-checkout自体が失われた場合は、両providerの利用者設定を開き、command内の `/scaffold/review-handoff/gui_mailbox.py hook --runtime` を持つSessionStart／Stop／ConfigChangeの該当子hookと、`~/.claude/CLAUDE.md`の`HELIX:current-loader:start`から`HELIX:current-loader:end`までだけを削除する。無関係なhook、設定値、marker外本文を残す。復旧したcheckoutでauditとresidualsを実行する。
+checkout自体が失われた場合は、両providerの利用者設定を開き、command内の `/scaffold/review-handoff/gui_mailbox.py hook --runtime` を持つSessionStart／Stop／ConfigChangeの該当子hookと、`~/.claude/CLAUDE.md`・`~/.codex/AGENTS.md`の`HELIX:current-loader:start`から`HELIX:current-loader:end`までだけを削除する。無関係なhook、設定値、marker外本文を残す。復旧したcheckoutでauditとresidualsを実行する。
 外部参照台帳はBindingのupstreamにも束縛し、退役後にartifactsから外しても欠落をエラーにする。
 wrapperはhook障害の再起動連鎖を避けるため通知専用終了値以外を0にする。state破損等で無音失敗する可能性があり、queuedだけで配送成功とせずlive ACKを確認する。
 

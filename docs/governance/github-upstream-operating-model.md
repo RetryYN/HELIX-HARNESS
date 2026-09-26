@@ -191,6 +191,25 @@ merge admissionの必須条件にしない。
 9. GitHub Claudeの対象HEAD意味reviewで未解消Blocker／Majorが0である。
 10. すべての`requirement` PRで、対象revisionに束縛した人間decision recordを持つ。保持・再配置の確認、意味変更、retireを別decision種別として記録する。
 
+## GUIレーンの運転と通知
+
+作成側とレビュー対応側は、同じVS CodeのClaude Code拡張とCodex拡張の既存セッションで動く。通知の仕組みは
+[SCF-B-0003の仮組み](../../scaffold/review-handoff/README.md)であり、ここではその運転の決まりを定める。
+
+- **レーンの割当**：作成（`execution`）とレビュー対応（`review_merge`）は、利用者の作業指示に従い、`gui_mailbox.py bind`で既存セッションを登録して決める。同じruntimeが両レーンを兼ねない。現在の割当は`gui_mailbox.py status`で確かめ、本文書には固定しない。
+- **セッション開始時**：各GUIは自分のセッションがレーンに登録済みで、leaseが有効かを`status`で確かめる。失効していれば同じセッションを`bind`し直す。別セッションへの付替えは、利用者の指示またはセッションの交代のときに限る。
+- **依頼と指摘の記録**：記録の正本は上記のとおりPR commentである。通知箱はそのPR commentを相手のセッションへ届け、起床させるための配送であり、通知本文・ACKをreview receiptやmerge admissionにしない。作成側はreview依頼のPR commentを投稿した後、同じexact base／content HEADで`review_request`を送る。レビュー対応側は所見をPR commentへ記録した後、`review_response`を送る。
+- **配送不成立の扱い**：宛先のleaseが失効している、宛先のhookがGUIで信頼・読込されていない、ACKが返らない場合は配送不成立とする。`queued`や登録済みleaseだけで配送成功とせず、PR commentを投稿したうえで利用者へ配送不成立を伝える。期限切れや未ACKの通知を自動で再送せず、対象HEADを取り直して新しいevent IDで送る。
+- **指示の同期**：両runtimeの利用者instruction（`~/.claude/CLAUDE.md`、`~/.codex/AGENTS.md`）のHELIX管理区間は、`configure_gui.py --apply`で同じsourceから同期し、手で書き換えない。管理区間の外に旧`helix` CLI、`harness.db`、`.helix/`を正規経路とする記述が残る場合は、管理区間と矛盾するため利用者の確認を経て除く。
+- **GUI側の操作**：新しいhookの信頼・読込は利用者がGUIで行う。hook設定の書込やscfctlの合格だけで接続成立としない。接続の確認は、両GUIが実際に通知を受けてACKを返したことで行う。
+
+旧sourceは`archive/legacy-generation-2026-09-14/root/.claude/settings.json`（`LEGACY-ASSET-F27AC6F39D89FE021C56`、
+SHA-256 `df8a6f6d51152446708f93558917c1d760a1d9f5639c31d5474a350d1e697ef1`）のStop hook（67〜89行目、`asyncRewake`で
+「Claude宛て通知を待機」）と、上記`CLAUDE.md`の「GitHub 自走運用」である。保持する点は、相手の作業を同じセッションへ届けて起こし、
+人の取次ぎを待たずに作成→review→mergeを回すことである。変更する点は、配送元を旧harness memory・DBから仮組みの通知箱へ替え、
+Codex側にも同じ待受と指示の同期を置くことである。変更の理由は、旧runtimeを起動しない現行の境界の下で、旧世代と同じく
+取次ぎなしで回すためである。新しい承認手続きは加えていない。
+
 ## 新世代CIへの接続
 
 新世代CIは、承認済み要求とfreeze済み設計・検証から必要oracleを導出できる段階で、HELIX-OSの

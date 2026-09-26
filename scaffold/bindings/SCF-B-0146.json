@@ -105,8 +105,8 @@
     },
     {
       "path": "scaffold/tools/scfctl.py",
-      "sha256": "6a0be284da79b090821bbcc7a0630498ff97020ac6d8b4f29cb1d23f93af119e",
-      "note": "実行するScaffold Binding checker"
+      "sha256": "ff48b2949c92116fe29a1b5c9a690c1454db77929dff5b5b977b78f137425aed",
+      "note": "実行するScaffold Binding checker [2026-09-26 GUIレーン運転の整備 read-after: scaffold/tools/scfctl.pyは、GitHub上流運用モデルへ「GUIレーンの運転と通知」節を研究用pinの行範囲（112〜177行目）の外に追加し、HELIX管理ローダ（scaffold/review-handoff/claude-current-loader.md）をCodexの~/.codex/AGENTS.mdへも同じsourceから同期するようconfigure_gui.py・scfctlの外部参照検査・参照台帳を広げた変更に合わせて付け直した。既存の本文・行範囲・判定条件は変えていない。採否・authorityを変更しない。]"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",

@@ -419,6 +419,15 @@ class GuiChecks(unittest.TestCase):
             instruction.write_text(config.update_policy("# Personal\n").replace("現行 HELIX ローダ","drift"))
             self.assertTrue(scf.external_hook_residuals(binding,str(home)))
             instruction.write_text(config.update_policy("# Personal\n"))
+            (home / ".codex").mkdir()
+            codex_instruction=home / ".codex/AGENTS.md"
+            codex_instruction.write_text(config.update_policy("# Codex personal\n"))
+            self.assertEqual(scf.external_hook_residuals(binding,str(home)),[])
+            codex_instruction.write_text(config.update_policy("# Codex personal\n").replace("現行 HELIX ローダ","drift"))
+            self.assertTrue(scf.external_hook_residuals(binding,str(home)))
+            codex_instruction.write_text(config.update_policy("# Codex personal\n") + config.update_policy(""))
+            self.assertTrue(scf.external_hook_residuals(binding,str(home)))
+            codex_instruction.write_text(config.update_policy("# Codex personal\n"))
             duplicate=config.update({},"claude")
             duplicate["hooks"]["Stop"] *= 3
             settings.write_text(json.dumps(duplicate))
