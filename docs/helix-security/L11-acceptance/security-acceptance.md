@@ -18,7 +18,7 @@ source: docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md
 
 本書は[HELIX-SECURITY要求候補](../L2-requirements/security-requirements.md)と対になる利用者受入条件の候補である。すべて未実行・未採択であり、表の文言を実行済み証拠やsecurity certificationへ読み替えない。対象の要求revision、scope、実物、結果、evidenceを照合して利用者が判定する。
 
-受入で扱うunknownはpassではない。secret値・credential値・PIIを証拠に記録しない。L2本文に定量値の根拠がない時間/容量/率/保持期間は設定しない。L2の単体、connection、compositeを個別に判定し、下位単位の合格だけで上位を通さない。
+受入で扱うunknownはpassではない。secret値・credential値・PIIを証拠に記録しない。L2本文に定量値の根拠がない時間/容量/率/保持期間は設定しない。L2の単体、connection、compositeを個別に判定し、下位単位の合格だけで上位を通さない。機能pack共通のidentity、版、互換、交換、更新、rollback、未完義務引継ぎはHARNESS-L2-010/011が所有し、この文書のSECURITY受入は共通descriptorへSECURITY固有条件を適用する範囲に限る。
 
 | L2要求 | version_target | 成功条件と反例 |
 |---|---|---|
@@ -35,7 +35,7 @@ source: docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md
 | HELIXSECURITY-L2-011 | 1.0 | 同じfile変更でもread-only→write+shell+networkの能力差分を検出し、model/Agent/MCP/pluginにも適用される。hash一致/ファイル名だけでcapability不変と結論したら不合格。 |
 | HELIXSECURITY-L2-012 | 1.0 | package/container/GitHub repo/MCP/plugin/Skill/Agent/model/binaryでsource、producer、version、digest、dependency、permission、network、known risk、update delta、rollbackを辿れる。不明な供給元/実行能力をtrustedへ昇格したら不合格。 |
 | HELIXSECURITY-L2-013 | 1.0 | build/validation済artifactのidentityと配布/実行artifactのidentity・digest・provenanceが同じ鎖で一致する。異なるartifact、欠けた工程、digest不一致が昇格可能なら不合格。digest一致だけからsource trustやverification passを推定しても不合格。 |
-| HELIXSECURITY-L2-014 | 1.0 | Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINを別々に試し、source/classification/昇格判定がないものをhold/denyし、poisoningを永続化しない。1つの経路の合格を他の経路の証明に流用したら不合格。 |
+| HELIXSECURITY-L2-014 | 1.0 | SECURITY単体のdecision tableへmemory、training dataset、BRAIN knowledgeの3 target classを個別に入力し、source/provenance/classificationが欠落・unknown・target不一致ならhold/denyし、理由付き判定を返す。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの機構横断受渡しや保存成功をこの単体試験で主張したら不合格。L1-014の構成体kindと3経路の成立はL2-027だけで受け入れる。 |
 | HELIXSECURITY-L2-015 | 1.0基盤、保護運用1.x | §16列挙の HELIX-HARNESS-CORE（HELIX-JSON、Python meaning core、Requirement Engine、internal verification logic）、HELIX-BRAIN（Patterns、Units、Parts、accumulated design knowledge）、HELIX-INTELLIGENCE（internal prompts、judgment configuration、specialist models、routing / diagnostic logic）、HELIX-LABO（episodes、evaluation corpus、training material）、HELIX-OS（authority/state、topology、operation records）、HELIX-SECURITY（policies、credentials）をowner、identity、source、revision/digestで識別できる。列挙外資産も分類対象となり得る。内容をdumpせず識別不能をpublicと扱ったら不合格。受入は1.0 identity baseだけでWeb保護完了を宣言しない。 |
 | HELIXSECURITY-L2-016 | 1.0分類基盤、適用1.x | 1.0ではpublic/customer-owned/service-internal/HELIX-confidential/HELIX-restricted/secretの全6分類を定義し、asset identityへ分類とunknownを記録できる。分類不明をpublic/allowと扱う、または分類記録が欠ければ不合格。1.xではL2-019/025が各sinkへ分類を適用し、confidential以上を無条件出力しないことを別途受け入れる。1.x条件を1.0完了の証拠にしない。 |
 | HELIXSECURITY-L2-017 | 1.x | system prompt、内部architecture、hidden Tool一覧、BRAIN全Pattern、internal APIの要求が公開service contractを越える内部情報を回答せず、拒否/制限される。ファイル直読みがなくても意味的抜き取りに応じたら不合格。1.0単体受入に混ぜない。 |
@@ -48,8 +48,8 @@ source: docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md
 | HELIXSECURITY-L2-024 | 1.0 | SECURITYのpolicy/authorityとINFRASTRUCTUREの実資源/観測状態、Workerの物理強制がreceiptで対応する。INFRASTRUCTUREがpolicyを作る、credential値を通常資源状態やbackupへ保存する、またはSECURITYが資源配置を所有したら不合格。 |
 | HELIXSECURITY-L2-025 | 1.0基盤、Web適用1.x | Web利用者→HELIX-Web→WEB-OS→SECURITY Asset Boundary→Internal HELIXの全境界でtenant/service identityとclassificationが維持され、内部資産の無条件露出がない。Web実利用の証拠なしで1.0受入にWeb完了を含めたら不合格。 |
 | HELIXSECURITY-L2-026 | Guard 1.0、意味判断/観測の1.x | SECURITY Guardの決定とINTELLIGENCE semantic judgementを区別し、判断不能をunknown/制限として返す。BotなしでGuard条件を見逃す、またはSECURITYがmodel/routingを決定したら不合格。 |
-| HELIXSECURITY-L2-027 | 1.0 | 3つのpromotion path各々にsource/provenance/classification/decision/保存先があり、未検証sourceをholdする。LABO評価だけでBRAINへ昇格、BRAIN保存だけで学習承認、または1 pathの証拠を他へ流用したら不合格。 |
-| HELIXSECURITY-L2-028 | 1.0 | 各packについて機能identity/kind、contract version、artifact version、dependency identity/version、compatibility range、verification scope、owner、実行時revision/digestを区別して記録し、宣言range内の組合せだけを呼び出す。`version_target`は対象能力の目標版であり、実artifact/contract/dependency versionとして使わない。交換・更新・rollback後も未完の義務/finding/unknown/人判断待ちをidentity・revision・owner付きで引き継ぎ、rollback先も適格かつ互換な版とする。互換range外や欠落はunknownとして停止し、暗黙fallbackしない。1.0 packが1.0 dependency rangeだけで動作し、1.x extensionなしでも成立する。`version_target=1.0`だけを実artifact版とみなす、未宣言互換を仮定する、rollbackで未完義務を消す場合は不合格。 |
+| HELIXSECURITY-L2-027 | 1.0 | L1-014の構成体要求をこのcompositeだけで受け入れる。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの各々でsource/provenance/classificationとSECURITY判定を独立にtraceし、対象sinkへの受渡し結果またはdeny/holdを確認する。sink固有の保存・評価・登録手順は各ownerの接続契約に従い、この受入条件からLABO評価やOS登録を全経路の必須工程として追加しない。source等の欠落・unknownを通す、単体L2-014の成功や一経路の証拠で3経路全体を成立扱いする、またはdeny/holdを成功保存として扱えば不合格。 |
+| HELIXSECURITY-L2-028 | 1.0 | HARNESS-L2-010/011の共通pack descriptorを入力し、SECURITY更新candidateのidentity/version/artifact digestがdescriptorと一致し、dependency versionが宣言compatibility range内で、provenanceとL2-010/013のSECURITY条件を満たす場合だけSECURITY固有の受入判定を返す。`version_target`は目標版で実版ではない。identity/version/digest欠落、不一致、range外、unknownを通せば不合格。共通交換/rollback/未完義務lifecycleの所有・受入をSECURITY-L2-028の証拠に含めたら不合格。 |
 
 ## 端から端までの確認
 

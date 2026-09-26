@@ -29,9 +29,8 @@ decision_record: docs/governance/decisions/security-l1-idea-po-decisions-2026-09
 - 機密値・secret・credentialそのものを通常のAI context、ログ、成果物、監査receiptへ含めない。receiptは値ではなく分類、digest、判断、理由、状態を持つ。
 - L1に数値がない時間、保持期間、閾値、容量等はここで新設しない。未決の非機能値はunknownのまま残し、値が必要な実装前に上流候補へ戻す。
 - 1.0の能力を後の版のBotやWeb公開能力に依存させない。L1-015/016の資産識別・公開区分の土台は1.0に置けるが、1.xの実利用保護全体を1.0の完了条件へ移さない。
-- 各機能パックは、要求IDとは別に、実行時の機能identity、契約版、成果物版、依存機能identityと必要版、互換範囲、検証範囲を宣言する。`version_target`は能力を成立させる目標版（1.0/1.x）であり、稼働中成果物の版、契約版、依存版を表さない。未採択候補には実版がまだない。
-- 互換範囲外・未宣言の依存版は、黙った読替え、互換fallback、成功扱いをせずunknown/停止とする。交換・更新は宣言済み互換範囲内で行い、非互換更新は新しい候補・検証範囲へ送る。失敗時は最後の適格で互換な版へrollbackでき、既存のsecurity条件を落とさない。
-- 更新・交換・rollbackをまたいで、未完の検査、未解決finding、unknown、人の判断待ち、期限切れ、未回収義務をidentity/revision/owner付きで引き継ぐ。引継ぎやrollbackだけで義務を完了にしない。
+- 機能パック一般のidentity、kind、input/output contract、契約版、成果物版、依存版、互換範囲、検証範囲、交換・更新・rollbackと未完義務の引継ぎは、HARNESS-L2-010/011の共通契約に従う。本書はその共通契約を再定義・所有しない。`version_target`は能力の目標版で、実行中の成果物版・契約版・依存版ではない。未採択候補に実版はない。
+- HELIX-SECURITYは共通descriptorを入力として、自機構の更新受入（L2-010）とartifact integrity（L2-013）を対象identity・version・digestへ適用する。互換range外または不一致のSECURITY更新を受け入れない。引継ぎ・交換・rollbackの共通義務はHARNESS-L2-010/011側で検証し、SECURITY固有条件の欠落をrollbackで消さない。
 
 ## 候補一覧
 
@@ -50,21 +49,21 @@ decision_record: docs/governance/decisions/security-l1-idea-po-decisions-2026-09
 | HELIXSECURITY-L2-011 | unit | L1-011 | Capability Drift | 1.0 |
 | HELIXSECURITY-L2-012 | unit | L1-012 | Supply Chain provenance | 1.0 |
 | HELIXSECURITY-L2-013 | unit | L1-013 | Artifact integrity | 1.0 |
-| HELIXSECURITY-L2-014 | composite | L1-014 | Persistence / Memory promotion boundary | 1.0 |
+| HELIXSECURITY-L2-014 | unit | L1-014 | SECURITYの永続化promotion方針・判定 | 1.0 |
 | HELIXSECURITY-L2-015 | unit | L1-015 | HELIX Asset identityと分類基盤 | 1.0の土台、実利用保護は1.x |
 | HELIXSECURITY-L2-016 | unit | L1-016 | Asset exposure classification | 1.0の区分基盤、公開時適用は1.x |
 | HELIXSECURITY-L2-017 | unit | L1-017 | Semantic exfiltration境界 | 1.x |
 | HELIXSECURITY-L2-018 | unit | L1-018 | Capability probing観測 | 1.x |
 | HELIXSECURITY-L2-019 | unit | L1-019 | Core Asset Egress判定 | 1.x |
 | HELIXSECURITY-L2-020 | unit | L1-020 | GuardとBotの責務境界 | Guard 1.0、Botは必要時 |
-| HELIXSECURITY-L2-021 | connection | L1-001/002/014 | CONNECT・SECURITY・LABO・INTELLIGENCEの外部data接続 | 1.0の境界、対象別能力に従う |
+| HELIXSECURITY-L2-021 | connection | L1-001/002 | CONNECT・SECURITY・LABO・INTELLIGENCEの外部data接続 | 1.0の境界、対象別能力に従う |
 | HELIXSECURITY-L2-022 | composite | L1-008 | INTELLIGENCE要求からOS割当て、Worker実行までのauthority接続 | 1.0 |
 | HELIXSECURITY-L2-023 | composite | L1-010/011/012/013 | 更新候補からHARNESS検証、OS昇格まで | 1.0 |
 | HELIXSECURITY-L2-024 | connection | L1-005/006/007/009 | SECURITY方針とINFRASTRUCTURE実資源の接続 | 1.0 |
 | HELIXSECURITY-L2-025 | composite | L1-015/016/019 | HELIX-Web公開経路のAsset Boundary | 1.x、1.0から基盤準備 |
 | HELIXSECURITY-L2-026 | connection | L1-017/018/020 | INTELLIGENCEの意味判断・検出との接続 | 1.x能力は1.x、Guard/Bot境界は1.0 |
-| HELIXSECURITY-L2-027 | composite | L1-014 | LABO・BRAIN・INTELLIGENCEへの永続化promotion | 1.0 |
-| HELIXSECURITY-L2-028 | unit（共通パック契約） | L1-010/013 | SECURITY機能パックのidentity・版・互換・交換 | 1.0 |
+| HELIXSECURITY-L2-027 | composite | L1-014 | L1-014が定める3経路の機構横断promotion | 1.0 |
+| HELIXSECURITY-L2-028 | unit | L1-010/013 | SECURITY更新受入・artifact integrityをpack identity/versionへ束縛 | 1.0 |
 
 ## 単体候補
 
@@ -198,15 +197,15 @@ decision_record: docs/governance/decisions/security-l1-idea-po-decisions-2026-09
 - **失敗時の戻し先**：identity/digest mismatch、missing stepは昇格停止。意味や必要なidentityが不足ならL1-013へ戻す。
 - **束ねる既存条件**：L1-013、PO §14、Conceptの構成版固定。
 
-### HELIXSECURITY-L2-014 Persistence / Memory promotion boundary（構成体）
+### HELIXSECURITY-L2-014 SECURITY永続化promotion方針・判定（単体）
 
-- **受け取るもの**：context、episode、product knowledgeのsource identity/classificationと、memory/training dataset/BRAINへの昇格候補。
-- **提供するもの**：昇格境界、元sourceへのtrace、allow/deny/hold状態。
-- **保証すること**：外部情報/Agent出力を無条件で永続化しない。Memory poisoning、Prompt Injection persistence、training contamination、BRAIN contaminationを抑える。LABOによる評価、INTELLIGENCEの運転時知識、BRAINの汎用構造蓄積の責務を混ぜない。
-- **単独依存**：L2-001/002 source trust、L2-015/016の1.0 identity/classification foundation（asset protectionの1.x sink enforcementを要しない）、LABO/BRAIN/INTELLIGENCEの各保管・昇格interface。
-- **検証範囲／版**：Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの3経路と拒否/保留の反例。1.0。
-- **失敗時の戻し先**：provenance/classification欠落はhold/deny。意味や対象追加はL1-014へ戻し、各機構の接続はL2-027で扱う。
-- **束ねる既存条件**：L1-014、PO §15。対応する旧要件は見つかっていないためPO原文からの新しい候補として明示する。
+- **親L1**：HELIXSECURITY-L1-014（L1では構成体要求）。このL2 identity自体はSECURITY単体の方針・判定。
+- **受け取るもの**：source identity/provenance/classificationを持つpromotion requestと対象種別（memory、training dataset、BRAIN knowledge）。
+- **提供するもの**：SECURITY方針に基づくallow/deny/hold判定、その理由、参照するsource/target identity。
+- **保証すること**：外部情報/Agent outputを無条件に永続化しないためのSECURITY単体の規則・判定を定義する。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINを判定対象として識別するが、機構横断の受渡し、LABO評価、BRAIN登録、保存実行、構成体成立は所有しない。Memory poisoning、Prompt Injection persistence、training contamination、BRAIN contaminationを防ぐ判定理由を返す。
+- **依存／検証範囲／版**：L2-001/002 source trust、L2-015/016の1.0 identity/classification foundation。1.x sink enforcementは依存しない。単体decision table上で3 target classごとのallow/deny/holdを確認し、source/classification欠落、unknown、誤targetを拒否する。3経路のend-to-end成立はL2-027だけで受け入れる。1.0。
+- **失敗時の戻し先**：provenance/classification欠落はhold/deny。policy意味や対象追加はL1-014へ戻す。
+- **束ねる既存条件**：PO §15のSECURITY方針・判定部分。対応する旧要求は見つかっていないためPO原文からの新しい単体候補として明記する。L1-014の構成体kindと3経路の機構横断成立はL2-027のみで満たす。
 
 ### HELIXSECURITY-L2-015 HELIX Asset identity基盤
 
@@ -272,7 +271,7 @@ decision_record: docs/governance/decisions/security-l1-idea-po-decisions-2026-09
 
 ### HELIXSECURITY-L2-021 外部dataの受渡し（接続）
 
-- **親L1**：L1-001、002、014。
+- **親L1**：L1-001、002。L1-014の永続化promotionはこの接続要求に含めず、単体判定をL2-014、構成体成立をL2-027で受け入れる。
 - **受け取るもの**：外部data、CONNECTのsource/contract/revision、SECURITYの分類・境界、LABO/INTELLIGENCEの受領契約。
 - **提供するもの**：sourceを保った未信頼dataと、境界判断・provenanceを含む受渡しreceipt。
 - **保証すること**：外部data→CONNECT→SECURITY boundary→LABO/INTELLIGENCEの経路を明示する。CONNECTの通信・再送・追跡とSECURITYのtrust判断を混ぜず、下流の受領だけで信頼昇格しない。
@@ -332,23 +331,23 @@ decision_record: docs/governance/decisions/security-l1-idea-po-decisions-2026-09
 
 ### HELIXSECURITY-L2-027 永続化promotion（構成体）
 
-- **親L1**：L1-014。
-- **受け取るもの**：外部情報/Agent output、LABO episode、product knowledgeと各promotion request、source/provenance/classification。
-- **提供するもの**：SECURITY境界を通過したpromotion receiptまたは拒否/保留状態を各所有機構へ返す。
-- **保証すること**：Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINそれぞれを独立の昇格境界として扱う。LABOは評価、BRAINは汎用構造の蓄積、INTELLIGENCEは稼働時判断/後続モデル改善を担い、SECURITYは方針を持つ。どの機構の結果も単独で別機構へ昇格させない。
-- **依存／検証範囲／版**：L2-001/002/014/015/016と各機構接続contract。3経路ごとのsource ID、分類、判断、保存先、失敗時の戻し先。1.0。
-- **失敗時の戻し先**：source/provenance欠落は昇格前にhold。dataの意味差はSECURITY L1-014、評価・知識所有境界差は各機構L1へ戻す。
-- **束ねる既存条件**：PO §15/§23、ConceptのLABO/BRAIN/INTELLIGENCEの責務分離。
+- **親L1**：HELIXSECURITY-L1-014（kind: 構成体）。
+- **受け取るもの**：Context/Agent output、Episode、product knowledgeと各promotion request、source/provenance/classification。
+- **提供するもの**：3経路ごとのSECURITY境界判定receipt、deny/hold状態、接続先ownerへ返す未完義務。
+- **保証すること**：L1-014の構成体要求と3つの機構横断promotion boundaryはこの要求だけで受け入れる。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINを別々にend-to-end追跡し、各境界でsource/provenance/classification/SECURITY判定と、対象sinkへの受渡し結果またはdeny/holdを結ぶ。各sinkの保存・評価・登録手順は当該ownerの接続契約に従い、本要求からLABO評価やOS登録を全経路の必須工程として追加しない。単体L2-014の成功や一経路の成功から構成体成功を推定しない。
+- **依存／検証範囲／版**：L2-001/002/014/015/016および各対象sink ownerの接続contract。3経路それぞれでsource identity、分類、SECURITY判定、受渡し結果または拒否・保留を確認し、経路間で証拠を流用しない。1.0。
+- **失敗時の戻し先**：source/provenance/classification欠落は永続化前にhold/deny。対象やSECURITY判定の意味差はL1-014、対象sinkの受領・保存・評価・登録の手順は当該ownerの接続契約へ戻す。各経路の結果がunknownなら構成体の成立を主張しない。
+- **束ねる既存条件**：PO §15の3永続化境界とPO §23のconnection/composite区分。各sinkの固有処理はそのownerの接続契約に従う。
 
-### HELIXSECURITY-L2-028 機能パックのidentity・版・互換・交換（単体）
+### HELIXSECURITY-L2-028 SECURITY pack更新受入・artifact integrity（単体）
 
-- **受け取るもの**：機能identityとkind（unit/connection/composite）、宣言した入力・出力contract、owner、dependency graph、要求検証範囲、`version_target`。
-- **提供するもの**：個別に選択・検証・交換可能なSecurity function packのdescriptorと、呼出し側が判定できる互換・未完義務情報。
-- **保証すること**：提供/実行されるpackは、機能identity、contract version、artifact version、各dependency identity/version、受入可能なcompatibility range、検証範囲、ownerを分けて記録する。`version_target`（能力が属する1.0/1.x）を実versionと混同しない。未採択候補には実artifact versionがまだない。互換range外の組合せを暗黙に使わない。pack交換・更新・rollbackで未完義務、finding、unknown、人判断待ちを消さず、最後の適格で互換な版へ戻せる。単体packの成立をconnection/compositeの成立としない。
-- **単独依存**：各packのidentity/contract/version descriptorと、HARNESSのpack境界・呼出し契約（HARNESS-L2-010/011）。OSは進行・状態を記録し、SECURITY自身がチケットや工程を定義しない。
-- **検証範囲／版**：unit/connection/compositeそれぞれの機能identity、contract version、artifact version、dependency version、compatibility range、検証範囲、交換/更新/rollback、未完義務引継ぎ。`version_target`は1.0。
-- **失敗時の戻し先**：identity、version、dependency、compatibility、owner、検証範囲がunknown/mismatchならpackの呼出し/昇格を止める。contract意味の不足は対応L1、HARNESS共通呼出し契約はHARNESS、OS上の進行状態はOSへ戻す。
-- **束ねる既存条件**：HARNESS-L2-010の入力/出力/依存/検証範囲/版と交換・更新可能性、HARNESS-L2-011の契約版・依存版・相関状態・停止/再開、およびSecurity L1-010/013のrevision/digest/provenance。
+- **親L1**：HELIXSECURITY-L1-010/013。
+- **受け取るもの**：HARNESS-L2-010/011で識別されたSECURITY機能pack descriptor（機能identity、契約版、成果物版、依存identity/version、互換範囲、検証範囲）と、更新candidateのprovenance、revision/digest、security-relevant差分。
+- **提供するもの**：SECURITY-L2-010の更新受入とL2-013 artifact integrityを、該当するexact pack identity/version/artifact digestへ束縛したaccept/reject/unknown判定。
+- **保証すること**：SECURITY更新が共通pack descriptorの同一identity・宣言version・互換依存を満たし、検証対象と更新後artifactのintegrityが一致する場合だけ受入候補となる。`version_target`を成果物版とみなさず、identity/version/digest欠落、不一致、互換範囲外をunknown/rejectにする。共通のpack contract、交換・rollback・未完義務state machineは定義せずHARNESSへ委ねる。
+- **依存／検証範囲／版**：HARNESS-L2-010/011の共通pack境界と呼出しdescriptor、SECURITY-L2-010/013の更新受入とartifact integrity。descriptorと更新artifactのidentity/version/digest一致、dependency versionがdeclared range内、`version_target`とactual artifact versionの区別を確認する。欠落/mismatch/range外は受入不可。1.0。
+- **失敗時の戻し先**：SECURITY固有の受入軸はL1-010、artifact identity/integrityはL1-013へ戻す。共通descriptor・交換・rollback契約の不足はHARNESSへ返し、このunitで補完しない。
+- **束ねる既存条件**：PO §11/§14、HARNESS-L2-010/011共通pack契約、SECURITY L1-010/013。
 
 ## PO原文の全条件と例外の対応
 
@@ -364,11 +363,11 @@ decision_record: docs/governance/decisions/security-l1-idea-po-decisions-2026-09
 | §8 | Worker/CLI/Agent/Toolの隔離環境、write path/network/credential/env/timeout/resource/filesystem diff/rollback/result回収。制約はSECURITY、実強制はWorker実行環境 | L1-007 | 007,022,024 |
 | §9 | read/write/execute/network/install/delete/merge/release/deploy/credential-use/security-changeを別authority。高影響操作にactor/target/operation/revision/environment/scope/expiry束縛 | L1-008 | 008,022 |
 | §10 | revoke/quarantineをOS新規割当停止、Worker実行停止/途中成果隔離、CONNECT通信停止、credential停止、artifact access停止へ伝播。不明状態で継続しない | L1-009 | 009,022,024 |
-| §11 | 更新対象15種をsource code、dependency、package、plugin、MCP、Skill、Agent definition、Hook、runtime config、Sandbox policy、model、model weights、prompt/system instruction、Connector、infrastructure configurationと全列挙し、provenance/digest/dependency/permission/network/credential/hook-config delta/new executable/findings/rollbackを確認。new version aloneは理由でない | L1-010 | 010,011,012,013,023,028 |
+| §11 | 更新対象15種をsource code、dependency、package、plugin、MCP、Skill、Agent definition、Hook、runtime config、sandbox policy、model、model weights、prompt/system instruction、Connector、infrastructure configurationと全列挙し、provenance/digest/dependency/permission/network/credential/hook-config delta/new executable/findings/rollbackを確認。new version aloneは理由でない | L1-010 | 010,011,012,013,023。pack identity/versionへのSECURITY判定適用は028。共通pack契約のownerはHARNESS-L2-010/011 |
 | §12 | file diffをcapability diffへ。read-only→write/shell/networkの変化例、model/Agent/MCP/pluginにも適用 | L1-011 | 011,023 |
 | §13 | package/container/GitHub repo/MCP/plugin/Skill/Agent/model/binaryのproducer/version/digest/dependency/permission/network/risk/update/rollback追跡。不明をtrusted化しない | L1-012 | 012,010,023 |
-| §14 | code/package/model/config/policyのidentity/version/digest/provenance/producer/build/validationを結び、検証物と配布/実行物を一致 | L1-013 | 013,023 |
-| §15 | Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINを別境界にし、poisoning/Prompt Injection persistence/training/BRAIN contaminationを防ぐ | L1-014 | 014,027 |
+| §14 | code/package/model/config/policyのidentity/version/digest/provenance/producer/build/validationを結び、検証物と配布/実行物を一致 | L1-013 | 013,023。共通pack descriptorとのidentity/version/artifact integrity照合は028 |
+| §15 | 外部情報やAgent出力を永続情報へ無条件に昇格させない。Context→Memory、Episode→Training Dataset、Product Knowledge→BRAINの各境界をSecurity対象とし、Memory poisoning、Prompt Injection persistence、Training contamination、BRAIN contaminationへの発展を防ぐ | L1-014 | 014はSECURITY単体のpolicy/decision、027だけが3つの機構横断promotion boundaryを受け入れる。sinkごとの保存・評価・登録手順は各ownerの接続契約に従う。L1-014の構成体kindは027で満たす |
 | §16 | HELIX-HARNESS-CORE（HELIX-JSON、Python meaning core、Requirement Engine、internal verification logic）、HELIX-BRAIN（Patterns/Units/Parts/accumulated design knowledge）、HELIX-INTELLIGENCE（internal prompts/judgment configuration/specialist models/routing / diagnostic logic）、HELIX-LABO（episodes/evaluation corpus/training material）、HELIX-OS（authority/state/topology/operation records）、HELIX-SECURITY（policies/credentials）を全列挙して識別 | L1-015 | 015,016,019,025; 1.0は識別基盤のみ |
 | §17 | six exposure classesを使い、confidential以上を全応答/log/error/trace/debug/source map/Tool/artifact/LLM contextへ無条件出力しない | L1-016 | 016,019,025 |
 | §18 | prompt/architecture/hidden Tool/BRAIN dump/internal API等の意味的抜き取りと公開service contractの境界 | L1-017 | 017,026,025 |
@@ -377,7 +376,7 @@ decision_record: docs/governance/decisions/security-l1-idea-po-decisions-2026-09
 | §21 | deterministic Guard（Injection/Scope/Hook/Secret/Egress/Runtime/Permission/Core Asset）とsemantic Botを分離。Bot候補例5種（Security Audit Bot、Injection Analysis Bot、Core Probe Detection Bot、Supply-chain Review Bot、Security Diagnosis Bot）を列挙するが全Botの初版実装は必須化せず、INTELLIGENCEへ接続し包括Write権限を禁止 | L1-020 | 020,026 |
 | §22 | HARNESS工程、Product固有要求、開発計画、Worker配置、長期改善評価、runtimeをSECURITYの所有にしない | L1-020・提供価値 | 共通条件, 007,020,022–027 |
 | §23 | External→CONNECT→SECURITY→LABO/INTELLIGENCE; INTELLIGENCE request→SECURITY→OS→Worker; update→SECURITY→Worker→HARNESS→OS; Web→WEB-OS→Asset boundaryの4 flow。機構間=connection、複数機構能力=composite | 接続要求表 | 021–027 |
-| §24 | 1.0のTrust/Isolation/Integrity/Credential/Egress/Runtime/Authority/Revoke/Update/Supply Chain/Artifact/Persistence。1.x Web開始前のAsset protection/exposure/semantic exfil/probing/core egress。ただしidentity/classification基盤は1.0 | L1-001〜020 | 全candidateの`version_target`と015/016/017–019/020/025/026/028の版境界 |
+| §24 | 1.0のTrust/Isolation/Integrity/Credential/Egress/Runtime/Authority/Revoke/Update/Supply Chain/Artifact/Persistence。1.x Web開始前のAsset protection/exposure/semantic exfil/probing/core egress。ただしidentity/classification基盤は1.0 | L1-001〜020 | 全candidateの`version_target`と015/016/017–019/020/025/026の版境界。028はSECURITYの1.0更新/整合判定で共通pack契約はHARNESS所有 |
 
 ## 旧HELIX資産との対応
 

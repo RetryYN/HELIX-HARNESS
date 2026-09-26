@@ -91,9 +91,11 @@ L1被覆判定や候補文書の説明から12要求を生成しない。各reco
 管理登録runtimeは要求整理後にL3／L10から設計するため、現在はrepo-owned JSONL recordとread-afterで仮登録を行う。自動登録器が成立した後も同じ意味契約を維持し、GitHubを登録正本へ昇格させない。既存DB、旧hook、旧CIはbootstrap registerのwriterまたはoracleとして使用しない。
 
 
-## SECURITYの対象identityと候補親の記録
+## 現行Conceptの対象identityと候補親の記録
 
-上表の`product_target`には、現行Conceptの機構である`HELIX-SECURITY`も記録する。このfield名は対象のidentityを表す既存名であり、SECURITYへ外販製品という属性を付けない。根拠は[SECURITYのL1提示の判断記録](decisions/security-l1-idea-po-decisions-2026-09-26.md)と[現行Concept](../concept/helix-concept.md)である。既存4対象だけを列挙した表から、この現行対象の候補を登録不能にはしない。
+上表の`product_target`には、現行Conceptの機構identityを記録する。対象は`HELIX-HARNESS`、`HELIX-OS`、`HELIX-BRAIN`、`HELIX-LABO`、`HELIX-INTELLIGENCE`、`HELIX-SECURITY`、`HELIX-INFRASTRUCTURE`、`HELIX-Web`、`HELIX-WEB-OS`である。根拠は[現行Conceptの機構表](../concept/helix-concept.md)と[作業入口の対象別L1と判断記録](new-generation-start-here.md)であり、4対象だけだった表へ機構ごとの追補を繰り返さない。既存の`HELIX-Web-OS`という綴りの履歴recordは書き換えず、訂正が必要な場合も通常の訂正revisionで扱う。
+
+このfield名は対象identityを表す既存名であり、OS、SECURITY等に外販製品という属性を付けない。共通部品CONNECTは対象別L1がまだないため、この追補からL2候補の起草や承認を導かない。各対象の親revision・候補状態・authorityは独立して記録し、一対象の採択を別の対象へ継承しない。
 
 `parent_concept_revision`／`parent_planning_revision`は、未採択候補を起草する場合にも実際に読んだ親のpath・commit・本文digestと候補状態を記録する。表の「承認済み親revision」は承認済みの入力を記録する場合の状態であり、候補親を承認済みと偽って書かない。[作業入口](new-generation-start-here.md)が許す候補起草と、承認済み要求からのticket化を分ける。親の候補状態、要求の採否待ち、必要な人間decisionはそのまま保持する。
 
