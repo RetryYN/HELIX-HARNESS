@@ -315,3 +315,112 @@ HELIXOS-L2-004／005／007／009について、次の利用条件を確認する
 | 親要求 | 成功条件 | 反例（不合格） |
 |---|---|---|
 | HELIXOS-L2-014 | ある段階（例：v0.1）について、使うパックと依存の版、設定・data形式、対応環境、できること・できないこと、受入の証拠、更新・切戻しの条件を一組で確かめられ、同じ一組から同じ稼働構成を再現できる。その段階で、限った範囲の仕事が要求の確認から結果の記録まで一周し、人が担う工程の分担が明記されている。その段階を使って次の段階を構築・検証し、乗り換えた後に問題があれば前の段階へ戻せ、案件の状態と記録が引き継がれる。段階は開発中のHELIX自身に依存せず起動・更新・復旧でき、段階の成立と1.0の到達判定が別の記録になっている。その段階で成立していない能力は「できないこと」として明記され、HELIXINFRASTRUCTURE-L1-023（1.0より後）がなくても段階リリースが成立する | ソースのtagだけを段階リリースとする／段階を別系統の簡易実装で作る／機能を薄く並べただけで一周しない構成を段階とする／案件の実data・秘密情報・資格情報を段階リリースへ含める／前の段階へ戻せない、または戻すと案件の状態を失う／未リリースの作業treeや次の段階がないと起動・復旧できない／安全の条件が欠けたままリリースする／段階の成立で1.0の到達を判定する、または段階が出たことを理由に最終の要求や品質条件を減らす／段階の識別子を外部公開の版番号として扱う／後の版の能力（HELIXINFRASTRUCTURE-L1-023等）の完成を段階リリースの成立の前提にする、または段階リリースを理由にその能力を前倒しする／成立していない能力を「できること」として扱う／対象製品のリリースとHELIX自身の段階リリースを混同する |
+
+
+## HELIX-OS機能単位パックの受入候補（HELIXOS-L2-015〜025）
+
+この節は[HELIX-OS L2の機能単位要求候補](../L2-requirements/governance-requirements.md)に対する未実行のL11案である。既存L2-001〜014に対する本書既存の受入条件は元のID・本文に残り、本節はそれを要約置換しない。結果は対象revision・実行者・根拠・使用したHARNESS契約版へ束縛する。文書の追加、登録、静的検証、PR mergeのいずれも要求採択・実装許可・利用者acceptanceを生成しない。`version_target`を契約版・成果物版と取り違えず、将来のパック実体では機能identity、契約/成果物/依存の各version、検証範囲、適用・収載set、互換範囲、更新/復旧先を別々に確認する。
+
+### HELIXOS-L2-015 管理・authority記録の受入
+
+- **入力・版**：異なる対象のConcept/L1/要求revision、判断record、原event、Issue/PR projectionを与える。対象と使った管理record schema revisionを固定する（1.0土台）。
+- **成功条件**：各source identity・revision・digest・判断出所・責務を正本へ辿れる。projection上のclose/merge/greenを変えても要求authorityは変わらない。原eventを保持したまま別revisionの訂正・分類を追跡できる。
+- **反例**：PRやmemoryだけから採否・承認を表示する、訂正で原eventを上書きする、wrong product/stale/digest不一致を現行正本として扱う。
+- **失敗時・未完義務**：authority conflictやsource欠落が出た際、未解決stateを保ち正本または判断主体へ戻せる。
+
+### HELIXOS-L2-016 Portfolio trace・状態の受入
+
+- **入力・版**：二つ以上の対象projectについて、要求revision、関係する単体・接続・構成体、依存、実装差分、検証、提供・運用stateを与える（1.0対象）。
+- **成功条件**：各要求から関係先へ辿れ、未接続・未合意・未実装・未検証・未提供・unknown・staleが個別に見える。単体と接続と構成体に別々の受入判定がある。提供stateがrelease-kanban上で記録される。
+- **反例**：一つのproject/CI/PRを別対象や構成体の完了根拠にする。owner/依存/実差分の欠落を影響なしと見なす。CIやticket planだけでmerge/release readinessとする。
+- **失敗時・未完義務**：不明な関係と検証をunknownで残し、対象要求や接続ownerへ差し戻す。再開時に未解決edge/stale理由を保持する。
+
+### HELIXOS-L2-017 推進・ticket/workflowの受入
+
+- **入力・版**：同一の承認済み入力とHARNESS契約を再投入し、対象や依存が異なるcaseを比較する（1.0）。部品外flowは4.0の境界として確認する。
+- **成功条件**：同じ入力から対象・親revision・scope・依存・受入義務・戻し先を持つ同じticket候補が得られる。INTELLIGENCE案をHARNESS語彙、権限、budget、期限、依存に照らして適格性確認する。異なる対象はその差を保持する。1.0ではHARNESSの既定部品を規則どおり組合せ、途中結果から既定戻し先へ差し戻せる。
+- **反例**：部品にないflowを1.0で生成する、案を無条件でticket化する、OSがHARNESS工程を再定義する、入力不明/依存未解決をready化する、全案件へ同一固定列を当てる。
+- **失敗時・未完義務**：停止理由・元要求revision・未完義務・累積制約が残り、解決する入力または責務へ戻る。
+
+### HELIXOS-L2-018 Worker割当・実行統制の受入
+
+- **入力・版**：ticket、assignment、attempt、lane、Worker、モデルクラス水準、SECURITY制約、INFRASTRUCTURE資源、期限・予算・scopeを与える（1.0）。
+- **成功条件**：各recordのexact bindingと成果/evidenceを辿れ、Workerから独立review担当へ仕事の意味と未完義務を渡せる。作成Workerが自分の成果を承認または独立review済みと扱わない。期限/lease失効後の交代で未完義務と累積制約を保つ。
+- **反例**：二重claim/実行、期限・budget・失敗回数のreset、未評価Workerを評価済み扱い、SECURITY認可やINFRASTRUCTURE実環境の状態をOSが代替、作成Workerが自分の成果を承認する。
+- **失敗時・未完義務**：scope/head/lease/capability/authority不一致で起動または継続を止め、停止を発生させた境界へ返す。途中成果は隔離し、handoffに未完義務を添える。
+
+### HELIXOS-L2-019 Evidence・continuityの受入
+
+- **入力・版**：要求・判断・作業・検証・手戻り・運用のevent、source revision、相関ID、actor、利用区分、checkpointを与える（1.0土台）。重複配送、stale pointer、crash/restartも含める。
+- **成功条件**：provenanceと訂正履歴からepisodeを再構築し、欠落/重複/stale/拒否/未実行と成功を区別する。session/runtime交代後もbudget、期限、失敗回数、scope、未完義務を保持する。data-use classが用途ごとに辿れる。
+- **反例**：記録件数を完了とする、provider memory/summaryだけから再開する、重複eventで同じ副作用を二重実行する、未許可dataを別projectや学習用途へ送る。
+- **失敗時・未完義務**：保存またはprojection失敗で成功checkpointを公開しない。原eventから再構築し、足りないevidenceを発生元へ戻す。
+
+### HELIXOS-L2-020 検収・CI運転の受入
+
+- **入力・版**：HARNESS契約/義務、要求/pair/oracle、ticket、change set/base、実行環境を与える（1.0）。現行の新世代CI未構築条件を保つ。
+- **成功条件**：必要profileが変更対象とHARNESS義務から導かれ、exact head・oracle・環境・run identityに束縛される。実行状態をsuccess/fail/denied/skipped/interrupted/staleに分け、隔離・回収・再開できる。計画側と実行側を別scopeで確認できる。
+- **反例**：全案件に固定段数を強制する、HARNESS oracleをOSが足す/外す、必要検証を抜く、旧CI greenまたは別HEAD greenを使う、CI成功でmeaning review/acceptance/releaseを代替する。
+- **失敗時・未完義務**：検証義務やrunnerが足りなければ未完状態でHARNESS契約・ticket・資源ownerへ返す。失敗を検査弱化で成功化せず、再開条件と義務を保持する。
+
+### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入
+
+- **入力・版**：選択するHARNESS構成版、必要安全依存、exact source/component set/artifact、要求revision、対象project、operation scopeを与える。対象projectへの選択構成の配布・更新・復旧を確認する。
+- **成功条件**：HARNESSの各サービス①〜⑦について単体証拠を別々に確認できる。選んだ適格構成版と必要安全依存のみを対象projectへ導入でき、candidate/active構成版、artifact、対象、操作状態、rollback先を追跡できる。HELIXOS-L2-014が定めるHELIX自身（全機構パック）の段階稼働構成は、別のidentity・別判定として参照される。サービス提供版の配布成功をHELIX自身のstage release成立にしない。
+- **反例**：個別配布に他の全6製品の完成を待たせる。あるサービスの成功で7製品全体を成立扱いする。HELIX自身のstage releaseを選択サービスの配布と同一視する。未指定品を収載する、異なるartifactへ切り替える、既存成果を無断で消す、無許可tag/publication/cutoverをする。
+- **失敗時・未完義務**：source/互換/authority/適格性がunknownなら導入を停止してownerへ戻す。部分適用、途中成果、未完作業と復旧先を記録し、再開へ引き継ぐ。
+
+### HELIXOS-L2-022 改善候補登録・還流の受入
+
+- **入力・版**：対象revisionと適用scope付きの観測・失敗、LABO評価/提案/比較実験依頼、判断state、還流先候補を与える（1.0記録土台）。
+- **成功条件**：観測→candidate→既存判断主体の採否→ticket→変更・検証→再観測を因果IDで辿れる。LABOの評価/退行判断とOS登録/振分けが別actor・別authorityとして記録される。
+- **反例**：観測やLABO提案だけで要求/設計/authorityを書換える。OSがLABO評価を代行する。登録数だけで改善効果を主張する。L2-012/013の研究・横断診断をOS ownerへ戻す。
+- **失敗時・未完義務**：評価・適用範囲・人判断・還流先が不足する場合、候補を未解決に保ち、該当するLABO/判断主体/要求ownerへ返す。棄却理由と再評価条件を保持する。
+
+### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入
+
+- **入力・版**：L2-015〜020の関係する正本、ticket、assignment/attempt、検証義務/結果、evidenceを使う（1.0、版付きinterface）。
+- **成功条件**：handoffごとに対象revision/digest、因果ID、scope、未完義務、停止理由、evidenceの一致を確認する。unitごとの成功、handoffの成功、接続固有受入を別に確認する。
+- **反例**：あるunitのsuccessだけで接続・次段受入・ticket完了にする。作成主体が独立reviewを兼ねる。推進が検収義務を変更する、または検収が要求やticketを発行する。
+- **失敗時・未完義務**：受渡しの不一致でconnectionを未成立にし、発生側sourceまたは管理へ戻す。受信側が未完義務を受けた証拠が得られるまで元作業を完了にしない。
+
+### HELIXOS-L2-024 HARNESS提供・運用→LABO→OSの受渡しの受入
+
+- **入力・版**：L2-021の提供版と対象、許可scope、運用結果/data-use/evidence、LABO評価とFeedbackを使う。1.0で後続観測の受口を用意し、後続版能力は必須依存にしない。
+- **成功条件**：提供、利用/運用観測、LABO評価、OS候補登録、判断、変更ticket、再検証を追跡する。対象projectと顧客/Web tenant、権限、データを分け、許可範囲だけを送る。
+- **反例**：WEB-OSのtenant/job/credential/deploymentを本体OSの正本へ統合する。data-use不明/拒否を評価や学習に送る。提供完了を利用者受入や改善成功とする。
+- **失敗時・未完義務**：利用許可、data class、対象revision、LABOの評価範囲が不一致なら送信・採用を止め、権限ownerまたはLABOへ戻す。未評価・未判断・再検証待ちを保持する。
+
+### HELIXOS-L2-025 HELIX-OS統合運転の受入
+
+- **入力・版**：採用済み対象revision、HARNESS構成版、L2-015〜024の該当identity/state/evidence、既存人間判断、停止条件を使う（1.0。後続2.0/3.0/4.0/5.0は前提にしない）。
+- **成功条件**：HELIX自身と性質の異なる複数projectで、要求authorityからticket/Worker/検収/提供・運用/LABO評価/OS還流までのtraceを確認する。各unit・connection・composite固有条件を分けて評価する。1.0全体判定ではHARNESS 7製品の各単体成立、選択構成の接続、構成体の端から端の受入を確認する。
+- **反例**：文書・機構の存在や単体passだけで全体を完成扱いする。unknown/stale/未許可/人判断待ちを隠す。7製品全体完成を個別の初期配布の前提にする。後続版能力を1.0の成功条件にする。HELIX-OSを外販製品と扱う。
+- **失敗時・未完義務**：欠けたunit/connection/sourceへ戻し、構成体未完を維持する。未決authorityと残る義務を後続受入へ引き継ぐ。L1-011/012のLABO移管をOSへ戻さない。
+
+### パック交換・更新・部分成功の横断受入
+
+- **成功条件**：異なるpack identity、契約version、成果物version、依存version、verification scopeの組を与え、選択された正確な収載set・互換範囲と更新先/rollback先を確認する。契約versionまたは依存version更新では影響するconnectionだけをstale化し、必要なunit/connection/compositeの再検証へ辿る。互換範囲内の独立パックを交換した場合も、未完義務と元のsource traceを保つ。
+- **反例**：単体成功をconnection/composite成功とする。部分更新を全体更新済みと表示する。契約・成果物・依存のversion不一致を互換とみなす。unknown impactをUnaffected扱いする。交換後に未完義務、変更前revision、rollback先が失われる。`version_target: 1.0`という印だけから実artifact versionやrelease資格を推定する。
+- **戻し・引継ぎ**：不一致・部分失敗では交換/更新の成功を拒み、該当ownerへ戻す。旧版と新version候補、失敗理由、未完検証義務、復旧先を同じ対象scopeで保持する。
+
+### 既存L2 IDの受入対応index
+
+| 既存L2 ID | 新候補受入の参照先 | 追跡条件 |
+|---|---|---|
+| HELIXOS-L2-001 | 015／016／019／023／025 | 正本・判断source・revision・trace |
+| HELIXOS-L2-002 | 016／019／021／023／024／025 | 要求から運用の欠落/stale/競合、release kanban |
+| HELIXOS-L2-003 | 015／017／023 | 共通統制/product方式の分離と影響伝播 |
+| HELIXOS-L2-004 | 018／019／023 | Worker割当・実行・回収と制約・独立review |
+| HELIXOS-L2-005 | 022／024／025 | 観測、LABO評価、Feedback、ticket・再検証 |
+| HELIXOS-L2-006 | 021／024／025 | 7製品の提供/更新/復旧と運用接続 |
+| HELIXOS-L2-007 | 015／016／019／023／024 | 共通証拠・provenance・相関ID・data-use・stale |
+| HELIXOS-L2-008 | 016／020／023／025 | HARNESS検証義務、CI隔離実行/再開、review/acceptance分離 |
+| HELIXOS-L2-009 | 018／019／023／025 | 中断・交代時のscope/budget/期限/未完義務、重複防止 |
+| HELIXOS-L2-010 | 017／018／020／023／025 | 管理・推進・検収・Worker責務とticket workflow |
+| HELIXOS-L2-011 | 016／017／020／023／025 | 統合順/単位/検証計画と実候補/base更新 |
+| HELIXOS-L2-012 | 対象外・LABO研究候補 | 技術調査のownerをOSへ戻さない |
+| HELIXOS-L2-013 | 対象外・LABO横断診断候補 | 診断/効果評価のownerをOSへ戻さずINTELLIGENCE/SECURITY等との境界も保持 |
+| HELIXOS-L2-014 | 016／024／025。021は対象project配布との接続だけを参照 | HELIX自身（全機構パック）の段階稼働構成と候補/稼働版・切戻し。021のHARNESS構成版配布とはidentity/判定を分ける |
+
+012/013の行は移管案内という既存条件を対応表へ残すための参照であり、OSの候補要求・受入へ戻すものではない。L2-012/013の本文上の移管先と既存L11の該当箇所を合わせて確認する。
