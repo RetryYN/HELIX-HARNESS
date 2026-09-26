@@ -80,8 +80,8 @@
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/generate.py",
-      "sha256": "4d0179e8ea60b9d49560bdae55ccb84f796b27b7361d9fe9a8dc4fea9ab476c0",
-      "note": "static source/governance or merged lineage; no authority promotion"
+      "sha256": "c7b439603c48e4cb252f4d3bbb3569b631115ea2d37c79f8414e601ee4d8a8a0",
+      "note": "static source/governance or merged lineage; no authority promotion [2026-09-26 PR #2155 R2155-01対応: 移行台帳のdocs/governance/legacy-migration/への移動で、現行ファイルを読むこのgeneratorの再生成が移動前pathで失敗したため、現行ファイルを読む箇所だけを新pathへ追従した（出力に新pathを記録する場合はpath定数を、旧pathを記録する場合と固定commitのgit showは旧pathのまま対応表relocatedで読込み側だけを改めた）。一時作業先でbase 3d80407f4と同じ再生成結果になることを確認。判定条件・研究の意味・未採否・replacement状態は変えない。前receipt=4d0179e8ea60b9d49560bdae55ccb84f796b27b7361d9fe9a8dc4fea9ab476c0; 現receipt=c7b439603c48e4cb252f4d3bbb3569b631115ea2d37c79f8414e601ee4d8a8a0; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/validate.py",

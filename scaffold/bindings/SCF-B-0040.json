@@ -20,8 +20,8 @@
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/generate.py",
-      "sha256": "9796b2d781be53d8031588be90328678ce1788ecc3cb3b502982f1a8dc74885b",
-      "note": "migration generator with fixed-capture comparison"
+      "sha256": "df402f023eddb334add09593f87a98ee5481de13f85e965d36bdc20137ac6922",
+      "note": "migration generator with fixed-capture comparison [2026-09-26 PR #2155 R2155-01対応: 移行台帳のdocs/governance/legacy-migration/への移動で、現行ファイルを読むこのgeneratorの再生成が移動前pathで失敗したため、現行ファイルを読む箇所だけを新pathへ追従した（出力に新pathを記録する場合はpath定数を、旧pathを記録する場合と固定commitのgit showは旧pathのまま対応表relocatedで読込み側だけを改めた）。一時作業先でbase 3d80407f4と同じ再生成結果になることを確認。判定条件・研究の意味・未採否・replacement状態は変えない。前receipt=9796b2d781be53d8031588be90328678ce1788ecc3cb3b502982f1a8dc74885b; 現receipt=df402f023eddb334add09593f87a98ee5481de13f85e965d36bdc20137ac6922; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/pre-isolation-outside-holding-67-migration/validate.py",
@@ -110,8 +110,8 @@
     },
     {
       "path": "scaffold/phcap02-03-registration-classification-audit/generate.py",
-      "sha256": "136f2deadba2a7018f9aca95511b3e73d8ba7e76659de5df92a20225a0e65f2c",
-      "note": "PHCAP historical 13 capture generator"
+      "sha256": "0d78f2bdd5743d743c9a58ad03cdff41f3e9cdd7398c2fa25ffda9db16e4b826",
+      "note": "PHCAP historical 13 capture generator [2026-09-26 PR #2155 R2155-01対応: 移行台帳のdocs/governance/legacy-migration/への移動で、現行ファイルを読むこのgeneratorの再生成が移動前pathで失敗したため、現行ファイルを読む箇所だけを新pathへ追従した（出力に新pathを記録する場合はpath定数を、旧pathを記録する場合と固定commitのgit showは旧pathのまま対応表relocatedで読込み側だけを改めた）。一時作業先でbase 3d80407f4と同じ再生成結果になることを確認。判定条件・研究の意味・未採否・replacement状態は変えない。前receipt=136f2deadba2a7018f9aca95511b3e73d8ba7e76659de5df92a20225a0e65f2c; 現receipt=0d78f2bdd5743d743c9a58ad03cdff41f3e9cdd7398c2fa25ffda9db16e4b826; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/phcap02-03-registration-classification-audit/validate.py",

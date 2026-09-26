@@ -105,8 +105,8 @@
     },
     {
       "path": "scaffold/phcap12-13-review/generate.py",
-      "sha256": "e3d71cf66036e88fefc59c8178b200b6bcbb5ced3ff34d85b31243a523483f91",
-      "note": "deterministic static inventory generator [2026-09-25 third-review rebind: Generator now pins product-boundary entrance/connection text through line 45, GitHub operating model through line 177, and Vision-tagged Web/Web-OS L2/L11 through complete source ends. Meaning and classification unchanged.] [2026-09-26 PR #2141再整理: main a4f65a6ffから既存ticket条件群の詳細ID・親要求・対L11・システムと運用の分担を追補した。既存条件本文は保持し、OS導入文のID案内のみ更新。研究pinは元の参照範囲を保持し、対象generatorの固定path・行を現行inventoryへ揃えた。全upstream 23件の存在・digest、artifactの存在を照合。role・obligations・connections・operations・verification・replacementに旧詳細IDのconsumerがないことと、これらの全fieldがmainから不変であることを確認。研究の既存の意味不一致、未採否・未実行・replacement状態は変えない。]"
+      "sha256": "5574ef3beae3ec69b30f94055fcad924ddd1e70217d81d65146f4b214aa44044",
+      "note": "deterministic static inventory generator [2026-09-25 third-review rebind: Generator now pins product-boundary entrance/connection text through line 45, GitHub operating model through line 177, and Vision-tagged Web/Web-OS L2/L11 through complete source ends. Meaning and classification unchanged.] [2026-09-26 PR #2141再整理: main a4f65a6ffから既存ticket条件群の詳細ID・親要求・対L11・システムと運用の分担を追補した。既存条件本文は保持し、OS導入文のID案内のみ更新。研究pinは元の参照範囲を保持し、対象generatorの固定path・行を現行inventoryへ揃えた。全upstream 23件の存在・digest、artifactの存在を照合。role・obligations・connections・operations・verification・replacementに旧詳細IDのconsumerがないことと、これらの全fieldがmainから不変であることを確認。研究の既存の意味不一致、未採否・未実行・replacement状態は変えない。] [2026-09-26 PR #2155 R2155-01対応: 移行台帳のdocs/governance/legacy-migration/への移動で、現行ファイルを読むこのgeneratorの再生成が移動前pathで失敗したため、現行ファイルを読む箇所だけを新pathへ追従した（出力に新pathを記録する場合はpath定数を、旧pathを記録する場合と固定commitのgit showは旧pathのまま対応表relocatedで読込み側だけを改めた）。一時作業先でbase 3d80407f4と同じ再生成結果になることを確認。判定条件・研究の意味・未採否・replacement状態は変えない。前receipt=e3d71cf66036e88fefc59c8178b200b6bcbb5ced3ff34d85b31243a523483f91; 現receipt=5574ef3beae3ec69b30f94055fcad924ddd1e70217d81d65146f4b214aa44044; このBindingの採否・authorityは変更しない。]"
     },
     {
       "path": "scaffold/phcap12-13-review/inventory.json",

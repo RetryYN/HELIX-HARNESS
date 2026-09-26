@@ -18,16 +18,16 @@ ARCH = "064280b5c1c5c98f949e6e3be5ef87cbe4a4b658"
 HISTORICAL = "3df81ad27157c471e004083783f37a5860eaa2ee"
 HEAD = "36accee66242338ded01dcc24d44148faadd3045"
 PREVIOUS_HEAD = "15c2a145c06aedb4e1a081e288e5b302dc4182cf"
-HOLDING = "docs/governance/pre-isolation-outside-holding-67-source-holding.jsonl"
+HOLDING = "docs/governance/legacy-migration/pre-isolation/pre-isolation-outside-holding-67-source-holding.jsonl"
 REGISTER = "docs/governance/management-provisional-requirement-register.jsonl"
 LEDGERS = [
     "docs/governance/legacy-asset-disposition.jsonl",
     "docs/governance/legacy-asset-decisions.jsonl",
     "docs/governance/legacy-asset-copy-read-after.jsonl",
     "docs/governance/legacy-asset-decision-log.md",
-    "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
-    "docs/governance/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
-    "docs/governance/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
+    "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
+    "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
+    "docs/governance/legacy-migration/ir/legacy-ir-product-unit-decomposition-bootstrap.jsonl",
 ]
 FOUR = ["HELIX-HARNESS", "HELIX-OS", "HELIX-Web", "HELIX-Web-OS"]
 IDS = [

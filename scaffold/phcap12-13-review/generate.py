@@ -11,7 +11,7 @@ ROOT = HERE.parents[1]
 ARCHIVE = ROOT / "archive/legacy-generation-2026-09-14/root"
 PHASE_INV = ROOT / "docs/governance/phase-capability-inventory.json"
 DISP = ROOT / "docs/governance/legacy-asset-disposition.jsonl"
-PHASE = ROOT / "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl"
+PHASE = ROOT / "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl"
 DECISIONS = ROOT / "docs/governance/legacy-asset-decisions.jsonl"
 INV = HERE / "inventory.json"
 FAILURE_CONSUMER_INTERPRETATION = "historical source failure/consumer descriptions remain candidate evidence; current execution, read-after, and closure are unknown"
@@ -287,7 +287,7 @@ inventory = {
         "phase_inventory_sha256": sha(PHASE_INV.read_bytes()),
         "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl",
         "asset_ledger_sha256": sha(DISP.read_bytes()),
-        "phase_classification_path": "docs/governance/legacy-asset-phase-product-classification-bootstrap.jsonl",
+        "phase_classification_path": "docs/governance/legacy-migration/asset/legacy-asset-phase-product-classification-bootstrap.jsonl",
         "phase_classification_sha256": sha(PHASE.read_bytes()),
         "decision_ledger_path": "docs/governance/legacy-asset-decisions.jsonl",
         "decision_ledger_sha256": sha(DECISIONS.read_bytes()),
