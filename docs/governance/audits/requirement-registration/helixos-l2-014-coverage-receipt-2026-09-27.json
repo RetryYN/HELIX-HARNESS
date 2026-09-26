@@ -1,0 +1,70 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-L2-014-2026-09-27",
+  "authority_effect": "none",
+  "candidate_digest_rule": "docs/helix-os/L2-requirements/governance-requirements.mdの「### HELIXOS-L2-014 」見出し行から、次の「#」で始まる行の直前（またはファイル末尾）までをUTF-8で取り、末尾の空行を除いて改行1つで終える。そのSHA-256を\"sha256:\"付きで記す",
+  "source_atom_set_digest_rule": "各atomを「atom_id + 半角空白 + source_line_sha256」とし、atomsの順で改行連結する。末尾改行なし",
+  "source_holding": "MPR-SH-CANDIDATE-003（docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl）",
+  "source_file": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+  "source_file_sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+  "pre_isolation_check": "入力atomのsource_pathはMPR-SH-PREISOLATION-002の333件に含まれない（merge admission条件6・7は該当なし）",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-014",
+      "requirement_kind": "composite",
+      "candidate_lines": [
+        619,
+        633
+      ],
+      "candidate_semantic_digest": "sha256:2c73c92e1a9e2d68505d889f2b48787f2b097c817f4870cd70f4c154290eeed7",
+      "source_atom_set_digest": "sha256:51d8195f35899e073fe6ee1a874472c4fc710fc01037cb5460728448fa951f85",
+      "source_atom_count": 6,
+      "source_collection_scope": "旧FRS v0.2候補（MPR-SH-CANDIDATE-003が保持する行atom）のうち、FRS-BR-008とFRS-BR-009の見出しと本文の行。空行は含めない",
+      "atoms": [
+        {
+          "atom_id": "LEGACY-CAND-LINE-002130",
+          "source_line": 59,
+          "source_line_sha256": "sha256:301915cf787db13a5e71c646386c7e30b685e0fdbaaf0e37c8113361b54efea0",
+          "disposition": "carried",
+          "relation": "見出し。FRS-BR-008のidentityを起点として保持する"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002131",
+          "source_line": 61,
+          "source_line_sha256": "sha256:8c0240208ec1027dd3d0a042fb24b380b9191ca76e88e4bb1004e95d0bab2449",
+          "disposition": "carried",
+          "relation": "部分的に保持：「正式配布の前から、必要な検証を保ったまま内部で使う」意味を保持し、対象を旧CIの改善から新世代で検証したパックの段階リリースへ変える。「待ち時間・再実行の実測」は本候補で扱わず、原文はMPR-SH-CANDIDATE-003に残る（HDEC-STAGE-RELEASE-2026-09-27の旧HELIXとの対応）"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002132",
+          "source_line": 62,
+          "source_line_sha256": "sha256:9e0a6e8bc527c6174922266b8d7149cfce596726593c5691d23c325ea5010a25",
+          "disposition": "preserved_pending",
+          "relation": "本候補では扱わない（Cursor限定委譲）。原文はMPR-SH-CANDIDATE-003に保留する。現行OS L2はWorker要求源として別途再採否するとしている"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002133",
+          "source_line": 64,
+          "source_line_sha256": "sha256:607d431b2befd8e567ddfcba91949c8c6005f0d25d2e2c5e49c9f9910715579d",
+          "disposition": "carried",
+          "relation": "見出し。FRS-BR-009のidentityを起点として保持する"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002134",
+          "source_line": 66,
+          "source_line_sha256": "sha256:711a35fddd4526cf7e12b3eb980ec1af9481fe5fc790f20ba15b7fe31a815214",
+          "disposition": "carried",
+          "relation": "保持：各パックに必要な安全の依存を含めて組み、無関係な機構の完成を待たず、安全の条件が欠ける段階はリリースしない。HARNESS-L2-010（MPR-RC-HARNESS-L2-010-001）が保留していたatomを本候補で保持する"
+        },
+        {
+          "atom_id": "LEGACY-CAND-LINE-002135",
+          "source_line": 67,
+          "source_line_sha256": "sha256:29b1489c1719c040cd601e32ef5bd7e1b2a410749143e8db5110a985b328a33c",
+          "disposition": "carried",
+          "relation": "保持：検収済みの組合せの統合・更新・rollback・運用の検証を個別の成功とは別に確かめる。「Lite／Full」の名前は採らず、段階リリース（v0.x）と本体（v1.0）とする（2026-09-27のPO回答）。HARNESS-L2-010／021／022でも同じatomを別の観点で使う"
+        }
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}

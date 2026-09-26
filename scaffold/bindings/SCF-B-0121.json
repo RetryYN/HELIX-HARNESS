@@ -20,8 +20,8 @@
     },
     {
       "path": "docs/governance/management-provisional-requirement-register.jsonl",
-      "sha256": "b0f89b99452c14d0c1bc91cc43937fcf4dfcf993c421413221d4a197479758c7",
-      "note": "fixed BASE static input; no old runtime execution [2026-09-27 PR #2157 merge admission A2157-01 read-after: docs/governance/management-provisional-requirement-register.jsonlは、管理層の要求仮登録契約に従いHARNESS-L2-010〜022のrequirement_candidate 13件（MPR-RC-HARNESS-L2-0NN-001）をregisterへappendし、被覆receiptを加えた変更、およびregisterの現在SHAをpinする研究用scaffoldの付け直しに合わせて更新した。既存register行は変えていない。本bindingのrole・obligations・connections・replacement・artifactは追記に依存しない。採否・authorityを変更しない。]"
+      "sha256": "3895b1b9c3f321d63af737cbcf5f91f4a8ec2a9ee906ac07cc18710dd95f1e83",
+      "note": "fixed BASE static input; no old runtime execution [2026-09-27 PR #2157 merge admission A2157-01 read-after: docs/governance/management-provisional-requirement-register.jsonlは、管理層の要求仮登録契約に従いHARNESS-L2-010〜022のrequirement_candidate 13件（MPR-RC-HARNESS-L2-0NN-001）をregisterへappendし、被覆receiptを加えた変更、およびregisterの現在SHAをpinする研究用scaffoldの付け直しに合わせて更新した。既存register行は変えていない。本bindingのrole・obligations・connections・replacement・artifactは追記に依存しない。採否・authorityを変更しない。] [2026-09-27 段階リリースのPO判断 read-after: docs/governance/management-provisional-requirement-register.jsonlは、docs/governance/decisions/stage-release-po-decisions-2026-09-27.mdに従い、HELIX-OS L2の末尾へHELIXOS-L2-014（未採否の候補）を、L11の末尾へ対の受入を追加し、管理層registerへMPR-RC-HELIXOS-L2-014-001を追記した変更に合わせて付け直した。既存の要求本文・register行と行位置は変えておらず、研究用pinは文書全体のSHA（066・074はbytesも）だけを付け直した。本bindingのrole・obligations・connections・replacement・artifactは追加節に依存しない。採否・authorityを変更しない。]"
     },
     {
       "path": "docs/concept/product-boundary.md",
