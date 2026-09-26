@@ -667,7 +667,7 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **保証**：推進はOSが担い、INTELLIGENCE案を無条件に採らず、HARNESSの工程語彙・順序・義務をOS内で再定義しない。1.0ではHARNESS定義済み工程部品の規則的な組合せと途中結果による差戻しを行う。部品にない流れまで組み立てる能力は`version_target: 4.0`として保持し、1.0の成立条件にしない。
 - **単独成立の依存**：L2-015／016、HARNESS工程契約、SECURITYのauthority制約、INTELLIGENCEの案とLABOの水準が提供される場合の評価材料。version_target: 1.0。
 - **失敗時の戻し先／未完義務**：入力不足・unknown・conflict・未解決依存・scope逸脱はticketを実行可能にせず、未解決の要求・許可・依存へ返す。再開時に元の要求revision、停止理由、未完義務、予算/期限制約を維持する。
-- **束ねる既存条件**：HELIXOS-L2-003／010／011、ticket詳細ID HXT-FR-001〜008／011／016〜019／024およびHXT-TYPE/FLOWのticket意味、部品workflow、検収・統合計画境界。旧mode名や一本道workflowを追加しない。
+- **束ねる既存条件**：HELIXOS-L2-003／010／011、現行のticket意味・workflow・handoffを記すHXT-TYPE-01〜21／HXT-FLOW-01〜09／HXT-SYS-01、およびHELIXOS-L2-008／010／011の部品workflow・検収・統合計画条件。Execution Ticket旧候補の条件は旧source basisとして確認し、存在しない現行IDを作らない。旧mode名や一本道workflowを追加しない。
 
 ### HELIXOS-L2-018 Worker割当・実行統制（単体候補）
 
@@ -699,15 +699,15 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **失敗時の戻し先／未完義務**：検証不足・oracle欠落・環境違いは未完としてHARNESS契約またはticketへ返す。中断・失敗では同じHEAD/義務/許可境界に束縛した未完状態を引き継ぐ。
 - **束ねる既存条件**：HELIXOS-L2-002／007／008／011、HBR-P3/P6およびHR-FR-HYB-010由来の動的検証・隔離・証拠・計画/実行責務分離。
 
-### HELIXOS-L2-021 HARNESS package配布・段階リリース（単体候補）
+### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）
 
-- **親L1**：HELIXOS-L1-005／007／008。
+- **親L1**：HELIXOS-L1-005／007。
 - **入力**：選択するHARNESS構成版のexact component set/source/artifact、要求revision、対象project、許可scope、互換性・適格性・運用証拠。
-- **提供**：選択したHARNESS構成を対象へ導入・更新・復旧し、候補版と稼働版、対象、artifact、段階状態、復旧先を追跡するOSの配布運転。
-- **保証**：bundleへの収載・除外を明示し、別artifactへの切替や既存成果の無断消失を拒否する。OSは外販製品ではない。1.0の全体完成条件はHARNESSサービス①〜⑦の各単体成立と接続成立を含むが、**初期の個別配布段階は選択された適格サービスとその必要な安全依存だけを対象とし、他の全製品完成待ちを前提にしない**。未決の後続能力は`version_target`を保ち、1.0の依存にしない。
-- **単独成立の依存**：L2-015／016／019／020、HARNESSの該当サービス契約・artifact、SECURITYの操作authority、INFRASTRUCTURE資源。初期段階の版scopeは選択対象と必要依存に限る。1.0全体判定はL2-025で別評価する。
+- **提供**：HARNESS構成版を対象projectへ配布・更新・復旧し、candidate/active構成版、対象、artifact、操作状態、復旧先を追跡するOSの配布運転。
+- **保証**：bundleへの収載・除外を明示し、別artifactへの切替や既存成果の無断消失を拒否する。対象projectのサービス提供版の配布・更新は、HELIX自身（全機構のパック）の段階的な稼働構成・切戻しを定めるHELIXOS-L2-014と別identity・別判定である。021はHARNESS構成版をprojectへ導入する能力に限られ、HELIX全体のstage releaseをサービスの選択配布へ読み替えない。選択対象と必要な安全依存だけを配布でき、他の全製品の完成待ちを前提にしない。未決の後続能力は`version_target`を保ち、1.0の依存にしない。
+- **単独成立の依存**：L2-015／016／019／020、HARNESSの該当サービス契約・artifact、SECURITYの操作authority、INFRASTRUCTURE資源。個別project配布の構成版scopeは選択対象と必要依存に限る。HELIX自身のstage releaseはL2-014を構成体identityとして参照し、1.0全体判定はL2-025で別評価する。
 - **失敗時の戻し先／未完義務**：適格性・互換性・source digest・権限不明なら導入を止め、管理/提供元へ返す。更新失敗では直前qualified版または明示replacementの復旧先、途中成果と未完義務を保持する。tag/publication/cutoverを無許可で行わない。
-- **束ねる既存条件**：HELIXOS-L2-002／006／014、FRS-BR-001〜007/009の機能単位・明示収載・成熟度・impact・再現性・rollback・安全閉包条件。旧Slice/Module/Bundle名、channel、固定構成数を正本化しない。
+- **束ねる既存条件**：HELIXOS-L2-002／006のHARNESS構成版の対象project配布、更新・復旧条件。HELIXOS-L2-014のHELIX自身の段階リリースは別構成体identityであり、021の意味へ統合しない。FRS-BR-001〜007/009の機能単位・明示収載・成熟度・impact・再現性・rollback・安全閉包条件を参照する。旧Slice/Module/Bundle名、channel、固定構成数を正本化しない。
 
 ### HELIXOS-L2-022 改善候補登録・還流（単体候補）
 
@@ -727,7 +727,7 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **保証**：各単体、接続固有条件、構成体条件を別に確認する。単体成立からhandoffまたは次段受入・ticket完了を自動生成しない。管理/推進/検収/Workerの責務は交差してもauthorityを混同しない。
 - **単独成立の依存**：L2-015〜020の各必要unitとversioned interface、SECURITY/INFRASTRUCTUREとの対応する境界。version_target: 1.0。
 - **失敗時の戻し先／未完義務**：handoffのrevision/digest/authority/証拠不一致は接続を未成立として保持し、発生側の正本または管理へ返す。受信側が未完義務を受理した証拠が揃うまで元ticketを完了にしない。
-- **束ねる既存条件**：HELIXOS-L2-001〜004／007〜011、ticket graphとHXT-FR-001〜019の接続条件。
+- **束ねる既存条件**：HELIXOS-L2-001〜004／007〜011、現行のticket詳細ID HXT-TYPE-01〜21／HXT-FLOW-01〜09／HXT-SYS-01／HXT-USE-01が示すticket graph・種類・flow・構成体・周辺job境界。
 
 ### HELIXOS-L2-024 HARNESS提供・運用→LABO→OSの受渡し（接続候補）
 
@@ -766,25 +766,35 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 | HELIXOS-L2-011 | 016／017／020／023／025 | 統合順・単位・検証計画、実候補/base更新の再計画 |
 | HELIXOS-L2-012 | 対象外。LABOの研究候補を参照 | 技術調査のownerをOSへ戻さず、HELIX-LABOへの移管状態を保つ |
 | HELIXOS-L2-013 | 対象外。LABOの横断診断候補を参照 | 効果・横断診断のownerをOSへ戻さず、LABOおよびINTELLIGENCE/SECURITY等との責務境界を保つ |
-| HELIXOS-L2-014 | 016／021／024／025 | 段階リリースと候補/稼働版、導入・更新・切戻し |
+| HELIXOS-L2-014 | 016／024／025。021は対象project配布との接続だけを参照 | HELIX自身（全機構パック）の段階稼働構成と候補/稼働版・切戻し。021のHARNESS構成版配布とidentity/判定を分ける |
 
 このindexは既存条件の参照であり、既存本文の置換・圧縮ではない。要求IDの意味を変える、削減・分割・統合・retireする人間判断はここから生成しない。
 
-### 旧source basisと意味の対応
+### 旧source basisと現行L2保持箇所の根拠確認
 
-旧sourceは読む資料であり、旧実装・workflow・CLI・DB・test・受入結果は移行せず、合格証拠にもしない。対応箇所、asset ID、archive path、source SHA-256を記録する。
+旧sourceは現行L2の要求意味を保持している根拠の確認に用いる。次表は旧atomを新候補へ割り当てるcrosswalkではなく、新候補が既存L2の保持箇所を参照する際の根拠確認である。現行保持箇所は既存のHELIXOS-L2-001〜014の節・条件を示す。015〜025への新旧atom割当て、旧source atomの完全集合、意味変更・retireはここから主張しない。source atomの完全な無損失traceは別途のcarry-forward receiptで管理する。旧実装・workflow・CLI・DB・test・受入結果は移行せず、合格証拠にもしない。asset ID、archive path、source SHA-256は資産台帳と照合して記録する。
 
-| 旧asset ID・source | SHA-256 | 対応する原文範囲と保持/変更 |
-|---|---|---|
-| `LEGACY-ASSET-18F7940E7994634D39A1` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | `7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc` | L46-67のHBR-P0/P1/P2/P3/P4/P6/P7/P8/P9。逸脱と工程復帰、合意範囲の継続、Worker、検証、改善、配布、記録、外部境界、traceという主題を015〜024へ割当てる。旧自動修復・外部検索・memory・CI/gated-push実装は採らず、現行OS/周辺機構へ再配置する。 |
-| `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` | L38-47、L49-79のHIL-BR-01〜28。画面適用、workflow/ticket、trace、source/authority/scopeを参照する。旧Issue/harness.db/Claude hook/固定agent構成を要件化せず、authority・handoff・証拠・工程境界のみ現行入力へ再導出する。 |
-| `LEGACY-ASSET-3A15E5645D2D2A59DFF5` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md` | `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b` | L18-185、L186-289、L376-508。ticket input/identity/dependency/admission/assignment/attempt/retry/review/evidence/lifecycle/projection/replay/security/release/management条件を017〜020/023へ接続する。旧runtime実装・DBは移さず、Worker/SECURITY/INFRASTRUCTURE/LABOへ現行責務を再配置する。 |
-| `LEGACY-ASSET-201EED9C5D6D2FF4D41B` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md` | `bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20` | L21-67 FRS-BR-001〜009。機能単位の独立確認、明示収載/除外、成熟度、impact、再現配布/rollback、安全依存、構成体の独立受入へ対応する。旧Slice/Module/Bundle名・channel・個数は採択しない。 |
-| `LEGACY-ASSET-B75E46DBE77592351574` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md` | `eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17` | L31-219のFRS-FR-001〜006/R-01〜24。identity/lifecycle、ownership、admission/recovery、impact/CI、manifest/replay、全要求coverageを016/020/021/025へ対応する。旧Module/Bundle構成やchannelを継承しない。 |
-| `LEGACY-ASSET-2B0DE689AA572DE66181` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md` | `0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe` | L1/L2 resident execution/lane/assignment/queue/continuity候補。Worker実行、lane役割、OS assignmentへ再配置し、旧常駐/provider固有方式は必須化しない。 |
-| `LEGACY-ASSET-A6926200F28B26300432` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md` | `e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765` | L1/L2の三者による作成/review/承認分離候補。現行のlane/Worker区別、独立review/authorityへ再導出し、3社/provider名を固定しない。 |
+| 旧asset ID・source | SHA-256 | 旧sourceで確認した主題 | 現行L2に既にある保持箇所と変更境界 |
+|---|---|---|---|
+| `LEGACY-ASSET-18F7940E7994634D39A1` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md` | `7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc` | L46-67のHBR-P0/P1/P2/P3/P4/P6/P7/P8/P9にある逸脱・工程復帰、合意範囲継続、Worker、検証、改善、配布、記録、外部境界、traceの主題。 | 既存L2-001〜014のauthority・共通統制・Worker・改善還流・提供・証拠・検収・復旧・workflow・統合計画の条件を確認する根拠。旧自動修復・外部検索・memory・CI/gated-push実装は現行保持箇所とせず、旧sourceの方式を現行条件へ割り当てない。 |
+| `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md` | `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb` | L38-47、L49-79のHIL-BR-01〜28にある画面適用、workflow/ticket、trace、source/authority/scopeの主題。 | 既存L2-001／002／003／004／007／009／010／011／014のauthority・trace・scope・handoff・recovery・段階構成条件を確認する根拠。旧Issue/harness.db/Claude hook/固定agent構成は保持箇所としない。 |
+| `LEGACY-ASSET-3A15E5645D2D2A59DFF5` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md` | `f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b` | L18-185、L186-289、L376-508の旧ticket input/identity/dependency/admission/assignment/attempt/retry/review/evidence/lifecycle/projection/replay/security/release/management条件。 | 現行の保持箇所として、既存L2-004／007／008／009／010／011／014と、HXT-RQ／HXT-TYPE／HXT-FLOW／HXT-SYS／HXT-USEの現行本文を確認する根拠。旧候補IDを現行IDと同一視せず、旧runtime実装・DBを移さない。Worker/SECURITY/INFRASTRUCTURE/LABOの現行責務境界は現行L2本文による。 |
+| `LEGACY-ASSET-201EED9C5D6D2FF4D41B` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md` | `bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20` | L21-67のFRS-BR-001〜009にある機能単位の独立確認、明示収載/除外、成熟度、impact、再現配布/rollback、安全依存、構成体の独立受入。 | 既存L2-002／006／008／011／014のportfolio trace、対象projectへの提供/復旧、検収、統合計画、HELIX段階構成条件を確認する根拠。旧Slice/Module/Bundle名・channel・個数を保持条件へしない。 |
+| `LEGACY-ASSET-B75E46DBE77592351574` `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md` | `eb1a7747afacd607217ee9e1905f87e629354a023102c1f32521ff8a9bc54a17` | L31-219のFRS-FR-001〜006/R-01〜24にあるidentity/lifecycle、ownership、admission/recovery、impact/CI、manifest/replay、要求coverageの主題。 | 既存L2-002／006／008／011／014のtrace・HARNESS構成版の配布/更新/復旧・検収・統合計画・HELIX段階構成条件を確認する根拠。旧Module/Bundle構成やchannelを現行の要求identityにしない。 |
+| `LEGACY-ASSET-2B0DE689AA572DE66181` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/resident-lane-orchestration-requests.md` | `0ff33afc0cf22a4cf1ffb3f33334069f1d624f0f67f56451b16632ed6d5d52fe` | L1/L2のresident execution/lane/assignment/queue/continuity候補。 | 既存L2-004／007／009／010のWorker実行、記録、continuity、handoff条件を確認する根拠。旧常駐/provider固有方式は保持条件としない。 |
+| `LEGACY-ASSET-A6926200F28B26300432` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/three-lane-cloud-governance-requests.md` | `e96a70f02c517f33d9cbdc43d92e6d7b36ded7bbf023226f1cc4f63b5f7c2765` | L1/L2の複数laneによる作成/review/承認分離候補。 | 既存L2-004／007／009／010のlane/Worker区別、独立review、authority、handoff条件を確認する根拠。旧provider数や3社固定を現行条件としない。 |
 
-Conceptの現行入力範囲はL98-110（1.0土台と後続版の非前提）、L119-165（工程・HARNESS/OS責務）、L166-212（提供と改善）、L214-238（機構境界）。OS L1の入力範囲はL19-44、L61-72である。保持するのは要求から運用・改善までのtrace、単位ごとの独立確認、選択済み工程、Workerと独立検証、原証拠・再構築、段階適用と切戻し。旧OSが一体所有していた実行・学習・外部操作・CI等を現行のOS/周辺機構へ分ける変更は、現行Concept/L1、および[2026-09-26 handoff integration PO decision](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)、[2026-09-26 infrastructure placement PO decision](../../governance/decisions/infrastructure-concept-placement-po-decisions-2026-09-26.md)に基づく。
+この根拠確認表は既存L2保持箇所の説明であり、旧atomから新候補への割当て、receiptの代替、要求意味の新規移管ではない。
+
+保持位置はbase `719e05d579584ac961256bdb8b11f8fc7b643a14` の本書で次の行に固定する。今回もこれらの行は同一bytesで残る。
+
+| 根拠source | 現行で保持する行・節 |
+|---|---|
+| pillar-requirements | 54〜62行（001〜009）、286〜305行（Worker・学習・ログ・CIの具体条件） |
+| infinity-loop-platform-requirements | 103〜168行（ticketと上流作業・finding還流）、425〜457行（要求形成・人間反応） |
+| execution-ticket-requirements | 534〜609行（Execution Ticket、HXT-RQ-01〜07、HXT-TYPE-01〜21、HXT-FLOW-01〜09、HXT-SYS-01、HXT-USE-01） |
+| functional-release-slice-requests / requirements | 459〜493行（提供・再編の具体条件と保持/不採用範囲）、611〜633行（HELIX自身の段階リリースの別identity） |
+| resident-lane-orchestration / three-lane-cloud-governance | 57・62行（004/009）、219〜229行（Worker capacity）、293・298行（Worker/記録）、396〜423行（継続と再構成）、534〜609行（割当てと試行・handoff） |
 
 ### 人の判断が残る点
 

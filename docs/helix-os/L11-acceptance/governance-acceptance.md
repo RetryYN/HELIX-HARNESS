@@ -363,11 +363,11 @@ HELIXOS-L2-004／005／007／009について、次の利用条件を確認する
 - **反例**：全案件に固定段数を強制する、HARNESS oracleをOSが足す/外す、必要検証を抜く、旧CI greenまたは別HEAD greenを使う、CI成功でmeaning review/acceptance/releaseを代替する。
 - **失敗時・未完義務**：検証義務やrunnerが足りなければ未完状態でHARNESS契約・ticket・資源ownerへ返す。失敗を検査弱化で成功化せず、再開条件と義務を保持する。
 
-### HELIXOS-L2-021 HARNESS配布・段階リリースの受入
+### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入
 
-- **入力・版**：選択サービス、必要安全依存、exact source/component set/artifact、要求revision、対象project、operation scopeを与える。初期配布は選択サービスの版に限り、1.0全体判定は分ける。
-- **成功条件**：HARNESSの各サービス①〜⑦について単体証拠を別々に確認できる。選んだ適格serviceと必要安全依存のみの初期導入ができ、candidate/active version、artifact、対象、段階状態、rollback先を追跡できる。1.0全体受入では7製品単体に加えて接続/構成体を個別に確認する。
-- **反例**：個別配布に他の全6製品の完成を待たせる。あるサービスの成功で7製品全体を成立扱いする。未指定品を収載する、異なるartifactへ切り替える、既存成果を無断で消す、無許可tag/publication/cutoverをする。
+- **入力・版**：選択するHARNESS構成版、必要安全依存、exact source/component set/artifact、要求revision、対象project、operation scopeを与える。対象projectへの選択構成の配布・更新・復旧を確認する。
+- **成功条件**：HARNESSの各サービス①〜⑦について単体証拠を別々に確認できる。選んだ適格構成版と必要安全依存のみを対象projectへ導入でき、candidate/active構成版、artifact、対象、操作状態、rollback先を追跡できる。HELIXOS-L2-014が定めるHELIX自身（全機構パック）の段階稼働構成は、別のidentity・別判定として参照される。サービス提供版の配布成功をHELIX自身のstage release成立にしない。
+- **反例**：個別配布に他の全6製品の完成を待たせる。あるサービスの成功で7製品全体を成立扱いする。HELIX自身のstage releaseを選択サービスの配布と同一視する。未指定品を収載する、異なるartifactへ切り替える、既存成果を無断で消す、無許可tag/publication/cutoverをする。
 - **失敗時・未完義務**：source/互換/authority/適格性がunknownなら導入を停止してownerへ戻す。部分適用、途中成果、未完作業と復旧先を記録し、再開へ引き継ぐ。
 
 ### HELIXOS-L2-022 改善候補登録・還流の受入
@@ -421,6 +421,6 @@ HELIXOS-L2-004／005／007／009について、次の利用条件を確認する
 | HELIXOS-L2-011 | 016／017／020／023／025 | 統合順/単位/検証計画と実候補/base更新 |
 | HELIXOS-L2-012 | 対象外・LABO研究候補 | 技術調査のownerをOSへ戻さない |
 | HELIXOS-L2-013 | 対象外・LABO横断診断候補 | 診断/効果評価のownerをOSへ戻さずINTELLIGENCE/SECURITY等との境界も保持 |
-| HELIXOS-L2-014 | 016／021／024／025 | 段階リリース、候補/稼働版、導入/更新/切戻し |
+| HELIXOS-L2-014 | 016／024／025。021は対象project配布との接続だけを参照 | HELIX自身（全機構パック）の段階稼働構成と候補/稼働版・切戻し。021のHARNESS構成版配布とはidentity/判定を分ける |
 
 012/013の行は移管案内という既存条件を対応表へ残すための参照であり、OSの候補要求・受入へ戻すものではない。L2-012/013の本文上の移管先と既存L11の該当箇所を合わせて確認する。
