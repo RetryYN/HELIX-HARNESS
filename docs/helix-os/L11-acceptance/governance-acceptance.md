@@ -268,3 +268,42 @@ HELIXOS-L2-004／005／007／009について、次の利用条件を確認する
 
 改善効果が観測できなかった場合も結果を保持し、比較成立と性能改善実証を別に評価する。
 非UIでもL2要求と受入を省略せず、必要な適用性記録を残す。
+
+## ticket詳細要求の受入
+
+対のL2の詳細IDに対応する未実行の受入案。採否・実装許可・受入済みを生成しない。種類の行は目的・発行・合流先を一組で確かめ、接続の行は端から端まで確かめる。各行でL2のシステム／運用の分担も確認し、入力・判断の不足をシステムで補完した場合は不成立とする。
+
+| 詳細ID | 親主要求 | 成功条件 | 反例（不合格） |
+|---|---|---|---|
+| HXT-TYPE-01 | HELIXOS-L2-010 | 「Forward 大」について、目的「構成体（システム全体）を、開発方式の規定路線で要求から受入まで通す」、発行「計画」、合流先「本流」を同じticketで確認できる。 | 単体CIだけで構成体の受入を成立させる |
+| HXT-TYPE-02 | HELIXOS-L2-010 | 「Forward 中」について、目的「接続（機能と機能のつなぎ）を、開発方式の規定路線で作る」、発行「計画」、合流先「Forward 大」を同じticketで確認できる。 | 接続を作らず単体の完了だけでForward 大へ合流する |
+| HXT-TYPE-03 | HELIXOS-L2-010 | 「Forward 小」について、目的「単体の機能を、開発方式の規定路線で作る」、発行「計画」、合流先「Forward 中／大」を同じticketで確認できる。 | 単体の範囲を越えた実差分を小のまま通す |
+| HXT-TYPE-04 | HELIXOS-L2-010 | 「Discovery」について、目的「開発の途中で検証が必要になったとき、または範囲が分からないときに確かめる」、発行「突発」、合流先「発行元のticket」を同じticketで確認できる。 | 範囲不明を解消しないまま発行元を完了にする |
+| HXT-TYPE-05 | HELIXOS-L2-010 | 「PoC」について、目的「技術的に成り立つかを確かめる。画面の有無に関係なく、成立性が不明なときに発行する。本番実装にはしない」、発行「計画（L2.5）」、合流先「Backflow→要求エンジンの2次形成→Decide」を同じticketで確認できる。 | 画面がないことだけでPoCを省略する／本番実装へ流用する |
+| HXT-TYPE-06 | HELIXOS-L2-010 | 「Prototype」について、目的「画面の操作と使う人の反応を確かめる。画面のない対象では発行しない」、発行「計画（L2.5）」、合流先「Backflow→要求エンジンの2次形成→Decide」を同じticketで確認できる。 | 画面なしの対象にPrototypeを必須発行する |
+| HXT-TYPE-07 | HELIXOS-L2-010 | 「Decide」について、目的「裁定。要求の確認や技術の選定をPR化して決める」、発行「計画」、合流先「採用→Forward、不採用→記録して終了、方針変更→次の計画」を同じticketで確認できる。 | 不採用なのにForwardへ進める |
+| HXT-TYPE-08 | HELIXOS-L2-010 | 「Backflow」について、目的「下流の結果（PoC・Prototypeの結果、要求の入力不足、下流で分かったこと）を要求へ戻す」、発行「PoC・Prototypeの後は計画、それ以外は突発」、合流先「要求エンジン（L2）」を同じticketで確認できる。 | Backflowを経ずに下流が要求を書き換える |
+| HXT-TYPE-09 | HELIXOS-L2-010 | 「Reverse」について、目的「実装の事実から設計へ戻す。Scrum Reverseを含む」、発行「突発（設計と実装のずれ、同種finding再発、性能退行、障害等）と計画（Scrum Reverseのcheckpoint：sprint review前、release candidate合流前、public contract・DB schema・主要dependency・NFR budgetの変更時。旧`helix-harness-requirements_v1.3.md:94-102`）」、合流先「Forwardの該当層」を同じticketで確認できる。 | 必須checkpointを計画・実行せずにrelease-readyにする |
+| HXT-TYPE-10 | HELIXOS-L2-009／HELIXOS-L2-010 | 「Recovery」について、目的「AIの逸脱・暴走・context切れから正常な地点へ戻す」、発行「突発」、合流先「中断していた工程」を同じticketで確認できる。 | 復旧で累積予算・未完義務や許可境界を失う |
+| HXT-TYPE-11 | HELIXOS-L2-010 | 「Incident」について、目的「本番障害に緊急対応する」、発行「突発」、合流先「運用評価（L12）。恒久対策はReverse経由」を同じticketで確認できる。 | 緊急対応だけで恒久対策を完了にする |
+| HXT-TYPE-12 | HELIXOS-L2-010 | 「Refactor」について、目的「振る舞いを変えずにコードの構造を直す」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forward 小」を同じticketで確認できる。 | 振る舞いを変える修正をRefactorで閉じる |
+| HXT-TYPE-13 | HELIXOS-L2-010 | 「Design-refactor」について、目的「外部の振る舞いを保って設計の構造を直す」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forward」を同じticketで確認できる。 | 外部契約の変更をDesign-refactorで閉じる |
+| HXT-TYPE-14 | HELIXOS-L2-010 | 「Performance-refactor」について、目的「設計を保って性能を上げる。測れない高速化は不可」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forward」を同じticketで確認できる。 | 性能を測定せず高速化を完了にする |
+| HXT-TYPE-15 | HELIXOS-L2-010 | 「Redesign」について、目的「外部の約束・要求・受入条件を変えて設計をやり直す」、発行「計画」、合流先「Forward（要求が変わるときはDecideを経る）」を同じticketで確認できる。 | 要求が変わるのにDecideを経ずForwardへ合流する |
+| HXT-TYPE-16 | HELIXOS-L2-010 | 「Retrofit」について、目的「依存・基盤・構成の更新に合わせて段階的に移行する」、発行「計画（範囲を入れれば事象からも発行可）」、合流先「Forwardの該当層」を同じticketで確認できる。 | 段階移行の対象層へ戻らず全体を完了にする |
+| HXT-TYPE-17 | HELIXOS-L2-010 | 「Research」について、目的「選定や比較のための参考ソースを集める。決定には関わらない」、発行「計画」、合流先「依頼元」を同じticketで確認できる。 | Researchで採否を決める |
+| HXT-TYPE-18 | HELIXOS-L2-010 | 「Add-feature」について、目的「既存のものに機能を差分で追加する」、発行「計画」、合流先「Forwardの該当層」を同じticketで確認できる。 | 既存層の差分へ接続しない機能追加を完了にする |
+| HXT-TYPE-19 | HELIXOS-L2-010 | 「Version-up」について、目的「後の版へ回した項目を保全し、時期が来たら取り込む」、発行「計画」、合流先「取り込み時にDecide→Add-feature」を同じticketで確認できる。 | 将来項目を消す／DecideなしにAdd-featureへ取り込む |
+| HXT-TYPE-20 | HELIXOS-L2-010／HELIXOS-L2-005 | 「Experiment（案）」について、目的「LABOの比較実験。改善の候補を今の方式と比べるために、追加の実行が要るときだけ発行する。評価対象のticketとは別のticketにし、本線と別の予算と列で動かす」、発行「計画（LABOの比較実験の依頼をOSが登録）」、合流先「LABOの評価（結果はFeedbackとしてOSへ戻る）」を同じticketで確認できる。 | 観測だけでticketを増やす／評価作業の完了で対象ticketを閉じる |
+| HXT-TYPE-21 | HELIXOS-L2-010／HELIXOS-L2-005 | 「Training（案、3.0）」について、目的「INTELLIGENCEのローカルLLMの学習・チューニング。LABOが利用区分を付けた材料だけを使う」、発行「計画（INTELLIGENCEの学習の案をOSが登録）」、合流先「LABOの評価→Decide」を同じticketで確認できる。 | 利用区分のない材料を学習に使う／3.0の案から今の実行許可を作る |
+| HXT-FLOW-01 | HELIXOS-L2-010／HELIXOS-L2-002 | PoCとPrototypeの適用結果から、戻した要求revision・裁定・再合流先へ辿れる。 | 技術成立や画面試作だけでL3を凍結する／裁定なしに合流する。 |
+| HXT-FLOW-02 | HELIXOS-L2-010／HELIXOS-L2-005 | Incidentの結果と、恒久対策のReverse・再合流先を区別して辿れる。 | 緊急対応の成功を恒久対策の成立に流用する。 |
+| HXT-FLOW-03 | HELIXOS-L2-010 | 保全した項目から裁定と取り込み先へ辿れる。 | 保全した項目を消す／裁定と追加差分を切り離す。 |
+| HXT-FLOW-04 | HELIXOS-L2-010 | Discoveryの出典、明らかにした範囲、発行元への戻しを確認できる。 | 発行元との接続を失う／DiscoveryをPoCと同一にする。 |
+| HXT-FLOW-05 | HELIXOS-L2-010／HELIXOS-L2-011／HELIXOS-L2-008 | 下位の証拠、上位固有の義務、省略検査の回収を区別でき、構造を分類し直した後は新revisionに結び直される。 | 下位CI合格だけで上位完了／省略検査未回収／Unknownの影響を成立済みとして扱う。 |
+| HXT-FLOW-06 | HELIXOS-L2-002／HELIXOS-L2-005／HELIXOS-L2-007 | 元の完了と追補評価、因果の証拠、改善候補の還流先を別に辿れる。 | 元の完了記録を書き換える／path一致だけで帰属させる。 |
+| HXT-FLOW-07 | HELIXOS-L2-010／HELIXOS-L2-002 | findingと振り分け理由、返却先又は次ticketを同じ因果で追跡できる。 | finding破棄／次ticketのfindingを今のPRへ戻す／返却先欠落。 |
+| HXT-FLOW-08 | HELIXOS-L2-010／HELIXOS-L2-005 | 評価対象、実験作業、結果とFeedbackの戻し先を混同せず辿れる。 | 実験の完了で対象ticketを閉じる／本線の予算・列へ混載する。 |
+| HXT-FLOW-09 | HELIXOS-L2-010／HELIXOS-L2-005 | 3.0の版の印と案の状態を保って、材料の区分から評価・裁定まで辿れる。 | 案の登録を学習実行許可・採用・完了にする。 |
+| HXT-SYS-01 | HELIXOS-L2-010／HELIXOS-L2-011／HELIXOS-L2-008／HELIXOS-L2-002 | 同じticketの親要求revisionから、HARNESS版、計画・配置の案、OSの適格性確認・発行、検収の計画・結果と投影まで追跡できる。 | BRAINに稼働判断を戻す／INTELLIGENCE・HARNESSがticket発行／PR mergeで完了／1.0で部品外の流れを生成する／開発方式をticketの種類にする／突発と計画を分けない。 |
+| HXT-USE-01 | HELIXOS-L2-004／HELIXOS-L2-010 | CrawlerとBugbotが既存の種類・割当てへ接続し、WEB-OSのjobは内部OSの種類へ追加されず未決の扱いが明示される。 | botごとに種類を増やす／WEB-OSの未定のjobを内部OSで正式化する。 |
