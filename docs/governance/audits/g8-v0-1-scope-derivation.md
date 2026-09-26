@@ -285,3 +285,13 @@ G9が扱う入力元は初回Workerのassignment/attempt/resultに限る。LABO0
 | `docs/helix-intelligence/L1-planning/intelligence-intent.md` | `main: 4f10e1e22` / `8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8` | L1-010配置案とOS割当分離。現行本文はdraft_candidate |
 | PO原文source snapshot / 判断記録 | `cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78` / `83718e990c64dbae5481cf8b5a58cd1ea498804c284ace255afa55008067bab3` | G9第1点の原文と候補起草の保持/変更理由 |
 | G8本文（追補前） | `main: 4f10e1e22` / `731a818ef0b935deea7a764f1de8e709175445d0c77267254081f7eda93e22a4` | 元本文を保持したままこのG9追補を追加 |
+
+### R2167-01再照合：初回経路の適格条件の具体化
+
+直前のG9追補は「SECURITYの低risk判定」を未確認としたが、SECURITY016は資産公開範囲を返すだけで、taskの低risk分類を定義しない。この帰属と文書上の閉包判断を訂正する。過去の本文は監査履歴として保持する。
+
+OS027とL11は、既存003/005/006/007/008/015/016の資産分類・credential遮断・egress・隔離・実行制約・操作authorityに可逆性と外部作用の除外を合わせ、6項すべてを満たすことを初回経路の適格条件とした。SECURITY005/006/015を含む安全依存も照合対象であり、未評価を理由に省かない。資産区分のunknown/secret/HELIX-restricted、credential利用、許可外egress、未適用制約、authority不足、不可逆作用は不適格である。一般的リスク分類器や後発1.xのsink enforcementを暗黙の前提にしない。
+
+これにより不足1の文書上の判定条件は、未定義の分類出力の到着待ちから、対象attemptの6項の証拠を全件照合する形へ変わる。実証済みになったわけではない。現L1/L2/L11候補の採択、資産/data-use/操作authority、実Worker/環境/制約適用、通信先、復旧手段、人の分担・予算・oracleと実行/検証/受領証拠は未確認のまま残る。不足2の観測・評価分離とLABO受領経路は変更しない。
+
+判定に使う受入はOS027の「適格条件の正常例とoracle」「適格条件の独立反例」である。全条件成立と一条件ずつの拒否を別に照合する。G8構成の成立・最小性・実行・受入の判定を本追補だけでgreenにせず、実装・段階release/tag/配布を生成しない。
