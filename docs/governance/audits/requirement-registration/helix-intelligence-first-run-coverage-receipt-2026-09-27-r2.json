@@ -1,0 +1,416 @@
+{
+  "receipt_id": "MPR-RCPT-HELIX-INTELLIGENCE-FIRST-RUN-2026-09-27-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "PO原文第1項と現行OS018/LABO055・054/INT010の不足を、責務を保ったまま補強する候補。既存本文はprefix不変。旧RLOは比較起点で、旧atomの移管・retireを主張せず旧入力atomは空集合。no_lossはこの空集合に限り、全旧資産の被覆ではない。PO全文と各条件の行先はparent_source_conditionsと判断記録に別途保存する。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXINTELLIGENCE-L2-066",
+      "requirement_kind": "connection",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-010"
+      ],
+      "candidate_semantic_digest": "sha256:4085daba7873d4cddefe498b04e59ff5b4e44ba3ec80a307537b51af601cfa69",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO原文第1項と現行OS018/LABO055・054/INT010の不足を、責務を保ったまま補強する候補。既存本文はprefix不変。旧RLOは比較起点で、旧atomの移管・retireを主張せず旧入力atomは空集合。no_lossはこの空集合に限り、全旧資産の被覆ではない。PO全文と各条件の行先はparent_source_conditionsと判断記録に別途保存する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-intelligence/L1-planning/intelligence-intent.md#helixintelligence-l1-010",
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-010"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ],
+  "parent_source_conditions": {
+    "coverage_scope": "PO全文と選択した現行親・既存条件の非空行を保存。具体意味対応はL2/L11、判断記録、G8追補に記述。行保存自体は意味被覆の判定ではない。",
+    "sources": [
+      {
+        "source_path": "docs/helix-os/sources/body-reinforcement-po-original-2026-09-27.md",
+        "source_commit": "this_pr_blob_digest",
+        "source_sha256": "sha256:cf45adb7212a35c496e420973be0933ec38d4c00175051811f6a9c0b2c06ac78",
+        "lines": [
+          {
+            "source_line": 1,
+            "source_text": "# PO原文：本体要求の補強5点（2026-09-27、確認基準 main 4f10e1e22）",
+            "source_line_sha256": "sha256:80540aa4e211c8074609288fbfe4b6e14eeb006c222f4ddb4937e657fd41419a",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "Claudeの配送前書きの原形保全。PO条件の根拠ではない。"
+          },
+          {
+            "source_line": 3,
+            "source_text": "以下はPOの会話入力を編集せずに写したもの。Codexは最初のPRでこれを`docs/helix-os/sources/`等のsource snapshotへ原文のまま保存し、判断記録を付ける。本ファイル自体は作業依頼の写しであり、要求意味・承認を生成しない。",
+            "source_line_sha256": "sha256:eab6405e45e99a8ee9d289fd5407e65bb5e3142876d72dba2b8c0f104235d708",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "Claudeの配送前書きの原形保全。PO条件の根拠ではない。"
+          },
+          {
+            "source_line": 5,
+            "source_text": "---",
+            "source_line_sha256": "sha256:cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "Claudeの配送前書きの原形保全。PO条件の根拠ではない。"
+          },
+          {
+            "source_line": 7,
+            "source_text": "**あります。いまの本体は、責務分離・停止条件・証拠の保持に比べて、「最初の仕事をどう成立させるか」「どの水準なら役に立ったと判定するか」が弱いです。** 機構を追加するより、次の5点を既存の要求・受入へ補強したいです。",
+            "source_line_sha256": "sha256:072339777aeee41c6668305c8b56139db9ac1e30a81b13c8c81ad7fba40501ec",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 9,
+            "source_text": "確認基準は **`main: 4f10e1e`、#2166統合後**です。",
+            "source_line_sha256": "sha256:bdc52ebc2c4c505295c9befdb1e63dc4ad00a1bec495b0aad3264b109e7aeae0",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 11,
+            "source_text": "### 1．履歴ゼロから最初の仕事を始める条件",
+            "source_line_sha256": "sha256:186ec52025776d2b356b2dcd36529d363049433fe3974e8d10874744c1242e1f",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 13,
+            "source_text": "OS-018はBenchの水準とINTELLIGENCEの配置案に依存し、そのBenchはWorkerの作業履歴を必要とします。G8も、初回に使う履歴や、人が代行する場合の契約が未提示だと認めています。**「未評価なら保留」はあるが、未評価状態から実績を作り始める条件が閉じていません。** ",
+            "source_line_sha256": "sha256:597adb34dc70b6ee0aff64473ef9a11b6d58b7df211cbbe81440c455d46d27ef",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 15,
+            "source_text": "ここは、**「性能評価がない」と「実行を許可できない」を分ける**必要があります。評価がなくても、許可された低リスクの仕事を、限定したWorker・予算・人の確認・検証条件で実施できる経路を定義する。その結果をBenchへ渡す。未評価を評価済みへ偽装するのではありません。",
+            "source_line_sha256": "sha256:248970a567aa9d154f8ceb6659c9d66d8681f984882db499205948f680a66bac",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 17,
+            "source_text": "旧RLO-FR-040にも、effort未評価時を明示する条件はあります。ただし、それだけで初回の割当・実行まで解決するものではないので、現行の責務に沿った接続が必要です。",
+            "source_line_sha256": "sha256:03ffe932558797329b18aa161e955df93a956c39a4588bf02c9bb9abff6a32cf",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 19,
+            "source_text": "**ここは最初の段階構築に直結する、優先度の高い不足です。**",
+            "source_line_sha256": "sha256:eb122bddacc37254a0178ee277ece95d30fd151f562790c3b5efff072b9ef7cd",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 21,
+            "source_text": "### 2．「対応できる依存」と「その利用で必須の依存」の区別",
+            "source_line_sha256": "sha256:b07ae2fc96494b98047b7e1d24d94ad3d780186d179145a662f8597c0df825f7",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 23,
+            "source_text": "具体例はLABO-001です。単独成立の依存に、入力元別接続 **021〜030**が並んでいます。一方、G8の限定構成ではWorker入力028等を選んでいます。**全入力元に対応できることと、毎回すべての入力元が存在しなければ使えないことが、本文上で明確に分かれていません。** ",
+            "source_line_sha256": "sha256:58a994f4c633a620bb0d6fd4a97e2cafaba4f14fa0f2b6f5a6486dfc8a4b04d2",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 25,
+            "source_text": "このままだと、小さなパックを使うために別機構一式まで必要になる読み方ができます。",
+            "source_line_sha256": "sha256:325010b0a4f980ff85ad0d04425a6eebaccf9c2089e6de45a6645b5807c06b98",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 27,
+            "source_text": "補強するのは、**各パックについて、常時必須・特定操作時のみ必須・選択した入力元に応じて必須・参照資料のみ、を区別すること**です。Workerの観測だけを扱う構成なら、その接続と安全条件で成立を確認し、未接続の入力元は未観測として保持する。",
+            "source_line_sha256": "sha256:ada8204e32750c7ff0dab2074e1ea04aa897f60767bee32b1dc9bafb62c56fa4",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 29,
+            "source_text": "安全依存を削る話ではありません。**本当に必要な依存を残しながら、無関係な完成待ちを要求から除く**作業です。",
+            "source_line_sha256": "sha256:0e838cba18ec81ca7d13117d964ff4694b3b75e80d678fb81d01a5d3a25e6ec5",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 31,
+            "source_text": "### 3．要求形成を「いつ、何をもって収束させるか」",
+            "source_line_sha256": "sha256:f2bdd4fb4ff9964428660c878c7af0b95be5053abc8f12cd02695d498467c9e8",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 33,
+            "source_text": "現行HARNESS-008／013は、質問、欠落・矛盾の提示、一次・二次形成、承認待ちの出力まで規定しています。しかし、**次に聞くべき質問の選び方と、十分に整理できたことの具体的な判定が、主要求と受入ではまだ粗い**です。 ",
+            "source_line_sha256": "sha256:be0a157e14aeb81c6309d7ad2798b30416ea63bcbb3d60ba07509811ea1d635c",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 35,
+            "source_text": "旧RDJ-FR-003／007には、質問の優先づけ、重複質問の抑制、要求形成の収束条件がありました。現行の要求エンジン候補にも質問量・訂正率の再測定は残っています。**材料がないのではなく、今回の単独サービスの受入まで結び切れていない**ところです。 ",
+            "source_line_sha256": "sha256:b26b060a4d5c663b472e05f9a82b8f15b8ae67567435b6353fc0cb3c83a79603",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 37,
+            "source_text": "補強したいのは、**既回答を聞き直さない、影響の大きい不足から質問する、新しい根拠がないのに合意済み事項を再開しない、残る必須判断が何かを示して収束を判定する**条件です。",
+            "source_line_sha256": "sha256:ac08ed2ee98f93766876aa33780d053631a80abcbd0303d82b953133cc162c41",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 39,
+            "source_text": "旧版の固定回数や手続きを丸ごと戻す必要はありません。ここが弱いと、「要求形成を支援するシステム」が、質問と再確認を増やすだけになり得ます。",
+            "source_line_sha256": "sha256:403e8a563c40f2192ec3577cdec3e9c6fc588ebfc5644cbdfb648465217dd520",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 41,
+            "source_text": "### 4．設計・予測・レビューの「内容の良さ」を判定する受入",
+            "source_line_sha256": "sha256:8e6f66264685a84ab73762d5d6a59460fd4a1b63790f680ab5c5face0cafe9ee",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 43,
+            "source_text": "例えばINTELLIGENCEのL11では、計画に必要な項目があること、予測に前提・不確実性が付くこと、レビュー結果に根拠や戻し先があることを確認します。これは必要ですが、**形式の整った計画・予測・指摘を出せることと、それが実際に正しく有用なことは別**です。",
+            "source_line_sha256": "sha256:a4843f1d355ad43fb3daab96042ec6d98e11eee1a7647cf5417cf5a21be266c8",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 45,
+            "source_text": "HARNESSにも「ミスなく作られたコード」「境界を保ったきれいなコード」という成果表現がありますが、開発単体の出力はProvisionalです。**目標表現と、その単位で保証する品質範囲をもう少し正確に接続したい**です。",
+            "source_line_sha256": "sha256:113a6466c6520b59f8d16ed47a1756109ea9eb83a2e223649a37a3183b771c6f",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 47,
+            "source_text": "補強するのは、各能力について、**対象を限定した正常例・誤りを含む例・未見例に対し、どんな結果なら正しくできたと言えるか**です。設計なら必要な制約の充足と変更影響、レビューなら既知の欠陥の検出と不要な指摘、予測なら実績との差を確認する。",
+            "source_line_sha256": "sha256:b713ed4c325a80bebb438fcdc516aba882634a7cca70ceb9caadc43948a630ec",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 49,
+            "source_text": "「根拠を付けた」「候補を出した」だけでは合格せず、かといって全領域で万能を要求しない。**対応範囲内で達成する結果を、機能パックごとに明確にする**ことが必要です。",
+            "source_line_sha256": "sha256:dd97ac40c9f6bede0538ec84bfa96099aa28ff30e8ea1c5b4274f3d21878daf6",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 51,
+            "source_text": "### 5．「性能差を吸収した」「低コストで良くなった」の判定基準",
+            "source_line_sha256": "sha256:a2c587ab4e68b0bd975d3444de9d8b9d63dfc2ea78d2a40e4781a22b26215a0e",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 53,
+            "source_text": "ここは**計測項目が欠けているわけではありません。** 五大目標には、品質・費用・時間・再作業を使った最適配置があり、INTELLIGENCEの受入にも同条件比較があります。ただし、目標文書は「低コスト」「最高」「最適」の数値基準を未決としており、**比較結果から何を選ぶかという優先関係がまだ弱い**です。 ",
+            "source_line_sha256": "sha256:0877c31228abf7f21b8453619a6e7045fe522217a9ce2e96ffb74f9cca86c58a",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 55,
+            "source_text": "例えば、安いWorkerでも受入まで到達したが、上位モデルの救援と人間の修正で総費用が増えた場合。それは品質差を補えた実績ではあっても、低コスト化の成功とは限りません。",
+            "source_line_sha256": "sha256:53a76e5b939575fb50b6aa99fba05b5ed2a7da9b561d0a5f536e30e2481add99",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 57,
+            "source_text": "補強したいのは、**必要品質を満たすことを前提に、総費用・完了時間・人間介入のどれを優先し、どの悪化を許容するかを作業範囲ごとに持つこと**です。effortもその条件で選び、HELIXなし／旧版／新版などの比較から効果を確認する。",
+            "source_line_sha256": "sha256:8aef0df345a46404d88592a615bd72f599aae26a9e1ea4c0ec857ea3b88b1ab0",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 59,
+            "source_text": "これは公開ランキングの要求ではなく、**本体自身が「この改善・配置を採る価値がある」と判断するための要求**です。根拠なしに一律の数値を置く必要はありません。",
+            "source_line_sha256": "sha256:52b5d0c6173dc7d5a2eb86580fc45eaa0dc0051e208437d0c6c1a2c46db5cbb5",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 61,
+            "source_text": "---",
+            "source_line_sha256": "sha256:cb3f91d54eee30e53e35b2b99905f70f169ed549fd78909d3dac2defc9ed8d3b",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 63,
+            "source_text": "**優先順位は、まず①初回実行と②依存の条件化。その次に③要求形成の収束、構築する能力ごとに④成果品質と⑤効果判定です。**",
+            "source_line_sha256": "sha256:d841e0a27362091f76b2b6e1446a59d3ba27d066200939dceaef9165186a5242",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 65,
+            "source_text": "前回挙げたCONNECTの一覧矛盾は局所的な修正ですが、こちらは**HELIXが実際に使えるか、使うほど良くなるかを左右する要求の弱さ**です。",
+            "source_line_sha256": "sha256:2debe6d6d9837ac4519a4c1fa152a9960192f4f82af915598fb5a8f3699d8431",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          },
+          {
+            "source_line": 67,
+            "source_text": "**全体をやり直す必要はありません。「止める・記録する」に加えて、「必要条件が揃えば進む・仕事を終える・改善を評価できる」を、既存L2／L11に揃えるのが次の補強です。**",
+            "source_line_sha256": "sha256:b45e123e0c4c76e492d3a18c3acd9c9285d92d39d2ff128ac806d7477ee501ed",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "PO全文の原文保全。第1項はG9四候補とL11/G8追補へ分配。第2〜5項は判断記録のG10〜G13へ未着手のまま保持、各候補への全文移管や全項解決を主張しない。"
+          }
+        ],
+        "attribution": "1〜5行はClaudeのhandoff前書き。7行目以降がPO発言。全文bytesの保全はPOへの帰属を意味しない。"
+      },
+      {
+        "source_path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+        "source_commit": "4f10e1e22fc6f69e6b05c8b4bab0cdaf8f1dc8de",
+        "source_sha256": "sha256:8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+        "lines": [
+          {
+            "source_line": 52,
+            "source_text": "| HELIXINTELLIGENCE-L1-010 | 人間は、作業の内容と実績から、Workerの配置の候補を得られる。判断の軸は、作業の種類、領域、複雑さ、必要なcontextとtool、成功と失敗の履歴、手戻り、遅延、費用、信頼性とする。価格、モデル名、ベンチマークだけで配置を決めず、実際の割当と進行はOSが行う。LABOがHELIX-Benchで出した「どのモデルクラスなら対応できるか」の水準を材料に、ticketごとの配置の案を作り、OSの推進へ渡す。評価していないモデルは「未評価」の印のまま扱う（[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)） | INTELLIGENCE-L1-010 | 1.0 | 単体（OSへは接続） |",
+            "source_line_sha256": "sha256:2ebabb695935a14d3d246ca4545d3110df00fc3a5b006a87766cb0b6404f2b0c",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "候補親の責務を保持、現行revisionの採択を生成しない。"
+          },
+          {
+            "source_line": 109,
+            "source_text": "| HELIXINTELLIGENCE-L1-010 | 旧3L-BR-010（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md:15`） | 作成・検収・統合の能力を別々に扱う | provider名で固定したlaneから、作業と実績に基づく配置の候補へ変える。実際の割当はOSに残す |",
+            "source_line_sha256": "sha256:161da0659f2c9536ab305d99a2b4500ae67fdc5537ce8c6b1a4d082f57a41f62",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "候補親の責務を保持、現行revisionの採択を生成しない。"
+          }
+        ]
+      },
+      {
+        "source_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "source_commit": "4f10e1e22fc6f69e6b05c8b4bab0cdaf8f1dc8de",
+        "source_sha256": "sha256:0f70488daf707b6cbc8cf4b382aac807987da1ad22e4a92da07149c74d34e0b0",
+        "lines": [
+          {
+            "source_line": 102,
+            "source_text": "### HELIXINTELLIGENCE-L2-010 — Worker配置候補",
+            "source_line_sha256": "sha256:8f4ad484e8f66eb27dabea6c5119aad8ced3633e1ff2d3e249c43d091725a181",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "既存条件の原文は不変で保持。G9追補は初回入力・観測・未評価と許可の分離を追加し責務を移管しない。"
+          },
+          {
+            "source_line": 104,
+            "source_text": "入力はtask type/domain/complexity/context/tool requirementとsuccess/failure/rework/latency/cost/reliabilityの実績。出力はtask×Worker capability×observed performanceに基づくplacement proposal。価格、model名、benchmark単独で決めず、割当・進行はOSが行う。未評価のWorker/modelを評価済みに扱わない。version_target 1.0。",
+            "source_line_sha256": "sha256:d4adabaafcfd5dae20d6d698a273a58af9f57c7e40f138615fbc93d7b6f976b9",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "既存条件の原文は不変で保持。G9追補は初回入力・観測・未評価と許可の分離を追加し責務を移管しない。"
+          },
+          {
+            "source_line": 106,
+            "source_text": "- 親：HELIXINTELLIGENCE-L1-010。単独成立依存：ticket/task identity、種類/domain/complexity/context/tool requirementとLABO HELIX-Benchのtask-class evidence、Worker実績・未評価状態。検証範囲：根拠付きticket別Worker placement proposal。保証：task属性と観測実績を使い、未評価を未評価と表示し、割当/進行はOSへ残す。失敗時戻し先：task属性不足はOSへ、Bench/evidence/適用scope不足はLABOへ返し、配置案を未確定にする。`version_target: 1.0`。実契約版・成果物版・依存版・互換範囲・交換/更新条件はHARNESS-L2-010/011共通pack contractを適用する。",
+            "source_line_sha256": "sha256:ac5af0979d0918c4b1c534a0b5b57b9bf7e2292a28edb1e52a5b9b5e45d250d0",
+            "target_requirement_ids": [
+              "HELIXINTELLIGENCE-L2-066"
+            ],
+            "relation": "既存条件の原文は不変で保持。G9追補は初回入力・観測・未評価と許可の分離を追加し責務を移管しない。"
+          }
+        ]
+      }
+    ]
+  },
+  "derivation_evidence": {
+    "path": "docs/governance/audits/g8-v0-1-scope-derivation.md",
+    "sha256": "sha256:f4e7004649616a6de73d0bb2c9c4001747b26fcae47e19589f423fbcafe3457d",
+    "authority_effect": "none"
+  },
+  "superseded_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-first-run-coverage-receipt-2026-09-27.json",
+  "correction_reason": "R2167-01: OS027限定初回適格条件の具体化と監査訂正。R2167-02: source1〜5行はClaude前書き、7行目以降がPO発言という帰属訂正。原文bytesと既存receiptは保持。",
+  "decision_evidence": {
+    "path": "docs/governance/decisions/body-reinforcement-po-decisions-2026-09-27.md",
+    "sha256": "sha256:c0cf47913b93e462cd609b51f3a8ca634b84bf46dc351aa1debfcb91b919ce8d"
+  }
+}

@@ -375,3 +375,27 @@ L2-035で定義した境界payloadを使い、LABOの評価済みsource revision
 4. RCLS-BR-001..006とHELIXOS-L2-012/013の既存候補状態・親付け替えを更新すること。本文記載のみでstatusを変更しない。
 
 PO原文の集積対象、観測状態、episode順序、分解軸、Vector軸・操作、比較指標、system/operation条件、fallback、一般化段階、Feedback destination、minimum fields、lifecycle、15 invariantsと循環は、上記各要求と対のL11に分配して保持した。採択済み扱い・L3以降には進まない。
+
+### HELIXLABO-L2-056 — 初回Worker結果のBench観測取込（単体候補、1.0）
+
+- **PO起点**：[補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第1点、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)。
+- **親L1**：自機構primary parentはHELIXLABO-L1-011。接続contextはHELIXOS-L1-003、HELIXINTELLIGENCE-L1-010。
+- **関係**：HELIXLABO-L2-055のWorker履歴からtask/model class別水準を生成する能力を補強する単体候補。観測取込は既存L2-028、Bench生成は055、INTELLIGENCEへの受渡しは054が所有し、本候補は配置・指定・割当・許可判定を重複所有しない。
+- **入力**：OS assignment/ticket/task identity、Worker identityと実行契約revision、要求revisionとscope、attemptの成功/失敗/拒否/中断/unknown、予算・期限・検証状態、人確認、source/data-use classification、結果receipt。
+- **提供**：評価履歴ゼロから届く許可済みWorker結果を、source・scope・revisionを保ったobservationとしてBench履歴へ追加し、評価前の状態を明示する。
+- **保証**：初回実績は「観測済み」と「性能評価済み」を区別する。受入可能な結果でも一件を根拠に未知taskの成功を保証しない。評価済み状態を生成する場合は採用した評価oracle/基準のrevision、対象task/model classとscope、判定根拠、比較条件、結果・失敗/反例・unknownをreceiptに記録し、そのoracleが対象範囲を判定できる時だけ範囲を限定して評価済みにする。oracle、scope、判定根拠のいずれかが未提示・不明なら未評価/評価不能を維持する。失敗、拒否、停止、unknownも同一履歴へ状態を偽らず記録する。sourceのauthority・stateは書き換えない。LABOは結果からassignmentまたはWorker適格化を行わない。
+- **単独成立の依存**：HELIXLABO-L2-001／028／055、OS assignment/evidence、該当するSECURITY data-use許可。HELIXLABO-L2-054は別の接続identityとして参照する。
+- **失敗時の戻し先／未完義務**：assignment/source/scope不足はOS、許可/classification不足はSECURITY、結果/revision欠落はWorkerまたはOS、評価可能性不足は未評価状態のままBenchへ戻す。重複・矛盾・staleは自動統合せず訂正追跡へ戻す。
+- **束ねる既存条件**：HELIXLABO-L2-001／028／055、およびRLO-FR-040の未評価明示、scoreによる権限非変更。新しい評価閾値やprovider固定を設けない。
+
+### HELIXLABO-L2-057 — 初回実行結果のBench受領接続（接続候補、1.0）
+
+- **PO起点**：[補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第1点、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)。
+- **親L1**：自機構primary parentはHELIXLABO-L1-001、HELIXLABO-L1-011。接続contextはHELIXOS-L1-003、HELIXOS-L1-006。
+- **関係**：OS-L2-018/019/023の既存assignment・実行記録・handoff結果から、LABOの許可観測・Worker履歴へ渡す接続候補。HELIXOS-L2-027は当該runで使った構成candidateのprovenance参照欄に留め、dependencyにしない（027→057→027の循環を作らない）。LABOの観測受取は既存L2-028、集計は055、INTELLIGENCE受渡しは054に残し、責務を重複させない。
+- **入力**：OSが受領したexact ticket/task/assignment/attempt identity、要求/Worker/契約revision、scope、result state、verification/human-confirmation receipt、data-use class。
+- **提供**：同一identity/scopeの結果をHELIXLABO-L2-028へ渡し、LABO-056/055が履歴化・評価できる状態を作る。
+- **保証**：connectionは受渡しとreceiptだけを担い、OS authorityやWorker結果を生成・修正せず、結果状態・scope・revision・未完義務を保つ。配送失敗は未受領として残す。観測受領はBench水準・評価済み判定や配置資格を生成しない。
+- **単独成立の依存**：OS-L2-018／019／023のsource resultとreceipt、LABO-L2-001／028／056の受領条件、SECURITYのdata-use条件。HELIXOS-L2-027は任意のprovenance参照であり必須依存ではない。受渡しは採択済みHELIX-CONNECT契約、または同一のsource identity・revision・schema/contract version・scopeを照合し、acknowledgment、trace、重複抑止、stale時停止、失敗時の同一ID再送/未完保持を備えた明示的な人手receiptで成立させる。いずれの方式でも同一義務を満たす証拠がなければ未成立とする。
+- **失敗時の戻し先／未完義務**：source/送達不一致はOSへ、受領schema/classification不一致はLABOまたはSECURITYへ返す。再送で二重観測を作らず、欠落receiptを保持する。
+- **束ねる既存条件**：LABO-L2-028のWorker入力、055の履歴集計、054のINTELLIGENCE受渡しとは別のOS→LABO辺。接続契約不在を推測実装で埋めず、未解決として示す。

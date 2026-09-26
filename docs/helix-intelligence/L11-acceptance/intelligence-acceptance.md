@@ -127,3 +127,12 @@ HELIXINTELLIGENCE-L1-001–020は1.0（既存外部modelでの判断、model/pro
 - 3.0 local learningと4.0 dynamic workflowが未成立でも1.0判断候補の確認は可能である。3.0/4.0の結果だけで1.0 acceptedとしない。
 
 旧runtime、旧CLI、旧test、旧CIを実行しない。status表、PR、validatorだけでPOのL1 revision確認・採択を生成しない。
+
+### HELIXINTELLIGENCE-L2-066 配置案の人代行入力・受領契約
+
+- **PO起点**：[補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)の第1点、[判断記録](../../governance/decisions/body-reinforcement-po-decisions-2026-09-27.md)。
+- **入力・版**：task/ticket identityと必要属性、Worker capability/version、LABO evidenceまたは未評価状態とsource revision/scope、L2-010 proposal schemaおよびpack contract version。
+- **正常例**：INTELLIGENCE-L2-010のproposal schema/契約revisionを用いて、人が暫定配置候補を作る。実装されたINTELLIGENCEが出力できる場合はLABO-L2-055/054の同scope評価を受けて通常のLABO→INTELLIGENCE→OS三段へ戻り、INTELLIGENCEの案をOSが別途審査する。INTELLIGENCE実装を使わない場合も人の候補を同じschemaで作り、推奨Worker、根拠、除外理由、不確実性、未評価表示、source/契約revision、task/scope、actor/時点を添える。OSはreceiptに入力と受領actor/時点を記録し、assignment判断を別状態で行う。L2-010の契約本文は使うが、同機能の実装実行は依存しない。
+- **反例**：人の候補をINTELLIGENCEが生成した出力または評価済み性能として表示する、source/evidenceのversionやscopeを省く、未評価をqualifiedにする、OS受領receiptなしで割当を開始する、配置案だけでauthority/scope/branchを拡張する。
+- **失敗・未完義務**：ticket/task属性不足はOSへ、LABO evidence・revision・scope不足はLABOへ、schema/version不明はINTELLIGENCEへ戻す。矛盾・unknownは保持し、受領またはassignmentを成立扱いしない。
+- **境界確認**：L2-066は接続と代行案のprovenanceのみを受け入れる。配置候補の意味はL2-010、LABO水準はLABO-055/054、最終指定・割当・実行はOS-018/027、人間確認はOS側のattempt記録に残る。
