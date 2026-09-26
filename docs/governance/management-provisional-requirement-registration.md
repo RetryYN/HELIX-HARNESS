@@ -82,10 +82,21 @@ L1被覆判定や候補文書の説明から12要求を生成しない。各reco
 
 追加された`MPR-SH-OUTSIDE67-001`は、同じ67 pathについてpre-isolationとarchiveの両revisionを保持するsource holdingである。path itemを要求atomとして数えず、意味relation closure、product、phase、implementationのreview前に別のatom集合へ分解する。13集合のhistorical read-afterはsnapshotを読み、append後の14集合read-afterはcurrent registerを読む。過去captureのregister digestを書き換えて14集合だったことにする運用は禁止する。
 
-最初の`requirement_candidate`は、2026-09-27にPR #2157がHARNESS-L2-010〜022の13件（`MPR-RC-HARNESS-L2-0NN-001`）として追記した。各行は候補本文の節digestと[被覆receipt](audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json)に束縛し、入力した旧atomは`MPR-SH-CANDIDATE-003`の行atomである。追記後のregisterは46 revisionで、生存中は`source_holding` 14件と`requirement_candidate` 13件である。source holdingの集合と件数は変わらない。続いて2026-09-27に、HELIXOS-L2-014（`MPR-RC-HELIXOS-L2-014-001`、[被覆receipt](audits/requirement-registration/helixos-l2-014-coverage-receipt-2026-09-27.json)）を追記した。その本文をreviewで直したため、訂正revision `MPR-RC-HELIXOS-L2-014-002`（[改訂receipt](audits/requirement-registration/helixos-l2-014-coverage-receipt-2026-09-27-r2.json)）を追記した。registerは48 revision、生存中の`requirement_candidate`は14件である。 PR #2159の初回候補追記で、HELIXOS-L2-015〜025の11件を追加し、59 revision、生存中の`requirement_candidate`は25件となった。14件の`source_holding`と既存revisionは保持する。独立review後の017／021／023を訂正revision -002として追加し、現在は62 revision、生存中の候補25件・holding 14件である。旧recordと初回receiptは履歴として保持する。
+最初の`requirement_candidate`は、2026-09-27にPR #2157がHARNESS-L2-010〜022の13件（`MPR-RC-HARNESS-L2-0NN-001`）として追記した。各行は候補本文の節digestと[被覆receipt](audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json)に束縛し、入力した旧atomは`MPR-SH-CANDIDATE-003`の行atomである。追記後のregisterは46 revisionで、生存中は`source_holding` 14件と`requirement_candidate` 13件である。source holdingの集合と件数は変わらない。続いて2026-09-27に、HELIXOS-L2-014（`MPR-RC-HELIXOS-L2-014-001`、[被覆receipt](audits/requirement-registration/helixos-l2-014-coverage-receipt-2026-09-27.json)）を追記した。その本文をreviewで直したため、訂正revision `MPR-RC-HELIXOS-L2-014-002`（[改訂receipt](audits/requirement-registration/helixos-l2-014-coverage-receipt-2026-09-27-r2.json)）を追記した。registerは48 revision、生存中の`requirement_candidate`は14件である。 PR #2159の初回候補追記で、HELIXOS-L2-015〜025の11件を追加し、59 revision、生存中の`requirement_candidate`は25件となった。14件の`source_holding`と既存revisionは保持する。独立review後の017／021／023を訂正revision -002として追加し、現在は62 revision、生存中の候補25件・holding 14件である。旧recordと初回receiptは履歴として保持する。 G2のSECURITY候補28件を追補した時点は90 revision、生存中の候補53件・holding 14件である。R2160-01/02訂正の014・021・027・028を追補した後は94 revision、生存中の候補53件・holding 14件である。
 
 この先の要求PRでは、対象atomの入力集合をこのholding recordの`registration_id`とatom IDで指定する。file blobまたはpath単位のholdingを入力にする場合は、同じsource digestから無損失なatom集合を先に作り、別の生存中`source_holding`へ仮登録する。file blob一件を一要求atomとして扱って`no_loss`にしてはならない。`no_loss` receiptは、その入力集合を「候補へ保持」「別の生存中仮登録へ保留」「人間decisionで意味変更・縮退・retire」の三集合へ完全分割する。holdingに原文が残っている事実だけでは、候補側の未計上を埋めたことにしない。
 
 ## bootstrap境界
 
 管理登録runtimeは要求整理後にL3／L10から設計するため、現在はrepo-owned JSONL recordとread-afterで仮登録を行う。自動登録器が成立した後も同じ意味契約を維持し、GitHubを登録正本へ昇格させない。既存DB、旧hook、旧CIはbootstrap registerのwriterまたはoracleとして使用しない。
+
+
+## 現行Conceptの対象identityと候補親の記録
+
+上表の`product_target`には、現行Conceptの機構identityを記録する。対象は`HELIX-HARNESS`、`HELIX-OS`、`HELIX-BRAIN`、`HELIX-LABO`、`HELIX-INTELLIGENCE`、`HELIX-SECURITY`、`HELIX-INFRASTRUCTURE`、`HELIX-Web`、`HELIX-WEB-OS`である。根拠は[現行Conceptの機構表](../concept/helix-concept.md)と[作業入口の対象別L1と判断記録](new-generation-start-here.md)であり、4対象だけだった表へ機構ごとの追補を繰り返さない。既存の`HELIX-Web-OS`という綴りの履歴recordは書き換えず、訂正が必要な場合も通常の訂正revisionで扱う。
+
+このfield名は対象identityを表す既存名であり、OS、SECURITY等に外販製品という属性を付けない。共通部品CONNECTは対象別L1がまだないため、この追補からL2候補の起草や承認を導かない。各対象の親revision・候補状態・authorityは独立して記録し、一対象の採択を別の対象へ継承しない。
+
+`parent_concept_revision`／`parent_planning_revision`は、未採択候補を起草する場合にも実際に読んだ親のpath・commit・本文digestと候補状態を記録する。表の「承認済み親revision」は承認済みの入力を記録する場合の状態であり、候補親を承認済みと偽って書かない。[作業入口](new-generation-start-here.md)が許す候補起草と、承認済み要求からのticket化を分ける。親の候補状態、要求の採否待ち、必要な人間decisionはそのまま保持する。
+
+この追補は既存の仮登録の対象表記を現在の機構と候補状態へ合わせる。旧`archive/legacy-generation-2026-09-14/root/CLAUDE.md`の「自律境界」（82〜85行）の、人が上流の意味を持ちAIが起草する分担を保持する。旧世代の層番号・DB・runtimeは継承せず、現行の層とrepo-owned registerへ記録する。承認前の登録から採択・下流許可を作らない境界、被覆・生存参照・訂正revisionの条件は変えない。
