@@ -16,7 +16,12 @@
     "current_gap_status": "unknown"
   },
   "legacy_summary": {
-    "layers_evidenced": ["candidate requirements", "L5", "L6", "L7 implementation/test"],
+    "layers_evidenced": [
+      "candidate requirements",
+      "L5",
+      "L6",
+      "L7 implementation/test"
+    ],
     "maximum_layer_evidenced": "L7",
     "capability_status": "implemented_with_tests",
     "capability_status_scope": "phase-level historical inventory summary; not per-asset current implementation evidence",
@@ -940,7 +945,7 @@
     {
       "ref_id": "CUR-OS-L2-REF",
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "9ddd4e030057b6a373fa92361223ce4813f033bedd80c297a58635ed66a4308d",
+      "sha256": "5bce2df51a192d691f07e018b38f753bc33ebec2bfcbf7ce0e121ea6a1bf8b7c",
       "start_line": 210,
       "end_line": 217,
       "line_sha256": "efa5c7fd33704965b837a4965be264c5fd7c7117a2d5c5da4ee2184e20429338",
