@@ -240,7 +240,7 @@ HARNESS-L2-005では、作成側と検証側の独立性、対象revision変更�
 [新世代対応表](../../governance/audits/source-rebaseline/new-generation-security-engagement-source-crosswalk.md)で再採否する。
 HARNESS-L2-003／004／005では、対象製品が承認した保護対象、data、操作、環境、network、severity、開示条件から、
 設計・threat・verification・独立review・利用者受入へ接続する。推定、再現、検証、修復、再検証、運用成立を別状態にし、
-旧broker、provider、CI greenで相殺しない。具体的な特権操作・credential管理はHELIX-OSが統制する。
+旧broker、provider、CI greenで相殺しない。特権操作と資格情報（credential）の方針・authority（認可、範囲、失効、隔離）はHELIX-SECURITYが持ち、HELIX-OSはそれに従って特権作業のticketと割当てを運転する（[Concept](../../concept/helix-concept.md)の機構の表、[2026-09-26のSECURITY判断記録](../../governance/decisions/security-l1-idea-po-decisions-2026-09-26.md)）。
 
 ## 利用許諾を確認できる提供条件
 

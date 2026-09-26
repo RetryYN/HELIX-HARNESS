@@ -945,7 +945,7 @@
       "start_line": 173,
       "end_line": 181,
       "exact_text": "## 要求形成・合意・反復の工程条件\n\n[要求エンジンPythonコア要求候補](../candidates/requirement-engine-python-core-requirements.md)を\nHARNESS-L2-008の適用待ち具体化として保持する。要求意味の抽出、構造化、質問、semantic diff、trace、影響候補は\nHARNESSが所有する。HELIX-OSは入力・出力・訂正・採否・改善eventを登録、実行、監視するが、要求意味を複製しない。\nPython coreはDB、Git、GitHub、repository、credentialへ直接writeしない。HARNESSは外部consumerも使える出力schema、\n対象revision、stale、重複、prohibited payloadの再検証契約を提供し、OSはその契約に従うtransactional consumerとして登録する。\ntransactional boundaryとwire formatの実装技術はL3以降で選定する。\n指示と抽出結果の齟齬は強化材料として保持するが、生会話、Issue、logやエンジン出力を要求正本・承認・学習許可へ変換しない。\n",
-      "sha256": "ff29f36ea35a80b53a771b3bb6fe918f6c5e14bcb8494bbdad02bf6fe2782421",
+      "sha256": "c674a4395d8c67dbc787c6fda8ce33df373ef8842a463376aafbd08d0c498f1b",
       "line_sha256": "95d80044ac11bbb401f2009b470421ae435024124c43ea72434bc0981e184d4b",
       "product": "HELIX-HARNESS",
       "classification": "non_target_boundary_ref",
