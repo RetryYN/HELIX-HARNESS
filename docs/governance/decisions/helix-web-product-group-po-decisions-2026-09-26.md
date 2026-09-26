@@ -136,7 +136,7 @@ POの回答2により、[HELIX Concept](../../concept/helix-concept.md)を次の
 - LABO：[LABOの候補](../../helix-labo/candidates/improvement-research-requirements.md)に「HELIX-Web由来の実績に対する追加候補」の節を加えた。
 - Concept、製品責務境界、作業入口、`README.md`、`docs/README.md`、要求対応表の注記：上の「Conceptへの反映」のとおり。
 - 名前の書き換え（HELIX-Web-OS→HELIX-WEB-OS）：上の文書に加え、`helix-web/`配下のVision材料（L1・L2・L11。題名と本文の名前だけ）、HELIX-OSの`README.md`・L1・L2・L11、HELIX-SECURITYとHELIX-INFRASTRUCTUREのL1の該当行。
-- 書き換えない：[AGENTS.md](../../../AGENTS.md)の「HELIX-OSとHELIX-Web-OSは製品ではない機構」は、作業規則の本文であるため本PRでは変えず、下の食い違いに挙げる。
+- [AGENTS.md](../../../AGENTS.md)「現在の境界」の製品と機構の文（35行）：現行の作業規則の文なので、名前をHELIX-WEB-OSへ改め、HELIX-Webが「WEB-HARNESSの7製品等をまとめた製品群」であることを加えた（原案1.1と回答2の構成反映）。製品と機構を分ける意味は変えていない。
 
 ## 原案と現行との食い違い
 
@@ -153,7 +153,7 @@ POの回答2により、[HELIX Concept](../../concept/helix-concept.md)を次の
 | LABO-WEBのID | `HELIXLABO-L2-WEB-` | LABOはL1企画案がPOの対象revisionの確認待ちで、L2がない | 候補として置いた。LABOのL2の採番と合わせるのは、L1の確認後である |
 | Web由来のログの経路 | WEB-OSが観測をLABOへ渡す（WEB-OS017、接続011） | 製品責務境界のPO発言は「Web-OSからのログをHELIX-OSが吸収」。Conceptの図はWEB-OS→LABOと、LABO→OSの改善提案を持つ | Conceptの図と原案は食い違わない。PO発言の引用は当時の記録として変えていない |
 | 元の32項目 | 19節は「元の32項目」との対応を示す | 元の32項目の原文はこのrepositoryに保存されていない | 19節の表は原文のまま置き、元の項目との照合は未了とした |
-| 機械参照の名前 | HELIX-WEB-OS | 台帳・契約・`AGENTS.md`・`scaffold/`は`HELIX-Web-OS` | 本PRでは変えていない。台帳の値を改めるなら、照合する検査と一緒に扱う必要がある |
+| 機械参照の名前 | HELIX-WEB-OS | 台帳・契約の値と`scaffold/`は`HELIX-Web-OS` | 本PRでは変えていない。これらは履歴として保持する機械参照のkeyであり、現行の規則文の名前（本PRで`AGENTS.md`を含めて改めた）とは区別する。台帳の値を改めるなら、照合する検査と一緒に扱う必要がある |
 
 ## 研究用validatorへの影響
 
