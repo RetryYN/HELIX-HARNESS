@@ -35,8 +35,8 @@
     },
     {
       "path": "docs/governance/management-provisional-requirement-registration.md",
-      "sha256": "4641b2fa1edd4d22748b85598e7bde1561aa8225305a6e54d90595b9b4c28ab8",
-      "note": "provisional registration boundary"
+      "sha256": "6d75d7c4913db7c99df78e61b6a2eb55bede6315a6d994448e1c4b305de40009",
+      "note": "provisional registration boundary [2026-09-27 PR #2157 merge admission A2157-01 read-after: docs/governance/management-provisional-requirement-registration.mdは、管理層の要求仮登録契約に従いHARNESS-L2-010〜022のrequirement_candidate 13件（MPR-RC-HARNESS-L2-0NN-001）をregisterへappendし、被覆receiptを加えた変更、およびregisterの現在SHAをpinする研究用scaffoldの付け直しに合わせて更新した。既存register行は変えていない。本bindingのrole・obligations・connections・replacement・artifactは追記に依存しない。採否・authorityを変更しない。]"
     }
   ],
   "role": "RDP-001 holding外新規67 pathの保存先・authority gapをread-onlyで監査し、後続semantic reviewへ引き渡す",

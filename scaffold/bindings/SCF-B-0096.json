@@ -25,8 +25,8 @@
     },
     {
       "path": "docs/governance/management-provisional-requirement-register.jsonl",
-      "sha256": "b68f3acae41fcd7796bf323e8eb3036aa13970c3af8608e13c5aaa1b237258dd",
-      "note": "static source/governance or merged lineage; no authority promotion"
+      "sha256": "b0f89b99452c14d0c1bc91cc43937fcf4dfcf993c421413221d4a197479758c7",
+      "note": "static source/governance or merged lineage; no authority promotion [2026-09-27 PR #2157 merge admission A2157-01 read-after: docs/governance/management-provisional-requirement-register.jsonlは、管理層の要求仮登録契約に従いHARNESS-L2-010〜022のrequirement_candidate 13件（MPR-RC-HARNESS-L2-0NN-001）をregisterへappendし、被覆receiptを加えた変更、およびregisterの現在SHAをpinする研究用scaffoldの付け直しに合わせて更新した。既存register行は変えていない。本bindingのrole・obligations・connections・replacement・artifactは追記に依存しない。採否・authorityを変更しない。]"
     },
     {
       "path": "docs/concept/product-boundary.md",
@@ -75,8 +75,8 @@
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/inventory.json",
-      "sha256": "c8f553df3743f53a76f2a14f9fd7ae943d4d325a177d9acc5df49684ec4812ce",
-      "note": "static source/governance or merged lineage; no authority promotion"
+      "sha256": "d998439a89ae8872692251f3e02bdee6e45dee1fd2cd18a37c6534b0e95e4419",
+      "note": "static source/governance or merged lineage; no authority promotion [2026-09-27 PR #2157 merge admission A2157-01 read-after: scaffold/rdp001-outside67-path006-010-atomization-096/inventory.jsonは、管理層の要求仮登録契約に従いHARNESS-L2-010〜022のrequirement_candidate 13件（MPR-RC-HARNESS-L2-0NN-001）をregisterへappendし、被覆receiptを加えた変更、およびregisterの現在SHAをpinする研究用scaffoldの付け直しに合わせて更新した。既存register行は変えていない。本bindingのrole・obligations・connections・replacement・artifactは追記に依存しない。採否・authorityを変更しない。]"
     },
     {
       "path": "scaffold/rdp001-outside67-path006-010-atomization-096/generate.py",
