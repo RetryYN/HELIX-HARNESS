@@ -26,10 +26,10 @@ HELIX-SECURITYは、HELIX、利用者、各projectの資産に対する信頼の
 
 SECURITY自身は実行の主体にならない。役割を次のように分ける。
 
-| 機構 | 担うもの |
+| 機構・担い手 | 担うもの |
 |---|---|
 | HELIX-SECURITY | 方針、authority、信頼の境界 |
-| Worker | 制約の強制（Workerの実行環境が強制する（2026-09-26 PO判断、PR #2149）） |
+| Worker | 制約の強制（Workerの実行環境が強制する（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149）） |
 | HELIX-OS | 運転と進行 |
 | HELIX-INTELLIGENCE | 判断と検出 |
 | HELIX-HARNESS | 必要なsecurityの検証 |
@@ -49,7 +49,7 @@ SECURITYは、HARNESSの工程の意味、製品固有の要求、開発計画�
 | HELIXSECURITY-L1-004 | 人間は、AGENTS.md、CLAUDE.md、Agentの定義、Hook、Skill、MCPの設定、実行環境の設定、Sandboxの方針、system instruction、モデルの設定を、project identity、root、HEADとrevision、設定・Hook・方針のdigest、owner、範囲へ結びつけられる。別のproject、古い版、知らないHookや設定を黙って採用しない | §5 | 1.0 | 単体 |
 | HELIXSECURITY-L1-005 | 人間は、資格情報、token、API key、secretを、通常のAIのcontextや成果物へ直接出さないことを確かめられる。生のsecretをAIへ渡さず、操作・対象・期限へ結びつけた範囲付きの資格情報を使い、資格情報の置き場をWorkerへ直接見せず、repositoryへの混入を防ぎ、外部へ送る前にsecretを検査し、失効をすぐに反映する | §6 | 1.0 | 単体 |
 | HELIXSECURITY-L1-006 | 人間は、外部への通信を既定で拒否し、必要な送信先だけを明示して許可できる。送信先、protocol、endpoint、dataの機密区分、送った量、目的、許可、期限を管理し、vendor側のprivacyの設定だけをsecurityの保証として信用しない。HELIX側でnetworkの許可一覧、pathの絞り込み、送信量の計測、dataの最小化を強制できる | §7 | 1.0 | 単体 |
-| HELIXSECURITY-L1-007 | 人間は、AI Worker、CLI、Agent、Toolを、許可した隔離の実行環境でだけ動かせる。書き込めるpathの限定、networkの制限、資格情報の遮断、環境変数の最小化、timeout、資源の上限、fileの差分の検査、巻き戻し、結果の回収を最低の条件とする。制約とauthorityはSECURITYが決め、Workerの実行環境がその制約を強制する。Workerは制約を自分で広げない（2026-09-26 PO判断、PR #2149） | §8 | 1.0 | 接続（Worker） |
+| HELIXSECURITY-L1-007 | 人間は、AI Worker、CLI、Agent、Toolを、許可した隔離の実行環境でだけ動かせる。書き込めるpathの限定、networkの制限、資格情報の遮断、環境変数の最小化、timeout、資源の上限、fileの差分の検査、巻き戻し、結果の回収を最低の条件とする。制約とauthorityはSECURITYが決め、Workerの実行環境がその制約を強制する。Workerは制約を自分で広げない（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149） | §8 | 1.0 | 接続（Worker） |
 | HELIXSECURITY-L1-008 | 人間は、操作（読む、書く、実行、network、install、削除、merge、release、deploy、資格情報の使用、securityの変更）ごとにauthorityを分けられる。「このAgentを使える」から包括的な書込みやdeployの権限を生成せず、影響の大きい操作には、actor、対象、操作、revision、環境、範囲、期限を結びつけた個別のauthorityを求める | §9 | 1.0 | 単体 |
 | HELIXSECURITY-L1-009 | 人間は、authorityの失効、範囲の逸脱、不明な外部の副作用、資格情報の漏洩、異常な通信、実行環境の逸脱を検出したときに、失効と隔離を、OS（新しい割当ての停止）、Workerの実行（実行の停止と、途中の成果物の隔離）、CONNECT（通信の停止）、資格情報（使用の停止）、成果物（accessの停止）へ伝えられる。不明な状態を成功として続けない | §10 | 1.0 | 構成体（SECURITY、OS、Worker、CONNECT） |
 | HELIXSECURITY-L1-010 | 人間は、source、依存、package、plugin、MCP、Skill、Agentの定義、Hook、実行環境の設定、Sandboxの方針、モデルとその重み、promptとsystem instruction、Connector、基盤の設定の更新について、出所、digest、依存・権限・network・資格情報・Hookと設定の差分、新しい実行物、既知のfinding、巻き戻しの可否を確かめてから受け入れられる。新しい版であることだけを更新の理由にしない | §11 | 1.0 | 単体 |

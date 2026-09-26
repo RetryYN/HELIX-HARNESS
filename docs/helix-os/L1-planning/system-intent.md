@@ -9,7 +9,7 @@ status: draft
 authority_status: draft_candidate
 parent_concept: docs/concept/helix-concept.md
 created: 2026-09-14
-updated: 2026-09-14
+updated: 2026-09-26
 ---
 
 # HELIX-OS L1企画候補
@@ -18,10 +18,12 @@ updated: 2026-09-14
 
 ## 提供価値
 
-HELIX-OSは、HARNESSを含むHELIXプロジェクト群のauthority、変更、状態、証拠、ticket発行、Workerへの割当、CI・testの最適化と配布運転を
-管理・推進・検収に分けて統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWeb-OSから得た運用結果を
-HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変わっても、承認済みの意味、未完義務、
+HELIX-OSは、PMに近い機構として、HARNESSを含むHELIXプロジェクト群のauthority、変更、状態、証拠、工程管理、ticket発行、Workerへの割当、進行、CI・testの最適化と配布運転を
+管理・推進・検収に分けて統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWeb-OSから得た運用結果はLABOの評価へ渡し、
+LABOが返す改善の提案を登録・振り分け、採否の後にticketにしてHARNESS自身および各対象の改善へ回す。担当やsessionが変わっても、承認済みの意味、未完義務、
 許可範囲、停止・復旧条件を失わず、対象ごとの開発を継続できるようにする。
+周辺の機構はPMOにあたり、INTELLIGENCEは計画と配置の案、LABOは実績の評価と改善の提案、HARNESSは工程の標準と検証義務、BRAINは設計知識、SECURITYは制約とauthority、実行基盤は資源を出す。
+OSはそれらを材料に決めるが、案を無条件に実行せず、周辺の機構もOSの決定を直接書き換えない（[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。
 
 | ID | L1企画要求 | L2接続予定 |
 |---|---|---|
@@ -30,7 +32,7 @@ HARNESS自身および各対象の改善候補へ戻す。担当やsessionが変
 | HELIXOS-L1-003 | 人間は、許可・予算・依存・独立検証の範囲でWorkerへ委譲し、中断後も安全に再開できる | HELIXOS-L2-004／009 |
 | HELIXOS-L1-004 | 人間は、承認済み上流とHARNESS契約に従うCI・review・証拠収集を統制できる | HELIXOS-L2-007／008 |
 | HELIXOS-L1-005 | 人間は、HARNESSの構成版を対象projectへ導入・更新・復旧し、配布結果を追跡できる | HELIXOS-L2-006 |
-| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗をLABOの独立評価へ渡し、HELIX-OSに採択済み改善の登録・実行・再検証を継続させられる | HELIXOS-L2-005 |
+| HELIXOS-L1-006 | 人間は、HARNESS自身への適用を含む観測・失敗をLABOの独立評価へ渡し、LABOが返す改善の提案をHELIX-OSに登録・振り分けさせ、採択済み改善をticketにして実行・再検証まで回させられる | HELIXOS-L2-005 |
 | HELIXOS-L1-007 | 人間は、HARNESS package運転と個別製品のrelease準備・artifact受渡し・observationを対象revisionと許可へ束縛して統制し、展開先runtimeのdeployment authorityを分離できる | HELIXOS-L2-002／006／007 |
 | HELIXOS-L1-008 | 人間は、authority、design、verification、runtimeのprojection不整合を検出し、原情報から再構築できる | HELIXOS-L2-001／002／007／009 |
 | HELIXOS-L1-009 | 人間は、管理・推進・検収の責務を分け、許可範囲内の直接調整を保ったまま仕事を統制できる | HELIXOS-L2-010 |

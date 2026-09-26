@@ -36,7 +36,7 @@ HELIX-INFRASTRUCTURE   配備の目標と、実際の実行環境
 
 役割を次のように分ける。HELIX-INFRASTRUCTUREは、設計知識、要求の意味、進行の統制、securityのauthority、判断、評価を持たない。
 
-| 機構 | 担うもの |
+| 機構・担い手 | 担うもの |
 |---|---|
 | HELIX-BRAIN | Infrastructureの汎用の設計知識 |
 | HELIX-HARNESS | Infrastructureの要求と検証の契約 |
@@ -44,7 +44,7 @@ HELIX-INFRASTRUCTURE   配備の目標と、実際の実行環境
 | HELIX-INFRASTRUCTURE | 配備の目標、実際の実行環境の資源とその状態 |
 | HELIX-OS | 変更、配備、incidentの進行の統制（作業と変更の状態） |
 | HELIX-SECURITY | authority、隔離、資格情報 |
-| Worker | 実際のInfrastructureの操作を含む、作業の実行（2026-09-26 PO判断、PR #2149） |
+| Worker | 実際のInfrastructureの操作を含む、作業の実行（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149） |
 | HELIX-INTELLIGENCE | 配置、容量、診断の判断の候補 |
 | HELIX-LABO | 運用、failure、費用、復旧の評価 |
 
@@ -107,7 +107,7 @@ IDは原文のHRI-L1-001〜040と同じ番号で対応する。種類の列は�
 | HELIX-HARNESS-CORE → HELIX-INFRASTRUCTURE | 接続 | HELIX-HARNESS-CORE、HELIX-INFRASTRUCTURE | 承認された設計を受け取り、配備の目標を導く。実際の状態から設計を書き換えない |
 | HELIX-OS ↔ HELIX-INFRASTRUCTURE | 接続 | HELIX-OS、HELIX-INFRASTRUCTURE | OSは、何を変えるか、どのticketで進めるか、誰が行うか、どの証拠を登録するか、いつ止めて再開するか（作業と変更の状態）を持つ。HELIX-INFRASTRUCTUREは、どの資源が在るか、どの構成か、どの版か、今どういう状態か、どこに置かれているか（実行環境の資源の状態）を持つ。同じ状態を二重に正本にしない |
 | HELIX-INFRASTRUCTURE → SECURITY → Worker | 構成体 | HELIX-INFRASTRUCTURE、SECURITY、Worker | HELIX-INFRASTRUCTUREが操作を求め（例：server AへJobを配備したい）、SECURITYが対象、project、操作、revision、期限を限って許可し、OSがticketを割り当てたレーンの主が呼び出したWorkerが、その範囲だけ実行する。HELIX-INFRASTRUCTUREは自分の権限を広げない |
-| Worker → HELIX-INFRASTRUCTURE | 接続 | Worker、HELIX-INFRASTRUCTURE | Workerは作業の主体であり、計算機そのものではない。HELIX-INFRASTRUCTUREは、Workerが動く実際の資源（計算機、CPU、memory、GPU、storage、network、processやcontainerの実行環境）とその容量・状態を持ち、隔離はその資源で使える方式で当てる。Workerは必要に応じて別の資源へ移れ、資源が変わってもticket、要求、Workerの責務を失わない。Workerの作業の責務やticketの状態をHELIX-INFRASTRUCTUREへ移さない（2026-09-26 PO判断、PR #2149） |
+| Worker → HELIX-INFRASTRUCTURE | 接続 | Worker、HELIX-INFRASTRUCTURE | Workerは作業の主体であり、計算機そのものではない。HELIX-INFRASTRUCTUREは、Workerが動く実際の資源（計算機、CPU、memory、GPU、storage、network、processやcontainerの実行環境）とその容量・状態を持ち、隔離はその資源で使える方式で当てる。Workerは必要に応じて別の資源へ移れ、資源が変わってもticket、要求、Workerの責務を失わない。Workerの作業の責務やticketの状態をHELIX-INFRASTRUCTUREへ移さない（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149） |
 | HELIX-INFRASTRUCTURE → LABO | 接続 | HELIX-INFRASTRUCTURE、LABO | 生のmetric、出来事、failure、復旧、費用、容量を渡す。構成が良かったかはLABOが過去の実績として評価する。HELIX-INFRASTRUCTUREが成功の実績から設計のPatternをBRAINへ直接昇格させない |
 | INTELLIGENCE → HELIX-INFRASTRUCTURE | 接続 | INTELLIGENCE、HELIX-INFRASTRUCTURE | 資源とWorkerの配置、容量の不足、failureの診断、増減、復旧の候補を判断の候補として受け取る。候補をそのままauthorityとして実行しない |
 | HELIX-BRAIN → HELIX-HARNESS-CORE | 接続 | HELIX-BRAIN、HELIX-HARNESS-CORE | 汎用の設計知識は、HELIX-HARNESS-COREの設計を経てHELIX-INFRASTRUCTUREへ届く（[BRAINのInfrastructure領域の要求候補](../../helix-brain/candidates/infrastructure-domain-requirements.md)（PR #2145） |
@@ -128,7 +128,7 @@ IDは原文のHRI-L1-001〜040と同じ番号で対応する。種類の列は�
 | 003 | 旧OPS-R-08 保守義務（同:118）のconfiguration drift | 設定のずれを追う | ずれを、資源、版、network、権限、容量、依存へ広げ、自動で正しい変更とみなさない |
 | 014、033、034 | 旧NIO-L3-03、09（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l3-requirement-candidates.md:9,15`） | 観測の証拠に時刻、新しさ、収集の健全性を持たせ、収集の停止・欠測・古い状態を健全に変えない | 未観測と古い状態を、健全・不健全・不明と並ぶ状態にする |
 | 017、018 | 旧NIO-L3-06（同:12） | backupとrestoreは実行できる手順で確かめ、名前や文書があることを成功の証拠にしない | 同じ |
-| 039 | 旧ConceptのRunner／Sandbox（共通部品。限定された実行、停止、隔離、結果の回収）。2026-09-26のPO判断でWorkerへ統一した（2026-09-26 PO判断、PR #2149） | 実際の操作を限定された実行経路に置く | 実行はWorkerが担い、Infrastructureの操作へ当てる |
+| 039 | 旧ConceptのRunner／Sandbox（共通部品。限定された実行、停止、隔離、結果の回収）。2026-09-26のPO判断でWorkerへ統一した（[2026-09-26 PO判断](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)、PR #2149） | 実際の操作を限定された実行経路に置く | 実行はWorkerが担い、Infrastructureの操作へ当てる |
 | 035 | 現行のConceptのHELIX-Web-OS（内部OSの状態・鍵・権限を共有しない） | HELIXの内部とWebのserviceの側を分ける | Infrastructureの資源へ当てる |
 | 008 | 旧HIL-TR-01、02（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:165-166`） | 管理の部分（control plane）と処理の部分（data／detection plane）を分け、版付きの契約でつなぐ | 旧は実行の言語と実行環境で分けていた。本書は資源の消費で分け、実行の負荷で管理・停止・復旧の能力を失わないことを目的にする |
 | 012 | 旧インフラ・運用品質の要求導出の原文（`archive/legacy-generation-2026-09-14/root/docs/archive/intake/infrastructure-operations-requirements-and-connections-source_v0.1.md:128`） | 故障の単位（failure domain）を設計で定め、複数のregionや特定のcloudを無条件に求めない | 旧は製品の基本設計（L4）の義務だった。本書はHELIX自身の資源を故障の単位として扱い、影響の範囲を辿る |
@@ -138,4 +138,4 @@ IDは原文のHRI-L1-001〜040と同じ番号で対応する。種類の列は�
 ## 未確定の点
 
 - 採否、版、Conceptへの反映の形は、POが全体を見てから決める。
-- 現行のConceptの機構の表に、HELIX-INFRASTRUCTUREの行はまだない。Conceptの表記を改めるPR #2143のmerge後に、POの判断を受けて反映する。
+- 現行のConceptの機構の表に、HELIX-INFRASTRUCTUREの行はまだない。Conceptの表記を改めたPR #2143のmerge後も行はないため、POの判断を受けて反映する。

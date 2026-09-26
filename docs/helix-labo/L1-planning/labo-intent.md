@@ -23,7 +23,8 @@ POは原文について「これでいく」と答えた（[判断記録](../../
 ## 提供価値
 
 HELIX-LABOは、HELIXの全機構・各製品・運用環境から出るログ、証拠、計測値、失敗、再作業、利用結果を横断して集め、関連づける。
-内部の実績と外の情報を分解・比較・実験・評価し、各機構へ改善のFeedbackを返す。HELIX全体の観測・研究・評価・還流の中心である。
+内部の実績と外の情報を分解・比較・実験・評価し、各機構へ改善のFeedbackを返す。HELIX全体の観測・研究・評価の中心であり、還流ではFeedbackを出す側を担う（原文§1の「還流中枢」）。
+OSをPM、周辺の機構をPMOと見ると、LABOはPMOとして実績を評価し改善を提案する。Feedbackの登録・振り分け・ticket化と実行の統制はOSが担う（原文§18、§23、[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。
 
 - LABOは、HELIXの中央制御装置ではない。各機構のauthorityと稼働中のstateの正本を奪わない。
 - LABOが持つ中心の対象は、「何が起き、なぜ起き、何を変えたらどうなったか」という、機構をまたぐepisode（一つの開発・運用の一連の出来事）である。
@@ -54,10 +55,11 @@ HELIX-INTELLIGENCEは、現在の把握と未来への行動を見る。稼働�
 | HELIXLABO-L1-004 | 人間は、既存の方式の意味・目的・条件・構造を保ったうえで、部分構造の比較と再構成（Vector守破離）により改善の仮説を作り、保つ・減らす・分ける・合わせる・定義し直す・置き換える・移す・退役させる等の操作を評価できる。仕組みを増やすことを目的にしない | §8、§9 | 1.0 | 単体 |
 | HELIXLABO-L1-005 | 人間は、改善の候補を今の方式と比べる実験を行い、品質、成功率、誤検知と見逃し、再作業、速度、費用、人の介入量、運用負荷などで評価できる。「動いた」だけを改善としない。結果が一つの事例から製品をまたぐ汎用の構造までのどこまで当てはまるかを測る | §10、§13、§24の5 | 1.0 | 単体（実験の実行は、OSの割当てでWorkerが行う） |
 | HELIXLABO-L1-006 | 人間は、何をシステムに持たせ、何を運用に残すかを評価できる。再現・機械判定・巻き戻しができるものはシステム化の候補とし、文脈や意味の判断に依るものは運用で保証する候補とする。システムにしたものが例外や誤検知を増やしたときは、運用へ戻すことも正規の改善とする | §11、§12、§24の10〜12 | 1.0 | 単体 |
-| HELIXLABO-L1-007 | 人間は、評価の結果から、どの機構の何を改善すべきかのFeedbackを得られる。汎用の構造はBRAINへ、判断・監査・bot・モデル改善の材料はINTELLIGENCEへ、工程や契約そのものの問題はHARNESSへ、運転方法の問題はOSへ、製品固有の意味は各製品のHELIX-HARNESS-COREへ、認可・隔離・接続・運転の問題はSECURITY、Workerの実行、CONNECT、Web-OSへ返す。Feedbackは提案であり、登録と振り分けはOSが行い、LABOは各機構のauthorityを直接変えない | §14〜§20、§22、§24の7〜9と13 | 1.0 | 接続（LABOから各機構へ） |
+| HELIXLABO-L1-007 | 人間は、評価の結果から、どの機構の何を改善すべきかのFeedbackを得られる。汎用の構造はBRAINへ、判断・監査・bot・モデル改善の材料はINTELLIGENCEへ、工程や契約そのものの問題はHARNESSへ、運転方法の問題はOSへ、製品固有の意味は各製品のHELIX-HARNESS-COREへ、認可・隔離・接続・運転の問題はSECURITY、Workerの実行、CONNECT、Web-OSへ返す。Feedbackは提案であり、登録と振り分けはOSが行い、LABOは各機構のauthorityを直接変えない。評価済みの材料（汎用の構造の候補、判断・モデル改善の材料、Workerの水準）はBRAIN・INTELLIGENCEへコネクタで渡し、改善の提案はOSが登録・振り分けて採否へ回す（[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)） | §14〜§20、§22、§23、§24の7〜9と13 | 1.0 | 接続（LABOから各機構へ） |
 | HELIXLABO-L1-008 | 人間は、Feedbackが登録・変更・検証・運用へ進んだ後も、変更後の結果を再び観測し、Feedbackの効果そのものを評価して、HELIXの改善の循環を閉じられる | §23、§25、§24の14〜15 | 1.0 | 構成体（全機構とLABOとOS） |
 | HELIXLABO-L1-009 | 人間は、外の情報（OSS、設計資料、論文、Issue、PR等）を、クローラーやCONNECT等で取得したうえで、LABOで出所を確かめ、分解・比較・実験し、汎用の構造の候補としてBRAINへ入れられる。外で成功した方式をそのままBRAINへ入れない | §21、§24の6 | 2.0 | 構成体（INTELLIGENCE、CONNECT、LABO、BRAIN） |
-| HELIXLABO-L1-010 | 人間は、LABOが評価した事例と反例をINTELLIGENCEへ返し、3.0以降はローカルLLMの学習・チューニング・評価に使える | §16 | 1.0（評価材料）、3.0（学習用の材料） | 接続（LABOからINTELLIGENCEへ） |
+| HELIXLABO-L1-010 | 人間は、LABOが評価した事例と反例を、評価済みの材料としてINTELLIGENCEへコネクタで返し、3.0以降はローカルLLMの学習・チューニング・評価に使える。学習の実行は、OSがticketにしてWorkerが行う | §16 | 1.0（評価材料）、3.0（学習用の材料） | 接続（LABOからINTELLIGENCEへ） |
+| HELIXLABO-L1-011 | 人間は、HELIX-BenchでWorkerの作業履歴を集計し、作業の種類ごとに、どのモデルクラスなら対応できるかの水準を得られる。評価していないモデルには「未評価」の印を付け、評価済みと混同しない。水準は配置の案の材料であり、LABOは割当てを決めない。配置の案はINTELLIGENCE、指定と割当てはOSが行う | [Worker実行モデルの判断記録](../../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)「レーンとWorkerの定義」、[2026-09-26のPO判断](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md) | 1.0 | 接続（LABOからINTELLIGENCEへ） |
 
 ## エンジンと接続
 
@@ -81,6 +83,7 @@ LABOの原文にあるエンジンは、次の10個である。集積、相関�
 | HELIXLABO-L1-007 | RCLS-BR-006（学習結果は提案で、要求・設計・merge・Releaseのauthorityを直接書き換えない） | Feedbackは提案である | 返す先を機構ごとに分ける |
 | HELIXLABO-L1-009 | 旧HBR-P8「外部検索／skillify／security boundary」（同`pillar-functional-requirements.md:49,95`） | 出所の記録、隔離、セキュリティの確認 | 取り込み先をBRAINの汎用の構造とし、LABOを評価の境界にする |
 | エンジンと接続 | 旧HIL-BR-15、HIL-FR-23（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:67,113`）、旧Product Data Connector Registry（同`docs/design/helix/L4-basic-design/infinity-loop-platform-basic-design.md:65,554-575`） | 取り込み元ごとに版の付いたコネクタを登録し、由来・schema・権限の方針を固定する | 旧は製品データの取り込み元ごとのコネクタだった。これを、エンジンどうしと機構どうしの接続1つごとのコネクタへ広げる（2026-09-26のPO指示）。`archive/`を「connector」「コネクタ」「疎結合」で探し、機構の中の処理どうしを接続ごとのコネクタで分けた記述は見つからなかった |
+| HELIXLABO-L1-011 | 旧HXB-FR-015（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:349-351`：Benchは証拠の状態と改善候補を返し、配車は配車側が決める。Benchから直接model切替・権限拡大を行わない）、旧RLO-FR-040（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/resident-lane-orchestration-requirements.md:663-666`：未評価時は`provider_default_unbenchmarked`と明示する） | Benchは水準と証拠を返すだけで配車を決めない。未評価を明示する | Benchの持ち手をLABOとし、水準をINTELLIGENCEの配置の案の材料として渡す |
 | HELIXLABO-L1-004 | 対応なし | — | Vector守破離は新しい案である。`archive/`と`docs/`を「守破離」「Shu-Ha-Ri」「shuhari」で探し、該当はなかった |
 
 ## 既存の候補との関係
