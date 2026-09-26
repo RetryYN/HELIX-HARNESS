@@ -19,7 +19,7 @@ updated: 2026-09-26
 ## 提供価値
 
 HELIX-OSは、PMに近い機構として、HARNESSを含むHELIXプロジェクト群のauthority、変更、状態、証拠、工程管理、ticket発行、Workerへの割当、進行、CI・testの最適化と配布運転を
-管理・推進・検収に分けて統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWeb-OSから得た運用結果はLABOの評価へ渡し、
+管理・推進・検収に分けて統制し、HARNESSをHARNESS自身へ適用して継続改善する。各projectとWEB-OSから得た運用結果はLABOの評価へ渡し、
 LABOが返す改善の提案を登録・振り分け、採否の後にticketにしてHARNESS自身および各対象の改善へ回す。担当やsessionが変わっても、承認済みの意味、未完義務、
 許可範囲、停止・復旧条件を失わず、対象ごとの開発を継続できるようにする。
 周辺の機構はPMOにあたり、INTELLIGENCEは計画と配置の案、LABOは実績の評価と改善の提案、HARNESSは工程の標準と検証義務、BRAINは設計知識、SECURITYは制約とauthority、実行基盤は資源を出す。
@@ -60,8 +60,8 @@ OSはそれらを材料に決めるが、案を無条件に実行せず、周辺
 
 ## 管理対象と対象外
 
-管理対象にはHARNESS、HELIX-Web、HELIX-Web-OS、将来追加する個別製品・運転基盤を含む。外部提供する製品属性はHARNESSとWebに限る。OSは各対象の要求意味やHARNESSの工程規則を
-別本文として所有せず、承認revisionを参照して開発・改善を実行・記録・制御する。HELIX-Web-OSの展開後service runtimeはOS外に置く。HARNESSは外部へ提供する製品の一つであり、
+管理対象にはHARNESS、HELIX-Web、HELIX-WEB-OS、将来追加する個別製品・運転基盤を含む。外部提供する製品属性はHARNESSとWebに限る。OSは各対象の要求意味やHARNESSの工程規則を
+別本文として所有せず、承認revisionを参照して開発・改善を実行・記録・制御する。HELIX-WEB-OSの展開後service runtimeはOS外に置く。HARNESSは外部へ提供する製品の一つであり、
 本企画はHELIX-OSの外販を目的にしない。
 
 ## 採択条件

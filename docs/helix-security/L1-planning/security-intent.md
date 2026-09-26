@@ -75,7 +75,7 @@ SECURITYは、HARNESSの工程の意味、製品固有の要求、開発計画�
 | 外部のdata → CONNECT → SECURITYの境界 → LABO／INTELLIGENCE | 接続 | CONNECT、SECURITY、LABO、INTELLIGENCE |
 | INTELLIGENCEの操作の依頼 → SECURITY（許可・拒否・制約） → OS（許可された作業） → Worker | 構成体 | INTELLIGENCE、SECURITY、OS、Worker |
 | 更新の候補 → SECURITYの受け入れ → Worker → HARNESSの検証 → OSの昇格 | 構成体 | SECURITY、Worker、HARNESS、OS |
-| Webの利用者 → HELIX-Web → HELIX-Web-OS → SECURITYの資産の境界 → HELIXの内部 | 構成体（1.x） | HELIX-Web、HELIX-Web-OS、SECURITY |
+| Webの利用者 → HELIX-Web → HELIX-WEB-OS → SECURITYの資産の境界 → HELIXの内部 | 構成体（1.x） | HELIX-Web、HELIX-WEB-OS、SECURITY |
 
 ## 旧HELIXとの対応
 

@@ -25,7 +25,7 @@ OSは原要求からsuccessorへのtraceと未被覆atomを管理し、意味変
 旧source集合を管理層の`registered_source_holding`へ先に仮登録する。要求PRのmerge前に、要求候補revision、対象product、入力source atom完全集合、HARNESS無損失被覆receipt、今回保持するatom、別の生存中仮登録へ残すatom、人間decision対象atomを`registered_proposal`へ仮登録する。未計上atom、stale、digest不一致、wrong product、仮登録欠落が一件でもあればmerge可能状態にしない。いずれの仮登録も要求採用や実装許可ではない。
 
 HELIX-OSの目的は、HARNESSを含むHELIXプロジェクト群を管理・統制し、HARNESSを自身へ適用してHARNESSそのものを
-改善し続けることにある。各product、HELIX自身、Web-OSからの許可された運用結果も同じ改善機構へ接続する。
+改善し続けることにある。各product、HELIX自身、WEB-OSからの許可された運用結果も同じ改善機構へ接続する。
 外部へ輸出するプロダクトはHARNESSであり、本要求でHELIX-OSの外販・配布を目的化しない。
 HELIXOS-L2-005の改善還流は、観測→候補→採否→要求・設計変更→検証→再観測まで追跡する。
 候補の生成件数やログの蓄積だけで改善達成とせず、採用した変更の効果と退行を確認する。
@@ -154,7 +154,7 @@ Forwardは本流である。開発方式がVモデル・Scrum・Hybridのどれ�
 - LABOの比較実験：Experimentとする。旧Execution Ticket候補（`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md:157-163`）の、ExperimentDefinitionを実行前に固定し、新しい実行が要るときだけ作業ticketを作り、評価作業のticketと評価対象のticketを混同せず、評価作業の完了で対象のticketを閉じない点と、同`:343`の本線と実験の予算・列を分ける点を保つ。通常の開発の観測だけで足りる評価（HELIX-BenchによるWorkerの水準の集計を含む）では、ticketを発行しない。種類の名前を明示したのは新しい案である。
 - INTELLIGENCEの学習：Trainingとする。旧HELIXにモデルの学習を作業ticketとする記述はなく（旧`archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-intake.md:164`はweightsのfine-tuningを要求しないとしていた）、新しい案である。3.0の版の印を付ける。
 - INTELLIGENCEのbot：botは特定の目的に使うWorkerとして、既存の種類のticketの割当てで動かし、新しい種類を足さない。Crawlerの情報収集はResearch、Bugbotの限定修復は発生元のticketの中の割当て（下の「Worker・学習・ログ・CIの具体条件」のPatch Bot Workerの条件）とする。
-- Web提供側（HELIX-Web-OS）のjob：Web-OSの展開後のjobは内部OSのstate・writer・authorityへ収容しない（下の「管理対象としてのHELIX-WebとHELIX-Web-OS」）ため、本表に種類を足さない。Web-OSはまだ要求に落としていないため（[2026-09-26のPO回答](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）、扱いはWeb-OSを要求に落とすときに決める。
+- Web提供側（HELIX-WEB-OS）のjob：WEB-OSの展開後のjobは内部OSのstate・writer・authorityへ収容しない（下の「管理対象としてのHELIX-WebとHELIX-WEB-OS」）ため、本表に種類を足さない。WEB-OSはまだ要求に落としていないため（[2026-09-26のPO回答](../../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）、扱いはWEB-OSを要求に落とすときに決める。
 
 旧定義との違いは次の4点である。
 - DiscoveryとPoCは、旧HELIXでは1つだった（PoCはS2）。PO判断で分けた。
@@ -333,20 +333,20 @@ HELIXOS-L2-004／006／009では、通知・担当・ack・期限・復旧操作
 具体SLO、RTO／RPO、保持期間、対象環境は個別製品・releaseの承認済み要求を参照する。本節では旧機構、CI、
 故障注入、production操作、自動修復を実行しない。
 
-## 管理対象としてのHELIX-WebとHELIX-Web-OS
+## 管理対象としてのHELIX-WebとHELIX-WEB-OS
 
 2026-09-14のPO指示「Vision2のHELIX-WebはHELIX-OSが管理する」と「展開時はHELIX-OSの外にHELIX-Web-OSを作る」を、
-HELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-Web-OSは
+HELIXOS-L2-001／002／003／005の具体的な対象と境界として保持する。HARNESS、HELIX-Web、HELIX-WEB-OSは
 それぞれ要求正本・合意revision・進行状態を持ち、OSが開発・改善projectとして横断管理する。
 Web固有の利用者体験やサービス要求は[HELIX-Web側](../../../helix-web/docs/helix-web/README.md)へ置く。
 展開後のtenant、Connector job、service state、credential、配備・監視・復旧は
-[HELIX-Web-OS側](../../../helix-web/docs/helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。
-HELIX-Web-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・
+[HELIX-WEB-OS側](../../../helix-web/docs/helix-web-os/README.md)へ置き、HELIX-OSの内部state・writer・authorityへ収容しない。
+HELIX-WEB-OSからは、許可されたservice log、telemetry、incident、利用結果を出典・scope・目的・同意・revision・
 時点・欠測付きで受領する。HELIXOS-L2-005／007／013により他projectの証拠と突合し、改善候補、採否、対象別変更、
 再検証、再観測へ接続する。credential、tenant原data、範囲外logを吸収せず、受領logから要求を直接変更しない。
 Webで適用するHARNESS版と採用能力を追跡し、Webの変更だけを理由にHARNESSの共通規則や他プロダクトの要求を変更しない。
 Webでの実践証拠をHELIX改善へ戻す際は、出典・利用可能範囲・採否・変更対象・検証結果を保持する。
-管理対象への位置づけは、Web／Web-OSの全機能の採択、開発完了、公開時期の確定を意味しない。
+管理対象への位置づけは、Web／WEB-OSの全機能の採択、開発完了、公開時期の確定を意味しない。
 
 ## 有期限通知とmemoryの責務
 

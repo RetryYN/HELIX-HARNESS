@@ -4,9 +4,9 @@
 
 親は[HELIX Concept](../../../docs/concept/helix-concept.md)である。[2026-09-14の責務発言記録](../../../docs/concept/product-boundary.md)は旧発言の出典として保持する。旧L1の承認は2026-09-17の対象revisionに限り、現行Conceptとの意味差分、L2／L11の合意、L3の承認は別に扱う。
 
-HELIX-Webは1.xで加わり、HARNESSのサービス①〜⑦を顧客へ提供する製品である。HELIX-OSが開発・改善projectとして管理する。展開後のservice runtimeは
-HELIX-OS外のHELIX-Web-OSが担う。HARNESSの外部提供要求、HELIX-OSの開発統制、Web固有の利用者要求、
-Web-OSのサービス運転要求を分離する。
+HELIX-Webは1.xで加わる、Web提供系の製品の総称である（2026-09-26のPO原案）。HELIX-WEB-HARNESSの7製品（単独利用・単独受入・単独リリース）、共通機構のHELIX-WEB-HARNESS-CORE、接続製品のHELIX-WEB-CONNECTORから成る。HELIX-OSが開発・改善projectとして管理する。展開後のservice runtimeは
+HELIX-OS外のHELIX-WEB-OSが担う。HARNESSの外部提供要求、HELIX-OSの開発統制、Web固有の利用者要求、
+WEB-OSのサービス運転要求を分離する。
 
 | 責務 | 要求の所属先 |
 |---|---|
@@ -14,7 +14,13 @@ Web-OSのサービス運転要求を分離する。
 | Webの利用者体験・サービスとして提供する能力 | [L2要求案](L2-requirements/product-requirements.md)と[L11受入案](L11-acceptance/product-acceptance.md)。Vision由来9件、個別採択・受入未完了 |
 | 適用する開発工程・Vモデル・検証条件 | [HARNESS](../../../docs/helix-harness/README.md)。Webが採用する版と能力を参照 |
 | Webの要求・進行・Worker・CI・開発ログ・改善還流の管理 | [HELIX-OS](../../../docs/helix-os/L2-requirements/governance-requirements.md) |
-| 展開後のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../helix-web-os/README.md) |
+| 展開後のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-WEB-OS](../helix-web-os/README.md) |
+
+## 2026-09-26のPO原案（製品群の要求候補）
+
+POが示した「HELIX-Web製品群 要求原案」を[原文のsnapshot](sources/helix-web-product-group-requirements-po-original-2026-09-26.md)に保存し、担当する対象ごとの`candidates/`へ分けて置いた（[判断記録](../../../docs/governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md)）。
+HELIX-Web全体の候補（原案1.1・2・15〜20節。`HELIXWEB-L2-010`以降、接続・非機能・構成体・受入シナリオ）は[要求候補](candidates/product-requirements.md)にある。
+各製品・共通機構・接続製品・WEB-OSの候補は、[helix-web/の入口](../../README.md)の表から辿る。いずれも要求候補・未採択であり、上の表のVision材料（`HELIXWEB-L2-001`〜`009`）の意味を上書きしない。
 
 ## 原文と現在の整理
 

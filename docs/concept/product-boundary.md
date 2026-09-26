@@ -4,7 +4,7 @@
 
 2026-09-17の承認は旧本文SHA-256 `097f27311060c56e387cf49fe6ec75731e5fd9dc04ac1a4be987d285e02ee038`に限る。現行本文のOS／LABO／INTELLIGENCEの責務表とPO判断条件は未承認の差分候補であり、[PO判断パッケージ](../governance/crosswalks/concept-requirement-po-decision-packet.md)で旧revisionと比較する。
 
-現行Conceptでは8機構と1共通部品を区別し、外部提供する製品属性はHARNESSとWebだけが持つ。1.0はHARNESS、OS、BRAIN、LABO、INTELLIGENCE、SECURITY、CONNECT、1.xはWebとWeb-OSが加わる。役割を割り当てるレーンと、レーンの主がSubagentとして呼び出して作業させるWorkerは、機構や共通部品とは別に置く（[2026-09-26 PO判断](../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)）。OSの管理・推進・検収は別責務であり、BRAINはHELIX全体の汎用の構造、INTELLIGENCEは稼働時の判断と知識・モデルの改善、LABOは効果と退行の評価を担う（[2026-09-25 PO判断](../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)）。
+現行Conceptでは8機構と1共通部品を区別し、外部提供する製品属性はHARNESSとWebだけが持つ。1.0はHARNESS、OS、BRAIN、LABO、INTELLIGENCE、SECURITY、CONNECT、1.xはWebとWEB-OSが加わる。HELIX-Webは製品の総称であり、HELIX-WEB-HARNESSの7製品、共通機構のHELIX-WEB-HARNESS-CORE、接続製品のHELIX-WEB-CONNECTORを含む。COREとWEB-OSを製品として数えない（[2026-09-26 PO原案の判断記録](../governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md)）。役割を割り当てるレーンと、レーンの主がSubagentとして呼び出して作業させるWorkerは、機構や共通部品とは別に置く（[2026-09-26 PO判断](../governance/decisions/worker-execution-model-po-decisions-2026-09-26.md)）。OSの管理・推進・検収は別責務であり、BRAINはHELIX全体の汎用の構造、INTELLIGENCEは稼働時の判断と知識・モデルの改善、LABOは効果と退行の評価を担う（[2026-09-25 PO判断](../governance/decisions/po-optimal-draft-po-decisions-2026-09-25.md)）。
 
 ## 明示された決定
 
@@ -17,8 +17,8 @@
 | 「Vision2のHELIX-WebはHELIX-OSが管理すると考えればわかるだろ？」 | WebはOSが管理する個別プロダクト。Web固有要求はWeb側に置く |
 | 「HELIX-Webの展開要件がHELIX-HARNESS製品群の完成が必須になるってこと。だからバージョン1で切ってるわけな。」 | Version 1はHARNESS製品群の完成境界。Web自体をVersion 1へ含めず、その完成をWeb展開の必須前提にする |
 | 「検証フェーズでいくつかのプロダクトを作ってみてWeb展開だから自己プロジェクトへの適応が入ると思ってくれ。」 | Version 1完成前に複数プロダクトを実開発し、HELIX自身のプロジェクトへの適用も検証する。その実証後にWebを展開する |
-| 「HELIX-Webの展開時はHELIX-OSの外にHELIX-Web-OSを作る感じだな。」 | Webのservice runtimeは独立したHELIX-Web-OSが担う。HELIX-OSはその開発・改善projectを統制する |
-| 「Web-OSからのログをHELIX-OSが吸収してサービスを改善していくから最終的に接続される。」 | Web-OSは許可されたservice log・telemetryをHELIX-OSへ連携し、HELIX-OSが改善候補へ統合する。運転authorityは分離したまま改善loopで接続する |
+| 「HELIX-Webの展開時はHELIX-OSの外にHELIX-Web-OSを作る感じだな。」 | Webのservice runtimeは独立したHELIX-WEB-OSが担う。HELIX-OSはその開発・改善projectを統制する |
+| 「Web-OSからのログをHELIX-OSが吸収してサービスを改善していくから最終的に接続される。」 | WEB-OSは許可されたservice log・telemetryをHELIX-OSへ連携し、HELIX-OSが改善候補へ統合する。運転authorityは分離したまま改善loopで接続する |
 | 「HARNESS側だと思うぞ。要求エンジンから導いたものを管理に登録する仕組みだからな。」 | 要求エンジンの意味機能はHARNESS、導出結果の登録・管理はHELIX-OS |
 | 「管理層は企画から要求エンジンとの齟齬管理できないとな。」 | Concept／企画L1から要求候補・採用要求までの意味差分はHARNESS engineが提示し、OS管理層が系譜・routing・状態を管理する |
 | 「要求自体も細分化したほうがよくて単体要求と接続要求で事前に意味を持たせておくといい。機能Aの要求なのか、機能A～Cの集まったシステムAの要求なのかで。」 | 要求をunit、connection、compositeへ分け、単体成立から接続・構成体成立を推定しない |
@@ -37,7 +37,7 @@
 | HARNESS | Vモデル、工程、要求・設計・検証の対応、進行・完了条件、外部提供物の成立条件 | [HARNESS](../helix-harness/README.md) |
 | HELIX-OS | プロジェクト群の管理、ticketを発行する推進、CI・testを最適化する検収、統合・更新・復旧 | [HELIX-OS](../helix-os/README.md) |
 | HELIX-Web | Connector型AI開発SaaSとしてWeb利用者が受け取るダッシュボード、サービス、操作体験 | [HELIX-Web](../../helix-web/docs/helix-web/README.md) |
-| HELIX-Web-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-Web-OS](../../helix-web/docs/helix-web-os/README.md) |
+| HELIX-WEB-OS | Web展開先のtenant・Connector・job・service state・配備・監視・復旧 | [HELIX-WEB-OS](../../helix-web/docs/helix-web-os/README.md) |
 
 この表は当初の4対象の文書入口であり、機構や製品の全件表ではない。要求対象の一覧はこの四つで閉じない。別プロダクトが加わるときも、固有要求はその対象に置き、OSの管理対象として接続する。
 HARNESS自身もOSが管理する開発対象である。HARNESSの工程規則をOSが適用し、OSの運用から得た改善を
@@ -46,7 +46,7 @@ HARNESS自身の要求・設計・実装・検証へ戻す。HELIX-OSはPMにあ
 
 ## 上位Conceptへの正規投影
 
-上位概念では、HELIXを一つの配布製品名として扱わず、HARNESS、HELIX-OS、HELIX-Web、HELIX-Web-OS等を含む
+上位概念では、HELIXを一つの配布製品名として扱わず、HARNESS、HELIX-OS、HELIX-Web、HELIX-WEB-OS等を含む
 プロジェクト群の総称として扱う。
 
 | 上位identity | 意味 | 所有するConcept |
@@ -55,19 +55,19 @@ HARNESS自身の要求・設計・実装・検証へ戻す。HELIX-OSはPMにあ
 | HARNESS | 外部へ提供する開発基盤 | V-model、層、pair、工程、要求・設計・検証契約、進行・完了条件、consumer package |
 | HELIX-OS | HELIXプロジェクト群の内部管理・推進・検収機構 | authority・state管理、ticket発行とWorker割当、CI・test最適化、改善候補登録、配布運転。独立評価はLABO、稼働中の判断と知識・モデル改善はINTELLIGENCEへ接続する |
 | HELIX-Web | HELIX-OSが管理する個別製品 | Connector型AI開発SaaSとしてWeb利用者へダッシュボード、操作、進行表示、サービス体験を提供する |
-| HELIX-Web-OS | HELIX-OS外のWebサービス運転基盤 | tenant、Connector、job、service state、evidence projection、配備・監視・復旧 |
+| HELIX-WEB-OS | HELIX-OS外のWebサービス運転基盤 | tenant、Connector、job、service state、evidence projection、配備・監視・復旧 |
 
 HARNESSをHELIX-OSの内部Kernelだけに縮退させない。HELIX-OSはHARNESSを利用・管理するが、
 HARNESSの工程意味を所有する別正本を作らない。HARNESSのartifact内容とconsumer利用条件はHARNESS、
 artifactの生成、配布、promotion、rollback、監視の実行統制はHELIX-OSが担う。
 
-HELIX-OSによる「管理」は、HELIX-Web-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWeb-OSの
-要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、Web-OSは展開後の利用者向けserviceを
+HELIX-OSによる「管理」は、HELIX-WEB-OSのservice runtimeを内包する意味ではない。HELIX-OSはWebとWEB-OSの
+要求・開発・検証・release準備・改善proposalをHELIX projectとして統制し、WEB-OSは展開後の利用者向けserviceを
 独立したauthority、state、credential、writerで運転する。
 
-両OSは改善loopで接続する。HELIX-Web-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで
+両OSは改善loopで接続する。HELIX-WEB-OSがservice log、telemetry、incident、利用結果を許可された目的・scopeで
 渡し、HELIX-LABOがHARNESS自身の実践を含む各対象の効果と退行を評価し、HELIX-OSが評価を改善候補として登録する。
-採択された候補だけをHARNESS、Web、Web-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、
+採択された候補だけをHARNESS、Web、WEB-OS等の対象要求・設計・検証へ戻す。credential、tenant原data、
 同意範囲外logの吸収や、logからの直接変更は行わない。
 
 ## 既存Conceptとの意味差分

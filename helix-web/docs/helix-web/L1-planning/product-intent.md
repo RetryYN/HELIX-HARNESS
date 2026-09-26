@@ -24,7 +24,7 @@ updated: 2026-09-14
 
 HELIX-Webは1.xで、HARNESSのサービス①〜⑦をリリース単位として顧客へ提供する。利用者が許可した開発環境と能力へConnectorで接続し、長時間の開発作業、進行、成果、停止・再開を
 ダッシュボードから確認・操作できるAI開発SaaSを目指す。利用者環境の資産と統制を尊重し、HELIX-OSの内部管理画面、
-HELIX-Web-OSの運転機構、HARNESSの工程定義をWeb固有の価値として重複実装しない。
+HELIX-WEB-OSの運転機構、HARNESSの工程定義をWeb固有の価値として重複実装しない。
 
 | ID | L1企画要求 | L2接続予定 |
 |---|---|---|
@@ -46,7 +46,7 @@ HELIXWEB-L1-001..006のWeb固有価値へ具体化する。旧柱の実装をWeb
 ## 対象外
 
 V-modelと検証契約はHARNESS、開発projectの要求・Worker・CI・ログ・改善還流の管理統制はHELIX-OS、
-展開後のtenant・Connector job・service state・配備・監視・復旧はHELIX-Web-OSが所有する。
+展開後のtenant・Connector job・service state・配備・監視・復旧はHELIX-WEB-OSが所有する。
 全コードや計算資源をSaaSへ移すこと、未採択の分散推論、横断学習への包括同意を前提にしない。
 
 ## 採択条件

@@ -43,7 +43,7 @@ HELIXは、本体の能力、Webでの提供、利用者の自立の3つの軸�
 | 版 | HELIX本体でやること | Web提供でやること | 利用者ができるようになること | 加わる機構 | 到達の確かめ方 |
 |---|---|---|---|---|---|
 | 1.0 | HARNESS Version 1の完成。要求から設計・実装・検証・統合・リリース・運用・保守まで通し、変更を適切な地点へ戻せる。HELIX自身の改善も同じ経路で行う | Web展開を始めるための開発基盤と提供package | 定型保守を開くための基礎 | HARNESS、OS、BRAIN、LABO、INTELLIGENCE、SECURITY、CONNECT | 性質の異なる複数の製品とHELIX自身で、要求から受入・運用評価まで成立する。部品の存在や文書だけで完成としない |
-| 1.x | 実案件でpackageと並行開発を磨く | Webコネクタ型AI開発SaaS。利用者のPC・WSL・VPS・リポジトリをWebから操作する | 限定された更新・診断・復旧 | Web、Web-OS | 利用者環境で接続・job・切断・取消・再開が成立する。開発engineをWeb用に別実装しない |
+| 1.x | 実案件でpackageと並行開発を磨く | Webコネクタ型AI開発SaaS。利用者のPC・WSL・VPS・リポジトリをWebから操作する | 限定された更新・診断・復旧 | HELIX-Web（製品群）、HELIX-WEB-OS | 利用者環境で接続・job・切断・取消・再開が成立する。開発engineをWeb用に別実装しない |
 | 2.0 | LABOが外の情報を分解し、使える構造をBRAINへ入れる。取り込んだ構造から、今の案件へ根拠付きで推薦する。外の情報は、OSS、設計資料、論文、Issue、PR等である（下の注記） | 技術・設計・改修の根拠付き推薦を提供する | 影響と選択肢を見て変更を判断する | なし（LABOを外の情報の分解と推薦の効果の評価へ、BRAINを取り込んだ構造の蓄積へ拡張） | 推薦から出典・版・根拠へ戻れる。適用不能や保留も返せる。外部の成功を自分の環境の成功にすり替えない |
 | 3.0 | HELIXの開発データで、ローカルLLMを学習・チューニング・評価する | HELIX-Web 3：HDA。調整済みモデルを分散サーバーから呼び出して開発を補助する | 専門AIと保守・改修を進める | なし（INTELLIGENCEをローカルモデルの学習へ拡張） | どのデータと設定から生まれたモデルかを追える。学習前と比べ、弱点・適用範囲・撤回先を持つ |
 | 4.0 | BRAIN・HELIX-HARNESS-CORE・INTELLIGENCE・OSの複合処理で、案件ごとに開発フローを組み立て、途中結果で再計画する。HARNESSの工程の部品にない流れまで、INTELLIGENCEの判断で組み立てる | 目的・計画・根拠・進行をWebから扱う | 要望から改修手順を組ませ、実行を任せる | なし（BRAIN・HELIX-HARNESS-CORE・INTELLIGENCE・OSの複合処理として開発フローを組む） | 未知の案件でも必要な義務を落とさない計画を作れる。推論が誤っても、権限・品質・安全の検査で実行を止められる |
@@ -66,8 +66,8 @@ flowchart LR
         C1["HELIX-CONNECT"]
     end
     subgraph V1x["1.x Web提供の開始"]
-        W1["HELIX-Web 《製品》"]
-        WO1["HELIX-Web-OS"]
+        W1["HELIX-Web 《製品群》<br/>WEB-HARNESSの7製品・CORE・CONNECTOR"]
+        WO1["HELIX-WEB-OS"]
     end
     subgraph V20["2.0 根拠付きの推薦"]
         L2["LABOの拡張<br/>外の情報の分解、推薦の効果と退行の評価"]
@@ -109,7 +109,7 @@ LABOも1.0からあり、HELIX自身や製品の改善が効いたか、退行�
 
 ## 3. どんな機構で成り立つか
 
-HELIXは、全版を通じて8つの機構と1つの共通部品から成る。役割を割り当てるレーンと、作業を実行するWorkerは、機構や共通部品とは別に置く（下の「作業を実行するのはWorker」）。機構は版ごとに加わる。**製品は機構の一部**であり、HARNESSとWebだけが製品の属性を持つ。
+HELIXは、全版を通じて8つの機構と1つの共通部品から成る。役割を割り当てるレーンと、作業を実行するWorkerは、機構や共通部品とは別に置く（下の「作業を実行するのはWorker」）。機構は版ごとに加わる。**製品は機構の一部**であり、HARNESSとWebだけが製品の属性を持つ。HELIX-Webは製品の総称であり、機構としては1つに数える。その中の製品の数え方は下の「HELIX-Web」に示す。
 以下の図と表は、すべての機構がそろった姿を示す。
 機構を分けるのは、成長の循環を切らずに各機構を交換・更新できるようにするためである。機構や文書の数を増やすことは目的にしない。
 全体の統制は、すべての書き込みを一か所に集める万能の中枢ではない。各機構が自分のデータと責務を持つ。
@@ -171,9 +171,9 @@ flowchart LR
     PKG["HELIX-HARNESS 《製品》<br/>①〜⑦のリリース単位"]
     ExtUser["外部の利用者<br/>自分のプロジェクト"]
     Customer["顧客"]
-    WEB["HELIX-Web 《製品》<br/>サービス①〜⑦を顧客へ提供"]
-    WEBOS["HELIX-Web-OS<br/>サービス運転"]
-    WEBCONN["Webコネクタ<br/>利用者への接続"]
+    WEB["HELIX-Web 《製品群》<br/>WEB-HARNESSの7製品を顧客へ提供"]
+    WEBOS["HELIX-WEB-OS<br/>サービス運転"]
+    WEBCONN["HELIX-WEB-CONNECTOR<br/>利用者の環境への接続"]
     CONNECT["HELIX-CONNECT<br/>接続・通信"]
     LANES2["レーン<br/>作成・review等の役割の割当て先"]
     WORKER["Worker<br/>作業の実行"]
@@ -205,7 +205,7 @@ flowchart LR
     Human -.->|採否| REQ2
 ```
 
-INTELLIGENCEの学習jobとLABOの比較実験も、OSの推進がticketとして発行し、レーンが呼び出したWorkerが実行する。Web-OSの利用・運用データは、LABOが評価し、利用区分を付けた学習の材料としてINTELLIGENCEへ渡す（2026-09-26、[統合確認の判断記録](../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。
+INTELLIGENCEの学習jobとLABOの比較実験も、OSの推進がticketとして発行し、レーンが呼び出したWorkerが実行する。WEB-OSの利用・運用データは、LABOが評価し、利用区分を付けた学習の材料としてINTELLIGENCEへ渡す（2026-09-26、[統合確認の判断記録](../governance/decisions/handoff-integration-po-decisions-2026-09-26.md)）。
 
 ### 機構の役割
 
@@ -217,9 +217,9 @@ INTELLIGENCEの学習jobとLABOの比較実験も、OSの推進がticketとし�
 | HELIX-LABO | 実験、比較、改善効果・退行の計測。HELIX-BenchでWorkerの作業履歴を集計し、どのモデルクラスなら対応できるかの水準を出す | 自己評価だけでの採用確定、Workerの割当ての決定 |
 | HELIX-INTELLIGENCE | HELIXについて最も知っている部位。稼働中の理解、計画、予測、診断、レビュー、配置案を、1.0から既存の外部モデルで行い、後の版でローカルLLMに判断を依頼する。バグbot、ヘルプbot、クローラーを発行し、HELIX全体の監査に寄せる。バグbotは、CIでよく失敗する種類のログがたまり、機械で判定できるようになったものから発行する | 検証なしでの稼働モデル差し替え |
 | HELIX-SECURITY | 認可、情報保護、資格情報、隔離、失効、Workerの実行の制約とauthority | 自身の権限の拡張 |
-| HELIX-Web 《製品》 | HARNESSのサービス①〜⑦をリリース単位として顧客へ提供し、顧客が欲しい成果物を選んで受け取る窓口 | 開発エンジンの別実装 |
-| HELIX-Web-OS | 顧客のtenant・job・サービス状態・配備・監視・復旧 | 内部OSの状態・鍵・権限の共有 |
-| HELIX-CONNECT（共通部品） | HELIXの内部と外部の構造をつなぐ。内部の機構どうしの接続（HELIX-HARNESS-COREとBRAIN、BRAINとINTELLIGENCE等）と、外部との接続を担う。接続登録、契約版の照合、通信、再送、追跡。利用者に提供する接続は、別のWebコネクタとする | 業務判断、承認 |
+| HELIX-Web 《製品群》 | Web提供系の製品の総称。HELIX-WEB-HARNESSの7製品（サービス①〜⑦）を顧客へ提供し、顧客が欲しい成果物の製品を選んで受け取る窓口。共通機構のHELIX-WEB-HARNESS-CORE、接続製品のHELIX-WEB-CONNECTORを含む（下の「HELIX-Web」） | 開発エンジンの別実装 |
+| HELIX-WEB-OS | Web提供系の運転機構。顧客のtenant・案件・工程・job・権限・提供版・サービス状態・配備・監視・復旧 | 内部OSの状態・鍵・権限の共有 |
+| HELIX-CONNECT（共通部品） | HELIXの内部と外部の構造をつなぐ。内部の機構どうしの接続（HELIX-HARNESS-COREとBRAIN、BRAINとINTELLIGENCE等）と、外部との接続を担う。接続登録、契約版の照合、通信、再送、追跡。利用者に提供する接続は、HELIX-Webの接続製品HELIX-WEB-CONNECTORとし、所属と要求を分ける | 業務判断、承認 |
 
 - **BRAINは全体、OSは製品ごと。** HELIX全体に共通する汎用の構造（設計パターン、設計ユニット・パーツ）はBRAINが持ち、製品ごとの工程管理と推進はOSが担う。INTELLIGENCEはHELIXについて最も知っている部位として、稼働中の判断と、バグbot・ヘルプbot・クローラーの発行を担い、HELIX全体の監査に寄せる。
 - **決めるのはOS。** INTELLIGENCEは案を出す。OS内の推進機構はoperational tag、HARNESS語彙へのversioned mapping、composition、workflow instanceの生成規則を所有し、案の適格性を確認してticket graphとworkflow instanceを生成する。OSの管理が登録・統制して状態遷移を確定し、検収はHARNESSの契約への充足を独立して確認する。
@@ -238,7 +238,7 @@ HELIX-HARNESSは、サービス①〜⑦をすべて統合したものである�
 独立して成立することと単独でリリースできることは、各サービスの要求、依存、受入で確かめる。
 利用者は欲しい成果物のサービスだけを導入してもよく、統合されたHELIX-HARNESSとして開発全体に使ってもよい。
 各サービスは要求・設計・実装・テスト・検証を一式持ち、互いに密結合させない。密結合にすると、単独でリリースできなくなるためである。
-同じサービス①〜⑦を、HELIX-Webがリリース単位として顧客へ提供する。
+同じサービス①〜⑦を、HELIX-WebがHELIX-WEB-HARNESSの7製品として顧客へ提供する（下の「HELIX-Web」）。
 対象製品の言語、AIのprovider、CI製品、画面の方式には依存しない。
 
 #### 製品群（サービス①〜⑦、リリース単位）
@@ -270,7 +270,26 @@ HELIX-HARNESSは、サービス①〜⑦をすべて統合したものである�
 - Worker pool、HELIXの内部memory、運用DB、CIの運転、学習の履歴を、利用者の必須構成にしない。HELIX自身を育てる部分（全体統制、学習、LABO、INTELLIGENCE）は同梱しない。
 - 配布する道具、道具で作る製品、学習済みモデルは別の成果物とする。配布物の生成・配布・切戻しはOSが運転する。
 - Version 1には、サービス①〜⑦のすべてを含める。各サービスが単独で成り立ち、つなげて開発全体に使えることを1.0の完成とする。
-- HELIX-Webで利用者へ渡す成果物は、デザインならHTML、設計ならMarkdown、実装ならきれいなコードである。HELIX-HARNESS-COREのJSONとPythonは公開しない。利用者が作ったシステムの原本はHELIXが保有する。原本は後で解体してパターンだけを取り込み、破棄する。利用規約には「HARNESSの改善に利用することがあります」程度を示す。
+- HELIX-Webで利用者へ渡す成果物は、デザインならHTML、設計ならMarkdown、実装ならきれいなコードである。HELIX-HARNESS-CORE（Webでは顧客製品ごとのHELIX-WEB-HARNESS-CORE）のJSONとPythonは公開しない。利用者が作ったシステムの原本はHELIXが保有する。原本は後で解体してパターンだけを取り込み、破棄する。利用規約には「HARNESSの改善に利用することがあります」程度を示す。
+
+### HELIX-Web
+
+HELIX-Webは、Web提供系の製品の総称である（2026-09-26のPO原案、[判断記録](../governance/decisions/helix-web-product-group-po-decisions-2026-09-26.md))。次のものから成る。
+
+| 名前 | 分類 | 提供するもの |
+|---|---|---|
+| HELIX-WEB-HARNESS | 開発系7製品の総称・統合提供 | 単独製品の利用と、製品間を接続した開発 |
+| HELIX-WEB-HARNESS-PROTOTYPE、-REQUIREMENTS、-DESIGN、-DEVELOPMENT、-REFACTORING、-RELEASE、-OPERATIONS | 製品①〜⑦ | 画面試作とPoC、要件定義、設計、開発、リファクタリング、リリース、運用保守の成果物 |
+| HELIX-WEB-HARNESS-CORE | WEB-HARNESS配下の共通機構 | 顧客製品ごとの意味・設計・依存・変更の処理 |
+| HELIX-WEB-CONNECTOR | 接続製品 | 利用者のLinux環境・開発ツール・プロバイダーとの接続 |
+
+- WEB-HARNESSの7製品は、それぞれ必要な依存だけで単独利用・単独受入・単独リリースでき、組み合わせたときは接続と構成体の要求を満たす。HELIX-HARNESSのサービス①〜⑦と同じ独立性を引き継ぐ。
+- HELIX-WEB-HARNESS-COREとHELIX-WEB-OSを、WEB-HARNESSの8番目・9番目の製品として数えない。共通の実装を使うことと、製品・案件・状態・権限の所属を同じにすることを分ける。
+- HELIX-WEB-CONNECTORは顧客向けの接続であり、内部の機構どうしをつなぐHELIX-CONNECTとは所属も要求も別である。
+- Web提供系の運転は、HELIX-Webの外の機構HELIX-WEB-OSが担う。HELIX-WEB-OSは製品ではなく、本体のHELIX-OSと状態・権限を共有しない。
+- 機構の数は、HELIX-Web（製品群）とHELIX-WEB-OSをそれぞれ1つと数える。上の8つの機構と1つの共通部品の数は変わらない。
+- Web由来の実績の集計と評価は、HELIX本体のLABOに内蔵するHELIX-Benchが担う。Web専用の評価の機構を別に置かない。
+- 各対象の要求は、2026-09-26のPO原案を要求候補（未採択）として、repository直下の`helix-web/`の対象ごとの`candidates/`に置く。
 
 ## 4. 原則
 

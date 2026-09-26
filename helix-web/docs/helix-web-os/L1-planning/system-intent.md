@@ -1,5 +1,5 @@
 ---
-title: "HELIX-Web-OS L1企画候補"
+title: "HELIX-WEB-OS L1企画候補"
 canonical_vmodel: L1-L12
 canonical_layer: L1
 canonical_pair: L12
@@ -9,13 +9,13 @@ parent_concept: docs/concept/helix-concept.md
 created: 2026-09-14
 ---
 
-# HELIX-Web-OS L1企画候補
+# HELIX-WEB-OS L1企画候補
 
 > **Visionレベルの材料（要求層ではない）**：2026-09-24のPO判断（[decision record](../../../../docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md)）により、本書はL1／L2／L11の要求層から外し、Visionレベルの材料として扱う。本書はAIがVision v0.1を拡大解釈して起こしたもので、POが要求として出したものではない。PO：「Visionレベルの話でこれから要求に起こすべき内容であり、いま要求に入ってるのがおかしい」。要求は今後POの指示から起こす。本書の記述を要求・受入・設計・実装の根拠にしない。
 
 本書の親は[HELIX Concept](../../../../docs/concept/helix-concept.md)である。2026-09-17のdecisionは旧本文のexact SHAに限る。現行本文は未承認の再配置候補であり、差分は[PO判断パッケージ](../../../../docs/governance/crosswalks/concept-requirement-po-decision-packet.md)に記録する。L2合意や実装許可を生成しない。
 
-HELIX-Web-OSは、HELIX-Webの展開時にHELIX-OSの外へ構成し、利用者向けWebサービスを安全かつ継続的に
+HELIX-WEB-OSは、HELIX-Webの展開時にHELIX-OSの外へ構成し、利用者向けWebサービスを安全かつ継続的に
 運転する基盤である。HELIX-OSの内部統制stateとWebサービスのtenant／job／接続stateを分離する。
 
 | ID | L1企画要求 | L2接続予定 |
@@ -40,11 +40,11 @@ HELIX-Web-OSは、HELIX-Webの展開時にHELIX-OSの外へ構成し、利用者
 
 ## 境界
 
-HELIX-Web-OSはHELIX-OSのsubsystemではなく、Web展開先の独立運転境界である。HARNESSの開発engineや工程規則、
+HELIX-WEB-OSはHELIX-OSのsubsystemではなく、Web展開先の独立運転境界である。HARNESSの開発engineや工程規則、
 HELIX-OSの全project管理、Webの利用者要求を別正本として複製しない。具体cloud、provider、認証方式、料金、
 SLOはL2以降の採択前に確定済みと扱わない。
 
-独立運転は非接続を意味しない。Web-OSのservice log・telemetry・incident・利用結果は、許可された範囲を
+独立運転は非接続を意味しない。WEB-OSのservice log・telemetry・incident・利用結果は、許可された範囲を
 HELIX-OSへ渡し、改善proposalと採択後の対象別変更を受け取る。service credentialやtenant原dataは暗黙共有しない。
 
 ## 採択条件

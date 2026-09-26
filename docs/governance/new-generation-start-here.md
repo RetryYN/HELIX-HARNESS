@@ -7,20 +7,20 @@ generation_boundary: 2026-09-14
 
 旧HELIXを現行pathで延命せず、HELIX-HARNESSとHELIX-OSを分離して上流から組み直す。
 HARNESSは外部提供するV-model開発基盤、HELIX-OSはHARNESS自身を含むHELIXプロジェクト群の管理・統制・継続改善機構である。
-HELIX-WebはHARNESS Version 1完成後に展開する個別製品で、service runtimeはHELIX-OS外のHELIX-Web-OSが担う。
+HELIX-WebはHARNESS Version 1完成後に展開する個別製品の総称（製品群）で、service runtimeはHELIX-OS外のHELIX-WEB-OSが担う。
 
 ## 読込順
 
 1. [Concept入口](../concept/README.md)
 2. [Concept本文](../concept/helix-concept.md)と[製品責務境界](../concept/product-boundary.md)
-   - 旧4対象（HARNESS、OS、Web、Web-OS）のL1の承認は[2026-09-17 decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)に記録されている
+   - 旧4対象（HARNESS、OS、Web、WEB-OS）のL1の承認は[2026-09-17 decision record](decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md)に記録されている
 3. [HELIX自体の5大目標候補](../concept/helix-five-goals.md)
 4. [HELIXエージェントの七大原則候補](../concept/helix-principles.md)
 5. 対象機構のL1
    - [HELIX-HARNESS](../helix-harness/L1-planning/product-intent.md)
    - [HELIX-OS](../helix-os/L1-planning/system-intent.md)
    - [HELIX-Web](../../helix-web/docs/helix-web/L1-planning/product-intent.md)
-   - [HELIX-Web-OS](../../helix-web/docs/helix-web-os/L1-planning/system-intent.md)（WebとWeb-OSは2026-09-24のPO判断でVisionレベルの材料へ分類し直した。2026-09-26のPO判断で、両者の文書はHELIX本体の`docs/`からrepository直下の`helix-web/`へ移した：[判断記録](decisions/helix-web-relocation-po-decisions-2026-09-26.md)）
+   - [HELIX-WEB-OS](../../helix-web/docs/helix-web-os/L1-planning/system-intent.md)（WebとWEB-OSは2026-09-24のPO判断でVisionレベルの材料へ分類し直した。2026-09-26のPO判断で、両者の文書はHELIX本体の`docs/`からrepository直下の`helix-web/`へ移した：[判断記録](decisions/helix-web-relocation-po-decisions-2026-09-26.md)）
    - L1企画案（対象revisionはPOが確認する）：[HELIX-BRAIN](../helix-brain/L1-planning/brain-intent.md)、[HELIX-LABO](../helix-labo/L1-planning/labo-intent.md)、[HELIX-INTELLIGENCE](../helix-intelligence/L1-planning/intelligence-intent.md)、[HELIX-SECURITY](../helix-security/L1-planning/security-intent.md)、[HELIX-INFRASTRUCTURE](../helix-infrastructure/L1-planning/infrastructure-intent.md)
    - [5大目標・七大原則のL1被覆監査](audits/source-rebaseline/l1-goals-principles-coverage-audit.md)
    - [5大目標・七大原則のPO原文source atom inventory](l1-goals-principles-source-inventory.md)
@@ -57,7 +57,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 - HELIX-OS L1：本文SHA `ffbafa47…51bc`をPOが採用した。2026-09-25のPO判断（[判断記録](decisions/mechanism-placement-po-decisions-2026-09-25.md)）でL1-011・L1-012をHELIX-LABOの候補への案内行に変えた。2026-09-26のPO判断（[判断記録](decisions/handoff-integration-po-decisions-2026-09-26.md)）で提供価値とL1-006をOS＝PMの整理に合わせた。変更後の本文は、PO最適ドラフトPRで対象revisionを確認する。
 - 製品責務境界：現行本文SHA `9268e357…ac0a`をPOが採用した。
 - HARNESS L1と5大目標：内容をPOが採用した。HARNESS L1は1.0土台の追記、5大目標は関与表の縮約を指示された。追記・縮約後の本文は、PO最適ドラフトPRで対象revisionを確認する。
-- HELIX-WebとHELIX-Web-OS：L1・L2・L11を要求層から外し、Visionレベルの材料へ分類し直した。
+- HELIX-WebとHELIX-WEB-OS：L1・L2・L11を要求層から外し、Visionレベルの材料へ分類し直した。2026-09-26にPOが示した「HELIX-Web製品群 要求原案」により、HELIX-Webを製品の総称とし（WEB-HARNESSの7製品、WEB-HARNESS-CORE、WEB-CONNECTOR）、その構成をConceptへ反映した。原案の要求は候補（未採択）として`helix-web/`の対象ごとの`candidates/`と、LABOの候補に置いた（[判断記録](decisions/helix-web-product-group-po-decisions-2026-09-26.md)）。
 - HELIX-LABO：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/labo-core-engine-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。
 - HELIX-BRAIN：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/brain-l1-idea-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。
 - HELIX-INTELLIGENCE：2026-09-26にPOが示した原文をもとに、L1企画案を作った（[判断記録](decisions/intelligence-l1-idea-po-decisions-2026-09-26.md)）。L1企画案の対象revisionはPOが確認する。Conceptの4.0を、BRAIN・HELIX-HARNESS-CORE・INTELLIGENCE・OSの複合処理にした。
