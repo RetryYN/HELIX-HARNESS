@@ -577,3 +577,42 @@ fixture内のID・source textは合成値であり、普遍的なticket番号、
 **findingのリスク受容：正常・反例**：review findingに、対象revision/scope、根拠、残るrisk、独立review receiptとappeal経路を与える。上流意味の変更がなければPO receiptを一律追加せず、accepted-riskの非終端記録を原findingへ結ぶ。独立reviewなしにリスク受容する、directiveのPO要件を流用して通常findingのaccepted-riskを止める、review済みを理由に原記録を削除/不可視化/終端化する、appeal経路を失う場合は不合格。上流意味を変える場合は人の既存判断へ戻す。出所の種別が不明なら推測せず確認先へ返す。
 
 **原文追補**：旧L1 `infinity-loop-platform-requirements.md:99,201`（HIL-FR-09/NFR-21、L2と同じasset/SHA）により、findingの証拠付き非終端dispositionと独立reviewを保持する。current_pr_fix/successor_issueの分類全体をこの受入だけで閉じない。
+
+### HELIXOS-L2-035 対応L11受入候補
+
+**対応要求・状態**：HELIXOS-L2-035（OS単体unit、`version_target: 1.0`候補、未採択）に対する受入oracle案。HELIXOS-L2-007はprovenanceと証拠、009はdurable event/idempotent projection、010はticket/workflow生成を所有する。035は選択PR event scopeのintakeと冪等監査job要求の生成を検査し、HR-FR-HIL-03のHARNESS↔OS接続や監査実行/所見処理は扱わない。候補受入は要求採択・実装・実行・review成功を生成しない。
+
+各fixtureは対象project/repository、明示scope、event source contract/version、authority状態、PR identity、base/head refとrevision、source event identity、監査job要求の状態を固定する。選択範囲外のrepositoryを対象に含めず、作成者/provider名だけでscope内PRを除外しない。
+
+**正常：複数base branchとstacked PR**
+
+projectの同じ明示scopeで、base branch `main`上のPR、別base branch `release/x`上のPR、PR-Aのhead branchをbaseにするstacked PR-Bの作成/更新/完了相当eventを与える。契約で観測可能な各eventは対象として記録し、それぞれのbase/head revision・source event・監査job要求を関係づける。全base branchとstacked PRが含まれ、いずれもsource作成runtime名を理由に除外されない。これは選択project内の結果であり、別repositoryを巡回したり、その結果へ広げたりしない。
+
+**正常：再送の冪等性と更新**
+
+同一event identity/revisionを同じscopeへ複数回配送する。event receiptは同一論理eventに結ばれ、論理監査job identity/requestは一つに収束し、L2-010の既存ticket/workflow境界に一つのaudit work itemとして登録されるreceiptを返す。監査処理の完了までは要求しない。次に同一PRのhead revisionが変わった更新eventと完了相当eventを与える。各event/revisionは捕捉履歴に残り、L2-010の既存規則に沿ってjob work itemが更新または後続生成される。前headに結ばれたjob/resultを新headの現在状態へ転用しない。
+
+**誤り：対象除外・重複job・不正な完了主張**
+
+同じscopeにbase branch `release/x`とstacked PR-Bが存在するのに、`main`上のPR-Aしか取り込まず対象完了とする、またはprovider/author条件を理由にscope内PR eventを落とす結果は不合格。重複配送から同じevent/revisionの論理jobを複数作る結果も不合格。選択source契約のdelivery filterが一部base branchまたはstacked PRを除外しているのに、全scopeを網羅したと表示する結果を拒否する。
+
+**誤り：古い結果と作業状態の混同**
+
+同じPRの旧headに結び付いた監査要求/receiptを新headへ結び付ける、event受領だけでjob完了・review済み・CI合格・merge可能・要求承認済みと表示する結果を拒否する。イベントが重複した場合の既存receiptを無視して二重にjob作成する場合も拒否する。
+
+**未見：未知event/source版/新base branch**
+
+未fixtureのevent action、event source contract version、または新しいbase branchを与える。現契約がそのevent意味とscope内deliveryを明示的に支持するときは、内容・provenance・revisionを照合後、同じcoverageとidempotency条件で処理する。意味/対応版/delivery範囲がunknownまたはstaleなら、PR不存在や全件捕捉済みにせず未観測/未完として返し、該当source契約ownerへ戻す。新eventを未知という理由だけで恒久拒否せず、既存契約範囲内のsupported eventは処理する。
+
+**境界・結果**
+
+受入は、明示scope内で作成/更新/完了相当eventを漏らさず記録し、同一event再送のjob生成とL2-010 work-item登録が冪等で、更新revisionが正しく分離されることを確認する。監査job自体の実行、独立review、finding分類、writer返却、successor昇格、CI/merge admissionはこの単体fixtureの合格条件にしない。これらを要する端から端のHARNESS↔OS接続はHR-FR-HIL-03と別の後続candidateで判断する。
+
+**出典と固定照合基準**
+
+- 旧HIL-BR-02: `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:54`、SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`。
+- 旧IR: `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:45-58`、SHA-256 `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`。
+- 2026-09-23 scope decision: `docs/governance/decisions/hil-br-02-product-scope-2026-09-23.md:15-44`、SHA-256 `1bf2912691a89cacc2ff1bff23b5c21a48961bb655aa43ec95d5b422c83d64c1`。scope決定であってL2/L11採用・接続完了ではない。
+- 現行L1/L2/L11と照合baseはL2候補本文の「現行根拠と照合基準」を参照。L2: `docs/helix-os/L2-requirements/governance-requirements.md:60,62-63,295-300`、L11: `docs/helix-os/L11-acceptance/governance-acceptance.md:27,29-30,47,55`。
+
+**配送順序・部分失敗の反例**：新HEAD eventの後に旧HEAD eventが遅れて届くfixtureで、新しい対象revisionを旧job状態へ戻す例を拒否する。event保存後・job登録前の停止は未完登録を再開し、登録後receipt受領前の停止は既存jobへ再相関する。どちらもjob二重生成や原event消失を成功にしない。

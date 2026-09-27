@@ -983,3 +983,49 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 照合した現行本文の固定commit：`2197a4bc405d37f133bac4d5e96809c5afec58c1`。旧L1のBR-07は59行、FR-36は126行、旧運転受入HOT-HIL-36は63行。旧原文のIssue語を現行の原event/local ticketと協調projectionへ分離して再導出し、原指示の意味上の取消権限を緩めない。
 
 **R2222-01の原文照合**：同旧L1 `:99`（HIL-FR-09）と`:201`（HIL-NFR-21）も照合した。findingの非actionable分類は独立reviewとappealを持つ非終端記録である。directiveのaccepted-riskに求めるPO receiptをfindingへ拡張しない。旧provider名/DB viewは現行実装へ移さない。FR-09のcurrent_pr_fix/successor_issueの分類全体は本候補の被覆とせず原文を保持する。
+
+### HELIXOS-L2-035 PR lifecycle event intakeと監査job要求の冪等生成（単体候補）
+
+**状態・種別・版**：HELIX-OS単体unit候補、`version_target: 1.0`候補、未採択。HELIXOS-L2-035は、選択された対象projectのPR lifecycle eventを欠落なく取り込み、同じ観測eventから重複した論理監査jobを生成しないOS能力を定める。旧hook/provider/author runtime、物理queueやdaemonの採用は決めない。候補本文は要求採択・L3承認・実装許可を生成しない。
+
+**親L1候補**：`HELIXOS-L1-002`（project群の作業・検証・提供・運用を追跡し、欠落/競合/staleを把握）、`HELIXOS-L1-004`（承認済み上流・HARNESS契約に従うreview/証拠収集を統制）、`HELIXOS-L1-008`（authority/design/verification/runtime projectionの不整合を検出し原情報から再構築）。いずれも現L1の意味を変更せず、各項の既存scopeに限って具体化する。
+
+**単体責務と既存IDとの境界**：この候補は、既存operationで明示されたproject/repository/source scopeのPR作成・更新・完了eventを受け、eventごとの論理監査job identityとjob requestを一度だけ生成し、event provenanceとともにHELIXOS-L2-010の既存ticket/workflow生成境界へ渡す。035は監査jobの論理identityと生成を所有し、010はそのjobを既存の作業単位としてticket/workflowへ登録し運転する。035の処理完了は、L2-010境界に一つの監査work itemが登録されたreceiptまでであり、監査処理自体の完了ではない。監査のreview・finding分類・writerへの返却・successor昇格は所有しない。`HELIXOS-L2-007`が証拠形式/provenance/相関を、`HELIXOS-L2-009`がdurable event記録・冪等projection/checkpointを、`HELIXOS-L2-010`がticket/workflow生成を所有する。035はその契約をPR event intakeへ具体化する単体能力であり、各IDの責務を置き換えない。HARNESS↔OSのHR-FR-HIL-03 connectionは別候補として残し、この単体候補へ混ぜない。
+
+**対象scope**：既存のproject設定と入力契約で明示されたrepository/workspaceとPR監査operationに限る。その選択scope内のPRではbase branchを理由にevent対象から除かず、stacked PR（baseが別PRのhead branch等）も除外しない。対象scope外のrepositoryを走査する要求ではない。作成runtime名・provider名だけを監査対象の選別条件にしない。
+
+**入力**：
+
+- 既存OS project registry/ticketの対象project、repository identity、PR監査operation scope、現行適用版、およびそのoperationに既に適用されるaccess/operation authority。
+- 選択済みevent sourceの現行入力契約と版。eventから、repository/PR identity、lifecycle kind（作成・更新・完了相当）、base/head refと観測対象revision、同一deliveryを識別するevent identityまたは同等の契約情報、source revision/provenanceを識別できること。payloadや契約に欠落があればunknownとして扱い、event不在とは推定しない。
+- `HELIXOS-L2-007`の証拠/provenance契約、`HELIXOS-L2-009`のdurable event/idempotent projection境界、`HELIXOS-L2-010`の既存audit work/ticket生成契約。035は下流job完了receiptをintake開始前提にしない。
+
+**出力**：対象project/repository/PR、lifecycle event、base/head refと対象revision、source/event identity、受領時の適用contract revision、受領結果・重複判定・未完理由を記録するevent receiptと、L2-010が消費できる監査job要求を出す。job要求とevent receiptは同一因果relationで辿れる。物理jobの配置先とticket詳細workflowはL2-010または既存の該当ownerが決める。job requestが受理されてL2-010のwork itemへ登録されたreceiptを返すが、review成果物はこの候補の出力ではない。
+
+**保証**：
+
+- 明示scopeのPR作成・更新・完了相当eventを処理対象とし、全base branchとstacked PRを含める。base/refの種類やauthor runtime/provider名による黙示除外をしない。source contractがそのscopeのeventを列挙/配送できない場合は、未観測/不完全として残し、対象PRが存在しない、または全件処理済みとは表示しない。
+- 同じsource event/deliveryの再送・再処理は同じ論理監査job identityへ収束し、重複jobを増やさない。新しいlifecycle eventまたは対象revisionを伴う更新は、そのeventとrevisionを記録して既存L2-010の規則に従い新規/更新/後継の論理要求へ反映する。異なるHEADの結果やjobを一つの現行PR状態として混ぜない。
+- event捕捉と監査job要求生成は、reviewの完了、CI green、Claude/Codex receipt、merge、requirement採択を成立させない。event receiptやjob requestだけで監査jobの実行・成功・独立review合格を表示しない。
+- 旧HIL-BR-02の機能意味（PR作成/更新/完了の検出、監査jobの冪等生成、全base branch、stacked PR包含）を維持する。固定Claude拡張hook、Codex限定author、旧provider、daemon/webhook server、旧実装手順は現行要件に持ち込まない。
+
+**依存区分**：
+
+- **常時必須**：選択operationの対象project/repository/scopeと版、当該入力の既存access/operation authority、HELIXOS-L2-007のprovenance/証拠契約、HELIXOS-L2-009のdurable event/idempotent projection契約、監査job要求を引き継ぐHELIXOS-L2-010境界。event intakeはjob完了receiptに依存しない。
+- **特定操作時のみ**：PR監査operationを開始し、各PR eventを捕捉または監査job要求へ変換する時、その操作に適用される現authorityの範囲でsourceを読む権限と内部job要求を記録する許可。新しい個別承認、merge/write permission、review/CI実行権限は追加しない。
+- **選択した入力元に応じて必須**：選択event source contract、その版、sourceが保証する対象repo/base branch/event kind/配信・重複識別範囲。event sourceが対象scopeを網羅しないときは不足範囲をunknownとして残し、網羅claimを保留する。他providerの契約を黙って代替しない。
+- **参照資料のみ**：未選択repo/source/provider、旧runtime/hook実装、旧固定provider・daemon/webhook設計、HR-FR-HIL-03のHARNESS↔OS接続候補、旧CI/実行履歴。参照のみから現行契約・job実行・承認を生成しない。
+
+**単独成立依存**：既存project/repository scope、対象operationに適用される既存authority、選択event sourceの入力契約、HELIXOS-L2-007/009/010の関係する現行契約。HR-FR-HIL-03 connection、HARNESSのreview実装、旧hook/runtimeは単体成立依存に含めない。
+
+**失敗と戻し先**：scope/authority/source contract/event identity/revision/base refが欠落・unknown・stale・conflictの場合、そのeventを監査済み・job生成済みにせず、不足した入力/契約のownerまたはOS project/ticket管理へ返す。重複eventは既存receiptに結び、二重jobを作らない。base branch coverageやstacked PR状態が分からない時は無視せず対象scopeを未完とする。job生成の重複・ticket lifecycleの問題はL2-010へ、証拠/provenanceの問題はL2-007へ、durable/idempotent projectionの問題はL2-009へ返す。
+
+**現行L2/L11との照合**：現行L2-007は原証拠/provenanceと欠落・重複・古い証拠の識別（`docs/helix-os/L2-requirements/governance-requirements.md:60,295`）、L2-009はeventのdurable記録・冪等projection/checkpoint（同`:62,297`）、L2-010は管理・推進・検収によるticket/workflow編成（同`:63`）を既に所有する。これらは必要な下位契約だが、PR lifecycle eventの発見/取込み、scope中の全base branchとstacked PRを含めること、同じPR eventから監査jobを冪等生成することは明記していない。L11-007のprovenance/stale/重複（`docs/helix-os/L11-acceptance/governance-acceptance.md:27,47`）、L11-009の中断後projection/checkpoint（同`:29,55`）、L11-010の動的workflowと部品境界（同`:30`）にも、このPR event人口の完全性とevent→job冪等性のoracleはない。したがって035は既存責務を置換せず、PR event intakeと論理監査job生成を追加で閉じる単体候補とする。
+
+**旧HELIXからの再導出・保持/変更**：`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`の旧要求本文は `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:54`（SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`）、同一要求IR（`LEGACY-ASSET-A60CF91DD2AF6693E6F9`）は `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json:45-58`（file SHA-256 `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`; 条件本文はline 54）にある。HIL-BR-02の意味は「PR作成/更新/完了eventの検出、監査jobの冪等生成、全base branchを対象、stacked PRを除外しない」として保持する。`LEGACY-ASSET-4305445847D8D431F684`（`archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-473-claude-pr-convergence.md:108-132`、SHA-256 `572715b1267efa3c75ad82428355a653388be69758ecbb152a5f110e3a4cfe95`）は旧Codex/Claude運用計画候補、`LEGACY-ASSET-AC2078FFF049D6B56D19`（`archive/legacy-generation-2026-09-14/root/src/runtime/claude-pr-convergence.ts`、SHA-256 `059f5e925c727fe8003c9e6c72b595d4697bd4d930d97a92cd4a9ee1f5ebdff8`）は旧runtime実装候補として、現行要件の技術設計/実行証拠へ昇格しない。
+
+**製品scope判断との関係**：`docs/governance/decisions/hil-br-02-product-scope-2026-09-23.md:15-44`（decision file SHA-256 `1bf2912691a89cacc2ff1bff23b5c21a48961bb655aa43ec95d5b422c83d64c1`、source revision `5cf43693bd94fe17ce8b340426e847ea53814a06`）で、POはHIL-BR-02全体をHELIX-OS単体のproduct_unitに分類し、HR-FR-HIL-03の4要求間受渡しとend-to-end受入を別connection候補として保持した。この決定はscopeだけで、要求採用・L2/L11適用・successor・実装承認を決めていない。本候補はその分離を守り、HR-FR-HIL-03を035へ統合しない。
+
+**現行根拠と照合基準**：親 `docs/helix-os/L1-planning/system-intent.md:31-42`（SHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`）、現行L2 `docs/helix-os/L2-requirements/governance-requirements.md:44-47,60-64,293-300`（SHA-256 `077e353d962230943c66a30fba1bd778b5efc40b5506d89b71d4f343b1430559`）、L11 `docs/helix-os/L11-acceptance/governance-acceptance.md:19-31,35-58`（SHA-256 `b1dc0b9fd92de8169b74fbe0072c35bd815da3a36d5c8df8ac60a05df8e6ac13`）。固定照合base commit `d0900f30b92720114c6e0b5f436813d48172a020`。
+
+**配送順序と未完**：新HEADの更新を受けた後で旧HEADのeventが遅着しても、旧eventの由来を保持し、新しい対象revisionを旧状態へ戻さない。event保存とjob登録の途中で停止した場合は009のdurable checkpointと既存receiptから未完分を再開し、登録前のeventを処理済みにせず、登録済みjobを再生成しない。
