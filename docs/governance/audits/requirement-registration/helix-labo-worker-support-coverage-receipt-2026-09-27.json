@@ -1,0 +1,31 @@
+{
+  "receipt_id": "MPR-RCPT-HELIX-LABO-WORKER-SUPPORT-2026-09-27",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "PO第5項と現行親の意味から支援能力を具体化する候補。旧atomの新規移管・retireは行わない。no_lossは旧atom入力空集合のみ。PO各条件の行き先は判断記録とL11で照合し、旧全要求の移管完了を主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXLABO-L2-060",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "candidate_semantic_digest": "sha256:43bfeff6631668149aed060024d77f2189f7fff66cb5a63b30fbbaba427cee6c",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO第5項と現行親の意味から支援能力を具体化する候補。旧atomの新規移管・retireは行わない。no_lossは旧atom入力空集合のみ。PO各条件の行き先は判断記録とL11で照合し、旧全要求の移管完了を主張しない。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-labo/L1-planning/labo-intent.md",
+        "docs/helix-labo/L2-requirements/labo-requirements.md",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+        "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+        "docs/governance/decisions/worker-support-derivation-2026-09-27.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}

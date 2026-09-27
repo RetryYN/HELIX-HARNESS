@@ -174,3 +174,12 @@ parent_l1_candidate: docs/helix-labo/L1-planning/labo-intent.md
 2. **不適切な成功主張**：candidate単価が低く、accepted changeが0、上位Worker救援と人修正が多数なのに、それらを除外し「low cost / better performance」とする。反例。品質gate未達を時間短縮で埋めるのも拒否する。
 3. **比較不能／未評価**：旧版を選んだ比較で適用scopeや結果receiptが見つからない、またはcurrentとtask/oracle/scorer/protocol/hardwareが異なるときは当該比較を未測定/比較不能とする。旧runtimeを起動せず、歴史結果はcurrent evidenceへ転用しない。三者主張のfixtureで旧版が欠ければ三者比較は未完だが、導入効果を測るあり／なし二者の必要証拠が揃っている場合はその比較結果を保持する。二者結果だけで三者の関係を主張する例、および未選択旧版の欠落で有効な二者比較を拒否する例はいずれも反例。
 4. **effort/配置境界**：同じtask classの複数effort resultとLABO evidenceが揃い、scope別の選好からINTELLIGENCEが推奨候補を示す。未評価effort/Workerは未評価のまま。OSがassignmentを別判断する。INT/LABOのproposalやscoreだけからworker/run/authorityを生成しない。
+
+### HELIXLABO-L2-060 Worker支援有無の同一設定比較の受入（単体候補、1.0）
+
+- **入力・版**：同一task snapshot/scope/requirement/oracle、同一元Worker/model/provider/version/effort設定、対応する支援あり/なしのOS result receipt、支援利用記録、review/test結果、作業者と補助者の費用/時間。`version_target: 1.0`はcapability targetであり、v0.1等の段階収載決定は含まない。
+- **正常例とoracle**：同じWorker/model/provider/version/effort、task/scope、environment、`PATCH /applications/{id}`用oracleを固定する。両runで`draft`への有効編集は受理、`approved`への編集は拒否しpersisted valueを変えないことが事前oracle。支援ありrunのみINTELLIGENCEがstate/API設計、validator code、過去regression exampleを選択し、approved boundaryで詰まった元Workerに限定相談・修正指示を渡す。元Workerが修正し、独立reviewer（元WorkerとINT支援者のいずれとも異なるidentity/context/authority）が確認、HELIXOS-L2-020が事前oracleを再実行してpassする。対照runは支援を使わず同じ元Worker設定で完了し、同じoracleでpass/fail結果を返す。受入oracleは両群の設定とtask/oracleが等しく、相違が支援経路に限られること、支援に要した上位Worker/相談/再実行/reviewと人の調査・修正・確認時間/費用が支援側costへ算入されること、支援有無の結果を同じquality gateで比較できること。
+- **誤りを含む例**：支援ありrunだけ強い別model/providerに変える、対照runにも相談助言を漏らす、支援者を独立reviewerにする、助言/人の修正/再実行をゼロcost扱い、劣化品質を低費用で相殺する。比較条件不成立または品質gate未達として拒否し、成功比較を出さない。
+- **未見例**：同一設定の類似API taskで元Workerのtest失敗はあるが、片群のreceipt、oracle適用性、または支援者の時間/費用が不明。未知domainへの改善を一般化せず、欠落項目を列挙して未評価/比較不能を返す。数値閾値・試行件数は作らない。
+- **費用/範囲oracle**：同一の元Worker設定を固定しつつ、支援によって追加されたmodel/provider利用、上位Worker、相談者、CI/review/retry/rework、person timeをすべて報告する。human timeの換算率がない場合は時間量を記録して金銭額は未確定とし0円にしない。task/scope/outcome・価格source/currency/effective timeに結ばない費用は支援効果の総費用に確定しない。
+- **結果・責務境界**：LABOは比較可能性・quality・効果evidenceのみ出力し、INTELLIGENCEのproposal、OSのassignment、受入/merge authorityを決めない。単一の成功runのみでは未見taskの一般的有効性を主張しない。比較に必要な両runがそろわなければ未評価を維持する。
