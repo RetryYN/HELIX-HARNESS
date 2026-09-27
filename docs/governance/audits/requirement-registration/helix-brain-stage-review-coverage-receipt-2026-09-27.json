@@ -1,0 +1,1281 @@
+{
+  "receipt_id": "MPR-RCPT-HELIX-BRAIN-STAGE-REVIEW-2026-09-27",
+  "authority_effect": "none",
+  "candidate_digest_rule": "Existing L2 identity section, trailing blank lines stripped, followed by one LF. L2 semantic digest remains unchanged; L11 corrected full file is bound separately below.",
+  "correction_reason": "BRAIN監査Finding 1：定義欠落と値未決、双方向traceと未充足義務を受入で区別。L2意味とatom dispositionは保持。",
+  "candidate_semantics_unchanged": true,
+  "acceptance_binding": {
+    "source_path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+    "sha256": "sha256:7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+    "base_commit": "79fa1f688e5edf6f85b3e6035647ca0cd47ea8cf",
+    "base_file_sha256": "sha256:2b80d64785ed37353fdeee020c893236cd31dffac653206e613ad80f7dbd7e86",
+    "change_kind": "targeted_acceptance_correction"
+  },
+  "candidates": [
+    {
+      "requirement_identity": "HELIXBRAIN-L2-030",
+      "requirement_kind": "connection",
+      "parent_l1_ids": [
+        "HELIXBRAIN-L1-003",
+        "HELIXBRAIN-L1-005",
+        "HELIXBRAIN-L1-012"
+      ],
+      "candidate_semantic_digest": "sha256:2a5c1cb842fa1f431d6a07a23506ef4304671b9b407b32527684ddfed987a2a0",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO第1項を現行Concept/L1と既存設計・知識責務から具体化する候補。旧sourceは意味照合の資料であり、旧atomの新規移管・retireではない。no_lossは旧atom入力空集合に限る。PO条件は判断記録の対応表と対L11で照合し、旧全要求やPO全文の移管完了を主張しない。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-brain/L1-planning/brain-intent.md",
+        "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+        "docs/governance/decisions/capability-reinforcement-po-decisions-2026-09-27.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "acceptance_binding": {
+        "source_path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "sha256": "sha256:7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+        "base_commit": "79fa1f688e5edf6f85b3e6035647ca0cd47ea8cf",
+        "base_file_sha256": "sha256:2b80d64785ed37353fdeee020c893236cd31dffac653206e613ad80f7dbd7e86",
+        "change_kind": "targeted_acceptance_correction"
+      },
+      "previous_registration_id": "MPR-RC-HELIXBRAIN-L2-030-001"
+    }
+  ],
+  "prior_receipts": [
+    {
+      "path": "docs/governance/audits/requirement-registration/helix-brain-design-composition-coverage-receipt-2026-09-27.json",
+      "sha256": "sha256:95dcaa0bc36bf6be4c83b8b02395c520c13206d29c2c10bbb171e455a4ac3ebd",
+      "relation": "Existing atom identity/disposition and pre-isolation provenance retained unchanged; this correction changes acceptance evidence only."
+    }
+  ],
+  "po_source": {
+    "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
+    "commit": "79fa1f688e5edf6f85b3e6035647ca0cd47ea8cf",
+    "sha256": "sha256:d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0",
+    "attribution": "冒頭はsource metadata。区切り後のPO原文を保持する。",
+    "lines": [
+      {
+        "source_line": 1,
+        "source_text": "---"
+      },
+      {
+        "source_line": 2,
+        "source_text": "title: \"HELIX-BRAIN L1要求アイデア（POの原文、2026-09-26）\""
+      },
+      {
+        "source_line": 3,
+        "source_text": "kind: source_snapshot"
+      },
+      {
+        "source_line": 4,
+        "source_text": "source: PO（2026-09-26のClaude作業sessionで提示）"
+      },
+      {
+        "source_line": 5,
+        "source_text": "recorded_at: 2026-09-26"
+      },
+      {
+        "source_line": 6,
+        "source_text": "decision_record: docs/governance/decisions/brain-l1-idea-po-decisions-2026-09-26.md"
+      },
+      {
+        "source_line": 7,
+        "source_text": "authority_effect: none"
+      },
+      {
+        "source_line": 8,
+        "source_text": "---"
+      },
+      {
+        "source_line": 10,
+        "source_text": "# HELIX-BRAIN L1要求アイデア（POの原文、2026-09-26）"
+      },
+      {
+        "source_line": 12,
+        "source_text": "2026-09-26（Asia/Tokyo）、POが「こんな感じのアイディアで」として示した本文を、そのまま保存する。"
+      },
+      {
+        "source_line": 13,
+        "source_text": "本書は書き換えない。現在の意味は[HELIX-BRAINの企画（L1）案](../L1-planning/brain-intent.md)に置き、差分はgitで辿る。"
+      },
+      {
+        "source_line": 14,
+        "source_text": "原文の表題にある「v0.1」と、原文中の「BRAIN-L1-001」等のIDは原文の一部として残す。"
+      },
+      {
+        "source_line": 16,
+        "source_text": "---"
+      },
+      {
+        "source_line": 18,
+        "source_text": "# HELIX-BRAIN L1要求アイデア v0.1"
+      },
+      {
+        "source_line": 20,
+        "source_text": "## BRAINの中心価値"
+      },
+      {
+        "source_line": 22,
+        "source_text": "HELIX-BRAINは、HELIXが複数の製品開発から得た再利用可能な設計知識を、領域ごとの構造として保持し、製品やAIが変わっても再利用できる形で提供する。"
+      },
+      {
+        "source_line": 24,
+        "source_text": "製品固有の要求・設計・判断結果を保存する場所ではない。"
+      },
+      {
+        "source_line": 26,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 27,
+        "source_text": "Product-specific"
+      },
+      {
+        "source_line": 28,
+        "source_text": "→ HELIX-HARNESS-CORE"
+      },
+      {
+        "source_line": 30,
+        "source_text": "Reusable design knowledge"
+      },
+      {
+        "source_line": 31,
+        "source_text": "→ HELIX-BRAIN"
+      },
+      {
+        "source_line": 32,
+        "source_text": "```"
+      },
+      {
+        "source_line": 34,
+        "source_text": "---"
+      },
+      {
+        "source_line": 36,
+        "source_text": "## BRAIN-L1-001：設計知識を領域別に持つ"
+      },
+      {
+        "source_line": 38,
+        "source_text": "人は、再利用可能な設計知識を、意味の異なる設計領域へ分けて管理できる。"
+      },
+      {
+        "source_line": 40,
+        "source_text": "初期領域候補："
+      },
+      {
+        "source_line": 42,
+        "source_text": "* Software / System Architecture"
+      },
+      {
+        "source_line": 43,
+        "source_text": "* Application Architecture"
+      },
+      {
+        "source_line": 44,
+        "source_text": "* Backend"
+      },
+      {
+        "source_line": 45,
+        "source_text": "* Frontend"
+      },
+      {
+        "source_line": 46,
+        "source_text": "* API / Integration"
+      },
+      {
+        "source_line": 47,
+        "source_text": "* Data / Database"
+      },
+      {
+        "source_line": 48,
+        "source_text": "* Infrastructure"
+      },
+      {
+        "source_line": 49,
+        "source_text": "* Security Design"
+      },
+      {
+        "source_line": 50,
+        "source_text": "* Reliability / Recovery"
+      },
+      {
+        "source_line": 51,
+        "source_text": "* Performance"
+      },
+      {
+        "source_line": 52,
+        "source_text": "* Observability"
+      },
+      {
+        "source_line": 53,
+        "source_text": "* Testing / Quality"
+      },
+      {
+        "source_line": 54,
+        "source_text": "* Operations / Maintenance"
+      },
+      {
+        "source_line": 55,
+        "source_text": "* UX / Interaction"
+      },
+      {
+        "source_line": 56,
+        "source_text": "* Visual Design"
+      },
+      {
+        "source_line": 57,
+        "source_text": "* Accessibility"
+      },
+      {
+        "source_line": 59,
+        "source_text": "領域は固定enumにせず、追加・分割・統合・退役できる。"
+      },
+      {
+        "source_line": 61,
+        "source_text": "製品名や特定projectをDomainとして扱わない。"
+      },
+      {
+        "source_line": 63,
+        "source_text": "---"
+      },
+      {
+        "source_line": 65,
+        "source_text": "## BRAIN-L1-002：各領域に階層化された設計知識を持つ"
+      },
+      {
+        "source_line": 67,
+        "source_text": "各Domainは最低限、"
+      },
+      {
+        "source_line": 69,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 70,
+        "source_text": "Domain"
+      },
+      {
+        "source_line": 71,
+        "source_text": "└─ Pattern"
+      },
+      {
+        "source_line": 72,
+        "source_text": "   └─ Design Unit"
+      },
+      {
+        "source_line": 73,
+        "source_text": "      └─ Part"
+      },
+      {
+        "source_line": 74,
+        "source_text": "```"
+      },
+      {
+        "source_line": 76,
+        "source_text": "として分解できる。"
+      },
+      {
+        "source_line": 78,
+        "source_text": "例："
+      },
+      {
+        "source_line": 80,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 81,
+        "source_text": "Visual Design"
+      },
+      {
+        "source_line": 82,
+        "source_text": "└─ Dashboard Pattern"
+      },
+      {
+        "source_line": 83,
+        "source_text": "   ├─ Navigation Unit"
+      },
+      {
+        "source_line": 84,
+        "source_text": "   ├─ KPI Unit"
+      },
+      {
+        "source_line": 85,
+        "source_text": "   └─ Work Area Unit"
+      },
+      {
+        "source_line": 86,
+        "source_text": "       ├─ Table Part"
+      },
+      {
+        "source_line": 87,
+        "source_text": "       ├─ Filter Part"
+      },
+      {
+        "source_line": 88,
+        "source_text": "       └─ Status Part"
+      },
+      {
+        "source_line": 89,
+        "source_text": "```"
+      },
+      {
+        "source_line": 91,
+        "source_text": "単なるファイル・コード断片・UI部品集にはしない。"
+      },
+      {
+        "source_line": 93,
+        "source_text": "---"
+      },
+      {
+        "source_line": 95,
+        "source_text": "## BRAIN-L1-003：Patternが「いつ使えるか」を持つ"
+      },
+      {
+        "source_line": 97,
+        "source_text": "Design Patternは形だけでなく、"
+      },
+      {
+        "source_line": 99,
+        "source_text": "* 解決する問題"
+      },
+      {
+        "source_line": 100,
+        "source_text": "* 前提"
+      },
+      {
+        "source_line": 101,
+        "source_text": "* applicability"
+      },
+      {
+        "source_line": 102,
+        "source_text": "* 必要input"
+      },
+      {
+        "source_line": 103,
+        "source_text": "* constraint"
+      },
+      {
+        "source_line": 104,
+        "source_text": "* trade-off"
+      },
+      {
+        "source_line": 105,
+        "source_text": "* negative case"
+      },
+      {
+        "source_line": 106,
+        "source_text": "* failure mode"
+      },
+      {
+        "source_line": 107,
+        "source_text": "* compatible pattern"
+      },
+      {
+        "source_line": 108,
+        "source_text": "* incompatible pattern"
+      },
+      {
+        "source_line": 109,
+        "source_text": "* evidence"
+      },
+      {
+        "source_line": 110,
+        "source_text": "* maturity"
+      },
+      {
+        "source_line": 112,
+        "source_text": "を持てる。"
+      },
+      {
+        "source_line": 114,
+        "source_text": "「このパターンが存在する」ことと「今回これを採用すべき」を区別する。"
+      },
+      {
+        "source_line": 116,
+        "source_text": "---"
+      },
+      {
+        "source_line": 118,
+        "source_text": "## BRAIN-L1-004：正解を一つに潰さない"
+      },
+      {
+        "source_line": 120,
+        "source_text": "同一問題に複数の成立するPatternが存在する場合、それらを保持できる。"
+      },
+      {
+        "source_line": 122,
+        "source_text": "例："
+      },
+      {
+        "source_line": 124,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 125,
+        "source_text": "Data Consistency"
+      },
+      {
+        "source_line": 126,
+        "source_text": "├─ Strong Consistency Pattern"
+      },
+      {
+        "source_line": 127,
+        "source_text": "├─ Eventual Consistency Pattern"
+      },
+      {
+        "source_line": 128,
+        "source_text": "└─ Compensating Transaction Pattern"
+      },
+      {
+        "source_line": 129,
+        "source_text": "```"
+      },
+      {
+        "source_line": 131,
+        "source_text": "BRAINは一つを絶対的な正解として上書きしない。"
+      },
+      {
+        "source_line": 133,
+        "source_text": "各方式の、"
+      },
+      {
+        "source_line": 135,
+        "source_text": "* 適用条件"
+      },
+      {
+        "source_line": 136,
+        "source_text": "* 長所"
+      },
+      {
+        "source_line": 137,
+        "source_text": "* 短所"
+      },
+      {
+        "source_line": 138,
+        "source_text": "* 制約"
+      },
+      {
+        "source_line": 139,
+        "source_text": "* failure"
+      },
+      {
+        "source_line": 140,
+        "source_text": "* cost"
+      },
+      {
+        "source_line": 142,
+        "source_text": "を比較可能にする。"
+      },
+      {
+        "source_line": 144,
+        "source_text": "今回どれを使うかの稼働判断はINTELLIGENCE等との接続で行う。"
+      },
+      {
+        "source_line": 146,
+        "source_text": "---"
+      },
+      {
+        "source_line": 148,
+        "source_text": "## BRAIN-L1-005：領域をまたぐ設計関係を保持する"
+      },
+      {
+        "source_line": 150,
+        "source_text": "設計知識は領域ごとに分離しつつ、領域間の関係を失わない。"
+      },
+      {
+        "source_line": 152,
+        "source_text": "例："
+      },
+      {
+        "source_line": 154,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 155,
+        "source_text": "Authentication Pattern"
+      },
+      {
+        "source_line": 156,
+        "source_text": "        ↓ affects"
+      },
+      {
+        "source_line": 157,
+        "source_text": "Session Design"
+      },
+      {
+        "source_line": 158,
+        "source_text": "        ↓ affects"
+      },
+      {
+        "source_line": 159,
+        "source_text": "Frontend State"
+      },
+      {
+        "source_line": 160,
+        "source_text": "        ↓ affects"
+      },
+      {
+        "source_line": 161,
+        "source_text": "UX Flow"
+      },
+      {
+        "source_line": 162,
+        "source_text": "```"
+      },
+      {
+        "source_line": 164,
+        "source_text": "または、"
+      },
+      {
+        "source_line": 166,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 167,
+        "source_text": "Database Pattern"
+      },
+      {
+        "source_line": 168,
+        "source_text": "        ↓"
+      },
+      {
+        "source_line": 169,
+        "source_text": "Performance Pattern"
+      },
+      {
+        "source_line": 170,
+        "source_text": "        ↓"
+      },
+      {
+        "source_line": 171,
+        "source_text": "Infrastructure Pattern"
+      },
+      {
+        "source_line": 172,
+        "source_text": "```"
+      },
+      {
+        "source_line": 174,
+        "source_text": "BRAINはPattern、Unit、Part間の、"
+      },
+      {
+        "source_line": 176,
+        "source_text": "* requires"
+      },
+      {
+        "source_line": 177,
+        "source_text": "* depends_on"
+      },
+      {
+        "source_line": 178,
+        "source_text": "* compatible_with"
+      },
+      {
+        "source_line": 179,
+        "source_text": "* conflicts_with"
+      },
+      {
+        "source_line": 180,
+        "source_text": "* affects"
+      },
+      {
+        "source_line": 181,
+        "source_text": "* alternative_to"
+      },
+      {
+        "source_line": 182,
+        "source_text": "* composed_of"
+      },
+      {
+        "source_line": 184,
+        "source_text": "などの意味relationを扱える。"
+      },
+      {
+        "source_line": 186,
+        "source_text": "---"
+      },
+      {
+        "source_line": 188,
+        "source_text": "## BRAIN-L1-006：ビジュアルデザインを独立した設計知識領域として持つ"
+      },
+      {
+        "source_line": 190,
+        "source_text": "BRAINはビジュアルデザインを単なる装飾情報として扱わず、再利用可能な設計知識として保持する。"
+      },
+      {
+        "source_line": 192,
+        "source_text": "対象例："
+      },
+      {
+        "source_line": 194,
+        "source_text": "* Information Architecture"
+      },
+      {
+        "source_line": 195,
+        "source_text": "* Visual Hierarchy"
+      },
+      {
+        "source_line": 196,
+        "source_text": "* Layout"
+      },
+      {
+        "source_line": 197,
+        "source_text": "* Grid"
+      },
+      {
+        "source_line": 198,
+        "source_text": "* Spacing / Density"
+      },
+      {
+        "source_line": 199,
+        "source_text": "* Typography"
+      },
+      {
+        "source_line": 200,
+        "source_text": "* Navigation"
+      },
+      {
+        "source_line": 201,
+        "source_text": "* Component Composition"
+      },
+      {
+        "source_line": 202,
+        "source_text": "* Form"
+      },
+      {
+        "source_line": 203,
+        "source_text": "* Feedback"
+      },
+      {
+        "source_line": 204,
+        "source_text": "* Empty / Loading / Error State"
+      },
+      {
+        "source_line": 205,
+        "source_text": "* Responsive Design"
+      },
+      {
+        "source_line": 206,
+        "source_text": "* Dashboard"
+      },
+      {
+        "source_line": 207,
+        "source_text": "* Content Hierarchy"
+      },
+      {
+        "source_line": 208,
+        "source_text": "* Accessibility"
+      },
+      {
+        "source_line": 210,
+        "source_text": "ただし、"
+      },
+      {
+        "source_line": 212,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 213,
+        "source_text": "「この製品は黒背景・青アクセント」"
+      },
+      {
+        "source_line": 214,
+        "source_text": "```"
+      },
+      {
+        "source_line": 216,
+        "source_text": "のような製品固有のVisual IdentityはProduct Core側に置く。"
+      },
+      {
+        "source_line": 218,
+        "source_text": "BRAINは、"
+      },
+      {
+        "source_line": 220,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 221,
+        "source_text": "「高密度管理画面で情報階層を成立させる構造」"
+      },
+      {
+        "source_line": 222,
+        "source_text": "```"
+      },
+      {
+        "source_line": 224,
+        "source_text": "のような汎用構造を持つ。"
+      },
+      {
+        "source_line": 226,
+        "source_text": "---"
+      },
+      {
+        "source_line": 228,
+        "source_text": "## BRAIN-L1-007：設計知識の出所と根拠を失わない"
+      },
+      {
+        "source_line": 230,
+        "source_text": "Pattern / Unit / Partは、"
+      },
+      {
+        "source_line": 232,
+        "source_text": "* source"
+      },
+      {
+        "source_line": 233,
+        "source_text": "* provenance"
+      },
+      {
+        "source_line": 234,
+        "source_text": "* evidence"
+      },
+      {
+        "source_line": 235,
+        "source_text": "* adopted reason"
+      },
+      {
+        "source_line": 236,
+        "source_text": "* evaluated scope"
+      },
+      {
+        "source_line": 237,
+        "source_text": "* counterexample"
+      },
+      {
+        "source_line": 238,
+        "source_text": "* limitation"
+      },
+      {
+        "source_line": 240,
+        "source_text": "へ辿れる。"
+      },
+      {
+        "source_line": 242,
+        "source_text": "AIが生成したというだけでBRAINの汎用知識へ昇格させない。"
+      },
+      {
+        "source_line": 244,
+        "source_text": "---"
+      },
+      {
+        "source_line": 246,
+        "source_text": "## BRAIN-L1-008：知識の版と進化を管理する"
+      },
+      {
+        "source_line": 248,
+        "source_text": "すべての再利用可能構造はidentityとversionを持つ。"
+      },
+      {
+        "source_line": 250,
+        "source_text": "更新時には、"
+      },
+      {
+        "source_line": 252,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 253,
+        "source_text": "current"
+      },
+      {
+        "source_line": 254,
+        "source_text": "superseded"
+      },
+      {
+        "source_line": 255,
+        "source_text": "deprecated"
+      },
+      {
+        "source_line": 256,
+        "source_text": "experimental"
+      },
+      {
+        "source_line": 257,
+        "source_text": "retired"
+      },
+      {
+        "source_line": 258,
+        "source_text": "```"
+      },
+      {
+        "source_line": 260,
+        "source_text": "等を区別できる。"
+      },
+      {
+        "source_line": 262,
+        "source_text": "旧Patternを無言で新Patternへ置換しない。"
+      },
+      {
+        "source_line": 264,
+        "source_text": "どのProduct Coreがどの版を参照したかを追跡可能にする。"
+      },
+      {
+        "source_line": 266,
+        "source_text": "実project側の利用版・利用状態の管理はOSへ委ねる。"
+      },
+      {
+        "source_line": 268,
+        "source_text": "---"
+      },
+      {
+        "source_line": 270,
+        "source_text": "## BRAIN-L1-009：Patternを再構成できる"
+      },
+      {
+        "source_line": 272,
+        "source_text": "既存Patternを丸ごとコピーするだけでなく、"
+      },
+      {
+        "source_line": 274,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 275,
+        "source_text": "Pattern A"
+      },
+      {
+        "source_line": 276,
+        "source_text": "├─ Unit A1"
+      },
+      {
+        "source_line": 277,
+        "source_text": "└─ Unit A2"
+      },
+      {
+        "source_line": 279,
+        "source_text": "Pattern B"
+      },
+      {
+        "source_line": 280,
+        "source_text": "├─ Unit B1"
+      },
+      {
+        "source_line": 281,
+        "source_text": "└─ Unit B2"
+      },
+      {
+        "source_line": 282,
+        "source_text": "```"
+      },
+      {
+        "source_line": 284,
+        "source_text": "から、"
+      },
+      {
+        "source_line": 286,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 287,
+        "source_text": "Candidate Pattern C"
+      },
+      {
+        "source_line": 288,
+        "source_text": "├─ A1"
+      },
+      {
+        "source_line": 289,
+        "source_text": "├─ B1"
+      },
+      {
+        "source_line": 290,
+        "source_text": "└─ new relation"
+      },
+      {
+        "source_line": 291,
+        "source_text": "```"
+      },
+      {
+        "source_line": 293,
+        "source_text": "のような構成候補を表現できる。"
+      },
+      {
+        "source_line": 295,
+        "source_text": "ただし、新しい構成候補を即座に確立済みPatternへ昇格しない。"
+      },
+      {
+        "source_line": 297,
+        "source_text": "評価はLABO等の適切な経路を必要とする。"
+      },
+      {
+        "source_line": 299,
+        "source_text": "---"
+      },
+      {
+        "source_line": 301,
+        "source_text": "## BRAIN-L1-010：Anti-Patternと失敗知識も持つ"
+      },
+      {
+        "source_line": 303,
+        "source_text": "成功した構造だけでなく、"
+      },
+      {
+        "source_line": 305,
+        "source_text": "* Anti-Pattern"
+      },
+      {
+        "source_line": 306,
+        "source_text": "* Failure Pattern"
+      },
+      {
+        "source_line": 307,
+        "source_text": "* Invalid Combination"
+      },
+      {
+        "source_line": 308,
+        "source_text": "* Context-dependent Failure"
+      },
+      {
+        "source_line": 309,
+        "source_text": "* Regression case"
+      },
+      {
+        "source_line": 311,
+        "source_text": "を構造化して保持できる。"
+      },
+      {
+        "source_line": 313,
+        "source_text": "これにより、"
+      },
+      {
+        "source_line": 315,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 316,
+        "source_text": "「何を使えるか」"
+      },
+      {
+        "source_line": 317,
+        "source_text": "```"
+      },
+      {
+        "source_line": 319,
+        "source_text": "だけでなく、"
+      },
+      {
+        "source_line": 321,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 322,
+        "source_text": "「この条件では何を使ってはいけないか」"
+      },
+      {
+        "source_line": 323,
+        "source_text": "```"
+      },
+      {
+        "source_line": 325,
+        "source_text": "も返せる。"
+      },
+      {
+        "source_line": 327,
+        "source_text": "---"
+      },
+      {
+        "source_line": 329,
+        "source_text": "## BRAIN-L1-011：製品固有知識を汎用知識へ混ぜない"
+      },
+      {
+        "source_line": 331,
+        "source_text": "BRAINへ入る構造は、特定製品の意味から分離されていなければならない。"
+      },
+      {
+        "source_line": 333,
+        "source_text": "例えば、"
+      },
+      {
+        "source_line": 335,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 336,
+        "source_text": "×"
+      },
+      {
+        "source_line": 337,
+        "source_text": "RetryYN管理画面では左側にこのメニューを置く"
+      },
+      {
+        "source_line": 339,
+        "source_text": "○"
+      },
+      {
+        "source_line": 340,
+        "source_text": "高密度管理画面におけるpersistent navigation pattern"
+      },
+      {
+        "source_line": 341,
+        "source_text": "```"
+      },
+      {
+        "source_line": 343,
+        "source_text": "とする。"
+      },
+      {
+        "source_line": 345,
+        "source_text": "製品固有の名称、要求、画面、業務ルール、利用者判断をBRAINの汎用知識へそのまま昇格させない。"
+      },
+      {
+        "source_line": 347,
+        "source_text": "---"
+      },
+      {
+        "source_line": 349,
+        "source_text": "## BRAIN-L1-012：BRAINは採用判断をauthority化しない"
+      },
+      {
+        "source_line": 351,
+        "source_text": "BRAINは、"
+      },
+      {
+        "source_line": 353,
+        "source_text": "* 候補Pattern"
+      },
+      {
+        "source_line": 354,
+        "source_text": "* 必要なinput"
+      },
+      {
+        "source_line": 355,
+        "source_text": "* relation"
+      },
+      {
+        "source_line": 356,
+        "source_text": "* alternatives"
+      },
+      {
+        "source_line": 357,
+        "source_text": "* constraint"
+      },
+      {
+        "source_line": 358,
+        "source_text": "* evidence"
+      },
+      {
+        "source_line": 360,
+        "source_text": "を返せる。"
+      },
+      {
+        "source_line": 362,
+        "source_text": "しかし、"
+      },
+      {
+        "source_line": 364,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 365,
+        "source_text": "「この製品ではPattern Xを採用する」"
+      },
+      {
+        "source_line": 366,
+        "source_text": "```"
+      },
+      {
+        "source_line": 368,
+        "source_text": "という製品固有の確定判断をBRAIN自身のauthorityで行わない。"
+      },
+      {
+        "source_line": 370,
+        "source_text": "Product Core、INTELLIGENCE、人間判断などの接続先と責務を混同しない。"
+      },
+      {
+        "source_line": 372,
+        "source_text": "---"
+      },
+      {
+        "source_line": 374,
+        "source_text": "# 接続要求として外へ出すもの"
+      },
+      {
+        "source_line": 376,
+        "source_text": "以下はBRAIN Core内部要求にしない。"
+      },
+      {
+        "source_line": 378,
+        "source_text": "## Product Core → BRAIN"
+      },
+      {
+        "source_line": 380,
+        "source_text": "製品固有の設計から、再利用候補となる構造を渡す。"
+      },
+      {
+        "source_line": 382,
+        "source_text": "## LABO → BRAIN"
+      },
+      {
+        "source_line": 384,
+        "source_text": "実績・実験・比較を経て汎用化候補として評価された構造を渡す。"
+      },
+      {
+        "source_line": 386,
+        "source_text": "## BRAIN → Product Core"
+      },
+      {
+        "source_line": 388,
+        "source_text": "要求・設計対象に利用可能なPattern / Unit / Partを返す。"
+      },
+      {
+        "source_line": 390,
+        "source_text": "## BRAIN ↔ INTELLIGENCE"
+      },
+      {
+        "source_line": 392,
+        "source_text": "BRAINの構造知識を判断材料として渡し、INTELLIGENCEが案件の状態に対する適用候補を考える。"
+      },
+      {
+        "source_line": 394,
+        "source_text": "## BRAIN → HARNESS"
+      },
+      {
+        "source_line": 396,
+        "source_text": "Patternが要求する設計inputや設計論点を、HARNESSの設計義務へ接続する。"
+      },
+      {
+        "source_line": 398,
+        "source_text": "これらはBRAIN単体ではなくConnection Requirementとして定義する。"
+      },
+      {
+        "source_line": 400,
+        "source_text": "---"
+      },
+      {
+        "source_line": 402,
+        "source_text": "# 2.0以降に回せる要求"
+      },
+      {
+        "source_line": 404,
+        "source_text": "1.0では、自前の内部実績・初期seedから設計知識体系を成立させる。"
+      },
+      {
+        "source_line": 406,
+        "source_text": "2.0では、"
+      },
+      {
+        "source_line": 408,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 409,
+        "source_text": "External Information"
+      },
+      {
+        "source_line": 410,
+        "source_text": "↓"
+      },
+      {
+        "source_line": 411,
+        "source_text": "LABO"
+      },
+      {
+        "source_line": 412,
+        "source_text": "分解・比較・評価"
+      },
+      {
+        "source_line": 413,
+        "source_text": "↓"
+      },
+      {
+        "source_line": 414,
+        "source_text": "Reusable Structure Candidate"
+      },
+      {
+        "source_line": 415,
+        "source_text": "↓"
+      },
+      {
+        "source_line": 416,
+        "source_text": "BRAIN"
+      },
+      {
+        "source_line": 417,
+        "source_text": "```"
+      },
+      {
+        "source_line": 419,
+        "source_text": "を追加する。"
+      },
+      {
+        "source_line": 421,
+        "source_text": "外部で成功したPatternを、そのままBRAINへ投入しない。"
+      },
+      {
+        "source_line": 423,
+        "source_text": "---"
+      },
+      {
+        "source_line": 425,
+        "source_text": "# 要求の核"
+      },
+      {
+        "source_line": 427,
+        "source_text": "BRAINを一文で定義するなら、"
+      },
+      {
+        "source_line": 429,
+        "source_text": "> HELIX-BRAINは、ソフトウェア開発に必要な再利用可能な設計知識を領域別に構造化し、Pattern・Design Unit・Partと、それらの適用条件、関係、制約、反例、根拠、版を保持する。製品固有の意味や採用判断を持たず、各製品のHELIX-HARNESS-COREへ再利用可能な設計知識を提供する。"
+      },
+      {
+        "source_line": 431,
+        "source_text": "とする。"
+      },
+      {
+        "source_line": 433,
+        "source_text": "---"
+      },
+      {
+        "source_line": 435,
+        "source_text": "# 初期Domain候補"
+      },
+      {
+        "source_line": 437,
+        "source_text": "1.0で最初から全部を充実させる必要はないが、schema上は次の領域を扱えるようにする。"
+      },
+      {
+        "source_line": 439,
+        "source_text": "```text"
+      },
+      {
+        "source_line": 440,
+        "source_text": "Software Architecture"
+      },
+      {
+        "source_line": 441,
+        "source_text": "Application Architecture"
+      },
+      {
+        "source_line": 442,
+        "source_text": "Backend"
+      },
+      {
+        "source_line": 443,
+        "source_text": "Frontend"
+      },
+      {
+        "source_line": 444,
+        "source_text": "API / Integration"
+      },
+      {
+        "source_line": 445,
+        "source_text": "Data / Database"
+      },
+      {
+        "source_line": 446,
+        "source_text": "Infrastructure"
+      },
+      {
+        "source_line": 447,
+        "source_text": "Security"
+      },
+      {
+        "source_line": 448,
+        "source_text": "```"
+      }
+    ]
+  }
+}
