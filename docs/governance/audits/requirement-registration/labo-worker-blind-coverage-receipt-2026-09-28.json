@@ -1,0 +1,43 @@
+{
+  "receipt_id": "MPR-RCPT-LABO-WORKER-BLIND-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-NFR-35原文1行。既存IR同identityと重複し独立要求数へ加算しない。全Worker評価や全IRの被覆を主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXLABO-L2-064",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "candidate_semantic_digest": "sha256:adf1027631a9f2425b346bbe7929fe9dd7bc6ead7c6de4479ffefcd82169983f",
+      "source_atom_set_digest": "sha256:73e52664c1ba40a7a117de5b0d0d0a4547e7f0ed1b22ef1a9258c8d363814f7e",
+      "source_atom_count": 1,
+      "source_collection_scope": "旧HIL-NFR-35原文1行。既存IR同identityと重複し独立要求数へ加算しない。全Worker評価や全IRの被覆を主張しない。",
+      "atoms": [
+        {
+          "atom_id": "WORKER-BLIND-HIL-NFR-35-L0215",
+          "source_holding_registration_id": "MPR-SH-WORKER-BLIND-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 215,
+          "source_line_sha256": "sha256:9b5ec86c741f375d416ceb9796bf7a469794c8ddd4204e139adb1447c25bc5aa",
+          "source_text": "| **HIL-NFR-35** | worker評価は候補runtime名をblind化し、fixture、rubric、judge version、sample、再試行を固定して再現可能にする。smoke合格だけでfull admissionせず、security failure、scope逸脱、検証不能な出力を平均点で相殺しない。 |",
+          "ir_requirement_id": "HIL-NFR-35",
+          "disposition": "carried",
+          "relation": "runtime名遮蔽、fixture/rubric/judge版/sample/retry固定、smoke限定、安全/範囲/検証不能の相殺禁止をL2-064とL11正常/各反例へ再導出。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-055",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-061",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md#helixlabo-l2-064"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}

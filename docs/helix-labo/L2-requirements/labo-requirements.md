@@ -487,3 +487,14 @@ PO原文の集積対象、観測状態、episode順序、分解軸、Vector軸�
 - **責務・依存**：常時必要なのは許可された修復観測、LABO-009/010/050の範囲評価・Feedback・循環追跡、OSの登録/振り分け。再実験・修正を選ぶ場合だけ該当OS割当Workerと対象HARNESS検証契約を使う。過去結果を評価するだけの操作に新規修復実行を強制しない。汎用構造として評価できた場合のBRAIN向け候補と、特定問題の修復知見を区別し、後者を無条件にBRAINへ一般化しない。
 - **失敗時の戻し先**：観測・対象版の欠落は提供主体へ、修復成功/再発防止の根拠不足はLABO評価へ、登録・振り分け不成立はOSへ返す。ownerによる変更や運用後観測が欠けた予防候補は循環未完のまま保持する。手順や対象契約の改版で適用条件が変わった場合は旧頻度・成功結果の適用を再評価し、古い結果から現行の有効性を生成しない。
 - **旧sourceと既決の意味変更**：旧Pillar HR-FR-P4-02/HAC-P4-02a/b（`LEGACY-ASSET-EE5DBACC7F28F7D1F605`）を起点にする。`PREISO-REV-000013`のbaseline `6fabd12512a3659fff4a956692cdd61faeeb16ce`（149/230/231行）とpre-isolation `2d4991042be55268bac30a8bbcdac45b3865030a`（155/239/240行）の原文を別入力として保存し、成功手順・backlog・反復・予防候補・放置への警告を保持する。旧harness memoryへの知識保存は、[2026-09-24 PO判断](../../governance/decisions/concept-requirement-po-decisions-2026-09-24.md)「HMC-BR-003」の、知識を1.0〜2.xではLABOが評価して保持する責務へ再導出する。harness memoryを連携通知へ限定する判断を変更せず、旧Learning／Skill authorityやprovider標準memoryを復活させない。旧doctorというCLIは使わず、LABO評価とOS運転へ責務を分ける。
+
+### HELIXLABO-L2-064 Worker比較評価の候補名遮蔽と再現条件（単体候補、1.0）
+- 入力：比較対象run、元runtime/modelのidentityと版へ戻せる対応、judgeに実際に提示した資料と可視範囲、fixture/rubric/judge version/sample/retry条件。
+- 提供：候補名を伏せた比較の成立範囲、固定条件の一致、情報漏洩や比較不成立の理由。評価記録の元identityを消さず、judgeへの提示と記録側の追跡を分ける。
+- 保証：評価judgeへ候補runtime名を提示せず、添付や出力metadata等から候補名が漏れたrunをblind評価済みとしない。fixture/rubric/judge version/sample/retryを比較前の条件へ束縛し、途中変更を同条件比較へ混ぜない。sample/retryの数値や実装方式はここで発明しない。
+- smoke成功だけで完全な適格性を主張せず、security failure、scope逸脱、検証不能出力を平均点で相殺しない。LABOの評価結果は水準・配置案の材料でありassignment/admissionは生成しない。
+- 不明・漏洩・不一致を理由付きで比較不能へ戻す。元run/条件を保存し、再評価義務をtask/evaluation ownerへ引き継ぐ。未実行の通常履歴へ後付けblind済みの印を付けない。
+
+- **親・状態**：HELIXLABO-L1-005／011、未採択追補候補。既存055/059/060/061の評価責務を補い、通常履歴集計へblindを一律必須化しない。比較実施を許可するものではない。
+- **依存・戻し先**：常時は評価対象run/比較条件/証拠、比較を実施する場合だけOS assignmentとSECURITYの許可が必要。未選択taskは参照に限り、LABOはWorkerを起動しない。元identityの追跡不能は観測元、judge可視範囲や固定条件不明は評価ownerへ戻す。
+- **旧source**：LEGACY-ASSET-719D5EC9C06FC4AAD0FF、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:215` HIL-NFR-35を起点とし、runtime名遮蔽と再現条件・相殺禁止を保持する。旧admission engineは採用せず、評価と割当権限を分離する。
