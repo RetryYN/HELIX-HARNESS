@@ -183,3 +183,21 @@ parent_l1_candidate: docs/helix-labo/L1-planning/labo-intent.md
 - **未見例**：同一設定の類似API taskで元Workerのtest失敗はあるが、片群のreceipt、oracle適用性、または支援者の時間/費用が不明。未知domainへの改善を一般化せず、欠落項目を列挙して未評価/比較不能を返す。数値閾値・試行件数は作らない。
 - **費用/範囲oracle**：同一の元Worker設定を固定しつつ、支援によって追加されたmodel/provider利用、上位Worker、相談者、CI/review/retry/rework、person timeをすべて報告する。human timeの換算率がない場合は時間量を記録して金銭額は未確定とし0円にしない。task/scope/outcome・価格source/currency/effective timeに結ばない費用は支援効果の総費用に確定しない。
 - **結果・責務境界**：LABOは比較可能性・quality・効果evidenceのみ出力し、INTELLIGENCEのproposal、OSのassignment、受入/merge authorityを決めない。単一の成功runのみでは未見taskの一般的有効性を主張しない。比較に必要な両runがそろわなければ未評価を維持する。
+
+## 機構内監査による受入例の補強
+
+以下は要求候補の未実行caseであり、実測合格や水準の採択を表さない。
+
+### HELIXLABO-L2-055 — Bench分母・欠測・採点根拠
+
+- **正常例**：一つの許可済みworker-history snapshotから対象task class・model class・評価範囲に該当する実績集合を特定する。数値metricまたは集約水準を出す場合、そのscopeのeligible denominator、実際に算入した結果、欠測/失敗/拒否/停止/unknownの個別dispositionと算入/除外理由、metric計算規則・scorer/oracleのrevisionを記録する。受入者は同じsource receiptから出力根拠を再構成できる。定性的水準の場合も、適用条件・判定根拠・未評価部分を特定できる。
+- **誤りを含む例**：欠測/失敗/unknownを母集団から理由なく落として水準を上げる、欠測費用を0とする、分母や集計対象を結果確認後に変える、判定根拠/metric定義/採点版を示さず数値または水準だけを出す、重大なquality/scope/security/data-loss failureを平均点で相殺する。水準の出力は根拠不足または不成立とし、既知の失敗は失敗のまま、欠測/unknownは欠測/unknownのまま保持する。判定不能なscopeの水準を未評価として残し、失敗の観測事実を未評価へ丸めない。
+- **未見例**：新しいtask class、sourceまたはscorer/oracle版の結果で適用可能性が示されない。過去classの水準を転用せず、その範囲は未評価とする。新しい母数、固定標本数、許容率、閾値は作らない。
+- **境界**：denominatorは出力するmetricと明示scopeごとに定義する。旧Benchのsystem/team test portfolio、反復回数、confidence interval、accepted-change正規化を全作業種別の水準へ一律要求しない。metricがそれらを主張・利用するときだけ該当根拠/欠測処理を受入対象とする。scoreだけで配置案、指定、割当て、authorityは作らない。
+
+### HELIXLABO-L2-056 — 初回結果と水準適用条件の照合
+
+- **正常例**：許可済み初回resultを、OS ticket/assignment/attempt、実際のWorker/model identityと実行契約revision、task class、要求/source revision、scope、data-use、result receiptに結び「観測済み・未評価」として保存する。適用する評価済み水準がある場合は、対象task/model classへの対応、oracle/基準のrevision、比較条件、適用scope、根拠が当該resultと一致し、実績へoracleを適用した判定receiptが揃う。その条件を満たしたscopeだけ評価済みにする。
+- **誤りを含む例**：受領receiptのmodel/source/revision/scopeを実際のrunと照合せず水準に算入する。runのtask classやmodel classが宣言された評価対象と異なる、oracle/criterion revisionが対象resultと不一致または不明、scopeが評価範囲外/不明の場合に評価済みとする。観測事実は元のidentityと不一致を保って保持できるが、対応する水準根拠へ混ぜず該当scopeを未評価/評価不能にする。未知結果を成功へ集約しない。
+- **未見例**：新provider/model version、異なるtoolchain/source revision、別task class/scopeから初めて届いたresultで、既存評価条件との互換/適用性が確定できない。結果receiptは観測として残し、同条件の成功や同じmodel classの水準だと推定せず未評価を保つ。必要な再評価条件をsource/oracle ownerへ戻す。恣意的な経過期限や一律の再評価間隔は設けない。
+- **境界**：不一致は「実績がなかった」へ書き換えず、未評価の理由と該当source/oracle/model/scopeを保持する。受領成功は評価成功ではなく、Benchはassignment/適格化/権限を決めない。既存L2-056の「評価oracleを実績へ実際に適用」「一件から未知taskへ一般化しない」条件を維持する。
