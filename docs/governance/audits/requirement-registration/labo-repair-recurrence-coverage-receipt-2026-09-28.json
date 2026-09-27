@@ -1,0 +1,124 @@
+{
+  "receipt_id": "MPR-RCPT-LABO-REPAIR-RECURRENCE-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "PREISO-REV-000013のbaseline/pre-isolation両revisionのHR-FR-P4-02/HAC-P4-02a/b計6行。選定3条件のbytes一致を確認するが全file同等性/全旧Pillar被覆を主張せず、他holdingや175identityへ独立要求数として加算しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXLABO-L2-063",
+      "requirement_kind": "composite",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-007",
+        "HELIXLABO-L1-008"
+      ],
+      "candidate_semantic_digest": "sha256:274ea8f4562f7677b90f72bdbc8ba474540fdb74e3f6ff9e6632ad1274566c1a",
+      "source_atom_set_digest": "sha256:f425e39573294f16652aa45bf67acecea206f7a31e49627409927583e3afffd9",
+      "source_atom_count": 6,
+      "source_collection_scope": "PREISO-REV-000013のbaseline/pre-isolation両revisionのHR-FR-P4-02/HAC-P4-02a/b計6行。選定3条件のbytes一致を確認するが全file同等性/全旧Pillar被覆を主張せず、他holdingや175identityへ独立要求数として加算しない。",
+      "atoms": [
+        {
+          "atom_id": "PILLAR-RECIPE-BASELINE-L0149",
+          "source_holding_registration_id": "MPR-SH-PILLAR-RECIPE-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "source_file_sha256": "sha256:665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+          "source_line": 149,
+          "source_line_sha256": "sha256:b2e52e306bb0ff4b19a0571df20b70fa4536a0da0c26e95c6c3fbfe31d76fe94",
+          "source_text": "| HR-FR-P4-02 | HBR-P4 | 成功 repair recipe は harness memory に記録され、頻出時は gate/detector/backlog へ promote される | HAC-P4-02a / HAC-P4-02b |",
+          "disposition": "carried",
+          "relation": "成功recipe保存と頻出時の予防候補をL2-063記録/反復/提供およびL11正常/反例へ。memory保存先は09/24 HMC-BR-003既決に従いLABOへ再導出。"
+        },
+        {
+          "atom_id": "PILLAR-RECIPE-BASELINE-L0230",
+          "source_holding_registration_id": "MPR-SH-PILLAR-RECIPE-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "source_file_sha256": "sha256:665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+          "source_line": 230,
+          "source_line_sha256": "sha256:2af0641d543e98f6c438aca84d176135ed4024c2aff0f807a9524cf859c633d5",
+          "source_text": "| HAC-P4-02a | repair が成功し再発防止が明確 | close を実行 | harness memory と improvement backlog に recipe を保存 |",
+          "disposition": "carried",
+          "relation": "成功/再発防止が明確な手順の保存と改善backlogへの接続をL2-063記録の引継ぎ、L11正常/記録欠落反例へ。旧close CLIは継承せず終結と引継ぎ完了を分ける。"
+        },
+        {
+          "atom_id": "PILLAR-RECIPE-BASELINE-L0231",
+          "source_holding_registration_id": "MPR-SH-PILLAR-RECIPE-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "source_file_sha256": "sha256:665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+          "source_line": 231,
+          "source_line_sha256": "sha256:00fbc4a5587007bcee8a7db7e7747f138f3ba4e27423d5a9a997d8c9715cbc52",
+          "source_text": "| HAC-P4-02b | 同種 repair が閾値以上に反復 | doctor を実行 | gate/detector promote candidate を出し、放置を warning 以上にする |",
+          "disposition": "carried",
+          "relation": "閾値以上の反復からgate/detector候補と放置warningをL2-063反復/提供、L11正常/個別反例へ。旧doctor CLIを実行せずLABO評価/OS登録/target採否へ再導出。"
+        },
+        {
+          "atom_id": "PILLAR-RECIPE-PRE_ISOLATION-L0155",
+          "source_holding_registration_id": "MPR-SH-PILLAR-RECIPE-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_file_sha256": "sha256:7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+          "source_line": 155,
+          "source_line_sha256": "sha256:b2e52e306bb0ff4b19a0571df20b70fa4536a0da0c26e95c6c3fbfe31d76fe94",
+          "source_text": "| HR-FR-P4-02 | HBR-P4 | 成功 repair recipe は harness memory に記録され、頻出時は gate/detector/backlog へ promote される | HAC-P4-02a / HAC-P4-02b |",
+          "disposition": "carried",
+          "relation": "成功recipe保存と頻出時の予防候補をL2-063記録/反復/提供およびL11正常/反例へ。memory保存先は09/24 HMC-BR-003既決に従いLABOへ再導出。"
+        },
+        {
+          "atom_id": "PILLAR-RECIPE-PRE_ISOLATION-L0239",
+          "source_holding_registration_id": "MPR-SH-PILLAR-RECIPE-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_file_sha256": "sha256:7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+          "source_line": 239,
+          "source_line_sha256": "sha256:2af0641d543e98f6c438aca84d176135ed4024c2aff0f807a9524cf859c633d5",
+          "source_text": "| HAC-P4-02a | repair が成功し再発防止が明確 | close を実行 | harness memory と improvement backlog に recipe を保存 |",
+          "disposition": "carried",
+          "relation": "成功/再発防止が明確な手順の保存と改善backlogへの接続をL2-063記録の引継ぎ、L11正常/記録欠落反例へ。旧close CLIは継承せず終結と引継ぎ完了を分ける。"
+        },
+        {
+          "atom_id": "PILLAR-RECIPE-PRE_ISOLATION-L0240",
+          "source_holding_registration_id": "MPR-SH-PILLAR-RECIPE-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_file_sha256": "sha256:7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+          "source_line": 240,
+          "source_line_sha256": "sha256:00fbc4a5587007bcee8a7db7e7747f138f3ba4e27423d5a9a997d8c9715cbc52",
+          "source_text": "| HAC-P4-02b | 同種 repair が閾値以上に反復 | doctor を実行 | gate/detector promote candidate を出し、放置を warning 以上にする |",
+          "disposition": "carried",
+          "relation": "閾値以上の反復からgate/detector候補と放置warningをL2-063反復/提供、L11正常/個別反例へ。旧doctor CLIを実行せずLABO評価/OS登録/target採否へ再導出。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-010",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-050",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md#helixlabo-l2-063"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ],
+  "existing_meaning_decision": {
+    "reference": "docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md@a5b8e8f3b3487f8ab3ff5b79bec923336ad89546 sha256:a60e2c9c5b9d0828acdf4348e5cabbf7f3c032ec5d33b628f3d9e2bf305176de lines 67-69 (HMC-BR-003)",
+    "meaning": "harness memoryを連携通知へ限定し、知識を1.0〜2.xはLABOが評価して保持する既決責務へ再導出。新候補の採用ではない。"
+  }
+}
