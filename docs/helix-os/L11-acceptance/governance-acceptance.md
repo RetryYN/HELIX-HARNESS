@@ -550,8 +550,8 @@ fixture内のID・source textは合成値であり、普遍的なticket番号、
 |---|---|---|
 | 正常・反例：分類前保存 | directive/Issue eventを分類する前にdurable原記録とreceiptを得る。保存失敗なら未完とし、原指示を回復できる既存経路へ戻す。 | 分類してから都合のよい指示だけ保存する、保存失敗を受付成功へ丸める、AIのnon-actionableだけで原記録をdropする。 |
 | 正常：duplicate | 合成directive `D-17`の原event、source span、actor/time/revision/digestを固定する。生存ticket `T-42`と、`T-42`の受入oracleが同じ要求を含むsource-bound証拠を与える。duplicate dispositionが元event・target・oracle証拠へ結ばれ、原eventが不変である。 | targetなし、閉じた/失効したtargetのみ、oracle包含根拠なし、digest違いをduplicate確定する。単なる文面類似やIssue番号一致で統合する。 |
-| 正常：false-positive | 合成finding `F-8`とその元evidenceに対し、findingを覆す独立source・対象revision・反証内容を与える。反証がdisposition authorの判断だけに依存せず記録され、後からsourceとscopeを辿れる。 | 元finding/evidenceを保持しない、根拠が同じ主張の言い換えだけ、反証source不明/stale、あるいは独立根拠がないままfalse-positiveをterminalにする。 |
-| 正常：cancel/supersede・accepted-risk | 合成event `D-21`に対応する既存PO decision receipt（既存の有効authority、対象revision/scope、理由）を入力する。OSはそれを原eventへ結び付け、supersession chainを追跡する。 | AIのみの不要判断、PR/Issue close、CI green、古い/別scopeのPO receiptを用いてcancel/supersede/accepted-riskを確定する。必要receiptなしなら保留する。 |
+| 正常：false-positive | 合成finding `F-8`とその元evidenceに対し、findingを覆す独立source・対象revision・反証内容を与える。独立reviewのreceiptを結び、反証がdisposition authorの判断だけに依存せず記録され、後からsourceとscopeを辿れる。 | 元finding/evidenceを保持しない、根拠が同じ主張の言い換えだけ、反証source不明/stale、あるいは独立根拠がないままfalse-positiveをterminalにする。 |
+| 正常：directiveのcancel/supersede・accepted-risk | 合成user directive `D-21`に対応する既存PO decision receipt（既存の有効authority、対象revision/scope、理由）を入力する。OSはそれを原eventへ結び付け、supersession chainを追跡する。 | AIのみの不要判断、PR/Issue close、CI green、古い/別scopeのPO receiptを用いてcancel/supersede/accepted-riskを確定する。必要receiptなしなら保留する。 |
 | 正常：appeal/reopen | 先行disposition receiptと、同じ対象に対する新しいchallenge理由・evidenceを与える。新しい履歴が先行receiptを参照し、原event・先行判断・新判断を全て辿れる。 | appealを先行eventの上書き/削除として記録する、異議経路を失う、または単なるPR更新で再open済みと表示する。異議を受ける経路が欠けるdispositionを終端とする。 |
 | 正常：ticket closure / projection分離 | local ticketの既存closure receiptがないまま協調projection Issueだけcloseしたfixtureを与える。Issueのprojected stateを記録しつつ、原directive/local ticketは未完として保ち、不一致を戻し先へ示す。既存closure receiptがあるfixtureでは、そのexact ticket/revisionに束縛した完了記録を参照する。 | Issue closeをticket cancel/completeへ昇格する、closure receiptなしにticketをcloseする、または既存ticketのclosure条件を本候補が独自に置換する。 |
 | 未見：未知disposition | fixtureにない新しいdispositionラベル、対象revision不明、またはsource authority不明を渡す。原eventは保持し、既存authorityが解決するまで非終端/unknownとし、理由と戻し先を示す。 | 未知分類を自動cancel/dropへ写す、別authorityを推測して終端化する、または未選択sourceを調べた扱いにする。 |
@@ -562,7 +562,7 @@ fixture内のID・source textは合成値であり、普遍的なticket番号、
 - HELIXOS-L2-019の受入（同`:352–357`）が要求するprovenance/訂正履歴、重複・stale・拒否・未実行と成功の区別、再構築とcheckpoint失敗時の未完扱いを維持する。
 - GitHub運用モデル `docs/governance/github-upstream-operating-model.md:63–72`（SHA-256 `1cb8ed88d4f0e65b37674f692d5fe391c7c5c4b3f482e60c86e160609a8c46a1`）ではFeature Ticketがlocal work authorityでIssueは協調projectionである。Issue Form失敗時のprojection Issue closeは原eventを保持したうえの表示整理で、ticketのcancel/closureではない。この境界を反転させない。
 - HARNESSが持つticket/要求の完了条件や既存POの判断authorityをこのL11で作り直さない。明示したPO receiptは既存authorityが発行したものの参照であり、すべてのdispositionに対する人間確認手続きを追加しない。
-- 条件付き/操作時依存：duplicateのtarget+包含oracle、false-positiveの独立反証、accepted-risk/cancel/supersedeの適用可能な既存PO receipt、challenge/reopenの先行receipt+新根拠は、それぞれ該当操作でのみ必須。選択sourceのrevision/digest/利用許可は、そのsourceを根拠として使う操作で必須。未選択sourceには依存しない。
+- 条件付き/操作時依存：duplicateのtarget+包含oracle、false-positiveの独立反証、directiveのaccepted-riskと各出所のcancel/supersedeの適用可能な既存PO receipt、findingのfalse-positive/accepted-riskの証拠付き独立review、challenge/reopenの先行receipt+新根拠は、それぞれ該当操作でのみ必須。選択sourceのrevision/digest/利用許可は、そのsourceを根拠として使う操作で必須。未選択sourceには依存しない。
 - 失敗または未完の場合、対象event・未完義務・停止理由を保持し、既存source owner/要求owner/判断authorityへ戻す。Issue/PR表示状態だけで要求状態を更新しない。
 
 **対応する現行L1/L2/判断**
@@ -573,3 +573,7 @@ fixture内のID・source textは合成値であり、普遍的なticket番号、
 - 2026-09-28 OS PO判断 `docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md`（SHA-256 `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da`）では候補014–029を採用し旧source holdingを維持、旧sourceの被覆完了・retire・holding解除は導かない（56–59行）。034候補は同決定の明示集合外であり、本文追補案そのものは採択・実装許可を意味しない。
 
 照合した現行本文の固定commit：`2197a4bc405d37f133bac4d5e96809c5afec58c1`。旧L1のBR-07は59行、FR-36は126行、旧運転受入HOT-HIL-36は63行。旧原文のIssue語を現行の原event/local ticketと協調projectionへ分離して再導出し、原指示の意味上の取消権限を緩めない。
+
+**findingのリスク受容：正常・反例**：review findingに、対象revision/scope、根拠、残るrisk、独立review receiptとappeal経路を与える。上流意味の変更がなければPO receiptを一律追加せず、accepted-riskの非終端記録を原findingへ結ぶ。独立reviewなしにリスク受容する、directiveのPO要件を流用して通常findingのaccepted-riskを止める、review済みを理由に原記録を削除/不可視化/終端化する、appeal経路を失う場合は不合格。上流意味を変える場合は人の既存判断へ戻す。出所の種別が不明なら推測せず確認先へ返す。
+
+**原文追補**：旧L1 `infinity-loop-platform-requirements.md:99,201`（HIL-FR-09/NFR-21、L2と同じasset/SHA）により、findingの証拠付き非終端dispositionと独立reviewを保持する。current_pr_fix/successor_issueの分類全体をこの受入だけで閉じない。
