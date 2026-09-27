@@ -670,3 +670,11 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 **旧source照合**：`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。§4.5:269–275（Experience/UI/Frontend、Full V/Scrum backfill、PoC状態・evidence・authority境界）と§4.9:385–392（HR-FR-DHR-001–006）を、現行L1/L2/L11の対象scope・V-pair・authority境界へ意味再導出した fixture である。旧schema名・旧runtime・実測済みとの主張は導入しない。
 
 **prototype/walkthroughの反例**：UI scopeに静止画とscreen一覧・trace・agreement表示だけを与え、操作可能なprototype相当やwalkthroughの実施結果がないのに、prototype確認済みとしてclosureする例を拒否する。正常例では同一scope/revisionの操作可能性とwalkthrough結果・未決事項・訂正を既存008/024の合意根拠へ渡す。開始時に未実施なら未完義務として候補を返せるが、実施済みへ補完しない。旧manifest形式を別の固定schemaとして要求しない。
+
+## HARNESS-L2-035 scope計測追補の受入
+
+既存L11-035と併せる未実行・未採択候補。
+
+- **正常**：scope拡張候補に、複雑さ、公開面、運用負債の変更前後の対象・方法・条件・結果と、受入oracleへの寄与、代替案、最小必要性の根拠を与える。同じscope/revisionで照合でき、三観点のどの義務が増減したかを示す。測定の実行手段や数式が違っても、宣言した条件と証拠へ辿る。
+- **誤り**：追加機能数は少ないが公開API/設定面と保守義務を増やした候補に対して、追加数のみで最小必要とする。運用負債または複雑さの結果が欠けた例、旧revisionの計測を流用する例、別観点の好成績で欠測を相殺する例も、scope判定の根拠充足としない。原文にない共通閾値をAIが補って拒否・許可する例も不成立。
+- **未見・開始境界**：新しい変更種別で測定値がまだない入力でも、候補形成と不足項目の提示は行える。測定方法・条件が未定なら該当ownerへ返し、結果や必要性成立を捏造しない。後段の計測完了を起草開始の前提にせず、未完のscope判定から実行権限を生成しない。
