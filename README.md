@@ -18,3 +18,11 @@ adapter、AI instruction／prompt、実行設定は例外対象外であり、ar
 
 新世代CIは未構築である。現時点のPRは上流候補の共有と許可された意味reviewに使えるが、旧CIのgreen、
 merge、Issue closeを上流承認へ変換しない。
+
+## ライセンス
+
+現行の独自資産は[全権利留保（All Rights Reserved）の独自ライセンス表示](LICENSE)に従います。
+GitHub規約上の閲覧・fork等、適用法上の権利、過去のMIT許諾を保持し、それらの範囲外での利用・複製・改変・実行・再配布等は、商用・非商用を問わずRetryYNとの別途の書面による有償ライセンスが必要です。
+公開repositoryであることから無償利用許諾を生成しません。切替前に公開されたMIT版と既許諾の素材はMIT条件を維持します。切替前commitと履歴LICENSEへの参照はLICENSEに記載しています。
+利用者の成果物とHELIX素材を区別し、第三者素材には元の条件を適用します。[第三者通知と棚卸しの範囲](THIRD_PARTY_NOTICES.md)も参照してください。
+問い合わせは[GitHubのIssue](https://github.com/RetryYN/HELIX-HARNESS/issues)へ、秘密情報・個人情報を含めずに送ってください。価格・契約条件・評価版は未確定です。

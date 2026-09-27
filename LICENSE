@@ -1,21 +1,75 @@
-MIT License
+HELIX Proprietary License Notice — All Rights Reserved
 
-Copyright (c) 2026 RetryYN
+Copyright (c) 2026 RetryYN. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Scope and reservation of rights
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This notice applies to the HELIX materials in this revision of
+RetryYN/HELIX-HARNESS to the extent that RetryYN owns or is authorized to
+license them, subject to the exceptions below. Public availability of this
+repository does not make these materials open-source software or grant a
+free license to use them.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Except for rights preserved below, no permission is granted by this notice
+to use, copy, modify, execute, distribute, sublicense, sell, or otherwise
+exploit these materials, for commercial or non-commercial purposes. Such
+activities require a separate written, paid license from RetryYN. This
+notice does not itself offer an evaluation license or establish pricing
+or the terms of any future agreement.
+
+2. Preserved rights and third-party materials
+
+Nothing in this notice restricts rights under applicable law that cannot
+be excluded, or permissions granted to GitHub or its users under the
+applicable GitHub Terms of Service, including viewing and forking through
+the Service. Those Terms, rather than this notice, govern those permissions.
+No additional license is granted by the repository being public.
+
+Third-party materials, dependencies, and services remain subject to their
+respective licenses and terms. Their notices must be retained; this notice
+does not claim ownership of them or replace their licenses. Contributor
+rights not owned by or licensed to RetryYN are not transferred by this
+notice. See THIRD_PARTY_NOTICES.md for the recorded notices and limitations
+of the current inventory.
+
+Using HELIX does not by itself transfer ownership of a user's applications,
+projects, inputs, or generated work to RetryYN. HELIX materials included
+in such work remain distinct and subject to their applicable terms;
+third-party rights also remain unaffected.
+
+3. Previously published MIT-licensed versions
+
+The pre-change baseline for this notice is commit:
+41a477b756f4c62bc72d5554952a6ad9c5f29376
+
+Versions published under the MIT License at or before that baseline remain
+available under that MIT License and its conditions. This notice does not
+retroactively revoke, replace, or restrict permissions already granted
+under MIT, including permissions covering copies of those versions and
+material carried forward from them. Historical MIT notices and permissions
+must be preserved where applicable. The historical license is available at:
+https://github.com/RetryYN/HELIX-HARNESS/blob/41a477b756f4c62bc72d5554952a6ad9c5f29376/LICENSE
+
+This notice accompanies the revision replacing that baseline's root LICENSE
+and subsequent revisions retaining this notice. It cannot make previously
+MIT-licensed material exclusive merely by including it in a newer revision.
+
+4. No warranty; limitation of liability
+
+To the maximum extent permitted by applicable law, these materials are
+provided as available, without any express, implied, or statutory warranty,
+including warranties of merchantability, fitness for a particular purpose,
+and non-infringement. To that extent, RetryYN and the applicable rights
+holders will not be liable for claims, loss, or damages arising from access
+to or use of the materials, whether in contract, tort, or otherwise.
+Nothing here excludes liability that applicable law does not permit to be
+excluded. A separate written agreement may provide different terms.
+
+5. Licensing inquiries
+
+Contact RetryYN through a licensing inquiry in the GitHub repository:
+https://github.com/RetryYN/HELIX-HARNESS/issues
+Do not include credentials, confidential material, or personal information
+in a public issue. An inquiry or a reply alone is not a license grant.
+
+The English text of this notice is authoritative.
