@@ -1,0 +1,82 @@
+{
+  "receipt_id": "MPR-RCPT-HELIX-HARNESS-REVERSE-DELTA-2026-09-27",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "PO第2項と現行親から読み取り・差分改修能力を具体化する候補。旧atomの移管・retireは行わず、no_lossは旧atom入力空集合のみ。PO条件対応は判断記録とL11で照合する。",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-027",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-005"
+      ],
+      "candidate_semantic_digest": "sha256:6fc3853616086123f955ad36b36111b4b0671c133f4f83e987e28937259cfd53",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO第2項と現行親から読み取り・差分改修能力を具体化する候補。旧atomの移管・retireは行わず、no_lossは旧atom入力空集合のみ。PO条件対応は判断記録とL11で照合する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-harness/L1-planning/product-intent.md",
+        "docs/helix-harness/L2-requirements/product-requirements.md",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+        "docs/governance/decisions/reverse-delta-derivation-2026-09-27.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-028",
+      "requirement_kind": "connection",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004",
+        "HARNESS-L1-005",
+        "HARNESS-L1-006"
+      ],
+      "candidate_semantic_digest": "sha256:71f9c22bb2052b4a829b26debb1de8eed1f12fe17eccbed0b43618fe475e6cca",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO第2項と現行親から読み取り・差分改修能力を具体化する候補。旧atomの移管・retireは行わず、no_lossは旧atom入力空集合のみ。PO条件対応は判断記録とL11で照合する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-harness/L1-planning/product-intent.md",
+        "docs/helix-harness/L2-requirements/product-requirements.md",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+        "docs/governance/decisions/reverse-delta-derivation-2026-09-27.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HARNESS-L2-029",
+      "requirement_kind": "composite",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-003",
+        "HARNESS-L1-004",
+        "HARNESS-L1-005",
+        "HARNESS-L1-006"
+      ],
+      "candidate_semantic_digest": "sha256:243c0d578acdba3e151446d2bc802f0421ee6cb24e8bebafc5cd0111ec6cbf32",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO第2項と現行親から読み取り・差分改修能力を具体化する候補。旧atomの移管・retireは行わず、no_lossは旧atom入力空集合のみ。PO条件対応は判断記録とL11で照合する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-harness/L1-planning/product-intent.md",
+        "docs/helix-harness/L2-requirements/product-requirements.md",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+        "docs/governance/decisions/reverse-delta-derivation-2026-09-27.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}
