@@ -437,3 +437,19 @@ PO原文の集積対象、観測状態、episode順序、分解軸、Vector軸�
 - **推奨提示**：一律defaultも毎runの人間確認も置かない。対象scope/revisionに有効な決定があれば再利用し、その根拠と適用境界を保持する。未決・失効・境界を越えるscope/revision変更の場合に限って該当ownerへ提示する。
 - **影響**：適用可能な選択がない間、集計値は提示できても「何を改善と選ぶか」は未決。human timeの換算率がなければtime quantityとmonetary chargesを別掲し、完全なtotal costと主張しない。旧版を選んだ比較にevidenceがないなら、その比較の欠落を表示する。
 - **scope**：値はPOが対象scope・version・quality oracle・有効期間ごとに決める。有効な決定は適用境界内で再利用し、新しいrunごとの再確認を求めない。境界外変更・失効・未決時はownerへ戻す。あるproject/cohortでの優先や効果を別scopeへ一般化しない。
+
+### HELIXLABO-L2-060 Worker支援有無の同一設定比較（単体候補、1.0）
+
+- **PO起点**：[補強原文](../../helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md)第5項、[判断記録](../../governance/decisions/worker-support-derivation-2026-09-27.md)。
+- **親L1**：HELIXLABO-L1-005 primary、HELIXLABO-L1-011 context。比較評価とWorker水準の境界に接続する。
+- **関係**：同じ軽量Worker/model/provider/version/effort設定、同じtask/scope/oracleの下で、作業中支援の有無だけを変えた結果を比較する単体能力。支援がどれほど有用だったかの評価であり、支援経路を実行・割当する能力ではない。G13のHELIXLABO-L2-059が定めるtask/effect comparisonと全費用、人介入の比較原則を使い、評価内容を重複所有しない。
+- **受け取るもの**：同一のtask snapshot・要求/設計revision/scope・HARNESS quality oracle revision・環境/toolchain/run protocol、同一のWorker/model identityとmodel/provider/version/effort設定、支援有無の対応runとOS assignment/result receipt、使われた設計/code/failure/knowledge source・INTELLIGENCE proposalとOS handoff、全runの成功/失敗/unknown、retry/rework/review/CI、上位Worker・相談者・人の介入時間と実費、価格source/currency/effective time、比較不能/欠測情報。
+- **提供するもの**：品質gate結果、同一設定に対する支援有無別のaccepted outcome、再作業・失敗・所要時間・費用、上位Worker/model救援・追加実行・人の相談/調査/修正/確認を含むeffortとcost、欠測・比較可能範囲・unknownを示すtask class/scope限定の評価材料。採用・割当・配置水準は決めない。
+- **保証すること**：両群で変える要因は対象支援経路の利用有無のみ。元Worker/model/provider/version/effort、task scope、oracle、実験条件、toolchainと結果の計測規則が異なる場合は同条件と主張しない。必要qualityを費用/速度で相殺しない。支援側に上位Worker、別model/provider利用、相談、再試行、CI/review、人手修正があれば、対応する時間・費用と人介入をscope内に含める。価格換算が不明な人時間は量を報告し、0円としない。評価結果はINTELLIGENCE/OSへの材料に限り、LABOはWorkerを割当/実行しない。
+- **常時必須**：task/scope/対象revision、同一のmodel/provider/version/effort設定、開始前に固定したHARNESS-L2-022 quality/acceptance oracle契約、OS assignment、比較条件・支援有無のsource/evidence、計測した費用/人介入・欠測範囲。assignmentとoracle契約は入力、OS result receiptsとoracle実行結果は各run後の比較観測である。片方の結果receiptや適用可能なoracle契約がない場合は比較成立を主張しない。
+- **操作時必須**：新しい比較runを行う場合は支援あり/なし双方の対応可能runについてOS assignmentと必要なSECURITY許可があり、HARNESS oracleと計測条件を先に固定する。既存historyを使う場合は当時のsource/authority/model/provider/version/scope/receiptを保持する。測定の実行、修正、相談をLABOが開始しない。
+- **選択入力時必須**：支援側で実際に選択・使用したpacket/source/相談/分解/修正指示と支援者のidentity/version/effortを、そのrunへ記録する。なし群へ支援用contextや専門家助言が漏れた場合はなし群としない。未選択の支援経路は当該比較の実行依存ではない。
+- **参照のみ**：今回比較しない支援候補、未選択source、一般的な効果説明は背景参照に限る。比較対象に選択したsource、品質条件、救援・人作業・費用の実績は参照のみへ落とさない。
+- **版・単独成立の依存**：`version_target: 1.0`（候補能力の版印）。v0.1等の段階収載有無は別判断で、本候補は決めない。HELIXLABO-L2-001／HELIXLABO-L2-006／HELIXLABO-L2-028／HELIXLABO-L2-055、既存HELIXLABO-L2-059の比較原則、HELIXOS-L2-018／HELIXOS-L2-019／HELIXOS-L2-023 assignment/result, HARNESS-L2-022 oracle、HELIXINTELLIGENCE-L2-068の支援sourceと利用証拠、SECURITY data-use/実行許可を使う。HELIXOS-L2-028の相談receiptは実相談を選択したrunだけに必要で、事前test/指示だけの支援比較には要求しない。HELIXOS-L2-029は支援往復まで成立したcompositeの結果を評価対象に選ぶ場合のsourceであり、評価単体の常時依存ではない。
+- **失敗時の戻し先／未完義務**：task/run receiptはOS、支援proposal/利用証拠はINTELLIGENCE/OS、oracleはHARNESS/requirement owner、data-useはSECURITY、comparison scope/evaluation capabilityはLABOへ戻す。片群欠落、異なるmodel/provider/version/effort、scope/oracle差、救援/人的費用欠落、stale evidenceは未評価/比較不能に保ち、未完理由を記録する。固定試行数や性能閾値は設けない。
+- **束ねる既存条件**：HELIXLABO-L2-001／HELIXLABO-L2-006／HELIXLABO-L2-028／HELIXLABO-L2-055／HELIXLABO-L2-059およびHELIXINTELLIGENCE-L1-018／HELIXINTELLIGENCE-L1-010、HELIXOS-L2-018/HELIXOS-L2-019/HELIXOS-L2-023、HARNESS-L2-022。G13の総費用とquality-firstの比較意味を保持し、支援有無だけを比較因子に追加する。

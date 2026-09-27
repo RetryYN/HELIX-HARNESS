@@ -453,3 +453,25 @@ HELIXOS-L2-026（unit：構成案と不足を返す導出能力）に対する�
 
 - **適格条件の正常例とoracle**：初回scopeを、許可された非secret・非HELIX-restrictedの分類済み入力を読み、隔離先の指定pathへ取り消せる成果物を生成する作業に限定する。credentialなし、networkなし（または006で明示許可された通信のみ）、必要制約の適用、操作ごとの有効authority、変更前状態/rollback先の確認を入力証拠とする。確認者はOS-027の6項の各証拠を照合し、全項成立した場合だけ適格と記録できることをoracleとする。単に「low risk」と書いた入力や資産のclass名だけを与えた入力は不十分である。適格でも他の開始条件が欠ければassignmentを出さない。
 - **適格条件の独立反例**：正常例から一条件ずつ、未分類資産、secretまたはHELIX-restrictedの入出力、許可のないdata-use、credential利用、許可一覧外の送信/再送、隔離先不一致、未適用のWorker制約、期限切れ/別scopeの操作authority、復旧不能/不明な変更、release/tag/配布へ変える。どの場合も開始を拒否し、失敗した条件・証拠・owner・再開条件を記録する。分類・authority・適用証拠のunknown/missing/conflict/staleも一つずつ同様に確認する。生成物が事前分類/出力scopeを逸脱した場合は受渡しを停止して隔離/復旧し、成功受領にしない。人確認や性能履歴を加えても不成立条件を上書きしない。
+
+### HELIXOS-L2-028 作業中支援の受渡し・範囲統制の受入（接続候補）
+
+`HELIXOS-L2-028`はINTELLIGENCEの案とOSの実相談/返答/元Workerへの復帰をつなぐconnection候補である。単体案の生成はHELIXOS-L2-028の完了を前提とせず、HELIXOS-L2-028のhandoff成功だけで支援loop/compositeの成立にはしない。
+
+- **入力・版**：元ticket/task/revision/scope、元Worker assignment/attempt、困難箇所、budget/期限/停止条件、HELIXINTELLIGENCE-L2-068 proposal、相談source/identity/revision/利用条件、必要なHARNESS-L2-022 oracle、SECURITY/INFRASTRUCTURE条件。`version_target: 1.0`は候補の版印。
+- **正常例**：事前oracleが「amount <= configured maximumなら201・指定額を保存し、amount > maximumなら422・永続状態を変更しない」と定めるAPIの境界値テストで、`maximum+1`が誤って201となり状態が更新された。元Workerは失敗証拠をticketへ添付。INTELLIGENCEがAPI契約、関連validator code、同種failure例のうちscope内で使えるsourceだけ選び、「>と>=の境界根拠を確認し、拒否時の永続副作用も確認する」という限定相談案を作る。OSは別assignmentで相談を認可し、回答・source・scope receiptを記録して元Workerへ返す。元Workerがvalidatorを修正した後、既存HARNESS-L2-022 oracleに沿い、許可されたHELIXOS-L2-020経路で再検証する。
+- **受渡しoracle**：consult request/responseとreturn handoffが同一ticket/revision/scopeに結びつき、response未着では解決済みにならず、元Workerへの再開入力に質問・回答・source revision・未完義務が含まれる。INTELLIGENCEの提案だけでconsult Workerを起動せず、OSの認可/assignment receiptがある場合にだけhandoffを成立とする。元Workerによる修正/検証/受入は別途HELIXOS-L2-029/HARNESS-L2-022で確認する。
+- **誤りを含む例**：相談者が要求値を勝手に変え、`>`から`>=`へ閾値を変えるよう助言する。OSはscope/authority外の指示を元Workerの実装命令に昇格させず、requirement意味と異なる場合はHARNESS/ownerへBackflowする。また、回答未着、選択sourceがrestricted/stale、budget超過、停止条件成立なら成功handoff/安全再開を主張しない。
+- **未見例**：類似failureのない別endpointで同じようなvalidation不具合が出たが、拒否時に状態変更が禁止か、既存のどのoracleが適用するか不明。INTELLIGENCEはgeneric ruleを作らず必要な要求/oracle ownerと不足情報を返す。OSは相談完了を強制せず、適切なowner回答と必要な契約revisionが揃うまでholdする。
+- **失敗・未完義務**：source/相談案、OS認可、response、元Workerへのhandoffのreceiptのいずれかが欠ければ接続は未成立。元ticket/attempt、cost、停止理由、未完義務、再開条件をHELIXOS-L2-019で保持する。支援者は独立reviewerではなく、実行した相談の回数は固定上限でなく既存assignment budget/期限/停止条件へ従う。
+
+### HELIXOS-L2-029 Worker支援から検証・再作業までの受入（composite候補）
+
+この受入候補は、HELIXINTELLIGENCE-L2-068単体、HELIXOS-L2-028 connection、HELIXOS-L2-029 compositeの別成立を確認する。HARNESS-L2-022が契約するoracle/段階状態を使い、HELIXOS-L2-020は実行運転だけを担う。candidateや新世代CIの存在から実測成功を作らない。
+
+- **入力・版**：承認済み要求/設計revision、元ticket/scope、同一元Worker/model設定、開始前に参照するHARNESS-L2-022 API/oracle/pair契約、支援source、INTELLIGENCE proposal、OS handoff/assignment/budget/期限。実行・独立review evidenceはcomposite開始条件ではなく、各段階で発生後に結果として照合する。失敗証拠とHELIXOS-L2-028 consultation receiptは、作業中に詰まり診断と実相談を選んだrunだけに必要。`version_target: 1.0`は採択/段階収載を決めない。
+- **正常例（作業前のtest/指示準備から元Workerへ戻す一周、相談なし）**：Worker assignmentは確定しているが実装開始前のtaskを受け取る。INTELLIGENCEは承認済み要求、設計、HARNESS-L2-022の既存oracleを読み、正常/境界/拒否条件のtest candidateと実装指示を元source revisionへ結んで準備する。OSが同じ軽量Worker設定でticketを開始し、元Workerが実装する。相談やHELIXOS-L2-028 receiptは発生しない。test候補作成者とは別の独立reviewerが差分とoracle適合を確認し、findingsがあれば元Workerへ返して同じ軽量Worker設定で修正・再検証する。HELIXOS-L2-020経路の許可された実行後、事前oracleにより結果を照合し、HARNESS段階契約の証拠を残す。oracleはtest/instructionが作業前に準備されても相談なしにこの一周を進められ、test resultと支援candidateが同一scope/revisionへ結ばれ、支援者が独立reviewer扱いされないことである。
+- **正常例（作業中の相談あり）**：`PATCH /applications/{id}`の既存受入oracleは、`draft`時の有効な変更を受け入れ、`approved`時の変更を拒否し永続値を変えない。失敗証拠はapproved itemでPATCHが200を返したこと。INTELLIGENCEは既存state-transition design、endpoint authorization/code、過去の同型failure exampleのうち適用条件を確認できるものを選び、「状態、編集permission、拒否status、更新副作用」の不足だけを限定相談する。HELIXOS-L2-028はsource/返答receiptを同scopeで返す。元Workerが修正し、HELIXOS-L2-020がHARNESS-L2-022に束縛された検証を実行する。oracleは`draft + authorized change → accepted and persisted`、`approved + edit → forbidden response and no persisted mutation`、`unrelated field/state remains unchanged`をそれぞれ判定する。独立reviewer（元Worker、INTの支援者/助言者とは別identity/context/authority）が同じrequirement/oracle/current resultを確認する。これらが満たされ、HARNESS段階条件の証拠が揃う場合だけ当該段階をVerified候補とし、Acceptedは別途L11利用者受入receiptを要する。初回失敗後も既存budget/期限/停止条件内ならfindingを元Workerへ返し修正を再検証できる。
+- **誤りを含む例**：支援助言がapproved状態で編集可能に要件を変える、test helperが誤って200を期待する、consultantのtest作成/助言をindependent review receiptへ再利用する、古い成功結果をcurrent HEADへ結びつける、またはCI greenだけでL11 Acceptedとする。いずれも該当oracle/authority/identity違反としてVerified/Acceptedを拒み、意味変更は上流へ戻す。
+- **未見例**：別endpointで同じapproved-edit制約が現れるが、既存oracleのapplicabilityが不明。INTELLIGENCEは類似性だけで規則を適用せず、設計/requirement ownerへ不足を返す。scope/oracleの適用が解決するまでは検証計画candidateに留め、OSは実装成功や再開可能を主張しない。
+- **構成体受入**：HELIXINTELLIGENCE-L2-068の事前test/指示候補→元Workerの差分（作業中consultが必要な場合のみHELIXOS-L2-028の実相談/回答receiptを追加）→HARNESS-L2-022へtraceしたtest/oracle結果→支援者から独立したreview→失敗時の元Worker handoff/再検証または予算停止で未完、の因果順を確認する。単体proposalやhandoffだけ、あるいは下位unitの成功だけではHELIXOS-L2-029の一周を合格にしない。予算/期限が尽きた場合はその時点のattempt/result/finding/cost/未完義務を保持し、成功とせず終了可能であることを確認する。

@@ -843,3 +843,35 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
   4. HELIXSECURITY-L2-003のproject/tenant/environment/assignment隔離が確認され、007のwrite path・network・credential・環境変数・timeout・resource limit・差分検査・rollback・結果回収の制約が実行環境へ適用されている。未適用/unsupportedやhostへのfallbackを許さない。
   5. HELIXSECURITY-L2-008のactor/target/operation/revision/environment/scope/expiryに一致する許可が各操作にあり、操作の列挙漏れがない。性能未評価や人の配置案はこの許可を代替しない。
   6. 変更は許可範囲内で取り消せ、変更前状態・復旧手段・復旧先を事前に確認できる。不可逆な外部作用、release、tag、配布を含まない。取り消せることが不明な操作も対象外であり、人の確認だけでこの条件を免除しない。
+
+### HELIXOS-L2-028 作業中支援の受渡し・範囲統制（接続候補）
+
+- **PO起点**：[補強原文](../../helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md)第5項、[判断記録](../../governance/decisions/worker-support-derivation-2026-09-27.md)。
+- **親L1**：HELIXOS-L1-003／HELIXOS-L1-009。作業中の継続・handoffと、INTELLIGENCEの案をOSが適格性確認後に進める責務へ接続する。候補の記載はL1確認、採択、実行許可を生成しない。
+- **関係**：元Workerのticket/assignmentを保ったまま、詰まった範囲だけINTELLIGENCE支援案または相談用Workerへ結び、回答・分解作業・修正指示を元Workerへ戻すconnection候補。HELIXINTELLIGENCE-L2-068がcandidateを作ることにHELIXOS-L2-028の実相談完了は不要だが、実相談/回答/元Workerへのhandoffには本接続を使う。全体の実作業・検証・必要な再作業はHELIXOS-L2-029のcompositeへ別に束ねる。割当と権限は既存HELIXOS-L2-018、証拠/継続は019、ticket/handoffは017/023に残し、新しいWorker主体を作らない。
+- **受け取るもの**：HELIXOS-L2-017のticketと対象revision/scope、HELIXOS-L2-018の元Worker assignment/attempt状態、停止・詰まりの説明とsource、適用される予算・期限・停止条件、必要な場合のHARNESS受入/検証義務、INTELLIGENCEの版付き支援案、選択されたcontext sourceのprovenance、SECURITY/INFRASTRUCTUREの適用制約。
+- **提供するもの**：元Workerとの相関を保つ限定相談/支援ticketまたはhandoff、渡すcontextのsource/version/scopeと許可範囲、相談先の案とOSの割当結果の区別、返答・分解単位・修正指示の受領receipt、元Workerへの復帰handoff、未完・停止・差戻し状態。
+- **保証すること**：INTELLIGENCEは支援候補を作り、OSだけが既存authorityに従い相談先を指定・割当・停止する。相談は元ticket/要求/acceptance/oracleを変更せず、支援Workerに元Workerのassignment権限や承認権限を移さない。相談を挟む場合も作成者・相談者を独立reviewer扱いしない。支援結果が来ない、sourceが古い、範囲を超える、または停止条件に達したときは継続成功としない。
+- **常時必須**：対象ticket/要求revisionとowner、元Worker assignment/authority/scope、OSの予算・期限・停止条件、SECURITYの該当操作authorityと実行制約、INFRASTRUCTUREの該当資源状態、HARNESSが課した既存受入/検証義務。該当sourceの状態・版を照合し、unknown/missing/conflict/staleを成功へ丸めない。
+- **操作時必須**：詰まりを相談へ送る場合は、詰まり箇所・相談理由・必要な応答型・相談範囲を特定し、OSが別assignmentとして認可/割当した後だけ送る。分解・修正指示を元Workerへ返す場合は、各subtaskの親ticket・scope・依存・受入条件・停止条件を束ねる。元Worker/model classの水準が明示的に未評価なら、HELIXOS-L2-027の限定初回実行条件を満たす範囲で未評価状態を保って作業を進められる。性能未評価をHELIXOS-L2-027の開始前authority・安全・oracle条件の代替にしない。支援を使わない通常作業には相談先Workerの稼働を求めない。
+- **選択入力時必須**：設計、コード、過去の失敗例、BRAIN知識、または特定consult sourceを選んだときは、そのsource identity/revision、利用許可、関連性、範囲、制約を保つ。選択したsourceの許可や版が不明なら当該支援を保留し、未選択sourceは当該handoffの実行依存にしない。
+- **参照のみ**：未選択の支援候補一覧や過去の一般的な会話・資料は背景参照に限る。OSが記録した当該ticketの継続条件・停止条件は参照のみへ落とさない。
+- **版・単独成立の依存**：`version_target: 1.0`（候補上の目標で、実版・採択を意味しない）。HELIXOS-L2-017／HELIXOS-L2-018／HELIXOS-L2-019／HELIXOS-L2-023、HELIXINTELLIGENCE-L2-068の作業中支援候補（配置は既存の有効assignmentを入力とし、L2-010完了を重ねて要求しない）、HARNESSの該当ticket/検証契約、SECURITYのauthority/隔離、INFRASTRUCTUREの対象資源。候補文書の存在や配置案の受領はruntime・割当・成功の証拠ではない。
+- **失敗時の戻し先／未完義務**：ticket/scope/authorityはOS管理・SECURITY、支援案と相談設計はINTELLIGENCE、source/利用許可は各source owner/SECURITY、実行資源はINFRASTRUCTURE、oracleはHARNESSへ戻す。応答なし・失敗・停止では費用・attempt・部分成果・未完義務・再開条件を019へ保持する。固定回数の修正loopを作らず、上限は当該assignmentの既存budget/期限/停止条件に従う。
+- **束ねる既存条件**：HELIXOS-L2-004／HELIXOS-L2-009／HELIXOS-L2-017／HELIXOS-L2-018／HELIXOS-L2-019／HELIXOS-L2-023と、ConceptのWorker実行authority。旧agent lifecycleの役割分担・相談と元Workerへの復帰の意味を再導出するが、旧runtime、固定slot/provider、固定cycle数は持ち込まない。
+
+### HELIXOS-L2-029 Worker支援から検証・再作業までの構成体（composite候補、1.0）
+
+- **PO起点**：[補強原文](../../helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md)第5項、[判断記録](../../governance/decisions/worker-support-derivation-2026-09-27.md)。
+- **親L1**：HELIXOS-L1-003 primary、HELIXOS-L1-004／HELIXOS-L1-009／HELIXOS-L1-010 context。Workerへの委譲と安全な継続、HARNESS契約に従う検収/証拠、調整責務、統合順と検証集合を一つの対象内に通す。
+- **関係**：G19支援を実作業まで閉じるOS構成体候補。単体HELIXINTELLIGENCE-L2-068は事前test/指示/context candidateまたは作業中のdiagnosis/相談案、connection HELIXOS-L2-028は支援相談/返答/元Workerへの受渡し、composite HELIXOS-L2-029は元Workerによる実装・検証・失敗時の再作業・結果/未完義務の記録を結ぶ。三者は別identityであり、単体のproposalや受渡しreceiptだけでは一周成立しない。
+- **受け取るもの**：承認済み要求/設計とexact revision、元ticket/task/scope/acceptance、予定または有効な元Worker assignment/identity/model/provider/version/effort、HARNESS-L2-022が定めるpair/oracle/test/受入契約、HELIXINTELLIGENCE-L2-068が事前作成するtest/指示/context候補、OS budget/期限/停止条件、SECURITY/INFRASTRUCTUREの適用制約。作業開始前はtask・oracleから準備したcandidateを受け取れる。作業中に診断・相談する場合だけ詰まり/evidenceを追加し、そのconsult operationを選んだ場合だけHELIXOS-L2-028の相談/response/return receiptを入力にする。execution/review結果receiptは開始条件ではなく本compositeの途中で生成してHARNESS契約に照合する。
+- **提供するもの**：元Workerとtaskに束縛された支援済み実装の結果、元Workerによる変更差分/実行記録、HARNESS oracleに対応する検証結果、各ownerから受領した独立review/利用者acceptance receiptを対象revisionへ束縛した記録、失敗時の元Workerへの限定再作業handoff、各ownerのreceiptに基づくverified candidateまたは利用者acceptance receiptがある場合のみacceptedとする状態、receipt欠落時の明示的な未完/停止状態、全段階のprovenance/effort/cost/未完義務。OSはreview/acceptance receiptを生成せず、受領・束縛・状態追跡を担う。
+- **保証すること**：HARNESS-L2-022は開始前に参照するverification義務、対、oracle、成果物状態/戻し先の契約入力であり、事前に実行済みのresult receiptをcomposite開始条件にしない。各test/CI結果は実行後に当該契約へ照合し、HELIXOS-L2-020がOS管理下の運転と結果回収を担う。支援agent/consultantが作ったtest案はHARNESSの既存契約とauthorityに照合してから利用候補にし、その支援者/助言者は同じ成果物の独立reviewer/受入者とみなさない。元Workerが実作業と修正を行う。失敗は既存budget/期限内の追加handoffで元Workerへ戻し、pass receiptがない成果物をVerified/Acceptedにしない。合意済みrequirement/test/oracle/権限をAI案が書換えない。
+- **常時必須**：HELIXOS-L2-017/HELIXOS-L2-018/HELIXOS-L2-019のticket・assignment・実行/evidence、HARNESS-L2-022の既存oracle/受入契約、適用するSECURITY authority/constraints、対象revision/scope、停止条件。unknown/missing/conflict/staleなら成功表示を拒む。
+- **操作時必須**：支援を利用する場合はHELIXINTELLIGENCE-L2-068の候補が必要。事前test/指示準備にはHELIXOS-L2-028の相談receiptを要求しない。実相談を選ぶ場合だけHELIXOS-L2-028 receiptを条件付き依存に加え、有効handoff/responseを確認する。元Workerが実作業を行い、HARNESS-L2-022に結んだtest/oracleをHELIXOS-L2-020の許可済み運転で実行する。oracle fail時は結果・findingを元Workerへ戻して差分を再確認する。すべての再作業は同じscope/budget/期限/停止条件内に限り、固定cycle数を設けず、budget枯渇・停止条件で未完のまま終了する。independent reviewerは作成Workerおよび支援者と別のidentity/context/authorityで契約上の検証を行う。
+- **選択入力時必須**：支援source (design/code/failure/BRAIN)を選んだ場合のidentity/version/scope/provenance/利用許可と、選択支援手法/相談/修正内容を段階別に保持する。support無選択でも既存のrequirement/pair/oracleと実作業/検証/記録の義務は消えない。
+- **参照のみ**：未選択支援候補、無関係なsource、LABO効果比較は当該仕事の成立に不要な場合の参照に限る。支援有無を評価する比較を明示的に行う場合のみHELIXLABO-L2-060のcomparison contractへ渡す。
+- **版・単独成立の依存**：`version_target: 1.0`（candidateの版印、v0.1収載を決定しない）。HELIXOS-L2-017／HELIXOS-L2-018／HELIXOS-L2-019／HELIXOS-L2-020／HELIXOS-L2-023、HELIXINTELLIGENCE-L2-068、HARNESS-L2-022、SECURITYの操作authority、該当INFRASTRUCTURE資源。HELIXLABO-L2-060は効果測定を選択した場合の材料であり、支援loopのruntime prerequisiteではない。CI未構築を理由にoracle passを主張せず、実際の検証方法/受領した証拠を022に照合する。
+- **失敗時の戻し先／未完義務**：提案/相談の不足はINTELLIGENCE/OS、作業・scopeは元Worker/OS、oracle/要求意味はHARNESS/要求owner、authorityはSECURITY、環境/資源はINFRASTRUCTUREへ返す。検証fail/stale/不成立で最終状態へ進めず、結果、再作業回数ではなくattempt/effect evidence、実cost、時間、未完義務、再開条件を019へ保持する。
+- **束ねる既存条件**：HELIXOS-L2-017／HELIXOS-L2-018／HELIXOS-L2-019／HELIXOS-L2-020／HELIXOS-L2-023、HARNESS-L2-022、HELIXINTELLIGENCE-L2-068、connection HELIXOS-L2-028、HELIXLABO-L2-060（任意の効果測定）。旧協働順序の意味を現行の実行・authorityに合わせて再導出し、旧provider hierarchy、固定修正回数、CLI/runtime/CIは持ち込まない。
