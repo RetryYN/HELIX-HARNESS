@@ -85,3 +85,11 @@ source: docs/helix-security/sources/security-l1-idea-po-original-2026-09-26.md
 ### Fixture全体の判定
 
 正常fixtureでは、実行前のpolicy/assignment binding、実行時の9制御の適用状態、実行後のdiff・結果・rollback evidenceが同一scopeへ結び付くことを確認する。逸脱fixtureは該当制御を個別に欠落させ、その制御の不成立・停止/隔離/unknownを確認する。他制御のgreenやreceiptの存在で不足を相殺しない。read-onlyではwrite禁止と変更なしを必ず観測し、変更なしが確認できた場合だけrollbackをN/Aとする。これらは文書上のoracle案であり、Worker実行環境の実装・利用可能性を主張しない。
+
+### HELIXSECURITY-L2-029 第三者runtimeへの委譲データと訓練利用条件
+
+- **対応・境界**：L2-029と対になる未採択候補、1.0。第三者runtimeへの選択された委譲を対象にし、通常作業や未選択runtimeへ無差別に適用しない。
+- **対象区分の受入**：同じ外部provider製でも、主Worker契約内の通常作業と契約外で追加接続するruntimeを別caseにする。主Workerの許可済み非公開repository作業を、本候補の機密遮断またはopt-out前提の誤適用だけで止めたら不合格。主Workerも既存006/007/016等の適用条件は満たす。追加runtimeを主Workerと偽って本候補の条件を回避しても不合格。
+- **正常**：対象runtime・版/設定に対応するopt-out確認と、許可scope内の公開可能コードの分類・path・secret検査・ローカル強制証拠を個別に照合する。採用条件の充足と、個々の操作許可を別結果として返す。
+- **個別反例**：opt-out完了を理由に機密を送る、secret/PIIを送る、未分類を公開可能とする、path許可だけでsecret検査を省く、opt-out未完了/不明のruntimeを採用完了扱い、公開コードなら権限/期限/隔離不要とする、vendor UI/宣言/flagだけでsecurity充足、ローカル検査だけでprovider訓練停止を証明とする例をそれぞれ拒否する。
+- **未見・変化**：別runtime/版/設定、分類の変化、検査不能のpayloadで既存判定を流用せず、不明/拒否の理由と確認先を返す。許可のない別scopeに広げず、未完義務がOS割当側へ引き継がれる。確認根拠を失った状態を0リスクとしない。

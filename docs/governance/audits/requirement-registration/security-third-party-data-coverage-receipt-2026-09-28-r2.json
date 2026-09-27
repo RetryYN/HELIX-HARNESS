@@ -1,0 +1,70 @@
+{
+  "receipt_id": "MPR-RCPT-SECURITY-THIRD-PARTY-DATA-2026-09-28-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-BR-32/NFR-37/39原文3行。NFR2行の条件とBRの対象区分を保持。BR残条件はREG-06の原文起点照合へ保留。IRの同identityと重複し独立要求数へ加算しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXSECURITY-L2-029",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXSECURITY-L1-006",
+        "HELIXSECURITY-L1-007"
+      ],
+      "candidate_semantic_digest": "sha256:0faf8ac952341e621c2f76f7ef44249f03a673ac0a37180f0034914df00f4745",
+      "source_atom_set_digest": "sha256:9ec98ccc95deca5b0d0dd8aee54df08129862506e9b40c6c1becb3c8da1378a6",
+      "source_atom_count": 3,
+      "source_collection_scope": "旧HIL-BR-32/NFR-37/39原文3行。NFR2行の条件とBRの対象区分を保持。BR残条件はREG-06の原文起点照合へ保留。IRの同identityと重複し独立要求数へ加算しない。",
+      "atoms": [
+        {
+          "atom_id": "THIRD-PARTY-DATA-HIL-BR-32-L0084",
+          "source_holding_registration_id": "MPR-SH-THIRD-PARTY-DATA-002",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 84,
+          "source_line_sha256": "sha256:3118efe1554c4ca3438938e76112b255450c927e1b10a515ec4b3216e505b830",
+          "source_text": "| **HIL-BR-32** | Claude/Codex以外の定額worker runtime（Kimi/Grok等）をprecedenceを曲げずproposal-only workerとして接続し、実行を隔離worktree/sandbox内に限定してrepository本体、`.helix/` state、harness DB、credentialへ到達させない。秘密・機密を含む作業の第三者runtime委譲を禁止する。 |",
+          "ir_requirement_id": "HIL-BR-32",
+          "disposition": "preserved_pending",
+          "pending_registration_ref": "MPR-SH-THIRD-PARTY-DATA-002",
+          "relation": "追加第三者runtimeの対象定義を本候補へ保持。同BRのproposal-only/隔離/state非到達等の全義務の対応はREG-06で照合する未完として保持し、この候補だけでBR全体被覆とはしない。"
+        },
+        {
+          "atom_id": "THIRD-PARTY-DATA-HIL-NFR-37-L0217",
+          "source_holding_registration_id": "MPR-SH-THIRD-PARTY-DATA-002",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 217,
+          "source_line_sha256": "sha256:e493bf6afa43ccf38100d8cec75a25bf7616d8b1d1937553a5b7f813a097923b",
+          "source_text": "| **HIL-NFR-37** | 委譲データを公開可能/機密/secret・PIIへ分類し、機密以上の第三者runtime委譲を機械ゲート（path allowlist+secret scan）で遮断する。訓練利用opt-outの完了を当該runtime採用の前提条件とし、未完了の間は公開可能コード以外を委譲しない。 |",
+          "ir_requirement_id": "HIL-NFR-37",
+          "disposition": "carried",
+          "relation": "分類・機密以上遮断・opt-out採用前提を独立条件としてL2-029/L11へ。opt-out成功から機密送信許可を生成しない。"
+        },
+        {
+          "atom_id": "THIRD-PARTY-DATA-HIL-NFR-39-L0219",
+          "source_holding_registration_id": "MPR-SH-THIRD-PARTY-DATA-002",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 219,
+          "source_line_sha256": "sha256:401872570b54c51ecd23f4aee8c09f9ae0a729c10aba0260759038de35a3bc5e",
+          "source_text": "| **HIL-NFR-39** | ベンダー側のプライバシー設定UI、修正宣言、リモートフラグを要件充足の根拠として認めない。セキュリティ要件の充足はHELIXがローカルで検証・強制できる機構（OS sandbox、network allowlist、egress実測、FS差分検査）だけで判定する。 |",
+          "ir_requirement_id": "HIL-NFR-39",
+          "disposition": "carried",
+          "relation": "vendor宣言/flagだけの保証拒否とローカル検証・強制の証拠をL2-029/L11へ。provider側訓練停止をローカル検査から証明しない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-006",
+        "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-007",
+        "docs/helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-029"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}

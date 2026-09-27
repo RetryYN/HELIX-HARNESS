@@ -1,0 +1,56 @@
+{
+  "receipt_id": "MPR-RCPT-SECURITY-THIRD-PARTY-DATA-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-NFR-37/39原文2行。既存IR同identityと意味重複し独立要求数へ加算しない。第三者runtimeを使う条件だけであり全SECURITY/全IRの被覆ではない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXSECURITY-L2-029",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXSECURITY-L1-006",
+        "HELIXSECURITY-L1-007"
+      ],
+      "candidate_semantic_digest": "sha256:5adab279ee05cec515cd13870d200754ee0ba2f0e2e18168741cef9ceb80008c",
+      "source_atom_set_digest": "sha256:a9dfcaa1af5fce0c45901b9af666d6bf80c295e0011f871a7338a28e67b764f8",
+      "source_atom_count": 2,
+      "source_collection_scope": "旧HIL-NFR-37/39原文2行。既存IR同identityと意味重複し独立要求数へ加算しない。第三者runtimeを使う条件だけであり全SECURITY/全IRの被覆ではない。",
+      "atoms": [
+        {
+          "atom_id": "THIRD-PARTY-DATA-HIL-NFR-37-L0217",
+          "source_holding_registration_id": "MPR-SH-THIRD-PARTY-DATA-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 217,
+          "source_line_sha256": "sha256:e493bf6afa43ccf38100d8cec75a25bf7616d8b1d1937553a5b7f813a097923b",
+          "source_text": "| **HIL-NFR-37** | 委譲データを公開可能/機密/secret・PIIへ分類し、機密以上の第三者runtime委譲を機械ゲート（path allowlist+secret scan）で遮断する。訓練利用opt-outの完了を当該runtime採用の前提条件とし、未完了の間は公開可能コード以外を委譲しない。 |",
+          "ir_requirement_id": "HIL-NFR-37",
+          "disposition": "carried",
+          "relation": "分類・機密以上遮断・opt-out採用前提を独立条件としてL2-029/L11へ。opt-out成功から機密送信許可を生成しない。"
+        },
+        {
+          "atom_id": "THIRD-PARTY-DATA-HIL-NFR-39-L0219",
+          "source_holding_registration_id": "MPR-SH-THIRD-PARTY-DATA-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 219,
+          "source_line_sha256": "sha256:401872570b54c51ecd23f4aee8c09f9ae0a729c10aba0260759038de35a3bc5e",
+          "source_text": "| **HIL-NFR-39** | ベンダー側のプライバシー設定UI、修正宣言、リモートフラグを要件充足の根拠として認めない。セキュリティ要件の充足はHELIXがローカルで検証・強制できる機構（OS sandbox、network allowlist、egress実測、FS差分検査）だけで判定する。 |",
+          "ir_requirement_id": "HIL-NFR-39",
+          "disposition": "carried",
+          "relation": "vendor宣言/flagだけの保証拒否とローカル検証・強制の証拠をL2-029/L11へ。provider側訓練停止をローカル検査から証明しない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-006",
+        "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-007",
+        "docs/helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-029"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}
