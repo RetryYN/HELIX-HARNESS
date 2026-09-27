@@ -94,4 +94,3 @@ POの総合検証要請: docs/governance/sources/requirements-stage-po-handoff-o
 | CONNECT | docs/helix-connect/L1-planning/connect-intent.md 9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70 | docs/helix-connect/L2-requirements/connect-requirements.md 31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b | docs/helix-connect/L11-acceptance/connect-acceptance.md bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad |
 
 Concept SHA-256 06e210c312fc6a5f18c1fc29248e55ebe9c2eee0c177006e32d7b421af8baa78; product-boundary SHA-256 21730e10f9d784d982c7be5aa2cc57f0bffc53d6a47cd7dcdfa29044996ebe8f.
-
