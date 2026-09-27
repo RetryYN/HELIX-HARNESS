@@ -1,4 +1,6 @@
-# HARNESS 要求段階 PO 確認パケット（判断未受領）
+# HARNESS 要求段階 PO 確認パケット（判断受領済み）
+
+**現在の状態（2026-09-28）**：PO判断を受領し、[判断記録](../../decisions/helix-harness-requirements-po-decision-2026-09-28.md)へ全文・対象SHA・全24候補の採用を記録した。以下の質問・候補状態の説明は判断前の提示内容として残す。現在の採否と個別選択は判断記録を参照する。
 
 ## PO向け：この要求で何を作るか
 
@@ -115,9 +117,9 @@ IDの省略表記はすべて `HARNESS-L2-` を指す。7サービスの単独�
 
 027/028/030/033は導出した候補分類として要求一式で確認し、個別の追加質問を設けない。001–009のrouting/source保持を新しい候補の採否に混ぜない。現在の24候補010–033は総合検証の1.0対象集合であり、初期13候補010–022の節に個別version_target印がないことから版未定へ戻さない。HARNESSの7サービスを1.0で扱う既決範囲も維持する。
 
-## PO判断（未受領）
+## 判断前の回答欄（2026-09-28回答済み）
 
-以下は回答・採択・保留・不採択を記入していない。対象revisionとID集合を明記した一括判断を提示できる。
+以下は判断前の提示欄を履歴として残す。受領した回答・対象revision・全候補採用・所属確定は冒頭リンクの判断記録を正本とする。
 
 | 判断対象 | 対象revision / ID集合 | 採用・保留・不採用 | PO記録 / 日付 |
 |---|---|---|---|
@@ -142,4 +144,4 @@ IDの省略表記はすべて `HARNESS-L2-` を指す。7サービスの単独�
 
 旧自律境界（LEGACY-ASSET-6EBDB617A8104A7756D0、`archive/legacy-generation-2026-09-14/root/CLAUDE.md:82-85`、SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）の、人が企画・要求の意味を持ちAIが要件以下を起草する分担を保持する。旧層番号・旧runtime・旧merge方式は移植しない。現行のL1/L2対象revision判断と、L3要件承認を分ける。
 
-現在はPO判断未受領。受領後は実際の回答・対象revision・候補処置を記録し、本文変更があれば対のL11、register訂正revision、receipt、研究pinとbindingを追随させてexact HEADを再reviewする。候補の処置から旧sourceのretireや未完atomの被覆完了、L3承認、実装・release許可を生成しない。
+判断前はPO判断未受領だった。受領後は実際の回答・対象revision・候補処置を記録し、本文変更があれば対のL11、register訂正revision、receipt、研究pinとbindingを追随させてexact HEADを再reviewする。候補の処置から旧sourceのretireや未完atomの被覆完了、L3承認、実装・release許可を生成しない。
