@@ -400,3 +400,43 @@ HARNESS-L2-027/028/029の各利用で、4区分を次のように判定する。
 - **参照資料のみ**：一般説明、旧設計例、類似製品の文書。requirement authority・saved design revision・source relation・data owner・oracleを参照扱いにできない。
 
 実体に対する変更適用、migration実施、commit/releaseは全ケースで本candidateの外である。POの「code repair案／data migration案」を「修正の実行」や「data移行完了」と読み替えたら不合格。各passは対象revision・product・selected-source・affected-scopeだけを示し、他製品への万能性やVersion 1全体の完成をclaimしない。
+
+## G18 テスト・再現ケース生成候補のL11受入案
+
+以下は未採択の候補identityに対する限定受入である。根拠はHARNESS-L2-030〜033候補、既存`HARNESS-L2-014`の設計出力、`HARNESS-L2-022`のoracle/段階契約、PO原文第4項と判断記録に置く。HARNESS-L2-014は設計対、HARNESS-L2-022はoracle/義務/stage受入契約を所有し、030/031はそれらを使う独立versioned capability pack、032は選択executor接続、033は処理段階の構成体を所有する。case数・coverage率・mutation閾値・reduction回数/時間を新設せず、各fixtureの内容と事前に特定したoracleを比較する。生成物の存在、構文妥当性、OS CI greenだけでcase生成能力または品質を合格にしない。
+
+### HARNESS-L2-030 テストscenario・case・data・double生成（単体候補）
+
+**正常例**：対象scopeと承認済みL3要件revision、それに対応するHARNESS-L2-014の設計・対の検証設計revisionへ結び付いたAPI/state contractとHARNESS-L2-022 oracleを与える。例として、申請をdraftからsubmit可能なactorで送信するとsubmittedへ遷移し、承認後は編集拒否かつ保存状態不変、というfixtureを用いる。正常submit、仕様に明記された最小/最大・空/null境界、権限のあるactorとないactor、cancel可能/不可の各state、submit前approveやterminal後update等の順序違反を、仕様の該当範囲に限ってcase化する。各期待応答・状態不変条件は独立oracleへ対応し、test dataの値とcase identityが再現可能であることを確認する。選択された外部service contractに対するdoubleでは、contractに記載された応答/timeout等を返し、期待呼出し数・副作用条件をassertできる形にする。合格は生成内容が入力contract/oracleに沿うことであり、生成caseを実行済みとはしない。
+
+**誤りを含む例**：未承認actorを許可するcase、仕様にない取消や境界を期待値として発明、承認後編集を許容、oracleと逆の状態遷移、同じ誤ったgeneratorからexpected valueを作る、実サービスへネットワーク接続するdouble、secretをfixtureへ含めるcaseを入力/候補へ混ぜる。権限・状態・期待結果・data permissionに反するcandidateを検出して拒否または未確定へ送り、存在だけで合格させない。coverageの増加やcase countで矛盾を相殺しない。
+
+**未見例**：同じAPI/state domainの未公開actor/入力境界/操作順を与え、入力oracleが定義する場合だけ対応caseと期待結果を作り、内容・trace・scopeが一致するか確認する。oracleが未定義、sourceが未選択、またはdomain外なら期待値を作らずunknown/未評価を返す。合格はこのfixture・contract revision・scopeのみに限り、全actor/全境界/全欠陥を保証しない。
+
+### HARNESS-L2-031 ログ・入力からの最小再現と回帰候補生成（単体候補）
+
+**正常例（具体input・独立期待値）**：approved applicationの`note`を変更するsanitized incidentを与える。既存requirement/API contractと022 oracleは「構文と必須fieldが有効なapproved状態のPATCHは409で拒否され、保存済みnoteを変更しない。空bodyは必須field欠落として先に422で拒否し、保存状態を変更しない」と規定する。未修正target revisionでは、認証済みowner actorから元input `PATCH /applications/42` body `{"note":"corrected","debug":"trace","display":"preview"}`（debug/displayは契約で許可された無関係metadata、保存済みnoteは`current`）を送り、200を返してnoteを`corrected`へ書き換えるfailureを記録する。HARNESS-L2-031はdebug/display等を除いたreduction candidate `{"note":"corrected"}`を出し、HARNESS-L2-032経由で選択executor（OS-020または利用者CI）へ隔離run requestを送る。後続receiptが同じtarget revision・environmentで同じowner actor・endpointに対する200と`current`→`corrected` note変更を確認すれば、元failureと縮小後failureは同一oracle違反として保持される。さらに削除した空bodyが422となりnoteを変えない結果なら、より小さい入力は同じfailureでないとして保持candidateを`{"note":"corrected"}`へ戻す。期待値はgenerator由来でなく既存requirement/API contract/022 oracleから独立に得る。run結果がまだ返っていないcandidateは同一failure確認済みとしない。修正後版で409かつnote不変となる回帰passは後段の別revision run receiptであり、031のcandidate生成前提にしない。
+
+**誤りを含む例**：secret/PIIを残す、無許可production inputを使う、032のisolated run request/resultなしに縮小後も同一failureと断定、縮小後の200が別response/body mutationなのに同一oracle違反と主張、再実行greenで元failureを消す、修正後pass receiptを作成開始前から必須入力にする、修正前failまたは修正後passを未実行なのに回帰成立とする、oracle未確認の根因を断定する。安全違反は拒否し、oracle不一致・再現不能は未再現として返す。元failureを削除/skipしない。
+
+**未見例**：既知fixtureとは異なる同scope failure inputと許可sourceを使い、同一oracleで縮小後のobservable failureが保たれるか確認する。ログ形式/環境が未知、必要入力が欠落、oracleがない場合は未再現/不足の状態と理由を返し、成功とも失敗原因確定とも扱わない。合格は対象scopeの限定reductionであり、一般の障害原因特定能力を保証しない。
+
+### HARNESS-L2-032 生成artifactからOS-020実行契約への接続（接続候補）
+
+**正常例**：HARNESS-L2-030/031からartifact identity, source version, target HEAD/scope, oracle referenceを受け、選択済みOS-020または利用者CIの明示schema/versionに適合するrun input packetを構成する。packet内容のidentity/version/oracle参照とconsumer receipt参照が対応することを照合する。consumer receiptと実行結果はOS/利用者CIから返る後続情報であり、接続能力の作動前提にしない。
+
+**誤りを含む例**：別HEAD/別scopeのcaseを接続、oracle参照を欠落・すり替え、互換性のないconsumer schemaへ送る、外部double指定を落として実providerを呼ばせる、packet送信をrun passとみなす。該当入力を保留/拒否し、CI greenやticket発行をHARNESS受入へ読み替えない。
+
+**未見例**：新しいが宣言済みschema互換範囲のconsumer revisionへcase packetを渡し、対象HEAD・scope・source/oracle identityを保持したまま受領できるか確かめる。未宣言consumerや互換性のないschemaは未接続/unknown。合格は宣言済みconsumer/version組に限定し、OSの実行・ticket・検収をHARNESSが担うことを意味しない。
+
+### HARNESS-L2-033 failure-to-regression trace構成体（構成体候補）
+
+**正常例（回帰成立の構成体oracle）**：構成開始時の入力は許可済みsanitized original incident、target revision、独立022 oracle、必要な031/032 pack contractだけで、将来の生成receipt・実行結果・修正後passは要求しない。031が縮小candidateを作り、032が各候補を選択executorへ隔離requestし、後続receiptを受けてから次候補を縮小する。上記PATCH例では元inputと`{"note":"corrected"}`が未修正版でともに200＋永続note変更となり、独立oracle「approvedなら409＋不変」に対する同一failureであることを確かめる。より小さい空bodyが同じfailureでなければその候補を採らない。そこでcandidate regression caseを固定し、修正前revisionで同じoracle違反（fail）、修正後revisionで409かつ永続note不変（pass）となる隔離run receiptを後段で結ぶ。case/repro candidateの生成だけでは「回帰成立」とせず、回帰成立operationで必要なすべての後続receiptが揃ったときだけ033は成立とできる。contract-derived routeだけを選択した場合はincident/reduction段階を未適用、failure routeを選択しない限り同じfailure証明を要求しない。
+
+**誤りを含む例**：縮小前後のobservable failureが異なる、隔離run receiptなしに同一failureを断定、修正前runがfailしない、修正後runがpassしないのに回帰成立とする、別revisionの結果を混ぜる、未選択consumerを実行済みとする、将来receiptがないため初回case/repro candidateを開始不能にする、case/traceだけで022のProvisional/Integrated/Verified/Acceptedを進める。trace不整合/誤った期待値は不合格、未解決permission/oracle/consumer条件は保留とする。
+
+**未見例**：fixture作成者が隠した同scope failureで、縮小candidateごとの032 request→executor result→次の縮小の順序が守られ、失敗症状が同一oracleに残るか確認する。回帰成立を選んだ場合は修正前fail/修正後pass receiptも後段で結ぶ。oracleなし・source未許可・互換consumer未宣言なら該当段階は未評価/未接続。unit candidateの受入合格は回帰成立や修正済みを意味せず、完全coverage/全欠陥不存在を主張しない。
+
+### 共通の責務・結果限界
+
+HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle・受入の意味を保持し、HARNESS-L2-010/011が各versioned pack/call境界を保持する。030/031 candidateは独立した生成能力pack、032は選択したexecutorへの接続、033はcandidate生成から後続resultまで段階を結ぶ構成体である。`HELIXOS-L2-020`または利用者CIはrun構成・隔離実行・結果回収を行い、run resultはHARNESS-L2-022 oracleに対する後続証拠としてstage別に扱う。030/031/032 packまたは依存契約を交換した場合は010/011のversion/compatibilityを照合し、影響するcase/oracle/repro/consumer packetを新revisionへ結び直して該当operationを再検証する。014の対設計または022のoracle/義務契約が変わったfixtureでは、既存candidateのtraceと期待値を新契約へ照合し、staleなcase/reproは再生成する。縮小実行を選択した場合は選択executorのisolated run receiptを新しいpack/source revisionに対して再取得する。旧receiptや旧artifactの合格を新版へ流用しない。テストの生成・受渡しだけではtest pass、ProvisionalからIntegratedへの進行、Verified、Accepted、要求承認、releaseを生成しない。上流意味不足はHARNESS-L2-003/004に基づく該当ownerへ、権限/data-use不足はsecurity/data ownerへ戻す。

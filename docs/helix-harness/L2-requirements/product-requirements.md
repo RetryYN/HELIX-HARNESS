@@ -593,3 +593,83 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 - **失敗・戻し先**：差分がrequirements/design authorityを変える場合はL2-008/対応する上流ownerへ戻す。code behavior contract/設計境界不明はHARNESS-L2-014/Designへ、検証oracle不足はHARNESS-L2-022へ、DB意味/owner/migration data-loss risk不明はauthority/source ownerへ戻して保留する。未知sourceをdefault parseして補完せず、提案から自動patch/migration/commit/releaseを発行しない。
 
 **旧HELIXとの対応（保持／変更）**：`LEGACY-ASSET-B5B5E71B2AF1459D59A1`（旧FR-14: `archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md:406–426`、SHA-256 `a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a`）から、既存コード/design/dependencyのsource-based reverse、as-is/gap/routingの候補化、unknownを残す点を起点とする。`LEGACY-ASSET-D11F51092619506417E4`（`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/multimodal-design-harness-authority.md:56–69,128–140`、SHA-256 `baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2`）のReverse extraction provenance・candidate境界は意味参照とし、視覚domainのsource setやschemaを全productへ移さない。`LEGACY-ASSET-EB3700B0088F311C2295`（AAFD delta requirements `archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md:50–78`、SHA-256 `685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a`）からsource/digest結合・affected exact set・unknown・authority non-writeの意味を保持するが、internal audit delta schemaをコピーせず、product code/DB/API/configへの意味再導出とする。変更点は「最初に取り込む」から利用者のexternal edits後の再比較・限定change proposalsへ広げること。根拠はPO第2項であり、旧runtime/CLI/Reverse workflowを実行・移植しない。
+
+## G18 テスト・再現ケース生成候補（HARNESS）
+
+起点は[PO原文](../sources/capability-reinforcement-po-original-2026-09-27.md)第4項と[判断記録](../../governance/decisions/test-reproduction-derivation-2026-09-27.md)。旧要求・運用の対応、保持点と変更点は 同判断記録の旧source照合を参照する。ここで定義するのはテスト・再現ケースの作成能力であり、テスト実行、oracleの意味決定、受入状態の更新を新設しない。G16候補 `HARNESS-L2-027`〜`HARNESS-L2-029` と独立した候補identityであり、G17の候補と同じ処理を二重所有しない。以下は未採択の候補で、v0.1収載を決めない。
+
+### HARNESS-L2-030 テストscenario・case・data・double生成（単体候補、version_target 1.0）
+
+**親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。HARNESS-L1-001は要求から検証までを対で追跡する企画、HARNESS-L1-004は対象revision/riskに合う検証義務・反例・証拠・戻し先、HARNESS-L1-005/007は外部利用とVersion 1の適用範囲を根拠とする。
+
+**種類と境界**：単体のversioned capability pack候補。`HARNESS-L2-014`が所有する対の設計と、`HARNESS-L2-022`が所有する検証・受入oracle/段階契約を具体的scenario/case/fixture候補へ写す。014の設計authorityや022のoracle/検証義務/stage/state/受入を置換・追加しない。HARNESS-L2-010が030のpack identity/version/依存境界、HARNESS-L2-011が呼出し時の入力/scope/互換性/receiptを所有する。生成caseの実行・結果収集は選択された`HELIXOS-L2-020`または利用者CIが行い、OS利用時のpacket接続は032を通す。execution result/consumer receiptは呼出し後の結果であり、030を開始する前提ではない。
+
+**受け取るもの**：対象artifact/API/state-transitionのrevisionとscope、承認済みL3要件、`HARNESS-L2-014`の対応する設計・対の検証設計、`HARNESS-L2-022`の適用oracle/期待observable behavior、選択したexternal contractおよびfixture/sourceの版。API/state仕様の記述だけから未定義の要求意味を補わない。
+
+**提供するもの**：安定case identity、case family/actor/precondition/操作列、再現可能なtest data、必要なexternal-service double contract、対象requirement/design/oracleとのtrace、適用範囲・source版・seedまたは生成入力、未生成/未確定条件の一覧。boundary、permission、cancel、orderingをcase familyとして扱う。doubleは選択された外部契約の限定stubであり、実サービス全体の同等性を主張しない。
+
+**依存区分**：
+- **常時必須**：対象revision/scope、承認済み要件と`HARNESS-L2-014`の対応設計、`HARNESS-L2-022`の適用oracle/検証義務契約、`HARNESS-L2-010/011`のpack/call version・依存・scope・receipt契約、case artifact identity/schema、source利用権限と対象data class。oracleまたは操作許可がunknown/missing/conflictなら該当caseを確定せず保留する。
+- **特定操作時のみ**：boundary case生成時は仕様で定義された境界、取消case生成時はstate transition上の取消可否、権限case生成時は承認済みactor/action permission、external double生成時は対象サービスの呼出し・失敗・副作用契約を要求する。選択されない操作familyは当該実行の必須条件ではない。
+- **選択した入力元に応じて必須**：選択したAPI schema/state model/design/oracle/external contractそれぞれのidentity、revision、互換性、対象scope。選ばれていないprovider・schema・patternは未観測として記録し、存在や適用可能性を推測しない。
+- **参照資料のみ**：背景説明、旧test例、過去のlog例など、今回の期待値・権限・適用範囲を決めない資料。承認済みrequirement、security permission、適用oracleはこの区分へ落とさない。
+
+**保証すること**：入力された規範とoracleへtraceできる候補を返し、根拠がない期待値・権限・境界は発明しない。同一の固定入力・source version・scopeからcase意味を再現できるよう、生成条件を記録する。生成caseの存在、件数、coverageは品質、欠陥不存在、実行成功の証拠としない。意味が未確定なら要求/契約ownerへ戻し、要求意味変更は`HARNESS-L2-003`/`HARNESS-L2-004`の戻し先に従う。
+
+### HARNESS-L2-031 ログ・入力からの最小再現と回帰候補生成（単体候補、version_target 1.0）
+
+**親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。`HARNESS-L1-004`の反例・証拠・戻し先と、`HARNESS-L1-001`のV-pair traceを具体化する。
+
+**種類と境界**：単体のversioned capability pack候補。HARNESS-L2-031は許可された障害入力からsanitized reproduction candidateと回帰test candidateを作り、HARNESS-L2-022はoracle/受入意味、OS-020または利用者CIは隔離実行/result receiptを所有する。HARNESS-L2-010が031のpack identity/version/依存境界、HARNESS-L2-011がcall/input/scope/compatibility/receiptを所有し、032が選択executorへのrun-request packetを接続する。段階は①log/inputからreduction candidate生成、②選択executorへの隔離run request、③後続run resultを次のreduction inputとして受ける、④同一oracle failureが保たれた範囲を再現候補として確定、⑤修正後は別revisionの回帰run結果を後段証拠として結ぶ。将来のrun receiptや修正後passを①の前提にしない。候補生成だけでは縮小後の同一failureを確認済みと主張しない。
+
+**受け取るもの**：障害の対象revision、bounded logと対応する入力/操作列、環境・依存版・seed（得られる場合）、取得/利用許可、sanitization規則、関連する要件/API/state contractと独立oracleの参照。副作用を再送しないためのexternal-call制約を含む。
+
+**提供するもの**：元failureの識別子/digest、sanitized入力、最小化手順と各縮小段階、各段階の032 run-request packet、後続実行結果を受ける入力口、reproduction recipe、固定oracleで照合したobservable symptom、再現可否/不足証拠、候補regression case、修正前failure runと将来の修正後runへ結ぶscope/version trace。将来のrun resultは生成開始前入力でなく段階後の証拠であり、選択executorのreceiptが返るまで同一failure確認は未完とする。修正後resultがまだ無い場合も回帰test candidateは作れるが、回帰成立済みとはしない。
+
+**依存区分**：
+- **常時必須**：当該log/inputの対象scopeでの取得・利用許可、対象revisionとの関係、security/data handling契約、`HARNESS-L2-022`のfailure oracleまたはoracle ownerへの明示参照、`HARNESS-L2-010/011`の031 pack/call version・依存・scope・receipt契約、外部副作用の抑止条件。いずれか不明なら機微入力を処理せず保留する。
+- **特定操作時のみ**：log/input minimizationと同一failure確認を選んだ時だけbounded log、入力、操作列、環境/依存版情報、HARNESS-L2-032経由で選ぶOS-020または利用者CIの隔離run request/後続result receiptを要求する。各resultを得てから次の縮小候補を作る。回帰candidate作成に必要なのは独立oracleと修正前failureの基準であり、修正後resultは候補生成の前提ではなく、修正後revisionで後段実行した結果receiptである。incident inputを扱わないrunにはincident reproductionを要求しない。
+- **選択した入力元に応じて必須**：選んだlog、request payload、state snapshot、依存応答記録、OS-020または利用者CI executor等のsource identity/version、許可scope、取得時刻またはrevision結合情報、redaction結果。縮小確認では選択executorの各段階run receiptを次の段階入力として結ぶ。未選択source/executorは未観測とする。
+- **参照資料のみ**：背景incident narrative、既知の似たfailure、過去の再現手順のうち、現在の入力許可・oracle・対象revisionを確定しないもの。適用oracleとsecurity/data許可は参照扱いへ落とさない。
+
+**保証すること**：機微情報を隠し、与えられたscope内で入力を小さくし、同じoracle上のfailureが保たれるかを記録する。再現不能、根因unknown、必要な環境情報不足を明示し、元failureの事実を保持する。rerun成功で初回failureを消さず、test削除/skip、oracle弱化、coverage数値だけで修正成功を主張しない。期待挙動が上流で未決なら`HARNESS-L2-003`/`HARNESS-L2-004`に従い意味ownerへ戻す。
+
+### HARNESS-L2-032 生成artifactからOS-020実行契約への接続（接続候補、version_target 1.0）
+
+**親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。HARNESSが契約を外部利用可能にし、検証証拠を対象revisionと結び付ける企画を具体化する。実行主体の企画根拠は`HELIXOS-L1-004`であり、本候補はOSのrun制御をHARNESSへ移さない。
+
+**種類と境界**：接続能力。`HARNESS-L2-030`/`HARNESS-L2-031`のcase/repro artifactから、選択した`HELIXOS-L2-020`または利用者CIへ送るversioned input/run-request packetを作る。HARNESSは検証義務/oracle/artifact identity/scope/target revisionを、OSまたは利用者CIは実行・隔離・結果収集を所有する。最初のrun receiptは032の送信入力でなく下流出力、031が次の縮小段階を選ぶ際の後続入力である。
+
+**受け取るもの**：case/repro artifactとsource identity、適用契約/oracle版、target revision/scope、必要runner capabilityと許可条件、選択consumerの受入schema/compatibility契約。consumer receiptがまだないことを理由に初回packet接続を不能にしない。
+
+**提供するもの**：consumer schemaに適合するrun input packet、case identityとoracle参照の対応、対象HEAD/scope/source versionの結合、未解決compatibility/permission項目、consumerへ渡した内容のreceipt参照枠。execution outcomeはconsumerが返し、HARNESSはその意味を捏造しない。
+
+**依存区分**：
+- **常時必須**：HARNESS case artifact schema、対象revision/scope、適用oracle/検証義務、consumerの明示schema/version/compatibility、security/permissionと実行境界。unknown/mismatchは保留し、不足したoracleをoptional扱いにしない。
+- **特定操作時のみ**：隔離実行、network-disabled、external double注入、seed/timeout指定など、artifactで要求するrunner capabilityだけを当該run時に要求する。
+- **選択した入力元に応じて必須**：選んだOS-020または利用者CI consumerのidentity/version/schemaと対応するrunner capability。未選択consumerは未観測。
+- **参照資料のみ**：他consumer用の例、履歴run packet、旧CI構成など。必要なoracle/schema/permissionを参照資料へ降格しない。
+
+**保証すること**：生成caseの意図とoracle参照を損なわずconsumerへ渡し、対象revision・scope・source versionの対応を保持する。実行・成功/failure判定・CI ticket発行・再開はconsumer責務である。受渡し成功をtest pass、品質受入、artifact state昇格とみなさない。接続契約の欠落/不整合は送り先consumerの責任ownerへ戻す。
+
+### HARNESS-L2-033 failure-to-regression trace構成体（構成体候補、version_target 1.0）
+
+**親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。対象は`HARNESS-L2-030`または`HARNESS-L2-031`の生成能力と、必要に応じ`HARNESS-L2-032`のconsumer接続を含む端から端の作成/受渡しtrace。HARNESS-L2-022の検証・受入契約は構成体の規範入力であり置換しない。
+
+**種類と境界**：構成体候補。通常contract-derived caseとincident-derived minimized reproを、同一のartifact/execution/trace境界で結ぶ。failure inputがない通常case生成にincident reproductionを要求せず、選択した操作のみに条件付き依存を適用する。構成体自身が生成するcaseの受入receiptまたはOS run resultを、構成体を生成/開始する前提にしない。
+
+**受け取るもの**：開始時の対象revision/scope、HARNESS-L2-022適用oracle、対の設計または許可されたincident source、必要なunit pack identity/schema/version、選択consumerを使う場合のHARNESS-L2-032 compatibility。初期入力に将来の生成receipt、run結果、修正後passを要求しない。run receiptは先行段階の後で返る結果を次段階が受ける。各sourceの許可と適用範囲を保持する。
+
+**提供するもの**：source→failure/original input→reduction candidate→032隔離run request→後続resultで同一failure確認→regression candidate→修正前revisionでのfail→修正後revisionでのpass（修正runを選択した場合）→consumer packet/result receiptを段階順につなぐtrace、対象revision/version、failure/reproduction status、生成物ごとのscopeと不足事項。033が回帰成立を主張する時は独立oracle上で縮小前後の同一failure、修正前fail、修正後passの全条件を要し、trace/候補生成だけを成功にしない。修正後passやconsumer resultは作成開始前の入力でなく後段結果である。単体結果・接続結果を同じ成功状態へ潰さない。
+
+**依存区分**：
+- **常時必須**：対象revision/scope、HARNESS-L2-022のoracle/義務契約、少なくとも一つの選択unit能力（030または031）のidentity/version/適用範囲、artifact trace schema、安全な入力処理。
+- **特定操作時のみ**：incident縮小・同一failure確認を選ぶ場合は031のsanitized incident input、必要に応じHARNESS-L2-014の対象pair/design、032 run-request connection、選択executor（OS-020または利用者CI）の各段階isolated result receiptを要求し、各result後に次のreduction candidateを生成する。回帰candidateを作るだけなら修正後run resultは要求しない。033が「回帰成立」と判定する操作では、縮小前後を同一oracleで確認し、修正前revisionのfailと修正後revisionのpassの各run receiptが後段結果として必要。case/recipe packetをrunnerへ送る場合は032 contractとconsumerを選択する。未選択operationは未実施として明示する。
+- **選択した入力元に応じて必須**：選択された設計/spec/oracle/log/input/consumer contract各identity、version、compatibility、権限。未選択の設計sourceやconsumerを暗黙に補完しない。
+- **参照資料のみ**：今回のsource/oracle/permissionを規定しない過去例・背景。構成体の必須traceやsecurity契約は参照に落とさない。
+
+**保証すること**：各構成要素と適用条件の関係を追跡でき、未完/未再現/未接続/未実行の差を明示する。033の回帰成立oracleは、縮小前後の同一failure、修正前revisionでのfail、修正後revisionでのpassを独立receiptで確かめる。修正前後のrun結果は作成開始前入力ではなく段階後の証拠である。case生成・repro成立・CI pass・HARNESS-L2-022のstage受入を同一判定にしない。上流の期待結果が不足すれば要求/設計/oracle ownerへ、source permissionが不足すればsecurity/data ownerへ、consumer契約が不整合ならconsumer ownerへ戻す。
+
+### 候補関係と1.0境界
+
+`HARNESS-L2-014`は対の設計、`HARNESS-L2-022`はoracle/義務/stage受入契約を所有し、`HARNESS-L2-030`/`031`はそれらを入力にする独立versioned capability pack/unit、`HARNESS-L2-032`は選択executorへの接続、`HARNESS-L2-033`は全段階を追う構成体を所有する。HARNESS-L2-010は各pack identity/version/依存境界、HARNESS-L2-011はcall/input/scope/compatibility/receiptを所有する。既存014/022の置換・意味変更ではない。PO第4項が求めるtest/data/double/repro/regression能力を含む一方、v0.1収載、必要case数、coverage率、mutation閾値、reduction上限、全欠陥不存在の保証は未採択。実行は選択したOS-020または利用者CI、oracle authorityはHARNESS-L2-022/上流requirementに残す。030/031/032のpackまたは依存契約を交換・更新した場合、HARNESS-L2-010/011のversion/compatibility照合後、影響を受ける未実行candidate・artifact・consumer packetを新revisionへ結び直し、選択したoperationのcase/oracle/reduction・consumer適合性を再検証する。HARNESS-L2-014の対設計またはHARNESS-L2-022のoracle/義務契約が更新された場合も、それに依存するcase/repro/regression candidateのtrace・期待値・適用scopeを新契約へ再照合し、不一致はstaleとして該当operationを再生成/再検証する。旧pack/result receiptを新版の合格へ流用しない。
