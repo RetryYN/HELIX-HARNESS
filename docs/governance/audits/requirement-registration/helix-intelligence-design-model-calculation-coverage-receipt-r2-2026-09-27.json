@@ -1,0 +1,57 @@
+{
+  "receipt_id": "MPR-RCPT-HELIX-INTELLIGENCE-DESIGN-MODEL-CALCULATION-2026-09-27-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "PO第3項と現行親から処理能力を具体化する候補。旧atomの移管・retireは行わず、no_lossは旧atom入力空集合のみ。原文条件は判断記録とL11で照合する。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXINTELLIGENCE-L2-069",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-006",
+        "HELIXINTELLIGENCE-L1-003",
+        "HELIXINTELLIGENCE-L1-004",
+        "HELIXINTELLIGENCE-L1-013"
+      ],
+      "candidate_semantic_digest": "sha256:546b17514223224850532dd338dbee40b7519b02e4489fff1e85cb298d0c7e70",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO第3項と現行親から処理能力を具体化する候補。旧atomの移管・retireは行わず、no_lossは旧atom入力空集合のみ。原文条件は判断記録とL11で照合する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+        "docs/governance/decisions/design-model-calculation-derivation-2026-09-27.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HELIXINTELLIGENCE-L2-071",
+      "requirement_kind": "composite",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-003",
+        "HELIXINTELLIGENCE-L1-004",
+        "HELIXINTELLIGENCE-L1-006",
+        "HELIXINTELLIGENCE-L1-013"
+      ],
+      "candidate_semantic_digest": "sha256:106a4cb174c1cc12731708e56429f27b567ead98a5ec16205217e7b89718f9f6",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO第3項と現行親から処理能力を具体化する候補。旧atomの移管・retireは行わず、no_lossは旧atom入力空集合のみ。原文条件は判断記録とL11で照合する。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+        "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+        "docs/governance/decisions/design-model-calculation-derivation-2026-09-27.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}
