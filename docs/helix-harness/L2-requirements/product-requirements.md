@@ -687,3 +687,23 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 ### 候補関係と1.0境界
 
 `HARNESS-L2-014`は対の設計、`HARNESS-L2-022`はoracle/義務/stage受入契約を所有し、`HARNESS-L2-030`/`031`はそれらを入力にする独立versioned capability pack/unit、`HARNESS-L2-032`は選択executorへの接続、`HARNESS-L2-033`は全段階を追う構成体を所有する。HARNESS-L2-010は各pack identity/version/依存境界、HARNESS-L2-011はcall/input/scope/compatibility/receiptを所有する。既存014/022の置換・意味変更ではない。PO第4項が求めるtest/data/double/repro/regression能力を含む一方、v0.1収載、必要case数、coverage率、mutation閾値、reduction上限、全欠陥不存在の保証は未採択。実行は選択したOS-020または利用者CI、oracle authorityはHARNESS-L2-022/上流requirementに残す。030/031/032のpackまたは依存契約を交換・更新した場合、HARNESS-L2-010/011のversion/compatibility照合後、影響を受ける未実行candidate・artifact・consumer packetを新revisionへ結び直し、選択したoperationのcase/oracle/reduction・consumer適合性を再検証する。HARNESS-L2-014の対設計またはHARNESS-L2-022のoracle/義務契約が更新された場合も、それに依存するcase/repro/regression candidateのtrace・期待値・適用scopeを新契約へ再照合し、不一致はstaleとして該当operationを再生成/再検証する。旧pack/result receiptを新版の合格へ流用しない。
+
+## 旧計測契約の条件引継ぎ（REG-03・追補候補）
+
+### HARNESS-L2-034 要求別の計測契約と完成判定（コアの単体候補、version_target 1.0）
+
+- **親**：HARNESS-L1-001／004／005、Conceptの1.0土台「計測」とCOREの検証契約。HARNESS-L2-022の段階判定へ計測義務を渡す能力であり、022の判定やOSの実行を別実装しない。
+- **利用者の結果**：対象要求・非機能要求について、何をどの条件で測り、何を満たせば完成と判断できるかを確認できる。テストが成功していても、必要な計測が不足する対象を完成と取り違えない。
+- **入力**：対象の要求／非機能要求とrevision、適用scope、対の設計・受入、環境・負荷・dataの条件、既決の目標・判定根拠、計測結果と出所。値・形式の未確定をAIが既決として補わない。
+- **提供**：要求ごとの版付き検証・計測契約。少なくともmetric ID、対象requirement/NFR、測定対象、workload/environment/data、baseline、target/SLO、許容差、sampling/window、tool/probe、evidence schema、判定oracle、owner、実行layer、再測定triggerを区別して保持する。必須項目の欠落を別項目や自由記述で相殺しない。具体的な値・schema・probe選定は通常のL3要件で根拠付きに導出する。
+- **品質領域の保証**：性能、信頼性、可用性、回復性、security、privacy、accessibility、互換性、運用性、保守性、cost/resource、data quality、observabilityを対象に、適用する条件と理由付き非適用を確認する。判断材料不足はunknownとして残し、非適用や無制限へ変えない。すべての製品に同じ数値・環境を押し付けない。
+- **判定の保証**：対象要求で必須としたmetricの未測定、stale、非代表環境、閾値未達が一つでもあれば、その対象のsystem completionを成立させない。code/doc/testのgreen、別環境・別revisionの結果、他metricの好成績で相殺しない。HARNESS-L2-022のVerifiedとAcceptedを区別し、実測結果から要求合意や利用者受入記録を生成しない。
+- **工程の保証**：計測方法の設計→probe/fixtureの実装→局所からsystemへの検証→利用実態の受入→時間軸/SLO/改善効果の運用評価を、現行の対の設計・証拠へ接続する。旧L5／L7等の層番号を新世代へ転記せず、L3で各実行責務と現行layerを対応づける。計測のoverheadと再現条件を残し、本番secret／PIIを計測のために露出しない。
+- **責務の保証**：HARNESSは契約と義務・判定を持つ。OSまたは利用者の実行手段が許可範囲内で計測し証拠を返す。INFRASTRUCTUREはHELIX本体の資源・環境の観測、LABOは選択した比較評価を持ち、その結果だけで製品の要求適合・完成・authorityを確定しない。
+- **失敗と引継ぎ**：不足field、unknownの目標、古い結果、代表性不明、未達を個別に示し、契約・設計・環境・測定・要求の該当ownerへ返す。再測定trigger、停止理由、未完のmetricを保持する。意味を保った技術具体化はL3へ進め、要求意味を変える必要があるものだけをHARNESS-L2-003／004のBackflowへ戻す。
+- **常時必須の依存**：対象要求とrevision、HARNESS-L2-022の段階・oracle契約、COREのtrace、適用条件と判断出所。
+- **特定操作時の依存**：実測時の実行手段・資源・既存SECURITY/data-use境界。機構間通信を使う場合のCONNECT契約。計測契約の起草に実測の完了を要求しない。
+- **選択入力元**：OSまたは利用者のCI／計測手段。比較評価を使う場合のLABO、HELIX本体資源を観測する場合のINFRASTRUCTURE。外部利用にHELIX内部の管理機構一式を要求しない。
+- **参照のみ**：旧計測source、技術選定の資料、後続版の高度な観測能力。後続版INFRASTRUCTURE能力を1.0の必須依存へ前倒ししない。
+
+旧sourceは `LEGACY-ASSET-02319C2481B9E01698D5` revision 3、`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:245–252`（SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`）。補助sourceの `REQSRC-SUP-00192〜00194` に原文が残る。品質領域、14項目、4失敗条件、工程・秘密保護・overhead・再現性を意味再導出して保持し、旧runtime、層番号、固定技術は転用しない。候補は元のHARNESS-L2-003／004／005／018／022の本文を置換しない。2026-09-28のPO判断が固定した250候補の採用を、この追補revisionの採用や実装許可へ継承しない。
