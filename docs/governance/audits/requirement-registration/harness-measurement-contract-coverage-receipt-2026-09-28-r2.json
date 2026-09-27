@@ -1,0 +1,103 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-MEASUREMENT-CONTRACT-2026-09-28-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "PREISO-REV-000026の監査基準232/234/236行と隔離前247/249/251行の6行。両revisionを入力し、同値として片方を消さない。対象条件の候補対応に限り、旧全体被覆・採択は主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-034",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-004",
+        "HARNESS-L1-005"
+      ],
+      "candidate_semantic_digest": "sha256:d79e671219cf5325c54675e8bf00e69c8a88f055074da720b5d89a0b9d1cfe81",
+      "source_atom_set_digest": "sha256:08fd7ec8a17964e2b665a17fd3e7e5425370c7f2251ea45b8c089201bfbc998f",
+      "source_atom_count": 6,
+      "source_collection_scope": "PREISO-REV-000026の監査基準232/234/236行と隔離前247/249/251行の6行。両revisionを入力し、同値として片方を消さない。対象条件の候補対応に限り、旧全体被覆・採択は主張しない。",
+      "atoms": [
+        {
+          "atom_id": "REQSRC-SUP-00192",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "source_line": 247,
+          "source_line_sha256": "sha256:833f700a7f273b9533d0dc3714f1df116c0b88a12fec4a66641d26bd5b9dd703",
+          "source_text": "設計エンジンはtest caseだけでなく、system完成度を実証する`verification_measurement_contract`を各requirement/NFRから生成する。最低限、性能、信頼性、可用性、回復性、security、privacy、accessibility、互換性、運用性、保守性、cost/resource、data quality、observabilityを対象にする。",
+          "disposition": "carried",
+          "relation": "品質13領域と要求別計測契約をL2の提供・品質保証へ、L11正常／欠落の反例へ。"
+        },
+        {
+          "atom_id": "REQSRC-SUP-00193",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "source_line": 249,
+          "source_line_sha256": "sha256:c7c8fdcdba444b6fb68eaae83a193f1a6cd7cd9700dbb50d5cdeeb57c8edc284",
+          "source_text": "各contractはmetric ID、対象requirement/NFR、測定対象、workload/environment/data、baseline、target/SLO、許容差、sampling/window、tool/probe、evidence schema、判定oracle、owner、実行layer、再測定triggerを持つ。code/doc/testがgreenでも必須metricが未測定、stale、非代表環境、閾値未達ならsystem completionを拒否する。",
+          "disposition": "carried",
+          "relation": "14項目と4完成拒否条件をL2提供・判定保証へ、L11正常・欠落・完成判定反例・未見例へ。"
+        },
+        {
+          "atom_id": "REQSRC-SUP-00194",
+          "source_holding_registration_id": "MPR-SH-SUPPLEMENTARY-003",
+          "source_path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+          "source_line": 251,
+          "source_line_sha256": "sha256:30e0e461b391caa2cd948ab0d9cbaa2a8221054f5d1daa8ec608d5ddda131cd9",
+          "source_text": "計測はL5で設計し、L7でprobe/fixtureを実装、L8〜L10で局所からsystemへ拡張、L11で利用実態、L12で時間軸/SLO/改善効果を検証する。計測のために本番secret/PIIを露出せず、測定自体のoverheadと再現性も記録する。",
+          "disposition": "carried",
+          "relation": "設計から運用評価までの計測義務、秘密保護、overhead、再現性をL2工程保証へ、L11工程・安全反例へ。旧層番号は現行pairへ意味対応し実行しない。"
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0232",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "original_source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 232,
+          "source_line_sha256": "sha256:833f700a7f273b9533d0dc3714f1df116c0b88a12fec4a66641d26bd5b9dd703",
+          "source_text": "設計エンジンはtest caseだけでなく、system完成度を実証する`verification_measurement_contract`を各requirement/NFRから生成する。最低限、性能、信頼性、可用性、回復性、security、privacy、accessibility、互換性、運用性、保守性、cost/resource、data quality、observabilityを対象にする。",
+          "disposition": "carried",
+          "relation": "別revisionとして計測契約の同一対応箇所を保持。品質13領域と要求別計測契約をL2の提供・品質保証へ、L11正常／欠落の反例へ。",
+          "paired_revision_atom_id": "REQSRC-SUP-00192"
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0234",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "original_source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 234,
+          "source_line_sha256": "sha256:c7c8fdcdba444b6fb68eaae83a193f1a6cd7cd9700dbb50d5cdeeb57c8edc284",
+          "source_text": "各contractはmetric ID、対象requirement/NFR、測定対象、workload/environment/data、baseline、target/SLO、許容差、sampling/window、tool/probe、evidence schema、判定oracle、owner、実行layer、再測定triggerを持つ。code/doc/testがgreenでも必須metricが未測定、stale、非代表環境、閾値未達ならsystem completionを拒否する。",
+          "disposition": "carried",
+          "relation": "別revisionとして計測契約の同一対応箇所を保持。14項目と4完成拒否条件をL2提供・判定保証へ、L11正常・欠落・完成判定反例・未見例へ。",
+          "paired_revision_atom_id": "REQSRC-SUP-00193"
+        },
+        {
+          "atom_id": "V13-BASE-6FAB-L0236",
+          "source_holding_registration_id": "MPR-SH-V13-BASELINE-001",
+          "source_path": "docs/governance/requirements-source/helix-requirements-v1.3-baseline-6fabd125.txt",
+          "original_source_path": "docs/governance/helix-harness-requirements_v1.3.md",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "source_file_sha256": "sha256:1eecfe3cbbbf1c61956b23ddbd2f28a5146233d0d0be15fddd8098998ed097e1",
+          "source_line": 236,
+          "source_line_sha256": "sha256:30e0e461b391caa2cd948ab0d9cbaa2a8221054f5d1daa8ec608d5ddda131cd9",
+          "source_text": "計測はL5で設計し、L7でprobe/fixtureを実装、L8〜L10で局所からsystemへ拡張、L11で利用実態、L12で時間軸/SLO/改善効果を検証する。計測のために本番secret/PIIを露出せず、測定自体のoverheadと再現性も記録する。",
+          "disposition": "carried",
+          "relation": "別revisionとして計測契約の同一対応箇所を保持。設計から運用評価までの計測義務、秘密保護、overhead、再現性をL2工程保証へ、L11工程・安全反例へ。旧層番号は現行pairへ意味対応し実行しない。",
+          "paired_revision_atom_id": "REQSRC-SUP-00194"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-022",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-034"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ],
+  "correction_scope": "PR2207のsource集合のみを訂正。旧receiptは不変。PREISO-REV-000026の両revisionを別atomで保持し、本文の採択・意味を変更しない。"
+}
