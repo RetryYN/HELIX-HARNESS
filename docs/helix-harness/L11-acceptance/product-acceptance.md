@@ -476,6 +476,12 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 
 旧原文の対応はL2末尾の `REQSRC-SUP-00192〜00194`。旧sourceの意味を保つ候補の内容確認であり、これらの例の実行、採用、L3承認を宣言しない。
 
+- **NFR固有の正常例**：AIを含む永続化対象について、stable ID/source authority/surface、target/error budget/hard limitの区別、適用する品質領域とAI条件、storage/並行性の計測・異常条件・risk別手法、時系列とrequirement/release/regression/改善episodeへの関係を確認する。契約起草時にまだ測っていない項目は未測定のまま実行ownerへ渡す。
+- **NFR固有の反例**：①error budgetをhard limitと混同、②baseline unknownを0/greenへ置換、③非AI対象へmemory汚染等を無理由で強制、④適用するquery/projection p95/p99やlock/再構築/soak条件の脱落、⑤再現のない根因断定、⑥fault/race/crash等の適用を根拠なく省略、⑦手法導入だけで完成、⑧実測時系列と改善episodeの関係欠落、を個別に拒否する。各failureは契約・設計・環境・測定・要求の該当ownerへ返す。
+- **NFR固有の未見例**：新しい保存方式・provider・非AI対象でも、同じ品質条件の適用性とsource authorityを照合する。特定DB機能がないだけで旧実装を要求せず、対応する性能/回復/並行性のoracleを導く。根拠不明をN/Aにせず不足を残し、HARNESS005のticket別選択を超えた一律検査を追加しない。
+
+旧source追補：`LEGACY-ASSET-02319C2481B9E01698D5`のHR-NFR-REG-001〜007（監査基準6fabd125:354–360、PREISO:369–375）を同一条件の別revisionとして保持する。旧NFR registryのschema/層番号/DB/metric event実装を現行へコピーせず、034の計測契約と005のticket/risk選択へ意味再導出する。元の13領域・14項目・4拒否条件を削除しない。未採択追補であり250候補の採択は継承しない。
+
 ### HARNESS-L2-035 要求候補の導出根拠と受入への寄与の照合
 
 - **対応・境界**：L2-035と同じ未採択候補、1.0。原指示・上流revisionから要求候補への意味照合であり、工程反復やFeedback循環を禁止する検査ではない。
