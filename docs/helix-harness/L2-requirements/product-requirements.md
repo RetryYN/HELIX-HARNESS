@@ -708,6 +708,14 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 
 旧sourceは `LEGACY-ASSET-02319C2481B9E01698D5` revision 3、`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md:245–252`（SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`）。補助sourceの `REQSRC-SUP-00192〜00194` に原文が残る。品質領域、14項目、4失敗条件、工程・秘密保護・overhead・再現性を意味再導出して保持し、旧runtime、層番号、固定技術は転用しない。候補は元のHARNESS-L2-003／004／005／018／022の本文を置換しない。2026-09-28のPO判断が固定した250候補の採用を、この追補revisionの採用や実装許可へ継承しない。
 
+- **NFRの識別・根拠と閾値の区別**：計測契約にはstable NFR identity、quality characteristic、source authorityと対象surfaceを結び、error budgetと超過不可のhard limitを通常targetから区別する。未知のbaselineや閾値を推測してgreenにしない。既存034の14項目へ意味を統合して表現しても、これらの条件を脱落させない。
+- **品質条件の分類**：既存13品質領域に加え、AIを含む対象では判断再現性、Worker/verifierの独立性、根拠との対応、反復の停止性、費用、provider縮退、memory汚染耐性を適用scopeごとに照合する。非AI対象へ一律に課さず、非適用には対象と理由を記録する。品質の能力要求、観測可能な挙動、技術選択、閾値運用、環境値を分け、旧技術選定をNFR意味へ混在させない。
+- **永続化・並行運転の測定**：対象がDB/投影/継続stateを使う場合は、data量、query/projection p95/p99、lock待ち、busy timeout時の縮退、再構築、archive/保守、並行実行、長時間soakを必要な測定条件へ対応させる。旧harness.db、SQLite、vacuum commandの採用は要求せず、選んだ保存方式の対応条件をL3で導出する。再現していない単一障害の原因を確定事実にしない。
+- **異常条件と検証手法**：gate・approval・cutover・projection・GitHub・memory・feedbackに相当する対象の権限/状態境界について、fault injection、race、soak、crash recoveryの適用条件を検証契約に残す。property-based、model-based state machine、differential、mutation、fuzz、snapshot compatibilityをriskから選び、選択/非適用の根拠を残す。全ticketの固定CI手順にはせず、HARNESS-L2-005の選択・未完義務回収に従う。試験手法の追加を完成証拠にしない。
+- **時系列と改善の接続**：実測値を時点・対象revision・要求・release・regression・改善episodeへ辿れる形で保持し、計測履歴と比較の母集団を維持する。旧P4 event schemaを正本へ戻さず、OSの証拠記録とLABOの改善評価へ同じ因果関係を渡す。計測契約の作成開始に、未来の実測値や改善完了を要求しない。
+
+旧source追補：`LEGACY-ASSET-02319C2481B9E01698D5`のHR-NFR-REG-001〜007（監査基準6fabd125:354–360、PREISO:369–375）を同一条件の別revisionとして保持する。旧NFR registryのschema/層番号/DB/metric event実装を現行へコピーせず、034の計測契約と005のticket/risk選択へ意味再導出する。元の13領域・14項目・4拒否条件を削除しない。未採択追補であり250候補の採択は継承しない。
+
 ### HARNESS-L2-035 要求候補の導出根拠と受入への寄与の照合（CORE単体追補候補、1.0）
 
 - **親・状態**：HARNESS-L1-008。`version_target: 1.0`、未採択の追補候補。既存008/024の要求形成に、scopeの根拠を後付けの候補だけで循環させない照合を具体化する。人の指示を受けて候補を起こすことと、その候補を採用済みにすることを分ける。
