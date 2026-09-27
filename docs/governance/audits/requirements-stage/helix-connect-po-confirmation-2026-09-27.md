@@ -15,9 +15,9 @@
 - 機構内監査とconsumer点検を受けて実際に修正したのはL2/L11-002。互換性の参照照合は送信許可を前提とせず、読取りに適用される既存scope/accessは維持する。照合結果がcompatibleでも送信eligibilityは`not_evaluated`、送信attemptは0件。実送信のときだけ既存の操作許可と該当data-use/classificationを照合し、欠落・unknown・期限切れ・scope不一致・失効ならattempt前に保留する。新しい人間approvalやpermitは追加しない。
 - そのほか、L2-006の片側交換とL2-007の複数辺構成は接続identity・契約revision・scope・結果追跡を対応させ、単体成功から構成体成功を推定しない。PO原文の段階リリースは他要求から成立部分を導くものとし、CONNECT独自機能にはしない。旧connectorの版付き契約・stale・再送・追跡は意味として保持し、旧API/CLI実装や業務判断、採択済み接続集合は持ち込まない。
 
-**今回決めること**
+**今回の判断結果**
 
-固定したL1 revisionの確認と7候補の処置。既決の目的「接続部分を疎結合にし、各機構への変更耐性を高める」は再質問せず、製品属性やHELIX-WEB-CONNECTORも追加しない。
+POは固定L1 revisionを確定し、7候補を各version_targetと適用条件を保持して採用した。既決の目的「接続部分を疎結合にし、各機構への変更耐性を高める」は再質問せず、製品属性やHELIX-WEB-CONNECTORも追加しない。
 
 ## 固定対象とsource証拠
 
@@ -39,7 +39,7 @@
 
 旧sourceとの保持・変更理由: 旧資産保持・変更記録（監査記録）: `LEGACY-ASSET-C3DE79BA9451172F3E43` と `LEGACY-ASSET-DD66C1B6B7BE234B37E6` は旧 product-data-connector.md:33-57,86-109 および :27-57; `LEGACY-ASSET-BD13CC67526B48D461F9` ADR-003:8-24,26-45。既存connectorの接続契約と変更耐性を保持し、共通部品候補へ再配置した根拠は監査記録を参照。 SHA-256（列挙順）: `2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04` / `48014b188ebe0c3ffe18b86fa472f048a88e248316bf2b3218aaa605a5e55f42` / `ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37`。source別の完全な判断は上記固定監査記録に記録済み。
 
-今回の意味差分: 現行L1/L2候補と既決記録の間に新たな目的差分は確認されていない。PO原文の「接続部分を疎結合に保ち、各機構への変更耐性を強化」を維持し、段階リリース独自機能・HELIX-WEB-CONNECTOR・他機構の業務判断を含めない。残っているのは現在L1 exact revisionの採否と、7候補の個別処置の受領であり、既決原文を再質問しない。候補の登録・棚卸し対応は対象接続の採択を証明しない。
+今回の意味差分: 現行L1/L2候補と既決記録の間に新たな目的差分は確認されていない。PO原文の「接続部分を疎結合に保ち、各機構への変更耐性を強化」を維持し、段階リリース独自機能・HELIX-WEB-CONNECTOR・他機構の業務判断を含めない。L1 exact revisionと7候補の処置は受領済みであり、既決原文を再質問しない。候補の登録・棚卸し対応は対象接続の採択を証明しない。
 
 ## 全L2候補とregister/coverage状況
 
@@ -62,28 +62,27 @@
 - `CONNECT-derived-r2`: [docs/governance/audits/requirement-registration/helixconnect-derived-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helixconnect-derived-coverage-receipt-2026-09-27-r2.json)、SHA-256 `c74721757533726015b63d066fa20a153fecb01a68660cf4e11efd21394d6547`。
 - `CONNECT-derived`: [docs/governance/audits/requirement-registration/helixconnect-derived-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helixconnect-derived-coverage-receipt-2026-09-27.json)、SHA-256 `8f9392be152b91427e1e96bbb0b20b5241662f3de4272a6d6dde37de0da1507f`。
 
-## POに明示してほしい判断（未受領）
+## PO判断（2026-09-28受領）
 
-- **L1**: 固定したL1本文のexact revisionを確定するか、差戻すか。過去のPO企画判断から現在のL1 bytesの確定を推定しない。
-- **L2/L11**: 上表の全候補について、明示された範囲で採用・保留・不採用、または差戻しを記録する。包括回答で個々のIDの処置が特定できない場合、その候補は未受領のままにする。
-- **一括回答**: このpacketが明示するL1 exact revisionと候補表の全IDを対象に、POが「一式でよい」と明示した回答は、そのrevision確認および全候補への処置として受領できる。候補IDの再列挙は不要。部分的な回答、または対象revision/候補集合を特定できない回答では、未指定部分を未受領のまま残す。
-- **残存差分**: 上記「今回の意味差分」に示した現行境界を確認し、候補を差戻す場合は理由を示す。既決PO事項は再質問せず、本文へ自動的に確定状態を付与しない。
+[判断記録](../../decisions/helix-connect-requirements-po-decision-2026-09-28.md)に、固定L1 revisionの確定、L2と対応L11一式への合意、全候補001..007（7件）のversion_target・適用条件を保持した採用を記録した。根拠commentは[https://github.com/RetryYN/HELIX-HARNESS/pull/2205#issuecomment-5857757034](https://github.com/RetryYN/HELIX-HARNESS/pull/2205#issuecomment-5857757034)。この一括判断は対象本文と候補集合を特定している。
+
+PO既決の旧source未完引継ぎと旧HELIXデグレ検証を保持する。実装順A/Bは未判断。L3承認、実装・release許可は含まれない。
 
 ## 状態の読み方
 
 - 最新register行の `registered_proposal`、`authority_effect: none`、`coverage_result: no_loss` は、候補登録と旧source atom coverageを示す。PO採否、L1 authority、L2 agreementを示さない。過去revisionは履歴として保持する。
-- PO判断を受けるまで、L1/L2/L11は候補状態。空欄・曖昧な返答からdispositionを埋めない。候補の不採用だけでは旧sourceの意味をretireしない。
+- PO判断は外部decisionに記録した。registerの状態や本文metadataを書き換えず、候補採用から旧sourceのretireを導かない。
 - `version_target`は候補の対象版であり、実装済み版・release承認ではない。上表の後続版候補は残し、1.0の受入条件へ混ぜない。
 - 同一PRのdecision recordにはdecider、日時、Concept/L1/L2/L11のexact revision、IDごとのPO処置・理由、旧source保持/変更、register/receipt参照を記録する。本文変更時は編集後SHAへ判断対象を束縛し直す。
 
-## 確認PRの前提と受領後の扱い
+## 確認PRの前提とPO判断受領後の扱い
 
 機構内の監査・解消16 PR、横断監査 #2195 と解消 #2196、総合検証 #2197 はmerge/read-after済み。[総合検証](integrated-verification-2026-09-27.md)から根拠へ辿れる。本資料は要求本文の固定revisionへの読み口であり、本文やsource atomの被覆を置き換えない。
 
-[PO指示の手順4](../../sources/requirements-stage-po-handoff-original-2026-09-27.md)に従い、POのL1対象revision確定・L2合意（または差戻し）を同じPRの判断記録へ入れるまでDraftを維持し、mergeしない。独立reviewは資料の正確さを照合するもので、PO判断を代行しない。提示したrevisionと集合に対する「一式でよい」という一括回答も、その範囲の判断として記録できる。IDの再列挙は求めない。部分回答・意味変更指示は対象だけを反映し、未判断部分を残す。
+PO判断は上記のとおり同一PRの判断記録へ反映済みである。独立reviewは資料の正確さを照合する。判断対象bytes・候補集合に変更があれば、影響範囲だけ再照合する。
 
 旧自律境界（LEGACY-ASSET-6EBDB617A8104A7756D0、`archive/legacy-generation-2026-09-14/root/CLAUDE.md:82-85`、SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）の、人が企画・要求の意味を持ちAIが要件以下を起草する分担を保持する。旧層番号・旧runtime・旧merge方式は移植しない。現行のL1/L2対象revision判断と、L3要件承認を分ける。
 
-現在はPO判断未受領。受領後は実際の回答・対象revision・候補処置を記録し、本文変更があれば対のL11、register訂正revision、receipt、研究pinとbindingを追随させてexact HEADを再reviewする。候補の処置から旧sourceのretireや未完atomの被覆完了、L3承認、実装・release許可を生成しない。
+PO判断を受領し、対象L1/L2/L11 bytes、候補register、receipt、pin、bindingは変更していない。候補採用から旧sourceのretireや未完atomの被覆完了、L3承認、実装・release許可を生成しない。
 
 8機構分の確認PRをすべて作成し、全件の独立review指摘0件まで作成側が進める。先行する確認PRのPO判断待ちを理由に、残る確認PRの作成・reviewを止めない。
