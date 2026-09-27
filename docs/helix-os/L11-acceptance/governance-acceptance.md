@@ -648,3 +648,22 @@ projectの同じ明示scopeで、base branch `main`上のPR、別base branch `re
 | 未見/境界 | 宣言済みscopeの正本indexに新しい項目が追加された場合、選択revisionと既存生成規則から決定論的に再導出できれば正常扱いできる。正本revision、scope、生成規則のいずれかがunknown/stale/不一致なら、内容を補完して通さず未完として戻す。 |
 
 party混在、免責/権利根拠の不一致、stage skip、cutover authority欠落は既存L11-030 oracleのまま別に判定する。このindex追補だけでそれらの判定を代替しない。L11候補は未実行であり、実配布・tag・release・remote syncを行わない。
+
+### HELIXOS-L2-037 週次drift・技術負債観測から既存ticket候補への引継ぎ
+
+- **正常**：宣言済みscope・対象revisionについて週次非同期観測が既存HARNESS要求/設計oracleを照合し、source identity、scope、revision、観測時点、使用oracle、結果を報告する。差分なしなら観測結果だけを記録し、ticketや同期gateを発生させない。差分ありなら証拠を保って既存HARNESS-L2-003のReverse/Backflow境界へ渡す。別経路でsource/ownerが技術負債の累積と分類した観測はLABO評価を経てHELIXOS-L2-022の既存candidate登録へ渡し、HELIXOS-L2-010の既存ticket kindに合う返済PLAN候補を返す。提案と実行ticket/assignment/承認済計画は別状態にする。
+- **誤り**：週次観測を工程完了の同期gateにする、差分がないのにReverse ticketを発行する、scope外や異なるrevisionのoracleを同一と扱う、OSが新しい負債定義・検出閾値を補う、負債candidateを自動的に実行ticket/assignment/承認済計画へ昇格する、unknown/missing/staleを「負債なし」や完了へ変える、あるいは候補記録だけを理由に無関係な進行を止める場合は不成立。source分類/根拠の欠落はunknownを保ち、LABOまたはsource ownerへ戻す。既存OSの優先順位決定責務はこの能力によって制限しない。
+- **未見**：以前観測していないproject/scopeまたは新revisionを受け取る。選択scopeと適用oracleを確認できる場合は同じ非同期照合を行い、差分有無を根拠付きで報告する。source/ownerが負債として分類する基準がない観測は未評価として保持し、累積成立・負債なしのどちらも主張しない。HELIXLABO-L2-063が扱う成功修復・同種再発のevidenceは、適用可能性が示された場合だけ接続し、他の負債へ一般化しない。
+
+**旧頻度条件と既存責務**
+
+旧 `business-requirements.md:135` は「週次 detector 起動」を表の発動条件に置き、「例えば」等の例示表示はない。この候補はその頻度条件をversion_target 1.0の非同期観測として保持する。全件CI、常時稼働scheduler、毎回の人確認は導入しない。観測未実施や結果未着は観測状態として記録し、通常の無関係な作業を同期停止する理由にしない。既存HARNESS-L2-003 (`product-requirements.md:111`) に合う差分が検出されたときだけ既存Reverse/Backflowへ渡す。
+
+**分担・依存の確認**
+
+- OSはsource分類やHARNESSの要求/設計/受入oracleを代行せず、HELIXOS-L2-019、HELIXOS-L2-022、HELIXOS-L2-010の証拠・candidate・ticket境界を通す。検出条件のない蓄積をOSが負債と判定しない。
+- LABOは観測の評価・Feedbackを所有し、ticket発行/実行・要求変更はしない。
+- HARNESS-L2-004、HARNESS-L2-025、HARNESS-L2-003 (`product-requirements.md:111`) は影響trace、composite design oracle、design mismatchとReverse条件を所有する。新しい独立drift detectorや別のReverse実行機構を037へ重複実装しない。
+- 既存有効authorityと優先順位決定は再利用する。候補未採択を採択済み要求として扱わず、旧CLI・旧schedulerの実行方式を移さない。
+
+**期間欠測の反例**：ある週の観測を中断し、前週の正常結果だけが残るfixtureを与える。今週を未観測/未完と報告し、前週結果の転用や「差分なし」を拒否する。同じfixtureで無関係なticketを同期停止しないこと、同一scopeの既存readiness/authority gateを迂回しないことも確認する。今回の観測receiptなしに観測開始できることと、観測完了の判定を分ける。
