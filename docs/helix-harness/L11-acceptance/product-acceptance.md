@@ -483,3 +483,34 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **個別反例**：候補Aだけを根拠にAを正当化、同時追加A/Bで互いを唯一の根拠にする、ID登録だけを上流根拠にする、存在しない上流、別revision、出所不明、非循環でも上流にない能力、受入寄与のないscope拡張、budget不明を0として扱う例を個別に投入し、根拠充足を主張せず不足/訂正へ戻ることを確認する。
 - **未見・変化**：別branchから同じ上流へ導く候補でも、意味・revision・適用条件を再照合する。上流訂正後は以前の導出結果を流用しない。正当なFeedback循環や修復反復を、根拠循環という理由だけで不合格にしない。
 - **責務**：CORE単体で結果を出せ、OS利用時も登録・実行許可と意味照合が別状態になる。未完候補から人の合意や実行権限を生成した場合は不合格とする。
+
+### HARNESS-L2-036 検証観点の完全性とローカル・CIの同一契約の受入
+
+**対応要求**：`HARNESS-L2-036`（unit candidate、`version_target: 1.0`、未採択）。親L1は`HARNESS-L1-001`, `HARNESS-L1-004`。HARNESSはgate・oracle契約を定め、選択されたticketのCI/実行と証拠保存はHELIX-OSが担う。既存`HARNESS-L2-005`のrisk/ticketに基づく段階選択と、`HARNESS-L2-022`の段階別oracle/利用者受入契約を維持する。
+
+**受入例**
+
+| 種別 | 入力と期待結果 | 不合格または保留となる反例 |
+|---|---|---|
+| 正常：W観点 | 同一対象revisionの現行設計成果、テスト設計成果、test-level定義、およびticketで選ばれた検証profileを渡す。各適用設計項目に該当するテスト観点が対応し、同一観点を複数levelへ重複計上していないとき、適用scope内の抜け0・重複0としてW gateをpassする。非適用は理由を保持し、実行を選択していない上位testを実行済みにしない。 | 設計項目に必要なテスト観点が結び付かない、level間重複がある、またはN/A理由のないscope除外をpassにする。W gateがfailなら該当ticketの合流条件を満たさない。 |
+| 正常：dev-local/CI parity | Forward小ticketのprofileが原子lint/gateを選んだ例を用いる。dev-localとCIの双方が同じ内容snapshot、gate identity/version/settings、対象scopeを照合し、各結果がその環境の対象revisionに結び付く場合にparity成立とする。commit前のlocal revisionと後続CI revisionでcommit SHAが異なること自体は不一致にしない。OSはHARNESS-L2-005の規則で対象検証を組み立て、選択した範囲を実行・記録する。 | editorでpass、CIで異なる版/設定を実行、対象scope相違、または片側のresultが欠ける場合はparity不成立。editor fail後、局所修正へ戻さずcommit可能とする構成は不合格。 |
+| 正常：cross-detection | 適用profileのscopeに対し、依存漏れ、契約漏れ、接続欠損、デグレを個別の観点・根拠・結果として返し、四観点がすべて0件で結果観測も完了している場合にのみcross-detection gateをpassする。 | どれかの観点にfindingが1件以上ある、または未観測なのに0件とする場合は不合格。 |
+| 条件付き正常：FE 5軸 | `drive=fe`でL2 prototype/screen scope、design-token SSOT、対象screenshots、state transitionと適用oracleを与える。`mock-promotion`、`design-token-drift`、`a11y-regression`、`visual-regression`、`state-transition-drift`の5軸すべてについて決定論的`DetectorResult`のpass/fail+詳細とCI証跡とのrelationが返り、すべてpass evidenceがある場合だけFE gateをpassする。 | 5軸の一つでもfailまたは必要証跡欠落ならpassにしない。`drive!=fe`のticketへFE 5軸を一律要求する構成も不合格。`drive=fe`で一軸をN/A/非適用へ落とす構成も不合格。driveを決める入力がunknownなら未評価に留める。 |
+| 誤り：適用・oracle | FE軸で参照するtoken SSOTが別revision、screenshotsが対象scope外、transition oracleが失効、test profileの対象要求とのrelationがstaleである例を与える。誤った根拠をpassに流用せず該当結果を保留する。意味/oracle不足はHARNESS-L2-008または022、対象revisionとticketの運転はOSの該当境界へ返す。 | artifactの存在、CI green、違うrevisionのpass、単体の結果だけを受けてsystem/利用者受入まで自動成立させる。 |
+| 未見：W scope拡張 | 公開fixtureにない設計項目を同scopeへ追加する。existing test-level定義と要求oracleから該当観点・levelを決められる場合は新しい対応行として判定し、根拠がない観点は不足一覧へ、oracle自体が未提示なら未評価へ返す。 | 未見という理由だけで適用範囲内の項目を一律拒否する、または未定oracleをAI補完してpassにする。 |
+| 未見：gate parity | 同じticket-selected gateのdev-local設定が未公開の同scope実装でも、gate identity/version/settings・revision・scope・両面結果を照合する。照合可能なら差分を判定し、どちらかの実行が未観測ならparity未確認とする。 | 同名だけを根拠に異なる版・設定を同一gateとみなす、未観測をpassにする、または全環境同時実行を036の条件として追加する。 |
+| 未見：FE | 未公開だが`drive=fe`と確認できる対象に、同じ5軸の適用契約を当てる。既知の適用scope内なら結果を軸別に判定し、5軸のいずれかに必要なoracle/input/schemaが未知ならFE gate全体を未評価として保留し、5軸中の該当軸をN/Aへ落とさない。 | fixtureにないだけで既知scopeの有効な入力を全拒否する、または未知軸を通過扱いにして5軸pass証跡を生成する。 |
+
+**判定境界と旧条件の対応**
+
+- FR-L1-21の「設計項目へのテスト観点抜け検出 + レベル間重複検出を static で fail-close」は、上表のW正常/誤りに対応する。
+- FR-L1-22とNFR-06の`drive=fe`条件、5軸名称、決定論的判定、`DetectorResult (pass/fail+詳細)`、CI証跡およびfail-closeは条件付きFE例に対応する。drive=fe以外へ拡張していない。
+- NFR-13の同一lint/gateのdev-local + CI双方での実行、editor fail後commit前の局所修正loop、cross-detection四軸とWの0件条件は上表の受入に対応する。NFR-13の「gate通過率≥90% (KPI D-02、B5=b)」は運用目標として保持する。適用母集団・期間・分母はL3で照合し、意味を変更する場合はPO判断へ戻す。個別ticketの合否と混同しない。
+- HARNESS-L2-005に対する既存L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:48-51`は、ticket/riskによる必要検証、固定段数拒否、危険度、密結合、scope外停止、省略記録と回収を既に受入条件としている。036はその選択結果を利用する。全件CI、merge直後/夜間の一律回収、全環境での同時実行を新設しない。
+- HARNESS-L2-022に対する既存L11 `docs/helix-harness/L11-acceptance/product-acceptance.md:298-304`のIntegrated/Verified/Accepted分離、revision-bound oracle/result/evidence、未評価維持をそのまま適用する。036のgate passは品質全体、L10 Verified、L11 Accepted、利用者受入を生成しない。
+
+**原文参照**
+
+- `LEGACY-ASSET-6B6C5CB0E481BE01088B`：`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md:52-53`、file SHA-256 `a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008`。FR-L1-21行SHA `b54119ad033bcb2f01c1977710d76249ab80a2789422ed02afa3c54d6ac3799b`、FR-L1-22行SHA `1cc6f208ebbbb6d900d791e546db07b6047e7a07e6a2071817391191b3abbdf9`。
+- `LEGACY-ASSET-5429AA05B022E9F49B0A`：`docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/nfr.md:31,51`、file SHA-256 `4853a43c5ea12354dc2dab20dc3a52b15ff6be075e49fdaf1bff26280e992122`。NFR-06行SHA `0e1efa8f6017fd18bc55f46f1c9096c64cf3e0c2d7e73d8abef3bc3ed43c0c80`、NFR-13行SHA `e1be1261c63355fe7439bad12c1c60df6fc130a91713a7a862169a7e5dbde0a1`。
+- 現行L2対応点：`docs/helix-harness/L2-requirements/product-requirements.md:118-121`（005）、`:447-461`（022）。現行L11対応点：`docs/helix-harness/L11-acceptance/product-acceptance.md:48-51,298-304`。
