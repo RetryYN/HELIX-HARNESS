@@ -1,0 +1,119 @@
+{
+  "receipt_id": "MPR-RCPT-LABO-RESEARCH-SPAN-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "PREISO-REV-000013のbaseline/pre-isolation両revisionのHR-FR-P8-01/HAC-P8-01a/b計6行。選定3条件のbytes一致を確認するが全file同等性/全旧Pillar被覆を主張せず、他holdingや175identityへ独立要求数として加算しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXLABO-L2-062",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-009"
+      ],
+      "candidate_semantic_digest": "sha256:9d727cd363b5fe0dd34ad38a5c87ef81cc93a2d4a61c4d3e860adfbb648d2486",
+      "source_atom_set_digest": "sha256:86481c0a90be278c5b9e2a2f41d81eacdcb420d5169bc0ebf291fd60d5c819be",
+      "source_atom_count": 6,
+      "source_collection_scope": "PREISO-REV-000013のbaseline/pre-isolation両revisionのHR-FR-P8-01/HAC-P8-01a/b計6行。選定3条件のbytes一致を確認するが全file同等性/全旧Pillar被覆を主張せず、他holdingや175identityへ独立要求数として加算しない。",
+      "atoms": [
+        {
+          "atom_id": "PILLAR-SPAN-BASELINE-L0162",
+          "source_holding_registration_id": "MPR-SH-PILLAR-SPAN-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "source_file_sha256": "sha256:665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+          "source_line": 162,
+          "source_line_sha256": "sha256:4c8cb3d824ff07b025fcf531ae3780996f039aaa1349ee456771b51fe907b7ba",
+          "source_text": "| HR-FR-P8-01 | HBR-P8 / HNFR-P3 | 外部検索・公式 docs・OSS 参照は source attribution と span-level verification を持つ research artifact に保存される | HAC-P8-01a / HAC-P8-01b |",
+          "disposition": "carried",
+          "relation": "source attributionとspan-level verification付きresearch artifactをL2-062の入力/提供、L11正常/反例へ再導出。"
+        },
+        {
+          "atom_id": "PILLAR-SPAN-BASELINE-L0252",
+          "source_holding_registration_id": "MPR-SH-PILLAR-SPAN-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "source_file_sha256": "sha256:665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+          "source_line": 252,
+          "source_line_sha256": "sha256:74915308abcd30533c37226ea01db047a2f0a3e880e8a871db8fd8c6c500646b",
+          "source_text": "| HAC-P8-01a | 外部 docs/web 由来の設計 claim がある | research artifact を検査 | source URL/公開日/版/span が揃う |",
+          "disposition": "carried",
+          "relation": "source URL/公開日/版/spanをL2-062入力、L11正常と各欠落反例へ保持。"
+        },
+        {
+          "atom_id": "PILLAR-SPAN-BASELINE-L0253",
+          "source_holding_registration_id": "MPR-SH-PILLAR-SPAN-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "6fabd12512a3659fff4a956692cdd61faeeb16ce",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "docs/governance/requirements-source/pillar-functional-baseline-6fabd125.txt",
+          "source_file_sha256": "sha256:665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393",
+          "source_line": 253,
+          "source_line_sha256": "sha256:bc824df6a3d4a5cfd243c0a35e5b7d300a33ff46d290cf9567fc88a7cdeb7ec3",
+          "source_text": "| HAC-P8-01b | 出典が不明または古い可能性が高い | L3 review を実行 | 採用を保留し、一次検証 task を要求 |",
+          "disposition": "carried",
+          "relation": "出典不明/古い可能性に対する採用保留と一次検証taskをL2-062不明時の対応、L11反例/未見へ保持。旧L3 reviewの層名・runtimeは移植しない。"
+        },
+        {
+          "atom_id": "PILLAR-SPAN-PRE_ISOLATION-L0168",
+          "source_holding_registration_id": "MPR-SH-PILLAR-SPAN-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_file_sha256": "sha256:7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+          "source_line": 168,
+          "source_line_sha256": "sha256:4c8cb3d824ff07b025fcf531ae3780996f039aaa1349ee456771b51fe907b7ba",
+          "source_text": "| HR-FR-P8-01 | HBR-P8 / HNFR-P3 | 外部検索・公式 docs・OSS 参照は source attribution と span-level verification を持つ research artifact に保存される | HAC-P8-01a / HAC-P8-01b |",
+          "disposition": "carried",
+          "relation": "source attributionとspan-level verification付きresearch artifactをL2-062の入力/提供、L11正常/反例へ再導出。"
+        },
+        {
+          "atom_id": "PILLAR-SPAN-PRE_ISOLATION-L0261",
+          "source_holding_registration_id": "MPR-SH-PILLAR-SPAN-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_file_sha256": "sha256:7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+          "source_line": 261,
+          "source_line_sha256": "sha256:74915308abcd30533c37226ea01db047a2f0a3e880e8a871db8fd8c6c500646b",
+          "source_text": "| HAC-P8-01a | 外部 docs/web 由来の設計 claim がある | research artifact を検査 | source URL/公開日/版/span が揃う |",
+          "disposition": "carried",
+          "relation": "source URL/公開日/版/spanをL2-062入力、L11正常と各欠落反例へ保持。"
+        },
+        {
+          "atom_id": "PILLAR-SPAN-PRE_ISOLATION-L0262",
+          "source_holding_registration_id": "MPR-SH-PILLAR-SPAN-001",
+          "legacy_asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+          "source_revision_item_id": "PREISO-REV-000013",
+          "source_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
+          "original_source_path": "docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+          "source_file_sha256": "sha256:7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+          "source_line": 262,
+          "source_line_sha256": "sha256:bc824df6a3d4a5cfd243c0a35e5b7d300a33ff46d290cf9567fc88a7cdeb7ec3",
+          "source_text": "| HAC-P8-01b | 出典が不明または古い可能性が高い | L3 review を実行 | 採用を保留し、一次検証 task を要求 |",
+          "disposition": "carried",
+          "relation": "出典不明/古い可能性に対する採用保留と一次検証taskをL2-062不明時の対応、L11反例/未見へ保持。旧L3 reviewの層名・runtimeは移植しない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-033",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#helixlabo-l2-051",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md#helixlabo-l2-062"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}

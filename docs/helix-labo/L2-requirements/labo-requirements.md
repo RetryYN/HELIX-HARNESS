@@ -466,3 +466,13 @@ PO原文の集積対象、観測状態、episode順序、分解軸、Vector軸�
 - **依存と適用範囲**：常時必須は対象runのsource・revision・scope・完全性を確かめる証拠と059の比較規則。hidden oracle利用時は当該oracleの隔離とblind評価の証拠を必須にする。使用した観測入力元とその安全条件のみを実行依存とし、未選択taskや旧portfolioは参照のみ。055の通常Worker履歴すべてへhidden task・blind judge・15項目snapshotを一律に課さない。059/060で当該task比較を選んだ範囲に適用する。
 - **失敗時**：task／oracleの不明・不一致はtask／oracle ownerへ、漏洩は入力元とSECURITYへ、実行context・assignment証拠不足は実行主体へ戻す。LABOは比較不能範囲と未完の再評価義務を保持し、配送・登録成功を情報隔離の成功へ変換しない。
 - **旧source**：`LEGACY-ASSET-28FB139B26CD61CC51EE`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md:96-120,143-147`（SHA-256 `a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116`）のR04/R08、`LEGACY-ASSET-A952A3A175EB82A4781B`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md:32-33,39-40`（SHA-256 `6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185`）のAC005/006/012/013を意味再導出する。旧文書はdraft候補であり自動採択しない。全旧BenchやREG-06の被覆完了ではなく、この選定条件のみの追補である。
+
+### HELIXLABO-L2-062 外部調査の主張と原文箇所の照合（単体追補候補、2.0）
+
+- **親・状態**：HELIXLABO-L1-009。`version_target: 2.0`、未採択の追補候補。033/051で受け取る外部sourceの評価を具体化する。内部観測の1.0循環に外部検索を必須化せず、既決の候補採用や外部取得・実行の許可を継承しない。
+- **入力**：取得済み外部検索・公式文書・OSS等のsource identity、URL、公開日、版/revision、取得時点・取得範囲と由来、そこから導く個別の主張、根拠となる原文箇所を受け取る。URLだけを内容の証拠とせず、同じ版の原文を特定できる引用箇所（span locator）と本文を照合できることを要する。取得・参照に必要な既存の許可と制約は保持し、ここから追加権限を生成しない。
+- **提供・保証**：調査成果に主張ごとの出典・対象版・支持箇所・照合結果・不明点を保存する。原文箇所がその主張を支持するかを確認し、別箇所、別版、部分的な支持、条件の欠落、反例を区別する。source全体の出所が分かるだけでは個別の主張を検証済みにしない。外部由来の設計上の主張も対象とし、引用から適用範囲を無条件に広げない。
+- **不明・古い可能性への対応**：出典不明、公開日/版/箇所の欠落、取得範囲外、改版による箇所不一致、古い可能性が高く現行への適用を確認できない主張は、採用を保留し、一次資料で確かめる作業義務を出す。具体的な数値の有効期限を推測しない。作業義務は主張・source・対象版・不足条件・再確認先を保持してOSの既存登録/振り分けへ渡す。task発行やURL到達だけで検証済みに戻さない。
+- **責務と依存**：033の取得source契約と該当個別connector、LABOの分解・比較・評価、051の外部知識評価循環へ接続する。外部情報の取得主体とLABOの意味照合、BRAINへの汎用構造候補の採否、OSの作業登録を分ける。検証済み主張であっても051の分解・比較・実験を省いてBRAINへ直接採用しない。外部テキストを命令へ昇格させない。
+- **失敗時の戻し先／未完義務**：source identity・取得不足は取得主体へ、主張と箇所の不一致はLABOの評価へ戻し、一次検証義務と採用保留を引き継ぐ。原文が読めない場合に別版や要約で補って成功としない。対象revision変更時は当該主張の根拠を再照合し、過去結果と現在の未検証状態を分けて保持する。
+- **旧sourceとの対応**：`LEGACY-ASSET-EE5DBACC7F28F7D1F605` の旧 `docs/design/helix/L3-requirements/pillar-functional-requirements.md`、HR-FR-P8-01とHAC-P8-01a/b。`PREISO-REV-000013`のbaseline `6fabd12512a3659fff4a956692cdd61faeeb16ce`（162/252/253行、file SHA-256 `665dbbfc09ac27369c102ad1963f03cab16e44bb57cd80e0efe1e89dc6325393`）とpre-isolation `2d4991042be55268bac30a8bbcdac45b3865030a`（168/261/262行、file SHA-256 `7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544`）を別入力として保持する。該当3条件の原文bytesは一致するが、文書全体の同等性は推定しない。source attribution、span照合、URL/公開日/版、出典不明・陳腐化時の採用保留と一次検証義務を現行LABO/OS責務へ再導出する。旧L3層名や旧runtimeを現行実装にコピーしない。
