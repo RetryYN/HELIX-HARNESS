@@ -40,3 +40,15 @@
 `HARNESS-L2-027`（単体source extraction）、`HARNESS-L2-028`（connection差分照合）、`HARNESS-L2-029`（composite往復改修proposal）はすべて未採択の`version_target: 1.0` candidateであり、この記録から採択・実装許可を生成しない。G15候補の`HARNESS-L2-025/026`は保存設計候補として対象revisionで適用が確認できた場合のみ入力にし、candidateを承認設計とは扱わない。G16はG15設計合成、G17 simulation、G18 test/reproduction generation、G19 worker支援を重複所有しない。
 
 要求/製品意味の差はHARNESS-L2-008/該当上流ownerへ、設計義務・境界の差はHARNESS-L2-014/設計ownerへ、verification oracle不足はHARNESS-L2-022へ、入力source/read permission不足はsource/security/data ownerへ戻す。unknown/stale/矛盾は非影響・no-changeへ推定しない。code patch、data migration、commit、releaseはこの候補の外である。
+
+## 独立review追補（親L1候補の説明補足・訂正）
+
+本追補は上記の「現行親との対応」とL2候補本文に対する説明補足・訂正であり、過去の記述を削除・置換しない。親L1は既存の企画意味を候補の処理へ対応付けるもので、新たなL1意味を追加しない。
+
+| Candidate | 対応する既存親L1 | 意味上の対応理由 |
+|---|---|---|
+| `HARNESS-L2-027` unit | `HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-005` | 001のV-model成果物接続に沿って観測対象と成果物identityを対応付ける。003の要求変更・下流影響追跡へsource observation候補を渡す。005の明示された利用version/configuration/conditionの下で選択sourceを扱う。抽出は観測候補であり、これらL1の意味や要求・承認設計を変更しない。 |
+| `HARNESS-L2-028` connection | `HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-006` | 001のV-pairでsource observationと保存designの対象revisionを結ぶ。003の影響追跡と004の検証義務に従ってaffected/unknownを返す。005の明示scope/version条件で比較し、006のBackflow・再開条件へ差分を渡す。既存L1義務を比較connectionへ接続し、設計authorityを移さない。 |
+| `HARNESS-L2-029` composite | `HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-006` | 001のV-pairと複数成果物のtraceをbundleで保つ。003の影響追跡と004のverification obligationに対して、範囲限定proposalを組み立てる。005の明示version/configuration/condition内だけで案を作り、006のBackflow・再開条件と未完義務を残す。proposal生成は実変更やL1-007の製品群完成判定を行わない。 |
+
+027の親L1説明が003/005だけを取り上げていた箇所は不十分であるため、上表のとおり既存HARNESS-L2-019との親関係を踏まえて001を補い、028/029には接続される既存L1-001/003/004/005/006を明記した。これは既存L1意味の対応範囲を記録するもので、親候補または上流意味の採択を表さない。
