@@ -207,3 +207,50 @@ L2-017は接続横断境界であり本追補の17件ではない。L2-030–045
 - **出力oracle**：selected source, assumption, observed fact, inference, uncertainty, alternative, return targetと、候補にしたtest caseが対象requirement/oracleへ追跡できる。AIDOC/CLR-R06 packet利用時にはsource authority/revisionと必要情報を維持し、secret/private reasoning/未承認結論をpacketへ注入しない。
 - **相談/実行/独立review境界**：INT単体の相談案作成は合格可能だが実相談は未成立である。実相談はHELIXOS-L2-028のreceipt、元Workerの変更・検証までの一周はHELIXOS-L2-029、OS管理下のoracle/test実行はHELIXOS-L2-020、oracle/段階/受入契約はHARNESS-L2-022により別評価する。元Worker/助言者/支援者を同じ作業の独立reviewerに数えない。
 - **失敗・未完義務**：共通入力、選択source/version/authority/oracle applicabilityが欠ける場合、または診断operationに必要な症状・証拠が欠ける場合、そのoperationのcandidateを保留し不足とownerを返す。ただし診断証拠の欠落を理由に、入力が揃った事前test/指示準備candidateまで保留しない。実相談の返答やworker change、評価結果がない候補を有用・採用済みと断定しない。
+
+## G17 条件付き設計model計算・接続・比較の受入候補
+
+対象candidateはHELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071（各`version_target: 1.0` candidate）。以下は未実行の内容oracle案であり、受入fixtureの小さな有限modelに対する独立計算との一致、revision/provenance、未対応範囲を判定する。このfixture oracleは通常scenario計算に期待結果を要求するものではない。通常計算はsource-bound model/rule/単位から算出し、trace・unknownを返せる。独立oracleはこのL11 fixtureと、利用者が期待結果を指定して照合を求める検証operationでのみ必要となる。fixture入力modelのsource/owner、schema・rule版、scenario・scope・単位・oracleを先に固定し、説明文・trace fieldの存在を合格にしない。合格は実機性能保証、実環境/Worker変更、設計採択、L1/L2承認を生成しない。
+
+### HELIXINTELLIGENCE-L2-069 unit — 有限modelの条件付き計算
+
+**親L1候補**：`HELIXINTELLIGENCE-L1-003`, `HELIXINTELLIGENCE-L1-004`, `HELIXINTELLIGENCE-L1-006`, `HELIXINTELLIGENCE-L1-013`。**scope**：一つのsource-bound model revision、単位付き条件、有限状態/edge/工程/負荷window。
+
+**正常例（利用量増加と数値oracle）**：小さなqueue modelを与える。状態`q`は各step開始時のqueue件数、各stepのservice上限は8件、処理数を`served=min(q+arrival,8)`、終了queueを`q_next=q+arrival-served`とする。初期`q=0`。baselineは到着5件/5件、scenarioは5件/10件で、同じservice rule・scope・windowを使う。独立算術oracleはbaselineの処理数5/5・終端`q=0/0`、scenarioの処理数5/8・終端`q=0/2`である。INTELLIGENCEの遷移trace・処理数・最終queueが同じmodel/rule版から一致し、「詰まり」は2step目以降のqueue増として示す。queue初期値・処理能力・1step時間が与えられていなければ時間や費用を数値化せずunknownとする。
+
+**正常例（DB断伝播）**：modelには`DB=available`からevent`database_disconnected`で`DB=unavailable`へ移る規則、`order_processor requires DB.available`のedge、`order_processor→order_tx=waiting_for_db`のfailure遷移、`retry_queue`への未完数移送規則を明記する。独立graph-walk oracleは、イベントを受けたorder処理だけが`waiting_for_db`になり規則どおりretry queueへ移ること、DB依存edgeのない`reporting` branchのstateは変化しないことを期待値とする。recovery ruleがなければDB復旧・retry成功を生成せずblockedで終える。
+
+**正常例（仮想Worker 2→4・bottleneck/時間/費用oracle）**：同一load 18 jobs、1仮想Worker service rate 3 jobs/min、shared DB ceiling 8 jobs/min、throughput=`min(worker_count×3,8)`、worker rate 0.20 credit/(worker·min)、DB rate 0.10 credit/min、線形同時処理・稼働時間は全work完了まで、queue/overheadなしと全入力されたscenarioを使う。独立計算は2-worker時 throughput 6 jobs/min、elapsed 3 min、cost `(2×0.20+0.10)×3=1.50 credits`、4-worker時 throughputはDB bottleneckの8 jobs/min、elapsed 2.25 min、cost `(4×0.20+0.10)×2.25=2.025 credits`。時間差 -0.75 min、費用差 +0.525 creditsとなる。4-workerで2倍速とせず、shared DB上限が律速であり費用は増えるとtraceと比較結果に示す。これら数値はfixtureの単位・係数から出た算術であり、製品閾値・実環境性能・価格主張ではない。worker countはsimulation inputだけでOS assignmentや実worker数は変わらない。
+
+**誤りを含む例**：別revisionのservice capacityとcost rateを混ぜる、unit変換なしに秒/分や通貨を比較する、shared DB ceilingを落としてworker追加を2倍速とする、DB failure edgeのないreporting branchまで失敗にする、未定義recoveryを自動補完する、AI explanationをtransition evidenceとして出す、予測を実測と表示する場合は不合格。根拠不足箇所はunknown/unsupported/blockedを保つ。
+
+**未見例**：作成側に伏せた別queue modelまたは未見の状態名・dependency field・failure edge順序を与え、独立した小規模interpreter/graph-walk oracleで結果を照合する。schema/ruleの適用範囲内ならstate mapping、計算値、影響先がoracleと一致し、未対応要素は局所unknownで残る。未知domain/edgeに対する説明の説得力やconfidenceだけで評価成功・一般適用をclaimしたら不合格。
+
+### HELIXINTELLIGENCE-L2-070 connection — CORE inputとLABOへの結果hand-off
+
+**正常例**：Product Core/HARNESSからのmodel・requirement/design・工程contract/verification obligation receiptについて、HELIXINTELLIGENCE-L2-033のsource identity、owner、model/design revision、connector contract版、scopeが一致するinputを受ける。receiptは入力・計算・送達・受領の段階ごとに分ける。HELIXINTELLIGENCE-L2-033 input receiptを先に記録し、HELIXINTELLIGENCE-L2-069 resultを同一source revision/scenario identityに束ねた後でのみ、HELIXINTELLIGENCE-L2-040 contractを通してLABOへ送る。HELIXLABO-L2-024 consumer receiptは送達後の独立段階で受ける。HELIXLABO-L2-024に届くreceiptには仮想calculationのsource revision、scenario・model rule版、対象scope/window、prediction/simulated status、assumptions・unknownが残り、LABO側の受領identity・版と往復照合できる。後の実測は別source revision/observationとして同じscenario keyへの関連を示し、当初のsimulation resultを書き換えない。独立期待値はsource/consumer fixture receipt ledgerとの照合であり、単なるfield存在ではない。
+
+**誤りを含む例**：別product/model revisionのCORE inputを結ぶ、HELIXINTELLIGENCE-L2-033の許可scope/connectorを飛ばす、source design authorityをINTELLIGENCEに移す、HELIXINTELLIGENCE-L2-040／HELIXLABO-L2-024 receiptの版/相関ID/対象scopeを混ぜる、仮想結果をWorker実測として送る、LABO受領がないのにhand-off済みとするなら不合格。現行HELIXINTELLIGENCE-L2-033 payloadが要るtyped model relationを提供しない部分は不足としてsource/contract ownerへ戻し、candidateのみで新fieldを既成契約に追加しない。
+
+**LABO側の境界例**：HELIXLABO-L2-006はOS assignmentに従うWorkerの実験実行と、同一experiment/target versionの結果比較を扱う。simulation receiptだけを渡したcaseでは、実Worker runが存在しないため「実験実行済み」「実測比較済み」としない。predictionと後日実測の比較には既存HELIXINTELLIGENCE-L2-006 L11 oracleを再利用する。同じtarget revision/scope/windowで予測方向/範囲と実測の一致差を記録し、既知regressionの誤予測を成功扱いしない。数値精度閾値に有効なscope decisionがなければ測定値だけを記録してpass/適格化を判定しない。HELIXLABO-L2-024は受領evidence、HELIXLABO-L2-006は実験/実測と独立評価のownerを保ち、INTELLIGENCEは自己採点しない。
+
+**未見例**：未公開schema版や遅延/重複/out-of-order LABO receiptを与える。version/compatibility/scopeが一致するreceiptだけを受領に紐づけ、重複を重複eventとして識別し、欠落・stale・未対応consumer fieldはnot_received/unknownとして残す。共通schemaの一例から他source/製品へのcompatibilityを外挿しない。
+
+### HELIXINTELLIGENCE-L2-071 composite — 条件変更→計算→比較
+
+**正常例（受入fixture）**：最初にHELIXINTELLIGENCE-L2-033の入力receiptで同一model revisionとscenario条件を固定する。baselineは2stepの到着5/5、負荷増scenarioは5/10、各stepのservice上限は8とし、HELIXINTELLIGENCE-L2-069のqueue oracleを適用する。その後に利用load増、DB断、仮想Worker 2→4を別々のscenario runとして計算し、計算結果ができてからHELIXINTELLIGENCE-L2-070を使いHELIXINTELLIGENCE-L2-040送達、HELIXLABO-L2-024受領へ進める。HELIXINTELLIGENCE-L2-069のqueue/graph/numeric oracleに各runを照合し、HELIXINTELLIGENCE-L2-071 bundleでは①変更した条件と不変条件、②順序付きstate/impact propagation、③各scenarioのqueue/bottleneck/blocking state、④数値化できる時間と費用・baseline差、⑤未解決のsource/coefficients/edge、⑥LABO向けsource-bound結果receiptを一つのscope付き比較表で追える。上記worker fixtureなら2→4の見かけの容量増よりDB ceilingが支配し、completionは3 minから2.25 min、費用は1.50から2.025 creditsへ変化するという独立算術oracleに一致する。DB断例では明示edge上のorder processのみblockedとなり、recovery未定義を維持する。単体calculationとconnectionが通ってもcompositeのscope/比較/receiptが不一致なら不合格。この受入oracleはfixtureの期待値であり、通常scenarioに期待値がない場合も計算結果・trace・unknownを返せる。
+
+**誤りを含む例**：baselineとscenarioで異なるmodel/revisionを使う、複数scenario間で共通の単位/係数/時間windowを確認しない、Worker数を実資源設定と見なす、DB failureからモデルにないrollback/retry/recoveryを作る、影響edge外へfailureを伝播する、未定義のcostを0とする、単体結果を実測/LABO評価済みとする場合は不合格。該当scenarioだけをholdし、他の有効scenarioも依存関係を保って報告する。
+
+**未見例**：held-outの有限modelで、既知構造と新しいdependency/failure edgeが混在するfixtureを与える。明示ruleの範囲内のfixture scenario結果は独立oracleに照合し、未見edge/domainはunknown/unsupported、後の実測receiptなしは未比較とする。通常scenarioで期待結果が指定されていない場合、独立oracleなしでも適用可能な明示ruleから計算し、unsupported箇所をunknownとして返す。実測比較にはHELIXINTELLIGENCE-L2-006 L11 oracleを使い、数値閾値のscope decisionがなければ測定値のみを記録して合否を付けない。良好な小規模fixtureだけで精密・汎用simulation適格を宣言しない。
+
+### 共通依存区分・scope
+
+HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071ごとにHARNESS-L2-023の4区分を利用条件・operation単位で閉じる。HELIXINTELLIGENCE-L2-069はHELIXINTELLIGENCE-L2-033 input receiptのみを計算入力に要し、HELIXINTELLIGENCE-L2-070全体の送達完了を前提にしない。HELIXINTELLIGENCE-L2-070はHELIXINTELLIGENCE-L2-033 input→HELIXINTELLIGENCE-L2-069 result→HELIXINTELLIGENCE-L2-040 send→HELIXLABO-L2-024 consumer receiptの独立段階、HELIXINTELLIGENCE-L2-071はHELIXINTELLIGENCE-L2-033入力→計算→result送達→consumer受領の順で成立を判定する。
+
+- **常時必須**：適用するHARNESS-L2-010/011 pack identity・契約revision・scope・provenance、対象Product Core/model source identityとrevision、HELIXINTELLIGENCE-L2-003／HELIXINTELLIGENCE-L2-004／HELIXINTELLIGENCE-L2-012／HELIXINTELLIGENCE-L2-013のfact/推論/unknown/trace条件、シミュレーション結果を実測にしない区分と停止条件。connection operationにはHELIXINTELLIGENCE-L2-033 input、HELIXINTELLIGENCE-L2-040 result handoff、HELIXLABO-L2-024 consumer contract/receiptを段階ごとに含む。
+- **特定操作時のみ必須**：数値時間/費用は単位付きrate/price/effective time、DB断はfailure/propagation/recovery rule、Worker scenarioは仮想capacity/shared-resource ceiling/schedulerを要する。L11受入fixtureと利用者が期待結果を指定した検証operationでは独立oracleを照合条件に含める。通常scenario計算には期待値oracleを要求せず、明示model/ruleから算出した結果・trace・unknownを評価する。後続actual comparisonはsource receiptと既存HELIXINTELLIGENCE-L2-006 L11比較oracleが操作条件として必要。HELIXLABO-L2-024は受領evidence、HELIXLABO-L2-006は実験/実測と評価のownerを保つ。条件のない利用には数値計算やactual comparisonを必須化しない。
+- **選択した入力元に応じて必須**：選択model, baseline, load, price/capacity, failure event, later observationのidentity/version/scope/provenance/access契約。未選択sourceは未観測。別製品、branch、環境、Worker telemetryへ黙ってfallbackしない。
+- **参照資料のみ**：背景説明・例題・未選択pattern。source/design authority、model/rule revision、unit/price/source、data-use/security条件を参照資料扱いに落とさない。独立期待値oracleはL11受入fixtureまたは期待結果付き検証operationでその照合条件となり、通常scenario計算には必須にしない。
+
+**受入範囲外／未解決**：高精細な物理simulation、未入力の条件を推定補完する万能model、HARNESS-COREから独立した汎用model正本、OSの実worker配賦/起動や実環境/resource configuration変更、モデルが存在しないdomainへの外挿はこのcandidateに含めない。後続実測比較は既存HELIXINTELLIGENCE-L2-006 L11 oracleを使い、HELIXLABO-L2-024が受領evidence、HELIXLABO-L2-006が実験/実測の独立評価を所有する。数値精度閾値に有効なscope decisionがない場合は測定値を記録し、pass/適格化を判定しない。新能力や一律のPO問合せを要求しない。
