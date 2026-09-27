@@ -1,0 +1,2920 @@
+{
+  "authority_effect": "none",
+  "evidence_kind": "static_read_after",
+  "integration_baseline": "85cee18960bd1973fb1b28132e6498464b0f673b",
+  "approved_requirements_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+  "po_decision_date": "2026-09-28",
+  "mechanisms": {
+    "harness": {
+      "pr": {
+        "headRefOid": "03b1969b26a30e9e2b68149bff2e10c5bfe78110",
+        "mergeCommit": {
+          "oid": "30f3276326e6a590c97241d44ba5157b22cc8bac"
+        },
+        "mergedAt": "2026-09-27T16:51:50Z",
+        "number": 2198,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2198"
+      },
+      "independent_no_findings_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2198#issuecomment-5857828976",
+      "read_after": {
+        "parents": [
+          "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "03b1969b26a30e9e2b68149bff2e10c5bfe78110"
+        ],
+        "changed_paths": [
+          "docs/governance/audits/requirements-stage/helix-harness-po-confirmation-2026-09-27.md",
+          "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md"
+        ],
+        "reviewed_blobs_match_merge_and_baseline": true
+      },
+      "decision": {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      },
+      "confirmation_packet": {
+        "path": "docs/governance/audits/requirements-stage/helix-harness-po-confirmation-2026-09-27.md",
+        "sha256": "b0cdf27aa9eb1378a5dd9b169ebbf1eb536ef78e2e4816b4290a73d7cd38ae66"
+      },
+      "approved_files": [
+        {
+          "path": "docs/helix-harness/L1-planning/product-intent.md",
+          "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f",
+          "git_blob": "7d49551dac8da0ad15151090d971ce72807ce353"
+        },
+        {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+          "git_blob": "e09de04601039d8593768eb3f3342d3416d03b8b"
+        },
+        {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+          "git_blob": "f827c6bd955bbeb91deba5b7dced93e512e5da9e"
+        }
+      ],
+      "candidates": [
+        {
+          "identity": "HARNESS-L2-010",
+          "registration_id": "MPR-RC-HARNESS-L2-010-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:9fbd159e2b1cbf31ef16913e29b33417ab2f247e2c0f0328268f2c9f67e2d6b4",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-011",
+          "registration_id": "MPR-RC-HARNESS-L2-011-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:30eb7f1ebc78889dc640155aa09811c7a6bcc2938bb4e34f122f245442c97952",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-012",
+          "registration_id": "MPR-RC-HARNESS-L2-012-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:ebdb183eee98909a5777eaf4602423bd43698669013b2d1538de8f29626728b2",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-013",
+          "registration_id": "MPR-RC-HARNESS-L2-013-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:11dccf3f73803f4cd0950c51328c755b5492cdaa720ce86c0cd9aefcd2e11f49",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-017",
+          "registration_id": "MPR-RC-HARNESS-L2-017-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:623b91b59a5cf09055e8604c3c84aebfe9428b86f950a0bcb2a9c1605d710d17",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-018",
+          "registration_id": "MPR-RC-HARNESS-L2-018-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:3497158cd4b39bb9059c20f9cfe2c0a647181e3dd566ff0d247ad5f4d5fc4671",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-019",
+          "registration_id": "MPR-RC-HARNESS-L2-019-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:7bd3d180259af1febe50e013eea5aa5609d5af3c28ce89191c4670f3e8c88000",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-020",
+          "registration_id": "MPR-RC-HARNESS-L2-020-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d68ecbe2512b45f6f4c09cf395bd05b164a8243997f954e5459d42b29c69de7d",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-021",
+          "registration_id": "MPR-RC-HARNESS-L2-021-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c036a0a10beeb7c93587e3e71897c750c56c55a51df3850a1bb5ffb58dc446dc",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-023",
+          "registration_id": "MPR-RC-HARNESS-L2-023-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:32ad44e70357315304c5da5ce012f7ba4b9956e27a699f21ecddea1c54eeaf03",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-024",
+          "registration_id": "MPR-RC-HARNESS-L2-024-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:b8e45ca6df9bd498f9a385d33b3c3dfb96e367d31fb91c434a23bf848e98b2a8",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-convergence-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-014",
+          "registration_id": "MPR-RC-HARNESS-L2-014-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:eca6896fa86d4a929ac767cdeb81453c733f42db0d772b416bef5d97a5937dc9",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-015",
+          "registration_id": "MPR-RC-HARNESS-L2-015-004",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d528e724da205072383a97c4dadf6ece9fb95f2ff2152eb5a5d1bd416029f601",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-016",
+          "registration_id": "MPR-RC-HARNESS-L2-016-004",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:3abd8cdd1df5335a87848fcd7c232708dfd6611a5c0e78083962c33e41990e26",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-022",
+          "registration_id": "MPR-RC-HARNESS-L2-022-004",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:88cb5ac2fb5922ebff745b0827b8e8a9ef1273b66f946faf4a265124ebf9fdc1",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-026",
+          "registration_id": "MPR-RC-HARNESS-L2-026-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d797f5d29526059783ea6e469f762b6d51373dbece7223f2941894130c73b880",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-harness-design-composition-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-025",
+          "registration_id": "MPR-RC-HARNESS-L2-025-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:452339e55022f3b8a15c509eb6f05a36c2c01fc10bcac616a1c757b4187df979",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-harness-design-composition-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-027",
+          "registration_id": "MPR-RC-HARNESS-L2-027-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:fb81f7e465ebd7db2f06a7115f14b6a651b2886ead17d493618475c61aa60032",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-028",
+          "registration_id": "MPR-RC-HARNESS-L2-028-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:2a53752750ef477ad34862966fbe220c9e0849bdbec05e101d0125de234fc174",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-029",
+          "registration_id": "MPR-RC-HARNESS-L2-029-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6838658a8b4cf61e1b519675d87ea86ea68b66928af0990ee23a161d99d88e5b",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-030",
+          "registration_id": "MPR-RC-HARNESS-L2-030-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:579043ac6abf9bff8712355ff96da3cd6287b286947074a11efc583c1f38e0a1",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-031",
+          "registration_id": "MPR-RC-HARNESS-L2-031-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:ca1e113a5980df023bdb27bb461e1fc57137d14da060d26180e4d70abdf90611",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-032",
+          "registration_id": "MPR-RC-HARNESS-L2-032-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:83967a4eb0b9671293bc0d6006652c0ca42648836e108f6093c01e55ff77c569",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HARNESS-L2-033",
+          "registration_id": "MPR-RC-HARNESS-L2-033-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:67e08069cb58f6f62c54d452e2d04c1587f1106f210254b2fc82ae00a10e10dd",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        }
+      ]
+    },
+    "os": {
+      "pr": {
+        "headRefOid": "51e170f8a1e412f201173e8e7116a82538d451e0",
+        "mergeCommit": {
+          "oid": "9ee20d830f7b275b4d9437fc686a9ff513b38d04"
+        },
+        "mergedAt": "2026-09-27T16:58:58Z",
+        "number": 2199,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2199"
+      },
+      "independent_no_findings_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2199#issuecomment-5857875168",
+      "read_after": {
+        "parents": [
+          "bd51db2d67f0f6e2537c086daa3191e4ac2ae424",
+          "51e170f8a1e412f201173e8e7116a82538d451e0"
+        ],
+        "changed_paths": [
+          "docs/governance/audits/requirements-stage/helix-os-po-confirmation-2026-09-27.md",
+          "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md"
+        ],
+        "reviewed_blobs_match_merge_and_baseline": true
+      },
+      "decision": {
+        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+      },
+      "confirmation_packet": {
+        "path": "docs/governance/audits/requirements-stage/helix-os-po-confirmation-2026-09-27.md",
+        "sha256": "9c3fc5519da841a83d8d1719f84147a59b48f4810c9f995713d895be6dd94737"
+      },
+      "approved_files": [
+        {
+          "path": "docs/helix-os/L1-planning/system-intent.md",
+          "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+          "git_blob": "073531b8fd0a4d59feebd0da1a3672028ab8db61"
+        },
+        {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+          "git_blob": "44a2db57aac3e23963da283284d229b5269d7ed2"
+        },
+        {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+          "git_blob": "e75e5d5163149bc3c2ed48f973067ba991accc33"
+        }
+      ],
+      "candidates": [
+        {
+          "identity": "HELIXOS-L2-014",
+          "registration_id": "MPR-RC-HELIXOS-L2-014-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:55e35f07301f891c0dfee4f16b107cef62a7aed92dae12c8cb55ad3ff7febcc1",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-l2-014-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-015",
+          "registration_id": "MPR-RC-HELIXOS-L2-015-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:f2dc267a0ee538ea6c5e8e96e28f7853c674f0afd7506763fd8277a9181cd6ef",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-016",
+          "registration_id": "MPR-RC-HELIXOS-L2-016-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:10242ad9ca2021f29a096b0037c1349dbb332c1ea91f185065bec11ea86a6743",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-018",
+          "registration_id": "MPR-RC-HELIXOS-L2-018-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4ca189ed491490e2ed1ee75095b64d2e294319e6132d4595d631fcd4ba8bc408",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-019",
+          "registration_id": "MPR-RC-HELIXOS-L2-019-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:9362a64eef0f04968a8b1e89fde0027a145d5ab5c6aa9a6423d6e05e19ed447a",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-020",
+          "registration_id": "MPR-RC-HELIXOS-L2-020-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:fa62debc978fba6f5ab4146c0d3515a7ce7b5b4df3e054bd953b0f55e2f8878a",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-022",
+          "registration_id": "MPR-RC-HELIXOS-L2-022-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:0420ffc076b080ceba91b3344d149d1316c745bf36c2ea3a97e2cc07f9359aea",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-024",
+          "registration_id": "MPR-RC-HELIXOS-L2-024-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:b84651c09401e2d58c50652d2e74942cbe3f485ec949d79a42255a947b075dcb",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-025",
+          "registration_id": "MPR-RC-HELIXOS-L2-025-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:b59cfc3d4801d71391c528214f2de573494b257f0783841141982963cf43ff8c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-017",
+          "registration_id": "MPR-RC-HELIXOS-L2-017-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d8bf7fe2ecbe9c1ef8a709b58af8dec1eeab15171b6932002a834b438f6fd1df",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-021",
+          "registration_id": "MPR-RC-HELIXOS-L2-021-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:0656171a926f67d47263a53cdd012b64112c6143399ab5cb4ac35d00e804dc81",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-023",
+          "registration_id": "MPR-RC-HELIXOS-L2-023-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d0170f04d580850bcc2d8f2670a75f2137bfc0f04b2bb789819b2c1c72566020",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-026",
+          "registration_id": "MPR-RC-HELIXOS-L2-026-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:e52cc56d219b6aa77e037985b55ff5b21aff2be2a6f5ea497f84cffb3f679374",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixos-stage-scope-derivation-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-027",
+          "registration_id": "MPR-RC-HELIXOS-L2-027-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:f0e3e68996a3f9b9cf1740413a979483f32b78dcc8cd1aca9a881d7dd7fa2d0c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-os-first-run-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-028",
+          "registration_id": "MPR-RC-HELIXOS-L2-028-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:f41238ee4660d455d6f6a144bdab4a35ef9704aac190835a24589853ed3e4fab",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-os-worker-support-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXOS-L2-029",
+          "registration_id": "MPR-RC-HELIXOS-L2-029-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:59a37b8d83fb269c12263089d937e696d0b9bfe8684d46822e267588802878f8",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-os-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        }
+      ]
+    },
+    "brain": {
+      "pr": {
+        "headRefOid": "8d6da0071517af7a50fdef2392a4a9b02192b7bc",
+        "mergeCommit": {
+          "oid": "f449d678b056c92188f9491e246384bc526640d3"
+        },
+        "mergedAt": "2026-09-27T17:03:02Z",
+        "number": 2200,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2200"
+      },
+      "independent_no_findings_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2200#issuecomment-5857903605",
+      "read_after": {
+        "parents": [
+          "1a46efaec6af74769579f40ac1d63be24934c5c4",
+          "8d6da0071517af7a50fdef2392a4a9b02192b7bc"
+        ],
+        "changed_paths": [
+          "docs/governance/audits/requirements-stage/helix-brain-po-confirmation-2026-09-27.md",
+          "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md"
+        ],
+        "reviewed_blobs_match_merge_and_baseline": true
+      },
+      "decision": {
+        "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+        "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a"
+      },
+      "confirmation_packet": {
+        "path": "docs/governance/audits/requirements-stage/helix-brain-po-confirmation-2026-09-27.md",
+        "sha256": "de9cac8bffca1e30060f49248ba12bd0a0a0c8f3b9fc6d9f18313264f951995e"
+      },
+      "approved_files": [
+        {
+          "path": "docs/helix-brain/L1-planning/brain-intent.md",
+          "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0",
+          "git_blob": "a5bd0278817db1de9851a7b1f49a3480448ded6d"
+        },
+        {
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+          "git_blob": "c8723dff3f3e1d702bf8734f80e37199099f6589"
+        },
+        {
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+          "git_blob": "67e187349c0d0c61da7213f646a07bbcee82143d"
+        }
+      ],
+      "candidates": [
+        {
+          "identity": "HELIXBRAIN-L2-001",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-001-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:e708841bf5f5560a96915866d68dd4d37cd663bb250e61084e1d19ebf2eb4abf",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-002",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-002-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6ea1c1d2d7808649aaa553fbc6afcf814e72eeb24a0e83caf89c7d043fe70039",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-003",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-003-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:0c9aa2e7b9c84e47147fc40fb2893ae58a7bbd08b5975dc925299a184824dc56",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-004",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-004-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:ea1ad035c22d4c34626ec52cea621e47f304c66f97c0f44507a01e1325a3686b",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-005",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-005-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:120d16b39c985bd7f62efe6974a71849cad4cb0f234c395a509dc6793ddd9ff0",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-006",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-006-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:f031680bdd08d3b7c3286ebb1a5ecab68efb8c4bfed7b8f005a55ff9bb141900",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-007",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-007-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:9584e757b02bf75f698a055eedb9df6d72aa7bdc07e82808fd92d786861c24ee",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-008",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-008-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:90cc1f814eda48b0da887912b3a0862b94291e3264cd6c84225d14e19bc0900e",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-009",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-009-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:2357966979f49c70ea6881fddd664a9f121dc43849f8b2889768f931c5e89d01",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-010",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-010-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:bb9b45219db15affd84fd2098e37930da414358e9170f42d9f308143a3090b2a",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-011",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-011-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:726a83d698826a4376d6cf8bb47be6a10de671776d27d0b219ada48a38b77091",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-012",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-012-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:f574ca7fda5b129544983c786c5c5881fa7c479e00d96cdeaa60757b7964493f",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-001",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-001-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:9bd664fbf1d0b04f627fb4bc562a7ef63c19ac61813c12c5afe381481075ed60",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-002",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-002-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:367891a1596fc2be0e2eac038d4f385e5163ae7d368fe29460f3a483863ae7f2",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-003",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-003-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4009bed040b56dae56d064690b489f9c71e3e3b4f54cec68d17f695c94be58f2",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-004",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-004-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:87d85b0d9999a9446560dd137911e6c75d29b74c468c2ca80d5c62d6a4d08d39",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-005",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-005-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:8d75a00e618b3102fcb5953350a12071462f46bb247a3fc0bfacc50cff789dd3",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-006",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-006-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:3815313a4d7eb5d3ddbf42d7131f9a285cc865fb26105ba5b6cf64c27f221f23",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-007",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-007-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6139e9c45d889da03b67d37437c39f361592a6a19bb2651b46397c6ddce31684",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-008",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-008-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6fbd7f1527b50a7c46cd201dbad52d7584616a7cb6f41cb2867cda550e1ad67a",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-009",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-009-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:0e2af1c81611096da7b50401d9c8f9342f585b89180fe1353fadda177c9d9ef9",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-010",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-010-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c1980982ae72265e879e460146c829aed253594de05f1a072f1913fe22264ddf",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-011",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-011-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:b54444968964df01a18e94c416d2c99fa2ad84a969c5714fccacb65913cea8a5",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-012",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-012-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:3004b829636d79c4e4a50198df61e72d37839c99c3177bdf9b7daac0d1f91889",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-013",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-013-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c80cb45639d03361769fe42b75d0917d7c58c2e4478ea327c2ce06053720601d",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-014",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-014-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:e3484392ff5b91fa1b8c697282d133a6425141c87a1d5cbe145c3d21ec172cbe",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-015",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-015-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:72fb876a117134621b30cba2884641d273bbd16351b2045bdf98abc2d5f75f49",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-016",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-016-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:a9b3694a104e24453025ca1bbefc2bdb0683078c5653ad1489a5c9c810ed1c8b",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-017",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-017-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:191b4c13d075cd3a9cfbd938bf5d0a961615936e30a9266a904dc633c28fa348",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-018",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-018-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:ae31cde4ec8dd5a0fa336b4161e68771344ce30ca42bd0ee375845e032481e29",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-019",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-019-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:8502faa7d18a6668ebaa852cd7b09700544574816253b4705dc87f7ac83ad786",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-020",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-020-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:2b6f40a524fa611797652318ee4eb6e986727d8f3abea9a3063669d28c51cc1d",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-021",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-021-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6908ff21f39e72df2dd6cfa0f71b9c1d4a9e7d693896835bdf2ef24e5e1ab38a",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-022",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-022-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c199e33e57a16d7199e7e8d15804c08736e0838ec2469d88b5f343285c0960e8",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-023",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-023-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d85f4c42ffda3539d43c9bb20fb2da9700122d42313ee6e5addd0a4dd84a27c6",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-024",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-024-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:95fb926670e7db28687782db8b0e373fbf3abf13519c42b20b0cb1c9e5315473",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-025",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-025-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:dad26c150491fb7b31b6297acffd119b6390a675d79d2feedcc61fc0d857db12",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-026",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-026-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:8e4f9b0ff99e834e9bea3247ea0f63ab7c8625a5e4baf4a7c06ba102523bbd26",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-027",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-027-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:a3d4d6b845dbcebd2ae3ad97a86a83c41bad31cd98c555b881e2c1b645bdfe37",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-028",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-028-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:e3d58bda2215f1a5aeb846d7160f31d832c8e46866a8a53c5e8115664cd72df8",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixbrain-functional-units-coverage-receipt-2026-09-27-r3.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-029",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-029-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:fd3bd6eaf17c5dad916dec0793c28544816c8b785e98fa854b49df843b11382d",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-brain-design-composition-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-030",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-030-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:2a5c1cb842fa1f431d6a07a23506ef4304671b9b407b32527684ddfed987a2a0",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-brain-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        }
+      ]
+    },
+    "labo": {
+      "pr": {
+        "headRefOid": "08652ec0fca77957deb66106926e3c5bafc14fff",
+        "mergeCommit": {
+          "oid": "9a0867e9a97f071b67ff5b03e30db9a7597b13ed"
+        },
+        "mergedAt": "2026-09-27T17:03:27Z",
+        "number": 2201,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2201"
+      },
+      "independent_no_findings_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2201#issuecomment-5857909834",
+      "read_after": {
+        "parents": [
+          "f449d678b056c92188f9491e246384bc526640d3",
+          "08652ec0fca77957deb66106926e3c5bafc14fff"
+        ],
+        "changed_paths": [
+          "docs/governance/audits/requirements-stage/helix-labo-po-confirmation-2026-09-27.md",
+          "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md"
+        ],
+        "reviewed_blobs_match_merge_and_baseline": true
+      },
+      "decision": {
+        "path": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+        "sha256": "b0b4a3fc514494ea2a3e7b435c3788bf1297743a02816245e63efe8115bcb4b0"
+      },
+      "confirmation_packet": {
+        "path": "docs/governance/audits/requirements-stage/helix-labo-po-confirmation-2026-09-27.md",
+        "sha256": "50a003d5eb9b1b5808a9824c66c57ab3cdec016e9fc98f8e560f96345a814959"
+      },
+      "approved_files": [
+        {
+          "path": "docs/helix-labo/L1-planning/labo-intent.md",
+          "sha256": "78b686adcefe6a6867134a17238b59acef19e6c52dc735989f47aa637ed309cc",
+          "git_blob": "d19ac8169020d391a7d68a48136b88fff0fa1b0a"
+        },
+        {
+          "path": "docs/helix-labo/L2-requirements/labo-requirements.md",
+          "sha256": "f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed",
+          "git_blob": "acf85d6c402ff41a5b21d741de2fd7ca22d7ec92"
+        },
+        {
+          "path": "docs/helix-labo/L11-acceptance/labo-acceptance.md",
+          "sha256": "bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200",
+          "git_blob": "27447615f092e365e13f52d775e98cbf3ed19635"
+        }
+      ],
+      "candidates": [
+        {
+          "identity": "HELIXLABO-L2-001",
+          "registration_id": "MPR-RC-HELIXLABO-L2-001-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:27b001d93a39c0a7f2b3b6d89e8acc5777015224c2a18f222f1e32e8933bdc4a",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-002",
+          "registration_id": "MPR-RC-HELIXLABO-L2-002-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:145d4ce09a5534cb92e2635d6615563648203f98b4e33eaeb69882d06aabc141",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-003",
+          "registration_id": "MPR-RC-HELIXLABO-L2-003-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:a3ccf853b438c3efb2edf13a75bf655ac80c9f9624be92b9d81a2c3f4e114921",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-004",
+          "registration_id": "MPR-RC-HELIXLABO-L2-004-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:f49fe650080acaf4036c482b5e9b588e3f9cd1cbfc8674612ba984d4a1d6176c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-005",
+          "registration_id": "MPR-RC-HELIXLABO-L2-005-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:38f70e844ce832dfc9b39e91c537f9c8ba913095cf2140bdf7cc631a2dafc922",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-006",
+          "registration_id": "MPR-RC-HELIXLABO-L2-006-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:70efe5dee64cbfddf73ddcf4b553038f2b51a4a2bfd9b6113dca338164b2476d",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-007",
+          "registration_id": "MPR-RC-HELIXLABO-L2-007-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:acf5320cccc03496897ab3f6bee06adc9195436cc8673fc0d360a751e2194fb9",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-008",
+          "registration_id": "MPR-RC-HELIXLABO-L2-008-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:a219e81f5975e845f9db4ec85774dedd9955857a14949ddc3b263c683c4fd867",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-009",
+          "registration_id": "MPR-RC-HELIXLABO-L2-009-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:448afdff95e00eabe1089657c5424d010f4de9369c3f1f095a993a715a98a0aa",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-010",
+          "registration_id": "MPR-RC-HELIXLABO-L2-010-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:b5df4ddf97563451cfb408cc04d7069a1b953c4596fe539850981e225c22f36a",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-011",
+          "registration_id": "MPR-RC-HELIXLABO-L2-011-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:39d5c13584a1a339660788e79c9fab9b3ad688675587c3d8510fe65153505724",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-012",
+          "registration_id": "MPR-RC-HELIXLABO-L2-012-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:bce298745ed3da0c1538e5bf7324a22da4b16e68715f915e46c48fa7731435a4",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-013",
+          "registration_id": "MPR-RC-HELIXLABO-L2-013-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:f2072a508c91ea00ff35ba233c945365b4dffe3e2d5a3c800152ce38add38876",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-014",
+          "registration_id": "MPR-RC-HELIXLABO-L2-014-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:3d255c00ffd8f560dd9a181790bcc294bfae57e0571acac032ea1eba0f8760d8",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-015",
+          "registration_id": "MPR-RC-HELIXLABO-L2-015-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c55dbc5072f5a55a2e35c7d7acd39392441d19ca3f3c3db387c313c63e73437c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-016",
+          "registration_id": "MPR-RC-HELIXLABO-L2-016-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:439c9ed877915de9a0d2f3028fce04a12f451d7812946e3322be8b46306e8467",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-017",
+          "registration_id": "MPR-RC-HELIXLABO-L2-017-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:34ceade9563b09db94ef5d031c66df4c2741db3d13aa126ca0aa74b9a92b5440",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-018",
+          "registration_id": "MPR-RC-HELIXLABO-L2-018-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d1b31fb8d379f9dcfcdc6213ac4d7fcb193e20d7d59276e231f548f3db9dcfdd",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-019",
+          "registration_id": "MPR-RC-HELIXLABO-L2-019-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:e7a90eba26b101083aa9fa449b220ea53d5c8230eed1f82980797cdabbb51d65",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-020",
+          "registration_id": "MPR-RC-HELIXLABO-L2-020-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:61ae506fe25a2218b3c2581e47eb76a167f8344cc792d5c27d4895bd65121501",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-021",
+          "registration_id": "MPR-RC-HELIXLABO-L2-021-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:00dda7b8a7675bba719585e6fbb94e43a2f273146b195d00daae5718f3f1fc9e",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-022",
+          "registration_id": "MPR-RC-HELIXLABO-L2-022-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4dba319cb6d4abe7c909c9ffc1c9e50593efe4aa6d26548fd0434375baeae783",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-023",
+          "registration_id": "MPR-RC-HELIXLABO-L2-023-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:aafe6d1641624bd7986d5fd6c6a1c67644221c9df0f4503433f442c98f26a36b",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-024",
+          "registration_id": "MPR-RC-HELIXLABO-L2-024-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:b9716e90512221b17da8f2eb3df7d8ea64bcdab2e4223ea32a720ae8c19ddbd4",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-025",
+          "registration_id": "MPR-RC-HELIXLABO-L2-025-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:e6cc467c72635a5fb91257cfb90f6a1039654d8f34a28454353566e3f3c28bf3",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-026",
+          "registration_id": "MPR-RC-HELIXLABO-L2-026-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:64944055712d4d2c8ad4817624c5eeacba241c5bf7a008da18b2cfcdb53ec150",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-027",
+          "registration_id": "MPR-RC-HELIXLABO-L2-027-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:ee444d777dfa4e45646584941998a8fa812b0070d62261e0c9ae3249928b8bab",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-028",
+          "registration_id": "MPR-RC-HELIXLABO-L2-028-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:f51b751526a581ca0cd80821dfdb9b558d3e2d4d0d3cb123420ea7391e45564e",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-029",
+          "registration_id": "MPR-RC-HELIXLABO-L2-029-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c37e1dbc85f2c6fcfb9b55e28d867faf9c4727a3615bd36882a71353eed3c89f",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-030",
+          "registration_id": "MPR-RC-HELIXLABO-L2-030-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:79a9ed7a30f650e949b2f092958a3e84c428e7ff84c0e6409fd056196d4c1e50",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-031",
+          "registration_id": "MPR-RC-HELIXLABO-L2-031-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:021f467ca7907c6adf030e2f78f98a757fb94695c024901261b378369f2c4255",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-032",
+          "registration_id": "MPR-RC-HELIXLABO-L2-032-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:32c6a4940c783689bb98839334a1155a5dad7fb1535d589b818b2916ab840169",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-033",
+          "registration_id": "MPR-RC-HELIXLABO-L2-033-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d50feeafda328a66e04a57804c99bc477930ea984c61db80b11e01d86bd7915b",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-034",
+          "registration_id": "MPR-RC-HELIXLABO-L2-034-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:3d6fa067472bd28ce86fa0da805972e817170bde8602652a2e070b9af572cdbf",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-035",
+          "registration_id": "MPR-RC-HELIXLABO-L2-035-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:8cdd8f7cbbdeb905ea12b600ff007e25ad5f0bb6196c70009402ef1453662bfd",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-036",
+          "registration_id": "MPR-RC-HELIXLABO-L2-036-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c39cf807fbf13b0af8089cf1bfbdf30f23dd9c8c2df0385ced7cc786827e4632",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-037",
+          "registration_id": "MPR-RC-HELIXLABO-L2-037-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:dc0518a71c488c47e5667a7a42ec6690b0a25a4cd576ffb9e16c80505f21375f",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-038",
+          "registration_id": "MPR-RC-HELIXLABO-L2-038-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:0b136320b842e354a9051bef54a0af4a9ba3a56dc72b0087568457ca9a464750",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-039",
+          "registration_id": "MPR-RC-HELIXLABO-L2-039-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c151457d618aa1a32cd5369b2144396e24643ed13a487f520188a47627e95183",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-040",
+          "registration_id": "MPR-RC-HELIXLABO-L2-040-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:2beb40acf8391b6cbc263c21e20c015b1cbe8abddc5e9504f8243d3f064593d6",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-041",
+          "registration_id": "MPR-RC-HELIXLABO-L2-041-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:74b141f510ecfed2a47f3083275cc4c89697f4b930021341a1aa11af22d2a5cf",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-042",
+          "registration_id": "MPR-RC-HELIXLABO-L2-042-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:b4d2c9b3d47e28fc206501a4a5f59446c2cf5c48eb8e2eff10ffa3fc3e6b3856",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-054",
+          "registration_id": "MPR-RC-HELIXLABO-L2-054-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6afd3f3b015ff2064e35a2dc2840da101ea06cf40d2f255ff49bfaeb51dabc4c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-050",
+          "registration_id": "MPR-RC-HELIXLABO-L2-050-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:e41ea805b72f36d34e326b11488f07d2f0a3e030b795442f47370e6869aecbce",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-051",
+          "registration_id": "MPR-RC-HELIXLABO-L2-051-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:90f6271e2d66723fca1e5c14e3ce55341a0383484ef7dd4f49b0ea93be925702",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-052",
+          "registration_id": "MPR-RC-HELIXLABO-L2-052-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4c785ecb6f8f402ebb96c9f1e9452aea184b387c23dc6fc52425541d5a19f917",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-053",
+          "registration_id": "MPR-RC-HELIXLABO-L2-053-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:937861f82c4d2af9093c6a0801b4e4e4d6e87f314c2db62447d4e270d7072665",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixlabo-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-057",
+          "registration_id": "MPR-RC-HELIXLABO-L2-057-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4c8acbcfcf35bcdb62d6e5371141135b7a70da1d69115a41194065471b4fa63b",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-labo-first-run-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-058",
+          "registration_id": "MPR-RC-HELIXLABO-L2-058-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:0ff4f665f3a465611b2489a908bfb161e852fa5706393d04c21d59c3598d9f17",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-labo-dependency-conditions-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-059",
+          "registration_id": "MPR-RC-HELIXLABO-L2-059-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:10edd365a96da6d00927fe40ce16f250978f99c3d248c3ad2f7ff5364e59856c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-labo-effect-purpose-correction-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-060",
+          "registration_id": "MPR-RC-HELIXLABO-L2-060-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:470bc2c564e2ea6121a7f24645bdb5e9c81f0954d650c1e3e665760ff9c9aca5",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-labo-worker-support-coverage-receipt-r2-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-055",
+          "registration_id": "MPR-RC-HELIXLABO-L2-055-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:7796690dfd399e1f5d0cccddde8c7aeabb5da5dd2d8ab7edcdd3e71e74e84065",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-labo-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXLABO-L2-056",
+          "registration_id": "MPR-RC-HELIXLABO-L2-056-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-labo-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:5965a1449b772ba7b53b1e47325a0f0ce77cbde29eb4f6d80c68c9911db48019",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-labo-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        }
+      ]
+    },
+    "intelligence": {
+      "pr": {
+        "headRefOid": "1b46a32af591d516b5d6ac0843c55982ff28f274",
+        "mergeCommit": {
+          "oid": "85cee18960bd1973fb1b28132e6498464b0f673b"
+        },
+        "mergedAt": "2026-09-27T17:03:55Z",
+        "number": 2202,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2202"
+      },
+      "independent_no_findings_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2202#issuecomment-5857919012",
+      "read_after": {
+        "parents": [
+          "9a0867e9a97f071b67ff5b03e30db9a7597b13ed",
+          "1b46a32af591d516b5d6ac0843c55982ff28f274"
+        ],
+        "changed_paths": [
+          "docs/governance/audits/requirements-stage/helix-intelligence-po-confirmation-2026-09-27.md",
+          "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md"
+        ],
+        "reviewed_blobs_match_merge_and_baseline": true
+      },
+      "decision": {
+        "path": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+        "sha256": "8362ecb58921593b473ac85d277f0db36a7cbe0952268531913191e4eab260ad"
+      },
+      "confirmation_packet": {
+        "path": "docs/governance/audits/requirements-stage/helix-intelligence-po-confirmation-2026-09-27.md",
+        "sha256": "1ac2ad15be735a87f48455a176a2769be6b36c28390dccec0ca072901820dcc0"
+      },
+      "approved_files": [
+        {
+          "path": "docs/helix-intelligence/L1-planning/intelligence-intent.md",
+          "sha256": "8042335b8a2b33ea41788be03e286cea73b3251f747b6d0fa85350ea322b6fa8",
+          "git_blob": "0da51e05b88ebcbee60728db52913c64a85f6b91"
+        },
+        {
+          "path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+          "sha256": "40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260",
+          "git_blob": "e78b6f247e18e9db6548f5477eb52c79ef40602e"
+        },
+        {
+          "path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+          "sha256": "4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a",
+          "git_blob": "88e3fde7212aa33036cb64ea8bb7031a26bad4c2"
+        }
+      ],
+      "candidates": [
+        {
+          "identity": "HELIXINTELLIGENCE-L2-021",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-021-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:34cd55567f573abfb4af8d2005229e3db50cd74b7ca4c19206174ce6b8eb4670",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-022",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-022-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:53a6698945a8d75bac9c9dcb37ca4206b0c96502dc70283e4b0c8c66d54d86d0",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-023",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-023-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:04f0e6affcddab241d915c67c152017409cb36e4357b3a312e5503f2c5417376",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-024",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-024-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:abfabec43c78264781e540bec42c020aef05738ab856bc421cf200b081c7b578",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-025",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-025-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c4f73e226263541a8f91a35ac047a7f3e0d955d7bf3b9584b49f5e822e624acb",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-026",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-026-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:1ebb475b443e21ddf6667d9e62e56afbcf200b8a597f9cb8315a92dc131bf31b",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-042",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-042-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:07df0065a089a462c6be10396bef717cac68c215f47dfa3d62319ef82ceb3231",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-043",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-043-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:0999f07c1ab2edbd72ba6e8246adc2c90b4552042167131e6f6fcef4e681df54",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-064",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-064-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:a0228655694c9fd28ae9830d1b878ebb6631cbc1c1f9d8ac5bc371e011b83308",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-065",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-065-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:be4bf04ef0f18146a7f98d7693b83e714438df769a56e162a814235d922f2463",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixintelligence-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-003",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-003-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d739fd7cd2cd2bb435c05e92b52324f8774f7735711c57df441a0441a1635781",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-004",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-004-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:a597a0512263d74234eb7c1c02ddbb1ced9e5f315a39c6480e590f470774a0ef",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-005",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-005-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:dcf94064506f1a385585cc3c3858bc25be22c51a65fe424f239711c2b7072351",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-006",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-006-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:305a62648962423401379aec3c9fcaa4df5622e968a928e007d3eb23e86116b4",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-007",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-007-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:97c0f92a1526c9e0c94ad9a65004e7f71468a79bda9ceeaa9485b730d8ff611a",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-008",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-008-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c79d65c62874f58ec1fba8a6725a842eca0747ed8eae6dadbf989ce14a335d08",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-009",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-009-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:8f865ccfcf8a61614e2e5f71e3902886d2f9e778a8be3dc836cba73f3de5a8d4",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-012",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-012-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:f13b596f6fbffb042b689eadb9ea843053ad3cf25f371fb9148bbdaf3ac68964",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-013",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-013-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:9265708770dcce1396fd4eea5fcfca5858cbd959861fd83bf003e363386de1f2",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-014",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-014-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:40d0170d9713df44e8a38f184732c621acb30728950f3943dec4be876d118b87",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-015",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-015-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:8ff37a0296ab05e80e02b5b553abd98fa952105276d64589ce3d2220e14311d3",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-016",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-016-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:641e8ec5ad7b1d0e298ac191a27655416b4f348e57715423d69f972600007c5c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-018",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-018-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:695e946e305b69c6f06b426d29f252d31c2139726c7090cb06c0c9b201feb78b",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-019",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-019-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:55ed23135b094b3cbaa60ac72fffbf7a09239dfd1de17f4f03a86f59b929aa09",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-020",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-020-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4e7913a2cfe752a217dc3f568998a4fdc99aa1dbd88a6f1c6a068abc8868a240",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-content-quality-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-067",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-067-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d49b2b0301483d2ca92c4586fa52260e88e3a439a58b2e32b5fd567937d24739",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-effect-priority-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-010",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-010-004",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:29b05afbff84475d17b9b1f0698762dab2a1be92480313833d9c8fef87d410c1",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-effect-acceptance-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-011",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-011-004",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:03d87e0c313f91b6a5422f7e9e448fba1138df83017d89f6a2021b25afc7944c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/intelligence-effect-acceptance-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-068",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-068-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d5145aae05dffd5bc61d795748060fca95f446be0b100b786a178bcf503452bf",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-worker-support-coverage-receipt-r2-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-069",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-069-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:546b17514223224850532dd338dbee40b7519b02e4489fff1e85cb298d0c7e70",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-design-model-calculation-coverage-receipt-r2-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-071",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-071-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:106a4cb174c1cc12731708e56429f27b567ead98a5ec16205217e7b89718f9f6",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-design-model-calculation-coverage-receipt-r2-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-070",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-070-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:1bd3f9bac8a82792ee168ebbccafaf1ada71c50a4ad1d90936a4c9434f9615e0",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-scenario-acceptance-correction-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-001",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-001-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:9d7cdd16e6afa2028e8943e8e5117fc412ae5066ffda702d1bfe8ac863b002da",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-002",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-002-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:72b4134416f3d971f1d8a3cf032f3955e221e13d54405c9bb495e43a28513599",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-017",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-017-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:87e6263c2589637e34b9099ba27e65f72e90dcc309e32d901ffa5ee302a26d0e",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-030",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-030-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4ab58fcc22cffeb7e75ea0eba9c2af562d1e9ab6836a094c2c3eec75de2f907d",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-031",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-031-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:272988a2285b77adee1566f7db2f1d41f50d755aa29662d634f112e753e0372c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-032",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-032-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:9775e8ac72ab8444d9958b6749d4609f489f274bea1af614accc0e3490e8063c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-033",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-033-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:201052b0b2faf9fd2a620b7d28e7837beed8152d372a1725f2e2b8de47b2e50b",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-034",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-034-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d2a74b60bcce104ac7bb6dcb25d870b97cb76f8b184bde0420aead6f0066d182",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-035",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-035-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:7f3ed0dee45d62139186fd365d80d9da0fe5773a457bc121f4c3f16a3d74eded",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-036",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-036-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:10f2ed02ab029383574361bdbf721e5a73b8c1004d1946dc08d70012f2b325d3",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-037",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-037-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4746ec003638a1235031def9fe6184bd089a7abc5741c54fa9ed114708bf4447",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-038",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-038-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:92c59fadb6a8e54d372c47db856a84f45af4f89a57e7fdb5e5fdba1dd7ba93da",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-039",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-039-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:961183663ffca094620a3850f427da247693425be0798436916ed531b73a8fce",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-040",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-040-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:82f9ca85832820d63f2924694f230adf8b15be10512d8832a20290a13c720373",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-041",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-041-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:1c7bf3d8a6b718ab946c29c2b84d04f6a7718aa3715528631c97c6387141bcdf",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-044",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-044-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:269aae5aee154cfdda5465358a5008f2d6c352657a1a630ab52eee3012d9414c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-045",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-045-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:fafb172e9d475d0390bcd4b92e14774d01a00cdebb8c6f87cb167c2a57b62f29",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-060",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-060-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:e7dbfd930278c7db5b7fe1517a2121c367c463f38e771128b62fb4e1a4658da7",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-061",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-061-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:fb3261b81242e21fea77c59c13b533c44cb0c4c3fcdf916054515efd02b69522",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-062",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-062-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:cf783691063f4a69a03e49dcbbd5cc7261287769a89e354a702d3a4c36aa2c07",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-063",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-063-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:e42cc8cc09309964ce33d5436b81d99a5ab6cc366488490233246577bfe8a886",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINTELLIGENCE-L2-066",
+          "registration_id": "MPR-RC-HELIXINTELLIGENCE-L2-066-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-intelligence-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4085daba7873d4cddefe498b04e59ff5b4e44ba3ec80a307537b51af601cfa69",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-intelligence-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        }
+      ]
+    },
+    "security": {
+      "pr": {
+        "headRefOid": "15ba2914ae91ead8126fdb0f3f88c7b6a224f917",
+        "mergeCommit": {
+          "oid": "bd51db2d67f0f6e2537c086daa3191e4ac2ae424"
+        },
+        "mergedAt": "2026-09-27T16:52:45Z",
+        "number": 2203,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2203"
+      },
+      "independent_no_findings_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2203#issuecomment-5857833700",
+      "read_after": {
+        "parents": [
+          "30f3276326e6a590c97241d44ba5157b22cc8bac",
+          "15ba2914ae91ead8126fdb0f3f88c7b6a224f917"
+        ],
+        "changed_paths": [
+          "docs/governance/audits/requirements-stage/helix-security-po-confirmation-2026-09-27.md",
+          "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md"
+        ],
+        "reviewed_blobs_match_merge_and_baseline": true
+      },
+      "decision": {
+        "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+        "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff"
+      },
+      "confirmation_packet": {
+        "path": "docs/governance/audits/requirements-stage/helix-security-po-confirmation-2026-09-27.md",
+        "sha256": "1bc74dba84aceb55dbfc06f707e4d81f2ea67955021f267d0783f8e64d7aeff8"
+      },
+      "approved_files": [
+        {
+          "path": "docs/helix-security/L1-planning/security-intent.md",
+          "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d",
+          "git_blob": "06174b826c5dfa398450cb38b44c8b4dd3236246"
+        },
+        {
+          "path": "docs/helix-security/L2-requirements/security-requirements.md",
+          "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+          "git_blob": "e1ccfdf6b0c5ff358b9e4a79a7f088038f3d8be3"
+        },
+        {
+          "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+          "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+          "git_blob": "d373ec1bf994650c74b5d7af66652c9bf8abdbf5"
+        }
+      ],
+      "candidates": [
+        {
+          "identity": "HELIXSECURITY-L2-001",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-001-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:97997b9023ac5291a30cfdb263b0997209e76dfd6ce7378cf6a914da57948d8f",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-002",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-002-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:59b12bbafd3c6aee62a08839e8a56826e28609495422bf5eaa484fe427935700",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-004",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-004-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:58e9e513e934ff3c1ed8da378b05fcc7fdd3e2a27a503feb449bc7a305812d20",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-005",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-005-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:8e8689912796e8fb3e22210619cb1283f6b27ab1804353dfa93fe43eec10a784",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-006",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-006-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:8bcb8c56772c18c8afb3bbd016cade4511da47533cbc39cb0f775860fe4bbee3",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-008",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-008-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6135842a799b9883cb29c5ce9e6ffcf601997d66cb3d314c8031ba9cbbae9f2c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-010",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-010-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:8d63bbbd688538d1a743705539e404b3a684d0631fcd585c74ef387bfca2fb31",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-011",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-011-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:dcd26abfcd8bff20835c05541fe7c3360e5e1a512679c48d6e7c53e368f22496",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-012",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-012-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:a9460cd56aa398e8b553910926987e8a7affc758781f1d0967540fd39acc6e1a",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-013",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-013-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:e6daf304f8d09b86237dde6dfb2ec99029673ef920dcbd3538c56b449edeee3e",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-015",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-015-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6307d5833296e0c438401e8a4a11221a601da0c1389bd813cfb4641fee114a6a",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-016",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-016-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4b57ed4eccad237ce1a952559682456afa7ec1b4578865c3eac452e8b7bc7392",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-017",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-017-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6be42e1e4e3cae9e586e151d80a2e2014a614ef6f0c1323f8f489f54a9539c17",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-018",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-018-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:141dc77299c93399f13ee33673b25bef4074a5b907dd9457f2c350d42d44fe73",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-019",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-019-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:33ef649817f88ac1271c19a70039dc543dc90a2024bd37adb573e489137208a0",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-022",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-022-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:67c6438420f6053e0f42e562fee1f104b5a73ce182d01c8c6fd0eebab0da4e2e",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-023",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-023-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c2e3deb8aea7a46916c9c39943643c33e28e0487e31422f3e4e6236cf266ae35",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-024",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-024-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:2aaf5d6f20ac668b11cd8f3d1f0f10a467503cc2c6d5661a7eb4a03592ab0db7",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-025",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-025-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:546de83f6c7cf16caa56e1f1d593adff103c20fdb8748c3aa73898c23d2eb33c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-026",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-026-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:96119dbf9ec884d3e5556904ff5623bc18974c23cbaf0dfbfd89095cfc5aaad3",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-014",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-014-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6acd2e5b89cc44bfbd70f4d545f666ee51fe356dcb59f7c6c985107f463a1276",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-021",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-021-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:27690b24fe6700ee8559ee97ce586fca8175f2633c5c92d5d6d2ec1ba184ac77",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-027",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-027-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:f3d5fa59eba03cf77fbb8d17180b8d086061cef34818ea87e19209b8be33eb9e",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-028",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-028-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:76740f351c9bad546326e6f322ba4358348f622799a644ad1f4e0372c5ecefb1",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixsecurity-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-003",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-003-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:dc222ffbcdf2511878e805ad26239b4c5d9dd3c9d1a67982b48aee12f2fb8132",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-security-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-007",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-007-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:1ee4d42a1e4178d598ce11b75268845578ba83bcb8ea471e2642ff8630c49504",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-security-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-009",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-009-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:8fb04c1b20003123cbcb8f1b23adaca402e0d94d784473ca63f18ecabf544a84",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-security-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXSECURITY-L2-020",
+          "registration_id": "MPR-RC-HELIXSECURITY-L2-020-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:ff4c66c0065372a575fd0dfef3ac759cad15684d78a0712d7320de383bbe7b80",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-security-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        }
+      ]
+    },
+    "infrastructure": {
+      "pr": {
+        "headRefOid": "0eda20f14c133c74d99fb6d5c12dddfe5dd7d5e5",
+        "mergeCommit": {
+          "oid": "6f92e01fa8831e19988346a6df67b02802ca4f68"
+        },
+        "mergedAt": "2026-09-27T16:59:23Z",
+        "number": 2204,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2204"
+      },
+      "independent_no_findings_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2204#issuecomment-5857881481",
+      "read_after": {
+        "parents": [
+          "9ee20d830f7b275b4d9437fc686a9ff513b38d04",
+          "0eda20f14c133c74d99fb6d5c12dddfe5dd7d5e5"
+        ],
+        "changed_paths": [
+          "docs/governance/audits/requirements-stage/helix-infrastructure-po-confirmation-2026-09-27.md",
+          "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md"
+        ],
+        "reviewed_blobs_match_merge_and_baseline": true
+      },
+      "decision": {
+        "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+        "sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f"
+      },
+      "confirmation_packet": {
+        "path": "docs/governance/audits/requirements-stage/helix-infrastructure-po-confirmation-2026-09-27.md",
+        "sha256": "87fcddb99bfc8c7d2e3246bec2c4c308119ba3483091557d5118c382666b58cc"
+      },
+      "approved_files": [
+        {
+          "path": "docs/helix-infrastructure/L1-planning/infrastructure-intent.md",
+          "sha256": "1673cf1333c762b817e1031cb610de90b6e967f7c2d851ab2a4b71e4959ebc37",
+          "git_blob": "2073df3f78dc9d74c3cfda9bac5dab3654853043"
+        },
+        {
+          "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+          "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+          "git_blob": "8ec8fa92bc1adf03376f60e031dd880095bc02f4"
+        },
+        {
+          "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+          "sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+          "git_blob": "eaa32f53a77a96ffbe2230757c290047708accb4"
+        }
+      ],
+      "candidates": [
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-002",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-002-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c585e55c7759940d169345f7b10d3e615469193d5caf794c81b7e76ec7346740",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-004",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-004-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:376be52bead7ab561f39188fb968b515401204265750d7c08d80fa2e4fe905bf",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-005",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-005-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:b8a19a061f4d45cccb4ff89e6af2dfd9e0f38ef9de141a08b229198b0562fe51",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-006",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-006-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:546bf30c3fca163f1ccb8303cbf26d3be45baa700c77099ddc7d3f6a4701fcbc",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-007",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-007-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:80ecb820424040f016c4dba4c8ec403fdc14f9e4e90e40473df37449592bf7d1",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-008",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-008-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:ae2457734e68f0fa49d801f485fad5b99b08945c8ba85f405306150d8d65c925",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-009",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-009-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:9dcdc2fe685a7a80df26b070ef128611c44bf3fe109c52dfdecde69743a73a92",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-012",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-012-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:fbaf2fd89149d308a61892ab3e1649577ad3fbf787319bf210e5d3e3ce2b56c9",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-013",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-013-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:3f80857a6f1805cb3ab394f65c7ca691413aa9a3e7d4cfc5e3ef5dceec63d91f",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-014",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-014-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:e195bc05ca31ed25ba73776bb76740276015fcc43912ba625a559b5dca037693",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-015",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-015-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4bb33a2a8be5b65da70d99646eb3152b2c3f3b636f80e96a8bbd1ad940427335",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-016",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-016-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:bc7a52de313f2dcf63b0395df43793c820dd7aaae6ce74bcebaf2bd1d7ad00e9",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-017",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-017-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6d529e8686631a84a16fd9c38fd3b4115a36ed88a33d4c6206bf0fed087a0469",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-018",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-018-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d27877e7d8de82864b9403d9f2844b0bd495b39f32c9ae75478e3639741bc279",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-019",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-019-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:3a687be40a2667621c18ba43b175865c5b036b81afc4b8d5f00b59016fc9fbb6",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-020",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-020-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:7d9be336d56ee6634a87c7a92fc4e12a612afa24e99565677ec31c820b7a1c2f",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-021",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-021-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:4fcd915f4bc36a05524c21fecb6848e1fbd857d5c49a40c8c38cec30fccf2e82",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-022",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-022-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:a99d600ec3ed7c5139edca96c8659b76dda5023e83aadd074093e1b98daf138d",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-023",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-023-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:89b6d24bb9f771c9d11acfc00b91e3ad9b14e4140eb138e066d5c00072af1860",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-024",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-024-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:0e0e6b293f5f2db12c5b1f8d643a68218dc8749ab875c6b0ca17b700af6f600d",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-025",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-025-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:7465361b4d272cc1bf352a019272d6212a59282c938af704583ba1c0d493554c",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-026",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-026-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:79609dc61f9c9cb8ec84b91602d4189af5e2be8c9199b1e06e8b254512dfe213",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-001",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-001-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:1f419d31826a8f6627f0595822cd99d5b8c55db0bfd5faa25a735bca92b529c6",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-infrastructure-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-003",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-003-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:dd1b436cf6c66cbfa615c5a154af617c0c2078e70e90345f6d8ad3e09e8e3b0b",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-infrastructure-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-010",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-010-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:c6b93eb12b5bfe8deb36485c688ce02709bfa49da40086b0d4b59cf6cdc45f37",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-infrastructure-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXINFRASTRUCTURE-L2-011",
+          "registration_id": "MPR-RC-HELIXINFRASTRUCTURE-L2-011-003",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6bebc7a8fecafca8fa776e06bf718c0774ef7ae9c96de4bce50155b203a54351",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-infrastructure-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        }
+      ]
+    },
+    "connect": {
+      "pr": {
+        "headRefOid": "92bcf7a18891a47dc0b534a55c51690ffb6c2322",
+        "mergeCommit": {
+          "oid": "1a46efaec6af74769579f40ac1d63be24934c5c4"
+        },
+        "mergedAt": "2026-09-27T17:01:48Z",
+        "number": 2205,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2205"
+      },
+      "independent_no_findings_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2205#issuecomment-5857886671",
+      "read_after": {
+        "parents": [
+          "6f92e01fa8831e19988346a6df67b02802ca4f68",
+          "92bcf7a18891a47dc0b534a55c51690ffb6c2322"
+        ],
+        "changed_paths": [
+          "docs/governance/audits/requirements-stage/helix-connect-po-confirmation-2026-09-27.md",
+          "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md"
+        ],
+        "reviewed_blobs_match_merge_and_baseline": true
+      },
+      "decision": {
+        "path": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+        "sha256": "82db2060dbaa77b5b9e6f38fa11219ec811b108b1870e6a86ca112810f9bae69"
+      },
+      "confirmation_packet": {
+        "path": "docs/governance/audits/requirements-stage/helix-connect-po-confirmation-2026-09-27.md",
+        "sha256": "870abd7a6d02f1cb2beb196d0023df533a6835304b47258975a07406e9f9e858"
+      },
+      "approved_files": [
+        {
+          "path": "docs/helix-connect/L1-planning/connect-intent.md",
+          "sha256": "9c212572afda81405c6d5ab70151f5b35356722204616e85e132162b45907c70",
+          "git_blob": "017c63a2dca9ab1c0e2b4914c8c6675f02dd826b"
+        },
+        {
+          "path": "docs/helix-connect/L2-requirements/connect-requirements.md",
+          "sha256": "31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b",
+          "git_blob": "1a7470f8a4af36d8470e85bcb4f5fff57b68a236"
+        },
+        {
+          "path": "docs/helix-connect/L11-acceptance/connect-acceptance.md",
+          "sha256": "bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad",
+          "git_blob": "afe3d8f3c20f4fa8161cda6d0451075948a340bb"
+        }
+      ],
+      "candidates": [
+        {
+          "identity": "HELIXCONNECT-L2-003",
+          "registration_id": "MPR-RC-HELIXCONNECT-L2-003-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:6eea10829958fee5807147b6a7cdd9d4e889f72fbf5b6cef24ab925e9b85bf42",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixconnect-derived-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXCONNECT-L2-004",
+          "registration_id": "MPR-RC-HELIXCONNECT-L2-004-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:2a62ae83a10c379554ce2ac586edeb887256ee8742f7c8b5c53f0c6250dc41ef",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixconnect-derived-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXCONNECT-L2-005",
+          "registration_id": "MPR-RC-HELIXCONNECT-L2-005-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:d2e2a658c6055384b4946a6aff9840ec3a1d719f9cc6863d8fc260ff0e3af871",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixconnect-derived-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXCONNECT-L2-007",
+          "registration_id": "MPR-RC-HELIXCONNECT-L2-007-001",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:44dac7757466d487bbfc30f3201b6c282c5ab72e3cb660ad528876ada555f75b",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixconnect-derived-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXCONNECT-L2-006",
+          "registration_id": "MPR-RC-HELIXCONNECT-L2-006-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:876d54895668800e8a3f1866523fb65fb68bb7c13bad936396ecf43ecff30db7",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helixconnect-derived-coverage-receipt-2026-09-27-r2.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXCONNECT-L2-001",
+          "registration_id": "MPR-RC-HELIXCONNECT-L2-001-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:895fae2d3c5cd5c725a31e6c16a6d7032e17da08f4e2e509fabb52f0cd85da18",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-connect-identity-acceptance-correction-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        },
+        {
+          "identity": "HELIXCONNECT-L2-002",
+          "registration_id": "MPR-RC-HELIXCONNECT-L2-002-002",
+          "disposition": "adopt",
+          "decision_ref": "docs/governance/decisions/helix-connect-requirements-po-decision-2026-09-28.md",
+          "candidate_semantic_digest": "sha256:ebc3e58d7479cb2f80ada4ebba32363bdcf6cf67e908075b5b1ececb29f8e037",
+          "coverage_receipt_ref": "docs/governance/audits/requirement-registration/helix-connect-stage-review-coverage-receipt-2026-09-27.json",
+          "management_state_unchanged": "registered_proposal",
+          "authority_effect_unchanged": "none"
+        }
+      ]
+    }
+  },
+  "candidate_total": 250,
+  "legacy_regression_status": "separate_verification_required",
+  "implementation_order_A_B": "not_decided"
+}

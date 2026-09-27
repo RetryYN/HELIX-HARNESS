@@ -1,9 +1,17 @@
 # 上流authority管理台帳
 
 status: active_register
-as_of: 2026-09-19
+as_of: 2026-09-28
 
 Conceptと5大目標の行は2026-09-24の人間判断に合わせて更新した。最新責務境界、5大目標、対象別L1、新世代要求候補の行は、同日の[2026-09-24 PO判断](decisions/concept-requirement-po-decisions-2026-09-24.md)に合わせて更新した。他の行の観測時点は個別の記録を優先する。
+
+## 本体8機構の判断反映（2026-09-28）
+
+[作業入口の機構別判断記録一覧](new-generation-start-here.md#本体8機構の現在の判断状態2026-09-28)を正本の入口とする。
+POは確認資料が固定した本体8機構のL1 revisionを確定し、L2と対になるL11一式に合意し、明示250候補を各version_targetと適用条件を保ったまま採用した。
+対象commit・SHA・候補IDは各decision recordで固定する。registerの既存行の状態やauthority_effectは書き換えず、採用は外部decisionとの対応で読む。
+下表の対象別L1/L2/L11の旧4文書・37要求という母集団は過去の観測値であり、現在の本体8機構の確認集合を表さない。
+旧sourceの未完引継ぎ、Web／WEB-OSの別扱い、未判断の実装順序A/Bを保持する。旧要求の全件移管完了やL3承認をこの反映から導かない。
 
 ## 台帳の役割
 
