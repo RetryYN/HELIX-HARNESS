@@ -440,3 +440,22 @@ HARNESS-L2-027/028/029の各利用で、4区分を次のように判定する。
 ### 共通の責務・結果限界
 
 HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle・受入の意味を保持し、HARNESS-L2-010/011が各versioned pack/call境界を保持する。030/031 candidateは独立した生成能力pack、032は選択したexecutorへの接続、033はcandidate生成から後続resultまで段階を結ぶ構成体である。`HELIXOS-L2-020`または利用者CIはrun構成・隔離実行・結果回収を行い、run resultはHARNESS-L2-022 oracleに対する後続証拠としてstage別に扱う。030/031/032 packまたは依存契約を交換した場合は010/011のversion/compatibilityを照合し、影響するcase/oracle/repro/consumer packetを新revisionへ結び直して該当operationを再検証する。014の対設計または022のoracle/義務契約が変わったfixtureでは、既存candidateのtraceと期待値を新契約へ照合し、staleなcase/reproは再生成する。縮小実行を選択した場合は選択executorのisolated run receiptを新しいpack/source revisionに対して再取得する。旧receiptや旧artifactの合格を新版へ流用しない。テストの生成・受渡しだけではtest pass、ProvisionalからIntegratedへの進行、Verified、Accepted、要求承認、releaseを生成しない。上流意味不足はHARNESS-L2-003/004に基づく該当ownerへ、権限/data-use不足はsecurity/data ownerへ戻す。
+
+
+## HARNESS-L2-027〜033 所属候補と利用境界の受入
+
+所属は未採択候補であり、本文の有無を所属の採択とみなさない。下表はL2-010の主owner一つ、共通能力と利用先の分離を要求段階で照合する。正式なmanifest形式はL3へ渡すが、機能の所属候補をL3へ先送りしない。
+
+| identity | 主owner候補 | 正常例で保持する利用境界 |
+|---|---|---|
+| HARNESS-L2-027 | HELIX-HARNESS共通部品 | Full Reverseを選択する各サービス。019共通入口のsource型抽出packとしてsource/provenanceを返し、COREの意味/trace契約と③/014の設計authorityを保持する。019の完了を抽出開始条件にしない。 |
+| HARNESS-L2-028 | HELIX-HARNESS共通部品 | ②要件定義・③設計・④開発・⑤リファクタリング等、差分の対象となるサービス。observationと保存designの比較を共有し、affected requirement/design/code/dataを該当ownerへ戻す。⑤専用にはせず、CONNECTの共通通信と業務上の比較を分ける。 |
+| HARNESS-L2-029 | HELIX-HARNESS-CORE | 設計・code・dataの差分案に関係する各サービス。複数サービスの意味・設計・影響traceを同じscopeで束ねる構成体の所有候補。各成果のauthorityと適用は該当サービスへ残し、候補生成から実変更を行わない。 |
+| HARNESS-L2-030 | HELIX-HARNESS-CORE | case/data/double生成を選択する各サービス。Conceptの横断test/CIに対応する共有生成pack。014の対設計と022のoracle/検証義務を使用し、OS-020または利用者CIの実行責務を所有しない。 |
+| HARNESS-L2-031 | HELIX-HARNESS共通部品 | ④開発・⑤リファクタリングのfailure、⑦運用保守のincident等。PO原文の障害を本番incidentだけへ限定せず、許可されたlog/inputから再現・回帰候補を共有提供する。CORE/022のoracle/traceと選択executorの隔離実行を保持する。 |
+| HARNESS-L2-032 | HELIX-HARNESS-CORE | 030/031利用サービスと選択したOS-020または利用者CI。test artifact/oracle/revision/scopeをexecutor inputへ写す業務上の接続packを所有する。CONNECTは利用時の登録・版照合・通信・再送・追跡を担い、032の業務意味は持たない。実行・隔離・結果回収は選択executorへ残す。 |
+| HARNESS-L2-033 | HELIX-HARNESS-CORE | case生成・再現・回帰を選択する各サービス。複数packを跨ぐtest/CIのtrace構成体を所有する。unit/接続成立と回帰成立を分け、014/022の意味authority、OS/利用者CIの実行を引き取らない。 |
+
+- **誤りを含む例**：同じpackを二つのサービスが所有する、028/029を⑤専用として他の変更先を塞ぐ、031を本番incident専用とする、032の業務意味をCONNECTへ移す、通信成功を実行成功とする、共有pack利用を理由に未選択サービス/OS内部構成を必須にする場合は不合格。各既存IDの4依存区分と入力・出力・failureの条件は維持する。
+- **未見例**：未fixtureのサービス組合せから027〜033の能力を選ぶ場合も、主owner候補・利用先・選択操作の依存閉包を別々に照合する。未宣言の組合せは受入を推定せずunknownとして当該pack/サービスownerへ戻す。所属のラベルだけで互換性や内容oracleの検証を代替しない。
+- **人の確認へ渡すもの**：029/031/032の共有部品とCOREのどちらへ置くかは、消化記録に原文・具体案・推奨・影響IDを残す。確認前も候補を一つ提示し、既存の機構別確認PRで判断する。新しい承認手続きは設けない。
