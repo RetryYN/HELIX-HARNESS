@@ -558,6 +558,8 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 
 ### HARNESS-L2-027 外部実物からの構造・振舞い抽出（unit candidate）
 
+- **所属候補（未採択）**：HELIX-HARNESS共通部品。利用先：Full Reverseを選択する各サービス。019共通入口のsource型抽出packとしてsource/provenanceを返し、COREの意味/trace契約と③/014の設計authorityを保持する。019の完了を抽出開始条件にしない。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。
+
 - **親L1**：`HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-005`。001のV-model上の成果物接続、003の要求変更と下流構造の影響追跡、005の外部利用者が明示されたversion/configuration/conditionで使う契約を具体化する。これは現HARNESS-L2-019の親L1（003／005）に沿った、source extraction処理の候補である。
 - **既存要求とidentity**：HARNESS-L2-019 Full Reverse（既存requirement/code/PoCの持込み、HELIX形式への変換、unknownの保持）を前提にし、初回移行identityを上書きしない。
 - **対象・kind・版・scope**：unit、`version_target: 1.0`候補。利用者が選択した対象製品・source revision・read scopeの静的artifact（code、DB定義/schema、API定義、設定）から、構造と根拠のある振舞い記述を抽出する。実行中service・顧客DB dataの走査、実適用は含めない。
@@ -570,6 +572,8 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 
 ### HARNESS-L2-028 観測差分と保存設計の照合（connection candidate）
 
+- **所属候補（未採択）**：HELIX-HARNESS共通部品。利用先：②要件定義・③設計・④開発・⑤リファクタリング等、差分の対象となるサービス。observationと保存designの比較を共有し、affected requirement/design/code/dataを該当ownerへ戻す。⑤専用にはせず、CONNECTの共通通信と業務上の比較を分ける。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。
+
 - **親L1候補**：`HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-006`。001のV-pair、003の変更影響、004の検証義務、005の明示的な外部利用条件、006の差戻し・再開条件を、sourceと保存revision間の比較へ接続する案。既存relationの置換や承認済み導出ではない。
 - **既存要求とidentity**：HARNESS-L2-027 unitのsource-bound observationを、対象製品のcurrent saved design/model revision・requirement traceへ接続する境界要求。比較候補として使うsaved revisionは対象revision/source/authority状態が特定できるものとし、approvedとの主張はそのrevisionに結び付くapproval receiptがある場合だけ許す。authority状態がunknownまたはstaleならapprovedへ昇格せず比較結果を保留する。HARNESS-L2-014（③設計）を設計authority/契約の既存入口とし、G15の026/025候補は、採用・対象化されている場合に限り相互参照する。**HARNESS-L2-028はcode/API/DBの業務接続要求ではなく、Reverse observationと保存design間のpack connectionである。**対象製品のAPI接続を新しい責務として所有しない。
 - **対象・kind・版・scope**：connection、`version_target: 1.0`候補。1つのproduct identity、source revision、保存design/requirement revision、比較scopeの組だけを結ぶ。
@@ -581,6 +585,8 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 - **失敗・戻し先**：revision不一致、missing relation、partial extraction、複数の矛盾design、custom logicの所有範囲不明では、unknown/affected候補と必要なsource/design再照合を出し、当該差分の結論を保留する。要求／製品意味の不一致はHARNESS-L2-008またはL1 ownerへBackflowし、技術上の曖昧さをコード修正で隠さない。
 
 ### HARNESS-L2-029 差分に基づく往復改修案（composite candidate）
+
+- **所属候補（未採択）**：HELIX-HARNESS-CORE。利用先：設計・code・dataの差分案に関係する各サービス。複数サービスの意味・設計・影響traceを同じscopeで束ねる構成体の所有候補。各成果のauthorityと適用は該当サービスへ残し、候補生成から実変更を行わない。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。
 
 - **親L1候補**：`HARNESS-L1-001`, `HARNESS-L1-003`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-006`。V-pair追跡、変更影響、検証義務、明示構成の利用、差戻し・再開条件を保ち、複数unit/connection成果を一つのchange proposal bundleにする案。Version 1製品群の完成判定（L1-007）はこの限定proposalの親意味に含めず、existing L2-019/003/004のcontractへ接続する。
 - **既存要求とidentity**：027 source extraction unitと028 Reverse-to-design connectionを束ね、保存designと外部で改変された実物の差を利用者が反復して比較・改修できる提案にする。
@@ -600,6 +606,8 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 
 ### HARNESS-L2-030 テストscenario・case・data・double生成（単体候補、version_target 1.0）
 
+- **所属候補（未採択）**：HELIX-HARNESS-CORE。利用先：case/data/double生成を選択する各サービス。Conceptの横断test/CIに対応する共有生成pack。014の対設計と022のoracle/検証義務を使用し、OS-020または利用者CIの実行責務を所有しない。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。
+
 **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。HARNESS-L1-001は要求から検証までを対で追跡する企画、HARNESS-L1-004は対象revision/riskに合う検証義務・反例・証拠・戻し先、HARNESS-L1-005/007は外部利用とVersion 1の適用範囲を根拠とする。
 
 **種類と境界**：単体のversioned capability pack候補。`HARNESS-L2-014`が所有する対の設計と、`HARNESS-L2-022`が所有する検証・受入oracle/段階契約を具体的scenario/case/fixture候補へ写す。014の設計authorityや022のoracle/検証義務/stage/state/受入を置換・追加しない。HARNESS-L2-010が030のpack identity/version/依存境界、HARNESS-L2-011が呼出し時の入力/scope/互換性/receiptを所有する。生成caseの実行・結果収集は選択された`HELIXOS-L2-020`または利用者CIが行い、OS利用時のpacket接続は032を通す。execution result/consumer receiptは呼出し後の結果であり、030を開始する前提ではない。
@@ -617,6 +625,8 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 **保証すること**：入力された規範とoracleへtraceできる候補を返し、根拠がない期待値・権限・境界は発明しない。同一の固定入力・source version・scopeからcase意味を再現できるよう、生成条件を記録する。生成caseの存在、件数、coverageは品質、欠陥不存在、実行成功の証拠としない。意味が未確定なら要求/契約ownerへ戻し、要求意味変更は`HARNESS-L2-003`/`HARNESS-L2-004`の戻し先に従う。
 
 ### HARNESS-L2-031 ログ・入力からの最小再現と回帰候補生成（単体候補、version_target 1.0）
+
+- **所属候補（未採択）**：HELIX-HARNESS共通部品。利用先：④開発・⑤リファクタリングのfailure、⑦運用保守のincident等。PO原文の障害を本番incidentだけへ限定せず、許可されたlog/inputから再現・回帰候補を共有提供する。CORE/022のoracle/traceと選択executorの隔離実行を保持する。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。
 
 **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。`HARNESS-L1-004`の反例・証拠・戻し先と、`HARNESS-L1-001`のV-pair traceを具体化する。
 
@@ -636,6 +646,8 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 
 ### HARNESS-L2-032 生成artifactからOS-020実行契約への接続（接続候補、version_target 1.0）
 
+- **所属候補（未採択）**：HELIX-HARNESS-CORE。利用先：030/031利用サービスと選択したOS-020または利用者CI。test artifact/oracle/revision/scopeをexecutor inputへ写す業務上の接続packを所有する。CONNECTは利用時の登録・版照合・通信・再送・追跡を担い、032の業務意味は持たない。実行・隔離・結果回収は選択executorへ残す。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。
+
 **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。HARNESSが契約を外部利用可能にし、検証証拠を対象revisionと結び付ける企画を具体化する。実行主体の企画根拠は`HELIXOS-L1-004`であり、本候補はOSのrun制御をHARNESSへ移さない。
 
 **種類と境界**：接続能力。`HARNESS-L2-030`/`HARNESS-L2-031`のcase/repro artifactから、選択した`HELIXOS-L2-020`または利用者CIへ送るversioned input/run-request packetを作る。HARNESSは検証義務/oracle/artifact identity/scope/target revisionを、OSまたは利用者CIは実行・隔離・結果収集を所有する。最初のrun receiptは032の送信入力でなく下流出力、031が次の縮小段階を選ぶ際の後続入力である。
@@ -653,6 +665,8 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 **保証すること**：生成caseの意図とoracle参照を損なわずconsumerへ渡し、対象revision・scope・source versionの対応を保持する。実行・成功/failure判定・CI ticket発行・再開はconsumer責務である。受渡し成功をtest pass、品質受入、artifact state昇格とみなさない。接続契約の欠落/不整合は送り先consumerの責任ownerへ戻す。
 
 ### HARNESS-L2-033 failure-to-regression trace構成体（構成体候補、version_target 1.0）
+
+- **所属候補（未採択）**：HELIX-HARNESS-CORE。利用先：case生成・再現・回帰を選択する各サービス。複数packを跨ぐtest/CIのtrace構成体を所有する。unit/接続成立と回帰成立を分け、014/022の意味authority、OS/利用者CIの実行を引き取らない。 HARNESS-L2-010に従い主owner候補は一つとする。記載は所属採択・v0.1収載・実装許可を生成しない。
 
 **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`。対象は`HARNESS-L2-030`または`HARNESS-L2-031`の生成能力と、必要に応じ`HARNESS-L2-032`のconsumer接続を含む端から端の作成/受渡しtrace。HARNESS-L2-022の検証・受入契約は構成体の規範入力であり置換しない。
 
