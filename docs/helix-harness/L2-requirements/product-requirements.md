@@ -935,23 +935,3 @@ scope拡張候補の受入寄与・最小性を照合するとき、追加機能
 候補の起草開始には測定完了を要求しない。scope拡張の必要性を満たしたと主張する段階では、上の三観点とauthoritative oracleへの寄与・代替案・minimum-necessary proofを一緒に示す。測定欠落は該当するscope判定を未完にし、低い追加機能数や別観点の好成績で相殺しない。不要な拡張は既存035へ戻し、新たに必要と判明した変更は既存Backflow/ticket境界へ戻す。実行authority、全作業の同期gate、通常作業の毎回の人確認は追加しない。
 
 旧根拠：HIL-NFR-07。原文と所在は[scope計測の原文照合](../../governance/audits/requirements-stage/scope-measures-legacy-differences-2026-09-28.md)。既存035の導出連鎖・循環拒否を置換しない。
-
-## HARNESS-L2-025 契約portfolioの全件被覆（追補）
-
-既存025と一体の未採択composite候補。親L1、version_target: 1.0、014/026との所有を保持する。
-
-対象revision/scopeのrequirement atomとHARNESS-L2-009/026が導いた設計義務を、authority、lifecycle、interface/data/state/event/failure/security/observability/operationおよびV-pair oracleの意味が同じ義務classへ区分する。各適用classにnormative contractを原則一件割り当て、既存契約の再利用、差分追加、新規作成、根拠付き非適用を区別する。既存契約との同義重複・孤立contract・未被覆classを検出し、未被覆0かつ意味重複0の最小portfolio候補と対応根拠を返す。異なる契約への分割が必要ならその理由と境界を示し、一つのclassを黙って重複所有させない。
-
-unknownな義務、根拠のない非適用、競合するcontractは閉包失敗として、対象scope、影響するoracle、差戻し先を返す。旧matrix/schemaを固定せず、義務の意味が不明ならHARNESS-L2-008、L3意味ならauthority owner、template/設計分解ならHARNESS-L2-009/026へ戻す。portfolio提案は要求採択・設計承認・実装許可を生成しない。
-
-旧source HIL-FR-54の保持・変更と原文所在は[照合記録](../../governance/audits/requirements-stage/portfolio-fixture-legacy-differences-2026-09-28.md)に置く。
-
-## HARNESS-L2-026 active templateの例被覆（追補）
-
-既存026と一体の未採択unit候補。親L1、version_target: 1.0、014/025との所有を保持する。
-
-対象scopeでactiveなDesign Templateの各validation ruleと各applicability branchに、canonical positive例を最低1件、境界negative例を最低1件結ぶ。正例は該当ruleを満たし、負例はそのruleの適用境界で拒否されるものとする。別branchの例や例の総数で代用しない。state transition、failure、security、migration、multi-runtime差異はrisk分析で未被覆と分かった場合に限り追加例を要求し、その理由と対象rule/branchを残す。十分性は例数だけではなくrule/branch/riskの被覆で判定する。
-
-未見のtemplate版、rule、branchは既存fixtureから合格を推定せず、必要例と未評価を返す。template/rule適用範囲の不明はHARNESS-L2-009のownerへ、設計義務と対oracleの不足は026/022へ戻す。旧fixture schema/実行器を移植せず、例の被覆から設計承認や実装許可を生成しない。
-
-旧source HIL-FR-55の保持・変更と原文所在は[照合記録](../../governance/audits/requirements-stage/portfolio-fixture-legacy-differences-2026-09-28.md)に置く。
