@@ -1,0 +1,211 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-W-TWO-STAGE-2026-09-28-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "confirmed FR-L1-28とtechnical I-4の原文2行。W二段の意味を保持し、旧物理層番号・field・runtimeを採用しない。画面/下流設計sourceは補助参照で、その全文被覆を主張しない。 旧Concept343–361の非空行を追加。",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-037",
+      "requirement_kind": "composite",
+      "parent_l1_ids": [
+        "HARNESS-L1-001",
+        "HARNESS-L1-004",
+        "HARNESS-L1-009"
+      ],
+      "candidate_semantic_digest": "sha256:3dcead1bfe0ef30da76a4f781b3e3c0b4817672269e7055a18cb4b35781b95f2",
+      "source_atom_set_digest": "sha256:c94feb041e9657b29d69637c4e376118d4f8e57427a53e0c30885c37154b3abc",
+      "source_atom_count": 15,
+      "source_collection_scope": "confirmed FR-L1-28とtechnical I-4の原文2行。W二段の意味を保持し、旧物理層番号・field・runtimeを採用しない。画面/下流設計sourceは補助参照で、その全文被覆を主張しない。 旧Concept343–361の非空行を追加。",
+      "atoms": [
+        {
+          "atom_id": "W-TWO-STAGE-functional-requirements.md-L0059",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-001",
+          "legacy_asset_id": "LEGACY-ASSET-6B6C5CB0E481BE01088B",
+          "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/functional-requirements.md",
+          "source_file_sha256": "sha256:a9c1064d359b0d9c7269a2253e416597de77fa91149c162f9a40467be3f1a008",
+          "source_line": 59,
+          "source_line_sha256": "sha256:a7b461949218e37e67110567ee4aad528901e8a2536341fc6d23a5cb35590106",
+          "source_text": "| **FR-L1-28** | HELIX W 2段設計（Phase 1一般system＋Phase 2 agent昇華をL10で合流するspecialist workflow） | two-stage-agent-design | Phase 1/2各L9成果物 | L10合流済み成果物、L11〜L12統合flow。development styleやcase-driven modelへ混ぜない | P1 | (L10 carry、画面紐付け薄い) |",
+          "disposition": "carried",
+          "relation": "一般systemとagent固有設計の二段成果・合流・後続pairへのtraceを保持。旧drive/phase.yaml/層番号は現行適用条件と正規pairへ再導出。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-technical-requirements.md-L0169",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-001",
+          "legacy_asset_id": "LEGACY-ASSET-96CCD05C4CCA06F50D3D",
+          "source_path": "docs/governance/requirements-source/legacy-documents/docs/design/harness/L1-requirements/technical-requirements.md",
+          "source_file_sha256": "sha256:3e105358418cb54af0bc2e414d0b06171715ab2a26ea3b44dd16f932bcbfef88",
+          "source_line": 169,
+          "source_line_sha256": "sha256:cc12f3fae870d6917c65a8c671f7de283c931f31788c61502561c894c6c52a5b",
+          "source_text": "| HELIX W Phase 合流 state (I-4) | drive=agent (FR-L1-28、two-stage-agent-design.md) が確定したら Phase 1/2 → L10 合流状態を `phase.yaml` に追記 (`phase_merge` フィールド) | two-stage-agent-design.md |",
+          "disposition": "carried",
+          "relation": "一般systemとagent固有設計の二段成果・合流・後続pairへのtraceを保持。旧drive/phase.yaml/層番号は現行適用条件と正規pairへ再導出。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0343",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 343,
+          "source_line_sha256": "sha256:bea5953013301440a1396cbf2df3ac94a6eeab65acdbd930ebdf465d187cf25b",
+          "source_text": "### HELIX W (2段V、AI エージェントシステム時のみ)",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0345",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 345,
+          "source_line_sha256": "sha256:218016495aae8050c6ea403b25eb875de8fb5da0ab291da6a51f0ab87037b262",
+          "source_text": "> **用語確定**: 上記 **L0-L14 の左右ペア = V-model**。**W-model (HELIX W) はこれとは別概念**で、**V で確定した仕様 (一般システム = 外殻) を土台に、AI エージェントを構築するための設計** = **V を 2 回通す** (1 回目 = 仕様確定 / 2 回目 = エージェント構築) ため V が 2 つ重なって W 字になる (`docs/design/harness/L1-requirements/functional-requirements.md` FR-L1-28 / two-stage-agent-design)。",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0347",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 347,
+          "source_line_sha256": "sha256:8bbf8b3a43158e35f74bb082a7c16e396fe07f6a8b6a4a722c685fb1dfc3ffda",
+          "source_text": "| | 構造 | 適用 |",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0348",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 348,
+          "source_line_sha256": "sha256:23cca02b74f386463efa24796c7a9011b0d2c93f0c38b4d15d5d276205b59b43",
+          "source_text": "|---|---|---|",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0349",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 349,
+          "source_line_sha256": "sha256:f213e2e11cdefd60b8a8ca96768560d82450b8962a37528531a2c47a832183c9",
+          "source_text": "| **V-model** | L0-L14 を 1 回。左 (設計+テスト設計凍結) ↔ 右 (検証) | 通常開発 (一般システム) |",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0350",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 350,
+          "source_line_sha256": "sha256:c27bf70ee6ef6241333c4672567a80a1efc3da399edb554b7bc79348cd0b3763",
+          "source_text": "| **HELIX W (2段V)** | L0 (全体 1 回) → **フェーズ 1: L1-L9 (一般システム、drive=be/fe/db)** + **フェーズ 2: L1-L9 (エージェント昇華、drive=agent)** → **フェーズ 3: L10-L14 で合流** | **AI エージェントシステムを作る場合のみ** |",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0352",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 352,
+          "source_line_sha256": "sha256:966075bf1c1ad796b43385a5405274d5e93b57cfc4a2dce36fa36a7cbb1096c8",
+          "source_text": "**1 回目の V** で一般システム (外殻) の仕様を L9 まで確定し、**2 回目の V** でその**確定仕様から AI エージェントを構築**する (エージェント昇華 = AI が外殻のツールを使って動く内部機構)。**2 段 = 2 回の V** (仕様確定 → エージェント構築)。合流は L10。",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0354",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 354,
+          "source_line_sha256": "sha256:2aef353076638f7ab9ffdf676eb932d4319ccec43b547ffd85b28478edd72d66",
+          "source_text": "#### 本 harness への適用 (PO 確定 2026-05-29、A-74)",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0356",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 356,
+          "source_line_sha256": "sha256:eeda92383081ba9e9b94a538488a2596a25781d6adc56e528840e5f28b22b285",
+          "source_text": "**本ハーネス自身は HELIX W を適用しない (単一 V で進める)**。理由 (PO):",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0357",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 357,
+          "source_line_sha256": "sha256:9a0651bc3a8d1d5acb6856cb0fef0a00df7388c243e6cc45a4f5106a5e57baa8",
+          "source_text": "- harness は **VSCode 内 (Claude Code) にシステムを作っている**ため、**一般システム = 外殻 (VSCode / Claude Code) は既存** ＝ フェーズ 1 (V1) は終了している前提に近い。",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0358",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 358,
+          "source_line_sha256": "sha256:1953a697c0d515d7e892f727a81731d051060527aeb77705f5890e65f0a910f0",
+          "source_text": "- その外殻の中で、エージェントが外殻のツールを使って動く仕組み = **内部整備**を作るのが harness の仕事。これは HELIX W の **2 段目の V (内部整備 / AI が使いやすい仕組み)** に位置づく。",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0359",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 359,
+          "source_line_sha256": "sha256:a3928d00e5ad53de85cea6c2233927531f0202d61280a1cb6d78e4673b4d83cb",
+          "source_text": "- **内部整備のみ**なので **片方の V (単一 V) だけでよい**。よって L4/L5 等を単一 V で設計したのは正しい。",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        },
+        {
+          "atom_id": "W-TWO-STAGE-CONCEPT-L0361",
+          "source_holding_registration_id": "MPR-SH-W-TWO-STAGE-CONCEPT-001",
+          "legacy_asset_id": "LEGACY-ASSET-75776FE016E550F5355F",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md",
+          "source_file_sha256": "sha256:b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c",
+          "source_line": 361,
+          "source_line_sha256": "sha256:49f8cb034f6c8f2a751e1ca14b5f818820c63024a360e2b03b2a13035b6fea14",
+          "source_text": "> HELIX W は **harness が対象リポジトリへ提供する機能** (FR-L1-28、対象が agent システムの時に使う) であり、harness 自身の開発プロセスではない。",
+          "disposition": "carried",
+          "relation": "二回のVをPhaseごとのL2合意/L3承認・設計/実装/対検証・合流へ再導出。A-74に従いHARNESS自身へ適用しない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-009",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-022",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-037"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}
