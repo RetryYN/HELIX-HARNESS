@@ -201,3 +201,15 @@ parent_l1_candidate: docs/helix-labo/L1-planning/labo-intent.md
 - **誤りを含む例**：受領receiptのmodel/source/revision/scopeを実際のrunと照合せず水準に算入する。runのtask classやmodel classが宣言された評価対象と異なる、oracle/criterion revisionが対象resultと不一致または不明、scopeが評価範囲外/不明の場合に評価済みとする。観測事実は元のidentityと不一致を保って保持できるが、対応する水準根拠へ混ぜず該当scopeを未評価/評価不能にする。未知結果を成功へ集約しない。
 - **未見例**：新provider/model version、異なるtoolchain/source revision、別task class/scopeから初めて届いたresultで、既存評価条件との互換/適用性が確定できない。結果receiptは観測として残し、同条件の成功や同じmodel classの水準だと推定せず未評価を保つ。必要な再評価条件をsource/oracle ownerへ戻す。恣意的な経過期限や一律の再評価間隔は設けない。
 - **境界**：不一致は「実績がなかった」へ書き換えず、未評価の理由と該当source/oracle/model/scopeを保持する。受領成功は評価成功ではなく、Benchはassignment/適格化/権限を決めない。既存L2-056の「評価oracleを実績へ実際に適用」「一件から未知taskへ一般化しない」条件を維持する。
+
+### HELIXLABO-L2-061 比較評価のtask・oracle隔離と履歴の完全性の受入候補
+
+未実行の受入候補。既存059の比較目的・選択群と品質条件を維持し、実験起動・候補採択の許可を生成しない。
+
+- **正常**：hidden oracleを用いる比較taskの15条件（task ID/version、fixture digest、requirement/acceptance IDs、base HEAD、allowed/forbidden paths、hidden oracle digest、seed、toolchain、timeout/retry/cache policies、hardware class）が入力snapshotに対応する。Worker-visible taskには答え・secret・PII・private review contextがなく、Workerに渡されたcontextからoracleへ到達できない。authorと別identity/session/contextのjudgeが固定されたoracle/scorerで評価する。task/fixture/oracle/protocol/scorerの版とdigestが一致し、評価receiptがその実context・役割分離を裏付ける場合だけ当該比較へ利用可能と返す。
+- **15項目の欠落・不一致**：各項目を1つずつ欠落または対象不一致にしたfixtureで、該当task比較を成立扱いにしない。別runのsnapshotやfield名の存在だけで埋めない。hidden oracleを使うのに利用なしへ書き換えてdigestを省く例も拒否する。
+- **情報漏洩の反例**：hidden answer、future answer、secret、PII、private review contextをそれぞれWorker-visible fixture/contextへ混入する。該当runを有効比較・資格証拠から外し、理由と元receiptを保持する。機微な内容そのものを監査出力へ複写しない。平均点、低費用、他の成功runで不成立を相殺しない。
+- **役割・版の反例**：authorが作成contextのままjudgeを兼任する、名札のみ変えてcontextを共有する、task snapshotとoracle digestが違う、fixture/protocol/scorerの版が違う例を別々に与える。不成立範囲を返し、judgeにoracleを渡した事実だけをWorkerへの漏洩と誤判定しない。
+- **履歴**：保存済みrunは当時のmodel/runtime/version、toolchain、task snapshot、actor/authorityへ結んで表示する。当時の証拠が足りない場合は不足を表示し、現行assignmentを後付けしたり、旧結果をcurrent性能へ転用したりしない。旧runtimeは起動しない。
+- **未見**：初見の添付・派生説明から答えがWorkerへ漏れる例と、context参照が欠け実際の可視範囲を確認できない例で、前者は漏洩、後者は未確認と返し、いずれも隔離済みへ通さない。未知taskへ既存の安全判定を無条件継承しない。
+- **非適用と接続**：hidden oracleを用いない別契約の比較や055の通常履歴には、その非適用根拠を記録して一律hidden判定を課さない。適用不明はownerへ戻す。完全性を満たすrunも059の品質/比較条件を満たさなければ効果達成ではなく、LABOの返却値から割当・実験許可・admissionを生成しない。
