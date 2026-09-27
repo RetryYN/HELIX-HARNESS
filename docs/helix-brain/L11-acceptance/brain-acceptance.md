@@ -78,3 +78,32 @@ sources:
 ## 親L1との対応
 
 L2の「親L1全12件の受け先」の各行を、この文書の同ID受入へ接続する。1.0のL1義務は1.0列で受け入れ、026/027は外部sourceを扱う2.0拡張として別に受け入れる。Infrastructure知識を表せることと、実資源の自動増減・自動切替等が実装済みであることは別に判定する。
+
+
+## G15 HARNESS設計合成向けBRAIN受入
+
+起点は[PO原文第1項](../../helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md)と[判断記録](../../governance/decisions/capability-reinforcement-po-decisions-2026-09-27.md)。本受入は未実行候補。primary BRAIN identityは `HELIXBRAIN-L2-029` unit（親 `HELIXBRAIN-L1-003`, `HELIXBRAIN-L1-005`, `HELIXBRAIN-L1-009`）と `HELIXBRAIN-L2-030` connection（親 `HELIXBRAIN-L1-003`, `HELIXBRAIN-L1-005`, `HELIXBRAIN-L1-012`）。consumer contextは `HARNESS-L1-009`, `HARNESS-L1-001`。製品固有設計のownerはHARNESS-L2-026、構成体ownerはHARNESS-L2-025で、BRAIN側に置かない。
+
+### HELIXBRAIN-L2-029 unit
+
+**正常例**：一般化された「承認後は編集不可」の課題に関係する複数Pattern/Unit候補を用意し、各々のproblem/applicability/required input/constraint/trade-off/negative case/source/versionと、相互のconflicts_with / alternative_to / compatible_with relationを、両端identity付きで辿れることを確認する。構成は候補状態に留まり、今回製品で採用する案を決定しない。
+
+**誤りを含む例**：製品固有の「申請」名称や具体的API/permissionを汎用知識へ昇格する、互換不能なPatternをrelationなしで組み合わせる、required inputやsourceを落とす、ある製品の一度の適用から確立Patternへ昇格する。いずれも不合格。
+
+**未見例**：試験側に伏せた別Domainの組合せまたは必須input欠落を使い、conditionに基づく適用可否、conflict relation、unknownの保持を照合する。oracle/Domain scopeが定まらない条件は未評価。受入は限定知識構造の正しさであり、全設計領域の網羅性や製品適用判断を保証しない。
+
+**依存区分**：**常時必須**＝HELIXBRAIN-L2-003/005の適用条件・relation意味とHELIXBRAIN-L2-008のidentity/version/provenance。**特定操作時のみ**＝比較操作時のL2-004、構成候補作成時のL2-009。**選択した入力元に応じて必須**＝製品Core候補を入力にする場合のL2-018、LABO評価済み候補を入力にする場合のL2-020のsource/scope/evaluation契約。未選択sourceは未観測。**参照資料のみ**＝説明資料。required field・relation root・oracleの代替にしない。
+
+### HELIXBRAIN-L2-030 connection
+
+**正常例**：HARNESS-COREからのqueryでconnector契約版/互換範囲とscopeを照合し、選択した複数Patternのidentity/version、required input、applicability、relation、反例、sourceを漏れなくHARNESS-L2-009へ対応付けたreceiptを返す。製品固有の最終選択・値は未決のまま返り、consumerが受取内容を個別設計へ結べる。
+
+**誤りを含む例**：connector contractがmissing/stale、選択したPatternのversion/required input/conflictが欠落、unknownを適用可能に変換、またはBRAINが製品固有のAPI・state・permissionを選択済みとして返す。これらを他Patternや単体成功で相殺しない。
+
+**未見例**：未公開のPattern pairまたは互換範囲外の版を与え、正確な版照合、required field・relation・unknownのreceipt保持を照合する。Patternを選択しない利用では未観測であり、そのsourceの知識や適用性を推定しない。connectionは知識の受渡し範囲を判定し、製品設計が正しいとは判定しない。
+
+**依存区分**：**常時必須**＝connector contract identity/version/compatibility、scope/query/receipt schema、consumer HELIX-HARNESS-CORE contract。**特定操作時のみ**＝選択知識を適用候補へ使うときのapplicability/required input/relation/negative case照合。**選択した入力元に応じて必須**＝選択knowledgeの全identity/version/source/required fields。未選択knowledgeは未観測。**参照資料のみ**＝背景説明。receiptやauthorityの代替にしない。
+
+### 限界と戻し先
+
+契約版/互換不明はqueryを保留する。Pattern意味・条件・関係の不整合はBRAINの該当親L1へ、受取scope/schemaやHARNESS設計義務への結合不備はHARNESSへ戻す。候補の受渡し、BRAIN内候補の構成、LABO評価の存在からPattern採択・承認・実装を生成しない。成功は当該knowledge identity/versionとquery scopeだけに限り、万能な設計能力の保証にしない。

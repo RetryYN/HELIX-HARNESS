@@ -555,3 +555,30 @@ Backup/Restoreとの関係はHELIXBRAIN-L2-INFRA-010で表し、同節の成立�
 | BRAIN L1企画案frontmatter `authority_status: draft_candidate` と本文「POが対象revisionを確認」 | このL1本文revisionをL2候補の親としてPOが確認する／上流の意味を直してから候補を再照合する | 意味変更がなければこのL1 revisionを親として確認し、要求候補は未採択のまま扱う | L2/L11全候補の親revision |
 
 ZIP source catalogはscratchpad記載の201件/22分類と保持ZIP内の179件/22分類に件数差がある。差分はsource突合注記に限り、いずれの件数もBRAIN要求の固定件数条件にしない。ZIP内の全資産再調査を本候補の開始条件としない。
+
+
+## G15 HARNESS設計合成向けBRAIN候補
+
+起点は[PO原文第1項](../../helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md)と[判断記録](../../governance/decisions/capability-reinforcement-po-decisions-2026-09-27.md)。BRAINは製品横断の知識構造と受渡しを担う。製品固有の設計合成・Pattern採用判断・要求意味はHARNESS/HELIX-HARNESS-COREへ残す。本候補は既存要求を置き換えず、identity単位で具体化する。対象版は`version_target: 1.0`。実利用version/互換範囲はdescriptorで照合する。
+
+### HELIXBRAIN-L2-029 製品設計で使えるPattern関係候補を構成する（unit candidate）
+
+- **親L1 primary**：`HELIXBRAIN-L1-003`, `HELIXBRAIN-L1-005`, `HELIXBRAIN-L1-009`。**consumer context**：`HARNESS-L1-009`, `HARNESS-L1-001`。親の意味はそれぞれ適用条件、relation、構成候補に限定される。
+- **対象・kind・版・scope**：再利用可能なPattern/Unit/Part候補の構造化を行うBRAIN unit candidate、`version_target: 1.0`。sourceと評価状態を保った汎用知識候補のみを対象とする。
+- **入力**：一般化された課題種別、Pattern/Unit/Part identityとsource/version、applicability、required input、制約、trade-off、negative case/failure mode、`compatible_with` / `conflicts_with` / `alternative_to` / `depends_on` / `composed_of` relation候補。
+- **出力**：構成候補とrelation trace、各Patternの採用条件・必要input・限界・source/versionを辿れるdescriptor。製品固有の要求値、画面/API名、採用設計、工程表は出力しない。
+- **保証すること**：構成候補と確立Pattern、知識候補と今回の製品への適用を別状態にする。relationの端点と意味、競合条件、反例を明示し、未入力・矛盾・unknownを適用可能へ読み替えない。一つのPatternを絶対解にしない。
+- **依存区分**：**常時必須**＝identity/version/provenanceのHELIXBRAIN-L2-008、applicabilityとrequired inputのHELIXBRAIN-L2-003、relation意味のHELIXBRAIN-L2-005。**特定操作時のみ**＝複数候補比較ではHELIXBRAIN-L2-004、構成candidate作成ではHELIXBRAIN-L2-009とrelation candidate生成条件を適用する。**選択した入力元に応じて必須**＝製品CORE由来候補を取り込む操作ではHELIXBRAIN-L2-018、LABO評価済みcandidateを入力とする場合はHELIXBRAIN-L2-020のsource/scope/evaluation契約。未選択のsourceは未観測。**参照資料のみ**＝Pattern背景例・説明用資料。relation根拠、required input、sourceの代替にしない。
+- **正常例**：承認後編集禁止の汎用課題に対し、immutable record、state transition、API command guard、permission、data invariantを結ぶ複数のPattern候補を構成し、矛盾・適合関係・必要inputを示す。これはPattern構成候補の正常であり、製品の申請設計または確立Patternではない。
+- **失敗・戻し先**：relation端点が不明、required input欠落、product-specific screen/API ruleが混入、競合Patternを互換扱い、または一件の製品利用で採用済みへ進めたら不合格。意味はBRAIN-L1-003/005/009、製品固有要件はHARNESSへ戻す。
+
+### HELIXBRAIN-L2-030 BRAIN設計知識をHARNESSへ受け渡す（connection candidate）
+
+- **親L1 primary**：`HELIXBRAIN-L1-003`, `HELIXBRAIN-L1-005`, `HELIXBRAIN-L1-012`。**consumer context**：`HARNESS-L1-009`, `HARNESS-L1-001`。BRAINは知識を提供する。HARNESSが受け取った知識を設計義務へ対応付け、製品設計を合成する。
+- **対象・kind・版・scope**：BRAINからHARNESS-COREへの単一query/receiptのconnection candidate、`version_target: 1.0`。
+- **入力**：呼出しcontract版と互換範囲、scope/query identity、選択時にはHELIXBRAIN-L2-029または他のBRAIN知識のidentity/version、applicability、required input、relation、negative case、provenance。
+- **出力**：HARNESS-L2-009へ対応付く設計義務材料、知識identity/version・source・scope・未充足input・relationを残すreceipt。製品固有の設計選択・画面/API/DB/permission/stateの結論は出力しない。
+- **保証すること**：HARNESS-COREがBRAIN connectorを使う契約は常時照合対象である。個別Patternとそのrequired inputの適用照合は選択した知識に限り必須で、全BRAIN knowledgeの完成や利用を前提にしない。BRAINからの出力は候補知識であり、HARNESSの要求authorityや製品固有設計を上書きしない。
+- **依存区分**：**常時必須**＝connection contract identity/version/互換範囲、query/receipt schema、対象scope・相関identity、受取側HARNESS-L2-009 contract。**特定操作時のみ**＝選択Patternを設計候補へ適用する場合はapplicability/required input/relation/negative caseを検査する。**選択した入力元に応じて必須**＝BRAIN knowledgeを選択したqueryでは該当knowledge identity/version/sourceと全required fieldsを照合し、未選択のknowledge sourceは未観測とする。**参照資料のみ**＝説明資料や背景例。receipt・required field・authorityの代替にしない。
+- **正常例**：二つの候補Pattern、conflicts_with / alternative_to relation、required input、source/versionをHARNESSへ渡し、HARNESSが両候補と未決inputを別個に保持できるreceiptを作る。BRAIN側は採用先を選ばない。
+- **失敗・戻し先**：connector contract/version/互換がmissing・unknown・staleなら呼出しを保留する。選択Patternのfield欠落や矛盾はそのknowledge受渡しを不合格とし、BRAINへ、receiver scope/schema不整合はHARNESSへ戻す。別Patternの成功で穴を埋めない。
