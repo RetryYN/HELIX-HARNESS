@@ -1029,3 +1029,35 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 **現行根拠と照合基準**：親 `docs/helix-os/L1-planning/system-intent.md:31-42`（SHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`）、現行L2 `docs/helix-os/L2-requirements/governance-requirements.md:44-47,60-64,293-300`（SHA-256 `077e353d962230943c66a30fba1bd778b5efc40b5506d89b71d4f343b1430559`）、L11 `docs/helix-os/L11-acceptance/governance-acceptance.md:19-31,35-58`（SHA-256 `b1dc0b9fd92de8169b74fbe0072c35bd815da3a36d5c8df8ac60a05df8e6ac13`）。固定照合base commit `d0900f30b92720114c6e0b5f436813d48172a020`。
 
 **配送順序と未完**：新HEADの更新を受けた後で旧HEADのeventが遅着しても、旧eventの由来を保持し、新しい対象revisionを旧状態へ戻さない。event保存とjob登録の途中で停止した場合は009のdurable checkpointと既存receiptから未完分を再開し、登録前のeventを処理済みにせず、登録済みjobを再生成しない。
+
+### HELIXOS-L2-036 Retrofit preflightのticket/plan接続（単体候補、version_target: 1.0）
+
+**状態・所属**：新規候補。既存HELIXOS-L2-010のworkflow/ticket意味を補うOS単体能力であり、L2-010を変更・置換しない。OSは規範上のpreflight義務とその順序、結果状態、未完義務をticketへ束縛する。preflightの技術的な判定oracle・合否意味はHARNESSの検証契約および該当domain ownerが持つ。実際の変更適用は既存SECURITY authorityの範囲でWorkerが行う。別機構・ticket種別・承認者は作らない。
+
+**親L1**：主親HELIXOS-L1-009（管理・推進・検収の分離と許可範囲内の仕事統制）、関連親HELIXOS-L1-010（変更・依存に合う検証集合と収束計画）、HELIXOS-L1-002（作業から提供・運用までの依存/stale/未完義務の把握）。いずれも現行候補本文の射程内とする。親意味の改訂を提案しない。
+
+**目的とscope**：旧requirements v1.3:624はRetrofitへrouteされたすべての`upgrade`にpreflight必須とする。旧Retrofit本文:36,86はpreflightを影響評価に置き、fail時はpassまで移行計画へ進ませない。旧Concept:445,470–471は高リスク時の`requires_preflight`を述べる。036は全upgradeのpreflight義務・結果を同一ticket/source-target scopeへ束縛し、pass前に移行計画を確定済みにせず、apply時にもresultのcurrent性を確認する。影響調査や未確定plan draftは続行できる。preflightの検査内容はHARNESS-L2-005が導く既存oracleで扱い、未定ならHARNESS ownerへ戻す。旧execution-policy-registryの`RETROFIT_STANDARD_SAFE` bindingは`HELIX_DOCTOR`の`action_stage: verify`に対するread-only command policyとして記録し、これだけで全Retrofit changeのapply authority/実行時preflightへ拡張しない。無関係な変更、Prototype、Reverse全般へ拡張しない。
+
+**単独成立依存**：HELIXOS-L2-010のticket/workflow/authority/revision/scope契約、HARNESS-L2-005の対象ticketに対する選択済み検証義務・oracle・expected failure・証拠・戻し先、OS-L2-019の結果provenanceと未完義務継承。検査oracleの内容がHARNESS側で導けない場合、OSが不足を補作せずHARNESS ownerへ戻す。upgrade applicability自体は旧requirementsの全upgrade条件を保持する。
+
+**operation時のみ必須**：Retrofit upgradeでは常に、移行計画を確定する前に、同じsource/target revision・dependency/config scopeに束縛されたpreflight passを確認する。未実施、unknown、stale、scope不一致、HARNESS oracle不合格なら計画は未確定のままとする。preflight実施用ticket・影響評価・未確定plan draftは、result未到来でも開始可能。計画確定後の適用直前にもresultがcurrentであることを確認し、未実施/unknown/stale/不適合なら適用・upgrade完了を成立扱いにしない。適用操作は既存のSECURITY authority/Worker制約に従い、本候補から許可を発行しない。
+
+**選択source依存**：HARNESS oracleが選択するpreflight evidence/source revision、target version、対象scopeを使用し、sourceと根拠を結果へ束縛する。旧process/Conceptはpreflight義務とその高リスク時の工程順を示す一方、旧registryはread-only doctor verify policyを定めるだけで、preflightがdependency compatibilityそのものを判定するのか、対象範囲・影響を記述するのか、そのchecker内容は定義していない（旧Concept §2.6.3、旧execution-policy-registry `RETROFIT_STANDARD_SAFE`）。候補本文ではpreflightを互換性判定と定義しない。HARNESS/domain oracleが明示した判定だけを受け取り、oracleや適用性が未定なら未評価として保持する。入力形式・比較実装・数値閾値は固定しない。
+
+**旧sourceと保持・変更**：旧sourceのtoken名、registry、runtime、schema、特定package manager。主根拠は `archive/legacy-generation-2026-09-14/root/docs/process/modes/retrofit.md:30,36–39,86`（SHA-256 `b7b053d867fd5f59c9256d1d60e4685d64c10ef50ff1f9de665dcf506d13c049`）と旧Concept `archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md:445,470–479`（SHA-256 `b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c`）、旧execution-policy-registry `archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/workflow-execution-policy-registry.v1.json:141–155`（SHA-256 `eeb30c1bb51f74798563b31b0802b301fb687d2e750c517061588969a7ff344f`）。requirements v1.3 §9.2:624（asset `LEGACY-ASSET-02319C2481B9E01698D5`, SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`）もupgrade preflightを必須とする。保持する意味は、全Retrofit upgradeにpreflightを要求し、影響評価中の実施・fail時の移行計画停止を同じticketへ結ぶこと。旧sourceはpreflightの技術的中身を互換性判定と特定していないため、その意味を追加しない。
+
+**受け取るもの**：ticket identity/type/parent requirement revision、選択sourceとtarget revision、変更対象dependency/config scope、全upgrade義務に対応するHARNESS-L2-005のoracleと、検査後に取得するresult参照、authority state、既存の移行/rollback計画案と未完義務。今回の確定計画や未来のpass receiptを起票・調査・検査開始の入力にはしない。
+
+**提供するもの**：同一ticket/scope/revisionに束縛されたpreflight適用状態、既存oracleに基づく結果への参照、apply前の未完/unknown/stale/errorと戻し先。OSはpreflight検査結果本体、HARNESS-L2-005が定めるoracleの意味、適用実行を生成しない。
+
+**失敗・戻し先**：義務/oracle不足・意味不明はHARNESS-L2-005 ownerへ、preflight source/evidence不足はsource/domain ownerへ、scope・ticket・revision不一致はOS L2-010へ戻す。authority不足はSECURITY既存経路、実資源不足はINFRASTRUCTURE/OS既存経路へ戻す。未完義務と停止位置を保持し、preflight resultを推測しない。
+
+**受入oracle**：
+
+- 正常: Retrofit upgrade ticketで、同一ticket/scopeに結ばれたpreflight obligationとHARNESS-L2-005のresultがtarget revision/scopeと一致し、既存oracleがpassを返した後に移行計画を確定する。適用時にもresultがcurrentならOSはそのresultをapply operationへ束縛できる。OS自身がpreflight内容や判定を発明しない。
+- 誤り: preflight requiredのupgradeでpreflight fail/unknownのまま計画を確定する、または計画確定/適用へstale source snapshotを使う、preflightなしで進む、oracleが不適合/unknownを返す、別ticket/scopeのreceiptを転用する。計画は未確定のまま、またはapply/operation closureを保留し、理由とownerへ戻す。
+- 未見: package managerやdependency型が既知fixtureと異なる。選択されたHARNESS oracleとsource/target scopeが一致すればそれに従い、未知型だけを理由に自動fail/passしない。必要なoracleがないなら未評価を返し、HARNESSへ戻す。
+
+**既存境界と根拠**：OS L2-010/HXT-TYPE-16はRetrofitの計画・段階・Forward合流を定義し、L11 `HXT-TYPE-16` は範囲/段階/結果を確認する。一方、旧requirements v1.3:624は全upgradeにpreflightを要求し、旧工程本文は影響評価中の実施と高リスク時failの計画停止を明記する。旧execution registryはread-only doctor verify policyであり、operation/apply authorityを意味しない。HARNESS-L2-003は開始/完了・未完義務、L2-004は変更影響、L2-005はticket/change/riskからverification dutiesを選びunknownをskipにしないが、Retrofit upgradeに対するpreflightと計画確定順序はOS operation契約へ接続されていない。本候補はticket/plan state接続を補い、checkerの技術的意味とauthorityは補作しない。既存OS-L2-010を編集せず、HARNESS-L2-005の一般規則を再定義しない。
+
+**旧承認条件の判断境界**：config_driftの旧TL単独サインオフは[原文・選択肢・推奨](../../governance/audits/requirements-stage/retrofit-preflight-legacy-differences-2026-09-28.md)へ残す。036の候補登録・検証・統合から、その条件の採択・廃止や実操作許可を生成しない。旧command名/registry/schemaは参照資料であり実行依存ではない。
