@@ -1071,3 +1071,24 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 この追補は正本/生成index間の関係と編集拒否だけを定める。固定path/schema/provider、別のindex registry、package/channel方式、所有権の再割当て、外部操作許可は追加しない。既存のparty/license/免責、immutable artifact、staged promotion、およびSECURITY authority条件はそのまま適用する。
 
 旧根拠：HIL-BR-33、HR-FR-HIL-24、HAC-HIL-24a/b/c、HAT-HIL-24。原文・所在・変更境界は[原文照合](../../governance/audits/requirements-stage/package-index-legacy-differences-2026-09-28.md)を参照。
+
+### HELIXOS-L2-037 週次drift・技術負債観測から既存ticket候補への引継ぎ（接続候補、version_target 1.0）
+
+- **状態・親L1**：新規追補候補・未採択、`version_target: 1.0`。主親は `HELIXOS-L1-006`（観測・LABO評価/提案・OS登録/振分け）、状態の欠落/stale可視化は `HELIXOS-L1-002` の範囲で導出する。候補が未採択であることは固定L1/L2/L11 bytesの変更を意味しない。
+- **対象・境界**：宣言scopeと対象revisionについて、週次の非同期観測で設計/実装の乖離を既存HARNESS要求・設計oracleに照らして報告する接続と、source/既存ownerが技術負債の累積と分類した観測をLABO評価後にOSの既存candidate/ticketへ記録し、既存のRefactorまたはReverse計画を提案する接続を扱う。週次観測自体は完了gateではなく、差分が見つかった場合だけ既存Reverse/Backflowへ接続する。OSはHARNESS oracle、負債の独自定義、検出閾値を発明しないが、既存OSの優先順位決定責務は維持する。HELIXLABO-L2-063の同種修復再発candidateと同一視せず、その入力が適用可能と示されたときだけ参照する。
+- **入力**：対象project/要求・設計revision、適用scope、週次観測のsource identity/revisionと対象設計/実装oracle、またはsource identity/revision付きの負債観測・既存owner評価、負債とされた根拠、既存判断/作業状態、許可範囲。source/既存ownerが蓄積と分類する条件を示していなければunknownのまま保持し、OSは新しい検出閾値や負債定義を補わない。`HELIXOS-L2-019`, `HELIXOS-L2-007` の証拠と `HELIXOS-L2-022` のfeedback/ticket境界を使う。
+- **提供**：週次scope観測の結果をsource/evidence/revision/oracleとともに報告し、差分があれば既存HARNESS Reverse/Backflow境界へ渡す。source/ownerが技術負債の累積として分類した観測はLABO評価を経て `HELIXOS-L2-022` のcandidate登録へ引き渡し、既存ticket contractに従う返済PLAN候補（対象・理由・未完義務・source revisionを含む）を返す。PLAN候補は実行ticket/assignment/承認済計画ではない。未解決負債と対応待ちは可視の未完として残す。
+- **非ブロック境界**：candidateの記録・返済提案だけを理由に、無関係な作業や全modeを停止しない。既存 `HELIXOS-L2-009`, `HELIXOS-L2-010`, `HARNESS-L2-003` の条件に該当する同一scopeの中断・未合意・未検証はその既存gateどおり扱う。これは不足した負債基準を無条件の通行許可へ変えるものではない。
+- **依存区分**：常時必要＝`HELIXOS-L2-007`, `HELIXOS-L2-019` のprovenance/evidenceと、`HELIXOS-L2-022` のcandidate/ticket/還流境界。特定操作時のみ＝選択scopeの週次drift観測時に既存HARNESS oracleを使い、差分があれば既存Reverse/Backflowへ渡す。sourceが負債としてclassifyしたときだけLABO評価と返済ticket候補を作る。選択入力依存＝選択project/scope/revisionとLABO observation/Feedback、適用可能性が明示された場合の `HELIXLABO-L2-063` evidence。参照のみ＝旧CLI名・旧schema/実装、選ばれていないsourceの観測、背景としての一般的負債例。未選択/unknownを「負債なし」としない。
+- **失敗・戻し先**：source・revision・負債根拠の欠落は観測source/LABOへ、登録・ticket接続の欠落はHELIXOS-L2-022, HELIXOS-L2-010 ownerへ戻す。classificationがunknownなら未評価candidateとして保ち、0件/解決済みにしない。candidate登録、計画提案、実行、検証、再観測を別状態にする。
+- **旧条件と変更**：保持するのは「技術負債の累積検知時に負債記録と返済PLAN提案を作る」意味。変えるのは独自の閾値/自動実行を足さず、source/evaluation authorityに従う点。理由は旧FRの入力/出力は指定するが累積基準、順位、実行承認、閾値を定めていないためである。
+
+**cadenceとL1意味**
+
+旧BR §3.3の「週次」は発動条件欄にあり例示の注記はないため、037候補の1.0 scopeへ非同期観測・報告として含める。weekly checkは対象scopeの設計/実装乖離を既存HARNESS oracleへ照らす観測であり、全件CI、常時稼働engine、工程同期gateを意味しない。差分がない週は報告だけを残し、差分がある場合だけ既存Reverse/Backflowへつなぐ。
+
+親L1は `HELIXOS-L1-002`（状態/欠落把握）と `HELIXOS-L1-006`（観測とLABO Feedback登録/振分け）の意味範囲で導出できる。HARNESS oracle側は `HARNESS-L1-003`, `HARNESS-L1-004` が変更影響・検証義務・差戻しを支える。debt/driftという語がないことだけではL1親射程の不足としない。反例として、source分類を経ずOS自身が新しい負債閾値を決め、全projectの進行を週次同期停止する要求なら既存L1から導けないが、この候補には含めていない。
+
+**観測の未完と開始境界**：観測を開始する入力は選択scope/revision・source契約・oracleであり、今回の観測結果や返済案を先に要求しない。週次の観測が未実施・中断・遅延した期間は未観測と報告し、過去の結果を今期の確認済みへ転用しない。観測未完だけで無関係な工程を止めず、対象scopeに既存gate条件があればその判定は別に行う。
+
+**原文**：[FR-L1-11と業務条件の原文・保持点](../../governance/audits/requirements-stage/debt-drift-legacy-differences-2026-09-28.md)。週次は旧規範頻度として候補へ保持する。旧CLI/runtime/schemaや旧世代の層番号は移植しない。
