@@ -932,7 +932,7 @@
     {
       "ref_id": "CUR-HARNESS-L2-REF",
       "path": "docs/helix-harness/L2-requirements/product-requirements.md",
-      "sha256": "b4c6692a9512a62442072faa3d41a71fa8bb5033348385cced612faf9d8682f5",
+      "sha256": "a80de323f18dffd36aef90536986b9284372117bc5dfa0fd6d733a3a87ac49d9",
       "start_line": 222,
       "end_line": 228,
       "line_sha256": "1f339cb88517614978916d510fa878ce5310319055edeec28b714b8b84f3d88a",

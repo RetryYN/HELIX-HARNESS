@@ -772,18 +772,18 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 
 **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-009`。L1-001は上流意図から運用評価までを正規V-pairで構成する根拠、L1-004は検証義務・反例・証拠・差戻し条件、L1-009は要求の種類・構成に合うtemplateから設計義務を導く根拠である。複数Phaseの出力をつなぐ専門workflowを、対象・構成に応じて適用するcomposite能力として具体化する。L1は上流価値を付け足さず、既存L1の意味を変更しない。現行L1-001/009の正規pair・要求構成に応じた設計義務という射程から専門workflowの候補を具体化でき、L1の意味差分は不要である。L1-004はその設計に対するverification pairとevidenceの根拠となる。
 
-**kind・scope・所属**：HARNESS-COREに属する新規composite候補であり、新しいサービスではない。現行`HARNESS-L2-009`が要求kind・target・構成・risk・domainから適用可能なDesign Templateと設計義務を導出し、その版付き適用契約が一般system設計（Phase 1）に続くagent固有設計（Phase 2）を示すscopeに限って適用する。旧`drive=agent`という値だけでは起動しない。2026-09-24のPO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:75-78）で旧駆動モデルはticket種別へ置き換えられ、Scrum等の開発styleとは別軸とされたため、旧値は現行入力schemaに持ち込まず、009の現行要求分類とtemplate適用判断へ意味を移す。Wを通常の開発style、V-pairそのもの、またはcase-driven modelと同一視しない。HARNESS自身の開発には自動適用しない。
+**kind・scope・所属**：HARNESS-COREに属する新規composite候補であり、新しいサービスではない。現行`HARNESS-L2-009`が要求kind・target・構成・risk・domainから適用可能なDesign Templateと設計義務を導出し、その版付き適用契約が一般system設計（Phase 1）に続くagent固有設計（Phase 2）を示すscopeに限って適用する。旧`drive=agent`という値だけでは起動しない。2026-09-24のPO判断（docs/governance/decisions/concept-requirement-po-decisions-2026-09-24.md:75-78）で旧駆動モデルはticket種別へ置き換えられ、Scrum等の開発styleとは別軸とされたため、旧値は現行入力schemaに持ち込まず、009の現行要求分類とtemplate適用判断へ意味を移す。Wを通常の開発style、V-pairそのもの、またはcase-driven modelと同一視しない。旧A-74に従いHARNESS自身の開発には適用せず、外部の対象agent systemへ提供する能力とする。
 
 **既存責務との境界**：
 
 - `HARNESS-L2-009`は対象・要求kind・構成・risk・domainに適したDesign Templateと設計義務、および不足inputのBackflowを所有する。037はPhase間のtrace、二段成果物のscope分離、合流条件を所有し、templateの意味や要求を独自に作らない。
 - `HARNESS-L2-026`は個々の要求から相互参照する設計unitと対の検証設計を構成する。`HARNESS-L2-025`はunitを束ねた汎用composite設計の整合を確認する。037はこれらを二段の対象scopeで利用し、単体設計の重複生成も汎用composite義務の置換もしない。候補が適用中なら、それぞれの契約版・receipt・scopeを照合する。
-- `HARNESS-L2-022`は各段階のoracle・証拠・状態契約を所有する。037の統合設計成果だけからL3/L10 Verified、L2/L11 Accepted、L1/L12 Observedを生成しない。承認済みL3要件とsystem固有義務の検証は現行L3↔L10 pairで022に渡し、L2↔L11受入、L1↔L12運用評価には別々の条件とtraceを渡す。
+- `HARNESS-L2-022`は各段階のoracle・証拠・状態契約を所有する。037の統合設計成果だけからL3/L10 Verified、L2/L11 Accepted、L1/L12 Observedを生成しない。両Phaseの合意済みL2要求・承認済みL3要件とsystem固有義務の検証は現行L3↔L10 pairで022に渡し、L2↔L11受入、L1↔L12運用評価には別々の条件とtraceを渡す。
 - Phase間の設計合流規則は037、CI/Workerの実行・state保存・工程運転はHELIX-OS。HARNESSは「何を満たすか」と差戻し条件を定め、OSは選択された運転契約を適用する。
 
-**開始時入力**：対象product/systemとrevision、要求kind・target・構成・risk・domain、HARNESS-L2-009による適用template/義務/契約版の導出結果、対象scopeを覆う承認済みL3要件とauthority/revision、Phase 1で用いる一般system設計入力とそのtemplate契約。これらで二段scopeが確定した後にPhase 1設計を開始する。開始時にPhase 1/2の設計成果やL9実行結果を要求しない。
+**開始時入力**：対象product/systemとrevision、要求kind・target・構成・risk・domain、HARNESS-L2-009による適用template/義務/契約版の導出結果、対象scopeを覆うPhase 1の合意済みL2要求・承認済みL3要件とauthority/revision、Phase 1で用いる一般system設計入力とそのtemplate契約。これらで二段scopeが確定した後にPhase 1設計を開始する。開始時にPhase 1/2の設計成果やL9実行結果を要求しない。
 
-**後段入力・受渡し**：Phase 1のL4設計成果ができた後、その成果に対する現行L9対検証receiptを取得し、Phase 2設計の開始入力へ渡す。Phase 2のL4設計成果ができた後にそのL9対検証receiptを取得する。両段階のrevision付き成果・receipt・traceがそろってから合流処理へ進む。旧drive名、`phase.yaml`、旧関数/API名を入力schemaとして固定しない。
+**後段入力・受渡し**：Phase 1のL4設計成果ができた後、その成果に対する現行L9対検証receiptを取得し、Phase 2固有の要求形成へ渡す。Phase 2のL4設計成果ができた後にそのL9対検証receiptを取得する。両段階のrevision付き成果・receipt・traceがそろってから合流処理へ進む。旧drive名、`phase.yaml`、旧関数/API名を入力schemaとして固定しない。
 
 **出力**：段階ごとに、対象・revision・scopeを分けたPhase 1 L4設計成果、Phase 1のL9対検証receipt、Phase 2 L4設計成果、Phase 2のL9対検証receiptを記録する。合流出力は両段階のreceiptを入力として、一般system制約からagent固有設計への引継ぎtrace、未解消gap/不整合一覧、L3要件とL10 system oracleで照合可能な統合設計成果または未合流状態を返す。さらにL2/L11 acceptanceおよびL1/L12 observationへの接続traceを持つ。L10判定結果自体はHARNESS-L2-022が所有する。出力には対象revision、参照した契約版、根拠、適用限界、差戻し先を結ぶ。
 
@@ -796,14 +796,14 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 
 **依存区分**：
 
-- **常時必須**：対象revision/scope、適用中の承認済みL3 authority、HARNESS-L2-009の適用template/義務/契約版、Phase間handoff契約、HARNESS-L2-022の現行pair/state/oracle契約。これは開始前に必要な契約であり、後段で生成されるPhase成果や実行receiptを開始前提にはしない。authority、適用契約または必須oracleがunknown/stale/missingなら、その範囲の設計開始または合流を保留する。
-- **特定操作時のみ**：009で二段scopeと判定された設計操作に限り、Phase 1設計→Phase 1 L9対検証→Phase 2設計→Phase 2 L9対検証→両receiptを用いた合流の順で処理する。各L9 receiptは対応する設計成果の生成後に取得し、次段または合流の入力とする。一般system設計だけを行う操作では037を起動しない。統合後にL3↔L10検証、L2↔L11受入、L1↔L12運用評価へ進む場合はそれぞれの段階契約に従うが、037がそれらの結果を前提・代行しない。trace UIを含む選択scopeでは表示上の状態traceも検証し、非UI scopeではartifact traceを検証する。
+- **常時必須**：対象revision/scope、各Phaseの適用段階で必要なL2合意・L3承認のauthority、HARNESS-L2-009の適用template/義務/契約版、Phase間handoff契約、HARNESS-L2-022の現行pair/state/oracle契約。これは開始前に必要な契約であり、後段で生成されるPhase成果や実行receiptを開始前提にはしない。authority、適用契約または必須oracleがunknown/stale/missingなら、その範囲の設計開始または合流を保留する。
+- **特定操作時のみ**：009で二段scopeと判定された設計操作に限り、Phase 1のL2合意/L3承認→Phase 1設計・実装/対検証→Phase 2のL2形成/合意・L3要件/承認→Phase 2設計・実装/対検証→両receiptを用いた合流の順で処理する。各L9 receiptは対応する設計成果の生成後に取得し、次段または合流の入力とする。一般system設計だけを行う操作では037を起動しない。統合後にL3↔L10検証、L2↔L11受入、L1↔L12運用評価へ進む場合はそれぞれの段階契約に従うが、037がそれらの結果を前提・代行しない。trace UIを含む選択scopeでは表示上の状態traceも検証し、非UI scopeではartifact traceを検証する。
 - **選択した入力元・適用scopeに応じて必須**：Phase 2が参照する個別Design Template、pattern、agent/platform/tool contractは、対象scopeで選択されたものについてidentity/version/applicability/required input/authorityを照合する。選択されていない知識やplatformを暗黙に必須化しない。L2-025/026候補を当該scopeの設計構成に使う場合は、各候補の契約・receipt・互換性を確認する。
 - **参照資料のみ**：旧`drive=agent`、`phase.yaml`の`phase_merge` field、`mergeTwoStageAgentDesign`、旧Traceビュー、開発styleの旧名、旧schema/runtimeの例は根拠・履歴として読むだけで、現行実装依存や固定schemaではない。
 
 **正常・誤り・未見**：
 
-- 正常：HARNESS-L2-009が現行要求のkind/target/configuration/risk/domainと適用template版を照合し、二段scopeを導出する。開始時には承認済みL3要件とPhase 1の設計入力だけがあり、まずPhase 1 L4成果を生成する。Phase 1のL9対検証後、そのrevision付き成果・receiptをPhase 2へ渡してagent固有L4成果を生成し、続いてPhase 2のL9対検証を行う。両receiptとtraceが揃い、Phase 2がPhase 1のcontractを保つか明示差分を解消した後、統合設計成果をL3↔L10 system oracleへ渡す。L10結果は022が判定する。L2↔L11 acceptanceとL1↔L12 observationの結果は別stateとして後続へつなぎ、まだ実施していなければ未実施とする。
+- 正常：HARNESS-L2-009が現行要求のkind/target/configuration/risk/domainと適用template版を照合し、二段scopeを導出する。開始時にはPhase 1の合意済みL2要求・承認済みL3要件とPhase 1の設計入力だけがあり、まずPhase 1 L4成果を生成する。Phase 1のL9対検証後、そのrevision付き成果・receiptからPhase 2固有のL2要求とL3要件を形成し、L2合意・L3承認を確認してからagent固有L4成果を生成し、続いてPhase 2のL9対検証を行う。両receiptとtraceが揃い、Phase 2がPhase 1のcontractを保つか明示差分を解消した後、統合設計成果をL3↔L10 system oracleへ渡す。L10結果は022が判定する。L2↔L11 acceptanceとL1↔L12 observationの結果は別stateとして後続へつなぎ、まだ実施していなければ未実施とする。
 - 誤り：Phase 2がPhase 1のsystem invariantを破る、required input/phase receiptが欠ける、phase間traceが別revisionを指す、または一方の現行L4設計/L9対検証成果だけをmergedとする場合、037は統合成果を出さず具体的gapと戻し先を返す。設計input欠落はHARNESS-L2-009/形成へ、要求意味変更はHARNESS-L2-008/上流へ、oracle不足はHARNESS-L2-022へ戻す。対象revision・運転記録はOS境界へ返す。
 - 未見：未公開のagent構成でも applicabilityが既知の適用契約範囲内なら、同じphase境界・要求oracle・trace条件を適用して内容を照合する。fixtureがないだけでは一律拒否せず、既知条件下の対応は受け入れる。適用範囲外・未定義のauthority/oracle/contractは該当箇所をunknownとして保留し、合流済み・受入済みへ昇格しない。
 
@@ -818,3 +818,7 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 **現行根拠と比較**：`docs/helix-harness/L1-planning/product-intent.md:31,39`（L1-001/004/009、SHA-256 `238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f`）。現行L2 `docs/helix-harness/L2-requirements/product-requirements.md`（HEAD `2beddd2b9e295f46bd6086de5f14148421144513`、SHA-256 `07fe4e2e7a8205d37571fc745f1154022559cf6489022ec6711f3efad3940bcf`）：009 `:60,116`はtemplate選択とunit/connection/composite義務、022 `:447-461`はstage/oracle/acceptance、026 `:530-540`はdesign unit、025 `:544-554`はgeneric composite整合。現行L11 `docs/helix-harness/L11-acceptance/product-acceptance.md`（同HEAD、SHA-256 `006c929d9c00d349b263bcbaa371e7d1638176966511420075cc85a45b9b8321`）：009の受入` :29,69,129-130`、022のstage oracle `:298-304`、025/026のpair acceptance `:332-360`。これらには一般design-template選定、generic composite、一連のstage判定はあるが、対象がagent-systemの場合に限るPhase 1/Phase 2双方のL9成果とL10合流・L11/L12 handoffの一体的な契約はない。037はこの差分だけを補う。
 
 **実物の検証との境界**：各PhaseのL4設計成果の存在・静的整合だけからL9実行receiptを作らない。HARNESS-L2-022に従い、当該scopeのL5以下の設計・実装・必要検証を通った実物について、選択したOSまたは利用者の実行手段が返すL9結果を後段入力として受け取る。037は結果を作らず、契約版・対象revision・oracle・実行状態を照合する。実装や実行がまだ無い段階では設計案と未完義務を保持し、Phase合流済みにはしない。
+
+**Phaseごとの上流と人の判断**：旧Conceptの二回のVを保持する。Phase 1は全体企画を親に一般systemのL2要求合意・L3要件承認を経て設計/実装/対検証へ進む。Phase 1の確定仕様と実物の検証結果をPhase 2への入力とし、agent固有の目的、利用者結果、制約、permission、失敗時の戻し、受入をHARNESS008/024でL2へ形成する。そのL2合意と、そこから導くPhase 2固有のL3要件承認を既存authority手順で得るまでは、Phase 2のL4以下へ進まない。Phase 1の合意・承認をPhase 2へコピーしない。二つのL2/L3 identity・revision・判断記録と合流scopeを別々に保持し、同じcommitやIDを強制しない。Phase 2で外殻の意味を変える必要が出れば該当するPhase 1上流へBackflowし、影響したpairをstaleにして再照合する。技術上の差分だけと推測して上流判断を省略しない。Phase 2が未承認でも要求候補と未完義務の記録は進められるが、設計/実装/合流を済ませたとは扱わない。
+
+旧Concept根拠：`LEGACY-ASSET-75776FE016E550F5355F`、`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md:343–361`、SHA-256 `b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c`。一般系とagent系で各々要求/要件からVを通る意味とA-74の自身適用除外を保持する。旧L0-L14は現行ConceptとL1-L12の正規pairへ再導出し、旧provider環境を実装前提にしない。単一L3への畳み込みは本候補では採らない。
