@@ -925,3 +925,13 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 **固定照合基準**：現行L1/L2/L11はcommit `d0900f30b92720114c6e0b5f436813d48172a020`。旧sourceの実装方式・211件のinventory（267/277行）や別entity機械の詳細（394行以降）は本候補の一括被覆対象にせず、元のsource保持を継続する。
 
 **UI prototype証拠の受渡し**：UI適用scopeのprototype合意/closureを主張する段階では、操作可能なprototype相当と、同じscope/revisionを実際にwalkthroughした結果・未決事項・訂正を、既存008/024の合意根拠へ結ぶ。静止画や一覧だけを操作可能性・walkthrough実施の証拠へ変換しない。旧manifest schemaは固定せず、未実施なら当該義務を未完として保持する。039の契約候補形成の開始に、未来のprototype完成やwalkthrough完了は要求しない。非UIなら既存の根拠付き非適用判定と再評価条件を保持する。
+
+## HARNESS-L2-035 scope拡張の計測条件（追補）
+
+既存035と一体の未採択候補。親HARNESS-L1-008、version_target: 1.0を保持する。
+
+scope拡張候補の受入寄与・最小性を照合するとき、追加機能数だけでなく、複雑さ（complexity）、外部へ公開する面（public surface）、運用上の負債について、変更前後の測定対象・方法・条件・結果を識別できるようにする。候補の形だけを数えて、API/CLI/schema/設定/依存や運用義務の増加を隠さない。HARNESS-L2-034の計測契約を使う場合はその対象・版・適用条件へ結び、測定前の値や適用予算が不明ならunknownとして残す。特定の数式、全製品共通の閾値、唯一の実装方式は原文にないため追加しない。
+
+候補の起草開始には測定完了を要求しない。scope拡張の必要性を満たしたと主張する段階では、上の三観点とauthoritative oracleへの寄与・代替案・minimum-necessary proofを一緒に示す。測定欠落は該当するscope判定を未完にし、低い追加機能数や別観点の好成績で相殺しない。不要な拡張は既存035へ戻し、新たに必要と判明した変更は既存Backflow/ticket境界へ戻す。実行authority、全作業の同期gate、通常作業の毎回の人確認は追加しない。
+
+旧根拠：HIL-NFR-07。原文と所在は[scope計測の原文照合](../../governance/audits/requirements-stage/scope-measures-legacy-differences-2026-09-28.md)。既存035の導出連鎖・循環拒否を置換しない。

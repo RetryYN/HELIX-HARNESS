@@ -1,0 +1,85 @@
+{
+  "receipt_id": "MPR-RCPT-HARNESS-SCOPE-DERIVATION-2026-09-28-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### HARNESS-L2-035元節と文末## HARNESS-L2-035 scope拡張追補節をこの順で各末尾空行除去+LF1つとして直接連結するUTF-8 SHA-256。",
+  "candidate_digest_parts": [
+    {
+      "heading": "### HARNESS-L2-035 ",
+      "sha256": "sha256:7eabe1b8feefc4f7d954cf182a20d6db5c9f7ebd3e253767cc41c9def6d61896"
+    },
+    {
+      "heading": "## HARNESS-L2-035 scope拡張の計測条件（追補）",
+      "sha256": "sha256:f095be7d491d81ea7d406556b6fee7d426d8849be4413fc4f130ba00d1b6b808"
+    }
+  ],
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "既存035のFR38/NFR23原文2行を不変で保持し、NFR07原文1行を追加。原文所在と条件の対応を示す限定receiptで、IR153全体の被覆や採択を主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HARNESS-L2-035",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HARNESS-L1-008"
+      ],
+      "candidate_semantic_digest": "sha256:4e37d81ee53b22319a316aa7090b30ccb94688d23ed6547551e914b2903a29c2",
+      "source_atom_set_digest": "sha256:5216dc967e2ffc8e795d6ca848e302142ea257d50a4fcedf35a68ab7117bff35",
+      "source_atom_count": 3,
+      "source_collection_scope": "既存035のFR38/NFR23原文2行を不変で保持し、NFR07原文1行を追加。原文所在と条件の対応を示す限定receiptで、IR153全体の被覆や採択を主張しない。",
+      "atoms": [
+        {
+          "atom_id": "SCOPE-DERIVATION-HIL-FR-38-L0128",
+          "source_holding_registration_id": "MPR-SH-SCOPE-DERIVATION-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 128,
+          "source_line_sha256": "sha256:58fe296f29fa6778ab21d22dee62a8dc65ed416dc8099c45092b564de3329ba8",
+          "source_text": "| **HIL-FR-38** | Scope Authority Gateは各capabilityの根拠をchat directive、L0、PO-approved scopeまたはそのderivation chainへ結び、acceptance寄与、最小性、代替案、budget消費を検査する。後付け要件だけの循環根拠を拒否する。 | authority edge、necessity proof、budget receipt |",
+          "ir_requirement_id": "HIL-FR-38",
+          "ir_source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-FR-38",
+          "ir_statement_semantic_digest": "sha256:1e9fcc442e00d47b8e3a876bb7eb139356f9447fbce661f77c6cd5c9cd6a870b",
+          "ir_record_semantic_digest": "sha256:e53592e9f662eca67ed89e38011462d8698a4d208e308d9e586853d3798ec686",
+          "disposition": "carried",
+          "relation": "原文根拠・受入寄与・最小性・代替案・budget根拠と後付け循環拒否をL2-035入力/提供/必要性、L11正常/個別反例へ。"
+        },
+        {
+          "atom_id": "SCOPE-DERIVATION-HIL-NFR-23-L0203",
+          "source_holding_registration_id": "MPR-SH-SCOPE-DERIVATION-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 203,
+          "source_line_sha256": "sha256:a85c36b3ae6562e79cb34e58c41d6b061ef45da37a5d8bc5d88f1694c3065291",
+          "source_text": "| **HIL-NFR-23** | scope derivation graphはacyclicでauthoritative rootへ到達し、capability自身または同時追加HILだけを根拠にするcycleを拒否する。 |",
+          "ir_requirement_id": "HIL-NFR-23",
+          "ir_source_pointer": "archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json#/HIL-NFR-23",
+          "ir_statement_semantic_digest": "sha256:27ea355917c7115610a257a83f695b750701e0a54201bc7aa790864490243861",
+          "ir_record_semantic_digest": "sha256:c0c469c8dff0ac5972aab0f63ef2dac75133063a4eeef408d0438c6bb4e53b54",
+          "disposition": "carried",
+          "relation": "authoritative rootまでの非循環導出、能力自身/同時追加候補だけの自己根拠拒否をL2-035提供/循環、L11個別反例/未見へ。"
+        },
+        {
+          "atom_id": "SCOPE-MEASURES-HIL-NFR-07-L0187",
+          "source_holding_registration_id": "MPR-SH-SCOPE-MEASURES-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 187,
+          "source_line_sha256": "sha256:0bf32cc3753f24c90def870e54353e6b7a968d01bf0117d5983d6eb648c24b24",
+          "source_text": "| **HIL-NFR-07** | Scope Gateは機能追加数だけでなくcomplexity、public surface、運用負債を測り、authoritative oracleへの寄与とminimum-necessary proofがない拡張を拒否する。 |",
+          "disposition": "carried",
+          "relation": "035の必要性照合へcomplexity/public surface/運用負債の測定観点を追補。数値/実行方式は捏造せず、起草開始と根拠充足を分離する。IR同identityと意味重複し独立要求数へ加算しない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-008",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-024",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-035",
+        "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-035-scope拡張の計測条件追補",
+        "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l2-035-scope計測追補の受入"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}
