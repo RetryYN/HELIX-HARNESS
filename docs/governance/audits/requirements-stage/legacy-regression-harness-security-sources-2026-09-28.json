@@ -1,0 +1,1351 @@
+{
+  "baseline": {
+    "commit": "85cee18960bd1973fb1b28132e6498464b0f673b",
+    "note": "指定6対象本文は後続HEAD 6f92e01fa8831e19988346a6df67b02802ca4f68および85cee18960bd1973fb1b28132e6498464b0f673bと同一SHA-256"
+  },
+  "target_documents": [
+    {
+      "mechanism": "HARNESS",
+      "layer": "L1",
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "mechanism": "HARNESS",
+      "layer": "L2",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a"
+    },
+    {
+      "mechanism": "HARNESS",
+      "layer": "L11",
+      "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4"
+    },
+    {
+      "mechanism": "SECURITY",
+      "layer": "L1",
+      "path": "docs/helix-security/L1-planning/security-intent.md",
+      "sha256": "b779ae38e077474ee10ee07e1bb50eac1da64a86ee3bf2bc06504c1dd53be61d"
+    },
+    {
+      "mechanism": "SECURITY",
+      "layer": "L2",
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c"
+    },
+    {
+      "mechanism": "SECURITY",
+      "layer": "L11",
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01"
+    }
+  ],
+  "source_target_rows": [
+    {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": "16-99",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "condition": "required fields, owner, trace, negative oracle, measurement or reasoned N/A, pair, unresolved obligations, digest; generated views do not replace authority",
+      "targets": [
+        "HARNESS-L2-009",
+        "HARNESS-L2-014"
+      ],
+      "disposition": "meaning rederived; legacy JSON schema/shadow migration not adopted; atom-level coverage unresolved",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "lines": "406-426",
+      "sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "condition": "full reverse input and evidence/gap/routing, old R0-R4",
+      "targets": [
+        "HARNESS-L2-019",
+        "HARNESS-L2-027"
+      ],
+      "disposition": "provenance/unknown rederived; old CLI/runtime/levels not adopted",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-D11F51092619506417E4",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/multimodal-design-harness-authority.md",
+      "lines": "56-69,71-78,121-145",
+      "sha256": "baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2",
+      "condition": "external extractor provenance, unknown, UI screen/action/state/binding and non-UI applicability",
+      "targets": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-014",
+        "HARNESS-L2-019",
+        "HARNESS-L2-027",
+        "HARNESS-L2-028",
+        "HARNESS-L2-029"
+      ],
+      "disposition": "applicable semantics rederived; specialized legacy schema not copied; screen-mock atom closure unresolved",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "lines": "50-78",
+      "sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "condition": "source-bound identity, exact affected set, unknown, no authority writes",
+      "targets": [
+        "HARNESS-L2-028",
+        "HARNESS-L2-029"
+      ],
+      "disposition": "rederived",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "lines": "20-25,42-46",
+      "sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "condition": "stale/wrong-revision, affected omission, unknown not complete, reject direct writes",
+      "targets": [
+        "HARNESS-L2-028",
+        "HARNESS-L2-029"
+      ],
+      "disposition": "negative oracles rederived",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "lines": "147,152-156,174,178-184",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "condition": "independent oracle, negative oracle, expected failure; no generator self-proof",
+      "targets": [
+        "HARNESS-L2-014",
+        "HARNESS-L2-022",
+        "HARNESS-L2-030",
+        "HARNESS-L2-031",
+        "HARNESS-L2-033"
+      ],
+      "disposition": "meaning preserved/rederived",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "lines": "109-113,127-139",
+      "sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "condition": "independent acceptance oracles",
+      "targets": [
+        "HARNESS-L2-022",
+        "HARNESS-L2-030",
+        "HARNESS-L2-031",
+        "HARNESS-L2-033"
+      ],
+      "disposition": "meaning rederived",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-20C14BB23C519C65E7BD",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ai-dev-team-operations_v1.1.md",
+      "lines": "716-750",
+      "sha256": "4c03ceed6fd11985158cb9dd7d3e5f455274cf74e839523b756da7f35441867d",
+      "condition": "bug reproduction/regression rationale, preserve regression evidence and deletion reason",
+      "targets": [
+        "HARNESS-L2-031",
+        "HARNESS-L2-033"
+      ],
+      "disposition": "candidate-stage meaning rederived; not universal mandatory run per incident",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F1F753F31DB8D874EF21",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+      "lines": "37-90",
+      "sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
+      "condition": "test/run/revision identity, separate generation from execution, retry green cannot erase prior fail",
+      "targets": [
+        "HARNESS-L2-005",
+        "HARNESS-L2-022",
+        "HARNESS-L2-030",
+        "HARNESS-L2-033"
+      ],
+      "disposition": "stage meaning rederived; old CI not executed",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-8DE0535125B1E39C6FEA",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ci-system-synthesis-acceptance.md",
+      "lines": "24-40",
+      "sha256": "f5dcd1910a4eef57c66e1c2c03fffe20e5c681ed9e9d043b9e8f15a211e65d9b",
+      "condition": "revision/run receipt identity and negative lifecycle checks",
+      "targets": [
+        "HARNESS-L2-022",
+        "HARNESS-L2-030",
+        "HARNESS-L2-033"
+      ],
+      "disposition": "rederived",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-335176749F6322C3CD8D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "lines": "42-51",
+      "sha256": "7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
+      "condition": "UI prototype/screen ledger; semantic IDs; N/A; pair/trace/oracle and proposal boundary",
+      "targets": [
+        "HARNESS-L2-025",
+        "HARNESS-L2-026"
+      ],
+      "disposition": "conditional UI semantics retained/rederived",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-879D95C07B789C9502CF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md",
+      "lines": "20-29",
+      "sha256": "6b72ed546c07349dfd5b59e78f15ddfbb353ea0b232b7c8b5de8d1cae7854191",
+      "condition": "reject missing screen/binding/orphan and code green without UX evidence",
+      "targets": [
+        "HARNESS-L2-025",
+        "HARNESS-L2-026"
+      ],
+      "disposition": "conditional UI oracle rederived",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "lines": "46-58",
+      "sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "condition": "workflow atoms, unresolved, proposal-only judgment/allocation, quality metrics",
+      "targets": [
+        "HARNESS-L2-025",
+        "HARNESS-L2-026"
+      ],
+      "disposition": "reference input only; engine/decision ownership not transferred",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-6FFD7F4E58066D08B053",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md",
+      "lines": "18-30",
+      "sha256": "1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3",
+      "condition": "negative oracles for unresolved, trace, authority, route/allocation",
+      "targets": [
+        "HARNESS-L2-025",
+        "HARNESS-L2-026"
+      ],
+      "disposition": "reference input only; not HARNESS engine acceptance",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "lines": "76-147",
+      "sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "condition": "fixed task/oracle/protocol/scorer cohort, anti-leakage, separate metrics and missing cost unknown",
+      "targets": [
+        "HARNESS-L2-025",
+        "HARNESS-L2-026"
+      ],
+      "disposition": "comparison/effect evaluation remains separate owner; not imported into design acceptance",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "lines": "30-41",
+      "sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "condition": "benchmark negative oracle and versioned historical cohort",
+      "targets": [
+        "HARNESS-L2-025",
+        "HARNESS-L2-026"
+      ],
+      "disposition": "reference only; no benchmark pass generated",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+      "lines": "14-24,28-38,40-44",
+      "sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+      "condition": "scoped security engagement, expiry/revoke, evidence privacy, allowed/forbidden activities",
+      "targets": [
+        "HELIXSECURITY-L1-008",
+        "HELIXSECURITY-L1-009",
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-009",
+        "HELIXSECURITY-L2-022"
+      ],
+      "disposition": "authority scope generalization adopted by 2026-09-28 PO decision; legacy candidate atom retirement/total coverage remains distinct and unresolved",
+      "acceptance_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "lines": "30-80",
+      "sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "condition": "typed authority tuple and fail-closed physical target identity",
+      "targets": [
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-009",
+        "HELIXSECURITY-L2-022",
+        "HELIXSECURITY-L2-023",
+        "HELIXSECURITY-L2-024"
+      ],
+      "disposition": "semantics rederived; physical path/TOCTOU details explicitly held for L3",
+      "acceptance_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "lines": "18-30",
+      "sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "condition": "unknown, drift, egress, rollback, unsupported sandbox, partial success negative oracles",
+      "targets": [
+        "HELIXSECURITY-L2-008",
+        "HELIXSECURITY-L2-009",
+        "HELIXSECURITY-L2-022",
+        "HELIXSECURITY-L2-024"
+      ],
+      "disposition": "semantic oracles rederived; detailed physical fixtures explicitly deferred to L3",
+      "acceptance_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-99C939E249CAF40935CB",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+      "lines": "61-64",
+      "sha256": "f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2",
+      "condition": "single source secret-like predicate",
+      "targets": [
+        "HELIXSECURITY-L1-005",
+        "HELIXSECURITY-L2-005"
+      ],
+      "disposition": "meaning rederived/expanded; legacy code not copied",
+      "acceptance_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "lines": "186,297-300",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "condition": "external instruction, tool injection and exfil isolation/classification/audit",
+      "targets": [
+        "HELIXSECURITY-L1-001",
+        "HELIXSECURITY-L1-002",
+        "HELIXSECURITY-L2-001",
+        "HELIXSECURITY-L2-002",
+        "HELIXSECURITY-L2-017"
+      ],
+      "disposition": "authority boundary rederived; complete detector guarantee not claimed",
+      "acceptance_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B8BBC1D5A8C91E746405",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "lines": "145-146",
+      "sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56",
+      "condition": "security filter routes injection/exfil to audit",
+      "targets": [
+        "HELIXSECURITY-L2-001",
+        "HELIXSECURITY-L2-002",
+        "HELIXSECURITY-L2-017"
+      ],
+      "disposition": "filter implementation not imported",
+      "acceptance_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-9114D4E463E95B67DD0C",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/worker-common-contract.md",
+      "lines": "57-58",
+      "sha256": "773280fa06cfb06989c4d2d66b15499635d14cd024b77401c18715c9d0588290",
+      "condition": "isolated worker, default deny network, scoped paths/hosts, deny credential access, reject scope-external diff",
+      "targets": [
+        "HELIXSECURITY-L1-007",
+        "HELIXSECURITY-L2-007"
+      ],
+      "disposition": "core controls retained/rederived",
+      "acceptance_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E9954F654E58B47A08B8",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-worker-isolation-policy-unit-test-design.md",
+      "lines": "22-29",
+      "sha256": "e02ae67bf03317bf0fb8e98971c79589c6850585a5a1c190335f41968ed8870a",
+      "condition": "negative isolation, scope, special-file/resource and diff controls",
+      "targets": [
+        "HELIXSECURITY-L2-007"
+      ],
+      "disposition": "semantic fixture conditions rederived; no old tests executed",
+      "acceptance_path": "docs/helix-security/L11-acceptance/security-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-F1F753F31DB8D874EF21",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/system-synthesis-requirements.md",
+      "lines": "29-102",
+      "sha256": "69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79",
+      "condition": "stable identity graph, deterministic projection, proposal/authority separation, evidence based lifecycle",
+      "targets": [
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HARNESS-L2-008",
+        "HARNESS-L2-009",
+        "HARNESS-L2-010",
+        "HARNESS-L2-011",
+        "HARNESS-L2-022"
+      ],
+      "disposition": "cross-cutting semantics distributed; full legacy L3 family closure not claimed",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-58CBC57F44DFDD288961",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
+      "lines": "29,52-64",
+      "sha256": "52af19a483d6222f31d1d52031482fc60c62c504fe97496687d8175aa7a53756",
+      "condition": "draft GH-FR-025: impact-selected checks, post-merge/nightly recovery proposal, p95 candidate 60 seconds targeted/critical and 3 minutes full, duration/runner measurements, no masking overrun by reducing checks/extending timeout; route to Performance Recovery",
+      "targets": [
+        "HARNESS-L2-005"
+      ],
+      "disposition": "post-merge/nightly operations explicitly replaced by 2026-09-26 PO decision with ticket recovery; impact selection and skipped-check recovery retained. The p95/performance source and companion performance/test sources are draft. Current L2/L11 handoff/disposition for the draft performance conditions is unclear; not evidence of loss of an adopted requirement. Preserve exact values and recovery condition as HELIX-owned CI candidates for OS/L3 disposition, without generalizing to all products or assuming adoption.",
+      "status": "draft",
+      "related_draft_sources": [
+        {
+          "asset_id": "LEGACY-ASSET-79B70809D0A1EE2D5392",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
+          "lines": "21-23,29-30",
+          "sha256": "7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1",
+          "status": "draft"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-8B7FCC6ED4A9FDDFDEB5",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/github-ci-performance-system-test-design.md",
+          "lines": "22,27-28",
+          "sha256": "8014f6ceab95bcfe3bdb717f2d813de12fa09d8dee492ec221a8800ed799a232",
+          "status": "draft"
+        }
+      ],
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E78B8D68CC327AA00991",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "lines": "48,52",
+      "sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "condition": "choose next question by impact x uncertainty x downstream cost x human-only authority; convergence requires all conditions including two recent iterations and prototype agreement",
+      "targets": [
+        "HARNESS-L2-024"
+      ],
+      "disposition": "question-priority/history semantics rederived; old two-iteration minimum explicitly removed; no iteration count substitutes for missing required information",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-AD746F4F3487103519F9",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "lines": "22,26",
+      "sha256": "3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+      "condition": "independent next-question oracle; reject score-only or convergence without all conditions/current human agreement",
+      "targets": [
+        "HARNESS-L2-024"
+      ],
+      "disposition": "rederived with repeatable same-revision outcome and human agreement separated",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-4A7A45BC495D1B2677A2",
+      "path": "archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json",
+      "lines": "1-2828",
+      "sha256": "6230d6c0ae341ea45eba1e9bf1d40389363b9f1f12c158e5b5c15799122e1443",
+      "condition": "full refinement contract catalog cited by current mapping; current HARNESS L2 explicitly says this IR lacks the specific RDJ contracts under review",
+      "targets": [
+        "HARNESS-L2-024"
+      ],
+      "disposition": "not used to replace absent RDJ source; no schema/runtime migration",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "lines": "319",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "condition": "post-closure issue/rollback/recovery/re-entry links by evidence, not temporal or path coincidence; preserve closed record and append assessment; incomplete observation is not zero defects",
+      "targets": [
+        "HARNESS-L2-005"
+      ],
+      "disposition": "rederived; L11 exact negative fixture and LABO return owner",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "lines": "1-143",
+      "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "condition": "confirmed old pillar requirements and inventory/GAP model; current HARNESS L2 says not all conditions/numbers/addenda were replaced",
+      "targets": [
+        "HARNESS-L2-001",
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "disposition": "broad asset closure unresolved; do not infer total preservation from source citation",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "lines": "69-500 (whole asset has 664 lines)",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "condition": "development routes, process control, CI/measurement, authoring, design, release and security requirements cited as migration source",
+      "targets": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HARNESS-L2-006",
+        "HARNESS-L2-024"
+      ],
+      "disposition": "current L2:79-81 expressly says not all source requirements/numbers/addenda replaced; full 664-line atom map outside this bounded comparison",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-08373C0AEE18881133D5",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md",
+      "lines": "1-13",
+      "sha256": "17c7a6f8781768e4daf6da9fc2d9f09320a19d51bf17c4dfb8ca789ea3b51f01",
+      "condition": "applicability of availability/reliability/performance/capacity/cost/security/privacy/operations/recovery/observability; numerical SLO must be approved per target requirement/release",
+      "targets": [
+        "HARNESS-L2-005",
+        "HARNESS-L2-010"
+      ],
+      "disposition": "unapproved candidate; new-generation crosswalk reclassifies HARNESS/OS/product; no numerical requirement promoted",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "lines": "25-53",
+      "sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "condition": "separate directive/decision/selection/approval/disposition/runtime judgment and avoid human provenance from conversational tone",
+      "targets": [
+        "HARNESS-L2-008",
+        "HARNESS-L2-013",
+        "HARNESS-L2-024"
+      ],
+      "disposition": "draft candidate; no extra HARNESS approval or authority owner adopted",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-19E54587EB063625EC53",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+      "lines": "18-38",
+      "sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e",
+      "condition": "scoped impact re-confirmation, keep delegated intent moving, protect un-delegated meaning/authority",
+      "targets": [
+        "HARNESS-L2-008",
+        "HARNESS-L2-013",
+        "HARNESS-L2-024"
+      ],
+      "disposition": "approved pending canonical promotion; current L2 maintains candidate status and OS event owner",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "lines": "8-16",
+      "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+      "condition": "evidence-grounded design formation, human reaction separate from AI interpretation, scoped rework and convergence",
+      "targets": [
+        "HARNESS-L2-024",
+        "HARNESS-L2-026"
+      ],
+      "disposition": "draft candidate; cited for separation, not canonical promotion",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-5DAB2F0E1C13F846CABB",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md",
+      "lines": "12-29",
+      "sha256": "33462610beba32ec952b1eb4cb3ef4f57886a0ddb7f116ea9949d50042099f59",
+      "condition": "management findings follow S0-S4 and return product changes through canonical V model; event/receipt distinct from requirement authority",
+      "targets": [
+        "HARNESS-L2-003",
+        "HARNESS-L2-004"
+      ],
+      "disposition": "rederived as Backflow/process boundary; management operation remains outside HARNESS",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-35F5F438E0F8755B1CCE",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md",
+      "lines": "15-29",
+      "sha256": "20f549aa879d84e92196976ab2106bacedb393767d7a9946483c4d308576024e",
+      "condition": "only registered repair within scope; failures return to Worker/Recovery; no broad write right",
+      "targets": [
+        "HARNESS-L2-005"
+      ],
+      "disposition": "approved pending canonical; validation condition retained, repair execution candidate moves to INTELLIGENCE",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+      "lines": "28-81",
+      "sha256": "4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754",
+      "condition": "versioned trigger policy, source/baseline/threshold/window/sample/hysteresis/expiry and shadow-only authority pending",
+      "targets": [
+        "HARNESS-L2-004",
+        "HARNESS-L2-005"
+      ],
+      "disposition": "L2 explicitly declines L3 trigger adoption absent user value; draft remains non-current",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-11E8FE0479751F02A4A3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md",
+      "lines": "15-21",
+      "sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba",
+      "condition": "separate worker/reviewer/CI capacities, staged numeric target and burst capacity measured via accepted throughput",
+      "targets": [
+        "HARNESS-L2-005"
+      ],
+      "disposition": "candidate does not alter active WIP or worker counts; HARNESS uses no provider/worker-count constants",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-3AC6722CBF61023378CB",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-commercial-license-requirements.md",
+      "lines": "1-95",
+      "sha256": "35d25d16755239eb0b68b6b9d32250dd340df5406246c84868e5bb1aabd3e0c9",
+      "condition": "HELIX-wide commercial license candidate, rights/provenance/effective release and distribution conditions; draft is not a contract",
+      "targets": [
+        "HARNESS-L2-006"
+      ],
+      "disposition": "current requirement scopes external HARNESS deliverable only and defers to crosswalk; no license enactment",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-81FAB27053CEFFED01A3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/development-investment-stage-directives-source_v1.0.md",
+      "lines": "982-1026 (INV-028:982-1002; INV-029:1006-1026)",
+      "sha256": "7b7d0600bccd9045aa1c11f9762886c982b38e9446197f9dcf00637116833b04",
+      "condition": "INV-028 replay packet with sanitized input/bounded log/no external side-effect repetition; INV-029 independent oracle and separate candidate/run states",
+      "targets": [
+        "HARNESS-L2-031",
+        "HARNESS-L2-033"
+      ],
+      "disposition": "selected conditions rederived for test/repro capabilities; old priority, runtime, thresholds and P0-P4 not adopted",
+      "related_artifacts": [
+        {
+          "asset_id": "LEGACY-ASSET-429B017144C61B9C906D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+          "lines": "1-18",
+          "sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+          "role": "72-candidate index that points to the historical intake source"
+        }
+      ],
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "lines": "23-67",
+      "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "condition": "independent Slice promotion, exact Bundle set, maturity/version separation, impact trace, reproducible distribution and rollback",
+      "targets": [
+        "HARNESS-L2-004",
+        "HARNESS-L2-005",
+        "HARNESS-L2-006"
+      ],
+      "disposition": "candidate-only meaning; current L2 explicitly does not adopt old Slice names/channels/identities",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "lines": "1-108",
+      "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+      "condition": "experience transfer with evidence, capability goal/public release separation, package/module candidate map, web is not mandatory HARNESS v1 implementation",
+      "targets": [
+        "HARNESS-L2-006"
+      ],
+      "disposition": "candidate/future-only status retained; no runtime enum, public version or unconditional Web dependency",
+      "acceptance_path": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+    }
+  ],
+  "evidence_boundary": {
+    "receipts_are_not_total_coverage": true,
+    "harness_candidates_027_033_source_atom_count": 0,
+    "security_sea_atom_group": "MPR-SH-CANDIDATE-003 pending, 112 source atoms",
+    "remaining_global_gaps": [
+      "旧screen-mock boundary atom mapping",
+      "HARNESS 001-009 successor atom map",
+      "CONNECT old receipt source atoms"
+    ],
+    "legacy_runtime_executed": false,
+    "note": "Bounded source/target crosswalk, not full 4020-asset closure. Draft-source handoff finding does not claim regression of an adopted requirement."
+  },
+  "human_decisions": [
+    {
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "lines": "20,70-78",
+      "sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "effect": "採用済み: L1-008/009の全操作authority境界、L2/L11 008/009/022とWorker connection 007へ適用。有効な既決権限を再利用し、通常作業の毎回承認なし。旧special engagement admissionは通常作業へ移植しない。"
+    }
+  ],
+  "direct_reference_occurrences": [
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 79,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+      "sha256": "7a73fa86acd8e5a7b755a9479f67c4d2af1579e533df101b1b3294eeceb0d8cc",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 80,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 117,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-acceptance.md",
+      "specified_source_lines": "20-25,42",
+      "asset_id": "LEGACY-ASSET-CAC0C64EB7540180B1FE",
+      "sha256": "09d07e224518c0e14f946c8aaaf20128da422e0b554a7446c1d019d8263c0d5a",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 120,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-atomic-development-requirements.md",
+      "specified_source_lines": "29,52-62",
+      "asset_id": "LEGACY-ASSET-58CBC57F44DFDD288961",
+      "sha256": "52af19a483d6222f31d1d52031482fc60c62c504fe97496687d8175aa7a53756",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 152,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/infrastructure-operations-quality-l1-request-candidates.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-08373C0AEE18881133D5",
+      "sha256": "17c7a6f8781768e4daf6da9fc2d9f09320a19d51bf17c4dfb8ca789ea3b51f01",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 185,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/authority-vocabulary-requests.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-E9BDD9DCA6CF67CBE424",
+      "sha256": "5c29cba6331dff96082f74612ceaf755fe4a30a10e75be62797e8073de7fec99",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 186,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/requirement-formation-scoped-admission-requests.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-19E54587EB063625EC53",
+      "sha256": "f6379e1294bf4c68c93430903f24949d5373a60b82e5286ac34d51a5eb614a2e",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 187,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/design-grounding-human-convergence-requests.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-154018C4C6B5E3AB9C63",
+      "sha256": "f2c18a50e5c5476c0b3278adfcac7721db32e197c123c5fa4e6d53ad32a794e3",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 202,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/management-scrum-product-forward.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-5DAB2F0E1C13F846CABB",
+      "sha256": "33462610beba32ec952b1eb4cb3ef4f57886a0ddb7f116ea9949d50042099f59",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 216,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/bugbot-bounded-repair-requests.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-35F5F438E0F8755B1CCE",
+      "sha256": "20f549aa879d84e92196976ab2106bacedb393767d7a9946483c4d308576024e",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 224,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/refactoring-trigger-admission-requirements.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-12E2CD9B07EFAC343ED0",
+      "sha256": "4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 232,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/three-lane-capacity-profile-requests.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-11E8FE0479751F02A4A3",
+      "sha256": "a428f2de8652b9508456aed358152865a1f96f6978e5d204b1e2dfd3a1d2e1ba",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 239,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
+      "sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 247,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/helix-commercial-license-requirements.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-3AC6722CBF61023378CB",
+      "sha256": "35d25d16755239eb0b68b6b9d32250dd340df5406246c84868e5bb1aabd3e0c9",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 268,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/development-investment-stage-directives-intake_v1.0.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-429B017144C61B9C906D",
+      "sha256": "3cb6ee8a4d342b7f667c0960d08eb0a18fa44372ecb03bd85e0576e59baa4cca",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 276,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "sha256": "bf47d434930bd701d368a49b725d49b00a5af2f385b6e1436b294f7b47796e20",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 288,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/concept-vision-release-crosswalk.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-BD058F87FFAF55080296",
+      "sha256": "0ec3030afb38f1729e9a0c0945110b87762237f9548ab79faf5630ad9e538abb",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 523,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md",
+      "specified_source_lines": "48,52",
+      "asset_id": "LEGACY-ASSET-E78B8D68CC327AA00991",
+      "sha256": "361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 523,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md",
+      "specified_source_lines": "22,26",
+      "asset_id": "LEGACY-ASSET-AD746F4F3487103519F9",
+      "sha256": "3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 523,
+      "source_path": "archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json",
+      "specified_source_lines": "1-2828",
+      "asset_id": "LEGACY-ASSET-4A7A45BC495D1B2677A2",
+      "sha256": "6230d6c0ae341ea45eba1e9bf1d40389363b9f1f12c158e5b5c15799122e1443",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 601,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "specified_source_lines": "406-426",
+      "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 601,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/multimodal-design-harness-authority.md",
+      "specified_source_lines": "56-69,128-140",
+      "asset_id": "LEGACY-ASSET-D11F51092619506417E4",
+      "sha256": "baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "consumer_line": 601,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "specified_source_lines": "50-78",
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "consumer_line": 52,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/execution-ticket-requirements.md",
+      "specified_source_lines": "319",
+      "asset_id": "LEGACY-ASSET-3A15E5645D2D2A59DFF5",
+      "sha256": "f0d0d33a1cced1ad7c1bab061f0a36bcdb5bad122dc58c7e8e43b47032f37d6b",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "consumer_line": 310,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "specified_source_lines": "42-51",
+      "asset_id": "LEGACY-ASSET-335176749F6322C3CD8D",
+      "sha256": "7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "consumer_line": 311,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ai-vision-design-harness-engine-acceptance.md",
+      "specified_source_lines": "20-29",
+      "asset_id": "LEGACY-ASSET-879D95C07B789C9502CF",
+      "sha256": "6b72ed546c07349dfd5b59e78f15ddfbb353ea0b232b7c8b5de8d1cae7854191",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "consumer_line": 312,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/universal-workflow-ai-judgment-engine.md",
+      "specified_source_lines": "46-58",
+      "asset_id": "LEGACY-ASSET-5EE032D657C221184B00",
+      "sha256": "e20f475a3d1d082842415c2b734233e33a59f1b0bb1046c41e4ff4ec9c700e5b",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "consumer_line": 313,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/universal-workflow-ai-judgment-engine-acceptance.md",
+      "specified_source_lines": "18-30",
+      "asset_id": "LEGACY-ASSET-6FFD7F4E58066D08B053",
+      "sha256": "1c4e07263eba5254cfe66b920c4baf46227e0e07cb47ff60ac2e854740645db3",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "consumer_line": 314,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/helix-bench-evaluation.md",
+      "specified_source_lines": "76-147",
+      "asset_id": "LEGACY-ASSET-28FB139B26CD61CC51EE",
+      "sha256": "a1a5fea1fb89434fb025a9c0541f5cacb10ac9be66e97e7e7964975d2469b116",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "consumer_line": 315,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/helix-bench-evaluation-acceptance.md",
+      "specified_source_lines": "30-41",
+      "asset_id": "LEGACY-ASSET-A952A3A175EB82A4781B",
+      "sha256": "6b5a72da16fe56130350b6e8b8fc2606cb8c90015ff73f34ffb3b93625a0c185",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-resolution-2026-09-27.md",
+      "consumer_line": 16,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L3-functional/functional-requirements.md",
+      "specified_source_lines": "406-426",
+      "asset_id": "LEGACY-ASSET-B5B5E71B2AF1459D59A1",
+      "sha256": "a90609ad8145d8b9c1be6a6870b6ecad4bc71f3708fc977edd14f926c074257a",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-resolution-2026-09-27.md",
+      "consumer_line": 16,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/multimodal-design-harness-authority.md",
+      "specified_source_lines": "56-69,71-78,121-145",
+      "asset_id": "LEGACY-ASSET-D11F51092619506417E4",
+      "sha256": "baf570f59ac838302f69a27b17a6febca78bf911278af21a9d2f4f9e87a1edd2",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-resolution-2026-09-27.md",
+      "consumer_line": 16,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/agentic-audit-future-state-delta-requirements.md",
+      "specified_source_lines": "50-78",
+      "asset_id": "LEGACY-ASSET-EB3700B0088F311C2295",
+      "sha256": "685d95abf7218410b807dd9c58efd73a45b0b1937f820fefacf111fb2276bc1a",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-resolution-2026-09-27.md",
+      "consumer_line": 17,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "specified_source_lines": "147,152-156,174,178-184",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-resolution-2026-09-27.md",
+      "consumer_line": 17,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L3-pillar-acceptance-test-design.md",
+      "specified_source_lines": "109-113,127-139",
+      "asset_id": "LEGACY-ASSET-44DD86E3DEC09E65EF51",
+      "sha256": "df81469f13deb45e7da4c74d90c7f3d3b1be5f26ccf63b706e6e230bc5b4c3b6",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-resolution-2026-09-27.md",
+      "consumer_line": 18,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/ai-dev-team-operations_v1.1.md",
+      "specified_source_lines": "716-750",
+      "asset_id": "LEGACY-ASSET-20C14BB23C519C65E7BD",
+      "sha256": "4c03ceed6fd11985158cb9dd7d3e5f455274cf74e839523b756da7f35441867d",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-resolution-2026-09-27.md",
+      "consumer_line": 18,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+      "specified_source_lines": "37-90",
+      "asset_id": "LEGACY-ASSET-DA012A9B04D5BE9419CE",
+      "sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-resolution-2026-09-27.md",
+      "consumer_line": 18,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/ci-system-synthesis-acceptance.md",
+      "specified_source_lines": "24-40",
+      "asset_id": "LEGACY-ASSET-8DE0535125B1E39C6FEA",
+      "sha256": "f5dcd1910a4eef57c66e1c2c03fffe20e5c681ed9e9d043b9e8f15a211e65d9b",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-audit-2026-09-27.md",
+      "consumer_line": 19,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "specified_source_lines": "16-99",
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-audit-2026-09-27.md",
+      "consumer_line": 20,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/system-synthesis-requirements.md",
+      "specified_source_lines": "29-102",
+      "asset_id": "LEGACY-ASSET-F1F753F31DB8D874EF21",
+      "sha256": "69c8a47a4b67729fceabb3df85ecd1c2caa0b9faa5e5b7d958eff48517fdbd79",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-audit-2026-09-27.md",
+      "consumer_line": 21,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ai-vision-design-harness-engine.md",
+      "specified_source_lines": "37-56",
+      "asset_id": "LEGACY-ASSET-335176749F6322C3CD8D",
+      "sha256": "7dd1aff53747c60d080cdc367407751fb707e20b839ad64a9462537bb525cb2d",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-audit-2026-09-27.md",
+      "consumer_line": 22,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/ai-dev-team-operations_v1.1.md",
+      "specified_source_lines": "716-750",
+      "asset_id": "LEGACY-ASSET-20C14BB23C519C65E7BD",
+      "sha256": "4c03ceed6fd11985158cb9dd7d3e5f455274cf74e839523b756da7f35441867d",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "HARNESS",
+      "consumer": "docs/governance/audits/requirements-stage/helix-harness-internal-audit-2026-09-27.md",
+      "consumer_line": 23,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/development-investment-stage-directives-source_v1.0.md",
+      "specified_source_lines": "982-1026",
+      "asset_id": "LEGACY-ASSET-81FAB27053CEFFED01A3",
+      "sha256": "7b7d0600bccd9045aa1c11f9762886c982b38e9446197f9dcf00637116833b04",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/helix-security/L2-requirements/security-requirements.md",
+      "consumer_line": 387,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
+      "sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/helix-security/L2-requirements/security-requirements.md",
+      "consumer_line": 388,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/helix-security/L2-requirements/security-requirements.md",
+      "consumer_line": 389,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/helix-security/L2-requirements/security-requirements.md",
+      "consumer_line": 390,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-99C939E249CAF40935CB",
+      "sha256": "f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/helix-security/L2-requirements/security-requirements.md",
+      "consumer_line": 391,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/helix-security/L2-requirements/security-requirements.md",
+      "consumer_line": 391,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-B8BBC1D5A8C91E746405",
+      "sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/helix-security/L1-planning/security-intent.md",
+      "consumer_line": 86,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+      "specified_source_lines": null,
+      "asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
+      "sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/helix-security/L1-planning/security-intent.md",
+      "consumer_line": 87,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+      "specified_source_lines": "63",
+      "asset_id": "LEGACY-ASSET-99C939E249CAF40935CB",
+      "sha256": "f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/helix-security/L1-planning/security-intent.md",
+      "consumer_line": 91,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "specified_source_lines": "186,297",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-audit-2026-09-27.md",
+      "consumer_line": 12,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+      "specified_source_lines": "14-24,28-38,40-44",
+      "asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
+      "sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-audit-2026-09-27.md",
+      "consumer_line": 13,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "specified_source_lines": "30-80",
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-audit-2026-09-27.md",
+      "consumer_line": 14,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "specified_source_lines": "20-30",
+      "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-audit-2026-09-27.md",
+      "consumer_line": 15,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+      "specified_source_lines": "61-64",
+      "asset_id": "LEGACY-ASSET-99C939E249CAF40935CB",
+      "sha256": "f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-audit-2026-09-27.md",
+      "consumer_line": 16,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "specified_source_lines": "186,297-300",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-audit-2026-09-27.md",
+      "consumer_line": 16,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "specified_source_lines": "145-146",
+      "asset_id": "LEGACY-ASSET-B8BBC1D5A8C91E746405",
+      "sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-resolution-2026-09-27.md",
+      "consumer_line": 9,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requests.md",
+      "specified_source_lines": "14-24,28-38,40-44",
+      "asset_id": "LEGACY-ASSET-322CD23B625A08E2BFB3",
+      "sha256": "c6d76cd77529eea34518c554a555ed255cff390a34faf679806e50450c4df447",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-resolution-2026-09-27.md",
+      "consumer_line": 10,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/security-capability-broker-authority.md",
+      "specified_source_lines": "30-80",
+      "asset_id": "LEGACY-ASSET-B62E49D2E156232B8C63",
+      "sha256": "161722d80e7b0199310b1401992c3737bef2014b19b2776c0df4b15f833fe0a7",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-resolution-2026-09-27.md",
+      "consumer_line": 11,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/security-capability-broker-acceptance.md",
+      "specified_source_lines": "20-30",
+      "asset_id": "LEGACY-ASSET-170112AB2FA2FFDBFEE9",
+      "sha256": "b6f926f39cd824fc102cf82bd1625d14d298f666c931786fdc6c8117d06af1c4",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-resolution-2026-09-27.md",
+      "consumer_line": 12,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L4-basic-design/architecture.md",
+      "specified_source_lines": "61-64",
+      "asset_id": "LEGACY-ASSET-99C939E249CAF40935CB",
+      "sha256": "f4b9fcb98b4250879955f6eca0f2916dc1a27046820a8ad687e8f816b856bea2",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-resolution-2026-09-27.md",
+      "consumer_line": 13,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/pillar-functional-requirements.md",
+      "specified_source_lines": "186,297-300",
+      "asset_id": "LEGACY-ASSET-EE5DBACC7F28F7D1F605",
+      "sha256": "7b49652eb96f73efc903a462264962ab1811819eee76a3fd952d1a1e03af6544",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    },
+    {
+      "mechanism": "SECURITY",
+      "consumer": "docs/governance/audits/requirements-stage/helix-security-internal-resolution-2026-09-27.md",
+      "consumer_line": 13,
+      "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/pillar-basic-design.md",
+      "specified_source_lines": "145-146",
+      "asset_id": "LEGACY-ASSET-B8BBC1D5A8C91E746405",
+      "sha256": "d010289ee78b054642bb170164808144bf842be8e01454fb19d7a67fb309cc56",
+      "scope_note": "direct citation inventory; detailed semantic mapping is in source_target_rows when relevant to the regression comparison"
+    }
+  ],
+  "direct_reference_inventory_counts": {
+    "HARNESS": 43,
+    "SECURITY": 21,
+    "note": "counts include repeated source citations; not a semantic graph or full legacy closure"
+  },
+  "findings": [
+    {
+      "id": "H-REG-01",
+      "source": "LEGACY-ASSET-58CBC57F44DFDD288961:29,52-64",
+      "target": [
+        "HARNESS-L2-005",
+        "HARNESS-L11-005"
+      ],
+      "finding": "Draft GH-FR-025 and companion CI-performance candidates specify p95 budgets (60 seconds targeted/critical; 3 minutes full), duration/runner measurement, and Performance Recovery on overrun. The current L2/L11 handoff/disposition for those draft conditions is unclear; the source status does not establish an adopted requirement or a regression.",
+      "status": "draft-source handoff/disposition unclear; recommend carrying the exact candidate scope, values, measurement fields, and recovery condition to HELIX-owned CI OS/L3 disposition; do not infer adoption, retirement, or universal product thresholds"
+    }
+  ]
+}

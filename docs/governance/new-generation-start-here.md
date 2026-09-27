@@ -9,6 +9,28 @@ generation_boundary: 2026-09-14
 HARNESSは外部提供するV-model開発基盤、HELIX-OSはHARNESS自身を含むHELIXプロジェクト群の管理・統制・継続改善機構である。
 HELIX-WebはHARNESS Version 1完成後に展開する個別製品の総称（製品群）で、service runtimeはHELIX-OS外のHELIX-WEB-OSが担う。
 
+## 本体8機構の現在の判断状態（2026-09-28）
+
+POは本体8機構の確認資料が固定したL1対象revisionを確定し、L2と対になるL11の要求一式に合意した。
+以下の各判断記録が対象commit・本文SHA-256・明示候補集合・適用条件を特定する。本文中のdraft/candidate metadataは
+判断前の固定bytesとして保持し、対象revisionの状態は判断記録から読む。以降の履歴説明にある「POが確認する」「未合意」は当時の状態であり、この8機構の固定revisionについては次の記録を優先する。
+
+| 機構 | PO判断記録 | 採用した明示候補数 |
+|---|---|---:|
+| HELIX-HARNESS | [L1確定・L2/L11合意](decisions/helix-harness-requirements-po-decision-2026-09-28.md) | 24 |
+| HELIX-OS | [L1確定・L2/L11合意](decisions/helix-os-requirements-po-decision-2026-09-28.md) | 16 |
+| HELIX-BRAIN | [L1確定・L2/L11合意](decisions/helix-brain-requirements-po-decision-2026-09-28.md) | 42 |
+| HELIX-LABO | [L1確定・L2/L11合意](decisions/helix-labo-requirements-po-decision-2026-09-28.md) | 53 |
+| HELIX-INTELLIGENCE | [L1確定・L2/L11合意](decisions/helix-intelligence-requirements-po-decision-2026-09-28.md) | 54 |
+| HELIX-SECURITY | [L1確定・L2/L11合意](decisions/helix-security-requirements-po-decision-2026-09-28.md) | 28 |
+| HELIX-INFRASTRUCTURE | [L1確定・L2/L11合意](decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md) | 26 |
+| HELIX-CONNECT | [L1確定・L2/L11合意](decisions/helix-connect-requirements-po-decision-2026-09-28.md) | 7 |
+
+合計250候補は各version_targetと適用条件を保持して採用された。後続版・Web条件付きの内容を1.0へ前倒ししない。
+HARNESS-L2-029＝CORE、031＝共通部品、032＝CORE。SECURITYは全操作のauthority境界を適用し、有効な既決権限を再利用する。通常作業の毎回の人間承認は追加しない。
+旧sourceの未完引継ぎは保持し、旧HELIXからのデグレ照合と最後の横断整理を進める。実装順序A/BはL3開始時のPO判断として残る。
+この判断はL3要件承認、実装・実行・配布の許可や要求ステージ終了の宣言を含まない。Web／WEB-OSは今回の確認対象外である。
+
 ## 読込順
 
 1. [Concept入口](../concept/README.md)
@@ -21,7 +43,8 @@ HELIX-WebはHARNESS Version 1完成後に展開する個別製品の総称（製
    - [HELIX-OS](../helix-os/L1-planning/system-intent.md)
    - [HELIX-Web](../../helix-web/docs/helix-web/L1-planning/product-intent.md)
    - [HELIX-WEB-OS](../../helix-web/docs/helix-web-os/L1-planning/system-intent.md)（WebとWEB-OSは2026-09-24のPO判断でVisionレベルの材料へ分類し直した。2026-09-26のPO判断で、両者の文書はHELIX本体の`docs/`からrepository直下の`helix-web/`へ移した：[判断記録](decisions/helix-web-relocation-po-decisions-2026-09-26.md)）
-   - L1企画案（対象revisionはPOが確認する）：[HELIX-BRAIN](../helix-brain/L1-planning/brain-intent.md)、[HELIX-LABO](../helix-labo/L1-planning/labo-intent.md)、[HELIX-INTELLIGENCE](../helix-intelligence/L1-planning/intelligence-intent.md)、[HELIX-SECURITY](../helix-security/L1-planning/security-intent.md)、[HELIX-INFRASTRUCTURE](../helix-infrastructure/L1-planning/infrastructure-intent.md)（2026-09-26のPO判断でConceptの機構に加えた。1.0は原文の18項目に当たる要求だけ）
+   - L1企画（固定revisionの確認は上記2026-09-28判断記録を参照）：[HELIX-BRAIN](../helix-brain/L1-planning/brain-intent.md)、[HELIX-LABO](../helix-labo/L1-planning/labo-intent.md)、[HELIX-INTELLIGENCE](../helix-intelligence/L1-planning/intelligence-intent.md)、[HELIX-SECURITY](../helix-security/L1-planning/security-intent.md)、[HELIX-INFRASTRUCTURE](../helix-infrastructure/L1-planning/infrastructure-intent.md)（2026-09-26のPO判断でConceptの機構に加えた。1.0は原文の18項目に当たる要求だけ）
+   - [HELIX-CONNECT L1](../helix-connect/L1-planning/connect-intent.md)（固定revisionは上記判断記録で確認済み）
    - [5大目標・七大原則のL1被覆監査](audits/source-rebaseline/l1-goals-principles-coverage-audit.md)
    - [5大目標・七大原則のPO原文source atom inventory](l1-goals-principles-source-inventory.md)
 6. [対象別L2入口](audits/source-rebaseline/l2-source-register.md)と対応するL11
@@ -67,7 +90,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 - 機構の関係：2026-09-26のPO判断で、OSはPMに近く、周辺の機構（INTELLIGENCE、LABO、HARNESS、BRAIN、SECURITY、INFRASTRUCTURE。判断の時点では「実行基盤」と書いた）はPMOにあたると整理した。レーンの役割は「作成」と呼び、「推進」はOSのチケット発行の機能名だけに使う。ticketが指定するWorkerは、LABOの水準→INTELLIGENCEの配置の案→OSの推進の指定の三段で決める。この判断で、HELIX-OS L1の提供価値とL1-006、製品責務境界、5大目標も改めた（[判断記録](decisions/handoff-integration-po-decisions-2026-09-26.md)）。
 `L2D-S0-01 scaffold-binding`と`L2D-S0-02 wbs-ledger`の候補は2026-09-19の[decision record](decisions/l2d-s0-approval-and-s1-01-defer-2026-09-19.md)で承認済みであり、
 候補本文内の`draft_candidate`／`awaiting_human_approval`も同じく承認前snapshotのmetadataとして、decision recordを優先する。
-対象別L2／L11はdraft・未採否であり、まだcanonicalではない。
+本体8機構の固定L2／L11と明示候補集合の合意・採用は上記2026-09-28判断記録を正本とする。それ以外の候補へ採用を広げない。
 旧Concept、旧requirements、Requirement IR、候補群、設計、実装は新世代へ自動昇格しない。
 この非昇格は旧要求の削減を意味しない。採用済み旧要求は`preserved_pending_rehome`として全件保持し、
 対象別へ移す。実装・CI・物理配置を継承しないことと、要求意味を保持することを分ける。
@@ -75,7 +98,7 @@ Conceptの改訂に紐づく下位文書は見直し対象として示し、作�
 ## 現在許可される作業
 
 - 旧sourceのinventory、意味分類、対象別crosswalk、archive隔離。
-- 現行Conceptと旧承認L1 revisionを照合するL2／L11候補の起草、静的なID・参照・責務整合確認、個別採否準備。現行L1差分を承認済み入力として使わない。
+- 現行Conceptと対象revisionが確定したL1を照合するL2／L11の整理、静的なID・参照・責務整合確認、個別採否準備。対象decisionに含まれないL1差分を承認済み入力として使わない。
 - exact revisionのremote sync、Draft PRによる共有、現行の独立review通路での意味review。通常のGitHub作業では作成側が明示依頼を待たずpush・Draft PR作成・指摘修正を進め、review側がexact HEADのfindingを記録した後、作成側が修正後HEADのreview結果を確認してReady化する。
 - 現行merge admissionが成立したPRを、作成側とは独立したreview側が`gh pr merge --merge`で明示mergeし、read-afterすること。新世代CIがない間は旧CIを代用しない。
 - `scaffold/`名前空間での仮組み。仮の物は必ずScaffold Bindingへ登録し、`python3 scaffold/tools/scfctl.py validate`に合格させる（[scaffold/README.md](../../scaffold/README.md)）。仮組みは正式な設計・実装・CIではなく、その動作や検査の合格から採否・承認・完了を生成しない。
@@ -93,6 +116,5 @@ PRは上流候補の差分共有と許可されたreviewに使う。旧workflow�
 required check、review、merge等のrepository設定が旧世代を前提にする場合、その設定変更はHELIX-OSのGitHub projection再構築として別に扱う。
 PR #1797は`repository_foundation`に限定し、個別要求は[GitHub上流運用モデル](github-upstream-operating-model.md)に従って
 一要求identityずつ後続PRで無損失に再配置・具体化する。保持・再配置、意味変更、retireを別decision種別とする。対象revision付きの人間判断へ送るのは、人が持つ上流（Concept、企画、要求とprototype／非UIの合意、要件の承認）の意味を変える場合と、[上流authority状態モデル](authority-state-model.md)が対象revisionの人間decision（旧要求の意味変更・retire等）を求める場合に限る（[AGENTS.md](../../AGENTS.md)「再構築の原則」、旧`archive/legacy-generation-2026-09-14/root/CLAUDE.md:82-85`「自律境界」）。担当移動と技術変更だけの差分は記録して独立reviewへ送る。
-本PRのreview所見を理由に新しい要求本文を追加しない。既に置いた対象別L2／L11は未承認の整理案であり、個別要求の
-追加・採否・分割・具体化は後続の要求整理PRで行う。foundationで追加できるのは、旧sourceの保存位置、digest、
+本PRのreview所見を理由に新しい要求本文を追加しない。本体8機構の固定L2／L11は上記判断記録の対象であり、対象外の追加・採否・分割・具体化は後続の要求整理PRで行う。foundationで追加できるのは、旧sourceの保存位置、digest、
 仮登録、authority境界、後続PRの無損失条件に限る。
