@@ -413,3 +413,13 @@ decision_record: docs/governance/decisions/security-l1-idea-po-decisions-2026-09
 - **依存・境界**：005/006/007のsecret・egress・Worker条件と016の1.0分類基盤を使い、実資源への適用はINFRASTRUCTURE、割当はOSのままにする。実際に第三者runtimeへ委譲する操作の条件であり、第三者を使わない作業の依存へ広げない。1.xのWeb公開sink全体への強制を1.0へ前倒ししない。通常作業に毎回の人間承認を追加しない。
 - **失敗時**：分類/検査/ローカル適用の不明は該当委譲を拒否し、それぞれdata owner/検査元/実行基盤へ返す。opt-out不明は採用未完としてruntime条件の確認へ返し、未完理由と対象revisionを保持する。根拠や条件変更時は以前の判定を流用しない。
 - **旧source**：LEGACY-ASSET-719D5EC9C06FC4AAD0FF、旧`infinity-loop-platform-requirements.md:84,217,219`のHIL-BR-32、HIL-NFR-37/39。84行は対象区分の根拠として使い、同BRのproposal-only・実行隔離・正本state非到達等の全条件の行先はREG-06の横断照合へ未完として残す。分類・機密以上遮断・opt-out採用前提・vendor設定だけでは保証しない条件を同時に保持し、no-trainingという別方式を推測で同値代替しない。原文の具体的な制御責務を現行SECURITY／OS／INFRASTRUCTUREへ分け、旧runtimeを復帰させない。
+
+### HELIXSECURITY-L2-030 agentic機能の自動適用範囲を広げるときの確認（単体追補候補、1.0）
+
+- **親・状態**：HELIXSECURITY-L1-008／010／011。`version_target: 1.0`、未採択候補。旧HR-NFR-P8-03とHAC-N8-03a/bの、段階導入と自動適用範囲への昇格条件を、008の操作authority、010の更新受入、011の能力差分へ結ぶ。1.xのWeb保護運用を1.0へ前倒ししない。
+- **対象**：agentic機能を新たに自動適用の対象にする、またはそのtask・操作・data・実行範囲を広げる変更を扱う。有効な既決authority内で同じ通常作業を繰り返すたびに、新たな人間承認や脅威分析を要求しない。既存の対象revision・scope・適用条件を満たす確認結果は再利用できる。
+- **受け取るもの**：対象機能と変更前後のrevision、段階とtask scope、operation-specific permission、最小権限の制約、監査ログの経路、継続監視と異常検知の条件、失敗時の巻戻し・停止手順、riskを引き受ける既存ownerとその責務、変更の影響を反映したthreat modelと継続的にriskを見直す条件を受け取る。ownerは名前だけでなく、何の範囲の評価・対応を担い、所見と未完義務がどこへ戻るかを示す。
+- **提供・保証**：各条件を対象revisionとscopeへ照合した充足／不足／unknownと根拠を返す。必要条件が揃わない間は、その変更による自動適用範囲への昇格を認めない。task-scoped permission、最小権限、監査ログ、巻戻し可能性、risk owner、継続監視、threat model更新を互いの代わりにせず、段階ごとに適用範囲を保つ。旧版の確認結果を、能力・権限・接続先・data範囲が変わった対象へ無検査で流用しない。
+- **責務・依存**：SECURITYは受入方針とauthorityの照合を担い、意味の判断と検出はINTELLIGENCE、必要な検証はHARNESS、実資源の強制はWorker実行環境／INFRASTRUCTURE、昇格の運転と記録はOSに残す。008／010／011／012／013の該当条件を使う。既存ownerから別の中央risk承認者を新設せず、本候補から包括権限や自動昇格を生成しない。
+- **失敗時・未完義務**：owner、監視、巻戻し、対象の脅威や検証根拠が不足・unknownなら、対象ownerへ不足とscopeを返し、昇格前の状態と未完義務を保持する。継続監視で適用条件を失った場合は既存009の停止・隔離の該当経路へ渡す。無関係な作業まで一律停止しない。
+- **旧source**：LEGACY-ASSET-EE5DBACC7F28F7D1F605、PREISO-REV-000013のbaseline `6fabd12512a3659fff4a956692cdd61faeeb16ce`（181/290/291行）とpre-isolation `2d4991042be55268bac30a8bbcdac45b3865030a`（187/299/300行）。原文の8条件と継続risk reviewを保持し、risk gateの旧実装・特定の脅威分析手法は移さない。原文の確認は実行結果や規格適合を意味しない。
