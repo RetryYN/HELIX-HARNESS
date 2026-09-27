@@ -920,7 +920,7 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 
 **失敗・戻し先**：親scope/成功条件/authorityがunknownなら要求形成へ戻し、画面適用性やprototype合意が該当して未決ならHARNESS-L2-024へ戻す。trace/設計不整合は026/025、test oracle/段階証拠不足は005/022へ戻し、実行・ticket・記録不足はOSの既存責務へ渡す。source版/互換不明は選択source ownerへ戻す。人が持つ上流の意味に変更が必要な場合だけ、既存判断境界へ選択肢・影響を示す。新たな承認者や承認gateを作らない。
 
-**旧sourceと差分**：asset `LEGACY-ASSET-02319C2481B9E01698D5`。`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。§4.5:265–277（特に269–275）のExperience/UI/Frontend三契約、Full V/Scrum backfill、PoC/implemented/ux_verifiedの状態差と非自己承認を意味再導出する。§4.9:379–398（特に385–392）のHR-FR-DHR-001–006からidentity trace、UI applicability、screen-to-acceptance関係、risk-based pairwise、drift、Experience親graphを再導出する。旧ID/field/schema、runtime、固定旧phaseは現行要求へ移さず、個別の適用範囲・現行layer・根拠付きoracleへ再構成する。
+**旧sourceと差分**：asset `LEGACY-ASSET-02319C2481B9E01698D5`。`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。§4.5:265–277のうち269/271/273/275行のExperience/UI/Frontend三契約、Full V/Scrum backfill、PoC/implemented/ux_verifiedの状態差と非自己承認を意味再導出する。§4.9の385–390行（HR-FR-DHR-001–006）と392行（実装・UX証拠が揃うまで完成状態を主張しない条件）からidentity trace、UI applicability、screen-to-acceptance関係、risk-based pairwise、drift、Experience親graphを再導出する。旧ID/field/schema、runtime、固定旧phaseは現行要求へ移さず、個別の適用範囲・現行layer・根拠付きoracleへ再構成する。
 
 **固定照合基準**：現行L1/L2/L11はcommit `d0900f30b92720114c6e0b5f436813d48172a020`。旧sourceの実装方式・211件のinventory（267/277行）や別entity機械の詳細（394行以降）は本候補の一括被覆対象にせず、元のsource保持を継続する。
 
