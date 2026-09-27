@@ -1,4 +1,4 @@
-# INFRASTRUCTURE PO確認packet（対象本文固定: f6dad2a）
+# INFRASTRUCTURE PO確認packet（PO判断受領・対象本文固定: f6dad2a）
 
 **対象**: HELIX-INFRASTRUCTURE。このpacketはPO判断を記録する前の確認素材であり、採択・合意・承認を示さない。
 
@@ -19,9 +19,9 @@
 - L11-001/003では、対象のModel Runtimeのモデル・版・サーバー・GPUメモリ・同時実行数・遅延・容量・稼働状態・接続先を、観測元の版とともに確認する。未観測・不明・古い値を「健全」「容量十分」とせず、モデルの能力評価や配置判断、根拠のない数値閾値を追加しない。
 - L2/L11-011では、復旧能力を含む最低18項目すべてを構成体として確認する。L1の意味、最低18項目、1.0と後続版の境界は変えていない。詳細は[機構内解消記録](helix-infrastructure-internal-resolution-2026-09-27.md)にある。
 
-**今回決めること**
+**今回の判断結果**
 
-固定したL1 revisionの確認と26候補の処置。PO既決の1.0最低18項目と、それ以外の「1.0より後（版は未定）」は再質問しない。
+POは固定L1 revisionを確定し、26候補を各version_targetと適用条件を保持して採用した。PO既決の1.0最低18項目と、それ以外の「1.0より後（版は未定）」は再質問せず、その境界を維持する。
 
 ## 固定対象とsource証拠
 
@@ -83,28 +83,27 @@
 - `INFRA-stage`: [docs/governance/audits/requirement-registration/helix-infrastructure-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-infrastructure-stage-review-coverage-receipt-2026-09-27.json)、SHA-256 `5cc099f3e8adf4b764ac1fb3575de150c2b7bf1af14f36e1ca396f283ce5a865`。
 - `INFRA-functional-r2`: [docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helixinfrastructure-functional-units-coverage-receipt-2026-09-27-r2.json)、SHA-256 `ad11c2002b4bf5ba9476519a3ed4ae4d92ffa43f3cc89de5f6ff3164a9f176b5`。
 
-## POに明示してほしい判断（未受領）
+## PO判断（2026-09-28受領）
 
-- **L1**: 固定したL1本文のexact revisionを確定するか、差戻すか。過去のPO企画判断から現在のL1 bytesの確定を推定しない。
-- **L2/L11**: 上表の全候補について、明示された範囲で採用・保留・不採用、または差戻しを記録する。包括回答で個々のIDの処置が特定できない場合、その候補は未受領のままにする。
-- **一括回答**: このpacketが明示するL1 exact revisionと候補表の全IDを対象に、POが「一式でよい」と明示した回答は、そのrevision確認および全候補への処置として受領できる。候補IDの再列挙は不要。部分的な回答、または対象revision/候補集合を特定できない回答では、未指定部分を未受領のまま残す。
-- **残存差分**: 上記「真の残存確認点」に対する選択、または現行候補を差戻す理由を示す。既決PO事項は再質問せず、本文へ自動的に確定状態を付与しない。
+[判断記録](../../decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md)に、固定L1 revisionの確定、L2と対応L11一式への合意、全候補001..026（26件）のversion_target・適用条件を保持した採用を記録した。根拠commentは[https://github.com/RetryYN/HELIX-HARNESS/pull/2204#issuecomment-5857756845](https://github.com/RetryYN/HELIX-HARNESS/pull/2204#issuecomment-5857756845)。この一括判断は対象本文と候補集合を特定している。
+
+PO既決の旧source未完引継ぎと旧HELIXデグレ検証を保持する。実装順A/Bは未判断。L3承認、実装・release許可は含まれない。
 
 ## 状態の読み方
 
 - 最新register行の `registered_proposal`、`authority_effect: none`、`coverage_result: no_loss` は、候補登録と旧source atom coverageを示す。PO採否、L1 authority、L2 agreementを示さない。過去revisionは履歴として保持する。
-- PO判断を受けるまで、L1/L2/L11は候補状態。空欄・曖昧な返答からdispositionを埋めない。候補の不採用だけでは旧sourceの意味をretireしない。
+- PO判断は外部decisionに記録した。registerの状態や本文metadataを書き換えず、候補採用から旧sourceのretireを導かない。
 - `version_target`は候補の対象版であり、実装済み版・release承認ではない。上表の後続版候補は残し、1.0の受入条件へ混ぜない。
 - 同一PRのdecision recordにはdecider、日時、Concept/L1/L2/L11のexact revision、IDごとのPO処置・理由、旧source保持/変更、register/receipt参照を記録する。本文変更時は編集後SHAへ判断対象を束縛し直す。
 
-## 確認PRの前提と受領後の扱い
+## 確認PRの前提とPO判断受領後の扱い
 
 機構内の監査・解消16 PR、横断監査 #2195 と解消 #2196、総合検証 #2197 はmerge/read-after済み。[総合検証](integrated-verification-2026-09-27.md)から根拠へ辿れる。本資料は要求本文の固定revisionへの読み口であり、本文やsource atomの被覆を置き換えない。
 
-[PO指示の手順4](../../sources/requirements-stage-po-handoff-original-2026-09-27.md)に従い、POのL1対象revision確定・L2合意（または差戻し）を同じPRの判断記録へ入れるまでDraftを維持し、mergeしない。独立reviewは資料の正確さを照合するもので、PO判断を代行しない。提示したrevisionと集合に対する「一式でよい」という一括回答も、その範囲の判断として記録できる。IDの再列挙は求めない。部分回答・意味変更指示は対象だけを反映し、未判断部分を残す。
+PO判断は上記のとおり同一PRの判断記録へ反映済みである。独立reviewは資料の正確さを照合する。判断対象bytes・候補集合に変更があれば、影響範囲だけ再照合する。
 
 旧自律境界（LEGACY-ASSET-6EBDB617A8104A7756D0、`archive/legacy-generation-2026-09-14/root/CLAUDE.md:82-85`、SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）の、人が企画・要求の意味を持ちAIが要件以下を起草する分担を保持する。旧層番号・旧runtime・旧merge方式は移植しない。現行のL1/L2対象revision判断と、L3要件承認を分ける。
 
-現在はPO判断未受領。受領後は実際の回答・対象revision・候補処置を記録し、本文変更があれば対のL11、register訂正revision、receipt、研究pinとbindingを追随させてexact HEADを再reviewする。候補の処置から旧sourceのretireや未完atomの被覆完了、L3承認、実装・release許可を生成しない。
+PO判断を受領し、対象L1/L2/L11 bytes、候補register、receipt、pin、bindingは変更していない。候補採用から旧sourceのretireや未完atomの被覆完了、L3承認、実装・release許可を生成しない。
 
 8機構分の確認PRをすべて作成し、全件の独立review指摘0件まで作成側が進める。先行する確認PRのPO判断待ちを理由に、残る確認PRの作成・reviewを止めない。
