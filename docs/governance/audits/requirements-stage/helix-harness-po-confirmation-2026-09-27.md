@@ -80,7 +80,9 @@
 | 判断対象 | 対象revision / ID集合 | 採用・保留・不採用 | PO記録 / 日付 |
 |---|---|---|---|
 | HARNESS L1 | 上記L1 SHA |  |  |
-| HARNESS L2本文の一式 | HARNESS-L2-001..033、version区分は上表 |  |  |\n| 登録candidate disposition | HARNESS-L2-010..033の24件。各IDに採用・保留・不採用を付すか、明示集合に対する同一判断を記録 |  |  |\n| 所属の残判断 | HARNESS-L2-029/031/032だけ。027/028/030/033は要求一式確認時に確認し個別照会なし |  |  |
+| HARNESS L2本文の一式 | HARNESS-L2-001..033、version区分は上表 |  |  |
+| 登録candidate disposition | HARNESS-L2-010..033の24件。各IDに採用・保留・不採用を付すか、明示集合に対する同一判断を記録 |  |  |
+| 所属の残判断 | HARNESS-L2-029/031/032だけ。027/028/030/033は要求一式確認時に確認し個別照会なし |  |  |
 | HARNESS L11 | 上記L11 SHA、L2受入対応 |  |  |
 
 - 対象commit/SHA:
