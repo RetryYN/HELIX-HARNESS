@@ -1,0 +1,2789 @@
+{
+  "title": "全272 L2 identity版分類と実装順JSON照合",
+  "baseline_revision": "d308f4080da298172001ef97e9c4b5f66d32ed7d",
+  "crosswalk_path": "docs/governance/audits/requirements-stage/l3-handoff-2026-09-27.md",
+  "crosswalk_sha256": "5007698dfec7562e6c509dcbf0903f9e709b560147b2a3bab935821f41c4792e",
+  "implementation_order_json": "docs/governance/audits/requirements-stage/implementation-order-assignments-2026-09-27.json",
+  "implementation_order_json_sha256": "78db3c793c17dbd80ad663a63aadd5f3c1c1e403da6b3bba75518ecfe5ba7f25",
+  "source_json_revision": "d308f4080da298172001ef97e9c4b5f66d32ed7d",
+  "source_sha256_match": {
+    "docs/helix-harness/L2-requirements/product-requirements.md": true,
+    "docs/helix-os/L2-requirements/governance-requirements.md": true,
+    "docs/helix-brain/L2-requirements/brain-requirements.md": true,
+    "docs/helix-labo/L2-requirements/labo-requirements.md": true,
+    "docs/helix-intelligence/L2-requirements/intelligence-requirements.md": true,
+    "docs/helix-security/L2-requirements/security-requirements.md": true,
+    "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md": true,
+    "docs/helix-connect/L2-requirements/connect-requirements.md": true,
+    "docs/governance/sources/requirements-stage-po-handoff-original-2026-09-27.md": true,
+    "docs/governance/legacy-requirement-carry-forward-policy.md": true,
+    "docs/concept/helix-concept.md": true,
+    "docs/helix-infrastructure/L1-planning/infrastructure-intent.md": true,
+    "docs/helix-harness/L11-acceptance/product-acceptance.md": true,
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": true,
+    "docs/helix-brain/L11-acceptance/brain-acceptance.md": true,
+    "docs/helix-labo/L11-acceptance/labo-acceptance.md": true,
+    "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md": true,
+    "docs/helix-security/L11-acceptance/security-acceptance.md": true,
+    "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md": true,
+    "docs/helix-connect/L11-acceptance/connect-acceptance.md": true
+  },
+  "category_counts": {
+    "stage_candidate": 214,
+    "conditional_web_source": 3,
+    "later_version_hold": 33,
+    "legacy_routing_container": 20,
+    "routing_transfer_record": 2
+  },
+  "implementation_order_counts": {
+    "stage_candidate": 214,
+    "conditional_web_source": 3,
+    "later_version_hold": 33,
+    "legacy_routing_container": 20,
+    "routing_transfer_record": 2
+  },
+  "stage_counts": {
+    "stage_1": 33,
+    "stage_2a": 20,
+    "stage_2b": 72,
+    "stage_2c": 6,
+    "stage_3": 19,
+    "stage_4": 44,
+    "stage_5": 20
+  },
+  "identities_compared": 272,
+  "differences": [],
+  "errors": [],
+  "security_026_partial_scope": {
+    "identity": "HELIXSECURITY-L2-026",
+    "category": "stage_candidate",
+    "scope": "1.0 candidate includes only the Guard/Bot responsibility boundary; semantic exfiltration/probing and Bot real-use connection remain held for later version. The identity is not fully 1.0.",
+    "evidence": [
+      "docs/helix-security/L2-requirements/security-requirements.md:64",
+      "docs/helix-security/L2-requirements/security-requirements.md:322-328",
+      "docs/helix-security/L11-acceptance/security-acceptance.md:50"
+    ]
+  },
+  "identity_rows": [
+    {
+      "identity": "HARNESS-L2-001",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:52`「企画・要求・L2.5（Prototype・PoC）・要件・設計・実装・検証をL1–L12と正規V-pairで構成できる。画面や不確定要素のない対象ではL2.5を飛ばせる」",
+      "draft_line": 173,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-002",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:53`「対象プロダクトの特性に合わせて開発方式（Vモデル、スクラム、ハイブリッド、リリースカンバン）を選び、または合成して進められる。L3までは方式によらず一律共通に進める」",
+      "draft_line": 174,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-003",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:54`「工程の開始・凍結・差戻し・再開・完了に必要な条件を確認できる。画面や不確定要素のある対象は、L2.5のPrototype・PoCで不確定要素を減らしてから要件へ進む。Vの左側（Forward）は原子CIの最低保証で暫定の成果を速く作り、Vの谷（L6↔L7）より右側は、結合の範囲を広げるたびに実物を対の設計と照合し、意味を保てる範囲で直してから証明を強める」",
+      "draft_line": 175,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-004",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:55`「要求から設計・テストへの対応と、変更時の再検証範囲を導出できる」",
+      "draft_line": 176,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-005",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:56`「ticketとの関係（Forward 小・中・大、V字の対、触るコネクタ、変更の種類）と、変更の内容・layer・riskから必要な検証義務と証拠条件を導出し、PRの前に回すCIを動的に組み立てるための規則を定められる。CIの組み立てと運転はHELIX-OSの検収が行う。言語・tool・実装方式に依存しない」",
+      "draft_line": 177,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-006",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:57`「外部利用者が、サービス①〜⑦の単位で提供範囲・版・必要依存・導入条件とリリースカンバン上の状態を確認し、必要なサービスを選んで導入・利用できる」",
+      "draft_line": 178,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-007",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:58`「検証フェーズで複数のプロダクトを開発し、HELIX自身のプロジェクトにも適用した結果と、Conceptの1.0土台7項目が全機構で共通に成立していること、サービス①〜⑦のすべてがそれぞれ単独で成り立ち、つなげて開発全体に使えることを含めて、HELIX-HARNESS製品群Version 1の完成を確認できる」",
+      "draft_line": 179,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-008",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:59`「要求エンジンは、設計パターンと接続して選択するための質問を投げる。Concept／企画L1、利用者指示と根拠から1次要求を形成し、L2.5のPrototype・PoCの結果をBackflowで還流して2次形成する。単体・接続・構成体の対象粒度を分け、要求化漏れ・企画外追加・矛盾・重複・過剰解釈・対象違い・scope／non-goal逸脱・変更影響を提示して、人間の訂正と合意により要求へ収束できる」",
+      "draft_line": 180,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-009",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:60`「要求kind、対象、構成、risk、domainに合うversioned Design Templateから必要な設計義務を導き、templateが必要とする要求入力の不足を質問・要求候補としてBackflow ticketで上流へ戻せる」",
+      "draft_line": 181,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-010",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:340`「パックの境界」",
+      "draft_line": 182,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-011",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:352`「画面・作業環境から切り離して呼べる条件」",
+      "draft_line": 183,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-012",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:363`「① 画面プロト／PoC（単体）」",
+      "draft_line": 184,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-013",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:371`「② 要件定義（単体）」",
+      "draft_line": 185,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-014",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:379`「③ 設計（単体）」",
+      "draft_line": 186,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-015",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:387`「④ 開発（単体）」",
+      "draft_line": 187,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-016",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:395`「⑤ リファクタリング（単体）」",
+      "draft_line": 188,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-017",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:403`「⑥ リリース（単体）」",
+      "draft_line": 189,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-018",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:411`「⑦ 運用保守（単体）」",
+      "draft_line": 190,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-019",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:419`「入口：フルリバース（単体）」",
+      "draft_line": 191,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-020",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:427`「リリース単位の受渡し（接続）」",
+      "draft_line": 192,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-021",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:438`「統合したHELIX-HARNESS（構成体）」",
+      "draft_line": 193,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-022",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:447`「検証と受入の契約（コアの単体）」",
+      "draft_line": 194,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-023",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:463`「利用条件別の依存宣言（単体追補候補、1.0）」",
+      "draft_line": 195,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-024",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:499`「要求形成の質問優先と収束根拠」",
+      "draft_line": 196,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-025",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:544`「要求から整合した設計・対oracleを閉じる（composite candidate）」",
+      "draft_line": 197,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-026",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:530`「要求から相互参照する具体設計を構成する（unit candidate）」",
+      "draft_line": 198,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-027",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:559`「外部実物からの構造・振舞い抽出（unit candidate）」",
+      "draft_line": 199,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-028",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:573`「観測差分と保存設計の照合（connection candidate）」",
+      "draft_line": 200,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-029",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:587`「差分に基づく往復改修案（composite candidate）」",
+      "draft_line": 201,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-030",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:607`「テストscenario・case・data・double生成（単体候補、version_target 1.0）」",
+      "draft_line": 202,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2c",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-031",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:627`「ログ・入力からの最小再現と回帰候補生成（単体候補、version_target 1.0）」",
+      "draft_line": 203,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2c",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-032",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:647`「生成artifactからOS-020実行契約への接続（接続候補、version_target 1.0）」",
+      "draft_line": 204,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2c",
+      "match": true
+    },
+    {
+      "identity": "HARNESS-L2-033",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-harness/L2-requirements/product-requirements.md:667`「failure-to-regression trace構成体（構成体候補、version_target 1.0）」",
+      "draft_line": 205,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-001",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:54`「プロジェクトごとの企画・要求正本・採否・合意revisionと担当責務を確認できる」",
+      "draft_line": 206,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-002",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:55`「プロジェクト群の要求から作業・実装・検証・提供・運用まで追跡し、欠落と競合を把握できる。提供はリリースカンバン上の状態として追跡できる」",
+      "draft_line": 207,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-003",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:56`「共通統制と各プロダクトの開発方式の選択を区別し、変更影響を対象範囲へ伝播できる」",
+      "draft_line": 208,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-004",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:57`「Workerへ作業を割り当てて実行・回収し、優先度・予算・依存・レビュー能力の制約内で進行を統制できる」",
+      "draft_line": 209,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-005",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:58`「HARNESS自身への適用を含む観測・失敗・改善候補を、出典と適用範囲を保持して登録し、還流先へ振り分けられる。観測と作業の結果はLABOへ渡し、LABOが返す改善の提案（Feedback）を登録し、還流先へ振り分け、採否の後にticketにして回す（OSはPMにあたり、LABOはPMOとして評価と提案を出す。[2026-09-26 PO判断](../../decisions/handoff-integration-po-decisions-2026-09-26.md)）。改善の評価と研究はHELIX-LABOが担う（[HELIX-LABOの候補](../../../helix-labo/candidates/improvement-research-requirements.md)、2026-09-25 PO判断）」",
+      "draft_line": 210,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-006",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:59`「HARNESSの提供版を、サービス①〜⑦の単位で、リリースカンバン上の状態を見て新規・既存プロジェクトへ導入し、更新・復旧できる」",
+      "draft_line": 211,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-007",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:60`「Worker・判断・操作・検証のログと証拠を、Conceptの1.0土台（BASE-01）の共通形式で保存し、対象プロジェクトと要求revisionから参照できる」",
+      "draft_line": 212,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-008",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:61`「HARNESSのコアとticketから導いた検証義務と統合計画に従い、検収がその変更に必要なCIを動的に合成し（CIの規則はHARNESS、組み立てと運転はOS）、隔離して実行・監視・回収・再開できる」",
+      "draft_line": 213,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-009",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:62`「中断・担当交代・障害後に、許可範囲内で継続・復旧できる」",
+      "draft_line": 214,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-010",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:63`「管理・推進・検収を別責務として編成し、同じticketと因果関係を保ちながら双方向に調整できる。推進は案件ごとに必要な工程を動的ワークフローとして組み立てる。1.0の組み立ては、HARNESSが定めた工程の部品を規則どおりに組み合わせ、途中結果で差し戻すことに限る。部品にない流れまでINTELLIGENCEの判断で組み立てて再計画するのは、Conceptの4.0である」",
+      "draft_line": 215,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-011",
+      "crosswalk_category": "legacy_routing_container",
+      "crosswalk_status": "1.0候補・旧routing source atom対応は別追跡",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:64`「ticket、設計、実差分、統合先、依存と承認済みHARNESS契約から、統合順序・統合単位・検証実行計画を導出し、実行結果とbase変更に応じて再計画できる。1.0の再計画は、HARNESSの工程の部品と検証義務の範囲での組み直しとする」",
+      "draft_line": 216,
+      "implementation_order_disposition": "legacy_routing_container",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-012",
+      "crosswalk_category": "routing_transfer_record",
+      "crosswalk_status": "移管済み・OS L3対象外",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:65`「【HELIX-LABOへ移管（2026-09-25 PO判断）】技術調査。本文は[HELIX-LABOの候補](../../../helix-labo/candidates/improvement-research-requirements.md)へ移した」",
+      "draft_line": 217,
+      "implementation_order_disposition": "routing_transfer_record",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-013",
+      "crosswalk_category": "routing_transfer_record",
+      "crosswalk_status": "移管済み・OS L3対象外",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:66`「【HELIX-LABOへ移管（2026-09-25 PO判断）】同じ仕事の横断診断。本文は[HELIX-LABOの候補](../../../helix-labo/candidates/improvement-research-requirements.md)へ移した」",
+      "draft_line": 218,
+      "implementation_order_disposition": "routing_transfer_record",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-014",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:619`「HELIX自身の段階リリース」",
+      "draft_line": 219,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-015",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:642`「管理・authority記録（単体候補）」",
+      "draft_line": 220,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-016",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:652`「Portfolio trace・状態（単体候補）」",
+      "draft_line": 221,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-017",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "1.0基本／4.0拡張を分離",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:662`「推進・ticket/workflow（単体候補）」",
+      "draft_line": 222,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-018",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:672`「Worker割当・実行統制（単体候補）」",
+      "draft_line": 223,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-019",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:682`「Evidence・continuity（単体候補）」",
+      "draft_line": 224,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-020",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:692`「検収・CI運転（単体候補）」",
+      "draft_line": 225,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-021",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:702`「HARNESS構成版の対象project配布・更新・復旧（単体候補）」",
+      "draft_line": 226,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-022",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:712`「改善候補登録・還流（単体候補）」",
+      "draft_line": 227,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-023",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:722`「管理→推進→Worker→検収の受渡し（接続候補）」",
+      "draft_line": 228,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-024",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:732`「HARNESS提供・運用→LABO→OSの受渡し（接続候補）」",
+      "draft_line": 229,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-025",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:742`「HELIX-OS統合運転（構成体候補）」",
+      "draft_line": 230,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-026",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:807`「段階リリース構成の要求導出（単体能力候補）」",
+      "draft_line": 231,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-027",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:824`「未評価状態からの限定初回実行（構成体候補、1.0）」",
+      "draft_line": 232,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-028",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:847`「作業中支援の受渡し・範囲統制（接続候補）」",
+      "draft_line": 233,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2c",
+      "match": true
+    },
+    {
+      "identity": "HELIXOS-L2-029",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-os/L2-requirements/governance-requirements.md:863`「Worker支援から検証・再作業までの構成体（composite候補、1.0）」",
+      "draft_line": 234,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2c",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-001",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:84`「領域の識別と進化」",
+      "draft_line": 235,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-002",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:95`「構造階層」",
+      "draft_line": 236,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-003",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:106`「Patternの成立条件」",
+      "draft_line": 237,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-004",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:117`「複数Patternの比較」",
+      "draft_line": 238,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-005",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:128`「構造間relation」",
+      "draft_line": 239,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-006",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:139`「Visual DesignとUXの再利用知識」",
+      "draft_line": 240,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-007",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:150`「出所・根拠・知識promotion」",
+      "draft_line": 241,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-008",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:161`「identity・版・状態」",
+      "draft_line": 242,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-009",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:172`「構成Pattern候補」",
+      "draft_line": 243,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-010",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:183`「Anti-Pattern・失敗知識」",
+      "draft_line": 244,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-011",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:194`「製品固有意味との分離」",
+      "draft_line": 245,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-012",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:205`「提供候補と採用authorityの分離」",
+      "draft_line": 246,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-018",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:394`「製品Coreからの再利用候補入力（connection）」",
+      "draft_line": 247,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-019",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:404`「BRAIN知識候補の製品Coreへの提供（connection）」",
+      "draft_line": 248,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-020",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:414`「LABO評価結果の知識候補への接続（connection）」",
+      "draft_line": 249,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-021",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:424`「BRAINとINTELLIGENCEの知識・判断材料接続（connection）」",
+      "draft_line": 250,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-022",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:434`「BRAINのrequired inputからHARNESS設計義務への接続（connection）」",
+      "draft_line": 251,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-023",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:444`「BRAINとVisual Design HARNESSの知識接続（connection）」",
+      "draft_line": 252,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-024",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:454`「Infrastructure設計知識と実績のCORE/LABO経由分離（composite）」",
+      "draft_line": 253,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-025",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:464`「内部知識候補の独立検証・採否（composite）」",
+      "draft_line": 254,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-026",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 2.0",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:474`「外部情報のLABO経由候補入力（connection）」",
+      "draft_line": 255,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-027",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 2.0",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:484`「外部知識候補の分解・評価・取込み（composite）」",
+      "draft_line": 256,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-028",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:494`「BRAIN知識pack descriptorの版・互換適用（unit）」",
+      "draft_line": 257,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-029",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:564`「製品設計で使えるPattern関係候補を構成する（unit candidate）」",
+      "draft_line": 258,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-030",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:575`「BRAIN設計知識をHARNESSへ受け渡す（connection candidate）」",
+      "draft_line": 259,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-001",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:220`「Infrastructure DomainとSubdomain」",
+      "draft_line": 260,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-002",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:230`「Infrastructure Pattern階層」",
+      "draft_line": 261,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-003",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:240`「Infrastructure Pattern成立条件」",
+      "draft_line": 262,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-004",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:250`「非機能要求からPatternとinputへの関係」",
+      "draft_line": 263,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-005",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:260`「Failure構造」",
+      "draft_line": 264,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-006",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:270`「Recovery Pattern」",
+      "draft_line": 265,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-007",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:282`「Deployment Pattern」",
+      "draft_line": 266,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-008",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:292`「Scaling・Capacity Pattern」",
+      "draft_line": 267,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-009",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:302`「Observability知識」",
+      "draft_line": 268,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-010",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:312`「Backup・Restore・Recoverability」",
+      "draft_line": 269,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-011",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:322`「Cost characteristic」",
+      "draft_line": 270,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-012",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:332`「Provider抽象と実装例」",
+      "draft_line": 271,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-013",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:342`「実行基盤の共通resource抽象」",
+      "draft_line": 272,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-014",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:352`「Infrastructure topology graph」",
+      "draft_line": 273,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-015",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:362`「Domain横断relation」",
+      "draft_line": 274,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-016",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:372`「Infrastructure Anti-Pattern」",
+      "draft_line": 275,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXBRAIN-L2-INFRA-017",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-brain/L2-requirements/brain-requirements.md:382`「Pattern maturity」",
+      "draft_line": 276,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-001",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:69`「Aggregate Engine（集積）」",
+      "draft_line": 277,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-002",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:77`「Correlation Engine（相関）」",
+      "draft_line": 278,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-003",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:85`「Structural Decomposition Engine（構造分解）」",
+      "draft_line": 279,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-004",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:93`「Vector Shu-Ha-Ri Engine」",
+      "draft_line": 280,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-005",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:101`「Transformation Engine」",
+      "draft_line": 281,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-006",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:109`「Experiment Engine」",
+      "draft_line": 282,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-007",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:117`「Assurance Allocation Engine」",
+      "draft_line": 283,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-008",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:125`「Operational Fallback Engine」",
+      "draft_line": 284,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-009",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:133`「Generalization Engine」",
+      "draft_line": 285,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-010",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:141`「Feedback Derivation Engine」",
+      "draft_line": 286,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-011",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:163`「Aggregate → Correlate」",
+      "draft_line": 287,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-012",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:167`「Correlate → Decompose」",
+      "draft_line": 288,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-013",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:171`「Decompose → Vector Shu-Ha-Ri」",
+      "draft_line": 289,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-014",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:175`「Vector → Transformation」",
+      "draft_line": 290,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-015",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:179`「Transformation → Experiment」",
+      "draft_line": 291,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-016",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:183`「Experiment → Assurance Allocation」",
+      "draft_line": 292,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-017",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:187`「Assurance Allocation → Operational Fallback」",
+      "draft_line": 293,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-018",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:191`「Experiment → Generalization」",
+      "draft_line": 294,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-019",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:195`「Generalization → Feedback Derivation」",
+      "draft_line": 295,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-020",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:199`「Operational Fallback → Aggregate」",
+      "draft_line": 296,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-021",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:203`「HELIX-HARNESS → Aggregate」",
+      "draft_line": 297,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-022",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:207`「HELIX-OS → Aggregate」",
+      "draft_line": 298,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-023",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:211`「BRAIN → Aggregate」",
+      "draft_line": 299,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-024",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:215`「INTELLIGENCE → Aggregate」",
+      "draft_line": 300,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-025",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:219`「SECURITY → Aggregate」",
+      "draft_line": 301,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-026",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:223`「INFRASTRUCTURE → Aggregate」",
+      "draft_line": 302,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-027",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:227`「HELIX-CONNECT → Aggregate」",
+      "draft_line": 303,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-028",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:231`「Worker → Aggregate」",
+      "draft_line": 304,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-029",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:235`「CI/test → Aggregate」",
+      "draft_line": 305,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-030",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:239`「Product Core → Aggregate」",
+      "draft_line": 306,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-031",
+      "crosswalk_category": "conditional_web_source",
+      "crosswalk_status": "Web/WEB-OS source条件付き・版は上流決定",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:243`「Web product → Aggregate」",
+      "draft_line": 307,
+      "implementation_order_disposition": "conditional_web_source",
+      "stage": "stage_4_if_source_contract_adopted",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-032",
+      "crosswalk_category": "conditional_web_source",
+      "crosswalk_status": "Web/WEB-OS source条件付き・版は上流決定",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:247`「WEB-OS → Aggregate」",
+      "draft_line": 308,
+      "implementation_order_disposition": "conditional_web_source",
+      "stage": "stage_4_if_source_contract_adopted",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-033",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 2.0",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:251`「External source acquisition → LABO (`version_target: 2.0`)」",
+      "draft_line": 309,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-034",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "1.0内部／2.0外部を分離",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:255`「LABO → BRAIN」",
+      "draft_line": 310,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-035",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "1.0評価／3.0+学習を分離",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:259`「LABO → INTELLIGENCE 評価材料境界」",
+      "draft_line": 311,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-036",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:263`「LABO → HELIX-HARNESS」",
+      "draft_line": 312,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-037",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:267`「LABO → HELIX-OS」",
+      "draft_line": 313,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-038",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:271`「LABO → SECURITY」",
+      "draft_line": 314,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-039",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:275`「LABO → Worker execution」",
+      "draft_line": 315,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-040",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "1.0候補・上流scope条件",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:279`「LABO → HELIX-CONNECT」",
+      "draft_line": 316,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-041",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "1.0候補・上流scope条件",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:283`「LABO → Product Core」",
+      "draft_line": 317,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-042",
+      "crosswalk_category": "conditional_web_source",
+      "crosswalk_status": "Web/WEB-OS source条件付き・版は上流決定",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:287`「LABO → WEB-OS」",
+      "draft_line": 318,
+      "implementation_order_disposition": "conditional_web_source",
+      "stage": "stage_4_if_webos_source_contract_adopted",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-050",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:298`「内部改善循環（1.0）」",
+      "draft_line": 319,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-051",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 2.0",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:304`「外部知識評価循環 (`version_target: 2.0`)」",
+      "draft_line": 320,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-052",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:310`「INTELLIGENCE評価材料循環 (`version_target: 1.0`)」",
+      "draft_line": 321,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-053",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 3.0+",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:316`「ローカルLLM学習・調整評価材料循環 (`version_target: 3.0+`)」",
+      "draft_line": 322,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-054",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:290`「HELIX-Bench水準のINTELLIGENCE接続（1.0）」",
+      "draft_line": 323,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-055",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:150`「HELIX-Bench 作業水準生成（1.0）」",
+      "draft_line": 324,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-056",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:379`「初回Worker結果のBench観測取込（単体候補、1.0）」",
+      "draft_line": 325,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-057",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:391`「初回実行結果のBench受領接続（接続候補、1.0）」",
+      "draft_line": 326,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-058",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:403`「観測集積の入力元ごとの依存条件（単体追補候補、1.0）」",
+      "draft_line": 327,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-059",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:416`「効果優先関係付き比較評価」",
+      "draft_line": 328,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXLABO-L2-060",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-labo/L2-requirements/labo-requirements.md:441`「Worker支援有無の同一設定比較（単体候補、1.0）」",
+      "draft_line": 329,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-001",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:48`「判断領域の編成」",
+      "draft_line": 330,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-002",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:54`「Domain×Capability構成」",
+      "draft_line": 331,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-003",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:60`「Current Situation Model」",
+      "draft_line": 332,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-004",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:66`「Fact・Interpretation・Hypothesis分離」",
+      "draft_line": 333,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-005",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:72`「作業計画候補」",
+      "draft_line": 334,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-006",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:78`「将来予測」",
+      "draft_line": 335,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-007",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:84`「稼働中診断」",
+      "draft_line": 336,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-008",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:90`「Review判断」",
+      "draft_line": 337,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-009",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:96`「HELIX全体監査」",
+      "draft_line": 338,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-010",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:102`「Worker配置候補」",
+      "draft_line": 339,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-011",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:108`「Model/Provider適性」",
+      "draft_line": 340,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-012",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:114`「不確実性の表現」",
+      "draft_line": 341,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-013",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:120`「判断理由の追跡」",
+      "draft_line": 342,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-014",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:126`「専門Botの発行」",
+      "draft_line": 343,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-015",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:132`「反復failureからBugbot候補」",
+      "draft_line": 344,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-016",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:138`「限定修復candidateと適用」",
+      "draft_line": 345,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-017",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:202`「限定修復の接続横断境界」",
+      "draft_line": 346,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-018",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:144`「LABOとの時間軸」",
+      "draft_line": 347,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-019",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:150`「BRAIN知識との境界」",
+      "draft_line": 348,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-020",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:156`「Product Coreの意味とBackflow」",
+      "draft_line": 349,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-021",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 3.0",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:162`「Domain/Capability専用モデル学習」",
+      "draft_line": 350,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-022",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 3.0",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:168`「Training/evaluation data区分」",
+      "draft_line": 351,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-023",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 3.0",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:174`「Model lineage」",
+      "draft_line": 352,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-024",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 3.0",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:180`「Candidate model比較」",
+      "draft_line": 353,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-025",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 3.0",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:186`「Model適用範囲」",
+      "draft_line": 354,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-026",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 3.0",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:192`「LABO評価用実績packet」",
+      "draft_line": 355,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-030",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:208`「HELIX-HARNESS → Situation Model」",
+      "draft_line": 356,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-031",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:217`「HELIX-OS → Situation Model」",
+      "draft_line": 357,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-032",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:226`「BRAIN → INTELLIGENCE」",
+      "draft_line": 358,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-033",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:235`「Product Core / HARNESS → INTELLIGENCE」",
+      "draft_line": 359,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-034",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:244`「LABO → INTELLIGENCE（1.0評価材料）」",
+      "draft_line": 360,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-035",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:253`「INTELLIGENCE → OS（計画・判断候補）」",
+      "draft_line": 361,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-036",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:262`「INTELLIGENCE ↔ SECURITY」",
+      "draft_line": 362,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-037",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:271`「OS → Worker（INTELLIGENCE candidate実行）」",
+      "draft_line": 363,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-038",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:280`「HARNESS → 限定修復の検証義務」",
+      "draft_line": 364,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-039",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:289`「OS → 限定修復の検収」",
+      "draft_line": 365,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-040",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:298`「INTELLIGENCE → LABO（1.0実績）」",
+      "draft_line": 366,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-041",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:307`「各source mechanism → Situation Model」",
+      "draft_line": 367,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-042",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 3.0",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:316`「LABO → INTELLIGENCE（3.0学習材料）」",
+      "draft_line": 368,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-043",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 3.0",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:325`「INTELLIGENCE → LABO（3.0 model result）」",
+      "draft_line": 369,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-044",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:334`「INTELLIGENCE → BRAINへの非直接更新境界」",
+      "draft_line": 370,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-045",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:343`「INTELLIGENCE → Product Core Backflow」",
+      "draft_line": 371,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-060",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:354`「自動開発計画」",
+      "draft_line": 372,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-061",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:360`「Worker配置」",
+      "draft_line": 373,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-062",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:366`「限定自動修復」",
+      "draft_line": 374,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-063",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:372`「継続的自己改善」",
+      "draft_line": 375,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-064",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 4.0",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:378`「動的開発workflow」",
+      "draft_line": 376,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-065",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 3.0",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:384`「Local Intelligence Learning cycle」",
+      "draft_line": 377,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-066",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:454`「配置案の人代行入力・受領契約（接続候補、1.0）」",
+      "draft_line": 378,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-067",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:466`「既存Worker配置proposalの入力契約補強（単体候補、1.0）」",
+      "draft_line": 379,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_3",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-068",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:491`「作業中Workerへの診断・設計/テスト支援候補（単体候補）」",
+      "draft_line": 380,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2c",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-069",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:513`「有限設計モデルの条件付き計算（unit candidate）」",
+      "draft_line": 381,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-070",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:528`「CORE model input / LABO result handoff（connection candidate）」",
+      "draft_line": 382,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXINTELLIGENCE-L2-071",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-intelligence/L2-requirements/intelligence-requirements.md:544`「条件変更・モデル計算・結果比較（composite candidate）」",
+      "draft_line": 383,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-001",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:70`「外部入力の信頼・authority境界」",
+      "draft_line": 384,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-002",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:80`「命令様dataとPrompt Injection境界」",
+      "draft_line": 385,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-003",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:90`「project・tenant・環境・assignment隔離」",
+      "draft_line": 386,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-004",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:100`「Agent・Hook・設定のintegrity」",
+      "draft_line": 387,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-005",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:110`「Credential / Secret境界」",
+      "draft_line": 388,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-006",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:120`「Network / Egress境界」",
+      "draft_line": 389,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-007",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:130`「Worker実行環境への制約適用（接続）」",
+      "draft_line": 390,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-008",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:140`「操作ごとのauthority」",
+      "draft_line": 391,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-009",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:150`「revoke / quarantine伝播（構成体）」",
+      "draft_line": 392,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-010",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:160`「更新受入」",
+      "draft_line": 393,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-011",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:170`「Capability Drift」",
+      "draft_line": 394,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-012",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:180`「Supply Chain provenance」",
+      "draft_line": 395,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-013",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:190`「Artifact integrity」",
+      "draft_line": 396,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-014",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:200`「SECURITY永続化promotion方針・判定（単体）」",
+      "draft_line": 397,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-015",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:210`「HELIX Asset identity基盤」",
+      "draft_line": 398,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-016",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:220`「Asset exposure classification基盤」",
+      "draft_line": 399,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-017",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.x",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:230`「Semantic exfiltration境界」",
+      "draft_line": 400,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-018",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.x",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:240`「Capability probing観測」",
+      "draft_line": 401,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-019",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.x",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:250`「Core Asset Egress判定」",
+      "draft_line": 402,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-020",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:260`「GuardとBotの責務境界」",
+      "draft_line": 403,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-021",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:272`「外部dataの受渡し（接続）」",
+      "draft_line": 404,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-022",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:282`「操作authorityの受渡し（構成体）」",
+      "draft_line": 405,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-023",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:292`「更新審査から昇格まで（構成体）」",
+      "draft_line": 406,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-024",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:302`「SECURITY方針とINFRASTRUCTURE実資源（接続）」",
+      "draft_line": 407,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-025",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.x（1.0基盤準備はL2-015/016等。025自体の1.0採択ではない）",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:312`「Web公開経路のAsset Boundary（構成体）」",
+      "draft_line": 408,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-026",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "混合版・1.0候補はGuard/Bot境界のみ／semantic connection実利用は後続版",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:322`「INTELLIGENCEの意味判断・検出（接続）」",
+      "draft_line": 409,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-027",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:332`「永続化promotion（構成体）」",
+      "draft_line": 410,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXSECURITY-L2-028",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-security/L2-requirements/security-requirements.md:342`「SECURITY pack更新受入・artifact integrity（単体）」",
+      "draft_line": 411,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-001",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:32`「Runtime Resource Topologyと環境」",
+      "draft_line": 412,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-002",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:42`「Desired Target・Actual State・Drift」",
+      "draft_line": 413,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-003",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:52`「Compute・Network・Storage・Model資源と容量」",
+      "draft_line": 414,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-004",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:62`「Runtime ObservabilityとIncident State」",
+      "draft_line": 415,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-005",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:72`「Backup・Restore・Rollback」",
+      "draft_line": 416,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-006",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:82`「HELIX独立Bootstrap・Recovery Path」",
+      "draft_line": 417,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-007",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:92`「Runtime Rebuildability」",
+      "draft_line": 418,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2b",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-008",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:104`「HARNESS-CORE設計からDeployment Targetへの接続」",
+      "draft_line": 419,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-009",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:114`「OS Runtime Resource StateとWork/Change Stateの接続」",
+      "draft_line": 420,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-010",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:126`「SECURITY authority・Worker操作の構成体」",
+      "draft_line": 421,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-011",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:138`「HELIX自身のInfrastructure 1.0構成体」",
+      "draft_line": 422,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-012",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:152`「Control ResourceとExecution Resourceの隔離」",
+      "draft_line": 423,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-013",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:162`「Failure DomainとSPOF影響」",
+      "draft_line": 424,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-014",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:172`「OS・LABO Episode Correlation」",
+      "draft_line": 425,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-015",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:182`「Infrastructure Change Impactと段階適用」",
+      "draft_line": 426,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-016",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:192`「Provider PortabilityとHybrid Placement」",
+      "draft_line": 427,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-017",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:202`「Resource Location ProofとTool-Neutral Operation」",
+      "draft_line": 428,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-018",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:212`「Cost AttributionとResource Lifecycle/Decommission」",
+      "draft_line": 429,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-019",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:222`「Observation Freshness・Collection Confidence」",
+      "draft_line": 430,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-020",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:232`「Web Runtime SeparationとAsset Placement Classification」",
+      "draft_line": 431,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-021",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:242`「Running/Candidate Generation Separation」",
+      "draft_line": 432,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-022",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:252`「Capacity-Driven Autoscaling」",
+      "draft_line": 433,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-023",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:264`「Multi-cloud Runtime Composition」",
+      "draft_line": 434,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-024",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:274`「Fully Automatic Failover」",
+      "draft_line": 435,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-025",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:287`「Workerと実行資源の接続」",
+      "draft_line": 436,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_4",
+      "match": true
+    },
+    {
+      "identity": "HELIXINFRASTRUCTURE-L2-026",
+      "crosswalk_category": "later_version_hold",
+      "crosswalk_status": "後続版 1.0より後（版未定）",
+      "source_excerpt": "`docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md:299`「INTELLIGENCEの資源判断候補との接続」",
+      "draft_line": 437,
+      "implementation_order_disposition": "later_version_hold",
+      "stage": null,
+      "match": true
+    },
+    {
+      "identity": "HELIXCONNECT-L2-001",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-connect/L2-requirements/connect-requirements.md:56`「接続登録と端点契約の識別（unit）」",
+      "draft_line": 438,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXCONNECT-L2-002",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-connect/L2-requirements/connect-requirements.md:67`「契約互換性照合とstale再検証（unit）」",
+      "draft_line": 439,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXCONNECT-L2-003",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-connect/L2-requirements/connect-requirements.md:80`「契約に束縛した通信（unit）」",
+      "draft_line": 440,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXCONNECT-L2-004",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-connect/L2-requirements/connect-requirements.md:91`「制御された再送と重複防止（unit）」",
+      "draft_line": 441,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXCONNECT-L2-005",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-connect/L2-requirements/connect-requirements.md:102`「接続単位の通信追跡（unit）」",
+      "draft_line": 442,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_1",
+      "match": true
+    },
+    {
+      "identity": "HELIXCONNECT-L2-006",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-connect/L2-requirements/connect-requirements.md:115`「片側交換時の接続互換性（connection）」",
+      "draft_line": 443,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_2a",
+      "match": true
+    },
+    {
+      "identity": "HELIXCONNECT-L2-007",
+      "crosswalk_category": "stage_candidate",
+      "crosswalk_status": "現行1.0候補",
+      "source_excerpt": "`docs/helix-connect/L2-requirements/connect-requirements.md:128`「複数機構を結ぶ構成体の接続完全性（composite）」",
+      "draft_line": 444,
+      "implementation_order_disposition": "stage_candidate",
+      "stage": "stage_5",
+      "match": true
+    }
+  ]
+}
