@@ -1,0 +1,29 @@
+{
+  "receipt_id": "MPR-RCPT-HELIX-LABO-EFFECT-PURPOSE-CORRECTION-2026-09-27",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "PO原文第5項を既存評価/配置案の責務へ導出する候補。旧sourceは意味照合であり、新たな旧atom移管・retireはしない。no_lossは入力旧atom空集合だけ。優先値の人間decision・候補採否・最適性を生成しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXLABO-L2-059",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "candidate_semantic_digest": "sha256:10edd365a96da6d00927fe40ce16f250978f99c3d248c3ad2f7ff5364e59856c",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO原文第5項を既存評価/配置案の責務へ導出する候補。旧sourceは意味照合であり、新たな旧atom移管・retireはしない。no_lossは入力旧atom空集合だけ。優先値の人間decision・候補採否・最適性を生成しない。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-labo/L1-planning/labo-intent.md",
+        "docs/helix-os/sources/body-reinforcement-po-original-2026-09-27.md",
+        "docs/governance/decisions/external-audit-corrections-2026-09-27.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}

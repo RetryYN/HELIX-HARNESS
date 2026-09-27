@@ -29,7 +29,7 @@ sources:
 
 | AC ID | 対応要求 | 種別 | 受入判定の要点 |
 |---|---|---|---|
-| HELIXCONNECT-L11-001 | HELIXCONNECT-L2-001 | unit | 登録identityと両端契約が一意に結び付き、不足・不明・重複端点は利用可能にならない |
+| HELIXCONNECT-L11-001 | HELIXCONNECT-L2-001 | unit | 登録identityと両端契約が一意に結び付き、不足・不明・同一接続identityの異なる宣言による重複・identity衝突は利用可能にならない。識別可能な別接続による端点共有は拒否しない |
 | HELIXCONNECT-L11-002 | HELIXCONNECT-L2-002 | unit | 登録時・使用時revisionを照合し、revision変更後のstaleを検知して再照合まで通信を止める |
 | HELIXCONNECT-L11-003 | HELIXCONNECT-L2-003 | unit | 送受信が正しい接続identity・operation・契約revisionに束縛され、契約外入力を成功扱いしない |
 | HELIXCONNECT-L11-004 | HELIXCONNECT-L2-004 | unit | 同一内容の再送は二重効果を生まず、異digest衝突・上限超過・再送不能結果は停止する |
