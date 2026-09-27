@@ -634,3 +634,39 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 **段階の内容依存と中断**：source根拠から観測契約、観測契約からas-is設計/test、これらを根拠とした意図仮説/PO検証、最後に差分/routingという内容の依存を保持する。見出し名を変えただけで段階を飛ばせない。選択scopeで必要なobligationが100%に満たなければcheckpoint後も未完とし、budget途中停止を完了へ丸めない。既存契約上不要な操作の追加はしない。旧受入根拠は `LEGACY-ASSET-AFE91778057B7E76BEEC`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:62`（HOT-HIL-35）、SHA-256 `4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576`。
 
 **中断・順序違反の反例**：観測contractがないのにas-is設計の根拠充足を主張、PO検証を飛ばして仮説確定、budget切れcheckpoint後に残obligationを分母から落とし100%とする入力を拒否する。再開時は同revisionと残義務を確認し、source変更なら該当内容を再照合する。
+
+### HARNESS-L2-039 体験・UI・Frontend契約を同一scopeへ結ぶ composite の受入候補
+
+**対応要求・authority**：HARNESS-L2-039（CORE composite候補、`version_target: 1.0`、未採択）。主親はHARNESS-L1-001/003/004/006/008、関連親はL1-009、外部提供時等の文脈はL1-005/007。既採択のHARNESS-L2-024/025/026、HARNESS-L2-003/004/005/008/022の条件をそのまま入力契約として使い、再定義しない。039候補のL11例は未実行fixtureであり、候補採択、要求/設計合意、L3承認、実装許可、L11利用者受入を生成しない。
+
+**正常例：UIを持たない要求のExperience親**：UIなしのworkflowを入力し、要求候補の各意味単位からUser Task、Business Outcome、scenario/context、success result、decision rationaleまで実際の意味関係を追う。適用しないUI契約は、対象・scope・判断根拠と再評価条件を伴うN/Aとして示す。小さな要求原子へ分割した後も業務成果・成功条件を辿れれば成立する。画面を持たないことを理由にExperience親graphまで省略しない。
+
+**誤り例：見かけの親graph**：複数の小さな要求へ「Business Outcome」欄を同じ曖昧な語句で貼ったが、どの要求がどのtask/scenario/success resultを支えるか説明できないfixtureを与える。relation fieldが存在しても意味上の親・成果へ辿れない、成功結果が要求されている動作と無関係、または細分化で親成果が失われている場合は成立させず、要求形成の不足としてHARNESS-L2-008へ返す。意味に親がないときはLLMが補完して合格にしない。
+
+**正常例：UI/Frontend設計・trace・drift**：同一対象revisionの要求、合意済screen scope、prototype/design資料、設計候補とそのoracleを与える。選択scopeで適用する画面/flow/interaction/action/state、permission/actor、command/API、data/state ownerと不変条件、domain/analytics event、content、design token/component、accessibility/responsive/motion、logging/error、および対応する検証・受入条件の間を意味的に双方向追跡する。適用sourceごとにrevision・scope・authorityを示し、条件の適用性がない要素は根拠と再評価条件を持つN/Aにする。差分があれば影響する対象/関係と戻し先を示す。
+
+**誤り例：切れた契約・drift**：①画面では拒否するがAPIが同操作を許す、②interactionからacceptance/E2E oracleへ関係がない、③event/data ownerが設計外、④CSS/componentがtoken/design contractと食い違う、⑤contentまたはanalyticsが要求する成功条件と不一致、⑥screen scopeや要求revisionがstale、⑦影響がunknownなのにUnaffectedとして使い回す、の各fixtureを与える。いずれもfieldやscreenshotの存在だけでは合格しない。要求意味差は008、設計trace/unitは026、構成体整合は025、検証義務/oracleは005/022へ戻す。L11は設計そのものの承認や実行を代行しない。
+
+**正常例：riskに応じた検証factor**：該当するUI scopeとrisk根拠を与え、device、input、role、locale、data volume、network、concurrent update、destructive/undoから適用要因とrisk-based pairwise組合せを選び、各選択・非選択の理由を返す。riskに無関係なfactorを根拠付きで外し、必要なfactorは代表組合せで覆える。全組合せ実行は成立条件にしない。選択した義務はHARNESS-L2-005のticket/risk別検証条件へ渡す。
+
+**誤り例：factorの誤った省略・過剰**：削除/undoで不可逆な結果があるのにdestructive/undoを選外、複数roleでpermissionが異なるのにrole差を無視、localeで内容長・入力が変わるのにlocaleを無根拠で除外する例は不合格。逆に選択scopeに無関係なfactorの全直積や、device全機種の総当たりを一律要求する例も不合格。risk根拠がないfactorはpassにせず選択未確定として残す。
+
+**正常例：状態・UX evidence**：design/prototypeだけを持つscopeでは設計候補として扱い、実測UX evidenceがまだないことだけで候補形成・設計義務の受入を拒否しない。`implemented`と`ux_verified`を別々に主張するfixtureでは、implementedは対象V-pair上の実装・検証relationへ、ux_verifiedはその主張を行う操作に限ってscopeに適用されるL10–L12 real-data evidenceとhuman evaluationへ結ぶ。real-data/human evaluationが未実施ならux_verifiedは未確認/保留であり、implementedやdesign済みから推定しない。
+
+**誤り例：完成状態の混同**：screenshot、route/screen数、placeholder、generic table、prototype合意だけからimplementedまたはux_verifiedを主張する。あるいは全screenの設計候補生成開始に未来のreal-data/human evaluation完了を要求する。前者は不合格、後者も不合格。観測・評価未了はその状態の未確認として保持し、設計要求作成の開始を止めない。
+
+**正常/誤り例：Discovery PoCと人の判断**：未確定のvision仮説をprototypeで比較しているPoCは、既存S4相当の人判断が未了なら仮説・未決状態のまま返せる。採択hypothesisだけを対象ownerの決定記録と同じscope/revisionで既存正規V-pairへ結び、implemented/ux_verified/production-readyは各々の適用証拠がある場合だけ主張する。PoC成果、AI推奨、prototype agreement、未回答や時間経過からproduct vision/brand/優先順位/要求採択を生成したfixtureは不合格。旧S0–S4自体を現行の必須工程として再導入しない。
+
+**正常例：Full V/Scrum backfill**：選択されたFull V UI workflowまたはScrum UI sliceにprototype agreement、screen ledger/profile、frontend binding、mission/oracle、UX evidence、change deltaの一部が適用される場合、各義務を既存の対象V-pairのlayer・receipt・owner・戻し先へ結ぶ。作業初期で未作成の後段evidenceは未完義務と後段scopeとして記録でき、設計/要求の起点operationを拒まない。非適用は理由付きで示す。
+
+**誤り例：段階・適用範囲の混同**：全UI scopeに旧artifact一式・旧S0–S4を新しい工程として必須化する、非UI scopeへscreen ledgerを要求する、または未作成UX evidenceを実施済みとしてSR4/Full Vのclosureへ流用する例は不合格。後段evidenceが未完なら、その段階の完了を主張するoperationのみ保留する。新しいfreeze、承認authority、旧layer番号を作らない。
+
+**誤り例：review/release合流時のbackfill漏れ**：選択されたUI sliceがreview/release合流へ進む際、適用されるscreen/profile/binding/mission-oracle/UX-evidence/change-deltaの未完義務または既存pair receiptの欠落を隠してclosureを主張する例は不合格。既存SR4/review/release条件を使い、039独自の合流stageやfreezeを作らない。
+
+**未見例：別UI/別製品scope**：既知fixtureと異なるframework、screen構造、content source、analytics event、device構成を用いる。対象契約revision・source authority・scopeが分かれば同じsemantic relationとrisk根拠で判定し、未見という理由だけでは拒否しない。必須関係や適用性を決める情報/oracleがunknownなら、当該主張を未評価/保留として不足と戻し先を示す。未知を自動補完して合格にせず、既知の無関係条件まで一律failにしない。
+
+**依存と判定境界**：正常判定では親L1/要求revision、authority、scopeが一致する。UI操作では既存024/026/025の該当条件を操作別に、pattern等の入力sourceを選択に応じて照合する。実行・CI・ticket・証拠の保管を039単体に求めず、実行/状態記録はOSまたは外部利用者CI、通信はCONNECT、実測後の効果評価はLABOの既存契約に従う。HARNESS-L2-036のFE 5軸を選択scopeで使う場合だけ契約と後段の結果を照合し、039から036の採択を生成しない。
+
+**旧source照合**：`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。§4.5:269–275（Experience/UI/Frontend、Full V/Scrum backfill、PoC状態・evidence・authority境界）と§4.9:385–392（HR-FR-DHR-001–006）を、現行L1/L2/L11の対象scope・V-pair・authority境界へ意味再導出した fixture である。旧schema名・旧runtime・実測済みとの主張は導入しない。
+
+**prototype/walkthroughの反例**：UI scopeに静止画とscreen一覧・trace・agreement表示だけを与え、操作可能なprototype相当やwalkthroughの実施結果がないのに、prototype確認済みとしてclosureする例を拒否する。正常例では同一scope/revisionの操作可能性とwalkthrough結果・未決事項・訂正を既存008/024の合意根拠へ渡す。開始時に未実施なら未完義務として候補を返せるが、実施済みへ補完しない。旧manifest形式を別の固定schemaとして要求しない。

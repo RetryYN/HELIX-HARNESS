@@ -887,3 +887,41 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 **固定照合基準**：草稿が照合した現行本文の基準commitは `afc3963085b53a4bf86ac5da8f7663aef1bed144`。旧source・現行L1/L2/L11のfile SHAは下記出典の固定値を参照する。
 
 **段階の内容依存と中断**：source根拠から観測契約、観測契約からas-is設計/test、これらを根拠とした意図仮説/PO検証、最後に差分/routingという内容の依存を保持する。見出し名を変えただけで段階を飛ばせない。選択scopeで必要なobligationが100%に満たなければcheckpoint後も未完とし、budget途中停止を完了へ丸めない。既存契約上不要な操作の追加はしない。旧受入根拠は `LEGACY-ASSET-AFE91778057B7E76BEEC`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:62`（HOT-HIL-35）、SHA-256 `4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576`。
+
+### HARNESS-L2-039 体験・UI・Frontend契約を同一scopeへ結ぶ（HARNESS-CORE composite候補、version_target: 1.0）
+
+**状態**：新規の未採択候補。2026-09-28に合意した250候補には含まれず、この候補・記載内容をPO採択済みと扱わない。既採択のHARNESS-L2-024/025/026を変更・置換せず、それらの要求形成、設計単体、設計構成体の間で、体験成果とUI/Frontendの契約が同じ対象scope・revisionを指すための構成体条件を追加する。
+
+**親L1**：主親はHARNESS-L1-001（上流意図から運用評価までのV-pair）、HARNESS-L1-003（要求変更の影響を設計・実装・検証へ伝える）、HARNESS-L1-004（対象revision/riskに合う検証義務・oracle・証拠）、HARNESS-L1-006（要求形成、prototype/非UI適用性、合意・freeze・差戻し）、HARNESS-L1-008（指示と根拠から要求を形成し、欠落・矛盾・過剰解釈を確認）とする。HARNESS-L1-009は設計義務・不足入力を戻す関連親。HARNESS-L1-005/007は外部提供時の適用条件とVersion 1成果範囲の文脈で、内部OSを利用者依存に変えたり新しい完成条件を追加したりしない。これらの現行L1本文の意味内であり、Experience/UI/Frontendの新しい企画価値をL1へ追加しない。
+
+**所属・scope**：HELIX-HARNESS-COREのcomposite候補。要求・設計・受入の責務を同一scope・対象revisionで結ぶ契約を定義する。UIの有無を問わず、各要求まとまりの業務目的を親へ辿れることを扱う。画面を持つscopeではExperience、UI、Frontendの適用条件を照合し、画面を持たないscopeではUI項目を根拠付きN/A・再評価条件として残す。UIの存在や契約適用性がunknownならN/Aへ変換しない。全screen/製品に特定技術・field名・固定schemaを強制しない。
+
+**単独で成り立つための依存**（常時必須）：対象Concept/L1および要求・対象のscope/revision/authority状態、HARNESS-L2-008の要求意味・候補と人間合意境界、HARNESS-L2-003/004の段階状態・変更影響とrelation、HARNESS-L2-022の段階別oracle・result・evidence状態を照合する。必要な入力、authority、oracleが欠けるときは不足/未評価を返し、上位の意味や合意を補完しない。HARNESS-COREが契約と設計上のrelation/oracleを所有し、OSのticket発行・割当・CI運転・実行状態記録、利用者環境の実行、L11の利用者受入判断を所有しない。
+
+**特定操作時のみ必須**：UI/UXを含む要求・設計scopeを形成または変更するときは、HARNESS-L2-024の該当するprototype/非UI適用性・screen scope・agreement状態、HARNESS-L2-026の該当unit設計と対の検証設計、およびHARNESS-L2-025の構成体oracle/端から端の整合を照合する。検証義務を決める操作ではHARNESS-L2-005のticket/risk別選択を使う。L2-022に属する段階stateを主張するときはそのoracle/evidence条件を適用する。これら既存要求の完了receiptを039の開始前提にはせず、各操作が必要とする入力だけを要求する。
+
+**選択した入力元に応じて必須**：対象が明示選択するprototype、screen/flow/interaction資料、design token/component実体、content/analytics event定義、frontend data/state owner、permission/logging/error仕様、device・locale・network等の環境条件、および選択Pattern/design systemを使う場合の各source identity・revision・scope・authority状態を束縛する。選択されていないsourceを存在/不存在/適格/成功と推定しない。BRAIN由来Patternを選択した場合は現行の026/025とconnector契約を適用し、039独自の知識正本を持たない。
+
+**参照資料のみ**：旧sourceのfield名・旧registry/schema/runtime、例示に過ぎない画面manifest形式は参照資料とする。039はFE検証の実行結果を自己生成しない。036のFE 5軸を選択scopeの検証に使う場合に限りその契約・版・結果を後段で照合し、036候補の採択は推定しない。旧工程名・旧layer番号を現行の新工程へ作り替えない。
+
+**受け取るもの**：対象L1/L2/L11と適用されるL3要件の対象revision・authority状態、要求原子とそのscope/非目標、該当UI/非UI適用判定、上記で選択された各source、変更影響・risk、既存のV-pair/verification/acceptance oracleと未完義務。
+
+**提供するもの**：同じ対象scope/revisionに結ばれた次のrelationと差分候補を、根拠・authority状態・適用性とともに返す。
+
+- **Experience/要求の親graph**：要求原子または要求まとまりから、適用可能なUser Task、Business Outcome、scenario/context、success result、decision rationaleへ意味上の親を辿る。親が不要または適用不能な要素は理由を記録する。要求を小さく分割しても親成果・成功条件・決定理由の対応を失わせない。単に親fieldを埋めたことを意味成立としない。
+- **UI/Frontendの端から端trace**：画面を持つscopeで、適用するscreen/flow/region/slot/interaction/action/state/component/token/content等の要素を、permission/actor、command/API、data/state owner、不変条件、domain event/analytics event、logging/errorと、対応する設計・検証・受入oracleまで結ぶ。適用外のidentity型を機械的に生成しない。上記はsemantic relationとして扱い、旧identity名や特定のデータ構造を要求しない。
+- **drift/変更影響**：prototypeと要求、component/DOMと設計、design tokenと描画実体、interactionとE2E、content/analyticsとその要求・oracle、accessibility/responsive/motionに関する適用条件の差をscope単位で示す。変更されたrelationから影響を導き、Affected/Unaffected/Unknownを区別する。UnknownをUnaffectedへ変えず、未評価の実装をpassにしない。意味・要求変更はHARNESS-L2-008および既存Backflowへ、設計・oracle不足はHARNESS-L2-026/025/022へ戻す。
+- **riskに応じたUI検証設計**：選択されたUI scopeのriskに基づき、適用するdevice/input/role/locale/data volume/network/concurrent update/destructive/undo要因を選び、risk-based pairwise組合せを設計する。適用外・選外は根拠を残す。全組合せ実行や固定factor一式を強制せず、risk/適用性unknownを合格にしない。検証実行はHARNESS-L2-005に従う。
+- **状態と証拠の区別**：設計成果、実装状態、実測UX評価を一つの完成状態にまとめない。`implemented`を主張する場合は現行V-pairで定める実装/検証関係へ結び、`ux_verified`を主張するoperationに限って対象scopeに適用されるL10–L12 real-data evidenceとhuman evaluationを別状態として要求する。これらの未来の実行結果を要求形成・設計契約の作成開始条件にはしない。screen数、route数、placeholder、generic table、screenshot単体で完成を主張しない。
+- **Discovery PoCとauthority**：Discovery PoCはprototype/vision仮説の調査・比較を行えるが、対象ownerの既存判断前に`implemented`、`ux_verified`、production-readyまたは採択済みと主張しない。採択された仮説は既存の正規V-pairへ接続する。PoCの固定S0–S4工程や別authority machineを追加しない。HARNESS/AIはproduct vision、brand、体験優先順位、prototype agreement、L3要求freeze、L11利用者acceptance、L12改善採否を自己承認しない。
+- **既存stageへのbackfill**：Full V/Scrum等の選択された工程で、該当するprototype agreement、screen ledger/profile、frontend binding、mission/oracle、UX evidence、change deltaの未完義務を現行V-pairの対応する層・受入・戻し先へ結ぶ。適用しないartifactは理由を記録する。UI sliceが既存SR4/review/release合流を求める時点では、適用されるbackfill義務とpair receiptを照合し、未完義務を完了扱いにしない。旧S0–S4やSR4等を別の現行工程、追加freeze、独立承認として新設しない。既存のstage receipt/evidenceの条件を置き換えない。
+
+**保証・authority境界**：本候補は要求意味、prototype agreement、L3 freeze、L11 acceptance、L12改善採否を承認しない。出力は対象ownerが照合できる設計契約・差分・不足・検証義務候補であり、候補の生成/比較/検査から採択・操作権限・実行許可を生成しない。HARNESSは要求/設計/verification契約を所有し、OSは既決authorityに従う進行・実行・証拠記録を所有し、CONNECTは必要な情報配送を所有し、LABOは実測後の評価/改善候補を所有する。この候補はそれらの責務を移さない。
+
+**失敗・戻し先**：親scope/成功条件/authorityがunknownなら要求形成へ戻し、画面適用性やprototype合意が該当して未決ならHARNESS-L2-024へ戻す。trace/設計不整合は026/025、test oracle/段階証拠不足は005/022へ戻し、実行・ticket・記録不足はOSの既存責務へ渡す。source版/互換不明は選択source ownerへ戻す。人が持つ上流の意味に変更が必要な場合だけ、既存判断境界へ選択肢・影響を示す。新たな承認者や承認gateを作らない。
+
+**旧sourceと差分**：asset `LEGACY-ASSET-02319C2481B9E01698D5`。`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-requirements_v1.3.md` SHA-256 `788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406`。§4.5:265–277のうち269/271/273/275行のExperience/UI/Frontend三契約、Full V/Scrum backfill、PoC/implemented/ux_verifiedの状態差と非自己承認を意味再導出する。§4.9の385–390行（HR-FR-DHR-001–006）と392行（実装・UX証拠が揃うまで完成状態を主張しない条件）からidentity trace、UI applicability、screen-to-acceptance関係、risk-based pairwise、drift、Experience親graphを再導出する。旧ID/field/schema、runtime、固定旧phaseは現行要求へ移さず、個別の適用範囲・現行layer・根拠付きoracleへ再構成する。
+
+**固定照合基準**：現行L1/L2/L11はcommit `d0900f30b92720114c6e0b5f436813d48172a020`。旧sourceの実装方式・211件のinventory（267/277行）や別entity機械の詳細（394行以降）は本候補の一括被覆対象にせず、元のsource保持を継続する。
+
+**UI prototype証拠の受渡し**：UI適用scopeのprototype合意/closureを主張する段階では、操作可能なprototype相当と、同じscope/revisionを実際にwalkthroughした結果・未決事項・訂正を、既存008/024の合意根拠へ結ぶ。静止画や一覧だけを操作可能性・walkthrough実施の証拠へ変換しない。旧manifest schemaは固定せず、未実施なら当該義務を未完として保持する。039の契約候補形成の開始に、未来のprototype完成やwalkthrough完了は要求しない。非UIなら既存の根拠付き非適用判定と再評価条件を保持する。
