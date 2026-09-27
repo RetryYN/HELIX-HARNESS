@@ -909,3 +909,35 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **責務と依存**：常時必須は020の運転契約、HARNESSの義務・oracle、同一runと原計測の追跡、適用する安全/資源条件。新たな修正実行時だけOSの既存ticket/assignmentと許可を要する。観測の独立評価を依頼する場合はLABOへ材料を渡し、LABOのproposalからCI設定を直接変えない。未選択環境や旧数値の説明は参照であり、当該runの実行依存にしない。
 - **失敗時**：計測不明・比較条件差は計測/実行主体へ、検証義務の変化はHARNESSへ、資源不足はINFRASTRUCTUREへ返す。独立reviewまたは再検証の証拠がない改善は未完で保持する。誤った高速化を新しいbaselineへ黙って取り込まない。
 - **旧source**：github-ci-performance-requirementsのGH-NFR-009〜011/GH-AC-017〜018（draft）、github-atomic-development-requirementsのGH-FR-025（draft）、これらNFRをrefinesに持つci-system-synthesis-requirements（confirmed、CIS-R-10〜15）を両方読む。draftだけを根拠にconfirmed系譜を無視せず、後日の現行PO判断が変更した工程と保持すべき計測/非縮退条件を分ける。旧sourceの正確なpath/行/SHAと採否未処分範囲は被覆receiptへ束縛する。
+
+### HELIXOS-L2-032 Known failureの限定quarantine（単体候補）
+
+- **親L1**：`HELIXOS-L1-004`。
+- **状態・版**：新identityの単体追補候補、`version_target: 1.0`。PO採択・実装・実行許可なし。
+- **能力境界**：OSは、既に有効なpolicyに記載されたknown failureがquarantine条件を満たすかを判定し、その判定と適用対象を記録する。OSは新たなpolicy authority、HARNESSの検証義務、failureの意味、test内容を作らない。quarantineしない選択では通常failureとして扱う。
+- **入力**：対象要求/ ticket、検証profileと選択義務/oracle、check identityと明示されたcheck version、policy登録revision、policyに登録されたbaseline SHA/tree、failure fingerprint、現在の実行のexact HEAD/tree、理由、是正Issue/ticket、owner、expiryまたはiteration上限、代替minimum gateとその根拠/結果、各sourceのprovenanceを受け取る。`policy baseline`と`current run HEAD/tree`は異なるfield・証拠として束縛し、両者が同一であることを暗黙の条件にしない。policyの対象scopeがcurrent runを含むことは明示されたpolicy適用条件で確かめる。
+- **単独成立の依存（4区分）**：
+  - **常時必須**：対象runでHARNESS-L2-005が導いた必要義務、expected failure/oracle、証拠期限、戻し先を維持する。OS-L2-007に必要なpolicy・check・failure・判定・run evidenceのprovenanceを結び、OS-L2-020の状態区分（success/fail/denied/skipped/interrupted/stale）を消さない。quarantineは失敗をpassへ変換しない。
+  - **操作時必須**：policyを作成・変更・延長・停止・適用する操作には、その対象・actor・operation・scope・期限に適用される既存HELIXSECURITY-L2-008 authorityを照合し、OSの既存ticket/assignment/record契約へ結ぶ。有効な既決権限は適用範囲内で再利用でき、通常操作ごとの重複承認を追加しない。実CIの実行時はOS-L2-020を実行・結果回収のownerとして使い、必要なINFRASTRUCTURE resource条件はそのoperationに適用される範囲で照合する。
+  - **選択入力時必須**：quarantine適用を選んだ時だけ、登録済みpolicyのcheck identity/version、known fingerprint、policy baseline SHA/tree、reason、remediation Issue/ticketとowner、expiryまたはiteration上限、代替minimum gateを必須入力とする。current HEAD/treeは実行側の独立したidentityとして付ける。baselineはpolicyに登録済みの値と照合し、current HEADと同値とは仮定しない。check versionの一致または明示されたcompatibility条件が確認できない場合は互換と推測せず、quarantine対象外として通常failure/保留へ返す。quarantineを選ばないprofileにはpolicy入力を要求しない。
+  - **参照のみ**：旧prejoin→postjoin→externalの固定3段列、旧Node/Python supervisor、旧CI名・runtime方式は現行必須依存にしない。HARNESS-L2-005の動的義務選択とOS-L2-020のprofile/run条件が基準である。
+- **提供・保証**：`eligible`または`not eligible`の判定、policy/check/version/fingerprint、登録baseline、current HEAD/tree、対象scope、期限、remediation先、代替minimum gateとそれぞれの証拠をreceiptに記録する。条件を満たした場合もreceiptは限定quarantineの事実を示すだけで、元failureを消さず、check pass、CI全体green、merge/release許可を生成しない。代替minimum gateは適用するHARNESS義務を弱めない。
+- **戻し先**：oracle・必要義務の不明はHARNESS-L2-005 owner、profile/run/receipt不一致はOS-L2-020/007、policy authority欠落はSECURITY、実行資源不足はINFRASTRUCTUREへ戻し、該当義務を未完のまま保持する。
+
+- **旧source**：`LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:119`（HIL-FR-29）、補助source `REQSRC-SUP-00539`（HAC-HIL-06c）。check/fingerprint/baselineへの限定、理由・是正先・owner・期限/上限・代替gateを保持し、既決の動的CI工程へ再導出する。旧三段CIと他の06条件の全移管は本候補の対象外。原文・SHAはquarantine/replay被覆receiptに束縛する。
+
+### HELIXOS-L2-033 Versioned engine/detector registryと同一snapshot再現証拠（単体候補）
+
+- **親L1**：`HELIXOS-L1-004`（CI・証拠収集）。`HELIXOS-L1-008`のprojection整合は証拠の追跡に関する文脈であり、副次接続。033の機能所有者をL1-008へ移さない。
+- **状態・版**：新identityの単体追補候補、`version_target: 1.0`。PO採択・実装・実行許可なし。
+- **能力境界**：engine capabilityの機能およびdetectorの判定意味は、それぞれの機能ownerが持つ。HELIX-OSはversion/config/scope付きregistryと、OS-L2-020を通じた実行receipt・artifact/findingの出所・再現比較証拠を所有する。033は第二のCI executor、engine実装、detector判定機能ではない。
+- **入力**：選択された対象scope、source/input snapshot identity+digest、target revision、要求/ticket、各engine capability identity・owner・version・config、各detector identity・owner・version・config・適用するengine/output種別、宣言されたversion/compatibility、実行環境、HARNESS-L2-005 oracle/検証義務、OS-L2-020 execution receiptを受け取る。登録・開始時の入力と実行後のreceiptを分け、当該runのresult receiptを開始前提にしない。旧HIL-FR-25の対象能力（build、agent metadata、assignment、schedule、trace、impact等）とHIL-FR-26のdetector種別（spec、schema、trace、consistency、file、metadata）は個別identityとして落とさない。
+- **単独成立の依存（4区分）**：
+  - **常時必須**：選択scopeとregistry revision、そこで登録・使用すると宣言した各engine/detectorの別identity、owner、version/config、compatibility、入力source/snapshot、HARNESSが課すoracle、OS-L2-007のprovenance保持を明示する。engine artifactとdetector findingのauthority/receiptを区別する。OS自身が機能内容・finding意味・正しさを決めない。
+  - **操作時必須**：実行/再実行操作はOS-L2-020により隔離し、run状態・結果・中断/失敗/停止を回収する。登録またはversion/config/scopeを変えるoperationでは適用される既存HELIXSECURITY-L2-008 authorityを照合する。実行のための環境/resource条件は当該operationに適用されるHELIXINFRASTRUCTURE契約で照合する。registryの参照だけから実行・書込権限を得ない。
+  - **選択入力時必須**：能力を選択したscope内では、選択集合に含む全engineと全detectorについて、同一登録version/configと同一input snapshotでrunとrerunを行い、その結果を比較する。一部だけのrerunでscope全体の再現性を宣言しない。新source/schema/fixtureを選んだときは、そのidentity・version・provenance・明示compatibilityも入力する。unknown versionまたはcompatibility未宣言は互換と推測せず、該当能力の結果を未評価/拒否として保持する。
+  - **参照のみ**：旧ZIP由来の実装形、旧registry/runner実行方式、特定言語・CI製品名は実装依存にしない。旧capabilityとdetectorの対象範囲・結果項目のみ意味として保持する。
+- **提供・保証**：engineごとにrun/artifact/digest/exit statusを、detectorごとにrun/finding code/severity/location/subject/evidence/versionとdedupe keyを独立receiptへ記録する。各artifactのoutput digestと各findingのfingerprintを残し、重複を束ねても各runのprovenanceを失わせない。双方にsource/input snapshot digest、target revision、scope、version/config、provenanceを束縛する。同一scope内の全選択capabilityで、登録された同一version/config/inputをrerunした結果が一致した範囲だけ再現証拠を返す。partial、unknown、provenance不足、input/version/config不一致は再現成功として扱わない。再run差異は隠さずquarantine/未完として記録する。
+- **戻し先**：registry identity/版/実行receiptの不足はOS、oracle/検証義務はHARNESS-L2-005 owner、engine/detectorの機能意味はその登録owner、authorityはSECURITY、実行環境・resource不足はINFRASTRUCTUREへ戻す。
+
+- **旧source**：同assetの`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:115–116`（HIL-FR-25/26）、補助source `REQSRC-SUP-00617/00549/00550/00551/00641`（HR-FR-HIL-10、AC10a/b/c、HAT10）。原文・SHAは被覆receiptに束縛する。旧ZIP実装・言語・registry方式は復帰させず、機能ownerの版付き能力の登録と再現証拠をOSへ再導出する。

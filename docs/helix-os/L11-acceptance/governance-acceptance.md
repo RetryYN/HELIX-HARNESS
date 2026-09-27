@@ -509,3 +509,29 @@ HELIXOS-L2-026（unit：構成案と不足を返す導出能力）に対する�
 - **既決工程の保持**：ticketが必要義務を決める例で固定nightly/full回収を再要求しない。後で発見した失敗はLABO評価とHARNESS契約改善の経路へ返す。単に夜間補完をしないことを未完義務の消去理由にしない。
 
 - **最適化・回収の反例**：exclusive stateをlease/fenceなしに並列実行する、異なるHEAD/lockfile/toolchain/platformのartifactを再利用する、stale telemetryで計画を確定する、cancelした未開始jobをsuccessにする、同一義務の再実行を二重回収に数える例を拒否する。安全な既定DAGに必要義務が揃う場合のみfallbackし、計画自体が不明なら停止/未完とする。後段failureから元selector/edge/oracleへの因果traceが欠落した改善候補は根拠不足を保持する。
+
+### HELIXOS-L2-032 Known failureの限定quarantine
+
+**照合する旧条件**：旧asset `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:119`、SHA `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`（行SHA `6d870c3962afee8d65d8da733500a313e7fd72892dfe8f502733e86e67c6e70f`）、旧`HAC-HIL-06c`。06全体の固定三段CIは対象外。原条件はexact known failureのみ、check名+fingerprint+policy baseline SHA、理由/remediation issue/owner/期限またはiteration上限/代替minimum gateを要求し、fingerprint変更を通常failureへ戻す。
+
+- **入力・境界fixture**：既存policyが登録したcheck identity・明示version・fingerprint・baseline SHA/tree・reason・remediation ticket/owner・期限/上限・minimum gateを用意する。別fieldのcurrent runにはcurrent exact HEAD/tree、対象scope、actual check/version、actual fingerprint、HARNESS義務/oracleとその結果を与える。baselineとcurrent HEADを同じ値に固定しない。OSはrun receiptで両方を独立して結び、policyの明示適用scopeにcurrent runが含まれるかを判定する。version compatibilityが宣言されない限り別check versionを適合扱いしない。
+- **正常例**：policyに登録された正確なbaseline、check/version、fingerprintと一致し、そのpolicyの明示scope内にcurrent runがある。期限内、是正ticket/owner、代替minimum gateも揃い、minimum gateが選択済みHARNESS義務をすべて満たす。OSは限定`eligible` receiptを記録する。元のfailureは未解決known failureとして残り、CI全体/検証義務をgreenにしない。
+- **誤りの例**：①same check nameだがfingerprintが変わった、②policy baseline SHA/treeの不一致、③current runのHEAD/treeがreceiptから脱落またはpolicy scope外、④未宣言のcheck versionを互換と推定、⑤expiry切れ、iteration上限超過、期限/上限の両方欠落、reason・owner・remediation ticketの各欠落、alternative gateなし、⑥alternative gateがHARNESS required oracleを省略、⑦wildcard policy、⑧policy provenance不明。各々をquarantine不適格またはstale/通常failureとし、後続段の成功・merge/releaseを生成しない。
+- **未見例**：未fixtureのcheck versionまたはfingerprintを提示する。fingerprintの変更は常に通常failureへ戻す。check versionは明示的なpolicy compatibilityとscopeがなければ既知版と推測せず、quarantineを適用しない。通常のrunが存在するだけで全ての未fixture checkを禁止するのではなく、該当checkのfailureを通常failure/評価待ちとして返す。
+- **依存と状態区分**：HARNESS-L2-005の選択義務/oracleとOS-L2-007のprovenance保持を常に維持する。policy create/change/apply時は既存HELIXSECURITY-L2-008の対象scopeに限るauthorityを照合し、有効な既決authorityを再利用する。実CI運転はHELIXOS-L2-020で実行・回収する。条件を満たす場合も `quarantine eligible` はcheck単位の例外適用判断であり、failure解消、test pass、profile successではない。
+- **受入判定**：normal/negative/unseen各fixtureで、policy baselineとcurrent HEADの別束縛、check identity・fingerprintのexact一致とcheck versionのexact一致または明示compatibility、期限・是正・minimum-gate、対象scope、戻し先を同じreceiptから追える。HARNESS義務を落としたfixtureを合格にしない。
+
+### HELIXOS-L2-033 Versioned engine/detector registryと同一snapshot replay
+
+**照合する旧条件**：旧asset `LEGACY-ASSET-719D5EC9C06FC4AAD0FF`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:115–116`、SHA `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`（行SHA :115 `c28b208b2be946d06c8b068c1e7ae13123e68be2630864af5a2f586edc4601d9`、:116 `5b18e75312a53e0f2b848393592508360a27b9918e18dd64201e1da8de209b18`）。補助条件`HR-FR-HIL-10`, `HAC-HIL-10a/b/c`, `HAT-HIL-10`。OSの責務はregistry登録と実行証拠であり、engine/detector機能の所有・意味判定ではない。
+
+- **能力・所有境界fixture**：scopeに選ばれたengine capability（build、agent metadata、assignment、schedule、trace、impact等）それぞれのidentity/version/config/ownerを登録する。scopeの選択detectorはspec、schema、trace、consistency、file、metadata各種についてengineと別identity/version/config/ownerを持つ。ひとつのOS registry/run recordへまとめてowner/authorityを失わせない。機能実装やfindingの正しさをOSが決めず、OS-L2-020を既存の実行executorとして使う。
+- **正常例**：選択scopeに宣言された全engine/detectorを、完全に同じsource/input snapshot digest、registered version、config、target revisionで実行し、同じ組で独立rerunする。engine artifactには各run/artifact/digest/exit status、detector findingにはcode/severity/location/subject/evidence/version・dedupe keyを記録し、両種receiptからinput・version/config・output digest/fingerprint・ownerへ辿れる。rerunで同一結果ならそのscope/version/inputに限った再現証拠を返す。artifactとfindingのauthority/provenanceは分けて保持する。
+- **誤りの例**：①unknown engine/detector versionを互換推測する、②rerun時のsnapshot/version/configが違う、③選択scopeの一部engine/detectorだけをrerunして全体再現とする、④engine artifactとdetector findingを同一result/ownerに潰す、⑤finding code/severity/location/subject/evidence/versionのいずれかを欠落させる、⑥run/artifact/findingのprovenance欠落、dedupeによる原run/evidence喪失またはartifact output digest/finding fingerprint欠落、⑦partial/failed runを再現成功にする、⑧同一入力rerunが異なるdigest/fingerprintなのに差異を消す。差異は未完/隔離として残し、成功receiptにしない。
+- **未見例**：scopeに新しいengine/detector versionまたはsource/schemaを追加する。登録された互換範囲・owner・config・provenanceが明示されていなければ結果を既存scopeへ併合せず、当該追加分を未確認/未評価で保留する。未評価の追加分がある間、既選択scopeの他capabilityに関する証拠は捨てず、scope全体の再現成功も宣言しない。
+- **依存と状態区分**：registry identity/version/configと選択scope、HARNESS-L2-005の義務/oracle、OS-L2-007のevidence/provenanceを維持する。実行/再実行時はOS-L2-020の隔離・run state・回収条件、実行に適用される既存HELIXSECURITY-L2-008 authorityとINFRASTRUCTURE資源条件を照合する。未選択capabilityのrunを一律要求しないが、選択scopeに登録されたcapabilityは部分集合だけで全件受入しない。
+- **受入判定**：engine群とdetector群を区別したscope表、登録版/config、入力snapshot、初回run/re-runの対応、全選択capabilityの完了状態、artifact/finding証拠、差異・未完義務・戻し先が揃う。正常fixtureは再現のscope限定を保ち、negativeはunknown/mismatch/partial/differenceを隠さず拒否し、unseenは未評価を合格へ補完しない。
+
+**候補間の接続境界**
+
+HELIXOS-L2-032は選択済み検証profileのknown failureに対する限定eligibilityを扱う。HELIXOS-L2-033は選択scope内のengine/detector登録と再現証拠を扱う。HELIXOS-L2-020は実行・隔離・回収を行う。HARNESS-L2-005は検証義務とoracleを決める。032/033のresult receiptを当該能力の実行開始入力として要求しない。HARNESS契約をOSが発行したり、OSのquarantine/replay receiptだけでHARNESS受入を完了させたりしない。
