@@ -30,7 +30,7 @@ sources:
 | AC ID | 対応要求 | 種別 | 受入判定の要点 |
 |---|---|---|---|
 | HELIXCONNECT-L11-001 | HELIXCONNECT-L2-001 | unit | 登録identityと両端契約が一意に結び付き、不足・不明・同一接続identityの異なる宣言による重複・identity衝突は利用可能にならない。識別可能な別接続による端点共有は拒否しない |
-| HELIXCONNECT-L11-002 | HELIXCONNECT-L2-002 | unit | 登録時・使用時revisionを照合し、revision変更後のstaleを検知して再照合まで通信を止める |
+| HELIXCONNECT-L11-002 | HELIXCONNECT-L2-002 | unit | 既存scope/access条件下で互換性を照合し、送信時のみ許可を確認。revision変更後はstaleを検知して再照合まで通信を止める |
 | HELIXCONNECT-L11-003 | HELIXCONNECT-L2-003 | unit | 送受信が正しい接続identity・operation・契約revisionに束縛され、契約外入力を成功扱いしない |
 | HELIXCONNECT-L11-004 | HELIXCONNECT-L2-004 | unit | 同一内容の再送は二重効果を生まず、異digest衝突・上限超過・再送不能結果は停止する |
 | HELIXCONNECT-L11-005 | HELIXCONNECT-L2-005 | unit | 送受信・再送・stale・部分失敗を接続単位に順序追跡できる |
@@ -45,7 +45,11 @@ sources:
 
 ### HELIXCONNECT-L11-002 契約版照合とstale再検証
 
-互換範囲内の両端revisionでは送信可能となる。範囲外、unknown revision、古い照合結果では送信要求が拒否され、送信attemptが0件であることを確認する。登録後に片端revisionまたはadapter revisionを変更し、旧revisionでstaleが立つこと、再照合前は利用不能であること、互換のある新revisionの照合証拠によってのみstaleが解消されることを確認する。
+登録receipt、互換宣言、および入力の読取りに適用される既存scope/access条件の下で、宣言範囲内の両端revisionを参照のみで照合する。互換範囲内ならrevision組合せに束縛した互換性receiptが`compatible`となり、送信適格性は`not_evaluated`、送信attemptは0件であることを確認する。この照合に送信実行用許可を事前要求しない。読取りaccess条件が欠落、拒否またはunknownの場合は、比較結果を出さずunknown/保留とする。
+
+続いて実送信の適格性を判断する操作では、互換成立に加え、actor/target/operation/revision/environment/scope/expiryが一致する有効なSECURITY許可と、適用data-use/classification条件がある場合だけ`eligible`となることを確認する。許可の欠落、unknown、期限切れ、失効、scope不一致、または適用条件のunknownでは、互換結果を保持して`withheld`とし、送信attemptが0件であることを確認する。互換性のunknown/incompatible/staleは、許可があっても送信適格にならない。
+
+登録後に片端revisionまたはadapter revisionを変更し、旧revisionでstaleが立つこと、再照合前は利用不能であること、互換のある新revisionの照合証拠によってのみ当該revision組合せのstaleが解消されることを確認する。未fixtureのrevision組でも、宣言範囲内の参照照合だけなら送信実行用許可を要求しない。宣言外・未登録revisionはunknownとして保留し、互換成立や送信可能を推定しない。
 
 ### HELIXCONNECT-L11-003 契約に束縛した通信
 
