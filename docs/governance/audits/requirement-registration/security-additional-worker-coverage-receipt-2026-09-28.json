@@ -1,0 +1,43 @@
+{
+  "receipt_id": "MPR-RCPT-SECURITY-ADDITIONAL-WORKER-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "既存MPR-SH-THIRD-PARTY-DATA-002のBR32原文1行を029と031の組で意味再導出する。HR23/AC23/HAT23/WCCは補助照合sourceであり、それらの全条件被覆を本receiptへ加算しない。元029receiptとsource holdingは変更しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXSECURITY-L2-031",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXSECURITY-L1-007",
+        "HELIXSECURITY-L1-008"
+      ],
+      "candidate_semantic_digest": "sha256:db2fd29654cc210b3c06568f4e421560b069d36f8d69f04fbe413d83ad532765",
+      "source_atom_set_digest": "sha256:742e42bee0bfc000378aa350c1ab0d5384b30e08c0dcabeaf1ff326edb669a1e",
+      "source_atom_count": 1,
+      "source_collection_scope": "既存MPR-SH-THIRD-PARTY-DATA-002のBR32原文1行を029と031の組で意味再導出する。HR23/AC23/HAT23/WCCは補助照合sourceであり、それらの全条件被覆を本receiptへ加算しない。元029receiptとsource holdingは変更しない。",
+      "atoms": [
+        {
+          "atom_id": "THIRD-PARTY-DATA-HIL-BR-32-L0084",
+          "source_holding_registration_id": "MPR-SH-THIRD-PARTY-DATA-002",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 84,
+          "source_line_sha256": "sha256:3118efe1554c4ca3438938e76112b255450c927e1b10a515ec4b3216e505b830",
+          "source_text": "| **HIL-BR-32** | Claude/Codex以外の定額worker runtime（Kimi/Grok等）をprecedenceを曲げずproposal-only workerとして接続し、実行を隔離worktree/sandbox内に限定してrepository本体、`.helix/` state、harness DB、credentialへ到達させない。秘密・機密を含む作業の第三者runtime委譲を禁止する。 |",
+          "ir_requirement_id": "HIL-BR-32",
+          "disposition": "carried",
+          "relation": "BR32の全条件を既存029の対象区分・秘密/機密委譲禁止と新031のproposal-only・隔離・正本/credential非到達へ分けて保持する。旧物理pathと固定provider名は現行の責務へ再導出し、採択は生成しない。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-007",
+        "docs/helix-security/L2-requirements/security-requirements.md#helixsecurity-l2-029",
+        "docs/helix-security/L11-acceptance/security-acceptance.md#helixsecurity-l2-031"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}
