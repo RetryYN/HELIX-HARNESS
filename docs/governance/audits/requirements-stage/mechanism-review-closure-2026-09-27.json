@@ -1,0 +1,326 @@
+{
+  "authority_effect": "none",
+  "baseline": "d308f4080da298172001ef97e9c4b5f66d32ed7d",
+  "mechanisms": {
+    "SECURITY": {
+      "audit_pr": {
+        "headRefOid": "9c7b3711eea304b1540c1737dc75472711c5d331",
+        "mergeCommit": {
+          "oid": "0b16cd86dd07a298a12125ca62a316741d7d0762"
+        },
+        "mergedAt": "2026-09-27T11:24:08Z",
+        "number": 2179,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2179",
+        "read_after": {
+          "merge_base": "858026b250a15d4fec020b21b315c250decf960b",
+          "merge_parents": [
+            "b29f08c43a5a043389fa4f4bcb371370665f0dad",
+            "9c7b3711eea304b1540c1737dc75472711c5d331"
+          ],
+          "reviewed_blob_count": 3,
+          "all_pr_changed_blobs_match": true
+        }
+      },
+      "resolution_pr": {
+        "headRefOid": "e0dc30e0fd8c867c3b262d97deb17849bd9cda3a",
+        "mergeCommit": {
+          "oid": "6e58fa1c44dccac1aca870dfbcdd853da0b18f7e"
+        },
+        "mergedAt": "2026-09-27T11:45:19Z",
+        "number": 2188,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2188",
+        "read_after": {
+          "merge_base": "433b23968dabd8a01d1386ed43726d74b1e92eb2",
+          "merge_parents": [
+            "ad3a05276a4d39ef8711dff33381f774d9250b22",
+            "e0dc30e0fd8c867c3b262d97deb17849bd9cda3a"
+          ],
+          "reviewed_blob_count": 40,
+          "all_pr_changed_blobs_match": true
+        }
+      }
+    },
+    "OS": {
+      "audit_pr": {
+        "headRefOid": "28f132700f3fd8c112632568f2d443846fe3ea6c",
+        "mergeCommit": {
+          "oid": "5c5bf790ecc1129bfcd11225cfe0ab31c587b192"
+        },
+        "mergedAt": "2026-09-27T11:00:06Z",
+        "number": 2180,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2180",
+        "read_after": {
+          "merge_base": "858026b250a15d4fec020b21b315c250decf960b",
+          "merge_parents": [
+            "858026b250a15d4fec020b21b315c250decf960b",
+            "28f132700f3fd8c112632568f2d443846fe3ea6c"
+          ],
+          "reviewed_blob_count": 1,
+          "all_pr_changed_blobs_match": true
+        }
+      },
+      "resolution_pr": {
+        "headRefOid": "6bc892d36170d6af5debbc717ae6cb8c4b512b9d",
+        "mergeCommit": {
+          "oid": "433b23968dabd8a01d1386ed43726d74b1e92eb2"
+        },
+        "mergedAt": "2026-09-27T11:30:11Z",
+        "number": 2185,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2185",
+        "read_after": {
+          "merge_base": "c3c645784f2e1dc2baeacbb23c1d18caf41995ba",
+          "merge_parents": [
+            "0b16cd86dd07a298a12125ca62a316741d7d0762",
+            "6bc892d36170d6af5debbc717ae6cb8c4b512b9d"
+          ],
+          "reviewed_blob_count": 72,
+          "all_pr_changed_blobs_match": true
+        }
+      }
+    },
+    "CONNECT": {
+      "audit_pr": {
+        "headRefOid": "b82c5f91d859f817e39e200567132b8c6f4bd178",
+        "mergeCommit": {
+          "oid": "8c1d84e0737fd330d16babfe65b87f2ce849d7b6"
+        },
+        "mergedAt": "2026-09-27T11:03:26Z",
+        "number": 2181,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2181",
+        "read_after": {
+          "merge_base": "858026b250a15d4fec020b21b315c250decf960b",
+          "merge_parents": [
+            "5c5bf790ecc1129bfcd11225cfe0ab31c587b192",
+            "b82c5f91d859f817e39e200567132b8c6f4bd178"
+          ],
+          "reviewed_blob_count": 1,
+          "all_pr_changed_blobs_match": true
+        }
+      },
+      "resolution_pr": {
+        "headRefOid": "4ec8c224423d16bb119028902ac0916cbe712135",
+        "mergeCommit": {
+          "oid": "c9fc9aa463a82b8a11b0132dddd5e05a82bbbf0c"
+        },
+        "mergedAt": "2026-09-27T12:00:27Z",
+        "number": 2190,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2190",
+        "read_after": {
+          "merge_base": "4629b93f6471f25b71ee255e8966b65be01dd20b",
+          "merge_parents": [
+            "4629b93f6471f25b71ee255e8966b65be01dd20b",
+            "4ec8c224423d16bb119028902ac0916cbe712135"
+          ],
+          "reviewed_blob_count": 41,
+          "all_pr_changed_blobs_match": true
+        }
+      }
+    },
+    "BRAIN": {
+      "audit_pr": {
+        "headRefOid": "0ff6440ce899d7af86df586ac853a9ee2eeb04a1",
+        "mergeCommit": {
+          "oid": "c3c645784f2e1dc2baeacbb23c1d18caf41995ba"
+        },
+        "mergedAt": "2026-09-27T11:10:57Z",
+        "number": 2182,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2182",
+        "read_after": {
+          "merge_base": "5c5bf790ecc1129bfcd11225cfe0ab31c587b192",
+          "merge_parents": [
+            "8c1d84e0737fd330d16babfe65b87f2ce849d7b6",
+            "0ff6440ce899d7af86df586ac853a9ee2eeb04a1"
+          ],
+          "reviewed_blob_count": 1,
+          "all_pr_changed_blobs_match": true
+        }
+      },
+      "resolution_pr": {
+        "headRefOid": "3eaf7f5871f84826a7bef5f6e5895f48f25cdbe8",
+        "mergeCommit": {
+          "oid": "4629b93f6471f25b71ee255e8966b65be01dd20b"
+        },
+        "mergedAt": "2026-09-27T11:53:30Z",
+        "number": 2189,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2189",
+        "read_after": {
+          "merge_base": "79fa1f688e5edf6f85b3e6035647ca0cd47ea8cf",
+          "merge_parents": [
+            "79fa1f688e5edf6f85b3e6035647ca0cd47ea8cf",
+            "3eaf7f5871f84826a7bef5f6e5895f48f25cdbe8"
+          ],
+          "reviewed_blob_count": 40,
+          "all_pr_changed_blobs_match": true
+        }
+      }
+    },
+    "HARNESS": {
+      "audit_pr": {
+        "headRefOid": "37db0ce3bb5dd149f68d5dd862baae10b6e6911c",
+        "mergeCommit": {
+          "oid": "b29f08c43a5a043389fa4f4bcb371370665f0dad"
+        },
+        "mergedAt": "2026-09-27T11:21:35Z",
+        "number": 2183,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2183",
+        "read_after": {
+          "merge_base": "8c1d84e0737fd330d16babfe65b87f2ce849d7b6",
+          "merge_parents": [
+            "2e81fe60a8876228ad89a2f6822545a4338d9207",
+            "37db0ce3bb5dd149f68d5dd862baae10b6e6911c"
+          ],
+          "reviewed_blob_count": 1,
+          "all_pr_changed_blobs_match": true
+        }
+      },
+      "resolution_pr": {
+        "headRefOid": "65db8ed29cce5722f6e84b0309c61c4b240a0b63",
+        "mergeCommit": {
+          "oid": "5634a5fe9d0c6ef3ed83067a52dfb5054256d08e"
+        },
+        "mergedAt": "2026-09-27T12:16:57Z",
+        "number": 2192,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2192",
+        "read_after": {
+          "merge_base": "d107e60ca9b8cdf2f57ae7c60fe40c94dda31bba",
+          "merge_parents": [
+            "d107e60ca9b8cdf2f57ae7c60fe40c94dda31bba",
+            "65db8ed29cce5722f6e84b0309c61c4b240a0b63"
+          ],
+          "reviewed_blob_count": 82,
+          "all_pr_changed_blobs_match": true
+        }
+      }
+    },
+    "INFRASTRUCTURE": {
+      "audit_pr": {
+        "headRefOid": "3a4a027ee00ea79e0d2331cfd84f7be3388a51dc",
+        "mergeCommit": {
+          "oid": "2e81fe60a8876228ad89a2f6822545a4338d9207"
+        },
+        "mergedAt": "2026-09-27T11:18:54Z",
+        "number": 2184,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2184",
+        "read_after": {
+          "merge_base": "c3c645784f2e1dc2baeacbb23c1d18caf41995ba",
+          "merge_parents": [
+            "c3c645784f2e1dc2baeacbb23c1d18caf41995ba",
+            "3a4a027ee00ea79e0d2331cfd84f7be3388a51dc"
+          ],
+          "reviewed_blob_count": 1,
+          "all_pr_changed_blobs_match": true
+        }
+      },
+      "resolution_pr": {
+        "headRefOid": "f9930b4f13f0c7b52ec5c7c102a1802e6f425736",
+        "mergeCommit": {
+          "oid": "d107e60ca9b8cdf2f57ae7c60fe40c94dda31bba"
+        },
+        "mergedAt": "2026-09-27T12:06:43Z",
+        "number": 2191,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2191",
+        "read_after": {
+          "merge_base": "c9fc9aa463a82b8a11b0132dddd5e05a82bbbf0c",
+          "merge_parents": [
+            "c9fc9aa463a82b8a11b0132dddd5e05a82bbbf0c",
+            "f9930b4f13f0c7b52ec5c7c102a1802e6f425736"
+          ],
+          "reviewed_blob_count": 41,
+          "all_pr_changed_blobs_match": true
+        }
+      }
+    },
+    "INTELLIGENCE": {
+      "audit_pr": {
+        "headRefOid": "7d692836a167465d2e25f53b69b9ec97a44de2b2",
+        "mergeCommit": {
+          "oid": "79fa1f688e5edf6f85b3e6035647ca0cd47ea8cf"
+        },
+        "mergedAt": "2026-09-27T11:46:00Z",
+        "number": 2187,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2187",
+        "read_after": {
+          "merge_base": "433b23968dabd8a01d1386ed43726d74b1e92eb2",
+          "merge_parents": [
+            "6e58fa1c44dccac1aca870dfbcdd853da0b18f7e",
+            "7d692836a167465d2e25f53b69b9ec97a44de2b2"
+          ],
+          "reviewed_blob_count": 1,
+          "all_pr_changed_blobs_match": true
+        }
+      },
+      "resolution_pr": {
+        "headRefOid": "26c236f0dc8ca1dbb190ce388c61e04f389b8f08",
+        "mergeCommit": {
+          "oid": "d308f4080da298172001ef97e9c4b5f66d32ed7d"
+        },
+        "mergedAt": "2026-09-27T12:29:41Z",
+        "number": 2194,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2194",
+        "read_after": {
+          "merge_base": "bf7b3e906f3ff14b9ed8cd185a3322b8fd04ee25",
+          "merge_parents": [
+            "bf7b3e906f3ff14b9ed8cd185a3322b8fd04ee25",
+            "26c236f0dc8ca1dbb190ce388c61e04f389b8f08"
+          ],
+          "reviewed_blob_count": 40,
+          "all_pr_changed_blobs_match": true
+        }
+      }
+    },
+    "LABO": {
+      "audit_pr": {
+        "headRefOid": "e3b062ee7cdfa66848da8980158141795d456213",
+        "mergeCommit": {
+          "oid": "ad3a05276a4d39ef8711dff33381f774d9250b22"
+        },
+        "mergedAt": "2026-09-27T11:38:48Z",
+        "number": 2186,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2186",
+        "read_after": {
+          "merge_base": "b29f08c43a5a043389fa4f4bcb371370665f0dad",
+          "merge_parents": [
+            "433b23968dabd8a01d1386ed43726d74b1e92eb2",
+            "e3b062ee7cdfa66848da8980158141795d456213"
+          ],
+          "reviewed_blob_count": 1,
+          "all_pr_changed_blobs_match": true
+        }
+      },
+      "resolution_pr": {
+        "headRefOid": "b6b9d54da5582319a4785a24f368c78d666541be",
+        "mergeCommit": {
+          "oid": "bf7b3e906f3ff14b9ed8cd185a3322b8fd04ee25"
+        },
+        "mergedAt": "2026-09-27T12:23:08Z",
+        "number": 2193,
+        "state": "MERGED",
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/2193",
+        "read_after": {
+          "merge_base": "5634a5fe9d0c6ef3ed83067a52dfb5054256d08e",
+          "merge_parents": [
+            "5634a5fe9d0c6ef3ed83067a52dfb5054256d08e",
+            "b6b9d54da5582319a4785a24f368c78d666541be"
+          ],
+          "reviewed_blob_count": 40,
+          "all_pr_changed_blobs_match": true
+        }
+      }
+    }
+  }
+}
