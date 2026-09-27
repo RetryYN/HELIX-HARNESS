@@ -323,3 +323,38 @@ FRSと提供構成追補の採用revision確定後に評価する。全件未実
 | `HARNESS-L2-015` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-001`, `HARNESS-L1-004`） | 開発単体の出力をProvisionalに保ち、品質firstのoracle結果と省略検査を明示する。費用・時間が改善しても必要qualityを満たさないrunは改善成功にしない。 | Atomic CI/コード存在だけで品質適合・effect success・Acceptedとする。 |
 | `HARNESS-L2-016` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-003`） | performance比較は既存baseline/budget/workload/profile/statistical condition/regression oracleに従い、対象scopeのbefore/after結果と契約回帰を示す。費用・時間改善でbehavior/contract/requirement退行を相殺しない。 | profile対象の局所改善でregressionを隠す／性能oracleなしに「速い」とする／右側で上流意味を変更する。 |
 | `HARNESS-L2-022` L11補強（単体、parents `HARNESS-L1-005`, `HARNESS-L1-001`, `HARNESS-L1-004`） | quality/security/acceptance oracleをstageごとに結び、provisional→Integrated→Verified→Acceptedの証拠と適用scopeを別々に判定する。未評価またはoracle/receipt不足の品質は未評価のまま保つ。 | lower-stage pass/CI green/evidence presenceだけで上位stageを成立させる／意思決定や要求承認を改善scoreで生成する。 |
+
+
+## G15 設計合成候補の受入
+
+起点は[PO原文第1項](../sources/capability-reinforcement-po-original-2026-09-27.md)と[判断記録](../../governance/decisions/capability-reinforcement-po-decisions-2026-09-27.md)。以下は未実行の受入候補で、内容oracleとscopeが特定できたrevisionに限って判定する。fieldやtraceの存在だけを合格にしない。L3承認、要求採択、設計承認、実装許可を受入から生成しない。
+
+### HARNESS-L2-026 unit（`HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`, `HARNESS-L1-001`）
+
+**正常例**：対象L2要求/L11に結ばれた承認済みL3要件「申請は承認後に編集できない」を入力し、state/承認遷移、API/command precondition、actor別permission、画面での編集可否・拒否表示、DB/data更新不変条件を一組の設計候補として対応付ける。事前に定めたoracleで、各経路が承認後更新不可の意味を満たし、要求から設計へ・設計から要求へtraceできることを確認する。Design Template・CORE・BRAIN connector契約は常時必須である。BRAIN知識を使わない範囲でもconnector契約を照合し、その上で当該Patternを未選択/未観測と記録できれば、全知識完成待ちにしない。Pattern衝突fixtureでは、競合する制約・根拠・影響範囲を出し、代替構成を要求の不変条件oracleに照合する。採用可能な代替は不変条件をすべて満たし、両案の差分を示すこと。
+
+**誤りを含む例**：画面が編集を隠すだけでAPI/commandが更新を受理する、権限のある別actorが迂回できる、同時更新でDB/state不変条件を破る、L3承認がない、要素間で要求revisionが異なる、または提示した代替構成が不変条件を破る。設計要素の欄やtraceが存在しても、違反経路をoracleで検出できなければ不合格。要求意味を「承認後の訂正可」へ変更した出力も不合格でL2-008へ戻す。
+
+**未見例**：作成側へ伏せた同scopeの別actorまたは競合更新経路を検査し、固定oracleで承認後不変条件を照合する。対象scope/oracleがない、L3 authorityが不明、または異なる要件revisionは未評価/保留とする。合格は当該design unitの限定scopeに限り、構成体整合や実装品質を保証しない。
+
+BRAIN知識接続の正本の受入は、[HELIXBRAIN-L2-030の対](../../helix-brain/L11-acceptance/brain-acceptance.md)に置く。本HARNESS unit/compositeはconnector契約版・互換を常時照合し、選択Patternを設計へ使う場合は当該connection receiptと知識条件を受入入力にする。未選択knowledgeは未観測であり、接続契約自体は任意化しない。
+
+### HARNESS-L2-025 composite（`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`）
+
+**正常例**：同じ要求/L3 revisionで、申請作成→承認→承認後編集要求→拒否を画面・API/command・permission・state/data invariant・verification oracleまで辿る。構成体固有のoracleにより、各要素が同じ承認後不変条件を共有し、要求から全設計要素、対の検証設計まで双方向traceが閉じることを確認する。HARNESS-L2-026 unitのreceiptとBRAIN connector契約の照合が常時必須。選択Patternを利用する場合はHELIXBRAIN-L2-030 connection receiptも必須とし、構成体がその選択された知識条件を検証する。connector自体や受渡し契約を任意扱いにしない一方で、選択されていない全知識の完成は要求しない。
+
+**誤りを含む例**：各画面/API/DB単体のfieldが埋まっていても権限・stateの前提が食い違う、traceが片方向、Pattern conflictを見落とす、構成体oracleがないのにunit合格を積み上げて成立扱い、または承認後更新経路を一つ残す。いずれも不合格。複数Patternが衝突する場合は、要求意味を保つ代替を比較可能な候補として示す。意味を変える代案の採用は提案せずL2-008へ戻す。
+
+**未見例**：伏せた追加actor/state transitionを加え、端から端の許可/拒否条件・state/data invariant・影響traceのoracle結果を確認する。未評価のdomainや未提示oracle、L3承認・contract版の欠落は未評価/保留を維持する。composite合格は当該revisionと範囲の設計整合だけであり、実装成立、全プロダクトへの万能性、HARNESS全体の受入を意味しない。
+
+### 014・026・025の境界と交換の受入
+
+**正常**：利用者が014（③設計サービス）を選んだ構成で、026を設計構成の常時必須パック、025を提供する設計一式の横断整合検査として依存閉包へ含める。014が入力受付・差戻し・成果提供、026が具体設計と対の検証設計の生成、025が端から端の固有義務の検査を担当することを入出力で確かめる。014の完了receiptなしで026の生成から025の検査まで進み、他の①②④〜⑦サービスを導入せず014の出力契約を満たす。026を互換な別revisionへ交換した例で、契約版・scopeと同じ固定oracleの再検証結果を014へ結ぶ。
+
+**誤り**：026を第二の③製品として任意選択にする、026欠落で014の具体設計生成を成立扱いする、025未実施で設計一式の横断整合を保証する、026の開始に014または025の完了を要求する、交換後も旧receiptを再利用する例は不合格。非互換・staleなら014の提供を保留し、契約ownerへ戻す。
+
+**未見**：伏せた026の互換契約変更または出力scope変更を与え、014側の影響scopeと025の横断oracleを再評価する。互換な変更は再検証で成立し、未対応・非互換な変更は保留されることを確かめる。検査は対象revisionの候補であり、候補採択を意味しない。
+
+### 依存区分と受入停止
+
+各受入ではHARNESS-L2-026のDesign Template/CORE/BRAIN connector契約とL3 authority、HARNESS-L2-025の構成体scope/oracleを常時照合する。対の検証設計は常時出力必須とし、UI設計など対象別の専用契約と個別oracleは該当scopeで追加する。選んだPatternのidentity/version/compatibility/required inputは選択時に必須。背景資料は参照のみとする。未承認・missing・unknown・conflict・staleの必須入力がある操作は保留し、Pattern未選択は未観測とする。

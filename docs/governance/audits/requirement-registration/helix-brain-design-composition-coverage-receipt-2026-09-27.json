@@ -1,0 +1,53 @@
+{
+  "receipt_id": "MPR-RCPT-HELIX-BRAIN-DESIGN-COMPOSITION-2026-09-27",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "PO第1項を現行Concept/L1と既存設計・知識責務から具体化する候補。旧sourceは意味照合の資料であり、旧atomの新規移管・retireではない。no_lossは旧atom入力空集合に限る。PO条件は判断記録の対応表と対L11で照合し、旧全要求やPO全文の移管完了を主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXBRAIN-L2-029",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXBRAIN-L1-003",
+        "HELIXBRAIN-L1-005",
+        "HELIXBRAIN-L1-009"
+      ],
+      "candidate_semantic_digest": "sha256:fd3bd6eaf17c5dad916dec0793c28544816c8b785e98fa854b49df843b11382d",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO第1項を現行Concept/L1と既存設計・知識責務から具体化する候補。旧sourceは意味照合の資料であり、旧atomの新規移管・retireではない。no_lossは旧atom入力空集合に限る。PO条件は判断記録の対応表と対L11で照合し、旧全要求やPO全文の移管完了を主張しない。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-brain/L1-planning/brain-intent.md",
+        "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+        "docs/governance/decisions/capability-reinforcement-po-decisions-2026-09-27.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    },
+    {
+      "requirement_identity": "HELIXBRAIN-L2-030",
+      "requirement_kind": "connection",
+      "parent_l1_ids": [
+        "HELIXBRAIN-L1-003",
+        "HELIXBRAIN-L1-005",
+        "HELIXBRAIN-L1-012"
+      ],
+      "candidate_semantic_digest": "sha256:2a5c1cb842fa1f431d6a07a23506ef4304671b9b407b32527684ddfed987a2a0",
+      "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_atom_count": 0,
+      "source_collection_scope": "PO第1項を現行Concept/L1と既存設計・知識責務から具体化する候補。旧sourceは意味照合の資料であり、旧atomの新規移管・retireではない。no_lossは旧atom入力空集合に限る。PO条件は判断記録の対応表と対L11で照合し、旧全要求やPO全文の移管完了を主張しない。",
+      "atoms": [],
+      "current_condition_refs": [
+        "docs/helix-brain/L1-planning/brain-intent.md",
+        "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+        "docs/helix-harness/sources/capability-reinforcement-po-original-2026-09-27.md",
+        "docs/governance/decisions/capability-reinforcement-po-decisions-2026-09-27.md"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}

@@ -521,3 +521,34 @@ AVS／RFA／DGH／FRSの既存L3候補とID範囲は[OS側の接続表](../../he
 **旧RDJとの関係**：RDJ-FR-003/007とRDJ-AC-003/007の意味を保持し、RDJ-FR-002のevent履歴・決定論replay、FR-004のsuccess/cancel/failure/timeout/recovery、FR-006の暗黙matrixと人間decision、AC-006の自動accept拒否を関連条件として結ぶ。変更点は固定反復回数・旧手続きを新設せず、利用可能な履歴と変更根拠を照合し履歴件数を成立条件にせず、現行HARNESS engine候補のquestion-volume/correction-rateを同じ／未見fixtureで補助計測すること。質問/訂正measurementの改善値だけでは必須要件未決を閉じない。
 
 **原文と旧資産**：[PO補強原文](../../helix-os/sources/body-reinforcement-po-original-2026-09-27.md)第3項を起点とする。旧RDJ-FR-003/007は `LEGACY-ASSET-E78B8D68CC327AA00991`、`archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/requirement-discovery-json-authority.md:48,52`、SHA-256 `361a9ef773f7cf36cc0953f70cad205184ca952f2cb672431e5b929121ef1f61`。対のAC003/007は `LEGACY-ASSET-AD746F4F3487103519F9`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/requirement-discovery-json-authority-acceptance.md:22,26`、SHA-256 `3462b3da8269668c848799b07305f2fe135d8902de02121c2048d5686d98dc0e`。旧FR007の固定「直近2 iteration」は原条件として記録するが、PO指示に従い現行の最低回数にしない。履歴・差分・必須条件の照合という意味を再導出する。`LEGACY-ASSET-4A7A45BC495D1B2677A2`、`archive/legacy-generation-2026-09-14/root/requirements-ir/refinement_contracts.json:1-2828`、SHA-256 `6230d6c0ae341ea45eba1e9bf1d40389363b9f1f12c158e5b5c15799122e1443`には該当RDJ契約がなく、他機能の契約を代替根拠にしない。旧runtime・schema実装は移植/実行しない。
+
+
+## G15 設計合成の単体・接続・構成体候補
+
+起点は[PO原文第1項](../sources/capability-reinforcement-po-original-2026-09-27.md)と[判断記録](../../governance/decisions/capability-reinforcement-po-decisions-2026-09-27.md)。既存HARNESS-L2-014の意味を弱めず、新しい要求範囲は独立candidate identityにする。要求の意味はHARNESS-L2-008に残し、L2で形成された要求→L3要件としての承認→L4〜L6設計の順を守る。候補や設計出力からL3承認、設計承認、実装許可、採択を生成しない。
+
+### HARNESS-L2-026 要求から相互参照する具体設計を構成する（unit candidate）
+
+- **親L1**：`HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`, `HARNESS-L1-001`。HARNESS-L1-009は設計templateで必要な義務を導き、入力不足を戻す根拠。HARNESS-L1-001は要求から設計・検証までを正規V-pairでつなぐ根拠。親の企画意味は追加しない。
+- **対象・kind・版・scope**：③設計サービスが利用する設計構成能力のunit candidate、`version_target: 1.0`。指定された製品・要求revision・L3要件revision・design scopeだけを扱う。
+- **014との所有・パック境界**：HARNESS-L2-014は利用者向け③設計サービスの入力受付・不足差戻し・成果提供を所有し、026はその内部で要求から相互参照する設計と対の検証設計を構成する交換可能な能力パックを所有する。利用者は014を選び、その依存閉包へ026が常時必須として入る。026を第二の③製品として選ばせない。014の出力契約を本候補の具体処理で満たすには026が必要であり、014の単独利用は他の①②④〜⑦サービスを必須にしないという意味で、内部能力026なしで成立する意味ではない。026は014の完了receiptを入力に要求せず、宣言したL3・工程入力から構成できる。026の交換時は014との入出力契約版・scope・互換と対の受入を再照合し、不一致・staleなら014の設計提供を保留する。014本文・出力責任を変更せず、依存の具体化を本節に追補する。
+- **入力**：対象L2要求/L11とのtrace、承認済みL3要件と工程契約、risk/scope、Design Template、HELIX-HARNESS-CORE契約、および常時利用可能なBRAIN connector契約。L3承認根拠がない入力は設計確定へ進めない。
+- **出力**：L4基本設計・L5詳細設計・L6契約と対のL9/L8/L7検証設計。要求/L3要件→画面/flow/state→API/command→permission/actor→domain data/DB invariant→verification oracleのidentity付き双方向trace、参照契約版、unknown/N/A、変更影響、失敗・差戻し先を含む。
+- **保証すること**：承認済み要件の制約を該当する設計要素とoracleへ結び、単体・接続・構成体の固有義務を分ける。template、CORE、BRAIN connectorを必要とする。BRAIN connectorの存在・版・互換照合は常時必須だが、個別Patternの選択と内容照合はその知識を使う場合の選択依存であり、全知識の完成を待たない。BRAINは知識を提供し、HARNESS/COREが製品設計を構成する。Pattern同士の衝突を検出した場合は、競合する制約・根拠・影響範囲を示し、要求の不変条件を満たす代替構成を比較可能な候補として返す。意味を保つ代替がない場合は不足として示し、要求入力不足や矛盾を推測で埋めず要求形成へ戻す。
+- **依存区分**：**常時必須**＝承認済みL3要件/対象revision、HARNESS-L2-009設計義務、Design Templateの対応契約版、COREおよびBRAIN connectorの契約版・互換範囲、HARNESS-L2-010/011 pack契約とHARNESS-L2-022の対検証設計契約（026の出力である対の生成自体は省略しない）。**特定操作時のみ**＝UI対象を扱う操作のprototype/非UI適用合意・screen contract、各設計対象に適用される個別oracle（適用対象で必要な欠落は保留）。**選択した入力元に応じて必須**＝具体Patternを利用する操作ではそのPattern identity/version/compatibility/applicability/required input/relation/反例をすべて照合する。特定Patternを選ばないscopeは未選択・未観測と記録し、全BRAIN知識が存在すると推測しない。**参照資料のみ**＝背景説明や旧設計例。required input、authority、oracle、security/permissionを参照扱いへ落とさない。
+- **正常・境界例**：「申請は承認後に編集できない」という承認済みL3要件から、申請state/承認遷移、編集API/command precondition、actor別permission、画面の編集可否と拒否結果、DB/data更新不変条件を一貫した候補設計としてtraceする。DB製品や実装方式は固定せず、どの設計でも不変条件を満たすoracleを定義する。
+- **失敗・戻し先**：画面だけ編集不可でAPIは更新可能、permissionが残る、state raceでDB更新が通る、traceが別revisionを指す場合は不整合。意味の不足はHARNESS-L2-008の要求形成、L3要件の変更はそのauthority owner、Patternの意味・版はBRAIN、設計contract/traceはHARNESSへ戻す。承認後訂正を許す意味変更を本candidateで決めない。
+
+BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-requirements/brain-requirements.md)とその対の受入に置く。本unitはCOREのBRAIN connector契約を常時必須とし、個別Pattern利用時にだけそのPatternの条件・版・required inputを照合する。
+
+### HARNESS-L2-025 要求から整合した設計・対oracleを閉じる（composite candidate）
+
+- **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`。対象はHARNESS-L2-026 unitの設計と、必要な場合のHELIXBRAIN-L2-030接続を束ねた設計構成体である。
+- **対象・kind・版・scope**：設計出力と対の検証設計の相互整合を確かめるcomposite candidate、`version_target: 1.0`。一つの対象revision/要求scopeの端から端設計を扱う。
+- **014/026との分担**：014が提供する設計成果について、026は設計要素を構成し、025は要素をつないだ端から端の固有義務を検査する。025は014を代替する製品でも026を重複生成するunitでもない。014が相互参照する設計一式の整合を提供する際は025の対象scopeの検査が常時必須となる。025は026の成果を受け取るが、026の生成は025完了に依存しない。014→026・025、025→026の向きで閉じ、014完了への自己依存を作らない。
+- **入力**：HARNESS-L2-026の設計unit出力、常時必須のHELIXBRAIN connector契約状態、選択したPatternがあればHELIXBRAIN-L2-030 receipt、要求/L3 revision、画面/API/DB/permission/state/oracle scope。
+- **出力**：端から端の双方向trace、要素間relation、構成体固有の横断invariant・failure path、対の検証設計、conflict/unknown/alternative/差戻し先。
+- **保証すること**：unitやconnectionの成功だけで構成体を成立扱いせず、要求→設計要素→oracleの端から端trace、画面/API/DB/permission/stateの整合、正常/拒否/failure pathを別途確認する。BRAIN connector契約は常時必須。BRAIN知識を使う場合はHELIXBRAIN-L2-030 receiptと使用Patternの全条件を必須とする。knowledge selection自体は対象scopeで必要とされた場合だけで、利用可能な全BRAIN知識を要求しない。採択、承認、実装・利用者受入状態は作らない。
+- **依存区分**：**常時必須**＝HARNESS-L2-026設計unit契約とreceipt、対象L3 authority/revision、CORE/Design Template/BRAIN connectorの版・互換、構成体scopeとHARNESS-L2-022 oracle契約。**特定操作時のみ**＝UI要素を含むscopeのprototype/screen contract、各設計対象に適用される個別oracle（構成体の対検証設計自体は常時必須）。**選択した入力元に応じて必須**＝Pattern利用時はHELIXBRAIN-L2-030 receiptと選択Patternの全required input/relation/version。Pattern非利用は非適用根拠を付け未観測とする。**参照資料のみ**＝背景・旧例。構成体invariantの根拠を代替しない。
+- **正常・境界例**：承認後編集禁止の要件について申請作成→承認→編集要求→拒否まで、画面/API/permission/state/data invariantと各oracleを一つのtraceで辿り、実装経路が違っても同じ意味を保つ設計を確認する。
+- **失敗・戻し先**：下位要素の成功を集めただけ、片方向trace、競合するstate/permission、見落としたPattern衝突、未定oracle、承認後も更新可能な経路があれば不合格。意味差はHARNESS-L2-008、L3差はL3 owner、汎用Pattern/relation差はBRAIN、設計/pair不備はHARNESS-L2-026/022の形成へ戻す。
