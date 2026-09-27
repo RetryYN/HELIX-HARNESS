@@ -616,3 +616,23 @@ projectの同じ明示scopeで、base branch `main`上のPR、別base branch `re
 - 現行L1/L2/L11と照合baseはL2候補本文の「現行根拠と照合基準」を参照。L2: `docs/helix-os/L2-requirements/governance-requirements.md:60,62-63,295-300`、L11: `docs/helix-os/L11-acceptance/governance-acceptance.md:27,29-30,47,55`。
 
 **配送順序・部分失敗の反例**：新HEAD eventの後に旧HEAD eventが遅れて届くfixtureで、新しい対象revisionを旧job状態へ戻す例を拒否する。event保存後・job登録前の停止は未完登録を再開し、登録後receipt受領前の停止は既存jobへ再相関する。どちらもjob二重生成や原event消失を成功にしない。
+
+### HELIXOS-L2-036 Retrofit preflight ticket/plan接続 — L11受入候補
+
+本候補は未採択であり、HARNESS-L2-005が生成する検証義務やSECURITY authorityを代行しない。OSが受け入れるのはticket上の義務/resultの適用と状態保持である。
+
+**正常例**：Retrofit upgrade ticketに、source revision、target revision/scope、全upgradeに必要なpreflight義務とHARNESS-L2-005が定めるoracle/resultを与える。影響評価中に同一ticket・scopeへ束縛し、pass後に初めて移行計画を確定できることを確認する。plan draftや選択肢整理はresult前も可能。確定後、適用時にresultがcurrentであれば既存SECURITY authorityの下でapply operationへ進行可能と記録する。L2-036自身はpreflight判定も適用も実行しない。
+
+**誤り例**：
+
+- Retrofit upgradeでpreflight未実施/fail/unknownのまま移行計画を確定する。またはpreflight resultが未実施、unknown、stale、不適合、別revisionまたは別dependency scopeに属したまま、計画確定またはapply/operation closureを主張する。
+- Retrofitが段階的でrollback先を持つこと、または一般CIがgreenであることだけを示し、選択されたpreflight義務/resultを欠く。
+- OSがHARNESS oracleの定義していないpreflight判定内容を独自に補作する、HARNESS oracleを書き換える、またはpreflight結果からSECURITY authority/操作許可を生成する。
+
+いずれも計画確定またはapply/完了状態を保留し、未完義務を保持してHARNESS oracle/義務、source owner、OS ticketの該当箇所へ戻す。新しい人承認やrelease gateを追加しない。
+
+**境界例**：Retrofitのticket起票、依存・設定の調査、影響評価、未確定のplan draft、preflight実施の開始はresult未到来だけを理由に拒否しない。Retrofit upgradeのplan確定はpreflight pass後に限る。確定後resultがapply対象scopeに合わない場合はapply時に保留する。旧process/Conceptの高リスク条件は全upgrade義務の具体例として扱い、scope差とは読まない。非upgrade Retrofitは旧processの当該upgrade順序条件の対象外とするが、既存HARNESS verification dutiesと他のread-only verify policyは維持する。
+
+**未見例**：異なるpackage manager、dependency種類またはconfiguration形式を入力する。HARNESSが選択したversioned oracle/source contractが対応する範囲なら、その結果をOSがscope/revisionへ結ぶ。対応oracleがない、または対象が不明ならpassにせず未評価を返す。方式名・schema差だけでは拒否しない。
+
+**依存と判定区分**：OS-L2-010のticket/workflow契約、OS-L2-019のprovenance/未完義務継承、HARNESS-L2-005の選択済みverification duty/oracleを使う。Retrofit upgradeについて、影響評価中のpreflight passを計画確定前に確認し、適用時はresultのcurrent性も再確認する。旧requirementsは全upgrade必須、process/Conceptは高リスクupgradeにおけるplan orderingを明記する。execution registryの`RETROFIT_STANDARD_SAFE`はread-only HELIX_DOCTOR verify policyとして分け、実変更applyへ拡張しない。どのsourceもpreflight checkerの具体的内容は定義しないため、互換性判定と決めつけない。旧v1.3 `helix-harness-requirements_v1.3.md:624` の意味条件を保持し、旧token/runtime/schemaを移植しない。
