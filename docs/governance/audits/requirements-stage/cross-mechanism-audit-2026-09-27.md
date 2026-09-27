@@ -368,7 +368,7 @@ BRAIN-L2-022/030はそれぞれPattern入力/知識revisionとquery/受領記録
 
 HARNESSは契約/verification/oracle、OSは段階release/Worker/CI/ticketの運転、Infrastructureは実行環境構成・資源・復旧状態を所有する。OS-L2-014 `governance-requirements.md:624-632` はpack/verification boundaryをHARNESS、environment config/rollbackをINFRASTRUCTUREと分ける。INFRASTRUCTURE-L2-009/011/015からOS-L2-014の明示参照は段階release運転に必要な環境連携である。後続versionや未決numericを横断参照だけから1.0必須とは判定しない。旧preauditの「INFRA 1.0は18件で上限」という記述は誤りなので本監査に持ち込まない。18は最低項目で上限でなく、各現行L2の個別`version_target`で見る。
 
-## 具体的な監査所見（採択/実装許可ではない）
+## 誤読を避ける照合記録（C1〜C4：要求修正findingではない）
 
 ### C1 — ID参照の明示的な非依存と実受渡しを区別する
 
@@ -501,7 +501,7 @@ OS-L2-028/029は候補生成、選択時の相談、実行、test、review/受�
 
 17方向の明示ID参照208組は、実接続・共通契約参照・境界/背景・明示非依存に分類し、反復規約は責務同一性で群化した。さらに、418件の機構名参照から、指定されたBRAIN/LABO/INTELLIGENCEとSECURITY/CONNECT/INFRASTRUCTUREの関係について、現行L2と対応L11、CONNECT crosswalk、SECURITY consumer監査の現行根拠を補った。これらは名前参照行へ新identityを付けるものではない。
 
-**findingなし。** 現行本文で確認した接続群には、両端の出力/入力責務、scope/revisionの保持、条件付き依存、ownerへの戻し先が既に定義されている。名前参照の同一行に相手identityがないことは抽出限界であり、契約責務不明や未解消要求の証拠ではない。新たな反例または元契約と両立しない条件は確認できなかった。U1は既存L11-030と消化記録で内容とreceiptの同時充足が試されているため非findingとする。U2も未解消要求ではなく抽出形式の限界として扱う。
+**この接続照合範囲では要求修正findingなし。** 現行本文で確認した接続群には、両端の出力/入力責務、scope/revisionの保持、条件付き依存、ownerへの戻し先が既に定義されている。名前参照の同一行に相手identityがないことは抽出限界であり、契約責務不明や未解消要求の証拠ではない。新たな反例または元契約と両立しない条件は確認できなかった。U1は既存L11-030と消化記録で内容とreceiptの同時充足が試されているため非findingとする。U2も未解消要求ではなく抽出形式の限界として扱う。
 
 1.0では参照元revision/scope/authority・受領記録・適用oracleがわかる場合だけ当該操作を進め、未見入力/schema/oracleは該当責務主体へ戻す。未知状態を成功扱いしない一方、個別仕様を確認せず未知を一律拒否にも拡張しない。
 
@@ -544,4 +544,12 @@ GPT6 Luna high Workerが照合資料を作り、別Workerが抽出の原文・ID
 
 静的検証：scfctl 142 binding fail=0 / stale=0 / residuals=0 / selftest 69 fail=0。現用研究validator137件は105 pass・既知32 failで、変更前baselineと各pathのreturncode一致。govcheck、gen_rulebook --check、govcheck_selftest、差分空白検査、相対リンク、source SHAと引用全文の照合を行った。旧CI・旧hook・旧runtime・旧CLIは実行していない。
 
-次の消化PRでC1〜C4/U1/U2の処置と根拠を閉じ、総合検証と8機構のPO確認へ進む。本監査のmergeは要求の採択を生成しない。
+C1〜C4は要求修正findingではなく誤読を除く照合記録、U1/U2も非findingである。次の消化PRは各所見のNOCHANGE根拠と、独立reviewで追加された実findingがあればその修正を対応付ける。要求を無理に変更せず、監査所見の処置記録を閉じて総合検証と8機構のPO確認へ進む。本監査のmergeは要求の採択を生成しない。
+
+## R2195-01：責務の重複・空白の点検追補
+
+独立reviewで、参照のある接続だけの照合では、参照し合わない機構の二者所有や上位機能の担当漏れを確認できないと指摘された。指摘を受け、[責務所有・利用の監査](cross-mechanism-responsibility-audit-2026-09-27.md)と[Concept/L1からの空白照合](cross-mechanism-responsibility-coverage-2026-09-27.md)を追加した。前者は要求意味、検証義務、権限、知識、現在判断、比較、実行、接続、実資源、証拠、改善の出力別に8機構の所有・利用を照合し、後者は相互参照の有無によらず上位機能のL2所有先を確認する。
+
+特にINTELLIGENCE-L2-011、LABO-L2-055/059はPO原文と既存L1/L2/L11、旧AAFD-BR-04まで照合した。INT011の領域・能力別適性比較、LABO055の履歴作業水準、LABO059の改善効果の出力を分け、059が011の比較契約を使う明文と不足時の戻し先を確認した。所有の移管や新しい機構は不要と判定する。
+
+追加した範囲でも要求本文の変更を要する重複・空白は確認しなかった。R2195-01への対応は監査方法と根拠の不足を埋めるものであり、C1〜C4/U1/U2は引き続き非findingの照合記録である。要求本文の実装・採択・旧source全atom移管の完了は主張しない。
