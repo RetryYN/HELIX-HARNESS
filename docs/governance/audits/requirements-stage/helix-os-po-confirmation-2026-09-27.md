@@ -70,12 +70,14 @@
 | 判断対象 | 対象revision / ID集合 | 採用・保留・不採用 | PO記録 / 日付 |
 |---|---|---|---|
 | OS L1 | 上記L1 SHA |  |  |
-| OS L2本文の一式 | HELIXOS-L2-001..029。上表のversion区分を維持 |  |  |\n| 登録candidate disposition | HELIXOS-L2-014..029の16件。各IDに採用・保留・不採用を付すか、明示集合に対する同一判断を記録 |  |  |
+| OS L2本文の一式 | HELIXOS-L2-001..029。上表のversion区分を維持 |  |  |
+| 登録candidate disposition | HELIXOS-L2-014..029の16件。各IDに採用・保留・不採用を付すか、明示集合に対する同一判断を記録 |  |  |
 | OS L11 | 上記L11 SHA、L2受入対応 |  |  |
 
 - 対象commit/SHA:
 - L1判断:
-- L2本文一式の判断:\n- 014–029 candidate disposition（個別または明示集合）:
+- L2本文一式の判断:
+- 014–029 candidate disposition（個別または明示集合）:
 - L11対象revision確認:
 - 根拠または変更指示:
 
