@@ -16,19 +16,24 @@
 - `doctor --preflight`という旧実装名、runtime、registry構造は再利用しない。旧Concept/registryから検査内容を「互換性判定」と限定できないので、候補本文でも中身を特定しない。
 - config_driftのTL単独サインオフは別の上流authority判断として切り分ける。旧役職名`tl`を新authorityへ直輸入しない。
 
-## config_driftに残る意味判断
+## config_driftの既決境界と残る原文処置
 
-原文条件：config drift時はTL単独の人間承認を必須とし、記録がなければ操作を行わない（旧Retrofit:22,74,76,89）。現在の新世代は対象revisionのauthorityを人間decisionへ束縛し、個別操作の権限は既決SECURITY契約から再利用する。旧TL役職を持ち込むと、新しい主体・承認面を作ることになる。一方、これを何の判断もなく除くと旧sourceの承認意味を退役させる。
+原文条件：config drift時はTL単独の人間承認を必須とし、記録がなければ操作を行わない（旧Retrofit:22,74,76,89）。この原文はsource snapshotに保持する。
 
-**選択肢**
+**既決事項**：[2026-09-28 SECURITY判断](../../decisions/helix-security-requirements-po-decision-2026-09-28.md)の20行・70行で、POは次のA案を採用した。
 
-1. 旧条件を新しい意味で保全する：config driftの承認条件を現行authority/SECURITY主体へ対応付け、対象・scope・記録を人が判断する。旧`tl`という役職名は復活させない。
-2. 旧TL単独サインオフを新世代で採用しない：既存authority境界を維持し、意味変更/retireとして対象revisionに記録する。
-3. 保留：既存権限が旧conditionを満たすか確認できるまで、該当config-drift変更の上流条件を未解決のまま保持する。
+> SECURITYはA案を採用する。全操作のauthority境界を適用するが、有効な既決権限を再利用し、通常作業の毎回の人間承認は追加しない。
 
-**推奨**：選択肢1を判断候補とするが、現時点でauthority主体への対応を確定せず、OS036にも含めない。旧役職をそのまま移植するのではなく、対象revisionに対して人間が意味を選んでから既存SECURITY経路へ接続する。
+したがって、通常のconfig drift変更についても、有効な対象operation/revision/scope・期限に合う既決権限を再利用し、変更・失効時は再照合する。変更ごとの人間承認は追加しない。この点は再質問しない。旧`tl`役職も復活させない。人が持つ上流意味・承認済み範囲を変える場合は、既存authority境界による人の判断へ戻す。
 
-**影響範囲**：HELIXOS-L2-036は、全Retrofit upgradeの義務・結果とplan stateの接続だけを扱う。config_drift一般承認を要求するか、誰が持つかの決定はOS036から独立。HARNESS oracle、SECURITYの既決authority、OS ticket境界を変更せず、採択・retireを推定しない。
+**残る原文の処置案**：旧TL signoffの意味を、既決A案との対応としてどの範囲まで保持するかを記録する。毎回承認の復活を選択肢にしない。
+
+1. **standing authorityへ再導出（推奨）**：旧条件の「対象への権限とその記録」をSECURITY-L2-008の対象・scope・期限・記録へ対応付け、通常変更では有効な既決権限の再利用により満たす。旧TL役職と変更ごとの新規signoffは既決A案に沿って置換する。上流意味を変える場合は既存の人間判断へ戻す。
+2. **旧signoff条件の適用範囲を上流変更に限定して記録**：旧TL固有signoffを通常変更には引き継がず、上流意味・承認済み範囲を変えるconfig driftに限り既存の人間判断へ対応付ける。通常変更の権限・記録は既決SECURITY契約に従う。原文の適用範囲を狭める意味変更として記録する。
+
+いずれも既決A案を変更せず、通常作業の毎回の人間承認を導入しない。推奨1は操作の許可要求ではなく、旧条件の意味・記録の移管案である。旧conditionの個別処置は最終原文照合の判断材料へ残し、この監査記録から新しい人間decisionを生成しない。
+
+**影響範囲**：HELIXOS-L2-036は全Retrofit upgradeの自動検証義務・結果とplan stateの接続を扱い、config drift一般の承認規則を変更しない。原文処置の参照先は既決SECURITY-L2-008/009/022とOS ticket記録であり、HARNESS oracleや実操作許可は補作しない。
 
 ## upgrade preflightのsource scope整理
 
