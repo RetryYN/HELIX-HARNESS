@@ -202,7 +202,7 @@ def validate(inv=None, atoms=None, diffs=None, *, check_head=True):
     if len(rec)!=1: fail('E_REGISTER_RECORD')
     r=rec[0]
     if r['source_atom_set_ref']!=sc['holding_path'] or r['source_atom_count']!=67 or r['product_target']!='unassigned_cross_product' or r['coverage_result']!='source_preserved_unassigned' or r['authority_effect']!='none': fail('E_REGISTER_BOUNDARY')
-    if len(live_holdings(regs))!=38: fail('E_REGISTER_LIVE_COUNT')
+    if len(live_holdings(regs))!=39: fail('E_REGISTER_LIVE_COUNT')
     keys(inv['classification_basis'],'classification_basis')
     if len(inv['four_products'])!=4 or {x['product'] for x in inv['four_products']}!={'HELIX-HARNESS','HELIX-OS','HELIX-Web','HELIX-Web-OS'}: fail('E_FOUR_PRODUCTS')
     if len(inv['documents'])!=2 or [d['source_item_id'] for d in inv['documents']] != ['OUTSIDE67-PATH-011','OUTSIDE67-PATH-008']: fail('E_SELECTED_DOCS')
