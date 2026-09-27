@@ -530,7 +530,8 @@ AVS／RFA／DGH／FRSの既存L3候補とID範囲は[OS側の接続表](../../he
 ### HARNESS-L2-026 要求から相互参照する具体設計を構成する（unit candidate）
 
 - **親L1**：`HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`, `HARNESS-L1-001`。HARNESS-L1-009は設計templateで必要な義務を導き、入力不足を戻す根拠。HARNESS-L1-001は要求から設計・検証までを正規V-pairでつなぐ根拠。親の企画意味は追加しない。
-- **対象・kind・版・scope**：HARNESS製品の③設計を行うunit candidate、`version_target: 1.0`。指定された製品・要求revision・L3要件revision・design scopeだけを扱う。
+- **対象・kind・版・scope**：③設計サービスが利用する設計構成能力のunit candidate、`version_target: 1.0`。指定された製品・要求revision・L3要件revision・design scopeだけを扱う。
+- **014との所有・パック境界**：HARNESS-L2-014は利用者向け③設計サービスの入力受付・不足差戻し・成果提供を所有し、026はその内部で要求から相互参照する設計と対の検証設計を構成する交換可能な能力パックを所有する。利用者は014を選び、その依存閉包へ026が常時必須として入る。026を第二の③製品として選ばせない。014の出力契約を本候補の具体処理で満たすには026が必要であり、014の単独利用は他の①②④〜⑦サービスを必須にしないという意味で、内部能力026なしで成立する意味ではない。026は014の完了receiptを入力に要求せず、宣言したL3・工程入力から構成できる。026の交換時は014との入出力契約版・scope・互換と対の受入を再照合し、不一致・staleなら014の設計提供を保留する。014本文・出力責任を変更せず、依存の具体化を本節に追補する。
 - **入力**：対象L2要求/L11とのtrace、承認済みL3要件と工程契約、risk/scope、Design Template、HELIX-HARNESS-CORE契約、および常時利用可能なBRAIN connector契約。L3承認根拠がない入力は設計確定へ進めない。
 - **出力**：L4基本設計・L5詳細設計・L6契約と対のL9/L8/L7検証設計。要求/L3要件→画面/flow/state→API/command→permission/actor→domain data/DB invariant→verification oracleのidentity付き双方向trace、参照契約版、unknown/N/A、変更影響、失敗・差戻し先を含む。
 - **保証すること**：承認済み要件の制約を該当する設計要素とoracleへ結び、単体・接続・構成体の固有義務を分ける。template、CORE、BRAIN connectorを必要とする。BRAIN connectorの存在・版・互換照合は常時必須だが、個別Patternの選択と内容照合はその知識を使う場合の選択依存であり、全知識の完成を待たない。BRAINは知識を提供し、HARNESS/COREが製品設計を構成する。Pattern同士の衝突を検出した場合は、競合する制約・根拠・影響範囲を示し、要求の不変条件を満たす代替構成を比較可能な候補として返す。意味を保つ代替がない場合は不足として示し、要求入力不足や矛盾を推測で埋めず要求形成へ戻す。
@@ -544,6 +545,7 @@ BRAIN知識接続の正本は、[HELIXBRAIN-L2-030](../../helix-brain/L2-require
 
 - **親L1**：`HARNESS-L1-001`, `HARNESS-L1-004`, `HARNESS-L1-005`, `HARNESS-L1-007`, `HARNESS-L1-009`。対象はHARNESS-L2-026 unitの設計と、必要な場合のHELIXBRAIN-L2-030接続を束ねた設計構成体である。
 - **対象・kind・版・scope**：設計出力と対の検証設計の相互整合を確かめるcomposite candidate、`version_target: 1.0`。一つの対象revision/要求scopeの端から端設計を扱う。
+- **014/026との分担**：014が提供する設計成果について、026は設計要素を構成し、025は要素をつないだ端から端の固有義務を検査する。025は014を代替する製品でも026を重複生成するunitでもない。014が相互参照する設計一式の整合を提供する際は025の対象scopeの検査が常時必須となる。025は026の成果を受け取るが、026の生成は025完了に依存しない。014→026・025、025→026の向きで閉じ、014完了への自己依存を作らない。
 - **入力**：HARNESS-L2-026の設計unit出力、常時必須のHELIXBRAIN connector契約状態、選択したPatternがあればHELIXBRAIN-L2-030 receipt、要求/L3 revision、画面/API/DB/permission/state/oracle scope。
 - **出力**：端から端の双方向trace、要素間relation、構成体固有の横断invariant・failure path、対の検証設計、conflict/unknown/alternative/差戻し先。
 - **保証すること**：unitやconnectionの成功だけで構成体を成立扱いせず、要求→設計要素→oracleの端から端trace、画面/API/DB/permission/stateの整合、正常/拒否/failure pathを別途確認する。BRAIN connector契約は常時必須。BRAIN知識を使う場合はHELIXBRAIN-L2-030 receiptと使用Patternの全条件を必須とする。knowledge selection自体は対象scopeで必要とされた場合だけで、利用可能な全BRAIN知識を要求しない。採択、承認、実装・利用者受入状態は作らない。
