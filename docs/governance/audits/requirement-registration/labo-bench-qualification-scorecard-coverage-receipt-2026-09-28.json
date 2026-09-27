@@ -1,0 +1,66 @@
+{
+  "receipt_id": "MPR-RCPT-LABO-BENCH-QUALIFICATION-SCORECARD-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-FR-61/62の原文2行。各行は既存Requirement IRの同一identityと意味重複し、独立要求数へ加算しない。旧文書全体、全IR、他Bench条件、実装/受入実行のno_lossを主張しない。L1-005/011配下の候補qualificationとtask-scorecard条件だけを本candidateへ保持する。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXLABO-L2-065",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXLABO-L1-005",
+        "HELIXLABO-L1-011"
+      ],
+      "candidate_semantic_digest": "sha256:6f50887b94a8d3341c55700393896798cc1273324a868071447bf0e5a95cf019",
+      "source_atom_set_digest": "sha256:aa4368b78705931ada9594f64010950907b753b3caa969bb5b762aec03fef271",
+      "source_atom_count": 2,
+      "source_collection_scope": "旧HIL-FR-61/62の原文2行。各行は既存Requirement IRの同一identityと意味重複し、独立要求数へ加算しない。旧文書全体、全IR、他Bench条件、実装/受入実行のno_lossを主張しない。L1-005/011配下の候補qualificationとtask-scorecard条件だけを本candidateへ保持する。",
+      "atoms": [
+        {
+          "atom_id": "LABO-BENCH-HIL-FR-61-L0151",
+          "source_holding_registration_id": "MPR-SH-LABO-BENCH-QUALIFICATION-SCORECARD-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 151,
+          "source_line_sha256": "sha256:6a253f524c4ab31471c2288d9bda61ffc8134ce8e26092b34078e88ddc2d26cf",
+          "source_text": "| **HIL-FR-61** | Worker Acceptance Benchは候補runtimeごとに短い機械判定smokeとblind judgeを含むfull benchを分離実行し、correctness、mutation kill、instruction/scope following、skill A/B、品質、簡潔性、security、第二diffによる拡張性を同一fixtureとversioned rubricで採点する。 | bench manifest、machine score、blind-judge score、fixture/rubric digest、admission decision |",
+          "ir_requirement_id": "HIL-FR-61",
+          "ir_source_pointer": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md#HIL-FR-61",
+          "ir_statement_semantic_digest": "sha256:a1efb53682d608e59e22ad36cb1de6e1b8555afabed752e2648c98a6b82b1f8f",
+          "ir_record_semantic_digest": "sha256:e9faf8f3c022bf7561b8b171944f7674a5cf59764bee18de99ea6b6ce373c592",
+          "disposition": "carried",
+          "relation": "候補runtime資格scopeだけでmachine smokeとblind full-benchを分け、8軸を同一fixture/versioned rubricで評価する条件をL2-065と対L11へ保持する。通常Worker全件へfull benchを課さない。 FR61のbench manifest、machine/blind別score、fixture/rubric digestは資格証拠として出し、admission decisionは既存ownerの結果または未決を参照する。"
+        },
+        {
+          "atom_id": "LABO-BENCH-HIL-FR-62-L0152",
+          "source_holding_registration_id": "MPR-SH-LABO-BENCH-QUALIFICATION-SCORECARD-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 152,
+          "source_line_sha256": "sha256:d49d0dace5f0bcae2eaf3f4325ac09e71daee1aa1b7d2a7a032a699ecbe1cb70",
+          "source_text": "| **HIL-FR-62** | Task Performance ScorecardはHELIX実taskごとに`first_pass`、`retry_count`、`proposal_diff_size`、`lint_violation_count`、品質judge、実効costを記録する。実効costはAPI相当単価とretryを含め、用途別の採用、限定、quarantine、retire判断へ接続する。 | real-task scorecard、effective-cost breakdown、用途別decision、trend/failure finding |",
+          "ir_requirement_id": "HIL-FR-62",
+          "ir_source_pointer": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md#HIL-FR-62",
+          "ir_statement_semantic_digest": "sha256:9d4ccd014d684c5b92b402ce2372f4ff1679be84d48d76b07dccb8fd92e0cb20",
+          "ir_record_semantic_digest": "sha256:596a3e30d3eb77319f181b7d0731e2f615c1547559b2ecf7668bc42aa838cda9",
+          "disposition": "carried",
+          "relation": "実taskの初回結果/retry/diff/lint/quality/effective costをscope付きtask receiptへ結び、既存decision ownerへ返す条件をL2-065と対L11へ保持する。L2-059の既採択費用境界を重複定義しない。 FR62のeffective-cost breakdown、用途別decision参照、同条件trend/failure findingを出力に含める。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-labo/L1-planning/labo-intent.md#HELIXLABO-L1-005",
+        "docs/helix-labo/L1-planning/labo-intent.md#HELIXLABO-L1-011",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-006",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-055",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-059",
+        "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-065",
+        "docs/helix-labo/L11-acceptance/labo-acceptance.md#HELIXLABO-L2-065"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}
