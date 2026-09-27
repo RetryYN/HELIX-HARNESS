@@ -576,3 +576,14 @@ L2-011は既存の同一corpus/responsibility scope比較を所有したまま�
 
 - **生成前後の分離**：候補の作成開始には既存pack identityやshadow/review結果を要求しない。入力scope/sourceから候補identity/versionを付け、shadow結果と独立review receiptは後段で取得する。未実施なら未完義務として出力し、候補起草を止めない。外部skill/ruleを選ぶ場合も既存の利用可能なsource契約と版の範囲に限り、外部知識取得の2.0能力を1.0前提にしない。
 - **照合固定点**：現行L1/L2/L11と09/26判断はcommit `84bd5e27e4001603744f59df3bd09342bbd513f3`。旧L1 pathは`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:81`。旧判断skillの内容契約を現行INTELLIGENCEの判断候補、LABOの比較評価、対象ownerの適用authorityへ再導出する。
+
+**既存配置案との差分と人の判断（R2225-01）**：固定commit `84bd5e27e4001603744f59df3bd09342bbd513f3`の `docs/governance/crosswalks/concept-mechanism-version-requirement-crosswalk.jsonl:66`（HIL-BR-29）は、所属を「HELIX-HARNESS／HELIX-OS」、版を「1.0候補（pack運用・gap/効果評価のみ）」とし、「3.0 Intelligenceへの出所付き入力接続は後続版候補。1.0の完成条件に学習・調整を含めない」と記録している。`docs/governance/crosswalks/concept-requirement-po-decision-packet.md:956`も同配置案である。この既存案を採択済み配置とは読まず、変更を隠さず次の選択肢を残す。
+
+- **A：既存HARNESS／OS配置案を維持**。HARNESSが判断packの工程・検証契約を、OSが登録・状態を持ち、INTELLIGENCEは判断候補の提示先として接続する。072の配置をその境界へ分け直す必要がある。
+- **B：072の判断pack候補の意味・適用範囲をINTELLIGENCEへ置く（推奨）**。現行Conceptの1.0判断支援と、09/28に固定確認されたINTELLIGENCE-L1-001/002/008/012/013/020が、領域×判断能力、review、unknown、根拠、authority非変更を持つため、判断能力の候補表現をここへ置く。HARNESSは共通pack・工程・検証契約、OSは登録・状態・実行、LABOは比較と効果評価を引き続き所有する。
+
+既存案の「pack運用・gap/効果評価のみ」のうち、072はpack候補の適用範囲・不足/unknown・shadow/review状態を提示する。登録/運転はOS、効果評価はLABOへ残し、学習やモデル調整を追加しない。候補descriptorの生成は既存1.0の判断支援であり、3.0の学習・調整や学習入力接続の前倒しではない。旧BR-29のversioned pack・非強制shadow・独立review前の強制禁止という条件は両案で保持する。
+
+所属をHARNESS／OS案からINTELLIGENCE案へ変える点と、この1.0範囲を、最後の新候補一覧でPOへ確認する。推奨B、PR統合、review0件から配置確定・要求採択を生成しない。影響対象は新規HELIXINTELLIGENCE-L2-072と対のL11、BR-29の対応記録であり、既存HARNESS/OS/LABO本文と3.0の学習接続は変更しない。
+
+既存配置案の固定SHA-256：crosswalk `sha256:06345757faf6491c848340356a7f58f6c407161070a4691e2a51bb17729f7a41`、判断packet `sha256:3aa2789aa7abf0fc1aa235240b40686f2cf66a8c9a888b93953a05207d0caa65`。

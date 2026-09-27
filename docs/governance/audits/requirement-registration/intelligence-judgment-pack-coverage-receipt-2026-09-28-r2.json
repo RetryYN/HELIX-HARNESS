@@ -1,0 +1,46 @@
+{
+  "receipt_id": "MPR-RCPT-INTELLIGENCE-JUDGMENT-PACK-2026-09-28-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-BR29原文1行。判断packの適用範囲とshadow/reviewを再導出。HR-FR-HIL21のteam生成等の全体被覆を主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXINTELLIGENCE-L2-072",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-001",
+        "HELIXINTELLIGENCE-L1-002",
+        "HELIXINTELLIGENCE-L1-008",
+        "HELIXINTELLIGENCE-L1-012",
+        "HELIXINTELLIGENCE-L1-013",
+        "HELIXINTELLIGENCE-L1-020"
+      ],
+      "candidate_semantic_digest": "sha256:a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2",
+      "source_atom_set_digest": "sha256:a425cb0e5d19f77be557089032fa00262ccad1fa03129941df9e9b2ca4eb1529",
+      "source_atom_count": 1,
+      "source_collection_scope": "旧HIL-BR29原文1行。判断packの適用範囲とshadow/reviewを再導出。HR-FR-HIL21のteam生成等の全体被覆を主張しない。",
+      "atoms": [
+        {
+          "atom_id": "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0081",
+          "source_holding_registration_id": "MPR-SH-JUDGMENT-PACK-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 81,
+          "source_line_sha256": "sha256:7b052ddde5f76436cd96990bbf6eb99a0c7d51c9f168b99d67a5badadb1dd94b",
+          "source_text": "| **HIL-BR-29** | 判断系skillを汎用checklistの固定配布に限定せず、工程、domain、risk、failure mode、判断authorityに適合するversioned judgment packとして拡張する。候補skillはshadow評価と独立reviewを経るまで判断gateの強制規則へ昇格しない。 |",
+          "disposition": "carried",
+          "relation": "工程/domain/risk/failure/authorityに適合する版付き判断packとshadow・独立review前の強制禁止をINTELLIGENCE072/L11へ保持。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-012",
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-013",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#helixintelligence-l2-072"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}

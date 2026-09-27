@@ -299,3 +299,5 @@ HELIXINTELLIGENCE-L2-069／HELIXINTELLIGENCE-L2-070／HELIXINTELLIGENCE-L2-071�
 
 - **構成・選択依存の反例**：packをL2-001のdomain identityとL2-002の選択capability構成へ結べない、未構成能力を実行可能扱いする、HARNESS-L2-023の有効依存閉包にunknown/staleを含むまま強制適用する例を拒否する。BRAIN知識を選択した場合だけ028のstate/互換範囲を照合し、記録した版番号だけで利用可能とはみなさない。
 - **評価証拠の再利用**：対象pack版/scope・oracle・shadow結果が一致する有効な既存証拠を使える。新規実験を行わなかったという理由だけで新しいWorker実験を一律要求しない。実験を選ぶ場合はLABO006のOS assignmentと実行結果、system化/operation配分を評価する場合は007の証拠条件を確認する。再利用元がstale/比較不能なら未完に戻し、INTELLIGENCEの自己評価だけで有効性を確定しない。
+
+- **配置・版の判断境界（R2225-01）**：BR-29の既存HARNESS／OS・1.0 pack運用案と、072のINTELLIGENCE判断候補配置案はL2のA/BでPO確認に残す。072の受入案が整ってもB採択済みと表示しない。正常例は判断候補/適用gap/shadow状態までとし、OS登録・LABO効果評価の責務を維持する。3.0の学習入力接続、ローカルモデル学習・調整を1.0成立条件にした例、または旧配置案との差分を記録せず確定した例を拒否する。
