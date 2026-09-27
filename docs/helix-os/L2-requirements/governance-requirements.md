@@ -1061,3 +1061,13 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 **既存境界と根拠**：OS L2-010/HXT-TYPE-16はRetrofitの計画・段階・Forward合流を定義し、L11 `HXT-TYPE-16` は範囲/段階/結果を確認する。一方、旧requirements v1.3:624は全upgradeにpreflightを要求し、旧工程本文は影響評価中の実施と高リスク時failの計画停止を明記する。旧execution registryはread-only doctor verify policyであり、operation/apply authorityを意味しない。HARNESS-L2-003は開始/完了・未完義務、L2-004は変更影響、L2-005はticket/change/riskからverification dutiesを選びunknownをskipにしないが、Retrofit upgradeに対するpreflightと計画確定順序はOS operation契約へ接続されていない。本候補はticket/plan state接続を補い、checkerの技術的意味とauthorityは補作しない。既存OS-L2-010を編集せず、HARNESS-L2-005の一般規則を再定義しない。
 
 **旧承認条件の判断境界**：config_driftの旧TL単独サインオフは[原文・選択肢・推奨](../../governance/audits/requirements-stage/retrofit-preflight-legacy-differences-2026-09-28.md)へ残す。036の候補登録・検証・統合から、その条件の採択・廃止や実操作許可を生成しない。旧command名/registry/schemaは参照資料であり実行依存ではない。
+
+## HELIXOS-L2-030 生成indexの導出条件（追補）
+
+既存030本文と一体の未採択候補。親HELIXOS-L1-005／007、version_target: 1.0を保持し、新identity・製品・実行許可を作らない。
+
+正本indexの内容、適用scope、revision/digestは選択済みHARNESS package contractとその正本sourceから入力する。OSは正本indexの意味・内容を作成または変更しない。`generated index`はその正本indexと、同一のsource/requirements/profile revisionに適用する既存の生成規則から導く派生物として扱い、同じ入力と規則から再生成した内容が一致することを検査する。既存manifest/artifact証拠は正本indexと生成indexのdigest/出所を相関できるよう保持する。生成indexを正本から再導出せず直接編集した場合は、manifestやartifactを編集後のdigestへ更新しても不適格とし、promotionへ進めない。正本index、revision、適用scopeまたは現行生成規則が欠落・不一致・staleなら候補を未完として保持し、正本や生成方式を推測で補わない。
+
+この追補は正本/生成index間の関係と編集拒否だけを定める。固定path/schema/provider、別のindex registry、package/channel方式、所有権の再割当て、外部操作許可は追加しない。既存のparty/license/免責、immutable artifact、staged promotion、およびSECURITY authority条件はそのまま適用する。
+
+旧根拠：HIL-BR-33、HR-FR-HIL-24、HAC-HIL-24a/b/c、HAT-HIL-24。原文・所在・変更境界は[原文照合](../../governance/audits/requirements-stage/package-index-legacy-differences-2026-09-28.md)を参照。

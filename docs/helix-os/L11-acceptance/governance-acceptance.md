@@ -636,3 +636,15 @@ projectの同じ明示scopeで、base branch `main`上のPR、別base branch `re
 **未見例**：異なるpackage manager、dependency種類またはconfiguration形式を入力する。HARNESSが選択したversioned oracle/source contractが対応する範囲なら、その結果をOSがscope/revisionへ結ぶ。対応oracleがない、または対象が不明ならpassにせず未評価を返す。方式名・schema差だけでは拒否しない。
 
 **依存と判定区分**：OS-L2-010のticket/workflow契約、OS-L2-019のprovenance/未完義務継承、HARNESS-L2-005の選択済みverification duty/oracleを使う。Retrofit upgradeについて、影響評価中のpreflight passを計画確定前に確認し、適用時はresultのcurrent性も再確認する。旧requirementsは全upgrade必須、process/Conceptは高リスクupgradeにおけるplan orderingを明記する。execution registryの`RETROFIT_STANDARD_SAFE`はread-only HELIX_DOCTOR verify policyとして分け、実変更applyへ拡張しない。どのsourceもpreflight checkerの具体的内容は定義しないため、互換性判定と決めつけない。旧v1.3 `helix-harness-requirements_v1.3.md:624` の意味条件を保持し、旧token/runtime/schemaを移植しない。
+
+## HELIXOS-L2-030 生成index追補に対する受入
+
+既存L11-030のmanifest exact setと共に判定する未採択候補。旧HAC-HIL-24a/bを具体化し、既存受入IDを置換しない。
+
+| ケース | 入力と期待結果 |
+|---|---|
+| 正常 | 選択済みpackage contractが指定する正本indexの内容・scope・revision/digestと、同じsource/requirements/profile revisionに適用する既存生成規則を固定する。同入力で生成したgenerated indexの内容/digestが再現し、manifest/artifact証拠が正本indexと生成結果の由来を相関する場合に限りindex条件を満たす。 |
+| 誤り | 正本index由来のgenerated indexの項目を一つ直接変更し、manifest/artifactをその改変後の内容・digestに合わせて再生成した入力を与える。正本indexと既存生成規則から再導出した結果との差を検出し、そのcandidateを不適格としてpromotionを拒否する。 |
+| 未見/境界 | 宣言済みscopeの正本indexに新しい項目が追加された場合、選択revisionと既存生成規則から決定論的に再導出できれば正常扱いできる。正本revision、scope、生成規則のいずれかがunknown/stale/不一致なら、内容を補完して通さず未完として戻す。 |
+
+party混在、免責/権利根拠の不一致、stage skip、cutover authority欠落は既存L11-030 oracleのまま別に判定する。このindex追補だけでそれらの判定を代替しない。L11候補は未実行であり、実配布・tag・release・remote syncを行わない。
