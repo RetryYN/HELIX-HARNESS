@@ -958,12 +958,12 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 **入力・出力・保証**
 
 - **分類前の受付**：user directiveとIssue由来eventは分類前に015のdurable intake receiptへ結ぶ。受付が保存できなければ未受領/未完を示し、分類結果だけを残して原指示を落とさない。
-- **入力**：OS-L2-015の正本から得る原event identityと不変原文参照、source span、actor、received_at、対象revision、digest、既存supersession chain。処理するdisposition案とその理由、該当対象がある場合はlocal ticket identity・現在状態・既存完了条件。選択する根拠sourceはsource identity/revision/digest、利用許可/data-useを付ける。
+- **入力**：OS-L2-015の正本から得る原event identityと不変原文参照、source span、actor、received_at、対象revision、digest、既存supersession chain。出所の種別（user directiveかreview findingか）と処理するdisposition案・理由、該当対象がある場合はlocal ticket identity・現在状態・既存完了条件。選択する根拠sourceはsource identity/revision/digest、利用許可/data-useを付ける。
 - **出力**：原eventを変更・削除せず、対象scope・対象revision・提案/確定disposition・根拠・判断者authority・関連する既存ticket/decision/closure receipt・後続challenge/reopenを相関IDで結ぶ記録。根拠またはauthorityが足りない処理は未解決・非終端としてOS-L2-019へ保存し、成功・cancel・closeへ補完しない。
 - **保持する証拠条件**：
   - duplicateとして扱う場合は、生存中の同一対象と、その対象が当該要求oracleを包含する証拠を記録する。
-  - false-positiveとして扱う場合は、指摘を覆す独立した反証根拠と、そのsource/対象revisionを記録する。
-  - accepted-risk／cancel／supersedeは、該当する既存PO authorityのdecision receipt、対象scope/revision、理由を結ぶ。receiptがない間は終端処理・原eventの不可視化をしない。
+  - false-positiveとして扱う場合は、指摘を覆す独立した反証根拠と、そのsource/対象revision、および独立reviewの記録を結ぶ。
+  - user directiveのaccepted-risk／cancel／supersedeは、該当する既存PO authorityのdecision receipt、対象scope/revision、理由を結ぶ。review findingのcancel／supersedeも既存PO権限に従う。一方、review findingのfalse-positive／accepted-riskは証拠付き独立reviewを条件とし、PO receiptを一律には要求しない。要求等の人が持つ上流意味を変える場合だけ既存authority手順へ戻す。必要な根拠がない間は当該処分を確定しない。根拠が揃っても原eventを削除・不可視化・終端化せず、異議経路と未完義務を保持する。
   - AIのnon-actionable分類は非終端とし、原記録を保持して既存の判断主体または要求ownerへ返す。
   - appeal/reopenは先行dispositionと新しい反証・判断根拠を同一履歴へ結び、先行原記録を上書きしない。既存ticketの完了receiptがないcloseはticket完了にせず、projection側のcloseと不一致を記録して既存経路へ戻す。
 - **既存権限境界**：PO専属のcancel/supersedeは既存PO authorityのreceiptを照合するだけであり、ここで新しいPO承認機会や承認形式を増設しない。他のdisposition判断主体を新設しない。要求意味やacceptance oracleが未確定なら、そのownerへ戻す。
@@ -981,3 +981,5 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - 旧条件で保持するのは原指示の不変性、処分ごとの根拠、既存PO authority、challenge/reopenである。旧storage/gate実装や新しい人間承認は持ち込まない。HIL-BR-07はsource IRで`specified_frozen`として保全されるが、IR未完引継ぎから旧条件の廃止・採択済successorを推定しない。
 
 照合した現行本文の固定commit：`2197a4bc405d37f133bac4d5e96809c5afec58c1`。旧L1のBR-07は59行、FR-36は126行、旧運転受入HOT-HIL-36は63行。旧原文のIssue語を現行の原event/local ticketと協調projectionへ分離して再導出し、原指示の意味上の取消権限を緩めない。
+
+**R2222-01の原文照合**：同旧L1 `:99`（HIL-FR-09）と`:201`（HIL-NFR-21）も照合した。findingの非actionable分類は独立reviewとappealを持つ非終端記録である。directiveのaccepted-riskに求めるPO receiptをfindingへ拡張しない。旧provider名/DB viewは現行実装へ移さない。FR-09のcurrent_pr_fix/successor_issueの分類全体は本候補の被覆とせず原文を保持する。
