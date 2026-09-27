@@ -941,3 +941,43 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **戻し先**：registry identity/版/実行receiptの不足はOS、oracle/検証義務はHARNESS-L2-005 owner、engine/detectorの機能意味はその登録owner、authorityはSECURITY、実行環境・resource不足はINFRASTRUCTUREへ戻す。
 
 - **旧source**：同assetの`archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:115–116`（HIL-FR-25/26）、補助source `REQSRC-SUP-00617/00549/00550/00551/00641`（HR-FR-HIL-10、AC10a/b/c、HAT10）。原文・SHAは被覆receiptに束縛する。旧ZIP実装・言語・registry方式は復帰させず、機能ownerの版付き能力の登録と再現証拠をOSへ再導出する。
+
+### HELIXOS-L2-034 原指示・finding disposition証拠と異議履歴（単体候補、1.0）
+
+**判定とscope**
+
+現行HELIXOS-L2-015／019は、原eventの不変性、source・actor・時点・revision・digest、訂正履歴、Issue/PR projectionとauthorityの分離、重複・stale・拒否・未実行の区別を既に要求する。対L11も、原event保持、projection状態から要求authorityを変えないこと、source欠落・重複・stale・再構築を受け入れる。しかし、どの証拠があればduplicate／false-positive／accepted-risk／cancel／supersede dispositionを確定できるか、当該dispositionへのchallenge/reopenをどう原記録へ結ぶかは、既存L2/L11の成功・反例oracleにない。したがってsource atomの参照を台帳へ追加するだけでは条件・受入を満たさず、限定した契約候補が必要である。
+
+本候補はHELIX-OSの原event・既存work ticketの管理記録であり、判断を作る能力ではない。HARNESSの要求意味・ticket完了条件、原authorityを持つ既存decision maker、OS-L2-015の正本、OS-L2-019の連続性を置換しない。GitHub Issueのcloseはprojection状態であり、work ticketのcancel／closeを発生させない。新たなPO承認手続き・gate・判断権限を作らず、旧sourceが要求する場合に限り既存の有効なPO decision receiptを記録へ結び付ける。
+
+**親・版**
+
+- **親L1**：HELIXOS-L1-001（対象ごとの正本・判断source・revision管理）、HELIXOS-L1-002（要求から作業・証拠までのtrace）、HELIXOS-L1-008（authority/projection不整合の検出・再構築）。L1 sourceは`docs/helix-os/L1-planning/system-intent.md`、SHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`。2026-09-28 PO判断により固定L1 revisionが確定している。
+- **版**：`version_target: 1.0`候補。HELIXOS-L2-015/019の1.0共通記録土台へつなぐ範囲に限定する。新しいruntime、外部作用、実装許可は導かない。OS-034自体は2026-09-28に採択された明示候補HELIXOS-L2-014〜029に含まれず、未採択候補である。
+
+**入力・出力・保証**
+
+- **分類前の受付**：user directiveとIssue由来eventは分類前に015のdurable intake receiptへ結ぶ。受付が保存できなければ未受領/未完を示し、分類結果だけを残して原指示を落とさない。
+- **入力**：OS-L2-015の正本から得る原event identityと不変原文参照、source span、actor、received_at、対象revision、digest、既存supersession chain。処理するdisposition案とその理由、該当対象がある場合はlocal ticket identity・現在状態・既存完了条件。選択する根拠sourceはsource identity/revision/digest、利用許可/data-useを付ける。
+- **出力**：原eventを変更・削除せず、対象scope・対象revision・提案/確定disposition・根拠・判断者authority・関連する既存ticket/decision/closure receipt・後続challenge/reopenを相関IDで結ぶ記録。根拠またはauthorityが足りない処理は未解決・非終端としてOS-L2-019へ保存し、成功・cancel・closeへ補完しない。
+- **保持する証拠条件**：
+  - duplicateとして扱う場合は、生存中の同一対象と、その対象が当該要求oracleを包含する証拠を記録する。
+  - false-positiveとして扱う場合は、指摘を覆す独立した反証根拠と、そのsource/対象revisionを記録する。
+  - accepted-risk／cancel／supersedeは、該当する既存PO authorityのdecision receipt、対象scope/revision、理由を結ぶ。receiptがない間は終端処理・原eventの不可視化をしない。
+  - AIのnon-actionable分類は非終端とし、原記録を保持して既存の判断主体または要求ownerへ返す。
+  - appeal/reopenは先行dispositionと新しい反証・判断根拠を同一履歴へ結び、先行原記録を上書きしない。既存ticketの完了receiptがないcloseはticket完了にせず、projection側のcloseと不一致を記録して既存経路へ戻す。
+- **既存権限境界**：PO専属のcancel/supersedeは既存PO authorityのreceiptを照合するだけであり、ここで新しいPO承認機会や承認形式を増設しない。他のdisposition判断主体を新設しない。要求意味やacceptance oracleが未確定なら、そのownerへ戻す。
+- **単独成立の依存**：HELIXOS-L2-015（正本・source・authority record）、HELIXOS-L2-019（原event・訂正履歴・continuity）、該当する場合は既存local ticketのclosure契約とauthority receipt、Concept 1.0の共通ログ・証拠形式。対象sourceから反証/包含証拠を取る場合、その選択sourceの許可・scope・revision・digestも必要。
+- **操作時のみ必須**：duplicate、false-positive、accepted-risk、cancel、supersede、appeal/reopen各処理に固有の証拠は該当処理を提案・確定するときだけ必要。local ticketが閉じられていないdirectiveではticket closure receiptを要求しない。projection Issueのcloseだけでterminal dispositionを作らない。
+- **参照資料のみ**：旧storage/schema/runtimeや未選択source。読むだけで実行依存・採択・authority根拠にしない。
+- **未選択source条件**：根拠として選択していないsourceは未観測であり、根拠なしの「該当なし」へ置き換えない。
+- **失敗時の戻し先／未完義務**：原source、対象ticket、判断authority、根拠、既存receiptのいずれかがmissing/unknown/stale/conflictなら、原eventと未完義務を保ち、当該欠落を補える既存source owner・要求owner・判断authorityへ戻す。projection状態の修正でauthority不足を埋めない。
+
+**旧sourceとの対応**
+
+- `LEGACY-ASSET-A60CF91DD2AF6693E6F9` `archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json`（SHA-256 `80e965736a91f99b2ebb77fba2e63a4bf86d5ab5df6fde1d9685f57b42457688`）の`#/HIL-BR-07`は分類前のdurable intake、AIだけによるreject/drop/close/cancel禁止、non-actionable dispositionの非終端、cancel/supersedeのPO専属、closure receiptなしclose拒否またはreopenを求める。
+- `LEGACY-ASSET-719D5EC9C06FC4AAD0FF` `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md`（SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`）の126行・`#/HIL-FR-36`は、原文参照/source span/actor/received_at/digest/supersession chain、duplicateの生存target+oracle包含、false-positiveの独立反証、accepted-risk/cancel/supersedeのPO receipt、disposition challenge/appeal/reopen receiptを要求する。
+- `LEGACY-ASSET-AFE91778057B7E76BEEC` `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md`（SHA-256 `4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576`）の63行 HOT-HIL-36は、duplicate生存＋oracle包含、false-positive独立反証、cancel/supersede PO receipt、appeal route欠落時の非終端を確認する。
+- 旧条件で保持するのは原指示の不変性、処分ごとの根拠、既存PO authority、challenge/reopenである。旧storage/gate実装や新しい人間承認は持ち込まない。HIL-BR-07はsource IRで`specified_frozen`として保全されるが、IR未完引継ぎから旧条件の廃止・採択済successorを推定しない。
+
+照合した現行本文の固定commit：`2197a4bc405d37f133bac4d5e96809c5afec58c1`。旧L1のBR-07は59行、FR-36は126行、旧運転受入HOT-HIL-36は63行。旧原文のIssue語を現行の原event/local ticketと協調projectionへ分離して再導出し、原指示の意味上の取消権限を緩めない。

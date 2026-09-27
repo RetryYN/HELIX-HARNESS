@@ -535,3 +535,41 @@ HELIXOS-L2-026（unit：構成案と不足を返す導出能力）に対する�
 **候補間の接続境界**
 
 HELIXOS-L2-032は選択済み検証profileのknown failureに対する限定eligibilityを扱う。HELIXOS-L2-033は選択scope内のengine/detector登録と再現証拠を扱う。HELIXOS-L2-020は実行・隔離・回収を行う。HARNESS-L2-005は検証義務とoracleを決める。032/033のresult receiptを当該能力の実行開始入力として要求しない。HARNESS契約をOSが発行したり、OSのquarantine/replay receiptだけでHARNESS受入を完了させたりしない。
+
+### HELIXOS-L2-034 原指示・finding disposition証拠と異議履歴
+
+**対象と基準**
+
+対象能力はHELIXOS-L2-034候補「原指示・finding disposition証拠と異議履歴」。親はHELIXOS-L1-001／002／008、既存境界はHELIXOS-L2-015／019。契約版・対象revision・入力source・利用許可をfixtureごとに固定する。旧sourceは`LEGACY-ASSET-A60CF91DD2AF6693E6F9` `requirements.json#/HIL-BR-07`と`LEGACY-ASSET-719D5EC9C06FC4AAD0FF` `infinity-loop-platform-requirements.md:126`（source SHA・完全pathは対応するL2追補案）、受入先は`LEGACY-ASSET-AFE91778057B7E76BEEC` `L1-infinity-loop-operational-test-design.md:63`のHOT-HIL-36である。
+
+fixture内のID・source textは合成値であり、普遍的なticket番号、閾値、schema、承認手続きを定義しない。今回の文書検証では実装・外部Issue操作を行わない。後段の現行実装に対する受入oracleをここで定め、旧runtime/test/CIの実行結果を代用しない。
+
+**受入例**
+
+| 種別 | 入力と期待結果 | 不合格または保留となる反例 |
+|---|---|---|
+| 正常・反例：分類前保存 | directive/Issue eventを分類する前にdurable原記録とreceiptを得る。保存失敗なら未完とし、原指示を回復できる既存経路へ戻す。 | 分類してから都合のよい指示だけ保存する、保存失敗を受付成功へ丸める、AIのnon-actionableだけで原記録をdropする。 |
+| 正常：duplicate | 合成directive `D-17`の原event、source span、actor/time/revision/digestを固定する。生存ticket `T-42`と、`T-42`の受入oracleが同じ要求を含むsource-bound証拠を与える。duplicate dispositionが元event・target・oracle証拠へ結ばれ、原eventが不変である。 | targetなし、閉じた/失効したtargetのみ、oracle包含根拠なし、digest違いをduplicate確定する。単なる文面類似やIssue番号一致で統合する。 |
+| 正常：false-positive | 合成finding `F-8`とその元evidenceに対し、findingを覆す独立source・対象revision・反証内容を与える。反証がdisposition authorの判断だけに依存せず記録され、後からsourceとscopeを辿れる。 | 元finding/evidenceを保持しない、根拠が同じ主張の言い換えだけ、反証source不明/stale、あるいは独立根拠がないままfalse-positiveをterminalにする。 |
+| 正常：cancel/supersede・accepted-risk | 合成event `D-21`に対応する既存PO decision receipt（既存の有効authority、対象revision/scope、理由）を入力する。OSはそれを原eventへ結び付け、supersession chainを追跡する。 | AIのみの不要判断、PR/Issue close、CI green、古い/別scopeのPO receiptを用いてcancel/supersede/accepted-riskを確定する。必要receiptなしなら保留する。 |
+| 正常：appeal/reopen | 先行disposition receiptと、同じ対象に対する新しいchallenge理由・evidenceを与える。新しい履歴が先行receiptを参照し、原event・先行判断・新判断を全て辿れる。 | appealを先行eventの上書き/削除として記録する、異議経路を失う、または単なるPR更新で再open済みと表示する。異議を受ける経路が欠けるdispositionを終端とする。 |
+| 正常：ticket closure / projection分離 | local ticketの既存closure receiptがないまま協調projection Issueだけcloseしたfixtureを与える。Issueのprojected stateを記録しつつ、原directive/local ticketは未完として保ち、不一致を戻し先へ示す。既存closure receiptがあるfixtureでは、そのexact ticket/revisionに束縛した完了記録を参照する。 | Issue closeをticket cancel/completeへ昇格する、closure receiptなしにticketをcloseする、または既存ticketのclosure条件を本候補が独自に置換する。 |
+| 未見：未知disposition | fixtureにない新しいdispositionラベル、対象revision不明、またはsource authority不明を渡す。原eventは保持し、既存authorityが解決するまで非終端/unknownとし、理由と戻し先を示す。 | 未知分類を自動cancel/dropへ写す、別authorityを推測して終端化する、または未選択sourceを調べた扱いにする。 |
+
+**既存契約との境界**
+
+- HELIXOS-L2-015の受入（`governance-acceptance.md:324–330`）が要求するsource identity/revision/digest/判断出所の追跡、projection close/merge/greenからauthorityを生成しないこと、原eventを保持した訂正追跡は前提として維持する。
+- HELIXOS-L2-019の受入（同`:352–357`）が要求するprovenance/訂正履歴、重複・stale・拒否・未実行と成功の区別、再構築とcheckpoint失敗時の未完扱いを維持する。
+- GitHub運用モデル `docs/governance/github-upstream-operating-model.md:63–72`（SHA-256 `1cb8ed88d4f0e65b37674f692d5fe391c7c5c4b3f482e60c86e160609a8c46a1`）ではFeature Ticketがlocal work authorityでIssueは協調projectionである。Issue Form失敗時のprojection Issue closeは原eventを保持したうえの表示整理で、ticketのcancel/closureではない。この境界を反転させない。
+- HARNESSが持つticket/要求の完了条件や既存POの判断authorityをこのL11で作り直さない。明示したPO receiptは既存authorityが発行したものの参照であり、すべてのdispositionに対する人間確認手続きを追加しない。
+- 条件付き/操作時依存：duplicateのtarget+包含oracle、false-positiveの独立反証、accepted-risk/cancel/supersedeの適用可能な既存PO receipt、challenge/reopenの先行receipt+新根拠は、それぞれ該当操作でのみ必須。選択sourceのrevision/digest/利用許可は、そのsourceを根拠として使う操作で必須。未選択sourceには依存しない。
+- 失敗または未完の場合、対象event・未完義務・停止理由を保持し、既存source owner/要求owner/判断authorityへ戻す。Issue/PR表示状態だけで要求状態を更新しない。
+
+**対応する現行L1/L2/判断**
+
+- L1固定本文：`docs/helix-os/L1-planning/system-intent.md`、SHA-256 `2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`、HELIXOS-L1-001／002／008。
+- 既存L2：`docs/helix-os/L2-requirements/governance-requirements.md`、SHA-256 `077e353d962230943c66a30fba1bd778b5efc40b5506d89b71d4f343b1430559`、HELIXOS-L2-015 `:642–650`、HELIXOS-L2-019 `:682–690`。
+- 既存L11：`docs/helix-os/L11-acceptance/governance-acceptance.md`、SHA-256 `b1dc0b9fd92de8169b74fbe0072c35bd815da3a36d5c8df8ac60a05df8e6ac13`、015 `:324–330`、019 `:352–357`。
+- 2026-09-28 OS PO判断 `docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md`（SHA-256 `5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da`）では候補014–029を採用し旧source holdingを維持、旧sourceの被覆完了・retire・holding解除は導かない（56–59行）。034候補は同決定の明示集合外であり、本文追補案そのものは採択・実装許可を意味しない。
+
+照合した現行本文の固定commit：`2197a4bc405d37f133bac4d5e96809c5afec58c1`。旧L1のBR-07は59行、FR-36は126行、旧運転受入HOT-HIL-36は63行。旧原文のIssue語を現行の原event/local ticketと協調projectionへ分離して再導出し、原指示の意味上の取消権限を緩めない。
