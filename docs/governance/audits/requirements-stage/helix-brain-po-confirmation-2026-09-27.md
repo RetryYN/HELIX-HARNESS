@@ -19,7 +19,7 @@
 | L2候補 | `docs/helix-brain/L2-requirements/brain-requirements.md` | `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03` | [docs/helix-brain/L2-requirements/brain-requirements.md](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/helix-brain/L2-requirements/brain-requirements.md) |
 | L11受入候補 | `docs/helix-brain/L11-acceptance/brain-acceptance.md` | `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b` | [docs/helix-brain/L11-acceptance/brain-acceptance.md](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/helix-brain/L11-acceptance/brain-acceptance.md) |
 
-L1/L2/L11のpath、commit、SHAは固定したが、これはPOの対象revision判断前の確認資料であり`approved_revision`を記録したものではない。L2候補とL11は対で提示する。Conceptのexact revisionは `f6dad2a33e24f000b87d7f09b8d40288257e74cc` の `docs/concept/helix-concept.md` である。
+L1/L2/L11のpath、commit、SHAは固定した。POは対象L1 revisionを確定し、確認packetに明示された全候補と対のL11一式を採用した（../../decisions/helix-brain-requirements-po-decision-2026-09-28.md）。候補表の固定baseline registration rowsは変更せず、採用はdecision recordと各最新registration IDの対応で読む。
 
 ## 継承済みのPO判断（聞き直さない）
 
@@ -32,17 +32,17 @@ POはL1アイデアに対し、Visual Designを1.0から扱い、Visual Design H
 - `docs/helix-brain/sources/brain-infrastructure-domain-po-original-2026-09-26.md`（固定commit `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、SHA-256 `09fcc8b0d41c26fcd51a3f0fa6b54a041f9605904c7048c1b564a9ca6366e72b`）
 - `docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md`（固定commit `f6dad2a33e24f000b87d7f09b8d40288257e74cc`、SHA-256 `f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657`）
 
-## 確定を求める今回の判断
+## PO判断内容（2026-09-28受領済み）
 
-今回確認するのは、現行L1候補が原文を超えず欠かしていないかという対象revisionの確定と、全42 L2/L11候補の採用・保留・不採用または差戻しである。既決のVisual Design範囲・連携方向は聞き直さない。残る意味判断が新たに必要だと分かった場合だけ、当該原文、選択肢、推奨、影響IDを追記し、既決選択を変更する提案は候補へ混ぜない。
+判断前の確認事項として提示したL1対象revisionと全42件の候補処置は、2026-09-28のPO回答で解決した。POは固定対象revisionを確定し、明示候補一式と対のL11を採用した。新たなL1/L2意味判断はこの記録から追加しない。
 
-**L1判断欄（未受領）:** `docs/helix-brain/L1-planning/brain-intent.md` の上記exact SHAを確定する、または差戻す。回答がないため現状態は未受領である。
+**L1判断（PO受領済み）:** POは`docs/helix-brain/L1-planning/brain-intent.md`のSHA-256 `2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0`を対象revisionとして確定した（[判断記録](../../decisions/helix-brain-requirements-po-decision-2026-09-28.md)）。
 
-**L2/L11判断欄（未受領）:** `42` candidate identityを下の明示集合で提示する。POは集合または明示部分集合について採用・保留・不採用/差戻しを示せる。一部だけ判断された場合、残るidentityは未決のまま保持する。一括回答がこのpacketの明示集合と提示revisionに適用すると特定できれば、candidate IDの再列挙なしに集合判断として記録する。適用範囲が曖昧、または部分回答であれば、未判断候補を未決のまま残す。
+**L2/L11判断（PO受領済み）:** POは明示された全42 identityと同identityのL11一式を、候補表のversion_target・適用条件を保持して採用した。全identity・最新registration IDは[判断記録](../../decisions/helix-brain-requirements-po-decision-2026-09-28.md)に明記した。
 
 ### 候補集合：register・kind・version・receipt
 
-下表は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` 時点の各候補につき最新register行を1行示す。すべて候補登録であり、management_stateは`registered_proposal`、authority_effectは`none`。receiptは入力coverage照合の証拠であって、PO採用・L1承認・L2合意・L11試験合格を証明しない。version_targetは能力目標版で、採択後の契約/実artifact版ではない。
+下表は `f6dad2a33e24f000b87d7f09b8d40288257e74cc` 時点の各候補につき最新register行を1行示す。すべて候補登録であり、management_stateは`registered_proposal`、authority_effectは`none`。receiptは入力coverage照合の証拠であり、PO採用はdecision recordと最新registration IDの対応で読む。receipt自体はL11試験合格を証明しない。version_targetは能力目標版で、採択後の契約/実artifact版ではない。
 
 | 候補identity | 親L1 | register ID | kind / version_target | coverage receipt |
 |---|---|---|---|---|
@@ -91,19 +91,9 @@ POはL1アイデアに対し、Visual Designを1.0から扱い、Visual Design H
 
 候補数: `42`。L2 identity見出しから抽出したID集合とL11受入identityを照合し、候補全件が同一identityで対になっている。登録行照合はidentityごとに最新のappend-only recordを選択。以前の訂正revisionはregister履歴に残し、上書きしない。L2見出しに存在しない番号を連番補完していない。
 
-## 残る実質判断・選択肢
+## 判断前に提示した論点（回答済み）
 
-現在の資料から新たなL1意味変更の選択肢は特定していない。L1対象revisionの確定/差戻し、およびL2候補処置が未決。L2候補の不採用・保留は旧source atomのretireや意味変更を意味しない。
-
-選択肢:
-
-- **現行revisionを確定し、候補を個別または明示集合で採用/保留/不採用:** 対象意味と候補範囲をPO記録へ固定する。
-- **差戻し:** 理由と修正対象を記録し、L1/L2/L11 bytesが変われば新SHAで再確認する。
-- **保留:** 該当候補ID、再検討条件、参照元を明記する。条件が示されない保留から推測しない。
-
-推奨: 既決のPO原文・選択を保持した上で、対象revisionの確定可否と、候補IDを明示した処置を記録する。各候補に個別approval gateを増やさず、明示ID集合の一括判断を許容する。
-
-影響範囲: L1判断は当該L1 revisionだけを確定する。L1確定からL2採択を導かない。L2処置は候補と同ID L11受入条件の意味に関する。採用・保留・不採用はいずれもL3承認、実装許可、旧source atomのretireを生成しない。旧意味のcarry-forward状態は別軸で維持する。
+PO判断前に提示したL1対象revision確定とL2/L11候補処置は、2026-09-28の回答で対象revision確定・全42件採用として解決した。L1/L2の選択肢は現在の未決事項として再提示しない。旧source未完引継ぎ、L3承認、実装順序は別の未完事項として保持する。
 
 ## 対象固有の責務・版境界
 
@@ -111,23 +101,23 @@ L2は単体・接続・構成体ごとの機能候補。BRAIN候補の採用で�
 
 全42候補は上表に一件ずつ列挙。共通知識、Infrastructure知識、一般接続/構成体のidentityを含む。一般系列013–017は明示された欠番であり、候補へ含めない。
 
-## PO未受領状態
+## PO判断受領済み
 
-- L1対象revisionの確定/差戻し: **未受領**（決定を推測しない）。
-- L2/L11候補処置: **未受領**（採用・保留・不採用を推測しない）。
-- register行: **管理上の候補登録のみ**。`authority_effect: none`を保持。
-- coverage receipt: **候補source集合との照合結果のみ**。人間判断または受入試験のreceiptとして扱わない。
+- L1対象revision: **確定**。`docs/helix-brain/L1-planning/brain-intent.md`、SHA-256 `2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0`。
+- L2/L11候補処置: **全42件採用**。identity・最新registration ID・version_target／適用条件は[判断記録](../../decisions/helix-brain-requirements-po-decision-2026-09-28.md)と上表を参照。
+- register行: 固定commitの既存状態を変更していない。採用はdecision recordと最新registration ID対応から読む。
+- coverage receipt: source coverageの照合証拠として既存状態を保持し、PO判断receiptや実受入合格とは扱わない。
+- 旧source未完引継ぎ: **未完のまま保持**。全被覆やretireは推定しない。
+- L3承認・実装許可・実装順序A/B: **今回未決定**。
 
-このpacketは判断用草案であり、decision recordではない。POの回答を受領した後にのみdecision recordを作り、decider/日時、Concept/L1/L2/L11 exact SHA、明示IDごとの結果、理由、旧source保持・変更判断、register/receipt参照を記録する。回答がないため、採否stateを埋めていない。
-
-## 確認PRの前提と受領後の扱い
+## 確認PRの前提とPO判断受領後の扱い
 
 機構内の監査・解消16 PR、横断監査 #2195 と解消 #2196、総合検証 #2197 はmerge/read-after済み。[総合検証](integrated-verification-2026-09-27.md)から根拠へ辿れる。本資料は要求本文の固定revisionへの読み口であり、本文やsource atomの被覆を置き換えない。
 
-[PO指示の手順4](../../sources/requirements-stage-po-handoff-original-2026-09-27.md)に従い、POのL1対象revision確定・L2合意（または差戻し）を同じPRの判断記録へ入れるまでDraftを維持し、mergeしない。独立reviewは資料の正確さを照合するもので、PO判断を代行しない。提示したrevisionと集合に対する「一式でよい」という一括回答も、その範囲の判断として記録できる。IDの再列挙は求めない。部分回答・意味変更指示は対象だけを反映し、未判断部分を残す。
+[PO指示の手順4](../../sources/requirements-stage-po-handoff-original-2026-09-27.md)に従い、PO判断記録を本PRへ追加済みである。提示revisionと明示候補集合への一括判断を記録し、ID再列挙は求めない。独立reviewは資料・記録の正確さを照合し、PO判断を代行しない。
 
 旧自律境界（LEGACY-ASSET-6EBDB617A8104A7756D0、`archive/legacy-generation-2026-09-14/root/CLAUDE.md:82-85`、SHA-256 `7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb`）の、人が企画・要求の意味を持ちAIが要件以下を起草する分担を保持する。旧層番号・旧runtime・旧merge方式は移植しない。現行のL1/L2対象revision判断と、L3要件承認を分ける。
 
-現在はPO判断未受領。受領後は実際の回答・対象revision・候補処置を記録し、本文変更があれば対のL11、register訂正revision、receipt、研究pinとbindingを追随させてexact HEADを再reviewする。候補の処置から旧sourceのretireや未完atomの被覆完了、L3承認、実装・release許可を生成しない。
+PO判断を受領し、同PRに判断記録を追加した。対象本文revisionとcandidate本文は不変で、register訂正revision・coverage receipt・research pinを更新していない。独立review、merge後read-afterを経てから次の総合整理へ進む。旧sourceのretire、未完atomの被覆完了、L3承認、実装・release許可は生成しない。
 
-8機構分の確認PRをすべて作成し、全件の独立review指摘0件まで作成側が進める。先行する確認PRのPO判断待ちを理由に、残る確認PRの作成・reviewを止めない。
+8機構分の確認PRは作成済みである。判断記録を反映した各HEADを独立reviewし、指摘解消後にmerge・read-afterする。
