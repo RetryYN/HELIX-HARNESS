@@ -1,0 +1,76 @@
+---
+title: "HELIX-HARNESS 要求一式のPO判断"
+decision_record_id: HDEC-HARNESS-REQUIREMENTS-2026-09-28
+decision_status: recorded
+decider_role: PO
+decided_at: 2026-09-28
+recorded_at: 2026-09-28
+source_repository_revision: f6dad2a33e24f000b87d7f09b8d40288257e74cc
+authority_effect: effective_when_this_record_is_admitted_to_main
+---
+
+# HELIX-HARNESS 要求一式のPO判断
+
+## PO原文
+
+PO判断はPOがClaude（review_merge lane）との会話で2026-09-28に示し、Claudeが原文のまま[本PRの「PO判断の受領と次の作業」コメント](https://github.com/RetryYN/HELIX-HARNESS/pull/2198#issuecomment-5857755968)および他の確認PR・作業指示へ転記した。本記録はその全文を保持する。受信時刻は記録していないため日付のみ示す。判断の根拠は次の明示回答であり、reviewやmergeの結果ではない。
+
+> #2198〜#2205について、各確認資料が固定したL1の対象revisionを確定し、L2と対になるL11の要求一式に合意する。各PRの明示候補集合は、記載されているversion_targetと適用条件を保持して採用する。
+> HARNESSの所属は029＝CORE、031＝共通部品、032＝COREとする。
+> SECURITYはA案を採用する。全操作のauthority境界を適用するが、有効な既決権限を再利用し、通常作業の毎回の人間承認は追加しない。
+> 後続版・Web条件付き要求を1.0へ前倒しせず、旧sourceの未完引継ぎは保持する。判断記録を各PRへ反映し、必要な追随・独立レビュー・統合後確認を行った後、最後の横断整理へ進める。ただし、旧HELIXからデグレ検証は必要。
+
+## 対象revisionと処置
+
+[確認資料（判断前の固定版）](https://github.com/RetryYN/HELIX-HARNESS/blob/01810e9bb7078a287e928e5e87e9e073653d8688/docs/governance/audits/requirements-stage/helix-harness-po-confirmation-2026-09-27.md)が固定した本文を対象とする。L1対象revisionを確定し、L2と対になるL11の要求一式に合意する。明示候補24件は全件採用。下表のSHA-256は実ファイルbytesであり、本文を将来変更した場合へ無条件継承しない。
+
+| 固定source | SHA-256 | Git blob |
+|---|---|---|
+| [docs/helix-harness/L1-planning/product-intent.md](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/helix-harness/L1-planning/product-intent.md) | `238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f` | `7d49551dac8da0ad15151090d971ce72807ce353` |
+| [docs/helix-harness/L2-requirements/product-requirements.md](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/helix-harness/L2-requirements/product-requirements.md) | `aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a` | `e09de04601039d8593768eb3f3342d3416d03b8b` |
+| [docs/helix-harness/L11-acceptance/product-acceptance.md](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/helix-harness/L11-acceptance/product-acceptance.md) | `09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4` | `f827c6bd955bbeb91deba5b7dced93e512e5da9e` |
+
+## 明示候補の採用範囲
+
+以下の各行の処置は **採用**。version_target・適用条件を原文どおり保持する。各行に最新register IDとreceiptの実ファイル・SHAを記録する。
+
+| L2 ID | 最新register ID | kind / register state | version_target | coverage receipt / SHA-256 |
+|---|---|---|---|---|
+| HARNESS-L2-010 | MPR-RC-HARNESS-L2-010-001 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json) / 1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b |
+| HARNESS-L2-011 | MPR-RC-HARNESS-L2-011-001 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json) / 1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b |
+| HARNESS-L2-012 | MPR-RC-HARNESS-L2-012-001 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json) / 1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b |
+| HARNESS-L2-013 | MPR-RC-HARNESS-L2-013-001 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json) / 1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b |
+| HARNESS-L2-014 | MPR-RC-HARNESS-L2-014-003 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-content-quality-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-content-quality-coverage-receipt-2026-09-27-r2.json) / 2d9042062172162cc4f87de523c28ca12376f3d070c239effbdaf4fb85597345 |
+| HARNESS-L2-015 | MPR-RC-HARNESS-L2-015-004 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json) / d67f3379cfc5c6884a7aa82497473267caf5f4bed309c3b84c4307ced927edb5 |
+| HARNESS-L2-016 | MPR-RC-HARNESS-L2-016-004 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json) / d67f3379cfc5c6884a7aa82497473267caf5f4bed309c3b84c4307ced927edb5 |
+| HARNESS-L2-017 | MPR-RC-HARNESS-L2-017-001 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json) / 1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b |
+| HARNESS-L2-018 | MPR-RC-HARNESS-L2-018-001 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json) / 1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b |
+| HARNESS-L2-019 | MPR-RC-HARNESS-L2-019-001 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json) / 1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b |
+| HARNESS-L2-020 | MPR-RC-HARNESS-L2-020-001 | connection / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json) / 1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b |
+| HARNESS-L2-021 | MPR-RC-HARNESS-L2-021-001 | composite / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-l2-010-022-coverage-receipt-2026-09-27.json) / 1d602a8e28f6cbbc82de950f8fc4b440efd197884514702bcd535f390b21651b |
+| HARNESS-L2-022 | MPR-RC-HARNESS-L2-022-004 | unit / registered_proposal; authority_effect=none | 個別version_target印なし | [docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-effect-acceptance-coverage-receipt-2026-09-27.json) / d67f3379cfc5c6884a7aa82497473267caf5f4bed309c3b84c4307ced927edb5 |
+| HARNESS-L2-023 | MPR-RC-HARNESS-L2-023-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-dependency-conditions-coverage-receipt-2026-09-27-r2.json) / f09051ffdcd115792827a111aeb433b8ae258298b0a3c38e8fe39a9bbb4d7ee4 |
+| HARNESS-L2-024 | MPR-RC-HARNESS-L2-024-001 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/harness-convergence-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/harness-convergence-coverage-receipt-2026-09-27.json) / b3ff17f9e58c735f08a5431cf51457b5f32187d4edcce3c32ab141cae7db35c6 |
+| HARNESS-L2-025 | MPR-RC-HARNESS-L2-025-002 | composite / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-design-composition-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-design-composition-coverage-receipt-2026-09-27-r2.json) / 9bec4244981a8852a501d5578becd2d796cd7fd44ef8c1f7717d2922a6e437ec |
+| HARNESS-L2-026 | MPR-RC-HARNESS-L2-026-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-design-composition-coverage-receipt-2026-09-27-r2.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-design-composition-coverage-receipt-2026-09-27-r2.json) / 9bec4244981a8852a501d5578becd2d796cd7fd44ef8c1f7717d2922a6e437ec |
+| HARNESS-L2-027 | MPR-RC-HARNESS-L2-027-003 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |
+| HARNESS-L2-028 | MPR-RC-HARNESS-L2-028-003 | connection / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |
+| HARNESS-L2-029 | MPR-RC-HARNESS-L2-029-003 | composite / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |
+| HARNESS-L2-030 | MPR-RC-HARNESS-L2-030-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |
+| HARNESS-L2-031 | MPR-RC-HARNESS-L2-031-002 | unit / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |
+| HARNESS-L2-032 | MPR-RC-HARNESS-L2-032-002 | connection / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |
+| HARNESS-L2-033 | MPR-RC-HARNESS-L2-033-002 | composite / registered_proposal; authority_effect=none | 1.0 | [docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json](https://github.com/RetryYN/HELIX-HARNESS/blob/f6dad2a33e24f000b87d7f09b8d40288257e74cc/docs/governance/audits/requirement-registration/helix-harness-stage-review-coverage-receipt-2026-09-27.json) / c6c3b2863eaf026ac61c4e272acc197c6021c24e74b4899a23631c74b67b8860 |
+
+## 個別の判断と本文への適用
+
+HARNESS-L2-029＝HELIX-HARNESS-CORE、031＝共通部品、032＝HELIX-HARNESS-COREとして所属を確定する。L2本文の各「所属候補」の値はこの選択と一致する。027・028・030・033を含む残りの明示候補も、確認資料に記載された所属・適用条件を保持して採用する。所属確定は個別サービスのauthority、OS／利用者CIの実行責務、CONNECTの通信責務を移管しない。001〜009の既存routing条件もL2/L11一式の合意対象として保持するが、今回の明示候補24件には重複加算しない。
+
+承認対象の本文bytesは変更しない。本文の「候補」「未採択」「人の判断が残る点」は判断前の記述として保存し、本記録が指定したrevisionと候補集合の採否・所属／scope判断には本記録を適用する。本文内容は選択された案と一致しているため、条件の追加・削除やL11の改変を行わない。registerの管理状態 `registered_proposal` と `authority_effect: none` は登録の性質を表すため書き換えず、採択は本記録と上表のidentity・最新登録IDの対応から読む。候補本文・source atomが不変のため、訂正register、receipt、研究pinの付け直しは不要である。
+
+## 保持する境界と残る作業
+
+- 後続版・Web条件付き要求は表のversion_targetと適用条件のまま採用し、1.0へ前倒ししない。要求への合意を実装済み・受入実行済みと扱わない。
+- 旧sourceの保持点・意味再導出・変更理由は固定確認資料の旧source対応と機構内監査へ結び付ける。既存の未完source holding・未割当atomを保持し、候補の採用から旧sourceのretireや全被覆完了を生成しない。
+- POが求めた旧HELIXからのデグレ検証を最終横断整理の必須作業にする。旧機能・要求・受入・運用保証と採用本文を照合し、失われた機能、弱まった受入、反例・失敗時義務の欠落を調べる。本記録はその検証完了を主張しない。
+- 想定対応順序のA/B、L3要件承認、下流実装開始、v0.1収載、release/tag/配布は今回の判断対象外。既存の対象revision・authority境界に従う。
+- このPRの判断記録追加後のexact HEADをClaudeが独立reviewし、指摘解消・Ready化・merge・read-after後、最終横断整理へ進む。
