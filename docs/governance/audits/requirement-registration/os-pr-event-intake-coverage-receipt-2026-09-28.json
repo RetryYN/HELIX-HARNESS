@@ -1,0 +1,43 @@
+{
+  "receipt_id": "MPR-RCPT-OS-PR-EVENT-INTAKE-2026-09-28",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の### ID見出しから次の見出しまで。末尾空行を除きUTF-8改行1つで終えるSHA-256。",
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom順に改行で区切る。末尾改行なし。",
+  "scope": "旧HIL-BR02原文1行。POのOS単体scope判断に沿いPR eventと監査job要求を再導出。HR-FR-HIL03接続全体の被覆は主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXOS-L2-035",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXOS-L1-002",
+        "HELIXOS-L1-004",
+        "HELIXOS-L1-008"
+      ],
+      "candidate_semantic_digest": "sha256:01ab4c9e572c5af909e4dbf46fb8f44866dd6cc7701dddc88b8dabbe14fb6c03",
+      "source_atom_set_digest": "sha256:e311d94a17014d05195a5c850c46d26af10d2de5b7cf51189e6fa856c0fd528e",
+      "source_atom_count": 1,
+      "source_collection_scope": "旧HIL-BR02原文1行。POのOS単体scope判断に沿いPR eventと監査job要求を再導出。HR-FR-HIL03接続全体の被覆は主張しない。",
+      "atoms": [
+        {
+          "atom_id": "PR-EVENT-INTAKE-infinity-loop-platform-requirements.md-L0054",
+          "source_holding_registration_id": "MPR-SH-PR-EVENT-INTAKE-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 54,
+          "source_line_sha256": "sha256:efbb1519b99cd0994be2ac840e6efd3f9e5706e131472ca4ac67e3ec78b013fa",
+          "source_text": "| **HIL-BR-02** | Claude Code拡張hookはCodexのPR作成/更新/完了を検出し、監査jobを冪等生成する。全base branchのPRを対象とし、stacked PRを除外しない。 |",
+          "disposition": "carried",
+          "relation": "PR作成/更新/完了、全baseとstacked PR、監査jobの冪等生成をOS035/L11へ再導出。旧provider/hook固定を現行OS責務へ置換。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-007",
+        "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-010",
+        "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-035"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": []
+    }
+  ]
+}
