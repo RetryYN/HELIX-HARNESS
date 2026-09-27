@@ -27,7 +27,7 @@
 
 この記録は、要求本文と対応受入を既存根拠へ結ぶ静的な所見処置である。機構別/横断の監査、追跡文書取込み、POのL1/L2判断、L3要件の承認、実装・runtime受入の完了を主張しない。要求本文と受入のrevisionを以下に固定し、対象bytesが変わる場合は当該所見を再照合する。
 
-## 変更対象候補のrevision照合（基準d308）
+## 根拠本文のrevision照合（基準d308）
 
 以下の実本文SHA-256は横断監査のL2/L11 revision tableと照合する。NOCHANGE判断はこのbaselineに対するものなので、本文HEADが変われば再照合する。
 
@@ -38,6 +38,12 @@
 | BRAIN | `01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03` | `7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b` |
 | LABO | `f1c39e5e77d86e287f6f18378b315b67d31fd09862c9b3f626d0301843e537ed` | `bcd77438bf1afa4d33c31d35fa5138ea6f978f3d241d159bde35f0b0ccf83200` |
 | INTELLIGENCE | `40497f22a3ec2aff462b617764df7da6d09b427d95ed91d2ee737535c2e91260` | `4b96aa9565325a35d3ca10813453434df9ec15f21ea64f5db22740fdb3218e3a` |
+
+| SECURITY | `027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c` | `25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01` |
+| INFRASTRUCTURE | `569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b` | `7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada` |
+| CONNECT | `31e3f234172bb5a92b26d41db2de21534cd4301274fc7e2800b4f8a935ce598b` | `bc0cf2f39f9c368074c546b39f53a6bd350998bb0bbdb056285b305f22cc9dad` |
+
+C2のCONNECT契約、U2のSECURITY consumer evidence、責務所有表で参照するINFRASTRUCTUREも含め、8機構すべての根拠本文を固定する。NOCHANGEを支える本文が変わる場合は該当所見と責務分界を再照合する。
 
 監査最新版の抽出限界は、heading-bound inventory外の表形式宣言identity 22件、相手IDが明記されない機構名のみの418件、`..` range等の一部未展開である。22件は既存の宣言表・L11を読む範囲で管理状態を確認し、418件は文章contextと既存契約が欠落している具体証拠がない限り非findingとする。ここでも件数のみで要求欠陥を作らない。
 
