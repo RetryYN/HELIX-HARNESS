@@ -496,3 +496,16 @@ HELIXOS-L2-026（unit：構成案と不足を返す導出能力）に対する�
 **全体判定**：9項目のそれぞれで正常oracleと独立反例が成立し、該当する未見条件を未確認または停止として残したときだけ、このpackage受入候補をpassとする。manifestの一致だけ、単一環境の成功だけ、consumer利用だけ、stage単体だけ、security authorityだけでは9項目を代用しない。HELIXOS-L2-021の対象project配布受入、HARNESS-L2-006／017の提供・Release Port契約、HELIXOS-L2-014のHELIX自身段階リリースはそれぞれ別のidentityで受け入れる。
 
 **旧資産との差分**：旧§4.6.1のHR-AC-HYB-008-01..09の行先を独立した受入行へ示した。技術方式・target・channelの未処分条件は原文と判断事項へ保持し、9件の移管完了を主張しない。Linux/Windowsでconsumer価値を確認する条件、同一artifact・非破壊適用・manifest・文書・rollback・approval boundaryは保持する。Node／CLI／PowerShell、旧distribution repository/profile、古いchannel enumは採択済み実装・対象として継承しない。利用可能な同一consumer価値を現行の対応環境と提供契約で検証する。
+
+### HELIXOS-L2-031 CI性能計測・改善回収の受入候補
+
+未実行の候補。性能の合格値・CI実装・merge許可を本fixtureから生成しない。
+
+- **正常**：同一ticket/source/base HEAD・必須検証集合digestを持つ、正しさ成立かつ適用性能予算超過のrunを入力する。環境/runner/cache/区間計測、母集団・期間・p50/p95、原因と同episodeの改善義務を返す。修正後の独立review、同条件の再検証、必須検証集合の非縮退と安全指標の証拠を確認し、正しさと性能を別状態のまま回収する。
+- **計測欠落の反例**：HEAD、環境、cache、開始/終了時刻、exit code、output digest、区間duration、母集団/期間/除外理由、予算根拠、改善前後の値をそれぞれ欠落・stale・異なるscopeへ変える。比較不能または未完を返し、0や前回値で達成扱いにしない。内部CIのreceiptのみで別環境のGitHub側も速いと主張する例を拒否する。
+- **弱化の反例**：必須検証を削る、oracle閾値を緩める、timeoutを延ばして超過を隠す、外部CIへ先送りする、escaped defectやmutation detection/flakeの悪化を隠す例で改善完了を拒否する。速いが正しさ未達のrunも品質成立にしない。
+- **回収の反例**：性能だけ未達のrunをcorrectness failureへ丸める、correctness greenを性能達成へ変える、別episode/HEADのreviewを転用する、修正・独立review・再検証なしでRecoveryを閉じる例を拒否する。merge可否は既存契約へ渡し、この判定で許可や禁止を追加しない。
+- **未見**：初見のrunner/cache/toolchainや検査集合で以前のp95を流用せず、測定条件と適用予算を未確定として返す。60秒/3分の旧候補を新環境へ無条件適用しない一方、根拠なく廃止・緩和もしない。必要な意味判断とL3計測具体化を分けて戻す。
+- **既決工程の保持**：ticketが必要義務を決める例で固定nightly/full回収を再要求しない。後で発見した失敗はLABO評価とHARNESS契約改善の経路へ返す。単に夜間補完をしないことを未完義務の消去理由にしない。
+
+- **最適化・回収の反例**：exclusive stateをlease/fenceなしに並列実行する、異なるHEAD/lockfile/toolchain/platformのartifactを再利用する、stale telemetryで計画を確定する、cancelした未開始jobをsuccessにする、同一義務の再実行を二重回収に数える例を拒否する。安全な既定DAGに必要義務が揃う場合のみfallbackし、計画自体が不明なら停止/未完とする。後段failureから元selector/edge/oracleへの因果traceが欠落した改善候補は根拠不足を保持する。
