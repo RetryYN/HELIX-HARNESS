@@ -283,7 +283,7 @@
     "holding_registration_id": "MPR-SH-OUTSIDE67-001",
     "holding_sha256": "d703c9bc47f95143f6b010eebf7fead4e14402c1be26ef716b2e16f0bd2cec54",
     "management_register_path": "docs/governance/management-provisional-requirement-register.jsonl",
-    "management_register_sha256": "2bfb68ec6d503fd11f730d844e6ca4d467dd3eb78b9ed2f0c8891f3f13c7855e",
+    "management_register_sha256": "e36f1e57a108e5c711719d2a6e8f4c6cb6dbafdf158f55808423c92cb90e380d",
     "origin_main_rebaseline_required_after_2016_merge": false,
     "pre_isolation_commit": "2d4991042be55268bac30a8bbcdac45b3865030a",
     "read_only": true,

@@ -1,0 +1,100 @@
+{
+  "receipt_id": "MPR-RCPT-INTELLIGENCE-JUDGMENT-PACK-2026-09-28-R3",
+  "supersedes_receipt_id": "MPR-RCPT-INTELLIGENCE-JUDGMENT-PACK-2026-09-28-R2",
+  "authority_effect": "none",
+  "candidate_digest_rule": "L2の既存HELIXINTELLIGENCE-L2-072節（追補見出し直前まで）、L2末尾追補節、L11の既存HELIXINTELLIGENCE-L2-072受入節（追補見出し直前まで）、L11末尾追補節をこの順に各末尾空行除去・LF1つで正規化し、UTF-8 bytesを直接連結したSHA-256。既存の各本文は移動/変更しない。",
+  "candidate_digest_parts": [
+    {
+      "part": "L2-072-original",
+      "document_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価（単体候補、version_target: 1.0）",
+      "sha256": "sha256:a828bff2126dfe8b029c75ff922f4b52613e6aa48cd957a3f8056be635b97dd2"
+    },
+    {
+      "part": "L2-072-supplement",
+      "document_path": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md",
+      "heading": "#### 旧HIL-FR-57/58のpack構成・改善signal・rollback証拠（未採択候補の追補）",
+      "sha256": "sha256:18031b08a45b1a6ccdc951651c853c937f0bbeab37ff8506a8d3fcaae609c618"
+    },
+    {
+      "part": "L11-072-original",
+      "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "heading": "### HELIXINTELLIGENCE-L2-072 Judgment pack候補とshadow評価 — 受入候補",
+      "sha256": "sha256:b0a3131940865e2cb30b016ec7232f6f9e40c6cb9fdd20f3974c7654e8a6a31f"
+    },
+    {
+      "part": "L11-072-supplement",
+      "document_path": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md",
+      "heading": "#### HIL-FR-57/58追補fixture（未採択候補）",
+      "sha256": "sha256:de867f666d92b72d2b03942ff95236924435f230e53ee06cc2b0fde47f4a9acb"
+    }
+  ],
+  "source_atom_set_digest_rule": "atom_id、半角空白、source_line_sha256を連結しatom_id順に改行で区切る。末尾改行なし。",
+  "scope": "既存HIL-BR-29原文1行を保持し、旧HIL-FR-57/58原文2行を072候補の末尾追補へ対応する限定receipt。旧HR-FR-HIL-21、HAC-HIL-21a/b/c、HAT-HIL-21、旧全合成要求のpair descentや採択・実行完了は主張しない。",
+  "candidates": [
+    {
+      "requirement_identity": "HELIXINTELLIGENCE-L2-072",
+      "requirement_kind": "unit",
+      "parent_l1_ids": [
+        "HELIXINTELLIGENCE-L1-001",
+        "HELIXINTELLIGENCE-L1-002",
+        "HELIXINTELLIGENCE-L1-008",
+        "HELIXINTELLIGENCE-L1-012",
+        "HELIXINTELLIGENCE-L1-013",
+        "HELIXINTELLIGENCE-L1-020"
+      ],
+      "candidate_semantic_digest": "sha256:ec6cc30ed93863de6856d10be04c2578cc0a9d2cdc50641e18627e83396d2d32",
+      "candidate_semantic_digest_scope": "上記4 candidate_digest_partsの直接連結。L2とL11の072本文+末尾追補を双方固定する。",
+      "source_atom_set_digest": "sha256:e86f73dc7cf95b10fc7ebe7dadaa791a3f43e9a57c958b2e61fbe9594c10429d",
+      "source_atom_count": 3,
+      "source_collection_scope": "旧HIL-BR-29原文1行および旧HIL-FR-57/58原文2行のみ。各行の条件を072候補へ意味対応し、FR58の別runtime表現は既決PO独立review条件へ記録付き再導出。HR-FR-HIL-21全体、他IR、旧acceptance/test、旧runtimeを被覆したとはしない。",
+      "atoms": [
+        {
+          "atom_id": "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0081",
+          "source_holding_registration_id": "MPR-SH-JUDGMENT-PACK-001",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 81,
+          "source_line_sha256": "sha256:7b052ddde5f76436cd96990bbf6eb99a0c7d51c9f168b99d67a5badadb1dd94b",
+          "source_text": "| **HIL-BR-29** | 判断系skillを汎用checklistの固定配布に限定せず、工程、domain、risk、failure mode、判断authorityに適合するversioned judgment packとして拡張する。候補skillはshadow評価と独立reviewを経るまで判断gateの強制規則へ昇格しない。 |",
+          "disposition": "carried",
+          "relation": "工程/domain/risk/failure/authorityに適合する版付き判断packとshadow・独立review前の強制禁止をINTELLIGENCE072/L11へ保持。"
+        },
+        {
+          "atom_id": "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0147",
+          "source_holding_registration_id": "MPR-SH-JUDGMENT-PACK-002",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 147,
+          "source_line_sha256": "sha256:bf400678929dd5a360b3b3a355c96fab10830facda5f7d8111df82dc5fe59f4f",
+          "source_text": "| **HIL-FR-57** | Judgment Pack Registryは工程別の判断目的、観点、反証質問、evidence要求、severity、escalation/停止条件、authority、適用domain/risk、model適性、versionを保持し、`judgment-core`、role judgment、task lens、専門skillを重複のないpackへ合成する。 | judgment pack、applicability/digest、source skill edge、conflict finding |",
+          "disposition": "carried",
+          "relation": "HIL-FR-57のpack内容・source edge・重複/競合をL2-072追補と対応L11 fixtureへ再導出。"
+        },
+        {
+          "atom_id": "JUDGMENT-PACK-infinity-loop-platform-requirements.md-L0148",
+          "source_holding_registration_id": "MPR-SH-JUDGMENT-PACK-002",
+          "legacy_asset_id": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+          "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+          "source_file_sha256": "sha256:db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+          "source_line": 148,
+          "source_line_sha256": "sha256:b096435ba2e897bccd82ae2e590475a580a170f614cf3caf7ce6c151a8e1a833",
+          "source_text": "| **HIL-FR-58** | Judgment Pack Improvement Loopはfinding、review reversal、retry、escaped defect、skill efficacyから不足観点を候補化し、with/without shadow比較、false-positive/negative、別runtime review、rollbackを経たversionだけをactive化する。判断結果そのものを自己教師として無監査昇格しない。 | candidate pack、shadow scorecard、independent review、promotion/rollback receipt |",
+          "disposition": "carried",
+          "relation": "HIL-FR-58のsignal・shadow/FP/FN・rollback・無監査昇格禁止をL2-072追補と対応L11 fixtureへ再導出。別runtime基準は既決PO判断へ記録付き再導出。"
+        }
+      ],
+      "current_condition_refs": [
+        "docs/helix-intelligence/L2-requirements/intelligence-requirements.md:561-598",
+        "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md:289-313",
+        "docs/helix-intelligence/L1-planning/intelligence-intent.md:43-62",
+        "docs/governance/decisions/worker-execution-model-po-decisions-2026-09-26.md:56-67"
+      ],
+      "coverage_result": "no_loss",
+      "unaccounted_atom_refs": [],
+      "coverage_limit": "no_lossは選択した3原文行のL2/L11意味対応のみ。072のA/B配置選択、candidate採択、HR-FR-HIL-21のpair descent、実験実行、active化を意味しない。"
+    }
+  ]
+}

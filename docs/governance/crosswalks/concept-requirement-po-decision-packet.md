@@ -1081,3 +1081,11 @@
 ## 判断とAI作業の境界
 
 POがA/B/Cを選ぶ前に、原文・digest・原authorityと対象revisionの一致、接続後の意味atom全件、L11の受入を照合する。担当や技術の変更だけならAIが差分を記録して進める。原文を縮退・統合・retireする場合だけ、対象revisionと変更前後を持つ人間decisionに戻す。未特定の行は検索範囲と結果を対応表に残したまま先へ進む。
+
+
+## HIL-FR-57/58とINTELLIGENCE-L2-072の追加research binding（候補・未採択）
+
+- HIL-FR-57/58の既存比較行（旧migration source L1:147-148）は過去のtarget assessment OSを保持する。現mainのHELIXINTELLIGENCE-L2-072/L11は候補Bの意味・受入候補としてこの2行に対応するが、既存HARNESS/OS案Aとの配置A/Bは未決であり、candidateのregister/receiptは採択を意味しない。
+- source pinは`docs/governance/audits/requirement-registration/judgment-pack-source-lines-2026-09-28-r3.jsonl`のHIL-FR-57/58行。candidate/受入は`docs/helix-intelligence/L2-requirements/intelligence-requirements.md#helixintelligence-l2-072`および`docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md#helixintelligence-l2-072`、対応atom/partsは`docs/governance/audits/requirement-registration/intelligence-judgment-pack-coverage-receipt-2026-09-28-r3.json`。
+- 旧「別runtime review」の変更理由は既決`worker-execution-model-po-decisions-2026-09-26.md:56-67`。旧HR-FR-HIL-21、HAC-HIL-21a/b/c、HAT-HIL-21への合成closureは本candidateで主張しない。
+- 本補記は研究sourceと未採択候補のbindingであり、250候補集合、2026-09-28のPO採択済み要求、L1/L2/L11固定合意、decision recordの選択結果を変更しない。

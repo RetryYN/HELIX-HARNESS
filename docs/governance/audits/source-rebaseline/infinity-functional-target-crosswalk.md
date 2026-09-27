@@ -81,3 +81,8 @@ HARNESS／OSの行は、工程・提供契約の定義をHARNESS、状態管理�
 旧FR中の固定画面状態数、固定CI段階、既定effort、exact source範囲等は、表に省略したことを削除根拠にしない。
 採否・適用範囲・根拠revisionを原文と詳細契約から確認し、個別条件を移管する。
 BR・NFR・TRの対応表と合わせて153 IDを照合するが、本文読取りと対象判断はL2合意・契約被覆・実装・受入の証拠ではない。
+
+
+## Judgment pack候補へのsource binding追補（2026-09-28、非採択）
+
+旧HIL-FR-57/58の表行とtarget assessment `OS`は旧来の照合記録として保持する。現在は`HELIXINTELLIGENCE-L2-072`/L11に対応候補があるが、旧HARNESS/OS案とINTELLIGENCE案Bの配置A/Bは未決で、source atomの移管・候補採択・HR-FR-HIL-21のpair descentを意味しない。限定bindingは`docs/governance/crosswalks/concept-requirement-po-decision-packet.md`の追補、r3 source lines、r3 receiptで追跡する。
