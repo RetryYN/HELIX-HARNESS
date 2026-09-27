@@ -98,11 +98,19 @@ L2の「親L1全12件の受け先」の各行を、この文書の同ID受入へ
 
 **正常例**：HARNESS-COREからのqueryでconnector契約版/互換範囲とscopeを照合し、選択した複数Patternのidentity/version、required input、applicability、relation、反例、sourceを漏れなくHARNESS-L2-009へ対応付けたreceiptを返す。製品固有の最終選択・値は未決のまま返り、consumerが受取内容を個別設計へ結べる。
 
+**追加oracle（定義済みfieldの値未決）**：選択Pattern/Unit/Partのrequired-field定義がそのknowledge revisionに存在し、required input値の一つだけがunknown/未設定のfixtureを使う。知識receiptは受領可能であり、既存receiptにfield identityと未決理由を残す。Pattern/Unit/Part/input identityとknowledge versionからHARNESS-L2-009受取義務identityへ辿り、その義務から同じ元knowledge revisionとrequired inputへ逆引きできることを照合する。receiptを受領しても設計義務/接続全体は未完のままとし、未充足義務が閉じるまでは設計完成または実装準備の成立として扱わない。
+
 **誤りを含む例**：connector contractがmissing/stale、選択したPatternのversion/required input/conflictが欠落、unknownを適用可能に変換、またはBRAINが製品固有のAPI・state・permissionを選択済みとして返す。これらを他Patternや単体成功で相殺しない。
+
+**追加oracle（field定義欠落）**：選択knowledge revisionにrequired-field一覧または選択fieldの定義がない場合、それを定義済みfieldの値未設定と読み替えて通常受領してはならない。義務identityのreceipt欠落、逆引き先のknowledge revision/field/scope違い、または受領後の未充足義務を完了扱いする場合も不合格とする。知識意味・field定義の欠落はBRAINへ、HARNESS義務への対応付けまたはreceiver scopeの欠落はHARNESSへ戻す。
 
 **未見例**：未公開のPattern pairまたは互換範囲外の版を与え、正確な版照合、required field・relation・unknownのreceipt保持を照合する。Patternを選択しない利用では未観測であり、そのsourceの知識や適用性を推定しない。connectionは知識の受渡し範囲を判定し、製品設計が正しいとは判定しない。
 
+**追加oracle（混在inputと未知field）**：別のPattern/Unit/Part組で定義済みrequired fieldを複数選び、既知値と一部未設定値を混在させる。値はfield単位でreceiptに保ち、知識receiptの受領のみ成立可能、未充足義務あり、設計義務/接続全体と設計完成/実装準備は未成立とする。field定義の欠落、逆trace欠落、別scopeへの義務結付けは成功にしない。値の補完・製品設計の選択を受入側で創作せず、未選択知識は未観測のまま保つ。
+
 **依存区分**：**常時必須**＝connector contract identity/version/compatibility、scope/query/receipt schema、consumer HELIX-HARNESS-CORE contract。**特定操作時のみ**＝選択知識を適用候補へ使うときのapplicability/required input/relation/negative case照合。**選択した入力元に応じて必須**＝選択knowledgeの全identity/version/source/required fields。未選択knowledgeは未観測。**参照資料のみ**＝背景説明。receiptやauthorityの代替にしない。
+
+**依存状態の追加oracle**：選択required inputのfield定義とfield値の状態を別に記録する。値未決は受領可能な知識receiptと未充足義務として保持するが、field定義そのものが欠ける状態を値未決へ読み替えない。knowledge receiptの受領、HARNESS設計義務の充足、設計完成/実装準備を別々に判定し、未充足required inputがある義務は完了としない。Pattern/Unit/Part/inputからHARNESS-L2-009義務へのtraceと、義務から元knowledge revision/fieldへの逆traceを両方照合する。
 
 ### 限界と戻し先
 
