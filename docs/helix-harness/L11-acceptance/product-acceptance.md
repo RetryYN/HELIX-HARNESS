@@ -570,3 +570,67 @@ HARNESS-L2-014が対の設計を、HARNESS-L2-022と承認済み要件がoracle�
 - **A-74の適用外**：HARNESS自身を対象に二回のVを強制する入力を拒否する。本候補は対象repositoryのagent systemへ提供する能力であり、自身の工程をWへ変更しない。
 
 旧Concept根拠：`LEGACY-ASSET-75776FE016E550F5355F`、`archive/legacy-generation-2026-09-14/root/docs/governance/helix-harness-concept_v3.1.md:343–361`、SHA-256 `b6cecb7bec29d85b36e299f8a594821c1d778328506fe2c056ca330ef76d968c`。一般系とagent系で各々要求/要件からVを通る意味とA-74の自身適用除外を保持する。旧L0-L14は現行ConceptとL1-L12の正規pairへ再導出し、旧provider環境を実装前提にしない。単一L3への畳み込みは本候補では採らない。
+
+### HARNESS-L2-038 対応L11受入候補
+
+本節はHARNESS-L2-038 unit candidate（`version_target: 1.0`候補、未採択）に対する内容oracle案。詳細な要求は[HARNESS-L2-038](../L2-requirements/product-requirements.md)を参照する。COREが契約と結果を評価し、HARNESS-L2-019はFull Reverseの入口/result境界、選択source型の抽出は必要時に027、設計authorityは014、検証/受入契約は022、requirements formationは008/024、trace/Backflowは003/004が既存ownerである。OSはHELIX管理下のticket/run/証拠運転を担当するが、HARNESS単体の受入成立をOS実行に依存させない。source extraction成功、L2候補、登録receiptだけで採択/承認/Acceptedを推定しない。
+
+全fixtureは対象project、対象L1/要求revision、source snapshot revision/digest、選択source type/scope、authority状態を固定する。status語彙や採否権限は新設せず、既存契約のauthority/statusを入力し、038は当該scopeの内容照合結果と未完義務を返す。
+
+**作業中の観測/要求形成は後段成果を要求しない**
+
+**正常例**：選択した旧API/source fixtureに2つの観測可能な能力がある。027 receiptが各source spanとrevisionを示す。target requirementのauthorityが未決、保存design/testがまだない状態で038を呼ぶ。038は能力を別identityで記録し、各内容の根拠、要求候補/既存要求への関連または未確定、authority未決、将来のdesign/test/oracle義務と戻し先を分けて返す。調査・要求形成段階の結果を未完として明示し、pair-freeze/Full Reverse完了とは宣言しない。この段階で保存design、test result、detector runを要求しない。
+
+**誤り**：設計/testがまだ生成されていないことだけを理由にsource observationや初期要求候補を不合格にする。または逆に、後段成果が未作成なのにcoverage-complete/pair-freeze/Acceptedと表示する。
+
+**選択scope内の閉包claimは個々の能力で確認する**
+
+**正常例**：既存authorityの下で要求が確定し、該当設計要素・test/oracleが作られた後、同一scopeを再評価する。能力Aはsource span→要求r1→design d1→test/oracle t1へrevision-bound relationを持つ。能力Bは適用外または別要求へ戻す根拠と既存status/ownerを持つ。038は選択scopeの個々の能力とclaimされた完了段階だけを照合し、対応済みと未完を分離する。該当するすべての能力が各段階義務へ閉じた場合だけ、そのscope/段階に限った閉包を返す。
+
+**誤り**：能力A/Bを一つのaggregate IDでまとめる、同じ要求/design/testを根拠なしに複数能力へ複製joinする、上流の意味判断をAIが作った候補で自己正当化する、理由のない「不要/却下」でobligationを除外する、source scope外の機能を不存在とする、1段階の完了から後段stageの証明/受入まで推定する。個別relation・根拠・適用scopeが欠ける、または一つでも未判断/孤立が残るときは当該閉包claimを不成立にする。
+
+**正常例（分母と双方向join）**：選択scopeのsource observation manifestがcapability `c1,c2,c3`を含み、038の結果にもこの3件が各一度ずつ現れる。各項目から該当requirement/basic design/test/detector-gateへ辿れ、該当endpoint側からも根拠capabilityへ戻れる。適用されるendpointが後段でまだ無い場合はその義務を未完として表示し、途中結果だけを返す。完了claimではmanifestと結果のidentity集合・件数が一致する。
+
+**誤り例（欠落・重複・片方向）**：manifestに`c1,c2,c3`があるのに結果から`c3`を落としclosedとする、`c2`を同一identityで2回計上する、capabilityから要求へだけrelationがあり逆方向には孤立する、または適用されるdetector/gate endpointとの接続がないのにpair-freezeを返す。それぞれ閉包を拒否し、欠落/重複/孤立するidentityと戻し先を示す。
+
+**空・複製・no-findingの偽閉包を拒否する**
+
+**誤りfixture**：同じselected source setに対して (a) 空のcoverage表、(b) `TODO`等placeholderのみ、(c) source本文を貼り直しただけで意味/根拠を照合していない結果、(d) 同一内容/digestを別capabilityまたは別段階の証拠として再掲、(e) 対象obligationへのrelationがないのに「findingなし/対応不要」とする結果、を個別に与える。これらをsubstantive completion、negative oracle合格、pair-freeze成立として受け入れず、具体的な欠落・unknown・未完を返す。異なる正当な能力が同じ共通oracleを参照すること自体は拒否せず、個別source根拠と適用理由が確認できるかを判定する。
+
+**未見source/変更scope**
+
+**未見例**：同じsource typeの未見fieldまたは新しいselected source revisionを追加する。以前のscope receiptを流用せず、選択範囲とdigestを再固定する。対応可能な範囲はsource span/契約根拠を返し、未知のfield/behaviorはunsupported/unknownとして残す。新規scopeのunknownを無影響/不存在や過去scopeの失敗へ外挿しない。scope変更後に以前のclosed resultを新scopeの成立根拠として使わない。
+
+**処置状態の意味区分**
+
+**正常例**：選択scope内の能力について、現行status/authorityに基づき「既存義務への採用」「既存義務の強化」「再設計候補」「根拠とauthority付きの却下/対象外」「特定の既存義務への吸収」「未決/unknown」を区別する。旧語をenumとして要求せず、処置理由と適用先を辿れる。
+
+**誤り例**：根拠なし却下、吸収先のないabsorbed相当、未決なのに採択済み表示、再設計候補を承認済み要求にする結果を拒否する。対象外の理由と決定authorityが欠ける場合も閉包しない。
+
+**FR-35段階内容のoracle**
+
+**正常例**：固定R0–R4ラベル/schemaを使わない現行artifact一式から、完了claimが対象とする範囲について、(1) source根拠と範囲のmap、(2) 観測契約、(3) as-is設計/test、(4) intent仮説と既存authorityによるPO検証状態、(5) gapとowner/routingを個別に辿れる。設計/test未作成の初期観測では(3)以降を未完として明示し、初期観測結果だけを成立させる。Full Reverseや該当stage完了をclaimする際は、そのclaimに必要な内容が欠けない。
+
+**誤り例**：AIが生成した仮説だけをPO検証済み扱いする、残gap/owner/routingがないのに完了claimする、as-is design/testを含むべき段階なのにそれがなくcoverage表だけで完了する結果を拒否する。R3相当のPO検証が未実施なら、その判断を要する完了claimを保留し、既存authorityのownerへ戻す。新しい承認手続きは作らない。
+
+**受入判定と段階境界**
+
+受入では、選択scope、個別能力identity、provenance/source span、内容根拠、既存authority/status、該当段階のrequirement/design/oracle relation、未完義務、戻し先が辿れることを確認する。L2候補受入は要求採択やL3承認、実装/CI成功、利用者のAcceptedを生成しない。初期観測・要求候補形成では将来のdesign/test/detectorを前提にせず、pair-freeze/段階完了を主張するoperationに限って、その段階で適用する後段義務の閉包を求める。
+
+旧HIL-FR-22/35の個別記録・内容oracleを選択scopeに対して照合する。固定R0–R4ラベルやschemaを使わなくても、FR-35の5つの段階内容とR3相当のPO検証を現行artifactで検査する。旧R0–R4のラベル、phase schema、固定enum、旧runtime、全4020 assetへの一括適用は受入条件に戻さない。Product Data Ingestionのfull/incremental取得等は旧HIL-FR-24の2.0候補に保持し、本fixtureへ含めない。
+
+**出典**
+
+- 旧HIL-FR-22: `archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md:112`、SHA-256 `db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb`。
+- 旧HIL-FR-35: 同上 `:125`、同SHA。FR-22の旧target crosswalkは `docs/governance/audits/source-rebaseline/infinity-functional-target-crosswalk.md:31`、FR-35は `:44`。
+- 現行親L1: `docs/helix-harness/L1-planning/product-intent.md:31-39`、SHA-256 `238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f`。
+- 現行L2根拠: `docs/helix-harness/L2-requirements/product-requirements.md:59-60,419-425,499-520,559-570,711-725`、SHA-256 `a80de323f18dffd36aef90536986b9284372117bc5dfa0fd6d733a3a87ac49d9`。
+- 現行L11根拠: `docs/helix-harness/L11-acceptance/product-acceptance.md:45,214,365-373,479-485`、SHA-256 `103705cf8840fec1feaa9ff930af89f80222d746390cf2fa2cf950c6350ee1e5`。
+
+
+
+**固定照合基準**：草稿が照合した現行本文の基準commitは `afc3963085b53a4bf86ac5da8f7663aef1bed144`。旧source・現行L1/L2/L11のfile SHAは出典に示す固定値を参照する。
+
+**段階の内容依存と中断**：source根拠から観測契約、観測契約からas-is設計/test、これらを根拠とした意図仮説/PO検証、最後に差分/routingという内容の依存を保持する。見出し名を変えただけで段階を飛ばせない。選択scopeで必要なobligationが100%に満たなければcheckpoint後も未完とし、budget途中停止を完了へ丸めない。既存契約上不要な操作の追加はしない。旧受入根拠は `LEGACY-ASSET-AFE91778057B7E76BEEC`、`archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L1-infinity-loop-operational-test-design.md:62`（HOT-HIL-35）、SHA-256 `4f8f67664e360dcb8b40f9c834953d026c9bf3b359a79a64e68fa2296689e576`。
+
+**中断・順序違反の反例**：観測contractがないのにas-is設計の根拠充足を主張、PO検証を飛ばして仮説確定、budget切れcheckpoint後に残obligationを分母から落とし100%とする入力を拒否する。再開時は同revisionと残義務を確認し、source変更なら該当内容を再照合する。
