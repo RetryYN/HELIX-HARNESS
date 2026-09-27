@@ -589,10 +589,10 @@ L2-011は既存の同一corpus/responsibility scope比較を所有したまま�
 既存配置案の固定SHA-256：crosswalk `sha256:06345757faf6491c848340356a7f58f6c407161070a4691e2a51bb17729f7a41`、判断packet `sha256:3aa2789aa7abf0fc1aa235240b40686f2cf66a8c9a888b93953a05207d0caa65`。
 
 
-#### 旧HIL-FR-57/58のpack構成・改善signal・rollback証拠（未採択候補の追補）
+#### 旧HIL-FR-57/58のpack構成・昇格保護と版境界（未採択候補の追補）
 
 - **pack構成**：候補packは対象工程/domain/risk/failure mode/既存authorityに加え、判断目的、判断観点、反証質問、必要evidence、severity、escalation/停止条件、model適性、適用条件、versionをsource/revision付きで表す。モデル適性が未評価、根拠欠落、またはsourceがunknownの場合はunknown/未評価で保持し、推測で埋めない。特定provider/model、固定checklist、未確定閾値を要件化しない。
 - **合成の記録**：`judgment-core`、role judgment、task lens、専門skill等を選択する場合、各componentのidentity/version/applicabilityとpack内のsource edgeを残す。同一意味の重複を整理する場合も由来edgeは失わない。異なる要求、反証、evidence、severity、停止条件が競合する場合はconflict findingと未解決箇所を返し、INTELLIGENCEが優先順位やauthorityを創作して黙って統合・削除しない。この候補はruntime compilerや強制gateを定義しない。
-- **改善候補signal**：finding、review reversal、retry、escaped defect、skill efficacyをsignalとして選択できる。各signalは元source identity/revision、適用範囲、根拠とunknownを保つ。signalの不在や未評価は候補の成果・改善の証明に置き換えない。INTELLIGENCEは候補を作るだけで、判断結果を自己教師として採択したり、BRAIN/LABOの正本・履歴を更新しない。
+- **FR58の1.0保持範囲と後続版**：FR58原文は1.0保持部分と後続版へ残す部分に分ける。072の1.0候補に保持するのはwith/without shadow比較、false-positive/false-negative、独立review、rollback evidence、および対象ownerの採択後だけactive化する境界である。finding、review reversal、retry、escaped defect、skill efficacyから不足観点を作り、pack改善へ使うloopは072の1.0責務に含めない。2026-09-24のHMC-BR-003に従い、知識の評価・保持は1.0〜2.xでLABO、Intelligenceによる改善利用は3.0以降の候補とする。HELIXINTELLIGENCE-L1-021は3.0の学習・調整を定める。適用範囲内の評価・Feedbackは、既存LABO-L2-050の契約または未採択のLABO-L2-063候補で扱う範囲へ戻し、後者の採択・拡大を先取りしない。本候補が全signal処理をLABOへ新たに要求しない。後続版部分はsource holdingとcrosswalkに残し、本候補を3.0の成立条件・許可へ拡張しない。
 - **比較とrollback証拠**：昇格を検討する対象versionについては、同じ対象scope/revision、case集合、oracleおよび比較条件に対するcandidateあり/なしのshadow結果を結び、false-positive/false-negative、unknown、反例を識別可能にする。適用可能なrollback先・戻し条件・rollback evidence/receiptも同じversionに結ぶ。具体的な数値閾値やrollback方式は本候補で新設しない。既存ownerの手続きで有効な比較・rollback evidenceがない間は未完とする。
 - **独立reviewとactive境界**：shadow比較と独立reviewは別々の証跡とする。reviewerは作成側と異なるidentity/context/authority/review routeで証拠を確認し、作成側の結論を引き継がない。pack候補を作ったWorker自身またはそのsubagentのreviewは独立扱いしない。別runtimeという構成だけで独立とせず、同じruntimeという理由だけでも不独立としない。全証跡が揃ってもINTELLIGENCEはcandidate状態を維持し、対象ownerの既存authority手続きによる採択・active化とOS側の記録を代行しない。採択・active化・rollbackのreceiptは既存owner/OSから参照し、072自身が生成した実行receiptと誤認させない。

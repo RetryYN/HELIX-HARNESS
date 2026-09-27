@@ -86,3 +86,8 @@ BR・NFR・TRの対応表と合わせて153 IDを照合するが、本文読取�
 ## Judgment pack候補へのsource binding追補（2026-09-28、非採択）
 
 旧HIL-FR-57/58の表行とtarget assessment `OS`は旧来の照合記録として保持する。現在は`HELIXINTELLIGENCE-L2-072`/L11に対応候補があるが、旧HARNESS/OS案とINTELLIGENCE案Bの配置A/Bは未決で、source atomの移管・候補採択・HR-FR-HIL-21のpair descentを意味しない。限定bindingは`docs/governance/crosswalks/concept-requirement-po-decision-packet.md`の追補、r3 source lines、r3 receiptで追跡する。
+
+
+## HIL-FR-58の版境界訂正とr4候補binding（2026-09-28）
+
+HIL-FR-58の元target assessment `OS`とcrosswalkの後続版文は保持する。072はFR58全文の1.0移管先ではない。r4でshadow/FP-FN/独立review/rollback/owner-active境界だけを1.0未採択候補へbindし、改善signalからのpack改善利用は`MPR-SH-JUDGMENT-PACK-002`へ保留する。HMC-BR-003に従うLABOの1.0-2.x評価/保持、Intelligenceの3.0以降改善利用を分ける。詳細は現行crosswalkとr4 receiptを参照する。
